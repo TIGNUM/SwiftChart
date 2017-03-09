@@ -26,6 +26,9 @@
 		CBD791451E71722D0006C590 /* LearnCategoryListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791441E71722D0006C590 /* LearnCategoryListCoordinator.swift */; };
 		CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791461E7172390006C590 /* LearnContentListCoordinator.swift */; };
 		CBD7914A1E71797C0006C590 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791491E71797C0006C590 /* Typealiases.swift */; };
+		CBD7914E1E719E2D0006C590 /* ContentCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD7914D1E719E2D0006C590 /* ContentCategory.swift */; };
+		CBD791501E71A0950006C590 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD7914F1E71A0950006C590 /* Content.swift */; };
+		CBD791521E71A09F0006C590 /* ContentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791511E71A09F0006C590 /* ContentItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +68,9 @@
 		CBD791441E71722D0006C590 /* LearnCategoryListCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnCategoryListCoordinator.swift; sourceTree = "<group>"; };
 		CBD791461E7172390006C590 /* LearnContentListCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentListCoordinator.swift; sourceTree = "<group>"; };
 		CBD791491E71797C0006C590 /* Typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
+		CBD7914D1E719E2D0006C590 /* ContentCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCategory.swift; sourceTree = "<group>"; };
+		CBD7914F1E71A0950006C590 /* Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
+		CBD791511E71A09F0006C590 /* ContentItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentItem.swift; sourceTree = "<group>"; };
 		CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -115,7 +121,6 @@
 				CB2880231E7051710067890A /* AppCoordinator.swift */,
 				CB2880211E7050EB0067890A /* Coordinator.swift */,
 			);
-			name = Coordinators;
 			path = Coordinators;
 			sourceTree = "<group>";
 		};
@@ -124,7 +129,6 @@
 			children = (
 				CBB237EF1E6FFF1200AB5AEF /* AppDelegate.swift */,
 			);
-			name = App;
 			path = App;
 			sourceTree = "<group>";
 		};
@@ -133,7 +137,6 @@
 			children = (
 				CB2880271E7057790067890A /* RootViewController.swift */,
 			);
-			name = "Root Container View";
 			path = "Root Container View";
 			sourceTree = "<group>";
 		};
@@ -143,7 +146,6 @@
 				CB2880331E7144E60067890A /* CollectionUpdate.swift */,
 				CBD791491E71797C0006C590 /* Typealiases.swift */,
 			);
-			name = Common;
 			path = Common;
 			sourceTree = "<group>";
 		};
@@ -173,6 +175,7 @@
 				CB2880261E70555E0067890A /* App */,
 				CB2880321E7144D40067890A /* Common */,
 				CB2880201E7050D10067890A /* Coordinators */,
+				CBD7914B1E719E090006C590 /* Database */,
 				CBD7913E1E715FEC0006C590 /* Learn Category List */,
 				CBD791431E7160710006C590 /* Learn Content List */,
 				CB2880291E70577E0067890A /* Root Container View */,
@@ -200,7 +203,6 @@
 				CB28802C1E705D3A0067890A /* LearnCategoryListViewController.swift */,
 				CB28802E1E706AC50067890A /* LearnCategoryListViewModel.swift */,
 			);
-			name = "Learn Category List";
 			path = "Learn Category List";
 			sourceTree = "<group>";
 		};
@@ -210,7 +212,6 @@
 				CBD7913F1E71604C0006C590 /* LearnContentListViewController.swift */,
 				CBD791411E7160560006C590 /* LearnContentListViewModel.swift */,
 			);
-			name = "Learn Content List";
 			path = "Learn Content List";
 			sourceTree = "<group>";
 		};
@@ -220,8 +221,27 @@
 				CBD791441E71722D0006C590 /* LearnCategoryListCoordinator.swift */,
 				CBD791461E7172390006C590 /* LearnContentListCoordinator.swift */,
 			);
-			name = Learn;
 			path = Learn;
+			sourceTree = "<group>";
+		};
+		CBD7914B1E719E090006C590 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				CBD7914C1E719E1C0006C590 /* Model */,
+			);
+			name = Database;
+			path = Database;
+			sourceTree = "<group>";
+		};
+		CBD7914C1E719E1C0006C590 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CBD7914F1E71A0950006C590 /* Content.swift */,
+				CBD7914D1E719E2D0006C590 /* ContentCategory.swift */,
+				CBD791511E71A09F0006C590 /* ContentItem.swift */,
+			);
+			name = Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -447,9 +467,12 @@
 				CB28802D1E705D3A0067890A /* LearnCategoryListViewController.swift in Sources */,
 				CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */,
 				CB2880221E7050EB0067890A /* Coordinator.swift in Sources */,
+				CBD791521E71A09F0006C590 /* ContentItem.swift in Sources */,
 				CBD791401E71604C0006C590 /* LearnContentListViewController.swift in Sources */,
 				CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */,
+				CBD791501E71A0950006C590 /* Content.swift in Sources */,
 				CB28802F1E706AC50067890A /* LearnCategoryListViewModel.swift in Sources */,
+				CBD7914E1E719E2D0006C590 /* ContentCategory.swift in Sources */,
 				CBD791421E7160560006C590 /* LearnContentListViewModel.swift in Sources */,
 				CB2880281E7057790067890A /* RootViewController.swift in Sources */,
 				CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */,
