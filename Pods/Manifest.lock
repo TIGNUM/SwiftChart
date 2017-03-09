@@ -1,4 +1,9 @@
 PODS:
+  - Bond (6.0.4):
+    - Diff (~> 0.4)
+    - ReactiveKit (~> 3.3)
+  - Diff (0.5.0)
+  - ReactiveKit (3.3.1)
   - Realm (2.4.3):
     - Realm/Headers (= 2.4.3)
   - Realm/Headers (2.4.3)
@@ -6,12 +11,16 @@ PODS:
     - Realm (= 2.4.3)
 
 DEPENDENCIES:
+  - Bond (~> 6.0)
   - RealmSwift (~> 2.4)
 
 SPEC CHECKSUMS:
+  Bond: bc982d559e9c7fe30f50c29bbb5396ded9529699
+  Diff: eceb93a3adf508574ba9b8560da185ace83de055
+  ReactiveKit: 27df79c2e2f0771aef1061551fcd7e82b92066e9
   Realm: e08d60b0048ccccd3949c8c28a92c4db5712d7e9
   RealmSwift: 30d49739ccb3385d201242736ca4dda56aec9dfc
 
-PODFILE CHECKSUM: f6edac548ccd8b3a432fee0bc01b9c50f56a9731
+PODFILE CHECKSUM: 42582e7cf10f9ec72d4fbce80955df6583c8a9af
 
 COCOAPODS: 1.2.0

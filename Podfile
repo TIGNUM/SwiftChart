@@ -5,6 +5,7 @@ target 'QOT' do
 
   # Pods for QOT
   pod 'RealmSwift', '~> 2.4'
+  pod 'Bond', '~> 6.0'
 
   target 'QOTTests' do
     inherit! :search_paths
