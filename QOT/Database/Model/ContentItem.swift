@@ -36,12 +36,15 @@ final class ContentItem: Object {
     
     var data: Data {
         get {
-            do { return try Data(format: format, value: value) }
-            catch let error { fatalError("Failed to get content item data: \(error)") }
+            do {
+                return try Data(format: format, value: value)
+            } catch let error {
+                fatalError("Failed to get content item data: \(error)")
+            }
         }
         set {
-            format = data.format
-            value = data.value
+            format = newValue.format
+            value = newValue.value
         }
     }
 }
@@ -51,16 +54,16 @@ fileprivate extension ContentItem.Data {
         case invalid(format: String, value: String)
     }
     
-    struct key {
+    struct Key {
         static let text = "text"
         static let video = "video"
     }
     
     init(format: String, value: String) throws {
         switch format {
-        case key.text:
+        case Key.text:
             self = .text(value)
-        case key.video:
+        case Key.video:
             guard let url = URL(string: value) else { throw Error.invalid(format: format, value: value) }
             self = .video(url)
         default:
@@ -70,8 +73,8 @@ fileprivate extension ContentItem.Data {
     
     var format: String {
         switch self {
-        case .text: return key.text
-        case .video: return key.video
+        case .text: return Key.text
+        case .video: return Key.video
         }
     }
     
