@@ -29,6 +29,7 @@
 		CBD7914E1E719E2D0006C590 /* ContentCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD7914D1E719E2D0006C590 /* ContentCategory.swift */; };
 		CBD791501E71A0950006C590 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD7914F1E71A0950006C590 /* Content.swift */; };
 		CBD791521E71A09F0006C590 /* ContentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791511E71A09F0006C590 /* ContentItem.swift */; };
+		CBD791541E72A4BB0006C590 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791531E72A4BB0006C590 /* MockData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		CBD7914D1E719E2D0006C590 /* ContentCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCategory.swift; sourceTree = "<group>"; };
 		CBD7914F1E71A0950006C590 /* Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		CBD791511E71A09F0006C590 /* ContentItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentItem.swift; sourceTree = "<group>"; };
+		CBD791531E72A4BB0006C590 /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				CBB237EF1E6FFF1200AB5AEF /* AppDelegate.swift */,
+				CBD791531E72A4BB0006C590 /* MockData.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -229,7 +232,6 @@
 			children = (
 				CBD7914C1E719E1C0006C590 /* Model */,
 			);
-			name = Database;
 			path = Database;
 			sourceTree = "<group>";
 		};
@@ -240,7 +242,6 @@
 				CBD7914D1E719E2D0006C590 /* ContentCategory.swift */,
 				CBD791511E71A09F0006C590 /* ContentItem.swift */,
 			);
-			name = Model;
 			path = Model;
 			sourceTree = "<group>";
 		};
@@ -464,6 +465,7 @@
 				CBB237F21E6FFF1200AB5AEF /* ViewController.swift in Sources */,
 				CBD791451E71722D0006C590 /* LearnCategoryListCoordinator.swift in Sources */,
 				CBD7914A1E71797C0006C590 /* Typealiases.swift in Sources */,
+				CBD791541E72A4BB0006C590 /* MockData.swift in Sources */,
 				CB28802D1E705D3A0067890A /* LearnCategoryListViewController.swift in Sources */,
 				CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */,
 				CB2880221E7050EB0067890A /* Coordinator.swift in Sources */,
