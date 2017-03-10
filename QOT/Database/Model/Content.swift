@@ -11,6 +11,7 @@ import RealmSwift
 
 final class Content: Object {
     dynamic var id: Int = 0
+    dynamic var sort: Int = 0
     dynamic var name: String = ""
     dynamic var title: String = ""
     let items = List<ContentItem>()
@@ -19,10 +20,18 @@ final class Content: Object {
         return "id"
     }
     
-    convenience init(id: Int, name: String, title: String) {
+    convenience init(id: Int, sort: Int, name: String, title: String) {
         self.init()
         self.id = id
+        self.sort =  sort
         self.name = name
         self.title = title
+    }
+}
+
+extension Content {
+    var percentageViewed: Double {
+        let viewed = items.filter { $0.status == .viewed }
+        return Double(viewed.count) / Double(items.count)
     }
 }

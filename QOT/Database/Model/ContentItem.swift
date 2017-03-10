@@ -15,20 +15,27 @@ final class ContentItem: Object {
         case video(URL)
     }
     
+    enum Status {
+        case notViewed
+        case viewed
+    }
+    
     private dynamic var value: String = ""
     private dynamic var format: String = ""
+    private dynamic var _status: String = ""
     
     dynamic var id: Int = 0
+    dynamic var sort: Int = 0
     dynamic var title: String = ""
-    dynamic var status: Int = 0
     
     override class func primaryKey() -> String? {
         return "id"
     }
     
-    convenience init(id: Int, title: String, status: Int, data: ContentItem.Data) {
+    convenience init(id: Int, sort: Int, title: String, status: Status, data: ContentItem.Data) {
         self.init()
         self.id = id
+        self.sort = sort
         self.title = title
         self.status = status
         self.data = data
@@ -45,6 +52,29 @@ final class ContentItem: Object {
         set {
             format = newValue.format
             value = newValue.value
+        }
+    }
+    
+    var status: Status {
+        get {
+            do {
+                return try Status(value: _status)
+            } catch let error {
+                fatalError("Failed to get content item status: \(error)")
+            }
+        }
+        set {
+            _status = newValue.value
+        }
+    }
+    
+    var secondsRequired: Int {
+        // FIXME: Mock Implementation
+        switch data {
+        case .text:
+            return 60
+        case .video:
+            return 300
         }
     }
 }
@@ -82,6 +112,35 @@ fileprivate extension ContentItem.Data {
         switch self {
         case .text(let value): return value
         case .video(let url): return url.absoluteString
+        }
+    }
+}
+
+fileprivate extension ContentItem.Status {
+    enum Error: Swift.Error {
+        case invalid(value: String)
+    }
+    
+    struct Key {
+        static let viewed = "viewed"
+        static let notViewed = "notViewed"
+    }
+    
+    init(value: String) throws {
+        switch value {
+        case Key.viewed:
+            self = .viewed
+        case Key.notViewed:
+            self = .notViewed
+        default:
+            throw Error.invalid(value: value)
+        }
+    }
+    
+    var value: String {
+        switch self {
+        case .viewed: return Key.viewed
+        case .notViewed: return Key.notViewed
         }
     }
 }

@@ -14,16 +14,20 @@ protocol LearnContentListCoordinatorDelegate: class {
 
 final class LearnContentListCoordinator: ParentCoordinator {
     fileprivate let rootVC: UIViewController
+    fileprivate let databaseManager: DatabaseManager
+    fileprivate let category: ContentCategory
     
     var children: [Coordinator] = []
     weak var delegate: LearnContentListCoordinatorDelegate?
     
-    init(root: UIViewController) {
+    init(root: UIViewController, databaseManager: DatabaseManager, category: ContentCategory) {
         self.rootVC = root
+        self.databaseManager = databaseManager
+        self.category = category
     }
     
     func start() {
-        let viewModel = LearnContentListViewModel()
+        let viewModel = LearnContentListViewModel(category: category)
         let vc = LearnContentListViewController(viewModel: viewModel)
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .custom

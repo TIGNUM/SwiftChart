@@ -7,18 +7,24 @@
 //
 
 import UIKit
+import RealmSwift
 
 final class LearnCategoryListCoordinator: ParentCoordinator {
     fileprivate let rootVC: RootViewController
+    fileprivate let databaseManager: DatabaseManager
+    fileprivate lazy var categories: Results<ContentCategory> = {
+        return self.databaseManager.mainRealm.objects(ContentCategory.self).sorted(byKeyPath: "sort")
+    }()
     
     var children: [Coordinator] = []
     
-    init(root: RootViewController) {
+    init(root: RootViewController, databaseManager: DatabaseManager) {
         self.rootVC = root
+        self.databaseManager = databaseManager
     }
     
     func start() {
-        let viewModel = LearnCategoryListViewModel()
+        let viewModel = LearnCategoryListViewModel(categories: categories)
         let vc = LearnCategoryListViewController(viewModel: viewModel)
         vc.delegate =  self
         rootVC.present(vc, animated: false)
@@ -27,7 +33,8 @@ final class LearnCategoryListCoordinator: ParentCoordinator {
 
 extension LearnCategoryListCoordinator: LearnCategoryListViewControllerDelegate {
     func didSelectCategory(at index: Index, in viewController: LearnCategoryListViewController) {
-        let coordinator = LearnContentListCoordinator(root: viewController)
+        let category = categories[index]
+        let coordinator = LearnContentListCoordinator(root: viewController, databaseManager: databaseManager, category: category)
         coordinator.start()
         coordinator.delegate = self
         

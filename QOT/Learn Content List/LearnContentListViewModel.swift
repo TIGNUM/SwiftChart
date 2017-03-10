@@ -8,6 +8,7 @@
 
 import Foundation
 import ReactiveKit
+import RealmSwift
 
 /// Encapsulates data to display in a `LearnContentListViewController`.
 protocol LearnContent {
@@ -21,41 +22,34 @@ protocol LearnContent {
 
 /// The view model of a `LearnContentListViewController`.
 final class LearnContentListViewModel {
+    private let category: ContentCategory
+    
     /// The title to display.
-    let title: String = mockTitle
+    let title: String
     let updates =  PublishSubject<CollectionUpdate, NoError>()
+    
+    init(category: ContentCategory) {
+        self.title = category.title
+        self.category = category
+    }
     
     /// The number of items of content to display.
     var itemCount: Index {
-        return mockItems.count
+        return category.contents.count
     }
     
     /// Returns the `LearnContent` to display at `index`.
     func item(at index: Index) -> LearnContent {
-        return mockItems[index]
+        return category.contents[index]
     }
 }
 
-private let mockTitle = "Performance Mindset"
-
-private struct MockContent: LearnContent {
-    let title: String
-    let viewed: Bool
-    let minutesRequired: Int
+extension Content: LearnContent {
+    var viewed: Bool {
+        return percentageViewed > 0
+    }
+    
+    var minutesRequired: Int {
+        return items.reduce(0, { $0.0 + $0.1.secondsRequired }) / 60
+    }
 }
-
-private let mockItems: [MockContent] = [
-    MockContent(title: "Performance mindset defined", viewed: false, minutesRequired: 5),
-    MockContent(title: "Identify Mindset Killers", viewed: false, minutesRequired: 1),
-    MockContent(title: "Eliminate Drama", viewed: false, minutesRequired: 2),
-    MockContent(title: "From Low To High Performance", viewed: false, minutesRequired: 5),
-    MockContent(title: "Optimal Performance State", viewed: true, minutesRequired: 5),
-    MockContent(title: "Mindset Shift", viewed: false, minutesRequired: 4),
-    MockContent(title: "Building on High Performance", viewed: false, minutesRequired: 5),
-    MockContent(title: "Reframe Thoughts", viewed: false, minutesRequired: 3),
-    MockContent(title: "Visulize Success", viewed: false, minutesRequired: 3),
-    MockContent(title: "Control the Controllable", viewed: false, minutesRequired: 2),
-    MockContent(title: "Mental Rehearsal", viewed: false, minutesRequired: 2),
-    MockContent(title: "Set Intentions", viewed: false, minutesRequired: 4),
-    MockContent(title: "Performance Mindset Defined", viewed: false, minutesRequired: 5)
-]

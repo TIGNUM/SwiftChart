@@ -11,6 +11,16 @@ import UIKit
 final class AppCoordinator: ParentCoordinator {
     private let window: UIWindow
     private lazy var rootVC: RootViewController = RootViewController()
+    private lazy var databaseManager: DatabaseManager = {
+        do {
+            return try DatabaseManager()
+        } catch let error {
+            // FIXME: There are valid cases when this may fail such as if the
+            // the phone has ran out of storage. In such cases we should fail 
+            // gracefully and show an error.
+            fatalError("Failed to open realm: \(error)")
+        }
+    }()
     
     var children: [Coordinator] = []
 
@@ -22,7 +32,7 @@ final class AppCoordinator: ParentCoordinator {
         window.rootViewController = rootVC
         window.makeKeyAndVisible()
         
-        let coordinator = LearnCategoryListCoordinator(root: rootVC)
+        let coordinator = LearnCategoryListCoordinator(root: rootVC, databaseManager: databaseManager)
         coordinator.start()
         children.append(coordinator)
     }

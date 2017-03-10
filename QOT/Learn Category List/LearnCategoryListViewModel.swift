@@ -8,6 +8,7 @@
 
 import Foundation
 import ReactiveKit
+import RealmSwift
 
 /// Encapsulates data to display in a `LearnCategoryListViewController`.
 protocol LearnCategory {
@@ -23,44 +24,35 @@ protocol LearnCategory {
 
 /// The view model of a `LearnCategoryListViewController`.
 final class LearnCategoryListViewModel {
+    private let categories: Results<ContentCategory>
+    
     let updates = PublishSubject<CollectionUpdate, NoError>()
+    
+    init(categories: Results<ContentCategory>) {
+        self.categories = categories
+    }
     
     /// The number of categories to display.
     var categoryCount: Index {
-        return mockCategories.count
+        return categories.count
     }
     
     /// Returns the `LearnCategory` to display at `index`.
     func category(at index: Index) -> LearnCategory {
-        return mockCategories[index]
+        return categories[index] as LearnCategory
     }
 }
 
-// MARK: Mock data
-
-private struct MockCategory: LearnCategory {
-    let title: String
-    let percentages: [Double]
-    
+extension ContentCategory: LearnCategory {
     var itemCount: Int {
-        return percentages.count
+        return contents.count
     }
     
     var viewedCount: Int {
-        return percentages.filter { $0 > 0 }.count
+        return contents.filter { $0.viewed }.count
     }
     
     func percentageLearned(at index: Index) -> Double {
-        return percentages[index]
+        return contents[index].percentageViewed
     }
 }
-
-private let mockCategories: [MockCategory] = [
-    MockCategory(title: "MINDSET", percentages: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    MockCategory(title: "RECOVERY", percentages: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    MockCategory(title: "FOUNDATION", percentages: [1, 1, 1, 0.5, 0.5]),
-    MockCategory(title: "NUTRITION", percentages: [1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0]),
-    MockCategory(title: "NEW", percentages: [1, 0, 0, 0]),
-    MockCategory(title: "MOVEMENT", percentages: [1, 1, 1, 0, 0, 0, 0, 0, 0, 0]),
-    MockCategory(title: "HABITUATION", percentages: [1, 1, 1, 1, 1, 0.5, 0, 0, 0, 0])
-]

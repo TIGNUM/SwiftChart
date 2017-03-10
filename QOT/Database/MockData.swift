@@ -12,9 +12,8 @@ import RealmSwift
 // FIXME: Remove when no longer needed
 
 /// Deletes all data in default realm and fills with mock data.
-func setupRealmWithMockData() {
+func setupRealmWithMockData(realm: Realm) {
     do {
-        let realm = try Realm()
         try realm.write {
             realm.deleteAll()
             realm.add(mockContentCategories())
@@ -35,8 +34,9 @@ private func newMockID() -> Int {
 private func mockContentItems() -> [ContentItem] {
     let datas: [ContentItem.Data] = [.text("some text"), .video(URL(string: "a_url")!)]
     var items: [ContentItem] = []
-    for _ in 0...Int.random(between: 3, and: 10) {
-        let item = ContentItem(id: newMockID(), title: "", status: 0, data: datas.randomItem())
+    for i in 0...Int.random(between: 3, and: 10) {
+        let status = ContentItem.Status.notViewed
+        let item = ContentItem(id: newMockID(), sort: i, title: "", status: status, data: datas.randomItem())
         items.append(item)
     }
     return items
@@ -60,8 +60,8 @@ private func mockContent() -> [Content] {
     ]
     
     let titles = possibleTitles.prefix(upTo: Int.random(between: 3, and: possibleTitles.count + 1))
-    return titles.map { (title) -> Content in
-        let content = Content(id: newMockID(), name: "some name", title: title)
+    return titles.enumerated().map { (index, title) -> Content in
+        let content = Content(id: newMockID(), sort: index, name: "some name", title: title)
         content.items.append(objectsIn: mockContentItems())
         return content
     }
@@ -69,8 +69,8 @@ private func mockContent() -> [Content] {
 
 private func mockContentCategories() -> [ContentCategory] {
     let categoryTitles = ["Mindset", "Recovery", "Foundation", "Nutrition", "New", "Movement", "Habituation"]
-    return categoryTitles.map { (title) -> ContentCategory in
-        let category = ContentCategory(id: newMockID(), name: "a name", title: title)
+    return categoryTitles.enumerated().map { (index, title) -> ContentCategory in
+        let category = ContentCategory(id: newMockID(), sort: index, name: "a name", title: title)
         category.contents.append(objectsIn: mockContent())
         return category
     }
