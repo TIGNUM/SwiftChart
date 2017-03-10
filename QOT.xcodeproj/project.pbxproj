@@ -29,6 +29,9 @@
 		CBD791521E71A09F0006C590 /* ContentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791511E71A09F0006C590 /* ContentItem.swift */; };
 		CBD791541E72A4BB0006C590 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791531E72A4BB0006C590 /* MockData.swift */; };
 		CBD791561E72BAAC0006C590 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791551E72BAAC0006C590 /* DatabaseManager.swift */; };
+		CBD7915C1E72F2990006C590 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD7915A1E72F2990006C590 /* LaunchViewController.swift */; };
+		CBD7915D1E72F2990006C590 /* LaunchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBD7915B1E72F2990006C590 /* LaunchViewController.xib */; };
+		CBD7915F1E72FDC10006C590 /* LaunchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD7915E1E72FDC10006C590 /* LaunchViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +74,9 @@
 		CBD791511E71A09F0006C590 /* ContentItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentItem.swift; sourceTree = "<group>"; };
 		CBD791531E72A4BB0006C590 /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		CBD791551E72BAAC0006C590 /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		CBD7915A1E72F2990006C590 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		CBD7915B1E72F2990006C590 /* LaunchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchViewController.xib; sourceTree = "<group>"; };
+		CBD7915E1E72FDC10006C590 /* LaunchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewModel.swift; sourceTree = "<group>"; };
 		CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -181,7 +187,7 @@
 				CB2880291E70577E0067890A /* Root Container View */,
 				CBB237F61E6FFF1200AB5AEF /* Assets.xcassets */,
 				CBB237FB1E6FFF1200AB5AEF /* Info.plist */,
-				CBB237F81E6FFF1200AB5AEF /* LaunchScreen.storyboard */,
+				CBD791571E72F10E0006C590 /* Launch */,
 			);
 			path = QOT;
 			sourceTree = "<group>";
@@ -240,6 +246,17 @@
 				CBD791511E71A09F0006C590 /* ContentItem.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		CBD791571E72F10E0006C590 /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				CBB237F81E6FFF1200AB5AEF /* LaunchScreen.storyboard */,
+				CBD7915A1E72F2990006C590 /* LaunchViewController.swift */,
+				CBD7915E1E72FDC10006C590 /* LaunchViewModel.swift */,
+				CBD7915B1E72F2990006C590 /* LaunchViewController.xib */,
+			);
+			name = Launch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -332,6 +349,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBD7915D1E72F2990006C590 /* LaunchViewController.xib in Resources */,
 				CBB237FA1E6FFF1200AB5AEF /* LaunchScreen.storyboard in Resources */,
 				CBB237F71E6FFF1200AB5AEF /* Assets.xcassets in Resources */,
 			);
@@ -464,7 +482,9 @@
 				CB28802D1E705D3A0067890A /* LearnCategoryListViewController.swift in Sources */,
 				CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */,
 				CB2880221E7050EB0067890A /* Coordinator.swift in Sources */,
+				CBD7915F1E72FDC10006C590 /* LaunchViewModel.swift in Sources */,
 				CBD791521E71A09F0006C590 /* ContentItem.swift in Sources */,
+				CBD7915C1E72F2990006C590 /* LaunchViewController.swift in Sources */,
 				CBD791561E72BAAC0006C590 /* DatabaseManager.swift in Sources */,
 				CBD791401E71604C0006C590 /* LearnContentListViewController.swift in Sources */,
 				CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */,

@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 final class LearnCategoryListCoordinator: ParentCoordinator {
-    fileprivate let rootVC: RootViewController
+    fileprivate let rootVC: UIViewController
     fileprivate let databaseManager: DatabaseManager
     fileprivate lazy var categories: Results<ContentCategory> = {
         return self.databaseManager.mainRealm.objects(ContentCategory.self).sorted(byKeyPath: "sort")
@@ -18,7 +18,7 @@ final class LearnCategoryListCoordinator: ParentCoordinator {
     
     var children: [Coordinator] = []
     
-    init(root: RootViewController, databaseManager: DatabaseManager) {
+    init(root: UIViewController, databaseManager: DatabaseManager) {
         self.rootVC = root
         self.databaseManager = databaseManager
     }
@@ -27,7 +27,9 @@ final class LearnCategoryListCoordinator: ParentCoordinator {
         let viewModel = LearnCategoryListViewModel(categories: categories)
         let vc = LearnCategoryListViewController(viewModel: viewModel)
         vc.delegate =  self
-        rootVC.present(vc, animated: false)
+        vc.modalTransitionStyle = .crossDissolve
+        vc.modalPresentationStyle = .custom
+        rootVC.present(vc, animated: true)
     }
 }
 

@@ -9,17 +9,12 @@
 import UIKit
 
 final class AppCoordinator: ParentCoordinator {
-    private let window: UIWindow
-    private lazy var rootVC: RootViewController = RootViewController()
-    private lazy var databaseManager: DatabaseManager = {
-        do {
-            return try DatabaseManager()
-        } catch let error {
-            // FIXME: There are valid cases when this may fail such as if the
-            // the phone has ran out of storage. In such cases we should fail 
-            // gracefully and show an error.
-            fatalError("Failed to open realm: \(error)")
-        }
+    fileprivate let window: UIWindow
+    fileprivate var databaseManager: DatabaseManager?
+    fileprivate lazy var launchVC: LaunchViewController = {
+        let vc = LaunchViewController(viewModel: LaunchViewModel())
+        vc.delegate = self
+        return vc
     }()
     
     var children: [Coordinator] = []
@@ -29,10 +24,29 @@ final class AppCoordinator: ParentCoordinator {
     }
     
     func start() {
-        window.rootViewController = rootVC
+        window.rootViewController = launchVC
         window.makeKeyAndVisible()
         
-        let coordinator = LearnCategoryListCoordinator(root: rootVC, databaseManager: databaseManager)
+        DatabaseManager.make { (result) in
+            switch result {
+            case .success(let manager):
+                self.databaseManager = manager
+                self.launchVC.viewModel.ready.value = true
+            case .failure(_):
+                // FIXME: Alert user that the app cannot be run
+                break
+            }
+        }
+    }
+}
+
+extension AppCoordinator: LaunchViewControllerDelegate {
+    func didTapLaunchViewController(_ viewController: LaunchViewController) {
+        guard let databaseManager = databaseManager else {
+            preconditionFailure("databaseManager must exist")
+        }
+        
+        let coordinator = LearnCategoryListCoordinator(root: viewController, databaseManager: databaseManager)
         coordinator.start()
         children.append(coordinator)
     }
