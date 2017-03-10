@@ -29,3 +29,14 @@ To view the current linting rules see the `.swiftlint.yml` file. Please discuss 
 Please use [Synx](https://github.com/venmo/synx) to ensure that the project file structure matches Xcode's groups. This makes it easier to navigate the project through GitHub's web interface. Once installed you can run Synx by `cd`ing into the projects root and running:
 
 `synx qot.xcodeproj`
+
+# Project Structure
+
+We are aiming to use a combination of the [coordinator pattern](http://khanlou.com/2015/10/coordinators-redux/) and MVVM with reactive view models. Coordinators should be lightweight and manage the setting up and flow between view controllers including applying transitions through `UIPresentationController`s etc. They act as glue resulting in decoupled view controllers. 
+
+In general:
+
+- A coordinator will be initialized with an existing view controller and once the `start` method is called transition to a new view controller that they manage. 
+- They will set up that view controller with a view model and any other required objects/values.
+- They will act as the delegate of that view controller responding to events that will change data or should instantiate new view controllers.
+- They may spawn child coordinators to manage view controllers that they transition too.
