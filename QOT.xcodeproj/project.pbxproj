@@ -32,6 +32,9 @@
 		CBD7915C1E72F2990006C590 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD7915A1E72F2990006C590 /* LaunchViewController.swift */; };
 		CBD7915D1E72F2990006C590 /* LaunchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBD7915B1E72F2990006C590 /* LaunchViewController.xib */; };
 		CBD7915F1E72FDC10006C590 /* LaunchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD7915E1E72FDC10006C590 /* LaunchViewModel.swift */; };
+		CBD791651E768AB70006C590 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791631E768AB70006C590 /* MainMenuViewController.swift */; };
+		CBD791661E768AB70006C590 /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBD791641E768AB70006C590 /* MainMenuViewController.xib */; };
+		CBD791681E768CC00006C590 /* MainMenuCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791671E768CC00006C590 /* MainMenuCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +80,9 @@
 		CBD7915A1E72F2990006C590 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		CBD7915B1E72F2990006C590 /* LaunchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchViewController.xib; sourceTree = "<group>"; };
 		CBD7915E1E72FDC10006C590 /* LaunchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewModel.swift; sourceTree = "<group>"; };
+		CBD791631E768AB70006C590 /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
+		CBD791641E768AB70006C590 /* MainMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenuViewController.xib; sourceTree = "<group>"; };
+		CBD791671E768CC00006C590 /* MainMenuCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuCoordinator.swift; sourceTree = "<group>"; };
 		CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -126,6 +132,7 @@
 				CBD791481E7172460006C590 /* Learn */,
 				CB2880231E7051710067890A /* AppCoordinator.swift */,
 				CB2880211E7050EB0067890A /* Coordinator.swift */,
+				CBD791671E768CC00006C590 /* MainMenuCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -182,12 +189,13 @@
 				CB2880321E7144D40067890A /* Common */,
 				CB2880201E7050D10067890A /* Coordinators */,
 				CBD7914B1E719E090006C590 /* Database */,
+				CBD791571E72F10E0006C590 /* Launch */,
 				CBD7913E1E715FEC0006C590 /* Learn Category List */,
 				CBD791431E7160710006C590 /* Learn Content List */,
+				CBD791601E768A4F0006C590 /* Main Menu */,
 				CB2880291E70577E0067890A /* Root Container View */,
 				CBB237F61E6FFF1200AB5AEF /* Assets.xcassets */,
 				CBB237FB1E6FFF1200AB5AEF /* Info.plist */,
-				CBD791571E72F10E0006C590 /* Launch */,
 			);
 			path = QOT;
 			sourceTree = "<group>";
@@ -253,10 +261,21 @@
 			children = (
 				CBB237F81E6FFF1200AB5AEF /* LaunchScreen.storyboard */,
 				CBD7915A1E72F2990006C590 /* LaunchViewController.swift */,
-				CBD7915E1E72FDC10006C590 /* LaunchViewModel.swift */,
 				CBD7915B1E72F2990006C590 /* LaunchViewController.xib */,
+				CBD7915E1E72FDC10006C590 /* LaunchViewModel.swift */,
 			);
 			name = Launch;
+			path = Launch;
+			sourceTree = "<group>";
+		};
+		CBD791601E768A4F0006C590 /* Main Menu */ = {
+			isa = PBXGroup;
+			children = (
+				CBD791631E768AB70006C590 /* MainMenuViewController.swift */,
+				CBD791641E768AB70006C590 /* MainMenuViewController.xib */,
+			);
+			name = "Main Menu";
+			path = "Main Menu";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,7 +344,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "QOT" */;
+			buildConfigurationList = CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "qot" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -349,6 +368,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBD791661E768AB70006C590 /* MainMenuViewController.xib in Resources */,
 				CBD7915D1E72F2990006C590 /* LaunchViewController.xib in Resources */,
 				CBB237FA1E6FFF1200AB5AEF /* LaunchScreen.storyboard in Resources */,
 				CBB237F71E6FFF1200AB5AEF /* Assets.xcassets in Resources */,
@@ -485,6 +505,7 @@
 				CBD7915F1E72FDC10006C590 /* LaunchViewModel.swift in Sources */,
 				CBD791521E71A09F0006C590 /* ContentItem.swift in Sources */,
 				CBD7915C1E72F2990006C590 /* LaunchViewController.swift in Sources */,
+				CBD791681E768CC00006C590 /* MainMenuCoordinator.swift in Sources */,
 				CBD791561E72BAAC0006C590 /* DatabaseManager.swift in Sources */,
 				CBD791401E71604C0006C590 /* LearnContentListViewController.swift in Sources */,
 				CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */,
@@ -492,6 +513,7 @@
 				CB28802F1E706AC50067890A /* LearnCategoryListViewModel.swift in Sources */,
 				CBD7914E1E719E2D0006C590 /* ContentCategory.swift in Sources */,
 				CBD791421E7160560006C590 /* LearnContentListViewModel.swift in Sources */,
+				CBD791651E768AB70006C590 /* MainMenuViewController.swift in Sources */,
 				CB2880281E7057790067890A /* RootViewController.swift in Sources */,
 				CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */,
 				CB2880241E7051710067890A /* AppCoordinator.swift in Sources */,
@@ -681,7 +703,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "QOT" */ = {
+		CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "qot" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBB238071E6FFF1300AB5AEF /* Debug */,

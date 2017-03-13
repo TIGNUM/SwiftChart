@@ -46,7 +46,7 @@ extension AppCoordinator: LaunchViewControllerDelegate {
             preconditionFailure("databaseManager must exist")
         }
         
-        let coordinator = LearnCategoryListCoordinator(root: viewController, databaseManager: databaseManager)
+        let coordinator = MainMenuCoordinator(root: viewController, databaseManager: databaseManager)
         coordinator.start()
         children.append(coordinator)
     }
