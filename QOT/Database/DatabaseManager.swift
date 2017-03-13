@@ -41,4 +41,8 @@ class DatabaseManager {
             }
         }
     }
+    
+    func backgroundRealm() throws -> Realm {
+        return try Realm()
+    }
 }

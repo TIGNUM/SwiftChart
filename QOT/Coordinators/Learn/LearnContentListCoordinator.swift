@@ -13,16 +13,18 @@ protocol LearnContentListCoordinatorDelegate: class {
 }
 
 final class LearnContentListCoordinator: ParentCoordinator {
-    fileprivate let rootVC: UIViewController
+    fileprivate let rootVC: LearnCategoryListViewController
     fileprivate let databaseManager: DatabaseManager
+    fileprivate let eventTracker: EventTracker
     fileprivate let category: ContentCategory
     
     var children: [Coordinator] = []
     weak var delegate: LearnContentListCoordinatorDelegate?
     
-    init(root: UIViewController, databaseManager: DatabaseManager, category: ContentCategory) {
+    init(root: LearnCategoryListViewController, databaseManager: DatabaseManager, eventTracker: EventTracker, category: ContentCategory) {
         self.rootVC = root
         self.databaseManager = databaseManager
+        self.eventTracker = eventTracker
         self.category = category
     }
     
@@ -33,6 +35,8 @@ final class LearnContentListCoordinator: ParentCoordinator {
         vc.modalPresentationStyle = .custom
         vc.delegate =  self
         rootVC.present(vc, animated: true)
+        
+        eventTracker.track(page: vc.pageID, referer: rootVC.pageID, associatedEntity: category)
     }
 }
 

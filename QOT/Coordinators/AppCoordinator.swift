@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import RealmSwift
 
 final class AppCoordinator: ParentCoordinator {
     fileprivate let window: UIWindow
     fileprivate var databaseManager: DatabaseManager?
+    fileprivate lazy var eventTracker: EventTracker = {
+        return EventTracker(realmProvider: { return try Realm() })
+    }()
     fileprivate lazy var launchVC: LaunchViewController = {
         let vc = LaunchViewController(viewModel: LaunchViewModel())
         vc.delegate = self
@@ -32,6 +36,8 @@ final class AppCoordinator: ParentCoordinator {
             case .success(let manager):
                 self.databaseManager = manager
                 self.launchVC.viewModel.ready.value = true
+                
+                self.eventTracker.track(page: self.launchVC.pageID, referer: nil, associatedEntity: nil)
             case .failure(_):
                 // FIXME: Alert user that the app cannot be run
                 break
@@ -43,10 +49,10 @@ final class AppCoordinator: ParentCoordinator {
 extension AppCoordinator: LaunchViewControllerDelegate {
     func didTapLaunchViewController(_ viewController: LaunchViewController) {
         guard let databaseManager = databaseManager else {
-            preconditionFailure("databaseManager must exist")
+            preconditionFailure("databaseManager & tracker must exist")
         }
         
-        let coordinator = MainMenuCoordinator(root: viewController, databaseManager: databaseManager)
+        let coordinator = MainMenuCoordinator(root: viewController, databaseManager: databaseManager, eventTracker: eventTracker)
         coordinator.start()
         children.append(coordinator)
     }

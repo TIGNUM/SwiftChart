@@ -9,14 +9,16 @@
 import UIKit
 
 final class MainMenuCoordinator: ParentCoordinator {
-    fileprivate let rootVC: UIViewController
+    fileprivate let rootVC: LaunchViewController
     fileprivate let databaseManager: DatabaseManager
+    fileprivate let eventTracker: EventTracker
     
     var children: [Coordinator] = []
     
-    init(root: UIViewController, databaseManager: DatabaseManager) {
+    init(root: LaunchViewController, databaseManager: DatabaseManager, eventTracker: EventTracker) {
         self.rootVC = root
         self.databaseManager = databaseManager
+        self.eventTracker = eventTracker
     }
     
     func start() {
@@ -25,12 +27,14 @@ final class MainMenuCoordinator: ParentCoordinator {
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .custom
         rootVC.present(vc, animated: true)
+        
+        eventTracker.track(page: vc.pageID, referer: rootVC.pageID, associatedEntity: nil)
     }
 }
 
 extension MainMenuCoordinator: MainMenuViewControllerDelegate {
     func didTapLearn(in viewController: MainMenuViewController) {
-        let coordinator = LearnCategoryListCoordinator(root: viewController, databaseManager: databaseManager)
+        let coordinator = LearnCategoryListCoordinator(root: viewController, databaseManager: databaseManager, eventTracker: eventTracker)
         coordinator.start()
         children.append(coordinator)
     }

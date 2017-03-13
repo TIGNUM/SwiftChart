@@ -19,7 +19,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {        
         window = UIWindow(frame: UIScreen.main.bounds)
         appCoordinator.start()
+        
+        #if DEBUG
+            printAppLocation()
+        #endif
+        
         return true
+    }
+    
+    func printAppLocation() {
+        let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let url = documents.deletingLastPathComponent()
+        print("App location: \(url)")
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
