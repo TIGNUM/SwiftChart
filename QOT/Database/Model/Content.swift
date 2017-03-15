@@ -9,6 +9,7 @@
 import Foundation
 import RealmSwift
 
+// FIXME: Unit test once data model is finalized.
 final class Content: Object {
     dynamic var id: Int = 0
     dynamic var sort: Int = 0
