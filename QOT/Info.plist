@@ -39,5 +39,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    <key>NSCalendarsUsageDescription</key>
+    <string>We use this for flight info</string>
 </dict>
 </plist>

@@ -21,6 +21,8 @@
 		CB8A15311E76F31B0023B2F9 /* PageTrackable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15301E76F31B0023B2F9 /* PageTrackable.swift */; };
 		CB8A15331E76F56D0023B2F9 /* TrackableEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15321E76F56D0023B2F9 /* TrackableEntity.swift */; };
 		CB8A15351E77DB3B0023B2F9 /* PageEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15341E77DB3B0023B2F9 /* PageEventTests.swift */; };
+		CB8A153A1E7801B90023B2F9 /* CalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15391E7801B90023B2F9 /* CalendarEvent.swift */; };
+		CB8A153C1E78467D0023B2F9 /* CalendarEventParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A153B1E78467D0023B2F9 /* CalendarEventParticipant.swift */; };
 		CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB237EF1E6FFF1200AB5AEF /* AppDelegate.swift */; };
 		CBB237F71E6FFF1200AB5AEF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBB237F61E6FFF1200AB5AEF /* Assets.xcassets */; };
 		CBB237FA1E6FFF1200AB5AEF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBB237F81E6FFF1200AB5AEF /* LaunchScreen.storyboard */; };
@@ -71,6 +73,8 @@
 		CB8A15301E76F31B0023B2F9 /* PageTrackable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageTrackable.swift; sourceTree = "<group>"; };
 		CB8A15321E76F56D0023B2F9 /* TrackableEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackableEntity.swift; sourceTree = "<group>"; };
 		CB8A15341E77DB3B0023B2F9 /* PageEventTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageEventTests.swift; sourceTree = "<group>"; };
+		CB8A15391E7801B90023B2F9 /* CalendarEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEvent.swift; sourceTree = "<group>"; };
+		CB8A153B1E78467D0023B2F9 /* CalendarEventParticipant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventParticipant.swift; sourceTree = "<group>"; };
 		CBB237EC1E6FFF1200AB5AEF /* QOT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QOT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBB237EF1E6FFF1200AB5AEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBB237F61E6FFF1200AB5AEF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -185,6 +189,16 @@
 			path = Tracking;
 			sourceTree = "<group>";
 		};
+		CB8A15381E7801910023B2F9 /* Calendar Events */ = {
+			isa = PBXGroup;
+			children = (
+				CB8A15391E7801B90023B2F9 /* CalendarEvent.swift */,
+				CB8A153B1E78467D0023B2F9 /* CalendarEventParticipant.swift */,
+			);
+			name = "Calendar Events";
+			path = "Calendar Events";
+			sourceTree = "<group>";
+		};
 		CBB237E31E6FFF1200AB5AEF = {
 			isa = PBXGroup;
 			children = (
@@ -274,6 +288,7 @@
 		CBD7914C1E719E1C0006C590 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CB8A15381E7801910023B2F9 /* Calendar Events */,
 				CBD7914F1E71A0950006C590 /* Content.swift */,
 				CBD7914D1E719E2D0006C590 /* ContentCategory.swift */,
 				CBD791511E71A09F0006C590 /* ContentItem.swift */,
@@ -536,9 +551,11 @@
 				CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */,
 				CB8A15271E76A1280023B2F9 /* PageEvent.swift in Sources */,
 				CBD791501E71A0950006C590 /* Content.swift in Sources */,
+				CB8A153C1E78467D0023B2F9 /* CalendarEventParticipant.swift in Sources */,
 				CB28802F1E706AC50067890A /* LearnCategoryListViewModel.swift in Sources */,
 				CBD7914E1E719E2D0006C590 /* ContentCategory.swift in Sources */,
 				CBD791421E7160560006C590 /* LearnContentListViewModel.swift in Sources */,
+				CB8A153A1E7801B90023B2F9 /* CalendarEvent.swift in Sources */,
 				CBD791651E768AB70006C590 /* MainMenuViewController.swift in Sources */,
 				CB2880281E7057790067890A /* RootViewController.swift in Sources */,
 				CB8A152F1E76F27D0023B2F9 /* PageID.swift in Sources */,
