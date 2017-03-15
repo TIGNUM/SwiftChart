@@ -5,3 +5,6 @@ disabled_rules:
 
 included: # paths to include during linting. `--path` is ignored if present.
   - QOT
+
+excluded:
+  - QOT/Generated

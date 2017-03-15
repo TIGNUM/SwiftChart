@@ -1,0 +1,10 @@
+/* 
+  Localized.strings
+  QOT
+
+  Created by Sam Wyndham on 15/03/2017.
+  Copyright © 2017 Tignum. All rights reserved.
+*/
+
+// An example
+"learn.category-list-view.title" = "Categories";

@@ -23,6 +23,8 @@
 		CB8A15351E77DB3B0023B2F9 /* PageEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15341E77DB3B0023B2F9 /* PageEventTests.swift */; };
 		CB8A153A1E7801B90023B2F9 /* CalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15391E7801B90023B2F9 /* CalendarEvent.swift */; };
 		CB8A153C1E78467D0023B2F9 /* CalendarEventParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A153B1E78467D0023B2F9 /* CalendarEventParticipant.swift */; };
+		CB8A15431E79826E0023B2F9 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15421E79826E0023B2F9 /* R.generated.swift */; };
+		CB8A15461E7986C90023B2F9 /* Localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = CB8A15451E7986C90023B2F9 /* Localized.strings */; };
 		CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB237EF1E6FFF1200AB5AEF /* AppDelegate.swift */; };
 		CBB237F71E6FFF1200AB5AEF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBB237F61E6FFF1200AB5AEF /* Assets.xcassets */; };
 		CBB237FA1E6FFF1200AB5AEF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBB237F81E6FFF1200AB5AEF /* LaunchScreen.storyboard */; };
@@ -75,6 +77,8 @@
 		CB8A15341E77DB3B0023B2F9 /* PageEventTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageEventTests.swift; sourceTree = "<group>"; };
 		CB8A15391E7801B90023B2F9 /* CalendarEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEvent.swift; sourceTree = "<group>"; };
 		CB8A153B1E78467D0023B2F9 /* CalendarEventParticipant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventParticipant.swift; sourceTree = "<group>"; };
+		CB8A15421E79826E0023B2F9 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		CB8A15451E7986C90023B2F9 /* Localized.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localized.strings; sourceTree = "<group>"; };
 		CBB237EC1E6FFF1200AB5AEF /* QOT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QOT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBB237EF1E6FFF1200AB5AEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBB237F61E6FFF1200AB5AEF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -195,8 +199,23 @@
 				CB8A15391E7801B90023B2F9 /* CalendarEvent.swift */,
 				CB8A153B1E78467D0023B2F9 /* CalendarEventParticipant.swift */,
 			);
-			name = "Calendar Events";
 			path = "Calendar Events";
+			sourceTree = "<group>";
+		};
+		CB8A15411E7982540023B2F9 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				CB8A15421E79826E0023B2F9 /* R.generated.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
+		CB8A15441E7986A90023B2F9 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				CB8A15451E7986C90023B2F9 /* Localized.strings */,
+			);
+			name = Localization;
 			sourceTree = "<group>";
 		};
 		CBB237E31E6FFF1200AB5AEF = {
@@ -222,10 +241,12 @@
 		CBB237EE1E6FFF1200AB5AEF /* QOT */ = {
 			isa = PBXGroup;
 			children = (
+				CB8A15441E7986A90023B2F9 /* Localization */,
 				CB2880261E70555E0067890A /* App */,
 				CB2880321E7144D40067890A /* Common */,
 				CB2880201E7050D10067890A /* Coordinators */,
 				CBD7914B1E719E090006C590 /* Database */,
+				CB8A15411E7982540023B2F9 /* Generated */,
 				CBD791571E72F10E0006C590 /* Launch */,
 				CBD7913E1E715FEC0006C590 /* Learn Category List */,
 				CBD791431E7160710006C590 /* Learn Content List */,
@@ -325,6 +346,7 @@
 			buildConfigurationList = CBB238091E6FFF1300AB5AEF /* Build configuration list for PBXNativeTarget "QOT" */;
 			buildPhases = (
 				BB0D582FB75DD826F51B67C2 /* [CP] Check Pods Manifest.lock */,
+				CB8A15401E7981900023B2F9 /* Generate R.Swift */,
 				CBB237E81E6FFF1200AB5AEF /* Sources */,
 				CBB237E91E6FFF1200AB5AEF /* Frameworks */,
 				CBB237EA1E6FFF1200AB5AEF /* Resources */,
@@ -383,7 +405,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "qot" */;
+			buildConfigurationList = CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "QOT" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -409,6 +431,7 @@
 			files = (
 				CBD791661E768AB70006C590 /* MainMenuViewController.xib in Resources */,
 				CBD7915D1E72F2990006C590 /* LaunchViewController.xib in Resources */,
+				CB8A15461E7986C90023B2F9 /* Localized.strings in Resources */,
 				CBB237FA1E6FFF1200AB5AEF /* LaunchScreen.storyboard in Resources */,
 				CBB237F71E6FFF1200AB5AEF /* Assets.xcassets in Resources */,
 			);
@@ -514,6 +537,20 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		CB8A15401E7981900023B2F9 /* Generate R.Swift */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate R.Swift";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" \"$SRCROOT/QOT/Generated\"";
+		};
 		CBB2380F1E6FFF2700AB5AEF /* Swift Lint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -546,6 +583,7 @@
 				CB8A15331E76F56D0023B2F9 /* TrackableEntity.swift in Sources */,
 				CBD7915C1E72F2990006C590 /* LaunchViewController.swift in Sources */,
 				CBD791681E768CC00006C590 /* MainMenuCoordinator.swift in Sources */,
+				CB8A15431E79826E0023B2F9 /* R.generated.swift in Sources */,
 				CBD791561E72BAAC0006C590 /* DatabaseManager.swift in Sources */,
 				CBD791401E71604C0006C590 /* LearnContentListViewController.swift in Sources */,
 				CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */,
@@ -750,7 +788,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "qot" */ = {
+		CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "QOT" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBB238071E6FFF1300AB5AEF /* Debug */,

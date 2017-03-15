@@ -24,6 +24,10 @@ The linter will run automatically when the project is built. If you do not have 
 
 To view the current linting rules see the `.swiftlint.yml` file. Please discuss if you think these rules should change.
 
+# Line length
+
+For code, aim to keep lines to 120 characters but let Xcode soft wrap the text. For comments, please hard wrap at 120 characters.
+
 # Synx
 
 Please use [Synx](https://github.com/venmo/synx) to ensure that the project file structure matches Xcode's groups. This makes it easier to navigate the project through GitHub's web interface. Once installed you can run Synx by `cd`ing into the projects root and running:
