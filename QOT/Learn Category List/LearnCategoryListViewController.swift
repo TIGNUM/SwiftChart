@@ -24,7 +24,9 @@ final class LearnCategoryListViewController: UIViewController, UICollectionViewD
     internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         cell.layer.cornerRadius = cell.frame.width / 2
-        cell.backgroundColor = UIColor.blue
+        cell.layer.borderWidth = 2.0
+        cell.layer.borderColor = UIColor.red.cgColor
+        cell.backgroundColor = UIColor.clear
         return cell
     }
     init(viewModel: LearnCategoryListViewModel) {
@@ -46,7 +48,6 @@ final class LearnCategoryListViewController: UIViewController, UICollectionViewD
         collectionView.showsVerticalScrollIndicator = false
         collectionView.contentSize = CGSize(width: view.frame.width + 500, height: view.frame.height)
         view.addSubview(collectionView)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
