@@ -14,46 +14,47 @@ protocol LearnCategoryListViewControllerDelegate: class {
     func didSelectCategory(at index: Index, in viewController: LearnCategoryListViewController)
 }
 
-// FIXME: This is a dummy implementation of LearnCategoryListViewController.
+//  FIXME: This is a dummy implementation of LearnCategoryListViewController.
 
 /// Displays a collection of learn categories of learn content.
-final class LearnCategoryListViewController: UITableViewController {
-    let viewModel: LearnCategoryListViewModel
-    
+final class LearnCategoryListViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+    var viewModel: LearnCategoryListViewModel
     weak var delegate: LearnCategoryListViewControllerDelegate?
     
+    internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+        cell.layer.cornerRadius = cell.frame.width / 2
+        cell.backgroundColor = UIColor.blue
+        return cell
+    }
     init(viewModel: LearnCategoryListViewModel) {
         self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+        var collectionView: UICollectionView
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView.backgroundColor = UIColor.white
+        var contentSize: CGSize
+        collectionView.collectionViewLayout = LearnLayout()
+        layout.sectionInset = UIEdgeInsets(top: 150, left: 10, bottom: 150, right: 50)
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 100, height: 100)
+        collectionView.showsHorizontalScrollIndicator = true
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.contentSize = CGSize(width: view.frame.width + 500, height: view.frame.height)
+        view.addSubview(collectionView)
         
-        super.init(style: .plain)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.categoryCount
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 600
     }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let reuseID = "cell"
-        let category = viewModel.category(at: indexPath.row)
-        
-        let cell: UITableViewCell
-        if let existing = tableView.dequeueReusableCell(withIdentifier: reuseID) {
-            cell = existing
-        } else {
-            cell = UITableViewCell(style: .subtitle, reuseIdentifier: reuseID)
-        }
 
-        cell.textLabel?.text = category.title
-        cell.detailTextLabel?.text = "\(category.viewedCount)/\(category.itemCount)"
-        
-        return cell
     }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.didSelectCategory(at: indexPath.row, in: self)
-    }
-}

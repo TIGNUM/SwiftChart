@@ -45,6 +45,7 @@
 		CBD791651E768AB70006C590 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791631E768AB70006C590 /* MainMenuViewController.swift */; };
 		CBD791661E768AB70006C590 /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBD791641E768AB70006C590 /* MainMenuViewController.xib */; };
 		CBD791681E768CC00006C590 /* MainMenuCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791671E768CC00006C590 /* MainMenuCoordinator.swift */; };
+		D5343ADB1E7A9987002FDFE9 /* LearnLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5343ADA1E7A9987002FDFE9 /* LearnLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,7 @@
 		CBD791641E768AB70006C590 /* MainMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenuViewController.xib; sourceTree = "<group>"; };
 		CBD791671E768CC00006C590 /* MainMenuCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuCoordinator.swift; sourceTree = "<group>"; };
 		CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5343ADA1E7A9987002FDFE9 /* LearnLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,7 +247,6 @@
 				CB2880261E70555E0067890A /* App */,
 				CB2880321E7144D40067890A /* Common */,
 				CB2880201E7050D10067890A /* Coordinators */,
-				CBD7914B1E719E090006C590 /* Database */,
 				CB8A15411E7982540023B2F9 /* Generated */,
 				CBD791571E72F10E0006C590 /* Launch */,
 				CBD7913E1E715FEC0006C590 /* Learn Category List */,
@@ -274,6 +275,7 @@
 			children = (
 				CB28802C1E705D3A0067890A /* LearnCategoryListViewController.swift */,
 				CB28802E1E706AC50067890A /* LearnCategoryListViewModel.swift */,
+				D5343ADA1E7A9987002FDFE9 /* LearnLayout.swift */,
 			);
 			path = "Learn Category List";
 			sourceTree = "<group>";
@@ -303,7 +305,8 @@
 				CBD791551E72BAAC0006C590 /* DatabaseManager.swift */,
 				CBD791531E72A4BB0006C590 /* MockData.swift */,
 			);
-			path = Database;
+			name = Database;
+			path = ../Database;
 			sourceTree = "<group>";
 		};
 		CBD7914C1E719E1C0006C590 /* Model */ = {
@@ -322,6 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				CBB237F81E6FFF1200AB5AEF /* LaunchScreen.storyboard */,
+				CBD7914B1E719E090006C590 /* Database */,
 				CBD7915A1E72F2990006C590 /* LaunchViewController.swift */,
 				CBD7915B1E72F2990006C590 /* LaunchViewController.xib */,
 				CBD7915E1E72FDC10006C590 /* LaunchViewModel.swift */,
@@ -586,6 +590,7 @@
 				CB8A15431E79826E0023B2F9 /* R.generated.swift in Sources */,
 				CBD791561E72BAAC0006C590 /* DatabaseManager.swift in Sources */,
 				CBD791401E71604C0006C590 /* LearnContentListViewController.swift in Sources */,
+				D5343ADB1E7A9987002FDFE9 /* LearnLayout.swift in Sources */,
 				CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */,
 				CB8A15271E76A1280023B2F9 /* PageEvent.swift in Sources */,
 				CBD791501E71A0950006C590 /* Content.swift in Sources */,
