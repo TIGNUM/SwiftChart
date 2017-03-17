@@ -23,7 +23,7 @@ final class LearnCategoryListViewController: UIViewController, UICollectionViewD
     
     internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-       // cell.layer.cornerRadius = cell.frame.width / 2
+        cell.layer.cornerRadius = cell.frame.width / 2
         cell.layer.borderWidth = 2.0
         cell.layer.borderColor = UIColor.red.cgColor
         cell.backgroundColor = UIColor.clear
