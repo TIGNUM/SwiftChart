@@ -23,7 +23,7 @@ final class LearnCategoryListViewController: UIViewController, UICollectionViewD
     
     internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        cell.layer.cornerRadius = cell.frame.width / 2
+       // cell.layer.cornerRadius = cell.frame.width / 2
         cell.layer.borderWidth = 2.0
         cell.layer.borderColor = UIColor.red.cgColor
         cell.backgroundColor = UIColor.clear
@@ -34,13 +34,13 @@ final class LearnCategoryListViewController: UIViewController, UICollectionViewD
         super.init(nibName: nil, bundle: nil)
         var collectionView: UICollectionView
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
+        collectionView = UICollectionView(frame: CGRect(x: self.view.frame.minX, y: (self.view.frame.height - self.view.frame.width) / 2 , width: self.view.frame.width, height: self.view.frame.width), collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
-        collectionView.backgroundColor = UIColor.white
-        var contentSize: CGSize
-        collectionView.collectionViewLayout = LearnLayout()
+        collectionView.backgroundColor = UIColor.green
+        //var contentSize:CGSize
+        collectionView.collectionViewLayout = LearnCustomLayout(frame: collectionView.frame)
         layout.sectionInset = UIEdgeInsets(top: 150, left: 10, bottom: 150, right: 50)
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: 100, height: 100)

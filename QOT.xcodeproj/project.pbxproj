@@ -46,6 +46,7 @@
 		CBD791661E768AB70006C590 /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBD791641E768AB70006C590 /* MainMenuViewController.xib */; };
 		CBD791681E768CC00006C590 /* MainMenuCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791671E768CC00006C590 /* MainMenuCoordinator.swift */; };
 		D5343ADB1E7A9987002FDFE9 /* LearnLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5343ADA1E7A9987002FDFE9 /* LearnLayout.swift */; };
+		D5952A541E7BCD000073E522 /* LearnCustomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5952A531E7BCD000073E522 /* LearnCustomLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,7 @@
 		CBD791671E768CC00006C590 /* MainMenuCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuCoordinator.swift; sourceTree = "<group>"; };
 		CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5343ADA1E7A9987002FDFE9 /* LearnLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnLayout.swift; sourceTree = "<group>"; };
+		D5952A531E7BCD000073E522 /* LearnCustomLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnCustomLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,6 +278,7 @@
 				CB28802C1E705D3A0067890A /* LearnCategoryListViewController.swift */,
 				CB28802E1E706AC50067890A /* LearnCategoryListViewModel.swift */,
 				D5343ADA1E7A9987002FDFE9 /* LearnLayout.swift */,
+				D5952A531E7BCD000073E522 /* LearnCustomLayout.swift */,
 			);
 			path = "Learn Category List";
 			sourceTree = "<group>";
@@ -583,6 +586,7 @@
 				CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */,
 				CB2880221E7050EB0067890A /* Coordinator.swift in Sources */,
 				CBD7915F1E72FDC10006C590 /* LaunchViewModel.swift in Sources */,
+				D5952A541E7BCD000073E522 /* LearnCustomLayout.swift in Sources */,
 				CBD791521E71A09F0006C590 /* ContentItem.swift in Sources */,
 				CB8A15331E76F56D0023B2F9 /* TrackableEntity.swift in Sources */,
 				CBD7915C1E72F2990006C590 /* LaunchViewController.swift in Sources */,
