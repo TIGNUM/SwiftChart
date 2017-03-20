@@ -25,24 +25,24 @@ class LearnCustomLayout: UICollectionViewLayout {
             switch index {
             case 1:
                 posX = (positionOfCenterCircle.minX - (radius))
-                posY = (positionOfCenterCircle.minY - (radius) )
+                posY = (positionOfCenterCircle.minY - (radius) - radius / 4 )
                  return (posX, posY, 160)
             case 2:
-                posX = (positionOfCenterCircle.minX -  radius )
-                posY = (positionOfCenterCircle.maxY - radius) + radius / 2
-                return (posX, posY, 140)
+                posX = (positionOfCenterCircle.minX -  radius ) - radius / 2
+                posY = (positionOfCenterCircle.maxY - radius )
+                return (posX, posY, 152)
             case 3:
-                posX = (positionOfCenterCircle.maxX - radius ) - radius / 4
-                posY = (positionOfCenterCircle.maxY + radius / 4 )
-                return (posX, posY, 155)
+                posX = (positionOfCenterCircle.maxX - radius ) - radius / 2
+                posY = (positionOfCenterCircle.maxY ) + radius / 4
+                return (posX, posY, 157.3)
             case 4:
-                posX = (positionOfCenterCircle.maxX  )
-                posY = (positionOfCenterCircle.maxY - radius / 2)
-                return (posX, posY, 110)
+                posX = (positionOfCenterCircle.maxX + radius / 5)
+                posY = (positionOfCenterCircle.maxY - radius / 1.5)
+                return (posX, posY, 134.3)
            case 5:
-                posX = ((positionOfCenterCircle.minX + radius) )
-                posY = (positionOfCenterCircle.minY - radius)
-                return (posX, posY, 140)
+                posX = ((positionOfCenterCircle.maxX - radius / 4) )
+                posY = (positionOfCenterCircle.minY - (radius) - radius / 4 )
+                return (posX, posY, 168.9)
 //            case 5:
 //                posX = (positionOfCenterCircle.minY + radius)
 //                posY = (positionOfCenterCircle.minX - radius)
@@ -60,7 +60,7 @@ class LearnCustomLayout: UICollectionViewLayout {
         while index < 6 {
             if index == 0 {
                 let attrs = UICollectionViewLayoutAttributes(forCellWith: IndexPath(item: index, section: 0))
-                attrs.frame = CGRect(x:((frame.size.width / 2.0) - circleSize / 2.0), y:((frame.size.height / 2.0) - circleSize / 2.0), width: circleSize + 68, height: circleSize + 68).integral
+                attrs.frame = CGRect(x:((frame.size.width / 2.0) - circleSize / 2.0), y:((frame.size.height / 2.0) - circleSize ), width: circleSize + 68.8, height: circleSize + 68.8).integral
                 attributes.append(attrs)
                 positionOfCenterCircle = attrs.frame
                 xCoordinate = attrs.frame.minX
@@ -95,7 +95,7 @@ class LearnCustomLayout: UICollectionViewLayout {
     }
     
     override var collectionViewContentSize: CGSize {
-        return CGSize(width: contentSize.width + 500, height: contentSize.height + 500)
+        return CGSize(width: contentSize.width + 50, height: contentSize.height )
     }
     
    }
