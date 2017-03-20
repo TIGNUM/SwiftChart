@@ -9,12 +9,12 @@
 import Foundation
 import UIKit
 
-final class SettingsCoordinator             : ParentCoordinator {
+final class SettingsCoordinator: ParentCoordinator {
     
-    internal var rootViewController         : UIViewController?
-    fileprivate let databaseManager         : DatabaseManager?
-    fileprivate let eventTracker            : EventTracker?
-    internal var children                   = [Coordinator]()
+    internal var rootViewController: UIViewController?
+    fileprivate let databaseManager: DatabaseManager?
+    fileprivate let eventTracker: EventTracker?
+    internal var children = [Coordinator]()
     
     init(root: UIViewController, databaseManager: DatabaseManager?, eventTracker: EventTracker?) {
         self.rootViewController = root

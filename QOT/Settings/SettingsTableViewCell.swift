@@ -13,9 +13,7 @@ final class SettingsTableViewCell: UITableViewCell {
     @IBOutlet private weak var titleLabel: UILabel?
     @IBOutlet private weak var subTitleLabel: UILabel?
     
-    
-    // TODO
-    
+    // TODO: 
     func setup() {
         
     }
