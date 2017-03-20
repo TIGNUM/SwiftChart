@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0CC2119BB6C36EF6F43B4ECD /* Pods_QOT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */; };
 		A29C0C8591D20568D6B8EB3E /* Pods_QOTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */; };
+		CB1E4F981E7FE22200287613 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1E4F971E7FE22200287613 /* SettingsViewModel.swift */; };
 		CB2880221E7050EB0067890A /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880211E7050EB0067890A /* Coordinator.swift */; };
 		CB2880241E7051710067890A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880231E7051710067890A /* AppCoordinator.swift */; };
 		CB2880281E7057790067890A /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880271E7057790067890A /* RootViewController.swift */; };
@@ -63,6 +64,7 @@
 		5C87601C1FE7F833DF0D7A6B /* Pods-QOTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.release.xcconfig"; sourceTree = "<group>"; };
 		82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97F1D8A9256524F33CBB9303 /* Pods-QOTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CB1E4F971E7FE22200287613 /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		CB2880211E7050EB0067890A /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		CB2880231E7051710067890A /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		CB2880271E7057790067890A /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +148,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CB1E4F991E7FE22900287613 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				CB1E4F971E7FE22200287613 /* SettingsViewModel.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		CB2880201E7050D10067890A /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,7 +225,7 @@
 			children = (
 				CB8A15451E7986C90023B2F9 /* Localized.strings */,
 			);
-			name = Localization;
+			path = Localization;
 			sourceTree = "<group>";
 		};
 		CBB237E31E6FFF1200AB5AEF = {
@@ -241,7 +251,6 @@
 		CBB237EE1E6FFF1200AB5AEF /* QOT */ = {
 			isa = PBXGroup;
 			children = (
-				CB8A15441E7986A90023B2F9 /* Localization */,
 				CB2880261E70555E0067890A /* App */,
 				CB2880321E7144D40067890A /* Common */,
 				CB2880201E7050D10067890A /* Coordinators */,
@@ -250,8 +259,10 @@
 				CBD791571E72F10E0006C590 /* Launch */,
 				CBD7913E1E715FEC0006C590 /* Learn Category List */,
 				CBD791431E7160710006C590 /* Learn Content List */,
+				CB8A15441E7986A90023B2F9 /* Localization */,
 				CBD791601E768A4F0006C590 /* Main Menu */,
 				CB2880291E70577E0067890A /* Root Container View */,
+				CB1E4F991E7FE22900287613 /* Settings */,
 				CB8A15231E769F250023B2F9 /* Tracking */,
 				CBB237F61E6FFF1200AB5AEF /* Assets.xcassets */,
 				CBB237FB1E6FFF1200AB5AEF /* Info.plist */,
@@ -405,7 +416,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "QOT" */;
+			buildConfigurationList = CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "qot" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -590,6 +601,7 @@
 				CB8A15271E76A1280023B2F9 /* PageEvent.swift in Sources */,
 				CBD791501E71A0950006C590 /* Content.swift in Sources */,
 				CB8A153C1E78467D0023B2F9 /* CalendarEventParticipant.swift in Sources */,
+				CB1E4F981E7FE22200287613 /* SettingsViewModel.swift in Sources */,
 				CB28802F1E706AC50067890A /* LearnCategoryListViewModel.swift in Sources */,
 				CBD7914E1E719E2D0006C590 /* ContentCategory.swift in Sources */,
 				CBD791421E7160560006C590 /* LearnContentListViewModel.swift in Sources */,
@@ -788,7 +800,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "QOT" */ = {
+		CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "qot" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBB238071E6FFF1300AB5AEF /* Debug */,
