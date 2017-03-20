@@ -26,11 +26,21 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nJc-mY-lZw">
+                    <rect key="frame" x="335" y="20" width="24" height="24"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" image="ic_menu"/>
+                    <connections>
+                        <action selector="didTapSettingsButton" destination="-1" eventType="touchUpInside" id="5AT-KV-aJd"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <gestureRecognizers/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="nJc-mY-lZw" secondAttribute="trailing" constant="16" id="Ond-07-uql"/>
                 <constraint firstItem="ATU-kq-HZR" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="aDd-Rp-LZd"/>
+                <constraint firstItem="nJc-mY-lZw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="nQs-sO-qMI"/>
                 <constraint firstItem="ATU-kq-HZR" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="rOg-Vh-Do2"/>
             </constraints>
             <connections>
@@ -44,4 +54,7 @@
             </connections>
         </tapGestureRecognizer>
     </objects>
+    <resources>
+        <image name="ic_menu" width="24" height="24"/>
+    </resources>
 </document>

@@ -56,4 +56,14 @@ extension AppCoordinator: LaunchViewControllerDelegate {
         coordinator.start()
         children.append(coordinator)
     }
+    
+    func didTapSettingsButton(in viewController: LaunchViewController) {
+        guard let databaseManager = databaseManager else {
+            preconditionFailure("databaseManager & tracker must exist")
+        }
+        
+        let coordinator = SettingsCoordinator(root: viewController, databaseManager: databaseManager, eventTracker: self.eventTracker)
+        coordinator.start()
+        children.append(coordinator)
+    }
 }
