@@ -35,11 +35,11 @@ final class LearnCategoryListViewController: UIViewController, UICollectionViewD
         super.init(nibName: nil, bundle: nil)
         var collectionView: UICollectionView
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        collectionView = UICollectionView(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY + 75 , width: self.view.frame.width, height: self.view.frame.width + 200), collectionViewLayout: layout)
+        collectionView = UICollectionView(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY + 70 , width: self.view.frame.width, height: self.view.frame.height - 120), collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
-        collectionView.backgroundColor = UIColor.black
+        collectionView.backgroundColor = UIColor.blue
         //var contentSize:CGSize
         collectionView.collectionViewLayout = LearnCustomLayout(frame: collectionView.frame)
         //layout.sectionInset = UIEdgeInsets(top: 150, left: 10, bottom: 150, right: 50)
