@@ -15,8 +15,9 @@ import RealmSwift
 func setupRealmWithMockData(realm: Realm) {
     do {
         try realm.write {
-            realm.deleteAll()
-            realm.add(mockContentCategories())
+            if realm.objects(ContentCategory.self).count ==  0 {
+                realm.add(mockContentCategories())
+            }
         }
     } catch let error {
         fatalError("Realm error: \(error)")
