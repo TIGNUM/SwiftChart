@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import EventKit
 
 final class AppCoordinator: ParentCoordinator {
     fileprivate let window: UIWindow
@@ -19,6 +20,16 @@ final class AppCoordinator: ParentCoordinator {
         let vc = LaunchViewController(viewModel: LaunchViewModel())
         vc.delegate = self
         return vc
+    }()
+    fileprivate lazy var calendarImportManager: CalendarImportManger = {
+        let manager = CalendarImportManger(realm: { return try Realm() }, predicate: { (store) -> NSPredicate in
+            let day: TimeInterval = 60 * 60 * 24
+            let start = Date().addingTimeInterval(-(day * 7))
+            let end = Date().addingTimeInterval(day * 7)
+            return store.predicateForEvents(withStart: start, end: end, calendars: nil)
+        })
+        manager.delegate = self
+        return manager
     }()
     
     var children: [Coordinator] = []
@@ -38,6 +49,7 @@ final class AppCoordinator: ParentCoordinator {
                 self.launchVC.viewModel.ready.value = true
                 
                 self.eventTracker.track(page: self.launchVC.pageID, referer: nil, associatedEntity: nil)
+                self.calendarImportManager.importEvents()
             case .failure(_):
                 // FIXME: Alert user that the app cannot be run
                 break
@@ -65,5 +77,22 @@ extension AppCoordinator: LaunchViewControllerDelegate {
         let coordinator = SettingsCoordinator(root: viewController, databaseManager: databaseManager, eventTracker: self.eventTracker)
         coordinator.start()
         children.append(coordinator)
+    }
+}
+
+extension AppCoordinator: CalendarImportMangerDelegate {
+    func eventStoreAuthorizationRequired(for mangager: CalendarImportManger, currentStatus: EKAuthorizationStatus) {
+        EKEventStore().requestAccess(to: .event) { (success, error) in
+            if success {
+                mangager.importEvents()
+            } else {
+                // FIXME: Handle error
+            }
+        }
+    }
+    
+    func calendarImportDidFail(error: Error) {
+        // FIXME: Handle error
+        assertionFailure("Calendar import failed: \(error)")
     }
 }
