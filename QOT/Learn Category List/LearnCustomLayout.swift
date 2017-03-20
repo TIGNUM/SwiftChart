@@ -11,17 +11,17 @@ import UIKit
 class LearnCustomLayout: UICollectionViewLayout {
     private  var circlePathHandle = UIBezierPath()
     private  var shapeLayerHandle = CAShapeLayer()
-         init(frame: CGRect) {
-        let radius:CGFloat = 120
-        let pos:CGPoint
+    
+    init(frame:CGRect) {
+        let radius: CGFloat = 120
+        let pos: CGPoint
         var positionOfCenterCircle: CGRect = frame
         pos = CGPoint(x: positionOfCenterCircle.midX, y: positionOfCenterCircle.midY)
         var circleSize: CGFloat = 100
         func changePosition(index: Int) -> (CGFloat, CGFloat, CGFloat) {
-            print("my position of x is \(positionOfCenterCircle.midX)")
             var posX: CGFloat
             var posY: CGFloat
-            var size = radius
+            let size = radius
             switch index {
             case 1:
                 posX = (positionOfCenterCircle.minX - (radius))

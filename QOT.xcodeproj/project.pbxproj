@@ -47,6 +47,7 @@
 		CBD791681E768CC00006C590 /* MainMenuCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791671E768CC00006C590 /* MainMenuCoordinator.swift */; };
 		D5343ADB1E7A9987002FDFE9 /* LearnLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5343ADA1E7A9987002FDFE9 /* LearnLayout.swift */; };
 		D5952A541E7BCD000073E522 /* LearnCustomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5952A531E7BCD000073E522 /* LearnCustomLayout.swift */; };
+		D5C69EBC1E8036DF00B50E38 /* LearnCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C69EBB1E8036DF00B50E38 /* LearnCategoryCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,7 @@
 		CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5343ADA1E7A9987002FDFE9 /* LearnLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnLayout.swift; sourceTree = "<group>"; };
 		D5952A531E7BCD000073E522 /* LearnCustomLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnCustomLayout.swift; sourceTree = "<group>"; };
+		D5C69EBB1E8036DF00B50E38 /* LearnCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnCategoryCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,6 +281,7 @@
 				CB28802E1E706AC50067890A /* LearnCategoryListViewModel.swift */,
 				D5343ADA1E7A9987002FDFE9 /* LearnLayout.swift */,
 				D5952A531E7BCD000073E522 /* LearnCustomLayout.swift */,
+				D5C69EBB1E8036DF00B50E38 /* LearnCategoryCell.swift */,
 			);
 			path = "Learn Category List";
 			sourceTree = "<group>";
@@ -608,6 +611,7 @@
 				CB8A152F1E76F27D0023B2F9 /* PageID.swift in Sources */,
 				CB8A15221E769F1F0023B2F9 /* EventTracker.swift in Sources */,
 				CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */,
+				D5C69EBC1E8036DF00B50E38 /* LearnCategoryCell.swift in Sources */,
 				CB8A15311E76F31B0023B2F9 /* PageTrackable.swift in Sources */,
 				CB2880241E7051710067890A /* AppCoordinator.swift in Sources */,
 			);

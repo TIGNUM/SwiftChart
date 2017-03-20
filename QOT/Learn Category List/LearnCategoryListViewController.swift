@@ -21,13 +21,14 @@ final class LearnCategoryListViewController: UIViewController, UICollectionViewD
     var viewModel: LearnCategoryListViewModel
     weak var delegate: LearnCategoryListViewControllerDelegate?
     
-    internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        cell.layer.cornerRadius = cell.frame.width / 2
+    
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? LearnCustomCell else {
+            fatalError("Incorrect cell type")
+        }
         
-        cell.layer.borderWidth = 2.0
-        cell.layer.borderColor = UIColor.white.cgColor
-        cell.backgroundColor = UIColor.clear
+        
         return cell
     }
     init(viewModel: LearnCategoryListViewModel) {
@@ -35,11 +36,11 @@ final class LearnCategoryListViewController: UIViewController, UICollectionViewD
         super.init(nibName: nil, bundle: nil)
         var collectionView: UICollectionView
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        collectionView = UICollectionView(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY + 70 , width: self.view.frame.width, height: self.view.frame.height - 120), collectionViewLayout: layout)
+        collectionView = UICollectionView(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY + 70, width: self.view.frame.width, height: self.view.frame.height - 120), collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
-        collectionView.backgroundColor = UIColor.blue
+        collectionView.register(LearnCustomCell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView.backgroundColor = UIColor.black
         //var contentSize:CGSize
         collectionView.collectionViewLayout = LearnCustomLayout(frame: collectionView.frame)
         //layout.sectionInset = UIEdgeInsets(top: 150, left: 10, bottom: 150, right: 50)
@@ -58,5 +59,4 @@ final class LearnCategoryListViewController: UIViewController, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 600
     }
-
-    }
+        }
