@@ -11,6 +11,7 @@ import Bond
 
 protocol LaunchViewControllerDelegate: class {
     func didTapLaunchViewController(_ viewController: LaunchViewController)
+    func didTapSettingsButton(in viewController: LaunchViewController)
 }
 
 final class LaunchViewController: UIViewController {
@@ -38,5 +39,9 @@ final class LaunchViewController: UIViewController {
     
     @IBAction func didTap() {
         delegate?.didTapLaunchViewController(self)
+    }
+    
+    @IBAction func didTapSettingsButton() {
+        delegate?.didTapSettingsButton(in:self)
     }
 }

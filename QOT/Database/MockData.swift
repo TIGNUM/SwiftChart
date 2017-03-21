@@ -15,8 +15,9 @@ import RealmSwift
 func setupRealmWithMockData(realm: Realm) {
     do {
         try realm.write {
-            realm.deleteAll()
-            realm.add(mockContentCategories())
+            if realm.objects(ContentCategory.self).count ==  0 {
+                realm.add(mockContentCategories())
+            }
         }
     } catch let error {
         fatalError("Realm error: \(error)")
@@ -68,7 +69,15 @@ private func mockContent() -> [Content] {
 }
 
 private func mockContentCategories() -> [ContentCategory] {
-    let categoryTitles = ["Mindset", "Recovery", "Foundation", "Nutrition", "New", "Movement", "Habituation"]
+    let categoryTitles = [
+        "PERFORMANCE MINDSET",
+        "PERFORMANCE RECOVERY",
+        "PERRORMANCE HABITUATION",
+        "PERRORMANCE MOVEMENT",
+        "PERRORMANCE NUTRITION",
+        "PERRORMANCE MOVEMENT"   
+    ]
+    
     return categoryTitles.enumerated().map { (index, title) -> ContentCategory in
         let category = ContentCategory(id: newMockID(), sort: index, name: "a name", title: title)
         category.contents.append(objectsIn: mockContent())
