@@ -21,14 +21,10 @@ final class LearnCategoryListViewController: UIViewController, UICollectionViewD
     var viewModel: LearnCategoryListViewModel
     weak var delegate: LearnCategoryListViewControllerDelegate?
     
-    
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? LearnCustomCell else {
             fatalError("Incorrect cell type")
         }
-        
-        
         return cell
     }
     init(viewModel: LearnCategoryListViewModel) {
@@ -37,19 +33,20 @@ final class LearnCategoryListViewController: UIViewController, UICollectionViewD
         var collectionView: UICollectionView
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         collectionView = UICollectionView(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY + 70, width: self.view.frame.width, height: self.view.frame.height - 120), collectionViewLayout: layout)
+        let image: UIImage = UIImage(named:"LearnCategory.png")!
+        let imageView = UIImageView(frame:collectionView.frame)
+        imageView.image = image
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(LearnCustomCell.self, forCellWithReuseIdentifier: "Cell")
         collectionView.backgroundColor = UIColor.black
-        //var contentSize:CGSize
         collectionView.collectionViewLayout = LearnCustomLayout(frame: collectionView.frame)
-        //layout.sectionInset = UIEdgeInsets(top: 150, left: 10, bottom: 150, right: 50)
         layout.scrollDirection = .horizontal
-        //layout.itemSize = CGSize(width: 100, height: 100)
         collectionView.showsHorizontalScrollIndicator = true
         collectionView.showsVerticalScrollIndicator = false
         collectionView.contentSize = CGSize(width: view.frame.width + 500, height: view.frame.height)
         view.addSubview(collectionView)
+        collectionView.addSubview(imageView)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -59,4 +56,4 @@ final class LearnCategoryListViewController: UIViewController, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 600
     }
-        }
+}
