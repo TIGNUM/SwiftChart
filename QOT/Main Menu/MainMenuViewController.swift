@@ -16,7 +16,9 @@ protocol MainMenuViewControllerDelegate: class {
 }
 
 class MainMenuViewController: UIViewController {
+    
     weak var delegate: MainMenuViewControllerDelegate?
+    weak var presentationManager = PresentationManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +49,6 @@ extension MainMenuViewController {
     }
     
     @IBAction private func didTapSettingsButton() {
-        delegate?.didTapSettingsButton(in:self)
+        delegate?.didTapSettingsButton(in: self)
     }
 }

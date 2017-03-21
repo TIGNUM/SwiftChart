@@ -16,6 +16,7 @@ final class SettingsCoordinator: ParentCoordinator {
     fileprivate let eventTracker: EventTracker?
     internal var children = [Coordinator]()
     weak var delegate: ParentCoordinator?
+    weak var presentationManager = PresentationManager()
     
     init(root: UIViewController, databaseManager: DatabaseManager?, eventTracker: EventTracker?) {
         self.rootViewController = root
@@ -26,8 +27,9 @@ final class SettingsCoordinator: ParentCoordinator {
     func start() {
         let vc = SettingsViewController(viewModel: SettingsViewModel())
         vc.delegate = self
-        vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .custom
+        presentationManager?.presentationType = .fade
+        vc.transitioningDelegate = presentationManager
         rootViewController?.present(vc, animated: true)
     }
 }
