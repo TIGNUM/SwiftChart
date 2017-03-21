@@ -32,8 +32,8 @@ final class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
                 
-        self.setupView()
-        self.setupNavigationBar()
+        setupView()
+        setupNavigationBar()
     }
 }
 
@@ -42,14 +42,14 @@ final class SettingsViewController: UIViewController {
 extension SettingsViewController {
     
     fileprivate func setupNavigationBar() {
-        self.titleLabel?.text = R.string.localized.settingsTitle()
-        self.navigationBarView?.backgroundColor = .darkGray
+        titleLabel?.text = R.string.localized.settingsTitle()
+        navigationBarView?.backgroundColor = .darkGray
     }
     
     fileprivate func setupView() {
-        self.view.backgroundColor = .darkGray
-        self.tableView?.backgroundColor = .darkGray
-        self.tableView?.register(UINib(nibName: R.nib.settingsTableViewCell.name, bundle: nil), forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Id.identifier)
+        view.backgroundColor = .darkGray
+        tableView?.backgroundColor = .darkGray
+        tableView?.register(UINib(nibName: R.nib.settingsTableViewCell.name, bundle: nil), forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Id.identifier)
     }
 }
 
@@ -58,7 +58,7 @@ extension SettingsViewController {
 extension SettingsViewController {
     
     @IBAction private func didTapCloseButton() {
-        self.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction private func didTapSearchButton() {
@@ -71,7 +71,7 @@ extension SettingsViewController {
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.itemCount
+        return viewModel.itemCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

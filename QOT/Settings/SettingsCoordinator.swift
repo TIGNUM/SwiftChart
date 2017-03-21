@@ -27,17 +27,17 @@ final class SettingsCoordinator: ParentCoordinator {
         vc.delegate = self
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .custom
-        self.rootViewController?.present(vc, animated: true)
+        rootViewController?.present(vc, animated: true)
     }
 }
 
 // MARK: - SettingsViewControllerDelegate
 
-extension SettingsCoordinator               : SettingsViewControllerDelegate {
+extension SettingsCoordinator: SettingsViewControllerDelegate {
     
     func didTapSettingsViewController(_ viewController: UIViewController) {
-        let coordinator = SettingsCoordinator(root: viewController, databaseManager: self.databaseManager, eventTracker: self.eventTracker)
+        let coordinator = SettingsCoordinator(root: viewController, databaseManager: databaseManager, eventTracker: eventTracker)
         coordinator.start()
-        self.children.append(coordinator)
+        children.append(coordinator)
     }
 }
