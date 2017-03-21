@@ -9,6 +9,5 @@
 import UIKit
 
 protocol SettingsViewControllerDelegate: class {
-    func didTapSettingsViewController(in viewController: UIViewController)
     func didTapClose(in viewController: UIViewController, animated: Bool)
 }
