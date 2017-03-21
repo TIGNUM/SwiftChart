@@ -31,7 +31,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 3 images.
+  /// This `R.image` struct is generated, and contains static references to 4 images.
   struct image {
     /// Image `ic_close`.
     static let ic_close = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_close")
@@ -39,6 +39,8 @@ struct R: Rswift.Validatable {
     static let ic_menu = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_menu")
     /// Image `ic_search`.
     static let ic_search = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_search")
+    /// Image `settingsBackground`.
+    static let settingsBackground = Rswift.ImageResource(bundle: R.hostingBundle, name: "settingsBackground")
     
     /// `UIImage(named: "ic_close", bundle: ..., traitCollection: ...)`
     static func ic_close(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
@@ -53,6 +55,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "ic_search", bundle: ..., traitCollection: ...)`
     static func ic_search(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.ic_search, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "settingsBackground", bundle: ..., traitCollection: ...)`
+    static func settingsBackground(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.settingsBackground, compatibleWith: traitCollection)
     }
     
     fileprivate init() {}
@@ -127,21 +134,70 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localized` struct is generated, and contains static references to 2 localization keys.
+    /// This `R.string.localized` struct is generated, and contains static references to 9 localization keys.
     struct localized {
+      /// Value: About Tignum
+      static let sidebarTitleAbout = Rswift.StringResource(key: "Sidebar.Title.About", tableName: "Localized", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Add Sensor
+      static let sidebarTitleSensor = Rswift.StringResource(key: "Sidebar.Title.Sensor", tableName: "Localized", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Benefits
+      static let sidebarTitleBenefits = Rswift.StringResource(key: "Sidebar.Title.Benefits", tableName: "Localized", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Categories
       static let learnCategoryListViewTitle = Rswift.StringResource(key: "learn.category-list-view.title", tableName: "Localized", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Data Privacy
+      static let sidebarTitlePrivacy = Rswift.StringResource(key: "Sidebar.Title.Privacy", tableName: "Localized", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Library
+      static let sidebarTitleLibrary = Rswift.StringResource(key: "Sidebar.Title.Library", tableName: "Localized", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Log Out
+      static let sidebarTitleLogout = Rswift.StringResource(key: "Sidebar.Title.Logout", tableName: "Localized", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Settings
       static let settingsTitle = Rswift.StringResource(key: "Settings.Title", tableName: "Localized", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Settings
+      static let sidebarTitleSettings = Rswift.StringResource(key: "Sidebar.Title.Settings", tableName: "Localized", bundle: R.hostingBundle, locales: [], comment: nil)
+      
+      /// Value: About Tignum
+      static func sidebarTitleAbout(_: Void = ()) -> String {
+        return NSLocalizedString("Sidebar.Title.About", tableName: "Localized", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Add Sensor
+      static func sidebarTitleSensor(_: Void = ()) -> String {
+        return NSLocalizedString("Sidebar.Title.Sensor", tableName: "Localized", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Benefits
+      static func sidebarTitleBenefits(_: Void = ()) -> String {
+        return NSLocalizedString("Sidebar.Title.Benefits", tableName: "Localized", bundle: R.hostingBundle, comment: "")
+      }
       
       /// Value: Categories
       static func learnCategoryListViewTitle(_: Void = ()) -> String {
         return NSLocalizedString("learn.category-list-view.title", tableName: "Localized", bundle: R.hostingBundle, comment: "")
       }
       
+      /// Value: Data Privacy
+      static func sidebarTitlePrivacy(_: Void = ()) -> String {
+        return NSLocalizedString("Sidebar.Title.Privacy", tableName: "Localized", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Library
+      static func sidebarTitleLibrary(_: Void = ()) -> String {
+        return NSLocalizedString("Sidebar.Title.Library", tableName: "Localized", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Log Out
+      static func sidebarTitleLogout(_: Void = ()) -> String {
+        return NSLocalizedString("Sidebar.Title.Logout", tableName: "Localized", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// Value: Settings
       static func settingsTitle(_: Void = ()) -> String {
         return NSLocalizedString("Settings.Title", tableName: "Localized", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Settings
+      static func sidebarTitleSettings(_: Void = ()) -> String {
+        return NSLocalizedString("Sidebar.Title.Settings", tableName: "Localized", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}
@@ -170,6 +226,7 @@ struct _R: Rswift.Validatable {
   
   struct nib: Rswift.Validatable {
     static func validate() throws {
+      try _SidebarViewController.validate()
       try _LaunchViewController.validate()
       try _MainMenuViewController.validate()
       try _SettingsViewController.validate()
@@ -239,12 +296,17 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    struct _SidebarViewController: Rswift.NibResourceType {
+    struct _SidebarViewController: Rswift.NibResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
       let name = "SidebarViewController"
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "settingsBackground") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'settingsBackground' is used in nib 'SidebarViewController', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "ic_close") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_close' is used in nib 'SidebarViewController', but couldn't be loaded.") }
       }
       
       fileprivate init() {}
