@@ -34,7 +34,9 @@ final class LearnCategoryListViewModel {
     
     /// The number of categories to display.
     var categoryCount: Index {
-        return categories.count
+        let count = categories.count
+        precondition(count == 6, "The category count is currently hardcoded as 6")
+        return count
     }
     
     /// Returns the `LearnCategory` to display at `index`.
