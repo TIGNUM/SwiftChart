@@ -19,4 +19,18 @@ protocol Coordinator: class {
 protocol ParentCoordinator: Coordinator {
     /// The children of `self`.
     var children: [Coordinator] { get set }
+    
+    func removeChild(child: Coordinator)
+}
+
+extension ParentCoordinator {
+    
+    func removeChild(child: Coordinator) {
+        children = children.filter({ ($0 !== child) })
+    }
+    
+    func startChild(child: Coordinator) {
+        children.append(child)
+        child.start()
+    }
 }

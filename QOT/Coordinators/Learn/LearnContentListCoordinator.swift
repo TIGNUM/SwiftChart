@@ -8,9 +8,7 @@
 
 import UIKit
 
-protocol LearnContentListCoordinatorDelegate: class {
-    func didFinish(coordinator: LearnContentListCoordinator)
-}
+protocol LearnContentListCoordinatorDelegate: ParentCoordinator {}
 
 final class LearnContentListCoordinator: ParentCoordinator {
     fileprivate let rootVC: LearnCategoryListViewController
@@ -47,5 +45,6 @@ extension LearnContentListCoordinator: LearnContentListViewControllerDelegate {
     
     func didTapBack(in: LearnContentListViewController) {
         rootVC.dismiss(animated: true)
+        delegate?.removeChild(child: self)
     }
 }

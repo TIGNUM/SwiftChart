@@ -31,17 +31,43 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 0 images.
+  /// This `R.image` struct is generated, and contains static references to 3 images.
   struct image {
+    /// Image `ic_close`.
+    static let ic_close = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_close")
+    /// Image `ic_menu`.
+    static let ic_menu = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_menu")
+    /// Image `ic_search`.
+    static let ic_search = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_search")
+    
+    /// `UIImage(named: "ic_close", bundle: ..., traitCollection: ...)`
+    static func ic_close(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_close, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "ic_menu", bundle: ..., traitCollection: ...)`
+    static func ic_menu(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_menu, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "ic_search", bundle: ..., traitCollection: ...)`
+    static func ic_search(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_search, compatibleWith: traitCollection)
+    }
+    
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 4 nibs.
   struct nib {
     /// Nib `LaunchViewController`.
     static let launchViewController = _R.nib._LaunchViewController()
     /// Nib `MainMenuViewController`.
     static let mainMenuViewController = _R.nib._MainMenuViewController()
+    /// Nib `SettingsTableViewCell`.
+    static let settingsTableViewCell = _R.nib._SettingsTableViewCell()
+    /// Nib `SettingsViewController`.
+    static let settingsViewController = _R.nib._SettingsViewController()
     
     /// `UINib(name: "LaunchViewController", in: bundle)`
     static func launchViewController(_: Void = ()) -> UIKit.UINib {
@@ -53,11 +79,24 @@ struct R: Rswift.Validatable {
       return UIKit.UINib(resource: R.nib.mainMenuViewController)
     }
     
+    /// `UINib(name: "SettingsTableViewCell", in: bundle)`
+    static func settingsTableViewCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.settingsTableViewCell)
+    }
+    
+    /// `UINib(name: "SettingsViewController", in: bundle)`
+    static func settingsViewController(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.settingsViewController)
+    }
+    
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 0 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 1 reuse identifiers.
   struct reuseIdentifier {
+    /// Reuse identifier `SettingsTableViewCell_Id`.
+    static let settingsTableViewCell_Id: Rswift.ReuseIdentifier<UIKit.UITableViewCell> = Rswift.ReuseIdentifier(identifier: "SettingsTableViewCell_Id")
+    
     fileprivate init() {}
   }
   
@@ -81,14 +120,21 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localized` struct is generated, and contains static references to 1 localization keys.
+    /// This `R.string.localized` struct is generated, and contains static references to 2 localization keys.
     struct localized {
       /// Value: Categories
       static let learnCategoryListViewTitle = Rswift.StringResource(key: "learn.category-list-view.title", tableName: "Localized", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Settings
+      static let settingsTitle = Rswift.StringResource(key: "Settings.Title", tableName: "Localized", bundle: R.hostingBundle, locales: [], comment: nil)
       
       /// Value: Categories
       static func learnCategoryListViewTitle(_: Void = ()) -> String {
         return NSLocalizedString("learn.category-list-view.title", tableName: "Localized", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Settings
+      static func settingsTitle(_: Void = ()) -> String {
+        return NSLocalizedString("Settings.Title", tableName: "Localized", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}
@@ -99,7 +145,7 @@ struct R: Rswift.Validatable {
   
   fileprivate struct intern: Rswift.Validatable {
     fileprivate static func validate() throws {
-      // There are no resources to validate
+      try _R.validate()
     }
     
     fileprivate init() {}
@@ -110,9 +156,18 @@ struct R: Rswift.Validatable {
   fileprivate init() {}
 }
 
-struct _R {
-  struct nib {
-    struct _LaunchViewController: Rswift.NibResourceType {
+struct _R: Rswift.Validatable {
+  static func validate() throws {
+    try nib.validate()
+  }
+  
+  struct nib: Rswift.Validatable {
+    static func validate() throws {
+      try _LaunchViewController.validate()
+      try _SettingsViewController.validate()
+    }
+    
+    struct _LaunchViewController: Rswift.NibResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
       let name = "LaunchViewController"
       
@@ -124,6 +179,10 @@ struct _R {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[1] as? UIKit.UIView
       }
       
+      static func validate() throws {
+        if UIKit.UIImage(named: "ic_menu") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_menu' is used in nib 'LaunchViewController', but couldn't be loaded.") }
+      }
+      
       fileprivate init() {}
     }
     
@@ -133,6 +192,36 @@ struct _R {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _SettingsTableViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+      typealias ReusableType = UIKit.UITableViewCell
+      
+      let bundle = R.hostingBundle
+      let identifier = "SettingsTableViewCell_Id"
+      let name = "SettingsTableViewCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UITableViewCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UITableViewCell
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _SettingsViewController: Rswift.NibResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "SettingsViewController"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "ic_close") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_close' is used in nib 'SettingsViewController', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "ic_search") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_search' is used in nib 'SettingsViewController', but couldn't be loaded.") }
       }
       
       fileprivate init() {}
