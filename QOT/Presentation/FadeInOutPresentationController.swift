@@ -8,6 +8,18 @@
 
 import UIKit
 
+enum TransitionType {
+    case presentation
+    case dismissal
+    
+    var alphaValues: (containerViewStart: CGFloat, containerViewEnd: CGFloat, presentingView: CGFloat) {
+        switch self {
+        case .presentation: return (0, 1, 0)
+        case .dismissal: return (1, 0, 1)
+        }
+    }
+}
+
 class FadeInOutPresentationController: UIPresentationController {
 
     private var presentationType = PresentationType.fadeIn
@@ -21,30 +33,24 @@ class FadeInOutPresentationController: UIPresentationController {
         super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
     }
     
-    override func presentationTransitionWillBegin() {
-        // TODO some nice animations
+    override func presentationTransitionWillBegin() {        
+        manageTransition(transitionType: .presentation)
     }
-    
+
     override func dismissalTransitionWillBegin() {
-        // TODO some nice animations
+        manageTransition(transitionType: .dismissal)
     }
     
-    override func size(forChildContentContainer container: UIContentContainer, withParentContainerSize parentSize: CGSize) -> CGSize {
-        switch presentationType {
-        case .fadeIn:   return CGSize(width: parentSize.width*(2.0/3.0), height: parentSize.height)
-        case .fadeOut:  return CGSize(width: parentSize.width, height: parentSize.height*(2.0/3.0))
-        }
-    }
-    
-    override var frameOfPresentedViewInContainerView: CGRect {
-        var frame: CGRect = .zero
-        frame.size = size(forChildContentContainer: presentedViewController, withParentContainerSize: containerView!.bounds.size)
+    private func manageTransition(transitionType: TransitionType) {
+        containerView?.alpha = transitionType.alphaValues.containerViewStart
         
-        switch presentationType {
-        case .fadeIn:   frame.origin.x = containerView!.frame.width*(1.0/3.0)
-        case .fadeOut:  frame.origin.y = containerView!.frame.height*(1.0/3.0)
+        guard let coordinator = presentedViewController.transitionCoordinator else {
+            return
         }
         
-        return frame
+        coordinator.animate(alongsideTransition: { [weak self] _ in
+            self?.containerView?.alpha = transitionType.alphaValues.containerViewEnd
+            self?.presentingViewController.view.alpha = transitionType.alphaValues.presentingView
+        })
     }
 }

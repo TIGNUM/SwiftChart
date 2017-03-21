@@ -23,14 +23,14 @@ class FadeInOutPresentationAnimator: NSObject {
 extension FadeInOutPresentationAnimator: UIViewControllerAnimatedTransitioning {
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.6
+        return Animation.durationFade
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let key = isPresentation ? UITransitionContextViewControllerKey.to : UITransitionContextViewControllerKey.from
         let controller = transitionContext.viewController(forKey: key)!
         
-        if (isPresentation == true) {
+        if isPresentation == true {
             transitionContext.containerView.addSubview(controller.view)
         }
         
@@ -38,8 +38,8 @@ extension FadeInOutPresentationAnimator: UIViewControllerAnimatedTransitioning {
         var dismissedFrame = presentedFrame
         
         switch presentationType {
-        case .fadeIn:   dismissedFrame.origin.x = -presentedFrame.width
-        case .fadeOut:  dismissedFrame.origin.x = transitionContext.containerView.frame.size.width
+        case .fadeIn:   dismissedFrame.origin.y = Animation.fadeInHeight
+        case .fadeOut:  dismissedFrame.origin.y = Animation.fadeOutHeight
         }
         
         let initialFrame = isPresentation ? dismissedFrame : presentedFrame
