@@ -31,7 +31,7 @@ final class LaunchViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
+    override func viewDidLoad() { 
         super.viewDidLoad()
 
         viewModel.ready.bind(to: tapGestureRecognizer.reactive.isEnabled)

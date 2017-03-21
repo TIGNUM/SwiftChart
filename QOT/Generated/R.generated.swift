@@ -58,7 +58,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 4 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 5 nibs.
   struct nib {
     /// Nib `LaunchViewController`.
     static let launchViewController = _R.nib._LaunchViewController()
@@ -68,6 +68,8 @@ struct R: Rswift.Validatable {
     static let settingsTableViewCell = _R.nib._SettingsTableViewCell()
     /// Nib `SettingsViewController`.
     static let settingsViewController = _R.nib._SettingsViewController()
+    /// Nib `SidebarViewController`.
+    static let sidebarViewController = _R.nib._SidebarViewController()
     
     /// `UINib(name: "LaunchViewController", in: bundle)`
     static func launchViewController(_: Void = ()) -> UIKit.UINib {
@@ -87,6 +89,11 @@ struct R: Rswift.Validatable {
     /// `UINib(name: "SettingsViewController", in: bundle)`
     static func settingsViewController(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.settingsViewController)
+    }
+    
+    /// `UINib(name: "SidebarViewController", in: bundle)`
+    static func sidebarViewController(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.sidebarViewController)
     }
     
     fileprivate init() {}
@@ -164,6 +171,7 @@ struct _R: Rswift.Validatable {
   struct nib: Rswift.Validatable {
     static func validate() throws {
       try _LaunchViewController.validate()
+      try _MainMenuViewController.validate()
       try _SettingsViewController.validate()
     }
     
@@ -186,12 +194,16 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    struct _MainMenuViewController: Rswift.NibResourceType {
+    struct _MainMenuViewController: Rswift.NibResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
       let name = "MainMenuViewController"
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "ic_menu") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_menu' is used in nib 'MainMenuViewController', but couldn't be loaded.") }
       }
       
       fileprivate init() {}
@@ -222,6 +234,17 @@ struct _R: Rswift.Validatable {
       static func validate() throws {
         if UIKit.UIImage(named: "ic_close") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_close' is used in nib 'SettingsViewController', but couldn't be loaded.") }
         if UIKit.UIImage(named: "ic_search") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_search' is used in nib 'SettingsViewController', but couldn't be loaded.") }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _SidebarViewController: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "SidebarViewController"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
       }
       
       fileprivate init() {}

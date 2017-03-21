@@ -49,12 +49,6 @@
 		CBD791651E768AB70006C590 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791631E768AB70006C590 /* MainMenuViewController.swift */; };
 		CBD791661E768AB70006C590 /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBD791641E768AB70006C590 /* MainMenuViewController.xib */; };
 		CBD791681E768CC00006C590 /* MainMenuCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791671E768CC00006C590 /* MainMenuCoordinator.swift */; };
-		CCAF03241E801B0E00015125 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF03211E801B0E00015125 /* SettingsCoordinator.swift */; };
-		CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF03221E801B0E00015125 /* SettingsViewController.swift */; };
-		CCAF03261E801B0E00015125 /* SettingsViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF03231E801B0E00015125 /* SettingsViewControllerDelegate.swift */; };
-		CCAF03281E802A6200015125 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCAF03271E802A6200015125 /* SettingsViewController.xib */; };
-		CCAF032A1E8035C800015125 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF03291E8035C800015125 /* SettingsTableViewCell.swift */; };
-		CCAF032C1E80362700015125 /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCAF032B1E80362700015125 /* SettingsTableViewCell.xib */; };
 		CBDB98F21E7AA510003EC73F /* CalendarImportResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB98F11E7AA510003EC73F /* CalendarImportResult.swift */; };
 		CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB98F31E7B000A003EC73F /* NotificationHandler.swift */; };
 		CBDB98F71E7BD192003EC73F /* CalendarImportTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB98F61E7BD192003EC73F /* CalendarImportTaskTests.swift */; };
@@ -67,6 +61,18 @@
 		CBDB990E1E7BFD05003EC73F /* CalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB990D1E7BFD05003EC73F /* CalendarEventParticipantData.swift */; };
 		CBDB99101E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB990F1E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift */; };
 		CBDB99121E7BFEED003EC73F /* MockCalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB99111E7BFEED003EC73F /* MockCalendarEventParticipantData.swift */; };
+		CC6B3A291E8158B200E7FDFD /* PresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A281E8158B200E7FDFD /* PresentationManager.swift */; };
+		CC6B3A2D1E8163A200E7FDFD /* FadeInOutPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A2C1E8163A200E7FDFD /* FadeInOutPresentationController.swift */; };
+		CC6B3A2F1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A2E1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift */; };
+		CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A301E81713200E7FDFD /* Constants.swift */; };
+		CCAF03241E801B0E00015125 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF03211E801B0E00015125 /* SettingsCoordinator.swift */; };
+		CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF03221E801B0E00015125 /* SettingsViewController.swift */; };
+		CCAF03261E801B0E00015125 /* SettingsViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF03231E801B0E00015125 /* SettingsViewControllerDelegate.swift */; };
+		CCAF03281E802A6200015125 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCAF03271E802A6200015125 /* SettingsViewController.xib */; };
+		CCAF032A1E8035C800015125 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF03291E8035C800015125 /* SettingsTableViewCell.swift */; };
+		CCAF032C1E80362700015125 /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCAF032B1E80362700015125 /* SettingsTableViewCell.xib */; };
+		CCE5B9D21E80501D00E01BAE /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE5B9D11E80501D00E01BAE /* SidebarViewController.swift */; };
+		CCE5B9D41E80505800E01BAE /* SidebarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE5B9D31E80505800E01BAE /* SidebarViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,12 +135,6 @@
 		CBD791631E768AB70006C590 /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		CBD791641E768AB70006C590 /* MainMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenuViewController.xib; sourceTree = "<group>"; };
 		CBD791671E768CC00006C590 /* MainMenuCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuCoordinator.swift; sourceTree = "<group>"; };
-		CCAF03211E801B0E00015125 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
-		CCAF03221E801B0E00015125 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		CCAF03231E801B0E00015125 /* SettingsViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerDelegate.swift; sourceTree = "<group>"; };
-		CCAF03271E802A6200015125 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
-		CCAF03291E8035C800015125 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
-		CCAF032B1E80362700015125 /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
 		CBDB98F11E7AA510003EC73F /* CalendarImportResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarImportResult.swift; sourceTree = "<group>"; };
 		CBDB98F31E7B000A003EC73F /* NotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 		CBDB98F61E7BD192003EC73F /* CalendarImportTaskTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarImportTaskTests.swift; sourceTree = "<group>"; };
@@ -147,6 +147,18 @@
 		CBDB990D1E7BFD05003EC73F /* CalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventParticipantData.swift; sourceTree = "<group>"; };
 		CBDB990F1E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKParticipant+CalendarEventParticipantData.swift"; sourceTree = "<group>"; };
 		CBDB99111E7BFEED003EC73F /* MockCalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCalendarEventParticipantData.swift; sourceTree = "<group>"; };
+		CC6B3A281E8158B200E7FDFD /* PresentationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationManager.swift; sourceTree = "<group>"; };
+		CC6B3A2C1E8163A200E7FDFD /* FadeInOutPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeInOutPresentationController.swift; sourceTree = "<group>"; };
+		CC6B3A2E1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeInOutPresentationAnimator.swift; sourceTree = "<group>"; };
+		CC6B3A301E81713200E7FDFD /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CCAF03211E801B0E00015125 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
+		CCAF03221E801B0E00015125 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		CCAF03231E801B0E00015125 /* SettingsViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerDelegate.swift; sourceTree = "<group>"; };
+		CCAF03271E802A6200015125 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		CCAF03291E8035C800015125 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		CCAF032B1E80362700015125 /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
+		CCE5B9D11E80501D00E01BAE /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
+		CCE5B9D31E80505800E01BAE /* SidebarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidebarViewController.xib; sourceTree = "<group>"; };
 		CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -194,12 +206,12 @@
 			isa = PBXGroup;
 			children = (
 				CCAF03211E801B0E00015125 /* SettingsCoordinator.swift */,
-				CCAF03221E801B0E00015125 /* SettingsViewController.swift */,
-				CCAF03231E801B0E00015125 /* SettingsViewControllerDelegate.swift */,
-				CB1E4F971E7FE22200287613 /* SettingsViewModel.swift */,
-				CCAF03271E802A6200015125 /* SettingsViewController.xib */,
 				CCAF03291E8035C800015125 /* SettingsTableViewCell.swift */,
 				CCAF032B1E80362700015125 /* SettingsTableViewCell.xib */,
+				CCAF03221E801B0E00015125 /* SettingsViewController.swift */,
+				CCAF03271E802A6200015125 /* SettingsViewController.xib */,
+				CCAF03231E801B0E00015125 /* SettingsViewControllerDelegate.swift */,
+				CB1E4F971E7FE22200287613 /* SettingsViewModel.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -219,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				CBB237EF1E6FFF1200AB5AEF /* AppDelegate.swift */,
+				CC6B3A301E81713200E7FDFD /* Constants.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -314,8 +327,10 @@
 				CBD791431E7160710006C590 /* Learn Content List */,
 				CB8A15441E7986A90023B2F9 /* Localization */,
 				CBD791601E768A4F0006C590 /* Main Menu */,
+				CC6B3A271E81586C00E7FDFD /* Presentation */,
 				CB2880291E70577E0067890A /* Root Container View */,
 				CB1E4F991E7FE22900287613 /* Settings */,
+				CCCCB0691E804A90001240D5 /* Sidebar */,
 				CB8A15231E769F250023B2F9 /* Tracking */,
 				CBB237F61E6FFF1200AB5AEF /* Assets.xcassets */,
 				CBB237FB1E6FFF1200AB5AEF /* Info.plist */,
@@ -452,6 +467,25 @@
 			path = Interfaces;
 			sourceTree = "<group>";
 		};
+		CC6B3A271E81586C00E7FDFD /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				CC6B3A2E1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift */,
+				CC6B3A2C1E8163A200E7FDFD /* FadeInOutPresentationController.swift */,
+				CC6B3A281E8158B200E7FDFD /* PresentationManager.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		CCCCB0691E804A90001240D5 /* Sidebar */ = {
+			isa = PBXGroup;
+			children = (
+				CCE5B9D11E80501D00E01BAE /* SidebarViewController.swift */,
+				CCE5B9D31E80505800E01BAE /* SidebarViewController.xib */,
+			);
+			path = Sidebar;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -519,7 +553,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "QOT" */;
+			buildConfigurationList = CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "qot" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -546,6 +580,7 @@
 				CCAF032C1E80362700015125 /* SettingsTableViewCell.xib in Resources */,
 				CBD791661E768AB70006C590 /* MainMenuViewController.xib in Resources */,
 				CCAF03281E802A6200015125 /* SettingsViewController.xib in Resources */,
+				CCE5B9D41E80505800E01BAE /* SidebarViewController.xib in Resources */,
 				CBD7915D1E72F2990006C590 /* LaunchViewController.xib in Resources */,
 				CB8A15461E7986C90023B2F9 /* Localized.strings in Resources */,
 				CBB237FA1E6FFF1200AB5AEF /* LaunchScreen.storyboard in Resources */,
@@ -700,6 +735,7 @@
 				CBD7915F1E72FDC10006C590 /* LaunchViewModel.swift in Sources */,
 				CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */,
 				CBD791521E71A09F0006C590 /* ContentItem.swift in Sources */,
+				CC6B3A2F1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift in Sources */,
 				CB8A15331E76F56D0023B2F9 /* TrackableEntity.swift in Sources */,
 				CBDB98F21E7AA510003EC73F /* CalendarImportResult.swift in Sources */,
 				CBD7915C1E72F2990006C590 /* LaunchViewController.swift in Sources */,
@@ -710,6 +746,7 @@
 				CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */,
 				CBDB990E1E7BFD05003EC73F /* CalendarEventParticipantData.swift in Sources */,
 				CB8A15271E76A1280023B2F9 /* PageEvent.swift in Sources */,
+				CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */,
 				CBD791501E71A0950006C590 /* Content.swift in Sources */,
 				CB8A153C1E78467D0023B2F9 /* CalendarEventParticipant.swift in Sources */,
 				CB1E4F981E7FE22200287613 /* SettingsViewModel.swift in Sources */,
@@ -719,6 +756,8 @@
 				CBDB98FD1E7BE6AF003EC73F /* CalendarEventData.swift in Sources */,
 				CB8A153A1E7801B90023B2F9 /* CalendarEvent.swift in Sources */,
 				CCAF03261E801B0E00015125 /* SettingsViewControllerDelegate.swift in Sources */,
+				CCE5B9D21E80501D00E01BAE /* SidebarViewController.swift in Sources */,
+				CC6B3A291E8158B200E7FDFD /* PresentationManager.swift in Sources */,
 				CCAF03241E801B0E00015125 /* SettingsCoordinator.swift in Sources */,
 				CBD791651E768AB70006C590 /* MainMenuViewController.swift in Sources */,
 				CB2880281E7057790067890A /* RootViewController.swift in Sources */,
@@ -728,6 +767,7 @@
 				CB8A154A1E7A7FA20023B2F9 /* CalendarImportManger.swift in Sources */,
 				CB8A154C1E7A8AD30023B2F9 /* CalendarImportTask.swift in Sources */,
 				CB8A15221E769F1F0023B2F9 /* EventTracker.swift in Sources */,
+				CC6B3A2D1E8163A200E7FDFD /* FadeInOutPresentationController.swift in Sources */,
 				CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */,
 				CB8A15311E76F31B0023B2F9 /* PageTrackable.swift in Sources */,
 				CB2880241E7051710067890A /* AppCoordinator.swift in Sources */,
@@ -924,7 +964,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "QOT" */ = {
+		CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "qot" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBB238071E6FFF1300AB5AEF /* Debug */,
