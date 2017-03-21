@@ -7,18 +7,81 @@
 //
 
 import UIKit
+import Anchorage
 
 final class LearnCustomCell: UICollectionViewCell {
+    fileprivate lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        //        label.font = .preferredFont(forTextStyle: UIFontTextStyle(rawValue: "Simple-Regular"))
+        label.font = .systemFont(ofSize: 12)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.1
+        label.lineBreakMode = .byTruncatingTail
+        label.numberOfLines = 2
+        return label
+    }()
+    
+    fileprivate lazy var contentCountLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        //        label.font = .preferredFont(forTextStyle: UIFontTextStyle(rawValue: "Simple-Regular"))
+        label.font = .systemFont(ofSize: 20)
+        return label
+    }()
+    
+    fileprivate lazy var textContainerView: UIView = {
+        let view = UIView()
+        view.addSubview(self.titleLabel)
+        view.addSubview(self.contentCountLabel)
+        self.contentView.addSubview(view)
+        return view
+    }()
+    
+    //    fileprivate lazy var stackView: UIStackView = {
+    //        let view = UIStackView(arrangedSubviews: [self.contentCountLabel, self.titleLabel])
+    //        view.axis = .vertical
+    //        view.distribution = .fillProportionally
+    //
+    //        self.contentView.addSubview(view)
+    //        return view
+    //    }()
+    
+    private var circleLineShape: CAShapeLayer?
+    private var shapeLayer: CAShapeLayer?
+    private var percentageLearned = 0.0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        contentView.layer.cornerRadius = frame.width / 2
         contentView.layer.borderWidth = 1.0
         contentView.layer.borderColor = UIColor.white.cgColor
         
         backgroundColor = UIColor.clear
         // created a cicular thin line
+        
+        setupLayout()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        //
+        //        let frame = self.bounds
+        //        contentCountLabel.frame = CGRect(x: bounds.minX + bounds.width / 4, y: bounds.minY, width: bounds.width, height: bounds.height / 2)
+        contentView.layer.cornerRadius = frame.width / 2
+        //        titleLabel.frame = CGRect(x: bounds.minX + bounds.width / 6, y:  contentCountLabel.frame.midY, width: bounds.width - bounds.width / 6, height: bounds.height / 2)
+        //        contentView.layer.cornerRadius = frame.width / 2
+        drawCircle(frame: frame)
+    }
+    
+    func drawCircle(frame: CGRect) {
+        self.circleLineShape?.removeFromSuperlayer()
+        self.shapeLayer?.removeFromSuperlayer()
+        
         let circleLinePath = UIBezierPath(arcCenter: CGPoint(x: frame.width / 2, y: frame.height / 2), radius: CGFloat(frame.width / 2.2), startAngle: 0.0, endAngle: 2.0 * CGFloat.pi, clockwise: false)
         let circleLineShape = CAShapeLayer()
         circleLineShape.path = circleLinePath.cgPath
@@ -28,7 +91,7 @@ final class LearnCustomCell: UICollectionViewCell {
         circleLineShape.lineCap = kCALineCapRound
         contentView.layer.addSublayer(circleLineShape)
         
-        let circlePath = UIBezierPath(arcCenter: CGPoint(x: frame.width / 2, y: frame.height / 2), radius: CGFloat(frame.width / 2.2), startAngle: 0.0, endAngle: 2.0 * CGFloat.pi - 0.6, clockwise: true)
+        let circlePath = UIBezierPath(arcCenter: CGPoint(x: frame.width / 2, y: frame.height / 2), radius: CGFloat(frame.width / 2.2), startAngle: 0.0, endAngle: 2.0 * CGFloat.pi * CGFloat(percentageLearned), clockwise: true)
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = circlePath.cgPath
         shapeLayer.fillColor = UIColor.clear.cgColor
@@ -36,10 +99,33 @@ final class LearnCustomCell: UICollectionViewCell {
         shapeLayer.lineWidth = 6.0
         shapeLayer.lineDashPattern = [1]
         contentView.layer.addSublayer(shapeLayer)
-        setNeedsDisplay()
+        
+        self.circleLineShape = circleLineShape
+        self.shapeLayer = shapeLayer
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func configure(with category: LearnCategory) {
+        titleLabel.text =  "PERFORMANCE NUTRITION"//category.title
+        contentCountLabel.text = "\(category.viewedCount)/\(category.itemCount)"
+        
+        let percentageLearned = category.percentageLearned
+        if percentageLearned != self.percentageLearned {
+            self.percentageLearned = percentageLearned
+            setNeedsLayout()
+        }
+    }
+}
+
+private extension LearnCustomCell {
+    func setupLayout() {
+        textContainerView.horizontalAnchors == contentView.horizontalAnchors + 20
+        textContainerView.centerAnchors == contentView.centerAnchors
+        
+        contentCountLabel.topAnchor == textContainerView.topAnchor
+        contentCountLabel.horizontalAnchors == textContainerView.horizontalAnchors
+        contentCountLabel.bottomAnchor == titleLabel.topAnchor
+        
+        titleLabel.horizontalAnchors == textContainerView.horizontalAnchors
+        titleLabel.bottomAnchor == textContainerView.bottomAnchor
     }
 }

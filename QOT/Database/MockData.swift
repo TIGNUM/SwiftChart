@@ -72,10 +72,10 @@ private func mockContentCategories() -> [ContentCategory] {
     let categoryTitles = [
         "PERFORMANCE MINDSET",
         "PERFORMANCE RECOVERY",
-        "PERRORMANCE HABITUATION",
-        "PERRORMANCE MOVEMENT",
-        "PERRORMANCE NUTRITION",
-        "PERRORMANCE MOVEMENT"   
+        "PERFORMANCE HABITUATION",
+        "PERFORMANCE MOVEMENT",
+        "PERFORMANCE NUTRITION",
+        "PERFORMANCE MOVEMENT"   
     ]
     
     return categoryTitles.enumerated().map { (index, title) -> ContentCategory in

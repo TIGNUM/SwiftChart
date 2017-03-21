@@ -22,9 +22,12 @@ final class LearnCategoryListViewController: UIViewController, UICollectionViewD
     weak var delegate: LearnCategoryListViewControllerDelegate?
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let category = viewModel.category(at: indexPath.item)
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? LearnCustomCell else {
             fatalError("Incorrect cell type")
         }
+        cell.configure(with: category)
+        
         return cell
     }
     init(viewModel: LearnCategoryListViewModel) {
@@ -55,6 +58,6 @@ final class LearnCategoryListViewController: UIViewController, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 600
+        return viewModel.categoryCount
     }
 }

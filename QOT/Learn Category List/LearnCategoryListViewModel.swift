@@ -18,8 +18,8 @@ protocol LearnCategory {
     var itemCount: Int { get }
     /// The number of items that belong `self` and have been viewed.
     var viewedCount: Int { get }
-    /// Returns a `Double` between 0 and 1 how much of the contents at `index` have been learned.
-    func percentageLearned(at index: Index) -> Double
+    /// Returns a `Double` between 0 and 1 how much of the contents have been learned. This is an expensive operation.
+    var percentageLearned: Double { get }
 }
 
 /// The view model of a `LearnCategoryListViewController`.
@@ -54,7 +54,8 @@ extension ContentCategory: LearnCategory {
         return contents.filter { $0.viewed }.count
     }
     
-    func percentageLearned(at index: Index) -> Double {
-        return contents[index].percentageViewed
+    var percentageLearned: Double {
+        let total = contents.reduce(0) { $0.0 + $0.1.percentageViewed }
+        return total / Double(contents.count)
     }
 }
