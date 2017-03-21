@@ -49,16 +49,29 @@
                         <action selector="didTapPrepare" destination="-1" eventType="touchUpInside" id="X3Y-vJ-qCz"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ph9-7z-tKJ">
+                    <rect key="frame" x="335" y="20" width="24" height="24"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" image="ic_menu"/>
+                    <connections>
+                        <action selector="didTapSettingsButton" destination="-1" eventType="touchUpInside" id="z9c-C7-nvy"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="Go8-Ee-tF2" firstAttribute="top" secondItem="alu-n0-dUT" secondAttribute="bottom" constant="100" id="3xA-e6-gbp"/>
+                <constraint firstItem="Ph9-7z-tKJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="DB3-Ko-cfw"/>
                 <constraint firstItem="CHY-Qj-nII" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Px7-WK-Dfc"/>
                 <constraint firstItem="Go8-Ee-tF2" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="W83-VX-UGS"/>
+                <constraint firstAttribute="trailing" secondItem="Ph9-7z-tKJ" secondAttribute="trailing" constant="16" id="dWq-mY-wQ1"/>
                 <constraint firstItem="CHY-Qj-nII" firstAttribute="top" secondItem="Go8-Ee-tF2" secondAttribute="bottom" constant="100" id="kB3-eT-su0"/>
                 <constraint firstItem="alu-n0-dUT" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ktY-Gu-jS8"/>
                 <constraint firstItem="Go8-Ee-tF2" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="tzp-4c-TUg"/>
             </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="ic_menu" width="24" height="24"/>
+    </resources>
 </document>
