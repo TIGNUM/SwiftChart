@@ -18,7 +18,6 @@ protocol MainMenuViewControllerDelegate: class {
 class MainMenuViewController: UIViewController {
     
     weak var delegate: MainMenuViewControllerDelegate?
-    weak var presentationManager = PresentationManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
