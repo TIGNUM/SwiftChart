@@ -171,6 +171,7 @@ struct _R: Rswift.Validatable {
   struct nib: Rswift.Validatable {
     static func validate() throws {
       try _LaunchViewController.validate()
+      try _MainMenuViewController.validate()
       try _SettingsViewController.validate()
     }
     
@@ -193,12 +194,16 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    struct _MainMenuViewController: Rswift.NibResourceType {
+    struct _MainMenuViewController: Rswift.NibResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
       let name = "MainMenuViewController"
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "ic_menu") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_menu' is used in nib 'MainMenuViewController', but couldn't be loaded.") }
       }
       
       fileprivate init() {}

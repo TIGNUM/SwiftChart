@@ -9,10 +9,6 @@
 import Foundation
 import UIKit
 
-protocol SidebarDelegate {
-    func openSideMenu()
-}
-
 final class SidebarViewController: UIViewController {
     
 }

@@ -35,8 +35,7 @@ final class MainMenuCoordinator: ParentCoordinator {
 extension MainMenuCoordinator: MainMenuViewControllerDelegate {
     func didTapLearn(in viewController: MainMenuViewController) {
         let coordinator = LearnCategoryListCoordinator(root: viewController, databaseManager: databaseManager, eventTracker: eventTracker)
-        coordinator.start()
-        children.append(coordinator)
+        coordinator.startChild(child: coordinator)
     }
     
     func didTapMe(in viewController: MainMenuViewController) {
@@ -45,5 +44,10 @@ extension MainMenuCoordinator: MainMenuViewControllerDelegate {
     
     func didTapPrepare(in viewController: MainMenuViewController) {
         print("Did tap prepare")
+    }
+    
+    func didTapSettingsButton(in viewController: MainMenuViewController) {
+        let coordinator = SettingsCoordinator(root: viewController, databaseManager: databaseManager, eventTracker: eventTracker)
+        coordinator.startChild(child: coordinator)
     }
 }

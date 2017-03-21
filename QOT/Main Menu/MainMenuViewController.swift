@@ -12,6 +12,7 @@ protocol MainMenuViewControllerDelegate: class {
     func didTapLearn(in viewController: MainMenuViewController)
     func didTapMe(in viewController: MainMenuViewController)
     func didTapPrepare(in viewController: MainMenuViewController)
+    func didTapSettingsButton(in viewController: MainMenuViewController)
 }
 
 class MainMenuViewController: UIViewController {
@@ -38,5 +39,9 @@ class MainMenuViewController: UIViewController {
     
     @IBAction func didTapPrepare() {
         delegate?.didTapMe(in: self)
+    }
+    
+    @IBAction func didTapSettingsButton() {
+        delegate?.didTapSettingsButton(in:self)
     }
 }
