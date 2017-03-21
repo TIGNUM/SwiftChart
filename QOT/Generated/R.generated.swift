@@ -65,7 +65,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 5 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 6 nibs.
   struct nib {
     /// Nib `LaunchViewController`.
     static let launchViewController = _R.nib._LaunchViewController()
@@ -75,6 +75,8 @@ struct R: Rswift.Validatable {
     static let settingsTableViewCell = _R.nib._SettingsTableViewCell()
     /// Nib `SettingsViewController`.
     static let settingsViewController = _R.nib._SettingsViewController()
+    /// Nib `SidebarTableViewCell`.
+    static let sidebarTableViewCell = _R.nib._SidebarTableViewCell()
     /// Nib `SidebarViewController`.
     static let sidebarViewController = _R.nib._SidebarViewController()
     
@@ -98,6 +100,11 @@ struct R: Rswift.Validatable {
       return UIKit.UINib(resource: R.nib.settingsViewController)
     }
     
+    /// `UINib(name: "SidebarTableViewCell", in: bundle)`
+    static func sidebarTableViewCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.sidebarTableViewCell)
+    }
+    
     /// `UINib(name: "SidebarViewController", in: bundle)`
     static func sidebarViewController(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.sidebarViewController)
@@ -106,10 +113,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 1 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 2 reuse identifiers.
   struct reuseIdentifier {
     /// Reuse identifier `SettingsTableViewCell_Id`.
     static let settingsTableViewCell_Id: Rswift.ReuseIdentifier<UIKit.UITableViewCell> = Rswift.ReuseIdentifier(identifier: "SettingsTableViewCell_Id")
+    /// Reuse identifier `SidebarTableViewCell_Id`.
+    static let sidebarTableViewCell_Id: Rswift.ReuseIdentifier<SidebarTableViewCell> = Rswift.ReuseIdentifier(identifier: "SidebarTableViewCell_Id")
     
     fileprivate init() {}
   }
@@ -296,6 +305,20 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
+    struct _SidebarTableViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+      typealias ReusableType = SidebarTableViewCell
+      
+      let bundle = R.hostingBundle
+      let identifier = "SidebarTableViewCell_Id"
+      let name = "SidebarTableViewCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> SidebarTableViewCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? SidebarTableViewCell
+      }
+      
+      fileprivate init() {}
+    }
+    
     struct _SidebarViewController: Rswift.NibResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
       let name = "SidebarViewController"
@@ -305,7 +328,6 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
-        if UIKit.UIImage(named: "settingsBackground") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'settingsBackground' is used in nib 'SidebarViewController', but couldn't be loaded.") }
         if UIKit.UIImage(named: "ic_close") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_close' is used in nib 'SidebarViewController', but couldn't be loaded.") }
       }
       

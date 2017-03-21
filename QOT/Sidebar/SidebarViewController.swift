@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+protocol SidebarViewControllerDelegate: class {
+    func didTapClose(in viewController: UIViewController, animated: Bool)
+}
+
 final class SidebarViewController: UIViewController {
     
     // MARK: - Outlets
@@ -20,7 +24,9 @@ final class SidebarViewController: UIViewController {
     
     // MARK: - Properties
     
+    weak var delegate: SidebarViewControllerDelegate?
     let viewModel: SidebarViewModel
+    let cellIdentifier = R.reuseIdentifier.sidebarTableViewCell_Id.identifier
     
     // MARK: - Life Cycle
     
@@ -46,5 +52,36 @@ final class SidebarViewController: UIViewController {
         leftNavBarButton?.setTitleColor(.lightGray, for: .normal)
         rightNavBarButton?.setImage(R.image.ic_close()?.withRenderingMode(.alwaysTemplate), for: .normal)
         rightNavBarButton?.tintColor = .lightGray
+        tableView?.register(UINib(nibName: R.nib.sidebarTableViewCell.name, bundle: nil), forCellReuseIdentifier: cellIdentifier)
+    }
+}
+
+// MARK: - Actions
+
+extension SidebarViewController {
+    
+    @IBAction private func didTapCloseButton() {
+        delegate?.didTapClose(in: self, animated: true)
+    }
+    
+    @IBAction private func didTapQOTButton() {
+        delegate?.didTapClose(in: self, animated: true)
+    }
+}
+
+extension SidebarViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.itemCount
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? SidebarTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        cell.setup(with: viewModel.item(at: indexPath.row).title)
+        return cell
     }
 }

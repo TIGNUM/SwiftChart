@@ -66,6 +66,9 @@
 		CC6B3A2F1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A2E1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift */; };
 		CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A301E81713200E7FDFD /* Constants.swift */; };
 		CC6B3A331E8191BC00E7FDFD /* SidebarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A321E8191BC00E7FDFD /* SidebarViewModel.swift */; };
+		CC6B3A351E81A1E600E7FDFD /* SidebarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC6B3A341E81A1E600E7FDFD /* SidebarTableViewCell.xib */; };
+		CC6B3A371E81A25A00E7FDFD /* SidebarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A361E81A25A00E7FDFD /* SidebarTableViewCell.swift */; };
+		CC6B3A391E81A69D00E7FDFD /* SidebarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A381E81A69D00E7FDFD /* SidebarCoordinator.swift */; };
 		CCAF03241E801B0E00015125 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF03211E801B0E00015125 /* SettingsCoordinator.swift */; };
 		CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF03221E801B0E00015125 /* SettingsViewController.swift */; };
 		CCAF03261E801B0E00015125 /* SettingsViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF03231E801B0E00015125 /* SettingsViewControllerDelegate.swift */; };
@@ -153,6 +156,9 @@
 		CC6B3A2E1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeInOutPresentationAnimator.swift; sourceTree = "<group>"; };
 		CC6B3A301E81713200E7FDFD /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CC6B3A321E8191BC00E7FDFD /* SidebarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewModel.swift; sourceTree = "<group>"; };
+		CC6B3A341E81A1E600E7FDFD /* SidebarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidebarTableViewCell.xib; sourceTree = "<group>"; };
+		CC6B3A361E81A25A00E7FDFD /* SidebarTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarTableViewCell.swift; sourceTree = "<group>"; };
+		CC6B3A381E81A69D00E7FDFD /* SidebarCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarCoordinator.swift; sourceTree = "<group>"; };
 		CCAF03211E801B0E00015125 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		CCAF03221E801B0E00015125 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		CCAF03231E801B0E00015125 /* SettingsViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerDelegate.swift; sourceTree = "<group>"; };
@@ -482,6 +488,9 @@
 		CCCCB0691E804A90001240D5 /* Sidebar */ = {
 			isa = PBXGroup;
 			children = (
+				CC6B3A381E81A69D00E7FDFD /* SidebarCoordinator.swift */,
+				CC6B3A361E81A25A00E7FDFD /* SidebarTableViewCell.swift */,
+				CC6B3A341E81A1E600E7FDFD /* SidebarTableViewCell.xib */,
 				CCE5B9D11E80501D00E01BAE /* SidebarViewController.swift */,
 				CCE5B9D31E80505800E01BAE /* SidebarViewController.xib */,
 				CC6B3A321E8191BC00E7FDFD /* SidebarViewModel.swift */,
@@ -556,7 +565,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "QOT" */;
+			buildConfigurationList = CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "qot" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -586,6 +595,7 @@
 				CCE5B9D41E80505800E01BAE /* SidebarViewController.xib in Resources */,
 				CBD7915D1E72F2990006C590 /* LaunchViewController.xib in Resources */,
 				CB8A15461E7986C90023B2F9 /* Localized.strings in Resources */,
+				CC6B3A351E81A1E600E7FDFD /* SidebarTableViewCell.xib in Resources */,
 				CBB237FA1E6FFF1200AB5AEF /* LaunchScreen.storyboard in Resources */,
 				CBB237F71E6FFF1200AB5AEF /* Assets.xcassets in Resources */,
 			);
@@ -745,6 +755,7 @@
 				CBD791681E768CC00006C590 /* MainMenuCoordinator.swift in Sources */,
 				CB8A15431E79826E0023B2F9 /* R.generated.swift in Sources */,
 				CC6B3A331E8191BC00E7FDFD /* SidebarViewModel.swift in Sources */,
+				CC6B3A391E81A69D00E7FDFD /* SidebarCoordinator.swift in Sources */,
 				CBD791561E72BAAC0006C590 /* DatabaseManager.swift in Sources */,
 				CBD791401E71604C0006C590 /* LearnContentListViewController.swift in Sources */,
 				CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */,
@@ -756,6 +767,7 @@
 				CB1E4F981E7FE22200287613 /* SettingsViewModel.swift in Sources */,
 				CB28802F1E706AC50067890A /* LearnCategoryListViewModel.swift in Sources */,
 				CBD7914E1E719E2D0006C590 /* ContentCategory.swift in Sources */,
+				CC6B3A371E81A25A00E7FDFD /* SidebarTableViewCell.swift in Sources */,
 				CBD791421E7160560006C590 /* LearnContentListViewModel.swift in Sources */,
 				CBDB98FD1E7BE6AF003EC73F /* CalendarEventData.swift in Sources */,
 				CB8A153A1E7801B90023B2F9 /* CalendarEvent.swift in Sources */,
@@ -968,7 +980,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "QOT" */ = {
+		CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "qot" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBB238071E6FFF1300AB5AEF /* Debug */,
