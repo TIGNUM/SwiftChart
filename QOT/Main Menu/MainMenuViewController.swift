@@ -28,20 +28,25 @@ class MainMenuViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
+
+// MARK: - Actions
+
+extension MainMenuViewController {
     
-    @IBAction func didTapLearn() {
+    @IBAction private func didTapLearn() {
         delegate?.didTapLearn(in: self)
     }
     
-    @IBAction func didTapMe() {
+    @IBAction private func didTapMe() {
         delegate?.didTapMe(in: self)
     }
     
-    @IBAction func didTapPrepare() {
+    @IBAction private func didTapPrepare() {
         delegate?.didTapMe(in: self)
     }
     
-    @IBAction func didTapSettingsButton() {
+    @IBAction private func didTapSettingsButton() {
         delegate?.didTapSettingsButton(in:self)
     }
 }
