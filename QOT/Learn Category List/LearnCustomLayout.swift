@@ -8,12 +8,12 @@
 
 import UIKit
 
-class LearnCustomLayout: UICollectionViewLayout {
+final class LearnCustomLayout: UICollectionViewLayout {
     private  var circlePathHandle = UIBezierPath()
     private  var shapeLayerHandle = CAShapeLayer()
-    
+
     init(frame:CGRect) {
-        let radius: CGFloat = 120
+        let radius: CGFloat = 100
         let pos: CGPoint
         var positionOfCenterCircle: CGRect = frame
         pos = CGPoint(x: positionOfCenterCircle.midX, y: positionOfCenterCircle.midY)
@@ -25,23 +25,23 @@ class LearnCustomLayout: UICollectionViewLayout {
             switch index {
             case 1:
                 posX = (positionOfCenterCircle.minX - (radius))
-                posY = (positionOfCenterCircle.minY - (radius) - radius / 4 )
+                posY = (positionOfCenterCircle.minY - (radius) - radius / 2 )
                  return (posX, posY, 160)
             case 2:
-                posX = (positionOfCenterCircle.minX -  radius ) - radius / 2
-                posY = (positionOfCenterCircle.maxY - radius )
+                posX = (positionOfCenterCircle.minX -  radius ) - radius / 1.2
+                posY = (positionOfCenterCircle.maxY - radius ) - radius / 4
                 return (posX, posY, 152)
             case 3:
-                posX = (positionOfCenterCircle.maxX - radius ) - radius / 2
+                posX = (positionOfCenterCircle.minX  ) - radius / 4
                 posY = (positionOfCenterCircle.maxY ) + radius / 4
                 return (posX, posY, 157.3)
             case 4:
-                posX = (positionOfCenterCircle.maxX + radius / 5)
+                posX = (positionOfCenterCircle.minX + radius ) + radius / 1.5
                 posY = (positionOfCenterCircle.maxY - radius / 1.5)
                 return (posX, posY, 134.3)
            case 5:
-                posX = ((positionOfCenterCircle.maxX - radius / 4) )
-                posY = (positionOfCenterCircle.minY - (radius) - radius / 4 )
+                posX = ((positionOfCenterCircle.maxX - radius / 2) )
+                posY = (positionOfCenterCircle.minY - (radius) - radius / 2 )
                 return (posX, posY, 168.9)
 //            case 5:
 //                posX = (positionOfCenterCircle.minY + radius)
