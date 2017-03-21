@@ -31,7 +31,7 @@ final class LearnCustomLayout: UICollectionViewLayout {
                 posY = (positionOfCenterCircle.maxY - radius ) - radius / 4
                 return (posX, posY, 151)
             case 3:
-                posX = (positionOfCenterCircle.minX  )
+                posX = (positionOfCenterCircle.minX - radius / 5 )
                 posY = (positionOfCenterCircle.maxY + radius / 5)
                 return (posX, posY, 157.3)
             case 4:

@@ -35,6 +35,7 @@ final class LearnCategoryListViewController: UIViewController, UICollectionViewD
         collectionView = UICollectionView(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY + 70, width: self.view.frame.width, height: self.view.frame.height - 120), collectionViewLayout: layout)
         let image: UIImage = UIImage(named:"LearnCategory.png")!
         let imageView = UIImageView(frame:collectionView.frame)
+        imageView.contentMode = .scaleToFill
         imageView.image = image
         collectionView.dataSource = self
         collectionView.delegate = self
