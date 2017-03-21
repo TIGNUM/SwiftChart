@@ -9,14 +9,26 @@
 import UIKit
 
 enum PresentationType {
-    case fade
+    case fadeIn
+    case fadeOut
 }
 
 class PresentationManager: NSObject {
 
-    var presentationType = PresentationType.fade
+    var presentationType = PresentationType.fadeIn
 }
 
 extension PresentationManager: UIViewControllerTransitioningDelegate {
-
+    
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        return FadeInOutPresentationController(presentedViewController: presented, presenting: presenting, presentationType: .fadeIn)
+    }
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return FadeInOutPresentationAnimator(presentationType: presentationType, isPresentation: true)
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return FadeInOutPresentationAnimator(presentationType: presentationType, isPresentation: false)
+    }
 }
