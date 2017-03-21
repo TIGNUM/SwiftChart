@@ -15,6 +15,7 @@ final class SettingsCoordinator: ParentCoordinator {
     fileprivate let databaseManager: DatabaseManager?
     fileprivate let eventTracker: EventTracker?
     internal var children = [Coordinator]()
+    weak var delegate: ParentCoordinator?
     
     init(root: UIViewController, databaseManager: DatabaseManager?, eventTracker: EventTracker?) {
         self.rootViewController = root
@@ -27,17 +28,16 @@ final class SettingsCoordinator: ParentCoordinator {
         vc.delegate = self
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .custom
-        self.rootViewController?.present(vc, animated: true)
+        rootViewController?.present(vc, animated: true)
     }
 }
 
 // MARK: - SettingsViewControllerDelegate
 
-extension SettingsCoordinator               : SettingsViewControllerDelegate {
+extension SettingsCoordinator: SettingsViewControllerDelegate {
     
-    func didTapSettingsViewController(_ viewController: UIViewController) {
-        let coordinator = SettingsCoordinator(root: viewController, databaseManager: self.databaseManager, eventTracker: self.eventTracker)
-        coordinator.start()
-        self.children.append(coordinator)
+    func didTapClose(in viewController: UIViewController, animated: Bool) {
+        viewController.dismiss(animated: animated, completion: nil)
+        delegate?.removeChild(child: self)
     }
 }
