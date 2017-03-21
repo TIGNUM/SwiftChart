@@ -58,11 +58,11 @@ extension SettingsViewController {
 extension SettingsViewController {
     
     @IBAction private func didTapCloseButton() {
-        dismiss(animated: true, completion: nil)
+        delegate?.didTapClose(in: self, animated: true)
     }
     
     @IBAction private func didTapSearchButton() {
-        print("didTapSearchButton")
+        delegate?.didTapClose(in: self, animated: true)
     }
 }
 
