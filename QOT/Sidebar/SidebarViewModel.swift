@@ -18,7 +18,7 @@ enum SidebarCellType: Int {
     case about
     case logout
     
-    static var allCases: [SidebarCellType]  {
+    static var allCases: [SidebarCellType] {
         return [
             SidebarCellType.library,
             SidebarCellType.benefits,
@@ -42,15 +42,27 @@ enum SidebarCellType: Int {
         }
     }
     
-    var font: UIFont {
+    var font: UIFont? {
         switch self {
-        case .library: return R.string.localized.sidebarTitleLibrary()
-        case .benefits: return R.string.localized.sidebarTitleBenefits()
-        case .settings: return R.string.localized.sidebarTitleSettings()
-        case .sensor: return R.string.localized.sidebarTitleSensor()
-        case .privacy: return R.string.localized.sidebarTitlePrivacy()
-        case .about: return R.string.localized.sidebarTitleAbout()
-        case .logout: return R.string.localized.sidebarTitleLogout()
+        case .library: return .sidebar
+        case .benefits: return .sidebar
+        case .settings: return .sidebar
+        case .sensor: return .sidebar
+        case .privacy: return .sidebarSmall
+        case .about: return .sidebarSmall
+        case .logout: return .sidebarSmall
+        }
+    }
+    
+    var textColor: UIColor {
+        switch self {
+        case .library: return .qotWhite
+        case .benefits: return .qotWhite
+        case .settings: return .qotWhite
+        case .sensor: return .qotWhite
+        case .privacy: return .qotWhiteMedium
+        case .about: return .qotWhiteMedium
+        case .logout: return .qotWhiteMedium
         }
     }
 }

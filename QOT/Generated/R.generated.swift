@@ -13,6 +13,7 @@ struct R: Rswift.Validatable {
   fileprivate static let hostingBundle = Bundle(for: R.Class.self)
   
   static func validate() throws {
+    try font.validate()
     try intern.validate()
   }
   
@@ -23,36 +24,56 @@ struct R: Rswift.Validatable {
   
   /// This `R.file` struct is generated, and contains static references to 3 files.
   struct file {
-    /// Resource file `BentoSanBoo`.
-    static let bentoSanBoo = Rswift.FileResource(bundle: R.hostingBundle, name: "BentoSanBoo", pathExtension: "")
-    /// Resource file `BentoSanReg`.
-    static let bentoSanReg = Rswift.FileResource(bundle: R.hostingBundle, name: "BentoSanReg", pathExtension: "")
-    /// Resource file `SimplReg`.
-    static let simplReg = Rswift.FileResource(bundle: R.hostingBundle, name: "SimplReg", pathExtension: "")
+    /// Resource file `BentonSans_Book.otf`.
+    static let bentonSans_BookOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "BentonSans_Book", pathExtension: "otf")
+    /// Resource file `BentonSans_Regular.otf`.
+    static let bentonSans_RegularOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "BentonSans_Regular", pathExtension: "otf")
+    /// Resource file `LLSimple_Regular`.
+    static let lLSimple_Regular = Rswift.FileResource(bundle: R.hostingBundle, name: "LLSimple_Regular", pathExtension: "")
     
-    /// `bundle.url(forResource: "BentoSanBoo", withExtension: "")`
-    static func bentoSanBoo(_: Void = ()) -> Foundation.URL? {
-      let fileResource = R.file.bentoSanBoo
+    /// `bundle.url(forResource: "BentonSans_Book", withExtension: "otf")`
+    static func bentonSans_BookOtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.bentonSans_BookOtf
       return fileResource.bundle.url(forResource: fileResource)
     }
     
-    /// `bundle.url(forResource: "BentoSanReg", withExtension: "")`
-    static func bentoSanReg(_: Void = ()) -> Foundation.URL? {
-      let fileResource = R.file.bentoSanReg
+    /// `bundle.url(forResource: "BentonSans_Regular", withExtension: "otf")`
+    static func bentonSans_RegularOtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.bentonSans_RegularOtf
       return fileResource.bundle.url(forResource: fileResource)
     }
     
-    /// `bundle.url(forResource: "SimplReg", withExtension: "")`
-    static func simplReg(_: Void = ()) -> Foundation.URL? {
-      let fileResource = R.file.simplReg
+    /// `bundle.url(forResource: "LLSimple_Regular", withExtension: "")`
+    static func lLSimple_Regular(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.lLSimple_Regular
       return fileResource.bundle.url(forResource: fileResource)
     }
     
     fileprivate init() {}
   }
   
-  /// This `R.font` struct is generated, and contains static references to 0 fonts.
-  struct font {
+  /// This `R.font` struct is generated, and contains static references to 2 fonts.
+  struct font: Rswift.Validatable {
+    /// Font `BentonSans-Book`.
+    static let bentonSansBook = Rswift.FontResource(fontName: "BentonSans-Book")
+    /// Font `BentonSans`.
+    static let bentonSans = Rswift.FontResource(fontName: "BentonSans")
+    
+    /// `UIFont(name: "BentonSans", size: ...)`
+    static func bentonSans(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: bentonSans, size: size)
+    }
+    
+    /// `UIFont(name: "BentonSans-Book", size: ...)`
+    static func bentonSansBook(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: bentonSansBook, size: size)
+    }
+    
+    static func validate() throws {
+      if R.font.bentonSans(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'BentonSans' could not be loaded, is 'BentonSans_Regular.otf' added to the UIAppFonts array in this targets Info.plist?") }
+      if R.font.bentonSansBook(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'BentonSans-Book' could not be loaded, is 'BentonSans_Book.otf' added to the UIAppFonts array in this targets Info.plist?") }
+    }
+    
     fileprivate init() {}
   }
   
@@ -167,16 +188,16 @@ struct R: Rswift.Validatable {
       static let sidebarTitleAbout = Rswift.StringResource(key: "Sidebar.Title.About", tableName: "Localized", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Add Sensor
       static let sidebarTitleSensor = Rswift.StringResource(key: "Sidebar.Title.Sensor", tableName: "Localized", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Benefits
-      static let sidebarTitleBenefits = Rswift.StringResource(key: "Sidebar.Title.Benefits", tableName: "Localized", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Categories
       static let learnCategoryListViewTitle = Rswift.StringResource(key: "learn.category-list-view.title", tableName: "Localized", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Data Privacy
       static let sidebarTitlePrivacy = Rswift.StringResource(key: "Sidebar.Title.Privacy", tableName: "Localized", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Library
-      static let sidebarTitleLibrary = Rswift.StringResource(key: "Sidebar.Title.Library", tableName: "Localized", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Log Out
+      /// Value: Logout
       static let sidebarTitleLogout = Rswift.StringResource(key: "Sidebar.Title.Logout", tableName: "Localized", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: QOT Benefits
+      static let sidebarTitleBenefits = Rswift.StringResource(key: "Sidebar.Title.Benefits", tableName: "Localized", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: QOT Library
+      static let sidebarTitleLibrary = Rswift.StringResource(key: "Sidebar.Title.Library", tableName: "Localized", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Settings
       static let settingsTitle = Rswift.StringResource(key: "Settings.Title", tableName: "Localized", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Settings
@@ -192,11 +213,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Sidebar.Title.Sensor", tableName: "Localized", bundle: R.hostingBundle, comment: "")
       }
       
-      /// Value: Benefits
-      static func sidebarTitleBenefits(_: Void = ()) -> String {
-        return NSLocalizedString("Sidebar.Title.Benefits", tableName: "Localized", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// Value: Categories
       static func learnCategoryListViewTitle(_: Void = ()) -> String {
         return NSLocalizedString("learn.category-list-view.title", tableName: "Localized", bundle: R.hostingBundle, comment: "")
@@ -207,14 +223,19 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Sidebar.Title.Privacy", tableName: "Localized", bundle: R.hostingBundle, comment: "")
       }
       
-      /// Value: Library
-      static func sidebarTitleLibrary(_: Void = ()) -> String {
-        return NSLocalizedString("Sidebar.Title.Library", tableName: "Localized", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// Value: Log Out
+      /// Value: Logout
       static func sidebarTitleLogout(_: Void = ()) -> String {
         return NSLocalizedString("Sidebar.Title.Logout", tableName: "Localized", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: QOT Benefits
+      static func sidebarTitleBenefits(_: Void = ()) -> String {
+        return NSLocalizedString("Sidebar.Title.Benefits", tableName: "Localized", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: QOT Library
+      static func sidebarTitleLibrary(_: Void = ()) -> String {
+        return NSLocalizedString("Sidebar.Title.Library", tableName: "Localized", bundle: R.hostingBundle, comment: "")
       }
       
       /// Value: Settings

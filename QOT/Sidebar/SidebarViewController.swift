@@ -78,13 +78,19 @@ extension SidebarViewController: UITableViewDelegate, UITableViewDataSource {
         return viewModel.itemCount
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return Layout.sidebarCellHeight
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? SidebarTableViewCell else {
             return UITableViewCell()
         }
         
-        cell.setup(with: viewModel.item(at: indexPath.row).title)
+        let item = viewModel.item(at: indexPath.row)
+        cell.setup(with: item.title, font: item.font, textColor: item.textColor)
+        
         return cell
     }
 }

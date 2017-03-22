@@ -16,9 +16,10 @@ class SidebarTableViewCell: UITableViewCell {
     
     // MARK: - Properties
 
-    func setup(with viewModel: SidebarViewModel) {
+    func setup(with title: String, font: UIFont?, textColor: UIColor) {
         backgroundColor = .clear
-        titleLabel?.textColor = .lightGray
-        titleLabel?.text = viewModel.
+        titleLabel?.textColor = textColor
+        titleLabel?.text = title.uppercased()
+        titleLabel?.font = font
     }
 }

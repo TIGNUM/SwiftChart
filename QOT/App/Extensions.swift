@@ -26,11 +26,11 @@ extension UIFont {
     }
     
     class var sidebarSmall: UIFont? {
-        return UIFont.simpleFont(ofSize: 16)
+        return UIFont.bentonBookFont(ofSize: 16)
     }
     
     class var sidebar: UIFont? {
-        return UIFont.simpleFont(ofSize: 32)
+        return UIFont.bentonBookFont(ofSize: 32)
     }
 }
 
@@ -51,6 +51,6 @@ extension UIColor {
     }
     
     class var qotNavy: UIColor {
-        return UIColor.init(red: 0, green: 255/45, blue: 255/78, alpha: 1)
+        return UIColor.init(red: 0, green: 45/255, blue: 78/255, alpha: 1)
     }
 }

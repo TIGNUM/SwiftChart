@@ -4,9 +4,9 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>SimplReg</string>
-		<string>BentoSanReg</string>
-		<string>BentoSanBoo</string>
+		<string>LLSimple_Regular.ttf</string>
+		<string>BentonSans_Regular.otf</string>
+		<string>BentonSans_Book.otf</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
