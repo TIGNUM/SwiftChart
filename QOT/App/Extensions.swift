@@ -43,18 +43,18 @@ extension UIFont {
 extension UIColor {
     
     class var qotWhite: UIColor {
-        return UIColor.init(red: 1, green: 1, blue: 1, alpha: 1)
+        return UIColor(red: 1, green: 1, blue: 1, alpha: 1)
     }
     
     class var qotWhiteLight: UIColor {
-        return UIColor.init(red: 1, green: 1, blue: 1, alpha: 0.1)
+        return UIColor(red: 1, green: 1, blue: 1, alpha: 0.1)
     }
     
     class var qotWhiteMedium: UIColor {
-        return UIColor.init(red: 1, green: 1, blue: 1, alpha: 0.4)
+        return UIColor(red: 1, green: 1, blue: 1, alpha: 0.4)
     }
     
     class var qotNavy: UIColor {
-        return UIColor.init(red: 0, green: 45/255, blue: 78/255, alpha: 1)
+        return UIColor(red: 0, green: 45/255, blue: 78/255, alpha: 1)
     }
 }
