@@ -26,6 +26,7 @@ final class TabBarCoordinator: ParentCoordinator {
     fileprivate lazy var learnCategoryListViewController: LearnCategoryListViewController = {
         let viewModel = LearnCategoryListViewModel(categories: self.categories)
         let learnCategoryListVC = LearnCategoryListViewController(viewModel: viewModel)
+        learnCategoryListVC.delegate = self
         return learnCategoryListVC
     }()
     
@@ -66,5 +67,24 @@ final class TabBarCoordinator: ParentCoordinator {
         viewControllers.append(learnCategoryListViewController)
         viewControllers.append(meSectionViewController)
         viewControllers.append(prepareSectionViewController)
+    }
+}
+
+extension TabBarCoordinator: LearnCategoryListViewControllerDelegate {
+    func didSelectCategory(at index: Index, in viewController: LearnCategoryListViewController) {
+        let category = categories[index]
+        let coordinator = LearnContentListCoordinator(root: viewController, databaseManager: databaseManager, eventTracker: eventTracker, category: category)
+        coordinator.start()
+        coordinator.delegate = self
+        
+        children.append(coordinator)
+    }
+}
+
+extension TabBarCoordinator: LearnContentListCoordinatorDelegate {
+    func didFinish(coordinator: LearnContentListCoordinator) {
+        if let index = children.index(where: { $0 === coordinator}) {
+            children.remove(at: index)
+        }
     }
 }

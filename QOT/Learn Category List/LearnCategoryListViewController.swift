@@ -39,7 +39,7 @@ final class LearnCategoryListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.backgroundColor = .black
+        tableView.backgroundColor = .qotNavy
     }
 }
 
@@ -65,7 +65,7 @@ extension LearnCategoryListViewController {
         cell.textLabel?.text = category.title
         cell.textLabel?.textColor = .qotWhite
         cell.detailTextLabel?.text = "\(category.viewedCount)/\(category.itemCount)"
-        cell.backgroundColor = .black
+        cell.backgroundColor = .qotNavy
         
         return cell
     }
