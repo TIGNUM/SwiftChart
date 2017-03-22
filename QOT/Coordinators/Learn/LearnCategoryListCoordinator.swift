@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 final class LearnCategoryListCoordinator: ParentCoordinator {
-    fileprivate let rootVC: MainMenuViewController
+    fileprivate let rootVC: TabBarController
     fileprivate let databaseManager: DatabaseManager
     fileprivate let eventTracker: EventTracker
     fileprivate lazy var categories: Results<ContentCategory> = {
@@ -19,7 +19,7 @@ final class LearnCategoryListCoordinator: ParentCoordinator {
     
     var children: [Coordinator] = []
     
-    init(root: MainMenuViewController, databaseManager: DatabaseManager, eventTracker: EventTracker) {
+    required init(root: TabBarController, databaseManager: DatabaseManager, eventTracker: EventTracker) {
         self.rootVC = root
         self.databaseManager = databaseManager
         self.eventTracker = eventTracker
@@ -27,13 +27,13 @@ final class LearnCategoryListCoordinator: ParentCoordinator {
     
     func start() {
         let viewModel = LearnCategoryListViewModel(categories: categories)
-        let vc = LearnCategoryListViewController(viewModel: viewModel)
-        vc.delegate =  self
-        vc.modalTransitionStyle = .crossDissolve
-        vc.modalPresentationStyle = .custom
-        rootVC.present(vc, animated: true)
+        let learnCategoryListViewController = LearnCategoryListViewController(viewModel: viewModel)
+        learnCategoryListViewController.delegate =  self
+        learnCategoryListViewController.modalTransitionStyle = .crossDissolve
+        learnCategoryListViewController.modalPresentationStyle = .custom
+        rootVC.present(learnCategoryListViewController, animated: true)
         
-        eventTracker.track(page: vc.pageID, referer: rootVC.pageID, associatedEntity: nil)
+//        eventTracker.track(page: vc.pageID, referer: rootVC.pageID, associatedEntity: nil)
     }
 }
 

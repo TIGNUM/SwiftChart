@@ -19,4 +19,11 @@ enum FontName: String {
     case bentonBook = "BentonSans-Book"
     case bentonRegular = "BentonSans"
 }
-      
+
+struct Layout {
+    enum CellHeight: CGFloat {
+        case sidebar = 75
+        case sidebarSmall = 65
+        case sidebarHeader = 50
+    }
+}
