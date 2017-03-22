@@ -42,7 +42,7 @@ enum SidebarCellType: Int {
         }
     }
     
-    var font: UIFont? {
+    var font: UIFont {
         switch self {
         case .library: return .sidebar
         case .benefits: return .sidebar

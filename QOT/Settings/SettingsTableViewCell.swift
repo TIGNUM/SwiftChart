@@ -10,8 +10,10 @@ import UIKit
 
 final class SettingsTableViewCell: UITableViewCell {
     
-    @IBOutlet private weak var titleLabel: UILabel?
-    @IBOutlet private weak var subTitleLabel: UILabel?
+    // MARK: - Outlets
+    
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var subTitleLabel: UILabel!
     
     // TODO: 
     func setup() {
