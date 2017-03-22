@@ -29,7 +29,13 @@ final class TabBarCoordinator: ParentCoordinator {
         return learnCategoryListVC
     }()
     
+    fileprivate lazy var meSectionViewController: MeSectionViewController = {
+       return MeSectionViewController()
+    }()
     
+    fileprivate lazy var prepareSectionViewController: PrepareSectionViewController = {
+        return PrepareSectionViewController()
+    }()
     
     var children = [Coordinator]()
     var viewControllers = [UIViewController]()
@@ -58,7 +64,7 @@ final class TabBarCoordinator: ParentCoordinator {
     
     func addViewControllers() {
         viewControllers.append(learnCategoryListViewController)
-        viewControllers.append(learnCategoryListViewController)
-        viewControllers.append(learnCategoryListViewController)
+        viewControllers.append(meSectionViewController)
+        viewControllers.append(prepareSectionViewController)
     }
 }

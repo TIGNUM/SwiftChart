@@ -43,10 +43,10 @@ class TabBarController: UITabBarController {
         let learnCategoryController = categoryViewControllers.item(at: MainMenuType.learn.rawValue) as? LearnCategoryListViewController
         learnCategoryController?.tabBarItem = learnTabBarItem
         
-        let meCategoryController = categoryViewControllers.item(at: MainMenuType.me.rawValue) as? LearnCategoryListViewController
+        let meCategoryController = categoryViewControllers.item(at: MainMenuType.me.rawValue) as? MeSectionViewController
         meCategoryController?.tabBarItem = meTabBarItem
         
-        let perpareCategoryController = categoryViewControllers.item(at: MainMenuType.prepare.rawValue) as? LearnCategoryListViewController
+        let perpareCategoryController = categoryViewControllers.item(at: MainMenuType.prepare.rawValue) as? PrepareSectionViewController
         perpareCategoryController?.tabBarItem = prepareTabBarItem
         
         tabBar.barTintColor = .black

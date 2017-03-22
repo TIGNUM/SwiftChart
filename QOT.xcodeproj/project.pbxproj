@@ -60,6 +60,8 @@
 		CBDB990E1E7BFD05003EC73F /* CalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB990D1E7BFD05003EC73F /* CalendarEventParticipantData.swift */; };
 		CBDB99101E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB990F1E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift */; };
 		CBDB99121E7BFEED003EC73F /* MockCalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB99111E7BFEED003EC73F /* MockCalendarEventParticipantData.swift */; };
+		CC4D1D7C1E82E75300B8D75E /* MeSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4D1D7B1E82E75300B8D75E /* MeSectionViewController.swift */; };
+		CC4D1D7E1E82E77900B8D75E /* PrepareSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4D1D7D1E82E77900B8D75E /* PrepareSectionViewController.swift */; };
 		CC6B3A291E8158B200E7FDFD /* PresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A281E8158B200E7FDFD /* PresentationManager.swift */; };
 		CC6B3A2D1E8163A200E7FDFD /* FadeInOutPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A2C1E8163A200E7FDFD /* FadeInOutPresentationController.swift */; };
 		CC6B3A2F1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A2E1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift */; };
@@ -156,6 +158,8 @@
 		CBDB990D1E7BFD05003EC73F /* CalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventParticipantData.swift; sourceTree = "<group>"; };
 		CBDB990F1E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKParticipant+CalendarEventParticipantData.swift"; sourceTree = "<group>"; };
 		CBDB99111E7BFEED003EC73F /* MockCalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCalendarEventParticipantData.swift; sourceTree = "<group>"; };
+		CC4D1D7B1E82E75300B8D75E /* MeSectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeSectionViewController.swift; sourceTree = "<group>"; };
+		CC4D1D7D1E82E77900B8D75E /* PrepareSectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareSectionViewController.swift; sourceTree = "<group>"; };
 		CC6B3A281E8158B200E7FDFD /* PresentationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationManager.swift; sourceTree = "<group>"; };
 		CC6B3A2C1E8163A200E7FDFD /* FadeInOutPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeInOutPresentationController.swift; sourceTree = "<group>"; };
 		CC6B3A2E1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeInOutPresentationAnimator.swift; sourceTree = "<group>"; };
@@ -495,16 +499,16 @@
 		CC4D1D791E82E6A000B8D75E /* Me */ = {
 			isa = PBXGroup;
 			children = (
+				CC4D1D7B1E82E75300B8D75E /* MeSectionViewController.swift */,
 			);
-			name = Me;
 			path = Me;
 			sourceTree = "<group>";
 		};
 		CC4D1D7A1E82E6AD00B8D75E /* Prepare */ = {
 			isa = PBXGroup;
 			children = (
+				CC4D1D7D1E82E77900B8D75E /* PrepareSectionViewController.swift */,
 			);
-			name = Prepare;
 			path = Prepare;
 			sourceTree = "<group>";
 		};
@@ -825,6 +829,7 @@
 				CBDB99101E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift in Sources */,
 				CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */,
 				CB2880221E7050EB0067890A /* Coordinator.swift in Sources */,
+				CC4D1D7C1E82E75300B8D75E /* MeSectionViewController.swift in Sources */,
 				CBD7915F1E72FDC10006C590 /* LaunchViewModel.swift in Sources */,
 				CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */,
 				CBD791521E71A09F0006C590 /* ContentItem.swift in Sources */,
@@ -862,6 +867,7 @@
 				CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */,
 				CB8A152F1E76F27D0023B2F9 /* PageID.swift in Sources */,
 				CB8A154A1E7A7FA20023B2F9 /* CalendarImportManger.swift in Sources */,
+				CC4D1D7E1E82E77900B8D75E /* PrepareSectionViewController.swift in Sources */,
 				CB8A154C1E7A8AD30023B2F9 /* CalendarImportTask.swift in Sources */,
 				CB8A15221E769F1F0023B2F9 /* EventTracker.swift in Sources */,
 				CCC0C4BE1E82730E002A8362 /* Extensions.swift in Sources */,
