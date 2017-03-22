@@ -47,6 +47,9 @@ final class SidebarViewController: UIViewController {
     }
     
     private func setupView() {
+        tableView?.delegate = self
+        tableView?.dataSource = self
+        view.backgroundColor = .black
         tableView?.backgroundColor = .clear
         navBarView?.backgroundColor = .clear
         leftNavBarButton?.setTitleColor(.lightGray, for: .normal)

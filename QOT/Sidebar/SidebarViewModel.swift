@@ -41,6 +41,18 @@ enum SidebarCellType: Int {
         case .logout: return R.string.localized.sidebarTitleLogout()
         }
     }
+    
+    var font: UIFont {
+        switch self {
+        case .library: return R.string.localized.sidebarTitleLibrary()
+        case .benefits: return R.string.localized.sidebarTitleBenefits()
+        case .settings: return R.string.localized.sidebarTitleSettings()
+        case .sensor: return R.string.localized.sidebarTitleSensor()
+        case .privacy: return R.string.localized.sidebarTitlePrivacy()
+        case .about: return R.string.localized.sidebarTitleAbout()
+        case .logout: return R.string.localized.sidebarTitleLogout()
+        }
+    }
 }
 
 final class SidebarViewModel {

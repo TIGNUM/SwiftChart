@@ -75,6 +75,9 @@
 		CCAF03281E802A6200015125 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCAF03271E802A6200015125 /* SettingsViewController.xib */; };
 		CCAF032A1E8035C800015125 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF03291E8035C800015125 /* SettingsTableViewCell.swift */; };
 		CCAF032C1E80362700015125 /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCAF032B1E80362700015125 /* SettingsTableViewCell.xib */; };
+		CCC0C4B91E8270F1002A8362 /* BentoSanBoo in Resources */ = {isa = PBXBuildFile; fileRef = CCC0C4B51E8270F1002A8362 /* BentoSanBoo */; };
+		CCC0C4BA1E8270F1002A8362 /* BentoSanReg in Resources */ = {isa = PBXBuildFile; fileRef = CCC0C4B61E8270F1002A8362 /* BentoSanReg */; };
+		CCC0C4BC1E827160002A8362 /* SimplReg in Resources */ = {isa = PBXBuildFile; fileRef = CCC0C4BB1E827160002A8362 /* SimplReg */; };
 		CCE5B9D21E80501D00E01BAE /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE5B9D11E80501D00E01BAE /* SidebarViewController.swift */; };
 		CCE5B9D41E80505800E01BAE /* SidebarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE5B9D31E80505800E01BAE /* SidebarViewController.xib */; };
 /* End PBXBuildFile section */
@@ -165,6 +168,9 @@
 		CCAF03271E802A6200015125 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		CCAF03291E8035C800015125 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		CCAF032B1E80362700015125 /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
+		CCC0C4B51E8270F1002A8362 /* BentoSanBoo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = BentoSanBoo; path = BentoSanBoo; sourceTree = "<group>"; };
+		CCC0C4B61E8270F1002A8362 /* BentoSanReg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = BentoSanReg; path = BentoSanReg; sourceTree = "<group>"; };
+		CCC0C4BB1E827160002A8362 /* SimplReg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SimplReg; path = SimplReg; sourceTree = "<group>"; };
 		CCE5B9D11E80501D00E01BAE /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		CCE5B9D31E80505800E01BAE /* SidebarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidebarViewController.xib; sourceTree = "<group>"; };
 		CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -309,6 +315,7 @@
 				CBB237ED1E6FFF1200AB5AEF /* Products */,
 				CBB237EE1E6FFF1200AB5AEF /* QOT */,
 				CBB238031E6FFF1200AB5AEF /* QOTTests */,
+				CCC0C4AF1E826E16002A8362 /* Resources */,
 			);
 			sourceTree = "<group>";
 		};
@@ -485,6 +492,44 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
+		CCC0C4AF1E826E16002A8362 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CCC0C4B01E826E24002A8362 /* Fonts */,
+			);
+			name = Resources;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		CCC0C4B01E826E24002A8362 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				CCC0C4B21E826F49002A8362 /* BentonSans */,
+				CCC0C4B11E826F3E002A8362 /* Simple */,
+			);
+			name = Fonts;
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		CCC0C4B11E826F3E002A8362 /* Simple */ = {
+			isa = PBXGroup;
+			children = (
+				CCC0C4BB1E827160002A8362 /* SimplReg */,
+			);
+			name = Simple;
+			path = Simple;
+			sourceTree = "<group>";
+		};
+		CCC0C4B21E826F49002A8362 /* BentonSans */ = {
+			isa = PBXGroup;
+			children = (
+				CCC0C4B51E8270F1002A8362 /* BentoSanBoo */,
+				CCC0C4B61E8270F1002A8362 /* BentoSanReg */,
+			);
+			name = BentonSans;
+			path = BentonSans;
+			sourceTree = "<group>";
+		};
 		CCCCB0691E804A90001240D5 /* Sidebar */ = {
 			isa = PBXGroup;
 			children = (
@@ -591,13 +636,16 @@
 			files = (
 				CCAF032C1E80362700015125 /* SettingsTableViewCell.xib in Resources */,
 				CBD791661E768AB70006C590 /* MainMenuViewController.xib in Resources */,
+				CCC0C4BA1E8270F1002A8362 /* BentoSanReg in Resources */,
 				CCAF03281E802A6200015125 /* SettingsViewController.xib in Resources */,
 				CCE5B9D41E80505800E01BAE /* SidebarViewController.xib in Resources */,
 				CBD7915D1E72F2990006C590 /* LaunchViewController.xib in Resources */,
 				CB8A15461E7986C90023B2F9 /* Localized.strings in Resources */,
 				CC6B3A351E81A1E600E7FDFD /* SidebarTableViewCell.xib in Resources */,
+				CCC0C4B91E8270F1002A8362 /* BentoSanBoo in Resources */,
 				CBB237FA1E6FFF1200AB5AEF /* LaunchScreen.storyboard in Resources */,
 				CBB237F71E6FFF1200AB5AEF /* Assets.xcassets in Resources */,
+				CCC0C4BC1E827160002A8362 /* SimplReg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
