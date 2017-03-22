@@ -349,6 +349,8 @@
 				CBD791431E7160710006C590 /* Learn Content List */,
 				CB8A15441E7986A90023B2F9 /* Localization */,
 				CBD791601E768A4F0006C590 /* Main Menu */,
+				CC4D1D791E82E6A000B8D75E /* Me */,
+				CC4D1D7A1E82E6AD00B8D75E /* Prepare */,
 				CC6B3A271E81586C00E7FDFD /* Presentation */,
 				CB2880291E70577E0067890A /* Root Container View */,
 				CB1E4F991E7FE22900287613 /* Settings */,
@@ -488,6 +490,22 @@
 				CBDB99071E7BEE05003EC73F /* EventStore.swift */,
 			);
 			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		CC4D1D791E82E6A000B8D75E /* Me */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Me;
+			path = Me;
+			sourceTree = "<group>";
+		};
+		CC4D1D7A1E82E6AD00B8D75E /* Prepare */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Prepare;
+			path = Prepare;
 			sourceTree = "<group>";
 		};
 		CC6B3A271E81586C00E7FDFD /* Presentation */ = {
