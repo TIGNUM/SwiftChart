@@ -31,11 +31,17 @@ final class TabBarCoordinator: ParentCoordinator {
     }()
     
     fileprivate lazy var meSectionViewController: MeSectionViewController = {
-       return MeSectionViewController()
+        let meViewController = MeSectionViewController()
+        meViewController.delegate = self
+        
+        return meViewController
     }()
     
     fileprivate lazy var prepareSectionViewController: PrepareSectionViewController = {
-        return PrepareSectionViewController()
+        let prepareViewComntroller = PrepareSectionViewController()
+        prepareViewComntroller.delegate = self
+        
+        return prepareViewComntroller
     }()
     
     var children = [Coordinator]()
@@ -58,17 +64,14 @@ final class TabBarCoordinator: ParentCoordinator {
         rootViewController.present(tabBarController, animated: true)
     }
     
-    func addChildren(tabBarController: TabBarController) {
-        let learnCategoryListCoordinator = LearnCategoryListCoordinator(root: tabBarController, databaseManager: databaseManager, eventTracker: eventTracker)
-        children.append(learnCategoryListCoordinator)
-    }
-    
     func addViewControllers() {
         viewControllers.append(learnCategoryListViewController)
         viewControllers.append(meSectionViewController)
         viewControllers.append(prepareSectionViewController)
     }
 }
+
+// MARK: - LearnCategoryListViewControllerDelegate
 
 extension TabBarCoordinator: LearnCategoryListViewControllerDelegate {
     func didSelectCategory(at index: Index, in viewController: LearnCategoryListViewController) {
@@ -86,5 +89,23 @@ extension TabBarCoordinator: LearnContentListCoordinatorDelegate {
         if let index = children.index(where: { $0 === coordinator}) {
             children.remove(at: index)
         }
+    }
+}
+
+// MARK: - MeSectionDelegate
+
+extension TabBarCoordinator: MeSectionDelegate {
+    
+    func didTapMeSectionItem(in viewController: MeSectionViewController) {
+        // TODO
+    }
+}
+
+// MARK: - PrepareSectionDelegate
+
+extension TabBarCoordinator: PrepareSectionDelegate {
+    
+    func didTapPrepareItem(in viewController: PrepareSectionViewController) {
+        // TODO
     }
 }

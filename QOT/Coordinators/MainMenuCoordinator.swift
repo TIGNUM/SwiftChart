@@ -15,11 +15,16 @@ enum MainMenuType: Int {
 }
 
 final class MainMenuCoordinator: ParentCoordinator {
+    
+    // MARK: - Properties
+    
     fileprivate let rootVC: LaunchViewController
     fileprivate let databaseManager: DatabaseManager
     fileprivate let eventTracker: EventTracker
     
     var children: [Coordinator] = []
+    
+    // MARK: - Life Cycle
     
     init(root: LaunchViewController, databaseManager: DatabaseManager, eventTracker: EventTracker) {
         self.rootVC = root

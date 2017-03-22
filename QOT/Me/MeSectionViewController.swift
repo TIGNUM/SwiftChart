@@ -9,6 +9,12 @@
 import UIKit
 
 class MeSectionViewController: UIViewController {
+    
+    // MARK: - Properties
+    
+     weak var delegate: MeSectionDelegate?
+    
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()

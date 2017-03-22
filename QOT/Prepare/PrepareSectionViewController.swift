@@ -9,6 +9,12 @@
 import UIKit
 
 class PrepareSectionViewController: UIViewController {
+    
+    // MARK: - Properties
+    
+    weak var delegate: PrepareSectionDelegate?
+    
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
