@@ -21,8 +21,33 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.file` struct is generated, and contains static references to 0 files.
+  /// This `R.file` struct is generated, and contains static references to 3 files.
   struct file {
+    /// Resource file `BentoSanBoo`.
+    static let bentoSanBoo = Rswift.FileResource(bundle: R.hostingBundle, name: "BentoSanBoo", pathExtension: "")
+    /// Resource file `BentoSanReg`.
+    static let bentoSanReg = Rswift.FileResource(bundle: R.hostingBundle, name: "BentoSanReg", pathExtension: "")
+    /// Resource file `SimplReg`.
+    static let simplReg = Rswift.FileResource(bundle: R.hostingBundle, name: "SimplReg", pathExtension: "")
+    
+    /// `bundle.url(forResource: "BentoSanBoo", withExtension: "")`
+    static func bentoSanBoo(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.bentoSanBoo
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    /// `bundle.url(forResource: "BentoSanReg", withExtension: "")`
+    static func bentoSanReg(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.bentoSanReg
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    /// `bundle.url(forResource: "SimplReg", withExtension: "")`
+    static func simplReg(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.simplReg
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
     fileprivate init() {}
   }
   
@@ -31,7 +56,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 4 images.
+  /// This `R.image` struct is generated, and contains static references to 3 images.
   struct image {
     /// Image `ic_close`.
     static let ic_close = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_close")
@@ -39,8 +64,6 @@ struct R: Rswift.Validatable {
     static let ic_menu = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_menu")
     /// Image `ic_search`.
     static let ic_search = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_search")
-    /// Image `settingsBackground`.
-    static let settingsBackground = Rswift.ImageResource(bundle: R.hostingBundle, name: "settingsBackground")
     
     /// `UIImage(named: "ic_close", bundle: ..., traitCollection: ...)`
     static func ic_close(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
@@ -55,11 +78,6 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "ic_search", bundle: ..., traitCollection: ...)`
     static func ic_search(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.ic_search, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "settingsBackground", bundle: ..., traitCollection: ...)`
-    static func settingsBackground(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.settingsBackground, compatibleWith: traitCollection)
     }
     
     fileprivate init() {}

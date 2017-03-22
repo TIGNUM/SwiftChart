@@ -16,9 +16,9 @@ class SidebarTableViewCell: UITableViewCell {
     
     // MARK: - Properties
 
-    func setup(with title: String) {
+    func setup(with viewModel: SidebarViewModel) {
         backgroundColor = .clear
         titleLabel?.textColor = .lightGray
-        titleLabel?.text = title
+        titleLabel?.text = viewModel.
     }
 }

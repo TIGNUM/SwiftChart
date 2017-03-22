@@ -14,3 +14,9 @@ struct Animation {
     static let fadeInHeight: CGFloat = -44.0
     static let fadeOutHeight: CGFloat = 44.0
 }
+
+enum FontName: String {
+    case simple = "Simple-Regular"
+    case bentonBook = "BentonSans-Book"
+    case bentonRegular = "BentonSans-Regular"
+}
