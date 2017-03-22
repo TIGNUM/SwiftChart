@@ -17,6 +17,14 @@ extension UIFont {
         return UIFont(name: FontName.simple.rawValue, size: ofSize)
     }
     
+    class func bentonBookFont(ofSize: CGFloat) -> UIFont? {
+        return UIFont(name: FontName.bentonBook.rawValue, size: ofSize)
+    }
+    
+    class func bentonRegularFont(ofSize: CGFloat) -> UIFont? {
+        return UIFont(name: FontName.bentonBook.rawValue, size: ofSize)
+    }
+    
     class var sidebarSmall: UIFont? {
         return UIFont.simpleFont(ofSize: 16)
     }
