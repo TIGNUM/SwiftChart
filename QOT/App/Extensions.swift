@@ -30,6 +30,27 @@ extension UIFont {
     }
     
     class var sidebar: UIFont? {
-        return UIFont.simpleFont(ofSize: 24)
+        return UIFont.simpleFont(ofSize: 32)
+    }
+}
+
+// MARK: - UIColor
+
+extension UIColor {
+    
+    class var qotWhite: UIColor {
+        return UIColor.init(red: 1, green: 1, blue: 1, alpha: 1)
+    }
+    
+    class var qotWhiteLight: UIColor {
+        return UIColor.init(red: 1, green: 1, blue: 1, alpha: 0.1)
+    }
+    
+    class var qotWhiteMedium: UIColor {
+        return UIColor.init(red: 1, green: 1, blue: 1, alpha: 0.4)
+    }
+    
+    class var qotNavy: UIColor {
+        return UIColor.init(red: 0, green: 255/45, blue: 255/78, alpha: 1)
     }
 }
