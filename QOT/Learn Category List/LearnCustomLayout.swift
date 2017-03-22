@@ -96,5 +96,7 @@ final class LearnCustomLayout: UICollectionViewLayout {
     override var collectionViewContentSize: CGSize {
         return CGSize(width: contentSize.width + 50, height: contentSize.height )
     }
-    
+    func makeCircularCellPattern() {
+        
+    }
 }

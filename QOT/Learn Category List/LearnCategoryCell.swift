@@ -38,15 +38,6 @@ final class LearnCustomCell: UICollectionViewCell {
         return view
     }()
     
-    //    fileprivate lazy var stackView: UIStackView = {
-    //        let view = UIStackView(arrangedSubviews: [self.contentCountLabel, self.titleLabel])
-    //        view.axis = .vertical
-    //        view.distribution = .fillProportionally
-    //
-    //        self.contentView.addSubview(view)
-    //        return view
-    //    }()
-    
     private var circleLineShape: CAShapeLayer?
     private var shapeLayer: CAShapeLayer?
     private var percentageLearned = 0.0
@@ -58,7 +49,6 @@ final class LearnCustomCell: UICollectionViewCell {
         contentView.layer.borderColor = UIColor.white.cgColor
         
         backgroundColor = UIColor.clear
-        // created a cicular thin line
         
         setupLayout()
     }
@@ -69,12 +59,7 @@ final class LearnCustomCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        //
-        //        let frame = self.bounds
-        //        contentCountLabel.frame = CGRect(x: bounds.minX + bounds.width / 4, y: bounds.minY, width: bounds.width, height: bounds.height / 2)
         contentView.layer.cornerRadius = frame.width / 2
-        //        titleLabel.frame = CGRect(x: bounds.minX + bounds.width / 6, y:  contentCountLabel.frame.midY, width: bounds.width - bounds.width / 6, height: bounds.height / 2)
-        //        contentView.layer.cornerRadius = frame.width / 2
         drawCircle(frame: frame)
     }
     
@@ -105,7 +90,7 @@ final class LearnCustomCell: UICollectionViewCell {
     }
     
     func configure(with category: LearnCategory) {
-        titleLabel.text =  "PERFORMANCE NUTRITION"//category.title
+        titleLabel.text =  category.title
         contentCountLabel.text = "\(category.viewedCount)/\(category.itemCount)"
         
         let percentageLearned = category.percentageLearned
