@@ -46,8 +46,8 @@ extension MainMenuCoordinator: MainMenuViewControllerDelegate {
         print("Did tap prepare")
     }
     
-    func didTapSettingsButton(in viewController: MainMenuViewController) {
-        let coordinator = SettingsCoordinator(root: viewController, databaseManager: databaseManager, eventTracker: eventTracker)
+    func didTapSidebarButton(in viewController: MainMenuViewController) {
+        let coordinator = SidebarCoordinator(root: viewController, databaseManager: databaseManager, eventTracker: eventTracker)
         coordinator.startChild(child: coordinator)
     }
 }
