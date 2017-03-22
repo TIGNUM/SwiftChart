@@ -65,13 +65,25 @@ enum SidebarCellType: Int {
         case .logout: return .qotWhiteMedium
         }
     }
+    
+    var cellHeight: CGFloat {
+        switch self {
+        case .library: return Layout.CellHeight.sidebar.rawValue
+        case .benefits: return Layout.CellHeight.sidebar.rawValue
+        case .settings: return Layout.CellHeight.sidebar.rawValue
+        case .sensor: return Layout.CellHeight.sidebar.rawValue
+        case .privacy: return Layout.CellHeight.sidebarSmall.rawValue
+        case .about: return Layout.CellHeight.sidebarSmall.rawValue
+        case .logout: return Layout.CellHeight.sidebarSmall.rawValue
+        }
+    }
 }
 
 final class SidebarViewModel {
     
     private var sidebarItems = SidebarCellType.allCases
     
-    var itemCount: Int {
+    var itemCount: Int {        
         return SidebarCellType.allCases.count
     }
     

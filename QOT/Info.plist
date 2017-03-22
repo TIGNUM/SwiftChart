@@ -4,7 +4,7 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>LLSimple_Regular.ttf</string>
+		<string>Simple-Regular.ttf</string>
 		<string>BentonSans_Regular.otf</string>
 		<string>BentonSans_Book.otf</string>
 	</array>

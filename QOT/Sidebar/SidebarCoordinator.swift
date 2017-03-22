@@ -18,7 +18,7 @@ final class SidebarCoordinator: ParentCoordinator {
     weak var delegate: ParentCoordinator?
     lazy var presentationManager = PresentationManager()
     
-    init(root: UIViewController, databaseManager: DatabaseManager?, eventTracker: EventTracker?) {
+    required init(root: UIViewController, databaseManager: DatabaseManager?, eventTracker: EventTracker?) {
         self.rootViewController = root
         self.databaseManager = databaseManager
         self.eventTracker = eventTracker
@@ -41,5 +41,11 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
     func didTapClose(in viewController: UIViewController, animated: Bool) {
         viewController.dismiss(animated: animated, completion: nil)
         delegate?.removeChild(child: self)
+    }
+    
+    func didTapSettingsCell(in viewController: SidebarViewController) {
+        let coordinator = SettingsCoordinator(root: viewController, databaseManager: databaseManager, eventTracker: eventTracker)
+        coordinator.delegate = self
+        startChild(child: coordinator)
     }
 }

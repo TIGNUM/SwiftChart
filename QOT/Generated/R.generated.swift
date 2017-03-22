@@ -28,8 +28,8 @@ struct R: Rswift.Validatable {
     static let bentonSans_BookOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "BentonSans_Book", pathExtension: "otf")
     /// Resource file `BentonSans_Regular.otf`.
     static let bentonSans_RegularOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "BentonSans_Regular", pathExtension: "otf")
-    /// Resource file `LLSimple_Regular`.
-    static let lLSimple_Regular = Rswift.FileResource(bundle: R.hostingBundle, name: "LLSimple_Regular", pathExtension: "")
+    /// Resource file `Simple-Regular.ttf`.
+    static let simpleRegularTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "Simple-Regular", pathExtension: "ttf")
     
     /// `bundle.url(forResource: "BentonSans_Book", withExtension: "otf")`
     static func bentonSans_BookOtf(_: Void = ()) -> Foundation.URL? {
@@ -43,21 +43,23 @@ struct R: Rswift.Validatable {
       return fileResource.bundle.url(forResource: fileResource)
     }
     
-    /// `bundle.url(forResource: "LLSimple_Regular", withExtension: "")`
-    static func lLSimple_Regular(_: Void = ()) -> Foundation.URL? {
-      let fileResource = R.file.lLSimple_Regular
+    /// `bundle.url(forResource: "Simple-Regular", withExtension: "ttf")`
+    static func simpleRegularTtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.simpleRegularTtf
       return fileResource.bundle.url(forResource: fileResource)
     }
     
     fileprivate init() {}
   }
   
-  /// This `R.font` struct is generated, and contains static references to 2 fonts.
+  /// This `R.font` struct is generated, and contains static references to 3 fonts.
   struct font: Rswift.Validatable {
     /// Font `BentonSans-Book`.
     static let bentonSansBook = Rswift.FontResource(fontName: "BentonSans-Book")
     /// Font `BentonSans`.
     static let bentonSans = Rswift.FontResource(fontName: "BentonSans")
+    /// Font `Simple-Regular`.
+    static let simpleRegular = Rswift.FontResource(fontName: "Simple-Regular")
     
     /// `UIFont(name: "BentonSans", size: ...)`
     static func bentonSans(size: CGFloat) -> UIKit.UIFont? {
@@ -69,9 +71,15 @@ struct R: Rswift.Validatable {
       return UIKit.UIFont(resource: bentonSansBook, size: size)
     }
     
+    /// `UIFont(name: "Simple-Regular", size: ...)`
+    static func simpleRegular(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: simpleRegular, size: size)
+    }
+    
     static func validate() throws {
       if R.font.bentonSans(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'BentonSans' could not be loaded, is 'BentonSans_Regular.otf' added to the UIAppFonts array in this targets Info.plist?") }
       if R.font.bentonSansBook(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'BentonSans-Book' could not be loaded, is 'BentonSans_Book.otf' added to the UIAppFonts array in this targets Info.plist?") }
+      if R.font.simpleRegular(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'Simple-Regular' could not be loaded, is 'Simple-Regular.ttf' added to the UIAppFonts array in this targets Info.plist?") }
     }
     
     fileprivate init() {}
@@ -275,12 +283,11 @@ struct _R: Rswift.Validatable {
   struct nib: Rswift.Validatable {
     static func validate() throws {
       try _SidebarViewController.validate()
-      try _LaunchViewController.validate()
       try _MainMenuViewController.validate()
       try _SettingsViewController.validate()
     }
     
-    struct _LaunchViewController: Rswift.NibResourceType, Rswift.Validatable {
+    struct _LaunchViewController: Rswift.NibResourceType {
       let bundle = R.hostingBundle
       let name = "LaunchViewController"
       
@@ -290,10 +297,6 @@ struct _R: Rswift.Validatable {
       
       func secondView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[1] as? UIKit.UIView
-      }
-      
-      static func validate() throws {
-        if UIKit.UIImage(named: "ic_menu") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_menu' is used in nib 'LaunchViewController', but couldn't be loaded.") }
       }
       
       fileprivate init() {}

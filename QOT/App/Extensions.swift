@@ -26,11 +26,11 @@ extension UIFont {
     }
     
     class var sidebarSmall: UIFont? {
-        return UIFont.bentonBookFont(ofSize: 16)
+        return UIFont.simpleFont(ofSize: 16)
     }
     
     class var sidebar: UIFont? {
-        return UIFont.bentonBookFont(ofSize: 32)
+        return UIFont.simpleFont(ofSize: 32)
     }
 }
 

@@ -11,6 +11,7 @@ import UIKit
 
 protocol SidebarViewControllerDelegate: class {
     func didTapClose(in viewController: UIViewController, animated: Bool)
+    func didTapSettingsCell(in viewController: SidebarViewController)
 }
 
 final class SidebarViewController: UIViewController {
@@ -30,7 +31,7 @@ final class SidebarViewController: UIViewController {
     
     // MARK: - Life Cycle
     
-    init(viewModel: SidebarViewModel) {
+    required init(viewModel: SidebarViewModel) {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
@@ -72,6 +73,8 @@ extension SidebarViewController {
     }
 }
 
+// MARK: - UITableViewDelegate, UITableViewDataSource
+
 extension SidebarViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -79,7 +82,17 @@ extension SidebarViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return Layout.sidebarCellHeight
+        return viewModel.item(at: indexPath.row).cellHeight
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return Layout.CellHeight.sidebarHeader.rawValue
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -91,5 +104,22 @@ extension SidebarViewController: UITableViewDelegate, UITableViewDataSource {
         cell.setup(with: item.title, font: item.font, textColor: item.textColor)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        handleSelection(forItem: viewModel.item(at: indexPath.row))
+    }
+}
+
+// MARK: - Selection
+
+extension SidebarViewController {
+    
+    fileprivate func handleSelection(forItem item: SidebarCellType) {
+        switch item {
+        case .settings: delegate?.didTapSettingsCell(in: self)
+        default: return
+        }
     }
 }
