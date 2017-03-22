@@ -14,8 +14,8 @@ enum SidebarCellType: Int {
     case benefits
     case settings
     case sensor
-    case privacy
     case about
+    case privacy
     case logout
     
     static var allCases: [SidebarCellType] {
@@ -24,8 +24,8 @@ enum SidebarCellType: Int {
             SidebarCellType.benefits,
             SidebarCellType.settings,
             SidebarCellType.sensor,
-            SidebarCellType.privacy,
             SidebarCellType.about,
+            SidebarCellType.privacy,
             SidebarCellType.logout
         ]
     }
@@ -36,8 +36,8 @@ enum SidebarCellType: Int {
         case .benefits: return R.string.localized.sidebarTitleBenefits()
         case .settings: return R.string.localized.sidebarTitleSettings()
         case .sensor: return R.string.localized.sidebarTitleSensor()
-        case .privacy: return R.string.localized.sidebarTitlePrivacy()
         case .about: return R.string.localized.sidebarTitleAbout()
+        case .privacy: return R.string.localized.sidebarTitlePrivacy()
         case .logout: return R.string.localized.sidebarTitleLogout()
         }
     }
@@ -48,8 +48,8 @@ enum SidebarCellType: Int {
         case .benefits: return .sidebar
         case .settings: return .sidebar
         case .sensor: return .sidebar
-        case .privacy: return .sidebarSmall
         case .about: return .sidebarSmall
+        case .privacy: return .sidebarSmall
         case .logout: return .sidebarSmall
         }
     }
@@ -60,8 +60,8 @@ enum SidebarCellType: Int {
         case .benefits: return .qotWhite
         case .settings: return .qotWhite
         case .sensor: return .qotWhite
-        case .privacy: return .qotWhiteMedium
         case .about: return .qotWhiteMedium
+        case .privacy: return .qotWhiteMedium
         case .logout: return .qotWhiteMedium
         }
     }
@@ -72,8 +72,8 @@ enum SidebarCellType: Int {
         case .benefits: return Layout.CellHeight.sidebar.rawValue
         case .settings: return Layout.CellHeight.sidebar.rawValue
         case .sensor: return Layout.CellHeight.sidebar.rawValue
-        case .privacy: return Layout.CellHeight.sidebarSmall.rawValue
         case .about: return Layout.CellHeight.sidebarSmall.rawValue
+        case .privacy: return Layout.CellHeight.sidebarSmall.rawValue
         case .logout: return Layout.CellHeight.sidebarSmall.rawValue
         }
     }

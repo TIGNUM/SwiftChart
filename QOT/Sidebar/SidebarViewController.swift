@@ -18,10 +18,10 @@ final class SidebarViewController: UIViewController {
     
     // MARK: - Outlets
     
-    @IBOutlet private weak var tableView: UITableView?
-    @IBOutlet private weak var navBarView: UIView?
-    @IBOutlet private weak var leftNavBarButton: UIButton?
-    @IBOutlet private weak var rightNavBarButton: UIButton?
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var navBarView: UIView!
+    @IBOutlet private weak var leftNavBarButton: UIButton!
+    @IBOutlet private weak var rightNavBarButton: UIButton!
     
     // MARK: - Properties
     

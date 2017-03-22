@@ -13,23 +13,27 @@ import UIKit
 
 extension UIFont {
     
-    class func simpleFont(ofSize: CGFloat) -> UIFont? {
-        return UIFont(name: FontName.simple.rawValue, size: ofSize)
+    // MARK: - Private
+    
+    private class func simpleFont(ofSize: CGFloat) -> UIFont {
+        return (UIFont(name: FontName.simple.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
     }
     
-    class func bentonBookFont(ofSize: CGFloat) -> UIFont? {
-        return UIFont(name: FontName.bentonBook.rawValue, size: ofSize)
+    private class func bentonBookFont(ofSize: CGFloat) -> UIFont {
+        return (UIFont(name: FontName.bentonBook.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
     }
     
-    class func bentonRegularFont(ofSize: CGFloat) -> UIFont? {
-        return UIFont(name: FontName.bentonBook.rawValue, size: ofSize)
+    private class func bentonRegularFont(ofSize: CGFloat) -> UIFont {
+        return (UIFont(name: FontName.bentonBook.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
     }
     
-    class var sidebarSmall: UIFont? {
+    // MARK: - Public
+    
+    class var sidebarSmall: UIFont {
         return UIFont.simpleFont(ofSize: 16)
     }
     
-    class var sidebar: UIFont? {
+    class var sidebar: UIFont {
         return UIFont.simpleFont(ofSize: 32)
     }
 }

@@ -12,14 +12,14 @@ class SidebarTableViewCell: UITableViewCell {
     
     // MARK: - Outlets
     
-    @IBOutlet private weak var titleLabel: UILabel?
+    @IBOutlet private weak var titleLabel: UILabel!
     
     // MARK: - Properties
 
-    func setup(with title: String, font: UIFont?, textColor: UIColor) {
+    func setup(with title: String, font: UIFont, textColor: UIColor) {
         backgroundColor = .clear
-        titleLabel?.textColor = textColor
-        titleLabel?.text = title.uppercased()
-        titleLabel?.font = font
+        titleLabel.textColor = textColor
+        titleLabel.text = title.uppercased()
+        titleLabel.font = font
     }
 }
