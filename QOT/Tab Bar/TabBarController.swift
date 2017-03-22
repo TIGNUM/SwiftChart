@@ -14,3 +14,10 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
     }
 }
+
+// MARK: - UITabBarControllerDelegate
+
+extension TabBarController: UITabBarControllerDelegate {
+    
+    
+}

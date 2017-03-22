@@ -80,6 +80,7 @@
 		CCC0C4D41E82A8D9002A8362 /* Simple-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CCC0C4D31E82A8D9002A8362 /* Simple-Regular.ttf */; };
 		CCC0C4D61E82B405002A8362 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC0C4D51E82B405002A8362 /* R.generated.swift */; };
 		CCC0C4D91E82BB2B002A8362 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC0C4D81E82BB2B002A8362 /* TabBarController.swift */; };
+		CCC0C4DB1E82BDEF002A8362 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC0C4DA1E82BDEF002A8362 /* TabBarCoordinator.swift */; };
 		CCE5B9D21E80501D00E01BAE /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE5B9D11E80501D00E01BAE /* SidebarViewController.swift */; };
 		CCE5B9D41E80505800E01BAE /* SidebarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE5B9D31E80505800E01BAE /* SidebarViewController.xib */; };
 /* End PBXBuildFile section */
@@ -174,7 +175,8 @@
 		CCC0C4CB1E828007002A8362 /* BentonSans_Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BentonSans_Regular.otf; sourceTree = "<group>"; };
 		CCC0C4D31E82A8D9002A8362 /* Simple-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Simple-Regular.ttf"; sourceTree = "<group>"; };
 		CCC0C4D51E82B405002A8362 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
-		CCC0C4D81E82BB2B002A8362 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarController.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		CCC0C4D81E82BB2B002A8362 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		CCC0C4DA1E82BDEF002A8362 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		CCE5B9D11E80501D00E01BAE /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		CCE5B9D31E80505800E01BAE /* SidebarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidebarViewController.xib; sourceTree = "<group>"; };
 		CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -536,8 +538,8 @@
 			isa = PBXGroup;
 			children = (
 				CCC0C4D81E82BB2B002A8362 /* TabBarController.swift */,
+				CCC0C4DA1E82BDEF002A8362 /* TabBarCoordinator.swift */,
 			);
-			name = "Tab Bar";
 			path = "Tab Bar";
 			sourceTree = "<group>";
 		};
@@ -827,6 +829,7 @@
 				CB1E4F981E7FE22200287613 /* SettingsViewModel.swift in Sources */,
 				CB28802F1E706AC50067890A /* LearnCategoryListViewModel.swift in Sources */,
 				CBD7914E1E719E2D0006C590 /* ContentCategory.swift in Sources */,
+				CCC0C4DB1E82BDEF002A8362 /* TabBarCoordinator.swift in Sources */,
 				CC6B3A371E81A25A00E7FDFD /* SidebarTableViewCell.swift in Sources */,
 				CBD791421E7160560006C590 /* LearnContentListViewModel.swift in Sources */,
 				CBDB98FD1E7BE6AF003EC73F /* CalendarEventData.swift in Sources */,
