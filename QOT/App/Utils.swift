@@ -24,16 +24,18 @@ struct QOTLogSettings {
 
 func QOTLog(_ verbose: Bool, _ obj: Any = "", file: String = #file, function: String = #function, line: Int = #line) {
     #if DEBUG
-        if (verbose == true) {
-            if (QOTLogSettings.shouldShowDetailedLogs == true),
-                let className = NSURL(string: file)?.lastPathComponent?.components(separatedBy: ".").first {
-
+        if verbose == true {
+            if QOTLogSettings.shouldShowDetailedLogs == true {
                 var logStatement = QOTLogSettings.detailedLogFormat.replacingOccurrences(of: ":line", with: "\(line)")
-                logStatement = logStatement.replacingOccurrences(of: ":className", with: className)
+
+                if let className = NSURL(string: file)?.lastPathComponent?.components(separatedBy: ".").first {
+                    logStatement = logStatement.replacingOccurrences(of: ":className", with: className)
+                }
+
                 logStatement = logStatement.replacingOccurrences(of: ":function", with: function)
                 logStatement = logStatement.replacingOccurrences(of: ":obj", with: "\(obj)")
 
-                if (logStatement.contains(":date")) {
+                if logStatement.contains(":date") {
                     let replacement = QOTLogSettings.dateFormatter.string(from: Date())
                     logStatement = logStatement.replacingOccurrences(of: ":date", with: "\(replacement)")
                 }

@@ -20,11 +20,16 @@ struct Verbose {
 
     struct Database {
         static let Content					= false
+        static let Learn					= false
+        static let Me                       = false
+        static let Prepare					= false
     }
 
     struct Manager {
         static let API						= false
         static let Database					= false
-        static let Helper					= false
+        static let Font                     = false
+        static let FileManager              = false
+        static let TabBar                   = false
     }
 }

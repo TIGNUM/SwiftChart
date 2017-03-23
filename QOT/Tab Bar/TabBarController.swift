@@ -61,6 +61,6 @@ class TabBarController: UITabBarController {
 extension TabBarController: UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        print("didSelect: \(viewController)")
+        QOTLog(Verbose.Manager.TabBar, "didSelect viewController: \(viewController)")
     }
 }
