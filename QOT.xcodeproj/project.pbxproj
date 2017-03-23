@@ -59,6 +59,7 @@
 		CBDB990E1E7BFD05003EC73F /* CalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB990D1E7BFD05003EC73F /* CalendarEventParticipantData.swift */; };
 		CBDB99101E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB990F1E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift */; };
 		CBDB99121E7BFEED003EC73F /* MockCalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB99111E7BFEED003EC73F /* MockCalendarEventParticipantData.swift */; };
+		CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB631E83BDA300FF28DF /* Utils.swift */; };
 		CC4D1D7C1E82E75300B8D75E /* MeSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4D1D7B1E82E75300B8D75E /* MeSectionViewController.swift */; };
 		CC4D1D7E1E82E77900B8D75E /* PrepareSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4D1D7D1E82E77900B8D75E /* PrepareSectionViewController.swift */; };
 		CC4D1D801E82EDE700B8D75E /* MeSectionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4D1D7F1E82EDE700B8D75E /* MeSectionCoordinator.swift */; };
@@ -158,6 +159,7 @@
 		CBDB990D1E7BFD05003EC73F /* CalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventParticipantData.swift; sourceTree = "<group>"; };
 		CBDB990F1E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKParticipant+CalendarEventParticipantData.swift"; sourceTree = "<group>"; };
 		CBDB99111E7BFEED003EC73F /* MockCalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCalendarEventParticipantData.swift; sourceTree = "<group>"; };
+		CC3DFB631E83BDA300FF28DF /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		CC4D1D7B1E82E75300B8D75E /* MeSectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeSectionViewController.swift; sourceTree = "<group>"; };
 		CC4D1D7D1E82E77900B8D75E /* PrepareSectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareSectionViewController.swift; sourceTree = "<group>"; };
 		CC4D1D7F1E82EDE700B8D75E /* MeSectionCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeSectionCoordinator.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 				CBB237EF1E6FFF1200AB5AEF /* AppDelegate.swift */,
 				CC6B3A301E81713200E7FDFD /* Constants.swift */,
 				CCC0C4BD1E82730E002A8362 /* Extensions.swift */,
+				CC3DFB631E83BDA300FF28DF /* Utils.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -859,6 +862,7 @@
 				CC6B3A371E81A25A00E7FDFD /* SidebarTableViewCell.swift in Sources */,
 				CBD791421E7160560006C590 /* LearnContentListViewModel.swift in Sources */,
 				CBDB98FD1E7BE6AF003EC73F /* CalendarEventData.swift in Sources */,
+				CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */,
 				CB8A153A1E7801B90023B2F9 /* CalendarEvent.swift in Sources */,
 				CCAF03261E801B0E00015125 /* SettingsViewControllerDelegate.swift in Sources */,
 				CCE5B9D21E80501D00E01BAE /* SidebarViewController.swift in Sources */,
