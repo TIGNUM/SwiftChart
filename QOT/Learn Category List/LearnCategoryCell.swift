@@ -37,7 +37,7 @@ final class LearnCategoryCell: UICollectionViewCell {
     }()
     
     private var circleLineShape: CAShapeLayer?
-    private var shapeLayer: CAShapeLayer?
+    private var shapeDashLayer: CAShapeLayer?
     private var percentageLearned = 0.0
     
     override init(frame: CGRect) {
@@ -63,7 +63,7 @@ final class LearnCategoryCell: UICollectionViewCell {
     
     func drawCircle(frame: CGRect) {
         self.circleLineShape?.removeFromSuperlayer()
-        self.shapeLayer?.removeFromSuperlayer()
+        self.shapeDashLayer?.removeFromSuperlayer()
         
         let circleLinePath = UIBezierPath(arcCenter: CGPoint(x: frame.width / 2, y: frame.height / 2), radius: CGFloat(frame.width / 2.2), startAngle: 0.0, endAngle: 2.0 * CGFloat.pi, clockwise: false)
         let circleLineShape = CAShapeLayer()
@@ -84,7 +84,7 @@ final class LearnCategoryCell: UICollectionViewCell {
         contentView.layer.addSublayer(shapeLayer)
         
         self.circleLineShape = circleLineShape
-        self.shapeLayer = shapeLayer
+        self.shapeDashLayer = shapeLayer
     }
     
     func configure(with category: LearnCategory) {
@@ -96,6 +96,13 @@ final class LearnCategoryCell: UICollectionViewCell {
             self.percentageLearned = percentageLearned
             setNeedsLayout()
         }
+    }
+    
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        guard let path = circleLineShape?.path else {
+            preconditionFailure("Missing path")
+        }
+        return path.contains(point)
     }
 }
 
