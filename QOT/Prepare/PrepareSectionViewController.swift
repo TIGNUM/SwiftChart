@@ -12,7 +12,8 @@ class PrepareSectionViewController: UIViewController {
     
     // MARK: - Properties
     let viewModel: PrepareChatBotViewModel
-    weak var delegate: PrepareSectionDelegate?
+    fileprivate var collectionView: UICollectionView?
+    weak var delegate: PrepareChatBotDelegate?
     
     // MARK: - Life Cycle
 
@@ -30,5 +31,13 @@ class PrepareSectionViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .green
+    }
+}
+
+extension PrepareSectionViewController {
+
+    fileprivate func setupCollectionView() {
+        let flowLayout = UICo
+        self.collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: UICollectionViewLayout())
     }
 }

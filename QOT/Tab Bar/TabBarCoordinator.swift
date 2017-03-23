@@ -19,12 +19,16 @@ final class TabBarCoordinator: ParentCoordinator {
     fileprivate let eventTracker: EventTracker
     fileprivate let selectedIndex: Index
     
-    fileprivate lazy var categories: Results<ContentCategory> = {
-        return self.databaseManager.mainRealm.objects(ContentCategory.self).sorted(byKeyPath: "sort")
+    fileprivate lazy var contentCategories: Results<ContentCategory> = {
+        return self.databaseManager.mainRealm.objects(ContentCategory.self).sorted(byKeyPath: Databsase.Key.sort.rawValue)
+    }()
+
+    fileprivate lazy var prepareCategories: Results<PrepareCategory> = {
+        return self.databaseManager.mainRealm.objects(PrepareCategory.self).sorted(byKeyPath: Databsase.Key.sort.rawValue)
     }()
     
     fileprivate lazy var learnCategoryListViewController: LearnCategoryListViewController = {
-        let viewModel = LearnCategoryListViewModel(categories: self.categories)
+        let viewModel = LearnCategoryListViewModel(categories: self.contentCategories)
         let learnCategoryListVC = LearnCategoryListViewController(viewModel: viewModel)
         learnCategoryListVC.delegate = self
         return learnCategoryListVC
@@ -38,7 +42,7 @@ final class TabBarCoordinator: ParentCoordinator {
     }()
     
     fileprivate lazy var prepareSectionViewController: PrepareSectionViewController = {
-        let viewModel = PrepareChatBotViewModel()
+        let viewModel = PrepareChatBotViewModel(categories: self.prepareCategories)
         let prepareViewController = PrepareSectionViewController(viewModel: viewModel)
         prepareViewController.delegate = self
         
@@ -76,7 +80,7 @@ final class TabBarCoordinator: ParentCoordinator {
 
 extension TabBarCoordinator: LearnCategoryListViewControllerDelegate {
     func didSelectCategory(at index: Index, in viewController: LearnCategoryListViewController) {
-        let category = categories[index]
+        let category = contentCategories[index]
         let coordinator = LearnContentListCoordinator(root: viewController, databaseManager: databaseManager, eventTracker: eventTracker, category: category)
         coordinator.start()
         coordinator.delegate = self
@@ -104,9 +108,13 @@ extension TabBarCoordinator: MeSectionDelegate {
 
 // MARK: - PrepareSectionDelegate
 
-extension TabBarCoordinator: PrepareSectionDelegate {
+extension TabBarCoordinator: PrepareChatBotDelegate {
     
-    func didTapPrepareItem(in viewController: PrepareSectionViewController) {
+    func didSelectPreparation(in viewController: PrepareSectionViewController, preparation: Preparation) {
+        // TODO
+    }
+
+    func didFinishDisplayInstructions(in viewController: PrepareSectionViewController, preparationCategory: PrepareCategory) {
         // TODO
     }
 }

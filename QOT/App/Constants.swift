@@ -31,5 +31,6 @@ struct Layout {
 struct Databsase {
     enum Key: String {
         case primary = "id"
+        case sort = "sort"
     }
 }

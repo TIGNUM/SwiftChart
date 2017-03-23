@@ -85,32 +85,39 @@ private func mockContentCategories() -> [ContentCategory] {
     }
 }
 
-private func mockPrepareCategory() -> [PrepareCategory] {
-    let categoryTitles = [
-        "MEETING PREPARATION",
-        "NEGOTIATION PREPARATION",
-        "BUSINESS DINNER PREPARATION",
-        "HIGH PERFORMANCE PREPARATION",
-        "WORK TO HOME TRANSITION",
-        "PRE-VACATION"
-    ]
-
-    return categoryTitles.enumerated().map { (index, title) -> PrepareCategory in
-        let category = PrepareCategory(id: newMockID(), sort: index, name: title, title: title)
-        category.preparations.append(objectsIn: mockPreparations())
-        return category
-    }
-}
-
-private func mockPrepare() -> [Prepare] {
-
-    return []
-}
-
-private func mockPreparations() -> [Preparation] {
-
-    return []
-}
+//private func mockPrepareCategory() -> [PrepareCategory] {
+//    let categoryTitles = [
+//        "MEETING PREPARATION",
+//        "NEGOTIATION PREPARATION",
+//        "BUSINESS DINNER PREPARATION",
+//        "HIGH PERFORMANCE PREPARATION",
+//        "WORK TO HOME TRANSITION",
+//        "PRE-VACATION"
+//    ]
+//
+//    return categoryTitles.enumerated().map { (index, title) -> PrepareCategory in
+//        let category = PrepareCategory(id: newMockID(), sort: index, name: title, title: title)
+//        category.preparations.append(objectsIn: mockPreparations())
+//        return category
+//    }
+//}
+//
+//private func mockPrepare() -> [Prepare] {
+//
+//    return []
+//}
+//
+//private func mockPreparations() -> [Preparation] {
+//    let datas: [Preparation.ChatType] = []
+//    var items: [ContentItem] = []
+//    for i in 0...Int.random(between: 3, and: 10) {
+//        let status = ContentItem.Status.notViewed
+//        let item = ContentItem(id: newMockID(), sort: i, title: "", status: status, data: datas.randomItem())
+//        items.append(item)
+//    }
+//    return items
+//    return []
+//}
 
 private extension Array {
     func randomItem() -> Element {

@@ -18,7 +18,7 @@ final class PrepareCategory: Object {
     dynamic var sort: Int = 0
     dynamic var name: String = ""
     dynamic var title: String = ""
-    let preparations = List<Preparation>()
+//    let preparations = List<Preparation>()
 
     override class func primaryKey() -> String? {
         return Databsase.Key.primary.rawValue

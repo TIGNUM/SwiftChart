@@ -8,9 +8,9 @@
 
 import Foundation
 
-protocol PrepareSectionDelegate: class {
-    
-    func didTapPrepareItem(in viewController: PrepareSectionViewController)
+protocol PrepareChatBotDelegate: class {
+    func didFinishDisplayInstructions(in viewController: PrepareSectionViewController, preparationCategory: PrepareCategory)
+    func didSelectPreparation(in viewController: PrepareSectionViewController, preparation: Preparation)
 }
 
 final class PrepareSectionCoordinator: ParentCoordinator {

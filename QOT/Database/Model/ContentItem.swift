@@ -1,5 +1,5 @@
 //
-//  ContentItem.swift
+//  		.swift
 //  QOT
 //
 //  Created by Sam Wyndham on 09/03/2017.
@@ -11,6 +11,7 @@ import RealmSwift
 
 // FIXME: Unit test once data model is finalized.
 final class ContentItem: Object {
+
     enum Data {
         case text(String)
         case video(URL)
