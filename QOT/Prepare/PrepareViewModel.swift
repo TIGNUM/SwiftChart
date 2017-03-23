@@ -8,31 +8,16 @@
 
 import Foundation
 import ReactiveKit
-import RealmSwift
-
-//protocol ChatBot {
-//
-//    var message: String { get }
-//    var type: Preparation.ChatType { get }
-//}
 
 final class PrepareChatBotViewModel {
 
     // MARK: - Properties
 
-//    private let categories: Results<PrepareCategory>
     private var messages = mockData()
-    private var token: NotificationToken?
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
-    var categoryCount: Index {
+    var messageCount: Index {
         return messages.count
-    }
-
-    // MARK: - Life Cycle
-
-    init() {
-
     }
 }
 
@@ -43,7 +28,7 @@ protocol ChatMessage {
 enum ChatMessageType {
     case instructionTyping
     case instruction(text: String, delivered: Date)
-    case options(title: String, options: [Option])
+    case options(title: String, option: Option)
 
     enum Option {
         case navigation
@@ -51,10 +36,17 @@ enum ChatMessageType {
     }
 }
 
-private func mockData() -> [ChatMessage] {
+private func mockData() -> [ChatMessageType] {
     return [
-        ChatMessageType.instruction(text: "Hi Loui", delivered: Date()) as ChatMessage
+        ChatMessageType.instructionTyping,
+        ChatMessageType.instruction(text: "Hi Louis what are you preparing for? ", delivered: Date()),
+        ChatMessageType.options(title: "Meeting", option: .navigation),
+        ChatMessageType.options(title: "Negotiation", option: .navigation),
+        ChatMessageType.options(title: "Presentation", option: .navigation),
+        ChatMessageType.options(title: "Business dinner", option: .navigation),
+        ChatMessageType.options(title: "Pre-vacation", option: .navigation),
+        ChatMessageType.options(title: "Work to home transition", option: .navigation),
+        ChatMessageType.options(title: "Normal day ", option: .input),
+        ChatMessageType.options(title: "Tough day ", option: .input)
     ]
 }
-
-// add 

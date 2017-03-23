@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import Foundation
 
 class PrepareSectionViewController: UIViewController {
     
     // MARK: - Properties
     let viewModel: PrepareChatBotViewModel
     fileprivate var tableView: UITableView?
-//    weak var delegate: PrepareChatBotDelegate?
+    weak var delegate: PrepareChatBotDelegate?
     
     // MARK: - Life Cycle
 
@@ -37,6 +38,31 @@ class PrepareSectionViewController: UIViewController {
 extension PrepareSectionViewController {
 
     fileprivate func setupCollectionView() {
-        self.tableView = UITableView(frame: view.bounds, style: .plain)
+        tableView = UITableView(frame: view.bounds, style: .plain)
+        tableView?.delegate = self
+        tableView?.dataSource = self
+    }
+}
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
+
+extension PrepareSectionViewController: UITableViewDelegate, UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.messageCount
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let settingsCell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.settingsTableViewCell_Id.identifier, for: indexPath) as? SettingsTableViewCell else {
+            return UITableViewCell()
+        }
+
+        settingsCell.setup()
+
+        return settingsCell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

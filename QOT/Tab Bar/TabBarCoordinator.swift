@@ -39,7 +39,8 @@ final class TabBarCoordinator: ParentCoordinator {
     
     fileprivate lazy var prepareSectionViewController: PrepareSectionViewController = {
         let viewModel = PrepareChatBotViewModel()
-        let prepareViewController = PrepareSectionViewController(viewModel: viewModel)        
+        let prepareViewController = PrepareSectionViewController(viewModel: viewModel)
+        prepareViewController.delegate = self
         
         return prepareViewController
     }()
@@ -101,15 +102,15 @@ extension TabBarCoordinator: MeSectionDelegate {
     }
 }
 
-// MARK: - PrepareSectionDelegate
+// MARK: - PrepareChatBotDelegate
 
-//extension TabBarCoordinator: PrepareChatBotDelegate {
-//    
-//    func didSelectPreparation(in viewController: PrepareSectionViewController, preparation: Preparation) {
-//        // TODO
-//    }
-//
-//    func didFinishDisplayInstructions(in viewController: PrepareSectionViewController, preparationCategory: PrepareCategory) {
-//        // TODO
-//    }
-//}
+extension TabBarCoordinator: PrepareChatBotDelegate {
+    
+    func didSelectPreparation(in viewController: PrepareSectionViewController, chatMessageType: ChatMessageType) {
+        // TODO
+    }
+
+    func didFinishDisplayInstructions(in viewController: PrepareSectionViewController, chatMessageType: ChatMessageType) {
+        // TODO
+    }
+}
