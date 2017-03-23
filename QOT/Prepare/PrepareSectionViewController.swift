@@ -12,8 +12,8 @@ class PrepareSectionViewController: UIViewController {
     
     // MARK: - Properties
     let viewModel: PrepareChatBotViewModel
-    fileprivate var collectionView: UICollectionView?
-    weak var delegate: PrepareChatBotDelegate?
+    fileprivate var tableView: UITableView?
+//    weak var delegate: PrepareChatBotDelegate?
     
     // MARK: - Life Cycle
 
@@ -37,7 +37,6 @@ class PrepareSectionViewController: UIViewController {
 extension PrepareSectionViewController {
 
     fileprivate func setupCollectionView() {
-        let flowLayout = UICo
-        self.collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: UICollectionViewLayout())
+        self.tableView = UITableView(frame: view.bounds, style: .plain)
     }
 }

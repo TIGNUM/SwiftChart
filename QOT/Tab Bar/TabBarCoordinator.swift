@@ -22,10 +22,6 @@ final class TabBarCoordinator: ParentCoordinator {
     fileprivate lazy var contentCategories: Results<ContentCategory> = {
         return self.databaseManager.mainRealm.objects(ContentCategory.self).sorted(byKeyPath: Databsase.Key.sort.rawValue)
     }()
-
-    fileprivate lazy var prepareCategories: Results<PrepareCategory> = {
-        return self.databaseManager.mainRealm.objects(PrepareCategory.self).sorted(byKeyPath: Databsase.Key.sort.rawValue)
-    }()
     
     fileprivate lazy var learnCategoryListViewController: LearnCategoryListViewController = {
         let viewModel = LearnCategoryListViewModel(categories: self.contentCategories)
@@ -42,9 +38,8 @@ final class TabBarCoordinator: ParentCoordinator {
     }()
     
     fileprivate lazy var prepareSectionViewController: PrepareSectionViewController = {
-        let viewModel = PrepareChatBotViewModel(categories: self.prepareCategories)
-        let prepareViewController = PrepareSectionViewController(viewModel: viewModel)
-        prepareViewController.delegate = self
+        let viewModel = PrepareChatBotViewModel()
+        let prepareViewController = PrepareSectionViewController(viewModel: viewModel)        
         
         return prepareViewController
     }()
@@ -108,13 +103,13 @@ extension TabBarCoordinator: MeSectionDelegate {
 
 // MARK: - PrepareSectionDelegate
 
-extension TabBarCoordinator: PrepareChatBotDelegate {
-    
-    func didSelectPreparation(in viewController: PrepareSectionViewController, preparation: Preparation) {
-        // TODO
-    }
-
-    func didFinishDisplayInstructions(in viewController: PrepareSectionViewController, preparationCategory: PrepareCategory) {
-        // TODO
-    }
-}
+//extension TabBarCoordinator: PrepareChatBotDelegate {
+//    
+//    func didSelectPreparation(in viewController: PrepareSectionViewController, preparation: Preparation) {
+//        // TODO
+//    }
+//
+//    func didFinishDisplayInstructions(in viewController: PrepareSectionViewController, preparationCategory: PrepareCategory) {
+//        // TODO
+//    }
+//}

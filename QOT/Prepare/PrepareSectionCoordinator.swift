@@ -8,10 +8,10 @@
 
 import Foundation
 
-protocol PrepareChatBotDelegate: class {
-    func didFinishDisplayInstructions(in viewController: PrepareSectionViewController, preparationCategory: PrepareCategory)
-    func didSelectPreparation(in viewController: PrepareSectionViewController, preparation: Preparation)
-}
+//protocol PrepareChatBotDelegate: class {
+//    func didFinishDisplayInstructions(in viewController: PrepareSectionViewController, preparationCategory: PrepareCategory)
+//    func didSelectPreparation(in viewController: PrepareSectionViewController, preparation: Preparation)
+//}
 
 final class PrepareSectionCoordinator: ParentCoordinator {
     
