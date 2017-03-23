@@ -8,12 +8,23 @@
 
 import UIKit
 
+enum MainMenuType: Int {
+    case learn = 0
+    case me
+    case prepare
+}
+
 final class MainMenuCoordinator: ParentCoordinator {
+    
+    // MARK: - Properties
+    
     fileprivate let rootVC: LaunchViewController
     fileprivate let databaseManager: DatabaseManager
     fileprivate let eventTracker: EventTracker
     
     var children: [Coordinator] = []
+    
+    // MARK: - Life Cycle
     
     init(root: LaunchViewController, databaseManager: DatabaseManager, eventTracker: EventTracker) {
         self.rootVC = root
@@ -22,32 +33,35 @@ final class MainMenuCoordinator: ParentCoordinator {
     }
     
     func start() {
-        let vc = MainMenuViewController()
-        vc.delegate = self
-        vc.modalTransitionStyle = .crossDissolve
-        vc.modalPresentationStyle = .custom
-        rootVC.present(vc, animated: true)
-        
-        eventTracker.track(page: vc.pageID, referer: rootVC.pageID, associatedEntity: nil)
+        let mainMenuViewController = MainMenuViewController()
+        mainMenuViewController.delegate = self
+        mainMenuViewController.modalTransitionStyle = .crossDissolve
+        mainMenuViewController.modalPresentationStyle = .custom
+        rootVC.present(mainMenuViewController, animated: true)
+        eventTracker.track(page: mainMenuViewController.pageID, referer: rootVC.pageID, associatedEntity: nil)
     }
 }
 
 extension MainMenuCoordinator: MainMenuViewControllerDelegate {
     func didTapLearn(in viewController: MainMenuViewController) {
-        let coordinator = LearnCategoryListCoordinator(root: viewController, databaseManager: databaseManager, eventTracker: eventTracker)
-        coordinator.startChild(child: coordinator)
+        showTabBarController(in: viewController, with: MainMenuType.learn.rawValue)
     }
     
     func didTapMe(in viewController: MainMenuViewController) {
-        print("Did tap Me")
+        showTabBarController(in: viewController, with: MainMenuType.me.rawValue)
     }
     
     func didTapPrepare(in viewController: MainMenuViewController) {
-        print("Did tap prepare")
+        showTabBarController(in: viewController, with: MainMenuType.prepare.rawValue)
     }
     
     func didTapSidebarButton(in viewController: MainMenuViewController) {
         let coordinator = SidebarCoordinator(root: viewController, databaseManager: databaseManager, eventTracker: eventTracker)
-        coordinator.startChild(child: coordinator)
+        startChild(child: coordinator)
+    }
+    
+    private func showTabBarController(in viewController: MainMenuViewController, with selectedIndex: Index) {
+        let tabBarCoordinator = TabBarCoordinator(rootViewController: viewController, selectedIndex: selectedIndex, databaseManager: databaseManager, eventTracker: eventTracker)
+        startChild(child: tabBarCoordinator)
     }
 }

@@ -18,9 +18,13 @@ protocol LearnCategoryListViewControllerDelegate: class {
 
 /// Displays a collection of learn categories of learn content.
 final class LearnCategoryListViewController: UITableViewController {
-    let viewModel: LearnCategoryListViewModel
+   
+    // MARK: - Properties
     
+    let viewModel: LearnCategoryListViewModel
     weak var delegate: LearnCategoryListViewControllerDelegate?
+    
+    // MARK: - Life Cycle
     
     init(viewModel: LearnCategoryListViewModel) {
         self.viewModel = viewModel
@@ -31,6 +35,17 @@ final class LearnCategoryListViewController: UITableViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableView.backgroundColor = .qotNavy
+    }
+}
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
+
+extension LearnCategoryListViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.categoryCount
@@ -46,9 +61,11 @@ final class LearnCategoryListViewController: UITableViewController {
         } else {
             cell = UITableViewCell(style: .subtitle, reuseIdentifier: reuseID)
         }
-
+        
         cell.textLabel?.text = category.title
+        cell.textLabel?.textColor = .qotWhite
         cell.detailTextLabel?.text = "\(category.viewedCount)/\(category.itemCount)"
+        cell.backgroundColor = .qotNavy
         
         return cell
     }
