@@ -60,6 +60,7 @@
 		CBDB99101E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB990F1E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift */; };
 		CBDB99121E7BFEED003EC73F /* MockCalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB99111E7BFEED003EC73F /* MockCalendarEventParticipantData.swift */; };
 		CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB631E83BDA300FF28DF /* Utils.swift */; };
+		CC3DFB661E83C19C00FF28DF /* Defines.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB651E83C19C00FF28DF /* Defines.swift */; };
 		CC4D1D7C1E82E75300B8D75E /* MeSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4D1D7B1E82E75300B8D75E /* MeSectionViewController.swift */; };
 		CC4D1D7E1E82E77900B8D75E /* PrepareSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4D1D7D1E82E77900B8D75E /* PrepareSectionViewController.swift */; };
 		CC4D1D801E82EDE700B8D75E /* MeSectionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4D1D7F1E82EDE700B8D75E /* MeSectionCoordinator.swift */; };
@@ -160,6 +161,7 @@
 		CBDB990F1E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKParticipant+CalendarEventParticipantData.swift"; sourceTree = "<group>"; };
 		CBDB99111E7BFEED003EC73F /* MockCalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCalendarEventParticipantData.swift; sourceTree = "<group>"; };
 		CC3DFB631E83BDA300FF28DF /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		CC3DFB651E83C19C00FF28DF /* Defines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defines.swift; sourceTree = "<group>"; };
 		CC4D1D7B1E82E75300B8D75E /* MeSectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeSectionViewController.swift; sourceTree = "<group>"; };
 		CC4D1D7D1E82E77900B8D75E /* PrepareSectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareSectionViewController.swift; sourceTree = "<group>"; };
 		CC4D1D7F1E82EDE700B8D75E /* MeSectionCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeSectionCoordinator.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 			children = (
 				CBB237EF1E6FFF1200AB5AEF /* AppDelegate.swift */,
 				CC6B3A301E81713200E7FDFD /* Constants.swift */,
+				CC3DFB651E83C19C00FF28DF /* Defines.swift */,
 				CCC0C4BD1E82730E002A8362 /* Extensions.swift */,
 				CC3DFB631E83BDA300FF28DF /* Utils.swift */,
 			);
@@ -855,6 +858,7 @@
 				CBD791501E71A0950006C590 /* Content.swift in Sources */,
 				CB8A153C1E78467D0023B2F9 /* CalendarEventParticipant.swift in Sources */,
 				CB1E4F981E7FE22200287613 /* SettingsViewModel.swift in Sources */,
+				CC3DFB661E83C19C00FF28DF /* Defines.swift in Sources */,
 				CB28802F1E706AC50067890A /* LearnCategoryListViewModel.swift in Sources */,
 				CBD7914E1E719E2D0006C590 /* ContentCategory.swift in Sources */,
 				CCC0C4DB1E82BDEF002A8362 /* TabBarCoordinator.swift in Sources */,
