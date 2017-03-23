@@ -38,7 +38,7 @@ final class TabBarCoordinator: ParentCoordinator {
     }()
     
     fileprivate lazy var prepareSectionViewController: PrepareSectionViewController = {
-        let viewModel = PrepareChatBotViewModel()
+        let viewModel = ChatMessageViewModel()
         let prepareViewController = PrepareSectionViewController(viewModel: viewModel)
         prepareViewController.delegate = self
         

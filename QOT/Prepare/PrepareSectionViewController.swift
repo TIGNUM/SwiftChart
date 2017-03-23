@@ -12,13 +12,15 @@ import Foundation
 class PrepareSectionViewController: UIViewController {
     
     // MARK: - Properties
-    let viewModel: PrepareChatBotViewModel
+
+    fileprivate let viewModel: ChatMessageViewModel
+    fileprivate let cellIdentifier = Identifier.chatTableViewCell.rawValue
     fileprivate var tableView: UITableView?
     weak var delegate: PrepareChatBotDelegate?
     
     // MARK: - Life Cycle
 
-    init(viewModel: PrepareChatBotViewModel) {
+    init(viewModel: ChatMessageViewModel) {
         self.viewModel = viewModel
 
         super.init(nibName: nil, bundle: nil)
@@ -31,14 +33,16 @@ class PrepareSectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupTableView()
         view.backgroundColor = .green
     }
 }
 
 extension PrepareSectionViewController {
 
-    fileprivate func setupCollectionView() {
+    fileprivate func setupTableView() {
         tableView = UITableView(frame: view.bounds, style: .plain)
+        tableView?.register(ChatTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         tableView?.delegate = self
         tableView?.dataSource = self
     }
@@ -48,18 +52,28 @@ extension PrepareSectionViewController {
 
 extension PrepareSectionViewController: UITableViewDelegate, UITableViewDataSource {
 
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.messageCount
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let settingsCell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.settingsTableViewCell_Id.identifier, for: indexPath) as? SettingsTableViewCell else {
+        guard let chatCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ChatTableViewCell else {
             return UITableViewCell()
         }
 
-        settingsCell.setup()
+        let chatMessage = viewModel.chatMessage(at: indexPath.row)
 
-        return settingsCell
+        switch chatMessage.type {
+        case .instructionTyping: chatCell.setup(message: "...", delivered: Date())
+        case .instruction(let message, let delivered): chatCell.setup(message: message, delivered: delivered)
+        case .options(let title, let option): chatCell.setup(title: title, option: option)
+        }
+
+        return chatCell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

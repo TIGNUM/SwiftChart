@@ -8,17 +8,33 @@
 
 import UIKit
 
-class ChatTableViewCell: UITableViewCell {
+final class ChatTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    fileprivate var message: String?
+    fileprivate var delivered: Date?
+    fileprivate var title: String?
+    fileprivate var option: ChatMessageType.Option?
+
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        print("style: \(style), reuseIdentifier: \(reuseIdentifier)")
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
+    func setup(message: String, delivered: Date) {
+        textLabel?.text = message
+    }
+
+    func setup(title: String, option: ChatMessageType.Option) {
+        self.title = title
+        self.option = option
+    }
+
+    func setup(chatMessageType: ChatMessageType) {
+
+    }
 }

@@ -34,3 +34,7 @@ struct Databsase {
         case sort = "sort"
     }
 }
+
+enum Identifier: String {
+    case chatTableViewCell = "ChatTableViewCell_id"
+}
