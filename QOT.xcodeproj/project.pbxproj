@@ -799,7 +799,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$PODS_ROOT/R.swift/rswift\" \"$SRCROOT/QOT/Generated\"";
+			shellScript = "mkdir -p \"$SRCROOT/QOT/Generated\"\n\"$PODS_ROOT/R.swift/rswift\" \"$SRCROOT/QOT/Generated\"";
 		};
 		CBB2380F1E6FFF2700AB5AEF /* Swift Lint */ = {
 			isa = PBXShellScriptBuildPhase;
