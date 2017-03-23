@@ -85,6 +85,33 @@ private func mockContentCategories() -> [ContentCategory] {
     }
 }
 
+private func mockPrepareCategory() -> [PrepareCategory] {
+    let categoryTitles = [
+        "MEETING PREPARATION",
+        "NEGOTIATION PREPARATION",
+        "BUSINESS DINNER PREPARATION",
+        "HIGH PERFORMANCE PREPARATION",
+        "WORK TO HOME TRANSITION",
+        "PRE-VACATION"
+    ]
+
+    return categoryTitles.enumerated().map { (index, title) -> PrepareCategory in
+        let category = PrepareCategory(id: newMockID(), sort: index, name: title, title: title)
+        category.preparations.append(objectsIn: mockPreparations())
+        return category
+    }
+}
+
+private func mockPrepare() -> [Prepare] {
+
+    return []
+}
+
+private func mockPreparations() -> [Preparation] {
+
+    return []
+}
+
 private extension Array {
     func randomItem() -> Element {
         return self[Int(arc4random_uniform(UInt32(self.count)))]

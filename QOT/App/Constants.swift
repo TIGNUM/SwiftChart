@@ -27,3 +27,9 @@ struct Layout {
         case sidebarHeader = 50
     }
 }
+
+struct Databsase {
+    enum Key: String {
+        case primary = "id"
+    }
+}

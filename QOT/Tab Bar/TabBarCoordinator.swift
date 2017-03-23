@@ -38,10 +38,11 @@ final class TabBarCoordinator: ParentCoordinator {
     }()
     
     fileprivate lazy var prepareSectionViewController: PrepareSectionViewController = {
-        let prepareViewComntroller = PrepareSectionViewController()
-        prepareViewComntroller.delegate = self
+        let viewModel = PrepareChatBotViewModel()
+        let prepareViewController = PrepareSectionViewController(viewModel: viewModel)
+        prepareViewController.delegate = self
         
-        return prepareViewComntroller
+        return prepareViewController
     }()
     
     var children = [Coordinator]()

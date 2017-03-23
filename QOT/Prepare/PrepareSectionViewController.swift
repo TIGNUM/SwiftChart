@@ -11,10 +11,20 @@ import UIKit
 class PrepareSectionViewController: UIViewController {
     
     // MARK: - Properties
-    
+    let viewModel: PrepareChatBotViewModel
     weak var delegate: PrepareSectionDelegate?
     
     // MARK: - Life Cycle
+
+    init(viewModel: PrepareChatBotViewModel) {
+        self.viewModel = viewModel
+
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
