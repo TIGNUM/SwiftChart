@@ -10,16 +10,22 @@ import UIKit
 
 final class SettingsViewController: UIViewController {
     
-    @IBOutlet fileprivate weak var navigationBarView: UIView?
-    @IBOutlet fileprivate weak var titleLabel: UILabel?
-    @IBOutlet fileprivate weak var searchButton: UIButton?
-    @IBOutlet fileprivate weak var closeButton: UIButton?
-    @IBOutlet fileprivate weak var tableView: UITableView?
+    // MARK: - Outlets
+    
+    @IBOutlet fileprivate weak var navigationBarView: UIView!
+    @IBOutlet fileprivate weak var titleLabel: UILabel!
+    @IBOutlet fileprivate weak var searchButton: UIButton!
+    @IBOutlet fileprivate weak var closeButton: UIButton!
+    @IBOutlet fileprivate weak var tableView: UITableView!
+    
+    // MARK: - Properties
     
     weak var delegate: SettingsViewControllerDelegate?
     let viewModel: SettingsViewModel
     
-    init(viewModel: SettingsViewModel) {
+    // MARK: - Life Cycle
+    
+    required init(viewModel: SettingsViewModel) {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)

@@ -10,3 +10,10 @@
 "learn.category-list-view.title" = "Categories";
 
 "Settings.Title" = "Settings";
+"Sidebar.Title.Library" = "QOT Library";
+"Sidebar.Title.Benefits" = "QOT Benefits";
+"Sidebar.Title.Settings" = "Settings";
+"Sidebar.Title.Sensor" = "Add Sensor";
+"Sidebar.Title.Privacy" = "Data Privacy";
+"Sidebar.Title.About" = "About Tignum";
+"Sidebar.Title.Logout" = "Logout";
