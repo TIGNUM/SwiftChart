@@ -8,10 +8,9 @@
 
 import UIKit
 
-final class LearnCustomLayout: UICollectionViewLayout {
+final class LearnCategoryLayout: UICollectionViewLayout {
     private  var circlePathHandle = UIBezierPath()
     private  var shapeLayerHandle = CAShapeLayer()
-    
     init(frame:CGRect) {
         let radius: CGFloat = 100
         let pos: CGPoint
@@ -96,7 +95,5 @@ final class LearnCustomLayout: UICollectionViewLayout {
     override var collectionViewContentSize: CGSize {
         return CGSize(width: contentSize.width + 50, height: contentSize.height )
     }
-    func makeCircularCellPattern() {
-        
-    }
+    
 }

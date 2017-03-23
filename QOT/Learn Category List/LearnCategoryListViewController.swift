@@ -23,7 +23,7 @@ final class LearnCategoryListViewController: UIViewController, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let category = viewModel.category(at: indexPath.item)
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? LearnCustomCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? LearnCategoryCell else {
             fatalError("Incorrect cell type")
         }
         cell.configure(with: category)
@@ -42,9 +42,9 @@ final class LearnCategoryListViewController: UIViewController, UICollectionViewD
         imageView.image = image
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(LearnCustomCell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView.register(LearnCategoryCell.self, forCellWithReuseIdentifier: "Cell")
         collectionView.backgroundColor = UIColor.black
-        collectionView.collectionViewLayout = LearnCustomLayout(frame: collectionView.frame)
+        collectionView.collectionViewLayout = LearnCategoryLayout(frame: collectionView.frame)
         layout.scrollDirection = .horizontal
         collectionView.showsHorizontalScrollIndicator = true
         collectionView.showsVerticalScrollIndicator = false

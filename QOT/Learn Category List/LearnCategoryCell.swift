@@ -9,11 +9,10 @@
 import UIKit
 import Anchorage
 
-final class LearnCustomCell: UICollectionViewCell {
+final class LearnCategoryCell: UICollectionViewCell {
     fileprivate lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        //        label.font = .preferredFont(forTextStyle: UIFontTextStyle(rawValue: "Simple-Regular"))
         label.font = .systemFont(ofSize: 12)
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.1
@@ -25,7 +24,6 @@ final class LearnCustomCell: UICollectionViewCell {
     fileprivate lazy var contentCountLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        //        label.font = .preferredFont(forTextStyle: UIFontTextStyle(rawValue: "Simple-Regular"))
         label.font = .systemFont(ofSize: 20)
         return label
     }()
@@ -101,7 +99,7 @@ final class LearnCustomCell: UICollectionViewCell {
     }
 }
 
-private extension LearnCustomCell {
+private extension LearnCategoryCell {
     func setupLayout() {
         textContainerView.horizontalAnchors == contentView.horizontalAnchors + 20
         textContainerView.centerAnchors == contentView.centerAnchors
