@@ -40,7 +40,7 @@ final class LearnContentListCoordinator: ParentCoordinator {
 
 extension LearnContentListCoordinator: LearnContentListViewControllerDelegate {
     func didSelectContent(at index: Index, in viewController: LearnContentListViewController) {
-        QOTLog(Verbose.Database.Learn, "Did selcect content at index: \(index)")
+        log(Verbose.Database.Learn, "Did selcect content at index: \(index)")
     }
     
     func didTapBack(in: LearnContentListViewController) {

@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appCoordinator.start()
         
         #if DEBUG
-            QOTLogSettings.shouldShowDetailedLogs = true
+            LogSettings.shouldShowDetailedLogs = true
             logAppLocation()
             logAvailableFonts()
         #endif
@@ -40,14 +40,14 @@ extension AppDelegate {
     fileprivate func logAppLocation() {
         let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let url = documents.deletingLastPathComponent()
-        QOTLog(Verbose.Manager.FileManager, "App location: \(url)")
+        log(Verbose.Manager.FileManager, "App location: \(url)")
     }
 
     fileprivate func logAvailableFonts() {
         for family: String in UIFont.familyNames {
-            QOTLog(Verbose.Manager.Font, "\(family)")
+            log(Verbose.Manager.Font, "\(family)")
             for names: String in UIFont.fontNames(forFamilyName: family) {
-                QOTLog(Verbose.Manager.Font, "== \(names)")
+                log(Verbose.Manager.Font, "== \(names)")
             }
         }
     }
