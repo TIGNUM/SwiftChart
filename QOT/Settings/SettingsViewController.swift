@@ -25,7 +25,7 @@ final class SettingsViewController: UIViewController {
     
     // MARK: - Life Cycle
     
-    required init(viewModel: SettingsViewModel) {
+    init(viewModel: SettingsViewModel) {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)

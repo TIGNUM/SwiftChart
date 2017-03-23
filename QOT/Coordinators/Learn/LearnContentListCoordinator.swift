@@ -19,7 +19,7 @@ final class LearnContentListCoordinator: ParentCoordinator {
     var children: [Coordinator] = []
     weak var delegate: LearnContentListCoordinatorDelegate?
     
-    required init(root: LearnCategoryListViewController, databaseManager: DatabaseManager, eventTracker: EventTracker, category: ContentCategory) {
+    init(root: LearnCategoryListViewController, databaseManager: DatabaseManager, eventTracker: EventTracker, category: ContentCategory) {
         self.rootVC = root
         self.databaseManager = databaseManager
         self.eventTracker = eventTracker

@@ -31,7 +31,7 @@ final class SidebarViewController: UIViewController {
     
     // MARK: - Life Cycle
     
-    required init(viewModel: SidebarViewModel) {
+    init(viewModel: SidebarViewModel) {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)

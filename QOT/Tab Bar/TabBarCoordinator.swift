@@ -49,7 +49,7 @@ final class TabBarCoordinator: ParentCoordinator {
     
     // MARK: - Life Cycle
     
-    required init(rootViewController: MainMenuViewController, selectedIndex: Index, databaseManager: DatabaseManager, eventTracker: EventTracker) {
+    init(rootViewController: MainMenuViewController, selectedIndex: Index, databaseManager: DatabaseManager, eventTracker: EventTracker) {
         self.rootViewController = rootViewController
         self.databaseManager = databaseManager
         self.eventTracker = eventTracker

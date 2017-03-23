@@ -17,7 +17,7 @@ class TabBarController: UITabBarController {
     
     // MARK: - Life Cycle
     
-    required init(viewControllers: [UIViewController], selectedIndex: Index) {
+    init(viewControllers: [UIViewController], selectedIndex: Index) {
         self.categoryViewControllers = viewControllers
         self.selectedCategoryIndex = selectedIndex
         
