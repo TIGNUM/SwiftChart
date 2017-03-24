@@ -522,10 +522,10 @@
 			isa = PBXGroup;
 			children = (
 				CC3ECC9D1E843D9100886794 /* ChatTableViewCell.swift */,
-				CC4D1D811E82EDFC00B8D75E /* ChatViewCoordinator.swift */,
-				CC4D1D7D1E82E77900B8D75E /* ChatViewController.swift */,
-				CC3DFB671E83D4E500FF28DF /* ChatViewModel.swift */,
 				CC97B11C1E84530100BA7636 /* ChatTableViewCell.xib */,
+				CC4D1D7D1E82E77900B8D75E /* ChatViewController.swift */,
+				CC4D1D811E82EDFC00B8D75E /* ChatViewCoordinator.swift */,
+				CC3DFB671E83D4E500FF28DF /* ChatViewModel.swift */,
 			);
 			path = Prepare;
 			sourceTree = "<group>";
