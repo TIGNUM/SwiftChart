@@ -19,7 +19,7 @@ final class LearnContentListCoordinator: ParentCoordinator {
     var children: [Coordinator] = []
     weak var delegate: LearnContentListCoordinatorDelegate?
     
-    required init(root: LearnCategoryListViewController, databaseManager: DatabaseManager, eventTracker: EventTracker, category: ContentCategory) {
+    init(root: LearnCategoryListViewController, databaseManager: DatabaseManager, eventTracker: EventTracker, category: ContentCategory) {
         self.rootVC = root
         self.databaseManager = databaseManager
         self.eventTracker = eventTracker
@@ -40,7 +40,7 @@ final class LearnContentListCoordinator: ParentCoordinator {
 
 extension LearnContentListCoordinator: LearnContentListViewControllerDelegate {
     func didSelectContent(at index: Index, in viewController: LearnContentListViewController) {
-        QOTLog(Verbose.Database.Learn, "Did selcect content at index: \(index)")
+        log("Did select content at index: \(index)")
     }
     
     func didTapBack(in: LearnContentListViewController) {

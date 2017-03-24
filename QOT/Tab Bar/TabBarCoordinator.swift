@@ -50,7 +50,7 @@ final class TabBarCoordinator: ParentCoordinator {
     
     // MARK: - Life Cycle
     
-    required init(rootViewController: MainMenuViewController, selectedIndex: Index, databaseManager: DatabaseManager, eventTracker: EventTracker) {
+    init(rootViewController: MainMenuViewController, selectedIndex: Index, databaseManager: DatabaseManager, eventTracker: EventTracker) {
         self.rootViewController = rootViewController
         self.databaseManager = databaseManager
         self.eventTracker = eventTracker
@@ -107,10 +107,10 @@ extension TabBarCoordinator: MeSectionDelegate {
 extension TabBarCoordinator: ChatViewDelegate {
     
     func didSelectChatSectionNavigate(in viewController: ChatViewController, chatSectionData: ChatSectionData) {
-        QOTLog(true, "didSelectChatSectionNavigate with chatSection: \(chatSectionData)")
+        log("didSelectChatSectionNavigate with chatSection: \(chatSectionData)")
     }
 
     func didSelectChatSectionUpdate(in viewController: ChatViewController, chatSectionData: ChatSectionData) {
-        QOTLog(true, "didSelectChatSectionUpdate with chatSection: \(chatSectionData)")
+        log("didSelectChatSectionUpdate with chatSection: \(chatSectionData)")
     }
 }

@@ -26,7 +26,7 @@ final class LearnCategoryListViewController: UITableViewController {
     
     // MARK: - Life Cycle
     
-    required init(viewModel: LearnCategoryListViewModel) {
+    init(viewModel: LearnCategoryListViewModel) {
         self.viewModel = viewModel
         
         super.init(style: .plain)

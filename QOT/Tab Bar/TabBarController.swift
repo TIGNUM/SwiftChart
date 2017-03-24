@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TabBarController: UITabBarController {
+final class TabBarController: UITabBarController {
     
     // MARK: - Properties
     
@@ -17,7 +17,7 @@ class TabBarController: UITabBarController {
     
     // MARK: - Life Cycle
     
-    required init(viewControllers: [UIViewController], selectedIndex: Index) {
+    init(viewControllers: [UIViewController], selectedIndex: Index) {
         self.categoryViewControllers = viewControllers
         self.selectedCategoryIndex = selectedIndex
         
@@ -61,6 +61,6 @@ class TabBarController: UITabBarController {
 extension TabBarController: UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        QOTLog(Verbose.Manager.TabBar, "didSelect viewController: \(viewController)")
+        log("didSelect viewController: \(viewController)")
     }
 }
