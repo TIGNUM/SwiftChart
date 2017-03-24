@@ -19,7 +19,7 @@ class LearnContentCell: UICollectionViewCell {
         label.minimumScaleFactor = 0.1
         label.lineBreakMode = .byTruncatingTail
         label.numberOfLines = 3
-        label.text = "hello i am in"
+        label.text = "i am loading"
         //label.backgroundColor = .green
         return label
     }()
@@ -27,7 +27,7 @@ class LearnContentCell: UICollectionViewCell {
     fileprivate lazy var videoDurationLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .systemFont(ofSize: 12)
+        label.font = .systemFont(ofSize: 8)
         label.text = "hello"
         //label.backgroundColor = .orange
         return label
@@ -76,8 +76,7 @@ class LearnContentCell: UICollectionViewCell {
 private extension LearnContentCell {
     func setupLayout() {
         textContainerView.horizontalAnchors == contentView.horizontalAnchors + 20
-        textContainerView.centerAnchors == contentView.centerAnchors
-        textContainerView.topAnchor == contentView.topAnchor + 20
+        textContainerView.topAnchor == contentView.topAnchor +  40
         textContainerView.widthAnchor == contentView.widthAnchor - 40
         
         titleLabel.topAnchor == textContainerView.topAnchor
@@ -85,6 +84,6 @@ private extension LearnContentCell {
         titleLabel.bottomAnchor == videoDurationLabel.topAnchor
         
         videoDurationLabel.horizontalAnchors == textContainerView.horizontalAnchors
-        videoDurationLabel.bottomAnchor == textContainerView.bottomAnchor - 20
+        videoDurationLabel.bottomAnchor == textContainerView.bottomAnchor - 30
     }
 }
