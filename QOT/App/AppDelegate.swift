@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appCoordinator.start()
         
         #if DEBUG
-            LogSettings.shouldShowDetailedLogs = true
+            LogSettings.logLevel = .verbose
             logAppLocation()
             logAvailableFonts()
         #endif
@@ -40,14 +40,14 @@ extension AppDelegate {
     fileprivate func logAppLocation() {
         let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let url = documents.deletingLastPathComponent()
-        log(Verbose.Manager.FileManager, "App location: \(url)")
+        log("App location: \(url)", enabled: LogToggle.Manager.FileManager)
     }
 
     fileprivate func logAvailableFonts() {
         for family: String in UIFont.familyNames {
-            log(Verbose.Manager.Font, "\(family)")
+            log("\(family)", enabled: LogToggle.Manager.Font)
             for names: String in UIFont.fontNames(forFamilyName: family) {
-                log(Verbose.Manager.Font, "== \(names)")
+                log("== \(names)", enabled: LogToggle.Manager.Font)
             }
         }
     }

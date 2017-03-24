@@ -16,7 +16,7 @@ import Foundation
     private let isDebug = false
 #endif
 
-struct Verbose {
+struct LogToggle {
 
     struct Database {
         static let Content = false
@@ -28,7 +28,7 @@ struct Verbose {
     struct Manager {
         static let API = false
         static let Database = false
-        static let Font = false
+        static let Font = true
         static let FileManager = false
         static let TabBar = false
     }

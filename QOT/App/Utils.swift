@@ -12,7 +12,12 @@ import Foundation
 
 struct LogSettings {
 
-    static var shouldShowDetailedLogs: Bool = false
+    enum LogLevel {
+        case debug
+        case verbose
+    }
+
+    static var logLevel: LogLevel = .debug
     static var detailedLogFormat = ">>> :line :className.:function --> :obj"
     static var detailedLogDateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
     static fileprivate var dateFormatter: DateFormatter {
@@ -22,10 +27,14 @@ struct LogSettings {
     }
 }
 
-func log(_ verbose: Bool, _ obj: Any = "", file: String = #file, function: String = #function, line: Int = #line) {
+// Make
+func log(_ obj: @autoclosure () -> Any, enabled: Bool = true, file: String = #file, function: String = #function, line: Int = #line) {
     #if DEBUG
-        if verbose == true {
-            if LogSettings.shouldShowDetailedLogs == true {
+        if enabled == true {
+            switch LogSettings.logLevel {
+            case .debug:
+                print(obj)
+            case .verbose:
                 var logStatement = LogSettings.detailedLogFormat.replacingOccurrences(of: ":line", with: "\(line)")
 
                 if let className = NSURL(string: file)?.lastPathComponent?.components(separatedBy: ".").first {
@@ -39,10 +48,8 @@ func log(_ verbose: Bool, _ obj: Any = "", file: String = #file, function: Strin
                     let replacement = LogSettings.dateFormatter.string(from: Date())
                     logStatement = logStatement.replacingOccurrences(of: ":date", with: "\(replacement)")
                 }
-                
+
                 print(logStatement)
-            } else {
-                print(obj)
             }
         }
     #endif
