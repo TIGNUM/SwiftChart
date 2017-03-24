@@ -27,7 +27,6 @@ class ChatViewController: UIViewController {
         tableView.register(chatCellNib, forCellReuseIdentifier: self.cellIdentifier)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.separatorStyle = .none
         tableView.backgroundColor = .black
         self.view.backgroundColor = .black
         self.view.addSubview(tableView)
@@ -42,18 +41,18 @@ class ChatViewController: UIViewController {
 
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        updateTableView()
+        
+        updateTableView(with: tableView)
     }
 
-    private func updateTableView() {
+    private func updateTableView(with tableView: UITableView) {
         viewModel.updates.observeNext { [unowned self] (update) in
             switch update {
             case .reload:
@@ -85,7 +84,7 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
 
         let chatData = viewModel.chatSectionData(at: indexPath)
         switch chatData {
-        case .messages(let messages): chatCell.setup(title: "message: \(indexPath.row)")
+        case .messages(let messages): chatCell.setup(title: messages[indexPath.row].text)
         case .navigations(let navigations): chatCell.setup(title: navigations[indexPath.row].title)
         case .inputs(let inputs): chatCell.setup(title: inputs[indexPath.row].title)
         }

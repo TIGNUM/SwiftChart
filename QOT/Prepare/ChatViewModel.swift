@@ -13,7 +13,7 @@ final class ChatViewModel {
 
     // MARK: - Properties
 
-//    fileprivate var messages: [ChatSection] = []
+    fileprivate var chatSections: [ChatSection] = []
     fileprivate var timer: Timer?
     fileprivate var mockSections: [ChatSection] = mockData
     let updates = PublishSubject<CollectionUpdate, NoError>()
@@ -23,19 +23,19 @@ final class ChatViewModel {
     }
 
     var sectionCount: Index {
-        return mockSections.count
+        return chatSections.count
     }
 
     func chatSection(at section: Index) -> ChatSection {
-        return mockSections[section]
+        return chatSections[section]
     }
 
     func chatSectionData(at indexPath: IndexPath) -> ChatSectionData {
-        return mockSections[indexPath.section].data
+        return chatSections[indexPath.section].data
     }
 
     func chatSectionDataCount(at section: Index) -> Index {
-        switch mockSections[section].data {
+        switch chatSections[section].data {
         case .messages(let messages): return messages.count
         case .navigations(let navigations): return navigations.count
         case .inputs(let inputs): return inputs.count
@@ -44,7 +44,7 @@ final class ChatViewModel {
 
     deinit {
         timer?.invalidate()
-        mockSections.removeAll()
+        chatSections.removeAll()
     }
 }
 
@@ -53,12 +53,12 @@ final class ChatViewModel {
 extension ChatViewModel {
 
     fileprivate func setupTimer() {
-        var index = 0
         let timer = Timer.init(fire: Date(timeIntervalSinceNow: 3), interval: 3, repeats: true) { [unowned self] (timer) in
-            if self.mockSections.isEmpty == false {
+            if let first = self.mockSections.first {
+                let index = self.chatSections.count
                 self.mockSections.remove(at: 0)
+                self.chatSections.append(first)
                 let update = CollectionUpdate.update(deletions: [], insertions: [index], modifications: [])
-                index += 1
                 self.updates.next(update)
             } else {
                 self.timer?.invalidate()
@@ -127,6 +127,13 @@ enum ChatSectionData {
 enum Message {
     case text(String)
     case typing
+
+    var text: String? {
+        switch self {
+        case .text(let text): return text
+        case .typing: return nil
+        }
+    }
 }
 
 struct Navigation {
