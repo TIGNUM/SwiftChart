@@ -20,7 +20,7 @@ protocol LearnContentListViewControllerDelegate: class {
 final class LearnContentListViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     let viewModel: LearnContentListViewModel
     weak var delegate: LearnContentListViewControllerDelegate?
- 
+    
     init(viewModel: LearnContentListViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -32,12 +32,12 @@ final class LearnContentListViewController: UIViewController, UICollectionViewDa
     
     lazy var collectionView: UICollectionView = {
         let layout = LearnContentLayout(frame: CGRect.zero, totalNumberOfBubbles:0)
-       let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.delegate = self
         return collectionView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.backgroundColor = .black
@@ -48,17 +48,13 @@ final class LearnContentListViewController: UIViewController, UICollectionViewDa
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         collectionView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
-
-        //collectionView.frame = CGRect(x: self.view.frame.minX, y: view.frame.minY + 70, width: view.frame.width, height: view.frame.height - (view.frame.height / 7) )
         collectionView.collectionViewLayout = LearnContentLayout(frame: collectionView.frame, totalNumberOfBubbles: viewModel.itemCount)
         //collectionView.transform = CGAffineTransform(rotationAngle: -0.174533)
-        
-        print(collectionView.contentSize)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

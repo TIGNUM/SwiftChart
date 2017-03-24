@@ -76,7 +76,7 @@ class LearnContentCell: UICollectionViewCell {
 private extension LearnContentCell {
     func setupLayout() {
         textContainerView.horizontalAnchors == contentView.horizontalAnchors + 20
-        textContainerView.topAnchor == contentView.topAnchor +  40
+        textContainerView.topAnchor == contentView.topAnchor +  50
         textContainerView.widthAnchor == contentView.widthAnchor - 40
         
         titleLabel.topAnchor == textContainerView.topAnchor
