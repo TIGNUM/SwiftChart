@@ -8,11 +8,6 @@
 
 import Foundation
 
-protocol ChatViewDelegate: class {
-    func didSelectChatSectionNavigate(in viewController: ChatViewController, chatSectionData: ChatSectionData)
-    func didSelectChatSectionUpdate(in viewController: ChatViewController, chatSectionData: ChatSectionData)
-}
-
 final class ChatViewCoordinator: ParentCoordinator {
     
     // MARK: - Properties

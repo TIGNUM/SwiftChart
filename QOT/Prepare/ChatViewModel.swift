@@ -36,10 +36,14 @@ final class ChatViewModel {
 
     func chatSectionDataCount(at section: Index) -> Index {
         switch chatSections[section].data {
-        case .messages(let messages): return messages.count
-        case .navigations(let navigations): return navigations.count
-        case .inputs(let inputs): return inputs.count
+        case .chatMessages(let messages): return messages.count
+        case .chatNavigations(let navigations): return navigations.count
+        case .chatInputs(let inputs): return inputs.count
         }
+    }
+
+    func chatNavigation(at indexPath: IndexPath) -> ChatNavigation? {
+        return (chatSectionData(at: indexPath) as? [ChatNavigation])?[indexPath.row]
     }
 
     deinit {
@@ -69,32 +73,32 @@ extension ChatViewModel {
 }
 
 private func messagesSection() -> ChatSection {
-    let instructionMessage = Message.text("Hi Louis what are you preparing for?")
+    let instructionMessage = ChatMessage.text("Hi Louis what are you preparing for?")
     let instructionFooter = "Delivered at 12:58"
-    let insructionData = ChatSectionData.messages([instructionMessage])
+    let insructionData = ChatSectionData.chatMessages([instructionMessage])
     return MockChatSection(header: nil, footer: instructionFooter, data: insructionData)
 }
 
 private func navigationSection() -> ChatSection {
     let navigations = [
-        Navigation(title: "Meeting"),
-        Navigation(title: "Negotiation"),
-        Navigation(title: "Presentation"),
-        Navigation(title: "Business Dinner"),
-        Navigation(title: "Pre-Vacation"),
-        Navigation(title: "Work to home transition")
+        ChatNavigation(title: "Meeting"),
+        ChatNavigation(title: "Negotiation"),
+        ChatNavigation(title: "Presentation"),
+        ChatNavigation(title: "Business Dinner"),
+        ChatNavigation(title: "Pre-Vacation"),
+        ChatNavigation(title: "Work to home transition")
     ]
 
-    return MockChatSection(header: "PREPARATIONS", footer: nil, data: ChatSectionData.navigations(navigations))
+    return MockChatSection(header: "PREPARATIONS", footer: nil, data: ChatSectionData.chatNavigations(navigations))
 }
 
 private func inputSection() -> ChatSection {
     let inputs = [
-        Input(title: "Normal day"),
-        Input(title: "Tough day")
+        ChatInput(title: "Normal day"),
+        ChatInput(title: "Tough day")
     ]
 
-    return MockChatSection(header: "DAY PROTOCOL", footer: nil, data: ChatSectionData.inputs(inputs))
+    return MockChatSection(header: "DAY PROTOCOL", footer: nil, data: ChatSectionData.chatInputs(inputs))
 }
 
 private var mockData: [ChatSection] {
@@ -118,12 +122,45 @@ private struct MockChatSection: ChatSection {
 }
 
 enum ChatSectionData {
-    case messages([Message])
-    case navigations([Navigation])
-    case inputs([Input])
+    case chatMessages([ChatMessage])
+    case chatNavigations([ChatNavigation])
+    case chatInputs([ChatInput])
+
+    var chatMessages: [ChatMessage]? {
+        switch self {
+        case .chatMessages(let messages): return messages
+        default: return nil
+        }
+    }
+
+    var chatNavigations: [ChatNavigation]? {
+        switch self {
+        case .chatNavigations(let navigations): return navigations
+        default: return nil
+        }
+    }
+
+    var chatInputs: [ChatInput]? {
+        switch self {
+        case .chatInputs(let inputs): return inputs
+        default: return nil
+        }
+    }
+
+    func chatMessage(at index: Index) -> ChatMessage? {
+        return chatMessages?[index]
+    }
+
+    func chatNavigation(at index: Index) -> ChatNavigation? {
+        return chatNavigations?[index]
+    }
+
+    func chatInput(at index: Index) -> ChatInput? {
+        return chatInputs?[index]
+    }
 }
 
-enum Message {
+enum ChatMessage {
     case text(String)
     case typing
 
@@ -135,10 +172,10 @@ enum Message {
     }
 }
 
-struct Navigation {
+struct ChatNavigation {
     let title: String
 }
 
-struct Input {
+struct ChatInput {
     let title: String
 }

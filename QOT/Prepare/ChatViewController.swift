@@ -11,20 +11,24 @@ import Foundation
 import ReactiveKit
 import Bond
 
+protocol ChatViewDelegate: class {
+    func didSelectChatSectionNavigate(with chatNavigation: ChatNavigation?, in viewController: ChatViewController)
+    func didSelectChatSectionUpdate(with chatInput: ChatInput?, in viewController: ChatViewController)
+}
+
 class ChatViewController: UIViewController {
     
     // MARK: - Properties
 
     private let disposeBag = DisposeBag()
     fileprivate let viewModel: ChatViewModel
-    fileprivate let cellIdentifier = Identifier.chatTableViewCell.rawValue
+    fileprivate let cellIdentifier = "Cell"
     weak var delegate: ChatViewDelegate?
 
     private lazy var tableView: UITableView = {
-        let chatCellNib = UINib(nibName: R.nib.chatTableViewCell.name, bundle: nil)
         let frame = CGRect(x: 0, y: 64, width: self.view.bounds.width, height: self.view.bounds.height)
         let tableView = UITableView(frame: frame, style: .plain)
-        tableView.register(chatCellNib, forCellReuseIdentifier: self.cellIdentifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: self.cellIdentifier)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .black
@@ -48,7 +52,7 @@ class ChatViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         updateTableView(with: tableView)
     }
 
@@ -78,15 +82,13 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let chatCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ChatTableViewCell else {
-            return UITableViewCell()
-        }
-
+        let chatCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         let chatData = viewModel.chatSectionData(at: indexPath)
+        
         switch chatData {
-        case .messages(let messages): chatCell.setup(title: messages[indexPath.row].text)
-        case .navigations(let navigations): chatCell.setup(title: navigations[indexPath.row].title)
-        case .inputs(let inputs): chatCell.setup(title: inputs[indexPath.row].title)
+        case .chatMessages(let messages): chatCell.textLabel?.text = messages[indexPath.row].text
+        case .chatNavigations(let navigations): chatCell.textLabel?.text = navigations[indexPath.row].title
+        case .chatInputs(let inputs): chatCell.textLabel?.text = inputs[indexPath.row].title
         }
 
         return chatCell
@@ -94,10 +96,11 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let chatSectiondata = viewModel.chatSectionData(at: indexPath)
 
         switch indexPath.section {
-        case 1: delegate?.didSelectChatSectionNavigate(in: self, chatSectionData: viewModel.chatSection(at: indexPath.section).data)
-        case 2: delegate?.didSelectChatSectionUpdate(in: self, chatSectionData: viewModel.chatSection(at: indexPath.section).data)
+        case 1: delegate?.didSelectChatSectionNavigate(with: chatSectiondata.chatNavigation(at: indexPath.row), in: self)
+        case 2: delegate?.didSelectChatSectionUpdate(with: chatSectiondata.chatInput(at: indexPath.row), in: self)
         default: return
         }
     }

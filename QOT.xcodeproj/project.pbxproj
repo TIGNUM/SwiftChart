@@ -62,7 +62,6 @@
 		CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB631E83BDA300FF28DF /* Utils.swift */; };
 		CC3DFB661E83C19C00FF28DF /* Defines.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB651E83C19C00FF28DF /* Defines.swift */; };
 		CC3DFB681E83D4E500FF28DF /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB671E83D4E500FF28DF /* ChatViewModel.swift */; };
-		CC3ECC9E1E843D9100886794 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3ECC9D1E843D9100886794 /* ChatTableViewCell.swift */; };
 		CC4D1D7C1E82E75300B8D75E /* MeSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4D1D7B1E82E75300B8D75E /* MeSectionViewController.swift */; };
 		CC4D1D7E1E82E77900B8D75E /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4D1D7D1E82E77900B8D75E /* ChatViewController.swift */; };
 		CC4D1D801E82EDE700B8D75E /* MeSectionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4D1D7F1E82EDE700B8D75E /* MeSectionCoordinator.swift */; };
@@ -75,7 +74,6 @@
 		CC6B3A351E81A1E600E7FDFD /* SidebarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC6B3A341E81A1E600E7FDFD /* SidebarTableViewCell.xib */; };
 		CC6B3A371E81A25A00E7FDFD /* SidebarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A361E81A25A00E7FDFD /* SidebarTableViewCell.swift */; };
 		CC6B3A391E81A69D00E7FDFD /* SidebarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A381E81A69D00E7FDFD /* SidebarCoordinator.swift */; };
-		CC97B11D1E84530100BA7636 /* ChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC97B11C1E84530100BA7636 /* ChatTableViewCell.xib */; };
 		CCAF03241E801B0E00015125 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF03211E801B0E00015125 /* SettingsCoordinator.swift */; };
 		CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF03221E801B0E00015125 /* SettingsViewController.swift */; };
 		CCAF03261E801B0E00015125 /* SettingsViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF03231E801B0E00015125 /* SettingsViewControllerDelegate.swift */; };
@@ -166,7 +164,6 @@
 		CC3DFB631E83BDA300FF28DF /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		CC3DFB651E83C19C00FF28DF /* Defines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defines.swift; sourceTree = "<group>"; };
 		CC3DFB671E83D4E500FF28DF /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
-		CC3ECC9D1E843D9100886794 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		CC4D1D7B1E82E75300B8D75E /* MeSectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeSectionViewController.swift; sourceTree = "<group>"; };
 		CC4D1D7D1E82E77900B8D75E /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		CC4D1D7F1E82EDE700B8D75E /* MeSectionCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeSectionCoordinator.swift; sourceTree = "<group>"; };
@@ -179,7 +176,6 @@
 		CC6B3A341E81A1E600E7FDFD /* SidebarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidebarTableViewCell.xib; sourceTree = "<group>"; };
 		CC6B3A361E81A25A00E7FDFD /* SidebarTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarTableViewCell.swift; sourceTree = "<group>"; };
 		CC6B3A381E81A69D00E7FDFD /* SidebarCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarCoordinator.swift; sourceTree = "<group>"; };
-		CC97B11C1E84530100BA7636 /* ChatTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatTableViewCell.xib; sourceTree = "<group>"; };
 		CCAF03211E801B0E00015125 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		CCAF03221E801B0E00015125 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		CCAF03231E801B0E00015125 /* SettingsViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerDelegate.swift; sourceTree = "<group>"; };
@@ -521,8 +517,6 @@
 		CC4D1D7A1E82E6AD00B8D75E /* Prepare */ = {
 			isa = PBXGroup;
 			children = (
-				CC3ECC9D1E843D9100886794 /* ChatTableViewCell.swift */,
-				CC97B11C1E84530100BA7636 /* ChatTableViewCell.xib */,
 				CC4D1D7D1E82E77900B8D75E /* ChatViewController.swift */,
 				CC4D1D811E82EDFC00B8D75E /* ChatViewCoordinator.swift */,
 				CC3DFB671E83D4E500FF28DF /* ChatViewModel.swift */,
@@ -699,7 +693,6 @@
 				CC6B3A351E81A1E600E7FDFD /* SidebarTableViewCell.xib in Resources */,
 				CBB237FA1E6FFF1200AB5AEF /* LaunchScreen.storyboard in Resources */,
 				CBB237F71E6FFF1200AB5AEF /* Assets.xcassets in Resources */,
-				CC97B11D1E84530100BA7636 /* ChatTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -842,7 +835,6 @@
 				CBDB99081E7BEE05003EC73F /* EventStore.swift in Sources */,
 				CCC0C4D91E82BB2B002A8362 /* TabBarController.swift in Sources */,
 				CBD7914A1E71797C0006C590 /* Typealiases.swift in Sources */,
-				CC3ECC9E1E843D9100886794 /* ChatTableViewCell.swift in Sources */,
 				CBD791541E72A4BB0006C590 /* MockData.swift in Sources */,
 				CB28802D1E705D3A0067890A /* LearnCategoryListViewController.swift in Sources */,
 				CBDB99101E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift in Sources */,
