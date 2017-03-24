@@ -16,7 +16,7 @@ protocol ChatViewDelegate: class {
     func didSelectChatSectionUpdate(with chatInput: ChatInput?, in viewController: ChatViewController)
 }
 
-class ChatViewController: UIViewController {
+class ChatViewController: UITableViewController {
     
     // MARK: - Properties
 
@@ -24,19 +24,6 @@ class ChatViewController: UIViewController {
     fileprivate let viewModel: ChatViewModel
     fileprivate let cellIdentifier = "Cell"
     weak var delegate: ChatViewDelegate?
-
-    private lazy var tableView: UITableView = {
-        let frame = CGRect(x: 0, y: 64, width: self.view.bounds.width, height: self.view.bounds.height)
-        let tableView = UITableView(frame: frame, style: .plain)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: self.cellIdentifier)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.backgroundColor = .black
-        self.view.backgroundColor = .black
-        self.view.addSubview(tableView)
-
-        return tableView
-    }()
 
     // MARK: - Life Cycle
 
@@ -53,7 +40,14 @@ class ChatViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        setupTableView()
         updateTableView(with: tableView)
+    }
+
+    private func setupTableView() {
+        view.backgroundColor = .black
+        tableView.backgroundColor = .black
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: self.cellIdentifier)
     }
 
     private func updateTableView(with tableView: UITableView) {
@@ -71,17 +65,17 @@ class ChatViewController: UIViewController {
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 
-extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
+extension ChatViewController {
 
-    func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.sectionCount
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.chatSectionDataCount(at: section)
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let chatCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         let chatData = viewModel.chatSectionData(at: indexPath)
         
@@ -94,7 +88,7 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         return chatCell
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let chatSectiondata = viewModel.chatSectionData(at: indexPath)
 
