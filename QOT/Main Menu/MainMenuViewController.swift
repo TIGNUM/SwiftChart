@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol MainMenuViewControllerDelegate: class {
+protocol MainMenuViewControllerDelegate: class {    
     func didTapLearn(in viewController: MainMenuViewController)
     func didTapMe(in viewController: MainMenuViewController)
     func didTapPrepare(in viewController: MainMenuViewController)
@@ -18,17 +18,6 @@ protocol MainMenuViewControllerDelegate: class {
 class MainMenuViewController: UIViewController {
     
     weak var delegate: MainMenuViewControllerDelegate?
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 }
 
 // MARK: - Actions
