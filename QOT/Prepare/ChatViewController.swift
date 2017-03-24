@@ -22,7 +22,7 @@ class ChatViewController: UITableViewController {
 
     private let disposeBag = DisposeBag()
     fileprivate let viewModel: ChatViewModel
-    fileprivate let cellIdentifier = "Cell"
+    fileprivate let cellIdentifier = Identifier.chatTableViewCell.rawValue
     weak var delegate: ChatViewDelegate?
 
     // MARK: - Life Cycle

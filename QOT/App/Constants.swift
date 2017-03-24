@@ -42,5 +42,5 @@ struct Databsase {
 }
 
 enum Identifier: String {
-    case chatTableViewCell = "ChatTableViewCell_id"
+    case chatTableViewCell = "Cell"
 }
