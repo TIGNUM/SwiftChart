@@ -44,7 +44,6 @@ final class ChatViewModel {
 
     deinit {
         timer?.invalidate()
-        chatSections.removeAll()
     }
 }
 
@@ -53,7 +52,7 @@ final class ChatViewModel {
 extension ChatViewModel {
 
     fileprivate func setupTimer() {
-        let timer = Timer.init(fire: Date(timeIntervalSinceNow: 3), interval: 3, repeats: true) { [unowned self] (timer) in
+        let timer = Timer.init(fire: Date(timeIntervalSinceNow: 1), interval: 2, repeats: true) { [unowned self] (timer) in
             if let first = self.mockSections.first {
                 let index = self.chatSections.count
                 self.mockSections.remove(at: 0)

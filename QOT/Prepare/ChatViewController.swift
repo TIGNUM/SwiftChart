@@ -96,8 +96,8 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
 
         switch indexPath.section {
-        case 1: delegate?.didSelectChatSectionNavigate(in: self, chatSection: viewModel.chatSection(at: indexPath.section))
-        case 2: delegate?.didSelectChatSectionUpdate(in: self, chatSection: viewModel.chatSection(at: indexPath.section))
+        case 1: delegate?.didSelectChatSectionNavigate(in: self, chatSectionData: viewModel.chatSection(at: indexPath.section).data)
+        case 2: delegate?.didSelectChatSectionUpdate(in: self, chatSectionData: viewModel.chatSection(at: indexPath.section).data)
         default: return
         }
     }
