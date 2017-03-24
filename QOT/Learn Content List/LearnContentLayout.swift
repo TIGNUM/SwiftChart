@@ -9,9 +9,9 @@
 import UIKit
 
     final class LearnContentLayout: UICollectionViewLayout {
-        init(frame: CGRect) {
+        init(frame: CGRect, totalNumberOfBubbles: Int) {
             
-            let totalNumberOfBubbles = 5
+//            let totalNumberOfBubbles = limit
             
             func createPattern(frame: CGRect) -> [CGPoint] {
                 var allBubbles = [CGPoint]()

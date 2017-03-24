@@ -31,7 +31,7 @@ final class LearnContentListViewController: UIViewController, UICollectionViewDa
     }
     
     lazy var collectionView: UICollectionView = {
-        let layout = LearnContentLayout(frame: CGRect.zero)
+        let layout = LearnContentLayout(frame: CGRect.zero, totalNumberOfBubbles:0)
        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -50,7 +50,7 @@ final class LearnContentListViewController: UIViewController, UICollectionViewDa
         collectionView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
 
         //collectionView.frame = CGRect(x: self.view.frame.minX, y: view.frame.minY + 70, width: view.frame.width, height: view.frame.height - (view.frame.height / 7) )
-        collectionView.collectionViewLayout = LearnContentLayout(frame: collectionView.frame)
+        collectionView.collectionViewLayout = LearnContentLayout(frame: collectionView.frame, totalNumberOfBubbles: viewModel.itemCount)
         //collectionView.transform = CGAffineTransform(rotationAngle: -0.174533)
         
         print(collectionView.contentSize)
