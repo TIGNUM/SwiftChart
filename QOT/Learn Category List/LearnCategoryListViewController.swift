@@ -33,12 +33,8 @@ final class LearnCategoryListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         collectionView.collectionViewLayout = LearnCategoryLayout(height: collectionView.frame.height, categories: viewModel.allCategories)
         collectionView.register(LearnCategoryCell.self, forCellWithReuseIdentifier: "Cell")
-        
-        // TODO: Add background image
-        let _ = R.image.learnCategory()
     }
     
     override func viewWillAppear(_ animated: Bool) {
