@@ -1,5 +1,5 @@
 //
-//  		.swift
+//  ContentItem.swift
 //  QOT
 //
 //  Created by Sam Wyndham on 09/03/2017.
