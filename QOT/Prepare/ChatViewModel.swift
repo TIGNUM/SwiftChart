@@ -42,10 +42,6 @@ final class ChatViewModel {
         }
     }
 
-    func chatNavigation(at indexPath: IndexPath) -> ChatNavigation? {
-        return (chatSectionData(at: indexPath) as? [ChatNavigation])?[indexPath.row]
-    }
-
     deinit {
         timer?.invalidate()
     }
