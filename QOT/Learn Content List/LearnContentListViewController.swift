@@ -16,52 +16,65 @@ protocol LearnContentListViewControllerDelegate: class {
     func didTapBack(in: LearnContentListViewController)
 }
 
-// FIXME: This is a dummy implementation o fLearnContentListViewController.
-
 /// Displays a collection of items of learn content.
-final class LearnContentListViewController: UITableViewController {
+final class LearnContentListViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     let viewModel: LearnContentListViewModel
-    
     weak var delegate: LearnContentListViewControllerDelegate?
-    
+ 
     init(viewModel: LearnContentListViewModel) {
         self.viewModel = viewModel
-        
-        super.init(style: .plain)
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.itemCount
+    lazy var collectionView: UICollectionView = {
+        let layout = LearnContentLayout(frame: CGRect.zero)
+       let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        return collectionView
+    }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        collectionView.backgroundColor = .black
+        collectionView.register(LearnContentCell.self, forCellWithReuseIdentifier: "Cell")
+        view.addSubview(collectionView)
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let reuseID = "cell"
-        let content = viewModel.item(at: indexPath.row)
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        collectionView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+
+        //collectionView.frame = CGRect(x: self.view.frame.minX, y: view.frame.minY + 70, width: view.frame.width, height: view.frame.height - (view.frame.height / 7) )
+        collectionView.collectionViewLayout = LearnContentLayout(frame: collectionView.frame)
+        //collectionView.transform = CGAffineTransform(rotationAngle: -0.174533)
         
-        let cell: UITableViewCell
-        if let existing = tableView.dequeueReusableCell(withIdentifier: reuseID) {
-            cell = existing
-        } else {
-            cell = UITableViewCell(style: .subtitle, reuseIdentifier: reuseID)
+        print(collectionView.contentSize)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let content = viewModel.item(at: indexPath.item)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? LearnContentCell else {
+            fatalError("Incorrect cell type")
         }
-        
-        cell.textLabel?.text = content.title
-        cell.detailTextLabel?.text = content.viewed ? "viewed" : "\(content.minutesRequired) min"
-        
+        cell.configure(with: content)
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.didSelectContent(at: indexPath.row, in: self)
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 100
     }
     
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y < -150 {
-            delegate?.didTapBack(in: self)
-        }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.didSelectContent(at: indexPath.item, in: self)
     }
 }

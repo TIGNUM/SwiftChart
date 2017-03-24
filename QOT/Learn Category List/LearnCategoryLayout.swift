@@ -2,7 +2,7 @@
 //  LearnCustomLayout.swift
 //  QOT
 //
-//  Created by tignum on 3/17/17.
+//  Created by Aamir Suhial on 3/17/17.
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
