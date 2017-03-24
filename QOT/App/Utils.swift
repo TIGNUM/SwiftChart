@@ -33,7 +33,7 @@ func log(_ obj: @autoclosure () -> Any, enabled: Bool = true, file: String = #fi
         if enabled == true {
             switch LogSettings.logLevel {
             case .debug:
-                print(obj)
+                print(obj())
             case .verbose:
                 var logStatement = LogSettings.detailedLogFormat.replacingOccurrences(of: ":line", with: "\(line)")
 
@@ -42,7 +42,7 @@ func log(_ obj: @autoclosure () -> Any, enabled: Bool = true, file: String = #fi
                 }
 
                 logStatement = logStatement.replacingOccurrences(of: ":function", with: function)
-                logStatement = logStatement.replacingOccurrences(of: ":obj", with: "\(obj)")
+                logStatement = logStatement.replacingOccurrences(of: ":obj", with: "\(obj())")
 
                 if logStatement.contains(":date") {
                     let replacement = LogSettings.dateFormatter.string(from: Date())
