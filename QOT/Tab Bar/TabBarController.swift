@@ -46,8 +46,8 @@ class TabBarController: UITabBarController {
         let meCategoryController = categoryViewControllers.item(at: MainMenuType.me.rawValue) as? MeSectionViewController
         meCategoryController?.tabBarItem = meTabBarItem
         
-        let perpareCategoryController = categoryViewControllers.item(at: MainMenuType.prepare.rawValue) as? PrepareSectionViewController
-        perpareCategoryController?.tabBarItem = prepareTabBarItem
+        let chatViewController = categoryViewControllers.item(at: MainMenuType.prepare.rawValue) as? ChatViewController
+        chatViewController?.tabBarItem = prepareTabBarItem
         
         tabBar.barTintColor = .black
         tabBar.tintColor = .qotWhite

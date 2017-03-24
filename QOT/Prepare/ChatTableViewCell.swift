@@ -10,31 +10,13 @@ import UIKit
 
 final class ChatTableViewCell: UITableViewCell {
 
-    fileprivate var message: String?
-    fileprivate var delivered: Date?
-    fileprivate var title: String?
-    fileprivate var option: ChatMessageType.Option?
+    // MARK: - Outlets
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    @IBOutlet fileprivate weak var messageLabel: UILabel!
 
-        print("style: \(style), reuseIdentifier: \(reuseIdentifier)")
-    }
+    // MARK: - Life Cycle
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    func setup(message: String, delivered: Date) {
-        textLabel?.text = message
-    }
-
-    func setup(title: String, option: ChatMessageType.Option) {
-        self.title = title
-        self.option = option
-    }
-
-    func setup(chatMessageType: ChatMessageType) {
-
+    func setup(title: String?) {
+        messageLabel.text = title
     }
 }

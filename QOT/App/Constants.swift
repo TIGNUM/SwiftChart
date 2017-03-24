@@ -26,6 +26,12 @@ struct Layout {
         case sidebarSmall = 65
         case sidebarHeader = 50
     }
+
+    enum CornerRadius: CGFloat {
+        case chatLabelInstruction = 8
+        case chatLabelOptionNavigation = 5
+        case chatLabelOptionUpdate = 10
+    }
 }
 
 struct Databsase {

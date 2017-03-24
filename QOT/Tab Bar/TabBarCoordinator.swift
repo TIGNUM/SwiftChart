@@ -37,12 +37,12 @@ final class TabBarCoordinator: ParentCoordinator {
         return meViewController
     }()
     
-    fileprivate lazy var prepareSectionViewController: PrepareSectionViewController = {
-        let viewModel = ChatMessageViewModel()
-        let prepareViewController = PrepareSectionViewController(viewModel: viewModel)
-        prepareViewController.delegate = self
-        
-        return prepareViewController
+    fileprivate lazy var chatViewController: ChatViewController = {
+        let viewModel = ChatViewModel()
+        let chatViewController = ChatViewController(viewModel: viewModel)
+        chatViewController.delegate = self
+
+        return chatViewController
     }()
     
     var children = [Coordinator]()
@@ -68,7 +68,7 @@ final class TabBarCoordinator: ParentCoordinator {
     func addViewControllers() {
         viewControllers.append(learnCategoryListViewController)
         viewControllers.append(meSectionViewController)
-        viewControllers.append(prepareSectionViewController)
+        viewControllers.append(chatViewController)
     }
 }
 
@@ -104,13 +104,13 @@ extension TabBarCoordinator: MeSectionDelegate {
 
 // MARK: - PrepareChatBotDelegate
 
-extension TabBarCoordinator: PrepareChatBotDelegate {
+extension TabBarCoordinator: ChatViewDelegate {
     
-    func didSelectPreparation(in viewController: PrepareSectionViewController, chatMessageType: ChatMessageType) {
-        // TODO
+    func didSelectChatSectionNavigate(in viewController: ChatViewController, chatSection: ChatSection) {
+        QOTLog(true, "didSelectChatSectionNavigate with chatSection: \(chatSection)")
     }
 
-    func didFinishDisplayInstructions(in viewController: PrepareSectionViewController, chatMessageType: ChatMessageType) {
-        // TODO
+    func didSelectChatSectionUpdate(in viewController: ChatViewController, chatSection: ChatSection) {
+        QOTLog(true, "didSelectChatSectionUpdate with chatSection: \(chatSection)")
     }
 }
