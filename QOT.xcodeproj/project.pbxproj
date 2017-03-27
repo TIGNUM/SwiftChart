@@ -360,6 +360,7 @@
 				CB8A15531E7A9F4F0023B2F9 /* Calendar Import */,
 				CB2880321E7144D40067890A /* Common */,
 				CB2880201E7050D10067890A /* Coordinators */,
+				CBD7914B1E719E090006C590 /* Database */,
 				CB8A15411E7982540023B2F9 /* Generated */,
 				CBD791571E72F10E0006C590 /* Launch */,
 				CBD7913E1E715FEC0006C590 /* Learn Category List */,
@@ -427,8 +428,7 @@
 				CBD791551E72BAAC0006C590 /* DatabaseManager.swift */,
 				CBD791531E72A4BB0006C590 /* MockData.swift */,
 			);
-			name = Database;
-			path = ../Database;
+			path = Database;
 			sourceTree = "<group>";
 		};
 		CBD7914C1E719E1C0006C590 /* Model */ = {
@@ -446,7 +446,6 @@
 			isa = PBXGroup;
 			children = (
 				CBB237F81E6FFF1200AB5AEF /* LaunchScreen.storyboard */,
-				CBD7914B1E719E090006C590 /* Database */,
 				CBD7915A1E72F2990006C590 /* LaunchViewController.swift */,
 				CBD7915B1E72F2990006C590 /* LaunchViewController.xib */,
 				CBD7915E1E72FDC10006C590 /* LaunchViewModel.swift */,

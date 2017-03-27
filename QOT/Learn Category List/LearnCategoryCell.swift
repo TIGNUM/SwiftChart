@@ -58,33 +58,53 @@ final class LearnCategoryCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         contentView.layer.cornerRadius = frame.width / 2
-        drawCircle(frame: frame)
+        
+        drawCircles(frame: frame)
     }
     
-    func drawCircle(frame: CGRect) {
+    private func drawCircles(frame: CGRect) {
+        
+        let frame = bounds
+        drawInnerCircle(frame: frame)
+        drawDashedCircle(frame: frame)
+    }
+    
+    private func drawInnerCircle(frame: CGRect) {
+        let center = CGPoint(x: frame.width / 2, y: frame.height / 2)
+        let radius = CGFloat(frame.width / 2.2)
+        let start: CGFloat = 0.0
+        let end = 2.0 * CGFloat.pi
+        let path = UIBezierPath(arcCenter: center, radius: radius, startAngle: start, endAngle: end, clockwise: false)
+        
+        let layer = CAShapeLayer()
+        layer.path = path.cgPath
+        layer.fillColor = UIColor.clear.cgColor
+        layer.strokeColor = UIColor.lightGray.cgColor
+        layer.lineWidth = 0.5
+        layer.lineCap = kCALineCapRound
+        
         self.circleLineShape?.removeFromSuperlayer()
-        self.shapeDashLayer?.removeFromSuperlayer()
+        contentView.layer.addSublayer(layer)
+        self.circleLineShape = layer
+    }
+    
+    private func drawDashedCircle(frame: CGRect) {
+        let center = CGPoint(x: frame.width / 2, y: frame.height / 2)
+        let radius = frame.width / 2.2
+        let start: CGFloat = 0.0
+        let end = 2.0 * CGFloat.pi * CGFloat(percentageLearned)
+        let path = UIBezierPath(arcCenter: center, radius: radius, startAngle: start, endAngle: end, clockwise: true)
         
-        let circleLinePath = UIBezierPath(arcCenter: CGPoint(x: frame.width / 2, y: frame.height / 2), radius: CGFloat(frame.width / 2.2), startAngle: 0.0, endAngle: 2.0 * CGFloat.pi, clockwise: false)
-        let circleLineShape = CAShapeLayer()
-        circleLineShape.path = circleLinePath.cgPath
-        circleLineShape.fillColor = UIColor.clear.cgColor
-        circleLineShape.strokeColor = UIColor.lightGray.cgColor
-        circleLineShape.lineWidth = 0.5
-        circleLineShape.lineCap = kCALineCapRound
-        contentView.layer.addSublayer(circleLineShape)
+        let layer = CAShapeLayer()
+        layer.path = path.cgPath
+        layer.fillColor = UIColor.clear.cgColor
+        layer.strokeColor = UIColor.white.cgColor
+        layer.lineWidth = 6.0
+        layer.lineDashPattern = [1]
         
-        let circlePath = UIBezierPath(arcCenter: CGPoint(x: frame.width / 2, y: frame.height / 2), radius: CGFloat(frame.width / 2.2), startAngle: 0.0, endAngle: 2.0 * CGFloat.pi * CGFloat(percentageLearned), clockwise: true)
-        let shapeLayer = CAShapeLayer()
-        shapeLayer.path = circlePath.cgPath
-        shapeLayer.fillColor = UIColor.clear.cgColor
-        shapeLayer.strokeColor = UIColor.white.cgColor
-        shapeLayer.lineWidth = 6.0
-        shapeLayer.lineDashPattern = [1]
-        contentView.layer.addSublayer(shapeLayer)
-        
-        self.circleLineShape = circleLineShape
-        self.shapeDashLayer = shapeLayer
+        shapeDashLayer?.removeFromSuperlayer()
+        contentView.layer.addSublayer(layer)
+        shapeDashLayer = layer
     }
     
     func configure(with category: LearnCategory) {

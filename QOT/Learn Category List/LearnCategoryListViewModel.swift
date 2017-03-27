@@ -20,34 +20,34 @@ protocol LearnCategory {
     var viewedCount: Int { get }
     /// Returns a `Double` between 0 and 1 how much of the contents have been learned. This is an expensive operation.
     var percentageLearned: Double { get }
-    
+    /// Returns a `Double` between 0 and 1 representing the cells radius.
     var radius: Double { get }
-    
+    /// Returns the cell's center.
     var center: CGPoint { get }
 }
 
 /// The view model of a `LearnCategoryListViewController`.
 final class LearnCategoryListViewModel {
-    private let categories: Results<ContentCategory>
+    private let _categories: Results<ContentCategory>
     
     let updates = PublishSubject<CollectionUpdate, NoError>()
     
     init(categories: Results<ContentCategory>) {
-        self.categories = categories
+        self._categories = categories
     }
     
     /// The number of categories to display.
     var categoryCount: Index {
-        return categories.count
+        return _categories.count
     }
     
     /// Returns the `LearnCategory` to display at `index`.
     func category(at index: Index) -> LearnCategory {
-        return categories[index]
+        return _categories[index]
     }
     
-    var allCategories: [LearnCategory] {
-        return categories.map { $0 }
+    var categories: [LearnCategory] {
+        return _categories.map { $0 }
     }
 }
 

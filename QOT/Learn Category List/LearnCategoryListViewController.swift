@@ -33,13 +33,19 @@ final class LearnCategoryListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.collectionViewLayout = LearnCategoryLayout(height: collectionView.frame.height, categories: viewModel.allCategories)
+        
+        let layout = LearnCategoryLayout(height: collectionView.frame.height, categories: viewModel.categories)
+        collectionView.collectionViewLayout = layout
         collectionView.register(LearnCategoryCell.self, forCellWithReuseIdentifier: "Cell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        centerCollectView()
+    }
+    
+    private func centerCollectView() {
         let contentSize = collectionView.collectionViewLayout.collectionViewContentSize
         let xOffset = (contentSize.width - collectionView.frame.width) / 2
         let yOffset = (contentSize.height - collectionView.frame.height) / 2
