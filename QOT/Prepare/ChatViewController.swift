@@ -12,8 +12,8 @@ import ReactiveKit
 import Bond
 
 protocol ChatViewDelegate: class {
-    func didSelectChatSectionNavigate(with chatMessageNavigation: ChatMessage?, in viewController: ChatViewController)
-    func didSelectChatSectionUpdate(with chatMessageInput: ChatMessage?, in viewController: ChatViewController)
+    func didSelectChatNavigation(_ navigation: ChatMessageNavigation, in viewController: ChatViewController)
+    func didSelectChatInput(_ input: ChatMessageInput, in viewController: ChatViewController)
 }
 
 class ChatViewController: UITableViewController {
@@ -77,10 +77,14 @@ extension ChatViewController {
 
         let text: String
         switch chatMessage {
-        case .instruction(_, _): text = "Hi Louis what are you preparing for?"
-        case .header(_, _): text = "Delivered: 12:34"
-        case .navigation(_): text = "15 Navigation Items"
-        case .input(_): text = "5 Input Items"
+        case .instruction(let type, _):
+            switch type {
+            case .message(let message): text = message
+            case .typing: text = "..."
+            }
+        case .header(let title, _): text = title
+        case .navigation(let items): text = "\(items.count) Navigation Items"
+        case .input(let items): text = "\(items.count) Input Items"
         }
 
         chatCell.textLabel?.text = text
@@ -91,11 +95,17 @@ extension ChatViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
+        // This is temporary implementation based just allowing us to hook up the delegate. How you call the delegate
+        // methods may be completly different.
         let chatMessage = viewModel.chatMessage(at: indexPath.row)
 
         switch chatMessage {
-        case .navigation: delegate?.didSelectChatSectionNavigate(with: chatMessage, in: self)
-        case .input: delegate?.didSelectChatSectionUpdate(with: chatMessage, in: self)
+        case .navigation(let items):
+            let item = items.first!
+            delegate?.didSelectChatNavigation(item, in: self)
+        case .input(let items):
+            let item = items.first!
+            delegate?.didSelectChatInput(item, in: self)
         case .header, .instruction: return
         }
     }
