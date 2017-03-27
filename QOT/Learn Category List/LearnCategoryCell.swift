@@ -139,3 +139,5 @@ private extension LearnCategoryCell {
         titleLabel.bottomAnchor == textContainerView.bottomAnchor
     }
 }
+
+extension LearnCategoryCell: Dequeueable {}
