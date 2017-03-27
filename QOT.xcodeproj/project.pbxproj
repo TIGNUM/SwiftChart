@@ -61,11 +61,8 @@
 		CBDB99121E7BFEED003EC73F /* MockCalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB99111E7BFEED003EC73F /* MockCalendarEventParticipantData.swift */; };
 		CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB631E83BDA300FF28DF /* Utils.swift */; };
 		CC3DFB661E83C19C00FF28DF /* Defines.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB651E83C19C00FF28DF /* Defines.swift */; };
-		CC3DFB681E83D4E500FF28DF /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB671E83D4E500FF28DF /* ChatViewModel.swift */; };
 		CC4D1D7C1E82E75300B8D75E /* MeSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4D1D7B1E82E75300B8D75E /* MeSectionViewController.swift */; };
-		CC4D1D7E1E82E77900B8D75E /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4D1D7D1E82E77900B8D75E /* ChatViewController.swift */; };
 		CC4D1D801E82EDE700B8D75E /* MeSectionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4D1D7F1E82EDE700B8D75E /* MeSectionCoordinator.swift */; };
-		CC4D1D821E82EDFC00B8D75E /* ChatViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4D1D811E82EDFC00B8D75E /* ChatViewCoordinator.swift */; };
 		CC6B3A291E8158B200E7FDFD /* PresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A281E8158B200E7FDFD /* PresentationManager.swift */; };
 		CC6B3A2D1E8163A200E7FDFD /* FadeInOutPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A2C1E8163A200E7FDFD /* FadeInOutPresentationController.swift */; };
 		CC6B3A2F1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A2E1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift */; };
@@ -74,6 +71,11 @@
 		CC6B3A351E81A1E600E7FDFD /* SidebarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC6B3A341E81A1E600E7FDFD /* SidebarTableViewCell.xib */; };
 		CC6B3A371E81A25A00E7FDFD /* SidebarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A361E81A25A00E7FDFD /* SidebarTableViewCell.swift */; };
 		CC6B3A391E81A69D00E7FDFD /* SidebarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A381E81A69D00E7FDFD /* SidebarCoordinator.swift */; };
+		CC7C0A0C1E8966B500A83583 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7C0A0B1E8966B500A83583 /* ChatViewModel.swift */; };
+		CC7C0A0F1E8966BB00A83583 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7C0A0D1E8966BB00A83583 /* ChatViewController.swift */; };
+		CC7C0A101E8966BB00A83583 /* ChatViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7C0A0E1E8966BB00A83583 /* ChatViewCoordinator.swift */; };
+		CC7C0A151E89677C00A83583 /* PrepareContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7C0A141E89677C00A83583 /* PrepareContentViewController.swift */; };
+		CC7C0A171E89679800A83583 /* PrepareContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7C0A161E89679800A83583 /* PrepareContentViewModel.swift */; };
 		CCAF03241E801B0E00015125 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF03211E801B0E00015125 /* SettingsCoordinator.swift */; };
 		CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF03221E801B0E00015125 /* SettingsViewController.swift */; };
 		CCAF03261E801B0E00015125 /* SettingsViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF03231E801B0E00015125 /* SettingsViewControllerDelegate.swift */; };
@@ -163,11 +165,8 @@
 		CBDB99111E7BFEED003EC73F /* MockCalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCalendarEventParticipantData.swift; sourceTree = "<group>"; };
 		CC3DFB631E83BDA300FF28DF /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		CC3DFB651E83C19C00FF28DF /* Defines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defines.swift; sourceTree = "<group>"; };
-		CC3DFB671E83D4E500FF28DF /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		CC4D1D7B1E82E75300B8D75E /* MeSectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeSectionViewController.swift; sourceTree = "<group>"; };
-		CC4D1D7D1E82E77900B8D75E /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		CC4D1D7F1E82EDE700B8D75E /* MeSectionCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeSectionCoordinator.swift; sourceTree = "<group>"; };
-		CC4D1D811E82EDFC00B8D75E /* ChatViewCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewCoordinator.swift; sourceTree = "<group>"; };
 		CC6B3A281E8158B200E7FDFD /* PresentationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationManager.swift; sourceTree = "<group>"; };
 		CC6B3A2C1E8163A200E7FDFD /* FadeInOutPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeInOutPresentationController.swift; sourceTree = "<group>"; };
 		CC6B3A2E1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeInOutPresentationAnimator.swift; sourceTree = "<group>"; };
@@ -176,6 +175,11 @@
 		CC6B3A341E81A1E600E7FDFD /* SidebarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidebarTableViewCell.xib; sourceTree = "<group>"; };
 		CC6B3A361E81A25A00E7FDFD /* SidebarTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarTableViewCell.swift; sourceTree = "<group>"; };
 		CC6B3A381E81A69D00E7FDFD /* SidebarCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarCoordinator.swift; sourceTree = "<group>"; };
+		CC7C0A0B1E8966B500A83583 /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		CC7C0A0D1E8966BB00A83583 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		CC7C0A0E1E8966BB00A83583 /* ChatViewCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewCoordinator.swift; sourceTree = "<group>"; };
+		CC7C0A141E89677C00A83583 /* PrepareContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentViewController.swift; sourceTree = "<group>"; };
+		CC7C0A161E89679800A83583 /* PrepareContentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentViewModel.swift; sourceTree = "<group>"; };
 		CCAF03211E801B0E00015125 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		CCAF03221E801B0E00015125 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		CCAF03231E801B0E00015125 /* SettingsViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerDelegate.swift; sourceTree = "<group>"; };
@@ -364,7 +368,8 @@
 				CB8A15441E7986A90023B2F9 /* Localization */,
 				CBD791601E768A4F0006C590 /* Main Menu */,
 				CC4D1D791E82E6A000B8D75E /* Me */,
-				CC4D1D7A1E82E6AD00B8D75E /* Prepare */,
+				CC4D1D7A1E82E6AD00B8D75E /* PrepareChat */,
+				CC7C0A111E8966E000A83583 /* PrepareContent */,
 				CC6B3A271E81586C00E7FDFD /* Presentation */,
 				CB2880291E70577E0067890A /* Root Container View */,
 				CB1E4F991E7FE22900287613 /* Settings */,
@@ -514,14 +519,14 @@
 			path = Me;
 			sourceTree = "<group>";
 		};
-		CC4D1D7A1E82E6AD00B8D75E /* Prepare */ = {
+		CC4D1D7A1E82E6AD00B8D75E /* PrepareChat */ = {
 			isa = PBXGroup;
 			children = (
-				CC4D1D7D1E82E77900B8D75E /* ChatViewController.swift */,
-				CC4D1D811E82EDFC00B8D75E /* ChatViewCoordinator.swift */,
-				CC3DFB671E83D4E500FF28DF /* ChatViewModel.swift */,
+				CC7C0A0D1E8966BB00A83583 /* ChatViewController.swift */,
+				CC7C0A0E1E8966BB00A83583 /* ChatViewCoordinator.swift */,
+				CC7C0A0B1E8966B500A83583 /* ChatViewModel.swift */,
 			);
-			path = Prepare;
+			path = PrepareChat;
 			sourceTree = "<group>";
 		};
 		CC6B3A271E81586C00E7FDFD /* Presentation */ = {
@@ -532,6 +537,15 @@
 				CC6B3A281E8158B200E7FDFD /* PresentationManager.swift */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		CC7C0A111E8966E000A83583 /* PrepareContent */ = {
+			isa = PBXGroup;
+			children = (
+				CC7C0A141E89677C00A83583 /* PrepareContentViewController.swift */,
+				CC7C0A161E89679800A83583 /* PrepareContentViewModel.swift */,
+			);
+			path = PrepareContent;
 			sourceTree = "<group>";
 		};
 		CCC0C4AF1E826E16002A8362 /* Resources */ = {
@@ -831,6 +845,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC7C0A171E89679800A83583 /* PrepareContentViewModel.swift in Sources */,
 				CBDB99021E7BE91D003EC73F /* EKEvent+CalendarEventData.swift in Sources */,
 				CBDB99081E7BEE05003EC73F /* EventStore.swift in Sources */,
 				CCC0C4D91E82BB2B002A8362 /* TabBarController.swift in Sources */,
@@ -842,13 +857,16 @@
 				CB2880221E7050EB0067890A /* Coordinator.swift in Sources */,
 				CC4D1D7C1E82E75300B8D75E /* MeSectionViewController.swift in Sources */,
 				CBD7915F1E72FDC10006C590 /* LaunchViewModel.swift in Sources */,
+				CC7C0A151E89677C00A83583 /* PrepareContentViewController.swift in Sources */,
 				CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */,
 				CBD791521E71A09F0006C590 /* ContentItem.swift in Sources */,
 				CC6B3A2F1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift in Sources */,
 				CB8A15331E76F56D0023B2F9 /* TrackableEntity.swift in Sources */,
+				CC7C0A0F1E8966BB00A83583 /* ChatViewController.swift in Sources */,
 				CBDB98F21E7AA510003EC73F /* CalendarImportResult.swift in Sources */,
 				CBD7915C1E72F2990006C590 /* LaunchViewController.swift in Sources */,
 				CBD791681E768CC00006C590 /* MainMenuCoordinator.swift in Sources */,
+				CC7C0A101E8966BB00A83583 /* ChatViewCoordinator.swift in Sources */,
 				CC6B3A331E8191BC00E7FDFD /* SidebarViewModel.swift in Sources */,
 				CC6B3A391E81A69D00E7FDFD /* SidebarCoordinator.swift in Sources */,
 				CCC0C4D61E82B405002A8362 /* R.generated.swift in Sources */,
@@ -865,13 +883,12 @@
 				CB28802F1E706AC50067890A /* LearnCategoryListViewModel.swift in Sources */,
 				CBD7914E1E719E2D0006C590 /* ContentCategory.swift in Sources */,
 				CCC0C4DB1E82BDEF002A8362 /* TabBarCoordinator.swift in Sources */,
-				CC4D1D821E82EDFC00B8D75E /* ChatViewCoordinator.swift in Sources */,
 				CC6B3A371E81A25A00E7FDFD /* SidebarTableViewCell.swift in Sources */,
 				CBD791421E7160560006C590 /* LearnContentListViewModel.swift in Sources */,
 				CBDB98FD1E7BE6AF003EC73F /* CalendarEventData.swift in Sources */,
 				CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */,
+				CC7C0A0C1E8966B500A83583 /* ChatViewModel.swift in Sources */,
 				CB8A153A1E7801B90023B2F9 /* CalendarEvent.swift in Sources */,
-				CC3DFB681E83D4E500FF28DF /* ChatViewModel.swift in Sources */,
 				CCAF03261E801B0E00015125 /* SettingsViewControllerDelegate.swift in Sources */,
 				CCE5B9D21E80501D00E01BAE /* SidebarViewController.swift in Sources */,
 				CC6B3A291E8158B200E7FDFD /* PresentationManager.swift in Sources */,
@@ -882,7 +899,6 @@
 				CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */,
 				CB8A152F1E76F27D0023B2F9 /* PageID.swift in Sources */,
 				CB8A154A1E7A7FA20023B2F9 /* CalendarImportManger.swift in Sources */,
-				CC4D1D7E1E82E77900B8D75E /* ChatViewController.swift in Sources */,
 				CB8A154C1E7A8AD30023B2F9 /* CalendarImportTask.swift in Sources */,
 				CB8A15221E769F1F0023B2F9 /* EventTracker.swift in Sources */,
 				CCC0C4BE1E82730E002A8362 /* Extensions.swift in Sources */,

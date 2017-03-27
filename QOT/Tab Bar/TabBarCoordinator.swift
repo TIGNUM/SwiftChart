@@ -111,6 +111,47 @@ extension TabBarCoordinator: ChatViewDelegate {
     }
     
     func didSelectChatSectionNavigate(with chatMessageNavigation: ChatMessage?, in viewController: ChatViewController) {
-        log("didSelectChatSectionUpdate with chatNavigation: \(chatMessageNavigation)")
+        let viewModel = PrepareContentViewModel()
+        let prepareContentViewController = PrepareContentViewController(viewModel: viewModel)
+        prepareContentViewController.delegate = self
+        viewController.present(prepareContentViewController, animated: true, completion: nil)
+    }
+}
+
+extension TabBarCoordinator: PrepareContentViewControllerDelegate {
+    func didTapClose(in viewController: PrepareContentViewController) {
+        viewController.dismiss(animated: true, completion: nil)
+    }
+
+    func didTapShare(in viewController: PrepareContentViewController) {
+        log("didTapShare")
+    }
+
+    func didTapVideo(with ID: String, from view: UIView, in viewController: PrepareContentViewController) {
+        log("didTapVideo: ID: \(ID)")
+    }
+
+    func didTapAddPreparation(in viewController: PrepareContentViewController) {
+        log("didTapAddPreparation")
+    }
+
+    func didTapAddToNotes(in viewController: PrepareContentViewController) {
+        log("didTapAddToNotes")
+    }
+
+    func didTapSaveAs(in viewController: PrepareContentViewController) {
+        log("didTapSaveAs")
+    }
+
+    func didTapAddPreparationInCollection(with ID: String, in viewController: PrepareContentViewController) {
+        log("didTapAddPreparationInCollection")
+    }
+
+    func didTapAddToNotes(with ID: String, in viewController: PrepareContentViewController) {
+        log("didTapAddToNotes")
+    }
+
+    func didTapSaveAs(with ID: String, in viewController: PrepareContentViewController) {
+        log("didTapSaveAs: ID: \(ID)")
     }
 }
