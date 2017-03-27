@@ -41,6 +41,7 @@ class PrepareContentViewController: UIViewController {
 
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeView))
         view.addGestureRecognizer(tapGestureRecognizer)
+        view.backgroundColor = .black
     }
 
     func closeView(gestureRecognizer: UITapGestureRecognizer) {

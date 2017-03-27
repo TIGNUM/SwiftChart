@@ -67,22 +67,19 @@ private func mockContent() -> [Content] {
         return content
     }
 }
-
 private func mockContentCategories() -> [ContentCategory] {
-    let categoryTitles = [
-        "PERFORMANCE MINDSET",
-        "PERFORMANCE RECOVERY",
-        "PERRORMANCE HABITUATION",
-        "PERRORMANCE MOVEMENT",
-        "PERRORMANCE NUTRITION",
-        "PERRORMANCE MOVEMENT"   
+    let categories: [ContentCategory] = [
+        ContentCategory(id: newMockID(), sort: 0, name: "a name", title: "PERFOFMANCE MINDSET", radius: 0.15, centerX: 0.5, centerY: 0.5),
+        ContentCategory(id: newMockID(), sort: 1, name: "a name", title: "PERFORMANCE RECOVERY", radius: 0.131, centerX: 0.32, centerY: 0.24),
+        ContentCategory(id: newMockID(), sort: 2, name: "a name", title: "PERFORMANCE HABITUATION", radius: 0.125, centerX: 0.186, centerY: 0.558),
+        ContentCategory(id: newMockID(), sort: 3, name: "a name", title: "PERFORMANCE MOVEMENT", radius: 0.131, centerX: 0.442, centerY: 0.804),
+        ContentCategory(id: newMockID(), sort: 4, name: "a name", title: "PERFORMANCE NUTRITION", radius: 0.111, centerX: 0.788, centerY: 0.585),
+        ContentCategory(id: newMockID(), sort: 5, name: "a name", title: "PERFORMANCE MOVEMENT", radius: 0.139, centerX: 0.716, centerY: 0.250)
     ]
-    
-    return categoryTitles.enumerated().map { (index, title) -> ContentCategory in
-        let category = ContentCategory(id: newMockID(), sort: index, name: "a name", title: title)
+    categories.forEach { (category) in
         category.contents.append(objectsIn: mockContent())
-        return category
     }
+    return categories
 }
 
 private extension Array {

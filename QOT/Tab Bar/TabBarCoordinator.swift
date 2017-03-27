@@ -105,12 +105,11 @@ extension TabBarCoordinator: MeSectionDelegate {
 // MARK: - PrepareChatBotDelegate
 
 extension TabBarCoordinator: ChatViewDelegate {
-
-    func didSelectChatSectionUpdate(with chatMessageInput: ChatMessage?, in viewController: ChatViewController) {
-        log("didSelectChatSectionNavigate with chatInput: \(chatMessageInput)")
+    func didSelectChatInput(_ input: ChatMessageInput, in viewController: ChatViewController) {
+        log("didSelectChatInput: \(input)")
     }
     
-    func didSelectChatSectionNavigate(with chatMessageNavigation: ChatMessage?, in viewController: ChatViewController) {
+    func didSelectChatNavigation(_ chatMessageNavigation: ChatMessageNavigation, in viewController: ChatViewController) {
         let viewModel = PrepareContentViewModel()
         let prepareContentViewController = PrepareContentViewController(viewModel: viewModel)
         prepareContentViewController.delegate = self

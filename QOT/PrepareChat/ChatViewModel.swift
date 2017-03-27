@@ -105,4 +105,3 @@ private var mockChatMessage: [ChatMessage] {
 
     return [instruction, header, navigations, inputs]
 }
-

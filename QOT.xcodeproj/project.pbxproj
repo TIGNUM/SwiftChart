@@ -29,6 +29,7 @@
 		CB8A15461E7986C90023B2F9 /* Localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = CB8A15451E7986C90023B2F9 /* Localized.strings */; };
 		CB8A154A1E7A7FA20023B2F9 /* CalendarImportManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15491E7A7FA20023B2F9 /* CalendarImportManger.swift */; };
 		CB8A154C1E7A8AD30023B2F9 /* CalendarImportTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A154B1E7A8AD30023B2F9 /* CalendarImportTask.swift */; };
+		CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA054481E890560009E28D6 /* Dequeueable.swift */; };
 		CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB237EF1E6FFF1200AB5AEF /* AppDelegate.swift */; };
 		CBB237F71E6FFF1200AB5AEF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBB237F61E6FFF1200AB5AEF /* Assets.xcassets */; };
 		CBB237FA1E6FFF1200AB5AEF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBB237F81E6FFF1200AB5AEF /* LaunchScreen.storyboard */; };
@@ -59,6 +60,8 @@
 		CBDB990E1E7BFD05003EC73F /* CalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB990D1E7BFD05003EC73F /* CalendarEventParticipantData.swift */; };
 		CBDB99101E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB990F1E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift */; };
 		CBDB99121E7BFEED003EC73F /* MockCalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB99111E7BFEED003EC73F /* MockCalendarEventParticipantData.swift */; };
+		CC20C9901E8978F20056054D /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC20C98E1E8978F20056054D /* ChatViewController.swift */; };
+		CC20C9911E8978F20056054D /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC20C98F1E8978F20056054D /* ChatViewModel.swift */; };
 		CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB631E83BDA300FF28DF /* Utils.swift */; };
 		CC3DFB661E83C19C00FF28DF /* Defines.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB651E83C19C00FF28DF /* Defines.swift */; };
 		CC4D1D7C1E82E75300B8D75E /* MeSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4D1D7B1E82E75300B8D75E /* MeSectionViewController.swift */; };
@@ -71,9 +74,6 @@
 		CC6B3A351E81A1E600E7FDFD /* SidebarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC6B3A341E81A1E600E7FDFD /* SidebarTableViewCell.xib */; };
 		CC6B3A371E81A25A00E7FDFD /* SidebarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A361E81A25A00E7FDFD /* SidebarTableViewCell.swift */; };
 		CC6B3A391E81A69D00E7FDFD /* SidebarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A381E81A69D00E7FDFD /* SidebarCoordinator.swift */; };
-		CC7C0A0C1E8966B500A83583 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7C0A0B1E8966B500A83583 /* ChatViewModel.swift */; };
-		CC7C0A0F1E8966BB00A83583 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7C0A0D1E8966BB00A83583 /* ChatViewController.swift */; };
-		CC7C0A101E8966BB00A83583 /* ChatViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7C0A0E1E8966BB00A83583 /* ChatViewCoordinator.swift */; };
 		CC7C0A151E89677C00A83583 /* PrepareContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7C0A141E89677C00A83583 /* PrepareContentViewController.swift */; };
 		CC7C0A171E89679800A83583 /* PrepareContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7C0A161E89679800A83583 /* PrepareContentViewModel.swift */; };
 		CCAF03241E801B0E00015125 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF03211E801B0E00015125 /* SettingsCoordinator.swift */; };
@@ -91,6 +91,9 @@
 		CCC0C4DB1E82BDEF002A8362 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC0C4DA1E82BDEF002A8362 /* TabBarCoordinator.swift */; };
 		CCE5B9D21E80501D00E01BAE /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE5B9D11E80501D00E01BAE /* SidebarViewController.swift */; };
 		CCE5B9D41E80505800E01BAE /* SidebarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE5B9D31E80505800E01BAE /* SidebarViewController.xib */; };
+		D5952A541E7BCD000073E522 /* LearnCategoryLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5952A531E7BCD000073E522 /* LearnCategoryLayout.swift */; };
+		D5C69EBC1E8036DF00B50E38 /* LearnCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C69EBB1E8036DF00B50E38 /* LearnCategoryCell.swift */; };
+		D5D32F1B1E83D3CA00FACB2E /* LearnCategoryListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D32F191E83D3CA00FACB2E /* LearnCategoryListViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +132,7 @@
 		CB8A15451E7986C90023B2F9 /* Localized.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localized.strings; sourceTree = "<group>"; };
 		CB8A15491E7A7FA20023B2F9 /* CalendarImportManger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarImportManger.swift; sourceTree = "<group>"; };
 		CB8A154B1E7A8AD30023B2F9 /* CalendarImportTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarImportTask.swift; sourceTree = "<group>"; };
+		CBA054481E890560009E28D6 /* Dequeueable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dequeueable.swift; sourceTree = "<group>"; };
 		CBB237EC1E6FFF1200AB5AEF /* QOT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QOT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBB237EF1E6FFF1200AB5AEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBB237F61E6FFF1200AB5AEF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -163,6 +167,8 @@
 		CBDB990D1E7BFD05003EC73F /* CalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventParticipantData.swift; sourceTree = "<group>"; };
 		CBDB990F1E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKParticipant+CalendarEventParticipantData.swift"; sourceTree = "<group>"; };
 		CBDB99111E7BFEED003EC73F /* MockCalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCalendarEventParticipantData.swift; sourceTree = "<group>"; };
+		CC20C98E1E8978F20056054D /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		CC20C98F1E8978F20056054D /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		CC3DFB631E83BDA300FF28DF /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		CC3DFB651E83C19C00FF28DF /* Defines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defines.swift; sourceTree = "<group>"; };
 		CC4D1D7B1E82E75300B8D75E /* MeSectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeSectionViewController.swift; sourceTree = "<group>"; };
@@ -175,9 +181,6 @@
 		CC6B3A341E81A1E600E7FDFD /* SidebarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidebarTableViewCell.xib; sourceTree = "<group>"; };
 		CC6B3A361E81A25A00E7FDFD /* SidebarTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarTableViewCell.swift; sourceTree = "<group>"; };
 		CC6B3A381E81A69D00E7FDFD /* SidebarCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarCoordinator.swift; sourceTree = "<group>"; };
-		CC7C0A0B1E8966B500A83583 /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
-		CC7C0A0D1E8966BB00A83583 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
-		CC7C0A0E1E8966BB00A83583 /* ChatViewCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewCoordinator.swift; sourceTree = "<group>"; };
 		CC7C0A141E89677C00A83583 /* PrepareContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentViewController.swift; sourceTree = "<group>"; };
 		CC7C0A161E89679800A83583 /* PrepareContentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentViewModel.swift; sourceTree = "<group>"; };
 		CCAF03211E801B0E00015125 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
@@ -196,6 +199,9 @@
 		CCE5B9D11E80501D00E01BAE /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		CCE5B9D31E80505800E01BAE /* SidebarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidebarViewController.xib; sourceTree = "<group>"; };
 		CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5952A531E7BCD000073E522 /* LearnCategoryLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnCategoryLayout.swift; sourceTree = "<group>"; };
+		D5C69EBB1E8036DF00B50E38 /* LearnCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnCategoryCell.swift; sourceTree = "<group>"; };
+		D5D32F191E83D3CA00FACB2E /* LearnCategoryListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnCategoryListViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -287,6 +293,7 @@
 			isa = PBXGroup;
 			children = (
 				CB2880331E7144E60067890A /* CollectionUpdate.swift */,
+				CBA054481E890560009E28D6 /* Dequeueable.swift */,
 				CBDB98F31E7B000A003EC73F /* NotificationHandler.swift */,
 				CBD791491E71797C0006C590 /* Typealiases.swift */,
 			);
@@ -396,7 +403,10 @@
 		CBD7913E1E715FEC0006C590 /* Learn Category List */ = {
 			isa = PBXGroup;
 			children = (
+				D5C69EBB1E8036DF00B50E38 /* LearnCategoryCell.swift */,
+				D5952A531E7BCD000073E522 /* LearnCategoryLayout.swift */,
 				CB28802C1E705D3A0067890A /* LearnCategoryListViewController.swift */,
+				D5D32F191E83D3CA00FACB2E /* LearnCategoryListViewController.xib */,
 				CB28802E1E706AC50067890A /* LearnCategoryListViewModel.swift */,
 			);
 			path = "Learn Category List";
@@ -522,9 +532,8 @@
 		CC4D1D7A1E82E6AD00B8D75E /* PrepareChat */ = {
 			isa = PBXGroup;
 			children = (
-				CC7C0A0D1E8966BB00A83583 /* ChatViewController.swift */,
-				CC7C0A0E1E8966BB00A83583 /* ChatViewCoordinator.swift */,
-				CC7C0A0B1E8966B500A83583 /* ChatViewModel.swift */,
+				CC20C98E1E8978F20056054D /* ChatViewController.swift */,
+				CC20C98F1E8978F20056054D /* ChatViewModel.swift */,
 			);
 			path = PrepareChat;
 			sourceTree = "<group>";
@@ -662,6 +671,7 @@
 				TargetAttributes = {
 					CBB237EB1E6FFF1200AB5AEF = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 9K4PJT54S8;
 						ProvisioningStyle = Automatic;
 					};
 					CBB237FF1E6FFF1200AB5AEF = {
@@ -701,6 +711,7 @@
 				CCC0C4CA1E827F87002A8362 /* BentonSans_Book.otf in Resources */,
 				CCE5B9D41E80505800E01BAE /* SidebarViewController.xib in Resources */,
 				CCC0C4CC1E828007002A8362 /* BentonSans_Regular.otf in Resources */,
+				D5D32F1B1E83D3CA00FACB2E /* LearnCategoryListViewController.xib in Resources */,
 				CBD7915D1E72F2990006C590 /* LaunchViewController.xib in Resources */,
 				CCC0C4D41E82A8D9002A8362 /* Simple-Regular.ttf in Resources */,
 				CB8A15461E7986C90023B2F9 /* Localized.strings in Resources */,
@@ -858,15 +869,15 @@
 				CC4D1D7C1E82E75300B8D75E /* MeSectionViewController.swift in Sources */,
 				CBD7915F1E72FDC10006C590 /* LaunchViewModel.swift in Sources */,
 				CC7C0A151E89677C00A83583 /* PrepareContentViewController.swift in Sources */,
+				D5952A541E7BCD000073E522 /* LearnCategoryLayout.swift in Sources */,
 				CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */,
 				CBD791521E71A09F0006C590 /* ContentItem.swift in Sources */,
+				CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */,
 				CC6B3A2F1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift in Sources */,
 				CB8A15331E76F56D0023B2F9 /* TrackableEntity.swift in Sources */,
-				CC7C0A0F1E8966BB00A83583 /* ChatViewController.swift in Sources */,
 				CBDB98F21E7AA510003EC73F /* CalendarImportResult.swift in Sources */,
 				CBD7915C1E72F2990006C590 /* LaunchViewController.swift in Sources */,
 				CBD791681E768CC00006C590 /* MainMenuCoordinator.swift in Sources */,
-				CC7C0A101E8966BB00A83583 /* ChatViewCoordinator.swift in Sources */,
 				CC6B3A331E8191BC00E7FDFD /* SidebarViewModel.swift in Sources */,
 				CC6B3A391E81A69D00E7FDFD /* SidebarCoordinator.swift in Sources */,
 				CCC0C4D61E82B405002A8362 /* R.generated.swift in Sources */,
@@ -887,7 +898,6 @@
 				CBD791421E7160560006C590 /* LearnContentListViewModel.swift in Sources */,
 				CBDB98FD1E7BE6AF003EC73F /* CalendarEventData.swift in Sources */,
 				CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */,
-				CC7C0A0C1E8966B500A83583 /* ChatViewModel.swift in Sources */,
 				CB8A153A1E7801B90023B2F9 /* CalendarEvent.swift in Sources */,
 				CCAF03261E801B0E00015125 /* SettingsViewControllerDelegate.swift in Sources */,
 				CCE5B9D21E80501D00E01BAE /* SidebarViewController.swift in Sources */,
@@ -898,12 +908,15 @@
 				CCAF032A1E8035C800015125 /* SettingsTableViewCell.swift in Sources */,
 				CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */,
 				CB8A152F1E76F27D0023B2F9 /* PageID.swift in Sources */,
+				CC20C9901E8978F20056054D /* ChatViewController.swift in Sources */,
 				CB8A154A1E7A7FA20023B2F9 /* CalendarImportManger.swift in Sources */,
 				CB8A154C1E7A8AD30023B2F9 /* CalendarImportTask.swift in Sources */,
 				CB8A15221E769F1F0023B2F9 /* EventTracker.swift in Sources */,
 				CCC0C4BE1E82730E002A8362 /* Extensions.swift in Sources */,
 				CC6B3A2D1E8163A200E7FDFD /* FadeInOutPresentationController.swift in Sources */,
+				CC20C9911E8978F20056054D /* ChatViewModel.swift in Sources */,
 				CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */,
+				D5C69EBC1E8036DF00B50E38 /* LearnCategoryCell.swift in Sources */,
 				CC4D1D801E82EDE700B8D75E /* MeSectionCoordinator.swift in Sources */,
 				CB8A15311E76F31B0023B2F9 /* PageTrackable.swift in Sources */,
 				CB2880241E7051710067890A /* AppCoordinator.swift in Sources */,
@@ -1046,6 +1059,7 @@
 			baseConfigurationReference = 42795728C4F3229DFB18981E /* Pods-QOT.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9K4PJT54S8;
 				INFOPLIST_FILE = QOT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOT;
@@ -1059,6 +1073,7 @@
 			baseConfigurationReference = 2F1C8D6D4864F462A3F805BB /* Pods-QOT.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9K4PJT54S8;
 				INFOPLIST_FILE = QOT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOT;

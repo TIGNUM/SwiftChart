@@ -79,7 +79,7 @@ extension AppCoordinator: LaunchViewControllerDelegate {
 extension AppCoordinator: CalendarImportMangerDelegate {
 
     func eventStoreAuthorizationRequired(for mangager: CalendarImportManger, currentStatus: EKAuthorizationStatus) {
-        EKEventStore().requestAccess(to: .event) { (success, error) in
+        EKEventStore().requestAccess(to: .event) { (success, _) in
             if success {
                 mangager.importEvents()
             } else {
