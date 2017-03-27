@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Rswift
 
 /// The delegate of a `LearnCategoryListViewController`.
 protocol LearnCategoryListViewControllerDelegate: class {
@@ -14,22 +15,16 @@ protocol LearnCategoryListViewControllerDelegate: class {
     func didSelectCategory(at index: Index, in viewController: LearnCategoryListViewController)
 }
 
-// FIXME: This is a dummy implementation of LearnCategoryListViewController.
-
 /// Displays a collection of learn categories of learn content.
-final class LearnCategoryListViewController: UITableViewController {
-   
-    // MARK: - Properties
+final class LearnCategoryListViewController: UIViewController {
+    @IBOutlet weak var collectionView: UICollectionView!
     
     let viewModel: LearnCategoryListViewModel
     weak var delegate: LearnCategoryListViewControllerDelegate?
     
-    // MARK: - Life Cycle
-    
     init(viewModel: LearnCategoryListViewModel) {
         self.viewModel = viewModel
-        
-        super.init(style: .plain)
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -39,38 +34,41 @@ final class LearnCategoryListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.backgroundColor = .qotNavy
+        let layout = LearnCategoryLayout(height: collectionView.frame.height, categories: viewModel.categories)
+        collectionView.collectionViewLayout = layout
+        collectionView.register(LearnCategoryCell.self, forCellWithReuseIdentifier: "Cell")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        centerCollectView()
+    }
+    
+    private func centerCollectView() {
+        let contentSize = collectionView.collectionViewLayout.collectionViewContentSize
+        let xOffset = (contentSize.width - collectionView.frame.width) / 2
+        let yOffset = (contentSize.height - collectionView.frame.height) / 2
+        collectionView.contentOffset = CGPoint(x: xOffset, y: yOffset)
     }
 }
 
-// MARK: - UITableViewDelegate, UITableViewDataSource
-
-extension LearnCategoryListViewController {
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension LearnCategoryListViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.categoryCount
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let reuseID = "cell"
-        let category = viewModel.category(at: indexPath.row)
-        
-        let cell: UITableViewCell
-        if let existing = tableView.dequeueReusableCell(withIdentifier: reuseID) {
-            cell = existing
-        } else {
-            cell = UITableViewCell(style: .subtitle, reuseIdentifier: reuseID)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let category = viewModel.category(at: indexPath.item)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? LearnCategoryCell else {
+            fatalError("Incorrect cell type")
         }
-        
-        cell.textLabel?.text = category.title
-        cell.textLabel?.textColor = .qotWhite
-        cell.detailTextLabel?.text = "\(category.viewedCount)/\(category.itemCount)"
-        cell.backgroundColor = .qotNavy
+        cell.configure(with: category)
         
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.didSelectCategory(at: indexPath.row, in: self)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.didSelectCategory(at: indexPath.item, in: self)
     }
 }
