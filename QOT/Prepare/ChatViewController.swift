@@ -12,8 +12,8 @@ import ReactiveKit
 import Bond
 
 protocol ChatViewDelegate: class {
-    func didSelectChatSectionNavigate(with chatNavigation: ChatNavigation?, in viewController: ChatViewController)
-    func didSelectChatSectionUpdate(with chatInput: ChatInput?, in viewController: ChatViewController)
+    func didSelectChatSectionNavigate(with chatMessageNavigation: ChatMessage?, in viewController: ChatViewController)
+    func didSelectChatSectionUpdate(with chatMessageInput: ChatMessage?, in viewController: ChatViewController)
 }
 
 class ChatViewController: UITableViewController {
@@ -67,35 +67,36 @@ class ChatViewController: UITableViewController {
 
 extension ChatViewController {
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.sectionCount
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.chatSectionDataCount(at: section)
+        return viewModel.chatMessageCount
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let chatCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        let chatData = viewModel.chatSectionData(at: indexPath)
-        
-        switch chatData {
-        case .chatMessages(let messages): chatCell.textLabel?.text = messages[indexPath.row].text
-        case .chatNavigations(let navigations): chatCell.textLabel?.text = navigations[indexPath.row].title
-        case .chatInputs(let inputs): chatCell.textLabel?.text = inputs[indexPath.row].title
+        let chatMessage = viewModel.chatMessage(at: indexPath.row)
+
+        let text: String
+        switch chatMessage {
+        case .instruction(_, _): text = "Hi Louis what are you preparing for?"
+        case .header(_, _): text = "Delivered: 12:34"
+        case .navigation(_): text = "15 Navigation Items"
+        case .input(_): text = "5 Input Items"
         }
+
+        chatCell.textLabel?.text = text
 
         return chatCell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let chatSectiondata = viewModel.chatSectionData(at: indexPath)
 
-        switch indexPath.section {
-        case 1: delegate?.didSelectChatSectionNavigate(with: chatSectiondata.chatNavigation(at: indexPath.row), in: self)
-        case 2: delegate?.didSelectChatSectionUpdate(with: chatSectiondata.chatInput(at: indexPath.row), in: self)
-        default: return
+        let chatMessage = viewModel.chatMessage(at: indexPath.row)
+
+        switch chatMessage {
+        case .navigation: delegate?.didSelectChatSectionNavigate(with: chatMessage, in: self)
+        case .input: delegate?.didSelectChatSectionUpdate(with: chatMessage, in: self)
+        case .header, .instruction: return
         }
     }
 }

@@ -13,33 +13,21 @@ final class ChatViewModel {
 
     // MARK: - Properties
 
-    fileprivate var chatSections: [ChatSection] = []
+    fileprivate var mockChatMessages: [ChatMessage] = mockChatMessage
+    fileprivate var chatMessages = [ChatMessage]()
     fileprivate var timer: Timer?
-    fileprivate var mockSections: [ChatSection] = mockData
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
     init() {
         setupTimer()
     }
 
-    var sectionCount: Index {
-        return chatSections.count
+    var chatMessageCount: Index {
+        return chatMessages.count
     }
 
-    func chatSection(at section: Index) -> ChatSection {
-        return chatSections[section]
-    }
-
-    func chatSectionData(at indexPath: IndexPath) -> ChatSectionData {
-        return chatSections[indexPath.section].data
-    }
-
-    func chatSectionDataCount(at section: Index) -> Index {
-        switch chatSections[section].data {
-        case .chatMessages(let messages): return messages.count
-        case .chatNavigations(let navigations): return navigations.count
-        case .chatInputs(let inputs): return inputs.count
-        }
+    func chatMessage(at row: Index) -> ChatMessage {
+        return chatMessages[row]
     }
 
     deinit {
@@ -53,10 +41,10 @@ extension ChatViewModel {
 
     fileprivate func setupTimer() {
         let timer = Timer.init(fire: Date(timeIntervalSinceNow: 1), interval: 2, repeats: true) { [unowned self] (timer) in
-            if let first = self.mockSections.first {
-                let index = self.chatSections.count
-                self.mockSections.remove(at: 0)
-                self.chatSections.append(first)
+            if let first = self.mockChatMessages.first {
+                let index = self.chatMessages.count
+                self.mockChatMessages.remove(at: 0)
+                self.chatMessages.append(first)
                 let update = CollectionUpdate.update(deletions: [], insertions: [index], modifications: [])
                 self.updates.next(update)
             } else {
@@ -68,110 +56,53 @@ extension ChatViewModel {
     }
 }
 
-private func messagesSection() -> ChatSection {
-    let instructionMessage = ChatMessage.text("Hi Louis what are you preparing for?")
-    let instructionFooter = "Delivered at 12:58"
-    let insructionData = ChatSectionData.chatMessages([instructionMessage])
-    return MockChatSection(header: nil, footer: instructionFooter, data: insructionData)
-}
-
-private func navigationSection() -> ChatSection {
-    let navigations = [
-        ChatNavigation(title: "Meeting"),
-        ChatNavigation(title: "Negotiation"),
-        ChatNavigation(title: "Presentation"),
-        ChatNavigation(title: "Business Dinner"),
-        ChatNavigation(title: "Pre-Vacation"),
-        ChatNavigation(title: "Work to home transition")
-    ]
-
-    return MockChatSection(header: "PREPARATIONS", footer: nil, data: ChatSectionData.chatNavigations(navigations))
-}
-
-private func inputSection() -> ChatSection {
-    let inputs = [
-        ChatInput(title: "Normal day"),
-        ChatInput(title: "Tough day")
-    ]
-
-    return MockChatSection(header: "DAY PROTOCOL", footer: nil, data: ChatSectionData.chatInputs(inputs))
-}
-
-private var mockData: [ChatSection] {
-    return [
-        messagesSection(),
-        navigationSection(),
-        inputSection()
-    ]
-}
-
-protocol ChatSection {
-    var header: String? { get }
-    var footer: String? { get }
-    var data: ChatSectionData { get }
-}
-
-private struct MockChatSection: ChatSection {
-    let header: String?
-    let footer: String?
-    let data: ChatSectionData
-}
-
-enum ChatSectionData {
-    case chatMessages([ChatMessage])
-    case chatNavigations([ChatNavigation])
-    case chatInputs([ChatInput])
-
-    var chatMessages: [ChatMessage]? {
-        switch self {
-        case .chatMessages(let messages): return messages
-        default: return nil
-        }
-    }
-
-    var chatNavigations: [ChatNavigation]? {
-        switch self {
-        case .chatNavigations(let navigations): return navigations
-        default: return nil
-        }
-    }
-
-    var chatInputs: [ChatInput]? {
-        switch self {
-        case .chatInputs(let inputs): return inputs
-        default: return nil
-        }
-    }
-
-    func chatMessage(at index: Index) -> ChatMessage? {
-        return chatMessages?[index]
-    }
-
-    func chatNavigation(at index: Index) -> ChatNavigation? {
-        return chatNavigations?[index]
-    }
-
-    func chatInput(at index: Index) -> ChatInput? {
-        return chatInputs?[index]
-    }
-}
-
 enum ChatMessage {
-    case text(String)
-    case typing
+    case instruction(type: InstructionType, image: UIImage?)
+    case header(title: String, alignment: NSTextAlignment)
+    case navigation([ChatMessageNavigation])
+    case input([ChatMessageInput])
 
-    var text: String? {
-        switch self {
-        case .text(let text): return text
-        case .typing: return nil
-        }
+    enum InstructionType {
+        case message(String)
+        case typing
     }
 }
 
-struct ChatNavigation {
+struct ChatMessageNavigation {
     let title: String
+    let selected: Bool
 }
 
-struct ChatInput {
+struct ChatMessageInput {
     let title: String
+    let selected: Bool
 }
+
+private var chatMessageNavigations: [ChatMessageNavigation] {
+    return [
+        ChatMessageNavigation(title: "Meeting", selected: false),
+        ChatMessageNavigation(title: "Negotiation", selected: false),
+        ChatMessageNavigation(title: "Presentation", selected: false),
+        ChatMessageNavigation(title: "Business Dinner", selected: false),
+        ChatMessageNavigation(title: "Pre-Vacation", selected: false),
+        ChatMessageNavigation(title: "Work to home transition", selected: false)
+    ]
+}
+
+private var chatMessageInputs: [ChatMessageInput] {
+    return [
+        ChatMessageInput(title: "Normal day", selected: false),
+        ChatMessageInput(title: "Tough day", selected: false)
+    ]
+}
+
+private var mockChatMessage: [ChatMessage] {
+    let instructionTypeMessage = ChatMessage.InstructionType.message("Hi Louis what are you preparing for?")
+    let instruction = ChatMessage.instruction(type: instructionTypeMessage, image: nil)
+    let header = ChatMessage.header(title: "Delivered: 12:34", alignment: .left)
+    let navigations = ChatMessage.navigation(chatMessageNavigations)
+    let inputs = ChatMessage.input(chatMessageInputs)
+
+    return [instruction, header, navigations, inputs]
+}
+
