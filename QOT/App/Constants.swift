@@ -26,4 +26,21 @@ struct Layout {
         case sidebarSmall = 65
         case sidebarHeader = 50
     }
+
+    enum CornerRadius: CGFloat {
+        case chatLabelInstruction = 8
+        case chatLabelOptionNavigation = 5
+        case chatLabelOptionUpdate = 10
+    }
+}
+
+struct Databsase {
+    enum Key: String {
+        case primary = "id"
+        case sort = "sort"
+    }
+}
+
+enum Identifier: String {
+    case chatTableViewCell = "Cell"
 }

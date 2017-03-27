@@ -19,12 +19,12 @@ final class TabBarCoordinator: ParentCoordinator {
     fileprivate let eventTracker: EventTracker
     fileprivate let selectedIndex: Index
     
-    fileprivate lazy var categories: Results<ContentCategory> = {
-        return self.databaseManager.mainRealm.objects(ContentCategory.self).sorted(byKeyPath: "sort")
+    fileprivate lazy var contentCategories: Results<ContentCategory> = {
+        return self.databaseManager.mainRealm.objects(ContentCategory.self).sorted(byKeyPath: Databsase.Key.sort.rawValue)
     }()
     
     fileprivate lazy var learnCategoryListViewController: LearnCategoryListViewController = {
-        let viewModel = LearnCategoryListViewModel(categories: self.categories)
+        let viewModel = LearnCategoryListViewModel(categories: self.contentCategories)
         let learnCategoryListVC = LearnCategoryListViewController(viewModel: viewModel)
         learnCategoryListVC.delegate = self
         return learnCategoryListVC
@@ -37,11 +37,12 @@ final class TabBarCoordinator: ParentCoordinator {
         return meViewController
     }()
     
-    fileprivate lazy var prepareSectionViewController: PrepareSectionViewController = {
-        let prepareViewComntroller = PrepareSectionViewController()
-        prepareViewComntroller.delegate = self
-        
-        return prepareViewComntroller
+    fileprivate lazy var chatViewController: ChatViewController = {
+        let viewModel = ChatViewModel()
+        let chatViewController = ChatViewController(viewModel: viewModel)
+        chatViewController.delegate = self
+
+        return chatViewController
     }()
     
     var children = [Coordinator]()
@@ -67,7 +68,7 @@ final class TabBarCoordinator: ParentCoordinator {
     func addViewControllers() {
         viewControllers.append(learnCategoryListViewController)
         viewControllers.append(meSectionViewController)
-        viewControllers.append(prepareSectionViewController)
+        viewControllers.append(chatViewController)
     }
 }
 
@@ -75,7 +76,7 @@ final class TabBarCoordinator: ParentCoordinator {
 
 extension TabBarCoordinator: LearnCategoryListViewControllerDelegate {
     func didSelectCategory(at index: Index, in viewController: LearnCategoryListViewController) {
-        let category = categories[index]
+        let category = contentCategories[index]
         let coordinator = LearnContentListCoordinator(root: viewController, databaseManager: databaseManager, eventTracker: eventTracker, category: category)
         coordinator.start()
         coordinator.delegate = self
@@ -101,11 +102,14 @@ extension TabBarCoordinator: MeSectionDelegate {
     }
 }
 
-// MARK: - PrepareSectionDelegate
+// MARK: - PrepareChatBotDelegate
 
-extension TabBarCoordinator: PrepareSectionDelegate {
-    
-    func didTapPrepareItem(in viewController: PrepareSectionViewController) {
-        // TODO
+extension TabBarCoordinator: ChatViewDelegate {
+    func didSelectChatInput(_ input: ChatMessageInput, in viewController: ChatViewController) {
+        log("didSelectChatInput: \(input)")
+    }
+
+    func didSelectChatNavigation(_ navigation: ChatMessageNavigation, in viewController: ChatViewController) {
+        log("didSelectChatnavigation: \(navigation)")
     }
 }
