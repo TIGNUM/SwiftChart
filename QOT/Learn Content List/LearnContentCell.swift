@@ -19,8 +19,6 @@ class LearnContentCell: UICollectionViewCell {
         label.minimumScaleFactor = 0.1
         label.lineBreakMode = .byTruncatingTail
         label.numberOfLines = 3
-        label.text = "i am loading"
-        //label.backgroundColor = .green
         return label
     }()
     
@@ -28,8 +26,6 @@ class LearnContentCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = .white
         label.font = .systemFont(ofSize: 8)
-        label.text = "hello"
-        //label.backgroundColor = .orange
         return label
     }()
     
@@ -40,24 +36,28 @@ class LearnContentCell: UICollectionViewCell {
         return view
     }()
     
+    fileprivate lazy var imageView: UIImageView = {
+        let view = UIImageView()
+        view.layer.cornerRadius = view.frame.width / 2
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
+    
     func configure(with content: LearnContent) {
         
         titleLabel.text = content.title
         videoDurationLabel.text = "\(content.minutesRequired)MIN" // FIXME: Localization
-        
         let bubbleSelected = content.viewed
         if bubbleSelected != true {
-            
+            imageView.image = R.image.bubblesWithCorner()
         } else {
-            
+            imageView.image = R.image.bubblesWithGradient()
         }
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.layer.borderColor = UIColor.white.cgColor
         backgroundColor = UIColor.clear
-        contentView.layer.borderWidth = 1.0
         contentView.addSubview(textContainerView)
         setupLayout()
     }
@@ -69,8 +69,9 @@ class LearnContentCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         contentView.layer.cornerRadius = frame.width / 2
+        imageView.frame = contentView.frame
+        contentView.addSubview(imageView)
     }
-    
 }
 
 private extension LearnContentCell {
