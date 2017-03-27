@@ -14,7 +14,7 @@ class LearnContentCell: UICollectionViewCell {
     fileprivate lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .systemFont(ofSize: 16)
+        label.font = .bubbleTitle
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.1
         label.lineBreakMode = .byTruncatingTail
@@ -25,7 +25,7 @@ class LearnContentCell: UICollectionViewCell {
     fileprivate lazy var videoDurationLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .systemFont(ofSize: 8)
+        label.font = .bubbleSubTitle
         return label
     }()
     
@@ -48,7 +48,7 @@ class LearnContentCell: UICollectionViewCell {
         titleLabel.text = content.title
         videoDurationLabel.text = "\(content.minutesRequired)MIN" // FIXME: Localization
         let bubbleSelected = content.viewed
-        if bubbleSelected != true {
+        if !bubbleSelected {
             imageView.image = R.image.bubblesWithCorner()
         } else {
             imageView.image = R.image.bubblesWithGradient()
@@ -59,6 +59,7 @@ class LearnContentCell: UICollectionViewCell {
         super.init(frame: frame)
         backgroundColor = UIColor.clear
         contentView.addSubview(textContainerView)
+        contentView.addSubview(imageView)
         setupLayout()
     }
     
@@ -69,13 +70,14 @@ class LearnContentCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         contentView.layer.cornerRadius = frame.width / 2
-        imageView.frame = contentView.frame
-        contentView.addSubview(imageView)
+        
+        contentView.layer.transform = CATransform3DMakeRotation(0.174533, 0, 0, 1)
     }
 }
 
 private extension LearnContentCell {
     func setupLayout() {
+        imageView.edgeAnchors == contentView.edgeAnchors
         textContainerView.horizontalAnchors == contentView.horizontalAnchors + 20
         textContainerView.topAnchor == contentView.topAnchor +  50
         textContainerView.widthAnchor == contentView.widthAnchor - 40

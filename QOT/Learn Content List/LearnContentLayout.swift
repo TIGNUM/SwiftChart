@@ -9,50 +9,86 @@
 import UIKit
 
 final class LearnContentLayout: UICollectionViewLayout {
-    init(frame: CGRect, totalNumberOfBubbles: Int) {
-        
-        func createPattern(frame: CGRect) -> [CGPoint] {
-            var allBubbles = [CGPoint]() // an array for all sorted bubbles
-            let padding: CGFloat = 20
-            let bubbleSize: CGFloat = 159.9
-            var xCoordinate: CGFloat = frame.minX + bubbleSize * 2
-            let yCoordinate: CGFloat = frame.height / 2 - bubbleSize / 2
-            
-            for index in 0..<totalNumberOfBubbles {
-                if index != 0 {
-                    allBubbles.append(CGPoint(x: xCoordinate + bubbleSize, y: yCoordinate + bubbleSize / 2 + padding / 2))
-                    allBubbles.append(CGPoint(x: xCoordinate + bubbleSize, y: yCoordinate - bubbleSize / 2 - padding / 2))
-                    allBubbles.append(CGPoint(x: xCoordinate + bubbleSize * 2, y: yCoordinate))
-                    allBubbles.append(CGPoint(x: xCoordinate + bubbleSize * 2, y: yCoordinate + bubbleSize + padding))
-                    allBubbles.append(CGPoint(x: xCoordinate + bubbleSize * 2, y: yCoordinate - bubbleSize - padding))
-                    xCoordinate = (xCoordinate + bubbleSize * 2)
-                } else {
-                    allBubbles.append(CGPoint(x: xCoordinate, y: yCoordinate ))
-                }
-            }
-            return allBubbles
+    private var layoutAttributes: [UICollectionViewLayoutAttributes] = []
+    private var contentSize: CGSize = CGSize.zero
+    
+    var bubbleCount: Int {
+        didSet {
+            invalidateLayout()
         }
+    }
+    
+    init(bubbleCount: Int) {
+        self.bubbleCount = bubbleCount
         
-        var attributes: [UICollectionViewLayoutAttributes] = []
-        self.contentSize = CGSize(width: frame.width * 100, height: frame.height)
-        let contentArray: Array = createPattern(frame: frame)
-        
-        for index in 0..<totalNumberOfBubbles {
-            let attrs = UICollectionViewLayoutAttributes(forCellWith: IndexPath(item: index, section: 0))
-            attrs.frame = CGRect(x: contentArray[index].x, y:contentArray[index].y, width: 159.9, height: 159.9).integral
-            attributes.append(attrs)
-        }
-        
-        self.layoutAttributes = attributes
         super.init()
+    }
+    
+    private func setup() {
+        
+        
+        if let collectionView = collectionView {
+            let horrizontalPadding: CGFloat = 30
+            func createPattern(frame: CGRect) -> ArraySlice<CGPoint> {
+                var allBubbles = [CGPoint]() // an array for all sorted bubbles
+                let interBubbleSpacing: CGFloat = 20
+                let bubbleSize: CGFloat = 160
+                var xCoordinate: CGFloat = frame.minX + horrizontalPadding
+                let yCoordinate: CGFloat = frame.height / 2 - bubbleSize / 2
+                
+                for index in 0..<bubbleCount {
+                    if index != 0 {
+                        allBubbles.append(CGPoint(x: xCoordinate + bubbleSize, y: yCoordinate + bubbleSize / 2 + interBubbleSpacing / 2))
+                        allBubbles.append(CGPoint(x: xCoordinate + bubbleSize, y: yCoordinate - bubbleSize / 2 - interBubbleSpacing / 2))
+                        allBubbles.append(CGPoint(x: xCoordinate + bubbleSize * 2, y: yCoordinate))
+                        allBubbles.append(CGPoint(x: xCoordinate + bubbleSize * 2, y: yCoordinate + bubbleSize + interBubbleSpacing))
+                        allBubbles.append(CGPoint(x: xCoordinate + bubbleSize * 2, y: yCoordinate - bubbleSize - interBubbleSpacing))
+                        xCoordinate = (xCoordinate + bubbleSize * 2)
+                    } else {
+                        allBubbles.append(CGPoint(x: xCoordinate, y: yCoordinate ))
+                    }
+                }
+                return allBubbles.dropLast(allBubbles.count - bubbleCount)
+            }
+            
+            let bounds = collectionView.bounds
+            let frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height)
+            
+            let contentArray = createPattern(frame: frame)
+            
+            let attributes = contentArray.enumerated().map { (index, point) -> UICollectionViewLayoutAttributes in
+                let attrs = UICollectionViewLayoutAttributes(forCellWith: IndexPath(item: index, section: 0))
+                attrs.frame = CGRect(x: point.x, y: point.y, width: 160, height: 160)
+                return attrs
+            }
+            
+            let maxX = attributes.reduce(CGFloat(0), { max($0.0, $0.1.frame.maxX) }) + horrizontalPadding
+            contentSize = CGSize(width: maxX + horrizontalPadding, height: frame.height)
+            
+            layoutAttributes = attributes
+        } else {
+            contentSize = CGSize.zero
+            layoutAttributes = []
+        }
+    }
+    
+    override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+        if let collectionView = collectionView {
+            return collectionView.bounds.size != newBounds.size
+        } else {
+            return false
+        }
+    }
+    
+    override func invalidateLayout() {
+        super.invalidateLayout()
+        
+        setup()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    private var layoutAttributes: [UICollectionViewLayoutAttributes]
-    private var contentSize: CGSize
     
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         return layoutAttributes[indexPath.item]

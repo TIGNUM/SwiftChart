@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Anchorage
 
 /// The delegate of a `LearnContentListViewController`.
 protocol LearnContentListViewControllerDelegate: class {
@@ -31,7 +32,7 @@ final class LearnContentListViewController: UIViewController, UICollectionViewDa
     }
     
     lazy var collectionView: UICollectionView = {
-        let layout = LearnContentLayout(frame: CGRect.zero, totalNumberOfBubbles:0)
+        let layout = LearnContentLayout(bubbleCount:0)
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -43,18 +44,18 @@ final class LearnContentListViewController: UIViewController, UICollectionViewDa
         collectionView.backgroundColor = .black
         collectionView.register(LearnContentCell.self, forCellWithReuseIdentifier: "Cell")
         view.addSubview(collectionView)
+        
+        setupLayout()
+        
+        
+        view.backgroundColor = UIColor.black
+        collectionView.collectionViewLayout = LearnContentLayout(bubbleCount: viewModel.itemCount)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 200, bottom: 0, right: 200)
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        collectionView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
-        collectionView.collectionViewLayout = LearnContentLayout(frame: collectionView.frame, totalNumberOfBubbles: viewModel.itemCount)
-        //collectionView.transform = CGAffineTransform(rotationAngle: -0.174533)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
+
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -72,5 +73,14 @@ final class LearnContentListViewController: UIViewController, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.didSelectContent(at: indexPath.item, in: self)
+    }
+}
+
+extension LearnContentListViewController {
+    func setupLayout() {
+        collectionView.topAnchor == view.topAnchor + 100
+        collectionView.bottomAnchor == view.bottomAnchor
+        collectionView.horizontalAnchors == view.horizontalAnchors - 200
+        collectionView.transform = CGAffineTransform(rotationAngle: -0.174533)
     }
 }
