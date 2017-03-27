@@ -36,7 +36,7 @@ final class LearnCategoryListViewController: UIViewController {
         
         let layout = LearnCategoryLayout(height: collectionView.frame.height, categories: viewModel.categories)
         collectionView.collectionViewLayout = layout
-        collectionView.register(LearnCategoryCell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView.registerDequeueable(LearnCategoryCell.self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,9 +60,7 @@ extension LearnCategoryListViewController: UICollectionViewDataSource, UICollect
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let category = viewModel.category(at: indexPath.item)
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? LearnCategoryCell else {
-            fatalError("Incorrect cell type")
-        }
+        let cell: LearnCategoryCell = collectionView.dequeueCell(for: indexPath)
         cell.configure(with: category)
         
         return cell
