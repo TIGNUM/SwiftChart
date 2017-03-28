@@ -25,6 +25,8 @@ class ChatViewController: UITableViewController {
     fileprivate let cellIdentifier = Identifier.chatTableViewCell.rawValue
     weak var delegate: ChatViewDelegate?
 
+
+
     // MARK: - Life Cycle
 
     init(viewModel: ChatViewModel) {

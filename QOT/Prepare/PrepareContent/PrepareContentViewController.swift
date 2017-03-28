@@ -21,7 +21,7 @@ protocol PrepareContentViewControllerDelegate: class {
     func didTapSaveAs(with localID: String, in viewController: PrepareContentViewController)
 }
 
-class PrepareContentViewController: UIViewController {
+final class PrepareContentViewController: UIViewController {
 
     let viewModel: PrepareContentViewModel
     weak var delegate: PrepareContentViewControllerDelegate?
