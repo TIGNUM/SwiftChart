@@ -11,6 +11,8 @@ import UIKit
 protocol PrepareContentTravelViewControllerDelegate: class {
     func didTapClose(in viewController: PrepareContentTravelViewController)
     func didTapVideo(with ID: String, from view: UIView, in viewController: PrepareContentTravelViewController)
+    func didTapOpenContentSection(with ID: String, from view: UIView, in viewController: PrepareContentTravelViewController)
+    func didTapCloseContentSection(with ID: String, from view: UIView, in viewController: PrepareContentTravelViewController)
 }
 
 class PrepareContentTravelViewController: UIViewController {
