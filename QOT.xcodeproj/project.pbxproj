@@ -60,6 +60,8 @@
 		CBDB990E1E7BFD05003EC73F /* CalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB990D1E7BFD05003EC73F /* CalendarEventParticipantData.swift */; };
 		CBDB99101E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB990F1E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift */; };
 		CBDB99121E7BFEED003EC73F /* MockCalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB99111E7BFEED003EC73F /* MockCalendarEventParticipantData.swift */; };
+		CC1AB3851E8A8D7200B2DF01 /* PrepareContentUpcomingTripsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1AB3841E8A8D7200B2DF01 /* PrepareContentUpcomingTripsViewModel.swift */; };
+		CC1AB3871E8A8D9100B2DF01 /* PrepareContentUpcomingTripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1AB3861E8A8D9100B2DF01 /* PrepareContentUpcomingTripsViewController.swift */; };
 		CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB631E83BDA300FF28DF /* Utils.swift */; };
 		CC3DFB661E83C19C00FF28DF /* Defines.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB651E83C19C00FF28DF /* Defines.swift */; };
 		CC4D1D7C1E82E75300B8D75E /* MeSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4D1D7B1E82E75300B8D75E /* MeSectionViewController.swift */; };
@@ -169,6 +171,8 @@
 		CBDB990D1E7BFD05003EC73F /* CalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventParticipantData.swift; sourceTree = "<group>"; };
 		CBDB990F1E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKParticipant+CalendarEventParticipantData.swift"; sourceTree = "<group>"; };
 		CBDB99111E7BFEED003EC73F /* MockCalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCalendarEventParticipantData.swift; sourceTree = "<group>"; };
+		CC1AB3841E8A8D7200B2DF01 /* PrepareContentUpcomingTripsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareContentUpcomingTripsViewModel.swift; path = PrepareContentUpcomingTripsViewModel.swift; sourceTree = "<group>"; };
+		CC1AB3861E8A8D9100B2DF01 /* PrepareContentUpcomingTripsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareContentUpcomingTripsViewController.swift; path = PrepareContentUpcomingTripsViewController.swift; sourceTree = "<group>"; };
 		CC3DFB631E83BDA300FF28DF /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		CC3DFB651E83C19C00FF28DF /* Defines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defines.swift; sourceTree = "<group>"; };
 		CC4D1D7B1E82E75300B8D75E /* MeSectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeSectionViewController.swift; sourceTree = "<group>"; };
@@ -523,12 +527,23 @@
 			path = Interfaces;
 			sourceTree = "<group>";
 		};
+		CC1AB3811E8A8CF200B2DF01 /* PrepareContentUpcomingTrips */ = {
+			isa = PBXGroup;
+			children = (
+				CC1AB3861E8A8D9100B2DF01 /* PrepareContentUpcomingTripsViewController.swift */,
+				CC1AB3841E8A8D7200B2DF01 /* PrepareContentUpcomingTripsViewModel.swift */,
+			);
+			name = PrepareContentUpcomingTrips;
+			path = PrepareContentUpcomingTrips;
+			sourceTree = "<group>";
+		};
 		CC20C9921E8981070056054D /* Prepare */ = {
 			isa = PBXGroup;
 			children = (
 				CC4D1D7A1E82E6AD00B8D75E /* PrepareChat */,
 				CC7C0A111E8966E000A83583 /* PrepareContent */,
 				CC20C9931E8981240056054D /* PrepareContentTravel */,
+				CC1AB3811E8A8CF200B2DF01 /* PrepareContentUpcomingTrips */,
 			);
 			path = Prepare;
 			sourceTree = "<group>";
@@ -905,9 +920,11 @@
 				CC6B3A391E81A69D00E7FDFD /* SidebarCoordinator.swift in Sources */,
 				CCC0C4D61E82B405002A8362 /* R.generated.swift in Sources */,
 				CBD791561E72BAAC0006C590 /* DatabaseManager.swift in Sources */,
+				CC1AB3871E8A8D9100B2DF01 /* PrepareContentUpcomingTripsViewController.swift in Sources */,
 				CBD791401E71604C0006C590 /* LearnContentListViewController.swift in Sources */,
 				CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */,
 				CBDB990E1E7BFD05003EC73F /* CalendarEventParticipantData.swift in Sources */,
+				CC1AB3851E8A8D7200B2DF01 /* PrepareContentUpcomingTripsViewModel.swift in Sources */,
 				CB8A15271E76A1280023B2F9 /* PageEvent.swift in Sources */,
 				CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */,
 				CBD791501E71A0950006C590 /* Content.swift in Sources */,
