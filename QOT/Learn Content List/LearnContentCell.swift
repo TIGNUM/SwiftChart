@@ -9,7 +9,7 @@
 import UIKit
 import Anchorage
 
-class LearnContentCell: UICollectionViewCell {
+class LearnContentCell: UICollectionViewCell, Dequeueable {
     
     fileprivate lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -24,7 +24,7 @@ class LearnContentCell: UICollectionViewCell {
     
     fileprivate lazy var videoDurationLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white
+        label.textColor = .lightGray
         label.font = .bubbleSubTitle
         return label
     }()

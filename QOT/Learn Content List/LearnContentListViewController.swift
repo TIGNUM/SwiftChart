@@ -34,9 +34,17 @@ final class LearnContentListViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    fileprivate lazy var screenSize: CGFloat = {
+       let size = UIScreen.main.bounds.height
+        if size > 568 {
+            return 160
+        } else {
+            return 125
+        }
+    }()
     
     fileprivate lazy var collectionViewLayout: LearnContentLayout = {
-        return LearnContentLayout(bubbleCount: self.viewModel.itemCount, bubbleDiameter: 160)
+        return LearnContentLayout(bubbleCount: self.viewModel.itemCount, bubbleDiameter: self.screenSize)
     }()
     
     fileprivate lazy var collectionView: UICollectionView = {
@@ -50,12 +58,11 @@ final class LearnContentListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        collectionView.registerDequeueable(LearnContentCell.self)
+        
         setupAppearance()
         setupHierachy()
         setupLayout()
-        
-        // FIXME: Use dequeable protocol
-        collectionView.register(LearnContentCell.self, forCellWithReuseIdentifier: "Cell")
         
         viewModel.updates.observeNext { [unowned self] (update) in
             switch update {
@@ -90,10 +97,7 @@ extension LearnContentListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let content = viewModel.item(at: indexPath.item)
         
-        // FIXME: Use dequeable protocol
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? LearnContentCell else {
-            fatalError("Incorrect cell type")
-        }
+        let cell: LearnContentCell = collectionView.dequeueCell(for: indexPath)
         cell.configure(with: content)
         return cell
     }

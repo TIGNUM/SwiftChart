@@ -33,11 +33,11 @@ final class LearnContentLayout: UICollectionViewLayout {
             let bounds = collectionView.bounds
             let frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height)
             
-            let contentArray = createPattern(height: frame.height)
+            let contentArray = createPattern()
             
             let attributes = contentArray.enumerated().map { (index, point) -> UICollectionViewLayoutAttributes in
                 let attrs = UICollectionViewLayoutAttributes(forCellWith: IndexPath(item: index, section: 0))
-                attrs.frame = CGRect(x: point.x, y: point.y, width: 160, height: 160)
+                attrs.frame = CGRect(x: point.x, y: point.y, width: bubbleDiameter, height: bubbleDiameter)
                 return attrs
             }
             
@@ -81,13 +81,14 @@ final class LearnContentLayout: UICollectionViewLayout {
         return CGSize(width: contentSize.width, height: contentSize.height )
     }
     
-    func createPattern(height: CGFloat) -> ArraySlice<CGPoint> {
+    func createPattern() -> ArraySlice<CGPoint> {
         var allBubbles = [CGPoint]()
         let horizontalPadding: CGFloat = 30
         let interBubbleSpacing: CGFloat = 15
         var xCoordinate: CGFloat = 0 + horizontalPadding
-        let yCoordinate: CGFloat = height / 2 - bubbleDiameter / 2
-        
+        let height: CGFloat = (3 * bubbleDiameter)
+        let yCoordinate: CGFloat = height / 2 - (bubbleDiameter / 2 - horizontalPadding)
+        print(bubbleDiameter)
         for index in 0..<bubbleCount {
             if index != 0 {
                 allBubbles.append(CGPoint(x: xCoordinate + bubbleDiameter + (interBubbleSpacing / 2), y: yCoordinate + bubbleDiameter / 2 + interBubbleSpacing))
