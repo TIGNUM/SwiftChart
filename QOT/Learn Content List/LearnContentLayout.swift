@@ -37,18 +37,20 @@ final class LearnContentLayout: UICollectionViewLayout {
                 
                 for index in 0..<bubbleCount {
                     if index != 0 {
-                        allBubbles.append(CGPoint(x: xCoordinate + bubbleSize + (interBubbleSpacing), y: yCoordinate + bubbleSize / 2 + interBubbleSpacing ))
-                        allBubbles.append(CGPoint(x: xCoordinate + bubbleSize - interBubbleSpacing, y: yCoordinate - bubbleSize / 2 - interBubbleSpacing / 2))
+                        allBubbles.append(CGPoint(x: xCoordinate + bubbleSize + (interBubbleSpacing / 2), y: yCoordinate + bubbleSize / 2 + interBubbleSpacing))
+                        allBubbles.append(CGPoint(x: xCoordinate + bubbleSize , y: yCoordinate - bubbleSize / 2 - (interBubbleSpacing)))
+                        allBubbles.append(CGPoint(x: xCoordinate + (bubbleSize * 2), y: yCoordinate - (interBubbleSpacing / 2)))
+                        allBubbles.append(CGPoint(x: xCoordinate + (bubbleSize * 2) + interBubbleSpacing, y: yCoordinate + bubbleSize + (interBubbleSpacing)))
+                        allBubbles.append(CGPoint(x: xCoordinate + (bubbleSize * 2) - interBubbleSpacing, y: yCoordinate - bubbleSize - interBubbleSpacing * 2))
                         
-                       allBubbles.append(CGPoint(x: xCoordinate + (bubbleSize * 2), y: yCoordinate + (interBubbleSpacing / 2)))
-                        let temp = xCoordinate + (bubbleSize * 2)
-                        allBubbles.append(CGPoint(x: xCoordinate + (bubbleSize * 2) + interBubbleSpacing, y: yCoordinate + bubbleSize + (interBubbleSpacing * 2 )))
-                      allBubbles.append(CGPoint(x: xCoordinate + (bubbleSize * 2) - interBubbleSpacing, y: yCoordinate - bubbleSize - interBubbleSpacing * 2))
-                    xCoordinate = temp //(temp + (bubbleSize * 2))
+                        xCoordinate = (xCoordinate + bubbleSize * 2)
+                        
                     } else {
+                        
                         allBubbles.append(CGPoint(x: xCoordinate, y: yCoordinate))
                     }
                 }
+                
                 return allBubbles.dropLast(allBubbles.count - bubbleCount)
             }
             

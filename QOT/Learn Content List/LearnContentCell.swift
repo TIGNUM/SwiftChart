@@ -46,7 +46,7 @@ class LearnContentCell: UICollectionViewCell {
     func configure(with content: LearnContent) {
         
         titleLabel.text = content.title
-        videoDurationLabel.text = "\(content.minutesRequired)MIN" // FIXME: Localization
+        videoDurationLabel.text = "\(content.minutesRequired) MIN" // FIXME: Localization
         let bubbleSelected = content.viewed
         if !bubbleSelected {
             imageView.image = R.image.bubblesWithCorner()
