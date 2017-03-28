@@ -13,6 +13,8 @@ protocol PrepareContentTravelViewControllerDelegate: class {
     func didTapVideo(with ID: String, from view: UIView, in viewController: PrepareContentTravelViewController)
     func didTapOpenContentSection(with ID: String, from view: UIView, in viewController: PrepareContentTravelViewController)
     func didTapCloseContentSection(with ID: String, from view: UIView, in viewController: PrepareContentTravelViewController)
+    func didTapSelectCheckbox(with ID: String, from view: UIView, at index: Index, in viewController: PrepareContentTravelViewController)
+    func didTapDeselectCheckbox(with ID: String, from view: UIView, at index: Index, in viewController: PrepareContentTravelViewController)
 }
 
 class PrepareContentTravelViewController: UIViewController {

@@ -154,3 +154,30 @@ extension TabBarCoordinator: PrepareContentViewControllerDelegate {
         log("didTapSaveAs: ID: \(ID)")
     }
 }
+
+extension TabBarCoordinator: PrepareContentTravelViewControllerDelegate {
+
+    func didTapClose(in viewController: PrepareContentTravelViewController) {
+        viewController.dismiss(animated: true, completion: nil)
+    }
+
+    func didTapVideo(with ID: String, from view: UIView, in viewController: PrepareContentTravelViewController) {
+        log("didTapVideo: ID: \(ID) view: \(view)")
+    }
+
+    func didTapOpenContentSection(with ID: String, from view: UIView, in viewController: PrepareContentTravelViewController) {
+        log("didTapOpenContentSection ID: \(ID) view: \(view)")
+    }
+
+    func didTapCloseContentSection(with ID: String, from view: UIView, in viewController: PrepareContentTravelViewController) {
+        log("didTapCloseContentSection: ID: \(ID), view: \(view)")
+    }
+
+    func didTapSelectCheckbox(with ID: String, from view: UIView, at index: Index, in viewController: PrepareContentTravelViewController) {
+        log("didTapSelectCheckbox: ID: \(ID), index: \(index), view: \(view)")
+    }
+
+    func didTapDeselectCheckbox(with ID: String, from view: UIView, at index: Index, in viewController: PrepareContentTravelViewController) {
+        log("didTapDeselectCheckbox: ID: \(ID), index: \(index), view: \(view)")
+    }
+}

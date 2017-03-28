@@ -41,7 +41,11 @@ class PrepareContentViewController: UIViewController {
 
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeView))
         view.addGestureRecognizer(tapGestureRecognizer)
-        view.backgroundColor = .black
+        let blurEffect = UIBlurEffect(style: .dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.alpha = 0.9
+        view.addSubview(blurEffectView)
     }
 
     func closeView(gestureRecognizer: UITapGestureRecognizer) {
