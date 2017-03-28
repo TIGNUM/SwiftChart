@@ -19,3 +19,7 @@
 "Sidebar.Title.About" = "About Tignum";
 "Sidebar.Title.Logout" = "Logout";
 
+
+"Tab.Bar.Item.Learn" = "Learn";
+"Tab.Bar.Item.Me" = "Me";
+"Tab.Bar.Item.Prepare" = "Prepare";

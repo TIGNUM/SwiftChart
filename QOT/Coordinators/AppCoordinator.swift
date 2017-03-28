@@ -11,16 +11,21 @@ import RealmSwift
 import EventKit
 
 final class AppCoordinator: ParentCoordinator {
+    
+    // MARK: - Properties
+    
     fileprivate let window: UIWindow
     fileprivate var databaseManager: DatabaseManager?
     fileprivate lazy var eventTracker: EventTracker = {
         return EventTracker(realmProvider: { return try Realm() })
     }()
+    
     fileprivate lazy var launchVC: LaunchViewController = {
         let vc = LaunchViewController(viewModel: LaunchViewModel())
         vc.delegate = self
         return vc
     }()
+    
     fileprivate lazy var calendarImportManager: CalendarImportManger = {
         let manager = CalendarImportManger(realm: { return try Realm() }, predicate: { (store) -> NSPredicate in
             let day: TimeInterval = 60 * 60 * 24
@@ -32,7 +37,9 @@ final class AppCoordinator: ParentCoordinator {
         return manager
     }()
     
-    var children: [Coordinator] = []
+    var children = [Coordinator]()
+    
+    // MARK: - Life Cycle
 
     init(window: UIWindow) {
         self.window = window
@@ -47,7 +54,6 @@ final class AppCoordinator: ParentCoordinator {
             case .success(let manager):
                 self.databaseManager = manager
                 self.launchVC.viewModel.ready.value = true
-                
                 self.eventTracker.track(page: self.launchVC.pageID, referer: nil, associatedEntity: nil)
                 self.calendarImportManager.importEvents()
             case .failure(_):
@@ -59,6 +65,7 @@ final class AppCoordinator: ParentCoordinator {
 }
 
 extension AppCoordinator: LaunchViewControllerDelegate {
+   
     func didTapLaunchViewController(_ viewController: LaunchViewController) {
         guard let databaseManager = databaseManager else {
             preconditionFailure("databaseManager & tracker must exist")
@@ -70,8 +77,9 @@ extension AppCoordinator: LaunchViewControllerDelegate {
 }
 
 extension AppCoordinator: CalendarImportMangerDelegate {
+
     func eventStoreAuthorizationRequired(for mangager: CalendarImportManger, currentStatus: EKAuthorizationStatus) {
-        EKEventStore().requestAccess(to: .event) { (success, error) in
+        EKEventStore().requestAccess(to: .event) { (success, _) in
             if success {
                 mangager.importEvents()
             } else {

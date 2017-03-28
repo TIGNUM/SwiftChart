@@ -18,7 +18,7 @@ final class SidebarCoordinator: ParentCoordinator {
     weak var delegate: ParentCoordinator?
     lazy var presentationManager = PresentationManager()
     
-    required init(root: UIViewController, databaseManager: DatabaseManager?, eventTracker: EventTracker?) {
+    init(root: UIViewController, databaseManager: DatabaseManager?, eventTracker: EventTracker?) {
         self.rootViewController = root
         self.databaseManager = databaseManager
         self.eventTracker = eventTracker
