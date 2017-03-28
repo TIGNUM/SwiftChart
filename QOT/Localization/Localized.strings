@@ -8,6 +8,7 @@
 
 // An example
 "learn.category-list-view.title" = "Categories";
+"learn.content-list-view.minutes-label" = "%@ MIN";
 
 "Settings.Title" = "Settings";
 "Sidebar.Title.Library" = "QOT Library";
@@ -17,3 +18,4 @@
 "Sidebar.Title.Privacy" = "Data Privacy";
 "Sidebar.Title.About" = "About Tignum";
 "Sidebar.Title.Logout" = "Logout";
+

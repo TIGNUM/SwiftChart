@@ -38,14 +38,14 @@ class LearnContentCell: UICollectionViewCell {
     
     fileprivate lazy var imageView: UIImageView = {
         let view = UIImageView()
-        view.layer.cornerRadius = view.frame.width / 2
         view.contentMode = .scaleAspectFit
         return view
     }()
     
     func configure(with content: LearnContent) {
         titleLabel.text = content.title
-        videoDurationLabel.text = "\(content.minutesRequired) MIN" // FIXME: Localization
+        let min = String(content.minutesRequired)
+        videoDurationLabel.text = R.string.localized.learnContentListViewMinutesLabel(min)
         let bubbleSelected = content.viewed
         if !bubbleSelected {
             imageView.image = R.image.bubblesWithCorner()
@@ -66,9 +66,8 @@ class LearnContentCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        contentView.layer.cornerRadius = frame.width / 2
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        return point.insideCircle(frame: bounds)
     }
 }
 

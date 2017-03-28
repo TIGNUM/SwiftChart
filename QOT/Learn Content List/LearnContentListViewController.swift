@@ -8,6 +8,8 @@
 
 import UIKit
 import Anchorage
+import ReactiveKit
+import Bond
 
 /// The delegate of a `LearnContentListViewController`.
 protocol LearnContentListViewControllerDelegate: class {
@@ -18,7 +20,9 @@ protocol LearnContentListViewControllerDelegate: class {
 }
 
 /// Displays a collection of items of learn content.
-final class LearnContentListViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+final class LearnContentListViewController: UIViewController {
+    private let disposeBag = DisposeBag()
+    
     let viewModel: LearnContentListViewModel
     weak var delegate: LearnContentListViewControllerDelegate?
     
@@ -31,58 +35,92 @@ final class LearnContentListViewController: UIViewController, UICollectionViewDa
         fatalError("init(coder:) has not been implemented")
     }
     
-    lazy var collectionView: UICollectionView = {
-        let layout = LearnContentLayout(bubbleCount:0)
-        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+    fileprivate lazy var collectionViewLayout: LearnContentLayout = {
+        return LearnContentLayout(bubbleCount: self.viewModel.itemCount, bubbleDiameter: 160)
+    }()
+    
+    fileprivate lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: self.collectionViewLayout)
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.backgroundColor = .black
         return collectionView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = .black
-        collectionView.register(LearnContentCell.self, forCellWithReuseIdentifier: "Cell")
-        view.addSubview(collectionView)
-        
+
+        setupAppearance()
+        setupHierachy()
         setupLayout()
         
-        view.backgroundColor = UIColor.black
-        collectionView.collectionViewLayout = LearnContentLayout(bubbleCount: viewModel.itemCount)
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 200, bottom: 0, right: 200)
+        // FIXME: Use dequeable protocol
+        collectionView.register(LearnContentCell.self, forCellWithReuseIdentifier: "Cell")
+        
+        viewModel.updates.observeNext { [unowned self] (update) in
+            switch update {
+            case .reload, .update(_, _, _):
+                self.collectionViewLayout.bubbleCount = self.viewModel.itemCount
+                self.collectionView.reloadData()
+            }
+        }.dispose(in: disposeBag)
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        centerCollectionView()
+    }
+    
+    private func centerCollectionView() {
         let contentSize = collectionView.collectionViewLayout.collectionViewContentSize
         let xOffset = (contentSize.width - collectionView.frame.width) / 2
         let yOffset = (contentSize.height - collectionView.frame.height) / 2
-        collectionView.contentOffset = CGPoint(x: xOffset - 80, y: yOffset)
-        
+        collectionView.contentOffset = CGPoint(x: xOffset, y: yOffset)
+    }
+}
+
+// MARK: UICollectionViewDataSource
+
+extension LearnContentListViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.itemCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let content = viewModel.item(at: indexPath.item)
+        
+        // FIXME: Use dequeable protocol
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? LearnContentCell else {
             fatalError("Incorrect cell type")
         }
         cell.configure(with: content)
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.itemCount
-    }
-    
+}
+
+// MARK: UICollectionViewDelegate
+
+extension LearnContentListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.didSelectContent(at: indexPath.item, in: self)
     }
 }
 
-extension LearnContentListViewController {
+private extension LearnContentListViewController {
+    func setupAppearance() {
+        view.backgroundColor = UIColor.black
+    }
+    
+    func setupHierachy() {
+        view.addSubview(collectionView)
+    }
+    
     func setupLayout() {
         collectionView.topAnchor == view.topAnchor + 100
         collectionView.bottomAnchor == view.bottomAnchor
-        collectionView.horizontalAnchors == view.horizontalAnchors - 200
+        collectionView.horizontalAnchors == view.horizontalAnchors
+        
+        view.layoutIfNeeded()
     }
 }

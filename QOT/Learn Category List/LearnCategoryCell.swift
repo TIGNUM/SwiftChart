@@ -99,10 +99,7 @@ final class LearnCategoryCell: UICollectionViewCell {
     }
     
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        guard let path = circleLineShape?.path else {
-            preconditionFailure("Missing path")
-        }
-        return path.contains(point)
+        return point.insideCircle(frame: bounds)
     }
 }
 
