@@ -22,11 +22,11 @@ final class ChatViewModel {
         setupTimer()
     }
 
-    var chatMessageCount: Index {
+    var itemCount: Index {
         return chatMessages.count
     }
 
-    func chatMessage(at row: Index) -> ChatMessage {
+    func item(at row: Index) -> ChatMessage {
         return chatMessages[row]
     }
 
