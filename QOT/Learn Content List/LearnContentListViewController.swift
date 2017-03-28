@@ -47,7 +47,6 @@ final class LearnContentListViewController: UIViewController, UICollectionViewDa
         
         setupLayout()
         
-        
         view.backgroundColor = UIColor.black
         collectionView.collectionViewLayout = LearnContentLayout(bubbleCount: viewModel.itemCount)
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 200, bottom: 0, right: 200)
@@ -81,6 +80,6 @@ extension LearnContentListViewController {
         collectionView.topAnchor == view.topAnchor + 100
         collectionView.bottomAnchor == view.bottomAnchor
         collectionView.horizontalAnchors == view.horizontalAnchors - 200
-        collectionView.transform = CGAffineTransform(rotationAngle: -0.174533)
+//        collectionView.transform = CGAffineTransform(rotationAngle: -0.174533)    
     }
 }

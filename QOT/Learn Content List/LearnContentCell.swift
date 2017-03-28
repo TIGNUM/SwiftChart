@@ -71,7 +71,7 @@ class LearnContentCell: UICollectionViewCell {
         super.layoutSubviews()
         contentView.layer.cornerRadius = frame.width / 2
         
-        contentView.layer.transform = CATransform3DMakeRotation(0.174533, 0, 0, 1)
+//        contentView.layer.transform = CATransform3DMakeRotation(0.174533, 0, 0, 1)
     }
 }
 

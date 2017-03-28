@@ -26,26 +26,27 @@ final class LearnContentLayout: UICollectionViewLayout {
     
     private func setup() {
         
-        
         if let collectionView = collectionView {
-            let horrizontalPadding: CGFloat = 30
+            let horizontalPadding: CGFloat = 30
             func createPattern(frame: CGRect) -> ArraySlice<CGPoint> {
                 var allBubbles = [CGPoint]() // an array for all sorted bubbles
-                let interBubbleSpacing: CGFloat = 20
+                let interBubbleSpacing: CGFloat = 15
                 let bubbleSize: CGFloat = 160
-                var xCoordinate: CGFloat = frame.minX + horrizontalPadding
+                var xCoordinate: CGFloat = frame.minX + horizontalPadding
                 let yCoordinate: CGFloat = frame.height / 2 - bubbleSize / 2
                 
                 for index in 0..<bubbleCount {
                     if index != 0 {
-                        allBubbles.append(CGPoint(x: xCoordinate + bubbleSize, y: yCoordinate + bubbleSize / 2 + interBubbleSpacing / 2))
-                        allBubbles.append(CGPoint(x: xCoordinate + bubbleSize, y: yCoordinate - bubbleSize / 2 - interBubbleSpacing / 2))
-                        allBubbles.append(CGPoint(x: xCoordinate + bubbleSize * 2, y: yCoordinate))
-                        allBubbles.append(CGPoint(x: xCoordinate + bubbleSize * 2, y: yCoordinate + bubbleSize + interBubbleSpacing))
-                        allBubbles.append(CGPoint(x: xCoordinate + bubbleSize * 2, y: yCoordinate - bubbleSize - interBubbleSpacing))
-                        xCoordinate = (xCoordinate + bubbleSize * 2)
+                        allBubbles.append(CGPoint(x: xCoordinate + bubbleSize + (interBubbleSpacing), y: yCoordinate + bubbleSize / 2 + interBubbleSpacing ))
+                        allBubbles.append(CGPoint(x: xCoordinate + bubbleSize - interBubbleSpacing, y: yCoordinate - bubbleSize / 2 - interBubbleSpacing / 2))
+                        
+                       allBubbles.append(CGPoint(x: xCoordinate + (bubbleSize * 2), y: yCoordinate + (interBubbleSpacing / 2)))
+                        let temp = xCoordinate + (bubbleSize * 2)
+                        allBubbles.append(CGPoint(x: xCoordinate + (bubbleSize * 2) + interBubbleSpacing, y: yCoordinate + bubbleSize + (interBubbleSpacing * 2 )))
+                      allBubbles.append(CGPoint(x: xCoordinate + (bubbleSize * 2) - interBubbleSpacing, y: yCoordinate - bubbleSize - interBubbleSpacing * 2))
+                    xCoordinate = temp //(temp + (bubbleSize * 2))
                     } else {
-                        allBubbles.append(CGPoint(x: xCoordinate, y: yCoordinate ))
+                        allBubbles.append(CGPoint(x: xCoordinate, y: yCoordinate))
                     }
                 }
                 return allBubbles.dropLast(allBubbles.count - bubbleCount)
@@ -62,8 +63,8 @@ final class LearnContentLayout: UICollectionViewLayout {
                 return attrs
             }
             
-            let maxX = attributes.reduce(CGFloat(0), { max($0.0, $0.1.frame.maxX) }) + horrizontalPadding
-            contentSize = CGSize(width: maxX + horrizontalPadding, height: frame.height)
+            let maxX = attributes.reduce(CGFloat(0), { max($0.0, $0.1.frame.maxX) }) + horizontalPadding
+            contentSize = CGSize(width: maxX + horizontalPadding, height: frame.height)
             
             layoutAttributes = attributes
         } else {
