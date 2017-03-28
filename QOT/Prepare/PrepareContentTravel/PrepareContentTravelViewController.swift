@@ -8,28 +8,35 @@
 
 import UIKit
 
+protocol PrepareContentTravelViewControllerDelegate: class {
+    func didTapClose(in viewController: PrepareContentTravelViewController)
+    func didTapVideo(with ID: String, from view: UIView, in viewController: PrepareContentTravelViewController)
+}
+
 class PrepareContentTravelViewController: UIViewController {
+
+    let viewModel: PrepareContentTravelViewModel
+    weak var delegate: PrepareContentTravelViewControllerDelegate?
+
+    init(viewModel: PrepareContentTravelViewModel) {
+        self.viewModel = viewModel
+
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeView))
+        view.addGestureRecognizer(tapGestureRecognizer)
+        view.backgroundColor = .black
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func closeView(gestureRecognizer: UITapGestureRecognizer) {
+        delegate?.didTapClose(in: self)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
