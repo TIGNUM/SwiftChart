@@ -202,10 +202,10 @@
 		CCCC21211E8981CA00133839 /* PrepareContentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentViewModel.swift; sourceTree = "<group>"; };
 		CCE5B9D11E80501D00E01BAE /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		CCE5B9D31E80505800E01BAE /* SidebarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidebarViewController.xib; sourceTree = "<group>"; };
-		CCEA22A21E8AC53D003D0CF4 /* PrepareCheckListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareCheckListViewController.swift; path = PrepareCheckListViewController.swift; sourceTree = "<group>"; };
-		CCEA22A31E8AC53D003D0CF4 /* PrepareCheckListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareCheckListViewModel.swift; path = PrepareCheckListViewModel.swift; sourceTree = "<group>"; };
-		CCEA22A71E8AC55F003D0CF4 /* PrepareTripsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareTripsViewController.swift; path = PrepareTripsViewController.swift; sourceTree = "<group>"; };
-		CCEA22A81E8AC55F003D0CF4 /* PrepareTripsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareTripsViewModel.swift; path = PrepareTripsViewModel.swift; sourceTree = "<group>"; };
+		CCEA22A21E8AC53D003D0CF4 /* PrepareCheckListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareCheckListViewController.swift; sourceTree = "<group>"; };
+		CCEA22A31E8AC53D003D0CF4 /* PrepareCheckListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareCheckListViewModel.swift; sourceTree = "<group>"; };
+		CCEA22A71E8AC55F003D0CF4 /* PrepareTripsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareTripsViewController.swift; sourceTree = "<group>"; };
+		CCEA22A81E8AC55F003D0CF4 /* PrepareTripsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareTripsViewModel.swift; sourceTree = "<group>"; };
 		CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5952A531E7BCD000073E522 /* LearnCategoryLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnCategoryLayout.swift; sourceTree = "<group>"; };
 		D5C69EBB1E8036DF00B50E38 /* LearnCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnCategoryCell.swift; sourceTree = "<group>"; };
@@ -533,7 +533,7 @@
 				CCEA22A11E8AC528003D0CF4 /* PerpareCheckList */,
 				CC4D1D7A1E82E6AD00B8D75E /* PrepareChat */,
 				CC7C0A111E8966E000A83583 /* PrepareContent */,
-				CCEA22A61E8AC549003D0CF4 /* PrepareUpcomingTrips */,
+				CCEA22A61E8AC549003D0CF4 /* PrepareTrips */,
 			);
 			path = Prepare;
 			sourceTree = "<group>";
@@ -637,18 +637,17 @@
 				CCEA22A21E8AC53D003D0CF4 /* PrepareCheckListViewController.swift */,
 				CCEA22A31E8AC53D003D0CF4 /* PrepareCheckListViewModel.swift */,
 			);
-			name = PerpareCheckList;
 			path = PerpareCheckList;
 			sourceTree = "<group>";
 		};
-		CCEA22A61E8AC549003D0CF4 /* PrepareUpcomingTrips */ = {
+		CCEA22A61E8AC549003D0CF4 /* PrepareTrips */ = {
 			isa = PBXGroup;
 			children = (
 				CCEA22A71E8AC55F003D0CF4 /* PrepareTripsViewController.swift */,
 				CCEA22A81E8AC55F003D0CF4 /* PrepareTripsViewModel.swift */,
 			);
-			name = PrepareUpcomingTrips;
-			path = PrepareUpcomingTrips;
+			name = PrepareTrips;
+			path = PrepareTrips;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
