@@ -28,32 +28,6 @@ final class LearnContentLayout: UICollectionViewLayout {
         
         if let collectionView = collectionView {
             let horizontalPadding: CGFloat = 30
-            func createPattern(frame: CGRect) -> ArraySlice<CGPoint> {
-                var allBubbles = [CGPoint]()
-                let interBubbleSpacing: CGFloat = 15
-                let bubbleSize: CGFloat = 160
-                var xCoordinate: CGFloat = frame.minX + horizontalPadding
-                let yCoordinate: CGFloat = frame.height / 2 - bubbleSize / 2
-                
-                for index in 0..<bubbleCount {
-                    if index != 0 {
-                        allBubbles.append(CGPoint(x: xCoordinate + bubbleSize + (interBubbleSpacing / 2), y: yCoordinate + bubbleSize / 2 + interBubbleSpacing))
-                        allBubbles.append(CGPoint(x: xCoordinate + bubbleSize, y: yCoordinate - bubbleSize / 2 - (interBubbleSpacing)))
-                        allBubbles.append(CGPoint(x: xCoordinate + (bubbleSize * 2), y: yCoordinate - (interBubbleSpacing / 2)))
-                        allBubbles.append(CGPoint(x: xCoordinate + (bubbleSize * 2) + interBubbleSpacing, y: yCoordinate + bubbleSize + (interBubbleSpacing)))
-                        allBubbles.append(CGPoint(x: xCoordinate + (bubbleSize * 2) - interBubbleSpacing, y: yCoordinate - bubbleSize - interBubbleSpacing * 2))
-                        
-                        xCoordinate = (xCoordinate + bubbleSize * 2)
-                        
-                    } else {
-                        
-                        allBubbles.append(CGPoint(x: xCoordinate, y: yCoordinate))
-                    }
-                }
-                
-                return allBubbles.dropLast(allBubbles.count - bubbleCount)
-            }
-            
             let bounds = collectionView.bounds
             let frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height)
             
@@ -105,4 +79,26 @@ final class LearnContentLayout: UICollectionViewLayout {
         return CGSize(width: contentSize.width, height: contentSize.height )
     }
     
+    func createPattern(frame: CGRect) -> ArraySlice<CGPoint> {
+        var allBubbles = [CGPoint]()
+        let horizontalPadding: CGFloat = 30
+        let interBubbleSpacing: CGFloat = 15
+        let bubbleSize: CGFloat = 160
+        var xCoordinate: CGFloat = frame.minX + horizontalPadding
+        let yCoordinate: CGFloat = frame.height / 2 - bubbleSize / 2
+        
+        for index in 0..<bubbleCount {
+            if index != 0 {
+                allBubbles.append(CGPoint(x: xCoordinate + bubbleSize + (interBubbleSpacing / 2), y: yCoordinate + bubbleSize / 2 + interBubbleSpacing))
+                allBubbles.append(CGPoint(x: xCoordinate + bubbleSize, y: yCoordinate - bubbleSize / 2 - (interBubbleSpacing)))
+                allBubbles.append(CGPoint(x: xCoordinate + (bubbleSize * 2), y: yCoordinate - (interBubbleSpacing / 2)))
+                allBubbles.append(CGPoint(x: xCoordinate + (bubbleSize * 2) + interBubbleSpacing, y: yCoordinate + bubbleSize + (interBubbleSpacing)))
+                allBubbles.append(CGPoint(x: xCoordinate + (bubbleSize * 2) - interBubbleSpacing, y: yCoordinate - bubbleSize - interBubbleSpacing * 2))
+                xCoordinate = (xCoordinate + bubbleSize * 2)
+            } else {
+                allBubbles.append(CGPoint(x: xCoordinate, y: yCoordinate))
+            }
+        }
+        return allBubbles.dropLast(allBubbles.count - bubbleCount)
+    }
 }
