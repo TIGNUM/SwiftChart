@@ -68,31 +68,45 @@ enum ChatMessage {
     }
 }
 
-struct ChatMessageNavigation {
+protocol ChatMessageNavigation {
+    var localID: String { get }
+    var title: String { get }
+    var selected: Bool { get }
+}
+
+protocol ChatMessageInput {
+    var localID: String { get }
+    var title: String { get }
+    var selected: Bool { get }
+}
+
+private struct MockChatMessageNavigation: ChatMessageNavigation {
+    let localID = UUID().uuidString
     let title: String
     let selected: Bool
 }
 
-struct ChatMessageInput {
+private struct MockChatMessageInput: ChatMessageInput {
+    let localID = UUID().uuidString
     let title: String
     let selected: Bool
 }
 
 private var chatMessageNavigations: [ChatMessageNavigation] {
     return [
-        ChatMessageNavigation(title: "Meeting", selected: false),
-        ChatMessageNavigation(title: "Negotiation", selected: false),
-        ChatMessageNavigation(title: "Presentation", selected: false),
-        ChatMessageNavigation(title: "Business Dinner", selected: false),
-        ChatMessageNavigation(title: "Pre-Vacation", selected: false),
-        ChatMessageNavigation(title: "Work to home transition", selected: false)
+        MockChatMessageNavigation(title: "Meeting", selected: false),
+        MockChatMessageNavigation(title: "Negotiation", selected: false),
+        MockChatMessageNavigation(title: "Presentation", selected: false),
+        MockChatMessageNavigation(title: "Business Dinner", selected: false),
+        MockChatMessageNavigation(title: "Pre-Vacation", selected: false),
+        MockChatMessageNavigation(title: "Work to home transition", selected: false)
     ]
 }
 
 private var chatMessageInputs: [ChatMessageInput] {
     return [
-        ChatMessageInput(title: "Normal day", selected: false),
-        ChatMessageInput(title: "Tough day", selected: false)
+        MockChatMessageInput(title: "Normal day", selected: false),
+        MockChatMessageInput(title: "Tough day", selected: false)
     ]
 }
 
