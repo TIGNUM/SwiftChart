@@ -54,16 +54,11 @@ final class LearnContentListViewController: UIViewController, UICollectionViewDa
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
         let contentSize = collectionView.collectionViewLayout.collectionViewContentSize
         let xOffset = (contentSize.width - collectionView.frame.width) / 2
         let yOffset = (contentSize.height - collectionView.frame.height) / 2
-        collectionView.contentOffset = CGPoint(x: xOffset, y: yOffset)
+        collectionView.contentOffset = CGPoint(x: xOffset - 80, y: yOffset)
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -89,6 +84,5 @@ extension LearnContentListViewController {
         collectionView.topAnchor == view.topAnchor + 100
         collectionView.bottomAnchor == view.bottomAnchor
         collectionView.horizontalAnchors == view.horizontalAnchors - 200
-//        collectionView.transform = CGAffineTransform(rotationAngle: -0.174533)    
     }
 }
