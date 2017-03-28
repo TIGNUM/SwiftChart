@@ -1,5 +1,5 @@
 //
-//  PrepareContentUpcomingTripViewModel.swift
+//  UpcomingTripViewModel.swift
 //  QOT
 //
 //  Created by karmic on 28/03/2017.
@@ -9,7 +9,7 @@
 import Foundation
 import EventKit
 
-final class PrepareContentUpcomingTripViewModel {
+final class UpcomingTripViewModel {
     private var items: [UpcomingTripItem] = mockUpcomingTripItems()
 
     var itemCount: Int {
