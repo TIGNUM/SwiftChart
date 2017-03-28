@@ -60,8 +60,6 @@
 		CBDB990E1E7BFD05003EC73F /* CalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB990D1E7BFD05003EC73F /* CalendarEventParticipantData.swift */; };
 		CBDB99101E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB990F1E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift */; };
 		CBDB99121E7BFEED003EC73F /* MockCalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB99111E7BFEED003EC73F /* MockCalendarEventParticipantData.swift */; };
-		CC1AB3851E8A8D7200B2DF01 /* UpcomingTripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1AB3841E8A8D7200B2DF01 /* UpcomingTripViewModel.swift */; };
-		CC1AB3871E8A8D9100B2DF01 /* UpcomingTripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1AB3861E8A8D9100B2DF01 /* UpcomingTripsViewController.swift */; };
 		CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB631E83BDA300FF28DF /* Utils.swift */; };
 		CC3DFB661E83C19C00FF28DF /* Defines.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB651E83C19C00FF28DF /* Defines.swift */; };
 		CC4D1D7C1E82E75300B8D75E /* MeSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4D1D7B1E82E75300B8D75E /* MeSectionViewController.swift */; };
@@ -91,10 +89,12 @@
 		CCCC211D1E8981AD00133839 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCC211B1E8981AD00133839 /* ChatViewModel.swift */; };
 		CCCC21221E8981CA00133839 /* PrepareContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCC21201E8981CA00133839 /* PrepareContentViewController.swift */; };
 		CCCC21231E8981CA00133839 /* PrepareContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCC21211E8981CA00133839 /* PrepareContentViewModel.swift */; };
-		CCCC21271E89826800133839 /* PrepareContentTravelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCC21261E89826800133839 /* PrepareContentTravelViewController.swift */; };
-		CCCC21291E8982A900133839 /* PrepareContentTravelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCC21281E8982A900133839 /* PrepareContentTravelViewModel.swift */; };
 		CCE5B9D21E80501D00E01BAE /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE5B9D11E80501D00E01BAE /* SidebarViewController.swift */; };
 		CCE5B9D41E80505800E01BAE /* SidebarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE5B9D31E80505800E01BAE /* SidebarViewController.xib */; };
+		CCEA22A41E8AC53E003D0CF4 /* PrepareCheckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A21E8AC53D003D0CF4 /* PrepareCheckListViewController.swift */; };
+		CCEA22A51E8AC53E003D0CF4 /* PrepareCheckListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A31E8AC53D003D0CF4 /* PrepareCheckListViewModel.swift */; };
+		CCEA22A91E8AC55F003D0CF4 /* PrepareTripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A71E8AC55F003D0CF4 /* PrepareTripsViewController.swift */; };
+		CCEA22AA1E8AC55F003D0CF4 /* PrepareTripsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A81E8AC55F003D0CF4 /* PrepareTripsViewModel.swift */; };
 		D5952A541E7BCD000073E522 /* LearnCategoryLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5952A531E7BCD000073E522 /* LearnCategoryLayout.swift */; };
 		D5C69EBC1E8036DF00B50E38 /* LearnCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C69EBB1E8036DF00B50E38 /* LearnCategoryCell.swift */; };
 		D5D32F1B1E83D3CA00FACB2E /* LearnCategoryListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D32F191E83D3CA00FACB2E /* LearnCategoryListViewController.xib */; };
@@ -171,8 +171,6 @@
 		CBDB990D1E7BFD05003EC73F /* CalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventParticipantData.swift; sourceTree = "<group>"; };
 		CBDB990F1E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKParticipant+CalendarEventParticipantData.swift"; sourceTree = "<group>"; };
 		CBDB99111E7BFEED003EC73F /* MockCalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCalendarEventParticipantData.swift; sourceTree = "<group>"; };
-		CC1AB3841E8A8D7200B2DF01 /* UpcomingTripViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingTripViewModel.swift; sourceTree = "<group>"; };
-		CC1AB3861E8A8D9100B2DF01 /* UpcomingTripsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingTripsViewController.swift; sourceTree = "<group>"; };
 		CC3DFB631E83BDA300FF28DF /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		CC3DFB651E83C19C00FF28DF /* Defines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defines.swift; sourceTree = "<group>"; };
 		CC4D1D7B1E82E75300B8D75E /* MeSectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeSectionViewController.swift; sourceTree = "<group>"; };
@@ -202,10 +200,12 @@
 		CCCC211B1E8981AD00133839 /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		CCCC21201E8981CA00133839 /* PrepareContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentViewController.swift; sourceTree = "<group>"; };
 		CCCC21211E8981CA00133839 /* PrepareContentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentViewModel.swift; sourceTree = "<group>"; };
-		CCCC21261E89826800133839 /* PrepareContentTravelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentTravelViewController.swift; sourceTree = "<group>"; };
-		CCCC21281E8982A900133839 /* PrepareContentTravelViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentTravelViewModel.swift; sourceTree = "<group>"; };
 		CCE5B9D11E80501D00E01BAE /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		CCE5B9D31E80505800E01BAE /* SidebarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidebarViewController.xib; sourceTree = "<group>"; };
+		CCEA22A21E8AC53D003D0CF4 /* PrepareCheckListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareCheckListViewController.swift; path = PrepareCheckListViewController.swift; sourceTree = "<group>"; };
+		CCEA22A31E8AC53D003D0CF4 /* PrepareCheckListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareCheckListViewModel.swift; path = PrepareCheckListViewModel.swift; sourceTree = "<group>"; };
+		CCEA22A71E8AC55F003D0CF4 /* PrepareTripsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareTripsViewController.swift; path = PrepareTripsViewController.swift; sourceTree = "<group>"; };
+		CCEA22A81E8AC55F003D0CF4 /* PrepareTripsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareTripsViewModel.swift; path = PrepareTripsViewModel.swift; sourceTree = "<group>"; };
 		CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5952A531E7BCD000073E522 /* LearnCategoryLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnCategoryLayout.swift; sourceTree = "<group>"; };
 		D5C69EBB1E8036DF00B50E38 /* LearnCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnCategoryCell.swift; sourceTree = "<group>"; };
@@ -527,33 +527,15 @@
 			path = Interfaces;
 			sourceTree = "<group>";
 		};
-		CC1AB3811E8A8CF200B2DF01 /* PrepareContentUpcomingTrips */ = {
-			isa = PBXGroup;
-			children = (
-				CC1AB3841E8A8D7200B2DF01 /* UpcomingTripViewModel.swift */,
-				CC1AB3861E8A8D9100B2DF01 /* UpcomingTripsViewController.swift */,
-			);
-			path = PrepareContentUpcomingTrips;
-			sourceTree = "<group>";
-		};
 		CC20C9921E8981070056054D /* Prepare */ = {
 			isa = PBXGroup;
 			children = (
+				CCEA22A11E8AC528003D0CF4 /* PerpareCheckList */,
 				CC4D1D7A1E82E6AD00B8D75E /* PrepareChat */,
 				CC7C0A111E8966E000A83583 /* PrepareContent */,
-				CC20C9931E8981240056054D /* PrepareContentTravel */,
-				CC1AB3811E8A8CF200B2DF01 /* PrepareContentUpcomingTrips */,
+				CCEA22A61E8AC549003D0CF4 /* PrepareUpcomingTrips */,
 			);
 			path = Prepare;
-			sourceTree = "<group>";
-		};
-		CC20C9931E8981240056054D /* PrepareContentTravel */ = {
-			isa = PBXGroup;
-			children = (
-				CCCC21261E89826800133839 /* PrepareContentTravelViewController.swift */,
-				CCCC21281E8982A900133839 /* PrepareContentTravelViewModel.swift */,
-			);
-			path = PrepareContentTravel;
 			sourceTree = "<group>";
 		};
 		CC4D1D791E82E6A000B8D75E /* Me */ = {
@@ -647,6 +629,26 @@
 				CC6B3A321E8191BC00E7FDFD /* SidebarViewModel.swift */,
 			);
 			path = Sidebar;
+			sourceTree = "<group>";
+		};
+		CCEA22A11E8AC528003D0CF4 /* PerpareCheckList */ = {
+			isa = PBXGroup;
+			children = (
+				CCEA22A21E8AC53D003D0CF4 /* PrepareCheckListViewController.swift */,
+				CCEA22A31E8AC53D003D0CF4 /* PrepareCheckListViewModel.swift */,
+			);
+			name = PerpareCheckList;
+			path = PerpareCheckList;
+			sourceTree = "<group>";
+		};
+		CCEA22A61E8AC549003D0CF4 /* PrepareUpcomingTrips */ = {
+			isa = PBXGroup;
+			children = (
+				CCEA22A71E8AC55F003D0CF4 /* PrepareTripsViewController.swift */,
+				CCEA22A81E8AC55F003D0CF4 /* PrepareTripsViewModel.swift */,
+			);
+			name = PrepareUpcomingTrips;
+			path = PrepareUpcomingTrips;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -906,7 +908,6 @@
 				CC4D1D7C1E82E75300B8D75E /* MeSectionViewController.swift in Sources */,
 				CBD7915F1E72FDC10006C590 /* LaunchViewModel.swift in Sources */,
 				D5952A541E7BCD000073E522 /* LearnCategoryLayout.swift in Sources */,
-				CCCC21291E8982A900133839 /* PrepareContentTravelViewModel.swift in Sources */,
 				CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */,
 				CBD791521E71A09F0006C590 /* ContentItem.swift in Sources */,
 				CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */,
@@ -919,18 +920,16 @@
 				CC6B3A391E81A69D00E7FDFD /* SidebarCoordinator.swift in Sources */,
 				CCC0C4D61E82B405002A8362 /* R.generated.swift in Sources */,
 				CBD791561E72BAAC0006C590 /* DatabaseManager.swift in Sources */,
-				CC1AB3871E8A8D9100B2DF01 /* UpcomingTripsViewController.swift in Sources */,
 				CBD791401E71604C0006C590 /* LearnContentListViewController.swift in Sources */,
 				CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */,
 				CBDB990E1E7BFD05003EC73F /* CalendarEventParticipantData.swift in Sources */,
-				CC1AB3851E8A8D7200B2DF01 /* UpcomingTripViewModel.swift in Sources */,
 				CB8A15271E76A1280023B2F9 /* PageEvent.swift in Sources */,
+				CCEA22A41E8AC53E003D0CF4 /* PrepareCheckListViewController.swift in Sources */,
 				CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */,
 				CBD791501E71A0950006C590 /* Content.swift in Sources */,
 				CB8A153C1E78467D0023B2F9 /* CalendarEventParticipant.swift in Sources */,
 				CB1E4F981E7FE22200287613 /* SettingsViewModel.swift in Sources */,
 				CCCC211C1E8981AD00133839 /* ChatViewController.swift in Sources */,
-				CCCC21271E89826800133839 /* PrepareContentTravelViewController.swift in Sources */,
 				CC3DFB661E83C19C00FF28DF /* Defines.swift in Sources */,
 				CB28802F1E706AC50067890A /* LearnCategoryListViewModel.swift in Sources */,
 				CBD7914E1E719E2D0006C590 /* ContentCategory.swift in Sources */,
@@ -938,6 +937,7 @@
 				CC6B3A371E81A25A00E7FDFD /* SidebarTableViewCell.swift in Sources */,
 				CBD791421E7160560006C590 /* LearnContentListViewModel.swift in Sources */,
 				CBDB98FD1E7BE6AF003EC73F /* CalendarEventData.swift in Sources */,
+				CCEA22AA1E8AC55F003D0CF4 /* PrepareTripsViewModel.swift in Sources */,
 				CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */,
 				CB8A153A1E7801B90023B2F9 /* CalendarEvent.swift in Sources */,
 				CCAF03261E801B0E00015125 /* SettingsViewControllerDelegate.swift in Sources */,
@@ -953,11 +953,13 @@
 				CB8A154A1E7A7FA20023B2F9 /* CalendarImportManger.swift in Sources */,
 				CB8A154C1E7A8AD30023B2F9 /* CalendarImportTask.swift in Sources */,
 				CB8A15221E769F1F0023B2F9 /* EventTracker.swift in Sources */,
+				CCEA22A91E8AC55F003D0CF4 /* PrepareTripsViewController.swift in Sources */,
 				CCC0C4BE1E82730E002A8362 /* Extensions.swift in Sources */,
 				CC6B3A2D1E8163A200E7FDFD /* FadeInOutPresentationController.swift in Sources */,
 				CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */,
 				D5C69EBC1E8036DF00B50E38 /* LearnCategoryCell.swift in Sources */,
 				CC4D1D801E82EDE700B8D75E /* MeSectionCoordinator.swift in Sources */,
+				CCEA22A51E8AC53E003D0CF4 /* PrepareCheckListViewModel.swift in Sources */,
 				CB8A15311E76F31B0023B2F9 /* PageTrackable.swift in Sources */,
 				CB2880241E7051710067890A /* AppCoordinator.swift in Sources */,
 			);

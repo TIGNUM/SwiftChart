@@ -155,28 +155,20 @@ extension TabBarCoordinator: PrepareContentViewControllerDelegate {
     }
 }
 
-extension TabBarCoordinator: PrepareContentTravelViewControllerDelegate {
-    func didTapClose(in viewController: PrepareContentTravelViewController) {
+extension TabBarCoordinator: PrepareCheckListViewControllerDelegate {
+    func didTapClose(in viewController: PrepareCheckListViewController) {
         viewController.dismiss(animated: true, completion: nil)
     }
 
-    func didTapVideo(with ID: String, from view: UIView, in viewController: PrepareContentTravelViewController) {
+    func didTapVideo(with ID: String, from view: UIView, in viewController: PrepareCheckListViewController) {
         log("didTapVideo: ID: \(ID) view: \(view)")
     }
 
-    func didTapOpenContentSection(with ID: String, from view: UIView, in viewController: PrepareContentTravelViewController) {
-        log("didTapOpenContentSection ID: \(ID) view: \(view)")
-    }
-
-    func didTapCloseContentSection(with ID: String, from view: UIView, in viewController: PrepareContentTravelViewController) {
-        log("didTapCloseContentSection: ID: \(ID), view: \(view)")
-    }
-
-    func didTapSelectCheckbox(with ID: String, from view: UIView, at index: Index, in viewController: PrepareContentTravelViewController) {
+    func didTapSelectCheckbox(with ID: String, from view: UIView, at index: Index, in viewController: PrepareCheckListViewController) {
         log("didTapSelectCheckbox: ID: \(ID), index: \(index), view: \(view)")
     }
 
-    func didTapDeselectCheckbox(with ID: String, from view: UIView, at index: Index, in viewController: PrepareContentTravelViewController) {
+    func didTapDeselectCheckbox(with ID: String, from view: UIView, at index: Index, in viewController: PrepareCheckListViewController) {
         log("didTapDeselectCheckbox: ID: \(ID), index: \(index), view: \(view)")
     }
 }
