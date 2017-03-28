@@ -57,6 +57,15 @@ final class LearnContentListViewController: UIViewController, UICollectionViewDa
 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let contentSize = collectionView.collectionViewLayout.collectionViewContentSize
+        let xOffset = (contentSize.width - collectionView.frame.width) / 2
+        let yOffset = (contentSize.height - collectionView.frame.height) / 2
+        collectionView.contentOffset = CGPoint(x: xOffset, y: yOffset)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let content = viewModel.item(at: indexPath.item)
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? LearnContentCell else {

@@ -29,7 +29,7 @@ final class LearnContentLayout: UICollectionViewLayout {
         if let collectionView = collectionView {
             let horizontalPadding: CGFloat = 30
             func createPattern(frame: CGRect) -> ArraySlice<CGPoint> {
-                var allBubbles = [CGPoint]() // an array for all sorted bubbles
+                var allBubbles = [CGPoint]()
                 let interBubbleSpacing: CGFloat = 15
                 let bubbleSize: CGFloat = 160
                 var xCoordinate: CGFloat = frame.minX + horizontalPadding
