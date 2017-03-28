@@ -530,8 +530,8 @@
 		CC1AB3811E8A8CF200B2DF01 /* PrepareContentUpcomingTrips */ = {
 			isa = PBXGroup;
 			children = (
-				CC1AB3861E8A8D9100B2DF01 /* UpcomingTripsViewController.swift */,
 				CC1AB3841E8A8D7200B2DF01 /* UpcomingTripViewModel.swift */,
+				CC1AB3861E8A8D9100B2DF01 /* UpcomingTripsViewController.swift */,
 			);
 			path = PrepareContentUpcomingTrips;
 			sourceTree = "<group>";

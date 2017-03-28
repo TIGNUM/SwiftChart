@@ -156,7 +156,6 @@ extension TabBarCoordinator: PrepareContentViewControllerDelegate {
 }
 
 extension TabBarCoordinator: PrepareContentTravelViewControllerDelegate {
-
     func didTapClose(in viewController: PrepareContentTravelViewController) {
         viewController.dismiss(animated: true, completion: nil)
     }
