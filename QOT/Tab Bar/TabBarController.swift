@@ -7,13 +7,29 @@
 //
 
 import UIKit
-
-final class TabBarController: UITabBarController {
+import Anchorage
+final class TabBarController: UIViewController {
     
     // MARK: - Properties
+    struct TabBarItems {
+        let controller : UIViewController
+        let title: String
+    }
     
     fileprivate var categoryViewControllers = [UIViewController]()
     fileprivate let selectedCategoryIndex: Index
+    
+    fileprivate lazy var stackView: UIStackView = {
+        let view = UIStackView()
+        view.backgroundColor = .red
+        return view
+    }()
+    
+    private func createButton(title: String) {
+        let button = UIButton()
+        button.titleLabel?.text = title
+        stackView.addSubview(button)
+    }
     
     // MARK: - Life Cycle
     
@@ -30,11 +46,13 @@ final class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        delegate = self
+        view.addSubview(stackView)
+        // delegate = self
         setupView()
     }
-    
+    private func loadTabs() {
+        
+    }
     private func setupView() {
         let learnTabBarItem = UITabBarItem(title: R.string.localized.tabBarItemLearn(), image: nil, selectedImage: nil)
         let meTabBarItem = UITabBarItem(title: R.string.localized.tabBarItemMe(), image: nil, selectedImage: nil)
@@ -49,10 +67,10 @@ final class TabBarController: UITabBarController {
         let chatViewController = categoryViewControllers.item(at: MainMenuType.prepare.rawValue) as? ChatViewController
         chatViewController?.tabBarItem = prepareTabBarItem
         
-        tabBar.barTintColor = .black
-        tabBar.tintColor = .qotWhite
-        viewControllers = categoryViewControllers
-        selectedIndex = selectedCategoryIndex
+        //            tabBar.barTintColor = .black
+        //            tabBar.tintColor = .qotWhite
+        //            viewControllers = categoryViewControllers
+        //           selectedIndex = selectedCategoryIndex
     }
 }
 
@@ -62,5 +80,14 @@ extension TabBarController: UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         log("didSelect viewController: \(viewController)")
+    }
+}
+
+extension TabBarController {
+    func setUpLayouts() {
+        stackView.bottomAnchor == view.bottomAnchor
+        stackView.leftAnchor == view.leftAnchor
+        stackView.rightAnchor == view.rightAnchor
+        stackView.heightAnchor == 64
     }
 }
