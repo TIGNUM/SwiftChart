@@ -10,30 +10,31 @@ import Foundation
 import ReactiveKit
 
 final class PrepareCheckListViewModel {
-    private var items: [PrepareContentTravelItem] = mockContentTravelItems()
+    private var items: [PrepareCheckListItem] = mockContentTravelItems()
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
     var itemCount: Int {
         return items.count
     }
 
-    func item(at index: Int) -> PrepareContentTravelItem {
+    func item(at index: Int) -> PrepareCheckListItem {
         return items[index]
     }
 }
 
-enum PrepareContentTravelItem {
+enum PrepareCheckListItem {
     case title(localID: String, text: String)
     case video(localID: String, placeholderURL: URL)
-    case collection(localID: String, title: String, items: [PrepareSubContentTravelItem])
+    case collection(localID: String, title: String, items: [PrepareCheckListSubItem])
+    case step(localID: String, index: Int, text: String)
 }
 
-enum PrepareSubContentTravelItem {
+enum PrepareCheckListSubItem {
     case step(localID: String, index: Int, text: String, selected: Bool)
     case video(localID: String, placeholderURL: URL)
 }
 
-private func mockContentTravelItems() -> [PrepareContentTravelItem] {
+private func mockContentTravelItems() -> [PrepareCheckListItem] {
     return [
         .title(localID: UUID().uuidString, text: "Trips TO BASEL FOR NOVARIS 2017"),
         .collection(localID: UUID().uuidString, title: "PRE TRAVEL 0/12", items: mockContentTravelSubItems()),
@@ -43,8 +44,8 @@ private func mockContentTravelItems() -> [PrepareContentTravelItem] {
     ]
 }
 
-private func mockContentTravelSubItems() -> [PrepareSubContentTravelItem] {
-    var items: [PrepareSubContentTravelItem] = []
+private func mockContentTravelSubItems() -> [PrepareCheckListSubItem] {
+    var items: [PrepareCheckListSubItem] = []
     for i in 1...10 {
         items.append(.step(localID: UUID().uuidString, index: i, text: "Whenever possible, select hotels that support quality rest, daily Movement, and high performance meal choices.", selected: false))
     }
