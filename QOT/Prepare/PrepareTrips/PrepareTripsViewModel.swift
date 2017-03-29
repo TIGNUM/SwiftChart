@@ -14,18 +14,22 @@ final class PrepareTripsViewModel {
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
     var tripCalendarItemCount: Int {
-        return items.first?.items.count ?? 0
+        return items.first?.calendarItems.count ?? 0
     }
 
     func tripCalendarItem(at index: Int) -> PrepareTripCalendarItem? {
-        return items.first?.items[index]
+        guard let calendarItems = items.first?.calendarItems, index < calendarItems.count else {
+            return nil
+        }
+
+        return items.first?.calendarItems[index]
     }
 }
 
 protocol PrepareTripSection {
     var sectionTitle: String { get }
     var buttonTitle: String { get }
-    var items: [PrepareTripCalendarItem] { get }
+    var calendarItems: [PrepareTripCalendarItem] { get }
 }
 
 protocol PrepareTripCalendarItem {
@@ -45,14 +49,14 @@ struct MockPrepareTripCalendarItem: PrepareTripCalendarItem {
 struct MockPrepareTripSection: PrepareTripSection {
     let sectionTitle: String
     let buttonTitle: String
-    let items: [PrepareTripCalendarItem]
+    let calendarItems: [PrepareTripCalendarItem]
 }
 
 private func mockTripSections() -> [PrepareTripSection] {
     return [
-        MockPrepareTripSection(sectionTitle: "Upcoming Trips", buttonTitle: "Add new Trip", items: mockTripCalendarItems()),
-        MockPrepareTripSection(sectionTitle: "Add to Reminder", buttonTitle: "Remind me this preparation", items: []),
-        MockPrepareTripSection(sectionTitle: "Save it as PDF", buttonTitle: "Save this preparation as PDF", items: [])
+        MockPrepareTripSection(sectionTitle: "Upcoming Trips", buttonTitle: "Add new Trip", calendarItems: mockTripCalendarItems()),
+        MockPrepareTripSection(sectionTitle: "Add to Reminder", buttonTitle: "Remind me this preparation", calendarItems: []),
+        MockPrepareTripSection(sectionTitle: "Save it as PDF", buttonTitle: "Save this preparation as PDF", calendarItems: [])
     ]
 }
 
