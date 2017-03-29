@@ -17,7 +17,9 @@ final class TabBarController: UIViewController {
     }
     
     fileprivate var items: [Item]
-    fileprivate let selectedIndex: Index
+    fileprivate weak var currentViewController: UIViewController?
+    fileprivate weak var indicatorViewLeadingConstraint: NSLayoutConstraint?
+    fileprivate weak var indicatorViewWidthConstraint: NSLayoutConstraint?
     
     fileprivate lazy var stackView: UIStackView = {
         let view = UIStackView()
@@ -33,16 +35,28 @@ final class TabBarController: UIViewController {
         return view
     } ()
     
+    fileprivate lazy var indicatorView: UIView = {
+       let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
+    
     private func makeButton(title: String, index: Int) -> UIButton {
         let button = UIButton(type: .custom)
         button.setTitle(title, for: .normal)
         button.backgroundColor = .black
+        button.setTitleColor(UIColor.white.withAlphaComponent(0.4), for: .normal)
+        button.setTitleColor(.white, for: .highlighted)
         button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         button.tag = index
         return button
     }
     
+    fileprivate var selectedIndex: Index
+    
     init(items: [Item], selectedIndex: Index) {
+        precondition(selectedIndex >= 0 && selectedIndex < items.count, "Out of bounds selectedIndex")
+        
         self.items = items
         self.selectedIndex = selectedIndex
         
@@ -61,22 +75,32 @@ final class TabBarController: UIViewController {
         
         setupHierarchy()
         setupLayout()
+        loadFirstView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        syncIndicatorView(forButton: stackView.arrangedSubviews[selectedIndex], animated: false)
     }
     
     @objc private func buttonPressed(_ button: UIButton) {
         displayContentController(items[button.tag].controller)
+        syncIndicatorView(forButton: button, animated: true)
+
     }
     
     private func displayContentController(_ viewController: UIViewController) {
-        if containerView.subviews.count > 0 {
-            viewController.willMove(toParentViewController: nil)
-            viewController.view.removeFromSuperview()
-            viewController.removeFromParentViewController()
+        if let existing = currentViewController {
+            existing.willMove(toParentViewController: nil)
+            existing.view.removeFromSuperview()
+            existing.removeFromParentViewController()
         }
         addChildViewController(viewController)
         viewController.view.frame = containerView.frame
         containerView.addSubview(viewController.view)
         viewController.didMove(toParentViewController: self)
+        currentViewController = viewController
     }
     
     private func setupView() {
@@ -84,6 +108,25 @@ final class TabBarController: UIViewController {
             let button = makeButton(title: item.title, index: index)
             stackView.addArrangedSubview(button)
         }
+    }
+    private func loadFirstView() {
+        let controller = items[selectedIndex].controller
+        addChildViewController(controller)
+        controller.view.frame = containerView.frame
+        containerView.addSubview(controller.view)
+        controller.didMove(toParentViewController: self)
+        currentViewController = controller
+    }
+    
+    func syncIndicatorView(forButton button: UIView, animated: Bool) {
+        let width = button.intrinsicContentSize.width + 16
+        
+        indicatorViewWidthConstraint?.constant = width
+        indicatorViewLeadingConstraint?.constant = button.center.x - (width / 2)
+        
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
+            self.view.layoutIfNeeded()
+        }, completion: nil)
     }
 }
 
@@ -98,6 +141,7 @@ extension TabBarController {
     func setupHierarchy() {
         view.addSubview(stackView)
         view.addSubview(containerView)
+        view.addSubview(indicatorView)
     }
     
     func setupLayout() {
@@ -109,6 +153,11 @@ extension TabBarController {
         stackView.leftAnchor == view.leftAnchor
         stackView.rightAnchor == view.rightAnchor
         stackView.heightAnchor == 64
+        
+        indicatorView.bottomAnchor == view.bottomAnchor
+        indicatorView.heightAnchor == 1
+        indicatorViewLeadingConstraint = indicatorView.leadingAnchor == view.leadingAnchor
+        indicatorViewWidthConstraint = indicatorView.widthAnchor == 0
         
         view.layoutIfNeeded()
     }
