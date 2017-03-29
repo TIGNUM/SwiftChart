@@ -59,13 +59,13 @@ final class TabBarCoordinator: ParentCoordinator {
     }
     
     func start() {
-        let vc1 = UIViewController()
-        vc1.view.backgroundColor = .red
+        let vc1 = learnCategoryListViewController
+        //vc1.view.backgroundColor = .red
         
         let vc2 = UIViewController()
-        vc2.view.backgroundColor = .blue
+        //vc2.view.backgroundColor = .blue
         
-        let vc3 = UIViewController()
+        let vc3 = chatViewController
         vc3.view.backgroundColor = .yellow
         let titles = ["LEARN", "ME", "PREPARE"]
         let items = [vc1, vc2, vc3].enumerated().map { (index, vc) -> TabBarController.Item  in
