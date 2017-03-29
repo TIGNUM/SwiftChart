@@ -10,14 +10,14 @@ import Foundation
 import ReactiveKit
 
 final class LearnStrategyViewModel {
-    private let items = mockLearnStrategyItems()
+    private let sections = mockLearnStrategyItems()
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
     var sectionCount: Int {
-        return items.count
+        return sections.count
     }
 
-    func numberOfRowInSection(in section: Int) -> Int {
+    func numberOfItemsInSection(in section: Int) -> Int {
         return items(in: section).count
     }
 
@@ -26,7 +26,7 @@ final class LearnStrategyViewModel {
     }
 
     private func items(in section: Int) -> [LearnStrategyItem] {
-        switch items[section] {
+        switch sections[section] {
         case .strategyItems(let strategyItems): return strategyItems
         case .readMoreItems(let readMoreItems): return readMoreItems
         }

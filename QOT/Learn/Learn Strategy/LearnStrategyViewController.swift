@@ -12,8 +12,7 @@ protocol LearnStrategyViewControllerDelegate: class {
     func didTapClose(in viewController: LearnStrategyViewController)
     func didTapShare(in viewController: LearnStrategyViewController)
     func didTapVideo(with localID: String, from view: UIView, in viewController: LearnStrategyViewController)
-    func didTapReadMore(with localID: String, from view: UIView, in viewController: LearnStrategyViewController)
-    func didScrollToFinish(in viewController: LearnStrategyViewController)
+    func didTapArticle(with article: LearnStrategyItem, from view: UIView, in viewController: LearnStrategyViewController)
 }
 
 final class LearnStrategyViewController: UITableViewController {
@@ -57,7 +56,7 @@ extension LearnStrategyViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRowInSection(in: section)
+        return viewModel.numberOfItemsInSection(in: section)
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
