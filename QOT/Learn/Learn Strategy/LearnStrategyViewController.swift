@@ -11,7 +11,7 @@ import UIKit
 protocol LearnStrategyViewControllerDelegate: class {
     func didTapClose(in viewController: LearnStrategyViewController)
     func didTapShare(in viewController: LearnStrategyViewController)
-    func didTapVideo(with localID: String, from view: UIView, in viewController: LearnStrategyViewController)
+    func didTapVideo(with video: LearnStrategyItem, from view: UIView, in viewController: LearnStrategyViewController)
     func didTapArticle(with article: LearnStrategyItem, from view: UIView, in viewController: LearnStrategyViewController)
 }
 

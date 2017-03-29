@@ -188,7 +188,7 @@ extension TabBarCoordinator: LearnStrategyViewControllerDelegate {
         log("didTapShare")
     }
 
-    func didTapVideo(with localID: String, from view: UIView, in viewController: LearnStrategyViewController) {
+    func didTapVideo(with video: LearnStrategyItem, from view: UIView, in viewController: LearnStrategyViewController) {
         log("didTapVideo: ID: \(localID) view: \(view)")
     }
 
