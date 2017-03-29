@@ -8,20 +8,17 @@
 
 import UIKit
 
-protocol PrepareTripsViewControllerDelegate: class {
-    func didTapClose(in viewController: PrepareTripsViewController)
-    func didTapUpcomingTrip(with localID: String, in viewController: PrepareTripsViewController)
-    func didTapAddNewTrip(in viewController: PrepareTripsViewController)
-    func didTapAddToReminder(in viewController: PrepareTripsViewController)
-    func didTapSaveAsPDF(with localID: String, in viewController: PrepareTripsViewController)
+protocol PrepareEventsViewControllerDelegate: class {
+    func didTapClose(in viewController: PrepareEventsViewController)
+    func didTapItem(item: PrepareEventsItem, in viewController: PrepareEventsViewController)
 }
 
-final class PrepareTripsViewController: UIViewController {
+final class PrepareEventsViewController: UIViewController {
 
-    let viewModel: PrepareTripsViewModel
-    weak var delegate: PrepareTripsViewControllerDelegate?
+    let viewModel: PrepareEventsViewModel
+    weak var delegate: PrepareEventsViewControllerDelegate?
 
-    init(viewModel: PrepareTripsViewModel) {
+    init(viewModel: PrepareEventsViewModel) {
         self.viewModel = viewModel
 
         super.init(nibName: nil, bundle: nil)

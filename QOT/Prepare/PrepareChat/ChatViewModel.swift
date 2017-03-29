@@ -45,7 +45,7 @@ extension ChatViewModel {
                 let index = self.chatMessages.count
                 self.mockChatMessages.remove(at: 0)
                 self.chatMessages.append(first)
-                let update = CollectionUpdate.update(deletions: [], insertions: [index], modifications: [])
+                let update = CollectionUpdate.update(deletions: [], insertions: [IndexPath(item: index, section: 0)], modifications: [])
                 self.updates.next(update)
             } else {
                 self.timer?.invalidate()

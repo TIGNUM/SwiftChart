@@ -25,8 +25,6 @@ class ChatViewController: UITableViewController {
     fileprivate let cellIdentifier = Identifier.chatTableViewCell.rawValue
     weak var delegate: ChatViewDelegate?
 
-
-
     // MARK: - Life Cycle
 
     init(viewModel: ChatViewModel) {
@@ -57,7 +55,7 @@ class ChatViewController: UITableViewController {
             switch update {
             case .reload:
                 self.tableView.reloadData()
-            case .update(let deletions, let insertions, let modifications):
+            case .update(_, _, _):
                 // Please animate updates as needed
                 self.tableView.reloadData()
             }
