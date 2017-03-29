@@ -59,7 +59,20 @@ final class TabBarCoordinator: ParentCoordinator {
     }
     
     func start() {
-        let tabBarController = TabBarController(viewControllers: viewControllers, selectedIndex: selectedIndex)
+        let vc1 = UIViewController()
+        vc1.view.backgroundColor = .red
+        
+        let vc2 = UIViewController()
+        vc2.view.backgroundColor = .blue
+        
+        let vc3 = UIViewController()
+        vc3.view.backgroundColor = .yellow
+        
+        let items = [vc1, vc2, vc3].map { (vc) -> TabBarController.Item  in
+            return TabBarController.Item(controller: vc, title: "title")
+        }
+        
+        let tabBarController = TabBarController(items: items, selectedIndex: 0)
         tabBarController.modalTransitionStyle = .crossDissolve
         tabBarController.modalPresentationStyle = .custom
         rootViewController.present(tabBarController, animated: true)
