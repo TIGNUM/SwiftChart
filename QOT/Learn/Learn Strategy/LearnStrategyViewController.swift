@@ -44,8 +44,7 @@ final class LearnStrategyViewController: UITableViewController {
     }
 
     func closeView(gestureRecognizer: UITapGestureRecognizer) {
-        delegate?.didTapClose(in: self)
-        NSAttributedString
+        delegate?.didTapClose(in: self)        
     }
 }
 
@@ -53,4 +52,34 @@ final class LearnStrategyViewController: UITableViewController {
 
 extension LearnStrategyViewController {
 
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.sectionCount
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.numberOfRowInSection(in: section)
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+        let item = viewModel.item(at: indexPath)
+
+        switch item {
+        case .header(_, let title, let subtitle):
+            cell.textLabel?.attributedText = title
+            cell.detailTextLabel?.attributedText = subtitle
+
+        case .text(_, let text):
+            cell.textLabel?.attributedText = text
+
+        case .video(_, _, let description):
+            cell.textLabel?.attributedText = description
+
+        case .article(_, let title, let subtitle):
+            cell.textLabel?.attributedText = title
+            cell.detailTextLabel?.attributedText = subtitle
+        }
+
+        return cell
+    }
 }
