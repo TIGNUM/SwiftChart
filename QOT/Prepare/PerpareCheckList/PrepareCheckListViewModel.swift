@@ -25,7 +25,8 @@ final class PrepareCheckListViewModel {
 enum PrepareCheckListItem {
     case title(localID: String, text: String)
     case video(localID: String, placeholderURL: URL)
-    case collection(localID: String, title: String, items: [PrepareCheckListSubItem])    
+    case collection(localID: String, title: String, items: [PrepareCheckListSubItem])
+    case step(localID: String, index: Int, text: String)
 }
 
 enum PrepareCheckListSubItem {
