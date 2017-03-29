@@ -75,12 +75,12 @@ private extension LearnContentCell {
     func setupLayout() {
         imageView.edgeAnchors == contentView.edgeAnchors
         textContainerView.horizontalAnchors == contentView.horizontalAnchors + 20
-        textContainerView.topAnchor == contentView.topAnchor +  50
+        textContainerView.topAnchor == contentView.topAnchor +  45
         textContainerView.widthAnchor == contentView.widthAnchor - 40
         
         titleLabel.topAnchor == textContainerView.topAnchor
         titleLabel.horizontalAnchors == textContainerView.horizontalAnchors
-        titleLabel.bottomAnchor == videoDurationLabel.topAnchor
+        titleLabel.bottomAnchor == videoDurationLabel.topAnchor - 2
         
         videoDurationLabel.horizontalAnchors == textContainerView.horizontalAnchors
         videoDurationLabel.bottomAnchor == textContainerView.bottomAnchor - 30
