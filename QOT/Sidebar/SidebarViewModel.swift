@@ -44,25 +44,25 @@ enum SidebarCellType: Int {
     
     var font: UIFont {
         switch self {
-        case .library: return .qotSidebar
-        case .benefits: return .qotSidebar
-        case .settings: return .qotSidebar
-        case .sensor: return .qotSidebar
-        case .about: return .qotSidebarSmall
-        case .privacy: return .qotSidebarSmall
-        case .logout: return .qotSidebarSmall
+        case .library: return Font.SideBar.default
+        case .benefits: return Font.SideBar.default
+        case .settings: return Font.SideBar.default
+        case .sensor: return Font.SideBar.default
+        case .about: return Font.SideBar.small
+        case .privacy: return Font.SideBar.small
+        case .logout: return Font.SideBar.small
         }
     }
     
     var textColor: UIColor {
         switch self {
-        case .library: return .qotWhite
-        case .benefits: return .qotWhite
-        case .settings: return .qotWhite
-        case .sensor: return .qotWhite
-        case .about: return .qotWhiteMedium
-        case .privacy: return .qotWhiteMedium
-        case .logout: return .qotWhiteMedium
+        case .library: return Color.Default.white
+        case .benefits: return Color.Default.white
+        case .settings: return Color.Default.white
+        case .sensor: return Color.Default.white
+        case .about: return Color.Default.whiteMedium
+        case .privacy: return Color.Default.whiteMedium
+        case .logout: return Color.Default.whiteMedium
         }
     }
     

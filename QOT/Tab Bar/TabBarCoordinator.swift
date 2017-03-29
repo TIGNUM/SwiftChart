@@ -189,7 +189,11 @@ extension TabBarCoordinator: LearnStrategyViewControllerDelegate {
     }
 
     func didTapVideo(with video: LearnStrategyItem, from view: UIView, in viewController: LearnStrategyViewController) {
-        log("didTapVideo: ID: \(localID) view: \(view)")
+        switch video {
+        case .video(let localID, let placeholderURL, let description):
+            log("didTapVideo: localID: \(localID), placeholderURL: \(placeholderURL), description: \(description) in view: \(view)")
+        default: log("didTapArticle NO ARTICLE!")
+        }
     }
 
     func didTapArticle(with article: LearnStrategyItem, from view: UIView, in viewController: LearnStrategyViewController) {

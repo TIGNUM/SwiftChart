@@ -50,7 +50,7 @@ final class TabBarController: UITabBarController {
         chatViewController?.tabBarItem = prepareTabBarItem
         
         tabBar.barTintColor = .black
-        tabBar.tintColor = .qotWhite
+        tabBar.tintColor = Color.Default.white
         viewControllers = categoryViewControllers
         selectedIndex = selectedCategoryIndex
     }
