@@ -10,26 +10,22 @@ import Foundation
 import ReactiveKit
 
 final class PrepareTripsViewModel {
-    private var items: [PrepareTripSection] = mockTripSections()
+    private var items: PrepareTrip = mockTripItems()
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
-    var tripCalendarItemCount: Int {
-        return items.first?.calendarItems.count ?? 0
+    var calendarItemCount: Int {
+        return items.calendar.items.count
     }
 
-    func tripCalendarItem(at index: Int) -> PrepareTripCalendarItem? {
-        guard let calendarItems = items.first?.calendarItems, index < calendarItems.count else {
-            return nil
-        }
-
-        return items.first?.calendarItems[index]
+    func calendarItem(at index: Int) -> PrepareTripCalendarItem {
+        return items.calendar.items[index]
     }
 }
 
-protocol PrepareTripSection {
-    var sectionTitle: String { get }
-    var buttonTitle: String { get }
-    var calendarItems: [PrepareTripCalendarItem] { get }
+protocol PrepareTrip {
+    var calendar: (prepareItem: PrepareTripItem, items: [PrepareTripCalendarItem]) { get }
+    var reminderItem: PrepareTripItem { get }
+    var pdfItem: PrepareTripItem { get }
 }
 
 protocol PrepareTripCalendarItem {
@@ -39,6 +35,11 @@ protocol PrepareTripCalendarItem {
     var endDate: Date { get }
 }
 
+protocol PrepareTripItem {
+    var title: String { get }
+    var buttonTitle: String { get }
+}
+
 struct MockPrepareTripCalendarItem: PrepareTripCalendarItem {
     let localID: String
     let title: String
@@ -46,18 +47,23 @@ struct MockPrepareTripCalendarItem: PrepareTripCalendarItem {
     let endDate: Date
 }
 
-struct MockPrepareTripSection: PrepareTripSection {
-    let sectionTitle: String
-    let buttonTitle: String
-    let calendarItems: [PrepareTripCalendarItem]
+struct MockPrepareTrip: PrepareTrip {
+    let calendar: (prepareItem: PrepareTripItem, items: [PrepareTripCalendarItem])
+    let reminderItem: PrepareTripItem
+    let pdfItem: PrepareTripItem
 }
 
-private func mockTripSections() -> [PrepareTripSection] {
-    return [
-        MockPrepareTripSection(sectionTitle: "Upcoming Trips", buttonTitle: "Add new Trip", calendarItems: mockTripCalendarItems()),
-        MockPrepareTripSection(sectionTitle: "Add to Reminder", buttonTitle: "Remind me this preparation", calendarItems: []),
-        MockPrepareTripSection(sectionTitle: "Save it as PDF", buttonTitle: "Save this preparation as PDF", calendarItems: [])
-    ]
+struct MockPrepareTripStoreItem: PrepareTripItem {
+    let title: String
+    let buttonTitle: String
+}
+
+private func mockTripItems() -> PrepareTrip {
+    return MockPrepareTrip(
+        calendar: (prepareItem: MockPrepareTripStoreItem(title: "Upcoming Trips", buttonTitle: "Add new Trip"), items: mockTripCalendarItems()),
+        reminderItem: MockPrepareTripStoreItem(title: "Add to Reminder", buttonTitle: "Remind me this preparation"),
+        pdfItem: MockPrepareTripStoreItem(title: "Save it as PDF", buttonTitle: "Save this preparation as PDF")
+    )
 }
 
 private func mockTripCalendarItems() -> [PrepareTripCalendarItem] {
