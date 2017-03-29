@@ -31,6 +31,8 @@ final class SettingsCoordinator: ParentCoordinator {
         settingsViewController.modalPresentationStyle = .custom
         settingsViewController.transitioningDelegate = presentationManager
         rootViewController?.present(settingsViewController, animated: true)
+        
+        // TODO: Update associatedEntity with realm object when its created.
         eventTracker?.track(page: settingsViewController.pageID, referer: rootViewController?.pageID, associatedEntity: nil)
     }
 }

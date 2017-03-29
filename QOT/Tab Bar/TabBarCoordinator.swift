@@ -128,6 +128,7 @@ extension TabBarCoordinator: ChatViewDelegate {
         prepareContentViewController.delegate = self
         viewController.present(prepareContentViewController, animated: true, completion: nil)
 
+        // TODO: Update associatedEntity with realm object when its created.
         eventTracker.track(page: prepareContentViewController.pageID, referer: rootViewController.pageID, associatedEntity: nil)
     }
 }
