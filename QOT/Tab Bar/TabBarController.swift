@@ -9,7 +9,11 @@
 import UIKit
 import Anchorage
 final class TabBarController: UIViewController {
-    
+    struct Constants {
+        static let animationDuration: TimeInterval = 0.3
+        static let selectedButtonColor: UIColor = .white
+        static let deselectedButtonColor: UIColor = UIColor.white.withAlphaComponent(0.4)
+    }
     // MARK: - Properties
     struct Item {
         let controller: UIViewController
@@ -46,11 +50,16 @@ final class TabBarController: UIViewController {
         button.setTitle(title, for: .normal)
         button.backgroundColor = .black
         button.setTitleColor(UIColor.white.withAlphaComponent(0.4), for: .normal)
-        button.setTitleColor(.white, for: .highlighted)
         button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         button.tag = index
         return button
     }
+    
+    fileprivate lazy var buttons: [UIButton] = {
+        return self.items.enumerated().map { (index, item) in
+            return self.makeButton(title: item.title, index: index)
+        }
+    }()
     
     fileprivate var selectedIndex: Index
     
@@ -71,7 +80,6 @@ final class TabBarController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .purple
-        setupView()
         
         setupHierarchy()
         setupLayout()
@@ -81,13 +89,15 @@ final class TabBarController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        syncIndicatorView(forButton: stackView.arrangedSubviews[selectedIndex], animated: false)
+        syncIndicatorView(animated: false)
+        syncButtonColors(animated: false)
     }
     
     @objc private func buttonPressed(_ button: UIButton) {
+        selectedIndex = button.tag
         displayContentController(items[button.tag].controller)
-        syncIndicatorView(forButton: button, animated: true)
-
+        syncIndicatorView(animated: true)
+        syncButtonColors(animated: true)
     }
     
     private func displayContentController(_ viewController: UIViewController) {
@@ -103,12 +113,6 @@ final class TabBarController: UIViewController {
         currentViewController = viewController
     }
     
-    private func setupView() {
-        items.enumerated().forEach { (index, item) in
-            let button = makeButton(title: item.title, index: index)
-            stackView.addArrangedSubview(button)
-        }
-    }
     private func loadFirstView() {
         let controller = items[selectedIndex].controller
         addChildViewController(controller)
@@ -118,13 +122,31 @@ final class TabBarController: UIViewController {
         currentViewController = controller
     }
     
-    func syncIndicatorView(forButton button: UIView, animated: Bool) {
+    func syncButtonColors(animated: Bool) {
+        let getColor: (UIButton, Int) -> UIColor = { $0.1 == $0.0.tag ? Constants.selectedButtonColor : Constants.deselectedButtonColor   }
+        
+        if animated {
+            for button in buttons {
+                let color = getColor(button, selectedIndex)
+                UIView.transition(with: button, duration: Constants.animationDuration, options: .transitionCrossDissolve, animations: {
+                    button.setTitleColor(color, for: .normal)
+                }, completion: nil)
+            }
+        } else {
+            for button in buttons {
+                button.setTitleColor(getColor(button, selectedIndex), for: .normal)
+            }
+        }
+    }
+    
+    func syncIndicatorView(animated: Bool) {
+        let button = buttons[selectedIndex]
         let width = button.intrinsicContentSize.width + 16
         
         indicatorViewWidthConstraint?.constant = width
         indicatorViewLeadingConstraint?.constant = button.center.x - (width / 2)
         
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: Constants.animationDuration, delay: 0, options: .curveEaseInOut, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
     }
@@ -142,6 +164,8 @@ extension TabBarController {
         view.addSubview(stackView)
         view.addSubview(containerView)
         view.addSubview(indicatorView)
+        
+        buttons.forEach { stackView.addArrangedSubview($0) }
     }
     
     func setupLayout() {
