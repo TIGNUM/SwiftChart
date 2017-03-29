@@ -45,5 +45,12 @@ final class LearnStrategyViewController: UITableViewController {
 
     func closeView(gestureRecognizer: UITapGestureRecognizer) {
         delegate?.didTapClose(in: self)
+        NSAttributedString
     }
+}
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
+
+extension LearnStrategyViewController {
+
 }
