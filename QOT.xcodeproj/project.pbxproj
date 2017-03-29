@@ -89,6 +89,7 @@
 		CCC1B6AE1E8B9B7F00D1461F /* LearnContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC1B6AC1E8B9B7F00D1461F /* LearnContentListViewController.swift */; };
 		CCC1B6AF1E8B9B7F00D1461F /* LearnContentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC1B6AD1E8B9B7F00D1461F /* LearnContentListViewModel.swift */; };
 		CCC1B6B11E8B9FDA00D1461F /* LearnStrategyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC1B6B01E8B9FDA00D1461F /* LearnStrategyViewModel.swift */; };
+		CCC1B6B31E8BA71500D1461F /* LearnStrategyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC1B6B21E8BA71500D1461F /* LearnStrategyViewController.swift */; };
 		CCCC211C1E8981AD00133839 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCC211A1E8981AD00133839 /* ChatViewController.swift */; };
 		CCCC211D1E8981AD00133839 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCC211B1E8981AD00133839 /* ChatViewModel.swift */; };
 		CCCC21221E8981CA00133839 /* PrepareContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCC21201E8981CA00133839 /* PrepareContentViewController.swift */; };
@@ -201,6 +202,7 @@
 		CCC1B6AC1E8B9B7F00D1461F /* LearnContentListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentListViewController.swift; sourceTree = "<group>"; };
 		CCC1B6AD1E8B9B7F00D1461F /* LearnContentListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentListViewModel.swift; sourceTree = "<group>"; };
 		CCC1B6B01E8B9FDA00D1461F /* LearnStrategyViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnStrategyViewModel.swift; sourceTree = "<group>"; };
+		CCC1B6B21E8BA71500D1461F /* LearnStrategyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnStrategyViewController.swift; sourceTree = "<group>"; };
 		CCCC211A1E8981AD00133839 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		CCCC211B1E8981AD00133839 /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		CCCC21201E8981CA00133839 /* PrepareContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentViewController.swift; sourceTree = "<group>"; };
@@ -611,6 +613,7 @@
 		CCC1B69B1E8B9A1200D1461F /* Learn Strategy */ = {
 			isa = PBXGroup;
 			children = (
+				CCC1B6B21E8BA71500D1461F /* LearnStrategyViewController.swift */,
 				CCC1B6B01E8B9FDA00D1461F /* LearnStrategyViewModel.swift */,
 			);
 			path = "Learn Strategy";
@@ -927,6 +930,7 @@
 				CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */,
 				CBD791521E71A09F0006C590 /* ContentItem.swift in Sources */,
 				CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */,
+				CCC1B6B31E8BA71500D1461F /* LearnStrategyViewController.swift in Sources */,
 				CC6B3A2F1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift in Sources */,
 				CB8A15331E76F56D0023B2F9 /* TrackableEntity.swift in Sources */,
 				CBDB98F21E7AA510003EC73F /* CalendarImportResult.swift in Sources */,
