@@ -21,7 +21,7 @@ final class ContentCategory: Object {
     let contents = List<Content>()
     
     override class func primaryKey() -> String? {
-        return "id"
+        return Databsase.Key.primary.rawValue
     }
     
     // FIXME: Unit test once data model is finalized.

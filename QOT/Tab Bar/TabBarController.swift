@@ -8,12 +8,17 @@
 
 import UIKit
 
+protocol TabBarControllerDelegate: class {
+    func didSelect(viewController: UIViewController)
+}
+
 final class TabBarController: UITabBarController {
     
     // MARK: - Properties
     
     fileprivate var categoryViewControllers = [UIViewController]()
     fileprivate let selectedCategoryIndex: Index
+    weak var tabBarDelegate: TabBarControllerDelegate?
     
     // MARK: - Life Cycle
     
@@ -62,5 +67,6 @@ extension TabBarController: UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         log("didSelect viewController: \(viewController)")
+        tabBarDelegate?.didSelect(viewController: viewController)
     }
 }

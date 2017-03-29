@@ -18,7 +18,7 @@ final class Content: Object {
     let items = List<ContentItem>()
     
     override class func primaryKey() -> String? {
-        return "id"
+        return Databsase.Key.primary.rawValue
     }
     
     convenience init(id: Int, sort: Int, name: String, title: String) {

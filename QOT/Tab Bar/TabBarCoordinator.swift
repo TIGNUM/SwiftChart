@@ -62,13 +62,26 @@ final class TabBarCoordinator: ParentCoordinator {
         let tabBarController = TabBarController(viewControllers: viewControllers, selectedIndex: selectedIndex)
         tabBarController.modalTransitionStyle = .crossDissolve
         tabBarController.modalPresentationStyle = .custom
+        tabBarController.tabBarDelegate = self
         rootViewController.present(tabBarController, animated: true)
+        eventTracker.track(page: tabBarController.pageID, referer: rootViewController.pageID, associatedEntity: nil)
     }
     
     func addViewControllers() {
         viewControllers.append(learnCategoryListViewController)
         viewControllers.append(meSectionViewController)
         viewControllers.append(chatViewController)
+    }
+}
+
+extension TabBarCoordinator: TabBarControllerDelegate {
+    func didSelect(viewController: UIViewController) {
+        switch viewController {
+        case let learnCategory as LearnCategoryListViewController: eventTracker.track(page: learnCategory.pageID, referer: rootViewController.pageID, associatedEntity: nil)
+        case let meCategory as MeSectionViewController: eventTracker.track(page: meCategory.pageID, referer: rootViewController.pageID, associatedEntity: nil)
+        case let chat as ChatViewController: eventTracker.track(page: chat.pageID, referer: rootViewController.pageID, associatedEntity: nil)
+        default: return
+        }
     }
 }
 
@@ -114,6 +127,8 @@ extension TabBarCoordinator: ChatViewDelegate {
         let prepareContentViewController = PrepareContentViewController(viewModel: viewModel)
         prepareContentViewController.delegate = self
         viewController.present(prepareContentViewController, animated: true, completion: nil)
+
+        eventTracker.track(page: prepareContentViewController.pageID, referer: rootViewController.pageID, associatedEntity: nil)
     }
 }
 

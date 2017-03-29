@@ -31,7 +31,7 @@ final class ContentItem: Object {
     dynamic var title: String = ""
     
     override class func primaryKey() -> String? {
-        return "id"
+        return Databsase.Key.primary.rawValue
     }
     
     convenience init(id: Int, sort: Int, title: String, status: Status, data: ContentItem.Data) {
