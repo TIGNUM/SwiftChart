@@ -98,13 +98,8 @@
 		CCE5B9D41E80505800E01BAE /* SidebarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE5B9D31E80505800E01BAE /* SidebarViewController.xib */; };
 		CCEA22A41E8AC53E003D0CF4 /* PrepareCheckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A21E8AC53D003D0CF4 /* PrepareCheckListViewController.swift */; };
 		CCEA22A51E8AC53E003D0CF4 /* PrepareCheckListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A31E8AC53D003D0CF4 /* PrepareCheckListViewModel.swift */; };
-		CCEA22A91E8AC55F003D0CF4 /* PrepareTripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A71E8AC55F003D0CF4 /* PrepareTripsViewController.swift */; };
-		CCEA22AA1E8AC55F003D0CF4 /* PrepareTripsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A81E8AC55F003D0CF4 /* PrepareTripsViewModel.swift */; };
 		CCEA22A91E8AC55F003D0CF4 /* PrepareEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A71E8AC55F003D0CF4 /* PrepareEventsViewController.swift */; };
 		CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */; };
-		D5952A541E7BCD000073E522 /* LearnCategoryLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5952A531E7BCD000073E522 /* LearnCategoryLayout.swift */; };
-		D5C69EBC1E8036DF00B50E38 /* LearnCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C69EBB1E8036DF00B50E38 /* LearnCategoryCell.swift */; };
-		D5D32F1B1E83D3CA00FACB2E /* LearnCategoryListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D32F191E83D3CA00FACB2E /* LearnCategoryListViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
