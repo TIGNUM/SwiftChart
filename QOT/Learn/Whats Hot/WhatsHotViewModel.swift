@@ -29,7 +29,7 @@ protocol WhatsHotItem {
     var subtitle: NSAttributedString { get }
     var text: NSAttributedString { get }
     var mediaInformation: NSAttributedString { get }
-    var mediaURL: URL { get }
+    var placeholderURL: URL { get }
     var bookmarked: Bool { get }
 }
 
@@ -39,7 +39,7 @@ struct MockWhatsHotItem: WhatsHotItem {
     let subtitle: NSAttributedString
     let text: NSAttributedString
     let mediaInformation: NSAttributedString
-    let mediaURL: URL
+    let placeholderURL: URL
     let bookmarked: Bool
 }
 
@@ -51,7 +51,7 @@ private func mockWhatsHotItems() -> [WhatsHotItem] {
             subtitle: AttributedString.Learn.whatsHotTitle(string: "QOT // THOUGHTS"),
             text: AttributedString.Learn.whatsHotText(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
             mediaInformation: AttributedString.Learn.whatsHotTitle(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
-            mediaURL: URL(string:"https://example.com")!,
+            placeholderURL: URL(string:"https://example.com")!,
             bookmarked: false
         ),
 
@@ -61,7 +61,7 @@ private func mockWhatsHotItems() -> [WhatsHotItem] {
             subtitle: AttributedString.Learn.whatsHotTitle(string: "QOT // THOUGHTS"),
             text: AttributedString.Learn.whatsHotText(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
             mediaInformation: AttributedString.Learn.whatsHotTitle(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
-            mediaURL: URL(string:"https://example.com")!,
+            placeholderURL: URL(string:"https://example.com")!,
             bookmarked: false
         ),
 
@@ -71,7 +71,7 @@ private func mockWhatsHotItems() -> [WhatsHotItem] {
             subtitle: AttributedString.Learn.whatsHotTitle(string: "QOT // THOUGHTS"),
             text: AttributedString.Learn.whatsHotText(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
             mediaInformation: AttributedString.Learn.whatsHotTitle(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
-            mediaURL: URL(string:"https://example.com")!,
+            placeholderURL: URL(string:"https://example.com")!,
             bookmarked: false
         ),
 
@@ -81,7 +81,7 @@ private func mockWhatsHotItems() -> [WhatsHotItem] {
             subtitle: AttributedString.Learn.whatsHotTitle(string: "QOT // THOUGHTS"),
             text: AttributedString.Learn.whatsHotText(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
             mediaInformation: AttributedString.Learn.whatsHotTitle(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
-            mediaURL: URL(string:"https://example.com")!,
+            placeholderURL: URL(string:"https://example.com")!,
             bookmarked: false
         )
     ]
