@@ -1,28 +1,28 @@
 //
-//  PrepareTripsViewController.swift
+//  LibraryViewController.swift
 //  QOT
 //
-//  Created by karmic on 28/03/2017.
+//  Created by karmic on 30/03/2017.
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
 import UIKit
 
-protocol PrepareEventsViewControllerDelegate: class {
-    func didTapClose(in viewController: PrepareEventsViewController)
-    func didTapItem(item: PrepareEventsItem, in viewController: PrepareEventsViewController)
+protocol LibraryViewControllerDelegate: class {
+    func didTapClose(in viewController: LibraryViewController)
+    func didTapMedia(with mediaItem: LibraryItem.MediaItem, from view: UIView, in viewController: UIViewController)
 }
 
-final class PrepareEventsViewController: UIViewController {
+final class LibraryViewController: UIViewController {
 
     // MARK: - Properties
 
-    let viewModel: PrepareEventsViewModel
-    weak var delegate: PrepareEventsViewControllerDelegate?
+    let viewModel: LibraryViewModel
+    weak var delegate: LibraryViewControllerDelegate?
 
     // MARK: - Life Cycle
 
-    init(viewModel: PrepareEventsViewModel) {
+    init(viewModel: LibraryViewModel) {
         self.viewModel = viewModel
 
         super.init(nibName: nil, bundle: nil)

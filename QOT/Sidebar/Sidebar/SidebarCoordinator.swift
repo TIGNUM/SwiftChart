@@ -49,4 +49,10 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
         coordinator.delegate = self
         startChild(child: coordinator)
     }
+
+    func didTapLibraryCell(in viewController: SidebarViewController) {
+        let coordinator = LibraryCoordinator(root: viewController, databaseManager: databaseManager, eventTracker: eventTracker)
+        coordinator.delegate = self
+        startChild(child: coordinator)
+    }
 }
