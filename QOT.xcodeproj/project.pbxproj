@@ -93,10 +93,12 @@
 		CCCC211D1E8981AD00133839 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCC211B1E8981AD00133839 /* ChatViewModel.swift */; };
 		CCCC21221E8981CA00133839 /* PrepareContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCC21201E8981CA00133839 /* PrepareContentViewController.swift */; };
 		CCCC21231E8981CA00133839 /* PrepareContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCC21211E8981CA00133839 /* PrepareContentViewModel.swift */; };
+		CCD377531E8D3C2D00BB8031 /* WhatsHotNewTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD377511E8D3C2D00BB8031 /* WhatsHotNewTemplateViewController.swift */; };
+		CCD377541E8D3C2D00BB8031 /* WhatsHotNewTemplateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD377521E8D3C2D00BB8031 /* WhatsHotNewTemplateViewModel.swift */; };
 		CCE372F31E8C1EDF00B79352 /* WhatsHotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE372F21E8C1EDF00B79352 /* WhatsHotViewModel.swift */; };
 		CCE372F51E8CF10C00B79352 /* WhatsHotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE372F41E8CF10C00B79352 /* WhatsHotViewController.swift */; };
-		CCE372F81E8CF86900B79352 /* WhatsHotNewTemplateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE372F71E8CF86900B79352 /* WhatsHotNewTemplateViewModel.swift */; };
-		CCE372FA1E8CF88600B79352 /* WhatsHotNewTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE372F91E8CF88600B79352 /* WhatsHotNewTemplateViewController.swift */; };
+		CCE372FD1E8D2AD100B79352 /* MyPrepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE372FC1E8D2AD100B79352 /* MyPrepViewController.swift */; };
+		CCE372FF1E8D2AE700B79352 /* MyPrepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE372FE1E8D2AE700B79352 /* MyPrepViewModel.swift */; };
 		CCE5B9D21E80501D00E01BAE /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE5B9D11E80501D00E01BAE /* SidebarViewController.swift */; };
 		CCE5B9D41E80505800E01BAE /* SidebarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE5B9D31E80505800E01BAE /* SidebarViewController.xib */; };
 		CCEA22A41E8AC53E003D0CF4 /* PrepareCheckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A21E8AC53D003D0CF4 /* PrepareCheckListViewController.swift */; };
@@ -213,10 +215,12 @@
 		CCCC211B1E8981AD00133839 /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		CCCC21201E8981CA00133839 /* PrepareContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentViewController.swift; sourceTree = "<group>"; };
 		CCCC21211E8981CA00133839 /* PrepareContentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentViewModel.swift; sourceTree = "<group>"; };
+		CCD377511E8D3C2D00BB8031 /* WhatsHotNewTemplateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WhatsHotNewTemplateViewController.swift; path = WhatsHotNewTemplateViewController.swift; sourceTree = "<group>"; };
+		CCD377521E8D3C2D00BB8031 /* WhatsHotNewTemplateViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WhatsHotNewTemplateViewModel.swift; path = WhatsHotNewTemplateViewModel.swift; sourceTree = "<group>"; };
 		CCE372F21E8C1EDF00B79352 /* WhatsHotViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsHotViewModel.swift; sourceTree = "<group>"; };
 		CCE372F41E8CF10C00B79352 /* WhatsHotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsHotViewController.swift; sourceTree = "<group>"; };
-		CCE372F71E8CF86900B79352 /* WhatsHotNewTemplateViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WhatsHotNewTemplateViewModel.swift; path = WhatsHotNewTemplateViewModel.swift; sourceTree = "<group>"; };
-		CCE372F91E8CF88600B79352 /* WhatsHotNewTemplateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WhatsHotNewTemplateViewController.swift; path = WhatsHotNewTemplateViewController.swift; sourceTree = "<group>"; };
+		CCE372FC1E8D2AD100B79352 /* MyPrepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPrepViewController.swift; sourceTree = "<group>"; };
+		CCE372FE1E8D2AE700B79352 /* MyPrepViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPrepViewModel.swift; sourceTree = "<group>"; };
 		CCE5B9D11E80501D00E01BAE /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		CCE5B9D31E80505800E01BAE /* SidebarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidebarViewController.xib; sourceTree = "<group>"; };
 		CCEA22A21E8AC53D003D0CF4 /* PrepareCheckListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareCheckListViewController.swift; sourceTree = "<group>"; };
@@ -527,6 +531,7 @@
 		CC20C9921E8981070056054D /* Prepare */ = {
 			isa = PBXGroup;
 			children = (
+				CCE372FB1E8D2A6300B79352 /* My Preep */,
 				CCEA22A11E8AC528003D0CF4 /* PerpareCheckList */,
 				CC4D1D7A1E82E6AD00B8D75E /* PrepareChat */,
 				CC7C0A111E8966E000A83583 /* PrepareContent */,
@@ -622,7 +627,7 @@
 				CCC1B6A11E8B9B5E00D1461F /* Learn Content List */,
 				CCC1B69B1E8B9A1200D1461F /* Learn Strategy */,
 				CCE372F11E8C1EA600B79352 /* Whats Hot */,
-				CCE372F61E8CF7E300B79352 /* Whats Hot New Template */,
+				CCD377501E8D3C0900BB8031 /* Whats Hot New Template */,
 			);
 			path = Learn;
 			sourceTree = "<group>";
@@ -672,6 +677,16 @@
 			path = Sidebar;
 			sourceTree = "<group>";
 		};
+		CCD377501E8D3C0900BB8031 /* Whats Hot New Template */ = {
+			isa = PBXGroup;
+			children = (
+				CCD377511E8D3C2D00BB8031 /* WhatsHotNewTemplateViewController.swift */,
+				CCD377521E8D3C2D00BB8031 /* WhatsHotNewTemplateViewModel.swift */,
+			);
+			name = "Whats Hot New Template";
+			path = "Whats Hot New Template";
+			sourceTree = "<group>";
+		};
 		CCE372F11E8C1EA600B79352 /* Whats Hot */ = {
 			isa = PBXGroup;
 			children = (
@@ -681,14 +696,13 @@
 			path = "Whats Hot";
 			sourceTree = "<group>";
 		};
-		CCE372F61E8CF7E300B79352 /* Whats Hot New Template */ = {
+		CCE372FB1E8D2A6300B79352 /* My Preep */ = {
 			isa = PBXGroup;
 			children = (
-				CCE372F91E8CF88600B79352 /* WhatsHotNewTemplateViewController.swift */,
-				CCE372F71E8CF86900B79352 /* WhatsHotNewTemplateViewModel.swift */,
+				CCE372FC1E8D2AD100B79352 /* MyPrepViewController.swift */,
+				CCE372FE1E8D2AE700B79352 /* MyPrepViewModel.swift */,
 			);
-			name = "Whats Hot New Template";
-			path = "Whats Hot New Template";
+			path = "My Preep";
 			sourceTree = "<group>";
 		};
 		CCEA22A11E8AC528003D0CF4 /* PerpareCheckList */ = {
@@ -954,7 +968,6 @@
 			files = (
 				D5CD23D81E8BB73A002742C4 /* TabBarController.swift in Sources */,
 				CBDB99021E7BE91D003EC73F /* EKEvent+CalendarEventData.swift in Sources */,
-				CCE372FA1E8CF88600B79352 /* WhatsHotNewTemplateViewController.swift in Sources */,
 				CBDB99081E7BEE05003EC73F /* EventStore.swift in Sources */,
 				CBD7914A1E71797C0006C590 /* Typealiases.swift in Sources */,
 				CCCC21221E8981CA00133839 /* PrepareContentViewController.swift in Sources */,
@@ -968,7 +981,6 @@
 				CC4D1D7C1E82E75300B8D75E /* MeSectionViewController.swift in Sources */,
 				CBD7915F1E72FDC10006C590 /* LaunchViewModel.swift in Sources */,
 				CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */,
-				CCE372F81E8CF86900B79352 /* WhatsHotNewTemplateViewModel.swift in Sources */,
 				CBD791521E71A09F0006C590 /* ContentItem.swift in Sources */,
 				D55CBED71E8A993200C690FB /* CGPoint+Convenience.swift in Sources */,
 				CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */,
@@ -977,6 +989,7 @@
 				CB8A15331E76F56D0023B2F9 /* TrackableEntity.swift in Sources */,
 				CBDB98F21E7AA510003EC73F /* CalendarImportResult.swift in Sources */,
 				CCE372F31E8C1EDF00B79352 /* WhatsHotViewModel.swift in Sources */,
+				CCD377541E8D3C2D00BB8031 /* WhatsHotNewTemplateViewModel.swift in Sources */,
 				CBD7915C1E72F2990006C590 /* LaunchViewController.swift in Sources */,
 				CBD791681E768CC00006C590 /* MainMenuCoordinator.swift in Sources */,
 				CC6B3A331E8191BC00E7FDFD /* SidebarViewModel.swift in Sources */,
@@ -993,6 +1006,7 @@
 				CB1E4F981E7FE22200287613 /* SettingsViewModel.swift in Sources */,
 				CCCC211C1E8981AD00133839 /* ChatViewController.swift in Sources */,
 				CC3DFB661E83C19C00FF28DF /* Defines.swift in Sources */,
+				CCD377531E8D3C2D00BB8031 /* WhatsHotNewTemplateViewController.swift in Sources */,
 				CCC1B6A81E8B9B7300D1461F /* LearnCategoryLayout.swift in Sources */,
 				CBD7914E1E719E2D0006C590 /* ContentCategory.swift in Sources */,
 				CCC0C4DB1E82BDEF002A8362 /* TabBarCoordinator.swift in Sources */,
@@ -1002,7 +1016,9 @@
 				CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */,
 				CB8A153A1E7801B90023B2F9 /* CalendarEvent.swift in Sources */,
 				CCAF03261E801B0E00015125 /* SettingsViewControllerDelegate.swift in Sources */,
+				CCE372FF1E8D2AE700B79352 /* MyPrepViewModel.swift in Sources */,
 				CCC1B6AB1E8B9B7300D1461F /* LearnCategoryListViewModel.swift in Sources */,
+				CCE372FD1E8D2AD100B79352 /* MyPrepViewController.swift in Sources */,
 				CCC1B6A71E8B9B7300D1461F /* LearnCategoryCell.swift in Sources */,
 				D51B5C491E8D0E7E0084A65B /* LearnContentCell.swift in Sources */,
 				CCE372F51E8CF10C00B79352 /* WhatsHotViewController.swift in Sources */,
