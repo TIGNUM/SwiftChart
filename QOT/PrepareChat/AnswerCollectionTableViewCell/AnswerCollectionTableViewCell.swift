@@ -35,7 +35,7 @@ extension AnswerCollectionTableViewCell {
 
     // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.dataSource.count;
+        return self.dataSource.count
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {

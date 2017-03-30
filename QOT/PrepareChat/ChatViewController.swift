@@ -22,7 +22,6 @@ class ChatViewController: UITableViewController {
 
     private let disposeBag = DisposeBag()
     fileprivate let viewModel: ChatViewModel
-    fileprivate let cellIdentifier = Identifier.chatTableViewCell.rawValue
     weak var delegate: ChatViewDelegate?
 
     // MARK: - Life Cycle
@@ -47,7 +46,9 @@ class ChatViewController: UITableViewController {
     private func setupTableView() {
         view.backgroundColor = .black
         tableView.backgroundColor = .black
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: self.cellIdentifier)
+        tableView.register(ChatTableViewCell.self, forCellReuseIdentifier: String(describing:ChatTableViewCell.self))
+        tableView.register(AnswerCollectionTableViewCell.self, forCellReuseIdentifier: String(describing:AnswerCollectionTableViewCell.self))
+
     }
 
     private func updateTableView(with tableView: UITableView) {
@@ -72,7 +73,7 @@ extension ChatViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let chatCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        let chatCell = tableView.dequeueReusableCell(withIdentifier: String(describing:ChatTableViewCell.self), for: indexPath);
         let chatMessage = viewModel.chatMessage(at: indexPath.row)
 
         let text: String
@@ -94,7 +95,11 @@ extension ChatViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
 
-
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        //add hieght for diferent cell types, possibl calulate at runtime
+        
+        return 100.0
     }
 }
