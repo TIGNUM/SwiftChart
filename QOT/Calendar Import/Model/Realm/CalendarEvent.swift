@@ -51,7 +51,7 @@ final class CalendarEvent: Object, CalendarEventData {
     }
 
     override class func primaryKey() -> String? {
-        return Databsase.Key.primary.rawValue
+        return "id"
     }
     
     convenience init(event: CalendarEventData) {
