@@ -102,13 +102,10 @@
 		CCEA22A51E8AC53E003D0CF4 /* PrepareCheckListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A31E8AC53D003D0CF4 /* PrepareCheckListViewModel.swift */; };
 		CCEA22A91E8AC55F003D0CF4 /* PrepareEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A71E8AC55F003D0CF4 /* PrepareEventsViewController.swift */; };
 		CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */; };
-<<<<<<< HEAD
 		D51B5C4C1E8D133B0084A65B /* LearnStrategyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B5C4B1E8D133B0084A65B /* LearnStrategyCoordinator.swift */; };
-=======
 		D51B5C491E8D0E7E0084A65B /* LearnContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B5C471E8D0E7E0084A65B /* LearnContentCell.swift */; };
 		D51B5C4A1E8D0E7E0084A65B /* LearnContentLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B5C481E8D0E7E0084A65B /* LearnContentLayout.swift */; };
 		D55CBED71E8A993200C690FB /* CGPoint+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55CBED61E8A993200C690FB /* CGPoint+Convenience.swift */; };
->>>>>>> feature/IT-227
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -225,13 +222,10 @@
 		CCEA22A71E8AC55F003D0CF4 /* PrepareEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsViewController.swift; sourceTree = "<group>"; };
 		CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsViewModel.swift; sourceTree = "<group>"; };
 		CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-<<<<<<< HEAD
 		D51B5C4B1E8D133B0084A65B /* LearnStrategyCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnStrategyCoordinator.swift; sourceTree = "<group>"; };
-=======
 		D51B5C471E8D0E7E0084A65B /* LearnContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentCell.swift; sourceTree = "<group>"; };
 		D51B5C481E8D0E7E0084A65B /* LearnContentLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentLayout.swift; sourceTree = "<group>"; };
 		D55CBED61E8A993200C690FB /* CGPoint+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Convenience.swift"; sourceTree = "<group>"; };
->>>>>>> feature/IT-227
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
