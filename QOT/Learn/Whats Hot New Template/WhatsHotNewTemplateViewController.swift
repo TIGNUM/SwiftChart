@@ -1,30 +1,32 @@
 //
-//  LearnStrategyViewController.swift
+//  WhatsHotNewTemplateViewController.swift
 //  QOT
 //
-//  Created by karmic on 29/03/2017.
+//  Created by karmic on 30/03/2017.
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
 import UIKit
 
-protocol LearnStrategyViewControllerDelegate: class {
-    func didTapClose(in viewController: LearnStrategyViewController)
-    func didTapShare(in viewController: LearnStrategyViewController)
-    func didTapVideo(with video: LearnStrategyItem, from view: UIView, in viewController: LearnStrategyViewController)
-    func didTapArticle(with article: LearnStrategyItem, from view: UIView, in viewController: LearnStrategyViewController)
+protocol WhatsHotNewTemplateViewControllerDelegate: class {
+    func didTapClose(in viewController: WhatsHotNewTemplateViewController)
+    func didTapBookmark(with item: WhatsHotNewTemplateItem,in viewController: WhatsHotNewTemplateViewController)
+    func didTapMedia(with mediaItem: WhatsHotNewTemplateItem,from view: UIView, in viewController: WhatsHotNewTemplateViewController)
+    func didTapArticle(with articleItem: WhatsHotNewTemplateItem, from view: UIView, in viewController: WhatsHotNewTemplateViewController)
+    func didTapLoadMore(from view: UIView, in viewController: WhatsHotNewTemplateViewController)
+    func didTapLoadMoreItem(with loadMoreItem: WhatsHotNewTemplateItem, from view: UIView, in viewController: WhatsHotNewTemplateViewController)
 }
 
-final class LearnStrategyViewController: UITableViewController {
+class WhatsHotNewTemplateViewController: UITableViewController {
 
     // MARK: - Properties
 
-    let viewModel: LearnStrategyViewModel
-    weak var delegate: LearnStrategyViewControllerDelegate?
+    let viewModel: WhatsHotNewTemplateViewModel
+    weak var delegate: WhatsHotNewTemplateViewControllerDelegate?
 
     // MARK: - Life Cycle
 
-    init(viewModel: LearnStrategyViewModel) {
+    init(viewModel: WhatsHotNewTemplateViewModel) {
         self.viewModel = viewModel
 
         super.init(nibName: nil, bundle: nil)
@@ -43,13 +45,13 @@ final class LearnStrategyViewController: UITableViewController {
     }
 
     func closeView(gestureRecognizer: UITapGestureRecognizer) {
-        delegate?.didTapClose(in: self)        
+        delegate?.didTapClose(in: self)
     }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 
-extension LearnStrategyViewController {
+extension WhatsHotNewTemplateViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.sectionCount
@@ -64,9 +66,15 @@ extension LearnStrategyViewController {
         let item = viewModel.item(at: indexPath)
 
         switch item {
-        case .header(_, let title, let subtitle):
+        case .header(_, let title, let subtitle, let duration):
             cell.textLabel?.attributedText = title
             cell.detailTextLabel?.attributedText = subtitle
+
+        case .title(_, let text):
+            cell.textLabel?.attributedText = text
+
+        case .subtitle(_, let text):
+            cell.textLabel?.attributedText = text
 
         case .text(_, let text):
             cell.textLabel?.attributedText = text
@@ -74,11 +82,16 @@ extension LearnStrategyViewController {
         case .media(_, _, let description):
             cell.textLabel?.attributedText = description
 
-        case .article(_, let title, let subtitle):
+        case .article(_, let placeholderURL, let title, let subtitle):
+            cell.textLabel?.attributedText = title
+            cell.detailTextLabel?.attributedText = subtitle
+
+        case .loadMore(_, _, _, let title, let subtitle):
             cell.textLabel?.attributedText = title
             cell.detailTextLabel?.attributedText = subtitle
         }
-
+        
         return cell
     }
 }
+

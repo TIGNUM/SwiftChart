@@ -216,7 +216,7 @@ extension TabBarCoordinator: LearnStrategyViewControllerDelegate {
 
     func didTapVideo(with video: LearnStrategyItem, from view: UIView, in viewController: LearnStrategyViewController) {
         switch video {
-        case .video(let localID, let placeholderURL, let description):
+        case .media(let localID, let placeholderURL, let description):
             log("didTapVideo: localID: \(localID), placeholderURL: \(placeholderURL), description: \(description) in view: \(view)")
         default: log("didTapArticle NO ARTICLE!")
         }
@@ -239,5 +239,33 @@ extension TabBarCoordinator: WhatsHotViewControllerDelegate {
 
     func didTapBookmark(at index: Index, with whatsHot: WhatsHotItem, in view: UIView, in viewController: WhatsHotViewController) {
         log("didTapBookmark: index: \(index), whatsHotItem.bookmarked: \(whatsHot.bookmarked)")
+    }
+}
+
+// MARK: - WhatsHotNewTemplateViewControllerDelegate
+
+extension TabBarCoordinator: WhatsHotNewTemplateViewControllerDelegate {
+    func didTapClose(in viewController: WhatsHotNewTemplateViewController) {
+        viewController.dismiss(animated: true, completion: nil)
+    }
+
+    func didTapLoadMore(from view: UIView, in viewController: WhatsHotNewTemplateViewController) {
+        log("didTapLoadMore")
+    }
+
+    func didTapBookmark(with item: WhatsHotNewTemplateItem, in viewController: WhatsHotNewTemplateViewController) {
+        log("didTapBookmark, item: \(item)")
+    }
+
+    func didTapMedia(with mediaItem: WhatsHotNewTemplateItem, from view: UIView, in viewController: WhatsHotNewTemplateViewController) {
+        log("didTapMedia")
+    }
+
+    func didTapArticle(with articleItem: WhatsHotNewTemplateItem, from view: UIView, in viewController: WhatsHotNewTemplateViewController) {
+        log("didTapArticle")
+    }
+
+    func didTapLoadMoreItem(with loadMoreItem: WhatsHotNewTemplateItem, from view: UIView, in viewController: WhatsHotNewTemplateViewController) {
+        log("didTapLoadMoreItem: with item: \(loadMoreItem)")
     }
 }
