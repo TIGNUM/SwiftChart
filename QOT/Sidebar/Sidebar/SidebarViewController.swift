@@ -12,6 +12,7 @@ import UIKit
 protocol SidebarViewControllerDelegate: class {
     func didTapClose(in viewController: UIViewController, animated: Bool)
     func didTapSettingsCell(in viewController: SidebarViewController)
+    func didTapLibraryCell(in viewController: SidebarViewController)
 }
 
 final class SidebarViewController: UIViewController {
