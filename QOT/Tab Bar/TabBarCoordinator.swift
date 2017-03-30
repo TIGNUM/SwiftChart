@@ -59,11 +59,18 @@ final class TabBarCoordinator: ParentCoordinator {
     }
     
     func start() {
-        let tabBarController = TabBarController(viewControllers: viewControllers, selectedIndex: selectedIndex)
+        let items: [TabBarController.Item] = [
+            TabBarController.Item(controller: learnCategoryListViewController, title: R.string.localized.tabBarItemLearn()),
+            TabBarController.Item(controller: meSectionViewController, title: R.string.localized.tabBarItemMe()),
+            TabBarController.Item(controller: chatViewController, title: R.string.localized.tabBarItemPrepare())
+        ]
+        
+        let tabBarController = TabBarController(items: items, selectedIndex: 0)
         tabBarController.modalTransitionStyle = .crossDissolve
         tabBarController.modalPresentationStyle = .custom
-        tabBarController.tabBarDelegate = self
+        tabBarController.delegate = self
         rootViewController.present(tabBarController, animated: true)
+        
         eventTracker.track(page: tabBarController.pageID, referer: rootViewController.pageID, associatedEntity: nil)
     }
     
@@ -75,12 +82,15 @@ final class TabBarCoordinator: ParentCoordinator {
 }
 
 extension TabBarCoordinator: TabBarControllerDelegate {
-    func didSelect(viewController: UIViewController) {
+    func didSelectTab(at index: Index, in controller: TabBarController) {
+        let viewController = controller.viewControllers[0]
+        
         switch viewController {
         case let learnCategory as LearnCategoryListViewController: eventTracker.track(page: learnCategory.pageID, referer: rootViewController.pageID, associatedEntity: nil)
         case let meCategory as MeSectionViewController: eventTracker.track(page: meCategory.pageID, referer: rootViewController.pageID, associatedEntity: nil)
         case let chat as ChatViewController: eventTracker.track(page: chat.pageID, referer: rootViewController.pageID, associatedEntity: nil)
-        default: return
+        default:
+            break
         }
     }
 }

@@ -20,6 +20,6 @@
 "Sidebar.Title.Logout" = "Logout";
 
 
-"Tab.Bar.Item.Learn" = "Learn";
-"Tab.Bar.Item.Me" = "Me";
-"Tab.Bar.Item.Prepare" = "Prepare";
+"Tab.Bar.Item.Learn" = "LEARN";
+"Tab.Bar.Item.Me" = "ME";
+"Tab.Bar.Item.Prepare" = "PREPARE";
