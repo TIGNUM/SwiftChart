@@ -166,4 +166,12 @@ struct AttributedString {
             }
         }
     }
+
+    struct Sidebar {
+        struct Benefits {
+            static func headerTitle(string: String) -> NSAttributedString {
+                return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.Learn.headertitle)
+            }
+        }
+    }
 }
