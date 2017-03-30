@@ -19,6 +19,10 @@ class AnswerCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
     var delegate: AnswerCollectionViewCellDelegate?
     var dataSource: NSArray = []
 
+    func initWithDataModel(dataModel: NSArray!){
+        self.awakeFromNib()
+        self.dataSource = dataModel
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

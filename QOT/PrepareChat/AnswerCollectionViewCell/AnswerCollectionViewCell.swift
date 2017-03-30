@@ -15,6 +15,7 @@ class AnswerCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.contentView.addDashedBorder(color: UIColor.gray.cgColor, lineWidth: 2)
+        self.contentView.backgroundColor = UIColor.black
     }
 
     func initWithTitle(title: String!)
