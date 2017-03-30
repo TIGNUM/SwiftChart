@@ -86,9 +86,8 @@ extension WhatsHotNewTemplateViewController {
             cell.textLabel?.attributedText = title
             cell.detailTextLabel?.attributedText = subtitle
 
-        case .loadMore(_, _, _, let title, let subtitle):
-            cell.textLabel?.attributedText = title
-            cell.detailTextLabel?.attributedText = subtitle
+        case .loadMore(let loadMore):
+            cell.textLabel?.text = "Maybe a collectionView with itemCount: \(loadMore.count)"
         }
         
         return cell
