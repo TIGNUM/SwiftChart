@@ -120,6 +120,7 @@ extension SidebarViewController {
     fileprivate func handleSelection(forItem item: SidebarCellType) {
         switch item {
         case .settings: delegate?.didTapSettingsCell(in: self)
+        case .library: delegate?.didTapLibraryCell(in: self)
         default: return
         }
     }
