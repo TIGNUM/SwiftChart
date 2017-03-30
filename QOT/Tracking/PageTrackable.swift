@@ -35,3 +35,51 @@ extension LearnContentListViewController: PageTrackable {
         return .learnContentList
     }
 }
+
+extension MeSectionViewController: PageTrackable {
+    var pageID: PageID {
+        return .meSection
+    }
+}
+
+extension PrepareCheckListViewController: PageTrackable {
+    var pageID: PageID {
+        return .prepareCheckList
+    }
+}
+
+extension ChatViewController: PageTrackable {
+    var pageID: PageID {
+        return .prepareChat
+    }
+}
+
+extension PrepareContentViewController: PageTrackable {
+    var pageID: PageID {
+        return .prepareContent
+    }
+}
+
+extension PrepareEventsViewController: PageTrackable {
+    var pageID: PageID {
+        return .prepareEvents
+    }
+}
+
+extension SettingsViewController: PageTrackable {
+    var pageID: PageID {
+        return .settings
+    }
+}
+
+extension SidebarViewController: PageTrackable {
+    var pageID: PageID {
+        return .sideBar
+    }
+}
+
+extension TabBarController: PageTrackable {
+    var pageID: PageID {
+        return .tabBar
+    }
+}
