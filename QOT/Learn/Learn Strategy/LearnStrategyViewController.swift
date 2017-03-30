@@ -71,7 +71,7 @@ extension LearnStrategyViewController {
         case .text(_, let text):
             cell.textLabel?.attributedText = text
 
-        case .video(_, _, let description):
+        case .media(_, _, let description):
             cell.textLabel?.attributedText = description
 
         case .article(_, let title, let subtitle):

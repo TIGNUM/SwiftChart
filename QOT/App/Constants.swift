@@ -64,6 +64,7 @@ struct Font {
 struct Color {
     struct Default {
         static let black = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+        static let blackMedium = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
         static let white = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         static let whiteLight = UIColor(red: 1, green: 1, blue: 1, alpha: 0.1)
         static let whiteMedium = UIColor(red: 1, green: 1, blue: 1, alpha: 0.4)
@@ -92,8 +93,8 @@ struct AttributedString {
             return NSAttributedString.create(for: string, withColor: Color.Default.black, andFont: Font.Learn.text)
         }
 
-        static func videoDescription(string: String) -> NSAttributedString {
-            return NSAttributedString.create(for: string, withColor: Color.Learn.videoDescription, andFont: Font.Learn.text)
+        static func mediaDescription(string: String) -> NSAttributedString {
+            return NSAttributedString.create(for: string, withColor: Color.Default.blackMedium, andFont: Font.Learn.text)
         }
 
         static func readMoreHeaderTitle(string: String) -> NSAttributedString {
@@ -112,16 +113,46 @@ struct AttributedString {
             return NSAttributedString.create(for: string, withColor: Color.Learn.articleSubtitle, andFont: Font.Learn.headerSubtitle)
         }
 
-        static func whatsHotID(string: String) -> NSAttributedString {
-            return NSAttributedString.create(for: string, withColor: Color.Learn.articleSubtitle, andFont: Font.Learn.whatsHotID)
-        }
+        struct WhatsHot {
+            static func identifier(string: String) -> NSAttributedString {
+                return NSAttributedString.create(for: string, withColor: Color.Learn.articleSubtitle, andFont: Font.Learn.whatsHotID)
+            }
 
-        static func whatsHotTitle(string: String) -> NSAttributedString {
-            return NSAttributedString.create(for: string, withColor: Color.Learn.articleSubtitle, andFont: Font.Learn.headerSubtitle)
-        }
+            static func title(string: String) -> NSAttributedString {
+                return NSAttributedString.create(for: string, withColor: Color.Learn.articleSubtitle, andFont: Font.Learn.headerSubtitle)
+            }
 
-        static func whatsHotText(string: String) -> NSAttributedString {
-            return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.Learn.text)
+            static func text(string: String) -> NSAttributedString {
+                return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.Learn.text)
+            }
+
+            static func newTemplateHeaderTitle(string: String) -> NSAttributedString {
+                return AttributedString.Learn.readMoreHeaderSubtitle(string: string)
+            }
+
+            static func newTemplateHeaderSubitle(string: String) -> NSAttributedString {
+                return AttributedString.Learn.headerSubtitle(string: string)
+            }
+
+            static func newTemplateTitle(string: String) -> NSAttributedString {
+                return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.Learn.headertitle)
+            }
+
+            static func newTemplateSubtitle(string: String) -> NSAttributedString {
+                return NSAttributedString.create(for: string, withColor: Color.Learn.articleSubtitle, andFont: Font.Learn.headertitle)
+            }
+
+            static func newTemplateMediaDescription(string: String) -> NSAttributedString {
+                return NSAttributedString.create(for: string, withColor: Color.Learn.articleSubtitle, andFont: Font.Learn.text)
+            }
+
+            static func newTemplateLoadMoreTitle(string: String) -> NSAttributedString {
+                return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.Learn.articleHeaderTitle)
+            }
+
+            static func newTemplateLoadMoreSubtitle(string: String) -> NSAttributedString {
+                return NSAttributedString.create(for: string, withColor: Color.Learn.articleSubtitle, andFont: Font.Learn.headerSubtitle)
+            }
         }
     }
 }
