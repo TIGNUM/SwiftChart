@@ -66,6 +66,10 @@ struct Font {
             }
         }
     }
+    
+    struct TabBarController {
+        static let buttonTitle = UIFont.simpleFont(ofSize: 16)
+    }
 }
 
 struct Color {
