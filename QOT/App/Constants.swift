@@ -57,6 +57,7 @@ struct Font {
         static let text = UIFont.bentonBookFont(ofSize: 16)
         static let articleHeaderTitle = UIFont.simpleFont(ofSize: 24)
         static let articleTitle = UIFont.simpleFont(ofSize: 20)
+        static let whatsHotID = UIFont.simpleFont(ofSize: 18)
     }
 }
 
@@ -109,6 +110,18 @@ struct AttributedString {
 
         static func articleSubtitle(string: String) -> NSAttributedString {
             return NSAttributedString.create(for: string, withColor: Color.Learn.articleSubtitle, andFont: Font.Learn.headerSubtitle)
+        }
+
+        static func whatsHotID(string: String) -> NSAttributedString {
+            return NSAttributedString.create(for: string, withColor: Color.Learn.articleSubtitle, andFont: Font.Learn.whatsHotID)
+        }
+
+        static func whatsHotTitle(string: String) -> NSAttributedString {
+            return NSAttributedString.create(for: string, withColor: Color.Learn.articleSubtitle, andFont: Font.Learn.headerSubtitle)
+        }
+
+        static func whatsHotText(string: String) -> NSAttributedString {
+            return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.Learn.text)
         }
     }
 }

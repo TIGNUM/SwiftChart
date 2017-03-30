@@ -219,3 +219,15 @@ extension TabBarCoordinator: LearnStrategyViewControllerDelegate {
         }
     }
 }
+
+// MARK: - WhatsHotViewControllerDelegate
+
+extension TabBarCoordinator: WhatsHotViewControllerDelegate {
+    func didTapVideo(at index: Index, with whatsHot: WhatsHotItem, from view: UIView, in viewController: WhatsHotViewController) {
+        log("didTapVideo: index: \(index), whatsHotItem.URL: \(whatsHot.placeholderURL.absoluteString)")
+    }
+
+    func didTapBookmark(at index: Index, with whatsHot: WhatsHotItem, in view: UIView, in viewController: WhatsHotViewController) {
+        log("didTapBookmark: index: \(index), whatsHotItem.bookmarked: \(whatsHot.bookmarked)")
+    }
+}
