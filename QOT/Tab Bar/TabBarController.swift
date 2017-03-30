@@ -14,7 +14,7 @@ final class TabBarController: UIViewController {
         static let selectedButtonColor: UIColor = .white
         static let deselectedButtonColor: UIColor = UIColor.white.withAlphaComponent(0.4)
     }
-    // MARK: - Properties
+    
     struct Item {
         let controller: UIViewController
         let title: String
@@ -35,12 +35,11 @@ final class TabBarController: UIViewController {
     
     fileprivate lazy var containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .gray
         return view
     } ()
     
     fileprivate lazy var indicatorView: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.backgroundColor = .white
         return view
     }()
@@ -48,7 +47,8 @@ final class TabBarController: UIViewController {
     private func makeButton(title: String, index: Int) -> UIButton {
         let button = UIButton(type: .custom)
         button.setTitle(title, for: .normal)
-        button.backgroundColor = .black
+//        button.titleLabel?.font = UIFont.
+        button.backgroundColor = .clear
         button.setTitleColor(UIColor.white.withAlphaComponent(0.4), for: .normal)
         button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         button.tag = index
@@ -79,7 +79,7 @@ final class TabBarController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .purple
+        view.backgroundColor = .black
         
         setupHierarchy()
         setupLayout()
@@ -123,7 +123,9 @@ final class TabBarController: UIViewController {
     }
     
     func syncButtonColors(animated: Bool) {
-        let getColor: (UIButton, Int) -> UIColor = { $0.1 == $0.0.tag ? Constants.selectedButtonColor : Constants.deselectedButtonColor   }
+        let getColor: (UIButton, Int) -> UIColor = {
+            $0.1 == $0.0.tag ? Constants.selectedButtonColor : Constants.deselectedButtonColor
+        }
         
         if animated {
             for button in buttons {
@@ -146,9 +148,13 @@ final class TabBarController: UIViewController {
         indicatorViewWidthConstraint?.constant = width
         indicatorViewLeadingConstraint?.constant = button.center.x - (width / 2)
         
-        UIView.animate(withDuration: Constants.animationDuration, delay: 0, options: .curveEaseInOut, animations: {
-            self.view.layoutIfNeeded()
-        }, completion: nil)
+        if animated {
+            UIView.animate(withDuration: Constants.animationDuration, delay: 0, options: .curveEaseInOut, animations: {
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        } else {
+            view.layoutIfNeeded()
+        }
     }
 }
 
@@ -160,10 +166,11 @@ extension TabBarController: UITabBarControllerDelegate {
 }
 
 extension TabBarController {
+    
     func setupHierarchy() {
-        view.addSubview(stackView)
         view.addSubview(containerView)
         view.addSubview(indicatorView)
+        view.addSubview(stackView)
         
         buttons.forEach { stackView.addArrangedSubview($0) }
     }
