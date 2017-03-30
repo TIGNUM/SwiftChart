@@ -96,6 +96,8 @@
 		CCCC21231E8981CA00133839 /* PrepareContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCC21211E8981CA00133839 /* PrepareContentViewModel.swift */; };
 		CCE372F31E8C1EDF00B79352 /* WhatsHotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE372F21E8C1EDF00B79352 /* WhatsHotViewModel.swift */; };
 		CCE372F51E8CF10C00B79352 /* WhatsHotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE372F41E8CF10C00B79352 /* WhatsHotViewController.swift */; };
+		CCE372FD1E8D2AD100B79352 /* MyPrepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE372FC1E8D2AD100B79352 /* MyPrepViewController.swift */; };
+		CCE372FF1E8D2AE700B79352 /* MyPrepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE372FE1E8D2AE700B79352 /* MyPrepViewModel.swift */; };
 		CCE5B9D21E80501D00E01BAE /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE5B9D11E80501D00E01BAE /* SidebarViewController.swift */; };
 		CCE5B9D41E80505800E01BAE /* SidebarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE5B9D31E80505800E01BAE /* SidebarViewController.xib */; };
 		CCEA22A41E8AC53E003D0CF4 /* PrepareCheckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A21E8AC53D003D0CF4 /* PrepareCheckListViewController.swift */; };
@@ -214,6 +216,8 @@
 		CCCC21211E8981CA00133839 /* PrepareContentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentViewModel.swift; sourceTree = "<group>"; };
 		CCE372F21E8C1EDF00B79352 /* WhatsHotViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsHotViewModel.swift; sourceTree = "<group>"; };
 		CCE372F41E8CF10C00B79352 /* WhatsHotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsHotViewController.swift; sourceTree = "<group>"; };
+		CCE372FC1E8D2AD100B79352 /* MyPrepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyPrepViewController.swift; path = MyPrepViewController.swift; sourceTree = "<group>"; };
+		CCE372FE1E8D2AE700B79352 /* MyPrepViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyPrepViewModel.swift; path = MyPrepViewModel.swift; sourceTree = "<group>"; };
 		CCE5B9D11E80501D00E01BAE /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		CCE5B9D31E80505800E01BAE /* SidebarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidebarViewController.xib; sourceTree = "<group>"; };
 		CCEA22A21E8AC53D003D0CF4 /* PrepareCheckListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareCheckListViewController.swift; sourceTree = "<group>"; };
@@ -523,6 +527,7 @@
 		CC20C9921E8981070056054D /* Prepare */ = {
 			isa = PBXGroup;
 			children = (
+				CCE372FB1E8D2A6300B79352 /* My Preep */,
 				CCEA22A11E8AC528003D0CF4 /* PerpareCheckList */,
 				CC4D1D7A1E82E6AD00B8D75E /* PrepareChat */,
 				CC7C0A111E8966E000A83583 /* PrepareContent */,
@@ -674,6 +679,16 @@
 				CCE372F21E8C1EDF00B79352 /* WhatsHotViewModel.swift */,
 			);
 			path = "Whats Hot";
+			sourceTree = "<group>";
+		};
+		CCE372FB1E8D2A6300B79352 /* My Preep */ = {
+			isa = PBXGroup;
+			children = (
+				CCE372FC1E8D2AD100B79352 /* MyPrepViewController.swift */,
+				CCE372FE1E8D2AE700B79352 /* MyPrepViewModel.swift */,
+			);
+			name = "My Preep";
+			path = "My Preep";
 			sourceTree = "<group>";
 		};
 		CCEA22A11E8AC528003D0CF4 /* PerpareCheckList */ = {
@@ -985,7 +1000,9 @@
 				CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */,
 				CB8A153A1E7801B90023B2F9 /* CalendarEvent.swift in Sources */,
 				CCAF03261E801B0E00015125 /* SettingsViewControllerDelegate.swift in Sources */,
+				CCE372FF1E8D2AE700B79352 /* MyPrepViewModel.swift in Sources */,
 				CCC1B6AB1E8B9B7300D1461F /* LearnCategoryListViewModel.swift in Sources */,
+				CCE372FD1E8D2AD100B79352 /* MyPrepViewController.swift in Sources */,
 				CCC1B6A71E8B9B7300D1461F /* LearnCategoryCell.swift in Sources */,
 				D51B5C491E8D0E7E0084A65B /* LearnContentCell.swift in Sources */,
 				CCE372F51E8CF10C00B79352 /* WhatsHotViewController.swift in Sources */,
