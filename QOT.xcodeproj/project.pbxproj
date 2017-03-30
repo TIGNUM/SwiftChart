@@ -94,6 +94,7 @@
 		CCCC211D1E8981AD00133839 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCC211B1E8981AD00133839 /* ChatViewModel.swift */; };
 		CCCC21221E8981CA00133839 /* PrepareContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCC21201E8981CA00133839 /* PrepareContentViewController.swift */; };
 		CCCC21231E8981CA00133839 /* PrepareContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCC21211E8981CA00133839 /* PrepareContentViewModel.swift */; };
+		CCE372F31E8C1EDF00B79352 /* WhatsHotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE372F21E8C1EDF00B79352 /* WhatsHotViewModel.swift */; };
 		CCE5B9D21E80501D00E01BAE /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE5B9D11E80501D00E01BAE /* SidebarViewController.swift */; };
 		CCE5B9D41E80505800E01BAE /* SidebarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE5B9D31E80505800E01BAE /* SidebarViewController.xib */; };
 		CCEA22A41E8AC53E003D0CF4 /* PrepareCheckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A21E8AC53D003D0CF4 /* PrepareCheckListViewController.swift */; };
@@ -207,6 +208,7 @@
 		CCCC211B1E8981AD00133839 /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		CCCC21201E8981CA00133839 /* PrepareContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentViewController.swift; sourceTree = "<group>"; };
 		CCCC21211E8981CA00133839 /* PrepareContentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentViewModel.swift; sourceTree = "<group>"; };
+		CCE372F21E8C1EDF00B79352 /* WhatsHotViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WhatsHotViewModel.swift; path = WhatsHotViewModel.swift; sourceTree = "<group>"; };
 		CCE5B9D11E80501D00E01BAE /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		CCE5B9D31E80505800E01BAE /* SidebarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidebarViewController.xib; sourceTree = "<group>"; };
 		CCEA22A21E8AC53D003D0CF4 /* PrepareCheckListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareCheckListViewController.swift; sourceTree = "<group>"; };
@@ -606,6 +608,7 @@
 				CCC1B6A01E8B9B0C00D1461F /* Learn Category List */,
 				CCC1B6A11E8B9B5E00D1461F /* Learn Content List */,
 				CCC1B69B1E8B9A1200D1461F /* Learn Strategy */,
+				CCE372F11E8C1EA600B79352 /* Whats Hot */,
 			);
 			path = Learn;
 			sourceTree = "<group>";
@@ -651,6 +654,15 @@
 				CC6B3A321E8191BC00E7FDFD /* SidebarViewModel.swift */,
 			);
 			path = Sidebar;
+			sourceTree = "<group>";
+		};
+		CCE372F11E8C1EA600B79352 /* Whats Hot */ = {
+			isa = PBXGroup;
+			children = (
+				CCE372F21E8C1EDF00B79352 /* WhatsHotViewModel.swift */,
+			);
+			name = "Whats Hot";
+			path = "Whats Hot";
 			sourceTree = "<group>";
 		};
 		CCEA22A11E8AC528003D0CF4 /* PerpareCheckList */ = {
@@ -934,6 +946,7 @@
 				CC6B3A2F1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift in Sources */,
 				CB8A15331E76F56D0023B2F9 /* TrackableEntity.swift in Sources */,
 				CBDB98F21E7AA510003EC73F /* CalendarImportResult.swift in Sources */,
+				CCE372F31E8C1EDF00B79352 /* WhatsHotViewModel.swift in Sources */,
 				CBD7915C1E72F2990006C590 /* LaunchViewController.swift in Sources */,
 				CBD791681E768CC00006C590 /* MainMenuCoordinator.swift in Sources */,
 				CC6B3A331E8191BC00E7FDFD /* SidebarViewModel.swift in Sources */,
