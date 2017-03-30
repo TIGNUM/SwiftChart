@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0BB09DDB1E8CDBE4006F52F4 /* AnswerCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB09DD91E8CDBE4006F52F4 /* AnswerCollectionTableViewCell.swift */; };
+		0BB09DDC1E8CDBE4006F52F4 /* AnswerCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BB09DDA1E8CDBE4006F52F4 /* AnswerCollectionTableViewCell.xib */; };
+		0BD5165E1E8CD99D00349623 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD5165C1E8CD99D00349623 /* ChatTableViewCell.swift */; };
+		0BD5165F1E8CD99D00349623 /* ChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD5165D1E8CD99D00349623 /* ChatTableViewCell.xib */; };
+		0BD516621E8CD9D400349623 /* AnswerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD516601E8CD9D400349623 /* AnswerCollectionViewCell.swift */; };
+		0BD516631E8CD9D400349623 /* AnswerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD516611E8CD9D400349623 /* AnswerCollectionViewCell.xib */; };
 		0CC2119BB6C36EF6F43B4ECD /* Pods_QOT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */; };
 		A29C0C8591D20568D6B8EB3E /* Pods_QOTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */; };
 		CB1E4F981E7FE22200287613 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1E4F971E7FE22200287613 /* SettingsViewModel.swift */; };
@@ -107,6 +113,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0BB09DD91E8CDBE4006F52F4 /* AnswerCollectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnswerCollectionTableViewCell.swift; path = AnswerCollectionTableViewCell/AnswerCollectionTableViewCell.swift; sourceTree = "<group>"; };
+		0BB09DDA1E8CDBE4006F52F4 /* AnswerCollectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AnswerCollectionTableViewCell.xib; path = AnswerCollectionTableViewCell/AnswerCollectionTableViewCell.xib; sourceTree = "<group>"; };
+		0BD5165C1E8CD99D00349623 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatTableViewCell.swift; path = ChatTableViewCell/ChatTableViewCell.swift; sourceTree = "<group>"; };
+		0BD5165D1E8CD99D00349623 /* ChatTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChatTableViewCell.xib; path = ChatTableViewCell/ChatTableViewCell.xib; sourceTree = "<group>"; };
+		0BD516601E8CD9D400349623 /* AnswerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnswerCollectionViewCell.swift; path = AnswerCollectionViewCell/AnswerCollectionViewCell.swift; sourceTree = "<group>"; };
+		0BD516611E8CD9D400349623 /* AnswerCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AnswerCollectionViewCell.xib; path = AnswerCollectionViewCell/AnswerCollectionViewCell.xib; sourceTree = "<group>"; };
 		2F1C8D6D4864F462A3F805BB /* Pods-QOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.release.xcconfig"; sourceTree = "<group>"; };
 		42795728C4F3229DFB18981E /* Pods-QOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.debug.xcconfig"; sourceTree = "<group>"; };
 		5C87601C1FE7F833DF0D7A6B /* Pods-QOTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -224,6 +236,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0BD5165A1E8CD8EF00349623 /* ChatTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				0BD5165C1E8CD99D00349623 /* ChatTableViewCell.swift */,
+				0BD5165D1E8CD99D00349623 /* ChatTableViewCell.xib */,
+			);
+			name = ChatTableViewCell;
+			sourceTree = "<group>";
+		};
+		0BD5165B1E8CD8FE00349623 /* AnswerCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				0BD516601E8CD9D400349623 /* AnswerCollectionViewCell.swift */,
+				0BD516611E8CD9D400349623 /* AnswerCollectionViewCell.xib */,
+			);
+			name = AnswerCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		0BD516641E8CD9F000349623 /* AnswerCollectionTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				0BB09DD91E8CDBE4006F52F4 /* AnswerCollectionTableViewCell.swift */,
+				0BB09DDA1E8CDBE4006F52F4 /* AnswerCollectionTableViewCell.xib */,
+				0BD5165B1E8CD8FE00349623 /* AnswerCollectionViewCell */,
+			);
+			name = AnswerCollectionTableViewCell;
+			sourceTree = "<group>";
+		};
 		7BD58BE66F7DCDCEF349DBD8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -532,6 +572,8 @@
 		CC4D1D7A1E82E6AD00B8D75E /* PrepareChat */ = {
 			isa = PBXGroup;
 			children = (
+				0BD516641E8CD9F000349623 /* AnswerCollectionTableViewCell */,
+				0BD5165A1E8CD8EF00349623 /* ChatTableViewCell */,
 				CC20C98E1E8978F20056054D /* ChatViewController.swift */,
 				CC20C98F1E8978F20056054D /* ChatViewModel.swift */,
 			);
@@ -708,8 +750,11 @@
 				CCAF032C1E80362700015125 /* SettingsTableViewCell.xib in Resources */,
 				CBD791661E768AB70006C590 /* MainMenuViewController.xib in Resources */,
 				CCAF03281E802A6200015125 /* SettingsViewController.xib in Resources */,
+				0BB09DDC1E8CDBE4006F52F4 /* AnswerCollectionTableViewCell.xib in Resources */,
+				0BD516631E8CD9D400349623 /* AnswerCollectionViewCell.xib in Resources */,
 				CCC0C4CA1E827F87002A8362 /* BentonSans_Book.otf in Resources */,
 				CCE5B9D41E80505800E01BAE /* SidebarViewController.xib in Resources */,
+				0BD5165F1E8CD99D00349623 /* ChatTableViewCell.xib in Resources */,
 				CCC0C4CC1E828007002A8362 /* BentonSans_Regular.otf in Resources */,
 				D5D32F1B1E83D3CA00FACB2E /* LearnCategoryListViewController.xib in Resources */,
 				CBD7915D1E72F2990006C590 /* LaunchViewController.xib in Resources */,
@@ -872,6 +917,7 @@
 				D5952A541E7BCD000073E522 /* LearnCategoryLayout.swift in Sources */,
 				CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */,
 				CBD791521E71A09F0006C590 /* ContentItem.swift in Sources */,
+				0BB09DDB1E8CDBE4006F52F4 /* AnswerCollectionTableViewCell.swift in Sources */,
 				CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */,
 				CC6B3A2F1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift in Sources */,
 				CB8A15331E76F56D0023B2F9 /* TrackableEntity.swift in Sources */,
@@ -893,8 +939,10 @@
 				CC3DFB661E83C19C00FF28DF /* Defines.swift in Sources */,
 				CB28802F1E706AC50067890A /* LearnCategoryListViewModel.swift in Sources */,
 				CBD7914E1E719E2D0006C590 /* ContentCategory.swift in Sources */,
+				0BD5165E1E8CD99D00349623 /* ChatTableViewCell.swift in Sources */,
 				CCC0C4DB1E82BDEF002A8362 /* TabBarCoordinator.swift in Sources */,
 				CC6B3A371E81A25A00E7FDFD /* SidebarTableViewCell.swift in Sources */,
+				0BD516621E8CD9D400349623 /* AnswerCollectionViewCell.swift in Sources */,
 				CBD791421E7160560006C590 /* LearnContentListViewModel.swift in Sources */,
 				CBDB98FD1E7BE6AF003EC73F /* CalendarEventData.swift in Sources */,
 				CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */,

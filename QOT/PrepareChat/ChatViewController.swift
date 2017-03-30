@@ -95,18 +95,6 @@ extension ChatViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        // This is temporary implementation based just allowing us to hook up the delegate. How you call the delegate
-        // methods may be completly different.
-        let chatMessage = viewModel.chatMessage(at: indexPath.row)
 
-        switch chatMessage {
-        case .navigation(let items):
-            let item = items.first!
-            delegate?.didSelectChatNavigation(item, in: self)
-        case .input(let items):
-            let item = items.first!
-            delegate?.didSelectChatInput(item, in: self)
-        case .header, .instruction: return
-        }
     }
 }
