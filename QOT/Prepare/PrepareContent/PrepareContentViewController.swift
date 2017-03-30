@@ -21,10 +21,14 @@ protocol PrepareContentViewControllerDelegate: class {
     func didTapSaveAs(with localID: String, in viewController: PrepareContentViewController)
 }
 
-class PrepareContentViewController: UIViewController {
+final class PrepareContentViewController: UIViewController {
+
+    // MARK: - Properties
 
     let viewModel: PrepareContentViewModel
     weak var delegate: PrepareContentViewControllerDelegate?
+
+    // MARK: - Life Cycle
 
     init(viewModel: PrepareContentViewModel) {
         self.viewModel = viewModel
@@ -45,6 +49,6 @@ class PrepareContentViewController: UIViewController {
     }
 
     func closeView(gestureRecognizer: UITapGestureRecognizer) {
-        delegate?.didTapClose(in: self)
+        delegate?.didTapClose(in: self)        
     }
 }

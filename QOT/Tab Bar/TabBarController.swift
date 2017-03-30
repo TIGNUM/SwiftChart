@@ -8,12 +8,17 @@
 
 import UIKit
 
+protocol TabBarControllerDelegate: class {
+    func didSelect(viewController: UIViewController)
+}
+
 final class TabBarController: UITabBarController {
     
     // MARK: - Properties
     
     fileprivate var categoryViewControllers = [UIViewController]()
     fileprivate let selectedCategoryIndex: Index
+    weak var tabBarDelegate: TabBarControllerDelegate?
     
     // MARK: - Life Cycle
     
@@ -50,7 +55,7 @@ final class TabBarController: UITabBarController {
         chatViewController?.tabBarItem = prepareTabBarItem
         
         tabBar.barTintColor = .black
-        tabBar.tintColor = .qotWhite
+        tabBar.tintColor = Color.Default.white
         viewControllers = categoryViewControllers
         selectedIndex = selectedCategoryIndex
     }
@@ -62,5 +67,6 @@ extension TabBarController: UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         log("didSelect viewController: \(viewController)")
+        tabBarDelegate?.didSelect(viewController: viewController)
     }
 }
