@@ -15,8 +15,12 @@ protocol PrepareEventsViewControllerDelegate: class {
 
 final class PrepareEventsViewController: UIViewController {
 
+    // MARK: - Properties
+
     let viewModel: PrepareEventsViewModel
     weak var delegate: PrepareEventsViewControllerDelegate?
+
+    // MARK: - Life Cycle
 
     init(viewModel: PrepareEventsViewModel) {
         self.viewModel = viewModel
