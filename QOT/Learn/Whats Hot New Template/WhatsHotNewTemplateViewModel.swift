@@ -47,14 +47,30 @@ enum WhatsHotNewTemplateItem {
     case text(localID: String, text: NSAttributedString)
     case media(localID: String, placeholderURL: URL, description: NSAttributedString)
     case article(localID: String, placeholderURL: URL, title: NSAttributedString, subtitle: NSAttributedString)
-    case loadMore(localID: String, placeholderURL: URL, itemNumber: NSAttributedString, title: NSAttributedString, subtitle: NSAttributedString)
+    case loadMore([WhatsHotLoadMoreItem])
+}
+
+protocol WhatsHotLoadMoreItem {
+    var localID: String { get }
+    var placeholderURL: URL { get }
+    var itemNumber: NSAttributedString { get }
+    var title: NSAttributedString { get }
+    var subtitle: NSAttributedString { get }
+}
+
+struct MockWhatsHotLoadMoreItem: WhatsHotLoadMoreItem {
+    let localID: String
+    let placeholderURL: URL
+    let itemNumber: NSAttributedString
+    let title: NSAttributedString
+    let subtitle: NSAttributedString
 }
 
 private func mockWhatsHotNewTemplateItems() -> [WhatsHotNewTemplateSection] {
     return [
         .whatsHotItems(mockWahtsHotItems()),
         .readMoreItems(mockReadMoreItems()),
-        .loadMoreItems(mockLoadMoreItems())
+        .loadMoreItems([.loadMore(mockLoadMoreItems())])
     ]
 }
 
@@ -132,16 +148,9 @@ private func mockReadMoreItems() -> [WhatsHotNewTemplateItem] {
     ]
 }
 
-private func mockLoadMoreItems() -> [WhatsHotNewTemplateItem] {
+private func mockLoadMoreItems() -> [WhatsHotLoadMoreItem] {
     return [
-        .header(
-            localID: UUID().uuidString,
-            title: AttributedString.Learn.headerTitle(string: "Read More"),
-            subtitle: AttributedString.Learn.headerSubtitle(string: "34 Articles"),
-            duration: nil
-        ),
-
-        .loadMore(
+        MockWhatsHotLoadMoreItem(
             localID: UUID().uuidString,
             placeholderURL: URL(string: "https://example.com")!,
             itemNumber: AttributedString.Learn.WhatsHot.identifier(string: "#255"),
@@ -149,7 +158,7 @@ private func mockLoadMoreItems() -> [WhatsHotNewTemplateItem] {
             subtitle: AttributedString.Learn.WhatsHot.newTemplateLoadMoreSubtitle(string: "5 Min to read")
         ),
 
-        .loadMore(
+        MockWhatsHotLoadMoreItem(
             localID: UUID().uuidString,
             placeholderURL: URL(string: "https://example.com")!,
             itemNumber: AttributedString.Learn.WhatsHot.identifier(string: "#256"),
@@ -157,7 +166,7 @@ private func mockLoadMoreItems() -> [WhatsHotNewTemplateItem] {
             subtitle: AttributedString.Learn.WhatsHot.newTemplateLoadMoreSubtitle(string: "5 Min to read")
         ),
 
-        .loadMore(
+        MockWhatsHotLoadMoreItem(
             localID: UUID().uuidString,
             placeholderURL: URL(string: "https://example.com")!,
             itemNumber: AttributedString.Learn.WhatsHot.identifier(string: "#257"),
@@ -165,7 +174,7 @@ private func mockLoadMoreItems() -> [WhatsHotNewTemplateItem] {
             subtitle: AttributedString.Learn.WhatsHot.newTemplateLoadMoreSubtitle(string: "5 Min to read")
         ),
 
-        .loadMore(
+        MockWhatsHotLoadMoreItem(
             localID: UUID().uuidString,
             placeholderURL: URL(string: "https://example.com")!,
             itemNumber: AttributedString.Learn.WhatsHot.identifier(string: "#258"),
