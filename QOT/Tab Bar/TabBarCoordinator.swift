@@ -59,11 +59,18 @@ final class TabBarCoordinator: ParentCoordinator {
     }
     
     func start() {
-        let tabBarController = TabBarController(viewControllers: viewControllers, selectedIndex: selectedIndex)
+        let items: [TabBarController.Item] = [
+            TabBarController.Item(controller: learnCategoryListViewController, title: R.string.localized.tabBarItemLearn()),
+            TabBarController.Item(controller: meSectionViewController, title: R.string.localized.tabBarItemMe()),
+            TabBarController.Item(controller: chatViewController, title: R.string.localized.tabBarItemPrepare())
+        ]
+        
+        let tabBarController = TabBarController(items: items, selectedIndex: 0)
         tabBarController.modalTransitionStyle = .crossDissolve
         tabBarController.modalPresentationStyle = .custom
-        tabBarController.tabBarDelegate = self
+        tabBarController.delegate = self
         rootViewController.present(tabBarController, animated: true)
+        
         eventTracker.track(page: tabBarController.pageID, referer: rootViewController.pageID, associatedEntity: nil)
     }
     
@@ -75,12 +82,15 @@ final class TabBarCoordinator: ParentCoordinator {
 }
 
 extension TabBarCoordinator: TabBarControllerDelegate {
-    func didSelect(viewController: UIViewController) {
+    func didSelectTab(at index: Index, in controller: TabBarController) {
+        let viewController = controller.viewControllers[0]
+        
         switch viewController {
         case let learnCategory as LearnCategoryListViewController: eventTracker.track(page: learnCategory.pageID, referer: rootViewController.pageID, associatedEntity: nil)
         case let meCategory as MeSectionViewController: eventTracker.track(page: meCategory.pageID, referer: rootViewController.pageID, associatedEntity: nil)
         case let chat as ChatViewController: eventTracker.track(page: chat.pageID, referer: rootViewController.pageID, associatedEntity: nil)
-        default: return
+        default:
+            break
         }
     }
 }
@@ -206,7 +216,7 @@ extension TabBarCoordinator: LearnStrategyViewControllerDelegate {
 
     func didTapVideo(with video: LearnStrategyItem, from view: UIView, in viewController: LearnStrategyViewController) {
         switch video {
-        case .video(let localID, let placeholderURL, let description):
+        case .media(let localID, let placeholderURL, let description):
             log("didTapVideo: localID: \(localID), placeholderURL: \(placeholderURL), description: \(description) in view: \(view)")
         default: log("didTapArticle NO ARTICLE!")
         }
@@ -229,5 +239,33 @@ extension TabBarCoordinator: WhatsHotViewControllerDelegate {
 
     func didTapBookmark(at index: Index, with whatsHot: WhatsHotItem, in view: UIView, in viewController: WhatsHotViewController) {
         log("didTapBookmark: index: \(index), whatsHotItem.bookmarked: \(whatsHot.bookmarked)")
+    }
+}
+
+// MARK: - WhatsHotNewTemplateViewControllerDelegate
+
+extension TabBarCoordinator: WhatsHotNewTemplateViewControllerDelegate {
+    func didTapClose(in viewController: WhatsHotNewTemplateViewController) {
+        viewController.dismiss(animated: true, completion: nil)
+    }
+
+    func didTapLoadMore(from view: UIView, in viewController: WhatsHotNewTemplateViewController) {
+        log("didTapLoadMore")
+    }
+
+    func didTapBookmark(with item: WhatsHotNewTemplateItem, in viewController: WhatsHotNewTemplateViewController) {
+        log("didTapBookmark, item: \(item)")
+    }
+
+    func didTapMedia(with mediaItem: WhatsHotNewTemplateItem, from view: UIView, in viewController: WhatsHotNewTemplateViewController) {
+        log("didTapMedia")
+    }
+
+    func didTapArticle(with articleItem: WhatsHotNewTemplateItem, from view: UIView, in viewController: WhatsHotNewTemplateViewController) {
+        log("didTapArticle")
+    }
+
+    func didTapLoadMoreItem(with loadMoreItem: WhatsHotNewTemplateItem, from view: UIView, in viewController: WhatsHotNewTemplateViewController) {
+        log("didTapLoadMoreItem: with item: \(loadMoreItem)")
     }
 }
