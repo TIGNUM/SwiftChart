@@ -8,11 +8,19 @@
 
 import UIKit
 import Anchorage
+
+protocol TabBarControllerDelegate: class {
+    func didSelectTab(at index: Index, in controller: TabBarController)
+}
+
 final class TabBarController: UIViewController {
+    
     struct Constants {
         static let animationDuration: TimeInterval = 0.3
         static let selectedButtonColor: UIColor = .white
         static let deselectedButtonColor: UIColor = UIColor.white.withAlphaComponent(0.4)
+        static let stackViewHorizontalPadding: CGFloat = 16
+        static let indicatorViewExtendedWidth: CGFloat = 16
     }
     
     struct Item {
@@ -29,7 +37,7 @@ final class TabBarController: UIViewController {
         let view = UIStackView()
         view.axis = .horizontal
         view.alignment = .fill
-        view.distribution = .fillProportionally
+        view.distribution = .fillEqually
         return view
     }()
     
@@ -44,24 +52,25 @@ final class TabBarController: UIViewController {
         return view
     }()
     
-    private func makeButton(title: String, index: Int) -> UIButton {
-        let button = UIButton(type: .custom)
-        button.setTitle(title, for: .normal)
-        button.titleLabel?.font = .bubbleTitle
-        button.backgroundColor = .clear
-        button.setTitleColor(UIColor.white.withAlphaComponent(0.4), for: .normal)
-        button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
-        button.tag = index
-        return button
-    }
-    
     fileprivate lazy var buttons: [UIButton] = {
         return self.items.enumerated().map { (index, item) in
-            return self.makeButton(title: item.title, index: index)
+            let button = UIButton(type: .custom)
+            button.setTitle(item.title, for: .normal)
+            button.titleLabel?.font = Font.TabBarController.buttonTitle
+            button.backgroundColor = .clear
+            button.setTitleColor(UIColor.white.withAlphaComponent(0.4), for: .normal)
+            button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
+            button.tag = index
+            return button
         }
     }()
     
     fileprivate var selectedIndex: Index
+    
+    weak var delegate: TabBarControllerDelegate?
+    var viewControllers: [UIViewController] {
+        return items.map { $0.controller }
+    }
     
     init(items: [Item], selectedIndex: Index) {
         precondition(selectedIndex >= 0 && selectedIndex < items.count, "Out of bounds selectedIndex")
@@ -83,6 +92,7 @@ final class TabBarController: UIViewController {
         
         setupHierarchy()
         setupLayout()
+        
         loadFirstView()
     }
     
@@ -94,10 +104,16 @@ final class TabBarController: UIViewController {
     }
     
     @objc private func buttonPressed(_ button: UIButton) {
+        guard button.tag != selectedIndex else {
+            return
+        }
+        
         selectedIndex = button.tag
         displayContentController(items[button.tag].controller)
         syncIndicatorView(animated: true)
         syncButtonColors(animated: true)
+        
+        delegate?.didSelectTab(at: selectedIndex, in: self)
     }
     
     private func displayContentController(_ viewController: UIViewController) {
@@ -106,6 +122,7 @@ final class TabBarController: UIViewController {
             existing.view.removeFromSuperview()
             existing.removeFromParentViewController()
         }
+        
         addChildViewController(viewController)
         viewController.view.frame = containerView.frame
         containerView.addSubview(viewController.view)
@@ -123,15 +140,16 @@ final class TabBarController: UIViewController {
     }
     
     func syncButtonColors(animated: Bool) {
-        let getColor: (UIButton, Int) -> UIColor = {
-            $0.1 == $0.0.tag ? Constants.selectedButtonColor : Constants.deselectedButtonColor
+        let getColor: (UIButton, Int) -> UIColor = { (button, index) in
+            index == button.tag ? Constants.selectedButtonColor : Constants.deselectedButtonColor
         }
         
         if animated {
             for button in buttons {
                 let color = getColor(button, selectedIndex)
                 let transition = UIViewAnimationOptions.transitionCrossDissolve
-                UIView.transition(with: button, duration: Constants.animationDuration, options: transition, animations: {
+                let duration = Constants.animationDuration
+                UIView.transition(with: button, duration: duration, options: transition, animations: {
                     button.setTitleColor(color, for: .normal)
                 }, completion: nil)
             }
@@ -144,10 +162,10 @@ final class TabBarController: UIViewController {
     
     func syncIndicatorView(animated: Bool) {
         let button = buttons[selectedIndex]
-        let width = button.intrinsicContentSize.width + 16
+        let width = button.intrinsicContentSize.width + Constants.indicatorViewExtendedWidth
         
         indicatorViewWidthConstraint?.constant = width
-        indicatorViewLeadingConstraint?.constant = button.center.x - (width / 2)
+        indicatorViewLeadingConstraint?.constant = button.center.x - (width / 2) + Constants.stackViewHorizontalPadding
         
         if animated {
             let transition = UIViewAnimationOptions.curveEaseInOut
@@ -157,13 +175,6 @@ final class TabBarController: UIViewController {
         } else {
             view.layoutIfNeeded()
         }
-    }
-}
-
-extension TabBarController: UITabBarControllerDelegate {
-    
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        log("didSelect viewController: \(viewController)")
     }
 }
 
@@ -182,10 +193,9 @@ extension TabBarController {
         containerView.horizontalAnchors == view.horizontalAnchors
         containerView.bottomAnchor == stackView.topAnchor
         
-        stackView.bottomAnchor == view.bottomAnchor
-        stackView.leftAnchor == view.leftAnchor
-        stackView.rightAnchor == view.rightAnchor
-        stackView.heightAnchor == 64
+        stackView.bottomAnchor == view.bottomAnchor - 10
+        stackView.horizontalAnchors == view.horizontalAnchors + Constants.stackViewHorizontalPadding
+        stackView.heightAnchor == 54
         
         indicatorView.bottomAnchor == view.bottomAnchor
         indicatorView.heightAnchor == 1

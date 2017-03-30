@@ -55,7 +55,7 @@ class ChatViewController: UITableViewController {
             switch update {
             case .reload:
                 self.tableView.reloadData()
-            case .update(let deletions, let insertions, let modifications):
+            case .update(_, _, _):
                 // Please animate updates as needed
                 self.tableView.reloadData()
             }
@@ -68,12 +68,12 @@ class ChatViewController: UITableViewController {
 extension ChatViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.chatMessageCount
+        return viewModel.itemCount
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let chatCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        let chatMessage = viewModel.chatMessage(at: indexPath.row)
+        let chatMessage = viewModel.item(at: indexPath.row)
 
         let text: String
         switch chatMessage {
@@ -97,7 +97,7 @@ extension ChatViewController {
 
         // This is temporary implementation based just allowing us to hook up the delegate. How you call the delegate
         // methods may be completly different.
-        let chatMessage = viewModel.chatMessage(at: indexPath.row)
+        let chatMessage = viewModel.item(at: indexPath.row)
 
         switch chatMessage {
         case .navigation(let items):

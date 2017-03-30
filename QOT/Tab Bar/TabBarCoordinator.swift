@@ -59,29 +59,39 @@ final class TabBarCoordinator: ParentCoordinator {
     }
     
     func start() {
-        let vc1 = learnCategoryListViewController
-        //vc1.view.backgroundColor = .red
-        
-        let vc2 = meSectionViewController
-        //vc2.view.backgroundColor = .blue
-        
-        let vc3 = chatViewController
-        vc3.view.backgroundColor = .yellow
-        let titles = ["LEARN", "ME", "PREPARE"]
-        let items = [vc1, vc2, vc3].enumerated().map { (index, vc) -> TabBarController.Item  in
-            return TabBarController.Item(controller: vc, title: "\(titles[index])")
-        }
+        let items: [TabBarController.Item] = [
+            TabBarController.Item(controller: learnCategoryListViewController, title: R.string.localized.tabBarItemLearn()),
+            TabBarController.Item(controller: meSectionViewController, title: R.string.localized.tabBarItemMe()),
+            TabBarController.Item(controller: chatViewController, title: R.string.localized.tabBarItemPrepare())
+        ]
         
         let tabBarController = TabBarController(items: items, selectedIndex: 0)
         tabBarController.modalTransitionStyle = .crossDissolve
         tabBarController.modalPresentationStyle = .custom
+        tabBarController.delegate = self
         rootViewController.present(tabBarController, animated: true)
+        
+        eventTracker.track(page: tabBarController.pageID, referer: rootViewController.pageID, associatedEntity: nil)
     }
     
     func addViewControllers() {
         viewControllers.append(learnCategoryListViewController)
         viewControllers.append(meSectionViewController)
         viewControllers.append(chatViewController)
+    }
+}
+
+extension TabBarCoordinator: TabBarControllerDelegate {
+    func didSelectTab(at index: Index, in controller: TabBarController) {
+        let viewController = controller.viewControllers[0]
+        
+        switch viewController {
+        case let learnCategory as LearnCategoryListViewController: eventTracker.track(page: learnCategory.pageID, referer: rootViewController.pageID, associatedEntity: nil)
+        case let meCategory as MeSectionViewController: eventTracker.track(page: meCategory.pageID, referer: rootViewController.pageID, associatedEntity: nil)
+        case let chat as ChatViewController: eventTracker.track(page: chat.pageID, referer: rootViewController.pageID, associatedEntity: nil)
+        default:
+            break
+        }
     }
 }
 
@@ -127,8 +137,13 @@ extension TabBarCoordinator: ChatViewDelegate {
         let prepareContentViewController = PrepareContentViewController(viewModel: viewModel)
         prepareContentViewController.delegate = self
         viewController.present(prepareContentViewController, animated: true, completion: nil)
+
+        // TODO: Update associatedEntity with realm object when its created.
+        eventTracker.track(page: prepareContentViewController.pageID, referer: rootViewController.pageID, associatedEntity: nil)
     }
 }
+
+// MARK: - PrepareContentViewControllerDelegate
 
 extension TabBarCoordinator: PrepareContentViewControllerDelegate {
     func didTapClose(in viewController: PrepareContentViewController) {
@@ -165,5 +180,64 @@ extension TabBarCoordinator: PrepareContentViewControllerDelegate {
 
     func didTapSaveAs(with ID: String, in viewController: PrepareContentViewController) {
         log("didTapSaveAs: ID: \(ID)")
+    }
+}
+
+// MARK: - PrepareCheckListViewControllerDelegate
+
+extension TabBarCoordinator: PrepareCheckListViewControllerDelegate {
+    func didTapClose(in viewController: PrepareCheckListViewController) {
+        viewController.dismiss(animated: true, completion: nil)
+    }
+
+    func didTapVideo(with ID: String, from view: UIView, in viewController: PrepareCheckListViewController) {
+        log("didTapVideo: ID: \(ID) view: \(view)")
+    }
+
+    func didTapSelectCheckbox(with ID: String, from view: UIView, at index: Index, in viewController: PrepareCheckListViewController) {
+        log("didTapSelectCheckbox: ID: \(ID), index: \(index), view: \(view)")
+    }
+
+    func didTapDeselectCheckbox(with ID: String, from view: UIView, at index: Index, in viewController: PrepareCheckListViewController) {
+        log("didTapDeselectCheckbox: ID: \(ID), index: \(index), view: \(view)")
+    }
+}
+
+// MARK: - LearnStrategyViewControllerDelegate
+
+extension TabBarCoordinator: LearnStrategyViewControllerDelegate {
+    func didTapClose(in viewController: LearnStrategyViewController) {
+        viewController.dismiss(animated: true, completion: nil)
+    }
+
+    func didTapShare(in viewController: LearnStrategyViewController) {
+        log("didTapShare")
+    }
+
+    func didTapVideo(with video: LearnStrategyItem, from view: UIView, in viewController: LearnStrategyViewController) {
+        switch video {
+        case .video(let localID, let placeholderURL, let description):
+            log("didTapVideo: localID: \(localID), placeholderURL: \(placeholderURL), description: \(description) in view: \(view)")
+        default: log("didTapArticle NO ARTICLE!")
+        }
+    }
+
+    func didTapArticle(with article: LearnStrategyItem, from view: UIView, in viewController: LearnStrategyViewController) {
+        switch article {
+        case .article(let localID, let title, let subtitle): log("didTapArticle: localID: \(localID), title: \(title), subtitle: \(subtitle) in view: \(view)")
+        default: log("didTapArticle NO ARTICLE!")
+        }
+    }
+}
+
+// MARK: - WhatsHotViewControllerDelegate
+
+extension TabBarCoordinator: WhatsHotViewControllerDelegate {
+    func didTapVideo(at index: Index, with whatsHot: WhatsHotItem, from view: UIView, in viewController: WhatsHotViewController) {
+        log("didTapVideo: index: \(index), whatsHotItem.URL: \(whatsHot.placeholderURL.absoluteString)")
+    }
+
+    func didTapBookmark(at index: Index, with whatsHot: WhatsHotItem, in view: UIView, in viewController: WhatsHotViewController) {
+        log("didTapBookmark: index: \(index), whatsHotItem.bookmarked: \(whatsHot.bookmarked)")
     }
 }

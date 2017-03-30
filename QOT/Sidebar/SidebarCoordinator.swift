@@ -11,26 +11,27 @@ import UIKit
 
 final class SidebarCoordinator: ParentCoordinator {
     
-    internal var rootViewController: UIViewController?
+    internal var rootViewController: MainMenuViewController?
     fileprivate let databaseManager: DatabaseManager?
     fileprivate let eventTracker: EventTracker?
     internal var children = [Coordinator]()
     weak var delegate: ParentCoordinator?
     lazy var presentationManager = PresentationManager()
     
-    init(root: UIViewController, databaseManager: DatabaseManager?, eventTracker: EventTracker?) {
+    init(root: MainMenuViewController, databaseManager: DatabaseManager?, eventTracker: EventTracker?) {
         self.rootViewController = root
         self.databaseManager = databaseManager
         self.eventTracker = eventTracker
     }
     
     func start() {
-        let vc = SidebarViewController(viewModel: SidebarViewModel())
-        vc.delegate = self
+        let sideBarViewController = SidebarViewController(viewModel: SidebarViewModel())
+        sideBarViewController.delegate = self
         presentationManager.presentationType = .fadeIn
-        vc.modalPresentationStyle = .custom
-        vc.transitioningDelegate = presentationManager
-        rootViewController?.present(vc, animated: true)
+        sideBarViewController.modalPresentationStyle = .custom
+        sideBarViewController.transitioningDelegate = presentationManager
+        rootViewController?.present(sideBarViewController, animated: true)
+        eventTracker?.track(page: sideBarViewController.pageID, referer: rootViewController?.pageID, associatedEntity: nil)
     }
 }
 
