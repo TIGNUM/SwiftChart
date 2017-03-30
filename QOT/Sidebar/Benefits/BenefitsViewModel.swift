@@ -32,7 +32,7 @@ private func mockBenefitItems() -> [BenefitItem] {
     return [
         .text(
             localID: UUID().uuidString,
-            title: AttributedString.Learn.headerTitle(string: "LOREM IPSUMOP TEXT ONESOIP TWO LINES"),
+            title: AttributedString.Sidebar.Benefits.headerTitle(string: "LOREM IPSUMOP TEXT ONESOIP TWO LINES"),
             text: AttributedString.Learn.headerSubtitle(string: "Lorem ipsum 26 items")
         ),
 
