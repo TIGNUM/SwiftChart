@@ -112,6 +112,7 @@
 		CCEFCFB11E8D3D7500E9FC72 /* SidebarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCEFCFAF1E8D3D7500E9FC72 /* SidebarViewController.xib */; };
 		CCFCACC01E8D5DD100EA3119 /* BenefitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFCACBE1E8D5DD100EA3119 /* BenefitsViewController.swift */; };
 		CCFCACC11E8D5DD100EA3119 /* BenefitsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFCACBF1E8D5DD100EA3119 /* BenefitsViewModel.swift */; };
+		CCFCACC31E8D5FDF00EA3119 /* BenefitsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFCACC21E8D5FDF00EA3119 /* BenefitsCoordinator.swift */; };
 		D51B5C491E8D0E7E0084A65B /* LearnContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B5C471E8D0E7E0084A65B /* LearnContentCell.swift */; };
 		D51B5C4A1E8D0E7E0084A65B /* LearnContentLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B5C481E8D0E7E0084A65B /* LearnContentLayout.swift */; };
 		D55CBED71E8A993200C690FB /* CGPoint+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55CBED61E8A993200C690FB /* CGPoint+Convenience.swift */; };
@@ -239,8 +240,9 @@
 		CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsViewModel.swift; sourceTree = "<group>"; };
 		CCEFCFAE1E8D3D7500E9FC72 /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		CCEFCFAF1E8D3D7500E9FC72 /* SidebarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidebarViewController.xib; sourceTree = "<group>"; };
-		CCFCACBE1E8D5DD100EA3119 /* BenefitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BenefitsViewController.swift; path = Benefits/BenefitsViewController.swift; sourceTree = "<group>"; };
-		CCFCACBF1E8D5DD100EA3119 /* BenefitsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BenefitsViewModel.swift; path = Benefits/BenefitsViewModel.swift; sourceTree = "<group>"; };
+		CCFCACBE1E8D5DD100EA3119 /* BenefitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BenefitsViewController.swift; path = BenefitsViewController.swift; sourceTree = "<group>"; };
+		CCFCACBF1E8D5DD100EA3119 /* BenefitsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BenefitsViewModel.swift; path = BenefitsViewModel.swift; sourceTree = "<group>"; };
+		CCFCACC21E8D5FDF00EA3119 /* BenefitsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BenefitsCoordinator.swift; path = BenefitsCoordinator.swift; sourceTree = "<group>"; };
 		CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D51B5C471E8D0E7E0084A65B /* LearnContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentCell.swift; sourceTree = "<group>"; };
 		D51B5C481E8D0E7E0084A65B /* LearnContentLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentLayout.swift; sourceTree = "<group>"; };
@@ -759,10 +761,12 @@
 		CCFCACBD1E8D5DBE00EA3119 /* Benefits */ = {
 			isa = PBXGroup;
 			children = (
+				CCFCACC21E8D5FDF00EA3119 /* BenefitsCoordinator.swift */,
 				CCFCACBE1E8D5DD100EA3119 /* BenefitsViewController.swift */,
 				CCFCACBF1E8D5DD100EA3119 /* BenefitsViewModel.swift */,
 			);
 			name = Benefits;
+			path = Benefits;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1084,6 +1088,7 @@
 				CB8A15221E769F1F0023B2F9 /* EventTracker.swift in Sources */,
 				CCE373081E8D32CF00B79352 /* LibraryViewController.swift in Sources */,
 				CCEA22A91E8AC55F003D0CF4 /* PrepareEventsViewController.swift in Sources */,
+				CCFCACC31E8D5FDF00EA3119 /* BenefitsCoordinator.swift in Sources */,
 				CCC0C4BE1E82730E002A8362 /* Extensions.swift in Sources */,
 				CC6B3A2D1E8163A200E7FDFD /* FadeInOutPresentationController.swift in Sources */,
 				CCC1B6AE1E8B9B7F00D1461F /* LearnContentListViewController.swift in Sources */,
