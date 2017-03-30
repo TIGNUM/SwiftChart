@@ -92,8 +92,6 @@
 		CCD377531E8D3C2D00BB8031 /* WhatsHotNewTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD377511E8D3C2D00BB8031 /* WhatsHotNewTemplateViewController.swift */; };
 		CCD377541E8D3C2D00BB8031 /* WhatsHotNewTemplateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD377521E8D3C2D00BB8031 /* WhatsHotNewTemplateViewModel.swift */; };
 		CCE06FE01E8D44FC009C5AD2 /* LibraryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE06FDF1E8D44FC009C5AD2 /* LibraryCoordinator.swift */; };
-		CCE06FE31E8D49BC009C5AD2 /* BenefitsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE06FE21E8D49BC009C5AD2 /* BenefitsViewModel.swift */; };
-		CCE06FE51E8D49D0009C5AD2 /* BenefitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE06FE41E8D49D0009C5AD2 /* BenefitsViewController.swift */; };
 		CCE372F31E8C1EDF00B79352 /* WhatsHotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE372F21E8C1EDF00B79352 /* WhatsHotViewModel.swift */; };
 		CCE372F51E8CF10C00B79352 /* WhatsHotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE372F41E8CF10C00B79352 /* WhatsHotViewController.swift */; };
 		CCE372FD1E8D2AD100B79352 /* MyPrepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE372FC1E8D2AD100B79352 /* MyPrepViewController.swift */; };
@@ -222,8 +220,6 @@
 		CCD377511E8D3C2D00BB8031 /* WhatsHotNewTemplateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsHotNewTemplateViewController.swift; sourceTree = "<group>"; };
 		CCD377521E8D3C2D00BB8031 /* WhatsHotNewTemplateViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsHotNewTemplateViewModel.swift; sourceTree = "<group>"; };
 		CCE06FDF1E8D44FC009C5AD2 /* LibraryCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryCoordinator.swift; sourceTree = "<group>"; };
-		CCE06FE21E8D49BC009C5AD2 /* BenefitsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BenefitsViewModel.swift; path = Benefits/BenefitsViewModel.swift; sourceTree = "<group>"; };
-		CCE06FE41E8D49D0009C5AD2 /* BenefitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BenefitsViewController.swift; path = Benefits/BenefitsViewController.swift; sourceTree = "<group>"; };
 		CCE372F21E8C1EDF00B79352 /* WhatsHotViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsHotViewModel.swift; sourceTree = "<group>"; };
 		CCE372F41E8CF10C00B79352 /* WhatsHotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsHotViewController.swift; sourceTree = "<group>"; };
 		CCE372FC1E8D2AD100B79352 /* MyPrepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPrepViewController.swift; sourceTree = "<group>"; };
@@ -240,9 +236,9 @@
 		CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsViewModel.swift; sourceTree = "<group>"; };
 		CCEFCFAE1E8D3D7500E9FC72 /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		CCEFCFAF1E8D3D7500E9FC72 /* SidebarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidebarViewController.xib; sourceTree = "<group>"; };
-		CCFCACBE1E8D5DD100EA3119 /* BenefitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BenefitsViewController.swift; path = BenefitsViewController.swift; sourceTree = "<group>"; };
-		CCFCACBF1E8D5DD100EA3119 /* BenefitsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BenefitsViewModel.swift; path = BenefitsViewModel.swift; sourceTree = "<group>"; };
-		CCFCACC21E8D5FDF00EA3119 /* BenefitsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BenefitsCoordinator.swift; path = BenefitsCoordinator.swift; sourceTree = "<group>"; };
+		CCFCACBE1E8D5DD100EA3119 /* BenefitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BenefitsViewController.swift; sourceTree = "<group>"; };
+		CCFCACBF1E8D5DD100EA3119 /* BenefitsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BenefitsViewModel.swift; sourceTree = "<group>"; };
+		CCFCACC21E8D5FDF00EA3119 /* BenefitsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BenefitsCoordinator.swift; sourceTree = "<group>"; };
 		CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D51B5C471E8D0E7E0084A65B /* LearnContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentCell.swift; sourceTree = "<group>"; };
 		D51B5C481E8D0E7E0084A65B /* LearnContentLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentLayout.swift; sourceTree = "<group>"; };
@@ -765,7 +761,6 @@
 				CCFCACBE1E8D5DD100EA3119 /* BenefitsViewController.swift */,
 				CCFCACBF1E8D5DD100EA3119 /* BenefitsViewModel.swift */,
 			);
-			name = Benefits;
 			path = Benefits;
 			sourceTree = "<group>";
 		};
@@ -1058,7 +1053,6 @@
 				CCC0C4DB1E82BDEF002A8362 /* TabBarCoordinator.swift in Sources */,
 				CBDB98FD1E7BE6AF003EC73F /* CalendarEventData.swift in Sources */,
 				CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */,
-				CCE06FE51E8D49D0009C5AD2 /* BenefitsViewController.swift in Sources */,
 				CCE373161E8D330100B79352 /* LibraryViewModel.swift in Sources */,
 				CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */,
 				CB8A153A1E7801B90023B2F9 /* CalendarEvent.swift in Sources */,
@@ -1074,7 +1068,6 @@
 				CCC1B6AF1E8B9B7F00D1461F /* LearnContentListViewModel.swift in Sources */,
 				CCCC21231E8981CA00133839 /* PrepareContentViewModel.swift in Sources */,
 				CC6B3A291E8158B200E7FDFD /* PresentationManager.swift in Sources */,
-				CCE06FE31E8D49BC009C5AD2 /* BenefitsViewModel.swift in Sources */,
 				CCAF03241E801B0E00015125 /* SettingsCoordinator.swift in Sources */,
 				CBD791651E768AB70006C590 /* MainMenuViewController.swift in Sources */,
 				CB2880281E7057790067890A /* RootViewController.swift in Sources */,

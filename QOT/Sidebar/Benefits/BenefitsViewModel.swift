@@ -64,7 +64,7 @@ private func mockBenefitItems() -> [BenefitItem] {
             localID: UUID().uuidString,
             title: AttributedString.Learn.headerTitle(string: "OPTIMAL PERFORMANCE STATE"),
             text: AttributedString.Learn.headerSubtitle(string: "Performance Mindset")
-        ),
+        )
     ]
 }
 

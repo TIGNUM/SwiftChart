@@ -55,4 +55,10 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
         coordinator.delegate = self
         startChild(child: coordinator)
     }
+
+    func didTapBenefitsCell(in viewController: SidebarViewController) {
+        let coordinator = BenefitsCoordinator(root: viewController, databaseManager: databaseManager, eventTracker: eventTracker)
+        coordinator.delegate = self
+        startChild(child: coordinator)
+    }
 }

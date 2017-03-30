@@ -10,7 +10,7 @@ import UIKit
 
 protocol BenefitsViewControllerDelegate: class {
     func didTapClose(in viewController: BenefitsViewController)
-    func didTapMedia(with mediaItem: LibraryItem.MediaItem, from view: UIView, in viewController: BenefitsViewController)
+    func didTapMedia(with item: BenefitItem, from view: UIView, in viewController: BenefitsViewController)
     func didTapMore(from view: UIView, in viewController: BenefitsViewController)
 }
 

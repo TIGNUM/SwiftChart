@@ -41,7 +41,7 @@ final class LibraryCoordinator: ParentCoordinator {
 
 extension LibraryCoordinator: LibraryViewControllerDelegate {
 
-    func didTapMedia(with mediaItem: LibraryItem.MediaItem, from view: UIView, in viewController: UIViewController) {
+    func didTapMedia(with mediaItem: LibraryItem.MediaItem, from view: UIView, in viewController: LibraryViewController) {
         log("didTapMedia: \(mediaItem)")
     }
 

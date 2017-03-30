@@ -10,8 +10,8 @@ import UIKit
 
 protocol WhatsHotNewTemplateViewControllerDelegate: class {
     func didTapClose(in viewController: WhatsHotNewTemplateViewController)
-    func didTapBookmark(with item: WhatsHotNewTemplateItem,in viewController: WhatsHotNewTemplateViewController)
-    func didTapMedia(with mediaItem: WhatsHotNewTemplateItem,from view: UIView, in viewController: WhatsHotNewTemplateViewController)
+    func didTapBookmark(with item: WhatsHotNewTemplateItem, in viewController: WhatsHotNewTemplateViewController)
+    func didTapMedia(with mediaItem: WhatsHotNewTemplateItem, from view: UIView, in viewController: WhatsHotNewTemplateViewController)
     func didTapArticle(with articleItem: WhatsHotNewTemplateItem, from view: UIView, in viewController: WhatsHotNewTemplateViewController)
     func didTapLoadMore(from view: UIView, in viewController: WhatsHotNewTemplateViewController)
     func didTapLoadMoreItem(with loadMoreItem: WhatsHotNewTemplateItem, from view: UIView, in viewController: WhatsHotNewTemplateViewController)
