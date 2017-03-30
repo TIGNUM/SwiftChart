@@ -130,7 +130,8 @@ final class TabBarController: UIViewController {
         if animated {
             for button in buttons {
                 let color = getColor(button, selectedIndex)
-                UIView.transition(with: button, duration: Constants.animationDuration, options: .transitionCrossDissolve, animations: {
+                let transition = UIViewAnimationOptions.transitionCrossDissolve
+                UIView.transition(with: button, duration: Constants.animationDuration, options: transition, animations: {
                     button.setTitleColor(color, for: .normal)
                 }, completion: nil)
             }
@@ -149,7 +150,8 @@ final class TabBarController: UIViewController {
         indicatorViewLeadingConstraint?.constant = button.center.x - (width / 2)
         
         if animated {
-            UIView.animate(withDuration: Constants.animationDuration, delay: 0, options: .curveEaseInOut, animations: {
+            let transition = UIViewAnimationOptions.curveEaseInOut
+            UIView.animate(withDuration: Constants.animationDuration, delay: 0, options: transition, animations: {
                 self.view.layoutIfNeeded()
             }, completion: nil)
         } else {
