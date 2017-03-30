@@ -15,73 +15,53 @@ protocol LearnStrategyViewControllerDelegate: class {
     func didTapArticle(with article: LearnStrategyItem, from view: UIView, in viewController: LearnStrategyViewController)
 }
 
-final class LearnStrategyViewController: UITableViewController {
-
-    // MARK: - Properties
-
+final class LearnStrategyViewController: UIViewController {
+    @IBOutlet weak var tableView: UITableView!
+    
     let viewModel: LearnStrategyViewModel
     weak var delegate: LearnStrategyViewControllerDelegate?
-
-    // MARK: - Life Cycle
-
+    
     init(viewModel: LearnStrategyViewModel) {
         self.viewModel = viewModel
-
+        
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeView))
         view.addGestureRecognizer(tapGestureRecognizer)
         view.backgroundColor = .black
+        //tableView.delegate = self
+        //tableView.dataSource = self
+        tableView.backgroundColor = .blue
+        tableView.register(LearnStrategyCell.self, forCellReuseIdentifier: "Cell")
     }
-
+    
     func closeView(gestureRecognizer: UITapGestureRecognizer) {
-        delegate?.didTapClose(in: self)        
+        delegate?.didTapClose(in: self)
     }
 }
 
-// MARK: - UITableViewDelegate, UITableViewDataSource
-
-extension LearnStrategyViewController {
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.sectionCount
+extension LearnStrategyViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
     }
+    
+}
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfItemsInSection(in: section)
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
-        
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
-        let item = viewModel.item(at: indexPath)
-
-        switch item {
-        case .header(_, let title, let subtitle):
-            cell.textLabel?.attributedText = title
-            cell.detailTextLabel?.attributedText = subtitle
-
-        case .text(_, let text):
-            cell.textLabel?.attributedText = text
-
-        case .video(_, _, let description):
-            cell.textLabel?.attributedText = description
-
-        case .article(_, let title, let subtitle):
-            cell.textLabel?.attributedText = title
-            cell.detailTextLabel?.attributedText = subtitle
-        }
-
+extension LearnStrategyViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+          let  cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+          cell.backgroundColor = UIColor.red
+        cell.contentView.backgroundColor = .green
         return cell
     }
 }
