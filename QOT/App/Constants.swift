@@ -58,6 +58,13 @@ struct Font {
         static let articleHeaderTitle = UIFont.simpleFont(ofSize: 24)
         static let articleTitle = UIFont.simpleFont(ofSize: 20)
         static let whatsHotID = UIFont.simpleFont(ofSize: 18)
+        
+        struct ContentList {
+            struct Cell {
+                static let title = UIFont.bentonBookFont(ofSize: 16)
+                static let subtitle = UIFont.simpleFont(ofSize: 10)
+            }
+        }
     }
 }
 
