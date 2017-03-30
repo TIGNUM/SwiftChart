@@ -133,6 +133,8 @@ extension TabBarCoordinator: ChatViewDelegate {
     }
 }
 
+// MARK: - PrepareContentViewControllerDelegate
+
 extension TabBarCoordinator: PrepareContentViewControllerDelegate {
     func didTapClose(in viewController: PrepareContentViewController) {
         viewController.dismiss(animated: true, completion: nil)
@@ -171,6 +173,8 @@ extension TabBarCoordinator: PrepareContentViewControllerDelegate {
     }
 }
 
+// MARK: - PrepareCheckListViewControllerDelegate
+
 extension TabBarCoordinator: PrepareCheckListViewControllerDelegate {
     func didTapClose(in viewController: PrepareCheckListViewController) {
         viewController.dismiss(animated: true, completion: nil)
@@ -186,5 +190,32 @@ extension TabBarCoordinator: PrepareCheckListViewControllerDelegate {
 
     func didTapDeselectCheckbox(with ID: String, from view: UIView, at index: Index, in viewController: PrepareCheckListViewController) {
         log("didTapDeselectCheckbox: ID: \(ID), index: \(index), view: \(view)")
+    }
+}
+
+// MARK: - LearnStrategyViewControllerDelegate
+
+extension TabBarCoordinator: LearnStrategyViewControllerDelegate {
+    func didTapClose(in viewController: LearnStrategyViewController) {
+        viewController.dismiss(animated: true, completion: nil)
+    }
+
+    func didTapShare(in viewController: LearnStrategyViewController) {
+        log("didTapShare")
+    }
+
+    func didTapVideo(with video: LearnStrategyItem, from view: UIView, in viewController: LearnStrategyViewController) {
+        switch video {
+        case .video(let localID, let placeholderURL, let description):
+            log("didTapVideo: localID: \(localID), placeholderURL: \(placeholderURL), description: \(description) in view: \(view)")
+        default: log("didTapArticle NO ARTICLE!")
+        }
+    }
+
+    func didTapArticle(with article: LearnStrategyItem, from view: UIView, in viewController: LearnStrategyViewController) {
+        switch article {
+        case .article(let localID, let title, let subtitle): log("didTapArticle: localID: \(localID), title: \(title), subtitle: \(subtitle) in view: \(view)")
+        default: log("didTapArticle NO ARTICLE!")
+        }
     }
 }

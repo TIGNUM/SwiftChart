@@ -23,8 +23,12 @@ protocol PrepareContentViewControllerDelegate: class {
 
 final class PrepareContentViewController: UIViewController {
 
+    // MARK: - Properties
+
     let viewModel: PrepareContentViewModel
     weak var delegate: PrepareContentViewControllerDelegate?
+
+    // MARK: - Life Cycle
 
     init(viewModel: PrepareContentViewModel) {
         self.viewModel = viewModel

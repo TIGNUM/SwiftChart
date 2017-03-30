@@ -13,48 +13,25 @@ import UIKit
 
 extension UIFont {
     
-    // MARK: - Private
-    
-    private class func simpleFont(ofSize: CGFloat) -> UIFont {
+    internal class func simpleFont(ofSize: CGFloat) -> UIFont {
         return (UIFont(name: FontName.simple.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
     }
     
-    private class func bentonBookFont(ofSize: CGFloat) -> UIFont {
+    internal class func bentonBookFont(ofSize: CGFloat) -> UIFont {
         return (UIFont(name: FontName.bentonBook.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
     }
     
-    private class func bentonRegularFont(ofSize: CGFloat) -> UIFont {
+    internal class func bentonRegularFont(ofSize: CGFloat) -> UIFont {
         return (UIFont(name: FontName.bentonBook.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
-    }
-    
-    // MARK: - Public
-    
-    class var sidebarSmall: UIFont {
-        return UIFont.simpleFont(ofSize: 16)
-    }
-    
-    class var sidebar: UIFont {
-        return UIFont.simpleFont(ofSize: 32)
     }
 }
 
-// MARK: - UIColor
+// MARK: - NSAttributedString
 
-extension UIColor {
-    
-    class var qotWhite: UIColor {
-        return UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-    }
-    
-    class var qotWhiteLight: UIColor {
-        return UIColor(red: 1, green: 1, blue: 1, alpha: 0.1)
-    }
-    
-    class var qotWhiteMedium: UIColor {
-        return UIColor(red: 1, green: 1, blue: 1, alpha: 0.4)
-    }
-    
-    class var qotNavy: UIColor {
-        return UIColor(red: 0, green: 45/255, blue: 78/255, alpha: 1)
+extension NSAttributedString {
+
+    internal class func create(for string: String, withColor color: UIColor, andFont font: UIFont) -> NSAttributedString {
+        let attributes = [NSForegroundColorAttributeName: color, NSFontAttributeName: font]
+        return NSAttributedString(string: string, attributes: attributes)
     }
 }
