@@ -22,28 +22,112 @@ final class LibraryViewModel {
         return items(in: section).count
     }
 
-    func item(at indexPath: IndexPath) -> LearnStrategyItem {
+    func item(at indexPath: IndexPath) -> LibraryItem {
         return items(in: indexPath.section)[indexPath.row]
     }
 
-    private func items(in section: Int) -> [LearnStrategyItem] {
-        return []
+    private func items(in section: Int) -> [LibraryItem] {
+        switch sections[section] {
+        case .lastPostItems(let lastPostItem): return lastPostItem
+        case .categoryItems(let categoryItems): return categoryItems
+        }
     }
 }
 
 private enum LibrarySection {
-    case lastPostItems(LibraryItem)
+    case lastPostItems([LibraryItem])
     case categoryItems([LibraryItem])
 }
 
 enum LibraryItem {
-    case header(localID: String, title: String)
-    case collection(localID: String, headline: String, text: String, media: MediaType)
+    case collection(localID: String, sectinTitle: String, mediaItems: [MediaItem])
 
-    enum MediaType {
-        case audio(localID: String, placeholderURL: URL, title: String)
-        case video(localID: String, placeholderURL: URL, title: String)
+    enum MediaItem {
+        case audio(localID: String, placeholderURL: URL, headline: String, text: String)
+        case video(localID: String, placeholderURL: URL, headline: String, text: String)
     }
 }
 
-private func mock
+private func mockLibrarySections() -> [LibrarySection] {
+    return [
+        .lastPostItems(mockLastPostItem()),
+        .categoryItems(mockCategoryItems())
+    ]
+}
+
+private func mockLastPostItem() -> [LibraryItem] {
+    return [
+        .collection(
+            localID: UUID().uuidString,
+            sectinTitle: "Latest Posts",
+            mediaItems: mockMixedMediaItems()
+        )
+    ]
+}
+
+private func mockCategoryItems() -> [LibraryItem] {
+    return [
+        .collection(
+            localID: UUID().uuidString,
+            sectinTitle: "PERFORMANCE CATEGORY 1",
+            mediaItems: mockMixedMediaItems()
+        ),
+
+        .collection(
+            localID: UUID().uuidString,
+            sectinTitle: "PERFORMANCE CATEGORY 2",
+            mediaItems: mockMixedMediaItems()
+        ),
+
+        .collection(
+            localID: UUID().uuidString,
+            sectinTitle: "PERFORMANCE CATEGORY 3",
+            mediaItems: mockMixedMediaItems()
+        ),
+
+        .collection(
+            localID: UUID().uuidString,
+            sectinTitle: "PERFORMANCE CATEGORY 4",
+            mediaItems: mockMixedMediaItems()
+        )
+    ]
+}
+
+private func mockMixedMediaItems() -> [LibraryItem.MediaItem] {
+    return [
+        .video(
+            localID: UUID().uuidString,
+            placeholderURL: URL(string: "https://example.com")!,
+            headline: "Headline Lore",
+            text: "Ipsum Text"
+        ),
+
+        .audio(
+            localID: UUID().uuidString,
+            placeholderURL: URL(string: "https://example.com")!,
+            headline: "Headline Lore",
+            text: "Ipsum Text"
+        ),
+
+        .audio(
+            localID: UUID().uuidString,
+            placeholderURL: URL(string: "https://example.com")!,
+            headline: "Headline Lore",
+            text: "Ipsum Text"
+        ),
+
+        .video(
+            localID: UUID().uuidString,
+            placeholderURL: URL(string: "https://example.com")!,
+            headline: "Headline Lore",
+            text: "Ipsum Text"
+        ),
+
+        .video(
+            localID: UUID().uuidString,
+            placeholderURL: URL(string: "https://example.com")!,
+            headline: "Headline Lore",
+            text: "Ipsum Text"
+        )
+    ]
+}
