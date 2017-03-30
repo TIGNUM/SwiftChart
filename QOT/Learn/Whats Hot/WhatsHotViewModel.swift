@@ -23,7 +23,7 @@ final class WhatsHotViewModel {
     }
 }
 
-protocol WhatsHot {
+protocol WhatsHotItem {
     var localID: String { get }
     var identifier: NSAttributedString { get }
     var subtitle: NSAttributedString { get }
@@ -33,7 +33,7 @@ protocol WhatsHot {
     var bookmarked: Bool { get }
 }
 
-struct WhatsHotItem: WhatsHot {
+struct MockWhatsHotItem: WhatsHotItem {
     let localID: String
     let identifier: NSAttributedString
     let subtitle: NSAttributedString
@@ -45,7 +45,7 @@ struct WhatsHotItem: WhatsHot {
 
 private func mockWhatsHotItems() -> [WhatsHotItem] {
     return [
-        WhatsHotItem(
+        MockWhatsHotItem(
             localID: UUID().uuidString,
             identifier: AttributedString.Learn.whatsHotID(string: ".087"),
             subtitle: AttributedString.Learn.whatsHotTitle(string: "QOT // THOUGHTS"),
@@ -55,7 +55,7 @@ private func mockWhatsHotItems() -> [WhatsHotItem] {
             bookmarked: false
         ),
 
-        WhatsHotItem(
+        MockWhatsHotItem(
             localID: UUID().uuidString,
             identifier: AttributedString.Learn.whatsHotID(string: ".086"),
             subtitle: AttributedString.Learn.whatsHotTitle(string: "QOT // THOUGHTS"),
@@ -65,7 +65,7 @@ private func mockWhatsHotItems() -> [WhatsHotItem] {
             bookmarked: false
         ),
 
-        WhatsHotItem(
+        MockWhatsHotItem(
             localID: UUID().uuidString,
             identifier: AttributedString.Learn.whatsHotID(string: ".085"),
             subtitle: AttributedString.Learn.whatsHotTitle(string: "QOT // THOUGHTS"),
@@ -75,7 +75,7 @@ private func mockWhatsHotItems() -> [WhatsHotItem] {
             bookmarked: false
         ),
 
-        WhatsHotItem(
+        MockWhatsHotItem(
             localID: UUID().uuidString,
             identifier: AttributedString.Learn.whatsHotID(string: ".084"),
             subtitle: AttributedString.Learn.whatsHotTitle(string: "QOT // THOUGHTS"),
