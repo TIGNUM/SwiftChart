@@ -36,6 +36,14 @@ extension UIFont {
     class var sidebar: UIFont {
         return UIFont.simpleFont(ofSize: 32)
     }
+    
+    class var bubbleTitle: UIFont {
+        return UIFont.bentonBookFont(ofSize: 16)
+    }
+    class var bubbleSubTitle: UIFont {
+        return UIFont.simpleFont(ofSize: 10)
+    }
+    
 }
 
 // MARK: - UIColor

@@ -90,6 +90,9 @@
 		CCC0C4DB1E82BDEF002A8362 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC0C4DA1E82BDEF002A8362 /* TabBarCoordinator.swift */; };
 		CCE5B9D21E80501D00E01BAE /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE5B9D11E80501D00E01BAE /* SidebarViewController.swift */; };
 		CCE5B9D41E80505800E01BAE /* SidebarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCE5B9D31E80505800E01BAE /* SidebarViewController.xib */; };
+		D54A44D11E852263006B04FC /* LearnContentLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54A44D01E852263006B04FC /* LearnContentLayout.swift */; };
+		D54A44D31E852FCF006B04FC /* LearnContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54A44D21E852FCF006B04FC /* LearnContentCell.swift */; };
+		D55CBED71E8A993200C690FB /* CGPoint+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55CBED61E8A993200C690FB /* CGPoint+Convenience.swift */; };
 		D5952A541E7BCD000073E522 /* LearnCategoryLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5952A531E7BCD000073E522 /* LearnCategoryLayout.swift */; };
 		D5C69EBC1E8036DF00B50E38 /* LearnCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C69EBB1E8036DF00B50E38 /* LearnCategoryCell.swift */; };
 		D5CD23D81E8BB73A002742C4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CD23D71E8BB73A002742C4 /* TabBarController.swift */; };
@@ -198,6 +201,9 @@
 		CCE5B9D11E80501D00E01BAE /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		CCE5B9D31E80505800E01BAE /* SidebarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidebarViewController.xib; sourceTree = "<group>"; };
 		CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D54A44D01E852263006B04FC /* LearnContentLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentLayout.swift; sourceTree = "<group>"; };
+		D54A44D21E852FCF006B04FC /* LearnContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentCell.swift; sourceTree = "<group>"; };
+		D55CBED61E8A993200C690FB /* CGPoint+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Convenience.swift"; sourceTree = "<group>"; };
 		D5952A531E7BCD000073E522 /* LearnCategoryLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnCategoryLayout.swift; sourceTree = "<group>"; };
 		D5C69EBB1E8036DF00B50E38 /* LearnCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnCategoryCell.swift; sourceTree = "<group>"; };
 		D5CD23D71E8BB73A002742C4 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -293,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				CB2880331E7144E60067890A /* CollectionUpdate.swift */,
+				D55CBED61E8A993200C690FB /* CGPoint+Convenience.swift */,
 				CBA054481E890560009E28D6 /* Dequeueable.swift */,
 				CBDB98F31E7B000A003EC73F /* NotificationHandler.swift */,
 				CBD791491E71797C0006C590 /* Typealiases.swift */,
@@ -417,6 +424,8 @@
 			children = (
 				CBD7913F1E71604C0006C590 /* LearnContentListViewController.swift */,
 				CBD791411E7160560006C590 /* LearnContentListViewModel.swift */,
+				D54A44D01E852263006B04FC /* LearnContentLayout.swift */,
+				D54A44D21E852FCF006B04FC /* LearnContentCell.swift */,
 			);
 			path = "Learn Content List";
 			sourceTree = "<group>";
@@ -872,6 +881,7 @@
 				D5952A541E7BCD000073E522 /* LearnCategoryLayout.swift in Sources */,
 				CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */,
 				CBD791521E71A09F0006C590 /* ContentItem.swift in Sources */,
+				D55CBED71E8A993200C690FB /* CGPoint+Convenience.swift in Sources */,
 				CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */,
 				CC6B3A2F1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift in Sources */,
 				CB8A15331E76F56D0023B2F9 /* TrackableEntity.swift in Sources */,
@@ -882,6 +892,7 @@
 				CC6B3A391E81A69D00E7FDFD /* SidebarCoordinator.swift in Sources */,
 				CCC0C4D61E82B405002A8362 /* R.generated.swift in Sources */,
 				CBD791561E72BAAC0006C590 /* DatabaseManager.swift in Sources */,
+				D54A44D31E852FCF006B04FC /* LearnContentCell.swift in Sources */,
 				CBD791401E71604C0006C590 /* LearnContentListViewController.swift in Sources */,
 				CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */,
 				CBDB990E1E7BFD05003EC73F /* CalendarEventParticipantData.swift in Sources */,
@@ -903,6 +914,7 @@
 				CCE5B9D21E80501D00E01BAE /* SidebarViewController.swift in Sources */,
 				CC6B3A291E8158B200E7FDFD /* PresentationManager.swift in Sources */,
 				CCAF03241E801B0E00015125 /* SettingsCoordinator.swift in Sources */,
+				D54A44D11E852263006B04FC /* LearnContentLayout.swift in Sources */,
 				CBD791651E768AB70006C590 /* MainMenuViewController.swift in Sources */,
 				CB2880281E7057790067890A /* RootViewController.swift in Sources */,
 				CCAF032A1E8035C800015125 /* SettingsTableViewCell.swift in Sources */,

@@ -2,7 +2,7 @@
 //  LearnCustomCell.swift
 //  QOT
 //
-//  Created by tignum on 3/20/17.
+//  Created by Aamir Suhial on 3/20/17.
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
@@ -119,10 +119,7 @@ final class LearnCategoryCell: UICollectionViewCell {
     }
     
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        guard let path = circleLineShape?.path else {
-            preconditionFailure("Missing path")
-        }
-        return path.contains(point)
+        return point.insideCircle(frame: bounds)
     }
 }
 

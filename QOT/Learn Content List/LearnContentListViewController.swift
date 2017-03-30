@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Anchorage
+import ReactiveKit
+import Bond
 
 /// The delegate of a `LearnContentListViewController`.
 protocol LearnContentListViewControllerDelegate: class {
@@ -16,52 +19,112 @@ protocol LearnContentListViewControllerDelegate: class {
     func didTapBack(in: LearnContentListViewController)
 }
 
-// FIXME: This is a dummy implementation o fLearnContentListViewController.
-
 /// Displays a collection of items of learn content.
-final class LearnContentListViewController: UITableViewController {
-    let viewModel: LearnContentListViewModel
+final class LearnContentListViewController: UIViewController {
+    private let disposeBag = DisposeBag()
     
+    let viewModel: LearnContentListViewModel
     weak var delegate: LearnContentListViewControllerDelegate?
     
     init(viewModel: LearnContentListViewModel) {
         self.viewModel = viewModel
-        
-        super.init(style: .plain)
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    fileprivate lazy var screenSize: CGFloat = {
+       let size = UIScreen.main.bounds.height
+        if size > 568 {
+            return 160
+        } else {
+            return 125
+        }
+    }()
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    fileprivate lazy var collectionViewLayout: LearnContentLayout = {
+        return LearnContentLayout(bubbleCount: self.viewModel.itemCount, bubbleDiameter: self.screenSize)
+    }()
+    
+    fileprivate lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: self.collectionViewLayout)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.backgroundColor = .black
+        return collectionView
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        collectionView.registerDequeueable(LearnContentCell.self)
+        
+        setupAppearance()
+        setupHierachy()
+        setupLayout()
+        
+        viewModel.updates.observeNext { [unowned self] (update) in
+            switch update {
+            case .reload, .update(_, _, _):
+                self.collectionViewLayout.bubbleCount = self.viewModel.itemCount
+                self.collectionView.reloadData()
+            }
+        }.dispose(in: disposeBag)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        centerCollectionView()
+    }
+    
+    private func centerCollectionView() {
+        let contentSize = collectionView.collectionViewLayout.collectionViewContentSize
+        let xOffset = (contentSize.width - collectionView.frame.width) / 2
+        let yOffset = (contentSize.height - collectionView.frame.height) / 2
+        collectionView.contentOffset = CGPoint(x: xOffset, y: yOffset)
+    }
+}
+
+// MARK: UICollectionViewDataSource
+
+extension LearnContentListViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.itemCount
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let reuseID = "cell"
-        let content = viewModel.item(at: indexPath.row)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let content = viewModel.item(at: indexPath.item)
         
-        let cell: UITableViewCell
-        if let existing = tableView.dequeueReusableCell(withIdentifier: reuseID) {
-            cell = existing
-        } else {
-            cell = UITableViewCell(style: .subtitle, reuseIdentifier: reuseID)
-        }
-        
-        cell.textLabel?.text = content.title
-        cell.detailTextLabel?.text = content.viewed ? "viewed" : "\(content.minutesRequired) min"
-        
+        let cell: LearnContentCell = collectionView.dequeueCell(for: indexPath)
+        cell.configure(with: content)
         return cell
     }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.didSelectContent(at: indexPath.row, in: self)
+}
+
+// MARK: UICollectionViewDelegate
+
+extension LearnContentListViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.didSelectContent(at: indexPath.item, in: self)
+    }
+}
+
+private extension LearnContentListViewController {
+    func setupAppearance() {
+        view.backgroundColor = UIColor.black
     }
     
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y < -150 {
-            delegate?.didTapBack(in: self)
-        }
+    func setupHierachy() {
+        view.addSubview(collectionView)
+    }
+    
+    func setupLayout() {
+        collectionView.topAnchor == view.topAnchor + 100
+        collectionView.bottomAnchor == view.bottomAnchor
+        collectionView.horizontalAnchors == view.horizontalAnchors
+        
+        view.layoutIfNeeded()
     }
 }
