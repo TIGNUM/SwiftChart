@@ -40,7 +40,8 @@ final class LearnContentListCoordinator: ParentCoordinator {
 
 extension LearnContentListCoordinator: LearnContentListViewControllerDelegate {
     func didSelectContent(at index: Index, in viewController: LearnContentListViewController) {
-        log("Did select content at index: \(index)")
+        let coordinator = LearnStrategyCoordinator(root: viewController, databaseManager: databaseManager, eventTracker: eventTracker, category: category)
+        startChild(child: coordinator)
     }
     
     func didTapBack(in: LearnContentListViewController) {

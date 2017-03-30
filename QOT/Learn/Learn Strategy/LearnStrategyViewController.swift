@@ -60,6 +60,9 @@ extension LearnStrategyViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
+        
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
         let item = viewModel.item(at: indexPath)
 

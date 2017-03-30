@@ -123,13 +123,6 @@ extension TabBarCoordinator: ChatViewDelegate {
     }
     
     func didSelectChatNavigation(_ chatMessageNavigation: ChatMessageNavigation, in viewController: ChatViewController) {
-        let viewModel = PrepareContentViewModel()
-        let prepareContentViewController = PrepareContentViewController(viewModel: viewModel)
-        prepareContentViewController.delegate = self
-        viewController.present(prepareContentViewController, animated: true, completion: nil)
-
-        // TODO: Update associatedEntity with realm object when its created.
-        eventTracker.track(page: prepareContentViewController.pageID, referer: rootViewController.pageID, associatedEntity: nil)
     }
 }
 
