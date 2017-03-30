@@ -47,7 +47,7 @@ final class TabBarController: UIViewController {
     private func makeButton(title: String, index: Int) -> UIButton {
         let button = UIButton(type: .custom)
         button.setTitle(title, for: .normal)
-//        button.titleLabel?.font = UIFont.
+        button.titleLabel?.font = .bubbleTitle
         button.backgroundColor = .clear
         button.setTitleColor(UIColor.white.withAlphaComponent(0.4), for: .normal)
         button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)

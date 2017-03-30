@@ -62,7 +62,7 @@ final class TabBarCoordinator: ParentCoordinator {
         let vc1 = learnCategoryListViewController
         //vc1.view.backgroundColor = .red
         
-        let vc2 = UIViewController()
+        let vc2 = meSectionViewController
         //vc2.view.backgroundColor = .blue
         
         let vc3 = chatViewController
