@@ -8,7 +8,6 @@
 
 import Foundation
 import ReactiveKit
-import RealmSwift
 
 /// Encapsulates data to display in a `LearnCategoryListViewController`.
 protocol LearnCategory {
@@ -28,11 +27,11 @@ protocol LearnCategory {
 
 /// The view model of a `LearnCategoryListViewController`.
 final class LearnCategoryListViewModel {
-    private let _categories: Results<ContentCategory>
+    private let _categories: DataProvider<LearnCategory>
     
     let updates = PublishSubject<CollectionUpdate, NoError>()
     
-    init(categories: Results<ContentCategory>) {
+    init(categories: DataProvider<LearnCategory>) {
         self._categories = categories
     }
     
@@ -43,11 +42,11 @@ final class LearnCategoryListViewModel {
     
     /// Returns the `LearnCategory` to display at `index`.
     func category(at index: Index) -> LearnCategory {
-        return _categories[index]
+        return _categories.item(at: index)
     }
     
     var categories: [LearnCategory] {
-        return _categories.map { $0 }
+        return _categories.items
     }
 }
 

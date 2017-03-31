@@ -19,16 +19,16 @@ final class MainMenuCoordinator: ParentCoordinator {
     // MARK: - Properties
     
     fileprivate let rootVC: LaunchViewController
-    fileprivate let databaseManager: DatabaseManager
+    fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
     
     var children: [Coordinator] = []
     
     // MARK: - Life Cycle
     
-    init(root: LaunchViewController, databaseManager: DatabaseManager, eventTracker: EventTracker) {
+    init(root: LaunchViewController, services: Services, eventTracker: EventTracker) {
         self.rootVC = root
-        self.databaseManager = databaseManager
+        self.services = services
         self.eventTracker = eventTracker
     }
     
@@ -56,12 +56,12 @@ extension MainMenuCoordinator: MainMenuViewControllerDelegate {
     }
     
     func didTapSidebarButton(in viewController: MainMenuViewController) {
-        let coordinator = SidebarCoordinator(root: viewController, databaseManager: databaseManager, eventTracker: eventTracker)
+        let coordinator = SidebarCoordinator(root: viewController, databaseManager: services.databaseManager, eventTracker: eventTracker)
         startChild(child: coordinator)
     }
     
     private func showTabBarController(in viewController: MainMenuViewController, with selectedIndex: Index) {
-        let tabBarCoordinator = TabBarCoordinator(rootViewController: viewController, selectedIndex: selectedIndex, databaseManager: databaseManager, eventTracker: eventTracker)
+        let tabBarCoordinator = TabBarCoordinator(rootViewController: viewController, selectedIndex: selectedIndex, services: services, eventTracker: eventTracker)
         startChild(child: tabBarCoordinator)
     }
 }

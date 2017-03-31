@@ -16,6 +16,10 @@
 		CB2880241E7051710067890A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880231E7051710067890A /* AppCoordinator.swift */; };
 		CB2880281E7057790067890A /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880271E7057790067890A /* RootViewController.swift */; };
 		CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880331E7144E60067890A /* CollectionUpdate.swift */; };
+		CB369CDB1E8D3E5700522293 /* RealmProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB369CDA1E8D3E5700522293 /* RealmProvider.swift */; };
+		CB369CDE1E8D3F5300522293 /* LearnContentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB369CDD1E8D3F5300522293 /* LearnContentService.swift */; };
+		CB369CE01E8D407C00522293 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB369CDF1E8D407C00522293 /* DataProvider.swift */; };
+		CB369CE21E8D5E3D00522293 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB369CE11E8D5E3D00522293 /* Services.swift */; };
 		CB8A15221E769F1F0023B2F9 /* EventTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15211E769F1F0023B2F9 /* EventTracker.swift */; };
 		CB8A15271E76A1280023B2F9 /* PageEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15261E76A1280023B2F9 /* PageEvent.swift */; };
 		CB8A152F1E76F27D0023B2F9 /* PageID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A152E1E76F27D0023B2F9 /* PageID.swift */; };
@@ -134,6 +138,10 @@
 		CB2880231E7051710067890A /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		CB2880271E7057790067890A /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		CB2880331E7144E60067890A /* CollectionUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionUpdate.swift; sourceTree = "<group>"; };
+		CB369CDA1E8D3E5700522293 /* RealmProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmProvider.swift; sourceTree = "<group>"; };
+		CB369CDD1E8D3F5300522293 /* LearnContentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentService.swift; sourceTree = "<group>"; };
+		CB369CDF1E8D407C00522293 /* DataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		CB369CE11E8D5E3D00522293 /* Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		CB8A15211E769F1F0023B2F9 /* EventTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTracker.swift; sourceTree = "<group>"; };
 		CB8A15261E76A1280023B2F9 /* PageEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageEvent.swift; sourceTree = "<group>"; };
 		CB8A152E1E76F27D0023B2F9 /* PageID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageID.swift; sourceTree = "<group>"; };
@@ -221,6 +229,8 @@
 		CCE372F41E8CF10C00B79352 /* WhatsHotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsHotViewController.swift; sourceTree = "<group>"; };
 		CCE372FC1E8D2AD100B79352 /* MyPrepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPrepViewController.swift; sourceTree = "<group>"; };
 		CCE372FE1E8D2AE700B79352 /* MyPrepViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPrepViewModel.swift; sourceTree = "<group>"; };
+		CCE372F71E8CF86900B79352 /* WhatsHotNewTemplateViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsHotNewTemplateViewModel.swift; sourceTree = "<group>"; };
+		CCE372F91E8CF88600B79352 /* WhatsHotNewTemplateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsHotNewTemplateViewController.swift; sourceTree = "<group>"; };
 		CCE5B9D11E80501D00E01BAE /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		CCE5B9D31E80505800E01BAE /* SidebarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidebarViewController.xib; sourceTree = "<group>"; };
 		CCEA22A21E8AC53D003D0CF4 /* PrepareCheckListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareCheckListViewController.swift; sourceTree = "<group>"; };
@@ -331,6 +341,25 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		CB369CD91E8D3E3700522293 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CB369CDC1E8D3F0A00522293 /* Utilities */,
+				CB369CDD1E8D3F5300522293 /* LearnContentService.swift */,
+				CB369CE11E8D5E3D00522293 /* Services.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		CB369CDC1E8D3F0A00522293 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				CB369CDA1E8D3E5700522293 /* RealmProvider.swift */,
+				CB369CDF1E8D407C00522293 /* DataProvider.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		CB8A15231E769F250023B2F9 /* Tracking */ = {
 			isa = PBXGroup;
 			children = (
@@ -408,6 +437,7 @@
 				CC20C9921E8981070056054D /* Prepare */,
 				CC6B3A271E81586C00E7FDFD /* Presentation */,
 				CB2880291E70577E0067890A /* Root Container View */,
+				CB369CD91E8D3E3700522293 /* Services */,
 				CB1E4F991E7FE22900287613 /* Settings */,
 				CCCCB0691E804A90001240D5 /* Sidebar */,
 				CCC0C4D71E82BAEA002A8362 /* Tab Bar */,
@@ -703,6 +733,7 @@
 				CCE372FE1E8D2AE700B79352 /* MyPrepViewModel.swift */,
 			);
 			path = "My Preep";
+			path = "Whats Hot New Template";
 			sourceTree = "<group>";
 		};
 		CCEA22A11E8AC528003D0CF4 /* PerpareCheckList */ = {
@@ -968,6 +999,8 @@
 			files = (
 				D5CD23D81E8BB73A002742C4 /* TabBarController.swift in Sources */,
 				CBDB99021E7BE91D003EC73F /* EKEvent+CalendarEventData.swift in Sources */,
+				CB369CE01E8D407C00522293 /* DataProvider.swift in Sources */,
+				CCE372FA1E8CF88600B79352 /* WhatsHotNewTemplateViewController.swift in Sources */,
 				CBDB99081E7BEE05003EC73F /* EventStore.swift in Sources */,
 				CBD7914A1E71797C0006C590 /* Typealiases.swift in Sources */,
 				CCCC21221E8981CA00133839 /* PrepareContentViewController.swift in Sources */,
@@ -1001,15 +1034,18 @@
 				CB8A15271E76A1280023B2F9 /* PageEvent.swift in Sources */,
 				CCEA22A41E8AC53E003D0CF4 /* PrepareCheckListViewController.swift in Sources */,
 				CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */,
+				CB369CDE1E8D3F5300522293 /* LearnContentService.swift in Sources */,
 				CBD791501E71A0950006C590 /* Content.swift in Sources */,
 				CB8A153C1E78467D0023B2F9 /* CalendarEventParticipant.swift in Sources */,
 				CB1E4F981E7FE22200287613 /* SettingsViewModel.swift in Sources */,
 				CCCC211C1E8981AD00133839 /* ChatViewController.swift in Sources */,
 				CC3DFB661E83C19C00FF28DF /* Defines.swift in Sources */,
 				CCD377531E8D3C2D00BB8031 /* WhatsHotNewTemplateViewController.swift in Sources */,
+				CB369CE21E8D5E3D00522293 /* Services.swift in Sources */,
 				CCC1B6A81E8B9B7300D1461F /* LearnCategoryLayout.swift in Sources */,
 				CBD7914E1E719E2D0006C590 /* ContentCategory.swift in Sources */,
 				CCC0C4DB1E82BDEF002A8362 /* TabBarCoordinator.swift in Sources */,
+				CB369CDB1E8D3E5700522293 /* RealmProvider.swift in Sources */,
 				CC6B3A371E81A25A00E7FDFD /* SidebarTableViewCell.swift in Sources */,
 				CBDB98FD1E7BE6AF003EC73F /* CalendarEventData.swift in Sources */,
 				CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */,
