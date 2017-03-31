@@ -104,9 +104,15 @@
 		D51B5C491E8D0E7E0084A65B /* LearnContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B5C471E8D0E7E0084A65B /* LearnContentCell.swift */; };
 		D51B5C4A1E8D0E7E0084A65B /* LearnContentLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B5C481E8D0E7E0084A65B /* LearnContentLayout.swift */; };
 		D51B5C4C1E8D133B0084A65B /* LearnStrategyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B5C4B1E8D133B0084A65B /* LearnStrategyCoordinator.swift */; };
+		D51D08831E8E806E00FC7567 /* LearnStrategyTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51D08811E8E806E00FC7567 /* LearnStrategyTextCell.swift */; };
+		D51D08841E8E806E00FC7567 /* LearnStrategyTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D51D08821E8E806E00FC7567 /* LearnStrategyTextCell.xib */; };
+		D51D08871E8E80AF00FC7567 /* LearnStrategyVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51D08851E8E80AF00FC7567 /* LearnStrategyVideoCell.swift */; };
+		D51D08881E8E80AF00FC7567 /* LearnStrategyVideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D51D08861E8E80AF00FC7567 /* LearnStrategyVideoCell.xib */; };
+		D51D088B1E8E80CD00FC7567 /* LearnStrategyArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51D08891E8E80CD00FC7567 /* LearnStrategyArticleCell.swift */; };
+		D51D088C1E8E80CD00FC7567 /* LearnStrategyArticleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D51D088A1E8E80CD00FC7567 /* LearnStrategyArticleCell.xib */; };
+		D520BC931E8E655A00A2D107 /* LearnStrategyHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D520BC911E8E655A00A2D107 /* LearnStrategyHeaderCell.swift */; };
+		D520BC941E8E655A00A2D107 /* LearnStrategyHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D520BC921E8E655A00A2D107 /* LearnStrategyHeaderCell.xib */; };
 		D540275F1E8D401F0013B783 /* LearnStrategyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D540275D1E8D401F0013B783 /* LearnStrategyViewController.xib */; };
-		D54027641E8D5BC60013B783 /* LearnStrategyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54027621E8D5BC60013B783 /* LearnStrategyCell.swift */; };
-		D54027651E8D5BC60013B783 /* LearnStrategyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54027631E8D5BC60013B783 /* LearnStrategyCell.xib */; };
 		D55CBED71E8A993200C690FB /* CGPoint+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55CBED61E8A993200C690FB /* CGPoint+Convenience.swift */; };
 		D5CD23D81E8BB73A002742C4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CD23D71E8BB73A002742C4 /* TabBarController.swift */; };
 /* End PBXBuildFile section */
@@ -227,9 +233,15 @@
 		D51B5C471E8D0E7E0084A65B /* LearnContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentCell.swift; sourceTree = "<group>"; };
 		D51B5C481E8D0E7E0084A65B /* LearnContentLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentLayout.swift; sourceTree = "<group>"; };
 		D51B5C4B1E8D133B0084A65B /* LearnStrategyCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnStrategyCoordinator.swift; sourceTree = "<group>"; };
+		D51D08811E8E806E00FC7567 /* LearnStrategyTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnStrategyTextCell.swift; sourceTree = "<group>"; };
+		D51D08821E8E806E00FC7567 /* LearnStrategyTextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyTextCell.xib; sourceTree = "<group>"; };
+		D51D08851E8E80AF00FC7567 /* LearnStrategyVideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnStrategyVideoCell.swift; sourceTree = "<group>"; };
+		D51D08861E8E80AF00FC7567 /* LearnStrategyVideoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyVideoCell.xib; sourceTree = "<group>"; };
+		D51D08891E8E80CD00FC7567 /* LearnStrategyArticleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnStrategyArticleCell.swift; sourceTree = "<group>"; };
+		D51D088A1E8E80CD00FC7567 /* LearnStrategyArticleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyArticleCell.xib; sourceTree = "<group>"; };
+		D520BC911E8E655A00A2D107 /* LearnStrategyHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnStrategyHeaderCell.swift; sourceTree = "<group>"; };
+		D520BC921E8E655A00A2D107 /* LearnStrategyHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyHeaderCell.xib; sourceTree = "<group>"; };
 		D540275D1E8D401F0013B783 /* LearnStrategyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyViewController.xib; sourceTree = "<group>"; };
-		D54027621E8D5BC60013B783 /* LearnStrategyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnStrategyCell.swift; sourceTree = "<group>"; };
-		D54027631E8D5BC60013B783 /* LearnStrategyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyCell.xib; sourceTree = "<group>"; };
 		D55CBED61E8A993200C690FB /* CGPoint+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Convenience.swift"; sourceTree = "<group>"; };
 		D5CD23D71E8BB73A002742C4 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -636,9 +648,15 @@
 			children = (
 				CCC1B6B21E8BA71500D1461F /* LearnStrategyViewController.swift */,
 				D540275D1E8D401F0013B783 /* LearnStrategyViewController.xib */,
-				D54027621E8D5BC60013B783 /* LearnStrategyCell.swift */,
-				D54027631E8D5BC60013B783 /* LearnStrategyCell.xib */,
 				CCC1B6B01E8B9FDA00D1461F /* LearnStrategyViewModel.swift */,
+				D520BC911E8E655A00A2D107 /* LearnStrategyHeaderCell.swift */,
+				D520BC921E8E655A00A2D107 /* LearnStrategyHeaderCell.xib */,
+				D51D08891E8E80CD00FC7567 /* LearnStrategyArticleCell.swift */,
+				D51D088A1E8E80CD00FC7567 /* LearnStrategyArticleCell.xib */,
+				D51D08851E8E80AF00FC7567 /* LearnStrategyVideoCell.swift */,
+				D51D08861E8E80AF00FC7567 /* LearnStrategyVideoCell.xib */,
+				D51D08811E8E806E00FC7567 /* LearnStrategyTextCell.swift */,
+				D51D08821E8E806E00FC7567 /* LearnStrategyTextCell.xib */,
 			);
 			path = "Learn Strategy";
 			sourceTree = "<group>";
@@ -800,15 +818,18 @@
 			files = (
 				CCAF032C1E80362700015125 /* SettingsTableViewCell.xib in Resources */,
 				CBD791661E768AB70006C590 /* MainMenuViewController.xib in Resources */,
+				D51D08881E8E80AF00FC7567 /* LearnStrategyVideoCell.xib in Resources */,
 				CCAF03281E802A6200015125 /* SettingsViewController.xib in Resources */,
 				CCC0C4CA1E827F87002A8362 /* BentonSans_Book.otf in Resources */,
+				D51D08841E8E806E00FC7567 /* LearnStrategyTextCell.xib in Resources */,
 				CCE5B9D41E80505800E01BAE /* SidebarViewController.xib in Resources */,
 				CCC0C4CC1E828007002A8362 /* BentonSans_Regular.otf in Resources */,
 				CCC1B6AA1E8B9B7300D1461F /* LearnCategoryListViewController.xib in Resources */,
 				CBD7915D1E72F2990006C590 /* LaunchViewController.xib in Resources */,
+				D51D088C1E8E80CD00FC7567 /* LearnStrategyArticleCell.xib in Resources */,
 				CCC0C4D41E82A8D9002A8362 /* Simple-Regular.ttf in Resources */,
 				CB8A15461E7986C90023B2F9 /* Localized.strings in Resources */,
-				D54027651E8D5BC60013B783 /* LearnStrategyCell.xib in Resources */,
+				D520BC941E8E655A00A2D107 /* LearnStrategyHeaderCell.xib in Resources */,
 				CC6B3A351E81A1E600E7FDFD /* SidebarTableViewCell.xib in Resources */,
 				CBB237FA1E6FFF1200AB5AEF /* LaunchScreen.storyboard in Resources */,
 				D540275F1E8D401F0013B783 /* LearnStrategyViewController.xib in Resources */,
@@ -979,14 +1000,17 @@
 				CBD791681E768CC00006C590 /* MainMenuCoordinator.swift in Sources */,
 				CC6B3A331E8191BC00E7FDFD /* SidebarViewModel.swift in Sources */,
 				CC6B3A391E81A69D00E7FDFD /* SidebarCoordinator.swift in Sources */,
+				D520BC931E8E655A00A2D107 /* LearnStrategyHeaderCell.swift in Sources */,
 				CCC0C4D61E82B405002A8362 /* R.generated.swift in Sources */,
+				D51D08871E8E80AF00FC7567 /* LearnStrategyVideoCell.swift in Sources */,
 				CBD791561E72BAAC0006C590 /* DatabaseManager.swift in Sources */,
-				D54027641E8D5BC60013B783 /* LearnStrategyCell.swift in Sources */,
 				CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */,
 				CBDB990E1E7BFD05003EC73F /* CalendarEventParticipantData.swift in Sources */,
+				D51D088B1E8E80CD00FC7567 /* LearnStrategyArticleCell.swift in Sources */,
 				CB8A15271E76A1280023B2F9 /* PageEvent.swift in Sources */,
 				CCEA22A41E8AC53E003D0CF4 /* PrepareCheckListViewController.swift in Sources */,
 				CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */,
+				D51D08831E8E806E00FC7567 /* LearnStrategyTextCell.swift in Sources */,
 				CBD791501E71A0950006C590 /* Content.swift in Sources */,
 				CB8A153C1E78467D0023B2F9 /* CalendarEventParticipant.swift in Sources */,
 				CB1E4F981E7FE22200287613 /* SettingsViewModel.swift in Sources */,
