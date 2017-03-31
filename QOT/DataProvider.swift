@@ -42,6 +42,26 @@ final class DataProvider<Element> {
         self.token = token
     }
 
+    init<T: Object>(list: List<T>, map: @escaping (T) -> Element ) {
+        self._count = { list.count }
+        self._itemAt = { (index) in
+            return map(list[index])
+        }
+        self._items = { list.map(map) }
+
+        let token = list.addNotificationBlock { [unowned self] (change) in
+            switch change {
+            case .initial:
+                self._changes.next(.initial)
+            case .update(_, let deletions, let insertions, let modifications):
+                self._changes.next(.update(deletions: deletions, insertions: insertions, modifications: modifications))
+            case .error(let error):
+                assertionFailure("Realm results errored: \(error)")
+            }
+        }
+        self.token = token
+    }
+
     var count: Int {
         return _count()
     }

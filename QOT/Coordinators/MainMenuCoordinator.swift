@@ -56,7 +56,7 @@ extension MainMenuCoordinator: MainMenuViewControllerDelegate {
     }
     
     func didTapSidebarButton(in viewController: MainMenuViewController) {
-        let coordinator = SidebarCoordinator(root: viewController, databaseManager: services.databaseManager, eventTracker: eventTracker)
+        let coordinator = SidebarCoordinator(root: viewController, services: services, eventTracker: eventTracker)
         startChild(child: coordinator)
     }
     

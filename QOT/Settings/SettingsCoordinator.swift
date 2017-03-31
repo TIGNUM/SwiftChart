@@ -12,18 +12,18 @@ import UIKit
 final class SettingsCoordinator: ParentCoordinator {
     
     internal var rootViewController: SidebarViewController?
-    fileprivate let databaseManager: DatabaseManager?
+    fileprivate let services: Services?
     fileprivate let eventTracker: EventTracker?
     internal var children = [Coordinator]()
     weak var delegate: ParentCoordinator?
     lazy var presentationManager = PresentationManager()
     
-    init(root: SidebarViewController, databaseManager: DatabaseManager?, eventTracker: EventTracker?) {
+    init(root: SidebarViewController, services: Services?, eventTracker: EventTracker?) {
         self.rootViewController = root
-        self.databaseManager = databaseManager
+        self.services = services
         self.eventTracker = eventTracker
     }
-    
+
     func start() {
         let settingsViewController = SettingsViewController(viewModel: SettingsViewModel())
         settingsViewController.delegate = self

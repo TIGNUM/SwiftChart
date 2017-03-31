@@ -19,10 +19,6 @@ final class TabBarCoordinator: ParentCoordinator {
     fileprivate let eventTracker: EventTracker
     fileprivate let selectedIndex: Index
     
-    fileprivate lazy var contentCategories: Results<ContentCategory> = {
-        return self.services.databaseManager.mainRealm.objects(ContentCategory.self).sorted(byKeyPath: Databsase.Key.sort.rawValue)
-    }()
-    
     fileprivate lazy var learnCategoryListViewController: LearnCategoryListViewController = {
         let categories = self.services.learnContent.categories()
         let viewModel = LearnCategoryListViewModel(categories: categories)
@@ -99,12 +95,12 @@ extension TabBarCoordinator: TabBarControllerDelegate {
 // MARK: - LearnCategoryListViewControllerDelegate
 
 extension TabBarCoordinator: LearnCategoryListViewControllerDelegate {
-    func didSelectCategory(at index: Index, in viewController: LearnCategoryListViewController) {
-        let category = contentCategories[index]
-        let coordinator = LearnContentListCoordinator(root: viewController, databaseManager: services.databaseManager, eventTracker: eventTracker, category: category)
+    func didSelectCategory(_ category: LearnCategory, in viewController: LearnCategoryListViewController) {
+        let coordinator = LearnContentListCoordinator(root: viewController, services: services, eventTracker: eventTracker, category: category)
+
         coordinator.start()
         coordinator.delegate = self
-        
+
         children.append(coordinator)
     }
 }

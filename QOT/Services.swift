@@ -11,7 +11,6 @@ import ReactiveKit
 import RealmSwift
 
 struct Services {
-    let databaseManager: DatabaseManager // FIXME: Delete once no longer needed
     let learnContent: LearnContentService
 
     static func make(completion: @escaping (Result<Services, NSError>) -> Void) {
@@ -27,10 +26,10 @@ struct Services {
 
             DispatchQueue.main.async {
                 do {
-                    let manager = try DatabaseManager()
                     let realmProvider = RealmProvider()
-                    let learnContent = LearnContentService(mainRealm: manager.mainRealm, realmProvider: realmProvider)
-                    let services = Services(databaseManager: manager, learnContent: learnContent)
+                    let mainRealm = try realmProvider.realm()
+                    let learnContent = LearnContentService(mainRealm: mainRealm, realmProvider: realmProvider)
+                    let services = Services(learnContent: learnContent)
 
                     completion(.success(services))
                 } catch let error as NSError {

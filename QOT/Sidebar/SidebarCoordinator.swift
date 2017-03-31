@@ -12,15 +12,15 @@ import UIKit
 final class SidebarCoordinator: ParentCoordinator {
     
     internal var rootViewController: MainMenuViewController?
-    fileprivate let databaseManager: DatabaseManager?
+    fileprivate let services: Services?
     fileprivate let eventTracker: EventTracker?
     internal var children = [Coordinator]()
     weak var delegate: ParentCoordinator?
     lazy var presentationManager = PresentationManager()
     
-    init(root: MainMenuViewController, databaseManager: DatabaseManager?, eventTracker: EventTracker?) {
+    init(root: MainMenuViewController, services: Services?, eventTracker: EventTracker?) {
         self.rootViewController = root
-        self.databaseManager = databaseManager
+        self.services = services
         self.eventTracker = eventTracker
     }
     
@@ -45,7 +45,7 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
     }
     
     func didTapSettingsCell(in viewController: SidebarViewController) {
-        let coordinator = SettingsCoordinator(root: viewController, databaseManager: databaseManager, eventTracker: eventTracker)
+        let coordinator = SettingsCoordinator(root: viewController, services: services, eventTracker: eventTracker)
         coordinator.delegate = self
         startChild(child: coordinator)
     }
