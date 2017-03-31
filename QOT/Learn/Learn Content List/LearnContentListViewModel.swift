@@ -33,4 +33,3 @@ final class LearnContentListViewModel {
         return content.item(at: index)
     }
 }
-
