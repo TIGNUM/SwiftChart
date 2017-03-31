@@ -15,7 +15,7 @@ final class AppCoordinator: ParentCoordinator {
     // MARK: - Properties
     
     fileprivate let window: UIWindow
-    fileprivate var databaseManager: DatabaseManager?
+    fileprivate var services: Services?
     fileprivate lazy var eventTracker: EventTracker = {
         return EventTracker(realmProvider: { return try Realm() })
     }()
@@ -48,11 +48,11 @@ final class AppCoordinator: ParentCoordinator {
     func start() {
         window.rootViewController = launchVC
         window.makeKeyAndVisible()
-        
-        DatabaseManager.make { (result) in
+
+        Services.make { (result) in
             switch result {
-            case .success(let manager):
-                self.databaseManager = manager
+            case .success(let services):
+                self.services = services
                 self.launchVC.viewModel.ready.value = true
                 self.eventTracker.track(page: self.launchVC.pageID, referer: nil, associatedEntity: nil)
                 self.calendarImportManager.importEvents()
@@ -67,11 +67,11 @@ final class AppCoordinator: ParentCoordinator {
 extension AppCoordinator: LaunchViewControllerDelegate {
    
     func didTapLaunchViewController(_ viewController: LaunchViewController) {
-        guard let databaseManager = databaseManager else {
-            preconditionFailure("databaseManager & tracker must exist")
+        guard let services = services else {
+            preconditionFailure("services must exist")
         }
         
-        let coordinator = MainMenuCoordinator(root: viewController, databaseManager: databaseManager, eventTracker: eventTracker)
+        let coordinator = MainMenuCoordinator(root: viewController, services: services, eventTracker: eventTracker)
         startChild(child: coordinator)
     }
 }

@@ -83,6 +83,6 @@ private func mockWhatsHotItems() -> [WhatsHotItem] {
             mediaInformation: AttributedString.Learn.WhatsHot.title(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
             placeholderURL: URL(string:"https://example.com")!,
             bookmarked: false
-        ),
+        )
     ]
 }
