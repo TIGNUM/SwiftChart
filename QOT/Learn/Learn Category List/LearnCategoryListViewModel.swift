@@ -33,5 +33,3 @@ final class LearnCategoryListViewModel {
         return _categories.items
     }
 }
-
-

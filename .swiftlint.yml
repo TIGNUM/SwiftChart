@@ -4,6 +4,7 @@ disabled_rules:
   - variable_name
   - class_delegate_protocol # This can give false positives if the protocol is inherited.
   - large_tuple
+  - nesting
 
 included: # paths to include during linting. `--path` is ignored if present.
   - QOT
