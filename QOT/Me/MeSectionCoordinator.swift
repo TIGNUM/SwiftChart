@@ -18,16 +18,16 @@ final class MeSectionCoordinator: ParentCoordinator {
     // MARK: - Properties
     
     fileprivate let rootViewController: MeSectionViewController
-    fileprivate let databaseManager: DatabaseManager
+    fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
     
     var children: [Coordinator] = []
     
     // MARK: - Life Cycle
     
-    init(root: MeSectionViewController, databaseManager: DatabaseManager, eventTracker: EventTracker) {
+    init(root: MeSectionViewController, services: Services, eventTracker: EventTracker) {
         self.rootViewController = root
-        self.databaseManager = databaseManager
+        self.services = services
         self.eventTracker = eventTracker
     }
     
