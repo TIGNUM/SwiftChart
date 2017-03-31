@@ -10,7 +10,7 @@ import UIKit
 
 class LearnStrategyTextCell: UITableViewCell, Dequeueable {
     
-    @IBOutlet private weak var articleLabel: UILabel!
+    @IBOutlet private weak var contentLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -18,6 +18,6 @@ class LearnStrategyTextCell: UITableViewCell, Dequeueable {
     }
 
     func setup(with title: NSAttributedString) {
-       articleLabel.attributedText = title
+       contentLabel.attributedText = title
     }
 }
