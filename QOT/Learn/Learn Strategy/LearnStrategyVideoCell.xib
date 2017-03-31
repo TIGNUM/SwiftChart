@@ -19,9 +19,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="192"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WwZ-hx-yZN">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_menu" translatesAutoresizingMaskIntoConstraints="NO" id="WwZ-hx-yZN">
                         <rect key="frame" x="28" y="8" width="264" height="132"/>
-                        <color key="backgroundColor" red="0.50196081400000003" green="1" blue="0.0" alpha="0.46615475169999998" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.16668450342465754" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="WwZ-hx-yZN" secondAttribute="height" multiplier="2:1" id="eZm-VA-d8R"/>
                         </constraints>
@@ -49,4 +49,7 @@
             <point key="canvasLocation" x="34" y="128.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="ic_menu" width="24" height="24"/>
+    </resources>
 </document>
