@@ -12,13 +12,13 @@ import UIKit
 final class SidebarCoordinator: ParentCoordinator {
     
     internal var rootViewController: MainMenuViewController?
-    fileprivate let services: Services?
-    fileprivate let eventTracker: EventTracker?
+    fileprivate let services: Services
+    fileprivate let eventTracker: EventTracker
     internal var children = [Coordinator]()
     weak var delegate: ParentCoordinator?
     lazy var presentationManager = PresentationManager()
     
-    init(root: MainMenuViewController, services: Services?, eventTracker: EventTracker?) {
+    init(root: MainMenuViewController, services: Services, eventTracker: EventTracker) {
         self.rootViewController = root
         self.services = services
         self.eventTracker = eventTracker
@@ -31,7 +31,7 @@ final class SidebarCoordinator: ParentCoordinator {
         sideBarViewController.modalPresentationStyle = .custom
         sideBarViewController.transitioningDelegate = presentationManager
         rootViewController?.present(sideBarViewController, animated: true)
-        eventTracker?.track(page: sideBarViewController.pageID, referer: rootViewController?.pageID, associatedEntity: nil)
+        eventTracker.track(page: sideBarViewController.pageID, referer: rootViewController?.pageID, associatedEntity: nil)
     }
 }
 
@@ -46,6 +46,12 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
     
     func didTapSettingsCell(in viewController: SidebarViewController) {
         let coordinator = SettingsCoordinator(root: viewController, services: services, eventTracker: eventTracker)
+        coordinator.delegate = self
+        startChild(child: coordinator)
+    }
+
+    func didTapLibraryCell(in viewController: SidebarViewController) {
+        let coordinator = LibraryCoordinator(root: viewController, services: services, eventTracker: eventTracker)
         coordinator.delegate = self
         startChild(child: coordinator)
     }

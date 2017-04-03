@@ -12,6 +12,7 @@ import UIKit
 protocol SidebarViewControllerDelegate: class {
     func didTapClose(in viewController: UIViewController, animated: Bool)
     func didTapSettingsCell(in viewController: SidebarViewController)
+    func didTapLibraryCell(in viewController: SidebarViewController)
 }
 
 final class SidebarViewController: UIViewController {
@@ -119,6 +120,7 @@ extension SidebarViewController {
     fileprivate func handleSelection(forItem item: SidebarCellType) {
         switch item {
         case .settings: delegate?.didTapSettingsCell(in: self)
+        case .library: delegate?.didTapLibraryCell(in: self)
         default: return
         }
     }
