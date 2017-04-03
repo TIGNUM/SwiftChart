@@ -25,6 +25,7 @@ final class LearnStrategyViewController: UIViewController {
     // MARK: Outlets
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tabBarView: TabBarView!
     
     // MARK: Private properties
     
@@ -51,6 +52,11 @@ final class LearnStrategyViewController: UIViewController {
 
         setupTableView()
         registerCells()
+        
+        
+        let config = TabBarView.Configuration(titles: ["FULL", "BULLETS"], indicatorViewExtendedWidth: 16, selectedColor: .black, deselectedColor: .darkGray, edgeInsets: .zero)
+        
+        tabBarView.setup(configuration: config)
     }
     
     // MARK: Private methods

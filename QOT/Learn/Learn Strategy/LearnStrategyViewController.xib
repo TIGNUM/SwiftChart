@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LearnStrategyViewController" customModule="QOT" customModuleProvider="target">
             <connections>
+                <outlet property="tabBarView" destination="Y18-3p-8rt" id="CeX-m3-9a2"/>
                 <outlet property="tableView" destination="O59-bD-w87" id="ldj-Dw-Jzf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
