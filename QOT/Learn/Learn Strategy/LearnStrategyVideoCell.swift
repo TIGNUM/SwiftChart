@@ -20,5 +20,4 @@ class LearnStrategyVideoCell: UITableViewCell, Dequeueable {
     func setup(with placeholderURL: URL, description: NSAttributedString) {
        descriptionLabel.attributedText = description
     }
-    
 }

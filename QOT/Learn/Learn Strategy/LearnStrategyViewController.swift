@@ -16,10 +16,20 @@ protocol LearnStrategyViewControllerDelegate: class {
 }
 
 final class LearnStrategyViewController: UIViewController {
+    
+    // MARK: Outlets
+    
     @IBOutlet weak var tableView: UITableView!
-    let cellIdentifier = "Cell"
-    let viewModel: LearnStrategyViewModel
+    
+    // MARK: Private properties
+    
+    fileprivate let viewModel: LearnStrategyViewModel
+    
+    // MARK: Public properties
+    
     weak var delegate: LearnStrategyViewControllerDelegate?
+    
+    // MARK: Public methods
     
     init(viewModel: LearnStrategyViewModel) {
         self.viewModel = viewModel
@@ -33,20 +43,30 @@ final class LearnStrategyViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.backgroundColor = .white
+
+        setupTableView()
+        registerCells()
+    }
+    
+    // MARK: Private methods
+    
+    private func setupTableView() {
+        tableView.estimatedRowHeight = 10
+        tableView.rowHeight = UITableViewAutomaticDimension
+    }
+
+    private func registerCells() {
         tableView.registerDequeueable(LearnStrategyHeaderCell.self)
         tableView.registerDequeueable(LearnStrategyArticleCell.self)
         tableView.registerDequeueable(LearnStrategyTextCell.self)
         tableView.registerDequeueable(LearnStrategyVideoCell.self)
-        tableView.estimatedRowHeight = 10
-        tableView.rowHeight = UITableViewAutomaticDimension
     }
 }
 
+// MARK: UITableViewDelegate
+
 extension LearnStrategyViewController: UITableViewDelegate {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.sectionCount
     }
@@ -58,6 +78,8 @@ extension LearnStrategyViewController: UITableViewDelegate {
         print(indexPath)
     }
 }
+
+// MARK: UITableViewDataSource
 
 extension LearnStrategyViewController: UITableViewDataSource {
     
