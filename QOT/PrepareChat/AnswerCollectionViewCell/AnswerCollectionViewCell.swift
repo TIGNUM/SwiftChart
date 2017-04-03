@@ -14,13 +14,14 @@ class AnswerCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.contentView.addDashedBorder(color: UIColor.gray.cgColor, lineWidth: 2)
         self.contentView.backgroundColor = UIColor.black
     }
 
-    func initWithTitle(title: String!)
+    func createWithTitle(title: String!)
     {
         self.titleLbl.text = title
+
+        self.contentView.addDashedBorder(color: UIColor.gray.cgColor, lineWidth: 2)
     }
     
 }
@@ -30,7 +31,7 @@ extension UIView {
 
         let shapeLayer: CAShapeLayer = CAShapeLayer()
         let frameSize = self.frame.size
-        let shapeRect = CGRect(x: 0, y: 0, width: frameSize.width, height: frameSize.height)
+        let shapeRect = CGRect(x: 2, y: 2, width: frameSize.width, height: frameSize.height)
 
         shapeLayer.bounds = shapeRect
         shapeLayer.position = CGPoint(x: frameSize.width/2, y: frameSize.height/2)

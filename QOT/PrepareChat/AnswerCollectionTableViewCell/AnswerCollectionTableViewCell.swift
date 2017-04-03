@@ -17,22 +17,21 @@ class AnswerCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
 
     @IBOutlet weak var collectionView: UICollectionView!
     var delegate: AnswerCollectionViewCellDelegate?
-    var dataSource: NSArray = []
+    var dataSource: [ChatMessageNavigation] = []
 
-    func initWithDataModel(dataModel: NSArray!){
-        self.awakeFromNib()
+    public func withDataModel(dataModel: [ChatMessageNavigation]!){
         self.dataSource = dataModel
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.collectionView.register(AnswerCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: AnswerCollectionViewCell.self))
+        self.collectionView.delegate = self;
+        self.collectionView.dataSource = self;
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
 }
 
 extension AnswerCollectionTableViewCell {
@@ -47,13 +46,13 @@ extension AnswerCollectionTableViewCell {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let title = self.dataSource.item(at: indexPath.row).title
+        
+        collectionView.register(UINib(nibName: String(describing:AnswerCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing:AnswerCollectionViewCell.self))
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing:AnswerCollectionViewCell.self), for: indexPath) as! AnswerCollectionViewCell
+        cell.titleLbl.text = title
 
-        return UICollectionViewCell(AnswerCollectionViewCell().initWithTitle(title: String(describing: dataSource[indexPath.row])))
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = CGSize()
-        return size
+        return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
