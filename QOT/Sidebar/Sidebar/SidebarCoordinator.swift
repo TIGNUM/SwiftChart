@@ -13,12 +13,12 @@ final class SidebarCoordinator: ParentCoordinator {
     
     internal var rootViewController: MainMenuViewController?
     fileprivate let services: Services
-    fileprivate let eventTracker: EventTracker?
+    fileprivate let eventTracker: EventTracker
     internal var children = [Coordinator]()
     weak var delegate: ParentCoordinator?
     lazy var presentationManager = PresentationManager()
     
-    init(root: MainMenuViewController, services: Services, eventTracker: EventTracker?) {
+    init(root: MainMenuViewController, services: Services, eventTracker: EventTracker) {
         self.rootViewController = root
         self.services = services
         self.eventTracker = eventTracker
@@ -31,7 +31,7 @@ final class SidebarCoordinator: ParentCoordinator {
         sideBarViewController.modalPresentationStyle = .custom
         sideBarViewController.transitioningDelegate = presentationManager
         rootViewController?.present(sideBarViewController, animated: true)
-        eventTracker?.track(page: sideBarViewController.pageID, referer: rootViewController?.pageID, associatedEntity: nil)
+        eventTracker.track(page: sideBarViewController.pageID, referer: rootViewController?.pageID, associatedEntity: nil)
     }
 }
 
