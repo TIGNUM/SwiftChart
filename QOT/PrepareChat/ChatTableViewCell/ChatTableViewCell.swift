@@ -11,10 +11,12 @@ import UIKit
 class ChatTableViewCell: UITableViewCell {
     
     @IBOutlet weak var chatLabel: UILabel!
+    @IBOutlet weak var cardLikeView: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.cardLikeView.layer.cornerRadius = 10
+        self.cardLikeView.layer.masksToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -16,13 +16,6 @@ class AnswerCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         self.contentView.backgroundColor = UIColor.black
     }
-
-    func createWithTitle(title: String!)
-    {
-        self.titleLbl.text = title
-
-        self.contentView.addDashedBorder(color: UIColor.gray.cgColor, lineWidth: 2)
-    }
     
 }
 
@@ -31,17 +24,15 @@ extension UIView {
 
         let shapeLayer: CAShapeLayer = CAShapeLayer()
         let frameSize = self.frame.size
-        let shapeRect = CGRect(x: 2, y: 2, width: frameSize.width, height: frameSize.height)
 
-        shapeLayer.bounds = shapeRect
+        shapeLayer.bounds = self.bounds
         shapeLayer.position = CGPoint(x: frameSize.width/2, y: frameSize.height/2)
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.strokeColor = color
         shapeLayer.lineWidth = lineWidth
         shapeLayer.lineJoin = kCALineJoinRound
         shapeLayer.lineDashPattern = [6,3]
-        shapeLayer.path = UIBezierPath(roundedRect: shapeRect, cornerRadius: 5).cgPath
-
+        shapeLayer.path = UIBezierPath(roundedRect: self.bounds, cornerRadius: 5).cgPath
         self.layer.addSublayer(shapeLayer)
 
     }

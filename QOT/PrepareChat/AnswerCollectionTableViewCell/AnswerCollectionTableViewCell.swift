@@ -51,7 +51,7 @@ extension AnswerCollectionTableViewCell {
         collectionView.register(UINib(nibName: String(describing:AnswerCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing:AnswerCollectionViewCell.self))
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing:AnswerCollectionViewCell.self), for: indexPath) as! AnswerCollectionViewCell
         cell.titleLbl.text = title
-
+        cell.addDashedBorder(color: UIColor.gray.cgColor, lineWidth: 2.0)
         return cell
     }
 

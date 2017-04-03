@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B92875C1E928DF800F0EA5A /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B92875B1E928DF800F0EA5A /* ChatViewController.xib */; };
 		0BB09DDB1E8CDBE4006F52F4 /* AnswerCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB09DD91E8CDBE4006F52F4 /* AnswerCollectionTableViewCell.swift */; };
 		0BB09DDC1E8CDBE4006F52F4 /* AnswerCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BB09DDA1E8CDBE4006F52F4 /* AnswerCollectionTableViewCell.xib */; };
 		0BD5165E1E8CD99D00349623 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD5165C1E8CD99D00349623 /* ChatTableViewCell.swift */; };
@@ -113,6 +114,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B92875B1E928DF800F0EA5A /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
 		0BB09DD91E8CDBE4006F52F4 /* AnswerCollectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnswerCollectionTableViewCell.swift; path = AnswerCollectionTableViewCell/AnswerCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		0BB09DDA1E8CDBE4006F52F4 /* AnswerCollectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AnswerCollectionTableViewCell.xib; path = AnswerCollectionTableViewCell/AnswerCollectionTableViewCell.xib; sourceTree = "<group>"; };
 		0BD5165C1E8CD99D00349623 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatTableViewCell.swift; path = ChatTableViewCell/ChatTableViewCell.swift; sourceTree = "<group>"; };
@@ -575,6 +577,7 @@
 				0BD516641E8CD9F000349623 /* AnswerCollectionTableViewCell */,
 				0BD5165A1E8CD8EF00349623 /* ChatTableViewCell */,
 				CC20C98E1E8978F20056054D /* ChatViewController.swift */,
+				0B92875B1E928DF800F0EA5A /* ChatViewController.xib */,
 				CC20C98F1E8978F20056054D /* ChatViewModel.swift */,
 			);
 			path = PrepareChat;
@@ -755,6 +758,7 @@
 				CCC0C4CA1E827F87002A8362 /* BentonSans_Book.otf in Resources */,
 				CCE5B9D41E80505800E01BAE /* SidebarViewController.xib in Resources */,
 				0BD5165F1E8CD99D00349623 /* ChatTableViewCell.xib in Resources */,
+				0B92875C1E928DF800F0EA5A /* ChatViewController.xib in Resources */,
 				CCC0C4CC1E828007002A8362 /* BentonSans_Regular.otf in Resources */,
 				D5D32F1B1E83D3CA00FACB2E /* LearnCategoryListViewController.xib in Resources */,
 				CBD7915D1E72F2990006C590 /* LaunchViewController.xib in Resources */,

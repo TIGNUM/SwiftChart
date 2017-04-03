@@ -28,8 +28,8 @@ class ChatViewController: UITableViewController {
 
     init(viewModel: ChatViewModel) {
         self.viewModel = viewModel
+        super.init(nibName: String(describing:ChatViewController.self), bundle: nil)
 
-        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
