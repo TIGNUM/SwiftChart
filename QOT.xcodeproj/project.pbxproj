@@ -462,11 +462,11 @@
 				CBD791571E72F10E0006C590 /* Launch */,
 				CCC1B69A1E8B99B500D1461F /* Learn */,
 				CB8A15441E7986A90023B2F9 /* Localization */,
-				CB2880291E70577E0067890A /* Root Container View */,
 				CBD791601E768A4F0006C590 /* Main Menu */,
 				CC4D1D791E82E6A000B8D75E /* Me */,
 				CC20C9921E8981070056054D /* Prepare */,
 				CC6B3A271E81586C00E7FDFD /* Presentation */,
+				CB2880291E70577E0067890A /* Root Container View */,
 				CB2880291E70577E0067890A /* Root Container View */,
 				CB369CD91E8D3E3700522293 /* Services */,
 				CB1E4F991E7FE22900287613 /* Settings */,
@@ -696,10 +696,10 @@
 		CCC1B69B1E8B9A1200D1461F /* Learn Strategy */ = {
 			isa = PBXGroup;
 			children = (
+				D51D088E1E8EA36700FC7567 /* Cell */,
 				CCC1B6B21E8BA71500D1461F /* LearnStrategyViewController.swift */,
 				D540275D1E8D401F0013B783 /* LearnStrategyViewController.xib */,
 				CCC1B6B01E8B9FDA00D1461F /* LearnStrategyViewModel.swift */,
-				D51D088E1E8EA36700FC7567 /* Cell */,
 			);
 			path = "Learn Strategy";
 			sourceTree = "<group>";
@@ -789,16 +789,17 @@
 		D51D088E1E8EA36700FC7567 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				D520BC911E8E655A00A2D107 /* LearnStrategyHeaderCell.swift */,
-				D520BC921E8E655A00A2D107 /* LearnStrategyHeaderCell.xib */,
 				D51D08891E8E80CD00FC7567 /* LearnStrategyArticleCell.swift */,
 				D51D088A1E8E80CD00FC7567 /* LearnStrategyArticleCell.xib */,
-				D51D08851E8E80AF00FC7567 /* LearnStrategyVideoCell.swift */,
-				D51D08861E8E80AF00FC7567 /* LearnStrategyVideoCell.xib */,
+				D520BC911E8E655A00A2D107 /* LearnStrategyHeaderCell.swift */,
+				D520BC921E8E655A00A2D107 /* LearnStrategyHeaderCell.xib */,
 				D51D08811E8E806E00FC7567 /* LearnStrategyTextCell.swift */,
 				D51D08821E8E806E00FC7567 /* LearnStrategyTextCell.xib */,
+				D51D08851E8E80AF00FC7567 /* LearnStrategyVideoCell.swift */,
+				D51D08861E8E80AF00FC7567 /* LearnStrategyVideoCell.xib */,
 			);
 			name = Cell;
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1084,7 +1085,6 @@
 				D520BC931E8E655A00A2D107 /* LearnStrategyHeaderCell.swift in Sources */,
 				CCC0C4D61E82B405002A8362 /* R.generated.swift in Sources */,
 				D51D08871E8E80AF00FC7567 /* LearnStrategyVideoCell.swift in Sources */,
-				CBD791561E72BAAC0006C590 /* DatabaseManager.swift in Sources */,
 				CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */,
 				CBDB990E1E7BFD05003EC73F /* CalendarEventParticipantData.swift in Sources */,
 				D51D088B1E8E80CD00FC7567 /* LearnStrategyArticleCell.swift in Sources */,
