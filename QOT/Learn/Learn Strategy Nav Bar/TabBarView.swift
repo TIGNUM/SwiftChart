@@ -132,6 +132,7 @@ class TabBarView: UIView {
     }
     
     func syncButtons () {
+        
         if leftIcon != nil && rightIcon != nil {
             leftButtonWidthConstraint?.constant = 36
             rightButtonWidthConstraint?.constant = 36
