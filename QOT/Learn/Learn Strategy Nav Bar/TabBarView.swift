@@ -18,6 +18,8 @@ class TabBarView: UIView {
     
     fileprivate weak var indicatorViewLeadingConstraint: NSLayoutConstraint?
     fileprivate weak var indicatorViewWidthConstraint: NSLayoutConstraint?
+    fileprivate weak var leftButtonWidthConstraint: NSLayoutConstraint?
+    fileprivate weak var rightButtonWidthConstraint: NSLayoutConstraint?
     
     struct Constants {
         static let animationDuration: TimeInterval = 0.3
@@ -47,7 +49,7 @@ class TabBarView: UIView {
         }
     }()
     
-    fileprivate lazy var leftTab: UIButton = {
+    fileprivate lazy var leftButton: UIButton = {
         let button = UIButton(type: .custom)
         button.titleLabel?.font = Font.TabBarController.buttonTitle
         button.backgroundColor = .clear
@@ -56,7 +58,7 @@ class TabBarView: UIView {
         return button
     }()
     
-    fileprivate lazy var rightTab: UIButton = {
+    fileprivate lazy var rightButton: UIButton = {
         let button = UIButton(type: .custom)
         button.titleLabel?.font = Font.TabBarController.buttonTitle
         button.backgroundColor = .clear
@@ -73,10 +75,10 @@ class TabBarView: UIView {
     
     override func awakeFromNib() {
         self.backgroundColor = .black
-        print("hello")
+        
         setupHierachy()
         setupLayout()
-        
+        syncButtons()
         syncIndicatorView(animated: true)
         syncButtonColors(animated: true)
     }
@@ -130,7 +132,11 @@ class TabBarView: UIView {
     }
     
     func syncButtons () {
-        
+        if leftIcon != nil && rightIcon != nil {
+            leftButtonWidthConstraint?.constant = 36
+            rightButtonWidthConstraint?.constant = 36
+        }
+        print("no image")
     }
 }
 
@@ -140,6 +146,8 @@ private extension TabBarView {
         addSubview(stackView)
         buttons.forEach { stackView.addArrangedSubview($0) }
         addSubview(indicatorView)
+        addSubview(leftButton)
+        addSubview(rightButton)
     }
     
     func setupLayout() {
@@ -152,6 +160,19 @@ private extension TabBarView {
         indicatorView.heightAnchor == 1
         indicatorViewLeadingConstraint = indicatorView.leadingAnchor == leadingAnchor
         indicatorViewWidthConstraint = indicatorView.widthAnchor == 0
+        
+        leftButton.leftAnchor == leftAnchor
+        leftButton.bottomAnchor == bottomAnchor
+        leftButton.topAnchor == topAnchor
+        leftButtonWidthConstraint =  leftButton.widthAnchor == 0
+        
+        rightButton.rightAnchor == rightAnchor
+        rightButton.bottomAnchor == bottomAnchor
+        rightButton.topAnchor == topAnchor
+        rightButtonWidthConstraint = rightButton.widthAnchor == 0
+        
+        stackView.leftAnchor == leftButton.rightAnchor
+        stackView.rightAnchor == rightButton.leftAnchor
         
         layoutIfNeeded()
         
