@@ -16,6 +16,11 @@ protocol LearnStrategyViewControllerDelegate: class {
 }
 
 final class LearnStrategyViewController: UIViewController {
+    // MARK: Constants
+    
+    enum Constants {
+        static let scrollToClosePadding: CGFloat = 100
+    }
     
     // MARK: Outlets
     
@@ -77,6 +82,13 @@ extension LearnStrategyViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath)
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let maxAllowedYOffset = scrollView.contentSize.height - scrollView.frame.height + Constants.scrollToClosePadding
+        if scrollView.contentOffset.y > maxAllowedYOffset {
+            delegate?.didTapClose(in: self)
+        }
+    }
 }
 
 // MARK: UITableViewDataSource
@@ -105,5 +117,3 @@ extension LearnStrategyViewController: UITableViewDataSource {
         }
     }
 }
-
-
