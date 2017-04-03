@@ -10,8 +10,12 @@ import UIKit
 import Anchorage
 class TabBarView: UIView {
     
-    var titles: [String] = ["Full", "Short", "New"]
+    var titles: [String] = ["FULL", "BULLETS"]
     var selectedIndex: Int = 0
+    var leftIcon: UIImage?
+    var rightIcon: UIImage?
+    var stackViewHorizontalPadding: CGFloat = 16
+    
     fileprivate weak var indicatorViewLeadingConstraint: NSLayoutConstraint?
     fileprivate weak var indicatorViewWidthConstraint: NSLayoutConstraint?
     
@@ -19,7 +23,6 @@ class TabBarView: UIView {
         static let animationDuration: TimeInterval = 0.3
         static let selectedButtonColor: UIColor = .white
         static let deselectedButtonColor: UIColor = UIColor.white.withAlphaComponent(0.4)
-        static let stackViewHorizontalPadding: CGFloat = 16
         static let indicatorViewExtendedWidth: CGFloat = 16
     }
     
@@ -44,23 +47,42 @@ class TabBarView: UIView {
         }
     }()
     
+    fileprivate lazy var leftTab: UIButton = {
+        let button = UIButton(type: .custom)
+        button.titleLabel?.font = Font.TabBarController.buttonTitle
+        button.backgroundColor = .clear
+        button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
+        return button
+    }()
+    
+    fileprivate lazy var rightTab: UIButton = {
+        let button = UIButton(type: .custom)
+        button.titleLabel?.font = Font.TabBarController.buttonTitle
+        button.backgroundColor = .clear
+        button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
+        return button
+    }()
+    
     fileprivate lazy var indicatorView: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.backgroundColor = .white
         return view
     }()
     
     override func awakeFromNib() {
         self.backgroundColor = .black
-       print("hello")
+        print("hello")
         setupHierachy()
         setupLayout()
+        
         syncIndicatorView(animated: true)
         syncButtonColors(animated: true)
     }
     
     @objc private func buttonPressed(_ button: UIButton) {
-       
+        
         guard button.tag != selectedIndex else {
             return
         }
@@ -95,7 +117,7 @@ class TabBarView: UIView {
         let width = button.intrinsicContentSize.width + Constants.indicatorViewExtendedWidth
         
         indicatorViewWidthConstraint?.constant = width
-        indicatorViewLeadingConstraint?.constant = button.center.x - (width / 2) + Constants.stackViewHorizontalPadding
+        indicatorViewLeadingConstraint?.constant = button.center.x - (width / 2) + stackViewHorizontalPadding
         
         if animated {
             let transition = UIViewAnimationOptions.curveEaseInOut
@@ -106,13 +128,17 @@ class TabBarView: UIView {
             layoutIfNeeded()
         }
     }
+    
+    func syncButtons () {
+        
+    }
 }
 
 private extension TabBarView {
     
     func setupHierachy() {
         addSubview(stackView)
-         buttons.forEach { stackView.addArrangedSubview($0) }
+        buttons.forEach { stackView.addArrangedSubview($0) }
         addSubview(indicatorView)
     }
     
