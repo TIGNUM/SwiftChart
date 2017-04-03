@@ -57,7 +57,7 @@ final class LearnContentListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         collectionView.registerDequeueable(LearnContentCell.self)
         
         setupAppearance()
@@ -124,7 +124,7 @@ private extension LearnContentListViewController {
         collectionView.topAnchor == view.topAnchor + 100
         collectionView.bottomAnchor == view.bottomAnchor
         collectionView.horizontalAnchors == view.horizontalAnchors
-        
+
         view.layoutIfNeeded()
     }
 }
