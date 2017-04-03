@@ -23,7 +23,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="70" height="35"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqe-Q0-A02">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqe-Q0-A02">
                         <rect key="frame" x="15.5" y="9.5" width="40" height="16"/>
                         <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="16"/>
                         <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>

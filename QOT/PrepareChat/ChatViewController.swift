@@ -24,6 +24,8 @@ class ChatViewController: UITableViewController {
     fileprivate let viewModel: ChatViewModel
     weak var delegate: ChatViewDelegate?
 
+    private let estimatedRowHeight = 140
+
     // MARK: - Life Cycle
 
     init(viewModel: ChatViewModel) {
@@ -47,7 +49,12 @@ class ChatViewController: UITableViewController {
         view.backgroundColor = .black
         tableView.backgroundColor = .black
         tableView.register(UINib(nibName: String(describing:ChatTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing:ChatTableViewCell.self))
+        tableView.register(UINib(nibName: String(describing:StatusTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing:StatusTableViewCell.self))
+
         tableView.register(UINib(nibName: String(describing:AnswerCollectionTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing:AnswerCollectionTableViewCell.self))
+
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = CGFloat(estimatedRowHeight)
     }
 
     private func updateTableView(with tableView: UITableView) {
@@ -74,7 +81,6 @@ extension ChatViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let chatMessage = viewModel.chatMessage(at: indexPath.row)
 
-
         switch chatMessage {
         case .instruction(let type, _):
             switch type {
@@ -89,8 +95,8 @@ extension ChatViewController {
                 return cell
             }
         case .header(let title, _):
-            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ChatTableViewCell.self), for: indexPath) as! ChatTableViewCell
-            cell.chatLabel?.text = title
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: StatusTableViewCell.self), for: indexPath) as! StatusTableViewCell
+            cell.statusLabel?.text = title
             return cell
 
         case .navigation(let items):
@@ -101,7 +107,6 @@ extension ChatViewController {
         case .input(let items):
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ChatTableViewCell.self), for: indexPath) as! ChatTableViewCell
             return cell
-
         }
     }
 
@@ -110,6 +115,21 @@ extension ChatViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100.0
+        let chatMessage = viewModel.chatMessage(at: indexPath.row)
+        switch chatMessage {
+        case .instruction(let type, _):
+            switch type {
+            case .message:
+                return 100
+            case .typing:
+                return 30
+            }
+        case .header:
+            return 30
+        case .navigation:
+            return 190
+        case .input:
+            return 100
+        }
     }
 }

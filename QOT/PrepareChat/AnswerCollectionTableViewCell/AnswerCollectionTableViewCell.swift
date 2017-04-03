@@ -13,7 +13,7 @@ protocol AnswerCollectionViewCellDelegate {
     func didSelectItemAtIndexPath(indexPath: IndexPath)
 }
 
-class AnswerCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
+class AnswerCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var collectionView: UICollectionView!
     var delegate: AnswerCollectionViewCellDelegate?
@@ -51,7 +51,7 @@ extension AnswerCollectionTableViewCell {
         collectionView.register(UINib(nibName: String(describing:AnswerCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing:AnswerCollectionViewCell.self))
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing:AnswerCollectionViewCell.self), for: indexPath) as! AnswerCollectionViewCell
         cell.titleLbl.text = title
-        cell.addDashedBorder(color: UIColor.gray.cgColor, lineWidth: 2.0)
+        cell.addDashedBorder(color: UIColor.gray.cgColor, lineWidth: 3.0)
         return cell
     }
 
@@ -59,4 +59,23 @@ extension AnswerCollectionTableViewCell {
         self.delegate?.didSelectItemAtIndexPath(indexPath: indexPath)
     }
 
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellWidth = self.dataSource.item(at: indexPath.row).title.width(withConstrainedHeight: 50, font: UIFont(name: "BentonSans", size: 16)!) + 20
+        return CGSize(width: cellWidth, height: 50)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 5.0
+    }
 }
+
+
+extension String {
+    func width(withConstrainedHeight height: CGFloat, font: UIFont) -> CGFloat {
+        let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
+
+        return boundingBox.width
+    }
+}
+

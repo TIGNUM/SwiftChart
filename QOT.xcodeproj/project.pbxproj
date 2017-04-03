@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0B92875C1E928DF800F0EA5A /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B92875B1E928DF800F0EA5A /* ChatViewController.xib */; };
+		0B9287601E92936E00F0EA5A /* StatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B92875E1E92936E00F0EA5A /* StatusTableViewCell.swift */; };
+		0B9287611E92936E00F0EA5A /* StatusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B92875F1E92936E00F0EA5A /* StatusTableViewCell.xib */; };
 		0BB09DDB1E8CDBE4006F52F4 /* AnswerCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB09DD91E8CDBE4006F52F4 /* AnswerCollectionTableViewCell.swift */; };
 		0BB09DDC1E8CDBE4006F52F4 /* AnswerCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BB09DDA1E8CDBE4006F52F4 /* AnswerCollectionTableViewCell.xib */; };
 		0BD5165E1E8CD99D00349623 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD5165C1E8CD99D00349623 /* ChatTableViewCell.swift */; };
@@ -115,6 +117,8 @@
 
 /* Begin PBXFileReference section */
 		0B92875B1E928DF800F0EA5A /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
+		0B92875E1E92936E00F0EA5A /* StatusTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusTableViewCell.swift; path = StatusTableViewCell/StatusTableViewCell.swift; sourceTree = "<group>"; };
+		0B92875F1E92936E00F0EA5A /* StatusTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StatusTableViewCell.xib; path = StatusTableViewCell/StatusTableViewCell.xib; sourceTree = "<group>"; };
 		0BB09DD91E8CDBE4006F52F4 /* AnswerCollectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnswerCollectionTableViewCell.swift; path = AnswerCollectionTableViewCell/AnswerCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		0BB09DDA1E8CDBE4006F52F4 /* AnswerCollectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AnswerCollectionTableViewCell.xib; path = AnswerCollectionTableViewCell/AnswerCollectionTableViewCell.xib; sourceTree = "<group>"; };
 		0BD5165C1E8CD99D00349623 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatTableViewCell.swift; path = ChatTableViewCell/ChatTableViewCell.swift; sourceTree = "<group>"; };
@@ -238,6 +242,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B92875D1E92934600F0EA5A /* StatusTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				0B92875E1E92936E00F0EA5A /* StatusTableViewCell.swift */,
+				0B92875F1E92936E00F0EA5A /* StatusTableViewCell.xib */,
+			);
+			name = StatusTableViewCell;
+			sourceTree = "<group>";
+		};
 		0BD5165A1E8CD8EF00349623 /* ChatTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -574,6 +587,7 @@
 		CC4D1D7A1E82E6AD00B8D75E /* PrepareChat */ = {
 			isa = PBXGroup;
 			children = (
+				0B92875D1E92934600F0EA5A /* StatusTableViewCell */,
 				0BD516641E8CD9F000349623 /* AnswerCollectionTableViewCell */,
 				0BD5165A1E8CD8EF00349623 /* ChatTableViewCell */,
 				CC20C98E1E8978F20056054D /* ChatViewController.swift */,
@@ -761,6 +775,7 @@
 				0B92875C1E928DF800F0EA5A /* ChatViewController.xib in Resources */,
 				CCC0C4CC1E828007002A8362 /* BentonSans_Regular.otf in Resources */,
 				D5D32F1B1E83D3CA00FACB2E /* LearnCategoryListViewController.xib in Resources */,
+				0B9287611E92936E00F0EA5A /* StatusTableViewCell.xib in Resources */,
 				CBD7915D1E72F2990006C590 /* LaunchViewController.xib in Resources */,
 				CCC0C4D41E82A8D9002A8362 /* Simple-Regular.ttf in Resources */,
 				CB8A15461E7986C90023B2F9 /* Localized.strings in Resources */,
@@ -956,6 +971,7 @@
 				CC6B3A291E8158B200E7FDFD /* PresentationManager.swift in Sources */,
 				CCAF03241E801B0E00015125 /* SettingsCoordinator.swift in Sources */,
 				CBD791651E768AB70006C590 /* MainMenuViewController.swift in Sources */,
+				0B9287601E92936E00F0EA5A /* StatusTableViewCell.swift in Sources */,
 				CB2880281E7057790067890A /* RootViewController.swift in Sources */,
 				CCAF032A1E8035C800015125 /* SettingsTableViewCell.swift in Sources */,
 				CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */,
