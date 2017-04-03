@@ -12,16 +12,16 @@ protocol LearnStrategyCoordinatorDelegate: ParentCoordinator {}
 
 final class LearnStrategyCoordinator: ParentCoordinator {
     fileprivate let rootVC: LearnContentListViewController
-    fileprivate let databaseManager: DatabaseManager
+    fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
-    fileprivate let category: ContentCategory
+    fileprivate let category: LearnCategory
     
     var children: [Coordinator] = []
     weak var delegate: LearnContentListCoordinatorDelegate?
     
-    init(root: LearnContentListViewController, databaseManager: DatabaseManager, eventTracker: EventTracker, category: ContentCategory) {
+    init(root: LearnContentListViewController, services: Services, eventTracker: EventTracker, category: LearnCategory) {
         self.rootVC = root
-        self.databaseManager = databaseManager
+        self.services = services
         self.eventTracker = eventTracker
         self.category = category
     }

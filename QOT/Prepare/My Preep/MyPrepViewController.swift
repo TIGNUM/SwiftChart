@@ -1,28 +1,28 @@
 //
-//  PrepareTripsViewController.swift
+//  MyPrepViewController.swift
 //  QOT
 //
-//  Created by karmic on 28/03/2017.
+//  Created by karmic on 30/03/2017.
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
 import UIKit
 
-protocol PrepareEventsViewControllerDelegate: class {
-    func didTapClose(in viewController: PrepareEventsViewController)
-    func didTapItem(item: PrepareEventsItem, in viewController: PrepareEventsViewController)
+protocol MyPrepViewControllerDelegate: class {
+    func didTapClose(in viewController: MyPrepViewController)
+    func didTapMyPrepItem(with myPrepItem: MyPrepItem, at index: Index, from view: UIView, in viewController: MyPrepViewController)
 }
 
-final class PrepareEventsViewController: UIViewController {
+class MyPrepViewController: UITableViewController {
 
     // MARK: - Properties
 
-    let viewModel: PrepareEventsViewModel
-    weak var delegate: PrepareEventsViewControllerDelegate?
+    let viewModel: MyPrepViewModel
+    weak var delegate: MyPrepViewControllerDelegate?
 
     // MARK: - Life Cycle
 
-    init(viewModel: PrepareEventsViewModel) {
+    init(viewModel: MyPrepViewModel) {
         self.viewModel = viewModel
 
         super.init(nibName: nil, bundle: nil)

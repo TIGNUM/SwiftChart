@@ -15,16 +15,13 @@ final class TabBarCoordinator: ParentCoordinator {
     // MARK: - Properties
     
     fileprivate let rootViewController: MainMenuViewController
-    fileprivate let databaseManager: DatabaseManager
+    fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
     fileprivate let selectedIndex: Index
     
-    fileprivate lazy var contentCategories: Results<ContentCategory> = {
-        return self.databaseManager.mainRealm.objects(ContentCategory.self).sorted(byKeyPath: Databsase.Key.sort.rawValue)
-    }()
-    
     fileprivate lazy var learnCategoryListViewController: LearnCategoryListViewController = {
-        let viewModel = LearnCategoryListViewModel(categories: self.contentCategories)
+        let categories = self.services.learnContent.categories()
+        let viewModel = LearnCategoryListViewModel(categories: categories)
         let learnCategoryListVC = LearnCategoryListViewController(viewModel: viewModel)
         learnCategoryListVC.delegate = self
         return learnCategoryListVC
@@ -50,9 +47,9 @@ final class TabBarCoordinator: ParentCoordinator {
     
     // MARK: - Life Cycle
     
-    init(rootViewController: MainMenuViewController, selectedIndex: Index, databaseManager: DatabaseManager, eventTracker: EventTracker) {
+    init(rootViewController: MainMenuViewController, selectedIndex: Index, services: Services, eventTracker: EventTracker) {
         self.rootViewController = rootViewController
-        self.databaseManager = databaseManager
+        self.services = services
         self.eventTracker = eventTracker
         self.selectedIndex = selectedIndex
         self.addViewControllers()
@@ -98,12 +95,12 @@ extension TabBarCoordinator: TabBarControllerDelegate {
 // MARK: - LearnCategoryListViewControllerDelegate
 
 extension TabBarCoordinator: LearnCategoryListViewControllerDelegate {
-    func didSelectCategory(at index: Index, in viewController: LearnCategoryListViewController) {
-        let category = contentCategories[index]
-        let coordinator = LearnContentListCoordinator(root: viewController, databaseManager: databaseManager, eventTracker: eventTracker, category: category)
+    func didSelectCategory(_ category: LearnCategory, in viewController: LearnCategoryListViewController) {
+        let coordinator = LearnContentListCoordinator(root: viewController, services: services, eventTracker: eventTracker, category: category)
+
         coordinator.start()
         coordinator.delegate = self
-        
+
         children.append(coordinator)
     }
 }
@@ -209,7 +206,7 @@ extension TabBarCoordinator: LearnStrategyViewControllerDelegate {
 
     func didTapVideo(with video: LearnStrategyItem, from view: UIView, in viewController: LearnStrategyViewController) {
         switch video {
-        case .video(let localID, let placeholderURL, let description):
+        case .media(let localID, let placeholderURL, let description):
             log("didTapVideo: localID: \(localID), placeholderURL: \(placeholderURL), description: \(description) in view: \(view)")
         default: log("didTapArticle NO ARTICLE!")
         }
@@ -232,5 +229,33 @@ extension TabBarCoordinator: WhatsHotViewControllerDelegate {
 
     func didTapBookmark(at index: Index, with whatsHot: WhatsHotItem, in view: UIView, in viewController: WhatsHotViewController) {
         log("didTapBookmark: index: \(index), whatsHotItem.bookmarked: \(whatsHot.bookmarked)")
+    }
+}
+
+// MARK: - WhatsHotNewTemplateViewControllerDelegate
+
+extension TabBarCoordinator: WhatsHotNewTemplateViewControllerDelegate {
+    func didTapClose(in viewController: WhatsHotNewTemplateViewController) {
+        viewController.dismiss(animated: true, completion: nil)
+    }
+
+    func didTapLoadMore(from view: UIView, in viewController: WhatsHotNewTemplateViewController) {
+        log("didTapLoadMore")
+    }
+
+    func didTapBookmark(with item: WhatsHotNewTemplateItem, in viewController: WhatsHotNewTemplateViewController) {
+        log("didTapBookmark, item: \(item)")
+    }
+
+    func didTapMedia(with mediaItem: WhatsHotNewTemplateItem, from view: UIView, in viewController: WhatsHotNewTemplateViewController) {
+        log("didTapMedia")
+    }
+
+    func didTapArticle(with articleItem: WhatsHotNewTemplateItem, from view: UIView, in viewController: WhatsHotNewTemplateViewController) {
+        log("didTapArticle")
+    }
+
+    func didTapLoadMoreItem(with loadMoreItem: WhatsHotNewTemplateItem, from view: UIView, in viewController: WhatsHotNewTemplateViewController) {
+        log("didTapLoadMoreItem: with item: \(loadMoreItem)")
     }
 }

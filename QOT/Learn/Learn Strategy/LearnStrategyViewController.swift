@@ -98,7 +98,7 @@ extension LearnStrategyViewController: UITableViewDataSource {
             let cell: LearnStrategyTextCell = tableView.dequeueCell(for: indexPath)
             cell.setup(with: text)
             return cell
-        case .video( _, let placeholderURL, let description):
+        case .media( _, let placeholderURL, let description):
             let cell: LearnStrategyVideoCell = tableView.dequeueCell(for: indexPath)
             cell.setup(with: placeholderURL, description: description)
             return cell

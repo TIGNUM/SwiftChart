@@ -41,7 +41,7 @@ private enum LearnStrategySection {
 enum LearnStrategyItem {
     case header(localID: String, title: NSAttributedString, subtitle: NSAttributedString)
     case text(localID: String, text: NSAttributedString)
-    case video(localID: String, placeholderURL: URL, description: NSAttributedString)
+    case media(localID: String, placeholderURL: URL, description: NSAttributedString)
     case article(localID: String, title: NSAttributedString, subtitle: NSAttributedString)
 }
 
@@ -65,10 +65,10 @@ private func mockStrategyItems() -> [LearnStrategyItem] {
             text: AttributedString.Learn.text(string: "Sustainable High Performance is about bringing your best to those critical events that matter most to you. In each of these events, the demands on you and your mindset will be different. In order to optimize your effectiveness you will have to be in your optimal performance state.")
         ),
 
-        .video(
+        .media(
             localID: UUID().uuidString,
             placeholderURL: URL(string:"https://example.com")!,
-            description: AttributedString.Learn.videoDescription(string: "How to create your optimal performance state (2:26)")
+            description: AttributedString.Learn.mediaDescription(string: "How to create your optimal performance state (2:26)")
         ),
 
         .text(

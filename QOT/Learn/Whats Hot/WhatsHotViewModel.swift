@@ -47,40 +47,40 @@ private func mockWhatsHotItems() -> [WhatsHotItem] {
     return [
         MockWhatsHotItem(
             localID: UUID().uuidString,
-            identifier: AttributedString.Learn.whatsHotID(string: ".087"),
-            subtitle: AttributedString.Learn.whatsHotTitle(string: "QOT // THOUGHTS"),
-            text: AttributedString.Learn.whatsHotText(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
-            mediaInformation: AttributedString.Learn.whatsHotTitle(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
+            identifier: AttributedString.Learn.WhatsHot.identifier(string: ".087"),
+            subtitle: AttributedString.Learn.WhatsHot.title(string: "QOT // THOUGHTS"),
+            text: AttributedString.Learn.WhatsHot.text(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
+            mediaInformation: AttributedString.Learn.WhatsHot.title(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
             placeholderURL: URL(string:"https://example.com")!,
             bookmarked: false
         ),
 
         MockWhatsHotItem(
             localID: UUID().uuidString,
-            identifier: AttributedString.Learn.whatsHotID(string: ".086"),
-            subtitle: AttributedString.Learn.whatsHotTitle(string: "QOT // THOUGHTS"),
-            text: AttributedString.Learn.whatsHotText(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
-            mediaInformation: AttributedString.Learn.whatsHotTitle(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
+            identifier: AttributedString.Learn.WhatsHot.identifier(string: ".086"),
+            subtitle: AttributedString.Learn.WhatsHot.title(string: "QOT // THOUGHTS"),
+            text: AttributedString.Learn.WhatsHot.text(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
+            mediaInformation: AttributedString.Learn.WhatsHot.title(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
             placeholderURL: URL(string:"https://example.com")!,
             bookmarked: false
         ),
 
         MockWhatsHotItem(
             localID: UUID().uuidString,
-            identifier: AttributedString.Learn.whatsHotID(string: ".085"),
-            subtitle: AttributedString.Learn.whatsHotTitle(string: "QOT // THOUGHTS"),
-            text: AttributedString.Learn.whatsHotText(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
-            mediaInformation: AttributedString.Learn.whatsHotTitle(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
+            identifier: AttributedString.Learn.WhatsHot.identifier(string: ".085"),
+            subtitle: AttributedString.Learn.WhatsHot.title(string: "QOT // THOUGHTS"),
+            text: AttributedString.Learn.WhatsHot.text(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
+            mediaInformation: AttributedString.Learn.WhatsHot.title(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
             placeholderURL: URL(string:"https://example.com")!,
             bookmarked: false
         ),
 
         MockWhatsHotItem(
             localID: UUID().uuidString,
-            identifier: AttributedString.Learn.whatsHotID(string: ".084"),
-            subtitle: AttributedString.Learn.whatsHotTitle(string: "QOT // THOUGHTS"),
-            text: AttributedString.Learn.whatsHotText(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
-            mediaInformation: AttributedString.Learn.whatsHotTitle(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
+            identifier: AttributedString.Learn.WhatsHot.identifier(string: ".084"),
+            subtitle: AttributedString.Learn.WhatsHot.title(string: "QOT // THOUGHTS"),
+            text: AttributedString.Learn.WhatsHot.text(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
+            mediaInformation: AttributedString.Learn.WhatsHot.title(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
             placeholderURL: URL(string:"https://example.com")!,
             bookmarked: false
         )
