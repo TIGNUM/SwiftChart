@@ -41,7 +41,7 @@ class TabBarView: UIView {
     }
     
     @objc private func buttonPressed(_:UIButton) {
-        
+       print(buttons.count)
     }
 }
 
