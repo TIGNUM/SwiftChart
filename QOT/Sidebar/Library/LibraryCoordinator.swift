@@ -11,7 +11,7 @@ import UIKit
 
 final class LibraryCoordinator: ParentCoordinator {
 
-    internal var rootViewController: SidebarViewController?
+    internal var rootViewController: SidebarViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
     internal var children = [Coordinator]()
@@ -30,10 +30,10 @@ final class LibraryCoordinator: ParentCoordinator {
         presentationManager.presentationType = .fadeIn
         libraryViewController.modalPresentationStyle = .custom
         libraryViewController.transitioningDelegate = presentationManager
-        rootViewController?.present(libraryViewController, animated: true)
+        rootViewController.present(libraryViewController, animated: true)
 
         // TODO: Update associatedEntity with realm object when its created.
-        eventTracker.track(page: libraryViewController.pageID, referer: rootViewController?.pageID, associatedEntity: nil)
+        eventTracker.track(page: libraryViewController.pageID, referer: rootViewController.pageID, associatedEntity: nil)
     }
 }
 
@@ -41,7 +41,7 @@ final class LibraryCoordinator: ParentCoordinator {
 
 extension LibraryCoordinator: LibraryViewControllerDelegate {
 
-    func didTapMedia(with mediaItem: LibraryItem.MediaItem, from view: UIView, in viewController: LibraryViewController) {
+    func didTapMedia(with mediaItem: LibraryMediaItem, from view: UIView, in viewController: UIViewController) {
         log("didTapMedia: \(mediaItem)")
     }
 

@@ -11,7 +11,7 @@ import ReactiveKit
 
 final class LibraryViewModel {
 
-    private let sections = [LibrarySection]()
+    private let sections = mockCategorySections()
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
     var sectionCount: Int {
@@ -19,81 +19,49 @@ final class LibraryViewModel {
     }
 
     func numberOfItemsInSection(in section: Int) -> Int {
-        return items(in: section).count
+        return sections[section].items.count
     }
 
-    func item(at indexPath: IndexPath) -> LibraryItem {
-        return items(in: indexPath.section)[indexPath.row]
+    func styleForSection(_ section: Int) -> LibrarySectionStyle {
+        return sections[section].style
     }
 
-    private func items(in section: Int) -> [LibraryItem] {
-        switch sections[section] {
-        case .lastPostItems(let lastPostItem): return lastPostItem
-        case .categoryItems(let categoryItems): return categoryItems
-        }
+    func titleForSection(_ section: Int) -> String {
+         return sections[section].title
     }
-}
 
-private enum LibrarySection {
-    case lastPostItems([LibraryItem])
-    case categoryItems([LibraryItem])
-}
-
-enum LibraryItem {
-    case collection(localID: String, sectinTitle: String, mediaItems: [MediaItem])
-
-    enum MediaItem {
-        case audio(localID: String, placeholderURL: URL, headline: String, text: String)
-        case video(localID: String, placeholderURL: URL, headline: String, text: String)
+    func item(at indexPath: IndexPath) -> LibraryMediaItem {
+        return sections[indexPath.section].items[indexPath.row]
     }
 }
 
-private func mockLibrarySections() -> [LibrarySection] {
+enum LibraryMediaItem {
+    case audio(localID: String, placeholderURL: URL, headline: String, text: String)
+    case video(localID: String, placeholderURL: URL, headline: String, text: String)
+}
+
+enum LibrarySectionStyle {
+    case lastPost
+    case category
+}
+
+private struct Section {
+    let title: String
+    let items: [LibraryMediaItem]
+    let style: LibrarySectionStyle
+}
+
+private func mockCategorySections() -> [Section] {
     return [
-        .lastPostItems(mockLastPostItem()),
-        .categoryItems(mockCategoryItems())
+        Section(title: "Latest Posts", items: mockMixedMediaItems(), style: .lastPost),
+        Section(title: "PERFORMANCE CATEGORY 1", items: mockMixedMediaItems(), style: .category),
+        Section(title: "PERFORMANCE CATEGORY 2", items: mockMixedMediaItems(), style: .category),
+        Section(title: "PERFORMANCE CATEGORY 3", items: mockMixedMediaItems(), style: .category),
+        Section(title: "PERFORMANCE CATEGORY 4", items: mockMixedMediaItems(), style: .category)
     ]
 }
 
-private func mockLastPostItem() -> [LibraryItem] {
-    return [
-        .collection(
-            localID: UUID().uuidString,
-            sectinTitle: "Latest Posts",
-            mediaItems: mockMixedMediaItems()
-        )
-    ]
-}
-
-private func mockCategoryItems() -> [LibraryItem] {
-    return [
-        .collection(
-            localID: UUID().uuidString,
-            sectinTitle: "PERFORMANCE CATEGORY 1",
-            mediaItems: mockMixedMediaItems()
-        ),
-
-        .collection(
-            localID: UUID().uuidString,
-            sectinTitle: "PERFORMANCE CATEGORY 2",
-            mediaItems: mockMixedMediaItems()
-        ),
-
-        .collection(
-            localID: UUID().uuidString,
-            sectinTitle: "PERFORMANCE CATEGORY 3",
-            mediaItems: mockMixedMediaItems()
-        ),
-
-        .collection(
-            localID: UUID().uuidString,
-            sectinTitle: "PERFORMANCE CATEGORY 4",
-            mediaItems: mockMixedMediaItems()
-        )
-    ]
-}
-
-private func mockMixedMediaItems() -> [LibraryItem.MediaItem] {
+private func mockMixedMediaItems() -> [LibraryMediaItem] {
     return [
         .video(
             localID: UUID().uuidString,
