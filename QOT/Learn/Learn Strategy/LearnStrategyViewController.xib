@@ -28,12 +28,22 @@
                         <outlet property="delegate" destination="-1" id="1fh-Kr-ddA"/>
                     </connections>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y18-3p-8rt" customClass="TabBarView" customModule="QOT" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="JMr-Ch-4ne"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="O59-bD-w87" secondAttribute="trailing" id="0kg-O1-PhW"/>
+                <constraint firstItem="Y18-3p-8rt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1MJ-hG-ikj"/>
                 <constraint firstAttribute="bottom" secondItem="O59-bD-w87" secondAttribute="bottom" id="cPG-jW-X5m"/>
                 <constraint firstItem="O59-bD-w87" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gkC-fg-qIc"/>
+                <constraint firstAttribute="trailing" secondItem="Y18-3p-8rt" secondAttribute="trailing" id="oac-UL-x54"/>
+                <constraint firstItem="Y18-3p-8rt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="sjW-bZ-Usb"/>
                 <constraint firstItem="O59-bD-w87" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="twq-oV-ORi"/>
             </constraints>
             <point key="canvasLocation" x="-96.5" y="52.5"/>
