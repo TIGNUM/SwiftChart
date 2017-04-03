@@ -12,15 +12,15 @@ import UIKit
 final class BenefitsCoordinator: ParentCoordinator {
 
     internal var rootViewController: SidebarViewController?
-    fileprivate let databaseManager: DatabaseManager?
-    fileprivate let eventTracker: EventTracker?
+    fileprivate let services: Services
+    fileprivate let eventTracker: EventTracker
     internal var children = [Coordinator]()
     weak var delegate: ParentCoordinator?
     lazy var presentationManager = PresentationManager()
 
-    init(root: SidebarViewController, databaseManager: DatabaseManager?, eventTracker: EventTracker?) {
+    init(root: SidebarViewController, services: Services, eventTracker: EventTracker) {
         self.rootViewController = root
-        self.databaseManager = databaseManager
+        self.services = services
         self.eventTracker = eventTracker
     }
 
@@ -33,7 +33,7 @@ final class BenefitsCoordinator: ParentCoordinator {
         rootViewController?.present(benefitsViewController, animated: true)
 
         // TODO: Update associatedEntity with realm object when its created.
-        eventTracker?.track(page: benefitsViewController.pageID, referer: rootViewController?.pageID, associatedEntity: nil)
+        eventTracker.track(page: benefitsViewController.pageID, referer: rootViewController?.pageID, associatedEntity: nil)
     }
 }
 

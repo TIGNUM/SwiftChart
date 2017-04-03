@@ -66,7 +66,7 @@ extension WhatsHotNewTemplateViewController {
         let item = viewModel.item(at: indexPath)
 
         switch item {
-        case .header(_, let title, let subtitle, let duration):
+        case .header(_, let title, let subtitle, _):
             cell.textLabel?.attributedText = title
             cell.detailTextLabel?.attributedText = subtitle
 
@@ -82,7 +82,7 @@ extension WhatsHotNewTemplateViewController {
         case .media(_, _, let description):
             cell.textLabel?.attributedText = description
 
-        case .article(_, let placeholderURL, let title, let subtitle):
+        case .article(_, _, let title, let subtitle):
             cell.textLabel?.attributedText = title
             cell.detailTextLabel?.attributedText = subtitle
 
@@ -93,4 +93,3 @@ extension WhatsHotNewTemplateViewController {
         return cell
     }
 }
-

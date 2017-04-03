@@ -15,16 +15,13 @@ final class TabBarCoordinator: ParentCoordinator {
     // MARK: - Properties
     
     fileprivate let rootViewController: MainMenuViewController
-    fileprivate let databaseManager: DatabaseManager
+    fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
     fileprivate let selectedIndex: Index
     
-    fileprivate lazy var contentCategories: Results<ContentCategory> = {
-        return self.databaseManager.mainRealm.objects(ContentCategory.self).sorted(byKeyPath: Databsase.Key.sort.rawValue)
-    }()
-    
     fileprivate lazy var learnCategoryListViewController: LearnCategoryListViewController = {
-        let viewModel = LearnCategoryListViewModel(categories: self.contentCategories)
+        let categories = self.services.learnContent.categories()
+        let viewModel = LearnCategoryListViewModel(categories: categories)
         let learnCategoryListVC = LearnCategoryListViewController(viewModel: viewModel)
         learnCategoryListVC.delegate = self
         return learnCategoryListVC
@@ -50,9 +47,9 @@ final class TabBarCoordinator: ParentCoordinator {
     
     // MARK: - Life Cycle
     
-    init(rootViewController: MainMenuViewController, selectedIndex: Index, databaseManager: DatabaseManager, eventTracker: EventTracker) {
+    init(rootViewController: MainMenuViewController, selectedIndex: Index, services: Services, eventTracker: EventTracker) {
         self.rootViewController = rootViewController
-        self.databaseManager = databaseManager
+        self.services = services
         self.eventTracker = eventTracker
         self.selectedIndex = selectedIndex
         self.addViewControllers()
@@ -98,12 +95,12 @@ extension TabBarCoordinator: TabBarControllerDelegate {
 // MARK: - LearnCategoryListViewControllerDelegate
 
 extension TabBarCoordinator: LearnCategoryListViewControllerDelegate {
-    func didSelectCategory(at index: Index, in viewController: LearnCategoryListViewController) {
-        let category = contentCategories[index]
-        let coordinator = LearnContentListCoordinator(root: viewController, databaseManager: databaseManager, eventTracker: eventTracker, category: category)
+    func didSelectCategory(_ category: LearnCategory, in viewController: LearnCategoryListViewController) {
+        let coordinator = LearnContentListCoordinator(root: viewController, services: services, eventTracker: eventTracker, category: category)
+
         coordinator.start()
         coordinator.delegate = self
-        
+
         children.append(coordinator)
     }
 }

@@ -11,15 +11,3 @@ import Foundation
 protocol TrackableEntity {
     var trackableEntityID: Int { get }
 }
-
-extension ContentCategory: TrackableEntity {
-    var trackableEntityID: Int {
-        return id
-    }
-}
-
-extension Content: TrackableEntity {
-    var trackableEntityID: Int {
-        return id
-    }
-}
