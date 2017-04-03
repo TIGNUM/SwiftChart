@@ -10,7 +10,7 @@ import UIKit
 
 protocol LibraryViewControllerDelegate: class {
     func didTapClose(in viewController: LibraryViewController)
-    func didTapMedia(with mediaItem: LibraryItem.MediaItem, from view: UIView, in viewController: UIViewController)
+    func didTapMedia(with mediaItem: LibraryMediaItem, from view: UIView, in viewController: UIViewController)
 }
 
 final class LibraryViewController: UIViewController {
