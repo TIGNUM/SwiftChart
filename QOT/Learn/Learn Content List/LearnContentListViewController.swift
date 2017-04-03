@@ -23,6 +23,7 @@ protocol LearnContentListViewControllerDelegate: class {
 final class LearnContentListViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
+    let tabBarView = TabBarView()
     let viewModel: LearnContentListViewModel
     weak var delegate: LearnContentListViewControllerDelegate?
     
@@ -124,7 +125,7 @@ private extension LearnContentListViewController {
         collectionView.topAnchor == view.topAnchor + 100
         collectionView.bottomAnchor == view.bottomAnchor
         collectionView.horizontalAnchors == view.horizontalAnchors
-
+        
         view.layoutIfNeeded()
     }
 }
