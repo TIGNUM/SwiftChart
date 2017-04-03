@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import UICollectionViewRightAlignedLayout
 
 protocol AnswerCollectionViewCellDelegate {
 
     func didSelectItemAtIndexPath(indexPath: IndexPath)
 }
 
-class AnswerCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class AnswerCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegateRightAlignedLayout{
 
     @IBOutlet weak var collectionView: UICollectionView!
     var delegate: AnswerCollectionViewCellDelegate?
@@ -27,6 +28,10 @@ class AnswerCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
         super.awakeFromNib()
         self.collectionView.delegate = self;
         self.collectionView.dataSource = self;
+
+        // re-write the class in swift later!!
+        let collectionFlow = UICollectionViewRightAlignedLayout()
+        self.collectionView.collectionViewLayout = collectionFlow
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -46,12 +51,14 @@ extension AnswerCollectionTableViewCell {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let title = self.dataSource.item(at: indexPath.row).title
-        
         collectionView.register(UINib(nibName: String(describing:AnswerCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing:AnswerCollectionViewCell.self))
+
+        let title = self.dataSource.item(at: indexPath.row).title
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing:AnswerCollectionViewCell.self), for: indexPath) as! AnswerCollectionViewCell
+
         cell.titleLbl.text = title
         cell.addDashedBorder(color: UIColor.gray.cgColor, lineWidth: 3.0)
+        
         return cell
     }
 
@@ -60,15 +67,18 @@ extension AnswerCollectionTableViewCell {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = self.dataSource.item(at: indexPath.row).title.width(withConstrainedHeight: 50, font: UIFont(name: "BentonSans", size: 16)!) + 20
-        return CGSize(width: cellWidth, height: 50)
+        let cellWidth = self.dataSource.item(at: indexPath.row).title.width(withConstrainedHeight: 00, font: UIFont(name: "BentonSans", size: 16)!) + 25
+        return CGSize(width: cellWidth, height: 40)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 5.0
+        return 10.0
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10.0
     }
 }
-
 
 extension String {
     func width(withConstrainedHeight height: CGFloat, font: UIFont) -> CGFloat {

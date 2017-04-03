@@ -13,12 +13,14 @@ PODS:
   - Realm/Headers (2.4.3)
   - RealmSwift (2.4.3):
     - Realm (= 2.4.3)
+  - UICollectionViewRightAlignedLayout (0.0.3)
 
 DEPENDENCIES:
   - Anchorage (~> 3.1)
   - Bond (~> 6.0)
   - R.swift (~> 3.2)
   - RealmSwift (~> 2.4)
+  - UICollectionViewRightAlignedLayout
 
 SPEC CHECKSUMS:
   Anchorage: 516769bb41744e37bbe1eebe6f802c56dbcc8db9
@@ -29,7 +31,8 @@ SPEC CHECKSUMS:
   ReactiveKit: 27df79c2e2f0771aef1061551fcd7e82b92066e9
   Realm: e08d60b0048ccccd3949c8c28a92c4db5712d7e9
   RealmSwift: 30d49739ccb3385d201242736ca4dda56aec9dfc
+  UICollectionViewRightAlignedLayout: 823eef8c567eba4a44c21bc2ffcb0d0d5f361e2d
 
-PODFILE CHECKSUM: cbbea5ea5a50e3e89694ae8e3703682ac0dac0b9
+PODFILE CHECKSUM: c4b95114c8516862f60b2d86808073e84c849294
 
 COCOAPODS: 1.2.0

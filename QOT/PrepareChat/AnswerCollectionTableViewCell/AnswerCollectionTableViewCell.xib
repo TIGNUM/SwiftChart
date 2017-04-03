@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,11 +16,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="195"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="194"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="194.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="cnF-aM-5Ce">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="195"/>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" scrollEnabled="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="cnF-aM-5Ce">
+                        <rect key="frame" x="16" y="0.0" width="288" height="195"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="15" minimumInteritemSpacing="10" id="v40-73-clU">
                             <size key="itemSize" width="170" height="50"/>
@@ -35,10 +36,10 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="cnF-aM-5Ce" secondAttribute="bottom" id="0e5-S7-11B"/>
+                    <constraint firstItem="cnF-aM-5Ce" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="DaL-MR-nx9"/>
                     <constraint firstItem="cnF-aM-5Ce" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Fta-aL-yYf"/>
-                    <constraint firstItem="cnF-aM-5Ce" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Pmj-kz-2nn"/>
-                    <constraint firstAttribute="bottom" secondItem="cnF-aM-5Ce" secondAttribute="bottom" id="Q2o-9T-pV6"/>
-                    <constraint firstAttribute="trailing" secondItem="cnF-aM-5Ce" secondAttribute="trailing" id="b2L-EI-vcL"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="cnF-aM-5Ce" secondAttribute="trailing" constant="8" id="y5d-o7-edm"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
