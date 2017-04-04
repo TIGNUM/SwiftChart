@@ -75,11 +75,11 @@ class ChatViewController: UITableViewController {
 extension ChatViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.chatMessageCount
+        return self.viewModel.itemCount
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let chatMessage = viewModel.chatMessage(at: indexPath.row)
+        let chatMessage = viewModel.item(at: indexPath.row)
 
         switch chatMessage {
         case .instruction(let type, _):
@@ -115,7 +115,7 @@ extension ChatViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let chatMessage = viewModel.chatMessage(at: indexPath.row)
+        let chatMessage = viewModel.item(at: indexPath.row)
         switch chatMessage {
         case .instruction(let type, _):
             switch type {
