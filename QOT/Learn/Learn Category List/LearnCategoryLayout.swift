@@ -24,7 +24,7 @@ final class LearnCategoryLayout: UICollectionViewLayout {
         let frames = categories.map { (category) -> CGRect in
             let center = CGPoint(x: category.center.x * multiplier, y: category.center.y * multiplier)
             let radius = CGFloat(category.radius) * height
-            return CGRect(x: center.x - radius, y: center.y - radius, width: 2 * radius, height: 2 * radius).integral
+            return CGRect(x: center.x - radius, y: center.y - (radius + radius / 2), width: 2 * radius, height: 2 * radius).integral
         }
         
         layoutAttributes = frames.enumerated().map { (index, frame) -> UICollectionViewLayoutAttributes in

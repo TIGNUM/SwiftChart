@@ -22,4 +22,6 @@ enum PageID: String {
     case settings = "settings"
     case sideBar = "sideBar"
     case tabBar = "tabBar"
+    case sidebarLibrary = "sidebar_library"
+    case sidebarBenefits = "sidebar_benefits"
 }

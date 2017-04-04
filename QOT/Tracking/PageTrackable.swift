@@ -83,3 +83,15 @@ extension TabBarController: PageTrackable {
         return .tabBar
     }
 }
+
+extension LibraryViewController: PageTrackable {
+    var pageID: PageID {
+        return .sidebarLibrary
+    }
+}
+
+extension BenefitsViewController: PageTrackable {
+    var pageID: PageID {
+        return .sidebarBenefits
+    }
+}
