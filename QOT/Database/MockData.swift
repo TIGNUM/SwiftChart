@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import QOTDatabase
 
 // FIXME: Remove when no longer needed
 
