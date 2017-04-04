@@ -53,10 +53,8 @@ final class LearnStrategyViewController: UIViewController {
         setupTableView()
         registerCells()
         
-        let config = TabBarView.Configuration(titles: ["FULL", "BULLETS"], indicatorViewExtendedWidth: 16, selectedColor: .black, deselectedColor: .gray, distribution: .fillProportionally(spacing: 20))
-      
+        let config = TabBarView.Configuration(titles: ["FULL", "BULLETS", "ON", "OFF"], indicatorViewExtendedWidth: 16, selectedColor: .black, deselectedColor: .gray, distribution: .fillProportionally(spacing: 20))
         tabBarView.setup(configuration: config)
-      
     }
     
     // MARK: Private methods

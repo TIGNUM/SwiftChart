@@ -28,8 +28,8 @@ class TabBarView: UIView {
     
     fileprivate var configuration: Configuration!
     fileprivate var selectedIndex: Int!
-    fileprivate var buttons: [UIButton]!
     
+    fileprivate var buttons: [UIButton]!
     lazy var stackView: UIStackView = {
         let view = UIStackView()
         view.axis = .horizontal
@@ -38,7 +38,7 @@ class TabBarView: UIView {
         return view
     }()
     
-    func setup(configuration: Configuration, selectedIndex: Int = 0) {
+    func setup(configuration: Configuration, selectedIndex: Int = 1) {
         guard self.configuration == nil else {
             preconditionFailure("TabBarView can only be setup once")
         }
@@ -61,7 +61,7 @@ class TabBarView: UIView {
         
         setupHierachy()
         setupLayout()
-        stackViewPadding()
+        chnageIndex(index: 1)
         let button = buttons[selectedIndex]
         let width = button.intrinsicContentSize.width + configuration.indicatorViewExtendedWidth
         syncIndicatorView(animated: false, width: width)
@@ -129,7 +129,6 @@ class TabBarView: UIView {
     
     func syncIndicatorView(animated: Bool, width: CGFloat) {
         let button = buttons[selectedIndex]
-        
         let center = stackView.convert(button.center, to: self)
         indicatorViewWidthConstraint?.constant = width
         indicatorViewLeadingConstraint?.constant = center.x - (width / 2)
@@ -144,8 +143,11 @@ class TabBarView: UIView {
         }
     }
     
-    func stackViewPadding() {
-       
+    func chnageIndex(index: Int) {
+        selectedIndex = index
+        let button = buttons[selectedIndex]
+        let width = button.intrinsicContentSize.width + configuration.indicatorViewExtendedWidth
+        syncIndicatorView(animated: true, width: width)
     }
 }
 
