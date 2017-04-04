@@ -8,15 +8,22 @@
 
 import UIKit
 import Anchorage
-
+protocol TabBarViewDelegate: class {
+    func didSelectItemAtIndex(index: Int, sender: TabBarView)
+}
 class TabBarView: UIView {
-    
+    weak var delegate: TabBarViewDelegate?
     struct Configuration {
+        enum Distribution {
+            case fillEqually
+            case fillProportionally(spacing: CGFloat)
+        }
+        
         let titles: [String]
         let indicatorViewExtendedWidth: CGFloat
         let selectedColor: UIColor
         let deselectedColor: UIColor
-        let edgeInsets: UIEdgeInsets
+        let distribution: Distribution
     }
     
     fileprivate var configuration: Configuration!
@@ -27,7 +34,7 @@ class TabBarView: UIView {
         let view = UIStackView()
         view.axis = .horizontal
         view.alignment = .fill
-        view.distribution = .fillEqually
+        view.distribution = .fillProportionally
         return view
     }()
     
@@ -43,7 +50,7 @@ class TabBarView: UIView {
             let button = UIButton(type: .custom)
             button.setTitle(title, for: .normal)
             button.titleLabel?.font = Font.TabBarController.buttonTitle
-            button.backgroundColor = .red
+            button.backgroundColor = .clear
             button.setTitleColor(configuration.deselectedColor, for: .normal)
             button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
             button.tag = index
@@ -59,11 +66,18 @@ class TabBarView: UIView {
         let width = button.intrinsicContentSize.width + configuration.indicatorViewExtendedWidth
         syncIndicatorView(animated: false, width: width)
         syncButtonColors(animated: false)
+        
+        switch configuration.distribution {
+        case .fillEqually:
+            stackView.spacing = 0
+        case .fillProportionally(let spacing):
+            stackView.spacing = spacing
+        }
     }
     
     fileprivate weak var indicatorViewLeadingConstraint: NSLayoutConstraint!
     fileprivate weak var indicatorViewWidthConstraint: NSLayoutConstraint!
-    fileprivate var edgeConstraints: EdgeGroup!
+    fileprivate var stackViewLeadingConstraints: NSLayoutConstraint!
     
     enum Constants {
         static let animationDuration: TimeInterval = 0.3
@@ -78,9 +92,18 @@ class TabBarView: UIView {
             return
         }
         selectedIndex = button.tag
+        delegate?.didSelectItemAtIndex(index: selectedIndex, sender: self)
         let width = button.intrinsicContentSize.width + configuration.indicatorViewExtendedWidth
         syncIndicatorView(animated: true, width: width)
         syncButtonColors(animated: true)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        let button = buttons[selectedIndex]
+        let width = button.intrinsicContentSize.width + configuration.indicatorViewExtendedWidth
+        syncIndicatorView(animated: false, width: width)
     }
     
     func syncButtonColors(animated: Bool) {
@@ -107,8 +130,9 @@ class TabBarView: UIView {
     func syncIndicatorView(animated: Bool, width: CGFloat) {
         let button = buttons[selectedIndex]
         
+        let center = stackView.convert(button.center, to: self)
         indicatorViewWidthConstraint?.constant = width
-        indicatorViewLeadingConstraint?.constant = button.center.x - (width / 2) + edgeConstraints.leading.constant
+        indicatorViewLeadingConstraint?.constant = center.x - (width / 2)
         
         if animated {
             let transition = UIViewAnimationOptions.curveEaseInOut
@@ -121,7 +145,7 @@ class TabBarView: UIView {
     }
     
     func stackViewPadding() {
-    
+       
     }
 }
 
@@ -134,14 +158,20 @@ private extension TabBarView {
     }
     
     func setupLayout() {
-        
-        indicatorView.bottomAnchor == bottomAnchor
         indicatorView.heightAnchor == 1
+        indicatorView.bottomAnchor == bottomAnchor
         indicatorViewLeadingConstraint = indicatorView.leadingAnchor == leadingAnchor
         indicatorViewWidthConstraint = indicatorView.widthAnchor == 0
         
-        edgeConstraints = stackView.edgeAnchors == edgeAnchors
+        stackView.verticalAnchors == verticalAnchors
         
+        switch configuration.distribution {
+        case .fillEqually:
+            stackView.horizontalAnchors == horizontalAnchors
+        case .fillProportionally:
+            stackView.centerAnchors == centerAnchors
+            
+        }
         layoutIfNeeded()
     }
 }
