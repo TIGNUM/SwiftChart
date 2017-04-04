@@ -1,17 +1,16 @@
 //
-//  LearnCategoriesViewModel.swift
+//  LearnCategory.swift
 //  QOT
 //
-//  Created by Sam Wyndham on 08/03/2017.
+//  Created by Sam Wyndham on 31/03/2017.
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
-import Foundation
-import ReactiveKit
-import RealmSwift
+import UIKit
 
 /// Encapsulates data to display in a `LearnCategoryListViewController`.
-protocol LearnCategory {
+protocol LearnCategory: TrackableEntity {
+    var id: Int { get }
     /// The title of `self`.
     var title: String { get }
     /// The number of items that belong `self`.
@@ -24,48 +23,33 @@ protocol LearnCategory {
     var radius: Double { get }
     /// Returns the cell's center.
     var center: CGPoint { get }
-}
 
-/// The view model of a `LearnCategoryListViewController`.
-final class LearnCategoryListViewModel {
-    private let _categories: Results<ContentCategory>
-    
-    let updates = PublishSubject<CollectionUpdate, NoError>()
-    
-    init(categories: Results<ContentCategory>) {
-        self._categories = categories
-    }
-    
-    /// The number of categories to display.
-    var categoryCount: Index {
-        return _categories.count
-    }
-    
-    /// Returns the `LearnCategory` to display at `index`.
-    func category(at index: Index) -> LearnCategory {
-        return _categories[index]
-    }
-    
-    var categories: [LearnCategory] {
-        return _categories.map { $0 }
-    }
+    var learnContent: DataProvider<LearnContent> { get }
 }
 
 extension ContentCategory: LearnCategory {
     var itemCount: Int {
         return contents.count
     }
-    
+
     var viewedCount: Int {
         return contents.filter { $0.viewed }.count
     }
-    
+
     var percentageLearned: Double {
         let total = contents.reduce(0) { $0.0 + $0.1.percentageViewed }
         return total / Double(contents.count)
     }
-    
+
     var center: CGPoint {
         return CGPoint(x: centerX, y: centerY)
+    }
+
+    var learnContent: DataProvider<LearnContent> {
+        return DataProvider(list: contents, map: { $0 as LearnContent })
+    }
+
+    var trackableEntityID: Int {
+        return id
     }
 }

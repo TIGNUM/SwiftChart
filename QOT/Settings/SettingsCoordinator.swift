@@ -11,26 +11,29 @@ import UIKit
 
 final class SettingsCoordinator: ParentCoordinator {
     
-    internal var rootViewController: UIViewController?
-    fileprivate let databaseManager: DatabaseManager?
+    internal var rootViewController: SidebarViewController?
+    fileprivate let services: Services?
     fileprivate let eventTracker: EventTracker?
     internal var children = [Coordinator]()
     weak var delegate: ParentCoordinator?
     lazy var presentationManager = PresentationManager()
     
-    init(root: UIViewController, databaseManager: DatabaseManager?, eventTracker: EventTracker?) {
+    init(root: SidebarViewController, services: Services?, eventTracker: EventTracker?) {
         self.rootViewController = root
-        self.databaseManager = databaseManager
+        self.services = services
         self.eventTracker = eventTracker
     }
-    
+
     func start() {
-        let vc = SettingsViewController(viewModel: SettingsViewModel())
-        vc.delegate = self
+        let settingsViewController = SettingsViewController(viewModel: SettingsViewModel())
+        settingsViewController.delegate = self
         presentationManager.presentationType = .fadeIn
-        vc.modalPresentationStyle = .custom
-        vc.transitioningDelegate = presentationManager
-        rootViewController?.present(vc, animated: true)
+        settingsViewController.modalPresentationStyle = .custom
+        settingsViewController.transitioningDelegate = presentationManager
+        rootViewController?.present(settingsViewController, animated: true)
+        
+        // TODO: Update associatedEntity with realm object when its created.
+        eventTracker?.track(page: settingsViewController.pageID, referer: rootViewController?.pageID, associatedEntity: nil)
     }
 }
 

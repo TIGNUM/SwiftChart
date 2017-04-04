@@ -14,5 +14,5 @@ enum CollectionUpdate {
     /// Indicates the view should be reloaded.
     case reload
     /// Indicates the view should be updated.
-    case update(deletions: [Int], insertions: [Int], modifications: [Int])
+    case update(deletions: [IndexPath], insertions: [IndexPath], modifications: [IndexPath])
 }

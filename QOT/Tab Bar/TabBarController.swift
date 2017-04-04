@@ -7,19 +7,76 @@
 //
 
 import UIKit
+import Anchorage
 
-final class TabBarController: UITabBarController {
+protocol TabBarControllerDelegate: class {
+    func didSelectTab(at index: Index, in controller: TabBarController)
+}
+
+final class TabBarController: UIViewController {
     
-    // MARK: - Properties
+    struct Constants {
+        static let animationDuration: TimeInterval = 0.3
+        static let selectedButtonColor: UIColor = .white
+        static let deselectedButtonColor: UIColor = UIColor.white.withAlphaComponent(0.4)
+        static let stackViewHorizontalPadding: CGFloat = 16
+        static let indicatorViewExtendedWidth: CGFloat = 16
+    }
     
-    fileprivate var categoryViewControllers = [UIViewController]()
-    fileprivate let selectedCategoryIndex: Index
+    struct Item {
+        let controller: UIViewController
+        let title: String
+    }
     
-    // MARK: - Life Cycle
+    fileprivate var items: [Item]
+    fileprivate weak var currentViewController: UIViewController?
+    fileprivate weak var indicatorViewLeadingConstraint: NSLayoutConstraint?
+    fileprivate weak var indicatorViewWidthConstraint: NSLayoutConstraint?
     
-    init(viewControllers: [UIViewController], selectedIndex: Index) {
-        self.categoryViewControllers = viewControllers
-        self.selectedCategoryIndex = selectedIndex
+    fileprivate lazy var stackView: UIStackView = {
+        let view = UIStackView()
+        view.axis = .horizontal
+        view.alignment = .fill
+        view.distribution = .fillEqually
+        return view
+    }()
+    
+    fileprivate lazy var containerView: UIView = {
+        let view = UIView()
+        return view
+    } ()
+    
+    fileprivate lazy var indicatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
+    
+    fileprivate lazy var buttons: [UIButton] = {
+        return self.items.enumerated().map { (index, item) in
+            let button = UIButton(type: .custom)
+            button.setTitle(item.title, for: .normal)
+            button.titleLabel?.font = Font.TabBarController.buttonTitle
+            button.backgroundColor = .clear
+            button.setTitleColor(UIColor.white.withAlphaComponent(0.4), for: .normal)
+            button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
+            button.tag = index
+            return button
+        }
+    }()
+    
+    fileprivate var selectedIndex: Index
+    
+    weak var delegate: TabBarControllerDelegate?
+    var viewControllers: [UIViewController] {
+        return items.map { $0.controller }
+    }
+    
+    init(items: [Item], selectedIndex: Index) {
+        precondition(selectedIndex >= 0 && selectedIndex < items.count, "Out of bounds selectedIndex")
+        
+        self.items = items
+        self.selectedIndex = selectedIndex
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -31,36 +88,120 @@ final class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        delegate = self
-        setupView()
+        view.backgroundColor = .black
+        
+        setupHierarchy()
+        setupLayout()
+        
+        loadFirstView()
     }
     
-    private func setupView() {
-        let learnTabBarItem = UITabBarItem(title: R.string.localized.tabBarItemLearn(), image: nil, selectedImage: nil)
-        let meTabBarItem = UITabBarItem(title: R.string.localized.tabBarItemMe(), image: nil, selectedImage: nil)
-        let prepareTabBarItem = UITabBarItem(title: R.string.localized.tabBarItemPrepare(), image: nil, selectedImage: nil)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        let learnCategoryController = categoryViewControllers.item(at: MainMenuType.learn.rawValue) as? LearnCategoryListViewController
-        learnCategoryController?.tabBarItem = learnTabBarItem
+        syncIndicatorView(animated: false)
+        syncButtonColors(animated: false)
+    }
+    
+    @objc private func buttonPressed(_ button: UIButton) {
+        guard button.tag != selectedIndex else {
+            return
+        }
         
-        let meCategoryController = categoryViewControllers.item(at: MainMenuType.me.rawValue) as? MeSectionViewController
-        meCategoryController?.tabBarItem = meTabBarItem
+        selectedIndex = button.tag
+        displayContentController(items[button.tag].controller)
+        syncIndicatorView(animated: true)
+        syncButtonColors(animated: true)
         
-        let chatViewController = categoryViewControllers.item(at: MainMenuType.prepare.rawValue) as? ChatViewController
-        chatViewController?.tabBarItem = prepareTabBarItem
+        delegate?.didSelectTab(at: selectedIndex, in: self)
+    }
+    
+    private func displayContentController(_ viewController: UIViewController) {
+        if let existing = currentViewController {
+            existing.willMove(toParentViewController: nil)
+            existing.view.removeFromSuperview()
+            existing.removeFromParentViewController()
+        }
         
-        tabBar.barTintColor = .black
-        tabBar.tintColor = .qotWhite
-        viewControllers = categoryViewControllers
-        selectedIndex = selectedCategoryIndex
+        addChildViewController(viewController)
+        viewController.view.frame = containerView.frame
+        containerView.addSubview(viewController.view)
+        viewController.didMove(toParentViewController: self)
+        currentViewController = viewController
+    }
+    
+    private func loadFirstView() {
+        let controller = items[selectedIndex].controller
+        addChildViewController(controller)
+        controller.view.frame = containerView.frame
+        containerView.addSubview(controller.view)
+        controller.didMove(toParentViewController: self)
+        currentViewController = controller
+    }
+    
+    func syncButtonColors(animated: Bool) {
+        let getColor: (UIButton, Int) -> UIColor = { (button, index) in
+            index == button.tag ? Constants.selectedButtonColor : Constants.deselectedButtonColor
+        }
+        
+        if animated {
+            for button in buttons {
+                let color = getColor(button, selectedIndex)
+                let transition = UIViewAnimationOptions.transitionCrossDissolve
+                let duration = Constants.animationDuration
+                UIView.transition(with: button, duration: duration, options: transition, animations: {
+                    button.setTitleColor(color, for: .normal)
+                }, completion: nil)
+            }
+        } else {
+            for button in buttons {
+                button.setTitleColor(getColor(button, selectedIndex), for: .normal)
+            }
+        }
+    }
+    
+    func syncIndicatorView(animated: Bool) {
+        let button = buttons[selectedIndex]
+        let width = button.intrinsicContentSize.width + Constants.indicatorViewExtendedWidth
+        
+        indicatorViewWidthConstraint?.constant = width
+        indicatorViewLeadingConstraint?.constant = button.center.x - (width / 2) + Constants.stackViewHorizontalPadding
+        
+        if animated {
+            let transition = UIViewAnimationOptions.curveEaseInOut
+            UIView.animate(withDuration: Constants.animationDuration, delay: 0, options: transition, animations: {
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        } else {
+            view.layoutIfNeeded()
+        }
     }
 }
 
-// MARK: - UITabBarControllerDelegate
-
-extension TabBarController: UITabBarControllerDelegate {
+extension TabBarController {
     
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        log("didSelect viewController: \(viewController)")
+    func setupHierarchy() {
+        view.addSubview(containerView)
+        view.addSubview(indicatorView)
+        view.addSubview(stackView)
+        
+        buttons.forEach { stackView.addArrangedSubview($0) }
+    }
+    
+    func setupLayout() {
+        containerView.topAnchor == view.topAnchor
+        containerView.horizontalAnchors == view.horizontalAnchors
+        containerView.bottomAnchor == stackView.topAnchor
+        
+        stackView.bottomAnchor == view.bottomAnchor - 10
+        stackView.horizontalAnchors == view.horizontalAnchors + Constants.stackViewHorizontalPadding
+        stackView.heightAnchor == 54
+        
+        indicatorView.bottomAnchor == view.bottomAnchor
+        indicatorView.heightAnchor == 1
+        indicatorViewLeadingConstraint = indicatorView.leadingAnchor == view.leadingAnchor
+        indicatorViewWidthConstraint = indicatorView.widthAnchor == 0
+        
+        view.layoutIfNeeded()
     }
 }

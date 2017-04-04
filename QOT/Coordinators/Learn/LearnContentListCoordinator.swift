@@ -12,16 +12,16 @@ protocol LearnContentListCoordinatorDelegate: ParentCoordinator {}
 
 final class LearnContentListCoordinator: ParentCoordinator {
     fileprivate let rootVC: LearnCategoryListViewController
-    fileprivate let databaseManager: DatabaseManager
+    fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
-    fileprivate let category: ContentCategory
+    fileprivate let category: LearnCategory
     
     var children: [Coordinator] = []
     weak var delegate: LearnContentListCoordinatorDelegate?
     
-    init(root: LearnCategoryListViewController, databaseManager: DatabaseManager, eventTracker: EventTracker, category: ContentCategory) {
+    init(root: LearnCategoryListViewController, services: Services, eventTracker: EventTracker, category: LearnCategory) {
         self.rootVC = root
-        self.databaseManager = databaseManager
+        self.services = services
         self.eventTracker = eventTracker
         self.category = category
     }
@@ -40,7 +40,8 @@ final class LearnContentListCoordinator: ParentCoordinator {
 
 extension LearnContentListCoordinator: LearnContentListViewControllerDelegate {
     func didSelectContent(at index: Index, in viewController: LearnContentListViewController) {
-        log("Did select content at index: \(index)")
+        let coordinator = LearnStrategyCoordinator(root: viewController, services: services, eventTracker: eventTracker, category: category)
+        startChild(child: coordinator)
     }
     
     func didTapBack(in: LearnContentListViewController) {

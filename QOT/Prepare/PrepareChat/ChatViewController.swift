@@ -24,12 +24,14 @@ class ChatViewController: UITableViewController {
     fileprivate let viewModel: ChatViewModel
     weak var delegate: ChatViewDelegate?
 
+    private let estimatedRowHeight = 140
+
     // MARK: - Life Cycle
 
     init(viewModel: ChatViewModel) {
         self.viewModel = viewModel
+        super.init(nibName: String(describing:ChatViewController.self), bundle: nil)
 
-        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -46,9 +48,13 @@ class ChatViewController: UITableViewController {
     private func setupTableView() {
         view.backgroundColor = .black
         tableView.backgroundColor = .black
-        tableView.register(ChatTableViewCell.self, forCellReuseIdentifier: String(describing:ChatTableViewCell.self))
-        tableView.register(AnswerCollectionTableViewCell.self, forCellReuseIdentifier: String(describing:AnswerCollectionTableViewCell.self))
+        tableView.register(UINib(nibName: String(describing:ChatTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing:ChatTableViewCell.self))
+        tableView.register(UINib(nibName: String(describing:StatusTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing:StatusTableViewCell.self))
 
+        tableView.register(UINib(nibName: String(describing:AnswerCollectionTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing:AnswerCollectionTableViewCell.self))
+
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = CGFloat(estimatedRowHeight)
     }
 
     private func updateTableView(with tableView: UITableView) {
@@ -56,7 +62,7 @@ class ChatViewController: UITableViewController {
             switch update {
             case .reload:
                 self.tableView.reloadData()
-            case .update(_, _, _):
+            case .update(let deletions, let insertions, let modifications):
                 // Please animate updates as needed
                 self.tableView.reloadData()
             }
@@ -69,58 +75,61 @@ class ChatViewController: UITableViewController {
 extension ChatViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.itemCount
+        return viewModel.chatMessageCount
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-<<<<<<< HEAD:QOT/PrepareChat/ChatViewController.swift
-        let chatCell = tableView.dequeueReusableCell(withIdentifier: String(describing:ChatTableViewCell.self), for: indexPath);
         let chatMessage = viewModel.chatMessage(at: indexPath.row)
-=======
-        let chatCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        let chatMessage = viewModel.item(at: indexPath.row)
->>>>>>> 854800538bbc59e9a624c40209930bdbc3b8e958:QOT/Prepare/PrepareChat/ChatViewController.swift
 
-        let text: String
         switch chatMessage {
         case .instruction(let type, _):
             switch type {
-            case .message(let message): text = message
-            case .typing: text = "..."
+            case .message(let message):
+                let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ChatTableViewCell.self), for: indexPath) as! ChatTableViewCell
+                cell.chatLabel?.text = message
+                return cell
+
+            case .typing:
+                let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ChatTableViewCell.self), for: indexPath) as! ChatTableViewCell
+                cell.chatLabel?.text = "..."
+                return cell
             }
-        case .header(let title, _): text = title
-        case .navigation(let items): text = "\(items.count) Navigation Items"
-        case .input(let items): text = "\(items.count) Input Items"
+        case .header(let title, _):
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: StatusTableViewCell.self), for: indexPath) as! StatusTableViewCell
+            cell.statusLabel?.text = title
+            return cell
+
+        case .navigation(let items):
+            let collectionCell = tableView.dequeueReusableCell(withIdentifier: String(describing:AnswerCollectionTableViewCell.self), for: indexPath) as! AnswerCollectionTableViewCell
+            collectionCell.withDataModel(dataModel: items)
+            return collectionCell
+
+        case .input(let items):
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ChatTableViewCell.self), for: indexPath) as! ChatTableViewCell
+            return cell
         }
-
-        chatCell.textLabel?.text = text
-
-        return chatCell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
-<<<<<<< HEAD:QOT/PrepareChat/ChatViewController.swift
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        //add hieght for diferent cell types, possibl calulate at runtime
-        
-        return 100.0
-=======
-        // This is temporary implementation based just allowing us to hook up the delegate. How you call the delegate
-        // methods may be completly different.
-        let chatMessage = viewModel.item(at: indexPath.row)
-
+        let chatMessage = viewModel.chatMessage(at: indexPath.row)
         switch chatMessage {
-        case .navigation(let items):
-            let item = items.first!
-            delegate?.didSelectChatNavigation(item, in: self)
-        case .input(let items):
-            let item = items.first!
-            delegate?.didSelectChatInput(item, in: self)
-        case .header, .instruction: return
+        case .instruction(let type, _):
+            switch type {
+            case .message:
+                return 100
+            case .typing:
+                return 30
+            }
+        case .header:
+            return 30
+        case .navigation:
+            return 190
+        case .input:
+            return 100
         }
->>>>>>> 854800538bbc59e9a624c40209930bdbc3b8e958:QOT/Prepare/PrepareChat/ChatViewController.swift
     }
 }
