@@ -16,7 +16,6 @@ class AnswerCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         self.contentView.backgroundColor = UIColor.black
     }
-    
 }
 
 extension UIView {

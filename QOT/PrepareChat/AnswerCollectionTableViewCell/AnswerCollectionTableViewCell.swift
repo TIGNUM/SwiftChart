@@ -58,7 +58,7 @@ extension AnswerCollectionTableViewCell {
 
         cell.titleLbl.text = title
         cell.addDashedBorder(color: UIColor.gray.cgColor, lineWidth: 3.0)
-        
+
         return cell
     }
 
