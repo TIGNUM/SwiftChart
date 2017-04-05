@@ -56,10 +56,12 @@ final class TabBarCoordinator: ParentCoordinator {
     }
     
     func start() {
+        let tabbar = TopTabBarController()
         let items: [TabBarController.Item] = [
             TabBarController.Item(controller: learnCategoryListViewController, title: R.string.localized.tabBarItemLearn()),
             TabBarController.Item(controller: meSectionViewController, title: R.string.localized.tabBarItemMe()),
-            TabBarController.Item(controller: chatViewController, title: R.string.localized.tabBarItemPrepare())
+            TabBarController.Item(controller: chatViewController, title: R.string.localized.tabBarItemPrepare()),
+            TabBarController.Item(controller: tabbar, title: "TOPBAR")
         ]
         
         let tabBarController = TabBarController(items: items, selectedIndex: 0)

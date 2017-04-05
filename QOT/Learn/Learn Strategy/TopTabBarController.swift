@@ -13,29 +13,37 @@ class TopTabBarController: UIViewController {
     
     fileprivate lazy var navigationItemBar: UIView = {
         let view = UIView()
-        view.backgroundColor = .red
+        view.backgroundColor = UIColor.white.withAlphaComponent(0.7)
         return view
     }()
     
-    fileprivate lazy var tabBarView: UIView = {
-       let view = UIView()
-        view.backgroundColor = .gray
+    fileprivate lazy var tabBarView: TabBarView = {
+       let view = TabBarView()
+        view.backgroundColor = .white
+        view.setTitles(["FULL", "BULLETS"], selectedIndex: 0)
         return view
     }()
     
     fileprivate lazy var leftButton: UIButton = {
         let button = UIButton()
+        button.backgroundColor = .red
         return button
     }()
     
     fileprivate lazy var rightButton: UIButton = {
         let button = UIButton()
+        button.backgroundColor = .red
         return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupHierarchy()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+         setupLayout()
     }
 }
 
@@ -64,6 +72,14 @@ extension TopTabBarController: UIPageViewControllerDataSource {
 
 extension TopTabBarController {
     
+    func setupHierarchy() {
+        view.addSubview(navigationItemBar)
+        navigationItemBar.addSubview(leftButton)
+        navigationItemBar.addSubview(rightButton)
+        navigationItemBar.addSubview(tabBarView)
+       
+    }
+    
     func setupLayout() {
         navigationItemBar.horizontalAnchors == view.horizontalAnchors
         navigationItemBar.topAnchor == view.topAnchor
@@ -71,7 +87,7 @@ extension TopTabBarController {
         
         leftButton.leftAnchor == navigationItemBar.leftAnchor
         leftButton.bottomAnchor == navigationItemBar.bottomAnchor
-        leftButton.heightAnchor == 36
+        leftButton.topAnchor == navigationItemBar.topAnchor + 20
         leftButton.widthAnchor == 36
         
         rightButton.rightAnchor == navigationItemBar.rightAnchor
@@ -81,6 +97,9 @@ extension TopTabBarController {
         
         tabBarView.leftAnchor == leftButton.rightAnchor
         tabBarView.rightAnchor == rightButton.leftAnchor
-        tabBarView.verticalAnchors == navigationItemBar.verticalAnchors
+        tabBarView.topAnchor == navigationItemBar.topAnchor + 20
+        tabBarView.bottomAnchor == navigationItemBar.bottomAnchor
+        
+       view.layoutIfNeeded()
     }
 }
