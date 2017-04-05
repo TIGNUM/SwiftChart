@@ -27,7 +27,8 @@ class TabBarView: UIView {
     }
     
     fileprivate var configuration: Configuration!
-    fileprivate var selectedIndex: Int!
+    
+    var selectedIndex: Int!
     
     fileprivate var buttons: [UIButton]!
     lazy var stackView: UIStackView = {
@@ -61,10 +62,8 @@ class TabBarView: UIView {
         
         setupHierachy()
         setupLayout()
-        chnageIndex(index: 1)
-        let button = buttons[selectedIndex]
-        let width = button.intrinsicContentSize.width + configuration.indicatorViewExtendedWidth
-        syncIndicatorView(animated: false, width: width)
+        
+        syncIndicatorView(animated: false)
         syncButtonColors(animated: false)
         
         switch configuration.distribution {
@@ -93,27 +92,31 @@ class TabBarView: UIView {
         }
         selectedIndex = button.tag
         delegate?.didSelectItemAtIndex(index: selectedIndex, sender: self)
-        let width = button.intrinsicContentSize.width + configuration.indicatorViewExtendedWidth
-        syncIndicatorView(animated: true, width: width)
+        
+        syncIndicatorView(animated: true)
         syncButtonColors(animated: true)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        let button = buttons[selectedIndex]
-        let width = button.intrinsicContentSize.width + configuration.indicatorViewExtendedWidth
-        syncIndicatorView(animated: false, width: width)
+  
+        syncIndicatorView(animated: false)
+    }
+}
+
+// MARK: Sync Appearance
+
+private extension TabBarView {
+    
+    func syncAppearance(animated: Bool) {
+        syncButtonColors(animated: animated)
+        syncIndicatorView(animated: animated)
     }
     
     func syncButtonColors(animated: Bool) {
-        let getColor: (UIButton, Int) -> UIColor = { (button, index) in
-            index == button.tag ? self.configuration.selectedColor : self.configuration.deselectedColor
-        }
-        
         if animated {
             for button in buttons {
-                let color = getColor(button, selectedIndex)
+                let color = selectedColor(for: button)
                 let transition = UIViewAnimationOptions.transitionCrossDissolve
                 let duration = Constants.animationDuration
                 UIView.transition(with: button, duration: duration, options: transition, animations: {
@@ -122,13 +125,15 @@ class TabBarView: UIView {
             }
         } else {
             for button in buttons {
-                button.setTitleColor(getColor(button, selectedIndex), for: .normal)
+                button.setTitleColor(selectedColor(for: button), for: .normal)
             }
         }
     }
     
-    func syncIndicatorView(animated: Bool, width: CGFloat) {
+    func syncIndicatorView(animated: Bool) {
         let button = buttons[selectedIndex]
+        let width = button.intrinsicContentSize.width + configuration.indicatorViewExtendedWidth
+        
         let center = stackView.convert(button.center, to: self)
         indicatorViewWidthConstraint?.constant = width
         indicatorViewLeadingConstraint?.constant = center.x - (width / 2)
@@ -143,11 +148,8 @@ class TabBarView: UIView {
         }
     }
     
-    func chnageIndex(index: Int) {
-        selectedIndex = index
-        let button = buttons[selectedIndex]
-        let width = button.intrinsicContentSize.width + configuration.indicatorViewExtendedWidth
-        syncIndicatorView(animated: true, width: width)
+    func selectedColor(for button: UIButton) -> UIColor {
+        return button.tag == selectedIndex ? configuration.selectedColor : configuration.deselectedColor
     }
 }
 
