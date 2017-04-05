@@ -32,11 +32,11 @@ class TabBarView: UIView {
     
     fileprivate var titles: [String] = []
     
-    fileprivate var buttons: [UIButton] = []
-    
     // MARK: Public properties
     
     private(set) var selectedIndex: Int?
+    
+    private(set) var buttons: [UIButton] = []
     
     var distribution: Distribution = .fillEqually {
         didSet {
@@ -47,6 +47,7 @@ class TabBarView: UIView {
     var selectedColor: UIColor = .black {
         didSet {
             syncButtonColors(animated: false)
+            syncIndicatorViewColor()
         }
     }
     
@@ -65,6 +66,24 @@ class TabBarView: UIView {
     }
     
     // MARK: Overides
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setupHierachy()
+        layoutIndicatorView(animated: false)
+        syncButtonColors(animated: false)
+        syncIndicatorViewColor()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        setupHierachy()
+        layoutIndicatorView(animated: false)
+        syncButtonColors(animated: false)
+        syncIndicatorViewColor()
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

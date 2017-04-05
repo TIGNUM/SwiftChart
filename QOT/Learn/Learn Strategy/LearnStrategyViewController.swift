@@ -52,9 +52,6 @@ final class LearnStrategyViewController: UIViewController {
 
         setupTableView()
         registerCells()
-        
-        tabBarView.distribution = .fillProportionally(spacing: 20)
-        tabBarView.setTitles(["FULL", "BULLETS", "ON", "OFF"], selectedIndex: 0)
     }
     
     // MARK: Private methods
