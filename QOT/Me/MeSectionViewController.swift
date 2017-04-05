@@ -8,12 +8,47 @@
 
 import UIKit
 
+struct CategoryLabel {
+    let text: String
+    let textColor: UIColor
+    let position: CGPoint
+}
+
 class MeSectionViewController: UIViewController {
     
     // MARK: - Properties
 
     let viewModel: MeSectionViewModel
+    let strokeColor = UIColor(white: 0.7, alpha: 0.4)
+    var dataPointsCenterCoordinates = [CGPoint]()
+    let scrollView = UIScrollView(frame: UIScreen.main.bounds)
+
     weak var delegate: MeSectionDelegate?
+
+    let categoryLabel: [CategoryLabel] = [
+        CategoryLabel(text: "Load", textColor: UIColor(white: 0.7, alpha: 0.6), position: CGPoint(x: 200, y: 100)),
+        CategoryLabel(text: "Meetings", textColor: .red, position: CGPoint(x: 150, y: 200)),
+        CategoryLabel(text: "Peak", textColor: UIColor(white: 0.7, alpha: 0.6), position: CGPoint(x: 100, y: 300)),
+        CategoryLabel(text: "Trips", textColor: UIColor(white: 0.7, alpha: 0.6), position: CGPoint(x: 50, y: 400)),
+        CategoryLabel(text: "Sleep", textColor: UIColor(white: 0.7, alpha: 0.6), position: CGPoint(x: 150, y: 500)),
+        CategoryLabel(text: "Activity", textColor: UIColor(white: 0.7, alpha: 0.6), position: CGPoint(x: 200, y: 600))
+    ]
+
+    var profileImageFrame: CGRect {
+        return CGRect(
+            x: view.frame.width - 80,
+            y: view.frame.height * 0.5,
+            width: 100,
+            height: 100
+        )
+    }
+
+    var backgroundCircleCenterPoint: CGPoint {
+        return CGPoint(
+            x: profileImageFrame.origin.x,
+            y: profileImageFrame.origin.x + (profileImageFrame.height * 0.5)
+        )
+    }
     
     // MARK: - Life Cycle
 
@@ -30,73 +65,99 @@ class MeSectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let scrollView = UIScrollView(frame: UIScreen.main.bounds)
+
+        view.addSubview(scrollView)
         view.backgroundColor = .black
+    }
+
+    override func loadView() {
+        // calling self.view later on will return a UIView!, but we can simply call
+        // self.scrollView to adjust properties of the scroll view:
+        self.view = self.scrollView
+
+        // setup the scroll view
+        self.scrollView.contentSize = CGSize(width:1234, height: 5678)
+        // etc...
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        drawBackCircles(radius: 175, linesDashPattern: [2, 1])
+        drawBackCircles(radius: 250)
+        connectDataPoint()
         drawDataPoints()
+        addCategoryLabels()
     }
 
     private func drawDataPoints() {
         viewModel.items.forEach { (myDataItem: MyDataItem) in
-            switch myDataItem {
-            case .dataPoint(_, _, let distance, let angle, let category):
-                drawDataPoint(distance: distance, angle: angle, category: category)
-            case .image(_, let placeholderURL):
-                drawProfileImage(placeholderURL: placeholderURL)
+            switch myDataItem.category {
+            case .load(let subCategory):
+                drawDataPoint(distance: subCategory.distance, angle: subCategory.angle, category: myDataItem.category)
+            case .bodyBrain(let subCategory):
+                drawDataPoint(distance: subCategory.distance, angle: subCategory.angle, category: myDataItem.category)
             }
         }
+
+        dataPointsCenterCoordinates.insert(backgroundCircleCenterPoint, at: 0)
     }
 
-    private func drawProfileImage(placeholderURL: URL) {
-        let frame = CGRect(x: view.frame.size.width - 80, y: view.frame.size.height * 0.5, width: 100, height: 100)
-        let imageView = UIImageView(frame: frame)
+    private func addProfileImage(placeholderURL: URL) {
+        let imageView = UIImageView(frame: profileImageFrame)
         imageView.image = R.image.profileImage()
         imageView.layer.cornerRadius = imageView.frame.width * 0.5
         imageView.clipsToBounds = true
         view.addSubview(imageView)
     }
 
-    private func drawDataPoint(distance: CGFloat, angle: CGFloat, category: MyDataItem.Category) {
-        let circlePath = UIBezierPath(
-            arcCenter: CGPoint(x: (angle * 100) + (randomNumber * 100), y: (distance * 100) + (randomNumber * 300)),
-            radius: CGFloat(distance * 10),
-            startAngle: CGFloat(0),
-            endAngle:CGFloat(Double.pi * 2),
-            clockwise: true
+    private func drawDataPoint(distance: CGFloat, angle: CGFloat, category: DataCategory) {
+        let center = CGPoint(x: angle, y: (distance * 100))
+        let circlePath = UIBezierPath.circlePath(center: center, radius: CGFloat(distance * 10))
+
+        let shapeLayer = CAShapeLayer.pathWithColor(
+            path: circlePath.cgPath,
+            fillColor: .white,
+            strokeColor: .white
         )
+        view.layer.addSublayer(shapeLayer)
+        dataPointsCenterCoordinates.append(center)
+    }
 
-        let dataPointColor: UIColor
-
-        switch category {
-        case .load: dataPointColor = .red
-        case .brainBody: dataPointColor = .white
-        }
-
-        let shapeLayer = CAShapeLayer()
-        shapeLayer.path = circlePath.cgPath
-
-        shapeLayer.fillColor = dataPointColor.cgColor
-        shapeLayer.strokeColor = dataPointColor.cgColor
-        shapeLayer.lineWidth = 1.0
+    private func drawBackCircles(radius: CGFloat, linesDashPattern: [NSNumber]? = nil) {
+        let circlePath = UIBezierPath.circlePath(center: backgroundCircleCenterPoint, radius: radius)
+        let shapeLayer = CAShapeLayer.pathWithColor(
+            path: circlePath.cgPath,
+            fillColor: .clear,
+            strokeColor: strokeColor
+        )
+        shapeLayer.lineDashPattern = linesDashPattern
         view.layer.addSublayer(shapeLayer)
     }
 
-//    private func connectDataPoint() {
-//        var aPath = UIBezierPath()
-//        aPath.moveToPoint(CGPoint(x:/*Put starting Location*/, y:/*Put starting Location*/))
-//        aPath.addLineToPoint(CGPoint(x:/*Put Next Location*/, y:/*Put Next Location*/))
-//
-//        //Keep using the method addLineToPoint until you get to the one where about to close the path
-//
-//        aPath.closePath()
-//
-//        //If you want to stroke it with a red color
-//        UIColor.redColor().set()
-//        aPath.stroke()
-//        //If you want to fill it as well
-//        aPath.fill()
-//    }
+    private func connectDataPoint() {
+        for (index, center) in dataPointsCenterCoordinates.enumerated() {
+            let nextIndex = (index + 1)
+
+            guard nextIndex < dataPointsCenterCoordinates.count else {
+                return
+            }
+
+            let nextCenter = dataPointsCenterCoordinates[nextIndex]
+            let line = CAShapeLayer.line(from: center, to: nextCenter, strokeColor: strokeColor)
+            view.layer.addSublayer(line)
+        }
+    }
+
+    private func addCategoryLabels() {
+        categoryLabel.forEach { (categoryLabel: CategoryLabel) in
+            let frame = CGRect(x: categoryLabel.position.x, y: categoryLabel.position.y, width: 0, height: 21)
+            let label = UILabel(frame: frame)
+            label.text = categoryLabel.text
+            label.textColor = categoryLabel.textColor
+            label.sizeToFit()
+            view.addSubview(label)
+        }
+    }
 }

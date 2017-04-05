@@ -35,3 +35,47 @@ extension NSAttributedString {
         return NSAttributedString(string: string, attributes: attributes)
     }
 }
+
+// MARK: - UIBezierPath
+
+extension UIBezierPath {
+
+    class func circlePath(center: CGPoint, radius: CGFloat) -> UIBezierPath {
+        let startAngle = CGFloat(0)
+        let endAngle = CGFloat(Double.pi * 2)
+
+        return UIBezierPath(
+            arcCenter: center,
+            radius: radius,
+            startAngle: startAngle,
+            endAngle: endAngle,
+            clockwise: true
+        )
+    }
+}
+
+// MARK: - CAShapeLayer
+
+extension CAShapeLayer {
+
+    class func pathWithColor(path: CGPath, fillColor: UIColor, strokeColor: UIColor) -> CAShapeLayer {
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = path
+        shapeLayer.fillColor = fillColor.cgColor
+        shapeLayer.strokeColor = strokeColor.cgColor
+        shapeLayer.lineWidth = 1.0
+        return shapeLayer
+    }
+
+    class func line(from fromPoint: CGPoint, to toPoint: CGPoint, strokeColor: UIColor) -> CAShapeLayer {
+        let line = CAShapeLayer()
+        let linePath = UIBezierPath()
+        linePath.move(to: fromPoint)
+        linePath.addLine(to: toPoint)
+        line.path = linePath.cgPath
+        line.strokeColor = strokeColor.cgColor
+        line.lineWidth = 0.6
+        line.lineJoin = kCALineJoinRound
+        return line
+    }
+}

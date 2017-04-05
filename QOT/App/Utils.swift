@@ -59,4 +59,3 @@ func log(_ obj: @autoclosure () -> Any, enabled: Bool = true, file: String = #fi
 var randomNumber: CGFloat {
     return (CGFloat(Float(arc4random()) / Float(UINT32_MAX)))
 }
-
