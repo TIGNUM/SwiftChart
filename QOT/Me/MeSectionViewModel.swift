@@ -23,6 +23,20 @@ final class MeSectionViewModel {
     func item(at indexPath: IndexPath) -> MyDataItem {
         return items[indexPath.row]
     }
+
+    func distance(at indexPath: IndexPath) -> Float {
+        switch items[indexPath.row] {
+        case .dataPoint(_, _, let distance, _, _): return distance
+        default: return 0
+        }
+    }
+
+    func angle(at indexPath: IndexPath) -> Float {
+        switch items[indexPath.row] {
+        case .dataPoint(_, _, _, let angle, _): return angle
+        default: return 0
+        }
+    }
 }
 
 enum MyDataItem {
