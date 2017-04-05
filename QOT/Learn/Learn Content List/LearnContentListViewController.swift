@@ -23,7 +23,6 @@ protocol LearnContentListViewControllerDelegate: class {
 final class LearnContentListViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
-    let tabBarView = TabBarView()
     let viewModel: LearnContentListViewModel
     weak var delegate: LearnContentListViewControllerDelegate?
     
@@ -58,7 +57,7 @@ final class LearnContentListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         collectionView.registerDequeueable(LearnContentCell.self)
         
         setupAppearance()

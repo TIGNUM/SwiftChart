@@ -25,7 +25,6 @@ final class LearnStrategyViewController: UIViewController {
     // MARK: Outlets
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var tabBarView: TabBarView!
     
     // MARK: Private properties
     
