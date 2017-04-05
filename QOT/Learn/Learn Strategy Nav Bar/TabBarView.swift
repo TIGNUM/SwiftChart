@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Anchorage
 
 protocol TabBarViewDelegate: class {
     func didSelectItemAtIndex(index: Int?, sender: TabBarView)
@@ -27,14 +26,6 @@ class TabBarView: UIView {
     
     // MARK: Private properties
     
-    fileprivate lazy var stackView: UIStackView = {
-        let view = UIStackView()
-        view.axis = .horizontal
-        view.alignment = .fill
-        view.distribution = .fillProportionally
-        return view
-    }()
-    
     fileprivate lazy var indicatorView: UIView = UIView()
     
     fileprivate var stackViewWidthConstraint: NSLayoutConstraint?
@@ -49,16 +40,7 @@ class TabBarView: UIView {
     
     var distribution: Distribution = .fillEqually {
         didSet {
-            switch distribution {
-            case .fillEqually:
-                stackView.spacing = 0
-                stackViewWidthConstraint?.isActive = true
-            case .fillProportionally(let spacing):
-                stackView.spacing = spacing
-                stackViewWidthConstraint?.isActive = false
-            }
-            layoutIfNeeded()
-            syncIndicatorView(animated: true)
+            setNeedsLayout()
         }
     }
     
@@ -78,7 +60,7 @@ class TabBarView: UIView {
     
     var indicatorViewExtendedWidth: CGFloat = 0 {
         didSet {
-            syncIndicatorView(animated: false)
+            layoutIndicatorView(animated: false)
         }
     }
     
@@ -88,16 +70,16 @@ class TabBarView: UIView {
         super.awakeFromNib()
         
         setupHierachy()
-        setupLayout()
-        syncIndicatorView(animated: false)
+        layoutIndicatorView(animated: false)
         syncButtonColors(animated: false)
         syncIndicatorViewColor()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        syncIndicatorView(animated: false)
+
+        layoutButtons()
+        layoutIndicatorView(animated: false)
     }
     
     // MARK: Public methods
@@ -112,7 +94,7 @@ class TabBarView: UIView {
         }
         
         selectedIndex = index
-        syncIndicatorView(animated: animated)
+        layoutIndicatorView(animated: animated)
         syncButtonColors(animated: animated)
         syncIndicatorViewColor()
         
@@ -121,7 +103,8 @@ class TabBarView: UIView {
     
     func setTitles(_ titles: [String], selectedIndex: Int?) {
         self.titles = titles
-        
+
+        setNeedsLayout()
         syncButtonTitles()
         setSelectedIndex(selectedIndex, animated: false)
     }
@@ -129,10 +112,7 @@ class TabBarView: UIView {
     // MARK: Private methods
     
     private func syncButtonTitles() {
-        buttons.forEach {
-            stackView.removeArrangedSubview($0)
-            $0.removeFromSuperview() // A stack view oddity... removeArrangedSubview doesn't remove view from superview
-        }
+        buttons.forEach { $0.removeFromSuperview() }
         
         buttons = titles.enumerated().map { (index, title) in
             let button = UIButton(type: .custom)
@@ -145,7 +125,7 @@ class TabBarView: UIView {
             return button
         }
         
-        buttons.forEach { stackView.addArrangedSubview($0) }
+        buttons.forEach { addSubview($0) }
     }
 }
 
@@ -155,7 +135,7 @@ private extension TabBarView {
     
     func syncAppearance(animated: Bool) {
         syncButtonColors(animated: animated)
-        syncIndicatorView(animated: animated)
+        layoutIndicatorView(animated: animated)
     }
     
     func syncButtonColors(animated: Bool) {
@@ -174,21 +154,39 @@ private extension TabBarView {
             }
         }
     }
+
+    func layoutButtons() {
+        switch distribution {
+        case .fillEqually:
+            let width = bounds.width / CGFloat(buttons.count)
+
+            buttons.enumerated().forEach { (index, button) in
+                let x = CGFloat(index) * width
+                button.frame = CGRect(x: x, y: 0, width: width, height: bounds.height).integral
+            }
+        case .fillProportionally(let spacing):
+            let buttonWiths = buttons.map { $0.intrinsicContentSize.width }
+            let totalSpacing = CGFloat(max(buttons.count - 1, 0)) * spacing
+            let totoalWidth = buttonWiths.reduce(0, +)
+
+            var x = (bounds.width - (totoalWidth + totalSpacing)) / 2
+            for (width, button) in zip(buttonWiths, buttons) {
+                button.frame = CGRect(x: x, y: 0, width: width, height: bounds.height).integral
+                x += width + spacing
+            }
+        }
+    }
     
-    func syncIndicatorView(animated: Bool) {
+    func layoutIndicatorView(animated: Bool) {
         guard let selectedIndex = selectedIndex else {
             return
         }
         
         let button = buttons[selectedIndex]
-        let center = stackView.convert(button.center, to: self)
-        
-        print(button.frame)
-        print(stackView.frame)
         
         let width = button.intrinsicContentSize.width + indicatorViewExtendedWidth
         let height: CGFloat = 1
-        let x = center.x - (width / 2)
+        let x = button.center.x - (width / 2)
         let y = bounds.maxY - height
         
         let frame = CGRect(x: x, y: y, width: width, height: height)
@@ -219,18 +217,7 @@ private extension TabBarView {
 // MARK: Setup
 
 private extension TabBarView {
-    
     func setupHierachy() {
-        addSubview(stackView)
-        buttons.forEach { stackView.addArrangedSubview($0) }
         addSubview(indicatorView)
-    }
-    
-    func setupLayout() {
-        stackView.verticalAnchors == verticalAnchors
-        stackView.centerAnchors == centerAnchors
-        stackViewWidthConstraint = stackView.widthAnchor == widthAnchor
-        
-        layoutIfNeeded()
     }
 }
