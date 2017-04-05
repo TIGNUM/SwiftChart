@@ -13,6 +13,7 @@ protocol SidebarViewControllerDelegate: class {
     func didTapClose(in viewController: UIViewController, animated: Bool)
     func didTapSettingsCell(in viewController: SidebarViewController)
     func didTapLibraryCell(in viewController: SidebarViewController)
+    func didTapBenefitsCell(in viewController: SidebarViewController)
 }
 
 final class SidebarViewController: UIViewController {
@@ -121,6 +122,7 @@ extension SidebarViewController {
         switch item {
         case .settings: delegate?.didTapSettingsCell(in: self)
         case .library: delegate?.didTapLibraryCell(in: self)
+        case .benefits: delegate?.didTapBenefitsCell(in: self)
         default: return
         }
     }

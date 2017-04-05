@@ -1,3 +1,6 @@
+source 'https://github.com/TIGNUM/Specs.git'
+source 'https://github.com/CocoaPods/Specs.git'
+
 platform :ios, '10.0'
 
 target 'QOT' do
@@ -8,6 +11,7 @@ target 'QOT' do
   pod 'Bond', '~> 6.0'
   pod 'Anchorage', '~> 3.1'
   pod 'R.swift', '~> 3.2'
+  pod 'QOTDatabase'
 
   target 'QOTTests' do
     inherit! :search_paths

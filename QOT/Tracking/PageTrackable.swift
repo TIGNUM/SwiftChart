@@ -89,3 +89,9 @@ extension LibraryViewController: PageTrackable {
         return .sidebarLibrary
     }
 }
+
+extension BenefitsViewController: PageTrackable {
+    var pageID: PageID {
+        return .sidebarBenefits
+    }
+}

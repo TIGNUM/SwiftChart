@@ -88,6 +88,12 @@ struct Color {
         static let videoDescription = UIColor(red: 8/255, green: 8/255, blue: 8/255, alpha: 0.6)
         static let articleSubtitle = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
     }
+
+    struct Sidebar {
+        struct Benefits {
+            static let headerText = Color.Learn.headerSubtitle
+        }
+    }
 }
 
 struct AttributedString {
@@ -163,6 +169,18 @@ struct AttributedString {
 
             static func newTemplateLoadMoreSubtitle(string: String) -> NSAttributedString {
                 return NSAttributedString.create(for: string, withColor: Color.Learn.articleSubtitle, andFont: Font.Learn.headerSubtitle)
+            }
+        }
+    }
+
+    struct Sidebar {
+        struct Benefits {
+            static func headerTitle(string: String) -> NSAttributedString {
+                return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.Learn.headertitle)
+            }
+
+            static func headerText(string: String) -> NSAttributedString {
+                return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.Learn.headertitle)
             }
         }
     }
