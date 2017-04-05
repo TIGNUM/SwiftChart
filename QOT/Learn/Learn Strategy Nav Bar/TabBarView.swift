@@ -8,30 +8,26 @@
 
 import UIKit
 import Anchorage
+
 protocol TabBarViewDelegate: class {
-    func didSelectItemAtIndex(index: Int, sender: TabBarView)
+    func didSelectItemAtIndex(index: Int?, sender: TabBarView)
 }
+
 class TabBarView: UIView {
-    weak var delegate: TabBarViewDelegate?
-    struct Configuration {
-        enum Distribution {
-            case fillEqually
-            case fillProportionally(spacing: CGFloat)
-        }
+    
+    enum Constants {
+        static let animationDuration: TimeInterval = 0.3
         
-        let titles: [String]
-        let indicatorViewExtendedWidth: CGFloat
-        let selectedColor: UIColor
-        let deselectedColor: UIColor
-        let distribution: Distribution
     }
     
-    fileprivate var configuration: Configuration!
+    enum Distribution {
+        case fillEqually
+        case fillProportionally(spacing: CGFloat)
+    }
     
-    var selectedIndex: Int!
+    // MARK: Private properties
     
-    fileprivate var buttons: [UIButton]!
-    lazy var stackView: UIStackView = {
+    fileprivate lazy var stackView: UIStackView = {
         let view = UIStackView()
         view.axis = .horizontal
         view.alignment = .fill
@@ -39,68 +35,117 @@ class TabBarView: UIView {
         return view
     }()
     
-    func setup(configuration: Configuration, selectedIndex: Int = 1) {
-        guard self.configuration == nil else {
-            preconditionFailure("TabBarView can only be setup once")
+    fileprivate lazy var indicatorView: UIView = UIView()
+    
+    fileprivate var stackViewWidthConstraint: NSLayoutConstraint?
+    
+    fileprivate var titles: [String] = []
+    
+    fileprivate var buttons: [UIButton] = []
+    
+    // MARK: Public properties
+    
+    private(set) var selectedIndex: Int?
+    
+    var distribution: Distribution = .fillEqually {
+        didSet {
+            switch distribution {
+            case .fillEqually:
+                stackView.spacing = 0
+                stackViewWidthConstraint?.isActive = true
+            case .fillProportionally(let spacing):
+                stackView.spacing = spacing
+                stackViewWidthConstraint?.isActive = false
+            }
+            layoutIfNeeded()
+            syncIndicatorView(animated: true)
+        }
+    }
+    
+    var selectedColor: UIColor = .black {
+        didSet {
+            syncButtonColors(animated: false)
+        }
+    }
+    
+    var deselectedColor: UIColor = UIColor.black.withAlphaComponent(0.4) {
+        didSet {
+            syncButtonColors(animated: false)
+        }
+    }
+    
+    weak var delegate: TabBarViewDelegate?
+    
+    var indicatorViewExtendedWidth: CGFloat = 0 {
+        didSet {
+            syncIndicatorView(animated: false)
+        }
+    }
+    
+    // MARK: Overides
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        setupHierachy()
+        setupLayout()
+        syncIndicatorView(animated: false)
+        syncButtonColors(animated: false)
+        syncIndicatorViewColor()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        syncIndicatorView(animated: false)
+    }
+    
+    // MARK: Public methods
+    
+    @objc private func buttonPressed(_ button: UIButton) {
+        setSelectedIndex(button.tag, animated: true)
+    }
+    
+    func setSelectedIndex(_ index: Int?, animated: Bool) {
+        guard index != selectedIndex else {
+            return
         }
         
-        self.configuration = configuration
-        self.selectedIndex = selectedIndex
+        selectedIndex = index
+        syncIndicatorView(animated: animated)
+        syncButtonColors(animated: animated)
+        syncIndicatorViewColor()
         
-        buttons = configuration.titles.enumerated().map { (index, title) in
+        delegate?.didSelectItemAtIndex(index: index, sender: self)
+    }
+    
+    func setTitles(_ titles: [String], selectedIndex: Int?) {
+        self.titles = titles
+        
+        syncButtonTitles()
+        setSelectedIndex(selectedIndex, animated: false)
+    }
+    
+    // MARK: Private methods
+    
+    private func syncButtonTitles() {
+        buttons.forEach {
+            stackView.removeArrangedSubview($0)
+            $0.removeFromSuperview() // A stack view oddity... removeArrangedSubview doesn't remove view from superview
+        }
+        
+        buttons = titles.enumerated().map { (index, title) in
             let button = UIButton(type: .custom)
             button.setTitle(title, for: .normal)
             button.titleLabel?.font = Font.TabBarController.buttonTitle
             button.backgroundColor = .clear
-            button.setTitleColor(configuration.deselectedColor, for: .normal)
+            button.setTitleColor(deselectedColor, for: .normal)
             button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
             button.tag = index
             return button
         }
         
-        indicatorView.backgroundColor = configuration.selectedColor
-        
-        setupHierachy()
-        setupLayout()
-        
-        syncIndicatorView(animated: false)
-        syncButtonColors(animated: false)
-        
-        switch configuration.distribution {
-        case .fillEqually:
-            stackView.spacing = 0
-        case .fillProportionally(let spacing):
-            stackView.spacing = spacing
-        }
-    }
-    
-    fileprivate weak var indicatorViewLeadingConstraint: NSLayoutConstraint!
-    fileprivate weak var indicatorViewWidthConstraint: NSLayoutConstraint!
-    fileprivate var stackViewLeadingConstraints: NSLayoutConstraint!
-    
-    enum Constants {
-        static let animationDuration: TimeInterval = 0.3
-        
-    }
-    
-    fileprivate lazy var indicatorView: UIView! = UIView()
-    
-    @objc private func buttonPressed(_ button: UIButton) {
-        
-        guard button.tag != selectedIndex else {
-            return
-        }
-        selectedIndex = button.tag
-        delegate?.didSelectItemAtIndex(index: selectedIndex, sender: self)
-        
-        syncIndicatorView(animated: true)
-        syncButtonColors(animated: true)
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-  
-        syncIndicatorView(animated: false)
+        buttons.forEach { stackView.addArrangedSubview($0) }
     }
 }
 
@@ -131,27 +176,47 @@ private extension TabBarView {
     }
     
     func syncIndicatorView(animated: Bool) {
-        let button = buttons[selectedIndex]
-        let width = button.intrinsicContentSize.width + configuration.indicatorViewExtendedWidth
+        guard let selectedIndex = selectedIndex else {
+            return
+        }
         
+        let button = buttons[selectedIndex]
         let center = stackView.convert(button.center, to: self)
-        indicatorViewWidthConstraint?.constant = width
-        indicatorViewLeadingConstraint?.constant = center.x - (width / 2)
+        
+        print(button.frame)
+        print(stackView.frame)
+        
+        let width = button.intrinsicContentSize.width + indicatorViewExtendedWidth
+        let height: CGFloat = 1
+        let x = center.x - (width / 2)
+        let y = bounds.maxY - height
+        
+        let frame = CGRect(x: x, y: y, width: width, height: height)
         
         if animated {
             let transition = UIViewAnimationOptions.curveEaseInOut
             UIView.animate(withDuration: Constants.animationDuration, delay: 0, options: transition, animations: {
-                self.layoutIfNeeded()
+                self.indicatorView.frame = frame
             }, completion: nil)
         } else {
-            layoutIfNeeded()
+            indicatorView.frame = frame
         }
     }
     
     func selectedColor(for button: UIButton) -> UIColor {
-        return button.tag == selectedIndex ? configuration.selectedColor : configuration.deselectedColor
+        return button.tag == selectedIndex ? selectedColor : deselectedColor
+    }
+    
+    func syncIndicatorViewColor() {
+        if selectedIndex == nil {
+            indicatorView.backgroundColor = .clear
+        } else {
+            indicatorView.backgroundColor = selectedColor
+        }
     }
 }
+
+// MARK: Setup
 
 private extension TabBarView {
     
@@ -162,20 +227,10 @@ private extension TabBarView {
     }
     
     func setupLayout() {
-        indicatorView.heightAnchor == 1
-        indicatorView.bottomAnchor == bottomAnchor
-        indicatorViewLeadingConstraint = indicatorView.leadingAnchor == leadingAnchor
-        indicatorViewWidthConstraint = indicatorView.widthAnchor == 0
-        
         stackView.verticalAnchors == verticalAnchors
+        stackView.centerAnchors == centerAnchors
+        stackViewWidthConstraint = stackView.widthAnchor == widthAnchor
         
-        switch configuration.distribution {
-        case .fillEqually:
-            stackView.horizontalAnchors == horizontalAnchors
-        case .fillProportionally:
-            stackView.centerAnchors == centerAnchors
-            
-        }
         layoutIfNeeded()
     }
 }
