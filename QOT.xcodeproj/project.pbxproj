@@ -268,7 +268,7 @@
 		D520BC921E8E655A00A2D107 /* LearnStrategyHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyHeaderCell.xib; sourceTree = "<group>"; };
 		D540275D1E8D401F0013B783 /* LearnStrategyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyViewController.xib; sourceTree = "<group>"; };
 		D55CBED61E8A993200C690FB /* CGPoint+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Convenience.swift"; sourceTree = "<group>"; };
-		D57ECFAF1E924CC2008F401B /* TabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		D57ECFAF1E924CC2008F401B /* TabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarView.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		D5CD23D71E8BB73A002742C4 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -684,6 +684,7 @@
 			children = (
 				D5CD23D71E8BB73A002742C4 /* TabBarController.swift */,
 				CCC0C4DA1E82BDEF002A8362 /* TabBarCoordinator.swift */,
+				D57ECFAF1E924CC2008F401B /* TabBarView.swift */,
 			);
 			path = "Tab Bar";
 			sourceTree = "<group>";
@@ -694,7 +695,6 @@
 				CCC1B6A01E8B9B0C00D1461F /* Learn Category List */,
 				CCC1B6A11E8B9B5E00D1461F /* Learn Content List */,
 				CCC1B69B1E8B9A1200D1461F /* Learn Strategy */,
-				D57ECFAE1E924C3A008F401B /* Learn Strategy Nav Bar */,
 				CCE372F11E8C1EA600B79352 /* Whats Hot */,
 				CCD377501E8D3C0900BB8031 /* Whats Hot New Template */,
 			);
@@ -827,15 +827,6 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		D57ECFAE1E924C3A008F401B /* Learn Strategy Nav Bar */ = {
-			isa = PBXGroup;
-			children = (
-				D57ECFAF1E924CC2008F401B /* TabBarView.swift */,
-			);
-			name = "Learn Strategy Nav Bar";
-			path = "Learn Strategy Nav Bar";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -904,7 +895,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "QOT" */;
+			buildConfigurationList = CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "qot" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1372,7 +1363,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "QOT" */ = {
+		CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "qot" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBB238071E6FFF1300AB5AEF /* Debug */,
