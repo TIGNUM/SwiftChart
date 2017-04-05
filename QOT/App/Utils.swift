@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 // MARK: - Debug
 
@@ -54,3 +55,8 @@ func log(_ obj: @autoclosure () -> Any, enabled: Bool = true, file: String = #fi
         }
     #endif
 }
+
+var randomNumber: CGFloat {
+    return (CGFloat(Float(arc4random()) / Float(UINT32_MAX)))
+}
+

@@ -13,7 +13,7 @@ final class MeSectionViewModel {
 
     // MARK: - Properties
 
-    private let items = mockMyDataItems
+    let items = mockMyDataItems
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
     var itemCount: Int {
@@ -24,14 +24,14 @@ final class MeSectionViewModel {
         return items[indexPath.row]
     }
 
-    func distance(at indexPath: IndexPath) -> Float {
+    func distance(at indexPath: IndexPath) -> CGFloat {
         switch items[indexPath.row] {
         case .dataPoint(_, _, let distance, _, _): return distance
         default: return 0
         }
     }
 
-    func angle(at indexPath: IndexPath) -> Float {
+    func angle(at indexPath: IndexPath) -> CGFloat {
         switch items[indexPath.row] {
         case .dataPoint(_, _, _, let angle, _): return angle
         default: return 0
@@ -41,7 +41,7 @@ final class MeSectionViewModel {
 
 enum MyDataItem {
     case image(localID: String, placeholderURL: URL)
-    case dataPoint(localID: String, title: String, distance: Float, angle: Float, category: Category)
+    case dataPoint(localID: String, title: String, distance: CGFloat, angle: CGFloat, category: Category)
 
     enum Category {
         case load
@@ -58,48 +58,96 @@ private var mockMyDataItems: [MyDataItem] {
         .dataPoint(
             localID: UUID().uuidString,
             title: "Meeting",
-            distance: 0.9,
-            angle: 0.45,
+            distance: randomNumber,
+            angle: randomNumber,
             category: .load
         ),
 
         .dataPoint(
             localID: UUID().uuidString,
             title: "Travel",
-            distance: 0.8,
-            angle: 0.6,
+            distance: randomNumber,
+            angle: randomNumber,
             category: .load
         ),
 
         .dataPoint(
             localID: UUID().uuidString,
             title: "Intensity",
-            distance: 0.7,
-            angle: 0.5,
+            distance: randomNumber,
+            angle: randomNumber,
             category: .load
         ),
 
         .dataPoint(
             localID: UUID().uuidString,
             title: "Peek Performance",
-            distance: 0.6,
-            angle: 0.8,
+            distance: randomNumber,
+            angle: randomNumber,
             category: .load
         ),
 
         .dataPoint(
             localID: UUID().uuidString,
             title: "Sleep",
-            distance: 0.5,
-            angle: 0.3,
+            distance: randomNumber,
+            angle: randomNumber,
             category: .brainBody
         ),
 
         .dataPoint(
             localID: UUID().uuidString,
             title: "Activity",
-            distance: 0.4,
-            angle: 0.9,
+            distance: randomNumber,
+            angle: randomNumber,
+            category: .brainBody
+        ),
+
+        .dataPoint(
+            localID: UUID().uuidString,
+            title: "Meeting",
+            distance: randomNumber,
+            angle: randomNumber,
+            category: .load
+        ),
+
+        .dataPoint(
+            localID: UUID().uuidString,
+            title: "Travel",
+            distance: randomNumber,
+            angle: randomNumber,
+            category: .load
+        ),
+
+        .dataPoint(
+            localID: UUID().uuidString,
+            title: "Intensity",
+            distance: randomNumber,
+            angle: randomNumber,
+            category: .load
+        ),
+
+        .dataPoint(
+            localID: UUID().uuidString,
+            title: "Peek Performance",
+            distance: randomNumber,
+            angle: randomNumber,
+            category: .load
+        ),
+
+        .dataPoint(
+            localID: UUID().uuidString,
+            title: "Sleep",
+            distance: randomNumber,
+            angle: randomNumber,
+            category: .brainBody
+        ),
+
+        .dataPoint(
+            localID: UUID().uuidString,
+            title: "Activity",
+            distance: randomNumber,
+            angle: randomNumber,
             category: .brainBody
         )
     ]
