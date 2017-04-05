@@ -13,7 +13,7 @@ final class MeSectionViewModel {
 
     // MARK: - Properties
 
-    private let items = [MyDataItem]()
+    private let items = mockMyDataItems
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
     var itemCount: Int {
