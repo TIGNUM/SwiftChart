@@ -16,7 +16,8 @@ struct CategoryLabel {
 
 struct Spike {
     let strokeColor: UIColor
-    let startPoint: CGPoint
+    let angle: CGFloat
+    let load: CGFloat
 }
 
 class MeSectionViewController: UIViewController {
@@ -47,27 +48,27 @@ class MeSectionViewController: UIViewController {
     ]
 
     let spikes = [
-        Spike(strokeColor: .magenta, startPoint: CGPoint(x: screen.width * 0.5, y: 0)),
-        Spike(strokeColor: .magenta, startPoint: CGPoint(x: screen.width * 0.4, y: 0)),
-        Spike(strokeColor: .magenta, startPoint: CGPoint(x: screen.width * 0.3, y: 0)),
-        Spike(strokeColor: .blue, startPoint: CGPoint(x: screen.width * 0.1, y: 0)),
-        Spike(strokeColor: .blue, startPoint: CGPoint(x: 0, y: 0)),
-        Spike(strokeColor: .blue, startPoint: CGPoint(x: 0, y: screen.height * 0.1)),
-        Spike(strokeColor: .blue, startPoint: CGPoint(x: 0, y: screen.height * 0.2)),
-        Spike(strokeColor: .blue, startPoint: CGPoint(x: 0, y: screen.height * 0.3)),
-        Spike(strokeColor: .yellow, startPoint: CGPoint(x: 0, y: screen.height * 0.4)),
-        Spike(strokeColor: .yellow, startPoint: CGPoint(x: 0, y: screen.height * 0.5)),
-        Spike(strokeColor: .yellow, startPoint: CGPoint(x: 0, y: screen.height * 0.6)),
-        Spike(strokeColor: .green, startPoint: CGPoint(x: 0, y: screen.height * 0.7)),
-        Spike(strokeColor: .green, startPoint: CGPoint(x: 0, y: screen.height * 0.8)),
-        Spike(strokeColor: .green, startPoint: CGPoint(x: 0, y: screen.height * 0.9)),
-        Spike(strokeColor: .green, startPoint: CGPoint(x: 0, y: screen.height)),
-        Spike(strokeColor: .green, startPoint: CGPoint(x: screen.width * 0.1, y: screen.height)),
-        Spike(strokeColor: .orange, startPoint: CGPoint(x: screen.width * 0.2, y: screen.height)),
-        Spike(strokeColor: .orange, startPoint: CGPoint(x: screen.width * 0.3, y: screen.height)),
-        Spike(strokeColor: .cyan, startPoint: CGPoint(x: screen.width * 0.4, y: screen.height)),
-        Spike(strokeColor: .cyan, startPoint: CGPoint(x: screen.width * 0.5, y: screen.height)),
-        Spike(strokeColor: .cyan, startPoint: CGPoint(x: screen.width * 0.6, y: screen.height))
+        Spike(strokeColor: .magenta, angle: 260, load: randomNumber),
+        Spike(strokeColor: .magenta, angle: 252, load: randomNumber),
+        Spike(strokeColor: .magenta, angle: 244, load: randomNumber),
+        Spike(strokeColor: .blue, angle: 236, load: randomNumber),
+        Spike(strokeColor: .blue, angle: 228, load: randomNumber),
+        Spike(strokeColor: .blue, angle: 220, load: randomNumber),
+        Spike(strokeColor: .blue, angle: 212, load: randomNumber),
+        Spike(strokeColor: .blue, angle: 204, load: randomNumber),
+        Spike(strokeColor: .yellow, angle: 196, load: randomNumber),
+        Spike(strokeColor: .yellow, angle: 188, load: randomNumber),
+        Spike(strokeColor: .yellow, angle: 180, load: randomNumber),
+        Spike(strokeColor: .green, angle: 172, load: randomNumber),
+        Spike(strokeColor: .green, angle: 164, load: randomNumber),
+        Spike(strokeColor: .green, angle: 156, load: randomNumber),
+        Spike(strokeColor: .green, angle: 148, load: randomNumber),
+        Spike(strokeColor: .green, angle: 140, load: randomNumber),
+        Spike(strokeColor: .orange, angle: 132, load: randomNumber),
+        Spike(strokeColor: .orange, angle: 124, load: randomNumber),
+        Spike(strokeColor: .cyan, angle: 116, load: randomNumber),
+        Spike(strokeColor: .cyan, angle: 108, load: randomNumber),
+        Spike(strokeColor: .cyan, angle: 100, load: randomNumber)
     ]
 
     var profileImageViewFrame: CGRect {
@@ -105,10 +106,11 @@ class MeSectionViewController: UIViewController {
         addProfileImage()
         drawBackCircles(radius: 175, linesDashPattern: [2, 1])
         drawBackCircles(radius: 250)
-        connectDataPoint()
-        drawDataPoints()
-        addCategoryLabels()
+//        connectDataPoint()
+//        drawDataPoints()
+//        addCategoryLabels()
         drawSectors()
+//        placeDots()
     }
 
     override func loadView() {
@@ -192,9 +194,41 @@ private extension MeSectionViewController {
 //        }
 
         spikes.forEach { (spike: Spike) in
-            let line = CAShapeLayer.line(from: spike.startPoint, to: profileImageView.center, strokeColor: spike.strokeColor)
-            view.layer.addSublayer(line)
+            let converted = spike.angle.degreesToRadians
+            let x = profileImageView.center.x + ((spike.load * 160) + 80) * cos(converted)
+            let y = profileImageView.center.y + ((spike.load * 160) + 80) * sin(converted)
+            let endPopint = CGPoint(x: x, y: y)
+
+            drawSpike(
+                to: endPopint,
+                strokeColor: spike.strokeColor
+            )
+
+            placeDot(
+                fillColor: .red,
+                strokeColor: UIColor(red: 1, green: 0, blue: 0, alpha: 0.8),
+                center: endPopint,
+                radius: (spike.load * 8)
+            )
         }
+    }
+
+    func drawSpike(to point: CGPoint, strokeColor: UIColor) {
+        let line = CAShapeLayer.line(from: profileImageView.center, to: point, strokeColor: strokeColor)
+
+        view.layer.addSublayer(line)
+    }
+
+    func placeDot(fillColor: UIColor, strokeColor: UIColor, center: CGPoint, radius: CGFloat) {
+        let circlePath = UIBezierPath.circlePath(center: center, radius: radius)
+        let shapeLayer = CAShapeLayer.pathWithColor(
+            path: circlePath.cgPath,
+            fillColor: fillColor,
+            strokeColor: strokeColor
+        )
+
+        shapeLayer.lineWidth = radius * 2
+        view.layer.addSublayer(shapeLayer)
     }
 
     func drawSector(offset: CGFloat) {
