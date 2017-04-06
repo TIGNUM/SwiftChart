@@ -65,21 +65,13 @@ class MeSectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let scrollView = UIScrollView(frame: UIScreen.main.bounds)
-
-        view.addSubview(scrollView)
         view.backgroundColor = .black
     }
 
     override func loadView() {
-        // calling self.view later on will return a UIView!, but we can simply call
-        // self.scrollView to adjust properties of the scroll view:
         view = scrollView
-
-        // setup the scroll view
-        let screenFrame = UIScreen.main.bounds        
-        scrollView.contentSize = CGSize(width: (screenFrame.width * 2), height: screenFrame.height - 84)
-        // etc...
+        scrollView.contentSize = CGSize(width: (UIScreen.main.bounds.width * 2), height: UIScreen.main.bounds.height - 84)
+        scrollView.isPagingEnabled = true
     }
 
     override func viewWillAppear(_ animated: Bool) {

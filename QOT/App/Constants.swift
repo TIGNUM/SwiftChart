@@ -21,6 +21,7 @@ enum FontName: String {
 }
 
 struct Layout {
+
     enum CellHeight: CGFloat {
         case sidebar = 75
         case sidebarSmall = 65
