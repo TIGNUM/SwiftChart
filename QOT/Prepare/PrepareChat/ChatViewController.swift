@@ -16,10 +16,11 @@ protocol ChatViewDelegate: class {
     func didSelectChatInput(_ input: ChatMessageInput, in viewController: ChatViewController)
 }
 
-class ChatViewController: UITableViewController, Dequeueable {
+class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, Dequeueable {
     
     // MARK: - Properties
 
+    @IBOutlet weak var tableView: UITableView!
     private let disposeBag = DisposeBag()
     fileprivate let viewModel: ChatViewModel
     weak var delegate: ChatViewDelegate?
@@ -42,9 +43,9 @@ class ChatViewController: UITableViewController, Dequeueable {
         super.viewDidLoad()
 
         //Dequeue TableCells
-        tableView.registerDequeueable(ChatTableViewCell.self)
-        tableView.registerDequeueable(StatusTableViewCell.self)
-        tableView.registerDequeueable(AnswerCollectionTableViewCell.self)
+        self.tableView.registerDequeueable(ChatTableViewCell.self)
+        self.tableView.registerDequeueable(StatusTableViewCell.self)
+        self.tableView.registerDequeueable(CollectionTableViewCell.self)
 
     }
 
@@ -90,11 +91,11 @@ class ChatViewController: UITableViewController, Dequeueable {
 
 extension ChatViewController {
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.viewModel.itemCount
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let chatMessage = viewModel.item(at: indexPath.row)
         
         switch chatMessage {
@@ -116,21 +117,22 @@ extension ChatViewController {
             return cell
 
         case .navigation(let items):
-            let collectionCell: AnswerCollectionTableViewCell = tableView.dequeueCell(for: indexPath)
+            let collectionCell: CollectionTableViewCell = tableView.dequeueCell(for: indexPath)
             collectionCell.withDataModel(dataModel: items)
             return collectionCell
 
-        case .input(_):
+        case .input(let items):
+            print("\(items)")
             let cell: ChatTableViewCell = tableView.dequeueCell(for: indexPath)
             return cell
         }
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
     }
 
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let chatMessage = viewModel.item(at: indexPath.row)
         switch chatMessage {
         case .instruction, .header, .input:

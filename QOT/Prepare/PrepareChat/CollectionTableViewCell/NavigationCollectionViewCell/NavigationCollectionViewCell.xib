@@ -16,7 +16,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="AnswerCollectionViewCell" customModule="QOT" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="NavigationCollectionViewCell" customModule="QOT" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="70" height="35"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -24,7 +24,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqe-Q0-A02">
-                        <rect key="frame" x="15.5" y="10" width="40" height="15.5"/>
+                        <rect key="frame" x="15.5" y="10.5" width="40" height="15.5"/>
                         <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="16"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -41,7 +41,7 @@
             </constraints>
             <size key="customSize" width="199" height="33"/>
             <connections>
-                <outlet property="titleLbl" destination="cqe-Q0-A02" id="lv4-6e-xzT"/>
+                <outlet property="titleLbl" destination="cqe-Q0-A02" id="AU9-qq-Huh"/>
             </connections>
             <point key="canvasLocation" x="117" y="45.5"/>
         </collectionViewCell>

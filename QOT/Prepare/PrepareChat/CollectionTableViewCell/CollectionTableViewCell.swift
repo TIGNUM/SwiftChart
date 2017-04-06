@@ -9,16 +9,16 @@
 import UIKit
 import UICollectionViewRightAlignedLayout
 
-protocol AnswerCollectionViewCellDelegate: class {
+protocol CollectionViewCellDelegate: class {
 
     func didSelectItemAtIndexPath(indexPath: IndexPath)
 }
 
-class AnswerCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegateRightAlignedLayout, Dequeueable {
+class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegateRightAlignedLayout, Dequeueable {
 
-    @IBOutlet weak var cellTitleLabel: UILabel!
-    @IBOutlet public weak var collectionView: UICollectionView!
-    weak var delegate: AnswerCollectionViewCellDelegate?
+    @IBOutlet public weak var cellTitleLabel: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
+    weak var delegate: CollectionViewCellDelegate?
     var dataSource: [ChatMessageNavigation] = []
 
     public func withDataModel(dataModel: [ChatMessageNavigation]!) {
@@ -44,7 +44,7 @@ class AnswerCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
     }
 }
 
-extension AnswerCollectionTableViewCell {
+extension CollectionTableViewCell {
 
     // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -58,7 +58,7 @@ extension AnswerCollectionTableViewCell {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let title = self.dataSource.item(at: indexPath.row).title
-        let cell: AnswerCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+        let cell: NavigationCollectionViewCell = collectionView.dequeueCell(for: indexPath)
 
         cell.titleLbl.text = title
 
