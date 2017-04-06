@@ -152,6 +152,7 @@ extension TopTabBarController: TabBarViewDelegate {
         }
         
         self.index = index
+        if index != scrollView.currentPage {
         if index == 0 {
             let offset = CGPoint(x: scrollView.contentOffset.x - scrollView.bounds.size.width, y: 0)
             scrollView.setContentOffset(offset, animated: true)
@@ -159,7 +160,7 @@ extension TopTabBarController: TabBarViewDelegate {
         if index == 1 {
             let offset = CGPoint(x: scrollView.contentOffset.x + scrollView.bounds.size.width, y: 0)
             scrollView.setContentOffset(offset, animated: true)
-        }
+            } }
     }
 }
 
