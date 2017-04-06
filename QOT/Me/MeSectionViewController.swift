@@ -70,13 +70,17 @@ class MeSectionViewController: UIViewController {
 
     override func loadView() {
         view = scrollView
-        scrollView.contentSize = CGSize(width: (UIScreen.main.bounds.width * 2), height: UIScreen.main.bounds.height - 84)
+        scrollView.contentSize = CGSize(width: (UIScreen.main.bounds.width * 2) - 100, height: UIScreen.main.bounds.height - 84)
         scrollView.isPagingEnabled = true
+        scrollView.bounces = false
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        addProfileImage()
         drawBackCircles(radius: 175, linesDashPattern: [2, 1])
         drawBackCircles(radius: 250)
         connectDataPoint()
@@ -97,9 +101,10 @@ class MeSectionViewController: UIViewController {
         dataPointsCenterCoordinates.insert(backgroundCircleCenterPoint, at: 0)
     }
 
-    private func addProfileImage(placeholderURL: URL) {
+    private func addProfileImage() {
         let imageView = UIImageView(frame: profileImageFrame)
-        imageView.image = R.image.profileImage()
+        imageView.image = viewModel.profileImage
+        imageView.contentMode = .scaleToFill
         imageView.layer.cornerRadius = imageView.frame.width * 0.5
         imageView.clipsToBounds = true
         view.addSubview(imageView)
