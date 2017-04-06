@@ -10,11 +10,10 @@ import UIKit
 import Anchorage
 
 protocol TopTabBarDelegate: class {
-    func didSelectItemAtIndex(index: Int?, sender: TabBarView)
+    func didSelectItemAtIndex(index: Int?, sender: TopTabBarController)
     
 }
 class TopTabBarController: UIViewController {
-    weak var dataSource: UIPageViewControllerDataSource?
     
     fileprivate var controllers = [UIViewController]()
     var index: Int = 0
@@ -49,21 +48,17 @@ class TopTabBarController: UIViewController {
         let view = UIScrollView()
         view.backgroundColor = .green
         view.isPagingEnabled = true
+        view.delegate = self
         return view
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHierarchy()
-        index = tabBarView.selectedIndex!
-        //        displayContentController(controllers[index])
-        //        dataSource = self
         
-        //displayContentController(vcs[0])
         setupScrollView()
         
-        //scrollView.contentSize.width = 800
-        
+        tabBarView.delegate = self
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -71,7 +66,7 @@ class TopTabBarController: UIViewController {
     }
     
     func buttonPressed(_ button: UIButton) {
-        print("hi")
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -94,14 +89,6 @@ class TopTabBarController: UIViewController {
         viewController.didMove(toParentViewController: self)
         addChildViewController(viewController)
     }
-    fileprivate func displayContentController(_ viewController: UIViewController) {
-        
-        addChildViewController(viewController)
-        viewController.view.frame = scrollView.frame
-        scrollView.addSubview(viewController.view)
-        viewController.didMove(toParentViewController: self)
-    }
-    
 }
 
 let vcs: [UIViewController] = {
@@ -152,11 +139,32 @@ extension TopTabBarController {
     }
 }
 
+extension TopTabBarController: UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        tabBarView.setSelectedIndex(scrollView.currentPage, animated: true)
+    }
+}
+
 extension TopTabBarController: TabBarViewDelegate {
     func didSelectItemAtIndex(index: Int?, sender: TabBarView) {
         guard let index = index else {
             return
         }
+        
         self.index = index
+        if index == 0 {
+            let offset = CGPoint(x: scrollView.contentOffset.x - scrollView.bounds.size.width, y: 0)
+            scrollView.setContentOffset(offset, animated: true)
+        }
+        if index == 1 {
+            let offset = CGPoint(x: scrollView.contentOffset.x + scrollView.bounds.size.width, y: 0)
+            scrollView.setContentOffset(offset, animated: true)
+        }
+    }
+}
+
+private extension UIScrollView {
+    var currentPage: Int {
+        return Int(round(self.contentOffset.x / self.bounds.size.width))
     }
 }

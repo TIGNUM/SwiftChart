@@ -39,7 +39,7 @@ final class TabBarController: UIViewController {
     } ()
     
     fileprivate let tabBarView: TabBarView
-
+    
     weak var delegate: TabBarControllerDelegate?
     var viewControllers: [UIViewController] {
         return items.map { $0.controller }

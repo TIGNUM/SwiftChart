@@ -104,7 +104,9 @@ class TabBarView: UIView {
     // MARK: Public methods
     
     @objc private func buttonPressed(_ button: UIButton) {
-        setSelectedIndex(button.tag, animated: true)
+        let index = button.tag
+        setSelectedIndex(index, animated: true)
+        delegate?.didSelectItemAtIndex(index: index, sender: self)
     }
     
     func setSelectedIndex(_ index: Int?, animated: Bool) {
@@ -116,8 +118,6 @@ class TabBarView: UIView {
         layoutIndicatorView(animated: animated)
         syncButtonColors(animated: animated)
         syncIndicatorViewColor()
-        
-        delegate?.didSelectItemAtIndex(index: index, sender: self)
     }
     
     func setTitles(_ titles: [String], selectedIndex: Int?) {
