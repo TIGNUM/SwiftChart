@@ -46,7 +46,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.tableView.registerDequeueable(ChatTableViewCell.self)
         self.tableView.registerDequeueable(StatusTableViewCell.self)
         self.tableView.registerDequeueable(CollectionTableViewCell.self)
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -78,20 +77,19 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     public func heightOfCollectionViewBasedOnNumberOfItems(items: ([Any])) -> CGFloat {
         let screenSize: CGRect = UIScreen.main.bounds
-        var totalWidth: CGFloat = 0.0
-
+        var total: CGFloat = 0.0
         if let obj = items as? [ChatMessageNavigation] {
             for i: Int  in stride(from: 1, to: items.count, by: 1) {
-                totalWidth += obj.item(at: i).title.width(withConstrainedHeight: 0, font: UIFont(name: "BentonSans", size: 16)!) + 70
+                total += obj.item(at: i).title.width(withConstrainedHeight: 0, font: UIFont(name: "BentonSans", size: 16)!) + 70
             }
         } else if let obj = items as? [ChatMessageInput] {
             for i: Int  in stride(from: 1, to: items.count, by: 1) {
-                totalWidth += obj.item(at: i).title.width(withConstrainedHeight: 0, font: UIFont(name: "BentonSans", size: 16)!) + 70
+                total += obj.item(at: i).title.width(withConstrainedHeight: 0, font: UIFont(name: "BentonSans", size: 16)!) + 70
             }
         }
-
-        totalWidth /= screenSize.width
-        return totalWidth * 70
+        total /= screenSize.width
+        total *= 80
+        return total > 100 ? total : 100
     }
 }
 

@@ -46,7 +46,6 @@ extension CollectionTableViewCell {
 
     // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
         if let obj = self.dataModel as? [ChatMessageNavigation] {
             return  obj.numberOfItems(inSection: section)
         } else if let obj = self.dataModel as? [ChatMessageInput] {
@@ -70,6 +69,7 @@ extension CollectionTableViewCell {
             let title = obj.item(at: indexPath.row).title
             let cell: InputCollectionViewCell = collectionView.dequeueCell(for: indexPath)
             cell.titleLbl.text = title
+            cell.addBorder(lineWidth: 2)
             return cell
         }
         return UICollectionViewCell()
