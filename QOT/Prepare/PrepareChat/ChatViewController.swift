@@ -73,6 +73,16 @@ class ChatViewController: UITableViewController, Dequeueable {
             }
         }.dispose(in: disposeBag)
     }
+
+    public func heightOfCollectionViewBasedOnNumberOfItems(items: ([ChatMessageNavigation])) -> CGFloat {
+        let screenSize: CGRect = UIScreen.main.bounds
+        var totalWidth: CGFloat = 0.0
+        for i: Int  in stride(from: 1, to: items.count, by: 1) {
+            totalWidth += items.item(at: i).title.width(withConstrainedHeight: 0, font: UIFont(name: "BentonSans", size: 16)!) + 70
+        }
+        totalWidth /= screenSize.width
+        return totalWidth * 70
+    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -109,7 +119,7 @@ extension ChatViewController {
             collectionCell.withDataModel(dataModel: items)
             return collectionCell
 
-        case .input(let items):
+        case .input(_):
             let cell: ChatTableViewCell = tableView.dequeueCell(for: indexPath)
             return cell
         }
@@ -121,11 +131,11 @@ extension ChatViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let chatMessage = viewModel.item(at: indexPath.row)
-        if(chatMessage) {
-            let cell: AnswerCollectionTableViewCell = tableView.dequeueCell(for: indexPath)
-            let height = cell.heightOfCollectionViewBasedOnNumberOfItems()
-            return CGFloat(height)
+        switch chatMessage {
+        case .instruction, .header, .input:
+            return UITableViewAutomaticDimension
+        case .navigation(let items):
+            return heightOfCollectionViewBasedOnNumberOfItems(items: items)
         }
-        return 0
     }
 }
