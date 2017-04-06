@@ -45,20 +45,30 @@ class TopTabBarController: UIViewController {
         return button
     }()
     
-    fileprivate lazy var containerView: UIView = {
-        let view = UIView()
+    fileprivate lazy var scrollView: UIScrollView = {
+        let view = UIScrollView()
         view.backgroundColor = .green
+        view.isPagingEnabled = true
         return view
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHierarchy()
-        setUpControllers()
         index = tabBarView.selectedIndex!
-//        displayContentController(controllers[index])
-//        dataSource = self
-        }
+        //        displayContentController(controllers[index])
+        //        dataSource = self
+        
+        //displayContentController(vcs[0])
+        setupScrollView()
+        
+        //scrollView.contentSize.width = 800
+        
+    }
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        setupScrollView()
+    }
     
     func buttonPressed(_ button: UIButton) {
         print("hi")
@@ -69,63 +79,39 @@ class TopTabBarController: UIViewController {
         setupLayout()
     }
     
-    let pageViewController = UIPageViewController.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-    
-    func setUpControllers() {
-         let learnStrategyViewController = LearnStrategyViewController(viewModel: LearnStrategyViewModel())
-         controllers.append(learnStrategyViewController)
-        let chatController = ChatViewController(viewModel: ChatViewModel())
-        controllers.append(chatController)
-//        let options = dictionaryWithValues(forKeys: [UIPageViewControllerOptionSpineLocationKey])
-    
-        pageViewController.setViewControllers([vcs[1]], direction: .forward, animated: false, completion: nil)
-        pageViewController.dataSource = self
+    func setupScrollView() {
+        let width: CGFloat = self.view.bounds.width
         
-        displayContentController(pageViewController)
-        
-        tabBarView.delegate = self
+        print(width)
+        scrollView.frame = vcs.first!.view.frame
+        scrollView.contentSize = CGSize(width: CGFloat(vcs.count) * width, height: 0)
+        _ = vcs.map({ addViewToScrollView($0) })
+        _ = vcs.map({ $0.view.frame.origin =  CGPoint(x: CGFloat(vcs.index(of: $0)!) * width, y: 0) })
     }
     
-    fileprivate func displayContentController(_ viewController: UIViewController) {
-       
+    func addViewToScrollView(_ viewController: UIViewController) {
+        scrollView.addSubview(viewController.view)
+        viewController.didMove(toParentViewController: self)
         addChildViewController(viewController)
-        viewController.view.frame = containerView.frame
-        containerView.addSubview(viewController.view)
+    }
+    fileprivate func displayContentController(_ viewController: UIViewController) {
+        
+        addChildViewController(viewController)
+        viewController.view.frame = scrollView.frame
+        scrollView.addSubview(viewController.view)
         viewController.didMove(toParentViewController: self)
     }
     
-    let vcs: [UIViewController] = {
-        let vc = UIViewController()
-        vc.view.backgroundColor = .yellow
-        let vc2 = UIViewController()
-        vc2.view.backgroundColor = .blue
-        
-        return [vc, vc2]
-    }()
-    
 }
 
-
-extension TopTabBarController: UIPageViewControllerDataSource {
+let vcs: [UIViewController] = {
+    let vc = UIViewController()
+    vc.view.backgroundColor = .yellow
+    let vc2 = UIViewController()
+    vc2.view.backgroundColor = .blue
     
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        if viewController == vcs[0] {
-            return nil
-        } else if viewController == vcs[1] {
-            return vcs[0]
-        }
-        return nil
-    }
-    
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        if viewController == vcs[0] {
-            return vcs[1]
-        } else if viewController == vcs[1] {
-            return nil
-        }
-        return nil
-    }
-}
+    return [vc, vc2]
+}()
 
 extension TopTabBarController {
     
@@ -134,7 +120,7 @@ extension TopTabBarController {
         navigationItemBar.addSubview(leftButton)
         navigationItemBar.addSubview(rightButton)
         navigationItemBar.addSubview(tabBarView)
-        view.addSubview(containerView)
+        view.addSubview(scrollView)
         
     }
     
@@ -158,9 +144,9 @@ extension TopTabBarController {
         tabBarView.topAnchor == navigationItemBar.topAnchor + 20
         tabBarView.bottomAnchor == navigationItemBar.bottomAnchor
         
-        containerView.horizontalAnchors == view.horizontalAnchors
-        containerView.topAnchor == navigationItemBar.bottomAnchor
-        containerView.bottomAnchor == view.bottomAnchor
+        scrollView.horizontalAnchors == view.horizontalAnchors
+        scrollView.topAnchor == navigationItemBar.bottomAnchor
+        scrollView.bottomAnchor == view.bottomAnchor
         
         view.layoutIfNeeded()
     }
@@ -172,6 +158,5 @@ extension TopTabBarController: TabBarViewDelegate {
             return
         }
         self.index = index
-        pageViewController.setViewControllers([vcs[index]], direction: .forward, animated: true, completion: nil)
-}
+    }
 }
