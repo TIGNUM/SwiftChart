@@ -24,10 +24,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Jl-N7-LV6">
-                        <rect key="frame" x="15" y="15" width="245" height="147.5"/>
+                        <rect key="frame" x="15" y="15" width="225" height="147.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cC6-7X-gu1">
-                                <rect key="frame" x="5" y="5" width="235" height="137.5"/>
+                                <rect key="frame" x="5" y="5" width="215" height="137.5"/>
                                 <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -48,7 +48,7 @@
                     <constraint firstAttribute="bottom" secondItem="8Jl-N7-LV6" secondAttribute="bottom" id="0kt-Uq-W0E"/>
                     <constraint firstItem="8Jl-N7-LV6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="f8r-PZ-Ewy"/>
                     <constraint firstItem="8Jl-N7-LV6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="hK5-so-h5I"/>
-                    <constraint firstAttribute="trailing" secondItem="8Jl-N7-LV6" secondAttribute="trailing" constant="60" id="jsR-46-FuO"/>
+                    <constraint firstAttribute="trailing" secondItem="8Jl-N7-LV6" secondAttribute="trailing" constant="80" id="jsR-46-FuO"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

@@ -45,6 +45,7 @@ class ChatViewController: UITableViewController, Dequeueable {
         tableView.registerDequeueable(ChatTableViewCell.self)
         tableView.registerDequeueable(StatusTableViewCell.self)
         tableView.registerDequeueable(AnswerCollectionTableViewCell.self)
+
     }
 
     override func viewWillAppear(_ animated: Bool) {

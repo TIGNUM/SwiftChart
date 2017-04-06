@@ -9,16 +9,16 @@
 import UIKit
 import UICollectionViewRightAlignedLayout
 
-protocol AnswerCollectionViewCellDelegate {
+protocol AnswerCollectionViewCellDelegate: class {
 
     func didSelectItemAtIndexPath(indexPath: IndexPath)
 }
 
 class AnswerCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegateRightAlignedLayout, Dequeueable {
 
+    @IBOutlet weak var cellTitleLabel: UILabel!
     @IBOutlet public weak var collectionView: UICollectionView!
-
-    var delegate: AnswerCollectionViewCellDelegate?
+    weak var delegate: AnswerCollectionViewCellDelegate?
     var dataSource: [ChatMessageNavigation] = []
 
     public func withDataModel(dataModel: [ChatMessageNavigation]!) {
@@ -35,6 +35,8 @@ class AnswerCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
         // re-write the class in swift later!!
         let collectionFlow = UICollectionViewRightAlignedLayout()
         self.collectionView.collectionViewLayout = collectionFlow
+
+        self.cellTitleLabel.text = "Preparations".uppercased()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -59,7 +61,8 @@ extension AnswerCollectionTableViewCell {
         let cell: AnswerCollectionViewCell = collectionView.dequeueCell(for: indexPath)
 
         cell.titleLbl.text = title
-        cell.addDashedBorder(color: UIColor.gray.cgColor, lineWidth: 3.0)
+
+        cell.addDashedBorder(lineWidth: 2)
 
         return cell
     }
