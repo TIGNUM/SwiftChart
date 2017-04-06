@@ -9,8 +9,15 @@
 import UIKit
 import Anchorage
 
-class TopTabBarController: UIViewController {
+protocol TopTabBarDelegate: class {
+    func didSelectItemAtIndex(index: Int?, sender: TabBarView)
     
+}
+class TopTabBarController: UIViewController {
+    weak var dataSource: UIPageViewControllerDataSource?
+    
+    fileprivate var controllers = [UIViewController]()
+    var index: Int = 0
     fileprivate lazy var navigationItemBar: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.white.withAlphaComponent(0.7)
@@ -18,7 +25,7 @@ class TopTabBarController: UIViewController {
     }()
     
     fileprivate lazy var tabBarView: TabBarView = {
-       let view = TabBarView()
+        let view = TabBarView()
         view.backgroundColor = .white
         view.setTitles(["FULL", "BULLETS"], selectedIndex: 0)
         return view
@@ -27,45 +34,95 @@ class TopTabBarController: UIViewController {
     fileprivate lazy var leftButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .red
+        button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         return button
     }()
     
     fileprivate lazy var rightButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .red
+        button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         return button
     }()
     
+    fileprivate lazy var containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .green
+        return view
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHierarchy()
+        setUpControllers()
+        index = tabBarView.selectedIndex!
+//        displayContentController(controllers[index])
+//        dataSource = self
+        }
+    
+    func buttonPressed(_ button: UIButton) {
+        print("hi")
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-         setupLayout()
-    }
-}
-
-extension TopTabBarController: UIPageViewControllerDelegate {
-    func presentationCount(for pageViewController: UIPageViewController) -> Int {
-        return 5
+        setupLayout()
     }
     
-    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-        return 5
+    let pageViewController = UIPageViewController.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+    
+    func setUpControllers() {
+         let learnStrategyViewController = LearnStrategyViewController(viewModel: LearnStrategyViewModel())
+         controllers.append(learnStrategyViewController)
+        let chatController = ChatViewController(viewModel: ChatViewModel())
+        controllers.append(chatController)
+//        let options = dictionaryWithValues(forKeys: [UIPageViewControllerOptionSpineLocationKey])
+    
+        pageViewController.setViewControllers([vcs[1]], direction: .forward, animated: false, completion: nil)
+        pageViewController.dataSource = self
+        
+        displayContentController(pageViewController)
+        
+        tabBarView.delegate = self
     }
+    
+    fileprivate func displayContentController(_ viewController: UIViewController) {
+       
+        addChildViewController(viewController)
+        viewController.view.frame = containerView.frame
+        containerView.addSubview(viewController.view)
+        viewController.didMove(toParentViewController: self)
+    }
+    
+    let vcs: [UIViewController] = {
+        let vc = UIViewController()
+        vc.view.backgroundColor = .yellow
+        let vc2 = UIViewController()
+        vc2.view.backgroundColor = .blue
+        
+        return [vc, vc2]
+    }()
+    
 }
+
 
 extension TopTabBarController: UIPageViewControllerDataSource {
     
-    func pageViewController(_ pageViewController: UIPageViewController,
-                            viewControllerBefore viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        if viewController == vcs[0] {
+            return nil
+        } else if viewController == vcs[1] {
+            return vcs[0]
+        }
         return nil
     }
     
-    func pageViewController(_ pageViewController: UIPageViewController,
-                            viewControllerAfter viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        if viewController == vcs[0] {
+            return vcs[1]
+        } else if viewController == vcs[1] {
+            return nil
+        }
         return nil
     }
 }
@@ -77,7 +134,8 @@ extension TopTabBarController {
         navigationItemBar.addSubview(leftButton)
         navigationItemBar.addSubview(rightButton)
         navigationItemBar.addSubview(tabBarView)
-       
+        view.addSubview(containerView)
+        
     }
     
     func setupLayout() {
@@ -100,6 +158,20 @@ extension TopTabBarController {
         tabBarView.topAnchor == navigationItemBar.topAnchor + 20
         tabBarView.bottomAnchor == navigationItemBar.bottomAnchor
         
-       view.layoutIfNeeded()
+        containerView.horizontalAnchors == view.horizontalAnchors
+        containerView.topAnchor == navigationItemBar.bottomAnchor
+        containerView.bottomAnchor == view.bottomAnchor
+        
+        view.layoutIfNeeded()
     }
+}
+
+extension TopTabBarController: TabBarViewDelegate {
+    func didSelectItemAtIndex(index: Int?, sender: TabBarView) {
+        guard let index = index else {
+            return
+        }
+        self.index = index
+        pageViewController.setViewControllers([vcs[index]], direction: .forward, animated: true, completion: nil)
+}
 }
