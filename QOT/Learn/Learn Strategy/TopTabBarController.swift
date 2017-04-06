@@ -13,7 +13,50 @@ protocol TopTabBarDelegate: class {
     func didSelectItemAtIndex(index: Int?, sender: TopTabBarController)
     
 }
-class TopTabBarController: UIViewController {
+
+
+final class TopTabBarController: UIViewController {
+    
+    struct Constants {
+        static let animationDuration: TimeInterval = 0.3
+        static let selectedButtonColor: UIColor = .white
+        static let deselectedButtonColor: UIColor = UIColor.white.withAlphaComponent(0.4)
+        static let stackViewHorizontalPadding: CGFloat = 16
+        static let indicatorViewExtendedWidth: CGFloat = 16
+    }
+    
+    struct Item {
+        let controller: UIViewController
+        let title: String
+    }
+    
+    fileprivate var items: [Item]
+    
+    fileprivate let tabBarView: TabBarView
+    
+    weak var delegate: TabBarControllerDelegate?
+    var viewControllers: [UIViewController] {
+        return items.map { $0.controller }
+    }
+    
+    init(items: [Item], selectedIndex: Index) {
+        precondition(selectedIndex >= 0 && selectedIndex < items.count, "Out of bounds selectedIndex")
+        
+        let tabBarView = TabBarView()
+        tabBarView.setTitles(items.map { $0.title }, selectedIndex: 0)
+        tabBarView.selectedColor = Constants.selectedButtonColor
+        tabBarView.deselectedColor = Constants.deselectedButtonColor
+        tabBarView.indicatorViewExtendedWidth = Constants.indicatorViewExtendedWidth
+        
+        self.items = items
+        self.tabBarView = tabBarView
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     fileprivate var controllers = [UIViewController]()
     var index: Int = 0
@@ -23,12 +66,12 @@ class TopTabBarController: UIViewController {
         return view
     }()
     
-    fileprivate lazy var tabBarView: TabBarView = {
-        let view = TabBarView()
-        view.backgroundColor = .white
-        view.setTitles(["FULL", "BULLETS"], selectedIndex: 0)
-        return view
-    }()
+    //    fileprivate lazy var tabBarView: TabBarView = {
+    //        let view = TabBarView()
+    //        view.backgroundColor = .white
+    //        view.setTitles(["FULL", "BULLETS"], selectedIndex: 0)
+    //        return view
+    //    }()
     
     fileprivate lazy var leftButton: UIButton = {
         let button = UIButton()
@@ -78,10 +121,16 @@ class TopTabBarController: UIViewController {
         let width: CGFloat = self.view.bounds.width
         
         print(width)
-        scrollView.frame = vcs.first!.view.frame
-        scrollView.contentSize = CGSize(width: CGFloat(vcs.count) * width, height: 0)
-        _ = vcs.map({ addViewToScrollView($0) })
-        _ = vcs.map({ $0.view.frame.origin =  CGPoint(x: CGFloat(vcs.index(of: $0)!) * width, y: 0) })
+        // items[0].controller.view.frame
+        scrollView.frame = view.bounds
+        scrollView.contentSize = CGSize(width: CGFloat(items.count) * width, height: 0)
+        
+        for (index, item) in items.enumerated() {
+            let vc = item.controller
+            
+            addViewToScrollView(vc)
+            vc.view.frame.origin =  CGPoint(x: CGFloat(index) * width, y: 0)
+        }
     }
     
     func addViewToScrollView(_ viewController: UIViewController) {
@@ -153,18 +202,29 @@ extension TopTabBarController: TabBarViewDelegate {
         
         self.index = index
         if index != scrollView.currentPage {
-        if index == 0 {
-            let offset = CGPoint(x: scrollView.contentOffset.x - scrollView.bounds.size.width, y: 0)
-            scrollView.setContentOffset(offset, animated: true)
+            if index == 0 {
+                let offset = CGPoint(x: scrollView.contentOffset.x - scrollView.bounds.size.width, y: 0)
+                scrollView.setContentOffset(offset, animated: true)
+            }
+            if index == 1 {
+                let offset = CGPoint(x: scrollView.contentOffset.x + scrollView.bounds.size.width, y: 0)
+                scrollView.setContentOffset(offset, animated: true)
+            }
+            if index == 2 {
+                let offset = CGPoint(x: scrollView.contentOffset.x + scrollView.bounds.size.width, y: 0)
+                scrollView.setContentOffset(offset, animated: true)
+            }
+            
+            if index == 3 {
+                let offset = CGPoint(x: scrollView.contentOffset.x + scrollView.bounds.size.width, y: 0)
+                scrollView.setContentOffset(offset, animated: true)
+            }
         }
-        if index == 1 {
-            let offset = CGPoint(x: scrollView.contentOffset.x + scrollView.bounds.size.width, y: 0)
-            scrollView.setContentOffset(offset, animated: true)
-            } }
     }
 }
 
 private extension UIScrollView {
+    
     var currentPage: Int {
         return Int(round(self.contentOffset.x / self.bounds.size.width))
     }

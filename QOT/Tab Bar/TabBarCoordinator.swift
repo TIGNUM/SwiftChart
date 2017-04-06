@@ -55,13 +55,25 @@ final class TabBarCoordinator: ParentCoordinator {
         self.addViewControllers()
     }
     
+    private func vc(_ color: UIColor, _ title: String) -> TopTabBarController.Item {
+        let vc = UIViewController()
+        vc.view.backgroundColor = color
+        return TopTabBarController.Item(controller: vc, title: title)
+    }
+    
     func start() {
-        let tabbar = TopTabBarController()
+        
+        
+        
+        let vcs: [TopTabBarController.Item] = [vc(.red, "a"), vc(.blue, "bbb"), vc(.gray, "cccccc"), vc(.yellow, "ee")]
+        let ttbc = TopTabBarController(items: vcs, selectedIndex: 0)
+        
+        
         let items: [TabBarController.Item] = [
             TabBarController.Item(controller: learnCategoryListViewController, title: R.string.localized.tabBarItemLearn()),
             TabBarController.Item(controller: meSectionViewController, title: R.string.localized.tabBarItemMe()),
             TabBarController.Item(controller: chatViewController, title: R.string.localized.tabBarItemPrepare()),
-            TabBarController.Item(controller: tabbar, title: "TOPBAR")
+            TabBarController.Item(controller: ttbc, title: "ttbc")
         ]
         
         let tabBarController = TabBarController(items: items, selectedIndex: 0)
