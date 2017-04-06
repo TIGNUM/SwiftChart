@@ -16,7 +16,7 @@ protocol ChatViewDelegate: class {
     func didSelectChatInput(_ input: ChatMessageInput, in viewController: ChatViewController)
 }
 
-class ChatViewController: UITableViewController {
+class ChatViewController: UITableViewController, Dequeueable {
     
     // MARK: - Properties
 
@@ -38,6 +38,15 @@ class ChatViewController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        //Dequeue TableCells
+        tableView.registerDequeueable(ChatTableViewCell.self)
+        tableView.registerDequeueable(StatusTableViewCell.self)
+        tableView.registerDequeueable(AnswerCollectionTableViewCell.self)
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -48,10 +57,6 @@ class ChatViewController: UITableViewController {
     private func setupTableView() {
         view.backgroundColor = .black
         tableView.backgroundColor = .black
-        tableView.register(UINib(nibName: String(describing:ChatTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing:ChatTableViewCell.self))
-        tableView.register(UINib(nibName: String(describing:StatusTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing:StatusTableViewCell.self))
-
-        tableView.register(UINib(nibName: String(describing:AnswerCollectionTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing:AnswerCollectionTableViewCell.self))
 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = CGFloat(estimatedRowHeight)
@@ -80,32 +85,32 @@ extension ChatViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let chatMessage = viewModel.item(at: indexPath.row)
-
+        
         switch chatMessage {
         case .instruction(let type, _):
             switch type {
             case .message(let message):
-                let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ChatTableViewCell.self), for: indexPath) as! ChatTableViewCell
+                let cell: ChatTableViewCell = tableView.dequeueCell(for: indexPath)
                 cell.chatLabel?.text = message
                 return cell
 
             case .typing:
-                let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ChatTableViewCell.self), for: indexPath) as! ChatTableViewCell
-                cell.chatLabel?.text = "..."
+                let cell: ChatTableViewCell = tableView.dequeueCell(for: indexPath)
+                cell.chatLabel.text = "..."
                 return cell
             }
         case .header(let title, _):
-            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: StatusTableViewCell.self), for: indexPath) as! StatusTableViewCell
-            cell.statusLabel?.text = title
+            let cell: StatusTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.statusLabel.text = title
             return cell
 
         case .navigation(let items):
-            let collectionCell = tableView.dequeueReusableCell(withIdentifier: String(describing:AnswerCollectionTableViewCell.self), for: indexPath) as! AnswerCollectionTableViewCell
+            let collectionCell: AnswerCollectionTableViewCell = tableView.dequeueCell(for: indexPath)
             collectionCell.withDataModel(dataModel: items)
             return collectionCell
 
         case .input(let items):
-            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ChatTableViewCell.self), for: indexPath) as! ChatTableViewCell
+            let cell: ChatTableViewCell = tableView.dequeueCell(for: indexPath)
             return cell
         }
     }

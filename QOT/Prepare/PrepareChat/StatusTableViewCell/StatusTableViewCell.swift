@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StatusTableViewCell: UITableViewCell {
+class StatusTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet weak var statusLabel: UILabel!
     override func awakeFromNib() {

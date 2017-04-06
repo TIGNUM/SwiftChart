@@ -14,7 +14,7 @@ protocol AnswerCollectionViewCellDelegate {
     func didSelectItemAtIndexPath(indexPath: IndexPath)
 }
 
-class AnswerCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegateRightAlignedLayout{
+class AnswerCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegateRightAlignedLayout, Dequeueable{
 
     @IBOutlet weak var collectionView: UICollectionView!
     var delegate: AnswerCollectionViewCellDelegate?

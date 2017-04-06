@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChatTableViewCell: UITableViewCell {
+class ChatTableViewCell: UITableViewCell, Dequeueable {
     
     @IBOutlet weak var chatLabel: UILabel!
     @IBOutlet weak var cardLikeView: UIView!
