@@ -74,10 +74,11 @@ class MeSectionViewController: UIViewController {
     override func loadView() {
         // calling self.view later on will return a UIView!, but we can simply call
         // self.scrollView to adjust properties of the scroll view:
-        self.view = self.scrollView
+        view = scrollView
 
         // setup the scroll view
-        self.scrollView.contentSize = CGSize(width:1234, height: 5678)
+        let screenFrame = UIScreen.main.bounds        
+        scrollView.contentSize = CGSize(width: (screenFrame.width * 2), height: screenFrame.height - 84)
         // etc...
     }
 
