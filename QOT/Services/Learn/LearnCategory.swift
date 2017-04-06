@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QOTDatabase
 
 /// Encapsulates data to display in a `LearnCategoryListViewController`.
 protocol LearnCategory: TrackableEntity {

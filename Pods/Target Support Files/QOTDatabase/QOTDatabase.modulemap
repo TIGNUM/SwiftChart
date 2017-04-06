@@ -1,0 +1,6 @@
+framework module QOTDatabase {
+  umbrella header "QOTDatabase-umbrella.h"
+
+  export *
+  module * { export * }
+}
