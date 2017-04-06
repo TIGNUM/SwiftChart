@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AnswerCollectionViewCell: UICollectionViewCell {
+class AnswerCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     @IBOutlet weak var titleLbl: UILabel!
 

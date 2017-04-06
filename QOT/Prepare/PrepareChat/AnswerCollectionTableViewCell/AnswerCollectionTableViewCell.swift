@@ -14,20 +14,22 @@ protocol AnswerCollectionViewCellDelegate {
     func didSelectItemAtIndexPath(indexPath: IndexPath)
 }
 
-class AnswerCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegateRightAlignedLayout, Dequeueable{
+class AnswerCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegateRightAlignedLayout, Dequeueable {
 
     @IBOutlet weak var collectionView: UICollectionView!
     var delegate: AnswerCollectionViewCellDelegate?
     var dataSource: [ChatMessageNavigation] = []
 
-    public func withDataModel(dataModel: [ChatMessageNavigation]!){
+    public func withDataModel(dataModel: [ChatMessageNavigation]!) {
         self.dataSource = dataModel
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.collectionView.delegate = self;
-        self.collectionView.dataSource = self;
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
+
+        self.collectionView.registerDequeueable(AnswerCollectionViewCell.self)
 
         // re-write the class in swift later!!
         let collectionFlow = UICollectionViewRightAlignedLayout()
@@ -47,14 +49,13 @@ extension AnswerCollectionTableViewCell {
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1;
+        return 1
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        collectionView.register(UINib(nibName: String(describing:AnswerCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing:AnswerCollectionViewCell.self))
 
         let title = self.dataSource.item(at: indexPath.row).title
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing:AnswerCollectionViewCell.self), for: indexPath) as! AnswerCollectionViewCell
+        let cell: AnswerCollectionViewCell = collectionView.dequeueCell(for: indexPath)
 
         cell.titleLbl.text = title
         cell.addDashedBorder(color: UIColor.gray.cgColor, lineWidth: 3.0)
