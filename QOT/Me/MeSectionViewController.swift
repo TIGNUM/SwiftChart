@@ -26,7 +26,7 @@ class MeSectionViewController: UIViewController {
     weak var delegate: MeSectionDelegate?
 
     let categoryLabel: [CategoryLabel] = [
-        CategoryLabel(text: "Load", textColor: UIColor(white: 0.7, alpha: 0.6), position: CGPoint(x: 200, y: 100)),
+        CategoryLabel(text: "Itensity", textColor: UIColor(white: 0.7, alpha: 0.6), position: CGPoint(x: 200, y: 100)),
         CategoryLabel(text: "Meetings", textColor: .red, position: CGPoint(x: 150, y: 200)),
         CategoryLabel(text: "Peak", textColor: UIColor(white: 0.7, alpha: 0.6), position: CGPoint(x: 100, y: 300)),
         CategoryLabel(text: "Trips", textColor: UIColor(white: 0.7, alpha: 0.6), position: CGPoint(x: 50, y: 400)),
@@ -37,7 +37,7 @@ class MeSectionViewController: UIViewController {
     var profileImageFrame: CGRect {
         return CGRect(
             x: view.frame.width - 80,
-            y: view.frame.height * 0.5,
+            y: (view.frame.height * 0.5) - 50,
             width: 100,
             height: 100
         )
@@ -46,7 +46,7 @@ class MeSectionViewController: UIViewController {
     var backgroundCircleCenterPoint: CGPoint {
         return CGPoint(
             x: profileImageFrame.origin.x,
-            y: profileImageFrame.origin.x + (profileImageFrame.height * 0.5)
+            y: profileImageFrame.origin.x  + (profileImageFrame.height * 0.5) - 25
         )
     }
     
@@ -66,20 +66,6 @@ class MeSectionViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .black
-    }
-
-    override func loadView() {
-        view = scrollView
-        scrollView.contentSize = CGSize(width: (UIScreen.main.bounds.width * 2) - 100, height: UIScreen.main.bounds.height - 84)
-        scrollView.isPagingEnabled = true
-        scrollView.bounces = false
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.showsHorizontalScrollIndicator = false
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
         addProfileImage()
         drawBackCircles(radius: 175, linesDashPattern: [2, 1])
         drawBackCircles(radius: 250)
@@ -88,7 +74,25 @@ class MeSectionViewController: UIViewController {
         addCategoryLabels()
     }
 
-    private func drawDataPoints() {
+    override func loadView() {
+        setupScrollView()
+    }
+}
+
+// MARK: - Draw
+
+private extension MeSectionViewController {
+
+    func setupScrollView() {
+        view = scrollView
+        scrollView.contentSize = CGSize(width: (UIScreen.main.bounds.width * 2) - 100, height: UIScreen.main.bounds.height - 84)
+        scrollView.isPagingEnabled = true
+        scrollView.bounces = false
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
+    }
+
+    func drawDataPoints() {
         viewModel.items.forEach { (myDataItem: MyDataItem) in
             switch myDataItem.category {
             case .load(let subCategory):
@@ -101,16 +105,29 @@ class MeSectionViewController: UIViewController {
         dataPointsCenterCoordinates.insert(backgroundCircleCenterPoint, at: 0)
     }
 
-    private func addProfileImage() {
+    func addProfileImage() {
+        guard
+            let image = viewModel.profileImage,
+            let cgimg = image.cgImage else {
+                return
+        }
+
         let imageView = UIImageView(frame: profileImageFrame)
-        imageView.image = viewModel.profileImage
-        imageView.contentMode = .scaleToFill
-        imageView.layer.cornerRadius = imageView.frame.width * 0.5
-        imageView.clipsToBounds = true
-        view.addSubview(imageView)
+        let coreImage = CIImage(cgImage: cgimg)
+        let filter = CIFilter(name: "CIPhotoEffectNoir")
+        filter?.setValue(coreImage, forKey: kCIInputImageKey)
+
+        if let outputImage = filter?.value(forKey: kCIOutputImageKey) as? CIImage {
+            let filteredImage = UIImage(ciImage: outputImage)
+            imageView.image = filteredImage
+            imageView.contentMode = .scaleToFill
+            imageView.layer.cornerRadius = imageView.frame.width * 0.5
+            imageView.clipsToBounds = true
+            view.addSubview(imageView)
+        }
     }
 
-    private func drawDataPoint(distance: CGFloat, angle: CGFloat, category: DataCategory) {
+    func drawDataPoint(distance: CGFloat, angle: CGFloat, category: DataCategory) {
         let center = CGPoint(x: angle, y: (distance * 100))
         let circlePath = UIBezierPath.circlePath(center: center, radius: CGFloat(distance * 10))
 
@@ -123,7 +140,7 @@ class MeSectionViewController: UIViewController {
         dataPointsCenterCoordinates.append(center)
     }
 
-    private func drawBackCircles(radius: CGFloat, linesDashPattern: [NSNumber]? = nil) {
+    func drawBackCircles(radius: CGFloat, linesDashPattern: [NSNumber]? = nil) {
         let circlePath = UIBezierPath.circlePath(center: backgroundCircleCenterPoint, radius: radius)
         let shapeLayer = CAShapeLayer.pathWithColor(
             path: circlePath.cgPath,
@@ -134,7 +151,7 @@ class MeSectionViewController: UIViewController {
         view.layer.addSublayer(shapeLayer)
     }
 
-    private func connectDataPoint() {
+    func connectDataPoint() {
         for (index, center) in dataPointsCenterCoordinates.enumerated() {
             let nextIndex = (index + 1)
 
@@ -148,7 +165,7 @@ class MeSectionViewController: UIViewController {
         }
     }
 
-    private func addCategoryLabels() {
+    func addCategoryLabels() {
         categoryLabel.forEach { (categoryLabel: CategoryLabel) in
             let frame = CGRect(x: categoryLabel.position.x, y: categoryLabel.position.y, width: 0, height: 21)
             let label = UILabel(frame: frame)
