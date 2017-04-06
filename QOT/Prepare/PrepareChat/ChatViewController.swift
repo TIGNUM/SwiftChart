@@ -91,7 +91,7 @@ extension ChatViewController {
             switch type {
             case .message(let message):
                 let cell: ChatTableViewCell = tableView.dequeueCell(for: indexPath)
-                cell.chatLabel?.text = message
+                cell.chatLabel.text = message 
                 return cell
 
             case .typing:
@@ -116,25 +116,16 @@ extension ChatViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: false)
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let chatMessage = viewModel.item(at: indexPath.row)
-        switch chatMessage {
-        case .instruction(let type, _):
-            switch type {
-            case .message:
-                return 100
-            case .typing:
-                return 30
-            }
-        case .header:
-            return 30
-        case .navigation:
-            return 190
-        case .input:
-            return 100
+        if(chatMessage) {
+            let cell: AnswerCollectionTableViewCell = tableView.dequeueCell(for: indexPath)
+            let height = cell.heightOfCollectionViewBasedOnNumberOfItems()
+            return CGFloat(height)
         }
+        return 0
     }
 }

@@ -34,10 +34,23 @@ class AnswerCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
         // re-write the class in swift later!!
         let collectionFlow = UICollectionViewRightAlignedLayout()
         self.collectionView.collectionViewLayout = collectionFlow
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+
+    public func heightOfCollectionViewBasedOnNumberOfItems() -> Int {
+        let numberOfcells = self.dataSource.count
+        let screenSize: CGRect = UIScreen.main.bounds
+        var totalWidth: Int = 0
+        for i: Int  in 1...numberOfcells {
+            let cell: AnswerCollectionViewCell = self.collectionView.dequeueCell(for: IndexPath.init(row: i, section: 1))
+            totalWidth += Int(cell.frame.width+10)
+        }
+        totalWidth /= Int(screenSize.width)
+        return totalWidth
     }
 }
 
