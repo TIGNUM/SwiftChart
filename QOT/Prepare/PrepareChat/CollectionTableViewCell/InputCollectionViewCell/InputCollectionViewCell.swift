@@ -31,7 +31,7 @@ extension UIView {
         shapeLayer.strokeColor = borderColour.cgColor
         shapeLayer.lineWidth = lineWidth
         shapeLayer.lineJoin = kCALineJoinRound
-        shapeLayer.path = UIBezierPath(roundedRect: self.bounds, cornerRadius: 25).cgPath
+        shapeLayer.path = UIBezierPath(roundedRect: self.bounds, cornerRadius: 35).cgPath
         self.layer.addSublayer(shapeLayer)
     }
 }
