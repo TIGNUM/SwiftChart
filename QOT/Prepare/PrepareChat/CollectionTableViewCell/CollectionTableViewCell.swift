@@ -19,10 +19,15 @@ class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
     @IBOutlet public weak var cellTitleLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     weak var delegate: CollectionViewCellDelegate?
-    var dataSource: [ChatMessageNavigation] = []
+    var navigationDataSource: [ChatMessageNavigation] = []
+    var inputDataSource: [ChatMessageInput] = []
 
-    public func withDataModel(dataModel: [ChatMessageNavigation]!) {
-        self.dataSource = dataModel
+    public func navigationWithDataModel(dataModel: [ChatMessageNavigation]!) {
+        self.navigationDataSource = dataModel
+    }
+
+    public func inputWithDataModel(dataModel: [ChatMessageInput]!) {
+        self.inputDataSource = dataModel
     }
 
     override func awakeFromNib() {
@@ -30,13 +35,11 @@ class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
 
-        self.collectionView.registerDequeueable(AnswerCollectionViewCell.self)
+        self.collectionView.registerDequeueable(InputCollectionViewCell.self)
+        self.collectionView.registerDequeueable(NavigationCollectionViewCell.self)
 
-        // re-write the class in swift later!!
         let collectionFlow = UICollectionViewRightAlignedLayout()
         self.collectionView.collectionViewLayout = collectionFlow
-
-        self.cellTitleLabel.text = "Preparations".uppercased()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -47,7 +50,8 @@ class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
 extension CollectionTableViewCell {
 
     // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
         return self.dataSource.count
     }
 

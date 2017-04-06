@@ -118,13 +118,15 @@ extension ChatViewController {
 
         case .navigation(let items):
             let collectionCell: CollectionTableViewCell = tableView.dequeueCell(for: indexPath)
-            collectionCell.withDataModel(dataModel: items)
+            collectionCell.cellTitleLabel.text = "Preparations".uppercased()
+            collectionCell.navigationWithDataModel(dataModel: items)
             return collectionCell
 
         case .input(let items):
-            print("\(items)")
-            let cell: ChatTableViewCell = tableView.dequeueCell(for: indexPath)
-            return cell
+            let collectionCell: CollectionTableViewCell = tableView.dequeueCell(for: indexPath)
+            collectionCell.cellTitleLabel.text = "Day Protocol".uppercased()
+            collectionCell.inputWithDataModel(dataModel: items)
+            return collectionCell
         }
     }
 

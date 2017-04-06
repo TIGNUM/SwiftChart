@@ -34,8 +34,8 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <connections>
-                            <outlet property="dataSource" destination="-1" id="Kta-hc-RD9"/>
-                            <outlet property="delegate" destination="-1" id="YvF-bs-2bF"/>
+                            <outlet property="dataSource" destination="-1" id="HQi-ab-vLR"/>
+                            <outlet property="delegate" destination="-1" id="e2V-Kh-58j"/>
                         </connections>
                     </collectionView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Tj-O9-fvH">
@@ -57,8 +57,8 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="cellTitleLabel" destination="0Tj-O9-fvH" id="Wda-cJ-AIl"/>
-                <outlet property="collectionView" destination="cnF-aM-5Ce" id="LYj-jB-wJ0"/>
+                <outlet property="cellTitleLabel" destination="0Tj-O9-fvH" id="vkA-gO-IOl"/>
+                <outlet property="collectionView" destination="cnF-aM-5Ce" id="P18-PS-2hl"/>
             </connections>
             <point key="canvasLocation" x="43" y="129.5"/>
         </tableViewCell>
