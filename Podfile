@@ -7,11 +7,12 @@ target 'QOT' do
   use_frameworks!
 
   # Pods for QOT
-  pod 'RealmSwift', '~> 2.4'
   pod 'Bond', '~> 6.0'
   pod 'Anchorage', '~> 3.1'
   pod 'R.swift', '~> 3.2'
-  pod 'QOTDatabase'
+  pod 'QOTDatabase', '~> 0.0'
+  pod 'UICollectionViewRightAlignedLayout', '~> 0.0'
+
 
   target 'QOTTests' do
     inherit! :search_paths
