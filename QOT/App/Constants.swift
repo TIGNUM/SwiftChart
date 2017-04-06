@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 
+let screen = UIScreen.main.bounds
+
 struct Animation {
     static let durationFade: TimeInterval = 0.4
     static let fadeInHeight: CGFloat = -22

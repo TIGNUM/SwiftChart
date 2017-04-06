@@ -14,6 +14,11 @@ struct CategoryLabel {
     let position: CGPoint
 }
 
+struct Spike {
+    let strokeColor: UIColor
+    let startPoint: CGPoint
+}
+
 class MeSectionViewController: UIViewController {
     
     // MARK: - Properties
@@ -22,6 +27,7 @@ class MeSectionViewController: UIViewController {
     let strokeColor = UIColor(white: 0.7, alpha: 0.4)
     var dataPointsCenterCoordinates = [CGPoint]()
     let scrollView = UIScrollView(frame: UIScreen.main.bounds)
+    var profileImageView = UIImageView()
 
     weak var delegate: MeSectionDelegate?
 
@@ -34,7 +40,37 @@ class MeSectionViewController: UIViewController {
         CategoryLabel(text: "Activity", textColor: UIColor(white: 0.7, alpha: 0.6), position: CGPoint(x: 200, y: 600))
     ]
 
-    var profileImageFrame: CGRect {
+    let sectorPoints = [
+        CGPoint(x: 0, y: 0),
+        CGPoint(x: 0, y: UIScreen.main.bounds.height),
+        CGPoint(x: 0, y: UIScreen.main.bounds.height * 0.5)
+    ]
+
+    let spikes = [
+        Spike(strokeColor: .magenta, startPoint: CGPoint(x: screen.width * 0.5, y: 0)),
+        Spike(strokeColor: .magenta, startPoint: CGPoint(x: screen.width * 0.4, y: 0)),
+        Spike(strokeColor: .magenta, startPoint: CGPoint(x: screen.width * 0.3, y: 0)),
+        Spike(strokeColor: .blue, startPoint: CGPoint(x: screen.width * 0.1, y: 0)),
+        Spike(strokeColor: .blue, startPoint: CGPoint(x: 0, y: 0)),
+        Spike(strokeColor: .blue, startPoint: CGPoint(x: 0, y: screen.height * 0.1)),
+        Spike(strokeColor: .blue, startPoint: CGPoint(x: 0, y: screen.height * 0.2)),
+        Spike(strokeColor: .blue, startPoint: CGPoint(x: 0, y: screen.height * 0.3)),
+        Spike(strokeColor: .yellow, startPoint: CGPoint(x: 0, y: screen.height * 0.4)),
+        Spike(strokeColor: .yellow, startPoint: CGPoint(x: 0, y: screen.height * 0.5)),
+        Spike(strokeColor: .yellow, startPoint: CGPoint(x: 0, y: screen.height * 0.6)),
+        Spike(strokeColor: .green, startPoint: CGPoint(x: 0, y: screen.height * 0.7)),
+        Spike(strokeColor: .green, startPoint: CGPoint(x: 0, y: screen.height * 0.8)),
+        Spike(strokeColor: .green, startPoint: CGPoint(x: 0, y: screen.height * 0.9)),
+        Spike(strokeColor: .green, startPoint: CGPoint(x: 0, y: screen.height)),
+        Spike(strokeColor: .green, startPoint: CGPoint(x: screen.width * 0.1, y: screen.height)),
+        Spike(strokeColor: .orange, startPoint: CGPoint(x: screen.width * 0.2, y: screen.height)),
+        Spike(strokeColor: .orange, startPoint: CGPoint(x: screen.width * 0.3, y: screen.height)),
+        Spike(strokeColor: .cyan, startPoint: CGPoint(x: screen.width * 0.4, y: screen.height)),
+        Spike(strokeColor: .cyan, startPoint: CGPoint(x: screen.width * 0.5, y: screen.height)),
+        Spike(strokeColor: .cyan, startPoint: CGPoint(x: screen.width * 0.6, y: screen.height))
+    ]
+
+    var profileImageViewFrame: CGRect {
         return CGRect(
             x: view.frame.width - 80,
             y: (view.frame.height * 0.5) - 50,
@@ -45,8 +81,8 @@ class MeSectionViewController: UIViewController {
 
     var backgroundCircleCenterPoint: CGPoint {
         return CGPoint(
-            x: profileImageFrame.origin.x,
-            y: profileImageFrame.origin.x  + (profileImageFrame.height * 0.5) - 25
+            x: profileImageViewFrame.origin.x,
+            y: profileImageViewFrame.origin.x  + (profileImageViewFrame.height * 0.5) - 25
         )
     }
     
@@ -72,10 +108,21 @@ class MeSectionViewController: UIViewController {
         connectDataPoint()
         drawDataPoints()
         addCategoryLabels()
+        drawSectors()
     }
 
     override func loadView() {
         setupScrollView()
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+
+extension MeSectionViewController: UIScrollViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let itensity = ((scrollView.contentOffset.x + 314) / 314)
+        print("itensity: \(itensity)")
     }
 }
 
@@ -85,11 +132,12 @@ private extension MeSectionViewController {
 
     func setupScrollView() {
         view = scrollView
-        scrollView.contentSize = CGSize(width: (UIScreen.main.bounds.width * 2) - 100, height: UIScreen.main.bounds.height - 84)
-        scrollView.isPagingEnabled = true
         scrollView.bounces = false
+        scrollView.delegate = self
+        scrollView.isPagingEnabled = true
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
+        scrollView.contentSize = CGSize(width: (UIScreen.main.bounds.width * 2) - 100, height: UIScreen.main.bounds.height - 84)
     }
 
     func drawDataPoints() {
@@ -105,26 +153,13 @@ private extension MeSectionViewController {
         dataPointsCenterCoordinates.insert(backgroundCircleCenterPoint, at: 0)
     }
 
-    func addProfileImage() {
-        guard
-            let image = viewModel.profileImage,
-            let cgimg = image.cgImage else {
-                return
-        }
-
-        let imageView = UIImageView(frame: profileImageFrame)
-        let coreImage = CIImage(cgImage: cgimg)
-        let filter = CIFilter(name: "CIPhotoEffectNoir")
-        filter?.setValue(coreImage, forKey: kCIInputImageKey)
-
-        if let outputImage = filter?.value(forKey: kCIOutputImageKey) as? CIImage {
-            let filteredImage = UIImage(ciImage: outputImage)
-            imageView.image = filteredImage
-            imageView.contentMode = .scaleToFill
-            imageView.layer.cornerRadius = imageView.frame.width * 0.5
-            imageView.clipsToBounds = true
-            view.addSubview(imageView)
-        }
+    func addProfileImage() {        
+        profileImageView = UIImageView(frame: profileImageViewFrame)
+        profileImageView.image = viewModel.profileImage
+        profileImageView.contentMode = .scaleToFill
+        profileImageView.layer.cornerRadius = profileImageView.frame.width * 0.5
+        profileImageView.clipsToBounds = true
+        view.addSubview(profileImageView)
     }
 
     func drawDataPoint(distance: CGFloat, angle: CGFloat, category: DataCategory) {
@@ -149,6 +184,26 @@ private extension MeSectionViewController {
         )
         shapeLayer.lineDashPattern = linesDashPattern
         view.layer.addSublayer(shapeLayer)
+    }
+
+    func drawSectors() {
+//        for offset in stride(from: -3, through: 3, by: 0.25) {
+//            drawSector(offset: CGFloat(offset))
+//        }
+
+        spikes.forEach { (spike: Spike) in
+            let line = CAShapeLayer.line(from: spike.startPoint, to: profileImageView.center, strokeColor: spike.strokeColor)
+            view.layer.addSublayer(line)
+        }
+    }
+
+    func drawSector(offset: CGFloat) {
+        let yPos = profileImageView.center.y * offset
+        print("offsett: \(yPos)")
+        print("maxY: \(UIScreen.main.bounds.maxY)")
+        let centerPi = CGPoint(x: 0, y: yPos)
+        let centerPiLine = CAShapeLayer.line(from: centerPi, to: profileImageView.center, strokeColor: .red)
+        view.layer.addSublayer(centerPiLine)
     }
 
     func connectDataPoint() {
