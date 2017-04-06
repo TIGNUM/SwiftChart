@@ -24,7 +24,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2X4-zv-Yte">
-                        <rect key="frame" x="5" y="5" width="147" height="40"/>
+                        <rect key="frame" x="58.5" y="17.5" width="40" height="15.5"/>
                         <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="16"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -32,12 +32,17 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="2X4-zv-Yte" secondAttribute="bottom" constant="5" id="1Kq-v8-HVU"/>
-                <constraint firstItem="2X4-zv-Yte" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="9lE-7w-KJZ"/>
-                <constraint firstAttribute="trailing" secondItem="2X4-zv-Yte" secondAttribute="trailing" constant="5" id="H5V-Tu-2e0"/>
-                <constraint firstItem="2X4-zv-Yte" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="o7b-bR-Ief"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="2X4-zv-Yte" secondAttribute="bottom" constant="5" id="1Kq-v8-HVU"/>
+                <constraint firstItem="2X4-zv-Yte" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="9lE-7w-KJZ"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2X4-zv-Yte" secondAttribute="trailing" constant="5" id="H5V-Tu-2e0"/>
+                <constraint firstItem="2X4-zv-Yte" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="MUr-on-btz"/>
+                <constraint firstItem="2X4-zv-Yte" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="o7b-bR-Ief"/>
+                <constraint firstItem="2X4-zv-Yte" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="yoc-rn-KES"/>
             </constraints>
             <size key="customSize" width="157" height="50"/>
+            <connections>
+                <outlet property="titleLbl" destination="2X4-zv-Yte" id="nQF-xl-Aab"/>
+            </connections>
             <point key="canvasLocation" x="87.5" y="54"/>
         </collectionViewCell>
     </objects>

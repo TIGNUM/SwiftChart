@@ -10,6 +10,8 @@ import UIKit
 
 class InputCollectionViewCell: UICollectionViewCell, Dequeueable {
 
+    @IBOutlet weak var titleLbl: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.contentView.backgroundColor = UIColor.black

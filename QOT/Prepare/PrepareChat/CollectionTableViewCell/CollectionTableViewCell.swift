@@ -19,15 +19,10 @@ class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
     @IBOutlet public weak var cellTitleLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     weak var delegate: CollectionViewCellDelegate?
-    var navigationDataSource: [ChatMessageNavigation] = []
-    var inputDataSource: [ChatMessageInput] = []
+    var dataModel: [Any] = []
 
-    public func navigationWithDataModel(dataModel: [ChatMessageNavigation]!) {
-        self.navigationDataSource = dataModel
-    }
-
-    public func inputWithDataModel(dataModel: [ChatMessageInput]!) {
-        self.inputDataSource = dataModel
+    public func inputWithDataModel(dataModel: [Any]!) {
+        self.dataModel = dataModel
     }
 
     override func awakeFromNib() {
@@ -50,9 +45,14 @@ class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
 extension CollectionTableViewCell {
 
     // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
-    {
-        return self.dataSource.count
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+        if let obj = self.dataModel as? [ChatMessageNavigation] {
+            return  obj.numberOfItems(inSection: section)
+        } else if let obj = self.dataModel as? [ChatMessageInput] {
+            return  obj.numberOfItems(inSection: section)
+        }
+        return 0
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -60,15 +60,19 @@ extension CollectionTableViewCell {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-        let title = self.dataSource.item(at: indexPath.row).title
-        let cell: NavigationCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-
-        cell.titleLbl.text = title
-
-        cell.addDashedBorder(lineWidth: 2)
-
-        return cell
+        if let obj = self.dataModel as? [ChatMessageNavigation] {
+            let title = obj.item(at: indexPath.row).title
+            let cell: NavigationCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+            cell.titleLbl.text = title
+            cell.addDashedBorder(lineWidth: 2)
+            return cell
+        } else if let obj = self.dataModel as? [ChatMessageInput] {
+            let title = obj.item(at: indexPath.row).title
+            let cell: InputCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+            cell.titleLbl.text = title
+            return cell
+        }
+        return UICollectionViewCell()
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -76,8 +80,15 @@ extension CollectionTableViewCell {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = self.dataSource.item(at: indexPath.row).title.width(withConstrainedHeight: 00, font: UIFont(name: "BentonSans", size: 16)!) + 25
-        return CGSize(width: cellWidth, height: 40)
+        if let obj = self.dataModel as? [ChatMessageNavigation] {
+            let cellWidth = obj.item(at: indexPath.row).title.width(withConstrainedHeight: 00, font: UIFont(name: "BentonSans", size: 16)!) + 25
+            return CGSize(width: cellWidth, height: 40)
+
+        } else if let obj = self.dataModel as? [ChatMessageInput] {
+            let cellWidth = obj.item(at: indexPath.row).title.width(withConstrainedHeight: 00, font: UIFont(name: "BentonSans", size: 16)!) + 25
+            return CGSize(width: cellWidth, height: 40)
+        }
+        return CGSize()
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

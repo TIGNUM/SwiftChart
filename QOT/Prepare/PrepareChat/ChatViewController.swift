@@ -76,12 +76,20 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }.dispose(in: disposeBag)
     }
 
-    public func heightOfCollectionViewBasedOnNumberOfItems(items: ([ChatMessageNavigation])) -> CGFloat {
+    public func heightOfCollectionViewBasedOnNumberOfItems(items: ([Any])) -> CGFloat {
         let screenSize: CGRect = UIScreen.main.bounds
         var totalWidth: CGFloat = 0.0
-        for i: Int  in stride(from: 1, to: items.count, by: 1) {
-            totalWidth += items.item(at: i).title.width(withConstrainedHeight: 0, font: UIFont(name: "BentonSans", size: 16)!) + 70
+
+        if let obj = items as? [ChatMessageNavigation] {
+            for i: Int  in stride(from: 1, to: items.count, by: 1) {
+                totalWidth += obj.item(at: i).title.width(withConstrainedHeight: 0, font: UIFont(name: "BentonSans", size: 16)!) + 70
+            }
+        } else if let obj = items as? [ChatMessageInput] {
+            for i: Int  in stride(from: 1, to: items.count, by: 1) {
+                totalWidth += obj.item(at: i).title.width(withConstrainedHeight: 0, font: UIFont(name: "BentonSans", size: 16)!) + 70
+            }
         }
+
         totalWidth /= screenSize.width
         return totalWidth * 70
     }
@@ -119,13 +127,13 @@ extension ChatViewController {
         case .navigation(let items):
             let collectionCell: CollectionTableViewCell = tableView.dequeueCell(for: indexPath)
             collectionCell.cellTitleLabel.text = "Preparations".uppercased()
-            collectionCell.navigationWithDataModel(dataModel: items)
+            collectionCell.inputWithDataModel(dataModel: items as [Any])
             return collectionCell
 
         case .input(let items):
             let collectionCell: CollectionTableViewCell = tableView.dequeueCell(for: indexPath)
             collectionCell.cellTitleLabel.text = "Day Protocol".uppercased()
-            collectionCell.inputWithDataModel(dataModel: items)
+            collectionCell.inputWithDataModel(dataModel: items as [Any])
             return collectionCell
         }
     }
@@ -137,9 +145,11 @@ extension ChatViewController {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let chatMessage = viewModel.item(at: indexPath.row)
         switch chatMessage {
-        case .instruction, .header, .input:
+        case .instruction, .header:
             return UITableViewAutomaticDimension
         case .navigation(let items):
+            return heightOfCollectionViewBasedOnNumberOfItems(items: items)
+        case .input(let items):
             return heightOfCollectionViewBasedOnNumberOfItems(items: items)
         }
     }
