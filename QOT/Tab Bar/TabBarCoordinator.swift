@@ -106,10 +106,10 @@ extension TabBarCoordinator: TabBarControllerDelegate {
 extension TabBarCoordinator: LearnCategoryListViewControllerDelegate {
     func didSelectCategory(_ category: LearnCategory, in viewController: LearnCategoryListViewController) {
         let coordinator = LearnContentListCoordinator(root: viewController, services: services, eventTracker: eventTracker, category: category)
-
+        
         coordinator.start()
         coordinator.delegate = self
-
+        
         children.append(coordinator)
     }
 }
@@ -143,7 +143,7 @@ extension TabBarCoordinator: ChatViewDelegate {
         let prepareContentViewController = PrepareContentViewController(viewModel: viewModel)
         prepareContentViewController.delegate = self
         viewController.present(prepareContentViewController, animated: true, completion: nil)
-
+        
         // TODO: Update associatedEntity with realm object when its created.
         eventTracker.track(page: prepareContentViewController.pageID, referer: rootViewController.pageID, associatedEntity: nil)
     }
@@ -155,35 +155,35 @@ extension TabBarCoordinator: PrepareContentViewControllerDelegate {
     func didTapClose(in viewController: PrepareContentViewController) {
         viewController.dismiss(animated: true, completion: nil)
     }
-
+    
     func didTapShare(in viewController: PrepareContentViewController) {
         log("didTapShare")
     }
-
+    
     func didTapVideo(with ID: String, from view: UIView, in viewController: PrepareContentViewController) {
         log("didTapVideo: ID: \(ID)")
     }
-
+    
     func didTapAddPreparation(in viewController: PrepareContentViewController) {
         log("didTapAddPreparation")
     }
-
+    
     func didTapAddToNotes(in viewController: PrepareContentViewController) {
         log("didTapAddToNotes")
     }
-
+    
     func didTapSaveAs(in viewController: PrepareContentViewController) {
         log("didTapSaveAs")
     }
-
+    
     func didTapAddPreparationInCollection(with ID: String, in viewController: PrepareContentViewController) {
         log("didTapAddPreparationInCollection")
     }
-
+    
     func didTapAddToNotes(with ID: String, in viewController: PrepareContentViewController) {
         log("didTapAddToNotes")
     }
-
+    
     func didTapSaveAs(with ID: String, in viewController: PrepareContentViewController) {
         log("didTapSaveAs: ID: \(ID)")
     }
@@ -195,15 +195,15 @@ extension TabBarCoordinator: PrepareCheckListViewControllerDelegate {
     func didTapClose(in viewController: PrepareCheckListViewController) {
         viewController.dismiss(animated: true, completion: nil)
     }
-
+    
     func didTapVideo(with ID: String, from view: UIView, in viewController: PrepareCheckListViewController) {
         log("didTapVideo: ID: \(ID) view: \(view)")
     }
-
+    
     func didTapSelectCheckbox(with ID: String, from view: UIView, at index: Index, in viewController: PrepareCheckListViewController) {
         log("didTapSelectCheckbox: ID: \(ID), index: \(index), view: \(view)")
     }
-
+    
     func didTapDeselectCheckbox(with ID: String, from view: UIView, at index: Index, in viewController: PrepareCheckListViewController) {
         log("didTapDeselectCheckbox: ID: \(ID), index: \(index), view: \(view)")
     }
@@ -215,11 +215,11 @@ extension TabBarCoordinator: LearnStrategyViewControllerDelegate {
     func didTapClose(in viewController: LearnStrategyViewController) {
         viewController.dismiss(animated: true, completion: nil)
     }
-
+    
     func didTapShare(in viewController: LearnStrategyViewController) {
         log("didTapShare")
     }
-
+    
     func didTapVideo(with video: LearnStrategyItem, from view: UIView, in viewController: LearnStrategyViewController) {
         switch video {
         case .media(let localID, let placeholderURL, let description):
@@ -227,7 +227,7 @@ extension TabBarCoordinator: LearnStrategyViewControllerDelegate {
         default: log("didTapArticle NO ARTICLE!")
         }
     }
-
+    
     func didTapArticle(with article: LearnStrategyItem, from view: UIView, in viewController: LearnStrategyViewController) {
         switch article {
         case .article(let localID, let title, let subtitle): log("didTapArticle: localID: \(localID), title: \(title), subtitle: \(subtitle) in view: \(view)")
@@ -242,7 +242,7 @@ extension TabBarCoordinator: WhatsHotViewControllerDelegate {
     func didTapVideo(at index: Index, with whatsHot: WhatsHotItem, from view: UIView, in viewController: WhatsHotViewController) {
         log("didTapVideo: index: \(index), whatsHotItem.URL: \(whatsHot.placeholderURL.absoluteString)")
     }
-
+    
     func didTapBookmark(at index: Index, with whatsHot: WhatsHotItem, in view: UIView, in viewController: WhatsHotViewController) {
         log("didTapBookmark: index: \(index), whatsHotItem.bookmarked: \(whatsHot.bookmarked)")
     }
@@ -254,23 +254,23 @@ extension TabBarCoordinator: WhatsHotNewTemplateViewControllerDelegate {
     func didTapClose(in viewController: WhatsHotNewTemplateViewController) {
         viewController.dismiss(animated: true, completion: nil)
     }
-
+    
     func didTapLoadMore(from view: UIView, in viewController: WhatsHotNewTemplateViewController) {
         log("didTapLoadMore")
     }
-
+    
     func didTapBookmark(with item: WhatsHotNewTemplateItem, in viewController: WhatsHotNewTemplateViewController) {
         log("didTapBookmark, item: \(item)")
     }
-
+    
     func didTapMedia(with mediaItem: WhatsHotNewTemplateItem, from view: UIView, in viewController: WhatsHotNewTemplateViewController) {
         log("didTapMedia")
     }
-
+    
     func didTapArticle(with articleItem: WhatsHotNewTemplateItem, from view: UIView, in viewController: WhatsHotNewTemplateViewController) {
         log("didTapArticle")
     }
-
+    
     func didTapLoadMoreItem(with loadMoreItem: WhatsHotNewTemplateItem, from view: UIView, in viewController: WhatsHotNewTemplateViewController) {
         log("didTapLoadMoreItem: with item: \(loadMoreItem)")
     }
