@@ -35,6 +35,11 @@ class MeSectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        drawUniverse()
+        addTabRecognizer()
+    }
+
+    private func drawUniverse() {
         setupScrollView()
         view.backgroundColor = .black
         drawBackCircles(radius: Layout.MeSection.radiusAverageLoad, linesDashPattern: [2, 1])
@@ -45,6 +50,16 @@ class MeSectionViewController: UIViewController {
         placeDots()
         addCategoryLabels()
         view.addSubview(profileImageView)
+    }
+
+    private func addTabRecognizer() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapSector))
+        view.addGestureRecognizer(tapGestureRecognizer)
+    }
+
+    func didTapSector(recognizer: UITapGestureRecognizer) {
+        print("didTapSector: \(recognizer.location(in: view))")
+        viewModel.sector(location: recognizer.location(in: view))
     }
 }
 
@@ -84,7 +99,7 @@ private extension MeSectionViewController {
     }
 
     func collectCenterPoints() {
-        viewModel.items.forEach { (spike: Spike) in
+        viewModel.spikes.forEach { (spike: Spike) in
             let centerPoint = CGPoint.centerPoint(
                 with: viewModel.radius(for: spike.spikeLoad()),
                 angle: spike.angle,
@@ -98,7 +113,7 @@ private extension MeSectionViewController {
 
     func placeDots() {
         for (index, center) in dataCenterPoints.enumerated() {
-            let spike = viewModel.items[index]
+            let spike = viewModel.spikes[index]
             let radius = viewModel.radius(for: spike.spikeLoad())
 
             placeDot(
@@ -138,7 +153,7 @@ private extension MeSectionViewController {
     }
 
     func addAditionalConnectionPoints() {
-        for index in stride(from: 0, to: viewModel.itemCount, by: 5) {
+        for index in stride(from: 0, to: viewModel.spikeCount, by: 5) {
             let centerPoint = dataCenterPoints[index]
             connectionCenterPpoitns.append(centerPoint)
             connectionCenterPpoitns.append(Layout.MeSection.connectionCenter)

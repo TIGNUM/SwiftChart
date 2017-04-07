@@ -9,20 +9,22 @@
 import Foundation
 import ReactiveKit
 
+
 final class MeSectionViewModel {
 
     // MARK: - Properties
 
     let profileImage = R.image.profileImage()
-    let items = mockSpikes
+    let spikes = mockSpikes
+    let sectors = mockSectors
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
-    var itemCount: Int {
-        return items.count
+    var spikeCount: Int {
+        return spikes.count
     }
 
-    func item(at indexPath: IndexPath) -> Spike {
-        return items[indexPath.row]
+    var sectorCount: Int {
+        return sectors.count
     }
 
     func radius(for load: CGFloat) -> CGFloat {
@@ -40,6 +42,17 @@ final class MeSectionViewModel {
         let average = (Layout.MeSection.radiusAverageLoad - (load * 4))
         return radius > average ? Color.MeSection.redStroke : Color.MeSection.whiteStroke
     }
+
+    func sector(location: CGPoint) {
+        let angleX = location.x.degreesToRadians
+        let angleY = location.y.degreesToRadians
+
+        let sinY = sin(angleY)
+        let cosX = cos(angleX)
+
+        print("angleX: \(angleX) - \(cosX)")
+        print("angleY: \(angleY) - \(sinY)")
+    }
 }
 
 protocol Spike {
@@ -51,16 +64,36 @@ protocol Spike {
     func spikeLoad() -> CGFloat
 }
 
+protocol Sector {
+    var startAngle: CGFloat { get }
+    var endAngle: CGFloat { get }
+}
+
 struct MockSpike: Spike {
     let localID: String
     let strokeColor: UIColor
     let angle: CGFloat
     let load: CGFloat
 
-    // TODO: What da hack! Actually the is always from 0.1 to 0.9.
+    // TODO: What da hack! Actually the load is always from 0.1 to 0.9.
     func spikeLoad() -> CGFloat {
         return (load > 0.9 ? 0.9 : ((load < 0.1) ? 0.1 : load))
     }
+}
+
+struct MockSector: Sector {
+    let startAngle: CGFloat
+    let endAngle: CGFloat
+}
+
+private var mockSectors: [Sector] {
+    return [
+        MockSector(startAngle: 240, endAngle: 264),
+        MockSector(startAngle: 200, endAngle: 239),
+        MockSector(startAngle: 176, endAngle: 199),
+        MockSector(startAngle: 120, endAngle: 175),
+        MockSector(startAngle: 100, endAngle: 119)
+    ]
 }
 
 private var mockSpikes: [Spike] {
