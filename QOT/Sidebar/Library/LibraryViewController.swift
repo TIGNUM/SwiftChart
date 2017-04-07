@@ -46,7 +46,10 @@ final class LibraryViewController: UIViewController {
     }
 }
 
-extension LibraryViewController: UITableViewDelegate {
+extension LibraryViewController: UITableViewDelegate, UICollectionViewDelegate {
+    
+    // table View Delegate
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.sectionCount
     }
@@ -58,9 +61,17 @@ extension LibraryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       
     }
+    
+    // Collection View Delegate
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
 }
 
-extension LibraryViewController: UITableViewDataSource {
+extension LibraryViewController: UITableViewDataSource, UICollectionViewDataSource {
+    
+    // table view ViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = viewModel.styleForSection(indexPath.item)
@@ -68,10 +79,25 @@ extension LibraryViewController: UITableViewDataSource {
         switch item {
         case .lastPost:
             let cell: LatestPostCell = tableView.dequeueCell(for: indexPath)
+            
             return cell
         case .category:
             let cell: CategoryPostCell = tableView.dequeueCell(for: indexPath)
             return cell
         }
     }
+    
+    // Collection ViewDataSource
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell: LearnContentCell = collectionView.dequeueCell(for: indexPath)
+        
+        return cell
+    }
+    
 }

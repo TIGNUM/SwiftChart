@@ -132,6 +132,10 @@
 		D54D902D1E97A818003924C9 /* LatestPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54D902B1E97A818003924C9 /* LatestPostCell.xib */; };
 		D54D90301E97A840003924C9 /* CategoryPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54D902E1E97A840003924C9 /* CategoryPostCell.swift */; };
 		D54D90311E97A840003924C9 /* CategoryPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54D902F1E97A840003924C9 /* CategoryPostCell.xib */; };
+		D54D90351E97CCED003924C9 /* LatestCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54D90331E97CCED003924C9 /* LatestCollectionCell.swift */; };
+		D54D90361E97CCED003924C9 /* LatestCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54D90341E97CCED003924C9 /* LatestCollectionCell.xib */; };
+		D54D90391E97CD09003924C9 /* CategoryCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54D90371E97CD09003924C9 /* CategoryCollectionCell.swift */; };
+		D54D903A1E97CD09003924C9 /* CategoryCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54D90381E97CD09003924C9 /* CategoryCollectionCell.xib */; };
 		D55CBED71E8A993200C690FB /* CGPoint+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55CBED61E8A993200C690FB /* CGPoint+Convenience.swift */; };
 		D57ECFB01E924CC2008F401B /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57ECFAF1E924CC2008F401B /* TabBarView.swift */; };
 		D5CD23D81E8BB73A002742C4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CD23D71E8BB73A002742C4 /* TabBarController.swift */; };
@@ -281,6 +285,10 @@
 		D54D902B1E97A818003924C9 /* LatestPostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LatestPostCell.xib; sourceTree = "<group>"; };
 		D54D902E1E97A840003924C9 /* CategoryPostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryPostCell.swift; sourceTree = "<group>"; };
 		D54D902F1E97A840003924C9 /* CategoryPostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryPostCell.xib; sourceTree = "<group>"; };
+		D54D90331E97CCED003924C9 /* LatestCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatestCollectionCell.swift; sourceTree = "<group>"; };
+		D54D90341E97CCED003924C9 /* LatestCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LatestCollectionCell.xib; sourceTree = "<group>"; };
+		D54D90371E97CD09003924C9 /* CategoryCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCollectionCell.swift; sourceTree = "<group>"; };
+		D54D90381E97CD09003924C9 /* CategoryCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryCollectionCell.xib; sourceTree = "<group>"; };
 		D55CBED61E8A993200C690FB /* CGPoint+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Convenience.swift"; sourceTree = "<group>"; };
 		D57ECFAF1E924CC2008F401B /* TabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		D5CD23D71E8BB73A002742C4 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -807,7 +815,7 @@
 				CCE373071E8D32CF00B79352 /* LibraryViewController.swift */,
 				D54D90261E979C30003924C9 /* LibraryViewController.xib */,
 				CCE373151E8D330100B79352 /* LibraryViewModel.swift */,
-				D54D90291E979E8A003924C9 /* cell */,
+				D54D90291E979E8A003924C9 /* Table cells */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -855,15 +863,27 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		D54D90291E979E8A003924C9 /* cell */ = {
+		D54D90291E979E8A003924C9 /* Table cells */ = {
 			isa = PBXGroup;
 			children = (
 				D54D902A1E97A818003924C9 /* LatestPostCell.swift */,
 				D54D902B1E97A818003924C9 /* LatestPostCell.xib */,
 				D54D902E1E97A840003924C9 /* CategoryPostCell.swift */,
 				D54D902F1E97A840003924C9 /* CategoryPostCell.xib */,
+				D54D90321E97CC83003924C9 /* Collection Cells */,
 			);
-			name = cell;
+			name = "Table cells";
+			sourceTree = "<group>";
+		};
+		D54D90321E97CC83003924C9 /* Collection Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D54D90331E97CCED003924C9 /* LatestCollectionCell.swift */,
+				D54D90341E97CCED003924C9 /* LatestCollectionCell.xib */,
+				D54D90371E97CD09003924C9 /* CategoryCollectionCell.swift */,
+				D54D90381E97CD09003924C9 /* CategoryCollectionCell.xib */,
+			);
+			name = "Collection Cells";
 			sourceTree = "<group>";
 		};
 		D5EF23481E952EF100D88064 /* Page Controller */ = {
@@ -980,6 +1000,8 @@
 				CCC1B6AA1E8B9B7300D1461F /* LearnCategoryListViewController.xib in Resources */,
 				CBD7915D1E72F2990006C590 /* LaunchViewController.xib in Resources */,
 				D51D088C1E8E80CD00FC7567 /* LearnStrategyArticleCell.xib in Resources */,
+				D54D903A1E97CD09003924C9 /* CategoryCollectionCell.xib in Resources */,
+				D54D90361E97CCED003924C9 /* LatestCollectionCell.xib in Resources */,
 				CCC0C4D41E82A8D9002A8362 /* Simple-Regular.ttf in Resources */,
 				CB8A15461E7986C90023B2F9 /* Localized.strings in Resources */,
 				D520BC941E8E655A00A2D107 /* LearnStrategyHeaderCell.xib in Resources */,
@@ -1128,6 +1150,7 @@
 				D5CD23D81E8BB73A002742C4 /* TabBarController.swift in Sources */,
 				CBDB99021E7BE91D003EC73F /* EKEvent+CalendarEventData.swift in Sources */,
 				CB369CE01E8D407C00522293 /* DataProvider.swift in Sources */,
+				D54D90351E97CCED003924C9 /* LatestCollectionCell.swift in Sources */,
 				CBDB99081E7BEE05003EC73F /* EventStore.swift in Sources */,
 				D51B5C4C1E8D133B0084A65B /* LearnStrategyCoordinator.swift in Sources */,
 				CBD7914A1E71797C0006C590 /* Typealiases.swift in Sources */,
@@ -1147,6 +1170,7 @@
 				CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */,
 				D55CBED71E8A993200C690FB /* CGPoint+Convenience.swift in Sources */,
 				D54D90301E97A840003924C9 /* CategoryPostCell.swift in Sources */,
+				D54D90391E97CD09003924C9 /* CategoryCollectionCell.swift in Sources */,
 				CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */,
 				CCC1B6B31E8BA71500D1461F /* LearnStrategyViewController.swift in Sources */,
 				CC6B3A2F1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift in Sources */,
