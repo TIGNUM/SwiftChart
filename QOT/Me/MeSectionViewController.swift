@@ -85,9 +85,8 @@ private extension MeSectionViewController {
 
     func collectCenterPoints() {
         viewModel.items.forEach { (spike: Spike) in
-            let centerValues = viewModel.centerPointValues(load: spike.load)
             let centerPoint = CGPoint.centerPoint(
-                with: centerValues.radius,
+                with: viewModel.radius(for: spike.spikeLoad()),
                 angle: spike.angle,
                 relativeCenter: profileImageView.center
             )
@@ -100,11 +99,11 @@ private extension MeSectionViewController {
     func placeDots() {
         for (index, center) in dataCenterPoints.enumerated() {
             let spike = viewModel.items[index]
-            let centerValues = viewModel.centerPointValues(load: spike.load)
+            let radius = viewModel.radius(for: spike.spikeLoad())
 
             placeDot(
-                fillColor: viewModel.fillColor(radius: centerValues.radius, load: spike.load),
-                strokeColor: viewModel.strokeColor(radius: centerValues.radius, load: spike.load),
+                fillColor: viewModel.fillColor(radius: radius, load: spike.spikeLoad()),
+                strokeColor: viewModel.strokeColor(radius: radius, load: spike.spikeLoad()),
                 center: center,
                 radius: (spike.load * 8)
             )
@@ -112,7 +111,6 @@ private extension MeSectionViewController {
     }
 
     func placeDot(fillColor: UIColor, strokeColor: UIColor, center: CGPoint, radius: CGFloat) {
-        print("placeDot: \(center)")
         let circlePath = UIBezierPath.circlePath(center: center, radius: radius)
         let shapeLayer = CAShapeLayer.pathWithColor(
             path: circlePath.cgPath,
@@ -149,9 +147,8 @@ private extension MeSectionViewController {
 
     func addCategoryLabels() {
         CategoryLabel.allLabels.forEach { (categoryLabel: CategoryLabel) in
-            let centerPointValues = viewModel.centerPointValues(load: categoryLabel.load)
             let labelCenter = CGPoint.centerPoint(
-                with: centerPointValues.radius,
+                with: viewModel.radius(for: categoryLabel.load),
                 angle: categoryLabel.angle,
                 relativeCenter: profileImageView.center
             )

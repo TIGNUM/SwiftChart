@@ -25,13 +25,10 @@ final class MeSectionViewModel {
         return items[indexPath.row]
     }
 
-    func centerPointValues(load: CGFloat) -> (radius: CGFloat, load: CGFloat) {
-        var resultLoad = load
+    func radius(for load: CGFloat) -> CGFloat {
         let factor: CGFloat = Layout.MeSection.radiusMaxLoad
-        let offset: CGFloat = (50 + Layout.MeSection.loadOffset)
-        let radius: CGFloat = (resultLoad * (factor - Layout.MeSection.loadOffset)) + (offset * 0.4)
-
-        return (radius: radius, load: resultLoad)
+        let offset: CGFloat = (Layout.MeSection.profileImageViewFrame.width * 0.5 + Layout.MeSection.loadOffset)
+        return (load * (factor - Layout.MeSection.loadOffset)) + (offset * 0.4)
     }
 
     func fillColor(radius: CGFloat, load: CGFloat) -> UIColor {
@@ -50,6 +47,8 @@ protocol Spike {
     var strokeColor: UIColor { get }
     var angle: CGFloat { get }
     var load: CGFloat { get }
+
+    func spikeLoad() -> CGFloat
 }
 
 struct MockSpike: Spike {
@@ -57,6 +56,18 @@ struct MockSpike: Spike {
     let strokeColor: UIColor
     let angle: CGFloat
     let load: CGFloat
+
+    func spikeLoad() -> CGFloat {
+        if load > 0.9 {
+            return  0.9
+        }
+
+        if load < 0.1 {
+            return 0.1
+        }
+
+        return load
+    }
 }
 
 private var mockSpikes: [Spike] {
@@ -92,7 +103,7 @@ struct CategoryLabel {
     let load: CGFloat
 
     static let allLabels: [CategoryLabel] = [
-        CategoryLabel(text: "Peak", textColor: UIColor(white: 0.7, alpha: 0.6), angle: 245, load: 1.1),
+        CategoryLabel(text: "Peak\nPerformance", textColor: UIColor(white: 0.7, alpha: 0.6), angle: 245, load: 1.1),
         CategoryLabel(text: "Meetings", textColor: .red, angle: 220, load: 1.25),
         CategoryLabel(text: "Intensity", textColor: UIColor(white: 0.7, alpha: 0.6), angle: 195, load: 1.3),
         CategoryLabel(text: "Travel", textColor: UIColor(white: 0.7, alpha: 0.6), angle: 170, load: 1.2),
