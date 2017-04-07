@@ -11,7 +11,8 @@ import UIKit
 struct CategoryLabel {
     let text: String
     let textColor: UIColor
-    let position: CGPoint
+    let angle: CGFloat
+    let load: CGFloat
 }
 
 struct Spike {
@@ -39,12 +40,12 @@ class MeSectionViewController: UIViewController {
     weak var delegate: MeSectionDelegate?
 
     let categoryLabel: [CategoryLabel] = [
-        CategoryLabel(text: "Itensity", textColor: UIColor(white: 0.7, alpha: 0.6), position: CGPoint(x: 200, y: 100)),
-        CategoryLabel(text: "Meetings", textColor: .red, position: CGPoint(x: 150, y: 200)),
-        CategoryLabel(text: "Peak", textColor: UIColor(white: 0.7, alpha: 0.6), position: CGPoint(x: 100, y: 300)),
-        CategoryLabel(text: "Trips", textColor: UIColor(white: 0.7, alpha: 0.6), position: CGPoint(x: 50, y: 400)),
-        CategoryLabel(text: "Sleep", textColor: UIColor(white: 0.7, alpha: 0.6), position: CGPoint(x: 150, y: 500)),
-        CategoryLabel(text: "Activity", textColor: UIColor(white: 0.7, alpha: 0.6), position: CGPoint(x: 200, y: 600))
+        CategoryLabel(text: "Peak", textColor: UIColor(white: 0.7, alpha: 0.6), angle: 245, load: 1.1),
+        CategoryLabel(text: "Meetings", textColor: .red, angle: 220, load: 1.25),
+        CategoryLabel(text: "Intensity", textColor: UIColor(white: 0.7, alpha: 0.6), angle: 195, load: 1.3),
+        CategoryLabel(text: "Travel", textColor: UIColor(white: 0.7, alpha: 0.6), angle: 170, load: 1.2),
+        CategoryLabel(text: "Sleep", textColor: UIColor(white: 0.7, alpha: 0.6), angle: 145, load: 1.1),
+        CategoryLabel(text: "Activity", textColor: UIColor(white: 0.7, alpha: 0.6), angle: 120, load: 1.1)
     ]
 
     let sectorPoints = [
@@ -54,27 +55,27 @@ class MeSectionViewController: UIViewController {
     ]
 
     let spikes = [
-        Spike(strokeColor: .magenta, angle: 260, load: 0.1),
-        Spike(strokeColor: .magenta, angle: 252, load: 0.2),
-        Spike(strokeColor: .magenta, angle: 244, load: 0.3),
-        Spike(strokeColor: .blue, angle: 236, load: 0.4),
-        Spike(strokeColor: .blue, angle: 228, load: 0.5),
-        Spike(strokeColor: .blue, angle: 220, load: 0.6),
-        Spike(strokeColor: .blue, angle: 212, load: 0.7),
-        Spike(strokeColor: .blue, angle: 204, load: 0.8),
-        Spike(strokeColor: .yellow, angle: 196, load: 0.9),
-        Spike(strokeColor: .yellow, angle: 188, load: 1),
-        Spike(strokeColor: .yellow, angle: 180, load: 0.9),
-        Spike(strokeColor: .green, angle: 172, load: 0.8),
-        Spike(strokeColor: .green, angle: 164, load: 0.7),
-        Spike(strokeColor: .green, angle: 156, load: 0.6),
-        Spike(strokeColor: .green, angle: 148, load: 0.5),
-        Spike(strokeColor: .green, angle: 140, load: 0.4),
-        Spike(strokeColor: .orange, angle: 132, load: 0.3),
-        Spike(strokeColor: .orange, angle: 124, load: 0.2),
-        Spike(strokeColor: .cyan, angle: 116, load: 0.1),
-        Spike(strokeColor: .cyan, angle: 108, load: 0),
-        Spike(strokeColor: .cyan, angle: 100, load: 0.1)
+        Spike(strokeColor: .magenta, angle: 260, load: randomNumber),
+        Spike(strokeColor: .magenta, angle: 252, load: randomNumber),
+        Spike(strokeColor: .magenta, angle: 244, load: randomNumber),
+        Spike(strokeColor: .blue, angle: 236, load: randomNumber),
+        Spike(strokeColor: .blue, angle: 228, load: randomNumber),
+        Spike(strokeColor: .blue, angle: 220, load: randomNumber),
+        Spike(strokeColor: .blue, angle: 212, load: randomNumber),
+        Spike(strokeColor: .blue, angle: 204, load: randomNumber),
+        Spike(strokeColor: .yellow, angle: 196, load: randomNumber),
+        Spike(strokeColor: .yellow, angle: 188, load: randomNumber),
+        Spike(strokeColor: .yellow, angle: 180, load: randomNumber),
+        Spike(strokeColor: .green, angle: 172, load: randomNumber),
+        Spike(strokeColor: .green, angle: 164, load: randomNumber),
+        Spike(strokeColor: .green, angle: 156, load: randomNumber),
+        Spike(strokeColor: .green, angle: 148, load: randomNumber),
+        Spike(strokeColor: .green, angle: 140, load: randomNumber),
+        Spike(strokeColor: .orange, angle: 132, load: randomNumber),
+        Spike(strokeColor: .orange, angle: 124, load: randomNumber),
+        Spike(strokeColor: .cyan, angle: 116, load: randomNumber),
+        Spike(strokeColor: .cyan, angle: 108, load: randomNumber),
+        Spike(strokeColor: .cyan, angle: 100, load: randomNumber)
     ]
 
     var profileImageViewFrame: CGRect {
@@ -107,7 +108,7 @@ class MeSectionViewController: UIViewController {
         drawBackCircles(radius: radiusMaxLoad)
 //        connectDataPoint()
 //        drawDataPoints()
-//        addCategoryLabels()
+        addCategoryLabels()
         drawSectors()
 //        placeDots()
     }
@@ -200,10 +201,7 @@ private extension MeSectionViewController {
             print("radius: \(radius)")
             print("load * \(factor) + offset: \(offset) == \((spike.load * factor) + offset)")
 
-            let converted = spike.angle.degreesToRadians
-            let x = profileImageView.center.x + radius * cos(converted)
-            let y = profileImageView.center.y + radius * sin(converted)
-            let endPopint = CGPoint(x: x, y: y)
+            let endPopint = center(with: radius, angle: spike.angle)
 
             drawSpike(
                 to: endPopint,
@@ -237,6 +235,13 @@ private extension MeSectionViewController {
         view.layer.addSublayer(shapeLayer)
     }
 
+    func center(with radius: CGFloat, angle: CGFloat) -> CGPoint {
+        let converted = angle.degreesToRadians
+        let xPos = profileImageView.center.x + radius * cos(converted)
+        let yPos = profileImageView.center.y + radius * sin(converted)
+        return CGPoint(x: xPos, y: yPos)
+    }
+
 //    func drawSector(offset: CGFloat) {
 //        let yPos = profileImageView.center.y * offset
 //        print("offsett: \(yPos)")
@@ -261,14 +266,19 @@ private extension MeSectionViewController {
 //        }
 //    }
 //
-//    func addCategoryLabels() {
-//        categoryLabel.forEach { (categoryLabel: CategoryLabel) in
-//            let frame = CGRect(x: categoryLabel.position.x, y: categoryLabel.position.y, width: 0, height: 21)
-//            let label = UILabel(frame: frame)
-//            label.text = categoryLabel.text
-//            label.textColor = categoryLabel.textColor
-//            label.sizeToFit()
-//            view.addSubview(label)
-//        }
-//    }
+    func addCategoryLabels() {
+        categoryLabel.forEach { (categoryLabel: CategoryLabel) in
+            let factor: CGFloat = radiusMaxLoad
+            let offset: CGFloat = ((profileImageView.frame.width * 0.5) + offsetLoad)
+            let radius: CGFloat = (categoryLabel.load * (factor - offsetLoad)) + (offset * 0.4)
+
+            let labelCenter = center(with: radius, angle: categoryLabel.angle)
+            let frame = CGRect(x: labelCenter.x, y: labelCenter.y, width: 0, height: 21)
+            let label = UILabel(frame: frame)
+            label.text = categoryLabel.text.uppercased()
+            label.textColor = categoryLabel.textColor
+            label.sizeToFit()
+            view.addSubview(label)
+        }
+    }
 }
