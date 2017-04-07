@@ -219,8 +219,8 @@ private extension MeSectionViewController {
             )
 
             placeDot(
-                fillColor: radius > (radiusAverageLoad + (spike.load * 4)) ? .red : .white,
-                strokeColor: radius > (radiusAverageLoad + (spike.load * 4)) ? UIColor(red: 1, green: 0, blue: 0, alpha: 0.8) : UIColor(white: 1, alpha: 0.7),
+                fillColor: radius > (radiusAverageLoad - (spike.load * 4)) ? .red : .white,
+                strokeColor: radius > (radiusAverageLoad - (spike.load * 4)) ? UIColor(red: 1, green: 0, blue: 0, alpha: 0.8) : UIColor(white: 1, alpha: 0.7),
                 center: endPopint,
                 radius: (spike.load * 8)
             )
