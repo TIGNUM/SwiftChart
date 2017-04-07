@@ -40,10 +40,10 @@ class MeSectionViewController: UIViewController {
         drawBackCircles(radius: Layout.MeSection.radiusAverageLoad, linesDashPattern: [2, 1])
         drawBackCircles(radius: Layout.MeSection.radiusMaxLoad)
         setupProfileImage()
-        addCategoryLabels()
         collectCenterPoints()
         connectDataPoint()
         placeDots()
+        addCategoryLabels()
         view.addSubview(profileImageView)
     }
 }
@@ -156,7 +156,10 @@ private extension MeSectionViewController {
             let frame = CGRect(x: labelCenter.x, y: labelCenter.y, width: 0, height: Layout.MeSection.labelHeight)
             let label = UILabel(frame: frame)
             label.text = categoryLabel.text.uppercased()
-            label.textColor = categoryLabel.textColor
+            label.textColor = Color.MeSection.whiteLabel
+            label.font = Font.MeSection.sectorDefault
+            label.numberOfLines = 0
+            label.textAlignment = .center
             label.sizeToFit()
             view.addSubview(label)
         }

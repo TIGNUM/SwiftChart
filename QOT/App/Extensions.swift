@@ -80,12 +80,6 @@ extension CAShapeLayer {
     }
 }
 
-// MARK: - Int
-
-extension Int {
-    var degreesToRadians: Double { return Double(self) * .pi / 180 }
-}
-
 // MARK: - FloatingPoint
 
 extension FloatingPoint {

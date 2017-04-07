@@ -33,12 +33,12 @@ final class MeSectionViewModel {
 
     func fillColor(radius: CGFloat, load: CGFloat) -> UIColor {
         let average = (Layout.MeSection.radiusAverageLoad - (load * 4))
-        return radius > average ? .red : .white
+        return radius > average ? Color.MeSection.redFilled : .white
     }
 
     func strokeColor(radius: CGFloat, load: CGFloat) -> UIColor {
         let average = (Layout.MeSection.radiusAverageLoad - (load * 4))
-        return radius > average ? UIColor(red: 1, green: 0, blue: 0, alpha: 0.8) : UIColor(white: 1, alpha: 0.7)
+        return radius > average ? Color.MeSection.redStroke : Color.MeSection.whiteStroke
     }
 }
 
@@ -57,16 +57,9 @@ struct MockSpike: Spike {
     let angle: CGFloat
     let load: CGFloat
 
+    // TODO: What da hack! Actually the is always from 0.1 to 0.9.
     func spikeLoad() -> CGFloat {
-        if load > 0.9 {
-            return  0.9
-        }
-
-        if load < 0.1 {
-            return 0.1
-        }
-
-        return load
+        return (load > 0.9 ? 0.9 : ((load < 0.1) ? 0.1 : load))
     }
 }
 
@@ -98,16 +91,15 @@ private var mockSpikes: [Spike] {
 
 struct CategoryLabel {
     let text: String
-    let textColor: UIColor
     let angle: CGFloat
     let load: CGFloat
 
     static let allLabels: [CategoryLabel] = [
-        CategoryLabel(text: "Peak\nPerformance", textColor: UIColor(white: 0.7, alpha: 0.6), angle: 245, load: 1.1),
-        CategoryLabel(text: "Meetings", textColor: .red, angle: 220, load: 1.25),
-        CategoryLabel(text: "Intensity", textColor: UIColor(white: 0.7, alpha: 0.6), angle: 195, load: 1.3),
-        CategoryLabel(text: "Travel", textColor: UIColor(white: 0.7, alpha: 0.6), angle: 170, load: 1.2),
-        CategoryLabel(text: "Sleep", textColor: UIColor(white: 0.7, alpha: 0.6), angle: 145, load: 1.1),
-        CategoryLabel(text: "Activity", textColor: UIColor(white: 0.7, alpha: 0.6), angle: 120, load: 1.1)
+        CategoryLabel(text: R.string.localized.meSectorPeak(), angle: 245, load: 1.15),
+        CategoryLabel(text: R.string.localized.meSectorMeetings(), angle: 220, load: 1.15),
+        CategoryLabel(text: R.string.localized.meSectorIntensity(), angle: 195, load: 1.2),
+        CategoryLabel(text: R.string.localized.meSectorTravel(), angle: 170, load: 1.15),
+        CategoryLabel(text: R.string.localized.meSectorSleep(), angle: 145, load: 1.1),
+        CategoryLabel(text: R.string.localized.meSectorActivity(), angle: 120, load: 1.1)
     ]
 }
