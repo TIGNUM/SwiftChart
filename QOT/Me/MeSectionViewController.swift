@@ -29,9 +29,12 @@ class MeSectionViewController: UIViewController {
     var dataPointsCenterCoordinates = [CGPoint]()
     let scrollView = UIScrollView(frame: UIScreen.main.bounds)
     var profileImageView = UIImageView()
-    let profileImageWidth: CGFloat = 100
+    let profileImageWidth: CGFloat = screen.width * 0.25
     let radiusMaxLoad: CGFloat = screen.width * 0.7
     let radiusAverageLoad: CGFloat = screen.width * 0.45
+    let offsetLoad: CGFloat = 12
+    let offsetScrollView: CGFloat = (screen.width * 0.06)
+    let loadCenter = CGPoint(x: (screen.width - (screen.width * 0.06)), y: screen.height * 0.5)
 
     weak var delegate: MeSectionDelegate?
 
@@ -76,20 +79,13 @@ class MeSectionViewController: UIViewController {
 
     var profileImageViewFrame: CGRect {
         return CGRect(
-            x: view.frame.width - 80,
-            y: (view.frame.height * 0.5) - 50,
+            x: loadCenter.x - profileImageWidth * 0.5,
+            y: loadCenter.y - profileImageWidth * 0.5,
             width: profileImageWidth,
             height: profileImageWidth
         )
     }
 
-    var backgroundCircleCenterPoint: CGPoint {
-        return CGPoint(
-            x: screen.width,
-            y: screen.height * 0.5
-        )
-    }
-    
     // MARK: - Life Cycle
 
     init(viewModel: MeSectionViewModel) {
@@ -142,7 +138,10 @@ private extension MeSectionViewController {
         scrollView.isPagingEnabled = true
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
-        scrollView.contentSize = CGSize(width: (UIScreen.main.bounds.width * 2) - 100, height: UIScreen.main.bounds.height - 84)
+        scrollView.contentSize = CGSize(
+            width: (UIScreen.main.bounds.width * 2) - (offsetScrollView * 4),
+            height: UIScreen.main.bounds.height - 84
+        )
     }
 
     func drawDataPoints() {
@@ -155,7 +154,7 @@ private extension MeSectionViewController {
             }
         }
 
-        dataPointsCenterCoordinates.insert(backgroundCircleCenterPoint, at: 0)
+        dataPointsCenterCoordinates.insert(loadCenter, at: 0)
     }
 
     func addProfileImage() {        
@@ -181,7 +180,7 @@ private extension MeSectionViewController {
     }
 
     func drawBackCircles(radius: CGFloat, linesDashPattern: [NSNumber]? = nil) {
-        let circlePath = UIBezierPath.circlePath(center: backgroundCircleCenterPoint, radius: radius)
+        let circlePath = UIBezierPath.circlePath(center: loadCenter, radius: radius)
         let shapeLayer = CAShapeLayer.pathWithColor(
             path: circlePath.cgPath,
             fillColor: .clear,
@@ -192,16 +191,13 @@ private extension MeSectionViewController {
     }
 
     func drawSectors() {
-//        for offset in stride(from: -3, through: 3, by: 0.25) {
-//            drawSector(offset: CGFloat(offset))
-//        }
-
         spikes.forEach { (spike: Spike) in
-            let factor: CGFloat = 1
-            let offset: CGFloat = ((profileImageView.frame.width * 0.5) + 12)
-            let radius: CGFloat = (spike.load + offset)
+            let factor: CGFloat = radiusMaxLoad
+            let offset: CGFloat = ((profileImageView.frame.width * 0.5) + offsetLoad)
+            let radius: CGFloat = (spike.load * (factor - offsetLoad))
 
             print("load: \(spike.load)")
+            print("radius: \(radius)")
             print("load * \(factor) + offset: \(offset) == \((spike.load * factor) + offset)")
 
             let converted = spike.angle.degreesToRadians
