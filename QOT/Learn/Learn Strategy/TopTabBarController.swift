@@ -11,8 +11,8 @@ import Anchorage
 
 protocol TopTabBarDelegate: class {
     func didSelectItemAtIndex(index: Int?, sender: TopTabBarController)
-    func didSelectLeftButton(index: Int?, sender: TopTabBarController)
-    func didSelectrightButton(index: Int?, sender: TopTabBarController)
+    func didSelectLeftButton(leftButtonTag: Int?, sender: TopTabBarController)
+    func didSelectrightButton(rightButtonTag: Int?, sender: TopTabBarController)
 }
 
 final class TopTabBarController: UIViewController {
@@ -56,9 +56,10 @@ final class TopTabBarController: UIViewController {
     
     fileprivate lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
-        view.backgroundColor = .green
+        view.backgroundColor = .clear
         view.isPagingEnabled = true
         view.delegate = self
+        view.showsHorizontalScrollIndicator = false
         return view
     }()
     
@@ -113,7 +114,7 @@ final class TopTabBarController: UIViewController {
     }
     
     func rightButtonPressed(_ button: UIButton) {
-        index = leftButton.tag
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -128,7 +129,6 @@ final class TopTabBarController: UIViewController {
         
         for (index, item) in items.enumerated() {
             let vc = item.controller
-            
             addViewToScrollView(vc)
             vc.view.frame.origin =  CGPoint(x: CGFloat(index) * width, y: 0)
         }
@@ -149,7 +149,6 @@ extension TopTabBarController {
         navigationItemBar.addSubview(rightButton)
         navigationItemBar.addSubview(tabBarView)
         view.addSubview(scrollView)
-        
     }
     
     func setupLayout() {
@@ -181,12 +180,14 @@ extension TopTabBarController {
 }
 
 extension TopTabBarController: UIScrollViewDelegate {
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         tabBarView.setSelectedIndex(scrollView.currentPage, animated: true)
     }
 }
 
 extension TopTabBarController: TabBarViewDelegate {
+    
     func didSelectItemAtIndex(index: Int?, sender: TabBarView) {
         guard let index = index else {
             return
