@@ -35,6 +35,31 @@ struct Layout {
         case chatLabelOptionNavigation = 5
         case chatLabelOptionUpdate = 10
     }
+
+    struct MeSection {
+        static let connectionCenter = CGPoint(x: screen.width, y: screen.height * 0.5)
+        static let radiusMaxLoad: CGFloat = screen.width * 0.7
+        static let radiusAverageLoad: CGFloat = screen.width * 0.45
+        static let loadOffset: CGFloat = 12
+        static let profileImageWidth: CGFloat = screen.width * 0.25
+        static let scrollViewOffset: CGFloat = screen.width * 0.06
+        static let loadCenterX: CGFloat = (screen.width - (screen.width * 0.06))
+        static let loadCenterY: CGFloat = screen.height * 0.5
+        static let loadCenter = CGPoint(x: loadCenterX, y: loadCenterY)
+        static let labelHeight: CGFloat = 21
+
+        static let profileImageCenter = CGPoint(
+            x: profileImageViewFrame.width * 0.5,
+            y: profileImageViewFrame.width * 0.5
+        )
+
+        static let profileImageViewFrame = CGRect(
+            x: loadCenterX - profileImageWidth * 0.5,
+            y: loadCenterY - profileImageWidth * 0.5,
+            width: profileImageWidth,
+            height: profileImageWidth
+        )
+    }
 }
 
 struct Databsase {

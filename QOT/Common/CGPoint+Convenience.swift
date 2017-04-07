@@ -20,4 +20,11 @@ extension CGPoint {
         let center = CGPoint(x: frame.midX, y: frame.midY)
         return center.distanceTo(self) <= radius
     }
+
+    static func centerPoint(with radius: CGFloat, angle: CGFloat, relativeCenter: CGPoint) -> CGPoint {
+        let converted = angle.degreesToRadians
+        let xPos = relativeCenter.x + radius * cos(converted)
+        let yPos = relativeCenter.y + radius * sin(converted)
+        return CGPoint(x: xPos, y: yPos)
+    }
 }
