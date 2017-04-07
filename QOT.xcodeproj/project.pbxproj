@@ -128,6 +128,10 @@
 		D540275F1E8D401F0013B783 /* LearnStrategyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D540275D1E8D401F0013B783 /* LearnStrategyViewController.xib */; };
 		D54D8FFF1E95376D003924C9 /* TopTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54D8FFE1E95376D003924C9 /* TopTabBarController.swift */; };
 		D54D90281E979C30003924C9 /* LibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54D90261E979C30003924C9 /* LibraryViewController.xib */; };
+		D54D902C1E97A818003924C9 /* LatestPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54D902A1E97A818003924C9 /* LatestPostCell.swift */; };
+		D54D902D1E97A818003924C9 /* LatestPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54D902B1E97A818003924C9 /* LatestPostCell.xib */; };
+		D54D90301E97A840003924C9 /* CategoryPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54D902E1E97A840003924C9 /* CategoryPostCell.swift */; };
+		D54D90311E97A840003924C9 /* CategoryPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54D902F1E97A840003924C9 /* CategoryPostCell.xib */; };
 		D55CBED71E8A993200C690FB /* CGPoint+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55CBED61E8A993200C690FB /* CGPoint+Convenience.swift */; };
 		D57ECFB01E924CC2008F401B /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57ECFAF1E924CC2008F401B /* TabBarView.swift */; };
 		D5CD23D81E8BB73A002742C4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CD23D71E8BB73A002742C4 /* TabBarController.swift */; };
@@ -273,6 +277,10 @@
 		D540275D1E8D401F0013B783 /* LearnStrategyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyViewController.xib; sourceTree = "<group>"; };
 		D54D8FFE1E95376D003924C9 /* TopTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopTabBarController.swift; sourceTree = "<group>"; };
 		D54D90261E979C30003924C9 /* LibraryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryViewController.xib; sourceTree = "<group>"; };
+		D54D902A1E97A818003924C9 /* LatestPostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatestPostCell.swift; sourceTree = "<group>"; };
+		D54D902B1E97A818003924C9 /* LatestPostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LatestPostCell.xib; sourceTree = "<group>"; };
+		D54D902E1E97A840003924C9 /* CategoryPostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryPostCell.swift; sourceTree = "<group>"; };
+		D54D902F1E97A840003924C9 /* CategoryPostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryPostCell.xib; sourceTree = "<group>"; };
 		D55CBED61E8A993200C690FB /* CGPoint+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Convenience.swift"; sourceTree = "<group>"; };
 		D57ECFAF1E924CC2008F401B /* TabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		D5CD23D71E8BB73A002742C4 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -850,6 +858,10 @@
 		D54D90291E979E8A003924C9 /* cell */ = {
 			isa = PBXGroup;
 			children = (
+				D54D902A1E97A818003924C9 /* LatestPostCell.swift */,
+				D54D902B1E97A818003924C9 /* LatestPostCell.xib */,
+				D54D902E1E97A840003924C9 /* CategoryPostCell.swift */,
+				D54D902F1E97A840003924C9 /* CategoryPostCell.xib */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -956,12 +968,14 @@
 			files = (
 				CCAF032C1E80362700015125 /* SettingsTableViewCell.xib in Resources */,
 				CBD791661E768AB70006C590 /* MainMenuViewController.xib in Resources */,
+				D54D902D1E97A818003924C9 /* LatestPostCell.xib in Resources */,
 				D51D08881E8E80AF00FC7567 /* LearnStrategyVideoCell.xib in Resources */,
 				CCAF03281E802A6200015125 /* SettingsViewController.xib in Resources */,
 				CCC0C4CA1E827F87002A8362 /* BentonSans_Book.otf in Resources */,
 				D51D08841E8E806E00FC7567 /* LearnStrategyTextCell.xib in Resources */,
 				CBA4216F1E9276AF00CD4BC9 /* SidebarTableViewCell.xib in Resources */,
 				CBA421701E9276AF00CD4BC9 /* SidebarViewController.xib in Resources */,
+				D54D90311E97A840003924C9 /* CategoryPostCell.xib in Resources */,
 				CCC0C4CC1E828007002A8362 /* BentonSans_Regular.otf in Resources */,
 				CCC1B6AA1E8B9B7300D1461F /* LearnCategoryListViewController.xib in Resources */,
 				CBD7915D1E72F2990006C590 /* LaunchViewController.xib in Resources */,
@@ -1132,6 +1146,7 @@
 				CB369CE51E8E46B600522293 /* LearnContent.swift in Sources */,
 				CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */,
 				D55CBED71E8A993200C690FB /* CGPoint+Convenience.swift in Sources */,
+				D54D90301E97A840003924C9 /* CategoryPostCell.swift in Sources */,
 				CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */,
 				CCC1B6B31E8BA71500D1461F /* LearnStrategyViewController.swift in Sources */,
 				CC6B3A2F1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift in Sources */,
@@ -1146,6 +1161,7 @@
 				D51D08871E8E80AF00FC7567 /* LearnStrategyVideoCell.swift in Sources */,
 				CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */,
 				CBDB990E1E7BFD05003EC73F /* CalendarEventParticipantData.swift in Sources */,
+				D54D902C1E97A818003924C9 /* LatestPostCell.swift in Sources */,
 				CCFCACC11E8D5DD100EA3119 /* BenefitsViewModel.swift in Sources */,
 				D51D088B1E8E80CD00FC7567 /* LearnStrategyArticleCell.swift in Sources */,
 				CB8A15271E76A1280023B2F9 /* PageEvent.swift in Sources */,
