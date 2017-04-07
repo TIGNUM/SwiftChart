@@ -92,3 +92,28 @@ extension FloatingPoint {
     var degreesToRadians: Self { return self * .pi / 180 }
     var radiansToDegrees: Self { return self * 180 / .pi }
 }
+
+// MARK: - Collection
+
+extension MutableCollection where Index == Int {
+    mutating func shuffle() {
+        guard count > 2 else {
+            return
+        }
+
+        for index in startIndex ..< endIndex - 1 {
+            let element = Int(arc4random_uniform(UInt32(endIndex - index))) + index
+            if index != element {
+                swap(&self[index], &self[element])
+            }
+        }
+    }
+}
+
+extension Collection {
+    func shuffled() -> [Iterator.Element] {
+        var list = Array(self)
+        list.shuffle()
+        return list
+    }
+}

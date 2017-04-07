@@ -26,8 +26,9 @@ class MeSectionViewController: UIViewController {
     // MARK: - Properties
 
     let viewModel: MeSectionViewModel
-    let strokeColor = UIColor(white: 0.7, alpha: 0.4)
-    var dataPointsCenterCoordinates = [CGPoint]()
+    let strokeColor = UIColor(white: 1, alpha: 0.2)
+    var dataCenterPoints = [CGPoint]()
+    var connectionCenterPpoitns = [CGPoint]()
     let scrollView = UIScrollView(frame: UIScreen.main.bounds)
     var profileImageView = UIImageView()
     let profileImageWidth: CGFloat = screen.width * 0.25
@@ -36,6 +37,8 @@ class MeSectionViewController: UIViewController {
     let offsetLoad: CGFloat = 12
     let offsetScrollView: CGFloat = (screen.width * 0.06)
     let loadCenter = CGPoint(x: (screen.width - (screen.width * 0.06)), y: screen.height * 0.5)
+    let connectionCenter = CGPoint(x: screen.width, y: screen.height * 0.5)
+
 
     weak var delegate: MeSectionDelegate?
 
@@ -106,11 +109,11 @@ class MeSectionViewController: UIViewController {
         addProfileImage()
         drawBackCircles(radius: radiusAverageLoad, linesDashPattern: [2, 1])
         drawBackCircles(radius: radiusMaxLoad)
-//        connectDataPoint()
-//        drawDataPoints()
         addCategoryLabels()
-        drawSectors()
-//        placeDots()
+        collectCenterPoints()
+        connectDataPoint()
+        addProfileImage()
+        placeDots()
     }
 
     override func loadView() {
@@ -145,39 +148,13 @@ private extension MeSectionViewController {
         )
     }
 
-    func drawDataPoints() {
-        viewModel.items.forEach { (myDataItem: MyDataItem) in
-            switch myDataItem.category {
-            case .load(let subCategory):
-                drawDataPoint(distance: subCategory.distance, angle: subCategory.angle, category: myDataItem.category)
-            case .bodyBrain(let subCategory):
-                drawDataPoint(distance: subCategory.distance, angle: subCategory.angle, category: myDataItem.category)
-            }
-        }
-
-        dataPointsCenterCoordinates.insert(loadCenter, at: 0)
-    }
-
-    func addProfileImage() {        
+    func addProfileImage() {
         profileImageView = UIImageView(frame: profileImageViewFrame)
         profileImageView.image = viewModel.profileImage
         profileImageView.contentMode = .scaleToFill
-        profileImageView.layer.cornerRadius = profileImageView.frame.width * 0.5
+        profileImageView.layer.cornerRadius = profileImageViewFrame.width * 0.5
         profileImageView.clipsToBounds = true
         view.addSubview(profileImageView)
-    }
-
-    func drawDataPoint(distance: CGFloat, angle: CGFloat, category: DataCategory) {
-        let center = CGPoint(x: angle, y: (distance * 100))
-        let circlePath = UIBezierPath.circlePath(center: center, radius: CGFloat(distance * 10))
-
-        let shapeLayer = CAShapeLayer.pathWithColor(
-            path: circlePath.cgPath,
-            fillColor: .white,
-            strokeColor: .white
-        )
-        view.layer.addSublayer(shapeLayer)
-        dataPointsCenterCoordinates.append(center)
     }
 
     func drawBackCircles(radius: CGFloat, linesDashPattern: [NSNumber]? = nil) {
@@ -191,46 +168,33 @@ private extension MeSectionViewController {
         view.layer.addSublayer(shapeLayer)
     }
 
-    func drawSectors() {
+    func collectCenterPoints() {
         spikes.forEach { (spike: Spike) in
-            var load = spike.load
+            let centerValues = centerPointValues(spike: spike)
+            let centerPoint = center(with: centerValues.radius, angle: spike.angle)
 
-            if load > 0.9 {
-                load = 0.9
-            }
-
-            if load < 0.1 {
-                load = 0.1
-            }
-
-            let factor: CGFloat = radiusMaxLoad
-            let offset: CGFloat = ((profileImageView.frame.width * 0.5) + offsetLoad)
-            let radius: CGFloat = (load * (factor - offsetLoad)) + (offset * 0.4)
-
-            print("load: \(spike.load)")
-            print("radius: \(radius)")
-            print("load * \(factor) + offset: \(offset) == \((spike.load * factor) + offset)")
-
-            let endPopint = center(with: radius, angle: spike.angle)
-
-            drawSpike(
-                to: endPopint,
-                strokeColor: spike.strokeColor
-            )
-
-            placeDot(
-                fillColor: radius > (radiusAverageLoad - (spike.load * 4)) ? .red : .white,
-                strokeColor: radius > (radiusAverageLoad - (spike.load * 4)) ? UIColor(red: 1, green: 0, blue: 0, alpha: 0.8) : UIColor(white: 1, alpha: 0.7),
-                center: endPopint,
-                radius: (spike.load * 8)
-            )
+            dataCenterPoints.append(centerPoint)
+            connectionCenterPpoitns.append(centerPoint)
         }
     }
 
-    func drawSpike(to point: CGPoint, strokeColor: UIColor) {
-        let line = CAShapeLayer.line(from: profileImageView.center, to: point, strokeColor: strokeColor)
+//    func drawSpike(to point: CGPoint, strokeColor: UIColor) {
+//        let line = CAShapeLayer.line(from: profileImageView.center, to: point, strokeColor: strokeColor)
+//
+//        view.layer.addSublayer(line)
+//    }
 
-        view.layer.addSublayer(line)
+    func placeDots() {
+        for (index, center) in dataCenterPoints.enumerated() {
+            let spike = spikes[index]
+            let centerValues = centerPointValues(spike: spike)
+            placeDot(
+                fillColor: centerValues.radius > (radiusAverageLoad - (spike.load * 4)) ? .red : .white,
+                strokeColor: centerValues.radius > (radiusAverageLoad - (spike.load * 4)) ? UIColor(red: 1, green: 0, blue: 0, alpha: 0.8) : UIColor(white: 1, alpha: 0.7),
+                center: center,
+                radius: (spike.load * 8)
+            )
+        }
     }
 
     func placeDot(fillColor: UIColor, strokeColor: UIColor, center: CGPoint, radius: CGFloat) {
@@ -252,34 +216,32 @@ private extension MeSectionViewController {
         return CGPoint(x: xPos, y: yPos)
     }
 
-//    func drawSector(offset: CGFloat) {
-//        let yPos = profileImageView.center.y * offset
-//        print("offsett: \(yPos)")
-//        print("maxY: \(UIScreen.main.bounds.maxY)")
-//
-//        let centerPi = CGPoint(x: 0, y: yPos)
-//        let centerPiLine = CAShapeLayer.line(from: centerPi, to: profileImageView.center, strokeColor: .red)
-//        view.layer.addSublayer(centerPiLine)
-//    }
-//
-//    func connectDataPoint() {
-//        for (index, center) in dataPointsCenterCoordinates.enumerated() {
-//            let nextIndex = (index + 1)
-//
-//            guard nextIndex < dataPointsCenterCoordinates.count else {
-//                return
-//            }
-//
-//            let nextCenter = dataPointsCenterCoordinates[nextIndex]
-//            let line = CAShapeLayer.line(from: center, to: nextCenter, strokeColor: strokeColor)
-//            view.layer.addSublayer(line)
-//        }
-//    }
-//
+    func connectDataPoint() {
+        for index in stride(from: 0, to: spikes.count, by: 5) {
+            let centerPoint = dataCenterPoints[index]
+            connectionCenterPpoitns.append(centerPoint)
+            connectionCenterPpoitns.append(connectionCenter)
+        }
+
+        let centerPoints = connectionCenterPpoitns.shuffled()
+
+        for (index, center) in centerPoints.enumerated() {
+            let nextIndex = (index + 1)
+
+            guard nextIndex < connectionCenterPpoitns.count else {
+                return
+            }
+
+            let nextCenter = connectionCenterPpoitns[nextIndex]
+            let line = CAShapeLayer.line(from: center, to: nextCenter, strokeColor: strokeColor)
+            view.layer.addSublayer(line)
+        }
+    }
+
     func addCategoryLabels() {
         categoryLabel.forEach { (categoryLabel: CategoryLabel) in
             let factor: CGFloat = radiusMaxLoad
-            let offset: CGFloat = ((profileImageView.frame.width * 0.5) + offsetLoad)
+            let offset: CGFloat = ((profileImageViewFrame.width * 0.5) + offsetLoad)
             let radius: CGFloat = (categoryLabel.load * (factor - offsetLoad)) + (offset * 0.4)
 
             let labelCenter = center(with: radius, angle: categoryLabel.angle)
@@ -290,5 +252,23 @@ private extension MeSectionViewController {
             label.sizeToFit()
             view.addSubview(label)
         }
+    }
+
+    func centerPointValues(spike: Spike) -> (radius: CGFloat, load: CGFloat) {
+        var load = spike.load
+
+        if load > 0.9 {
+            load = 0.9
+        }
+
+        if load < 0.1 {
+            load = 0.1
+        }
+
+        let factor: CGFloat = radiusMaxLoad
+        let offset: CGFloat = ((profileImageViewFrame.width * 0.5) + offsetLoad)
+        let radius: CGFloat = (load * (factor - offsetLoad)) + (offset * 0.4)
+
+        return (radius: radius, load: load)
     }
 }
