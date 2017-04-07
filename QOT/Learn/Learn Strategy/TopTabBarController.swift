@@ -30,39 +30,9 @@ final class TopTabBarController: UIViewController {
         let title: String
     }
     
-    fileprivate var items: [Item]
-    fileprivate let tabBarView: TabBarView
-    fileprivate weak var delegate: TabBarControllerDelegate?
-    var viewControllers: [UIViewController] {
-        return items.map { $0.controller }
-    }
-    
-    init(items: [Item], selectedIndex: Index, leftIcon: UIImage?, rightIcon: UIImage?) {
-        precondition(selectedIndex >= 0 && selectedIndex < items.count, "Out of bounds selectedIndex")
-        
-        let tabBarView = TabBarView()
-        tabBarView.setTitles(items.map { $0.title }, selectedIndex: 0)
-        tabBarView.selectedColor = Constants.selectedButtonColor
-        tabBarView.deselectedColor = Constants.deselectedButtonColor
-        tabBarView.indicatorViewExtendedWidth = Constants.indicatorViewExtendedWidth
-        
-        self.items = items
-        self.tabBarView = tabBarView
-        
-        super.init(nibName: nil, bundle: nil)
-        if leftIcon != nil {
-            leftButton.setImage(leftIcon, for: .normal) } else {leftButton.isHidden = true}
-        if rightIcon != nil {
-            rightButton.setImage(rightIcon, for: .normal) } else {rightButton.isHidden = true}
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    // MARK: Private Objects
     
     fileprivate var controllers = [UIViewController]()
-    
-    var index: Int = 0
     
     fileprivate lazy var navigationItemBar: UIView = {
         let view = UIView()
@@ -92,25 +62,57 @@ final class TopTabBarController: UIViewController {
         return view
     }()
     
+    fileprivate var items: [Item]
+    fileprivate let tabBarView: TabBarView
+    fileprivate weak var delegate: TabBarControllerDelegate?
+    
+    // MARK: Public Objects
+    
+    var index: Int = 0
+    var viewControllers: [UIViewController] {
+        return items.map { $0.controller }
+    }
+    
+    init(items: [Item], selectedIndex: Index, leftIcon: UIImage?, rightIcon: UIImage?) {
+        precondition(selectedIndex >= 0 && selectedIndex < items.count, "Out of bounds selectedIndex")
+        
+        let tabBarView = TabBarView()
+        tabBarView.setTitles(items.map { $0.title }, selectedIndex: 0)
+        tabBarView.selectedColor = Constants.selectedButtonColor
+        tabBarView.deselectedColor = Constants.deselectedButtonColor
+        tabBarView.indicatorViewExtendedWidth = Constants.indicatorViewExtendedWidth
+        
+        self.items = items
+        self.tabBarView = tabBarView
+        
+        super.init(nibName: nil, bundle: nil)
+        if leftIcon != nil {
+            leftButton.setImage(leftIcon, for: .normal) } else {leftButton.isHidden = true}
+        if rightIcon != nil {
+            rightButton.setImage(rightIcon, for: .normal) } else {rightButton.isHidden = true}
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHierarchy()
-        
         setupScrollView()
-        
         tabBarView.delegate = self
     }
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         setupScrollView()
     }
     
     func leftButtonPressed(_ button: UIButton) {
-        print("i am left icon")
+        
     }
     
     func rightButtonPressed(_ button: UIButton) {
-        print("i am right icon")
         index = leftButton.tag
     }
     
