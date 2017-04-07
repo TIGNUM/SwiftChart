@@ -35,6 +35,7 @@ final class LibraryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerDequeueable(LatestPostCell.self)
+        tableView.registerDequeueable(CategoryPostCell.self)
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeView))
         view.addGestureRecognizer(tapGestureRecognizer)
         view.backgroundColor = .black
@@ -50,17 +51,27 @@ extension LibraryViewController: UITableViewDelegate {
         return viewModel.sectionCount
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfItemsInSection(in: section)
+        
+            return viewModel.numberOfItemsInSection(in: section)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+      
     }
 }
 
 extension LibraryViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: LatestPostCell = tableView.dequeueCell(for: indexPath)
-        return cell
+        let item = viewModel.styleForSection(indexPath.item)
+        
+        switch item {
+        case .lastPost:
+            let cell: LatestPostCell = tableView.dequeueCell(for: indexPath)
+            return cell
+        case .category:
+            let cell: CategoryPostCell = tableView.dequeueCell(for: indexPath)
+            return cell
+        }
     }
 }

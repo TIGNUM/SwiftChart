@@ -11,14 +11,44 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="LatestPostCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="321" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="322" id="KGk-i7-Jjw" customClass="LatestPostCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="279" height="322"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="321" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="279" height="321.5"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x11-Z5-yIy">
+                        <rect key="frame" x="8" y="8" width="265" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="aCN-lh-OuV"/>
+                            <constraint firstAttribute="width" constant="265" id="mEe-52-eXG"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="pJi-MO-eWc">
+                        <rect key="frame" x="8" y="30" width="263" height="286"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fWi-nB-ry1">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="pJi-MO-eWc" firstAttribute="top" secondItem="x11-Z5-yIy" secondAttribute="bottom" constant="8" id="7r7-xI-RGT"/>
+                    <constraint firstAttribute="trailing" secondItem="pJi-MO-eWc" secondAttribute="trailing" constant="8" id="So4-7O-Ht7"/>
+                    <constraint firstItem="x11-Z5-yIy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="eNf-1U-wdH"/>
+                    <constraint firstItem="x11-Z5-yIy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="f8n-Iy-O9j"/>
+                    <constraint firstAttribute="bottom" secondItem="pJi-MO-eWc" secondAttribute="bottom" constant="5.5" id="hol-r1-Thb"/>
+                    <constraint firstItem="pJi-MO-eWc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="oiq-BA-bFx"/>
+                </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="34.5" y="54"/>
+            <point key="canvasLocation" x="13.5" y="193"/>
         </tableViewCell>
     </objects>
 </document>
