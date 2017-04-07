@@ -38,6 +38,7 @@ final class TabBarCoordinator: ParentCoordinator {
         let viewModel = ChatViewModel()
         let chatViewController = ChatViewController(viewModel: viewModel)
         chatViewController.delegate = self
+        
         return chatViewController
     }()
     
@@ -54,21 +55,11 @@ final class TabBarCoordinator: ParentCoordinator {
         self.addViewControllers()
     }
     
-    private func vc(_ color: UIColor, _ title: String) -> TopTabBarController.Item {
-        let vc = UIViewController()
-        vc.view.backgroundColor = color
-        return TopTabBarController.Item(controller: vc, title: title)
-    }
-    
     func start() {
-        let vcs: [TopTabBarController.Item] = [vc(.red, "FULL"), vc(.blue, "BULLETS"), vc(.gray, "ON"), vc(.yellow, "OFF")]
-        let ttbc = TopTabBarController(items: vcs, selectedIndex: 0, leftIcon: R.image.ic_menu(), rightIcon: R.image.ic_menu())
-        
         let items: [TabBarController.Item] = [
             TabBarController.Item(controller: learnCategoryListViewController, title: R.string.localized.tabBarItemLearn()),
             TabBarController.Item(controller: meSectionViewController, title: R.string.localized.tabBarItemMe()),
-            TabBarController.Item(controller: chatViewController, title: R.string.localized.tabBarItemPrepare()),
-            TabBarController.Item(controller: ttbc, title: "TOP")
+            TabBarController.Item(controller: chatViewController, title: R.string.localized.tabBarItemPrepare())
         ]
         
         let tabBarController = TabBarController(items: items, selectedIndex: 0)
