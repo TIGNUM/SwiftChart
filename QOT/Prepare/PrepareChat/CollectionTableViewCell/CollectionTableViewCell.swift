@@ -30,8 +30,7 @@ class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
 
-        self.collectionView.registerDequeueable(InputCollectionViewCell.self)
-        self.collectionView.registerDequeueable(NavigationCollectionViewCell.self)
+        self.collectionView.registerDequeueable(PrepareCollectionViewCell.self)
 
         let collectionFlow = UICollectionViewRightAlignedLayout()
         self.collectionView.collectionViewLayout = collectionFlow
@@ -61,15 +60,13 @@ extension CollectionTableViewCell {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let obj = self.dataModel as? [ChatMessageNavigation] {
             let title = obj.item(at: indexPath.row).title
-            let cell: NavigationCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-            cell.titleLbl.text = title
-            cell.addDashedBorder(lineWidth: 2)
+            let cell: PrepareCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+            cell.setStyle(cellType: .Navigation, borderType: .DashedBorder, lineWidth: 2, selectedState: false, name: title)
             return cell
         } else if let obj = self.dataModel as? [ChatMessageInput] {
             let title = obj.item(at: indexPath.row).title
-            let cell: InputCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-            cell.titleLbl.text = title
-            cell.addBorder(lineWidth: 2)
+            let cell: PrepareCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+            cell.setStyle(cellType: .Input, borderType: .CleanBorder, lineWidth: 2, selectedState: false, name: title)
             return cell
         }
         return UICollectionViewCell()

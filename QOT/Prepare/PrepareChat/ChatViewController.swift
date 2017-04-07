@@ -32,7 +32,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     init(viewModel: ChatViewModel) {
         self.viewModel = viewModel
         super.init(nibName: String(describing:ChatViewController.self), bundle: nil)
-
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -41,7 +40,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         //Dequeue TableCells
         self.tableView.registerDequeueable(ChatTableViewCell.self)
         self.tableView.registerDequeueable(StatusTableViewCell.self)
@@ -117,6 +116,7 @@ extension ChatViewController {
                 cell.chatLabel.text = "..."
                 return cell
             }
+            
         case .header(let title, _):
             let cell: StatusTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.statusLabel.text = title

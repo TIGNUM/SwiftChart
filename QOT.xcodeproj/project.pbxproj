@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B0DD58D1E968BD7003A9C09 /* InputCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0DD58B1E968BD7003A9C09 /* InputCollectionViewCell.swift */; };
-		0B0DD58E1E968BD7003A9C09 /* InputCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B0DD58C1E968BD7003A9C09 /* InputCollectionViewCell.xib */; };
-		0BC1FF471E968DF4007DE090 /* NavigationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1FF451E968DF4007DE090 /* NavigationCollectionViewCell.swift */; };
-		0BC1FF481E968DF4007DE090 /* NavigationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC1FF461E968DF4007DE090 /* NavigationCollectionViewCell.xib */; };
+		0B254D3E1E97994C006AA4C0 /* PrepareCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B254D3C1E97994C006AA4C0 /* PrepareCollectionViewCell.swift */; };
+		0B254D3F1E97994C006AA4C0 /* PrepareCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B254D3D1E97994C006AA4C0 /* PrepareCollectionViewCell.xib */; };
 		0BC1FF4B1E968E07007DE090 /* CollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1FF491E968E07007DE090 /* CollectionTableViewCell.swift */; };
 		0BC1FF4C1E968E07007DE090 /* CollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC1FF4A1E968E07007DE090 /* CollectionTableViewCell.xib */; };
 		0BC9F9361E96118C009E8204 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC9F92C1E96118C009E8204 /* ChatTableViewCell.swift */; };
@@ -153,10 +151,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0B0DD58B1E968BD7003A9C09 /* InputCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InputCollectionViewCell.swift; path = QOT/Prepare/PrepareChat/CollectionTableViewCell/InputCollectionViewCell/InputCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
-		0B0DD58C1E968BD7003A9C09 /* InputCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InputCollectionViewCell.xib; path = QOT/Prepare/PrepareChat/CollectionTableViewCell/InputCollectionViewCell/InputCollectionViewCell.xib; sourceTree = SOURCE_ROOT; };
-		0BC1FF451E968DF4007DE090 /* NavigationCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationCollectionViewCell.swift; path = QOT/Prepare/PrepareChat/CollectionTableViewCell/NavigationCollectionViewCell/NavigationCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
-		0BC1FF461E968DF4007DE090 /* NavigationCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NavigationCollectionViewCell.xib; path = QOT/Prepare/PrepareChat/CollectionTableViewCell/NavigationCollectionViewCell/NavigationCollectionViewCell.xib; sourceTree = SOURCE_ROOT; };
+		0B254D3C1E97994C006AA4C0 /* PrepareCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareCollectionViewCell.swift; path = QOT/Prepare/PrepareChat/CollectionTableViewCell/PrepareCollectionViewCell/PrepareCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
+		0B254D3D1E97994C006AA4C0 /* PrepareCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PrepareCollectionViewCell.xib; path = QOT/Prepare/PrepareChat/CollectionTableViewCell/PrepareCollectionViewCell/PrepareCollectionViewCell.xib; sourceTree = SOURCE_ROOT; };
 		0BC1FF491E968E07007DE090 /* CollectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionTableViewCell.swift; path = QOT/Prepare/PrepareChat/CollectionTableViewCell/CollectionTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		0BC1FF4A1E968E07007DE090 /* CollectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CollectionTableViewCell.xib; path = QOT/Prepare/PrepareChat/CollectionTableViewCell/CollectionTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		0BC9F92C1E96118C009E8204 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
@@ -317,13 +313,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0B0DD58A1E968913003A9C09 /* InputCollectionViewCell */ = {
+		0B254D401E979952006AA4C0 /* PrepareCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				0B0DD58B1E968BD7003A9C09 /* InputCollectionViewCell.swift */,
-				0B0DD58C1E968BD7003A9C09 /* InputCollectionViewCell.xib */,
+				0B254D3C1E97994C006AA4C0 /* PrepareCollectionViewCell.swift */,
+				0B254D3D1E97994C006AA4C0 /* PrepareCollectionViewCell.xib */,
 			);
-			name = InputCollectionViewCell;
+			name = PrepareCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		0BC9F9251E96118C009E8204 /* CollectionTableViewCell */ = {
@@ -331,21 +327,10 @@
 			children = (
 				0BC1FF491E968E07007DE090 /* CollectionTableViewCell.swift */,
 				0BC1FF4A1E968E07007DE090 /* CollectionTableViewCell.xib */,
-				0B0DD58A1E968913003A9C09 /* InputCollectionViewCell */,
-				0BC9F9281E96118C009E8204 /* NavigationCollectionViewCell */,
+				0B254D401E979952006AA4C0 /* PrepareCollectionViewCell */,
 			);
 			name = CollectionTableViewCell;
 			path = AnswerCollectionTableViewCell;
-			sourceTree = "<group>";
-		};
-		0BC9F9281E96118C009E8204 /* NavigationCollectionViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				0BC1FF451E968DF4007DE090 /* NavigationCollectionViewCell.swift */,
-				0BC1FF461E968DF4007DE090 /* NavigationCollectionViewCell.xib */,
-			);
-			name = NavigationCollectionViewCell;
-			path = ../CollectionTableViewCell/AnswerCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		0BC9F92B1E96118C009E8204 /* ChatTableViewCell */ = {
@@ -1014,11 +999,10 @@
 				CCAF03281E802A6200015125 /* SettingsViewController.xib in Resources */,
 				CCC0C4CA1E827F87002A8362 /* BentonSans_Book.otf in Resources */,
 				D51D08841E8E806E00FC7567 /* LearnStrategyTextCell.xib in Resources */,
+				0B254D3F1E97994C006AA4C0 /* PrepareCollectionViewCell.xib in Resources */,
 				CBA4216F1E9276AF00CD4BC9 /* SidebarTableViewCell.xib in Resources */,
-				0BC1FF481E968DF4007DE090 /* NavigationCollectionViewCell.xib in Resources */,
 				CBA421701E9276AF00CD4BC9 /* SidebarViewController.xib in Resources */,
 				CCC0C4CC1E828007002A8362 /* BentonSans_Regular.otf in Resources */,
-				0B0DD58E1E968BD7003A9C09 /* InputCollectionViewCell.xib in Resources */,
 				CCC1B6AA1E8B9B7300D1461F /* LearnCategoryListViewController.xib in Resources */,
 				CBD7915D1E72F2990006C590 /* LaunchViewController.xib in Resources */,
 				D51D088C1E8E80CD00FC7567 /* LearnStrategyArticleCell.xib in Resources */,
@@ -1209,7 +1193,6 @@
 				D51D088B1E8E80CD00FC7567 /* LearnStrategyArticleCell.swift in Sources */,
 				CB8A15271E76A1280023B2F9 /* PageEvent.swift in Sources */,
 				CCFCACC01E8D5DD100EA3119 /* BenefitsViewController.swift in Sources */,
-				0B0DD58D1E968BD7003A9C09 /* InputCollectionViewCell.swift in Sources */,
 				CCEA22A41E8AC53E003D0CF4 /* PrepareCheckListViewController.swift in Sources */,
 				CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */,
 				D51D08831E8E806E00FC7567 /* LearnStrategyTextCell.swift in Sources */,
@@ -1244,9 +1227,9 @@
 				CBD791651E768AB70006C590 /* MainMenuViewController.swift in Sources */,
 				0BC1FF4B1E968E07007DE090 /* CollectionTableViewCell.swift in Sources */,
 				CB2880281E7057790067890A /* RootViewController.swift in Sources */,
-				0BC1FF471E968DF4007DE090 /* NavigationCollectionViewCell.swift in Sources */,
 				D57ECFB01E924CC2008F401B /* TabBarView.swift in Sources */,
 				CCE06FE01E8D44FC009C5AD2 /* LibraryCoordinator.swift in Sources */,
+				0B254D3E1E97994C006AA4C0 /* PrepareCollectionViewCell.swift in Sources */,
 				CCAF032A1E8035C800015125 /* SettingsTableViewCell.swift in Sources */,
 				CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */,
 				CB8A152F1E76F27D0023B2F9 /* PageID.swift in Sources */,

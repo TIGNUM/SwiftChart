@@ -16,14 +16,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="NavigationCollectionViewCell" customModule="QOT" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="WCg-SH-Ft9" customClass="PrepareCollectionViewCell" customModule="QOT" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="112" height="72"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="112" height="72"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqe-Q0-A02">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RnA-Sm-gnR">
                         <rect key="frame" x="36" y="28.5" width="40" height="15.5"/>
                         <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="16"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
@@ -32,16 +32,16 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="cqe-Q0-A02" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="1ZO-la-pbe"/>
-                <constraint firstItem="cqe-Q0-A02" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="7QF-PJ-U79"/>
-                <constraint firstItem="cqe-Q0-A02" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="I8n-NJ-0qW"/>
-                <constraint firstItem="cqe-Q0-A02" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Snv-Ve-VR2"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cqe-Q0-A02" secondAttribute="bottom" constant="5" id="hr3-Nx-chr"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cqe-Q0-A02" secondAttribute="trailing" constant="5" id="uHV-sB-Xa0"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="RnA-Sm-gnR" secondAttribute="bottom" constant="5" id="0G5-82-fVQ"/>
+                <constraint firstItem="RnA-Sm-gnR" firstAttribute="centerY" secondItem="WCg-SH-Ft9" secondAttribute="centerY" id="FpQ-mc-Jhp"/>
+                <constraint firstItem="RnA-Sm-gnR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="WCg-SH-Ft9" secondAttribute="leading" constant="5" id="Iob-8L-7DB"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="RnA-Sm-gnR" secondAttribute="trailing" constant="5" id="PPC-5b-QCX"/>
+                <constraint firstItem="RnA-Sm-gnR" firstAttribute="top" relation="greaterThanOrEqual" secondItem="WCg-SH-Ft9" secondAttribute="top" constant="5" id="WGx-DI-uEE"/>
+                <constraint firstItem="RnA-Sm-gnR" firstAttribute="centerX" secondItem="WCg-SH-Ft9" secondAttribute="centerX" id="paZ-l8-rIF"/>
             </constraints>
             <size key="customSize" width="241" height="70"/>
             <connections>
-                <outlet property="titleLbl" destination="cqe-Q0-A02" id="AU9-qq-Huh"/>
+                <outlet property="titleLbl" destination="RnA-Sm-gnR" id="1bh-2h-D4c"/>
             </connections>
             <point key="canvasLocation" x="138" y="64"/>
         </collectionViewCell>
