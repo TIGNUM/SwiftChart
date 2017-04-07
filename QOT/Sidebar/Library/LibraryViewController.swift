@@ -55,11 +55,11 @@ extension LibraryViewController: UITableViewDelegate, UICollectionViewDelegate {
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-            return viewModel.numberOfItemsInSection(in: section)
+        return viewModel.numberOfItemsInSection(in: section)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-      
+        
     }
     
     // Collection View Delegate

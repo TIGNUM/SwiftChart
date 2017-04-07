@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategoryCollectionCell: UICollectionViewCell {
+class CategoryCollectionCell: UICollectionViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
