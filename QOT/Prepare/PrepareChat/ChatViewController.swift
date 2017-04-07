@@ -127,7 +127,7 @@ extension ChatViewController {
             collectionCell.cellTitleLabel.text = "Preparations".uppercased()
             var prepareChatObjects: [PrepareChatObject] = []
             for item in items {
-                let obj = PrepareChatObject(title: item.title, localID: item.localID, selected: item.selected)
+                let obj = PrepareChatObject(title: item.title, localID: item.localID, selected: item.selected, objectType: .NavigationType)
                 prepareChatObjects.append(obj)
             }
             collectionCell.inputWithDataModel(dataModel: prepareChatObjects)
@@ -138,7 +138,7 @@ extension ChatViewController {
             collectionCell.cellTitleLabel.text = "Day Protocol".uppercased()
             var prepareChatObjects: [PrepareChatObject] = []
             for item in items {
-                let obj = PrepareChatObject(title: item.title, localID: item.localID, selected: item.selected)
+                let obj = PrepareChatObject(title: item.title, localID: item.localID, selected: item.selected, objectType: .InputType)
                 prepareChatObjects.append(obj)
             }
             collectionCell.inputWithDataModel(dataModel: prepareChatObjects)

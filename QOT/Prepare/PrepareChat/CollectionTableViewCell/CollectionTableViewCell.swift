@@ -55,7 +55,12 @@ extension CollectionTableViewCell {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let title = self.dataModel.item(at: indexPath.row).title
         let cell: PrepareCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-        cell.setStyle(cellType: .Navigation, borderType: .DashedBorder, lineWidth: 2, selectedState: self.dataModel.item(at: indexPath.row).selected, name: title)
+        let objectType = self.dataModel.item(at: indexPath.row).objectType
+        if objectType == .NavigationType {
+            cell.setStyle(cellType: .Navigation, borderType: .DashedBorder, lineWidth: 2, selectedState: self.dataModel.item(at: indexPath.row).selected, name: title)
+        } else if objectType == .InputType {
+            cell.setStyle(cellType: .Input, borderType: .CleanBorder, lineWidth: 2, selectedState: self.dataModel.item(at: indexPath.row).selected, name: title)
+        }
         return cell
     }
 
@@ -90,10 +95,17 @@ struct PrepareChatObject {
     var selected: Bool
     var title: String = ""
     var localID: String = ""
+    var objectType: ObjectType
 
-    init(title: String, localID: String, selected: Bool) {
+    init(title: String, localID: String, selected: Bool, objectType: ObjectType) {
         self.selected = selected
         self.title = title
         self.localID = localID
+        self.objectType = objectType
+    }
+
+    enum ObjectType {
+        case NavigationType
+        case InputType
     }
 }
