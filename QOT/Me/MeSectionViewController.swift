@@ -193,9 +193,19 @@ private extension MeSectionViewController {
 
     func drawSectors() {
         spikes.forEach { (spike: Spike) in
+            var load = spike.load
+
+            if load > 0.9 {
+                load = 0.9
+            }
+
+            if load < 0.1 {
+                load = 0.1
+            }
+
             let factor: CGFloat = radiusMaxLoad
             let offset: CGFloat = ((profileImageView.frame.width * 0.5) + offsetLoad)
-            let radius: CGFloat = (spike.load * (factor - offsetLoad)) + (offset * 0.4)
+            let radius: CGFloat = (load * (factor - offsetLoad)) + (offset * 0.4)
 
             print("load: \(spike.load)")
             print("radius: \(radius)")
@@ -209,8 +219,8 @@ private extension MeSectionViewController {
             )
 
             placeDot(
-                fillColor: .red,
-                strokeColor: UIColor(red: 1, green: 0, blue: 0, alpha: 0.8),
+                fillColor: radius > (radiusAverageLoad + (spike.load * 4)) ? .red : .white,
+                strokeColor: radius > (radiusAverageLoad + (spike.load * 4)) ? UIColor(red: 1, green: 0, blue: 0, alpha: 0.8) : UIColor(white: 1, alpha: 0.7),
                 center: endPopint,
                 radius: (spike.load * 8)
             )
