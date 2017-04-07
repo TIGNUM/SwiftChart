@@ -11,7 +11,8 @@ import Anchorage
 
 protocol TopTabBarDelegate: class {
     func didSelectItemAtIndex(index: Int?, sender: TopTabBarController)
-    
+    func didSelectLeftButton(index: Int?, sender: TopTabBarController)
+    func didSelectrightButton(index: Int?, sender: TopTabBarController)
 }
 
 final class TopTabBarController: UIViewController {
@@ -30,10 +31,8 @@ final class TopTabBarController: UIViewController {
     }
     
     fileprivate var items: [Item]
-    
     fileprivate let tabBarView: TabBarView
-    
-    weak var delegate: TabBarControllerDelegate?
+    fileprivate weak var delegate: TabBarControllerDelegate?
     var viewControllers: [UIViewController] {
         return items.map { $0.controller }
     }
@@ -52,9 +51,9 @@ final class TopTabBarController: UIViewController {
         
         super.init(nibName: nil, bundle: nil)
         if leftIcon != nil {
-            leftButton.imageView?.image = leftIcon } else {leftButton.isHidden = true}
+            leftButton.setImage(leftIcon, for: .normal) } else {leftButton.isHidden = true}
         if rightIcon != nil {
-            rightButton.imageView?.image = rightIcon } else {rightButton.isHidden = true}
+            rightButton.setImage(rightIcon, for: .normal) } else {rightButton.isHidden = true}
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -73,15 +72,15 @@ final class TopTabBarController: UIViewController {
     
     fileprivate lazy var leftButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .red
-        button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
+        button.backgroundColor = .white
+        button.addTarget(self, action: #selector(leftButtonPressed(_:)), for: .touchUpInside)
         return button
     }()
     
     fileprivate lazy var rightButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .red
-        button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
+        button.backgroundColor = .white
+        button.addTarget(self, action: #selector(rightButtonPressed(_:)), for: .touchUpInside)
         return button
     }()
     
@@ -106,8 +105,13 @@ final class TopTabBarController: UIViewController {
         setupScrollView()
     }
     
-    func buttonPressed(_ button: UIButton) {
-        print("hello")
+    func leftButtonPressed(_ button: UIButton) {
+        print("i am left icon")
+    }
+    
+    func rightButtonPressed(_ button: UIButton) {
+        print("i am right icon")
+        index = leftButton.tag
     }
     
     override func viewDidLayoutSubviews() {
