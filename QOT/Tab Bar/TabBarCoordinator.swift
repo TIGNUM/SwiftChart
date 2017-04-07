@@ -171,11 +171,11 @@ extension TabBarCoordinator: PrepareContentViewControllerDelegate {
         log("didTapAddPreparationInCollection")
     }
 
-    func didTapAddToNotes(with ID: String, in viewController: PrepareContentViewController) {
+    func didTapAddToNotesInCollection(with ID: String, in viewController: PrepareContentViewController) {
         log("didTapAddToNotes")
     }
 
-    func didTapSaveAs(with ID: String, in viewController: PrepareContentViewController) {
+    func didTapSaveAsInCollection(with ID: String, in viewController: PrepareContentViewController) {
         log("didTapSaveAs: ID: \(ID)")
     }
 }
