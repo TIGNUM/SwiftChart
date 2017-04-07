@@ -19,9 +19,9 @@ class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
     @IBOutlet public weak var cellTitleLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     weak var delegate: CollectionViewCellDelegate?
-    var dataModel: [Any] = []
+    var dataModel: [PrepareChatObject] = []
 
-    public func inputWithDataModel(dataModel: [Any]!) {
+    public func inputWithDataModel(dataModel: [PrepareChatObject]!) {
         self.dataModel = dataModel
     }
 
@@ -45,12 +45,7 @@ extension CollectionTableViewCell {
 
     // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let obj = self.dataModel as? [ChatMessageNavigation] {
-            return  obj.numberOfItems(inSection: section)
-        } else if let obj = self.dataModel as? [ChatMessageInput] {
-            return  obj.numberOfItems(inSection: section)
-        }
-        return 0
+        return  self.dataModel.numberOfItems(inSection: section)
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -58,18 +53,10 @@ extension CollectionTableViewCell {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let obj = self.dataModel as? [ChatMessageNavigation] {
-            let title = obj.item(at: indexPath.row).title
-            let cell: PrepareCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-            cell.setStyle(cellType: .Navigation, borderType: .DashedBorder, lineWidth: 2, selectedState: false, name: title)
-            return cell
-        } else if let obj = self.dataModel as? [ChatMessageInput] {
-            let title = obj.item(at: indexPath.row).title
-            let cell: PrepareCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-            cell.setStyle(cellType: .Input, borderType: .CleanBorder, lineWidth: 2, selectedState: false, name: title)
-            return cell
-        }
-        return UICollectionViewCell()
+        let title = self.dataModel.item(at: indexPath.row).title
+        let cell: PrepareCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+        cell.setStyle(cellType: .Navigation, borderType: .DashedBorder, lineWidth: 2, selectedState: self.dataModel.item(at: indexPath.row).selected, name: title)
+        return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -77,15 +64,8 @@ extension CollectionTableViewCell {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if let obj = self.dataModel as? [ChatMessageNavigation] {
-            let cellWidth = obj.item(at: indexPath.row).title.width(withConstrainedHeight: 00, font: UIFont(name: "BentonSans", size: 16)!) + 25
-            return CGSize(width: cellWidth, height: 40)
-
-        } else if let obj = self.dataModel as? [ChatMessageInput] {
-            let cellWidth = obj.item(at: indexPath.row).title.width(withConstrainedHeight: 00, font: UIFont(name: "BentonSans", size: 16)!) + 25
-            return CGSize(width: cellWidth, height: 40)
-        }
-        return CGSize()
+        let cellWidth = self.dataModel.item(at: indexPath.row).title.width(withConstrainedHeight: 00, font: UIFont(name: "BentonSans", size: 16)!) + 25
+        return CGSize(width: cellWidth, height: 40)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -103,5 +83,17 @@ extension String {
         let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
 
         return boundingBox.width
+    }
+}
+
+struct PrepareChatObject {
+    var selected: Bool
+    var title: String = ""
+    var localID: String = ""
+
+    init(title: String, localID: String, selected: Bool) {
+        self.selected = selected
+        self.title = title
+        self.localID = localID
     }
 }

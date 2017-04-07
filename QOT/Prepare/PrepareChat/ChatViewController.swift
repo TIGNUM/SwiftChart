@@ -125,13 +125,23 @@ extension ChatViewController {
         case .navigation(let items):
             let collectionCell: CollectionTableViewCell = tableView.dequeueCell(for: indexPath)
             collectionCell.cellTitleLabel.text = "Preparations".uppercased()
-            collectionCell.inputWithDataModel(dataModel: items as [Any])
+            var prepareChatObjects: [PrepareChatObject] = []
+            for item in items {
+                let obj = PrepareChatObject(title: item.title, localID: item.localID, selected: item.selected)
+                prepareChatObjects.append(obj)
+            }
+            collectionCell.inputWithDataModel(dataModel: prepareChatObjects)
             return collectionCell
 
         case .input(let items):
             let collectionCell: CollectionTableViewCell = tableView.dequeueCell(for: indexPath)
             collectionCell.cellTitleLabel.text = "Day Protocol".uppercased()
-            collectionCell.inputWithDataModel(dataModel: items as [Any])
+            var prepareChatObjects: [PrepareChatObject] = []
+            for item in items {
+                let obj = PrepareChatObject(title: item.title, localID: item.localID, selected: item.selected)
+                prepareChatObjects.append(obj)
+            }
+            collectionCell.inputWithDataModel(dataModel: prepareChatObjects)
             return collectionCell
         }
     }
