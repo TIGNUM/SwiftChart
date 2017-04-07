@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VG1-r7-W8I">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                    <rect key="frame" x="0.0" y="60" width="375" height="558"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <connections>
@@ -33,11 +33,11 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="VG1-r7-W8I" secondAttribute="bottom" id="944-k7-hiA"/>
-                <constraint firstItem="VG1-r7-W8I" firstAttribute="top" secondItem="bqO-rr-PgY" secondAttribute="top" id="9sR-Gd-ZMD"/>
+                <constraint firstItem="VG1-r7-W8I" firstAttribute="top" secondItem="bqO-rr-PgY" secondAttribute="top" constant="60" id="9sR-Gd-ZMD"/>
                 <constraint firstItem="VG1-r7-W8I" firstAttribute="leading" secondItem="bqO-rr-PgY" secondAttribute="leading" id="TGn-Jb-nLw"/>
                 <constraint firstAttribute="trailing" secondItem="VG1-r7-W8I" secondAttribute="trailing" id="gIr-Oz-yyO"/>
             </constraints>
-            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+            <nil key="simulatedTopBarMetrics"/>
             <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black" translucent="NO"/>
             <point key="canvasLocation" x="24" y="-129"/>
         </view>
