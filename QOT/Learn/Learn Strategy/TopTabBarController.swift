@@ -14,7 +14,6 @@ protocol TopTabBarDelegate: class {
     
 }
 
-
 final class TopTabBarController: UIViewController {
     
     struct Constants {
@@ -39,7 +38,7 @@ final class TopTabBarController: UIViewController {
         return items.map { $0.controller }
     }
     
-    init(items: [Item], selectedIndex: Index) {
+    init(items: [Item], selectedIndex: Index, leftIcon: UIImage?, rightIcon: UIImage?) {
         precondition(selectedIndex >= 0 && selectedIndex < items.count, "Out of bounds selectedIndex")
         
         let tabBarView = TabBarView()
@@ -52,6 +51,10 @@ final class TopTabBarController: UIViewController {
         self.tabBarView = tabBarView
         
         super.init(nibName: nil, bundle: nil)
+        if leftIcon != nil {
+            leftButton.imageView?.image = leftIcon } else {leftButton.isHidden = true}
+        if rightIcon != nil {
+            rightButton.imageView?.image = rightIcon } else {rightButton.isHidden = true}
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -59,19 +62,14 @@ final class TopTabBarController: UIViewController {
     }
     
     fileprivate var controllers = [UIViewController]()
+    
     var index: Int = 0
+    
     fileprivate lazy var navigationItemBar: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.white.withAlphaComponent(0.7)
+        view.backgroundColor = UIColor.black
         return view
     }()
-    
-    //    fileprivate lazy var tabBarView: TabBarView = {
-    //        let view = TabBarView()
-    //        view.backgroundColor = .white
-    //        view.setTitles(["FULL", "BULLETS"], selectedIndex: 0)
-    //        return view
-    //    }()
     
     fileprivate lazy var leftButton: UIButton = {
         let button = UIButton()
@@ -109,7 +107,7 @@ final class TopTabBarController: UIViewController {
     }
     
     func buttonPressed(_ button: UIButton) {
-        
+        print("hello")
     }
     
     override func viewDidLayoutSubviews() {
@@ -118,10 +116,7 @@ final class TopTabBarController: UIViewController {
     }
     
     func setupScrollView() {
-        let width: CGFloat = self.view.bounds.width
-        
-        print(width)
-        // items[0].controller.view.frame
+        let width: CGFloat = view.bounds.width
         scrollView.frame = view.bounds
         scrollView.contentSize = CGSize(width: CGFloat(items.count) * width, height: 0)
         
@@ -139,15 +134,6 @@ final class TopTabBarController: UIViewController {
         addChildViewController(viewController)
     }
 }
-
-let vcs: [UIViewController] = {
-    let vc = UIViewController()
-    vc.view.backgroundColor = .yellow
-    let vc2 = UIViewController()
-    vc2.view.backgroundColor = .blue
-    
-    return [vc, vc2]
-}()
 
 extension TopTabBarController {
     
@@ -202,23 +188,8 @@ extension TopTabBarController: TabBarViewDelegate {
         
         self.index = index
         if index != scrollView.currentPage {
-            if index == 0 {
-                let offset = CGPoint(x: scrollView.contentOffset.x - scrollView.bounds.size.width, y: 0)
-                scrollView.setContentOffset(offset, animated: true)
-            }
-            if index == 1 {
-                let offset = CGPoint(x: scrollView.contentOffset.x + scrollView.bounds.size.width, y: 0)
-                scrollView.setContentOffset(offset, animated: true)
-            }
-            if index == 2 {
-                let offset = CGPoint(x: scrollView.contentOffset.x + scrollView.bounds.size.width, y: 0)
-                scrollView.setContentOffset(offset, animated: true)
-            }
-            
-            if index == 3 {
-                let offset = CGPoint(x: scrollView.contentOffset.x + scrollView.bounds.size.width, y: 0)
-                scrollView.setContentOffset(offset, animated: true)
-            }
+            let offset = CGPoint(x: scrollView.bounds.size.width * CGFloat(index), y: 0)
+            scrollView.setContentOffset(offset, animated: true)
         }
     }
 }
