@@ -194,7 +194,7 @@ private extension MeSectionViewController {
         spikes.forEach { (spike: Spike) in
             let factor: CGFloat = radiusMaxLoad
             let offset: CGFloat = ((profileImageView.frame.width * 0.5) + offsetLoad)
-            let radius: CGFloat = (spike.load * (factor - offsetLoad))
+            let radius: CGFloat = (spike.load * (factor - offsetLoad)) + (offset * 0.4)
 
             print("load: \(spike.load)")
             print("radius: \(radius)")
