@@ -16,7 +16,7 @@ protocol ChatViewDelegate: class {
     func didSelectChatInput(_ input: ChatMessageInput, in viewController: ChatViewController)
 }
 
-class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, Dequeueable {
+class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, Dequeueable, CollectionViewCellDelegate {
     
     // MARK: - Properties
 
@@ -90,6 +90,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         total *= 80
         return total > 100 ? total : 100
     }
+
+    func didSelectItem(prepareCollectionViewCell: PrepareCollectionViewCell) {
+        //Implement
+    }
+
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource

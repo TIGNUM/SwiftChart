@@ -12,6 +12,7 @@ import UICollectionViewRightAlignedLayout
 protocol CollectionViewCellDelegate: class {
 
     func didSelectItemAtIndexPath(indexPath: IndexPath)
+    func didSelectItem(prepareCollectionViewCell :PrepareCollectionViewCell)
 }
 
 class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegateRightAlignedLayout, Dequeueable {
@@ -48,10 +49,6 @@ extension CollectionTableViewCell {
         return  self.dataModel.numberOfItems(inSection: section)
     }
 
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let title = self.dataModel.item(at: indexPath.row).title
         let cell: PrepareCollectionViewCell = collectionView.dequeueCell(for: indexPath)
@@ -62,10 +59,6 @@ extension CollectionTableViewCell {
             cell.setStyle(cellType: .Input, borderType: .CleanBorder, lineWidth: 2, selectedState: self.dataModel.item(at: indexPath.row).selected, name: title)
         }
         return cell
-    }
-
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.delegate?.didSelectItemAtIndexPath(indexPath: indexPath)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -80,6 +73,20 @@ extension CollectionTableViewCell {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10.0
     }
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let cell: PrepareCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+        self.delegate?.didSelectItem(prepareCollectionViewCell: cell)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell: PrepareCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+        self.delegate?.didSelectItem(prepareCollectionViewCell: cell)
+    }
 }
 
 extension String {
@@ -92,6 +99,7 @@ extension String {
 }
 
 struct PrepareChatObject {
+
     var selected: Bool
     var title: String = ""
     var localID: String = ""
