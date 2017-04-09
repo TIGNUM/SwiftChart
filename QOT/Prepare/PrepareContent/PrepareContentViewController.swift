@@ -17,8 +17,8 @@ protocol PrepareContentViewControllerDelegate: class {
     func didTapAddToNotes(in viewController: PrepareContentViewController)
     func didTapSaveAs(in viewController: PrepareContentViewController)
     func didTapAddPreparationInCollection(with localID: String, in viewController: PrepareContentViewController)
-    func didTapAddToNotes(with localID: String, in viewController: PrepareContentViewController)
-    func didTapSaveAs(with localID: String, in viewController: PrepareContentViewController)
+    func didTapAddToNotesInCollection(with localID: String, in viewController: PrepareContentViewController)
+    func didTapSaveAsInCollection(with localID: String, in viewController: PrepareContentViewController)
 }
 
 final class PrepareContentViewController: UIViewController {
