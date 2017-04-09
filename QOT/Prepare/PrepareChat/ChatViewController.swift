@@ -91,9 +91,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return total > 100 ? total : 100
     }
 
-    func didSelectItem(prepareCollectionViewCell: PrepareCollectionViewCell) {
+    func didSelectItemAtCollectionView(prepareCollectionViewCell: PrepareCollectionViewCell, collectionView: UICollectionView) {
         //Implement
     }
+
+    func didDeselectItemAtCollectionView(prepareCollectionViewCell: PrepareCollectionViewCell, collectionView: UICollectionView) {
+        //Implement
+    }
+
 
 }
 

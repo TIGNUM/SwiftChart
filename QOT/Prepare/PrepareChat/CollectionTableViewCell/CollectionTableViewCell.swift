@@ -10,9 +10,8 @@ import UIKit
 import UICollectionViewRightAlignedLayout
 
 protocol CollectionViewCellDelegate: class {
-
-    func didSelectItemAtIndexPath(indexPath: IndexPath)
-    func didSelectItem(prepareCollectionViewCell :PrepareCollectionViewCell)
+    func didSelectItemAtCollectionView(prepareCollectionViewCell :PrepareCollectionViewCell, collectionView: UICollectionView)
+    func didDeselectItemAtCollectionView(prepareCollectionViewCell :PrepareCollectionViewCell, collectionView: UICollectionView)
 }
 
 class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegateRightAlignedLayout, Dequeueable {
@@ -80,12 +79,12 @@ extension CollectionTableViewCell {
 
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell: PrepareCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-        self.delegate?.didSelectItem(prepareCollectionViewCell: cell)
+        self.delegate?.didSelectItemAtCollectionView(prepareCollectionViewCell: cell, collectionView: collectionView)
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell: PrepareCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-        self.delegate?.didSelectItem(prepareCollectionViewCell: cell)
+        self.delegate?.didSelectItemAtCollectionView(prepareCollectionViewCell: cell, collectionView: collectionView)
     }
 }
 
