@@ -155,15 +155,27 @@ extension TabBarCoordinator: PrepareContentViewControllerDelegate {
         log("didTapVideo: ID: \(ID)")
     }
 
-    func didTapSaveAs(sectionID: String?, in viewController: PrepareContentViewController) {
+    func didTapSaveAs(sectionID: String, in viewController: PrepareContentViewController) {
         log("didTapSaveAs")
     }
 
-    func didTapAddToNotes(sectionID: String?, in viewController: PrepareContentViewController) {
+    func didTapAddToNotes(sectionID: String, in viewController: PrepareContentViewController) {
         log("didTapAddToNotes")
     }
 
-    func didTapAddPreparation(sectionID: String?, in viewController: PrepareContentViewController) {
+    func didTapAddPreparation(sectionID: String, in viewController: PrepareContentViewController) {
+        log("didTapAddPreparation")
+    }
+
+    func didTapSaveAs(in viewController: PrepareContentViewController) {
+        log("didTapSaveAs")
+    }
+
+    func didTapAddToNotes(in viewController: PrepareContentViewController) {
+        log("didTapAddToNotes")
+    }
+
+    func didTapAddPreparation(in viewController: PrepareContentViewController) {
         log("didTapAddPreparation")
     }
 }
