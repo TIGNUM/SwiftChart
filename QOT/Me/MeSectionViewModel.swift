@@ -42,17 +42,6 @@ final class MeSectionViewModel {
         let average = (Layout.MeSection.radiusAverageLoad - (load * 4))
         return radius > average ? Color.MeSection.redStroke : Color.MeSection.whiteStroke
     }
-
-    func sector(location: CGPoint) {
-        let angleX = location.x.degreesToRadians
-        let angleY = location.y.degreesToRadians
-
-        let sinY = sin(angleY)
-        let cosX = cos(angleX)
-
-        print("angleX: \(angleX) - \(cosX)")
-        print("angleY: \(angleY) - \(sinY)")
-    }
 }
 
 protocol Spike {
@@ -67,6 +56,7 @@ protocol Spike {
 protocol Sector {
     var startAngle: CGFloat { get }
     var endAngle: CGFloat { get }
+    var title: String { get }
 }
 
 struct MockSpike: Spike {
@@ -84,15 +74,18 @@ struct MockSpike: Spike {
 struct MockSector: Sector {
     let startAngle: CGFloat
     let endAngle: CGFloat
+    let title: String
+
 }
 
 private var mockSectors: [Sector] {
     return [
-        MockSector(startAngle: 240, endAngle: 264),
-        MockSector(startAngle: 200, endAngle: 239),
-        MockSector(startAngle: 176, endAngle: 199),
-        MockSector(startAngle: 120, endAngle: 175),
-        MockSector(startAngle: 100, endAngle: 119)
+        MockSector(startAngle: 240, endAngle: 264, title: "peak performance"),
+        MockSector(startAngle: 200, endAngle: 239, title: "meetings"),
+        MockSector(startAngle: 176, endAngle: 199, title: "intensity"),
+        MockSector(startAngle: 137, endAngle: 175, title: "travel"),
+        MockSector(startAngle: 120, endAngle: 136, title: "sleep"),
+        MockSector(startAngle: 100, endAngle: 119, title: "activity")
     ]
 }
 

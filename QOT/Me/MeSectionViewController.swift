@@ -58,8 +58,47 @@ class MeSectionViewController: UIViewController {
     }
 
     func didTapSector(recognizer: UITapGestureRecognizer) {
-        print("didTapSector: \(recognizer.location(in: view))")
-        viewModel.sector(location: recognizer.location(in: view))
+        print(sector(location: recognizer.location(in: view))?.title ?? "invalid")
+    }
+
+    func sector(location: CGPoint) -> Sector? {
+        let radius = lengthFromCenter(for: location)
+        let yn = location.y - profileImageView.center.y
+        let xn = location.x - profileImageView.center.x
+        let beta = acos(xn/radius)
+
+        let sectorAngle = beta.radiansToDegrees
+
+        for (_, sector) in viewModel.sectors.enumerated() {
+            if yn >= 0 {
+                if sector.startAngle ... sector.endAngle ~= sectorAngle {
+                    return sector
+                }
+
+                if sectorAngle < 100 {
+                    return viewModel.sectors.last
+                }
+            } else {
+                let mappedSectorAngle = 180 + (180 - sectorAngle)
+                if sector.startAngle ... sector.endAngle ~= mappedSectorAngle {
+                    return sector
+                }
+
+                if sectorAngle < 100 {
+                    return viewModel.sectors.first
+                }
+            }
+        }
+
+        return nil
+
+    }
+
+    func lengthFromCenter(for location: CGPoint) -> CGFloat {
+        let diffX = pow(location.x - profileImageView.center.x, 2)
+        let diffY = pow(location.y - profileImageView.center.y, 2)
+
+        return sqrt(diffX + diffY)
     }
 }
 
