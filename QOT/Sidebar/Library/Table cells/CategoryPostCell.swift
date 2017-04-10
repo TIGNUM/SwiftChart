@@ -8,37 +8,39 @@
 
 import UIKit
 
-class CategoryPostCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, Dequeueable {
+protocol CategoryPostCellDataSource {
+//    func itemCount
+}
+
+final class CategoryPostCell: UITableViewCell, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, Dequeueable {
     let viewModel = LibraryViewModel()
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
-    
+    var itemCount = 0
     override func awakeFromNib() {
         super.awakeFromNib()
-        collectionView.registerDequeueable(CategoryCollectionCell.self)
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.contentSize = CGSize(width: 500, height: 500)
-        collectionView.reloadData()
+      
     }
     
-    func setUp(title: String) {
+    func setUp(title: String, sectionCount: Int) {
         titleLabel.text = title
+        self.itemCount = sectionCount
         collectionView.registerDequeueable(CategoryCollectionCell.self)
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.contentSize = CGSize(width: 500, height: 500)
+        collectionView.contentSize.width = (collectionView.contentSize.width  * 500)
         collectionView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.sectionCount
+        print(itemCount)
+        return itemCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let items = viewModel.item(at: indexPath)
+        let item = viewModel.item(at: indexPath)
         
-        switch items {
+        switch item {
         case .audio ( _, _, let headline, let text):
             let cell: CategoryCollectionCell = collectionView.dequeueCell(for: indexPath)
             cell.setup(headline: headline, mediaType: text)
@@ -48,5 +50,10 @@ class CategoryPostCell: UITableViewCell, UICollectionViewDelegate, UICollectionV
             cell.setup(headline: headline, mediaType: text)
             return cell
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        print(self.bounds.height)
+        return CGSize(width: 272, height: 170)
     }
 }

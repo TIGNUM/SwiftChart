@@ -20,6 +20,7 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFn-ko-5os">
                         <rect key="frame" x="28" y="0.0" width="230" height="56"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="56" id="Wc5-tL-keF"/>
                         </constraints>
@@ -29,7 +30,9 @@
                     </label>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ika-PC-073">
                         <rect key="frame" x="0.0" y="74" width="286" height="181.5"/>
-                        <color key="backgroundColor" red="0.50196081400000003" green="1" blue="0.0" alpha="0.46615475169999998" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="181.5" id="Xhh-5l-fs8"/>
+                        </constraints>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="d86-SZ-jGy">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -38,6 +41,7 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="ika-PC-073" secondAttribute="trailing" id="2hK-ms-Jiz"/>
                     <constraint firstItem="ika-PC-073" firstAttribute="top" secondItem="PFn-ko-5os" secondAttribute="bottom" constant="18" id="E5V-z7-Qcu"/>

@@ -69,17 +69,17 @@ extension LibraryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = viewModel.styleForSection(indexPath.item)
-        
+        tableView.rowHeight = UITableViewAutomaticDimension
         switch section {
             
         case .lastPost:
             let cell: LatestPostCell = tableView.dequeueCell(for: indexPath)
-            cell.setUp(title: "\(viewModel.titleForSection(indexPath.item))")
+            cell.setUp(title: "\(viewModel.titleForSection(indexPath.item))", sectionCount: viewModel.numberOfItemsInSection(in: indexPath.section))
             return cell
             
         case .category:
             let cell: CategoryPostCell = tableView.dequeueCell(for: indexPath)
-            cell.setUp(title: "\(viewModel.titleForSection(indexPath.item))")
+            cell.setUp(title: "\(viewModel.titleForSection(indexPath.item))", sectionCount: viewModel.sectionCount)
             return cell
         }
     }
