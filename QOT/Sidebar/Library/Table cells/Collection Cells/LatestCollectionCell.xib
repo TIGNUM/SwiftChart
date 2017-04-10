@@ -21,6 +21,7 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aqg-oB-l7W">
                         <rect key="frame" x="0.0" y="0.0" width="219.5" height="146.5"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="aqg-oB-l7W" secondAttribute="height" multiplier="3:2" id="V5J-hw-tyk"/>
                         </constraints>
@@ -52,6 +53,11 @@
                 <constraint firstAttribute="trailing" secondItem="aqg-oB-l7W" secondAttribute="trailing" id="uhk-Z5-o4M"/>
             </constraints>
             <size key="customSize" width="220" height="215"/>
+            <connections>
+                <outlet property="headlineLabel" destination="ahm-i0-UBl" id="5ci-ar-6XT"/>
+                <outlet property="latestPostImageView" destination="aqg-oB-l7W" id="UZy-Hq-lVF"/>
+                <outlet property="mediaTypeLabel" destination="a11-4l-0co" id="xFd-WQ-gsD"/>
+            </connections>
             <point key="canvasLocation" x="119" y="131.5"/>
         </collectionViewCell>
     </objects>

@@ -36,13 +36,11 @@ final class LibraryViewController: UIViewController {
         super.viewDidLoad()
         tableView.registerDequeueable(LatestPostCell.self)
         tableView.registerDequeueable(CategoryPostCell.self)
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeView))
-        view.addGestureRecognizer(tapGestureRecognizer)
+        //let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeView))
+        //view.addGestureRecognizer(tapGestureRecognizer)
         view.backgroundColor = .black
-    }
-    
-    func closeView(gestureRecognizer: UITapGestureRecognizer) {
-        delegate?.didTapClose(in: self)
+        tableView.estimatedRowHeight = 20
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
 }
 
@@ -51,15 +49,11 @@ extension LibraryViewController: UITableViewDelegate, UICollectionViewDelegate {
     // table View Delegate
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.sectionCount
+        return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return viewModel.numberOfItemsInSection(in: section)
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        return viewModel.sectionCount
     }
     
     // Collection View Delegate
@@ -69,35 +63,24 @@ extension LibraryViewController: UITableViewDelegate, UICollectionViewDelegate {
     }
 }
 
-extension LibraryViewController: UITableViewDataSource, UICollectionViewDataSource {
+extension LibraryViewController: UITableViewDataSource {
     
-    // table view ViewDataSource
+    // table DataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = viewModel.styleForSection(indexPath.item)
+        let section = viewModel.styleForSection(indexPath.item)
         
-        switch item {
+        switch section {
+            
         case .lastPost:
             let cell: LatestPostCell = tableView.dequeueCell(for: indexPath)
-            
+            cell.setUp(title: "\(viewModel.titleForSection(indexPath.item))")
             return cell
+            
         case .category:
             let cell: CategoryPostCell = tableView.dequeueCell(for: indexPath)
+            cell.setUp(title: "\(viewModel.titleForSection(indexPath.item))")
             return cell
         }
     }
-    
-    // Collection ViewDataSource
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell: LearnContentCell = collectionView.dequeueCell(for: indexPath)
-        
-        return cell
-    }
-    
 }

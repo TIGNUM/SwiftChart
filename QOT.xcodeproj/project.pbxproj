@@ -347,8 +347,7 @@
 				CCAF03231E801B0E00015125 /* SettingsViewControllerDelegate.swift */,
 				CB1E4F971E7FE22200287613 /* SettingsViewModel.swift */,
 			);
-			name = Settings;
-			path = ../Settings;
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		CB2880201E7050D10067890A /* Coordinators */ = {
@@ -397,8 +396,8 @@
 		CB369CD91E8D3E3700522293 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				CB1E4F991E7FE22900287613 /* Settings */,
 				CB369CE31E8E43DA00522293 /* Learn */,
+				CB1E4F991E7FE22900287613 /* Settings */,
 				CB369CDC1E8D3F0A00522293 /* Utilities */,
 				CB369CE11E8D5E3D00522293 /* Services.swift */,
 			);
@@ -726,8 +725,8 @@
 		CCC1B69B1E8B9A1200D1461F /* Learn Strategy */ = {
 			isa = PBXGroup;
 			children = (
-				D5EF23481E952EF100D88064 /* Page Controller */,
 				D51D088E1E8EA36700FC7567 /* Cell */,
+				D5EF23481E952EF100D88064 /* Page Controller */,
 				CCC1B6B21E8BA71500D1461F /* LearnStrategyViewController.swift */,
 				D540275D1E8D401F0013B783 /* LearnStrategyViewController.xib */,
 				CCC1B6B01E8B9FDA00D1461F /* LearnStrategyViewModel.swift */,
@@ -816,6 +815,7 @@
 				D54D90261E979C30003924C9 /* LibraryViewController.xib */,
 				CCE373151E8D330100B79352 /* LibraryViewModel.swift */,
 				D54D90291E979E8A003924C9 /* Table cells */,
+				D54D90321E97CC83003924C9 /* Collection Cells */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -866,24 +866,24 @@
 		D54D90291E979E8A003924C9 /* Table cells */ = {
 			isa = PBXGroup;
 			children = (
-				D54D902A1E97A818003924C9 /* LatestPostCell.swift */,
-				D54D902B1E97A818003924C9 /* LatestPostCell.xib */,
 				D54D902E1E97A840003924C9 /* CategoryPostCell.swift */,
 				D54D902F1E97A840003924C9 /* CategoryPostCell.xib */,
-				D54D90321E97CC83003924C9 /* Collection Cells */,
+				D54D902A1E97A818003924C9 /* LatestPostCell.swift */,
+				D54D902B1E97A818003924C9 /* LatestPostCell.xib */,
 			);
-			name = "Table cells";
+			path = "Table cells";
 			sourceTree = "<group>";
 		};
 		D54D90321E97CC83003924C9 /* Collection Cells */ = {
 			isa = PBXGroup;
 			children = (
-				D54D90331E97CCED003924C9 /* LatestCollectionCell.swift */,
-				D54D90341E97CCED003924C9 /* LatestCollectionCell.xib */,
 				D54D90371E97CD09003924C9 /* CategoryCollectionCell.swift */,
 				D54D90381E97CD09003924C9 /* CategoryCollectionCell.xib */,
+				D54D90331E97CCED003924C9 /* LatestCollectionCell.swift */,
+				D54D90341E97CCED003924C9 /* LatestCollectionCell.xib */,
 			);
 			name = "Collection Cells";
+			path = "Table cells/Collection Cells";
 			sourceTree = "<group>";
 		};
 		D5EF23481E952EF100D88064 /* Page Controller */ = {
@@ -891,7 +891,7 @@
 			children = (
 				D54D8FFE1E95376D003924C9 /* TopTabBarController.swift */,
 			);
-			name = "Page Controller";
+			path = "Page Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -28,8 +28,8 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ika-PC-073">
-                        <rect key="frame" x="28" y="74" width="230" height="180"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <rect key="frame" x="0.0" y="74" width="286" height="181.5"/>
+                        <color key="backgroundColor" red="0.50196081400000003" green="1" blue="0.0" alpha="0.46615475169999998" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="d86-SZ-jGy">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -39,12 +39,12 @@
                     </collectionView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="ika-PC-073" secondAttribute="bottom" constant="1.5" id="HEV-b9-tP3"/>
-                    <constraint firstAttribute="trailing" secondItem="ika-PC-073" secondAttribute="trailing" constant="28" id="OFx-Nw-cO8"/>
+                    <constraint firstAttribute="trailing" secondItem="ika-PC-073" secondAttribute="trailing" id="2hK-ms-Jiz"/>
+                    <constraint firstItem="ika-PC-073" firstAttribute="top" secondItem="PFn-ko-5os" secondAttribute="bottom" constant="18" id="E5V-z7-Qcu"/>
+                    <constraint firstItem="ika-PC-073" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="EqF-y8-IDY"/>
+                    <constraint firstAttribute="bottom" secondItem="ika-PC-073" secondAttribute="bottom" id="OLl-7f-U9e"/>
                     <constraint firstItem="PFn-ko-5os" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="28" id="ONt-yq-wW6"/>
-                    <constraint firstItem="ika-PC-073" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="28" id="SDj-wH-r91"/>
                     <constraint firstItem="PFn-ko-5os" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Z79-Y9-DW7"/>
-                    <constraint firstItem="ika-PC-073" firstAttribute="top" secondItem="PFn-ko-5os" secondAttribute="bottom" constant="18" id="dhh-y2-5kQ"/>
                     <constraint firstAttribute="trailing" secondItem="PFn-ko-5os" secondAttribute="trailing" constant="28" id="hZF-vj-CJ4"/>
                 </constraints>
             </tableViewCellContentView>

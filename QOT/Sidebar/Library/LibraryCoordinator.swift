@@ -33,6 +33,7 @@ final class LibraryCoordinator: ParentCoordinator {
         rootViewController.present(libraryViewController, animated: true)
 
         // TODO: Update associatedEntity with realm object when its created.
+        
         eventTracker.track(page: libraryViewController.pageID, referer: rootViewController.pageID, associatedEntity: nil)
     }
 }

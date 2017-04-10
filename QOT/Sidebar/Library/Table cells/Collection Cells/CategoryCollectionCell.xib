@@ -20,6 +20,7 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zmg-fv-vvV">
                         <rect key="frame" x="0.0" y="0.0" width="272" height="170"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDv-9Q-kj2">
                         <rect key="frame" x="12" y="147" width="260" height="14"/>
@@ -32,6 +33,9 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6YM-B2-m5k">
                         <rect key="frame" x="12" y="124" width="260" height="20.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="260" id="XAr-nX-KNG"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -51,7 +55,12 @@
                 <constraint firstItem="ZDv-9Q-kj2" firstAttribute="top" secondItem="6YM-B2-m5k" secondAttribute="bottom" constant="2.5" id="ykW-KB-FSE"/>
             </constraints>
             <size key="customSize" width="226" height="165"/>
-            <point key="canvasLocation" x="122" y="111"/>
+            <connections>
+                <outlet property="categoryImageView" destination="Zmg-fv-vvV" id="cte-lJ-HpE"/>
+                <outlet property="headlineLabel" destination="6YM-B2-m5k" id="dxe-cA-JP2"/>
+                <outlet property="mediaTypeLabel" destination="ZDv-9Q-kj2" id="qZO-ah-yVF"/>
+            </connections>
+            <point key="canvasLocation" x="125" y="121"/>
         </collectionViewCell>
     </objects>
 </document>
