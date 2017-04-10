@@ -17,7 +17,7 @@ func setupRealmWithMockData(realm: Realm) {
     do {
         try realm.write {
             if realm.objects(ContentCategory.self).count ==  0 {
-                realm.add(mockContentCategories())
+                addMockContentCategories(realm: realm)
             }
         }
     } catch let error {
@@ -25,26 +25,24 @@ func setupRealmWithMockData(realm: Realm) {
     }
 }
 
-private var mockID = 0
+private func addMockContentCategories(realm: Realm) {
+    let categories: [ContentCategory] = [
+        mockContentCategory(sort: 0, title: "PERFOFMANCE MINDSET", radius: 0.15, centerX: 0.5, centerY: 0.5),
+        mockContentCategory(sort: 1, title: "PERFORMANCE RECOVERY", radius: 0.131, centerX: 0.32, centerY: 0.24),
+        mockContentCategory(sort: 2, title: "PERFORMANCE HABITUATION", radius: 0.125, centerX: 0.186, centerY: 0.558),
+        mockContentCategory(sort: 3, title: "PERFORMANCE MOVEMENT", radius: 0.131, centerX: 0.442, centerY: 0.804),
+        mockContentCategory(sort: 4, title: "PERFORMANCE NUTRITION", radius: 0.111, centerX: 0.788, centerY: 0.585),
+        mockContentCategory(sort: 5, title: "PERFORMANCE MOVEMENT", radius: 0.139, centerX: 0.716, centerY: 0.250)
+    ]
 
-private func newMockID() -> Int {
-    let id = mockID
-    mockID += 1
-    return id
-}
+    realm.add(categories)
 
-private func mockContentItems() -> [ContentItem] {
-    let datas: [ContentItem.Data] = [.text("some text"), .video(URL(string: "a_url")!)]
-    var items: [ContentItem] = []
-    for i in 0...Int.random(between: 3, and: 10) {
-        let status = ContentItem.Status.notViewed
-        let item = ContentItem(id: newMockID(), sort: i, title: "", status: status, data: datas.randomItem())
-        items.append(item)
+    for category in categories {
+        addMockContent(category: category, realm: realm)
     }
-    return items
 }
 
-private func mockContent() -> [Content] {
+private func addMockContent(category: ContentCategory, realm: Realm) {
     let possibleTitles = [
         "Performance mindset defined",
         "Identify Mindset Killers",
@@ -60,27 +58,60 @@ private func mockContent() -> [Content] {
         "Set Intentions",
         "Performance Mindset Defined"
     ]
-    
+
     let titles = possibleTitles.prefix(upTo: Int.random(between: 3, and: possibleTitles.count + 1))
-    return titles.enumerated().map { (index, title) -> Content in
-        let content = Content(id: newMockID(), sort: index, name: "some name", title: title)
-        content.items.append(objectsIn: mockContentItems())
+
+    let contents = titles.enumerated().map { (index, title) -> Content in
+        let content = mockContent(sort: index, title: title)
+        content.parent = category
         return content
     }
-}
-private func mockContentCategories() -> [ContentCategory] {
-    let categories: [ContentCategory] = [
-        ContentCategory(id: newMockID(), sort: 0, name: "a name", title: "PERFOFMANCE MINDSET", radius: 0.15, centerX: 0.5, centerY: 0.5),
-        ContentCategory(id: newMockID(), sort: 1, name: "a name", title: "PERFORMANCE RECOVERY", radius: 0.131, centerX: 0.32, centerY: 0.24),
-        ContentCategory(id: newMockID(), sort: 2, name: "a name", title: "PERFORMANCE HABITUATION", radius: 0.125, centerX: 0.186, centerY: 0.558),
-        ContentCategory(id: newMockID(), sort: 3, name: "a name", title: "PERFORMANCE MOVEMENT", radius: 0.131, centerX: 0.442, centerY: 0.804),
-        ContentCategory(id: newMockID(), sort: 4, name: "a name", title: "PERFORMANCE NUTRITION", radius: 0.111, centerX: 0.788, centerY: 0.585),
-        ContentCategory(id: newMockID(), sort: 5, name: "a name", title: "PERFORMANCE MOVEMENT", radius: 0.139, centerX: 0.716, centerY: 0.250)
-    ]
-    categories.forEach { (category) in
-        category.contents.append(objectsIn: mockContent())
+    realm.add(contents)
+
+    for content in contents {
+        addMockContentItems(content: content, realm: realm)
     }
-    return categories
+}
+
+private func addMockContentItems(content: Content, realm: Realm) {
+    let values: [ContentItemValue] = [.text("some text"), .video(URL(string: "a_url")!)]
+    var items: [ContentItem] = []
+    for i in 0...Int.random(between: 3, and: 10) {
+        let item = mockContentItem(sort: i, title: "", secondsRequired: Int.random(between: 30, and: 240), value: values.randomItem(), status: .notViewed)
+        item.parent = content
+        items.append(item)
+    }
+    realm.add(items)
+}
+
+private func mockContentCategory(sort: Int, title: String, radius: Double, centerX: Double, centerY: Double) -> ContentCategory {
+    let category = ContentCategory()
+    category.sortOrder = sort
+    category.title = title
+    category.radius = radius
+    category.centerX = centerX
+    category.centerY = centerY
+
+    return category
+}
+
+private func mockContent(sort: Int, title: String) -> Content {
+    let content = Content()
+    content.sortOrder = sort
+    content.title = title
+
+    return content
+}
+
+private func mockContentItem(sort: Int, title: String, secondsRequired: Int, value: ContentItemValue, status: ContentItemStatus) -> ContentItem {
+    let item = ContentItem()
+    item.sortOrder = sort
+    item.title = title
+    item.secondsRequired = secondsRequired
+    item.value =  value
+    item.status = status
+
+    return item
 }
 
 private extension Array {
@@ -96,3 +127,7 @@ private extension Int {
         return Int(arc4random_uniform(UInt32(max) - UInt32(min))) + min
     }
 }
+
+
+
+
