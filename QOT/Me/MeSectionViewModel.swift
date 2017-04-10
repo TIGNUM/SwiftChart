@@ -108,28 +108,28 @@ private var mockSectors: [Sector] {
             startAngle: 240,
             endAngle: 264,
             spikes: peakSpikes,
-            label: SectorLabel(text: R.string.localized.meSectorPeak(), angle: 245, load: 1.15)
+            label: SectorLabel(text: R.string.localized.meSectorPeak(), angle: 245, load: 1.16)
         ),
 
         MockSector(
             startAngle: 200,
             endAngle: 239,
             spikes: meetingsSpikes,
-            label: SectorLabel(text: R.string.localized.meSectorMeetings(), angle: 220, load: 1.15)
+            label: SectorLabel(text: R.string.localized.meSectorMeetings(), angle: 220, load: 1.18)
         ),
 
         MockSector(
             startAngle: 176,
             endAngle: 199,
             spikes: intensitySpikes,
-            label: SectorLabel(text: R.string.localized.meSectorIntensity(), angle: 195, load: 1.2)
+            label: SectorLabel(text: R.string.localized.meSectorIntensity(), angle: 195, load: 1.23)
         ),
 
         MockSector(
             startAngle: 137,
             endAngle: 175,
             spikes: travelSpikes,
-            label: SectorLabel(text: R.string.localized.meSectorTravel(), angle: 170, load: 1.15)
+            label: SectorLabel(text: R.string.localized.meSectorTravel(), angle: 170, load: 1.16)
         ),
 
         MockSector(

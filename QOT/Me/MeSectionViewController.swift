@@ -124,7 +124,7 @@ private extension MeSectionViewController {
     func setupProfileImage() {
         profileImageView = UIImageView(frame: Layout.MeSection.profileImageViewFrame)
         profileImageView.image = viewModel.profileImage
-        profileImageView.contentMode = .scaleToFill
+        profileImageView.contentMode = .scaleAspectFill
         profileImageView.layer.cornerRadius = Layout.MeSection.profileImageWidth * 0.5
         profileImageView.clipsToBounds = true
     }
