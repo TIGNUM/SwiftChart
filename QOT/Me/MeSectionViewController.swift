@@ -225,7 +225,8 @@ private extension MeSectionViewController {
     }
 
     func addCategoryLabels() {
-        CategoryLabel.allLabels.forEach { (categoryLabel: CategoryLabel) in
+        viewModel.sectors.forEach { (sector: Sector) in
+            let categoryLabel = sector.label
             let labelCenter = CGPoint.centerPoint(
                 with: viewModel.radius(for: categoryLabel.load),
                 angle: categoryLabel.angle,
@@ -234,9 +235,10 @@ private extension MeSectionViewController {
 
             let frame = CGRect(x: labelCenter.x, y: labelCenter.y, width: 0, height: Layout.MeSection.labelHeight)
             let label = UILabel(frame: frame)
+            let labelValues = viewModel.labelValues(for: sector)
             label.text = categoryLabel.text.uppercased()
-            label.textColor = Color.MeSection.whiteLabel
-            label.font = Font.MeSection.sectorDefault
+            label.textColor = labelValues.textColor
+            label.font = labelValues.font
             label.numberOfLines = 0
             label.textAlignment = .center
             label.sizeToFit()

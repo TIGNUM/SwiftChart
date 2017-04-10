@@ -36,14 +36,35 @@ final class MeSectionViewModel {
     }
 
     func fillColor(radius: CGFloat, load: CGFloat) -> UIColor {
-        let average = (Layout.MeSection.radiusAverageLoad - (load * 4))
-        return radius > average ? Color.MeSection.redFilled : .white
+        return radius > average(for: load) ? Color.MeSection.redFilled : .white
     }
 
     func strokeColor(radius: CGFloat, load: CGFloat) -> UIColor {
-        let average = (Layout.MeSection.radiusAverageLoad - (load * 4))
-        return radius > average ? Color.MeSection.redStroke : Color.MeSection.whiteStroke
+        return radius > average(for: load) ? Color.MeSection.redStroke : Color.MeSection.whiteStroke
     }
+
+    func labelValues(for sector: Sector) -> (font: UIFont, textColor: UIColor) {
+        let criticalLoads = sector.spikes.filter { (spike: Spike) -> Bool in
+            let distanceCenter = radius(for: spike.spikeLoad())
+            return distanceCenter > average(for: spike.load)
+        }
+
+        if criticalLoads.isEmpty == true {
+            return (font: Font.MeSection.sectorDefault, textColor: Color.MeSection.whiteLabel)
+        }
+
+        return (font: Font.MeSection.sectorRed, textColor: Color.MeSection.redFilled)
+    }
+
+    private func average(for load: CGFloat) -> CGFloat {
+        return (Layout.MeSection.radiusAverageLoad - (load * 4))
+    }
+}
+
+struct SectorLabel {
+    let text: String
+    let angle: CGFloat
+    let load: CGFloat
 }
 
 protocol Spike {
@@ -58,8 +79,8 @@ protocol Spike {
 protocol Sector {
     var startAngle: CGFloat { get }
     var endAngle: CGFloat { get }
-    var title: String { get }
     var spikes: [Spike] { get }
+    var label: SectorLabel { get }
 }
 
 struct MockSpike: Spike {
@@ -77,18 +98,53 @@ struct MockSpike: Spike {
 struct MockSector: Sector {
     let startAngle: CGFloat
     let endAngle: CGFloat
-    let title: String
     let spikes: [Spike]
+    var label: SectorLabel
 }
 
 private var mockSectors: [Sector] {
     return [
-        MockSector(startAngle: 240, endAngle: 264, title: "peak performance", spikes: peakSpikes),
-        MockSector(startAngle: 200, endAngle: 239, title: "meetings", spikes: meetingsSpikes),
-        MockSector(startAngle: 176, endAngle: 199, title: "intensity", spikes: intensitySpikes),
-        MockSector(startAngle: 137, endAngle: 175, title: "travel", spikes: travelSpikes),
-        MockSector(startAngle: 120, endAngle: 136, title: "sleep", spikes: sleepSpikes),
-        MockSector(startAngle: 100, endAngle: 119, title: "activity", spikes: activitySpikes)
+        MockSector(
+            startAngle: 240,
+            endAngle: 264,
+            spikes: peakSpikes,
+            label: SectorLabel(text: R.string.localized.meSectorPeak(), angle: 245, load: 1.15)
+        ),
+
+        MockSector(
+            startAngle: 200,
+            endAngle: 239,
+            spikes: meetingsSpikes,
+            label: SectorLabel(text: R.string.localized.meSectorMeetings(), angle: 220, load: 1.15)
+        ),
+
+        MockSector(
+            startAngle: 176,
+            endAngle: 199,
+            spikes: intensitySpikes,
+            label: SectorLabel(text: R.string.localized.meSectorIntensity(), angle: 195, load: 1.2)
+        ),
+
+        MockSector(
+            startAngle: 137,
+            endAngle: 175,
+            spikes: travelSpikes,
+            label: SectorLabel(text: R.string.localized.meSectorTravel(), angle: 170, load: 1.15)
+        ),
+
+        MockSector(
+            startAngle: 120,
+            endAngle: 136,
+            spikes: sleepSpikes,
+            label: SectorLabel(text: R.string.localized.meSectorSleep(), angle: 145, load: 1.1)
+        ),
+
+        MockSector(
+            startAngle: 100,
+            endAngle: 119,
+            spikes: activitySpikes,
+            label: SectorLabel(text: R.string.localized.meSectorActivity(), angle: 120, load: 1.1)
+        )
     ]
 }
 
@@ -140,20 +196,5 @@ private var activitySpikes: [Spike] {
         MockSpike(localID: UUID().uuidString, strokeColor: .cyan, angle: 116, load: randomNumber),
         MockSpike(localID: UUID().uuidString, strokeColor: .cyan, angle: 108, load: randomNumber),
         MockSpike(localID: UUID().uuidString, strokeColor: .cyan, angle: 100, load: randomNumber)
-    ]
-}
-
-struct CategoryLabel {
-    let text: String
-    let angle: CGFloat
-    let load: CGFloat
-
-    static let allLabels: [CategoryLabel] = [
-        CategoryLabel(text: R.string.localized.meSectorPeak(), angle: 245, load: 1.15),
-        CategoryLabel(text: R.string.localized.meSectorMeetings(), angle: 220, load: 1.15),
-        CategoryLabel(text: R.string.localized.meSectorIntensity(), angle: 195, load: 1.2),
-        CategoryLabel(text: R.string.localized.meSectorTravel(), angle: 170, load: 1.15),
-        CategoryLabel(text: R.string.localized.meSectorSleep(), angle: 145, load: 1.1),
-        CategoryLabel(text: R.string.localized.meSectorActivity(), angle: 120, load: 1.1)
     ]
 }
