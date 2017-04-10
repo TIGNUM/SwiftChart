@@ -8,7 +8,11 @@
 
 import UIKit
 
-class MeSectionViewController: UIViewController {
+protocol MeSectionViewControllerDelegate: class {
+    func didTapSector(sector: Sector?, for view: UIView, in viewController: UIViewController)
+}
+
+final class MeSectionViewController: UIViewController {
     
     // MARK: - Properties
 
@@ -18,7 +22,7 @@ class MeSectionViewController: UIViewController {
     fileprivate var connectionCenterPpoitns = [CGPoint]()
     fileprivate let scrollView = UIScrollView(frame: screen)
     fileprivate var profileImageView = UIImageView()
-    weak var delegate: MeSectionDelegate?
+    weak var delegate: MeSectionViewControllerDelegate?
 
     // MARK: - Life Cycle
 
@@ -58,6 +62,7 @@ class MeSectionViewController: UIViewController {
     }
 
     func didTapSector(recognizer: UITapGestureRecognizer) {
+
         print(sector(location: recognizer.location(in: view))?.title ?? "invalid")
     }
 
@@ -65,8 +70,7 @@ class MeSectionViewController: UIViewController {
         let radius = lengthFromCenter(for: location)
         let yn = location.y - profileImageView.center.y
         let xn = location.x - profileImageView.center.x
-        let beta = acos(xn/radius)
-
+        let beta = acos(xn / radius)
         let sectorAngle = beta.radiansToDegrees
 
         for (_, sector) in viewModel.sectors.enumerated() {
