@@ -9,140 +9,80 @@
 import Foundation
 import RealmSwift
 
-// FIXME: Unit test once data model is finalized.
-public final class ContentItem: Object {
+// FIXME: Unit test.
+public final class ContentItem: Object, SyncableRealmObject, ContentItemData {
 
-    public enum Data {
-        case text(String)
-        case video(URL)
+    // MARK: Private Properties
+
+    private dynamic var _value: String = ""
+    private dynamic var _format: Int8 = 0
+    private dynamic var _status: Int8 = 0
+
+    // MARK: SyncableRealmObject
+
+    public let _remoteID: RealmOptional<Int> = RealmOptional()
+
+    public dynamic var _syncStatus: Int8 = 0
+
+    public private(set) dynamic var localID: String = UUID().uuidString
+
+    public dynamic var modifiedAt: Date = Date()
+
+    public dynamic var parent: Content?
+
+    public func setData(_ data: ContentItemData) {
+        sortOrder = data.sortOrder
+        title = data.title
+        secondsRequired = data.secondsRequired
+        value = data.value
+        status = data.status
     }
-    
-    public enum Status {
-        case notViewed
-        case viewed
-    }
-    
-    private dynamic var value: String = ""
-    private dynamic var format: String = ""
-    private dynamic var _status: String = ""
-    
-    public dynamic var id: Int = 0
-    public dynamic var sort: Int = 0
+
+    // MARK: ContentData
+
+    public dynamic var sortOrder: Int = 0
+
     public dynamic var title: String = ""
-    
-    override public class func primaryKey() -> String? {
-        return "id"
-    }
-    
-    convenience public init(id: Int, sort: Int, title: String, status: Status, data: ContentItem.Data) {
-        self.init()
-        self.id = id
-        self.sort = sort
-        self.title = title
-        self.status = status
-        self.data = data
-    }
-    
-    public var data: Data {
+
+    public dynamic var secondsRequired: Int = 0
+
+    public var value: ContentItemValue {
         get {
             do {
-                return try Data(format: format, value: value)
+                return try ContentItemValue(format: _format, value: _value)
             } catch let error {
                 fatalError("Failed to get content item data: \(error)")
             }
         }
         set {
-            format = newValue.format
-            value = newValue.value
+            _format = newValue.format
+            _value = newValue.value
         }
     }
-    
-    public var status: Status {
+
+    public var status: ContentItemStatus {
         get {
-            do {
-                return try Status(value: _status)
-            } catch let error {
-                fatalError("Failed to get content item status: \(error)")
+            guard let status = ContentItemStatus(rawValue: _status) else {
+                fatalError("Invalid content item status: \(_status)")
             }
+            return status
         }
         set {
-            _status = newValue.value
+            _status = newValue.rawValue
         }
     }
-    
-    public var secondsRequired: Int {
-        // FIXME: Mock Implementation
-        switch data {
-        case .text:
-            return 60
-        case .video:
-            return 300
-        }
+
+    // MARK: Realm
+
+    override public class func primaryKey() -> String? {
+        return "localID"
+    }
+
+    override public static func indexedProperties() -> [String] {
+        return ["_remoteID"]
     }
 }
 
-fileprivate extension ContentItem.Data {
-    enum Error: Swift.Error {
-        case invalid(format: String, value: String)
-    }
-    
-    struct Key {
-        static let text = "text"
-        static let video = "video"
-    }
-    
-    init(format: String, value: String) throws {
-        switch format {
-        case Key.text:
-            self = .text(value)
-        case Key.video:
-            guard let url = URL(string: value) else { throw Error.invalid(format: format, value: value) }
-            self = .video(url)
-        default:
-            throw Error.invalid(format: format, value: value)
-        }
-    }
-    
-    var format: String {
-        switch self {
-        case .text: return Key.text
-        case .video: return Key.video
-        }
-    }
-    
-    var value: String {
-        switch self {
-        case .text(let value): return value
-        case .video(let url): return url.absoluteString
-        }
-    }
-}
 
-fileprivate extension ContentItem.Status {
-    enum Error: Swift.Error {
-        case invalid(value: String)
-    }
-    
-    struct Key {
-        static let viewed = "viewed"
-        static let notViewed = "notViewed"
-    }
-    
-    init(value: String) throws {
-        switch value {
-        case Key.viewed:
-            self = .viewed
-        case Key.notViewed:
-            self = .notViewed
-        default:
-            throw Error.invalid(value: value)
-        }
-    }
-    
-    var value: String {
-        switch self {
-        case .viewed: return Key.viewed
-        case .notViewed: return Key.notViewed
-        }
-    }
-}
+
+
