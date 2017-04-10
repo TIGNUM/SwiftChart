@@ -9,7 +9,7 @@
 import UIKit
 
 protocol MeSectionViewControllerDelegate: class {
-    func didTapSector(sector: Sector?, for view: UIView, in viewController: UIViewController)
+    func didTapSector(sector: Sector?, in viewController: UIViewController)
 }
 
 final class MeSectionViewController: UIViewController {
@@ -18,8 +18,8 @@ final class MeSectionViewController: UIViewController {
 
     fileprivate let viewModel: MeSectionViewModel
     fileprivate let strokeColor = UIColor(white: 1, alpha: 0.2)
-    fileprivate var dataCenterPoints = [CGPoint]()
-    fileprivate var connectionCenterPpoitns = [CGPoint]()
+    fileprivate var dataCenterPoints = [[CGPoint]]()
+    fileprivate var connectionCenterPpoitns = [[CGPoint]]()
     fileprivate let scrollView = UIScrollView(frame: screen)
     fileprivate var profileImageView = UIImageView()
     weak var delegate: MeSectionViewControllerDelegate?
@@ -39,13 +39,13 @@ final class MeSectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.backgroundColor = .black
+        setupScrollView()
         drawUniverse()
         addTabRecognizer()
     }
 
     private func drawUniverse() {
-        setupScrollView()
-        view.backgroundColor = .black
         drawBackCircles(radius: Layout.MeSection.radiusAverageLoad, linesDashPattern: [2, 1])
         drawBackCircles(radius: Layout.MeSection.radiusMaxLoad)
         setupProfileImage()
@@ -62,8 +62,7 @@ final class MeSectionViewController: UIViewController {
     }
 
     func didTapSector(recognizer: UITapGestureRecognizer) {
-
-        print(sector(location: recognizer.location(in: view))?.title ?? "invalid")
+        delegate?.didTapSector(sector: sector(location: recognizer.location(in: view)), in: self)
     }
 
     func sector(location: CGPoint) -> Sector? {
@@ -142,30 +141,45 @@ private extension MeSectionViewController {
     }
 
     func collectCenterPoints() {
-        viewModel.spikes.forEach { (spike: Spike) in
-            let centerPoint = CGPoint.centerPoint(
-                with: viewModel.radius(for: spike.spikeLoad()),
-                angle: spike.angle,
-                relativeCenter: profileImageView.center
-            )
+        viewModel.sectors.forEach { (sector: Sector) in
+            var centerPoints = [CGPoint]()
 
-            dataCenterPoints.append(centerPoint)
-            connectionCenterPpoitns.append(centerPoint)
+            sector.spikes.forEach { (spike: Spike) in
+                let centerPoint = CGPoint.centerPoint(
+                    with: viewModel.radius(for: spike.spikeLoad()),
+                    angle: spike.angle,
+                    relativeCenter: profileImageView.center
+                )
+
+                centerPoints.append(centerPoint)
+            }
+
+            dataCenterPoints.append(centerPoints)
+            connectionCenterPpoitns.append(centerPoints)
         }
     }
 
     func placeDots() {
-        for (index, center) in dataCenterPoints.enumerated() {
-            let spike = viewModel.spikes[index]
-            let radius = viewModel.radius(for: spike.spikeLoad())
+        for (dataIndex, centerPoints) in dataCenterPoints.enumerated() {
+            for (centerIndex, center) in centerPoints.enumerated() {
+                let sector = viewModel.sector(at: dataIndex)
 
-            placeDot(
-                fillColor: viewModel.fillColor(radius: radius, load: spike.spikeLoad()),
-                strokeColor: viewModel.strokeColor(radius: radius, load: spike.spikeLoad()),
-                center: center,
-                radius: (spike.load * 8)
-            )
+                guard centerIndex < sector.spikes.count else {
+                    return
+                }
+
+                let spike = viewModel.spike(for: sector, at: centerIndex )
+                let radius = viewModel.radius(for: spike.spikeLoad())
+
+                placeDot(
+                    fillColor: viewModel.fillColor(radius: radius, load: spike.spikeLoad()),
+                    strokeColor: viewModel.strokeColor(radius: radius, load: spike.spikeLoad()),
+                    center: center,
+                    radius: (spike.load * 8)
+                )
+            }
         }
+
     }
 
     func placeDot(fillColor: UIColor, strokeColor: UIColor, center: CGPoint, radius: CGFloat) {
@@ -183,23 +197,30 @@ private extension MeSectionViewController {
     func connectDataPoint() {
         addAditionalConnectionPoints()
 
-        for (index, center) in connectionCenterPpoitns.shuffled().enumerated() {
-            let nextIndex = (index + 1)
-            guard nextIndex < connectionCenterPpoitns.count else {
-                return
-            }
+        connectionCenterPpoitns.shuffled().forEach { (centerPopints: [CGPoint]) in
+            for (index, center) in centerPopints.shuffled().enumerated() {
+                let nextIndex = (index + 1)
 
-            let nextCenter = connectionCenterPpoitns[nextIndex]
-            let line = CAShapeLayer.line(from: center, to: nextCenter, strokeColor: strokeColor)
-            view.layer.addSublayer(line)
+                guard nextIndex < centerPopints.count else {
+                    return
+                }
+
+                let nextCenter = centerPopints[nextIndex]
+                let line = CAShapeLayer.line(from: center, to: nextCenter, strokeColor: strokeColor)
+                view.layer.addSublayer(line)
+            }
         }
     }
 
     func addAditionalConnectionPoints() {
-        for index in stride(from: 0, to: viewModel.spikeCount, by: 5) {
-            let centerPoint = dataCenterPoints[index]
-            connectionCenterPpoitns.append(centerPoint)
-            connectionCenterPpoitns.append(Layout.MeSection.connectionCenter)
+        for (sectorIndex, sector) in viewModel.sectors.enumerated() {
+            var centerPoints = [CGPoint]()
+            for index in stride(from: 0, to: sector.spikes.count, by: 2) {
+                let centerPoint = dataCenterPoints[sectorIndex][index]
+                centerPoints.append(centerPoint)
+                centerPoints.append(Layout.MeSection.connectionCenter)
+            }
+            connectionCenterPpoitns.append(centerPoints)
         }
     }
 

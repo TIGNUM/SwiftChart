@@ -117,7 +117,7 @@ extension TabBarCoordinator: LearnContentListCoordinatorDelegate {
 
 extension TabBarCoordinator: MeSectionViewControllerDelegate {
     
-    func didTapSector(sector: Sector?, for view: UIView, in viewController: UIViewController) {
+    func didTapSector(sector: Sector?, in viewController: UIViewController) {
         print("didTapSector: \(sector?.title ?? "INVALID")")
     }
 }
