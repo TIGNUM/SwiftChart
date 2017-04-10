@@ -179,7 +179,6 @@ private extension MeSectionViewController {
                 )
             }
         }
-
     }
 
     func placeDot(fillColor: UIColor, strokeColor: UIColor, center: CGPoint, radius: CGFloat) {
@@ -215,11 +214,13 @@ private extension MeSectionViewController {
     func addAditionalConnectionPoints() {
         for (sectorIndex, sector) in viewModel.sectors.enumerated() {
             var centerPoints = [CGPoint]()
+
             for index in stride(from: 0, to: sector.spikes.count, by: 2) {
                 let centerPoint = dataCenterPoints[sectorIndex][index]
                 centerPoints.append(centerPoint)
                 centerPoints.append(Layout.MeSection.connectionCenter)
             }
+
             connectionCenterPpoitns.append(centerPoints)
         }
     }
@@ -233,14 +234,15 @@ private extension MeSectionViewController {
                 relativeCenter: profileImageView.center
             )
 
+            let labelValues = viewModel.labelValues(for: sector)
             let frame = CGRect(x: labelCenter.x, y: labelCenter.y, width: 0, height: Layout.MeSection.labelHeight)
             let label = UILabel(frame: frame)
-            let labelValues = viewModel.labelValues(for: sector)
             label.text = categoryLabel.text.uppercased()
             label.textColor = labelValues.textColor
             label.font = labelValues.font
             label.numberOfLines = 0
             label.textAlignment = .center
+            label.frame = CGRect(x: labelCenter.x - labelValues.widthOffset, y: labelCenter.y, width: frame.width, height: Layout.MeSection.labelHeight)
             label.sizeToFit()
             view.addSubview(label)
         }

@@ -43,17 +43,17 @@ final class MeSectionViewModel {
         return radius > average(for: load) ? Color.MeSection.redStroke : Color.MeSection.whiteStroke
     }
 
-    func labelValues(for sector: Sector) -> (font: UIFont, textColor: UIColor) {
+    func labelValues(for sector: Sector) -> (font: UIFont, textColor: UIColor, widthOffset: CGFloat) {
         let criticalLoads = sector.spikes.filter { (spike: Spike) -> Bool in
             let distanceCenter = radius(for: spike.spikeLoad())
             return distanceCenter > average(for: spike.load)
         }
 
         if criticalLoads.isEmpty == true {
-            return (font: Font.MeSection.sectorDefault, textColor: Color.MeSection.whiteLabel)
+            return (font: Font.MeSection.sectorDefault, textColor: Color.MeSection.whiteLabel, widthOffset: 0)
         }
 
-        return (font: Font.MeSection.sectorRed, textColor: Color.MeSection.redFilled)
+        return (font: Font.MeSection.sectorRed, textColor: Color.MeSection.redFilled, widthOffset: 15)
     }
 
     private func average(for load: CGFloat) -> CGFloat {
@@ -69,7 +69,6 @@ struct SectorLabel {
 
 protocol Spike {
     var localID: String { get }
-    var strokeColor: UIColor { get }
     var angle: CGFloat { get }
     var load: CGFloat { get }
 
@@ -81,11 +80,11 @@ protocol Sector {
     var endAngle: CGFloat { get }
     var spikes: [Spike] { get }
     var label: SectorLabel { get }
+    var strokeColor: UIColor { get }
 }
 
 struct MockSpike: Spike {
     let localID: String
-    let strokeColor: UIColor
     let angle: CGFloat
     let load: CGFloat
 
@@ -99,7 +98,8 @@ struct MockSector: Sector {
     let startAngle: CGFloat
     let endAngle: CGFloat
     let spikes: [Spike]
-    var label: SectorLabel
+    let label: SectorLabel
+    let strokeColor: UIColor
 }
 
 private var mockSectors: [Sector] {
@@ -108,93 +108,99 @@ private var mockSectors: [Sector] {
             startAngle: 240,
             endAngle: 264,
             spikes: peakSpikes,
-            label: SectorLabel(text: R.string.localized.meSectorPeak(), angle: 245, load: 1.16)
+            label: SectorLabel(text: R.string.localized.meSectorPeak(), angle: 245, load: 1.15),
+            strokeColor: .magenta
         ),
 
         MockSector(
             startAngle: 200,
             endAngle: 239,
             spikes: meetingsSpikes,
-            label: SectorLabel(text: R.string.localized.meSectorMeetings(), angle: 220, load: 1.18)
+            label: SectorLabel(text: R.string.localized.meSectorMeetings(), angle: 220, load: 1.15),
+            strokeColor: .blue
         ),
 
         MockSector(
             startAngle: 176,
             endAngle: 199,
             spikes: intensitySpikes,
-            label: SectorLabel(text: R.string.localized.meSectorIntensity(), angle: 195, load: 1.23)
+            label: SectorLabel(text: R.string.localized.meSectorIntensity(), angle: 195, load: 1.2),
+            strokeColor: .yellow
         ),
 
         MockSector(
             startAngle: 137,
             endAngle: 175,
             spikes: travelSpikes,
-            label: SectorLabel(text: R.string.localized.meSectorTravel(), angle: 170, load: 1.16)
+            label: SectorLabel(text: R.string.localized.meSectorTravel(), angle: 170, load: 1.15),
+            strokeColor: .green
         ),
 
         MockSector(
             startAngle: 120,
             endAngle: 136,
             spikes: sleepSpikes,
-            label: SectorLabel(text: R.string.localized.meSectorSleep(), angle: 145, load: 1.1)
+            label: SectorLabel(text: R.string.localized.meSectorSleep(), angle: 142, load: 1.1),
+            strokeColor: .orange
         ),
 
         MockSector(
             startAngle: 100,
             endAngle: 119,
             spikes: activitySpikes,
-            label: SectorLabel(text: R.string.localized.meSectorActivity(), angle: 120, load: 1.1)
+            label: SectorLabel(text: R.string.localized.meSectorActivity(), angle: 120, load: 1.1),
+            strokeColor: .cyan
         )
     ]
 }
 
 private var peakSpikes: [Spike] {
     return [
-        MockSpike(localID: UUID().uuidString, strokeColor: .magenta, angle: 260, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, strokeColor: .magenta, angle: 252, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, strokeColor: .magenta, angle: 244, load: randomNumber)
+        MockSpike(localID: UUID().uuidString, angle: 260, load: randomNumber),
+        MockSpike(localID: UUID().uuidString, angle: 252, load: randomNumber),
+        MockSpike(localID: UUID().uuidString, angle: 244, load: randomNumber)
     ]
 }
 
 private var meetingsSpikes: [Spike] {
     return [
-        MockSpike(localID: UUID().uuidString, strokeColor: .blue, angle: 236, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, strokeColor: .blue, angle: 228, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, strokeColor: .blue, angle: 220, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, strokeColor: .blue, angle: 212, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, strokeColor: .blue, angle: 204, load: randomNumber)
+        MockSpike(localID: UUID().uuidString, angle: 236, load: randomNumber),
+        MockSpike(localID: UUID().uuidString, angle: 228, load: randomNumber),
+        MockSpike(localID: UUID().uuidString, angle: 220, load: randomNumber),
+        MockSpike(localID: UUID().uuidString, angle: 212, load: randomNumber),
+        MockSpike(localID: UUID().uuidString, angle: 204, load: randomNumber)
     ]
 }
 
 private var intensitySpikes: [Spike] {
     return [
-        MockSpike(localID: UUID().uuidString, strokeColor: .yellow, angle: 196, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, strokeColor: .yellow, angle: 188, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, strokeColor: .yellow, angle: 180, load: randomNumber)
+        MockSpike(localID: UUID().uuidString, angle: 196, load: randomNumber),
+        MockSpike(localID: UUID().uuidString, angle: 188, load: randomNumber),
+        MockSpike(localID: UUID().uuidString, angle: 180, load: randomNumber)
     ]
 }
 
 private var travelSpikes: [Spike] {
     return [
-        MockSpike(localID: UUID().uuidString, strokeColor: .green, angle: 172, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, strokeColor: .green, angle: 164, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, strokeColor: .green, angle: 156, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, strokeColor: .green, angle: 148, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, strokeColor: .green, angle: 140, load: randomNumber)
+        MockSpike(localID: UUID().uuidString, angle: 172, load: randomNumber),
+        MockSpike(localID: UUID().uuidString, angle: 164, load: randomNumber),
+        MockSpike(localID: UUID().uuidString, angle: 156, load: randomNumber),
+        MockSpike(localID: UUID().uuidString, angle: 148, load: randomNumber),
+        MockSpike(localID: UUID().uuidString, angle: 140, load: randomNumber)
     ]
 }
 
 private var sleepSpikes: [Spike] {
     return [
-        MockSpike(localID: UUID().uuidString, strokeColor: .orange, angle: 132, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, strokeColor: .orange, angle: 124, load: randomNumber)
+        MockSpike(localID: UUID().uuidString, angle: 132, load: randomNumber),
+        MockSpike(localID: UUID().uuidString, angle: 124, load: randomNumber)
     ]
 }
 
 private var activitySpikes: [Spike] {
     return [
-        MockSpike(localID: UUID().uuidString, strokeColor: .cyan, angle: 116, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, strokeColor: .cyan, angle: 108, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, strokeColor: .cyan, angle: 100, load: randomNumber)
+        MockSpike(localID: UUID().uuidString, angle: 116, load: randomNumber),
+        MockSpike(localID: UUID().uuidString, angle: 108, load: randomNumber),
+        MockSpike(localID: UUID().uuidString, angle: 100, load: randomNumber)
     ]
 }
