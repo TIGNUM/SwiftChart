@@ -37,7 +37,6 @@ final class CategoryPostCell: UITableViewCell, Dequeueable {
 extension CategoryPostCell : UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(itemCount)
         return itemCount
     }
     
@@ -45,13 +44,13 @@ extension CategoryPostCell : UICollectionViewDelegateFlowLayout, UICollectionVie
         let item = viewModel.item(at: indexPath)
         
         switch item {
-        case .audio ( _, _, let headline, let text):
+        case .audio ( _, let placeHolderURL, let headline, let text):
             let cell: CategoryCollectionCell = collectionView.dequeueCell(for: indexPath)
-            cell.setup(headline: headline, mediaType: text)
+            cell.setup(headline: headline, placeholderURL: placeHolderURL, mediaType: text)
             return cell
-        case .video( _, _, let headline, let text):
+        case .video( _, let placeHolderURL, let headline, let text):
             let cell: CategoryCollectionCell = collectionView.dequeueCell(for: indexPath)
-            cell.setup(headline: headline, mediaType: text)
+            cell.setup(headline: headline, placeholderURL: placeHolderURL, mediaType: text)
             return cell
         }
     }

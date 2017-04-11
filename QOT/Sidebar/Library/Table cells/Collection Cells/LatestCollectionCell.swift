@@ -19,8 +19,11 @@ class LatestCollectionCell: UICollectionViewCell, Dequeueable {
         latestPostImageView.layer.cornerRadius = 3.0
     }
     
-    func setup(headline: String, mediaType: String) {
+    func setup(headline: String, placeholderURL: URL, mediaType: String) {
         headlineLabel.attributedText = AttributedString.Library.categoryHeadline(string: headline.makingTwoLines())
         mediaTypeLabel.attributedText = AttributedString.Library.categoryMediaTypeLabel(string: mediaType)
+        latestPostImageView.kf.indicatorType = .activity
+        latestPostImageView.kf.setImage(with: placeholderURL)
+        
     }
 }

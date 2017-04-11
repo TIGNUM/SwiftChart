@@ -65,35 +65,35 @@ private func mockMixedMediaItems() -> [LibraryMediaItem] {
     return [
         .video(
             localID: UUID().uuidString,
-            placeholderURL: URL(string: "https://example.com")!,
+            placeholderURL: URL(string: "https://cdn.pixabay.com/photo/2011/07/25/23/42/comb-8351_960_720.jpg")!,
             headline: "Headline Lore Ipsum Text",
             text: "VIDEO"
         ),
 
         .audio(
             localID: UUID().uuidString,
-            placeholderURL: URL(string: "https://example.com")!,
+            placeholderURL: URL(string: "https://cdn.pixabay.com/photo/2011/01/17/18/03/iguana-4612_960_720.jpg")!,
             headline: "Headline Lore Ipsum Text",
             text: "AUDIO"
         ),
 
         .audio(
             localID: UUID().uuidString,
-            placeholderURL: URL(string: "https://example.com")!,
+            placeholderURL: URL(string: "https://cdn.pixabay.com/photo/2013/02/17/03/30/utah-82401_960_720.jpg")!,
             headline: "Headline Lore Ipsum Text",
             text: "AUDIO"
         ),
 
         .video(
             localID: UUID().uuidString,
-            placeholderURL: URL(string: "https://example.com")!,
+            placeholderURL: URL(string: "https://cdn.pixabay.com/photo/2013/11/18/17/00/sunrise-212692_960_720.jpg")!,
             headline: "Headline Lore Ipsum Text",
             text: "VIDEO"
         ),
 
         .video(
             localID: UUID().uuidString,
-            placeholderURL: URL(string: "https://example.com")!,
+            placeholderURL: URL(string: "https://cdn.pixabay.com/photo/2017/03/26/12/13/countryside-2175353_960_720.jpg")!,
             headline: "Headline Lore Ipsum Text",
             text: "VIDEO"
         )

@@ -38,14 +38,13 @@ extension LatestPostCell: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let items = viewModel.item(at: indexPath)
         switch items {
-        case .audio ( _, _, let headline, let text):
+        case .audio ( _, let placeHolderURL, let headline, let text):
             let cell: LatestCollectionCell = collectionView.dequeueCell(for: indexPath)
-            print(headline)
-            cell.setup(headline: headline, mediaType: text)
+            cell.setup(headline: headline, placeholderURL: placeHolderURL, mediaType: text)
             return cell
-        case .video( _, _, let headline, let text):
+        case .video( _, let placeHolderURL, let headline, let text):
             let cell: LatestCollectionCell = collectionView.dequeueCell(for: indexPath)
-            cell.setup(headline: headline, mediaType: text)
+            cell.setup(headline: headline, placeholderURL: placeHolderURL, mediaType: text)
             return cell
         }
         
