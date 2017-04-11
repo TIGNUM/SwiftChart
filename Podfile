@@ -10,7 +10,7 @@ target 'QOT' do
   pod 'Bond', '~> 6.0'
   pod 'Anchorage', '~> 3.1'
   pod 'R.swift', '~> 3.2'
-  pod 'QOTDatabase', '~> 0.0'
+  pod 'QOTDatabase', '~> 0.1.3'
   pod 'UICollectionViewRightAlignedLayout', '~> 0.0'
 
 

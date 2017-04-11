@@ -6,33 +6,46 @@
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import RealmSwift
 
-// FIXME: Unit test once data model is finalized.
-public final class Content: Object {
-    public dynamic var id: Int = 0
-    public dynamic var sort: Int = 0
-    public dynamic var name: String = ""
-    public dynamic var title: String = ""
-    public let items = List<ContentItem>()
-    
-    override public class func primaryKey() -> String? {
-        return "id"
-    }
-    
-    convenience public init(id: Int, sort: Int, name: String, title: String) {
-        self.init()
-        self.id = id
-        self.sort =  sort
-        self.name = name
-        self.title = title
-    }
-}
+// FIXME: Unit test.
+public final class Content: Object, SyncableRealmObject, ContentData {
 
-public extension Content {
-    var percentageViewed: Double {
-        let viewed = items.filter { $0.status == .viewed }
-        return Double(viewed.count) / Double(items.count)
+    // MARK: SyncableRealmObject
+
+    public let _remoteID: RealmOptional<Int> = RealmOptional()
+
+    public dynamic var _syncStatus: Int8 = 0
+
+    public private(set) dynamic var localID: String = UUID().uuidString
+
+    public dynamic var modifiedAt: Date = Date()
+
+    public dynamic var parent: ContentCategory?
+
+    public func setData(_ data: ContentData) {
+        sortOrder = data.sortOrder
+        title = data.title
     }
+
+    // MARK: ContentData
+
+    public dynamic var sortOrder: Int = 0
+
+    public dynamic var title: String = ""
+
+    // MARK: Realm
+
+    override public class func primaryKey() -> String? {
+        return "localID"
+    }
+
+    override public static func indexedProperties() -> [String] {
+        return ["_remoteID"]
+    }
+
+    // MARK: Relationships
+
+    public let items = LinkingObjects(fromType: ContentItem.self, property: "parent")
 }
