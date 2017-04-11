@@ -90,7 +90,7 @@ extension PrepareContentViewController {
 
         case.video(let item):
             let cell: PrepareContentVideoPreviewTableViewCell = tableView.dequeueCell(for: indexPath)
-            downloadAndSetImageView(url: item.placeholderURL, imageView: cell.previewImage)
+            getDataFromUrlAndSetImageView(url: item.placeholderURL, imageView: cell.imageView!)
             return cell
 
         case .step(let item):
@@ -133,21 +133,12 @@ extension PrepareContentViewController {
         }
     }
 
-    func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
-        URLSession.shared.dataTask(with: url) {
-            (data, response, error) in
-        completion(data, response, error)
-            }.resume()
-    }
-
-    func downloadAndSetImageView(url: URL, imageView: UIImageView) {
-        getDataFromUrl(url: url) { (data, response, error)  in
-            guard let data = data, error == nil else { return }
-            print(response?.suggestedFilename ?? url.lastPathComponent)
-            DispatchQueue.main.async() { () -> Void in
-                imageView.image = UIImage(data: data)
-            }
+    func getDataFromUrlAndSetImageView(url: URL, imageView: UIImageView) {
+        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+            imageView.image = UIImage(data: data!)
         }
+
+        task.resume()
     }
 
     func didAddPreparationToCalendar() {
