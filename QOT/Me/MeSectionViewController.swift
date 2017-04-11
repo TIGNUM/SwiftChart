@@ -42,6 +42,7 @@ final class MeSectionViewController: UIViewController {
         view.backgroundColor = Color.Default.navy
         setupScrollView()
         addBackgroundImage()
+        setupProfileImage()
         drawUniverse()
         addTabRecognizer()
     }
@@ -56,7 +57,6 @@ final class MeSectionViewController: UIViewController {
     private func drawUniverse() {
         drawBackCircles(radius: Layout.MeSection.radiusAverageLoad, linesDashPattern: [3, 1])
         drawBackCircles(radius: Layout.MeSection.radiusMaxLoad)
-        setupProfileImage()
         collectCenterPoints()
         connectDataPoint()
         drawDots()
@@ -134,6 +134,11 @@ private extension MeSectionViewController {
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.layer.cornerRadius = Layout.MeSection.profileImageWidth * 0.5
         profileImageView.clipsToBounds = true
+
+        profileImageView.layer.shadowColor = UIColor.green.cgColor
+        profileImageView.layer.shadowRadius = 10
+        profileImageView.layer.shadowOpacity = 0.8
+        profileImageView.layer.shadowOffset = .zero
     }
 
     func drawBackCircles(radius: CGFloat, linesDashPattern: [NSNumber]? = nil) {
@@ -198,6 +203,10 @@ private extension MeSectionViewController {
         )
 
         shapeLayer.lineWidth = lineWidth
+        shapeLayer.shadowColor = strokeColor.cgColor
+        shapeLayer.shadowRadius = 10
+        shapeLayer.shadowOpacity = 0.9
+        shapeLayer.shadowOffset = .zero
         view.layer.addSublayer(shapeLayer)
     }
 
