@@ -178,16 +178,17 @@ private extension MeSectionViewController {
                 let radius = viewModel.radius(for: spike.spikeLoad())
 
                 drawDot(
-                    fillColor: viewModel.fillColor(radius: radius, load: spike.spikeLoad()),
-                    strokeColor: viewModel.strokeColor(radius: radius, load: spike.spikeLoad()),
+                    fillColor: viewModel.fillColor(radius: radius, load: spike.spikeLoad(), sectorType: sector.type),
+                    strokeColor: viewModel.strokeColor(radius: radius, load: spike.spikeLoad(), sectorType: sector.type),
                     center: center,
-                    radius: (spike.load * 8)
+                    radius: (spike.load * 8),
+                    lineWidth: sector.type.lineWidth(load: spike.load)//(spike.load * ((sector.type == .load) ? 8 : 2)) * ((sector.type == .load) ? 2 : 1)
                 )
             }
         }
     }
 
-    func drawDot(fillColor: UIColor, strokeColor: UIColor, center: CGPoint, radius: CGFloat) {
+    func drawDot(fillColor: UIColor, strokeColor: UIColor, center: CGPoint, radius: CGFloat, lineWidth: CGFloat) {
         let circlePath = UIBezierPath.circlePath(center: center, radius: radius)
         let shapeLayer = CAShapeLayer.pathWithColor(
             path: circlePath.cgPath,
@@ -195,7 +196,7 @@ private extension MeSectionViewController {
             strokeColor: strokeColor
         )
 
-        shapeLayer.lineWidth = radius * 2
+        shapeLayer.lineWidth = lineWidth
         view.layer.addSublayer(shapeLayer)
     }
 

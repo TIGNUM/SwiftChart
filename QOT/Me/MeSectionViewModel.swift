@@ -40,12 +40,22 @@ extension MeSectionViewModel {
         return (load * (factor - Layout.MeSection.loadOffset)) + (offset * 0.4)
     }
 
-    func fillColor(radius: CGFloat, load: CGFloat) -> UIColor {
-        return radius > average(for: load) ? Color.MeSection.redFilled : .white
+    func fillColor(radius: CGFloat, load: CGFloat, sectorType: SectorType) -> UIColor {
+        let isCritical = radius > average(for: load)
+
+        switch sectorType {
+        case .load: return isCritical ? Color.MeSection.redFilled : .white
+        case .bodyBrain: return isCritical ? Color.MeSection.redStroke : Color.MeSection.whiteStroke
+        }
     }
 
-    func strokeColor(radius: CGFloat, load: CGFloat) -> UIColor {
-        return radius > average(for: load) ? Color.MeSection.redStroke : Color.MeSection.whiteStroke
+    func strokeColor(radius: CGFloat, load: CGFloat, sectorType: SectorType) -> UIColor {
+        let isCritical = radius > average(for: load)
+
+        switch sectorType {
+        case .load: return isCritical ? Color.MeSection.redStroke : Color.MeSection.whiteStroke
+        case .bodyBrain: return isCritical ? Color.MeSection.redFilled : .white
+        }
     }
 
     func labelValues(for sector: Sector) -> (font: UIFont, textColor: UIColor, widthOffset: CGFloat) {
@@ -71,6 +81,13 @@ extension MeSectionViewModel {
 enum SectorType {
     case bodyBrain
     case load
+
+    func lineWidth(load: CGFloat) -> CGFloat {
+        switch self {
+        case .load: return load * 16
+        case .bodyBrain: return load * 2
+        }
+    }
 }
 
 struct SectorLabel {
