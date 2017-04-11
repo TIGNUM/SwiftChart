@@ -138,6 +138,7 @@
 		D54D903A1E97CD09003924C9 /* CategoryCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54D90381E97CD09003924C9 /* CategoryCollectionCell.xib */; };
 		D55CBED71E8A993200C690FB /* CGPoint+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55CBED61E8A993200C690FB /* CGPoint+Convenience.swift */; };
 		D57ECFB01E924CC2008F401B /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57ECFAF1E924CC2008F401B /* TabBarView.swift */; };
+		D58BD86A1E9D1E7F005676DE /* NSFile+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58BD8691E9D1E7F005676DE /* NSFile+Convenience.swift */; };
 		D5CD23D81E8BB73A002742C4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CD23D71E8BB73A002742C4 /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
@@ -291,6 +292,7 @@
 		D54D90381E97CD09003924C9 /* CategoryCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryCollectionCell.xib; sourceTree = "<group>"; };
 		D55CBED61E8A993200C690FB /* CGPoint+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Convenience.swift"; sourceTree = "<group>"; };
 		D57ECFAF1E924CC2008F401B /* TabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		D58BD8691E9D1E7F005676DE /* NSFile+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFile+Convenience.swift"; sourceTree = "<group>"; };
 		D5CD23D71E8BB73A002742C4 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -388,6 +390,7 @@
 				CB2880331E7144E60067890A /* CollectionUpdate.swift */,
 				CBA054481E890560009E28D6 /* Dequeueable.swift */,
 				CBDB98F31E7B000A003EC73F /* NotificationHandler.swift */,
+				D58BD8691E9D1E7F005676DE /* NSFile+Convenience.swift */,
 				CBD791491E71797C0006C590 /* Typealiases.swift */,
 			);
 			path = Common;
@@ -1244,6 +1247,7 @@
 				CC4D1D801E82EDE700B8D75E /* MeSectionCoordinator.swift in Sources */,
 				CCEA22A51E8AC53E003D0CF4 /* PrepareCheckListViewModel.swift in Sources */,
 				CB8A15311E76F31B0023B2F9 /* PageTrackable.swift in Sources */,
+				D58BD86A1E9D1E7F005676DE /* NSFile+Convenience.swift in Sources */,
 				CB2880241E7051710067890A /* AppCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

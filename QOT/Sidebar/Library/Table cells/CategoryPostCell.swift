@@ -9,27 +9,32 @@
 import UIKit
 
 protocol CategoryPostCellDataSource {
-//    func itemCount
+    //    func itemCount
 }
 
-final class CategoryPostCell: UITableViewCell, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, Dequeueable {
+final class CategoryPostCell: UITableViewCell, Dequeueable {
     let viewModel = LibraryViewModel()
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
     var itemCount = 0
     override func awakeFromNib() {
         super.awakeFromNib()
-      
     }
     
     func setUp(title: String, sectionCount: Int) {
-        titleLabel.attributedText = AttributedString.Library.categoryTitle(string: title)
+        
+        titleLabel.attributedText = AttributedString.Library.categoryTitle(string: title.makingTwoLines())
+        
         self.itemCount = sectionCount
         collectionView.registerDequeueable(CategoryCollectionCell.self)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.reloadData()
     }
+    
+}
+
+extension CategoryPostCell : UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print(itemCount)

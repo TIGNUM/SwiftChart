@@ -9,19 +9,18 @@
 import UIKit
 
 class CategoryCollectionCell: UICollectionViewCell, Dequeueable {
-
+    
     @IBOutlet weak var categoryImageView: UIImageView!
     @IBOutlet weak var headlineLabel: UILabel!
     @IBOutlet weak var mediaTypeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = .blue
     }
     
     func setup(headline: String, mediaType: String) {
-        headlineLabel.attributedText = AttributedString.Library.categoryHeadline(string: headline)
+        headlineLabel.attributedText = AttributedString.Library.categoryHeadline(string: headline.makingTwoLines())
         mediaTypeLabel.attributedText = AttributedString.Library.categoryMediaTypeLabel(string: mediaType)
     }
-
+    
 }

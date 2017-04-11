@@ -34,13 +34,15 @@ final class LibraryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.registerDequeueable(LatestPostCell.self)
-        tableView.registerDequeueable(CategoryPostCell.self)
-        //let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeView))
-        //view.addGestureRecognizer(tapGestureRecognizer)
+        registerTableCell()
         view.backgroundColor = .black
         tableView.estimatedRowHeight = 20
         tableView.rowHeight = UITableViewAutomaticDimension
+    }
+    
+    func registerTableCell() {
+        tableView.registerDequeueable(LatestPostCell.self)
+        tableView.registerDequeueable(CategoryPostCell.self)
     }
 }
 

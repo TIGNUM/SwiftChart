@@ -9,7 +9,7 @@
 import UIKit
 
 class LatestCollectionCell: UICollectionViewCell, Dequeueable {
-
+    
     @IBOutlet weak var latestPostImageView: UIImageView!
     @IBOutlet weak var headlineLabel: UILabel!
     @IBOutlet weak var mediaTypeLabel: UILabel!
@@ -19,7 +19,7 @@ class LatestCollectionCell: UICollectionViewCell, Dequeueable {
     }
     
     func setup(headline: String, mediaType: String) {
-        headlineLabel.attributedText = AttributedString.Library.categoryHeadline(string: headline)
+        headlineLabel.attributedText = AttributedString.Library.categoryHeadline(string: headline.makingTwoLines())
         mediaTypeLabel.attributedText = AttributedString.Library.categoryMediaTypeLabel(string: mediaType)
     }
 }
