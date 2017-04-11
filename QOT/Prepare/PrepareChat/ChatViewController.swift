@@ -25,13 +25,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     fileprivate let viewModel: ChatViewModel
     weak var delegate: ChatViewDelegate?
 
-    private let estimatedRowHeight = 140
+    private let estimatedRowHeight: CGFloat = 140.0
 
     // MARK: - Life Cycle
 
     init(viewModel: ChatViewModel) {
         self.viewModel = viewModel
-        super.init(nibName: String(describing:ChatViewController.self), bundle: nil)
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -59,7 +59,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.backgroundColor = .black
 
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = CGFloat(estimatedRowHeight)
+        tableView.estimatedRowHeight = estimatedRowHeight
     }
 
     private func updateTableView(with tableView: UITableView) {

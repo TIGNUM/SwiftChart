@@ -11,16 +11,12 @@ import UIKit
 class ChatTableViewCell: UITableViewCell, Dequeueable {
     
     @IBOutlet weak var chatLabel: UILabel!
-    @IBOutlet weak var cardLikeView: UIView!
+    @IBOutlet weak var bubbleView: UIView!
+    @IBOutlet weak var iconImageView: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.cardLikeView.layer.cornerRadius = 10
-        self.cardLikeView.layer.masksToBounds = true
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
+        self.bubbleView.layer.cornerRadius = 10
+        self.bubbleView.layer.masksToBounds = true
+    }    
 }

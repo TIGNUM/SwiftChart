@@ -32,6 +32,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Niz-Po-dhw">
+                                <rect key="frame" x="-14" y="-14" width="28" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="tkX-Uz-qZi"/>
+                                    <constraint firstAttribute="width" constant="28" id="udB-UR-TSy"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -39,6 +46,8 @@
                             <constraint firstItem="cC6-7X-gu1" firstAttribute="top" secondItem="8Jl-N7-LV6" secondAttribute="top" constant="5" id="6Ux-fy-GR7"/>
                             <constraint firstAttribute="trailing" secondItem="cC6-7X-gu1" secondAttribute="trailing" constant="5" id="CEy-2Z-uKk"/>
                             <constraint firstItem="cC6-7X-gu1" firstAttribute="leading" secondItem="8Jl-N7-LV6" secondAttribute="leading" constant="5" id="D9m-Yk-Yrz"/>
+                            <constraint firstItem="Niz-Po-dhw" firstAttribute="top" secondItem="8Jl-N7-LV6" secondAttribute="top" constant="-14" id="Us2-8a-Tfp"/>
+                            <constraint firstItem="Niz-Po-dhw" firstAttribute="leading" secondItem="8Jl-N7-LV6" secondAttribute="leading" constant="-14" id="YwK-i8-86C"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="kWA-cV-vY8"/>
                         </constraints>
                     </view>
@@ -53,8 +62,9 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="cardLikeView" destination="8Jl-N7-LV6" id="mrF-fp-yMg"/>
+                <outlet property="bubbleView" destination="8Jl-N7-LV6" id="Bwr-fM-7XA"/>
                 <outlet property="chatLabel" destination="cC6-7X-gu1" id="7aW-K6-biy"/>
+                <outlet property="iconImageView" destination="Niz-Po-dhw" id="EnK-Id-KRV"/>
             </connections>
             <point key="canvasLocation" x="35" y="113.5"/>
         </tableViewCell>
