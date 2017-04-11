@@ -16,7 +16,7 @@ protocol PrepareContentActionButtonsTableViewCellDelegate {
 
 class PrepareContentActionButtonsTableViewCell: UITableViewCell, Dequeueable {
 
-    let delegate: PrepareContentActionButtonsTableViewCellDelegate? = nil
+    var delegate: PrepareContentActionButtonsTableViewCellDelegate?
 
     @IBOutlet weak var addPreparationToCalendarButton: UIButton!
     @IBOutlet weak var addToNotesButton: UIButton!

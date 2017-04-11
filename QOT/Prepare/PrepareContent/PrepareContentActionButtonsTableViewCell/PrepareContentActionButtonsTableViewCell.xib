@@ -21,26 +21,33 @@
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Mn-20-sW5">
                         <rect key="frame" x="64" y="8" width="192" height="36.5"/>
-                        <state key="normal" title="Add preparation to calendar"/>
+                        <state key="normal" title="Add preparation to calendar">
+                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
                         <connections>
                             <action selector="addPreparationToCalendarWithSender:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="c6o-aA-6zA"/>
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qSi-o2-dAi">
                         <rect key="frame" x="116" y="52.5" width="88" height="30"/>
-                        <state key="normal" title="Add to notes"/>
+                        <state key="normal" title="Add to notes">
+                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
                         <connections>
                             <action selector="addToNotesWithSender:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="XE4-sf-Gjl"/>
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KDI-H7-TKq">
                         <rect key="frame" x="133.5" y="90.5" width="53" height="36"/>
-                        <state key="normal" title="Save as"/>
+                        <state key="normal" title="Save as">
+                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
                         <connections>
                             <action selector="saveAsSender:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="OFW-KT-0I5"/>
                         </connections>
                     </button>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="1Mn-20-sW5" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="AqP-kJ-lvO"/>
                     <constraint firstAttribute="bottomMargin" secondItem="KDI-H7-TKq" secondAttribute="bottom" id="E02-VD-EFu"/>
@@ -52,6 +59,7 @@
                     <constraint firstItem="qSi-o2-dAi" firstAttribute="top" secondItem="1Mn-20-sW5" secondAttribute="bottom" constant="8" id="ymN-bW-Pmc"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="addPreparationToCalendarButton" destination="1Mn-20-sW5" id="VhX-9i-y0E"/>
                 <outlet property="addToNotesButton" destination="qSi-o2-dAi" id="Ibi-z5-Xl3"/>

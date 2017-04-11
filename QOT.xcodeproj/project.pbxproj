@@ -16,6 +16,10 @@
 		0B40DC161E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B40DC141E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib */; };
 		0BE7FD841E9CAC7400E3262E /* PrepareContentActionButtonsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE7FD821E9CAC7400E3262E /* PrepareContentActionButtonsTableViewCell.swift */; };
 		0BE7FD851E9CAC7400E3262E /* PrepareContentActionButtonsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BE7FD831E9CAC7400E3262E /* PrepareContentActionButtonsTableViewCell.xib */; };
+		0BE7FD8A1E9D2AEF00E3262E /* PrepareContentStepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE7FD881E9D2AEF00E3262E /* PrepareContentStepTableViewCell.swift */; };
+		0BE7FD8B1E9D2AEF00E3262E /* PrepareContentStepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BE7FD891E9D2AEF00E3262E /* PrepareContentStepTableViewCell.xib */; };
+		0BE7FD8F1E9D2F8800E3262E /* PrepareContentTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE7FD8D1E9D2F8800E3262E /* PrepareContentTitleTableViewCell.swift */; };
+		0BE7FD901E9D2F8800E3262E /* PrepareContentTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BE7FD8E1E9D2F8800E3262E /* PrepareContentTitleTableViewCell.xib */; };
 		0CC2119BB6C36EF6F43B4ECD /* Pods_QOT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */; };
 		A29C0C8591D20568D6B8EB3E /* Pods_QOTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */; };
 		CB1E4F981E7FE22200287613 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1E4F971E7FE22200287613 /* SettingsViewModel.swift */; };
@@ -160,6 +164,10 @@
 		0B40DC141E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PrepareContentHeaderTableViewCell.xib; path = PrepareContentHeaderTableViewCell/PrepareContentHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		0BE7FD821E9CAC7400E3262E /* PrepareContentActionButtonsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareContentActionButtonsTableViewCell.swift; path = PrepareContentActionButtonsTableViewCell/PrepareContentActionButtonsTableViewCell.swift; sourceTree = "<group>"; };
 		0BE7FD831E9CAC7400E3262E /* PrepareContentActionButtonsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PrepareContentActionButtonsTableViewCell.xib; path = PrepareContentActionButtonsTableViewCell/PrepareContentActionButtonsTableViewCell.xib; sourceTree = "<group>"; };
+		0BE7FD881E9D2AEF00E3262E /* PrepareContentStepTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareContentStepTableViewCell.swift; path = PrepareContentStepTableViewCell/PrepareContentStepTableViewCell.swift; sourceTree = "<group>"; };
+		0BE7FD891E9D2AEF00E3262E /* PrepareContentStepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PrepareContentStepTableViewCell.xib; path = PrepareContentStepTableViewCell/PrepareContentStepTableViewCell.xib; sourceTree = "<group>"; };
+		0BE7FD8D1E9D2F8800E3262E /* PrepareContentTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareContentTitleTableViewCell.swift; path = PrepareContentTitleTableViewCell/PrepareContentTitleTableViewCell.swift; sourceTree = "<group>"; };
+		0BE7FD8E1E9D2F8800E3262E /* PrepareContentTitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PrepareContentTitleTableViewCell.xib; path = PrepareContentTitleTableViewCell/PrepareContentTitleTableViewCell.xib; sourceTree = "<group>"; };
 		2F1C8D6D4864F462A3F805BB /* Pods-QOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.release.xcconfig"; sourceTree = "<group>"; };
 		42795728C4F3229DFB18981E /* Pods-QOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.debug.xcconfig"; sourceTree = "<group>"; };
 		5C87601C1FE7F833DF0D7A6B /* Pods-QOTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -347,6 +355,24 @@
 				0BE7FD831E9CAC7400E3262E /* PrepareContentActionButtonsTableViewCell.xib */,
 			);
 			name = PrepareContentActionButtonsTableViewCell;
+			sourceTree = "<group>";
+		};
+		0BE7FD871E9D2AB800E3262E /* PrepareContentStepTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				0BE7FD881E9D2AEF00E3262E /* PrepareContentStepTableViewCell.swift */,
+				0BE7FD891E9D2AEF00E3262E /* PrepareContentStepTableViewCell.xib */,
+			);
+			name = PrepareContentStepTableViewCell;
+			sourceTree = "<group>";
+		};
+		0BE7FD8C1E9D2F4D00E3262E /* PrepareContentTitleTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				0BE7FD8D1E9D2F8800E3262E /* PrepareContentTitleTableViewCell.swift */,
+				0BE7FD8E1E9D2F8800E3262E /* PrepareContentTitleTableViewCell.xib */,
+			);
+			name = PrepareContentTitleTableViewCell;
 			sourceTree = "<group>";
 		};
 		7BD58BE66F7DCDCEF349DBD8 /* Frameworks */ = {
@@ -695,6 +721,8 @@
 		CC7C0A111E8966E000A83583 /* PrepareContent */ = {
 			isa = PBXGroup;
 			children = (
+				0BE7FD8C1E9D2F4D00E3262E /* PrepareContentTitleTableViewCell */,
+				0BE7FD871E9D2AB800E3262E /* PrepareContentStepTableViewCell */,
 				0BE7FD811E9CAC4000E3262E /* PrepareContentActionButtonsTableViewCell */,
 				0B40DC121E9CA6EF00E1659B /* PrepareContentHeaderTableViewCell */,
 				0B40DC111E9CA6E500E1659B /* PrepareContentViedeoPreviewTableViewCell */,
@@ -957,7 +985,7 @@
 				TargetAttributes = {
 					CBB237EB1E6FFF1200AB5AEF = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 9K4PJT54S8;
+						DevelopmentTeam = PA7U84NCWZ;
 						ProvisioningStyle = Automatic;
 					};
 					CBB237FF1E6FFF1200AB5AEF = {
@@ -1004,6 +1032,7 @@
 				CCC0C4CC1E828007002A8362 /* BentonSans_Regular.otf in Resources */,
 				CCC1B6AA1E8B9B7300D1461F /* LearnCategoryListViewController.xib in Resources */,
 				CBD7915D1E72F2990006C590 /* LaunchViewController.xib in Resources */,
+				0BE7FD8B1E9D2AEF00E3262E /* PrepareContentStepTableViewCell.xib in Resources */,
 				D51D088C1E8E80CD00FC7567 /* LearnStrategyArticleCell.xib in Resources */,
 				0BE7FD851E9CAC7400E3262E /* PrepareContentActionButtonsTableViewCell.xib in Resources */,
 				0B40DC161E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib in Resources */,
@@ -1011,6 +1040,7 @@
 				CB8A15461E7986C90023B2F9 /* Localized.strings in Resources */,
 				D520BC941E8E655A00A2D107 /* LearnStrategyHeaderCell.xib in Resources */,
 				CBB237FA1E6FFF1200AB5AEF /* LaunchScreen.storyboard in Resources */,
+				0BE7FD901E9D2F8800E3262E /* PrepareContentTitleTableViewCell.xib in Resources */,
 				D540275F1E8D401F0013B783 /* LearnStrategyViewController.xib in Resources */,
 				0B40DC0C1E9CA6A500E1659B /* PrepareContentTextTableViewCell.xib in Resources */,
 				CBB237F71E6FFF1200AB5AEF /* Assets.xcassets in Resources */,
@@ -1179,6 +1209,7 @@
 				CC6B3A2F1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift in Sources */,
 				0B40DC151E9CA71400E1659B /* PrepareContentHeaderTableViewCell.swift in Sources */,
 				CB8A15331E76F56D0023B2F9 /* TrackableEntity.swift in Sources */,
+				0BE7FD8F1E9D2F8800E3262E /* PrepareContentTitleTableViewCell.swift in Sources */,
 				CBDB98F21E7AA510003EC73F /* CalendarImportResult.swift in Sources */,
 				CCE372F31E8C1EDF00B79352 /* WhatsHotViewModel.swift in Sources */,
 				CCD377541E8D3C2D00BB8031 /* WhatsHotNewTemplateViewModel.swift in Sources */,
@@ -1219,6 +1250,7 @@
 				CCC1B6A71E8B9B7300D1461F /* LearnCategoryCell.swift in Sources */,
 				CCE373141E8D32F800B79352 /* SidebarViewModel.swift in Sources */,
 				D51B5C491E8D0E7E0084A65B /* LearnContentCell.swift in Sources */,
+				0BE7FD8A1E9D2AEF00E3262E /* PrepareContentStepTableViewCell.swift in Sources */,
 				CCE372F51E8CF10C00B79352 /* WhatsHotViewController.swift in Sources */,
 				CCE3730F1E8D32F800B79352 /* SidebarCoordinator.swift in Sources */,
 				CCC1B6AF1E8B9B7F00D1461F /* LearnContentListViewModel.swift in Sources */,
@@ -1388,11 +1420,11 @@
 			baseConfigurationReference = 42795728C4F3229DFB18981E /* Pods-QOT.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9K4PJT54S8;
+				DEVELOPMENT_TEAM = PA7U84NCWZ;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = QOT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOT;
+				PRODUCT_BUNDLE_IDENTIFIER = typeIT.tignum.QOT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1403,11 +1435,11 @@
 			baseConfigurationReference = 2F1C8D6D4864F462A3F805BB /* Pods-QOT.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9K4PJT54S8;
+				DEVELOPMENT_TEAM = PA7U84NCWZ;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = QOT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOT;
+				PRODUCT_BUNDLE_IDENTIFIER = typeIT.tignum.QOT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

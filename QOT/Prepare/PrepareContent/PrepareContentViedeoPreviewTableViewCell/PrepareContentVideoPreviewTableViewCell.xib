@@ -22,6 +22,7 @@
                         <rect key="frame" x="5" y="0.0" width="310" height="113"/>
                     </imageView>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="HFm-lY-42b" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="3BM-j3-MwL"/>
                     <constraint firstAttribute="trailing" secondItem="HFm-lY-42b" secondAttribute="trailing" constant="5" id="TBO-ZM-Yib"/>
@@ -29,6 +30,7 @@
                     <constraint firstItem="HFm-lY-42b" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="m73-kT-YWI"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="previewImage" destination="HFm-lY-42b" id="gwq-6E-yNi"/>
             </connections>
