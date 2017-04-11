@@ -46,9 +46,10 @@ final class MeSectionViewController: UIViewController {
     }
 
     private func addBackgroundImage() {
-        let imageView = UIImageView(frame: screen)
+        let frame = CGRect(x: screen.minX, y: screen.minY, width: screen.width * 2, height: screen.height)
+        let imageView = UIImageView(frame: frame)
         imageView.image = R.image.solarSystemBackground()
-        view.addSubview(imageView)
+        scrollView.addSubview(imageView)
     }
 
     private func drawUniverse() {
@@ -100,7 +101,6 @@ final class MeSectionViewController: UIViewController {
         }
 
         return nil
-
     }
 
     func lengthFromCenter(for location: CGPoint) -> CGFloat {
