@@ -52,7 +52,6 @@ struct Layout {
             return viewControllerFrame.width * 0.45
         }
 
-
         var profileImageWidth: CGFloat {
             return viewControllerFrame.width * 0.25
         }
@@ -71,13 +70,6 @@ struct Layout {
 
         var loadCenter: CGPoint {
             return CGPoint(x: loadCenterX, y: loadCenterY)
-        }
-
-        var profileImageCenter: CGPoint {
-            return CGPoint(
-                x: profileImageViewFrame.width * 0.5,
-                y: profileImageViewFrame.width * 0.5
-            )
         }
 
         var profileImageViewFrame: CGRect {
@@ -163,7 +155,7 @@ struct Color {
         static let redStroke = UIColor(red: 230/255, green: 0, blue: 34/255, alpha: 0.9)
         static let whiteStroke = UIColor(white: 1, alpha: 0.6)
         static let whiteLabel = UIColor(white: 1, alpha: 0.5)
-        static let whiteFilledBodyBrain = UIColor(white: 1, alpha: 0.2)
+        static let whiteStrokeLight = UIColor(white: 1, alpha: 0.2)
     }
 }
 

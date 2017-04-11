@@ -17,13 +17,10 @@ final class MeSectionViewController: UIViewController {
     // MARK: - Properties
 
     fileprivate let viewModel: MeSectionViewModel
-    fileprivate let strokeColor = UIColor(white: 1, alpha: 0.2)
     fileprivate var layout = Layout.MeSection(viewControllerFrame: .zero)
-    fileprivate var dataCenterPoints = [[CGPoint]]()
-    fileprivate var connectionCenterPpoitns = [[CGPoint]]()
-    fileprivate var profileImageView = UIImageView()
     fileprivate var scrollView: UIScrollView?
     weak var delegate: MeSectionViewControllerDelegate?
+    fileprivate var solarView: MeSolarView?
 
     // MARK: - Life Cycle
 
@@ -40,27 +37,47 @@ final class MeSectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        layout = Layout.MeSection(viewControllerFrame: view.frame)
-        view.backgroundColor = .black
-        setupScrollView()
-        drawUniverse()
         addTabRecognizer()
     }
 
-    private func drawUniverse() {
-        drawBackCircles(radius: layout.radiusAverageLoad, linesDashPattern: [2, 1])
-        drawBackCircles(radius: layout.radiusMaxLoad)
-        setupProfileImage()
-        collectCenterPoints()
-        connectDataPoint()
-        placeDots()
-        addCategoryLabels()
-        view.addSubview(profileImageView)
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+
+        cleanUp()
+        layout = Layout.MeSection(viewControllerFrame: view.frame)
+        let solarView = MeSolarView()
+
+        solarView.drawUniverse(
+            in: view.bounds,
+            with: viewModel.sectors,
+            profileImage: viewModel.profileImage,
+            layout: layout
+        )
+
+
+        setupScrollView()
+        scrollView?.addSubview(solarView)
+        self.solarView = solarView
+    }
+
+    private func cleanUp() {
+        removeSubViews(for: scrollView)
+        removeSubViews(for: solarView)
+        scrollView?.removeFromSuperview()
+        solarView?.removeFromSuperview()
+        scrollView = nil
+        solarView = nil
+    }
+
+    private func removeSubViews(for view: UIView?) {
+        scrollView?.subviews.forEach({ (subView: UIView) in
+            subView.removeFromSuperview()
+        })
     }
 
     private func addTabRecognizer() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapSector))
-        view.addGestureRecognizer(tapGestureRecognizer)
+        scrollView?.addGestureRecognizer(tapGestureRecognizer)
     }
 
     func didTapSector(recognizer: UITapGestureRecognizer) {
@@ -69,8 +86,8 @@ final class MeSectionViewController: UIViewController {
 
     func sector(location: CGPoint) -> Sector? {
         let radius = lengthFromCenter(for: location)
-        let yn = location.y - profileImageView.center.y
-        let xn = location.x - profileImageView.center.x
+        let yn = location.y - (solarView?.profileImageView.center.y ?? 0)
+        let xn = location.x - (solarView?.profileImageView.center.x ?? 0)
         let beta = acos(xn / radius)
         let sectorAngle = beta.radiansToDegrees
 
@@ -99,8 +116,8 @@ final class MeSectionViewController: UIViewController {
     }
 
     func lengthFromCenter(for location: CGPoint) -> CGFloat {
-        let diffX = pow(location.x - profileImageView.center.x, 2)
-        let diffY = pow(location.y - profileImageView.center.y, 2)
+        let diffX = pow(location.x - (solarView?.profileImageView.center.x ?? 0), 2)
+        let diffY = pow(location.y - (solarView?.profileImageView.center.y ?? 0), 2)
 
         return sqrt(diffX + diffY)
     }
@@ -112,7 +129,6 @@ private extension MeSectionViewController {
 
     func setupScrollView() {
         scrollView = UIScrollView(frame: view.frame)
-        view = scrollView
         scrollView?.bounces = false
         scrollView?.isPagingEnabled = true
         scrollView?.showsVerticalScrollIndicator = false
@@ -121,132 +137,9 @@ private extension MeSectionViewController {
             width: (view.frame.width * 2) - (layout.scrollViewOffset * 4),
             height: view.frame.height - 84 // TODO: Change it when the tabBar is all setup corectly with bottomLayout.
         )
-    }
-
-    func setupProfileImage() {
-        profileImageView = UIImageView(frame: layout.profileImageViewFrame)
-        profileImageView.image = viewModel.profileImage
-        profileImageView.contentMode = .scaleAspectFill
-        profileImageView.layer.cornerRadius = layout.profileImageWidth * 0.5
-        profileImageView.clipsToBounds = true
-    }
-
-    func drawBackCircles(radius: CGFloat, linesDashPattern: [NSNumber]? = nil) {
-        let circlePath = UIBezierPath.circlePath(center: layout.loadCenter, radius: radius)
-        let shapeLayer = CAShapeLayer.pathWithColor(
-            path: circlePath.cgPath,
-            fillColor: .clear,
-            strokeColor: strokeColor
-        )
-        shapeLayer.lineDashPattern = linesDashPattern
-        view.layer.addSublayer(shapeLayer)
-    }
-
-    func collectCenterPoints() {
-        viewModel.sectors.forEach { (sector: Sector) in
-            var centerPoints = [CGPoint]()
-
-            sector.spikes.forEach { (spike: Spike) in
-                let centerPoint = CGPoint().shiftedCenter(
-                    viewModel.radius(for: spike.spikeLoad(), layout: layout),
-                    with: spike.angle,
-                    to: profileImageView.center
-                )
-
-                centerPoints.append(centerPoint)
-            }
-
-            dataCenterPoints.append(centerPoints)
-            connectionCenterPpoitns.append(centerPoints)
-        }
-    }
-
-    func placeDots() {
-        for (dataIndex, centerPoints) in dataCenterPoints.enumerated() {
-            for (centerIndex, center) in centerPoints.enumerated() {
-                let sector = viewModel.sector(at: dataIndex)
-
-                guard centerIndex < sector.spikes.count else {
-                    return
-                }
-
-                let spike = viewModel.spike(for: sector, at: centerIndex )
-                let radius = viewModel.radius(for: spike.spikeLoad(), layout: layout)
-
-                placeDot(
-                    fillColor: viewModel.fillColor(radius: radius, load: spike.spikeLoad(), layout: layout),
-                    strokeColor: viewModel.strokeColor(radius: radius, load: spike.spikeLoad(), layout: layout),
-                    center: center,
-                    radius: (spike.load * 8)
-                )
-            }
-        }
-    }
-
-    func placeDot(fillColor: UIColor, strokeColor: UIColor, center: CGPoint, radius: CGFloat) {
-        let circlePath = UIBezierPath.circlePath(center: center, radius: radius)
-        let shapeLayer = CAShapeLayer.pathWithColor(
-            path: circlePath.cgPath,
-            fillColor: fillColor,
-            strokeColor: strokeColor
-        )
-
-        shapeLayer.lineWidth = radius * 2
-        view.layer.addSublayer(shapeLayer)
-    }
-
-    func connectDataPoint() {
-        addAditionalConnectionPoints()
-
-        connectionCenterPpoitns.shuffled().forEach { (centerPopints: [CGPoint]) in
-            for (index, center) in centerPopints.shuffled().enumerated() {
-                let nextIndex = (index + 1)
-
-                guard nextIndex < centerPopints.count else {
-                    return
-                }
-
-                let nextCenter = centerPopints[nextIndex]
-                let line = CAShapeLayer.line(from: center, to: nextCenter, strokeColor: strokeColor)
-                view.layer.addSublayer(line)
-            }
-        }
-    }
-
-    func addAditionalConnectionPoints() {
-        for (sectorIndex, sector) in viewModel.sectors.enumerated() {
-            var centerPoints = [CGPoint]()
-
-            for index in stride(from: 0, to: sector.spikes.count, by: 2) {
-                let centerPoint = dataCenterPoints[sectorIndex][index]
-                centerPoints.append(centerPoint)
-                centerPoints.append(layout.connectionCenter)
-            }
-
-            connectionCenterPpoitns.append(centerPoints)
-        }
-    }
-
-    func addCategoryLabels() {
-        viewModel.sectors.forEach { (sector: Sector) in
-            let categoryLabel = sector.label
-            let labelCenter = CGPoint().shiftedCenter(
-                viewModel.radius(for: categoryLabel.load, layout: layout),
-                with: categoryLabel.angle,
-                to: profileImageView.center
-            )
-
-            let labelValues = viewModel.labelValues(for: sector, layout: layout)
-            let frame = CGRect(x: labelCenter.x, y: labelCenter.y, width: 0, height: Layout.MeSection.labelHeight)
-            let label = UILabel(frame: frame)
-            label.text = categoryLabel.text.uppercased()
-            label.textColor = labelValues.textColor
-            label.font = labelValues.font
-            label.numberOfLines = 0
-            label.textAlignment = .center
-            label.frame = CGRect(x: labelCenter.x - labelValues.widthOffset, y: labelCenter.y, width: frame.width, height: Layout.MeSection.labelHeight)
-            label.sizeToFit()
-            view.addSubview(label)
+        
+        if let scrollView = scrollView {
+            view.addSubview(scrollView)
         }
     }
 }

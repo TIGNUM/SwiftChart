@@ -28,37 +28,6 @@ final class MeSectionViewModel {
     func sector(at index: Index) -> Sector {
         return sectors[index]
     }
-
-    func radius(for load: CGFloat, layout: Layout.MeSection) -> CGFloat {
-        let factor: CGFloat = layout.radiusMaxLoad
-        let offset: CGFloat = (layout.profileImageViewFrame.width * 0.5 + Layout.MeSection.loadOffset)
-        return (load * (factor - Layout.MeSection.loadOffset)) + (offset * 0.4)
-    }
-
-    func fillColor(radius: CGFloat, load: CGFloat, layout: Layout.MeSection) -> UIColor {
-        return radius > average(for: load, layout: layout) ? Color.MeSection.redFilled : .white
-    }
-
-    func strokeColor(radius: CGFloat, load: CGFloat, layout: Layout.MeSection) -> UIColor {
-        return radius > average(for: load, layout: layout) ? Color.MeSection.redStroke : Color.MeSection.whiteStroke
-    }
-
-    func labelValues(for sector: Sector, layout: Layout.MeSection) -> (font: UIFont, textColor: UIColor, widthOffset: CGFloat) {
-        let criticalLoads = sector.spikes.filter { (spike: Spike) -> Bool in
-            let distanceCenter = radius(for: spike.spikeLoad(), layout: layout)
-            return distanceCenter > average(for: spike.load, layout: layout)
-        }
-
-        if criticalLoads.isEmpty == true {
-            return (font: Font.MeSection.sectorDefault, textColor: Color.MeSection.whiteLabel, widthOffset: 0)
-        }
-
-        return (font: Font.MeSection.sectorRed, textColor: Color.MeSection.redFilled, widthOffset: 15)
-    }
-
-    private func average(for load: CGFloat, layout: Layout.MeSection) -> CGFloat {
-        return (layout.radiusAverageLoad - (load * 4))
-    }
 }
 
 struct SectorLabel {
