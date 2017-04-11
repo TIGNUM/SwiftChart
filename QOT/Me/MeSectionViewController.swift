@@ -39,6 +39,7 @@ final class MeSectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.backgroundColor = Color.Default.navy
         setupScrollView()
         addBackgroundImage()
         drawUniverse()
