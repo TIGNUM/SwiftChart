@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="135" id="KGk-i7-Jjw" customClass="PrepareContentActionButtonsTableViewCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="134.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Mn-20-sW5">
+                        <rect key="frame" x="64" y="8" width="192" height="36.5"/>
+                        <state key="normal" title="Add preparation to calendar"/>
+                        <connections>
+                            <action selector="addPreparationToCalendarWithSender:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="c6o-aA-6zA"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qSi-o2-dAi">
+                        <rect key="frame" x="116" y="52.5" width="88" height="30"/>
+                        <state key="normal" title="Add to notes"/>
+                        <connections>
+                            <action selector="addToNotesWithSender:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="XE4-sf-Gjl"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KDI-H7-TKq">
+                        <rect key="frame" x="133.5" y="90.5" width="53" height="36"/>
+                        <state key="normal" title="Save as"/>
+                        <connections>
+                            <action selector="saveAsSender:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="OFW-KT-0I5"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="1Mn-20-sW5" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="AqP-kJ-lvO"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="KDI-H7-TKq" secondAttribute="bottom" id="E02-VD-EFu"/>
+                    <constraint firstItem="qSi-o2-dAi" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Fov-w2-ycc"/>
+                    <constraint firstItem="qSi-o2-dAi" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="KCS-FM-JVk"/>
+                    <constraint firstItem="KDI-H7-TKq" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="MI3-ab-Yym"/>
+                    <constraint firstItem="KDI-H7-TKq" firstAttribute="top" secondItem="qSi-o2-dAi" secondAttribute="bottom" constant="8" id="SaZ-wJ-NOh"/>
+                    <constraint firstItem="1Mn-20-sW5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="VmN-p3-yuD"/>
+                    <constraint firstItem="qSi-o2-dAi" firstAttribute="top" secondItem="1Mn-20-sW5" secondAttribute="bottom" constant="8" id="ymN-bW-Pmc"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="addPreparationToCalendarButton" destination="1Mn-20-sW5" id="VhX-9i-y0E"/>
+                <outlet property="addToNotesButton" destination="qSi-o2-dAi" id="Ibi-z5-Xl3"/>
+                <outlet property="saveAsButton" destination="KDI-H7-TKq" id="IbD-GD-heg"/>
+            </connections>
+            <point key="canvasLocation" x="34" y="99.5"/>
+        </tableViewCell>
+    </objects>
+</document>
