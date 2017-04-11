@@ -23,12 +23,11 @@ final class CategoryPostCell: UITableViewCell, UICollectionViewDelegateFlowLayou
     }
     
     func setUp(title: String, sectionCount: Int) {
-        titleLabel.text = title
+        titleLabel.attributedText = AttributedString.Library.categoryTitle(string: title)
         self.itemCount = sectionCount
         collectionView.registerDequeueable(CategoryCollectionCell.self)
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.contentSize.width = (collectionView.contentSize.width  * 500)
         collectionView.reloadData()
     }
     

@@ -66,36 +66,36 @@ private func mockMixedMediaItems() -> [LibraryMediaItem] {
         .video(
             localID: UUID().uuidString,
             placeholderURL: URL(string: "https://example.com")!,
-            headline: "Headline Lore",
-            text: "Ipsum Text"
+            headline: "Headline Lore Ipsum Text",
+            text: "VIDEO"
         ),
 
         .audio(
             localID: UUID().uuidString,
             placeholderURL: URL(string: "https://example.com")!,
-            headline: "Headline Lore",
-            text: "Ipsum Text"
+            headline: "Headline Lore Ipsum Text",
+            text: "AUDIO"
         ),
 
         .audio(
             localID: UUID().uuidString,
             placeholderURL: URL(string: "https://example.com")!,
-            headline: "Headline Lore",
-            text: "Ipsum Text"
+            headline: "Headline Lore Ipsum Text",
+            text: "AUDIO"
         ),
 
         .video(
             localID: UUID().uuidString,
             placeholderURL: URL(string: "https://example.com")!,
-            headline: "Headline Lore",
-            text: "Ipsum Text"
+            headline: "Headline Lore Ipsum Text",
+            text: "VIDEO"
         ),
 
         .video(
             localID: UUID().uuidString,
             placeholderURL: URL(string: "https://example.com")!,
-            headline: "Headline Lore",
-            text: "Ipsum Text"
+            headline: "Headline Lore Ipsum Text",
+            text: "VIDEO"
         )
     ]
 }

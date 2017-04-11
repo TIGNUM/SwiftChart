@@ -16,11 +16,10 @@ class LatestCollectionCell: UICollectionViewCell, Dequeueable {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-       
     }
     
     func setup(headline: String, mediaType: String) {
-        headlineLabel.text = headline
-        mediaTypeLabel.text = mediaType
+        headlineLabel.attributedText = AttributedString.Library.categoryHeadline(string: headline)
+        mediaTypeLabel.attributedText = AttributedString.Library.categoryMediaTypeLabel(string: mediaType)
     }
 }

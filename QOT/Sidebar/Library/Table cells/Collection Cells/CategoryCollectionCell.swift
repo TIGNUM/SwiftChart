@@ -20,9 +20,8 @@ class CategoryCollectionCell: UICollectionViewCell, Dequeueable {
     }
     
     func setup(headline: String, mediaType: String) {
-        headlineLabel.text = headline
-        mediaTypeLabel.text = mediaType
-        print("hello i am collection cell")
+        headlineLabel.attributedText = AttributedString.Library.categoryHeadline(string: headline)
+        mediaTypeLabel.attributedText = AttributedString.Library.categoryMediaTypeLabel(string: mediaType)
     }
 
 }
