@@ -18,10 +18,11 @@ final class MeSectionViewController: UIViewController {
 
     fileprivate let viewModel: MeSectionViewModel
     fileprivate let strokeColor = UIColor(white: 1, alpha: 0.2)
+    fileprivate var layout = Layout.MeSection(viewControllerFrame: .zero)
     fileprivate var dataCenterPoints = [[CGPoint]]()
     fileprivate var connectionCenterPpoitns = [[CGPoint]]()
-    fileprivate let scrollView = UIScrollView(frame: screen)
     fileprivate var profileImageView = UIImageView()
+    fileprivate var scrollView: UIScrollView?
     weak var delegate: MeSectionViewControllerDelegate?
 
     // MARK: - Life Cycle
@@ -39,6 +40,7 @@ final class MeSectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        layout = Layout.MeSection(viewControllerFrame: view.frame)
         view.backgroundColor = .black
         setupScrollView()
         drawUniverse()
@@ -46,8 +48,8 @@ final class MeSectionViewController: UIViewController {
     }
 
     private func drawUniverse() {
-        drawBackCircles(radius: Layout.MeSection.radiusAverageLoad, linesDashPattern: [2, 1])
-        drawBackCircles(radius: Layout.MeSection.radiusMaxLoad)
+        drawBackCircles(radius: layout.radiusAverageLoad, linesDashPattern: [2, 1])
+        drawBackCircles(radius: layout.radiusMaxLoad)
         setupProfileImage()
         collectCenterPoints()
         connectDataPoint()
@@ -94,7 +96,6 @@ final class MeSectionViewController: UIViewController {
         }
 
         return nil
-
     }
 
     func lengthFromCenter(for location: CGPoint) -> CGFloat {
@@ -110,27 +111,28 @@ final class MeSectionViewController: UIViewController {
 private extension MeSectionViewController {
 
     func setupScrollView() {
+        scrollView = UIScrollView(frame: view.frame)
         view = scrollView
-        scrollView.bounces = false
-        scrollView.isPagingEnabled = true
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.showsHorizontalScrollIndicator = false
-        scrollView.contentSize = CGSize(
-            width: (screen.width * 2) - (Layout.MeSection.scrollViewOffset * 4),
-            height: screen.height - 84 // TODO: Change it when the tabBar is all setup corectly with bottomLayout.
+        scrollView?.bounces = false
+        scrollView?.isPagingEnabled = true
+        scrollView?.showsVerticalScrollIndicator = false
+        scrollView?.showsHorizontalScrollIndicator = false
+        scrollView?.contentSize = CGSize(
+            width: (view.frame.width * 2) - (layout.scrollViewOffset * 4),
+            height: view.frame.height - 84 // TODO: Change it when the tabBar is all setup corectly with bottomLayout.
         )
     }
 
     func setupProfileImage() {
-        profileImageView = UIImageView(frame: Layout.MeSection.profileImageViewFrame)
+        profileImageView = UIImageView(frame: layout.profileImageViewFrame)
         profileImageView.image = viewModel.profileImage
         profileImageView.contentMode = .scaleAspectFill
-        profileImageView.layer.cornerRadius = Layout.MeSection.profileImageWidth * 0.5
+        profileImageView.layer.cornerRadius = layout.profileImageWidth * 0.5
         profileImageView.clipsToBounds = true
     }
 
     func drawBackCircles(radius: CGFloat, linesDashPattern: [NSNumber]? = nil) {
-        let circlePath = UIBezierPath.circlePath(center: Layout.MeSection.loadCenter, radius: radius)
+        let circlePath = UIBezierPath.circlePath(center: layout.loadCenter, radius: radius)
         let shapeLayer = CAShapeLayer.pathWithColor(
             path: circlePath.cgPath,
             fillColor: .clear,
@@ -146,7 +148,7 @@ private extension MeSectionViewController {
 
             sector.spikes.forEach { (spike: Spike) in
                 let centerPoint = CGPoint.centerPoint(
-                    with: viewModel.radius(for: spike.spikeLoad()),
+                    with: viewModel.radius(for: spike.spikeLoad(), layout: layout),
                     angle: spike.angle,
                     relativeCenter: profileImageView.center
                 )
@@ -169,11 +171,11 @@ private extension MeSectionViewController {
                 }
 
                 let spike = viewModel.spike(for: sector, at: centerIndex )
-                let radius = viewModel.radius(for: spike.spikeLoad())
+                let radius = viewModel.radius(for: spike.spikeLoad(), layout: layout)
 
                 placeDot(
-                    fillColor: viewModel.fillColor(radius: radius, load: spike.spikeLoad()),
-                    strokeColor: viewModel.strokeColor(radius: radius, load: spike.spikeLoad()),
+                    fillColor: viewModel.fillColor(radius: radius, load: spike.spikeLoad(), layout: layout),
+                    strokeColor: viewModel.strokeColor(radius: radius, load: spike.spikeLoad(), layout: layout),
                     center: center,
                     radius: (spike.load * 8)
                 )
@@ -218,7 +220,7 @@ private extension MeSectionViewController {
             for index in stride(from: 0, to: sector.spikes.count, by: 2) {
                 let centerPoint = dataCenterPoints[sectorIndex][index]
                 centerPoints.append(centerPoint)
-                centerPoints.append(Layout.MeSection.connectionCenter)
+                centerPoints.append(layout.connectionCenter)
             }
 
             connectionCenterPpoitns.append(centerPoints)
@@ -229,12 +231,12 @@ private extension MeSectionViewController {
         viewModel.sectors.forEach { (sector: Sector) in
             let categoryLabel = sector.label
             let labelCenter = CGPoint.centerPoint(
-                with: viewModel.radius(for: categoryLabel.load),
+                with: viewModel.radius(for: categoryLabel.load, layout: layout),
                 angle: categoryLabel.angle,
                 relativeCenter: profileImageView.center
             )
 
-            let labelValues = viewModel.labelValues(for: sector)
+            let labelValues = viewModel.labelValues(for: sector, layout: layout)
             let frame = CGRect(x: labelCenter.x, y: labelCenter.y, width: 0, height: Layout.MeSection.labelHeight)
             let label = UILabel(frame: frame)
             label.text = categoryLabel.text.uppercased()

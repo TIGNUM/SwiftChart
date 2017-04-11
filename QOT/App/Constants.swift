@@ -8,8 +8,6 @@
 import Foundation
 import UIKit
 
-let screen = UIScreen.main.bounds
-
 struct Animation {
     static let durationFade: TimeInterval = 0.4
     static let fadeInHeight: CGFloat = -22
@@ -37,28 +35,59 @@ struct Layout {
     }
 
     struct MeSection {
-        static let connectionCenter = CGPoint(x: screen.width, y: screen.height * 0.5)
-        static let radiusMaxLoad: CGFloat = screen.width * 0.7
-        static let radiusAverageLoad: CGFloat = screen.width * 0.45
+        let viewControllerFrame: CGRect
+
         static let loadOffset: CGFloat = 12
-        static let profileImageWidth: CGFloat = screen.width * 0.25
-        static let scrollViewOffset: CGFloat = screen.width * 0.06
-        static let loadCenterX: CGFloat = (screen.width - (screen.width * 0.06))
-        static let loadCenterY: CGFloat = screen.height * 0.5
-        static let loadCenter = CGPoint(x: loadCenterX, y: loadCenterY)
         static let labelHeight: CGFloat = 21
 
-        static let profileImageCenter = CGPoint(
-            x: profileImageViewFrame.width * 0.5,
-            y: profileImageViewFrame.width * 0.5
-        )
+        var connectionCenter: CGPoint {
+            return  CGPoint(x: viewControllerFrame.width, y: viewControllerFrame.height * 0.5)
+        }
 
-        static let profileImageViewFrame = CGRect(
-            x: loadCenterX - profileImageWidth * 0.5,
-            y: loadCenterY - profileImageWidth * 0.5,
-            width: profileImageWidth,
-            height: profileImageWidth
-        )
+        var radiusMaxLoad: CGFloat {
+            return viewControllerFrame.width * 0.7
+        }
+
+        var radiusAverageLoad: CGFloat {
+            return viewControllerFrame.width * 0.45
+        }
+
+
+        var profileImageWidth: CGFloat {
+            return viewControllerFrame.width * 0.25
+        }
+
+        var scrollViewOffset: CGFloat {
+            return viewControllerFrame.width * 0.06
+        }
+
+        var loadCenterX: CGFloat {
+            return (viewControllerFrame.width - (viewControllerFrame.width * 0.06))
+        }
+
+        var loadCenterY: CGFloat {
+            return viewControllerFrame.height * 0.5
+        }
+
+        var loadCenter: CGPoint {
+            return CGPoint(x: loadCenterX, y: loadCenterY)
+        }
+
+        var profileImageCenter: CGPoint {
+            return CGPoint(
+                x: profileImageViewFrame.width * 0.5,
+                y: profileImageViewFrame.width * 0.5
+            )
+        }
+
+        var profileImageViewFrame: CGRect {
+            return CGRect(
+                x: loadCenterX - profileImageWidth * 0.5,
+                y: loadCenterY - profileImageWidth * 0.5,
+                width: profileImageWidth,
+                height: profileImageWidth
+            )
+        }
     }
 }
 
