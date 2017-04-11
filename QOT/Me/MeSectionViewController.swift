@@ -39,19 +39,25 @@ final class MeSectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .black
         setupScrollView()
+        addBackgroundImage()
         drawUniverse()
         addTabRecognizer()
     }
 
+    private func addBackgroundImage() {
+        let imageView = UIImageView(frame: screen)
+        imageView.image = R.image.solarSystemBackground()
+        view.addSubview(imageView)
+    }
+
     private func drawUniverse() {
-        drawBackCircles(radius: Layout.MeSection.radiusAverageLoad, linesDashPattern: [2, 1])
+        drawBackCircles(radius: Layout.MeSection.radiusAverageLoad, linesDashPattern: [3, 1])
         drawBackCircles(radius: Layout.MeSection.radiusMaxLoad)
         setupProfileImage()
         collectCenterPoints()
         connectDataPoint()
-        placeDots()
+        drawDots()
         addCategoryLabels()
         view.addSubview(profileImageView)
     }
@@ -159,7 +165,7 @@ private extension MeSectionViewController {
         }
     }
 
-    func placeDots() {
+    func drawDots() {
         for (dataIndex, centerPoints) in dataCenterPoints.enumerated() {
             for (centerIndex, center) in centerPoints.enumerated() {
                 let sector = viewModel.sector(at: dataIndex)
@@ -171,7 +177,7 @@ private extension MeSectionViewController {
                 let spike = viewModel.spike(for: sector, at: centerIndex )
                 let radius = viewModel.radius(for: spike.spikeLoad())
 
-                placeDot(
+                drawDot(
                     fillColor: viewModel.fillColor(radius: radius, load: spike.spikeLoad()),
                     strokeColor: viewModel.strokeColor(radius: radius, load: spike.spikeLoad()),
                     center: center,
@@ -181,7 +187,7 @@ private extension MeSectionViewController {
         }
     }
 
-    func placeDot(fillColor: UIColor, strokeColor: UIColor, center: CGPoint, radius: CGFloat) {
+    func drawDot(fillColor: UIColor, strokeColor: UIColor, center: CGPoint, radius: CGFloat) {
         let circlePath = UIBezierPath.circlePath(center: center, radius: radius)
         let shapeLayer = CAShapeLayer.pathWithColor(
             path: circlePath.cgPath,

@@ -28,6 +28,11 @@ final class MeSectionViewModel {
     func sector(at index: Index) -> Sector {
         return sectors[index]
     }
+}
+
+// MARK: - Helpers
+
+extension MeSectionViewModel {
 
     func radius(for load: CGFloat) -> CGFloat {
         let factor: CGFloat = Layout.MeSection.radiusMaxLoad
@@ -60,6 +65,8 @@ final class MeSectionViewModel {
         return (Layout.MeSection.radiusAverageLoad - (load * 4))
     }
 }
+
+// MARK: - Mocks
 
 struct SectorLabel {
     let text: String
