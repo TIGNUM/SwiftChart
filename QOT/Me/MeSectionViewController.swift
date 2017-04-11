@@ -54,7 +54,6 @@ final class MeSectionViewController: UIViewController {
             layout: layout
         )
 
-
         setupScrollView()
         scrollView?.addSubview(solarView)
         self.solarView = solarView
@@ -77,7 +76,7 @@ final class MeSectionViewController: UIViewController {
 
     private func addTabRecognizer() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapSector))
-        scrollView?.addGestureRecognizer(tapGestureRecognizer)
+        view?.addGestureRecognizer(tapGestureRecognizer)
     }
 
     func didTapSector(recognizer: UITapGestureRecognizer) {
