@@ -4,8 +4,9 @@ PODS:
     - Diff (~> 0.4)
     - ReactiveKit (~> 3.5.1)
   - Diff (0.5.3)
+  - Kingfisher (3.6.2)
   - QOTDatabase (0.0.10):
-    - RealmSwift (~> 2.4)
+    - RealmSwift (~> 2.5)
   - R.swift (3.2.0):
     - R.swift.Library (~> 3.0.2)
   - R.swift.Library (3.0.2)
@@ -20,6 +21,7 @@ PODS:
 DEPENDENCIES:
   - Anchorage (~> 3.1)
   - Bond (~> 6.0)
+  - Kingfisher (~> 3.6)
   - QOTDatabase (~> 0.0)
   - R.swift (~> 3.2)
   - UICollectionViewRightAlignedLayout (~> 0.0)
@@ -28,7 +30,8 @@ SPEC CHECKSUMS:
   Anchorage: b3a5931166e2fe8361efff250dac07346e935cdf
   Bond: ef1d9efe6f5b60440979ed35187e468d7020b0ab
   Diff: befa1d19c32726b2b36ce915d98793e2fbde8dcc
-  QOTDatabase: 86a052a73b98b766ddd347bf4f43636060a69ae2
+  Kingfisher: 2c94e72c6830622c71d06adf4ea024c37d316830
+  QOTDatabase: 1e55bd355fbef2efc843b3a8846d875a95ded476
   R.swift: 207a372a2b5977caef440c696a368009460641d1
   R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
   ReactiveKit: aa0faf668053e7fddd6a07829ba3696741cbff37
@@ -36,6 +39,6 @@ SPEC CHECKSUMS:
   RealmSwift: 9f1a8f624f2f153410115c2cb7d486be9976565d
   UICollectionViewRightAlignedLayout: 823eef8c567eba4a44c21bc2ffcb0d0d5f361e2d
 
-PODFILE CHECKSUM: 27059e7f7430d93a0750867c1b12587d0c3d8dfe
+PODFILE CHECKSUM: 37cf9824d1b95a7d2218eaa7085f1f679428dc49
 
 COCOAPODS: 1.2.0
