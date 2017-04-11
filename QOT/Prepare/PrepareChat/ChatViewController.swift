@@ -74,17 +74,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }.dispose(in: disposeBag)
     }
 
-    public func heightOfCollectionViewBasedOnNumberOfItems(items: ([Any])) -> CGFloat {
+    public func heightOfCollectionViewBasedOnNumberOfItems(items: ([String])) -> CGFloat {
         let screenSize: CGRect = UIScreen.main.bounds
         var total: CGFloat = 0.0
-        if let obj = items as? [ChatMessageNavigation] {
-            for i: Int  in stride(from: 1, to: items.count, by: 1) {
-                total += obj.item(at: i).title.width(withConstrainedHeight: 0, font: UIFont(name: "BentonSans", size: 16)!) + 70
-            }
-        } else if let obj = items as? [ChatMessageInput] {
-            for i: Int  in stride(from: 1, to: items.count, by: 1) {
-                total += obj.item(at: i).title.width(withConstrainedHeight: 0, font: UIFont(name: "BentonSans", size: 16)!) + 70
-            }
+        for i: Int  in stride(from: 1, to: items.count, by: 1) {
+            total += items.item(at: i).width(withConstrainedHeight: 0, font: UIFont(name: "BentonSans", size: 16)!) + 70
         }
         total /= screenSize.width
         total *= 80
@@ -166,9 +160,11 @@ extension ChatViewController {
         case .instruction, .header:
             return UITableViewAutomaticDimension
         case .navigation(let items):
-            return heightOfCollectionViewBasedOnNumberOfItems(items: items)
+            let titles = items.map {$0.title}
+            return heightOfCollectionViewBasedOnNumberOfItems(items: titles)
         case .input(let items):
-            return heightOfCollectionViewBasedOnNumberOfItems(items: items)
+            let titles = items.map {$0.title}
+            return heightOfCollectionViewBasedOnNumberOfItems(items: titles)
         }
     }
 }

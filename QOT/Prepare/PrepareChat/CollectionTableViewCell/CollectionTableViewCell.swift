@@ -35,10 +35,6 @@ class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
         let collectionFlow = UICollectionViewRightAlignedLayout()
         self.collectionView.collectionViewLayout = collectionFlow
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
 }
 
 extension CollectionTableViewCell {
@@ -51,12 +47,8 @@ extension CollectionTableViewCell {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let title = self.dataModel.item(at: indexPath.row).title
         let cell: PrepareCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-        let objectType = self.dataModel.item(at: indexPath.row).objectType
-        if objectType == .NavigationType {
-            cell.setStyle(cellType: .Navigation, borderType: .DashedBorder, lineWidth: 2, selectedState: self.dataModel.item(at: indexPath.row).selected, name: title)
-        } else if objectType == .InputType {
-            cell.setStyle(cellType: .Input, borderType: .CleanBorder, lineWidth: 2, selectedState: self.dataModel.item(at: indexPath.row).selected, name: title)
-        }
+        let object = self.dataModel.item(at: indexPath.row)
+        cell.setStyle(cellStyle: object.style, name: title)
         return cell
     }
 
@@ -100,19 +92,14 @@ extension String {
 struct PrepareChatObject {
 
     var selected: Bool
-    var title: String = ""
-    var localID: String = ""
-    var objectType: ObjectType
+    var title: String
+    var localID: String
+    var style: Style
 
-    init(title: String, localID: String, selected: Bool, objectType: ObjectType) {
+    init(title: String, localID: String, selected: Bool, style: Style) {
         self.selected = selected
         self.title = title
         self.localID = localID
-        self.objectType = objectType
-    }
-
-    enum ObjectType {
-        case NavigationType
-        case InputType
+        self.objectType = style
     }
 }

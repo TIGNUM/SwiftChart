@@ -14,10 +14,9 @@ class PrepareCollectionViewCell: UICollectionViewCell, Dequeueable {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
-    func setStyle(cellType: CellType, borderType: BorderType, lineWidth: CGFloat, selectedState: Bool, name: String) {
+    func setStyle(cellStyle: Style, name: String) {
 
         self.titleLbl.text = name
         let borderColour = UIColor(colorLiteralRed: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.20)
@@ -26,39 +25,38 @@ class PrepareCollectionViewCell: UICollectionViewCell, Dequeueable {
 
         shapeLayer.bounds = self.bounds
         shapeLayer.position = CGPoint(x: frameSize.width/2, y: frameSize.height/2)
-        shapeLayer.lineWidth = lineWidth
+        shapeLayer.lineWidth = 2
         shapeLayer.strokeColor = borderColour.cgColor
 
-        switch cellType {
-        case .Input:
-            if selectedState {
-                shapeLayer.fillColor = UIColor.blue.cgColor
-            } else {
-                shapeLayer.fillColor = UIColor.clear.cgColor
-            }
+        switch cellStyle {
+        case .dashed:
+            shapeLayer.fillColor = UIColor.clear.cgColor
             shapeLayer.path = UIBezierPath(roundedRect: self.bounds, cornerRadius: 30).cgPath
+            shapeLayer.lineDashPattern = [6, 3]
             break
-        case .Navigation:
-            if selectedState {
-                shapeLayer.fillColor = UIColor.blue.cgColor
-            } else {
-                shapeLayer.fillColor = UIColor(colorLiteralRed: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.10).cgColor
-            }
+        case .dashedSelected:
+            shapeLayer.fillColor = UIColor.blue.cgColor
+            shapeLayer.path = UIBezierPath(roundedRect: self.bounds, cornerRadius: 30).cgPath
+            shapeLayer.lineDashPattern = [6, 3]
+            break
+
+        case .plain:
+            shapeLayer.fillColor = UIColor(colorLiteralRed: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.10).cgColor
             shapeLayer.path = UIBezierPath(roundedRect: self.bounds, cornerRadius: 12).cgPath
-            if borderType == .DashedBorder {
-                shapeLayer.lineDashPattern = [6, 3]
-            }
+            break
+
+        case .plainSelected:
+            shapeLayer.fillColor = UIColor.blue.cgColor
+            shapeLayer.path = UIBezierPath(roundedRect: self.bounds, cornerRadius: 12).cgPath
+            break
         }
         self.layer.addSublayer(shapeLayer)
     }
 
-    enum CellType: Int {
-        case Input
-        case Navigation
-    }
-
-    enum BorderType: Int {
-        case DashedBorder
-        case CleanBorder
+    enum Style {
+        case dashed
+        case dashedSelected
+        case plain
+        case plainSelected
     }
 }
