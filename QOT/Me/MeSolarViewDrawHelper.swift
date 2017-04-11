@@ -113,7 +113,7 @@ struct MeSolarViewDrawHelper {
 
     static func radius(for load: CGFloat, layout: Layout.MeSection) -> CGFloat {
         let factor: CGFloat = layout.radiusMaxLoad
-        let offset: CGFloat = (layout.profileImageViewFrame.width * 0.5 + Layout.MeSection.loadOffset)
+        let offset: CGFloat = (layout.profileImageWidth * 0.5 + Layout.MeSection.loadOffset)
         return (load * (factor - Layout.MeSection.loadOffset)) + (offset * 0.4)
     }
 
