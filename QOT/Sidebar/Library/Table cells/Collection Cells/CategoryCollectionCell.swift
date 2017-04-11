@@ -16,6 +16,7 @@ class CategoryCollectionCell: UICollectionViewCell, Dequeueable {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        categoryImageView.layer.cornerRadius = 3.0
     }
     
     func setup(headline: String, mediaType: String) {
