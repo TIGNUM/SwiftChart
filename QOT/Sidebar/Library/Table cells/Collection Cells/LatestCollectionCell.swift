@@ -24,6 +24,5 @@ class LatestCollectionCell: UICollectionViewCell, Dequeueable {
         mediaTypeLabel.attributedText = AttributedString.Library.categoryMediaTypeLabel(string: mediaType)
         latestPostImageView.kf.indicatorType = .activity
         latestPostImageView.kf.setImage(with: placeholderURL)
-        
     }
 }

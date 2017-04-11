@@ -24,17 +24,6 @@ class CategoryCollectionCell: UICollectionViewCell, Dequeueable {
         headlineLabel.attributedText = AttributedString.Library.categoryHeadline(string: headline.makingTwoLines())
         mediaTypeLabel.attributedText = AttributedString.Library.categoryMediaTypeLabel(string: mediaType)
         categoryImageView.kf.indicatorType = .activity
-//        categoryImageView.kf.setImage(with: placeholderURL)
-//        let p = Bundle.main.path(forResource: "loader", ofType: "jpeg")!
-//        let data = try! Data(contentsOf: URL(fileURLWithPath: p))
-//        
-//        categoryImageView.kf.indicatorType = .image(imageData: data)
-//        
-//        categoryImageView.kf.setImage(with: placeholderURL)
-        
-        categoryImageView.kf.setImage(with: placeholderURL) { (image, error, _, _) in
-            print(error)
-        }
+        categoryImageView.kf.setImage(with: placeholderURL)
     }
-    
 }
