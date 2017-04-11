@@ -147,10 +147,10 @@ private extension MeSectionViewController {
             var centerPoints = [CGPoint]()
 
             sector.spikes.forEach { (spike: Spike) in
-                let centerPoint = CGPoint.centerPoint(
-                    with: viewModel.radius(for: spike.spikeLoad(), layout: layout),
-                    angle: spike.angle,
-                    relativeCenter: profileImageView.center
+                let centerPoint = CGPoint().shiftedCenter(
+                    viewModel.radius(for: spike.spikeLoad(), layout: layout),
+                    with: spike.angle,
+                    to: profileImageView.center
                 )
 
                 centerPoints.append(centerPoint)
@@ -230,10 +230,10 @@ private extension MeSectionViewController {
     func addCategoryLabels() {
         viewModel.sectors.forEach { (sector: Sector) in
             let categoryLabel = sector.label
-            let labelCenter = CGPoint.centerPoint(
-                with: viewModel.radius(for: categoryLabel.load, layout: layout),
-                angle: categoryLabel.angle,
-                relativeCenter: profileImageView.center
+            let labelCenter = CGPoint().shiftedCenter(
+                viewModel.radius(for: categoryLabel.load, layout: layout),
+                with: categoryLabel.angle,
+                to: profileImageView.center
             )
 
             let labelValues = viewModel.labelValues(for: sector, layout: layout)
