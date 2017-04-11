@@ -94,12 +94,12 @@ struct PrepareChatObject {
     var selected: Bool
     var title: String
     var localID: String
-    var style: Style
+    var style: PrepareCollectionViewCell.Style
 
-    init(title: String, localID: String, selected: Bool, style: Style) {
+    init(title: String, localID: String, selected: Bool, style: PrepareCollectionViewCell.Style) {
         self.selected = selected
         self.title = title
         self.localID = localID
-        self.objectType = style
+        self.style = style
     }
 }
