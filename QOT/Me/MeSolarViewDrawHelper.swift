@@ -108,6 +108,10 @@ struct MeSolarViewDrawHelper {
             strokeColor: strokeColor
         )
         shapeLayer.lineWidth = radius * 2
+        shapeLayer.shadowColor = UIColor.green.cgColor// strokeColor.cgColor
+        shapeLayer.shadowRadius = 10
+        shapeLayer.shadowOpacity = 0.9
+        shapeLayer.shadowOffset = .zero
         return shapeLayer
     }
 

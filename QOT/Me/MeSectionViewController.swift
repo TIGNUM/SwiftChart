@@ -17,10 +17,9 @@ final class MeSectionViewController: UIViewController {
     // MARK: - Properties
 
     fileprivate let viewModel: MeSectionViewModel
-    fileprivate var layout = Layout.MeSection(viewControllerFrame: .zero)
     fileprivate var scrollView: UIScrollView?
-    weak var delegate: MeSectionViewControllerDelegate?
     fileprivate var solarView: MeSolarView?
+    weak var delegate: MeSectionViewControllerDelegate?
 
     // MARK: - Life Cycle
 
@@ -37,41 +36,16 @@ final class MeSectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+
+        addSubViews()
         addTabRecognizer()
     }
 
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-
-        cleanUp()
-        layout = Layout.MeSection(viewControllerFrame: view.frame)
-        let solarView = MeSolarView()
-
-        solarView.drawUniverse(
-            in: view.bounds,
-            with: viewModel.sectors,
-            profileImage: viewModel.profileImage,
-            layout: layout
-        )
-
-        setupScrollView()
+    private func addSubViews() {
+        let solarView = MeSolarView(sectors: viewModel.sectors, profileImage: viewModel.profileImage, frame: view.bounds)
+        setupScrollView(layout: Layout.MeSection(viewControllerFrame: view.bounds))
         scrollView?.addSubview(solarView)
         self.solarView = solarView
-    }
-
-    private func cleanUp() {
-        removeSubViews(for: scrollView)
-        removeSubViews(for: solarView)
-        scrollView?.removeFromSuperview()
-        solarView?.removeFromSuperview()
-        scrollView = nil
-        solarView = nil
-    }
-
-    private func removeSubViews(for view: UIView?) {
-        scrollView?.subviews.forEach({ (subView: UIView) in
-            subView.removeFromSuperview()
-        })
     }
 
     private func addTabRecognizer() {
@@ -126,7 +100,7 @@ final class MeSectionViewController: UIViewController {
 
 private extension MeSectionViewController {
 
-    func setupScrollView() {
+    func setupScrollView(layout: Layout.MeSection) {
         scrollView = UIScrollView(frame: view.frame)
         scrollView?.bounces = false
         scrollView?.isPagingEnabled = true

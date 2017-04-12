@@ -13,26 +13,69 @@ final class MeSolarView: UIView {
     // MARK: - Properties
 
     var profileImageView = UIImageView()
+    var sectors = [Sector]()
+    var profileImage: UIImage?
+    var previousBounds = CGRect.zero
 
-    func drawUniverse(
-        in frame: CGRect,
-        with sectors: [Sector],
-        profileImage: UIImage?,
-        layout: Layout.MeSection) {
-            drawBackCircles(layout: layout, radius: layout.radiusAverageLoad, linesDashPattern: [2, 1])
-            drawBackCircles(layout: layout, radius: layout.radiusMaxLoad)
-            setupProfileImage(layout: layout, profileImage: profileImage)
-            MeSolarViewDrawHelper.collectCenterPoints(layout: layout, sectors: sectors, relativeCenter: profileImageView.center)
-            drawDataPointConnections(layout: layout, sectors: sectors)
-            drawDataPoints(layout: layout, sectors: sectors)
-            addCategoryLabels(layout: layout, sectors: sectors)
-            addSubview(profileImageView)
+    // MARK: - Init
+
+    init(sectors: [Sector], profileImage: UIImage?, frame: CGRect) {
+        self.sectors = sectors
+        self.profileImage = profileImage
+
+        super.init(frame: frame)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Layout Subviews
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        guard previousBounds.equalTo(bounds) == false else {
+            return
+        }
+
+        previousBounds = bounds
+        cleanUp()
+        let layout = Layout.MeSection(viewControllerFrame: bounds)
+        drawUniverse(with: sectors, profileImage: profileImage, layout: layout)
+    }
+}
+
+// MARK: - Private Helpers / Clean View
+
+private extension MeSolarView {
+    
+    func cleanUp() {
+        removeSubLayers()
+        removeSubViews()
     }
 }
 
 // MARK: - Private Helpers / Draw SolarSystem
 
 private extension MeSolarView {
+
+    func drawUniverse(
+        with sectors: [Sector],
+        profileImage: UIImage?,
+        layout: Layout.MeSection) {
+        self.sectors = sectors
+        self.profileImage = profileImage
+
+        drawBackCircles(layout: layout, radius: layout.radiusAverageLoad, linesDashPattern: [2, 1])
+        drawBackCircles(layout: layout, radius: layout.radiusMaxLoad)
+        setupProfileImage(layout: layout, profileImage: profileImage)
+        MeSolarViewDrawHelper.collectCenterPoints(layout: layout, sectors: sectors, relativeCenter: profileImageView.center)
+        drawDataPointConnections(layout: layout, sectors: sectors)
+        drawDataPoints(layout: layout, sectors: sectors)
+        addSectorLabels(layout: layout, sectors: sectors)
+        addSubview(profileImageView)
+    }
 
     func setupProfileImage(layout: Layout.MeSection, profileImage: UIImage?) {
         profileImageView = UIImageView(frame: layout.profileImageViewFrame)
@@ -61,13 +104,20 @@ private extension MeSolarView {
     }
 
     func drawDataPoints(layout: Layout.MeSection, sectors: [Sector]) {
+        var x = 20
         let dataPoints = MeSolarViewDrawHelper.dataPoints(sectors: sectors, layout: layout)
         dataPoints.forEach { (dataPoint: CAShapeLayer) in
             layer.addSublayer(dataPoint)
+
+            let button = UIButton(frame: CGRect(x: x, y: x, width: 20, height: 20))
+            button.backgroundColor = .green
+            addSubview(button)
+            print(button)
+            x += 20
         }
     }
 
-    func addCategoryLabels(layout: Layout.MeSection, sectors: [Sector]) {
+    func addSectorLabels(layout: Layout.MeSection, sectors: [Sector]) {
         sectors.forEach { (sector: Sector) in
             let categoryLabel = sector.label
             let labelCenter = CGPoint().shiftedCenter(
@@ -89,4 +139,14 @@ private extension MeSolarView {
             addSubview(label)
         }
     }
+}
+
+class Test: UIButton {
+
+    override func removeFromSuperview() {
+        super.removeFromSuperview()
+
+        print(self)
+    }
+
 }
