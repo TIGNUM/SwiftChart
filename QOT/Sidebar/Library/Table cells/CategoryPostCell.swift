@@ -57,6 +57,6 @@ extension CategoryPostCell : UICollectionViewDelegateFlowLayout, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         print(self.bounds.height)
-        return CGSize(width: 272, height: 170)
+        return CGSize(width: 275, height: 180)
     }
 }
