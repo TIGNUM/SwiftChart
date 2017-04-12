@@ -97,58 +97,28 @@ enum Identifier: String {
 struct Font {
 
     /// SIMPLE REGULAR 36 // main post title
-    static let mainTitle = UIFont.simpleFont(ofSize: 36)
+    static let H1MainTitle = UIFont.simpleFont(ofSize: 36)
 
     /// SIMPLE REGULAR 32 // video title, main diagram title, sidemenu
-    static let secondaryTitle = UIFont.simpleFont(ofSize: 32)
+    static let H2SecondaryTitle = UIFont.simpleFont(ofSize: 32)
 
     /// SIMPLE REGULAR 24 // bubble title, ME numbers, ME secondary cards title
-    static let subtitle = UIFont.simpleFont(ofSize: 24)
+    static let H3Subtitle = UIFont.simpleFont(ofSize: 24)
 
     /// SIMPLE REGULAR 20 // recommended article title
-    static let headline = UIFont.simpleFont(ofSize: 20)
+    static let H4Headline = UIFont.simpleFont(ofSize: 20)
 
     /// SIMPLE REGULAR 16 // strategy title
-    static let secondaryHeadline = UIFont.simpleFont(ofSize: 16)
+    static let H5SecondaryHeadline = UIFont.simpleFont(ofSize: 16)
 
     /// SIMPLE REGULAR 14 // navigation title
-    static let navigationTitle = UIFont.simpleFont(ofSize: 14)
+    static let H6NavigationTitle = UIFont.simpleFont(ofSize: 14)
 
     /// BENTON SANS 11 // subtitles, tags
-    static let tag = UIFont.bentonRegularFont(ofSize: 11)
+    static let H7Tag = UIFont.bentonRegularFont(ofSize: 11)
 
     /// BENTON SANS 16 // paragraph, body text
-    static let text = UIFont.bentonBookFont(ofSize: 16)
-
-    struct SideBar {
-        static let `default` = UIFont.simpleFont(ofSize: 32)
-        static let small = UIFont.simpleFont(ofSize: 16)
-    }
-
-    struct Learn {
-        static let headertitle = UIFont.simpleFont(ofSize: 36)
-        static let headerSubtitle = UIFont.bentonRegularFont(ofSize: 11)
-        static let text = UIFont.bentonBookFont(ofSize: 16)
-        static let articleHeaderTitle = UIFont.simpleFont(ofSize: 24)
-        static let articleTitle = UIFont.simpleFont(ofSize: 20)
-        static let whatsHotID = UIFont.simpleFont(ofSize: 18)
-        
-        struct ContentList {
-            struct Cell {
-                static let title = UIFont.bentonBookFont(ofSize: 16)
-                static let subtitle = UIFont.simpleFont(ofSize: 10)
-            }
-        }
-    }
-    
-    struct TabBarController {
-        static let buttonTitle = UIFont.simpleFont(ofSize: 16)
-    }
-
-    struct MeSection {
-        static let sectorDefault = UIFont.bentonRegularFont(ofSize: 11)
-        static let sectorRed = UIFont.bentonRegularFont(ofSize: 15)
-    }
+    static let PText = UIFont.bentonRegularFont(ofSize: 16)
 }
 
 struct Color {
@@ -187,49 +157,48 @@ struct Color {
 struct AttributedString {
     struct Learn {
         static func headerTitle(string: String) -> NSAttributedString {
-            return NSAttributedString.create(for: string, withColor: Color.Learn.headerTitle, andFont: Font.Learn.headertitle)
+            return NSAttributedString.create(for: string, withColor: Color.Learn.headerTitle, andFont: Font.H1MainTitle)
         }
 
         static func headerSubtitle(string: String) -> NSAttributedString {
-            return NSAttributedString.create(for: string, withColor: Color.Learn.headerSubtitle, andFont: Font.Learn.headerSubtitle)
+            return NSAttributedString.create(for: string, withColor: Color.Learn.headerSubtitle, andFont: Font.H7Tag)
         }
 
         static func text(string: String) -> NSAttributedString {
-            return NSAttributedString.create(for: string, withColor: Color.Default.black, andFont: Font.Learn.text)
+            return NSAttributedString.create(for: string, withColor: Color.Default.black, andFont: Font.H5SecondaryHeadline)
         }
 
         static func mediaDescription(string: String) -> NSAttributedString {
-            return NSAttributedString.create(for: string, withColor: Color.Default.blackMedium, andFont: Font.Learn.text)
+            return NSAttributedString.create(for: string, withColor: Color.Default.blackMedium, andFont: Font.H5SecondaryHeadline)
         }
 
         static func readMoreHeaderTitle(string: String) -> NSAttributedString {
-            return NSAttributedString.create(for: string, withColor: Color.Default.black, andFont: Font.Learn.articleHeaderTitle)
+            return NSAttributedString.create(for: string, withColor: Color.Default.black, andFont: Font.H3Subtitle)
         }
 
         static func readMoreHeaderSubtitle(string: String) -> NSAttributedString {
-            return NSAttributedString.create(for: string, withColor: Color.Learn.articleSubtitle, andFont: Font.Learn.headerSubtitle)
+            return NSAttributedString.create(for: string, withColor: Color.Learn.articleSubtitle, andFont: Font.H7Tag)
         }
 
         static func articleTitle(string: String) -> NSAttributedString {
-            return NSAttributedString.create(for: string, withColor: Color.Default.black, andFont: Font.Learn.articleTitle)
+            return NSAttributedString.create(for: string, withColor: Color.Default.black, andFont: Font.H4Headline)
         }
 
         static func articleSubtitle(string: String) -> NSAttributedString {
-            return NSAttributedString.create(for: string, withColor: Color.Learn.articleSubtitle, andFont: Font.Learn.headerSubtitle)
+            return NSAttributedString.create(for: string, withColor: Color.Learn.articleSubtitle, andFont: Font.H7Tag)
         }
 
         struct WhatsHot {
             static func identifier(string: String) -> NSAttributedString {
-                return NSAttributedString.create(for: string, withColor: Color.Learn.articleSubtitle, andFont: Font.Learn.whatsHotID)
+                return NSAttributedString.create(for: string, withColor: Color.Learn.articleSubtitle, andFont: Font.H5SecondaryHeadline)
             }
 
             static func title(string: String) -> NSAttributedString {
-                Font.mainTitle
-                return NSAttributedString.create(for: string, withColor: Color.Learn.articleSubtitle, andFont: Font.Learn.headerSubtitle)
+                return NSAttributedString.create(for: string, withColor: Color.Learn.articleSubtitle, andFont: Font.H7Tag)
             }
 
             static func text(string: String) -> NSAttributedString {
-                return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.Learn.text)
+                return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.H5SecondaryHeadline)
             }
 
             static func newTemplateHeaderTitle(string: String) -> NSAttributedString {
@@ -241,23 +210,23 @@ struct AttributedString {
             }
 
             static func newTemplateTitle(string: String) -> NSAttributedString {
-                return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.Learn.headertitle)
+                return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.H1MainTitle)
             }
 
             static func newTemplateSubtitle(string: String) -> NSAttributedString {
-                return NSAttributedString.create(for: string, withColor: Color.Learn.articleSubtitle, andFont: Font.Learn.headertitle)
+                return NSAttributedString.create(for: string, withColor: Color.Learn.articleSubtitle, andFont: Font.H1MainTitle)
             }
 
             static func newTemplateMediaDescription(string: String) -> NSAttributedString {
-                return NSAttributedString.create(for: string, withColor: Color.Learn.articleSubtitle, andFont: Font.Learn.text)
+                return NSAttributedString.create(for: string, withColor: Color.Learn.articleSubtitle, andFont: Font.H5SecondaryHeadline)
             }
 
             static func newTemplateLoadMoreTitle(string: String) -> NSAttributedString {
-                return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.Learn.articleHeaderTitle)
+                return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.H3Subtitle)
             }
 
             static func newTemplateLoadMoreSubtitle(string: String) -> NSAttributedString {
-                return NSAttributedString.create(for: string, withColor: Color.Learn.articleSubtitle, andFont: Font.Learn.headerSubtitle)
+                return NSAttributedString.create(for: string, withColor: Color.Learn.articleSubtitle, andFont: Font.H7Tag)
             }
         }
     }
@@ -265,11 +234,11 @@ struct AttributedString {
     struct Sidebar {
         struct Benefits {
             static func headerTitle(string: String) -> NSAttributedString {
-                return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.Learn.headertitle)
+                return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.H1MainTitle)
             }
 
             static func headerText(string: String) -> NSAttributedString {
-                return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.Learn.headertitle)
+                return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.H1MainTitle)
             }
         }
     }

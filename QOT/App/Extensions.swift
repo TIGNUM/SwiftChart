@@ -22,7 +22,7 @@ extension UIFont {
     }
     
     internal class func bentonRegularFont(ofSize: CGFloat) -> UIFont {
-        return (UIFont(name: FontName.bentonBook.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
+        return (UIFont(name: FontName.bentonRegular.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
     }
 }
 

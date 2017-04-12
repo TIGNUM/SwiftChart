@@ -130,10 +130,10 @@ extension MeSolarViewDrawHelper {
         }
 
         if criticalLoads.isEmpty == true {
-            return (font: Font.MeSection.sectorDefault, textColor: Color.MeSection.whiteLabel, widthOffset: 0)
+            return (font: Font.H7Tag, textColor: Color.MeSection.whiteLabel, widthOffset: 0)
         }
 
-        return (font: Font.MeSection.sectorRed, textColor: Color.MeSection.redFilled, widthOffset: 15)
+        return (font: Font.PText, textColor: Color.MeSection.redFilled, widthOffset: 15)
     }
 }
 
