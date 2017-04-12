@@ -49,6 +49,6 @@ final class PrepareContentViewController: UIViewController {
     }
 
     func closeView(gestureRecognizer: UITapGestureRecognizer) {
-        delegate?.didTapClose(in: self)        
+        delegate?.didTapAddPreparation(in: self)
     }
 }
