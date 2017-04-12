@@ -112,12 +112,14 @@ private extension MeSectionViewController {
     func setupScrollView(layout: Layout.MeSection) {
         let scrollView = UIScrollView(frame: view.frame)
         scrollView.bounces = false
+        scrollView.delegate = self
         scrollView.isPagingEnabled = true
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.contentSize = CGSize(
             width: (view.frame.width * 2) - (layout.scrollViewOffset * 4),
-            height: view.frame.height - 84 // TODO: Change it when the tabBar is all setup corectly with bottomLayout.
+            height: view.frame.height - 84
+            // TODO: Change it when the tabBar is all setup corectly with bottomLayout.
         )
 
         addBackgroundImage(scrollView: scrollView)
@@ -130,5 +132,22 @@ private extension MeSectionViewController {
         let imageView = UIImageView(frame: frame)
         imageView.image = R.image.solarSystemBackground()
         scrollView.addSubview(imageView)
+    }
+}
+
+// MARK: - ScrollViewDelegate
+
+extension MeSectionViewController: UIScrollViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let maxX = scrollView.frame.maxX - view.frame.width * 0.24
+        guard maxX > 0 else {
+            solarView?.profileImageViewOverlay.alpha = 0
+            return
+        }
+
+        solarView?.profileImageViewOverlay.alpha = 1 - (scrollView.contentOffset.x/maxX)
+        print(scrollView.contentSize, scrollView.frame.width, scrollView.frame.maxX, maxX)
+        print(solarView?.profileImageViewOverlay.alpha)
     }
 }

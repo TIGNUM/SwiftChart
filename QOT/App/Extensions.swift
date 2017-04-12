@@ -157,7 +157,7 @@ extension UIView {
 extension UIImage {
 
     func convertToGrayScale() -> UIImage? {
-        let filter = CIFilter(name: "CIPhotoEffectMono")
+        let filter = CIFilter(name: "CIPhotoEffectNoir")
         filter?.setDefaults()
         filter?.setValue(CoreImage.CIImage(image: self), forKey: kCIInputImageKey)
 
@@ -175,11 +175,11 @@ extension UIImage {
 
 extension UIImageView {
 
-    convenience init(frame: CGRect, image: UIImage?, cornerRadius: CGFloat) {
+    convenience init(frame: CGRect, image: UIImage?) {
         self.init(frame: frame)
         self.image = image
         self.contentMode = .scaleAspectFill
-        self.layer.cornerRadius = cornerRadius
+        self.layer.cornerRadius = frame.width * 0.5
         self.clipsToBounds = true
     }
 }
