@@ -156,10 +156,10 @@ struct Color {
 
     struct MeSection {
         static let redFilled = UIColor(red: 255/255, green: 0, blue: 38/255, alpha: 1)
-        static let redFilledBodyBrain = UIColor(red: 255/255, green: 0, blue: 38/255, alpha: 0.2)
+        static let redFilledBodyBrain = UIColor(red: 1, green: 0, blue: 34/255, alpha: 0.2)
         static let redStroke = UIColor(red: 230/255, green: 0, blue: 34/255, alpha: 0.9)
         static let whiteStroke = UIColor(white: 1, alpha: 0.6)
-        static let whiteLabel = UIColor(white: 1, alpha: 0.5)
+        static let whiteLabel = Color.whiteMedium
         static let whiteStrokeLight = UIColor(white: 1, alpha: 0.2)
     }
 }
