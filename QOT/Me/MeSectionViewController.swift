@@ -143,11 +143,11 @@ extension MeSectionViewController: UIScrollViewDelegate {
         let maxX = scrollView.frame.maxX - view.frame.width * 0.24
         guard maxX > 0 else {
             solarView?.profileImageViewOverlay.alpha = 0
+            solarView?.profileImageViewOverlayEffect.alpha = 0
             return
         }
 
         solarView?.profileImageViewOverlay.alpha = 1 - (scrollView.contentOffset.x/maxX)
-        print(scrollView.contentSize, scrollView.frame.width, scrollView.frame.maxX, maxX)
-        print(solarView?.profileImageViewOverlay.alpha)
+        solarView?.profileImageViewOverlayEffect.alpha = 1 - (scrollView.contentOffset.x/maxX)
     }
 }

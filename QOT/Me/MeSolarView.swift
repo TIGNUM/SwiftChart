@@ -14,6 +14,7 @@ final class MeSolarView: UIView {
 
     var profileImageView = UIImageView()
     var profileImageViewOverlay = UIImageView()
+    var profileImageViewOverlayEffect = UIImageView()
     var sectors = [Sector]()
     var profileImage: UIImage?
     var previousBounds = CGRect.zero
@@ -73,15 +74,14 @@ private extension MeSolarView {
         addSectorLabels(layout: layout, sectors: sectors)
         addSubview(profileImageView)
         addSubview(profileImageViewOverlay)
-//        let imageView = UIImageView(frame: layout.profileImageViewFrame, image: nil)
-//        imageView.backgroundColor = Color.MeSection.whiteStroke
-//        addSubview(imageView)
+        addSubview(profileImageViewOverlayEffect)
     }
 
     func setupProfileImage(layout: Layout.MeSection, profileImage: UIImage?) {
         profileImageView = UIImageView(frame: layout.profileImageViewFrame, image: profileImage)
         profileImageViewOverlay = UIImageView(frame: layout.profileImageViewFrame, image: profileImage?.convertToGrayScale())
-
+        profileImageViewOverlayEffect = UIImageView(frame: layout.profileImageViewFrame, image: nil)
+        profileImageViewOverlayEffect.backgroundColor = Color.Default.whiteMedium
         addImageEffect(center: layout.loadCenter)
     }
 
