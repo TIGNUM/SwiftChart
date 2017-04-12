@@ -151,3 +151,22 @@ extension UIView {
         })
     }
 }
+
+// MARK: - UIImage
+
+extension UIImage {
+
+    func convertToGrayScale() -> UIImage? {
+        let filter = CIFilter(name: "CIPhotoEffectMono")
+        filter?.setDefaults()
+        filter?.setValue(CoreImage.CIImage(image: self), forKey: kCIInputImageKey)
+
+        guard
+            let outputImage = filter?.outputImage,
+            let cgImage = CIContext(options:nil).createCGImage(outputImage, from: outputImage.extent) else {
+                return nil
+        }
+
+        return UIImage(cgImage: cgImage)
+    }
+}
