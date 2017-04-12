@@ -20,13 +20,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Hf-wb-Lt6">
-                        <rect key="frame" x="8" y="18" width="42" height="21"/>
+                        <rect key="frame" x="28" y="18" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RRs-Yz-9wo">
-                        <rect key="frame" x="65" y="18" width="247" height="21"/>
+                        <rect key="frame" x="85" y="18" width="227" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -34,7 +34,7 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="4Hf-wb-Lt6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="61e-b6-ufF"/>
+                    <constraint firstItem="4Hf-wb-Lt6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="20" id="61e-b6-ufF"/>
                     <constraint firstItem="RRs-Yz-9wo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="FR6-vs-JHe"/>
                     <constraint firstAttribute="bottomMargin" secondItem="RRs-Yz-9wo" secondAttribute="bottom" id="LNe-gG-T1o"/>
                     <constraint firstItem="RRs-Yz-9wo" firstAttribute="leading" secondItem="4Hf-wb-Lt6" secondAttribute="trailing" constant="15" id="cPf-PF-4L7"/>

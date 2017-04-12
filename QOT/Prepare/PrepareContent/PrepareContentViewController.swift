@@ -116,7 +116,7 @@ extension PrepareContentViewController {
         }
     }
 
-    // NOT Fully implemented because not sure how You want this to be done - i'll as on standup
+    // NOT Fully implemented because not sure how You want this to be done - i'll ask on standup
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let contentItem = self.viewModel.item(at: indexPath.row)
@@ -154,7 +154,6 @@ extension PrepareContentViewController {
 
         case.video:
             return 200.0
-
         }
     }
 

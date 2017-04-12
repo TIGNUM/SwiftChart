@@ -25,13 +25,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xep-Tb-3xn">
-                        <rect key="frame" x="13" y="10" width="66" height="43.5"/>
+                        <rect key="frame" x="28" y="10" width="66" height="43.5"/>
                         <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="24"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ffM-3M-pBe">
-                        <rect key="frame" x="277" y="17" width="28" height="28"/>
+                        <rect key="frame" x="272" y="17" width="28" height="28"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VFB-VF-Bhq">
                                 <rect key="frame" x="13" y="0.0" width="2" height="28"/>
@@ -61,8 +61,8 @@
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="Xep-Tb-3xn" secondAttribute="bottom" constant="10" id="5Ih-yn-pN8"/>
                     <constraint firstItem="Xep-Tb-3xn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="MSZ-bG-bor"/>
-                    <constraint firstItem="Xep-Tb-3xn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="Mjq-A6-Znq"/>
-                    <constraint firstAttribute="trailing" secondItem="ffM-3M-pBe" secondAttribute="trailing" constant="15" id="Ntf-DR-Fzp"/>
+                    <constraint firstItem="Xep-Tb-3xn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="20" id="Mjq-A6-Znq"/>
+                    <constraint firstAttribute="trailing" secondItem="ffM-3M-pBe" secondAttribute="trailing" constant="20" id="Ntf-DR-Fzp"/>
                     <constraint firstItem="ffM-3M-pBe" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Zd1-lZ-m1f"/>
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Xep-Tb-3xn" secondAttribute="trailing" constant="5" id="kxg-h3-jL1"/>
                     <constraint firstItem="Xep-Tb-3xn" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ria-gE-THG"/>

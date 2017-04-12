@@ -25,7 +25,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5NC-Na-4u5">
-                        <rect key="frame" x="13" y="8" width="99" height="153.5"/>
+                        <rect key="frame" x="28" y="8" width="99" height="153.5"/>
                         <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="36"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -36,7 +36,7 @@
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="5NC-Na-4u5" secondAttribute="trailing" constant="60" id="VZj-tS-bFK"/>
                     <constraint firstAttribute="bottomMargin" secondItem="5NC-Na-4u5" secondAttribute="bottom" id="eBF-3x-xrj"/>
                     <constraint firstItem="5NC-Na-4u5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="fJq-bg-V93"/>
-                    <constraint firstItem="5NC-Na-4u5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="swu-tX-Jtn"/>
+                    <constraint firstItem="5NC-Na-4u5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="20" id="swu-tX-Jtn"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

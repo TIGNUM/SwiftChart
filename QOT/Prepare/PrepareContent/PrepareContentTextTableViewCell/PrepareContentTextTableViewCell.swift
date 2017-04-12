@@ -13,6 +13,6 @@ class PrepareContentTextTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var contentTextView: UITextView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-    }    
+        self.contentTextView.font = UIFont(name: "BentonSans-Book", size: 16.0)
+    }
 }
