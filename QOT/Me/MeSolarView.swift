@@ -39,10 +39,9 @@ final class MeSolarView: UIView {
             return
         }
 
-        previousBounds = bounds
         cleanUp()
-        let layout = Layout.MeSection(viewControllerFrame: bounds)
-        drawUniverse(with: sectors, profileImage: profileImage, layout: layout)
+        previousBounds = bounds
+        drawUniverse(with: sectors, profileImage: profileImage, layout: Layout.MeSection(viewControllerFrame: bounds))
     }
 }
 
