@@ -95,6 +95,31 @@ enum Identifier: String {
 }
 
 struct Font {
+
+    /// SIMPLE REGULAR 36 // main post title
+    static let mainTitle = UIFont.simpleFont(ofSize: 36)
+
+    /// SIMPLE REGULAR 32 // video title, main diagram title, sidemenu
+    static let secondaryTitle = UIFont.simpleFont(ofSize: 32)
+
+    /// SIMPLE REGULAR 24 // bubble title, ME numbers, ME secondary cards title
+    static let subtitle = UIFont.simpleFont(ofSize: 24)
+
+    /// SIMPLE REGULAR 20 // recommended article title
+    static let headline = UIFont.simpleFont(ofSize: 20)
+
+    /// SIMPLE REGULAR 16 // strategy title
+    static let secondaryHeadline = UIFont.simpleFont(ofSize: 16)
+
+    /// SIMPLE REGULAR 14 // navigation title
+    static let navigationTitle = UIFont.simpleFont(ofSize: 14)
+
+    /// BENTON SANS 11 // subtitles, tags
+    static let tag = UIFont.bentonRegularFont(ofSize: 11)
+
+    /// BENTON SANS 16 // paragraph, body text
+    static let text = UIFont.bentonBookFont(ofSize: 16)
+
     struct SideBar {
         static let `default` = UIFont.simpleFont(ofSize: 32)
         static let small = UIFont.simpleFont(ofSize: 16)
@@ -199,6 +224,7 @@ struct AttributedString {
             }
 
             static func title(string: String) -> NSAttributedString {
+                Font.mainTitle
                 return NSAttributedString.create(for: string, withColor: Color.Learn.articleSubtitle, andFont: Font.Learn.headerSubtitle)
             }
 
