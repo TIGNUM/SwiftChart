@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-class CategoryCollectionCell: UICollectionViewCell, Dequeueable {
+final class CategoryCollectionCell: UICollectionViewCell, Dequeueable {
     
     @IBOutlet weak var categoryImageView: UIImageView!
     @IBOutlet weak var headlineLabel: UILabel!

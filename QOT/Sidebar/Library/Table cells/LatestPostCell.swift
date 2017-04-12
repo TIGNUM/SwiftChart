@@ -14,7 +14,7 @@ final class LatestPostCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var collectionView: UICollectionView!
     var sectionCount = 0
     let viewModel = LibraryViewModel()
-    
+    let helper = Helper()
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -26,6 +26,7 @@ final class LatestPostCell: UITableViewCell, Dequeueable {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.reloadData()
+        collectionView.decelerationRate = UIScrollViewDecelerationRateFast
     }
 }
 
@@ -52,5 +53,9 @@ extension LatestPostCell: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 220, height: 200)
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        targetContentOffset.pointee.x = helper.scrollViewScroll(scrollView: scrollView, velocity: velocity, targetContentOffset: targetContentOffset, width: 220)
     }
 }

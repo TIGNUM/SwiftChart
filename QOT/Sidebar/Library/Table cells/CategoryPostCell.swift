@@ -17,6 +17,7 @@ final class CategoryPostCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
     var itemCount = 0
+    let helper = Helper()
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -31,18 +32,17 @@ final class CategoryPostCell: UITableViewCell, Dequeueable {
         collectionView.delegate = self
         collectionView.reloadData()
         collectionView.decelerationRate = UIScrollViewDecelerationRateFast
-        //        collectionView.isPagingEnabled = true
     }
 }
 
 extension CategoryPostCell : UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 100
+        return itemCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = viewModel.item(at: IndexPath(item: 0, section: indexPath.section))
+        let item = viewModel.item(at: indexPath)
         
         switch item {
         case .audio ( _, let placeHolderURL, let headline, let text):
@@ -63,83 +63,6 @@ extension CategoryPostCell : UICollectionViewDelegateFlowLayout, UICollectionVie
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-      
-//        let pageWidth: CGFloat = 275
-//       
-//        let currentOffset: CGFloat = scrollView.contentOffset.x
-//        let targetOffset = targetContentOffset.pointee.x
-//
-//        var newTargetOffset: CGFloat = 0
-//        
-//        if targetOffset > currentOffset {
-//            newTargetOffset = CGFloat(ceilf(Float(currentOffset / pageWidth))) * pageWidth
-//        } else {
-//            newTargetOffset = CGFloat(floorf(Float(currentOffset / pageWidth))) * pageWidth
-//        }
-//        
-//        if newTargetOffset < 0 {
-//            newTargetOffset = 0
-//        } else if newTargetOffset > scrollView.contentSize.width {
-//            newTargetOffset = scrollView.contentSize.width
-//        }
-//        
-//        targetContentOffset.pointee.x = currentOffset
-//       
-//        scrollView.setContentOffset(CGPoint(x: newTargetOffset, y: 0), animated: true)
-        
-        let cellWidth: CGFloat = 275
-        let cellSpaceing: CGFloat = 15
-  
-        let originalTargetPage = (targetContentOffset.pointee.x) / (cellWidth + cellSpaceing)
-        
-        let scrollDirection: ScrollDirection
-        if velocity.x < 0 {
-            scrollDirection = .left
-        } else if velocity.x > 0 {
-            scrollDirection = .right
-        } else {
-            scrollDirection = .stationary
-        }
-        
-        let targetPage: Int
-        switch scrollDirection {
-        case .stationary:
-            targetPage = Int(round(originalTargetPage))
-        case .left:
-            targetPage = Int(floor(originalTargetPage))
-        case .right:
-            targetPage = Int(ceil(originalTargetPage))
-        }
-        
-        let targetOffset = CGFloat(targetPage) * (cellWidth + cellSpaceing)
-        targetContentOffset.pointee.x = targetOffset
-        
-        
-        
-        
-        
-        
-        
-        
-        
-//        var targetOffset: CGFloat?
-//        
-//        if velocity.x == 0 {} else {
-//            
-//            if velocity.x < 0 {
-//            targetOffset = round(originalTargetPage - 1) * (cellWidth + cellSpaceing)
-//                
-//        } else  {
-//            targetOffset = round(originalTargetPage + 1) * (cellWidth + cellSpaceing)
-//        }
-        
-        }
-//        targetContentOffset.pointee.x = targetOffset!
-//         scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-    
+        targetContentOffset.pointee.x = self.helper.scrollViewScroll(scrollView: scrollView, velocity: velocity, targetContentOffset: targetContentOffset, width: 275)
+    }
 }
-
-private enum ScrollDirection {
-    case left, stationary, right
-}
-

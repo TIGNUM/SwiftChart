@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LatestCollectionCell: UICollectionViewCell, Dequeueable {
+final class LatestCollectionCell: UICollectionViewCell, Dequeueable {
     
     @IBOutlet weak var latestPostImageView: UIImageView!
     @IBOutlet weak var headlineLabel: UILabel!
