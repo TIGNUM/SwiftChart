@@ -16,4 +16,12 @@ class PrepareContentStepTableViewCell: UITableViewCell, Dequeueable {
         super.awakeFromNib()
         // Initialization code
     }
+
+    func setStepNumber(stepIndex: Index) {
+        if(stepIndex>9) {
+            self.stepNumberLabel.text = ".\(stepIndex)"
+        } else {
+            self.stepNumberLabel.text = ".0\(stepIndex)"
+        }
+    }
 }

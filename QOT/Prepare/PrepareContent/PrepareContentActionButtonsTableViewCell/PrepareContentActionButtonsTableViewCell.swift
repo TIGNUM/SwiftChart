@@ -9,9 +9,9 @@
 import UIKit
 
 protocol PrepareContentActionButtonsTableViewCellDelegate {
-    func didAddPreparationToCalendar()
-    func didAddToNotes()
-    func didSaveAss()
+    func didAddPreparationToCalendar(sectionID: String, cell: UITableViewCell)
+    func didAddToNotes(sectionID: String, cell: UITableViewCell)
+    func didSaveAss(sectionID: String, cell: UITableViewCell)
 }
 
 class PrepareContentActionButtonsTableViewCell: UITableViewCell, Dequeueable {
@@ -21,28 +21,23 @@ class PrepareContentActionButtonsTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var addPreparationToCalendarButton: UIButton!
     @IBOutlet weak var addToNotesButton: UIButton!
     @IBOutlet weak var saveAsButton: UIButton!
-
+    var item: String = ""
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
     @IBAction func addPreparationToCalendar(sender: UIButton) {
-        self.delegate?.didAddPreparationToCalendar()
+        self.delegate?.didAddPreparationToCalendar(sectionID: self.item, cell: self)
     }
 
     @IBAction func addToNotes(sender: UIButton) {
-        self.delegate?.didAddToNotes()
+        self.delegate?.didAddToNotes(sectionID: self.item, cell: self)
     }
 
     @IBAction func saveAs(sender: UIButton) {
-        self.delegate?.didSaveAss()
+        self.delegate?.didSaveAss(sectionID: self.item, cell: self)
     }
     
 }

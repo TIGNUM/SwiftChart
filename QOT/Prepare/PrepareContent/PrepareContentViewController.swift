@@ -8,6 +8,7 @@
 
 import UIKit
 import Bond
+import ReactiveKit
 
 protocol PrepareContentViewControllerDelegate: class {
     func didTapClose(in viewController: PrepareContentViewController)
@@ -29,6 +30,7 @@ final class PrepareContentViewController: UIViewController, UITableViewDelegate,
     let viewModel: PrepareContentViewModel
     weak var delegate: PrepareContentViewControllerDelegate?
 
+    private let disposeBag = DisposeBag()
     private let estimatedRowHeight: CGFloat = 140.0
 
     // MARK: - Life Cycle
@@ -43,11 +45,15 @@ final class PrepareContentViewController: UIViewController, UITableViewDelegate,
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        updateTableView(with: self.tableView)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeView))
-        view.addGestureRecognizer(tapGestureRecognizer)
+        
         view.backgroundColor = .black
 
         self.tableView.registerDequeueable(PrepareContentTextTableViewCell.self)
@@ -65,6 +71,16 @@ final class PrepareContentViewController: UIViewController, UITableViewDelegate,
         delegate?.didTapClose(in: self)        
     }
 
+   private func updateTableView(with tableView: UITableView) {
+        viewModel.updates.observeNext { [unowned self] (update) in
+            switch update {
+            case .reload:
+                self.tableView.reloadData()
+            case .update(_, _, _):
+                self.tableView.reloadData()
+            }
+            }.dispose(in: disposeBag)
+    }
 }
 
  // MARK: - UITableViewDelegate, UITableViewDataSource, PrepareContentActionButtonsTableViewCellDelegate
@@ -85,22 +101,23 @@ extension PrepareContentViewController {
 
         case .text(let item):
             let cell: PrepareContentTextTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.contentTextView.text = item.text
+            cell.prepareAndSetTextAttributes(string: item.text)
             return cell
 
-        case.video(let item):
+        case .video:
             let cell: PrepareContentVideoPreviewTableViewCell = tableView.dequeueCell(for: indexPath)
-            getDataFromUrlAndSetImageView(url: item.placeholderURL, imageView: cell.imageView!)
             return cell
 
         case .step(let item):
             let cell: PrepareContentStepTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.stepNumberLabel.text = "\(item.index)"
+            cell.setStepNumber(stepIndex: item.index)
             cell.stepContentLabel.text = item.text
             return cell
 
-        case .sectionFooter:
-            let cell = UITableViewCell()
+        case .sectionFooter(let item):
+            let cell: PrepareContentActionButtonsTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.item = item
+            cell.delegate = self
             return cell
 
         case .tableFooter:
@@ -122,26 +139,18 @@ extension PrepareContentViewController {
         let contentItem = self.viewModel.item(at: indexPath.row)
 
         switch contentItem {
-        case .header(let item):
-            break
 
-        case .text(let item):
-           break
+        case .header:
+            self.viewModel.didTapHeader(item: contentItem)
+            break
 
         case.video(let item):
+            let cell: PrepareContentVideoPreviewTableViewCell = tableView.dequeueCell(for: indexPath)
+            self.delegate?.didTapVideo(with: item.localID, from: cell.contentView, in: self)
             break
 
-        case .step(let item):
-           break
-
-        case .sectionFooter:
-           break
-
-        case .tableFooter:
-           break
-
-        case .title(let item):
-          break
+        case .sectionFooter, .tableFooter, .text, .title, .step:
+            break
         }
     }
 
@@ -157,22 +166,15 @@ extension PrepareContentViewController {
         }
     }
 
-    func getDataFromUrlAndSetImageView(url: URL, imageView: UIImageView) {
-        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
-            imageView.image = UIImage(data: data!)
-        }
-        task.resume()
+    func didAddPreparationToCalendar(sectionID: String, cell: UITableViewCell) {
+        self.delegate?.didTapAddPreparation(sectionID: sectionID, in: self)
     }
 
-    func didAddPreparationToCalendar() {
-        //implement
+    func didAddToNotes(sectionID: String, cell: UITableViewCell) {
+        self.delegate?.didTapAddToNotes(sectionID: sectionID, in: self)
     }
 
-    func didAddToNotes() {
-        //implement
-    }
-
-    func didSaveAss() {
-        //implement
+    func didSaveAss(sectionID: String, cell: UITableViewCell) {
+        self.delegate?.didTapSaveAs(sectionID: sectionID, in: self)
     }
 }
