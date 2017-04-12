@@ -87,6 +87,7 @@ extension CAShapeLayer {
 // MARK: - FloatingPoint
 
 extension FloatingPoint {
+
     var degreesToRadians: Self { return self * .pi / 180 }
     var radiansToDegrees: Self { return self * 180 / .pi }
 }
@@ -94,6 +95,7 @@ extension FloatingPoint {
 // MARK: - Collection
 
 extension MutableCollection where Index == Int {
+
     mutating func shuffle() {
         guard count > 2 else {
             return
@@ -109,6 +111,7 @@ extension MutableCollection where Index == Int {
 }
 
 extension Collection {
+
     func shuffled() -> [Iterator.Element] {
         var list = Array(self)
         list.shuffle()
@@ -119,6 +122,7 @@ extension Collection {
 // MAARK: - UIView
 
 extension UIView {
+
     func removeSubViews() {
         subviews.forEach({ (subView: UIView) in
             subView.removeFromSuperview()
@@ -129,5 +133,26 @@ extension UIView {
         layer.sublayers?.forEach({ (subLayer: CALayer) in
             subLayer.removeFromSuperlayer()
         })
+    }
+}
+
+// MARK: - CAShapeLayer
+
+extension CAShapeLayer {
+
+    override func addGlowEffect(color: UIColor, shadowRadius: CGFloat = 10, shadowOpacity: Float = 0.9) {
+        super.addGlowEffect(color: color, shadowRadius: shadowRadius, shadowOpacity: shadowOpacity)
+    }
+}
+
+// MARK: - CALayer
+
+extension CALayer {
+
+    func addGlowEffect(color: UIColor, shadowRadius: CGFloat = 10, shadowOpacity: Float = 0.9) {
+        self.shadowColor = color.cgColor
+        self.shadowRadius = shadowRadius
+        self.shadowOpacity = shadowOpacity
+        self.shadowOffset = .zero
     }
 }

@@ -141,15 +141,8 @@ private extension MeSolarViewDrawHelper {
         )
 
         shapeLayer.lineWidth = lineWidth
-        MeSolarViewDrawHelper.addGlowEffect(shapeLayer: shapeLayer, color: fillColor)
+        shapeLayer.addGlowEffect(color: fillColor)
         return shapeLayer
-    }
-
-    static func addGlowEffect(shapeLayer: CAShapeLayer, color: UIColor) {
-        shapeLayer.shadowColor = color.cgColor
-        shapeLayer.shadowRadius = 10
-        shapeLayer.shadowOpacity = 0.9
-        shapeLayer.shadowOffset = .zero
     }
 
     static func fillColor(radius: CGFloat, load: CGFloat, sectorType: SectorType, layout: Layout.MeSection) -> UIColor {
