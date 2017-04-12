@@ -36,36 +36,45 @@ final class MeSectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
         addSubViews()
         addTabRecognizer()
     }
+}
 
-    private func addSubViews() {
+// MARK: - TabRecognizer
+
+private extension MeSectionViewController {
+
+    func addTabRecognizer() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapSector))
+        view?.addGestureRecognizer(tapGestureRecognizer)
+    }
+
+    @objc func didTapSector(recognizer: UITapGestureRecognizer) {
+        delegate?.didTapSector(sector: sector(location: recognizer.location(in: view)), in: self)
+    }
+}
+
+// MARK: - Helpers
+
+private extension MeSectionViewController {
+
+    func addSubViews() {
         let solarView = MeSolarView(sectors: viewModel.sectors, profileImage: viewModel.profileImage, frame: view.bounds)
         setupScrollView(layout: Layout.MeSection(viewControllerFrame: view.bounds))
         scrollView?.addSubview(solarView)
         self.solarView = solarView
     }
 
-    private func addTabRecognizer() {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapSector))
-        view?.addGestureRecognizer(tapGestureRecognizer)
-    }
-
-    func didTapSector(recognizer: UITapGestureRecognizer) {
-        delegate?.didTapSector(sector: sector(location: recognizer.location(in: view)), in: self)
-    }
-
     func sector(location: CGPoint) -> Sector? {
         let radius = lengthFromCenter(for: location)
-        let yn = location.y - (solarView?.profileImageView.center.y ?? 0)
-        let xn = location.x - (solarView?.profileImageView.center.x ?? 0)
-        let beta = acos(xn / radius)
+        let yPosShifted = location.y - (solarView?.profileImageView.center.y ?? 0)
+        let xPosShifted = location.x - (solarView?.profileImageView.center.x ?? 0)
+        let beta = acos(xPosShifted / radius)
         let sectorAngle = beta.radiansToDegrees
 
         for (_, sector) in viewModel.sectors.enumerated() {
-            if yn >= 0 {
+            if yPosShifted >= 0 {
                 if sector.startAngle ... sector.endAngle ~= sectorAngle {
                     return sector
                 }
@@ -91,12 +100,12 @@ final class MeSectionViewController: UIViewController {
     func lengthFromCenter(for location: CGPoint) -> CGFloat {
         let diffX = pow(location.x - (solarView?.profileImageView.center.x ?? 0), 2)
         let diffY = pow(location.y - (solarView?.profileImageView.center.y ?? 0), 2)
-
+        
         return sqrt(diffX + diffY)
     }
 }
 
-// MARK: - Draw
+// MARK: - ScrollView
 
 private extension MeSectionViewController {
 

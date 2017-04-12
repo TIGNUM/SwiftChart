@@ -49,7 +49,7 @@ final class MeSolarView: UIView {
 // MARK: - Private Helpers / Clean View
 
 private extension MeSolarView {
-    
+
     func cleanUp() {
         removeSubLayers()
         removeSubViews()
@@ -60,10 +60,7 @@ private extension MeSolarView {
 
 private extension MeSolarView {
 
-    func drawUniverse(
-        with sectors: [Sector],
-        profileImage: UIImage?,
-        layout: Layout.MeSection) {
+    func drawUniverse(with sectors: [Sector], profileImage: UIImage?, layout: Layout.MeSection) {
         self.sectors = sectors
         self.profileImage = profileImage
 
@@ -104,16 +101,9 @@ private extension MeSolarView {
     }
 
     func drawDataPoints(layout: Layout.MeSection, sectors: [Sector]) {
-        var x = 20
         let dataPoints = MeSolarViewDrawHelper.dataPoints(sectors: sectors, layout: layout)
         dataPoints.forEach { (dataPoint: CAShapeLayer) in
             layer.addSublayer(dataPoint)
-
-            let button = UIButton(frame: CGRect(x: x, y: x, width: 20, height: 20))
-            button.backgroundColor = .green
-            addSubview(button)
-            print(button)
-            x += 20
         }
     }
 
@@ -139,14 +129,4 @@ private extension MeSolarView {
             addSubview(label)
         }
     }
-}
-
-class Test: UIButton {
-
-    override func removeFromSuperview() {
-        super.removeFromSuperview()
-
-        print(self)
-    }
-
 }

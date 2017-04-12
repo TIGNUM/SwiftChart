@@ -11,10 +11,19 @@ import UIKit
 
 struct MeSolarViewDrawHelper {
 
-    // MARK: - Properties
-
     fileprivate static var dataCenterPoints = [[CGPoint]]()
     fileprivate static var connectionCenterPoitns = [[CGPoint]]()
+
+    static func radius(for load: CGFloat, layout: Layout.MeSection) -> CGFloat {
+        let factor: CGFloat = layout.radiusMaxLoad
+        let offset: CGFloat = (layout.profileImageWidth * 0.5 + Layout.MeSection.loadOffset)
+        return (load * (factor - Layout.MeSection.loadOffset)) + (offset * 0.4)
+    }
+}
+
+// MARK: - Center Points
+
+extension MeSolarViewDrawHelper {
 
     static func collectCenterPoints(layout: Layout.MeSection, sectors: [Sector], relativeCenter: CGPoint) {
         sectors.forEach { (sector: Sector) in
@@ -48,6 +57,11 @@ struct MeSolarViewDrawHelper {
             connectionCenterPoitns.append(centerPoints)
         }
     }
+}
+
+// MARK: - Data Point Connections
+
+extension MeSolarViewDrawHelper {
 
     static func dataPointConnections(sectors: [Sector], layout: Layout.MeSection) -> [CAShapeLayer] {
         var connections = [CAShapeLayer]()
@@ -68,10 +82,14 @@ struct MeSolarViewDrawHelper {
         }
         return connections
     }
+}
+
+// MARK: - Data Points
+
+extension MeSolarViewDrawHelper {
 
     static func dataPoints(sectors: [Sector], layout: Layout.MeSection) -> [CAShapeLayer] {
         var dots = [CAShapeLayer]()
-
         for (dataIndex, centerPoints) in dataCenterPoints.enumerated() {
             for (centerIndex, center) in centerPoints.enumerated() {
                 guard dataIndex < sectors.count else {
@@ -92,42 +110,18 @@ struct MeSolarViewDrawHelper {
                         fillColor: fillColor(radius: radius, load: spike.spikeLoad(), layout: layout),
                         strokeColor: strokeColor(radius: radius, load: spike.spikeLoad(), layout: layout),
                         center: center,
-                        radius: (spike.load * 8)
+                        radius: (spike.spikeLoad() * 8)
                     )
                 )
             }
         }
         return dots
     }
+}
 
-    private static func dot(fillColor: UIColor, strokeColor: UIColor, center: CGPoint, radius: CGFloat) -> CAShapeLayer {
-        let circlePath = UIBezierPath.circlePath(center: CGPoint(x: 100, y: 100), radius: radius)
-        let shapeLayer = CAShapeLayer.pathWithColor(
-            path: circlePath.cgPath,
-            fillColor: fillColor,
-            strokeColor: strokeColor
-        )
-        shapeLayer.lineWidth = radius * 2
-        shapeLayer.shadowColor = UIColor.green.cgColor// strokeColor.cgColor
-        shapeLayer.shadowRadius = 10
-        shapeLayer.shadowOpacity = 0.9
-        shapeLayer.shadowOffset = .zero
-        return shapeLayer
-    }
+// MARK: - Sector Labels
 
-    static func radius(for load: CGFloat, layout: Layout.MeSection) -> CGFloat {
-        let factor: CGFloat = layout.radiusMaxLoad
-        let offset: CGFloat = (layout.profileImageWidth * 0.5 + Layout.MeSection.loadOffset)
-        return (load * (factor - Layout.MeSection.loadOffset)) + (offset * 0.4)
-    }
-
-    static func fillColor(radius: CGFloat, load: CGFloat, layout: Layout.MeSection) -> UIColor {
-        return radius > average(for: load, layout: layout) ? Color.MeSection.redFilled : .white
-    }
-
-    static func strokeColor(radius: CGFloat, load: CGFloat, layout: Layout.MeSection) -> UIColor {
-        return radius > average(for: load, layout: layout) ? Color.MeSection.redStroke : Color.MeSection.whiteStroke
-    }
+extension MeSolarViewDrawHelper {
 
     static func labelValues(for sector: Sector, layout: Layout.MeSection) -> (font: UIFont, textColor: UIColor, widthOffset: CGFloat) {
         let criticalLoads = sector.spikes.filter { (spike: Spike) -> Bool in
@@ -141,8 +135,41 @@ struct MeSolarViewDrawHelper {
 
         return (font: Font.MeSection.sectorRed, textColor: Color.MeSection.redFilled, widthOffset: 15)
     }
+}
 
-    private static func average(for load: CGFloat, layout: Layout.MeSection) -> CGFloat {
+// MARK: - Private
+
+private extension MeSolarViewDrawHelper {
+
+    static func dot(fillColor: UIColor, strokeColor: UIColor, center: CGPoint, radius: CGFloat) -> CAShapeLayer {
+        let circlePath = UIBezierPath.circlePath(center: center, radius: radius)
+        let shapeLayer = CAShapeLayer.pathWithColor(
+            path: circlePath.cgPath,
+            fillColor: fillColor,
+            strokeColor: strokeColor
+        )
+
+        shapeLayer.lineWidth = radius * 2
+        MeSolarViewDrawHelper.addGlowEffect(shapeLayer: shapeLayer, color: fillColor)
+        return shapeLayer
+    }
+
+    static func addGlowEffect(shapeLayer: CAShapeLayer, color: UIColor) {
+        shapeLayer.shadowColor = color.cgColor
+        shapeLayer.shadowRadius = 10
+        shapeLayer.shadowOpacity = 0.9
+        shapeLayer.shadowOffset = .zero
+    }
+
+    static func fillColor(radius: CGFloat, load: CGFloat, layout: Layout.MeSection) -> UIColor {
+        return radius > average(for: load, layout: layout) ? Color.MeSection.redFilled : .white
+    }
+
+    static func strokeColor(radius: CGFloat, load: CGFloat, layout: Layout.MeSection) -> UIColor {
+        return radius > average(for: load, layout: layout) ? Color.MeSection.redStroke : Color.MeSection.whiteStroke
+    }
+
+    static func average(for load: CGFloat, layout: Layout.MeSection) -> CGFloat {
         return (layout.radiusAverageLoad - (load * 4))
     }
 }
