@@ -21,6 +21,7 @@ enum FontName: String {
 }
 
 struct Layout {
+
     enum CellHeight: CGFloat {
         case sidebar = 75
         case sidebarSmall = 65
@@ -31,6 +32,54 @@ struct Layout {
         case chatLabelInstruction = 8
         case chatLabelOptionNavigation = 5
         case chatLabelOptionUpdate = 10
+    }
+
+    struct MeSection {
+        let viewControllerFrame: CGRect
+
+        static let loadOffset: CGFloat = 12
+        static let labelHeight: CGFloat = 21
+
+        var connectionCenter: CGPoint {
+            return  CGPoint(x: viewControllerFrame.width, y: viewControllerFrame.height * 0.5)
+        }
+
+        var radiusMaxLoad: CGFloat {
+            return viewControllerFrame.width * 0.7
+        }
+
+        var radiusAverageLoad: CGFloat {
+            return viewControllerFrame.width * 0.45
+        }
+
+        var profileImageWidth: CGFloat {
+            return viewControllerFrame.width * 0.25
+        }
+
+        var scrollViewOffset: CGFloat {
+            return viewControllerFrame.width * 0.06
+        }
+
+        var loadCenterX: CGFloat {
+            return (viewControllerFrame.width - (viewControllerFrame.width * 0.06))
+        }
+
+        var loadCenterY: CGFloat {
+            return viewControllerFrame.height * 0.5
+        }
+
+        var loadCenter: CGPoint {
+            return CGPoint(x: loadCenterX, y: loadCenterY)
+        }
+
+        var profileImageViewFrame: CGRect {
+            return CGRect(
+                x: loadCenterX - profileImageWidth * 0.5,
+                y: loadCenterY - profileImageWidth * 0.5,
+                width: profileImageWidth,
+                height: profileImageWidth
+            )
+        }
     }
 }
 
@@ -70,6 +119,11 @@ struct Font {
     struct TabBarController {
         static let buttonTitle = UIFont.simpleFont(ofSize: 16)
     }
+
+    struct MeSection {
+        static let sectorDefault = UIFont.bentonRegularFont(ofSize: 11)
+        static let sectorRed = UIFont.bentonRegularFont(ofSize: 15)
+    }
 }
 
 struct Color {
@@ -93,6 +147,15 @@ struct Color {
         struct Benefits {
             static let headerText = Color.Learn.headerSubtitle
         }
+    }
+
+    struct MeSection {
+        static let redFilled = UIColor(red: 255/255, green: 0, blue: 38/255, alpha: 1)
+        static let redFilledBodyBrain = UIColor(red: 255/255, green: 0, blue: 38/255, alpha: 0.2)
+        static let redStroke = UIColor(red: 230/255, green: 0, blue: 34/255, alpha: 0.9)
+        static let whiteStroke = UIColor(white: 1, alpha: 0.6)
+        static let whiteLabel = UIColor(white: 1, alpha: 0.5)
+        static let whiteStrokeLight = UIColor(white: 1, alpha: 0.2)
     }
 }
 

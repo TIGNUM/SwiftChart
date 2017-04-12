@@ -28,7 +28,7 @@ final class TabBarCoordinator: ParentCoordinator {
     }()
     
     fileprivate lazy var meSectionViewController: MeSectionViewController = {
-        let meViewController = MeSectionViewController()
+        let meViewController = MeSectionViewController(viewModel: MeSectionViewModel())
         meViewController.delegate = self
         
         return meViewController
@@ -115,10 +115,10 @@ extension TabBarCoordinator: LearnContentListCoordinatorDelegate {
 
 // MARK: - MeSectionDelegate
 
-extension TabBarCoordinator: MeSectionDelegate {
+extension TabBarCoordinator: MeSectionViewControllerDelegate {
     
-    func didTapMeSectionItem(in viewController: MeSectionViewController) {
-        // TODO
+    func didTapSector(sector: Sector?, in viewController: UIViewController) {
+        print("didTapSector: \(sector?.label.text ?? "INVALID")")
     }
 }
 
