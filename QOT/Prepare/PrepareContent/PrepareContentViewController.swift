@@ -116,8 +116,33 @@ extension PrepareContentViewController {
         }
     }
 
+    // NOT Fully implemented because not sure how You want this to be done - i'll as on standup
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let contentItem = self.viewModel.item(at: indexPath.row)
+
+        switch contentItem {
+        case .header(let item):
+            break
+
+        case .text(let item):
+           break
+
+        case.video(let item):
+            break
+
+        case .step(let item):
+           break
+
+        case .sectionFooter:
+           break
+
+        case .tableFooter:
+           break
+
+        case .title(let item):
+          break
+        }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -137,7 +162,6 @@ extension PrepareContentViewController {
         let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
             imageView.image = UIImage(data: data!)
         }
-
         task.resume()
     }
 
@@ -152,6 +176,4 @@ extension PrepareContentViewController {
     func didSaveAss() {
         //implement
     }
-
-
 }
