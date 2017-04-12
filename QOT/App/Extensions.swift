@@ -111,3 +111,19 @@ extension Collection {
         return list
     }
 }
+
+// MAARK: - UIView
+
+extension UIView {
+    func removeSubViews() {
+        subviews.forEach({ (subView: UIView) in
+            subView.removeFromSuperview()
+        })
+    }
+
+    func removeSubLayers() {
+        layer.sublayers?.forEach({ (subLayer: CALayer) in
+            subLayer.removeFromSuperlayer()
+        })
+    }
+}
