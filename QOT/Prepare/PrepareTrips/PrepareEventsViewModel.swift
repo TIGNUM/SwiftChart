@@ -12,6 +12,7 @@ import ReactiveKit
 final class PrepareEventsViewModel {
     private let sections: [PrepareEventsSection] = mockSections()
 
+    let title = "ADD THIS PREPERATION TO"
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
     var sectionCount: Int {
