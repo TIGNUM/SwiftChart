@@ -58,13 +58,30 @@ extension UIBezierPath {
     }
 }
 
+// MARK: - CALayer
+
+extension CALayer {
+
+    func addGlowEffect(color: UIColor, shadowRadius: CGFloat = 10, shadowOpacity: Float = 0.9) {
+        self.shadowColor = color.cgColor
+        self.shadowRadius = shadowRadius
+        self.shadowOpacity = shadowOpacity
+        self.shadowOffset = .zero
+    }
+}
+
 // MARK: - CAShapeLayer
 
 extension CAShapeLayer {
 
-    class func pathWithColor(path: CGPath, fillColor: UIColor, strokeColor: UIColor) -> CAShapeLayer {
+    override func addGlowEffect(color: UIColor, shadowRadius: CGFloat = 10, shadowOpacity: Float = 0.9) {
+        super.addGlowEffect(color: color, shadowRadius: shadowRadius, shadowOpacity: shadowOpacity)
+    }
+
+    class func circle(center: CGPoint, radius: CGFloat, fillColor: UIColor, strokeColor: UIColor) -> CAShapeLayer {
+        let circlePath = UIBezierPath.circlePath(center: center, radius: radius).cgPath
         let shapeLayer = CAShapeLayer()
-        shapeLayer.path = path
+        shapeLayer.path = circlePath
         shapeLayer.fillColor = fillColor.cgColor
         shapeLayer.strokeColor = strokeColor.cgColor
         shapeLayer.lineWidth = 1.0
@@ -78,8 +95,7 @@ extension CAShapeLayer {
         linePath.addLine(to: toPoint)
         line.path = linePath.cgPath
         line.strokeColor = strokeColor.cgColor
-        line.lineWidth = 0.6
-        line.lineJoin = kCALineJoinRound
+        line.lineWidth = 0.4
         return line
     }
 }
@@ -133,26 +149,5 @@ extension UIView {
         layer.sublayers?.forEach({ (subLayer: CALayer) in
             subLayer.removeFromSuperlayer()
         })
-    }
-}
-
-// MARK: - CAShapeLayer
-
-extension CAShapeLayer {
-
-    override func addGlowEffect(color: UIColor, shadowRadius: CGFloat = 10, shadowOpacity: Float = 0.9) {
-        super.addGlowEffect(color: color, shadowRadius: shadowRadius, shadowOpacity: shadowOpacity)
-    }
-}
-
-// MARK: - CALayer
-
-extension CALayer {
-
-    func addGlowEffect(color: UIColor, shadowRadius: CGFloat = 10, shadowOpacity: Float = 0.9) {
-        self.shadowColor = color.cgColor
-        self.shadowRadius = shadowRadius
-        self.shadowOpacity = shadowOpacity
-        self.shadowOffset = .zero
     }
 }

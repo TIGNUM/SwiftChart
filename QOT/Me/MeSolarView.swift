@@ -79,17 +79,29 @@ private extension MeSolarView {
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.layer.cornerRadius = layout.profileImageWidth * 0.5
         profileImageView.clipsToBounds = true
-    }
 
-    func drawBackCircles(layout: Layout.MeSection, radius: CGFloat, linesDashPattern: [NSNumber]? = nil) {
-        let circlePath = UIBezierPath.circlePath(center: layout.loadCenter, radius: radius)
-        let shapeLayer = CAShapeLayer.pathWithColor(
-            path: circlePath.cgPath,
+        let circleLayer = CAShapeLayer.circle(
+            center: layout.loadCenter,
+            radius: profileImageView.frame.width * 0.5,
             fillColor: .clear,
             strokeColor: Color.MeSection.whiteStrokeLight
         )
-        shapeLayer.lineDashPattern = linesDashPattern
-        layer.addSublayer(shapeLayer)
+
+        circleLayer.lineWidth = 5
+        circleLayer.addGlowEffect(color: .white)
+        layer.addSublayer(circleLayer)
+    }
+
+    func drawBackCircles(layout: Layout.MeSection, radius: CGFloat, linesDashPattern: [NSNumber]? = nil) {
+        let circleLayer = CAShapeLayer.circle(
+            center: layout.loadCenter,
+            radius: radius,
+            fillColor: .clear,
+            strokeColor: Color.MeSection.whiteStrokeLight
+        )
+
+        circleLayer.lineDashPattern = linesDashPattern
+        layer.addSublayer(circleLayer)
     }
 
     func drawDataPointConnections(layout: Layout.MeSection, sectors: [Sector]) {

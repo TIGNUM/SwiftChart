@@ -65,7 +65,7 @@ extension MeSolarViewDrawHelper {
 
                 let nextCenter = centerPopints[nextIndex]
                 connections.append(
-                    CAShapeLayer.line(from: center, to: nextCenter, strokeColor: UIColor(white: 1, alpha: 0.2))
+                    CAShapeLayer.line(from: center, to: nextCenter, strokeColor: Color.MeSection.whiteStrokeLight)
                 )
             }
         }
@@ -133,16 +133,16 @@ extension MeSolarViewDrawHelper {
 private extension MeSolarViewDrawHelper {
 
     static func dot(fillColor: UIColor, strokeColor: UIColor, center: CGPoint, radius: CGFloat, lineWidth: CGFloat) -> CAShapeLayer {
-        let circlePath = UIBezierPath.circlePath(center: center, radius: radius)
-        let shapeLayer = CAShapeLayer.pathWithColor(
-            path: circlePath.cgPath,
+        let dotLayer = CAShapeLayer.circle(
+            center: center,
+            radius: radius,
             fillColor: fillColor,
             strokeColor: strokeColor
         )
 
-        shapeLayer.lineWidth = lineWidth
-        shapeLayer.addGlowEffect(color: fillColor)
-        return shapeLayer
+        dotLayer.lineWidth = lineWidth
+        dotLayer.addGlowEffect(color: fillColor)
+        return dotLayer
     }
 
     static func fillColor(radius: CGFloat, load: CGFloat, sectorType: SectorType, layout: Layout.MeSection) -> UIColor {
