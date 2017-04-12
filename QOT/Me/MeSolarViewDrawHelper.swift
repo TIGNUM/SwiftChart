@@ -121,7 +121,6 @@ extension MeSolarViewDrawHelper {
 
         if criticalLoads.isEmpty == true {
             return (attributedString: AttributedString.MeSection.sectorTitle(text: text), widthOffset: 0)
-//            return (font: Font.H7Tag, textColor: Color.MeSection.whiteLabel, widthOffset: 0)
         }
 
         return (attributedString: AttributedString.MeSection.sectorTitleCritical(text: text), widthOffset: 20)
