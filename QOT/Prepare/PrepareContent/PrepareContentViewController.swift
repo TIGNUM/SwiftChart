@@ -104,8 +104,12 @@ extension PrepareContentViewController {
             cell.prepareAndSetTextAttributes(string: item.text)
             return cell
 
-        case .video:
+        case .video(let item):
             let cell: PrepareContentVideoPreviewTableViewCell = tableView.dequeueCell(for: indexPath)
+            let url = URL(string: "\(item.placeholderURL)")!
+            cell.previewImage.kf.setImage(with: url)
+            cell.previewImage.kf.indicatorType = .activity
+
             return cell
 
         case .step(let item):
