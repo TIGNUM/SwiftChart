@@ -27,18 +27,7 @@ extension MeSolarViewDrawHelper {
 
     static func collectCenterPoints(layout: Layout.MeSection, sectors: [Sector], relativeCenter: CGPoint) {
         sectors.forEach { (sector: Sector) in
-            var centerPoints = [CGPoint]()
-
-            sector.spikes.forEach { (spike: Spike) in
-                let centerPoint = CGPoint().shiftedCenter(
-                    radius(for: spike.spikeLoad(), layout: layout),
-                    with: spike.angle,
-                    to: relativeCenter
-                )
-
-                centerPoints.append(centerPoint)
-            }
-
+            let centerPoints = sector.spikes.map({ relativeCenter.shifted(radius(for: $0.spikeLoad(), layout: layout), with: $0.angle) })
             dataCenterPoints.append(centerPoints)
             connectionCenterPoitns.append(centerPoints)
         }
