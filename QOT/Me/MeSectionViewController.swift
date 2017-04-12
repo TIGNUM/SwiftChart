@@ -60,8 +60,8 @@ private extension MeSectionViewController {
 private extension MeSectionViewController {
 
     func addSubViews() {
-        let solarView = MeSolarView(sectors: viewModel.sectors, profileImage: viewModel.profileImage, frame: view.bounds)
         setupScrollView(layout: Layout.MeSection(viewControllerFrame: view.bounds))
+        let solarView = MeSolarView(sectors: viewModel.sectors, profileImage: viewModel.profileImage, frame: view.bounds)
         scrollView?.addSubview(solarView)
         self.solarView = solarView
     }
@@ -110,18 +110,25 @@ private extension MeSectionViewController {
 private extension MeSectionViewController {
 
     func setupScrollView(layout: Layout.MeSection) {
-        scrollView = UIScrollView(frame: view.frame)
-        scrollView?.bounces = false
-        scrollView?.isPagingEnabled = true
-        scrollView?.showsVerticalScrollIndicator = false
-        scrollView?.showsHorizontalScrollIndicator = false
-        scrollView?.contentSize = CGSize(
+        let scrollView = UIScrollView(frame: view.frame)
+        scrollView.bounces = false
+        scrollView.isPagingEnabled = true
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.contentSize = CGSize(
             width: (view.frame.width * 2) - (layout.scrollViewOffset * 4),
             height: view.frame.height - 84 // TODO: Change it when the tabBar is all setup corectly with bottomLayout.
         )
-        
-        if let scrollView = scrollView {
-            view.addSubview(scrollView)
-        }
+
+        addBackgroundImage(scrollView: scrollView)
+        view.addSubview(scrollView)
+        self.scrollView = scrollView
+    }
+
+    func addBackgroundImage(scrollView: UIScrollView) {
+        let frame = CGRect(x: view.frame.minX, y: view.frame.minY, width: view.frame.width * 2, height: view.frame.height)
+        let imageView = UIImageView(frame: frame)
+        imageView.image = R.image.solarSystemBackground()
+        scrollView.addSubview(imageView)
     }
 }
