@@ -30,6 +30,20 @@ final class MeSectionViewModel {
     }
 }
 
+// MARK: - Mocks
+
+enum SectorType {
+    case bodyBrain
+    case load
+
+    func lineWidth(load: CGFloat) -> CGFloat {
+        switch self {
+        case .load: return load * 16
+        case .bodyBrain: return load * 2
+        }
+    }
+}
+
 struct SectorLabel {
     let text: String
     let angle: CGFloat
@@ -50,6 +64,7 @@ protocol Sector {
     var spikes: [Spike] { get }
     var label: SectorLabel { get }
     var strokeColor: UIColor { get }
+    var type: SectorType { get }
 }
 
 struct MockSpike: Spike {
@@ -69,6 +84,7 @@ struct MockSector: Sector {
     let spikes: [Spike]
     let label: SectorLabel
     let strokeColor: UIColor
+    let type: SectorType
 }
 
 private var mockSectors: [Sector] {
@@ -78,7 +94,8 @@ private var mockSectors: [Sector] {
             endAngle: 264,
             spikes: peakSpikes,
             label: SectorLabel(text: R.string.localized.meSectorPeak(), angle: 245, load: 1.15),
-            strokeColor: .magenta
+            strokeColor: .magenta,
+            type: .load
         ),
 
         MockSector(
@@ -86,7 +103,8 @@ private var mockSectors: [Sector] {
             endAngle: 239,
             spikes: meetingsSpikes,
             label: SectorLabel(text: R.string.localized.meSectorMeetings(), angle: 220, load: 1.15),
-            strokeColor: .blue
+            strokeColor: .blue,
+            type: .load
         ),
 
         MockSector(
@@ -94,7 +112,8 @@ private var mockSectors: [Sector] {
             endAngle: 199,
             spikes: intensitySpikes,
             label: SectorLabel(text: R.string.localized.meSectorIntensity(), angle: 195, load: 1.2),
-            strokeColor: .yellow
+            strokeColor: .yellow,
+            type: .load
         ),
 
         MockSector(
@@ -102,7 +121,8 @@ private var mockSectors: [Sector] {
             endAngle: 175,
             spikes: travelSpikes,
             label: SectorLabel(text: R.string.localized.meSectorTravel(), angle: 170, load: 1.15),
-            strokeColor: .green
+            strokeColor: .green,
+            type: .load
         ),
 
         MockSector(
@@ -110,7 +130,8 @@ private var mockSectors: [Sector] {
             endAngle: 136,
             spikes: sleepSpikes,
             label: SectorLabel(text: R.string.localized.meSectorSleep(), angle: 142, load: 1.1),
-            strokeColor: .orange
+            strokeColor: .orange,
+            type: .bodyBrain
         ),
 
         MockSector(
@@ -118,7 +139,8 @@ private var mockSectors: [Sector] {
             endAngle: 119,
             spikes: activitySpikes,
             label: SectorLabel(text: R.string.localized.meSectorActivity(), angle: 120, load: 1.1),
-            strokeColor: .cyan
+            strokeColor: .cyan,
+            type: .bodyBrain
         )
     ]
 }

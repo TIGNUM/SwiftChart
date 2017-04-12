@@ -27,18 +27,7 @@ extension MeSolarViewDrawHelper {
 
     static func collectCenterPoints(layout: Layout.MeSection, sectors: [Sector], relativeCenter: CGPoint) {
         sectors.forEach { (sector: Sector) in
-            var centerPoints = [CGPoint]()
-
-            sector.spikes.forEach { (spike: Spike) in
-                let centerPoint = CGPoint().shiftedCenter(
-                    radius(for: spike.spikeLoad(), layout: layout),
-                    with: spike.angle,
-                    to: relativeCenter
-                )
-
-                centerPoints.append(centerPoint)
-            }
-
+            let centerPoints = sector.spikes.map({ relativeCenter.shifted(radius(for: $0.spikeLoad(), layout: layout), with: $0.angle) })
             dataCenterPoints.append(centerPoints)
             connectionCenterPoitns.append(centerPoints)
         }
@@ -123,17 +112,18 @@ extension MeSolarViewDrawHelper {
 
 extension MeSolarViewDrawHelper {
 
-    static func labelValues(for sector: Sector, layout: Layout.MeSection) -> (font: UIFont, textColor: UIColor, widthOffset: CGFloat) {
+    static func labelValues(for sector: Sector, layout: Layout.MeSection) -> (attributedString: NSAttributedString, widthOffset: CGFloat) {
+        let text = sector.label.text.uppercased()
         let criticalLoads = sector.spikes.filter { (spike: Spike) -> Bool in
             let distanceCenter = radius(for: spike.spikeLoad(), layout: layout)
             return distanceCenter > average(for: spike.load, layout: layout)
         }
 
         if criticalLoads.isEmpty == true {
-            return (font: Font.MeSection.sectorDefault, textColor: Color.MeSection.whiteLabel, widthOffset: 0)
+            return (attributedString: AttributedString.MeSection.sectorTitle(text: text), widthOffset: 0)
         }
 
-        return (font: Font.MeSection.sectorRed, textColor: Color.MeSection.redFilled, widthOffset: 15)
+        return (attributedString: AttributedString.MeSection.sectorTitleCritical(text: text), widthOffset: 20)
     }
 }
 

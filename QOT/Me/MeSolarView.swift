@@ -109,18 +109,15 @@ private extension MeSolarView {
     func addSectorLabels(layout: Layout.MeSection, sectors: [Sector]) {
         sectors.forEach { (sector: Sector) in
             let categoryLabel = sector.label
-            let labelCenter = CGPoint().shiftedCenter(
+            let labelCenter = profileImageView.center.shifted(
                 MeSolarViewDrawHelper.radius(for: categoryLabel.load, layout: layout),
-                with: categoryLabel.angle,
-                to: profileImageView.center
+                with: categoryLabel.angle
             )
 
             let labelValues = MeSolarViewDrawHelper.labelValues(for: sector, layout: layout)
             let frame = CGRect(x: labelCenter.x, y: labelCenter.y, width: 0, height: Layout.MeSection.labelHeight)
             let label = UILabel(frame: frame)
-            label.text = categoryLabel.text.uppercased()
-            label.textColor = labelValues.textColor
-            label.font = labelValues.font
+            label.attributedText = labelValues.attributedString
             label.numberOfLines = 0
             label.textAlignment = .center
             label.frame = CGRect(x: labelCenter.x - labelValues.widthOffset, y: labelCenter.y, width: frame.width, height: Layout.MeSection.labelHeight)
