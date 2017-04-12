@@ -176,7 +176,9 @@ extension TabBarCoordinator: PrepareContentViewControllerDelegate {
     }
 
     func didTapAddPreparation(in viewController: PrepareContentViewController) {
-        log("didTapAddPreparation")
+        let viewModel = PrepareEventsViewModel()
+        let vc = PrepareEventsViewController(viewModel: viewModel)
+        viewController.present(vc, animated: true)
     }
 }
 
