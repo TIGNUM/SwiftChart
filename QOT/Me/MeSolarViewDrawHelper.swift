@@ -96,10 +96,11 @@ extension MeSolarViewDrawHelper {
 
                 dots.append(
                     MeSolarViewDrawHelper.dot(
-                        fillColor: fillColor(radius: radius, load: spike.spikeLoad(), layout: layout),
-                        strokeColor: strokeColor(radius: radius, load: spike.spikeLoad(), layout: layout),
+                        fillColor: fillColor(radius: radius, load: spike.spikeLoad(), sectorType: sector.type, layout: layout),
+                        strokeColor: strokeColor(radius: radius, load: spike.spikeLoad(), sectorType: sector.type, layout: layout),
                         center: center,
-                        radius: (spike.spikeLoad() * 8)
+                        radius: (spike.spikeLoad() * 8),
+                        lineWidth: sector.type.lineWidth(load: spike.load)
                     )
                 )
             }
@@ -131,7 +132,7 @@ extension MeSolarViewDrawHelper {
 
 private extension MeSolarViewDrawHelper {
 
-    static func dot(fillColor: UIColor, strokeColor: UIColor, center: CGPoint, radius: CGFloat) -> CAShapeLayer {
+    static func dot(fillColor: UIColor, strokeColor: UIColor, center: CGPoint, radius: CGFloat, lineWidth: CGFloat) -> CAShapeLayer {
         let circlePath = UIBezierPath.circlePath(center: center, radius: radius)
         let shapeLayer = CAShapeLayer.pathWithColor(
             path: circlePath.cgPath,
@@ -139,7 +140,7 @@ private extension MeSolarViewDrawHelper {
             strokeColor: strokeColor
         )
 
-        shapeLayer.lineWidth = radius * 2
+        shapeLayer.lineWidth = lineWidth
         MeSolarViewDrawHelper.addGlowEffect(shapeLayer: shapeLayer, color: fillColor)
         return shapeLayer
     }
@@ -151,12 +152,22 @@ private extension MeSolarViewDrawHelper {
         shapeLayer.shadowOffset = .zero
     }
 
-    static func fillColor(radius: CGFloat, load: CGFloat, layout: Layout.MeSection) -> UIColor {
-        return radius > average(for: load, layout: layout) ? Color.MeSection.redFilled : .white
+    static func fillColor(radius: CGFloat, load: CGFloat, sectorType: SectorType, layout: Layout.MeSection) -> UIColor {
+        let isCritical = radius > average(for: load, layout: layout)
+
+        switch sectorType {
+        case .load: return isCritical ? Color.MeSection.redFilled : .white
+        case .bodyBrain: return isCritical ? Color.MeSection.redFilledBodyBrain : Color.MeSection.whiteStrokeLight
+        }
     }
 
-    static func strokeColor(radius: CGFloat, load: CGFloat, layout: Layout.MeSection) -> UIColor {
-        return radius > average(for: load, layout: layout) ? Color.MeSection.redStroke : Color.MeSection.whiteStroke
+    static func strokeColor(radius: CGFloat, load: CGFloat, sectorType: SectorType, layout: Layout.MeSection) -> UIColor {
+        let isCritical = radius > average(for: load, layout: layout)
+
+        switch sectorType {
+        case .load: return isCritical ? Color.MeSection.redStroke : Color.MeSection.whiteStroke
+        case .bodyBrain: return isCritical ? Color.MeSection.redFilled : .white
+        }
     }
 
     static func average(for load: CGFloat, layout: Layout.MeSection) -> CGFloat {
