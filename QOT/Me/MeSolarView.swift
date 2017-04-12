@@ -74,14 +74,16 @@ private extension MeSolarView {
     }
 
     func setupProfileImage(layout: Layout.MeSection, profileImage: UIImage?) {
-        profileImageView = UIImageView(frame: layout.profileImageViewFrame)
-        profileImageView.image = profileImage
-        profileImageView.contentMode = .scaleAspectFill
-        profileImageView.layer.cornerRadius = layout.profileImageWidth * 0.5
-        profileImageView.clipsToBounds = true
+        profileImageView = UIImageView(
+            frame: layout.profileImageViewFrame,
+            image: profileImage,
+            cornerRadius: layout.profileImageWidth * 0.5
+        )
+    }
 
+    func addImageEffect(center: CGPoint) {
         let circleLayer = CAShapeLayer.circle(
-            center: layout.loadCenter,
+            center: center,
             radius: profileImageView.frame.width * 0.5,
             fillColor: .clear,
             strokeColor: Color.MeSection.whiteStrokeLight

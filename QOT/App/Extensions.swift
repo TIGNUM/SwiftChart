@@ -170,3 +170,16 @@ extension UIImage {
         return UIImage(cgImage: cgImage)
     }
 }
+
+// MARK: - UIImageView
+
+extension UIImageView {
+
+    convenience init(frame: CGRect, image: UIImage?, cornerRadius: CGFloat) {
+        self.init(frame: frame)
+        self.image = image
+        self.contentMode = .scaleAspectFill
+        self.layer.cornerRadius = cornerRadius
+        self.clipsToBounds = true
+    }
+}
