@@ -68,7 +68,7 @@ final class PrepareContentViewController: UIViewController, UITableViewDelegate,
     }
 
     func closeView(gestureRecognizer: UITapGestureRecognizer) {
-        delegate?.didTapClose(in: self)        
+        delegate?.didTapAddPreparation(in: self)
     }
 
    private func updateTableView(with tableView: UITableView) {

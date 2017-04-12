@@ -685,7 +685,7 @@
 				CCEA22A11E8AC528003D0CF4 /* PerpareCheckList */,
 				CC4D1D7A1E82E6AD00B8D75E /* PrepareChat */,
 				CC7C0A111E8966E000A83583 /* PrepareContent */,
-				CCEA22A61E8AC549003D0CF4 /* PrepareTrips */,
+				CCEA22A61E8AC549003D0CF4 /* Prepare Events */,
 			);
 			path = Prepare;
 			sourceTree = "<group>";
@@ -893,12 +893,13 @@
 			path = PerpareCheckList;
 			sourceTree = "<group>";
 		};
-		CCEA22A61E8AC549003D0CF4 /* PrepareTrips */ = {
+		CCEA22A61E8AC549003D0CF4 /* Prepare Events */ = {
 			isa = PBXGroup;
 			children = (
 				CCEA22A71E8AC55F003D0CF4 /* PrepareEventsViewController.swift */,
 				CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */,
 			);
+			name = "Prepare Events";
 			path = PrepareTrips;
 			sourceTree = "<group>";
 		};
