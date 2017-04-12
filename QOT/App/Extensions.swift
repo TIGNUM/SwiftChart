@@ -30,8 +30,12 @@ extension UIFont {
 
 extension NSAttributedString {
 
-    internal class func create(for string: String, withColor color: UIColor, andFont font: UIFont) -> NSAttributedString {
-        let attributes = [NSForegroundColorAttributeName: color, NSFontAttributeName: font]
+    internal class func create(for string: String, withColor color: UIColor, andFont font: UIFont, letterSpacing: CGFloat = 0) -> NSAttributedString {
+        let attributes: [String: Any] = [
+            NSForegroundColorAttributeName: color,
+            NSFontAttributeName: font,
+            NSKernAttributeName: letterSpacing
+        ]
         return NSAttributedString(string: string, attributes: attributes)
     }
 }

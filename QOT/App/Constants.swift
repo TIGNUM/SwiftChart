@@ -122,6 +122,16 @@ struct Font {
 }
 
 struct Color {
+
+    /// White Opacity: 50%
+    static let whiteMedium = UIColor(white: 1, alpha: 0.5)
+
+    /// cherryRed UIColor(red: 1, green: 0, blue: 38/255, alpha: 1)
+    static let cherryRed = UIColor(red: 1, green: 0, blue: 38/255, alpha: 1)
+
+    /// cherryRedTwo UIColor(red: 1, green: 0, blue: 38/255, alpha: 1)
+    static let cherryRedTwo = UIColor(red: 1, green: 0, blue: 38/255, alpha: 1)
+
     struct Default {
         static let black = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         static let blackMedium = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
@@ -240,6 +250,16 @@ struct AttributedString {
             static func headerText(string: String) -> NSAttributedString {
                 return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.H1MainTitle)
             }
+        }
+    }
+
+    struct MeSection {
+        static func sectorTitle(text: String) -> NSAttributedString {
+            return NSAttributedString.create(for: text, withColor: Color.whiteMedium, andFont: Font.H7Tag, letterSpacing: 2)
+        }
+
+        static func sectorTitleCritical(text: String) -> NSAttributedString {
+            return NSAttributedString.create(for: text, withColor: Color.cherryRedTwo, andFont: Font.PText, letterSpacing: 2.7)
         }
     }
 }

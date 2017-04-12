@@ -123,17 +123,19 @@ extension MeSolarViewDrawHelper {
 
 extension MeSolarViewDrawHelper {
 
-    static func labelValues(for sector: Sector, layout: Layout.MeSection) -> (font: UIFont, textColor: UIColor, widthOffset: CGFloat) {
+    static func labelValues(for sector: Sector, layout: Layout.MeSection) -> (attributedString: NSAttributedString, widthOffset: CGFloat) {
+        let text = sector.label.text.uppercased()
         let criticalLoads = sector.spikes.filter { (spike: Spike) -> Bool in
             let distanceCenter = radius(for: spike.spikeLoad(), layout: layout)
             return distanceCenter > average(for: spike.load, layout: layout)
         }
 
         if criticalLoads.isEmpty == true {
-            return (font: Font.H7Tag, textColor: Color.MeSection.whiteLabel, widthOffset: 0)
+            return (attributedString: AttributedString.MeSection.sectorTitle(text: text), widthOffset: 0)
+//            return (font: Font.H7Tag, textColor: Color.MeSection.whiteLabel, widthOffset: 0)
         }
 
-        return (font: Font.PText, textColor: Color.MeSection.redFilled, widthOffset: 15)
+        return (attributedString: AttributedString.MeSection.sectorTitleCritical(text: text), widthOffset: 20)
     }
 }
 
