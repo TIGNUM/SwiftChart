@@ -11,7 +11,7 @@ import QOTDatabase
 
 /// Encapsulates data to display in a `LearnCategoryListViewController`.
 protocol LearnCategory: TrackableEntity {
-    var id: Int { get }
+    var localID: String { get }
     /// The title of `self`.
     var title: String { get }
     /// The number of items that belong `self`.
@@ -51,6 +51,7 @@ extension ContentCategory: LearnCategory {
     }
 
     var trackableEntityID: Int {
-        return id
+        // FIXME: Implement
+        return 0
     }
 }

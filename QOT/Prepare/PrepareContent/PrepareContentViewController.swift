@@ -13,12 +13,12 @@ protocol PrepareContentViewControllerDelegate: class {
     func didTapClose(in viewController: PrepareContentViewController)
     func didTapShare(in viewController: PrepareContentViewController)
     func didTapVideo(with localID: String, from view: UIView, in viewController: PrepareContentViewController)
+    func didTapAddPreparation(sectionID: String, in viewController: PrepareContentViewController)
+    func didTapAddToNotes(sectionID: String, in viewController: PrepareContentViewController)
+    func didTapSaveAs(sectionID: String, in viewController: PrepareContentViewController)
     func didTapAddPreparation(in viewController: PrepareContentViewController)
     func didTapAddToNotes(in viewController: PrepareContentViewController)
     func didTapSaveAs(in viewController: PrepareContentViewController)
-    func didTapAddPreparationInCollection(with localID: String, in viewController: PrepareContentViewController)
-    func didTapAddToNotes(with localID: String, in viewController: PrepareContentViewController)
-    func didTapSaveAs(with localID: String, in viewController: PrepareContentViewController)
 }
 
 final class PrepareContentViewController: UIViewController {
@@ -49,6 +49,6 @@ final class PrepareContentViewController: UIViewController {
     }
 
     func closeView(gestureRecognizer: UITapGestureRecognizer) {
-        delegate?.didTapClose(in: self)        
+        delegate?.didTapAddPreparation(in: self)
     }
 }
