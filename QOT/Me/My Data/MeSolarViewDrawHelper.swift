@@ -71,6 +71,20 @@ extension MeSolarViewDrawHelper {
         }
         return connections
     }
+
+    static func myWhySpikes(layout: Layout.MeSection) -> [CAShapeLayer] {
+        let shiftedXPos = (layout.profileImageWidth * 0.2)
+        let originPoint = CGPoint(x: -shiftedXPos, y: layout.profileImageViewFrame.origin.y + layout.profileImageWidth * 0.5)
+        let visionPoint = originPoint.shifted(radius(for: 0.25, layout: layout), with: 315)
+        let choicesPoint = originPoint.shifted(radius(for: 0.4, layout: layout), with: 10)
+        let partnersPoint = originPoint.shifted(radius(for: 0.6, layout: layout), with: 60)
+
+        return [
+            CAShapeLayer.line(from: originPoint, to: visionPoint, strokeColor: Color.Default.whiteMedium),
+            CAShapeLayer.line(from: originPoint, to: choicesPoint, strokeColor: Color.Default.whiteMedium),
+            CAShapeLayer.line(from: originPoint, to: partnersPoint, strokeColor: Color.Default.whiteMedium)
+        ]
+    }
 }
 
 // MARK: - Data Points
