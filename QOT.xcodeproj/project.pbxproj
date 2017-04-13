@@ -333,7 +333,6 @@
 				CCAF03231E801B0E00015125 /* SettingsViewControllerDelegate.swift */,
 				CB1E4F971E7FE22200287613 /* SettingsViewModel.swift */,
 			);
-			name = Settings;
 			path = Settings;
 			sourceTree = "<group>";
 		};
@@ -604,6 +603,27 @@
 			path = Interfaces;
 			sourceTree = "<group>";
 		};
+		CC0294A81E9F66FD00163B94 /* My Data */ = {
+			isa = PBXGroup;
+			children = (
+				CC4D1D7F1E82EDE700B8D75E /* MeSectionCoordinator.swift */,
+				CC4D1D7B1E82E75300B8D75E /* MeSectionViewController.swift */,
+				CC3650D41E93FBF500A834A9 /* MeSectionViewModel.swift */,
+				CC97B2BE1E9D166A00505F95 /* MeSolarView.swift */,
+				CC97B2C01E9D24C400505F95 /* MeSolarViewDrawHelper.swift */,
+			);
+			name = "My Data";
+			path = "My Data";
+			sourceTree = "<group>";
+		};
+		CC0294A91E9F670C00163B94 /* My Why */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "My Why";
+			path = "My Why";
+			sourceTree = "<group>";
+		};
 		CC20C9921E8981070056054D /* Prepare */ = {
 			isa = PBXGroup;
 			children = (
@@ -619,11 +639,8 @@
 		CC4D1D791E82E6A000B8D75E /* Me */ = {
 			isa = PBXGroup;
 			children = (
-				CC4D1D7F1E82EDE700B8D75E /* MeSectionCoordinator.swift */,
-				CC4D1D7B1E82E75300B8D75E /* MeSectionViewController.swift */,
-				CC3650D41E93FBF500A834A9 /* MeSectionViewModel.swift */,
-				CC97B2BE1E9D166A00505F95 /* MeSolarView.swift */,
-				CC97B2C01E9D24C400505F95 /* MeSolarViewDrawHelper.swift */,
+				CC0294A81E9F66FD00163B94 /* My Data */,
+				CC0294A91E9F670C00163B94 /* My Why */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -821,7 +838,6 @@
 				CCEA22A71E8AC55F003D0CF4 /* PrepareEventsViewController.swift */,
 				CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */,
 			);
-			name = "Prepare Events";
 			path = "Prepare Events";
 			sourceTree = "<group>";
 		};
