@@ -20,28 +20,6 @@ final class MyWhyViewModel {
         return items.count
     }
 
-    var weeklyChoices: [WeeklyChoice] {
-        switch items[MyWhy.Index.weeklyChoices.rawValue] {
-        case .weeklyChoices(_, let choices): return choices
-        default: return []
-        }
-    }
-
-    var partners: [Partner] {
-        switch items[MyWhy.Index.partners.rawValue] {
-        case .partners(_, let partners): return partners
-        default: return []
-        }
-    }
-
-    func title(for myWhyItem: MyWhy) -> String {
-        switch myWhyItem {
-        case .vision(let vision): return vision.title
-        case .weeklyChoices(let title, _): return title
-        case .partners(let title, _): return title
-        }
-    }
-
     func itemCount(for myWhyItem: MyWhy) -> Int {
         switch myWhyItem {
         case .vision(_): return 0

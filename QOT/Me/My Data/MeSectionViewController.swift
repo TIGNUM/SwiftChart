@@ -65,7 +65,7 @@ private extension MeSectionViewController {
     func addSubViews() {
         setupScrollView(layout: Layout.MeSection(viewControllerFrame: view.bounds))
         let myWhyViewFrame = CGRect(x: view.bounds.width, y: 0, width: view.bounds.width, height: view.bounds.height)
-        scrollView?.addSubview(MyWhyView(myWhyItems: myWhyViewModel.items, frame: myWhyViewFrame))
+        scrollView?.addSubview(MyWhyView(myWhyViewModel: myWhyViewModel, frame: myWhyViewFrame))
         let solarView = MeSolarView(sectors: myDataViewModel.sectors, profileImage: myDataViewModel.profileImage, frame: view.bounds)
         scrollView?.addSubview(solarView)
         self.solarView = solarView

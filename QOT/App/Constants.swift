@@ -68,6 +68,30 @@ struct Layout {
             return viewControllerFrame.height * 0.5
         }
 
+        var myWhyVisionFooterXPos: CGFloat {
+            return viewControllerFrame.width * 0.115
+        }
+
+        var myWhyVisionFooterYPos: CGFloat {
+            return viewControllerFrame.height * 0.425
+        }
+
+        var myWhyWeeklyChoicesFooterXPos: CGFloat {
+            return viewControllerFrame.width * 0.25
+        }
+
+        var myWhyWeeklyChoicesFooterYPos: CGFloat {
+            return viewControllerFrame.height * 0.64
+        }
+
+        var myWhyPartnersFooterXPos: CGFloat {
+            return viewControllerFrame.width * 0.1
+        }
+
+        var myWhyPartnersFooterYPos: CGFloat {
+            return viewControllerFrame.height * 0.8
+        }
+
         var loadCenter: CGPoint {
             return CGPoint(x: loadCenterX, y: loadCenterY)
         }
