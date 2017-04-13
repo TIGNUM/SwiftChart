@@ -17,13 +17,9 @@ class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
         super.awakeFromNib()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        print("\(selected)")
-        if selected {
-            bottomSeparator.alpha = 0
-            verticalPlusBar.alpha = 0
-        }
+    func setTitle(title: String, open: Bool) {
+        headerLabel.text = title
+        bottomSeparator.isHidden = open
+        verticalPlusBar.isHidden = open
     }
 }

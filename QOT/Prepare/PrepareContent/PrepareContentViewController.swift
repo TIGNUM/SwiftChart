@@ -93,9 +93,9 @@ extension PrepareContentViewController {
         let contentItem = self.viewModel.item(at: indexPath.row)
 
         switch contentItem {
-        case .header(let item):
+        case .header(_, let title, let open):
             let cell: PrepareContentHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.headerLabel.text = item.title
+            cell.setTitle(title: title, open: open)
             return cell
 
         case .text(let item):
