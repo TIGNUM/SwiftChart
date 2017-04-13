@@ -15,7 +15,6 @@ protocol WhatsHotViewControllerDelegate: class {
 
 class WhatsHotViewController: UIViewController {
 
-   
     @IBOutlet private weak var collectionView: UICollectionView!
 
     let viewModel: WhatsHotViewModel
@@ -54,12 +53,16 @@ extension WhatsHotViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let content = viewModel.item(at: indexPath.item)
         let cell: WhatsHotCell = collectionView.dequeueCell(for: indexPath)
-        cell.setup(number: content.identifier, thought: content.subtitle, headline: content.text, duration: content.mediaInformation)
+        cell.setup( number: content.identifier,
+                    thought: content.subtitle,
+                    headline: content.text,
+                    duration: content.mediaInformation,
+                    placeholderURL: content.placeholderURL)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: 376, height: 360)
+        return CGSize(width: 376, height: 352)
     }
 }

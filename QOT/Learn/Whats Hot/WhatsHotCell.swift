@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 class WhatsHotCell: UICollectionViewCell, Dequeueable {
 
     @IBOutlet private weak var imageView: UIImageView!
@@ -19,14 +19,17 @@ class WhatsHotCell: UICollectionViewCell, Dequeueable {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = .red
+        imageView.layer.cornerRadius = 2
     }
     
-    func setup(number: NSAttributedString, thought: NSAttributedString, headline: NSAttributedString, duration: NSAttributedString) {
+    func setup(number: NSAttributedString, thought: NSAttributedString, headline: NSAttributedString, duration: NSAttributedString, placeholderURL: URL) {
         numberLabel.attributedText = number
         thoughtLabel.attributedText = thought
         headlineLabel.attributedText = headline
         durationLabel.attributedText = duration
+        imageView.kf.indicatorType = .activity
+        imageView.kf.setImage(with: placeholderURL)
+        
     }
 
 }
