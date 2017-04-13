@@ -18,7 +18,7 @@ final class MeSectionViewModel {
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
     var sectorCount: Int {
-        return mockSectors.count
+        return sectors.count
     }
 
     func spike(for sector: Sector, at index: Index) -> Spike {
