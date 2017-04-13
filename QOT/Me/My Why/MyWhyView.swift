@@ -48,7 +48,7 @@ private extension MyWhyView {
     }
 }
 
-// MARK: - Private Helpers
+// MARK: - Private Functions
 
 private extension MyWhyView {
 
@@ -79,11 +79,84 @@ private extension MyWhyView {
     }
 
     func addWeeklyChoices(layout: Layout.MeSection, title: String, choices: [WeeklyChoice]) {
+        let buttonOffset = Layout.MeSection.labelHeight * 1.3
+        var xPos = layout.myWhyWeeklyChoicesFooterXPos
+        var yPos = layout.myWhyWeeklyChoicesFooterYPos - buttonOffset
+
+        choices.forEach { (weeklyChioce: WeeklyChoice) in
+            let buttonFrame = CGRect(
+                x: xPos,
+                y: yPos,
+                width: layout.viewControllerFrame.width * 0.33,
+                height: Layout.MeSection.labelHeight * 1.125
+            )
+            addSubview(weeklyChoiceButton(title: weeklyChioce.text, frame: buttonFrame))
+            yPos -= (buttonOffset + 2)
+        }
         addSubview(footerLabel(with: title, labelFrame: layout.myWhyWeeklyChoicesFooterFrame))
     }
 
     func addPartners(layout: Layout.MeSection, title: String, partners: [Partner]) {
+        let buttonOffset = layout.profileImageWidth * 0.4
+        var xPos = layout.myWhyPartnersFooterXPos
+        var yPos = layout.myWhyPartnersFooterYPos - buttonOffset
+
+        partners.forEach { (partner: Partner) in
+            let buttonFrame = CGRect(
+                x: xPos,
+                y: yPos,
+                width: layout.profileImageWidth * 0.35,
+                height: layout.profileImageWidth * 0.35
+            )
+            addSubview(partnerButton(title: partner.initials, image: partner.profileImage, frame: buttonFrame))
+            xPos += (buttonOffset + 2)
+        }
         addSubview(footerLabel(with: title, labelFrame: layout.myWhyPartnersFooterFrame))
+    }
+}
+
+// MARK: - Buttons
+
+private extension MyWhyView {
+
+    func weeklyChoiceButton(title: String, frame: CGRect) -> UIButton {
+        let button = UIButton(frame: frame)
+        button.setTitle(title, for: .normal)
+        button.titleLabel?.font = Font.H7Tag
+        button.titleLabel?.lineBreakMode = .byTruncatingTail
+        button.setTitleColor(Color.MeSection.whiteLabel, for: .normal)
+        button.setBackgroundImage(R.image.myWhyChoicesFrame(), for: .normal)
+        button.addTarget(self, action: #selector(didTapWeeklyChoices), for: .touchUpInside)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        button.alpha = 0.8
+
+        return button
+    }
+
+    func partnerButton(title: String?, image: UIImage?, frame: CGRect) -> UIButton {
+        let button = UIButton(frame: frame)
+        button.setTitle(title, for: .normal)
+        button.titleLabel?.font = Font.H6NavigationTitle
+        button.setTitleColor(Color.MeSection.whiteLabel, for: .normal)
+        button.setBackgroundImage(R.image.myWhyPartnerFrame(), for: .normal)
+        button.addTarget(self, action: #selector(didTapPartner), for: .touchUpInside)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+
+        return button
+
+    }
+}
+
+// MARK: - Actions
+
+private extension MyWhyView {
+
+    @objc func didTapWeeklyChoices() {
+        print("didTapWeeklyChoices")
+    }
+
+    @objc func didTapPartner() {
+        print("didTapPartner")
     }
 }
 

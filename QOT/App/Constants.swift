@@ -99,7 +99,7 @@ struct Layout {
         }
 
         var myWhyWeeklyChoicesFooterYPos: CGFloat {
-            return viewControllerFrame.height * 0.64
+            return viewControllerFrame.height * 0.67
         }
 
         var myWhyWeeklyChoicesFooterFrame: CGRect {
