@@ -57,4 +57,9 @@ extension WhatsHotViewController: UICollectionViewDataSource {
         cell.setup(number: content.identifier, thought: content.subtitle, headline: content.text, duration: content.mediaInformation)
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: 376, height: 360)
+    }
 }
