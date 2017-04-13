@@ -35,6 +35,8 @@
 		CB369CE21E8D5E3D00522293 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB369CE11E8D5E3D00522293 /* Services.swift */; };
 		CB369CE51E8E46B600522293 /* LearnContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB369CE41E8E46B600522293 /* LearnContent.swift */; };
 		CB369CE71E8E470800522293 /* LearnCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB369CE61E8E470800522293 /* LearnCategory.swift */; };
+		CB55A2DF1E9FDF0A00D721CE /* SettingsMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB55A2DE1E9FDF0A00D721CE /* SettingsMenuViewController.swift */; };
+		CB55A2E11E9FDF1D00D721CE /* SettingsMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB55A2E01E9FDF1D00D721CE /* SettingsMenuViewModel.swift */; };
 		CB8A15221E769F1F0023B2F9 /* EventTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15211E769F1F0023B2F9 /* EventTracker.swift */; };
 		CB8A15271E76A1280023B2F9 /* PageEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15261E76A1280023B2F9 /* PageEvent.swift */; };
 		CB8A152F1E76F27D0023B2F9 /* PageID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A152E1E76F27D0023B2F9 /* PageID.swift */; };
@@ -159,18 +161,18 @@
 
 /* Begin PBXFileReference section */
 		0B40DC061E9CA65300E1659B /* PrepareContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentViewController.xib; sourceTree = "<group>"; };
-		0B40DC091E9CA6A500E1659B /* PrepareContentTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareContentTextTableViewCell.swift; path = PrepareContentTextTableViewCell/PrepareContentTextTableViewCell.swift; sourceTree = "<group>"; };
-		0B40DC0A1E9CA6A500E1659B /* PrepareContentTextTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PrepareContentTextTableViewCell.xib; path = PrepareContentTextTableViewCell/PrepareContentTextTableViewCell.xib; sourceTree = "<group>"; };
-		0B40DC0D1E9CA6E100E1659B /* PrepareContentVideoPreviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareContentVideoPreviewTableViewCell.swift; path = PrepareContentViedeoPreviewTableViewCell/PrepareContentVideoPreviewTableViewCell.swift; sourceTree = "<group>"; };
-		0B40DC0E1E9CA6E100E1659B /* PrepareContentVideoPreviewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PrepareContentVideoPreviewTableViewCell.xib; path = PrepareContentViedeoPreviewTableViewCell/PrepareContentVideoPreviewTableViewCell.xib; sourceTree = "<group>"; };
-		0B40DC131E9CA71400E1659B /* PrepareContentHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareContentHeaderTableViewCell.swift; path = PrepareContentHeaderTableViewCell/PrepareContentHeaderTableViewCell.swift; sourceTree = "<group>"; };
-		0B40DC141E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PrepareContentHeaderTableViewCell.xib; path = PrepareContentHeaderTableViewCell/PrepareContentHeaderTableViewCell.xib; sourceTree = "<group>"; };
-		0BE7FD821E9CAC7400E3262E /* PrepareContentActionButtonsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareContentActionButtonsTableViewCell.swift; path = PrepareContentActionButtonsTableViewCell/PrepareContentActionButtonsTableViewCell.swift; sourceTree = "<group>"; };
-		0BE7FD831E9CAC7400E3262E /* PrepareContentActionButtonsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PrepareContentActionButtonsTableViewCell.xib; path = PrepareContentActionButtonsTableViewCell/PrepareContentActionButtonsTableViewCell.xib; sourceTree = "<group>"; };
-		0BE7FD881E9D2AEF00E3262E /* PrepareContentStepTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareContentStepTableViewCell.swift; path = PrepareContentStepTableViewCell/PrepareContentStepTableViewCell.swift; sourceTree = "<group>"; };
-		0BE7FD891E9D2AEF00E3262E /* PrepareContentStepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PrepareContentStepTableViewCell.xib; path = PrepareContentStepTableViewCell/PrepareContentStepTableViewCell.xib; sourceTree = "<group>"; };
-		0BE7FD8D1E9D2F8800E3262E /* PrepareContentTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareContentTitleTableViewCell.swift; path = PrepareContentTitleTableViewCell/PrepareContentTitleTableViewCell.swift; sourceTree = "<group>"; };
-		0BE7FD8E1E9D2F8800E3262E /* PrepareContentTitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PrepareContentTitleTableViewCell.xib; path = PrepareContentTitleTableViewCell/PrepareContentTitleTableViewCell.xib; sourceTree = "<group>"; };
+		0B40DC091E9CA6A500E1659B /* PrepareContentTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareContentTextTableViewCell.swift; path = PrepareContentTextTableViewCell.swift; sourceTree = "<group>"; };
+		0B40DC0A1E9CA6A500E1659B /* PrepareContentTextTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PrepareContentTextTableViewCell.xib; path = PrepareContentTextTableViewCell.xib; sourceTree = "<group>"; };
+		0B40DC0D1E9CA6E100E1659B /* PrepareContentVideoPreviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareContentVideoPreviewTableViewCell.swift; path = PrepareContentVideoPreviewTableViewCell.swift; sourceTree = "<group>"; };
+		0B40DC0E1E9CA6E100E1659B /* PrepareContentVideoPreviewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PrepareContentVideoPreviewTableViewCell.xib; path = PrepareContentVideoPreviewTableViewCell.xib; sourceTree = "<group>"; };
+		0B40DC131E9CA71400E1659B /* PrepareContentHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareContentHeaderTableViewCell.swift; path = PrepareContentHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		0B40DC141E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PrepareContentHeaderTableViewCell.xib; path = PrepareContentHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		0BE7FD821E9CAC7400E3262E /* PrepareContentActionButtonsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareContentActionButtonsTableViewCell.swift; path = PrepareContentActionButtonsTableViewCell.swift; sourceTree = "<group>"; };
+		0BE7FD831E9CAC7400E3262E /* PrepareContentActionButtonsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PrepareContentActionButtonsTableViewCell.xib; path = PrepareContentActionButtonsTableViewCell.xib; sourceTree = "<group>"; };
+		0BE7FD881E9D2AEF00E3262E /* PrepareContentStepTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareContentStepTableViewCell.swift; path = PrepareContentStepTableViewCell.swift; sourceTree = "<group>"; };
+		0BE7FD891E9D2AEF00E3262E /* PrepareContentStepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PrepareContentStepTableViewCell.xib; path = PrepareContentStepTableViewCell.xib; sourceTree = "<group>"; };
+		0BE7FD8D1E9D2F8800E3262E /* PrepareContentTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareContentTitleTableViewCell.swift; path = PrepareContentTitleTableViewCell.swift; sourceTree = "<group>"; };
+		0BE7FD8E1E9D2F8800E3262E /* PrepareContentTitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PrepareContentTitleTableViewCell.xib; path = PrepareContentTitleTableViewCell.xib; sourceTree = "<group>"; };
 		2F1C8D6D4864F462A3F805BB /* Pods-QOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.release.xcconfig"; sourceTree = "<group>"; };
 		42795728C4F3229DFB18981E /* Pods-QOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.debug.xcconfig"; sourceTree = "<group>"; };
 		5C87601C1FE7F833DF0D7A6B /* Pods-QOTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -189,6 +191,8 @@
 		CB369CE11E8D5E3D00522293 /* Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		CB369CE41E8E46B600522293 /* LearnContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContent.swift; sourceTree = "<group>"; };
 		CB369CE61E8E470800522293 /* LearnCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnCategory.swift; sourceTree = "<group>"; };
+		CB55A2DE1E9FDF0A00D721CE /* SettingsMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsMenuViewController.swift; path = SettingsMenuViewController.swift; sourceTree = "<group>"; };
+		CB55A2E01E9FDF1D00D721CE /* SettingsMenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsMenuViewModel.swift; path = SettingsMenuViewModel.swift; sourceTree = "<group>"; };
 		CB8A15211E769F1F0023B2F9 /* EventTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTracker.swift; sourceTree = "<group>"; };
 		CB8A15261E76A1280023B2F9 /* PageEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageEvent.swift; sourceTree = "<group>"; };
 		CB8A152E1E76F27D0023B2F9 /* PageID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageID.swift; sourceTree = "<group>"; };
@@ -334,6 +338,7 @@
 				0B40DC0A1E9CA6A500E1659B /* PrepareContentTextTableViewCell.xib */,
 			);
 			name = PrepareContentTextTableViewCell;
+			path = PrepareContentTextTableViewCell;
 			sourceTree = "<group>";
 		};
 		0B40DC111E9CA6E500E1659B /* PrepareContentViedeoPreviewTableViewCell */ = {
@@ -343,6 +348,7 @@
 				0B40DC0E1E9CA6E100E1659B /* PrepareContentVideoPreviewTableViewCell.xib */,
 			);
 			name = PrepareContentViedeoPreviewTableViewCell;
+			path = PrepareContentViedeoPreviewTableViewCell;
 			sourceTree = "<group>";
 		};
 		0B40DC121E9CA6EF00E1659B /* PrepareContentHeaderTableViewCell */ = {
@@ -352,6 +358,7 @@
 				0B40DC141E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib */,
 			);
 			name = PrepareContentHeaderTableViewCell;
+			path = PrepareContentHeaderTableViewCell;
 			sourceTree = "<group>";
 		};
 		0BE7FD811E9CAC4000E3262E /* PrepareContentActionButtonsTableViewCell */ = {
@@ -361,6 +368,7 @@
 				0BE7FD831E9CAC7400E3262E /* PrepareContentActionButtonsTableViewCell.xib */,
 			);
 			name = PrepareContentActionButtonsTableViewCell;
+			path = PrepareContentActionButtonsTableViewCell;
 			sourceTree = "<group>";
 		};
 		0BE7FD871E9D2AB800E3262E /* PrepareContentStepTableViewCell */ = {
@@ -370,6 +378,7 @@
 				0BE7FD891E9D2AEF00E3262E /* PrepareContentStepTableViewCell.xib */,
 			);
 			name = PrepareContentStepTableViewCell;
+			path = PrepareContentStepTableViewCell;
 			sourceTree = "<group>";
 		};
 		0BE7FD8C1E9D2F4D00E3262E /* PrepareContentTitleTableViewCell */ = {
@@ -379,6 +388,7 @@
 				0BE7FD8E1E9D2F8800E3262E /* PrepareContentTitleTableViewCell.xib */,
 			);
 			name = PrepareContentTitleTableViewCell;
+			path = PrepareContentTitleTableViewCell;
 			sourceTree = "<group>";
 		};
 		7BD58BE66F7DCDCEF349DBD8 /* Frameworks */ = {
@@ -414,7 +424,7 @@
 				CB1E4F971E7FE22200287613 /* SettingsViewModel.swift */,
 			);
 			name = Settings;
-			path = ../Settings;
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		CB2880201E7050D10067890A /* Coordinators */ = {
@@ -463,7 +473,6 @@
 		CB369CD91E8D3E3700522293 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				CB1E4F991E7FE22900287613 /* Settings */,
 				CB369CE31E8E43DA00522293 /* Learn */,
 				CB369CDC1E8D3F0A00522293 /* Utilities */,
 				CB369CE11E8D5E3D00522293 /* Services.swift */,
@@ -488,6 +497,16 @@
 				CB369CDD1E8D3F5300522293 /* LearnContentService.swift */,
 			);
 			path = Learn;
+			sourceTree = "<group>";
+		};
+		CB55A2DD1E9FDED200D721CE /* Settings Menu */ = {
+			isa = PBXGroup;
+			children = (
+				CB55A2DE1E9FDF0A00D721CE /* SettingsMenuViewController.swift */,
+				CB55A2E01E9FDF1D00D721CE /* SettingsMenuViewModel.swift */,
+			);
+			name = "Settings Menu";
+			path = "Settings Menu";
 			sourceTree = "<group>";
 		};
 		CB8A15231E769F250023B2F9 /* Tracking */ = {
@@ -689,9 +708,9 @@
 			children = (
 				CCE372FB1E8D2A6300B79352 /* My Preep */,
 				CCEA22A11E8AC528003D0CF4 /* PerpareCheckList */,
+				CCEA22A61E8AC549003D0CF4 /* Prepare Events */,
 				CC4D1D7A1E82E6AD00B8D75E /* PrepareChat */,
 				CC7C0A111E8966E000A83583 /* PrepareContent */,
-				CCEA22A61E8AC549003D0CF4 /* Prepare Events */,
 			);
 			path = Prepare;
 			sourceTree = "<group>";
@@ -730,12 +749,12 @@
 		CC7C0A111E8966E000A83583 /* PrepareContent */ = {
 			isa = PBXGroup;
 			children = (
-				0BE7FD8C1E9D2F4D00E3262E /* PrepareContentTitleTableViewCell */,
-				0BE7FD871E9D2AB800E3262E /* PrepareContentStepTableViewCell */,
 				0BE7FD811E9CAC4000E3262E /* PrepareContentActionButtonsTableViewCell */,
 				0B40DC121E9CA6EF00E1659B /* PrepareContentHeaderTableViewCell */,
-				0B40DC111E9CA6E500E1659B /* PrepareContentViedeoPreviewTableViewCell */,
+				0BE7FD871E9D2AB800E3262E /* PrepareContentStepTableViewCell */,
 				0B40DC081E9CA65D00E1659B /* PrepareContentTextTableViewCell */,
+				0BE7FD8C1E9D2F4D00E3262E /* PrepareContentTitleTableViewCell */,
+				0B40DC111E9CA6E500E1659B /* PrepareContentViedeoPreviewTableViewCell */,
 				CCCC21201E8981CA00133839 /* PrepareContentViewController.swift */,
 				0B40DC061E9CA65300E1659B /* PrepareContentViewController.xib */,
 				CCCC21211E8981CA00133839 /* PrepareContentViewModel.swift */,
@@ -838,6 +857,8 @@
 			children = (
 				CCFCACBD1E8D5DBE00EA3119 /* Benefits */,
 				CCE373011E8D325C00B79352 /* Library */,
+				CB1E4F991E7FE22900287613 /* Settings */,
+				CB55A2DD1E9FDED200D721CE /* Settings Menu */,
 				CCE373001E8D324B00B79352 /* Sidebar */,
 			);
 			path = Sidebar;
@@ -909,7 +930,7 @@
 				CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */,
 			);
 			name = "Prepare Events";
-			path = PrepareTrips;
+			path = "Prepare Events";
 			sourceTree = "<group>";
 		};
 		CCFCACBD1E8D5DBE00EA3119 /* Benefits */ = {
@@ -1005,7 +1026,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "QOT" */;
+			buildConfigurationList = CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "qot" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1209,6 +1230,7 @@
 				CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */,
 				CB369CE71E8E470800522293 /* LearnCategory.swift in Sources */,
 				CB2880221E7050EB0067890A /* Coordinator.swift in Sources */,
+				CB55A2DF1E9FDF0A00D721CE /* SettingsMenuViewController.swift in Sources */,
 				CCC1B6A91E8B9B7300D1461F /* LearnCategoryListViewController.swift in Sources */,
 				CC4D1D7C1E82E75300B8D75E /* MeSectionViewController.swift in Sources */,
 				CBD7915F1E72FDC10006C590 /* LaunchViewModel.swift in Sources */,
@@ -1255,6 +1277,7 @@
 				0B40DC0B1E9CA6A500E1659B /* PrepareContentTextTableViewCell.swift in Sources */,
 				CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */,
 				CB8A153A1E7801B90023B2F9 /* CalendarEvent.swift in Sources */,
+				CB55A2E11E9FDF1D00D721CE /* SettingsMenuViewModel.swift in Sources */,
 				CCAF03261E801B0E00015125 /* SettingsViewControllerDelegate.swift in Sources */,
 				CCE372FF1E8D2AE700B79352 /* MyPrepViewModel.swift in Sources */,
 				CCC1B6AB1E8B9B7300D1461F /* LearnCategoryListViewModel.swift in Sources */,
@@ -1491,7 +1514,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "QOT" */ = {
+		CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "qot" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBB238071E6FFF1300AB5AEF /* Debug */,
