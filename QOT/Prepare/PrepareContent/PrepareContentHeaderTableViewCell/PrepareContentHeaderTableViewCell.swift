@@ -10,8 +10,20 @@ import UIKit
 
 class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
 
+    @IBOutlet weak var bottomSeparator: UIView!
+    @IBOutlet weak var verticalPlusBar: UIView!
     @IBOutlet weak var headerLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        print("\(selected)")
+        if selected {
+            bottomSeparator.alpha = 0
+            verticalPlusBar.alpha = 0
+        }
     }
 }

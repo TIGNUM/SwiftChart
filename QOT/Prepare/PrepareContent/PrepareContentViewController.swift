@@ -37,7 +37,6 @@ final class PrepareContentViewController: UIViewController, UITableViewDelegate,
 
     init(viewModel: PrepareContentViewModel) {
         self.viewModel = viewModel
-
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -109,13 +108,12 @@ extension PrepareContentViewController {
             let url = URL(string: "\(item.placeholderURL)")!
             cell.previewImage.kf.setImage(with: url)
             cell.previewImage.kf.indicatorType = .activity
-
             return cell
 
         case .step(let item):
             let cell: PrepareContentStepTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.setStepNumber(stepIndex: item.index)
-            cell.stepContentLabel.text = item.text
+            cell.prepareAndSetTextAttributes(string: item.text)
             return cell
 
         case .sectionFooter(let item):
@@ -133,14 +131,14 @@ extension PrepareContentViewController {
             let cell: PrepareContentTitleTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.titleLabel.text = item.text.uppercased()
             return cell
-
         }
     }
 
     // NOT Fully implemented because not sure how You want this to be done - i'll ask on standup
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
         let contentItem = self.viewModel.item(at: indexPath.row)
+
+        tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableViewScrollPosition.none)
 
         switch contentItem {
 

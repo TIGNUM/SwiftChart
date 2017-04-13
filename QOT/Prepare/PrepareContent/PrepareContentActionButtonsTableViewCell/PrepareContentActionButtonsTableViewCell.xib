@@ -17,7 +17,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="173" id="KGk-i7-Jjw" customClass="PrepareContentActionButtonsTableViewCell" customModule="QOT" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="173" id="KGk-i7-Jjw" customClass="PrepareContentActionButtonsTableViewCell" customModule="QOT" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="173"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -25,33 +25,33 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Mn-20-sW5">
-                        <rect key="frame" x="57" y="28" width="206" height="30"/>
+                        <rect key="frame" x="57" y="28.5" width="206" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="Q9W-UY-8Br"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="16"/>
                         <state key="normal" title="Add preparation to calendar">
-                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="titleColor" red="1" green="1" blue="1" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                         </state>
                         <connections>
                             <action selector="addPreparationToCalendarWithSender:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="c6o-aA-6zA"/>
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qSi-o2-dAi">
-                        <rect key="frame" x="113" y="66" width="94" height="30"/>
+                        <rect key="frame" x="113" y="73.5" width="94" height="30"/>
                         <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="16"/>
                         <state key="normal" title="Add to notes">
-                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="titleColor" white="1" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
                             <action selector="addToNotesWithSender:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="XE4-sf-Gjl"/>
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KDI-H7-TKq">
-                        <rect key="frame" x="131.5" y="104" width="57" height="30"/>
+                        <rect key="frame" x="131.5" y="118.5" width="57" height="30"/>
                         <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="16"/>
                         <state key="normal" title="Save as">
-                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="titleColor" white="1" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
                             <action selector="saveAsSender:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="OFW-KT-0I5"/>
@@ -65,10 +65,10 @@
                     <constraint firstItem="qSi-o2-dAi" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Fov-w2-ycc"/>
                     <constraint firstItem="qSi-o2-dAi" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="KCS-FM-JVk"/>
                     <constraint firstItem="KDI-H7-TKq" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="MI3-ab-Yym"/>
-                    <constraint firstItem="KDI-H7-TKq" firstAttribute="top" secondItem="qSi-o2-dAi" secondAttribute="bottom" constant="8" id="SaZ-wJ-NOh"/>
+                    <constraint firstItem="KDI-H7-TKq" firstAttribute="top" secondItem="qSi-o2-dAi" secondAttribute="bottom" constant="15" id="SaZ-wJ-NOh"/>
                     <constraint firstItem="1Mn-20-sW5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="20" id="VmN-p3-yuD"/>
                     <constraint firstItem="KDI-H7-TKq" firstAttribute="height" secondItem="qSi-o2-dAi" secondAttribute="height" id="YtQ-0M-heR"/>
-                    <constraint firstItem="qSi-o2-dAi" firstAttribute="top" secondItem="1Mn-20-sW5" secondAttribute="bottom" constant="8" id="ymN-bW-Pmc"/>
+                    <constraint firstItem="qSi-o2-dAi" firstAttribute="top" secondItem="1Mn-20-sW5" secondAttribute="bottom" constant="15" id="ymN-bW-Pmc"/>
                     <constraint firstItem="qSi-o2-dAi" firstAttribute="height" secondItem="1Mn-20-sW5" secondAttribute="height" id="zgh-PZ-ELN"/>
                 </constraints>
             </tableViewCellContentView>

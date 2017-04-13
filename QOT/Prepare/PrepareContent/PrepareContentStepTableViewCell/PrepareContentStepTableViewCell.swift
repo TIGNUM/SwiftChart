@@ -18,10 +18,20 @@ class PrepareContentStepTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func setStepNumber(stepIndex: Index) {
-        if(stepIndex>9) {
+        if stepIndex > 9 {
             self.stepNumberLabel.text = ".\(stepIndex)"
         } else {
             self.stepNumberLabel.text = ".0\(stepIndex)"
         }
     }
+
+    func prepareAndSetTextAttributes(string: String) {
+        let attrString = NSMutableAttributedString(string: string)
+        let style = NSMutableParagraphStyle()
+        style.lineSpacing = 16
+        attrString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSRange(location: 0, length: string.characters.count))
+        attrString.addAttribute(NSFontAttributeName, value: UIFont(name: "BentonSans-Book", size: 16)!, range: NSRange(location: 0, length: string.characters.count))
+        self.stepContentLabel.attributedText = attrString
+    }
+
 }
