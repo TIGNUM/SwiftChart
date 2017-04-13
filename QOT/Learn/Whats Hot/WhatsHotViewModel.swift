@@ -10,14 +10,14 @@ import Foundation
 import ReactiveKit
 
 final class WhatsHotViewModel {
-
+    
     private let items = mockWhatsHotItems()
     let updates = PublishSubject<CollectionUpdate, NoError>()
-
+    
     var itemCount: Int {
         return items.count
     }
-
+    
     func item(at index: Index) -> WhatsHotItem {
         return items[index]
     }
@@ -54,7 +54,7 @@ private func mockWhatsHotItems() -> [WhatsHotItem] {
             placeholderURL: URL(string:"https://static.pexels.com/photos/348323/pexels-photo-348323.jpeg")!,
             bookmarked: false
         ),
-
+        
         MockWhatsHotItem(
             localID: UUID().uuidString,
             identifier: AttributedString.Learn.WhatsHot.identifier(string: ".086"),
@@ -64,7 +64,7 @@ private func mockWhatsHotItems() -> [WhatsHotItem] {
             placeholderURL: URL(string:"https://static.pexels.com/photos/234171/pexels-photo-234171.jpeg")!,
             bookmarked: false
         ),
-
+        
         MockWhatsHotItem(
             localID: UUID().uuidString,
             identifier: AttributedString.Learn.WhatsHot.identifier(string: ".085"),
@@ -74,7 +74,7 @@ private func mockWhatsHotItems() -> [WhatsHotItem] {
             placeholderURL: URL(string:"https://images.pexels.com/photos/7715/pexels-photo.jpg?w=1260&h=750&auto=compress&cs=tinysrgb")!,
             bookmarked: false
         ),
-
+        
         MockWhatsHotItem(
             localID: UUID().uuidString,
             identifier: AttributedString.Learn.WhatsHot.identifier(string: ".084"),

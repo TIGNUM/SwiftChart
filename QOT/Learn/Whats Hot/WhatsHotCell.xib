@@ -83,7 +83,6 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="awG-he-L07" secondAttribute="trailing" constant="28" id="4UE-oq-0ca"/>
-                <constraint firstItem="VQl-Re-jfO" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="4hB-ZR-jxt"/>
                 <constraint firstItem="05D-0B-trv" firstAttribute="leading" secondItem="Oa2-gh-lrd" secondAttribute="trailing" constant="8" id="6SD-QV-O68"/>
                 <constraint firstAttribute="trailing" secondItem="05D-0B-trv" secondAttribute="trailing" constant="28.5" id="EfY-Bw-fDJ"/>
                 <constraint firstItem="awG-he-L07" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="64" id="Fyy-mZ-uFT"/>
@@ -114,7 +113,7 @@
                 <outlet property="numberLabel" destination="4LO-rE-AEC" id="5nJ-dh-fCy"/>
                 <outlet property="thoughtLabel" destination="Oa2-gh-lrd" id="70k-tD-vjt"/>
             </connections>
-            <point key="canvasLocation" x="38" y="-118.5"/>
+            <point key="canvasLocation" x="38" y="-119"/>
         </collectionViewCell>
     </objects>
 </document>

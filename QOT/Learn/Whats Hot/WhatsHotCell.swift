@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 class WhatsHotCell: UICollectionViewCell, Dequeueable {
-
+    
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var numberLabel: UILabel!
     @IBOutlet private weak var thoughtLabel: UILabel!

@@ -37,6 +37,9 @@ class WhatsHotViewController: UIViewController {
 
         view.backgroundColor = .black
         collectionView.registerDequeueable(WhatsHotCell.self)
+        let layout = WhatsHotLayout()
+        collectionView.collectionViewLayout = layout
+        
     }
 }
 
@@ -61,8 +64,8 @@ extension WhatsHotViewController: UICollectionViewDataSource {
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        return CGSize(width: 376, height: 352)
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        print(scrollView.frame)
     }
 }
