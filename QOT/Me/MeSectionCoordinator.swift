@@ -8,11 +8,6 @@
 
 import Foundation
 
-protocol MeSectionDelegate: class {
-    
-    func didTapMeSectionItem(in viewController: MeSectionViewController)
-}
-
 final class MeSectionCoordinator: ParentCoordinator {
     
     // MARK: - Properties

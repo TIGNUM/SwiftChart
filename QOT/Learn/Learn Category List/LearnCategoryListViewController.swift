@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Rswift
 
 /// The delegate of a `LearnCategoryListViewController`.
 protocol LearnCategoryListViewControllerDelegate: class {

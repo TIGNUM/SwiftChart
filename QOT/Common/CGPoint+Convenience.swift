@@ -20,4 +20,16 @@ extension CGPoint {
         let center = CGPoint(x: frame.midX, y: frame.midY)
         return center.distanceTo(self) <= radius
     }
+
+    /// Will return a new point depending on a given point.
+    ///
+    /// - Parameters:
+    ///     - dsitance:         The distance from the relative center.
+    ///     - angle:            The angle in radians.
+    func shifted(_ distance: CGFloat, with angle: CGFloat) -> CGPoint {
+        let converted = angle.degreesToRadians
+        let xPos = self.x + distance * cos(converted)
+        let yPos = self.y + distance * sin(converted)
+        return CGPoint(x: xPos, y: yPos)
+    }
 }
