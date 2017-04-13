@@ -334,7 +334,7 @@
 				CB1E4F971E7FE22200287613 /* SettingsViewModel.swift */,
 			);
 			name = Settings;
-			path = ../Settings;
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		CB2880201E7050D10067890A /* Coordinators */ = {
@@ -383,8 +383,8 @@
 		CB369CD91E8D3E3700522293 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				CB1E4F991E7FE22900287613 /* Settings */,
 				CB369CE31E8E43DA00522293 /* Learn */,
+				CB1E4F991E7FE22900287613 /* Settings */,
 				CB369CDC1E8D3F0A00522293 /* Utilities */,
 				CB369CE11E8D5E3D00522293 /* Services.swift */,
 			);
@@ -609,9 +609,9 @@
 			children = (
 				CCE372FB1E8D2A6300B79352 /* My Preep */,
 				CCEA22A11E8AC528003D0CF4 /* PerpareCheckList */,
+				CCEA22A61E8AC549003D0CF4 /* Prepare Events */,
 				CC4D1D7A1E82E6AD00B8D75E /* PrepareChat */,
 				CC7C0A111E8966E000A83583 /* PrepareContent */,
-				CCEA22A61E8AC549003D0CF4 /* Prepare Events */,
 			);
 			path = Prepare;
 			sourceTree = "<group>";
@@ -822,7 +822,7 @@
 				CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */,
 			);
 			name = "Prepare Events";
-			path = PrepareTrips;
+			path = "Prepare Events";
 			sourceTree = "<group>";
 		};
 		CCFCACBD1E8D5DBE00EA3119 /* Benefits */ = {
