@@ -21,7 +21,7 @@ class PrepareContentActionButtonsTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var addPreparationToCalendarButton: UIButton!
     @IBOutlet weak var addToNotesButton: UIButton!
     @IBOutlet weak var saveAsButton: UIButton!
-    var item: String?
+    var sectionID: String?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,15 +29,15 @@ class PrepareContentActionButtonsTableViewCell: UITableViewCell, Dequeueable {
     }
 
     @IBAction func addPreparationToCalendar(sender: UIButton) {
-        self.delegate?.didAddPreparationToCalendar(sectionID: self.item, cell: self)
+        delegate?.didAddPreparationToCalendar(sectionID: sectionID, cell: self)
     }
 
     @IBAction func addToNotes(sender: UIButton) {
-        self.delegate?.didAddToNotes(sectionID: self.item, cell: self)
+        delegate?.didAddToNotes(sectionID: sectionID, cell: self)
     }
 
     @IBAction func saveAs(sender: UIButton) {
-        self.delegate?.didSaveAss(sectionID: self.item, cell: self)
+        delegate?.didSaveAss(sectionID: sectionID, cell: self)
     }
     
 }

@@ -13,6 +13,6 @@ class PrepareContentTitleTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var titleLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.titleLabel.font = UIFont(name: "Simple-Regular", size: 36.0)
+        titleLabel.font = UIFont(name: "Simple-Regular", size: 36.0)
     }
 }

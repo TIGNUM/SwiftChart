@@ -44,26 +44,22 @@ final class PrepareContentViewController: UIViewController, UITableViewDelegate,
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        updateTableView(with: self.tableView)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .black
 
-        self.tableView.registerDequeueable(PrepareContentTextTableViewCell.self)
-        self.tableView.registerDequeueable(PrepareContentHeaderTableViewCell.self)
-        self.tableView.registerDequeueable(PrepareContentVideoPreviewTableViewCell.self)
-        self.tableView.registerDequeueable(PrepareContentStepTableViewCell.self)
-        self.tableView.registerDequeueable(PrepareContentTitleTableViewCell.self)
-        self.tableView.registerDequeueable(PrepareContentActionButtonsTableViewCell.self)
+        tableView.registerDequeueable(PrepareContentTextTableViewCell.self)
+        tableView.registerDequeueable(PrepareContentHeaderTableViewCell.self)
+        tableView.registerDequeueable(PrepareContentVideoPreviewTableViewCell.self)
+        tableView.registerDequeueable(PrepareContentStepTableViewCell.self)
+        tableView.registerDequeueable(PrepareContentTitleTableViewCell.self)
+        tableView.registerDequeueable(PrepareContentActionButtonsTableViewCell.self)
 
-        self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.estimatedRowHeight = estimatedRowHeight
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = estimatedRowHeight
+
+        updateTableView(with: tableView)
     }
 
     func closeView(gestureRecognizer: UITapGestureRecognizer) {
@@ -90,7 +86,7 @@ extension PrepareContentViewController {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let contentItem = self.viewModel.item(at: indexPath.row)
+        let contentItem = viewModel.item(at: indexPath.row)
 
         switch contentItem {
         case .header(_, let title, let open):
@@ -116,15 +112,16 @@ extension PrepareContentViewController {
             cell.prepareAndSetTextAttributes(string: item.text)
             return cell
 
-        case .sectionFooter(let item):
+        case .sectionFooter(let sectionID):
             let cell: PrepareContentActionButtonsTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.item = item
+            cell.sectionID = sectionID
             cell.delegate = self
             return cell
 
         case .tableFooter:
             let cell: PrepareContentActionButtonsTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.delegate = self
+            cell.sectionID = nil
             return cell
 
         case .title(let item):
@@ -136,7 +133,7 @@ extension PrepareContentViewController {
 
     // NOT Fully implemented because not sure how You want this to be done - i'll ask on standup
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let contentItem = self.viewModel.item(at: indexPath.row)
+        let contentItem = viewModel.item(at: indexPath.row)
 
         tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableViewScrollPosition.none)
 

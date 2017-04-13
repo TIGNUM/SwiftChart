@@ -21,6 +21,6 @@ class PrepareContentTextTableViewCell: UITableViewCell, Dequeueable {
         style.lineSpacing = 13
         attrString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSRange(location: 0, length: string.characters.count))
         attrString.addAttribute(NSFontAttributeName, value: UIFont(name: "BentonSans-Book", size: 16)!, range: NSRange(location: 0, length: string.characters.count))
-        self.contentLabel.attributedText = attrString
+        contentLabel.attributedText = attrString
     }
 }
