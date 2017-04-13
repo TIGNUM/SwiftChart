@@ -74,40 +74,16 @@ private extension MyWhyView {
     }
 
     func addToBeVision(layout: Layout.MeSection, vision: Vision) {
-        let shiftedXPos = layout.myWhyVisionFooterXPos
-        let shiftedYPos = layout.myWhyVisionFooterYPos
-        let footerLabelLabelFrame = CGRect(
-            x: shiftedXPos,
-            y: shiftedYPos,
-            width: 0,
-            height: Layout.MeSection.labelHeight
-        )
-
-        let visionLabelLabelFrame = CGRect(
-            x: shiftedXPos,
-            y: layout.viewControllerFrame.height * 0.25,
-            width: layout.profileImageWidth * 2.25,
-            height: Layout.MeSection.labelHeight
-        )
-
-        addSubview(footerLabel(with: vision.title, labelFrame: footerLabelLabelFrame))
-        addSubview(visionLabel(with: vision.text, labelFrame: visionLabelLabelFrame))
+        addSubview(footerLabel(with: vision.title, labelFrame: layout.myWhyVisionFooterFrame))
+        addSubview(visionLabel(with: vision.text, labelFrame: layout.myWhyVisionLabelFrame))
     }
 
     func addWeeklyChoices(layout: Layout.MeSection, title: String, choices: [WeeklyChoice]) {
-        let shiftedXPos = layout.myWhyWeeklyChoicesFooterXPos
-        let shiftedYPos = layout.myWhyWeeklyChoicesFooterYPos
-        let labelFrame = CGRect(x: shiftedXPos, y: shiftedYPos, width: 0, height: Layout.MeSection.labelHeight)
-
-        addSubview(footerLabel(with: title, labelFrame: labelFrame))
+        addSubview(footerLabel(with: title, labelFrame: layout.myWhyWeeklyChoicesFooterFrame))
     }
 
     func addPartners(layout: Layout.MeSection, title: String, partners: [Partner]) {
-        let shiftedXPos = layout.myWhyPartnersFooterXPos
-        let shiftedYPos = layout.myWhyPartnersFooterYPos
-        let labelFrame = CGRect(x: shiftedXPos, y: shiftedYPos, width: 0, height: Layout.MeSection.labelHeight)
-
-        addSubview(footerLabel(with: title, labelFrame: labelFrame))
+        addSubview(footerLabel(with: title, labelFrame: layout.myWhyPartnersFooterFrame))
     }
 }
 

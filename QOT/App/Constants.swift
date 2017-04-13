@@ -76,6 +76,24 @@ struct Layout {
             return viewControllerFrame.height * 0.425
         }
 
+        var myWhyVisionFooterFrame: CGRect {
+            return CGRect(
+                x: myWhyVisionFooterXPos,
+                y: myWhyVisionFooterYPos,
+                width: 0,
+                height: Layout.MeSection.labelHeight
+            )
+        }
+
+        var myWhyVisionLabelFrame: CGRect {
+            return CGRect(
+                x: myWhyVisionFooterXPos,
+                y: viewControllerFrame.height * 0.25,
+                width: profileImageWidth * 2.25,
+                height: Layout.MeSection.labelHeight
+            )
+        }
+
         var myWhyWeeklyChoicesFooterXPos: CGFloat {
             return viewControllerFrame.width * 0.25
         }
@@ -84,12 +102,30 @@ struct Layout {
             return viewControllerFrame.height * 0.64
         }
 
+        var myWhyWeeklyChoicesFooterFrame: CGRect {
+            return CGRect(
+                x: myWhyWeeklyChoicesFooterXPos,
+                y: myWhyWeeklyChoicesFooterYPos,
+                width: 0,
+                height: Layout.MeSection.labelHeight
+            )
+        }
+
         var myWhyPartnersFooterXPos: CGFloat {
             return viewControllerFrame.width * 0.1
         }
 
         var myWhyPartnersFooterYPos: CGFloat {
             return viewControllerFrame.height * 0.8
+        }
+
+        var myWhyPartnersFooterFrame: CGRect {
+            return CGRect(
+                x: myWhyPartnersFooterXPos,
+                y: myWhyPartnersFooterYPos,
+                width: 0,
+                height: Layout.MeSection.labelHeight
+            )
         }
 
         var loadCenter: CGPoint {
