@@ -97,7 +97,7 @@ private var myToBeVision: Vision {
     return MockVison(
         localID: UUID().uuidString,
         title: R.string.localized.meSectorMyWhyVisionTitle(),
-        text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore")
+        text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut")
 }
 
 private var weeklyChoices: [WeeklyChoice] {
