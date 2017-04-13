@@ -26,7 +26,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADD THIS PREPARATION TO" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vYR-BS-GB4">
-                    <rect key="frame" x="86" y="27" width="202.5" height="19.5"/>
+                    <rect key="frame" x="86" y="30" width="202.5" height="19.5"/>
                     <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="16"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -44,7 +44,7 @@
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="Ei3-aG-OqI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="80" id="4D0-RN-qFg"/>
-                <constraint firstItem="vYR-BS-GB4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="27" id="Ho3-Bs-B8h"/>
+                <constraint firstItem="vYR-BS-GB4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="Ho3-Bs-B8h"/>
                 <constraint firstAttribute="bottom" secondItem="Ei3-aG-OqI" secondAttribute="bottom" id="Ji1-p4-fi0"/>
                 <constraint firstAttribute="trailing" secondItem="Ei3-aG-OqI" secondAttribute="trailing" id="SOQ-ID-kti"/>
                 <constraint firstItem="Ei3-aG-OqI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="UYe-f1-Ur0"/>
