@@ -16,15 +16,18 @@ final class MeSectionViewController: UIViewController {
     
     // MARK: - Properties
 
-    fileprivate let viewModel: MeSectionViewModel
+    fileprivate let myDataViewModel: MeSectionViewModel
+    fileprivate let myWhyViewModel: MyWhyViewModel
     fileprivate var scrollView: UIScrollView?
     fileprivate var solarView: MeSolarView?
+    fileprivate var myWhyView: MyWhyView?
     weak var delegate: MeSectionViewControllerDelegate?
 
     // MARK: - Life Cycle
 
-    init(viewModel: MeSectionViewModel) {
-        self.viewModel = viewModel
+    init(myDataViewModel: MeSectionViewModel, myWhyViewModel: MyWhyViewModel) {
+        self.myDataViewModel = myDataViewModel
+        self.myWhyViewModel = myWhyViewModel
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -61,8 +64,10 @@ private extension MeSectionViewController {
 
     func addSubViews() {
         setupScrollView(layout: Layout.MeSection(viewControllerFrame: view.bounds))
-        let solarView = MeSolarView(sectors: viewModel.sectors, profileImage: viewModel.profileImage, frame: view.bounds)
+        let solarView = MeSolarView(sectors: myDataViewModel.sectors, profileImage: myDataViewModel.profileImage, frame: view.bounds)
         scrollView?.addSubview(solarView)
+        let myWhyViewFrame = CGRect(x: view.bounds.width, y: 0, width: view.bounds.width, height: view.bounds.height)
+        scrollView?.addSubview(MyWhyView(myWhyItems: myWhyViewModel.items, frame: myWhyViewFrame))
         self.solarView = solarView
     }
 
@@ -73,14 +78,14 @@ private extension MeSectionViewController {
         let beta = acos(xPosShifted / radius)
         let sectorAngle = beta.radiansToDegrees
 
-        for (_, sector) in viewModel.sectors.enumerated() {
+        for (_, sector) in myDataViewModel.sectors.enumerated() {
             if yPosShifted >= 0 {
                 if sector.startAngle ... sector.endAngle ~= sectorAngle {
                     return sector
                 }
 
                 if sectorAngle < 100 {
-                    return viewModel.sectors.last
+                    return myDataViewModel.sectors.last
                 }
             } else {
                 let mappedSectorAngle = 180 + (180 - sectorAngle)
@@ -89,7 +94,7 @@ private extension MeSectionViewController {
                 }
 
                 if sectorAngle < 100 {
-                    return viewModel.sectors.first
+                    return myDataViewModel.sectors.first
                 }
             }
         }

@@ -28,7 +28,10 @@ final class TabBarCoordinator: ParentCoordinator {
     }()
     
     fileprivate lazy var meSectionViewController: MeSectionViewController = {
-        let meViewController = MeSectionViewController(viewModel: MeSectionViewModel())
+        let meViewController = MeSectionViewController(
+            myDataViewModel: MeSectionViewModel(),
+            myWhyViewModel: MyWhyViewModel()
+        )
         meViewController.delegate = self
         
         return meViewController
