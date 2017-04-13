@@ -117,7 +117,7 @@ private extension MeSectionViewController {
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.contentSize = CGSize(
-            width: (view.frame.width * 2) - (layout.scrollViewOffset * 4),
+            width: (view.frame.width * 2) - (layout.scrollViewOffset * 3.5),
             height: view.frame.height - 84
             // TODO: Change it when the tabBar is all setup corectly with bottomLayout.
         )
