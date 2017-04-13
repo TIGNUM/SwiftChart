@@ -11,7 +11,7 @@ import UIKit
 class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet weak var bottomSeparator: UIView!
-    @IBOutlet weak var verticalPlusBar: UIView!
+    @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var headerLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,6 +20,6 @@ class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
     func setTitle(title: String, open: Bool) {
         headerLabel.text = title
         bottomSeparator.isHidden = open
-        verticalPlusBar.isHidden = open
+        iconImageView.image = open ? R.image.prepareContentMinusIcon() : R.image.prepareContentPlusIcon()
     }
 }

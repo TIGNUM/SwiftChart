@@ -30,32 +30,6 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ffM-3M-pBe">
-                        <rect key="frame" x="262" y="17" width="28" height="28"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VFB-VF-Bhq">
-                                <rect key="frame" x="13" y="0.0" width="2" height="28"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="0.79947024828767121" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2g4-3u-kpB">
-                                <rect key="frame" x="0.0" y="13" width="28" height="2"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="0.79947024830000002" colorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="VFB-VF-Bhq" secondAttribute="bottom" id="0zB-R8-zbL"/>
-                            <constraint firstAttribute="trailing" secondItem="VFB-VF-Bhq" secondAttribute="trailing" constant="13" id="8JI-uu-svc"/>
-                            <constraint firstAttribute="bottom" secondItem="2g4-3u-kpB" secondAttribute="bottom" constant="13" id="P7z-1f-rif"/>
-                            <constraint firstAttribute="height" constant="28" id="VM5-IZ-BI7"/>
-                            <constraint firstAttribute="width" constant="28" id="bfX-14-3Sz"/>
-                            <constraint firstItem="2g4-3u-kpB" firstAttribute="leading" secondItem="ffM-3M-pBe" secondAttribute="leading" id="eqL-p0-akg"/>
-                            <constraint firstItem="2g4-3u-kpB" firstAttribute="top" secondItem="ffM-3M-pBe" secondAttribute="top" constant="13" id="eyb-ke-uWJ"/>
-                            <constraint firstAttribute="trailing" secondItem="2g4-3u-kpB" secondAttribute="trailing" id="kWe-Ke-Zeu"/>
-                            <constraint firstItem="VFB-VF-Bhq" firstAttribute="top" secondItem="ffM-3M-pBe" secondAttribute="top" id="qEg-ot-O2U"/>
-                            <constraint firstItem="VFB-VF-Bhq" firstAttribute="leading" secondItem="ffM-3M-pBe" secondAttribute="leading" constant="13" id="rDJ-jC-41Q"/>
-                        </constraints>
-                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rvi-Rq-pK3">
                         <rect key="frame" x="30" y="-1" width="260" height="1"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -70,18 +44,25 @@
                             <constraint firstAttribute="height" constant="1" id="98p-mZ-qnZ"/>
                         </constraints>
                     </view>
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bhW-Ua-p8J">
+                        <rect key="frame" x="266" y="20" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="UBi-QZ-jFO"/>
+                            <constraint firstAttribute="height" constant="24" id="gu2-Jk-U14"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
+                    <constraint firstItem="bhW-Ua-p8J" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="2aR-1M-Yak"/>
                     <constraint firstAttribute="bottom" secondItem="Xep-Tb-3xn" secondAttribute="bottom" constant="15" id="5Ih-yn-pN8"/>
+                    <constraint firstAttribute="trailing" secondItem="bhW-Ua-p8J" secondAttribute="trailing" constant="30" id="98q-Ed-qVZ"/>
                     <constraint firstItem="Xep-Tb-3xn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="BOX-hd-hxt"/>
                     <constraint firstItem="rvi-Rq-pK3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="HMh-cp-MWS"/>
                     <constraint firstItem="Xep-Tb-3xn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="MSZ-bG-bor"/>
                     <constraint firstItem="5uP-lK-igH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="NEo-ho-rrE"/>
-                    <constraint firstAttribute="trailing" secondItem="ffM-3M-pBe" secondAttribute="trailing" constant="30" id="Ntf-DR-Fzp"/>
                     <constraint firstAttribute="trailing" secondItem="5uP-lK-igH" secondAttribute="trailing" constant="30" id="PUH-ls-5LS"/>
                     <constraint firstAttribute="bottom" secondItem="5uP-lK-igH" secondAttribute="bottom" id="X1H-5u-KWI"/>
-                    <constraint firstItem="ffM-3M-pBe" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Zd1-lZ-m1f"/>
                     <constraint firstAttribute="trailing" secondItem="rvi-Rq-pK3" secondAttribute="trailing" constant="30" id="bzM-Ud-Ob5"/>
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Xep-Tb-3xn" secondAttribute="trailing" constant="5" id="kxg-h3-jL1"/>
                     <constraint firstItem="Xep-Tb-3xn" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ria-gE-THG"/>
@@ -92,7 +73,7 @@
             <connections>
                 <outlet property="bottomSeparator" destination="5uP-lK-igH" id="4hO-Tp-lFa"/>
                 <outlet property="headerLabel" destination="Xep-Tb-3xn" id="GtW-xi-ilM"/>
-                <outlet property="verticalPlusBar" destination="VFB-VF-Bhq" id="Fih-pP-QME"/>
+                <outlet property="iconImageView" destination="bhW-Ua-p8J" id="PNm-Bq-MJM"/>
             </connections>
             <point key="canvasLocation" x="35" y="64"/>
         </tableViewCell>

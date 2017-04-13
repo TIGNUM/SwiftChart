@@ -8,20 +8,20 @@
 
 import UIKit
 
-protocol PrepareContentActionButtonsTableViewCellDelegate {
-    func didAddPreparationToCalendar(sectionID: String, cell: UITableViewCell)
-    func didAddToNotes(sectionID: String, cell: UITableViewCell)
-    func didSaveAss(sectionID: String, cell: UITableViewCell)
+protocol PrepareContentActionButtonsTableViewCellDelegate: class {
+    func didAddPreparationToCalendar(sectionID: String?, cell: UITableViewCell)
+    func didAddToNotes(sectionID: String?, cell: UITableViewCell)
+    func didSaveAss(sectionID: String?, cell: UITableViewCell)
 }
 
 class PrepareContentActionButtonsTableViewCell: UITableViewCell, Dequeueable {
 
-    var delegate: PrepareContentActionButtonsTableViewCellDelegate?
+    weak var delegate: PrepareContentActionButtonsTableViewCellDelegate?
 
     @IBOutlet weak var addPreparationToCalendarButton: UIButton!
     @IBOutlet weak var addToNotesButton: UIButton!
     @IBOutlet weak var saveAsButton: UIButton!
-    var item: String = ""
+    var item: String?
     
     override func awakeFromNib() {
         super.awakeFromNib()

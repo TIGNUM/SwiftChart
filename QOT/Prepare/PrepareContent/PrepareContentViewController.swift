@@ -143,12 +143,12 @@ extension PrepareContentViewController {
         switch contentItem {
 
         case .header:
-            self.viewModel.didTapHeader(item: contentItem)
+            viewModel.didTapHeader(item: contentItem)
             break
 
         case.video(let item):
             let cell: PrepareContentVideoPreviewTableViewCell = tableView.dequeueCell(for: indexPath)
-            self.delegate?.didTapVideo(with: item.localID, from: cell.contentView, in: self)
+            delegate?.didTapVideo(with: item.localID, from: cell.contentView, in: self)
             break
 
         case .sectionFooter, .tableFooter, .text, .title, .step:
@@ -168,15 +168,27 @@ extension PrepareContentViewController {
         }
     }
 
-    func didAddPreparationToCalendar(sectionID: String, cell: UITableViewCell) {
-        self.delegate?.didTapAddPreparation(sectionID: sectionID, in: self)
+    func didAddPreparationToCalendar(sectionID: String?, cell: UITableViewCell) {
+        if let sectionID = sectionID {
+            delegate?.didTapAddPreparation(sectionID: sectionID, in: self)
+        } else {
+            delegate?.didTapAddPreparation(in: self)
+        }
     }
 
-    func didAddToNotes(sectionID: String, cell: UITableViewCell) {
-        self.delegate?.didTapAddToNotes(sectionID: sectionID, in: self)
+    func didAddToNotes(sectionID: String?, cell: UITableViewCell) {
+        if let sectionID = sectionID {
+            delegate?.didTapAddToNotes(sectionID: sectionID, in: self)
+        } else {
+            delegate?.didTapAddToNotes(in: self)
+        }
     }
 
-    func didSaveAss(sectionID: String, cell: UITableViewCell) {
-        self.delegate?.didTapSaveAs(sectionID: sectionID, in: self)
+    func didSaveAss(sectionID: String?, cell: UITableViewCell) {
+        if let sectionID = sectionID {
+            delegate?.didTapSaveAs(sectionID: sectionID, in: self)
+        } else {
+            delegate?.didTapSaveAs(in: self)
+        }
     }
 }
