@@ -13,9 +13,10 @@ protocol WhatsHotViewControllerDelegate: class {
     func didTapBookmark(at index: Index, with whatsHot: WhatsHotItem, in view: UIView, in viewController: WhatsHotViewController)
 }
 
-class WhatsHotViewController: UITableViewController {
+class WhatsHotViewController: UIViewController {
 
-    // MARK: - Properties
+   
+    @IBOutlet private weak var collectionView: UICollectionView!
 
     let viewModel: WhatsHotViewModel
     weak var delegate: WhatsHotViewControllerDelegate?
@@ -36,5 +37,24 @@ class WhatsHotViewController: UITableViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .black
+        collectionView.registerDequeueable(WhatsHotCell.self)
+    }
+}
+
+extension WhatsHotViewController: UICollectionViewDelegateFlowLayout {
+    
+}
+
+extension WhatsHotViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.itemCount
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let content = viewModel.item(at: indexPath.item)
+        let cell: WhatsHotCell = collectionView.dequeueCell(for: indexPath)
+        cell.setup(number: content.identifier, thought: content.subtitle, headline: content.text, duration: content.mediaInformation)
+        return cell
     }
 }

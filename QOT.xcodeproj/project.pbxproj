@@ -131,6 +131,9 @@
 		D540275F1E8D401F0013B783 /* LearnStrategyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D540275D1E8D401F0013B783 /* LearnStrategyViewController.xib */; };
 		D55CBED71E8A993200C690FB /* CGPoint+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55CBED61E8A993200C690FB /* CGPoint+Convenience.swift */; };
 		D57ECFB01E924CC2008F401B /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57ECFAF1E924CC2008F401B /* TabBarView.swift */; };
+		D58BD8701E9F5F3E005676DE /* WhatsHotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D58BD86E1E9F5F3E005676DE /* WhatsHotViewController.xib */; };
+		D58BD8771E9F65F7005676DE /* WhatsHotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58BD8751E9F65F7005676DE /* WhatsHotCell.swift */; };
+		D58BD8781E9F65F7005676DE /* WhatsHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D58BD8761E9F65F7005676DE /* WhatsHotCell.xib */; };
 		D5CD23D81E8BB73A002742C4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CD23D71E8BB73A002742C4 /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
@@ -277,6 +280,9 @@
 		D540275D1E8D401F0013B783 /* LearnStrategyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyViewController.xib; sourceTree = "<group>"; };
 		D55CBED61E8A993200C690FB /* CGPoint+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Convenience.swift"; sourceTree = "<group>"; };
 		D57ECFAF1E924CC2008F401B /* TabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		D58BD86E1E9F5F3E005676DE /* WhatsHotViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhatsHotViewController.xib; sourceTree = "<group>"; };
+		D58BD8751E9F65F7005676DE /* WhatsHotCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsHotCell.swift; sourceTree = "<group>"; };
+		D58BD8761E9F65F7005676DE /* WhatsHotCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhatsHotCell.xib; sourceTree = "<group>"; };
 		D5CD23D71E8BB73A002742C4 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -769,6 +775,9 @@
 			isa = PBXGroup;
 			children = (
 				CCE372F41E8CF10C00B79352 /* WhatsHotViewController.swift */,
+				D58BD86E1E9F5F3E005676DE /* WhatsHotViewController.xib */,
+				D58BD8751E9F65F7005676DE /* WhatsHotCell.swift */,
+				D58BD8761E9F65F7005676DE /* WhatsHotCell.xib */,
 				CCE372F21E8C1EDF00B79352 /* WhatsHotViewModel.swift */,
 			);
 			path = "Whats Hot";
@@ -945,6 +954,7 @@
 				CCAF032C1E80362700015125 /* SettingsTableViewCell.xib in Resources */,
 				CBD791661E768AB70006C590 /* MainMenuViewController.xib in Resources */,
 				D51D08881E8E80AF00FC7567 /* LearnStrategyVideoCell.xib in Resources */,
+				D58BD8701E9F5F3E005676DE /* WhatsHotViewController.xib in Resources */,
 				CCAF03281E802A6200015125 /* SettingsViewController.xib in Resources */,
 				CCC0C4CA1E827F87002A8362 /* BentonSans_Book.otf in Resources */,
 				D51D08841E8E806E00FC7567 /* LearnStrategyTextCell.xib in Resources */,
@@ -960,6 +970,7 @@
 				CBB237FA1E6FFF1200AB5AEF /* LaunchScreen.storyboard in Resources */,
 				D540275F1E8D401F0013B783 /* LearnStrategyViewController.xib in Resources */,
 				CBB237F71E6FFF1200AB5AEF /* Assets.xcassets in Resources */,
+				D58BD8781E9F65F7005676DE /* WhatsHotCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1193,6 +1204,7 @@
 				CC4D1D801E82EDE700B8D75E /* MeSectionCoordinator.swift in Sources */,
 				CCEA22A51E8AC53E003D0CF4 /* PrepareCheckListViewModel.swift in Sources */,
 				CB8A15311E76F31B0023B2F9 /* PageTrackable.swift in Sources */,
+				D58BD8771E9F65F7005676DE /* WhatsHotCell.swift in Sources */,
 				CB2880241E7051710067890A /* AppCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
