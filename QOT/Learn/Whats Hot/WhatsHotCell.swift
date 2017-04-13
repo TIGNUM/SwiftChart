@@ -29,7 +29,5 @@ class WhatsHotCell: UICollectionViewCell, Dequeueable {
         durationLabel.attributedText = duration
         imageView.kf.indicatorType = .activity
         imageView.kf.setImage(with: placeholderURL)
-        
     }
-
 }
