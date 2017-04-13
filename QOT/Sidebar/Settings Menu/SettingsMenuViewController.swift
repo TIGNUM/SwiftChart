@@ -42,4 +42,3 @@ final class SettingsMenuViewController: UIViewController {
         view.backgroundColor = .purple
     }
 }
-
