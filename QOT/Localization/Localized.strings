@@ -19,7 +19,13 @@
 "Sidebar.Title.About" = "About Tignum";
 "Sidebar.Title.Logout" = "Logout";
 
-
 "Tab.Bar.Item.Learn" = "LEARN";
 "Tab.Bar.Item.Me" = "ME";
 "Tab.Bar.Item.Prepare" = "PREPARE";
+
+"Me.Sector.Peak" = "Peak\nPerformance";
+"Me.Sector.Meetings" = "Meetings";
+"Me.Sector.Intensity" = "Intensity";
+"Me.Sector.Travel" = "Travel";
+"Me.Sector.Sleep" = "Sleep";
+"Me.Sector.Activity" = "Activity";

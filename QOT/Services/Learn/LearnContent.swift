@@ -31,6 +31,12 @@ extension Content: LearnContent {
     }
 
     var trackableEntityID: Int {
-        return id
+        // FIXME: Implement
+        return 0
+    }
+
+    var percentageViewed: Double {
+        let viewed = items.filter { $0.status == .viewed }
+        return Double(viewed.count) / Double(items.count)
     }
 }
