@@ -21,6 +21,8 @@ final class PrepareEventsViewController: UIViewController, UITableViewDelegate, 
     let viewModel: PrepareEventsViewModel
     weak var delegate: PrepareEventsViewControllerDelegate?
 
+    private let estimatedRowHeight: CGFloat = 140.0
+
     // MARK: - Life Cycle
 
     init(viewModel: PrepareEventsViewModel) {
@@ -36,14 +38,15 @@ final class PrepareEventsViewController: UIViewController, UITableViewDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .black
-
         tableView.registerDequeueable(PrepareEventsUpcomingTripTableViewCell.self)
         tableView.registerDequeueable(PrepareEventAddNewTripTableViewCell.self)
         tableView.registerDequeueable(PrepareEventSimpleTableViewCell.self)
 
         let nib = UINib(nibName: String(describing: PrepareEventHeaderTableViewCell.self), bundle: nil)
         tableView.register(nib, forHeaderFooterViewReuseIdentifier: String(describing: PrepareEventHeaderTableViewCell.self))
+
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = estimatedRowHeight
     }
 
     func closeView(gestureRecognizer: UITapGestureRecognizer) {
@@ -98,4 +101,13 @@ extension PrepareEventsViewController {
 
         return cell
     }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50.0
+    }
+
 }
