@@ -34,14 +34,7 @@ class MyPrepViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-<<<<<<< HEAD
         tableView.registerDequeueable(MyPrepTableViewCell.self)
-=======
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeView))
-        view.addGestureRecognizer(tapGestureRecognizer)
-        view.backgroundColor = .yellow
->>>>>>> 4a0a2cf8594ded6dd9c9900fcf7984e3a2aa9e90
     }
 
     func closeView(gestureRecognizer: UITapGestureRecognizer) {
