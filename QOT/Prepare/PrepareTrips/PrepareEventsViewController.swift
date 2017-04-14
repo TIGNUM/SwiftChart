@@ -17,6 +17,7 @@ final class PrepareEventsViewController: UIViewController, UITableViewDelegate, 
 
     // MARK: - Properties
 
+    @IBOutlet weak var viewTitleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     let viewModel: PrepareEventsViewModel
     weak var delegate: PrepareEventsViewControllerDelegate?
@@ -37,6 +38,10 @@ final class PrepareEventsViewController: UIViewController, UITableViewDelegate, 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let attrString = NSMutableAttributedString(string: "ADD THIS PREPARATION TO")
+        attrString.addAttribute(NSKernAttributeName, value: 1, range: NSRange(location: 0, length: "ADD THIS PREPARATION TO".characters.count))
+        viewTitleLabel.attributedText = attrString
 
         tableView.registerDequeueable(PrepareEventsUpcomingTripTableViewCell.self)
         tableView.registerDequeueable(PrepareEventAddNewTripTableViewCell.self)
@@ -70,22 +75,23 @@ extension PrepareEventsViewController {
         switch item {
         case .event(let event):
             let cell: PrepareEventsUpcomingTripTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.titleLabel.text = event.title
-            cell.dateLabel.text = event.subtitle
+            cell.prepareAndSetTextAttributes(string: event.title, label: cell.titleLabel, value: 1)
+            cell.prepareAndSetTextAttributes(string: event.subtitle, label: cell.dateLabel, value: 2)
             return cell
 
         case .addEvent:
             let cell: PrepareEventAddNewTripTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.prepareAndSetTextAttributes(string: "Add new trip", label: cell.addNewTripLabel, value: 1)
             return cell
 
         case .addReminder(let title):
             let cell: PrepareEventSimpleTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.titleLabel.text = title
+            cell.prepareAndSetTextAttributes(string: title, label: cell.titleLabel, value: -0.2)
             return cell
 
         case .saveToPDF(let title):
             let cell: PrepareEventSimpleTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.titleLabel.text = title
+            cell.prepareAndSetTextAttributes(string: title, label: cell.titleLabel, value: -0.2)
             return cell
         }
     }
@@ -97,7 +103,7 @@ extension PrepareEventsViewController {
             else {
                 fatalError("cannotCast")
         }
-        cell.headerTitleLabel.text = item
+        cell.prepareAndSetTextAttributes(string: item, label: cell.headerTitleLabel, value: 1)
 
         return cell
     }
