@@ -13,10 +13,10 @@ protocol MyPrepViewControllerDelegate: class {
     func didTapMyPrepItem(with myPrepItem: MyPrepItem, at index: Index, from view: UIView, in viewController: MyPrepViewController)
 }
 
-class MyPrepViewController: UITableViewController {
+class MyPrepViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: - Properties
-
+    @IBOutlet weak var tableView: UITableView!
     let viewModel: MyPrepViewModel
     weak var delegate: MyPrepViewControllerDelegate?
 
@@ -35,12 +35,43 @@ class MyPrepViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeView))
-        view.addGestureRecognizer(tapGestureRecognizer)
-        view.backgroundColor = .black
+        tableView.registerDequeueable(MyPrepTableViewCell.self)
     }
 
     func closeView(gestureRecognizer: UITapGestureRecognizer) {
         delegate?.didTapClose(in: self)
     }
+    
+    func prepareAndSetTextAttributes(string: String, label: UILabel, value: CGFloat) {
+        let attrString = NSMutableAttributedString(string: string)
+        attrString.addAttribute(NSKernAttributeName, value: value, range: NSRange(location: 0, length: string.characters.count))
+        label.attributedText = attrString
+    }
+
+}
+extension MyPrepViewController {
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = viewModel.item(at: indexPath.row)
+        let cell: MyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
+
+        cell.headerLabel.text = item.header
+        cell.mainTextLabel.text = item.text
+        cell.footerLabel.text = item.footer
+        cell.prepCount.text = ("\(item.totalPreparationCount)/\(item.finishedPreparationCount))")
+
+        return cell
+
+    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.itemCount
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 117
+    }
+
 }

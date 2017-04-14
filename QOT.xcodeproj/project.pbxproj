@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0BD6F6AF1EA0DA01001EBC4D /* MyPrepViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD6F6AE1EA0DA01001EBC4D /* MyPrepViewController.xib */; };
+		0BD6F6B31EA0E09A001EBC4D /* MyPrepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD6F6B11EA0E09A001EBC4D /* MyPrepTableViewCell.swift */; };
+		0BD6F6B41EA0E09A001EBC4D /* MyPrepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD6F6B21EA0E09A001EBC4D /* MyPrepTableViewCell.xib */; };
 		0CC2119BB6C36EF6F43B4ECD /* Pods_QOT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */; };
 		A29C0C8591D20568D6B8EB3E /* Pods_QOTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */; };
 		CB1E4F981E7FE22200287613 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1E4F971E7FE22200287613 /* SettingsViewModel.swift */; };
@@ -142,6 +145,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0BD6F6AE1EA0DA01001EBC4D /* MyPrepViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPrepViewController.xib; sourceTree = "<group>"; };
+		0BD6F6B11EA0E09A001EBC4D /* MyPrepTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyPrepTableViewCell.swift; path = MyPrepTableViewCell/MyPrepTableViewCell.swift; sourceTree = "<group>"; };
+		0BD6F6B21EA0E09A001EBC4D /* MyPrepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MyPrepTableViewCell.xib; path = MyPrepTableViewCell/MyPrepTableViewCell.xib; sourceTree = "<group>"; };
 		2F1C8D6D4864F462A3F805BB /* Pods-QOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.release.xcconfig"; sourceTree = "<group>"; };
 		42795728C4F3229DFB18981E /* Pods-QOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.debug.xcconfig"; sourceTree = "<group>"; };
 		5C87601C1FE7F833DF0D7A6B /* Pods-QOTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -295,6 +301,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0BD6F6B01EA0DE71001EBC4D /* MyPrepTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				0BD6F6B11EA0E09A001EBC4D /* MyPrepTableViewCell.swift */,
+				0BD6F6B21EA0E09A001EBC4D /* MyPrepTableViewCell.xib */,
+			);
+			name = MyPrepTableViewCell;
+			sourceTree = "<group>";
+		};
 		7BD58BE66F7DCDCEF349DBD8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -768,6 +783,8 @@
 		CCE372FB1E8D2A6300B79352 /* My Preep */ = {
 			isa = PBXGroup;
 			children = (
+				0BD6F6B01EA0DE71001EBC4D /* MyPrepTableViewCell */,
+				0BD6F6AE1EA0DA01001EBC4D /* MyPrepViewController.xib */,
 				CCE372FC1E8D2AD100B79352 /* MyPrepViewController.swift */,
 				CCE372FE1E8D2AE700B79352 /* MyPrepViewModel.swift */,
 			);
@@ -944,6 +961,8 @@
 				CCC1B6AA1E8B9B7300D1461F /* LearnCategoryListViewController.xib in Resources */,
 				CBD7915D1E72F2990006C590 /* LaunchViewController.xib in Resources */,
 				D51D088C1E8E80CD00FC7567 /* LearnStrategyArticleCell.xib in Resources */,
+				0BD6F6B41EA0E09A001EBC4D /* MyPrepTableViewCell.xib in Resources */,
+				0BD6F6AF1EA0DA01001EBC4D /* MyPrepViewController.xib in Resources */,
 				CCC0C4D41E82A8D9002A8362 /* Simple-Regular.ttf in Resources */,
 				CB8A15461E7986C90023B2F9 /* Localized.strings in Resources */,
 				D520BC941E8E655A00A2D107 /* LearnStrategyHeaderCell.xib in Resources */,
@@ -1160,6 +1179,7 @@
 				CBD791651E768AB70006C590 /* MainMenuViewController.swift in Sources */,
 				CB2880281E7057790067890A /* RootViewController.swift in Sources */,
 				D57ECFB01E924CC2008F401B /* TabBarView.swift in Sources */,
+				0BD6F6B31EA0E09A001EBC4D /* MyPrepTableViewCell.swift in Sources */,
 				CCE06FE01E8D44FC009C5AD2 /* LibraryCoordinator.swift in Sources */,
 				CCAF032A1E8035C800015125 /* SettingsTableViewCell.swift in Sources */,
 				CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */,
