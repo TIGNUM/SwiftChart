@@ -44,13 +44,13 @@ enum SidebarCellType: Int {
     
     var font: UIFont {
         switch self {
-        case .library: return Font.SideBar.default
-        case .benefits: return Font.SideBar.default
-        case .settings: return Font.SideBar.default
-        case .sensor: return Font.SideBar.default
-        case .about: return Font.SideBar.small
-        case .privacy: return Font.SideBar.small
-        case .logout: return Font.SideBar.small
+        case .library: return Font.H2SecondaryTitle
+        case .benefits: return Font.H2SecondaryTitle
+        case .settings: return Font.H2SecondaryTitle
+        case .sensor: return Font.H2SecondaryTitle
+        case .about: return Font.H5SecondaryHeadline
+        case .privacy: return Font.H5SecondaryHeadline
+        case .logout: return Font.H5SecondaryHeadline
         }
     }
     
