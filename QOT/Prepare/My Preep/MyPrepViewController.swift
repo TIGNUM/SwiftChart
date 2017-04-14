@@ -41,23 +41,29 @@ class MyPrepViewController: UIViewController, UITableViewDelegate, UITableViewDa
         delegate?.didTapClose(in: self)
     }
     
-    func prepareAndSetTextAttributes(string: String, label: UILabel, value: CGFloat) {
+    func prepareAndSetTextAttributes(string: String, value: CGFloat) -> NSMutableAttributedString {
         let attrString = NSMutableAttributedString(string: string)
         attrString.addAttribute(NSKernAttributeName, value: value, range: NSRange(location: 0, length: string.characters.count))
-        label.attributedText = attrString
+        return attrString
     }
-
 }
+
 extension MyPrepViewController {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = viewModel.item(at: indexPath.row)
         let cell: MyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
 
-        cell.headerLabel.text = item.header
-        cell.mainTextLabel.text = item.text
-        cell.footerLabel.text = item.footer
-        cell.prepCount.text = ("\(item.totalPreparationCount)/\(item.finishedPreparationCount))")
+        var finishedCount: String = ""
+        if item.finishedPreparationCount >= 9 {
+            finishedCount = "\(item.finishedPreparationCount)"
+        } else {
+            finishedCount = "0\(item.finishedPreparationCount)"
+        }
+        cell.headerLabel.attributedText = prepareAndSetTextAttributes(string: item.header.uppercased(), value: 2)
+        cell.mainTextLabel.attributedText = prepareAndSetTextAttributes(string: item.text.uppercased(), value: -0.8)
+        cell.footerLabel.attributedText = prepareAndSetTextAttributes(string: item.footer.uppercased(), value: 2)
+        cell.prepCount.attributedText = prepareAndSetTextAttributes(string: "\(finishedCount)/\(item.totalPreparationCount)", value: -0.8)
 
         return cell
 
