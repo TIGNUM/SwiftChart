@@ -128,7 +128,7 @@ extension MyUniverseHelper {
 extension MyUniverseHelper {
 
     static func labelValues(for sector: Sector, layout: Layout.MeSection) -> (attributedString: NSAttributedString, widthOffset: CGFloat) {
-        let text = sector.label.text.uppercased()
+        let text = sector.labelType.text.uppercased()
         let criticalLoads = sector.spikes.filter { (spike: Spike) -> Bool in
             let distanceCenter = radius(for: spike.spikeLoad(), layout: layout)
             return distanceCenter > average(for: spike.load, layout: layout)
@@ -139,6 +139,25 @@ extension MyUniverseHelper {
         }
 
         return (attributedString: AttributedString.MeSection.sectorTitleCritical(text: text), widthOffset: 20)
+    }
+}
+
+// MARK: - ScrollView
+
+extension MyUniverseHelper {
+
+    static func createScrollView(_ frame: CGRect, layout: Layout.MeSection) -> UIScrollView {
+        let scrollView = UIScrollView(frame: frame)
+        scrollView.bounces = false
+        scrollView.isPagingEnabled = true
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.contentSize = CGSize(
+            width: (frame.width * 2) - (layout.scrollViewOffset * 3.5),
+            height: frame.height - 84
+            // TODO: Change it when the tabBar is all setup corectly with bottomLayout.
+        )
+        return scrollView
     }
 }
 

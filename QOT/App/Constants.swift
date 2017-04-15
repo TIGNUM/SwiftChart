@@ -132,10 +132,14 @@ struct Layout {
             return CGPoint(x: loadCenterX, y: loadCenterY)
         }
 
+        var universeCenter: CGPoint {
+            return CGPoint(x: loadCenterX - profileImageWidth * 0.5, y: loadCenterY - profileImageWidth * 0.5)
+        }
+
         var profileImageViewFrame: CGRect {
             return CGRect(
-                x: loadCenterX - profileImageWidth * 0.5,
-                y: loadCenterY - profileImageWidth * 0.5,
+                x: universeCenter.x,
+                y: universeCenter.y,
                 width: profileImageWidth,
                 height: profileImageWidth
             )

@@ -19,7 +19,7 @@ final class MyUniverseViewController: UIViewController {
     fileprivate let myDataViewModel: MyDataViewModel
     fileprivate let myWhyViewModel: MyWhyViewModel
     fileprivate var contentScrollView: UIScrollView?
-    fileprivate var parallaxEffectScrollView: UIScrollView?
+    fileprivate var backgroundScrollView: UIScrollView?
     fileprivate var solarView: MeSolarView?
     fileprivate var myWhyView: MyWhyView?
     weak var delegate: MyUniverseViewControllerDelegate?
@@ -60,17 +60,9 @@ private extension MyUniverseViewController {
     }
 }
 
-// MARK: - Helpers
+// MARK: - TabRecognizer Helper
 
 private extension MyUniverseViewController {
-
-    func addSubViews() {
-        let myWhyViewFrame = CGRect(x: view.bounds.width, y: 0, width: view.bounds.width, height: view.bounds.height)
-        contentScrollView?.addSubview(MyWhyView(myWhyViewModel: myWhyViewModel, frame: myWhyViewFrame))
-        let solarView = MeSolarView(sectors: myDataViewModel.sectors, profileImage: myDataViewModel.profileImage, frame: view.bounds)
-        contentScrollView?.addSubview(solarView)
-        self.solarView = solarView
-    }
 
     func sector(location: CGPoint) -> Sector? {
         let radius = lengthFromCenter(for: location)
@@ -86,8 +78,7 @@ private extension MyUniverseViewController {
                 }
 
                 if sectorAngle < 100 {
-                    return myDataViewModel.sectors.last
-                }
+                    return myDataViewModel.sectors.last                }
             } else {
                 let mappedSectorAngle = 180 + (180 - sectorAngle)
                 if sector.startAngle ... sector.endAngle ~= mappedSectorAngle {
@@ -111,44 +102,59 @@ private extension MyUniverseViewController {
     }
 }
 
+// MARK: - SubViews
+
+private extension MyUniverseViewController {
+
+    func addSubViews() {
+        addMyWhyView()
+        addMyDataSectorLabelView()
+        addMySolarView()
+    }
+
+    func addMyWhyView() {
+        let myWhyViewFrame = CGRect(x: view.bounds.width, y: 0, width: view.bounds.width, height: view.bounds.height)
+        let myWhyView = MyWhyView(myWhyViewModel: myWhyViewModel, frame: myWhyViewFrame)
+        contentScrollView?.addSubview(myWhyView)
+    }
+
+    func addMySolarView() {
+        let solarView = MeSolarView(sectors: myDataViewModel.sectors, profileImage: myDataViewModel.profileImage, frame: view.bounds)
+        contentScrollView?.addSubview(solarView)
+        self.solarView = solarView
+    }
+
+    func addMyDataSectorLabelView() {
+        let myDataSectorLablesViewFrame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
+        let myDataSectorLabelsView = MyDataSectorLabelsView(sectors: myDataViewModel.sectors, frame: myDataSectorLablesViewFrame)
+        contentScrollView?.addSubview(myDataSectorLabelsView)
+    }
+}
+
 // MARK: - ScrollViews
 
 private extension MyUniverseViewController {
 
     func setupScrollViews() {
-        setupParallaxEffectScrollView()
-        setupContentScrollView()
+        let layout = Layout.MeSection(viewControllerFrame: view.bounds)
+        setupBackgroundScrollView(layout: layout)
+        setupContentScrollView(layout: layout)
     }
 
-    func setupParallaxEffectScrollView() {
-        let parallaxEffectScrollView = createScrollView()
-        parallaxEffectScrollView.isUserInteractionEnabled = false        
-        parallaxEffectScrollView.delegate = nil
-        addBackgroundImage(scrollView: parallaxEffectScrollView)
-        view.addSubview(parallaxEffectScrollView)
-        self.parallaxEffectScrollView = parallaxEffectScrollView
+    func setupBackgroundScrollView(layout: Layout.MeSection) {
+        let backgroundScrollView = MyUniverseHelper.createScrollView(view.frame, layout: layout)
+        backgroundScrollView.isUserInteractionEnabled = false
+        backgroundScrollView.delegate = nil
+        addBackgroundImage(scrollView: backgroundScrollView)
+        view.addSubview(backgroundScrollView)
+        self.backgroundScrollView = backgroundScrollView
     }
 
-    func setupContentScrollView() {
-        let contentScrollView = createScrollView()
+    func setupContentScrollView(layout: Layout.MeSection) {
+        let contentScrollView = MyUniverseHelper.createScrollView(view.frame, layout: layout)
         contentScrollView.delegate = self
         view.addSubview(contentScrollView)
         self.contentScrollView = contentScrollView
-    }
-
-    func createScrollView() -> UIScrollView {
-        let layout = Layout.MeSection(viewControllerFrame: view.bounds)
-        let scrollView = UIScrollView(frame: view.frame)
-        scrollView.bounces = false
-        scrollView.isPagingEnabled = true
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.showsHorizontalScrollIndicator = false
-        scrollView.contentSize = CGSize(
-            width: (view.frame.width * 2) - (layout.scrollViewOffset * 3.5),
-            height: view.frame.height - 84
-            // TODO: Change it when the tabBar is all setup corectly with bottomLayout.
-        )
-        return scrollView
     }
 
     func addBackgroundImage(scrollView: UIScrollView) {
@@ -167,13 +173,13 @@ extension MyUniverseViewController: UIScrollViewDelegate {
         setParallaxEffect(scrollView)
         updateProfileImageViewAlphaValue(scrollView)
     }
+}
 
-    private func setParallaxEffect(_ contentScrollView: UIScrollView) {
-        let contentOffset = CGPoint(x: contentScrollView.contentOffset.x * 1.2, y: contentScrollView.contentOffset.y)
-        parallaxEffectScrollView?.setContentOffset(contentOffset, animated: false)
-    }
+// MARK: - View Effect ProfileImageView
 
-    private func updateProfileImageViewAlphaValue(_ contentScrollView: UIScrollView) {
+private extension MyUniverseViewController {
+
+    func updateProfileImageViewAlphaValue(_ contentScrollView: UIScrollView) {
         let maxX = contentScrollView.frame.maxX - view.frame.width * 0.24
         guard maxX > 0 else {
             solarView?.profileImageViewOverlay.alpha = 0
@@ -184,5 +190,15 @@ extension MyUniverseViewController: UIScrollViewDelegate {
         let alpha = 1 - (contentScrollView.contentOffset.x/maxX)
         solarView?.profileImageViewOverlay.alpha = alpha
         solarView?.profileImageViewOverlayEffect.alpha = alpha
+    }
+}
+
+// MARK: - View Effect Parallax
+
+private extension MyUniverseViewController {
+
+    func setParallaxEffect(_ contentScrollView: UIScrollView) {
+        let backgroundContentOffset = CGPoint(x: contentScrollView.contentOffset.x * 1.2, y: contentScrollView.contentOffset.y)
+        backgroundScrollView?.setContentOffset(backgroundContentOffset, animated: false)
     }
 }

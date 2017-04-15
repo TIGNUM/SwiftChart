@@ -71,7 +71,6 @@ private extension MeSolarView {
         MyUniverseHelper.collectCenterPoints(layout: layout, sectors: sectors, relativeCenter: profileImageView.center)
         drawDataPointConnections(layout: layout, sectors: sectors)
         drawDataPoints(layout: layout, sectors: sectors)
-        addSectorLabels(layout: layout, sectors: sectors)
         addSubview(profileImageView)
         addSubview(profileImageViewOverlay)
         addSubview(profileImageViewOverlayEffect)
@@ -121,26 +120,6 @@ private extension MeSolarView {
         let dataPoints = MyUniverseHelper.dataPoints(sectors: sectors, layout: layout)
         dataPoints.forEach { (dataPoint: CAShapeLayer) in
             layer.addSublayer(dataPoint)
-        }
-    }
-
-    func addSectorLabels(layout: Layout.MeSection, sectors: [Sector]) {
-        sectors.forEach { (sector: Sector) in
-            let categoryLabel = sector.label
-            let labelCenter = profileImageView.center.shifted(
-                MyUniverseHelper.radius(for: categoryLabel.load, layout: layout),
-                with: categoryLabel.angle
-            )
-
-            let labelValues = MyUniverseHelper.labelValues(for: sector, layout: layout)
-            let frame = CGRect(x: labelCenter.x, y: labelCenter.y, width: 0, height: Layout.MeSection.labelHeight)
-            let label = UILabel(frame: frame)
-            label.attributedText = labelValues.attributedString
-            label.numberOfLines = 0
-            label.textAlignment = .center
-            label.frame = CGRect(x: labelCenter.x - labelValues.widthOffset, y: labelCenter.y, width: frame.width, height: Layout.MeSection.labelHeight)
-            label.sizeToFit()
-            addSubview(label)
         }
     }
 }
