@@ -1,5 +1,5 @@
 //
-//  MeSolarViewDrawHelper.swift
+//  MyUniverseHelper.swift
 //  QOT
 //
 //  Created by karmic on 11.04.17.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct MeSolarViewDrawHelper {
+struct MyUniverseHelper {
 
     fileprivate static var dataCenterPoints = [[CGPoint]]()
     fileprivate static var connectionCenterPoitns = [[CGPoint]]()
@@ -23,7 +23,7 @@ struct MeSolarViewDrawHelper {
 
 // MARK: - Center Points
 
-extension MeSolarViewDrawHelper {
+extension MyUniverseHelper {
 
     static func collectCenterPoints(layout: Layout.MeSection, sectors: [Sector], relativeCenter: CGPoint) {
         sectors.forEach { (sector: Sector) in
@@ -50,11 +50,11 @@ extension MeSolarViewDrawHelper {
 
 // MARK: - Data Point Connections
 
-extension MeSolarViewDrawHelper {
+extension MyUniverseHelper {
 
     static func dataPointConnections(sectors: [Sector], layout: Layout.MeSection) -> [CAShapeLayer] {
         var connections = [CAShapeLayer]()
-        MeSolarViewDrawHelper.addAditionalConnectionPoints(sectors: sectors, layout: layout)
+        MyUniverseHelper.addAditionalConnectionPoints(sectors: sectors, layout: layout)
         connectionCenterPoitns.shuffled().forEach { (centerPopints: [CGPoint]) in
             for (index, center) in centerPopints.shuffled().enumerated() {
                 let nextIndex = (index + 1)
@@ -89,7 +89,7 @@ extension MeSolarViewDrawHelper {
 
 // MARK: - Data Points
 
-extension MeSolarViewDrawHelper {
+extension MyUniverseHelper {
 
     static func dataPoints(sectors: [Sector], layout: Layout.MeSection) -> [CAShapeLayer] {
         var dots = [CAShapeLayer]()
@@ -106,10 +106,10 @@ extension MeSolarViewDrawHelper {
                 }
 
                 let spike = sector.spikes[centerIndex]
-                let radius = MeSolarViewDrawHelper.radius(for: spike.spikeLoad(), layout: layout)
+                let radius = MyUniverseHelper.radius(for: spike.spikeLoad(), layout: layout)
 
                 dots.append(
-                    MeSolarViewDrawHelper.dot(
+                    MyUniverseHelper.dot(
                         fillColor: fillColor(radius: radius, load: spike.spikeLoad(), sectorType: sector.type, layout: layout),
                         strokeColor: strokeColor(radius: radius, load: spike.spikeLoad(), sectorType: sector.type, layout: layout),
                         center: center,
@@ -125,7 +125,7 @@ extension MeSolarViewDrawHelper {
 
 // MARK: - Sector Labels
 
-extension MeSolarViewDrawHelper {
+extension MyUniverseHelper {
 
     static func labelValues(for sector: Sector, layout: Layout.MeSection) -> (attributedString: NSAttributedString, widthOffset: CGFloat) {
         let text = sector.label.text.uppercased()
@@ -144,7 +144,7 @@ extension MeSolarViewDrawHelper {
 
 // MARK: - Private
 
-private extension MeSolarViewDrawHelper {
+private extension MyUniverseHelper {
 
     static func dot(fillColor: UIColor, strokeColor: UIColor, center: CGPoint, radius: CGFloat, lineWidth: CGFloat) -> CAShapeLayer {
         let dotLayer = CAShapeLayer.circle(

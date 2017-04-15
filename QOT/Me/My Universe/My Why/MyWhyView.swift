@@ -68,7 +68,7 @@ private extension MyWhyView {
     }
 
     func drawSpikes(layout: Layout.MeSection) {
-        MeSolarViewDrawHelper.myWhySpikes(layout: layout).forEach { (spikeShapeLayer: CAShapeLayer) in
+        MyUniverseHelper.myWhySpikes(layout: layout).forEach { (spikeShapeLayer: CAShapeLayer) in
             layer.addSublayer(spikeShapeLayer)
         }
     }

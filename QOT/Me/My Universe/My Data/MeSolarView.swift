@@ -68,7 +68,7 @@ private extension MeSolarView {
         drawBackCircles(layout: layout, radius: layout.radiusAverageLoad, linesDashPattern: [2, 1])
         drawBackCircles(layout: layout, radius: layout.radiusMaxLoad)
         setupProfileImage(layout: layout, profileImage: profileImage)
-        MeSolarViewDrawHelper.collectCenterPoints(layout: layout, sectors: sectors, relativeCenter: profileImageView.center)
+        MyUniverseHelper.collectCenterPoints(layout: layout, sectors: sectors, relativeCenter: profileImageView.center)
         drawDataPointConnections(layout: layout, sectors: sectors)
         drawDataPoints(layout: layout, sectors: sectors)
         addSectorLabels(layout: layout, sectors: sectors)
@@ -111,14 +111,14 @@ private extension MeSolarView {
     }
 
     func drawDataPointConnections(layout: Layout.MeSection, sectors: [Sector]) {
-        let connections = MeSolarViewDrawHelper.dataPointConnections(sectors: sectors, layout: layout)
+        let connections = MyUniverseHelper.dataPointConnections(sectors: sectors, layout: layout)
         connections.forEach { (connection: CAShapeLayer) in
             layer.addSublayer(connection)
         }
     }
 
     func drawDataPoints(layout: Layout.MeSection, sectors: [Sector]) {
-        let dataPoints = MeSolarViewDrawHelper.dataPoints(sectors: sectors, layout: layout)
+        let dataPoints = MyUniverseHelper.dataPoints(sectors: sectors, layout: layout)
         dataPoints.forEach { (dataPoint: CAShapeLayer) in
             layer.addSublayer(dataPoint)
         }
@@ -128,11 +128,11 @@ private extension MeSolarView {
         sectors.forEach { (sector: Sector) in
             let categoryLabel = sector.label
             let labelCenter = profileImageView.center.shifted(
-                MeSolarViewDrawHelper.radius(for: categoryLabel.load, layout: layout),
+                MyUniverseHelper.radius(for: categoryLabel.load, layout: layout),
                 with: categoryLabel.angle
             )
 
-            let labelValues = MeSolarViewDrawHelper.labelValues(for: sector, layout: layout)
+            let labelValues = MyUniverseHelper.labelValues(for: sector, layout: layout)
             let frame = CGRect(x: labelCenter.x, y: labelCenter.y, width: 0, height: Layout.MeSection.labelHeight)
             let label = UILabel(frame: frame)
             label.attributedText = labelValues.attributedString

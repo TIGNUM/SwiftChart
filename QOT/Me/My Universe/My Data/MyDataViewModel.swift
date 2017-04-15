@@ -1,5 +1,5 @@
 //
-//  MeSectionViewModel.swift
+//  MyDataViewModel.swift
 //  QOT
 //
 //  Created by karmic on 04.04.17.
@@ -9,7 +9,7 @@
 import Foundation
 import ReactiveKit
 
-final class MeSectionViewModel {
+final class MyDataViewModel {
 
     // MARK: - Properties
 

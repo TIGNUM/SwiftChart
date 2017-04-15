@@ -1,5 +1,5 @@
 //
-//  MeSectionViewController.swift
+//  MyUniverseViewController.swift
 //  QOT
 //
 //  Created by karmic on 22/03/2017.
@@ -8,25 +8,25 @@
 
 import UIKit
 
-protocol MeSectionViewControllerDelegate: class {
+protocol MyUniverseViewControllerDelegate: class {
     func didTapSector(sector: Sector?, in viewController: UIViewController)
 }
 
-final class MeSectionViewController: UIViewController {
+final class MyUniverseViewController: UIViewController {
     
     // MARK: - Properties
 
-    fileprivate let myDataViewModel: MeSectionViewModel
+    fileprivate let myDataViewModel: MyDataViewModel
     fileprivate let myWhyViewModel: MyWhyViewModel
     fileprivate var contentScrollView: UIScrollView?
     fileprivate var parallaxEffectScrollView: UIScrollView?
     fileprivate var solarView: MeSolarView?
     fileprivate var myWhyView: MyWhyView?
-    weak var delegate: MeSectionViewControllerDelegate?
+    weak var delegate: MyUniverseViewControllerDelegate?
 
     // MARK: - Life Cycle
 
-    init(myDataViewModel: MeSectionViewModel, myWhyViewModel: MyWhyViewModel) {
+    init(myDataViewModel: MyDataViewModel, myWhyViewModel: MyWhyViewModel) {
         self.myDataViewModel = myDataViewModel
         self.myWhyViewModel = myWhyViewModel
 
@@ -48,7 +48,7 @@ final class MeSectionViewController: UIViewController {
 
 // MARK: - TabRecognizer
 
-private extension MeSectionViewController {
+private extension MyUniverseViewController {
 
     func addTabRecognizer() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapSector))
@@ -62,7 +62,7 @@ private extension MeSectionViewController {
 
 // MARK: - Helpers
 
-private extension MeSectionViewController {
+private extension MyUniverseViewController {
 
     func addSubViews() {
         let myWhyViewFrame = CGRect(x: view.bounds.width, y: 0, width: view.bounds.width, height: view.bounds.height)
@@ -113,7 +113,7 @@ private extension MeSectionViewController {
 
 // MARK: - ScrollViews
 
-private extension MeSectionViewController {
+private extension MyUniverseViewController {
 
     func setupScrollViews() {
         setupParallaxEffectScrollView()
@@ -161,7 +161,7 @@ private extension MeSectionViewController {
 
 // MARK: - ScrollViewDelegate
 
-extension MeSectionViewController: UIScrollViewDelegate {
+extension MyUniverseViewController: UIScrollViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         setParallaxEffect(scrollView)
