@@ -18,7 +18,8 @@ final class MeSectionViewController: UIViewController {
 
     fileprivate let myDataViewModel: MeSectionViewModel
     fileprivate let myWhyViewModel: MyWhyViewModel
-    fileprivate var scrollView: UIScrollView?
+    fileprivate var contentScrollView: UIScrollView?
+    fileprivate var parallaxEffectScrollView: UIScrollView?
     fileprivate var solarView: MeSolarView?
     fileprivate var myWhyView: MyWhyView?
     weak var delegate: MeSectionViewControllerDelegate?
@@ -39,6 +40,7 @@ final class MeSectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupScrollViews()
         addSubViews()
         addTabRecognizer()
     }
@@ -63,11 +65,10 @@ private extension MeSectionViewController {
 private extension MeSectionViewController {
 
     func addSubViews() {
-        setupScrollView(layout: Layout.MeSection(viewControllerFrame: view.bounds))
         let myWhyViewFrame = CGRect(x: view.bounds.width, y: 0, width: view.bounds.width, height: view.bounds.height)
-        scrollView?.addSubview(MyWhyView(myWhyViewModel: myWhyViewModel, frame: myWhyViewFrame))
+        contentScrollView?.addSubview(MyWhyView(myWhyViewModel: myWhyViewModel, frame: myWhyViewFrame))
         let solarView = MeSolarView(sectors: myDataViewModel.sectors, profileImage: myDataViewModel.profileImage, frame: view.bounds)
-        scrollView?.addSubview(solarView)
+        contentScrollView?.addSubview(solarView)
         self.solarView = solarView
     }
 
@@ -110,14 +111,35 @@ private extension MeSectionViewController {
     }
 }
 
-// MARK: - ScrollView
+// MARK: - ScrollViews
 
 private extension MeSectionViewController {
 
-    func setupScrollView(layout: Layout.MeSection) {
+    func setupScrollViews() {
+        setupParallaxEffectScrollView()
+        setupContentScrollView()
+    }
+
+    func setupParallaxEffectScrollView() {
+        let parallaxEffectScrollView = createScrollView()
+        parallaxEffectScrollView.isUserInteractionEnabled = false        
+        parallaxEffectScrollView.delegate = nil
+        addBackgroundImage(scrollView: parallaxEffectScrollView)
+        view.addSubview(parallaxEffectScrollView)
+        self.parallaxEffectScrollView = parallaxEffectScrollView
+    }
+
+    func setupContentScrollView() {
+        let contentScrollView = createScrollView()
+        contentScrollView.delegate = self
+        view.addSubview(contentScrollView)
+        self.contentScrollView = contentScrollView
+    }
+
+    func createScrollView() -> UIScrollView {
+        let layout = Layout.MeSection(viewControllerFrame: view.bounds)
         let scrollView = UIScrollView(frame: view.frame)
         scrollView.bounces = false
-        scrollView.delegate = self
         scrollView.isPagingEnabled = true
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
@@ -126,10 +148,7 @@ private extension MeSectionViewController {
             height: view.frame.height - 84
             // TODO: Change it when the tabBar is all setup corectly with bottomLayout.
         )
-
-        addBackgroundImage(scrollView: scrollView)
-        view.addSubview(scrollView)
-        self.scrollView = scrollView
+        return scrollView
     }
 
     func addBackgroundImage(scrollView: UIScrollView) {
@@ -145,14 +164,24 @@ private extension MeSectionViewController {
 extension MeSectionViewController: UIScrollViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let maxX = scrollView.frame.maxX - view.frame.width * 0.24
+        setParallaxEffect(scrollView)
+        updateProfileImageViewAlphaValue(scrollView)
+    }
+
+    private func setParallaxEffect(_ contentScrollView: UIScrollView) {
+        let contentOffset = CGPoint(x: contentScrollView.contentOffset.x * 1.2, y: contentScrollView.contentOffset.y)
+        parallaxEffectScrollView?.setContentOffset(contentOffset, animated: false)
+    }
+
+    private func updateProfileImageViewAlphaValue(_ contentScrollView: UIScrollView) {
+        let maxX = contentScrollView.frame.maxX - view.frame.width * 0.24
         guard maxX > 0 else {
             solarView?.profileImageViewOverlay.alpha = 0
             solarView?.profileImageViewOverlayEffect.alpha = 0
             return
         }
 
-        let alpha = 1 - (scrollView.contentOffset.x/maxX)
+        let alpha = 1 - (contentScrollView.contentOffset.x/maxX)
         solarView?.profileImageViewOverlay.alpha = alpha
         solarView?.profileImageViewOverlayEffect.alpha = alpha
     }
