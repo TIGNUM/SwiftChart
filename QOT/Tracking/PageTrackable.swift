@@ -36,7 +36,7 @@ extension LearnContentListViewController: PageTrackable {
     }
 }
 
-extension MeSectionViewController: PageTrackable {
+extension MyUniverseViewController: PageTrackable {
     var pageID: PageID {
         return .meSection
     }
