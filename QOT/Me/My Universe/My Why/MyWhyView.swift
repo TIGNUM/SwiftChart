@@ -93,7 +93,7 @@ private extension MyWhyView {
             )
             addSubview(weeklyChoiceButton(title: weeklyChoice.text, frame: buttonFrame))
             yPos += (buttonOffset + 2)
-            xPos -= CGFloat(index + 1) * 3
+            xPos -= CGFloat(index + 1) * 2
         }
 
         addSubview(footerLabel(with: title, labelFrame: layout.myWhyWeeklyChoicesFooterFrame))
@@ -128,7 +128,7 @@ private extension MyWhyView {
         button.titleLabel?.font = Font.H7Tag
         button.titleLabel?.lineBreakMode = .byTruncatingTail
         button.setTitleColor(Color.MeSection.whiteLabel, for: .normal)
-        button.setBackgroundImage(R.image.myWhyChoicesFrame(), for: .normal)
+        button.setBackgroundImage(R.image.myWhyChoicesFrame(), for: .normal)        
         button.addTarget(self, action: #selector(didTapWeeklyChoices), for: .touchUpInside)
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         button.alpha = 0.8
@@ -143,10 +143,9 @@ private extension MyWhyView {
         button.setTitleColor(Color.MeSection.whiteLabel, for: .normal)
         button.setBackgroundImage(R.image.myWhyPartnerFrame(), for: .normal)
         button.addTarget(self, action: #selector(didTapPartner), for: .touchUpInside)
-        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)        
 
         return button
-
     }
 }
 
