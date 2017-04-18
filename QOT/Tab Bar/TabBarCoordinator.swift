@@ -28,7 +28,7 @@ final class TabBarCoordinator: ParentCoordinator {
     }()
     
     fileprivate lazy var meSectionViewController: MeSectionViewController = {
-        let meViewController = MeSectionViewController()
+        let meViewController = MeSectionViewController(viewModel: MeSectionViewModel())
         meViewController.delegate = self
         
         return meViewController
@@ -115,10 +115,10 @@ extension TabBarCoordinator: LearnContentListCoordinatorDelegate {
 
 // MARK: - MeSectionDelegate
 
-extension TabBarCoordinator: MeSectionDelegate {
+extension TabBarCoordinator: MeSectionViewControllerDelegate {
     
-    func didTapMeSectionItem(in viewController: MeSectionViewController) {
-        // TODO
+    func didTapSector(sector: Sector?, in viewController: UIViewController) {
+        print("didTapSector: \(sector?.label.text ?? "INVALID")")
     }
 }
 
@@ -155,28 +155,36 @@ extension TabBarCoordinator: PrepareContentViewControllerDelegate {
         log("didTapVideo: ID: \(ID)")
     }
 
-    func didTapAddPreparation(in viewController: PrepareContentViewController) {
-        log("didTapAddPreparation")
+    func didTapSaveAs(sectionID: String, in viewController: PrepareContentViewController) {
+        let viewModel = MyPrepViewModel()
+        let vc = MyPrepViewController(viewModel: viewModel)
+        viewController.present(vc, animated: true)
+    }
+
+    func didTapAddToNotes(sectionID: String, in viewController: PrepareContentViewController) {
+        log("didTapAddToNotes")
+    }
+
+    func didTapAddPreparation(sectionID: String, in viewController: PrepareContentViewController) {
+        let viewModel = PrepareEventsViewModel()
+        let vc = PrepareEventsViewController(viewModel: viewModel)
+        viewController.present(vc, animated: true)
+    }
+
+    func didTapSaveAs(in viewController: PrepareContentViewController) {
+        let viewModel = MyPrepViewModel()
+        let vc = MyPrepViewController(viewModel: viewModel)
+        viewController.present(vc, animated: true)
     }
 
     func didTapAddToNotes(in viewController: PrepareContentViewController) {
         log("didTapAddToNotes")
     }
 
-    func didTapSaveAs(in viewController: PrepareContentViewController) {
-        log("didTapSaveAs")
-    }
-
-    func didTapAddPreparationInCollection(with ID: String, in viewController: PrepareContentViewController) {
-        log("didTapAddPreparationInCollection")
-    }
-
-    func didTapAddToNotesInCollection(with ID: String, in viewController: PrepareContentViewController) {
-        log("didTapAddToNotes")
-    }
-
-    func didTapSaveAsInCollection(with ID: String, in viewController: PrepareContentViewController) {
-        log("didTapSaveAs: ID: \(ID)")
+    func didTapAddPreparation(in viewController: PrepareContentViewController) {
+        let viewModel = PrepareEventsViewModel()
+        let vc = PrepareEventsViewController(viewModel: viewModel)
+        viewController.present(vc, animated: true)
     }
 }
 

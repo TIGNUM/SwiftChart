@@ -28,18 +28,7 @@ final class DataProvider<Element> {
             return map(results[index])
         }
         self._items = { results.map(map) }
-
-        let token = results.addNotificationBlock { [unowned self] (change) in
-            switch change {
-            case .initial:
-                self._changes.next(.initial)
-            case .update(_, let deletions, let insertions, let modifications):
-                self._changes.next(.update(deletions: deletions, insertions: insertions, modifications: modifications))
-            case .error(let error):
-                assertionFailure("Realm results errored: \(error)")
-            }
-        }
-        self.token = token
+        self.token = results.addNotificationBlock(notificationBlock())
     }
 
     init<T: Object>(list: List<T>, map: @escaping (T) -> Element ) {
@@ -48,18 +37,16 @@ final class DataProvider<Element> {
             return map(list[index])
         }
         self._items = { list.map(map) }
+        self.token = list.addNotificationBlock(notificationBlock())
+    }
 
-        let token = list.addNotificationBlock { [unowned self] (change) in
-            switch change {
-            case .initial:
-                self._changes.next(.initial)
-            case .update(_, let deletions, let insertions, let modifications):
-                self._changes.next(.update(deletions: deletions, insertions: insertions, modifications: modifications))
-            case .error(let error):
-                assertionFailure("Realm results errored: \(error)")
-            }
+    init<T: Object>(list: LinkingObjects<T>, map: @escaping (T) -> Element ) {
+        self._count = { list.count }
+        self._itemAt = { (index) in
+            return map(list[index])
         }
-        self.token = token
+        self._items = { list.map(map) }
+        self.token = list.addNotificationBlock(notificationBlock())
     }
 
     var count: Int {
@@ -77,5 +64,18 @@ final class DataProvider<Element> {
 
     func observeChange(with observer: @escaping (DataProviderChange) -> Void) -> Disposable {
         return _changes.observeNext(with: observer)
+    }
+
+    private func notificationBlock<T>() -> (RealmCollectionChange<T>) -> Void {
+        return { [unowned self] (change) in
+            switch change {
+            case .initial:
+                self._changes.next(.initial)
+            case .update(_, let deletions, let insertions, let modifications):
+                self._changes.next(.update(deletions: deletions, insertions: insertions, modifications: modifications))
+            case .error(let error):
+                assertionFailure("Realm results errored: \(error)")
+            }
+        }
     }
 }

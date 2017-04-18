@@ -25,15 +25,11 @@ final class SettingsCoordinator: ParentCoordinator {
     }
 
     func start() {
-        let settingsViewController = SettingsViewController(viewModel: SettingsViewModel())
-        settingsViewController.delegate = self
+        let settingsViewController = SettingsMenuViewController(viewModel: SettingsMenuViewModel())
         presentationManager.presentationType = .fadeIn
         settingsViewController.modalPresentationStyle = .custom
         settingsViewController.transitioningDelegate = presentationManager
         rootViewController?.present(settingsViewController, animated: true)
-        
-        // TODO: Update associatedEntity with realm object when its created.
-        eventTracker?.track(page: settingsViewController.pageID, referer: rootViewController?.pageID, associatedEntity: nil)
     }
 }
 
