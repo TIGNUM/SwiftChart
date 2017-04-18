@@ -1,5 +1,5 @@
 //
-//  MeSolarView.swift
+//  MyDataView.swift
 //  QOT
 //
 //  Created by karmic on 11.04.17.
@@ -8,11 +8,13 @@
 
 import UIKit
 
-final class MeSolarView: UIView {
+final class MyDataView: UIView {
 
     // MARK: - Properties
 
     var profileImageView = UIImageView()
+    var profileImageViewOverlay = UIImageView()
+    var profileImageViewOverlayEffect = UIImageView()
     var sectors = [Sector]()
     var profileImage: UIImage?
     var previousBounds = CGRect.zero
@@ -47,7 +49,7 @@ final class MeSolarView: UIView {
 
 // MARK: - Private Helpers / Clean View
 
-private extension MeSolarView {
+private extension MyDataView {
 
     func cleanUp() {
         removeSubLayers()
@@ -57,7 +59,7 @@ private extension MeSolarView {
 
 // MARK: - Private Helpers / Draw SolarSystem
 
-private extension MeSolarView {
+private extension MyDataView {
 
     func drawUniverse(with sectors: [Sector], profileImage: UIImage?, layout: Layout.MeSection) {
         self.sectors = sectors
@@ -66,63 +68,58 @@ private extension MeSolarView {
         drawBackCircles(layout: layout, radius: layout.radiusAverageLoad, linesDashPattern: [2, 1])
         drawBackCircles(layout: layout, radius: layout.radiusMaxLoad)
         setupProfileImage(layout: layout, profileImage: profileImage)
-        MeSolarViewDrawHelper.collectCenterPoints(layout: layout, sectors: sectors, relativeCenter: profileImageView.center)
+        MyUniverseHelper.collectCenterPoints(layout: layout, sectors: sectors, relativeCenter: profileImageView.center)
         drawDataPointConnections(layout: layout, sectors: sectors)
         drawDataPoints(layout: layout, sectors: sectors)
-        addSectorLabels(layout: layout, sectors: sectors)
         addSubview(profileImageView)
+        addSubview(profileImageViewOverlay)
+        addSubview(profileImageViewOverlayEffect)
     }
 
     func setupProfileImage(layout: Layout.MeSection, profileImage: UIImage?) {
-        profileImageView = UIImageView(frame: layout.profileImageViewFrame)
-        profileImageView.image = profileImage
-        profileImageView.contentMode = .scaleAspectFill
-        profileImageView.layer.cornerRadius = layout.profileImageWidth * 0.5
-        profileImageView.clipsToBounds = true
+        profileImageView = UIImageView(frame: layout.profileImageViewFrame, image: profileImage)
+        profileImageViewOverlay = UIImageView(frame: layout.profileImageViewFrame, image: profileImage?.convertToGrayScale())
+        profileImageViewOverlayEffect = UIImageView(frame: layout.profileImageViewFrame, image: nil)
+        profileImageViewOverlayEffect.backgroundColor = Color.Default.whiteMedium
+        addImageEffect(center: layout.loadCenter)
     }
 
-    func drawBackCircles(layout: Layout.MeSection, radius: CGFloat, linesDashPattern: [NSNumber]? = nil) {
-        let circlePath = UIBezierPath.circlePath(center: layout.loadCenter, radius: radius)
-        let shapeLayer = CAShapeLayer.pathWithColor(
-            path: circlePath.cgPath,
+    func addImageEffect(center: CGPoint) {
+        let circleLayer = CAShapeLayer.circle(
+            center: center,
+            radius: profileImageView.frame.width * 0.5,
             fillColor: .clear,
             strokeColor: Color.MeSection.whiteStrokeLight
         )
-        shapeLayer.lineDashPattern = linesDashPattern
-        layer.addSublayer(shapeLayer)
+
+        circleLayer.lineWidth = 5
+        circleLayer.addGlowEffect(color: .white)
+        layer.addSublayer(circleLayer)
+    }
+
+    func drawBackCircles(layout: Layout.MeSection, radius: CGFloat, linesDashPattern: [NSNumber]? = nil) {
+        let circleLayer = CAShapeLayer.circle(
+            center: layout.loadCenter,
+            radius: radius,
+            fillColor: .clear,
+            strokeColor: Color.MeSection.whiteStrokeLight
+        )
+
+        circleLayer.lineDashPattern = linesDashPattern
+        layer.addSublayer(circleLayer)
     }
 
     func drawDataPointConnections(layout: Layout.MeSection, sectors: [Sector]) {
-        let connections = MeSolarViewDrawHelper.dataPointConnections(sectors: sectors, layout: layout)
+        let connections = MyUniverseHelper.dataPointConnections(sectors: sectors, layout: layout)
         connections.forEach { (connection: CAShapeLayer) in
             layer.addSublayer(connection)
         }
     }
 
     func drawDataPoints(layout: Layout.MeSection, sectors: [Sector]) {
-        let dataPoints = MeSolarViewDrawHelper.dataPoints(sectors: sectors, layout: layout)
+        let dataPoints = MyUniverseHelper.dataPoints(sectors: sectors, layout: layout)
         dataPoints.forEach { (dataPoint: CAShapeLayer) in
             layer.addSublayer(dataPoint)
-        }
-    }
-
-    func addSectorLabels(layout: Layout.MeSection, sectors: [Sector]) {
-        sectors.forEach { (sector: Sector) in
-            let categoryLabel = sector.label
-            let labelCenter = profileImageView.center.shifted(
-                MeSolarViewDrawHelper.radius(for: categoryLabel.load, layout: layout),
-                with: categoryLabel.angle
-            )
-
-            let labelValues = MeSolarViewDrawHelper.labelValues(for: sector, layout: layout)
-            let frame = CGRect(x: labelCenter.x, y: labelCenter.y, width: 0, height: Layout.MeSection.labelHeight)
-            let label = UILabel(frame: frame)
-            label.attributedText = labelValues.attributedString
-            label.numberOfLines = 0
-            label.textAlignment = .center
-            label.frame = CGRect(x: labelCenter.x - labelValues.widthOffset, y: labelCenter.y, width: frame.width, height: Layout.MeSection.labelHeight)
-            label.sizeToFit()
-            addSubview(label)
         }
     }
 }
