@@ -22,6 +22,8 @@ enum FontName: String {
 
 struct Layout {
 
+    static let isBigScreen = UIScreen.main.bounds.height == 1920
+
     enum CellHeight: CGFloat {
         case sidebar = 75
         case sidebarSmall = 65
@@ -87,9 +89,10 @@ struct Layout {
         }
 
         var myWhyVisionLabelFrame: CGRect {
+            let deviceOffset: CGFloat = Layout.isBigScreen ? 0 : 42
             return CGRect(
                 x: myWhyVisionFooterXPos,
-                y: viewControllerFrame.height * 0.25,
+                y: (viewControllerFrame.height * 0.25) + deviceOffset,
                 width: profileImageWidth * 2.25,
                 height: Layout.MeSection.labelHeight
             )
@@ -327,9 +330,8 @@ struct AttributedString {
         }
 
         static func sectorTitleCritical(text: String) -> NSAttributedString {
-            let isBigScreen = UIScreen.main.bounds.width == 1920
-            let font = isBigScreen ? Font.PText : Font.PTextSmall
-            let letterSpacing = isBigScreen ? 2.7 : 2.1
+            let font = Layout.isBigScreen ? Font.PText : Font.PTextSmall
+            let letterSpacing = Layout.isBigScreen ? 2.7 : 2.1
             return NSAttributedString.create(for: text, withColor: Color.cherryRedTwo, andFont: font, letterSpacing: CGFloat(letterSpacing))
         }
     }

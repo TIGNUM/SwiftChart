@@ -171,7 +171,8 @@ private extension MyWhyView {
     }
 
     func visionLabel(with text: String, labelFrame: CGRect) -> UILabel {
-        return label(with: text, labelFrame: labelFrame, textColor: .white, font: Font.H4Headline)
+        let font = Layout.isBigScreen ? Font.H4Headline : Font.H6NavigationTitle
+        return label(with: text, labelFrame: labelFrame, textColor: .white, font: font)
     }
 
     func label(with text: String, labelFrame: CGRect, textColor: UIColor, font: UIFont) -> UILabel {
