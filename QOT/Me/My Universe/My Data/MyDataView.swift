@@ -1,5 +1,5 @@
 //
-//  MeSolarView.swift
+//  MyDataView.swift
 //  QOT
 //
 //  Created by karmic on 11.04.17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MeSolarView: UIView {
+final class MyDataView: UIView {
 
     // MARK: - Properties
 
@@ -49,7 +49,7 @@ final class MeSolarView: UIView {
 
 // MARK: - Private Helpers / Clean View
 
-private extension MeSolarView {
+private extension MyDataView {
 
     func cleanUp() {
         removeSubLayers()
@@ -59,7 +59,7 @@ private extension MeSolarView {
 
 // MARK: - Private Helpers / Draw SolarSystem
 
-private extension MeSolarView {
+private extension MyDataView {
 
     func drawUniverse(with sectors: [Sector], profileImage: UIImage?, layout: Layout.MeSection) {
         self.sectors = sectors

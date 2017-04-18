@@ -20,7 +20,7 @@ final class MyUniverseViewController: UIViewController {
     fileprivate let myWhyViewModel: MyWhyViewModel
     fileprivate var contentScrollView: UIScrollView?
     fileprivate var backgroundScrollView: UIScrollView?
-    fileprivate var solarView: MeSolarView?
+    fileprivate var solarView: MyDataView?
     fileprivate var myWhyView: MyWhyView?
     fileprivate var myDataSectorLabelsView: MyDataSectorLabelsView?
     fileprivate var lastContentOffset: CGFloat = 0
@@ -111,7 +111,7 @@ private extension MyUniverseViewController {
     func addSubViews() {
         addMyWhyView()
         addMyDataSectorLabelView()
-        addMySolarView()
+        addMyDataView()
     }
 
     func addMyWhyView() {
@@ -127,8 +127,8 @@ private extension MyUniverseViewController {
         self.myDataSectorLabelsView = myDataSectorLabelsView
     }
 
-    func addMySolarView() {
-        let solarView = MeSolarView(sectors: myDataViewModel.sectors, profileImage: myDataViewModel.profileImage, frame: view.bounds)
+    func addMyDataView() {
+        let solarView = MyDataView(sectors: myDataViewModel.sectors, profileImage: myDataViewModel.profileImage, frame: view.bounds)
         contentScrollView?.addSubview(solarView)
         self.solarView = solarView
     }
@@ -180,15 +180,9 @@ extension MyUniverseViewController: UIScrollViewDelegate {
     }
 }
 
-// MARK: - View Effect ProfileImageView
+// MARK: - ScrollView Effects
 
 private extension MyUniverseViewController {
-
-    func updateProfileImageViewAlphaValue(_ contentScrollView: UIScrollView) {
-        let alpha = scrollFactor(contentScrollView)
-        solarView?.profileImageViewOverlay.alpha = alpha
-        solarView?.profileImageViewOverlayEffect.alpha = alpha
-    }
 
     func scrollFactor(_ contentScrollView: UIScrollView) -> CGFloat {
         let maxX = contentScrollView.frame.maxX - view.frame.width * 0.24
@@ -198,11 +192,12 @@ private extension MyUniverseViewController {
 
         return 1 - (contentScrollView.contentOffset.x/maxX)
     }
-}
 
-// MARK: - View Effect Parallax
-
-private extension MyUniverseViewController {
+    func updateProfileImageViewAlphaValue(_ contentScrollView: UIScrollView) {
+        let alpha = scrollFactor(contentScrollView)
+        solarView?.profileImageViewOverlay.alpha = alpha
+        solarView?.profileImageViewOverlayEffect.alpha = alpha
+    }
 
     func setBackgroundParallaxEffect(_ contentScrollView: UIScrollView) {
         let backgroundContentOffset = CGPoint(x: contentScrollView.contentOffset.x * 1.2, y: contentScrollView.contentOffset.y)
