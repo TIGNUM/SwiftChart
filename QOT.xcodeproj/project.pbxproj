@@ -9,13 +9,6 @@
 /* Begin PBXBuildFile section */
 		0B254D3E1E97994C006AA4C0 /* PrepareCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B254D3C1E97994C006AA4C0 /* PrepareCollectionViewCell.swift */; };
 		0B254D3F1E97994C006AA4C0 /* PrepareCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B254D3D1E97994C006AA4C0 /* PrepareCollectionViewCell.xib */; };
-		0BC1FF4B1E968E07007DE090 /* CollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1FF491E968E07007DE090 /* CollectionTableViewCell.swift */; };
-		0BC1FF4C1E968E07007DE090 /* CollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC1FF4A1E968E07007DE090 /* CollectionTableViewCell.xib */; };
-		0BC9F9361E96118C009E8204 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC9F92C1E96118C009E8204 /* ChatTableViewCell.swift */; };
-		0BC9F9371E96118C009E8204 /* ChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC9F92D1E96118C009E8204 /* ChatTableViewCell.xib */; };
-		0BC9F9381E96118C009E8204 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC9F92E1E96118C009E8204 /* ChatViewController.xib */; };
-		0BC9F9391E96118C009E8204 /* StatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC9F9301E96118C009E8204 /* StatusTableViewCell.swift */; };
-		0BC9F93A1E96118C009E8204 /* StatusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC9F9311E96118C009E8204 /* StatusTableViewCell.xib */; };
 		0B40DC071E9CA65300E1659B /* PrepareContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B40DC061E9CA65300E1659B /* PrepareContentViewController.xib */; };
 		0B40DC0B1E9CA6A500E1659B /* PrepareContentTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B40DC091E9CA6A500E1659B /* PrepareContentTextTableViewCell.swift */; };
 		0B40DC0C1E9CA6A500E1659B /* PrepareContentTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B40DC0A1E9CA6A500E1659B /* PrepareContentTextTableViewCell.xib */; };
@@ -23,6 +16,13 @@
 		0B40DC101E9CA6E100E1659B /* PrepareContentVideoPreviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B40DC0E1E9CA6E100E1659B /* PrepareContentVideoPreviewTableViewCell.xib */; };
 		0B40DC151E9CA71400E1659B /* PrepareContentHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B40DC131E9CA71400E1659B /* PrepareContentHeaderTableViewCell.swift */; };
 		0B40DC161E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B40DC141E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib */; };
+		0BC1FF4B1E968E07007DE090 /* CollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1FF491E968E07007DE090 /* CollectionTableViewCell.swift */; };
+		0BC1FF4C1E968E07007DE090 /* CollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC1FF4A1E968E07007DE090 /* CollectionTableViewCell.xib */; };
+		0BC9F9361E96118C009E8204 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC9F92C1E96118C009E8204 /* ChatTableViewCell.swift */; };
+		0BC9F9371E96118C009E8204 /* ChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC9F92D1E96118C009E8204 /* ChatTableViewCell.xib */; };
+		0BC9F9381E96118C009E8204 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC9F92E1E96118C009E8204 /* ChatViewController.xib */; };
+		0BC9F9391E96118C009E8204 /* StatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC9F9301E96118C009E8204 /* StatusTableViewCell.swift */; };
+		0BC9F93A1E96118C009E8204 /* StatusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC9F9311E96118C009E8204 /* StatusTableViewCell.xib */; };
 		0BE7FD841E9CAC7400E3262E /* PrepareContentActionButtonsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE7FD821E9CAC7400E3262E /* PrepareContentActionButtonsTableViewCell.swift */; };
 		0BE7FD851E9CAC7400E3262E /* PrepareContentActionButtonsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BE7FD831E9CAC7400E3262E /* PrepareContentActionButtonsTableViewCell.xib */; };
 		0BE7FD8A1E9D2AEF00E3262E /* PrepareContentStepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE7FD881E9D2AEF00E3262E /* PrepareContentStepTableViewCell.swift */; };
@@ -174,15 +174,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0B254D3C1E97994C006AA4C0 /* PrepareCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareCollectionViewCell.swift; path = QOT/Prepare/PrepareChat/CollectionTableViewCell/PrepareCollectionViewCell/PrepareCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
-		0B254D3D1E97994C006AA4C0 /* PrepareCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PrepareCollectionViewCell.xib; path = QOT/Prepare/PrepareChat/CollectionTableViewCell/PrepareCollectionViewCell/PrepareCollectionViewCell.xib; sourceTree = SOURCE_ROOT; };
-		0BC1FF491E968E07007DE090 /* CollectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionTableViewCell.swift; path = QOT/Prepare/PrepareChat/CollectionTableViewCell/CollectionTableViewCell.swift; sourceTree = SOURCE_ROOT; };
-		0BC1FF4A1E968E07007DE090 /* CollectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CollectionTableViewCell.xib; path = QOT/Prepare/PrepareChat/CollectionTableViewCell/CollectionTableViewCell.xib; sourceTree = SOURCE_ROOT; };
-		0BC9F92C1E96118C009E8204 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
-		0BC9F92D1E96118C009E8204 /* ChatTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatTableViewCell.xib; sourceTree = "<group>"; };
-		0BC9F92E1E96118C009E8204 /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
-		0BC9F9301E96118C009E8204 /* StatusTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusTableViewCell.swift; sourceTree = "<group>"; };
-		0BC9F9311E96118C009E8204 /* StatusTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatusTableViewCell.xib; sourceTree = "<group>"; };
+		0B254D3C1E97994C006AA4C0 /* PrepareCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareCollectionViewCell.swift; path = PrepareCollectionViewCell.swift; sourceTree = "<group>"; };
+		0B254D3D1E97994C006AA4C0 /* PrepareCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PrepareCollectionViewCell.xib; path = PrepareCollectionViewCell.xib; sourceTree = "<group>"; };
 		0B40DC061E9CA65300E1659B /* PrepareContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentViewController.xib; sourceTree = "<group>"; };
 		0B40DC091E9CA6A500E1659B /* PrepareContentTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentTextTableViewCell.swift; sourceTree = "<group>"; };
 		0B40DC0A1E9CA6A500E1659B /* PrepareContentTextTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentTextTableViewCell.xib; sourceTree = "<group>"; };
@@ -190,6 +183,13 @@
 		0B40DC0E1E9CA6E100E1659B /* PrepareContentVideoPreviewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentVideoPreviewTableViewCell.xib; sourceTree = "<group>"; };
 		0B40DC131E9CA71400E1659B /* PrepareContentHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		0B40DC141E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		0BC1FF491E968E07007DE090 /* CollectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionTableViewCell.swift; path = CollectionTableViewCell.swift; sourceTree = "<group>"; };
+		0BC1FF4A1E968E07007DE090 /* CollectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CollectionTableViewCell.xib; path = CollectionTableViewCell.xib; sourceTree = "<group>"; };
+		0BC9F92C1E96118C009E8204 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
+		0BC9F92D1E96118C009E8204 /* ChatTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatTableViewCell.xib; sourceTree = "<group>"; };
+		0BC9F92E1E96118C009E8204 /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
+		0BC9F9301E96118C009E8204 /* StatusTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusTableViewCell.swift; sourceTree = "<group>"; };
+		0BC9F9311E96118C009E8204 /* StatusTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatusTableViewCell.xib; sourceTree = "<group>"; };
 		0BE7FD821E9CAC7400E3262E /* PrepareContentActionButtonsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentActionButtonsTableViewCell.swift; sourceTree = "<group>"; };
 		0BE7FD831E9CAC7400E3262E /* PrepareContentActionButtonsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentActionButtonsTableViewCell.xib; sourceTree = "<group>"; };
 		0BE7FD881E9D2AEF00E3262E /* PrepareContentStepTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentStepTableViewCell.swift; sourceTree = "<group>"; };
@@ -366,35 +366,7 @@
 				0B254D3D1E97994C006AA4C0 /* PrepareCollectionViewCell.xib */,
 			);
 			name = PrepareCollectionViewCell;
-			sourceTree = "<group>";
-		};
-		0BC9F9251E96118C009E8204 /* CollectionTableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				0BC1FF491E968E07007DE090 /* CollectionTableViewCell.swift */,
-				0BC1FF4A1E968E07007DE090 /* CollectionTableViewCell.xib */,
-				0B254D401E979952006AA4C0 /* PrepareCollectionViewCell */,
-			);
-			name = CollectionTableViewCell;
-			path = AnswerCollectionTableViewCell;
-			sourceTree = "<group>";
-		};
-		0BC9F92B1E96118C009E8204 /* ChatTableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				0BC9F92C1E96118C009E8204 /* ChatTableViewCell.swift */,
-				0BC9F92D1E96118C009E8204 /* ChatTableViewCell.xib */,
-			);
-			path = ChatTableViewCell;
-			sourceTree = "<group>";
-		};
-		0BC9F92F1E96118C009E8204 /* StatusTableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				0BC9F9301E96118C009E8204 /* StatusTableViewCell.swift */,
-				0BC9F9311E96118C009E8204 /* StatusTableViewCell.xib */,
-			);
-			path = StatusTableViewCell;
+			path = PrepareCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		0B40DC081E9CA65D00E1659B /* PrepareContentTextTableViewCell */ = {
@@ -422,6 +394,35 @@
 				0B40DC141E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib */,
 			);
 			path = PrepareContentHeaderTableViewCell;
+			sourceTree = "<group>";
+		};
+		0BC9F9251E96118C009E8204 /* CollectionTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				0B254D401E979952006AA4C0 /* PrepareCollectionViewCell */,
+				0BC1FF491E968E07007DE090 /* CollectionTableViewCell.swift */,
+				0BC1FF4A1E968E07007DE090 /* CollectionTableViewCell.xib */,
+			);
+			name = CollectionTableViewCell;
+			path = CollectionTableViewCell;
+			sourceTree = "<group>";
+		};
+		0BC9F92B1E96118C009E8204 /* ChatTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				0BC9F92C1E96118C009E8204 /* ChatTableViewCell.swift */,
+				0BC9F92D1E96118C009E8204 /* ChatTableViewCell.xib */,
+			);
+			path = ChatTableViewCell;
+			sourceTree = "<group>";
+		};
+		0BC9F92F1E96118C009E8204 /* StatusTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				0BC9F9301E96118C009E8204 /* StatusTableViewCell.swift */,
+				0BC9F9311E96118C009E8204 /* StatusTableViewCell.xib */,
+			);
+			path = StatusTableViewCell;
 			sourceTree = "<group>";
 		};
 		0BE7FD811E9CAC4000E3262E /* PrepareContentActionButtonsTableViewCell */ = {
@@ -803,11 +804,11 @@
 		CC4D1D7A1E82E6AD00B8D75E /* PrepareChat */ = {
 			isa = PBXGroup;
 			children = (
-				0BC9F9251E96118C009E8204 /* CollectionTableViewCell */,
 				0BC9F92B1E96118C009E8204 /* ChatTableViewCell */,
+				0BC9F9251E96118C009E8204 /* CollectionTableViewCell */,
 				0BC9F92F1E96118C009E8204 /* StatusTableViewCell */,
-				0BC9F92E1E96118C009E8204 /* ChatViewController.xib */,
 				CCCC211A1E8981AD00133839 /* ChatViewController.swift */,
+				0BC9F92E1E96118C009E8204 /* ChatViewController.xib */,
 				CCCC211B1E8981AD00133839 /* ChatViewModel.swift */,
 			);
 			path = PrepareChat;
@@ -911,8 +912,8 @@
 		CCC1B69B1E8B9A1200D1461F /* Learn Strategy */ = {
 			isa = PBXGroup;
 			children = (
-				D5EF23481E952EF100D88064 /* Page Controller */,
 				D51D088E1E8EA36700FC7567 /* Cell */,
+				D5EF23481E952EF100D88064 /* Page Controller */,
 				CCC1B6B21E8BA71500D1461F /* LearnStrategyViewController.swift */,
 				D540275D1E8D401F0013B783 /* LearnStrategyViewController.xib */,
 				CCC1B6B01E8B9FDA00D1461F /* LearnStrategyViewModel.swift */,
@@ -1054,6 +1055,7 @@
 				D54D8FFE1E95376D003924C9 /* TopTabBarController.swift */,
 			);
 			name = "Page Controller";
+			path = "Page Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
