@@ -706,9 +706,9 @@
 		CC0294A81E9F66FD00163B94 /* My Data */ = {
 			isa = PBXGroup;
 			children = (
+				CC9663171EA1B86100B84B1C /* MyDataSectorLabelsView.swift */,
 				CC9663061EA1B27F00B84B1C /* MyDataView.swift */,
 				CC9663051EA1B27F00B84B1C /* MyDataViewModel.swift */,
-				CC9663171EA1B86100B84B1C /* MyDataSectorLabelsView.swift */,
 			);
 			path = "My Data";
 			sourceTree = "<group>";
@@ -782,10 +782,10 @@
 			children = (
 				CC0294A81E9F66FD00163B94 /* My Data */,
 				CC0294A91E9F670C00163B94 /* My Why */,
+				CC9663191EA1B8C000B84B1C /* MyUniverseAbstractView.swift */,
 				CC9663111EA1B41500B84B1C /* MyUniverseCoordinator.swift */,
 				CC9663131EA1B41500B84B1C /* MyUniverseHelper.swift */,
 				CC9663121EA1B41500B84B1C /* MyUniverseViewController.swift */,
-				CC9663191EA1B8C000B84B1C /* MyUniverseAbstractView.swift */,
 			);
 			path = "My Universe";
 			sourceTree = "<group>";
@@ -1053,7 +1053,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "QOT" */;
+			buildConfigurationList = CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "qot" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1545,7 +1545,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "QOT" */ = {
+		CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "qot" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBB238071E6FFF1300AB5AEF /* Debug */,
