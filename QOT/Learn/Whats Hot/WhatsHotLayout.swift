@@ -9,15 +9,15 @@
 import Foundation
 import UIKit
 
-struct Constants {
+private struct Constants {
     static let standardHeight: CGFloat = 150
     static let featuredHeight: CGFloat = 352
 }
 
-class WhatsHotLayout: UICollectionViewLayout {
+final class WhatsHotLayout: UICollectionViewLayout {
     
-    let dragOffset: CGFloat = 202.0
-    
+    private let dragOffset: CGFloat = 180
+    fileprivate var indexPath = 0
     fileprivate var cache = [UICollectionViewLayoutAttributes]()
     
     fileprivate var featuredItemIndex: Int {
@@ -44,10 +44,8 @@ class WhatsHotLayout: UICollectionViewLayout {
         let contentHeight = (CGFloat(numberOfItems) * dragOffset) + (height - dragOffset)
         return CGSize(width: width, height: contentHeight)
     }
-    
     override func prepare() {
         cache.removeAll(keepingCapacity: false)
-        
         let standardHeight = Constants.standardHeight
         let featuredHeight = Constants.featuredHeight
         
@@ -63,23 +61,25 @@ class WhatsHotLayout: UICollectionViewLayout {
             var height = standardHeight
             
             if indexPath.item == featuredItemIndex {
-                
                 let yOffset = standardHeight * nextItemPercentageOffset
-                y = collectionView!.contentOffset.y - yOffset
-                height = featuredHeight
-                
-            } else if indexPath.item == (featuredItemIndex + 1) && indexPath.item != numberOfItems {
-                
-                let maxY = y + standardHeight
+                 y = collectionView!.contentOffset.y - yOffset
+                 height = featuredHeight
+            } else if  indexPath.item == (featuredItemIndex + 1) && indexPath.item != numberOfItems {
+               
                 height = standardHeight + max((featuredHeight - standardHeight) * nextItemPercentageOffset, 0)
-                y = maxY - height
+
             }
-            
             frame = CGRect(x: 0, y: y, width: width, height: height)
             attributes.frame = frame
             cache.append(attributes)
             y = frame.maxY
         }
+    }
+    
+    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
+        let itemIndex = round(proposedContentOffset.y / dragOffset)
+        let yOffset = itemIndex * dragOffset
+        return CGPoint(x: 0, y: yOffset)
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
@@ -94,9 +94,9 @@ class WhatsHotLayout: UICollectionViewLayout {
         return layoutAttributes
         
     }
-
+    
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         return true
     }
-    
+
 }

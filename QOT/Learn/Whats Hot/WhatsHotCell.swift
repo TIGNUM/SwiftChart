@@ -2,7 +2,7 @@
 //  WhatsHotCell.swift
 //  QOT
 //
-//  Created by tignum on 4/13/17.
+//  Created by Aamir suhial Mir on 4/13/17.
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 

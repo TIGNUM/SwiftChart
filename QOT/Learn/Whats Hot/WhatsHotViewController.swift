@@ -2,7 +2,7 @@
 //  WhatsHotViewController.swift
 //  QOT
 //
-//  Created by karmic on 30/03/2017.
+//  Created by Aamir Suhial Mir on 30/03/2017.
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
@@ -36,6 +36,10 @@ class WhatsHotViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .black
+        setUpCollectionView()
+    }
+    
+    func setUpCollectionView() {
         collectionView.registerDequeueable(WhatsHotCell.self)
         let layout = WhatsHotLayout()
         collectionView.collectionViewLayout = layout
