@@ -159,7 +159,9 @@ extension TabBarCoordinator: PrepareContentViewControllerDelegate {
     }
 
     func didTapSaveAs(sectionID: String, in viewController: PrepareContentViewController) {
-        log("didTapSaveAs")
+        let viewModel = MyPrepViewModel()
+        let vc = MyPrepViewController(viewModel: viewModel)
+        viewController.present(vc, animated: true)
     }
 
     func didTapAddToNotes(sectionID: String, in viewController: PrepareContentViewController) {
@@ -167,11 +169,15 @@ extension TabBarCoordinator: PrepareContentViewControllerDelegate {
     }
 
     func didTapAddPreparation(sectionID: String, in viewController: PrepareContentViewController) {
-        log("didTapAddPreparation")
+        let viewModel = PrepareEventsViewModel()
+        let vc = PrepareEventsViewController(viewModel: viewModel)
+        viewController.present(vc, animated: true)
     }
 
     func didTapSaveAs(in viewController: PrepareContentViewController) {
-        log("didTapSaveAs")
+        let viewModel = MyPrepViewModel()
+        let vc = MyPrepViewController(viewModel: viewModel)
+        viewController.present(vc, animated: true)
     }
 
     func didTapAddToNotes(in viewController: PrepareContentViewController) {
