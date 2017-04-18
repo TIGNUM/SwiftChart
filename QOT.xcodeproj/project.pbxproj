@@ -78,6 +78,8 @@
 		CC37B1311E93CDD600651C46 /* QOTDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC37B1301E93CDD600651C46 /* QOTDatabase.framework */; };
 		CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB631E83BDA300FF28DF /* Utils.swift */; };
 		CC3DFB661E83C19C00FF28DF /* Defines.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB651E83C19C00FF28DF /* Defines.swift */; };
+		CC5A8D6D1EA65A3E00E5800F /* WeeklyChoicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5A8D6C1EA65A3E00E5800F /* WeeklyChoicesViewModel.swift */; };
+		CC5A8D6F1EA65A6400E5800F /* WeeklyChoicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5A8D6E1EA65A6400E5800F /* WeeklyChoicesViewController.swift */; };
 		CC6B3A291E8158B200E7FDFD /* PresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A281E8158B200E7FDFD /* PresentationManager.swift */; };
 		CC6B3A2D1E8163A200E7FDFD /* FadeInOutPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A2C1E8163A200E7FDFD /* FadeInOutPresentationController.swift */; };
 		CC6B3A2F1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A2E1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift */; };
@@ -242,6 +244,8 @@
 		CC37B1301E93CDD600651C46 /* QOTDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QOTDatabase.framework; path = "Pods/../build/Release-iphoneos/QOTDatabase/QOTDatabase.framework"; sourceTree = "<group>"; };
 		CC3DFB631E83BDA300FF28DF /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		CC3DFB651E83C19C00FF28DF /* Defines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defines.swift; sourceTree = "<group>"; };
+		CC5A8D6C1EA65A3E00E5800F /* WeeklyChoicesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesViewModel.swift; sourceTree = "<group>"; };
+		CC5A8D6E1EA65A6400E5800F /* WeeklyChoicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesViewController.swift; sourceTree = "<group>"; };
 		CC6B3A281E8158B200E7FDFD /* PresentationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationManager.swift; sourceTree = "<group>"; };
 		CC6B3A2C1E8163A200E7FDFD /* FadeInOutPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeInOutPresentationController.swift; sourceTree = "<group>"; };
 		CC6B3A2E1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeInOutPresentationAnimator.swift; sourceTree = "<group>"; };
@@ -754,8 +758,9 @@
 		CC5A8D691EA6597F00E5800F /* Weekly Choices */ = {
 			isa = PBXGroup;
 			children = (
+				CC5A8D6E1EA65A6400E5800F /* WeeklyChoicesViewController.swift */,
+				CC5A8D6C1EA65A3E00E5800F /* WeeklyChoicesViewModel.swift */,
 			);
-			name = "Weekly Choices";
 			path = "Weekly Choices";
 			sourceTree = "<group>";
 		};
@@ -1253,6 +1258,7 @@
 				D5CD23D81E8BB73A002742C4 /* TabBarController.swift in Sources */,
 				CBDB99021E7BE91D003EC73F /* EKEvent+CalendarEventData.swift in Sources */,
 				CB369CE01E8D407C00522293 /* DataProvider.swift in Sources */,
+				CC5A8D6F1EA65A6400E5800F /* WeeklyChoicesViewController.swift in Sources */,
 				CC96630F1EA1B29800B84B1C /* MyWhyView.swift in Sources */,
 				CBDB99081E7BEE05003EC73F /* EventStore.swift in Sources */,
 				D51B5C4C1E8D133B0084A65B /* LearnStrategyCoordinator.swift in Sources */,
@@ -1328,6 +1334,7 @@
 				CCE372F51E8CF10C00B79352 /* WhatsHotViewController.swift in Sources */,
 				CCE3730F1E8D32F800B79352 /* SidebarCoordinator.swift in Sources */,
 				CCC1B6AF1E8B9B7F00D1461F /* LearnContentListViewModel.swift in Sources */,
+				CC5A8D6D1EA65A3E00E5800F /* WeeklyChoicesViewModel.swift in Sources */,
 				CCCC21231E8981CA00133839 /* PrepareContentViewModel.swift in Sources */,
 				CC6B3A291E8158B200E7FDFD /* PresentationManager.swift in Sources */,
 				CCAF03241E801B0E00015125 /* SettingsCoordinator.swift in Sources */,
