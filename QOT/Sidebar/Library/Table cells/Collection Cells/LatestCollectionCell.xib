@@ -43,7 +43,6 @@
             </view>
             <constraints>
                 <constraint firstItem="oeJ-fg-Yks" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="7ab-qa-fge"/>
-                <constraint firstAttribute="trailing" secondItem="oeJ-fg-Yks" secondAttribute="trailing" id="BAe-se-7eA"/>
                 <constraint firstItem="nHk-g4-OrY" firstAttribute="top" secondItem="oeJ-fg-Yks" secondAttribute="bottom" constant="13" id="CDe-kz-P06"/>
                 <constraint firstItem="UC3-2G-72Y" firstAttribute="top" secondItem="nHk-g4-OrY" secondAttribute="bottom" constant="4.7000000000000002" id="Hdl-Sf-4MQ"/>
                 <constraint firstAttribute="bottom" secondItem="UC3-2G-72Y" secondAttribute="bottom" id="U3d-zy-hDA"/>

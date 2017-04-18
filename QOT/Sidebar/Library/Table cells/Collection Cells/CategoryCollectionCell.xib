@@ -41,8 +41,6 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="Zmg-fv-vvV" secondAttribute="bottom" id="0UI-9W-Qqn"/>
-                <constraint firstAttribute="trailing" secondItem="Zmg-fv-vvV" secondAttribute="trailing" id="1do-PK-HBJ"/>
                 <constraint firstItem="Zmg-fv-vvV" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="3gS-JG-psW"/>
                 <constraint firstItem="6YM-B2-m5k" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="6" id="CKo-pb-aiK"/>
                 <constraint firstItem="Zmg-fv-vvV" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="KXd-hC-Ksr"/>

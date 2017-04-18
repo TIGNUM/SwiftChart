@@ -55,9 +55,9 @@ private func mockCategorySections() -> [Section] {
     return [
         Section(title: "Latest Posts", items: mockMixedMediaItems(), style: .lastPost),
         Section(title: "PERFORMANCE CATEGORY 1", items: mockMixedMediaItems(), style: .category),
-        Section(title: "PERFORMANCE CATEGORY 2", items: mockMixedMediaItems(), style: .category),
-        Section(title: "PERFORMANCE CATEGORY 3", items: mockMixedMediaItems(), style: .category),
-        Section(title: "PERFORMANCE CATEGORY 4", items: mockMixedMediaItems(), style: .category)
+//        Section(title: "PERFORMANCE CATEGORY 2", items: mockMixedMediaItems(), style: .category),
+//        Section(title: "PERFORMANCE CATEGORY 3", items: mockMixedMediaItems(), style: .category),
+//        Section(title: "PERFORMANCE CATEGORY 4", items: mockMixedMediaItems(), style: .category)
     ]
 }
 

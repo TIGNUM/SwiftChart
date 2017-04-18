@@ -36,8 +36,6 @@ final class LibraryViewController: UIViewController {
         super.viewDidLoad()
         registerTableCell()
         view.backgroundColor = .black
-        tableView.estimatedRowHeight = 20
-        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     func registerTableCell() {
@@ -46,7 +44,7 @@ final class LibraryViewController: UIViewController {
     }
 }
 
-extension LibraryViewController: UITableViewDelegate, UICollectionViewDelegate {
+extension LibraryViewController: UITableViewDelegate {
     
     // table View Delegate
     
@@ -57,11 +55,15 @@ extension LibraryViewController: UITableViewDelegate, UICollectionViewDelegate {
         
         return viewModel.sectionCount
     }
-    
-    // Collection View Delegate
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let style = viewModel.styleForSection(indexPath.item)
+        switch style {
+        case .lastPost:
+            return 200
+        case .category:
+            return 300
+        }
     }
 }
 
@@ -81,7 +83,7 @@ extension LibraryViewController: UITableViewDataSource {
             
         case .category:
             let cell: CategoryPostCell = tableView.dequeueCell(for: indexPath)
-            cell.setUp(title: "\(viewModel.titleForSection(indexPath.item))", sectionCount: viewModel.sectionCount)
+            cell.setUp(title: "\(viewModel.titleForSection(indexPath.item))", itemCount: viewModel.sectionCount)
             return cell
         }
     }

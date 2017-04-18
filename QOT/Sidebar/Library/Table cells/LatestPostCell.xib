@@ -32,11 +32,11 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="232" id="w8U-mX-cBq"/>
                         </constraints>
-                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="15" minimumInteritemSpacing="15" id="fWi-nB-ry1">
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="fWi-nB-ry1">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="28" minY="0.0" maxX="0.0" maxY="45"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                     </collectionView>
                 </subviews>
@@ -46,7 +46,6 @@
                     <constraint firstItem="x11-Z5-yIy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="a0d-zR-wUM"/>
                     <constraint firstAttribute="trailing" secondItem="x11-Z5-yIy" secondAttribute="trailing" id="dWm-9p-Lk4"/>
                     <constraint firstAttribute="trailing" secondItem="pJi-MO-eWc" secondAttribute="trailing" id="e7v-qH-SDz"/>
-                    <constraint firstAttribute="bottom" secondItem="pJi-MO-eWc" secondAttribute="bottom" constant="40.5" id="qJG-GS-yXx"/>
                     <constraint firstItem="x11-Z5-yIy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="28" id="rAz-OC-SCQ"/>
                     <constraint firstItem="pJi-MO-eWc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="u2w-cb-Qfi"/>
                 </constraints>

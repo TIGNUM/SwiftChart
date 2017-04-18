@@ -16,17 +16,21 @@ final class CategoryPostCell: UITableViewCell, Dequeueable {
     let viewModel = LibraryViewModel()
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
+
     var itemCount = 0
     let helper = Helper()
+
     override func awakeFromNib() {
         super.awakeFromNib()
+
+
     }
     
-    func setUp(title: String, sectionCount: Int) {
+    func setUp(title: String, itemCount: Int) {
         
         titleLabel.attributedText = AttributedString.Library.categoryTitle(string: title.makingTwoLines())
         
-        self.itemCount = sectionCount
+        self.itemCount = itemCount
         collectionView.registerDequeueable(CategoryCollectionCell.self)
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -56,11 +60,26 @@ extension CategoryPostCell : UICollectionViewDelegateFlowLayout, UICollectionVie
         }
         
     }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 15
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 28, bottom: 0, right: 28)
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         print(self.bounds.height)
-        return CGSize(width: 275, height: 180)
+        return CGSize(width: 275, height: collectionView.frame.height)
     }
+
+
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         targetContentOffset.pointee.x = self.helper.scrollViewScroll(scrollView: scrollView, velocity: velocity, targetContentOffset: targetContentOffset, width: 275)
