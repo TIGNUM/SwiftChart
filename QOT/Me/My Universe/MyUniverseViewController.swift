@@ -9,7 +9,10 @@
 import UIKit
 
 protocol MyUniverseViewControllerDelegate: class {
-    func didTapSector(sector: Sector?, in viewController: UIViewController)
+    func didTapSector(sector: Sector?, in viewController: MyUniverseViewController)
+    func didTapMyToBeVision(vision: Vision?, in viewController: MyUniverseViewController)
+    func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, in viewController: MyUniverseViewController)
+    func didTypQOTPartner(partner: Partner?, in viewController: MyUniverseViewController)
 }
 
 final class MyUniverseViewController: UIViewController {
@@ -116,7 +119,7 @@ private extension MyUniverseViewController {
 
     func addMyWhyView() {
         let myWhyViewFrame = CGRect(x: view.bounds.width, y: 0, width: view.bounds.width, height: view.bounds.height)
-        let myWhyView = MyWhyView(myWhyViewModel: myWhyViewModel, frame: myWhyViewFrame)
+        let myWhyView = MyWhyView(myWhyViewModel: myWhyViewModel, frame: myWhyViewFrame, viewController: self, delegate: delegate)
         contentScrollView?.addSubview(myWhyView)
         self.myWhyView = myWhyView
     }
