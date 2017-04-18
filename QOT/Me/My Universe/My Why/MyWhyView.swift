@@ -15,11 +15,11 @@ class MyWhyView: UIView {
     var previousBounds = CGRect.zero
     let myWhyViewModel: MyWhyViewModel
     let delegate: MyUniverseViewControllerDelegate?
-    let viewController: UIViewController
+    let viewController: MyUniverseViewController
     lazy var weeklyChoices = [WeeklyChoice]()
     lazy var partners = [Partner]()
 
-    init(myWhyViewModel: MyWhyViewModel, frame: CGRect, viewController: UIViewController, delegate: MyUniverseViewControllerDelegate?) {
+    init(myWhyViewModel: MyWhyViewModel, frame: CGRect, viewController: MyUniverseViewController, delegate: MyUniverseViewControllerDelegate?) {
         self.myWhyViewModel = myWhyViewModel
         self.delegate = delegate
         self.viewController = viewController

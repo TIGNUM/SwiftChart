@@ -120,19 +120,21 @@ extension TabBarCoordinator: LearnContentListCoordinatorDelegate {
 
 extension TabBarCoordinator: MyUniverseViewControllerDelegate {
     
-    func didTapSector(sector: Sector?, in viewController: UIViewController) {
+    func didTapSector(sector: Sector?, in viewController: MyUniverseViewController) {
         print("didTapSector: \(sector?.labelType.text ?? "INVALID")")
     }
 
-    func didTapMyToBeVision(vision: Vision?, in viewController: UIViewController) {
+    func didTapMyToBeVision(vision: Vision?, in viewController: MyUniverseViewController) {
         print("didTapMyToBeVision: ", vision)
     }
 
-    func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, in viewController: UIViewController) {
-        print("didTapWeeklyChoices: ", weeklyChoice)
+    func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, in viewController: MyUniverseViewController) {
+        let coordinator = MyUniverseCoordinator(root: viewController, services: services, eventTracker: eventTracker)
+        coordinator.startWeeklyChoices()        
+        startChild(child: coordinator)        
     }
 
-    func didTypQOTPartner(partner: Partner?, in viewController: UIViewController) {
+    func didTypQOTPartner(partner: Partner?, in viewController: MyUniverseViewController) {
         print("diddidTypQOTPartner: ", partner)
     }
 }

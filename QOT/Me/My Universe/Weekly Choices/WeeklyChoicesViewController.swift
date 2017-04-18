@@ -8,12 +8,18 @@
 
 import UIKit
 
+protocol WeeklyChoicesViewControllerDelegate: class {
+    func didTapClose(in viewController: UIViewController, animated: Bool)
+    func didTapShare(in viewController: UIViewController, from rect: CGRect, with item: WeeklyChoice)
+}
+
 final class WeeklyChoicesViewController: UIViewController {
 
     // MARK: - Properties
 
     lazy var tableView = UITableView()
     let viewModel: WeeklyChoicesViewModel
+    weak var delegate: WeeklyChoicesViewControllerDelegate?
 
     // MARK: - Init
 
@@ -32,9 +38,20 @@ final class WeeklyChoicesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeView))
+        view.addGestureRecognizer(tapGestureRecognizer)
+        view.backgroundColor = .green
+        setupTableView()
+    }
+
+    private func setupTableView() {
         tableView = UITableView(frame: view.frame, style: .plain)
         tableView.delegate = self
-        tableView.dataSource = self
+        tableView.dataSource = self        
+    }
+
+    func closeView() {
+        delegate?.didTapClose(in: self, animated: true)
     }
 }
 

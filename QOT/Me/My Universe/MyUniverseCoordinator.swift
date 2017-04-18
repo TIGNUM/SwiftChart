@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class MyUniverseCoordinator: ParentCoordinator {
     
@@ -27,6 +28,25 @@ final class MyUniverseCoordinator: ParentCoordinator {
     }
     
     func start() {
-        // TODO
+
+    }
+
+    func startWeeklyChoices() {
+        let weeklyChoicesViewController = WeeklyChoicesViewController(viewModel: WeeklyChoicesViewModel())
+        weeklyChoicesViewController.delegate = self
+        rootViewController.present(weeklyChoicesViewController, animated: true)
+    }
+}
+
+// MARK: - WeeklyChoicesViewControllerDelegate
+
+extension MyUniverseCoordinator: WeeklyChoicesViewControllerDelegate {
+
+    func didTapClose(in viewController: UIViewController, animated: Bool) {
+        viewController.dismiss(animated: true, completion: nil)
+    }
+
+    func didTapShare(in viewController: UIViewController, from rect: CGRect, with item: WeeklyChoice) {
+        log("didTapShare in: \(viewController), from rect: \(rect ) with item: \(item)")
     }
 }
