@@ -149,7 +149,7 @@ extension MyUniverseHelper {
     static func createScrollView(_ frame: CGRect, layout: Layout.MeSection) -> UIScrollView {
         let scrollView = UIScrollView(frame: frame)
         scrollView.bounces = false
-        scrollView.isPagingEnabled = true
+        scrollView.isPagingEnabled = false
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.contentSize = CGSize(

@@ -22,6 +22,8 @@ final class MyUniverseViewController: UIViewController {
     fileprivate var backgroundScrollView: UIScrollView?
     fileprivate var solarView: MeSolarView?
     fileprivate var myWhyView: MyWhyView?
+    fileprivate var myDataSectorLabelsView: MyDataSectorLabelsView?
+    fileprivate var lastContentOffset: CGFloat = 0
     weak var delegate: MyUniverseViewControllerDelegate?
 
     // MARK: - Life Cycle
@@ -118,16 +120,17 @@ private extension MyUniverseViewController {
         contentScrollView?.addSubview(myWhyView)
     }
 
-    func addMySolarView() {
-        let solarView = MeSolarView(sectors: myDataViewModel.sectors, profileImage: myDataViewModel.profileImage, frame: view.bounds)
-        contentScrollView?.addSubview(solarView)
-        self.solarView = solarView
-    }
-
     func addMyDataSectorLabelView() {
         let myDataSectorLablesViewFrame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         let myDataSectorLabelsView = MyDataSectorLabelsView(sectors: myDataViewModel.sectors, frame: myDataSectorLablesViewFrame)
         contentScrollView?.addSubview(myDataSectorLabelsView)
+        self.myDataSectorLabelsView = myDataSectorLabelsView
+    }
+
+    func addMySolarView() {
+        let solarView = MeSolarView(sectors: myDataViewModel.sectors, profileImage: myDataViewModel.profileImage, frame: view.bounds)
+        contentScrollView?.addSubview(solarView)
+        self.solarView = solarView
     }
 }
 
@@ -153,6 +156,7 @@ private extension MyUniverseViewController {
     func setupContentScrollView(layout: Layout.MeSection) {
         let contentScrollView = MyUniverseHelper.createScrollView(view.frame, layout: layout)
         contentScrollView.delegate = self
+        contentScrollView.isPagingEnabled = true
         view.addSubview(contentScrollView)
         self.contentScrollView = contentScrollView
     }
@@ -170,8 +174,9 @@ private extension MyUniverseViewController {
 extension MyUniverseViewController: UIScrollViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        setParallaxEffect(scrollView)
+        setBackgroundParallaxEffect(scrollView)
         updateProfileImageViewAlphaValue(scrollView)
+        updateSectorLabelsAlphaValue(scrollView)
     }
 }
 
@@ -180,16 +185,18 @@ extension MyUniverseViewController: UIScrollViewDelegate {
 private extension MyUniverseViewController {
 
     func updateProfileImageViewAlphaValue(_ contentScrollView: UIScrollView) {
-        let maxX = contentScrollView.frame.maxX - view.frame.width * 0.24
-        guard maxX > 0 else {
-            solarView?.profileImageViewOverlay.alpha = 0
-            solarView?.profileImageViewOverlayEffect.alpha = 0
-            return
-        }
-
-        let alpha = 1 - (contentScrollView.contentOffset.x/maxX)
+        let alpha = scrollFactor(contentScrollView)
         solarView?.profileImageViewOverlay.alpha = alpha
         solarView?.profileImageViewOverlayEffect.alpha = alpha
+    }
+
+    func scrollFactor(_ contentScrollView: UIScrollView) -> CGFloat {
+        let maxX = contentScrollView.frame.maxX - view.frame.width * 0.24
+        guard maxX > 0 else {
+            return 0
+        }
+
+        return 1 - (contentScrollView.contentOffset.x/maxX)
     }
 }
 
@@ -197,8 +204,15 @@ private extension MyUniverseViewController {
 
 private extension MyUniverseViewController {
 
-    func setParallaxEffect(_ contentScrollView: UIScrollView) {
+    func setBackgroundParallaxEffect(_ contentScrollView: UIScrollView) {
         let backgroundContentOffset = CGPoint(x: contentScrollView.contentOffset.x * 1.2, y: contentScrollView.contentOffset.y)
         backgroundScrollView?.setContentOffset(backgroundContentOffset, animated: false)
+    }
+
+    func updateSectorLabelsAlphaValue(_ contentScrollView: UIScrollView) {
+        let alpha = scrollFactor(contentScrollView)
+        myDataSectorLabelsView?.sectorLabels.forEach({ (sectorLabel: UILabel) in
+            sectorLabel.alpha = alpha
+        })
     }
 }
