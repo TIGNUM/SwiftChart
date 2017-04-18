@@ -16,7 +16,7 @@ struct Constants {
 
 class WhatsHotLayout: UICollectionViewLayout {
     
-    let dragOffset: CGFloat = 180.0
+    let dragOffset: CGFloat = 202.0
     
     fileprivate var cache = [UICollectionViewLayoutAttributes]()
     
@@ -94,13 +94,7 @@ class WhatsHotLayout: UICollectionViewLayout {
         return layoutAttributes
         
     }
-    
-    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
-        let itemIndex = round(proposedContentOffset.y / dragOffset)
-        let yOffset = itemIndex * dragOffset
-        return CGPoint(x: 0, y: yOffset)
-    }
-    
+
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         return true
     }
