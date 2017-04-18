@@ -80,19 +80,22 @@ private extension MyWhyView {
 
     func addWeeklyChoices(layout: Layout.MeSection, title: String, choices: [WeeklyChoice]) {
         let buttonOffset = Layout.MeSection.labelHeight * 1.3
-        var xPos = layout.myWhyWeeklyChoicesFooterXPos
-        var yPos = layout.myWhyWeeklyChoicesFooterYPos - buttonOffset
+        var xPos = layout.myWhyWeeklyChoicesFooterXPos + CGFloat(choices.count * choices.count)
+        var yPos = layout.myWhyWeeklyChoicesFooterYPos - ((buttonOffset + 1) * CGFloat(choices.count))
 
-        choices.forEach { (weeklyChioce: WeeklyChoice) in
+        for (index, weeklyChoice) in choices.enumerated() {
+            print("xPos: ", xPos, "yPos: ", yPos)
             let buttonFrame = CGRect(
                 x: xPos,
                 y: yPos,
                 width: layout.viewControllerFrame.width * 0.33,
                 height: Layout.MeSection.labelHeight * 1.125
             )
-            addSubview(weeklyChoiceButton(title: weeklyChioce.text, frame: buttonFrame))
-            yPos -= (buttonOffset + 2)
+            addSubview(weeklyChoiceButton(title: weeklyChoice.text, frame: buttonFrame))
+            yPos += (buttonOffset + 2)
+            xPos -= CGFloat(index + 1) * 3
         }
+
         addSubview(footerLabel(with: title, labelFrame: layout.myWhyWeeklyChoicesFooterFrame))
     }
 

@@ -75,7 +75,7 @@ extension MyUniverseHelper {
     static func myWhySpikes(layout: Layout.MeSection) -> [CAShapeLayer] {
         let shiftedXPos = (layout.profileImageWidth * 0.2)
         let originPoint = CGPoint(x: -shiftedXPos, y: layout.profileImageViewFrame.origin.y + layout.profileImageWidth * 0.5)
-        let visionPoint = originPoint.shifted(radius(for: 0.25, layout: layout), with: 315)
+        let visionPoint = originPoint.shifted(radius(for: 0.25, layout: layout), with: 310)
         let choicesPoint = originPoint.shifted(radius(for: 0.4, layout: layout), with: 10)
         let partnersPoint = originPoint.shifted(radius(for: 0.6, layout: layout), with: 60)
 

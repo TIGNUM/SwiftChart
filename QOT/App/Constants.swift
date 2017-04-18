@@ -106,7 +106,7 @@ struct Layout {
         var myWhyWeeklyChoicesFooterFrame: CGRect {
             return CGRect(
                 x: myWhyWeeklyChoicesFooterXPos,
-                y: myWhyWeeklyChoicesFooterYPos,
+                y: myWhyWeeklyChoicesFooterYPos + 10,
                 width: 0,
                 height: Layout.MeSection.labelHeight
             )
