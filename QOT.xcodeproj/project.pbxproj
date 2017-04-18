@@ -135,7 +135,6 @@
 		D58BD8701E9F5F3E005676DE /* WhatsHotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D58BD86E1E9F5F3E005676DE /* WhatsHotViewController.xib */; };
 		D58BD8771E9F65F7005676DE /* WhatsHotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58BD8751E9F65F7005676DE /* WhatsHotCell.swift */; };
 		D58BD8781E9F65F7005676DE /* WhatsHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D58BD8761E9F65F7005676DE /* WhatsHotCell.xib */; };
-		D58BD87A1E9F765D005676DE /* NSFile+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58BD8791E9F765D005676DE /* NSFile+Convenience.swift */; };
 		D5CD23D81E8BB73A002742C4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CD23D71E8BB73A002742C4 /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
@@ -286,7 +285,6 @@
 		D58BD86E1E9F5F3E005676DE /* WhatsHotViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhatsHotViewController.xib; sourceTree = "<group>"; };
 		D58BD8751E9F65F7005676DE /* WhatsHotCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsHotCell.swift; sourceTree = "<group>"; };
 		D58BD8761E9F65F7005676DE /* WhatsHotCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhatsHotCell.xib; sourceTree = "<group>"; };
-		D58BD8791E9F765D005676DE /* NSFile+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFile+Convenience.swift"; sourceTree = "<group>"; };
 		D5CD23D71E8BB73A002742C4 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -386,7 +384,6 @@
 				CBA054481E890560009E28D6 /* Dequeueable.swift */,
 				CBDB98F31E7B000A003EC73F /* NotificationHandler.swift */,
 				CBD791491E71797C0006C590 /* Typealiases.swift */,
-				D58BD8791E9F765D005676DE /* NSFile+Convenience.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1151,7 +1148,6 @@
 				D51D08871E8E80AF00FC7567 /* LearnStrategyVideoCell.swift in Sources */,
 				CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */,
 				CBDB990E1E7BFD05003EC73F /* CalendarEventParticipantData.swift in Sources */,
-				D58BD87A1E9F765D005676DE /* NSFile+Convenience.swift in Sources */,
 				CCFCACC11E8D5DD100EA3119 /* BenefitsViewModel.swift in Sources */,
 				D51D088B1E8E80CD00FC7567 /* LearnStrategyArticleCell.swift in Sources */,
 				CB8A15271E76A1280023B2F9 /* PageEvent.swift in Sources */,

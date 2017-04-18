@@ -39,7 +39,6 @@ class WhatsHotViewController: UIViewController {
         collectionView.registerDequeueable(WhatsHotCell.self)
         let layout = WhatsHotLayout()
         collectionView.collectionViewLayout = layout
-        
     }
 }
 
@@ -63,9 +62,7 @@ extension WhatsHotViewController: UICollectionViewDataSource {
                     placeholderURL: content.placeholderURL)
         return cell
     }
-    
-    
+        
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        print(scrollView.frame)
     }
 }

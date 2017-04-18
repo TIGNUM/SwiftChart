@@ -10,48 +10,37 @@ import Foundation
 import UIKit
 
 struct Constants {
-        static let standardHeight: CGFloat = 150
-        static let featuredHeight: CGFloat = 352
+    static let standardHeight: CGFloat = 150
+    static let featuredHeight: CGFloat = 352
 }
 
 class WhatsHotLayout: UICollectionViewLayout {
     
     let dragOffset: CGFloat = 180.0
     
-    var cache = [UICollectionViewLayoutAttributes]()
+    fileprivate var cache = [UICollectionViewLayoutAttributes]()
     
-     var featuredItemIndex: Int {
-        get {
-            return max(0, Int(collectionView!.contentOffset.y / dragOffset))
-        }
+    fileprivate var featuredItemIndex: Int {
+        return max(0, Int(collectionView!.contentOffset.y / dragOffset))
     }
     
-    
-    var nextItemPercentageOffset: CGFloat {
-        get {
-            return (collectionView!.contentOffset.y / dragOffset) - CGFloat(featuredItemIndex)
-        }
+    fileprivate var nextItemPercentageOffset: CGFloat {
+        return (collectionView!.contentOffset.y / dragOffset) - CGFloat(featuredItemIndex)
     }
     
-    var width: CGFloat {
-        get {
-            return collectionView!.bounds.width
-        }
+    fileprivate var width: CGFloat {
+        return collectionView!.bounds.width
     }
     
-    var height: CGFloat {
-        get {
-            return collectionView!.bounds.height
-        }
+    fileprivate var height: CGFloat {
+        return collectionView!.bounds.height
     }
     
-    var numberOfItems: Int {
-        get {
-            return collectionView!.numberOfItems(inSection: 0)
-        }
+    fileprivate var numberOfItems: Int {
+        return collectionView!.numberOfItems(inSection: 0)
     }
     
-    override var collectionViewContentSize : CGSize {
+    override var collectionViewContentSize: CGSize {
         let contentHeight = (CGFloat(numberOfItems) * dragOffset) + (height - dragOffset)
         return CGSize(width: width, height: contentHeight)
     }
@@ -72,11 +61,13 @@ class WhatsHotLayout: UICollectionViewLayout {
             attributes.zIndex = item
             
             var height = standardHeight
+            
             if indexPath.item == featuredItemIndex {
                 
                 let yOffset = standardHeight * nextItemPercentageOffset
                 y = collectionView!.contentOffset.y - yOffset
                 height = featuredHeight
+                
             } else if indexPath.item == (featuredItemIndex + 1) && indexPath.item != numberOfItems {
                 
                 let maxY = y + standardHeight
