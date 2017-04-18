@@ -20,7 +20,7 @@ final class MyUniverseViewController: UIViewController {
     fileprivate let myWhyViewModel: MyWhyViewModel
     fileprivate var contentScrollView: UIScrollView?
     fileprivate var backgroundScrollView: UIScrollView?
-    fileprivate var solarView: MyDataView?
+    fileprivate var myDataView: MyDataView?
     fileprivate var myWhyView: MyWhyView?
     fileprivate var myDataSectorLabelsView: MyDataSectorLabelsView?
     fileprivate var lastContentOffset: CGFloat = 0
@@ -68,8 +68,8 @@ private extension MyUniverseViewController {
 
     func sector(location: CGPoint) -> Sector? {
         let radius = lengthFromCenter(for: location)
-        let yPosShifted = location.y - (solarView?.profileImageView.center.y ?? 0)
-        let xPosShifted = location.x - (solarView?.profileImageView.center.x ?? 0)
+        let yPosShifted = location.y - (myDataView?.profileImageView.center.y ?? 0)
+        let xPosShifted = location.x - (myDataView?.profileImageView.center.x ?? 0)
         let beta = acos(xPosShifted / radius)
         let sectorAngle = beta.radiansToDegrees
 
@@ -97,8 +97,8 @@ private extension MyUniverseViewController {
     }
 
     func lengthFromCenter(for location: CGPoint) -> CGFloat {
-        let diffX = pow(location.x - (solarView?.profileImageView.center.x ?? 0), 2)
-        let diffY = pow(location.y - (solarView?.profileImageView.center.y ?? 0), 2)
+        let diffX = pow(location.x - (myDataView?.profileImageView.center.x ?? 0), 2)
+        let diffY = pow(location.y - (myDataView?.profileImageView.center.y ?? 0), 2)
         
         return sqrt(diffX + diffY)
     }
@@ -118,6 +118,7 @@ private extension MyUniverseViewController {
         let myWhyViewFrame = CGRect(x: view.bounds.width, y: 0, width: view.bounds.width, height: view.bounds.height)
         let myWhyView = MyWhyView(myWhyViewModel: myWhyViewModel, frame: myWhyViewFrame)
         contentScrollView?.addSubview(myWhyView)
+        self.myWhyView = myWhyView
     }
 
     func addMyDataSectorLabelView() {
@@ -128,9 +129,9 @@ private extension MyUniverseViewController {
     }
 
     func addMyDataView() {
-        let solarView = MyDataView(sectors: myDataViewModel.sectors, profileImage: myDataViewModel.profileImage, frame: view.bounds)
-        contentScrollView?.addSubview(solarView)
-        self.solarView = solarView
+        let myDataView = MyDataView(sectors: myDataViewModel.sectors, profileImage: myDataViewModel.profileImage, frame: view.bounds)
+        contentScrollView?.addSubview(myDataView)
+        self.myDataView = myDataView
     }
 }
 
@@ -177,6 +178,7 @@ extension MyUniverseViewController: UIScrollViewDelegate {
         setBackgroundParallaxEffect(scrollView)
         updateProfileImageViewAlphaValue(scrollView)
         updateSectorLabelsAlphaValue(scrollView)
+        updateMyWhyViewAlphaValue(scrollView)
     }
 }
 
@@ -193,15 +195,15 @@ private extension MyUniverseViewController {
         return 1 - (contentScrollView.contentOffset.x/maxX)
     }
 
-    func updateProfileImageViewAlphaValue(_ contentScrollView: UIScrollView) {
-        let alpha = scrollFactor(contentScrollView)
-        solarView?.profileImageViewOverlay.alpha = alpha
-        solarView?.profileImageViewOverlayEffect.alpha = alpha
-    }
-
     func setBackgroundParallaxEffect(_ contentScrollView: UIScrollView) {
         let backgroundContentOffset = CGPoint(x: contentScrollView.contentOffset.x * 1.2, y: contentScrollView.contentOffset.y)
         backgroundScrollView?.setContentOffset(backgroundContentOffset, animated: false)
+    }
+
+    func updateProfileImageViewAlphaValue(_ contentScrollView: UIScrollView) {
+        let alpha = scrollFactor(contentScrollView)
+        myDataView?.profileImageViewOverlay.alpha = alpha
+        myDataView?.profileImageViewOverlayEffect.alpha = alpha
     }
 
     func updateSectorLabelsAlphaValue(_ contentScrollView: UIScrollView) {
@@ -209,5 +211,10 @@ private extension MyUniverseViewController {
         myDataSectorLabelsView?.sectorLabels.forEach({ (sectorLabel: UILabel) in
             sectorLabel.alpha = alpha
         })
+    }
+
+    func updateMyWhyViewAlphaValue(_ contentScrollView: UIScrollView) {
+        let alpha = scrollFactor(contentScrollView)
+        myWhyView?.alpha = 1 - alpha
     }
 }
