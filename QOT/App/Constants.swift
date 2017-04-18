@@ -36,6 +36,7 @@ struct Layout {
 
     struct MeSection {
         let viewControllerFrame: CGRect
+        let myWhyPartnerScaleFactor = CGFloat(0.8867924528)
 
         static let loadOffset: CGFloat = 12
         static let labelHeight: CGFloat = 21
@@ -122,7 +123,7 @@ struct Layout {
         var myWhyPartnersFooterFrame: CGRect {
             return CGRect(
                 x: myWhyPartnersFooterXPos,
-                y: myWhyPartnersFooterYPos,
+                y: myWhyPartnersFooterYPos + 10,
                 width: 0,
                 height: Layout.MeSection.labelHeight
             )

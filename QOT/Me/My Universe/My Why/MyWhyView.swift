@@ -99,17 +99,17 @@ private extension MyWhyView {
     func addPartners(layout: Layout.MeSection, title: String, partners: [Partner]) {
         let buttonOffset = layout.profileImageWidth * 0.4
         var xPos = layout.myWhyPartnersFooterXPos
-        var yPos = layout.myWhyPartnersFooterYPos - buttonOffset
+        let yPos = layout.myWhyPartnersFooterYPos - buttonOffset
 
         partners.forEach { (partner: Partner) in
             let buttonFrame = CGRect(
                 x: xPos,
                 y: yPos,
-                width: layout.profileImageWidth * 0.35,
-                height: layout.profileImageWidth * 0.35
+                width: (layout.profileImageWidth * 0.4) * layout.myWhyPartnerScaleFactor,
+                height: (layout.profileImageWidth * 0.4)
             )
             addSubview(partnerButton(title: partner.initials, image: partner.profileImage, frame: buttonFrame))
-            xPos += (buttonOffset + 2)
+            xPos += buttonFrame.width + 4
         }
         addSubview(footerLabel(with: title, labelFrame: layout.myWhyPartnersFooterFrame))
     }
