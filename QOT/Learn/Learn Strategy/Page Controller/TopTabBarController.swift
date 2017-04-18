@@ -11,8 +11,8 @@ import Anchorage
 
 protocol TopTabBarDelegate: class {
     func didSelectItemAtIndex(index: Int?, sender: TopTabBarController)
-    func didSelectLeftButton(leftButtonTag: Int?, sender: TopTabBarController)
-    func didSelectrightButton(rightButtonTag: Int?, sender: TopTabBarController)
+    func didSelectLeftButton(sender: TopTabBarController)
+    func didSelectRightButton(sender: TopTabBarController)
 }
 
 final class TopTabBarController: UIViewController {
@@ -29,6 +29,8 @@ final class TopTabBarController: UIViewController {
         let controller: UIViewController
         let title: String
     }
+    // MARK: Public Delegate
+     weak var delegate: TopTabBarDelegate?
     
     // MARK: Private Objects
     
@@ -65,12 +67,9 @@ final class TopTabBarController: UIViewController {
     
     fileprivate var items: [Item]
     fileprivate let tabBarView: TabBarView
-    fileprivate weak var delegate: TabBarControllerDelegate?
     
-    // MARK: Public Objects
-    
-    var index: Int = 0
-    var viewControllers: [UIViewController] {
+    fileprivate var index: Int = 0
+    fileprivate var viewControllers: [UIViewController] {
         return items.map { $0.controller }
     }
     
@@ -110,11 +109,11 @@ final class TopTabBarController: UIViewController {
     }
     
     func leftButtonPressed(_ button: UIButton) {
-        
+        delegate?.didSelectLeftButton(sender: self)
     }
     
     func rightButtonPressed(_ button: UIButton) {
-        
+        delegate?.didSelectRightButton(sender: self)
     }
     
     override func viewDidLayoutSubviews() {

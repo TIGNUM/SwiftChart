@@ -37,7 +37,7 @@ class MyPrepViewController: UITableViewController {
 
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeView))
         view.addGestureRecognizer(tapGestureRecognizer)
-        view.backgroundColor = .black
+        view.backgroundColor = .yellow
     }
 
     func closeView(gestureRecognizer: UITapGestureRecognizer) {
