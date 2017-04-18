@@ -84,7 +84,6 @@ private extension MyWhyView {
         var yPos = layout.myWhyWeeklyChoicesFooterYPos - ((buttonOffset + 1) * CGFloat(choices.count))
 
         for (index, weeklyChoice) in choices.enumerated() {
-            print("xPos: ", xPos, "yPos: ", yPos)
             let buttonFrame = CGRect(
                 x: xPos,
                 y: yPos,
@@ -111,7 +110,7 @@ private extension MyWhyView {
                 width: (layout.profileImageWidth * 0.4) * layout.myWhyPartnerScaleFactor,
                 height: (layout.profileImageWidth * 0.4)
             )
-            addSubview(partnerButton(title: partner.initials, image: partner.profileImage, frame: buttonFrame))
+            addSubview(partnerButton(title: partner.initials, frame: buttonFrame, profileImage: partner.profileImage))
             xPos += buttonFrame.width + 4
         }
         addSubview(footerLabel(with: title, labelFrame: layout.myWhyPartnersFooterFrame))
@@ -136,14 +135,15 @@ private extension MyWhyView {
         return button
     }
 
-    func partnerButton(title: String?, image: UIImage?, frame: CGRect) -> UIButton {
+    func partnerButton(title: String?, frame: CGRect, profileImage: UIImage?) -> UIButton {
         let button = UIButton(frame: frame)
-        button.setTitle(title, for: .normal)
+        button.setTitle((profileImage == nil ? title : nil), for: .normal)
         button.titleLabel?.font = Font.H6NavigationTitle
         button.setTitleColor(Color.MeSection.whiteLabel, for: .normal)
         button.setBackgroundImage(R.image.myWhyPartnerFrame(), for: .normal)
         button.addTarget(self, action: #selector(didTapPartner), for: .touchUpInside)
-        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)        
+        button.setImage(profileImage, for: .normal)
+        button.imageView?.setupHexagonImageView()
 
         return button
     }
