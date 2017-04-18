@@ -13,10 +13,16 @@ class MyWhyView: UIView {
     // MARK: - Properties
 
     var previousBounds = CGRect.zero
-    var myWhyViewModel: MyWhyViewModel?
+    let myWhyViewModel: MyWhyViewModel
+    let delegate: MyUniverseViewControllerDelegate?
+    let viewController: UIViewController
+    lazy var weeklyChoices = [WeeklyChoice]()
+    lazy var partners = [Partner]()
 
-    init(myWhyViewModel: MyWhyViewModel, frame: CGRect) {
+    init(myWhyViewModel: MyWhyViewModel, frame: CGRect, viewController: UIViewController, delegate: MyUniverseViewControllerDelegate?) {
         self.myWhyViewModel = myWhyViewModel
+        self.delegate = delegate
+        self.viewController = viewController
 
         super.init(frame: frame)
     }
@@ -60,8 +66,10 @@ private extension MyWhyView {
             case .vision(let vision):
                 addToBeVision(layout: layout, vision: vision)
             case .weeklyChoices(let title, let choices):
+                weeklyChoices = choices
                 addWeeklyChoices(layout: layout, title: title, choices: choices)
             case .partners(let title, let partners):
+                self.partners = partners
                 addPartners(layout: layout, title: title, partners: partners)
             }
         }
@@ -90,7 +98,7 @@ private extension MyWhyView {
                 width: layout.viewControllerFrame.width * 0.33,
                 height: Layout.MeSection.labelHeight * 1.125
             )
-            addSubview(weeklyChoiceButton(title: weeklyChoice.text, frame: buttonFrame))
+            addSubview(weeklyChoiceButton(title: weeklyChoice.text, frame: buttonFrame, index: index))
             yPos += (buttonOffset + 2)
             xPos -= CGFloat(index + 1) * 2
         }
@@ -103,14 +111,14 @@ private extension MyWhyView {
         var xPos = layout.myWhyPartnersFooterXPos
         let yPos = layout.myWhyPartnersFooterYPos - buttonOffset
 
-        partners.forEach { (partner: Partner) in
+        for (index, partner) in partners.enumerated() {
             let buttonFrame = CGRect(
                 x: xPos,
                 y: yPos,
                 width: (layout.profileImageWidth * 0.4) * layout.myWhyPartnerScaleFactor,
                 height: (layout.profileImageWidth * 0.4)
             )
-            addSubview(partnerButton(title: partner.initials, frame: buttonFrame, profileImage: partner.profileImage))
+            addSubview(partnerButton(title: partner.initials, frame: buttonFrame, profileImage: partner.profileImage, index: index))
             xPos += buttonFrame.width + 4
         }
         addSubview(footerLabel(with: title, labelFrame: layout.myWhyPartnersFooterFrame))
@@ -121,7 +129,7 @@ private extension MyWhyView {
 
 private extension MyWhyView {
 
-    func weeklyChoiceButton(title: String, frame: CGRect) -> UIButton {
+    func weeklyChoiceButton(title: String, frame: CGRect, index: Index) -> UIButton {
         let button = UIButton(frame: frame)
         button.setTitle(title, for: .normal)
         button.titleLabel?.font = Font.H7Tag
@@ -131,11 +139,12 @@ private extension MyWhyView {
         button.addTarget(self, action: #selector(didTapWeeklyChoices), for: .touchUpInside)
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         button.alpha = 0.8
+        button.tag = index
 
         return button
     }
 
-    func partnerButton(title: String?, frame: CGRect, profileImage: UIImage?) -> UIButton {
+    func partnerButton(title: String?, frame: CGRect, profileImage: UIImage?, index: Index) -> UIButton {
         let button = UIButton(frame: frame)
         button.setTitle((profileImage == nil ? title : nil), for: .normal)
         button.titleLabel?.font = Font.H6NavigationTitle
@@ -144,6 +153,7 @@ private extension MyWhyView {
         button.addTarget(self, action: #selector(didTapPartner), for: .touchUpInside)
         button.setImage(profileImage, for: .normal)
         button.imageView?.setupHexagonImageView()
+        button.tag = index
 
         return button
     }
@@ -153,12 +163,12 @@ private extension MyWhyView {
 
 private extension MyWhyView {
 
-    @objc func didTapWeeklyChoices() {
-        print("didTapWeeklyChoices")
+    @objc func didTapWeeklyChoices(sender: UIButton) {
+        delegate?.didTapWeeklyChoices(weeklyChoice: weeklyChoices[sender.tag], in: viewController)
     }
 
-    @objc func didTapPartner() {
-        print("didTapPartner")
+    @objc func didTapPartner(sender: UIButton) {
+        delegate?.didTypQOTPartner(partner: partners[sender.tag], in: viewController)
     }
 }
 

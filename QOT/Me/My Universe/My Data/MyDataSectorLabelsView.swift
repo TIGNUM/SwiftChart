@@ -18,7 +18,7 @@ final class MyDataSectorLabelsView: MyUniverseAbstractView {
     // MARK: - Init
 
     init(sectors: [Sector], frame: CGRect) {
-        self.sectors = sectors
+        self.sectors = sectors        
 
         super.init(frame: frame)
     }

@@ -123,6 +123,18 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
     func didTapSector(sector: Sector?, in viewController: UIViewController) {
         print("didTapSector: \(sector?.labelType.text ?? "INVALID")")
     }
+
+    func didTapMyToBeVision(vision: Vision?, in viewController: UIViewController) {
+        print("didTapMyToBeVision: ", vision)
+    }
+
+    func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, in viewController: UIViewController) {
+        print("didTapWeeklyChoices: ", weeklyChoice)
+    }
+
+    func didTypQOTPartner(partner: Partner?, in viewController: UIViewController) {
+        print("diddidTypQOTPartner: ", partner)
+    }
 }
 
 // MARK: - PrepareChatBotDelegate
