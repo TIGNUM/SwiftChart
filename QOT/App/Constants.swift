@@ -184,6 +184,9 @@ struct Font {
 
     /// BENTON SANS 16 // paragraph, body text
     static let PText = UIFont.bentonRegularFont(ofSize: 16)
+
+    /// BENTON SANS 13 // paragraph, body text
+    static let PTextSmall = UIFont.bentonRegularFont(ofSize: 13)
 }
 
 struct Color {
@@ -324,7 +327,10 @@ struct AttributedString {
         }
 
         static func sectorTitleCritical(text: String) -> NSAttributedString {
-            return NSAttributedString.create(for: text, withColor: Color.cherryRedTwo, andFont: Font.PText, letterSpacing: 2.7)
+            let isBigScreen = UIScreen.main.bounds.width == 1920
+            let font = isBigScreen ? Font.PText : Font.PTextSmall
+            let letterSpacing = isBigScreen ? 2.7 : 2.1
+            return NSAttributedString.create(for: text, withColor: Color.cherryRedTwo, andFont: font, letterSpacing: CGFloat(letterSpacing))
         }
     }
 }
