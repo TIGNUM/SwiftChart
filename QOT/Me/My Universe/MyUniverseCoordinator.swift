@@ -1,5 +1,5 @@
 //
-//  MeSectionCoordinator.swift
+//  MyUniverseCoordinator.swift
 //  QOT
 //
 //  Created by karmic on 22/03/2017.
@@ -8,16 +8,11 @@
 
 import Foundation
 
-protocol MeSectionDelegate: class {
-    
-    func didTapMeSectionItem(in viewController: MeSectionViewController)
-}
-
-final class MeSectionCoordinator: ParentCoordinator {
+final class MyUniverseCoordinator: ParentCoordinator {
     
     // MARK: - Properties
     
-    fileprivate let rootViewController: MeSectionViewController
+    fileprivate let rootViewController: MyUniverseViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
     
@@ -25,7 +20,7 @@ final class MeSectionCoordinator: ParentCoordinator {
     
     // MARK: - Life Cycle
     
-    init(root: MeSectionViewController, services: Services, eventTracker: EventTracker) {
+    init(root: MyUniverseViewController, services: Services, eventTracker: EventTracker) {
         self.rootViewController = root
         self.services = services
         self.eventTracker = eventTracker
