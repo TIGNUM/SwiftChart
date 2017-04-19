@@ -186,7 +186,7 @@ private extension MyWhyView {
     }
 
     @objc func didTapPartner(sender: UIButton) {
-        delegate?.didTypQOTPartner(partner: partners[sender.tag], in: viewController)
+        delegate?.didTypQOTPartner(selectedIndex: sender.tag, partners: partners, in: viewController)
     }
 }
 

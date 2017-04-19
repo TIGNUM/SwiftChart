@@ -12,7 +12,7 @@ protocol MyUniverseViewControllerDelegate: class {
     func didTapSector(sector: Sector?, in viewController: MyUniverseViewController)
     func didTapMyToBeVision(vision: Vision?, in viewController: MyUniverseViewController)
     func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, in viewController: MyUniverseViewController)
-    func didTypQOTPartner(partner: Partner?, in viewController: MyUniverseViewController)
+    func didTypQOTPartner(selectedIndex: Index, partners: [Partner], in viewController: MyUniverseViewController)
 }
 
 final class MyUniverseViewController: UIViewController {

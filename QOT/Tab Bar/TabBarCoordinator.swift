@@ -136,8 +136,8 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
         startChild(child: coordinator)        
     }
 
-    func didTypQOTPartner(partner: Partner?, in viewController: MyUniverseViewController) {
-        print("diddidTypQOTPartner: ", partner)
+    func didTypQOTPartner(selectedIndex: Index, partners: [Partner], in viewController: MyUniverseViewController) {
+        print("diddidTypQOTPartner: ", selectedIndex, partners)
     }
 }
 
