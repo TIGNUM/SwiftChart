@@ -43,7 +43,7 @@ class MyPrepViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func prepareAndSetTextAttributes(string: String, value: CGFloat) -> NSMutableAttributedString {
         let attrString = NSMutableAttributedString(string: string)
-        attrString.addAttribute(NSKernAttributeName, value: value, range: NSRange(location: 0, length: string.characters.count))
+        attrString.addAttribute(NSKernAttributeName, value: value, range: NSRange(location: 0, length: string.utf16.count))
         return attrString
     }
 }
@@ -54,12 +54,8 @@ extension MyPrepViewController {
         let item = viewModel.item(at: indexPath.row)
         let cell: MyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
 
-        var finishedCount: String = ""
-        if item.finishedPreparationCount >= 9 {
-            finishedCount = "\(item.finishedPreparationCount)"
-        } else {
-            finishedCount = "0\(item.finishedPreparationCount)"
-        }
+        let finishedCount: String = String(format: "%02d", item.finishedPreparationCount)
+        
         cell.headerLabel.attributedText = prepareAndSetTextAttributes(string: item.header.uppercased(), value: 2)
         cell.mainTextLabel.attributedText = prepareAndSetTextAttributes(string: item.text.uppercased(), value: -0.8)
         cell.footerLabel.attributedText = prepareAndSetTextAttributes(string: item.footer.uppercased(), value: 2)
@@ -69,14 +65,23 @@ extension MyPrepViewController {
 
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        tableView.deselectRow(at: indexPath, animated: true)
+        let item = viewModel.item(at: indexPath.row)
+        delegate?.didTapMyPrepItem(with: item, at: indexPath.row, from: self.view, in: self)
+
+    }
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.itemCount
     }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 117
     }
-
 }
