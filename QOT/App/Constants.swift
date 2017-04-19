@@ -36,6 +36,7 @@ struct Layout {
 
     struct MeSection {
         let viewControllerFrame: CGRect
+        let myWhyPartnerScaleFactor = CGFloat(0.8867924528)
 
         static let loadOffset: CGFloat = 12
         static let labelHeight: CGFloat = 21
@@ -68,14 +69,78 @@ struct Layout {
             return viewControllerFrame.height * 0.5
         }
 
+        var myWhyVisionFooterXPos: CGFloat {
+            return viewControllerFrame.width * 0.115
+        }
+
+        var myWhyVisionFooterYPos: CGFloat {
+            return viewControllerFrame.height * 0.425
+        }
+
+        var myWhyVisionFooterFrame: CGRect {
+            return CGRect(
+                x: myWhyVisionFooterXPos,
+                y: myWhyVisionFooterYPos,
+                width: 0,
+                height: Layout.MeSection.labelHeight
+            )
+        }
+
+        var myWhyVisionLabelFrame: CGRect {
+            return CGRect(
+                x: myWhyVisionFooterXPos,
+                y: viewControllerFrame.height * 0.25,
+                width: profileImageWidth * 2.25,
+                height: Layout.MeSection.labelHeight
+            )
+        }
+
+        var myWhyWeeklyChoicesFooterXPos: CGFloat {
+            return viewControllerFrame.width * 0.25
+        }
+
+        var myWhyWeeklyChoicesFooterYPos: CGFloat {
+            return viewControllerFrame.height * 0.67
+        }
+
+        var myWhyWeeklyChoicesFooterFrame: CGRect {
+            return CGRect(
+                x: myWhyWeeklyChoicesFooterXPos,
+                y: myWhyWeeklyChoicesFooterYPos + 10,
+                width: 0,
+                height: Layout.MeSection.labelHeight
+            )
+        }
+
+        var myWhyPartnersFooterXPos: CGFloat {
+            return viewControllerFrame.width * 0.1
+        }
+
+        var myWhyPartnersFooterYPos: CGFloat {
+            return viewControllerFrame.height * 0.8
+        }
+
+        var myWhyPartnersFooterFrame: CGRect {
+            return CGRect(
+                x: myWhyPartnersFooterXPos,
+                y: myWhyPartnersFooterYPos + 10,
+                width: 0,
+                height: Layout.MeSection.labelHeight
+            )
+        }
+
         var loadCenter: CGPoint {
             return CGPoint(x: loadCenterX, y: loadCenterY)
         }
 
+        var universeCenter: CGPoint {
+            return CGPoint(x: loadCenterX - profileImageWidth * 0.5, y: loadCenterY - profileImageWidth * 0.5)
+        }
+
         var profileImageViewFrame: CGRect {
             return CGRect(
-                x: loadCenterX - profileImageWidth * 0.5,
-                y: loadCenterY - profileImageWidth * 0.5,
+                x: universeCenter.x,
+                y: universeCenter.y,
                 width: profileImageWidth,
                 height: profileImageWidth
             )

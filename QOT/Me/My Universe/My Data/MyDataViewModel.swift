@@ -1,5 +1,5 @@
 //
-//  MeSectionViewModel.swift
+//  MyDataViewModel.swift
 //  QOT
 //
 //  Created by karmic on 04.04.17.
@@ -9,7 +9,7 @@
 import Foundation
 import ReactiveKit
 
-final class MeSectionViewModel {
+final class MyDataViewModel {
 
     // MARK: - Properties
 
@@ -18,7 +18,7 @@ final class MeSectionViewModel {
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
     var sectorCount: Int {
-        return mockSectors.count
+        return sectors.count
     }
 
     func spike(for sector: Sector, at index: Index) -> Spike {
@@ -44,10 +44,46 @@ enum SectorType {
     }
 }
 
-struct SectorLabel {
-    let text: String
-    let angle: CGFloat
-    let load: CGFloat
+enum SectorLabelType {
+    case peak
+    case meetings
+    case intensity
+    case travel
+    case sleep
+    case activity
+
+    var text: String {
+        switch self {
+        case .peak: return R.string.localized.meSectorPeak()
+        case .meetings: return R.string.localized.meSectorMeetings()
+        case .intensity: return R.string.localized.meSectorIntensity()
+        case .travel: return R.string.localized.meSectorTravel()
+        case .sleep: return R.string.localized.meSectorSleep()
+        case .activity: return R.string.localized.meSectorActivity()
+        }
+    }
+
+    var angle: CGFloat {
+        switch self {
+        case .peak: return 245
+        case .meetings: return 220
+        case .intensity: return 195
+        case .travel: return 170
+        case .sleep: return 142
+        case .activity: return 120
+        }
+    }
+
+    var load: CGFloat {
+        switch self {
+        case .peak: return 1.2
+        case .meetings: return 1.22
+        case .intensity: return 1.27
+        case .travel: return 1.17
+        case .sleep: return 1.1
+        case .activity: return 1.1
+        }
+    }
 }
 
 protocol Spike {
@@ -62,7 +98,7 @@ protocol Sector {
     var startAngle: CGFloat { get }
     var endAngle: CGFloat { get }
     var spikes: [Spike] { get }
-    var label: SectorLabel { get }
+    var labelType: SectorLabelType { get }
     var strokeColor: UIColor { get }
     var type: SectorType { get }
 }
@@ -74,7 +110,7 @@ struct MockSpike: Spike {
 
     // TODO: What da hack! Actually the load is always from 0.1 to 0.9.
     func spikeLoad() -> CGFloat {
-        return (load > 0.9 ? 0.9 : ((load < 0.1) ? 0.1 : load))
+        return (load > 0.9 ? 0.9 : ((load < 0.15) ? 0.15 : load))
     }
 }
 
@@ -82,7 +118,7 @@ struct MockSector: Sector {
     let startAngle: CGFloat
     let endAngle: CGFloat
     let spikes: [Spike]
-    let label: SectorLabel
+    let labelType: SectorLabelType
     let strokeColor: UIColor
     let type: SectorType
 }
@@ -93,7 +129,7 @@ private var mockSectors: [Sector] {
             startAngle: 240,
             endAngle: 264,
             spikes: peakSpikes,
-            label: SectorLabel(text: R.string.localized.meSectorPeak(), angle: 245, load: 1.2),
+            labelType: .peak,
             strokeColor: .magenta,
             type: .load
         ),
@@ -102,7 +138,7 @@ private var mockSectors: [Sector] {
             startAngle: 200,
             endAngle: 239,
             spikes: meetingsSpikes,
-            label: SectorLabel(text: R.string.localized.meSectorMeetings(), angle: 220, load: 1.22),
+            labelType: .meetings,
             strokeColor: .blue,
             type: .load
         ),
@@ -111,7 +147,7 @@ private var mockSectors: [Sector] {
             startAngle: 176,
             endAngle: 199,
             spikes: intensitySpikes,
-            label: SectorLabel(text: R.string.localized.meSectorIntensity(), angle: 195, load: 1.27),
+            labelType: .intensity,
             strokeColor: .yellow,
             type: .load
         ),
@@ -120,7 +156,7 @@ private var mockSectors: [Sector] {
             startAngle: 137,
             endAngle: 175,
             spikes: travelSpikes,
-            label: SectorLabel(text: R.string.localized.meSectorTravel(), angle: 170, load: 1.17),
+            labelType: .travel,
             strokeColor: .green,
             type: .load
         ),
@@ -129,7 +165,7 @@ private var mockSectors: [Sector] {
             startAngle: 120,
             endAngle: 136,
             spikes: sleepSpikes,
-            label: SectorLabel(text: R.string.localized.meSectorSleep(), angle: 142, load: 1.1),
+            labelType: .sleep,
             strokeColor: .orange,
             type: .bodyBrain
         ),
@@ -138,7 +174,7 @@ private var mockSectors: [Sector] {
             startAngle: 100,
             endAngle: 119,
             spikes: activitySpikes,
-            label: SectorLabel(text: R.string.localized.meSectorActivity(), angle: 120, load: 1.1),
+            labelType: .activity,
             strokeColor: .cyan,
             type: .bodyBrain
         )

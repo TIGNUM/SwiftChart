@@ -56,15 +56,61 @@ extension UIBezierPath {
             clockwise: true
         )
     }
+
+    class func roundedPolygonPath(rect: CGRect, lineWidth: CGFloat, sides: NSInteger, cornerRadius: CGFloat = 0, rotationOffset: CGFloat = 0) -> UIBezierPath {
+        let path = UIBezierPath()
+        let theta: CGFloat = CGFloat(2.0 * CGFloat.pi) / CGFloat(sides)
+        let width = min(rect.size.width, rect.size.height)
+        let center = CGPoint(x: rect.origin.x + width / 2.0, y: rect.origin.y + width / 2.0)
+        let radius = (width - lineWidth + cornerRadius - (cos(theta) * cornerRadius)) / 2.0
+        var angle = CGFloat(rotationOffset)
+
+        let corner = CGPoint(x: center.x + (radius - cornerRadius) * cos(angle), y: center.y + (radius - cornerRadius) * sin(angle))
+        path.move(to: CGPoint(x: corner.x + cornerRadius * cos(angle + theta), y: corner.y + cornerRadius * sin(angle + theta)))
+
+        for _ in 0..<sides {
+            angle += theta
+            let corner = CGPoint(x: center.x + (radius - cornerRadius) * cos(angle), y: center.y + (radius - cornerRadius) * sin(angle))
+            let tip = CGPoint(x: center.x + radius * cos(angle), y: center.y + radius * sin(angle))
+            let start = CGPoint(x: corner.x + cornerRadius * cos(angle - theta), y: corner.y + cornerRadius * sin(angle - theta))
+            let end = CGPoint(x: corner.x + cornerRadius * cos(angle + theta), y: corner.y + cornerRadius * sin(angle + theta))
+            path.addLine(to: start)
+            path.addQuadCurve(to: end, controlPoint: tip)
+        }
+
+        path.close()
+        let bounds = path.bounds
+        let transform = CGAffineTransform(translationX: -bounds.origin.x + rect.origin.x + lineWidth / 2.0, y: -bounds.origin.y + rect.origin.y + lineWidth / 2.0)
+        path.apply(transform)
+        
+        return path
+    }
+}
+
+// MARK: - CALayer
+
+extension CALayer {
+
+    func addGlowEffect(color: UIColor, shadowRadius: CGFloat = 10, shadowOpacity: Float = 0.9) {
+        self.shadowColor = color.cgColor
+        self.shadowRadius = shadowRadius
+        self.shadowOpacity = shadowOpacity
+        self.shadowOffset = .zero
+    }
 }
 
 // MARK: - CAShapeLayer
 
 extension CAShapeLayer {
 
-    class func pathWithColor(path: CGPath, fillColor: UIColor, strokeColor: UIColor) -> CAShapeLayer {
+    override func addGlowEffect(color: UIColor, shadowRadius: CGFloat = 10, shadowOpacity: Float = 0.9) {
+        super.addGlowEffect(color: color, shadowRadius: shadowRadius, shadowOpacity: shadowOpacity)
+    }
+
+    class func circle(center: CGPoint, radius: CGFloat, fillColor: UIColor, strokeColor: UIColor) -> CAShapeLayer {
+        let circlePath = UIBezierPath.circlePath(center: center, radius: radius).cgPath
         let shapeLayer = CAShapeLayer()
-        shapeLayer.path = path
+        shapeLayer.path = circlePath
         shapeLayer.fillColor = fillColor.cgColor
         shapeLayer.strokeColor = strokeColor.cgColor
         shapeLayer.lineWidth = 1.0
@@ -78,8 +124,7 @@ extension CAShapeLayer {
         linePath.addLine(to: toPoint)
         line.path = linePath.cgPath
         line.strokeColor = strokeColor.cgColor
-        line.lineWidth = 0.6
-        line.lineJoin = kCALineJoinRound
+        line.lineWidth = 0.4
         return line
     }
 }
@@ -87,6 +132,7 @@ extension CAShapeLayer {
 // MARK: - FloatingPoint
 
 extension FloatingPoint {
+
     var degreesToRadians: Self { return self * .pi / 180 }
     var radiansToDegrees: Self { return self * 180 / .pi }
 }
@@ -94,6 +140,7 @@ extension FloatingPoint {
 // MARK: - Collection
 
 extension MutableCollection where Index == Int {
+
     mutating func shuffle() {
         guard count > 2 else {
             return
@@ -109,6 +156,7 @@ extension MutableCollection where Index == Int {
 }
 
 extension Collection {
+
     func shuffled() -> [Iterator.Element] {
         var list = Array(self)
         list.shuffle()
@@ -119,6 +167,7 @@ extension Collection {
 // MAARK: - UIView
 
 extension UIView {
+
     func removeSubViews() {
         subviews.forEach({ (subView: UIView) in
             subView.removeFromSuperview()
@@ -129,5 +178,48 @@ extension UIView {
         layer.sublayers?.forEach({ (subLayer: CALayer) in
             subLayer.removeFromSuperlayer()
         })
+    }
+}
+
+// MARK: - UIImage
+
+extension UIImage {
+
+    func convertToGrayScale() -> UIImage? {
+        let filter = CIFilter(name: "CIPhotoEffectNoir")
+        filter?.setDefaults()
+        filter?.setValue(CoreImage.CIImage(image: self), forKey: kCIInputImageKey)
+
+        guard
+            let outputImage = filter?.outputImage,
+            let cgImage = CIContext(options:nil).createCGImage(outputImage, from: outputImage.extent) else {
+                return nil
+        }
+
+        return UIImage(cgImage: cgImage)
+    }
+}
+
+// MARK: - UIImageView
+
+extension UIImageView {
+
+    convenience init(frame: CGRect, image: UIImage?) {
+        self.init(frame: frame)
+        self.image = image
+        self.contentMode = .scaleAspectFill
+        self.layer.cornerRadius = frame.width * 0.5
+        self.clipsToBounds = true
+    }
+
+    func setupHexagonImageView(lineWidth: CGFloat = 0) {
+        let frame = CGRect(x: self.bounds.origin.x, y: self.bounds.origin.y, width: self.bounds.size.width + 5, height: self.bounds.size.height + 5)
+        let path = UIBezierPath.roundedPolygonPath(rect: frame, lineWidth: lineWidth, sides: 6, cornerRadius: 0, rotationOffset: CGFloat(CGFloat.pi * 0.5))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        mask.lineWidth = lineWidth
+        mask.strokeColor = UIColor.clear.cgColor
+        mask.fillColor = UIColor.white.cgColor
+        self.layer.mask = mask
     }
 }
