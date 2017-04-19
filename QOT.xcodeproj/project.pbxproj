@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B1059861EA77AC700660A1D /* PrepareEventTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1059841EA77AC700660A1D /* PrepareEventTableViewHeader.swift */; };
+		0B1059871EA77AC700660A1D /* PrepareEventTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B1059851EA77AC700660A1D /* PrepareEventTableViewHeader.xib */; };
 		0B40DC071E9CA65300E1659B /* PrepareContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B40DC061E9CA65300E1659B /* PrepareContentViewController.xib */; };
 		0B40DC0B1E9CA6A500E1659B /* PrepareContentTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B40DC091E9CA6A500E1659B /* PrepareContentTextTableViewCell.swift */; };
 		0B40DC0C1E9CA6A500E1659B /* PrepareContentTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B40DC0A1E9CA6A500E1659B /* PrepareContentTextTableViewCell.xib */; };
@@ -20,6 +22,13 @@
 		0BE7FD8B1E9D2AEF00E3262E /* PrepareContentStepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BE7FD891E9D2AEF00E3262E /* PrepareContentStepTableViewCell.xib */; };
 		0BE7FD8F1E9D2F8800E3262E /* PrepareContentTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE7FD8D1E9D2F8800E3262E /* PrepareContentTitleTableViewCell.swift */; };
 		0BE7FD901E9D2F8800E3262E /* PrepareContentTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BE7FD8E1E9D2F8800E3262E /* PrepareContentTitleTableViewCell.xib */; };
+		0BEE8AB91EA600A7008077B8 /* PrepareEventAddNewTripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEE8AAD1EA600A7008077B8 /* PrepareEventAddNewTripTableViewCell.swift */; };
+		0BEE8ABA1EA600A7008077B8 /* PrepareEventAddNewTripTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BEE8AAE1EA600A7008077B8 /* PrepareEventAddNewTripTableViewCell.xib */; };
+		0BEE8ABD1EA600A7008077B8 /* PrepareEventSimpleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEE8AB31EA600A7008077B8 /* PrepareEventSimpleTableViewCell.swift */; };
+		0BEE8ABE1EA600A7008077B8 /* PrepareEventSimpleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BEE8AB41EA600A7008077B8 /* PrepareEventSimpleTableViewCell.xib */; };
+		0BEE8ABF1EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEE8AB61EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.swift */; };
+		0BEE8AC01EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BEE8AB71EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib */; };
+		0BEE8AC11EA600A7008077B8 /* PrepareEventsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BEE8AB81EA600A7008077B8 /* PrepareEventsViewController.xib */; };
 		0CC2119BB6C36EF6F43B4ECD /* Pods_QOT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */; };
 		A29C0C8591D20568D6B8EB3E /* Pods_QOTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */; };
 		CB1E4F981E7FE22200287613 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1E4F971E7FE22200287613 /* SettingsViewModel.swift */; };
@@ -170,6 +179,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B1059841EA77AC700660A1D /* PrepareEventTableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareEventTableViewHeader.swift; path = "QOT/Prepare/Prepare Events/PrepareEventTableViewHeader/PrepareEventTableViewHeader.swift"; sourceTree = SOURCE_ROOT; };
+		0B1059851EA77AC700660A1D /* PrepareEventTableViewHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PrepareEventTableViewHeader.xib; path = "QOT/Prepare/Prepare Events/PrepareEventTableViewHeader/PrepareEventTableViewHeader.xib"; sourceTree = SOURCE_ROOT; };
 		0B40DC061E9CA65300E1659B /* PrepareContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentViewController.xib; sourceTree = "<group>"; };
 		0B40DC091E9CA6A500E1659B /* PrepareContentTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentTextTableViewCell.swift; sourceTree = "<group>"; };
 		0B40DC0A1E9CA6A500E1659B /* PrepareContentTextTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentTextTableViewCell.xib; sourceTree = "<group>"; };
@@ -183,6 +194,13 @@
 		0BE7FD891E9D2AEF00E3262E /* PrepareContentStepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentStepTableViewCell.xib; sourceTree = "<group>"; };
 		0BE7FD8D1E9D2F8800E3262E /* PrepareContentTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentTitleTableViewCell.swift; sourceTree = "<group>"; };
 		0BE7FD8E1E9D2F8800E3262E /* PrepareContentTitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentTitleTableViewCell.xib; sourceTree = "<group>"; };
+		0BEE8AAD1EA600A7008077B8 /* PrepareEventAddNewTripTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventAddNewTripTableViewCell.swift; sourceTree = "<group>"; };
+		0BEE8AAE1EA600A7008077B8 /* PrepareEventAddNewTripTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareEventAddNewTripTableViewCell.xib; sourceTree = "<group>"; };
+		0BEE8AB31EA600A7008077B8 /* PrepareEventSimpleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventSimpleTableViewCell.swift; sourceTree = "<group>"; };
+		0BEE8AB41EA600A7008077B8 /* PrepareEventSimpleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareEventSimpleTableViewCell.xib; sourceTree = "<group>"; };
+		0BEE8AB61EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsUpcomingTripTableViewCell.swift; sourceTree = "<group>"; };
+		0BEE8AB71EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareEventsUpcomingTripTableViewCell.xib; sourceTree = "<group>"; };
+		0BEE8AB81EA600A7008077B8 /* PrepareEventsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareEventsViewController.xib; sourceTree = "<group>"; };
 		2F1C8D6D4864F462A3F805BB /* Pods-QOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.release.xcconfig"; sourceTree = "<group>"; };
 		42795728C4F3229DFB18981E /* Pods-QOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.debug.xcconfig"; sourceTree = "<group>"; };
 		5C87601C1FE7F833DF0D7A6B /* Pods-QOTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -403,6 +421,43 @@
 				0BE7FD8E1E9D2F8800E3262E /* PrepareContentTitleTableViewCell.xib */,
 			);
 			path = PrepareContentTitleTableViewCell;
+			sourceTree = "<group>";
+		};
+		0BEE8AAC1EA600A7008077B8 /* PrepareEventAddNewTripTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				0BEE8AAD1EA600A7008077B8 /* PrepareEventAddNewTripTableViewCell.swift */,
+				0BEE8AAE1EA600A7008077B8 /* PrepareEventAddNewTripTableViewCell.xib */,
+			);
+			path = PrepareEventAddNewTripTableViewCell;
+			sourceTree = "<group>";
+		};
+		0BEE8AAF1EA600A7008077B8 /* PrepareEventTableViewHeader */ = {
+			isa = PBXGroup;
+			children = (
+				0B1059841EA77AC700660A1D /* PrepareEventTableViewHeader.swift */,
+				0B1059851EA77AC700660A1D /* PrepareEventTableViewHeader.xib */,
+			);
+			name = PrepareEventTableViewHeader;
+			path = PrepareEventHeaderTableViewCell;
+			sourceTree = "<group>";
+		};
+		0BEE8AB21EA600A7008077B8 /* PrepareEventSimpleTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				0BEE8AB31EA600A7008077B8 /* PrepareEventSimpleTableViewCell.swift */,
+				0BEE8AB41EA600A7008077B8 /* PrepareEventSimpleTableViewCell.xib */,
+			);
+			path = PrepareEventSimpleTableViewCell;
+			sourceTree = "<group>";
+		};
+		0BEE8AB51EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				0BEE8AB61EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.swift */,
+				0BEE8AB71EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib */,
+			);
+			path = PrepareEventsUpcomingTripTableViewCell;
 			sourceTree = "<group>";
 		};
 		7BD58BE66F7DCDCEF349DBD8 /* Frameworks */ = {
@@ -989,6 +1044,11 @@
 		CCEA22A61E8AC549003D0CF4 /* Prepare Events */ = {
 			isa = PBXGroup;
 			children = (
+				0BEE8AAC1EA600A7008077B8 /* PrepareEventAddNewTripTableViewCell */,
+				0BEE8AAF1EA600A7008077B8 /* PrepareEventTableViewHeader */,
+				0BEE8AB21EA600A7008077B8 /* PrepareEventSimpleTableViewCell */,
+				0BEE8AB51EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell */,
+				0BEE8AB81EA600A7008077B8 /* PrepareEventsViewController.xib */,
 				CCEA22A71E8AC55F003D0CF4 /* PrepareEventsViewController.swift */,
 				CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */,
 			);
@@ -1122,13 +1182,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCAF032C1E80362700015125 /* SettingsTableViewCell.xib in Resources */,
+				0B1059871EA77AC700660A1D /* PrepareEventTableViewHeader.xib in Resources */,
 				CBD791661E768AB70006C590 /* MainMenuViewController.xib in Resources */,
+				0BEE8ABE1EA600A7008077B8 /* PrepareEventSimpleTableViewCell.xib in Resources */,
 				D51D08881E8E80AF00FC7567 /* LearnStrategyVideoCell.xib in Resources */,
 				CCAF03281E802A6200015125 /* SettingsViewController.xib in Resources */,
 				CCC0C4CA1E827F87002A8362 /* BentonSans_Book.otf in Resources */,
 				D51D08841E8E806E00FC7567 /* LearnStrategyTextCell.xib in Resources */,
 				CBA4216F1E9276AF00CD4BC9 /* SidebarTableViewCell.xib in Resources */,
 				0B40DC101E9CA6E100E1659B /* PrepareContentVideoPreviewTableViewCell.xib in Resources */,
+				0BEE8ABA1EA600A7008077B8 /* PrepareEventAddNewTripTableViewCell.xib in Resources */,
+				0BEE8AC01EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib in Resources */,
 				CBA421701E9276AF00CD4BC9 /* SidebarViewController.xib in Resources */,
 				0B40DC071E9CA65300E1659B /* PrepareContentViewController.xib in Resources */,
 				CCC0C4CC1E828007002A8362 /* BentonSans_Regular.otf in Resources */,
@@ -1144,6 +1208,7 @@
 				CBB237FA1E6FFF1200AB5AEF /* LaunchScreen.storyboard in Resources */,
 				0BE7FD901E9D2F8800E3262E /* PrepareContentTitleTableViewCell.xib in Resources */,
 				D540275F1E8D401F0013B783 /* LearnStrategyViewController.xib in Resources */,
+				0BEE8AC11EA600A7008077B8 /* PrepareEventsViewController.xib in Resources */,
 				0B40DC0C1E9CA6A500E1659B /* PrepareContentTextTableViewCell.xib in Resources */,
 				CBB237F71E6FFF1200AB5AEF /* Assets.xcassets in Resources */,
 			);
@@ -1336,6 +1401,7 @@
 				CCFCACC01E8D5DD100EA3119 /* BenefitsViewController.swift in Sources */,
 				CCEA22A41E8AC53E003D0CF4 /* PrepareCheckListViewController.swift in Sources */,
 				CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */,
+				0BEE8ABD1EA600A7008077B8 /* PrepareEventSimpleTableViewCell.swift in Sources */,
 				D51D08831E8E806E00FC7567 /* LearnStrategyTextCell.swift in Sources */,
 				CB369CDE1E8D3F5300522293 /* LearnContentService.swift in Sources */,
 				CB8A153C1E78467D0023B2F9 /* CalendarEventParticipant.swift in Sources */,
@@ -1378,6 +1444,9 @@
 				CCE06FE01E8D44FC009C5AD2 /* LibraryCoordinator.swift in Sources */,
 				CCAF032A1E8035C800015125 /* SettingsTableViewCell.swift in Sources */,
 				CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */,
+				0BEE8ABF1EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.swift in Sources */,
+				0B1059861EA77AC700660A1D /* PrepareEventTableViewHeader.swift in Sources */,
+				0BEE8AB91EA600A7008077B8 /* PrepareEventAddNewTripTableViewCell.swift in Sources */,
 				CB8A152F1E76F27D0023B2F9 /* PageID.swift in Sources */,
 				CCC1B6B11E8B9FDA00D1461F /* LearnStrategyViewModel.swift in Sources */,
 				CB8A154A1E7A7FA20023B2F9 /* CalendarImportManger.swift in Sources */,
