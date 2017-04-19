@@ -7,14 +7,12 @@
 //
 
 import Foundation
-import ReactiveKit
 
 final class MyToBeVisionViewModel {
 
     // MARK: - Properties
 
-    let myToBeVision = mockMyToBeVisionItem
-    let updates = PublishSubject<CollectionUpdate, NoError>()
+    fileprivate let myToBeVision = mockMyToBeVisionItem
 
     var title: String {
         return myToBeVision.title
@@ -32,7 +30,7 @@ final class MyToBeVisionViewModel {
         return myToBeVision.text
     }
 
-    var profileImage: URL? {
+    var profileImage: URL {
         return myToBeVision.profileImage
     }
 }
@@ -44,7 +42,7 @@ protocol MyToBeVision {
     var headline: String { get }
     var subHeadline: String { get }
     var text: String { get }
-    var profileImage: URL? { get }
+    var profileImage: URL { get }
 }
 
 struct MockMyToBeVision: MyToBeVision {
@@ -52,7 +50,7 @@ struct MockMyToBeVision: MyToBeVision {
     let headline: String
     let subHeadline: String
     let text: String
-    let profileImage: URL?
+    let profileImage: URL
 }
 
 private var mockMyToBeVisionItem: MyToBeVision {
@@ -61,6 +59,6 @@ private var mockMyToBeVisionItem: MyToBeVision {
         headline: "LORE IPSUM IMPUSM PLUS",
         subHeadline: "Written 45 days ago",
         text: "Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum textYour are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text",
-        profileImage: URL(string: "https://randomuser.me/api/portraits/men/10.jpg")
+        profileImage: URL(string: "https://randomuser.me/api/portraits/men/10.jpg")!
     )
 }
