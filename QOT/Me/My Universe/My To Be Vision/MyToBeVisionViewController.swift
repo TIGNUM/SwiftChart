@@ -17,7 +17,7 @@ class MyToBeVisionViewController: UIViewController {
     // MARK: - Properties
 
     fileprivate let viewModel: MyToBeVisionViewModel
-    fileprivate var scrollView: UIScrollView = UIScrollView()
+    fileprivate lazy var scrollView: UIScrollView = UIScrollView()
     weak var delegate: MyToBeVisionViewControllerDelegate?
 
     // MARK: - Init

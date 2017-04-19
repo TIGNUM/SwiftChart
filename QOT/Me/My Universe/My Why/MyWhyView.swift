@@ -14,10 +14,13 @@ class MyWhyView: UIView {
 
     var previousBounds = CGRect.zero
     let myWhyViewModel: MyWhyViewModel
-    let delegate: MyUniverseViewControllerDelegate?
     let viewController: MyUniverseViewController
     lazy var weeklyChoices = [WeeklyChoice]()
     lazy var partners = [Partner]()
+    fileprivate var vision:Vision?
+    weak var delegate: MyUniverseViewControllerDelegate?
+
+    // MARK: - Init
 
     init(myWhyViewModel: MyWhyViewModel, frame: CGRect, viewController: MyUniverseViewController, delegate: MyUniverseViewControllerDelegate?) {
         self.myWhyViewModel = myWhyViewModel
@@ -31,6 +34,8 @@ class MyWhyView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Layout
+
     override func layoutSubviews() {
         super.layoutSubviews()
 
@@ -41,6 +46,18 @@ class MyWhyView: UIView {
         cleanUp()
         previousBounds = bounds
         drawMyWhy(myWhyViewModel: myWhyViewModel, layout: Layout.MeSection(viewControllerFrame: bounds))
+        addGestureRecognizer()
+    }
+
+    // MARK: - Gesture Recognizer
+
+    private func addGestureRecognizer() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapMyToBeVision))
+        addGestureRecognizer(tapGestureRecognizer)
+    }
+
+    func didTapMyToBeVision() {
+        delegate?.didTapMyToBeVision(vision: vision, in: viewController)
     }
 }
 
@@ -64,6 +81,7 @@ private extension MyWhyView {
         myWhyViewModel?.items.forEach { (myWhy: MyWhy) in
             switch myWhy {
             case .vision(let vision):
+                self.vision = vision
                 addToBeVision(layout: layout, vision: vision)
             case .weeklyChoices(let title, let choices):
                 weeklyChoices = choices
