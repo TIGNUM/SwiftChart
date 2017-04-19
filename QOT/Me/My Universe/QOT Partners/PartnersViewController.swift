@@ -37,6 +37,21 @@ class PartnersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // TODO
+        setupView()
+    }
+
+    private func setupView() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeView))
+        view.addGestureRecognizer(tapGestureRecognizer)
+        view.backgroundColor = .brown
+    }
+}
+
+// MARK: - Actions
+
+extension PartnersViewController {
+
+    func closeView() {
+        delegate?.didTapClose(in: self, animated: false)
     }
 }

@@ -137,7 +137,9 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
     }
 
     func didTapPartner(selectedIndex: Index, partners: [Partner], in viewController: MyUniverseViewController) {
-        print("didTapPartner: ", selectedIndex, partners)
+        let coordinator = PartnersCoordinator(root: viewController, services: services, eventTracker: eventTracker, partners: partners, selectedIndex: selectedIndex)
+        coordinator.start()
+        startChild(child: coordinator)
     }
 }
 

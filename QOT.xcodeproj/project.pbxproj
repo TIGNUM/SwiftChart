@@ -79,6 +79,7 @@
 		CC0FF8D41EA788350028D64F /* PartnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0FF8D31EA788350028D64F /* PartnersViewController.swift */; };
 		CC0FF8D61EA78C810028D64F /* MyToBeVisionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0FF8D51EA78C810028D64F /* MyToBeVisionCoordinator.swift */; };
 		CC0FF8D81EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0FF8D71EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift */; };
+		CC0FF8DA1EA790750028D64F /* PartnersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0FF8D91EA790750028D64F /* PartnersCoordinator.swift */; };
 		CC37B1311E93CDD600651C46 /* QOTDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC37B1301E93CDD600651C46 /* QOTDatabase.framework */; };
 		CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB631E83BDA300FF28DF /* Utils.swift */; };
 		CC3DFB661E83C19C00FF28DF /* Defines.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB651E83C19C00FF28DF /* Defines.swift */; };
@@ -252,6 +253,7 @@
 		CC0FF8D31EA788350028D64F /* PartnersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnersViewController.swift; sourceTree = "<group>"; };
 		CC0FF8D51EA78C810028D64F /* MyToBeVisionCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToBeVisionCoordinator.swift; sourceTree = "<group>"; };
 		CC0FF8D71EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesCoordinator.swift; sourceTree = "<group>"; };
+		CC0FF8D91EA790750028D64F /* PartnersCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnersCoordinator.swift; sourceTree = "<group>"; };
 		CC37B1301E93CDD600651C46 /* QOTDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QOTDatabase.framework; path = "Pods/../build/Release-iphoneos/QOTDatabase/QOTDatabase.framework"; sourceTree = "<group>"; };
 		CC3DFB631E83BDA300FF28DF /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		CC3DFB651E83C19C00FF28DF /* Defines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defines.swift; sourceTree = "<group>"; };
@@ -743,6 +745,7 @@
 		CC0FF8D01EA7841A0028D64F /* QOT Partners */ = {
 			isa = PBXGroup;
 			children = (
+				CC0FF8D91EA790750028D64F /* PartnersCoordinator.swift */,
 				CC0FF8D31EA788350028D64F /* PartnersViewController.swift */,
 				CC0FF8D11EA784400028D64F /* PartnersViewModel.swift */,
 			);
@@ -781,9 +784,9 @@
 		CC5A8D691EA6597F00E5800F /* Weekly Choices */ = {
 			isa = PBXGroup;
 			children = (
+				CC0FF8D71EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift */,
 				CC5A8D6E1EA65A6400E5800F /* WeeklyChoicesViewController.swift */,
 				CC5A8D6C1EA65A3E00E5800F /* WeeklyChoicesViewModel.swift */,
-				CC0FF8D71EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift */,
 			);
 			path = "Weekly Choices";
 			sourceTree = "<group>";
@@ -1394,6 +1397,7 @@
 				D57ECFB01E924CC2008F401B /* TabBarView.swift in Sources */,
 				CCE06FE01E8D44FC009C5AD2 /* LibraryCoordinator.swift in Sources */,
 				CCAF032A1E8035C800015125 /* SettingsTableViewCell.swift in Sources */,
+				CC0FF8DA1EA790750028D64F /* PartnersCoordinator.swift in Sources */,
 				CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */,
 				CC0FF8D21EA784400028D64F /* PartnersViewModel.swift in Sources */,
 				CB8A152F1E76F27D0023B2F9 /* PageID.swift in Sources */,
