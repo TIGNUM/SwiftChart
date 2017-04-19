@@ -131,8 +131,8 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
     }
 
     func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, in viewController: MyUniverseViewController) {
-        let coordinator = MyUniverseCoordinator(root: viewController, services: services, eventTracker: eventTracker)
-        coordinator.startWeeklyChoices()        
+        let coordinator = WeeklyChoicesCoordinator(root: viewController, services: services, eventTracker: eventTracker)
+        coordinator.start()
         startChild(child: coordinator)        
     }
 

@@ -42,4 +42,3 @@ extension MyToBeVisionCoordinator: MyToBeVisionViewControllerDelegate {
         viewController.dismiss(animated: true, completion: nil)
     }
 }
-
