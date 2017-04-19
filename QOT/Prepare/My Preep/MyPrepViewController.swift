@@ -36,10 +36,6 @@ class MyPrepViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         tableView.registerDequeueable(MyPrepTableViewCell.self)
     }
-
-    func closeView(gestureRecognizer: UITapGestureRecognizer) {
-        delegate?.didTapClose(in: self)
-    }
     
     func prepareAndSetTextAttributes(string: String, value: CGFloat) -> NSMutableAttributedString {
         let attrString = NSMutableAttributedString(string: string)
@@ -66,11 +62,9 @@ extension MyPrepViewController {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
         tableView.deselectRow(at: indexPath, animated: true)
         let item = viewModel.item(at: indexPath.row)
         delegate?.didTapMyPrepItem(with: item, at: indexPath.row, from: self.view, in: self)
-
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
