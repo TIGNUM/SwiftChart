@@ -14,11 +14,13 @@ final class MyDataSectorLabelsView: MyUniverseAbstractView {
 
     var sectorLabels = [UILabel]()
     fileprivate var sectors = [Sector]()
+    fileprivate var myUniverseViewController: MyUniverseViewController
 
     // MARK: - Init
 
-    init(sectors: [Sector], frame: CGRect) {
+    init(sectors: [Sector], frame: CGRect, myUniverseViewController: MyUniverseViewController) {
         self.sectors = sectors
+        self.myUniverseViewController = myUniverseViewController
 
         super.init(frame: frame)
     }
@@ -44,7 +46,7 @@ private extension MyDataSectorLabelsView {
 
     func addSectorLabels(layout: Layout.MeSection, sectors: [Sector]) {
         sectors.forEach { (sector: Sector) in
-            let labelValues = MyUniverseHelper.labelValues(for: sector, layout: layout)
+            let labelValues = MyUniverseHelper.labelValues(for: sector, layout: layout, myUniverseViewController: myUniverseViewController)
             let labelFarme = sectorLabelFrame(sector: sector, layout: layout)
             let sectorLabel = createSectorLabel(
                 frame: labelFarme,

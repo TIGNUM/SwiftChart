@@ -12,11 +12,15 @@ class MyWhyView: UIView {
 
     // MARK: - Properties
 
-    var previousBounds = CGRect.zero
-    var myWhyViewModel: MyWhyViewModel?
+    fileprivate var previousBounds = CGRect.zero
+    fileprivate let myWhyViewModel: MyWhyViewModel
+    fileprivate let myUniverseViewController: MyUniverseViewController
 
-    init(myWhyViewModel: MyWhyViewModel, frame: CGRect) {
+    // MARK: - Init
+
+    init(myWhyViewModel: MyWhyViewModel, frame: CGRect, myUniverseViewController: MyUniverseViewController) {
         self.myWhyViewModel = myWhyViewModel
+        self.myUniverseViewController = myUniverseViewController
 
         super.init(frame: frame)
     }
@@ -24,6 +28,8 @@ class MyWhyView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    // MARK: - Layout
 
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -74,8 +80,8 @@ private extension MyWhyView {
     }
 
     func addToBeVision(layout: Layout.MeSection, vision: Vision) {
-        addSubview(footerLabel(with: vision.title, labelFrame: layout.myWhyVisionFooterFrame))
-        addSubview(visionLabel(with: vision.text, labelFrame: layout.myWhyVisionLabelFrame))
+        addSubview(footerLabel(with: vision.title, labelFrame: layout.myWhyVisionFooterFrame(myUniverseViewController)))
+        addSubview(visionLabel(with: vision.text, labelFrame: layout.myWhyVisionLabelFrame(myUniverseViewController), myUniverseViewController))
     }
 
     func addWeeklyChoices(layout: Layout.MeSection, title: String, choices: [WeeklyChoice]) {
@@ -170,9 +176,12 @@ private extension MyWhyView {
         return label(with: text, labelFrame: labelFrame, textColor: Color.MeSection.whiteLabel, font: Font.H7Tag)
     }
 
-    func visionLabel(with text: String, labelFrame: CGRect) -> UILabel {
-        let font = Layout.isBigScreen ? Font.H4Headline : Font.H6NavigationTitle
-        return label(with: text, labelFrame: labelFrame, textColor: .white, font: font)
+    func visionLabel(with text: String, labelFrame: CGRect, _ myUniverseViewController: MyUniverseViewController) -> UILabel {
+        switch myUniverseViewController.screenType {
+        case .big: return label(with: text, labelFrame: labelFrame, textColor: .white, font: Font.H4Headline)
+        case .medium: return label(with: text, labelFrame: labelFrame, textColor: .white, font: Font.H5SecondaryHeadline)
+        case .small: return label(with: text, labelFrame: labelFrame, textColor: .white, font: Font.H6NavigationTitle)
+        }
     }
 
     func label(with text: String, labelFrame: CGRect, textColor: UIColor, font: UIFont) -> UILabel {

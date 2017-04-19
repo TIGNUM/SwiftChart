@@ -22,8 +22,6 @@ enum FontName: String {
 
 struct Layout {
 
-    static let isBigScreen = UIScreen.main.bounds.height == 1920
-
     enum CellHeight: CGFloat {
         case sidebar = 75
         case sidebarSmall = 65
@@ -79,17 +77,32 @@ struct Layout {
             return viewControllerFrame.height * 0.425
         }
 
-        var myWhyVisionFooterFrame: CGRect {
+        func myWhyVisionFooterFrame(_ myUniverseViewController: MyUniverseViewController) -> CGRect {
+            var deviceOffset: CGFloat = 0
+
+            switch myUniverseViewController.screenType {
+            case .big: deviceOffset = 0
+            case .medium: deviceOffset = 0
+            case .small: deviceOffset = -15
+            }
+
             return CGRect(
                 x: myWhyVisionFooterXPos,
-                y: myWhyVisionFooterYPos,
+                y: myWhyVisionFooterYPos + deviceOffset,
                 width: 0,
                 height: Layout.MeSection.labelHeight
             )
         }
 
-        var myWhyVisionLabelFrame: CGRect {
-            let deviceOffset: CGFloat = Layout.isBigScreen ? 0 : 42
+        func myWhyVisionLabelFrame(_ myUniverseViewController: MyUniverseViewController) -> CGRect {
+            var deviceOffset: CGFloat = 0
+
+            switch myUniverseViewController.screenType {
+            case .big: deviceOffset = 0
+            case .medium: deviceOffset = 15
+            case .small: deviceOffset = -15
+            }
+
             return CGRect(
                 x: myWhyVisionFooterXPos,
                 y: (viewControllerFrame.height * 0.25) + deviceOffset,
@@ -325,14 +338,20 @@ struct AttributedString {
     }
 
     struct MeSection {
-        static func sectorTitle(text: String) -> NSAttributedString {
-            return NSAttributedString.create(for: text, withColor: Color.whiteMedium, andFont: Font.H7Tag, letterSpacing: 2)
+        static func sectorTitle(text: String, myUniverseViewController: MyUniverseViewController) -> NSAttributedString {
+            switch myUniverseViewController.screenType {
+            case .big: return NSAttributedString.create(for: text, withColor: Color.whiteMedium, andFont: Font.H7Tag, letterSpacing: 2)
+            case .medium: return NSAttributedString.create(for: text, withColor: Color.whiteMedium, andFont: Font.H7Tag, letterSpacing: 1.8)
+            case .small: return NSAttributedString.create(for: text, withColor: Color.whiteMedium, andFont: Font.H7Tag, letterSpacing: 1.6)
+            }
         }
 
-        static func sectorTitleCritical(text: String) -> NSAttributedString {
-            let font = Layout.isBigScreen ? Font.PText : Font.PTextSmall
-            let letterSpacing = Layout.isBigScreen ? 2.7 : 2.1
-            return NSAttributedString.create(for: text, withColor: Color.cherryRedTwo, andFont: font, letterSpacing: CGFloat(letterSpacing))
+        static func sectorTitleCritical(text: String, myUniverseViewController: MyUniverseViewController) -> NSAttributedString {
+            switch myUniverseViewController.screenType {
+            case .big: return NSAttributedString.create(for: text, withColor: Color.cherryRedTwo, andFont: Font.PText, letterSpacing: 2.7)
+            case .medium: return NSAttributedString.create(for: text, withColor: Color.cherryRedTwo, andFont: Font.PTextSmall, letterSpacing: 2.5)
+            case .small: return NSAttributedString.create(for: text, withColor: Color.cherryRedTwo, andFont: Font.PTextSmall, letterSpacing: 2.3)
+            }
         }
     }
 }

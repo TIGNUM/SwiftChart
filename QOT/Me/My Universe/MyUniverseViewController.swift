@@ -45,6 +45,7 @@ final class MyUniverseViewController: UIViewController {
         setupScrollViews()
         addSubViews()
         addTabRecognizer()
+        print(size)
     }
 }
 
@@ -116,14 +117,14 @@ private extension MyUniverseViewController {
 
     func addMyWhyView() {
         let myWhyViewFrame = CGRect(x: view.bounds.width, y: 0, width: view.bounds.width, height: view.bounds.height)
-        let myWhyView = MyWhyView(myWhyViewModel: myWhyViewModel, frame: myWhyViewFrame)
+        let myWhyView = MyWhyView(myWhyViewModel: myWhyViewModel, frame: myWhyViewFrame, myUniverseViewController: self)
         contentScrollView?.addSubview(myWhyView)
         self.myWhyView = myWhyView
     }
 
     func addMyDataSectorLabelView() {
         let myDataSectorLablesViewFrame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
-        let myDataSectorLabelsView = MyDataSectorLabelsView(sectors: myDataViewModel.sectors, frame: myDataSectorLablesViewFrame)
+        let myDataSectorLabelsView = MyDataSectorLabelsView(sectors: myDataViewModel.sectors, frame: myDataSectorLablesViewFrame, myUniverseViewController: self)
         contentScrollView?.addSubview(myDataSectorLabelsView)
         self.myDataSectorLabelsView = myDataSectorLabelsView
     }

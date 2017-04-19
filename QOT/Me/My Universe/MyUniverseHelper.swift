@@ -127,7 +127,7 @@ extension MyUniverseHelper {
 
 extension MyUniverseHelper {
 
-    static func labelValues(for sector: Sector, layout: Layout.MeSection) -> (attributedString: NSAttributedString, widthOffset: CGFloat) {
+    static func labelValues(for sector: Sector, layout: Layout.MeSection, myUniverseViewController: MyUniverseViewController) -> (attributedString: NSAttributedString, widthOffset: CGFloat) {
         let text = sector.labelType.text.uppercased()
         let criticalLoads = sector.spikes.filter { (spike: Spike) -> Bool in
             let distanceCenter = radius(for: spike.spikeLoad(), layout: layout)
@@ -135,10 +135,10 @@ extension MyUniverseHelper {
         }
 
         if criticalLoads.isEmpty == true {
-            return (attributedString: AttributedString.MeSection.sectorTitle(text: text), widthOffset: 0)
+            return (attributedString: AttributedString.MeSection.sectorTitle(text: text, myUniverseViewController: myUniverseViewController), widthOffset: 0)
         }
 
-        return (attributedString: AttributedString.MeSection.sectorTitleCritical(text: text), widthOffset: 20)
+        return (attributedString: AttributedString.MeSection.sectorTitleCritical(text: text, myUniverseViewController: myUniverseViewController), widthOffset: 20)
     }
 }
 
