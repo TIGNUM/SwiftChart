@@ -29,6 +29,9 @@
 "Me.Sector.Travel" = "Travel";
 "Me.Sector.Sleep" = "Sleep";
 "Me.Sector.Activity" = "Activity";
+"Me.Sector.My.Why.Vision.Title" = "My To Be Vision";
+"Me.Sector.My.Why.Weekly.Choices.Title" = "Weekly Choices";
+"Me.Sector.My.Why.Partners.Title" = "QOT Partners";
 
 "Prepare.PrepareEvents.AddPreparation" = "ADD THIS PREPARATION TO";
 "Prepare.PrepareEvents.AddNewTrip" = "Add new trip";

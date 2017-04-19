@@ -1,5 +1,5 @@
 //
-//  MeSolarViewDrawHelper.swift
+//  MyUniverseHelper.swift
 //  QOT
 //
 //  Created by karmic on 11.04.17.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct MeSolarViewDrawHelper {
+struct MyUniverseHelper {
 
     fileprivate static var dataCenterPoints = [[CGPoint]]()
     fileprivate static var connectionCenterPoitns = [[CGPoint]]()
@@ -23,7 +23,7 @@ struct MeSolarViewDrawHelper {
 
 // MARK: - Center Points
 
-extension MeSolarViewDrawHelper {
+extension MyUniverseHelper {
 
     static func collectCenterPoints(layout: Layout.MeSection, sectors: [Sector], relativeCenter: CGPoint) {
         sectors.forEach { (sector: Sector) in
@@ -50,11 +50,11 @@ extension MeSolarViewDrawHelper {
 
 // MARK: - Data Point Connections
 
-extension MeSolarViewDrawHelper {
+extension MyUniverseHelper {
 
     static func dataPointConnections(sectors: [Sector], layout: Layout.MeSection) -> [CAShapeLayer] {
         var connections = [CAShapeLayer]()
-        MeSolarViewDrawHelper.addAditionalConnectionPoints(sectors: sectors, layout: layout)
+        MyUniverseHelper.addAditionalConnectionPoints(sectors: sectors, layout: layout)
         connectionCenterPoitns.shuffled().forEach { (centerPopints: [CGPoint]) in
             for (index, center) in centerPopints.shuffled().enumerated() {
                 let nextIndex = (index + 1)
@@ -65,17 +65,31 @@ extension MeSolarViewDrawHelper {
 
                 let nextCenter = centerPopints[nextIndex]
                 connections.append(
-                    CAShapeLayer.line(from: center, to: nextCenter, strokeColor: UIColor(white: 1, alpha: 0.2))
+                    CAShapeLayer.line(from: center, to: nextCenter, strokeColor: Color.MeSection.whiteStrokeLight)
                 )
             }
         }
         return connections
     }
+
+    static func myWhySpikes(layout: Layout.MeSection) -> [CAShapeLayer] {
+        let shiftedXPos = (layout.profileImageWidth * 0.2)
+        let originPoint = CGPoint(x: -shiftedXPos, y: layout.profileImageViewFrame.origin.y + layout.profileImageWidth * 0.5)
+        let visionPoint = originPoint.shifted(radius(for: 0.25, layout: layout), with: 310)
+        let choicesPoint = originPoint.shifted(radius(for: 0.4, layout: layout), with: 10)
+        let partnersPoint = originPoint.shifted(radius(for: 0.6, layout: layout), with: 60)
+
+        return [
+            CAShapeLayer.line(from: originPoint, to: visionPoint, strokeColor: Color.Default.whiteMedium),
+            CAShapeLayer.line(from: originPoint, to: choicesPoint, strokeColor: Color.Default.whiteMedium),
+            CAShapeLayer.line(from: originPoint, to: partnersPoint, strokeColor: Color.Default.whiteMedium)
+        ]
+    }
 }
 
 // MARK: - Data Points
 
-extension MeSolarViewDrawHelper {
+extension MyUniverseHelper {
 
     static func dataPoints(sectors: [Sector], layout: Layout.MeSection) -> [CAShapeLayer] {
         var dots = [CAShapeLayer]()
@@ -92,10 +106,10 @@ extension MeSolarViewDrawHelper {
                 }
 
                 let spike = sector.spikes[centerIndex]
-                let radius = MeSolarViewDrawHelper.radius(for: spike.spikeLoad(), layout: layout)
+                let radius = MyUniverseHelper.radius(for: spike.spikeLoad(), layout: layout)
 
                 dots.append(
-                    MeSolarViewDrawHelper.dot(
+                    MyUniverseHelper.dot(
                         fillColor: fillColor(radius: radius, load: spike.spikeLoad(), sectorType: sector.type, layout: layout),
                         strokeColor: strokeColor(radius: radius, load: spike.spikeLoad(), sectorType: sector.type, layout: layout),
                         center: center,
@@ -111,10 +125,10 @@ extension MeSolarViewDrawHelper {
 
 // MARK: - Sector Labels
 
-extension MeSolarViewDrawHelper {
+extension MyUniverseHelper {
 
     static func labelValues(for sector: Sector, layout: Layout.MeSection) -> (attributedString: NSAttributedString, widthOffset: CGFloat) {
-        let text = sector.label.text.uppercased()
+        let text = sector.labelType.text.uppercased()
         let criticalLoads = sector.spikes.filter { (spike: Spike) -> Bool in
             let distanceCenter = radius(for: spike.spikeLoad(), layout: layout)
             return distanceCenter > average(for: spike.load, layout: layout)
@@ -128,28 +142,40 @@ extension MeSolarViewDrawHelper {
     }
 }
 
+// MARK: - ScrollView
+
+extension MyUniverseHelper {
+
+    static func createScrollView(_ frame: CGRect, layout: Layout.MeSection) -> UIScrollView {
+        let scrollView = UIScrollView(frame: frame)
+        scrollView.bounces = false
+        scrollView.isPagingEnabled = false
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.contentSize = CGSize(
+            width: (frame.width * 2) - (layout.scrollViewOffset * 3.5),
+            height: frame.height - 84
+            // TODO: Change it when the tabBar is all setup corectly with bottomLayout.
+        )
+        return scrollView
+    }
+}
+
 // MARK: - Private
 
-private extension MeSolarViewDrawHelper {
+private extension MyUniverseHelper {
 
     static func dot(fillColor: UIColor, strokeColor: UIColor, center: CGPoint, radius: CGFloat, lineWidth: CGFloat) -> CAShapeLayer {
-        let circlePath = UIBezierPath.circlePath(center: center, radius: radius)
-        let shapeLayer = CAShapeLayer.pathWithColor(
-            path: circlePath.cgPath,
+        let dotLayer = CAShapeLayer.circle(
+            center: center,
+            radius: radius,
             fillColor: fillColor,
             strokeColor: strokeColor
         )
 
-        shapeLayer.lineWidth = lineWidth
-        MeSolarViewDrawHelper.addGlowEffect(shapeLayer: shapeLayer, color: fillColor)
-        return shapeLayer
-    }
-
-    static func addGlowEffect(shapeLayer: CAShapeLayer, color: UIColor) {
-        shapeLayer.shadowColor = color.cgColor
-        shapeLayer.shadowRadius = 10
-        shapeLayer.shadowOpacity = 0.9
-        shapeLayer.shadowOffset = .zero
+        dotLayer.lineWidth = lineWidth
+        dotLayer.addGlowEffect(color: fillColor)
+        return dotLayer
     }
 
     static func fillColor(radius: CGFloat, load: CGFloat, sectorType: SectorType, layout: Layout.MeSection) -> UIColor {

@@ -27,11 +27,14 @@ final class TabBarCoordinator: ParentCoordinator {
         return learnCategoryListVC
     }()
     
-    fileprivate lazy var meSectionViewController: MeSectionViewController = {
-        let meViewController = MeSectionViewController(viewModel: MeSectionViewModel())
-        meViewController.delegate = self
+    fileprivate lazy var myUniverseViewController: MyUniverseViewController = {
+        let myViewController = MyUniverseViewController(
+            myDataViewModel: MyDataViewModel(),
+            myWhyViewModel: MyWhyViewModel()
+        )
+        myViewController.delegate = self
         
-        return meViewController
+        return myViewController
     }()
     
     fileprivate lazy var chatViewController: ChatViewController = {
@@ -58,7 +61,7 @@ final class TabBarCoordinator: ParentCoordinator {
     func start() {
         let items: [TabBarController.Item] = [
             TabBarController.Item(controller: learnCategoryListViewController, title: R.string.localized.tabBarItemLearn()),
-            TabBarController.Item(controller: meSectionViewController, title: R.string.localized.tabBarItemMe()),
+            TabBarController.Item(controller: myUniverseViewController, title: R.string.localized.tabBarItemMe()),
             TabBarController.Item(controller: chatViewController, title: R.string.localized.tabBarItemPrepare())
         ]
         
@@ -73,7 +76,7 @@ final class TabBarCoordinator: ParentCoordinator {
     
     func addViewControllers() {
         viewControllers.append(learnCategoryListViewController)
-        viewControllers.append(meSectionViewController)
+        viewControllers.append(myUniverseViewController)
         viewControllers.append(chatViewController)
     }
 }
@@ -84,7 +87,7 @@ extension TabBarCoordinator: TabBarControllerDelegate {
         
         switch viewController {
         case let learnCategory as LearnCategoryListViewController: eventTracker.track(page: learnCategory.pageID, referer: rootViewController.pageID, associatedEntity: nil)
-        case let meCategory as MeSectionViewController: eventTracker.track(page: meCategory.pageID, referer: rootViewController.pageID, associatedEntity: nil)
+        case let meCategory as MyUniverseViewController: eventTracker.track(page: meCategory.pageID, referer: rootViewController.pageID, associatedEntity: nil)
         case let chat as ChatViewController: eventTracker.track(page: chat.pageID, referer: rootViewController.pageID, associatedEntity: nil)
         default:
             break
@@ -115,10 +118,26 @@ extension TabBarCoordinator: LearnContentListCoordinatorDelegate {
 
 // MARK: - MeSectionDelegate
 
-extension TabBarCoordinator: MeSectionViewControllerDelegate {
+extension TabBarCoordinator: MyUniverseViewControllerDelegate {
     
-    func didTapSector(sector: Sector?, in viewController: UIViewController) {
-        print("didTapSector: \(sector?.label.text ?? "INVALID")")
+    func didTapSector(sector: Sector?, in viewController: MyUniverseViewController) {
+        print("didTapSector: \(sector?.labelType.text ?? "INVALID")")
+    }
+
+    func didTapMyToBeVision(vision: Vision?, in viewController: MyUniverseViewController) {
+        let coordinator = MyUniverseCoordinator(root: viewController, services: services, eventTracker: eventTracker)
+        coordinator.startMyToBeVisiom()
+        startChild(child: coordinator)
+    }
+
+    func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, in viewController: MyUniverseViewController) {
+        let coordinator = MyUniverseCoordinator(root: viewController, services: services, eventTracker: eventTracker)
+        coordinator.startWeeklyChoices()        
+        startChild(child: coordinator)        
+    }
+
+    func didTypQOTPartner(partner: Partner?, in viewController: MyUniverseViewController) {
+        print("diddidTypQOTPartner: ", partner)
     }
 }
 
