@@ -44,6 +44,7 @@ final class WhatsHotLayout: UICollectionViewLayout {
         let contentHeight = (CGFloat(numberOfItems) * dragOffset) + (height - dragOffset)
         return CGSize(width: width, height: contentHeight)
     }
+    var isactive = false
     override func prepare() {
         cache.removeAll(keepingCapacity: false)
         let standardHeight = Constants.standardHeight
@@ -61,18 +62,24 @@ final class WhatsHotLayout: UICollectionViewLayout {
             var height = standardHeight
             
             if indexPath.item == featuredItemIndex {
+
                 let yOffset = standardHeight * nextItemPercentageOffset
                  y = collectionView!.contentOffset.y - yOffset
                  height = featuredHeight
-            } else if  indexPath.item == (featuredItemIndex + 1) && indexPath.item != numberOfItems {
-               
-                height = standardHeight + max((featuredHeight - standardHeight) * nextItemPercentageOffset, 0)
 
+            } else if  indexPath.item == (featuredItemIndex + 1) && indexPath.item != numberOfItems {
+
+                height = standardHeight + max((featuredHeight - standardHeight) * nextItemPercentageOffset, 0)
+                let maxY = height - standardHeight
+                if standardHeight != height {
+                    y -= maxY
+                }
             }
+
             frame = CGRect(x: 0, y: y, width: width, height: height)
             attributes.frame = frame
             cache.append(attributes)
-            y = frame.maxY
+            y += height
         }
     }
     

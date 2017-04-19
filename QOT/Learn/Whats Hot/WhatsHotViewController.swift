@@ -66,7 +66,5 @@ extension WhatsHotViewController: UICollectionViewDataSource {
                     placeholderURL: content.placeholderURL)
         return cell
     }
-        
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-    }
+    
 }
