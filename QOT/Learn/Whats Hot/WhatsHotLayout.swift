@@ -15,11 +15,10 @@ private struct Constants {
 }
 
 final class WhatsHotLayout: UICollectionViewLayout {
-    
     private let dragOffset: CGFloat = 180
     fileprivate var indexPath = 0
     fileprivate var cache = [UICollectionViewLayoutAttributes]()
-    
+
     fileprivate var featuredItemIndex: Int {
         return max(0, Int(collectionView!.contentOffset.y / dragOffset))
     }
@@ -62,13 +61,10 @@ final class WhatsHotLayout: UICollectionViewLayout {
             var height = standardHeight
             
             if indexPath.item == featuredItemIndex {
-
                 let yOffset = standardHeight * nextItemPercentageOffset
-                 y = collectionView!.contentOffset.y - yOffset
-                 height = featuredHeight
-
+                    y = collectionView!.contentOffset.y - yOffset
+                    height = featuredHeight
             } else if  indexPath.item == (featuredItemIndex + 1) && indexPath.item != numberOfItems {
-
                 height = standardHeight + max((featuredHeight - standardHeight) * nextItemPercentageOffset, 0)
                 let maxY = height - standardHeight
                 if standardHeight != height {
