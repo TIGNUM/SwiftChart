@@ -14,9 +14,4 @@ class PrepareEventAddNewTripTableViewCell: UITableViewCell, Dequeueable {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    func prepareAndSetTextAttributes(string: String, label: UILabel, value: CGFloat) {
-        let attrString = NSMutableAttributedString(string: string)
-        attrString.addAttribute(NSKernAttributeName, value: value, range: NSRange(location: 0, length: string.characters.count))
-        label.attributedText = attrString
-    }
 }

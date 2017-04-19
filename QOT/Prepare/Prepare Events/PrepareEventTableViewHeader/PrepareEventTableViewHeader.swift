@@ -1,5 +1,5 @@
 //
-//  PrepareEventSimpleTableViewCell.swift
+//  PrepareEventHeaderTableViewCell.swift
 //  QOT
 //
 //  Created by Type-IT on 13.04.2017.
@@ -8,11 +8,10 @@
 
 import UIKit
 
-class PrepareEventSimpleTableViewCell: UITableViewCell, Dequeueable {
+class PrepareEventTableViewHeader: UITableViewHeaderFooterView, Dequeueable {
 
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var headerTitleLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 }

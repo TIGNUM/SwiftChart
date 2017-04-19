@@ -40,22 +40,24 @@ final class PrepareEventsViewController: UIViewController, UITableViewDelegate, 
         super.viewDidLoad()
 
         let attrString = NSMutableAttributedString(string: "ADD THIS PREPARATION TO")
-        attrString.addAttribute(NSKernAttributeName, value: 1, range: NSRange(location: 0, length: "ADD THIS PREPARATION TO".characters.count))
+        attrString.addAttribute(NSKernAttributeName, value: 1, range: NSRange(location: 0, length: "ADD THIS PREPARATION TO".utf16.count))
         viewTitleLabel.attributedText = attrString
 
         tableView.registerDequeueable(PrepareEventsUpcomingTripTableViewCell.self)
         tableView.registerDequeueable(PrepareEventAddNewTripTableViewCell.self)
         tableView.registerDequeueable(PrepareEventSimpleTableViewCell.self)
 
-        let nib = UINib(nibName: String(describing: PrepareEventHeaderTableViewCell.self), bundle: nil)
-        tableView.register(nib, forHeaderFooterViewReuseIdentifier: String(describing: PrepareEventHeaderTableViewCell.self))
+        let nib = UINib(nibName: String(describing: PrepareEventTableViewHeader.self), bundle: nil)
+        tableView.register(nib, forHeaderFooterViewReuseIdentifier: String(describing: PrepareEventTableViewHeader.self))
 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = estimatedRowHeight
     }
 
-    func closeView(gestureRecognizer: UITapGestureRecognizer) {
-        delegate?.didTapClose(in: self)
+    func prepareAndSetTextAttributes(string: String, value: CGFloat) -> NSMutableAttributedString {
+        let attrString = NSMutableAttributedString(string: string)
+        attrString.addAttribute(NSKernAttributeName, value: value, range: NSRange(location: 0, length: string.utf16.count))
+        return attrString
     }
 }
 
@@ -75,23 +77,23 @@ extension PrepareEventsViewController {
         switch item {
         case .event(let event):
             let cell: PrepareEventsUpcomingTripTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.prepareAndSetTextAttributes(string: event.title, label: cell.titleLabel, value: 1)
-            cell.prepareAndSetTextAttributes(string: event.subtitle, label: cell.dateLabel, value: 2)
+            cell.titleLabel.attributedText = prepareAndSetTextAttributes(string: event.title, value: 1)
+            cell.dateLabel.attributedText = prepareAndSetTextAttributes(string: event.subtitle, value: 2)
             return cell
 
         case .addEvent:
             let cell: PrepareEventAddNewTripTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.prepareAndSetTextAttributes(string: "Add new trip", label: cell.addNewTripLabel, value: 1)
+            cell.addNewTripLabel.attributedText = prepareAndSetTextAttributes(string: "Add new trip", value: 1)
             return cell
 
         case .addReminder(let title):
             let cell: PrepareEventSimpleTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.prepareAndSetTextAttributes(string: title, label: cell.titleLabel, value: -0.2)
+            cell.titleLabel.attributedText = prepareAndSetTextAttributes(string: title, value: -0.2)
             return cell
 
         case .saveToPDF(let title):
             let cell: PrepareEventSimpleTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.prepareAndSetTextAttributes(string: title, label: cell.titleLabel, value: -0.2)
+            cell.titleLabel.attributedText = prepareAndSetTextAttributes(string: title, value: -0.2)
             return cell
         }
     }
@@ -99,11 +101,11 @@ extension PrepareEventsViewController {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let item = viewModel.title(section: section)
 
-        guard let cell: PrepareEventHeaderTableViewCell = self.tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: PrepareEventHeaderTableViewCell.self)) as? PrepareEventHeaderTableViewCell
+        guard let cell: PrepareEventTableViewHeader = self.tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: PrepareEventTableViewHeader.self)) as? PrepareEventTableViewHeader
             else {
                 fatalError("cannotCast")
         }
-        cell.prepareAndSetTextAttributes(string: item, label: cell.headerTitleLabel, value: 1)
+        cell.headerTitleLabel.attributedText = prepareAndSetTextAttributes(string: item, value: 1)
 
         return cell
     }
