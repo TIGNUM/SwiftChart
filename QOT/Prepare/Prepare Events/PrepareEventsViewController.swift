@@ -39,8 +39,8 @@ final class PrepareEventsViewController: UIViewController, UITableViewDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let attrString = NSMutableAttributedString(string: "ADD THIS PREPARATION TO")
-        attrString.addAttribute(NSKernAttributeName, value: 1, range: NSRange(location: 0, length: "ADD THIS PREPARATION TO".utf16.count))
+        let attrString = NSMutableAttributedString(string: R.string.localized.preparePrepareEventsAddPreparation())
+        attrString.addAttribute(NSKernAttributeName, value: 1, range: NSRange(location: 0, length: R.string.localized.preparePrepareEventsAddPreparation().utf16.count))
         viewTitleLabel.attributedText = attrString
 
         tableView.registerDequeueable(PrepareEventsUpcomingTripTableViewCell.self)
@@ -83,7 +83,7 @@ extension PrepareEventsViewController {
 
         case .addEvent:
             let cell: PrepareEventAddNewTripTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.addNewTripLabel.attributedText = prepareAndSetTextAttributes(string: "Add new trip", value: 1)
+            cell.addNewTripLabel.attributedText = prepareAndSetTextAttributes(string: R.string.localized.preparePrepareEventsAddNewTrip(), value: 1)
             return cell
 
         case .addReminder(let title):

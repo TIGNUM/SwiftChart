@@ -29,3 +29,6 @@
 "Me.Sector.Travel" = "Travel";
 "Me.Sector.Sleep" = "Sleep";
 "Me.Sector.Activity" = "Activity";
+
+"Prepare.PrepareEvents.AddPreparation" = "ADD THIS PREPARATION TO";
+"Prepare.PrepareEvents.AddNewTrip" = "Add new trip";
