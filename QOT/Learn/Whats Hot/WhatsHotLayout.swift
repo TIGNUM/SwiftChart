@@ -18,7 +18,7 @@ final class WhatsHotLayout: UICollectionViewLayout {
     private let dragOffset: CGFloat = 180
     fileprivate var indexPath = 0
     fileprivate var cache = [UICollectionViewLayoutAttributes]()
-
+    fileprivate var offSet: CGFloat = 0
     fileprivate var featuredItemIndex: Int {
         return max(0, Int(collectionView!.contentOffset.y / dragOffset))
     }
@@ -43,7 +43,7 @@ final class WhatsHotLayout: UICollectionViewLayout {
         let contentHeight = (CGFloat(numberOfItems) * dragOffset) + (height - dragOffset)
         return CGSize(width: width, height: contentHeight)
     }
-    var isactive = false
+    
     override func prepare() {
         cache.removeAll(keepingCapacity: false)
         let standardHeight = Constants.standardHeight
@@ -61,15 +61,21 @@ final class WhatsHotLayout: UICollectionViewLayout {
             var height = standardHeight
             
             if indexPath.item == featuredItemIndex {
-                let yOffset = standardHeight * nextItemPercentageOffset
+
+                if offSet == 0 {
+                    let yOffset = standardHeight * nextItemPercentageOffset
                     y = collectionView!.contentOffset.y - yOffset
-                    height = featuredHeight
+                } else {
+                    let yOffset = standardHeight * nextItemPercentageOffset + offSet
+                    y = collectionView!.contentOffset.y - yOffset
+                }
+                height = featuredHeight
+
             } else if  indexPath.item == (featuredItemIndex + 1) && indexPath.item != numberOfItems {
                 height = standardHeight + max((featuredHeight - standardHeight) * nextItemPercentageOffset, 0)
                 let maxY = height - standardHeight
-                if standardHeight != height {
-                    y -= maxY
-                }
+                if maxY <= 200 {
+                    offSet = maxY } else { offSet = 0 }
             }
 
             frame = CGRect(x: 0, y: y, width: width, height: height)
