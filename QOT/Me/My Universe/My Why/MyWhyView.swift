@@ -17,7 +17,7 @@ class MyWhyView: UIView {
     let viewController: MyUniverseViewController
     lazy var weeklyChoices = [WeeklyChoice]()
     lazy var partners = [Partner]()
-    fileprivate var vision:Vision?
+    fileprivate var vision: Vision?
     weak var delegate: MyUniverseViewControllerDelegate?
 
     // MARK: - Init
@@ -186,7 +186,7 @@ private extension MyWhyView {
     }
 
     @objc func didTapPartner(sender: UIButton) {
-        delegate?.didTypQOTPartner(selectedIndex: sender.tag, partners: partners, in: viewController)
+        delegate?.didTapPartner(selectedIndex: sender.tag, partners: partners, in: viewController)
     }
 }
 

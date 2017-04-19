@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import ReactiveKit
 
 final class PartnersViewModel {
 
@@ -15,7 +14,6 @@ final class PartnersViewModel {
 
     let items: [Partner]
     let selectedIndex: Index
-    let updates = PublishSubject<CollectionUpdate, NoError>()
 
     init(items: [Partner], selectedIndex: Index) {
         self.items = items
