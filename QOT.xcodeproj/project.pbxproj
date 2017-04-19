@@ -75,6 +75,7 @@
 		CBDB990E1E7BFD05003EC73F /* CalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB990D1E7BFD05003EC73F /* CalendarEventParticipantData.swift */; };
 		CBDB99101E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB990F1E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift */; };
 		CBDB99121E7BFEED003EC73F /* MockCalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB99111E7BFEED003EC73F /* MockCalendarEventParticipantData.swift */; };
+		CC0FF8D21EA784400028D64F /* PartnersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0FF8D11EA784400028D64F /* PartnersViewModel.swift */; };
 		CC37B1311E93CDD600651C46 /* QOTDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC37B1301E93CDD600651C46 /* QOTDatabase.framework */; };
 		CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB631E83BDA300FF28DF /* Utils.swift */; };
 		CC3DFB661E83C19C00FF28DF /* Defines.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB651E83C19C00FF28DF /* Defines.swift */; };
@@ -244,6 +245,7 @@
 		CBDB990D1E7BFD05003EC73F /* CalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventParticipantData.swift; sourceTree = "<group>"; };
 		CBDB990F1E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKParticipant+CalendarEventParticipantData.swift"; sourceTree = "<group>"; };
 		CBDB99111E7BFEED003EC73F /* MockCalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCalendarEventParticipantData.swift; sourceTree = "<group>"; };
+		CC0FF8D11EA784400028D64F /* PartnersViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PartnersViewModel.swift; path = PartnersViewModel.swift; sourceTree = "<group>"; };
 		CC37B1301E93CDD600651C46 /* QOTDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QOTDatabase.framework; path = "Pods/../build/Release-iphoneos/QOTDatabase/QOTDatabase.framework"; sourceTree = "<group>"; };
 		CC3DFB631E83BDA300FF28DF /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		CC3DFB651E83C19C00FF28DF /* Defines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defines.swift; sourceTree = "<group>"; };
@@ -287,8 +289,8 @@
 		CCCC211B1E8981AD00133839 /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		CCCC21201E8981CA00133839 /* PrepareContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentViewController.swift; sourceTree = "<group>"; };
 		CCCC21211E8981CA00133839 /* PrepareContentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentViewModel.swift; sourceTree = "<group>"; };
-		CCCE09CB1EA67C78008730F1 /* MyToBeVisionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyToBeVisionViewModel.swift; path = MyToBeVisionViewModel.swift; sourceTree = "<group>"; };
-		CCCE09CD1EA67F87008730F1 /* MyToBeVisionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyToBeVisionViewController.swift; path = MyToBeVisionViewController.swift; sourceTree = "<group>"; };
+		CCCE09CB1EA67C78008730F1 /* MyToBeVisionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToBeVisionViewModel.swift; sourceTree = "<group>"; };
+		CCCE09CD1EA67F87008730F1 /* MyToBeVisionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToBeVisionViewController.swift; sourceTree = "<group>"; };
 		CCD377511E8D3C2D00BB8031 /* WhatsHotNewTemplateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsHotNewTemplateViewController.swift; sourceTree = "<group>"; };
 		CCD377521E8D3C2D00BB8031 /* WhatsHotNewTemplateViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsHotNewTemplateViewModel.swift; sourceTree = "<group>"; };
 		CCE06FDF1E8D44FC009C5AD2 /* LibraryCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryCoordinator.swift; sourceTree = "<group>"; };
@@ -732,6 +734,15 @@
 			path = "My Why";
 			sourceTree = "<group>";
 		};
+		CC0FF8D01EA7841A0028D64F /* QOT Partners */ = {
+			isa = PBXGroup;
+			children = (
+				CC0FF8D11EA784400028D64F /* PartnersViewModel.swift */,
+			);
+			name = "QOT Partners";
+			path = "QOT Partners";
+			sourceTree = "<group>";
+		};
 		CC20C9921E8981070056054D /* Prepare */ = {
 			isa = PBXGroup;
 			children = (
@@ -802,6 +813,7 @@
 				CC0294A81E9F66FD00163B94 /* My Data */,
 				CCCE09CA1EA67C3B008730F1 /* My To Be Vision */,
 				CC0294A91E9F670C00163B94 /* My Why */,
+				CC0FF8D01EA7841A0028D64F /* QOT Partners */,
 				CC5A8D691EA6597F00E5800F /* Weekly Choices */,
 				CC9663191EA1B8C000B84B1C /* MyUniverseAbstractView.swift */,
 				CC9663111EA1B41500B84B1C /* MyUniverseCoordinator.swift */,
@@ -920,7 +932,6 @@
 				CCCE09CD1EA67F87008730F1 /* MyToBeVisionViewController.swift */,
 				CCCE09CB1EA67C78008730F1 /* MyToBeVisionViewModel.swift */,
 			);
-			name = "My To Be Vision";
 			path = "My To Be Vision";
 			sourceTree = "<group>";
 		};
@@ -1022,7 +1033,6 @@
 			children = (
 				D54D8FFE1E95376D003924C9 /* TopTabBarController.swift */,
 			);
-			name = "Page Controller";
 			path = "Page Controller";
 			sourceTree = "<group>";
 		};
@@ -1374,6 +1384,7 @@
 				CCE06FE01E8D44FC009C5AD2 /* LibraryCoordinator.swift in Sources */,
 				CCAF032A1E8035C800015125 /* SettingsTableViewCell.swift in Sources */,
 				CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */,
+				CC0FF8D21EA784400028D64F /* PartnersViewModel.swift in Sources */,
 				CB8A152F1E76F27D0023B2F9 /* PageID.swift in Sources */,
 				CCC1B6B11E8B9FDA00D1461F /* LearnStrategyViewModel.swift in Sources */,
 				CB8A154A1E7A7FA20023B2F9 /* CalendarImportManger.swift in Sources */,
