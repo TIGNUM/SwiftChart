@@ -85,15 +85,19 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return total > 100 ? total : 100
     }
 
-    func didSelectItemAtCollectionView(prepareCollectionViewCell: PrepareCollectionViewCell, collectionView: UICollectionView) {
-        //Implement
+    func didSelectItemAtCollectionView(tableViewCellIndexPath: IndexPath, collectionViewCellIndexPath: IndexPath, currentCollectionViewDataModel: [PrepareChatObject]) {
+        let chatMessage = viewModel.item(at: tableViewCellIndexPath.row)
+        switch chatMessage {
+            case .instruction, .header:
+            break
+            case .navigation(let items):
+                delegate?.didSelectChatNavigation(items.item(at: collectionViewCellIndexPath.row), in: self)
+            break
+            case .input(let items):
+                delegate?.didSelectChatInput(items.item(at: collectionViewCellIndexPath.row), in: self)
+            break
+        }
     }
-
-    func didDeselectItemAtCollectionView(prepareCollectionViewCell: PrepareCollectionViewCell, collectionView: UICollectionView) {
-        //Implement
-    }
-
-
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -129,6 +133,7 @@ extension ChatViewController {
         case .navigation(let items):
             let collectionCell: CollectionTableViewCell = tableView.dequeueCell(for: indexPath)
             collectionCell.cellTitleLabel.text = "Preparations".uppercased()
+            collectionCell.delegate = self
             var prepareChatObjects: [PrepareChatObject] = []
             for item in items {
                 let obj = PrepareChatObject(title: item.title, localID: item.localID, selected: item.selected, style: .dashed)
@@ -140,6 +145,7 @@ extension ChatViewController {
         case .input(let items):
             let collectionCell: CollectionTableViewCell = tableView.dequeueCell(for: indexPath)
             collectionCell.cellTitleLabel.text = "Day Protocol".uppercased()
+            collectionCell.delegate = self
             var prepareChatObjects: [PrepareChatObject] = []
             for item in items {
                 let obj = PrepareChatObject(title: item.title, localID: item.localID, selected: item.selected, style: .plain)

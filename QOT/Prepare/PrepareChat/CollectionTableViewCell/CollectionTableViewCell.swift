@@ -10,8 +10,7 @@ import UIKit
 import UICollectionViewRightAlignedLayout
 
 protocol CollectionViewCellDelegate: class {
-    func didSelectItemAtCollectionView(prepareCollectionViewCell :PrepareCollectionViewCell, collectionView: UICollectionView)
-    func didDeselectItemAtCollectionView(prepareCollectionViewCell :PrepareCollectionViewCell, collectionView: UICollectionView)
+    func didSelectItemAtCollectionView(tableViewCellIndexPath: IndexPath, collectionViewCellIndexPath: IndexPath, currentCollectionViewDataModel: [PrepareChatObject])
 }
 
 class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegateRightAlignedLayout, Dequeueable {
@@ -69,14 +68,8 @@ extension CollectionTableViewCell {
         return 1
     }
 
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell: PrepareCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-        self.delegate?.didSelectItemAtCollectionView(prepareCollectionViewCell: cell, collectionView: collectionView)
-    }
-
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell: PrepareCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-        self.delegate?.didSelectItemAtCollectionView(prepareCollectionViewCell: cell, collectionView: collectionView)
+        self.delegate?.didSelectItemAtCollectionView(tableViewCellIndexPath: (tableView?.indexPath(for: self))!, collectionViewCellIndexPath: indexPath, currentCollectionViewDataModel: dataModel)
     }
 }
 
@@ -86,6 +79,21 @@ extension String {
         let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
 
         return boundingBox.width
+    }
+}
+
+extension UIView {
+    func parentView<T: UIView>(of type: T.Type) -> T? {
+        guard let view = self.superview else {
+            return nil
+        }
+        return (view as? T) ?? view.parentView(of: T.self)
+    }
+}
+
+extension UITableViewCell {
+    var tableView: UITableView? {
+        return self.parentView(of: UITableView.self)
     }
 }
 
