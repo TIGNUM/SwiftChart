@@ -124,19 +124,19 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
         print("didTapSector: \(sector?.labelType.text ?? "INVALID")")
     }
 
-    func didTapMyToBeVision(vision: Vision?, in viewController: MyUniverseViewController) {
+    func didTapMyToBeVision(vision: Vision?, from view: UIView, in viewController: MyUniverseViewController) {
         let coordinator = MyToBeVisionCoordinator(root: viewController, services: services, eventTracker: eventTracker)
         coordinator.start()
         startChild(child: coordinator)
     }
 
-    func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, in viewController: MyUniverseViewController) {
+    func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, from view: UIView, in viewController: MyUniverseViewController) {
         let coordinator = WeeklyChoicesCoordinator(root: viewController, services: services, eventTracker: eventTracker)
         coordinator.start()
-        startChild(child: coordinator)        
+        startChild(child: coordinator)
     }
 
-    func didTapPartner(selectedIndex: Index, partners: [Partner], in viewController: MyUniverseViewController) {
+    func didTapQOTPartner(selectedIndex: Index, partners: [Partner], from view: UIView, in viewController: MyUniverseViewController) {
         let coordinator = PartnersCoordinator(root: viewController, services: services, eventTracker: eventTracker, partners: partners, selectedIndex: selectedIndex)
         coordinator.start()
         startChild(child: coordinator)
