@@ -36,6 +36,7 @@ struct Layout {
 
     struct MeSection {
         let viewControllerFrame: CGRect
+        let myWhyPartnerScaleFactor = CGFloat(0.8867924528)
 
         static let loadOffset: CGFloat = 12
         static let labelHeight: CGFloat = 21
@@ -68,14 +69,94 @@ struct Layout {
             return viewControllerFrame.height * 0.5
         }
 
+        var myWhyVisionFooterXPos: CGFloat {
+            return viewControllerFrame.width * 0.115
+        }
+
+        var myWhyVisionFooterYPos: CGFloat {
+            return viewControllerFrame.height * 0.425
+        }
+
+        func myWhyVisionFooterFrame(_ screenType: MyUniverseViewController.ScreenType) -> CGRect {
+            var deviceOffset: CGFloat = 0
+
+            switch screenType {
+            case .big: deviceOffset = 0
+            case .medium: deviceOffset = 0
+            case .small: deviceOffset = -15
+            }
+
+            return CGRect(
+                x: myWhyVisionFooterXPos,
+                y: myWhyVisionFooterYPos + deviceOffset,
+                width: 0,
+                height: Layout.MeSection.labelHeight
+            )
+        }
+
+        func myWhyVisionLabelFrame(_ screenType: MyUniverseViewController.ScreenType) -> CGRect {
+            var deviceOffset: CGFloat = 0
+
+            switch screenType {
+            case .big: deviceOffset = 0
+            case .medium: deviceOffset = 15
+            case .small: deviceOffset = -15
+            }
+
+            return CGRect(
+                x: myWhyVisionFooterXPos,
+                y: (viewControllerFrame.height * 0.25) + deviceOffset,
+                width: profileImageWidth * 2.25,
+                height: Layout.MeSection.labelHeight
+            )
+        }
+
+        var myWhyWeeklyChoicesFooterXPos: CGFloat {
+            return viewControllerFrame.width * 0.25
+        }
+
+        var myWhyWeeklyChoicesFooterYPos: CGFloat {
+            return viewControllerFrame.height * 0.67
+        }
+
+        var myWhyWeeklyChoicesFooterFrame: CGRect {
+            return CGRect(
+                x: myWhyWeeklyChoicesFooterXPos,
+                y: myWhyWeeklyChoicesFooterYPos + 10,
+                width: 0,
+                height: Layout.MeSection.labelHeight
+            )
+        }
+
+        var myWhyPartnersFooterXPos: CGFloat {
+            return viewControllerFrame.width * 0.1
+        }
+
+        var myWhyPartnersFooterYPos: CGFloat {
+            return viewControllerFrame.height * 0.8
+        }
+
+        var myWhyPartnersFooterFrame: CGRect {
+            return CGRect(
+                x: myWhyPartnersFooterXPos,
+                y: myWhyPartnersFooterYPos + 10,
+                width: 0,
+                height: Layout.MeSection.labelHeight
+            )
+        }
+
         var loadCenter: CGPoint {
             return CGPoint(x: loadCenterX, y: loadCenterY)
         }
 
+        var universeCenter: CGPoint {
+            return CGPoint(x: loadCenterX - profileImageWidth * 0.5, y: loadCenterY - profileImageWidth * 0.5)
+        }
+
         var profileImageViewFrame: CGRect {
             return CGRect(
-                x: loadCenterX - profileImageWidth * 0.5,
-                y: loadCenterY - profileImageWidth * 0.5,
+                x: universeCenter.x,
+                y: universeCenter.y,
                 width: profileImageWidth,
                 height: profileImageWidth
             )
@@ -125,6 +206,9 @@ struct Font {
     
     /// BENTON SAN BOOK 11 // title
     static let HTitle = UIFont.bentonBookFont(ofSize: 11)
+
+    /// BENTON SANS 13 // paragraph, body text
+    static let PTextSmall = UIFont.bentonRegularFont(ofSize: 13)
 }
 
 struct Color {
@@ -260,12 +344,20 @@ struct AttributedString {
     }
 
     struct MeSection {
-        static func sectorTitle(text: String) -> NSAttributedString {
-            return NSAttributedString.create(for: text, withColor: Color.whiteMedium, andFont: Font.H7Tag, letterSpacing: 2)
+        static func sectorTitle(text: String, screenType: MyUniverseViewController.ScreenType) -> NSAttributedString {
+            switch screenType {
+            case .big: return NSAttributedString.create(for: text, withColor: Color.whiteMedium, andFont: Font.H7Tag, letterSpacing: 2)
+            case .medium: return NSAttributedString.create(for: text, withColor: Color.whiteMedium, andFont: Font.H7Tag, letterSpacing: 1.8)
+            case .small: return NSAttributedString.create(for: text, withColor: Color.whiteMedium, andFont: Font.H7Tag, letterSpacing: 1.6)
+            }
         }
 
-        static func sectorTitleCritical(text: String) -> NSAttributedString {
-            return NSAttributedString.create(for: text, withColor: Color.cherryRedTwo, andFont: Font.PText, letterSpacing: 2.7)
+        static func sectorTitleCritical(text: String, screenType: MyUniverseViewController.ScreenType) -> NSAttributedString {
+            switch screenType {
+            case .big: return NSAttributedString.create(for: text, withColor: Color.cherryRedTwo, andFont: Font.PText, letterSpacing: 2.7)
+            case .medium: return NSAttributedString.create(for: text, withColor: Color.cherryRedTwo, andFont: Font.PTextSmall, letterSpacing: 2.5)
+            case .small: return NSAttributedString.create(for: text, withColor: Color.cherryRedTwo, andFont: Font.PTextSmall, letterSpacing: 2.3)
+            }
         }
     }
 }
