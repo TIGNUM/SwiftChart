@@ -59,6 +59,7 @@ extension WhatsHotViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let content = viewModel.item(at: indexPath.item)
         let cell: WhatsHotCell = collectionView.dequeueCell(for: indexPath)
+       cell.backgroundColor = UIColor(hue: CGFloat(drand48()), saturation: 1, brightness: 1, alpha: 1)
         cell.setup( number: content.identifier,
                     thought: content.subtitle,
                     headline: content.text,

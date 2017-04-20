@@ -12,14 +12,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="WhatsHotCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="376" height="352"/>
+            <rect key="frame" x="0.0" y="0.0" width="358" height="359"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="376" height="352"/>
+                <rect key="frame" x="0.0" y="0.0" width="358" height="359"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VQl-Re-jfO">
-                        <rect key="frame" x="64" y="0.0" width="283" height="189"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="256" verticalHuggingPriority="257" horizontalCompressionResistancePriority="741" translatesAutoresizingMaskIntoConstraints="NO" id="VQl-Re-jfO">
+                        <rect key="frame" x="64" y="31" width="265" height="189"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="189" id="fPl-M0-aIS"/>
@@ -36,7 +36,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oa2-gh-lrd">
-                        <rect key="frame" x="64" y="204" width="264" height="22"/>
+                        <rect key="frame" x="64" y="235" width="246" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="1sC-0p-kjP"/>
                         </constraints>
@@ -45,7 +45,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="05D-0B-trv">
-                        <rect key="frame" x="336" y="204" width="11.5" height="15"/>
+                        <rect key="frame" x="318" y="235" width="11.5" height="15"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="11.5" id="J0f-0a-VZG"/>
@@ -53,7 +53,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hKO-zn-69f">
-                        <rect key="frame" x="63" y="226" width="265" height="52"/>
+                        <rect key="frame" x="63" y="257" width="247" height="52"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="52" id="lOF-gt-DKC"/>
                         </constraints>
@@ -62,7 +62,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5di-4K-nT6">
-                        <rect key="frame" x="65" y="288" width="283" height="14"/>
+                        <rect key="frame" x="65" y="319" width="265" height="14"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="QeM-34-Lwa"/>
                         </constraints>
@@ -71,7 +71,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="awG-he-L07">
-                        <rect key="frame" x="64" y="327" width="284" height="1"/>
+                        <rect key="frame" x="64" y="358" width="266" height="1"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="XPr-FW-XFw"/>
@@ -93,15 +93,15 @@
                 <constraint firstItem="4LO-rE-AEC" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="11" id="Ucs-Dj-Ahg"/>
                 <constraint firstAttribute="trailing" secondItem="5di-4K-nT6" secondAttribute="trailing" constant="28" id="Xxy-pP-vTW"/>
                 <constraint firstItem="5di-4K-nT6" firstAttribute="top" secondItem="hKO-zn-69f" secondAttribute="bottom" constant="10" id="Zy7-BW-xSg"/>
+                <constraint firstItem="VQl-Re-jfO" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="64" id="a2C-Rn-S17"/>
                 <constraint firstItem="05D-0B-trv" firstAttribute="top" secondItem="VQl-Re-jfO" secondAttribute="bottom" constant="15" id="axe-mA-hqa"/>
                 <constraint firstItem="Oa2-gh-lrd" firstAttribute="top" secondItem="VQl-Re-jfO" secondAttribute="bottom" constant="15" id="gjw-2G-0Fg"/>
-                <constraint firstAttribute="bottom" secondItem="awG-he-L07" secondAttribute="bottom" constant="24" id="gzD-Pt-2I5"/>
+                <constraint firstAttribute="bottom" secondItem="awG-he-L07" secondAttribute="bottom" id="gzD-Pt-2I5"/>
                 <constraint firstItem="5di-4K-nT6" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="65" id="hdN-yv-RAo"/>
-                <constraint firstItem="VQl-Re-jfO" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="64" id="hwn-RM-8QC"/>
                 <constraint firstAttribute="trailing" secondItem="VQl-Re-jfO" secondAttribute="trailing" constant="29" id="rOU-ke-AqU"/>
                 <constraint firstItem="hKO-zn-69f" firstAttribute="top" secondItem="Oa2-gh-lrd" secondAttribute="bottom" id="vEj-jc-6l9"/>
             </constraints>
-            <size key="customSize" width="376" height="355"/>
+            <size key="customSize" width="374" height="362"/>
             <connections>
                 <outlet property="durationLabel" destination="5di-4K-nT6" id="0Oy-rR-yvz"/>
                 <outlet property="headlineLabel" destination="hKO-zn-69f" id="Mja-8u-wxv"/>
@@ -110,7 +110,7 @@
                 <outlet property="numberLabel" destination="4LO-rE-AEC" id="5nJ-dh-fCy"/>
                 <outlet property="thoughtLabel" destination="Oa2-gh-lrd" id="70k-tD-vjt"/>
             </connections>
-            <point key="canvasLocation" x="38" y="-119"/>
+            <point key="canvasLocation" x="37" y="-149.5"/>
         </collectionViewCell>
     </objects>
 </document>
