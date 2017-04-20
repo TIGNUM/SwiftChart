@@ -83,10 +83,6 @@ final class TopTabBarController: UIViewController {
         return view
     }()
 
-//    fileprivate var viewControllers: [UIViewController] {
-//        return items.map { $0.controller }
-//    }
-
     // MARK: - Init
     
     init(items: [Item], selectedIndex: Index, leftIcon: UIImage? = nil, rightIcon: UIImage? = nil) {
@@ -140,7 +136,6 @@ final class TopTabBarController: UIViewController {
         super.viewDidLoad()
         
         setupHierarchy()
-//        setupScrollViewIfNeeded()
         setupScrollView()
         tabBarView.delegate = self
         view.backgroundColor = .brown
@@ -150,7 +145,6 @@ final class TopTabBarController: UIViewController {
         super.viewWillLayoutSubviews()
 
         setupScrollView()
-//        setupScrollViewIfNeeded()
     }
 
     override func viewDidLayoutSubviews() {
@@ -177,18 +171,10 @@ extension TopTabBarController {
 
 extension TopTabBarController {
 
-//    func setupScrollViewIfNeeded() {
-//        if let myUniverseItem = myUniverseItem {
-//            addMyUniverseViewAsChild(myUniverseItem.controller)
-//        } else {
-//            setupScrollView()
-//        }
-//    }
-
     func setupScrollView() {
         if let myUniverseScrollView = myUniverseItem?.controller.contentScrollView {
             scrollView = myUniverseScrollView
-//            scrollView.delegate = self
+            myUniverseItem?.controller.contentScrollViewDelegate = self
         } else {
             let width: CGFloat = view.bounds.width
             scrollView.frame = view.bounds
@@ -208,11 +194,6 @@ extension TopTabBarController {
         viewController.didMove(toParentViewController: self)
         addChildViewController(viewController)
     }
-
-//    private func addMyUniverseViewAsChild(_ myUniverseController: MyUniverseViewController) {
-//        myUniverseController.didMove(toParentViewController: self)
-//        addChildViewController(myUniverseController)
-//    }
 }
 
 // MARK: - ScrollView Delegate
@@ -221,6 +202,17 @@ extension TopTabBarController: UIScrollViewDelegate {
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         tabBarView.setSelectedIndex(scrollView.currentPage, animated: true)
+    }
+}
+
+extension TopTabBarController: MyUniverseContentScrollViewDelegate {
+
+    func didScrollToMyWhy() {
+        tabBarView.setSelectedIndex(1, animated: true)
+    }
+
+    func didScrollToMyData() {
+        tabBarView.setSelectedIndex(0, animated: true)
     }
 }
 

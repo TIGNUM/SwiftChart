@@ -15,6 +15,11 @@ protocol MyUniverseViewControllerDelegate: class {
     func didTypQOTPartner(partner: Partner?, in viewController: MyUniverseViewController)
 }
 
+protocol MyUniverseContentScrollViewDelegate: class {
+    func didScrollToMyData()
+    func didScrollToMyWhy()
+}
+
 final class MyUniverseViewController: UIViewController {
     
     // MARK: - Properties
@@ -27,6 +32,7 @@ final class MyUniverseViewController: UIViewController {
     fileprivate var myDataSectorLabelsView: MyDataSectorLabelsView?
     fileprivate var lastContentOffset: CGFloat = 0
     weak var delegate: MyUniverseViewControllerDelegate?
+    weak var contentScrollViewDelegate: MyUniverseContentScrollViewDelegate?
     var contentScrollView: UIScrollView?
 
     // MARK: - Life Cycle
@@ -182,6 +188,14 @@ extension MyUniverseViewController: UIScrollViewDelegate {
         updateProfileImageViewAlphaValue(scrollView)
         updateSectorLabelsAlphaValue(scrollView)
         updateMyWhyViewAlphaValue(scrollView)
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {        
+        if scrollView.contentOffset.equalTo(.zero) == true {
+            contentScrollViewDelegate?.didScrollToMyData()
+        } else {
+            contentScrollViewDelegate?.didScrollToMyWhy()
+        }
     }
 }
 
