@@ -10,7 +10,7 @@ import UIKit
 import UICollectionViewRightAlignedLayout
 
 protocol CollectionViewCellDelegate: class {
-    func didSelectItemAtCollectionView(tableViewCellIndexPath: IndexPath, collectionViewCellIndexPath: IndexPath, currentCollectionViewDataModel: [PrepareChatObject])
+    func didSelectItemAtCollectionView(tableViewCellIndexPath: IndexPath, collectionViewCellIndexPath: IndexPath)
 }
 
 class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegateRightAlignedLayout, Dequeueable {
@@ -69,7 +69,7 @@ extension CollectionTableViewCell {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.delegate?.didSelectItemAtCollectionView(tableViewCellIndexPath: (tableView?.indexPath(for: self))!, collectionViewCellIndexPath: indexPath, currentCollectionViewDataModel: dataModel)
+        self.delegate?.didSelectItemAtCollectionView(tableViewCellIndexPath: (tableView?.indexPath(for: self))!, collectionViewCellIndexPath: indexPath)
     }
 }
 

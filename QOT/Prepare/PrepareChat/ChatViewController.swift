@@ -85,7 +85,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return total > 100 ? total : 100
     }
 
-    func didSelectItemAtCollectionView(tableViewCellIndexPath: IndexPath, collectionViewCellIndexPath: IndexPath, currentCollectionViewDataModel: [PrepareChatObject]) {
+    func didSelectItemAtCollectionView(tableViewCellIndexPath: IndexPath, collectionViewCellIndexPath: IndexPath) {
         let chatMessage = viewModel.item(at: tableViewCellIndexPath.row)
         switch chatMessage {
             case .instruction, .header:
