@@ -60,8 +60,6 @@ final class LearnCategoryListViewController: UIViewController {
         let xOffset = (contentSize.width - collectionView.frame.width) / 2
         let yOffset = (contentSize.height - collectionView.frame.height) / 2
         collectionView.contentOffset = CGPoint(x: xOffset, y: yOffset)
-
-        print(collectionView.contentSize, collectionView.contentOffset)
     }
 }
 

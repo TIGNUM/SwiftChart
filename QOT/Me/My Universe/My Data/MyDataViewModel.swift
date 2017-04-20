@@ -80,8 +80,8 @@ enum SectorLabelType {
         case .meetings: return 1.28
         case .intensity: return 1.27
         case .travel: return 1.17
-        case .sleep: return 1.2
-        case .activity: return 1.2
+        case .sleep: return 1.18
+        case .activity: return 1.18
         }
     }
 }

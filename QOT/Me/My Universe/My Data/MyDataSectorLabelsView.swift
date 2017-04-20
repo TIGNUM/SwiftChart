@@ -51,7 +51,6 @@ private extension MyDataSectorLabelsView {
                 attributedString: labelValues.attributedString,
                 widthOffset: labelValues.widthOffset
             )
-            print(sectorLabel.center, sectorLabel.frame.origin)
             addSubview(sectorLabel)
             sectorLabels.append(sectorLabel)
         }

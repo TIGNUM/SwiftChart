@@ -88,7 +88,7 @@ final class LearnContentLayout: UICollectionViewLayout {
         var xCoordinate: CGFloat = 0 + horizontalPadding
         let height: CGFloat = (3 * bubbleDiameter)
         let yCoordinate: CGFloat = height / 2 - (bubbleDiameter / 2 - horizontalPadding)
-        print(bubbleDiameter)
+
         for index in 0..<bubbleCount {
             if index != 0 {
                 allBubbles.append(CGPoint(x: xCoordinate + bubbleDiameter + (interBubbleSpacing / 2), y: yCoordinate + bubbleDiameter / 2 + interBubbleSpacing))
