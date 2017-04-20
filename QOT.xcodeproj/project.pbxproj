@@ -36,7 +36,6 @@
 		CB1E4FDD1E8024E900287613 /* EKEventStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1E4FDC1E8024E900287613 /* EKEventStatusTests.swift */; };
 		CB2880221E7050EB0067890A /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880211E7050EB0067890A /* Coordinator.swift */; };
 		CB2880241E7051710067890A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880231E7051710067890A /* AppCoordinator.swift */; };
-		CB2880281E7057790067890A /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880271E7057790067890A /* RootViewController.swift */; };
 		CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880331E7144E60067890A /* CollectionUpdate.swift */; };
 		CB369CDB1E8D3E5700522293 /* RealmProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB369CDA1E8D3E5700522293 /* RealmProvider.swift */; };
 		CB369CDE1E8D3F5300522293 /* LearnContentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB369CDD1E8D3F5300522293 /* LearnContentService.swift */; };
@@ -87,6 +86,7 @@
 		CC37B1311E93CDD600651C46 /* QOTDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC37B1301E93CDD600651C46 /* QOTDatabase.framework */; };
 		CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB631E83BDA300FF28DF /* Utils.swift */; };
 		CC3DFB661E83C19C00FF28DF /* Defines.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB651E83C19C00FF28DF /* Defines.swift */; };
+		CC4AB7E51EA8A36B000F43B1 /* TopTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4AB7E41EA8A36B000F43B1 /* TopTabBarController.swift */; };
 		CC5A8D6D1EA65A3E00E5800F /* WeeklyChoicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5A8D6C1EA65A3E00E5800F /* WeeklyChoicesViewModel.swift */; };
 		CC5A8D6F1EA65A6400E5800F /* WeeklyChoicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5A8D6E1EA65A6400E5800F /* WeeklyChoicesViewController.swift */; };
 		CC6B3A291E8158B200E7FDFD /* PresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A281E8158B200E7FDFD /* PresentationManager.swift */; };
@@ -161,7 +161,6 @@
 		D520BC931E8E655A00A2D107 /* LearnStrategyHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D520BC911E8E655A00A2D107 /* LearnStrategyHeaderCell.swift */; };
 		D520BC941E8E655A00A2D107 /* LearnStrategyHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D520BC921E8E655A00A2D107 /* LearnStrategyHeaderCell.xib */; };
 		D540275F1E8D401F0013B783 /* LearnStrategyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D540275D1E8D401F0013B783 /* LearnStrategyViewController.xib */; };
-		D54D8FFF1E95376D003924C9 /* TopTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54D8FFE1E95376D003924C9 /* TopTabBarController.swift */; };
 		D55CBED71E8A993200C690FB /* CGPoint+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55CBED61E8A993200C690FB /* CGPoint+Convenience.swift */; };
 		D57ECFB01E924CC2008F401B /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57ECFAF1E924CC2008F401B /* TabBarView.swift */; };
 		D5CD23D81E8BB73A002742C4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CD23D71E8BB73A002742C4 /* TabBarController.swift */; };
@@ -210,7 +209,6 @@
 		CB1E4FDC1E8024E900287613 /* EKEventStatusTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKEventStatusTests.swift; sourceTree = "<group>"; };
 		CB2880211E7050EB0067890A /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		CB2880231E7051710067890A /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
-		CB2880271E7057790067890A /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		CB2880331E7144E60067890A /* CollectionUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionUpdate.swift; sourceTree = "<group>"; };
 		CB369CDA1E8D3E5700522293 /* RealmProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmProvider.swift; sourceTree = "<group>"; };
 		CB369CDD1E8D3F5300522293 /* LearnContentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentService.swift; sourceTree = "<group>"; };
@@ -265,6 +263,7 @@
 		CC37B1301E93CDD600651C46 /* QOTDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QOTDatabase.framework; path = "Pods/../build/Release-iphoneos/QOTDatabase/QOTDatabase.framework"; sourceTree = "<group>"; };
 		CC3DFB631E83BDA300FF28DF /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		CC3DFB651E83C19C00FF28DF /* Defines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defines.swift; sourceTree = "<group>"; };
+		CC4AB7E41EA8A36B000F43B1 /* TopTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopTabBarController.swift; sourceTree = "<group>"; };
 		CC5A8D6C1EA65A3E00E5800F /* WeeklyChoicesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesViewModel.swift; sourceTree = "<group>"; };
 		CC5A8D6E1EA65A6400E5800F /* WeeklyChoicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesViewController.swift; sourceTree = "<group>"; };
 		CC6B3A281E8158B200E7FDFD /* PresentationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationManager.swift; sourceTree = "<group>"; };
@@ -305,8 +304,8 @@
 		CCCC211B1E8981AD00133839 /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		CCCC21201E8981CA00133839 /* PrepareContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentViewController.swift; sourceTree = "<group>"; };
 		CCCC21211E8981CA00133839 /* PrepareContentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentViewModel.swift; sourceTree = "<group>"; };
-		CCCE09CB1EA67C78008730F1 /* MyToBeVisionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyToBeVisionViewModel.swift; path = MyToBeVisionViewModel.swift; sourceTree = "<group>"; };
-		CCCE09CD1EA67F87008730F1 /* MyToBeVisionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyToBeVisionViewController.swift; path = MyToBeVisionViewController.swift; sourceTree = "<group>"; };
+		CCCE09CB1EA67C78008730F1 /* MyToBeVisionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToBeVisionViewModel.swift; sourceTree = "<group>"; };
+		CCCE09CD1EA67F87008730F1 /* MyToBeVisionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToBeVisionViewController.swift; sourceTree = "<group>"; };
 		CCD377511E8D3C2D00BB8031 /* WhatsHotNewTemplateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsHotNewTemplateViewController.swift; sourceTree = "<group>"; };
 		CCD377521E8D3C2D00BB8031 /* WhatsHotNewTemplateViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsHotNewTemplateViewModel.swift; sourceTree = "<group>"; };
 		CCE06FDF1E8D44FC009C5AD2 /* LibraryCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryCoordinator.swift; sourceTree = "<group>"; };
@@ -340,7 +339,6 @@
 		D520BC911E8E655A00A2D107 /* LearnStrategyHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnStrategyHeaderCell.swift; sourceTree = "<group>"; };
 		D520BC921E8E655A00A2D107 /* LearnStrategyHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyHeaderCell.xib; sourceTree = "<group>"; };
 		D540275D1E8D401F0013B783 /* LearnStrategyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyViewController.xib; sourceTree = "<group>"; };
-		D54D8FFE1E95376D003924C9 /* TopTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopTabBarController.swift; sourceTree = "<group>"; };
 		D55CBED61E8A993200C690FB /* CGPoint+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Convenience.swift"; sourceTree = "<group>"; };
 		D57ECFAF1E924CC2008F401B /* TabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		D5CD23D71E8BB73A002742C4 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -516,14 +514,6 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		CB2880291E70577E0067890A /* Root Container View */ = {
-			isa = PBXGroup;
-			children = (
-				CB2880271E7057790067890A /* RootViewController.swift */,
-			);
-			path = "Root Container View";
-			sourceTree = "<group>";
-		};
 		CB2880321E7144D40067890A /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -650,7 +640,6 @@
 				CC4D1D791E82E6A000B8D75E /* Me */,
 				CC20C9921E8981070056054D /* Prepare */,
 				CC6B3A271E81586C00E7FDFD /* Presentation */,
-				CB2880291E70577E0067890A /* Root Container View */,
 				CB369CD91E8D3E3700522293 /* Services */,
 				CCCCB0691E804A90001240D5 /* Sidebar */,
 				CCC0C4D71E82BAEA002A8362 /* Tab Bar */,
@@ -903,6 +892,7 @@
 		CCC0C4D71E82BAEA002A8362 /* Tab Bar */ = {
 			isa = PBXGroup;
 			children = (
+				CC4AB7E41EA8A36B000F43B1 /* TopTabBarController.swift */,
 				D5CD23D71E8BB73A002742C4 /* TabBarController.swift */,
 				CCC0C4DA1E82BDEF002A8362 /* TabBarCoordinator.swift */,
 				D57ECFAF1E924CC2008F401B /* TabBarView.swift */,
@@ -926,7 +916,6 @@
 			isa = PBXGroup;
 			children = (
 				D51D088E1E8EA36700FC7567 /* Cell */,
-				D5EF23481E952EF100D88064 /* Page Controller */,
 				CCC1B6B21E8BA71500D1461F /* LearnStrategyViewController.swift */,
 				D540275D1E8D401F0013B783 /* LearnStrategyViewController.xib */,
 				CCC1B6B01E8B9FDA00D1461F /* LearnStrategyViewModel.swift */,
@@ -975,7 +964,6 @@
 				CCCE09CD1EA67F87008730F1 /* MyToBeVisionViewController.swift */,
 				CCCE09CB1EA67C78008730F1 /* MyToBeVisionViewModel.swift */,
 			);
-			name = "My To Be Vision";
 			path = "My To Be Vision";
 			sourceTree = "<group>";
 		};
@@ -1075,15 +1063,6 @@
 				D51D08861E8E80AF00FC7567 /* LearnStrategyVideoCell.xib */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		D5EF23481E952EF100D88064 /* Page Controller */ = {
-			isa = PBXGroup;
-			children = (
-				D54D8FFE1E95376D003924C9 /* TopTabBarController.swift */,
-			);
-			name = "Page Controller";
-			path = "Page Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1369,7 +1348,6 @@
 				CB55A2DF1E9FDF0A00D721CE /* SettingsMenuViewController.swift in Sources */,
 				CCC1B6A91E8B9B7300D1461F /* LearnCategoryListViewController.swift in Sources */,
 				CBD7915F1E72FDC10006C590 /* LaunchViewModel.swift in Sources */,
-				D54D8FFF1E95376D003924C9 /* TopTabBarController.swift in Sources */,
 				CB369CE51E8E46B600522293 /* LearnContent.swift in Sources */,
 				CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */,
 				D55CBED71E8A993200C690FB /* CGPoint+Convenience.swift in Sources */,
@@ -1435,7 +1413,6 @@
 				CC6B3A291E8158B200E7FDFD /* PresentationManager.swift in Sources */,
 				CCAF03241E801B0E00015125 /* SettingsCoordinator.swift in Sources */,
 				CBD791651E768AB70006C590 /* MainMenuViewController.swift in Sources */,
-				CB2880281E7057790067890A /* RootViewController.swift in Sources */,
 				D57ECFB01E924CC2008F401B /* TabBarView.swift in Sources */,
 				CCE06FE01E8D44FC009C5AD2 /* LibraryCoordinator.swift in Sources */,
 				CCAF032A1E8035C800015125 /* SettingsTableViewCell.swift in Sources */,
@@ -1455,6 +1432,7 @@
 				CC9663101EA1B29800B84B1C /* MyWhyViewModel.swift in Sources */,
 				CC6B3A2D1E8163A200E7FDFD /* FadeInOutPresentationController.swift in Sources */,
 				CCC1B6AE1E8B9B7F00D1461F /* LearnContentListViewController.swift in Sources */,
+				CC4AB7E51EA8A36B000F43B1 /* TopTabBarController.swift in Sources */,
 				CCE373101E8D32F800B79352 /* SidebarTableViewCell.swift in Sources */,
 				CCEFCFB01E8D3D7500E9FC72 /* SidebarViewController.swift in Sources */,
 				CC96630A1EA1B27F00B84B1C /* MyDataViewModel.swift in Sources */,

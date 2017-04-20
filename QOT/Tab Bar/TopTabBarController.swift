@@ -16,6 +16,8 @@ protocol TopTabBarDelegate: class {
 }
 
 final class TopTabBarController: UIViewController {
+
+    // MARK: - Constants
     
     struct Constants {
         static let animationDuration: TimeInterval = 0.3
@@ -25,18 +27,21 @@ final class TopTabBarController: UIViewController {
         static let indicatorViewExtendedWidth: CGFloat = 16
     }
     
+    // MARK: - TopTabBarController Item
+
     struct Item {
         let controller: UIViewController
         let title: String
     }
-    // MARK: Public Delegate
-    
-     weak var delegate: TopTabBarDelegate?
-    
-    // MARK: Private Objects
-    
+
+    // MARK: Properties
+
     fileprivate var controllers = [UIViewController]()
-    
+    fileprivate var items: [Item]
+    fileprivate let tabBarView: TabBarView
+    fileprivate var index: Int = 0
+    weak var delegate: TopTabBarDelegate?
+
     fileprivate lazy var navigationItemBar: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
@@ -65,13 +70,12 @@ final class TopTabBarController: UIViewController {
         view.showsHorizontalScrollIndicator = false
         return view
     }()
-    
-    fileprivate var items: [Item]
-    fileprivate let tabBarView: TabBarView
-    fileprivate var index: Int = 0
+
     fileprivate var viewControllers: [UIViewController] {
         return items.map { $0.controller }
     }
+
+    // MARK: - Init
     
     init(items: [Item], selectedIndex: Index, leftIcon: UIImage?, rightIcon: UIImage?) {
         precondition(selectedIndex >= 0 && selectedIndex < items.count, "Out of bounds selectedIndex")
@@ -96,6 +100,8 @@ final class TopTabBarController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,38 +117,60 @@ final class TopTabBarController: UIViewController {
 
         setupScrollView()
     }
-    
-    func leftButtonPressed(_ button: UIButton) {
-        delegate?.didSelectLeftButton(sender: self)
-    }
-    
-    func rightButtonPressed(_ button: UIButton) {
-        delegate?.didSelectRightButton(sender: self)
-    }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         setupLayout()
     }
-    
+}
+
+// MARK: - Actions
+
+extension TopTabBarController {
+
+    func leftButtonPressed(_ button: UIButton) {
+        delegate?.didSelectLeftButton(sender: self)
+    }
+
+    func rightButtonPressed(_ button: UIButton) {
+        delegate?.didSelectRightButton(sender: self)
+    }
+}
+
+// MARK: - ScrollView
+
+extension TopTabBarController {
+
     func setupScrollView() {
         let width: CGFloat = view.bounds.width
         scrollView.frame = view.bounds
         scrollView.contentSize = CGSize(width: CGFloat(items.count) * width, height: 0)
-        
+
         for (index, item) in items.enumerated() {
             let vc = item.controller
             addViewToScrollView(vc)
             vc.view.frame.origin = CGPoint(x: CGFloat(index) * width, y: 0)
         }
     }
-    
+
     func addViewToScrollView(_ viewController: UIViewController) {
+        viewController.view.frame = view.frame
         scrollView.addSubview(viewController.view)
         viewController.didMove(toParentViewController: self)
         addChildViewController(viewController)
     }
 }
+
+// MARK: - ScrollView Delegate
+
+extension TopTabBarController: UIScrollViewDelegate {
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        tabBarView.setSelectedIndex(scrollView.currentPage, animated: true)
+    }
+}
+
+// MARK: - Layout
 
 extension TopTabBarController {
     
@@ -183,12 +211,7 @@ extension TopTabBarController {
     }
 }
 
-extension TopTabBarController: UIScrollViewDelegate {
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        tabBarView.setSelectedIndex(scrollView.currentPage, animated: true)
-    }
-}
+// MARK: - TabBarViewDelegate
 
 extension TopTabBarController: TabBarViewDelegate {
     
@@ -202,12 +225,5 @@ extension TopTabBarController: TabBarViewDelegate {
             let offset = CGPoint(x: scrollView.bounds.size.width * CGFloat(index), y: 0)
             scrollView.setContentOffset(offset, animated: true)
         }
-    }
-}
-
-private extension UIScrollView {
-    
-    var currentPage: Int {
-        return Int(round(self.contentOffset.x / self.bounds.size.width))
     }
 }
