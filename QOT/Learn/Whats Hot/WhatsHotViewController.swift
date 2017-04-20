@@ -38,28 +38,36 @@ class WhatsHotViewController: UIViewController {
         view.backgroundColor = .black
         setUpCollectionView()
     }
-    
+
     func setUpCollectionView() {
         collectionView.registerDequeueable(WhatsHotCell.self)
         let layout = WhatsHotLayout()
         collectionView.collectionViewLayout = layout
+        collectionView.decelerationRate = UIScrollViewDecelerationRateFast
+        layout.delegate = self
     }
-}
 
-extension WhatsHotViewController: UICollectionViewDelegateFlowLayout {
-    
+    func calculateTheHeightForCell() -> CGFloat {
+        let height = view.bounds.width
+
+        if height > 320 {
+            return 222
+        } else {
+            return 170
+        }
+    }
 }
 
 extension WhatsHotViewController: UICollectionViewDataSource {
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.itemCount
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let content = viewModel.item(at: indexPath.item)
         let cell: WhatsHotCell = collectionView.dequeueCell(for: indexPath)
-       cell.backgroundColor = UIColor(hue: CGFloat(drand48()), saturation: 1, brightness: 1, alpha: 1)
+        //       cell.backgroundColor = UIColor(hue: CGFloat(drand48()), saturation: 1, brightness: 1, alpha: 1)
         cell.setup( number: content.identifier,
                     thought: content.subtitle,
                     headline: content.text,
@@ -67,5 +75,14 @@ extension WhatsHotViewController: UICollectionViewDataSource {
                     placeholderURL: content.placeholderURL)
         return cell
     }
-    
+}
+
+extension WhatsHotViewController: WhatsHotLayoutDelegate {
+    func standardHeightForLayout(_ layout: WhatsHotLayout) -> CGFloat {
+        return 130
+    }
+
+    func featuredHeightForLayout(_ layout: WhatsHotLayout) -> CGFloat {
+        return 130 + calculateTheHeightForCell()
+    }
 }

@@ -9,23 +9,20 @@
 import Foundation
 import UIKit
 
-private struct Constants {
-    static let standardHeight: CGFloat = 130
-    static let featuredHeight: CGFloat = 352 // At 473
+protocol WhatsHotLayoutDelegate: class {
+    func standardHeightForLayout(_ layout: WhatsHotLayout) -> CGFloat
+    func featuredHeightForLayout(_ layout: WhatsHotLayout) -> CGFloat
 }
 
 final class WhatsHotLayout: UICollectionViewLayout {
-
     private var indexPath = 0
     private var cache = [UICollectionViewLayoutAttributes]()
     private var offSet: CGFloat = 0
 
+    weak var delegate: WhatsHotLayoutDelegate?
+
     fileprivate var width: CGFloat {
         return collectionView!.bounds.width
-    }
-
-    fileprivate var height: CGFloat {
-        return collectionView!.bounds.height
     }
 
     fileprivate var numberOfItems: Int {
@@ -33,18 +30,21 @@ final class WhatsHotLayout: UICollectionViewLayout {
     }
 
     override var collectionViewContentSize: CGSize {
-            let contentHeight = (Constants.standardHeight * CGFloat(numberOfItems))  + (Constants.featuredHeight - Constants.standardHeight) + Constants.featuredHeight
+        guard let delegate  = delegate else {
+            return CGSize.zero
+        }
+        let contentHeight = (delegate.standardHeightForLayout(self) * CGFloat(numberOfItems)) + delegate.featuredHeightForLayout(self) + delegate.standardHeightForLayout(self)
         return CGSize(width: width, height: contentHeight)
     }
 
     override func prepare() {
-        guard let collectionView = collectionView else {
+        guard let collectionView = collectionView, let delegate  = delegate else {
             self.cache = []
             return
         }
 
-        let standardHeight = Constants.standardHeight
-        let featuredHeight = Constants.featuredHeight
+        let standardHeight = delegate.standardHeightForLayout(self)
+        let featuredHeight = delegate.featuredHeightForLayout(self)
 
         var cache: [UICollectionViewLayoutAttributes] = []
         cache.reserveCapacity(numberOfItems)
@@ -86,11 +86,16 @@ final class WhatsHotLayout: UICollectionViewLayout {
 
     }
 
-    //    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
-    //        let itemIndex = round(proposedContentOffset.y / dragOffset)
-    //        let yOffset = itemIndex * dragOffset + 0.5
-    //        return CGPoint(x: 0, y: yOffset)
-    //    }
+    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
+        guard let delegate  = delegate else {
+            return CGPoint.zero
+        }
+
+        let itemIndex = round(proposedContentOffset.y / (delegate.standardHeightForLayout(self)))
+        print(proposedContentOffset.y)
+        let yOffset = itemIndex * (delegate.standardHeightForLayout(self))
+        return CGPoint(x: 0, y: yOffset)
+    }
 
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         return cache
