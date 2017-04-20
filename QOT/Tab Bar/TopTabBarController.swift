@@ -138,7 +138,6 @@ final class TopTabBarController: UIViewController {
         setupHierarchy()
         setupScrollView()
         tabBarView.delegate = self
-        view.backgroundColor = .brown
     }
     
     override func viewWillLayoutSubviews() {

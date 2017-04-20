@@ -126,6 +126,7 @@ extension TabBarController {
 }
 
 extension TabBarController: TabBarViewDelegate {
+
     func didSelectItemAtIndex(index: Int?, sender: TabBarView) {
         guard let index = index else {
             return
