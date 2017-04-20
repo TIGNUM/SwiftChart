@@ -8,24 +8,24 @@
 
 import UIKit
 
-class MyWhyView: UIView {
+class MyWhyView: UIView, MyUniverseView {
 
     // MARK: - Properties
 
     var previousBounds = CGRect.zero
     let myWhyViewModel: MyWhyViewModel
-    let viewController: MyUniverseViewController
+    let screenType: MyUniverseViewController.ScreenType
     lazy var weeklyChoices = [WeeklyChoice]()
     lazy var partners = [Partner]()
-    fileprivate var vision:Vision?
-    weak var delegate: MyUniverseViewControllerDelegate?
+    fileprivate var vision: Vision!
+    weak var delegate: MyWhyViewDelegate?
 
     // MARK: - Init
 
-    init(myWhyViewModel: MyWhyViewModel, frame: CGRect, viewController: MyUniverseViewController, delegate: MyUniverseViewControllerDelegate?) {
+    init(myWhyViewModel: MyWhyViewModel, frame: CGRect, screenType: MyUniverseViewController.ScreenType, delegate: MyWhyViewDelegate?) {
         self.myWhyViewModel = myWhyViewModel
         self.delegate = delegate
-        self.viewController = viewController
+        self.screenType = screenType
 
         super.init(frame: frame)
     }
@@ -39,12 +39,10 @@ class MyWhyView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        guard previousBounds.equalTo(bounds) == false else {
-            return
-        }
+        cleanUpAndDraw()
+    }
 
-        cleanUp()
-        previousBounds = bounds
+    func draw() {
         drawMyWhy(myWhyViewModel: myWhyViewModel, layout: Layout.MeSection(viewControllerFrame: bounds))
         addGestureRecognizer()
     }
@@ -55,30 +53,16 @@ class MyWhyView: UIView {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapMyToBeVision))
         addGestureRecognizer(tapGestureRecognizer)
     }
-
-    func didTapMyToBeVision() {
-        delegate?.didTapMyToBeVision(vision: vision, in: viewController)
-    }
-}
-
-// MARK: - Private Helpers / Clean View
-
-private extension MyWhyView {
-
-    func cleanUp() {
-        removeSubLayers()
-        removeSubViews()
-    }
 }
 
 // MARK: - Private Functions
 
 private extension MyWhyView {
 
-    func drawMyWhy(myWhyViewModel: MyWhyViewModel?, layout: Layout.MeSection) {
+    func drawMyWhy(myWhyViewModel: MyWhyViewModel, layout: Layout.MeSection) {
         drawSpikes(layout: layout)
 
-        myWhyViewModel?.items.forEach { (myWhy: MyWhy) in
+        myWhyViewModel.items.forEach { (myWhy: MyWhy) in
             switch myWhy {
             case .vision(let vision):
                 self.vision = vision
@@ -100,8 +84,8 @@ private extension MyWhyView {
     }
 
     func addToBeVision(layout: Layout.MeSection, vision: Vision) {
-        addSubview(footerLabel(with: vision.title, labelFrame: layout.myWhyVisionFooterFrame))
-        addSubview(visionLabel(with: vision.text, labelFrame: layout.myWhyVisionLabelFrame))
+        addSubview(footerLabel(with: vision.title, labelFrame: layout.myWhyVisionFooterFrame(screenType)))
+        addSubview(visionLabel(with: vision.text, labelFrame: layout.myWhyVisionLabelFrame(screenType), screenType))
     }
 
     func addWeeklyChoices(layout: Layout.MeSection, title: String, choices: [WeeklyChoice]) {
@@ -182,11 +166,15 @@ private extension MyWhyView {
 private extension MyWhyView {
 
     @objc func didTapWeeklyChoices(sender: UIButton) {
-        delegate?.didTapWeeklyChoices(weeklyChoice: weeklyChoices[sender.tag], in: viewController)
+        delegate?.didTapWeeklyChoices(weeklyChoice: weeklyChoices[sender.tag], from: self)
     }
 
     @objc func didTapPartner(sender: UIButton) {
-        delegate?.didTypQOTPartner(partner: partners[sender.tag], in: viewController)
+        delegate?.didTapQOTPartner(selectedIndex: sender.tag, partners: partners, from: self)
+    }
+
+    @objc func didTapMyToBeVision() {
+        delegate?.didTapMyToBeVision(vision: vision, from: self)
     }
 }
 
@@ -198,8 +186,12 @@ private extension MyWhyView {
         return label(with: text, labelFrame: labelFrame, textColor: Color.MeSection.whiteLabel, font: Font.H7Tag)
     }
 
-    func visionLabel(with text: String, labelFrame: CGRect) -> UILabel {
-        return label(with: text, labelFrame: labelFrame, textColor: .white, font: Font.H4Headline)
+    func visionLabel(with text: String, labelFrame: CGRect, _ screenType: MyUniverseViewController.ScreenType) -> UILabel {
+        switch screenType {
+        case .big: return label(with: text, labelFrame: labelFrame, textColor: .white, font: Font.H4Headline)
+        case .medium: return label(with: text, labelFrame: labelFrame, textColor: .white, font: Font.H5SecondaryHeadline)
+        case .small: return label(with: text, labelFrame: labelFrame, textColor: .white, font: Font.H6NavigationTitle)
+        }
     }
 
     func label(with text: String, labelFrame: CGRect, textColor: UIColor, font: UIFont) -> UILabel {

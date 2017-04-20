@@ -77,19 +77,35 @@ struct Layout {
             return viewControllerFrame.height * 0.325
         }
 
-        var myWhyVisionFooterFrame: CGRect {
+        func myWhyVisionFooterFrame(_ screenType: MyUniverseViewController.ScreenType) -> CGRect {
+            var deviceOffset: CGFloat = 0
+
+            switch screenType {
+            case .big: deviceOffset = 0
+            case .medium: deviceOffset = 0
+            case .small: deviceOffset = -15
+            }
+
             return CGRect(
                 x: myWhyVisionFooterXPos,
-                y: myWhyVisionFooterYPos,
+                y: myWhyVisionFooterYPos + deviceOffset,
                 width: 0,
                 height: Layout.MeSection.labelHeight
             )
         }
 
-        var myWhyVisionLabelFrame: CGRect {
+        func myWhyVisionLabelFrame(_ screenType: MyUniverseViewController.ScreenType) -> CGRect {
+            var deviceOffset: CGFloat = 0
+
+            switch screenType {
+            case .big: deviceOffset = 0
+            case .medium: deviceOffset = 15
+            case .small: deviceOffset = -15
+            }
+
             return CGRect(
                 x: myWhyVisionFooterXPos,
-                y: viewControllerFrame.height * 0.15,
+                y: (viewControllerFrame.height * 0.15) + deviceOffset,
                 width: profileImageWidth * 2.25,
                 height: Layout.MeSection.labelHeight
             )
@@ -184,6 +200,9 @@ struct Font {
 
     /// BENTON SANS 16 // paragraph, body text
     static let PText = UIFont.bentonRegularFont(ofSize: 16)
+
+    /// BENTON SANS 13 // paragraph, body text
+    static let PTextSmall = UIFont.bentonRegularFont(ofSize: 13)
 }
 
 struct Color {
@@ -319,12 +338,20 @@ struct AttributedString {
     }
 
     struct MeSection {
-        static func sectorTitle(text: String) -> NSAttributedString {
-            return NSAttributedString.create(for: text, withColor: Color.whiteMedium, andFont: Font.H7Tag, letterSpacing: 2)
+        static func sectorTitle(text: String, screenType: MyUniverseViewController.ScreenType) -> NSAttributedString {
+            switch screenType {
+            case .big: return NSAttributedString.create(for: text, withColor: Color.whiteMedium, andFont: Font.H7Tag, letterSpacing: 2)
+            case .medium: return NSAttributedString.create(for: text, withColor: Color.whiteMedium, andFont: Font.H7Tag, letterSpacing: 1.8)
+            case .small: return NSAttributedString.create(for: text, withColor: Color.whiteMedium, andFont: Font.H7Tag, letterSpacing: 1.6)
+            }
         }
 
-        static func sectorTitleCritical(text: String) -> NSAttributedString {
-            return NSAttributedString.create(for: text, withColor: Color.cherryRedTwo, andFont: Font.PText, letterSpacing: 2.7)
+        static func sectorTitleCritical(text: String, screenType: MyUniverseViewController.ScreenType) -> NSAttributedString {
+            switch screenType {
+            case .big: return NSAttributedString.create(for: text, withColor: Color.cherryRedTwo, andFont: Font.PText, letterSpacing: 2.7)
+            case .medium: return NSAttributedString.create(for: text, withColor: Color.cherryRedTwo, andFont: Font.PTextSmall, letterSpacing: 2.5)
+            case .small: return NSAttributedString.create(for: text, withColor: Color.cherryRedTwo, andFont: Font.PTextSmall, letterSpacing: 2.3)
+            }
         }
     }
 }
