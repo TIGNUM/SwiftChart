@@ -21,39 +21,68 @@ final class TabBarCoordinator: ParentCoordinator {
     fileprivate var viewControllers = [UIViewController]()
     internal var children = [Coordinator]()
 
-    fileprivate lazy var learnCategoryListViewController: LearnCategoryListViewController = {
+    fileprivate lazy var topTabBarControllerLearn: TopTabBarController = {
         let categories = self.services.learnContent.categories()
         let viewModel = LearnCategoryListViewModel(categories: categories)
         let learnCategoryListVC = LearnCategoryListViewController(viewModel: viewModel)
         learnCategoryListVC.delegate = self
 
-        return learnCategoryListVC
-    }()
-
-    fileprivate lazy var whatsHotViewController: WhatsHotViewController = {
         let whatsHotViewModel = WhatsHotViewModel()
         let whatsHotViewController = WhatsHotViewController(viewModel: whatsHotViewModel)
         whatsHotViewController.delegate = self
 
-        return whatsHotViewController
+        let items = [
+            TopTabBarController.Item(
+                controller: learnCategoryListVC,
+                title: R.string.localized.topTabBarItemTitleLearnStrategies().capitalized
+            ),
+            TopTabBarController.Item(
+                controller: whatsHotViewController,
+                title: R.string.localized.topTabBarItemTitleLearnWhatsHot().capitalized
+            )
+        ]
+
+        return TopTabBarController(items: items, selectedIndex: 0, leftIcon: R.image.ic_search(), rightIcon: R.image.ic_menu())
     }()
-    
-    fileprivate lazy var myUniverseViewController: MyUniverseViewController = {
-        let myViewController = MyUniverseViewController(
-            myDataViewModel: MyDataViewModel(),
-            myWhyViewModel: MyWhyViewModel()
-        )
-        myViewController.delegate = self
-        
-        return myViewController
-    }()
-    
-    fileprivate lazy var chatViewController: ChatViewController = {
+
+    fileprivate lazy var topTabBarControllerPrepare: TopTabBarController = {
         let viewModel = ChatViewModel()
         let chatViewController = ChatViewController(viewModel: viewModel)
         chatViewController.delegate = self
 
-        return chatViewController
+        let items = [
+            TopTabBarController.Item(
+                controller: chatViewController,
+                title: R.string.localized.topTabBarItemTitlePerpareCoach().capitalized
+            ),
+            TopTabBarController.Item(
+                controller: chatViewController,
+                title: R.string.localized.topTabBarItemTitlePerparePrep().capitalized
+            )
+        ]
+
+        return TopTabBarController(items: items, selectedIndex: 0, leftIcon: R.image.ic_search(), rightIcon: R.image.ic_menu())
+    }()
+
+    fileprivate lazy var topTabBarControllerMe: TopTabBarController = {
+        let myUniverseViewController = MyUniverseViewController(
+            myDataViewModel: MyDataViewModel(),
+            myWhyViewModel: MyWhyViewModel()
+        )
+        myUniverseViewController.delegate = self
+
+        let items = [
+            TopTabBarController.Item(
+                controller: myUniverseViewController,
+                title: R.string.localized.topTabBarItemTitleMeMyData().capitalized
+            ),
+            TopTabBarController.Item(
+                controller: myUniverseViewController,
+                title: R.string.localized.topTabBarItemTitleMeMyWhy().capitalized
+            )
+        ]
+
+        return TopTabBarController(items: items, selectedIndex: 0, leftIcon: nil, rightIcon: R.image.ic_menu())
     }()
     
     // MARK: - Init
@@ -69,9 +98,8 @@ final class TabBarCoordinator: ParentCoordinator {
 
 // MARK: - TopTabBarControllers
 
-extension TabBarCoordinator {
-
-    fileprivate func bottomTabBarController() -> TabBarController {
+private extension TabBarCoordinator {
+    func bottomTabBarController() -> TabBarController {
         let bottomTabBarController = TabBarController(items: tabBarControllerItems(), selectedIndex: 0)
         bottomTabBarController.modalTransitionStyle = .crossDissolve
         bottomTabBarController.modalPresentationStyle = .custom
@@ -80,64 +108,18 @@ extension TabBarCoordinator {
         return bottomTabBarController
     }
 
-    fileprivate func tabBarControllerItems() -> [TabBarController.Item] {
+    func tabBarControllerItems() -> [TabBarController.Item] {
         return [
-            TabBarController.Item(controller: topTabBarControllerLearn(), title: R.string.localized.tabBarItemLearn()),
-            TabBarController.Item(controller: topTabBarControllerMe(), title: R.string.localized.tabBarItemMe()),
-            TabBarController.Item(controller: topTabBarControllerPrepare(), title: R.string.localized.tabBarItemPrepare())
+            TabBarController.Item(controller: topTabBarControllerLearn, title: R.string.localized.tabBarItemLearn()),
+            TabBarController.Item(controller: topTabBarControllerMe, title: R.string.localized.tabBarItemMe()),
+            TabBarController.Item(controller: topTabBarControllerPrepare, title: R.string.localized.tabBarItemPrepare())
         ]
-    }
-
-    fileprivate func topTabBarControllerLearn() -> TopTabBarController {
-        let items = [
-            TopTabBarController.Item(
-                controller: learnCategoryListViewController,
-                title: R.string.localized.topTabBarItemTitleLearnStrategies().capitalized
-            ),
-            TopTabBarController.Item(
-                controller: whatsHotViewController,
-                title: R.string.localized.topTabBarItemTitleLearnWhatsHot().capitalized
-            )
-        ]
-
-        return TopTabBarController(items: items, selectedIndex: 0, leftIcon: R.image.ic_search(), rightIcon: R.image.ic_menu())
-    }
-
-    fileprivate func topTabBarControllerMe() -> TopTabBarController {
-        let items = [
-            TopTabBarController.Item(
-                controller: myUniverseViewController,
-                title: R.string.localized.topTabBarItemTitleMeMyData().capitalized
-            ),
-            TopTabBarController.Item(
-                controller: myUniverseViewController,
-                title: R.string.localized.topTabBarItemTitleMeMyWhy().capitalized
-            )
-        ]
-
-        return TopTabBarController(items: items, selectedIndex: 0, leftIcon: nil, rightIcon: R.image.ic_menu())
-    }
-
-    fileprivate func topTabBarControllerPrepare() -> TopTabBarController {
-        let items = [
-            TopTabBarController.Item(
-                controller: chatViewController,
-                title: R.string.localized.topTabBarItemTitlePerpareCoach().capitalized
-            ),
-            TopTabBarController.Item(
-                controller: learnCategoryListViewController,
-                title: R.string.localized.topTabBarItemTitlePerparePrep().capitalized
-            )
-        ]
-
-        return TopTabBarController(items: items, selectedIndex: 0, leftIcon: R.image.ic_search(), rightIcon: R.image.ic_menu())
     }
 }
 
 // MARK: - Helpers
 
 extension TabBarCoordinator {
-
     func start() {
         let bottomTabBarController = self.bottomTabBarController()
         rootViewController.present(bottomTabBarController, animated: true)
@@ -145,9 +127,9 @@ extension TabBarCoordinator {
     }
 
     func addViewControllers() {
-        viewControllers.append(learnCategoryListViewController)
-        viewControllers.append(myUniverseViewController)
-        viewControllers.append(chatViewController)
+        viewControllers.append(topTabBarControllerLearn)
+        viewControllers.append(topTabBarControllerMe)
+        viewControllers.append(topTabBarControllerPrepare)
     }
 }
 
@@ -191,7 +173,6 @@ extension TabBarCoordinator: LearnContentListCoordinatorDelegate {
 // MARK: - MeSectionDelegate
 
 extension TabBarCoordinator: MyUniverseViewControllerDelegate {
-    
     func didTapSector(sector: Sector?, in viewController: MyUniverseViewController) {
         print("didTapSector: \(sector?.labelType.text ?? "INVALID")")
     }
