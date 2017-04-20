@@ -90,6 +90,7 @@ final class TabBarCoordinator: ParentCoordinator {
         self.eventTracker = eventTracker
         self.selectedIndex = selectedIndex
         self.addViewControllers()
+        self.addTopTabBarDelegate()
     }
 }
 
@@ -117,6 +118,7 @@ private extension TabBarCoordinator {
 // MARK: - Helpers
 
 extension TabBarCoordinator {
+
     func start() {
         let bottomTabBarController = self.bottomTabBarController()
         rootViewController.present(bottomTabBarController, animated: true)
@@ -127,6 +129,16 @@ extension TabBarCoordinator {
         viewControllers.append(topTabBarControllerLearn)
         viewControllers.append(topTabBarControllerMe)
         viewControllers.append(topTabBarControllerPrepare)
+    }
+
+    func addTopTabBarDelegate() {
+        viewControllers.forEach { (viewController: UIViewController) in
+            guard let topTabBarController = viewController as? TopTabBarController else {
+                return
+            }
+
+            topTabBarController.delegate = self
+        }
     }
 }
 
@@ -140,8 +152,7 @@ extension TabBarCoordinator: TabBarControllerDelegate {
         case let learnCategory as LearnCategoryListViewController: eventTracker.track(page: learnCategory.pageID, referer: rootViewController.pageID, associatedEntity: nil)
         case let meCategory as MyUniverseViewController: eventTracker.track(page: meCategory.pageID, referer: rootViewController.pageID, associatedEntity: nil)
         case let chat as ChatViewController: eventTracker.track(page: chat.pageID, referer: rootViewController.pageID, associatedEntity: nil)
-        default:
-            break
+        default: break
         }
     }
 }
@@ -343,5 +354,24 @@ extension TabBarCoordinator: WhatsHotNewTemplateViewControllerDelegate {
 
     func didTapLoadMoreItem(with loadMoreItem: WhatsHotNewTemplateItem, from view: UIView, in viewController: WhatsHotNewTemplateViewController) {
         log("didTapLoadMoreItem: with item: \(loadMoreItem)")
+    }
+}
+
+// MARK: - TopTabBarDelegate
+
+extension TabBarCoordinator: TopTabBarDelegate {
+
+    func didSelectLeftButton(sender: TopTabBarController) {
+        print("didSelectLeftButton", sender)
+    }
+
+    func didSelectRightButton(sender: TopTabBarController) {
+        print("didSelectRightButton", sender)
+        let coordinator = SidebarCoordinator(root: sender, services: services, eventTracker: eventTracker)
+        startChild(child: coordinator)
+    }
+
+    func didSelectItemAtIndex(index: Int?, sender: TopTabBarController) {
+        print("didSelectItemAtIndex", index, sender)
     }
 }
