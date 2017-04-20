@@ -10,7 +10,7 @@ import UIKit
 import UICollectionViewRightAlignedLayout
 
 protocol CollectionViewCellDelegate: class {
-    func didSelectItemAtCollectionView(tableViewCellIndexPath: IndexPath, collectionViewCellIndexPath: IndexPath)
+    func didSelectItemAtIndex(_ index: Index, in cell: CollectionTableViewCell)
 }
 
 class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegateRightAlignedLayout, Dequeueable {
@@ -69,7 +69,7 @@ extension CollectionTableViewCell {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.delegate?.didSelectItemAtCollectionView(tableViewCellIndexPath: (tableView?.indexPath(for: self))!, collectionViewCellIndexPath: indexPath)
+        delegate?.didSelectItemAtIndex(indexPath.item, in: self)
     }
 }
 
@@ -79,21 +79,6 @@ extension String {
         let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
 
         return boundingBox.width
-    }
-}
-
-extension UIView {
-    func parentView<T: UIView>(of type: T.Type) -> T? {
-        guard let view = self.superview else {
-            return nil
-        }
-        return (view as? T) ?? view.parentView(of: T.self)
-    }
-}
-
-extension UITableViewCell {
-    var tableView: UITableView? {
-        return self.parentView(of: UITableView.self)
     }
 }
 

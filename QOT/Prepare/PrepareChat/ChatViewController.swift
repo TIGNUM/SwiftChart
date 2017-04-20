@@ -17,7 +17,6 @@ protocol ChatViewDelegate: class {
 }
 
 class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, Dequeueable, CollectionViewCellDelegate {
-    
     // MARK: - Properties
 
     @IBOutlet weak var tableView: UITableView!
@@ -67,7 +66,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             switch update {
             case .reload:
                 self.tableView.reloadData()
-            case .update(let deletions, let insertions, let modifications):
+            case .update(_, _, _):
                 // Please animate updates as needed
                 self.tableView.reloadData()
             }
@@ -85,17 +84,19 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return total > 100 ? total : 100
     }
 
-    func didSelectItemAtCollectionView(tableViewCellIndexPath: IndexPath, collectionViewCellIndexPath: IndexPath) {
-        let chatMessage = viewModel.item(at: tableViewCellIndexPath.row)
+    func didSelectItemAtIndex(_ index: Index, in cell: CollectionTableViewCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else {
+            return
+        }
+
+        let chatMessage = viewModel.item(at: indexPath.row)
         switch chatMessage {
-            case .instruction, .header:
+        case .instruction, .header:
             break
-            case .navigation(let items):
-                delegate?.didSelectChatNavigation(items.item(at: collectionViewCellIndexPath.row), in: self)
-            break
-            case .input(let items):
-                delegate?.didSelectChatInput(items.item(at: collectionViewCellIndexPath.row), in: self)
-            break
+        case .navigation(let items):
+            delegate?.didSelectChatNavigation(items.item(at: index), in: self)
+        case .input(let items):
+            delegate?.didSelectChatInput(items.item(at: index), in: self)
         }
     }
 }
