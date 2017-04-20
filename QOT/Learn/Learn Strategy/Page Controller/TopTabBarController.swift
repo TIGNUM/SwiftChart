@@ -30,6 +30,7 @@ final class TopTabBarController: UIViewController {
         let title: String
     }
     // MARK: Public Delegate
+    
      weak var delegate: TopTabBarDelegate?
     
     // MARK: Private Objects
@@ -38,7 +39,7 @@ final class TopTabBarController: UIViewController {
     
     fileprivate lazy var navigationItemBar: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.black
+        view.backgroundColor = .clear
         return view
     }()
     
@@ -67,7 +68,6 @@ final class TopTabBarController: UIViewController {
     
     fileprivate var items: [Item]
     fileprivate let tabBarView: TabBarView
-    
     fileprivate var index: Int = 0
     fileprivate var viewControllers: [UIViewController] {
         return items.map { $0.controller }
@@ -77,7 +77,7 @@ final class TopTabBarController: UIViewController {
         precondition(selectedIndex >= 0 && selectedIndex < items.count, "Out of bounds selectedIndex")
         
         let tabBarView = TabBarView()
-        tabBarView.setTitles(items.map { $0.title }, selectedIndex: 0)
+        tabBarView.setTitles(items.map { $0.title }, selectedIndex: selectedIndex)
         tabBarView.selectedColor = Constants.selectedButtonColor
         tabBarView.deselectedColor = Constants.deselectedButtonColor
         tabBarView.indicatorViewExtendedWidth = Constants.indicatorViewExtendedWidth
@@ -86,6 +86,7 @@ final class TopTabBarController: UIViewController {
         self.tabBarView = tabBarView
         
         super.init(nibName: nil, bundle: nil)
+
         if leftIcon != nil {
             leftButton.setImage(leftIcon, for: .normal) } else {leftButton.isHidden = true}
         if rightIcon != nil {
@@ -98,13 +99,16 @@ final class TopTabBarController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupHierarchy()
         setupScrollView()
         tabBarView.delegate = self
+        view.backgroundColor = .brown
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+
         setupScrollView()
     }
     
@@ -129,7 +133,7 @@ final class TopTabBarController: UIViewController {
         for (index, item) in items.enumerated() {
             let vc = item.controller
             addViewToScrollView(vc)
-            vc.view.frame.origin =  CGPoint(x: CGFloat(index) * width, y: 0)
+            vc.view.frame.origin = CGPoint(x: CGFloat(index) * width, y: 0)
         }
     }
     
@@ -173,7 +177,8 @@ extension TopTabBarController {
         scrollView.horizontalAnchors == view.horizontalAnchors
         scrollView.topAnchor == navigationItemBar.bottomAnchor
         scrollView.bottomAnchor == view.bottomAnchor
-        
+
+        scrollView.backgroundColor = .purple
         view.layoutIfNeeded()
     }
 }
