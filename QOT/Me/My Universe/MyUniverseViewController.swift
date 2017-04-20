@@ -88,7 +88,7 @@ private extension MyUniverseViewController {
                     return sector
                 }
 
-                if sectorAngle < 100 {
+                if sectorAngle < 119 {
                     return myDataViewModel.sectors.last                }
             } else {
                 let mappedSectorAngle = 180 + (180 - sectorAngle)

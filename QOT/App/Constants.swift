@@ -46,7 +46,7 @@ struct Layout {
         }
 
         var radiusMaxLoad: CGFloat {
-            return viewControllerFrame.width * 0.7
+            return viewControllerFrame.width * 0.66
         }
 
         var radiusAverageLoad: CGFloat {
@@ -54,19 +54,19 @@ struct Layout {
         }
 
         var profileImageWidth: CGFloat {
-            return viewControllerFrame.width * 0.25
+            return viewControllerFrame.width * 0.28
         }
 
         var scrollViewOffset: CGFloat {
-            return viewControllerFrame.width * 0.06
+            return viewControllerFrame.width * 0.07
         }
 
         var loadCenterX: CGFloat {
-            return (viewControllerFrame.width - (viewControllerFrame.width * 0.06))
+            return (viewControllerFrame.width - (viewControllerFrame.width * 0.08))
         }
 
         var loadCenterY: CGFloat {
-            return viewControllerFrame.height * 0.5
+            return viewControllerFrame.height * 0.412
         }
 
         var myWhyVisionFooterXPos: CGFloat {
