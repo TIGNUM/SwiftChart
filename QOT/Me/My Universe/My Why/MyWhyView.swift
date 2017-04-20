@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyWhyView: UIView {
+class MyWhyView: UIView, MyUniverseViewDelegate {
 
     // MARK: - Properties
 
@@ -17,7 +17,7 @@ class MyWhyView: UIView {
     let viewController: MyUniverseViewController
     lazy var weeklyChoices = [WeeklyChoice]()
     lazy var partners = [Partner]()
-    fileprivate var vision:Vision!
+    fileprivate var vision: Vision!
     weak var delegate: MyUniverseViewControllerDelegate?
 
     // MARK: - Init
@@ -61,9 +61,9 @@ class MyWhyView: UIView {
     }
 }
 
-// MARK: - Private Helpers / Clean View
+// MARK: - MyUniverseViewDelegate
 
-private extension MyWhyView {
+extension MyWhyView {
 
     func cleanUp() {
         removeSubLayers()

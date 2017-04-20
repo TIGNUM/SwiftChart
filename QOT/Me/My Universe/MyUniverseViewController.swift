@@ -47,8 +47,7 @@ final class MyUniverseViewController: UIViewController {
 
         setupScrollViews()
         addSubViews()
-        addTabRecognizer()
-        print(size)
+        addTabRecognizer()        
     }
 }
 

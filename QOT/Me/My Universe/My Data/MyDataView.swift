@@ -8,7 +8,12 @@
 
 import UIKit
 
-final class MyDataView: UIView {
+protocol MyUniverseViewDelegate {
+    var previousBounds: CGRect { get }
+    func cleanUp()
+}
+
+final class MyDataView: UIView, MyUniverseViewDelegate {
 
     // MARK: - Properties
 
@@ -47,9 +52,9 @@ final class MyDataView: UIView {
     }
 }
 
-// MARK: - Private Helpers / Clean View
+// MARK: - MyUniverseViewDelegate
 
-private extension MyDataView {
+extension MyDataView {
 
     func cleanUp() {
         removeSubLayers()

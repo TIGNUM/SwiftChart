@@ -81,4 +81,3 @@ extension MyUniverseViewController {
         return height > width
     }
 }
-
