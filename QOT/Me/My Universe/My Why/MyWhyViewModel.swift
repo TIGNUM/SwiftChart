@@ -59,7 +59,7 @@ protocol Partner {
     var name: String { get }
     var surename: String { get }
     var initials: String { get }
-    var relationShip: RelationShip { get }
+    var relationShip: String { get }
     var email: String { get }
 }
 
@@ -81,7 +81,7 @@ struct MockPartner: Partner {
     let name: String
     let surename: String
     let initials: String
-    let relationShip: RelationShip
+    let relationShip: String
     let email: String
 }
 
@@ -142,7 +142,7 @@ private var partners: [Partner] {
             name: "Giorgio",
             surename: "Moroder",
             initials: "GM",
-            relationShip: .brother,
+            relationShip: "Brother",
             email: "giorgiomoroder@novartis.com"
         ),
 
@@ -152,7 +152,7 @@ private var partners: [Partner] {
             name: "Giorgio",
             surename: "Moroder",
             initials: "GM",
-            relationShip: .cowroker,
+            relationShip: "Brother",
             email: "giorgiomoroder@novartis.com"
         ),
 
@@ -162,23 +162,8 @@ private var partners: [Partner] {
             name: "Giorgio",
             surename: "Moroder",
             initials: "GM",
-            relationShip: .employe,
+            relationShip: "Brother",
             email: "giorgiomoroder@novartis.com"
         )
     ]
-}
-
-enum RelationShip: String {
-    case mother = "Mother"
-    case father = "Father"
-    case son = "Son"
-    case daughter = "daughter"
-    case husband = "Husband"
-    case wife = "Wife"
-    case brother = "Brother"
-    case sister = "Sister"
-    case oncle = "Oncle"
-    case aunt = "Aunt"
-    case employe = "Employe"
-    case cowroker = "Coworker"
 }
