@@ -23,13 +23,13 @@ extension MyUniverseViewController {
     /// 6+ && 7+ are big screens
     /// medium 6 && 7
     /// 5 && SE are small
-    internal enum ScreenType {
+    enum ScreenType {
         case big
         case medium
         case small
     }
 
-    internal var screenType: ScreenType {
+    var screenType: ScreenType {
         if isBig == true {
             return .big
         }

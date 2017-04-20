@@ -8,12 +8,29 @@
 
 import UIKit
 
-protocol MyUniverseViewDelegate {
-    var previousBounds: CGRect { get }
-    func cleanUp()
+protocol MyUniverseView: class {
+    var previousBounds: CGRect { get set }
+    func draw()
 }
 
-final class MyDataView: UIView, MyUniverseViewDelegate {
+extension MyUniverseView where Self: UIView {
+    func cleanUpAndDraw() {
+        guard previousBounds.equalTo(bounds) == false else {
+            return
+        }
+
+        cleanUp()
+        previousBounds = bounds
+        draw()
+    }
+
+    func cleanUp() {
+        removeSubLayers()
+        removeSubViews()
+    }
+}
+
+final class MyDataView: UIView, MyUniverseView {
 
     // MARK: - Properties
 
@@ -42,23 +59,11 @@ final class MyDataView: UIView, MyUniverseViewDelegate {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        guard previousBounds.equalTo(bounds) == false else {
-            return
-        }
-
-        cleanUp()
-        previousBounds = bounds
-        drawUniverse(with: sectors, profileImage: profileImage, layout: Layout.MeSection(viewControllerFrame: bounds))
+        cleanUpAndDraw()
     }
-}
 
-// MARK: - MyUniverseViewDelegate
-
-extension MyDataView {
-
-    func cleanUp() {
-        removeSubLayers()
-        removeSubViews()
+    func draw() {
+        drawUniverse(with: sectors, profileImage: profileImage, layout: Layout.MeSection(viewControllerFrame: bounds))
     }
 }
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MyDataSectorLabelsView: UIView, MyUniverseViewDelegate {
+final class MyDataSectorLabelsView: UIView, MyUniverseView {
 
     // MARK: - Properties
 
@@ -35,24 +35,12 @@ final class MyDataSectorLabelsView: UIView, MyUniverseViewDelegate {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        guard previousBounds.equalTo(bounds) == false else {
-            return
-        }
+        cleanUpAndDraw()
+    }
 
-        cleanUp()
-        previousBounds = bounds
+    func draw() {
         let layout = Layout.MeSection(viewControllerFrame: bounds)
         addSectorLabels(layout: layout, sectors: sectors)
-    }
-}
-
-// MARK: - MyUniverseViewDelegate
-
-extension MyDataSectorLabelsView {
-
-    func cleanUp() {
-        removeSubLayers()
-        removeSubViews()
     }
 }
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyWhyView: UIView, MyUniverseViewDelegate {
+class MyWhyView: UIView, MyUniverseView {
 
     // MARK: - Properties
 
@@ -39,12 +39,10 @@ class MyWhyView: UIView, MyUniverseViewDelegate {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        guard previousBounds.equalTo(bounds) == false else {
-            return
-        }
+        cleanUpAndDraw()
+    }
 
-        cleanUp()
-        previousBounds = bounds
+    func draw() {
         drawMyWhy(myWhyViewModel: myWhyViewModel, layout: Layout.MeSection(viewControllerFrame: bounds))
         addGestureRecognizer()
     }
@@ -57,24 +55,14 @@ class MyWhyView: UIView, MyUniverseViewDelegate {
     }
 }
 
-// MARK: - MyUniverseViewDelegate
-
-extension MyWhyView {
-
-    func cleanUp() {
-        removeSubLayers()
-        removeSubViews()
-    }
-}
-
 // MARK: - Private Functions
 
 private extension MyWhyView {
 
-    func drawMyWhy(myWhyViewModel: MyWhyViewModel?, layout: Layout.MeSection) {
+    func drawMyWhy(myWhyViewModel: MyWhyViewModel, layout: Layout.MeSection) {
         drawSpikes(layout: layout)
 
-        myWhyViewModel?.items.forEach { (myWhy: MyWhy) in
+        myWhyViewModel.items.forEach { (myWhy: MyWhy) in
             switch myWhy {
             case .vision(let vision):
                 self.vision = vision
