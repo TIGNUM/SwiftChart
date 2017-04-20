@@ -13,19 +13,17 @@ class MyWhyView: UIView, MyUniverseViewDelegate {
     // MARK: - Properties
 
     var previousBounds = CGRect.zero
-    let myWhyViewModel: MyWhyViewModel
-    let viewController: MyUniverseViewController
+    let myWhyViewModel: MyWhyViewModel    
     lazy var weeklyChoices = [WeeklyChoice]()
     lazy var partners = [Partner]()
     fileprivate var vision: Vision!
-    weak var delegate: MyUniverseViewControllerDelegate?
+    weak var delegate: MyWhyViewDelegate?
 
     // MARK: - Init
 
-    init(myWhyViewModel: MyWhyViewModel, frame: CGRect, viewController: MyUniverseViewController, delegate: MyUniverseViewControllerDelegate?) {
+    init(myWhyViewModel: MyWhyViewModel, frame: CGRect, delegate: MyWhyViewDelegate?) {
         self.myWhyViewModel = myWhyViewModel
-        self.delegate = delegate
-        self.viewController = viewController
+        self.delegate = delegate        
 
         super.init(frame: frame)
     }
@@ -54,10 +52,6 @@ class MyWhyView: UIView, MyUniverseViewDelegate {
     private func addGestureRecognizer() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapMyToBeVision))
         addGestureRecognizer(tapGestureRecognizer)
-    }
-
-    func didTapMyToBeVision() {
-        delegate?.didTapMyToBeVision(vision: vision, in: viewController)
     }
 }
 
@@ -182,11 +176,15 @@ private extension MyWhyView {
 private extension MyWhyView {
 
     @objc func didTapWeeklyChoices(sender: UIButton) {
-        delegate?.didTapWeeklyChoices(weeklyChoice: weeklyChoices[sender.tag], in: viewController)
+        delegate?.didTapWeeklyChoices(weeklyChoice: weeklyChoices[sender.tag], from: self)
     }
 
     @objc func didTapPartner(sender: UIButton) {
-        delegate?.didTypQOTPartner(partner: partners[sender.tag], in: viewController)
+        delegate?.didTapQOTPartner(partner: partners[sender.tag], from: self)
+    }
+
+    @objc func didTapMyToBeVision() {
+        delegate?.didTapMyToBeVision(vision: vision, from: self)
     }
 }
 

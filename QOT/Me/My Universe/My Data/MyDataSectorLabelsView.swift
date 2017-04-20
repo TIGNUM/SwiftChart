@@ -15,13 +15,11 @@ final class MyDataSectorLabelsView: UIView, MyUniverseViewDelegate {
     var sectorLabels = [UILabel]()
     internal var previousBounds = CGRect.zero
     fileprivate var sectors = [Sector]()
-    fileprivate var myUniverseViewController: MyUniverseViewController
 
     // MARK: - Init
 
-    init(sectors: [Sector], frame: CGRect, myUniverseViewController: MyUniverseViewController) {
+    init(sectors: [Sector], frame: CGRect) {
         self.sectors = sectors
-        self.myUniverseViewController = myUniverseViewController
 
         super.init(frame: frame)
     }
