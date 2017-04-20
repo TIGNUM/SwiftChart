@@ -45,6 +45,24 @@ final class TabBarCoordinator: ParentCoordinator {
         return TopTabBarController(items: items, selectedIndex: 0, leftIcon: R.image.ic_search(), rightIcon: R.image.ic_menu())
     }()
 
+    fileprivate lazy var topTabBarControllerMe: TopTabBarController = {
+        let myUniverseViewController = MyUniverseViewController(
+            myDataViewModel: MyDataViewModel(),
+            myWhyViewModel: MyWhyViewModel()
+        )
+        myUniverseViewController.delegate = self
+
+        let myUniverseItem = TopTabBarController.MyUniverseItem(
+            controller: myUniverseViewController,
+            titles: [
+                R.string.localized.topTabBarItemTitleMeMyData().capitalized,
+                R.string.localized.topTabBarItemTitleMeMyWhy().capitalized
+            ]
+        )
+
+        return TopTabBarController(myUniverseItem: myUniverseItem, selectedIndex: 0, rightIcon: R.image.ic_menu())
+    }()
+
     fileprivate lazy var topTabBarControllerPrepare: TopTabBarController = {
         let viewModel = ChatViewModel()
         let chatViewController = ChatViewController(viewModel: viewModel)
@@ -62,27 +80,6 @@ final class TabBarCoordinator: ParentCoordinator {
         ]
 
         return TopTabBarController(items: items, selectedIndex: 0, leftIcon: R.image.ic_search(), rightIcon: R.image.ic_menu())
-    }()
-
-    fileprivate lazy var topTabBarControllerMe: TopTabBarController = {
-        let myUniverseViewController = MyUniverseViewController(
-            myDataViewModel: MyDataViewModel(),
-            myWhyViewModel: MyWhyViewModel()
-        )
-        myUniverseViewController.delegate = self
-
-        let items = [
-            TopTabBarController.Item(
-                controller: myUniverseViewController,
-                title: R.string.localized.topTabBarItemTitleMeMyData().capitalized
-            ),
-            TopTabBarController.Item(
-                controller: myUniverseViewController,
-                title: R.string.localized.topTabBarItemTitleMeMyWhy().capitalized
-            )
-        ]
-
-        return TopTabBarController(items: items, selectedIndex: 0, leftIcon: nil, rightIcon: R.image.ic_menu())
     }()
     
     // MARK: - Init

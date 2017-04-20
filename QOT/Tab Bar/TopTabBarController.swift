@@ -34,10 +34,18 @@ final class TopTabBarController: UIViewController {
         let title: String
     }
 
+    // MARK: - TopTabBarController MyUniverse
+
+    struct MyUniverseItem {
+        let controller: MyUniverseViewController
+        let titles: [String]
+    }
+
     // MARK: Properties
 
     fileprivate var controllers = [UIViewController]()
-    fileprivate var items: [Item]
+    fileprivate let items: [Item]
+    fileprivate lazy var myUniverseItem: MyUniverseItem? = nil
     fileprivate let tabBarView: TabBarView
     fileprivate var index: Int = 0
     weak var delegate: TopTabBarDelegate?
@@ -75,13 +83,13 @@ final class TopTabBarController: UIViewController {
         return view
     }()
 
-    fileprivate var viewControllers: [UIViewController] {
-        return items.map { $0.controller }
-    }
+//    fileprivate var viewControllers: [UIViewController] {
+//        return items.map { $0.controller }
+//    }
 
     // MARK: - Init
     
-    init(items: [Item], selectedIndex: Index, leftIcon: UIImage?, rightIcon: UIImage?) {
+    init(items: [Item], selectedIndex: Index, leftIcon: UIImage? = nil, rightIcon: UIImage? = nil) {
         precondition(selectedIndex >= 0 && selectedIndex < items.count, "Out of bounds selectedIndex")
         
         let tabBarView = TabBarView()
@@ -100,7 +108,28 @@ final class TopTabBarController: UIViewController {
         if rightIcon != nil {
             rightButton.setImage(rightIcon, for: .normal) } else {rightButton.isHidden = true}
     }
-    
+
+    init(myUniverseItem: MyUniverseItem, selectedIndex: Index, leftIcon: UIImage? = nil, rightIcon: UIImage? = nil) {
+        precondition(selectedIndex >= 0 && selectedIndex < myUniverseItem.titles.count, "Out of bounds selectedIndex")
+
+        let tabBarView = TabBarView()
+        tabBarView.setTitles(myUniverseItem.titles, selectedIndex: selectedIndex)
+        tabBarView.selectedColor = Constants.selectedButtonColor
+        tabBarView.deselectedColor = Constants.deselectedButtonColor
+        tabBarView.indicatorViewExtendedWidth = Constants.indicatorViewExtendedWidth
+
+        self.items = []
+        self.tabBarView = tabBarView
+
+        super.init(nibName: nil, bundle: nil)
+        self.myUniverseItem = myUniverseItem
+
+        if leftIcon != nil {
+            leftButton.setImage(leftIcon, for: .normal) } else {leftButton.isHidden = true}
+        if rightIcon != nil {
+            rightButton.setImage(rightIcon, for: .normal) } else {rightButton.isHidden = true}
+    }
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -111,6 +140,7 @@ final class TopTabBarController: UIViewController {
         super.viewDidLoad()
         
         setupHierarchy()
+//        setupScrollViewIfNeeded()
         setupScrollView()
         tabBarView.delegate = self
         view.backgroundColor = .brown
@@ -120,10 +150,12 @@ final class TopTabBarController: UIViewController {
         super.viewWillLayoutSubviews()
 
         setupScrollView()
+//        setupScrollViewIfNeeded()
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
         setupLayout()
     }
 }
@@ -145,24 +177,42 @@ extension TopTabBarController {
 
 extension TopTabBarController {
 
-    func setupScrollView() {
-        let width: CGFloat = view.bounds.width
-        scrollView.frame = view.bounds
-        scrollView.contentSize = CGSize(width: CGFloat(items.count) * width, height: 0)
+//    func setupScrollViewIfNeeded() {
+//        if let myUniverseItem = myUniverseItem {
+//            addMyUniverseViewAsChild(myUniverseItem.controller)
+//        } else {
+//            setupScrollView()
+//        }
+//    }
 
-        for (index, item) in items.enumerated() {
-            let vc = item.controller
-            addViewToScrollView(vc)
-            vc.view.frame.origin = CGPoint(x: CGFloat(index) * width, y: 0)
+    func setupScrollView() {
+        if let myUniverseScrollView = myUniverseItem?.controller.contentScrollView {
+            scrollView = myUniverseScrollView
+//            scrollView.delegate = self
+        } else {
+            let width: CGFloat = view.bounds.width
+            scrollView.frame = view.bounds
+            scrollView.contentSize = CGSize(width: CGFloat(items.count) * width, height: 0)
+
+            for (index, item) in items.enumerated() {
+                let vc = item.controller
+                addViewToScrollView(vc)
+                vc.view.frame.origin = CGPoint(x: CGFloat(index) * width, y: 0)
+            }
         }
     }
 
-    func addViewToScrollView(_ viewController: UIViewController) {
+    private func addViewToScrollView(_ viewController: UIViewController) {
         viewController.view.frame = view.frame
         scrollView.addSubview(viewController.view)
         viewController.didMove(toParentViewController: self)
         addChildViewController(viewController)
     }
+
+//    private func addMyUniverseViewAsChild(_ myUniverseController: MyUniverseViewController) {
+//        myUniverseController.didMove(toParentViewController: self)
+//        addChildViewController(myUniverseController)
+//    }
 }
 
 // MARK: - ScrollView Delegate
@@ -176,14 +226,22 @@ extension TopTabBarController: UIScrollViewDelegate {
 
 // MARK: - Layout
 
-extension TopTabBarController {
+private extension TopTabBarController {
     
     func setupHierarchy() {
         view.addSubview(navigationItemBar)
         navigationItemBar.addSubview(leftButton)
         navigationItemBar.addSubview(rightButton)
         navigationItemBar.addSubview(tabBarView)
-        view.addSubview(scrollView)
+        addContentView()
+    }
+
+    private func addContentView() {
+        if let myUniverseItem = myUniverseItem {
+            view.addSubview(myUniverseItem.controller.view)
+        } else {
+            view.addSubview(scrollView)
+        }
     }
     
     func setupLayout() {
@@ -205,13 +263,28 @@ extension TopTabBarController {
         tabBarView.rightAnchor == rightButton.leftAnchor
         tabBarView.topAnchor == navigationItemBar.topAnchor + 20
         tabBarView.bottomAnchor == navigationItemBar.bottomAnchor
-        
+
+        if let myUniverseItem = myUniverseItem {
+            setMyUniverseViewAnchors(myUniverseItem: myUniverseItem)
+        } else {
+            setScrollViewAnchors()
+        }
+
+        view.layoutIfNeeded()
+    }
+
+    private func setScrollViewAnchors() {
         scrollView.horizontalAnchors == view.horizontalAnchors
         scrollView.topAnchor == navigationItemBar.bottomAnchor
         scrollView.bottomAnchor == view.bottomAnchor
 
         scrollView.backgroundColor = .purple
-        view.layoutIfNeeded()
+    }
+
+    private func setMyUniverseViewAnchors(myUniverseItem: MyUniverseItem) {
+        myUniverseItem.controller.view.horizontalAnchors == view.horizontalAnchors
+        myUniverseItem.controller.view.topAnchor == navigationItemBar.bottomAnchor
+        myUniverseItem.controller.view.bottomAnchor == view.bottomAnchor
     }
 }
 

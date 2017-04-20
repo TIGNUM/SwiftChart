@@ -21,13 +21,13 @@ final class MyUniverseViewController: UIViewController {
 
     fileprivate let myDataViewModel: MyDataViewModel
     fileprivate let myWhyViewModel: MyWhyViewModel
-    fileprivate var contentScrollView: UIScrollView?
     fileprivate var backgroundScrollView: UIScrollView?
     fileprivate var myDataView: MyDataView?
     fileprivate var myWhyView: MyWhyView?
     fileprivate var myDataSectorLabelsView: MyDataSectorLabelsView?
     fileprivate var lastContentOffset: CGFloat = 0
     weak var delegate: MyUniverseViewControllerDelegate?
+    var contentScrollView: UIScrollView?
 
     // MARK: - Life Cycle
 
