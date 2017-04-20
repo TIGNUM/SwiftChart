@@ -74,7 +74,7 @@ struct Layout {
         }
 
         var myWhyVisionFooterYPos: CGFloat {
-            return viewControllerFrame.height * 0.425
+            return viewControllerFrame.height * 0.325
         }
 
         var myWhyVisionFooterFrame: CGRect {
@@ -89,7 +89,7 @@ struct Layout {
         var myWhyVisionLabelFrame: CGRect {
             return CGRect(
                 x: myWhyVisionFooterXPos,
-                y: viewControllerFrame.height * 0.25,
+                y: viewControllerFrame.height * 0.15,
                 width: profileImageWidth * 2.25,
                 height: Layout.MeSection.labelHeight
             )
@@ -100,7 +100,7 @@ struct Layout {
         }
 
         var myWhyWeeklyChoicesFooterYPos: CGFloat {
-            return viewControllerFrame.height * 0.67
+            return viewControllerFrame.height * 0.57
         }
 
         var myWhyWeeklyChoicesFooterFrame: CGRect {
@@ -113,11 +113,11 @@ struct Layout {
         }
 
         var myWhyPartnersFooterXPos: CGFloat {
-            return viewControllerFrame.width * 0.1
+            return viewControllerFrame.width * 0.08
         }
 
         var myWhyPartnersFooterYPos: CGFloat {
-            return viewControllerFrame.height * 0.8
+            return viewControllerFrame.height * 0.7
         }
 
         var myWhyPartnersFooterFrame: CGRect {

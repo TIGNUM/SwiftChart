@@ -113,7 +113,7 @@ extension MyUniverseHelper {
                         fillColor: fillColor(radius: radius, load: spike.spikeLoad(), sectorType: sector.type, layout: layout),
                         strokeColor: strokeColor(radius: radius, load: spike.spikeLoad(), sectorType: sector.type, layout: layout),
                         center: center,
-                        radius: (spike.spikeLoad() * 6),
+                        radius: (spike.spikeLoad() * 6.6),
                         lineWidth: sector.type.lineWidth(load: spike.load)
                     )
                 )
