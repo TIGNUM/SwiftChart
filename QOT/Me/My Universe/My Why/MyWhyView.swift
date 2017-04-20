@@ -22,7 +22,7 @@ class MyWhyView: UIView, MyUniverseView {
 
     // MARK: - Init
 
-    init(myWhyViewModel: MyWhyViewModel, frame: CGRect, screenType: MyUniverseViewController.ScreenType,  delegate: MyWhyViewDelegate?) {
+    init(myWhyViewModel: MyWhyViewModel, frame: CGRect, screenType: MyUniverseViewController.ScreenType, delegate: MyWhyViewDelegate?) {
         self.myWhyViewModel = myWhyViewModel
         self.delegate = delegate
         self.screenType = screenType
@@ -170,7 +170,7 @@ private extension MyWhyView {
     }
 
     @objc func didTapPartner(sender: UIButton) {
-        delegate?.didTapQOTPartner(partner: partners[sender.tag], from: self)
+        delegate?.didTapQOTPartner(selectedIndex: sender.tag, partners: partners, from: self)
     }
 
     @objc func didTapMyToBeVision() {

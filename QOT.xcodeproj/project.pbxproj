@@ -96,6 +96,11 @@
 		CBDB990E1E7BFD05003EC73F /* CalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB990D1E7BFD05003EC73F /* CalendarEventParticipantData.swift */; };
 		CBDB99101E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB990F1E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift */; };
 		CBDB99121E7BFEED003EC73F /* MockCalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB99111E7BFEED003EC73F /* MockCalendarEventParticipantData.swift */; };
+		CC0FF8D21EA784400028D64F /* PartnersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0FF8D11EA784400028D64F /* PartnersViewModel.swift */; };
+		CC0FF8D41EA788350028D64F /* PartnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0FF8D31EA788350028D64F /* PartnersViewController.swift */; };
+		CC0FF8D61EA78C810028D64F /* MyToBeVisionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0FF8D51EA78C810028D64F /* MyToBeVisionCoordinator.swift */; };
+		CC0FF8D81EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0FF8D71EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift */; };
+		CC0FF8DA1EA790750028D64F /* PartnersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0FF8D91EA790750028D64F /* PartnersCoordinator.swift */; };
 		CC37B1311E93CDD600651C46 /* QOTDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC37B1301E93CDD600651C46 /* QOTDatabase.framework */; };
 		CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB631E83BDA300FF28DF /* Utils.swift */; };
 		CC3DFB661E83C19C00FF28DF /* Defines.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB651E83C19C00FF28DF /* Defines.swift */; };
@@ -286,6 +291,11 @@
 		CBDB990D1E7BFD05003EC73F /* CalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventParticipantData.swift; sourceTree = "<group>"; };
 		CBDB990F1E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKParticipant+CalendarEventParticipantData.swift"; sourceTree = "<group>"; };
 		CBDB99111E7BFEED003EC73F /* MockCalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCalendarEventParticipantData.swift; sourceTree = "<group>"; };
+		CC0FF8D11EA784400028D64F /* PartnersViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnersViewModel.swift; sourceTree = "<group>"; };
+		CC0FF8D31EA788350028D64F /* PartnersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnersViewController.swift; sourceTree = "<group>"; };
+		CC0FF8D51EA78C810028D64F /* MyToBeVisionCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToBeVisionCoordinator.swift; sourceTree = "<group>"; };
+		CC0FF8D71EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesCoordinator.swift; sourceTree = "<group>"; };
+		CC0FF8D91EA790750028D64F /* PartnersCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnersCoordinator.swift; sourceTree = "<group>"; };
 		CC37B1301E93CDD600651C46 /* QOTDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QOTDatabase.framework; path = "Pods/../build/Release-iphoneos/QOTDatabase/QOTDatabase.framework"; sourceTree = "<group>"; };
 		CC3DFB631E83BDA300FF28DF /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		CC3DFB651E83C19C00FF28DF /* Defines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defines.swift; sourceTree = "<group>"; };
@@ -857,6 +867,16 @@
 			path = "My Why";
 			sourceTree = "<group>";
 		};
+		CC0FF8D01EA7841A0028D64F /* QOT Partners */ = {
+			isa = PBXGroup;
+			children = (
+				CC0FF8D91EA790750028D64F /* PartnersCoordinator.swift */,
+				CC0FF8D31EA788350028D64F /* PartnersViewController.swift */,
+				CC0FF8D11EA784400028D64F /* PartnersViewModel.swift */,
+			);
+			path = "QOT Partners";
+			sourceTree = "<group>";
+		};
 		CC20C9921E8981070056054D /* Prepare */ = {
 			isa = PBXGroup;
 			children = (
@@ -893,6 +913,7 @@
 		CC5A8D691EA6597F00E5800F /* Weekly Choices */ = {
 			isa = PBXGroup;
 			children = (
+				CC0FF8D71EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift */,
 				CC5A8D6E1EA65A6400E5800F /* WeeklyChoicesViewController.swift */,
 				CC5A8D6C1EA65A3E00E5800F /* WeeklyChoicesViewModel.swift */,
 			);
@@ -931,6 +952,7 @@
 				CC0294A81E9F66FD00163B94 /* My Data */,
 				CCCE09CA1EA67C3B008730F1 /* My To Be Vision */,
 				CC0294A91E9F670C00163B94 /* My Why */,
+				CC0FF8D01EA7841A0028D64F /* QOT Partners */,
 				CC5A8D691EA6597F00E5800F /* Weekly Choices */,
 				CC9663111EA1B41500B84B1C /* MyUniverseCoordinator.swift */,
 				CC9663131EA1B41500B84B1C /* MyUniverseHelper.swift */,
@@ -1046,6 +1068,7 @@
 		CCCE09CA1EA67C3B008730F1 /* My To Be Vision */ = {
 			isa = PBXGroup;
 			children = (
+				CC0FF8D51EA78C810028D64F /* MyToBeVisionCoordinator.swift */,
 				CCCE09CD1EA67F87008730F1 /* MyToBeVisionViewController.swift */,
 				CCCE09CB1EA67C78008730F1 /* MyToBeVisionViewModel.swift */,
 			);
@@ -1444,6 +1467,7 @@
 				CCCC211D1E8981AD00133839 /* ChatViewModel.swift in Sources */,
 				D51B5C4A1E8D0E7E0084A65B /* LearnContentLayout.swift in Sources */,
 				CBDB99101E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift in Sources */,
+				CC0FF8D41EA788350028D64F /* PartnersViewController.swift in Sources */,
 				CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */,
 				CCCE09CE1EA67F87008730F1 /* MyToBeVisionViewController.swift in Sources */,
 				CB369CE71E8E470800522293 /* LearnCategory.swift in Sources */,
@@ -1507,6 +1531,7 @@
 				CCE372FF1E8D2AE700B79352 /* MyPrepViewModel.swift in Sources */,
 				CCC1B6AB1E8B9B7300D1461F /* LearnCategoryListViewModel.swift in Sources */,
 				CCE372FD1E8D2AD100B79352 /* MyPrepViewController.swift in Sources */,
+				CC0FF8D81EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift in Sources */,
 				CCC1B6A71E8B9B7300D1461F /* LearnCategoryCell.swift in Sources */,
 				CC96630B1EA1B27F00B84B1C /* MyDataView.swift in Sources */,
 				CCE373141E8D32F800B79352 /* SidebarViewModel.swift in Sources */,
@@ -1519,6 +1544,7 @@
 				CCCC21231E8981CA00133839 /* PrepareContentViewModel.swift in Sources */,
 				CC6B3A291E8158B200E7FDFD /* PresentationManager.swift in Sources */,
 				CCAF03241E801B0E00015125 /* SettingsCoordinator.swift in Sources */,
+				CC0FF8D61EA78C810028D64F /* MyToBeVisionCoordinator.swift in Sources */,
 				CBD791651E768AB70006C590 /* MainMenuViewController.swift in Sources */,
 				0BC1FF4B1E968E07007DE090 /* CollectionTableViewCell.swift in Sources */,
 				CB2880281E7057790067890A /* RootViewController.swift in Sources */,
@@ -1526,7 +1552,9 @@
 				CCE06FE01E8D44FC009C5AD2 /* LibraryCoordinator.swift in Sources */,
 				0B254D3E1E97994C006AA4C0 /* PrepareCollectionViewCell.swift in Sources */,
 				CCAF032A1E8035C800015125 /* SettingsTableViewCell.swift in Sources */,
+				CC0FF8DA1EA790750028D64F /* PartnersCoordinator.swift in Sources */,
 				CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */,
+				CC0FF8D21EA784400028D64F /* PartnersViewModel.swift in Sources */,
 				0BEE8ABF1EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.swift in Sources */,
 				0B1059861EA77AC700660A1D /* PrepareEventTableViewHeader.swift in Sources */,
 				0BEE8AB91EA600A7008077B8 /* PrepareEventAddNewTripTableViewCell.swift in Sources */,
