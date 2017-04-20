@@ -23,6 +23,13 @@
 "Tab.Bar.Item.Me" = "ME";
 "Tab.Bar.Item.Prepare" = "PREPARE";
 
+"Top.Tab.Bar.Item.Title.Learn.Strategies" = "55 Strategies";
+"Top.Tab.Bar.Item.Title.Learn.WhatsHot" = "What`s Hot?";
+"Top.Tab.Bar.Item.Title.Me.MyData" = "My Data";
+"Top.Tab.Bar.Item.Title.Me.MyWhy" = "My Why";
+"Top.Tab.Bar.Item.Title.Perpare.Coach" = "QOT Coach";
+"Top.Tab.Bar.Item.Title.Perpare.Prep" = "My Prep";
+
 "Me.Sector.Peak" = "Peak\nPerformance";
 "Me.Sector.Meetings" = "Meetings";
 "Me.Sector.Intensity" = "Intensity";

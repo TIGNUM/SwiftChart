@@ -45,6 +45,7 @@ final class TopTabBarController: UIViewController {
     fileprivate lazy var navigationItemBar: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
+        
         return view
     }()
     
@@ -52,6 +53,7 @@ final class TopTabBarController: UIViewController {
         let button = UIButton()
         button.backgroundColor = .white
         button.addTarget(self, action: #selector(leftButtonPressed(_:)), for: .touchUpInside)
+
         return button
     }()
     
@@ -59,6 +61,7 @@ final class TopTabBarController: UIViewController {
         let button = UIButton()
         button.backgroundColor = .white
         button.addTarget(self, action: #selector(rightButtonPressed(_:)), for: .touchUpInside)
+
         return button
     }()
     
@@ -68,6 +71,7 @@ final class TopTabBarController: UIViewController {
         view.isPagingEnabled = true
         view.delegate = self
         view.showsHorizontalScrollIndicator = false
+
         return view
     }()
 
