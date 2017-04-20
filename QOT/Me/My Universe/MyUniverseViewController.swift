@@ -125,14 +125,18 @@ private extension MyUniverseViewController {
 
     func addMyWhyView() {
         let myWhyViewFrame = CGRect(x: view.bounds.width, y: 0, width: view.bounds.width, height: view.bounds.height)
-        let myWhyView = MyWhyView(myWhyViewModel: myWhyViewModel, frame: myWhyViewFrame, delegate: self)
+        let myWhyView = MyWhyView(myWhyViewModel: myWhyViewModel, frame: myWhyViewFrame, screenType: screenType, delegate: self)
         contentScrollView?.addSubview(myWhyView)
         self.myWhyView = myWhyView
     }
 
     func addMyDataSectorLabelView() {
         let myDataSectorLablesViewFrame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
-        let myDataSectorLabelsView = MyDataSectorLabelsView(sectors: myDataViewModel.sectors, frame: myDataSectorLablesViewFrame)
+        let myDataSectorLabelsView = MyDataSectorLabelsView(
+            sectors: myDataViewModel.sectors,
+            frame: myDataSectorLablesViewFrame,
+            screenType: screenType
+        )
         contentScrollView?.addSubview(myDataSectorLabelsView)
         self.myDataSectorLabelsView = myDataSectorLabelsView
     }

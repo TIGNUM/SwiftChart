@@ -77,10 +77,10 @@ struct Layout {
             return viewControllerFrame.height * 0.425
         }
 
-        func myWhyVisionFooterFrame(_ myUniverseViewController: MyUniverseViewController) -> CGRect {
+        func myWhyVisionFooterFrame(_ screenType: MyUniverseViewController.ScreenType) -> CGRect {
             var deviceOffset: CGFloat = 0
 
-            switch myUniverseViewController.screenType {
+            switch screenType {
             case .big: deviceOffset = 0
             case .medium: deviceOffset = 0
             case .small: deviceOffset = -15
@@ -94,10 +94,10 @@ struct Layout {
             )
         }
 
-        func myWhyVisionLabelFrame(_ myUniverseViewController: MyUniverseViewController) -> CGRect {
+        func myWhyVisionLabelFrame(_ screenType: MyUniverseViewController.ScreenType) -> CGRect {
             var deviceOffset: CGFloat = 0
 
-            switch myUniverseViewController.screenType {
+            switch screenType {
             case .big: deviceOffset = 0
             case .medium: deviceOffset = 15
             case .small: deviceOffset = -15
@@ -338,16 +338,16 @@ struct AttributedString {
     }
 
     struct MeSection {
-        static func sectorTitle(text: String, myUniverseViewController: MyUniverseViewController) -> NSAttributedString {
-            switch myUniverseViewController.screenType {
+        static func sectorTitle(text: String, screenType: MyUniverseViewController.ScreenType) -> NSAttributedString {
+            switch screenType {
             case .big: return NSAttributedString.create(for: text, withColor: Color.whiteMedium, andFont: Font.H7Tag, letterSpacing: 2)
             case .medium: return NSAttributedString.create(for: text, withColor: Color.whiteMedium, andFont: Font.H7Tag, letterSpacing: 1.8)
             case .small: return NSAttributedString.create(for: text, withColor: Color.whiteMedium, andFont: Font.H7Tag, letterSpacing: 1.6)
             }
         }
 
-        static func sectorTitleCritical(text: String, myUniverseViewController: MyUniverseViewController) -> NSAttributedString {
-            switch myUniverseViewController.screenType {
+        static func sectorTitleCritical(text: String, screenType: MyUniverseViewController.ScreenType) -> NSAttributedString {
+            switch screenType {
             case .big: return NSAttributedString.create(for: text, withColor: Color.cherryRedTwo, andFont: Font.PText, letterSpacing: 2.7)
             case .medium: return NSAttributedString.create(for: text, withColor: Color.cherryRedTwo, andFont: Font.PTextSmall, letterSpacing: 2.5)
             case .small: return NSAttributedString.create(for: text, withColor: Color.cherryRedTwo, andFont: Font.PTextSmall, letterSpacing: 2.3)

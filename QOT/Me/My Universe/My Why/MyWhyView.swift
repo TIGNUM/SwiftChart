@@ -13,7 +13,8 @@ class MyWhyView: UIView, MyUniverseViewDelegate {
     // MARK: - Properties
 
     var previousBounds = CGRect.zero
-    let myWhyViewModel: MyWhyViewModel    
+    let myWhyViewModel: MyWhyViewModel
+    let screenType: MyUniverseViewController.ScreenType
     lazy var weeklyChoices = [WeeklyChoice]()
     lazy var partners = [Partner]()
     fileprivate var vision: Vision!
@@ -21,9 +22,10 @@ class MyWhyView: UIView, MyUniverseViewDelegate {
 
     // MARK: - Init
 
-    init(myWhyViewModel: MyWhyViewModel, frame: CGRect, delegate: MyWhyViewDelegate?) {
+    init(myWhyViewModel: MyWhyViewModel, frame: CGRect, screenType: MyUniverseViewController.ScreenType,  delegate: MyWhyViewDelegate?) {
         self.myWhyViewModel = myWhyViewModel
-        self.delegate = delegate        
+        self.delegate = delegate
+        self.screenType = screenType
 
         super.init(frame: frame)
     }
@@ -94,8 +96,8 @@ private extension MyWhyView {
     }
 
     func addToBeVision(layout: Layout.MeSection, vision: Vision) {
-        addSubview(footerLabel(with: vision.title, labelFrame: layout.myWhyVisionFooterFrame(viewController)))
-        addSubview(visionLabel(with: vision.text, labelFrame: layout.myWhyVisionLabelFrame(viewController), viewController))
+        addSubview(footerLabel(with: vision.title, labelFrame: layout.myWhyVisionFooterFrame(screenType)))
+        addSubview(visionLabel(with: vision.text, labelFrame: layout.myWhyVisionLabelFrame(screenType), screenType))
     }
 
     func addWeeklyChoices(layout: Layout.MeSection, title: String, choices: [WeeklyChoice]) {
@@ -196,8 +198,8 @@ private extension MyWhyView {
         return label(with: text, labelFrame: labelFrame, textColor: Color.MeSection.whiteLabel, font: Font.H7Tag)
     }
 
-    func visionLabel(with text: String, labelFrame: CGRect, _ myUniverseViewController: MyUniverseViewController) -> UILabel {
-        switch myUniverseViewController.screenType {
+    func visionLabel(with text: String, labelFrame: CGRect, _ screenType: MyUniverseViewController.ScreenType) -> UILabel {
+        switch screenType {
         case .big: return label(with: text, labelFrame: labelFrame, textColor: .white, font: Font.H4Headline)
         case .medium: return label(with: text, labelFrame: labelFrame, textColor: .white, font: Font.H5SecondaryHeadline)
         case .small: return label(with: text, labelFrame: labelFrame, textColor: .white, font: Font.H6NavigationTitle)
