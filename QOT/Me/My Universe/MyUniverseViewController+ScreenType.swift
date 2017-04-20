@@ -11,7 +11,7 @@ import UIKit
 
 extension MyUniverseViewController {
 
-    enum ScreenSize: CGFloat {
+    private enum ScreenSize: CGFloat {
         case bigScreenHeight = 672
         case bigScreenWidth = 414
         case mediumScreenHeight = 603
@@ -23,13 +23,13 @@ extension MyUniverseViewController {
     /// 6+ && 7+ are big screens
     /// medium 6 && 7
     /// 5 && SE are small
-    enum ScreenType {
+    internal enum ScreenType {
         case big
         case medium
         case small
     }
 
-    var screenType: ScreenType {
+    internal var screenType: ScreenType {
         if isBig == true {
             return .big
         }
@@ -41,7 +41,7 @@ extension MyUniverseViewController {
         return .small
     }
 
-    var isBig: Bool {
+    private var isBig: Bool {
         if isPortrait == true {
             return height == ScreenSize.bigScreenHeight.rawValue
         }
@@ -49,7 +49,7 @@ extension MyUniverseViewController {
         return width == ScreenSize.bigScreenWidth.rawValue
     }
 
-    var isMedium: Bool {
+    private var isMedium: Bool {
         if isPortrait == true {
             return height == ScreenSize.mediumScreenHeight.rawValue
         }
@@ -57,7 +57,7 @@ extension MyUniverseViewController {
         return width == ScreenSize.mediumScreenWidth.rawValue
     }
 
-    var isSmall: Bool {
+    private var isSmall: Bool {
         if isPortrait == true {
             return height == ScreenSize.smallScreenHeight.rawValue
         }
@@ -65,19 +65,19 @@ extension MyUniverseViewController {
         return width == ScreenSize.smallScreenWidth.rawValue
     }
 
-    var size: CGSize {
+    private var size: CGSize {
         return view.bounds.size
     }
 
-    var width: CGFloat {
+    private var width: CGFloat {
         return size.width
     }
 
-    var height: CGFloat {
+    private var height: CGFloat {
         return size.height
     }
     
-    var isPortrait: Bool {
+    private var isPortrait: Bool {
         return height > width
     }
 }
