@@ -76,12 +76,12 @@ enum SectorLabelType {
 
     var load: CGFloat {
         switch self {
-        case .peak: return 1.29
+        case .peak: return 1.3
         case .meetings: return 1.28
         case .intensity: return 1.27
         case .travel: return 1.17
-        case .sleep: return 1.18
-        case .activity: return 1.18
+        case .sleep: return 1.1
+        case .activity: return 1.1
         }
     }
 }
