@@ -20,7 +20,7 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="256" verticalHuggingPriority="257" horizontalCompressionResistancePriority="741" translatesAutoresizingMaskIntoConstraints="NO" id="VQl-Re-jfO">
                         <rect key="frame" x="64" y="31" width="265" height="189"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="189" id="fPl-M0-aIS"/>
                         </constraints>
@@ -103,12 +103,12 @@
             </constraints>
             <size key="customSize" width="374" height="362"/>
             <connections>
-                <outlet property="durationLabel" destination="5di-4K-nT6" id="0Oy-rR-yvz"/>
-                <outlet property="headlineLabel" destination="hKO-zn-69f" id="Mja-8u-wxv"/>
                 <outlet property="iconImageView" destination="05D-0B-trv" id="Pkh-VM-2Tu"/>
+                <outlet property="identifier" destination="4LO-rE-AEC" id="PF3-Nj-JjS"/>
                 <outlet property="imageView" destination="VQl-Re-jfO" id="uM1-VZ-Hkd"/>
-                <outlet property="numberLabel" destination="4LO-rE-AEC" id="5nJ-dh-fCy"/>
-                <outlet property="thoughtLabel" destination="Oa2-gh-lrd" id="70k-tD-vjt"/>
+                <outlet property="mediaInformation" destination="5di-4K-nT6" id="Fn0-cV-54Y"/>
+                <outlet property="subTitle" destination="Oa2-gh-lrd" id="qzs-DW-Yc7"/>
+                <outlet property="textLabel" destination="hKO-zn-69f" id="EBh-A4-z8V"/>
             </connections>
             <point key="canvasLocation" x="37" y="-149.5"/>
         </collectionViewCell>

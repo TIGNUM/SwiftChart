@@ -40,21 +40,14 @@ class WhatsHotViewController: UIViewController {
     }
 
     func setUpCollectionView() {
-        collectionView.registerDequeueable(WhatsHotCell.self)
         let layout = WhatsHotLayout()
+
         collectionView.collectionViewLayout = layout
         collectionView.decelerationRate = UIScrollViewDecelerationRateFast
+        collectionView.contentInset = UIEdgeInsets.zero
+        collectionView.registerDequeueable(WhatsHotCell.self)
+
         layout.delegate = self
-    }
-
-    func calculateTheHeightForCell() -> CGFloat {
-        let height = view.bounds.width
-
-        if height > 320 {
-            return 222
-        } else {
-            return 170
-        }
     }
 }
 
@@ -65,14 +58,10 @@ extension WhatsHotViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let content = viewModel.item(at: indexPath.item)
+        let item = viewModel.item(at: indexPath.item)
         let cell: WhatsHotCell = collectionView.dequeueCell(for: indexPath)
-        //       cell.backgroundColor = UIColor(hue: CGFloat(drand48()), saturation: 1, brightness: 1, alpha: 1)
-        cell.setup( number: content.identifier,
-                    thought: content.subtitle,
-                    headline: content.text,
-                    duration: content.mediaInformation,
-                    placeholderURL: content.placeholderURL)
+        cell.configure(with: item)
+
         return cell
     }
 }
@@ -83,6 +72,11 @@ extension WhatsHotViewController: WhatsHotLayoutDelegate {
     }
 
     func featuredHeightForLayout(_ layout: WhatsHotLayout) -> CGFloat {
-        return 130 + calculateTheHeightForCell()
+        let nonPictureHeight: CGFloat = 130
+        let nonPictureWidth: CGFloat = 92
+        let pictureRatio: CGFloat = 1.5
+
+        let pictureHeight = (view.bounds.width - nonPictureWidth) / pictureRatio
+        return pictureHeight + nonPictureHeight
     }
 }

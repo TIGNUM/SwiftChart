@@ -62,7 +62,7 @@ private func mockWhatsHotItems() -> [WhatsHotItem] {
             text: AttributedString.Learn.WhatsHot.text(string: "IMPACT OF EXTRINSIC POLJ MOTIVATION ON INTRINSIC"),
             mediaInformation: AttributedString.Learn.WhatsHot.title(string: "V I D E O     /  /    2   M I N"),
             placeholderURL: URL(string:"https://static.pexels.com/photos/234171/pexels-photo-234171.jpeg")!,
-            bookmarked: false
+            bookmarked: true
         ),
         
         MockWhatsHotItem(

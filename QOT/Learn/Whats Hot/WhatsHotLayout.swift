@@ -15,25 +15,28 @@ protocol WhatsHotLayoutDelegate: class {
 }
 
 final class WhatsHotLayout: UICollectionViewLayout {
-    private var indexPath = 0
     private var cache = [UICollectionViewLayoutAttributes]()
-    private var offSet: CGFloat = 0
 
     weak var delegate: WhatsHotLayoutDelegate?
 
     fileprivate var width: CGFloat {
-        return collectionView!.bounds.width
+        return collectionView?.bounds.width ?? 0
     }
 
-    fileprivate var numberOfItems: Int {
-        return collectionView!.numberOfItems(inSection: 0)
+    fileprivate var itemCount: Int {
+        return collectionView?.numberOfItems(inSection: 0) ?? 0
     }
 
     override var collectionViewContentSize: CGSize {
-        guard let delegate  = delegate else {
-            return CGSize.zero
+        guard
+            let standardHeight = delegate?.standardHeightForLayout(self),
+            let featuredHeight = delegate?.featuredHeightForLayout(self)
+            else {
+                return CGSize.zero
         }
-        let contentHeight = (delegate.standardHeightForLayout(self) * CGFloat(numberOfItems)) + delegate.featuredHeightForLayout(self) + delegate.standardHeightForLayout(self)
+
+        // FIXME: THis content height is incorrect
+        let contentHeight = (CGFloat(itemCount) * standardHeight) + (featuredHeight - standardHeight) + 1000
         return CGSize(width: width, height: contentHeight)
     }
 
@@ -47,9 +50,9 @@ final class WhatsHotLayout: UICollectionViewLayout {
         let featuredHeight = delegate.featuredHeightForLayout(self)
 
         var cache: [UICollectionViewLayoutAttributes] = []
-        cache.reserveCapacity(numberOfItems)
+        cache.reserveCapacity(itemCount)
 
-        for item in 0..<numberOfItems {
+        for item in 0..<itemCount {
 
             let indexPath = IndexPath(item: item, section: 0)
             let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
@@ -83,7 +86,6 @@ final class WhatsHotLayout: UICollectionViewLayout {
         }
 
         self.cache = cache
-
     }
 
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
@@ -97,8 +99,11 @@ final class WhatsHotLayout: UICollectionViewLayout {
         return CGPoint(x: 0, y: yOffset)
     }
 
+    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        return cache[indexPath.row]
+    }
+
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        return cache
         var layoutAttributes = [UICollectionViewLayoutAttributes]()
         for attributes in cache {
             if attributes.frame.intersects(rect) {
@@ -112,5 +117,4 @@ final class WhatsHotLayout: UICollectionViewLayout {
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         return true
     }
-    
 }
