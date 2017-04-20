@@ -11,6 +11,12 @@ import UIKit
 import RealmSwift
 
 final class TabBarCoordinator: ParentCoordinator {
+
+    enum TabBarItem: Index {
+        case learn = 0
+        case me = 1
+        case prepare = 2
+    }
     
     // MARK: - Properties
     
@@ -146,7 +152,7 @@ extension TabBarCoordinator {
 
 extension TabBarCoordinator: TabBarControllerDelegate {
     func didSelectTab(at index: Index, in controller: TabBarController) {
-        let viewController = controller.viewControllers[0]
+        let viewController = controller.viewControllers.first
         
         switch viewController {
         case let learnCategory as LearnCategoryListViewController: eventTracker.track(page: learnCategory.pageID, referer: rootViewController.pageID, associatedEntity: nil)
@@ -186,19 +192,19 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
     }
 
     func didTapMyToBeVision(vision: Vision?, from view: UIView, in viewController: MyUniverseViewController) {
-        let coordinator = MyToBeVisionCoordinator(root: viewController, services: services, eventTracker: eventTracker)
+        let coordinator = MyToBeVisionCoordinator(root: viewControllers[TabBarItem.me.rawValue], services: services, eventTracker: eventTracker)
         coordinator.start()
         startChild(child: coordinator)
     }
 
     func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, from view: UIView, in viewController: MyUniverseViewController) {
-        let coordinator = WeeklyChoicesCoordinator(root: viewController, services: services, eventTracker: eventTracker)
+        let coordinator = WeeklyChoicesCoordinator(root: viewControllers[TabBarItem.me.rawValue], services: services, eventTracker: eventTracker)
         coordinator.start()
         startChild(child: coordinator)
     }
 
     func didTapQOTPartner(selectedIndex: Index, partners: [Partner], from view: UIView, in viewController: MyUniverseViewController) {
-        let coordinator = PartnersCoordinator(root: viewController, services: services, eventTracker: eventTracker, partners: partners, selectedIndex: selectedIndex)
+        let coordinator = PartnersCoordinator(root: viewControllers[TabBarItem.me.rawValue], services: services, eventTracker: eventTracker, partners: partners, selectedIndex: selectedIndex)
         coordinator.start()
         startChild(child: coordinator)
     }

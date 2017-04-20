@@ -13,7 +13,7 @@ final class PartnersCoordinator: ParentCoordinator {
 
     // MARK: - Properties
 
-    fileprivate let rootViewController: MyUniverseViewController
+    fileprivate let rootViewController: UIViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
     fileprivate let partners: [Partner]
@@ -23,7 +23,7 @@ final class PartnersCoordinator: ParentCoordinator {
 
     // MARK: - Life Cycle
 
-    init(root: MyUniverseViewController, services: Services, eventTracker: EventTracker, partners: [Partner], selectedIndex: Index) {
+    init(root: UIViewController, services: Services, eventTracker: EventTracker, partners: [Partner], selectedIndex: Index) {
         self.rootViewController = root
         self.services = services
         self.eventTracker = eventTracker

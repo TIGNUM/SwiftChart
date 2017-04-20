@@ -139,7 +139,7 @@ final class TopTabBarController: UIViewController {
         setupScrollView()
         tabBarView.delegate = self
     }
-    
+
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
 
@@ -148,7 +148,7 @@ final class TopTabBarController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
+
         setupLayout()
     }
 }
