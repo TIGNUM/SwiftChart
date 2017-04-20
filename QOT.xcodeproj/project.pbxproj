@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0B1059861EA77AC700660A1D /* PrepareEventTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1059841EA77AC700660A1D /* PrepareEventTableViewHeader.swift */; };
 		0B1059871EA77AC700660A1D /* PrepareEventTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B1059851EA77AC700660A1D /* PrepareEventTableViewHeader.xib */; };
+		0B254D3E1E97994C006AA4C0 /* PrepareCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B254D3C1E97994C006AA4C0 /* PrepareCollectionViewCell.swift */; };
+		0B254D3F1E97994C006AA4C0 /* PrepareCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B254D3D1E97994C006AA4C0 /* PrepareCollectionViewCell.xib */; };
 		0B40DC071E9CA65300E1659B /* PrepareContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B40DC061E9CA65300E1659B /* PrepareContentViewController.xib */; };
 		0B40DC0B1E9CA6A500E1659B /* PrepareContentTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B40DC091E9CA6A500E1659B /* PrepareContentTextTableViewCell.swift */; };
 		0B40DC0C1E9CA6A500E1659B /* PrepareContentTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B40DC0A1E9CA6A500E1659B /* PrepareContentTextTableViewCell.xib */; };
@@ -16,6 +18,13 @@
 		0B40DC101E9CA6E100E1659B /* PrepareContentVideoPreviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B40DC0E1E9CA6E100E1659B /* PrepareContentVideoPreviewTableViewCell.xib */; };
 		0B40DC151E9CA71400E1659B /* PrepareContentHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B40DC131E9CA71400E1659B /* PrepareContentHeaderTableViewCell.swift */; };
 		0B40DC161E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B40DC141E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib */; };
+		0BC1FF4B1E968E07007DE090 /* CollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1FF491E968E07007DE090 /* CollectionTableViewCell.swift */; };
+		0BC1FF4C1E968E07007DE090 /* CollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC1FF4A1E968E07007DE090 /* CollectionTableViewCell.xib */; };
+		0BC9F9361E96118C009E8204 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC9F92C1E96118C009E8204 /* ChatTableViewCell.swift */; };
+		0BC9F9371E96118C009E8204 /* ChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC9F92D1E96118C009E8204 /* ChatTableViewCell.xib */; };
+		0BC9F9381E96118C009E8204 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC9F92E1E96118C009E8204 /* ChatViewController.xib */; };
+		0BC9F9391E96118C009E8204 /* StatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC9F9301E96118C009E8204 /* StatusTableViewCell.swift */; };
+		0BC9F93A1E96118C009E8204 /* StatusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC9F9311E96118C009E8204 /* StatusTableViewCell.xib */; };
 		0BD6F6B91EA0E81E001EBC4D /* MyPrepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD6F6B61EA0E81E001EBC4D /* MyPrepTableViewCell.swift */; };
 		0BD6F6BA1EA0E81E001EBC4D /* MyPrepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD6F6B71EA0E81E001EBC4D /* MyPrepTableViewCell.xib */; };
 		0BD6F6BB1EA0E81E001EBC4D /* MyPrepViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD6F6B81EA0E81E001EBC4D /* MyPrepViewController.xib */; };
@@ -183,6 +192,8 @@
 /* Begin PBXFileReference section */
 		0B1059841EA77AC700660A1D /* PrepareEventTableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepareEventTableViewHeader.swift; path = PrepareEventTableViewHeader.swift; sourceTree = "<group>"; };
 		0B1059851EA77AC700660A1D /* PrepareEventTableViewHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PrepareEventTableViewHeader.xib; path = PrepareEventTableViewHeader.xib; sourceTree = "<group>"; };
+		0B254D3C1E97994C006AA4C0 /* PrepareCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareCollectionViewCell.swift; sourceTree = "<group>"; };
+		0B254D3D1E97994C006AA4C0 /* PrepareCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareCollectionViewCell.xib; sourceTree = "<group>"; };
 		0B40DC061E9CA65300E1659B /* PrepareContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentViewController.xib; sourceTree = "<group>"; };
 		0B40DC091E9CA6A500E1659B /* PrepareContentTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentTextTableViewCell.swift; sourceTree = "<group>"; };
 		0B40DC0A1E9CA6A500E1659B /* PrepareContentTextTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentTextTableViewCell.xib; sourceTree = "<group>"; };
@@ -190,6 +201,13 @@
 		0B40DC0E1E9CA6E100E1659B /* PrepareContentVideoPreviewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentVideoPreviewTableViewCell.xib; sourceTree = "<group>"; };
 		0B40DC131E9CA71400E1659B /* PrepareContentHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		0B40DC141E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		0BC1FF491E968E07007DE090 /* CollectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionTableViewCell.swift; sourceTree = "<group>"; };
+		0BC1FF4A1E968E07007DE090 /* CollectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionTableViewCell.xib; sourceTree = "<group>"; };
+		0BC9F92C1E96118C009E8204 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
+		0BC9F92D1E96118C009E8204 /* ChatTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatTableViewCell.xib; sourceTree = "<group>"; };
+		0BC9F92E1E96118C009E8204 /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
+		0BC9F9301E96118C009E8204 /* StatusTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusTableViewCell.swift; sourceTree = "<group>"; };
+		0BC9F9311E96118C009E8204 /* StatusTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatusTableViewCell.xib; sourceTree = "<group>"; };
 		0BD6F6B61EA0E81E001EBC4D /* MyPrepTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPrepTableViewCell.swift; sourceTree = "<group>"; };
 		0BD6F6B71EA0E81E001EBC4D /* MyPrepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPrepTableViewCell.xib; sourceTree = "<group>"; };
 		0BD6F6B81EA0E81E001EBC4D /* MyPrepViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPrepViewController.xib; sourceTree = "<group>"; };
@@ -373,6 +391,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B254D401E979952006AA4C0 /* PrepareCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				0B254D3C1E97994C006AA4C0 /* PrepareCollectionViewCell.swift */,
+				0B254D3D1E97994C006AA4C0 /* PrepareCollectionViewCell.xib */,
+			);
+			path = PrepareCollectionViewCell;
+			sourceTree = "<group>";
+		};
 		0B40DC081E9CA65D00E1659B /* PrepareContentTextTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -398,6 +425,34 @@
 				0B40DC141E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib */,
 			);
 			path = PrepareContentHeaderTableViewCell;
+			sourceTree = "<group>";
+		};
+		0BC9F9251E96118C009E8204 /* CollectionTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				0B254D401E979952006AA4C0 /* PrepareCollectionViewCell */,
+				0BC1FF491E968E07007DE090 /* CollectionTableViewCell.swift */,
+				0BC1FF4A1E968E07007DE090 /* CollectionTableViewCell.xib */,
+			);
+			path = CollectionTableViewCell;
+			sourceTree = "<group>";
+		};
+		0BC9F92B1E96118C009E8204 /* ChatTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				0BC9F92C1E96118C009E8204 /* ChatTableViewCell.swift */,
+				0BC9F92D1E96118C009E8204 /* ChatTableViewCell.xib */,
+			);
+			path = ChatTableViewCell;
+			sourceTree = "<group>";
+		};
+		0BC9F92F1E96118C009E8204 /* StatusTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				0BC9F9301E96118C009E8204 /* StatusTableViewCell.swift */,
+				0BC9F9311E96118C009E8204 /* StatusTableViewCell.xib */,
+			);
+			path = StatusTableViewCell;
 			sourceTree = "<group>";
 		};
 		0BD6F6B51EA0E81E001EBC4D /* MyPrepTableViewCell */ = {
@@ -825,7 +880,11 @@
 		CC4D1D7A1E82E6AD00B8D75E /* PrepareChat */ = {
 			isa = PBXGroup;
 			children = (
+				0BC9F92B1E96118C009E8204 /* ChatTableViewCell */,
+				0BC9F9251E96118C009E8204 /* CollectionTableViewCell */,
+				0BC9F92F1E96118C009E8204 /* StatusTableViewCell */,
 				CCCC211A1E8981AD00133839 /* ChatViewController.swift */,
+				0BC9F92E1E96118C009E8204 /* ChatViewController.xib */,
 				CCCC211B1E8981AD00133839 /* ChatViewModel.swift */,
 			);
 			path = PrepareChat;
@@ -1198,11 +1257,13 @@
 				CCAF032C1E80362700015125 /* SettingsTableViewCell.xib in Resources */,
 				0B1059871EA77AC700660A1D /* PrepareEventTableViewHeader.xib in Resources */,
 				CBD791661E768AB70006C590 /* MainMenuViewController.xib in Resources */,
+				0BC9F93A1E96118C009E8204 /* StatusTableViewCell.xib in Resources */,
 				0BEE8ABE1EA600A7008077B8 /* PrepareEventSimpleTableViewCell.xib in Resources */,
 				D51D08881E8E80AF00FC7567 /* LearnStrategyVideoCell.xib in Resources */,
 				CCAF03281E802A6200015125 /* SettingsViewController.xib in Resources */,
 				CCC0C4CA1E827F87002A8362 /* BentonSans_Book.otf in Resources */,
 				D51D08841E8E806E00FC7567 /* LearnStrategyTextCell.xib in Resources */,
+				0B254D3F1E97994C006AA4C0 /* PrepareCollectionViewCell.xib in Resources */,
 				CBA4216F1E9276AF00CD4BC9 /* SidebarTableViewCell.xib in Resources */,
 				0B40DC101E9CA6E100E1659B /* PrepareContentVideoPreviewTableViewCell.xib in Resources */,
 				0BEE8ABA1EA600A7008077B8 /* PrepareEventAddNewTripTableViewCell.xib in Resources */,
@@ -1218,11 +1279,14 @@
 				0B40DC161E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib in Resources */,
 				CCC0C4D41E82A8D9002A8362 /* Simple-Regular.ttf in Resources */,
 				CB8A15461E7986C90023B2F9 /* Localized.strings in Resources */,
+				0BC9F9381E96118C009E8204 /* ChatViewController.xib in Resources */,
 				D520BC941E8E655A00A2D107 /* LearnStrategyHeaderCell.xib in Resources */,
+				0BC1FF4C1E968E07007DE090 /* CollectionTableViewCell.xib in Resources */,
 				CBB237FA1E6FFF1200AB5AEF /* LaunchScreen.storyboard in Resources */,
 				0BE7FD901E9D2F8800E3262E /* PrepareContentTitleTableViewCell.xib in Resources */,
 				0BD6F6BA1EA0E81E001EBC4D /* MyPrepTableViewCell.xib in Resources */,
 				D540275F1E8D401F0013B783 /* LearnStrategyViewController.xib in Resources */,
+				0BC9F9371E96118C009E8204 /* ChatTableViewCell.xib in Resources */,
 				0BD6F6BB1EA0E81E001EBC4D /* MyPrepViewController.xib in Resources */,
 				0BEE8AC11EA600A7008077B8 /* PrepareEventsViewController.xib in Resources */,
 				0B40DC0C1E9CA6A500E1659B /* PrepareContentTextTableViewCell.xib in Resources */,
@@ -1377,6 +1441,7 @@
 				0B40DC0F1E9CA6E100E1659B /* PrepareContentVideoPreviewTableViewCell.swift in Sources */,
 				0BE7FD841E9CAC7400E3262E /* PrepareContentActionButtonsTableViewCell.swift in Sources */,
 				CCCC21221E8981CA00133839 /* PrepareContentViewController.swift in Sources */,
+				0BC9F9391E96118C009E8204 /* StatusTableViewCell.swift in Sources */,
 				CBD791541E72A4BB0006C590 /* MockData.swift in Sources */,
 				CCCC211D1E8981AD00133839 /* ChatViewModel.swift in Sources */,
 				D51B5C4A1E8D0E7E0084A65B /* LearnContentLayout.swift in Sources */,
@@ -1394,6 +1459,7 @@
 				D55CBED71E8A993200C690FB /* CGPoint+Convenience.swift in Sources */,
 				CCCE09CC1EA67C78008730F1 /* MyToBeVisionViewModel.swift in Sources */,
 				CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */,
+				0BC9F9361E96118C009E8204 /* ChatTableViewCell.swift in Sources */,
 				CC9663181EA1B86100B84B1C /* MyDataSectorLabelsView.swift in Sources */,
 				CCC1B6B31E8BA71500D1461F /* LearnStrategyViewController.swift in Sources */,
 				CC6B3A2F1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift in Sources */,
@@ -1455,9 +1521,11 @@
 				CC6B3A291E8158B200E7FDFD /* PresentationManager.swift in Sources */,
 				CCAF03241E801B0E00015125 /* SettingsCoordinator.swift in Sources */,
 				CBD791651E768AB70006C590 /* MainMenuViewController.swift in Sources */,
+				0BC1FF4B1E968E07007DE090 /* CollectionTableViewCell.swift in Sources */,
 				CB2880281E7057790067890A /* RootViewController.swift in Sources */,
 				D57ECFB01E924CC2008F401B /* TabBarView.swift in Sources */,
 				CCE06FE01E8D44FC009C5AD2 /* LibraryCoordinator.swift in Sources */,
+				0B254D3E1E97994C006AA4C0 /* PrepareCollectionViewCell.swift in Sources */,
 				CCAF032A1E8035C800015125 /* SettingsTableViewCell.swift in Sources */,
 				CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */,
 				0BEE8ABF1EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.swift in Sources */,
