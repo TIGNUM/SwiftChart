@@ -59,7 +59,7 @@ protocol Partner {
     var name: String { get set }
     var surename: String { get set }
     var initials: String { get }
-    var relationShip: String { get set }
+    var relationship: String { get set }
     var email: String { get set }
 }
 
@@ -80,7 +80,7 @@ class MockPartner: Partner {
     var profileImage: UIImage?
     var name: String
     var surename: String
-    var relationShip: String
+    var relationship: String
     var email: String
 
     var initials: String {
@@ -157,7 +157,7 @@ private var partners: [Partner] {
             profileImage: R.image.partnerProfileImage(),
             name: "Giorgio",
             surename: "Moroder",
-            relationShip: "Brother",
+            relationship: "Brother",
             email: "giorgiomoroder@novartis.com"
         ),
 
@@ -166,7 +166,7 @@ private var partners: [Partner] {
             profileImage: nil,
             name: "Giorgio",
             surename: "Moroder",
-            relationShip: "Brother",
+            relationship: "Brother",
             email: "giorgiomoroder@novartis.com"
         ),
 
@@ -175,7 +175,7 @@ private var partners: [Partner] {
             profileImage: nil,
             name: "Simon",
             surename: "Pebbels",
-            relationShip: "Brother",
+            relationship: "Brother",
             email: "giorgiomoroder@novartis.com"
         )
     ]
