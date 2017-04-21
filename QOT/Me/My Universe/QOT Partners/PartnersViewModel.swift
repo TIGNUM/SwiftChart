@@ -13,8 +13,8 @@ final class PartnersViewModel {
     // MARK: - Properties
 
     let items: [Partner]
-    var selectedIndex: Index
-    private var currentEditPartner: Partner?
+    private var selectedIndex: Index
+    fileprivate var currentEditPartner: Partner?
 
     init(items: [Partner], selectedIndex: Index) {
         self.items = items
@@ -27,6 +27,27 @@ final class PartnersViewModel {
 
     func item(at index: Index) -> Partner {
         return items[index]
+    }
+
+    func updateIndex(index: Index) {
+        selectedIndex = index
+        saveCurrentEditPartnerIfNeeded()
+    }
+
+    func updateName(name: String) {
+        currentEditPartner?.name = name
+    }
+
+    func updateSurename(surename: String) {
+        currentEditPartner?.surename = surename
+    }
+
+    func updateRelationship(relationship: String) {
+        currentEditPartner?.relationship = relationship
+    }
+
+    func updateEmail(email: String) {
+        currentEditPartner?.email = email
     }
 
     func didSelectEditPartner() {
@@ -55,5 +76,19 @@ final class PartnersViewModel {
         partnerToUpdate.email = updatedPartner.email
 
         currentEditPartner = nil
+    }
+}
+
+// MARK: - Private Methods
+
+private extension PartnersViewModel {
+
+    func saveCurrentEditPartnerIfNeeded() {
+        guard currentEditPartner != nil else {
+            return
+        }
+
+        didTapSaveChanges()
+        didSelectEditPartner()
     }
 }
