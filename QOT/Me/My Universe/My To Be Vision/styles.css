@@ -1,0 +1,6 @@
+div.text {
+    height: 125px;
+    -webkit-column-width: 155px;
+    -webkit-column-gap: 20px;
+    -webkit-text-stroke-color: white;
+}
