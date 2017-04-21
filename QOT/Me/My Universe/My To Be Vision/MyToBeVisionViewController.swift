@@ -74,11 +74,13 @@ class MyToBeVisionViewController: UIViewController, UIWebViewDelegate {
 
     func configureWebView(string: String) {
 
-        let text = "<html><head><link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\"></head>" + "<body><div class='text'><p>\(string)</p></div></body></html>"
+        let text = "<html><head><link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\"></head>" + "<body style='background:none'><div class='text'>\(string)</div></body></html>"
 
         let mainbundle = Bundle.main.bundlePath
         let bundleURL = NSURL(fileURLWithPath: mainbundle)
         webView.loadHTMLString(text, baseURL: bundleURL as URL)
+        webView.backgroundColor = UIColor.clear
+        webView.isOpaque = false
 }
 
     func webViewDidFinishLoad(_ webView: UIWebView) {

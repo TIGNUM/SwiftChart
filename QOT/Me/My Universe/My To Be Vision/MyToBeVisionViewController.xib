@@ -55,12 +55,13 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <webView contentMode="scaleToFill" paginationMode="leftToRight" paginationBreakingMode="column" pageLength="150" gapBetweenPages="10" translatesAutoresizingMaskIntoConstraints="NO" id="PGq-7l-TOU">
-                    <rect key="frame" x="29" y="261.5" width="346" height="143"/>
+                <webView contentMode="scaleToFill" allowsInlineMediaPlayback="NO" mediaPlaybackRequiresUserAction="NO" mediaPlaybackAllowsAirPlay="NO" keyboardDisplayRequiresUserAction="NO" pageLength="150" gapBetweenPages="10" translatesAutoresizingMaskIntoConstraints="NO" id="PGq-7l-TOU">
+                    <rect key="frame" x="29" y="262" width="346" height="143"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="143" id="ehA-FY-oN4"/>
                     </constraints>
+                    <dataDetectorType key="dataDetectorTypes"/>
                 </webView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bfh-6q-eoT">
                     <rect key="frame" x="0.0" y="416" width="375" height="251"/>

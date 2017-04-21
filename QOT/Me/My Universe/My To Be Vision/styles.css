@@ -1,6 +1,8 @@
 div.text {
     height: 125px;
-    -webkit-column-width: 155px;
-    -webkit-column-gap: 20px;
-    -webkit-text-stroke-color: white;
+    -webkit-column-width: 180px;
+    -webkit-column-gap: 10pt;
+    color: white;
+    font-size: 16px;
+    font-family: "BentonSans";
 }
