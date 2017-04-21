@@ -47,7 +47,7 @@ protocol AudioStrategy {
 
 protocol AudioTrack {
     var title: String { get }
-    var length: CGFloat { get }
+    var url: URL { get }
     var soundPattern: [CGFloat] { get }
 }
 
@@ -59,7 +59,7 @@ struct MockAudioStraregy: AudioStrategy {
 
 struct MockAudioTrack: AudioTrack {
     let title: String
-    let length: CGFloat
+    let url: URL
     let soundPattern: [CGFloat]
 }
 
@@ -75,25 +75,25 @@ private var audioTracks: [AudioTrack] {
     return [
         MockAudioTrack(
             title: "Intro",
-            length: 1023,
+            url: URL(string: "http://extracoding.com/demo/wp/iloverockband/light/wp-content/uploads/2013/07/Lorem-ipsum-dolor-sit-amet1.mp3")!,
             soundPattern: randomSoundPattern
         ),
 
         MockAudioTrack(
             title: "Item 1",
-            length: 959,
+            url: URL(string: "http://extracoding.com/demo/wp/iloverockband/light/wp-content/uploads/2013/07/Lorem-ipsum-dolor-sit-amet1.mp3")!,
             soundPattern: randomSoundPattern
         ),
 
         MockAudioTrack(
             title: "Item 2",
-            length: 1332,
+            url: URL(string: "http://extracoding.com/demo/wp/iloverockband/light/wp-content/uploads/2013/07/Lorem-ipsum-dolor-sit-amet1.mp3")!,
             soundPattern: randomSoundPattern
         ),
 
         MockAudioTrack(
             title: "Item 3",
-            length: 512,
+            url: URL(string: "http://extracoding.com/demo/wp/iloverockband/light/wp-content/uploads/2013/07/Lorem-ipsum-dolor-sit-amet1.mp3")!,
             soundPattern: randomSoundPattern
         )
     ]
