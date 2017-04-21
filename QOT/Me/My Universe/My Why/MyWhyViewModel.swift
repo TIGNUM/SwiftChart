@@ -84,6 +84,10 @@ class MockPartner: Partner {
     var email: String
 
     var initials: String {
+        guard name.isEmpty == false && surename.isEmpty == false else {
+            return ""
+        }
+
         return String(name.characters.first!) + String(surename.characters.first!)
     }
 
