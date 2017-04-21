@@ -302,7 +302,7 @@
 		CC3DFB651E83C19C00FF28DF /* Defines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defines.swift; sourceTree = "<group>"; };
 		CC5A8D6C1EA65A3E00E5800F /* WeeklyChoicesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesViewModel.swift; sourceTree = "<group>"; };
 		CC5A8D6E1EA65A6400E5800F /* WeeklyChoicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesViewController.swift; sourceTree = "<group>"; };
-		CC63AC3A1EAA152800A57187 /* LearnStrategyAudioViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LearnStrategyAudioViewModel.swift; path = "Learn Strategy Audio/LearnStrategyAudioViewModel.swift"; sourceTree = "<group>"; };
+		CC63AC3A1EAA152800A57187 /* LearnStrategyAudioViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LearnStrategyAudioViewModel.swift; path = LearnStrategyAudioViewModel.swift; sourceTree = "<group>"; };
 		CC6B3A281E8158B200E7FDFD /* PresentationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationManager.swift; sourceTree = "<group>"; };
 		CC6B3A2C1E8163A200E7FDFD /* FadeInOutPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeInOutPresentationController.swift; sourceTree = "<group>"; };
 		CC6B3A2E1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeInOutPresentationAnimator.swift; sourceTree = "<group>"; };
@@ -927,6 +927,7 @@
 				CC63AC3A1EAA152800A57187 /* LearnStrategyAudioViewModel.swift */,
 			);
 			name = "Learn Strategy Audio";
+			path = "Learn Strategy Audio";
 			sourceTree = "<group>";
 		};
 		CC6B3A271E81586C00E7FDFD /* Presentation */ = {
@@ -1030,8 +1031,8 @@
 		CCC1B69B1E8B9A1200D1461F /* Learn Strategy */ = {
 			isa = PBXGroup;
 			children = (
-				CC63AC391EAA14BD00A57187 /* Learn Strategy Audio */,
 				D51D088E1E8EA36700FC7567 /* Cell */,
+				CC63AC391EAA14BD00A57187 /* Learn Strategy Audio */,
 				D5EF23481E952EF100D88064 /* Page Controller */,
 				CCC1B6B21E8BA71500D1461F /* LearnStrategyViewController.swift */,
 				D540275D1E8D401F0013B783 /* LearnStrategyViewController.xib */,
