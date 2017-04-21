@@ -91,7 +91,7 @@ class MyToBeVisionViewController: UIViewController, UIWebViewDelegate, UIScrollV
         webView.scrollView.showsVerticalScrollIndicator = false
         webView.scrollView.showsHorizontalScrollIndicator = false
         webView.scrollView.bounces = false
-        webView.scrollView.contentInset.right = 170
+        webView.scrollView.contentInset.right = 230
         webView.scrollView.contentInset.left = 21
         webView.scrollView.delegate = self
 
