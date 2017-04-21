@@ -112,7 +112,7 @@ private var chatMessageInputs: [ChatMessageInput] {
 
 private var mockChatMessage: [ChatMessage] {
     let instructionTypeMessage = ChatMessage.InstructionType.message("Hi Louis what are you preparing for?")
-    let instruction = ChatMessage.instruction(type: instructionTypeMessage, showIcon: false)
+    let instruction = ChatMessage.instruction(type: instructionTypeMessage, showIcon: true)
     let header = ChatMessage.header(title: "Delivered: 12:34", alignment: .left)
     let navigations = ChatMessage.navigation(chatMessageNavigations)
     let inputs = ChatMessage.input(chatMessageInputs)
