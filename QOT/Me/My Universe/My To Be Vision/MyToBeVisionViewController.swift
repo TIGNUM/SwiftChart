@@ -44,7 +44,6 @@ class MyToBeVisionViewController: UIViewController, UIWebViewDelegate, UIScrollV
         setupView()
     }
 
-
     private func setupView() {
 
         configureWebView(string: viewModel.text)
@@ -110,7 +109,7 @@ class MyToBeVisionViewController: UIViewController, UIWebViewDelegate, UIScrollV
 
         return attrString
     }
-    
+
     @IBAction func closeAction(_ sender: Any) {
         delegate?.didTapClose(in: self)
     }
