@@ -59,7 +59,6 @@ final class TopTabBarController: UIViewController {
     
     fileprivate lazy var leftButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .white
         button.addTarget(self, action: #selector(leftButtonPressed(_:)), for: .touchUpInside)
 
         return button
@@ -67,7 +66,6 @@ final class TopTabBarController: UIViewController {
     
     fileprivate lazy var rightButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .white
         button.addTarget(self, action: #selector(rightButtonPressed(_:)), for: .touchUpInside)
 
         return button

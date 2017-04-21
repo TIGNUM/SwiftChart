@@ -53,8 +53,7 @@ final class TabBarCoordinator: ParentCoordinator {
 
     fileprivate lazy var topTabBarControllerMe: TopTabBarController = {
         let myUniverseViewController = MyUniverseViewController(
-            myDataViewModel: MyDataViewModel(),
-            myWhyViewModel: MyWhyViewModel()
+            myDataViewModel: MyDataViewModel(),             myWhyViewModel: MyWhyViewModel()
         )
         myUniverseViewController.delegate = self
 
