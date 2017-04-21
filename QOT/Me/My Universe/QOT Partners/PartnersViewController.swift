@@ -10,7 +10,7 @@ import UIKit
 
 protocol PartnersViewControllerDelegate: class {
     func didTapClose(in viewController: UIViewController, animated: Bool)
-    func didTapEdit(partner: Partner, in viewController: UIViewController)
+    func didTapEdit(in viewController: UIViewController)
 }
 
 class PartnersViewController: UIViewController {
