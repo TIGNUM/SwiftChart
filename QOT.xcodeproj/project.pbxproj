@@ -928,9 +928,9 @@
 		CC63AC391EAA14BD00A57187 /* Learn Strategy Audio */ = {
 			isa = PBXGroup;
 			children = (
+				CC63AC3E1EAA3E3400A57187 /* LearnStrategyAudioCoordinator.swift */,
 				CC63AC3C1EAA306D00A57187 /* LearnStrategyAudioViewController.swift */,
 				CC63AC3A1EAA152800A57187 /* LearnStrategyAudioViewModel.swift */,
-				CC63AC3E1EAA3E3400A57187 /* LearnStrategyAudioCoordinator.swift */,
 			);
 			path = "Learn Strategy Audio";
 			sourceTree = "<group>";
