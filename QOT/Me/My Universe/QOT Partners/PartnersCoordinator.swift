@@ -48,9 +48,7 @@ extension PartnersCoordinator: PartnersViewControllerDelegate {
         viewController.dismiss(animated: true, completion: nil)
     }
 
-    func didTapEdit(in viewController: UIViewController) {
-        viewModel.didSelectEditPartner()
-        print("didTapEDit")
-        
+    func didTapChangeImage(at index: Index, in viewController: UIViewController) {
+        print("didTapCahngeImage")
     }
 }
