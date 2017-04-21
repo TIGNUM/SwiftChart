@@ -37,7 +37,7 @@ final class PartnersViewModel {
             profileImage: partnerToEdit.profileImage,
             name: partnerToEdit.name,
             surename: partnerToEdit.surename,
-            relationShip: partnerToEdit.relationShip,
+            relationship: partnerToEdit.relationship,
             email: partnerToEdit.email
         )
     }
@@ -51,7 +51,7 @@ final class PartnersViewModel {
         partnerToUpdate.profileImage = updatedPartner.profileImage
         partnerToUpdate.name = updatedPartner.name
         partnerToUpdate.surename = updatedPartner.surename
-        partnerToUpdate.relationShip = updatedPartner.relationShip
+        partnerToUpdate.relationship = updatedPartner.relationship
         partnerToUpdate.email = updatedPartner.email
 
         currentEditPartner = nil

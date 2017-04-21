@@ -91,11 +91,11 @@ class MockPartner: Partner {
         return String(name.characters.first!) + String(surename.characters.first!)
     }
 
-    init(localID: String, profileImage: UIImage?, name: String, surename: String, relationShip: String, email: String) {
+    init(localID: String, profileImage: UIImage?, name: String, surename: String, relationship: String, email: String) {
         self.profileImage = profileImage
         self.name = name
         self.surename = surename
-        self.relationShip = relationShip
+        self.relationship = relationship
         self.email = email
         self.localID = localID
     }
