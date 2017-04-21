@@ -13,7 +13,7 @@ protocol MyToBeVisionViewControllerDelegate: class {
     func didTapClose(in viewController: MyToBeVisionViewController)
 }
 
-class MyToBeVisionViewController: UIViewController, UIWebViewDelegate {
+class MyToBeVisionViewController: UIViewController, UIWebViewDelegate, UIScrollViewDelegate {
 
     // MARK: - Properties
 
@@ -44,14 +44,21 @@ class MyToBeVisionViewController: UIViewController, UIWebViewDelegate {
         setupView()
     }
 
+
     private func setupView() {
+
+        configureWebView(string: viewModel.text)
+
         viewTitle.attributedText = prepareAndSetTextAttributes(string: viewModel.title.uppercased(), letterSpacing: 1, font: UIFont(name:"Simple-Regular", size: 16.0), lineSpacing: 0)
         headlineLabel.attributedText = prepareAndSetTextAttributes(string: viewModel.headLine.uppercased(), letterSpacing: 2, font: UIFont(name:"Simple-Regular", size: 36.0), lineSpacing: 3.0)
         subtitleLabel.attributedText = prepareAndSetTextAttributes(string: viewModel.subHeadline.uppercased(), letterSpacing: 2, font: UIFont(name:"BentonSans", size: 11.0), lineSpacing: 0)
-        imageView.kf.setImage(with: viewModel.profileImage)
 
-        maskImageView(image: imageView)
-        configureWebView(string: viewModel.text)
+        imageView.kf.setImage(with: viewModel.profileImage) { [weak self] (image, _, _, _) in
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.maskImageView(image: strongSelf.imageView)
+        }
     }
 
     func maskImageView(image: UIImageView) {
@@ -78,11 +85,16 @@ class MyToBeVisionViewController: UIViewController, UIWebViewDelegate {
 
         let mainbundle = Bundle.main.bundlePath
         let bundleURL = NSURL(fileURLWithPath: mainbundle)
+
         webView.loadHTMLString(text, baseURL: bundleURL as URL)
         webView.backgroundColor = UIColor.clear
         webView.isOpaque = false
-        webView.scrollView.contentInset.right = 100
+        webView.scrollView.showsVerticalScrollIndicator = false
+        webView.scrollView.showsHorizontalScrollIndicator = false
+        webView.scrollView.bounces = false
+        webView.scrollView.contentInset.right = 170
         webView.scrollView.contentInset.left = 21
+        webView.scrollView.delegate = self
 
     }
 
@@ -97,5 +109,16 @@ class MyToBeVisionViewController: UIViewController, UIWebViewDelegate {
         attrString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSRange(location: 0, length: string.utf16.count))
 
         return attrString
+    }
+    
+    @IBAction func closeAction(_ sender: Any) {
+        delegate?.didTapClose(in: self)
+    }
+
+    // MARK: ScrollView Delegate
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if  scrollView.contentOffset.y > 0 {
+            scrollView.contentOffset = CGPoint(x: scrollView.contentOffset.x, y: 0)
+        }
     }
 }
