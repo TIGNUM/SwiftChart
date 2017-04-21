@@ -81,9 +81,8 @@ class MyToBeVisionViewController: UIViewController, UIWebViewDelegate {
         webView.loadHTMLString(text, baseURL: bundleURL as URL)
         webView.backgroundColor = UIColor.clear
         webView.isOpaque = false
-}
-
-    func webViewDidFinishLoad(_ webView: UIWebView) {
+        webView.scrollView.contentInset.right = 100
+        webView.scrollView.contentInset.left = 21
 
     }
 

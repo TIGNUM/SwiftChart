@@ -1,8 +1,11 @@
 div.text {
-    height: 125px;
-    -webkit-column-width: 180px;
-    -webkit-column-gap: 10pt;
+    height: 143px;
+    -webkit-column-width: 170px;
+    -webkit-column-gap: 25px;
     color: white;
     font-size: 16px;
-    font-family: "BentonSans";
+    font-family: "BentonSans-Book";
+    line-height: 28px;
+    text-align: justify;
+    letter-spacing: -0.4;
 }

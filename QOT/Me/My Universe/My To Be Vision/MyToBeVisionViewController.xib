@@ -56,10 +56,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <webView contentMode="scaleToFill" allowsInlineMediaPlayback="NO" mediaPlaybackRequiresUserAction="NO" mediaPlaybackAllowsAirPlay="NO" keyboardDisplayRequiresUserAction="NO" pageLength="150" gapBetweenPages="10" translatesAutoresizingMaskIntoConstraints="NO" id="PGq-7l-TOU">
-                    <rect key="frame" x="29" y="262" width="346" height="143"/>
+                    <rect key="frame" x="0.0" y="255.5" width="540" height="150"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="143" id="ehA-FY-oN4"/>
+                        <constraint firstAttribute="height" constant="150" id="ehA-FY-oN4"/>
                     </constraints>
                     <dataDetectorType key="dataDetectorTypes"/>
                 </webView>
@@ -78,13 +78,13 @@
                 <constraint firstItem="bfh-6q-eoT" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="8bh-x5-WLw"/>
                 <constraint firstAttribute="trailing" secondItem="bfh-6q-eoT" secondAttribute="trailing" id="9GM-N0-OWD"/>
                 <constraint firstAttribute="bottom" secondItem="bfh-6q-eoT" secondAttribute="bottom" id="HGA-HD-4LM"/>
-                <constraint firstItem="PGq-7l-TOU" firstAttribute="leading" secondItem="2O5-1G-1AK" secondAttribute="leading" id="QZD-ay-2nS"/>
-                <constraint firstItem="PGq-7l-TOU" firstAttribute="top" secondItem="2O5-1G-1AK" secondAttribute="bottom" constant="30" id="Sh6-ra-YzA"/>
+                <constraint firstItem="PGq-7l-TOU" firstAttribute="top" secondItem="2O5-1G-1AK" secondAttribute="bottom" constant="24" id="Sh6-ra-YzA"/>
                 <constraint firstItem="j1g-lO-yqD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="topMargin" constant="102" id="TKB-Fz-koM"/>
+                <constraint firstItem="PGq-7l-TOU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Zo4-r1-8dC"/>
                 <constraint firstItem="tZz-oZ-wGy" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="aMl-LB-XiA"/>
                 <constraint firstItem="tZz-oZ-wGy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="27" id="fgQ-af-V4t"/>
                 <constraint firstItem="2O5-1G-1AK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="29" id="ooB-b1-vfV"/>
-                <constraint firstAttribute="trailing" secondItem="PGq-7l-TOU" secondAttribute="trailing" id="zgf-yk-wbU"/>
+                <constraint firstAttribute="trailing" secondItem="PGq-7l-TOU" secondAttribute="trailing" constant="-165" id="zgf-yk-wbU"/>
             </constraints>
             <point key="canvasLocation" x="33.5" y="54.5"/>
         </view>
