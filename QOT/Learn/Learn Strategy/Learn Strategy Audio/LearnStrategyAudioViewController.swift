@@ -63,12 +63,16 @@ private extension LearnStrategyAudioViewController {
     }
 }
 
+extension LearnStrategyAudioViewController: AVAudioPlayerDelegate {
+    // TODO
+}
+
 // MARK: - Private Helpers
 
 private extension LearnStrategyAudioViewController {
 
     func setupAudioPlayer() {
-
+        // TODO
     }
 
     func setupView() {
