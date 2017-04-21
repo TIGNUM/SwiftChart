@@ -15,6 +15,7 @@ final class LearnStrategyAudioViewController: UIViewController {
 
     @IBOutlet fileprivate weak var tableView: UITableView!
     fileprivate let viewModel: LearnStrategyAudioViewModel
+    fileprivate var queplayer: AVQueuePlayer?
     fileprivate var player: AVAudioPlayer?
     weak var delegate: LearnStrategyViewControllerDelegate?
 
