@@ -13,12 +13,14 @@ final class PartnersViewModel {
     // MARK: - Properties
 
     let items: [Partner]
+    let headline: String
     private var selectedIndex: Index
     fileprivate var currentEditPartner: Partner?
 
-    init(items: [Partner], selectedIndex: Index) {
+    init(items: [Partner], selectedIndex: Index, headline: String) {
         self.items = items
         self.selectedIndex = selectedIndex
+        self.headline = headline.uppercased()
     }
 
     var itemCount: Int {

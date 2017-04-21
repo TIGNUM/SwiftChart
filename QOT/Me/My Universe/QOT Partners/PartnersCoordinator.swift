@@ -30,7 +30,7 @@ final class PartnersCoordinator: ParentCoordinator {
         self.eventTracker = eventTracker
         self.partners = partners
         self.selectedIndex = selectedIndex
-        self.viewModel = PartnersViewModel(items: partners, selectedIndex: selectedIndex)
+        self.viewModel = PartnersViewModel(items: partners, selectedIndex: selectedIndex, headline: "Lore ipsum impsum plus")
     }
 
     func start() {
