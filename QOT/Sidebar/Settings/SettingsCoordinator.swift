@@ -15,7 +15,6 @@ final class SettingsCoordinator: ParentCoordinator {
     fileprivate let services: Services?
     fileprivate let eventTracker: EventTracker?
     internal var children = [Coordinator]()
-    weak var delegate: ParentCoordinator?
     lazy var presentationManager = PresentationManager()
     
     init(root: SidebarViewController, services: Services?, eventTracker: EventTracker?) {
@@ -39,6 +38,6 @@ extension SettingsCoordinator: SettingsViewControllerDelegate {
     
     func didTapClose(in viewController: UIViewController, animated: Bool) {
         viewController.dismiss(animated: animated, completion: nil)
-        delegate?.removeChild(child: self)
+        removeChild(child: self)
     }
 }

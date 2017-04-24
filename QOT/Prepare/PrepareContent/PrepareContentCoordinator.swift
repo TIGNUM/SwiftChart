@@ -50,6 +50,7 @@ extension PrepareContentCoordinator: PrepareContentViewControllerDelegate {
 
     func didTapClose(in viewController: PrepareContentViewController) {
         viewController.dismiss(animated: true, completion: nil)
+        removeChild(child: self)
     }
 
     func didTapShare(in viewController: PrepareContentViewController) {

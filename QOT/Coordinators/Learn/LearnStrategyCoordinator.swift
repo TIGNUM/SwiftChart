@@ -8,16 +8,12 @@
 
 import UIKit
 
-protocol LearnStrategyCoordinatorDelegate: ParentCoordinator {}
-
 final class LearnStrategyCoordinator: ParentCoordinator {
     fileprivate let rootVC: LearnContentListViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
     fileprivate let category: LearnCategory
-    
     var children: [Coordinator] = []
-    weak var delegate: LearnContentListCoordinatorDelegate?
     
     init(root: LearnContentListViewController, services: Services, eventTracker: EventTracker, category: LearnCategory) {
         self.rootVC = root
@@ -54,14 +50,14 @@ extension LearnStrategyCoordinator: LearnContentListViewControllerDelegate {
     
     func didTapBack(in: LearnContentListViewController) {
         rootVC.dismiss(animated: true)
-        delegate?.removeChild(child: self)
+        removeChild(child: self)
     }
 }
 
 extension LearnStrategyCoordinator: LearnStrategyViewControllerDelegate {
     func didTapClose(in viewController: LearnStrategyViewController) {
         rootVC.dismiss(animated: true, completion: nil)
-        delegate?.removeChild(child: self)
+        removeChild(child: self)
     }
     
     func didTapShare(in viewController: LearnStrategyViewController) {

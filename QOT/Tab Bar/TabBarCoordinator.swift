@@ -228,6 +228,7 @@ extension TabBarCoordinator: ChatViewDelegate {
 extension TabBarCoordinator: PrepareCheckListViewControllerDelegate {
     func didTapClose(in viewController: PrepareCheckListViewController) {
         viewController.dismiss(animated: true, completion: nil)
+        removeChild(child: self)
     }
 
     func didTapVideo(with ID: String, from view: UIView, in viewController: PrepareCheckListViewController) {
@@ -248,6 +249,7 @@ extension TabBarCoordinator: PrepareCheckListViewControllerDelegate {
 extension TabBarCoordinator: LearnStrategyViewControllerDelegate {
     func didTapClose(in viewController: LearnStrategyViewController) {
         viewController.dismiss(animated: true, completion: nil)
+        removeChild(child: self)
     }
 
     func didTapShare(in viewController: LearnStrategyViewController) {
@@ -287,6 +289,7 @@ extension TabBarCoordinator: WhatsHotViewControllerDelegate {
 extension TabBarCoordinator: WhatsHotNewTemplateViewControllerDelegate {
     func didTapClose(in viewController: WhatsHotNewTemplateViewController) {
         viewController.dismiss(animated: true, completion: nil)
+        removeChild(child: self)
     }
 
     func didTapLoadMore(from view: UIView, in viewController: WhatsHotNewTemplateViewController) {

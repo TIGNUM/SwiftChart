@@ -53,6 +53,7 @@ extension PartnersCoordinator: PartnersViewControllerDelegate {
 
     func didTapClose(in viewController: UIViewController, animated: Bool) {
         viewController.dismiss(animated: true, completion: nil)
+        removeChild(child: self)
     }
 
     func didTapEdit(partner: Partner, in viewController: UIViewController) {

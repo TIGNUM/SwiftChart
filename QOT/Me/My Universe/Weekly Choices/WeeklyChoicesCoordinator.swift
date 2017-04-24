@@ -42,6 +42,7 @@ extension WeeklyChoicesCoordinator: WeeklyChoicesViewControllerDelegate {
 
     func didTapClose(in viewController: UIViewController, animated: Bool) {
         viewController.dismiss(animated: true, completion: nil)
+        removeChild(child: self)
     }
 
     func didTapShare(in viewController: UIViewController, from rect: CGRect, with item: WeeklyChoice) {

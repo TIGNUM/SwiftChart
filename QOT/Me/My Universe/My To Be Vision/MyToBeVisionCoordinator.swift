@@ -49,6 +49,7 @@ extension MyToBeVisionCoordinator: MyToBeVisionViewControllerDelegate {
 
     func didTapClose(in viewController: MyToBeVisionViewController) {
         viewController.dismiss(animated: true, completion: nil)
+        removeChild(child: self)
     }
 }
 
