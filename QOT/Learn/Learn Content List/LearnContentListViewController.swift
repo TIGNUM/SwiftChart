@@ -128,3 +128,10 @@ private extension LearnContentListViewController {
         view.layoutIfNeeded()
     }
 }
+
+extension LearnContentListViewController: TopTabBarItem {
+
+    var topTabBarItem: TopTabBarController.Item {
+        return TopTabBarController.Item(controller: self, title: R.string.localized.topTabBarItemTitleLearnStrategies())
+    }
+}
