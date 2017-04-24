@@ -198,19 +198,16 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
 
     func didTapMyToBeVision(vision: Vision?, from view: UIView, in viewController: MyUniverseViewController) {
         let coordinator = MyToBeVisionCoordinator(root: viewControllers[TabBarItem.me.rawValue], services: services, eventTracker: eventTracker)
-        coordinator.start()
         startChild(child: coordinator)
     }
 
     func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, from view: UIView, in viewController: MyUniverseViewController) {
         let coordinator = WeeklyChoicesCoordinator(root: viewControllers[TabBarItem.me.rawValue], services: services, eventTracker: eventTracker)
-        coordinator.start()
         startChild(child: coordinator)
     }
 
     func didTapQOTPartner(selectedIndex: Index, partners: [Partner], from view: UIView, in viewController: MyUniverseViewController) {
         let coordinator = PartnersCoordinator(root: viewControllers[TabBarItem.me.rawValue], services: services, eventTracker: eventTracker, partners: partners, selectedIndex: selectedIndex)
-        coordinator.start()
         startChild(child: coordinator)
     }
 }
@@ -225,7 +222,6 @@ extension TabBarCoordinator: ChatViewDelegate {
     
     func didSelectChatNavigation(_ chatMessageNavigation: ChatMessageNavigation, in viewController: ChatViewController) {
         let coordinator = PrepareContentCoordinator(root: viewController, services: services, eventTracker: eventTracker)
-        coordinator.start()
         coordinator.startChild(child: coordinator)
     }
 }
@@ -288,7 +284,6 @@ extension TabBarCoordinator: TopTabBarDelegate {
         }
 
         let coordinator = SidebarCoordinator(root: tabBarController, services: services, eventTracker: eventTracker)
-        coordinator.start()
         startChild(child: coordinator)
     }
 

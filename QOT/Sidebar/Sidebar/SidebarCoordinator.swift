@@ -45,23 +45,18 @@ final class SidebarCoordinator: ParentCoordinator {
 
 extension SidebarCoordinator: SidebarViewControllerDelegate {
 
-    func didTapSettingsCell(in viewController: SidebarViewController) {
-        let coordinator = SettingsCoordinator(root: viewController, services: services, eventTracker: eventTracker)
-        startCoordinator(coordinator: coordinator)
+    func didTapSettingsMenuCell(in viewController: SidebarViewController) {
+        let coordinator = SettingsMenuCoordinator(root: viewController, services: services, eventTracker: eventTracker)
+        startChild(child: coordinator)
     }
 
     func didTapLibraryCell(in viewController: SidebarViewController) {
         let coordinator = LibraryCoordinator(root: viewController, services: services, eventTracker: eventTracker)
-        startCoordinator(coordinator: coordinator)
+        startChild(child: coordinator)
     }
 
     func didTapBenefitsCell(in viewController: SidebarViewController) {
         let coordinator = BenefitsCoordinator(root: viewController, services: services, eventTracker: eventTracker)        
-        startCoordinator(coordinator: coordinator)
-    }
-
-    private func startCoordinator(coordinator: ParentCoordinator) {
-        coordinator.start()
         startChild(child: coordinator)
     }
 }

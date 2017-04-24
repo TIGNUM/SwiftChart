@@ -11,32 +11,34 @@ import UIKit
 
 final class SettingsCoordinator: ParentCoordinator {
     
-    fileprivate let rootViewController: SidebarViewController
-    fileprivate let services: Services?
-    fileprivate let eventTracker: EventTracker?
+    fileprivate let rootViewController: SettingsMenuViewController
+    fileprivate let services: Services
+    fileprivate let eventTracker: EventTracker
+    fileprivate let settingsType: SettingsViewModel.SettingsType
     var children = [Coordinator]()
     lazy var presentationManager = PresentationManager()
     
-    init(root: SidebarViewController, services: Services?, eventTracker: EventTracker?) {
+    init(root: SettingsMenuViewController, services: Services, eventTracker: EventTracker, settingsType: SettingsViewModel.SettingsType) {
         self.rootViewController = root
         self.services = services
         self.eventTracker = eventTracker
+        self.settingsType = settingsType
     }
 
     func start() {
-        let settingsMenuViewController = SettingsMenuViewController(viewModel: SettingsMenuViewModel())
+        let settingsViewController = SettingsViewController(viewModel: SettingsViewModel(settingsType: settingsType))
         presentationManager.presentationType = .fadeIn
-        settingsMenuViewController.modalPresentationStyle = .custom
-        settingsMenuViewController.transitioningDelegate = presentationManager
+        settingsViewController.modalPresentationStyle = .custom
+        settingsViewController.transitioningDelegate = presentationManager
 
         let topTabBarController = TopTabBarController(
-            items: [settingsMenuViewController.topTabBarItem],
+            items: [settingsViewController.topTabBarItem],
             selectedIndex: 0,
             leftIcon: R.image.ic_minimize()
         )
 
         topTabBarController.delegate = self
-        rootViewController.present(topTabBarController, animated: true)
+        rootViewController.show(topTabBarController, sender: nil)
     }
 }
 

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol SidebarViewControllerDelegate: class {
-    func didTapSettingsCell(in viewController: SidebarViewController)
+    func didTapSettingsMenuCell(in viewController: SidebarViewController)
     func didTapLibraryCell(in viewController: SidebarViewController)
     func didTapBenefitsCell(in viewController: SidebarViewController)
 }
@@ -99,7 +99,7 @@ extension SidebarViewController {
     
     fileprivate func handleSelection(forItem item: SidebarCellType) {
         switch item {
-        case .settings: delegate?.didTapSettingsCell(in: self)
+        case .settings: delegate?.didTapSettingsMenuCell(in: self)
         case .library: delegate?.didTapLibraryCell(in: self)
         case .benefits: delegate?.didTapBenefitsCell(in: self)
         default: return

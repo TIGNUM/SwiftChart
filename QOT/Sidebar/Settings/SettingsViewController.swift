@@ -41,9 +41,9 @@ final class SettingsViewController: UIViewController {
 
 // MARK: - Layout
 
-extension SettingsViewController {
+private extension SettingsViewController {
     
-    fileprivate func setupView() {
+    func setupView() {
         view.backgroundColor = .darkGray
         tableView?.backgroundColor = .darkGray
         tableView?.register(UINib(nibName: R.nib.settingsTableViewCell.name, bundle: nil), forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Id.identifier)
@@ -54,9 +54,13 @@ extension SettingsViewController {
 // MARK: - UITableViewDataSource, UITableViewDelegate
 
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.sectionCount
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.itemCount
+        return viewModel.numberOfItemsInSection(in: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
