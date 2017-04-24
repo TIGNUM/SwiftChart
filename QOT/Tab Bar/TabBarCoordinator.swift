@@ -25,6 +25,7 @@ final class TabBarCoordinator: ParentCoordinator {
     fileprivate let eventTracker: EventTracker
     fileprivate let selectedIndex: Index
     fileprivate var viewControllers = [UIViewController]()
+    fileprivate var tabBarController: TabBarController?
     internal var children = [Coordinator]()
 
     fileprivate lazy var topTabBarControllerLearn: TopTabBarController = {
@@ -50,8 +51,6 @@ final class TabBarCoordinator: ParentCoordinator {
 
         let topTabBarController = TopTabBarController(items: items, selectedIndex: 0, leftIcon: R.image.ic_search(), rightIcon: R.image.ic_menu())
         topTabBarController.delegate = self
-
-        print("topTabBarController.delegate: ", topTabBarController.delegate)
 
         return topTabBarController
     }()
@@ -139,7 +138,8 @@ extension TabBarCoordinator {
         let bottomTabBarController = self.bottomTabBarController()
         window.rootViewController = bottomTabBarController
         window.makeKeyAndVisible()
-        eventTracker.track(page: bottomTabBarController.pageID, referer: bottomTabBarController.pageID, associatedEntity: nil)        
+        eventTracker.track(page: bottomTabBarController.pageID, referer: bottomTabBarController.pageID, associatedEntity: nil)
+        tabBarController = bottomTabBarController
     }
 
     func addViewControllers() {
@@ -282,12 +282,13 @@ extension TabBarCoordinator: TopTabBarDelegate {
     }
 
     func didSelectRightButton(sender: TopTabBarController) {
-        if sender === topTabBarControllerMe {
-            
+        print("didSelectRightButton", sender)
+        guard let tabBarController = tabBarController else {
+            return
         }
 
-        print("didSelectRightButton", sender)
-        let coordinator = SidebarCoordinator(root: sender, services: services, eventTracker: eventTracker)
+        let coordinator = SidebarCoordinator(root: tabBarController, services: services, eventTracker: eventTracker)
+        coordinator.start()
         startChild(child: coordinator)
     }
 

@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsViewController" customModule="QOT" customModuleProvider="target">
             <connections>
-                <outlet property="closeButton" destination="K75-gv-1YX" id="L5y-aw-qiB"/>
-                <outlet property="navigationBarView" destination="mhD-EJ-kQH" id="NlM-WN-aNx"/>
-                <outlet property="searchButton" destination="ZwX-M7-dOH" id="15d-Th-TrH"/>
                 <outlet property="tableView" destination="BOn-no-Bpr" id="ley-wh-iJO"/>
-                <outlet property="titleLabel" destination="JA6-BG-99j" id="9Ea-lO-CsS"/>
                 <outlet property="view" destination="Wf4-M1-Czf" id="8eA-am-ET7"/>
             </connections>
         </placeholder>
@@ -24,46 +20,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mhD-EJ-kQH" userLabel="navigationBarView">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JA6-BG-99j">
-                            <rect key="frame" x="166" y="51" width="42" height="21"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="21" id="nqe-pM-gW3"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZwX-M7-dOH">
-                            <rect key="frame" x="16" y="36" width="24" height="24"/>
-                            <state key="normal" image="ic_search"/>
-                            <connections>
-                                <action selector="didTapSearchButton" destination="-1" eventType="touchUpInside" id="ExA-Px-7jJ"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K75-gv-1YX">
-                            <rect key="frame" x="335" y="36" width="24" height="24"/>
-                            <state key="normal" image="ic_close"/>
-                            <connections>
-                                <action selector="didTapCloseButton" destination="-1" eventType="touchUpInside" id="lEo-Yl-IAr"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" red="0.47993282030000001" green="0.88758905440000002" blue="0.87258291619999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    <constraints>
-                        <constraint firstAttribute="bottom" secondItem="ZwX-M7-dOH" secondAttribute="bottom" constant="24" id="IFb-pP-yvk"/>
-                        <constraint firstAttribute="height" constant="84" id="RDL-w0-9gx"/>
-                        <constraint firstAttribute="bottom" secondItem="K75-gv-1YX" secondAttribute="bottom" constant="24" id="Vso-xe-Wo9"/>
-                        <constraint firstAttribute="trailing" secondItem="K75-gv-1YX" secondAttribute="trailing" constant="16" id="Z4m-5g-pUS"/>
-                        <constraint firstItem="ZwX-M7-dOH" firstAttribute="leading" secondItem="mhD-EJ-kQH" secondAttribute="leading" constant="16" id="nKE-Fs-1iN"/>
-                        <constraint firstItem="JA6-BG-99j" firstAttribute="centerX" secondItem="mhD-EJ-kQH" secondAttribute="centerX" id="wJJ-lK-Dvy"/>
-                        <constraint firstAttribute="bottom" secondItem="JA6-BG-99j" secondAttribute="bottom" constant="12" id="zf8-Uu-YiR"/>
-                    </constraints>
-                </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BOn-no-Bpr">
-                    <rect key="frame" x="0.0" y="84" width="375" height="583"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="JeI-vb-78l"/>
@@ -74,18 +32,11 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="BOn-no-Bpr" secondAttribute="bottom" id="0ba-8V-UmU"/>
-                <constraint firstItem="BOn-no-Bpr" firstAttribute="top" secondItem="mhD-EJ-kQH" secondAttribute="bottom" id="2Vx-yB-EXc"/>
-                <constraint firstAttribute="trailing" secondItem="mhD-EJ-kQH" secondAttribute="trailing" id="3gK-7i-gnu"/>
-                <constraint firstItem="mhD-EJ-kQH" firstAttribute="leading" secondItem="Wf4-M1-Czf" secondAttribute="leading" id="4a7-2L-hN3"/>
                 <constraint firstItem="BOn-no-Bpr" firstAttribute="leading" secondItem="Wf4-M1-Czf" secondAttribute="leading" id="Lgw-dl-Sc6"/>
-                <constraint firstItem="mhD-EJ-kQH" firstAttribute="top" secondItem="Wf4-M1-Czf" secondAttribute="top" id="RWu-Ms-EkI"/>
+                <constraint firstItem="BOn-no-Bpr" firstAttribute="top" secondItem="Wf4-M1-Czf" secondAttribute="top" id="TwY-bb-bZd"/>
                 <constraint firstAttribute="trailing" secondItem="BOn-no-Bpr" secondAttribute="trailing" id="oPb-8n-2XH"/>
             </constraints>
             <point key="canvasLocation" x="-15.5" y="116.5"/>
         </view>
     </objects>
-    <resources>
-        <image name="ic_close" width="24" height="24"/>
-        <image name="ic_search" width="24" height="24"/>
-    </resources>
 </document>

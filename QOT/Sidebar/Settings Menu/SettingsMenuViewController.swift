@@ -11,7 +11,6 @@ import ReactiveKit
 import Bond
 
 protocol SettingsMenuViewControllerDelegate: class {
-    func didTapClose(in viewController: SettingsMenuViewController)
     func didTapGeneral(in viewController: SettingsMenuViewController)
     func didTapNotifications(in viewController: SettingsMenuViewController)
     func didTapSecurity(in viewController: SettingsMenuViewController)
@@ -23,7 +22,6 @@ final class SettingsMenuViewController: UIViewController {
 
     private let disposeBag = DisposeBag()
     private let viewModel: SettingsMenuViewModel
-
     weak var delegate: SettingsMenuViewControllerDelegate?
 
     init(viewModel: SettingsMenuViewModel) {
@@ -40,5 +38,14 @@ final class SettingsMenuViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .purple
+    }
+}
+
+// MARK: - TopTabBarItem
+
+extension SettingsMenuViewController: TopTabBarItem {
+
+    var topTabBarItem: TopTabBarController.Item {
+        return TopTabBarController.Item(controller: self, title: R.string.localized.settingsTitle())
     }
 }

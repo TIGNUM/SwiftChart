@@ -32,12 +32,20 @@ final class SettingsCoordinator: ParentCoordinator {
     }
 }
 
-// MARK: - SettingsViewControllerDelegate
+// MARK: - TopTabBarDelegate
 
-extension SettingsCoordinator: SettingsViewControllerDelegate {
-    
-    func didTapClose(in viewController: UIViewController, animated: Bool) {
-        viewController.dismiss(animated: animated, completion: nil)
+extension SettingsCoordinator: TopTabBarDelegate {
+
+    func didSelectLeftButton(sender: TopTabBarController) {
+        sender.dismiss(animated: true, completion: nil)
         removeChild(child: self)
+    }
+
+    func didSelectRightButton(sender: TopTabBarController) {
+        print("didSelectRightButton")
+    }
+
+    func didSelectItemAtIndex(index: Int?, sender: TopTabBarController) {
+        print("didSelectItemAtIndex", index, sender)
     }
 }

@@ -8,23 +8,14 @@
 
 import UIKit
 
-protocol SettingsViewControllerDelegate: class {
-    func didTapClose(in viewController: UIViewController, animated: Bool)
-}
-
 final class SettingsViewController: UIViewController {
     
     // MARK: - Outlets
-    
-    @IBOutlet fileprivate weak var navigationBarView: UIView!
-    @IBOutlet fileprivate weak var titleLabel: UILabel!
-    @IBOutlet fileprivate weak var searchButton: UIButton!
-    @IBOutlet fileprivate weak var closeButton: UIButton!
+
     @IBOutlet fileprivate weak var tableView: UITableView!
     
     // MARK: - Properties
-    
-    weak var delegate: SettingsViewControllerDelegate?
+
     let viewModel: SettingsViewModel
     
     // MARK: - Life Cycle
@@ -43,7 +34,6 @@ final class SettingsViewController: UIViewController {
         super.viewDidLoad()
                 
         setupView()
-        setupNavigationBar()
     }
 }
 
@@ -51,28 +41,10 @@ final class SettingsViewController: UIViewController {
 
 extension SettingsViewController {
     
-    fileprivate func setupNavigationBar() {
-        titleLabel?.text = R.string.localized.settingsTitle()
-        navigationBarView?.backgroundColor = .darkGray
-    }
-    
     fileprivate func setupView() {
         view.backgroundColor = .darkGray
         tableView?.backgroundColor = .darkGray
         tableView?.register(UINib(nibName: R.nib.settingsTableViewCell.name, bundle: nil), forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Id.identifier)
-    }
-}
-
-// MARK: - Actions
-
-extension SettingsViewController {
-    
-    @IBAction private func didTapCloseButton() {
-        delegate?.didTapClose(in: self, animated: true)
-    }
-    
-    @IBAction private func didTapSearchButton() {
-        delegate?.didTapClose(in: self, animated: true)
     }
 }
 
@@ -96,5 +68,14 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+// MARK: - TopTabBarItem
+
+extension SettingsViewController: TopTabBarItem {
+
+    var topTabBarItem: TopTabBarController.Item {
+        return TopTabBarController.Item(controller: self, title: R.string.localized.settingsTitle())
     }
 }
