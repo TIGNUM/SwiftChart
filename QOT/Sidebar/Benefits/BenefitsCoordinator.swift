@@ -11,7 +11,7 @@ import UIKit
 
 final class BenefitsCoordinator: ParentCoordinator {
 
-    internal var rootViewController: SidebarViewController?
+    fileprivate let rootViewController: SidebarViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
     internal var children = [Coordinator]()
@@ -29,10 +29,18 @@ final class BenefitsCoordinator: ParentCoordinator {
         presentationManager.presentationType = .fadeIn
         benefitsViewController.modalPresentationStyle = .custom
         benefitsViewController.transitioningDelegate = presentationManager
-        rootViewController?.present(benefitsViewController, animated: true)
 
+        let topTabBarController = TopTabBarController(
+            items: [benefitsViewController.topTabBarItem],
+            selectedIndex: 0,
+            leftIcon: R.image.ic_minimize(),
+            rightIcon: R.image.ic_share()
+        )
+
+        topTabBarController.delegate = self
+        rootViewController.present(topTabBarController, animated: true)
         // TODO: Update associatedEntity with realm object when its created.
-        eventTracker.track(page: benefitsViewController.pageID, referer: rootViewController?.pageID, associatedEntity: nil)
+        eventTracker.track(page: benefitsViewController.pageID, referer: rootViewController.pageID, associatedEntity: nil)
     }
 }
 
@@ -40,16 +48,29 @@ final class BenefitsCoordinator: ParentCoordinator {
 
 extension BenefitsCoordinator: BenefitsViewControllerDelegate {
 
-    func didTapClose(in viewController: BenefitsViewController) {
-        viewController.dismiss(animated: true, completion: nil)
-        removeChild(child: self)
-    }
-
     func didTapMedia(with item: BenefitItem, from view: UIView, in viewController: BenefitsViewController) {
         log("didTapMedia: \(item)")
     }
 
     func didTapMore(from view: UIView, in viewController: BenefitsViewController) {
         log("didTapMore")
+    }
+}
+
+// MARK: - TopTabBarDelegate
+
+extension BenefitsCoordinator: TopTabBarDelegate {
+
+    func didSelectLeftButton(sender: TopTabBarController) {
+        sender.dismiss(animated: true, completion: nil)
+        removeChild(child: self)
+    }
+
+    func didSelectRightButton(sender: TopTabBarController) {
+        print("didSelectRightButton")
+    }
+
+    func didSelectItemAtIndex(index: Int?, sender: TopTabBarController) {
+        print("didSelectItemAtIndex")
     }
 }

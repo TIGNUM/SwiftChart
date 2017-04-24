@@ -9,7 +9,6 @@
 import UIKit
 
 protocol BenefitsViewControllerDelegate: class {
-    func didTapClose(in viewController: BenefitsViewController)
     func didTapMedia(with item: BenefitItem, from view: UIView, in viewController: BenefitsViewController)
     func didTapMore(from view: UIView, in viewController: BenefitsViewController)
 }
@@ -32,16 +31,13 @@ final class BenefitsViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+// MARK: - TopTabBarItem
 
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeView))
-        view.addGestureRecognizer(tapGestureRecognizer)
-        view.backgroundColor = .black
-    }
+extension BenefitsViewController: TopTabBarItem {
 
-    func closeView(gestureRecognizer: UITapGestureRecognizer) {
-        delegate?.didTapClose(in: self)
+    var topTabBarItem: TopTabBarController.Item {
+        return TopTabBarController.Item(controller: self, title: R.string.localized.sidebarTitleBenefits())
     }
 }
