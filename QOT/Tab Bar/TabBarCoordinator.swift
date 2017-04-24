@@ -53,7 +53,7 @@ final class TabBarCoordinator: ParentCoordinator {
 
     fileprivate lazy var topTabBarControllerMe: TopTabBarController = {
         let myUniverseViewController = MyUniverseViewController(
-            myDataViewModel: MyDataViewModel(),             myWhyViewModel: MyWhyViewModel()
+            myDataViewModel: MyDataViewModel(), myWhyViewModel: MyWhyViewModel()
         )
         myUniverseViewController.delegate = self
 
@@ -371,6 +371,10 @@ extension TabBarCoordinator: TopTabBarDelegate {
     }
 
     func didSelectRightButton(sender: TopTabBarController) {
+        if sender === topTabBarControllerMe {
+            
+        }
+
         print("didSelectRightButton", sender)
         let coordinator = SidebarCoordinator(root: sender, services: services, eventTracker: eventTracker)
         startChild(child: coordinator)

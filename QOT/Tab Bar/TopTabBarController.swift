@@ -45,7 +45,7 @@ final class TopTabBarController: UIViewController {
 
     fileprivate var controllers = [UIViewController]()
     fileprivate let items: [Item]
-    fileprivate lazy var myUniverseItem: MyUniverseItem? = nil
+    lazy var myUniverseItem: MyUniverseItem? = nil
     fileprivate let tabBarView: TabBarView
     fileprivate var index: Int = 0
     weak var delegate: TopTabBarDelegate?
