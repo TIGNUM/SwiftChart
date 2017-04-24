@@ -217,61 +217,9 @@ extension TabBarCoordinator: ChatViewDelegate {
     }
     
     func didSelectChatNavigation(_ chatMessageNavigation: ChatMessageNavigation, in viewController: ChatViewController) {
-        let viewModel = PrepareContentViewModel()
-        let prepareContentViewController = PrepareContentViewController(viewModel: viewModel)
-        prepareContentViewController.delegate = self
-        viewController.present(prepareContentViewController, animated: true, completion: nil)
-
-        // TODO: Update associatedEntity with realm object when its created.
-        eventTracker.track(page: prepareContentViewController.pageID, referer: rootViewController.pageID, associatedEntity: nil)
-    }
-}
-
-// MARK: - PrepareContentViewControllerDelegate
-
-extension TabBarCoordinator: PrepareContentViewControllerDelegate {
-    func didTapClose(in viewController: PrepareContentViewController) {
-        viewController.dismiss(animated: true, completion: nil)
-    }
-
-    func didTapShare(in viewController: PrepareContentViewController) {
-        log("didTapShare")
-    }
-
-    func didTapVideo(with ID: String, from view: UIView, in viewController: PrepareContentViewController) {
-        log("didTapVideo: ID: \(ID)")
-    }
-
-    func didTapSaveAs(sectionID: String, in viewController: PrepareContentViewController) {
-        let viewModel = MyPrepViewModel()
-        let vc = MyPrepViewController(viewModel: viewModel)
-        viewController.present(vc, animated: true)
-    }
-
-    func didTapAddToNotes(sectionID: String, in viewController: PrepareContentViewController) {
-        log("didTapAddToNotes")
-    }
-
-    func didTapAddPreparation(sectionID: String, in viewController: PrepareContentViewController) {
-        let viewModel = PrepareEventsViewModel()
-        let vc = PrepareEventsViewController(viewModel: viewModel)
-        viewController.present(vc, animated: true)
-    }
-
-    func didTapSaveAs(in viewController: PrepareContentViewController) {
-        let viewModel = MyPrepViewModel()
-        let vc = MyPrepViewController(viewModel: viewModel)
-        viewController.present(vc, animated: true)
-    }
-
-    func didTapAddToNotes(in viewController: PrepareContentViewController) {
-        log("didTapAddToNotes")
-    }
-
-    func didTapAddPreparation(in viewController: PrepareContentViewController) {
-        let viewModel = PrepareEventsViewModel()
-        let vc = PrepareEventsViewController(viewModel: viewModel)
-        viewController.present(vc, animated: true)
+        let coordinator = PrepareContentCoordinator(root: viewController, services: services, eventTracker: eventTracker)
+        coordinator.start()
+        coordinator.startChild(child: coordinator)
     }
 }
 
