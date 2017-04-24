@@ -30,7 +30,10 @@ final class MyToBeVisionCoordinator: ParentCoordinator {
     func start() {
         let myToBeVisionViewController = MyToBeVisionViewController(viewModel: MyToBeVisionViewModel())
         myToBeVisionViewController.delegate = self
-        rootViewController.present(myToBeVisionViewController, animated: true)
+        let myToBeVisionItem = TopTabBarController.Item(controller: myToBeVisionViewController, title: R.string.localized.meSectorMyWhyVisionTitle())
+        let topTabBarController = TopTabBarController(items: [myToBeVisionItem], selectedIndex: 0, leftIcon: R.image.ic_minimize(), rightIcon: R.image.ic_share())
+        topTabBarController.delegate = self
+        rootViewController.present(topTabBarController, animated: true)
     }
 }
 
@@ -40,5 +43,22 @@ extension MyToBeVisionCoordinator: MyToBeVisionViewControllerDelegate {
 
     func didTapClose(in viewController: MyToBeVisionViewController) {
         viewController.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - TopTabBarDelegate
+
+extension MyToBeVisionCoordinator: TopTabBarDelegate {
+
+    func didSelectItemAtIndex(index: Int?, sender: TopTabBarController) {
+        print(sender)
+    }
+
+    func didSelectLeftButton(sender: TopTabBarController) {
+        sender.dismiss(animated: true, completion: nil)
+    }
+
+    func didSelectRightButton(sender: TopTabBarController) {
+        print("didSelectRightButton open share dialog", sender)
     }
 }
