@@ -18,6 +18,7 @@ final class PartnersCoordinator: ParentCoordinator {
     fileprivate let eventTracker: EventTracker
     fileprivate let partners: [Partner]
     fileprivate let selectedIndex: Index
+    fileprivate let viewModel: PartnersViewModel
 
     var children: [Coordinator] = []
 
@@ -29,10 +30,11 @@ final class PartnersCoordinator: ParentCoordinator {
         self.eventTracker = eventTracker
         self.partners = partners
         self.selectedIndex = selectedIndex
+        self.viewModel = PartnersViewModel(items: partners, selectedIndex: selectedIndex, headline: "Lore ipsum impsum plus")
     }
 
     func start() {
-        let partnersViewController = PartnersViewController(viewModel: PartnersViewModel(items: partners, selectedIndex: selectedIndex))
+        let partnersViewController = PartnersViewController(viewModel: viewModel)
         partnersViewController.delegate = self
 
         let topTabBarController = TopTabBarController(
@@ -56,8 +58,8 @@ extension PartnersCoordinator: PartnersViewControllerDelegate {
         removeChild(child: self)
     }
 
-    func didTapEdit(partner: Partner, in viewController: UIViewController) {
-        print("didTapEDit, partmers, \(partner) ")
+    func didTapChangeImage(at index: Index, in viewController: UIViewController) {
+        print("didTapCahngeImage")
     }
 }
 
