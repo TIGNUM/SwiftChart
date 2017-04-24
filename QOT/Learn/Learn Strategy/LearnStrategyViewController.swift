@@ -117,3 +117,12 @@ extension LearnStrategyViewController: UITableViewDataSource {
         }
     }
 }
+
+// MARK: - TopTabBarItem
+
+extension LearnStrategyViewController: TopTabBarItem {
+
+    var topTabBarItem: TopTabBarController.Item {
+        return TopTabBarController.Item(controller: self, title: "FULL")
+    }
+}

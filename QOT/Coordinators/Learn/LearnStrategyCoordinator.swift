@@ -32,7 +32,16 @@ final class LearnStrategyCoordinator: ParentCoordinator {
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .custom
         vc.delegate =  self
-        rootVC.present(vc, animated: true)
+
+        let topTabBarController = TopTabBarController(
+            items: [vc.topTabBarItem],
+            selectedIndex: 0,
+            leftIcon: R.image.ic_minimize(),
+            rightIcon: R.image.ic_bookmark()
+        )
+
+        topTabBarController.delegate = self
+        rootVC.present(topTabBarController, animated: true)
         
         // FIXME: Add page tracking
     }
@@ -65,5 +74,20 @@ extension LearnStrategyCoordinator: LearnStrategyViewControllerDelegate {
     
     func didTapArticle(with article: LearnStrategyItem, from view: UIView, in viewController: LearnStrategyViewController) {
         log("did tap article: \(article)")
+    }
+}
+
+extension LearnStrategyCoordinator: TopTabBarDelegate {
+
+    func didSelectItemAtIndex(index: Int?, sender: TopTabBarController) {
+        print(index, sender)
+    }
+
+    func didSelectLeftButton(sender: TopTabBarController) {
+        sender.dismiss(animated: true, completion: nil)
+    }
+
+    func didSelectRightButton(sender: TopTabBarController) {
+        print("did select book mark")
     }
 }

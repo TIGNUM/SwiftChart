@@ -71,6 +71,6 @@ extension LearnContentListCoordinator: TopTabBarDelegate {
     }
 
     func didSelectItemAtIndex(index: Int?, sender: TopTabBarController) {
-        print("didSelectItemAtIndex, ,,,,,,,,,")
+        print("didSelectItemAtIndex", index, sender)
     }
 }
