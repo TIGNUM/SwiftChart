@@ -12,18 +12,6 @@ protocol PageTrackable {
     var pageID: PageID { get }
 }
 
-extension LaunchViewController: PageTrackable {
-    var pageID: PageID {
-        return .launch
-    }
-}
-
-extension MainMenuViewController: PageTrackable {
-    var pageID: PageID {
-        return .mainMenu
-    }
-}
-
 extension LearnCategoryListViewController: PageTrackable {
     var pageID: PageID {
         return .learnCategoryList

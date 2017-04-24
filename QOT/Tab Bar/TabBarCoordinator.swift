@@ -19,8 +19,8 @@ final class TabBarCoordinator: ParentCoordinator {
     }
     
     // MARK: - Properties
-    
-    fileprivate let rootViewController: MainMenuViewController
+
+    fileprivate let window: UIWindow
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
     fileprivate let selectedIndex: Index
@@ -48,7 +48,12 @@ final class TabBarCoordinator: ParentCoordinator {
             )
         ]
 
-        return TopTabBarController(items: items, selectedIndex: 0, leftIcon: R.image.ic_search(), rightIcon: R.image.ic_menu())
+        let topTabBarController = TopTabBarController(items: items, selectedIndex: 0, leftIcon: R.image.ic_search(), rightIcon: R.image.ic_menu())
+        topTabBarController.delegate = self
+
+        print("topTabBarController.delegate: ", topTabBarController.delegate)
+
+        return topTabBarController
     }()
 
     fileprivate lazy var topTabBarControllerMe: TopTabBarController = {
@@ -65,7 +70,10 @@ final class TabBarCoordinator: ParentCoordinator {
             ]
         )
 
-        return TopTabBarController(myUniverseItem: myUniverseItem, selectedIndex: 0, rightIcon: R.image.ic_menu())
+        let topTabBarController = TopTabBarController(myUniverseItem: myUniverseItem, selectedIndex: 0, rightIcon: R.image.ic_menu())
+        topTabBarController.delegate = self
+
+        return topTabBarController
     }()
 
     fileprivate lazy var topTabBarControllerPrepare: TopTabBarController = {
@@ -84,25 +92,28 @@ final class TabBarCoordinator: ParentCoordinator {
             )
         ]
 
-        return TopTabBarController(items: items, selectedIndex: 0, leftIcon: R.image.ic_search(), rightIcon: R.image.ic_menu())
+        let topTabBarController = TopTabBarController(items: items, selectedIndex: 0, leftIcon: R.image.ic_search(), rightIcon: R.image.ic_menu())
+        topTabBarController.delegate = self
+
+        return topTabBarController
     }()
     
     // MARK: - Init
     
-    init(rootViewController: MainMenuViewController, selectedIndex: Index, services: Services, eventTracker: EventTracker) {
-        self.rootViewController = rootViewController
+    init(window: UIWindow, selectedIndex: Index, services: Services, eventTracker: EventTracker) {
+        self.window = window
         self.services = services
         self.eventTracker = eventTracker
         self.selectedIndex = selectedIndex
-        self.addViewControllers()
-        self.addTopTabBarDelegate()
     }
 }
 
 // MARK: - TopTabBarControllers
 
 private extension TabBarCoordinator {
+    
     func bottomTabBarController() -> TabBarController {
+        addViewControllers()
         let bottomTabBarController = TabBarController(items: tabBarControllerItems(), selectedIndex: 0)
         bottomTabBarController.modalTransitionStyle = .crossDissolve
         bottomTabBarController.modalPresentationStyle = .custom
@@ -126,8 +137,9 @@ extension TabBarCoordinator {
 
     func start() {
         let bottomTabBarController = self.bottomTabBarController()
-        rootViewController.present(bottomTabBarController, animated: true)
-        eventTracker.track(page: bottomTabBarController.pageID, referer: rootViewController.pageID, associatedEntity: nil)
+        window.rootViewController = bottomTabBarController
+        window.makeKeyAndVisible()
+        eventTracker.track(page: bottomTabBarController.pageID, referer: bottomTabBarController.pageID, associatedEntity: nil)        
     }
 
     func addViewControllers() {
@@ -135,28 +147,19 @@ extension TabBarCoordinator {
         viewControllers.append(topTabBarControllerMe)
         viewControllers.append(topTabBarControllerPrepare)
     }
-
-    func addTopTabBarDelegate() {
-        viewControllers.forEach { (viewController: UIViewController) in
-            guard let topTabBarController = viewController as? TopTabBarController else {
-                return
-            }
-
-            topTabBarController.delegate = self
-        }
-    }
 }
 
 // MARK: - TabBarControllerDelegate
 
 extension TabBarCoordinator: TabBarControllerDelegate {
+    
     func didSelectTab(at index: Index, in controller: TabBarController) {
         let viewController = controller.viewControllers.first
         
         switch viewController {
-        case let learnCategory as LearnCategoryListViewController: eventTracker.track(page: learnCategory.pageID, referer: rootViewController.pageID, associatedEntity: nil)
-        case let meCategory as MyUniverseViewController: eventTracker.track(page: meCategory.pageID, referer: rootViewController.pageID, associatedEntity: nil)
-        case let chat as ChatViewController: eventTracker.track(page: chat.pageID, referer: rootViewController.pageID, associatedEntity: nil)
+        case let learnCategory as LearnCategoryListViewController: eventTracker.track(page: learnCategory.pageID, referer: learnCategory.pageID, associatedEntity: nil)
+        case let meCategory as MyUniverseViewController: eventTracker.track(page: meCategory.pageID, referer: meCategory.pageID, associatedEntity: nil)
+        case let chat as ChatViewController: eventTracker.track(page: chat.pageID, referer: chat.pageID, associatedEntity: nil)
         default: break
         }
     }
@@ -165,6 +168,7 @@ extension TabBarCoordinator: TabBarControllerDelegate {
 // MARK: - LearnCategoryListViewControllerDelegate
 
 extension TabBarCoordinator: LearnCategoryListViewControllerDelegate {
+
     func didSelectCategory(_ category: LearnCategory, in viewController: LearnCategoryListViewController) {
         let coordinator = LearnContentListCoordinator(root: viewController, services: services, eventTracker: eventTracker, category: category)
         coordinator.start()
@@ -176,6 +180,7 @@ extension TabBarCoordinator: LearnCategoryListViewControllerDelegate {
 // MARK: - LearnContentListCoordinatorDelegate
 
 extension TabBarCoordinator: LearnContentListCoordinatorDelegate {
+
     func didFinish(coordinator: LearnContentListCoordinator) {
         if let index = children.index(where: { $0 === coordinator}) {
             children.remove(at: index)
@@ -186,6 +191,7 @@ extension TabBarCoordinator: LearnContentListCoordinatorDelegate {
 // MARK: - MeSectionDelegate
 
 extension TabBarCoordinator: MyUniverseViewControllerDelegate {
+
     func didTapSector(sector: Sector?, in viewController: MyUniverseViewController) {
         print("didTapSector: \(sector?.labelType.text ?? "INVALID")")
     }
@@ -212,6 +218,7 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
 // MARK: - PrepareChatBotDelegate
 
 extension TabBarCoordinator: ChatViewDelegate {
+
     func didSelectChatInput(_ input: ChatMessageInput, in viewController: ChatViewController) {
         log("didSelectChatInput: \(input)")
     }
@@ -226,6 +233,7 @@ extension TabBarCoordinator: ChatViewDelegate {
 // MARK: - WhatsHotViewControllerDelegate
 
 extension TabBarCoordinator: WhatsHotViewControllerDelegate {
+
     func didTapVideo(at index: Index, with whatsHot: WhatsHotItem, from view: UIView, in viewController: WhatsHotViewController) {
         log("didTapVideo: index: \(index), whatsHotItem.URL: \(whatsHot.placeholderURL.absoluteString)")
     }
@@ -238,6 +246,7 @@ extension TabBarCoordinator: WhatsHotViewControllerDelegate {
 // MARK: - WhatsHotNewTemplateViewControllerDelegate
 
 extension TabBarCoordinator: WhatsHotNewTemplateViewControllerDelegate {
+
     func didTapClose(in viewController: WhatsHotNewTemplateViewController) {
         viewController.dismiss(animated: true, completion: nil)
         removeChild(child: self)

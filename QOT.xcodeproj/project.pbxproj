@@ -77,12 +77,6 @@
 		CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791461E7172390006C590 /* LearnContentListCoordinator.swift */; };
 		CBD7914A1E71797C0006C590 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791491E71797C0006C590 /* Typealiases.swift */; };
 		CBD791541E72A4BB0006C590 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791531E72A4BB0006C590 /* MockData.swift */; };
-		CBD7915C1E72F2990006C590 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD7915A1E72F2990006C590 /* LaunchViewController.swift */; };
-		CBD7915D1E72F2990006C590 /* LaunchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBD7915B1E72F2990006C590 /* LaunchViewController.xib */; };
-		CBD7915F1E72FDC10006C590 /* LaunchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD7915E1E72FDC10006C590 /* LaunchViewModel.swift */; };
-		CBD791651E768AB70006C590 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791631E768AB70006C590 /* MainMenuViewController.swift */; };
-		CBD791661E768AB70006C590 /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBD791641E768AB70006C590 /* MainMenuViewController.xib */; };
-		CBD791681E768CC00006C590 /* MainMenuCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791671E768CC00006C590 /* MainMenuCoordinator.swift */; };
 		CBDB98F21E7AA510003EC73F /* CalendarImportResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB98F11E7AA510003EC73F /* CalendarImportResult.swift */; };
 		CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB98F31E7B000A003EC73F /* NotificationHandler.swift */; };
 		CBDB98F71E7BD192003EC73F /* CalendarImportTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB98F61E7BD192003EC73F /* CalendarImportTaskTests.swift */; };
@@ -271,12 +265,6 @@
 		CBD791461E7172390006C590 /* LearnContentListCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentListCoordinator.swift; sourceTree = "<group>"; };
 		CBD791491E71797C0006C590 /* Typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
 		CBD791531E72A4BB0006C590 /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
-		CBD7915A1E72F2990006C590 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
-		CBD7915B1E72F2990006C590 /* LaunchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchViewController.xib; sourceTree = "<group>"; };
-		CBD7915E1E72FDC10006C590 /* LaunchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewModel.swift; sourceTree = "<group>"; };
-		CBD791631E768AB70006C590 /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
-		CBD791641E768AB70006C590 /* MainMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenuViewController.xib; sourceTree = "<group>"; };
-		CBD791671E768CC00006C590 /* MainMenuCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuCoordinator.swift; sourceTree = "<group>"; };
 		CBDB98F11E7AA510003EC73F /* CalendarImportResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarImportResult.swift; sourceTree = "<group>"; };
 		CBDB98F31E7B000A003EC73F /* NotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 		CBDB98F61E7BD192003EC73F /* CalendarImportTaskTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarImportTaskTests.swift; sourceTree = "<group>"; };
@@ -575,7 +563,6 @@
 				CBD791481E7172460006C590 /* Learn */,
 				CB2880231E7051710067890A /* AppCoordinator.swift */,
 				CB2880211E7050EB0067890A /* Coordinator.swift */,
-				CBD791671E768CC00006C590 /* MainMenuCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -714,7 +701,6 @@
 				CBD791571E72F10E0006C590 /* Launch */,
 				CCC1B69A1E8B99B500D1461F /* Learn */,
 				CB8A15441E7986A90023B2F9 /* Localization */,
-				CBD791601E768A4F0006C590 /* Main Menu */,
 				CC4D1D791E82E6A000B8D75E /* Me */,
 				CC20C9921E8981070056054D /* Prepare */,
 				CC6B3A271E81586C00E7FDFD /* Presentation */,
@@ -769,20 +755,8 @@
 			isa = PBXGroup;
 			children = (
 				CBB237F81E6FFF1200AB5AEF /* LaunchScreen.storyboard */,
-				CBD7915A1E72F2990006C590 /* LaunchViewController.swift */,
-				CBD7915B1E72F2990006C590 /* LaunchViewController.xib */,
-				CBD7915E1E72FDC10006C590 /* LaunchViewModel.swift */,
 			);
 			path = Launch;
-			sourceTree = "<group>";
-		};
-		CBD791601E768A4F0006C590 /* Main Menu */ = {
-			isa = PBXGroup;
-			children = (
-				CBD791631E768AB70006C590 /* MainMenuViewController.swift */,
-				CBD791641E768AB70006C590 /* MainMenuViewController.xib */,
-			);
-			path = "Main Menu";
 			sourceTree = "<group>";
 		};
 		CBDB98F51E7BD15F003EC73F /* Calendar Import */ = {
@@ -1257,7 +1231,6 @@
 			files = (
 				CCAF032C1E80362700015125 /* SettingsTableViewCell.xib in Resources */,
 				0B1059871EA77AC700660A1D /* PrepareEventTableViewHeader.xib in Resources */,
-				CBD791661E768AB70006C590 /* MainMenuViewController.xib in Resources */,
 				0BC9F93A1E96118C009E8204 /* StatusTableViewCell.xib in Resources */,
 				0BEE8ABE1EA600A7008077B8 /* PrepareEventSimpleTableViewCell.xib in Resources */,
 				D51D08881E8E80AF00FC7567 /* LearnStrategyVideoCell.xib in Resources */,
@@ -1273,7 +1246,6 @@
 				0B40DC071E9CA65300E1659B /* PrepareContentViewController.xib in Resources */,
 				CCC0C4CC1E828007002A8362 /* BentonSans_Regular.otf in Resources */,
 				CCC1B6AA1E8B9B7300D1461F /* LearnCategoryListViewController.xib in Resources */,
-				CBD7915D1E72F2990006C590 /* LaunchViewController.xib in Resources */,
 				0BE7FD8B1E9D2AEF00E3262E /* PrepareContentStepTableViewCell.xib in Resources */,
 				D51D088C1E8E80CD00FC7567 /* LearnStrategyArticleCell.xib in Resources */,
 				0BE7FD851E9CAC7400E3262E /* PrepareContentActionButtonsTableViewCell.xib in Resources */,
@@ -1454,7 +1426,6 @@
 				CB2880221E7050EB0067890A /* Coordinator.swift in Sources */,
 				CB55A2DF1E9FDF0A00D721CE /* SettingsMenuViewController.swift in Sources */,
 				CCC1B6A91E8B9B7300D1461F /* LearnCategoryListViewController.swift in Sources */,
-				CBD7915F1E72FDC10006C590 /* LaunchViewModel.swift in Sources */,
 				CB369CE51E8E46B600522293 /* LearnContent.swift in Sources */,
 				CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */,
 				D55CBED71E8A993200C690FB /* CGPoint+Convenience.swift in Sources */,
@@ -1472,8 +1443,6 @@
 				0BD6F6B91EA0E81E001EBC4D /* MyPrepTableViewCell.swift in Sources */,
 				CCE372F31E8C1EDF00B79352 /* WhatsHotViewModel.swift in Sources */,
 				CCD377541E8D3C2D00BB8031 /* WhatsHotNewTemplateViewModel.swift in Sources */,
-				CBD7915C1E72F2990006C590 /* LaunchViewController.swift in Sources */,
-				CBD791681E768CC00006C590 /* MainMenuCoordinator.swift in Sources */,
 				D520BC931E8E655A00A2D107 /* LearnStrategyHeaderCell.swift in Sources */,
 				CCC0C4D61E82B405002A8362 /* R.generated.swift in Sources */,
 				D51D08871E8E80AF00FC7567 /* LearnStrategyVideoCell.swift in Sources */,
@@ -1523,7 +1492,6 @@
 				CC6B3A291E8158B200E7FDFD /* PresentationManager.swift in Sources */,
 				CCAF03241E801B0E00015125 /* SettingsCoordinator.swift in Sources */,
 				CC0FF8D61EA78C810028D64F /* MyToBeVisionCoordinator.swift in Sources */,
-				CBD791651E768AB70006C590 /* MainMenuViewController.swift in Sources */,
 				0BC1FF4B1E968E07007DE090 /* CollectionTableViewCell.swift in Sources */,
 				D57ECFB01E924CC2008F401B /* TabBarView.swift in Sources */,
 				CCE06FE01E8D44FC009C5AD2 /* LibraryCoordinator.swift in Sources */,

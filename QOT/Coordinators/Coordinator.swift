@@ -23,8 +23,6 @@ protocol ParentCoordinator: Coordinator {
     func removeChild(child: Coordinator)
 }
 
-
-
 extension ParentCoordinator {
     
     func removeChild(child: Coordinator) {
