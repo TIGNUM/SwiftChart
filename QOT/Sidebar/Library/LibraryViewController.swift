@@ -9,7 +9,6 @@
 import UIKit
 
 protocol LibraryViewControllerDelegate: class {
-    func didTapClose(in viewController: LibraryViewController)
     func didTapMedia(with mediaItem: LibraryMediaItem, from view: UIView, in viewController: UIViewController)
 }
 
@@ -31,16 +30,13 @@ final class LibraryViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+// MARK: - TopTabBarItem
 
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeView))
-        view.addGestureRecognizer(tapGestureRecognizer)
-        view.backgroundColor = .black
-    }
+extension LibraryViewController: TopTabBarItem {
 
-    func closeView(gestureRecognizer: UITapGestureRecognizer) {
-        delegate?.didTapClose(in: self)
+    var topTabBarItem: TopTabBarController.Item {
+        return TopTabBarController.Item(controller: self, title: R.string.localized.sidebarTitleLibrary())
     }
 }
