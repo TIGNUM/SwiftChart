@@ -26,7 +26,7 @@ final class TabBarCoordinator: ParentCoordinator {
     fileprivate let selectedIndex: Index
     fileprivate var viewControllers = [UIViewController]()
     fileprivate var tabBarController: TabBarController?
-    internal var children = [Coordinator]()
+    var children = [Coordinator]()
 
     fileprivate lazy var topTabBarControllerLearn: TopTabBarController = {
         let categories = self.services.learnContent.categories()

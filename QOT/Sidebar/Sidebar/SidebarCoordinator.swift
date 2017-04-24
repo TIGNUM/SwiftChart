@@ -14,7 +14,7 @@ final class SidebarCoordinator: ParentCoordinator {
     fileprivate let rootViewController: UIViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
-    internal var children = [Coordinator]()
+    var children = [Coordinator]()
     lazy var presentationManager = PresentationManager()
     
     init(root: UIViewController, services: Services, eventTracker: EventTracker) {
