@@ -11,7 +11,7 @@ import UIKit
 
 final class SettingsCoordinator: ParentCoordinator {
     
-    internal var rootViewController: SidebarViewController?
+    fileprivate let rootViewController: SidebarViewController
     fileprivate let services: Services?
     fileprivate let eventTracker: EventTracker?
     internal var children = [Coordinator]()
@@ -24,11 +24,19 @@ final class SettingsCoordinator: ParentCoordinator {
     }
 
     func start() {
-        let settingsViewController = SettingsMenuViewController(viewModel: SettingsMenuViewModel())
+        let settingsMenuViewController = SettingsMenuViewController(viewModel: SettingsMenuViewModel())
         presentationManager.presentationType = .fadeIn
-        settingsViewController.modalPresentationStyle = .custom
-        settingsViewController.transitioningDelegate = presentationManager
-        rootViewController?.present(settingsViewController, animated: true)
+        settingsMenuViewController.modalPresentationStyle = .custom
+        settingsMenuViewController.transitioningDelegate = presentationManager
+
+        let topTabBarController = TopTabBarController(
+            items: [settingsMenuViewController.topTabBarItem],
+            selectedIndex: 0,
+            leftIcon: R.image.ic_minimize()
+        )
+
+        topTabBarController.delegate = self
+        rootViewController.present(topTabBarController, animated: true)
     }
 }
 
