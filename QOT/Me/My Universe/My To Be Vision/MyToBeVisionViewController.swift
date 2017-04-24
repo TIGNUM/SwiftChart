@@ -67,3 +67,12 @@ extension MyToBeVisionViewController: UIScrollViewDelegate {
         // TODO
     }
 }
+
+// MARK: - TopTabBarItem
+
+extension MyToBeVisionViewController: TopTabBarItem {
+
+    var topTabBarItem: TopTabBarController.Item {
+        return TopTabBarController.Item(controller: self, title: R.string.localized.meSectorMyWhyVisionTitle())
+    }
+}

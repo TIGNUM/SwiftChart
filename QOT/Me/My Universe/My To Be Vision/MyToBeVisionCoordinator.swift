@@ -30,8 +30,14 @@ final class MyToBeVisionCoordinator: ParentCoordinator {
     func start() {
         let myToBeVisionViewController = MyToBeVisionViewController(viewModel: MyToBeVisionViewModel())
         myToBeVisionViewController.delegate = self
-        let myToBeVisionItem = TopTabBarController.Item(controller: myToBeVisionViewController, title: R.string.localized.meSectorMyWhyVisionTitle())
-        let topTabBarController = TopTabBarController(items: [myToBeVisionItem], selectedIndex: 0, leftIcon: R.image.ic_minimize(), rightIcon: R.image.ic_share())
+
+        let topTabBarController = TopTabBarController(
+            items: [myToBeVisionViewController.topTabBarItem],
+            selectedIndex: 0,
+            leftIcon: R.image.ic_minimize(),
+            rightIcon: R.image.ic_share()
+        )
+
         topTabBarController.delegate = self
         rootViewController.present(topTabBarController, animated: true)
     }

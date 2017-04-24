@@ -15,6 +15,10 @@ protocol TopTabBarDelegate: class {
     func didSelectRightButton(sender: TopTabBarController)
 }
 
+protocol TopTabBarItem: class {
+    var topTabBarItem: TopTabBarController.Item { get }
+}
+
 final class TopTabBarController: UIViewController {
 
     // MARK: - Constants

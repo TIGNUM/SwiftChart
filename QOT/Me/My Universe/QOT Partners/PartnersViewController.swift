@@ -55,3 +55,12 @@ extension PartnersViewController {
         delegate?.didTapClose(in: self, animated: false)
     }
 }
+
+// MARK: - TopTabBarItem
+
+extension PartnersViewController: TopTabBarItem {
+
+    var topTabBarItem: TopTabBarController.Item {
+        return TopTabBarController.Item(controller: self, title: R.string.localized.meSectorMyWhyPartnersTitle())
+    }
+}
