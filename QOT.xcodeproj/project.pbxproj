@@ -119,6 +119,7 @@
 		CC9663151EA1B41500B84B1C /* MyUniverseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9663121EA1B41500B84B1C /* MyUniverseViewController.swift */; };
 		CC9663161EA1B41500B84B1C /* MyUniverseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9663131EA1B41500B84B1C /* MyUniverseHelper.swift */; };
 		CC9663181EA1B86100B84B1C /* MyDataSectorLabelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9663171EA1B86100B84B1C /* MyDataSectorLabelsView.swift */; };
+		CC9FBDE61EAE155300AF1CF0 /* PrepareContentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9FBDE51EAE155300AF1CF0 /* PrepareContentCoordinator.swift */; };
 		CCAF03241E801B0E00015125 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF03211E801B0E00015125 /* SettingsCoordinator.swift */; };
 		CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF03221E801B0E00015125 /* SettingsViewController.swift */; };
 		CCAF03281E802A6200015125 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCAF03271E802A6200015125 /* SettingsViewController.xib */; };
@@ -312,6 +313,7 @@
 		CC9663121EA1B41500B84B1C /* MyUniverseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUniverseViewController.swift; sourceTree = "<group>"; };
 		CC9663131EA1B41500B84B1C /* MyUniverseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUniverseHelper.swift; sourceTree = "<group>"; };
 		CC9663171EA1B86100B84B1C /* MyDataSectorLabelsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataSectorLabelsView.swift; sourceTree = "<group>"; };
+		CC9FBDE51EAE155300AF1CF0 /* PrepareContentCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentCoordinator.swift; sourceTree = "<group>"; };
 		CCAF03211E801B0E00015125 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		CCAF03221E801B0E00015125 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		CCAF03271E802A6200015125 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
@@ -924,6 +926,7 @@
 				0B40DC081E9CA65D00E1659B /* PrepareContentTextTableViewCell */,
 				0BE7FD8C1E9D2F4D00E3262E /* PrepareContentTitleTableViewCell */,
 				0B40DC111E9CA6E500E1659B /* PrepareContentViedeoPreviewTableViewCell */,
+				CC9FBDE51EAE155300AF1CF0 /* PrepareContentCoordinator.swift */,
 				CCCC21201E8981CA00133839 /* PrepareContentViewController.swift */,
 				0B40DC061E9CA65300E1659B /* PrepareContentViewController.xib */,
 				CCCC21211E8981CA00133839 /* PrepareContentViewModel.swift */,
@@ -984,10 +987,10 @@
 		CCC0C4D71E82BAEA002A8362 /* Tab Bar */ = {
 			isa = PBXGroup;
 			children = (
-				CC4AB7E41EA8A36B000F43B1 /* TopTabBarController.swift */,
 				D5CD23D71E8BB73A002742C4 /* TabBarController.swift */,
 				CCC0C4DA1E82BDEF002A8362 /* TabBarCoordinator.swift */,
 				D57ECFAF1E924CC2008F401B /* TabBarView.swift */,
+				CC4AB7E41EA8A36B000F43B1 /* TopTabBarController.swift */,
 			);
 			path = "Tab Bar";
 			sourceTree = "<group>";
@@ -1525,6 +1528,7 @@
 				D57ECFB01E924CC2008F401B /* TabBarView.swift in Sources */,
 				CCE06FE01E8D44FC009C5AD2 /* LibraryCoordinator.swift in Sources */,
 				0B254D3E1E97994C006AA4C0 /* PrepareCollectionViewCell.swift in Sources */,
+				CC9FBDE61EAE155300AF1CF0 /* PrepareContentCoordinator.swift in Sources */,
 				CCAF032A1E8035C800015125 /* SettingsTableViewCell.swift in Sources */,
 				CC0FF8DA1EA790750028D64F /* PartnersCoordinator.swift in Sources */,
 				CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */,
