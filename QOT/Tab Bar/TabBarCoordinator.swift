@@ -223,55 +223,6 @@ extension TabBarCoordinator: ChatViewDelegate {
     }
 }
 
-// MARK: - PrepareCheckListViewControllerDelegate
-
-extension TabBarCoordinator: PrepareCheckListViewControllerDelegate {
-    func didTapClose(in viewController: PrepareCheckListViewController) {
-        viewController.dismiss(animated: true, completion: nil)
-        removeChild(child: self)
-    }
-
-    func didTapVideo(with ID: String, from view: UIView, in viewController: PrepareCheckListViewController) {
-        log("didTapVideo: ID: \(ID) view: \(view)")
-    }
-
-    func didTapSelectCheckbox(with ID: String, from view: UIView, at index: Index, in viewController: PrepareCheckListViewController) {
-        log("didTapSelectCheckbox: ID: \(ID), index: \(index), view: \(view)")
-    }
-
-    func didTapDeselectCheckbox(with ID: String, from view: UIView, at index: Index, in viewController: PrepareCheckListViewController) {
-        log("didTapDeselectCheckbox: ID: \(ID), index: \(index), view: \(view)")
-    }
-}
-
-// MARK: - LearnStrategyViewControllerDelegate
-
-extension TabBarCoordinator: LearnStrategyViewControllerDelegate {
-    func didTapClose(in viewController: LearnStrategyViewController) {
-        viewController.dismiss(animated: true, completion: nil)
-        removeChild(child: self)
-    }
-
-    func didTapShare(in viewController: LearnStrategyViewController) {
-        log("didTapShare")
-    }
-
-    func didTapVideo(with video: LearnStrategyItem, from view: UIView, in viewController: LearnStrategyViewController) {
-        switch video {
-        case .media(let localID, let placeholderURL, let description):
-            log("didTapVideo: localID: \(localID), placeholderURL: \(placeholderURL), description: \(description) in view: \(view)")
-        default: log("didTapArticle NO ARTICLE!")
-        }
-    }
-
-    func didTapArticle(with article: LearnStrategyItem, from view: UIView, in viewController: LearnStrategyViewController) {
-        switch article {
-        case .article(let localID, let title, let subtitle): log("didTapArticle: localID: \(localID), title: \(title), subtitle: \(subtitle) in view: \(view)")
-        default: log("didTapArticle NO ARTICLE!")
-        }
-    }
-}
-
 // MARK: - WhatsHotViewControllerDelegate
 
 extension TabBarCoordinator: WhatsHotViewControllerDelegate {
