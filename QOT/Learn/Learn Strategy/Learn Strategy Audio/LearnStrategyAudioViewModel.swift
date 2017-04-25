@@ -35,7 +35,12 @@ final class LearnStrategyAudioViewModel {
     }
 
     func playItem(at index: Index) {
-        try? player = AVAudioPlayer(contentsOf: audioTrack(at: index).url)
+        if player.isPlaying == true {
+            stopPlayback()
+        }
+
+        let trackURL = audioTrack(at: index).url
+        try? player = AVAudioPlayer(contentsOf: trackURL)
         player.prepareToPlay()
         player.play()
     }
