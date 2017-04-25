@@ -55,12 +55,12 @@ protocol WeeklyChoice {
 
 protocol Partner {
     var localID: String { get }
-    var profileImage: UIImage? { get }
-    var name: String { get }
-    var surename: String { get }
+    var profileImage: UIImage? { get set }
+    var name: String { get set }
+    var surename: String { get set }
     var initials: String { get }
-    var relationShip: String { get }
-    var email: String { get }
+    var relationship: String { get set }
+    var email: String { get set }
 }
 
 struct MockVison: Vision {
@@ -75,14 +75,30 @@ struct MockWeeklyChoice: WeeklyChoice {
     let text: String
 }
 
-struct MockPartner: Partner {
+class MockPartner: Partner {
     let localID: String
-    let profileImage: UIImage?
-    let name: String
-    let surename: String
-    let initials: String
-    let relationShip: String
-    let email: String
+    var profileImage: UIImage?
+    var name: String
+    var surename: String
+    var relationship: String
+    var email: String
+
+    var initials: String {
+        guard name.isEmpty == false && surename.isEmpty == false else {
+            return ""
+        }
+
+        return String(name.characters.first!) + String(surename.characters.first!)
+    }
+
+    init(localID: String, profileImage: UIImage?, name: String, surename: String, relationship: String, email: String) {
+        self.profileImage = profileImage
+        self.name = name
+        self.surename = surename
+        self.relationship = relationship
+        self.email = email
+        self.localID = localID
+    }
 }
 
 private var mockMyWhyItems: [MyWhy] {
@@ -141,8 +157,7 @@ private var partners: [Partner] {
             profileImage: R.image.partnerProfileImage(),
             name: "Giorgio",
             surename: "Moroder",
-            initials: "GM",
-            relationShip: "Brother",
+            relationship: "Brother",
             email: "giorgiomoroder@novartis.com"
         ),
 
@@ -151,18 +166,16 @@ private var partners: [Partner] {
             profileImage: nil,
             name: "Giorgio",
             surename: "Moroder",
-            initials: "GM",
-            relationShip: "Brother",
+            relationship: "Brother",
             email: "giorgiomoroder@novartis.com"
         ),
 
         MockPartner(
             localID: UUID().uuidString,
             profileImage: nil,
-            name: "Giorgio",
-            surename: "Moroder",
-            initials: "GM",
-            relationShip: "Brother",
+            name: "Simon",
+            surename: "Pebbels",
+            relationship: "Brother",
             email: "giorgiomoroder@novartis.com"
         )
     ]
