@@ -45,24 +45,22 @@ class MyToBeVisionViewController: UIViewController, UIWebViewDelegate, UIScrollV
     }
 
     private func setupView() {
-
-        configureWebView(string: viewModel.text)
-
         viewTitle.attributedText = prepareAndSetTextAttributes(string: viewModel.title.uppercased(), letterSpacing: 1, font: UIFont(name:"Simple-Regular", size: 16.0), lineSpacing: 0)
         headlineLabel.attributedText = prepareAndSetTextAttributes(string: viewModel.headLine.uppercased(), letterSpacing: 2, font: UIFont(name:"Simple-Regular", size: 36.0), lineSpacing: 3.0)
         subtitleLabel.attributedText = prepareAndSetTextAttributes(string: viewModel.subHeadline.uppercased(), letterSpacing: 2, font: UIFont(name:"BentonSans", size: 11.0), lineSpacing: 0)
 
-        imageView.kf.setImage(with: viewModel.profileImage) { [weak self] (image, _, _, _) in
-            guard let strongSelf = self else {
-                return
-            }
-            strongSelf.maskImageView(image: strongSelf.imageView)
-        }
+        configureWebView(string: viewModel.text)
+        imageView.kf.setImage(with: viewModel.profileImage)
     }
 
-    func maskImageView(image: UIImageView) {
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
 
-        let bounds = image.bounds
+        maskImageView(imageView: imageView)
+    }
+
+    func maskImageView(imageView: UIImageView) {
+        let bounds = imageView.bounds
         let clippingBorderPath = UIBezierPath()
         clippingBorderPath.move(to: CGPoint(x: 0, y: 56))
         clippingBorderPath.addCurve(to: CGPoint(x: bounds.size.width, y: 56),
@@ -74,12 +72,10 @@ class MyToBeVisionViewController: UIViewController, UIWebViewDelegate, UIScrollV
 
         let borderMask = CAShapeLayer()
         borderMask.path = clippingBorderPath.cgPath
-        image.layer.mask = borderMask
-
+        imageView.layer.mask = borderMask
     }
 
     func configureWebView(string: String) {
-
         let text = "<html><head><link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\"></head>" + "<body style='background:none'><div class='text'>\(string)</div></body></html>"
 
         let mainbundle = Bundle.main.bundlePath
@@ -94,7 +90,6 @@ class MyToBeVisionViewController: UIViewController, UIWebViewDelegate, UIScrollV
         webView.scrollView.contentInset.right = 230
         webView.scrollView.contentInset.left = 21
         webView.scrollView.delegate = self
-
     }
 
     func prepareAndSetTextAttributes(string: String, letterSpacing: CGFloat, font: UIFont?, lineSpacing: CGFloat) -> NSMutableAttributedString {
@@ -116,8 +111,6 @@ class MyToBeVisionViewController: UIViewController, UIWebViewDelegate, UIScrollV
 
     // MARK: ScrollView Delegate
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if  scrollView.contentOffset.y > 0 {
-            scrollView.contentOffset = CGPoint(x: scrollView.contentOffset.x, y: 0)
-        }
+        // FIXME: Implement paging
     }
 }
