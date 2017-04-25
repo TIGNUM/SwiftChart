@@ -124,20 +124,22 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
         print("didTapSector: \(sector?.labelType.text ?? "INVALID")")
     }
 
-    func didTapMyToBeVision(vision: Vision?, in viewController: MyUniverseViewController) {
-        let coordinator = MyUniverseCoordinator(root: viewController, services: services, eventTracker: eventTracker)
-        coordinator.startMyToBeVisiom()
+    func didTapMyToBeVision(vision: Vision?, from view: UIView, in viewController: MyUniverseViewController) {
+        let coordinator = MyToBeVisionCoordinator(root: viewController, services: services, eventTracker: eventTracker)
+        coordinator.start()
         startChild(child: coordinator)
     }
 
-    func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, in viewController: MyUniverseViewController) {
-        let coordinator = MyUniverseCoordinator(root: viewController, services: services, eventTracker: eventTracker)
-        coordinator.startWeeklyChoices()        
-        startChild(child: coordinator)        
+    func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, from view: UIView, in viewController: MyUniverseViewController) {
+        let coordinator = WeeklyChoicesCoordinator(root: viewController, services: services, eventTracker: eventTracker)
+        coordinator.start()
+        startChild(child: coordinator)
     }
 
-    func didTypQOTPartner(partner: Partner?, in viewController: MyUniverseViewController) {
-        print("diddidTypQOTPartner: ", partner as Any)
+    func didTapQOTPartner(selectedIndex: Index, partners: [Partner], from view: UIView, in viewController: MyUniverseViewController) {
+        let coordinator = PartnersCoordinator(root: viewController, services: services, eventTracker: eventTracker, partners: partners, selectedIndex: selectedIndex)
+        coordinator.start()
+        startChild(child: coordinator)
     }
 }
 

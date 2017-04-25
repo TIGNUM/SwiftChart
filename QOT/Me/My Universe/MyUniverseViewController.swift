@@ -10,9 +10,15 @@ import UIKit
 
 protocol MyUniverseViewControllerDelegate: class {
     func didTapSector(sector: Sector?, in viewController: MyUniverseViewController)
-    func didTapMyToBeVision(vision: Vision?, in viewController: MyUniverseViewController)
-    func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, in viewController: MyUniverseViewController)
-    func didTypQOTPartner(partner: Partner?, in viewController: MyUniverseViewController)
+    func didTapMyToBeVision(vision: Vision?, from view: UIView, in viewController: MyUniverseViewController)
+    func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, from view: UIView, in viewController: MyUniverseViewController)
+    func didTapQOTPartner(selectedIndex: Index, partners: [Partner], from view: UIView, in viewController: MyUniverseViewController)
+}
+
+protocol MyWhyViewDelegate: class {
+    func didTapMyToBeVision(vision: Vision?, from view: UIView)
+    func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, from view: UIView)
+    func didTapQOTPartner(selectedIndex: Index, partners: [Partner], from view: UIView)
 }
 
 final class MyUniverseViewController: UIViewController {
@@ -47,7 +53,7 @@ final class MyUniverseViewController: UIViewController {
 
         setupScrollViews()
         addSubViews()
-        addTabRecognizer()
+        addTabRecognizer()        
     }
 }
 
@@ -119,14 +125,18 @@ private extension MyUniverseViewController {
 
     func addMyWhyView() {
         let myWhyViewFrame = CGRect(x: view.bounds.width, y: 0, width: view.bounds.width, height: view.bounds.height)
-        let myWhyView = MyWhyView(myWhyViewModel: myWhyViewModel, frame: myWhyViewFrame, viewController: self, delegate: delegate)
+        let myWhyView = MyWhyView(myWhyViewModel: myWhyViewModel, frame: myWhyViewFrame, screenType: screenType, delegate: self)
         contentScrollView?.addSubview(myWhyView)
         self.myWhyView = myWhyView
     }
 
     func addMyDataSectorLabelView() {
         let myDataSectorLablesViewFrame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
-        let myDataSectorLabelsView = MyDataSectorLabelsView(sectors: myDataViewModel.sectors, frame: myDataSectorLablesViewFrame)
+        let myDataSectorLabelsView = MyDataSectorLabelsView(
+            sectors: myDataViewModel.sectors,
+            frame: myDataSectorLablesViewFrame,
+            screenType: screenType
+        )
         contentScrollView?.addSubview(myDataSectorLabelsView)
         self.myDataSectorLabelsView = myDataSectorLabelsView
     }
@@ -219,5 +229,20 @@ private extension MyUniverseViewController {
     func updateMyWhyViewAlphaValue(_ contentScrollView: UIScrollView) {
         let alpha = scrollFactor(contentScrollView)
         myWhyView?.alpha = 1 - alpha
+    }
+}
+
+extension MyUniverseViewController: MyWhyViewDelegate {
+
+    func didTapMyToBeVision(vision: Vision?, from view: UIView) {
+        delegate?.didTapMyToBeVision(vision: vision, from: view, in: self)
+    }
+
+    func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, from view: UIView) {
+        delegate?.didTapWeeklyChoices(weeklyChoice: weeklyChoice, from: view, in: self)
+    }
+
+    func didTapQOTPartner(selectedIndex: Index, partners: [Partner], from view: UIView) {
+        delegate?.didTapQOTPartner(selectedIndex: selectedIndex, partners: partners, from: view, in: self)        
     }
 }
