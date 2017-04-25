@@ -32,14 +32,81 @@ final class MyUniverseViewController: UIViewController {
 
     fileprivate let myDataViewModel: MyDataViewModel
     fileprivate let myWhyViewModel: MyWhyViewModel
-    fileprivate var backgroundScrollView: UIScrollView?
-    fileprivate var myDataView: MyDataView?
-    fileprivate var myWhyView: MyWhyView?
-    fileprivate var myDataSectorLabelsView: MyDataSectorLabelsView?
     fileprivate var lastContentOffset: CGFloat = 0
     weak var delegate: MyUniverseViewControllerDelegate?
     weak var contentScrollViewDelegate: MyUniverseContentScrollViewDelegate?
-    var contentScrollView: UIScrollView?
+
+    fileprivate lazy var myDataView: MyDataView = {
+        return MyDataView(
+            sectors: self.myDataViewModel.sectors,
+            profileImage: self.myDataViewModel.profileImage,
+            frame: self.view.bounds
+        )
+    }()
+
+    fileprivate lazy var myWhyView: MyWhyView = {
+        let myWhyViewFrame = CGRect(
+            x: self.view.bounds.width,
+            y: 0,
+            width: self.view.bounds.width,
+            height: self.view.bounds.height
+        )
+
+        return MyWhyView(
+            myWhyViewModel: self.myWhyViewModel,
+            frame: myWhyViewFrame,
+            screenType: self.screenType,
+            delegate: self
+        )
+    }()
+
+    fileprivate lazy var myDataSectorLabelsView: MyDataSectorLabelsView = {
+        let myDataSectorLablesViewFrame = CGRect(
+            x: 0,
+            y: 0,
+            width: self.view.bounds.width,
+            height: self.view.bounds.height
+        )
+
+        return MyDataSectorLabelsView(
+            sectors: self.myDataViewModel.sectors,
+            frame: myDataSectorLablesViewFrame,
+            screenType: self.screenType
+        )
+    }()
+
+    lazy var contentScrollView: UIScrollView = {
+        let layout = Layout.MeSection(viewControllerFrame: self.view.bounds)
+        let contentScrollView = MyUniverseHelper.createScrollView(self.view.frame, layout: layout)
+        contentScrollView.delegate = self
+        contentScrollView.isPagingEnabled = true
+
+        return contentScrollView
+    }()
+
+    fileprivate lazy var backgroundScrollView: UIScrollView = {
+        let layout = Layout.MeSection(viewControllerFrame: self.view.bounds)
+        let backgroundScrollView = MyUniverseHelper.createScrollView(self.view.frame, layout: layout)
+        backgroundScrollView.isUserInteractionEnabled = false
+        backgroundScrollView.delegate = nil
+
+        return backgroundScrollView
+    }()
+
+    fileprivate lazy var backgroundImage: UIImageView = {
+        let frame = self.view.frame
+        let imageViewFrame = CGRect(
+            x: frame.minX,
+            y: frame.minY,
+            width: frame.width * 2,
+            height: frame.height
+        )
+
+        let imageView = UIImageView(frame: imageViewFrame)
+        imageView.image = R.image.solarSystemBackground()
+
+        return imageView
+    }()
 
     // MARK: - Life Cycle
 
@@ -57,7 +124,6 @@ final class MyUniverseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupScrollViews()
         addSubViews()
         addTabRecognizer()        
     }
@@ -83,8 +149,8 @@ private extension MyUniverseViewController {
 
     func sector(location: CGPoint) -> Sector? {
         let radius = lengthFromCenter(for: location)
-        let yPosShifted = location.y - (myDataView?.profileImageView.center.y ?? 0)
-        let xPosShifted = location.x - (myDataView?.profileImageView.center.x ?? 0)
+        let yPosShifted = location.y - myDataView.profileImageView.center.y
+        let xPosShifted = location.x - myDataView.profileImageView.center.x
         let beta = acos(xPosShifted / radius)
         let sectorAngle = beta.radiansToDegrees
 
@@ -112,8 +178,8 @@ private extension MyUniverseViewController {
     }
 
     func lengthFromCenter(for location: CGPoint) -> CGFloat {
-        let diffX = pow(location.x - (myDataView?.profileImageView.center.x ?? 0), 2)
-        let diffY = pow(location.y - (myDataView?.profileImageView.center.y ?? 0), 2)
+        let diffX = pow(location.x - myDataView.profileImageView.center.x, 2)
+        let diffY = pow(location.y - myDataView.profileImageView.center.y, 2)
         
         return sqrt(diffX + diffY)
     }
@@ -124,68 +190,12 @@ private extension MyUniverseViewController {
 private extension MyUniverseViewController {
 
     func addSubViews() {
-        addMyWhyView()
-        addMyDataSectorLabelView()
-        addMyDataView()
-    }
-
-    func addMyWhyView() {
-        let myWhyViewFrame = CGRect(x: view.bounds.width, y: 0, width: view.bounds.width, height: view.bounds.height)
-        let myWhyView = MyWhyView(myWhyViewModel: myWhyViewModel, frame: myWhyViewFrame, screenType: screenType, delegate: self)
-        contentScrollView?.addSubview(myWhyView)
-        self.myWhyView = myWhyView
-    }
-
-    func addMyDataSectorLabelView() {
-        let myDataSectorLablesViewFrame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
-        let myDataSectorLabelsView = MyDataSectorLabelsView(
-            sectors: myDataViewModel.sectors,
-            frame: myDataSectorLablesViewFrame,
-            screenType: screenType
-        )
-        contentScrollView?.addSubview(myDataSectorLabelsView)
-        self.myDataSectorLabelsView = myDataSectorLabelsView
-    }
-
-    func addMyDataView() {
-        let myDataView = MyDataView(sectors: myDataViewModel.sectors, profileImage: myDataViewModel.profileImage, frame: view.bounds)
-        contentScrollView?.addSubview(myDataView)
-        self.myDataView = myDataView
-    }
-}
-
-// MARK: - ScrollViews
-
-private extension MyUniverseViewController {
-
-    func setupScrollViews() {
-        let layout = Layout.MeSection(viewControllerFrame: view.bounds)
-        setupBackgroundScrollView(layout: layout)
-        setupContentScrollView(layout: layout)
-    }
-
-    func setupBackgroundScrollView(layout: Layout.MeSection) {
-        let backgroundScrollView = MyUniverseHelper.createScrollView(view.frame, layout: layout)
-        backgroundScrollView.isUserInteractionEnabled = false
-        backgroundScrollView.delegate = nil
-        addBackgroundImage(scrollView: backgroundScrollView)
+        backgroundScrollView.addSubview(backgroundImage)
         view.addSubview(backgroundScrollView)
-        self.backgroundScrollView = backgroundScrollView
-    }
-
-    func setupContentScrollView(layout: Layout.MeSection) {
-        let contentScrollView = MyUniverseHelper.createScrollView(view.frame, layout: layout)
-        contentScrollView.delegate = self
-        contentScrollView.isPagingEnabled = true
         view.addSubview(contentScrollView)
-        self.contentScrollView = contentScrollView
-    }
-
-    func addBackgroundImage(scrollView: UIScrollView) {
-        let frame = CGRect(x: view.frame.minX, y: view.frame.minY, width: view.frame.width * 2, height: view.frame.height)
-        let imageView = UIImageView(frame: frame)
-        imageView.image = R.image.solarSystemBackground()
-        scrollView.addSubview(imageView)
+        contentScrollView.addSubview(myWhyView)
+        contentScrollView.addSubview(myDataSectorLabelsView)
+        contentScrollView.addSubview(myDataView)
     }
 }
 
@@ -224,25 +234,25 @@ private extension MyUniverseViewController {
 
     func setBackgroundParallaxEffect(_ contentScrollView: UIScrollView) {
         let backgroundContentOffset = CGPoint(x: contentScrollView.contentOffset.x * 1.2, y: contentScrollView.contentOffset.y)
-        backgroundScrollView?.setContentOffset(backgroundContentOffset, animated: false)
+        backgroundScrollView.setContentOffset(backgroundContentOffset, animated: false)
     }
 
     func updateProfileImageViewAlphaValue(_ contentScrollView: UIScrollView) {
         let alpha = scrollFactor(contentScrollView)
-        myDataView?.profileImageViewOverlay.alpha = alpha
-        myDataView?.profileImageViewOverlayEffect.alpha = alpha
+        myDataView.profileImageViewOverlay.alpha = alpha
+        myDataView.profileImageViewOverlayEffect.alpha = alpha
     }
 
     func updateSectorLabelsAlphaValue(_ contentScrollView: UIScrollView) {
         let alpha = scrollFactor(contentScrollView)
-        myDataSectorLabelsView?.sectorLabels.forEach({ (sectorLabel: UILabel) in
+        myDataSectorLabelsView.sectorLabels.forEach({ (sectorLabel: UILabel) in
             sectorLabel.alpha = alpha
         })
     }
 
     func updateMyWhyViewAlphaValue(_ contentScrollView: UIScrollView) {
         let alpha = scrollFactor(contentScrollView)
-        myWhyView?.alpha = 1 - alpha
+        myWhyView.alpha = 1 - alpha
     }
 }
 
