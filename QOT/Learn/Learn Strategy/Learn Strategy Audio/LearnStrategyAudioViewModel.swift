@@ -15,7 +15,7 @@ final class LearnStrategyAudioViewModel {
     // MARK: - Properties
 
     private let item = audioStrategy
-    private var player = AVPlayer()
+    private var player = AVAudioPlayer()
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
     var audioItemsCount: Int {
@@ -35,21 +35,21 @@ final class LearnStrategyAudioViewModel {
     }
 
     func playItem(at index: Index) {
-        let playerItem = AVPlayerItem(url: audioTrack(at: index).url)
-        player = AVPlayer(playerItem: playerItem)
+        try? player = AVAudioPlayer(contentsOf: audioTrack(at: index).url)
+        player.prepareToPlay()
         player.play()
     }
 
     func stopPlayback() {
-        player.pause()
+        player.stop()
     }
 
     func trackDuration() -> CGFloat {
-        return CGFloat((player.currentItem?.duration.seconds) ?? 0)
+        return CGFloat(player.duration)
     }
 
     func currentPosition() -> CGFloat {
-        return CGFloat(player.currentTime().seconds)
+        return CGFloat(player.currentTime)
     }
 
     private func audioTrack(at index: Index) -> AudioTrack {
