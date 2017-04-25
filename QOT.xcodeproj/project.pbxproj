@@ -117,9 +117,6 @@
 		CC9FBDE81EAE58F300AF1CF0 /* SettingsMenuCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9FBDE71EAE58F300AF1CF0 /* SettingsMenuCoordinator.swift */; };
 		CCAF03241E801B0E00015125 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF03211E801B0E00015125 /* SettingsCoordinator.swift */; };
 		CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF03221E801B0E00015125 /* SettingsViewController.swift */; };
-		CCAF03281E802A6200015125 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCAF03271E802A6200015125 /* SettingsViewController.xib */; };
-		CCAF032A1E8035C800015125 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF03291E8035C800015125 /* SettingsTableViewCell.swift */; };
-		CCAF032C1E80362700015125 /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCAF032B1E80362700015125 /* SettingsTableViewCell.xib */; };
 		CCC0C4BE1E82730E002A8362 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC0C4BD1E82730E002A8362 /* Extensions.swift */; };
 		CCC0C4CA1E827F87002A8362 /* BentonSans_Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = CCC0C4C91E827F87002A8362 /* BentonSans_Book.otf */; };
 		CCC0C4CC1E828007002A8362 /* BentonSans_Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CCC0C4CB1E828007002A8362 /* BentonSans_Regular.otf */; };
@@ -306,9 +303,6 @@
 		CC9FBDE71EAE58F300AF1CF0 /* SettingsMenuCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuCoordinator.swift; sourceTree = "<group>"; };
 		CCAF03211E801B0E00015125 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		CCAF03221E801B0E00015125 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		CCAF03271E802A6200015125 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
-		CCAF03291E8035C800015125 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
-		CCAF032B1E80362700015125 /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
 		CCC0C4BD1E82730E002A8362 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		CCC0C4C91E827F87002A8362 /* BentonSans_Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BentonSans_Book.otf; sourceTree = "<group>"; };
 		CCC0C4CB1E828007002A8362 /* BentonSans_Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BentonSans_Regular.otf; sourceTree = "<group>"; };
@@ -549,11 +543,9 @@
 		CB1E4F991E7FE22900287613 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				CC311A1B1EAF30EB0020C869 /* Cells */,
 				CCAF03211E801B0E00015125 /* SettingsCoordinator.swift */,
-				CCAF03291E8035C800015125 /* SettingsTableViewCell.swift */,
-				CCAF032B1E80362700015125 /* SettingsTableViewCell.xib */,
 				CCAF03221E801B0E00015125 /* SettingsViewController.swift */,
-				CCAF03271E802A6200015125 /* SettingsViewController.xib */,
 				CB1E4F971E7FE22200287613 /* SettingsViewModel.swift */,
 			);
 			path = Settings;
@@ -851,6 +843,14 @@
 				CC7C0A111E8966E000A83583 /* PrepareContent */,
 			);
 			path = Prepare;
+			sourceTree = "<group>";
+		};
+		CC311A1B1EAF30EB0020C869 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Cells;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		CC4D1D791E82E6A000B8D75E /* Me */ = {
@@ -1232,12 +1232,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CCAF032C1E80362700015125 /* SettingsTableViewCell.xib in Resources */,
 				0B1059871EA77AC700660A1D /* PrepareEventTableViewHeader.xib in Resources */,
 				0BC9F93A1E96118C009E8204 /* StatusTableViewCell.xib in Resources */,
 				0BEE8ABE1EA600A7008077B8 /* PrepareEventSimpleTableViewCell.xib in Resources */,
 				D51D08881E8E80AF00FC7567 /* LearnStrategyVideoCell.xib in Resources */,
-				CCAF03281E802A6200015125 /* SettingsViewController.xib in Resources */,
 				CCC0C4CA1E827F87002A8362 /* BentonSans_Book.otf in Resources */,
 				D51D08841E8E806E00FC7567 /* LearnStrategyTextCell.xib in Resources */,
 				0B254D3F1E97994C006AA4C0 /* PrepareCollectionViewCell.xib in Resources */,
@@ -1501,7 +1499,6 @@
 				CCE06FE01E8D44FC009C5AD2 /* LibraryCoordinator.swift in Sources */,
 				0B254D3E1E97994C006AA4C0 /* PrepareCollectionViewCell.swift in Sources */,
 				CC9FBDE61EAE155300AF1CF0 /* PrepareContentCoordinator.swift in Sources */,
-				CCAF032A1E8035C800015125 /* SettingsTableViewCell.swift in Sources */,
 				CC0FF8DA1EA790750028D64F /* PartnersCoordinator.swift in Sources */,
 				CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */,
 				CC0FF8D21EA784400028D64F /* PartnersViewModel.swift in Sources */,
