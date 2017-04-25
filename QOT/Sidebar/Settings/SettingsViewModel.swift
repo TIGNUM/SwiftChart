@@ -60,6 +60,18 @@ enum SettingsRow {
     case button(title: String, value: String)
     case textField(title: String, value: String, secure: Bool)
     case navigation(title: String, value: String)
+
+    var identifier: String {
+        switch self {
+        case .button(_, _): return ""
+        case .control(_, _): return ""
+        case .datePicker(_, _): return ""
+        case .label(_, _): return ""
+        case .navigation(_, _): return ""
+        case .stringPicker(_, _, _): return ""
+        case .textField(_, _, _): return ""
+        }
+    }
 }
 
 struct MockSettingsSection: SettingsSection {

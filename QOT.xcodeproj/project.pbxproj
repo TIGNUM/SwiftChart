@@ -95,6 +95,13 @@
 		CC0FF8D81EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0FF8D71EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift */; };
 		CC0FF8DA1EA790750028D64F /* PartnersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0FF8D91EA790750028D64F /* PartnersCoordinator.swift */; };
 		CC311A1D1EAF39DF0020C869 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC311A1C1EAF39DF0020C869 /* SettingsTableViewCell.swift */; };
+		CC311A211EAF430B0020C869 /* SettingsButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC311A201EAF430B0020C869 /* SettingsButtonTableViewCell.xib */; };
+		CC311A231EAF431E0020C869 /* SettingsControlTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC311A221EAF431E0020C869 /* SettingsControlTableViewCell.xib */; };
+		CC311A251EAF43340020C869 /* SettingsDatePickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC311A241EAF43340020C869 /* SettingsDatePickerTableViewCell.xib */; };
+		CC311A271EAF434F0020C869 /* SettingsLabelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC311A261EAF434F0020C869 /* SettingsLabelTableViewCell.xib */; };
+		CC311A291EAF43620020C869 /* SettingsNavigationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC311A281EAF43620020C869 /* SettingsNavigationTableViewCell.xib */; };
+		CC311A2B1EAF43780020C869 /* SettingsStringPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC311A2A1EAF43780020C869 /* SettingsStringPickerTableViewCell.xib */; };
+		CC311A2D1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC311A2C1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib */; };
 		CC37B1311E93CDD600651C46 /* QOTDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC37B1301E93CDD600651C46 /* QOTDatabase.framework */; };
 		CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB631E83BDA300FF28DF /* Utils.swift */; };
 		CC3DFB661E83C19C00FF28DF /* Defines.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB651E83C19C00FF28DF /* Defines.swift */; };
@@ -282,6 +289,13 @@
 		CC0FF8D71EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesCoordinator.swift; sourceTree = "<group>"; };
 		CC0FF8D91EA790750028D64F /* PartnersCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnersCoordinator.swift; sourceTree = "<group>"; };
 		CC311A1C1EAF39DF0020C869 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewCell.swift; path = "QOT/Sidebar/Settings Menu/Cells/SettingsTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		CC311A201EAF430B0020C869 /* SettingsButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsButtonTableViewCell.xib; path = "QOT/Sidebar/Settings Menu/Cells/SettingsButtonTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
+		CC311A221EAF431E0020C869 /* SettingsControlTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsControlTableViewCell.xib; path = "QOT/Sidebar/Settings Menu/Cells/SettingsControlTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
+		CC311A241EAF43340020C869 /* SettingsDatePickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsDatePickerTableViewCell.xib; path = "QOT/Sidebar/Settings Menu/Cells/SettingsDatePickerTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
+		CC311A261EAF434F0020C869 /* SettingsLabelTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsLabelTableViewCell.xib; path = "QOT/Sidebar/Settings Menu/Cells/SettingsLabelTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
+		CC311A281EAF43620020C869 /* SettingsNavigationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsNavigationTableViewCell.xib; path = "QOT/Sidebar/Settings Menu/Cells/SettingsNavigationTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
+		CC311A2A1EAF43780020C869 /* SettingsStringPickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsStringPickerTableViewCell.xib; path = "QOT/Sidebar/Settings Menu/Cells/SettingsStringPickerTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
+		CC311A2C1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsTextFieldTableViewCell.xib; path = "QOT/Sidebar/Settings Menu/Cells/SettingsTextFieldTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
 		CC37B1301E93CDD600651C46 /* QOTDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QOTDatabase.framework; path = "Pods/../build/Release-iphoneos/QOTDatabase/QOTDatabase.framework"; sourceTree = "<group>"; };
 		CC3DFB631E83BDA300FF28DF /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		CC3DFB651E83C19C00FF28DF /* Defines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defines.swift; sourceTree = "<group>"; };
@@ -851,6 +865,13 @@
 			isa = PBXGroup;
 			children = (
 				CC311A1C1EAF39DF0020C869 /* SettingsTableViewCell.swift */,
+				CC311A201EAF430B0020C869 /* SettingsButtonTableViewCell.xib */,
+				CC311A221EAF431E0020C869 /* SettingsControlTableViewCell.xib */,
+				CC311A241EAF43340020C869 /* SettingsDatePickerTableViewCell.xib */,
+				CC311A261EAF434F0020C869 /* SettingsLabelTableViewCell.xib */,
+				CC311A281EAF43620020C869 /* SettingsNavigationTableViewCell.xib */,
+				CC311A2A1EAF43780020C869 /* SettingsStringPickerTableViewCell.xib */,
+				CC311A2C1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1237,15 +1258,19 @@
 				0B1059871EA77AC700660A1D /* PrepareEventTableViewHeader.xib in Resources */,
 				0BC9F93A1E96118C009E8204 /* StatusTableViewCell.xib in Resources */,
 				0BEE8ABE1EA600A7008077B8 /* PrepareEventSimpleTableViewCell.xib in Resources */,
+				CC311A271EAF434F0020C869 /* SettingsLabelTableViewCell.xib in Resources */,
 				D51D08881E8E80AF00FC7567 /* LearnStrategyVideoCell.xib in Resources */,
 				CCC0C4CA1E827F87002A8362 /* BentonSans_Book.otf in Resources */,
 				D51D08841E8E806E00FC7567 /* LearnStrategyTextCell.xib in Resources */,
+				CC311A211EAF430B0020C869 /* SettingsButtonTableViewCell.xib in Resources */,
 				0B254D3F1E97994C006AA4C0 /* PrepareCollectionViewCell.xib in Resources */,
 				CBA4216F1E9276AF00CD4BC9 /* SidebarTableViewCell.xib in Resources */,
 				0B40DC101E9CA6E100E1659B /* PrepareContentVideoPreviewTableViewCell.xib in Resources */,
 				0BEE8ABA1EA600A7008077B8 /* PrepareEventAddNewTripTableViewCell.xib in Resources */,
 				0BEE8AC01EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib in Resources */,
 				CBA421701E9276AF00CD4BC9 /* SidebarViewController.xib in Resources */,
+				CC311A291EAF43620020C869 /* SettingsNavigationTableViewCell.xib in Resources */,
+				CC311A2B1EAF43780020C869 /* SettingsStringPickerTableViewCell.xib in Resources */,
 				0B40DC071E9CA65300E1659B /* PrepareContentViewController.xib in Resources */,
 				CCC0C4CC1E828007002A8362 /* BentonSans_Regular.otf in Resources */,
 				CCC1B6AA1E8B9B7300D1461F /* LearnCategoryListViewController.xib in Resources */,
@@ -1254,15 +1279,18 @@
 				0BE7FD851E9CAC7400E3262E /* PrepareContentActionButtonsTableViewCell.xib in Resources */,
 				0B40DC161E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib in Resources */,
 				CCC0C4D41E82A8D9002A8362 /* Simple-Regular.ttf in Resources */,
+				CC311A2D1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib in Resources */,
 				CB8A15461E7986C90023B2F9 /* Localized.strings in Resources */,
 				0BC9F9381E96118C009E8204 /* ChatViewController.xib in Resources */,
 				D520BC941E8E655A00A2D107 /* LearnStrategyHeaderCell.xib in Resources */,
+				CC311A251EAF43340020C869 /* SettingsDatePickerTableViewCell.xib in Resources */,
 				0BC1FF4C1E968E07007DE090 /* CollectionTableViewCell.xib in Resources */,
 				CBB237FA1E6FFF1200AB5AEF /* LaunchScreen.storyboard in Resources */,
 				0BE7FD901E9D2F8800E3262E /* PrepareContentTitleTableViewCell.xib in Resources */,
 				0BD6F6BA1EA0E81E001EBC4D /* MyPrepTableViewCell.xib in Resources */,
 				D540275F1E8D401F0013B783 /* LearnStrategyViewController.xib in Resources */,
 				0BC9F9371E96118C009E8204 /* ChatTableViewCell.xib in Resources */,
+				CC311A231EAF431E0020C869 /* SettingsControlTableViewCell.xib in Resources */,
 				0BD6F6BB1EA0E81E001EBC4D /* MyPrepViewController.xib in Resources */,
 				0BEE8AC11EA600A7008077B8 /* PrepareEventsViewController.xib in Resources */,
 				0B40DC0C1E9CA6A500E1659B /* PrepareContentTextTableViewCell.xib in Resources */,

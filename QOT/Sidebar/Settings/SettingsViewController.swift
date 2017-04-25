@@ -61,14 +61,15 @@ extension SettingsViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let settingsCell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath) as? SettingsTableViewCell else {
+        let settingsRow = viewModel.row(at: indexPath)
+
+        guard let settingsCell = tableView.dequeueReusableCell(withIdentifier: settingsRow.identifier, for: indexPath) as? SettingsTableViewCell else {
             fatalError("SettingsTableViewCell DOES NOT EXIST!!!")
             return UITableViewCell()
         }
 
-        let settingsRow = viewModel.row(at: indexPath)
         settingsCell.setup(settingsRow: settingsRow)
-        
+
         return settingsCell
     }
     
