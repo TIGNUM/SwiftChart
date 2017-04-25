@@ -35,6 +35,10 @@ final class SettingsViewModel {
         return items(in: indexPath.section)[indexPath.row]
     }
 
+    func headerTitle(in section: Int) -> String {
+        return settingSections[section].title
+    }
+
     private func items(in section: Int) -> [SettingsRow] {
         return settingSections[section].rows
     }
@@ -59,17 +63,15 @@ enum SettingsRow {
     case control(title: String, enabled: Bool)
     case button(title: String, value: String)
     case textField(title: String, value: String, secure: Bool)
-    case navigation(title: String, value: String)
 
     var identifier: String {
         switch self {
-        case .button(_, _): return ""
-        case .control(_, _): return ""
-        case .datePicker(_, _): return ""
-        case .label(_, _): return ""
-        case .navigation(_, _): return ""
-        case .stringPicker(_, _, _): return ""
-        case .textField(_, _, _): return ""
+        case .button(_, _): return R.reuseIdentifier.settingsTableViewCell_Button.identifier
+        case .control(_, _): return R.reuseIdentifier.settingsTableViewCell_Control.identifier
+        case .datePicker(_, _): return R.reuseIdentifier.settingsTableViewCell_DatePicker.identifier
+        case .label(_, _): return R.reuseIdentifier.settingsTableViewCell_Label.identifier
+        case .stringPicker(_, _, _): return R.reuseIdentifier.settingsTableViewCell_StringPickerView.identifier
+        case .textField(_, _, _): return R.reuseIdentifier.settingsTableViewCell_TextField.identifier
         }
     }
 }

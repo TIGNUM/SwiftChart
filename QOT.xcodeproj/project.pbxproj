@@ -99,7 +99,6 @@
 		CC311A231EAF431E0020C869 /* SettingsControlTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC311A221EAF431E0020C869 /* SettingsControlTableViewCell.xib */; };
 		CC311A251EAF43340020C869 /* SettingsDatePickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC311A241EAF43340020C869 /* SettingsDatePickerTableViewCell.xib */; };
 		CC311A271EAF434F0020C869 /* SettingsLabelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC311A261EAF434F0020C869 /* SettingsLabelTableViewCell.xib */; };
-		CC311A291EAF43620020C869 /* SettingsNavigationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC311A281EAF43620020C869 /* SettingsNavigationTableViewCell.xib */; };
 		CC311A2B1EAF43780020C869 /* SettingsStringPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC311A2A1EAF43780020C869 /* SettingsStringPickerTableViewCell.xib */; };
 		CC311A2D1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC311A2C1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib */; };
 		CC37B1311E93CDD600651C46 /* QOTDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC37B1301E93CDD600651C46 /* QOTDatabase.framework */; };
@@ -293,7 +292,6 @@
 		CC311A221EAF431E0020C869 /* SettingsControlTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsControlTableViewCell.xib; path = "QOT/Sidebar/Settings Menu/Cells/SettingsControlTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
 		CC311A241EAF43340020C869 /* SettingsDatePickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsDatePickerTableViewCell.xib; path = "QOT/Sidebar/Settings Menu/Cells/SettingsDatePickerTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
 		CC311A261EAF434F0020C869 /* SettingsLabelTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsLabelTableViewCell.xib; path = "QOT/Sidebar/Settings Menu/Cells/SettingsLabelTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
-		CC311A281EAF43620020C869 /* SettingsNavigationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsNavigationTableViewCell.xib; path = "QOT/Sidebar/Settings Menu/Cells/SettingsNavigationTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
 		CC311A2A1EAF43780020C869 /* SettingsStringPickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsStringPickerTableViewCell.xib; path = "QOT/Sidebar/Settings Menu/Cells/SettingsStringPickerTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
 		CC311A2C1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsTextFieldTableViewCell.xib; path = "QOT/Sidebar/Settings Menu/Cells/SettingsTextFieldTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
 		CC37B1301E93CDD600651C46 /* QOTDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QOTDatabase.framework; path = "Pods/../build/Release-iphoneos/QOTDatabase/QOTDatabase.framework"; sourceTree = "<group>"; };
@@ -869,7 +867,6 @@
 				CC311A221EAF431E0020C869 /* SettingsControlTableViewCell.xib */,
 				CC311A241EAF43340020C869 /* SettingsDatePickerTableViewCell.xib */,
 				CC311A261EAF434F0020C869 /* SettingsLabelTableViewCell.xib */,
-				CC311A281EAF43620020C869 /* SettingsNavigationTableViewCell.xib */,
 				CC311A2A1EAF43780020C869 /* SettingsStringPickerTableViewCell.xib */,
 				CC311A2C1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib */,
 			);
@@ -1269,7 +1266,6 @@
 				0BEE8ABA1EA600A7008077B8 /* PrepareEventAddNewTripTableViewCell.xib in Resources */,
 				0BEE8AC01EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib in Resources */,
 				CBA421701E9276AF00CD4BC9 /* SidebarViewController.xib in Resources */,
-				CC311A291EAF43620020C869 /* SettingsNavigationTableViewCell.xib in Resources */,
 				CC311A2B1EAF43780020C869 /* SettingsStringPickerTableViewCell.xib in Resources */,
 				0B40DC071E9CA65300E1659B /* PrepareContentViewController.xib in Resources */,
 				CCC0C4CC1E828007002A8362 /* BentonSans_Regular.otf in Resources */,
