@@ -35,7 +35,7 @@ final class LearnStrategyAudioViewController: UIViewController {
 
         setupView()
         setupTableView()
-        setupAudioPlayer()
+        setupAudioPlayerView()
         setupSoundPattern()
     }
 }
@@ -44,7 +44,7 @@ final class LearnStrategyAudioViewController: UIViewController {
 
 private extension LearnStrategyAudioViewController {
 
-    func setupAudioPlayer() {
+    func setupAudioPlayerView() {
         // TODO
     }
 
