@@ -16,7 +16,6 @@ final class MyToBeVisionCoordinator: ParentCoordinator {
     fileprivate let rootViewController: UIViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
-
     var children: [Coordinator] = []
 
     // MARK: - Life Cycle

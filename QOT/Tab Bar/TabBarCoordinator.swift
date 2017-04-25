@@ -12,12 +12,6 @@ import RealmSwift
 
 final class TabBarCoordinator: ParentCoordinator {
 
-    enum TabBarItem: Index {
-        case learn = 0
-        case me = 1
-        case prepare = 2
-    }
-    
     // MARK: - Properties
     
     fileprivate let rootViewController: MainMenuViewController
@@ -103,6 +97,7 @@ final class TabBarCoordinator: ParentCoordinator {
 // MARK: - TopTabBarControllers
 
 private extension TabBarCoordinator {
+    
     func bottomTabBarController() -> TabBarController {
         let bottomTabBarController = TabBarController(items: tabBarControllerItems(), selectedIndex: 0)
         bottomTabBarController.modalTransitionStyle = .crossDissolve
@@ -151,6 +146,7 @@ extension TabBarCoordinator {
 // MARK: - TabBarControllerDelegate
 
 extension TabBarCoordinator: TabBarControllerDelegate {
+
     func didSelectTab(at index: Index, in controller: TabBarController) {
         let viewController = controller.viewControllers.first
         
@@ -166,6 +162,7 @@ extension TabBarCoordinator: TabBarControllerDelegate {
 // MARK: - LearnCategoryListViewControllerDelegate
 
 extension TabBarCoordinator: LearnCategoryListViewControllerDelegate {
+
     func didSelectCategory(_ category: LearnCategory, in viewController: LearnCategoryListViewController) {
         let coordinator = LearnContentListCoordinator(root: viewController, services: services, eventTracker: eventTracker, category: category)
         coordinator.start()
@@ -177,6 +174,7 @@ extension TabBarCoordinator: LearnCategoryListViewControllerDelegate {
 // MARK: - LearnContentListCoordinatorDelegate
 
 extension TabBarCoordinator: LearnContentListCoordinatorDelegate {
+
     func didFinish(coordinator: LearnContentListCoordinator) {
         if let index = children.index(where: { $0 === coordinator}) {
             children.remove(at: index)
@@ -187,25 +185,23 @@ extension TabBarCoordinator: LearnContentListCoordinatorDelegate {
 // MARK: - MeSectionDelegate
 
 extension TabBarCoordinator: MyUniverseViewControllerDelegate {
+
     func didTapSector(sector: Sector?, in viewController: MyUniverseViewController) {
         print("didTapSector: \(sector?.labelType.text ?? "INVALID")")
     }
 
-    func didTapMyToBeVision(vision: Vision?, from view: UIView, in viewController: MyUniverseViewController) {
-        let coordinator = MyToBeVisionCoordinator(root: viewControllers[TabBarItem.me.rawValue], services: services, eventTracker: eventTracker)
-        coordinator.start()
+    func didTapMyToBeVision(vision: Vision?, from view: UIView) {
+        let coordinator = MyToBeVisionCoordinator(root: topTabBarControllerMe, services: services, eventTracker: eventTracker)
         startChild(child: coordinator)
     }
 
-    func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, from view: UIView, in viewController: MyUniverseViewController) {
-        let coordinator = WeeklyChoicesCoordinator(root: viewControllers[TabBarItem.me.rawValue], services: services, eventTracker: eventTracker)
-        coordinator.start()
+    func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, from view: UIView) {
+        let coordinator = WeeklyChoicesCoordinator(root: topTabBarControllerMe, services: services, eventTracker: eventTracker)
         startChild(child: coordinator)
     }
 
-    func didTapQOTPartner(selectedIndex: Index, partners: [Partner], from view: UIView, in viewController: MyUniverseViewController) {
-        let coordinator = PartnersCoordinator(root: viewControllers[TabBarItem.me.rawValue], services: services, eventTracker: eventTracker, partners: partners, selectedIndex: selectedIndex)
-        coordinator.start()
+    func didTapQOTPartner(selectedIndex: Index, partners: [Partner], from view: UIView) {
+        let coordinator = PartnersCoordinator(root: topTabBarControllerMe, services: services, eventTracker: eventTracker, partners: partners, selectedIndex: selectedIndex)
         startChild(child: coordinator)
     }
 }

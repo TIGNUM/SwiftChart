@@ -10,9 +10,9 @@ import UIKit
 
 protocol MyUniverseViewControllerDelegate: class {
     func didTapSector(sector: Sector?, in viewController: MyUniverseViewController)
-    func didTapMyToBeVision(vision: Vision?, from view: UIView, in viewController: MyUniverseViewController)
-    func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, from view: UIView, in viewController: MyUniverseViewController)
-    func didTapQOTPartner(selectedIndex: Index, partners: [Partner], from view: UIView, in viewController: MyUniverseViewController)
+    func didTapMyToBeVision(vision: Vision?, from view: UIView)
+    func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, from view: UIView)
+    func didTapQOTPartner(selectedIndex: Index, partners: [Partner], from view: UIView)
 }
 
 protocol MyWhyViewDelegate: class {
@@ -259,14 +259,14 @@ private extension MyUniverseViewController {
 extension MyUniverseViewController: MyWhyViewDelegate {
 
     func didTapMyToBeVision(vision: Vision?, from view: UIView) {
-        delegate?.didTapMyToBeVision(vision: vision, from: view, in: self)
+        delegate?.didTapMyToBeVision(vision: vision, from: view)
     }
 
     func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, from view: UIView) {
-        delegate?.didTapWeeklyChoices(weeklyChoice: weeklyChoice, from: view, in: self)
+        delegate?.didTapWeeklyChoices(weeklyChoice: weeklyChoice, from: view)
     }
 
     func didTapQOTPartner(selectedIndex: Index, partners: [Partner], from view: UIView) {
-        delegate?.didTapQOTPartner(selectedIndex: selectedIndex, partners: partners, from: view, in: self)        
+        delegate?.didTapQOTPartner(selectedIndex: selectedIndex, partners: partners, from: view)
     }
 }

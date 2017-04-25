@@ -11,7 +11,7 @@ import UIKit
 
 final class SidebarCoordinator: ParentCoordinator {
     
-    internal var rootViewController: TopTabBarController?
+    let rootViewController: TopTabBarController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
     internal var children = [Coordinator]()
@@ -30,7 +30,7 @@ final class SidebarCoordinator: ParentCoordinator {
         presentationManager.presentationType = .fadeIn
         sideBarViewController.modalPresentationStyle = .custom
         sideBarViewController.transitioningDelegate = presentationManager
-        rootViewController?.present(sideBarViewController, animated: true)
+        rootViewController.present(sideBarViewController, animated: true)
     }
 }
 
