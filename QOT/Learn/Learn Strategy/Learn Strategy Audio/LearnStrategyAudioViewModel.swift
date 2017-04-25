@@ -11,11 +11,14 @@ import ReactiveKit
 import AVFoundation
 
 final class LearnStrategyAudioViewModel: NSObject {
+    struct AudioItem {
+        let title: String
+        let playing: Bool
+    }
 
     // MARK: - Properties
 
     fileprivate let item = audioStrategy
-    fileprivate var player = AVAudioPlayer()
     fileprivate var currentIndex: Index = 0
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
@@ -31,48 +34,26 @@ final class LearnStrategyAudioViewModel: NSObject {
         return item.subHeadline
     }
 
-    func soundPattern(at index: Index) -> [CGFloat] {
-        return audioTrack(at: index).soundPattern
-    }
+    var soundPattern = Property<[CGFloat]?>(randomSoundPattern)
+
+    var trackDuration = Property<TimeInterval?>(623)
+
+    var currentPosition = Property<TimeInterval?>(200)
 
     func playItem(at index: Index) {
-        currentIndex = index
-        if player.isPlaying == true {
-            stopPlayback()
-        }
-
-        let trackURL = audioTrack(at: index).url
-        try? player = AVAudioPlayer(contentsOf: trackURL)
-        player.prepareToPlay()
-        player.delegate = self
-        player.play()
+        log("did start to play item at index: \(index)")
     }
 
     func stopPlayback() {
-        player.stop()
+        log("did stop playback")
     }
 
-    func trackDuration() -> CGFloat {
-        return CGFloat(player.duration)
-    }
-
-    func currentPosition() -> CGFloat {
-        return CGFloat(player.currentTime)
+    func audioItem(at index: Index) -> AudioItem {
+        return AudioItem(title: audioTrack(at: index).title, playing: index == 1)
     }
 
     private func audioTrack(at index: Index) -> AudioTrack {
         return item.tracks[index]
-    }
-}
-
-// MARK: - AVAudioPlayerDelegate
-
-extension LearnStrategyAudioViewModel: AVAudioPlayerDelegate {
-
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        if currentIndex + 1 < item.tracks.count {
-            playItem(at: currentIndex + 1)
-        }
     }
 }
 

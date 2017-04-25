@@ -33,35 +33,6 @@ final class LearnStrategyAudioViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupView()
-        setupTableView()
-        setupAudioPlayerView()
-        setupSoundPattern()
-    }
-}
-
-// MARK: - Private Helpers
-
-private extension LearnStrategyAudioViewController {
-
-    func setupAudioPlayerView() {
-        // TODO
-    }
-
-    func setupView() {
-        // TODO
-    }
-
-    func setupTableView() {
-        // TODO
-    }
-
-    func setupSoundPattern() {
-        // TODO
-    }
-
-    func updateSoundPattern(currentPosition: CGFloat, audioTrack: AudioTrack) {
-        // TODO
     }
 }
 
