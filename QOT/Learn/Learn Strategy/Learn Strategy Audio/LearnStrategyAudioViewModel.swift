@@ -10,12 +10,13 @@ import Foundation
 import ReactiveKit
 import AVFoundation
 
-final class LearnStrategyAudioViewModel {
+final class LearnStrategyAudioViewModel: NSObject {
 
     // MARK: - Properties
 
-    private let item = audioStrategy
-    private var player = AVAudioPlayer()
+    fileprivate let item = audioStrategy
+    fileprivate var player = AVAudioPlayer()
+    fileprivate var currentIndex: Index = 0
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
     var audioItemsCount: Int {
@@ -35,6 +36,7 @@ final class LearnStrategyAudioViewModel {
     }
 
     func playItem(at index: Index) {
+        currentIndex = index
         if player.isPlaying == true {
             stopPlayback()
         }
@@ -42,6 +44,7 @@ final class LearnStrategyAudioViewModel {
         let trackURL = audioTrack(at: index).url
         try? player = AVAudioPlayer(contentsOf: trackURL)
         player.prepareToPlay()
+        player.delegate = self
         player.play()
     }
 
@@ -59,6 +62,17 @@ final class LearnStrategyAudioViewModel {
 
     private func audioTrack(at index: Index) -> AudioTrack {
         return item.tracks[index]
+    }
+}
+
+// MARK: - AVAudioPlayerDelegate
+
+extension LearnStrategyAudioViewModel: AVAudioPlayerDelegate {
+
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        if currentIndex + 1 < item.tracks.count {
+            playItem(at: currentIndex + 1)
+        }
     }
 }
 
