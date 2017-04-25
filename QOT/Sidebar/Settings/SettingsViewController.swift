@@ -8,20 +8,18 @@
 
 import UIKit
 
-final class SettingsViewController: UIViewController {
-    
-    // MARK: - Outlets
+final class SettingsViewController: UITableViewController {
 
-    @IBOutlet fileprivate weak var tableView: UITableView!
-    
     // MARK: - Properties
 
     let viewModel: SettingsViewModel
+    let settingsType: SettingsViewModel.SettingsType
     
     // MARK: - Init
     
     init(viewModel: SettingsViewModel) {
         self.viewModel = viewModel
+        self.settingsType = viewModel.settingsType
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -44,36 +42,37 @@ final class SettingsViewController: UIViewController {
 private extension SettingsViewController {
     
     func setupView() {
-        view.backgroundColor = .darkGray
-        tableView?.backgroundColor = .darkGray
-        tableView?.register(UINib(nibName: R.nib.settingsTableViewCell.name, bundle: nil), forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Id.identifier)
+        view.backgroundColor = .black
+        tableView?.backgroundColor = .black
     }
 }
 
 
 // MARK: - UITableViewDataSource, UITableViewDelegate
 
-extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
+extension SettingsViewController {
 
-    func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.sectionCount
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfItemsInSection(in: section)
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let settingsCell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.settingsTableViewCell_Id.identifier, for: indexPath) as? SettingsTableViewCell else {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let settingsCell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath) as? SettingsTableViewCell else {
+            fatalError("SettingsTableViewCell DOES NOT EXIST!!!")
             return UITableViewCell()
         }
-        
-        settingsCell.setup()
+
+        let settingsRow = viewModel.row(at: indexPath)
+        settingsCell.setup(settingsRow: settingsRow)
         
         return settingsCell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
@@ -83,6 +82,10 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
 extension SettingsViewController: TopTabBarItem {
 
     var topTabBarItem: TopTabBarController.Item {
-        return TopTabBarController.Item(controller: self, title: R.string.localized.settingsTitle())
+        switch settingsType {
+        case .general: return TopTabBarController.Item(controller: self, title: R.string.localized.settingsTitleGeneral())
+        case .notifications: return TopTabBarController.Item(controller: self, title: R.string.localized.settingsTitleNotifications())
+        case .security: return TopTabBarController.Item(controller: self, title: R.string.localized.settingsTitleSecurity())
+        }
     }
 }

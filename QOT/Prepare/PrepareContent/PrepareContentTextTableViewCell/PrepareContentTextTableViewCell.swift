@@ -11,9 +11,6 @@ import UIKit
 class PrepareContentTextTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet weak var contentLabel: UILabel!
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
     
     func prepareAndSetTextAttributes(string: String) {
         let attrString = NSMutableAttributedString(string: string)

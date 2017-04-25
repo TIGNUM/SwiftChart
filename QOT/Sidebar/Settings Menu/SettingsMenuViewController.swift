@@ -44,6 +44,8 @@ final class SettingsMenuViewController: UIViewController {
         }
     }
 
+    // TODO: Please remove, just for testing.
+
     private func settingsButtons() -> [UIButton] {
         let genralButton = UIButton()
         genralButton.setTitle("GENERAL", for: .normal)

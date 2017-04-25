@@ -16,8 +16,7 @@ final class SettingsCoordinator: ParentCoordinator {
     fileprivate let eventTracker: EventTracker
     fileprivate let settingsType: SettingsViewModel.SettingsType
     var children = [Coordinator]()
-    lazy var presentationManager = PresentationManager()
-    
+
     init(root: SettingsMenuViewController, services: Services, eventTracker: EventTracker, settingsType: SettingsViewModel.SettingsType) {
         self.rootViewController = root
         self.services = services
@@ -27,9 +26,6 @@ final class SettingsCoordinator: ParentCoordinator {
 
     func start() {
         let settingsViewController = SettingsViewController(viewModel: SettingsViewModel(settingsType: settingsType))
-        presentationManager.presentationType = .fadeIn
-        settingsViewController.modalPresentationStyle = .custom
-        settingsViewController.transitioningDelegate = presentationManager
 
         let topTabBarController = TopTabBarController(
             items: [settingsViewController.topTabBarItem],

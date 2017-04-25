@@ -11,6 +11,7 @@ import UIKit
 class PrepareContentTitleTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet weak var titleLabel: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         titleLabel.font = UIFont(name: "Simple-Regular", size: 36.0)

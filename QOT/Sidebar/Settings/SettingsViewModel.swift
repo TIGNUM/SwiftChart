@@ -20,6 +20,7 @@ final class SettingsViewModel {
     // MARK: - Properties
 
     private let settingSections: [SettingsSection]
+    let settingsType: SettingsType
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
     var sectionCount: Int {
@@ -42,6 +43,7 @@ final class SettingsViewModel {
     
     init(settingsType: SettingsType) {
         self.settingSections = mockSettingSections(settingsType: settingsType)
+        self.settingsType = settingsType
     }
 }
 

@@ -12,9 +12,9 @@ import Kingfisher
 class PrepareContentVideoPreviewTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet weak var previewImage: UIImageView!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-    
 }
