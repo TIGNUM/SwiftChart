@@ -31,18 +31,15 @@ final class TabBarCoordinator: ParentCoordinator {
         let whatsHotViewController = WhatsHotViewController(viewModel: whatsHotViewModel)
         whatsHotViewController.delegate = self
 
-        let items = [
-            TopTabBarController.Item(
-                controller: learnCategoryListVC,
-                title: R.string.localized.topTabBarItemTitleLearnStrategies().capitalized
-            ),
-            TopTabBarController.Item(
-                controller: whatsHotViewController,
-                title: R.string.localized.topTabBarItemTitleLearnWhatsHot().capitalized
-            )
-        ]
+        let topBarControllerItem = TopTabBarController.Item(
+            controllers: [learnCategoryListVC, whatsHotViewController],
+            titles: [
+                R.string.localized.topTabBarItemTitleLearnStrategies().capitalized,
+                R.string.localized.topTabBarItemTitleLearnWhatsHot().capitalized
+            ]
+        )
 
-        return TopTabBarController(items: items, selectedIndex: 0, leftIcon: R.image.ic_search(), rightIcon: R.image.ic_menu())
+        return TopTabBarController(item: topBarControllerItem, leftIcon: R.image.ic_search(), rightIcon: R.image.ic_menu())
     }()
 
     fileprivate lazy var topTabBarControllerMe: TopTabBarController = {
@@ -52,15 +49,16 @@ final class TabBarCoordinator: ParentCoordinator {
         )
         myUniverseViewController.delegate = self
 
-        let myUniverseItem = TopTabBarController.MyUniverseItem(
-            controller: myUniverseViewController,
-            titles: [
-                R.string.localized.topTabBarItemTitleMeMyData().capitalized,
-                R.string.localized.topTabBarItemTitleMeMyWhy().capitalized
-            ]
+        let topBarControllerItem = TopTabBarController.Item(
+                controllers: [myUniverseViewController],
+                titles: [
+                    R.string.localized.topTabBarItemTitleLearnStrategies().capitalized,
+                    R.string.localized.topTabBarItemTitleLearnWhatsHot().capitalized
+                ],
+                containsScrollView: true
         )
 
-        return TopTabBarController(myUniverseItem: myUniverseItem, selectedIndex: 0, rightIcon: R.image.ic_menu())
+        return TopTabBarController(item: topBarControllerItem, rightIcon: R.image.ic_menu())
     }()
 
     fileprivate lazy var topTabBarControllerPrepare: TopTabBarController = {
@@ -68,18 +66,15 @@ final class TabBarCoordinator: ParentCoordinator {
         let chatViewController = ChatViewController(viewModel: viewModel)
         chatViewController.delegate = self
 
-        let items = [
-            TopTabBarController.Item(
-                controller: chatViewController,
-                title: R.string.localized.topTabBarItemTitlePerpareCoach().capitalized
-            ),
-            TopTabBarController.Item(
-                controller: chatViewController,
-                title: R.string.localized.topTabBarItemTitlePerparePrep().capitalized
-            )
-        ]
+        let topBarControllerItem = TopTabBarController.Item(
+            controllers: [chatViewController, chatViewController],
+            titles: [
+                R.string.localized.topTabBarItemTitlePerpareCoach().capitalized,
+                R.string.localized.topTabBarItemTitlePerparePrep().capitalized
+            ]
+        )
 
-        return TopTabBarController(items: items, selectedIndex: 0, leftIcon: R.image.ic_search(), rightIcon: R.image.ic_menu())
+        return TopTabBarController(item: topBarControllerItem, leftIcon: R.image.ic_search(), rightIcon: R.image.ic_menu())
     }()
     
     // MARK: - Init

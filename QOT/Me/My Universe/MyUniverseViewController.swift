@@ -108,6 +108,10 @@ final class MyUniverseViewController: UIViewController {
         return imageView
     }()
 
+    lazy var contentView: UIView = {
+        return self.view
+    }()
+
     // MARK: - Life Cycle
 
     init(myDataViewModel: MyDataViewModel, myWhyViewModel: MyWhyViewModel) {
