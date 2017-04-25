@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AVFoundation
 
 final class LearnStrategyAudioViewController: UIViewController {
 
@@ -15,8 +14,6 @@ final class LearnStrategyAudioViewController: UIViewController {
 
     @IBOutlet fileprivate weak var tableView: UITableView!
     fileprivate let viewModel: LearnStrategyAudioViewModel
-    fileprivate var queplayer: AVQueuePlayer?
-    fileprivate var player: AVAudioPlayer?
     weak var delegate: LearnStrategyViewControllerDelegate?
 
     // MARK: - Init
@@ -39,33 +36,8 @@ final class LearnStrategyAudioViewController: UIViewController {
         setupView()
         setupTableView()
         setupAudioPlayer()
-        setupSoundPattern(audioTrack: viewModel.audioTrack(at: 0))
+        setupSoundPattern()
     }
-}
-
-// MARK: - AudioPlayer
-
-private extension LearnStrategyAudioViewController {
-
-    func playOrStopAudioTrack(at index: Index) {
-        if player?.isPlaying == true {
-            stopAudioTrack()
-        } else {
-            playAudioTrack()
-        }
-    }
-
-    private func playAudioTrack() {
-        // TODO
-    }
-
-    private func stopAudioTrack() {
-        // TODO
-    }
-}
-
-extension LearnStrategyAudioViewController: AVAudioPlayerDelegate {
-    // TODO
 }
 
 // MARK: - Private Helpers
@@ -84,7 +56,7 @@ private extension LearnStrategyAudioViewController {
         // TODO
     }
 
-    func setupSoundPattern(audioTrack: AudioTrack) {
+    func setupSoundPattern() {
         // TODO
     }
 
@@ -108,8 +80,9 @@ extension LearnStrategyAudioViewController: UITableViewDelegate, UITableViewData
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        playOrStopAudioTrack(at: indexPath.row)
+        tableView.deselectRow(at: indexPath, animated: true)
 
         // TODO
+        viewModel.playItem(at: indexPath.row)
     }
 }

@@ -8,12 +8,14 @@
 
 import Foundation
 import ReactiveKit
+import AVFoundation
 
 final class LearnStrategyAudioViewModel {
 
     // MARK: - Properties
 
     private let item = audioStrategy
+    private var player = AVPlayer()
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
     var audioItemsCount: Int {
@@ -28,12 +30,30 @@ final class LearnStrategyAudioViewModel {
         return item.subHeadline
     }
 
-    func audioTrack(at index: Index) -> AudioTrack {
-        return item.tracks[index]
-    }
-
     func soundPattern(at index: Index) -> [CGFloat] {
         return audioTrack(at: index).soundPattern
+    }
+
+    func playItem(at index: Index) {
+        let playerItem = AVPlayerItem(url: audioTrack(at: index).url)
+        player = AVPlayer(playerItem: playerItem)
+        player.play()
+    }
+
+    func stopPlayback() {
+        player.pause()
+    }
+
+    func trackDuration() -> CGFloat {
+        return CGFloat((player.currentItem?.duration.seconds) ?? 0)
+    }
+
+    func currentPosition() -> CGFloat {
+        return CGFloat(player.currentTime().seconds)
+    }
+
+    private func audioTrack(at index: Index) -> AudioTrack {
+        return item.tracks[index]
     }
 }
 
