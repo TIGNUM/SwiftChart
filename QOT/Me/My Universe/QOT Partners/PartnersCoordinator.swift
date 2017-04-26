@@ -36,7 +36,20 @@ final class PartnersCoordinator: ParentCoordinator {
     func start() {
         let partnersViewController = PartnersViewController(viewModel: viewModel)
         partnersViewController.delegate = self
-        rootViewController.present(partnersViewController, animated: true)
+
+        let topTabBarControllerItem = TopTabBarController.Item(
+            controllers: [partnersViewController],
+            titles: [R.string.localized.meSectorMyWhyPartnersTitle()]
+        )
+
+        let topTabBarController = TopTabBarController(
+            item: topTabBarControllerItem,
+            leftIcon: R.image.ic_minimize(),
+            rightIcon: R.image.ic_edit()
+        )
+
+        topTabBarController.delegate = self
+        rootViewController.present(topTabBarController, animated: true)
     }
 }
 
@@ -46,9 +59,27 @@ extension PartnersCoordinator: PartnersViewControllerDelegate {
 
     func didTapClose(in viewController: UIViewController, animated: Bool) {
         viewController.dismiss(animated: true, completion: nil)
+        removeChild(child: self)
     }
 
     func didTapChangeImage(at index: Index, in viewController: UIViewController) {
         print("didTapCahngeImage")
+    }
+}
+
+// MARK: - TopTabBarDelegate
+
+extension PartnersCoordinator: TopTabBarDelegate {
+
+    func didSelectItemAtIndex(index: Int?, sender: TopTabBarController) {
+        print(index, sender)
+    }
+
+    func didSelectLeftButton(sender: TopTabBarController) {
+        sender.dismiss(animated: true, completion: nil)
+    }
+
+    func didSelectRightButton(sender: TopTabBarController) {
+        print("did select edit mode:", sender)
     }
 }

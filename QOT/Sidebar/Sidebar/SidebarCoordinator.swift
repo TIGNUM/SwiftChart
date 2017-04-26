@@ -10,15 +10,14 @@ import Foundation
 import UIKit
 
 final class SidebarCoordinator: ParentCoordinator {
-    
-    let rootViewController: TopTabBarController
+
+    let rootViewController: UIViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
-    internal var children = [Coordinator]()
-    weak var delegate: ParentCoordinator?
+    var children = [Coordinator]()
     lazy var presentationManager = PresentationManager()
     
-    init(root: TopTabBarController, services: Services, eventTracker: EventTracker) {
+    init(root: UIViewController, services: Services, eventTracker: EventTracker) {
         self.rootViewController = root
         self.services = services
         self.eventTracker = eventTracker
@@ -30,34 +29,56 @@ final class SidebarCoordinator: ParentCoordinator {
         presentationManager.presentationType = .fadeIn
         sideBarViewController.modalPresentationStyle = .custom
         sideBarViewController.transitioningDelegate = presentationManager
-        rootViewController.present(sideBarViewController, animated: true)
+
+        let topTabBarControllerItem = TopTabBarController.Item(
+            controllers: [sideBarViewController],
+            titles: []
+        )
+
+        let topTabBarController = TopTabBarController(
+            item: topTabBarControllerItem,
+            rightIcon: R.image.ic_close()
+        )
+
+        topTabBarController.delegate = self
+        rootViewController.present(topTabBarController, animated: true)
     }
 }
 
 // MARK: - SettingsViewControllerDelegate
 
 extension SidebarCoordinator: SidebarViewControllerDelegate {
-    
-    func didTapClose(in viewController: UIViewController, animated: Bool) {
-        viewController.dismiss(animated: animated, completion: nil)
-        delegate?.removeChild(child: self)
-    }
-    
-    func didTapSettingsCell(in viewController: SidebarViewController) {
-        let coordinator = SettingsCoordinator(root: viewController, services: services, eventTracker: eventTracker)
-        coordinator.delegate = self
+
+    func didTapSettingsMenuCell(in viewController: SidebarViewController) {
+        let coordinator = SettingsMenuCoordinator(root: viewController, services: services, eventTracker: eventTracker)
         startChild(child: coordinator)
     }
 
     func didTapLibraryCell(in viewController: SidebarViewController) {
         let coordinator = LibraryCoordinator(root: viewController, services: services, eventTracker: eventTracker)
-        coordinator.delegate = self
         startChild(child: coordinator)
     }
 
     func didTapBenefitsCell(in viewController: SidebarViewController) {
-        let coordinator = BenefitsCoordinator(root: viewController, services: services, eventTracker: eventTracker)
-        coordinator.delegate = self
+        let coordinator = BenefitsCoordinator(root: viewController, services: services, eventTracker: eventTracker)        
         startChild(child: coordinator)
+    }
+}
+
+// MARK: - TopTabBarDelegate
+
+extension SidebarCoordinator: TopTabBarDelegate {
+
+    func didSelectItemAtIndex(index: Int?, sender: TopTabBarController) {
+        print("didSelectItemAtIndex", index, sender)
+    }
+
+    func didSelectRightButton(sender: TopTabBarController) {
+        sender.dismiss(animated: true, completion: nil)
+        removeChild(child: self)
+    }
+
+    func didSelectLeftButton(sender: TopTabBarController) {
+        print("didSelectLeftButton", sender)
     }
 }

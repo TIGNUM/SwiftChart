@@ -126,8 +126,8 @@ struct MockSector: Sector {
 private var mockSectors: [Sector] {
     return [
         MockSector(
-            startAngle: 234,
-            endAngle: 219,
+            startAngle: 219,
+            endAngle: 234,
             spikes: peakSpikes,
             labelType: .peak,
             strokeColor: .magenta,

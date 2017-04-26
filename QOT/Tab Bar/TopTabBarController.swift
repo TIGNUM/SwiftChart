@@ -32,14 +32,19 @@ final class TopTabBarController: UIViewController {
     struct Item {
         let controllers: [UIViewController]
         let titles: [String]
-        var containsScrollView: Bool
+        let containsScrollView: Bool
+        let contentScrollView: UIScrollView?
+        let contentView: UIView?
 
-        init(controllers: [UIViewController], titles: [String], containsScrollView: Bool = false) {
-            self.controllers = controllers
-            self.titles = titles
+        init(controllers: [UIViewController], titles: [String], containsScrollView: Bool = false, contentScrollView: UIScrollView? = nil, contentView: UIView? = nil) {
             self.containsScrollView = containsScrollView
+            self.contentScrollView = contentScrollView
+            self.contentView = contentView
+            self.titles = titles
+            self.controllers = controllers
         }
     }
+
     // MARK: Properties
 
     fileprivate var item: Item
@@ -49,14 +54,13 @@ final class TopTabBarController: UIViewController {
 
     fileprivate lazy var navigationItemBar: UIView = {
         let view = UIView()
-        view.backgroundColor = .clear
+        view.backgroundColor = .black
         
         return view
     }()
     
     fileprivate lazy var leftButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .white
         button.addTarget(self, action: #selector(leftButtonPressed(_:)), for: .touchUpInside)
 
         return button
@@ -64,7 +68,6 @@ final class TopTabBarController: UIViewController {
     
     fileprivate lazy var rightButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .white
         button.addTarget(self, action: #selector(rightButtonPressed(_:)), for: .touchUpInside)
 
         return button
@@ -162,9 +165,9 @@ extension TopTabBarController {
 
     func setupScrollView() {
         if item.containsScrollView == true,
-            let myUniverseController = item.controllers.first as? MyUniverseViewController {
-                scrollView = myUniverseController.contentScrollView
-                myUniverseController.contentScrollViewDelegate = self
+            let contentScrollView = item.contentScrollView {
+                scrollView = contentScrollView
+                contentScrollView.delegate = self
         } else {
             let width: CGFloat = view.bounds.width
             scrollView.frame = view.bounds
@@ -217,9 +220,10 @@ private extension TopTabBarController {
     }
 
     func addContentView() {
-        if let myUniverseView = (item.controllers.first as? MyUniverseViewController)?.view {
-           view.addSubview(myUniverseView)
-        } else {
+        if item.containsScrollView == true,
+            let contentView = item.contentView {
+                view.addSubview(contentView)
+        }else {
             view.addSubview(scrollView)
         }
     }

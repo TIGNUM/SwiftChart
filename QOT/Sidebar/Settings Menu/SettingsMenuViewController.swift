@@ -11,7 +11,6 @@ import ReactiveKit
 import Bond
 
 protocol SettingsMenuViewControllerDelegate: class {
-    func didTapClose(in viewController: SettingsMenuViewController)
     func didTapGeneral(in viewController: SettingsMenuViewController)
     func didTapNotifications(in viewController: SettingsMenuViewController)
     func didTapSecurity(in viewController: SettingsMenuViewController)
@@ -23,7 +22,6 @@ final class SettingsMenuViewController: UIViewController {
 
     private let disposeBag = DisposeBag()
     private let viewModel: SettingsMenuViewModel
-
     weak var delegate: SettingsMenuViewControllerDelegate?
 
     init(viewModel: SettingsMenuViewModel) {
@@ -40,5 +38,42 @@ final class SettingsMenuViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .purple
+        settingsButtons().forEach { (button: UIButton) in
+            view.addSubview(button)
+            print(button)
+        }
+    }
+
+    // TODO: Please remove, just for testing.
+
+    private func settingsButtons() -> [UIButton] {
+        let genralButton = UIButton()
+        genralButton.setTitle("GENERAL", for: .normal)
+        genralButton.addTarget(self, action: #selector(didTapSettingButton), for: .touchUpInside)
+        genralButton.frame = CGRect(x: 100, y: 100, width: 0, height: 0)
+        genralButton.sizeToFit()
+
+        let notificationsButton = UIButton()
+        notificationsButton.setTitle("NOTIFICATIONS", for: .normal)
+        notificationsButton.addTarget(self, action: #selector(didTapSettingButton), for: .touchUpInside)
+        notificationsButton.frame = CGRect(x: 100, y: 200, width: 0, height: 0)
+        notificationsButton.sizeToFit()
+
+        let securityButton = UIButton()
+        securityButton.setTitle("SECURITY", for: .normal)
+        securityButton.addTarget(self, action: #selector(didTapSettingButton), for: .touchUpInside)
+        securityButton.frame = CGRect(x: 100, y: 300, width: 0, height: 0)
+        securityButton.sizeToFit()
+
+        return [genralButton, notificationsButton, securityButton]
+    }
+
+    func didTapSettingButton(sender: UIButton) {
+        switch sender.titleLabel?.text ?? String() {
+            case "GENERAL": delegate?.didTapGeneral(in: self)
+            case "NOTIFICATIONS": delegate?.didTapSecurity(in: self)
+            case "SECURITY": delegate?.didTapNotifications(in: self)
+            default: return
+        }
     }
 }

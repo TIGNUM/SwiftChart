@@ -32,8 +32,20 @@ final class LearnContentListCoordinator: ParentCoordinator {
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .custom
         vc.delegate =  self
-        rootVC.present(vc, animated: true)
-        
+
+        let topTabBarControllerItem = TopTabBarController.Item(
+            controllers: [vc],
+            titles: [R.string.localized.learnCategoryListViewTitle()]
+        )
+
+        let topTabBarController = TopTabBarController(
+            item: topTabBarControllerItem,
+            leftIcon: R.image.ic_search(),
+            rightIcon: R.image.ic_close()
+        )
+
+        topTabBarController.delegate = self
+        rootVC.present(topTabBarController, animated: true)
         eventTracker.track(page: vc.pageID, referer: rootVC.pageID, associatedEntity: category)
     }
 }
@@ -47,5 +59,22 @@ extension LearnContentListCoordinator: LearnContentListViewControllerDelegate {
     func didTapBack(in: LearnContentListViewController) {
         rootVC.dismiss(animated: true)
         delegate?.removeChild(child: self)
+    }
+}
+
+// MARK: - TopTabBarDelegate
+
+extension LearnContentListCoordinator: TopTabBarDelegate {
+
+    func didSelectRightButton(sender: TopTabBarController) {
+        sender.dismiss(animated: true, completion: nil)
+    }
+
+    func didSelectLeftButton(sender: TopTabBarController) {
+        print("Search button pressed", sender)
+    }
+
+    func didSelectItemAtIndex(index: Int?, sender: TopTabBarController) {
+        print("didSelectItemAtIndex", index, sender)
     }
 }

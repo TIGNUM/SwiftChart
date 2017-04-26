@@ -32,15 +32,15 @@ final class TabBarController: UIViewController {
     fileprivate weak var currentViewController: UIViewController?
     fileprivate weak var indicatorViewLeadingConstraint: NSLayoutConstraint?
     fileprivate weak var indicatorViewWidthConstraint: NSLayoutConstraint?
-    
+    weak var delegate: TabBarControllerDelegate?
+
     fileprivate lazy var containerView: UIView = {
         let view = UIView()
         return view
     } ()
     
     fileprivate let tabBarView: TabBarView
-    
-    weak var delegate: TabBarControllerDelegate?
+
     var viewControllers: [UIViewController] {
         return items.map { $0.controller }
     }
@@ -59,7 +59,7 @@ final class TabBarController: UIViewController {
         
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

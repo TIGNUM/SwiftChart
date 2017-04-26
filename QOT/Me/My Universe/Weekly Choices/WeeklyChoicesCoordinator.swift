@@ -30,7 +30,19 @@ final class WeeklyChoicesCoordinator: ParentCoordinator {
     func start() {
         let weeklyChoicesViewController = WeeklyChoicesViewController(viewModel: WeeklyChoicesViewModel())
         weeklyChoicesViewController.delegate = self
-        rootViewController.present(weeklyChoicesViewController, animated: true)
+
+        let topTabBarControllerItem = TopTabBarController.Item(
+            controllers: [weeklyChoicesViewController],
+            titles: [R.string.localized.meSectorMyWhyWeeklyChoicesTitle()]
+        )
+
+        let topTabBarController = TopTabBarController(
+            item: topTabBarControllerItem,            
+            leftIcon: R.image.ic_minimize()
+        )
+        
+        topTabBarController.delegate = self
+        rootViewController.present(topTabBarController, animated: true)
     }
 }
 
@@ -40,9 +52,25 @@ extension WeeklyChoicesCoordinator: WeeklyChoicesViewControllerDelegate {
 
     func didTapClose(in viewController: UIViewController, animated: Bool) {
         viewController.dismiss(animated: true, completion: nil)
+        removeChild(child: self)
     }
 
     func didTapShare(in viewController: UIViewController, from rect: CGRect, with item: WeeklyChoice) {
         log("didTapShare in: \(viewController), from rect: \(rect ) with item: \(item)")
+    }
+}
+
+extension WeeklyChoicesCoordinator: TopTabBarDelegate {
+
+    func didSelectItemAtIndex(index: Int?, sender: TopTabBarController) {
+        print(index, sender)
+    }
+
+    func didSelectLeftButton(sender: TopTabBarController) {
+        sender.dismiss(animated: true, completion: nil)
+    }
+
+    func didSelectRightButton(sender: TopTabBarController) {
+        print(sender)
     }
 }

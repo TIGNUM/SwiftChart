@@ -11,6 +11,7 @@ import UIKit
 class PrepareEventSimpleTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet weak var titleLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -8,16 +8,12 @@
 
 import UIKit
 
-protocol LearnStrategyCoordinatorDelegate: ParentCoordinator {}
-
 final class LearnStrategyCoordinator: ParentCoordinator {
     fileprivate let rootVC: LearnContentListViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
     fileprivate let category: LearnCategory
-    
     var children: [Coordinator] = []
-    weak var delegate: LearnContentListCoordinatorDelegate?
     
     init(root: LearnContentListViewController, services: Services, eventTracker: EventTracker, category: LearnCategory) {
         self.rootVC = root
@@ -32,7 +28,20 @@ final class LearnStrategyCoordinator: ParentCoordinator {
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .custom
         vc.delegate =  self
-        rootVC.present(vc, animated: true)
+
+        let topTabBarControllerItem = TopTabBarController.Item(
+            controllers: [vc],
+            titles: [R.string.localized.topTabBarItemTitleLearnStrategies()]
+        )
+
+        let topTabBarController = TopTabBarController(
+            item: topTabBarControllerItem,
+            leftIcon: R.image.ic_minimize(),
+            rightIcon: R.image.ic_bookmark()
+        )
+
+        topTabBarController.delegate = self
+        rootVC.present(topTabBarController, animated: true)
         
         // FIXME: Add page tracking
     }
@@ -45,14 +54,14 @@ extension LearnStrategyCoordinator: LearnContentListViewControllerDelegate {
     
     func didTapBack(in: LearnContentListViewController) {
         rootVC.dismiss(animated: true)
-        delegate?.removeChild(child: self)
+        removeChild(child: self)
     }
 }
 
 extension LearnStrategyCoordinator: LearnStrategyViewControllerDelegate {
     func didTapClose(in viewController: LearnStrategyViewController) {
         rootVC.dismiss(animated: true, completion: nil)
-        delegate?.removeChild(child: self)
+        removeChild(child: self)
     }
     
     func didTapShare(in viewController: LearnStrategyViewController) {
@@ -65,5 +74,20 @@ extension LearnStrategyCoordinator: LearnStrategyViewControllerDelegate {
     
     func didTapArticle(with article: LearnStrategyItem, from view: UIView, in viewController: LearnStrategyViewController) {
         log("did tap article: \(article)")
+    }
+}
+
+extension LearnStrategyCoordinator: TopTabBarDelegate {
+
+    func didSelectItemAtIndex(index: Int?, sender: TopTabBarController) {
+        print(index, sender)
+    }
+
+    func didSelectLeftButton(sender: TopTabBarController) {
+        sender.dismiss(animated: true, completion: nil)
+    }
+
+    func didSelectRightButton(sender: TopTabBarController) {
+        print("did select book mark")
     }
 }

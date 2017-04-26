@@ -13,7 +13,7 @@ final class MyDataSectorLabelsView: UIView, MyUniverseView {
     // MARK: - Properties
 
     var sectorLabels = [UILabel]()
-    internal var previousBounds = CGRect.zero
+    var previousBounds = CGRect.zero
     fileprivate var sectors = [Sector]()
     let screenType: MyUniverseViewController.ScreenType
 

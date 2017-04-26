@@ -11,34 +11,51 @@ import UIKit
 
 final class SettingsCoordinator: ParentCoordinator {
     
-    internal var rootViewController: SidebarViewController?
-    fileprivate let services: Services?
-    fileprivate let eventTracker: EventTracker?
-    internal var children = [Coordinator]()
-    weak var delegate: ParentCoordinator?
-    lazy var presentationManager = PresentationManager()
-    
-    init(root: SidebarViewController, services: Services?, eventTracker: EventTracker?) {
+    fileprivate let rootViewController: SettingsMenuViewController
+    fileprivate let services: Services
+    fileprivate let eventTracker: EventTracker
+    fileprivate let settingsType: SettingsViewModel.SettingsType
+    var children = [Coordinator]()
+
+    init(root: SettingsMenuViewController, services: Services, eventTracker: EventTracker, settingsType: SettingsViewModel.SettingsType) {
         self.rootViewController = root
         self.services = services
         self.eventTracker = eventTracker
+        self.settingsType = settingsType
     }
 
     func start() {
-        let settingsViewController = SettingsMenuViewController(viewModel: SettingsMenuViewModel())
-        presentationManager.presentationType = .fadeIn
-        settingsViewController.modalPresentationStyle = .custom
-        settingsViewController.transitioningDelegate = presentationManager
-        rootViewController?.present(settingsViewController, animated: true)
+        let settingsViewController = SettingsViewController(viewModel: SettingsViewModel(settingsType: settingsType))
+
+        let topTabBarControllerItem = TopTabBarController.Item(
+            controllers: [settingsViewController],
+            titles: [R.string.localized.settingsTitle()]
+        )
+
+        let topTabBarController = TopTabBarController(
+            item: topTabBarControllerItem,            
+            leftIcon: R.image.ic_minimize()
+        )
+
+        topTabBarController.delegate = self
+        rootViewController.show(topTabBarController, sender: nil)
     }
 }
 
-// MARK: - SettingsViewControllerDelegate
+// MARK: - TopTabBarDelegate
 
-extension SettingsCoordinator: SettingsViewControllerDelegate {
-    
-    func didTapClose(in viewController: UIViewController, animated: Bool) {
-        viewController.dismiss(animated: animated, completion: nil)
-        delegate?.removeChild(child: self)
+extension SettingsCoordinator: TopTabBarDelegate {
+
+    func didSelectLeftButton(sender: TopTabBarController) {
+        sender.dismiss(animated: true, completion: nil)
+        removeChild(child: self)
+    }
+
+    func didSelectRightButton(sender: TopTabBarController) {
+        print("didSelectRightButton")
+    }
+
+    func didSelectItemAtIndex(index: Int?, sender: TopTabBarController) {
+        print("didSelectItemAtIndex", index, sender)
     }
 }
