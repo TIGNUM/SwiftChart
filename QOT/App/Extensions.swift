@@ -229,6 +229,10 @@ extension UIImageView {
 extension UIScrollView {
 
     var currentPage: Int {
-        return Int(round(self.contentOffset.x / self.bounds.size.width))
+        guard bounds.size.width != 0 else {
+            return 0
+        }
+
+        return Int(round(contentOffset.x / bounds.size.width))
     }
 }

@@ -21,9 +21,9 @@ protocol MyWhyViewDelegate: class {
     func didTapQOTPartner(selectedIndex: Index, partners: [Partner], from view: UIView)
 }
 
-protocol MyUniverseContentScrollViewDelegate: class {
-    func didScrollToMyData()
-    func didScrollToMyWhy()
+protocol ContentScrollViewDelegate: class {
+    func didScrollToFirstView()
+    func didScrollToLastView()
 }
 
 final class MyUniverseViewController: UIViewController {
@@ -33,8 +33,8 @@ final class MyUniverseViewController: UIViewController {
     fileprivate let myDataViewModel: MyDataViewModel
     fileprivate let myWhyViewModel: MyWhyViewModel
     fileprivate var lastContentOffset: CGFloat = 0
+    weak var contentScrollViewDelegate: ContentScrollViewDelegate?
     weak var delegate: MyUniverseViewControllerDelegate?
-    weak var contentScrollViewDelegate: MyUniverseContentScrollViewDelegate?
 
     fileprivate lazy var myDataView: MyDataView = {
         return MyDataView(
@@ -216,9 +216,9 @@ extension MyUniverseViewController: UIScrollViewDelegate {
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {        
         if scrollView.contentOffset.equalTo(.zero) == true {
-            contentScrollViewDelegate?.didScrollToMyData()
+            contentScrollViewDelegate?.didScrollToFirstView()
         } else {
-            contentScrollViewDelegate?.didScrollToMyWhy()
+            contentScrollViewDelegate?.didScrollToLastView()
         }
     }
 }

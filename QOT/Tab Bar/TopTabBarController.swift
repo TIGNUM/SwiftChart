@@ -36,12 +36,18 @@ final class TopTabBarController: UIViewController {
         let contentScrollView: UIScrollView?
         let contentView: UIView?
 
-        init(controllers: [UIViewController], titles: [String], containsScrollView: Bool = false, contentScrollView: UIScrollView? = nil, contentView: UIView? = nil) {
-            self.containsScrollView = containsScrollView
-            self.contentScrollView = contentScrollView
-            self.contentView = contentView
-            self.titles = titles
-            self.controllers = controllers
+        init(
+            controllers: [UIViewController],
+            titles: [String],
+            containsScrollView: Bool = false,
+            contentScrollView: UIScrollView? = nil,
+            contentView: UIView? = nil
+            ) {
+                self.containsScrollView = containsScrollView
+                self.contentScrollView = contentScrollView
+                self.contentView = contentView
+                self.titles = titles
+                self.controllers = controllers
         }
     }
 
@@ -167,7 +173,6 @@ extension TopTabBarController {
         if item.containsScrollView == true,
             let contentScrollView = item.contentScrollView {
                 scrollView = contentScrollView
-                contentScrollView.delegate = self
         } else {
             let width: CGFloat = view.bounds.width
             scrollView.frame = view.bounds
@@ -197,14 +202,14 @@ extension TopTabBarController: UIScrollViewDelegate {
     }
 }
 
-extension TopTabBarController: MyUniverseContentScrollViewDelegate {
+extension TopTabBarController: ContentScrollViewDelegate {
 
-    func didScrollToMyWhy() {
-        tabBarView.setSelectedIndex(1, animated: true)
+    func didScrollToFirstView() {
+        tabBarView.setSelectedIndex(0, animated: true)
     }
 
-    func didScrollToMyData() {
-        tabBarView.setSelectedIndex(0, animated: true)
+    func didScrollToLastView() {
+        tabBarView.setSelectedIndex(1, animated: true)
     }
 }
 
@@ -223,7 +228,7 @@ private extension TopTabBarController {
         if item.containsScrollView == true,
             let contentView = item.contentView {
                 view.addSubview(contentView)
-        }else {
+        } else {
             view.addSubview(scrollView)
         }
     }
@@ -248,8 +253,9 @@ private extension TopTabBarController {
         tabBarView.topAnchor == navigationItemBar.topAnchor + 20
         tabBarView.bottomAnchor == navigationItemBar.bottomAnchor
 
-        if let myUniverseView = (item.controllers.first as? MyUniverseViewController)?.view {
-            setMyUniverseViewAnchors(myUniverseView: myUniverseView)
+        if item.containsScrollView == true,
+            let contentView = item.contentView {
+                setContentViewAnchors(contentView: contentView)
         } else {
             setScrollViewAnchors()
         }
@@ -263,10 +269,10 @@ private extension TopTabBarController {
         scrollView.bottomAnchor == view.bottomAnchor
     }
 
-    private func setMyUniverseViewAnchors(myUniverseView: UIView) {
-        myUniverseView.horizontalAnchors == view.horizontalAnchors
-        myUniverseView.topAnchor == navigationItemBar.bottomAnchor
-        myUniverseView.bottomAnchor == view.bottomAnchor
+    private func setContentViewAnchors(contentView: UIView) {
+        contentView.horizontalAnchors == view.horizontalAnchors
+        contentView.topAnchor == navigationItemBar.bottomAnchor
+        contentView.bottomAnchor == view.bottomAnchor
     }
 }
 
