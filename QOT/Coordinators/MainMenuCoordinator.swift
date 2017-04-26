@@ -54,12 +54,7 @@ extension MainMenuCoordinator: MainMenuViewControllerDelegate {
     func didTapPrepare(in viewController: MainMenuViewController) {
         showTabBarController(in: viewController, with: MainMenuType.prepare.rawValue)
     }
-    
-    func didTapSidebarButton(in viewController: MainMenuViewController) {
-        let coordinator = SidebarCoordinator(root: viewController, services: services, eventTracker: eventTracker)
-        startChild(child: coordinator)
-    }
-    
+
     private func showTabBarController(in viewController: MainMenuViewController, with selectedIndex: Index) {
         let tabBarCoordinator = TabBarCoordinator(rootViewController: viewController, selectedIndex: selectedIndex, services: services, eventTracker: eventTracker)
         startChild(child: tabBarCoordinator)

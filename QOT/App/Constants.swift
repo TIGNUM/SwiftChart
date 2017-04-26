@@ -46,7 +46,7 @@ struct Layout {
         }
 
         var radiusMaxLoad: CGFloat {
-            return viewControllerFrame.width * 0.7
+            return viewControllerFrame.width * 0.66
         }
 
         var radiusAverageLoad: CGFloat {
@@ -54,19 +54,19 @@ struct Layout {
         }
 
         var profileImageWidth: CGFloat {
-            return viewControllerFrame.width * 0.25
+            return viewControllerFrame.width * 0.28
         }
 
         var scrollViewOffset: CGFloat {
-            return viewControllerFrame.width * 0.06
+            return viewControllerFrame.width * 0.07
         }
 
         var loadCenterX: CGFloat {
-            return (viewControllerFrame.width - (viewControllerFrame.width * 0.06))
+            return (viewControllerFrame.width - (viewControllerFrame.width * 0.08))
         }
 
         var loadCenterY: CGFloat {
-            return viewControllerFrame.height * 0.5
+            return viewControllerFrame.height * 0.412
         }
 
         var myWhyVisionFooterXPos: CGFloat {
@@ -74,7 +74,7 @@ struct Layout {
         }
 
         var myWhyVisionFooterYPos: CGFloat {
-            return viewControllerFrame.height * 0.425
+            return viewControllerFrame.height * 0.325
         }
 
         func myWhyVisionFooterFrame(_ screenType: MyUniverseViewController.ScreenType) -> CGRect {
@@ -105,7 +105,7 @@ struct Layout {
 
             return CGRect(
                 x: myWhyVisionFooterXPos,
-                y: (viewControllerFrame.height * 0.25) + deviceOffset,
+                y: (viewControllerFrame.height * 0.15) + deviceOffset,
                 width: profileImageWidth * 2.25,
                 height: Layout.MeSection.labelHeight
             )
@@ -116,7 +116,7 @@ struct Layout {
         }
 
         var myWhyWeeklyChoicesFooterYPos: CGFloat {
-            return viewControllerFrame.height * 0.67
+            return viewControllerFrame.height * 0.57
         }
 
         var myWhyWeeklyChoicesFooterFrame: CGRect {
@@ -129,11 +129,11 @@ struct Layout {
         }
 
         var myWhyPartnersFooterXPos: CGFloat {
-            return viewControllerFrame.width * 0.1
+            return viewControllerFrame.width * 0.08
         }
 
         var myWhyPartnersFooterYPos: CGFloat {
-            return viewControllerFrame.height * 0.8
+            return viewControllerFrame.height * 0.7
         }
 
         var myWhyPartnersFooterFrame: CGRect {

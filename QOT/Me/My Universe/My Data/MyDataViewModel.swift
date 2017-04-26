@@ -65,19 +65,19 @@ enum SectorLabelType {
 
     var angle: CGFloat {
         switch self {
-        case .peak: return 245
-        case .meetings: return 220
-        case .intensity: return 195
-        case .travel: return 170
-        case .sleep: return 142
-        case .activity: return 120
+        case .peak: return 229
+        case .meetings: return 211
+        case .intensity: return 187
+        case .travel: return 165
+        case .sleep: return 145
+        case .activity: return 128
         }
     }
 
     var load: CGFloat {
         switch self {
-        case .peak: return 1.2
-        case .meetings: return 1.22
+        case .peak: return 1.3
+        case .meetings: return 1.28
         case .intensity: return 1.27
         case .travel: return 1.17
         case .sleep: return 1.1
@@ -126,8 +126,8 @@ struct MockSector: Sector {
 private var mockSectors: [Sector] {
     return [
         MockSector(
-            startAngle: 240,
-            endAngle: 264,
+            startAngle: 234,
+            endAngle: 219,
             spikes: peakSpikes,
             labelType: .peak,
             strokeColor: .magenta,
@@ -136,7 +136,7 @@ private var mockSectors: [Sector] {
 
         MockSector(
             startAngle: 200,
-            endAngle: 239,
+            endAngle: 233,
             spikes: meetingsSpikes,
             labelType: .meetings,
             strokeColor: .blue,
@@ -171,8 +171,8 @@ private var mockSectors: [Sector] {
         ),
 
         MockSector(
-            startAngle: 100,
-            endAngle: 119,
+            startAngle: 119,
+            endAngle: 135,
             spikes: activitySpikes,
             labelType: .activity,
             strokeColor: .cyan,
@@ -183,51 +183,51 @@ private var mockSectors: [Sector] {
 
 private var peakSpikes: [Spike] {
     return [
-        MockSpike(localID: UUID().uuidString, angle: 260, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, angle: 252, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, angle: 244, load: randomNumber)
+        MockSpike(localID: UUID().uuidString, angle: 245, load: randomNumber),
+        MockSpike(localID: UUID().uuidString, angle: 240, load: randomNumber),
+        MockSpike(localID: UUID().uuidString, angle: 235, load: randomNumber)
     ]
 }
 
 private var meetingsSpikes: [Spike] {
     return [
-        MockSpike(localID: UUID().uuidString, angle: 236, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, angle: 228, load: randomNumber),
+        MockSpike(localID: UUID().uuidString, angle: 225, load: randomNumber),
         MockSpike(localID: UUID().uuidString, angle: 220, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, angle: 212, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, angle: 204, load: randomNumber)
+        MockSpike(localID: UUID().uuidString, angle: 215, load: randomNumber),
+        MockSpike(localID: UUID().uuidString, angle: 210, load: randomNumber),
+        MockSpike(localID: UUID().uuidString, angle: 205, load: randomNumber)
     ]
 }
 
 private var intensitySpikes: [Spike] {
     return [
-        MockSpike(localID: UUID().uuidString, angle: 196, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, angle: 188, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, angle: 180, load: randomNumber)
+        MockSpike(localID: UUID().uuidString, angle: 195, load: randomNumber),
+        MockSpike(localID: UUID().uuidString, angle: 190, load: randomNumber),
+        MockSpike(localID: UUID().uuidString, angle: 185, load: randomNumber)
     ]
 }
 
 private var travelSpikes: [Spike] {
     return [
-        MockSpike(localID: UUID().uuidString, angle: 172, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, angle: 164, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, angle: 156, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, angle: 148, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, angle: 140, load: randomNumber)
+        MockSpike(localID: UUID().uuidString, angle: 175, load: randomNumber),
+        MockSpike(localID: UUID().uuidString, angle: 170, load: randomNumber),
+        MockSpike(localID: UUID().uuidString, angle: 165, load: randomNumber),
+        MockSpike(localID: UUID().uuidString, angle: 160, load: randomNumber),
+        MockSpike(localID: UUID().uuidString, angle: 155, load: randomNumber)
     ]
 }
 
 private var sleepSpikes: [Spike] {
     return [
-        MockSpike(localID: UUID().uuidString, angle: 132, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, angle: 124, load: randomNumber)
+        MockSpike(localID: UUID().uuidString, angle: 145, load: randomNumber),
+        MockSpike(localID: UUID().uuidString, angle: 140, load: randomNumber)
     ]
 }
 
 private var activitySpikes: [Spike] {
     return [
-        MockSpike(localID: UUID().uuidString, angle: 116, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, angle: 108, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, angle: 100, load: randomNumber)
+        MockSpike(localID: UUID().uuidString, angle: 130, load: randomNumber),
+        MockSpike(localID: UUID().uuidString, angle: 125, load: randomNumber),
+        MockSpike(localID: UUID().uuidString, angle: 112, load: randomNumber)
     ]
 }
