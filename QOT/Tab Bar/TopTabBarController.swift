@@ -51,8 +51,9 @@ final class TopTabBarController: UIViewController {
     // MARK: Properties
 
     fileprivate var item: Item
-    fileprivate lazy var tabBarView: TabBarView = TabBarView()
+    fileprivate var tabBarView: TabBarView = TabBarView()
     fileprivate var index: Int = 0
+    fileprivate var scrollViewContentOffset: CGFloat = 0
     weak var delegate: TopTabBarDelegate?
 
     fileprivate lazy var navigationItemBar: UIView = {
@@ -168,12 +169,17 @@ extension TopTabBarController {
 
     func setupScrollView() {
         guard item.containsScrollView == false else {
+            let halfContentSize = scrollView.contentSize.width * 0.5
+            let offset = view.bounds.size.width - halfContentSize
+            scrollViewContentOffset = halfContentSize - offset
+
             return
         }
 
         let width: CGFloat = view.bounds.width
         scrollView.frame = view.bounds
         scrollView.contentSize = CGSize(width: CGFloat(item.controllers.count) * width, height: 0)
+        scrollViewContentOffset = scrollView.bounds.size.width
 
         for (index, controller) in item.controllers.enumerated() {
             addViewToScrollView(controller)
@@ -282,18 +288,12 @@ extension TopTabBarController: TabBarViewDelegate {
         }
         
         self.index = index
-        if index != scrollView.currentPage {
-            if item.containsScrollView == false {
-                let offset = CGPoint(x: scrollView.bounds.size.width * CGFloat(index), y: 0)
-                scrollView.setContentOffset(offset, animated: true)
-            } else {
-                if index == 0 {
-                    scrollView.setContentOffset(.zero, animated: true)
-                } else {
-                    let offset = CGPoint(x: (scrollView.contentSize.width * 0.5) * CGFloat(index), y: 0)
-                    scrollView.setContentOffset(offset, animated: true)
-                }
-            }
+
+        guard index != scrollView.currentPage else {
+            return
         }
+
+        let offset = CGPoint(x: scrollViewContentOffset * CGFloat(index), y: 0)
+        scrollView.setContentOffset(offset, animated: true)
     }
 }
