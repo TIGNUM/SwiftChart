@@ -23,10 +23,10 @@ class AudioWaveformView: UIView {
     private(set) var maxColorBottom: UIColor = .yellow
     private(set) var maxColorTop: UIColor = .green
 
-    private var gradientLayers:[CAGradientLayer] = []
+    private var gradientLayers: [CAGradientLayer] = []
 
     override func layoutSubviews() {
-        super .layoutSubviews()
+        super.layoutSubviews()
 
         redraw()
     }
@@ -51,7 +51,6 @@ class AudioWaveformView: UIView {
 
         drawLayers(data: processedData())
     }
-
 
     private func removeExistingLayers() {
         gradientLayers.forEach { $0.removeFromSuperlayer() }
@@ -106,7 +105,7 @@ class AudioWaveformView: UIView {
     private func addGradiantLayer(x: CGFloat, height: CGFloat) {
         let gradient: CAGradientLayer = CAGradientLayer()
         gradient.colors = [UIColor.black.cgColor, UIColor.black.cgColor]
-        gradient.locations = [0.1 , 1.0]
+        gradient.locations = [0.1, 1.0]
         gradient.frame = CGRect(x: x, y: bounds.height - height, width: 1, height: height)
         gradientLayers.append(gradient)
         layer.addSublayer(gradient)
