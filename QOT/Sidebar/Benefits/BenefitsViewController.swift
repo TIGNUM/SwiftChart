@@ -32,12 +32,3 @@ final class BenefitsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
-// MARK: - TopTabBarItem
-
-extension BenefitsViewController: TopTabBarItem {
-
-    var topTabBarItem: TopTabBarController.Item {
-        return TopTabBarController.Item(controller: self, title: R.string.localized.sidebarTitleBenefits())
-    }
-}

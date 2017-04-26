@@ -115,16 +115,3 @@ extension SettingsViewController: SettingsViewControllerDelegate {
         // Navigate to selected view, like tutorial.
     }
 }
-
-// MARK: - TopTabBarItem
-
-extension SettingsViewController: TopTabBarItem {
-
-    var topTabBarItem: TopTabBarController.Item {
-        switch settingsType {
-        case .general: return TopTabBarController.Item(controller: self, title: R.string.localized.settingsTitleGeneral())
-        case .notifications: return TopTabBarController.Item(controller: self, title: R.string.localized.settingsTitleNotifications())
-        case .security: return TopTabBarController.Item(controller: self, title: R.string.localized.settingsTitleSecurity())
-        }
-    }
-}

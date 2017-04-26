@@ -15,10 +15,6 @@ protocol TopTabBarDelegate: class {
     func didSelectRightButton(sender: TopTabBarController)
 }
 
-protocol TopTabBarItem: class {
-    var topTabBarItem: TopTabBarController.Item { get }
-}
-
 final class TopTabBarController: UIViewController {
 
     // MARK: - Constants
@@ -34,23 +30,25 @@ final class TopTabBarController: UIViewController {
     // MARK: - TopTabBarController Item
 
     struct Item {
-        let controller: UIViewController
-        let title: String
-    }
-
-    // MARK: - TopTabBarController MyUniverse
-
-    struct MyUniverseItem {
-        let controller: MyUniverseViewController
+        let controllers: [UIViewController]
         let titles: [String]
+        let containsScrollView: Bool
+        let contentScrollView: UIScrollView?
+        let contentView: UIView?
+
+        init(controllers: [UIViewController], titles: [String], containsScrollView: Bool = false, contentScrollView: UIScrollView? = nil, contentView: UIView? = nil) {
+            self.containsScrollView = containsScrollView
+            self.contentScrollView = contentScrollView
+            self.contentView = contentView
+            self.titles = titles
+            self.controllers = controllers
+        }
     }
 
     // MARK: Properties
 
-    fileprivate var controllers = [UIViewController]()
-    fileprivate let items: [Item]
-    lazy var myUniverseItem: MyUniverseItem? = nil
-    fileprivate let tabBarView: TabBarView
+    fileprivate var item: Item
+    fileprivate lazy var tabBarView: TabBarView = TabBarView()
     fileprivate var index: Int = 0
     weak var delegate: TopTabBarDelegate?
 
@@ -76,56 +74,26 @@ final class TopTabBarController: UIViewController {
     }()
     
     fileprivate lazy var scrollView: UIScrollView = {
-        let view = UIScrollView()
-        view.backgroundColor = .clear
-        view.isPagingEnabled = true
-        view.delegate = self
-        view.showsHorizontalScrollIndicator = false
+        let scrollView = UIScrollView()
+        scrollView.backgroundColor = .clear
+        scrollView.isPagingEnabled = true
+        scrollView.delegate = self
+        scrollView.showsHorizontalScrollIndicator = false
 
-        return view
+        return scrollView
     }()
 
     // MARK: - Init
     
-    init(items: [Item], selectedIndex: Index, leftIcon: UIImage? = nil, rightIcon: UIImage? = nil) {
-        precondition(selectedIndex >= 0 && selectedIndex < items.count, "Out of bounds selectedIndex")
-        
-        let tabBarView = TabBarView()
-        tabBarView.setTitles(items.map { $0.title }, selectedIndex: selectedIndex)
-        tabBarView.selectedColor = Constants.selectedButtonColor
-        tabBarView.deselectedColor = Constants.deselectedButtonColor
-        tabBarView.indicatorViewExtendedWidth = Constants.indicatorViewExtendedWidth
-        
-        self.items = items
-        self.tabBarView = tabBarView
+    init(item: Item, selectedIndex: Index = 0, leftIcon: UIImage? = nil, rightIcon: UIImage? = nil) {
+        precondition(selectedIndex >= 0 && selectedIndex < item.controllers.count, "Out of bounds selectedIndex")
+
+        self.item = item
         
         super.init(nibName: nil, bundle: nil)
-
-        if leftIcon != nil {
-            leftButton.setImage(leftIcon, for: .normal) } else {leftButton.isHidden = true}
-        if rightIcon != nil {
-            rightButton.setImage(rightIcon, for: .normal) } else {rightButton.isHidden = true}
-    }
-
-    init(myUniverseItem: MyUniverseItem, selectedIndex: Index, leftIcon: UIImage? = nil, rightIcon: UIImage? = nil) {
-        precondition(selectedIndex >= 0 && selectedIndex < myUniverseItem.titles.count, "Out of bounds selectedIndex")
-
-        let tabBarView = TabBarView()
-        tabBarView.setTitles(myUniverseItem.titles, selectedIndex: selectedIndex)
-        tabBarView.selectedColor = Constants.selectedButtonColor
-        tabBarView.deselectedColor = Constants.deselectedButtonColor
-        tabBarView.indicatorViewExtendedWidth = Constants.indicatorViewExtendedWidth
-
-        self.items = []
-        self.tabBarView = tabBarView
-
-        super.init(nibName: nil, bundle: nil)
-        self.myUniverseItem = myUniverseItem
-
-        if leftIcon != nil {
-            leftButton.setImage(leftIcon, for: .normal) } else {leftButton.isHidden = true}
-        if rightIcon != nil {
-            rightButton.setImage(rightIcon, for: .normal) } else {rightButton.isHidden = true}
+        
+        self.tabBarView = self.setupTabBarView(selectedIndex: selectedIndex)
+        self.setupButtons(leftIcon: leftIcon, rightIcon: rightIcon)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -138,6 +106,7 @@ final class TopTabBarController: UIViewController {
         super.viewDidLoad()
         
         setupHierarchy()
+        addContentView()
         setupScrollView()
         tabBarView.delegate = self
     }
@@ -152,6 +121,28 @@ final class TopTabBarController: UIViewController {
         super.viewDidLayoutSubviews()
 
         setupLayout()
+    }
+}
+
+// MARK: - Setup Views
+
+private extension TopTabBarController {
+
+    func setupTabBarView(selectedIndex: Index) -> TabBarView {
+        let tabBarView = TabBarView()
+        tabBarView.setTitles(item.titles, selectedIndex: selectedIndex)
+        tabBarView.selectedColor = Constants.selectedButtonColor
+        tabBarView.deselectedColor = Constants.deselectedButtonColor
+        tabBarView.indicatorViewExtendedWidth = Constants.indicatorViewExtendedWidth
+
+        return tabBarView
+    }
+
+    func setupButtons(leftIcon: UIImage?, rightIcon: UIImage?) {
+        leftButton.setImage(leftIcon, for: .normal)
+        rightButton.setImage(rightIcon, for: .normal)
+        leftButton.isHidden = leftIcon == nil
+        rightButton.isHidden = rightIcon == nil
     }
 }
 
@@ -173,23 +164,23 @@ extension TopTabBarController {
 extension TopTabBarController {
 
     func setupScrollView() {
-        if let myUniverseScrollView = myUniverseItem?.controller.contentScrollView {
-            scrollView = myUniverseScrollView
-            myUniverseItem?.controller.contentScrollViewDelegate = self
+        if item.containsScrollView == true,
+            let contentScrollView = item.contentScrollView {
+                scrollView = contentScrollView
+                contentScrollView.delegate = self
         } else {
             let width: CGFloat = view.bounds.width
             scrollView.frame = view.bounds
-            scrollView.contentSize = CGSize(width: CGFloat(items.count) * width, height: 0)
+            scrollView.contentSize = CGSize(width: CGFloat(item.controllers.count) * width, height: 0)
 
-            for (index, item) in items.enumerated() {
-                let vc = item.controller
-                addViewToScrollView(vc)
-                vc.view.frame.origin = CGPoint(x: CGFloat(index) * width, y: 0)
+            for (index, controller) in item.controllers.enumerated() {
+                addViewToScrollView(controller)
+                controller.view.frame.origin = CGPoint(x: CGFloat(index) * width, y: 0)
             }
         }
     }
 
-    private func addViewToScrollView(_ viewController: UIViewController) {
+    func addViewToScrollView(_ viewController: UIViewController) {
         viewController.view.frame = view.frame
         scrollView.addSubview(viewController.view)
         viewController.didMove(toParentViewController: self)
@@ -226,13 +217,13 @@ private extension TopTabBarController {
         navigationItemBar.addSubview(leftButton)
         navigationItemBar.addSubview(rightButton)
         navigationItemBar.addSubview(tabBarView)
-        addContentView()
     }
 
-    private func addContentView() {
-        if let myUniverseItem = myUniverseItem {
-            view.addSubview(myUniverseItem.controller.view)
-        } else {
+    func addContentView() {
+        if item.containsScrollView == true,
+            let contentView = item.contentView {
+                view.addSubview(contentView)
+        }else {
             view.addSubview(scrollView)
         }
     }
@@ -257,8 +248,8 @@ private extension TopTabBarController {
         tabBarView.topAnchor == navigationItemBar.topAnchor + 20
         tabBarView.bottomAnchor == navigationItemBar.bottomAnchor
 
-        if let myUniverseItem = myUniverseItem {
-            setMyUniverseViewAnchors(myUniverseItem: myUniverseItem)
+        if let myUniverseView = (item.controllers.first as? MyUniverseViewController)?.view {
+            setMyUniverseViewAnchors(myUniverseView: myUniverseView)
         } else {
             setScrollViewAnchors()
         }
@@ -270,14 +261,12 @@ private extension TopTabBarController {
         scrollView.horizontalAnchors == view.horizontalAnchors
         scrollView.topAnchor == navigationItemBar.bottomAnchor
         scrollView.bottomAnchor == view.bottomAnchor
-
-        scrollView.backgroundColor = .purple
     }
 
-    private func setMyUniverseViewAnchors(myUniverseItem: MyUniverseItem) {
-        myUniverseItem.controller.view.horizontalAnchors == view.horizontalAnchors
-        myUniverseItem.controller.view.topAnchor == navigationItemBar.bottomAnchor
-        myUniverseItem.controller.view.bottomAnchor == view.bottomAnchor
+    private func setMyUniverseViewAnchors(myUniverseView: UIView) {
+        myUniverseView.horizontalAnchors == view.horizontalAnchors
+        myUniverseView.topAnchor == navigationItemBar.bottomAnchor
+        myUniverseView.bottomAnchor == view.bottomAnchor
     }
 }
 

@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 final class SidebarCoordinator: ParentCoordinator {
-    
-    fileprivate let rootViewController: UIViewController
+
+    let rootViewController: UIViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
     var children = [Coordinator]()
@@ -30,9 +30,13 @@ final class SidebarCoordinator: ParentCoordinator {
         sideBarViewController.modalPresentationStyle = .custom
         sideBarViewController.transitioningDelegate = presentationManager
 
+        let topTabBarControllerItem = TopTabBarController.Item(
+            controllers: [sideBarViewController],
+            titles: []
+        )
+
         let topTabBarController = TopTabBarController(
-            items: [sideBarViewController.topTabBarItem],
-            selectedIndex: 0,
+            item: topTabBarControllerItem,
             rightIcon: R.image.ic_close()
         )
 

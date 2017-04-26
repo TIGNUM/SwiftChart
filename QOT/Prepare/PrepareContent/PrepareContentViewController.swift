@@ -189,12 +189,3 @@ extension PrepareContentViewController {
         }
     }
 }
-
-// MARK: - TopTabBarItem
-
-extension PrepareContentViewController: TopTabBarItem {
-
-    var topTabBarItem: TopTabBarController.Item {
-        return TopTabBarController.Item(controller: self, title: R.string.localized.preparePrepareEventsAddPreparation())
-    }
-}

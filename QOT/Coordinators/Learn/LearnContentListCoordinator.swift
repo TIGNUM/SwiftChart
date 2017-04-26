@@ -33,9 +33,13 @@ final class LearnContentListCoordinator: ParentCoordinator {
         vc.modalPresentationStyle = .custom
         vc.delegate =  self
 
+        let topTabBarControllerItem = TopTabBarController.Item(
+            controllers: [vc],
+            titles: [R.string.localized.learnCategoryListViewTitle()]
+        )
+
         let topTabBarController = TopTabBarController(
-            items: [vc.topTabBarItem],
-            selectedIndex: 0,
+            item: topTabBarControllerItem,
             leftIcon: R.image.ic_search(),
             rightIcon: R.image.ic_close()
         )

@@ -37,9 +37,13 @@ final class PartnersCoordinator: ParentCoordinator {
         let partnersViewController = PartnersViewController(viewModel: viewModel)
         partnersViewController.delegate = self
 
+        let topTabBarControllerItem = TopTabBarController.Item(
+            controllers: [partnersViewController],
+            titles: [R.string.localized.meSectorMyWhyPartnersTitle()]
+        )
+
         let topTabBarController = TopTabBarController(
-            items: [partnersViewController.topTabBarItem],
-            selectedIndex: 0,
+            item: topTabBarControllerItem,
             leftIcon: R.image.ic_minimize(),
             rightIcon: R.image.ic_edit()
         )

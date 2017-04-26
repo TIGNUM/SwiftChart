@@ -30,9 +30,13 @@ final class BenefitsCoordinator: ParentCoordinator {
         benefitsViewController.modalPresentationStyle = .custom
         benefitsViewController.transitioningDelegate = presentationManager
 
+        let topTabBarControllerItem = TopTabBarController.Item(
+            controllers: [benefitsViewController],
+            titles: [R.string.localized.sidebarTitleBenefits()]
+        )
+
         let topTabBarController = TopTabBarController(
-            items: [benefitsViewController.topTabBarItem],
-            selectedIndex: 0,
+            item: topTabBarControllerItem,            
             leftIcon: R.image.ic_minimize(),
             rightIcon: R.image.ic_share()
         )

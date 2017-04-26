@@ -106,12 +106,3 @@ extension SidebarViewController {
         }
     }
 }
-
-// MARK: - TopTabBarItem
-
-extension SidebarViewController: TopTabBarItem {
-
-    var topTabBarItem: TopTabBarController.Item {
-        return TopTabBarController.Item(controller: self, title: "")
-    }
-}

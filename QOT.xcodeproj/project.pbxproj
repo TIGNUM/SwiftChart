@@ -68,6 +68,8 @@
 		CB8A15461E7986C90023B2F9 /* Localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = CB8A15451E7986C90023B2F9 /* Localized.strings */; };
 		CB8A154A1E7A7FA20023B2F9 /* CalendarImportManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15491E7A7FA20023B2F9 /* CalendarImportManger.swift */; };
 		CB8A154C1E7A8AD30023B2F9 /* CalendarImportTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A154B1E7A8AD30023B2F9 /* CalendarImportTask.swift */; };
+		CB8C34541EAF7F190003AB65 /* MyToBeVisionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB8C34531EAF7F190003AB65 /* MyToBeVisionViewController.xib */; };
+		CB8C34561EAF7F200003AB65 /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = CB8C34551EAF7F200003AB65 /* styles.css */; };
 		CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA054481E890560009E28D6 /* Dequeueable.swift */; };
 		CBA4216F1E9276AF00CD4BC9 /* SidebarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBA4216D1E9276AF00CD4BC9 /* SidebarTableViewCell.xib */; };
 		CBA421701E9276AF00CD4BC9 /* SidebarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBA4216E1E9276AF00CD4BC9 /* SidebarViewController.xib */; };
@@ -112,6 +114,10 @@
 		CC6B3A2F1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A2E1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift */; };
 		CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A301E81713200E7FDFD /* Constants.swift */; };
 		CC8C982B1EA767580064AFB1 /* MyUniverseViewController+ScreenType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8C982A1EA767580064AFB1 /* MyUniverseViewController+ScreenType.swift */; };
+		CC94F5621EB08EE400051CF8 /* AudioWaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC94F55E1EB08EE400051CF8 /* AudioWaveformView.swift */; };
+		CC94F5631EB08EE400051CF8 /* LearnStrategyAudioCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC94F55F1EB08EE400051CF8 /* LearnStrategyAudioCoordinator.swift */; };
+		CC94F5641EB08EE400051CF8 /* LearnStrategyAudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC94F5601EB08EE400051CF8 /* LearnStrategyAudioViewController.swift */; };
+		CC94F5651EB08EE400051CF8 /* LearnStrategyAudioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC94F5611EB08EE400051CF8 /* LearnStrategyAudioViewModel.swift */; };
 		CC96630A1EA1B27F00B84B1C /* MyDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9663051EA1B27F00B84B1C /* MyDataViewModel.swift */; };
 		CC96630B1EA1B27F00B84B1C /* MyDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9663061EA1B27F00B84B1C /* MyDataView.swift */; };
 		CC96630F1EA1B29800B84B1C /* MyWhyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC96630D1EA1B29800B84B1C /* MyWhyView.swift */; };
@@ -257,6 +263,8 @@
 		CB8A15451E7986C90023B2F9 /* Localized.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localized.strings; sourceTree = "<group>"; };
 		CB8A15491E7A7FA20023B2F9 /* CalendarImportManger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarImportManger.swift; sourceTree = "<group>"; };
 		CB8A154B1E7A8AD30023B2F9 /* CalendarImportTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarImportTask.swift; sourceTree = "<group>"; };
+		CB8C34531EAF7F190003AB65 /* MyToBeVisionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyToBeVisionViewController.xib; sourceTree = "<group>"; };
+		CB8C34551EAF7F200003AB65 /* styles.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = styles.css; sourceTree = "<group>"; };
 		CBA054481E890560009E28D6 /* Dequeueable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dequeueable.swift; sourceTree = "<group>"; };
 		CBA4216D1E9276AF00CD4BC9 /* SidebarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidebarTableViewCell.xib; sourceTree = "<group>"; };
 		CBA4216E1E9276AF00CD4BC9 /* SidebarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidebarViewController.xib; sourceTree = "<group>"; };
@@ -305,6 +313,10 @@
 		CC6B3A2E1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeInOutPresentationAnimator.swift; sourceTree = "<group>"; };
 		CC6B3A301E81713200E7FDFD /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CC8C982A1EA767580064AFB1 /* MyUniverseViewController+ScreenType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyUniverseViewController+ScreenType.swift"; sourceTree = "<group>"; };
+		CC94F55E1EB08EE400051CF8 /* AudioWaveformView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioWaveformView.swift; sourceTree = "<group>"; };
+		CC94F55F1EB08EE400051CF8 /* LearnStrategyAudioCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnStrategyAudioCoordinator.swift; sourceTree = "<group>"; };
+		CC94F5601EB08EE400051CF8 /* LearnStrategyAudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnStrategyAudioViewController.swift; sourceTree = "<group>"; };
+		CC94F5611EB08EE400051CF8 /* LearnStrategyAudioViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnStrategyAudioViewModel.swift; sourceTree = "<group>"; };
 		CC9663051EA1B27F00B84B1C /* MyDataViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataViewModel.swift; sourceTree = "<group>"; };
 		CC9663061EA1B27F00B84B1C /* MyDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataView.swift; sourceTree = "<group>"; };
 		CC96630D1EA1B29800B84B1C /* MyWhyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyWhyView.swift; sourceTree = "<group>"; };
@@ -931,6 +943,17 @@
 			path = PrepareContent;
 			sourceTree = "<group>";
 		};
+		CC94F55D1EB08ED000051CF8 /* Learn Strategy Audio */ = {
+			isa = PBXGroup;
+			children = (
+				CC94F55E1EB08EE400051CF8 /* AudioWaveformView.swift */,
+				CC94F55F1EB08EE400051CF8 /* LearnStrategyAudioCoordinator.swift */,
+				CC94F5601EB08EE400051CF8 /* LearnStrategyAudioViewController.swift */,
+				CC94F5611EB08EE400051CF8 /* LearnStrategyAudioViewModel.swift */,
+			);
+			path = "Learn Strategy Audio";
+			sourceTree = "<group>";
+		};
 		CC9663021EA1B1F300B84B1C /* My Universe */ = {
 			isa = PBXGroup;
 			children = (
@@ -1008,6 +1031,7 @@
 			isa = PBXGroup;
 			children = (
 				D51D088E1E8EA36700FC7567 /* Cell */,
+				CC94F55D1EB08ED000051CF8 /* Learn Strategy Audio */,
 				CCC1B6B21E8BA71500D1461F /* LearnStrategyViewController.swift */,
 				D540275D1E8D401F0013B783 /* LearnStrategyViewController.xib */,
 				CCC1B6B01E8B9FDA00D1461F /* LearnStrategyViewModel.swift */,
@@ -1055,7 +1079,9 @@
 			children = (
 				CC0FF8D51EA78C810028D64F /* MyToBeVisionCoordinator.swift */,
 				CCCE09CD1EA67F87008730F1 /* MyToBeVisionViewController.swift */,
+				CB8C34531EAF7F190003AB65 /* MyToBeVisionViewController.xib */,
 				CCCE09CB1EA67C78008730F1 /* MyToBeVisionViewModel.swift */,
+				CB8C34551EAF7F200003AB65 /* styles.css */,
 			);
 			path = "My To Be Vision";
 			sourceTree = "<group>";
@@ -1271,6 +1297,7 @@
 				CCC0C4CC1E828007002A8362 /* BentonSans_Regular.otf in Resources */,
 				CCC1B6AA1E8B9B7300D1461F /* LearnCategoryListViewController.xib in Resources */,
 				0BE7FD8B1E9D2AEF00E3262E /* PrepareContentStepTableViewCell.xib in Resources */,
+				CB8C34541EAF7F190003AB65 /* MyToBeVisionViewController.xib in Resources */,
 				D51D088C1E8E80CD00FC7567 /* LearnStrategyArticleCell.xib in Resources */,
 				0BE7FD851E9CAC7400E3262E /* PrepareContentActionButtonsTableViewCell.xib in Resources */,
 				0B40DC161E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib in Resources */,
@@ -1282,6 +1309,7 @@
 				CC311A251EAF43340020C869 /* SettingsDatePickerTableViewCell.xib in Resources */,
 				0BC1FF4C1E968E07007DE090 /* CollectionTableViewCell.xib in Resources */,
 				CBB237FA1E6FFF1200AB5AEF /* LaunchScreen.storyboard in Resources */,
+				CB8C34561EAF7F200003AB65 /* styles.css in Resources */,
 				0BE7FD901E9D2F8800E3262E /* PrepareContentTitleTableViewCell.xib in Resources */,
 				0BD6F6BA1EA0E81E001EBC4D /* MyPrepTableViewCell.xib in Resources */,
 				D540275F1E8D401F0013B783 /* LearnStrategyViewController.xib in Resources */,
@@ -1463,6 +1491,7 @@
 				CC9663181EA1B86100B84B1C /* MyDataSectorLabelsView.swift in Sources */,
 				CCC1B6B31E8BA71500D1461F /* LearnStrategyViewController.swift in Sources */,
 				CC6B3A2F1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift in Sources */,
+				CC94F5621EB08EE400051CF8 /* AudioWaveformView.swift in Sources */,
 				0B40DC151E9CA71400E1659B /* PrepareContentHeaderTableViewCell.swift in Sources */,
 				CB8A15331E76F56D0023B2F9 /* TrackableEntity.swift in Sources */,
 				0BE7FD8F1E9D2F8800E3262E /* PrepareContentTitleTableViewCell.swift in Sources */,
@@ -1472,6 +1501,7 @@
 				CCE372F31E8C1EDF00B79352 /* WhatsHotViewModel.swift in Sources */,
 				CCD377541E8D3C2D00BB8031 /* WhatsHotNewTemplateViewModel.swift in Sources */,
 				D520BC931E8E655A00A2D107 /* LearnStrategyHeaderCell.swift in Sources */,
+				CC94F5631EB08EE400051CF8 /* LearnStrategyAudioCoordinator.swift in Sources */,
 				CCC0C4D61E82B405002A8362 /* R.generated.swift in Sources */,
 				D51D08871E8E80AF00FC7567 /* LearnStrategyVideoCell.swift in Sources */,
 				CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */,
@@ -1486,6 +1516,7 @@
 				D51D08831E8E806E00FC7567 /* LearnStrategyTextCell.swift in Sources */,
 				CB369CDE1E8D3F5300522293 /* LearnContentService.swift in Sources */,
 				CB8A153C1E78467D0023B2F9 /* CalendarEventParticipant.swift in Sources */,
+				CC94F5641EB08EE400051CF8 /* LearnStrategyAudioViewController.swift in Sources */,
 				CB1E4F981E7FE22200287613 /* SettingsViewModel.swift in Sources */,
 				CCCC211C1E8981AD00133839 /* ChatViewController.swift in Sources */,
 				CC9663161EA1B41500B84B1C /* MyUniverseHelper.swift in Sources */,
@@ -1514,6 +1545,7 @@
 				D51B5C491E8D0E7E0084A65B /* LearnContentCell.swift in Sources */,
 				0BE7FD8A1E9D2AEF00E3262E /* PrepareContentStepTableViewCell.swift in Sources */,
 				CCE372F51E8CF10C00B79352 /* WhatsHotViewController.swift in Sources */,
+				CC94F5651EB08EE400051CF8 /* LearnStrategyAudioViewModel.swift in Sources */,
 				CCE3730F1E8D32F800B79352 /* SidebarCoordinator.swift in Sources */,
 				CCC1B6AF1E8B9B7F00D1461F /* LearnContentListViewModel.swift in Sources */,
 				CC5A8D6D1EA65A3E00E5800F /* WeeklyChoicesViewModel.swift in Sources */,

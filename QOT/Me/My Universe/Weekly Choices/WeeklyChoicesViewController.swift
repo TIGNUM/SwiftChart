@@ -72,12 +72,3 @@ extension WeeklyChoicesViewController: UITableViewDataSource, UITableViewDelegat
         return cell
     }
 }
-
-// MARK: - TopTabBarItem
-
-extension WeeklyChoicesViewController: TopTabBarItem {
-
-    var topTabBarItem: TopTabBarController.Item {
-        return TopTabBarController.Item(controller: self, title: R.string.localized.meSectorMyWhyWeeklyChoicesTitle())
-    }
-}

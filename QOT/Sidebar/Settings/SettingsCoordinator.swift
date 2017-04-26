@@ -27,9 +27,13 @@ final class SettingsCoordinator: ParentCoordinator {
     func start() {
         let settingsViewController = SettingsViewController(viewModel: SettingsViewModel(settingsType: settingsType))
 
+        let topTabBarControllerItem = TopTabBarController.Item(
+            controllers: [settingsViewController],
+            titles: [R.string.localized.settingsTitle()]
+        )
+
         let topTabBarController = TopTabBarController(
-            items: [settingsViewController.topTabBarItem],
-            selectedIndex: 0,
+            item: topTabBarControllerItem,            
             leftIcon: R.image.ic_minimize()
         )
 

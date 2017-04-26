@@ -30,9 +30,13 @@ final class SettingsMenuCoordinator: ParentCoordinator {
         settingsMenuViewController.modalPresentationStyle = .custom
         settingsMenuViewController.transitioningDelegate = presentationManager
 
+        let topTabBarControllerItem = TopTabBarController.Item(
+            controllers: [settingsMenuViewController],
+            titles: [R.string.localized.settingsTitle()]
+        )
+
         let topTabBarController = TopTabBarController(
-            items: [settingsMenuViewController.topTabBarItem],
-            selectedIndex: 0,
+            item: topTabBarControllerItem,            
             leftIcon: R.image.ic_minimize()
         )
 

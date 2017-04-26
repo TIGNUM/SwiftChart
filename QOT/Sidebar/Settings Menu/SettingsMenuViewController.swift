@@ -77,12 +77,3 @@ final class SettingsMenuViewController: UIViewController {
         }
     }
 }
-
-// MARK: - TopTabBarItem
-
-extension SettingsMenuViewController: TopTabBarItem {
-
-    var topTabBarItem: TopTabBarController.Item {
-        return TopTabBarController.Item(controller: self, title: R.string.localized.settingsTitle())
-    }
-}

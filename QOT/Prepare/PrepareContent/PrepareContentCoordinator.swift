@@ -32,9 +32,13 @@ final class PrepareContentCoordinator: ParentCoordinator {
         let prepareContentViewController = PrepareContentViewController(viewModel: viewModel)
         prepareContentViewController.delegate = self
 
+        let topTabBarControllerItem = TopTabBarController.Item(
+            controllers: [prepareContentViewController],
+            titles: [R.string.localized.topTabBarItemTitlePerpareCoach()]
+        )
+
         let topTabBarController = TopTabBarController(
-            items: [prepareContentViewController.topTabBarItem],
-            selectedIndex: 0,
+            item: topTabBarControllerItem,            
             leftIcon: R.image.ic_minimize(),
             rightIcon: R.image.ic_save()
         )

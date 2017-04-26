@@ -16,7 +16,6 @@ final class MyToBeVisionCoordinator: ParentCoordinator {
     fileprivate let rootViewController: UIViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
-
     var children: [Coordinator] = []
 
     // MARK: - Life Cycle
@@ -31,9 +30,13 @@ final class MyToBeVisionCoordinator: ParentCoordinator {
         let myToBeVisionViewController = MyToBeVisionViewController(viewModel: MyToBeVisionViewModel())
         myToBeVisionViewController.delegate = self
 
+        let topTabBarControllerItem = TopTabBarController.Item(
+            controllers: [myToBeVisionViewController],
+            titles: [R.string.localized.meSectorMyWhyVisionTitle()]
+        )
+
         let topTabBarController = TopTabBarController(
-            items: [myToBeVisionViewController.topTabBarItem],
-            selectedIndex: 0,
+            item: topTabBarControllerItem,            
             leftIcon: R.image.ic_minimize(),
             rightIcon: R.image.ic_share()
         )

@@ -29,9 +29,13 @@ final class LearnStrategyCoordinator: ParentCoordinator {
         vc.modalPresentationStyle = .custom
         vc.delegate =  self
 
+        let topTabBarControllerItem = TopTabBarController.Item(
+            controllers: [vc],
+            titles: [R.string.localized.topTabBarItemTitleLearnStrategies()]
+        )
+
         let topTabBarController = TopTabBarController(
-            items: [vc.topTabBarItem],
-            selectedIndex: 0,
+            item: topTabBarControllerItem,
             leftIcon: R.image.ic_minimize(),
             rightIcon: R.image.ic_bookmark()
         )

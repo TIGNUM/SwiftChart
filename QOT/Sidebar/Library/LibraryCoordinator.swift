@@ -30,9 +30,13 @@ final class LibraryCoordinator: ParentCoordinator {
         libraryViewController.modalPresentationStyle = .custom
         libraryViewController.transitioningDelegate = presentationManager
 
+        let topTabBarControllerItem = TopTabBarController.Item(
+            controllers: [libraryViewController],
+            titles: [R.string.localized.sidebarTitleLibrary()]
+        )
+
         let topTabBarController = TopTabBarController(
-            items: [libraryViewController.topTabBarItem],
-            selectedIndex: 0,
+            item: topTabBarControllerItem,            
             leftIcon: R.image.ic_minimize()
         )
 

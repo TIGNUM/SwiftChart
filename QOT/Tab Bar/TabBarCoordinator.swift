@@ -12,12 +12,6 @@ import RealmSwift
 
 final class TabBarCoordinator: ParentCoordinator {
 
-    enum TabBarItem: Index {
-        case learn = 0
-        case me = 1
-        case prepare = 2
-    }
-    
     // MARK: - Properties
 
     fileprivate let window: UIWindow
@@ -38,18 +32,18 @@ final class TabBarCoordinator: ParentCoordinator {
         let whatsHotViewController = WhatsHotViewController(viewModel: whatsHotViewModel)
         whatsHotViewController.delegate = self
 
-        let items = [
-            TopTabBarController.Item(
-                controller: learnCategoryListVC,
-                title: R.string.localized.topTabBarItemTitleLearnStrategies().capitalized
-            ),
-            TopTabBarController.Item(
-                controller: whatsHotViewController,
-                title: R.string.localized.topTabBarItemTitleLearnWhatsHot().capitalized
-            )
-        ]
-
-        let topTabBarController = TopTabBarController(items: items, selectedIndex: 0, leftIcon: R.image.ic_search(), rightIcon: R.image.ic_menu())
+        let topBarControllerItem = TopTabBarController.Item(
+            controllers: [learnCategoryListVC, whatsHotViewController],
+            titles: [
+                R.string.localized.topTabBarItemTitleLearnStrategies().capitalized,
+                R.string.localized.topTabBarItemTitleLearnWhatsHot().capitalized
+            ]
+        )
+        let topTabBarController = TopTabBarController(
+            item: topBarControllerItem,
+            leftIcon: R.image.ic_search(),
+            rightIcon: R.image.ic_menu()
+        )
         topTabBarController.delegate = self
 
         return topTabBarController
@@ -61,15 +55,18 @@ final class TabBarCoordinator: ParentCoordinator {
         )
         myUniverseViewController.delegate = self
 
-        let myUniverseItem = TopTabBarController.MyUniverseItem(
-            controller: myUniverseViewController,
-            titles: [
-                R.string.localized.topTabBarItemTitleMeMyData().capitalized,
-                R.string.localized.topTabBarItemTitleMeMyWhy().capitalized
-            ]
+        let topBarControllerItem = TopTabBarController.Item(
+                controllers: [myUniverseViewController],
+                titles: [
+                    R.string.localized.topTabBarItemTitleLearnStrategies().capitalized,
+                    R.string.localized.topTabBarItemTitleLearnWhatsHot().capitalized
+                ],
+                containsScrollView: true
         )
-
-        let topTabBarController = TopTabBarController(myUniverseItem: myUniverseItem, selectedIndex: 0, rightIcon: R.image.ic_menu())
+        let topTabBarController = TopTabBarController(
+            item: topBarControllerItem,
+            rightIcon: R.image.ic_menu()
+        )
         topTabBarController.delegate = self
 
         return topTabBarController
@@ -80,20 +77,20 @@ final class TabBarCoordinator: ParentCoordinator {
         let chatViewController = ChatViewController(viewModel: viewModel)
         chatViewController.delegate = self
 
-        let items = [
-            TopTabBarController.Item(
-                controller: chatViewController,
-                title: R.string.localized.topTabBarItemTitlePerpareCoach().capitalized
-            ),
-            TopTabBarController.Item(
-                controller: chatViewController,
-                title: R.string.localized.topTabBarItemTitlePerparePrep().capitalized
-            )
-        ]
-
-        let topTabBarController = TopTabBarController(items: items, selectedIndex: 0, leftIcon: R.image.ic_search(), rightIcon: R.image.ic_menu())
+        let topBarControllerItem = TopTabBarController.Item(
+            controllers: [chatViewController, chatViewController],
+            titles: [
+                R.string.localized.topTabBarItemTitlePerpareCoach().capitalized,
+                R.string.localized.topTabBarItemTitlePerparePrep().capitalized
+            ]
+        )
+        let topTabBarController = TopTabBarController(
+            item: topBarControllerItem,
+            leftIcon: R.image.ic_search(),
+            rightIcon: R.image.ic_menu()
+        )
         topTabBarController.delegate = self
-
+        
         return topTabBarController
     }()
     
@@ -152,7 +149,7 @@ extension TabBarCoordinator {
 // MARK: - TabBarControllerDelegate
 
 extension TabBarCoordinator: TabBarControllerDelegate {
-    
+
     func didSelectTab(at index: Index, in controller: TabBarController) {
         let viewController = controller.viewControllers.first
         
@@ -197,17 +194,17 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
     }
 
     func didTapMyToBeVision(vision: Vision?, from view: UIView, in viewController: MyUniverseViewController) {
-        let coordinator = MyToBeVisionCoordinator(root: viewControllers[TabBarItem.me.rawValue], services: services, eventTracker: eventTracker)
+        let coordinator = MyToBeVisionCoordinator(root: topTabBarControllerMe, services: services, eventTracker: eventTracker)
         startChild(child: coordinator)
     }
 
     func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, from view: UIView, in viewController: MyUniverseViewController) {
-        let coordinator = WeeklyChoicesCoordinator(root: viewControllers[TabBarItem.me.rawValue], services: services, eventTracker: eventTracker)
+        let coordinator = WeeklyChoicesCoordinator(root: topTabBarControllerMe, services: services, eventTracker: eventTracker)
         startChild(child: coordinator)
     }
 
     func didTapQOTPartner(selectedIndex: Index, partners: [Partner], from view: UIView, in viewController: MyUniverseViewController) {
-        let coordinator = PartnersCoordinator(root: viewControllers[TabBarItem.me.rawValue], services: services, eventTracker: eventTracker, partners: partners, selectedIndex: selectedIndex)
+        let coordinator = PartnersCoordinator(root: topTabBarControllerMe, services: services, eventTracker: eventTracker, partners: partners, selectedIndex: selectedIndex)
         startChild(child: coordinator)
     }
 }

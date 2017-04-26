@@ -30,7 +30,17 @@ final class WeeklyChoicesCoordinator: ParentCoordinator {
     func start() {
         let weeklyChoicesViewController = WeeklyChoicesViewController(viewModel: WeeklyChoicesViewModel())
         weeklyChoicesViewController.delegate = self
-        let topTabBarController = TopTabBarController(items: [weeklyChoicesViewController.topTabBarItem], selectedIndex: 0, leftIcon: R.image.ic_minimize())
+
+        let topTabBarControllerItem = TopTabBarController.Item(
+            controllers: [weeklyChoicesViewController],
+            titles: [R.string.localized.meSectorMyWhyWeeklyChoicesTitle()]
+        )
+
+        let topTabBarController = TopTabBarController(
+            item: topTabBarControllerItem,            
+            leftIcon: R.image.ic_minimize()
+        )
+        
         topTabBarController.delegate = self
         rootViewController.present(topTabBarController, animated: true)
     }
