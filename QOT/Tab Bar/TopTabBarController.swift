@@ -41,7 +41,7 @@ final class TopTabBarController: UIViewController {
             containsScrollView: Bool = false,
             contentView: UIView? = nil
             ) {
-                self.containsScrollView = containsScrollView                
+                self.containsScrollView = containsScrollView
                 self.contentView = contentView
                 self.titles = titles
                 self.controllers = controllers
@@ -283,8 +283,17 @@ extension TopTabBarController: TabBarViewDelegate {
         
         self.index = index
         if index != scrollView.currentPage {
-            let offset = CGPoint(x: scrollView.bounds.size.width * CGFloat(index), y: 0)
-            scrollView.setContentOffset(offset, animated: true)
+            if item.containsScrollView == false {
+                let offset = CGPoint(x: scrollView.bounds.size.width * CGFloat(index), y: 0)
+                scrollView.setContentOffset(offset, animated: true)
+            } else {
+                if index == 0 {
+                    scrollView.setContentOffset(.zero, animated: true)
+                } else {
+                    let offset = CGPoint(x: (scrollView.contentSize.width * 0.5) * CGFloat(index), y: 0)
+                    scrollView.setContentOffset(offset, animated: true)
+                }
+            }
         }
     }
 }
