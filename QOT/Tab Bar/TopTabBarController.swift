@@ -33,18 +33,15 @@ final class TopTabBarController: UIViewController {
         let controllers: [UIViewController]
         let titles: [String]
         let containsScrollView: Bool
-        let contentScrollView: UIScrollView?
         let contentView: UIView?
 
         init(
             controllers: [UIViewController],
             titles: [String],
             containsScrollView: Bool = false,
-            contentScrollView: UIScrollView? = nil,
             contentView: UIView? = nil
             ) {
-                self.containsScrollView = containsScrollView
-                self.contentScrollView = contentScrollView
+                self.containsScrollView = containsScrollView                
                 self.contentView = contentView
                 self.titles = titles
                 self.controllers = controllers
@@ -79,7 +76,7 @@ final class TopTabBarController: UIViewController {
         return button
     }()
     
-    fileprivate lazy var scrollView: UIScrollView = {
+    lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = .clear
         scrollView.isPagingEnabled = true
@@ -170,18 +167,17 @@ extension TopTabBarController {
 extension TopTabBarController {
 
     func setupScrollView() {
-        if item.containsScrollView == true,
-            let contentScrollView = item.contentScrollView {
-                scrollView = contentScrollView
-        } else {
-            let width: CGFloat = view.bounds.width
-            scrollView.frame = view.bounds
-            scrollView.contentSize = CGSize(width: CGFloat(item.controllers.count) * width, height: 0)
+        guard item.containsScrollView == false else {
+            return
+        }
 
-            for (index, controller) in item.controllers.enumerated() {
-                addViewToScrollView(controller)
-                controller.view.frame.origin = CGPoint(x: CGFloat(index) * width, y: 0)
-            }
+        let width: CGFloat = view.bounds.width
+        scrollView.frame = view.bounds
+        scrollView.contentSize = CGSize(width: CGFloat(item.controllers.count) * width, height: 0)
+
+        for (index, controller) in item.controllers.enumerated() {
+            addViewToScrollView(controller)
+            controller.view.frame.origin = CGPoint(x: CGFloat(index) * width, y: 0)
         }
     }
 
@@ -204,12 +200,12 @@ extension TopTabBarController: UIScrollViewDelegate {
 
 extension TopTabBarController: ContentScrollViewDelegate {
 
-    func didScrollToFirstView() {
-        tabBarView.setSelectedIndex(0, animated: true)
-    }
-
-    func didScrollToLastView() {
-        tabBarView.setSelectedIndex(1, animated: true)
+    func didEndDecelerating(_ contentOffset: CGPoint) {
+        if contentOffset.equalTo(.zero) == true {
+            tabBarView.setSelectedIndex(0, animated: true)
+        } else {
+            tabBarView.setSelectedIndex(1, animated: true)
+        }
     }
 }
 

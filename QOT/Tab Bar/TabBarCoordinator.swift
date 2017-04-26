@@ -59,11 +59,10 @@ final class TabBarCoordinator: ParentCoordinator {
         let topBarControllerItem = TopTabBarController.Item(
             controllers: [myUniverseViewController],
             titles: [
-                R.string.localized.topTabBarItemTitleLearnStrategies().capitalized,
-                R.string.localized.topTabBarItemTitleLearnWhatsHot().capitalized
+                R.string.localized.topTabBarItemTitleMeMyData().capitalized,
+                R.string.localized.topTabBarItemTitleMeMyWhy().capitalized
             ],
             containsScrollView: true,
-            contentScrollView: myUniverseViewController.contentScrollView,
             contentView: myUniverseViewController.contentView
         )
 
@@ -72,9 +71,12 @@ final class TabBarCoordinator: ParentCoordinator {
             rightIcon: R.image.ic_menu()
         )
 
-        topTabBarController.delegate = self
+        topTabBarController.delegate = self        
         myUniverseViewController.delegate = self
         myUniverseViewController.contentScrollViewDelegate = topTabBarController
+        let contentScrollView = myUniverseViewController.scrollView()
+        myUniverseViewController.addSubViews(contentScrollView: contentScrollView)
+        topTabBarController.scrollView = contentScrollView
 
         return topTabBarController
     }()
