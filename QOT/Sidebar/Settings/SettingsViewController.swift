@@ -48,7 +48,7 @@ final class SettingsViewController: UIViewController {
 }
 
 // MARK: - Layout
-
+TabBarCoordinator.swift
 extension SettingsViewController {
     
     fileprivate func setupNavigationBar() {

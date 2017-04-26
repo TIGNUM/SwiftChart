@@ -10,6 +10,7 @@ import Foundation
 import ReactiveKit
 
 final class LearnStrategyViewModel {
+
     private let sections = mockLearnStrategyItems()
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
