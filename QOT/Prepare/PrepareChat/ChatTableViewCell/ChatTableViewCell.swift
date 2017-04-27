@@ -18,5 +18,12 @@ class ChatTableViewCell: UITableViewCell, Dequeueable {
         super.awakeFromNib()
         self.bubbleView.layer.cornerRadius = 10
         self.bubbleView.layer.masksToBounds = true
-    }    
+
+    }
+
+    func setup(showIcon: Bool) {
+
+        iconImageView?.isHidden = showIcon == false 
+
+    }
 }

@@ -113,11 +113,12 @@ extension ChatViewController {
         let chatMessage = viewModel.item(at: indexPath.row)
         
         switch chatMessage {
-        case .instruction(let type, _):
+        case .instruction(let type, let showIcon):
             switch type {
             case .message(let message):
                 let cell: ChatTableViewCell = tableView.dequeueCell(for: indexPath)
-                cell.chatLabel.text = message 
+                cell.chatLabel.text = message
+                cell.setup(showIcon: showIcon)
                 return cell
 
             case .typing:
