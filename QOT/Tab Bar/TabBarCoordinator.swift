@@ -11,44 +11,73 @@ import UIKit
 import RealmSwift
 
 final class TabBarCoordinator: ParentCoordinator {
-    
+
     // MARK: - Properties
     
     fileprivate let rootViewController: MainMenuViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
     fileprivate let selectedIndex: Index
-    
-    fileprivate lazy var learnCategoryListViewController: LearnCategoryListViewController = {
+    fileprivate var viewControllers = [UIViewController]()
+    internal var children = [Coordinator]()
+
+    fileprivate lazy var topTabBarControllerLearn: TopTabBarController = {
         let categories = self.services.learnContent.categories()
         let viewModel = LearnCategoryListViewModel(categories: categories)
         let learnCategoryListVC = LearnCategoryListViewController(viewModel: viewModel)
         learnCategoryListVC.delegate = self
-        return learnCategoryListVC
+
+        let whatsHotViewModel = WhatsHotViewModel()
+        let whatsHotViewController = WhatsHotViewController(viewModel: whatsHotViewModel)
+        whatsHotViewController.delegate = self
+
+        let topBarControllerItem = TopTabBarController.Item(
+            controllers: [learnCategoryListVC, whatsHotViewController],
+            titles: [
+                R.string.localized.topTabBarItemTitleLearnStrategies().capitalized,
+                R.string.localized.topTabBarItemTitleLearnWhatsHot().capitalized
+            ]
+        )
+
+        return TopTabBarController(item: topBarControllerItem, leftIcon: R.image.ic_search(), rightIcon: R.image.ic_menu())
     }()
-    
-    fileprivate lazy var myUniverseViewController: MyUniverseViewController = {
-        let myViewController = MyUniverseViewController(
+
+    fileprivate lazy var topTabBarControllerMe: TopTabBarController = {
+        let myUniverseViewController = MyUniverseViewController(
             myDataViewModel: MyDataViewModel(),
             myWhyViewModel: MyWhyViewModel()
         )
-        myViewController.delegate = self
-        
-        return myViewController
+        myUniverseViewController.delegate = self
+
+        let topBarControllerItem = TopTabBarController.Item(
+                controllers: [myUniverseViewController],
+                titles: [
+                    R.string.localized.topTabBarItemTitleLearnStrategies().capitalized,
+                    R.string.localized.topTabBarItemTitleLearnWhatsHot().capitalized
+                ],
+                containsScrollView: true
+        )
+
+        return TopTabBarController(item: topBarControllerItem, rightIcon: R.image.ic_menu())
     }()
-    
-    fileprivate lazy var chatViewController: ChatViewController = {
+
+    fileprivate lazy var topTabBarControllerPrepare: TopTabBarController = {
         let viewModel = ChatViewModel()
         let chatViewController = ChatViewController(viewModel: viewModel)
         chatViewController.delegate = self
 
-        return chatViewController
+        let topBarControllerItem = TopTabBarController.Item(
+            controllers: [chatViewController, chatViewController],
+            titles: [
+                R.string.localized.topTabBarItemTitlePerpareCoach().capitalized,
+                R.string.localized.topTabBarItemTitlePerparePrep().capitalized
+            ]
+        )
+
+        return TopTabBarController(item: topBarControllerItem, leftIcon: R.image.ic_search(), rightIcon: R.image.ic_menu())
     }()
     
-    var children = [Coordinator]()
-    var viewControllers = [UIViewController]()
-    
-    // MARK: - Life Cycle
+    // MARK: - Init
     
     init(rootViewController: MainMenuViewController, selectedIndex: Index, services: Services, eventTracker: EventTracker) {
         self.rootViewController = rootViewController
@@ -56,41 +85,71 @@ final class TabBarCoordinator: ParentCoordinator {
         self.eventTracker = eventTracker
         self.selectedIndex = selectedIndex
         self.addViewControllers()
-    }
-    
-    func start() {
-        let items: [TabBarController.Item] = [
-            TabBarController.Item(controller: learnCategoryListViewController, title: R.string.localized.tabBarItemLearn()),
-            TabBarController.Item(controller: myUniverseViewController, title: R.string.localized.tabBarItemMe()),
-            TabBarController.Item(controller: chatViewController, title: R.string.localized.tabBarItemPrepare())
-        ]
-        
-        let tabBarController = TabBarController(items: items, selectedIndex: 0)
-        tabBarController.modalTransitionStyle = .crossDissolve
-        tabBarController.modalPresentationStyle = .custom
-        tabBarController.delegate = self
-        rootViewController.present(tabBarController, animated: true)
-        
-        eventTracker.track(page: tabBarController.pageID, referer: rootViewController.pageID, associatedEntity: nil)
-    }
-    
-    func addViewControllers() {
-        viewControllers.append(learnCategoryListViewController)
-        viewControllers.append(myUniverseViewController)
-        viewControllers.append(chatViewController)
+        self.addTopTabBarDelegate()
     }
 }
 
+// MARK: - TopTabBarControllers
+
+private extension TabBarCoordinator {
+    
+    func bottomTabBarController() -> TabBarController {
+        let bottomTabBarController = TabBarController(items: tabBarControllerItems(), selectedIndex: 0)
+        bottomTabBarController.modalTransitionStyle = .crossDissolve
+        bottomTabBarController.modalPresentationStyle = .custom
+        bottomTabBarController.delegate = self
+
+        return bottomTabBarController
+    }
+
+    func tabBarControllerItems() -> [TabBarController.Item] {
+        return [
+            TabBarController.Item(controller: topTabBarControllerLearn, title: R.string.localized.tabBarItemLearn()),
+            TabBarController.Item(controller: topTabBarControllerMe, title: R.string.localized.tabBarItemMe()),
+            TabBarController.Item(controller: topTabBarControllerPrepare, title: R.string.localized.tabBarItemPrepare())
+        ]
+    }
+}
+
+// MARK: - Helpers
+
+extension TabBarCoordinator {
+
+    func start() {
+        let bottomTabBarController = self.bottomTabBarController()
+        rootViewController.present(bottomTabBarController, animated: true)
+        eventTracker.track(page: bottomTabBarController.pageID, referer: rootViewController.pageID, associatedEntity: nil)
+    }
+
+    func addViewControllers() {
+        viewControllers.append(topTabBarControllerLearn)
+        viewControllers.append(topTabBarControllerMe)
+        viewControllers.append(topTabBarControllerPrepare)
+    }
+
+    func addTopTabBarDelegate() {
+        viewControllers.forEach { (viewController: UIViewController) in
+            guard let topTabBarController = viewController as? TopTabBarController else {
+                return
+            }
+
+            topTabBarController.delegate = self
+        }
+    }
+}
+
+// MARK: - TabBarControllerDelegate
+
 extension TabBarCoordinator: TabBarControllerDelegate {
+
     func didSelectTab(at index: Index, in controller: TabBarController) {
-        let viewController = controller.viewControllers[0]
+        let viewController = controller.viewControllers.first
         
         switch viewController {
         case let learnCategory as LearnCategoryListViewController: eventTracker.track(page: learnCategory.pageID, referer: rootViewController.pageID, associatedEntity: nil)
         case let meCategory as MyUniverseViewController: eventTracker.track(page: meCategory.pageID, referer: rootViewController.pageID, associatedEntity: nil)
         case let chat as ChatViewController: eventTracker.track(page: chat.pageID, referer: rootViewController.pageID, associatedEntity: nil)
-        default:
-            break
+        default: break
         }
     }
 }
@@ -98,17 +157,19 @@ extension TabBarCoordinator: TabBarControllerDelegate {
 // MARK: - LearnCategoryListViewControllerDelegate
 
 extension TabBarCoordinator: LearnCategoryListViewControllerDelegate {
+
     func didSelectCategory(_ category: LearnCategory, in viewController: LearnCategoryListViewController) {
         let coordinator = LearnContentListCoordinator(root: viewController, services: services, eventTracker: eventTracker, category: category)
-
         coordinator.start()
         coordinator.delegate = self
-
         children.append(coordinator)
     }
 }
 
+// MARK: - LearnContentListCoordinatorDelegate
+
 extension TabBarCoordinator: LearnContentListCoordinatorDelegate {
+
     func didFinish(coordinator: LearnContentListCoordinator) {
         if let index = children.index(where: { $0 === coordinator}) {
             children.remove(at: index)
@@ -119,26 +180,23 @@ extension TabBarCoordinator: LearnContentListCoordinatorDelegate {
 // MARK: - MeSectionDelegate
 
 extension TabBarCoordinator: MyUniverseViewControllerDelegate {
-    
+
     func didTapSector(sector: Sector?, in viewController: MyUniverseViewController) {
         print("didTapSector: \(sector?.labelType.text ?? "INVALID")")
     }
 
-    func didTapMyToBeVision(vision: Vision?, from view: UIView, in viewController: MyUniverseViewController) {
-        let coordinator = MyToBeVisionCoordinator(root: viewController, services: services, eventTracker: eventTracker)
-        coordinator.start()
+    func didTapMyToBeVision(vision: Vision?, from view: UIView) {
+        let coordinator = MyToBeVisionCoordinator(root: topTabBarControllerMe, services: services, eventTracker: eventTracker)
         startChild(child: coordinator)
     }
 
-    func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, from view: UIView, in viewController: MyUniverseViewController) {
-        let coordinator = WeeklyChoicesCoordinator(root: viewController, services: services, eventTracker: eventTracker)
-        coordinator.start()
+    func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, from view: UIView) {
+        let coordinator = WeeklyChoicesCoordinator(root: topTabBarControllerMe, services: services, eventTracker: eventTracker)
         startChild(child: coordinator)
     }
 
-    func didTapQOTPartner(selectedIndex: Index, partners: [Partner], from view: UIView, in viewController: MyUniverseViewController) {
-        let coordinator = PartnersCoordinator(root: viewController, services: services, eventTracker: eventTracker, partners: partners, selectedIndex: selectedIndex)
-        coordinator.start()
+    func didTapQOTPartner(selectedIndex: Index, partners: [Partner], from view: UIView) {
+        let coordinator = PartnersCoordinator(root: topTabBarControllerMe, services: services, eventTracker: eventTracker, partners: partners, selectedIndex: selectedIndex)
         startChild(child: coordinator)
     }
 }
@@ -293,5 +351,24 @@ extension TabBarCoordinator: WhatsHotNewTemplateViewControllerDelegate {
 
     func didTapLoadMoreItem(with loadMoreItem: WhatsHotNewTemplateItem, from view: UIView, in viewController: WhatsHotNewTemplateViewController) {
         log("didTapLoadMoreItem: with item: \(loadMoreItem)")
+    }
+}
+
+// MARK: - TopTabBarDelegate
+
+extension TabBarCoordinator: TopTabBarDelegate {
+
+    func didSelectLeftButton(sender: TopTabBarController) {
+        print("didSelectLeftButton", sender)
+    }
+
+    func didSelectRightButton(sender: TopTabBarController) {
+        print("didSelectRightButton", sender)
+        let coordinator = SidebarCoordinator(root: sender, services: services, eventTracker: eventTracker)
+        startChild(child: coordinator)
+    }
+
+    func didSelectItemAtIndex(index: Int?, sender: TopTabBarController) {
+        print("didSelectItemAtIndex", index, sender)
     }
 }

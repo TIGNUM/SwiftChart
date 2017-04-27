@@ -28,7 +28,7 @@ extension MyUniverseHelper {
     static func collectCenterPoints(layout: Layout.MeSection, sectors: [Sector], relativeCenter: CGPoint) {
         sectors.forEach { (sector: Sector) in
             let centerPoints = sector.spikes.map({ relativeCenter.shifted(radius(for: $0.spikeLoad(), layout: layout), with: $0.angle) })
-            dataCenterPoints.append(centerPoints)
+            dataCenterPoints.append(centerPoints)            
             connectionCenterPoitns.append(centerPoints)
         }
     }
@@ -40,7 +40,7 @@ extension MyUniverseHelper {
             for index in stride(from: 0, to: sector.spikes.count, by: 2) {
                 let centerPoint = dataCenterPoints[sectorIndex][index]
                 centerPoints.append(centerPoint)
-                centerPoints.append(layout.connectionCenter)
+                centerPoints.append(layout.loadCenter)
             }
 
             connectionCenterPoitns.append(centerPoints)
@@ -113,7 +113,7 @@ extension MyUniverseHelper {
                         fillColor: fillColor(radius: radius, load: spike.spikeLoad(), sectorType: sector.type, layout: layout),
                         strokeColor: strokeColor(radius: radius, load: spike.spikeLoad(), sectorType: sector.type, layout: layout),
                         center: center,
-                        radius: (spike.spikeLoad() * 8),
+                        radius: (spike.spikeLoad() * 6.6),
                         lineWidth: sector.type.lineWidth(load: spike.load)
                     )
                 )

@@ -21,6 +21,7 @@ final class LearnCategoryLayout: UICollectionViewLayout {
     
     func setup(height: CGFloat, categories: [LearnCategory]) {
         let multiplier = height
+
         let frames = categories.map { (category) -> CGRect in
             let center = CGPoint(x: category.center.x * multiplier, y: category.center.y * multiplier)
             let radius = CGFloat(category.radius) * height
@@ -37,11 +38,13 @@ final class LearnCategoryLayout: UICollectionViewLayout {
             var minX: CGFloat = first.minX
             var maxX: CGFloat = first.maxX
             var maxY: CGFloat = first.maxY
+
             for frame in frames {
                 minX = min(minX, frame.minX)
                 maxX = max(maxX, frame.maxX)
                 maxY = max(maxY, frame.maxY)
             }
+
             contentSize = CGSize(width: maxX + minX, height: maxY)
         } else {
             contentSize = CGSize.zero

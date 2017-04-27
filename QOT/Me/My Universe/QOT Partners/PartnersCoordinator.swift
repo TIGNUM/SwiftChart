@@ -13,26 +13,28 @@ final class PartnersCoordinator: ParentCoordinator {
 
     // MARK: - Properties
 
-    fileprivate let rootViewController: MyUniverseViewController
+    fileprivate let rootViewController: UIViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
     fileprivate let partners: [Partner]
     fileprivate let selectedIndex: Index
+    fileprivate let viewModel: PartnersViewModel
 
     var children: [Coordinator] = []
 
     // MARK: - Life Cycle
 
-    init(root: MyUniverseViewController, services: Services, eventTracker: EventTracker, partners: [Partner], selectedIndex: Index) {
+    init(root: UIViewController, services: Services, eventTracker: EventTracker, partners: [Partner], selectedIndex: Index) {
         self.rootViewController = root
         self.services = services
         self.eventTracker = eventTracker
         self.partners = partners
         self.selectedIndex = selectedIndex
+        self.viewModel = PartnersViewModel(items: partners, selectedIndex: selectedIndex, headline: "Lore ipsum impsum plus")
     }
 
     func start() {
-        let partnersViewController = PartnersViewController(viewModel: PartnersViewModel(items: partners, selectedIndex: selectedIndex))
+        let partnersViewController = PartnersViewController(viewModel: viewModel)
         partnersViewController.delegate = self
         rootViewController.present(partnersViewController, animated: true)
     }
@@ -46,7 +48,7 @@ extension PartnersCoordinator: PartnersViewControllerDelegate {
         viewController.dismiss(animated: true, completion: nil)
     }
 
-    func didTapEdit(partner: Partner, in viewController: UIViewController) {
-        print("didTapEDit, partmers, \(partner) ")
+    func didTapChangeImage(at index: Index, in viewController: UIViewController) {
+        print("didTapCahngeImage")
     }
 }

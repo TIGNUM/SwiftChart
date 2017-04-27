@@ -43,26 +43,26 @@ extension MyUniverseViewController {
 
     private var isBig: Bool {
         if isPortrait == true {
-            return height == ScreenSize.bigScreenHeight.rawValue
+            return width == ScreenSize.bigScreenWidth.rawValue
         }
 
-        return width == ScreenSize.bigScreenWidth.rawValue
+        return height == ScreenSize.bigScreenHeight.rawValue
     }
 
     private var isMedium: Bool {
         if isPortrait == true {
-            return height == ScreenSize.mediumScreenHeight.rawValue
+            return width == ScreenSize.mediumScreenWidth.rawValue
         }
 
-        return width == ScreenSize.mediumScreenWidth.rawValue
+        return height == ScreenSize.mediumScreenHeight.rawValue
     }
 
     private var isSmall: Bool {
         if isPortrait == true {
-            return height == ScreenSize.smallScreenHeight.rawValue
+            return width == ScreenSize.smallScreenWidth.rawValue
         }
 
-        return width == ScreenSize.smallScreenWidth.rawValue
+        return height == ScreenSize.smallScreenHeight.rawValue
     }
 
     private var size: CGSize {

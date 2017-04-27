@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol SettingsViewControllerDelegate: class {
+    func didTapClose(in viewController: UIViewController, animated: Bool)
+}
+
 final class SettingsViewController: UIViewController {
     
     // MARK: - Outlets

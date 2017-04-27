@@ -223,3 +223,12 @@ extension UIImageView {
         self.layer.mask = mask
     }
 }
+
+// MARK: - UIScrollView
+
+extension UIScrollView {
+
+    var currentPage: Int {
+        return Int(round(self.contentOffset.x / self.bounds.size.width))
+    }
+}

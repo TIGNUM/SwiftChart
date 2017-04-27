@@ -68,12 +68,9 @@ final class TabBarController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .black
-        
         setupHierarchy()
         setupLayout()
-        
         loadFirstView()
-        
         tabBarView.delegate = self
         tabBarView.buttons.forEach { (button) in
             button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
@@ -129,6 +126,7 @@ extension TabBarController {
 }
 
 extension TabBarController: TabBarViewDelegate {
+
     func didSelectItemAtIndex(index: Int?, sender: TabBarView) {
         guard let index = index else {
             return
