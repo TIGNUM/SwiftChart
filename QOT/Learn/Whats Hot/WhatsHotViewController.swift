@@ -2,7 +2,7 @@
 //  WhatsHotViewController.swift
 //  QOT
 //
-//  Created by karmic on 30/03/2017.
+//  Created by Aamir Suhial Mir on 30/03/2017.
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
@@ -13,9 +13,9 @@ protocol WhatsHotViewControllerDelegate: class {
     func didTapBookmark(at index: Index, with whatsHot: WhatsHotItem, in view: UIView, in viewController: WhatsHotViewController)
 }
 
-class WhatsHotViewController: UITableViewController {
+class WhatsHotViewController: UIViewController {
 
-    // MARK: - Properties
+    @IBOutlet private weak var collectionView: UICollectionView!
 
     let viewModel: WhatsHotViewModel
     weak var delegate: WhatsHotViewControllerDelegate?
@@ -36,5 +36,47 @@ class WhatsHotViewController: UITableViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .black
+        setUpCollectionView()
+    }
+
+    func setUpCollectionView() {
+        let layout = WhatsHotLayout()
+
+        collectionView.collectionViewLayout = layout
+        collectionView.decelerationRate = UIScrollViewDecelerationRateFast
+        collectionView.contentInset = UIEdgeInsets.zero
+        collectionView.registerDequeueable(WhatsHotCell.self)
+
+        layout.delegate = self
+    }
+}
+
+extension WhatsHotViewController: UICollectionViewDataSource {
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.itemCount
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let item = viewModel.item(at: indexPath.item)
+        let cell: WhatsHotCell = collectionView.dequeueCell(for: indexPath)
+        cell.configure(with: item)
+
+        return cell
+    }
+}
+
+extension WhatsHotViewController: WhatsHotLayoutDelegate {
+    func standardHeightForLayout(_ layout: WhatsHotLayout) -> CGFloat {
+        return 130
+    }
+
+    func featuredHeightForLayout(_ layout: WhatsHotLayout) -> CGFloat {
+        let nonPictureHeight: CGFloat = 130
+        let nonPictureWidth: CGFloat = 92
+        let pictureRatio: CGFloat = 1.5
+
+        let pictureHeight = (view.bounds.width - nonPictureWidth) / pictureRatio
+        return pictureHeight + nonPictureHeight
     }
 }

@@ -75,7 +75,6 @@
 		CBA421701E9276AF00CD4BC9 /* SidebarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBA4216E1E9276AF00CD4BC9 /* SidebarViewController.xib */; };
 		CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB237EF1E6FFF1200AB5AEF /* AppDelegate.swift */; };
 		CBB237F71E6FFF1200AB5AEF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBB237F61E6FFF1200AB5AEF /* Assets.xcassets */; };
-		CBB237FA1E6FFF1200AB5AEF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBB237F81E6FFF1200AB5AEF /* LaunchScreen.storyboard */; };
 		CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791461E7172390006C590 /* LearnContentListCoordinator.swift */; };
 		CBD7914A1E71797C0006C590 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791491E71797C0006C590 /* Typealiases.swift */; };
 		CBD791541E72A4BB0006C590 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791531E72A4BB0006C590 /* MockData.swift */; };
@@ -182,9 +181,13 @@
 		D51D088C1E8E80CD00FC7567 /* LearnStrategyArticleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D51D088A1E8E80CD00FC7567 /* LearnStrategyArticleCell.xib */; };
 		D520BC931E8E655A00A2D107 /* LearnStrategyHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D520BC911E8E655A00A2D107 /* LearnStrategyHeaderCell.swift */; };
 		D520BC941E8E655A00A2D107 /* LearnStrategyHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D520BC921E8E655A00A2D107 /* LearnStrategyHeaderCell.xib */; };
+		D52350961E9FC1120013DE7E /* WhatsHotLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52350951E9FC1120013DE7E /* WhatsHotLayout.swift */; };
 		D540275F1E8D401F0013B783 /* LearnStrategyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D540275D1E8D401F0013B783 /* LearnStrategyViewController.xib */; };
 		D55CBED71E8A993200C690FB /* CGPoint+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55CBED61E8A993200C690FB /* CGPoint+Convenience.swift */; };
 		D57ECFB01E924CC2008F401B /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57ECFAF1E924CC2008F401B /* TabBarView.swift */; };
+		D58BD8701E9F5F3E005676DE /* WhatsHotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D58BD86E1E9F5F3E005676DE /* WhatsHotViewController.xib */; };
+		D58BD8771E9F65F7005676DE /* WhatsHotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58BD8751E9F65F7005676DE /* WhatsHotCell.swift */; };
+		D58BD8781E9F65F7005676DE /* WhatsHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D58BD8761E9F65F7005676DE /* WhatsHotCell.xib */; };
 		D5CD23D81E8BB73A002742C4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CD23D71E8BB73A002742C4 /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
@@ -382,9 +385,13 @@
 		D51D088A1E8E80CD00FC7567 /* LearnStrategyArticleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyArticleCell.xib; sourceTree = "<group>"; };
 		D520BC911E8E655A00A2D107 /* LearnStrategyHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnStrategyHeaderCell.swift; sourceTree = "<group>"; };
 		D520BC921E8E655A00A2D107 /* LearnStrategyHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyHeaderCell.xib; sourceTree = "<group>"; };
+		D52350951E9FC1120013DE7E /* WhatsHotLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsHotLayout.swift; sourceTree = "<group>"; };
 		D540275D1E8D401F0013B783 /* LearnStrategyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyViewController.xib; sourceTree = "<group>"; };
 		D55CBED61E8A993200C690FB /* CGPoint+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Convenience.swift"; sourceTree = "<group>"; };
 		D57ECFAF1E924CC2008F401B /* TabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		D58BD86E1E9F5F3E005676DE /* WhatsHotViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhatsHotViewController.xib; sourceTree = "<group>"; };
+		D58BD8751E9F65F7005676DE /* WhatsHotCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsHotCell.swift; sourceTree = "<group>"; };
+		D58BD8761E9F65F7005676DE /* WhatsHotCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhatsHotCell.xib; sourceTree = "<group>"; };
 		D5CD23D71E8BB73A002742C4 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1098,7 +1105,11 @@
 		CCE372F11E8C1EA600B79352 /* Whats Hot */ = {
 			isa = PBXGroup;
 			children = (
+				D58BD8751E9F65F7005676DE /* WhatsHotCell.swift */,
+				D58BD8761E9F65F7005676DE /* WhatsHotCell.xib */,
+				D52350951E9FC1120013DE7E /* WhatsHotLayout.swift */,
 				CCE372F41E8CF10C00B79352 /* WhatsHotViewController.swift */,
+				D58BD86E1E9F5F3E005676DE /* WhatsHotViewController.xib */,
 				CCE372F21E8C1EDF00B79352 /* WhatsHotViewModel.swift */,
 			);
 			path = "Whats Hot";
@@ -1283,6 +1294,7 @@
 				0BEE8ABE1EA600A7008077B8 /* PrepareEventSimpleTableViewCell.xib in Resources */,
 				CC311A271EAF434F0020C869 /* SettingsLabelTableViewCell.xib in Resources */,
 				D51D08881E8E80AF00FC7567 /* LearnStrategyVideoCell.xib in Resources */,
+				D58BD8701E9F5F3E005676DE /* WhatsHotViewController.xib in Resources */,
 				CCC0C4CA1E827F87002A8362 /* BentonSans_Book.otf in Resources */,
 				D51D08841E8E806E00FC7567 /* LearnStrategyTextCell.xib in Resources */,
 				CC311A211EAF430B0020C869 /* SettingsButtonTableViewCell.xib in Resources */,
@@ -1308,7 +1320,6 @@
 				D520BC941E8E655A00A2D107 /* LearnStrategyHeaderCell.xib in Resources */,
 				CC311A251EAF43340020C869 /* SettingsDatePickerTableViewCell.xib in Resources */,
 				0BC1FF4C1E968E07007DE090 /* CollectionTableViewCell.xib in Resources */,
-				CBB237FA1E6FFF1200AB5AEF /* LaunchScreen.storyboard in Resources */,
 				CB8C34561EAF7F200003AB65 /* styles.css in Resources */,
 				0BE7FD901E9D2F8800E3262E /* PrepareContentTitleTableViewCell.xib in Resources */,
 				0BD6F6BA1EA0E81E001EBC4D /* MyPrepTableViewCell.xib in Resources */,
@@ -1319,6 +1330,7 @@
 				0BEE8AC11EA600A7008077B8 /* PrepareEventsViewController.xib in Resources */,
 				0B40DC0C1E9CA6A500E1659B /* PrepareContentTextTableViewCell.xib in Resources */,
 				CBB237F71E6FFF1200AB5AEF /* Assets.xcassets in Resources */,
+				D58BD8781E9F65F7005676DE /* WhatsHotCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1552,6 +1564,7 @@
 				CCCC21231E8981CA00133839 /* PrepareContentViewModel.swift in Sources */,
 				CC6B3A291E8158B200E7FDFD /* PresentationManager.swift in Sources */,
 				CCAF03241E801B0E00015125 /* SettingsCoordinator.swift in Sources */,
+				D52350961E9FC1120013DE7E /* WhatsHotLayout.swift in Sources */,
 				CC0FF8D61EA78C810028D64F /* MyToBeVisionCoordinator.swift in Sources */,
 				0BC1FF4B1E968E07007DE090 /* CollectionTableViewCell.swift in Sources */,
 				D57ECFB01E924CC2008F401B /* TabBarView.swift in Sources */,
@@ -1583,6 +1596,7 @@
 				CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */,
 				CCEA22A51E8AC53E003D0CF4 /* PrepareCheckListViewModel.swift in Sources */,
 				CB8A15311E76F31B0023B2F9 /* PageTrackable.swift in Sources */,
+				D58BD8771E9F65F7005676DE /* WhatsHotCell.swift in Sources */,
 				CB2880241E7051710067890A /* AppCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
