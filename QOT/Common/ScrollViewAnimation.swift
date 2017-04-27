@@ -30,8 +30,6 @@ class Helper {
         case .right: targetPage = Int(ceil(originalTargetPage))
         }
         
-        let targetOffset = CGFloat(targetPage) * (cellWidth + cellSpaceing)
-
-        return targetOffset
+        return CGFloat(targetPage) * (cellWidth + cellSpaceing)
     }
 }

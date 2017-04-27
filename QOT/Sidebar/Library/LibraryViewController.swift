@@ -85,12 +85,12 @@ extension LibraryViewController: UITableViewDataSource {
         switch section {
         case .lastPost:
             let cell: LatestPostCell = tableView.dequeueCell(for: indexPath)
-            cell.setUp(title: "\(viewModel.titleForSection(indexPath.item))", sectionCount: viewModel.numberOfItemsInSection(in: indexPath.section))
+            cell.setUp(title: "\(viewModel.titleForSection(indexPath.item))", sectionCount: viewModel.numberOfItemsInSection(in: indexPath.section), mediaItem: viewModel.item(at: indexPath))
 
             return cell
         case .category:
             let cell: CategoryPostCell = tableView.dequeueCell(for: indexPath)
-            cell.setUp(title: "\(viewModel.titleForSection(indexPath.item))", itemCount: viewModel.sectionCount)
+            cell.setUp(title: "\(viewModel.titleForSection(indexPath.item))", itemCount: viewModel.sectionCount, mediaItem: viewModel.item(at: indexPath))
             
             return cell
         }

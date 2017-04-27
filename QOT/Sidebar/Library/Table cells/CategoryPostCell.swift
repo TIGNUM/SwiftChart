@@ -8,29 +8,19 @@
 
 import UIKit
 
-protocol CategoryPostCellDataSource {
-    //    func itemCount
-}
-
 final class CategoryPostCell: UITableViewCell, Dequeueable {
-    let viewModel = LibraryViewModel()
+
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
 
-    var itemCount = 0
     let helper = Helper()
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-
-
-    }
+    lazy var mediaItem = LibraryMediaItem.audio(localID: "", placeholderURL: URL(string: "")!, headline: "", text: "")
+    var itemCount = 0
     
-    func setUp(title: String, itemCount: Int) {
-        
-        titleLabel.attributedText = AttributedString.Library.categoryTitle(string: title.makingTwoLines())
-        
+    func setUp(title: String, itemCount: Int, mediaItem: LibraryMediaItem) {
+        self.mediaItem = mediaItem
         self.itemCount = itemCount
+        titleLabel.attributedText = AttributedString.Library.categoryTitle(string: title.makingTwoLines())
         collectionView.registerDequeueable(CategoryCollectionCell.self)
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -46,9 +36,7 @@ extension CategoryPostCell : UICollectionViewDelegateFlowLayout, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = viewModel.item(at: indexPath)
-        
-        switch item {
+        switch mediaItem {
         case .audio ( _, let placeHolderURL, let headline, let text):
             let cell: CategoryCollectionCell = collectionView.dequeueCell(for: indexPath)
             cell.setup(headline: headline, placeholderURL: placeHolderURL, mediaType: text)
@@ -75,13 +63,12 @@ extension CategoryPostCell : UICollectionViewDelegateFlowLayout, UICollectionVie
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        print(self.bounds.height)
         return CGSize(width: 275, height: collectionView.frame.height)
     }
 
 
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        targetContentOffset.pointee.x = self.helper.scrollViewScroll(scrollView: scrollView, velocity: velocity, targetContentOffset: targetContentOffset, width: 275)
+        targetContentOffset.pointee.x = helper.scrollViewScroll(scrollView: scrollView, velocity: velocity, targetContentOffset: targetContentOffset, width: 275)
     }
 }

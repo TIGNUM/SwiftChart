@@ -20,6 +20,7 @@ extension String {
         }
         
         let results = regex.matches(in: self, options: [], range: NSRange(location: 0, length: utf16.count))
+        
         if results.count <= 1 {
             return self
         }
