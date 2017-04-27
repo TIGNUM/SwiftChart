@@ -17,16 +17,6 @@ protocol TopTabBarDelegate: class {
 
 final class TopTabBarController: UIViewController {
 
-    // MARK: - Constants
-    
-    struct Constants {
-        static let animationDuration: TimeInterval = 0.3
-        static let selectedButtonColor: UIColor = .white
-        static let deselectedButtonColor: UIColor = UIColor.white.withAlphaComponent(0.4)
-        static let stackViewHorizontalPadding: CGFloat = 16
-        static let indicatorViewExtendedWidth: CGFloat = 16
-    }
-    
     // MARK: - TopTabBarController Item
 
     struct Item {
@@ -51,14 +41,13 @@ final class TopTabBarController: UIViewController {
     // MARK: Properties
 
     fileprivate var item: Item
-    fileprivate var tabBarView: TabBarView = TabBarView()
     fileprivate var index: Int = 0
     fileprivate var scrollViewContentOffset: CGFloat = 0
     weak var delegate: TopTabBarDelegate?
 
     fileprivate lazy var navigationItemBar: UIView = {
         let view = UIView()
-        view.backgroundColor = .black
+        view.backgroundColor = .red
         
         return view
     }()
@@ -81,17 +70,27 @@ final class TopTabBarController: UIViewController {
         return scrollView
     }()
 
+    fileprivate lazy var tabBarView: TabBarView = {
+        let tabBarView = TabBarView(tabBarType: .top)
+        tabBarView.setTitles(self.item.titles, selectedIndex: 0)
+        tabBarView.selectedColor = .white
+        tabBarView.deselectedColor = UIColor.white.withAlphaComponent(0.4)
+        tabBarView.indicatorViewExtendedWidth = CGFloat(16)
+
+        return tabBarView
+    }()
+
     // MARK: - Init
     
     init(item: Item, selectedIndex: Index = 0, leftIcon: UIImage? = nil, rightIcon: UIImage? = nil) {
         precondition(selectedIndex >= 0 && selectedIndex < item.controllers.count, "Out of bounds selectedIndex")
 
-        self.item = item
+        self.item = item        
         
         super.init(nibName: nil, bundle: nil)
-        
-        self.tabBarView = self.setupTabBarView(selectedIndex: selectedIndex)
-        self.setupButtons(leftIcon: leftIcon, rightIcon: rightIcon)
+
+        setupButton(with: leftIcon, button: leftButton)
+        setupButton(with: rightIcon, button: rightButton)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -127,7 +126,7 @@ final class TopTabBarController: UIViewController {
 private extension TopTabBarController {
 
     func button(with action: Selector) -> UIButton {
-        let button = UIButton()
+        let button = UIButton(type: .custom)
         button.addTarget(self, action: action, for: .touchUpInside)
 
         return button
@@ -138,21 +137,10 @@ private extension TopTabBarController {
 
 private extension TopTabBarController {
 
-    func setupTabBarView(selectedIndex: Index) -> TabBarView {
-        let tabBarView = TabBarView()
-        tabBarView.setTitles(item.titles, selectedIndex: selectedIndex)
-        tabBarView.selectedColor = Constants.selectedButtonColor
-        tabBarView.deselectedColor = Constants.deselectedButtonColor
-        tabBarView.indicatorViewExtendedWidth = Constants.indicatorViewExtendedWidth
-
-        return tabBarView
-    }
-
-    func setupButtons(leftIcon: UIImage?, rightIcon: UIImage?) {
-        leftButton.setImage(leftIcon, for: .normal)
-        rightButton.setImage(rightIcon, for: .normal)
-        leftButton.isHidden = leftIcon == nil
-        rightButton.isHidden = rightIcon == nil
+    func setupButton(with image: UIImage?, button: UIButton) {
+        button.setImage(image, for: .normal)
+        button.isHidden = image == nil
+        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
 }
 
@@ -249,7 +237,7 @@ private extension TopTabBarController {
         leftButton.leftAnchor == navigationItemBar.leftAnchor
         leftButton.bottomAnchor == navigationItemBar.bottomAnchor
         leftButton.topAnchor == navigationItemBar.topAnchor + 20
-        leftButton.widthAnchor == 36
+        leftButton.widthAnchor == 44
         
         rightButton.rightAnchor == navigationItemBar.rightAnchor
         rightButton.bottomAnchor == navigationItemBar.bottomAnchor

@@ -32,14 +32,14 @@ final class TabBarController: UIViewController {
     fileprivate weak var currentViewController: UIViewController?
     fileprivate weak var indicatorViewLeadingConstraint: NSLayoutConstraint?
     fileprivate weak var indicatorViewWidthConstraint: NSLayoutConstraint?
+    fileprivate let tabBarView: TabBarView
     weak var delegate: TabBarControllerDelegate?
 
     fileprivate lazy var containerView: UIView = {
         let view = UIView()
         return view
     } ()
-    
-    fileprivate let tabBarView: TabBarView
+
 
     var viewControllers: [UIViewController] {
         return items.map { $0.controller }
@@ -48,11 +48,11 @@ final class TabBarController: UIViewController {
     init(items: [Item], selectedIndex: Index) {
         precondition(selectedIndex >= 0 && selectedIndex < items.count, "Out of bounds selectedIndex")
         
-        let tabBarView = TabBarView()
+        let tabBarView = TabBarView(tabBarType: .bottom)
         tabBarView.setTitles(items.map { $0.title }, selectedIndex: 0)
         tabBarView.selectedColor = Constants.selectedButtonColor
         tabBarView.deselectedColor = Constants.deselectedButtonColor
-        tabBarView.indicatorViewExtendedWidth = Constants.indicatorViewExtendedWidth
+        tabBarView.indicatorViewExtendedWidth = Constants.indicatorViewExtendedWidth        
         
         self.items = items
         self.tabBarView = tabBarView
