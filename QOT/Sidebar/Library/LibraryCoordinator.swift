@@ -11,17 +11,23 @@ import UIKit
 
 final class LibraryCoordinator: ParentCoordinator {
 
+    // MARK: - Properties
+
     fileprivate let rootViewController: SidebarViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
     var children = [Coordinator]()
     lazy var presentationManager = PresentationManager()
 
+    // MARK: - Init
+
     init(root: SidebarViewController, services: Services, eventTracker: EventTracker) {
         self.rootViewController = root
         self.services = services
         self.eventTracker = eventTracker
     }
+
+    // MARK: - Coordinator -> Starts
 
     func start() {
         let libraryViewController = LibraryViewController(viewModel: LibraryViewModel())
@@ -44,6 +50,7 @@ final class LibraryCoordinator: ParentCoordinator {
         rootViewController.present(topTabBarController, animated: true)
 
         // TODO: Update associatedEntity with realm object when its created.
+        
         eventTracker.track(page: libraryViewController.pageID, referer: rootViewController.pageID, associatedEntity: nil)
     }
 }
