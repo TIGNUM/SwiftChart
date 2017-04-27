@@ -57,7 +57,7 @@ extension ChatViewModel {
 }
 
 enum ChatMessage {
-    case instruction(type: InstructionType, image: UIImage?)
+    case instruction(type: InstructionType, showIcon: Bool)
     case header(title: String, alignment: NSTextAlignment)
     case navigation([ChatMessageNavigation])
     case input([ChatMessageInput])
@@ -112,7 +112,7 @@ private var chatMessageInputs: [ChatMessageInput] {
 
 private var mockChatMessage: [ChatMessage] {
     let instructionTypeMessage = ChatMessage.InstructionType.message("Hi Louis what are you preparing for?")
-    let instruction = ChatMessage.instruction(type: instructionTypeMessage, image: nil)
+    let instruction = ChatMessage.instruction(type: instructionTypeMessage, showIcon: true)
     let header = ChatMessage.header(title: "Delivered: 12:34", alignment: .left)
     let navigations = ChatMessage.navigation(chatMessageNavigations)
     let inputs = ChatMessage.input(chatMessageInputs)
