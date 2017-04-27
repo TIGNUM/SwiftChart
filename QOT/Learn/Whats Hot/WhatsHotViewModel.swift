@@ -10,14 +10,14 @@ import Foundation
 import ReactiveKit
 
 final class WhatsHotViewModel {
-
+    
     private let items = mockWhatsHotItems()
     let updates = PublishSubject<CollectionUpdate, NoError>()
-
+    
     var itemCount: Int {
         return items.count
     }
-
+    
     func item(at index: Index) -> WhatsHotItem {
         return items[index]
     }
@@ -48,40 +48,40 @@ private func mockWhatsHotItems() -> [WhatsHotItem] {
         MockWhatsHotItem(
             localID: UUID().uuidString,
             identifier: AttributedString.Learn.WhatsHot.identifier(string: ".087"),
-            subtitle: AttributedString.Learn.WhatsHot.title(string: "QOT // THOUGHTS"),
-            text: AttributedString.Learn.WhatsHot.text(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
-            mediaInformation: AttributedString.Learn.WhatsHot.title(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
-            placeholderURL: URL(string:"https://example.com")!,
+            subtitle: AttributedString.Learn.WhatsHot.title(string: "Q O T   / /   T H O U G H T S"),
+            text: AttributedString.Learn.WhatsHot.text(string: "IMPACT OF EXTRINSIC POLJ MOTIVATION ON INTRINSIC"),
+            mediaInformation: AttributedString.Learn.WhatsHot.title(string: "V I D E O     /  /    2   M I N"),
+            placeholderURL: URL(string:"https://static.pexels.com/photos/348323/pexels-photo-348323.jpeg")!,
             bookmarked: false
         ),
-
+        
         MockWhatsHotItem(
             localID: UUID().uuidString,
             identifier: AttributedString.Learn.WhatsHot.identifier(string: ".086"),
-            subtitle: AttributedString.Learn.WhatsHot.title(string: "QOT // THOUGHTS"),
-            text: AttributedString.Learn.WhatsHot.text(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
-            mediaInformation: AttributedString.Learn.WhatsHot.title(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
-            placeholderURL: URL(string:"https://example.com")!,
-            bookmarked: false
+            subtitle: AttributedString.Learn.WhatsHot.title(string: "Q O T   / /   T H O U G H T S"),
+            text: AttributedString.Learn.WhatsHot.text(string: "IMPACT OF EXTRINSIC POLJ MOTIVATION ON INTRINSIC"),
+            mediaInformation: AttributedString.Learn.WhatsHot.title(string: "V I D E O     /  /    2   M I N"),
+            placeholderURL: URL(string:"https://static.pexels.com/photos/234171/pexels-photo-234171.jpeg")!,
+            bookmarked: true
         ),
-
+        
         MockWhatsHotItem(
             localID: UUID().uuidString,
             identifier: AttributedString.Learn.WhatsHot.identifier(string: ".085"),
-            subtitle: AttributedString.Learn.WhatsHot.title(string: "QOT // THOUGHTS"),
-            text: AttributedString.Learn.WhatsHot.text(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
-            mediaInformation: AttributedString.Learn.WhatsHot.title(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
-            placeholderURL: URL(string:"https://example.com")!,
+            subtitle: AttributedString.Learn.WhatsHot.title(string: "Q O T   / /   T H O U G H T S"),
+            text: AttributedString.Learn.WhatsHot.text(string: "IMPACT OF EXTRINSIC POLJ MOTIVATION ON INTRINSIC"),
+            mediaInformation: AttributedString.Learn.WhatsHot.title(string: "V I D E O     /  /    2   M I N"),
+            placeholderURL: URL(string:"https://images.pexels.com/photos/7715/pexels-photo.jpg?w=1260&h=750&auto=compress&cs=tinysrgb")!,
             bookmarked: false
         ),
-
+        
         MockWhatsHotItem(
             localID: UUID().uuidString,
             identifier: AttributedString.Learn.WhatsHot.identifier(string: ".084"),
-            subtitle: AttributedString.Learn.WhatsHot.title(string: "QOT // THOUGHTS"),
-            text: AttributedString.Learn.WhatsHot.text(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
-            mediaInformation: AttributedString.Learn.WhatsHot.title(string: "Impact Of Extrinsic POLJ Motivation On Intrinsic"),
-            placeholderURL: URL(string:"https://example.com")!,
+            subtitle: AttributedString.Learn.WhatsHot.title(string: "Q O T   / /   T H O U G H T S"),
+            text: AttributedString.Learn.WhatsHot.text(string: "IMPACT OF EXTRINSIC POLJ MOTIVATION ON INTRINSIC"),
+            mediaInformation: AttributedString.Learn.WhatsHot.title(string: "V I D E O     /  /    2   M I N"),
+            placeholderURL: URL(string:"https://static.pexels.com/photos/351073/pexels-photo-351073.jpeg")!,
             bookmarked: false
         )
     ]
