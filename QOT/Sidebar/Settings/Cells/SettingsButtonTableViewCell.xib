@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsTableViewCell_Button" id="Rhc-Fu-dZk" customClass="SettingsTableViewCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rhc-Fu-dZk" id="p5A-lN-B0Y">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Or-zV-6lu">
+                        <rect key="frame" x="12" y="0.0" width="351" height="43.5"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1y-ql-8Of">
+                                <rect key="frame" x="0.0" y="0.0" width="351" height="43.5"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="didTapButtonWithSender:" destination="Rhc-Fu-dZk" eventType="touchUpInside" id="RNq-fs-rtn"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="3Or-zV-6lu" firstAttribute="leading" secondItem="p5A-lN-B0Y" secondAttribute="leading" constant="12" id="K5e-v9-5JQ"/>
+                    <constraint firstAttribute="bottom" secondItem="3Or-zV-6lu" secondAttribute="bottom" id="UbC-5c-NKL"/>
+                    <constraint firstAttribute="trailing" secondItem="3Or-zV-6lu" secondAttribute="trailing" constant="12" id="V51-zc-70d"/>
+                    <constraint firstItem="3Or-zV-6lu" firstAttribute="top" secondItem="p5A-lN-B0Y" secondAttribute="top" id="qay-ou-7yT"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="button" destination="f1y-ql-8Of" id="92U-od-xcE"/>
+            </connections>
+            <point key="canvasLocation" x="-1" y="68"/>
+        </tableViewCell>
+    </objects>
+</document>
