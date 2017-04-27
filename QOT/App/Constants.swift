@@ -190,7 +190,7 @@ struct Font {
     static let H4Headline = UIFont.simpleFont(ofSize: 20)
 
     /// SIMPLE REGULAR 16 // strategy title
-    static let H4identifier = UIFont.simpleFont(ofSize: 18)
+    static let H4Identifier = UIFont.simpleFont(ofSize: 18)
     
     /// SIMPLE REGULAR 16 // strategy title
     static let H5SecondaryHeadline = UIFont.simpleFont(ofSize: 16)
@@ -205,7 +205,7 @@ struct Font {
     static let PText = UIFont.bentonRegularFont(ofSize: 16)
     
     /// BENTON SAN BOOK 11 // title
-    static let HTitle = UIFont.bentonBookFont(ofSize: 11)
+    static let H7Title = UIFont.bentonBookFont(ofSize: 11)
 
     /// BENTON SANS 13 // paragraph, body text
     static let PTextSmall = UIFont.bentonRegularFont(ofSize: 13)
@@ -290,11 +290,11 @@ struct AttributedString {
 
         struct WhatsHot {
             static func identifier(string: String) -> NSAttributedString {
-                return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.H4identifier )
+                return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.H4Identifier )
             }
 
             static func title(string: String) -> NSAttributedString {
-                return NSAttributedString.create(for: string, withColor: Color.MeSection.whiteStroke, andFont: Font.HTitle)
+                return NSAttributedString.create(for: string, withColor: Color.MeSection.whiteStroke, andFont: Font.H7Title)
             }
 
             static func text(string: String) -> NSAttributedString {
@@ -318,7 +318,7 @@ struct AttributedString {
             }
 
             static func newTemplateMediaDescription(string: String) -> NSAttributedString {
-                return NSAttributedString.create(for: string, withColor: Color.MeSection.whiteStroke, andFont: Font.HTitle)
+                return NSAttributedString.create(for: string, withColor: Color.MeSection.whiteStroke, andFont: Font.H7Title)
             }
 
             static func newTemplateLoadMoreTitle(string: String) -> NSAttributedString {

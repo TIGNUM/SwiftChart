@@ -32,11 +32,12 @@ final class WhatsHotLayout: UICollectionViewLayout {
             let standardHeight = delegate?.standardHeightForLayout(self),
             let featuredHeight = delegate?.featuredHeightForLayout(self)
             else {
-                return CGSize.zero
+                return .zero
         }
 
         // FIXME: THis content height is incorrect
-        let contentHeight = (CGFloat(itemCount) * standardHeight) + (featuredHeight - standardHeight) + 1000
+
+        let contentHeight = (CGFloat(itemCount) * standardHeight) +  (2 * standardHeight + featuredHeight)
         return CGSize(width: width, height: contentHeight)
     }
 
@@ -49,7 +50,7 @@ final class WhatsHotLayout: UICollectionViewLayout {
         let standardHeight = delegate.standardHeightForLayout(self)
         let featuredHeight = delegate.featuredHeightForLayout(self)
 
-        var cache: [UICollectionViewLayoutAttributes] = []
+        var cache = [UICollectionViewLayoutAttributes]()
         cache.reserveCapacity(itemCount)
 
         for item in 0..<itemCount {
@@ -90,11 +91,11 @@ final class WhatsHotLayout: UICollectionViewLayout {
 
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
         guard let delegate  = delegate else {
-            return CGPoint.zero
+            return .zero
         }
 
         let itemIndex = round(proposedContentOffset.y / (delegate.standardHeightForLayout(self)))
-        print(proposedContentOffset.y)
+        
         let yOffset = itemIndex * (delegate.standardHeightForLayout(self))
         return CGPoint(x: 0, y: yOffset)
     }
@@ -106,7 +107,7 @@ final class WhatsHotLayout: UICollectionViewLayout {
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var layoutAttributes = [UICollectionViewLayoutAttributes]()
         for attributes in cache {
-            if attributes.frame.intersects(rect) {
+            if attributes.frame.intersects(rect) == true {
                 layoutAttributes.append(attributes)
             }
         }
