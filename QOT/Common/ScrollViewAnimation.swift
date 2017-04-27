@@ -9,23 +9,19 @@
 import Foundation
 import UIKit
 
+private enum ScrollDirection {
+    case left
+    case stationary
+    case right
+}
+
 class Helper {
 
     func scrollViewScroll(scrollView: UIScrollView, velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>, width: CGFloat) -> CGFloat {
         let cellWidth: CGFloat = width
         let cellSpaceing: CGFloat = 15
         let originalTargetPage = (targetContentOffset.pointee.x) / (cellWidth + cellSpaceing)
-        
-        let scrollDirection: ScrollDirection
-
-        if velocity.x < 0 {
-            scrollDirection = .left
-        } else if velocity.x > 0 {
-            scrollDirection = .right
-        } else {
-            scrollDirection = .stationary
-        }
-        
+        let scrollDirection: ScrollDirection = (velocity.x < 0 ? .left : (velocity.x > 0 ? .right : .stationary))
         let targetPage: Int
 
         switch scrollDirection {
@@ -38,10 +34,4 @@ class Helper {
 
         return targetOffset
     }
-}
-
-private enum ScrollDirection {
-    case left
-    case stationary
-    case right
 }
