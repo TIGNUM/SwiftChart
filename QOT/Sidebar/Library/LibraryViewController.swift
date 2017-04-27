@@ -9,7 +9,6 @@
 import UIKit
 
 protocol LibraryViewControllerDelegate: class {
-    func didTapClose(in viewController: LibraryViewController)
     func didTapMedia(with mediaItem: LibraryMediaItem, from view: UIView, in viewController: UIViewController)
 }
 
@@ -17,10 +16,11 @@ final class LibraryViewController: UIViewController {
 
     // MARK: - Properties
 
+    @IBOutlet weak var tableView: UITableView!
     let viewModel: LibraryViewModel
     weak var delegate: LibraryViewControllerDelegate?
 
-    // MARK: - Life Cycle
+    // MARK: - Init
 
     init(viewModel: LibraryViewModel) {
         self.viewModel = viewModel
@@ -32,15 +32,67 @@ final class LibraryViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeView))
-        view.addGestureRecognizer(tapGestureRecognizer)
+        registerTableCell()
         view.backgroundColor = .black
     }
+}
 
-    func closeView(gestureRecognizer: UITapGestureRecognizer) {
-        delegate?.didTapClose(in: self)
+// MARK: - Private
+
+private extension LibraryViewController {
+
+    func registerTableCell() {
+        tableView.registerDequeueable(LatestPostCell.self)
+        tableView.registerDequeueable(CategoryPostCell.self)
+    }
+}
+
+// MARK: - UITableViewDelegate
+
+extension LibraryViewController: UITableViewDelegate {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.sectionCount
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let style = viewModel.styleForSection(indexPath.item)
+        switch style {
+        case .lastPost: return 200
+        case .category: return 300
+        }
+    }
+}
+
+// MARK: - UITableViewDataSource
+
+extension LibraryViewController: UITableViewDataSource {
+
+    // table DataSource
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = viewModel.styleForSection(indexPath.item)
+        tableView.rowHeight = UITableViewAutomaticDimension
+
+        switch section {
+        case .lastPost:
+            let cell: LatestPostCell = tableView.dequeueCell(for: indexPath)
+            cell.setUp(title: "\(viewModel.titleForSection(indexPath.item))", sectionCount: viewModel.numberOfItemsInSection(in: indexPath.section), mediaItem: viewModel.item(at: indexPath))
+
+            return cell
+        case .category:
+            let cell: CategoryPostCell = tableView.dequeueCell(for: indexPath)
+            cell.setUp(title: "\(viewModel.titleForSection(indexPath.item))", itemCount: viewModel.sectionCount, mediaItem: viewModel.item(at: indexPath))
+            
+            return cell
+        }
     }
 }

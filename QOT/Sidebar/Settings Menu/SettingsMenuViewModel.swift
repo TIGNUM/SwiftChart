@@ -10,6 +10,7 @@ import Foundation
 import ReactiveKit
 
 final class SettingsMenuViewModel {
+
     struct Profile {
         let name: String
         let position: String
@@ -22,9 +23,7 @@ final class SettingsMenuViewModel {
     }
 
     private let tiles: [Tile] = mockTiles()
-
     let profile: Profile = mockProfile()
-
     let tileUpdates = PublishSubject<CollectionUpdate, NoError>()
 
     var tileCount: Int {

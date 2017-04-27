@@ -187,8 +187,8 @@ private extension TabBarView {
             let buttonWiths = buttons.map { $0.intrinsicContentSize.width }
             let totalSpacing = CGFloat(max(buttons.count - 1, 0)) * spacing
             let totoalWidth = buttonWiths.reduce(0, +)
-
             var x = (bounds.width - (totoalWidth + totalSpacing)) / 2
+
             for (width, button) in zip(buttonWiths, buttons) {
                 button.frame = CGRect(x: x, y: 0, width: width, height: bounds.height).integral
                 x += width + spacing
@@ -197,20 +197,20 @@ private extension TabBarView {
     }
     
     func layoutIndicatorView(animated: Bool) {
-        guard let selectedIndex = selectedIndex else {
-            return
+        guard
+            let selectedIndex = selectedIndex,
+            selectedIndex < buttons.count else {
+                return
         }
         
         let button = buttons[selectedIndex]
-        
         let width = button.intrinsicContentSize.width + indicatorViewExtendedWidth
         let height: CGFloat = 1
         let x = button.center.x - (width / 2)
         let y = bounds.maxY - height
-        
         let frame = CGRect(x: x, y: y, width: width, height: height)
         
-        if animated {
+        if animated == true {
             let transition = UIViewAnimationOptions.curveEaseInOut
             UIView.animate(withDuration: Constants.animationDuration, delay: 0, options: transition, animations: {
                 self.indicatorView.frame = frame

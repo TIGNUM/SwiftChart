@@ -22,5 +22,4 @@ class LearnStrategyArticleCell: UITableViewCell, Dequeueable {
         titleLabel.attributedText = title
         subTitleLabel.attributedText = subtitle
     }
-    
 }

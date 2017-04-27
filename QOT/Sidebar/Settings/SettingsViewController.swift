@@ -9,28 +9,23 @@
 import UIKit
 
 protocol SettingsViewControllerDelegate: class {
-    func didTapClose(in viewController: UIViewController, animated: Bool)
+    func didValueChanged(at indexPath: IndexPath, enabled: Bool)
+    func didTapPickerCell(at indexPath: IndexPath, selectedValue: String)
+    func didTapButton(at indexPath: IndexPath)
 }
 
-final class SettingsViewController: UIViewController {
-    
-    // MARK: - Outlets
-    
-    @IBOutlet fileprivate weak var navigationBarView: UIView!
-    @IBOutlet fileprivate weak var titleLabel: UILabel!
-    @IBOutlet fileprivate weak var searchButton: UIButton!
-    @IBOutlet fileprivate weak var closeButton: UIButton!
-    @IBOutlet fileprivate weak var tableView: UITableView!
-    
+final class SettingsViewController: UITableViewController {
+
     // MARK: - Properties
-    
-    weak var delegate: SettingsViewControllerDelegate?
+
     let viewModel: SettingsViewModel
+    let settingsType: SettingsViewModel.SettingsType
     
-    // MARK: - Life Cycle
+    // MARK: - Init
     
     init(viewModel: SettingsViewModel) {
         self.viewModel = viewModel
+        self.settingsType = viewModel.settingsType
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -38,63 +33,85 @@ final class SettingsViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
+    // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+
+        registerCells()
         setupView()
-        setupNavigationBar()
     }
 }
 
 // MARK: - Layout
 
-extension SettingsViewController {
+private extension SettingsViewController {
     
-    fileprivate func setupNavigationBar() {
-        titleLabel?.text = R.string.localized.settingsTitle()
-        navigationBarView?.backgroundColor = .darkGray
+    func setupView() {
+        view.backgroundColor = .black
+        tableView?.backgroundColor = .black
     }
-    
-    fileprivate func setupView() {
-        view.backgroundColor = .darkGray
-        tableView?.backgroundColor = .darkGray
-        tableView?.register(UINib(nibName: R.nib.settingsTableViewCell.name, bundle: nil), forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Id.identifier)
-    }
-}
 
-// MARK: - Actions
-
-extension SettingsViewController {
-    
-    @IBAction private func didTapCloseButton() {
-        delegate?.didTapClose(in: self, animated: true)
-    }
-    
-    @IBAction private func didTapSearchButton() {
-        delegate?.didTapClose(in: self, animated: true)
+    func registerCells() {
+        tableView.register(R.nib.settingsLabelTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Label.identifier)
+        tableView.register(R.nib.settingsButtonTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Button.identifier)
+        tableView.register(R.nib.settingsControlTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Control.identifier)
+        tableView.register(R.nib.settingsTextFieldTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_TextField.identifier)
+        tableView.register(R.nib.settingsDatePickerTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_DatePicker.identifier)
+        tableView.register(R.nib.settingsStringPickerTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_StringPickerView.identifier)
     }
 }
 
 // MARK: - UITableViewDataSource, UITableViewDelegate
 
-extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.itemCount
+extension SettingsViewController {
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.sectionCount
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let settingsCell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.settingsTableViewCell_Id.identifier, for: indexPath) as? SettingsTableViewCell else {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.numberOfItemsInSection(in: section)
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let settingsRow = viewModel.row(at: indexPath)
+
+        guard let settingsCell = tableView.dequeueReusableCell(withIdentifier: settingsRow.identifier, for: indexPath) as? SettingsTableViewCell else {
+            fatalError("SettingsTableViewCell DOES NOT EXIST!!!")
             return UITableViewCell()
         }
-        
-        settingsCell.setup()
-        
+
+        settingsCell.setup(settingsRow: settingsRow, indexPath: indexPath)
+        settingsCell.delegate = self
+
         return settingsCell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        tableView.headerView(forSection: section)?.textLabel?.textColor = .white
+        return viewModel.headerTitle(in: section)
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+// MARK: - SettingsViewControllerDelegate
+
+extension SettingsViewController: SettingsViewControllerDelegate {
+
+    func didValueChanged(at indexPath: IndexPath, enabled: Bool) {
+        // Update ViewModel with changes.
+    }
+
+    func didTapPickerCell(at indexPath: IndexPath, selectedValue: String) {
+        // Update view with nice animation and show/hide picker view.
+    }
+
+    func didTapButton(at indexPath: IndexPath) {
+        // Navigate to selected view, like tutorial.
     }
 }

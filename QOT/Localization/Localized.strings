@@ -11,6 +11,9 @@
 "learn.content-list-view.minutes-label" = "%@ MIN";
 
 "Settings.Title" = "Settings";
+"Settings.Title.General" = "General";
+"Settings.Title.Notifications" = "Notifications";
+"Settings.Title.Security" = "Security";
 "Sidebar.Title.Library" = "QOT Library";
 "Sidebar.Title.Benefits" = "QOT Benefits";
 "Sidebar.Title.Settings" = "Settings";

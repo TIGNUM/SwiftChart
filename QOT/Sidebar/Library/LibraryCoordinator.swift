@@ -11,12 +11,15 @@ import UIKit
 
 final class LibraryCoordinator: ParentCoordinator {
 
-    internal var rootViewController: SidebarViewController
+    // MARK: - Properties
+
+    fileprivate let rootViewController: SidebarViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
-    internal var children = [Coordinator]()
-    weak var delegate: ParentCoordinator?
+    var children = [Coordinator]()
     lazy var presentationManager = PresentationManager()
+
+    // MARK: - Init
 
     init(root: SidebarViewController, services: Services, eventTracker: EventTracker) {
         self.rootViewController = root
@@ -24,15 +27,30 @@ final class LibraryCoordinator: ParentCoordinator {
         self.eventTracker = eventTracker
     }
 
+    // MARK: - Coordinator -> Starts
+
     func start() {
         let libraryViewController = LibraryViewController(viewModel: LibraryViewModel())
         libraryViewController.delegate = self
         presentationManager.presentationType = .fadeIn
         libraryViewController.modalPresentationStyle = .custom
         libraryViewController.transitioningDelegate = presentationManager
-        rootViewController.present(libraryViewController, animated: true)
+
+        let topTabBarControllerItem = TopTabBarController.Item(
+            controllers: [libraryViewController],
+            titles: [R.string.localized.sidebarTitleLibrary()]
+        )
+
+        let topTabBarController = TopTabBarController(
+            item: topTabBarControllerItem,            
+            leftIcon: R.image.ic_minimize()
+        )
+
+        topTabBarController.delegate = self
+        rootViewController.present(topTabBarController, animated: true)
 
         // TODO: Update associatedEntity with realm object when its created.
+        
         eventTracker.track(page: libraryViewController.pageID, referer: rootViewController.pageID, associatedEntity: nil)
     }
 }
@@ -44,9 +62,22 @@ extension LibraryCoordinator: LibraryViewControllerDelegate {
     func didTapMedia(with mediaItem: LibraryMediaItem, from view: UIView, in viewController: UIViewController) {
         log("didTapMedia: \(mediaItem)")
     }
+}
 
-    func didTapClose(in viewController: LibraryViewController) {
-        viewController.dismiss(animated: true, completion: nil)
-        delegate?.removeChild(child: self)
+// MARK: - TopTabBarDelegate
+
+extension LibraryCoordinator: TopTabBarDelegate {
+
+    func didSelectLeftButton(sender: TopTabBarController) {
+        sender.dismiss(animated: true, completion: nil)
+        removeChild(child: self)
+    }
+
+    func didSelectRightButton(sender: TopTabBarController) {
+        print("didSelectRightButton")
+    }
+
+    func didSelectItemAtIndex(index: Int?, sender: TopTabBarController) {
+        print("didSelectItemAtIndex")
     }
 }

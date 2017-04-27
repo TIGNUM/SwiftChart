@@ -10,8 +10,7 @@ import Foundation
 import UIKit
 
 protocol SidebarViewControllerDelegate: class {
-    func didTapClose(in viewController: UIViewController, animated: Bool)
-    func didTapSettingsCell(in viewController: SidebarViewController)
+    func didTapSettingsMenuCell(in viewController: SidebarViewController)
     func didTapLibraryCell(in viewController: SidebarViewController)
     func didTapBenefitsCell(in viewController: SidebarViewController)
 }
@@ -21,9 +20,6 @@ final class SidebarViewController: UIViewController {
     // MARK: - Outlets
     
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var navBarView: UIView!
-    @IBOutlet private weak var leftNavBarButton: UIButton!
-    @IBOutlet private weak var rightNavBarButton: UIButton!
     
     // MARK: - Properties
     
@@ -54,24 +50,7 @@ final class SidebarViewController: UIViewController {
         tableView?.dataSource = self
         view.backgroundColor = .black
         tableView?.backgroundColor = .clear
-        navBarView?.backgroundColor = .clear
-        leftNavBarButton?.setTitleColor(.lightGray, for: .normal)
-        rightNavBarButton?.setImage(R.image.ic_close()?.withRenderingMode(.alwaysTemplate), for: .normal)
-        rightNavBarButton?.tintColor = .lightGray
         tableView?.register(UINib(nibName: R.nib.sidebarTableViewCell.name, bundle: nil), forCellReuseIdentifier: cellIdentifier)
-    }
-}
-
-// MARK: - Actions
-
-extension SidebarViewController {
-    
-    @IBAction private func didTapCloseButton() {
-        delegate?.didTapClose(in: self, animated: true)
-    }
-    
-    @IBAction private func didTapQOTButton() {
-        delegate?.didTapClose(in: self, animated: true)
     }
 }
 
@@ -120,7 +99,7 @@ extension SidebarViewController {
     
     fileprivate func handleSelection(forItem item: SidebarCellType) {
         switch item {
-        case .settings: delegate?.didTapSettingsCell(in: self)
+        case .settings: delegate?.didTapSettingsMenuCell(in: self)
         case .library: delegate?.didTapLibraryCell(in: self)
         case .benefits: delegate?.didTapBenefitsCell(in: self)
         default: return
