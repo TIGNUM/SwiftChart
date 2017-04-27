@@ -228,6 +228,7 @@ struct Color {
         static let white = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         static let whiteLight = UIColor(red: 1, green: 1, blue: 1, alpha: 0.1)
         static let whiteMedium = UIColor(red: 1, green: 1, blue: 1, alpha: 0.4)
+        static let whiteSlightLight = UIColor(red: 1, green: 1, blue: 1, alpha: 0.9)
         static let navy = UIColor(red: 0, green: 45/255, blue: 78/255, alpha: 1)
     }
 
@@ -341,6 +342,25 @@ struct AttributedString {
                 return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.H1MainTitle)
             }
         }
+    }
+    
+    struct Library {
+        static func categoryTitle(string: String) -> NSAttributedString {
+            return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.H3Subtitle)
+        }
+        
+        static func categoryHeadline(string: String) -> NSAttributedString {
+            return NSAttributedString.create(for: string, withColor: Color.Default.whiteSlightLight, andFont: Font.H7Tag)
+        }
+        
+        static func categoryMediaTypeLabel(string: String) -> NSAttributedString {
+            return NSAttributedString.create(for: string, withColor: Color.Default.whiteMedium, andFont: Font.H7Tag)
+        }
+        
+        static func latestPostTitle(string: String) -> NSAttributedString {
+            return NSAttributedString.create(for: string, withColor: Color.Default.whiteSlightLight, andFont: Font.H7Tag)
+        }
+        
     }
 
     struct MeSection {
