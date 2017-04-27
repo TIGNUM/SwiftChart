@@ -22,11 +22,8 @@ class ChatTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func setup(showIcon: Bool) {
-        if showIcon == true {
-         iconImageView?.isHidden = false
-        } else {
-            iconImageView?.isHidden = true
-            
-        }
+
+        iconImageView?.isHidden = showIcon == false 
+
     }
 }
