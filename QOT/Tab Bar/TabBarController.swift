@@ -32,30 +32,24 @@ final class TabBarController: UIViewController {
     fileprivate weak var currentViewController: UIViewController?
     fileprivate weak var indicatorViewLeadingConstraint: NSLayoutConstraint?
     fileprivate weak var indicatorViewWidthConstraint: NSLayoutConstraint?
-    fileprivate let tabBarView: TabBarView
+    fileprivate lazy var containerView: UIView = UIView()
+    lazy var viewControllers = [UIViewController]()
     weak var delegate: TabBarControllerDelegate?
 
-    fileprivate lazy var containerView: UIView = {
-        let view = UIView()
-        return view
-    } ()
-
-
-    var viewControllers: [UIViewController] {
-        return items.map { $0.controller }
-    }
-    
-    init(items: [Item], selectedIndex: Index) {
-        precondition(selectedIndex >= 0 && selectedIndex < items.count, "Out of bounds selectedIndex")
-        
+    fileprivate lazy var tabBarView: TabBarView = {
         let tabBarView = TabBarView(tabBarType: .bottom)
-        tabBarView.setTitles(items.map { $0.title }, selectedIndex: 0)
+        tabBarView.setTitles(self.items.map { $0.title }, selectedIndex: 0)
         tabBarView.selectedColor = Constants.selectedButtonColor
         tabBarView.deselectedColor = Constants.deselectedButtonColor
-        tabBarView.indicatorViewExtendedWidth = Constants.indicatorViewExtendedWidth        
-        
+        tabBarView.indicatorViewExtendedWidth = Constants.indicatorViewExtendedWidth
+
+        return tabBarView
+    }()
+
+    init(items: [Item], selectedIndex: Index) {
+        precondition(selectedIndex >= 0 && selectedIndex < items.count, "Out of bounds selectedIndex")
+
         self.items = items
-        self.tabBarView = tabBarView
         
         super.init(nibName: nil, bundle: nil)
     }

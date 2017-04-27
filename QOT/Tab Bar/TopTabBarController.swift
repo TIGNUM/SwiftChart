@@ -47,7 +47,7 @@ final class TopTabBarController: UIViewController {
 
     fileprivate lazy var navigationItemBar: UIView = {
         let view = UIView()
-        view.backgroundColor = .red
+        view.backgroundColor = .black
         
         return view
     }()
