@@ -64,17 +64,11 @@ final class TopTabBarController: UIViewController {
     }()
     
     fileprivate lazy var leftButton: UIButton = {
-        let button = UIButton()
-        button.addTarget(self, action: #selector(leftButtonPressed(_:)), for: .touchUpInside)
-
-        return button
+        return self.button(with: #selector(leftButtonPressed(_:)))
     }()
     
     fileprivate lazy var rightButton: UIButton = {
-        let button = UIButton()
-        button.addTarget(self, action: #selector(rightButtonPressed(_:)), for: .touchUpInside)
-
-        return button
+        return self.button(with: #selector(rightButtonPressed(_:)))
     }()
     
     lazy var scrollView: UIScrollView = {
@@ -125,6 +119,18 @@ final class TopTabBarController: UIViewController {
         super.viewDidLayoutSubviews()
 
         setupLayout()
+    }
+}
+
+// MARK: - Private Helpers
+
+private extension TopTabBarController {
+
+    func button(with action: Selector) -> UIButton {
+        let button = UIButton()
+        button.addTarget(self, action: action, for: .touchUpInside)
+
+        return button
     }
 }
 

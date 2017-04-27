@@ -135,12 +135,13 @@ class TabBarView: UIView {
         
         buttons = titles.enumerated().map { (index, title) in
             let button = UIButton(type: .custom)
-            button.setTitle(title, for: .normal)
+            button.setTitle(title.uppercased(), for: .normal)
             button.titleLabel?.font = Font.H5SecondaryHeadline
             button.backgroundColor = .clear
             button.setTitleColor(deselectedColor, for: .normal)
             button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
             button.tag = index
+
             return button
         }
         
