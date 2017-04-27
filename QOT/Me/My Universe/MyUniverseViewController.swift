@@ -21,9 +21,8 @@ protocol MyWhyViewDelegate: class {
     func didTapQOTPartner(selectedIndex: Index, partners: [Partner], from view: UIView)
 }
 
-protocol MyUniverseContentScrollViewDelegate: class {
-    func didScrollToMyData()
-    func didScrollToMyWhy()
+protocol ContentScrollViewDelegate: class {
+    func didEndDecelerating(_ contentOffset: CGPoint)
 }
 
 final class MyUniverseViewController: UIViewController {
@@ -33,8 +32,8 @@ final class MyUniverseViewController: UIViewController {
     fileprivate let myDataViewModel: MyDataViewModel
     fileprivate let myWhyViewModel: MyWhyViewModel
     fileprivate var lastContentOffset: CGFloat = 0
+    weak var contentScrollViewDelegate: ContentScrollViewDelegate?
     weak var delegate: MyUniverseViewControllerDelegate?
-    weak var contentScrollViewDelegate: MyUniverseContentScrollViewDelegate?
 
     fileprivate lazy var myDataView: MyDataView = {
         return MyDataView(
@@ -73,15 +72,6 @@ final class MyUniverseViewController: UIViewController {
             frame: myDataSectorLablesViewFrame,
             screenType: self.screenType
         )
-    }()
-
-    lazy var contentScrollView: UIScrollView = {
-        let layout = Layout.MeSection(viewControllerFrame: self.view.bounds)
-        let contentScrollView = MyUniverseHelper.createScrollView(self.view.frame, layout: layout)
-        contentScrollView.delegate = self
-        contentScrollView.isPagingEnabled = true
-
-        return contentScrollView
     }()
 
     fileprivate lazy var backgroundScrollView: UIScrollView = {
@@ -128,8 +118,30 @@ final class MyUniverseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        addSubViews()
-        addTabRecognizer()        
+        addTabRecognizer()
+    }
+}
+
+// MARK: - ContentScrollView / SubView adding
+
+extension MyUniverseViewController {
+
+    func scrollView() -> UIScrollView {
+        let layout = Layout.MeSection(viewControllerFrame: self.view.bounds)
+        let contentScrollView = MyUniverseHelper.createScrollView(self.view.frame, layout: layout)
+        contentScrollView.delegate = self
+        contentScrollView.isPagingEnabled = true
+
+        return contentScrollView
+    }
+
+    func addSubViews(contentScrollView: UIScrollView) {
+        backgroundScrollView.addSubview(backgroundImage)
+        view.addSubview(backgroundScrollView)
+        view.addSubview(contentScrollView)
+        contentScrollView.addSubview(myWhyView)
+        contentScrollView.addSubview(myDataSectorLabelsView)
+        contentScrollView.addSubview(myDataView)
     }
 }
 
@@ -189,20 +201,6 @@ private extension MyUniverseViewController {
     }
 }
 
-// MARK: - SubViews
-
-private extension MyUniverseViewController {
-
-    func addSubViews() {
-        backgroundScrollView.addSubview(backgroundImage)
-        view.addSubview(backgroundScrollView)
-        view.addSubview(contentScrollView)
-        contentScrollView.addSubview(myWhyView)
-        contentScrollView.addSubview(myDataSectorLabelsView)
-        contentScrollView.addSubview(myDataView)
-    }
-}
-
 // MARK: - ScrollViewDelegate
 
 extension MyUniverseViewController: UIScrollViewDelegate {
@@ -214,12 +212,8 @@ extension MyUniverseViewController: UIScrollViewDelegate {
         updateMyWhyViewAlphaValue(scrollView)
     }
 
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {        
-        if scrollView.contentOffset.equalTo(.zero) == true {
-            contentScrollViewDelegate?.didScrollToMyData()
-        } else {
-            contentScrollViewDelegate?.didScrollToMyWhy()
-        }
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        contentScrollViewDelegate?.didEndDecelerating(scrollView.contentOffset)
     }
 }
 

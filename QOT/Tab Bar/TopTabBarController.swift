@@ -33,23 +33,27 @@ final class TopTabBarController: UIViewController {
         let controllers: [UIViewController]
         let titles: [String]
         let containsScrollView: Bool
-        let contentScrollView: UIScrollView?
         let contentView: UIView?
 
-        init(controllers: [UIViewController], titles: [String], containsScrollView: Bool = false, contentScrollView: UIScrollView? = nil, contentView: UIView? = nil) {
-            self.containsScrollView = containsScrollView
-            self.contentScrollView = contentScrollView
-            self.contentView = contentView
-            self.titles = titles
-            self.controllers = controllers
+        init(
+            controllers: [UIViewController],
+            titles: [String],
+            containsScrollView: Bool = false,
+            contentView: UIView? = nil
+            ) {
+                self.containsScrollView = containsScrollView
+                self.contentView = contentView
+                self.titles = titles
+                self.controllers = controllers
         }
     }
 
     // MARK: Properties
 
     fileprivate var item: Item
-    fileprivate lazy var tabBarView: TabBarView = TabBarView()
+    fileprivate var tabBarView: TabBarView = TabBarView()
     fileprivate var index: Int = 0
+    fileprivate var scrollViewContentOffset: CGFloat = 0
     weak var delegate: TopTabBarDelegate?
 
     fileprivate lazy var navigationItemBar: UIView = {
@@ -73,7 +77,7 @@ final class TopTabBarController: UIViewController {
         return button
     }()
     
-    fileprivate lazy var scrollView: UIScrollView = {
+    lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = .clear
         scrollView.isPagingEnabled = true
@@ -164,19 +168,22 @@ extension TopTabBarController {
 extension TopTabBarController {
 
     func setupScrollView() {
-        if item.containsScrollView == true,
-            let contentScrollView = item.contentScrollView {
-                scrollView = contentScrollView
-                contentScrollView.delegate = self
-        } else {
-            let width: CGFloat = view.bounds.width
-            scrollView.frame = view.bounds
-            scrollView.contentSize = CGSize(width: CGFloat(item.controllers.count) * width, height: 0)
+        guard item.containsScrollView == false else {
+            let halfContentSize = scrollView.contentSize.width * 0.5
+            let offset = view.bounds.size.width - halfContentSize
+            scrollViewContentOffset = halfContentSize - offset
 
-            for (index, controller) in item.controllers.enumerated() {
-                addViewToScrollView(controller)
-                controller.view.frame.origin = CGPoint(x: CGFloat(index) * width, y: 0)
-            }
+            return
+        }
+
+        let width: CGFloat = view.bounds.width
+        scrollView.frame = view.bounds
+        scrollView.contentSize = CGSize(width: CGFloat(item.controllers.count) * width, height: 0)
+        scrollViewContentOffset = scrollView.bounds.size.width
+
+        for (index, controller) in item.controllers.enumerated() {
+            addViewToScrollView(controller)
+            controller.view.frame.origin = CGPoint(x: CGFloat(index) * width, y: 0)
         }
     }
 
@@ -197,14 +204,14 @@ extension TopTabBarController: UIScrollViewDelegate {
     }
 }
 
-extension TopTabBarController: MyUniverseContentScrollViewDelegate {
+extension TopTabBarController: ContentScrollViewDelegate {
 
-    func didScrollToMyWhy() {
-        tabBarView.setSelectedIndex(1, animated: true)
-    }
-
-    func didScrollToMyData() {
-        tabBarView.setSelectedIndex(0, animated: true)
+    func didEndDecelerating(_ contentOffset: CGPoint) {
+        if contentOffset.equalTo(.zero) == true {
+            tabBarView.setSelectedIndex(0, animated: true)
+        } else {
+            tabBarView.setSelectedIndex(1, animated: true)
+        }
     }
 }
 
@@ -223,7 +230,7 @@ private extension TopTabBarController {
         if item.containsScrollView == true,
             let contentView = item.contentView {
                 view.addSubview(contentView)
-        }else {
+        } else {
             view.addSubview(scrollView)
         }
     }
@@ -248,8 +255,9 @@ private extension TopTabBarController {
         tabBarView.topAnchor == navigationItemBar.topAnchor + 20
         tabBarView.bottomAnchor == navigationItemBar.bottomAnchor
 
-        if let myUniverseView = (item.controllers.first as? MyUniverseViewController)?.view {
-            setMyUniverseViewAnchors(myUniverseView: myUniverseView)
+        if item.containsScrollView == true,
+            let contentView = item.contentView {
+                setContentViewAnchors(contentView: contentView)
         } else {
             setScrollViewAnchors()
         }
@@ -263,10 +271,10 @@ private extension TopTabBarController {
         scrollView.bottomAnchor == view.bottomAnchor
     }
 
-    private func setMyUniverseViewAnchors(myUniverseView: UIView) {
-        myUniverseView.horizontalAnchors == view.horizontalAnchors
-        myUniverseView.topAnchor == navigationItemBar.bottomAnchor
-        myUniverseView.bottomAnchor == view.bottomAnchor
+    private func setContentViewAnchors(contentView: UIView) {
+        contentView.horizontalAnchors == view.horizontalAnchors
+        contentView.topAnchor == navigationItemBar.bottomAnchor
+        contentView.bottomAnchor == view.bottomAnchor
     }
 }
 
@@ -280,9 +288,12 @@ extension TopTabBarController: TabBarViewDelegate {
         }
         
         self.index = index
-        if index != scrollView.currentPage {
-            let offset = CGPoint(x: scrollView.bounds.size.width * CGFloat(index), y: 0)
-            scrollView.setContentOffset(offset, animated: true)
+
+        guard index != scrollView.currentPage else {
+            return
         }
+
+        let offset = CGPoint(x: scrollViewContentOffset * CGFloat(index), y: 0)
+        scrollView.setContentOffset(offset, animated: true)
     }
 }
