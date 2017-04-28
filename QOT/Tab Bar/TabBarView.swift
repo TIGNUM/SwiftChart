@@ -181,7 +181,7 @@ private extension TabBarView {
             for button in buttons {
                 let color = selectedColor(for: button)
                 let transition = UIViewAnimationOptions.transitionCrossDissolve
-                let duration = Animation.tabBarViewAnimationDuration
+                let duration = Layout.TabBarView.animationDuration
 
                 UIView.transition(with: button, duration: duration, options: transition, animations: {
                     button.setTitleColor(color, for: .normal)
@@ -213,7 +213,7 @@ private extension TabBarView {
         if animated == true {
             let transition = UIViewAnimationOptions.curveEaseInOut
 
-            UIView.animate(withDuration: Animation.tabBarViewAnimationDuration, delay: 0, options: transition, animations: {
+            UIView.animate(withDuration: Layout.TabBarView.animationDuration, delay: 0, options: transition, animations: {
                 self.indicatorView.frame = self.indicatorFrame(selectedIndex: selectedIndex)
             }, completion: nil)
         } else {
