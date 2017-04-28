@@ -60,7 +60,19 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
     }
 
     func didTapBenefitsCell(in viewController: SidebarViewController) {
-        let coordinator = BenefitsCoordinator(root: viewController, services: services, eventTracker: eventTracker)        
+        startSidebarItemCoordinator(sidebarItemType: .benefits, viewController: viewController)
+    }
+
+    func didTapAboutCell(in viewController: SidebarViewController) {
+        startSidebarItemCoordinator(sidebarItemType: .about, viewController: viewController)
+    }
+
+    func didTapPrivacyCell(in viewController: SidebarViewController) {
+        startSidebarItemCoordinator(sidebarItemType: .privacy, viewController: viewController)
+    }
+
+    private func startSidebarItemCoordinator(sidebarItemType: SidebarItemViewModel.ItemType, viewController: SidebarViewController) {
+        let coordinator = SidebarItemCoordinator(root: viewController, services: services, eventTracker: eventTracker, sidebarItemType: sidebarItemType)
         startChild(child: coordinator)
     }
 }

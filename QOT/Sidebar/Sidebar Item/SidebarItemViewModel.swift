@@ -44,7 +44,7 @@ enum SidebarItem {
     case video(localID: String, placeholderURL: URL, description: NSAttributedString?)
     case audio(localID: String, placeholderURL: URL, description: NSAttributedString?)
     case image(localID: String, placeholderURL: URL, description: NSAttributedString?)
-    case action(title: NSAttributedString)
+    case shareAction(title: NSAttributedString)
 }
 
 private func mockSidebarItems(sidebarItemType: SidebarItemViewModel.ItemType) -> [SidebarItem] {
@@ -91,49 +91,9 @@ private var mockBenefitItems: [SidebarItem] {
             localID: UUID().uuidString,
             title: AttributedString.Learn.headerTitle(string: "OPTIMAL PERFORMANCE STATE"),
             text: AttributedString.Learn.headerSubtitle(string: "Performance Mindset")
-        )
-    ]
-}
-
-private var mockBenefitItems: [SidebarItem] {
-    return [
-        .text(
-            localID: UUID().uuidString,
-            title: AttributedString.Sidebar.Benefits.headerTitle(string: "LOREM IPSUMOP TEXT ONESOIP TWO LINES"),
-            text: AttributedString.Learn.headerSubtitle(string: "Lorem ipsum 26 items")
         ),
 
-        .video(
-            localID: UUID().uuidString,
-            placeholderURL: URL(string:"https://example.com")!,
-            description: AttributedString.Learn.headerSubtitle(string: "How to create your optimal performance state (2:26)")
-        ),
-
-        .text(
-            localID: UUID().uuidString,
-            title: AttributedString.Learn.headerTitle(string: "OPTIMAL PERFORMANCE STATE"),
-            text: AttributedString.Learn.headerSubtitle(string: "Performance Mindset")
-        ),
-
-        .text(
-            localID: UUID().uuidString,
-            title: AttributedString.Learn.headerTitle(string: "OPTIMAL PERFORMANCE STATE"),
-            text: AttributedString.Learn.headerSubtitle(string: "Performance Mindset")
-        ),
-
-        .video(
-            localID: UUID().uuidString,
-            placeholderURL: URL(string:"https://example.com")!,
-            description: AttributedString.Learn.headerSubtitle(string: "How to create your optimal performance state (2:26)")
-        ),
-
-        .text(
-            localID: UUID().uuidString,
-            title: AttributedString.Learn.headerTitle(string: "OPTIMAL PERFORMANCE STATE"),
-            text: AttributedString.Learn.headerSubtitle(string: "Performance Mindset")
-        ),
-
-        .action(
+        .shareAction(
             title: AttributedString.Sidebar.Benefits.headerTitle(string: "Share")
         )
     ]
@@ -211,7 +171,7 @@ private var mockAboutItems: [SidebarItem] {
             text: AttributedString.Learn.headerSubtitle(string: "Lorem Ipsum text  is about bringing your best to those critical events that matter most to you. In each of these events, the demands on you and your mindset will be different. In order to optimize your effectiveness you will have to be in your optimal performance state.")
         ),
 
-        .action(
+        .shareAction(
             title: AttributedString.Sidebar.Benefits.headerTitle(string: "Share")
         )
     ]

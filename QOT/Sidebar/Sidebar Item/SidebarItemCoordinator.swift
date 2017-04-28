@@ -14,17 +14,19 @@ final class SidebarItemCoordinator: ParentCoordinator {
     fileprivate let rootViewController: SidebarViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
+    fileprivate let sidebarItemType: SidebarItemViewModel.ItemType
     var children = [Coordinator]()
     lazy var presentationManager = PresentationManager()
 
-    init(root: SidebarViewController, services: Services, eventTracker: EventTracker) {
+    init(root: SidebarViewController, services: Services, eventTracker: EventTracker, sidebarItemType: SidebarItemViewModel.ItemType) {
         self.rootViewController = root
         self.services = services
         self.eventTracker = eventTracker
+        self.sidebarItemType = sidebarItemType
     }
 
     func start() {
-        let benefitsViewController = BenefitsViewController(viewModel: BenefitsViewModel())
+        let benefitsViewController = SidebarItemViewController(viewModel: SidebarItemViewModel(sidebarItemType: sidebarItemType))
         benefitsViewController.delegate = self
         presentationManager.presentationType = .fadeIn
         benefitsViewController.modalPresentationStyle = .custom
@@ -50,14 +52,22 @@ final class SidebarItemCoordinator: ParentCoordinator {
 
 // MARK: - BenefitsViewControllerDelegate
 
-extension SidebarItemCoordinator: BenefitsViewControllerDelegate {
+extension SidebarItemCoordinator: SidebarItemViewControllerDelegate {
 
-    func didTapMedia(with item: BenefitItem, from view: UIView, in viewController: BenefitsViewController) {
-        log("didTapMedia: \(item)")
+    func didTapShare(from view: UIView, in viewController: SidebarItemViewController) {
+        print("sahre")
     }
 
-    func didTapMore(from view: UIView, in viewController: BenefitsViewController) {
-        log("didTapMore")
+    func didTapAudio(with item: SidebarItem, from view: UIView, in viewController: SidebarItemViewController) {
+        print(didTapAudio)
+    }
+
+    func didTapImage(with item: SidebarItem, from view: UIView, in viewController: SidebarItemViewController) {
+        print("didTapImage")
+    }
+
+    func didTapVideo(with item: SidebarItem, from view: UIView, in viewController: SidebarItemViewController) {
+        print("didTapVideo")
     }
 }
 

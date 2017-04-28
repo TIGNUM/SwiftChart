@@ -12,7 +12,7 @@ protocol SidebarItemViewControllerDelegate: class {
     func didTapVideo(with item: SidebarItem, from view: UIView, in viewController: SidebarItemViewController)
     func didTapAudio(with item: SidebarItem, from view: UIView, in viewController: SidebarItemViewController)
     func didTapImage(with item: SidebarItem, from view: UIView, in viewController: SidebarItemViewController)
-    func didTapMore(from view: UIView, in viewController: SidebarItemViewController)
+    func didTapShare(from view: UIView, in viewController: SidebarItemViewController)
 }
 
 final class SidebarItemViewController: UIViewController {
