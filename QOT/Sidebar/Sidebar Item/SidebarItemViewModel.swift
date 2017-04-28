@@ -44,6 +44,7 @@ enum SidebarItem {
     case video(localID: String, placeholderURL: URL, description: NSAttributedString?)
     case audio(localID: String, placeholderURL: URL, description: NSAttributedString?)
     case image(localID: String, placeholderURL: URL, description: NSAttributedString?)
+    case action(title: NSAttributedString)
 }
 
 private func mockSidebarItems(sidebarItemType: SidebarItemViewModel.ItemType) -> [SidebarItem] {
@@ -130,6 +131,10 @@ private var mockBenefitItems: [SidebarItem] {
             localID: UUID().uuidString,
             title: AttributedString.Learn.headerTitle(string: "OPTIMAL PERFORMANCE STATE"),
             text: AttributedString.Learn.headerSubtitle(string: "Performance Mindset")
+        ),
+
+        .action(
+            title: AttributedString.Sidebar.Benefits.headerTitle(string: "Share")
         )
     ]
 }
@@ -204,6 +209,10 @@ private var mockAboutItems: [SidebarItem] {
             localID: UUID().uuidString,
             title: AttributedString.Sidebar.Benefits.headerTitle(string: "How"),
             text: AttributedString.Learn.headerSubtitle(string: "Lorem Ipsum text  is about bringing your best to those critical events that matter most to you. In each of these events, the demands on you and your mindset will be different. In order to optimize your effectiveness you will have to be in your optimal performance state.")
+        ),
+
+        .action(
+            title: AttributedString.Sidebar.Benefits.headerTitle(string: "Share")
         )
     ]
 }
