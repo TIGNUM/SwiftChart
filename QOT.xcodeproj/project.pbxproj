@@ -317,9 +317,9 @@
 		CC13E2431EB1D72E00C3CE46 /* CategoryPostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryPostCell.xib; sourceTree = "<group>"; };
 		CC13E2441EB1D72E00C3CE46 /* LatestPostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatestPostCell.swift; sourceTree = "<group>"; };
 		CC13E2451EB1D72E00C3CE46 /* LatestPostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LatestPostCell.xib; sourceTree = "<group>"; };
-		CC27E0B71EB33722003E5B7F /* SidebarItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SidebarItemViewModel.swift; path = "Sidebar Item/SidebarItemViewModel.swift"; sourceTree = "<group>"; };
-		CC27E0B91EB33760003E5B7F /* SidebarItemCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SidebarItemCoordinator.swift; path = "Sidebar Item/SidebarItemCoordinator.swift"; sourceTree = "<group>"; };
-		CC27E0BB1EB337A2003E5B7F /* SidebarItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SidebarItemViewController.swift; path = "Sidebar Item/SidebarItemViewController.swift"; sourceTree = "<group>"; };
+		CC27E0B71EB33722003E5B7F /* SidebarItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SidebarItemViewModel.swift; path = SidebarItemViewModel.swift; sourceTree = "<group>"; };
+		CC27E0B91EB33760003E5B7F /* SidebarItemCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SidebarItemCoordinator.swift; path = SidebarItemCoordinator.swift; sourceTree = "<group>"; };
+		CC27E0BB1EB337A2003E5B7F /* SidebarItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SidebarItemViewController.swift; path = SidebarItemViewController.swift; sourceTree = "<group>"; };
 		CC311A1C1EAF39DF0020C869 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		CC311A201EAF430B0020C869 /* SettingsButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsButtonTableViewCell.xib; sourceTree = "<group>"; };
 		CC311A221EAF431E0020C869 /* SettingsControlTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsControlTableViewCell.xib; sourceTree = "<group>"; };
@@ -927,11 +927,12 @@
 		CC27E0B61EB336E7003E5B7F /* Sidebar Item */ = {
 			isa = PBXGroup;
 			children = (
-				CC27E0B71EB33722003E5B7F /* SidebarItemViewModel.swift */,
 				CC27E0B91EB33760003E5B7F /* SidebarItemCoordinator.swift */,
 				CC27E0BB1EB337A2003E5B7F /* SidebarItemViewController.swift */,
+				CC27E0B71EB33722003E5B7F /* SidebarItemViewModel.swift */,
 			);
 			name = "Sidebar Item";
+			path = "Sidebar Item";
 			sourceTree = "<group>";
 		};
 		CC311A1B1EAF30EB0020C869 /* Cells */ = {
@@ -1128,11 +1129,11 @@
 		CCCCB0691E804A90001240D5 /* Sidebar */ = {
 			isa = PBXGroup;
 			children = (
-				CC27E0B61EB336E7003E5B7F /* Sidebar Item */,
 				CCE373011E8D325C00B79352 /* Library */,
 				CB1E4F991E7FE22900287613 /* Settings */,
 				CB55A2DD1E9FDED200D721CE /* Settings Menu */,
 				CCE373001E8D324B00B79352 /* Sidebar */,
+				CC27E0B61EB336E7003E5B7F /* Sidebar Item */,
 			);
 			path = Sidebar;
 			sourceTree = "<group>";
