@@ -1,15 +1,15 @@
 //
-//  BenefitsCoordinator.swift
+//  SidebarItemCoordinator.swift
 //  QOT
 //
-//  Created by karmic on 30/03/2017.
+//  Created by karmic on 28.04.17.
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-final class BenefitsCoordinator: ParentCoordinator {
+final class SidebarItemCoordinator: ParentCoordinator {
 
     fileprivate let rootViewController: SidebarViewController
     fileprivate let services: Services
@@ -36,7 +36,7 @@ final class BenefitsCoordinator: ParentCoordinator {
         )
 
         let topTabBarController = TopTabBarController(
-            item: topTabBarControllerItem,            
+            item: topTabBarControllerItem,
             leftIcon: R.image.ic_minimize(),
             rightIcon: R.image.ic_share()
         )
@@ -50,7 +50,7 @@ final class BenefitsCoordinator: ParentCoordinator {
 
 // MARK: - BenefitsViewControllerDelegate
 
-extension BenefitsCoordinator: BenefitsViewControllerDelegate {
+extension SidebarItemCoordinator: BenefitsViewControllerDelegate {
 
     func didTapMedia(with item: BenefitItem, from view: UIView, in viewController: BenefitsViewController) {
         log("didTapMedia: \(item)")
@@ -63,7 +63,7 @@ extension BenefitsCoordinator: BenefitsViewControllerDelegate {
 
 // MARK: - TopTabBarDelegate
 
-extension BenefitsCoordinator: TopTabBarDelegate {
+extension SidebarItemCoordinator: TopTabBarDelegate {
 
     func didSelectLeftButton(sender: TopTabBarController) {
         sender.dismiss(animated: true, completion: nil)
