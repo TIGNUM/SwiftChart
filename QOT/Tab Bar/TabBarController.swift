@@ -15,14 +15,6 @@ protocol TabBarControllerDelegate: class {
 
 final class TabBarController: UIViewController {
     
-    struct Constants {
-        static let animationDuration: TimeInterval = 0.3
-        static let selectedButtonColor: UIColor = .white
-        static let deselectedButtonColor: UIColor = UIColor.white.withAlphaComponent(0.4)
-        static let stackViewHorizontalPadding: CGFloat = 16
-        static let indicatorViewExtendedWidth: CGFloat = 16
-    }
-    
     struct Item {
         let controller: UIViewController
         let title: String
@@ -39,9 +31,9 @@ final class TabBarController: UIViewController {
     fileprivate lazy var tabBarView: TabBarView = {
         let tabBarView = TabBarView(tabBarType: .bottom)
         tabBarView.setTitles(self.items.map { $0.title }, selectedIndex: 0)
-        tabBarView.selectedColor = Constants.selectedButtonColor
-        tabBarView.deselectedColor = Constants.deselectedButtonColor
-        tabBarView.indicatorViewExtendedWidth = Constants.indicatorViewExtendedWidth
+        tabBarView.selectedColor = Layout.TabBarView.selectedButtonColor
+        tabBarView.deselectedColor = Layout.TabBarView.deselectedButtonColor
+        tabBarView.indicatorViewExtendedWidth = Layout.TabBarView.indicatorViewExtendedWidthBottom
         tabBarView.delegate = self
 
         tabBarView.buttons.forEach { (button: UIButton) in
@@ -113,7 +105,7 @@ extension TabBarController {
         containerView.bottomAnchor == tabBarView.topAnchor
         
         tabBarView.bottomAnchor == view.bottomAnchor
-        tabBarView.horizontalAnchors == view.horizontalAnchors + Constants.stackViewHorizontalPadding
+        tabBarView.horizontalAnchors == view.horizontalAnchors + Layout.TabBarView.stackViewHorizontalPaddingBottom
         tabBarView.heightAnchor == 64
         
         view.layoutIfNeeded()

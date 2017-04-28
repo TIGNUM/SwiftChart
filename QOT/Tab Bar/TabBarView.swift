@@ -29,6 +29,13 @@ class TabBarView: UIView {
             case .top: return Font.H6NavigationTitle
             }
         }
+
+        func distribution(width: CGFloat) -> Distribution {
+            switch self {
+            case .bottom: return .fillEqually
+            case .top: return .fillProportionally(spacing: width / 6)
+            }
+        }
     }
 
     // MARK: Private properties
@@ -43,12 +50,6 @@ class TabBarView: UIView {
     private(set) var selectedIndex: Int?
     private(set) var buttons = [UIButton]()
     weak var delegate: TabBarViewDelegate?
-
-    var distribution: Distribution = .fillEqually {
-        didSet {
-            setNeedsLayout()
-        }
-    }
 
     var selectedColor: UIColor = .black {
         didSet {
@@ -85,12 +86,6 @@ class TabBarView: UIView {
 
     // MARK: Overides
 
-//    required init?(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)
-//
-//        setup()
-//    }
-
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -111,13 +106,17 @@ class TabBarView: UIView {
         syncIndicatorViewColor()
     }
 
-    // MARK: Public methods
-
     @objc private func buttonPressed(_ button: UIButton) {
+        guard titles.count > 1 else {
+            return
+        }
+
         let index = button.tag
         setSelectedIndex(index, animated: true)
         delegate?.didSelectItemAtIndex(index: index, sender: self)
     }
+
+    // MARK: Public methods
 
     func setSelectedIndex(_ index: Int?, animated: Bool) {
         guard index != selectedIndex else {
@@ -146,7 +145,7 @@ class TabBarView: UIView {
         buttons = titles.enumerated().map { (index, title) in
             let button = UIButton(type: .custom)
             button.setTitle(title.uppercased(), for: .normal)
-            button.titleLabel?.font = Font.H5SecondaryHeadline
+            button.titleLabel?.font = tabBarType.font
             button.backgroundColor = .clear
             button.setTitleColor(deselectedColor, for: .normal)
             button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
@@ -187,7 +186,7 @@ private extension TabBarView {
     }
 
     func layoutButtons() {
-        switch distribution {
+        switch tabBarType.distribution(width: frame.width) {
         case .fillEqually:
             let width = bounds.width / CGFloat(buttons.count)
 
@@ -211,7 +210,9 @@ private extension TabBarView {
     func layoutIndicatorView(animated: Bool) {
         guard
             let selectedIndex = selectedIndex,
-            selectedIndex < buttons.count else {
+            selectedIndex < buttons.count || titles.count > 1 else {
+                indicatorView.backgroundColor = .clear
+                buttons.first?.setTitleColor(selectedColor, for: .normal)
                 return
         }
 

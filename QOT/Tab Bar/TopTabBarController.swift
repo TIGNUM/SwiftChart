@@ -72,10 +72,11 @@ final class TopTabBarController: UIViewController {
 
     fileprivate lazy var tabBarView: TabBarView = {
         let tabBarView = TabBarView(tabBarType: .top)
-        tabBarView.setTitles(self.item.titles, selectedIndex: 0)
-        tabBarView.selectedColor = .white
-        tabBarView.deselectedColor = UIColor.white.withAlphaComponent(0.4)
-        tabBarView.indicatorViewExtendedWidth = CGFloat(16)
+        tabBarView.setTitles(self.item.titles, selectedIndex: self.item.titles.count == 1 ? nil : 0)
+        tabBarView.selectedColor = Layout.TabBarView.selectedButtonColor
+        tabBarView.deselectedColor = Layout.TabBarView.deselectedButtonColor
+        tabBarView.indicatorViewExtendedWidth = Layout.TabBarView.indicatorViewExtendedWidthTop
+        tabBarView.delegate = self
 
         return tabBarView
     }()
@@ -105,7 +106,6 @@ final class TopTabBarController: UIViewController {
         setupHierarchy()
         addContentView()
         setupScrollView()
-        tabBarView.delegate = self
     }
 
     override func viewWillLayoutSubviews() {

@@ -32,8 +32,8 @@ final class TabBarCoordinator: ParentCoordinator {
         let topBarControllerItem = TopTabBarController.Item(
             controllers: [learnCategoryListVC, whatsHotViewController],
             titles: [
-                R.string.localized.topTabBarItemTitleLearnStrategies().capitalized,
-                R.string.localized.topTabBarItemTitleLearnWhatsHot().capitalized
+                R.string.localized.topTabBarItemTitleLearnStrategies(),
+                R.string.localized.topTabBarItemTitleLearnWhatsHot()
             ]
         )
 
@@ -59,8 +59,8 @@ final class TabBarCoordinator: ParentCoordinator {
         let topBarControllerItem = TopTabBarController.Item(
             controllers: [myUniverseViewController],
             titles: [
-                R.string.localized.topTabBarItemTitleMeMyData().capitalized,
-                R.string.localized.topTabBarItemTitleMeMyWhy().capitalized
+                R.string.localized.topTabBarItemTitleMeMyData(),
+                R.string.localized.topTabBarItemTitleMeMyWhy()
             ],
             containsScrollView: true,
             contentView: myUniverseViewController.contentView
@@ -88,8 +88,8 @@ final class TabBarCoordinator: ParentCoordinator {
         let topBarControllerItem = TopTabBarController.Item(
             controllers: [chatViewController, chatViewController],
             titles: [
-                R.string.localized.topTabBarItemTitlePerpareCoach().capitalized,
-                R.string.localized.topTabBarItemTitlePerparePrep().capitalized
+                R.string.localized.topTabBarItemTitlePerpareCoach(),
+                R.string.localized.topTabBarItemTitlePerparePrep()
             ]
         )
         
