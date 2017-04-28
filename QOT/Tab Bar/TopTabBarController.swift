@@ -17,16 +17,6 @@ protocol TopTabBarDelegate: class {
 
 final class TopTabBarController: UIViewController {
 
-    // MARK: - Constants
-    
-    struct Constants {
-        static let animationDuration: TimeInterval = 0.3
-        static let selectedButtonColor: UIColor = .white
-        static let deselectedButtonColor: UIColor = UIColor.white.withAlphaComponent(0.4)
-        static let stackViewHorizontalPadding: CGFloat = 16
-        static let indicatorViewExtendedWidth: CGFloat = 16
-    }
-    
     // MARK: - TopTabBarController Item
 
     struct Item {
@@ -51,7 +41,6 @@ final class TopTabBarController: UIViewController {
     // MARK: Properties
 
     fileprivate var item: Item
-    fileprivate var tabBarView: TabBarView = TabBarView()
     fileprivate var index: Int = 0
     fileprivate var scrollViewContentOffset: CGFloat = 0
     weak var delegate: TopTabBarDelegate?
@@ -64,17 +53,11 @@ final class TopTabBarController: UIViewController {
     }()
     
     fileprivate lazy var leftButton: UIButton = {
-        let button = UIButton()
-        button.addTarget(self, action: #selector(leftButtonPressed(_:)), for: .touchUpInside)
-
-        return button
+        return self.button(with: #selector(leftButtonPressed(_:)))
     }()
     
     fileprivate lazy var rightButton: UIButton = {
-        let button = UIButton()
-        button.addTarget(self, action: #selector(rightButtonPressed(_:)), for: .touchUpInside)
-
-        return button
+        return self.button(with: #selector(rightButtonPressed(_:)))
     }()
     
     lazy var scrollView: UIScrollView = {
@@ -87,17 +70,28 @@ final class TopTabBarController: UIViewController {
         return scrollView
     }()
 
+    fileprivate lazy var tabBarView: TabBarView = {
+        let tabBarView = TabBarView(tabBarType: .top)
+        tabBarView.setTitles(self.item.titles, selectedIndex: self.item.titles.count == 1 ? nil : 0)
+        tabBarView.selectedColor = Layout.TabBarView.selectedButtonColor
+        tabBarView.deselectedColor = Layout.TabBarView.deselectedButtonColor
+        tabBarView.indicatorViewExtendedWidth = Layout.TabBarView.indicatorViewExtendedWidthTop
+        tabBarView.delegate = self
+
+        return tabBarView
+    }()
+
     // MARK: - Init
     
     init(item: Item, selectedIndex: Index = 0, leftIcon: UIImage? = nil, rightIcon: UIImage? = nil) {
         precondition(selectedIndex >= 0 && selectedIndex < item.controllers.count, "Out of bounds selectedIndex")
 
-        self.item = item
+        self.item = item        
         
         super.init(nibName: nil, bundle: nil)
-        
-        self.tabBarView = self.setupTabBarView(selectedIndex: selectedIndex)
-        self.setupButtons(leftIcon: leftIcon, rightIcon: rightIcon)
+
+        setupButton(with: leftIcon, button: leftButton)
+        setupButton(with: rightIcon, button: rightButton)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -112,7 +106,6 @@ final class TopTabBarController: UIViewController {
         setupHierarchy()
         addContentView()
         setupScrollView()
-        tabBarView.delegate = self
     }
 
     override func viewWillLayoutSubviews() {
@@ -128,25 +121,26 @@ final class TopTabBarController: UIViewController {
     }
 }
 
+// MARK: - Private Helpers
+
+private extension TopTabBarController {
+
+    func button(with action: Selector) -> UIButton {
+        let button = UIButton(type: .custom)
+        button.addTarget(self, action: action, for: .touchUpInside)
+
+        return button
+    }
+}
+
 // MARK: - Setup Views
 
 private extension TopTabBarController {
 
-    func setupTabBarView(selectedIndex: Index) -> TabBarView {
-        let tabBarView = TabBarView()
-        tabBarView.setTitles(item.titles, selectedIndex: selectedIndex)
-        tabBarView.selectedColor = Constants.selectedButtonColor
-        tabBarView.deselectedColor = Constants.deselectedButtonColor
-        tabBarView.indicatorViewExtendedWidth = Constants.indicatorViewExtendedWidth
-
-        return tabBarView
-    }
-
-    func setupButtons(leftIcon: UIImage?, rightIcon: UIImage?) {
-        leftButton.setImage(leftIcon, for: .normal)
-        rightButton.setImage(rightIcon, for: .normal)
-        leftButton.isHidden = leftIcon == nil
-        rightButton.isHidden = rightIcon == nil
+    func setupButton(with image: UIImage?, button: UIButton) {
+        button.setImage(image, for: .normal)
+        button.isHidden = image == nil
+        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
 }
 
@@ -243,7 +237,7 @@ private extension TopTabBarController {
         leftButton.leftAnchor == navigationItemBar.leftAnchor
         leftButton.bottomAnchor == navigationItemBar.bottomAnchor
         leftButton.topAnchor == navigationItemBar.topAnchor + 20
-        leftButton.widthAnchor == 36
+        leftButton.widthAnchor == 44
         
         rightButton.rightAnchor == navigationItemBar.rightAnchor
         rightButton.bottomAnchor == navigationItemBar.bottomAnchor

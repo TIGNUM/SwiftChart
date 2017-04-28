@@ -11,7 +11,7 @@ import UIKit
 struct Animation {
     static let durationFade: TimeInterval = 0.4
     static let fadeInHeight: CGFloat = -22
-    static let fadeOutHeight: CGFloat = 22
+    static let fadeOutHeight: CGFloat = 22    
 }
 
 enum FontName: String {
@@ -21,6 +21,16 @@ enum FontName: String {
 }
 
 struct Layout {
+
+    struct TabBarView {
+        static let animationDuration: TimeInterval = 0.3
+        static let selectedButtonColor: UIColor = .white
+        static let deselectedButtonColor: UIColor = UIColor.white.withAlphaComponent(0.4)
+        static let stackViewHorizontalPaddingBottom: CGFloat = 16
+        static let indicatorViewExtendedWidthBottom: CGFloat = 16
+        static let stackViewHorizontalPaddingTop: CGFloat = 6
+        static let indicatorViewExtendedWidthTop: CGFloat = 6
+    }
 
     enum CellHeight: CGFloat {
         case sidebar = 75
