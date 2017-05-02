@@ -178,6 +178,10 @@
 		CCEA22A91E8AC55F003D0CF4 /* PrepareEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A71E8AC55F003D0CF4 /* PrepareEventsViewController.swift */; };
 		CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */; };
 		CCEFCFB01E8D3D7500E9FC72 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEFCFAE1E8D3D7500E9FC72 /* SidebarViewController.swift */; };
+		CCFCACC01E8D5DD100EA3119 /* BenefitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFCACBE1E8D5DD100EA3119 /* BenefitsViewController.swift */; };
+		CCFCACC11E8D5DD100EA3119 /* BenefitsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFCACBF1E8D5DD100EA3119 /* BenefitsViewModel.swift */; };
+		CCFCACC31E8D5FDF00EA3119 /* BenefitsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFCACC21E8D5FDF00EA3119 /* BenefitsCoordinator.swift */; };
+		D519E08F1EAA5403004F96E7 /* PrepareChatTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D519E08E1EAA5403004F96E7 /* PrepareChatTableCell.xib */; };
 		D51B5C491E8D0E7E0084A65B /* LearnContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B5C471E8D0E7E0084A65B /* LearnContentCell.swift */; };
 		D51B5C4A1E8D0E7E0084A65B /* LearnContentLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B5C481E8D0E7E0084A65B /* LearnContentLayout.swift */; };
 		D51B5C4C1E8D133B0084A65B /* LearnStrategyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B5C4B1E8D133B0084A65B /* LearnStrategyCoordinator.swift */; };
@@ -189,6 +193,7 @@
 		D51D088C1E8E80CD00FC7567 /* LearnStrategyArticleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D51D088A1E8E80CD00FC7567 /* LearnStrategyArticleCell.xib */; };
 		D520BC931E8E655A00A2D107 /* LearnStrategyHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D520BC911E8E655A00A2D107 /* LearnStrategyHeaderCell.swift */; };
 		D520BC941E8E655A00A2D107 /* LearnStrategyHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D520BC921E8E655A00A2D107 /* LearnStrategyHeaderCell.xib */; };
+		D52371531EA9F0B100165842 /* PrepareChatTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52371511EA9F0B100165842 /* PrepareChatTableCell.swift */; };
 		D52350961E9FC1120013DE7E /* WhatsHotLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52350951E9FC1120013DE7E /* WhatsHotLayout.swift */; };
 		D540275F1E8D401F0013B783 /* LearnStrategyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D540275D1E8D401F0013B783 /* LearnStrategyViewController.xib */; };
 		D54D90281E979C30003924C9 /* LibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54D90261E979C30003924C9 /* LibraryViewController.xib */; };
@@ -200,6 +205,7 @@
 		D58BD8771E9F65F7005676DE /* WhatsHotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58BD8751E9F65F7005676DE /* WhatsHotCell.swift */; };
 		D58BD8781E9F65F7005676DE /* WhatsHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D58BD8761E9F65F7005676DE /* WhatsHotCell.xib */; };
 		D5CD23D81E8BB73A002742C4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CD23D71E8BB73A002742C4 /* TabBarController.swift */; };
+		D5DDAA3C1EAA136C0053C5D6 /* DashPatternView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DDAA3B1EAA136C0053C5D6 /* DashPatternView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -393,6 +399,7 @@
 		CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsViewModel.swift; sourceTree = "<group>"; };
 		CCEFCFAE1E8D3D7500E9FC72 /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D519E08E1EAA5403004F96E7 /* PrepareChatTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareChatTableCell.xib; sourceTree = "<group>"; };
 		D51B5C471E8D0E7E0084A65B /* LearnContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentCell.swift; sourceTree = "<group>"; };
 		D51B5C481E8D0E7E0084A65B /* LearnContentLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentLayout.swift; sourceTree = "<group>"; };
 		D51B5C4B1E8D133B0084A65B /* LearnStrategyCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnStrategyCoordinator.swift; sourceTree = "<group>"; };
@@ -404,6 +411,7 @@
 		D51D088A1E8E80CD00FC7567 /* LearnStrategyArticleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyArticleCell.xib; sourceTree = "<group>"; };
 		D520BC911E8E655A00A2D107 /* LearnStrategyHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnStrategyHeaderCell.swift; sourceTree = "<group>"; };
 		D520BC921E8E655A00A2D107 /* LearnStrategyHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyHeaderCell.xib; sourceTree = "<group>"; };
+		D52371511EA9F0B100165842 /* PrepareChatTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareChatTableCell.swift; sourceTree = "<group>"; };
 		D52350951E9FC1120013DE7E /* WhatsHotLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsHotLayout.swift; sourceTree = "<group>"; };
 		D540275D1E8D401F0013B783 /* LearnStrategyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyViewController.xib; sourceTree = "<group>"; };
 		D54D90261E979C30003924C9 /* LibraryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryViewController.xib; sourceTree = "<group>"; };
@@ -415,6 +423,7 @@
 		D58BD8751E9F65F7005676DE /* WhatsHotCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsHotCell.swift; sourceTree = "<group>"; };
 		D58BD8761E9F65F7005676DE /* WhatsHotCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhatsHotCell.xib; sourceTree = "<group>"; };
 		D5CD23D71E8BB73A002742C4 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		D5DDAA3B1EAA136C0053C5D6 /* DashPatternView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashPatternView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -489,6 +498,8 @@
 			children = (
 				0BC9F92C1E96118C009E8204 /* ChatTableViewCell.swift */,
 				0BC9F92D1E96118C009E8204 /* ChatTableViewCell.xib */,
+				D52371511EA9F0B100165842 /* PrepareChatTableCell.swift */,
+				D519E08E1EAA5403004F96E7 /* PrepareChatTableCell.xib */,
 			);
 			path = ChatTableViewCell;
 			sourceTree = "<group>";
@@ -638,6 +649,7 @@
 				CBDB98F31E7B000A003EC73F /* NotificationHandler.swift */,
 				D58BD86B1E9E846C005676DE /* ScrollViewAnimation.swift */,
 				CBD791491E71797C0006C590 /* Typealiases.swift */,
+				D5DDAA3B1EAA136C0053C5D6 /* DashPatternView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1383,6 +1395,7 @@
 				0BD6F6BB1EA0E81E001EBC4D /* MyPrepViewController.xib in Resources */,
 				0BEE8AC11EA600A7008077B8 /* PrepareEventsViewController.xib in Resources */,
 				0B40DC0C1E9CA6A500E1659B /* PrepareContentTextTableViewCell.xib in Resources */,
+				D519E08F1EAA5403004F96E7 /* PrepareChatTableCell.xib in Resources */,
 				CBB237F71E6FFF1200AB5AEF /* Assets.xcassets in Resources */,
 				D58BD8781E9F65F7005676DE /* WhatsHotCell.xib in Resources */,
 				D54D90281E979C30003924C9 /* LibraryViewController.xib in Resources */,
@@ -1570,6 +1583,9 @@
 				0BD6F6B91EA0E81E001EBC4D /* MyPrepTableViewCell.swift in Sources */,
 				CCE372F31E8C1EDF00B79352 /* WhatsHotViewModel.swift in Sources */,
 				CCD377541E8D3C2D00BB8031 /* WhatsHotNewTemplateViewModel.swift in Sources */,
+				CBD7915C1E72F2990006C590 /* LaunchViewController.swift in Sources */,
+				D52371531EA9F0B100165842 /* PrepareChatTableCell.swift in Sources */,
+				CBD791681E768CC00006C590 /* MainMenuCoordinator.swift in Sources */,
 				D520BC931E8E655A00A2D107 /* LearnStrategyHeaderCell.swift in Sources */,
 				CC94F5631EB08EE400051CF8 /* LearnStrategyAudioCoordinator.swift in Sources */,
 				CCC0C4D61E82B405002A8362 /* R.generated.swift in Sources */,
@@ -1649,6 +1665,7 @@
 				CC9663101EA1B29800B84B1C /* MyWhyViewModel.swift in Sources */,
 				CC6B3A2D1E8163A200E7FDFD /* FadeInOutPresentationController.swift in Sources */,
 				CCC1B6AE1E8B9B7F00D1461F /* LearnContentListViewController.swift in Sources */,
+				D5DDAA3C1EAA136C0053C5D6 /* DashPatternView.swift in Sources */,
 				CC4AB7E51EA8A36B000F43B1 /* TopTabBarController.swift in Sources */,
 				CCE373101E8D32F800B79352 /* SidebarTableViewCell.swift in Sources */,
 				CCEFCFB01E8D3D7500E9FC72 /* SidebarViewController.swift in Sources */,
