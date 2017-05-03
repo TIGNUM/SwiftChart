@@ -26,6 +26,9 @@ final class CategoryPostCell: UITableViewCell, Dequeueable {
         collectionView.delegate = self
         collectionView.reloadData()
         collectionView.decelerationRate = UIScrollViewDecelerationRateFast
+        collectionView.backgroundColor = .clear
+        contentView.backgroundColor = .clear
+        backgroundColor = .clear
     }
 }
 
@@ -46,7 +49,6 @@ extension CategoryPostCell : UICollectionViewDelegateFlowLayout, UICollectionVie
             cell.setup(headline: headline, placeholderURL: placeHolderURL, mediaType: text)
             return cell
         }
-        
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -60,14 +62,11 @@ extension CategoryPostCell : UICollectionViewDelegateFlowLayout, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 28, bottom: 0, right: 28)
     }
-    
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 275, height: collectionView.frame.height)
     }
 
-
-    
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         targetContentOffset.pointee.x = helper.scrollViewScroll(scrollView: scrollView, velocity: velocity, targetContentOffset: targetContentOffset, width: 275)
     }

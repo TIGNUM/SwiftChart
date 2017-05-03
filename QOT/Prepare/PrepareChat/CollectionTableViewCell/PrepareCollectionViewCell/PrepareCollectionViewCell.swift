@@ -10,20 +10,22 @@ import UIKit
 
 class PrepareCollectionViewCell: UICollectionViewCell, Dequeueable {
 
-    @IBOutlet private weak var titleLbl: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    enum Style {
+        case dashed
+        case dashedSelected
+        case plain
+        case plainSelected
     }
 
-    func setStyle(cellStyle: Style, name: String) {
+    @IBOutlet private weak var titleLbl: UILabel!
 
-        self.titleLbl.text = name
-        let borderColour = UIColor(colorLiteralRed: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.20)
+    func setStyle(cellStyle: Style, name: String) {
+        titleLbl.text = name
+        let borderColour = UIColor.white.withAlphaComponent(0.2)
         let shapeLayer: CAShapeLayer = CAShapeLayer()
         let frame = CGRect(x: 2, y: 2, width: self.frame.size.width-2, height: self.frame.size.height-2)
 
-        shapeLayer.bounds = self.bounds
+        shapeLayer.bounds = bounds
         shapeLayer.position = CGPoint(x: frame.width/2, y: frame.height/2)
         shapeLayer.lineWidth = 2
         shapeLayer.strokeColor = borderColour.cgColor
@@ -42,7 +44,7 @@ class PrepareCollectionViewCell: UICollectionViewCell, Dequeueable {
             break
 
         case .plain:
-            shapeLayer.fillColor = UIColor(colorLiteralRed: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.10).cgColor
+            shapeLayer.fillColor = UIColor.white.withAlphaComponent(0.1).cgColor
             shapeLayer.path = UIBezierPath(roundedRect: frame, cornerRadius: 30).cgPath
             break
 
@@ -51,13 +53,7 @@ class PrepareCollectionViewCell: UICollectionViewCell, Dequeueable {
             shapeLayer.path = UIBezierPath(roundedRect: frame, cornerRadius: 30).cgPath
             break
         }
-        self.layer.addSublayer(shapeLayer)
-    }
 
-    enum Style {
-        case dashed
-        case dashedSelected
-        case plain
-        case plainSelected
+        layer.addSublayer(shapeLayer)
     }
 }

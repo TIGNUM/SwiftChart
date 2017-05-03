@@ -56,7 +56,7 @@ class LearnContentCell: UICollectionViewCell, Dequeueable {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor.clear
+        backgroundColor = .clear
         contentView.addSubview(textContainerView)
         contentView.addSubview(imageView)
         setupLayout()

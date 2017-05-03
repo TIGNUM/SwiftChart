@@ -18,10 +18,11 @@ protocol SidebarItemViewControllerDelegate: class {
 final class SidebarItemViewController: UIViewController {
 
     // MARK: - Properties
-    @IBOutlet weak var tableView: UITableView!
 
+    @IBOutlet weak var tableView: UITableView!
     let viewModel: SidebarItemViewModel
     weak var delegate: SidebarItemViewControllerDelegate?
+    weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
 
     // MARK: - Life Cycle
 
@@ -37,19 +38,21 @@ final class SidebarItemViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        registerCells()
+
+        setupTableView()
     }
 
-    private func registerCells() {
-
+    private func setupTableView() {
         tableView.registerDequeueable(SideBarTextCell.self)
         tableView.registerDequeueable(SideBarShareAction.self)
         tableView.registerDequeueable(ImageSubtitleTableViewCell.self)
-
         tableView.estimatedRowHeight = 10
         tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.backgroundColor = .clear
+        view.backgroundColor = .clear
+        tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 64, right: 0)
+        tableView.delegate = self
     }
-
 }
 
 // MARK: - UITableViewDelegate
@@ -60,6 +63,12 @@ extension SidebarItemViewController: UITableViewDelegate {
         return viewModel.itemCount
     }
 
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y < 0 {
+            let alpha = 1 - (abs(scrollView.contentOffset.y) / 64)
+            topTabBarScrollViewDelegate?.didScrollUnderTopTabBar(alpha: alpha)
+        }
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -67,7 +76,6 @@ extension SidebarItemViewController: UITableViewDelegate {
 extension SidebarItemViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         let item = viewModel.item(at: indexPath)
 
         switch item {

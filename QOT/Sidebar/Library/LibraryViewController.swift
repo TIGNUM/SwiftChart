@@ -19,6 +19,7 @@ final class LibraryViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     let viewModel: LibraryViewModel
     weak var delegate: LibraryViewControllerDelegate?
+    weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
 
     // MARK: - Init
 
@@ -38,7 +39,9 @@ final class LibraryViewController: UIViewController {
         super.viewDidLoad()
 
         registerTableCell()
-        view.backgroundColor = .black
+        tableView.backgroundColor = .clear
+        view.backgroundColor = .clear
+        tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 64, right: 0)
     }
 }
 
@@ -64,10 +67,13 @@ extension LibraryViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let style = viewModel.styleForSection(indexPath.item)
-        switch style {
-        case .lastPost: return 200
-        case .category: return 300
+        return 317
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y < 0 {
+            let alpha = 1 - (abs(scrollView.contentOffset.y) / 64)
+            topTabBarScrollViewDelegate?.didScrollUnderTopTabBar(alpha: alpha)
         }
     }
 }

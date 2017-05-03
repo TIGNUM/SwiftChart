@@ -15,10 +15,8 @@ final class PrepareChatTableCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-    }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
+        backgroundColor = .clear
     }
 
     func updateChatLabel(with text: String) {

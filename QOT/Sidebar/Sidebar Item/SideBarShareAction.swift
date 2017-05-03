@@ -12,6 +12,13 @@ final class SideBarShareAction: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var shareTextLabel: UILabel!
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        contentView.backgroundColor = .clear
+        backgroundColor = .clear
+    }
+
     func setUp(text: NSAttributedString) {
         shareTextLabel.attributedText = text
     }

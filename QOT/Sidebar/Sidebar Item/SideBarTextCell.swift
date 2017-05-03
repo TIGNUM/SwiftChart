@@ -13,12 +13,18 @@ final class SideBarTextCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak  var textTitleLabel: UILabel!
     @IBOutlet private weak var mainTextLabel: UILabel!
-
     @IBOutlet private weak var stackView: UIStackView!
     @IBOutlet private weak var topConstraint: NSLayoutConstraint!
     @IBOutlet private weak var leadingConstraint: NSLayoutConstraint!
     @IBOutlet private weak var trailingConstraint: NSLayoutConstraint!
     @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        contentView.backgroundColor = .clear
+        backgroundColor = .clear
+    }
 
     func setUp(title: NSAttributedString, text: NSAttributedString) {
         textTitleLabel.attributedText = title

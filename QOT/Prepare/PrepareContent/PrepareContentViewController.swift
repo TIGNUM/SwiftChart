@@ -22,21 +22,22 @@ protocol PrepareContentViewControllerDelegate: class {
     func didTapSaveAs(in viewController: PrepareContentViewController)
 }
 
-final class PrepareContentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PrepareContentActionButtonsTableViewCellDelegate {
+final class PrepareContentViewController: UIViewController, PrepareContentActionButtonsTableViewCellDelegate {
 
     // MARK: - Properties
 
     @IBOutlet weak var tableView: UITableView!
     let viewModel: PrepareContentViewModel
-    weak var delegate: PrepareContentViewControllerDelegate?
-
     private let disposeBag = DisposeBag()
     private let estimatedRowHeight: CGFloat = 140.0
+    weak var delegate: PrepareContentViewControllerDelegate?
+    weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
 
     // MARK: - Life Cycle
 
     init(viewModel: PrepareContentViewModel) {
         self.viewModel = viewModel
+
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -47,18 +48,17 @@ final class PrepareContentViewController: UIViewController, UITableViewDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .black
-
+        view.backgroundColor = .clear
+        tableView.backgroundColor = .clear
         tableView.registerDequeueable(PrepareContentTextTableViewCell.self)
         tableView.registerDequeueable(PrepareContentHeaderTableViewCell.self)
         tableView.registerDequeueable(PrepareContentVideoPreviewTableViewCell.self)
         tableView.registerDequeueable(PrepareContentStepTableViewCell.self)
         tableView.registerDequeueable(PrepareContentTitleTableViewCell.self)
         tableView.registerDequeueable(PrepareContentActionButtonsTableViewCell.self)
-
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = estimatedRowHeight
-
+        tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 64, right: 0)
         updateTableView(with: tableView)
     }
 
@@ -80,7 +80,8 @@ final class PrepareContentViewController: UIViewController, UITableViewDelegate,
 
  // MARK: - UITableViewDelegate, UITableViewDataSource, PrepareContentActionButtonsTableViewCellDelegate
 
-extension PrepareContentViewController {
+extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSource {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.itemCount
     }
@@ -186,6 +187,13 @@ extension PrepareContentViewController {
             delegate?.didTapSaveAs(sectionID: sectionID, in: self)
         } else {
             delegate?.didTapSaveAs(in: self)
+        }
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y < 0 {
+            let alpha = 1 - (abs(scrollView.contentOffset.y) / 64)
+            topTabBarScrollViewDelegate?.didScrollUnderTopTabBar(alpha: alpha)
         }
     }
 }

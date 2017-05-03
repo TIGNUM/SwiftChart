@@ -10,6 +10,13 @@ import UIKit
 import Anchorage
 
 final class LearnCategoryCell: UICollectionViewCell {
+
+    // MARK: - Properties
+
+    private var circleLineShape: CAShapeLayer?
+    private var shapeDashLayer: CAShapeLayer?
+    private var percentageLearned = 0.0
+
     fileprivate lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
@@ -18,6 +25,7 @@ final class LearnCategoryCell: UICollectionViewCell {
         label.minimumScaleFactor = 0.1
         label.lineBreakMode = .byTruncatingTail
         label.numberOfLines = 2
+
         return label
     }()
     
@@ -25,6 +33,7 @@ final class LearnCategoryCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = .white
         label.font = .systemFont(ofSize: 20)
+
         return label
     }()
     
@@ -33,21 +42,18 @@ final class LearnCategoryCell: UICollectionViewCell {
         view.addSubview(self.titleLabel)
         view.addSubview(self.contentCountLabel)
         self.contentView.addSubview(view)
+
         return view
     }()
-    
-    private var circleLineShape: CAShapeLayer?
-    private var shapeDashLayer: CAShapeLayer?
-    private var percentageLearned = 0.0
-    
+
+    // MARK: - Init
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         contentView.layer.borderWidth = 1.0
         contentView.layer.borderColor = UIColor.white.cgColor
-        
-        backgroundColor = UIColor.clear
-        
+        backgroundColor = .clear
         setupLayout()
     }
     
@@ -57,8 +63,8 @@ final class LearnCategoryCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+
         contentView.layer.cornerRadius = frame.width / 2
-        
         drawCircles(frame: frame)
     }
     

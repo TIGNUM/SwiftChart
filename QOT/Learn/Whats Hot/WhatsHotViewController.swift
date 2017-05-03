@@ -15,10 +15,12 @@ protocol WhatsHotViewControllerDelegate: class {
 
 class WhatsHotViewController: UIViewController {
 
-    @IBOutlet private weak var collectionView: UICollectionView!
+    // MARK: - Properties / Outlets
 
+    @IBOutlet private weak var collectionView: UICollectionView!
     let viewModel: WhatsHotViewModel
     weak var delegate: WhatsHotViewControllerDelegate?
+    weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
 
     // MARK: - Life Cycle
 
@@ -35,21 +37,22 @@ class WhatsHotViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .black
+        view.backgroundColor = .clear
         setUpCollectionView()
     }
 
     func setUpCollectionView() {
         let layout = WhatsHotLayout()
-
+        layout.delegate = self
         collectionView.collectionViewLayout = layout
         collectionView.decelerationRate = UIScrollViewDecelerationRateFast
-        collectionView.contentInset = UIEdgeInsets.zero
         collectionView.registerDequeueable(WhatsHotCell.self)
-
-        layout.delegate = self
+        collectionView.dataSource = self
+        collectionView.delegate = self
     }
 }
+
+// MARK: - UICollectionViewDataSource
 
 extension WhatsHotViewController: UICollectionViewDataSource {
 
@@ -66,7 +69,10 @@ extension WhatsHotViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: - WhatsHotLayoutDelegate
+
 extension WhatsHotViewController: WhatsHotLayoutDelegate {
+
     func standardHeightForLayout(_ layout: WhatsHotLayout) -> CGFloat {
         return 130
     }
@@ -75,8 +81,20 @@ extension WhatsHotViewController: WhatsHotLayoutDelegate {
         let nonPictureHeight: CGFloat = 130
         let nonPictureWidth: CGFloat = 92
         let pictureRatio: CGFloat = 1.5
-
         let pictureHeight = (view.bounds.width - nonPictureWidth) / pictureRatio
+
         return pictureHeight + nonPictureHeight
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+
+extension WhatsHotViewController: UICollectionViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y > 0 {
+            let alpha = abs(scrollView.contentOffset.y) / 64
+            topTabBarScrollViewDelegate?.didScrollUnderTopTabBar(alpha: alpha)
+        }
     }
 }

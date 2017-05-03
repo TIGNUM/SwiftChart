@@ -26,6 +26,9 @@ final class LatestPostCell: UITableViewCell, Dequeueable {
         collectionView.delegate = self
         collectionView.reloadData()
         collectionView.decelerationRate = UIScrollViewDecelerationRateFast
+        collectionView.backgroundColor = .clear
+        contentView.backgroundColor = .clear
+        backgroundColor = .clear
     }
 }
 
@@ -35,7 +38,7 @@ extension LatestPostCell: UICollectionViewDelegateFlowLayout, UICollectionViewDa
         return sectionCount
     }
 
-    internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch mediaItem {
         case .audio ( _, let placeHolderURL, let headline, let text):
             let cell: LatestCollectionCell = collectionView.dequeueCell(for: indexPath)
@@ -46,7 +49,6 @@ extension LatestPostCell: UICollectionViewDelegateFlowLayout, UICollectionViewDa
             cell.setup(headline: headline, placeholderURL: placeHolderURL, mediaType: text)
             return cell
         }
-
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

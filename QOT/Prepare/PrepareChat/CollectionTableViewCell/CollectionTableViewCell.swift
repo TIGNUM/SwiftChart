@@ -26,13 +26,12 @@ class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.collectionView.delegate = self
-        self.collectionView.dataSource = self
 
-        self.collectionView.registerDequeueable(PrepareCollectionViewCell.self)
-
-        let collectionFlow = UICollectionViewRightAlignedLayout()
-        self.collectionView.collectionViewLayout = collectionFlow
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.registerDequeueable(PrepareCollectionViewCell.self)
+        collectionView.collectionViewLayout = UICollectionViewRightAlignedLayout()
+        collectionView.backgroundColor = .clear
     }
 }
 

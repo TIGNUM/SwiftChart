@@ -44,6 +44,7 @@ final class SidebarItemCoordinator: ParentCoordinator {
         )
 
         topTabBarController.delegate = self
+        benefitsViewController.topTabBarScrollViewDelegate = topTabBarController
         rootViewController.present(topTabBarController, animated: true)
         // TODO: Update associatedEntity with realm object when its created.
         eventTracker.track(page: benefitsViewController.pageID, referer: rootViewController.pageID, associatedEntity: nil)
@@ -55,7 +56,7 @@ final class SidebarItemCoordinator: ParentCoordinator {
 extension SidebarItemCoordinator: SidebarItemViewControllerDelegate {
 
     func didTapShare(from view: UIView, in viewController: SidebarItemViewController) {
-        print("sahre")
+        print("share")
     }
 
     func didTapAudio(with item: SidebarItem, from view: UIView, in viewController: SidebarItemViewController) {

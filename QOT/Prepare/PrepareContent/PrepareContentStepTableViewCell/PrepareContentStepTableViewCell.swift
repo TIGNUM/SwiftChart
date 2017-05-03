@@ -12,17 +12,16 @@ class PrepareContentStepTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet weak var stepNumberLabel: UILabel!
     @IBOutlet weak var stepContentLabel: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        contentView.backgroundColor = .clear
+        backgroundColor = .clear
     }
 
     func setStepNumber(stepIndex: Index) {
-        if stepIndex > 9 {
-            self.stepNumberLabel.text = ".\(stepIndex)"
-        } else {
-            self.stepNumberLabel.text = ".0\(stepIndex)"
-        }
+        stepNumberLabel.text = stepIndex > 9 ? ".\(stepIndex)" : ".0\(stepIndex)"
     }
 
     func prepareAndSetTextAttributes(string: String) {

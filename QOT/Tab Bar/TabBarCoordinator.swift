@@ -44,6 +44,7 @@ final class TabBarCoordinator: ParentCoordinator {
         )
 
         whatsHotViewController.delegate = self
+        whatsHotViewController.topTabBarScrollViewDelegate = topTabBarController
         topTabBarController.delegate = self
         learnCategoryListVC.delegate = self
 
@@ -74,6 +75,7 @@ final class TabBarCoordinator: ParentCoordinator {
         topTabBarController.delegate = self        
         myUniverseViewController.delegate = self
         myUniverseViewController.contentScrollViewDelegate = topTabBarController
+
         let contentScrollView = myUniverseViewController.scrollView()
         myUniverseViewController.addSubViews(contentScrollView: contentScrollView)
         topTabBarController.scrollView = contentScrollView
@@ -100,6 +102,7 @@ final class TabBarCoordinator: ParentCoordinator {
         )
 
         chatViewController.delegate = self
+        chatViewController.topTabBarScrollViewDelegate = topTabBarController
         topTabBarController.delegate = self
         
         return topTabBarController

@@ -16,13 +16,14 @@ protocol ChatViewDelegate: class {
     func didSelectChatInput(_ input: ChatMessageInput, in viewController: ChatViewController)
 }
 
-class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, Dequeueable, CollectionViewCellDelegate {
+class ChatViewController: UIViewController, Dequeueable, CollectionViewCellDelegate {
     // MARK: - Properties
 
     @IBOutlet weak var tableView: UITableView!
     private let disposeBag = DisposeBag()
     fileprivate let viewModel: ChatViewModel
     weak var delegate: ChatViewDelegate?
+    weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
 
     private let estimatedRowHeight: CGFloat = 140.0
 
@@ -30,6 +31,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     init(viewModel: ChatViewModel) {
         self.viewModel = viewModel
+
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -41,9 +43,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         
         //Dequeue TableCells
-        self.tableView.registerDequeueable(ChatTableViewCell.self)
-        self.tableView.registerDequeueable(StatusTableViewCell.self)
-        self.tableView.registerDequeueable(CollectionTableViewCell.self)
+        tableView.registerDequeueable(ChatTableViewCell.self)
+        tableView.registerDequeueable(StatusTableViewCell.self)
+        tableView.registerDequeueable(CollectionTableViewCell.self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -54,11 +56,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     private func setupTableView() {
-        view.backgroundColor = .black
-        tableView.backgroundColor = .black
-
+        view.backgroundColor = .clear
+        tableView.backgroundColor = .clear
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = estimatedRowHeight
+        tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 64, right: 0)
     }
 
     private func updateTableView(with tableView: UITableView) {
@@ -103,7 +105,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 
-extension ChatViewController {
+extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.viewModel.itemCount
@@ -173,6 +175,13 @@ extension ChatViewController {
         case .input(let items):
             let titles = items.map {$0.title}
             return heightOfCollectionViewBasedOnNumberOfItems(items: titles)
+        }
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y < 0 {
+            let alpha = 1 - (abs(scrollView.contentOffset.y) / 64)
+            topTabBarScrollViewDelegate?.didScrollUnderTopTabBar(alpha: alpha)
         }
     }
 }

@@ -17,7 +17,6 @@ protocol PrepareContentActionButtonsTableViewCellDelegate: class {
 class PrepareContentActionButtonsTableViewCell: UITableViewCell, Dequeueable {
 
     weak var delegate: PrepareContentActionButtonsTableViewCellDelegate?
-
     @IBOutlet weak var addPreparationToCalendarButton: UIButton!
     @IBOutlet weak var addToNotesButton: UIButton!
     @IBOutlet weak var saveAsButton: UIButton!
@@ -25,7 +24,9 @@ class PrepareContentActionButtonsTableViewCell: UITableViewCell, Dequeueable {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        contentView.backgroundColor = .clear
+        backgroundColor = .clear
     }
 
     @IBAction func addPreparationToCalendar(sender: UIButton) {

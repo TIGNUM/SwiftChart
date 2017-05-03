@@ -21,13 +21,13 @@ final class TabBarController: UIViewController {
     }
     
     fileprivate var items: [Item]
+    fileprivate lazy var containerView = UIView()
     fileprivate weak var currentViewController: UIViewController?
     fileprivate weak var indicatorViewLeadingConstraint: NSLayoutConstraint?
     fileprivate weak var indicatorViewWidthConstraint: NSLayoutConstraint?
-    fileprivate lazy var containerView: UIView = UIView()
     lazy var viewControllers = [UIViewController]()
     weak var delegate: TabBarControllerDelegate?
-
+    
     fileprivate lazy var tabBarView: TabBarView = {
         let tabBarView = TabBarView(tabBarType: .bottom)
         tabBarView.setTitles(self.items.map { $0.title }, selectedIndex: 0)
@@ -35,6 +35,7 @@ final class TabBarController: UIViewController {
         tabBarView.deselectedColor = Layout.TabBarView.deselectedButtonColor
         tabBarView.indicatorViewExtendedWidth = Layout.TabBarView.indicatorViewExtendedWidthBottom
         tabBarView.delegate = self
+        tabBarView.backgroundColor = .clear
 
         tabBarView.buttons.forEach { (button: UIButton) in
             button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
@@ -58,7 +59,6 @@ final class TabBarController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .black
         setupHierarchy()
         setupLayout()
         loadFirstView()
@@ -111,6 +111,8 @@ extension TabBarController {
         view.layoutIfNeeded()
     }
 }
+
+// MARK: - TabBarViewDelegate
 
 extension TabBarController: TabBarViewDelegate {
 

@@ -14,6 +14,9 @@ class PrepareContentTitleTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
+        contentView.backgroundColor = .clear
+        backgroundColor = .clear
         titleLabel.font = UIFont(name: "Simple-Regular", size: 36.0)
     }
 }

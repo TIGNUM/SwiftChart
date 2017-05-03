@@ -236,3 +236,7 @@ extension UIScrollView {
         return Int(round(contentOffset.x / bounds.size.width))
     }
 }
+
+protocol TopTabBarScrollViewDelegate: class {
+    func didScrollUnderTopTabBar(alpha: CGFloat)
+}

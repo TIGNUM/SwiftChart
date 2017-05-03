@@ -21,7 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Life Cycle
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {        
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        UIApplication.shared.statusBarStyle = .lightContent
         window = UIWindow(frame: UIScreen.main.bounds)
         appCoordinator.start()
         

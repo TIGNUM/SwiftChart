@@ -13,8 +13,12 @@ class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var bottomSeparator: UIView!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var headerLabel: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
+
+        contentView.backgroundColor = .clear
+        backgroundColor = .clear
     }
 
     func setTitle(title: String, open: Bool) {

@@ -52,7 +52,7 @@ final class LearnCategoryListViewController: UIViewController {
         super.viewWillAppear(animated)
 
         centerCollectView()
-        view.backgroundColor = .yellow
+        view.backgroundColor = .clear
     }
     
     private func centerCollectView() {
@@ -60,6 +60,7 @@ final class LearnCategoryListViewController: UIViewController {
         let xOffset = (contentSize.width - collectionView.frame.width) / 2
         let yOffset = (contentSize.height - collectionView.frame.height) / 2
         collectionView.contentOffset = CGPoint(x: xOffset, y: yOffset)
+        collectionView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
     }
 }
 

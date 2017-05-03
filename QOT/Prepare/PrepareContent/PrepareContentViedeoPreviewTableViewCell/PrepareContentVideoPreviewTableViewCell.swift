@@ -15,6 +15,8 @@ class PrepareContentVideoPreviewTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        contentView.backgroundColor = .clear
+        backgroundColor = .clear
     }
 }

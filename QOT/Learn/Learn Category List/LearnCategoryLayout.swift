@@ -10,8 +10,8 @@ import UIKit
 
 final class LearnCategoryLayout: UICollectionViewLayout {
     
-    private var layoutAttributes: [UICollectionViewLayoutAttributes] = []
-    private var contentSize: CGSize = CGSize.zero
+    private var layoutAttributes = [UICollectionViewLayoutAttributes]()
+    private var contentSize = CGSize.zero
     
     init(height: CGFloat, categories: [LearnCategory]) {
         super.init()
@@ -28,7 +28,7 @@ final class LearnCategoryLayout: UICollectionViewLayout {
             return CGRect(x: center.x - radius, y: center.y - (radius + radius / 2), width: 2 * radius, height: 2 * radius).integral
         }
         
-        layoutAttributes = frames.enumerated().map { (index, frame) -> UICollectionViewLayoutAttributes in
+        layoutAttributes = frames.enumerated().map { (index: Index, frame: CGRect) -> UICollectionViewLayoutAttributes in
             let attrs = UICollectionViewLayoutAttributes(forCellWith: IndexPath(item: index, section: 0))
             attrs.frame = frame
             return attrs
@@ -47,7 +47,7 @@ final class LearnCategoryLayout: UICollectionViewLayout {
 
             contentSize = CGSize(width: maxX + minX, height: maxY)
         } else {
-            contentSize = CGSize.zero
+            contentSize = .zero
         }
     }
     

@@ -22,6 +22,7 @@
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="IfI-A7-vgK">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <collectionViewLayout key="collectionViewLayout" id="ml2-Sk-4TS"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="f0a-00-WiP"/>
@@ -29,7 +30,7 @@
                     </connections>
                 </collectionView>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="IfI-A7-vgK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="1Sc-3n-Jbz"/>
                 <constraint firstAttribute="trailing" secondItem="IfI-A7-vgK" secondAttribute="trailing" id="HzY-c0-4f1"/>

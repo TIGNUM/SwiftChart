@@ -19,12 +19,8 @@ protocol SidebarViewControllerDelegate: class {
 
 final class SidebarViewController: UIViewController {
     
-    // MARK: - Outlets
-    
-    @IBOutlet private weak var tableView: UITableView!
-    
     // MARK: - Properties
-    
+
     weak var delegate: SidebarViewControllerDelegate?
     let viewModel: SidebarViewModel
     let cellIdentifier = R.reuseIdentifier.sidebarTableViewCell_Id.identifier
@@ -43,16 +39,26 @@ final class SidebarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupView()
+
+        setupTableView()
     }
-    
-    private func setupView() {
-        tableView?.delegate = self
-        tableView?.dataSource = self
-        view.backgroundColor = .black
-        tableView?.backgroundColor = .clear
-        tableView?.register(UINib(nibName: R.nib.sidebarTableViewCell.name, bundle: nil), forCellReuseIdentifier: cellIdentifier)
+}
+
+// MARK: - Private
+
+private extension SidebarViewController {
+
+    func setupTableView() {        
+        let cellNib = UINib(nibName: R.nib.sidebarTableViewCell.name, bundle: nil)
+        let tableView = UITableView(frame: view.bounds, style: .plain)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
+        tableView.bounces = false
+        tableView.register(cellNib, forCellReuseIdentifier: cellIdentifier)
+        tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 64, right: 0)
+        view.addSubview(tableView)
     }
 }
 
@@ -75,12 +81,13 @@ extension SidebarViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
         view.backgroundColor = .clear
+        
         return view
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? SidebarTableViewCell else {
-            return UITableViewCell()
+            fatalError("tableView.cellForRowAt dequeueReusableCell SidebarTableViewCell does not exist!")
         }
         
         let item = viewModel.item(at: indexPath.row)

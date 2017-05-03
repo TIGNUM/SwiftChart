@@ -44,6 +44,7 @@ final class PrepareContentCoordinator: ParentCoordinator {
         )
 
         topTabBarController.delegate = self
+        prepareContentViewController.topTabBarScrollViewDelegate = topTabBarController
         rootViewController.present(topTabBarController, animated: true)
     }
 }

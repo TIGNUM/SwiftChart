@@ -47,7 +47,7 @@ final class TopTabBarController: UIViewController {
 
     fileprivate lazy var navigationItemBar: UIView = {
         let view = UIView()
-        view.backgroundColor = .black
+        view.backgroundColor = .clear
         
         return view
     }()
@@ -77,6 +77,7 @@ final class TopTabBarController: UIViewController {
         tabBarView.deselectedColor = Layout.TabBarView.deselectedButtonColor
         tabBarView.indicatorViewExtendedWidth = Layout.TabBarView.indicatorViewExtendedWidthTop
         tabBarView.delegate = self
+        tabBarView.backgroundColor = .clear
 
         return tabBarView
     }()
@@ -102,9 +103,9 @@ final class TopTabBarController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupHierarchy()
+
         addContentView()
+        setupHierarchy()
         setupScrollView()
     }
 
@@ -225,6 +226,9 @@ private extension TopTabBarController {
             let contentView = item.contentView {
                 view.addSubview(contentView)
         } else {
+            let backgroundImageView = UIImageView(frame: view.bounds)
+            backgroundImageView.image = R.image.backgroundStrategies()
+            view.addSubview(backgroundImageView)
             view.addSubview(scrollView)
         }
     }
@@ -261,8 +265,8 @@ private extension TopTabBarController {
 
     private func setScrollViewAnchors() {
         scrollView.horizontalAnchors == view.horizontalAnchors
-        scrollView.topAnchor == navigationItemBar.bottomAnchor
-        scrollView.bottomAnchor == view.bottomAnchor
+        scrollView.topAnchor == navigationItemBar.bottomAnchor - 64
+        scrollView.bottomAnchor == view.bottomAnchor + 64
     }
 
     private func setContentViewAnchors(contentView: UIView) {
@@ -289,5 +293,14 @@ extension TopTabBarController: TabBarViewDelegate {
 
         let offset = CGPoint(x: scrollViewContentOffset * CGFloat(index), y: 0)
         scrollView.setContentOffset(offset, animated: true)
+    }
+}
+
+// MARK: - TabBarScrollViewDelegate
+
+extension TopTabBarController: TopTabBarScrollViewDelegate {
+
+    func didScrollUnderTopTabBar(alpha: CGFloat) {        
+        navigationItemBar.backgroundColor = UIColor.black.withAlphaComponent(alpha)
     }
 }

@@ -21,6 +21,7 @@ protocol LearnContentListViewControllerDelegate: class {
 
 /// Displays a collection of items of learn content.
 final class LearnContentListViewController: UIViewController {
+
     private let disposeBag = DisposeBag()
     
     let viewModel: LearnContentListViewModel
@@ -34,13 +35,9 @@ final class LearnContentListViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     fileprivate lazy var screenSize: CGFloat = {
-       let size = UIScreen.main.bounds.height
-        if size > 568 {
-            return 160
-        } else {
-            return 125
-        }
+        return UIScreen.main.bounds.height > 568 ? 160 : 125
     }()
     
     fileprivate lazy var collectionViewLayout: LearnContentLayout = {
@@ -51,7 +48,7 @@ final class LearnContentListViewController: UIViewController {
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: self.collectionViewLayout)
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = .black
+        collectionView.backgroundColor = .clear
         return collectionView
     }()
     
@@ -71,6 +68,8 @@ final class LearnContentListViewController: UIViewController {
                 self.collectionView.reloadData()
             }
         }.dispose(in: disposeBag)
+
+        view.backgroundColor = .clear
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -112,8 +111,9 @@ extension LearnContentListViewController: UICollectionViewDelegate {
 }
 
 private extension LearnContentListViewController {
+
     func setupAppearance() {
-        view.backgroundColor = UIColor.black
+        view.backgroundColor = .clear
     }
     
     func setupHierachy() {
