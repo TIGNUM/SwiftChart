@@ -178,6 +178,9 @@
 		CCEA22A91E8AC55F003D0CF4 /* PrepareEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A71E8AC55F003D0CF4 /* PrepareEventsViewController.swift */; };
 		CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */; };
 		CCEFCFB01E8D3D7500E9FC72 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEFCFAE1E8D3D7500E9FC72 /* SidebarViewController.swift */; };
+		D50D6C241EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50D6C221EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift */; };
+		D50D6C251EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D50D6C231EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib */; };
+		D50D6C271EB9BBE0009FFDBE /* SideBarShareAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50D6C261EB9BBE0009FFDBE /* SideBarShareAction.swift */; };
 		CCFCACC01E8D5DD100EA3119 /* BenefitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFCACBE1E8D5DD100EA3119 /* BenefitsViewController.swift */; };
 		CCFCACC11E8D5DD100EA3119 /* BenefitsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFCACBF1E8D5DD100EA3119 /* BenefitsViewModel.swift */; };
 		CCFCACC31E8D5FDF00EA3119 /* BenefitsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFCACC21E8D5FDF00EA3119 /* BenefitsCoordinator.swift */; };
@@ -193,6 +196,7 @@
 		D51D088C1E8E80CD00FC7567 /* LearnStrategyArticleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D51D088A1E8E80CD00FC7567 /* LearnStrategyArticleCell.xib */; };
 		D520BC931E8E655A00A2D107 /* LearnStrategyHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D520BC911E8E655A00A2D107 /* LearnStrategyHeaderCell.swift */; };
 		D520BC941E8E655A00A2D107 /* LearnStrategyHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D520BC921E8E655A00A2D107 /* LearnStrategyHeaderCell.xib */; };
+		D521E3FE1EB8AF38008E24B1 /* SideBarShareAction.xib in Resources */ = {isa = PBXBuildFile; fileRef = D521E3FD1EB8AF38008E24B1 /* SideBarShareAction.xib */; };
 		D52371531EA9F0B100165842 /* PrepareChatTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52371511EA9F0B100165842 /* PrepareChatTableCell.swift */; };
 		D52350961E9FC1120013DE7E /* WhatsHotLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52350951E9FC1120013DE7E /* WhatsHotLayout.swift */; };
 		D540275F1E8D401F0013B783 /* LearnStrategyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D540275D1E8D401F0013B783 /* LearnStrategyViewController.xib */; };
@@ -204,6 +208,9 @@
 		D58BD8701E9F5F3E005676DE /* WhatsHotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D58BD86E1E9F5F3E005676DE /* WhatsHotViewController.xib */; };
 		D58BD8771E9F65F7005676DE /* WhatsHotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58BD8751E9F65F7005676DE /* WhatsHotCell.swift */; };
 		D58BD8781E9F65F7005676DE /* WhatsHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D58BD8761E9F65F7005676DE /* WhatsHotCell.xib */; };
+		D5C15BA91EB347B80030953F /* SidebarItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5C15BA71EB347B80030953F /* SidebarItemViewController.xib */; };
+		D5C15BAC1EB350FB0030953F /* SideBarTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C15BAA1EB350FB0030953F /* SideBarTextCell.swift */; };
+		D5C15BAD1EB350FB0030953F /* SideBarTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5C15BAB1EB350FB0030953F /* SideBarTextCell.xib */; };
 		D5CD23D81E8BB73A002742C4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CD23D71E8BB73A002742C4 /* TabBarController.swift */; };
 		D5DDAA3C1EAA136C0053C5D6 /* DashPatternView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DDAA3B1EAA136C0053C5D6 /* DashPatternView.swift */; };
 /* End PBXBuildFile section */
@@ -323,9 +330,9 @@
 		CC13E2431EB1D72E00C3CE46 /* CategoryPostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryPostCell.xib; sourceTree = "<group>"; };
 		CC13E2441EB1D72E00C3CE46 /* LatestPostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatestPostCell.swift; sourceTree = "<group>"; };
 		CC13E2451EB1D72E00C3CE46 /* LatestPostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LatestPostCell.xib; sourceTree = "<group>"; };
-		CC27E0B71EB33722003E5B7F /* SidebarItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SidebarItemViewModel.swift; path = SidebarItemViewModel.swift; sourceTree = "<group>"; };
-		CC27E0B91EB33760003E5B7F /* SidebarItemCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SidebarItemCoordinator.swift; path = SidebarItemCoordinator.swift; sourceTree = "<group>"; };
-		CC27E0BB1EB337A2003E5B7F /* SidebarItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SidebarItemViewController.swift; path = SidebarItemViewController.swift; sourceTree = "<group>"; };
+		CC27E0B71EB33722003E5B7F /* SidebarItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarItemViewModel.swift; sourceTree = "<group>"; };
+		CC27E0B91EB33760003E5B7F /* SidebarItemCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarItemCoordinator.swift; sourceTree = "<group>"; };
+		CC27E0BB1EB337A2003E5B7F /* SidebarItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarItemViewController.swift; sourceTree = "<group>"; };
 		CC311A1C1EAF39DF0020C869 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		CC311A201EAF430B0020C869 /* SettingsButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsButtonTableViewCell.xib; sourceTree = "<group>"; };
 		CC311A221EAF431E0020C869 /* SettingsControlTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsControlTableViewCell.xib; sourceTree = "<group>"; };
@@ -399,6 +406,9 @@
 		CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsViewModel.swift; sourceTree = "<group>"; };
 		CCEFCFAE1E8D3D7500E9FC72 /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D50D6C221EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSubtitleTableViewCell.swift; sourceTree = "<group>"; };
+		D50D6C231EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageSubtitleTableViewCell.xib; sourceTree = "<group>"; };
+		D50D6C261EB9BBE0009FFDBE /* SideBarShareAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarShareAction.swift; sourceTree = "<group>"; };
 		D519E08E1EAA5403004F96E7 /* PrepareChatTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareChatTableCell.xib; sourceTree = "<group>"; };
 		D51B5C471E8D0E7E0084A65B /* LearnContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentCell.swift; sourceTree = "<group>"; };
 		D51B5C481E8D0E7E0084A65B /* LearnContentLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentLayout.swift; sourceTree = "<group>"; };
@@ -411,6 +421,7 @@
 		D51D088A1E8E80CD00FC7567 /* LearnStrategyArticleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyArticleCell.xib; sourceTree = "<group>"; };
 		D520BC911E8E655A00A2D107 /* LearnStrategyHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnStrategyHeaderCell.swift; sourceTree = "<group>"; };
 		D520BC921E8E655A00A2D107 /* LearnStrategyHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyHeaderCell.xib; sourceTree = "<group>"; };
+		D521E3FD1EB8AF38008E24B1 /* SideBarShareAction.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideBarShareAction.xib; sourceTree = "<group>"; };
 		D52371511EA9F0B100165842 /* PrepareChatTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareChatTableCell.swift; sourceTree = "<group>"; };
 		D52350951E9FC1120013DE7E /* WhatsHotLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsHotLayout.swift; sourceTree = "<group>"; };
 		D540275D1E8D401F0013B783 /* LearnStrategyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyViewController.xib; sourceTree = "<group>"; };
@@ -422,6 +433,9 @@
 		D58BD86E1E9F5F3E005676DE /* WhatsHotViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhatsHotViewController.xib; sourceTree = "<group>"; };
 		D58BD8751E9F65F7005676DE /* WhatsHotCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsHotCell.swift; sourceTree = "<group>"; };
 		D58BD8761E9F65F7005676DE /* WhatsHotCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhatsHotCell.xib; sourceTree = "<group>"; };
+		D5C15BA71EB347B80030953F /* SidebarItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidebarItemViewController.xib; sourceTree = "<group>"; };
+		D5C15BAA1EB350FB0030953F /* SideBarTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarTextCell.swift; sourceTree = "<group>"; };
+		D5C15BAB1EB350FB0030953F /* SideBarTextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideBarTextCell.xib; sourceTree = "<group>"; };
 		D5CD23D71E8BB73A002742C4 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D5DDAA3B1EAA136C0053C5D6 /* DashPatternView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashPatternView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -642,6 +656,7 @@
 		CB2880321E7144D40067890A /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				D50D6C211EB8DE3B009FFDBE /* Views */,
 				D55CBED61E8A993200C690FB /* CGPoint+Convenience.swift */,
 				CB2880331E7144E60067890A /* CollectionUpdate.swift */,
 				CBA054481E890560009E28D6 /* Dequeueable.swift */,
@@ -941,9 +956,13 @@
 			children = (
 				CC27E0B91EB33760003E5B7F /* SidebarItemCoordinator.swift */,
 				CC27E0BB1EB337A2003E5B7F /* SidebarItemViewController.swift */,
+				D5C15BA71EB347B80030953F /* SidebarItemViewController.xib */,
+				D5C15BAA1EB350FB0030953F /* SideBarTextCell.swift */,
+				D5C15BAB1EB350FB0030953F /* SideBarTextCell.xib */,
+				D50D6C261EB9BBE0009FFDBE /* SideBarShareAction.swift */,
+				D521E3FD1EB8AF38008E24B1 /* SideBarShareAction.xib */,
 				CC27E0B71EB33722003E5B7F /* SidebarItemViewModel.swift */,
 			);
-			name = "Sidebar Item";
 			path = "Sidebar Item";
 			sourceTree = "<group>";
 		};
@@ -1244,6 +1263,15 @@
 			path = "Prepare Events";
 			sourceTree = "<group>";
 		};
+		D50D6C211EB8DE3B009FFDBE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D50D6C221EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift */,
+				D50D6C231EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		D51D088E1E8EA36700FC7567 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1317,7 +1345,6 @@
 				TargetAttributes = {
 					CBB237EB1E6FFF1200AB5AEF = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = PA7U84NCWZ;
 						ProvisioningStyle = Automatic;
 					};
 					CBB237FF1E6FFF1200AB5AEF = {
@@ -1354,6 +1381,7 @@
 				0B1059871EA77AC700660A1D /* PrepareEventTableViewHeader.xib in Resources */,
 				0BC9F93A1E96118C009E8204 /* StatusTableViewCell.xib in Resources */,
 				0BEE8ABE1EA600A7008077B8 /* PrepareEventSimpleTableViewCell.xib in Resources */,
+				D5C15BAD1EB350FB0030953F /* SideBarTextCell.xib in Resources */,
 				CC311A271EAF434F0020C869 /* SettingsLabelTableViewCell.xib in Resources */,
 				D51D08881E8E80AF00FC7567 /* LearnStrategyVideoCell.xib in Resources */,
 				D58BD8701E9F5F3E005676DE /* WhatsHotViewController.xib in Resources */,
@@ -1374,6 +1402,7 @@
 				0BE7FD8B1E9D2AEF00E3262E /* PrepareContentStepTableViewCell.xib in Resources */,
 				CB8C34541EAF7F190003AB65 /* MyToBeVisionViewController.xib in Resources */,
 				CC13E2471EB1D72E00C3CE46 /* CategoryPostCell.xib in Resources */,
+				D50D6C251EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib in Resources */,
 				D51D088C1E8E80CD00FC7567 /* LearnStrategyArticleCell.xib in Resources */,
 				0BE7FD851E9CAC7400E3262E /* PrepareContentActionButtonsTableViewCell.xib in Resources */,
 				0B40DC161E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib in Resources */,
@@ -1389,11 +1418,13 @@
 				CB8C34561EAF7F200003AB65 /* styles.css in Resources */,
 				0BE7FD901E9D2F8800E3262E /* PrepareContentTitleTableViewCell.xib in Resources */,
 				0BD6F6BA1EA0E81E001EBC4D /* MyPrepTableViewCell.xib in Resources */,
+				D5C15BA91EB347B80030953F /* SidebarItemViewController.xib in Resources */,
 				D540275F1E8D401F0013B783 /* LearnStrategyViewController.xib in Resources */,
 				0BC9F9371E96118C009E8204 /* ChatTableViewCell.xib in Resources */,
 				CC311A231EAF431E0020C869 /* SettingsControlTableViewCell.xib in Resources */,
 				0BD6F6BB1EA0E81E001EBC4D /* MyPrepViewController.xib in Resources */,
 				0BEE8AC11EA600A7008077B8 /* PrepareEventsViewController.xib in Resources */,
+				D521E3FE1EB8AF38008E24B1 /* SideBarShareAction.xib in Resources */,
 				0B40DC0C1E9CA6A500E1659B /* PrepareContentTextTableViewCell.xib in Resources */,
 				D519E08F1EAA5403004F96E7 /* PrepareChatTableCell.xib in Resources */,
 				CBB237F71E6FFF1200AB5AEF /* Assets.xcassets in Resources */,
@@ -1539,6 +1570,7 @@
 			files = (
 				CC13E23E1EB1D72400C3CE46 /* CategoryCollectionCell.swift in Sources */,
 				CC9663141EA1B41500B84B1C /* MyUniverseCoordinator.swift in Sources */,
+				D50D6C271EB9BBE0009FFDBE /* SideBarShareAction.swift in Sources */,
 				D5CD23D81E8BB73A002742C4 /* TabBarController.swift in Sources */,
 				CBDB99021E7BE91D003EC73F /* EKEvent+CalendarEventData.swift in Sources */,
 				CB369CE01E8D407C00522293 /* DataProvider.swift in Sources */,
@@ -1582,6 +1614,7 @@
 				CC27E0B81EB33722003E5B7F /* SidebarItemViewModel.swift in Sources */,
 				0BD6F6B91EA0E81E001EBC4D /* MyPrepTableViewCell.swift in Sources */,
 				CCE372F31E8C1EDF00B79352 /* WhatsHotViewModel.swift in Sources */,
+				D5C15BAC1EB350FB0030953F /* SideBarTextCell.swift in Sources */,
 				CCD377541E8D3C2D00BB8031 /* WhatsHotNewTemplateViewModel.swift in Sources */,
 				CBD7915C1E72F2990006C590 /* LaunchViewController.swift in Sources */,
 				D52371531EA9F0B100165842 /* PrepareChatTableCell.swift in Sources */,
@@ -1609,6 +1642,7 @@
 				CC3DFB661E83C19C00FF28DF /* Defines.swift in Sources */,
 				CCD377531E8D3C2D00BB8031 /* WhatsHotNewTemplateViewController.swift in Sources */,
 				CC9663151EA1B41500B84B1C /* MyUniverseViewController.swift in Sources */,
+				D50D6C241EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift in Sources */,
 				CB369CE21E8D5E3D00522293 /* Services.swift in Sources */,
 				CCC1B6A81E8B9B7300D1461F /* LearnCategoryLayout.swift in Sources */,
 				CCC0C4DB1E82BDEF002A8362 /* TabBarCoordinator.swift in Sources */,
@@ -1815,7 +1849,7 @@
 			baseConfigurationReference = 42795728C4F3229DFB18981E /* Pods-QOT.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = PA7U84NCWZ;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = QOT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1830,7 +1864,7 @@
 			baseConfigurationReference = 2F1C8D6D4864F462A3F805BB /* Pods-QOT.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = PA7U84NCWZ;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = QOT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -59,42 +59,42 @@ private var mockBenefitItems: [SidebarItem] {
     return [
         .text(
             localID: UUID().uuidString,
-            title: AttributedString.Sidebar.Benefits.headerTitle(string: "LOREM IPSUMOP TEXT ONESOIP TWO LINES"),
-            text: AttributedString.Learn.headerSubtitle(string: "Lorem ipsum 26 items")
+            title: AttributedString.Sidebar.SideBarItems.Benefits.headerTitle(string: "LOREM IPSUMOP TEXT ONESOIP TWO LINES"),
+            text: AttributedString.Sidebar.SideBarItems.Benefits.headerText(string: "Lorem ipsum 26 items")
         ),
 
         .video(
             localID: UUID().uuidString,
-            placeholderURL: URL(string:"https://example.com")!,
-            description: AttributedString.Learn.headerSubtitle(string: "How to create your optimal performance state (2:26)")
+            placeholderURL: URL(string:"https://cdn.pixabay.com/photo/2011/01/17/18/03/iguana-4612_960_720.jpg")!,
+            description: AttributedString.Sidebar.SideBarItems.Benefits.headerText(string: "How to create your optimal performance state (2:26)")
         ),
 
         .text(
             localID: UUID().uuidString,
-            title: AttributedString.Learn.headerTitle(string: "OPTIMAL PERFORMANCE STATE"),
-            text: AttributedString.Learn.headerSubtitle(string: "Performance Mindset")
+            title: AttributedString.Sidebar.SideBarItems.Benefits.headerTitle(string: "OPTIMAL PERFORMANCE STATE"),
+            text: AttributedString.Sidebar.SideBarItems.Benefits.text(string: "Performance Mindset")
         ),
 
         .text(
             localID: UUID().uuidString,
-            title: AttributedString.Learn.headerTitle(string: "OPTIMAL PERFORMANCE STATE"),
-            text: AttributedString.Learn.headerSubtitle(string: "Performance Mindset")
+            title: AttributedString.Sidebar.SideBarItems.Benefits.headerTitle(string: "OPTIMAL PERFORMANCE STATE"),
+            text: AttributedString.Sidebar.SideBarItems.Benefits.text(string: "Performance Mindset")
         ),
 
         .video(
             localID: UUID().uuidString,
-            placeholderURL: URL(string:"https://example.com")!,
-            description: AttributedString.Learn.headerSubtitle(string: "How to create your optimal performance state (2:26)")
+            placeholderURL: URL(string:"https://cdn.pixabay.com/photo/2011/01/17/18/03/iguana-4612_960_720.jpg")!,
+            description: AttributedString.Sidebar.SideBarItems.Benefits.headerText(string: "How to create your optimal performance state (2:26)")
         ),
 
         .text(
             localID: UUID().uuidString,
-            title: AttributedString.Learn.headerTitle(string: "OPTIMAL PERFORMANCE STATE"),
-            text: AttributedString.Learn.headerSubtitle(string: "Performance Mindset")
+            title: AttributedString.Sidebar.SideBarItems.Benefits.headerTitle(string: "OPTIMAL PERFORMANCE STATE"),
+            text: AttributedString.Sidebar.SideBarItems.Benefits.text(string: "Performance Mindset")
         ),
 
         .shareAction(
-            title: AttributedString.Sidebar.Benefits.headerTitle(string: "Share")
+            title: AttributedString.Sidebar.SideBarItems.AboutTignum.shareText(string: "Share")
         )
     ]
 }
@@ -103,26 +103,26 @@ private var mockPrivacyItems: [SidebarItem] {
     return [
         .text(
             localID: UUID().uuidString,
-            title: AttributedString.Sidebar.Benefits.headerTitle(string: ".01 SCOPE OF APPLICATION"),
-            text: AttributedString.Learn.headerSubtitle(string: "Lorem Ipsum text  is about bringing your best to those critical events that matter most to you. In each of these events, the demands on you and your mindset will be different. In order to optimize your effectiveness you will have to be in your optimal performance state.")
+            title: AttributedString.Sidebar.SideBarItems.DataPrivacy.headerTitle(string: ".01 SCOPE OF APPLICATION"),
+            text: AttributedString.Sidebar.SideBarItems.DataPrivacy.headerText(string: "Lorem Ipsum text  is about bringing your best to those critical events that matter most to you. In each of these events, the demands on you and your mindset will be different. In order to optimize your effectiveness you will have to be in your optimal performance state.")
         ),
 
         .video(
             localID: UUID().uuidString,
-            placeholderURL: URL(string:"https://example.com")!,
+            placeholderURL: URL(string:"https://cdn.pixabay.com/photo/2011/01/17/18/03/iguana-4612_960_720.jpg")!,
             description: nil
         ),
 
         .text(
             localID: UUID().uuidString,
-            title: AttributedString.Sidebar.Benefits.headerTitle(string: ".02 SCOPE OF APPLICATION"),
-            text: AttributedString.Learn.headerSubtitle(string: "Lorem Ipsum text  is about bringing your best to those critical events that matter most to you. In each of these events, the demands on you and your mindset will be different. In order to optimize your effectiveness you will have to be in your optimal performance state.")
+            title: AttributedString.Sidebar.SideBarItems.DataPrivacy.headerTitle(string: ".02 SCOPE OF APPLICATION"),
+            text: AttributedString.Sidebar.SideBarItems.DataPrivacy.headerText(string: "Lorem Ipsum text  is about bringing your best to those critical events that matter most to you. In each of these events, the demands on you and your mindset will be different. In order to optimize your effectiveness you will have to be in your optimal performance state.")
         ),
 
         .text(
             localID: UUID().uuidString,
-            title: AttributedString.Sidebar.Benefits.headerTitle(string: ".03 SCOPE OF APPLICATION"),
-            text: AttributedString.Learn.headerSubtitle(string: "Lorem Ipsum text  is about bringing your best to those critical events that matter most to you. In each of these events, the demands on you and your mindset will be different. In order to optimize your effectiveness you will have to be in your optimal performance state.")
+            title: AttributedString.Sidebar.SideBarItems.DataPrivacy.headerTitle(string: ".03 SCOPE OF APPLICATION"),
+            text: AttributedString.Sidebar.SideBarItems.DataPrivacy.headerText(string: "Lorem Ipsum text  is about bringing your best to those critical events that matter most to you. In each of these events, the demands on you and your mindset will be different. In order to optimize your effectiveness you will have to be in your optimal performance state.")
         )
     ]
 }
@@ -131,48 +131,48 @@ private var mockAboutItems: [SidebarItem] {
     return [
         .text(
             localID: UUID().uuidString,
-            title: AttributedString.Sidebar.Benefits.headerTitle(string: "LOREM IPSUMOP TEXT ONESOIP TWO LINES"),
-            text: AttributedString.Learn.headerSubtitle(string: "Lorem ispum text here more and more")
+            title: AttributedString.Sidebar.SideBarItems.AboutTignum.headerTitle(string: "LOREM IPSUMOP TEXT ONESOIP TWO LINES"),
+            text: AttributedString.Sidebar.SideBarItems.AboutTignum.headerSubTitle(string: "Lorem ispum text here more and more")
         ),
 
         .image(
             localID: UUID().uuidString,
-            placeholderURL: URL(string:"https://example.com")!,
+            placeholderURL: URL(string:"https://cdn.pixabay.com/photo/2011/01/17/18/03/iguana-4612_960_720.jpg")!,
             description: nil
         ),
 
         .text(
             localID: UUID().uuidString,
-            title: AttributedString.Sidebar.Benefits.headerTitle(string: "Why"),
-            text: AttributedString.Learn.headerSubtitle(string: "Lorem Ipsum text  is about bringing your best to those critical events that matter most to you. In each of these events, the demands on you and your mindset will be different. In order to optimize your effectiveness you will have to be in your optimal performance state.")
+            title: AttributedString.Sidebar.SideBarItems.AboutTignum.headerSubTitle(string: "Why"),
+            text: AttributedString.Sidebar.SideBarItems.AboutTignum.text(string: "Lorem Ipsum text  is about bringing your best to those critical events that matter most to you. In each of these events, the demands on you and your mindset will be different. In order to optimize your effectiveness you will have to be in your optimal performance state.")
         ),
 
         .video(
             localID: UUID().uuidString,
-            placeholderURL: URL(string:"https://example.com")!,
+            placeholderURL: URL(string:"https://cdn.pixabay.com/photo/2011/01/17/18/03/iguana-4612_960_720.jpg")!,
             description: nil
         ),
 
         .text(
             localID: UUID().uuidString,
-            title: AttributedString.Sidebar.Benefits.headerTitle(string: "What"),
-            text: AttributedString.Learn.headerSubtitle(string: "Lorem Ipsum text  is about bringing your best to those critical events that matter most to you. In each of these events, the demands on you and your mindset will be different. In order to optimize your effectiveness you will have to be in your optimal performance state.")
+            title: AttributedString.Sidebar.SideBarItems.AboutTignum.headerSubTitle(string: "What"),
+            text: AttributedString.Sidebar.SideBarItems.AboutTignum.text(string: "Lorem Ipsum text  is about bringing your best to those critical events that matter most to you. In each of these events, the demands on you and your mindset will be different. In order to optimize your effectiveness you will have to be in your optimal performance state.")
         ),
 
         .image(
             localID: UUID().uuidString,
-            placeholderURL: URL(string:"https://example.com")!,
+            placeholderURL: URL(string:"https://cdn.pixabay.com/photo/2011/01/17/18/03/iguana-4612_960_720.jpg")!,
             description: nil
         ),
 
         .text(
             localID: UUID().uuidString,
-            title: AttributedString.Sidebar.Benefits.headerTitle(string: "How"),
-            text: AttributedString.Learn.headerSubtitle(string: "Lorem Ipsum text  is about bringing your best to those critical events that matter most to you. In each of these events, the demands on you and your mindset will be different. In order to optimize your effectiveness you will have to be in your optimal performance state.")
+            title: AttributedString.Sidebar.SideBarItems.AboutTignum.headerSubTitle(string: "How"),
+            text: AttributedString.Sidebar.SideBarItems.AboutTignum.text(string: "Lorem Ipsum text  is about bringing your best to those critical events that matter most to you. In each of these events, the demands on you and your mindset will be different. In order to optimize your effectiveness you will have to be in your optimal performance state.")
         ),
 
         .shareAction(
-            title: AttributedString.Sidebar.Benefits.headerTitle(string: "Share")
+            title: AttributedString.Sidebar.SideBarItems.AboutTignum.shareText(string: "Share")
         )
     ]
 }

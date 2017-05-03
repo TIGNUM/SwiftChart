@@ -201,10 +201,10 @@ struct Font {
 
     /// SIMPLE REGULAR 16 // strategy title
     static let H4Identifier = UIFont.simpleFont(ofSize: 18)
-    
+
     /// SIMPLE REGULAR 16 // strategy title
     static let H5SecondaryHeadline = UIFont.simpleFont(ofSize: 16)
-    
+
     /// SIMPLE REGULAR 14 // navigation title
     static let H6NavigationTitle = UIFont.simpleFont(ofSize: 14)
 
@@ -213,12 +213,15 @@ struct Font {
 
     /// BENTON SANS 16 // paragraph, body text
     static let PText = UIFont.bentonRegularFont(ofSize: 16)
-    
+
     /// BENTON SAN BOOK 11 // title
     static let H7Title = UIFont.bentonBookFont(ofSize: 11)
 
     /// BENTON SANS 13 // paragraph, body text
     static let PTextSmall = UIFont.bentonRegularFont(ofSize: 13)
+
+    /// BENTON SAN BOOK 16 // body text
+    static let DPText = UIFont.bentonBookFont(ofSize: 16)
 }
 
 struct Color {
@@ -343,34 +346,75 @@ struct AttributedString {
     }
 
     struct Sidebar {
-        struct Benefits {
-            static func headerTitle(string: String) -> NSAttributedString {
-                return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.H1MainTitle)
+
+        struct SideBarItems {
+
+            struct Benefits {
+                static func headerTitle(string: String) -> NSAttributedString {
+                    return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.H1MainTitle)
+                }
+
+                static func headerText(string: String) -> NSAttributedString {
+                    return NSAttributedString.create(for: string, withColor: Color.Default.whiteMedium, andFont: Font.H7Tag)
+                }
+
+                static func text(string: String) -> NSAttributedString {
+                    return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.H7Tag)
+                }
             }
 
-            static func headerText(string: String) -> NSAttributedString {
-                return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.H1MainTitle)
+            struct DataPrivacy {
+                static func headerTitle(string: String) -> NSAttributedString {
+                return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.H3Subtitle)
+                }
+
+                static func headerText(string: String) -> NSAttributedString {
+                    return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.DPText)
+                }
+
+                static func text(string: String) -> NSAttributedString {
+                    return NSAttributedString.create(for: string, withColor: Color.Default.whiteMedium, andFont: Font.H7Tag)
+                }
+
+            }
+
+            struct AboutTignum {
+                static func headerTitle(string: String) -> NSAttributedString {
+                    return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.H1MainTitle)
+                }
+
+                static func headerSubTitle(string: String) -> NSAttributedString {
+                    return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.H2SecondaryTitle)
+                }
+
+                static func text(string: String) -> NSAttributedString {
+                    return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.DPText)
+                }
+
+                static func shareText(string: String) -> NSAttributedString {
+                    return NSAttributedString.create(for: string, withColor: Color.Default.whiteMedium, andFont: Font.DPText)
+                }
             }
         }
     }
-    
+
     struct Library {
         static func categoryTitle(string: String) -> NSAttributedString {
             return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.H3Subtitle)
         }
-        
+
         static func categoryHeadline(string: String) -> NSAttributedString {
             return NSAttributedString.create(for: string, withColor: Color.Default.whiteSlightLight, andFont: Font.H7Tag)
         }
-        
+
         static func categoryMediaTypeLabel(string: String) -> NSAttributedString {
             return NSAttributedString.create(for: string, withColor: Color.Default.whiteMedium, andFont: Font.H7Tag)
         }
-        
+
         static func latestPostTitle(string: String) -> NSAttributedString {
             return NSAttributedString.create(for: string, withColor: Color.Default.whiteSlightLight, andFont: Font.H7Tag)
         }
-        
+
     }
 
     struct MeSection {
