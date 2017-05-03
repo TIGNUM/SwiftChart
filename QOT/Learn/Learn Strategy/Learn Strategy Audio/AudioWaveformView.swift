@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class AudioWaveformView: UIView {
+final  class AudioWaveformView: UIView {
 
     var data: [CGFloat] = [] {
         didSet {
@@ -18,10 +18,10 @@ class AudioWaveformView: UIView {
     }
 
     private(set) var progress: CGFloat = 0.0
-    private(set) var minColorBottom: UIColor = .red
-    private(set) var minColorTop: UIColor = .purple
-    private(set) var maxColorBottom: UIColor = .yellow
-    private(set) var maxColorTop: UIColor = .green
+    private(set) var minColorBottom: UIColor = .black
+    private(set) var minColorTop: UIColor = .lightGray
+    private(set) var maxColorBottom: UIColor = .blue
+    private(set) var maxColorTop: UIColor = .blue
 
     private var gradientLayers: [CAGradientLayer] = []
 

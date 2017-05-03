@@ -34,11 +34,11 @@ final class LearnStrategyAudioViewModel: NSObject {
         return item.subHeadline
     }
 
-    var soundPattern = Property<[CGFloat]?>(randomSoundPattern)
+    var soundPattern = Property<[CGFloat]>(randomSoundPattern)
 
-    var trackDuration = Property<TimeInterval?>(623)
+    var trackDuration = Property<TimeInterval>(623)
 
-    var currentPosition = Property<TimeInterval?>(200)
+    var currentPosition = Property<TimeInterval>(200)
 
     func playItem(at index: Index) {
         log("did start to play item at index: \(index)")
