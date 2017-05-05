@@ -1368,7 +1368,8 @@
 				TargetAttributes = {
 					CBB237EB1E6FFF1200AB5AEF = {
 						CreatedOnToolsVersion = 8.2.1;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 4FQQH349R5;
+						ProvisioningStyle = Manual;
 					};
 					CBB237FF1E6FFF1200AB5AEF = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1877,13 +1878,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 4FQQH349R5;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = QOT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOT;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.v2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "3cd3fea3-df3c-4c36-a188-28e9c9545638";
+				PROVISIONING_PROFILE_SPECIFIER = "QOT V2 Development Profile";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -1893,14 +1895,15 @@
 			baseConfigurationReference = 2F1C8D6D4864F462A3F805BB /* Pods-QOT.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 4FQQH349R5;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = QOT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOT;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.v2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "1a513ed1-cb8f-4866-bb67-71ec0e7df411";
+				PROVISIONING_PROFILE_SPECIFIER = "QOT V2 AdHoc Distribution";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
