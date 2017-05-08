@@ -68,6 +68,9 @@
 		CB8A15461E7986C90023B2F9 /* Localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = CB8A15451E7986C90023B2F9 /* Localized.strings */; };
 		CB8A154A1E7A7FA20023B2F9 /* CalendarImportManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15491E7A7FA20023B2F9 /* CalendarImportManger.swift */; };
 		CB8A154C1E7A8AD30023B2F9 /* CalendarImportTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A154B1E7A8AD30023B2F9 /* CalendarImportTask.swift */; };
+		CB8C344F1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8C344D1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift */; };
+		CB8C34501EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB8C344E1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.xib */; };
+		CB8C34521EAF61E50003AB65 /* SettingsMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB8C34511EAF61E50003AB65 /* SettingsMenuViewController.xib */; };
 		CB8C34541EAF7F190003AB65 /* MyToBeVisionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB8C34531EAF7F190003AB65 /* MyToBeVisionViewController.xib */; };
 		CB8C34561EAF7F200003AB65 /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = CB8C34551EAF7F200003AB65 /* styles.css */; };
 		CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA054481E890560009E28D6 /* Dequeueable.swift */; };
@@ -294,6 +297,9 @@
 		CB8A15451E7986C90023B2F9 /* Localized.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localized.strings; sourceTree = "<group>"; };
 		CB8A15491E7A7FA20023B2F9 /* CalendarImportManger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarImportManger.swift; sourceTree = "<group>"; };
 		CB8A154B1E7A8AD30023B2F9 /* CalendarImportTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarImportTask.swift; sourceTree = "<group>"; };
+		CB8C344D1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsMenuCollectionViewCell.swift; path = SettingsMenuCollectionViewCell.swift; sourceTree = "<group>"; };
+		CB8C344E1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsMenuCollectionViewCell.xib; path = SettingsMenuCollectionViewCell.xib; sourceTree = "<group>"; };
+		CB8C34511EAF61E50003AB65 /* SettingsMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsMenuViewController.xib; sourceTree = "<group>"; };
 		CB8C34531EAF7F190003AB65 /* MyToBeVisionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyToBeVisionViewController.xib; sourceTree = "<group>"; };
 		CB8C34551EAF7F200003AB65 /* styles.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = styles.css; sourceTree = "<group>"; };
 		CBA054481E890560009E28D6 /* Dequeueable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dequeueable.swift; sourceTree = "<group>"; };
@@ -712,8 +718,10 @@
 		CB55A2DD1E9FDED200D721CE /* Settings Menu */ = {
 			isa = PBXGroup;
 			children = (
+				CB8C344C1EAF61C60003AB65 /* SettingsMenuCollectionViewCell */,
 				CC9FBDE71EAE58F300AF1CF0 /* SettingsMenuCoordinator.swift */,
 				CB55A2DE1E9FDF0A00D721CE /* SettingsMenuViewController.swift */,
+				CB8C34511EAF61E50003AB65 /* SettingsMenuViewController.xib */,
 				CB55A2E01E9FDF1D00D721CE /* SettingsMenuViewModel.swift */,
 			);
 			path = "Settings Menu";
@@ -756,6 +764,16 @@
 				CB8A154B1E7A8AD30023B2F9 /* CalendarImportTask.swift */,
 			);
 			path = "Calendar Import";
+			sourceTree = "<group>";
+		};
+		CB8C344C1EAF61C60003AB65 /* SettingsMenuCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				CB8C344D1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift */,
+				CB8C344E1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.xib */,
+			);
+			name = SettingsMenuCollectionViewCell;
+			path = SettingsMenuCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		CBB237E31E6FFF1200AB5AEF = {
@@ -1405,6 +1423,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB8C34501EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.xib in Resources */,
 				CC27E0C11EB355BC003E5B7F /* SidebarTableViewCell.xib in Resources */,
 				0B1059871EA77AC700660A1D /* PrepareEventTableViewHeader.xib in Resources */,
 				0BC9F93A1E96118C009E8204 /* StatusTableViewCell.xib in Resources */,
@@ -1450,6 +1469,7 @@
 				0BD6F6BA1EA0E81E001EBC4D /* MyPrepTableViewCell.xib in Resources */,
 				D5C15BA91EB347B80030953F /* SidebarItemViewController.xib in Resources */,
 				D540275F1E8D401F0013B783 /* LearnStrategyViewController.xib in Resources */,
+				CB8C34521EAF61E50003AB65 /* SettingsMenuViewController.xib in Resources */,
 				0BC9F9371E96118C009E8204 /* ChatTableViewCell.xib in Resources */,
 				CC311A231EAF431E0020C869 /* SettingsControlTableViewCell.xib in Resources */,
 				0BD6F6BB1EA0E81E001EBC4D /* MyPrepViewController.xib in Resources */,
@@ -1685,6 +1705,7 @@
 				0B40DC0B1E9CA6A500E1659B /* PrepareContentTextTableViewCell.swift in Sources */,
 				CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */,
 				CB8A153A1E7801B90023B2F9 /* CalendarEvent.swift in Sources */,
+				CB8C344F1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift in Sources */,
 				CB55A2E11E9FDF1D00D721CE /* SettingsMenuViewModel.swift in Sources */,
 				CC311A1D1EAF39DF0020C869 /* SettingsTableViewCell.swift in Sources */,
 				CCE372FF1E8D2AE700B79352 /* MyPrepViewModel.swift in Sources */,

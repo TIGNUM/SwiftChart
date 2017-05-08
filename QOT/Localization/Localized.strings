@@ -45,3 +45,9 @@
 
 "Prepare.PrepareEvents.AddPreparation" = "ADD THIS PREPARATION TO";
 "Prepare.PrepareEvents.AddNewTrip" = "Add new trip";
+
+"Sidebar.SettingsMenu.Settings" = "SETTINGS";
+"Sidebar.SettingsMenu.GeneralButton" = "GENERAL";
+"Sidebar.SettingsMenu.NotificationsButton" = "NOTIFICATIONS";
+"Sidebar.SettingsMenu.SecurityButton" = "SECURITY";
+

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="BentonSans_Regular.otf">
+            <string>BentonSans</string>
+        </array>
+        <array key="Simple-Regular.ttf">
+            <string>Simple-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="SettingsMenuCollectionViewCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="121" height="119"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="121" height="119"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mbM-4q-QXW">
+                        <rect key="frame" x="0.0" y="0.0" width="121" height="119"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time 123" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgT-lT-y3k">
+                                <rect key="frame" x="9" y="9" width="103" height="17"/>
+                                <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SAM-9f-X7a">
+                                <rect key="frame" x="9" y="30" width="103" height="10.5"/>
+                                <fontDescription key="fontDescription" name="BentonSans" family="BentonSans" pointSize="11"/>
+                                <color key="textColor" white="1" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="0.14102632705479451" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="dgT-lT-y3k" secondAttribute="trailing" constant="9" id="EOZ-iS-azT"/>
+                            <constraint firstItem="SAM-9f-X7a" firstAttribute="leading" secondItem="mbM-4q-QXW" secondAttribute="leading" constant="9" id="HwC-oQ-7HL"/>
+                            <constraint firstItem="dgT-lT-y3k" firstAttribute="top" secondItem="mbM-4q-QXW" secondAttribute="top" constant="9" id="JpO-CM-6wM"/>
+                            <constraint firstItem="dgT-lT-y3k" firstAttribute="leading" secondItem="mbM-4q-QXW" secondAttribute="leading" constant="9" id="MzM-eE-xfJ"/>
+                            <constraint firstAttribute="trailing" secondItem="SAM-9f-X7a" secondAttribute="trailing" constant="9" id="PQy-yO-0VW"/>
+                            <constraint firstItem="SAM-9f-X7a" firstAttribute="top" secondItem="dgT-lT-y3k" secondAttribute="bottom" constant="4" id="kXc-b4-JWU"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="mbM-4q-QXW" secondAttribute="trailing" id="6WW-Yk-pLy"/>
+                <constraint firstItem="mbM-4q-QXW" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Wev-mY-YMn"/>
+                <constraint firstItem="mbM-4q-QXW" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="bL6-oC-cKh"/>
+                <constraint firstAttribute="bottom" secondItem="mbM-4q-QXW" secondAttribute="bottom" id="tPa-Aa-sQZ"/>
+            </constraints>
+            <size key="customSize" width="103" height="70"/>
+            <connections>
+                <outlet property="cardView" destination="mbM-4q-QXW" id="7Bc-AK-67O"/>
+                <outlet property="timeLabel" destination="dgT-lT-y3k" id="9w0-dr-WcU"/>
+                <outlet property="titleLabel" destination="SAM-9f-X7a" id="pPJ-wb-Ga7"/>
+            </connections>
+            <point key="canvasLocation" x="60.5" y="64"/>
+        </collectionViewCell>
+    </objects>
+</document>
