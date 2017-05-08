@@ -16,7 +16,6 @@ final class PrepareContentCoordinator: ParentCoordinator {
     fileprivate let rootViewController: UIViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
-
     var children: [Coordinator] = []
 
     // MARK: - Life Cycle
@@ -30,7 +29,6 @@ final class PrepareContentCoordinator: ParentCoordinator {
     func start() {
         let viewModel = PrepareContentViewModel()
         let prepareContentViewController = PrepareContentViewController(viewModel: viewModel)
-        prepareContentViewController.delegate = self
 
         let topTabBarControllerItem = TopTabBarController.Item(
             controllers: [prepareContentViewController],
@@ -43,6 +41,7 @@ final class PrepareContentCoordinator: ParentCoordinator {
             rightIcon: R.image.ic_save()
         )
 
+        prepareContentViewController.delegate = self
         topTabBarController.delegate = self
         prepareContentViewController.topTabBarScrollViewDelegate = topTabBarController
         rootViewController.present(topTabBarController, animated: true)
@@ -67,9 +66,7 @@ extension PrepareContentCoordinator: PrepareContentViewControllerDelegate {
     }
 
     func didTapSaveAs(sectionID: String, in viewController: PrepareContentViewController) {
-        let viewModel = MyPrepViewModel()
-        let vc = MyPrepViewController(viewModel: viewModel)
-        viewController.present(vc, animated: true)
+        log("didTapSaveAs")
     }
 
     func didTapAddToNotes(sectionID: String, in viewController: PrepareContentViewController) {
@@ -77,15 +74,11 @@ extension PrepareContentCoordinator: PrepareContentViewControllerDelegate {
     }
 
     func didTapAddPreparation(sectionID: String, in viewController: PrepareContentViewController) {
-        let viewModel = PrepareEventsViewModel()
-        let vc = PrepareEventsViewController(viewModel: viewModel)
-        viewController.present(vc, animated: true)
+        startPrepareEventsCoordinator(viewController: viewController)
     }
 
     func didTapSaveAs(in viewController: PrepareContentViewController) {
-        let viewModel = MyPrepViewModel()
-        let vc = MyPrepViewController(viewModel: viewModel)
-        viewController.present(vc, animated: true)
+        log("didTapSaveAs")
     }
 
     func didTapAddToNotes(in viewController: PrepareContentViewController) {
@@ -93,9 +86,12 @@ extension PrepareContentCoordinator: PrepareContentViewControllerDelegate {
     }
 
     func didTapAddPreparation(in viewController: PrepareContentViewController) {
-        let viewModel = PrepareEventsViewModel()
-        let vc = PrepareEventsViewController(viewModel: viewModel)
-        viewController.present(vc, animated: true)
+        startPrepareEventsCoordinator(viewController: viewController)
+    }
+
+    private func startPrepareEventsCoordinator(viewController: UIViewController) {
+        let coordinator = PrepareEventsCoordinator(root: viewController, services: services, eventTracker: eventTracker)
+        startChild(child: coordinator)
     }
 }
 
@@ -104,7 +100,7 @@ extension PrepareContentCoordinator: PrepareContentViewControllerDelegate {
 extension PrepareContentCoordinator: TopTabBarDelegate {
 
     func didSelectRightButton(sender: TopTabBarController) {
-        print("didSelect SAVE Item")
+        print("didSelectRightButton")
     }
 
     func didSelectLeftButton(sender: TopTabBarController) {

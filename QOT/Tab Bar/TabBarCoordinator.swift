@@ -84,11 +84,13 @@ final class TabBarCoordinator: ParentCoordinator {
     }()
 
     fileprivate lazy var topTabBarControllerPrepare: TopTabBarController = {
-        let viewModel = ChatViewModel()
-        let chatViewController = ChatViewController(viewModel: viewModel)
+        let cahtViewModel = ChatViewModel()
+        let chatViewController = ChatViewController(viewModel: cahtViewModel)
+        let myPrepViewModel = MyPrepViewModel()
+        let myPrepViewController = MyPrepViewController(viewModel: myPrepViewModel)
 
         let topBarControllerItem = TopTabBarController.Item(
-            controllers: [chatViewController, chatViewController],
+            controllers: [chatViewController, myPrepViewController],
             titles: [
                 R.string.localized.topTabBarItemTitlePerpareCoach(),
                 R.string.localized.topTabBarItemTitlePerparePrep()
