@@ -9,9 +9,10 @@
 import UIKit
 
 final class LearnContentLayout: UICollectionViewLayout {
+
     private let bubbleDiameter: CGFloat
     private var layoutAttributes: [UICollectionViewLayoutAttributes] = []
-    private var contentSize: CGSize = CGSize.zero
+    private var contentSize = CGSize.zero
     
     var bubbleCount: Int {
         didSet {
@@ -27,12 +28,9 @@ final class LearnContentLayout: UICollectionViewLayout {
     }
     
     private func setup() {
-        
         if let collectionView = collectionView {
             let horizontalPadding: CGFloat = 30
-            let bounds = collectionView.bounds
-            let frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height)
-            
+            let frame = CGRect(x: 0, y: 0, width: collectionView.bounds.width, height: collectionView.bounds.height)
             let contentArray = createPattern()
             
             let attributes = contentArray.enumerated().map { (index, point) -> UICollectionViewLayoutAttributes in
@@ -52,11 +50,7 @@ final class LearnContentLayout: UICollectionViewLayout {
     }
     
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
-        if let collectionView = collectionView {
-            return collectionView.bounds.size != newBounds.size
-        } else {
-            return false
-        }
+        return collectionView?.bounds.size != newBounds.size
     }
     
     override func invalidateLayout() {
@@ -101,6 +95,7 @@ final class LearnContentLayout: UICollectionViewLayout {
                 allBubbles.append(CGPoint(x: xCoordinate, y: yCoordinate))
             }
         }
+
         return allBubbles.dropLast(allBubbles.count - bubbleCount)
     }
 }

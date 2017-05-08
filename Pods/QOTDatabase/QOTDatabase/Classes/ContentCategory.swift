@@ -8,53 +8,70 @@
 
 import Foundation
 import RealmSwift
+import Freddy
 
 // FIXME: Unit test.
-public final class ContentCategory: Object, SyncableRealmObject, ContentCategoryData {
+public final class ContentCategory: Object, ContentCategoryDataProtocol {
 
     // MARK: SyncableRealmObject
 
-    public let _remoteID: RealmOptional<Int> = RealmOptional()
+    public dynamic var remoteID: Int = 0
 
     public dynamic var _syncStatus: Int8 = 0
 
-    public private(set) dynamic var localID: String = UUID().uuidString
+    public dynamic var createdAt: Date = Date()
 
     public dynamic var modifiedAt: Date = Date()
 
-    public var parent: NoParent?
-
-    public func setData(_ data: ContentCategoryData) {
+    public func setData(_ data: ContentCategoryDataProtocol) {
         sortOrder = data.sortOrder
+        section = data.section
         title = data.title
-        radius = data.radius
-        centerX = data.centerX
-        centerY = data.centerY
+        layoutInfo = data.layoutInfo
     }
 
     // MARK: ContentData
 
-    public dynamic var sortOrder: Int = 0
+    public private(set) dynamic var sortOrder: Int = 0
 
-    public dynamic var title: String = ""
+    public private(set) dynamic var section: String = ""
 
-    public dynamic var radius: Double = 0
+    public private(set) dynamic var title: String = ""
 
-    public dynamic var centerX: Double = 0
-
-    public dynamic var centerY: Double = 0
+    public private(set) dynamic var layoutInfo: String?
     
     // MARK: Realm
 
     override public class func primaryKey() -> String? {
-        return "localID"
-    }
-
-    override public static func indexedProperties() -> [String] {
-        return ["_remoteID"]
+        return "remoteID"
     }
 
     // MARK: Relationships
 
-    public let contents = LinkingObjects(fromType: Content.self, property: "parent")
+    public let contentCollections = LinkingObjects(fromType: ContentCollection.self, property: "categories")
+}
+
+extension ContentCategory {
+
+    public func bubbleLayoutInfo() throws -> BubbleLayoutInfo {
+        guard let jsonString = layoutInfo else {
+            throw QOTDatabaseError.noLayoutInfo
+        }
+
+        let json = try JSON(jsonString: jsonString)
+        return try BubbleLayoutInfo(json: json)
+    }
+}
+
+public struct BubbleLayoutInfo: JSONDecodable {
+
+    public let radius: Double
+    public let centerX: Double
+    public let centerY: Double
+
+    public init(json: JSON) throws {
+        radius = try json.getDouble(at: "bubble", "radius")
+        centerX = try json.getDouble(at: "bubble", "centerX")
+        centerY = try json.getDouble(at: "bubble", "centerY")
+    }
 }

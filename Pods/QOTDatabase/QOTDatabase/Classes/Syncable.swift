@@ -25,7 +25,7 @@ public protocol Syncable {
     var modifiedAt: Date { get set } // Just use to resolve conflicts
     var parent: Parent? { get set }
 
-    func setData(_ data: Data)
+    func setData(_ data: Data) throws
 }
 
 public enum NoParent {}

@@ -16,7 +16,7 @@ final class LearnStrategyAudioViewController: UIViewController {
 
     @IBOutlet fileprivate weak var tableView: UITableView!
     fileprivate let viewModel: LearnStrategyAudioViewModel
-    weak var delegate: LearnStrategyViewControllerDelegate?
+    weak var delegate: LearnContentItemViewControllerDelegate?
 
     lazy var audioView: LearnStrategyAudioPlayerView = LearnStrategyAudioPlayerView.instatiateFromNib()
 

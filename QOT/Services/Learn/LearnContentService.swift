@@ -20,8 +20,8 @@ final class LearnContentService {
         self.realmProvider = realmProvider
     }
 
-    func categories() -> DataProvider<LearnCategory> {
+    func categories() -> DataProvider<LearnContentCategory> {
         let results = mainRealm.objects(ContentCategory.self).sorted(byKeyPath: "sortOrder")
-        return DataProvider<LearnCategory>(results: results, map: { $0 as LearnCategory })
+        return DataProvider<LearnContentCategory>(results: results, map: { $0 as LearnContentCategory })
     }
 }

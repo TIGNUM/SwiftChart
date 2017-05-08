@@ -24,10 +24,12 @@ final class TopTabBarController: UIViewController {
         let titles: [String]
         let containsScrollView: Bool
         let contentView: UIView?
+        let theme: Theme
 
         init(
             controllers: [UIViewController],
             titles: [String],
+            theme: Theme = .dark,
             containsScrollView: Bool = false,
             contentView: UIView? = nil
             ) {
@@ -35,6 +37,26 @@ final class TopTabBarController: UIViewController {
                 self.contentView = contentView
                 self.titles = titles
                 self.controllers = controllers
+                self.theme = theme
+        }
+
+        enum Theme {
+            case dark
+            case light
+
+            var selectedColor: UIColor {
+                switch self {
+                case .dark: return Layout.TabBarView.selectedButtonColor
+                case .light: return Layout.TabBarView.selectedButtonColorLightTheme
+                }
+            }
+
+            var deselectedColor: UIColor {
+                switch self {
+                case .dark: return Layout.TabBarView.deselectedButtonColor
+                case .light: return Layout.TabBarView.deselectedButtonColorLightTheme
+                }
+            }
         }
     }
 
@@ -73,8 +95,8 @@ final class TopTabBarController: UIViewController {
     fileprivate lazy var tabBarView: TabBarView = {
         let tabBarView = TabBarView(tabBarType: .top)
         tabBarView.setTitles(self.item.titles, selectedIndex: self.item.titles.count == 1 ? nil : 0)
-        tabBarView.selectedColor = Layout.TabBarView.selectedButtonColor
-        tabBarView.deselectedColor = Layout.TabBarView.deselectedButtonColor
+        tabBarView.selectedColor = self.item.theme.selectedColor
+        tabBarView.deselectedColor = self.item.theme.deselectedColor
         tabBarView.indicatorViewExtendedWidth = Layout.TabBarView.indicatorViewExtendedWidthTop
         tabBarView.delegate = self
         tabBarView.backgroundColor = .clear
@@ -139,7 +161,8 @@ private extension TopTabBarController {
 private extension TopTabBarController {
 
     func setupButton(with image: UIImage?, button: UIButton) {
-        button.setImage(image, for: .normal)
+        button.setImage(image?.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.imageView?.tintColor = self.item.theme.selectedColor
         button.isHidden = image == nil
         button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }

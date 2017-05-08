@@ -10,79 +10,65 @@ import Foundation
 import RealmSwift
 
 // FIXME: Unit test.
-public final class ContentItem: Object, SyncableRealmObject, ContentItemData {
-
-    // MARK: Private Properties
-
-    private dynamic var _value: String = ""
-    private dynamic var _format: Int8 = 0
-    private dynamic var _status: Int8 = 0
+public final class ContentItem: Object, ContentItemDataProtocol {
 
     // MARK: SyncableRealmObject
 
-    public let _remoteID: RealmOptional<Int> = RealmOptional()
+    public dynamic var remoteID: Int = 0
 
     public dynamic var _syncStatus: Int8 = 0
 
-    public private(set) dynamic var localID: String = UUID().uuidString
+    public dynamic var createdAt: Date = Date()
 
     public dynamic var modifiedAt: Date = Date()
 
-    public dynamic var parent: Content?
+    public dynamic var collection: ContentCollection?
 
-    public func setData(_ data: ContentItemData) {
+    public func setData(_ data: ContentItemDataProtocol) throws {
+        try data.validate()
+
         sortOrder = data.sortOrder
         title = data.title
         secondsRequired = data.secondsRequired
         value = data.value
-        status = data.status
+        format = data.format
+        viewAt = data.viewAt
+        searchTags = data.searchTags
+        layoutInfo = data.layoutInfo
     }
 
     // MARK: ContentData
 
-    public dynamic var sortOrder: Int = 0
+    public private(set) dynamic var sortOrder: Int = 0
 
-    public dynamic var title: String = ""
+    public private(set) dynamic var title: String = ""
 
-    public dynamic var secondsRequired: Int = 0
+    public private(set) dynamic var secondsRequired: Int = 0
 
-    public var value: ContentItemValue {
-        get {
-            do {
-                return try ContentItemValue(format: _format, value: _value)
-            } catch let error {
-                fatalError("Failed to get content item data: \(error)")
-            }
-        }
-        set {
-            _format = newValue.format
-            _value = newValue.value
-        }
-    }
+    public private(set) dynamic var value: String = ""
 
-    public var status: ContentItemStatus {
-        get {
-            guard let status = ContentItemStatus(rawValue: _status) else {
-                fatalError("Invalid content item status: \(_status)")
-            }
-            return status
-        }
-        set {
-            _status = newValue.rawValue
-        }
-    }
+    public private(set) dynamic var format: Int8 = 0
+
+    public private(set) dynamic var searchTags: String = ""
+
+    public private(set) dynamic var layoutInfo: String?
+
+    public dynamic var viewAt: Date?
 
     // MARK: Realm
 
     override public class func primaryKey() -> String? {
-        return "localID"
-    }
-
-    override public static func indexedProperties() -> [String] {
-        return ["_remoteID"]
+        return "remoteID"
     }
 }
 
+extension ContentItem {
 
+    public func contentItemValue() throws -> ContentItemValue {
+        guard let format = ContentItemFormat(rawValue: format) else {
+            throw InvalidDataError(data: self)
+        }
 
-
+        return try ContentItemValue(format: format, value: value)
+    }
+}

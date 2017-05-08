@@ -26,6 +26,8 @@ struct Layout {
         static let animationDuration: TimeInterval = 0.3
         static let selectedButtonColor: UIColor = .white
         static let deselectedButtonColor: UIColor = UIColor.white.withAlphaComponent(0.4)
+        static let selectedButtonColorLightTheme: UIColor = .black
+        static let deselectedButtonColorLightTheme: UIColor = UIColor.black.withAlphaComponent(0.3)
         static let stackViewHorizontalPaddingBottom: CGFloat = 16
         static let indicatorViewExtendedWidthBottom: CGFloat = 16
         static let stackViewHorizontalPaddingTop: CGFloat = 6

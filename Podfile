@@ -10,9 +10,10 @@ target 'QOT' do
   pod 'Bond', '~> 6.0'
   pod 'Anchorage', '~> 3.1'
   pod 'R.swift', '~> 3.2'
-  pod 'QOTDatabase', '~> 0.1.3'
+  pod 'QOTDatabase', '~> 0.5.1'
   pod 'UICollectionViewRightAlignedLayout', '~> 0.0'
   pod 'Kingfisher', '~> 3.6'
+  pod 'LoremIpsum', '~> 1.0'
 
   target 'QOTTests' do
     inherit! :search_paths

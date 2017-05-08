@@ -10,9 +10,10 @@ import UIKit
 
 final class ImageSubtitleTableViewCell: UITableViewCell, Dequeueable {
 
+    // MARK: - Outlets
+
     @IBOutlet private weak var mainImageView: UIImageView!
     @IBOutlet private weak var label: UILabel!
-
     @IBOutlet private weak var stackView: UIStackView!
     @IBOutlet private weak var topConstraint: NSLayoutConstraint!
     @IBOutlet private weak var leadingConstraint: NSLayoutConstraint!
@@ -34,7 +35,7 @@ final class ImageSubtitleTableViewCell: UITableViewCell, Dequeueable {
         stackView.spacing = spacing
     }
 
-    func setUpData(placeHolder: URL, description: NSAttributedString?) {
+    func setupData(placeHolder: URL, description: NSAttributedString?) {
         label.isHidden = (description == nil)
         label.attributedText = description
         mainImageView.kf.indicatorType = .activity

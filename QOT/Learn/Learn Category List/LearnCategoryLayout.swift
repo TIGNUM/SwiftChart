@@ -13,13 +13,13 @@ final class LearnCategoryLayout: UICollectionViewLayout {
     private var layoutAttributes = [UICollectionViewLayoutAttributes]()
     private var contentSize = CGSize.zero
     
-    init(height: CGFloat, categories: [LearnCategory]) {
+    init(height: CGFloat, categories: [LearnContentCategory]) {
         super.init()
         
         setup(height: height, categories: categories)
     }
     
-    func setup(height: CGFloat, categories: [LearnCategory]) {
+    func setup(height: CGFloat, categories: [LearnContentCategory]) {
         let multiplier = height
 
         let frames = categories.map { (category) -> CGRect in

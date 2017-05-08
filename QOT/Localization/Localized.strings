@@ -46,8 +46,11 @@
 "Prepare.PrepareEvents.AddPreparation" = "ADD THIS PREPARATION TO";
 "Prepare.PrepareEvents.AddNewTrip" = "Add new trip";
 
+"Learn.Content.Item.Title.Full" = "Full";
+"Learn.Content.Item.Title.Bullets" = "Bullets";
+"Learn.Content.Item.Title.Audio" = "Audio";
+
 "Sidebar.SettingsMenu.Settings" = "SETTINGS";
 "Sidebar.SettingsMenu.GeneralButton" = "GENERAL";
 "Sidebar.SettingsMenu.NotificationsButton" = "NOTIFICATIONS";
 "Sidebar.SettingsMenu.SecurityButton" = "SECURITY";
-

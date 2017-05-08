@@ -81,17 +81,17 @@ extension SidebarItemViewController: UITableViewDataSource {
         switch item {
         case .video(_, let placeholderURL, let description):
             let cell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.setUpData(placeHolder: placeholderURL, description: description)
+            cell.setupData(placeHolder: placeholderURL, description: description)
             cell.setInsets(insets: UIEdgeInsets(top: 0, left: 32, bottom: 32, right: 40))
             return cell
         case .audio(_, let placeholderURL, let description):
             let cell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.setUpData(placeHolder: placeholderURL, description: description)
+            cell.setupData(placeHolder: placeholderURL, description: description)
             cell.setInsets(insets: UIEdgeInsets(top: 0, left: 32, bottom: 32, right: 40))
             return cell
         case .image(_, let placeholderURL, let description):
             let cell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.setUpData(placeHolder: placeholderURL, description: description)
+            cell.setupData(placeHolder: placeholderURL, description: description)
             cell.setInsets(insets: UIEdgeInsets(top: 0, left: 32, bottom: 46, right: 40))
             return cell
         case .text(_, let title, let text):

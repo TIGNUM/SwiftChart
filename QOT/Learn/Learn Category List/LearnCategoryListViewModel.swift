@@ -11,25 +11,29 @@ import ReactiveKit
 
 /// The view model of a `LearnCategoryListViewController`.
 final class LearnCategoryListViewModel {
-    private let _categories: DataProvider<LearnCategory>
-    
+
+    // MARK: - Properties
+
+    private let _categories: DataProvider<LearnContentCategory>
     let updates = PublishSubject<CollectionUpdate, NoError>()
-    
-    init(categories: DataProvider<LearnCategory>) {
-        self._categories = categories
-    }
-    
+
     /// The number of categories to display.
     var categoryCount: Index {
         return _categories.count
     }
-    
-    /// Returns the `LearnCategory` to display at `index`.
-    func category(at index: Index) -> LearnCategory {
-        return _categories.item(at: index)
-    }
-    
-    var categories: [LearnCategory] {
+
+    var categories: [LearnContentCategory] {
         return _categories.items
+    }
+
+    // MARK: - Init
+
+    init(categories: DataProvider<LearnContentCategory>) {
+        self._categories = categories
+    }
+
+    /// Returns the `LearnCategory` to display at `index`.
+    func category(at index: Index) -> LearnContentCategory {
+        return _categories.item(at: index)
     }
 }

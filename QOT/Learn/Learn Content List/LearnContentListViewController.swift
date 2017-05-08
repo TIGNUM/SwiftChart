@@ -24,10 +24,10 @@ final class LearnContentListViewController: UIViewController {
 
     private let disposeBag = DisposeBag()
     
-    let viewModel: LearnContentListViewModel
+    let viewModel: LearnContentCollectionViewModel
     weak var delegate: LearnContentListViewControllerDelegate?
     
-    init(viewModel: LearnContentListViewModel) {
+    init(viewModel: LearnContentCollectionViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

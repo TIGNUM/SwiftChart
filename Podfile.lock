@@ -1,44 +1,50 @@
 PODS:
-  - Anchorage (3.2.0)
-  - Bond (6.2.3):
+  - Anchorage (3.3.0)
+  - Bond (6.2.6):
     - Diff (~> 0.4)
-    - ReactiveKit (~> 3.5.1)
+    - ReactiveKit (~> 3.5.3)
   - Diff (0.5.3)
+  - Freddy (3.0.0)
   - Kingfisher (3.6.2)
-  - QOTDatabase (0.1.3):
+  - LoremIpsum (1.0.0)
+  - QOTDatabase (0.5.1):
+    - Freddy (~> 3.0.0)
     - RealmSwift (~> 2.5)
   - R.swift (3.2.0):
     - R.swift.Library (~> 3.0.2)
   - R.swift.Library (3.0.2)
-  - ReactiveKit (3.5.1)
-  - Realm (2.5.1):
-    - Realm/Headers (= 2.5.1)
-  - Realm/Headers (2.5.1)
-  - RealmSwift (2.5.1):
-    - Realm (= 2.5.1)
+  - ReactiveKit (3.5.3)
+  - Realm (2.7.0):
+    - Realm/Headers (= 2.7.0)
+  - Realm/Headers (2.7.0)
+  - RealmSwift (2.7.0):
+    - Realm (= 2.7.0)
   - UICollectionViewRightAlignedLayout (0.0.3)
 
 DEPENDENCIES:
   - Anchorage (~> 3.1)
   - Bond (~> 6.0)
   - Kingfisher (~> 3.6)
-  - QOTDatabase (~> 0.1.3)
+  - LoremIpsum (~> 1.0)
+  - QOTDatabase (~> 0.5.1)
   - R.swift (~> 3.2)
   - UICollectionViewRightAlignedLayout (~> 0.0)
 
 SPEC CHECKSUMS:
-  Anchorage: b3a5931166e2fe8361efff250dac07346e935cdf
-  Bond: ef1d9efe6f5b60440979ed35187e468d7020b0ab
+  Anchorage: 1444bbd32c4495b32d41c0be9f66efcb0862fe8a
+  Bond: 0d7a52e9aec644c3b4985ceeb224a402b1efd691
   Diff: befa1d19c32726b2b36ce915d98793e2fbde8dcc
+  Freddy: 367f994c88a90dd3987293b4b1bec94a4530745a
   Kingfisher: 2c94e72c6830622c71d06adf4ea024c37d316830
-  QOTDatabase: 50674e164ebca7ea9a87e77015003efa7a747664
+  LoremIpsum: 9029c55d36501b2ee0b05cc9ecda11d3a0479160
+  QOTDatabase: 3d70d0f785ea52d6e676a81c1c70c3410bca715d
   R.swift: 207a372a2b5977caef440c696a368009460641d1
   R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
-  ReactiveKit: aa0faf668053e7fddd6a07829ba3696741cbff37
-  Realm: 32f86104d37c8521f864d4274050b38ba6190733
-  RealmSwift: f719e7511c902b8908593e8f143f59e47931bdb6
+  ReactiveKit: 39a0723167d04107140cf540f04526deecd18891
+  Realm: 07e5d3a9e0e41d65fd5f9f05150ed6295d0f093b
+  RealmSwift: 6d06425d3900c86473c4f323bf6949b43fca22bc
   UICollectionViewRightAlignedLayout: 823eef8c567eba4a44c21bc2ffcb0d0d5f361e2d
 
-PODFILE CHECKSUM: 3a5f6370a2479204785f2d05f196e160c4472a9d
+PODFILE CHECKSUM: 74fa836cf176af15eb21a43f3deeaa3c986b9311
 
 COCOAPODS: 1.2.0

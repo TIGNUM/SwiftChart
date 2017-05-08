@@ -42,7 +42,7 @@ class LearnContentCell: UICollectionViewCell, Dequeueable {
         return view
     }()
     
-    func configure(with content: LearnContent) {
+    func configure(with content: LearnContentCollection) {
         titleLabel.text = content.title
         let min = String(content.minutesRequired)
         videoDurationLabel.text = R.string.localized.learnContentListViewMinutesLabel(min)

@@ -8,62 +8,62 @@
 
 import Foundation
 
-public protocol ContentItemData {
+public protocol ContentItemDataProtocol {
+
     var sortOrder: Int { get }
+
     var title: String { get }
+
     var secondsRequired: Int { get }
-    var value: ContentItemValue { get }
-    var status: ContentItemStatus { get }
+
+    /**
+     This string might represent a URL, text or even json depending on the 
+     format.
+    */
+    var value: String { get }
+
+    var format: Int8 { get }
+
+    /**
+     When the content was last viewed or nil if never.
+
+     We will set this locally but notify the server though page tracking. This 
+     may be overriden during sync.
+    */
+    var viewAt: Date? { get }
+
+    /// A comma seperated list of tags: eg. `blog,health`
+    var searchTags: String { get }
+
+    var layoutInfo: String? { get }
 }
 
+public struct ContentItemData: ContentItemDataProtocol {
 
-// FIXME: Unit test
-public enum ContentItemValue {
-    enum Error: Swift.Error {
-        case invalid(format: Int8, value: String)
+    public let sortOrder: Int
+    public let title: String
+    public let secondsRequired: Int
+    public let value: String
+    public let format: Int8
+    public let viewAt: Date?
+    public let searchTags: String
+    public var layoutInfo: String?
+
+    public init(sortOrder: Int, title: String, secondsRequired: Int, value: String, format: Int8, viewAt: Date?, searchTags: String, layoutInfo: String?) {
+        self.sortOrder = sortOrder
+        self.title = title
+        self.secondsRequired = secondsRequired
+        self.value = value
+        self.format = format
+        self.viewAt = viewAt
+        self.searchTags = searchTags
+        self.layoutInfo = layoutInfo
     }
 
-    case text(String)
-    case video(URL)
-
-    init(format: Int8, value: String) throws {
-        switch format {
-        case Key.text.rawValue:
-            self = .text(value)
-        case Key.video.rawValue:
-            guard let url = URL(string: value) else { throw Error.invalid(format: format, value: value) }
-            self = .video(url)
-        default:
-            throw Error.invalid(format: format, value: value)
-        }
-    }
-
-    private enum Key: Int8 {
-        case text = 0
-        case video = 1
-    }
-
-    var format: Int8 {
-        switch self {
-        case .text:
-            return Key.text.rawValue
-        case .video:
-            return Key.video.rawValue
-        }
-    }
-
-    var value: String {
-        switch self {
-        case .text(let value):
-            return value
-        case .video(let url):
-            return url.absoluteString
-        }
-    }
 }
 
-// FIXME: Unit test
-public enum ContentItemStatus: Int8 {
-    case notViewed = 0
-    case viewed = 1
+extension ContentItemDataProtocol {
+    func validate() throws {
+        // FIXME: Implement
+    }
 }

@@ -11,7 +11,7 @@ import UIKit
 /// The delegate of a `LearnCategoryListViewController`.
 protocol LearnCategoryListViewControllerDelegate: class {
     /// Notifies `self` that the category was selected at `index` in `viewController`.
-    func didSelectCategory(_ category: LearnCategory, in viewController: LearnCategoryListViewController)
+    func didSelectCategory(_ category: LearnContentCategory, in viewController: LearnCategoryListViewController)
 }
 
 /// Displays a collection of learn categories of learn content.

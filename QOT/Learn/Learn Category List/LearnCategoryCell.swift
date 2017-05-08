@@ -69,7 +69,6 @@ final class LearnCategoryCell: UICollectionViewCell {
     }
     
     private func drawCircles(frame: CGRect) {
-        
         let frame = bounds
         drawInnerCircle(frame: frame)
         drawDashedCircle(frame: frame)
@@ -113,7 +112,7 @@ final class LearnCategoryCell: UICollectionViewCell {
         shapeDashLayer = layer
     }
     
-    func configure(with category: LearnCategory) {
+    func configure(with category: LearnContentCategory) {
         titleLabel.text =  category.title
         contentCountLabel.text = "\(category.viewedCount)/\(category.itemCount)"
         

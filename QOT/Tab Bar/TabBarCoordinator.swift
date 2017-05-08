@@ -182,11 +182,10 @@ extension TabBarCoordinator: TabBarControllerDelegate {
 
 extension TabBarCoordinator: LearnCategoryListViewControllerDelegate {
 
-    func didSelectCategory(_ category: LearnCategory, in viewController: LearnCategoryListViewController) {
+    func didSelectCategory(_ category: LearnContentCategory, in viewController: LearnCategoryListViewController) {
         let coordinator = LearnContentListCoordinator(root: viewController, services: services, eventTracker: eventTracker, category: category)
-        coordinator.start()
         coordinator.delegate = self
-        children.append(coordinator)
+        startChild(child: coordinator)
     }
 }
 

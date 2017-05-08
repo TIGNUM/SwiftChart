@@ -33,5 +33,3 @@ extension SyncableRealmObject {
         set { _syncStatus = newValue.rawValue }
     }
 }
-
-
