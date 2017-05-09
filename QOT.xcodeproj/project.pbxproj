@@ -214,6 +214,8 @@
 		D5EC34B31EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5EC34B11EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.xib */; };
 		D5EC34B61EB0D35D00F86B09 /* LearnStrategyTitleAudioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EC34B41EB0D35D00F86B09 /* LearnStrategyTitleAudioCell.swift */; };
 		D5EC34B71EB0D35D00F86B09 /* LearnStrategyTitleAudioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5EC34B51EB0D35D00F86B09 /* LearnStrategyTitleAudioCell.xib */; };
+		D5FA66951EB9FF0B00980EC7 /* EventGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FA66941EB9FF0B00980EC7 /* EventGraphView.swift */; };
+		D5FA66971EBB4DA600980EC7 /* HorizontalLinesChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FA66961EBB4DA600980EC7 /* HorizontalLinesChartView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -443,6 +445,8 @@
 		D5EC34B11EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyPlaylistAudioCell.xib; sourceTree = "<group>"; };
 		D5EC34B41EB0D35D00F86B09 /* LearnStrategyTitleAudioCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnStrategyTitleAudioCell.swift; sourceTree = "<group>"; };
 		D5EC34B51EB0D35D00F86B09 /* LearnStrategyTitleAudioCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyTitleAudioCell.xib; sourceTree = "<group>"; };
+		D5FA66941EB9FF0B00980EC7 /* EventGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventGraphView.swift; sourceTree = "<group>"; };
+		D5FA66961EBB4DA600980EC7 /* HorizontalLinesChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalLinesChartView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1009,6 +1013,7 @@
 		CC4D1D791E82E6A000B8D75E /* Me */ = {
 			isa = PBXGroup;
 			children = (
+				D5FA66931EB9FEB600980EC7 /* Views */,
 				CC9663021EA1B1F300B84B1C /* My Universe */,
 			);
 			path = Me;
@@ -1302,6 +1307,15 @@
 				D50D6C231EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		D5FA66931EB9FEB600980EC7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D5FA66941EB9FF0B00980EC7 /* EventGraphView.swift */,
+				D5FA66961EBB4DA600980EC7 /* HorizontalLinesChartView.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1684,6 +1698,7 @@
 				CCE373141E8D32F800B79352 /* SidebarViewModel.swift in Sources */,
 				D51B5C491E8D0E7E0084A65B /* LearnContentCell.swift in Sources */,
 				0BE7FD8A1E9D2AEF00E3262E /* PrepareContentStepTableViewCell.swift in Sources */,
+				D5FA66971EBB4DA600980EC7 /* HorizontalLinesChartView.swift in Sources */,
 				CC2391AB1EC0917800315E8A /* R.generated.swift in Sources */,
 				CCE372F51E8CF10C00B79352 /* WhatsHotViewController.swift in Sources */,
 				CC94F5651EB08EE400051CF8 /* LearnStrategyAudioViewModel.swift in Sources */,
@@ -1729,6 +1744,7 @@
 				CB8A15311E76F31B0023B2F9 /* PageTrackable.swift in Sources */,
 				D58BD8771E9F65F7005676DE /* WhatsHotCell.swift in Sources */,
 				D58BD86A1E9D1E7F005676DE /* NSFile+Convenience.swift in Sources */,
+				D5FA66951EB9FF0B00980EC7 /* EventGraphView.swift in Sources */,
 				CB2880241E7051710067890A /* AppCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
