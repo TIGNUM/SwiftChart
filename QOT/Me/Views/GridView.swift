@@ -30,7 +30,7 @@ final class GridView: UIView {
 
         setNeedsDisplay()
     }
-
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         layoutVerticalLines()

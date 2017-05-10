@@ -12,6 +12,11 @@ import UIKit
 protocol LearnCategoryListViewControllerDelegate: class {
     /// Notifies `self` that the category was selected at `index` in `viewController`.
     func didSelectCategory(_ category: LearnContentCategory, in viewController: LearnCategoryListViewController)
+
+}
+
+protocol LearnCategoryUpdateDelegate: class {
+    func didUpdateCategoryViewedPercentage()
 }
 
 /// Displays a collection of learn categories of learn content.
@@ -80,5 +85,12 @@ extension LearnCategoryListViewController: UICollectionViewDataSource, UICollect
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.didSelectCategory(viewModel.category(at: indexPath.row), in: self)
+    }
+}
+
+extension LearnCategoryListViewController: LearnCategoryUpdateDelegate {
+
+    func didUpdateCategoryViewedPercentage() {
+        collectionView.reloadData()
     }
 }

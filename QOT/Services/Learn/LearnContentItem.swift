@@ -37,4 +37,8 @@ extension ContentItem: LearnContentItem {
     var viewed: Bool {
         return viewAt != nil
     }
+
+    var remoteIdentifier: Int {
+        return remoteID
+    }
 }

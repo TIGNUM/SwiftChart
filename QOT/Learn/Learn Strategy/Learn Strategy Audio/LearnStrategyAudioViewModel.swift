@@ -10,7 +10,8 @@ import Foundation
 import ReactiveKit
 import AVFoundation
 
-final class LearnStrategyAudioViewModel: NSObject {
+final class LearnStrategyAudioViewModel {
+
     struct AudioItem {
         let title: String
         let playing: Bool
@@ -18,9 +19,15 @@ final class LearnStrategyAudioViewModel: NSObject {
 
     // MARK: - Properties
 
+    var soundPattern = Property<[CGFloat]>(randomSoundPattern)
+    var trackDuration = Property<TimeInterval>(623)
+    var currentPosition = Property<TimeInterval>(200)
     fileprivate let item = audioStrategy
     fileprivate var currentIndex: Index = 0
-    let updates = PublishSubject<CollectionUpdate, NoError>()
+    fileprivate var player = AVPlayer()
+    fileprivate var timeObserver: Any?
+    private let updates = PublishSubject<CollectionUpdate, NoError>()
+
 
     var audioItemsCount: Int {
         return item.tracks.count
@@ -32,28 +39,46 @@ final class LearnStrategyAudioViewModel: NSObject {
 
     var subHeadline: String {
         return item.subHeadline
-    }
-
-    var soundPattern = Property<[CGFloat]>(randomSoundPattern)
-
-    var trackDuration = Property<TimeInterval>(623)
-
-    var currentPosition = Property<TimeInterval>(200)
+    } 
 
     func playItem(at index: Index) {
-        log("did start to play item at index: \(index)")
+        if player.rate == 0 {
+            play(url: audioTrack(at: index).url)
+        } else {
+            stopPlayback()
+        }
     }
 
     func stopPlayback() {
         log("did stop playback")
+        player.pause()
+
+        if let timeObserver = timeObserver {
+            player.removeTimeObserver(timeObserver)
+        }
     }
 
-    func audioItem(at index: Index) -> AudioItem {
-        return AudioItem(title: audioTrack(at: index).title, playing: index == 1)
+    func audioItem(at index: Index, playing: Bool) -> AudioItem {
+        return AudioItem(title: audioTrack(at: index).title, playing: playing)
     }
 
     private func audioTrack(at index: Index) -> AudioTrack {
         return item.tracks[index]
+    }
+
+    private func play(url: URL) {
+        log("did start to play item at index: \(index)")
+        let playerItem = AVPlayerItem(url: url)
+        player = AVPlayer(playerItem: playerItem)
+        player.volume = 1.0
+        player.play()
+        observePlayerTime()
+    }
+
+    private func observePlayerTime() {
+        timeObserver = player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 1), queue: .main) { (time: CMTime) in
+            self.currentPosition.value = time.seconds
+        }
     }
 }
 

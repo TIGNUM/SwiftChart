@@ -8,14 +8,18 @@
 
 import UIKit
 
-class LearnStrategyPlaylistAudioCell: UITableViewCell, Dequeueable {
+final class LearnStrategyPlaylistAudioCell: UITableViewCell, Dequeueable {
+
+    // MARK: - Properties
 
     @IBOutlet weak private var titleLabel: UILabel!
     @IBOutlet weak private var iconView: UIImageView!
 
+    // MARK: - Setup
+
     func setUp(title: String, playing: Bool) {
         titleLabel.font = UIFont.bentonBookFont(ofSize: 16)
-        titleLabel.text =  title
-        iconView.backgroundColor = playing == true ? .red : .blue
+        titleLabel.text = title
+        iconView.image = playing == true ? R.image.ic_pause() : R.image.ic_play()
     }
 }

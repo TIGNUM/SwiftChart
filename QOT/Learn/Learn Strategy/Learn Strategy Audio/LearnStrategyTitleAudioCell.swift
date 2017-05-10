@@ -10,13 +10,17 @@ import UIKit
 
 class LearnStrategyTitleAudioCell: UITableViewCell, Dequeueable {
 
+    // MARK: - Properties
+
     @IBOutlet weak private var titleLabel: UILabel!
     @IBOutlet weak private var subTitleLabel: UILabel!
+
+    // MARK: - Setup
 
     func setUp(title: String, subTitle: String) {
         titleLabel.font = UIFont.bentonRegularFont(ofSize: 36)
         subTitleLabel.font = UIFont.bentonBookFont(ofSize: 11)
-        titleLabel.text =  title
+        titleLabel.text = title
         subTitleLabel.text = subTitle
     }
 }

@@ -44,7 +44,7 @@ final class LearnContentListCoordinator: ParentCoordinator {
             rightIcon: R.image.ic_close()
         )
 
-        topTabBarController.delegate = self
+        topTabBarController.delegate = self        
         rootVC.present(topTabBarController, animated: true)
         eventTracker.track(page: vc.pageID, referer: rootVC.pageID, associatedEntity: category)
     }

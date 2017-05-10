@@ -10,8 +10,14 @@ import Foundation
 import ReactiveKit
 import RealmSwift
 
-struct Services {
+final class Services {
+
     let learnContent: LearnContentService
+    weak var learnCategoryUpdateDelegate: LearnCategoryUpdateDelegate?
+
+    init(learnContent: LearnContentService) {
+        self.learnContent = learnContent
+    }
 
     static func make(completion: @escaping (Result<Services, NSError>) -> Void) {
         DispatchQueue.global().async {
@@ -37,5 +43,12 @@ struct Services {
                 }
             }
         }
+    }
+}
+
+extension Services: LearnContentServiceDelegate {
+
+    func updatedViewedAt(with itemId: Int, at date: Date) {
+        learnContent.updatedViewedAt(with: itemId, at: date)
     }
 }

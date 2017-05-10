@@ -69,7 +69,7 @@ final class TopTabBarController: UIViewController {
 
     fileprivate lazy var navigationItemBar: UIView = {
         let view = UIView()
-        view.backgroundColor = .clear
+        view.backgroundColor = self.item.theme == .dark ? .clear : .white
         
         return view
     }()
@@ -84,7 +84,7 @@ final class TopTabBarController: UIViewController {
     
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.backgroundColor = .clear
+        scrollView.backgroundColor = self.item.theme == .dark ? .clear : .white
         scrollView.isPagingEnabled = true
         scrollView.delegate = self
         scrollView.showsHorizontalScrollIndicator = false

@@ -10,6 +10,7 @@ import UIKit
 import QOTDatabase
 import AVFoundation
 import AVKit
+import RealmSwift
 
 protocol LearnContentItemViewControllerDelegate: class {
     func didTapClose(in viewController: LearnContentItemViewController)
@@ -23,6 +24,7 @@ final class LearnContentItemViewController: UIViewController {
     // MARK: properties
 
     weak var delegate: LearnContentItemViewControllerDelegate?
+    weak var serviceDelegate: LearnContentServiceDelegate?
     fileprivate let viewModel: LearnContentItemViewModel
     fileprivate var tableView = UITableView()
     fileprivate let scrollToClosePadding: CGFloat = 100
@@ -81,17 +83,11 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfItemsInSection(in: section)
     }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let maxAllowedYOffset = scrollView.contentSize.height - scrollView.frame.height + scrollToClosePadding
-        if scrollView.contentOffset.y > maxAllowedYOffset {
-            delegate?.didTapClose(in: self)
-        }
-    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let contentItem = viewModel.learnContentItems(in: indexPath.section)
-        let cotentItemValue = contentItem[indexPath.row].contentItemValue
+        let contentItem = viewModel.learnContentItems(in: indexPath.section)[indexPath.row]
+        let cotentItemValue = contentItem.contentItemValue
+        shouldMarkItemAsViewed(contentItem: contentItem as? ContentItem)
 
         switch cotentItemValue {
         case .bullet(let itemText),
@@ -177,5 +173,13 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
             imageCell.setupData(placeHolder: url, description: AttributedString.Learn.mediaDescription(string: title))
             imageCell.setInsets(insets: UIEdgeInsets(top: 14, left: 14, bottom: 14, right: 14))
             return imageCell
+    }
+
+    private func shouldMarkItemAsViewed(contentItem: ContentItem?) {
+        guard let contentItem = contentItem, contentItem.viewed == false else {
+            return
+        }
+
+        serviceDelegate?.updatedViewedAt(with: contentItem.remoteID, at: Date())
     }
 }

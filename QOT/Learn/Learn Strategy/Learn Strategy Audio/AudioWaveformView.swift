@@ -11,6 +11,8 @@ import UIKit
 
 final  class AudioWaveformView: UIView {
 
+    // MARK: - Properties
+
     var data: [CGFloat] = [] {
         didSet {
             redraw()
@@ -22,7 +24,6 @@ final  class AudioWaveformView: UIView {
     private(set) var minColorTop: UIColor = .lightGray
     private(set) var maxColorBottom: UIColor = .blue
     private(set) var maxColorTop: UIColor = .blue
-
     private var gradientLayers: [CAGradientLayer] = []
 
     override func layoutSubviews() {

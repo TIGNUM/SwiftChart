@@ -12,13 +12,15 @@ import Bond
 
 final class LearnStrategyAudioViewController: UIViewController {
 
-    let disposeBag = DisposeBag()
+    // MARK: - Properties
 
+    let disposeBag = DisposeBag()
     @IBOutlet fileprivate weak var tableView: UITableView!
     fileprivate let viewModel: LearnStrategyAudioViewModel
     weak var delegate: LearnContentItemViewControllerDelegate?
+    lazy var audioView = LearnStrategyAudioPlayerView.instatiateFromNib()
 
-    lazy var audioView: LearnStrategyAudioPlayerView = LearnStrategyAudioPlayerView.instatiateFromNib()
+    // MARK: - Init
 
     init(viewModel: LearnStrategyAudioViewModel) {
         self.viewModel = viewModel
@@ -29,30 +31,32 @@ final class LearnStrategyAudioViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
         tableView.registerDequeueable(LearnStrategyTitleAudioCell.self)
         tableView.registerDequeueable(LearnStrategyPlaylistAudioCell.self)
         tableView.estimatedRowHeight = 10
         tableView.rowHeight = UITableViewAutomaticDimension
 
-        viewModel.currentPosition.map { [unowned self] (interval) -> String in
+        viewModel.currentPosition.map { [unowned self] (interval) -> String in            
             return self.stringFromTimeInterval(interval: interval)
-            }.bind(to: audioView.currentPositionLabel)
+        }.bind(to: audioView.currentPositionLabel)
 
         viewModel.trackDuration.map { [unowned self] (interval) -> String in
             return self.stringFromTimeInterval(interval: interval)
-            }.bind(to: audioView.trackDurationLabel)
+        }.bind(to: audioView.trackDurationLabel)
 
         viewModel.currentPosition.observeNext { [unowned self] (interval) in
             let value = self.progress(currentPosition: interval, trackDuration: self.viewModel.trackDuration.value)
             self.audioView.audioWaveformView.setProgress(value: value)
-            }.dispose(in: disposeBag)
+        }.dispose(in: disposeBag)
 
         viewModel.soundPattern.observeNext { [unowned self] (data) in
             self.audioView.audioWaveformView.data = data
-            }.dispose(in: disposeBag)
-
+        }.dispose(in: disposeBag)
     }
 
     private func stringFromTimeInterval(interval: TimeInterval?) -> String {
@@ -86,7 +90,6 @@ extension LearnStrategyAudioViewController: UITableViewDelegate, UITableViewData
         default:
             fatalError("Invalid section")
         }
-
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -100,7 +103,7 @@ extension LearnStrategyAudioViewController: UITableViewDelegate, UITableViewData
             cell.setUp(title: viewModel.headline, subTitle: viewModel.subHeadline)
             return cell
         case 1:
-            let item = viewModel.audioItem(at: indexPath.item)
+            let item = viewModel.audioItem(at: indexPath.item, playing: false)
             let cell: LearnStrategyPlaylistAudioCell = tableView.dequeueCell(for: indexPath)
             cell.setUp(title: item.title, playing: item.playing)
             return cell
@@ -110,10 +113,7 @@ extension LearnStrategyAudioViewController: UITableViewDelegate, UITableViewData
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 1 {
-            return audioView
-        }
-        return nil
+        return section == 1 ? audioView : nil
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -122,9 +122,6 @@ extension LearnStrategyAudioViewController: UITableViewDelegate, UITableViewData
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 1 {
-            return 100
-        }
-        return 0
+        return section == 1 ? 100 : 0
     }
 }

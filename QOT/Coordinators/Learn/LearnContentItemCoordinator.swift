@@ -27,11 +27,15 @@ final class LearnContentItemCoordinator: ParentCoordinator {
     func start() {
         let viewModel = LearnContentItemViewModel(contentCollection: category.learnContent.item(at: selectedCategoryIndex))
         let vc = LearnContentItemViewController(viewModel: viewModel)
+        let audioViewModel = LearnStrategyAudioViewModel()
+        let audioViewController = LearnStrategyAudioViewController(viewModel: audioViewModel)
+        let bulletViewCOntroller = LearnContentItemBulletViewController(viewModel: viewModel)
+
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .custom
 
         let topTabBarControllerItem = TopTabBarController.Item(
-            controllers: [vc],
+            controllers: [vc, bulletViewCOntroller, audioViewController],
             titles: [
                 R.string.localized.learnContentItemTitleFull(),
                 R.string.localized.learnContentItemTitleBullets(),
@@ -46,6 +50,7 @@ final class LearnContentItemCoordinator: ParentCoordinator {
         )
 
         vc.delegate = self
+        vc.serviceDelegate = services
         topTabBarController.delegate = self
         rootVC.present(topTabBarController, animated: true)
         

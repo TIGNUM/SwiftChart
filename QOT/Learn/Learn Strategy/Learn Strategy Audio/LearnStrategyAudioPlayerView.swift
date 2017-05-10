@@ -10,16 +10,21 @@ import UIKit
 
 final class LearnStrategyAudioPlayerView: UIView {
 
+    // MARK: - Properties
+
     @IBOutlet weak var currentPositionLabel: UILabel!
     @IBOutlet weak var trackDurationLabel: UILabel!
     @IBOutlet weak var timerBackgroundView: UIView!
     @IBOutlet weak var audioWaveformView: AudioWaveformView!
 
+    // MARK: - Life Cycle
+
     override func awakeFromNib() {
         super.awakeFromNib()
+
         timerBackgroundView.layer.cornerRadius = 18
         timerBackgroundView.layer.borderWidth = 1
-        timerBackgroundView.layer.borderColor = UIColor.init(red: 151/255, green: 151/255, blue: 151/255, alpha: 1).cgColor
+        timerBackgroundView.layer.borderColor = UIColor(red: 151/255, green: 151/255, blue: 151/255, alpha: 1).cgColor
         trackDurationLabel.font = UIFont.simpleFont(ofSize: 14)
         currentPositionLabel.font = UIFont.simpleFont(ofSize: 14)
     }
@@ -28,6 +33,7 @@ final class LearnStrategyAudioPlayerView: UIView {
         guard let view = Bundle.main.loadNibNamed("LearnStrategyAudioPlayerView", owner: nil, options: nil)?.first as? LearnStrategyAudioPlayerView else {
             fatalError("Cannont instantiate LearnStrategyAudioPlayerView")
         }
+
         return view
     }
 }
