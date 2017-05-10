@@ -194,6 +194,8 @@
 		D521E3FE1EB8AF38008E24B1 /* SideBarShareAction.xib in Resources */ = {isa = PBXBuildFile; fileRef = D521E3FD1EB8AF38008E24B1 /* SideBarShareAction.xib */; };
 		D52350961E9FC1120013DE7E /* WhatsHotLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52350951E9FC1120013DE7E /* WhatsHotLayout.swift */; };
 		D52371531EA9F0B100165842 /* PrepareChatTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52371511EA9F0B100165842 /* PrepareChatTableCell.swift */; };
+		D52DAF9B1EC1E87D00C63156 /* SittingMovementChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52DAF9A1EC1E87D00C63156 /* SittingMovementChartView.swift */; };
+		D537B1E61EC200CD004C444D /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D537B1E51EC200CD004C444D /* GridView.swift */; };
 		D54D90281E979C30003924C9 /* LibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54D90261E979C30003924C9 /* LibraryViewController.xib */; };
 		D55CBED71E8A993200C690FB /* CGPoint+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55CBED61E8A993200C690FB /* CGPoint+Convenience.swift */; };
 		D57ECFB01E924CC2008F401B /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57ECFAF1E924CC2008F401B /* TabBarView.swift */; };
@@ -425,6 +427,8 @@
 		D521E3FD1EB8AF38008E24B1 /* SideBarShareAction.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideBarShareAction.xib; sourceTree = "<group>"; };
 		D52350951E9FC1120013DE7E /* WhatsHotLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsHotLayout.swift; sourceTree = "<group>"; };
 		D52371511EA9F0B100165842 /* PrepareChatTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareChatTableCell.swift; sourceTree = "<group>"; };
+		D52DAF9A1EC1E87D00C63156 /* SittingMovementChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SittingMovementChartView.swift; sourceTree = "<group>"; };
+		D537B1E51EC200CD004C444D /* GridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		D54D90261E979C30003924C9 /* LibraryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryViewController.xib; sourceTree = "<group>"; };
 		D55CBED61E8A993200C690FB /* CGPoint+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Convenience.swift"; sourceTree = "<group>"; };
 		D57ECFAF1E924CC2008F401B /* TabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
@@ -1314,6 +1318,8 @@
 			children = (
 				D5FA66941EB9FF0B00980EC7 /* EventGraphView.swift */,
 				D5FA66961EBB4DA600980EC7 /* HorizontalLinesChartView.swift */,
+				D52DAF9A1EC1E87D00C63156 /* SittingMovementChartView.swift */,
+				D537B1E51EC200CD004C444D /* GridView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1632,6 +1638,7 @@
 				D5EC34B61EB0D35D00F86B09 /* LearnStrategyTitleAudioCell.swift in Sources */,
 				CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */,
 				D55CBED71E8A993200C690FB /* CGPoint+Convenience.swift in Sources */,
+				D537B1E61EC200CD004C444D /* GridView.swift in Sources */,
 				CCCE09CC1EA67C78008730F1 /* MyToBeVisionViewModel.swift in Sources */,
 				CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */,
 				D5EC34AB1EB0D2FC00F86B09 /* LearnStrategyAudioPlayerView.swift in Sources */,
@@ -1680,6 +1687,7 @@
 				CB369CDB1E8D3E5700522293 /* RealmProvider.swift in Sources */,
 				CBDB98FD1E7BE6AF003EC73F /* CalendarEventData.swift in Sources */,
 				CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */,
+				D52DAF9B1EC1E87D00C63156 /* SittingMovementChartView.swift in Sources */,
 				CCE373161E8D330100B79352 /* LibraryViewModel.swift in Sources */,
 				0B40DC0B1E9CA6A500E1659B /* PrepareContentTextTableViewCell.swift in Sources */,
 				CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */,
