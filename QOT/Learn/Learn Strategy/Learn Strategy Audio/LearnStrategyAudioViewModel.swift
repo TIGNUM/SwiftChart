@@ -21,13 +21,13 @@ final class LearnStrategyAudioViewModel {
 
     var soundPattern = Property<[CGFloat]>(randomSoundPattern)
     var trackDuration = Property<TimeInterval>(623)
-    var currentPosition = Property<TimeInterval>(200)
+    var currentPosition = Property<TimeInterval>(0)
     fileprivate let item = audioStrategy
     fileprivate var currentIndex: Index = 0
     fileprivate var player = AVPlayer()
     fileprivate var timeObserver: Any?
-    private let updates = PublishSubject<CollectionUpdate, NoError>()
-
+    fileprivate var playingIndexPath: IndexPath?
+    let updates = PublishSubject<CollectionUpdate, NoError>()
 
     var audioItemsCount: Int {
         return item.tracks.count
@@ -41,12 +41,31 @@ final class LearnStrategyAudioViewModel {
         return item.subHeadline
     } 
 
-    func playItem(at index: Index) {
-        if player.rate == 0 {
-            play(url: audioTrack(at: index).url)
+    func playItem(at indexPath: IndexPath) {
+
+        let modifications: [IndexPath]
+        if let current = playingIndexPath {
+            if current == indexPath {
+                // stop
+                playingIndexPath = nil
+                modifications = [indexPath]
+                stopPlayback()
+            } else {
+                // stop current
+                // play new
+                playingIndexPath = indexPath
+                modifications = [current, indexPath]
+                stopPlayback()
+                play(url: audioTrack(at: indexPath.row).url)
+            }
         } else {
-            stopPlayback()
+            // play new
+            playingIndexPath = indexPath
+            modifications = [indexPath]
+            play(url: audioTrack(at: indexPath.row).url)
         }
+
+        updates.next(.update(deletions: [], insertions: [], modifications:modifications))
     }
 
     func stopPlayback() {
@@ -58,7 +77,9 @@ final class LearnStrategyAudioViewModel {
         }
     }
 
-    func audioItem(at index: Index, playing: Bool) -> AudioItem {
+    func audioItem(at index: Index) -> AudioItem {
+        let playing = playingIndexPath == nil ? false : (playingIndexPath!.row == index)
+
         return AudioItem(title: audioTrack(at: index).title, playing: playing)
     }
 

@@ -9,6 +9,8 @@
 import UIKit
 import ReactiveKit
 import Bond
+import AVFoundation
+import AVKit
 
 final class LearnStrategyAudioViewController: UIViewController {
 
@@ -57,6 +59,10 @@ final class LearnStrategyAudioViewController: UIViewController {
         viewModel.soundPattern.observeNext { [unowned self] (data) in
             self.audioView.audioWaveformView.data = data
         }.dispose(in: disposeBag)
+
+        viewModel.updates.observeNext { [unowned self] (_) in
+            self.tableView.reloadData()
+        }.dispose(in: disposeBag)
     }
 
     private func stringFromTimeInterval(interval: TimeInterval?) -> String {
@@ -103,7 +109,7 @@ extension LearnStrategyAudioViewController: UITableViewDelegate, UITableViewData
             cell.setUp(title: viewModel.headline, subTitle: viewModel.subHeadline)
             return cell
         case 1:
-            let item = viewModel.audioItem(at: indexPath.item, playing: false)
+            let item = viewModel.audioItem(at: indexPath.item)
             let cell: LearnStrategyPlaylistAudioCell = tableView.dequeueCell(for: indexPath)
             cell.setUp(title: item.title, playing: item.playing)
             return cell
@@ -118,7 +124,8 @@ extension LearnStrategyAudioViewController: UITableViewDelegate, UITableViewData
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        viewModel.playItem(at: indexPath.row)
+
+        viewModel.playItem(at: indexPath)
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
