@@ -49,6 +49,9 @@ extension Kingfisher where Base: ImageView {
      
      - note: Both the `progressBlock` and `completionHandler` will be invoked in main thread.
      The `CallbackDispatchQueue` specified in `optionsInfo` will not be used in callbacks of this method.
+     
+     If `resource` is `nil`, the `placeholder` image will be set and
+     `completionHandler` will be called with both `error` and `image` being `nil`.
      */
     @discardableResult
     public func setImage(with resource: Resource?,
@@ -75,8 +78,8 @@ extension Kingfisher where Base: ImageView {
         
         setWebURL(resource.downloadURL)
 
-        if base.shouldPreloadAllGIF() {
-            options.append(.preloadAllGIFData)
+        if base.shouldPreloadAllAnimation() {
+            options.append(.preloadAllAnimationData)
         }
         
         let task = KingfisherManager.shared.retrieveImage(
@@ -285,8 +288,9 @@ extension ImageView {
     fileprivate func kf_setImageTask(_ task: RetrieveImageTask?) { kf.setImageTask(task) }
     @available(*, deprecated, message: "Extensions directly on image views are deprecated.", renamed: "kf.setWebURL")
     fileprivate func kf_setWebURL(_ url: URL) { kf.setWebURL(url) }
-}
 
-extension ImageView {
+    func shouldPreloadAllAnimation() -> Bool { return true }
+
+    @available(*, deprecated, renamed: "shouldPreloadAllAnimation")
     func shouldPreloadAllGIF() -> Bool { return true }
 }

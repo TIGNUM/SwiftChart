@@ -14,7 +14,7 @@ final class PartnersViewModel {
 
     let items: [Partner]
     let headline: String
-    private var selectedIndex: Index
+    private(set) var selectedIndex: Index
     fileprivate var currentEditPartner: Partner?
 
     init(items: [Partner], selectedIndex: Index, headline: String) {

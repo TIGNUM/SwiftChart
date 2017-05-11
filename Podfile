@@ -14,6 +14,7 @@ target 'QOT' do
   pod 'UICollectionViewRightAlignedLayout', '~> 0.0'
   pod 'Kingfisher', '~> 3.6'
   pod 'LoremIpsum', '~> 1.0'
+  pod 'iCarousel'
 
   target 'QOTTests' do
     inherit! :search_paths

@@ -18,6 +18,9 @@
 		0B40DC101E9CA6E100E1659B /* PrepareContentVideoPreviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B40DC0E1E9CA6E100E1659B /* PrepareContentVideoPreviewTableViewCell.xib */; };
 		0B40DC151E9CA71400E1659B /* PrepareContentHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B40DC131E9CA71400E1659B /* PrepareContentHeaderTableViewCell.swift */; };
 		0B40DC161E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B40DC141E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib */; };
+		0BB099CB1EBC6323006B2FB7 /* CarouselCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB099C81EBC6323006B2FB7 /* CarouselCellView.swift */; };
+		0BB099CC1EBC6323006B2FB7 /* CarouselCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BB099C91EBC6323006B2FB7 /* CarouselCellView.xib */; };
+		0BB099CD1EBC6323006B2FB7 /* PartnersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BB099CA1EBC6323006B2FB7 /* PartnersViewController.xib */; };
 		0BC1FF4B1E968E07007DE090 /* CollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1FF491E968E07007DE090 /* CollectionTableViewCell.swift */; };
 		0BC1FF4C1E968E07007DE090 /* CollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC1FF4A1E968E07007DE090 /* CollectionTableViewCell.xib */; };
 		0BC9F9361E96118C009E8204 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC9F92C1E96118C009E8204 /* ChatTableViewCell.swift */; };
@@ -244,6 +247,9 @@
 		0B40DC0E1E9CA6E100E1659B /* PrepareContentVideoPreviewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentVideoPreviewTableViewCell.xib; sourceTree = "<group>"; };
 		0B40DC131E9CA71400E1659B /* PrepareContentHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		0B40DC141E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		0BB099C81EBC6323006B2FB7 /* CarouselCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarouselCellView.swift; sourceTree = "<group>"; };
+		0BB099C91EBC6323006B2FB7 /* CarouselCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarouselCellView.xib; sourceTree = "<group>"; };
+		0BB099CA1EBC6323006B2FB7 /* PartnersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PartnersViewController.xib; sourceTree = "<group>"; };
 		0BC1FF491E968E07007DE090 /* CollectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionTableViewCell.swift; sourceTree = "<group>"; };
 		0BC1FF4A1E968E07007DE090 /* CollectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionTableViewCell.xib; sourceTree = "<group>"; };
 		0BC9F92C1E96118C009E8204 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
@@ -512,6 +518,15 @@
 				0B40DC141E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib */,
 			);
 			path = PrepareContentHeaderTableViewCell;
+			sourceTree = "<group>";
+		};
+		0BB099C71EBC6323006B2FB7 /* CarouselCellView */ = {
+			isa = PBXGroup;
+			children = (
+				0BB099C81EBC6323006B2FB7 /* CarouselCellView.swift */,
+				0BB099C91EBC6323006B2FB7 /* CarouselCellView.xib */,
+			);
+			path = CarouselCellView;
 			sourceTree = "<group>";
 		};
 		0BC9F9251E96118C009E8204 /* CollectionTableViewCell */ = {
@@ -939,7 +954,9 @@
 		CC0FF8D01EA7841A0028D64F /* QOT Partners */ = {
 			isa = PBXGroup;
 			children = (
+				0BB099C71EBC6323006B2FB7 /* CarouselCellView */,
 				CC0FF8D91EA790750028D64F /* PartnersCoordinator.swift */,
+				0BB099CA1EBC6323006B2FB7 /* PartnersViewController.xib */,
 				CC0FF8D31EA788350028D64F /* PartnersViewController.swift */,
 				CC0FF8D11EA784400028D64F /* PartnersViewModel.swift */,
 			);
@@ -1404,8 +1421,8 @@
 				TargetAttributes = {
 					CBB237EB1E6FFF1200AB5AEF = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 4FQQH349R5;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = PA7U84NCWZ;
+						ProvisioningStyle = Automatic;
 					};
 					CBB237FF1E6FFF1200AB5AEF = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1484,12 +1501,14 @@
 				0BC9F9371E96118C009E8204 /* ChatTableViewCell.xib in Resources */,
 				CC311A231EAF431E0020C869 /* SettingsControlTableViewCell.xib in Resources */,
 				0BD6F6BB1EA0E81E001EBC4D /* MyPrepViewController.xib in Resources */,
+				0BB099CD1EBC6323006B2FB7 /* PartnersViewController.xib in Resources */,
 				0BEE8AC11EA600A7008077B8 /* PrepareEventsViewController.xib in Resources */,
 				D521E3FE1EB8AF38008E24B1 /* SideBarShareAction.xib in Resources */,
 				0B40DC0C1E9CA6A500E1659B /* PrepareContentTextTableViewCell.xib in Resources */,
 				D519E08F1EAA5403004F96E7 /* PrepareChatTableCell.xib in Resources */,
 				CBB237F71E6FFF1200AB5AEF /* Assets.xcassets in Resources */,
 				D58BD8781E9F65F7005676DE /* WhatsHotCell.xib in Resources */,
+				0BB099CC1EBC6323006B2FB7 /* CarouselCellView.xib in Resources */,
 				D54D90281E979C30003924C9 /* LibraryViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1720,6 +1739,7 @@
 				CB55A2E11E9FDF1D00D721CE /* SettingsMenuViewModel.swift in Sources */,
 				CC311A1D1EAF39DF0020C869 /* SettingsTableViewCell.swift in Sources */,
 				CCE372FF1E8D2AE700B79352 /* MyPrepViewModel.swift in Sources */,
+				0BB099CB1EBC6323006B2FB7 /* CarouselCellView.swift in Sources */,
 				CCC1B6AB1E8B9B7300D1461F /* LearnCategoryListViewModel.swift in Sources */,
 				CCE372FD1E8D2AD100B79352 /* MyPrepViewController.swift in Sources */,
 				CC0FF8D81EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift in Sources */,
@@ -1918,7 +1938,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 4FQQH349R5;
+				DEVELOPMENT_TEAM = PA7U84NCWZ;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = QOT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1935,8 +1955,8 @@
 			baseConfigurationReference = 2F1C8D6D4864F462A3F805BB /* Pods-QOT.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = 4FQQH349R5;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = PA7U84NCWZ;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = QOT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
