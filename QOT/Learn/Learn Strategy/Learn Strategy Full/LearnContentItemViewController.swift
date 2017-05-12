@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import QOTDatabase
 import AVFoundation
 import AVKit
 import RealmSwift

@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-public protocol SyncableRealmObject: Syncable {
+protocol SyncableRealmObject: Syncable {
     /// - warning: This property is for internal use and should not be accessed directly.
     var _remoteID: RealmOptional<Int> { get }
     /// - warning: This property is for internal use and should not be accessed directly.
@@ -18,12 +18,12 @@ public protocol SyncableRealmObject: Syncable {
 
 extension SyncableRealmObject {
 
-    public var remoteID: Int? {
+    var remoteID: Int? {
         get { return _remoteID.value }
         set { _remoteID.value = newValue }
     }
 
-    public var syncStatus: SyncStatus {
+    var syncStatus: SyncStatus {
         get {
             guard let syncStatus = SyncStatus(rawValue: _syncStatus) else {
                 fatalError("Invalid state: \(self)")

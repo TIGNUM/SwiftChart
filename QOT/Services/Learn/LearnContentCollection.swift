@@ -9,7 +9,6 @@
 import Foundation
 import RealmSwift
 import Realm
-import QOTDatabase
 
 /// Encapsulates data to display in a `LearnContentListViewController`.
 protocol LearnContentCollection: TrackableEntity {

@@ -1,6 +1,3 @@
-source 'https://github.com/TIGNUM/Specs.git'
-source 'https://github.com/CocoaPods/Specs.git'
-
 platform :ios, '10.0'
 
 target 'QOT' do
@@ -10,11 +7,12 @@ target 'QOT' do
   pod 'Bond', '~> 6.0'
   pod 'Anchorage', '~> 3.1'
   pod 'R.swift', '~> 3.2'
-  pod 'QOTDatabase', '~> 0.5.1'
   pod 'UICollectionViewRightAlignedLayout', '~> 0.0'
   pod 'Kingfisher', '~> 3.6'
   pod 'LoremIpsum', '~> 1.0'
   pod 'iCarousel'
+  pod 'RealmSwift', '2.7.0'
+  pod 'Freddy', '3.0.0'
 
   target 'QOTTests' do
     inherit! :search_paths

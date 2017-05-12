@@ -8,7 +8,6 @@
 
 import Foundation
 import RealmSwift
-import QOTDatabase
 
 protocol LearnContentServiceDelegate: class {
     func updatedViewedAt(with itemId: Int, at date: Date)

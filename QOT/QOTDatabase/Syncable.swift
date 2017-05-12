@@ -9,13 +9,13 @@
 import Foundation
 
 // FIXME: Unit test to ensure raw values values don't change.
-public enum SyncStatus: Int8 {
+enum SyncStatus: Int8 {
     case clean = 0
     case updated = 1
     case deleted = 2
 }
 
-public protocol Syncable {
+protocol Syncable {
     associatedtype Data
     associatedtype Parent
 
@@ -28,4 +28,4 @@ public protocol Syncable {
     func setData(_ data: Data) throws
 }
 
-public enum NoParent {}
+enum NoParent {}

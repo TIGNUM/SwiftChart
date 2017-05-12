@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol ContentItemDataProtocol {
+protocol ContentItemDataProtocol {
 
     var sortOrder: Int { get }
 
@@ -38,18 +38,18 @@ public protocol ContentItemDataProtocol {
     var layoutInfo: String? { get }
 }
 
-public struct ContentItemData: ContentItemDataProtocol {
+struct ContentItemData: ContentItemDataProtocol {
 
-    public let sortOrder: Int
-    public let title: String
-    public let secondsRequired: Int
-    public let value: String
-    public let format: Int8
-    public let viewAt: Date?
-    public let searchTags: String
-    public var layoutInfo: String?
+    let sortOrder: Int
+    let title: String
+    let secondsRequired: Int
+    let value: String
+    let format: Int8
+    let viewAt: Date?
+    let searchTags: String
+    var layoutInfo: String?
 
-    public init(sortOrder: Int, title: String, secondsRequired: Int, value: String, format: Int8, viewAt: Date?, searchTags: String, layoutInfo: String?) {
+    init(sortOrder: Int, title: String, secondsRequired: Int, value: String, format: Int8, viewAt: Date?, searchTags: String, layoutInfo: String?) {
         self.sortOrder = sortOrder
         self.title = title
         self.secondsRequired = secondsRequired

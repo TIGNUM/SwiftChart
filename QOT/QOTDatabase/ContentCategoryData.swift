@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol ContentCategoryDataProtocol {
+protocol ContentCategoryDataProtocol {
 
     var sortOrder: Int { get }
 
@@ -31,14 +31,14 @@ public protocol ContentCategoryDataProtocol {
     var layoutInfo: String? { get }
 }
 
-public struct ContentCategoryData: ContentCategoryDataProtocol {
+struct ContentCategoryData: ContentCategoryDataProtocol {
 
-    public let sortOrder: Int
-    public let section: String
-    public let title: String
-    public let layoutInfo: String?
+    let sortOrder: Int
+    let section: String
+    let title: String
+    let layoutInfo: String?
 
-    public init(sortOrder: Int, section: String, title: String, layoutInfo: String?) {
+    init(sortOrder: Int, section: String, title: String, layoutInfo: String?) {
         self.sortOrder = sortOrder
         self.section = section
         self.title = title

@@ -8,7 +8,6 @@
 
 import Foundation
 import ReactiveKit
-import QOTDatabase
 
 final class LearnContentItemViewModel {
 

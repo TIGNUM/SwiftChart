@@ -8,7 +8,6 @@
 
 import Foundation
 import RealmSwift
-import QOTDatabase
 import LoremIpsum
 
 // FIXME: Remove when no longer needed

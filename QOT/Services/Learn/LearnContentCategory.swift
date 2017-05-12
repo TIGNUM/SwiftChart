@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import QOTDatabase
 
 /// Encapsulates data to display in a `LearnCategoryListViewController`.
 protocol LearnContentCategory: TrackableEntity {
@@ -34,7 +33,7 @@ extension ContentCategory: LearnContentCategory {
 
     var bubbleLayoutInfo: BubbleLayoutInfo {
         do {
-            return try bubbleLayoutInfo()
+            return try getBubbleLayoutInfo()
         } catch let error {
             fatalError("bubbleLayoutInfo \(error)")
         }

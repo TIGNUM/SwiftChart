@@ -9,7 +9,6 @@
 import Foundation
 import RealmSwift
 import Realm
-import QOTDatabase
 
 protocol LearnContentItem: TrackableEntity {
     /// Whether the content has been viewed.
@@ -24,7 +23,7 @@ extension ContentItem: LearnContentItem {
 
     var contentItemValue: ContentItemValue {
         do {
-            return try contentItemValue()
+            return try getContentItemValue()
         } catch let error {
             fatalError("OMG \(error)")
         }

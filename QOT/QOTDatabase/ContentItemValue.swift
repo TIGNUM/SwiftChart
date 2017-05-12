@@ -10,7 +10,7 @@ import Foundation
 import Freddy
 
 // FIXME: Unit test
-public enum ContentItemValue {
+enum ContentItemValue {
 
     case text(String)
     case video(title: String, description: String?, placeholderURL: URL, videoURL: URL, duration: TimeInterval)
@@ -56,7 +56,7 @@ public enum ContentItemValue {
 }
 
 // FIXME: Unit test
-public enum ContentItemFormat: Int8 {
+enum ContentItemFormat: Int8 {
     case text = 0
     case video = 1
     case audio = 2

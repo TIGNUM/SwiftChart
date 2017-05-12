@@ -8,9 +8,6 @@ PODS:
   - iCarousel (1.8.3)
   - Kingfisher (3.7.1)
   - LoremIpsum (1.0.0)
-  - QOTDatabase (0.5.1):
-    - Freddy (~> 3.0.0)
-    - RealmSwift (~> 2.5)
   - R.swift (3.2.0):
     - R.swift.Library (~> 3.0.2)
   - R.swift.Library (3.0.2)
@@ -25,11 +22,12 @@ PODS:
 DEPENDENCIES:
   - Anchorage (~> 3.1)
   - Bond (~> 6.0)
+  - Freddy (= 3.0.0)
   - iCarousel
   - Kingfisher (~> 3.6)
   - LoremIpsum (~> 1.0)
-  - QOTDatabase (~> 0.5.1)
   - R.swift (~> 3.2)
+  - RealmSwift (= 2.7.0)
   - UICollectionViewRightAlignedLayout (~> 0.0)
 
 SPEC CHECKSUMS:
@@ -40,7 +38,6 @@ SPEC CHECKSUMS:
   iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
   Kingfisher: c09cece8e201b6abd7b6866ea26f73b2379208d2
   LoremIpsum: 9029c55d36501b2ee0b05cc9ecda11d3a0479160
-  QOTDatabase: 3d70d0f785ea52d6e676a81c1c70c3410bca715d
   R.swift: 207a372a2b5977caef440c696a368009460641d1
   R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
   ReactiveKit: 39a0723167d04107140cf540f04526deecd18891
@@ -48,6 +45,6 @@ SPEC CHECKSUMS:
   RealmSwift: 6d06425d3900c86473c4f323bf6949b43fca22bc
   UICollectionViewRightAlignedLayout: 823eef8c567eba4a44c21bc2ffcb0d0d5f361e2d
 
-PODFILE CHECKSUM: 186f230ead1711519fb018ee42c2ceb87f0f61ea
+PODFILE CHECKSUM: a13b0baa6c89b942b102b8e907391b5658bb97ee
 
 COCOAPODS: 1.2.0
