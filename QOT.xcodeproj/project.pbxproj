@@ -18,6 +18,10 @@
 		0B40DC101E9CA6E100E1659B /* PrepareContentVideoPreviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B40DC0E1E9CA6E100E1659B /* PrepareContentVideoPreviewTableViewCell.xib */; };
 		0B40DC151E9CA71400E1659B /* PrepareContentHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B40DC131E9CA71400E1659B /* PrepareContentHeaderTableViewCell.swift */; };
 		0B40DC161E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B40DC141E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib */; };
+		0B573CA41EC3218D00A03602 /* MeetingLengthChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B573CA31EC3218D00A03602 /* MeetingLengthChartView.swift */; };
+		0B573CA61EC3219900A03602 /* DailyMeetingChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B573CA51EC3219900A03602 /* DailyMeetingChartView.swift */; };
+		0BA3E6411EC1A8280012999E /* DashedProgressWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA3E63F1EC1A8280012999E /* DashedProgressWheel.swift */; };
+		0BA3E6421EC1A8280012999E /* DayEventChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA3E6401EC1A8280012999E /* DayEventChartView.swift */; };
 		0BB099CB1EBC6323006B2FB7 /* CarouselCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB099C81EBC6323006B2FB7 /* CarouselCellView.swift */; };
 		0BB099CC1EBC6323006B2FB7 /* CarouselCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BB099C91EBC6323006B2FB7 /* CarouselCellView.xib */; };
 		0BB099CD1EBC6323006B2FB7 /* PartnersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BB099CA1EBC6323006B2FB7 /* PartnersViewController.xib */; };
@@ -250,6 +254,10 @@
 		0B40DC0E1E9CA6E100E1659B /* PrepareContentVideoPreviewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentVideoPreviewTableViewCell.xib; sourceTree = "<group>"; };
 		0B40DC131E9CA71400E1659B /* PrepareContentHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		0B40DC141E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		0B573CA31EC3218D00A03602 /* MeetingLengthChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetingLengthChartView.swift; sourceTree = "<group>"; };
+		0B573CA51EC3219900A03602 /* DailyMeetingChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyMeetingChartView.swift; sourceTree = "<group>"; };
+		0BA3E63F1EC1A8280012999E /* DashedProgressWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashedProgressWheel.swift; sourceTree = "<group>"; };
+		0BA3E6401EC1A8280012999E /* DayEventChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayEventChartView.swift; sourceTree = "<group>"; };
 		0BB099C81EBC6323006B2FB7 /* CarouselCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarouselCellView.swift; sourceTree = "<group>"; };
 		0BB099C91EBC6323006B2FB7 /* CarouselCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarouselCellView.xib; sourceTree = "<group>"; };
 		0BB099CA1EBC6323006B2FB7 /* PartnersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PartnersViewController.xib; sourceTree = "<group>"; };
@@ -1359,6 +1367,10 @@
 		D50D6C211EB8DE3B009FFDBE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0BA3E63F1EC1A8280012999E /* DashedProgressWheel.swift */,
+				0B573CA31EC3218D00A03602 /* MeetingLengthChartView.swift */,
+				0BA3E6401EC1A8280012999E /* DayEventChartView.swift */,
+				0B573CA51EC3219900A03602 /* DailyMeetingChartView.swift */,
 				CC335EE81EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift */,
 				CC335EE61EBC84780085F5C5 /* ContentItemTextTableViewCell.xib */,
 				D50D6C221EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift */,
@@ -1706,6 +1718,7 @@
 				CC9FBDE81EAE58F300AF1CF0 /* SettingsMenuCoordinator.swift in Sources */,
 				CC9663181EA1B86100B84B1C /* MyDataSectorLabelsView.swift in Sources */,
 				CC6B3A2F1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift in Sources */,
+				0BA3E6411EC1A8280012999E /* DashedProgressWheel.swift in Sources */,
 				CC94F5621EB08EE400051CF8 /* AudioWaveformView.swift in Sources */,
 				0B40DC151E9CA71400E1659B /* PrepareContentHeaderTableViewCell.swift in Sources */,
 				CB8A15331E76F56D0023B2F9 /* TrackableEntity.swift in Sources */,
@@ -1722,6 +1735,8 @@
 				D5C15BAC1EB350FB0030953F /* SideBarTextCell.swift in Sources */,
 				CCD377541E8D3C2D00BB8031 /* WhatsHotNewTemplateViewModel.swift in Sources */,
 				D52371531EA9F0B100165842 /* PrepareChatTableCell.swift in Sources */,
+				CC94F5631EB08EE400051CF8 /* LearnStrategyAudioCoordinator.swift in Sources */,
+				0B573CA61EC3219900A03602 /* DailyMeetingChartView.swift in Sources */,
 				CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */,
 				CBDB990E1E7BFD05003EC73F /* CalendarEventParticipantData.swift in Sources */,
 				CB8A15271E76A1280023B2F9 /* PageEvent.swift in Sources */,
@@ -1783,6 +1798,7 @@
 				D52350961E9FC1120013DE7E /* WhatsHotLayout.swift in Sources */,
 				CC13E2401EB1D72400C3CE46 /* LatestCollectionCell.swift in Sources */,
 				CC0FF8D61EA78C810028D64F /* MyToBeVisionCoordinator.swift in Sources */,
+				0BA3E6421EC1A8280012999E /* DayEventChartView.swift in Sources */,
 				0BC1FF4B1E968E07007DE090 /* CollectionTableViewCell.swift in Sources */,
 				CC13E2481EB1D72E00C3CE46 /* LatestPostCell.swift in Sources */,
 				D57ECFB01E924CC2008F401B /* TabBarView.swift in Sources */,
@@ -1814,6 +1830,7 @@
 				CCEA22A51E8AC53E003D0CF4 /* PrepareCheckListViewModel.swift in Sources */,
 				CB8A15311E76F31B0023B2F9 /* PageTrackable.swift in Sources */,
 				D58BD8771E9F65F7005676DE /* WhatsHotCell.swift in Sources */,
+				0B573CA41EC3218D00A03602 /* MeetingLengthChartView.swift in Sources */,
 				CC8D6D001EC316A1007AE687 /* LearnContentItemBulletViewController.swift in Sources */,
 				D58BD86A1E9D1E7F005676DE /* NSFile+Convenience.swift in Sources */,
 				D5FA66951EB9FF0B00980EC7 /* EventGraphView.swift in Sources */,
