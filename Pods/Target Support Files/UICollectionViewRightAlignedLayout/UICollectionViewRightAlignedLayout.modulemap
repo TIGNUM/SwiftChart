@@ -1,6 +1,0 @@
-framework module UICollectionViewRightAlignedLayout {
-  umbrella header "UICollectionViewRightAlignedLayout-umbrella.h"
-
-  export *
-  module * { export * }
-}
