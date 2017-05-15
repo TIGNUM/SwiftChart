@@ -12,11 +12,13 @@ import RealmSwift
 
 final class Services {
 
-    let learnContent: LearnContentService
+    let learnContentService: LearnContentService
+    let prepareContentService: PrepareContentService
     weak var learnCategoryUpdateDelegate: LearnCategoryUpdateDelegate?
 
-    init(learnContent: LearnContentService) {
-        self.learnContent = learnContent
+    init(learnContentService: LearnContentService, prepareContentService: PrepareContentService) {
+        self.learnContentService = learnContentService
+        self.prepareContentService = prepareContentService
     }
 
     static func make(completion: @escaping (Result<Services, NSError>) -> Void) {
@@ -34,8 +36,9 @@ final class Services {
                 do {
                     let realmProvider = RealmProvider()
                     let mainRealm = try realmProvider.realm()
-                    let learnContent = LearnContentService(mainRealm: mainRealm, realmProvider: realmProvider)
-                    let services = Services(learnContent: learnContent)
+                    let learnContentService = LearnContentService(mainRealm: mainRealm, realmProvider: realmProvider)
+                    let prepareContentService = PrepareContentService(mainRealm: mainRealm, realmProvider: realmProvider)
+                    let services = Services(learnContentService: learnContentService, prepareContentService: prepareContentService)
 
                     completion(.success(services))
                 } catch let error as NSError {
@@ -49,6 +52,6 @@ final class Services {
 extension Services: LearnContentServiceDelegate {
 
     func updatedViewedAt(with itemId: Int, at date: Date) {
-        learnContent.updatedViewedAt(with: itemId, at: date)
+        learnContentService.updatedViewedAt(with: itemId, at: date)
     }
 }

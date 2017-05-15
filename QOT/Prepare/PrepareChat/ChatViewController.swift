@@ -12,7 +12,7 @@ import ReactiveKit
 import Bond
 
 protocol ChatViewDelegate: class {
-    func didSelectChatNavigation(_ navigation: ChatMessageNavigation, in viewController: ChatViewController)
+    func didSelectChatNavigation(_ navigation: PrepareContentCollection, in viewController: ChatViewController)
     func didSelectChatInput(_ input: ChatMessageInput, in viewController: ChatViewController)
 }
 
@@ -95,8 +95,8 @@ class ChatViewController: UIViewController, Dequeueable, CollectionViewCellDeleg
         switch chatMessage {
         case .instruction, .header:
             break
-        case .navigation(let items):
-            delegate?.didSelectChatNavigation(items.item(at: index), in: self)
+        case .navigation(let prepareContentCategory):
+            delegate?.didSelectChatNavigation(prepareContentCategory.prepareContentCollection.item(at: index), in: self)
         case .input(let items):
             delegate?.didSelectChatInput(items.item(at: index), in: self)
         }
@@ -134,16 +134,19 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
             cell.statusLabel.text = title
             return cell
 
-        case .navigation(let items):
+        case .navigation(let prepareContentCategory):
             let collectionCell: CollectionTableViewCell = tableView.dequeueCell(for: indexPath)
             collectionCell.cellTitleLabel.text = "Preparations".uppercased()
             collectionCell.delegate = self
+
             var prepareChatObjects: [PrepareChatObject] = []
-            for item in items {
+
+            for item in prepareContentCategory.prepareContentCollection.items {
                 let obj = PrepareChatObject(title: item.title, localID: item.localID, selected: item.selected, style: .dashed)
                 prepareChatObjects.append(obj)
             }
             collectionCell.inputWithDataModel(dataModel: prepareChatObjects)
+
             return collectionCell
 
         case .input(let items):
@@ -169,8 +172,8 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         switch chatMessage {
         case .instruction, .header:
             return UITableViewAutomaticDimension
-        case .navigation(let items):
-            let titles = items.map {$0.title}
+        case .navigation(let prepareContentCategory):
+            let titles = prepareContentCategory.prepareContentCollection.items.map {$0.title}
             return heightOfCollectionViewBasedOnNumberOfItems(items: titles)
         case .input(let items):
             let titles = items.map {$0.title}

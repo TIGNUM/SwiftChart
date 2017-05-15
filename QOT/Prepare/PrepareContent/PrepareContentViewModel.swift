@@ -10,7 +10,7 @@ import Foundation
 import ReactiveKit
 
 final class PrepareContentViewModel {
-    private var items: [PrepareContentItem] = makeMockContentItems()
+    private var items: [PrepareContentItemType] = makeMockContentItems()
 
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
@@ -18,11 +18,11 @@ final class PrepareContentViewModel {
         return items.count
     }
 
-    func item(at index: Int) -> PrepareContentItem {
+    func item(at index: Int) -> PrepareContentItemType {
         return items[index]
     }
 
-    func didTapHeader(item: PrepareContentItem) {
+    func didTapHeader(item: PrepareContentItemType) {
         switch item {
         case .header(let sectionID, _, let open):
             headerStates[sectionID] = !open
@@ -34,7 +34,7 @@ final class PrepareContentViewModel {
     }
 }
 
-enum PrepareContentItem {
+enum PrepareContentItemType {
     case title(localID: String, text: String)
     case text(localID: String, text: String)
     case video(localID: String, placeholderURL: URL)
@@ -56,8 +56,8 @@ private var headerStates: [String: Bool] = [
     afterTravelHeaderID: false
 ]
 
-private func makeMockContentItems() -> [PrepareContentItem] {
-    var items: [PrepareContentItem] = []
+private func makeMockContentItems() -> [PrepareContentItemType] {
+    var items: [PrepareContentItemType] = []
 
     items.append(.title(localID: UUID().uuidString, text: "SUSTAINABLE HIGH PERFORMANCE TRAVEL"))
 
@@ -74,10 +74,10 @@ private func makeMockContentItems() -> [PrepareContentItem] {
     return items
 }
 
-private func makeMockSectionItems(sectionID: String, title: String) -> [PrepareContentItem] {
+private func makeMockSectionItems(sectionID: String, title: String) -> [PrepareContentItemType] {
     let open = headerStates[sectionID]!
 
-    var items: [PrepareContentItem] = [.header(sectionID: sectionID, title: title, open: open)]
+    var items: [PrepareContentItemType] = [.header(sectionID: sectionID, title: title, open: open)]
     if !open {
         return items
     } else {

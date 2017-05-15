@@ -40,6 +40,15 @@ extension NSAttributedString {
     }
 }
 
+// MARK String
+
+extension String {
+
+    static func realmSectionFilter(filter: String) -> String {
+        return String(format: "section == '%@'", filter)
+    }
+}
+
 // MARK: - UIBezierPath
 
 extension UIBezierPath {

@@ -17,7 +17,8 @@ func setupRealmWithMockData(realm: Realm) {
     do {
         try realm.write {
             if realm.objects(ContentCategory.self).count == 0 {
-                addMockContentCategories(realm: realm)
+                addMockLearnContentCategories(realm: realm)
+                addMockPrepareContentCategories(realm: realm)
             }
         }
     } catch let error {
@@ -27,14 +28,32 @@ func setupRealmWithMockData(realm: Realm) {
 
 // MARK: - LearnContentCategory
 
-private func addMockContentCategories(realm: Realm) {
+private func addMockLearnContentCategories(realm: Realm) {
     let categories: [ContentCategory] = [
-        mockContentCategory(sortOrder: 0, title: "PERFOFMANCE MINDSET", section: "learn.strategie", layoutInfo: layoutInfoMindset),
-        mockContentCategory(sortOrder: 1, title: "PERFOFMANCE RECOVERY", section: "learn.strategie", layoutInfo: layoutInfoRecovery),
-        mockContentCategory(sortOrder: 2, title: "PERFOFMANCE HABITUATION", section: "learn.strategie", layoutInfo: layoutInfoHabituation),
-        mockContentCategory(sortOrder: 3, title: "PERFOFMANCE MOVEMENT", section: "learn.strategie", layoutInfo: layoutInfoMovement),
-        mockContentCategory(sortOrder: 4, title: "PERFOFMANCE NUTRITION", section: "learn.strategie", layoutInfo: layoutInfoNutition),
-        mockContentCategory(sortOrder: 5, title: "PERFOFMANCE FOUNDATION", section: "learn.strategie", layoutInfo: layoutInfoFoundation)
+        mockContentCategory(sortOrder: 0,
+                            title: "PERFOFMANCE MINDSET",
+                            section: Database.Section.learnStrategy.rawValue,
+                            layoutInfo: layoutInfoMindset),
+        mockContentCategory(sortOrder: 1,
+                            title: "PERFOFMANCE RECOVERY",
+                            section: Database.Section.learnStrategy.rawValue,
+                            layoutInfo: layoutInfoRecovery),
+        mockContentCategory(sortOrder: 2,
+                            title: "PERFOFMANCE HABITUATION",
+                            section: Database.Section.learnStrategy.rawValue,
+                            layoutInfo: layoutInfoHabituation),
+        mockContentCategory(sortOrder: 3,
+                            title: "PERFOFMANCE MOVEMENT",
+                            section: Database.Section.learnStrategy.rawValue,
+                            layoutInfo: layoutInfoMovement),
+        mockContentCategory(sortOrder: 4,
+                            title: "PERFOFMANCE NUTRITION",
+                            section: Database.Section.learnStrategy.rawValue,
+                            layoutInfo: layoutInfoNutition),
+        mockContentCategory(sortOrder: 5,
+                            title: "PERFOFMANCE FOUNDATION",
+                            section: Database.Section.learnStrategy.rawValue,
+                            layoutInfo: layoutInfoFoundation)
     ]
 
     for category in categories {

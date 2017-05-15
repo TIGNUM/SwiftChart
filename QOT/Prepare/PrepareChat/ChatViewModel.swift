@@ -13,12 +13,17 @@ final class ChatViewModel {
 
     // MARK: - Properties
 
-    fileprivate var mockChatMessages: [ChatMessage] = mockChatMessage
     fileprivate var chatMessages = [ChatMessage]()
+    fileprivate let prepareContentCategory: PrepareContentCategory
     fileprivate var timer: Timer?
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
-    init() {
+    fileprivate lazy var mockChatMessages: [ChatMessage] = {
+        return mockChatMessage(prepareContentCategory: self.prepareContentCategory)
+    }()
+
+    init(prepareContentCategory: PrepareContentCategory) {
+        self.prepareContentCategory = prepareContentCategory
         setupTimer()
     }
 
@@ -59,7 +64,7 @@ extension ChatViewModel {
 enum ChatMessage {
     case instruction(type: InstructionType, showIcon: Bool)
     case header(title: String, alignment: NSTextAlignment)
-    case navigation([ChatMessageNavigation])
+    case navigation(PrepareContentCategory)
     case input([ChatMessageInput])
 
     enum InstructionType {
@@ -68,39 +73,16 @@ enum ChatMessage {
     }
 }
 
-protocol ChatMessageNavigation {
-    var localID: String { get }
-    var title: String { get }
-    var selected: Bool { get }
-}
-
 protocol ChatMessageInput {
     var localID: String { get }
     var title: String { get }
     var selected: Bool { get }
 }
 
-private struct MockChatMessageNavigation: ChatMessageNavigation {
-    let localID = UUID().uuidString
-    let title: String
-    let selected: Bool
-}
-
 private struct MockChatMessageInput: ChatMessageInput {
     let localID = UUID().uuidString
     let title: String
     let selected: Bool
-}
-
-private var chatMessageNavigations: [ChatMessageNavigation] {
-    return [
-        MockChatMessageNavigation(title: "Meeting", selected: false),
-        MockChatMessageNavigation(title: "Negotiation", selected: false),
-        MockChatMessageNavigation(title: "Presentation", selected: false),
-        MockChatMessageNavigation(title: "Business Dinner", selected: false),
-        MockChatMessageNavigation(title: "Pre-Vacation", selected: false),
-        MockChatMessageNavigation(title: "Work to home transition", selected: false)
-    ]
 }
 
 private var chatMessageInputs: [ChatMessageInput] {
@@ -110,11 +92,11 @@ private var chatMessageInputs: [ChatMessageInput] {
     ]
 }
 
-private var mockChatMessage: [ChatMessage] {
+private func mockChatMessage(prepareContentCategory: PrepareContentCategory) -> [ChatMessage] {
     let instructionTypeMessage = ChatMessage.InstructionType.message("Hi Louis what are you preparing for?")
     let instruction = ChatMessage.instruction(type: instructionTypeMessage, showIcon: true)
     let header = ChatMessage.header(title: "Delivered: 12:34", alignment: .left)
-    let navigations = ChatMessage.navigation(chatMessageNavigations)
+    let navigations = ChatMessage.navigation(prepareContentCategory)
     let inputs = ChatMessage.input(chatMessageInputs)
 
     return [instruction, header, navigations, inputs]

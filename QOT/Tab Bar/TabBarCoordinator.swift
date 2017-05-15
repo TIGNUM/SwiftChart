@@ -23,7 +23,7 @@ final class TabBarCoordinator: ParentCoordinator {
     var children = [Coordinator]()
 
     fileprivate lazy var topTabBarControllerLearn: TopTabBarController = {
-        let categories = self.services.learnContent.categories()
+        let categories = self.services.learnContentService.categories()
         let viewModel = LearnCategoryListViewModel(categories: categories)
         let learnCategoryListVC = LearnCategoryListViewController(viewModel: viewModel)
         let whatsHotViewModel = WhatsHotViewModel()
@@ -47,7 +47,7 @@ final class TabBarCoordinator: ParentCoordinator {
         whatsHotViewController.topTabBarScrollViewDelegate = topTabBarController
         topTabBarController.delegate = self
         learnCategoryListVC.delegate = self
-        self.services.learnContent.learnCategoryUpdateDelegate = learnCategoryListVC
+        self.services.learnContentService.learnCategoryUpdateDelegate = learnCategoryListVC
 
         return topTabBarController
     }()
@@ -85,7 +85,8 @@ final class TabBarCoordinator: ParentCoordinator {
     }()
 
     fileprivate lazy var topTabBarControllerPrepare: TopTabBarController = {
-        let cahtViewModel = ChatViewModel()
+        let prepareContentCategory = self.services.prepareContentService.categories().item(at: 0)
+        let cahtViewModel = ChatViewModel(prepareContentCategory: prepareContentCategory)
         let chatViewController = ChatViewController(viewModel: cahtViewModel)
         let myPrepViewModel = MyPrepViewModel()
         let myPrepViewController = MyPrepViewController(viewModel: myPrepViewModel)
@@ -234,7 +235,7 @@ extension TabBarCoordinator: ChatViewDelegate {
         log("didSelectChatInput: \(input)")
     }
     
-    func didSelectChatNavigation(_ chatMessageNavigation: ChatMessageNavigation, in viewController: ChatViewController) {
+    func didSelectChatNavigation(_ chatMessageNavigation: PrepareContentCollection, in viewController: ChatViewController) {
         let coordinator = PrepareContentCoordinator(root: viewController, services: services, eventTracker: eventTracker)
         coordinator.startChild(child: coordinator)
     }

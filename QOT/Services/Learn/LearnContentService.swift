@@ -28,7 +28,8 @@ final class LearnContentService {
     }
 
     func categories() -> DataProvider<LearnContentCategory> {
-        let results = mainRealm.objects(ContentCategory.self).sorted(byKeyPath: "sortOrder").filter("section == 'learn.strategie'")
+        let filter = String.realmSectionFilter(filter: Database.Section.learnStrategy.rawValue)
+        let results = mainRealm.objects(ContentCategory.self).sorted(byKeyPath: "sortOrder").filter(filter)
         self.token = mainRealm.addNotificationBlock({ (_, _) in
             self.learnCategoryUpdateDelegate?.didUpdateCategoryViewedPercentage()
         })
