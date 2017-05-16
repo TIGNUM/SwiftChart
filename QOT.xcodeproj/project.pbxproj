@@ -210,6 +210,7 @@
 		CCEA22A91E8AC55F003D0CF4 /* PrepareEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A71E8AC55F003D0CF4 /* PrepareEventsViewController.swift */; };
 		CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */; };
 		CCEFCFB01E8D3D7500E9FC72 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEFCFAE1E8D3D7500E9FC72 /* SidebarViewController.swift */; };
+		D50CDDC31EC48EAC00D27072 /* LevelsChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50CDDC21EC48EAC00D27072 /* LevelsChartView.swift */; };
 		D50CDDC01EC48CA700D27072 /* AverageGraphGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50CDDBE1EC48CA700D27072 /* AverageGraphGridView.swift */; };
 		D50CDDC11EC48CA700D27072 /* AverageGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50CDDBF1EC48CA700D27072 /* AverageGraphView.swift */; };
 		D50D6C241EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50D6C221EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift */; };
@@ -472,6 +473,7 @@
 		CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsViewModel.swift; sourceTree = "<group>"; };
 		CCEFCFAE1E8D3D7500E9FC72 /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D50CDDC21EC48EAC00D27072 /* LevelsChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelsChartView.swift; sourceTree = "<group>"; };
 		D50CDDBE1EC48CA700D27072 /* AverageGraphGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageGraphGridView.swift; sourceTree = "<group>"; };
 		D50CDDBF1EC48CA700D27072 /* AverageGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageGraphView.swift; sourceTree = "<group>"; };
 		D50D6C221EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSubtitleTableViewCell.swift; sourceTree = "<group>"; };
@@ -1453,6 +1455,7 @@
 				D537B1E51EC200CD004C444D /* GridView.swift */,
 				D5FA66961EBB4DA600980EC7 /* HorizontalLinesChartView.swift */,
 				D52DAF9A1EC1E87D00C63156 /* SittingMovementChartView.swift */,
+				D50CDDC21EC48EAC00D27072 /* LevelsChartView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1746,6 +1749,7 @@
 				CC9663141EA1B41500B84B1C /* MyUniverseCoordinator.swift in Sources */,
 				D50D6C271EB9BBE0009FFDBE /* SideBarShareAction.swift in Sources */,
 				D5CD23D81E8BB73A002742C4 /* TabBarController.swift in Sources */,
+				D50CDDC31EC48EAC00D27072 /* LevelsChartView.swift in Sources */,
 				CBDB99021E7BE91D003EC73F /* EKEvent+CalendarEventData.swift in Sources */,
 				CB369CE01E8D407C00522293 /* DataProvider.swift in Sources */,
 				CC8D6D041EC316BF007AE687 /* LearnContentItemViewController.swift in Sources */,
