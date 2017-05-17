@@ -13,6 +13,7 @@ protocol SidebarViewControllerDelegate: class {
     func didTapSettingsMenuCell(in viewController: SidebarViewController)
     func didTapLibraryCell(in viewController: SidebarViewController)
     func didTapBenefitsCell(in viewController: SidebarViewController)
+    func didTapAddSensorCell(in viewController: SidebarViewController)
     func didTapPrivacyCell(in viewController: SidebarViewController)
     func didTapAboutCell(in viewController: SidebarViewController)
 }
@@ -113,6 +114,7 @@ extension SidebarViewController {
         case .benefits: delegate?.didTapBenefitsCell(in: self)
         case .about: delegate?.didTapAboutCell(in: self)
         case .privacy: delegate?.didTapPrivacyCell(in: self)
+        case .sensor: delegate?.didTapAddSensorCell(in: self)
         default: return
         }
     }

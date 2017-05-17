@@ -50,6 +50,10 @@
 		0BEE8AC11EA600A7008077B8 /* PrepareEventsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BEE8AB81EA600A7008077B8 /* PrepareEventsViewController.xib */; };
 		0CC2119BB6C36EF6F43B4ECD /* Pods_QOT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */; };
 		A29C0C8591D20568D6B8EB3E /* Pods_QOTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */; };
+		CB0A4A581ECC4C25006A2D85 /* AddSensorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A4A571ECC4C25006A2D85 /* AddSensorCoordinator.swift */; };
+		CB0A4A5A1ECC4C3E006A2D85 /* AddSensorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A4A591ECC4C3E006A2D85 /* AddSensorViewModel.swift */; };
+		CB0A4A5D1ECC4C72006A2D85 /* AddSensorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A4A5B1ECC4C72006A2D85 /* AddSensorViewController.swift */; };
+		CB0A4A5E1ECC4C72006A2D85 /* AddSensorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB0A4A5C1ECC4C72006A2D85 /* AddSensorViewController.xib */; };
 		CB1D5E391EC5E25A00BCDF8D /* ContentCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D5E2E1EC5E25A00BCDF8D /* ContentCategory.swift */; };
 		CB1D5E3A1EC5E25A00BCDF8D /* ContentCategoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D5E2F1EC5E25A00BCDF8D /* ContentCategoryData.swift */; };
 		CB1D5E3B1EC5E25A00BCDF8D /* ContentCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D5E301EC5E25A00BCDF8D /* ContentCollection.swift */; };
@@ -210,9 +214,9 @@
 		CCEA22A91E8AC55F003D0CF4 /* PrepareEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A71E8AC55F003D0CF4 /* PrepareEventsViewController.swift */; };
 		CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */; };
 		CCEFCFB01E8D3D7500E9FC72 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEFCFAE1E8D3D7500E9FC72 /* SidebarViewController.swift */; };
-		D50CDDC31EC48EAC00D27072 /* LevelsChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50CDDC21EC48EAC00D27072 /* LevelsChartView.swift */; };
 		D50CDDC01EC48CA700D27072 /* AverageGraphGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50CDDBE1EC48CA700D27072 /* AverageGraphGridView.swift */; };
 		D50CDDC11EC48CA700D27072 /* AverageGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50CDDBF1EC48CA700D27072 /* AverageGraphView.swift */; };
+		D50CDDC31EC48EAC00D27072 /* LevelsChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50CDDC21EC48EAC00D27072 /* LevelsChartView.swift */; };
 		D50D6C241EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50D6C221EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift */; };
 		D50D6C251EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D50D6C231EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib */; };
 		D50D6C271EB9BBE0009FFDBE /* SideBarShareAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50D6C261EB9BBE0009FFDBE /* SideBarShareAction.swift */; };
@@ -306,6 +310,10 @@
 		5C87601C1FE7F833DF0D7A6B /* Pods-QOTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.release.xcconfig"; sourceTree = "<group>"; };
 		82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97F1D8A9256524F33CBB9303 /* Pods-QOTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CB0A4A571ECC4C25006A2D85 /* AddSensorCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorCoordinator.swift; sourceTree = "<group>"; };
+		CB0A4A591ECC4C3E006A2D85 /* AddSensorViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorViewModel.swift; sourceTree = "<group>"; };
+		CB0A4A5B1ECC4C72006A2D85 /* AddSensorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorViewController.swift; sourceTree = "<group>"; };
+		CB0A4A5C1ECC4C72006A2D85 /* AddSensorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddSensorViewController.xib; sourceTree = "<group>"; };
 		CB1D5E2E1EC5E25A00BCDF8D /* ContentCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCategory.swift; sourceTree = "<group>"; };
 		CB1D5E2F1EC5E25A00BCDF8D /* ContentCategoryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCategoryData.swift; sourceTree = "<group>"; };
 		CB1D5E301EC5E25A00BCDF8D /* ContentCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCollection.swift; sourceTree = "<group>"; };
@@ -473,9 +481,9 @@
 		CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsViewModel.swift; sourceTree = "<group>"; };
 		CCEFCFAE1E8D3D7500E9FC72 /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D50CDDC21EC48EAC00D27072 /* LevelsChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelsChartView.swift; sourceTree = "<group>"; };
 		D50CDDBE1EC48CA700D27072 /* AverageGraphGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageGraphGridView.swift; sourceTree = "<group>"; };
 		D50CDDBF1EC48CA700D27072 /* AverageGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageGraphView.swift; sourceTree = "<group>"; };
+		D50CDDC21EC48EAC00D27072 /* LevelsChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelsChartView.swift; sourceTree = "<group>"; };
 		D50D6C221EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSubtitleTableViewCell.swift; sourceTree = "<group>"; };
 		D50D6C231EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageSubtitleTableViewCell.xib; sourceTree = "<group>"; };
 		D50D6C261EB9BBE0009FFDBE /* SideBarShareAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarShareAction.swift; sourceTree = "<group>"; };
@@ -698,6 +706,18 @@
 				5C87601C1FE7F833DF0D7A6B /* Pods-QOTTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		CB0A4A561ECC4BE4006A2D85 /* Add Sensore */ = {
+			isa = PBXGroup;
+			children = (
+				CB0A4A571ECC4C25006A2D85 /* AddSensorCoordinator.swift */,
+				CB0A4A5B1ECC4C72006A2D85 /* AddSensorViewController.swift */,
+				CB0A4A5C1ECC4C72006A2D85 /* AddSensorViewController.xib */,
+				CB0A4A591ECC4C3E006A2D85 /* AddSensorViewModel.swift */,
+			);
+			name = "Add Sensore";
+			path = "Add Sensore";
 			sourceTree = "<group>";
 		};
 		CB1D5E441EC5F52D00BCDF8D /* QOTDatabase */ = {
@@ -1329,6 +1349,7 @@
 		CCCCB0691E804A90001240D5 /* Sidebar */ = {
 			isa = PBXGroup;
 			children = (
+				CB0A4A561ECC4BE4006A2D85 /* Add Sensore */,
 				CCE373011E8D325C00B79352 /* Library */,
 				CB1E4F991E7FE22900287613 /* Settings */,
 				CB55A2DD1E9FDED200D721CE /* Settings Menu */,
@@ -1454,8 +1475,8 @@
 				D5FA66941EB9FF0B00980EC7 /* EventGraphView.swift */,
 				D537B1E51EC200CD004C444D /* GridView.swift */,
 				D5FA66961EBB4DA600980EC7 /* HorizontalLinesChartView.swift */,
-				D52DAF9A1EC1E87D00C63156 /* SittingMovementChartView.swift */,
 				D50CDDC21EC48EAC00D27072 /* LevelsChartView.swift */,
+				D52DAF9A1EC1E87D00C63156 /* SittingMovementChartView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1574,6 +1595,7 @@
 				CCC0C4CC1E828007002A8362 /* BentonSans_Regular.otf in Resources */,
 				CCC1B6AA1E8B9B7300D1461F /* LearnCategoryListViewController.xib in Resources */,
 				0BE7FD8B1E9D2AEF00E3262E /* PrepareContentStepTableViewCell.xib in Resources */,
+				CB0A4A5E1ECC4C72006A2D85 /* AddSensorViewController.xib in Resources */,
 				CB8C34541EAF7F190003AB65 /* MyToBeVisionViewController.xib in Resources */,
 				CC13E2471EB1D72E00C3CE46 /* CategoryPostCell.xib in Resources */,
 				D50D6C251EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib in Resources */,
@@ -1773,6 +1795,7 @@
 				CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */,
 				CCCE09CE1EA67F87008730F1 /* MyToBeVisionViewController.swift in Sources */,
 				CB369CE71E8E470800522293 /* LearnContentCategory.swift in Sources */,
+				CB0A4A581ECC4C25006A2D85 /* AddSensorCoordinator.swift in Sources */,
 				CB2880221E7050EB0067890A /* Coordinator.swift in Sources */,
 				CB1D5E3C1EC5E25A00BCDF8D /* ContentCollectionData.swift in Sources */,
 				CB55A2DF1E9FDF0A00D721CE /* SettingsMenuViewController.swift in Sources */,
@@ -1792,6 +1815,7 @@
 				CC9663181EA1B86100B84B1C /* MyDataSectorLabelsView.swift in Sources */,
 				CC6B3A2F1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift in Sources */,
 				0BA3E6411EC1A8280012999E /* DashedProgressWheel.swift in Sources */,
+				CB0A4A5D1ECC4C72006A2D85 /* AddSensorViewController.swift in Sources */,
 				CC94F5621EB08EE400051CF8 /* AudioWaveformView.swift in Sources */,
 				0B40DC151E9CA71400E1659B /* PrepareContentHeaderTableViewCell.swift in Sources */,
 				CB8A15331E76F56D0023B2F9 /* TrackableEntity.swift in Sources */,
@@ -1803,6 +1827,7 @@
 				CC8C982B1EA767580064AFB1 /* MyUniverseViewController+ScreenType.swift in Sources */,
 				CC143A511EC495CE001FB76E /* MyStatisticsCoordinator.swift in Sources */,
 				CC33CA2A1EC6026E008E6B33 /* PrepareContentCollection.swift in Sources */,
+				CB0A4A5A1ECC4C3E006A2D85 /* AddSensorViewModel.swift in Sources */,
 				D50CDDC11EC48CA700D27072 /* AverageGraphView.swift in Sources */,
 				CC27E0B81EB33722003E5B7F /* SidebarItemViewModel.swift in Sources */,
 				CC1465371EC60D0C00DEC3C5 /* MockData+Prepare.swift in Sources */,

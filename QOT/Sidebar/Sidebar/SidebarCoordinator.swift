@@ -48,6 +48,10 @@ final class SidebarCoordinator: ParentCoordinator {
 // MARK: - SettingsViewControllerDelegate
 
 extension SidebarCoordinator: SidebarViewControllerDelegate {
+    func didTapAddSensorCell(in viewController: SidebarViewController) {
+        let coordinator = AddSensorCoordinator(root: viewController, services: services, eventTracker: eventTracker)
+        startChild(child: coordinator)
+    }
 
     func didTapSettingsMenuCell(in viewController: SidebarViewController) {
         let coordinator = SettingsMenuCoordinator(root: viewController, services: services, eventTracker: eventTracker)
