@@ -89,8 +89,13 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
         shouldMarkItemAsViewed(contentItem: contentItem as? ContentItem)
 
         switch cotentItemValue {
-        case .bullet(let itemText),
-             .text(let itemText):
+        case .bullet(let bulletItem, let itemText):
+            return contentItemTextTableViewCell(
+                tableView: tableView,
+                indexPath: indexPath,
+                itemText: itemText
+            )
+        case .text(let itemText):
             return contentItemTextTableViewCell(
                 tableView: tableView,
                 indexPath: indexPath,

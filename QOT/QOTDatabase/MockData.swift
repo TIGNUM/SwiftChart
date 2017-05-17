@@ -122,10 +122,10 @@ private func addMockContent(category: ContentCategory, realm: Realm) {
 
     let titles = possibleTitles.prefix(upTo: Int.random(between: 3, and: possibleTitles.count + 1))
     let contents = titles.enumerated().map { (index: Index, title: String) -> ContentCollection in
-        let content = mockContent(sortOrder: index, title: title)
-        content.categories.append(category)
-        content.remoteID = Int.randomID
-        return content
+        let contentCollection = mockContentCollection(sortOrder: index, title: title)
+        contentCollection.categories.append(category)
+        contentCollection.remoteID = Int.randomID
+        return contentCollection
     }
 
     for content in contents {
@@ -135,7 +135,7 @@ private func addMockContent(category: ContentCategory, realm: Realm) {
     realm.add(contents)
 }
 
-private func mockContent(sortOrder: Int, title: String) -> ContentCollection {
+private func mockContentCollection(sortOrder: Int, title: String) -> ContentCollection {
     let contentCollection = ContentCollection()
     let contentCollectionData = ContentCollectionData(
         sortOrder: sortOrder,
@@ -202,9 +202,9 @@ private func randomItemJson(format: ContentItemFormat?) -> String {
     }
 }
 
-private var textItemJSON: String {
+var textItemJSON: String {
     var dict: [String: Any] = [:]
-    dict["text"] = LoremIpsum.sentences(withNumber: Int.random(between: 10, and: 100))
+    dict["text"] = LoremIpsum.sentences(withNumber: Int.random(between: 5, and: 15))
 
     return jsonDictToString(dict: dict)
 }

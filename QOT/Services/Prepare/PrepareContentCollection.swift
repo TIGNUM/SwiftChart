@@ -16,6 +16,8 @@ protocol PrepareContentCollection: TrackableEntity {
     var localID: String { get }
 
     var selected: Bool { get }
+
+    var prepareItems: DataProvider<PrepareContentItem> { get }
 }
 
 extension ContentCollection: PrepareContentCollection {
@@ -26,5 +28,9 @@ extension ContentCollection: PrepareContentCollection {
 
     var selected: Bool {
         return viewed
+    }
+
+    var prepareItems: DataProvider<PrepareContentItem> {
+        return DataProvider(list: items, map: { $0 as PrepareContentItem })
     }
 }

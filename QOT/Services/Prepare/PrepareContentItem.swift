@@ -11,7 +11,9 @@ import RealmSwift
 import Realm
 
 protocol PrepareContentItem: TrackableEntity {
+    var contentItemValue: ContentItemValue { get }
 
+    func accordionTitle() -> String?
 }
 
 extension ContentItem: PrepareContentItem {

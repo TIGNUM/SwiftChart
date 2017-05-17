@@ -10,9 +10,27 @@ import Foundation
 import ReactiveKit
 
 final class PrepareContentViewModel {
-    private var items: [PrepareContentItemType] = makeMockContentItems()
 
+    // MARK: - Properties
+
+    private let disposeBag = DisposeBag()
+    fileprivate var headerStatus: [String: Bool] = [:]
+    fileprivate var items: [PrepareContentItemType] = []
+    fileprivate let contentItems: DataProvider<PrepareContentItem>
     let updates = PublishSubject<CollectionUpdate, NoError>()
+
+    // MARK: - Init
+
+    init(collection: PrepareContentCollection) {
+        self.contentItems = collection.prepareItems
+
+        contentItems.observeChange { [unowned self] (_) in
+            self.fillHeaderStatus()
+            self.makeItems()
+        }.dispose(in: disposeBag)
+    }
+
+    // MARK: - Public
 
     var itemCount: Int {
         return items.count
@@ -24,13 +42,99 @@ final class PrepareContentViewModel {
 
     func didTapHeader(item: PrepareContentItemType) {
         switch item {
-        case .header(let sectionID, _, let open):
-            headerStates[sectionID] = !open
-            items = makeMockContentItems()
+        case .header(_, let title, let open):
+            headerStatus[title] = !open
+            makeItems()
             updates.next(.reload)
         default:
             preconditionFailure("item is not a header: \(item)")
         }
+    }
+}
+
+// MARK: - Private
+
+private enum IntermediateSection {
+    case ungrouped(PrepareContentItem)
+    case grouped(title: String, items: [PrepareContentItem])
+}
+
+private extension PrepareContentViewModel {
+
+    func fillHeaderStatus() {
+        for contentItem in contentItems.items {
+            if let title = contentItem.accordionTitle(), headerStatus[title] == nil {
+                headerStatus[title] = false
+            }
+        }
+    }
+
+    private func groupedItems(title: String, groupItems: [PrepareContentItem]) -> [PrepareContentItemType] {
+        var groupedItems: [PrepareContentItemType] = []
+        let open = headerStatus[title]!
+        groupedItems.append(PrepareContentItemType.header(sectionID: "", title: title, open: open))
+
+        if open {
+            for groupItem in groupItems {
+                if let prepareContentItemType = PrepareContentItemType(contentItemValue: groupItem.contentItemValue) {
+                    groupedItems.append(prepareContentItemType)
+                }
+
+            }
+            groupedItems.append(.sectionFooter(sectionID: ""))
+        }
+
+        return groupedItems
+    }
+
+    func makeItems() {
+        let sections = intermediateSections()
+        var items: [PrepareContentItemType] = []
+
+        for section in sections {
+            switch section {
+            case .ungrouped(let item):
+                if let prepareContentItemType = PrepareContentItemType(contentItemValue: item.contentItemValue) {
+                    items.append(prepareContentItemType)
+                }
+            case .grouped(let title, let groupItems): items.append(contentsOf: groupedItems(title: title, groupItems: groupItems))
+            }
+        }
+
+        items.append(.tableFooter)
+        self.items = items
+    }
+
+    func intermediateSections() -> [IntermediateSection] {
+        var currentGroup: (title: String, items: [PrepareContentItem])? = nil
+        var sections: [IntermediateSection] = []
+
+        for contentItem in contentItems.items {
+            if let headerTitle = contentItem.accordionTitle() {
+                if let group = currentGroup {
+                    if headerTitle == group.title {
+                        var items = group.items
+                        items.append(contentItem)
+
+                        currentGroup = (title: headerTitle, items: items)
+                    } else {
+                        if let currentGroup = currentGroup {
+                            sections.append(.grouped(title: currentGroup.title, items: currentGroup.items))
+                        }
+                        currentGroup = (title: headerTitle, items: [contentItem])
+                    }
+                } else {
+                    currentGroup = (title: headerTitle, items: [contentItem])
+                }
+            } else {
+                if let currentGroup = currentGroup {
+                    sections.append(.grouped(title: currentGroup.title, items: currentGroup.items))
+                }
+                currentGroup = nil
+                sections.append(.ungrouped(contentItem))
+            }
+        }
+        return sections
     }
 }
 
@@ -42,50 +146,13 @@ enum PrepareContentItemType {
     case header(sectionID: String, title: String, open: Bool)
     case sectionFooter(sectionID: String)
     case tableFooter
-}
 
-// MARK: Mock
-
-private let preTravelHeaderID = "pre-travel-id"
-private let onTravelHeaderID = "on-travel-id"
-private let afterTravelHeaderID = "after-travel-id"
-
-private var headerStates: [String: Bool] = [
-    preTravelHeaderID: false,
-    onTravelHeaderID: false,
-    afterTravelHeaderID: false
-]
-
-private func makeMockContentItems() -> [PrepareContentItemType] {
-    var items: [PrepareContentItemType] = []
-
-    items.append(.title(localID: UUID().uuidString, text: "SUSTAINABLE HIGH PERFORMANCE TRAVEL"))
-
-    items.append(contentsOf: makeMockSectionItems(sectionID: preTravelHeaderID, title: "PRE TRAVEL"))
-    items.append(contentsOf: makeMockSectionItems(sectionID: onTravelHeaderID, title: "ON TRAVEL"))
-    items.append(contentsOf: makeMockSectionItems(sectionID: afterTravelHeaderID, title: "AFTER TRAVEL"))
-
-    items.append(.text(localID: UUID().uuidString, text: "Sustainable High Performance Travel is the ability to arrive at a business event fully energized, focused, creative, resilient, healthy, and with minimal effects from Jet Lag. Jet Lag is a compilation of symptoms caused by traveling across time zones. Recent research has revealed that every organ system in the body has its own time clock which resynchronizes to travel at its own speed. This helps explain why everyone experiences Jet Lag differently."))
-    items.append(.video(localID: UUID().uuidString, placeholderURL: URL(string:"https://example.com")!))
-    items.append(.text(localID: UUID().uuidString, text: "There are many remedies and strategies out there (especially on the internet) but many of them are unproven, impractical, or unsafe. The following suggestions are the best strategies that have worked for our TIGNUM clients who travel millions of kilometers/miles every year. These suggestions follow our totally integrated approach (Mindset, Nutrition, Movement, and Recovery) and address all of the major organ systems."))
-    items.append(.text(localID: UUID().uuidString, text: "At TIGNUM we believe in a new level of preparation (this requires planning) and therefore, we look at Sustainable High Performance Travel from a pre-travel, during travel, and post-travel perspective."))
-    items.append(.tableFooter)
-
-    return items
-}
-
-private func makeMockSectionItems(sectionID: String, title: String) -> [PrepareContentItemType] {
-    let open = headerStates[sectionID]!
-
-    var items: [PrepareContentItemType] = [.header(sectionID: sectionID, title: title, open: open)]
-    if !open {
-        return items
-    } else {
-        for i in 1...10 {
-            items.append(.step(localID: UUID().uuidString, index: i, text: "Whenever possible, select hotels that support quality rest, daily Movement, and high performance meal choices."))
+    init?(contentItemValue: ContentItemValue) {
+        switch contentItemValue {
+        case .text(let text):
+            self = .text(localID: "", text: text)
+        default:
+            return nil
         }
-        items.insert(.video(localID: UUID().uuidString, placeholderURL: URL(string:"https://example.com")!), at: 4)
-        items.append(.sectionFooter(sectionID: UUID().uuidString))
-        return items
     }
 }

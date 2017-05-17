@@ -236,7 +236,7 @@ extension TabBarCoordinator: ChatViewDelegate {
     }
     
     func didSelectChatNavigation(_ chatMessageNavigation: PrepareContentCollection, in viewController: ChatViewController) {
-        let coordinator = PrepareContentCoordinator(root: viewController, services: services, eventTracker: eventTracker)
+        let coordinator = PrepareContentCoordinator(root: viewController, services: services, eventTracker: eventTracker, collection: chatMessageNavigation)
         coordinator.startChild(child: coordinator)
     }
 }

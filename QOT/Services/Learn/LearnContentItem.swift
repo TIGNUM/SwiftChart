@@ -25,7 +25,7 @@ extension ContentItem: LearnContentItem {
         do {
             return try getContentItemValue()
         } catch let error {
-            fatalError("OMG \(error)")
+            fatalError("That should not happen ;) [Error while parsing contentItemValue] \(error)")
         }
     }
 

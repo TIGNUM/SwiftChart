@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import Freddy
 
 // FIXME: Unit test.
 final class ContentItem: Object, ContentItemDataProtocol {
@@ -70,5 +71,13 @@ extension ContentItem {
         }
 
         return try ContentItemValue(format: format, value: value)
+    }
+
+    func accordionTitle() -> String? {
+        guard let jsonString = layoutInfo, let json = try? JSON(jsonString: jsonString) else {
+            return nil
+        }
+
+        return try? json.getString(at: "accordionTitle")
     }
 }

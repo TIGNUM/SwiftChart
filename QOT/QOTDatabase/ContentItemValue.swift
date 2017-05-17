@@ -16,7 +16,7 @@ enum ContentItemValue {
     case video(title: String, description: String?, placeholderURL: URL, videoURL: URL, duration: TimeInterval)
     case audio(title: String, description: String?, placeholderURL: URL, audioURL: URL, duration: TimeInterval, waveformData: [Float])
     case image(title: String, description: String?, url: URL)
-    case bullet(String)
+    case bullet(bulletItem: String, text: String)
 
     init(format: ContentItemFormat, value: String) throws {
         let json = try JSON(jsonString: value)
@@ -50,7 +50,8 @@ enum ContentItemValue {
             self = .image(title: title, description: description, url: url)
         case .bullet:
             let text = try json.getString(at: "text")
-            self = .bullet(text)
+            let bulletItem = try json.getString(at: "bulletItem")
+            self = .bullet(bulletItem: bulletItem, text: text)
         }
     }
 }

@@ -16,18 +16,20 @@ final class PrepareContentCoordinator: ParentCoordinator {
     fileprivate let rootViewController: UIViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
+    fileprivate let collection: PrepareContentCollection
     var children: [Coordinator] = []
 
     // MARK: - Life Cycle
 
-    init(root: UIViewController, services: Services, eventTracker: EventTracker) {
+    init(root: UIViewController, services: Services, eventTracker: EventTracker, collection: PrepareContentCollection) {
         self.rootViewController = root
         self.services = services
         self.eventTracker = eventTracker
+        self.collection = collection
     }
 
     func start() {
-        let viewModel = PrepareContentViewModel()
+        let viewModel = PrepareContentViewModel(collection: collection)
         let prepareContentViewController = PrepareContentViewController(viewModel: viewModel)
 
         let topTabBarControllerItem = TopTabBarController.Item(

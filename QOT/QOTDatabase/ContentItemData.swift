@@ -59,7 +59,6 @@ struct ContentItemData: ContentItemDataProtocol {
         self.searchTags = searchTags
         self.layoutInfo = layoutInfo
     }
-
 }
 
 extension ContentItemDataProtocol {

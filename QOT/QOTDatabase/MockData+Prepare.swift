@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import LoremIpsum
 
 // MARK: - PrepareContentCategory
 
@@ -19,7 +20,7 @@ func addMockPrepareContentCategories(realm: Realm) {
     ]
 
     for category in categories {
-        addMockPrepareContentCategory(category: category, realm: realm)
+        addMockPrepareContentCollection(category: category, realm: realm)
     }
 
     realm.add(categories)
@@ -40,7 +41,9 @@ private func mockPrepareContentCategory(sortOrder: Int, title: String, section: 
     return contentCategory
 }
 
-private func addMockPrepareContentCategory(category: ContentCategory, realm: Realm) {
+// MARK: - PrepareContentCollection
+
+private func addMockPrepareContentCollection(category: ContentCategory, realm: Realm) {
     var contentCollections = [ContentCollection]()
     let titles = [
         "Meeting",
@@ -58,6 +61,10 @@ private func addMockPrepareContentCategory(category: ContentCategory, realm: Rea
         contentCollections.append(contentCollection)
     }
 
+    contentCollections.forEach { (contentCollection: ContentCollection) in
+        addMockPrepareContentItems(contentCollection: contentCollection, realm: realm)
+    }
+
     realm.add(contentCollections)
 }
 
@@ -73,4 +80,62 @@ private func mockPrepareContentCollection(sortOrder: Int, title: String) -> Cont
     contentCollection.setData(contentCollectionData)
 
     return contentCollection
+}
+
+// MARK: - PrepareContentItems
+
+private func addMockPrepareContentItems(contentCollection: ContentCollection, realm: Realm) {
+    var items: [ContentItem] = []
+
+    for i in 0...Int.random(between: 3, and: 10) {
+        let item = mockPrepareContentItem(
+            sortOrder: i,
+            title: LoremIpsum.paragraphs(withNumber: Int.random(between: 3, and: 7))
+        )
+
+        item.remoteID = Int.randomID
+        item.collection = contentCollection
+        items.append(item)
+    }
+
+    realm.add(items)
+}
+
+private func mockPrepareContentItem(sortOrder: Int, title: String) -> ContentItem {
+    let contentItem = ContentItem()
+    let contentItemData = ContentItemData(
+        sortOrder: sortOrder,
+        title: title,
+        value: textItemJSON,
+        format: ContentItemFormat.text.rawValue,
+        searchTags: title,
+        layoutInfo: (sortOrder == 1 || sortOrder == 2 || sortOrder == 3) ? prepareContentItemLayoutInfo : nil
+    )
+    
+    try? contentItem.setData(contentItemData)
+
+    return contentItem
+}
+
+private var prepareContentItemLayoutInfo: String {
+    var dict: [String: Any] = [:]
+    dict["accordionTitle"] = LoremIpsum.name()
+
+    return jsonDictToString(dict: dict)
+}
+
+private extension ContentItemData {
+
+    init(sortOrder: Int, title: String, value: String, format: Int8, searchTags: String, layoutInfo: String?) {
+        self.init(
+            sortOrder: sortOrder,
+            title: title,
+            secondsRequired: 0,
+            value: value,
+            format: format,
+            viewAt: nil,
+            searchTags: searchTags,
+            layoutInfo: layoutInfo
+        )
+    }
 }
