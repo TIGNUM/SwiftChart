@@ -68,6 +68,9 @@
 		CB1E4F981E7FE22200287613 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1E4F971E7FE22200287613 /* SettingsViewModel.swift */; };
 		CB1E4FDB1E80225800287613 /* EKParticipantTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1E4FDA1E80225800287613 /* EKParticipantTypeTests.swift */; };
 		CB1E4FDD1E8024E900287613 /* EKEventStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1E4FDC1E8024E900287613 /* EKEventStatusTests.swift */; };
+		CB27D5931ECCB08800F2B76C /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB27D5921ECCB08800F2B76C /* Endpoint.swift */; };
+		CB27D59B1ECCB67300F2B76C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB27D59A1ECCB67300F2B76C /* Result.swift */; };
+		CB27D59D1ECCB6DD00F2B76C /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB27D59C1ECCB6DD00F2B76C /* NetworkError.swift */; };
 		CB2880221E7050EB0067890A /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880211E7050EB0067890A /* Coordinator.swift */; };
 		CB2880241E7051710067890A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880231E7051710067890A /* AppCoordinator.swift */; };
 		CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880331E7144E60067890A /* CollectionUpdate.swift */; };
@@ -79,6 +82,9 @@
 		CB369CE71E8E470800522293 /* LearnContentCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB369CE61E8E470800522293 /* LearnContentCategory.swift */; };
 		CB55A2DF1E9FDF0A00D721CE /* SettingsMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB55A2DE1E9FDF0A00D721CE /* SettingsMenuViewController.swift */; };
 		CB55A2E11E9FDF1D00D721CE /* SettingsMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB55A2E01E9FDF1D00D721CE /* SettingsMenuViewModel.swift */; };
+		CB6D49521ECC830A005BC637 /* NetworkFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6D49511ECC830A005BC637 /* NetworkFunctions.swift */; };
+		CB6D49541ECC87BF005BC637 /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6D49531ECC87BF005BC637 /* Requests.swift */; };
+		CB6D49561ECCA58D005BC637 /* AuthenticationTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6D49551ECCA58D005BC637 /* AuthenticationTokenParser.swift */; };
 		CB8A15221E769F1F0023B2F9 /* EventTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15211E769F1F0023B2F9 /* EventTracker.swift */; };
 		CB8A15271E76A1280023B2F9 /* PageEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15261E76A1280023B2F9 /* PageEvent.swift */; };
 		CB8A152F1E76F27D0023B2F9 /* PageID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A152E1E76F27D0023B2F9 /* PageID.swift */; };
@@ -328,6 +334,9 @@
 		CB1E4F971E7FE22200287613 /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		CB1E4FDA1E80225800287613 /* EKParticipantTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKParticipantTypeTests.swift; sourceTree = "<group>"; };
 		CB1E4FDC1E8024E900287613 /* EKEventStatusTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKEventStatusTests.swift; sourceTree = "<group>"; };
+		CB27D5921ECCB08800F2B76C /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		CB27D59A1ECCB67300F2B76C /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		CB27D59C1ECCB6DD00F2B76C /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		CB2880211E7050EB0067890A /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		CB2880231E7051710067890A /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		CB2880331E7144E60067890A /* CollectionUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionUpdate.swift; sourceTree = "<group>"; };
@@ -339,6 +348,9 @@
 		CB369CE61E8E470800522293 /* LearnContentCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentCategory.swift; sourceTree = "<group>"; };
 		CB55A2DE1E9FDF0A00D721CE /* SettingsMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuViewController.swift; sourceTree = "<group>"; };
 		CB55A2E01E9FDF1D00D721CE /* SettingsMenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuViewModel.swift; sourceTree = "<group>"; };
+		CB6D49511ECC830A005BC637 /* NetworkFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkFunctions.swift; sourceTree = "<group>"; };
+		CB6D49531ECC87BF005BC637 /* Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
+		CB6D49551ECCA58D005BC637 /* AuthenticationTokenParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationTokenParser.swift; sourceTree = "<group>"; };
 		CB8A15211E769F1F0023B2F9 /* EventTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTracker.swift; sourceTree = "<group>"; };
 		CB8A15261E76A1280023B2F9 /* PageEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageEvent.swift; sourceTree = "<group>"; };
 		CB8A152E1E76F27D0023B2F9 /* PageID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageID.swift; sourceTree = "<group>"; };
@@ -716,7 +728,6 @@
 				CB0A4A5C1ECC4C72006A2D85 /* AddSensorViewController.xib */,
 				CB0A4A591ECC4C3E006A2D85 /* AddSensorViewModel.swift */,
 			);
-			name = "Add Sensore";
 			path = "Add Sensore";
 			sourceTree = "<group>";
 		};
@@ -784,6 +795,7 @@
 				CBA054481E890560009E28D6 /* Dequeueable.swift */,
 				D58BD8691E9D1E7F005676DE /* NSFile+Convenience.swift */,
 				CBDB98F31E7B000A003EC73F /* NotificationHandler.swift */,
+				CB27D59A1ECCB67300F2B76C /* Result.swift */,
 				D58BD86B1E9E846C005676DE /* ScrollViewAnimation.swift */,
 				CBD791491E71797C0006C590 /* Typealiases.swift */,
 			);
@@ -831,6 +843,27 @@
 				CB55A2E01E9FDF1D00D721CE /* SettingsMenuViewModel.swift */,
 			);
 			path = "Settings Menu";
+			sourceTree = "<group>";
+		};
+		CB5B57271ECC7FD30079E869 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				CB6D49571ECCA591005BC637 /* Parsers */,
+				CB27D5921ECCB08800F2B76C /* Endpoint.swift */,
+				CB27D59C1ECCB6DD00F2B76C /* NetworkError.swift */,
+				CB6D49511ECC830A005BC637 /* NetworkFunctions.swift */,
+				CB6D49531ECC87BF005BC637 /* Requests.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		CB6D49571ECCA591005BC637 /* Parsers */ = {
+			isa = PBXGroup;
+			children = (
+				CB6D49551ECCA58D005BC637 /* AuthenticationTokenParser.swift */,
+			);
+			name = Parsers;
+			path = Parsers;
 			sourceTree = "<group>";
 		};
 		CB8A15231E769F250023B2F9 /* Tracking */ = {
@@ -915,6 +948,7 @@
 				CCC1B69A1E8B99B500D1461F /* Learn */,
 				CB8A15441E7986A90023B2F9 /* Localization */,
 				CC4D1D791E82E6A000B8D75E /* Me */,
+				CB5B57271ECC7FD30079E869 /* Network */,
 				CC20C9921E8981070056054D /* Prepare */,
 				CC6B3A271E81586C00E7FDFD /* Presentation */,
 				CB1D5E441EC5F52D00BCDF8D /* QOTDatabase */,
@@ -1792,6 +1826,7 @@
 				D51B5C4A1E8D0E7E0084A65B /* LearnContentLayout.swift in Sources */,
 				CBDB99101E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift in Sources */,
 				CC0FF8D41EA788350028D64F /* PartnersViewController.swift in Sources */,
+				CB27D59D1ECCB6DD00F2B76C /* NetworkError.swift in Sources */,
 				CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */,
 				CCCE09CE1EA67F87008730F1 /* MyToBeVisionViewController.swift in Sources */,
 				CB369CE71E8E470800522293 /* LearnContentCategory.swift in Sources */,
@@ -1803,12 +1838,14 @@
 				CB369CE51E8E46B600522293 /* LearnContentCollection.swift in Sources */,
 				D5EC34B61EB0D35D00F86B09 /* LearnStrategyTitleAudioCell.swift in Sources */,
 				CC33CA2E1EC603BC008E6B33 /* PrepareContentService.swift in Sources */,
+				CB27D59B1ECCB67300F2B76C /* Result.swift in Sources */,
 				CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */,
 				D55CBED71E8A993200C690FB /* CGPoint+Convenience.swift in Sources */,
 				D537B1E61EC200CD004C444D /* GridView.swift in Sources */,
 				CCCE09CC1EA67C78008730F1 /* MyToBeVisionViewModel.swift in Sources */,
 				CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */,
 				D5EC34AB1EB0D2FC00F86B09 /* LearnStrategyAudioPlayerView.swift in Sources */,
+				CB27D5931ECCB08800F2B76C /* Endpoint.swift in Sources */,
 				CC33CA281EC601DF008E6B33 /* PrepareContentCategory.swift in Sources */,
 				0BC9F9361E96118C009E8204 /* ChatTableViewCell.swift in Sources */,
 				CC9FBDE81EAE58F300AF1CF0 /* SettingsMenuCoordinator.swift in Sources */,
@@ -1819,6 +1856,7 @@
 				CC94F5621EB08EE400051CF8 /* AudioWaveformView.swift in Sources */,
 				0B40DC151E9CA71400E1659B /* PrepareContentHeaderTableViewCell.swift in Sources */,
 				CB8A15331E76F56D0023B2F9 /* TrackableEntity.swift in Sources */,
+				CB6D49521ECC830A005BC637 /* NetworkFunctions.swift in Sources */,
 				D50CDDC01EC48CA700D27072 /* AverageGraphGridView.swift in Sources */,
 				0BE7FD8F1E9D2F8800E3262E /* PrepareContentTitleTableViewCell.swift in Sources */,
 				CB1D5E391EC5E25A00BCDF8D /* ContentCategory.swift in Sources */,
@@ -1859,6 +1897,7 @@
 				CCD377531E8D3C2D00BB8031 /* WhatsHotNewTemplateViewController.swift in Sources */,
 				CC9663151EA1B41500B84B1C /* MyUniverseViewController.swift in Sources */,
 				CB1D5E3F1EC5E25A00BCDF8D /* ContentItemValue.swift in Sources */,
+				CB6D49541ECC87BF005BC637 /* Requests.swift in Sources */,
 				D50D6C241EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift in Sources */,
 				CC335EE91EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift in Sources */,
 				CB369CE21E8D5E3D00522293 /* Services.swift in Sources */,
@@ -1882,6 +1921,7 @@
 				CCE372FD1E8D2AD100B79352 /* MyPrepViewController.swift in Sources */,
 				CC0FF8D81EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift in Sources */,
 				CC4F37B11EBB575B004BDC70 /* LearnContentItem.swift in Sources */,
+				CB6D49561ECCA58D005BC637 /* AuthenticationTokenParser.swift in Sources */,
 				CC33CA301EC60447008E6B33 /* DatabaseConstants.swift in Sources */,
 				CCC1B6A71E8B9B7300D1461F /* LearnCategoryCell.swift in Sources */,
 				CC143A531EC49641001FB76E /* MyStatisticsViewController.swift in Sources */,

@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (4.4.0)
   - Anchorage (3.3.0)
   - Bond (6.2.6):
     - Diff (~> 0.4)
@@ -20,6 +21,7 @@ PODS:
   - UICollectionViewRightAlignedLayout (0.0.3)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.4)
   - Anchorage (~> 3.1)
   - Bond (~> 6.0)
   - Freddy (= 3.0.0)
@@ -31,6 +33,7 @@ DEPENDENCIES:
   - UICollectionViewRightAlignedLayout (~> 0.0)
 
 SPEC CHECKSUMS:
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   Anchorage: 1444bbd32c4495b32d41c0be9f66efcb0862fe8a
   Bond: 0d7a52e9aec644c3b4985ceeb224a402b1efd691
   Diff: befa1d19c32726b2b36ce915d98793e2fbde8dcc
@@ -45,6 +48,6 @@ SPEC CHECKSUMS:
   RealmSwift: 6d06425d3900c86473c4f323bf6949b43fca22bc
   UICollectionViewRightAlignedLayout: 823eef8c567eba4a44c21bc2ffcb0d0d5f361e2d
 
-PODFILE CHECKSUM: a13b0baa6c89b942b102b8e907391b5658bb97ee
+PODFILE CHECKSUM: bc30fe10deab9ee5a5209a04a08534a6e87692bc
 
 COCOAPODS: 1.2.0
