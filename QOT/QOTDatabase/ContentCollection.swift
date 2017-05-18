@@ -29,7 +29,6 @@ final class ContentCollection: Object, ContentCollectionDataProtocol {
         title = data.title
         layoutInfo = data.layoutInfo
         searchTags = data.searchTags
-        relatedContent = data.relatedContent
     }
 
     // MARK: ContentData
