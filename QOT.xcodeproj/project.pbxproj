@@ -223,6 +223,7 @@
 		CCF0F4BF1ECDC57000E8D9C1 /* DownSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF0F4BC1ECDC57000E8D9C1 /* DownSync.swift */; };
 		CCF0F4C01ECDC57000E8D9C1 /* NSPredicate+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF0F4BD1ECDC57000E8D9C1 /* NSPredicate+Convenience.swift */; };
 		CCF0F4C11ECDC57000E8D9C1 /* ObjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF0F4BE1ECDC57000E8D9C1 /* ObjectStore.swift */; };
+		CCF0F4C61ECDD0DA00E8D9C1 /* contentCategory.json in Resources */ = {isa = PBXBuildFile; fileRef = CCF0F4C51ECDD0DA00E8D9C1 /* contentCategory.json */; };
 		D50CDDC01EC48CA700D27072 /* AverageGraphGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50CDDBE1EC48CA700D27072 /* AverageGraphGridView.swift */; };
 		D50CDDC11EC48CA700D27072 /* AverageGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50CDDBF1EC48CA700D27072 /* AverageGraphView.swift */; };
 		D50CDDC31EC48EAC00D27072 /* LevelsChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50CDDC21EC48EAC00D27072 /* LevelsChartView.swift */; };
@@ -498,6 +499,7 @@
 		CCF0F4BC1ECDC57000E8D9C1 /* DownSync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownSync.swift; sourceTree = "<group>"; };
 		CCF0F4BD1ECDC57000E8D9C1 /* NSPredicate+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPredicate+Convenience.swift"; sourceTree = "<group>"; };
 		CCF0F4BE1ECDC57000E8D9C1 /* ObjectStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectStore.swift; sourceTree = "<group>"; };
+		CCF0F4C51ECDD0DA00E8D9C1 /* contentCategory.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = contentCategory.json; path = JSON/contentCategory.json; sourceTree = "<group>"; };
 		CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D50CDDBE1EC48CA700D27072 /* AverageGraphGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageGraphGridView.swift; sourceTree = "<group>"; };
 		D50CDDBF1EC48CA700D27072 /* AverageGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageGraphView.swift; sourceTree = "<group>"; };
@@ -1301,6 +1303,7 @@
 		CCC0C4AF1E826E16002A8362 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CCF0F4C21ECDD08500E8D9C1 /* JSON */,
 				CCC0C4B01E826E24002A8362 /* Fonts */,
 			);
 			path = Resources;
@@ -1494,6 +1497,14 @@
 			path = "Prepare Events";
 			sourceTree = "<group>";
 		};
+		CCF0F4C21ECDD08500E8D9C1 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				CCF0F4C51ECDD0DA00E8D9C1 /* contentCategory.json */,
+			);
+			name = JSON;
+			sourceTree = "<group>";
+		};
 		D50D6C211EB8DE3B009FFDBE /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -1635,6 +1646,7 @@
 				0B40DC071E9CA65300E1659B /* PrepareContentViewController.xib in Resources */,
 				CC13E2411EB1D72400C3CE46 /* LatestCollectionCell.xib in Resources */,
 				CCC0C4CC1E828007002A8362 /* BentonSans_Regular.otf in Resources */,
+				CCF0F4C61ECDD0DA00E8D9C1 /* contentCategory.json in Resources */,
 				CCC1B6AA1E8B9B7300D1461F /* LearnCategoryListViewController.xib in Resources */,
 				0BE7FD8B1E9D2AEF00E3262E /* PrepareContentStepTableViewCell.xib in Resources */,
 				CB0A4A5E1ECC4C72006A2D85 /* AddSensorViewController.xib in Resources */,

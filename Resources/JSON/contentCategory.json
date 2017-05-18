@@ -1,0 +1,55 @@
+{
+	"timestamp": "2012-04-23T18:25:43.511Z",
+	"results": [
+		{
+			"id": 1,
+			"syncStatus": 0,
+			"createdAt": "2012-04-23T18:25:43.511Z",
+			"modifiedAt": "2012-04-23T18:25:43.511Z",
+			"sortOrder": 0,
+			"section": "learn.strategies",
+			"title": "Performance Movement",
+			"subtitle": null,
+			"keypathID": null,
+			"layoutInfo": {
+				"bubble": {
+					"radius": 0.12,
+					"centerX": 0.346,
+					"centerY": 0.42 
+				}
+			}
+		},
+		{
+			"id": 15,
+			"syncStatus": 1,
+			"createdAt": "2012-04-23T18:25:43.511Z",
+			"modifiedAt": "2012-04-23T18:25:43.511Z",
+			"sortOrder": 10,
+			"section": "prepare.preparations",
+			"title": "High Performance Travel",
+			"subtitle": null,
+			"keypathID": null,
+			"layoutInfo": null
+		},
+		{
+			"id": 45,
+			"syncStatus": 1,
+			"createdAt": "2012-04-23T18:25:43.511Z",
+			"modifiedAt": "2012-04-23T18:25:43.511Z",
+			"sortOrder": 10,
+			"section": "sidebar",
+			"title": "QOT Benefits",
+			"subtitle": null,
+			"keypathID": "sidebar.QotBenefits",
+			"layoutInfo": null
+		},
+		{ 
+			"id": 50,
+			"syncStatus": 2
+		}
+	],
+	"page": 1,
+	"pageSize": 100,
+	"maxResults": 10,
+	"maxPages": 1
+}
