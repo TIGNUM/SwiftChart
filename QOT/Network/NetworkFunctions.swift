@@ -23,7 +23,8 @@ import Alamofire
                 }
             case .failure(let error):
                 // FIXME: Determine network error
-                result = .failure(.unknown(error))
+                let networkError = NetworkError(error: error as NSError, statusCode: response.response?.statusCode)
+                result = .failure(networkError)
             }
             completion(result)
     }

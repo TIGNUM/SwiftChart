@@ -7,9 +7,37 @@
 //
 
 import Foundation
+import Alamofire
+
+enum HTTPStatusCode: Int {
+    case unauthorized = 401
+}
 
 enum NetworkError: Error {
     
     case failedToParseData(Data, error: Error)
-    case unknown(Error)
+    case unknown(error: Error, statusCode: Int?)
+    case noNetworkConnection
+    case cancelled
+    case wrongCredentials
+    case loginRequired
+
+    init(error: NSError, statusCode: Int?) {
+        if let code = statusCode {
+            if let httpStatusCode = HTTPStatusCode(rawValue: code), httpStatusCode == .unauthorized {
+                self = .loginRequired
+            } else {
+                self = .unknown(error: error, statusCode: code)
+            }
+        } else if error.domain == NSURLErrorDomain {
+            switch error.code {
+            case NSURLErrorNotConnectedToInternet: self = .noNetworkConnection
+            case NSURLErrorCancelled: self = .cancelled
+            case NSURLErrorUserAuthenticationRequired: self = .loginRequired
+            default: self = .unknown(error: error, statusCode: nil)
+            }
+        } else {
+            self = .unknown(error: error, statusCode: nil)
+        }
+    }
 }
