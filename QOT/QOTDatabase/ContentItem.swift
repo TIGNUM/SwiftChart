@@ -33,7 +33,7 @@ final class ContentItem: Object, ContentItemDataProtocol {
         secondsRequired = data.secondsRequired
         value = data.value
         format = data.format
-        viewAt = data.viewAt
+        viewed = data.viewed
         searchTags = data.searchTags
         layoutInfo = data.layoutInfo
     }
@@ -48,13 +48,15 @@ final class ContentItem: Object, ContentItemDataProtocol {
 
     private(set) dynamic var value: String = ""
 
-    private(set) dynamic var format: Int8 = 0
+    private(set) dynamic var format: String = ""
 
     private(set) dynamic var searchTags: String = ""
 
     private(set) dynamic var layoutInfo: String?
 
-    dynamic var viewAt: Date?
+    private(set) dynamic var contentID: Int = 0
+
+    dynamic var viewed: Bool = false
 
     // MARK: Realm
 

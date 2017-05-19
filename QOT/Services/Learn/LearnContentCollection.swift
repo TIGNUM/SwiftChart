@@ -36,7 +36,7 @@ extension ContentCollection: LearnContentCollection {
     }
 
     var percentageViewed: Double {
-        let viewed = items.filter { $0.viewAt != nil }
+        let viewed = items.filter { $0.viewed != false }
         return Double(viewed.count) / Double(items.count)
     }
 

@@ -36,7 +36,12 @@ enum JsonKey: String {
     case timestamp
     case relatedContentIDs
     case categoryIDs
+    case categoryID
     case searchTags
+    case secondsRequired
+    case value
+    case format
+    case viewed
 
     var value: String {
         return rawValue
@@ -59,5 +64,18 @@ extension JSON {
 
     subscript(key: JsonKey) -> JSON? {
         return self[key.value]
+    }
+
+    func makeJSONDictionary(_ jsonDict: [Swift.String: Any]) throws -> JSON {
+        return try JSON(jsonDict.lazy.map { (key, value) in
+            try (key, self.makeMyJSON(with: value))
+        })
+    }
+
+    private func makeMyJSON(with object: Any) throws -> JSON {
+        switch object {
+        case let dict as [Swift.String: Any]: return try makeJSONDictionary(dict)
+        default: return .null
+        }
     }
 }

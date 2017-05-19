@@ -12,19 +12,32 @@ import Freddy
 // FIXME: Unit test
 enum ContentItemValue {
 
-    case text(String)
+    case text(text: String, style: ContentItemTextStyle)
     case video(title: String, description: String?, placeholderURL: URL, videoURL: URL, duration: TimeInterval)
     case audio(title: String, description: String?, placeholderURL: URL, audioURL: URL, duration: TimeInterval, waveformData: [Float])
     case image(title: String, description: String?, url: URL)
-    case bullet(bulletItem: String, text: String)
 
     init(format: ContentItemFormat, value: String) throws {
         let json = try JSON(jsonString: value)
 
         switch format {
-        case .text:
+        case .textH1,
+             .textH2,
+             .textH3,
+             .textH4,
+             .textH5,
+             .textH6,
+             .textParagraph,
+             .textBullet:
             let text = try json.getString(at: "text")
-            self = .text(text)
+            let styleString = try json.getString(at: "style")
+
+            guard let style = ContentItemTextStyle(rawValue: styleString) else {
+                throw ContentItemTextStyleError.noValidItemTextStyleError
+            }
+            
+            self = .text(text: text, style: style)
+
         case .video:
             let title = try json.getString(at: "title")
             let description = try json.getString(at: "description", alongPath: .NullBecomesNil)
@@ -48,19 +61,58 @@ enum ContentItemValue {
             let url = try json.decode(at: "url", type: URL.self)
 
             self = .image(title: title, description: description, url: url)
-        case .bullet:
-            let text = try json.getString(at: "text")
-            let bulletItem = try json.getString(at: "bulletItem")
-            self = .bullet(bulletItem: bulletItem, text: text)
         }
     }
 }
 
 // FIXME: Unit test
-enum ContentItemFormat: Int8 {
-    case text = 0
-    case video = 1
-    case audio = 2
-    case image = 3
-    case bullet = 4
+
+enum ContentItemTextStyleError: String, Error {
+    case noValidItemTextStyleError = "Could not find a valid item text style."
+}
+
+enum ContentItemTextStyle: String {
+    case h1 = "text.h1"
+    case h2 = "text.h2"
+    case h3 = "text.h3"
+    case h4 = "text.h4"
+    case h5 = "text.h5"
+    case h6 = "text.h6"
+    case bullet = "text.bullet"
+    case paragraph = "text.paragraph"
+}
+
+enum ContentItemFormat: String {
+    case textH1 = "text.h1"
+    case textH2 = "text.h2"
+    case textH3 = "text.h3"
+    case textH4 = "text.h4"
+    case textH5 = "text.h5"
+    case textH6 = "text.h6"
+    case textParagraph = "text.paragraph"
+    case textBullet = "text.bullet"
+    case video
+    case audio
+    case image
+
+    static var allValues: [ContentItemFormat] {
+        return [
+            .textH1,
+            .textH2,
+            .textH3,
+            .textH4,
+            .textH5,
+            .textH6,
+            .textParagraph,
+            .textBullet,
+            .video,
+            .audio,
+            .image
+        ]
+    }
+
+    static var randomItemFormat: ContentItemFormat {
+        let randomIndex = Int.random(between: 0, and: ContentItemFormat.allValues.count)
+        return ContentItemFormat.allValues[randomIndex]
+    }
 }

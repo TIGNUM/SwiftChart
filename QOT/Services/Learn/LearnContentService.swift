@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 protocol LearnContentServiceDelegate: class {
-    func updatedViewedAt(with itemId: Int, at date: Date)
+    func updatedViewedAt(with itemId: Int)
 }
 
 final class LearnContentService {
@@ -36,16 +36,16 @@ final class LearnContentService {
         return DataProvider<LearnContentCategory>(results: results, map: { $0 as LearnContentCategory })
     }
 
-    func updatedViewedAt(with itemId: Int, at date: Date) {
+    func updatedViewedAt(with itemId: Int) {
         DispatchQueue.global().async {
             do {
                 let realm = try self.realmProvider.realm()
                 try realm.write {
                     let contentItem = realm.object(ofType: ContentItem.self, forPrimaryKey: itemId)
-                    contentItem?.viewAt = date
+                    contentItem?.viewed = true
                 }
             } catch let error {
-                assertionFailure("UpdateViewedAt, itemId: \(itemId), date: \(date), error: \(error)")
+                assertionFailure("UpdateViewedAt, itemId: \(itemId), error: \(error)")
             }
         }
     }

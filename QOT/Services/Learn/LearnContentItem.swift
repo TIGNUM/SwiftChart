@@ -33,10 +33,6 @@ extension ContentItem: LearnContentItem {
         return Int.randomID
     }
 
-    var viewed: Bool {
-        return viewAt != nil
-    }
-
     var remoteIdentifier: Int {
         return remoteID
     }

@@ -51,7 +51,7 @@ final class Services {
 
 extension Services: LearnContentServiceDelegate {
 
-    func updatedViewedAt(with itemId: Int, at date: Date) {
-        learnContentService.updatedViewedAt(with: itemId, at: date)
+    func updatedViewedAt(with itemId: Int) {
+        learnContentService.updatedViewedAt(with: itemId)
     }
 }

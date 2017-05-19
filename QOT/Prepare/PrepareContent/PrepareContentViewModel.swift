@@ -149,7 +149,7 @@ enum PrepareContentItemType {
 
     init?(contentItemValue: ContentItemValue) {
         switch contentItemValue {
-        case .text(let text):
+        case .text(let text, _):
             self = .text(localID: "", text: text)
         default:
             return nil

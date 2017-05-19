@@ -89,13 +89,7 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
         shouldMarkItemAsViewed(contentItem: contentItem as? ContentItem)
 
         switch cotentItemValue {
-        case .bullet(let bulletItem, let itemText):
-            return contentItemTextTableViewCell(
-                tableView: tableView,
-                indexPath: indexPath,
-                itemText: itemText
-            )
-        case .text(let itemText):
+        case .text(let itemText, _):
             return contentItemTextTableViewCell(
                 tableView: tableView,
                 indexPath: indexPath,
@@ -129,8 +123,7 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
         case .video(_, _, _, _, _): streamVideo()
         case .audio(_, _, _, _, _, _): streamVideo()
         case .image(_, _, _),
-             .bullet(_),
-             .text(_): return
+             .text(_, _): return
         }
     }
 
@@ -184,6 +177,6 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
             return
         }
 
-        serviceDelegate?.updatedViewedAt(with: contentItem.remoteID, at: Date())
+        serviceDelegate?.updatedViewedAt(with: contentItem.remoteID)
     }
 }

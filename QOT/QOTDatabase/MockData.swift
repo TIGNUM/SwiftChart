@@ -171,17 +171,16 @@ private func addMockContentItems(content: ContentCollection, realm: Realm) {
 
 private func mockContentItem(sortOrder: Int, title: String, secondsRequired: Int) -> ContentItem {
     let contentItem = ContentItem()
-    let randomContentItemFormatFormat = Int8(Int.random(between: 0, and: 4))
-    let randomContentItemFormat = ContentItemFormat(rawValue: randomContentItemFormatFormat)
+    let randomContentItemFormat = ContentItemFormat.randomItemFormat
     let contentItemData = ContentItemData(
         sortOrder: sortOrder,
         title: title,
         secondsRequired: secondsRequired,
         value: randomItemJson(format: randomContentItemFormat),
-        format: randomContentItemFormatFormat,
-        viewAt: nil,
+        format: randomContentItemFormat.rawValue,
+        viewed: false,
         searchTags: title,
-        layoutInfo: ""
+        layoutInfo: nil
     )
     try? contentItem.setData(contentItemData)
 
@@ -195,9 +194,15 @@ private func randomItemJson(format: ContentItemFormat?) -> String {
 
     switch format {
     case .audio: return audioItemJSON
-    case .bullet: return bulletItemJSON
     case .image: return imageItemJSON
-    case .text: return textItemJSON
+    case .textBullet,
+         .textH1,
+         .textH2,
+         .textH3,
+         .textH4,
+         .textH5,
+         .textH6,
+         .textParagraph: return textItemJSON
     case .video: return videoItemJSON
     }
 }

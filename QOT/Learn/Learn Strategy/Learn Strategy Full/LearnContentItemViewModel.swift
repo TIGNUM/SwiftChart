@@ -58,19 +58,19 @@ private var mockReadMoreContentItems: [LearnContentItem] {
         ReadMoreItem(
             viewed: false,
             title: "Read More",
-            contentItemValue: ContentItemValue.text("34 Articels")
+            contentItemValue: ContentItemValue.text(text: "34 Articels", style: .h2)
         ),
 
         ReadMoreItem(
             viewed: false,
             title: "Leverage Stress Benefits",
-            contentItemValue: ContentItemValue.text("5 Min to read")
+            contentItemValue: ContentItemValue.text(text: "5 Min to read", style: .h2)
         ),
 
         ReadMoreItem(
             viewed: false,
             title: "The small change that do",
-            contentItemValue: ContentItemValue.text("4 min read")
+            contentItemValue: ContentItemValue.text(text: "4 min read", style: .h2)
         )
     ]
 }

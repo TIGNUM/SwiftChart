@@ -107,7 +107,7 @@ private func mockPrepareContentItem(sortOrder: Int, title: String) -> ContentIte
         sortOrder: sortOrder,
         title: title,
         value: textItemJSON,
-        format: ContentItemFormat.text.rawValue,
+        format: ContentItemFormat.textH3.rawValue,
         searchTags: title,
         layoutInfo: (sortOrder == 1 || sortOrder == 2 || sortOrder == 3) ? prepareContentItemLayoutInfo : nil
     )
@@ -126,14 +126,14 @@ private var prepareContentItemLayoutInfo: String {
 
 private extension ContentItemData {
 
-    init(sortOrder: Int, title: String, value: String, format: Int8, searchTags: String, layoutInfo: String?) {
+    init(sortOrder: Int, title: String, value: String, format: String, searchTags: String, layoutInfo: String?) {
         self.init(
             sortOrder: sortOrder,
             title: title,
             secondsRequired: 0,
             value: value,
             format: format,
-            viewAt: nil,
+            viewed: false,
             searchTags: searchTags,
             layoutInfo: layoutInfo
         )
