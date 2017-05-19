@@ -215,6 +215,11 @@
 		CCE3730F1E8D32F800B79352 /* SidebarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE373091E8D32F800B79352 /* SidebarCoordinator.swift */; };
 		CCE373141E8D32F800B79352 /* SidebarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE3730E1E8D32F800B79352 /* SidebarViewModel.swift */; };
 		CCE373161E8D330100B79352 /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE373151E8D330100B79352 /* LibraryViewModel.swift */; };
+		CCE579671ECB5546006E0D45 /* SidebarContentCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE579661ECB5546006E0D45 /* SidebarContentCategory.swift */; };
+		CCE579691ECB55AC006E0D45 /* SidebarContentCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE579681ECB55AC006E0D45 /* SidebarContentCollection.swift */; };
+		CCE5796B1ECB55BE006E0D45 /* SidebarContentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE5796A1ECB55BE006E0D45 /* SidebarContentItem.swift */; };
+		CCE5796D1ECB55CE006E0D45 /* SidebarContentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE5796C1ECB55CE006E0D45 /* SidebarContentService.swift */; };
+		CCE5796F1ECB580E006E0D45 /* MockData+Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE5796E1ECB580E006E0D45 /* MockData+Sidebar.swift */; };
 		CCEA22A41E8AC53E003D0CF4 /* PrepareCheckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A21E8AC53D003D0CF4 /* PrepareCheckListViewController.swift */; };
 		CCEA22A51E8AC53E003D0CF4 /* PrepareCheckListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A31E8AC53D003D0CF4 /* PrepareCheckListViewModel.swift */; };
 		CCEA22A91E8AC55F003D0CF4 /* PrepareEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A71E8AC55F003D0CF4 /* PrepareEventsViewController.swift */; };
@@ -491,6 +496,11 @@
 		CCE373091E8D32F800B79352 /* SidebarCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarCoordinator.swift; sourceTree = "<group>"; };
 		CCE3730E1E8D32F800B79352 /* SidebarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewModel.swift; sourceTree = "<group>"; };
 		CCE373151E8D330100B79352 /* LibraryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryViewModel.swift; sourceTree = "<group>"; };
+		CCE579661ECB5546006E0D45 /* SidebarContentCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarContentCategory.swift; sourceTree = "<group>"; };
+		CCE579681ECB55AC006E0D45 /* SidebarContentCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarContentCollection.swift; sourceTree = "<group>"; };
+		CCE5796A1ECB55BE006E0D45 /* SidebarContentItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarContentItem.swift; sourceTree = "<group>"; };
+		CCE5796C1ECB55CE006E0D45 /* SidebarContentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarContentService.swift; sourceTree = "<group>"; };
+		CCE5796E1ECB580E006E0D45 /* MockData+Sidebar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MockData+Sidebar.swift"; sourceTree = "<group>"; };
 		CCEA22A21E8AC53D003D0CF4 /* PrepareCheckListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareCheckListViewController.swift; sourceTree = "<group>"; };
 		CCEA22A31E8AC53D003D0CF4 /* PrepareCheckListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareCheckListViewModel.swift; sourceTree = "<group>"; };
 		CCEA22A71E8AC55F003D0CF4 /* PrepareEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsViewController.swift; sourceTree = "<group>"; };
@@ -752,6 +762,7 @@
 				CCF0F4BC1ECDC57000E8D9C1 /* DownSync.swift */,
 				CB1D5E351EC5E25A00BCDF8D /* Error.swift */,
 				CB1D5E361EC5E25A00BCDF8D /* JSONDecodable.swift */,
+				CCE5796E1ECB580E006E0D45 /* MockData+Sidebar.swift */,
 				CBD791531E72A4BB0006C590 /* MockData.swift */,
 				CC1465361EC60D0C00DEC3C5 /* MockData+Prepare.swift */,
 				CCF0F4BD1ECDC57000E8D9C1 /* NSPredicate+Convenience.swift */,
@@ -818,6 +829,7 @@
 			children = (
 				CB369CE31E8E43DA00522293 /* Learn */,
 				CC33CA261EC5FC71008E6B33 /* Prepare */,
+				CCE579591ECB4FB5006E0D45 /* Sidebar */,
 				CB369CDC1E8D3F0A00522293 /* Utilities */,
 				CB369CE11E8D5E3D00522293 /* Services.swift */,
 			);
@@ -1473,6 +1485,17 @@
 			path = Library;
 			sourceTree = "<group>";
 		};
+		CCE579591ECB4FB5006E0D45 /* Sidebar */ = {
+			isa = PBXGroup;
+			children = (
+				CCE579661ECB5546006E0D45 /* SidebarContentCategory.swift */,
+				CCE579681ECB55AC006E0D45 /* SidebarContentCollection.swift */,
+				CCE5796A1ECB55BE006E0D45 /* SidebarContentItem.swift */,
+				CCE5796C1ECB55CE006E0D45 /* SidebarContentService.swift */,
+			);
+			path = Sidebar;
+			sourceTree = "<group>";
+		};
 		CCEA22A11E8AC528003D0CF4 /* PerpareCheckList */ = {
 			isa = PBXGroup;
 			children = (
@@ -1845,6 +1868,7 @@
 				CBD791541E72A4BB0006C590 /* MockData.swift in Sources */,
 				CCCC211D1E8981AD00133839 /* ChatViewModel.swift in Sources */,
 				D51B5C4A1E8D0E7E0084A65B /* LearnContentLayout.swift in Sources */,
+				CCE5796B1ECB55BE006E0D45 /* SidebarContentItem.swift in Sources */,
 				CBDB99101E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift in Sources */,
 				CC0FF8D41EA788350028D64F /* PartnersViewController.swift in Sources */,
 				CB27D59D1ECCB6DD00F2B76C /* NetworkError.swift in Sources */,
@@ -1854,6 +1878,7 @@
 				CB0A4A581ECC4C25006A2D85 /* AddSensorCoordinator.swift in Sources */,
 				CB2880221E7050EB0067890A /* Coordinator.swift in Sources */,
 				CB1D5E3C1EC5E25A00BCDF8D /* ContentCollectionData.swift in Sources */,
+				CCE579691ECB55AC006E0D45 /* SidebarContentCollection.swift in Sources */,
 				CB55A2DF1E9FDF0A00D721CE /* SettingsMenuViewController.swift in Sources */,
 				CCC1B6A91E8B9B7300D1461F /* LearnCategoryListViewController.swift in Sources */,
 				CB369CE51E8E46B600522293 /* LearnContentCollection.swift in Sources */,
@@ -1974,6 +1999,7 @@
 				D57ECFB01E924CC2008F401B /* TabBarView.swift in Sources */,
 				CCE06FE01E8D44FC009C5AD2 /* LibraryCoordinator.swift in Sources */,
 				0B254D3E1E97994C006AA4C0 /* PrepareCollectionViewCell.swift in Sources */,
+				CCE5796D1ECB55CE006E0D45 /* SidebarContentService.swift in Sources */,
 				CC9FBDE61EAE155300AF1CF0 /* PrepareContentCoordinator.swift in Sources */,
 				CC8D6CF91EC315F5007AE687 /* R.generated.swift in Sources */,
 				CC0FF8DA1EA790750028D64F /* PartnersCoordinator.swift in Sources */,
@@ -1988,6 +2014,7 @@
 				CB8A154C1E7A8AD30023B2F9 /* CalendarImportTask.swift in Sources */,
 				CB8A15221E769F1F0023B2F9 /* EventTracker.swift in Sources */,
 				CCE373081E8D32CF00B79352 /* LibraryViewController.swift in Sources */,
+				CCE5796F1ECB580E006E0D45 /* MockData+Sidebar.swift in Sources */,
 				CCEA22A91E8AC55F003D0CF4 /* PrepareEventsViewController.swift in Sources */,
 				CCC0C4BE1E82730E002A8362 /* Extensions.swift in Sources */,
 				CC9663101EA1B29800B84B1C /* MyWhyViewModel.swift in Sources */,
@@ -2005,6 +2032,7 @@
 				0B573CA41EC3218D00A03602 /* MeetingLengthChartView.swift in Sources */,
 				CC8D6D001EC316A1007AE687 /* LearnContentItemBulletViewController.swift in Sources */,
 				D58BD86A1E9D1E7F005676DE /* NSFile+Convenience.swift in Sources */,
+				CCE579671ECB5546006E0D45 /* SidebarContentCategory.swift in Sources */,
 				D5FA66951EB9FF0B00980EC7 /* EventGraphView.swift in Sources */,
 				CB2880241E7051710067890A /* AppCoordinator.swift in Sources */,
 				CB1D5E3A1EC5E25A00BCDF8D /* ContentCategoryData.swift in Sources */,

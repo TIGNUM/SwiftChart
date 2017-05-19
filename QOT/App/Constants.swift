@@ -189,6 +189,19 @@ enum Identifier: String {
 
 struct Font {
 
+    enum Name: String {
+        case h2SecondaryTitle
+        case h5SecondaryHeadline
+
+        static func font(name: String) -> UIFont {
+            switch name {
+            case Name.h2SecondaryTitle.rawValue: return Font.H2SecondaryTitle
+            case Name.h5SecondaryHeadline.rawValue: return Font.H5SecondaryHeadline
+            default: return Font.H4Headline
+            }
+        }
+    }
+
     /// SIMPLE REGULAR 36 // main post title
     static let H1MainTitle = UIFont.simpleFont(ofSize: 36)
 

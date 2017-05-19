@@ -16,16 +16,11 @@ class ContentItemTextTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet fileprivate weak var bottomLabel: UILabel!
     weak var delegate: LearnContentItemViewController?
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-
-        contentView.backgroundColor = .white
-        backgroundColor = .white
-    }
-
-    func setup(topText: NSAttributedString, bottomText: NSAttributedString?) {
+    func setup(topText: NSAttributedString, bottomText: NSAttributedString?, backgroundColor: UIColor = .white) {
         bottomLabel.isHidden = bottomText == nil
         topLabel.attributedText = topText
         bottomLabel.attributedText = bottomText
+        contentView.backgroundColor = backgroundColor
+        self.backgroundColor = backgroundColor
     }
 }

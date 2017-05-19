@@ -18,6 +18,8 @@ protocol ContentCategoryDataProtocol {
 
     var title: String { get }
 
+    var keypathID: String? { get }
+
     /**
      A JSON string containing layout information. eg. for the learn section
      bubbles:
@@ -36,6 +38,7 @@ struct ContentCategoryData: ContentCategoryDataProtocol {
 
     let sortOrder: Int
     let section: String
+    let keypathID: String?
     let title: String
     let subTitle: String?
     let layoutInfo: String?
@@ -45,9 +48,10 @@ struct ContentCategoryData: ContentCategoryDataProtocol {
 
     //TODO: Please remove me later.
 
-    init(sortOrder: Int, section: String, title: String, layoutInfo: String?) {
+    init(sortOrder: Int, section: String, title: String, keypathID: String? = nil, layoutInfo: String?) {
         self.sortOrder = sortOrder
         self.section = section
+        self.keypathID = keypathID
         self.title = title
         self.layoutInfo = layoutInfo
         self.subTitle = nil
@@ -70,5 +74,6 @@ extension ContentCategoryData: JSONDecodable {
         self.searchTags = try (json.getArray(at: .searchTags) as [String]).joined(separator: ",")
         self.categoryIDs = try json.getArray(at: .categoryIDs)
         self.layoutInfo = try json[.layoutInfo]?.serializeString()
+        self.keypathID = try json.getItemValue(at: .keypathID, alongPath: .NullBecomesNil)
     }
 }

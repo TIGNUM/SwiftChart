@@ -19,6 +19,7 @@ func setupRealmWithMockData(realm: Realm) {
             if realm.objects(ContentCategory.self).count == 0 {
                 addMockLearnContentCategories(realm: realm)
                 addMockPrepareContentCategories(realm: realm)
+                addMockSidebarContentCategories(realm: realm)
             }
         }
     } catch let error {

@@ -14,19 +14,24 @@ final class SidebarItemCoordinator: ParentCoordinator {
     fileprivate let rootViewController: SidebarViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
-    fileprivate let sidebarItemType: SidebarItemViewModel.ItemType
+    fileprivate let sidebarContentCategory: SidebarContentCategory
     var children = [Coordinator]()
     lazy var presentationManager = PresentationManager()
 
-    init(root: SidebarViewController, services: Services, eventTracker: EventTracker, sidebarItemType: SidebarItemViewModel.ItemType) {
-        self.rootViewController = root
-        self.services = services
-        self.eventTracker = eventTracker
-        self.sidebarItemType = sidebarItemType
+    init(
+        root: SidebarViewController,
+        services: Services,
+        eventTracker: EventTracker,
+        sidebarContentCategory: SidebarContentCategory) {
+            self.rootViewController = root
+            self.services = services
+            self.eventTracker = eventTracker
+            self.sidebarContentCategory = sidebarContentCategory
     }
 
     func start() {
-        let benefitsViewController = SidebarItemViewController(viewModel: SidebarItemViewModel(sidebarItemType: sidebarItemType))
+        let viewModel = SidebarItemViewModel(sidebarContentCategory: sidebarContentCategory)
+        let benefitsViewController = SidebarItemViewController(viewModel: viewModel)
         benefitsViewController.delegate = self
         presentationManager.presentationType = .fadeIn
         benefitsViewController.modalPresentationStyle = .custom

@@ -26,6 +26,7 @@ final class ContentCategory: Object, ContentCategoryDataProtocol {
     func setData(_ data: ContentCategoryDataProtocol) {
         sortOrder = data.sortOrder
         section = data.section
+        keypathID = data.keypathID
         title = data.title
         layoutInfo = data.layoutInfo
     }
@@ -35,6 +36,8 @@ final class ContentCategory: Object, ContentCategoryDataProtocol {
     private(set) dynamic var sortOrder: Int = 0
 
     private(set) dynamic var section: String = ""
+
+    private(set) dynamic var keypathID: String?
 
     private(set) dynamic var title: String = ""
 
@@ -61,6 +64,15 @@ extension ContentCategory {
         let json = try JSON(jsonString: jsonString)
         return try BubbleLayoutInfo(json: json)
     }
+
+    func getSidebarLayoutInfo() throws -> SidebarLayoutInfo {
+        guard let jsonString = layoutInfo else {
+            throw QOTDatabaseError.noLayoutInfo
+        }
+
+        let json = try JSON(jsonString: jsonString)
+        return try SidebarLayoutInfo(json: json)
+    }
 }
 
 struct BubbleLayoutInfo: JSONDecodable {
@@ -73,5 +85,22 @@ struct BubbleLayoutInfo: JSONDecodable {
         radius = try json.getDouble(at: "bubble", "radius")
         centerX = try json.getDouble(at: "bubble", "centerX")
         centerY = try json.getDouble(at: "bubble", "centerY")
+    }
+}
+
+struct SidebarLayoutInfo: JSONDecodable {
+
+    let font: UIFont
+    let textColor: UIColor
+    let cellHeight: CGFloat
+
+    init(json: JSON) throws {
+        let red = CGFloat(try json.getDouble(at: Database.ItemKey.textColorRed.value))
+        let green = CGFloat(try json.getDouble(at: Database.ItemKey.textColorGreen.value))
+        let blue = CGFloat(try json.getDouble(at: Database.ItemKey.textColorBlue.value))
+        let alpha = CGFloat(try json.getDouble(at: Database.ItemKey.textColorAlpha.value))
+        textColor = UIColor(red: red, green: green, blue: blue, alpha: alpha)
+        font = Font.Name.font(name: try json.getString(at: Database.ItemKey.font.value))
+        cellHeight = CGFloat(try json.getDouble(at: Database.ItemKey.cellHeight.value))
     }
 }

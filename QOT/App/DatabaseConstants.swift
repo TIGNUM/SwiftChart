@@ -14,6 +14,39 @@ enum Database {
     enum Section: String {
         case learnStrategy = "learn.strategie"
         case prepareCoach = "prepare.coach"
+        case sidebar = "sidebar"
+
+        enum Sidebar: String {
+            case library = "sidebar.library"
+            case benefits = "sidebar.benefits"
+            case settings = "sidebar.settings"
+            case sensor = "sidebar.sensor"
+            case about = "sidebar.about"
+            case privacy = "sidebar.privacy"
+            case logout = "sidebar.logout"
+
+            var value: String {
+                return self.rawValue
+            }
+        }
+
+        var value: String {
+            return self.rawValue
+        }
+    }
+
+    enum ItemKey: String {
+        case font
+        case textColorRed
+        case textColorGreen
+        case textColorBlue
+        case textColorAlpha
+        case cellHeight
+        case sortOrder
+
+        var value: String {
+            return self.rawValue
+        }
     }
 }
 

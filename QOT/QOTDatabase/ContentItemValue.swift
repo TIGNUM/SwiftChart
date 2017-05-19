@@ -30,9 +30,8 @@ enum ContentItemValue {
              .textParagraph,
              .textBullet:
             let text = try json.getString(at: "text")
-            let styleString = try json.getString(at: "style")
 
-            guard let style = ContentItemTextStyle(rawValue: styleString) else {
+            guard let style = ContentItemTextStyle.createStyle(for: format) else {
                 throw ContentItemTextStyleError.noValidItemTextStyleError
             }
             
@@ -80,6 +79,10 @@ enum ContentItemTextStyle: String {
     case h6 = "text.h6"
     case bullet = "text.bullet"
     case paragraph = "text.paragraph"
+
+    static func createStyle(for format: ContentItemFormat) -> ContentItemTextStyle? {
+        return ContentItemTextStyle(rawValue: format.rawValue)
+    }
 }
 
 enum ContentItemFormat: String {

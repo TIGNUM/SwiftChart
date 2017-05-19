@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SidebarTableViewCell: UITableViewCell {
+class SidebarTableViewCell: UITableViewCell, Dequeueable {
     
     // MARK: - Outlets
     

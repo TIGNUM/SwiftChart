@@ -14,11 +14,16 @@ final class Services {
 
     let learnContentService: LearnContentService
     let prepareContentService: PrepareContentService
+    let sidebarContentService: SidebarContentService
     weak var learnCategoryUpdateDelegate: LearnCategoryUpdateDelegate?
 
-    init(learnContentService: LearnContentService, prepareContentService: PrepareContentService) {
-        self.learnContentService = learnContentService
-        self.prepareContentService = prepareContentService
+    init(
+        learnContentService: LearnContentService,
+        prepareContentService: PrepareContentService,
+        sidebarContentService: SidebarContentService) {
+            self.learnContentService = learnContentService
+            self.prepareContentService = prepareContentService
+            self.sidebarContentService = sidebarContentService
     }
 
     static func make(completion: @escaping (Result<Services, NSError>) -> Void) {
@@ -38,7 +43,12 @@ final class Services {
                     let mainRealm = try realmProvider.realm()
                     let learnContentService = LearnContentService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let prepareContentService = PrepareContentService(mainRealm: mainRealm, realmProvider: realmProvider)
-                    let services = Services(learnContentService: learnContentService, prepareContentService: prepareContentService)
+                    let sidebarContentService = SidebarContentService(mainRealm: mainRealm, realmProvider: realmProvider)
+                    let services = Services(
+                        learnContentService: learnContentService,
+                        prepareContentService: prepareContentService,
+                        sidebarContentService: sidebarContentService
+                    )
 
                     completion(.success(services))
                 } catch let error as NSError {

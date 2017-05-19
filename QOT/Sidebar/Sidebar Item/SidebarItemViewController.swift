@@ -43,7 +43,7 @@ final class SidebarItemViewController: UIViewController {
     }
 
     private func setupTableView() {
-        tableView.registerDequeueable(SideBarTextCell.self)
+        tableView.registerDequeueable(ContentItemTextTableViewCell.self)
         tableView.registerDequeueable(SideBarShareAction.self)
         tableView.registerDequeueable(ImageSubtitleTableViewCell.self)
         tableView.estimatedRowHeight = 10
@@ -76,33 +76,37 @@ extension SidebarItemViewController: UITableViewDelegate {
 extension SidebarItemViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = viewModel.item(at: indexPath)
+        let sidebarItem = viewModel.sidebarContentItems(at: indexPath)
 
-        switch item {
-        case .video(_, let placeholderURL, let description):
+        switch sidebarItem.sidebarContentItemValue {
+        case .audio(_, let description, let placeholderURL, _, _, _):
             let cell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.setupData(placeHolder: placeholderURL, description: description)
+            cell.setupData(placeHolder: placeholderURL, description: attributedString(description: description))
             cell.setInsets(insets: UIEdgeInsets(top: 0, left: 32, bottom: 32, right: 40))
             return cell
-        case .audio(_, let placeholderURL, let description):
+        case .image(_, let description, let url):
             let cell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.setupData(placeHolder: placeholderURL, description: description)
+            cell.setupData(placeHolder: url, description: attributedString(description: description))
             cell.setInsets(insets: UIEdgeInsets(top: 0, left: 32, bottom: 32, right: 40))
             return cell
-        case .image(_, let placeholderURL, let description):
+        case .text(let text, _):
+            let cell: ContentItemTextTableViewCell = tableView.dequeueCell(for: indexPath)
+            let attributedText = AttributedString.Sidebar.SideBarItems.Benefits.text(string: text)
+            cell.setup(topText: attributedText, bottomText: nil, backgroundColor: .clear)
+            return cell
+        case .video(_, let description, let placeholderURL, _, _):
             let cell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.setupData(placeHolder: placeholderURL, description: description)
-            cell.setInsets(insets: UIEdgeInsets(top: 0, left: 32, bottom: 46, right: 40))
-            return cell
-        case .text(_, let title, let text):
-            let cell: SideBarTextCell = tableView.dequeueCell(for: indexPath)
-            cell.setUp(title: title, text: text)
-            cell.setInsets(insets: UIEdgeInsets(top: 0, left: 32, bottom: 40, right: 40))
-            return cell
-        case .shareAction(let title):
-            let cell: SideBarShareAction = tableView.dequeueCell(for: indexPath)
-            cell.setUp(text: title)
+            cell.setupData(placeHolder: placeholderURL, description: attributedString(description: description))
+            cell.setInsets(insets: UIEdgeInsets(top: 0, left: 32, bottom: 32, right: 40))
             return cell
         }
+    }
+
+    private func attributedString(description: String?) -> NSAttributedString? {
+        guard let description = description else {
+            return nil
+        }
+
+        return AttributedString.Sidebar.SideBarItems.Benefits.headerText(string: description)
     }
 }

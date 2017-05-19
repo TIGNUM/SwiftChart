@@ -24,7 +24,10 @@ final class SidebarCoordinator: ParentCoordinator {
     }
     
     func start() {
-        let sideBarViewController = SidebarViewController(viewModel: SidebarViewModel())
+        let viewModel = SidebarViewModel(
+            sidebarContentCategories: services.sidebarContentService.categories()
+        )
+        let sideBarViewController = SidebarViewController(viewModel: viewModel)
         sideBarViewController.delegate = self
         presentationManager.presentationType = .fadeIn
         sideBarViewController.modalPresentationStyle = .custom
@@ -48,6 +51,11 @@ final class SidebarCoordinator: ParentCoordinator {
 // MARK: - SettingsViewControllerDelegate
 
 extension SidebarCoordinator: SidebarViewControllerDelegate {
+
+    func didTapLogoutCell(in viewController: SidebarViewController) {
+        print("didTapLogoutCell")
+    }
+
     func didTapAddSensorCell(in viewController: SidebarViewController) {
         let coordinator = AddSensorCoordinator(root: viewController, services: services, eventTracker: eventTracker)
         startChild(child: coordinator)
@@ -63,21 +71,28 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
         startChild(child: coordinator)
     }
 
-    func didTapBenefitsCell(in viewController: SidebarViewController) {
-        startSidebarItemCoordinator(sidebarItemType: .benefits, viewController: viewController)
+    func didTapBenefitsCell(from sidebarContentCategory: SidebarContentCategory, in viewController: SidebarViewController) {
+        startSidebarItemCoordinator(sidebarContentCategory: sidebarContentCategory, viewController: viewController)
     }
 
-    func didTapAboutCell(in viewController: SidebarViewController) {
-        startSidebarItemCoordinator(sidebarItemType: .about, viewController: viewController)
+    func didTapAboutCell(from sidebarContentCategory: SidebarContentCategory, in viewController: SidebarViewController) {
+        startSidebarItemCoordinator(sidebarContentCategory: sidebarContentCategory, viewController: viewController)
     }
 
-    func didTapPrivacyCell(in viewController: SidebarViewController) {
-        startSidebarItemCoordinator(sidebarItemType: .privacy, viewController: viewController)
+    func didTapPrivacyCell(from sidebarContentCategory: SidebarContentCategory, in viewController: SidebarViewController) {
+        startSidebarItemCoordinator(sidebarContentCategory: sidebarContentCategory, viewController: viewController)
     }
 
-    private func startSidebarItemCoordinator(sidebarItemType: SidebarItemViewModel.ItemType, viewController: SidebarViewController) {
-        let coordinator = SidebarItemCoordinator(root: viewController, services: services, eventTracker: eventTracker, sidebarItemType: sidebarItemType)
-        startChild(child: coordinator)
+    private func startSidebarItemCoordinator(
+        sidebarContentCategory: SidebarContentCategory,
+        viewController: SidebarViewController) {
+            let coordinator = SidebarItemCoordinator(
+                root: viewController,
+                services: services,
+                eventTracker: eventTracker,
+                sidebarContentCategory: sidebarContentCategory
+            )
+            startChild(child: coordinator)
     }
 }
 
