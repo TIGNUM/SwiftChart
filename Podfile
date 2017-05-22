@@ -14,6 +14,7 @@ target 'QOT' do
   pod 'RealmSwift', '2.7.0'
   pod 'Freddy', '3.0.0'
   pod 'Alamofire', '~> 4.4'
+  pod 'KeychainAccess', '~> 3.0.2'
 
   target 'QOTTests' do
     inherit! :search_paths

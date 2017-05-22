@@ -15,7 +15,7 @@ extension URLRequest {
         let endpoint = Endpoint.authentication
         var request = URLRequest(url: endpoint.url(baseURL: baseURL))
         request.setValue("\(username):\(password)", forHTTPHeaderField: HeaderField.Authorization.rawValue)
-        request.httpMethod = RequestMethod.POST.rawValue
+        request.httpMethod = RequestMethod.POST.rawValue        
         return request
     }
 }

@@ -25,7 +25,7 @@ enum NetworkError: Error {
     init(error: NSError, statusCode: Int?) {
         if let code = statusCode {
             if let httpStatusCode = HTTPStatusCode(rawValue: code), httpStatusCode == .unauthorized {
-                self = .loginRequired
+                self = .wrongCredentials
             } else {
                 self = .unknown(error: error, statusCode: code)
             }
