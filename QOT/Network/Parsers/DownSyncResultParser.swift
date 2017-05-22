@@ -10,13 +10,8 @@ import Foundation
 import Freddy
 
 struct DownSyncResult<T>: JSONDecodable where T: JSONDecodable{
-    enum Item {
-        case createdOrUpdated(remoteID: Int, createdAt: Date, modifiedAt: Date, data: T)
-        case deleted(remoteID: Int)
-    }
-
     let timestamp: Date
-    let items: [Item]
+    let items: [DownSyncNetworkItem<T>]
     let page: Int
     let pageSize: Int
     let maxResults: Int
@@ -24,7 +19,7 @@ struct DownSyncResult<T>: JSONDecodable where T: JSONDecodable{
 
     init(json: JSON) throws {
         self.timestamp = try json.getDate(at: .timestamp)
-        self.items = try json.getArray(at: JsonKey.results.value).map { (json) -> Item in
+        self.items = try json.getArray(at: JsonKey.results.value).map { (json) -> DownSyncNetworkItem<T> in
             let syncStatus: SyncStatus = try json.getItemValue(at: .syncStatus)
             let remoteID: Int = try json.getItemValue(at: .id)
             switch syncStatus {
