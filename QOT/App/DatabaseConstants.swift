@@ -52,7 +52,7 @@ enum Database {
 
 enum JsonKey: String {
     case results
-    case identifier
+    case id
     case syncStatus
     case createdAt
     case modifiedAt
@@ -110,5 +110,15 @@ extension JSON {
         case let dict as [Swift.String: Any]: return try makeJSONDictionary(dict)
         default: return .null
         }
+    }
+
+    func getDate(at jsonKey: JsonKey) throws -> Date {
+        let formatter = DateFormatter.iso8601
+        let dateString: String = try getItemValue(at: jsonKey)
+
+        guard let date = formatter.date(from: dateString) else {
+            throw JSON.Error.valueNotConvertible(value: self, to: Date.self)
+        }
+        return date
     }
 }
