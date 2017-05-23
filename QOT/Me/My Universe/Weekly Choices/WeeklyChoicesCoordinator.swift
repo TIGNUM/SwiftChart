@@ -73,4 +73,5 @@ extension WeeklyChoicesCoordinator: TopTabBarDelegate {
     func didSelectRightButton(sender: TopTabBarController) {
         print(sender)
     }
+
 }

@@ -2,7 +2,7 @@
 //  WeeklyChoicesViewController.swift
 //  QOT
 //
-//  Created by karmic on 18.04.17.
+//  Created by Aamir Suhial Mir on 18.04.17.
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
@@ -16,11 +16,10 @@ protocol WeeklyChoicesViewControllerDelegate: class {
 final class WeeklyChoicesViewController: UIViewController {
 
     // MARK: - Properties
+    @IBOutlet private weak var collectionView: UICollectionView!
 
-    lazy var tableView = UITableView()
     let viewModel: WeeklyChoicesViewModel
     weak var delegate: WeeklyChoicesViewControllerDelegate?
-
     // MARK: - Init
 
     init(viewModel: WeeklyChoicesViewModel) {
@@ -37,38 +36,47 @@ final class WeeklyChoicesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeView))
-        view.addGestureRecognizer(tapGestureRecognizer)
-        view.backgroundColor = .green
-        setupTableView()
+        setupCollectionView()
     }
 
-    private func setupTableView() {
-        tableView = UITableView(frame: view.frame, style: .plain)
-        tableView.delegate = self
-        tableView.dataSource = self        
-    }
-
-    func closeView() {
-        delegate?.didTapClose(in: self, animated: true)
+    private func setupCollectionView() {
+        let layout = WeeklyChoicesLayout()
+        layout.delegate = self
+        collectionView.collectionViewLayout = layout
+        collectionView.decelerationRate = UIScrollViewDecelerationRateFast
+        collectionView.registerDequeueable(WeeklyChoicesCell.self)
+        collectionView.delegate = self
+        collectionView.dataSource = self
     }
 }
 
-// MARK: - UITableViewDelegate, UITableViewDataSource
+// MARK: - UICollectionViewDelegate, UICollectionViewDataSource
 
-extension WeeklyChoicesViewController: UITableViewDataSource, UITableViewDelegate {
+extension WeeklyChoicesViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.itemCount
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
-        let weeklyChoice = viewModel.item(at: indexPath.row)
-        cell.textLabel?.text = weeklyChoice.title
-        cell.detailTextLabel?.text = weeklyChoice.text
-
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let item = viewModel.item(at: indexPath.item)
+        let cell: WeeklyChoicesCell = collectionView.dequeueCell(for: indexPath)
+        cell.setUp(title: item.title, subTitle: item.text, text: item.text)
+        
         return cell
+    }
+}
+// MARK: - Layout Delegate
+extension WeeklyChoicesViewController: WeeklyChoicesDelegate {
+    func radius(_: WeeklyChoicesLayout) -> CGFloat {
+        return CGFloat(400)
+    }
+
+    func circleX(_: WeeklyChoicesLayout) -> CGFloat {
+        return CGFloat(-330)
+    }
+
+    func cellSize(_: WeeklyChoicesLayout) -> CGSize {
+        return CGSize(width: 300, height: 100)
     }
 }

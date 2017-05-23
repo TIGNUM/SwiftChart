@@ -28,7 +28,7 @@ final class WeeklyChoicesViewModel {
 private var weeklyChoices: [WeeklyChoice] {
     var choices = [WeeklyChoice]()
 
-    for index in 1...365 {
+    for index in 1..<365 {
         let titleIndex = index < 10 ? ("0" + "\(index)") : "\(index)"
         let weeklyChoice =  MockWeeklyChoice(
             localID: UUID().uuidString,

@@ -248,6 +248,10 @@
 		D537B1E61EC200CD004C444D /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D537B1E51EC200CD004C444D /* GridView.swift */; };
 		D54D90281E979C30003924C9 /* LibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54D90261E979C30003924C9 /* LibraryViewController.xib */; };
 		D55CBED71E8A993200C690FB /* CGPoint+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55CBED61E8A993200C690FB /* CGPoint+Convenience.swift */; };
+		D576F06B1ECB43C200363BFE /* WeeklyChoicesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D576F0691ECB43C200363BFE /* WeeklyChoicesViewController.xib */; };
+		D576F06E1ECB45C900363BFE /* WeeklyChoicesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D576F06C1ECB45C900363BFE /* WeeklyChoicesCell.swift */; };
+		D576F06F1ECB45C900363BFE /* WeeklyChoicesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D576F06D1ECB45C900363BFE /* WeeklyChoicesCell.xib */; };
+		D576F0711ECB49F400363BFE /* WeeklyChoicesLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D576F0701ECB49F400363BFE /* WeeklyChoicesLayout.swift */; };
 		D57ECFB01E924CC2008F401B /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57ECFAF1E924CC2008F401B /* TabBarView.swift */; };
 		D58BD86A1E9D1E7F005676DE /* NSFile+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58BD8691E9D1E7F005676DE /* NSFile+Convenience.swift */; };
 		D58BD86C1E9E846C005676DE /* ScrollViewAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58BD86B1E9E846C005676DE /* ScrollViewAnimation.swift */; };
@@ -532,6 +536,10 @@
 		D537B1E51EC200CD004C444D /* GridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		D54D90261E979C30003924C9 /* LibraryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryViewController.xib; sourceTree = "<group>"; };
 		D55CBED61E8A993200C690FB /* CGPoint+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Convenience.swift"; sourceTree = "<group>"; };
+		D576F0691ECB43C200363BFE /* WeeklyChoicesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeeklyChoicesViewController.xib; sourceTree = "<group>"; };
+		D576F06C1ECB45C900363BFE /* WeeklyChoicesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesCell.swift; sourceTree = "<group>"; };
+		D576F06D1ECB45C900363BFE /* WeeklyChoicesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeeklyChoicesCell.xib; sourceTree = "<group>"; };
+		D576F0701ECB49F400363BFE /* WeeklyChoicesLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesLayout.swift; sourceTree = "<group>"; };
 		D57ECFAF1E924CC2008F401B /* TabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		D58BD8691E9D1E7F005676DE /* NSFile+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFile+Convenience.swift"; sourceTree = "<group>"; };
 		D58BD86B1E9E846C005676DE /* ScrollViewAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewAnimation.swift; sourceTree = "<group>"; };
@@ -918,7 +926,8 @@
 			children = (
 				CB8A15451E7986C90023B2F9 /* Localized.strings */,
 			);
-			path = Localization;
+			name = Localization;
+			path = ../../Localization;
 			sourceTree = "<group>";
 		};
 		CB8A15531E7A9F4F0023B2F9 /* Calendar Import */ = {
@@ -974,7 +983,6 @@
 				CB8A15411E7982540023B2F9 /* Generated */,
 				CBD791571E72F10E0006C590 /* Launch */,
 				CCC1B69A1E8B99B500D1461F /* Learn */,
-				CB8A15441E7986A90023B2F9 /* Localization */,
 				CC4D1D791E82E6A000B8D75E /* Me */,
 				CB5B57271ECC7FD30079E869 /* Network */,
 				CC20C9921E8981070056054D /* Prepare */,
@@ -1236,6 +1244,10 @@
 			children = (
 				CC0FF8D71EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift */,
 				CC5A8D6E1EA65A6400E5800F /* WeeklyChoicesViewController.swift */,
+				D576F0701ECB49F400363BFE /* WeeklyChoicesLayout.swift */,
+				D576F0691ECB43C200363BFE /* WeeklyChoicesViewController.xib */,
+				D576F06C1ECB45C900363BFE /* WeeklyChoicesCell.swift */,
+				D576F06D1ECB45C900363BFE /* WeeklyChoicesCell.xib */,
 				CC5A8D6C1EA65A3E00E5800F /* WeeklyChoicesViewModel.swift */,
 			);
 			path = "Weekly Choices";
@@ -1307,6 +1319,7 @@
 			children = (
 				CC0294A81E9F66FD00163B94 /* My Data */,
 				CCCE09CA1EA67C3B008730F1 /* My To Be Vision */,
+				CB8A15441E7986A90023B2F9 /* Localization */,
 				CC0294A91E9F670C00163B94 /* My Why */,
 				CC0FF8D01EA7841A0028D64F /* QOT Partners */,
 				CC5A8D691EA6597F00E5800F /* Weekly Choices */,
@@ -1666,6 +1679,7 @@
 				D58BD8701E9F5F3E005676DE /* WhatsHotViewController.xib in Resources */,
 				CCC0C4CA1E827F87002A8362 /* BentonSans_Book.otf in Resources */,
 				CC311A211EAF430B0020C869 /* SettingsButtonTableViewCell.xib in Resources */,
+				D576F06F1ECB45C900363BFE /* WeeklyChoicesCell.xib in Resources */,
 				0B254D3F1E97994C006AA4C0 /* PrepareCollectionViewCell.xib in Resources */,
 				0B40DC101E9CA6E100E1659B /* PrepareContentVideoPreviewTableViewCell.xib in Resources */,
 				0BEE8ABA1EA600A7008077B8 /* PrepareEventAddNewTripTableViewCell.xib in Resources */,
@@ -1695,6 +1709,7 @@
 				CB8C34561EAF7F200003AB65 /* styles.css in Resources */,
 				0BE7FD901E9D2F8800E3262E /* PrepareContentTitleTableViewCell.xib in Resources */,
 				CC335EE71EBC84780085F5C5 /* ContentItemTextTableViewCell.xib in Resources */,
+				D576F06B1ECB43C200363BFE /* WeeklyChoicesViewController.xib in Resources */,
 				D5EC34AD1EB0D32D00F86B09 /* LearnStrategyAudioPlayerView.xib in Resources */,
 				D5EC34B31EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.xib in Resources */,
 				0BD6F6BA1EA0E81E001EBC4D /* MyPrepTableViewCell.xib in Resources */,
@@ -1920,6 +1935,7 @@
 				CB1D5E391EC5E25A00BCDF8D /* ContentCategory.swift in Sources */,
 				CBDB98F21E7AA510003EC73F /* CalendarImportResult.swift in Sources */,
 				CC13E2461EB1D72E00C3CE46 /* CategoryPostCell.swift in Sources */,
+				D576F0711ECB49F400363BFE /* WeeklyChoicesLayout.swift in Sources */,
 				CC8C982B1EA767580064AFB1 /* MyUniverseViewController+ScreenType.swift in Sources */,
 				CC143A511EC495CE001FB76E /* MyStatisticsCoordinator.swift in Sources */,
 				CC33CA2A1EC6026E008E6B33 /* PrepareContentCollection.swift in Sources */,
@@ -1963,6 +1979,7 @@
 				CCC0C4DB1E82BDEF002A8362 /* TabBarCoordinator.swift in Sources */,
 				CB369CDB1E8D3E5700522293 /* RealmProvider.swift in Sources */,
 				CBDB98FD1E7BE6AF003EC73F /* CalendarEventData.swift in Sources */,
+				D576F06E1ECB45C900363BFE /* WeeklyChoicesCell.swift in Sources */,
 				CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */,
 				D52DAF9B1EC1E87D00C63156 /* SittingMovementChartView.swift in Sources */,
 				CCE373161E8D330100B79352 /* LibraryViewModel.swift in Sources */,
