@@ -246,6 +246,10 @@
 		D52371531EA9F0B100165842 /* PrepareChatTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52371511EA9F0B100165842 /* PrepareChatTableCell.swift */; };
 		D52DAF9B1EC1E87D00C63156 /* SittingMovementChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52DAF9A1EC1E87D00C63156 /* SittingMovementChartView.swift */; };
 		D537B1E61EC200CD004C444D /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D537B1E51EC200CD004C444D /* GridView.swift */; };
+		D5485F221ED57AE200A08D1A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5485F211ED57AE200A08D1A /* SearchViewController.swift */; };
+		D5485F241ED57F0600A08D1A /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5485F231ED57F0600A08D1A /* SearchViewModel.swift */; };
+		D5485F261ED583BC00A08D1A /* SearchTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5485F251ED583BC00A08D1A /* SearchTableCell.swift */; };
+		D5485F281ED583E300A08D1A /* SearchCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5485F271ED583E300A08D1A /* SearchCollectionCell.swift */; };
 		D54D90281E979C30003924C9 /* LibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54D90261E979C30003924C9 /* LibraryViewController.xib */; };
 		D55CBED71E8A993200C690FB /* CGPoint+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55CBED61E8A993200C690FB /* CGPoint+Convenience.swift */; };
 		D576F06B1ECB43C200363BFE /* WeeklyChoicesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D576F0691ECB43C200363BFE /* WeeklyChoicesViewController.xib */; };
@@ -534,6 +538,10 @@
 		D52371511EA9F0B100165842 /* PrepareChatTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareChatTableCell.swift; sourceTree = "<group>"; };
 		D52DAF9A1EC1E87D00C63156 /* SittingMovementChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SittingMovementChartView.swift; sourceTree = "<group>"; };
 		D537B1E51EC200CD004C444D /* GridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
+		D5485F211ED57AE200A08D1A /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		D5485F231ED57F0600A08D1A /* SearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		D5485F251ED583BC00A08D1A /* SearchTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableCell.swift; sourceTree = "<group>"; };
+		D5485F271ED583E300A08D1A /* SearchCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCollectionCell.swift; sourceTree = "<group>"; };
 		D54D90261E979C30003924C9 /* LibraryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryViewController.xib; sourceTree = "<group>"; };
 		D55CBED61E8A993200C690FB /* CGPoint+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Convenience.swift"; sourceTree = "<group>"; };
 		D576F0691ECB43C200363BFE /* WeeklyChoicesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeeklyChoicesViewController.xib; sourceTree = "<group>"; };
@@ -926,8 +934,7 @@
 			children = (
 				CB8A15451E7986C90023B2F9 /* Localized.strings */,
 			);
-			name = Localization;
-			path = ../../Localization;
+			path = Localization;
 			sourceTree = "<group>";
 		};
 		CB8A15531E7A9F4F0023B2F9 /* Calendar Import */ = {
@@ -988,6 +995,7 @@
 				CC20C9921E8981070056054D /* Prepare */,
 				CC6B3A271E81586C00E7FDFD /* Presentation */,
 				CB1D5E441EC5F52D00BCDF8D /* QOTDatabase */,
+				D5485F201ED578FB00A08D1A /* Search */,
 				CB369CD91E8D3E3700522293 /* Services */,
 				CCCCB0691E804A90001240D5 /* Sidebar */,
 				CCC0C4D71E82BAEA002A8362 /* Tab Bar */,
@@ -1242,12 +1250,12 @@
 		CC5A8D691EA6597F00E5800F /* Weekly Choices */ = {
 			isa = PBXGroup;
 			children = (
-				CC0FF8D71EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift */,
-				CC5A8D6E1EA65A6400E5800F /* WeeklyChoicesViewController.swift */,
-				D576F0701ECB49F400363BFE /* WeeklyChoicesLayout.swift */,
-				D576F0691ECB43C200363BFE /* WeeklyChoicesViewController.xib */,
 				D576F06C1ECB45C900363BFE /* WeeklyChoicesCell.swift */,
 				D576F06D1ECB45C900363BFE /* WeeklyChoicesCell.xib */,
+				CC0FF8D71EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift */,
+				D576F0701ECB49F400363BFE /* WeeklyChoicesLayout.swift */,
+				CC5A8D6E1EA65A6400E5800F /* WeeklyChoicesViewController.swift */,
+				D576F0691ECB43C200363BFE /* WeeklyChoicesViewController.xib */,
 				CC5A8D6C1EA65A3E00E5800F /* WeeklyChoicesViewModel.swift */,
 			);
 			path = "Weekly Choices";
@@ -1317,9 +1325,9 @@
 		CC9663021EA1B1F300B84B1C /* My Universe */ = {
 			isa = PBXGroup;
 			children = (
+				CB8A15441E7986A90023B2F9 /* Localization */,
 				CC0294A81E9F66FD00163B94 /* My Data */,
 				CCCE09CA1EA67C3B008730F1 /* My To Be Vision */,
-				CB8A15441E7986A90023B2F9 /* Localization */,
 				CC0294A91E9F670C00163B94 /* My Why */,
 				CC0FF8D01EA7841A0028D64F /* QOT Partners */,
 				CC5A8D691EA6597F00E5800F /* Weekly Choices */,
@@ -1560,6 +1568,17 @@
 				0B573CA31EC3218D00A03602 /* MeetingLengthChartView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		D5485F201ED578FB00A08D1A /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				D5485F211ED57AE200A08D1A /* SearchViewController.swift */,
+				D5485F231ED57F0600A08D1A /* SearchViewModel.swift */,
+				D5485F271ED583E300A08D1A /* SearchCollectionCell.swift */,
+				D5485F251ED583BC00A08D1A /* SearchTableCell.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		D5FA66931EB9FEB600980EC7 /* Views */ = {
@@ -1943,6 +1962,7 @@
 				D50CDDC11EC48CA700D27072 /* AverageGraphView.swift in Sources */,
 				CC27E0B81EB33722003E5B7F /* SidebarItemViewModel.swift in Sources */,
 				CC1465371EC60D0C00DEC3C5 /* MockData+Prepare.swift in Sources */,
+				D5485F221ED57AE200A08D1A /* SearchViewController.swift in Sources */,
 				0BD6F6B91EA0E81E001EBC4D /* MyPrepTableViewCell.swift in Sources */,
 				CCE372F31E8C1EDF00B79352 /* WhatsHotViewModel.swift in Sources */,
 				D5C15BAC1EB350FB0030953F /* SideBarTextCell.swift in Sources */,
@@ -2039,8 +2059,11 @@
 				CB8A154C1E7A8AD30023B2F9 /* CalendarImportTask.swift in Sources */,
 				CB8A15221E769F1F0023B2F9 /* EventTracker.swift in Sources */,
 				CCE373081E8D32CF00B79352 /* LibraryViewController.swift in Sources */,
+				D5485F241ED57F0600A08D1A /* SearchViewModel.swift in Sources */,
+				D5485F281ED583E300A08D1A /* SearchCollectionCell.swift in Sources */,
 				CCE5796F1ECB580E006E0D45 /* MockData+Sidebar.swift in Sources */,
 				CCEA22A91E8AC55F003D0CF4 /* PrepareEventsViewController.swift in Sources */,
+				D5485F261ED583BC00A08D1A /* SearchTableCell.swift in Sources */,
 				CCC0C4BE1E82730E002A8362 /* Extensions.swift in Sources */,
 				CC9663101EA1B29800B84B1C /* MyWhyViewModel.swift in Sources */,
 				CC6B3A2D1E8163A200E7FDFD /* FadeInOutPresentationController.swift in Sources */,
