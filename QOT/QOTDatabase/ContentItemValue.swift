@@ -19,7 +19,6 @@ enum ContentItemValue {
 
     init(format: ContentItemFormat, value: String) throws {
         let json = try JSON(jsonString: value)
-
         switch format {
         case .textH1,
              .textH2,
@@ -30,7 +29,6 @@ enum ContentItemValue {
              .textParagraph,
              .textBullet:
             let text = try json.getString(at: "text")
-
             guard let style = ContentItemTextStyle.createStyle(for: format) else {
                 throw ContentItemTextStyleError.noValidItemTextStyleError
             }
@@ -43,7 +41,6 @@ enum ContentItemValue {
             let placeholderURL = try json.decode(at: "placeholderURL", type: URL.self)
             let videoURL = try json.decode(at: "videoURL", type: URL.self)
             let duration = TimeInterval(try json.getInt(at: "duration"))
-
             self = .video(title: title, description: description, placeholderURL: placeholderURL, videoURL: videoURL, duration: duration)
         case .audio:
             let title = try json.getString(at: "title")
@@ -52,13 +49,11 @@ enum ContentItemValue {
             let audioURL = try json.decode(at: "audioURL", type: URL.self)
             let duration = TimeInterval(try json.getInt(at: "duration"))
             let waveformData = try json.getArray(at: "waveformData").map { try Double(json: $0) }.map { Float($0) }
-
             self = .audio(title: title, description: description, placeholderURL: placeholderURL, audioURL: audioURL, duration: duration, waveformData: waveformData)
         case .image:
             let title = try json.getString(at: "title")
             let description = try json.getString(at: "description", alongPath: .NullBecomesNil)
             let url = try json.decode(at: "url", type: URL.self)
-
             self = .image(title: title, description: description, url: url)
         }
     }

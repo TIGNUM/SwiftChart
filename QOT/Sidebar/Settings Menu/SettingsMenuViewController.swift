@@ -47,19 +47,22 @@ final class SettingsMenuViewController: UIViewController, UICollectionViewDelega
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        setupView()
+    }
+
+    private func setupView() {
+        view.backgroundColor = .clear
+        collectionView.backgroundColor = .clear
         collectionView.registerDequeueable(SettingsMenuCollectionViewCell.self)
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 29, bottom: 0, right: 29)
-
         imgeView.kf.setImage(with: viewModel.profile.photoURL)
         imgeView.layer.cornerRadius = 10
-
         titleLabel.attributedText = prepareAndSetTextAttributes(string: viewModel.profile.name.uppercased(), letterSpacing: -2, font: UIFont(name:"Simple-Regular", size:32.0), lineSpacing: 0, textColor: nil)
         positionLabel.attributedText = prepareAndSetTextAttributes(string: viewModel.profile.position.uppercased(), letterSpacing: 2, font: UIFont(name:"BentonSans", size:11.0), lineSpacing: 4, textColor: nil)
-
         generalButton.setAttributedTitle(prepareAndSetTextAttributes(string: R.string.localized.sidebarSettingsMenuGeneralButton().uppercased(), letterSpacing: -0.8, font:  UIFont(name:"Simple-Regular", size:20.0), lineSpacing: 0, textColor: nil), for: UIControlState.normal)
         notificationsButton.setAttributedTitle(prepareAndSetTextAttributes(string: R.string.localized.sidebarSettingsMenuNotificationsButton().uppercased(), letterSpacing: -0.8, font:  UIFont(name:"Simple-Regular", size:20.0), lineSpacing: 0, textColor: nil), for: UIControlState.normal)
         securityButton.setAttributedTitle(prepareAndSetTextAttributes(string: R.string.localized.sidebarSettingsMenuSecurityButton().uppercased(), letterSpacing: -0.8, font:  UIFont(name:"Simple-Regular", size:20.0), lineSpacing: 0, textColor: nil), for: UIControlState.normal)
-
     }
 
     func prepareAndSetTextAttributes(string: String, letterSpacing: CGFloat, font: UIFont?, lineSpacing: CGFloat, textColor: UIColor?) -> NSMutableAttributedString {

@@ -64,10 +64,7 @@ extension SidebarItemViewController: UITableViewDelegate {
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y < 0 {
-            let alpha = 1 - (abs(scrollView.contentOffset.y) / 64)
-            topTabBarScrollViewDelegate?.didScrollUnderTopTabBar(alpha: alpha)
-        }
+        scrollView.didScrollUnderTopTabBar(delegate: topTabBarScrollViewDelegate)
     }
 }
 
@@ -91,7 +88,7 @@ extension SidebarItemViewController: UITableViewDataSource {
             return cell
         case .text(let text, _):
             let cell: ContentItemTextTableViewCell = tableView.dequeueCell(for: indexPath)
-            let attributedText = AttributedString.Sidebar.SideBarItems.Benefits.text(string: text)
+            let attributedText = AttributedString.Sidebar.Benefits.text(string: text)
             cell.setup(topText: attributedText, bottomText: nil, backgroundColor: .clear)
             return cell
         case .video(_, let description, let placeholderURL, _, _):
@@ -107,6 +104,6 @@ extension SidebarItemViewController: UITableViewDataSource {
             return nil
         }
 
-        return AttributedString.Sidebar.SideBarItems.Benefits.headerText(string: description)
+        return AttributedString.Sidebar.Benefits.headerText(string: description)
     }
 }

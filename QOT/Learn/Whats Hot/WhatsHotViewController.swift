@@ -92,9 +92,6 @@ extension WhatsHotViewController: WhatsHotLayoutDelegate {
 extension WhatsHotViewController: UICollectionViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y > 0 {
-            let alpha = abs(scrollView.contentOffset.y) / 64
-            topTabBarScrollViewDelegate?.didScrollUnderTopTabBar(alpha: alpha)
-        }
+        scrollView.didScrollUnderTopTabBar(delegate: topTabBarScrollViewDelegate)
     }
 }

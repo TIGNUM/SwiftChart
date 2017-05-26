@@ -147,9 +147,7 @@
 		CC311A1D1EAF39DF0020C869 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC311A1C1EAF39DF0020C869 /* SettingsTableViewCell.swift */; };
 		CC311A211EAF430B0020C869 /* SettingsButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC311A201EAF430B0020C869 /* SettingsButtonTableViewCell.xib */; };
 		CC311A231EAF431E0020C869 /* SettingsControlTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC311A221EAF431E0020C869 /* SettingsControlTableViewCell.xib */; };
-		CC311A251EAF43340020C869 /* SettingsDatePickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC311A241EAF43340020C869 /* SettingsDatePickerTableViewCell.xib */; };
 		CC311A271EAF434F0020C869 /* SettingsLabelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC311A261EAF434F0020C869 /* SettingsLabelTableViewCell.xib */; };
-		CC311A2B1EAF43780020C869 /* SettingsStringPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC311A2A1EAF43780020C869 /* SettingsStringPickerTableViewCell.xib */; };
 		CC311A2D1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC311A2C1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib */; };
 		CC335EE71EBC84780085F5C5 /* ContentItemTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC335EE61EBC84780085F5C5 /* ContentItemTextTableViewCell.xib */; };
 		CC335EE91EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC335EE81EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift */; };
@@ -204,6 +202,8 @@
 		CCCC211D1E8981AD00133839 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCC211B1E8981AD00133839 /* ChatViewModel.swift */; };
 		CCCC21221E8981CA00133839 /* PrepareContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCC21201E8981CA00133839 /* PrepareContentViewController.swift */; };
 		CCCC21231E8981CA00133839 /* PrepareContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCC21211E8981CA00133839 /* PrepareContentViewModel.swift */; };
+		CCCC42DF1ED5799D00E73905 /* UIViewController+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCC42DE1ED5799D00E73905 /* UIViewController+Transition.swift */; };
+		CCCC42E11ED5862B00E73905 /* UIScrollView+DidScrollUnderTopTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCC42E01ED5862B00E73905 /* UIScrollView+DidScrollUnderTopTabBar.swift */; };
 		CCCE09CC1EA67C78008730F1 /* MyToBeVisionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCE09CB1EA67C78008730F1 /* MyToBeVisionViewModel.swift */; };
 		CCCE09CE1EA67F87008730F1 /* MyToBeVisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCE09CD1EA67F87008730F1 /* MyToBeVisionViewController.swift */; };
 		CCD377531E8D3C2D00BB8031 /* WhatsHotNewTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD377511E8D3C2D00BB8031 /* WhatsHotNewTemplateViewController.swift */; };
@@ -437,9 +437,7 @@
 		CC311A1C1EAF39DF0020C869 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		CC311A201EAF430B0020C869 /* SettingsButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsButtonTableViewCell.xib; sourceTree = "<group>"; };
 		CC311A221EAF431E0020C869 /* SettingsControlTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsControlTableViewCell.xib; sourceTree = "<group>"; };
-		CC311A241EAF43340020C869 /* SettingsDatePickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsDatePickerTableViewCell.xib; sourceTree = "<group>"; };
 		CC311A261EAF434F0020C869 /* SettingsLabelTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsLabelTableViewCell.xib; sourceTree = "<group>"; };
-		CC311A2A1EAF43780020C869 /* SettingsStringPickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsStringPickerTableViewCell.xib; sourceTree = "<group>"; };
 		CC311A2C1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsTextFieldTableViewCell.xib; sourceTree = "<group>"; };
 		CC335EE61EBC84780085F5C5 /* ContentItemTextTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentItemTextTableViewCell.xib; sourceTree = "<group>"; };
 		CC335EE81EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentItemTextTableViewCell.swift; sourceTree = "<group>"; };
@@ -495,6 +493,8 @@
 		CCCC211B1E8981AD00133839 /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		CCCC21201E8981CA00133839 /* PrepareContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentViewController.swift; sourceTree = "<group>"; };
 		CCCC21211E8981CA00133839 /* PrepareContentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentViewModel.swift; sourceTree = "<group>"; };
+		CCCC42DE1ED5799D00E73905 /* UIViewController+Transition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Transition.swift"; path = "Extensions/UIViewController+Transition.swift"; sourceTree = "<group>"; };
+		CCCC42E01ED5862B00E73905 /* UIScrollView+DidScrollUnderTopTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+DidScrollUnderTopTabBar.swift"; sourceTree = "<group>"; };
 		CCCE09CB1EA67C78008730F1 /* MyToBeVisionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToBeVisionViewModel.swift; sourceTree = "<group>"; };
 		CCCE09CD1EA67F87008730F1 /* MyToBeVisionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToBeVisionViewController.swift; sourceTree = "<group>"; };
 		CCD377511E8D3C2D00BB8031 /* WhatsHotNewTemplateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsHotNewTemplateViewController.swift; sourceTree = "<group>"; };
@@ -830,6 +830,7 @@
 		CB2880321E7144D40067890A /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				CCCC42DB1ED5790000E73905 /* Extensions */,
 				D50D6C211EB8DE3B009FFDBE /* Views */,
 				D55CBED61E8A993200C690FB /* CGPoint+Convenience.swift */,
 				CB2880331E7144E60067890A /* CollectionUpdate.swift */,
@@ -1204,9 +1205,7 @@
 			children = (
 				CC311A201EAF430B0020C869 /* SettingsButtonTableViewCell.xib */,
 				CC311A221EAF431E0020C869 /* SettingsControlTableViewCell.xib */,
-				CC311A241EAF43340020C869 /* SettingsDatePickerTableViewCell.xib */,
 				CC311A261EAF434F0020C869 /* SettingsLabelTableViewCell.xib */,
-				CC311A2A1EAF43780020C869 /* SettingsStringPickerTableViewCell.xib */,
 				CC311A1C1EAF39DF0020C869 /* SettingsTableViewCell.swift */,
 				CC311A2C1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib */,
 			);
@@ -1428,6 +1427,15 @@
 				CCC1B6AC1E8B9B7F00D1461F /* LearnContentListViewController.swift */,
 			);
 			path = "Learn Content List";
+			sourceTree = "<group>";
+		};
+		CCCC42DB1ED5790000E73905 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CCCC42DE1ED5799D00E73905 /* UIViewController+Transition.swift */,
+				CCCC42E01ED5862B00E73905 /* UIScrollView+DidScrollUnderTopTabBar.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		CCCCB0691E804A90001240D5 /* Sidebar */ = {
@@ -1704,7 +1712,6 @@
 				0BEE8ABA1EA600A7008077B8 /* PrepareEventAddNewTripTableViewCell.xib in Resources */,
 				0BEE8AC01EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib in Resources */,
 				D5EC34AF1EB0D33F00F86B09 /* LearnStrategyAudioViewController.xib in Resources */,
-				CC311A2B1EAF43780020C869 /* SettingsStringPickerTableViewCell.xib in Resources */,
 				0B40DC071E9CA65300E1659B /* PrepareContentViewController.xib in Resources */,
 				CC13E2411EB1D72400C3CE46 /* LatestCollectionCell.xib in Resources */,
 				CCC0C4CC1E828007002A8362 /* BentonSans_Regular.otf in Resources */,
@@ -1722,7 +1729,6 @@
 				CB8A15461E7986C90023B2F9 /* Localized.strings in Resources */,
 				CC13E2491EB1D72E00C3CE46 /* LatestPostCell.xib in Resources */,
 				0BC9F9381E96118C009E8204 /* ChatViewController.xib in Resources */,
-				CC311A251EAF43340020C869 /* SettingsDatePickerTableViewCell.xib in Resources */,
 				CC13E23F1EB1D72400C3CE46 /* CategoryCollectionCell.xib in Resources */,
 				0BC1FF4C1E968E07007DE090 /* CollectionTableViewCell.xib in Resources */,
 				CB8C34561EAF7F200003AB65 /* styles.css in Resources */,
@@ -1926,6 +1932,7 @@
 				CC33CA2E1EC603BC008E6B33 /* PrepareContentService.swift in Sources */,
 				CB27D59B1ECCB67300F2B76C /* Result.swift in Sources */,
 				CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */,
+				CCCC42DF1ED5799D00E73905 /* UIViewController+Transition.swift in Sources */,
 				D55CBED71E8A993200C690FB /* CGPoint+Convenience.swift in Sources */,
 				CB27D59F1ECDE96F00F2B76C /* DownSyncResultParser.swift in Sources */,
 				CCF0F4C01ECDC57000E8D9C1 /* NSPredicate+Convenience.swift in Sources */,
@@ -2047,6 +2054,7 @@
 				0B254D3E1E97994C006AA4C0 /* PrepareCollectionViewCell.swift in Sources */,
 				CCE5796D1ECB55CE006E0D45 /* SidebarContentService.swift in Sources */,
 				CC9FBDE61EAE155300AF1CF0 /* PrepareContentCoordinator.swift in Sources */,
+				CCCC42E11ED5862B00E73905 /* UIScrollView+DidScrollUnderTopTabBar.swift in Sources */,
 				CC0FF8DA1EA790750028D64F /* PartnersCoordinator.swift in Sources */,
 				CB1D5E411EC5E25A00BCDF8D /* JSONDecodable.swift in Sources */,
 				CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */,

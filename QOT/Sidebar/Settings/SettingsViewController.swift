@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ActionSheetPicker_3_0
 
 protocol SettingsViewControllerDelegate: class {
     func didValueChanged(at indexPath: IndexPath, enabled: Bool)
@@ -20,14 +21,15 @@ final class SettingsViewController: UITableViewController {
 
     let viewModel: SettingsViewModel
     let settingsType: SettingsViewModel.SettingsType
+    weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
     
     // MARK: - Init
     
     init(viewModel: SettingsViewModel) {
         self.viewModel = viewModel
         self.settingsType = viewModel.settingsType
-        
-        super.init(nibName: nil, bundle: nil)
+
+        super.init(style: .grouped)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -49,8 +51,13 @@ final class SettingsViewController: UITableViewController {
 private extension SettingsViewController {
     
     func setupView() {
-        view.backgroundColor = .black
-        tableView?.backgroundColor = .black
+        view.backgroundColor = .clear
+        tableView.backgroundColor = .clear
+        tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 64, right: 0)
+        tableView.tableFooterView = UIView()
+        tableView.separatorColor = .clear
+        tableView.allowsSelection = true
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
 
     func registerCells() {
@@ -58,8 +65,6 @@ private extension SettingsViewController {
         tableView.register(R.nib.settingsButtonTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Button.identifier)
         tableView.register(R.nib.settingsControlTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Control.identifier)
         tableView.register(R.nib.settingsTextFieldTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_TextField.identifier)
-        tableView.register(R.nib.settingsDatePickerTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_DatePicker.identifier)
-        tableView.register(R.nib.settingsStringPickerTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_StringPickerView.identifier)
     }
 }
 
@@ -77,10 +82,8 @@ extension SettingsViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let settingsRow = viewModel.row(at: indexPath)
-
         guard let settingsCell = tableView.dequeueReusableCell(withIdentifier: settingsRow.identifier, for: indexPath) as? SettingsTableViewCell else {
             fatalError("SettingsTableViewCell DOES NOT EXIST!!!")
-            return UITableViewCell()
         }
 
         settingsCell.setup(settingsRow: settingsRow, indexPath: indexPath)
@@ -89,13 +92,102 @@ extension SettingsViewController {
         return settingsCell
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        tableView.headerView(forSection: section)?.textLabel?.textColor = .white
-        return viewModel.headerTitle(in: section)
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 28
+    }
+
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 44
+    }
+
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footer = UIView()
+        footer.backgroundColor = .clear
+
+        return footer
+    }
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let identifier = R.reuseIdentifier.settingsTableViewCell_Label.identifier
+        guard let headerCell = tableView.dequeueReusableCell(withIdentifier: identifier) as? SettingsTableViewCell else {
+            fatalError("HeaderCell does not exist!")
+        }
+
+        headerCell.setupHeaderCell(title: viewModel.headerTitle(in: section))
+        return headerCell.contentView
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let selectedRow = viewModel.row(at: indexPath)
+
+        switch selectedRow {
+        case .button(_, _),
+             .control(_, _),
+             .label(_, _),
+             .textField(_, _, _): return
+        case .datePicker(let title, let selectedDate): showDatePicker(title: title, selectedDate: selectedDate)
+        case .stringPicker(let title, let pickerItems, let selectedIndex):  showStringPicker(title: title, items: pickerItems, selectedIndex: selectedIndex)
+        }
+    }
+}
+
+// MARK: - DatePicker
+
+private extension SettingsViewController {
+
+    func showDatePicker(title: String, selectedDate: Date) {
+        let picker = createDatePicker(with: title, selectedDate: selectedDate)
+        self.setupPickerButtons(picker: picker)
+        picker.show()
+    }
+
+    private func createDatePicker(with title: String, selectedDate: Date) -> ActionSheetDatePicker {
+        return ActionSheetDatePicker(title: title, datePickerMode: .date,
+            selectedDate: selectedDate,
+            doneBlock: { [unowned self] (picker: ActionSheetDatePicker?, value: Any?, _ index: Any?) in
+                self.tableView.reloadData()
+            }, cancel: { (picker: ActionSheetDatePicker?) in
+                return
+        }, origin: view)
+    }
+
+    private func setupPickerButtons(picker: ActionSheetDatePicker) {
+        picker.setDoneButton(UIBarButtonItem(title: "Done", style: .done, target: self, action: nil))
+        picker.setCancelButton(UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: nil))
+    }
+}
+
+// MARK: - StringPicker
+
+private extension SettingsViewController {
+
+    func showStringPicker(title: String, items: [String], selectedIndex: Index) {
+        let picker = createStringPicker(with: title, items: items, selectedIndex: selectedIndex)
+        self.setupPickerButtons(picker: picker)
+        picker.show()
+    }
+
+    private func createStringPicker(with title: String, items: [String], selectedIndex: Index) -> ActionSheetStringPicker {
+        return ActionSheetStringPicker(title: title, rows: items, initialSelection: selectedIndex, doneBlock: { (picker, index, item) in
+            self.tableView.reloadData()
+        }, cancel: { (picker) in
+            return
+        }, origin: view)
+    }
+
+    private func setupPickerButtons(picker: ActionSheetStringPicker) {
+        picker.setDoneButton(UIBarButtonItem(title: "Done", style: .done, target: self, action: nil))
+        picker.setCancelButton(UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: nil))
+    }
+}
+
+// MARK: - UITableViewDelegate
+
+extension SettingsViewController {
+
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollView.didScrollUnderTopTabBar(delegate: topTabBarScrollViewDelegate)
     }
 }
 

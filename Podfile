@@ -15,6 +15,7 @@ target 'QOT' do
   pod 'Freddy', '3.0.0'
   pod 'Alamofire', '~> 4.4'
   pod 'KeychainAccess', '~> 3.0.2'
+  pod 'ActionSheetPicker-3.0', '~> 2.2.0'
 
   target 'QOTTests' do
     inherit! :search_paths

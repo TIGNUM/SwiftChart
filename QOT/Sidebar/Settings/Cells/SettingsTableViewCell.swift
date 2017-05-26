@@ -15,8 +15,6 @@ class SettingsTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var valueLabel: UILabel!
     @IBOutlet fileprivate weak var switchControl: UISwitch!
-    @IBOutlet fileprivate weak var stringPickerView: UIPickerView!
-    @IBOutlet fileprivate weak var datePicker: UIDatePicker!
     @IBOutlet fileprivate weak var button: UIButton!
     @IBOutlet fileprivate weak var textField: UITextField!
     fileprivate lazy var pickerItems = [String]()
@@ -28,6 +26,8 @@ class SettingsTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
+        backgroundColor = .clear
     }
 
     // MARK: - Setup
@@ -37,55 +37,72 @@ class SettingsTableViewCell: UITableViewCell, Dequeueable {
 
         switch settingsRow {
         case .button(let title, let value): setupButtonCell(title: title, value: value)
-        case .control(let title, let enabled): setupControlCell(title: title, enabled: enabled)
-        case .datePicker(let title, let selectedDate): setupDatePickerCell(title: title, selectedDate: selectedDate)
+        case .control(let title, let enabled): setupControlCell(title: title, isOn: enabled)
+        case .datePicker(let title, let selectedDate): setupDateCell(title: title, selectedDate: selectedDate)
         case .label(let title, let value): setupLabelCell(title: title, value: value)
-        case .stringPicker(let title, let pickerItems, let selectedIndex): setupStringPickerCell(title: title, pickerItems: pickerItems, selectedIndex: selectedIndex)
+        case .stringPicker(let title, let pickerItems, let selectedIndex): setupLabelCell(title: title, value: pickerItems[selectedIndex])
         case .textField(let title, let value, let secure): setupTextFieldCell(title: title, value: value, secure: secure)
         }
     }
 
-    private func setupButtonCell(title: String, value: String) {
-        button.setTitle(title, for: .normal)
+    func setupHeaderCell(title: String) {
+        setupLabelCell(title: title, value: nil)
+    }
+}
+
+// MARK: - Private
+
+private extension SettingsTableViewCell {
+
+    func setupButtonCell(title: String, value: String) {
+        button.setAttributedTitle(AttributedString.Sidebar.Settings.title(string: title.uppercased()), for: .normal)
     }
 
-    private func setupControlCell(title: String, enabled: Bool) {
-        titleLabel.text = title
-        switchControl.isEnabled = enabled
-        switchControl.addTarget(self, action: #selector(valueChanged), for: .valueChanged)
+    func setupControlCell(title: String, isOn: Bool) {
+        switchControl.isOn = isOn
+        switchControl.addTarget(self, action: #selector(valueChanged(sender:)), for: .valueChanged)
+        switchControl.tintColor = Color.whiteMedium
+        switchControl.onTintColor = .clear
+        switchControl.layer.borderWidth = 1
+        switchControl.layer.borderColor = Color.whiteMedium.cgColor
+        switchControl.layer.cornerRadius = 16
+        setSwitchState(switchControl: switchControl)
+        setTitle(title: title)
     }
 
-    private func setupDatePickerCell(title: String, selectedDate: Date) {
-        titleLabel.text = title
-        valueLabel.text = selectedDate.description(with: Locale.current)
-        datePicker.setDate(selectedDate, animated: true)
-        datePicker.isHidden = true
+    func setupDateCell(title: String, selectedDate: Date) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        setupLabelCell(title: title, value: dateFormatter.string(from: selectedDate))
     }
 
-    private func setupLabelCell(title: String, value: String) {
-        titleLabel.text = title
-        valueLabel.text = value
+    func setupLabelCell(title: String, value: String?) {
+        setValue(value: value)
+        if value == nil {
+            titleLabel.attributedText = AttributedString.Sidebar.Settings.sectionHeader(string: title.uppercased())
+        } else {
+            setTitle(title: title)
+        }
     }
 
-    private func setupNavigationCell(title: String, value: String) {
-        titleLabel.text = title
-        valueLabel.text = value
-    }
-
-    private func setupStringPickerCell(title: String, pickerItems: [String], selectedIndex: Index) {
-        self.selectedIndex = selectedIndex
-        self.pickerItems = pickerItems
-        titleLabel.text = title
-        valueLabel.text = pickerItems[selectedIndex]
-        stringPickerView.delegate = self
-        stringPickerView.dataSource = self
-        stringPickerView.isHidden = true
-    }
-
-    private func setupTextFieldCell(title: String, value: String, secure: Bool) {
-        titleLabel.text = title
-        textField.text = value
+    func setupTextFieldCell(title: String, value: String, secure: Bool) {
+        textField.textColor = .white
+        textField.text = value.uppercased()
         textField.isSecureTextEntry = secure
+        setTitle(title: title)
+    }
+
+    func setTitle(title: String) {
+        titleLabel.attributedText = AttributedString.Sidebar.Settings.title(string: title.uppercased())
+    }
+
+    func setValue(value: String?) {
+        guard let value = value else {
+            valueLabel.text = nil
+            return
+        }
+
+        valueLabel.attributedText = AttributedString.Sidebar.Settings.value(string: value.uppercased())
     }
 }
 
@@ -95,6 +112,17 @@ extension SettingsTableViewCell {
 
     func valueChanged(sender: UISwitch) {
         delegate?.didValueChanged(at: indexPath, enabled: sender.isEnabled)
+        setSwitchState(switchControl: sender)
+    }
+
+    func setSwitchState(switchControl: UISwitch) {
+        switchControl.alpha = switchControl.isOn == true ? 1 : 0.5
+
+        if switchControl.isOn == true {
+            switchControl.layer.addGlowEffect(color: .white, shadowRadius: 4)
+        } else {
+            switchControl.layer.removeGlowEffect()
+        }
     }
 
     @IBAction private func didTapButton(sender: UIButton) {
@@ -114,7 +142,7 @@ extension SettingsTableViewCell: UIPickerViewDataSource, UIPickerViewDelegate {
         return pickerItems.count
     }
 
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {        
         return pickerItems[row]
     }
 

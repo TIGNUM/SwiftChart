@@ -57,10 +57,10 @@ protocol SettingsSection {
 }
 
 enum SettingsRow {
-    case label(title: String, value: String)
+    case label(title: String, value: String?)
     case stringPicker(title: String, pickerItems: [String], selectedIndex: Index)
     case datePicker(title: String, selectedDate: Date)
-    case control(title: String, enabled: Bool)
+    case control(title: String, isOn: Bool)
     case button(title: String, value: String)
     case textField(title: String, value: String, secure: Bool)
 
@@ -68,9 +68,9 @@ enum SettingsRow {
         switch self {
         case .button(_, _): return R.reuseIdentifier.settingsTableViewCell_Button.identifier
         case .control(_, _): return R.reuseIdentifier.settingsTableViewCell_Control.identifier
-        case .datePicker(_, _): return R.reuseIdentifier.settingsTableViewCell_DatePicker.identifier
+        case .datePicker(_, _): return R.reuseIdentifier.settingsTableViewCell_Label.identifier
         case .label(_, _): return R.reuseIdentifier.settingsTableViewCell_Label.identifier
-        case .stringPicker(_, _, _): return R.reuseIdentifier.settingsTableViewCell_StringPickerView.identifier
+        case .stringPicker(_, _, _): return R.reuseIdentifier.settingsTableViewCell_Label.identifier
         case .textField(_, _, _): return R.reuseIdentifier.settingsTableViewCell_TextField.identifier
         }
     }
@@ -108,7 +108,7 @@ private var mockGeneralSettingsSection: [SettingsSection] {
         MockSettingsSection(title: "Company", rows: companyRows),
         MockSettingsSection(title: "Personal", rows: personalRows),
         MockSettingsSection(title: "Location", rows: locationRows),
-        MockSettingsSection(title: "Calendaar", rows: calendarRows),
+        MockSettingsSection(title: "Calendar", rows: calendarRows),
         MockSettingsSection(title: "Sleep", rows: sleepRows),
         MockSettingsSection(title: "Tignum", rows: tignumRows)
     ]
@@ -133,20 +133,20 @@ private var personalRows: [SettingsRow] {
 
 private var locationRows: [SettingsRow] {
     return [
-        .control(title: "Location", enabled: true)
+        .control(title: "Location", isOn: true)
     ]
 }
 
 private var calendarRows: [SettingsRow] {
     return [
         .button(title: "Calendar", value: "Google Luca"),
-        .control(title: "Location", enabled: true)
+        .control(title: "Location", isOn: true)
     ]
 }
 
 private var sleepRows: [SettingsRow] {
     return [
-        .control(title: "I sleep alone", enabled: true)
+        .control(title: "I sleep alone", isOn: true)
     ]
 }
 
@@ -160,10 +160,10 @@ private var tignumRows: [SettingsRow] {
 
 private var categoryNotifications: [SettingsRow] {
     return [
-        .control(title: "55 Strategies", enabled: true),
-        .control(title: "QOT Whats Hot", enabled: true),
-        .control(title: "My To Be Visison", enabled: false),
-        .control(title: "Daily Prep", enabled: true)
+        .control(title: "55 Strategies", isOn: true),
+        .control(title: "QOT Whats Hot", isOn: true),
+        .control(title: "My To Be Visison", isOn: false),
+        .control(title: "Daily Prep", isOn: true)
     ]
 }
 

@@ -242,7 +242,7 @@ struct Font {
 struct Color {
 
     /// White Opacity: 50%
-    static let whiteMedium = UIColor(white: 1, alpha: 0.5)
+    static let whiteMedium = UIColor(white: 1, alpha: 0.4)
 
     /// cherryRed UIColor(red: 1, green: 0, blue: 38/255, alpha: 1)
     static let cherryRed = UIColor(red: 1, green: 0, blue: 38/255, alpha: 1)
@@ -319,7 +319,7 @@ struct AttributedString {
 
         struct WhatsHot {
             static func identifier(string: String) -> NSAttributedString {
-                return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.H4Identifier )
+                return NSAttributedString.create(for: string, withColor: .white, andFont: Font.H4Identifier )
             }
 
             static func title(string: String) -> NSAttributedString {
@@ -327,7 +327,7 @@ struct AttributedString {
             }
 
             static func text(string: String) -> NSAttributedString {
-                return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.H4Headline)
+                return NSAttributedString.create(for: string, withColor: .white, andFont: Font.H4Headline)
             }
 
             static func newTemplateHeaderTitle(string: String) -> NSAttributedString {
@@ -339,7 +339,7 @@ struct AttributedString {
             }
 
             static func newTemplateTitle(string: String) -> NSAttributedString {
-                return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.H1MainTitle)
+                return NSAttributedString.create(for: string, withColor: .white, andFont: Font.H1MainTitle)
             }
 
             static func newTemplateSubtitle(string: String) -> NSAttributedString {
@@ -351,7 +351,7 @@ struct AttributedString {
             }
 
             static func newTemplateLoadMoreTitle(string: String) -> NSAttributedString {
-                return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.H3Subtitle)
+                return NSAttributedString.create(for: string, withColor: .white, andFont: Font.H3Subtitle)
             }
 
             static func newTemplateLoadMoreSubtitle(string: String) -> NSAttributedString {
@@ -361,61 +361,71 @@ struct AttributedString {
     }
 
     struct Sidebar {
-
-        struct SideBarItems {
-
-            struct Benefits {
-                static func headerTitle(string: String) -> NSAttributedString {
-                    return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.H1MainTitle)
-                }
-
-                static func headerText(string: String) -> NSAttributedString {
-                    return NSAttributedString.create(for: string, withColor: Color.Default.whiteMedium, andFont: Font.H7Tag)
-                }
-
-                static func text(string: String) -> NSAttributedString {
-                    return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.H7Tag)
-                }
+        struct Benefits {
+            static func headerTitle(string: String) -> NSAttributedString {
+                return NSAttributedString.create(for: string, withColor: .white, andFont: Font.H1MainTitle)
             }
 
-            struct DataPrivacy {
-                static func headerTitle(string: String) -> NSAttributedString {
-                return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.H3Subtitle)
-                }
-
-                static func headerText(string: String) -> NSAttributedString {
-                    return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.DPText)
-                }
-
-                static func text(string: String) -> NSAttributedString {
-                    return NSAttributedString.create(for: string, withColor: Color.Default.whiteMedium, andFont: Font.H7Tag)
-                }
-
+            static func headerText(string: String) -> NSAttributedString {
+                return NSAttributedString.create(for: string, withColor: Color.whiteMedium, andFont: Font.H7Tag)
             }
 
-            struct AboutTignum {
-                static func headerTitle(string: String) -> NSAttributedString {
-                    return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.H1MainTitle)
-                }
+            static func text(string: String) -> NSAttributedString {
+                return NSAttributedString.create(for: string, withColor: .white, andFont: Font.H7Tag)
+            }
+        }
 
-                static func headerSubTitle(string: String) -> NSAttributedString {
-                    return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.H2SecondaryTitle)
-                }
+        struct DataPrivacy {
+            static func headerTitle(string: String) -> NSAttributedString {
+                return NSAttributedString.create(for: string, withColor: .white, andFont: Font.H3Subtitle)
+            }
 
-                static func text(string: String) -> NSAttributedString {
-                    return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.DPText)
-                }
+            static func headerText(string: String) -> NSAttributedString {
+                return NSAttributedString.create(for: string, withColor: .white, andFont: Font.DPText)
+            }
 
-                static func shareText(string: String) -> NSAttributedString {
-                    return NSAttributedString.create(for: string, withColor: Color.Default.whiteMedium, andFont: Font.DPText)
-                }
+            static func text(string: String) -> NSAttributedString {
+                return NSAttributedString.create(for: string, withColor: Color.whiteMedium, andFont: Font.H7Tag)
+            }
+
+        }
+
+        struct AboutTignum {
+            static func headerTitle(string: String) -> NSAttributedString {
+                return NSAttributedString.create(for: string, withColor: .white, andFont: Font.H1MainTitle)
+            }
+
+            static func headerSubTitle(string: String) -> NSAttributedString {
+                return NSAttributedString.create(for: string, withColor: .white, andFont: Font.H2SecondaryTitle)
+            }
+
+            static func text(string: String) -> NSAttributedString {
+                return NSAttributedString.create(for: string, withColor: .white, andFont: Font.DPText)
+            }
+
+            static func shareText(string: String) -> NSAttributedString {
+                return NSAttributedString.create(for: string, withColor: Color.whiteMedium, andFont: Font.DPText)
+            }
+        }
+
+        struct Settings {
+            static func sectionHeader(string: String) -> NSAttributedString {
+                return NSAttributedString.create(for: string, withColor: Color.whiteMedium, andFont: Font.H7Title, letterSpacing: 2)
+            }
+
+            static func title(string: String) -> NSAttributedString {
+                return NSAttributedString.create(for: string, withColor: .white, andFont: Font.H5SecondaryHeadline, letterSpacing: 2)
+            }
+
+            static func value(string: String) -> NSAttributedString {
+                return NSAttributedString.create(for: string, withColor: Color.whiteMedium, andFont: Font.H7Title)
             }
         }
     }
 
     struct Library {
         static func categoryTitle(string: String) -> NSAttributedString {
-            return NSAttributedString.create(for: string, withColor: Color.Default.white, andFont: Font.H3Subtitle)
+            return NSAttributedString.create(for: string, withColor: .white, andFont: Font.H3Subtitle)
         }
 
         static func categoryHeadline(string: String) -> NSAttributedString {
@@ -423,7 +433,7 @@ struct AttributedString {
         }
 
         static func categoryMediaTypeLabel(string: String) -> NSAttributedString {
-            return NSAttributedString.create(for: string, withColor: Color.Default.whiteMedium, andFont: Font.H7Tag)
+            return NSAttributedString.create(for: string, withColor: Color.whiteMedium, andFont: Font.H7Tag)
         }
 
         static func latestPostTitle(string: String) -> NSAttributedString {

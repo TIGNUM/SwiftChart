@@ -26,7 +26,6 @@ final class SettingsCoordinator: ParentCoordinator {
 
     func start() {
         let settingsViewController = SettingsViewController(viewModel: SettingsViewModel(settingsType: settingsType))
-
         let topTabBarControllerItem = TopTabBarController.Item(
             controllers: [settingsViewController],
             titles: [R.string.localized.settingsTitle()]
@@ -34,11 +33,12 @@ final class SettingsCoordinator: ParentCoordinator {
 
         let topTabBarController = TopTabBarController(
             item: topTabBarControllerItem,            
-            leftIcon: R.image.ic_minimize()
+            leftIcon: R.image.ic_back()
         )
 
         topTabBarController.delegate = self
-        rootViewController.show(topTabBarController, sender: nil)
+        settingsViewController.topTabBarScrollViewDelegate = topTabBarController
+        rootViewController.presentRightToLeft(controller: topTabBarController)
     }
 }
 
@@ -47,7 +47,7 @@ final class SettingsCoordinator: ParentCoordinator {
 extension SettingsCoordinator: TopTabBarDelegate {
 
     func didSelectLeftButton(sender: TopTabBarController) {
-        sender.dismiss(animated: true, completion: nil)
+        sender.dismissLeftToRight()
         removeChild(child: self)
     }
 

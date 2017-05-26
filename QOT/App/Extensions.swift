@@ -30,7 +30,7 @@ extension UIFont {
 
 extension NSAttributedString {
 
-    internal class func create(for string: String, withColor color: UIColor, andFont font: UIFont, letterSpacing: CGFloat = 0) -> NSAttributedString {
+    internal class func create(for string: String, withColor color: UIColor, andFont font: UIFont, letterSpacing: CGFloat = 1) -> NSAttributedString {
         let attributes: [String: Any] = [
             NSForegroundColorAttributeName: color,
             NSFontAttributeName: font,
@@ -104,6 +104,13 @@ extension CALayer {
         self.shadowColor = color.cgColor
         self.shadowRadius = shadowRadius
         self.shadowOpacity = shadowOpacity
+        self.shadowOffset = .zero
+    }
+
+    func removeGlowEffect() {
+        self.shadowColor = UIColor.clear.cgColor
+        self.shadowRadius = 0
+        self.shadowOpacity = 0
         self.shadowOffset = .zero
     }
 }
@@ -244,8 +251,4 @@ extension UIScrollView {
 
         return Int(round(contentOffset.x / bounds.size.width))
     }
-}
-
-protocol TopTabBarScrollViewDelegate: class {
-    func didScrollUnderTopTabBar(alpha: CGFloat)
 }

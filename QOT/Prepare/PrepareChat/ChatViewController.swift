@@ -182,9 +182,6 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y < 0 {
-            let alpha = 1 - (abs(scrollView.contentOffset.y) / 64)
-            topTabBarScrollViewDelegate?.didScrollUnderTopTabBar(alpha: alpha)
-        }
+        scrollView.didScrollUnderTopTabBar(delegate: topTabBarScrollViewDelegate)
     }
 }

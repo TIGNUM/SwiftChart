@@ -1,4 +1,5 @@
 PODS:
+  - ActionSheetPicker-3.0 (2.2.0)
   - Alamofire (4.4.0)
   - Anchorage (3.3.0)
   - Bond (6.2.6):
@@ -22,6 +23,7 @@ PODS:
   - UICollectionViewRightAlignedLayout (0.0.3)
 
 DEPENDENCIES:
+  - ActionSheetPicker-3.0 (~> 2.2.0)
   - Alamofire (~> 4.4)
   - Anchorage (~> 3.1)
   - Bond (~> 6.0)
@@ -35,6 +37,7 @@ DEPENDENCIES:
   - UICollectionViewRightAlignedLayout (~> 0.0)
 
 SPEC CHECKSUMS:
+  ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   Anchorage: 1444bbd32c4495b32d41c0be9f66efcb0862fe8a
   Bond: 0d7a52e9aec644c3b4985ceeb224a402b1efd691
@@ -51,6 +54,6 @@ SPEC CHECKSUMS:
   RealmSwift: 6d06425d3900c86473c4f323bf6949b43fca22bc
   UICollectionViewRightAlignedLayout: 823eef8c567eba4a44c21bc2ffcb0d0d5f361e2d
 
-PODFILE CHECKSUM: f79f22eb7a667b5878b49583fdd2b578806ab55c
+PODFILE CHECKSUM: f115205e60a6f45ce3deb5371af7418c2acb78d4
 
 COCOAPODS: 1.2.0
