@@ -54,6 +54,16 @@ final class ContentCategory: Object, ContentCategoryDataProtocol {
     let contentCollections = LinkingObjects(fromType: ContentCollection.self, property: "categories")
 }
 
+extension ContentCategory: DownSyncable {
+    static func make(remoteID: Int, createdAt: Date) -> ContentCategory {
+        return ContentCategory()
+    }
+
+    func setData(_ data: ContentCategoryData, objectStore: ObjectStore) throws {
+
+    }
+}
+
 extension ContentCategory {
 
     func getBubbleLayoutInfo() throws -> BubbleLayoutInfo {

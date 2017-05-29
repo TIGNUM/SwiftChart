@@ -11,7 +11,7 @@ import Freddy
 
 struct DownSyncResult<T>: JSONDecodable where T: JSONDecodable{
     let timestamp: Date
-    let items: [DownSyncNetworkItem<T>]
+    let items: [DownSyncChange<T>]
     let page: Int
     let pageSize: Int
     let maxResults: Int
@@ -19,7 +19,7 @@ struct DownSyncResult<T>: JSONDecodable where T: JSONDecodable{
 
     init(json: JSON) throws {
         self.timestamp = try json.getDate(at: .timestamp)
-        self.items = try json.getArray(at: JsonKey.results.value).map { (json) -> DownSyncNetworkItem<T> in
+        self.items = try json.getArray(at: JsonKey.results.value).map { (json) -> DownSyncChange<T> in
             let syncStatus: SyncStatus = try json.getItemValue(at: .syncStatus)
             let remoteID: Int = try json.getItemValue(at: .id)
             switch syncStatus {

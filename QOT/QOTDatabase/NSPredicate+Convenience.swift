@@ -8,8 +8,8 @@
 
 import Foundation
 
-public extension NSPredicate {
-    public convenience init(remoteID: Int) {
+extension NSPredicate {
+    convenience init(remoteID: Int) {
         self.init(format: "remoteID == %@", remoteID)
     }
 }

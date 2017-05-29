@@ -13,7 +13,7 @@ enum ObjectStoreError: Error {
     case objectIsNotUnique
 }
 
-public protocol ObjectStore {
+protocol ObjectStore {
 
     func uniqueObject<T: Object>(_ type: T.Type, predicate: NSPredicate) throws -> T?
 
@@ -24,7 +24,7 @@ public protocol ObjectStore {
 
 extension Realm: ObjectStore {
 
-    public func uniqueObject<T: Object>(_ type: T.Type, predicate: NSPredicate) throws -> T? {
+    func uniqueObject<T: Object>(_ type: T.Type, predicate: NSPredicate) throws -> T? {
         let objs = objects(type).filter(predicate)
         switch objs.count {
         case 0:
@@ -36,11 +36,21 @@ extension Realm: ObjectStore {
         }
     }
 
-    public func addObject(_ object: Object) {
+    func addObject(_ object: Object) {
         add(object, update: false)
     }
 
-    public func deleteObjects<T: Object>(_ type: T.Type, predicate: NSPredicate) {
+    func deleteObjects<T: Object>(_ type: T.Type, predicate: NSPredicate) {
         delete(objects(type).filter(predicate))
+    }
+}
+
+protocol ObjectStoreProvider {
+    func store() throws -> ObjectStore
+}
+
+extension RealmProvider: ObjectStoreProvider {
+    func store() throws -> ObjectStore {
+        return try realm()
     }
 }

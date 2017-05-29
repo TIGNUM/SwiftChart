@@ -75,7 +75,7 @@ class ChatViewController: UIViewController, Dequeueable, CollectionViewCellDeleg
         }.dispose(in: disposeBag)
     }
 
-    public func heightOfCollectionViewBasedOnNumberOfItems(items: ([String])) -> CGFloat {
+    func heightOfCollectionViewBasedOnNumberOfItems(items: ([String])) -> CGFloat {
         let screenSize: CGRect = UIScreen.main.bounds
         var total: CGFloat = 0.0
         for i: Int  in stride(from: 1, to: items.count, by: 1) {

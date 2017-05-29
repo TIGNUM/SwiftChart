@@ -15,12 +15,12 @@ protocol CollectionViewCellDelegate: class {
 
 class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegateRightAlignedLayout, Dequeueable {
 
-    @IBOutlet public weak var cellTitleLabel: UILabel!
+    @IBOutlet weak var cellTitleLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     weak var delegate: CollectionViewCellDelegate?
     var dataModel: [PrepareChatObject] = []
 
-    public func inputWithDataModel(dataModel: [PrepareChatObject]!) {
+    func inputWithDataModel(dataModel: [PrepareChatObject]!) {
         self.dataModel = dataModel
     }
 
