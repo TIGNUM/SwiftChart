@@ -11,6 +11,8 @@
 		0B1059871EA77AC700660A1D /* PrepareEventTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B1059851EA77AC700660A1D /* PrepareEventTableViewHeader.xib */; };
 		0B254D3E1E97994C006AA4C0 /* PrepareCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B254D3C1E97994C006AA4C0 /* PrepareCollectionViewCell.swift */; };
 		0B254D3F1E97994C006AA4C0 /* PrepareCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B254D3D1E97994C006AA4C0 /* PrepareCollectionViewCell.xib */; };
+		0B2CA37B1ED2BC93006B355F /* SensorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2CA3791ED2BC93006B355F /* SensorCollectionViewCell.swift */; };
+		0B2CA37C1ED2BC93006B355F /* SensorCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2CA37A1ED2BC93006B355F /* SensorCollectionViewCell.xib */; };
 		0B40DC071E9CA65300E1659B /* PrepareContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B40DC061E9CA65300E1659B /* PrepareContentViewController.xib */; };
 		0B40DC0B1E9CA6A500E1659B /* PrepareContentTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B40DC091E9CA6A500E1659B /* PrepareContentTextTableViewCell.swift */; };
 		0B40DC0C1E9CA6A500E1659B /* PrepareContentTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B40DC0A1E9CA6A500E1659B /* PrepareContentTextTableViewCell.xib */; };
@@ -304,6 +306,8 @@
 		0B1059851EA77AC700660A1D /* PrepareEventTableViewHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareEventTableViewHeader.xib; sourceTree = "<group>"; };
 		0B254D3C1E97994C006AA4C0 /* PrepareCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareCollectionViewCell.swift; sourceTree = "<group>"; };
 		0B254D3D1E97994C006AA4C0 /* PrepareCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareCollectionViewCell.xib; sourceTree = "<group>"; };
+		0B2CA3791ED2BC93006B355F /* SensorCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SensorCollectionViewCell.swift; path = Cell/SensorCollectionViewCell.swift; sourceTree = "<group>"; };
+		0B2CA37A1ED2BC93006B355F /* SensorCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SensorCollectionViewCell.xib; path = Cell/SensorCollectionViewCell.xib; sourceTree = "<group>"; };
 		0B40DC061E9CA65300E1659B /* PrepareContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentViewController.xib; sourceTree = "<group>"; };
 		0B40DC091E9CA6A500E1659B /* PrepareContentTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentTextTableViewCell.swift; sourceTree = "<group>"; };
 		0B40DC0A1E9CA6A500E1659B /* PrepareContentTextTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentTextTableViewCell.xib; sourceTree = "<group>"; };
@@ -621,6 +625,15 @@
 			path = PrepareCollectionViewCell;
 			sourceTree = "<group>";
 		};
+		0B2CA37D1ED2BC97006B355F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0B2CA3791ED2BC93006B355F /* SensorCollectionViewCell.swift */,
+				0B2CA37A1ED2BC93006B355F /* SensorCollectionViewCell.xib */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
 		0B40DC081E9CA65D00E1659B /* PrepareContentTextTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -787,6 +800,7 @@
 				CB0A4A5B1ECC4C72006A2D85 /* AddSensorViewController.swift */,
 				CB0A4A5C1ECC4C72006A2D85 /* AddSensorViewController.xib */,
 				CB0A4A591ECC4C3E006A2D85 /* AddSensorViewModel.swift */,
+				0B2CA37D1ED2BC97006B355F /* Cell */,
 			);
 			path = "Add Sensore";
 			sourceTree = "<group>";
@@ -1792,6 +1806,7 @@
 				0BC9F9371E96118C009E8204 /* ChatTableViewCell.xib in Resources */,
 				CC311A231EAF431E0020C869 /* SettingsControlTableViewCell.xib in Resources */,
 				0BD6F6BB1EA0E81E001EBC4D /* MyPrepViewController.xib in Resources */,
+				0B2CA37C1ED2BC93006B355F /* SensorCollectionViewCell.xib in Resources */,
 				0BB099CD1EBC6323006B2FB7 /* PartnersViewController.xib in Resources */,
 				0BEE8AC11EA600A7008077B8 /* PrepareEventsViewController.xib in Resources */,
 				D521E3FE1EB8AF38008E24B1 /* SideBarShareAction.xib in Resources */,
@@ -1963,6 +1978,7 @@
 				0BC9F9391E96118C009E8204 /* StatusTableViewCell.swift in Sources */,
 				CBD791541E72A4BB0006C590 /* MockData.swift in Sources */,
 				CCCC211D1E8981AD00133839 /* ChatViewModel.swift in Sources */,
+				0B2CA37B1ED2BC93006B355F /* SensorCollectionViewCell.swift in Sources */,
 				CBB4DCF51EDC10FA0071494A /* SyncRecordService.swift in Sources */,
 				D51B5C4A1E8D0E7E0084A65B /* LearnContentLayout.swift in Sources */,
 				CCE5796B1ECB55BE006E0D45 /* SidebarContentItem.swift in Sources */,
