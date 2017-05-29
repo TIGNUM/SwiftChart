@@ -47,6 +47,7 @@ final class WeeklyChoicesViewController: UIViewController {
         collectionView.registerDequeueable(WeeklyChoicesCell.self)
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 64, right: 0)
     }
 }
 
@@ -62,7 +63,7 @@ extension WeeklyChoicesViewController: UICollectionViewDataSource, UICollectionV
         let item = viewModel.item(at: indexPath.item)
         let cell: WeeklyChoicesCell = collectionView.dequeueCell(for: indexPath)
         cell.setUp(title: item.title, subTitle: item.text, text: item.text)
-        
+
         return cell
     }
 }
