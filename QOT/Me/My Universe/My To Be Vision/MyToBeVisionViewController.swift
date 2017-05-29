@@ -17,14 +17,11 @@ class MyToBeVisionViewController: UIViewController, UIWebViewDelegate, UIScrollV
 
     // MARK: - Properties
 
-    @IBOutlet weak var viewTitle: UILabel!
     @IBOutlet weak var headlineLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var webView: UIWebView!
-
     fileprivate let viewModel: MyToBeVisionViewModel
-
     weak var delegate: MyToBeVisionViewControllerDelegate?
 
     // MARK: - Init
@@ -41,11 +38,11 @@ class MyToBeVisionViewController: UIViewController, UIWebViewDelegate, UIScrollV
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         setupView()
     }
 
     private func setupView() {
-        viewTitle.attributedText = prepareAndSetTextAttributes(string: viewModel.title.uppercased(), letterSpacing: 1, font: UIFont(name:"Simple-Regular", size: 16.0), lineSpacing: 0)
         headlineLabel.attributedText = prepareAndSetTextAttributes(string: viewModel.headLine.uppercased(), letterSpacing: 2, font: UIFont(name:"Simple-Regular", size: 36.0), lineSpacing: 3.0)
         subtitleLabel.attributedText = prepareAndSetTextAttributes(string: viewModel.subHeadline.uppercased(), letterSpacing: 2, font: UIFont(name:"BentonSans", size: 11.0), lineSpacing: 0)
 
@@ -60,19 +57,21 @@ class MyToBeVisionViewController: UIViewController, UIWebViewDelegate, UIScrollV
     }
 
     func maskImageView(imageView: UIImageView) {
-        let bounds = imageView.bounds
         let clippingBorderPath = UIBezierPath()
         clippingBorderPath.move(to: CGPoint(x: 0, y: 56))
-        clippingBorderPath.addCurve(to: CGPoint(x: bounds.size.width, y: 56),
-                                    controlPoint1: CGPoint(x: bounds.size.width/2-50, y: 5),
-                                    controlPoint2: CGPoint(x: bounds.size.width/2+50, y: 5))
-        clippingBorderPath.addLine(to: CGPoint(x:  bounds.size.width, y: bounds.size.height+15))
-        clippingBorderPath.addLine(to: CGPoint(x:  0, y: bounds.size.height+15))
+        clippingBorderPath.addCurve(
+            to: CGPoint(x: view.bounds.size.width, y: 56),
+            controlPoint1: CGPoint(x: view.bounds.size.width/2 - 50, y: 5),
+            controlPoint2: CGPoint(x: view.bounds.size.width/2 + 50, y: 5)
+        )
+        clippingBorderPath.addLine(to: CGPoint(x:  view.bounds.size.width, y: view.bounds.size.height + 15))
+        clippingBorderPath.addLine(to: CGPoint(x:  0, y: view.bounds.size.height + 15))
         clippingBorderPath.close()
 
         let borderMask = CAShapeLayer()
         borderMask.path = clippingBorderPath.cgPath
         imageView.layer.mask = borderMask
+        imageView.center = view.center
     }
 
     func configureWebView(string: String) {
@@ -110,7 +109,10 @@ class MyToBeVisionViewController: UIViewController, UIWebViewDelegate, UIScrollV
     }
 
     // MARK: ScrollView Delegate
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        // FIXME: Implement paging
+        if scrollView.contentOffset.y > 0 {
+            scrollView.contentOffset = CGPoint(x: scrollView.contentOffset.x, y: 0)
+        }
     }
 }
