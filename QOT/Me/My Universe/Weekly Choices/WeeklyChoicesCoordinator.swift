@@ -63,7 +63,7 @@ extension WeeklyChoicesCoordinator: WeeklyChoicesViewControllerDelegate {
 extension WeeklyChoicesCoordinator: TopTabBarDelegate {
 
     func didSelectItemAtIndex(index: Int?, sender: TopTabBarController) {
-        print(index, sender)
+        print(index as Any, sender)
     }
 
     func didSelectLeftButton(sender: TopTabBarController) {

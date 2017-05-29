@@ -44,8 +44,7 @@ final class WeeklyChoicesLayout: UICollectionViewLayout {
         guard
             let radius = delegate?.radius(self),
             let circleX = delegate?.circleX(self),
-            let cellSize = delegate?.cellSize(self),
-            let collectionView = collectionView
+            let cellSize = delegate?.cellSize(self)
             else {
                 self.cache = []
                 return

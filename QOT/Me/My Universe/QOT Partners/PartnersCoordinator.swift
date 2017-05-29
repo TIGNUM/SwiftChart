@@ -72,7 +72,7 @@ extension PartnersCoordinator: PartnersViewControllerDelegate {
 extension PartnersCoordinator: TopTabBarDelegate {
 
     func didSelectItemAtIndex(index: Int?, sender: TopTabBarController) {
-        print(index, sender)
+        print(index as Any, sender)
     }
 
     func didSelectLeftButton(sender: TopTabBarController) {

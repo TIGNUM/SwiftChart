@@ -110,6 +110,6 @@ extension PrepareContentCoordinator: TopTabBarDelegate {
     }
 
     func didSelectItemAtIndex(index: Int?, sender: TopTabBarController) {
-        print(index, sender)
+        print(index as Any, sender)
     }
 }

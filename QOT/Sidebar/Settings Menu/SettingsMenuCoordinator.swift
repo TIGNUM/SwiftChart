@@ -79,6 +79,6 @@ extension SettingsMenuCoordinator: TopTabBarDelegate {
     }
 
     func didSelectItemAtIndex(index: Int?, sender: TopTabBarController) {
-        print("didSelectItemAtIndex", index, sender)
+        print("didSelectItemAtIndex", index as Any, sender)
     }
 }
