@@ -62,10 +62,10 @@ final class TopTabBarController: UIViewController {
 
     // MARK: Properties
 
-    fileprivate var item: Item
     fileprivate var index: Int = 0
     fileprivate var scrollViewContentOffset: CGFloat = 0
     weak var delegate: TopTabBarDelegate?
+    var item: Item
 
     fileprivate lazy var navigationItemBar: UIView = {
         let view = UIView()

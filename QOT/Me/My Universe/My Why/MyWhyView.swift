@@ -155,6 +155,7 @@ private extension MyWhyView {
         button.addTarget(self, action: #selector(didTapPartner), for: .touchUpInside)
         button.setImage(profileImage, for: .normal)
         button.imageView?.setupHexagonImageView()
+        button.imageView?.contentMode = .scaleAspectFill
         button.tag = index
 
         return button

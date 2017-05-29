@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class PartnersViewModel {
 
@@ -37,19 +38,28 @@ final class PartnersViewModel {
     }
 
     func updateName(name: String) {
+        didSelectEditPartner()
         currentEditPartner?.name = name
     }
 
     func updateSurename(surename: String) {
+        didSelectEditPartner()
         currentEditPartner?.surename = surename
     }
 
     func updateRelationship(relationship: String) {
+        didSelectEditPartner()
         currentEditPartner?.relationship = relationship
     }
 
     func updateEmail(email: String) {
+        didSelectEditPartner()
         currentEditPartner?.email = email
+    }
+
+    func updateProfileImage(image: UIImage) {
+        didSelectEditPartner()
+        currentEditPartner?.profileImage = image        
     }
 
     func didSelectEditPartner() {

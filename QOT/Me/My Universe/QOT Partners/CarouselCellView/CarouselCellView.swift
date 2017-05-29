@@ -10,28 +10,52 @@ import UIKit
 
 final class CarouselCellView: UIView {
 
-    @IBOutlet private weak var view: UIView!
+    // MARK: - Properties
+
+    @IBOutlet weak var view: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var textFieldName: UITextField!
     @IBOutlet weak var textFieldSurname: UITextField!
     @IBOutlet weak var textFieldSubtitle: UITextField!
     @IBOutlet weak var textFieldMail: UITextField!
     @IBOutlet weak var initialsLabel: UILabel!
-    @IBOutlet private weak var editImageOne: UIImageView!
-    @IBOutlet private weak var editImageTwo: UIImageView!
-    @IBOutlet private weak var editImageThree: UIImageView!
+    @IBOutlet weak var editPictureButton: UIButton!
+    @IBOutlet fileprivate weak var editImageViewName: UIImageView!
+    @IBOutlet fileprivate weak var editImageViewRelationship: UIImageView!
+    @IBOutlet fileprivate weak var editImageViewEmail: UIImageView!
+    fileprivate var index: Index = 0
+    weak var partnersViewControllerDelegate: PartnersViewControllerDelegate?
+
+    // MARK: - Init
+
+    convenience init(frame: CGRect, index: Index) {
+        self.init(frame: frame)
+        self.index = index
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+
         nibSetup()
     }
 
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        nibSetup()
+        fatalError("init(coder:) has not been implemented")
     }
 
-    private func nibSetup() {
+    func setViewsTextFieldsDelegate(delegate: PartnersViewController) {
+        textFieldName.delegate = delegate
+        textFieldSurname.delegate = delegate
+        textFieldSubtitle.delegate = delegate
+        textFieldMail.delegate = delegate
+    }
+}
+
+// MARK: - Private
+
+private extension CarouselCellView {
+
+    func nibSetup() {
         backgroundColor = .clear
         view = loadViewFromNib()
         view.frame = bounds
@@ -39,8 +63,20 @@ final class CarouselCellView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = true
 
         addSubview(view)
-        maskFoto(image: imageView)
+        maskFoto(imageView: imageView)
         edit(isEnabled: false)
+    }
+
+    func setupEditImageView(imageView: UIImageView, isHidden: Bool) {
+        guard isHidden == false else {
+            imageView.isHidden = true
+            return
+        }
+
+        imageView.isHidden = false
+        imageView.image?.withRenderingMode(.alwaysTemplate)
+        imageView.tintColor = .white
+        imageView.image = R.image.ic_edit()
     }
 
     private func loadViewFromNib() -> UIView {
@@ -50,31 +86,40 @@ final class CarouselCellView: UIView {
         return nibView
     }
 
-    private func maskFoto(image: UIImageView) {
-        let clippingBorderPath = UIBezierPath()
-        clippingBorderPath.move(to: CGPoint(x: 93, y: 0))
-        clippingBorderPath.addLine(to: CGPoint(x: 186, y: 52))
-        clippingBorderPath.addLine(to: CGPoint(x: 186, y: 157))
-        clippingBorderPath.addLine(to: CGPoint(x: 93, y: 210))
-        clippingBorderPath.addLine(to: CGPoint(x: 0, y: 157))
-        clippingBorderPath.addLine(to: CGPoint(x: 0, y: 52))
-        clippingBorderPath.move(to: CGPoint(x: 93, y: 0))
-        clippingBorderPath.close()
-
+    private func maskFoto(imageView: UIImageView) {
+        let clippingBorderPath = UIBezierPath.partnersHexagon
         let borderMask = CAShapeLayer()
         borderMask.path = clippingBorderPath.cgPath
-        image.layer.mask = borderMask
+        imageView.layer.mask = borderMask
+        imageView.layer.backgroundColor = UIColor.white.withAlphaComponent(0.3).cgColor
+        imageView.contentMode = .scaleAspectFill
     }
+}
+
+private extension CarouselCellView {
+
+    @IBAction func didTapChangePicture(sender: UIButton) {
+        partnersViewControllerDelegate?.didTapChangeImage(at: index)
+    }
+}
+
+// MARK: - Public
+
+extension CarouselCellView {
 
     func edit(isEnabled: Bool) {
         textFieldName.isEnabled = isEnabled
         textFieldSurname.isEnabled = isEnabled
         textFieldSubtitle.isEnabled = isEnabled
         textFieldMail.isEnabled = isEnabled
+        editPictureButton.isHidden = (isEnabled == false)
+        setupEditImageView(imageView: editImageViewEmail, isHidden: (isEnabled == false))
+        setupEditImageView(imageView: editImageViewRelationship, isHidden: (isEnabled == false))
+        setupEditImageView(imageView: editImageViewName, isHidden: (isEnabled == false))
 
-        editImageOne.isHidden = (isEnabled == false)
-        editImageTwo.isHidden = (isEnabled == false)
-        editImageThree.isHidden = (isEnabled == false)
+        if isEnabled == true {
+            textFieldName.becomeFirstResponder()
+        }
     }
 
     func update(viewModel: PartnersViewModel) {
@@ -84,18 +129,10 @@ final class CarouselCellView: UIView {
         viewModel.updateEmail(email: textFieldMail.text!)
     }
 
-    func setViewsTextFieldsDelegate(delegate: PartnersViewController) {
-        textFieldName.delegate = delegate
-        textFieldSurname.delegate = delegate
-        textFieldSubtitle.delegate = delegate
-        textFieldMail.delegate = delegate
-    }
-
     func hideKeyboard() {
         textFieldName.resignFirstResponder()
         textFieldSurname.resignFirstResponder()
         textFieldSubtitle.resignFirstResponder()
         textFieldMail.resignFirstResponder()
     }
-
 }

@@ -35,7 +35,6 @@ final class PartnersCoordinator: ParentCoordinator {
 
     func start() {
         let partnersViewController = PartnersViewController(viewModel: viewModel)
-        partnersViewController.delegate = self
 
         let topTabBarControllerItem = TopTabBarController.Item(
             controllers: [partnersViewController],
@@ -48,22 +47,9 @@ final class PartnersCoordinator: ParentCoordinator {
             rightIcon: R.image.ic_edit()
         )
 
+        partnersViewController.topTabBarScrollViewDelegate = topTabBarController
         topTabBarController.delegate = self
         rootViewController.present(topTabBarController, animated: true)
-    }
-}
-
-// MARK: - WeeklyChoicesViewControllerDelegate
-
-extension PartnersCoordinator: PartnersViewControllerDelegate {
-
-    func didTapClose(in viewController: UIViewController, animated: Bool) {
-        viewController.dismiss(animated: true, completion: nil)
-        removeChild(child: self)
-    }
-
-    func didTapChangeImage(at index: Index, in viewController: UIViewController) {
-        print("didTapCahngeImage")
     }
 }
 
@@ -80,6 +66,10 @@ extension PartnersCoordinator: TopTabBarDelegate {
     }
 
     func didSelectRightButton(sender: TopTabBarController) {
-        print("did select edit mode:", sender)
+        guard let partnersController = sender.item.controllers.first as? PartnersViewController else {
+            return
+        }
+
+        partnersController.editCurrentItem()
     }
 }
