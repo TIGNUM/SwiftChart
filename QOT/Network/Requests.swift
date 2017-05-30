@@ -36,6 +36,10 @@ extension URLRequest {
             fatalError("Cannot create URLRequest: \(error)")
         }
     }
+
+    mutating func setToken(_ token: String) {
+        setValue(token, forHTTPHeaderField: HeaderField.token.rawValue)
+    }
 }
 
 private enum HeaderField: String {

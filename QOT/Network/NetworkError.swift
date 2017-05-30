@@ -19,13 +19,12 @@ enum NetworkError: Error {
     case unknown(error: Error, statusCode: Int?)
     case noNetworkConnection
     case cancelled
-    case wrongCredentials
-    case loginRequired
+    case unauthenticated
 
     init(error: NSError, statusCode: Int?) {
         if let code = statusCode {
             if let httpStatusCode = HTTPStatusCode(rawValue: code), httpStatusCode == .unauthorized {
-                self = .wrongCredentials
+                self = .unauthenticated
             } else {
                 self = .unknown(error: error, statusCode: code)
             }
@@ -33,7 +32,7 @@ enum NetworkError: Error {
             switch error.code {
             case NSURLErrorNotConnectedToInternet: self = .noNetworkConnection
             case NSURLErrorCancelled: self = .cancelled
-            case NSURLErrorUserAuthenticationRequired: self = .loginRequired
+            case NSURLErrorUserAuthenticationRequired: self = .unauthenticated
             default: self = .unknown(error: error, statusCode: nil)
             }
         } else {

@@ -112,13 +112,14 @@
 		CBB4DCE21ED8246D0071494A /* DownSyncNetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DCE11ED8246D0071494A /* DownSyncNetworkOperation.swift */; };
 		CBB4DCE41ED827840071494A /* DownSyncContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DCE31ED827840071494A /* DownSyncContext.swift */; };
 		CBB4DCE61ED857130071494A /* RequestParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DCE51ED857130071494A /* RequestParameter.swift */; };
-		CBB4DCE81ED8624F0071494A /* SessionManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DCE71ED8624F0071494A /* SessionManager+Extensions.swift */; };
 		CBB4DCEF1EDC01CE0071494A /* DownSyncDatabaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DCEE1EDC01CE0071494A /* DownSyncDatabaseOperation.swift */; };
 		CBB4DCF11EDC0C420071494A /* SyncRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DCF01EDC0C420071494A /* SyncRecord.swift */; };
 		CBB4DCF51EDC10FA0071494A /* SyncRecordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DCF41EDC10FA0071494A /* SyncRecordService.swift */; };
 		CBB4DCF71EDC14070071494A /* RecordSyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DCF61EDC14070071494A /* RecordSyncOperation.swift */; };
 		CBB4DCFB1EDC23AE0071494A /* SyncDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DCFA1EDC23AE0071494A /* SyncDescription.swift */; };
 		CBB4DCFD1EDC27550071494A /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DCFC1EDC27550071494A /* SyncManager.swift */; };
+		CBB4DCFF1EDD6CE50071494A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DCFE1EDD6CE50071494A /* NetworkManager.swift */; };
+		CBB4DD071EDDB5860071494A /* SerialRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DD061EDDB5860071494A /* SerialRequest.swift */; };
 		CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791461E7172390006C590 /* LearnContentListCoordinator.swift */; };
 		CBD7914A1E71797C0006C590 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791491E71797C0006C590 /* Typealiases.swift */; };
 		CBD791541E72A4BB0006C590 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791531E72A4BB0006C590 /* MockData.swift */; };
@@ -417,13 +418,14 @@
 		CBB4DCE11ED8246D0071494A /* DownSyncNetworkOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownSyncNetworkOperation.swift; sourceTree = "<group>"; };
 		CBB4DCE31ED827840071494A /* DownSyncContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownSyncContext.swift; sourceTree = "<group>"; };
 		CBB4DCE51ED857130071494A /* RequestParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestParameter.swift; sourceTree = "<group>"; };
-		CBB4DCE71ED8624F0071494A /* SessionManager+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SessionManager+Extensions.swift"; sourceTree = "<group>"; };
 		CBB4DCEE1EDC01CE0071494A /* DownSyncDatabaseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownSyncDatabaseOperation.swift; sourceTree = "<group>"; };
 		CBB4DCF01EDC0C420071494A /* SyncRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncRecord.swift; sourceTree = "<group>"; };
 		CBB4DCF41EDC10FA0071494A /* SyncRecordService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncRecordService.swift; sourceTree = "<group>"; };
 		CBB4DCF61EDC14070071494A /* RecordSyncOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordSyncOperation.swift; sourceTree = "<group>"; };
 		CBB4DCFA1EDC23AE0071494A /* SyncDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncDescription.swift; sourceTree = "<group>"; };
 		CBB4DCFC1EDC27550071494A /* SyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
+		CBB4DCFE1EDD6CE50071494A /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		CBB4DD061EDDB5860071494A /* SerialRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerialRequest.swift; sourceTree = "<group>"; };
 		CBD791461E7172390006C590 /* LearnContentListCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentListCoordinator.swift; sourceTree = "<group>"; };
 		CBD791491E71797C0006C590 /* Typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
 		CBD791531E72A4BB0006C590 /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
@@ -938,7 +940,8 @@
 				CBB4DCD91ED3245B0071494A /* RequestData.swift */,
 				CBB4DCE51ED857130071494A /* RequestParameter.swift */,
 				CB6D49531ECC87BF005BC637 /* Requests.swift */,
-				CBB4DCE71ED8624F0071494A /* SessionManager+Extensions.swift */,
+				CBB4DCFE1EDD6CE50071494A /* NetworkManager.swift */,
+				CBB4DD061EDDB5860071494A /* SerialRequest.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -2090,6 +2093,7 @@
 				CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */,
 				CB8A153A1E7801B90023B2F9 /* CalendarEvent.swift in Sources */,
 				CB8C344F1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift in Sources */,
+				CBB4DD071EDDB5860071494A /* SerialRequest.swift in Sources */,
 				CB55A2E11E9FDF1D00D721CE /* SettingsMenuViewModel.swift in Sources */,
 				CC311A1D1EAF39DF0020C869 /* SettingsTableViewCell.swift in Sources */,
 				CCE372FF1E8D2AE700B79352 /* MyPrepViewModel.swift in Sources */,
@@ -2109,7 +2113,6 @@
 				D51B5C491E8D0E7E0084A65B /* LearnContentCell.swift in Sources */,
 				0BE7FD8A1E9D2AEF00E3262E /* PrepareContentStepTableViewCell.swift in Sources */,
 				D5FA66971EBB4DA600980EC7 /* HorizontalLinesChartView.swift in Sources */,
-				CBB4DCE81ED8624F0071494A /* SessionManager+Extensions.swift in Sources */,
 				CCE372F51E8CF10C00B79352 /* WhatsHotViewController.swift in Sources */,
 				CC94F5651EB08EE400051CF8 /* LearnStrategyAudioViewModel.swift in Sources */,
 				CCE3730F1E8D32F800B79352 /* SidebarCoordinator.swift in Sources */,
@@ -2175,6 +2178,7 @@
 				CCE579671ECB5546006E0D45 /* SidebarContentCategory.swift in Sources */,
 				D5FA66951EB9FF0B00980EC7 /* EventGraphView.swift in Sources */,
 				CB2880241E7051710067890A /* AppCoordinator.swift in Sources */,
+				CBB4DCFF1EDD6CE50071494A /* NetworkManager.swift in Sources */,
 				CB1D5E3A1EC5E25A00BCDF8D /* ContentCategoryData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

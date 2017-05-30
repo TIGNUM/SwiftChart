@@ -9,83 +9,46 @@
 import Foundation
 import KeychainAccess
 
-enum Credentials {
-    case authToken
-    case username
-    case password
 
-    // MARK: - Set
-
-    static func storeAuthToken(token: String) {
-        Credentials.authToken.store(value: token)
-    }
-
-    static func storeUsernamePassword(username: String, password: String) {
-        Credentials.username.store(value: username)
-        Credentials.password.store(value: password)
-    }
-
-    // MARK: - Get
-
-    static var token: String? {
-        return Credentials.authToken.item
-    }
-
-    static var usernamePassword: (username: String, password: String)? {
-        guard
-            let username = Credentials.username.item,
-            let password = Credentials.password.item else {
-                return nil
-        }
-
-        return (username: username, password: password)
-    }
-
-    // MARK: - Remove
-
-    static func removeAuthToken() {
-        Credentials.authToken.remove()
-    }
-
-    static func removeUsernamePassword() {
-        Credentials.username.remove()
-        Credentials.password.remove()
-    }
+struct Credential {
+    let username: String
+    let password: String
+    let token: String?
 }
 
-// MARK: - Private
+private let keychain = Keychain(service: "com.tignum.qot")
 
-private extension Credentials {
+class CredentialsManager {
 
-    var keychain: Keychain {
-        return Keychain(service: service)
+    enum Key: String {
+        case username = "com.tignum.qot.username"
+        case password = "com.tignum.qot.password"
+        case token = "com.tignum.qot.token"
     }
 
-    var key: String {
-        switch self {
-        case .authToken: return "qot.key.chain.key.authtoken"
-        case .password: return "qot.key.chain.key.password"
-        case .username: return "qot.key.chain.key.username"
+    var credential: Credential? {
+        get {
+            guard let username = value(key: .username), let password = value(key: .password) else {
+                return nil
+            }
+            return Credential(username: username, password: password, token: value(key: .token))
+        }
+        set {
+            set(value: newValue?.username, key: .username)
+            set(value: newValue?.password, key: .password)
+            set(value: newValue?.token, key: .token)
         }
     }
 
-    var service: String {
-        switch self {
-        case .authToken: return "qot.key.chain.service.authtoken"
-        case .password: return "qot.key.chain.service.password"
-        case .username: return "qot.key.chain.service.username"
-        }
+    func deleteToken() {
+        set(value: nil, key: .token)
     }
 
-    var item: String? {
-        return keychain[key]
+    private func value(key: Key) -> String? {
+        return keychain[key.rawValue]
     }
 
-    func store(value: String) {
-        keychain[key] = value
-    }
-
-    func remove() {
-        keychain[key] = nil
+    private func set(value: String?, key: Key) {
+        keychain[key.rawValue] = value
     }
 }
