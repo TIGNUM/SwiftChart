@@ -8,11 +8,16 @@
 
 import UIKit
 
-class SensorCollectionViewCell: UICollectionViewCell, Dequeueable {
+final class SensorCollectionViewCell: UICollectionViewCell, Dequeueable {
 
-    @IBOutlet var imageView: UIImageView!
+    @IBOutlet private var imageView: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        imageView.layer.cornerRadius = 8.0
+    }
+
+    func setup(image: UIImage) {
+        imageView.image = image
     }
 }
