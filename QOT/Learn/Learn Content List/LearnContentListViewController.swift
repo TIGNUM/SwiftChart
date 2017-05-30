@@ -16,19 +16,21 @@ protocol LearnContentListViewControllerDelegate: class {
     /// Notifies `self` that the content was selected at `index` in `viewController`.
     func didSelectContent(at index: Index, in viewController: LearnContentListViewController)
     /// Notifies `self` that the back button was tapped in `viewController`.
-    func didTapBack(in: LearnContentListViewController)
+    func didTapBack(in viewController: LearnContentListViewController)
 }
 
 /// Displays a collection of items of learn content.
 final class LearnContentListViewController: UIViewController {
 
     private let disposeBag = DisposeBag()
-    
     let viewModel: LearnContentCollectionViewModel
+    var selectedCategoryIndex: Index
     weak var delegate: LearnContentListViewControllerDelegate?
     
-    init(viewModel: LearnContentCollectionViewModel) {
+    init(viewModel: LearnContentCollectionViewModel, selectedCategoryIndex: Index) {
         self.viewModel = viewModel
+        self.selectedCategoryIndex = selectedCategoryIndex
+
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -48,36 +50,71 @@ final class LearnContentListViewController: UIViewController {
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: self.collectionViewLayout)
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = .clear
+        collectionView.registerDequeueable(LearnContentCell.self)
+
         return collectionView
     }()
-    
+
+    fileprivate lazy var pagingCollectionView: UICollectionView = {
+        let frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 100)
+        let collectionFlowLayout = UICollectionViewFlowLayout()
+        collectionFlowLayout.scrollDirection = .horizontal
+        let pagingCollectionView = UICollectionView(frame: frame, collectionViewLayout: collectionFlowLayout)
+        pagingCollectionView.dataSource = self
+        pagingCollectionView.delegate = self
+        pagingCollectionView.isPagingEnabled = true
+        pagingCollectionView.showsVerticalScrollIndicator = false
+        pagingCollectionView.showsHorizontalScrollIndicator = false
+        pagingCollectionView.contentInset = UIEdgeInsets(top: 0, left: 125, bottom: 0, right: 125)
+        pagingCollectionView.registerDequeueable(LearnPagingCollectionViewCell.self)
+
+        return pagingCollectionView
+    }()
+
+    fileprivate lazy var getBackButton: UIButton = {
+        let viewFrame = self.view.bounds
+        let button = UIButton(frame: CGRect(x: 0, y: viewFrame.height - 64, width: viewFrame.width, height: 64))
+        button.setTitle("TAP TO GET BACK", for: .normal)
+        button.setTitleColor(Color.whiteMedium, for: .normal)
+        button.titleLabel?.font = Font.H4Headline
+        button.addTarget(self, action: #selector(didTapGetBack), for: .touchUpInside)
+
+        return button
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        collectionView.registerDequeueable(LearnContentCell.self)
-        
         setupAppearance()
         setupHierachy()
         setupLayout()
-        
+
         viewModel.updates.observeNext { [unowned self] (update) in
             switch update {
             case .reload, .update(_, _, _):
                 self.collectionViewLayout.bubbleCount = self.viewModel.itemCount
-                self.collectionView.reloadData()
+                UIView.animate(withDuration: 0.9) {
+                    self.collectionView.reloadData()
+                    self.pagingCollectionView.reloadData()
+                }
+
+                self.pagingCollectionViewScrollToSelectedIndex()
             }
         }.dispose(in: disposeBag)
-
-        view.backgroundColor = .clear
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         centerCollectionView()
+        pagingCollectionViewScrollToSelectedIndex()
     }
-    
+
+    private func pagingCollectionViewScrollToSelectedIndex() {
+        let indexPath = IndexPath(item: selectedCategoryIndex, section: 0)
+        pagingCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    }
+
     private func centerCollectionView() {
         let contentSize = collectionView.collectionViewLayout.collectionViewContentSize
         let xOffset = (contentSize.width - collectionView.frame.width) / 2
@@ -90,23 +127,49 @@ final class LearnContentListViewController: UIViewController {
 
 extension LearnContentListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.itemCount
+        if collectionView === self.collectionView {
+            return viewModel.itemCount
+        } else {
+            return viewModel.categoryCount
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let content = viewModel.item(at: indexPath.item)
-        
-        let cell: LearnContentCell = collectionView.dequeueCell(for: indexPath)
-        cell.configure(with: content)
+        if collectionView === self.collectionView {
+            let content = viewModel.item(at: indexPath.item)
+            let cell: LearnContentCell = collectionView.dequeueCell(for: indexPath)
+            cell.configure(with: content)
+
+            return cell
+        }
+
+        let category = viewModel.category(at: indexPath.item)
+        let cell: LearnPagingCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+        cell.configure(title: category.title, shouldHighlight: selectedCategoryIndex == indexPath.item)
+
         return cell
     }
 }
 
 // MARK: UICollectionViewDelegate
 
-extension LearnContentListViewController: UICollectionViewDelegate {
+extension LearnContentListViewController: UICollectionViewDelegateFlowLayout {
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.didSelectContent(at: indexPath.item, in: self)
+        if collectionView === self.collectionView {
+            delegate?.didSelectContent(at: indexPath.item, in: self)
+        } else {
+            selectedCategoryIndex = indexPath.item
+            viewModel.updateContentCollection(at: indexPath.item)
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView === self.pagingCollectionView {
+            return CGSize(width: 125, height: 100)
+        }
+
+        return .zero
     }
 }
 
@@ -114,10 +177,18 @@ private extension LearnContentListViewController {
 
     func setupAppearance() {
         view.backgroundColor = .clear
+        collectionView.backgroundColor = .clear
+        pagingCollectionView.backgroundColor = .clear
     }
     
     func setupHierachy() {
+        view.insertSubview(pagingCollectionView, at: 0)
         view.addSubview(collectionView)
+        view.addSubview(getBackButton)
+    }
+
+    @objc func didTapGetBack() {
+        delegate?.didTapBack(in: self)
     }
     
     func setupLayout() {

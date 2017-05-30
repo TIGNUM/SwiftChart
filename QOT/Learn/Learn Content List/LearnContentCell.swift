@@ -72,6 +72,7 @@ class LearnContentCell: UICollectionViewCell, Dequeueable {
 }
 
 private extension LearnContentCell {
+
     func setupLayout() {
         imageView.edgeAnchors == contentView.edgeAnchors
         textContainerView.horizontalAnchors == contentView.horizontalAnchors + 20

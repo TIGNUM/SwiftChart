@@ -53,12 +53,12 @@ final class LearnContentItemCoordinator: ParentCoordinator {
         vc.serviceDelegate = services
         topTabBarController.delegate = self
         rootVC.present(topTabBarController, animated: true)
-        
         // FIXME: Add page tracking
     }
 }
 
 extension LearnContentItemCoordinator: LearnContentListViewControllerDelegate {
+
     func didSelectContent(at index: Index, in viewController: LearnContentListViewController) {
         log("Did select content at index: \(index)")
     }
@@ -70,6 +70,7 @@ extension LearnContentItemCoordinator: LearnContentListViewControllerDelegate {
 }
 
 extension LearnContentItemCoordinator: LearnContentItemViewControllerDelegate {
+    
     func didTapClose(in viewController: LearnContentItemViewController) {
         rootVC.dismiss(animated: true, completion: nil)
         removeChild(child: self)

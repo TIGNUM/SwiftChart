@@ -257,6 +257,11 @@ private extension TopTabBarController {
     }
     
     func setupLayout() {
+        guard item.titles.isEmpty == false && item.controllers.first !== LearnContentListViewController.self else {
+            navigationItemBar.heightAnchor == 0
+            return
+        }
+
         navigationItemBar.horizontalAnchors == view.horizontalAnchors
         navigationItemBar.topAnchor == view.topAnchor
         navigationItemBar.heightAnchor == 64

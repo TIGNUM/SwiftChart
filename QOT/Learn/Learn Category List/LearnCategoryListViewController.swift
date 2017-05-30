@@ -11,7 +11,7 @@ import UIKit
 /// The delegate of a `LearnCategoryListViewController`.
 protocol LearnCategoryListViewControllerDelegate: class {
     /// Notifies `self` that the category was selected at `index` in `viewController`.
-    func didSelectCategory(_ category: LearnContentCategory, in viewController: LearnCategoryListViewController)
+    func didSelectCategory(at index: Index, category: LearnContentCategory, in viewController: LearnCategoryListViewController)
 
 }
 
@@ -84,7 +84,7 @@ extension LearnCategoryListViewController: UICollectionViewDataSource, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.didSelectCategory(viewModel.category(at: indexPath.row), in: self)
+        delegate?.didSelectCategory(at: indexPath.row, category: viewModel.category(at: indexPath.row), in: self)
     }
 }
 

@@ -11,46 +11,47 @@ import UIKit
 protocol LearnContentListCoordinatorDelegate: ParentCoordinator {}
 
 final class LearnContentListCoordinator: ParentCoordinator {
+    
     fileprivate let rootVC: LearnCategoryListViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
     fileprivate let category: LearnContentCategory
-    
+    fileprivate let selectedCategoryIndex: Index
     var children: [Coordinator] = []
     weak var delegate: LearnContentListCoordinatorDelegate?
     
-    init(root: LearnCategoryListViewController, services: Services, eventTracker: EventTracker, category: LearnContentCategory) {
+    init(root: LearnCategoryListViewController, services: Services, eventTracker: EventTracker, category: LearnContentCategory, selectedCategoryIndex: Index) {
         self.rootVC = root
         self.services = services
         self.eventTracker = eventTracker
         self.category = category
+        self.selectedCategoryIndex = selectedCategoryIndex
     }
     
     func start() {
-        let viewModel = LearnContentCollectionViewModel(category: category)
-        let vc = LearnContentListViewController(viewModel: viewModel)
-        vc.modalTransitionStyle = .crossDissolve
-        vc.modalPresentationStyle = .custom
-        vc.delegate =  self
+        let viewModel = LearnContentCollectionViewModel(category: category, allCategories: services.learnContentService.categories())
+        let contentListViewController = LearnContentListViewController(viewModel: viewModel, selectedCategoryIndex: self.selectedCategoryIndex)
+        contentListViewController.modalTransitionStyle = .crossDissolve
+        contentListViewController.modalPresentationStyle = .custom
+        contentListViewController.delegate = self
 
         let topTabBarControllerItem = TopTabBarController.Item(
-            controllers: [vc],
-            titles: [R.string.localized.learnCategoryListViewTitle()]
+            controllers: [contentListViewController],
+            titles: []
         )
 
         let topTabBarController = TopTabBarController(
-            item: topTabBarControllerItem,
-            leftIcon: R.image.ic_search(),
-            rightIcon: R.image.ic_close()
+            item: topTabBarControllerItem
         )
-
-        topTabBarController.delegate = self        
+        
+        topTabBarController.delegate = self
         rootVC.present(topTabBarController, animated: true)
-        eventTracker.track(page: vc.pageID, referer: rootVC.pageID, associatedEntity: category)
+        eventTracker.track(page: contentListViewController.pageID, referer: rootVC.pageID, associatedEntity: category)
     }
 }
 
 extension LearnContentListCoordinator: LearnContentListViewControllerDelegate {
+
     func didSelectContent(at index: Index, in viewController: LearnContentListViewController) {
         let coordinator = LearnContentItemCoordinator(
             root: viewController,
@@ -62,8 +63,8 @@ extension LearnContentListCoordinator: LearnContentListViewControllerDelegate {
         startChild(child: coordinator)
     }
     
-    func didTapBack(in: LearnContentListViewController) {
-        rootVC.dismiss(animated: true)
+    func didTapBack(in viewController: LearnContentListViewController) {
+        viewController.dismiss(animated: true)
         delegate?.removeChild(child: self)
     }
 }
