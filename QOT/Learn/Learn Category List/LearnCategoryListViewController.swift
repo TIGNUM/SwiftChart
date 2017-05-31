@@ -29,7 +29,7 @@ final class LearnCategoryListViewController: UIViewController {
     let viewModel: LearnCategoryListViewModel
     weak var delegate: LearnCategoryListViewControllerDelegate?
 
-    fileprivate lazy var collectionView: UICollectionView = {
+    lazy var collectionView: UICollectionView = {
         let layout = LearnCategoryLayout(height: self.view.frame.height - 64, categories: self.viewModel.categories)
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.collectionViewLayout = layout

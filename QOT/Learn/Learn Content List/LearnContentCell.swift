@@ -14,7 +14,7 @@ class LearnContentCell: UICollectionViewCell, Dequeueable {
     fileprivate lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = Font.PText
+        label.font = UIFont.bentonRegularFont(ofSize: 16)
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.1
         label.lineBreakMode = .byTruncatingTail
@@ -24,7 +24,7 @@ class LearnContentCell: UICollectionViewCell, Dequeueable {
     
     fileprivate lazy var videoDurationLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .lightGray
+        label.textColor = UIColor.white.withAlphaComponent(0.40)
         label.font = Font.H7Tag
         return label
     }()

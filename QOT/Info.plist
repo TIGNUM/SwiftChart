@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCameraUsageDescription</key>
-	<string>QOT needs camera access for changing images.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>QOT needs Library access for uploading Images.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -35,6 +31,10 @@
 	</dict>
 	<key>NSCalendarsUsageDescription</key>
 	<string>We use this for flight info</string>
+	<key>NSCameraUsageDescription</key>
+	<string>QOT needs camera access for changing images.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>QOT needs Library access for uploading Images.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Simple-Regular.ttf</string>
