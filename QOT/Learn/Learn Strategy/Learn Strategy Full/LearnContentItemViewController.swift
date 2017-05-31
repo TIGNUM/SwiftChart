@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import AVKit
 import RealmSwift
+import Anchorage
 
 protocol LearnContentItemViewControllerDelegate: class {
     func didTapClose(in viewController: LearnContentItemViewController)
@@ -25,8 +26,18 @@ final class LearnContentItemViewController: UIViewController {
     weak var delegate: LearnContentItemViewControllerDelegate?
     weak var serviceDelegate: LearnContentServiceDelegate?
     fileprivate let viewModel: LearnContentItemViewModel
-    fileprivate var tableView = UITableView()
-    fileprivate let scrollToClosePadding: CGFloat = 100
+
+    fileprivate lazy var tableView: UITableView = {
+        return UITableView.setup(
+            backgroundColor: .white,
+            estimatedRowHeight: 10,
+            delegate: self,
+            dataSource: self,
+            dequeables:
+            ContentItemTextTableViewCell.self,
+            ImageSubtitleTableViewCell.self
+        )
+    }()
 
     // MARK: Init
     
@@ -45,7 +56,7 @@ final class LearnContentItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupTableView()
+        setupView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -53,21 +64,17 @@ final class LearnContentItemViewController: UIViewController {
 
         tableView.reloadData()
     }
-    
-    // MARK: Private methods
-    
-    private func setupTableView() {
-        tableView = UITableView(frame: self.view.bounds, style: .plain)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.backgroundColor = .white
-        tableView.estimatedRowHeight = 10
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.separatorStyle = .none
-        tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 64, right: 0)
-        tableView.registerDequeueable(ContentItemTextTableViewCell.self)
-        tableView.registerDequeueable(ImageSubtitleTableViewCell.self)
+}
+
+// MARK: - Private
+
+private extension LearnContentItemViewController {
+
+    func setupView() {
         view.addSubview(tableView)
+        tableView.topAnchor == view.topAnchor
+        tableView.bottomAnchor == view.bottomAnchor
+        tableView.horizontalAnchors == view.horizontalAnchors
     }
 }
 

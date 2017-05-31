@@ -25,22 +25,44 @@ final class SearchViewController: UIViewController {
     }()
 
     fileprivate lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.backgroundColor = .clear
-        tableView.separatorStyle = .none
-        tableView.estimatedRowHeight = 85.0
-        tableView.rowHeight = UITableViewAutomaticDimension
-        return tableView
+        return UITableView.setup(
+            estimatedRowHeight: 85,
+            delegate: self,
+            dataSource: self,
+            dequeables:
+                SearchTableCell.self,
+                SearchCollectionCell.self
+        )
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        registerCells()
         setUpHierarchy()
         setupLayout()
+    }
+}
+
+// MARK: - Private
+
+private extension SearchViewController {
+
+    func setUpHierarchy() {
+        view.addSubview(collectionView)
+        view.addSubview(tableView)
+    }
+
+    func setupLayout() {
+        collectionView.topAnchor == view.topAnchor + 60
+        collectionView.heightAnchor == 90
+        collectionView.horizontalAnchors == view.horizontalAnchors
+
+        tableView.leftAnchor == collectionView.leftAnchor + 53
+        tableView.rightAnchor == collectionView.rightAnchor
+        tableView.bottomAnchor == view.bottomAnchor + 26
+        tableView.topAnchor == view.topAnchor + 100
+
+        view.layoutIfNeeded()
     }
 }
 
@@ -78,31 +100,5 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         cell.backgroundColor = .clear
         cell.setUp(title: item.title, media: item.subtitle, duration: item.duration)
         return cell
-    }
-}
-
-private extension SearchViewController {
-
-    func setUpHierarchy() {
-        view.addSubview(collectionView)
-        view.addSubview(tableView)
-    }
-
-    func setupLayout() {
-        collectionView.topAnchor == view.topAnchor + 60
-        collectionView.heightAnchor == 90
-        collectionView.horizontalAnchors == view.horizontalAnchors
-
-        tableView.leftAnchor == collectionView.leftAnchor + 53
-        tableView.rightAnchor == collectionView.rightAnchor
-        tableView.bottomAnchor == view.bottomAnchor + 26
-        tableView.topAnchor == view.topAnchor + 100
-
-        view.layoutIfNeeded()
-    }
-
-    func registerCells() {
-        collectionView.registerDequeueable(SearchCollectionCell.self)
-        tableView.registerDequeueable(SearchTableCell.self)
     }
 }

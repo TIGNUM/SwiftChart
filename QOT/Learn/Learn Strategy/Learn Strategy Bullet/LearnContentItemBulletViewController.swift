@@ -8,13 +8,24 @@
 
 import Foundation
 import UIKit
+import Anchorage
 
 final class LearnContentItemBulletViewController: UIViewController {
 
     // MARK: - Properties
 
     fileprivate let viewModel: LearnContentItemViewModel
-    fileprivate var tableView = UITableView()
+    fileprivate lazy var tableView: UITableView = {
+        return UITableView.setup(
+            backgroundColor: .white,
+            estimatedRowHeight: 10,
+            delegate: self,
+            dataSource: self,
+            dequeables:
+            ContentItemTextTableViewCell.self,
+            ImageSubtitleTableViewCell.self
+        )
+    }()
 
     // MARK: Init
 
@@ -33,7 +44,7 @@ final class LearnContentItemBulletViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupTableView()
+        setupView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -41,18 +52,56 @@ final class LearnContentItemBulletViewController: UIViewController {
 
         tableView.reloadData()
     }
+}
 
-    // MARK: Private methods
+// MARK: - UITableViewDataSource, UITableViewDelegate
 
-    private func setupTableView() {
-        tableView = UITableView(frame: view.bounds, style: .plain)
-        tableView.backgroundColor = .white
-        tableView.estimatedRowHeight = 10
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.separatorStyle = .none
-        tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 64, right: 0)
-        tableView.registerDequeueable(ContentItemTextTableViewCell.self)
-        tableView.registerDequeueable(ImageSubtitleTableViewCell.self)
+extension LearnContentItemBulletViewController: UITableViewDataSource, UITableViewDelegate {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.sectionCount
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.numberOfItemsInSection(in: section)
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let contentItem = viewModel.contentItem(at: indexPath) else {
+            fatalError("No contentItem available!")
+        }
+
+        let cell: ContentItemTextTableViewCell = tableView.dequeueCell(for: indexPath)
+
+        switch contentItem {
+        case .text(let text, _):
+            let topText = AttributedString.Learn.articleTitle(string: text)
+            cell.setup(topText: topText, bottomText: topText)
+            return cell
+        case .audio(let title, _, _, _, _, _):
+            let topText = AttributedString.Learn.articleTitle(string: title)
+            cell.setup(topText: topText, bottomText: topText)
+            return cell
+        case .image(let title, _, _):
+            let topText = AttributedString.Learn.articleTitle(string: title)
+            cell.setup(topText: topText, bottomText: topText)
+            return cell
+        case .video(let title, _, _, _, _):
+            let topText = AttributedString.Learn.articleTitle(string: title)
+            cell.setup(topText: topText, bottomText: topText)
+            return cell
+        }
+    }
+}
+
+// MARK: - Private
+
+private extension LearnContentItemBulletViewController {
+
+    func setupView() {
         view.addSubview(tableView)
+        tableView.topAnchor == view.topAnchor
+        tableView.bottomAnchor == view.bottomAnchor
+        tableView.horizontalAnchors == view.horizontalAnchors
     }
 }

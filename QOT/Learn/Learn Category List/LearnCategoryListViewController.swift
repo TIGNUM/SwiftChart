@@ -29,8 +29,8 @@ final class LearnCategoryListViewController: UIViewController {
     let viewModel: LearnCategoryListViewModel
     weak var delegate: LearnCategoryListViewControllerDelegate?
 
-    lazy var collectionView: UICollectionView = {
-        let layout = LearnCategoryLayout(height: self.view.frame.height - 64, categories: self.viewModel.categories)
+    fileprivate lazy var collectionView: UICollectionView = {
+        let layout = LearnCategoryLayout(height: self.view.frame.height - Layout.TabBarView.height, categories: self.viewModel.categories)
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.collectionViewLayout = layout
         collectionView.registerDequeueable(LearnCategoryCell.self)
@@ -81,7 +81,7 @@ private extension LearnCategoryListViewController {
     }
 
     func setupLayout() {
-        collectionView.topAnchor == view.topAnchor + 64
+        collectionView.topAnchor == view.topAnchor + Layout.TabBarView.height
         collectionView.bottomAnchor == view.bottomAnchor
         collectionView.horizontalAnchors == view.horizontalAnchors
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Anchorage
 
 protocol SidebarItemViewControllerDelegate: class {
     func didTapVideo(with item: SidebarItem, from view: UIView, in viewController: SidebarItemViewController)
@@ -19,12 +20,23 @@ final class SidebarItemViewController: UIViewController {
 
     // MARK: - Properties
 
-    @IBOutlet weak var tableView: UITableView!
-    let viewModel: SidebarItemViewModel
+    fileprivate let viewModel: SidebarItemViewModel
     weak var delegate: SidebarItemViewControllerDelegate?
     weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
 
-    // MARK: - Life Cycle
+    fileprivate lazy var tableView: UITableView = {
+        return UITableView.setup(
+            estimatedRowHeight: 10,
+            delegate: self,
+            dataSource: self,
+            dequeables:
+            ContentItemTextTableViewCell.self,
+            SideBarShareAction.self,
+            ImageSubtitleTableViewCell.self
+        )
+    }()
+
+    // MARK: - Init
 
     init(viewModel: SidebarItemViewModel) {
         self.viewModel = viewModel
@@ -36,22 +48,32 @@ final class SidebarItemViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupTableView()
+        setupView()
+    }
+}
+
+// MARK: - Private
+
+private extension SidebarItemViewController {
+
+    func setupView() {
+        view.addSubview(tableView)
+        tableView.topAnchor == view.topAnchor
+        tableView.bottomAnchor == view.bottomAnchor
+        tableView.horizontalAnchors == view.horizontalAnchors
     }
 
-    private func setupTableView() {
-        tableView.registerDequeueable(ContentItemTextTableViewCell.self)
-        tableView.registerDequeueable(SideBarShareAction.self)
-        tableView.registerDequeueable(ImageSubtitleTableViewCell.self)
-        tableView.estimatedRowHeight = 10
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.backgroundColor = .clear
-        view.backgroundColor = .clear
-        tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 64, right: 0)
-        tableView.delegate = self
+    func attributedString(description: String?) -> NSAttributedString? {
+        guard let description = description else {
+            return nil
+        }
+
+        return AttributedString.Sidebar.Benefits.headerText(string: description)
     }
 }
 
@@ -97,13 +119,5 @@ extension SidebarItemViewController: UITableViewDataSource {
             cell.setInsets(insets: UIEdgeInsets(top: 0, left: 32, bottom: 32, right: 40))
             return cell
         }
-    }
-
-    private func attributedString(description: String?) -> NSAttributedString? {
-        guard let description = description else {
-            return nil
-        }
-
-        return AttributedString.Sidebar.Benefits.headerText(string: description)
     }
 }

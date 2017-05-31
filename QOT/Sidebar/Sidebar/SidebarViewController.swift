@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Anchorage
 
 protocol SidebarViewControllerDelegate: class {
     func didTapSettingsMenuCell(in viewController: SidebarViewController)
@@ -23,9 +24,19 @@ final class SidebarViewController: UIViewController {
     
     // MARK: - Properties
 
+    fileprivate let viewModel: SidebarViewModel
     weak var delegate: SidebarViewControllerDelegate?
-    let viewModel: SidebarViewModel
-    
+
+    fileprivate lazy var tableView: UITableView = {
+        return UITableView.setup(
+            estimatedRowHeight: 10,
+            delegate: self,
+            dataSource: self,
+            dequeables:
+            SidebarTableViewCell.self
+        )
+    }()
+
     // MARK: - Life Cycle
     
     init(viewModel: SidebarViewModel) {
@@ -37,11 +48,13 @@ final class SidebarViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupTableView()
+        setupView()
     }
 }
 
@@ -49,16 +62,11 @@ final class SidebarViewController: UIViewController {
 
 private extension SidebarViewController {
 
-    func setupTableView() {
-        let tableView = UITableView(frame: view.bounds, style: .plain)
-        tableView.registerDequeueable(SidebarTableViewCell.self)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.backgroundColor = .clear
-        tableView.separatorStyle = .none
-        tableView.bounces = false
-        tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 64, right: 0)
+    func setupView() {
         view.addSubview(tableView)
+        tableView.topAnchor == view.topAnchor
+        tableView.bottomAnchor == view.bottomAnchor
+        tableView.horizontalAnchors == view.horizontalAnchors        
     }
 }
 

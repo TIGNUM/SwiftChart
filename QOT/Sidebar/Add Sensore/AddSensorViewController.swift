@@ -138,10 +138,10 @@ private extension AddSensorViewController {
         contentView.leftAnchor == scrollView.leftAnchor
         contentView.rightAnchor == scrollView.rightAnchor
         contentView.topAnchor == scrollView.topAnchor
-        contentView.bottomAnchor == scrollView.bottomAnchor - 64
+        contentView.bottomAnchor == scrollView.bottomAnchor - Layout.TabBarView.height
         contentView.widthAnchor == scrollView.widthAnchor
 
-        titleLabel.topAnchor == contentView.topAnchor + 64
+        titleLabel.topAnchor == contentView.topAnchor + Layout.TabBarView.height
         titleLabel.leftAnchor == contentView.leftAnchor + 36
         titleLabel.rightAnchor == contentView.rightAnchor - 59
         titleLabel.heightAnchor == 36

@@ -9,6 +9,7 @@
 import UIKit
 import Bond
 import ReactiveKit
+import Anchorage
 
 protocol PrepareContentViewControllerDelegate: class {
     func didTapClose(in viewController: PrepareContentViewController)
@@ -22,16 +23,29 @@ protocol PrepareContentViewControllerDelegate: class {
     func didTapSaveAs(in viewController: PrepareContentViewController)
 }
 
-final class PrepareContentViewController: UIViewController, PrepareContentActionButtonsTableViewCellDelegate {
+final class PrepareContentViewController: UIViewController {
 
     // MARK: - Properties
 
-    @IBOutlet weak var tableView: UITableView!
-    let viewModel: PrepareContentViewModel
-    private let disposeBag = DisposeBag()
-    private let estimatedRowHeight: CGFloat = 140.0
+    fileprivate let viewModel: PrepareContentViewModel
+    fileprivate let disposeBag = DisposeBag()
     weak var delegate: PrepareContentViewControllerDelegate?
     weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
+
+    fileprivate lazy var tableView: UITableView = {
+        return UITableView.setup(
+            estimatedRowHeight: 140,
+            delegate: self,
+            dataSource: self,
+            dequeables:
+                PrepareContentTextTableViewCell.self,
+                PrepareContentHeaderTableViewCell.self,
+                PrepareContentVideoPreviewTableViewCell.self,
+                PrepareContentStepTableViewCell.self,
+                PrepareContentTitleTableViewCell.self,
+                PrepareContentActionButtonsTableViewCell.self
+        )
+    }()
 
     // MARK: - Life Cycle
 
@@ -45,28 +59,20 @@ final class PrepareContentViewController: UIViewController, PrepareContentAction
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .clear
-        tableView.backgroundColor = .clear
-        tableView.registerDequeueable(PrepareContentTextTableViewCell.self)
-        tableView.registerDequeueable(PrepareContentHeaderTableViewCell.self)
-        tableView.registerDequeueable(PrepareContentVideoPreviewTableViewCell.self)
-        tableView.registerDequeueable(PrepareContentStepTableViewCell.self)
-        tableView.registerDequeueable(PrepareContentTitleTableViewCell.self)
-        tableView.registerDequeueable(PrepareContentActionButtonsTableViewCell.self)
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = estimatedRowHeight
-        tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 64, right: 0)
-        updateTableView(with: tableView)
-    }
 
-    func closeView(gestureRecognizer: UITapGestureRecognizer) {
-        delegate?.didTapAddPreparation(in: self)
+        setupView()
     }
+}
 
-   private func updateTableView(with tableView: UITableView) {
+// MARK: - Private
+
+private extension PrepareContentViewController {
+
+    func updateTableView(with tableView: UITableView) {
         viewModel.updates.observeNext { [unowned self] (update) in
             switch update {
             case .reload:
@@ -74,11 +80,19 @@ final class PrepareContentViewController: UIViewController, PrepareContentAction
             case .update(_, _, _):
                 self.tableView.reloadData()
             }
-            }.dispose(in: disposeBag)
+        }.dispose(in: disposeBag)
+    }
+
+    func setupView() {
+        view.addSubview(tableView)
+        tableView.topAnchor == view.topAnchor
+        tableView.bottomAnchor == view.bottomAnchor
+        tableView.horizontalAnchors == view.horizontalAnchors
+        updateTableView(with: tableView)
     }
 }
 
- // MARK: - UITableViewDelegate, UITableViewDataSource, PrepareContentActionButtonsTableViewCellDelegate
+// MARK: - UITableViewDelegate, UITableViewDataSource, PrepareContentActionButtonsTableViewCellDelegate
 
 extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSource {
 
@@ -135,22 +149,16 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
     // NOT Fully implemented because not sure how You want this to be done - i'll ask on standup
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let contentItem = viewModel.item(at: indexPath.row)
-
         tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableViewScrollPosition.none)
 
         switch contentItem {
-
         case .header:
             viewModel.didTapHeader(item: contentItem)
-            break
-
         case.video(let item):
             let cell: PrepareContentVideoPreviewTableViewCell = tableView.dequeueCell(for: indexPath)
             delegate?.didTapVideo(with: item.localID, from: cell.contentView, in: self)
-            break
-
         case .sectionFooter, .tableFooter, .text, .title, .step:
-            break
+            return
         }
     }
 
@@ -160,11 +168,15 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
         switch contentItem {
         case .header, .text, .step, .sectionFooter, .tableFooter, .title:
             return UITableViewAutomaticDimension
-
         case.video:
             return 200.0
         }
     }
+}
+
+// MARK: - PrepareContentActionButtonsTableViewCellDelegate
+
+extension PrepareContentViewController: PrepareContentActionButtonsTableViewCellDelegate {
 
     func didAddPreparationToCalendar(sectionID: String?, cell: UITableViewCell) {
         if let sectionID = sectionID {
@@ -191,6 +203,6 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-       scrollView.didScrollUnderTopTabBar(delegate: topTabBarScrollViewDelegate)
+        scrollView.didScrollUnderTopTabBar(delegate: topTabBarScrollViewDelegate)
     }
 }

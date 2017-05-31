@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Anchorage
 
 protocol MyPrepViewControllerDelegate: class {
     func didTapMyPrepItem(with myPrepItem: MyPrepItem, at index: Index, from view: UIView, in viewController: MyPrepViewController)
@@ -16,10 +17,17 @@ class MyPrepViewController: UIViewController {
 
     // MARK: - Properties
 
-    @IBOutlet weak var tableView: UITableView!
     let viewModel: MyPrepViewModel
     weak var delegate: MyPrepViewControllerDelegate?
     weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
+    fileprivate lazy var tableView: UITableView = {
+        return UITableView.setup(            
+            delegate: self,
+            dataSource: self,
+            dequeables:
+            MyPrepTableViewCell.self
+        )
+    }()
 
     // MARK: - Life Cycle
 
@@ -36,12 +44,22 @@ class MyPrepViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .clear
-        tableView.backgroundColor = .clear
-        tableView.registerDequeueable(MyPrepTableViewCell.self)
-        tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 64, right: 0)
+        setupView()
     }
-    
+}
+
+// MARK: - Private
+
+private extension MyPrepViewController {
+
+    func setupView() {
+        view.backgroundColor = .clear
+        view.addSubview(tableView)
+        tableView.topAnchor == view.topAnchor
+        tableView.bottomAnchor == view.bottomAnchor
+        tableView.horizontalAnchors == view.horizontalAnchors
+    }
+
     func prepareAndSetTextAttributes(string: String, value: CGFloat) -> NSMutableAttributedString {
         let attrString = NSMutableAttributedString(string: string)
         attrString.addAttribute(NSKernAttributeName, value: value, range: NSRange(location: 0, length: string.utf16.count))

@@ -38,6 +38,10 @@ final class LearnContentListViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    fileprivate lazy var pagingCellSize: CGSize = {
+        return CGSize(width: self.view.frame.width / 3, height: 100)
+    }()
+
     fileprivate lazy var screenSize: CGFloat = {
         return UIScreen.main.bounds.height > 568 ? 160 : 125
     }()
@@ -56,7 +60,7 @@ final class LearnContentListViewController: UIViewController {
     }()
 
     fileprivate lazy var pagingCollectionView: UICollectionView = {
-        let frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 100)
+        let frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.pagingCellSize.height)
         let collectionFlowLayout = UICollectionViewFlowLayout()
         collectionFlowLayout.scrollDirection = .horizontal
         let pagingCollectionView = UICollectionView(frame: frame, collectionViewLayout: collectionFlowLayout)
@@ -65,7 +69,7 @@ final class LearnContentListViewController: UIViewController {
         pagingCollectionView.isPagingEnabled = true
         pagingCollectionView.showsVerticalScrollIndicator = false
         pagingCollectionView.showsHorizontalScrollIndicator = false
-        pagingCollectionView.contentInset = UIEdgeInsets(top: 0, left: 125, bottom: 0, right: 125)
+        pagingCollectionView.contentInset = UIEdgeInsets(top: 0, left: self.pagingCellSize.width, bottom: 0, right: self.pagingCellSize.width)
         pagingCollectionView.registerDequeueable(LearnPagingCollectionViewCell.self)
 
         return pagingCollectionView
@@ -73,7 +77,7 @@ final class LearnContentListViewController: UIViewController {
 
     fileprivate lazy var getBackButton: UIButton = {
         let viewFrame = self.view.bounds
-        let button = UIButton(frame: CGRect(x: 0, y: viewFrame.height - 64, width: viewFrame.width, height: 64))
+        let button = UIButton(frame: CGRect(x: 0, y: viewFrame.height - Layout.TabBarView.height, width: viewFrame.width, height: Layout.TabBarView.height))
         button.setTitle("TAP TO GET BACK", for: .normal)
         button.setTitleColor(Color.whiteMedium, for: .normal)
         button.titleLabel?.font = Font.H4Headline
@@ -166,7 +170,7 @@ extension LearnContentListViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView === self.pagingCollectionView {
-            return CGSize(width: 125, height: 100)
+            return pagingCellSize
         }
 
         return .zero
@@ -192,7 +196,7 @@ private extension LearnContentListViewController {
     }
     
     func setupLayout() {
-        collectionView.topAnchor == view.topAnchor + 100
+        collectionView.topAnchor == view.topAnchor + pagingCellSize.height
         collectionView.bottomAnchor == view.bottomAnchor
         collectionView.horizontalAnchors == view.horizontalAnchors
         

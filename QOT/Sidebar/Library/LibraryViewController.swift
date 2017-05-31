@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Anchorage
 
 protocol LibraryViewControllerDelegate: class {
     func didTapMedia(with mediaItem: LibraryMediaItem, from view: UIView, in viewController: UIViewController)
@@ -16,10 +17,19 @@ final class LibraryViewController: UIViewController {
 
     // MARK: - Properties
 
-    @IBOutlet weak var tableView: UITableView!
-    let viewModel: LibraryViewModel
+    fileprivate let viewModel: LibraryViewModel
     weak var delegate: LibraryViewControllerDelegate?
     weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
+
+    fileprivate lazy var tableView: UITableView = {
+        return UITableView.setup(
+            delegate: self,
+            dataSource: self,
+            dequeables:
+            LatestPostCell.self,
+            CategoryPostCell.self
+        )
+    }()
 
     // MARK: - Init
 
@@ -38,10 +48,7 @@ final class LibraryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        registerTableCell()
-        tableView.backgroundColor = .clear
-        view.backgroundColor = .clear
-        tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 64, right: 0)
+        setupView()
     }
 }
 
@@ -49,9 +56,12 @@ final class LibraryViewController: UIViewController {
 
 private extension LibraryViewController {
 
-    func registerTableCell() {
-        tableView.registerDequeueable(LatestPostCell.self)
-        tableView.registerDequeueable(CategoryPostCell.self)
+    func setupView() {
+        view.backgroundColor = .clear
+        view.addSubview(tableView)
+        tableView.topAnchor == view.topAnchor
+        tableView.bottomAnchor == view.bottomAnchor
+        tableView.horizontalAnchors == view.horizontalAnchors
     }
 }
 

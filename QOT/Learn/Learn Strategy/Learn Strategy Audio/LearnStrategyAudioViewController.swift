@@ -11,21 +11,22 @@ import ReactiveKit
 import Bond
 import AVFoundation
 import AVKit
+import Anchorage
 
 final class LearnStrategyAudioViewController: UIViewController {
 
     // MARK: - Properties
 
-    let disposeBag = DisposeBag()
-    @IBOutlet fileprivate weak var tableView: UITableView!
+    fileprivate let disposeBag = DisposeBag()
     fileprivate let viewModel: LearnStrategyAudioViewModel
-    weak var delegate: LearnContentItemViewControllerDelegate?
     lazy var audioView = LearnStrategyAudioPlayerView.instatiateFromNib()
+    weak var delegate: LearnContentItemViewControllerDelegate?
 
     // MARK: - Init
 
     init(viewModel: LearnStrategyAudioViewModel) {
         self.viewModel = viewModel
+
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -38,12 +39,36 @@ final class LearnStrategyAudioViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.registerDequeueable(LearnStrategyTitleAudioCell.self)
-        tableView.registerDequeueable(LearnStrategyPlaylistAudioCell.self)
-        tableView.estimatedRowHeight = 10
-        tableView.rowHeight = UITableViewAutomaticDimension
+        setupView()
+        observeViewModel()
+    }
 
-        viewModel.currentPosition.map { [unowned self] (interval) -> String in            
+    fileprivate lazy var tableView: UITableView = {
+        return UITableView.setup(
+            backgroundColor: .white,
+            estimatedRowHeight: 10,
+            delegate: self,
+            dataSource: self,
+            dequeables:
+                LearnStrategyTitleAudioCell.self,
+                LearnStrategyPlaylistAudioCell.self
+        )
+    }()
+}
+
+// MARK: - Private
+
+private extension LearnStrategyAudioViewController {
+
+    func setupView() {
+        view.addSubview(tableView)
+        tableView.topAnchor == view.topAnchor
+        tableView.bottomAnchor == view.bottomAnchor
+        tableView.horizontalAnchors == view.horizontalAnchors
+    }
+
+    func observeViewModel() {
+        viewModel.currentPosition.map { [unowned self] (interval) -> String in
             return self.stringFromTimeInterval(interval: interval)
         }.bind(to: audioView.currentPositionLabel)
 
@@ -65,7 +90,11 @@ final class LearnStrategyAudioViewController: UIViewController {
         }.dispose(in: disposeBag)
     }
 
-    private func stringFromTimeInterval(interval: TimeInterval?) -> String {
+    func progress(currentPosition: TimeInterval, trackDuration: TimeInterval) -> CGFloat {
+        return trackDuration > 0 ? CGFloat(currentPosition / trackDuration) : 0
+    }
+
+    func stringFromTimeInterval(interval: TimeInterval?) -> String {
         guard let interval = interval else {
             return "00:00"
         }
@@ -74,12 +103,8 @@ final class LearnStrategyAudioViewController: UIViewController {
         formatter.zeroFormattingBehavior = .pad
         formatter.allowedUnits = [.minute, .second]
         let time = formatter.string(from: interval)
-        
-        return time ?? "00:00"
-    }
 
-    private func progress(currentPosition: TimeInterval, trackDuration: TimeInterval) -> CGFloat {
-        return trackDuration > 0 ? CGFloat(currentPosition / trackDuration) : 0        
+        return time ?? "00:00"
     }
 }
 
@@ -124,7 +149,6 @@ extension LearnStrategyAudioViewController: UITableViewDelegate, UITableViewData
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
         viewModel.playItem(at: indexPath)
     }
 

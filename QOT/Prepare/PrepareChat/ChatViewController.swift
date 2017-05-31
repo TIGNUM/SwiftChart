@@ -10,6 +10,7 @@ import UIKit
 import Foundation
 import ReactiveKit
 import Bond
+import Anchorage
 
 protocol ChatViewDelegate: class {
     func didSelectChatNavigation(_ navigation: PrepareContentCollection, in viewController: ChatViewController)
@@ -19,13 +20,22 @@ protocol ChatViewDelegate: class {
 class ChatViewController: UIViewController, Dequeueable, CollectionViewCellDelegate {
     // MARK: - Properties
 
-    @IBOutlet weak var tableView: UITableView!
     private let disposeBag = DisposeBag()
     fileprivate let viewModel: ChatViewModel
     weak var delegate: ChatViewDelegate?
     weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
 
-    private let estimatedRowHeight: CGFloat = 140.0
+    fileprivate lazy var tableView: UITableView = {
+        return UITableView.setup(
+            estimatedRowHeight: CGFloat(140.0),
+            delegate: self,
+            dataSource: self,
+            dequeables:
+                ChatTableViewCell.self,
+                StatusTableViewCell.self,
+                CollectionTableViewCell.self
+        )
+    }()
 
     // MARK: - Life Cycle
 
@@ -39,28 +49,19 @@ class ChatViewController: UIViewController, Dequeueable, CollectionViewCellDeleg
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        //Dequeue TableCells
-        tableView.registerDequeueable(ChatTableViewCell.self)
-        tableView.registerDequeueable(StatusTableViewCell.self)
-        tableView.registerDequeueable(CollectionTableViewCell.self)
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        setupTableView()
+        setupView()
         updateTableView(with: tableView)
     }
 
-    private func setupTableView() {
+    private func setupView() {
         view.backgroundColor = .clear
-        tableView.backgroundColor = .clear
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = estimatedRowHeight
-        tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 64, right: 0)
+        view.addSubview(tableView)
+        tableView.topAnchor == view.topAnchor
+        tableView.bottomAnchor == view.bottomAnchor
+        tableView.horizontalAnchors == view.horizontalAnchors
     }
 
     private func updateTableView(with tableView: UITableView) {
