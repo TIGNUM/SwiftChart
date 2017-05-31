@@ -145,7 +145,7 @@ private extension SettingsViewController {
     private func createDatePicker(with title: String, selectedDate: Date) -> ActionSheetDatePicker {
         return ActionSheetDatePicker(title: title, datePickerMode: .date,
             selectedDate: selectedDate,
-            doneBlock: { [unowned self] (picker: ActionSheetDatePicker?, value: Any?, _ index: Any?) in
+            doneBlock: { [unowned self] (picker: ActionSheetDatePicker?, _, _) in
                 self.tableView.reloadData()
             }, cancel: { (picker: ActionSheetDatePicker?) in
                 return
@@ -169,7 +169,7 @@ private extension SettingsViewController {
     }
 
     private func createStringPicker(with title: String, items: [String], selectedIndex: Index) -> ActionSheetStringPicker {
-        return ActionSheetStringPicker(title: title, rows: items, initialSelection: selectedIndex, doneBlock: { (picker, index, item) in
+        return ActionSheetStringPicker(title: title, rows: items, initialSelection: selectedIndex, doneBlock: { (picker, _, _) in
             self.tableView.reloadData()
         }, cancel: { (picker) in
             return

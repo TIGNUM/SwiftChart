@@ -16,6 +16,7 @@ protocol AddSensorViewControllerDelegate: class {
 final class AddSensorViewController: UIViewController {
 
     fileprivate let viewModel: AddSensorViewModel
+    weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
 
     fileprivate lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -33,6 +34,7 @@ final class AddSensorViewController: UIViewController {
     fileprivate lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         view.backgroundColor = .clear
+        view.delegate = self
         view.addSubview(self.contentView)
         return view
     }()
@@ -87,12 +89,23 @@ final class AddSensorViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         setUpHierarchy()
         setUpLayout()
     }
 }
 
-// Collection View DataSource and Delegate
+// MARK: - UIScrollViewDelegate
+
+extension AddSensorViewController: UIScrollViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollView.didScrollUnderTopTabBar(delegate: topTabBarScrollViewDelegate)
+    }
+}
+
+// MARK: - Collection View DataSource and Delegate
+
 extension AddSensorViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -119,14 +132,13 @@ private extension AddSensorViewController {
     }
 
     func setUpLayout() {
-
         scrollView.verticalAnchors == view.verticalAnchors
         scrollView.horizontalAnchors == view.horizontalAnchors
 
         contentView.leftAnchor == scrollView.leftAnchor
         contentView.rightAnchor == scrollView.rightAnchor
         contentView.topAnchor == scrollView.topAnchor
-        contentView.bottomAnchor == scrollView.bottomAnchor
+        contentView.bottomAnchor == scrollView.bottomAnchor - 64
         contentView.widthAnchor == scrollView.widthAnchor
 
         titleLabel.topAnchor == contentView.topAnchor + 64
@@ -143,7 +155,7 @@ private extension AddSensorViewController {
 
         textLabel.topAnchor == headerLabel.bottomAnchor + 17
         textLabel.horizontalAnchors == titleLabel.horizontalAnchors
-        textLabel.bottomAnchor == contentView.bottomAnchor
+        textLabel.bottomAnchor == contentView.bottomAnchor - 12
         
         view.layoutIfNeeded()
     }

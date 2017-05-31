@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Anchorage
+import Foundation
 
 /// The delegate of a `LearnCategoryListViewController`.
 protocol LearnCategoryListViewControllerDelegate: class {
@@ -22,14 +24,23 @@ protocol LearnCategoryUpdateDelegate: class {
 /// Displays a collection of learn categories of learn content.
 final class LearnCategoryListViewController: UIViewController {
 
-    // MARK: - Outlets
-
-    @IBOutlet weak var collectionView: UICollectionView!
-
     // MARK: - Properties
     
     let viewModel: LearnCategoryListViewModel
     weak var delegate: LearnCategoryListViewControllerDelegate?
+
+    fileprivate lazy var collectionView: UICollectionView = {
+        let layout = LearnCategoryLayout(height: self.view.frame.height - 64, categories: self.viewModel.categories)
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        collectionView.collectionViewLayout = layout
+        collectionView.registerDequeueable(LearnCategoryCell.self)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.registerDequeueable(LearnContentCell.self)
+        collectionView.backgroundColor = .clear
+
+        return collectionView
+    }()
 
     // MARK: - Init
     
@@ -48,26 +59,42 @@ final class LearnCategoryListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let layout = LearnCategoryLayout(height: collectionView.frame.height, categories: viewModel.categories)
-        collectionView.collectionViewLayout = layout
-        collectionView.registerDequeueable(LearnCategoryCell.self)
+        setupHierachy()
+        setupLayout()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        centerCollectView()
-        view.backgroundColor = .clear
-    }
-    
-    private func centerCollectView() {
-        let contentSize = collectionView.collectionViewLayout.collectionViewContentSize
-        let xOffset = (contentSize.width - collectionView.frame.width) / 2
-        let yOffset = (contentSize.height - collectionView.frame.height) / 2
-        collectionView.contentOffset = CGPoint(x: xOffset, y: yOffset)
-        collectionView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
+        self.centerCollectionView()
     }
 }
+
+// MARK: - Private
+
+private extension LearnCategoryListViewController {
+
+    func centerCollectionView() {
+        let contentSize = collectionView.collectionViewLayout.collectionViewContentSize
+        let xOffset = (contentSize.width - collectionView.frame.width) / 2
+        collectionView.contentOffset = CGPoint(x: xOffset, y: collectionView.contentOffset.y)
+    }
+
+    func setupLayout() {
+        collectionView.topAnchor == view.topAnchor + 64
+        collectionView.bottomAnchor == view.bottomAnchor
+        collectionView.horizontalAnchors == view.horizontalAnchors
+
+        view.backgroundColor = .clear
+        view.layoutIfNeeded()
+    }
+
+    func setupHierachy() {
+        view.addSubview(collectionView)
+    }
+}
+
+// MARK: - UICollectionViewDataSource, UICollectionViewDelegate
 
 extension LearnCategoryListViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 
@@ -87,6 +114,8 @@ extension LearnCategoryListViewController: UICollectionViewDataSource, UICollect
         delegate?.didSelectCategory(at: indexPath.row, category: viewModel.category(at: indexPath.row), in: self)
     }
 }
+
+// MARK: - LearnCategoryUpdateDelegate
 
 extension LearnCategoryListViewController: LearnCategoryUpdateDelegate {
 

@@ -9,7 +9,6 @@
 import Foundation
 import KeychainAccess
 
-
 struct Credential {
     let username: String
     let password: String

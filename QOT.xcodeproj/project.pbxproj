@@ -212,7 +212,6 @@
 		CCC1B6A71E8B9B7300D1461F /* LearnCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC1B6A21E8B9B7300D1461F /* LearnCategoryCell.swift */; };
 		CCC1B6A81E8B9B7300D1461F /* LearnCategoryLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC1B6A31E8B9B7300D1461F /* LearnCategoryLayout.swift */; };
 		CCC1B6A91E8B9B7300D1461F /* LearnCategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC1B6A41E8B9B7300D1461F /* LearnCategoryListViewController.swift */; };
-		CCC1B6AA1E8B9B7300D1461F /* LearnCategoryListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCC1B6A51E8B9B7300D1461F /* LearnCategoryListViewController.xib */; };
 		CCC1B6AB1E8B9B7300D1461F /* LearnCategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC1B6A61E8B9B7300D1461F /* LearnCategoryListViewModel.swift */; };
 		CCC1B6AE1E8B9B7F00D1461F /* LearnContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC1B6AC1E8B9B7F00D1461F /* LearnContentListViewController.swift */; };
 		CCC1B6AF1E8B9B7F00D1461F /* LearnContentCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC1B6AD1E8B9B7F00D1461F /* LearnContentCollectionViewModel.swift */; };
@@ -521,7 +520,6 @@
 		CCC1B6A21E8B9B7300D1461F /* LearnCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnCategoryCell.swift; sourceTree = "<group>"; };
 		CCC1B6A31E8B9B7300D1461F /* LearnCategoryLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnCategoryLayout.swift; sourceTree = "<group>"; };
 		CCC1B6A41E8B9B7300D1461F /* LearnCategoryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnCategoryListViewController.swift; sourceTree = "<group>"; };
-		CCC1B6A51E8B9B7300D1461F /* LearnCategoryListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnCategoryListViewController.xib; sourceTree = "<group>"; };
 		CCC1B6A61E8B9B7300D1461F /* LearnCategoryListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnCategoryListViewModel.swift; sourceTree = "<group>"; };
 		CCC1B6AC1E8B9B7F00D1461F /* LearnContentListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentListViewController.swift; sourceTree = "<group>"; };
 		CCC1B6AD1E8B9B7F00D1461F /* LearnContentCollectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentCollectionViewModel.swift; sourceTree = "<group>"; };
@@ -1486,7 +1484,6 @@
 				CCC1B6A21E8B9B7300D1461F /* LearnCategoryCell.swift */,
 				CCC1B6A31E8B9B7300D1461F /* LearnCategoryLayout.swift */,
 				CCC1B6A41E8B9B7300D1461F /* LearnCategoryListViewController.swift */,
-				CCC1B6A51E8B9B7300D1461F /* LearnCategoryListViewController.xib */,
 				CCC1B6A61E8B9B7300D1461F /* LearnCategoryListViewModel.swift */,
 			);
 			path = "Learn Category List";
@@ -1794,7 +1791,6 @@
 				CC13E2411EB1D72400C3CE46 /* LatestCollectionCell.xib in Resources */,
 				CCC0C4CC1E828007002A8362 /* BentonSans_Regular.otf in Resources */,
 				CCF0F4C61ECDD0DA00E8D9C1 /* contentCategory.json in Resources */,
-				CCC1B6AA1E8B9B7300D1461F /* LearnCategoryListViewController.xib in Resources */,
 				0BE7FD8B1E9D2AEF00E3262E /* PrepareContentStepTableViewCell.xib in Resources */,
 				CB8C34541EAF7F190003AB65 /* MyToBeVisionViewController.xib in Resources */,
 				CC13E2471EB1D72E00C3CE46 /* CategoryPostCell.xib in Resources */,

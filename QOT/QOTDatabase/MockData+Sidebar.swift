@@ -179,7 +179,7 @@ private func mockSidebarContentItem(sortOrder: Int, title: String) -> ContentIte
 
 // MARK: - LayoutInfo
 
-private func layoutInfo(
+private func layoutInfo (
     font: String,
     red: CGFloat,
     green: CGFloat,

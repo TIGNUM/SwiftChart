@@ -46,7 +46,6 @@ final class LevelsChartView: UIView {
 
     func configure(items: [Item], columnCount: Int, rowCount: Int) {
         gridView.configure(columnCount: columnCount, rowCount: rowCount, seperatorHeight: 1, seperatorColor: .gray)
-
         self.items = items
         self.columnCount = columnCount
         self.rowCount = rowCount
@@ -59,11 +58,10 @@ final class LevelsChartView: UIView {
 
         gridView.frame = bounds
         itemsView.frame = bounds
-
         addLayers()
     }
 
-    private func eventLayer(frame:CGRect, color: UIColor) -> CALayer {
+    private func eventLayer(frame: CGRect, color: UIColor) -> CALayer {
         let layer = CALayer()
         layer.frame = frame
         let radius = min(frame.width, frame.height)
@@ -75,19 +73,16 @@ final class LevelsChartView: UIView {
     private func addLayers() {
         let columnWidth = bounds.width / CGFloat(columnCount)
         let rowHeight = bounds.height / CGFloat(rowCount)
-        let padding:CGFloat = 1.5
+        let padding = CGFloat(1.5)
 
-        itemsView.layer.sublayers = items.enumerated().map({ (index, item) -> CALayer in
+        itemsView.layer.sublayers = items.enumerated().map { (_, item) in
             let itemX = ((CGFloat(item.column) * columnWidth)) + padding
             let itemY = (CGFloat(item.row) * rowHeight) + padding
-
             let width = columnWidth - padding * 2
             let height = rowHeight - padding * 2
             let frame = CGRect(x: itemX, y: itemY, width: width, height: height)
             
             return eventLayer(frame: frame, color: item.color)
-        })
+        }
     }
-    
 }
-

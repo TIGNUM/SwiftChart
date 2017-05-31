@@ -56,4 +56,3 @@ extension ContentCategory: SidebarContentCategory {
         return DataProvider(list: contentCollections, map: { $0 as SidebarContentCollection })
     }
 }
-

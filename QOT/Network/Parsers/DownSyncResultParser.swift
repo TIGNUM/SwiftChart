@@ -9,7 +9,7 @@
 import Foundation
 import Freddy
 
-struct DownSyncResult<T>: JSONDecodable where T: JSONDecodable{
+struct DownSyncResult<T>: JSONDecodable where T: JSONDecodable {
     let timestamp: Date
     let items: [DownSyncChange<T>]
     let page: Int

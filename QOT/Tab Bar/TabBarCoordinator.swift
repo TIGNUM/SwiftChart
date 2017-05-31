@@ -107,6 +107,7 @@ final class TabBarCoordinator: ParentCoordinator {
 
         chatViewController.delegate = self
         chatViewController.topTabBarScrollViewDelegate = topTabBarController
+        myPrepViewController.topTabBarScrollViewDelegate = topTabBarController
         topTabBarController.delegate = self
         
         return topTabBarController

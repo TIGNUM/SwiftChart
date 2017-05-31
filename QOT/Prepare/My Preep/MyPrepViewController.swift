@@ -19,6 +19,7 @@ class MyPrepViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     let viewModel: MyPrepViewModel
     weak var delegate: MyPrepViewControllerDelegate?
+    weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
 
     // MARK: - Life Cycle
 
@@ -35,6 +36,8 @@ class MyPrepViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.backgroundColor = .clear
+        tableView.backgroundColor = .clear
         tableView.registerDequeueable(MyPrepTableViewCell.self)
         tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 64, right: 0)
     }
@@ -75,5 +78,14 @@ extension MyPrepViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 117
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+
+extension MyPrepViewController: UIScrollViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollView.didScrollUnderTopTabBar(delegate: topTabBarScrollViewDelegate)
     }
 }

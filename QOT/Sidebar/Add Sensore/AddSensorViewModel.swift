@@ -47,6 +47,7 @@ final class AddSensorViewModel {
 // MARK: Mock data
 
 private extension UIColor {
+    
     func image(size: CGSize) -> UIImage {
         let frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         UIGraphicsBeginImageContext(frame.size)

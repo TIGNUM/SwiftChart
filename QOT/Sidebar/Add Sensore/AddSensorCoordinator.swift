@@ -31,7 +31,6 @@ final class AddSensorCoordinator: ParentCoordinator {
 
     func start() {
         let addSensorVC = AddSensorViewController(viewModel: AddSensorViewModel())
-        addSensorVC.delegate = self
         presentationManager.presentationType = .fadeIn
         addSensorVC.modalPresentationStyle = .custom
         addSensorVC.transitioningDelegate = presentationManager
@@ -46,9 +45,10 @@ final class AddSensorCoordinator: ParentCoordinator {
             leftIcon: R.image.ic_minimize()
         )
 
+        addSensorVC.delegate = self
         topTabBarController.delegate = self
+        addSensorVC.topTabBarScrollViewDelegate = topTabBarController
         rootViewController.present(topTabBarController, animated: true)
-
     }
 }
 

@@ -19,4 +19,3 @@ protocol PrepareContentItem: TrackableEntity {
 extension ContentItem: PrepareContentItem {
 
 }
-

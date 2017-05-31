@@ -37,13 +37,10 @@ class TripsDashCellView: UIView {
     func draw(startValue: CGFloat, endValue: CGFloat, color: UIColor) {
         let x = startValue * bounds.width
         let width = endValue * bounds.width - x
-
-
         let layer = CALayer()
         layer.frame = CGRect(x: x, y: 0, width: width, height: bounds.height)
         layer.backgroundColor = color.cgColor
         layer.cornerRadius = bounds.height / 2
-
         self.layer.addSublayer(layer)
     }
 }

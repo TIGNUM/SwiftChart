@@ -11,7 +11,7 @@ import Foundation
 import Freddy
 import Alamofire
 
-final class DownSyncNetworkOperation<T: JSONDecodable>: ConcurrentOperation  {
+final class DownSyncNetworkOperation<T: JSONDecodable>: ConcurrentOperation {
 
     private let context: SyncContext
     private let sessionManager: SessionManager

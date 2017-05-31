@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-final class DownSyncDatabaseOperation<T>: Operation where T: DownSyncable, T: Object  {
+final class DownSyncDatabaseOperation<T>: Operation where T: DownSyncable, T: Object {
 
     private let context: SyncContext
     private let syncType: SyncType

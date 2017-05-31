@@ -257,7 +257,7 @@ private extension TopTabBarController {
     }
     
     func setupLayout() {
-        guard item.titles.isEmpty == false && item.controllers.first !== LearnContentListViewController.self else {
+        guard item.controllers.first?.classForCoder !== LearnContentListViewController.classForCoder() else {
             navigationItemBar.heightAnchor == 0
             return
         }
