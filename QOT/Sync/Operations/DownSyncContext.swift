@@ -9,13 +9,12 @@
 import Foundation
 
 final class SyncContext {
-    let baseURL: URL
     weak var queue: OperationQueue?
     var data: [String: Any] = [:]
     private(set) var errors: [Error] = []
 
-    init(baseURL: URL, queue: OperationQueue) {
-        self.baseURL = baseURL
+    init(queue: OperationQueue) {
+        self.queue = queue
     }
 
     func syncFailed(error: Error) {

@@ -75,6 +75,7 @@ enum JsonKey: String {
     case value
     case format
     case viewed
+    case nextSyncToken
 
     var value: String {
         return rawValue

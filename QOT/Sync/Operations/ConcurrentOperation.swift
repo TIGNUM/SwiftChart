@@ -32,10 +32,10 @@ class ConcurrentOperation: Operation {
         }
         set {
             lock.lock()
-
             guard _state != newValue else {
                 return
             }
+            lock.unlock()
 
             let kvoKey: String
             switch newValue {
@@ -48,10 +48,10 @@ class ConcurrentOperation: Operation {
             }
 
             willChangeValue(forKey: kvoKey)
+            lock.lock()
             _state = newValue
-            didChangeValue(forKey: kvoKey)
-
             lock.unlock()
+            didChangeValue(forKey: kvoKey)
         }
     }
 
