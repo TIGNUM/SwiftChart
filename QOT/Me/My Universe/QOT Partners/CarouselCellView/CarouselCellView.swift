@@ -104,7 +104,7 @@ extension CarouselCellView {
     }
 
     func hideKeyboard() {
-        view.endEditing(true)        
+        view.endEditing(true)
     }
 
     func setViewsTextFieldsDelegate(delegate: PartnersViewController) {

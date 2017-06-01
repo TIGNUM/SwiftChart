@@ -34,7 +34,8 @@ final class TabBarCoordinator: ParentCoordinator {
             titles: [
                 R.string.localized.topTabBarItemTitleLearnStrategies(),
                 R.string.localized.topTabBarItemTitleLearnWhatsHot()
-            ]
+            ],
+            enableTabScrolling: false
         )
 
         let topTabBarController = TopTabBarController(

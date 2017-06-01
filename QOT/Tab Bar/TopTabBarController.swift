@@ -23,6 +23,7 @@ final class TopTabBarController: UIViewController {
         let controllers: [UIViewController]
         let titles: [String]
         let containsScrollView: Bool
+        let enableTabScrolling: Bool
         let contentView: UIView?
         let theme: Theme
 
@@ -31,9 +32,10 @@ final class TopTabBarController: UIViewController {
             titles: [String],
             theme: Theme = .dark,
             containsScrollView: Bool = false,
-            contentView: UIView? = nil
-            ) {
+            enableTabScrolling: Bool = true,
+            contentView: UIView? = nil) {
                 self.containsScrollView = containsScrollView
+                self.enableTabScrolling = enableTabScrolling
                 self.contentView = contentView
                 self.titles = titles
                 self.controllers = controllers
@@ -62,10 +64,11 @@ final class TopTabBarController: UIViewController {
 
     // MARK: Properties
 
-    fileprivate var index: Int = 0
+    fileprivate var selectedIndex: Int = 0
+    fileprivate var currentIndex: Int = 0
     fileprivate var scrollViewContentOffset: CGFloat = 0
-    weak var delegate: TopTabBarDelegate?
     var item: Item
+    weak var delegate: TopTabBarDelegate?
 
     fileprivate lazy var navigationItemBar: UIView = {
         let view = UIView()
@@ -144,7 +147,7 @@ final class TopTabBarController: UIViewController {
     }
 }
 
-// MARK: - Private Helpers
+// MARK: - Private
 
 private extension TopTabBarController {
 
@@ -154,11 +157,6 @@ private extension TopTabBarController {
 
         return button
     }
-}
-
-// MARK: - Setup Views
-
-private extension TopTabBarController {
 
     func setupButton(with image: UIImage?, button: UIButton) {
         button.setImage(image?.withRenderingMode(.alwaysTemplate), for: .normal)
@@ -166,24 +164,6 @@ private extension TopTabBarController {
         button.isHidden = image == nil
         button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
-}
-
-// MARK: - Actions
-
-extension TopTabBarController {
-
-    func leftButtonPressed(_ button: UIButton) {
-        delegate?.didSelectLeftButton(sender: self)
-    }
-
-    func rightButtonPressed(_ button: UIButton) {
-        delegate?.didSelectRightButton(sender: self)
-    }
-}
-
-// MARK: - ScrollView
-
-extension TopTabBarController {
 
     func setupScrollView() {
         guard item.containsScrollView == false else {
@@ -196,7 +176,8 @@ extension TopTabBarController {
 
         let width: CGFloat = view.bounds.width
         scrollView.frame = view.bounds
-        scrollView.contentSize = CGSize(width: CGFloat(item.controllers.count) * width, height: 0)
+        let multiplier: CGFloat = item.enableTabScrolling == false ? CGFloat(1) : CGFloat(item.controllers.count)
+        scrollView.contentSize = CGSize(width: multiplier * width, height: 0)
         scrollViewContentOffset = scrollView.bounds.size.width
 
         for (index, controller) in item.controllers.enumerated() {
@@ -210,6 +191,19 @@ extension TopTabBarController {
         scrollView.addSubview(viewController.view)
         viewController.didMove(toParentViewController: self)
         addChildViewController(viewController)
+    }
+}
+
+// MARK: - Actions
+
+extension TopTabBarController {
+
+    func leftButtonPressed(_ button: UIButton) {
+        delegate?.didSelectLeftButton(sender: self)
+    }
+
+    func rightButtonPressed(_ button: UIButton) {
+        delegate?.didSelectRightButton(sender: self)
     }
 }
 
@@ -312,8 +306,8 @@ extension TopTabBarController: TabBarViewDelegate {
         guard let index = index else {
             return
         }
-        
-        self.index = index
+
+        selectedIndex = index
 
         guard index != scrollView.currentPage else {
             return
