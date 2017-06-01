@@ -18,7 +18,7 @@ final class WhatsHotLayout: UICollectionViewLayout {
 
     private var cache = [UICollectionViewLayoutAttributes]()
     weak var delegate: WhatsHotLayoutDelegate?
-
+    private var positionOne: CGFloat = 0
     fileprivate var width: CGFloat {
         return collectionView?.bounds.width ?? 0
     }
@@ -33,7 +33,7 @@ final class WhatsHotLayout: UICollectionViewLayout {
             let featuredHeight = delegate?.featuredHeightForLayout(self) else {
                 return .zero
         }
-
+        
         // FIXME: THis content height is incorrect
         let contentHeight = (CGFloat(itemCount) * standardHeight) +  (2 * standardHeight + featuredHeight)
 
@@ -56,16 +56,18 @@ final class WhatsHotLayout: UICollectionViewLayout {
         cache.reserveCapacity(itemCount)
 
         for item in 0..<itemCount {
-
             let indexPath = IndexPath(item: item, section: 0)
             let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
             attributes.zIndex = item
-
             let y = (CGFloat(item) * standardHeight) + (featuredHeight - standardHeight)
             let frame: CGRect
-            if y <= collectionView.contentOffset.y + (featuredHeight - standardHeight) {
+            if collectionView.contentOffset.y < 0.0 {
+                let  height: CGFloat = indexPath.item == 0  ? featuredHeight : standardHeight
+                let convertedY = y + standardHeight - height
+                frame = CGRect(x: 0, y: convertedY + yPosOffset, width: width, height: height)
+            } else if y <= collectionView.contentOffset.y + (featuredHeight - standardHeight) {
                 let percentage = ((collectionView.contentOffset.y / standardHeight) - CGFloat(item))
-                let diff = (featuredHeight - standardHeight) * percentage
+                let   diff = (featuredHeight - standardHeight) * percentage
                 let convertedY = y - (featuredHeight - standardHeight) - diff
                 frame = CGRect(x: 0, y: convertedY + yPosOffset, width: width, height: featuredHeight)
 
@@ -74,9 +76,7 @@ final class WhatsHotLayout: UICollectionViewLayout {
                 let diff = (featuredHeight - standardHeight) * percentage
                 let height: CGFloat = standardHeight + diff
                 let convertedY = y + standardHeight - height
-
                 frame = CGRect(x: 0, y: convertedY + yPosOffset, width: width, height: height)
-
             } else {
                 frame = CGRect(x: 0, y: y + yPosOffset, width: width, height: standardHeight)
 
@@ -114,7 +114,7 @@ final class WhatsHotLayout: UICollectionViewLayout {
 
         return layoutAttributes
     }
-    
+
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         return true
     }
