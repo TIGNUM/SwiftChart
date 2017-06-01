@@ -10,6 +10,7 @@ import Foundation
 import ReactiveKit
 
 final class PrepareCheckListViewModel {
+
     private var items: [PrepareCheckListItem] = mockContentTravelItems()
     let updates = PublishSubject<CollectionUpdate, NoError>()
 

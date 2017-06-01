@@ -11,6 +11,7 @@ import UIKit
 class PrepareEventTableViewHeader: UITableViewHeaderFooterView, Dequeueable {
 
     @IBOutlet weak var headerTitleLabel: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }

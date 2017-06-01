@@ -24,7 +24,7 @@ class PartnersViewController: UIViewController {
     @IBOutlet fileprivate weak var scrollView: UIScrollView!
     fileprivate let viewModel: PartnersViewModel
     fileprivate var imagePicker: ImagePickerController?
-    var valueEditing: Bool = false
+    fileprivate var valueEditing: Bool = false
     weak var delegate: PartnersViewControllerDelegate?
     weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
 
@@ -51,7 +51,7 @@ class PartnersViewController: UIViewController {
     }
 }
 
-// MARK: - Helpers
+// MARK: - Private
 
 private extension PartnersViewController {
 
@@ -61,12 +61,11 @@ private extension PartnersViewController {
     }
 
     func setupHeadline() {
-        bigLabel.attributedText = prepareAndSetTextAttributes(
+        bigLabel.attributedText = NSMutableAttributedString(
             string: viewModel.headline,
             letterSpacing: 2,
-            font: UIFont(name:"Simple-Regular", size: 36.0),
-            lineSpacing: 0,
-            paragraphStyleAlignemnt: NSTextAlignment.left
+            font: Font.H1MainTitle,
+            alignment: .left
         )
     }
 
@@ -75,19 +74,6 @@ private extension PartnersViewController {
         carousel.isPagingEnabled = true
         carousel.contentOffset = CGSize(width: -64, height: 0)
         scrollView.delegate = self
-    }
-
-    func prepareAndSetTextAttributes(string: String, letterSpacing: CGFloat, font: UIFont?, lineSpacing: CGFloat, paragraphStyleAlignemnt: NSTextAlignment?) -> NSMutableAttributedString {
-        let defaultFont: UIFont = UIFont(name:"Simple-Regular", size: 14.0)!
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = lineSpacing
-        paragraphStyle.alignment = paragraphStyleAlignemnt!
-        let attrString = NSMutableAttributedString(string: string)
-        attrString.addAttribute(NSKernAttributeName, value: letterSpacing, range: NSRange(location: 0, length: string.utf16.count))
-        attrString.addAttributes([NSFontAttributeName: font ?? defaultFont], range: NSRange(location: 0, length: string.utf16.count))
-        attrString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSRange(location: 0, length: string.utf16.count))
-
-        return attrString
     }
 
     func scrollAnimated(topInset: CGFloat) {
@@ -130,20 +116,16 @@ extension PartnersViewController: iCarouselDataSource, iCarouselDelegate {
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
         let frame = CGRect(x: carousel.frame.origin.x, y: carousel.frame.origin.y, width: 186.0, height: 424.0)
         let view = CarouselCellView(frame: frame)
+        let item = viewModel.item(at: index)
         view.setViewsTextFieldsDelegate(delegate: self)
         view.partnersViewControllerDelegate = self
-
-        view.imageView.image = viewModel.item(at: index).profileImage
-        view.textFieldName.attributedText = prepareAndSetTextAttributes(string: viewModel.item(at: index).name.uppercased(), letterSpacing: -1.1, font: UIFont(name:"Simple-Regular", size: 24.0), lineSpacing: 0, paragraphStyleAlignemnt: .left)
-
-        view.textFieldSurname.attributedText = prepareAndSetTextAttributes(string: viewModel.item(at: index).surename.uppercased(), letterSpacing: -1.1, font: UIFont(name:"Simple-Regular", size: 24.0), lineSpacing: 0, paragraphStyleAlignemnt: .left)
-
-        view.textFieldMail.attributedText = prepareAndSetTextAttributes(string: viewModel.item(at: index).email, letterSpacing: 0, font: UIFont(name:"BentonSans-Book", size: 12.0), lineSpacing: 0, paragraphStyleAlignemnt: .left)
-
-        view.textFieldSubtitle.attributedText = prepareAndSetTextAttributes(string: viewModel.item(at: index).relationship.uppercased(), letterSpacing: 2, font: UIFont(name:"BentonSans", size: 11.0), lineSpacing: 0, paragraphStyleAlignemnt: .left)
-
-        view.initialsLabel.attributedText = prepareAndSetTextAttributes(string: viewModel.item(at: index).initials.uppercased(), letterSpacing: 2, font: UIFont(name:"Simple-Regular", size: 36.0), lineSpacing: 0, paragraphStyleAlignemnt: .center)
-        view.initialsLabel.sizeToFit()
+        view.setup(with: item.name,
+                   surename: item.surename,
+                   email: item.email,
+                   relationship: item.relationship,
+                   initials: item.initials,
+                   profileImage: item.profileImage
+        )
 
         return view
     }

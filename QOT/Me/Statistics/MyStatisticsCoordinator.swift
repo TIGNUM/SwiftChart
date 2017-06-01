@@ -16,7 +16,6 @@ final class MyStatisticsCoordinator: ParentCoordinator {
     fileprivate let rootViewController: MyUniverseViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
-
     var children: [Coordinator] = []
 
     // MARK: - Life Cycle

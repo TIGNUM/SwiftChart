@@ -22,6 +22,11 @@ final class SettingsMenuViewModel {
         let subtitle: String
     }
 
+    private let settingTitles = [
+        R.string.localized.sidebarSettingsMenuGeneralButton(),
+        R.string.localized.sidebarSettingsMenuNotificationsButton(),
+        R.string.localized.sidebarSettingsMenuSecurityButton()
+    ]
     private let tiles: [Tile] = mockTiles()
     let profile: Profile = mockProfile()
     let tileUpdates = PublishSubject<CollectionUpdate, NoError>()
@@ -30,8 +35,16 @@ final class SettingsMenuViewModel {
         return tiles.count
     }
 
+    var settingsCount: Int {
+        return settingTitles.count
+    }
+
     func tile(at row: Index) -> Tile {
         return tiles[row]
+    }
+
+    func settingTitle(at row: Index) -> String {
+        return settingTitles[row]
     }
 }
 

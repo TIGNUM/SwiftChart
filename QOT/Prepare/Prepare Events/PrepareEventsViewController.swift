@@ -17,13 +17,12 @@ final class PrepareEventsViewController: UIViewController {
 
     // MARK: - Properties
 
-//    @IBOutlet weak var tableView: UITableView!
-    let viewModel: PrepareEventsViewModel
+    fileprivate let viewModel: PrepareEventsViewModel
     weak var delegate: PrepareEventsViewControllerDelegate?
     fileprivate let headerFooterIdentifier = String(describing: PrepareEventTableViewHeader.self)
 
     fileprivate lazy var tableView: UITableView = {
-        return UITableView.setup(            
+        return UITableView(            
             estimatedRowHeight: 140,
             delegate: self,
             dataSource: self,

@@ -10,10 +10,11 @@ import UIKit
 import Kingfisher
 
 protocol MyToBeVisionViewControllerDelegate: class {
+
     func didTapClose(in viewController: MyToBeVisionViewController)
 }
 
-class MyToBeVisionViewController: UIViewController, UIWebViewDelegate, UIScrollViewDelegate {
+class MyToBeVisionViewController: UIViewController {
 
     // MARK: - Properties
 
@@ -36,24 +37,44 @@ class MyToBeVisionViewController: UIViewController, UIWebViewDelegate, UIScrollV
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupView()
     }
 
-    private func setupView() {
-        headlineLabel.attributedText = prepareAndSetTextAttributes(string: viewModel.headLine.uppercased(), letterSpacing: 2, font: UIFont(name:"Simple-Regular", size: 36.0), lineSpacing: 3.0)
-        subtitleLabel.attributedText = prepareAndSetTextAttributes(string: viewModel.subHeadline.uppercased(), letterSpacing: 2, font: UIFont(name:"BentonSans", size: 11.0), lineSpacing: 0)
-
-        configureWebView(string: viewModel.text)
-        imageView.kf.setImage(with: viewModel.profileImage)
-    }
-
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
 
         maskImageView(imageView: imageView)
+    }
+}
+
+// MARK: - Private
+
+private extension MyToBeVisionViewController {
+
+    func setupView() {
+        setupLabels()
+        configureWebView(string: viewModel.text)
+        imageView.kf.setImage(with: viewModel.profileImage)
+    }
+
+    private func setupLabels() {
+        headlineLabel.attributedText = NSMutableAttributedString(
+            string: viewModel.headLine.uppercased(),
+            letterSpacing: 2,
+            font: Font.H1MainTitle,
+            lineSpacing: 3.0
+        )
+        subtitleLabel.attributedText = NSMutableAttributedString(
+            string: viewModel.subHeadline.uppercased(),
+            letterSpacing: 2,
+            font: Font.H7Tag,
+            lineSpacing: 0
+        )
     }
 
     func maskImageView(imageView: UIImageView) {
@@ -76,10 +97,8 @@ class MyToBeVisionViewController: UIViewController, UIWebViewDelegate, UIScrollV
 
     func configureWebView(string: String) {
         let text = "<html><head><link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\"></head>" + "<body style='background:none'><div class='text'>\(string)</div></body></html>"
-
         let mainbundle = Bundle.main.bundlePath
         let bundleURL = NSURL(fileURLWithPath: mainbundle)
-
         webView.loadHTMLString(text, baseURL: bundleURL as URL)
         webView.backgroundColor = UIColor.clear
         webView.isOpaque = false
@@ -90,25 +109,20 @@ class MyToBeVisionViewController: UIViewController, UIWebViewDelegate, UIScrollV
         webView.scrollView.contentInset.left = 21
         webView.scrollView.delegate = self
     }
+}
 
-    func prepareAndSetTextAttributes(string: String, letterSpacing: CGFloat, font: UIFont?, lineSpacing: CGFloat) -> NSMutableAttributedString {
-        let defaultFont: UIFont = UIFont(name:"Simple-Regular", size: 14.0)!
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = lineSpacing
+// MARK: - Actions
 
-        let attrString = NSMutableAttributedString(string: string)
-        attrString.addAttribute(NSKernAttributeName, value: letterSpacing, range: NSRange(location: 0, length: string.utf16.count))
-        attrString.addAttributes([NSFontAttributeName: font ?? defaultFont], range: NSRange(location: 0, length: string.utf16.count))
-        attrString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSRange(location: 0, length: string.utf16.count))
-
-        return attrString
-    }
+extension MyToBeVisionViewController {
 
     @IBAction func closeAction(_ sender: Any) {
         delegate?.didTapClose(in: self)
     }
+}
 
-    // MARK: ScrollView Delegate
+// MARK: UIScrollViewDelegate
+
+extension MyToBeVisionViewController: UIScrollViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y > 0 {

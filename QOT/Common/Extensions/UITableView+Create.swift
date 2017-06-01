@@ -11,7 +11,7 @@ import UIKit
 
 extension UITableView {
 
-    static func setup(
+    convenience init(
         style: UITableViewStyle = .plain,
         contentInsets: UIEdgeInsets = Layout.TabBarView.insets,
         backgroundColor: UIColor = .clear,
@@ -19,19 +19,16 @@ extension UITableView {
         seperatorStyle: UITableViewCellSeparatorStyle = .none,
         delegate: UITableViewDelegate,
         dataSource: UITableViewDataSource,
-        dequeables: Dequeueable.Type...) -> UITableView {
-
-            let tableView = UITableView(frame: .zero, style: style)
-            tableView.backgroundColor = backgroundColor
-            tableView.estimatedRowHeight = estimatedRowHeight
-            tableView.rowHeight = UITableViewAutomaticDimension
-            tableView.separatorStyle = seperatorStyle
-            tableView.contentInset = contentInsets
-            tableView.delegate = delegate
-            tableView.dataSource = dataSource
-            tableView.registerDequeueables(dequeables: dequeables)
-
-            return tableView
+        dequeables: Dequeueable.Type...) {
+            self.init(frame: .zero, style: style)
+            self.backgroundColor = backgroundColor
+            self.estimatedRowHeight = estimatedRowHeight
+            self.rowHeight = UITableViewAutomaticDimension
+            self.separatorStyle = seperatorStyle
+            self.contentInset = contentInsets
+            self.delegate = delegate
+            self.dataSource = dataSource
+            self.registerDequeueables(dequeables: dequeables)
     }
 
     private func registerDequeueables(dequeables: [Dequeueable.Type]) {

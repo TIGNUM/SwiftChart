@@ -26,20 +26,23 @@ final class LearnCategoryListViewController: UIViewController {
 
     // MARK: - Properties
     
-    let viewModel: LearnCategoryListViewModel
+    fileprivate let viewModel: LearnCategoryListViewModel
     weak var delegate: LearnCategoryListViewControllerDelegate?
 
     fileprivate lazy var collectionView: UICollectionView = {
-        let layout = LearnCategoryLayout(height: self.view.frame.height - Layout.TabBarView.height, categories: self.viewModel.categories)
-        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        collectionView.collectionViewLayout = layout
-        collectionView.registerDequeueable(LearnCategoryCell.self)
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.registerDequeueable(LearnContentCell.self)
-        collectionView.backgroundColor = .clear
+        let layout = LearnCategoryLayout(
+            height: self.view.frame.height - Layout.TabBarView.height,
+            categories: self.viewModel.categories
+        )
 
-        return collectionView
+        return UICollectionView(
+            layout: layout,
+            delegate: self,
+            dataSource: self,
+            dequeables:
+                LearnCategoryCell.self,
+                LearnContentCell.self
+        )
     }()
 
     // MARK: - Init
@@ -59,7 +62,6 @@ final class LearnCategoryListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupHierachy()
         setupLayout()
     }
 
@@ -81,16 +83,12 @@ private extension LearnCategoryListViewController {
     }
 
     func setupLayout() {
+        view.backgroundColor = .clear
+        view.addSubview(collectionView)
         collectionView.topAnchor == view.topAnchor + Layout.TabBarView.height
         collectionView.bottomAnchor == view.bottomAnchor
         collectionView.horizontalAnchors == view.horizontalAnchors
-
-        view.backgroundColor = .clear
         view.layoutIfNeeded()
-    }
-
-    func setupHierachy() {
-        view.addSubview(collectionView)
     }
 }
 

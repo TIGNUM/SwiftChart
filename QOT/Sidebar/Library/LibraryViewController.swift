@@ -22,7 +22,7 @@ final class LibraryViewController: UIViewController {
     weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
 
     fileprivate lazy var tableView: UITableView = {
-        return UITableView.setup(
+        return UITableView(
             delegate: self,
             dataSource: self,
             dequeables:

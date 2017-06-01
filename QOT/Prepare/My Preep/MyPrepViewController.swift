@@ -13,19 +13,19 @@ protocol MyPrepViewControllerDelegate: class {
     func didTapMyPrepItem(with myPrepItem: MyPrepItem, at index: Index, from view: UIView, in viewController: MyPrepViewController)
 }
 
-class MyPrepViewController: UIViewController {
+final class MyPrepViewController: UIViewController {
 
     // MARK: - Properties
 
     let viewModel: MyPrepViewModel
     weak var delegate: MyPrepViewControllerDelegate?
     weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
+
     fileprivate lazy var tableView: UITableView = {
-        return UITableView.setup(            
+        return UITableView(            
             delegate: self,
             dataSource: self,
-            dequeables:
-            MyPrepTableViewCell.self
+            dequeables: MyPrepTableViewCell.self
         )
     }()
 
@@ -59,13 +59,6 @@ private extension MyPrepViewController {
         tableView.bottomAnchor == view.bottomAnchor
         tableView.horizontalAnchors == view.horizontalAnchors
     }
-
-    func prepareAndSetTextAttributes(string: String, value: CGFloat) -> NSMutableAttributedString {
-        let attrString = NSMutableAttributedString(string: string)
-        attrString.addAttribute(NSKernAttributeName, value: value, range: NSRange(location: 0, length: string.utf16.count))
-
-        return attrString
-    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -75,11 +68,8 @@ extension MyPrepViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = viewModel.item(at: indexPath.row)
         let cell: MyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
-        let finishedCount: String = String(format: "%02d", item.finishedPreparationCount)
-        cell.headerLabel.attributedText = prepareAndSetTextAttributes(string: item.header.uppercased(), value: 2)
-        cell.mainTextLabel.attributedText = prepareAndSetTextAttributes(string: item.text.uppercased(), value: -0.8)
-        cell.footerLabel.attributedText = prepareAndSetTextAttributes(string: item.footer.uppercased(), value: 2)
-        cell.prepCount.attributedText = prepareAndSetTextAttributes(string: "\(finishedCount)/\(item.totalPreparationCount)", value: -0.8)
+        let count: String = String(format: "%02d/%d", item.finishedPreparationCount, item.totalPreparationCount)
+        cell.setup(with: item.header, text: item.text, footer: item.footer, count: count)
 
         return cell
     }

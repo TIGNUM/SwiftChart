@@ -25,7 +25,7 @@ final class SidebarItemViewController: UIViewController {
     weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
 
     fileprivate lazy var tableView: UITableView = {
-        return UITableView.setup(
+        return UITableView(
             estimatedRowHeight: 10,
             delegate: self,
             dataSource: self,

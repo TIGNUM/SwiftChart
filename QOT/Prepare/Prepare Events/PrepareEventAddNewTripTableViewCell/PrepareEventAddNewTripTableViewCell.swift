@@ -11,6 +11,7 @@ import UIKit
 class PrepareEventAddNewTripTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet weak var addNewTripLabel: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }

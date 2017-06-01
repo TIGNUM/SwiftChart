@@ -22,13 +22,13 @@ final class AddSensorViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: 0, left: 36, bottom: 10, right: 59)
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.backgroundColor = .clear
-        collectionView.registerDequeueable(SensorCollectionViewCell.self)
-        collectionView.showsHorizontalScrollIndicator = false
-        return collectionView
+
+        return UICollectionView(
+            layout: layout,
+            delegate: self,
+            dataSource: self,
+            dequeables: SensorCollectionViewCell.self
+        )
     }()
 
     fileprivate lazy var scrollView: UIScrollView = {
@@ -54,6 +54,7 @@ final class AddSensorViewController: UIViewController {
         label.text = "SENSORS"
         label.textColor = .white
         label.font = UIFont(name:"Simple-Regular", size: 24)
+
         return label
     }()
 
@@ -61,6 +62,7 @@ final class AddSensorViewController: UIViewController {
         let label = UILabel()
         label.textColor = .white
         label.font = UIFont(name:"Simple-Regular", size: 24)
+
         label.text = self.viewModel.heading
         label.numberOfLines = 0
         return label
@@ -70,6 +72,7 @@ final class AddSensorViewController: UIViewController {
         let label = UILabel()
         label.textColor = .white
         label.font = UIFont(name:"BentonSans-Book", size: 16)
+
         label.text = self.viewModel.text
         label.numberOfLines = 0
         return label

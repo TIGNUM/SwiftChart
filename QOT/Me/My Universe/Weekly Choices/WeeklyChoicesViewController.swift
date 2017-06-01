@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Anchorage
 
 protocol WeeklyChoicesViewControllerDelegate: class {
     func didTapClose(in viewController: UIViewController, animated: Bool)
@@ -16,10 +17,22 @@ protocol WeeklyChoicesViewControllerDelegate: class {
 final class WeeklyChoicesViewController: UIViewController {
 
     // MARK: - Properties
-    @IBOutlet private weak var collectionView: UICollectionView!
 
-    let viewModel: WeeklyChoicesViewModel
+    fileprivate let viewModel: WeeklyChoicesViewModel
     weak var delegate: WeeklyChoicesViewControllerDelegate?
+
+    fileprivate lazy var collectionView: UICollectionView = {
+        let layout = WeeklyChoicesLayout()
+        layout.delegate = self
+
+        return UICollectionView(
+            layout: layout,
+            delegate: self,
+            dataSource: self,
+            dequeables: WeeklyChoicesCell.self
+        )
+    }()
+
     // MARK: - Init
 
     init(viewModel: WeeklyChoicesViewModel) {
@@ -36,18 +49,22 @@ final class WeeklyChoicesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupCollectionView()
-    }
 
-    private func setupCollectionView() {
-        let layout = WeeklyChoicesLayout()
-        layout.delegate = self
-        collectionView.collectionViewLayout = layout
-        collectionView.decelerationRate = UIScrollViewDecelerationRateFast
-        collectionView.registerDequeueable(WeeklyChoicesCell.self)
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 64, right: 0)
+        setupView()
+    }
+}
+
+// MARK: - Private
+
+private extension WeeklyChoicesViewController {
+
+    func setupView() {
+        view.addSubview(collectionView)
+        view.backgroundColor = .clear
+        collectionView.topAnchor == view.topAnchor + Layout.TabBarView.height
+        collectionView.bottomAnchor == view.bottomAnchor - Layout.TabBarView.height
+        collectionView.horizontalAnchors == view.horizontalAnchors
+        view.layoutIfNeeded()
     }
 }
 
@@ -68,7 +85,9 @@ extension WeeklyChoicesViewController: UICollectionViewDataSource, UICollectionV
     }
 }
 // MARK: - Layout Delegate
+
 extension WeeklyChoicesViewController: WeeklyChoicesDelegate {
+
     func radius(_: WeeklyChoicesLayout) -> CGFloat {
         return CGFloat(400)
     }

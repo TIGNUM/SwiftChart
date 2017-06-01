@@ -12,8 +12,9 @@ final class AverageGraphView: UIView {
 
     private static let minKnobSize: CGFloat = 20
     private static let maxKnobSize: CGFloat = 40
-
     private var position: CGFloat = 0
+    fileprivate lazy var topLine: CALayer = CALayer()
+    fileprivate lazy var rightLine: CALayer = CALayer()
 
     fileprivate lazy var squareLayer: CALayer = {
         let layer = CALayer()
@@ -21,9 +22,6 @@ final class AverageGraphView: UIView {
         self.layer.insertSublayer(layer, at: 0)
         return layer
     }()
-
-    fileprivate lazy var topLine: CALayer = CALayer()
-    fileprivate lazy var rightLine: CALayer = CALayer()
 
     fileprivate lazy var knobLayer: CALayer = {
         let layer = CALayer()

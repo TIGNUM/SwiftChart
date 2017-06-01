@@ -19,8 +19,8 @@ final class SettingsViewController: UITableViewController {
 
     // MARK: - Properties
 
-    let viewModel: SettingsViewModel
-    let settingsType: SettingsViewModel.SettingsType
+    fileprivate let viewModel: SettingsViewModel
+    fileprivate let settingsType: SettingsViewModel.SettingsType
     weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
     
     // MARK: - Init

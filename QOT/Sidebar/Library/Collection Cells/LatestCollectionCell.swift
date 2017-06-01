@@ -20,6 +20,7 @@ final class LatestCollectionCell: UICollectionViewCell, Dequeueable {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         latestPostImageView.layer.cornerRadius = 3.0
     }
 

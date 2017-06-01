@@ -33,7 +33,7 @@ final class PrepareContentViewController: UIViewController {
     weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
 
     fileprivate lazy var tableView: UITableView = {
-        return UITableView.setup(
+        return UITableView(
             estimatedRowHeight: 140,
             delegate: self,
             dataSource: self,

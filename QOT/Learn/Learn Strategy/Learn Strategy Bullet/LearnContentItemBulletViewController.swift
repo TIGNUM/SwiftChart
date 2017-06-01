@@ -16,7 +16,7 @@ final class LearnContentItemBulletViewController: UIViewController {
 
     fileprivate let viewModel: LearnContentItemViewModel
     fileprivate lazy var tableView: UITableView = {
-        return UITableView.setup(
+        return UITableView(
             backgroundColor: .white,
             estimatedRowHeight: 10,
             delegate: self,

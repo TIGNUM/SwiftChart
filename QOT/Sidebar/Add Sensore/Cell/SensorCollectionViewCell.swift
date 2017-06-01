@@ -14,6 +14,7 @@ final class SensorCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         imageView.layer.cornerRadius = 8.0
     }
 

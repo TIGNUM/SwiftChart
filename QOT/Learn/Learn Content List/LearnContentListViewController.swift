@@ -22,21 +22,12 @@ protocol LearnContentListViewControllerDelegate: class {
 /// Displays a collection of items of learn content.
 final class LearnContentListViewController: UIViewController {
 
-    private let disposeBag = DisposeBag()
-    let viewModel: LearnContentCollectionViewModel
-    var selectedCategoryIndex: Index
-    weak var delegate: LearnContentListViewControllerDelegate?
-    
-    init(viewModel: LearnContentCollectionViewModel, selectedCategoryIndex: Index) {
-        self.viewModel = viewModel
-        self.selectedCategoryIndex = selectedCategoryIndex
+    // MARK: - Properties
 
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    fileprivate let disposeBag = DisposeBag()
+    fileprivate let viewModel: LearnContentCollectionViewModel
+    fileprivate var selectedCategoryIndex: Index
+    weak var delegate: LearnContentListViewControllerDelegate?
 
     fileprivate lazy var pagingCellSize: CGSize = {
         return CGSize(width: self.view.frame.width / 3, height: 100)
@@ -45,34 +36,31 @@ final class LearnContentListViewController: UIViewController {
     fileprivate lazy var screenSize: CGFloat = {
         return UIScreen.main.bounds.height > 568 ? 160 : 125
     }()
-    
+
     fileprivate lazy var collectionViewLayout: LearnContentLayout = {
         return LearnContentLayout(bubbleCount: self.viewModel.itemCount, bubbleDiameter: self.screenSize)
     }()
-    
-    fileprivate lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: self.collectionViewLayout)
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.registerDequeueable(LearnContentCell.self)
 
-        return collectionView
+    fileprivate lazy var collectionView: UICollectionView = {
+        return UICollectionView(
+            layout: self.collectionViewLayout,
+            delegate: self,
+            dataSource: self,
+            dequeables: LearnContentCell.self
+        )
     }()
 
-    fileprivate lazy var pagingCollectionView: UICollectionView = {
-        let frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.pagingCellSize.height)
-        let collectionFlowLayout = UICollectionViewFlowLayout()
-        collectionFlowLayout.scrollDirection = .horizontal
-        let pagingCollectionView = UICollectionView(frame: frame, collectionViewLayout: collectionFlowLayout)
-        pagingCollectionView.dataSource = self
-        pagingCollectionView.delegate = self
-        pagingCollectionView.isPagingEnabled = true
-        pagingCollectionView.showsVerticalScrollIndicator = false
-        pagingCollectionView.showsHorizontalScrollIndicator = false
-        pagingCollectionView.contentInset = UIEdgeInsets(top: 0, left: self.pagingCellSize.width, bottom: 0, right: self.pagingCellSize.width)
-        pagingCollectionView.registerDequeueable(LearnPagingCollectionViewCell.self)
+    fileprivate lazy var pagingCollectionView: UICollectionView = {        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
 
-        return pagingCollectionView
+        return UICollectionView(
+            layout: layout,
+            contentInsets: UIEdgeInsets(top: 0, left: self.pagingCellSize.width, bottom: 0, right: self.pagingCellSize.width),
+            delegate: self,
+            dataSource: self,
+            dequeables: LearnPagingCollectionViewCell.self
+        )
     }()
 
     fileprivate lazy var getBackButton: UIButton = {
@@ -86,13 +74,43 @@ final class LearnContentListViewController: UIViewController {
         return button
     }()
 
+    // MARK: - Init
+    
+    init(viewModel: LearnContentCollectionViewModel, selectedCategoryIndex: Index) {
+        self.viewModel = viewModel
+        self.selectedCategoryIndex = selectedCategoryIndex
+
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupAppearance()
         setupHierachy()
         setupLayout()
+        observeViewModel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        centerCollectionView()
+        pagingCollectionViewScrollToSelectedIndex()
+    }
+}
 
+// MARK: - Private
+
+private extension LearnContentListViewController {
+
+    func observeViewModel() {
         viewModel.updates.observeNext { [unowned self] (update) in
             switch update {
             case .reload, .update(_, _, _):
@@ -106,24 +124,45 @@ final class LearnContentListViewController: UIViewController {
             }
         }.dispose(in: disposeBag)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        centerCollectionView()
-        pagingCollectionViewScrollToSelectedIndex()
-    }
 
-    private func pagingCollectionViewScrollToSelectedIndex() {
+    func pagingCollectionViewScrollToSelectedIndex() {
         let indexPath = IndexPath(item: selectedCategoryIndex, section: 0)
         pagingCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
 
-    private func centerCollectionView() {
+    func centerCollectionView() {
         let contentSize = collectionView.collectionViewLayout.collectionViewContentSize
         let xOffset = (contentSize.width - collectionView.frame.width) / 2
         let yOffset = (contentSize.height - collectionView.frame.height) / 2
         collectionView.contentOffset = CGPoint(x: xOffset, y: yOffset)
+    }
+
+    func setupAppearance() {
+        view.backgroundColor = .clear
+        collectionView.backgroundColor = .clear
+        pagingCollectionView.backgroundColor = .clear
+    }
+
+    func setupHierachy() {
+        view.insertSubview(pagingCollectionView, at: 0)
+        view.addSubview(collectionView)
+        view.addSubview(getBackButton)
+    }
+
+    @objc func didTapGetBack() {
+        delegate?.didTapBack(in: self)
+    }
+
+    func setupLayout() {
+        collectionView.topAnchor == view.topAnchor + pagingCellSize.height
+        collectionView.bottomAnchor == view.bottomAnchor
+        collectionView.horizontalAnchors == view.horizontalAnchors
+
+        pagingCollectionView.topAnchor == view.topAnchor
+        pagingCollectionView.bottomAnchor == view.topAnchor + pagingCellSize.height
+        pagingCollectionView.horizontalAnchors == view.horizontalAnchors
+
+        view.layoutIfNeeded()
     }
 }
 
@@ -174,32 +213,5 @@ extension LearnContentListViewController: UICollectionViewDelegateFlowLayout {
         }
 
         return .zero
-    }
-}
-
-private extension LearnContentListViewController {
-
-    func setupAppearance() {
-        view.backgroundColor = .clear
-        collectionView.backgroundColor = .clear
-        pagingCollectionView.backgroundColor = .clear
-    }
-    
-    func setupHierachy() {
-        view.insertSubview(pagingCollectionView, at: 0)
-        view.addSubview(collectionView)
-        view.addSubview(getBackButton)
-    }
-
-    @objc func didTapGetBack() {
-        delegate?.didTapBack(in: self)
-    }
-    
-    func setupLayout() {
-        collectionView.topAnchor == view.topAnchor + pagingCellSize.height
-        collectionView.bottomAnchor == view.bottomAnchor
-        collectionView.horizontalAnchors == view.horizontalAnchors
-        
-        view.layoutIfNeeded()
     }
 }

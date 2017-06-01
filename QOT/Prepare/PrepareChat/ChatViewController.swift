@@ -26,7 +26,7 @@ class ChatViewController: UIViewController, Dequeueable, CollectionViewCellDeleg
     weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
 
     fileprivate lazy var tableView: UITableView = {
-        return UITableView.setup(
+        return UITableView(
             estimatedRowHeight: CGFloat(140.0),
             delegate: self,
             dataSource: self,
@@ -62,6 +62,7 @@ class ChatViewController: UIViewController, Dequeueable, CollectionViewCellDeleg
         tableView.topAnchor == view.topAnchor
         tableView.bottomAnchor == view.bottomAnchor
         tableView.horizontalAnchors == view.horizontalAnchors
+        view.layoutIfNeeded()
     }
 
     private func updateTableView(with tableView: UITableView) {

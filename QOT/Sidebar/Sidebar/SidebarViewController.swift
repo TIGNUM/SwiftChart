@@ -28,7 +28,7 @@ final class SidebarViewController: UIViewController {
     weak var delegate: SidebarViewControllerDelegate?
 
     fileprivate lazy var tableView: UITableView = {
-        return UITableView.setup(
+        return UITableView(
             estimatedRowHeight: 10,
             delegate: self,
             dataSource: self,

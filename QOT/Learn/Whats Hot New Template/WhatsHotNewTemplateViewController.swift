@@ -21,7 +21,7 @@ class WhatsHotNewTemplateViewController: UITableViewController {
 
     // MARK: - Properties
 
-    let viewModel: WhatsHotNewTemplateViewModel
+    fileprivate let viewModel: WhatsHotNewTemplateViewModel
     weak var delegate: WhatsHotNewTemplateViewControllerDelegate?
 
     // MARK: - Life Cycle

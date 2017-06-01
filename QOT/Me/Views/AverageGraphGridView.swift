@@ -11,7 +11,6 @@ import UIKit
 final class AverageGraphGridView: UIView {
 
     fileprivate lazy var gridView: GridView = GridView()
-        
     fileprivate lazy var averageGraphView: AverageGraphView = AverageGraphView()
 
     override init(frame: CGRect) {

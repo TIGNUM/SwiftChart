@@ -8,15 +8,35 @@
 
 import UIKit
 
-class SettingsMenuCollectionViewCell: UICollectionViewCell, Dequeueable {
+final class SettingsMenuCollectionViewCell: UICollectionViewCell, Dequeueable {
 
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var cardView: UIView!
+    // MARK: - Attributes
+
+    @IBOutlet fileprivate weak var timeLabel: UILabel!
+    @IBOutlet fileprivate weak var titleLabel: UILabel!
+    @IBOutlet fileprivate weak var cardView: UIView!
+
+    // MARK: - Life Cycle
 
     override func awakeFromNib() {
         super.awakeFromNib()
         
         cardView.layer.cornerRadius = 10
+    }
+
+    // MARK: - Setup
+
+    func setup(with title: String, subTitle: String) {
+        timeLabel.attributedText = NSMutableAttributedString(
+            string: title,
+            font: Font.H6NavigationTitle,
+            lineSpacing: 2
+        )
+        titleLabel.attributedText = NSMutableAttributedString(
+            string: subTitle,
+            letterSpacing: 2,
+            font: Font.H7Tag,
+            lineSpacing: 3.2
+        )
     }
 }

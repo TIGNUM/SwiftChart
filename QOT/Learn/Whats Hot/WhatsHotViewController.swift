@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Anchorage
 
 protocol WhatsHotViewControllerDelegate: class {
     func didTapVideo(at index: Index, with whatsHot: WhatsHotItem, from view: UIView, in viewController: WhatsHotViewController)
@@ -15,14 +16,25 @@ protocol WhatsHotViewControllerDelegate: class {
 
 class WhatsHotViewController: UIViewController {
 
-    // MARK: - Properties / Outlets
+    // MARK: - Properties
 
-    @IBOutlet private weak var collectionView: UICollectionView!
-    let viewModel: WhatsHotViewModel
+    fileprivate let viewModel: WhatsHotViewModel
     weak var delegate: WhatsHotViewControllerDelegate?
     weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
 
-    // MARK: - Life Cycle
+    fileprivate lazy var collectionView: UICollectionView = {
+        let layout = WhatsHotLayout()
+        layout.delegate = self
+
+        return UICollectionView(
+            layout: layout,
+            delegate: self,
+            dataSource: self,
+            dequeables: WhatsHotCell.self
+        )
+    }()
+
+    // MARK: Init
 
     init(viewModel: WhatsHotViewModel) {
         self.viewModel = viewModel
@@ -34,21 +46,26 @@ class WhatsHotViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .clear
-        setUpCollectionView()
+        setupLayout()
     }
+}
 
-    func setUpCollectionView() {
-        let layout = WhatsHotLayout()
-        layout.delegate = self
-        collectionView.collectionViewLayout = layout
-        collectionView.decelerationRate = UIScrollViewDecelerationRateFast
-        collectionView.registerDequeueable(WhatsHotCell.self)
-        collectionView.dataSource = self
-        collectionView.delegate = self
+// MARK: - Private
+
+extension WhatsHotViewController {
+
+    func setupLayout() {
+        view.backgroundColor = .clear
+        view.addSubview(collectionView)
+        collectionView.topAnchor == view.topAnchor
+        collectionView.heightAnchor == view.heightAnchor - Layout.TabBarView.height
+        collectionView.horizontalAnchors == view.horizontalAnchors
+        view.layoutIfNeeded()
     }
 }
 

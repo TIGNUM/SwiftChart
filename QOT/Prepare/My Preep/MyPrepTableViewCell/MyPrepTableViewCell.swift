@@ -8,15 +8,39 @@
 
 import UIKit
 
-class MyPrepTableViewCell: UITableViewCell, Dequeueable {
+final class MyPrepTableViewCell: UITableViewCell, Dequeueable {
 
-    @IBOutlet weak var headerLabel: UILabel!
-    @IBOutlet weak var mainTextLabel: UILabel!
-    @IBOutlet weak var footerLabel: UILabel!
-    @IBOutlet weak var prepCount: UILabel!
+    // MARK: - Properties
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }    
+    @IBOutlet fileprivate weak var headerLabel: UILabel!
+    @IBOutlet fileprivate weak var mainTextLabel: UILabel!
+    @IBOutlet fileprivate weak var footerLabel: UILabel!
+    @IBOutlet fileprivate weak var prepCount: UILabel!
+
+    // MARK: - Setup
+
+    func setup(with header: String, text: String, footer: String, count: String) {
+        headerLabel.attributedText = NSMutableAttributedString(
+            string: header.uppercased(),
+            letterSpacing: 2,
+            font: Font.H7Title,
+            textColor: Color.whiteish
+        )
+        mainTextLabel.attributedText = NSMutableAttributedString(
+            string: header.uppercased(),
+            letterSpacing: 0.8,
+            font: Font.H4Headline
+        )
+        footerLabel.attributedText = NSMutableAttributedString(
+            string: footer.uppercased(),
+            letterSpacing: 2,
+            font: Font.H7Title,
+            textColor: Color.whiteLight
+        )
+        prepCount.attributedText = NSMutableAttributedString(
+            string: count,
+            letterSpacing: -0.8,
+            font: Font.H4Headline
+        )
+    }
 }

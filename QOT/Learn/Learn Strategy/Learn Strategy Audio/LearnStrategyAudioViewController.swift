@@ -44,7 +44,7 @@ final class LearnStrategyAudioViewController: UIViewController {
     }
 
     fileprivate lazy var tableView: UITableView = {
-        return UITableView.setup(
+        return UITableView(
             backgroundColor: .white,
             estimatedRowHeight: 10,
             delegate: self,

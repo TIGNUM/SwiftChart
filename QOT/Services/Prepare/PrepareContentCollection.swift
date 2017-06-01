@@ -11,6 +11,7 @@ import RealmSwift
 import Realm
 
 protocol PrepareContentCollection: TrackableEntity {
+
     var title: String { get }
 
     var localID: String { get }

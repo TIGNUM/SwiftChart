@@ -9,15 +9,19 @@
 import UIKit
 
 protocol PrepareCheckListViewControllerDelegate: class {
+
     func didTapClose(in viewController: PrepareCheckListViewController)
+
     func didTapVideo(with ID: String, from view: UIView, in viewController: PrepareCheckListViewController)
+
     func didTapSelectCheckbox(with ID: String, from view: UIView, at index: Index, in viewController: PrepareCheckListViewController)
+
     func didTapDeselectCheckbox(with ID: String, from view: UIView, at index: Index, in viewController: PrepareCheckListViewController)
 }
 
-class PrepareCheckListViewController: UIViewController {
+final class PrepareCheckListViewController: UIViewController {
 
-    let viewModel: PrepareCheckListViewModel
+    fileprivate let viewModel: PrepareCheckListViewModel
     weak var delegate: PrepareCheckListViewControllerDelegate?
 
     init(viewModel: PrepareCheckListViewModel) {

@@ -17,21 +17,21 @@ final class SearchViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: 0, left: 55, bottom: 10, right: 0)
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.backgroundColor = .clear
-        return collectionView
+
+        return UICollectionView(
+            layout: layout,
+            delegate: self,
+            dataSource: self,
+            dequeables: SearchCollectionCell.self
+        )
     }()
 
     fileprivate lazy var tableView: UITableView = {
-        return UITableView.setup(
+        return UITableView(
             estimatedRowHeight: 85,
             delegate: self,
             dataSource: self,
-            dequeables:
-                SearchTableCell.self,
-                SearchCollectionCell.self
+            dequeables: SearchTableCell.self
         )
     }()
 

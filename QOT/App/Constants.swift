@@ -243,8 +243,14 @@ struct Font {
 
 struct Color {
 
-    /// White Opacity: 50%
+    /// White Opacity: 30%
+    static let whiteLight = UIColor(white: 1, alpha: 0.3)
+
+    /// White Opacity: 40%
     static let whiteMedium = UIColor(white: 1, alpha: 0.4)
+
+    /// White Opacity: 60%
+    static let whiteish = UIColor(white: 1, alpha: 0.6)
 
     /// cherryRed UIColor(red: 1, green: 0, blue: 38/255, alpha: 1)
     static let cherryRed = UIColor(red: 1, green: 0, blue: 38/255, alpha: 1)
