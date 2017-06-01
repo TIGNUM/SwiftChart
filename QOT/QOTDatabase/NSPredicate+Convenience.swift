@@ -10,6 +10,6 @@ import Foundation
 
 extension NSPredicate {
     convenience init(remoteID: Int) {
-        self.init(format: "remoteID == %@", remoteID)
+        self.init(format: "remoteID == %d", remoteID)
     }
 }

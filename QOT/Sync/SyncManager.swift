@@ -24,9 +24,10 @@ final class SyncManager {
     }
 
     func sync() {
+        operationQueue.maxConcurrentOperationCount = 1
         let context = SyncContext(queue: operationQueue)
-        let startSyncOperation = StartSyncNetworkOperation(context: context, networkManager: networkManager)
-        operationQueue.addOperation(startSyncOperation)
+        let operations = downSyncOperations(desciption: ContentCategoryDown, context: context)
+        operationQueue.addOperations(operations, waitUntilFinished: false)
 
         // FIXME: To be completed.
     }
@@ -34,18 +35,19 @@ final class SyncManager {
 
 private extension SyncManager {
 
-    func downSyncOperations<T, U>(desciption: SyncDescription<T, U>, context: SyncContext) throws -> [Operation]  where T: JSONDecodable, U: DownSyncable, U: Object {
+    func downSyncOperations<T, U>(desciption: SyncDescription<T, U>, context: SyncContext) -> [Operation]  where T: JSONDecodable, U: DownSyncable, U: Object {
         let syncType = desciption.syncType
+        let startSyncOp = StartSyncNetworkOperation(context: context, networkManager: networkManager)
         let networkOp = DownSyncNetworkOperation<T>(context: context, networkManager: networkManager, syncType: syncType)
         let databaseOp = DownSyncDatabaseOperation<U>(context: context, syncType: syncType, storeProvider: realmProvider)
         let recordSyncOp = RecordSyncOperation<U>(context: context, service: syncRecordService, type: syncType)
 
-        return [networkOp, databaseOp, recordSyncOp]
+        return [startSyncOp, networkOp, databaseOp, recordSyncOp]
     }
 
     // MARK: Syncs
 
-    func contentCategoryDownOperations(context: SyncContext) throws -> [Operation] {
-        return try downSyncOperations(desciption: ContentCategoryDown, context: context)
+    func contentCategoryDownOperations(context: SyncContext) -> [Operation] {
+        return downSyncOperations(desciption: ContentCategoryDown, context: context)
     }
 }

@@ -26,22 +26,21 @@ final class ContentCategory: Object, ContentCategoryDataProtocol {
     func setData(_ data: ContentCategoryDataProtocol) {
         sortOrder = data.sortOrder
         section = data.section
-        keypathID = data.keypathID
         title = data.title
         layoutInfo = data.layoutInfo
     }
 
     // MARK: ContentData
 
-    private(set) dynamic var sortOrder: Int = 0
+    fileprivate(set) dynamic var sortOrder: Int = 0
 
-    private(set) dynamic var section: String = ""
+    fileprivate(set) dynamic var section: String = ""
 
-    private(set) dynamic var keypathID: String?
+    fileprivate(set) dynamic var keypathID: String?
 
-    private(set) dynamic var title: String = ""
+    fileprivate(set) dynamic var title: String = ""
 
-    private(set) dynamic var layoutInfo: String?
+    fileprivate(set) dynamic var layoutInfo: String?
     
     // MARK: Realm
 
@@ -56,11 +55,17 @@ final class ContentCategory: Object, ContentCategoryDataProtocol {
 
 extension ContentCategory: DownSyncable {
     static func make(remoteID: Int, createdAt: Date) -> ContentCategory {
-        return ContentCategory()
+        let category = ContentCategory()
+        category.remoteID = remoteID
+        category.createdAt = createdAt
+        return category
     }
 
     func setData(_ data: ContentCategoryData, objectStore: ObjectStore) throws {
-
+        sortOrder = data.sortOrder
+        section = data.section
+        title = data.title
+        layoutInfo = data.layoutInfo
     }
 }
 

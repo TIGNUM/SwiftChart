@@ -22,7 +22,8 @@ final class SyncRecord: Object {
 
     private(set) dynamic var type: String = ""
 
-    private(set) dynamic var date: Date = Date()
+    /// Date as milliseconds since Epoch time
+    private(set) dynamic var date: Int64 = 0
 
     // MARK: Realm
 
@@ -32,7 +33,7 @@ final class SyncRecord: Object {
 
     // MARK: Initializers
 
-    convenience init(type: SyncType, date: Date) {
+    convenience init(type: SyncType, date: Int64) {
         self.init()
 
         self.type = type.rawValue

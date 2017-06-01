@@ -22,12 +22,13 @@ final class StartSyncNetworkOperation: ConcurrentOperation {
 
     override func execute() {
         let request = StartSyncRequest(from: lastSyncDate)
-        networkManager.request(request, parser: StartSyncTokenParser.parse) { [weak self] (result) in
+        networkManager.request(request, parser: StartSyncResult.parse) { [weak self, context] (result) in
             switch result {
-            case .success(let syncToken):
-                self?.context.data["syncToken"] = syncToken
+            case .success(let startSyncRestult):
+                context[.syncToken] = startSyncRestult.syncToken
+                context[.syncDate] = startSyncRestult.syncDate
             case .failure(let error):
-                self?.context.syncFailed(error: error)
+                context.syncFailed(error: error)
             }
             self?.finish()
         }

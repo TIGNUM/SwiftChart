@@ -51,7 +51,7 @@ enum Database {
 }
 
 enum JsonKey: String {
-    case results
+    case resultList
     case id
     case syncStatus
     case createdAt
@@ -76,6 +76,7 @@ enum JsonKey: String {
     case format
     case viewed
     case nextSyncToken
+    case syncTime
 
     var value: String {
         return rawValue
@@ -93,7 +94,20 @@ extension JSON {
     }
 
     func getArray<T: JSONDecodable>(at jsonKey: JsonKey) throws -> [T] {
-        return try getArray(at: "").map { try T(json: $0) }
+        return try getArray(at: jsonKey.value).map { try T(json: $0) }
+    }
+
+    func getInt64(at jsonKey: JsonKey) throws -> Int64 {
+        do {
+            let int = try getInt(at: jsonKey.value)
+            return Int64(int)
+        } catch {
+            let string = try getString(at: jsonKey.value)
+            guard let int64 = Int64(string) else {
+                throw JSON.Error.valueNotConvertible(value: self, to: Int64.self)
+            }
+            return int64
+        }
     }
 
     subscript(key: JsonKey) -> JSON? {
@@ -116,6 +130,18 @@ extension JSON {
     func getDate(at jsonKey: JsonKey) throws -> Date {
         let formatter = DateFormatter.iso8601
         let dateString: String = try getItemValue(at: jsonKey)
+
+        guard let date = formatter.date(from: dateString) else {
+            throw JSON.Error.valueNotConvertible(value: self, to: Date.self)
+        }
+        return date
+    }
+
+    func getDate(at jsonKey: JsonKey, alongPath options: SubscriptingOptions) throws -> Date? {
+        let formatter = DateFormatter.iso8601
+        guard let dateString: String = try getItemValue(at: jsonKey, alongPath: options) else {
+            return nil
+        }
 
         guard let date = formatter.date(from: dateString) else {
             throw JSON.Error.valueNotConvertible(value: self, to: Date.self)

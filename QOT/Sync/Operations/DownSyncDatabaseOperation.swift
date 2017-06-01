@@ -23,15 +23,17 @@ final class DownSyncDatabaseOperation<T>: Operation where T: DownSyncable, T: Ob
     }
 
     override func main() {
-        guard let result = context.data[syncType.rawValue] as? DownSyncNetworkResult<T.Data> else {
+        guard let result = context[syncType.rawValue] as? DownSyncNetworkResult<T.Data> else {
             preconditionFailure("No results")
         }
 
         let changes = result.changes
         do {
             let store = try storeProvider.store()
-            let task = DownSyncTask<T>()
-            try task.sync(changes: changes, store: store)
+            try store.write {
+                let task = DownSyncTask<T>()
+                try task.sync(changes: changes, store: store)
+            }
         } catch let error {
             context.syncFailed(error: error)
         }

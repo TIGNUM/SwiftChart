@@ -23,12 +23,12 @@ final class RecordSyncOperation<T>: Operation where T: DownSyncable, T: Object  
     }
 
     override func main() {
-        guard let result = context.data[type.rawValue] as? DownSyncNetworkResult<T.Data> else {
+        guard let result = context[type.rawValue] as? DownSyncNetworkResult<T.Data>, let date = context[.syncDate] as? Int64 else {
             preconditionFailure("No results")
         }
 
         do {
-            try service.recordSync(type: type, date: result.syncDate)
+            try service.recordSync(type: type, date: date)
         } catch let error {
             context.syncFailed(error: error)
         }

@@ -9,8 +9,14 @@
 import Foundation
 
 final class SyncContext {
+    enum DataKey: String {
+        case syncToken
+        case syncDate
+    }
+
+    private var data: [String: Any] = [:]
+
     weak var queue: OperationQueue?
-    var data: [String: Any] = [:]
     private(set) var errors: [Error] = []
 
     init(queue: OperationQueue) {
@@ -20,5 +26,23 @@ final class SyncContext {
     func syncFailed(error: Error) {
         errors.append(error)
         queue?.cancelAllOperations()
+    }
+
+    subscript(key: DataKey) -> Any? {
+        get {
+            return data[key.rawValue]
+        }
+        set {
+            data[key.rawValue] = newValue
+        }
+    }
+
+    subscript(key: String) -> Any? {
+        get {
+            return data[key]
+        }
+        set {
+            data[key] = newValue
+        }
     }
 }

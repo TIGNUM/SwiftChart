@@ -113,7 +113,7 @@
 		CBB4DCFD1EDC27550071494A /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DCFC1EDC27550071494A /* SyncManager.swift */; };
 		CBB4DCFF1EDD6CE50071494A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DCFE1EDD6CE50071494A /* NetworkManager.swift */; };
 		CBB4DD071EDDB5860071494A /* SerialRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DD061EDDB5860071494A /* SerialRequest.swift */; };
-		CBB4DD091EDDC6550071494A /* StartSyncTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DD081EDDC6550071494A /* StartSyncTokenParser.swift */; };
+		CBB4DD091EDDC6550071494A /* StartSyncResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DD081EDDC6550071494A /* StartSyncResult.swift */; };
 		CBB4DD0B1EDDC7830071494A /* StartSyncNetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DD0A1EDDC7830071494A /* StartSyncNetworkOperation.swift */; };
 		CBB4DD0D1EDEAA610071494A /* URLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DD0C1EDEAA610071494A /* URLRequestBuilder.swift */; };
 		CBB4DD121EDEAD050071494A /* RequestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DD111EDEAD050071494A /* RequestConstants.swift */; };
@@ -416,7 +416,7 @@
 		CBB4DCFC1EDC27550071494A /* SyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
 		CBB4DCFE1EDD6CE50071494A /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CBB4DD061EDDB5860071494A /* SerialRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerialRequest.swift; sourceTree = "<group>"; };
-		CBB4DD081EDDC6550071494A /* StartSyncTokenParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartSyncTokenParser.swift; sourceTree = "<group>"; };
+		CBB4DD081EDDC6550071494A /* StartSyncResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartSyncResult.swift; sourceTree = "<group>"; };
 		CBB4DD0A1EDDC7830071494A /* StartSyncNetworkOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartSyncNetworkOperation.swift; sourceTree = "<group>"; };
 		CBB4DD0C1EDEAA610071494A /* URLRequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRequestBuilder.swift; sourceTree = "<group>"; };
 		CBB4DD111EDEAD050071494A /* RequestConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestConstants.swift; sourceTree = "<group>"; };
@@ -940,7 +940,7 @@
 			children = (
 				CB6D49551ECCA58D005BC637 /* AuthenticationTokenParser.swift */,
 				CB27D59E1ECDE96F00F2B76C /* DownSyncResultParser.swift */,
-				CBB4DD081EDDC6550071494A /* StartSyncTokenParser.swift */,
+				CBB4DD081EDDC6550071494A /* StartSyncResult.swift */,
 			);
 			path = Parsers;
 			sourceTree = "<group>";
@@ -2087,7 +2087,7 @@
 				CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */,
 				CB8A153A1E7801B90023B2F9 /* CalendarEvent.swift in Sources */,
 				CB8C344F1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift in Sources */,
-				CBB4DD091EDDC6550071494A /* StartSyncTokenParser.swift in Sources */,
+				CBB4DD091EDDC6550071494A /* StartSyncResult.swift in Sources */,
 				CBB4DD071EDDB5860071494A /* SerialRequest.swift in Sources */,
 				CB55A2E11E9FDF1D00D721CE /* SettingsMenuViewModel.swift in Sources */,
 				CC311A1D1EAF39DF0020C869 /* SettingsTableViewCell.swift in Sources */,

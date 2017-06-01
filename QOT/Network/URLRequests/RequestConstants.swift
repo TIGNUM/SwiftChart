@@ -12,7 +12,7 @@ enum Endpoint: String {
 
     case authentication = "/service/auth"
     case startSync = "/personal/p/qot/start"
-    case contentCategories = "/service/contentCategories"
+    case contentCategories = "/personal/p/qot/contentCategory"
 
     func url(baseURL: URL) -> URL {
         return baseURL.appendingPathComponent(rawValue)

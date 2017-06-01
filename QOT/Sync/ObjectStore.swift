@@ -20,6 +20,8 @@ protocol ObjectStore {
     func addObject(_ object: Object)
 
     func deleteObjects<T: Object>(_ type: T.Type, predicate: NSPredicate)
+
+    func write(_ block: (() throws -> Void)) throws
 }
 
 extension Realm: ObjectStore {

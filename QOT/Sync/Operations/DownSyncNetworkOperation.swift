@@ -24,7 +24,7 @@ final class DownSyncNetworkOperation<T: JSONDecodable>: ConcurrentOperation {
     }
     
     override func execute() {
-        guard let token = context.data["token"] as? String else {
+        guard let token = context[.syncToken] as? String else {
             preconditionFailure("No token")
         }
 
@@ -35,7 +35,7 @@ final class DownSyncNetworkOperation<T: JSONDecodable>: ConcurrentOperation {
 
             switch result {
             case .success(let changes):
-                context.data[intermediatesKey] = DownSyncNetworkResult(changes: changes, syncDate: Date())
+                context[intermediatesKey] = DownSyncNetworkResult(changes: changes, syncDate: 0)
             case .failure(let error):
                 context.syncFailed(error: error)
             }
@@ -48,7 +48,7 @@ final class DownSyncNetworkOperation<T: JSONDecodable>: ConcurrentOperation {
 
 struct DownSyncNetworkResult<T> {
     let changes: [DownSyncChange<T>]
-    let syncDate: Date
+    let syncDate: Int64
 }
 
 // MARK: Private helpers

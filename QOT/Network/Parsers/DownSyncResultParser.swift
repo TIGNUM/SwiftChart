@@ -10,23 +10,22 @@ import Foundation
 import Freddy
 
 struct DownSyncResult<T>: JSONDecodable where T: JSONDecodable {
-    let timestamp: Date
     let items: [DownSyncChange<T>]
     let page: Int
     let pageSize: Int
     let maxResults: Int
     let maxPages: Int
+    let nextSyncToken: String
 
     init(json: JSON) throws {
-        self.timestamp = try json.getDate(at: .timestamp)
-        self.items = try json.getArray(at: JsonKey.results.value).map { (json) -> DownSyncChange<T> in
+        self.items = try json.getArray(at: JsonKey.resultList.value).map { (json) -> DownSyncChange<T> in
             let syncStatus: SyncStatus = try json.getItemValue(at: .syncStatus)
             let remoteID: Int = try json.getItemValue(at: .id)
             switch syncStatus {
             case .created, .updated:
                 let createdAt = try json.getDate(at: .createdAt)
-                let modifiedAt = try json.getDate(at: .modifiedAt) //OPTIONAL
-                let data: T = try json.getItemValue(at: .id)
+                let modifiedAt = try json.getDate(at: .modifiedAt, alongPath: .NullBecomesNil) ?? createdAt
+                let data: T = try T(json: json)
 
                 return .createdOrUpdated(remoteID: remoteID, createdAt: createdAt, modifiedAt: modifiedAt, data: data)
             case .deleted:
@@ -37,6 +36,7 @@ struct DownSyncResult<T>: JSONDecodable where T: JSONDecodable {
         self.pageSize = try json.getItemValue(at: .pageSize)
         self.maxResults = try json.getItemValue(at: .maxResults)
         self.maxPages = try json.getItemValue(at: .maxPages)
+        self.nextSyncToken = try json.getItemValue(at: .nextSyncToken)
     }
 }
 

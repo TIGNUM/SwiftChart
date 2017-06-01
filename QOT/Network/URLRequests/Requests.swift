@@ -21,6 +21,7 @@ struct StartSyncRequest: URLRequestBuildable {
 
 struct DownSyncRequest: URLRequestBuildable {
     let endpoint: Endpoint
+    let httpMethod: HTTPMethod = .post
     let headers: [HTTPHeader: String]
     let paramaters: [RequestParameter: Any]
 
