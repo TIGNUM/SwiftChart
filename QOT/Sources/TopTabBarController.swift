@@ -141,6 +141,12 @@ final class TopTabBarController: UIViewController {
         setupScrollView()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        didSelectItemAtIndex(index: selectedIndex, sender: tabBarView)
+    }
+
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
 
