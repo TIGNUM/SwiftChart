@@ -86,10 +86,6 @@ final class TopTabBarController: UIViewController {
     fileprivate lazy var rightButton: UIButton = {
         return self.button(with: #selector(rightButtonPressed(_:)))
     }()
-
-    fileprivate lazy var contentOffset: CGPoint = {
-        return CGPoint(x: self.scrollViewContentOffset * CGFloat(self.selectedIndex), y: 0)
-    }()
     
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()

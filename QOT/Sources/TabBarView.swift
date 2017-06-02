@@ -30,13 +30,6 @@ class TabBarView: UIView {
             }
         }
 
-        var indicatorOffset: CGFloat {
-            switch self {
-            case .bottom: return CGFloat(0)
-            case .top: return CGFloat(4)
-            }
-        }
-
         func distribution(width: CGFloat) -> Distribution {
             switch self {
             case .bottom: return .fillEqually
@@ -239,7 +232,7 @@ private extension TabBarView {
         let width = button.intrinsicContentSize.width + indicatorViewExtendedWidth
         let height: CGFloat = 1
         let x = button.center.x - (width / 2)
-        let y = bounds.maxY - height - tabBarType.indicatorOffset
+        let y = bounds.maxY - height
 
         return CGRect(x: x, y: y, width: width, height: height)
     }
