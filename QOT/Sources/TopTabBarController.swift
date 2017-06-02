@@ -65,7 +65,9 @@ final class TopTabBarController: UIViewController {
     // MARK: Properties
 
     fileprivate var selectedIndex: Int = 0
-    fileprivate var currentIndex: Int = 0
+    fileprivate var previousIndex: Int = 0
+    fileprivate lazy var currentView: UIView = UIView()
+    fileprivate lazy var nextView: UIView = UIView()
     fileprivate var scrollViewContentOffset: CGFloat = 0
     var item: Item
     weak var delegate: TopTabBarDelegate?
@@ -83,6 +85,10 @@ final class TopTabBarController: UIViewController {
     
     fileprivate lazy var rightButton: UIButton = {
         return self.button(with: #selector(rightButtonPressed(_:)))
+    }()
+
+    fileprivate lazy var contentOffset: CGPoint = {
+        return CGPoint(x: self.scrollViewContentOffset * CGFloat(self.selectedIndex), y: 0)
     }()
     
     lazy var scrollView: UIScrollView = {
@@ -112,6 +118,7 @@ final class TopTabBarController: UIViewController {
     init(item: Item, selectedIndex: Index = 0, leftIcon: UIImage? = nil, rightIcon: UIImage? = nil) {
         precondition(selectedIndex >= 0 && selectedIndex < item.controllers.count, "Out of bounds selectedIndex")
 
+        self.selectedIndex = selectedIndex
         self.item = item        
         
         super.init(nibName: nil, bundle: nil)
@@ -207,12 +214,23 @@ extension TopTabBarController {
     }
 }
 
-// MARK: - ScrollView Delegate
+// MARK: - UIScrollViewDelegate
 
 extension TopTabBarController: UIScrollViewDelegate {
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         tabBarView.setSelectedIndex(scrollView.currentPage, animated: true)
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard item.enableTabScrolling == false else {
+            return
+        }
+        
+        let offsetX = abs(scrollViewContentOffset * CGFloat(selectedIndex > 0 ? selectedIndex : 1))
+        let alpha = scrollView.contentOffset.x / offsetX
+        nextView.alpha = selectedIndex > previousIndex ? alpha : 1 - alpha
+        currentView.alpha = selectedIndex > previousIndex ? 1 - alpha : alpha
     }
 }
 
@@ -307,10 +325,16 @@ extension TopTabBarController: TabBarViewDelegate {
             return
         }
 
+        previousIndex = selectedIndex
         selectedIndex = index
 
         guard index != scrollView.currentPage else {
             return
+        }
+
+        if item.enableTabScrolling == false {
+            currentView = item.controllers[previousIndex].view
+            nextView = item.controllers[selectedIndex].view
         }
 
         let offset = CGPoint(x: scrollViewContentOffset * CGFloat(index), y: 0)
