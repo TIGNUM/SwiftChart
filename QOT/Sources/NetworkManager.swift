@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import Freddy
 
 final class NetworkManger {
 
@@ -53,6 +54,24 @@ final class NetworkManger {
             authenticateAndRequest(urlRequest, username: credential.username, password: credential.password, parser: parser, serialRequest: serialRequest, completion: completion)
         }
         return serialRequest
+    }
+
+    func request<T: JSONDecodable>(token: String, endpoint: Endpoint, page: Int, accumulator: [DownSyncChange<T>] = [], completion: @escaping (Result<[DownSyncChange<T>], NetworkError>) -> Void) {
+        let urlRequest = DownSyncRequest(endpoint: endpoint, syncToken: token, page: 1)
+        self.request(urlRequest, parser: DownSyncResultParser<T>.parse) { [weak self] (result) in
+            switch result {
+            case .success(let value):
+                let changes = accumulator + value.items
+                if page >= value.maxPages {
+                    completion(.success(changes))
+                } else {
+                    let page = page + 1
+                    self?.request(token: token, endpoint: endpoint, page: page, accumulator: changes, completion: completion)
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 
     // MARK: Private

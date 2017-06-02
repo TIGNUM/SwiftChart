@@ -15,7 +15,11 @@ final class SyncManager {
     let networkManager: NetworkManger
     let syncRecordService: SyncRecordService
     let realmProvider: RealmProvider
-    let operationQueue = OperationQueue()
+    let operationQueue: OperationQueue = {
+        let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 1
+        return queue
+    }()
 
     init(networkManager: NetworkManger, syncRecordService: SyncRecordService, realmProvider: RealmProvider) {
         self.networkManager = networkManager
@@ -23,31 +27,22 @@ final class SyncManager {
         self.realmProvider = realmProvider
     }
 
-    func sync() {
-        operationQueue.maxConcurrentOperationCount = 1
+    func syncAll() {
         let context = SyncContext(queue: operationQueue)
-        let operations = downSyncOperations(desciption: ContentCategoryDown, context: context)
+        let operations: [Operation] = [
+            downSyncOperation(for: ContentCategoryDown, context: context)
+        ]
+
         operationQueue.addOperations(operations, waitUntilFinished: false)
+    }
 
-        // FIXME: To be completed.
+    private func downSyncOperation<I, P>(for description: SyncDescription<I, P>, context: SyncContext) -> DownSyncOperation<I, P> where I: JSONDecodable, P: DownSyncable, P: Object, P.Data == I {
+        return DownSyncOperation(context: context,
+                                 networkManager: networkManager,
+                                 description: description,
+                                 syncRecordService: syncRecordService,
+                                 realmProvider: realmProvider,
+                                 downSyncImporter: DownSyncImporter())
     }
 }
 
-private extension SyncManager {
-
-    func downSyncOperations<T, U>(desciption: SyncDescription<T, U>, context: SyncContext) -> [Operation]  where T: JSONDecodable, U: DownSyncable, U: Object {
-        let syncType = desciption.syncType
-        let startSyncOp = StartSyncNetworkOperation(context: context, networkManager: networkManager)
-        let networkOp = DownSyncNetworkOperation<T>(context: context, networkManager: networkManager, syncType: syncType)
-        let databaseOp = DownSyncDatabaseOperation<U>(context: context, syncType: syncType, storeProvider: realmProvider)
-        let recordSyncOp = RecordSyncOperation<U>(context: context, service: syncRecordService, type: syncType)
-
-        return [startSyncOp, networkOp, databaseOp, recordSyncOp]
-    }
-
-    // MARK: Syncs
-
-    func contentCategoryDownOperations(context: SyncContext) -> [Operation] {
-        return downSyncOperations(desciption: ContentCategoryDown, context: context)
-    }
-}
