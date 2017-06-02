@@ -3,3 +3,10 @@ UserInterfaceState.xcuserstate
 xcuserdata/
 Pods/
 *.generated.swift
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+fastlane/.env

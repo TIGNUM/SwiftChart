@@ -1,0 +1,42 @@
+fastlane_version "2.36.0"
+
+default_platform :ios
+
+platform :ios do
+  before_all do
+    cocoapods
+  end
+
+  desc "Runs all the tests"
+  lane :test do
+    scan(scheme: "QOT")
+  end
+
+  desc "Test and deploy to Hockeyapp"
+  lane :beta do
+    # Test
+    scan(scheme: "QOT")
+
+    # Install certificates and profiles
+    match(type: "adhoc", readonly: true)
+
+    # Build
+    gym(scheme: "QOT")
+
+    # Release to hockey app
+    hockey(api_token: ENV["HOCKEYAPP_API_TOKEN"])
+  end
+
+  desc "Deploy a new version to the App Store"
+  lane :release do
+    
+  end
+
+  after_all do |lane|
+    # This block is called, only if the executed lane was successful
+  end
+
+  error do |lane, exception|
+    # Do something
+  end
+end
