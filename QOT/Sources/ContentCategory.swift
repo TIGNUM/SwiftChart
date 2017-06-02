@@ -23,6 +23,9 @@ final class ContentCategory: Object, ContentCategoryDataProtocol {
 
     dynamic var modifiedAt: Date = Date()
 
+    // TODO Remove me please: https://tignum.atlassian.net/browse/IT-553
+    dynamic var keypathID: String?
+
     func setData(_ data: ContentCategoryDataProtocol) {
         sortOrder = data.sortOrder
         section = data.section
@@ -35,8 +38,6 @@ final class ContentCategory: Object, ContentCategoryDataProtocol {
     fileprivate(set) dynamic var sortOrder: Int = 0
 
     fileprivate(set) dynamic var section: String = ""
-
-    fileprivate(set) dynamic var keypathID: String?
 
     fileprivate(set) dynamic var title: String = ""
 

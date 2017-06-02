@@ -29,7 +29,6 @@ final class SidebarViewController: UIViewController {
 
     fileprivate lazy var tableView: UITableView = {
         return UITableView(
-            estimatedRowHeight: 10,
             delegate: self,
             dataSource: self,
             dequeables:
@@ -64,6 +63,7 @@ private extension SidebarViewController {
 
     func setupView() {
         view.addSubview(tableView)
+        tableView.bounces = false
         tableView.topAnchor == view.topAnchor
         tableView.bottomAnchor == view.bottomAnchor
         tableView.horizontalAnchors == view.horizontalAnchors        
@@ -83,7 +83,7 @@ extension SidebarViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return Layout.CellHeight.sidebarHeader.rawValue
+        return tableView.frame.height <= 632 ? 0 : Layout.CellHeight.sidebarHeader.rawValue
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -109,9 +109,9 @@ extension SidebarViewController: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: - Selection
 
-extension SidebarViewController {
+private extension SidebarViewController {
     
-    fileprivate func handleSelection(forSidbarCollection sidebarCategory: SidebarContentCategory?) {
+    func handleSelection(forSidbarCollection sidebarCategory: SidebarContentCategory?) {
         guard
             let sidebarCategory = sidebarCategory,
             let keypathID = sidebarCategory.keypathID,

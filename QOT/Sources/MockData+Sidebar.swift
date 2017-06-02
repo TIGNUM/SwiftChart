@@ -69,10 +69,10 @@ private func mockContentCategory(sortOrder: Int, title: String, section: String,
         sortOrder: sortOrder,
         section: section,
         title: title,
-        keypathID: keypathID,
         layoutInfo: layoutInfo
     )
     contentCategory.remoteID = Int.randomID
+    contentCategory.keypathID = keypathID
     contentCategory.setData(contentCategoryData)
 
     return contentCategory

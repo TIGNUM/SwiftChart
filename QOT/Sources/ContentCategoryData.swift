@@ -42,7 +42,7 @@ struct ContentCategoryData: ContentCategoryDataProtocol {
 
     //TODO: Please remove me later.
 
-    init(sortOrder: Int, section: String, title: String, keypathID: String? = nil, layoutInfo: String?) {
+    init(sortOrder: Int, section: String, title: String, layoutInfo: String?) {
         self.sortOrder = sortOrder
         self.section = section
         self.title = title
