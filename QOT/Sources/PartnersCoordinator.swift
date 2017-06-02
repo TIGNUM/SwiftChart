@@ -47,7 +47,6 @@ final class PartnersCoordinator: ParentCoordinator {
             rightIcon: R.image.ic_edit()
         )
 
-        partnersViewController.topTabBarScrollViewDelegate = topTabBarController
         topTabBarController.delegate = self
         rootViewController.present(topTabBarController, animated: true)
     }

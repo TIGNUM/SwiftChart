@@ -37,7 +37,6 @@ final class SettingsCoordinator: ParentCoordinator {
         )
 
         topTabBarController.delegate = self
-        settingsViewController.topTabBarScrollViewDelegate = topTabBarController
         rootViewController.presentRightToLeft(controller: topTabBarController)
     }
 }

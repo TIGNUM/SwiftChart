@@ -47,7 +47,6 @@ final class AddSensorCoordinator: ParentCoordinator {
 
         addSensorVC.delegate = self
         topTabBarController.delegate = self
-        addSensorVC.topTabBarScrollViewDelegate = topTabBarController
         rootViewController.present(topTabBarController, animated: true)
     }
 }

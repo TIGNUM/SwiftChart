@@ -19,7 +19,6 @@ final class LibraryViewController: UIViewController {
 
     fileprivate let viewModel: LibraryViewModel
     weak var delegate: LibraryViewControllerDelegate?
-    weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
 
     fileprivate lazy var tableView: UITableView = {
         return UITableView(
@@ -78,10 +77,6 @@ extension LibraryViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 317
-    }
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        scrollView.didScrollUnderTopTabBar(delegate: topTabBarScrollViewDelegate)
     }
 }
 

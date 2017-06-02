@@ -26,7 +26,6 @@ class PartnersViewController: UIViewController {
     fileprivate var imagePicker: ImagePickerController?
     fileprivate var valueEditing: Bool = false
     weak var delegate: PartnersViewControllerDelegate?
-    weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
 
     // MARK: - Init
 
@@ -73,7 +72,6 @@ private extension PartnersViewController {
         carousel.type = .linear
         carousel.isPagingEnabled = true
         carousel.contentOffset = CGSize(width: -64, height: 0)
-        scrollView.delegate = self
     }
 
     func scrollAnimated(topInset: CGFloat) {
@@ -165,15 +163,6 @@ extension PartnersViewController: iCarouselDataSource, iCarouselDelegate {
 
         view.hideKeyboard()
         scrollAnimated(topInset: 0)
-    }
-}
-
-// MARK: - UIScrollViewDelegate
-
-extension PartnersViewController: UIScrollViewDelegate {
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        scrollView.didScrollUnderTopTabBar(delegate: topTabBarScrollViewDelegate)
     }
 }
 

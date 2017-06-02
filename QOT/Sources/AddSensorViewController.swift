@@ -16,7 +16,6 @@ protocol AddSensorViewControllerDelegate: class {
 final class AddSensorViewController: UIViewController {
 
     fileprivate let viewModel: AddSensorViewModel
-    weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
 
     fileprivate lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -95,15 +94,6 @@ final class AddSensorViewController: UIViewController {
 
         setUpHierarchy()
         setUpLayout()
-    }
-}
-
-// MARK: - UIScrollViewDelegate
-
-extension AddSensorViewController: UIScrollViewDelegate {
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        scrollView.didScrollUnderTopTabBar(delegate: topTabBarScrollViewDelegate)
     }
 }
 

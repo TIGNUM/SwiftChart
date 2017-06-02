@@ -45,7 +45,6 @@ final class TabBarCoordinator: ParentCoordinator {
         )
 
         whatsHotViewController.delegate = self
-        whatsHotViewController.topTabBarScrollViewDelegate = topTabBarController
         topTabBarController.delegate = self
         learnCategoryListVC.delegate = self
         self.services.learnContentService.learnCategoryUpdateDelegate = learnCategoryListVC
@@ -107,8 +106,6 @@ final class TabBarCoordinator: ParentCoordinator {
         )
 
         chatViewController.delegate = self
-        chatViewController.topTabBarScrollViewDelegate = topTabBarController
-        myPrepViewController.topTabBarScrollViewDelegate = topTabBarController
         topTabBarController.delegate = self
         
         return topTabBarController

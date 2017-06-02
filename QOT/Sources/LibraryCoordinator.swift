@@ -47,7 +47,6 @@ final class LibraryCoordinator: ParentCoordinator {
         )
 
         topTabBarController.delegate = self
-        libraryViewController.topTabBarScrollViewDelegate = topTabBarController
         rootViewController.present(topTabBarController, animated: true)
 
         // TODO: Update associatedEntity with realm object when its created.

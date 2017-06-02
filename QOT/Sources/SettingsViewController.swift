@@ -21,7 +21,6 @@ final class SettingsViewController: UITableViewController {
 
     fileprivate let viewModel: SettingsViewModel
     fileprivate let settingsType: SettingsViewModel.SettingsType
-    weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
     
     // MARK: - Init
     
@@ -179,15 +178,6 @@ private extension SettingsViewController {
     private func setupPickerButtons(picker: ActionSheetStringPicker) {
         picker.setDoneButton(UIBarButtonItem(title: "Done", style: .done, target: self, action: nil))
         picker.setCancelButton(UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: nil))
-    }
-}
-
-// MARK: - UITableViewDelegate
-
-extension SettingsViewController {
-
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        scrollView.didScrollUnderTopTabBar(delegate: topTabBarScrollViewDelegate)
     }
 }
 

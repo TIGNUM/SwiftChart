@@ -20,8 +20,7 @@ class WhatsHotViewController: UIViewController {
 
     fileprivate let viewModel: WhatsHotViewModel
     weak var delegate: WhatsHotViewControllerDelegate?
-    weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
-
+    
     fileprivate lazy var collectionView: UICollectionView = {
         let layout = WhatsHotLayout()
         layout.delegate = self
@@ -71,7 +70,7 @@ extension WhatsHotViewController {
 
 // MARK: - UICollectionViewDataSource
 
-extension WhatsHotViewController: UICollectionViewDataSource {
+extension WhatsHotViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.itemCount
@@ -101,14 +100,5 @@ extension WhatsHotViewController: WhatsHotLayoutDelegate {
         let pictureHeight = (view.bounds.width - nonPictureWidth) / pictureRatio
 
         return pictureHeight + nonPictureHeight
-    }
-}
-
-// MARK: - UIScrollViewDelegate
-
-extension WhatsHotViewController: UICollectionViewDelegate {
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        scrollView.didScrollUnderTopTabBar(delegate: topTabBarScrollViewDelegate)
     }
 }

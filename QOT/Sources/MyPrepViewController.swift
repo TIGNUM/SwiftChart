@@ -19,7 +19,6 @@ final class MyPrepViewController: UIViewController {
 
     let viewModel: MyPrepViewModel
     weak var delegate: MyPrepViewControllerDelegate?
-    weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
 
     fileprivate lazy var tableView: UITableView = {
         return UITableView(            
@@ -86,14 +85,5 @@ extension MyPrepViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 117
-    }
-}
-
-// MARK: - UIScrollViewDelegate
-
-extension MyPrepViewController: UIScrollViewDelegate {
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        scrollView.didScrollUnderTopTabBar(delegate: topTabBarScrollViewDelegate)
     }
 }

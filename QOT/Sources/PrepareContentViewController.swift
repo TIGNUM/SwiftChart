@@ -30,8 +30,7 @@ final class PrepareContentViewController: UIViewController {
     fileprivate let viewModel: PrepareContentViewModel
     fileprivate let disposeBag = DisposeBag()
     weak var delegate: PrepareContentViewControllerDelegate?
-    weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
-
+    
     fileprivate lazy var tableView: UITableView = {
         return UITableView(
             estimatedRowHeight: 140,
@@ -200,9 +199,5 @@ extension PrepareContentViewController: PrepareContentActionButtonsTableViewCell
         } else {
             delegate?.didTapSaveAs(in: self)
         }
-    }
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        scrollView.didScrollUnderTopTabBar(delegate: topTabBarScrollViewDelegate)
     }
 }

@@ -22,8 +22,7 @@ final class SidebarItemViewController: UIViewController {
 
     fileprivate let viewModel: SidebarItemViewModel
     weak var delegate: SidebarItemViewControllerDelegate?
-    weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
-
+    
     fileprivate lazy var tableView: UITableView = {
         return UITableView(
             estimatedRowHeight: 10,
@@ -83,10 +82,6 @@ extension SidebarItemViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.itemCount
-    }
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        scrollView.didScrollUnderTopTabBar(delegate: topTabBarScrollViewDelegate)
     }
 }
 

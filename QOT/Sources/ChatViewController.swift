@@ -23,7 +23,6 @@ class ChatViewController: UIViewController, Dequeueable, CollectionViewCellDeleg
     private let disposeBag = DisposeBag()
     fileprivate let viewModel: ChatViewModel
     weak var delegate: ChatViewDelegate?
-    weak var topTabBarScrollViewDelegate: TopTabBarScrollViewDelegate?
 
     fileprivate lazy var tableView: UITableView = {
         return UITableView(
@@ -181,9 +180,5 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
             let titles = items.map {$0.title}
             return heightOfCollectionViewBasedOnNumberOfItems(items: titles)
         }
-    }
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        scrollView.didScrollUnderTopTabBar(delegate: topTabBarScrollViewDelegate)
     }
 }

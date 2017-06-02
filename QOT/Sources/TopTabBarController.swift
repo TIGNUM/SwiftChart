@@ -74,7 +74,8 @@ final class TopTabBarController: UIViewController {
 
     fileprivate lazy var navigationItemBar: UIView = {
         let view = UIView()
-        view.backgroundColor = self.item.theme == .dark ? .clear : .white
+        let color = self.item.theme == .dark ? UIColor.black.withAlphaComponent(0.825) : UIColor.white.withAlphaComponent(0.825)
+        view.backgroundColor = color
         
         return view
     }()
@@ -341,14 +342,5 @@ extension TopTabBarController: TabBarViewDelegate {
 
         let offset = CGPoint(x: scrollViewContentOffset * CGFloat(index), y: 0)
         scrollView.setContentOffset(offset, animated: true)
-    }
-}
-
-// MARK: - TabBarScrollViewDelegate
-
-extension TopTabBarController: TopTabBarScrollViewDelegate {
-
-    func didScrollUnderTopTabBar(alpha: CGFloat) {        
-        navigationItemBar.backgroundColor = UIColor.black.withAlphaComponent(alpha)
     }
 }
