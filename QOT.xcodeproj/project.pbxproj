@@ -274,6 +274,7 @@
 		D58BD86C1E9E846C005676DE /* ScrollViewAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58BD86B1E9E846C005676DE /* ScrollViewAnimation.swift */; };
 		D58BD8771E9F65F7005676DE /* WhatsHotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58BD8751E9F65F7005676DE /* WhatsHotCell.swift */; };
 		D58BD8781E9F65F7005676DE /* WhatsHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D58BD8761E9F65F7005676DE /* WhatsHotCell.xib */; };
+		D5B761871EE6B19C00AE178B /* SpacingInLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B761861EE6B19C00AE178B /* SpacingInLabel.swift */; };
 		D5C15BAC1EB350FB0030953F /* SideBarTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C15BAA1EB350FB0030953F /* SideBarTextCell.swift */; };
 		D5C15BAD1EB350FB0030953F /* SideBarTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5C15BAB1EB350FB0030953F /* SideBarTextCell.xib */; };
 		D5CD23D81E8BB73A002742C4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CD23D71E8BB73A002742C4 /* TabBarController.swift */; };
@@ -576,6 +577,7 @@
 		D58BD86B1E9E846C005676DE /* ScrollViewAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewAnimation.swift; sourceTree = "<group>"; };
 		D58BD8751E9F65F7005676DE /* WhatsHotCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsHotCell.swift; sourceTree = "<group>"; };
 		D58BD8761E9F65F7005676DE /* WhatsHotCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhatsHotCell.xib; sourceTree = "<group>"; };
+		D5B761861EE6B19C00AE178B /* SpacingInLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpacingInLabel.swift; sourceTree = "<group>"; };
 		D5C15BAA1EB350FB0030953F /* SideBarTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarTextCell.swift; sourceTree = "<group>"; };
 		D5C15BAB1EB350FB0030953F /* SideBarTextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideBarTextCell.xib; sourceTree = "<group>"; };
 		D5CD23D71E8BB73A002742C4 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -1205,6 +1207,7 @@
 				D50D6C231EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib */,
 				CC6B3A281E8158B200E7FDFD /* PresentationManager.swift */,
 				D58BD86B1E9E846C005676DE /* ScrollViewAnimation.swift */,
+				D5B761861EE6B19C00AE178B /* SpacingInLabel.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -1816,6 +1819,7 @@
 				CC8D6D001EC316A1007AE687 /* LearnContentItemBulletViewController.swift in Sources */,
 				D58BD86A1E9D1E7F005676DE /* NSFile+Convenience.swift in Sources */,
 				CCE579671ECB5546006E0D45 /* SidebarContentCategory.swift in Sources */,
+				D5B761871EE6B19C00AE178B /* SpacingInLabel.swift in Sources */,
 				D5FA66951EB9FF0B00980EC7 /* EventGraphView.swift in Sources */,
 				CB2880241E7051710067890A /* AppCoordinator.swift in Sources */,
 				CBB4DCFF1EDD6CE50071494A /* NetworkManager.swift in Sources */,

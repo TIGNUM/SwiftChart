@@ -181,7 +181,7 @@ extension LearnContentListViewController: UICollectionViewDataSource {
         if collectionView === self.collectionView {
             let content = viewModel.item(at: indexPath.item)
             let cell: LearnContentCell = collectionView.dequeueCell(for: indexPath)
-            cell.configure(with: content)
+            cell.configure(with: content, index: indexPath.item)
 
             return cell
         }
