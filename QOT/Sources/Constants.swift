@@ -258,6 +258,9 @@ struct Color {
     /// cherryRedTwo UIColor(red: 1, green: 0, blue: 38/255, alpha: 1)
     static let cherryRedTwo = UIColor(red: 1, green: 0, blue: 38/255, alpha: 1)
 
+    /// navigationBarDark UIColor(red: 4/255, green: 11/255, blue: 23/255, alpha: 0.825)
+    static let navigationBarDark = UIColor(red: 4/255, green: 11/255, blue: 23/255, alpha: 0.825)
+
     struct Default {
         static let black = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         static let blackMedium = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FadeInOutPresentationAnimator: NSObject {
+final class FadeInOutPresentationAnimator: NSObject {
 
     let presentationType: PresentationType
     let isPresentation: Bool
@@ -16,6 +16,7 @@ class FadeInOutPresentationAnimator: NSObject {
     init(presentationType: PresentationType, isPresentation: Bool) {
         self.presentationType = presentationType
         self.isPresentation = isPresentation
+
         super.init()
     }
 }
@@ -50,7 +51,7 @@ extension FadeInOutPresentationAnimator: UIViewControllerAnimatedTransitioning {
         
         UIView.animate(withDuration: animationDuration, animations: {
             controller.view.frame = finalFrame
-        }) { finished in
+        }) { (finished: Bool) in
             transitionContext.completeTransition(finished)
         }
     }

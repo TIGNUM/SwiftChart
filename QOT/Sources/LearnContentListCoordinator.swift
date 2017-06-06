@@ -37,7 +37,7 @@ final class LearnContentListCoordinator: ParentCoordinator {
 
         let topTabBarControllerItem = TopTabBarController.Item(
             controllers: [contentListViewController],
-            titles: []
+            themes: [.dark]
         )
 
         let topTabBarController = TopTabBarController(

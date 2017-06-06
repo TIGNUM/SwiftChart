@@ -38,6 +38,7 @@ final class LibraryCoordinator: ParentCoordinator {
 
         let topTabBarControllerItem = TopTabBarController.Item(
             controllers: [libraryViewController],
+            themes: [.dark],
             titles: [R.string.localized.sidebarTitleLibrary()]
         )
 

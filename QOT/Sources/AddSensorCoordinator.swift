@@ -37,6 +37,7 @@ final class AddSensorCoordinator: ParentCoordinator {
 
         let topTabBarControllerItem = TopTabBarController.Item(
             controllers: [addSensorVC],
+            themes: [.dark],
             titles: [R.string.localized.sidebarTitleSensor()]
         )
 

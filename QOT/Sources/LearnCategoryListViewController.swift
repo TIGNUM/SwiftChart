@@ -27,7 +27,7 @@ final class LearnCategoryListViewController: UIViewController {
     // MARK: - Properties
     
     fileprivate let viewModel: LearnCategoryListViewModel
-    weak var delegate: LearnCategoryListViewControllerDelegate?
+    weak var delegate: LearnCategoryListViewControllerDelegate?    
 
     fileprivate lazy var collectionView: UICollectionView = {
         let layout = LearnCategoryLayout(

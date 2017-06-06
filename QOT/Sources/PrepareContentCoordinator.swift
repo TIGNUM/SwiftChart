@@ -34,6 +34,7 @@ final class PrepareContentCoordinator: ParentCoordinator {
 
         let topTabBarControllerItem = TopTabBarController.Item(
             controllers: [prepareContentViewController],
+            themes: [.dark],
             titles: [R.string.localized.topTabBarItemTitlePerpareCoach()]
         )
 

@@ -38,6 +38,7 @@ final class PartnersCoordinator: ParentCoordinator {
 
         let topTabBarControllerItem = TopTabBarController.Item(
             controllers: [partnersViewController],
+            themes: [.dark],
             titles: [R.string.localized.meSectorMyWhyPartnersTitle()]
         )
 

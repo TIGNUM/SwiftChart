@@ -32,6 +32,7 @@ final class MyStatisticsCoordinator: ParentCoordinator {
 
         let topTabBarControllerItem = TopTabBarController.Item(
             controllers: [myStatisticsViewController],
+            themes: [.darkClear],
             titles: ["23 SEP // 30 Sep"]
         )
 

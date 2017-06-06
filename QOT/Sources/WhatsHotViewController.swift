@@ -20,6 +20,7 @@ class WhatsHotViewController: UIViewController {
 
     fileprivate let viewModel: WhatsHotViewModel
     weak var delegate: WhatsHotViewControllerDelegate?
+    let theme: Theme = .dark
     
     fileprivate lazy var collectionView: UICollectionView = {
         let layout = WhatsHotLayout()

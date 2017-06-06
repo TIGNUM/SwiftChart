@@ -33,6 +33,7 @@ final class WeeklyChoicesCoordinator: ParentCoordinator {
 
         let topTabBarControllerItem = TopTabBarController.Item(
             controllers: [weeklyChoicesViewController],
+            themes: [.darkClear],
             titles: [R.string.localized.meSectorMyWhyWeeklyChoicesTitle()]
         )
 

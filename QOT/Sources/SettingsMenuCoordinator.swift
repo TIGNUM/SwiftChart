@@ -32,6 +32,7 @@ final class SettingsMenuCoordinator: ParentCoordinator {
 
         let topTabBarControllerItem = TopTabBarController.Item(
             controllers: [settingsMenuViewController],
+            themes: [.dark],
             titles: [R.string.localized.settingsTitle()]
         )
 

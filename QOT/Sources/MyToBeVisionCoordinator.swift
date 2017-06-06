@@ -32,6 +32,7 @@ final class MyToBeVisionCoordinator: ParentCoordinator {
 
         let topTabBarControllerItem = TopTabBarController.Item(
             controllers: [myToBeVisionViewController],
+            themes: [.darkClear],
             titles: [R.string.localized.meSectorMyWhyVisionTitle()]
         )
 

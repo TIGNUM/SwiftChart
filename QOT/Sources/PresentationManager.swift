@@ -13,7 +13,7 @@ enum PresentationType {
     case fadeOut
 }
 
-class PresentationManager: NSObject {
+final class PresentationManager: NSObject {
 
     var presentationType = PresentationType.fadeIn
 }
@@ -21,7 +21,7 @@ class PresentationManager: NSObject {
 extension PresentationManager: UIViewControllerTransitioningDelegate {
     
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return FadeInOutPresentationController(presentedViewController: presented, presenting: presenting, presentationType: .fadeIn)
+        return FadeInOutPresentationController(presentedViewController: presented, presenting: presenting, presentationType: presentationType)
     }
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {

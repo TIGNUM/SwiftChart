@@ -9,6 +9,44 @@
 import UIKit
 import Anchorage
 
+enum Theme {
+    case dark
+    case darkClear
+    case light
+
+    var selectedColor: UIColor {
+        switch self {
+        case .dark,
+             .darkClear: return Layout.TabBarView.selectedButtonColor
+        case .light: return Layout.TabBarView.selectedButtonColorLightTheme
+        }
+    }
+
+    var deselectedColor: UIColor {
+        switch self {
+        case .dark,
+             .darkClear: return Layout.TabBarView.deselectedButtonColor
+        case .light: return Layout.TabBarView.deselectedButtonColorLightTheme
+        }
+    }
+
+    var navigationBarBackgroundColor: UIColor {
+        switch self {
+        case .dark: return Color.navigationBarDark
+        case .darkClear: return .clear
+        case .light: return UIColor.white.withAlphaComponent(0.825)
+        }
+    }
+
+    var scrollViewBackgroundColor: UIColor {
+        switch self {
+        case .dark,
+             .darkClear: return .clear
+        case .light: return .white
+        }
+    }
+}
+
 protocol TopTabBarDelegate: class {
     func didSelectItemAtIndex(index: Int?, sender: TopTabBarController)
     func didSelectLeftButton(sender: TopTabBarController)
@@ -22,15 +60,15 @@ final class TopTabBarController: UIViewController {
     struct Item {
         let controllers: [UIViewController]
         let titles: [String]
+        let themes: [Theme]
         let containsScrollView: Bool
         let enableTabScrolling: Bool
         let contentView: UIView?
-        let theme: Theme
 
         init(
             controllers: [UIViewController],
-            titles: [String],
-            theme: Theme = .dark,
+            themes: [Theme],
+            titles: [String] = [],
             containsScrollView: Bool = false,
             enableTabScrolling: Bool = true,
             contentView: UIView? = nil) {
@@ -39,26 +77,15 @@ final class TopTabBarController: UIViewController {
                 self.contentView = contentView
                 self.titles = titles
                 self.controllers = controllers
-                self.theme = theme
+                self.themes = themes
         }
 
-        enum Theme {
-            case dark
-            case light
+        func controller(at index: Index) -> UIViewController {
+            return controllers[index]
+        }
 
-            var selectedColor: UIColor {
-                switch self {
-                case .dark: return Layout.TabBarView.selectedButtonColor
-                case .light: return Layout.TabBarView.selectedButtonColorLightTheme
-                }
-            }
-
-            var deselectedColor: UIColor {
-                switch self {
-                case .dark: return Layout.TabBarView.deselectedButtonColor
-                case .light: return Layout.TabBarView.deselectedButtonColorLightTheme
-                }
-            }
+        func theme(at index: Index) -> Theme {
+            return themes[index]
         }
     }
 
@@ -74,9 +101,8 @@ final class TopTabBarController: UIViewController {
 
     fileprivate lazy var navigationItemBar: UIView = {
         let view = UIView()
-        let color = self.item.theme == .dark ? UIColor.black.withAlphaComponent(0.825) : UIColor.white.withAlphaComponent(0.825)
-        view.backgroundColor = color
-        
+        view.backgroundColor = self.item.theme(at: self.selectedIndex).navigationBarBackgroundColor
+
         return view
     }()
     
@@ -90,7 +116,7 @@ final class TopTabBarController: UIViewController {
     
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.backgroundColor = self.item.theme == .dark ? .clear : .white
+        scrollView.backgroundColor = self.item.theme(at: self.selectedIndex).scrollViewBackgroundColor
         scrollView.isPagingEnabled = true
         scrollView.delegate = self
         scrollView.showsHorizontalScrollIndicator = false
@@ -101,8 +127,8 @@ final class TopTabBarController: UIViewController {
     fileprivate lazy var tabBarView: TabBarView = {
         let tabBarView = TabBarView(tabBarType: .top)
         tabBarView.setTitles(self.item.titles, selectedIndex: self.item.titles.count == 1 ? nil : 0)
-        tabBarView.selectedColor = self.item.theme.selectedColor
-        tabBarView.deselectedColor = self.item.theme.deselectedColor
+        tabBarView.selectedColor = self.item.theme(at: self.selectedIndex).selectedColor
+        tabBarView.deselectedColor = self.item.theme(at: self.selectedIndex).deselectedColor
         tabBarView.indicatorViewExtendedWidth = Layout.TabBarView.indicatorViewExtendedWidthTop
         tabBarView.delegate = self
         tabBarView.backgroundColor = .clear
@@ -170,9 +196,9 @@ private extension TopTabBarController {
 
     func setupButton(with image: UIImage?, button: UIButton) {
         button.setImage(image?.withRenderingMode(.alwaysTemplate), for: .normal)
-        button.imageView?.tintColor = self.item.theme.selectedColor
+        button.imageView?.tintColor = item.theme(at: selectedIndex).selectedColor
         button.isHidden = image == nil
-        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)        
     }
 
     func setupScrollView() {
@@ -234,17 +260,14 @@ extension TopTabBarController: UIScrollViewDelegate {
         let alpha = scrollView.contentOffset.x / offsetX
         nextView.alpha = selectedIndex > previousIndex ? alpha : 1 - alpha
         currentView.alpha = selectedIndex > previousIndex ? 1 - alpha : alpha
+        navigationItemBar.backgroundColor = item.theme(at: selectedIndex).navigationBarBackgroundColor
     }
 }
 
 extension TopTabBarController: ContentScrollViewDelegate {
 
     func didEndDecelerating(_ contentOffset: CGPoint) {
-        if contentOffset.equalTo(.zero) == true {
-            tabBarView.setSelectedIndex(0, animated: true)
-        } else {
-            tabBarView.setSelectedIndex(1, animated: true)
-        }
+        tabBarView.setSelectedIndex(contentOffset.equalTo(.zero) == true ? 0 : 1, animated: true)
     }
 }
 
@@ -274,6 +297,7 @@ private extension TopTabBarController {
     func setupLayout() {
         guard item.controllers.first?.classForCoder !== LearnContentListViewController.classForCoder() else {
             navigationItemBar.heightAnchor == 0
+
             return
         }
 
@@ -331,7 +355,7 @@ extension TopTabBarController: TabBarViewDelegate {
         previousIndex = selectedIndex
         selectedIndex = index
 
-        guard index != scrollView.currentPage else {
+        guard index != scrollView.currentPage || item.containsScrollView == true else {
             return
         }
 

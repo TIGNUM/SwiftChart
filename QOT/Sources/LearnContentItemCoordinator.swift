@@ -29,19 +29,19 @@ final class LearnContentItemCoordinator: ParentCoordinator {
         let vc = LearnContentItemViewController(viewModel: viewModel)
         let audioViewModel = LearnStrategyAudioViewModel()
         let audioViewController = LearnStrategyAudioViewController(viewModel: audioViewModel)
-        let bulletViewCOntroller = LearnContentItemBulletViewController(viewModel: viewModel)
+        let bulletViewController = LearnContentItemBulletViewController(viewModel: viewModel)
 
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .custom
 
         let topTabBarControllerItem = TopTabBarController.Item(
-            controllers: [vc, bulletViewCOntroller, audioViewController],
+            controllers: [vc, bulletViewController, audioViewController],
+            themes: [.light, .light, .light],
             titles: [
                 R.string.localized.learnContentItemTitleFull(),
                 R.string.localized.learnContentItemTitleBullets(),
                 R.string.localized.learnContentItemTitleAudio()
-            ],
-            theme: .light
+            ]
         )
 
         let topTabBarController = TopTabBarController(

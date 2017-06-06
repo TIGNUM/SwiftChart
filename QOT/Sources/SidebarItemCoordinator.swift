@@ -39,6 +39,7 @@ final class SidebarItemCoordinator: ParentCoordinator {
 
         let topTabBarControllerItem = TopTabBarController.Item(
             controllers: [benefitsViewController],
+            themes: [.dark],
             titles: [R.string.localized.sidebarTitleBenefits()]
         )
 

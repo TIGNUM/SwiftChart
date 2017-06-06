@@ -31,6 +31,7 @@ final class TabBarCoordinator: ParentCoordinator {
 
         let topBarControllerItem = TopTabBarController.Item(
             controllers: [learnCategoryListVC, whatsHotViewController],
+            themes: [.darkClear, .dark],
             titles: [
                 R.string.localized.topTabBarItemTitleLearnStrategies(),
                 R.string.localized.topTabBarItemTitleLearnWhatsHot()
@@ -60,6 +61,7 @@ final class TabBarCoordinator: ParentCoordinator {
 
         let topBarControllerItem = TopTabBarController.Item(
             controllers: [myUniverseViewController],
+            themes: [.darkClear],
             titles: [
                 R.string.localized.topTabBarItemTitleMeMyData(),
                 R.string.localized.topTabBarItemTitleMeMyWhy()
@@ -93,6 +95,7 @@ final class TabBarCoordinator: ParentCoordinator {
 
         let topBarControllerItem = TopTabBarController.Item(
             controllers: [chatViewController, myPrepViewController],
+            themes: [.dark, .dark],
             titles: [
                 R.string.localized.topTabBarItemTitlePerpareCoach(),
                 R.string.localized.topTabBarItemTitlePerparePrep()

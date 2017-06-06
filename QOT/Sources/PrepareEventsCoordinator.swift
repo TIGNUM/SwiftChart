@@ -32,6 +32,7 @@ final class PrepareEventsCoordinator: ParentCoordinator {
 
         let topTabBarControllerItem = TopTabBarController.Item(
             controllers: [prepareEventsViewController],
+            themes: [.dark],
             titles: [R.string.localized.preparePrepareEventsAddPreparation()]
         )
 

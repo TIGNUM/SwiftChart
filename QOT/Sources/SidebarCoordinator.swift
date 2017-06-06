@@ -28,22 +28,21 @@ final class SidebarCoordinator: ParentCoordinator {
             sidebarContentCategories: services.sidebarContentService.categories()
         )
         let sideBarViewController = SidebarViewController(viewModel: viewModel)
-        sideBarViewController.delegate = self
-        presentationManager.presentationType = .fadeIn
-        sideBarViewController.modalPresentationStyle = .custom
-        sideBarViewController.transitioningDelegate = presentationManager
-
         let topTabBarControllerItem = TopTabBarController.Item(
             controllers: [sideBarViewController],
-            titles: []
+            themes: [.darkClear]
         )
-
         let topTabBarController = TopTabBarController(
             item: topTabBarControllerItem,
+            leftIcon: R.image.ic_logo(),
             rightIcon: R.image.ic_close()
         )
 
+        presentationManager.presentationType = .fadeIn
+        topTabBarController.modalPresentationStyle = .overFullScreen
+        topTabBarController.transitioningDelegate = presentationManager
         topTabBarController.delegate = self
+        sideBarViewController.delegate = self
         rootViewController.present(topTabBarController, animated: true)
     }
 }

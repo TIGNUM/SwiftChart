@@ -28,6 +28,7 @@ final class SettingsCoordinator: ParentCoordinator {
         let settingsViewController = SettingsViewController(viewModel: SettingsViewModel(settingsType: settingsType))
         let topTabBarControllerItem = TopTabBarController.Item(
             controllers: [settingsViewController],
+            themes: [.dark],
             titles: [R.string.localized.settingsTitle()]
         )
 
