@@ -12,11 +12,8 @@ platform :ios do
     scan(scheme: "QOT")
   end
 
-  desc "Test and deploy to Hockeyapp"
+  desc "Deploy to Hockeyapp"
   lane :beta do
-    # Test
-    scan(scheme: "QOT")
-
     # Install certificates and profiles
     match(type: "adhoc", readonly: true)
 
