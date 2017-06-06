@@ -21,7 +21,6 @@ final class LearnStrategyAudioViewController: UIViewController {
     fileprivate let viewModel: LearnStrategyAudioViewModel
     lazy var audioView = LearnStrategyAudioPlayerView.instatiateFromNib()
     weak var delegate: LearnContentItemViewControllerDelegate?
-
     // MARK: - Init
 
     init(viewModel: LearnStrategyAudioViewModel) {
@@ -61,6 +60,7 @@ final class LearnStrategyAudioViewController: UIViewController {
 private extension LearnStrategyAudioViewController {
 
     func setupView() {
+        audioView.delegate = self
         view.addSubview(tableView)
         tableView.topAnchor == view.topAnchor
         tableView.bottomAnchor == view.bottomAnchor
@@ -78,6 +78,7 @@ private extension LearnStrategyAudioViewController {
 
         viewModel.currentPosition.observeNext { [unowned self] (interval) in
             let value = self.progress(currentPosition: interval, trackDuration: self.viewModel.trackDuration.value)
+            self.audioView.audioSlider.value = Float(value)
             self.audioView.audioWaveformView.setProgress(value: value)
         }.dispose(in: disposeBag)
 
@@ -154,5 +155,11 @@ extension LearnStrategyAudioViewController: UITableViewDelegate, UITableViewData
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return section == 1 ? 100 : 0
+    }
+}
+
+extension LearnStrategyAudioViewController: AudioPlayerViewSliderDelegate {
+    func value(at layout: Float, in view: LearnStrategyAudioPlayerView) {
+       viewModel.forward(value: layout)
     }
 }

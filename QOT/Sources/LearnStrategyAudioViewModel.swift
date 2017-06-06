@@ -39,7 +39,7 @@ final class LearnStrategyAudioViewModel {
 
     var subHeadline: String {
         return item.subHeadline
-    } 
+    }
 
     func playItem(at indexPath: IndexPath) {
 
@@ -66,6 +66,12 @@ final class LearnStrategyAudioViewModel {
         }
 
         updates.next(.update(deletions: [], insertions: [], modifications:modifications))
+    }
+
+    func forward(value: Float) {
+        let time = TimeInterval(value) * trackDuration.value
+        player.seek(to: CMTimeMakeWithSeconds(time, 1))
+        player.play()
     }
 
     func stopPlayback() {
@@ -141,7 +147,7 @@ private var audioTracks: [AudioTrack] {
     return [
         MockAudioTrack(
             title: "Intro",
-            url: URL(string: "http://extracoding.com/demo/wp/iloverockband/light/wp-content/uploads/2013/07/Lorem-ipsum-dolor-sit-amet1.mp3")!,
+            url: URL(string: "https://www.stuffdown.com/2017/Gucci%20Mane%20-%20Droptopwop%20-%20(www.SongsLover.com)/04.%20Helpless%20-%20(www.SongsLover.com).mp3")!,
             soundPattern: randomSoundPattern
         ),
 
@@ -172,6 +178,6 @@ private var randomSoundPattern: [CGFloat] {
         let randomValue = CGFloat(Float(arc4random())/Float(UINT32_MAX))
         pattern.append(randomValue)
     }
-
+    
     return pattern
 }
