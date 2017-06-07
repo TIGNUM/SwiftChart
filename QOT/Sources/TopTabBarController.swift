@@ -235,7 +235,7 @@ private extension TopTabBarController {
 extension TopTabBarController {
 
     func leftButtonPressed(_ button: UIButton) {
-        delegate?.didSelectLeftButton(sender: self)
+        delegate?.didSelectLeftButton(sender: self)        
     }
 
     func rightButtonPressed(_ button: UIButton) {

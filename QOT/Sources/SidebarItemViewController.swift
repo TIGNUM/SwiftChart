@@ -72,7 +72,7 @@ private extension SidebarItemViewController {
             return nil
         }
 
-        return AttributedString.Sidebar.Benefits.headerText(string: description)
+        return Style.tag(description, .white40).attributedString()
     }
 }
 
@@ -105,7 +105,7 @@ extension SidebarItemViewController: UITableViewDataSource {
             return cell
         case .text(let text, _):
             let cell: ContentItemTextTableViewCell = tableView.dequeueCell(for: indexPath)
-            let attributedText = AttributedString.Sidebar.Benefits.text(string: text)
+            let attributedText = Style.tag(text, .white).attributedString()
             cell.setup(topText: attributedText, bottomText: nil, backgroundColor: .clear)
             return cell
         case .video(_, let description, let placeholderURL, _, _):

@@ -50,13 +50,9 @@ private extension MyDataSectorLabelsView {
 
     func addSectorLabels(layout: Layout.MeSection, sectors: [Sector]) {
         sectors.forEach { (sector: Sector) in
-            let labelValues = MyUniverseHelper.labelValues(for: sector, layout: layout, screenType: screenType)
+            let attributedString = MyUniverseHelper.attributedString(for: sector, layout: layout, screenType: screenType)
             let labelFarme = sectorLabelFrame(sector: sector, layout: layout)
-            let sectorLabel = createSectorLabel(
-                frame: labelFarme,
-                attributedString: labelValues.attributedString,
-                widthOffset: labelValues.widthOffset
-            )
+            let sectorLabel = createSectorLabel(frame: labelFarme, attributedString: attributedString)
             addSubview(sectorLabel)
             sectorLabels.append(sectorLabel)
         }
@@ -65,16 +61,18 @@ private extension MyDataSectorLabelsView {
     func sectorLabelFrame(sector: Sector, layout: Layout.MeSection) -> CGRect {
         let distanceFromCenter = MyUniverseHelper.radius(for: sector.labelType.load, layout: layout)
         let labelCenter = layout.loadCenter.shifted(distanceFromCenter, with: sector.labelType.angle)
+
         return CGRect(x: labelCenter.x, y: labelCenter.y, width: 0, height: Layout.MeSection.labelHeight)
     }
 
-    func createSectorLabel(frame: CGRect, attributedString: NSAttributedString, widthOffset: CGFloat) -> UILabel {
+    func createSectorLabel(frame: CGRect, attributedString: NSAttributedString) -> UILabel {
         let label = UILabel(frame: frame)
         label.attributedText = attributedString
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.frame = CGRect(x: frame.origin.x - widthOffset, y: frame.origin.y, width: frame.width, height: Layout.MeSection.labelHeight)
+        label.frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.width, height: Layout.MeSection.labelHeight)
         label.sizeToFit()
+
         return label
     }
 }

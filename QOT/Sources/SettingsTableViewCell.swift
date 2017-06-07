@@ -55,7 +55,7 @@ class SettingsTableViewCell: UITableViewCell, Dequeueable {
 private extension SettingsTableViewCell {
 
     func setupButtonCell(title: String, value: String) {
-        button.setAttributedTitle(AttributedString.Sidebar.Settings.title(string: title.uppercased()), for: .normal)
+        button.setAttributedTitle(Style.headlineSmall(title.uppercased(), .white40).attributedString(lineSpacing: 2), for: .normal)
     }
 
     func setupControlCell(title: String, isOn: Bool) {
@@ -79,7 +79,7 @@ private extension SettingsTableViewCell {
     func setupLabelCell(title: String, value: String?) {
         setValue(value: value)
         if value == nil {
-            titleLabel.attributedText = AttributedString.Sidebar.Settings.sectionHeader(string: title.uppercased())
+            titleLabel.attributedText = Style.paragraph(title.uppercased(), .white40).attributedString(lineSpacing: 2)
         } else {
             setTitle(title: title)
         }
@@ -93,7 +93,7 @@ private extension SettingsTableViewCell {
     }
 
     func setTitle(title: String) {
-        titleLabel.attributedText = AttributedString.Sidebar.Settings.title(string: title.uppercased())
+        titleLabel.attributedText = Style.paragraph(title.uppercased(), .white40).attributedString(lineSpacing: 2)
     }
 
     func setValue(value: String?) {
@@ -102,7 +102,7 @@ private extension SettingsTableViewCell {
             return
         }
 
-        valueLabel.attributedText = AttributedString.Sidebar.Settings.value(string: value.uppercased())
+        valueLabel.attributedText = Style.paragraph(value.uppercased(), .white40).attributedString(lineSpacing: 2)
     }
 }
 

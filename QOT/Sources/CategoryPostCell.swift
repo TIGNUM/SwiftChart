@@ -20,7 +20,7 @@ final class CategoryPostCell: UITableViewCell, Dequeueable {
     func setUp(title: String, itemCount: Int, mediaItem: LibraryMediaItem) {
         self.mediaItem = mediaItem
         self.itemCount = itemCount
-        titleLabel.attributedText = AttributedString.Library.categoryTitle(string: title.makingTwoLines())
+        titleLabel.attributedText = Style.subTitle(title.makingTwoLines(), .white).attributedString()
         collectionView.registerDequeueable(CategoryCollectionCell.self)
         collectionView.dataSource = self
         collectionView.delegate = self

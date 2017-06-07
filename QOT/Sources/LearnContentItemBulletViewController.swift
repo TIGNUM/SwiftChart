@@ -75,19 +75,19 @@ extension LearnContentItemBulletViewController: UITableViewDataSource, UITableVi
 
         switch contentItem {
         case .text(let text, _):
-            let topText = AttributedString.Learn.articleTitle(string: text)
+            let topText = Style.headline(text, .black).attributedString()
             cell.setup(topText: topText, bottomText: topText)
             return cell
         case .audio(let title, _, _, _, _, _):
-            let topText = AttributedString.Learn.articleTitle(string: title)
+            let topText = Style.headline(title, .black).attributedString()
             cell.setup(topText: topText, bottomText: topText)
             return cell
         case .image(let title, _, _):
-            let topText = AttributedString.Learn.articleTitle(string: title)
+            let topText = Style.headline(title, .black).attributedString()
             cell.setup(topText: topText, bottomText: topText)
             return cell
         case .video(let title, _, _, _, _):
-            let topText = AttributedString.Learn.articleTitle(string: title)
+            let topText = Style.headline(title, .black).attributedString()
             cell.setup(topText: topText, bottomText: topText)
             return cell
         }

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import BonMot
 
 extension NSMutableAttributedString {
 
@@ -29,5 +30,58 @@ extension NSMutableAttributedString {
             ]
 
             self.init(string: string, attributes: attributes)
+    }
+}
+
+enum Style {
+    case postTitle(String, UIColor)
+    case secondaryTitle(String, UIColor)
+    case subTitle(String, UIColor)
+    case headline(String, UIColor)
+    case headlineSmall(String, UIColor)
+    case navigationTitle(String, UIColor)
+    case tag(String, UIColor)
+    case paragraph(String, UIColor)
+
+    private var font: UIFont {
+        switch self {
+        case .postTitle(_): return Font.H1MainTitle
+        case .secondaryTitle(_): return Font.H2SecondaryTitle
+        case .subTitle(_): return Font.H3Subtitle
+        case .headline(_): return Font.H4Headline
+        case .headlineSmall(_): return Font.H5SecondaryHeadline
+        case .navigationTitle(_): return Font.H6NavigationTitle
+        case .tag(_): return Font.H7Tag
+        case .paragraph(_): return Font.H7Title
+        }
+    }
+
+    private func stringStyle(color: UIColor, lineSpacing: CGFloat) -> StringStyle {
+        return StringStyle(
+            .font(self.font),
+            .color(color),
+            .lineSpacing(lineSpacing)
+        )
+    }
+
+    func attributedString(lineSpacing: CGFloat = 1) -> NSAttributedString {
+        switch self {
+        case .postTitle(let string, let color):
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing))
+        case .secondaryTitle(let string, let color):
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing))
+        case .subTitle(let string, let color):
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing))
+        case .headline(let string, let color):
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing))
+        case .headlineSmall(let string, let color):
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing))
+        case .navigationTitle(let string, let color):
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing))
+        case .tag(let string, let color):
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing))
+        case .paragraph(let string, let color):
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing))
+        }
     }
 }

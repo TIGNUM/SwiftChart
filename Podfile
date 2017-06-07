@@ -18,6 +18,7 @@ target 'QOT' do
   pod 'ActionSheetPicker-3.0', '~> 2.2.0'
   pod 'RSKImageCropper', '~> 1.6.1'
   pod 'ImagePicker', '~> 2.1.1'
+  pod 'BonMot', '~> 4.3.1'
 
   target 'QOTTests' do
     inherit! :search_paths

@@ -20,7 +20,7 @@ final class LatestPostCell: UITableViewCell, Dequeueable {
     func setUp(title: String, sectionCount: Int, mediaItem: LibraryMediaItem) {
         self.sectionCount = sectionCount
         self.mediaItem = mediaItem
-        titleLabel.attributedText = AttributedString.Library.latestPostTitle(string: title)
+        titleLabel.attributedText = Style.tag(title, .white90).attributedString()
         collectionView.registerDequeueable(LatestCollectionCell.self)
         collectionView.dataSource = self
         collectionView.delegate = self

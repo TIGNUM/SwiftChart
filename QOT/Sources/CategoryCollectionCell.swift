@@ -27,8 +27,8 @@ final class CategoryCollectionCell: UICollectionViewCell, Dequeueable {
     // MARK: - Setup
     
     func setup(headline: String, placeholderURL: URL, mediaType: String) {
-        headlineLabel.attributedText = AttributedString.Library.categoryHeadline(string: headline.makingTwoLines())
-        mediaTypeLabel.attributedText = AttributedString.Library.categoryMediaTypeLabel(string: mediaType)
+        headlineLabel.attributedText = Style.tag(headline.makingTwoLines(), .white90).attributedString()
+        mediaTypeLabel.attributedText = Style.tag(mediaType, .white40).attributedString()
         categoryImageView.kf.indicatorType = .activity
         categoryImageView.kf.setImage(with: placeholderURL)
     }

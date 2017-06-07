@@ -148,7 +148,7 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
         indexPath: IndexPath,
         itemText: String) -> ContentItemTextTableViewCell {
             let itemTextCell: ContentItemTextTableViewCell = tableView.dequeueCell(for: indexPath)
-            itemTextCell.setup(topText: AttributedString.Learn.articleTitle(string: itemText), bottomText: nil)
+            itemTextCell.setup(topText: Style.headline(itemText, .black).attributedString(), bottomText: nil)
             return itemTextCell
     }
 
@@ -162,7 +162,7 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
             let mediaDescription = String(format: "%@ (%02i:%02i)", title, Int(duration) / 60 % 60, Int(duration) % 60)
             imageCell.setupData(
                 placeHolder: placeholderURL,
-                description: AttributedString.Learn.mediaDescription(string: mediaDescription)
+                description: Style.headlineSmall(mediaDescription, .blackTwo).attributedString()
             )
             imageCell.setInsets(insets: UIEdgeInsets(top: 14, left: 14, bottom: 14, right: 14))
             return imageCell
@@ -174,7 +174,7 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
         title: String,
         url: URL) -> ImageSubtitleTableViewCell {
             let imageCell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
-            imageCell.setupData(placeHolder: url, description: AttributedString.Learn.mediaDescription(string: title))
+            imageCell.setupData(placeHolder: url, description: Style.headlineSmall(title, .blackTwo).attributedString())
             imageCell.setInsets(insets: UIEdgeInsets(top: 14, left: 14, bottom: 14, right: 14))
             return imageCell
     }

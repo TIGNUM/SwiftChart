@@ -27,6 +27,30 @@ extension MyUniverseViewController {
         case big
         case medium
         case small
+
+        var lineSpacingSectorTitle: CGFloat {
+            switch self {
+            case .big: return 2
+            case .medium: return 1.8
+            case .small: return 1.6
+            }
+        }
+
+        var lineSpacingSectorTitleCritical: CGFloat {
+            switch self {
+            case .big: return 2.7
+            case .medium: return 2.5
+            case .small: return 2.3
+            }
+        }
+
+        var fontCritical: UIFont {
+            switch self {
+            case .big: return Font.PText
+            case .medium,
+                 .small: return Font.PTextSmall
+            }
+        }
     }
 
     var screenType: ScreenType {
