@@ -12,7 +12,7 @@ import RealmSwift
 
 final class SyncManager {
 
-    let networkManager: NetworkManger
+    let networkManager: NetworkManager
     let syncRecordService: SyncRecordService
     let realmProvider: RealmProvider
     let operationQueue: OperationQueue = {
@@ -21,7 +21,7 @@ final class SyncManager {
         return queue
     }()
 
-    init(networkManager: NetworkManger, syncRecordService: SyncRecordService, realmProvider: RealmProvider) {
+    init(networkManager: NetworkManager, syncRecordService: SyncRecordService, realmProvider: RealmProvider) {
         self.networkManager = networkManager
         self.syncRecordService = syncRecordService
         self.realmProvider = realmProvider

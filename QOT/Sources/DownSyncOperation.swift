@@ -13,7 +13,7 @@ import RealmSwift
 
 final class DownSyncOperation<Intermediary, Persistable>: ConcurrentOperation where Intermediary: JSONDecodable, Persistable: DownSyncable, Persistable: Object, Persistable.Data == Intermediary {
 
-    private let networkManager: NetworkManger
+    private let networkManager: NetworkManager
     private let syncDescription: SyncDescription<Intermediary, Persistable>
     private let syncRecordService: SyncRecordService
     private let realmProvider: RealmProvider
@@ -21,7 +21,7 @@ final class DownSyncOperation<Intermediary, Persistable>: ConcurrentOperation wh
     private let context: SyncContext
 
     init(context: SyncContext,
-         networkManager: NetworkManger,
+         networkManager: NetworkManager,
          description: SyncDescription<Intermediary, Persistable>,
          syncRecordService: SyncRecordService,
          realmProvider: RealmProvider,

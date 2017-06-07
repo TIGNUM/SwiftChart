@@ -11,18 +11,18 @@ PODS:
   - iCarousel (1.8.3)
   - ImagePicker (2.1.1)
   - KeychainAccess (3.0.2)
-  - Kingfisher (3.9.1)
+  - Kingfisher (3.10.1)
   - LoremIpsum (1.0.0)
-  - R.swift (3.2.0):
+  - R.swift (3.3.0):
     - R.swift.Library (~> 3.0.2)
   - R.swift.Library (3.0.2)
-  - ReactiveKit (3.5.3)
+  - ReactiveKit (3.5.4)
   - Realm (2.7.0):
     - Realm/Headers (= 2.7.0)
   - Realm/Headers (2.7.0)
   - RealmSwift (2.7.0):
     - Realm (= 2.7.0)
-  - RSKImageCropper (1.6.1)
+  - RSKImageCropper (1.6.2)
   - UICollectionViewRightAlignedLayout (0.0.3)
 
 DEPENDENCIES:
@@ -53,14 +53,14 @@ SPEC CHECKSUMS:
   iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
   ImagePicker: fe4c699abb56ff03994fa98d8b02e3883ee118be
   KeychainAccess: a986406022dfc7c634c691ad3bec670cc6a32002
-  Kingfisher: 6729a0baaa458245bfb8cd5a1296c71c10d6eb6c
+  Kingfisher: 33a1b82140fcb14a9fc13f78dfde2a03ff8de8cb
   LoremIpsum: 9029c55d36501b2ee0b05cc9ecda11d3a0479160
-  R.swift: 207a372a2b5977caef440c696a368009460641d1
+  R.swift: bde9704d50ff36820f49e266bc88ef545e1e9b36
   R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
-  ReactiveKit: 39a0723167d04107140cf540f04526deecd18891
+  ReactiveKit: 4fc2a23db33777358abe93453ece3a69011adeec
   Realm: 07e5d3a9e0e41d65fd5f9f05150ed6295d0f093b
   RealmSwift: 6d06425d3900c86473c4f323bf6949b43fca22bc
-  RSKImageCropper: 0df8c99e77a8ea7ca7a8b83ef468556f31584254
+  RSKImageCropper: 3e579d0000945a8be1c0efdad728fd9e25c2fd79
   UICollectionViewRightAlignedLayout: 823eef8c567eba4a44c21bc2ffcb0d0d5f361e2d
 
 PODFILE CHECKSUM: b28ffdf0f2360d41be95d142c3c538c377361591
