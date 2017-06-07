@@ -16,7 +16,7 @@ final class MyStatisticsViewController: UIViewController {
 
     // MARK: - Properties
 
-    private let viewModel: MyStatisticsViewModel
+    fileprivate let viewModel: MyStatisticsViewModel
     weak var delegate: MyStatisticsViewControllerDelegate?
 
     // MARK: - Init
