@@ -23,14 +23,6 @@ final class MyStatisticsViewModel {
         return sectionType(in: section).title
     }
 
-    func numberOfItems(in section: Int) -> Int {
-        return sectionType(in: section).cards.count
-    }
-
-    func card(for indexPath: IndexPath) -> MyStatisticsCard {
-        return sectionType(in: indexPath.section).cards[indexPath.row]
-    }
-
     private func sectionType(in section: Int) -> MyStatisticsSectionType {
         guard let sectionType = MyStatisticsSectionType(rawValue: section) else {
             fatalError("Invalid section type")
@@ -77,14 +69,13 @@ enum MyStatisticsCardType {
     case intensity
 }
 
-
 enum MyStatisticsSectionType: Int {
     case sleep = 0
-    case activity = 1
-    case peakPerformance = 2
-    case intensity = 3
-    case meetings = 4
-    case travel = 5
+    case activity
+    case peakPerformance
+    case intensity
+    case meetings
+    case travel
 
     static var allValues: [MyStatisticsSectionType] {
         return [
@@ -141,34 +132,34 @@ private extension MyStatisticsSectionType {
 
     var meetingCards: [MyStatisticsCard] {
         return [
-            MockMyStatisticsCard(title: "12", subtitle: "Number of Meetings", type: .meetingWeekly, data: makeData()),
+            MockMyStatisticsCard(title: "#12", subtitle: "Number of Meetings", type: .meetingWeekly, data: makeData()),
             MockMyStatisticsCard(title: "2.4H", subtitle: "Length of Meetings", type: .meetingDaily, data: makeData()),
-            MockMyStatisticsCard(title: "1.5H", subtitle: "Time Between Meetings", type: .meetingTimeBetween, data: makeData()),
+            MockMyStatisticsCard(title: "1.5H", subtitle: "Time Between Meetings", type: .meetingTimeBetween, data: makeData())
         ]
     }
 
     var travelCards: [MyStatisticsCard] {
         return [
-            MockMyStatisticsCard(title: "1:25m", subtitle: "Trips last four weeks", type: .travelTripsLastFourWeeks, data: makeData()),
-            MockMyStatisticsCard(title: "1:25m", subtitle: "Trips next four Weeks", type: .travelTripsNextFourWeeks, data: makeData()),
-            MockMyStatisticsCard(title: "1:25m", subtitle: "Of trips with time zone changed", type: .travelTripsMaxTimeZone, data: makeData()),
-            MockMyStatisticsCard(title: "1:25m", subtitle: "Number of trips this year", type: .travelTripsTotalInYear, data: makeData()),
-            MockMyStatisticsCard(title: "1:25m", subtitle: "Time zone  max time zone", type: .travelTripsTimeZoneChanged, data: makeData())
+            MockMyStatisticsCard(title: "25", subtitle: "Trips last four weeks", type: .travelTripsLastFourWeeks, data: makeData()),
+            MockMyStatisticsCard(title: "4", subtitle: "Trips next four Weeks", type: .travelTripsNextFourWeeks, data: makeData()),
+            MockMyStatisticsCard(title: "2", subtitle: "Of trips with time zone changed", type: .travelTripsMaxTimeZone, data: makeData()),
+            MockMyStatisticsCard(title: "125", subtitle: "Number of trips this year", type: .travelTripsTotalInYear, data: makeData()),
+            MockMyStatisticsCard(title: "13", subtitle: "Time zone  max time zone", type: .travelTripsTimeZoneChanged, data: makeData())
         ]
     }
 
     var peakPerformanceCards: [MyStatisticsCard] {
         return [
-            MockMyStatisticsCard(title: "1:25m", subtitle: "Next Month", type: .peakPerformanceNextMonth, data: makeData()),
-            MockMyStatisticsCard(title: "1:25m", subtitle: "Average per week", type: .peakPerformanceAveragePerWeek, data: makeData()),
-            MockMyStatisticsCard(title: "1:25m", subtitle: "Next week", type: .peakPerformanceNextWeek, data: makeData())
+            MockMyStatisticsCard(title: "11", subtitle: "Next Month", type: .peakPerformanceNextMonth, data: makeData()),
+            MockMyStatisticsCard(title: "222", subtitle: "Average per week", type: .peakPerformanceAveragePerWeek, data: makeData()),
+            MockMyStatisticsCard(title: "3333", subtitle: "Next week", type: .peakPerformanceNextWeek, data: makeData())
         ]
     }
 
     var activityCards: [MyStatisticsCard] {
         return [
-            MockMyStatisticsCard(title: "7.7H", subtitle: "sitting/movement ratio", type: .activitySittingMovementRatio, data: makeData()),
-            MockMyStatisticsCard(title: "7.3H", subtitle: "Activity level", type: .activityLevel, data: makeData())
+            MockMyStatisticsCard(title: "4.7H", subtitle: "Sitting / Movement Ratio", type: .activitySittingMovementRatio, data: makeData()),
+            MockMyStatisticsCard(title: "6.3H", subtitle: "Activity level", type: .activityLevel, data: makeData())
         ]
     }
     
