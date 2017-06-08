@@ -66,12 +66,12 @@ extension UIBezierPath {
         )
     }
 
-    class func roundedPolygonPath(rect: CGRect, lineWidth: CGFloat, sides: NSInteger, cornerRadius: CGFloat = 0, rotationOffset: CGFloat = 0) -> UIBezierPath {
+    class func roundedPolygonPath(rect: CGRect, lineWidth: CGFloat, sides: NSInteger, cornerRadius: CGFloat = 0, rotationOffset: CGFloat = 0, radius: CGFloat = -1) -> UIBezierPath {
         let path = UIBezierPath()
         let theta: CGFloat = CGFloat(2.0 * CGFloat.pi) / CGFloat(sides)
         let width = min(rect.size.width, rect.size.height)
         let center = CGPoint(x: rect.origin.x + width / 2.0, y: rect.origin.y + width / 2.0)
-        let radius = (width - lineWidth + cornerRadius - (cos(theta) * cornerRadius)) / 2.0
+        let radius = radius != -1 ? radius :(width - lineWidth + cornerRadius - (cos(theta) * cornerRadius)) / 2.0
         var angle = CGFloat(rotationOffset)
 
         let corner = CGPoint(x: center.x + (radius - cornerRadius) * cos(angle), y: center.y + (radius - cornerRadius) * sin(angle))

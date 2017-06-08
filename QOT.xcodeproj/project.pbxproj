@@ -281,6 +281,7 @@
 		D58BD86C1E9E846C005676DE /* ScrollViewAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58BD86B1E9E846C005676DE /* ScrollViewAnimation.swift */; };
 		D58BD8771E9F65F7005676DE /* WhatsHotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58BD8751E9F65F7005676DE /* WhatsHotCell.swift */; };
 		D58BD8781E9F65F7005676DE /* WhatsHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D58BD8761E9F65F7005676DE /* WhatsHotCell.xib */; };
+		D5A64D941EE801970095D01C /* SleepChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A64D931EE801970095D01C /* SleepChartView.swift */; };
 		D5B761871EE6B19C00AE178B /* SpacingInLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B761861EE6B19C00AE178B /* SpacingInLabel.swift */; };
 		D5C15BAC1EB350FB0030953F /* SideBarTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C15BAA1EB350FB0030953F /* SideBarTextCell.swift */; };
 		D5C15BAD1EB350FB0030953F /* SideBarTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5C15BAB1EB350FB0030953F /* SideBarTextCell.xib */; };
@@ -591,6 +592,7 @@
 		D58BD86B1E9E846C005676DE /* ScrollViewAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewAnimation.swift; sourceTree = "<group>"; };
 		D58BD8751E9F65F7005676DE /* WhatsHotCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsHotCell.swift; sourceTree = "<group>"; };
 		D58BD8761E9F65F7005676DE /* WhatsHotCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhatsHotCell.xib; sourceTree = "<group>"; };
+		D5A64D931EE801970095D01C /* SleepChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepChartView.swift; sourceTree = "<group>"; };
 		D5B761861EE6B19C00AE178B /* SpacingInLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpacingInLabel.swift; sourceTree = "<group>"; };
 		D5C15BAA1EB350FB0030953F /* SideBarTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarTextCell.swift; sourceTree = "<group>"; };
 		D5C15BAB1EB350FB0030953F /* SideBarTextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideBarTextCell.xib; sourceTree = "<group>"; };
@@ -939,6 +941,7 @@
 			isa = PBXGroup;
 			children = (
 				D50CDDBE1EC48CA700D27072 /* AverageGraphGridView.swift */,
+				D5A64D931EE801970095D01C /* SleepChartView.swift */,
 				D50CDDBF1EC48CA700D27072 /* AverageGraphView.swift */,
 				0B573CA51EC3219900A03602 /* DailyMeetingChartView.swift */,
 				0BA3E63F1EC1A8280012999E /* DashedProgressWheel.swift */,
@@ -1697,6 +1700,7 @@
 				D50CDDC01EC48CA700D27072 /* AverageGraphGridView.swift in Sources */,
 				0BE7FD8F1E9D2F8800E3262E /* PrepareContentTitleTableViewCell.swift in Sources */,
 				CB1D5E391EC5E25A00BCDF8D /* ContentCategory.swift in Sources */,
+				D5A64D941EE801970095D01C /* SleepChartView.swift in Sources */,
 				CC64725B1EE6F9DE00BFA3D9 /* UIColor+Palette.swift in Sources */,
 				0BCE74411ECD96D70006C0CF /* TripsDashCellView.swift in Sources */,
 				CBDB98F21E7AA510003EC73F /* CalendarImportResult.swift in Sources */,
