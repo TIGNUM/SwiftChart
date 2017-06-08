@@ -69,10 +69,10 @@ final class DownSyncOperation<Intermediary, Persistable>: ConcurrentOperation wh
 
     private func fetchIntermediaries(syncToken: String, syncDate: Int64) {
         let endpoint = syncDescription.syncType.endpoint
-        networkManager.request(token: syncToken, endpoint: endpoint, page: 1) { [weak self, syncType] (result: Result<[DownSyncChange<Intermediary>], NetworkError>) in
+        networkManager.request(token: syncToken, endpoint: endpoint, page: 1) { [weak self, syncType] (result: Result<([DownSyncChange<Intermediary>], String), NetworkError>) in
             switch result {
             case .success(let changes):
-                self?.importChanges(changes: changes, syncDate: syncDate)
+                self?.importChanges(changes: changes.0, syncDate: syncDate)
             case .failure(let error):
                 self?.finish(error: .downSyncFetchIntermediatesFailed(type: syncType, error: error))
             }

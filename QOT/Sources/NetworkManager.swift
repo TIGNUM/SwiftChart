@@ -56,7 +56,7 @@ final class NetworkManager {
         return serialRequest
     }
 
-    @discardableResult func request<T: JSONDecodable>(token: String, endpoint: Endpoint, page: Int, accumulator: [DownSyncChange<T>] = [], serialRequest: SerialRequest? = nil, completion: @escaping (Result<[DownSyncChange<T>], NetworkError>) -> Void) -> SerialRequest {
+    @discardableResult func request<T: JSONDecodable>(token: String, endpoint: Endpoint, page: Int, accumulator: [DownSyncChange<T>] = [], serialRequest: SerialRequest? = nil, completion: @escaping (Result<([DownSyncChange<T>], String), NetworkError>) -> Void) -> SerialRequest {
         let serialRequest = serialRequest ?? SerialRequest()
 
         let urlRequest = DownSyncRequest(endpoint: endpoint, syncToken: token, page: 1)
@@ -65,10 +65,10 @@ final class NetworkManager {
             case .success(let value):
                 let changes = accumulator + value.items
                 if page >= value.maxPages {
-                    completion(.success(changes))
+                    completion(.success((changes, value.nextSyncToken)))
                 } else {
                     let page = page + 1
-                    self?.request(token: token, endpoint: endpoint, page: page, accumulator: changes, serialRequest: serialRequest, completion: completion)
+                    self?.request(token: value.nextSyncToken, endpoint: endpoint, page: page, accumulator: changes, serialRequest: serialRequest, completion: completion)
                 }
             case .failure(let error):
                 completion(.failure(error))
