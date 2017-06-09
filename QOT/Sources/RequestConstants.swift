@@ -13,6 +13,7 @@ enum Endpoint: String {
     case authentication = "/service/auth"
     case startSync = "/personal/p/qot/start"
     case contentCategories = "/personal/p/qot/contentCategory"
+    case downSyncConfirm = "/personal/p/qot/confirm"
 
     func url(baseURL: URL) -> URL {
         return baseURL.appendingPathComponent(rawValue)
@@ -28,6 +29,6 @@ enum RequestParameter: String {
 enum HTTPHeader: String {
     case Authorization
     case authToken = "token"
-    case conentType = "Content-Type"
+    case contentType = "Content-Type"
     case syncToken = "x-tignum-sync-token"
 }

@@ -49,6 +49,7 @@
 		0BEE8ABF1EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEE8AB61EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.swift */; };
 		0BEE8AC01EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BEE8AB71EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib */; };
 		0CC2119BB6C36EF6F43B4ECD /* Pods_QOT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */; };
+		8514A4861EE810750086C70E /* DownSyncComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8514A4851EE810750086C70E /* DownSyncComplete.swift */; };
 		8591ED7B1EE6DBA6006FCE89 /* MockingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E0A6A01EE6AF130076169D /* MockingProtocol.swift */; };
 		8591ED7C1EE6DBAC006FCE89 /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E0A6A21EE6B1610076169D /* Mocks.swift */; };
 		85E0A69F1EE6A5E40076169D /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E0A69E1EE6A5E40076169D /* NetworkManagerTests.swift */; };
@@ -353,6 +354,7 @@
 		42795728C4F3229DFB18981E /* Pods-QOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.debug.xcconfig"; sourceTree = "<group>"; };
 		5C87601C1FE7F833DF0D7A6B /* Pods-QOTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.release.xcconfig"; sourceTree = "<group>"; };
 		82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8514A4851EE810750086C70E /* DownSyncComplete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownSyncComplete.swift; sourceTree = "<group>"; };
 		85E0A69E1EE6A5E40076169D /* NetworkManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		85E0A6A01EE6AF130076169D /* MockingProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockingProtocol.swift; sourceTree = "<group>"; };
 		85E0A6A21EE6B1610076169D /* Mocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
@@ -823,6 +825,7 @@
 				CBB4DCDB1ED475F00071494A /* DownSyncChange.swift */,
 				CBB4DD531EE151100071494A /* DownSyncImporter.swift */,
 				CB27D59E1ECDE96F00F2B76C /* DownSyncResultParser.swift */,
+				8514A4851EE810750086C70E /* DownSyncComplete.swift */,
 				CCF0F4BE1ECDC57000E8D9C1 /* ObjectStore.swift */,
 				CBB4DD081EDDC6550071494A /* StartSyncResult.swift */,
 				CBB4DCE31ED827840071494A /* SyncContext.swift */,
@@ -1690,6 +1693,7 @@
 				CC1AB4BC1ED30BA8002778FB /* R.generated.swift in Sources */,
 				CC9663181EA1B86100B84B1C /* MyDataSectorLabelsView.swift in Sources */,
 				CCF0F4BF1ECDC57000E8D9C1 /* DownSyncable.swift in Sources */,
+				8514A4861EE810750086C70E /* DownSyncComplete.swift in Sources */,
 				CC6B3A2F1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift in Sources */,
 				CC34BD561ECF3863007CB365 /* UserCredentials.swift in Sources */,
 				0BA3E6411EC1A8280012999E /* DashedProgressWheel.swift in Sources */,

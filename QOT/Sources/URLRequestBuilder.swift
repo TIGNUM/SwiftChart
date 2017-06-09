@@ -18,7 +18,7 @@ final class URLRequestBuilder {
 
     func make(with buildable: URLRequestBuildable, authToken: String) -> URLRequest {
         var httpHeaders = buildable.headers
-        httpHeaders[.conentType] = "application/json"
+        httpHeaders[.contentType] = "application/json"
         httpHeaders[.authToken] = authToken
 
         let url = buildable.endpoint.url(baseURL: baseURL)

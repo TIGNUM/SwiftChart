@@ -31,3 +31,14 @@ struct DownSyncRequest: URLRequestBuildable {
         self.paramaters = [.page: page, .size: pageSize]
     }
 }
+
+struct DownSyncConfirmRequest: URLRequestBuildable {
+    let endpoint: Endpoint
+    let httpMethod: HTTPMethod = .post
+    let headers: [HTTPHeader: String]
+    
+    init(endpoint: Endpoint, syncToken: String) {
+        self.endpoint = endpoint
+        self.headers = [.syncToken: syncToken]
+    }
+}
