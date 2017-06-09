@@ -28,12 +28,6 @@ To view the current linting rules see the `.swiftlint.yml` file. Please discuss 
 
 For code, aim to keep lines to 120 characters but let Xcode soft wrap the text. For comments, please hard wrap at 120 characters.
 
-# Synx
-
-Please use [Synx](https://github.com/venmo/synx) to ensure that the project file structure matches Xcode's groups. This makes it easier to navigate the project through GitHub's web interface. Once installed you can run Synx by `cd`ing into the projects root and running:
-
-`synx qot.xcodeproj`
-
 # Project Structure
 
 We are aiming to use a combination of the [coordinator pattern](http://khanlou.com/2015/10/coordinators-redux/) and MVVM with reactive view models. Coordinators should be lightweight and manage the setting up and flow between view controllers including applying transitions through `UIPresentationController`s etc. They act as glue resulting in decoupled view controllers. 
