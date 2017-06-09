@@ -209,7 +209,7 @@ extension TabBarCoordinator: LearnContentListCoordinatorDelegate {
 extension TabBarCoordinator: MyUniverseViewControllerDelegate {
 
     func didTapSector(sector: Sector?, in viewController: MyUniverseViewController) {
-        let coordinator = MyStatisticsCoordinator(root: viewController, services: services, eventTracker: eventTracker)
+        let coordinator = MyStatisticsCoordinator(root: topTabBarControllerMe, services: services, eventTracker: eventTracker)
         startChild(child: coordinator)
     }
 

@@ -10,11 +10,10 @@ import UIKit
 
 final class HorizontalLinesChartView: UIView {
 
-    private var lines = [CALayer]()
-
-    private var rowCount: Int = 0
-    private var seperatorHeight: CGFloat = 0
-    private var seperatorColor: UIColor = .clear
+    fileprivate var lines = [CALayer]()
+    fileprivate var rowCount: Int = 0
+    fileprivate var seperatorHeight: CGFloat = 0
+    fileprivate var seperatorColor: UIColor = .clear
 
     func setUp(rowCount: Int, seperatorHeight: CGFloat, seperatorColor: UIColor) {
         self.rowCount = rowCount
@@ -30,8 +29,13 @@ final class HorizontalLinesChartView: UIView {
 
         displayLines()
     }
+}
 
-    private func createMissingSublayers() {
+// MARK: - Private
+
+private extension HorizontalLinesChartView {
+
+    func createMissingSublayers() {
         guard rowCount > lines.count else {
             return
         }
@@ -44,7 +48,7 @@ final class HorizontalLinesChartView: UIView {
         }
     }
 
-    private func displayLines() {
+    func displayLines() {
         guard rowCount > 0 else {
             return
         }

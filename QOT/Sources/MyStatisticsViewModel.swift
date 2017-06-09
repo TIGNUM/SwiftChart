@@ -115,11 +115,11 @@ private extension MyStatisticsSectionType {
 
     private func makeData() -> [CGFloat] {
         return [
-            CGFloat(Int.random(between: 1, and: 10) / 10),
-            CGFloat(Int.random(between: 1, and: 10) / 10),
-            CGFloat(Int.random(between: 1, and: 10) / 10),
-            CGFloat(Int.random(between: 1, and: 10) / 10),
-            CGFloat(Int.random(between: 1, and: 10) / 10)
+            CGFloat(Int.random(between: 1, and: 10))/CGFloat(10),
+            CGFloat(Int.random(between: 1, and: 10))/CGFloat(10),
+            CGFloat(Int.random(between: 1, and: 10))/CGFloat(10),
+            CGFloat(Int.random(between: 1, and: 10))/CGFloat(10),
+            CGFloat(Int.random(between: 1, and: 10))/CGFloat(10)
         ]
     }
 

@@ -25,10 +25,10 @@ class DailyMeetingChartView: UIView {
         ownEvents = events
         ownLineWidth = lineWidth
 
-        let outerBackgroundView = DashedProgressWheel(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
-        outerBackgroundView.setup(value: 1.0, newPathColor: chartBacgroundColor, newDashPattern: [2, 4], newLineWidth: 15)
+        let viewFrame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
+        let outerBackgroundView = DashedProgressWheel(frame: viewFrame, value: 1.0, pathColor: chartBacgroundColor, dashPattern: [2, 4], lineWidth: 15)
 
-        let newCircile = DayEventChartView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
+        let newCircile = DayEventChartView(frame: CGRect(x: 0, y: 0, width: viewFrame.width, height: viewFrame.height))
         newCircile.configure(events: events, lineWidth: lineWidth)
 
         self.addSubview(outerBackgroundView)

@@ -13,14 +13,6 @@ final class DayEventChartView: UIView {
     private var events: [Event] = []
     private var lineWidth: CGFloat = 0
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-
     override func layoutSubviews() {
         super.layoutSubviews()
         self.layer.sublayers?.forEach { $0.removeFromSuperlayer() }

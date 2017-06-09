@@ -944,7 +944,6 @@
 			isa = PBXGroup;
 			children = (
 				D50CDDBE1EC48CA700D27072 /* AverageGraphGridView.swift */,
-				D5A64D931EE801970095D01C /* SleepChartView.swift */,
 				D50CDDBF1EC48CA700D27072 /* AverageGraphView.swift */,
 				0B573CA51EC3219900A03602 /* DailyMeetingChartView.swift */,
 				0BA3E63F1EC1A8280012999E /* DashedProgressWheel.swift */,
@@ -956,6 +955,7 @@
 				D50CDDC21EC48EAC00D27072 /* LevelsChartView.swift */,
 				0B573CA31EC3218D00A03602 /* MeetingLengthChartView.swift */,
 				D52DAF9A1EC1E87D00C63156 /* SittingMovementChartView.swift */,
+				D5A64D931EE801970095D01C /* SleepChartView.swift */,
 				0BCE743F1ECD96D70006C0CF /* TripsDashCellView.swift */,
 				0BCE74401ECD96D70006C0CF /* TripsDashView.swift */,
 			);

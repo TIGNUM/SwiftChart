@@ -19,7 +19,6 @@ final class DashPatternView: UIView {
 
     init(borderColor: UIColor, fillColor: UIColor) {
         super.init(frame: CGRect.zero)
-
     }
 
     required init?(coder aDecoder: NSCoder) {

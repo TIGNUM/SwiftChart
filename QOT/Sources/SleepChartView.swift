@@ -10,27 +10,54 @@ import UIKit
 
 final class SleepChartView: UIView {
 
+    enum ChartType {
+        case quantity
+        case quality
+
+        func lineColor(value: CGFloat, average: CGFloat) -> UIColor {
+            return value <= average ? .cherryRed : .white
+        }
+
+        var borderColor: UIColor {
+            return .white20
+        }
+
+        var sites: Int {
+            return 5
+        }
+
+        var borderWidth: CGFloat {
+            return 1
+        }
+    }
+
     fileprivate var outerPolygonShape = CAShapeLayer()
     fileprivate var innerPolygonShape = CAShapeLayer()
     fileprivate var centerPolygonShape = CAShapeLayer()
-    fileprivate var lineHeight = [CGFloat]()
-    fileprivate var LineColor = [UIColor]()
 
-    func setUp(borderColor: UIColor, sides: Int, lineWidth: CGFloat, roundLine: Bool, averageValue: CGFloat, lineHeight: [CGFloat], lineColor: [UIColor]) {
-        self.lineHeight = lineHeight
-        self.LineColor = lineColor
-        lineBounds(rect: bounds, lineWidth: lineWidth, sides: sides, roundCap: roundLine)
-        drawShape(borderColor: borderColor, sides: sides)
-        configureInnerPolygon(averageValue: averageValue)
+    init(frame: CGRect, data: [CGFloat], average: CGFloat, chartType: ChartType) {
+        super.init(frame: frame)
+
+        makeSleepChart(frame: frame, data: data, average: average, chartType: chartType)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
-    private func drawShape(borderColor: UIColor, borderWidth: CGFloat = 1, sides: Int) {
-        outerPolygonShape = shape(borderColor: borderColor)
-        outerPolygonShape.path = UIBezierPath.roundedPolygonPath(rect: bounds, lineWidth: borderWidth, sides: 5).cgPath
+    private func makeSleepChart(frame: CGRect, data: [CGFloat], average: CGFloat, chartType: ChartType) {
+        lineBounds(chartType: chartType, data: data, average: average)
+        drawShape(chartType: chartType)
+        configureInnerPolygon(average: average)
+    }
 
-        innerPolygonShape = shape(borderColor: borderColor)
-        centerPolygonShape = shape(borderColor: borderColor, fillColor: .brown)
-        centerPolygonShape.path = UIBezierPath.roundedPolygonPath(rect: bounds, lineWidth: borderWidth, sides: sides, radius: 10).cgPath
+    private func drawShape(chartType: ChartType) {
+        outerPolygonShape = shape(borderColor: chartType.borderColor)
+        outerPolygonShape.path = UIBezierPath.roundedPolygonPath(rect: bounds, lineWidth: chartType.borderWidth, sides: chartType.sites).cgPath
+
+        innerPolygonShape = shape(borderColor: chartType.borderColor)
+        centerPolygonShape = shape(borderColor: chartType.borderColor, fillColor: .greyish20)
+        centerPolygonShape.path = UIBezierPath.roundedPolygonPath(rect: bounds, lineWidth: chartType.borderWidth, sides: chartType.sites, radius: 10).cgPath
 
         layer.addSublayer(innerPolygonShape)
         layer.addSublayer(outerPolygonShape)
@@ -45,12 +72,12 @@ final class SleepChartView: UIView {
         return shape
     }
 
-    func configureInnerPolygon(averageValue: CGFloat = 0.5) {
-        let radius = (bounds.width / 2) * averageValue
+    func configureInnerPolygon(average: CGFloat) {
+        let radius = (bounds.width / 2) * average
         innerPolygonShape.path = UIBezierPath.roundedPolygonPath(rect: bounds, lineWidth: 1, sides: 5, radius: radius).cgPath
     }
 
-    private func drawLines(roundCap: Bool, center: CGPoint, end: CGPoint, color: UIColor) {
+    private func drawLines(chartType: ChartType, center: CGPoint, end: CGPoint, color: UIColor) {
         let line = CAShapeLayer()
         let linePath = UIBezierPath()
         linePath.move(to: center)
@@ -58,30 +85,29 @@ final class SleepChartView: UIView {
         line.path = linePath.cgPath
         line.lineWidth = 4
         line.lineDashPattern = [1.5, 1]
-        if roundCap == true {
+
+        if chartType == .quality {
             line.lineCap = kCALineCapRound
         }
+
         line.strokeColor = color.cgColor
         layer.addSublayer(line)
     }
 
-    private func lineBounds(rect: CGRect, lineWidth: CGFloat, sides: NSInteger, cornerRadius: CGFloat = 0, rotationOffset: CGFloat = 0, roundCap: Bool) {
+    private func lineBounds(chartType: ChartType, data: [CGFloat], average: CGFloat) {
+        precondition(data.isEmpty == false, "No Data available")
 
-        if lineHeight.count <= 0 {
-            fatalError("Please set the value for Lines")
-        }
+        let theta: CGFloat = CGFloat(2.0 * CGFloat.pi) / CGFloat(chartType.sites)
+        let width = min(frame.size.width, frame.size.height)
+        let center = CGPoint(x: frame.origin.x + width / 2.0, y: frame.origin.y + width / 2.0)
+        var angle: CGFloat = 0
 
-        let theta: CGFloat = CGFloat(2.0 * CGFloat.pi) / CGFloat(sides)
-        let width = min(rect.size.width, rect.size.height)
-        let center = CGPoint(x: rect.origin.x + width / 2.0, y: rect.origin.y + width / 2.0)
-        var angle = rotationOffset
-
-        for index in 0..<sides {
+        for index in 0..<chartType.sites {
             angle += theta
-            let length = (bounds.width / 2.2 ) * lineHeight[index]
+            let length = (bounds.width / 2.2 ) * data[index]
             let corner = CGPoint(x: center.x + ( length ) * cos(angle), y: center.y + (length ) * sin(angle))
-            let end = CGPoint(x: corner.x + cornerRadius * cos(angle + theta), y: corner.y + cornerRadius * sin(angle + theta))
-            drawLines(roundCap: roundCap, center: center, end: end, color: LineColor[index])
+            let end = CGPoint(x: corner.x * cos(angle + theta), y: corner.y * sin(angle + theta))
+            drawLines(chartType: chartType, center: center, end: end, color: chartType.lineColor(value: data[index], average: average))
         }
-}
+    }
 }

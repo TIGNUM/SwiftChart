@@ -13,14 +13,14 @@ final class MyStatisticsCoordinator: ParentCoordinator {
 
     // MARK: - Properties
 
-    fileprivate let rootViewController: MyUniverseViewController
+    fileprivate let rootViewController: UIViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
     var children: [Coordinator] = []
 
     // MARK: - Life Cycle
 
-    init(root: MyUniverseViewController, services: Services, eventTracker: EventTracker) {
+    init(root: UIViewController, services: Services, eventTracker: EventTracker) {
         self.rootViewController = root
         self.services = services
         self.eventTracker = eventTracker

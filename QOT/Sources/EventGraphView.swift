@@ -27,6 +27,7 @@ final class EventGraphView: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
+
         displayLayers()
     }
 
