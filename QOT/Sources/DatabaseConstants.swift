@@ -80,6 +80,7 @@ enum JsonKey: String {
     case syncTime
     case syncTokenHeaderKey
     case tabs
+    case thumbnailURL
 
     var value: String {
         return rawValue

@@ -27,6 +27,8 @@ protocol ContentCollectionDataProtocol {
 
     /// A comma seperated list of tags: eg. `blog,health`
     var searchTags: String { get }
+
+    var thumbnailURLString: String? { get }
 }
 
 struct ContentCollectionData: ContentCollectionDataProtocol {
@@ -37,14 +39,16 @@ struct ContentCollectionData: ContentCollectionDataProtocol {
     let searchTags: String
     let relatedContentIDs: [Int]
     let categoryIDs: [Int]
+    let thumbnailURLString: String?
 
-    init(sortOrder: Int, title: String, layoutInfo: String?, searchTags: String, relatedContent: String?) {
+    init(sortOrder: Int, title: String, layoutInfo: String?, searchTags: String, relatedContent: String?, thumbnailURL: String? = nil) {
         self.sortOrder = sortOrder
         self.title = title
         self.layoutInfo = layoutInfo
         self.searchTags = searchTags
         self.relatedContentIDs = []
         self.categoryIDs = []
+        self.thumbnailURLString = thumbnailURL
     }
 }
 
@@ -59,5 +63,6 @@ extension ContentCollectionData: JSONDecodable {
         self.searchTags = try (json.getArray(at: .searchTags) as [String]).joined(separator: ",")
         self.categoryIDs = try json.getArray(at: .categoryIDs)
         self.layoutInfo = try json.serializeString(at: .layoutInfo)
+        self.thumbnailURLString = try json.getItemValue(at: .thumbnailURL, alongPath: .NullBecomesNil)
     }
 }

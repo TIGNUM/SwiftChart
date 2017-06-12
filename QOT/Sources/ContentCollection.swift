@@ -29,6 +29,7 @@ final class ContentCollection: Object, ContentCollectionDataProtocol {
         title = data.title
         layoutInfo = data.layoutInfo
         searchTags = data.searchTags
+        thumbnailURLString = data.thumbnailURLString
     }
 
     // MARK: ContentData
@@ -42,6 +43,8 @@ final class ContentCollection: Object, ContentCollectionDataProtocol {
     fileprivate(set) dynamic var searchTags: String = ""
 
     fileprivate(set) dynamic var relatedContent: String?
+
+    fileprivate(set) dynamic var thumbnailURLString: String?
 
     // MARK: Realm
 
@@ -67,6 +70,7 @@ extension ContentCollection: DownSyncable {
         title = data.title
         layoutInfo = data.layoutInfo
         searchTags = data.searchTags
+        thumbnailURLString = data.thumbnailURLString
         // FIXME: set Related Content
         let categoryPredicates = data.categoryIDs.map { NSPredicate(remoteID: $0) }
         let categories = try objectStore.uniqueObjects(ContentCategory.self, predicates: categoryPredicates )
