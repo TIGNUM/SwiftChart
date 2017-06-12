@@ -29,12 +29,12 @@ final class PrepareContentCoordinator: ParentCoordinator {
     }
 
     func start() {
-        let viewModel = PrepareContentViewModel(collection: collection)
+        let viewModel = PrepareContentViewModel()
         let prepareContentViewController = PrepareContentViewController(viewModel: viewModel)
 
         let topTabBarControllerItem = TopTabBarController.Item(
             controllers: [prepareContentViewController],
-            themes: [.dark],
+            themes: [.light],
             titles: [R.string.localized.topTabBarItemTitlePerpareCoach()]
         )
 
@@ -63,32 +63,13 @@ extension PrepareContentCoordinator: PrepareContentViewControllerDelegate {
         log("didTapShare")
     }
 
-    func didTapVideo(with ID: String, from view: UIView, in viewController: PrepareContentViewController) {
-        log("didTapVideo: ID: \(ID)")
+    func didTapVideo(with videoURL: URL, from view: UIView, in viewController: PrepareContentViewController) {
+        log("didTapVideo: :")
     }
 
-    func didTapSaveAs(sectionID: String, in viewController: PrepareContentViewController) {
-        log("didTapSaveAs")
-    }
-
-    func didTapAddToNotes(sectionID: String, in viewController: PrepareContentViewController) {
-        log("didTapAddToNotes")
-    }
-
-    func didTapAddPreparation(sectionID: String, in viewController: PrepareContentViewController) {
-        startPrepareEventsCoordinator(viewController: viewController)
-    }
-
-    func didTapSaveAs(in viewController: PrepareContentViewController) {
-        log("didTapSaveAs")
-    }
-
-    func didTapAddToNotes(in viewController: PrepareContentViewController) {
-        log("didTapAddToNotes")
-    }
-
-    func didTapAddPreparation(in viewController: PrepareContentViewController) {
-        startPrepareEventsCoordinator(viewController: viewController)
+    func didTapReadMore(readMoreID: Int, in viewController: PrepareContentViewController) {
+        log("didTapReadMore: ID: \(readMoreID)")
+//        startPrepareEventsCoordinator(viewController: viewController)
     }
 
     private func startPrepareEventsCoordinator(viewController: UIViewController) {

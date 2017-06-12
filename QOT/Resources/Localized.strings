@@ -45,6 +45,7 @@
 
 "Prepare.PrepareEvents.AddPreparation" = "ADD THIS PREPARATION TO";
 "Prepare.PrepareEvents.AddNewTrip" = "Add new trip";
+"Prepare.Content.ReadMore" = "Read more";
 
 "Learn.Content.Item.Title.Full" = "Full";
 "Learn.Content.Item.Title.Bullets" = "Bullets";
