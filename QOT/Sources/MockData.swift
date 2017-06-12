@@ -18,6 +18,7 @@ func setupRealmWithMockData(realm: Realm) {
         try realm.write {
             if realm.objects(ContentCategory.self).count == 0 {
                 addMockLearnContentCategories(realm: realm)
+                addMockWhatsHotContentCategories(realm: realm)
                 addMockPrepareContentCategories(realm: realm)
                 addMockSidebarContentCategories(realm: realm)
             }

@@ -10,8 +10,8 @@ import UIKit
 import Anchorage
 
 protocol WhatsHotViewControllerDelegate: class {
-    func didTapVideo(at index: Index, with whatsHot: WhatsHotItem, from view: UIView, in viewController: WhatsHotViewController)
-    func didTapBookmark(at index: Index, with whatsHot: WhatsHotItem, in view: UIView, in viewController: WhatsHotViewController)
+    func didTapVideo(at index: Index, with whatsHot: LearnWhatsHotContentItem, from view: UIView, in viewController: WhatsHotViewController)
+    func didTapBookmark(at index: Index, with whatsHot: LearnWhatsHotContentItem, in view: UIView, in viewController: WhatsHotViewController)
 }
 
 class WhatsHotViewController: UIViewController {

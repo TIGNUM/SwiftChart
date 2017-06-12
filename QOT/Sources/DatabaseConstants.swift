@@ -13,6 +13,7 @@ enum Database {
 
     enum Section: String {
         case learnStrategy = "learn.strategie"
+        case learnWhatsHot = "learn.whats.hot"
         case prepareCoach = "prepare.coach"
         case sidebar = "sidebar"
 

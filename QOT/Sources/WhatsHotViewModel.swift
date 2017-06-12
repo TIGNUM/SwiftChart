@@ -11,78 +11,20 @@ import ReactiveKit
 
 final class WhatsHotViewModel {
     
-    private let items = mockWhatsHotItems()
+    private let categories: DataProvider<LearnWhatsHotContentCategory>
     let updates = PublishSubject<CollectionUpdate, NoError>()
     
     var itemCount: Int {
-        return items.count
+        return categories.count
     }
     
-    func item(at index: Index) -> WhatsHotItem {
-        return items[index]
+    func item(at index: Index) -> LearnWhatsHotContentItem {
+        return categories.item(at: index).learnWhatsHotContent.item(at: 0).learnWhatsHotItems.item(at: 0)
     }
-}
 
-protocol WhatsHotItem {
-    var localID: String { get }
-    var identifier: NSAttributedString { get }
-    var subtitle: NSAttributedString { get }
-    var text: NSAttributedString { get }
-    var mediaInformation: NSAttributedString { get }
-    var placeholderURL: URL { get }
-    var bookmarked: Bool { get }
-}
+    // MARK: - Init
 
-struct MockWhatsHotItem: WhatsHotItem {
-    let localID: String
-    let identifier: NSAttributedString
-    let subtitle: NSAttributedString
-    let text: NSAttributedString
-    let mediaInformation: NSAttributedString
-    let placeholderURL: URL
-    let bookmarked: Bool
-}
-
-private func mockWhatsHotItems() -> [WhatsHotItem] {
-    return [
-        MockWhatsHotItem(
-            localID: UUID().uuidString,
-            identifier: Style.headline(".087", .white).attributedString(),
-            subtitle: Style.paragraph("Q O T   / /   T H O U G H T S", .white60).attributedString(),
-            text: Style.headline("IMPACT OF EXTRINSIC POLJ MOTIVATION ON INTRINSIC", .white).attributedString(),
-            mediaInformation: Style.paragraph("V I D E O     /  /    2   M I N", .white60).attributedString(),
-            placeholderURL: URL(string:"https://static.pexels.com/photos/348323/pexels-photo-348323.jpeg")!,
-            bookmarked: false
-        ),
-        
-        MockWhatsHotItem(
-            localID: UUID().uuidString,
-            identifier: Style.headline(".086", .white).attributedString(),
-            subtitle: Style.paragraph("Q O T   / /   T H O U G H T S", .white60).attributedString(),
-            text: Style.headline("IMPACT OF EXTRINSIC POLJ MOTIVATION ON INTRINSIC", .white).attributedString(),
-            mediaInformation: Style.paragraph("V I D E O     /  /    2   M I N", .white60).attributedString(),
-            placeholderURL: URL(string:"https://static.pexels.com/photos/234171/pexels-photo-234171.jpeg")!,
-            bookmarked: true
-        ),
-        
-        MockWhatsHotItem(
-            localID: UUID().uuidString,
-            identifier: Style.headline(".085", .white).attributedString(),
-            subtitle: Style.paragraph("Q O T   / /   T H O U G H T S", .white60).attributedString(),
-            text: Style.headline("IMPACT OF EXTRINSIC POLJ MOTIVATION ON INTRINSIC", .white).attributedString(),
-            mediaInformation: Style.paragraph("V I D E O     /  /    2   M I N", .white60).attributedString(),
-            placeholderURL: URL(string:"https://images.pexels.com/photos/7715/pexels-photo.jpg?w=1260&h=750&auto=compress&cs=tinysrgb")!,
-            bookmarked: false
-        ),
-        
-        MockWhatsHotItem(
-            localID: UUID().uuidString,
-            identifier: Style.headline(".084", .white).attributedString(),
-            subtitle: Style.paragraph("Q O T   / /   T H O U G H T S", .white60).attributedString(),
-            text: Style.headline("IMPACT OF EXTRINSIC POLJ MOTIVATION ON INTRINSIC", .white).attributedString(),
-            mediaInformation: Style.paragraph("V I D E O     /  /    2   M I N", .white60).attributedString(),
-            placeholderURL: URL(string:"https://static.pexels.com/photos/351073/pexels-photo-351073.jpeg")!,
-            bookmarked: false
-        )
-    ]
+    init(categories: DataProvider<LearnWhatsHotContentCategory>) {
+        self.categories = categories
+    }
 }

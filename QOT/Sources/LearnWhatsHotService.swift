@@ -1,39 +1,37 @@
 //
-//  LearnContentCategory.swift
+//  LearnWhatsHotService.swift
 //  QOT
 //
-//  Created by Sam Wyndham on 30/03/2017.
+//  Created by karmic on 09.06.17.
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
 import Foundation
 import RealmSwift
 
-protocol LearnContentServiceDelegate: class {
-    func updatedViewedAt(with itemID: Int)
+protocol LearnWhatsHotServiceDelegate: class {
+
+    func didSelectItem(with itemID: Int, from viewController: UIViewController)
 }
 
-final class LearnContentService {
+final class LearnWhatsHotService {
 
     // MARK: - Properties
 
     private let mainRealm: Realm
     private let realmProvider: RealmProvider
     fileprivate var token: NotificationToken?
-    weak var learnCategoryUpdateDelegate: LearnCategoryUpdateDelegate?
 
     init(mainRealm: Realm, realmProvider: RealmProvider) {
         self.mainRealm = mainRealm
         self.realmProvider = realmProvider
     }
 
-    func categories() -> DataProvider<LearnContentCategory> {
-        let filter = String.realmSectionFilter(filter: Database.Section.learnStrategy.rawValue)
+    func categories() -> DataProvider<LearnWhatsHotContentCategory> {
+        let filter = String.realmSectionFilter(filter: Database.Section.learnWhatsHot.rawValue)
         let results = mainRealm.objects(ContentCategory.self).sorted(byKeyPath: "sortOrder").filter(filter)
-        self.token = mainRealm.addNotificationBlock({ (_, _) in
-            self.learnCategoryUpdateDelegate?.didUpdateCategoryViewedPercentage()
-        })
-        return DataProvider<LearnContentCategory>(results: results, map: { $0 as LearnContentCategory })
+        
+        return DataProvider<LearnWhatsHotContentCategory>(results: results, map: { $0 as LearnWhatsHotContentCategory })
     }
 
     func updatedViewedAt(with itemId: Int) {

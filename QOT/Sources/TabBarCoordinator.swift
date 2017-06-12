@@ -24,9 +24,10 @@ final class TabBarCoordinator: ParentCoordinator {
 
     fileprivate lazy var topTabBarControllerLearn: TopTabBarController = {
         let categories = self.services.learnContentService.categories()
+        let whatsHotCategories = self.services.learnWhatsHotService.categories()
         let viewModel = LearnCategoryListViewModel(categories: categories)
         let learnCategoryListVC = LearnCategoryListViewController(viewModel: viewModel)
-        let whatsHotViewModel = WhatsHotViewModel()
+        let whatsHotViewModel = WhatsHotViewModel(categories: whatsHotCategories)
         let whatsHotViewController = WhatsHotViewController(viewModel: whatsHotViewModel)
 
         let topBarControllerItem = TopTabBarController.Item(
@@ -247,12 +248,12 @@ extension TabBarCoordinator: ChatViewDelegate {
 
 extension TabBarCoordinator: WhatsHotViewControllerDelegate {
 
-    func didTapVideo(at index: Index, with whatsHot: WhatsHotItem, from view: UIView, in viewController: WhatsHotViewController) {
-        log("didTapVideo: index: \(index), whatsHotItem.URL: \(whatsHot.placeholderURL.absoluteString)")
+    func didTapVideo(at index: Index, with whatsHot: LearnWhatsHotContentItem, from view: UIView, in viewController: WhatsHotViewController) {
+        log("didTapVideo: index: \(index)")
     }
 
-    func didTapBookmark(at index: Index, with whatsHot: WhatsHotItem, in view: UIView, in viewController: WhatsHotViewController) {
-        log("didTapBookmark: index: \(index), whatsHotItem.bookmarked: \(whatsHot.bookmarked)")
+    func didTapBookmark(at index: Index, with whatsHot: LearnWhatsHotContentItem, in view: UIView, in viewController: WhatsHotViewController) {
+        log("didTapBookmark: index: \(index)")
     }
 }
 
