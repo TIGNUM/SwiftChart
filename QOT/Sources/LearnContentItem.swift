@@ -14,8 +14,6 @@ protocol LearnContentItem: TrackableEntity {
     /// Whether the content has been viewed.
     var viewed: Bool { get }
 
-    var title: String { get }
-
     var contentItemValue: ContentItemValue { get }
 }
 

@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import Freddy
 
-final class NetworkManager {
+class NetworkManager {
 
     private let sessionManager: SessionManager
     private let credentialsManager: CredentialsManager

@@ -11,11 +11,14 @@ import RealmSwift
 
 enum ObjectStoreError: Error {
     case objectIsNotUnique
+    case objectNotFound(predicate: NSPredicate)
 }
 
 protocol ObjectStore {
 
     func uniqueObject<T: Object>(_ type: T.Type, predicate: NSPredicate) throws -> T?
+
+    func uniqueObjects<T: Object>(_ type: T.Type, predicates: [NSPredicate]) throws -> [T]
 
     func addObject(_ object: Object)
 
@@ -35,6 +38,15 @@ extension Realm: ObjectStore {
             return objs[0]
         default:
             throw ObjectStoreError.objectIsNotUnique
+        }
+    }
+
+    func uniqueObjects<T: Object>(_ type: T.Type, predicates: [NSPredicate]) throws -> [T] {
+        return try predicates.map { (predicate) -> T in
+            guard let object = try uniqueObject(type, predicate: predicate) else {
+                throw ObjectStoreError.objectNotFound(predicate: predicate)
+            }
+            return object
         }
     }
 

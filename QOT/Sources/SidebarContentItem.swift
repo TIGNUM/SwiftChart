@@ -14,8 +14,6 @@ protocol SidebarContentItem: TrackableEntity {
     /// Whether the content has been viewed.
     var viewed: Bool { get }
 
-    var title: String { get }
-
     var sidebarContentItemValue: ContentItemValue { get }
 }
 

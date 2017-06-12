@@ -108,6 +108,11 @@ extension SidebarItemViewController: UITableViewDataSource {
             let attributedText = Style.tag(text, .white).attributedString()
             cell.setup(topText: attributedText, bottomText: nil, backgroundColor: .clear)
             return cell
+        case .listItem(let text):
+            let cell: ContentItemTextTableViewCell = tableView.dequeueCell(for: indexPath)
+            let attributedText = Style.tag(text, .white).attributedString()
+            cell.setup(topText: attributedText, bottomText: nil, backgroundColor: .clear)
+            return cell
         case .video(_, let description, let placeholderURL, _, _):
             let cell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.setupData(placeHolder: placeholderURL, description: attributedString(description: description))

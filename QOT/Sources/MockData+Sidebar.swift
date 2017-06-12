@@ -214,7 +214,8 @@ private func randomItemJson(format: ContentItemFormat?) -> String {
          .textH4,
          .textH5,
          .textH6,
-         .textBullet,
+         .listItem,
+         .textQuote,
          .textParagraph: return textItemJSON
     }
 }
@@ -223,7 +224,7 @@ private var videoItemJSON: String {
     var dict: [String: Any] = [:]
     dict["title"] = LoremIpsum.words(withNumber: Int.random(between: 3, and: 10))
     dict["description"] = LoremIpsum.words(withNumber: Int.random(between: 5, and: 10))
-    dict["placeholderURL"] = LoremIpsum.urlForPlaceholderImage(with: CGSize(width: 200, height: 300)).absoluteString
+    dict["thumbnailURL"] = LoremIpsum.urlForPlaceholderImage(with: CGSize(width: 200, height: 300)).absoluteString
     dict["videoURL"] = LoremIpsum.url().absoluteString
     dict["duration"] = Int.random(between: 100, and: 1000)
 
@@ -234,7 +235,7 @@ private var audioItemJSON: String {
     var dict: [String: Any] = [:]
     dict["title"] = LoremIpsum.words(withNumber: Int.random(between: 3, and: 10))
     dict["description"] = LoremIpsum.words(withNumber: Int.random(between: 5, and: 10))
-    dict["placeholderURL"] = LoremIpsum.urlForPlaceholderImage(with: CGSize(width: 200, height: 300)).absoluteString
+    dict["thumbnailURL"] = LoremIpsum.urlForPlaceholderImage(with: CGSize(width: 200, height: 300)).absoluteString
     dict["audioURL"] = LoremIpsum.url().absoluteString
     dict["duration"] = Int.random(between: 100, and: 1000)
     dict["waveformData"] = waveformData()

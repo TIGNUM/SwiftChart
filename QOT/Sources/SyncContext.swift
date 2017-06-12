@@ -32,12 +32,10 @@ class SyncContext {
         self.queue = queue
     }
 
-    func finish(error: SyncError?) {
-        if let error = error {
-            state = .errored(error)
-            queue?.cancelAllOperations()
-        } else {
-            state = .finished
-        }
+    func failed(error: SyncError) {
+        print("Sync failed with error: /(error)")
+
+        state = .errored(error)
+        queue?.cancelAllOperations()
     }
 }

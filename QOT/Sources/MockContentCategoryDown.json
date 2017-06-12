@@ -1,0 +1,129 @@
+{
+  "resultList": [
+    {
+      "sortOrder": 0,
+      "section": "learn.strategy",
+      "title": "Performance Mindset",
+      "layoutInfo": {
+        "bubble": {
+          "radius": 0.15,
+          "centerX": 0.5,
+          "centerY": 0.5
+        }
+      },
+      "searchTags": [
+        "tag1",
+        "tag2"
+      ],
+      "id": 100000,
+      "syncStatus": 0,
+      "createdAt": "2017-04-24T14:24:16.402Z",
+      "modifiedAt": null
+    },
+    {
+      "sortOrder": 1,
+      "section": "learn.strategy",
+      "title": "Performance Recovery",
+      "layoutInfo": {
+        "bubble": {
+          "radius": 0.131,
+          "centerX": 0.32,
+          "centerY": 0.24
+        }
+      },
+      "searchTags": [
+        "tag1",
+        "tag2"
+      ],
+      "id": 100001,
+      "syncStatus": 0,
+      "createdAt": "2017-04-24T14:24:16.455Z",
+      "modifiedAt": null
+    },
+    {
+      "sortOrder": 2,
+      "section": "learn.strategy",
+      "title": "Performance Foundation",
+      "layoutInfo": {
+        "bubble": {
+          "radius": 0.125,
+          "centerX": 0.186,
+          "centerY": 0.558
+        }
+      },
+      "searchTags": [
+        "tag1",
+        "tag2"
+      ],
+      "id": 100002,
+      "syncStatus": 0,
+      "createdAt": "2017-04-24T14:24:16.474Z",
+      "modifiedAt": "2017-05-16T15:06:24.739Z"
+    },
+    {
+      "sortOrder": 3,
+      "section": "learn.strategy",
+      "title": "Performance Nutrition",
+      "layoutInfo": {
+        "bubble": {
+          "radius": 0.131,
+          "centerX": 0.442,
+          "centerY": 0.804
+        }
+      },
+      "searchTags": [
+        "tag1",
+        "tag2"
+      ],
+      "id": 100003,
+      "syncStatus": 0,
+      "createdAt": "2017-04-24T14:24:16.496Z",
+      "modifiedAt": "2017-05-16T15:17:06.064Z"
+    },
+    {
+      "sortOrder": 4,
+      "section": "learn.strategy",
+      "title": "Performance Movement",
+      "layoutInfo": {
+        "bubble": {
+          "radius": 0.111,
+          "centerX": 0.788,
+          "centerY": 0.585
+        }
+      },
+      "searchTags": [
+        "tag1",
+        "tag2"
+      ],
+      "id": 100004,
+      "syncStatus": 0,
+      "createdAt": "2017-04-24T14:24:16.515Z",
+      "modifiedAt": null
+    },
+    {
+      "sortOrder": 5,
+      "section": "learn.strategy",
+      "title": "Movement",
+      "layoutInfo": {
+        "bubble": {
+          "radius": 0.139,
+          "centerX": 0.716,
+          "centerY": 0.250
+        }
+      },
+      "searchTags": [
+        "tag1",
+        "tag2"
+      ],
+      "id": 100005,
+      "syncStatus": 0,
+      "createdAt": "2017-04-24T14:24:16.547Z",
+      "modifiedAt": null
+    }
+  ],
+  "page": 1,
+  "pageSize": 10,
+  "maxResults": 6,
+  "maxPages": 1,
+  "nextSyncToken": "not_initial"
+}

@@ -29,7 +29,7 @@ struct LogToggle {
         static let API = false
         static let Database = false
         static let Font = false
-        static let FileManager = false
+        static let FileManager = true
         static let TabBar = false
     }
 }

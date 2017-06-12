@@ -26,35 +26,33 @@ final class ContentItem: Object, ContentItemDataProtocol {
     dynamic var collection: ContentCollection?
 
     func setData(_ data: ContentItemDataProtocol) throws {
-        try data.validate()
-
         sortOrder = data.sortOrder
-        title = data.title
         secondsRequired = data.secondsRequired
         value = data.value
         format = data.format
         viewed = data.viewed
         searchTags = data.searchTags
         layoutInfo = data.layoutInfo
+        tabs = data.tabs
     }
 
     // MARK: ContentData
 
-    private(set) dynamic var sortOrder: Int = 0
+    fileprivate(set) dynamic var sortOrder: Int = 0
 
-    private(set) dynamic var title: String = ""
+    fileprivate(set) dynamic var secondsRequired: Int = 0
 
-    private(set) dynamic var secondsRequired: Int = 0
+    fileprivate(set) dynamic var value: String = ""
 
-    private(set) dynamic var value: String = ""
+    fileprivate(set) dynamic var format: String = ""
 
-    private(set) dynamic var format: String = ""
+    fileprivate(set) dynamic var searchTags: String = ""
 
-    private(set) dynamic var searchTags: String = ""
+    fileprivate(set) dynamic var tabs: String = ""
 
-    private(set) dynamic var layoutInfo: String?
+    fileprivate(set) dynamic var layoutInfo: String?
 
-    private(set) dynamic var contentID: Int = 0
+    fileprivate(set) dynamic var contentID: Int = 0
 
     dynamic var viewed: Bool = false
 
@@ -62,6 +60,29 @@ final class ContentItem: Object, ContentItemDataProtocol {
 
     override class func primaryKey() -> String? {
         return "remoteID"
+    }
+}
+
+extension ContentItem: DownSyncable {
+    static func make(remoteID: Int, createdAt: Date) -> ContentItem {
+        let item = ContentItem()
+        item.remoteID = remoteID
+        item.createdAt = createdAt
+        return item
+    }
+
+    func setData(_ data: ContentItemData, objectStore: ObjectStore) throws {
+        sortOrder = data.sortOrder
+        secondsRequired = data.secondsRequired
+        value = data.value
+        format = data.format
+        viewed = data.viewed
+        searchTags = data.searchTags
+        tabs = data.tabs
+        layoutInfo = data.layoutInfo
+        collection = try objectStore.uniqueObject(ContentCollection.self, predicate: NSPredicate(remoteID: data.contentID))
+
+        let _ = try getContentItemValue()
     }
 }
 

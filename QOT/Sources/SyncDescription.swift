@@ -10,6 +10,8 @@ import Foundation
 import Freddy
 
 let ContentCategoryDown = SyncDescription<ContentCategoryData, ContentCategory>(syncType: .contentCategoryDown)
+let ContentCollectionDown = SyncDescription<ContentCollectionData, ContentCollection>(syncType: .contentCollectionDown)
+let ContentItemDown = SyncDescription<ContentItemData, ContentItem>(syncType: .contentItemDown)
 
 struct SyncDescription<Intermediary, Persistable> where Intermediary: JSONDecodable {
     let syncType: SyncType

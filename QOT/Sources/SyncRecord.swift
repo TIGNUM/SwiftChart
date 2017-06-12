@@ -10,10 +10,14 @@ import RealmSwift
 
 enum SyncType: String {
     case contentCategoryDown
+    case contentCollectionDown
+    case contentItemDown
 
     var endpoint: Endpoint {
         switch self {
         case .contentCategoryDown: return .contentCategories
+        case .contentCollectionDown: return .contentCollection
+        case .contentItemDown: return .contentItems
         }
     }
 }

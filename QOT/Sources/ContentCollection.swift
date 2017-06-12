@@ -33,15 +33,15 @@ final class ContentCollection: Object, ContentCollectionDataProtocol {
 
     // MARK: ContentData
 
-    private(set) dynamic var sortOrder: Int = 0
+    fileprivate(set) dynamic var sortOrder: Int = 0
 
-    private(set) dynamic var title: String = ""
+    fileprivate(set) dynamic var title: String = ""
 
-    private(set) dynamic var layoutInfo: String?
+    fileprivate(set) dynamic var layoutInfo: String?
 
-    private(set) dynamic var searchTags: String = ""
+    fileprivate(set) dynamic var searchTags: String = ""
 
-    private(set) dynamic var relatedContent: String?
+    fileprivate(set) dynamic var relatedContent: String?
 
     // MARK: Realm
 
@@ -52,4 +52,26 @@ final class ContentCollection: Object, ContentCollectionDataProtocol {
     // MARK: Relationships
 
     let items = LinkingObjects(fromType: ContentItem.self, property: "collection")
+}
+
+extension ContentCollection: DownSyncable {
+    static func make(remoteID: Int, createdAt: Date) -> ContentCollection {
+        let collection = ContentCollection()
+        collection.remoteID = remoteID
+        collection.createdAt = createdAt
+        return collection
+    }
+
+    func setData(_ data: ContentCollectionData, objectStore: ObjectStore) throws {
+        sortOrder = data.sortOrder
+        title = data.title
+        layoutInfo = data.layoutInfo
+        searchTags = data.searchTags
+        // FIXME: set Related Content
+        let categoryPredicates = data.categoryIDs.map { NSPredicate(remoteID: $0) }
+        let categories = try objectStore.uniqueObjects(ContentCategory.self, predicates: categoryPredicates )
+
+        self.categories.removeAll()
+        self.categories.append(objectsIn: categories)
+    }
 }

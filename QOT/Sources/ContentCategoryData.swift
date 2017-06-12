@@ -60,6 +60,6 @@ extension ContentCategoryData: JSONDecodable {
         self.sortOrder = try json.getItemValue(at: .sortOrder)
         self.section = try json.getItemValue(at: .section)
         self.searchTags = try (json.getArray(at: .searchTags) as [String]).joined(separator: ",")
-        self.layoutInfo = try json[.layoutInfo]?.serializeString()
+        self.layoutInfo = try json.serializeString(at: .layoutInfo)
     }
 }

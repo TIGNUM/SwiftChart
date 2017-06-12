@@ -78,6 +78,10 @@ extension LearnContentItemBulletViewController: UITableViewDataSource, UITableVi
             let topText = Style.headline(text, .black).attributedString()
             cell.setup(topText: topText, bottomText: topText)
             return cell
+        case .listItem(let text):
+            let topText = Style.headline(text, .black).attributedString()
+            cell.setup(topText: topText, bottomText: topText)
+            return cell
         case .audio(let title, _, _, _, _, _):
             let topText = Style.headline(title, .black).attributedString()
             cell.setup(topText: topText, bottomText: topText)

@@ -9,15 +9,27 @@
 import Foundation
 import RealmSwift
 import LoremIpsum
+import Alamofire
 
 // FIXME: Remove when no longer needed
+
+private let syncManager: SyncManager = {
+    let requestBuilder = URLRequestBuilder(baseURL: URL(string: "http://example.com")!)
+    let networkManager = MockNetworkManager(sessionManager: SessionManager.default, credentialsManager: CredentialsManager(), requestBuilder: requestBuilder)
+    let realmProvider = RealmProvider()
+    let syncRecordService = SyncRecordService(realmProvider: realmProvider)
+    return SyncManager(networkManager: networkManager, syncRecordService: syncRecordService, realmProvider: realmProvider)
+}()
+
+
 
 /// Deletes all data in default realm and fills with mock data.
 func setupRealmWithMockData(realm: Realm) {
     do {
         try realm.write {
             if realm.objects(ContentCategory.self).count == 0 {
-                addMockLearnContentCategories(realm: realm)
+                syncManager.syncAll()
+
                 addMockWhatsHotContentCategories(realm: realm)
                 addMockPrepareContentCategories(realm: realm)
                 addMockSidebarContentCategories(realm: realm)
@@ -197,14 +209,15 @@ private func randomItemJson(format: ContentItemFormat?) -> String {
     switch format {
     case .audio: return audioItemJSON
     case .image: return imageItemJSON
-    case .textBullet,
+    case .listItem,
          .textH1,
          .textH2,
          .textH3,
          .textH4,
          .textH5,
          .textH6,
-         .textParagraph: return textItemJSON
+         .textParagraph,
+         .textQuote: return textItemJSON
     case .video: return videoItemJSON
     }
 }
@@ -220,7 +233,7 @@ private var videoItemJSON: String {
     var dict: [String: Any] = [:]
     dict["title"] = LoremIpsum.words(withNumber: Int.random(between: 3, and: 10))
     dict["description"] = LoremIpsum.words(withNumber: Int.random(between: 5, and: 10))
-    dict["placeholderURL"] = LoremIpsum.urlForPlaceholderImage(with: CGSize(width: 200, height: 300)).absoluteString
+    dict["thumbnailURL"] = LoremIpsum.urlForPlaceholderImage(with: CGSize(width: 200, height: 300)).absoluteString
     dict["videoURL"] = LoremIpsum.url().absoluteString
     dict["duration"] = Int.random(between: 100, and: 1000)
 
@@ -231,7 +244,7 @@ private var audioItemJSON: String {
     var dict: [String: Any] = [:]
     dict["title"] = LoremIpsum.words(withNumber: Int.random(between: 3, and: 10))
     dict["description"] = LoremIpsum.words(withNumber: Int.random(between: 5, and: 10))
-    dict["placeholderURL"] = LoremIpsum.urlForPlaceholderImage(with: CGSize(width: 200, height: 300)).absoluteString
+    dict["thumbnailURL"] = LoremIpsum.urlForPlaceholderImage(with: CGSize(width: 200, height: 300)).absoluteString
     dict["audioURL"] = LoremIpsum.url().absoluteString
     dict["duration"] = Int.random(between: 100, and: 1000)
     dict["waveformData"] = waveformData()

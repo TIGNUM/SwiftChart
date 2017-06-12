@@ -120,7 +120,9 @@ final class DownSyncOperation<Intermediary, Persistable>: ConcurrentOperation wh
     // MARK: Finish
 
     private func finish(error: SyncError?) {
-        context.finish(error: error)
+        if let error = error {
+            context.failed(error: error)
+        }
         finish()
     }
 

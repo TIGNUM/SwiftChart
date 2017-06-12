@@ -96,6 +96,12 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
         shouldMarkItemAsViewed(contentItem: contentItem as? ContentItem)
 
         switch cotentItemValue {
+        case .listItem(let itemText):
+            return contentItemTextTableViewCell(
+                tableView: tableView,
+                indexPath: indexPath,
+                itemText: itemText
+            )
         case .text(let itemText, _):
             return contentItemTextTableViewCell(
                 tableView: tableView,
@@ -129,8 +135,8 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
         switch cotentItemValue {
         case .video(_, _, _, _, _): streamVideo()
         case .audio(_, _, _, _, _, _): streamVideo()
-        case .image(_, _, _),
-             .text(_, _): return
+        default:
+            return
         }
     }
 

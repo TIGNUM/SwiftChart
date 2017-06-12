@@ -57,6 +57,12 @@
 		CB0A4A581ECC4C25006A2D85 /* AddSensorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A4A571ECC4C25006A2D85 /* AddSensorCoordinator.swift */; };
 		CB0A4A5A1ECC4C3E006A2D85 /* AddSensorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A4A591ECC4C3E006A2D85 /* AddSensorViewModel.swift */; };
 		CB0A4A5D1ECC4C72006A2D85 /* AddSensorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A4A5B1ECC4C72006A2D85 /* AddSensorViewController.swift */; };
+		CB18BCBF1EEABD890035C1BB /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB18BCBE1EEABD890035C1BB /* MockNetworkManager.swift */; };
+		CB18BCC11EEABFA60035C1BB /* MockStartSync.json in Resources */ = {isa = PBXBuildFile; fileRef = CB18BCC01EEABFA60035C1BB /* MockStartSync.json */; };
+		CB18BCC31EEABFEB0035C1BB /* MockContentCategoryDown.json in Resources */ = {isa = PBXBuildFile; fileRef = CB18BCC21EEABFEB0035C1BB /* MockContentCategoryDown.json */; };
+		CB18BCC51EEAC2CE0035C1BB /* MockDownSyncConfirm.json in Resources */ = {isa = PBXBuildFile; fileRef = CB18BCC41EEAC2CE0035C1BB /* MockDownSyncConfirm.json */; };
+		CB18BCC71EEACF890035C1BB /* MockDownSyncContentCollection.json in Resources */ = {isa = PBXBuildFile; fileRef = CB18BCC61EEACF890035C1BB /* MockDownSyncContentCollection.json */; };
+		CB18BCC91EEAE9070035C1BB /* MockContentItemDown.json in Resources */ = {isa = PBXBuildFile; fileRef = CB18BCC81EEAE9070035C1BB /* MockContentItemDown.json */; };
 		CB1D5E391EC5E25A00BCDF8D /* ContentCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D5E2E1EC5E25A00BCDF8D /* ContentCategory.swift */; };
 		CB1D5E3A1EC5E25A00BCDF8D /* ContentCategoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D5E2F1EC5E25A00BCDF8D /* ContentCategoryData.swift */; };
 		CB1D5E3B1EC5E25A00BCDF8D /* ContentCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D5E301EC5E25A00BCDF8D /* ContentCollection.swift */; };
@@ -367,6 +373,12 @@
 		CB0A4A571ECC4C25006A2D85 /* AddSensorCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorCoordinator.swift; sourceTree = "<group>"; };
 		CB0A4A591ECC4C3E006A2D85 /* AddSensorViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorViewModel.swift; sourceTree = "<group>"; };
 		CB0A4A5B1ECC4C72006A2D85 /* AddSensorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorViewController.swift; sourceTree = "<group>"; };
+		CB18BCBE1EEABD890035C1BB /* MockNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockNetworkManager.swift; sourceTree = "<group>"; };
+		CB18BCC01EEABFA60035C1BB /* MockStartSync.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockStartSync.json; sourceTree = "<group>"; };
+		CB18BCC21EEABFEB0035C1BB /* MockContentCategoryDown.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockContentCategoryDown.json; sourceTree = "<group>"; };
+		CB18BCC41EEAC2CE0035C1BB /* MockDownSyncConfirm.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockDownSyncConfirm.json; sourceTree = "<group>"; };
+		CB18BCC61EEACF890035C1BB /* MockDownSyncContentCollection.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockDownSyncContentCollection.json; sourceTree = "<group>"; };
+		CB18BCC81EEAE9070035C1BB /* MockContentItemDown.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockContentItemDown.json; sourceTree = "<group>"; };
 		CB1D5E2E1EC5E25A00BCDF8D /* ContentCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCategory.swift; sourceTree = "<group>"; };
 		CB1D5E2F1EC5E25A00BCDF8D /* ContentCategoryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCategoryData.swift; sourceTree = "<group>"; };
 		CB1D5E301EC5E25A00BCDF8D /* ContentCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCollection.swift; sourceTree = "<group>"; };
@@ -1283,9 +1295,15 @@
 		CBB4DD4C1EE094150071494A /* Mock - DELETE */ = {
 			isa = PBXGroup;
 			children = (
+				CB18BCC21EEABFEB0035C1BB /* MockContentCategoryDown.json */,
+				CB18BCC81EEAE9070035C1BB /* MockContentItemDown.json */,
+				CB18BCC41EEAC2CE0035C1BB /* MockDownSyncConfirm.json */,
+				CB18BCC61EEACF890035C1BB /* MockDownSyncContentCollection.json */,
+				CB18BCC01EEABFA60035C1BB /* MockStartSync.json */,
 				CBD791531E72A4BB0006C590 /* MockData.swift */,
 				CC1465361EC60D0C00DEC3C5 /* MockData+Prepare.swift */,
 				CCE5796E1ECB580E006E0D45 /* MockData+Sidebar.swift */,
+				CB18BCBE1EEABD890035C1BB /* MockNetworkManager.swift */,
 				CC56D0B01EEAE05400EB71D9 /* MockData+WhatsHot.swift */,
 			);
 			name = "Mock - DELETE";
@@ -1464,12 +1482,14 @@
 				0BC9F93A1E96118C009E8204 /* StatusTableViewCell.xib in Resources */,
 				0BEE8ABE1EA600A7008077B8 /* PrepareEventSimpleTableViewCell.xib in Resources */,
 				D5C15BAD1EB350FB0030953F /* SideBarTextCell.xib in Resources */,
+				CB18BCC31EEABFEB0035C1BB /* MockContentCategoryDown.json in Resources */,
 				CC311A271EAF434F0020C869 /* SettingsLabelTableViewCell.xib in Resources */,
 				D5EC34B71EB0D35D00F86B09 /* LearnStrategyTitleAudioCell.xib in Resources */,
 				CCC0C4CA1E827F87002A8362 /* BentonSans_Book.otf in Resources */,
 				CC311A211EAF430B0020C869 /* SettingsButtonTableViewCell.xib in Resources */,
 				D576F06F1ECB45C900363BFE /* WeeklyChoicesCell.xib in Resources */,
 				0B254D3F1E97994C006AA4C0 /* PrepareCollectionViewCell.xib in Resources */,
+				CB18BCC51EEAC2CE0035C1BB /* MockDownSyncConfirm.json in Resources */,
 				0B40DC101E9CA6E100E1659B /* PrepareContentVideoPreviewTableViewCell.xib in Resources */,
 				0BEE8ABA1EA600A7008077B8 /* PrepareEventAddNewTripTableViewCell.xib in Resources */,
 				0BEE8AC01EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib in Resources */,
@@ -1482,12 +1502,14 @@
 				CB8C34541EAF7F190003AB65 /* MyToBeVisionViewController.xib in Resources */,
 				CC13E2471EB1D72E00C3CE46 /* CategoryPostCell.xib in Resources */,
 				D50D6C251EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib in Resources */,
+				CB18BCC91EEAE9070035C1BB /* MockContentItemDown.json in Resources */,
 				0BE7FD851E9CAC7400E3262E /* PrepareContentActionButtonsTableViewCell.xib in Resources */,
 				0B40DC161E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib in Resources */,
 				CCC0C4D41E82A8D9002A8362 /* Simple-Regular.ttf in Resources */,
 				CC311A2D1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib in Resources */,
 				CC13E2491EB1D72E00C3CE46 /* LatestPostCell.xib in Resources */,
 				CC13E23F1EB1D72400C3CE46 /* CategoryCollectionCell.xib in Resources */,
+				CB18BCC11EEABFA60035C1BB /* MockStartSync.json in Resources */,
 				0BC1FF4C1E968E07007DE090 /* CollectionTableViewCell.xib in Resources */,
 				CB8C34561EAF7F200003AB65 /* styles.css in Resources */,
 				0BE7FD901E9D2F8800E3262E /* PrepareContentTitleTableViewCell.xib in Resources */,
@@ -1497,6 +1519,7 @@
 				0BD6F6BA1EA0E81E001EBC4D /* MyPrepTableViewCell.xib in Resources */,
 				CB8C34521EAF61E50003AB65 /* SettingsMenuViewController.xib in Resources */,
 				0BC9F9371E96118C009E8204 /* ChatTableViewCell.xib in Resources */,
+				CB18BCC71EEACF890035C1BB /* MockDownSyncContentCollection.json in Resources */,
 				CC311A231EAF431E0020C869 /* SettingsControlTableViewCell.xib in Resources */,
 				0B2CA37C1ED2BC93006B355F /* SensorCollectionViewCell.xib in Resources */,
 				0BB099CD1EBC6323006B2FB7 /* PartnersViewController.xib in Resources */,
@@ -1848,6 +1871,7 @@
 				CB8A154A1E7A7FA20023B2F9 /* CalendarImportManger.swift in Sources */,
 				CB8A154C1E7A8AD30023B2F9 /* CalendarImportTask.swift in Sources */,
 				CB8A15221E769F1F0023B2F9 /* EventTracker.swift in Sources */,
+				CB18BCBF1EEABD890035C1BB /* MockNetworkManager.swift in Sources */,
 				CCE373081E8D32CF00B79352 /* LibraryViewController.swift in Sources */,
 				D5485F241ED57F0600A08D1A /* SearchViewModel.swift in Sources */,
 				D5485F281ED583E300A08D1A /* SearchCollectionCell.swift in Sources */,

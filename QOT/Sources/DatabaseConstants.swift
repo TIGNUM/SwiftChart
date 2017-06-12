@@ -12,8 +12,8 @@ import Freddy
 enum Database {
 
     enum Section: String {
-        case learnStrategy = "learn.strategie"
-        case learnWhatsHot = "learn.whats.hot"
+        case learnStrategy = "learn.strategy"
+        case learnWhatsHot = "learn.whatshot"
         case prepareCoach = "prepare.coach"
         case sidebar = "sidebar"
 
@@ -70,7 +70,7 @@ enum JsonKey: String {
     case timestamp
     case relatedContentIDs
     case categoryIDs
-    case categoryID
+    case contentID
     case searchTags
     case secondsRequired
     case value
@@ -79,6 +79,7 @@ enum JsonKey: String {
     case nextSyncToken
     case syncTime
     case syncTokenHeaderKey
+    case tabs
 
     var value: String {
         return rawValue
@@ -112,9 +113,23 @@ extension JSON {
         }
     }
 
-    subscript(key: JsonKey) -> JSON? {
-        return self[key.value]
+    func serializeString(at jsonKey: JsonKey) throws -> String? {
+        guard let json = self[jsonKey.value], json != .null else {
+            return nil
+        }
+        return try json.serializeString()
     }
+
+    func serializeString(at jsonKey: JsonKey) throws -> String {
+        guard let json = self[jsonKey.value], json != .null else {
+            throw JSON.Error.keyNotFound(key: jsonKey.value)
+        }
+        return try json.serializeString()
+    }
+
+//    subscript(key: JsonKey) -> JSON? {
+//        return self[key.value]
+//    }
 
     func makeJSONDictionary(_ jsonDict: [Swift.String: Any]) throws -> JSON {
         return try JSON(jsonDict.lazy.map { (key, value) in

@@ -13,8 +13,6 @@ protocol ContentItemDataProtocol {
 
     var sortOrder: Int { get }
 
-    var title: String { get }
-
     var secondsRequired: Int { get }
 
     /**
@@ -36,6 +34,9 @@ protocol ContentItemDataProtocol {
     /// A comma seperated list of tags: eg. `blog,health`
     var searchTags: String { get }
 
+    /// A comma seperated list of tabs: eg. `full,bullet`
+    var tabs: String { get }
+
     var layoutInfo: String? { get }
 
     var contentID: Int { get }
@@ -43,12 +44,12 @@ protocol ContentItemDataProtocol {
 
 struct ContentItemData: ContentItemDataProtocol {
     let sortOrder: Int
-    let title: String
     let secondsRequired: Int
     let value: String
     let format: String
     let viewed: Bool
     let searchTags: String
+    let tabs: String
     let layoutInfo: String?
     var contentID: Int
 
@@ -59,14 +60,15 @@ struct ContentItemData: ContentItemDataProtocol {
          format: String,
          viewed: Bool,
          searchTags: String,
+         tabs: String = "",
          layoutInfo: String?) {
             self.sortOrder = sortOrder
-            self.title = title
             self.secondsRequired = secondsRequired
             self.value = value
             self.format = format
             self.viewed = viewed
             self.searchTags = searchTags
+            self.tabs = tabs
             self.layoutInfo = layoutInfo
             self.contentID = 0
     }
@@ -78,14 +80,14 @@ extension ContentItemData: JSONDecodable {
 
     init(json: JSON) throws {
         self.sortOrder = try json.getItemValue(at: .sortOrder)
-        self.title = try json.getItemValue(at: .title)
         self.secondsRequired = try json.getItemValue(at: .secondsRequired)
-        self.value = try json.makeJSONDictionary(json.getDictionary(at: JsonKey.value.value)).serializeString()
+        self.value = try json.serializeString(at: .value)
         self.format = try json.getItemValue(at: .format)
         self.viewed = try json.getItemValue(at: .viewed)
         self.searchTags = try (json.getArray(at: .searchTags) as [String]).joined(separator: ",")
-        self.layoutInfo = try json[.layoutInfo]?.serializeString()
-        self.contentID = try json.getItemValue(at: .categoryID)
+        self.tabs = try (json.getArray(at: .tabs) as [String]).joined(separator: ",")
+        self.layoutInfo = try json.serializeString(at: .layoutInfo)
+        self.contentID = try json.getItemValue(at: .contentID)
     }
 }
 

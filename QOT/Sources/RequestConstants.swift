@@ -13,6 +13,8 @@ enum Endpoint: String {
     case authentication = "/service/auth"
     case startSync = "/personal/p/qot/start"
     case contentCategories = "/personal/p/qot/contentCategory"
+    case contentCollection = "/personal/p/qot/content"
+    case contentItems = "/personal/p/qot/contentItem"
     case downSyncConfirm = "/personal/p/qot/confirm"
 
     func url(baseURL: URL) -> URL {
