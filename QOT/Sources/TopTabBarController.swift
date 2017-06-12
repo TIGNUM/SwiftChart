@@ -333,7 +333,7 @@ private extension TopTabBarController {
     private func setScrollViewAnchors() {
         scrollView.horizontalAnchors == view.horizontalAnchors
         scrollView.topAnchor == navigationItemBar.bottomAnchor - 64
-        scrollView.bottomAnchor == view.bottomAnchor + 64
+        scrollView.bottomAnchor == view.bottomAnchor
     }
 
     private func setContentViewAnchors(contentView: UIView) {

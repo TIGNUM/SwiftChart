@@ -95,6 +95,11 @@ final class AddSensorViewController: UIViewController {
         setUpHierarchy()
         setUpLayout()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
 }
 
 // MARK: - Collection View DataSource and Delegate
@@ -131,7 +136,7 @@ private extension AddSensorViewController {
         contentView.leftAnchor == scrollView.leftAnchor
         contentView.rightAnchor == scrollView.rightAnchor
         contentView.topAnchor == scrollView.topAnchor
-        contentView.bottomAnchor == scrollView.bottomAnchor - Layout.TabBarView.height
+        contentView.bottomAnchor == scrollView.bottomAnchor
         contentView.widthAnchor == scrollView.widthAnchor
 
         titleLabel.topAnchor == contentView.topAnchor + Layout.TabBarView.height

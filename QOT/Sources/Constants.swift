@@ -23,7 +23,7 @@ enum FontName: String {
 struct Layout {
 
     struct TabBarView {
-        static let insets = UIEdgeInsets(top: 64, left: 0, bottom: 64, right: 0)
+        static let insets = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
         static let height: CGFloat = 64
         static let animationDuration: TimeInterval = 0.3
         static let selectedButtonColor: UIColor = .white
