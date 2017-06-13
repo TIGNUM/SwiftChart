@@ -20,6 +20,8 @@ protocol LearnContentCollection: TrackableEntity {
     var minutesRequired: Int { get }
 
     var contentItems: DataProvider<LearnContentItem> { get }
+
+    var relatedContentIDs: [Int] { get }
 }
 
 extension ContentCollection: LearnContentCollection {

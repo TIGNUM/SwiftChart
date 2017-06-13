@@ -311,6 +311,30 @@
         "tag1",
         "tag2"
       ]
+    },
+    {
+      "id": 100012,
+      "syncStatus": 0,
+      "createdAt": "2012-04-23T18:25:43.511Z",
+      "modifiedAt": "2012-04-23T18:25:43.511Z",
+      "sortOrder": 11,
+      "viewed": false,
+      "format": "image",
+      "value": {
+        "some invalid data": "foo"
+      },
+      "secondsRequired": 10,
+      "layoutinfo": null,
+      "tabs": [
+        "full",
+        "bullets",
+        "audio"
+      ],
+      "contentID": 100000,
+      "searchTags": [
+        "tag1",
+        "tag2"
+      ]
     }
   ],
   "page": 1,

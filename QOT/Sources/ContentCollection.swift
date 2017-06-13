@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import Freddy
 
 // FIXME: Unit test.
 final class ContentCollection: Object, ContentCollectionDataProtocol {
@@ -55,6 +56,19 @@ final class ContentCollection: Object, ContentCollectionDataProtocol {
     // MARK: Relationships
 
     let items = LinkingObjects(fromType: ContentItem.self, property: "collection")
+
+    // MARK: Computed Properties
+
+    var relatedContentIDs: [Int] {
+        guard
+            let relatedContent = relatedContent,
+            let json = try? JSON(jsonString: relatedContent),
+            let ids = try? json.decodedArray(type: Int.self)
+            else {
+                return []
+        }
+        return ids
+    }
 }
 
 extension ContentCollection: DownSyncable {
@@ -71,6 +85,7 @@ extension ContentCollection: DownSyncable {
         layoutInfo = data.layoutInfo
         searchTags = data.searchTags
         thumbnailURLString = data.thumbnailURLString
+        relatedContent = data.relatedContentIDs
         // FIXME: set Related Content
         let categoryPredicates = data.categoryIDs.map { NSPredicate(remoteID: $0) }
         let categories = try objectStore.uniqueObjects(ContentCategory.self, predicates: categoryPredicates )

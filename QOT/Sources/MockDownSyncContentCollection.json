@@ -9,7 +9,7 @@
       "sortOrder": 0,
       "title": "Performance mindset defined",
       "layoutInfo": null,
-      "relatedContentIDs": [],
+      "relatedContentIDs": [100001],
       "searchTags": [
         "health",
         "fitness"
@@ -27,7 +27,7 @@
       "sortOrder": 1,
       "title": "Identify Mindset Killers",
       "layoutInfo": null,
-      "relatedContentIDs": [],
+      "relatedContentIDs": [100000, 100002],
       "searchTags": [
         "health",
         "fitness"
