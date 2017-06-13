@@ -23,7 +23,8 @@ final class LearnContentItemBulletViewController: UIViewController {
             dataSource: self,
             dequeables:
             ContentItemTextTableViewCell.self,
-            ImageSubtitleTableViewCell.self
+            ImageSubtitleTableViewCell.self,
+            ErrorCell.self
         )
     }()
 
@@ -93,6 +94,10 @@ extension LearnContentItemBulletViewController: UITableViewDataSource, UITableVi
         case .video(let title, _, _, _, _):
             let topText = Style.headline(title, .black).attributedString()
             cell.setup(topText: topText, bottomText: topText)
+            return cell
+        case .invalid:
+            let cell: ErrorCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(text: R.string.localized.commonInvalidContent())
             return cell
         }
     }

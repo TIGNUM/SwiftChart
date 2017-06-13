@@ -17,6 +17,7 @@ enum ContentItemValue {
     case video(title: String, description: String?, placeholderURL: URL, videoURL: URL, duration: TimeInterval)
     case audio(title: String, description: String?, placeholderURL: URL, audioURL: URL, duration: TimeInterval, waveformData: [Float])
     case image(title: String, description: String?, url: URL)
+    case invalid
 
     init(format: ContentItemFormat, value: String) throws {
         let json = try JSON(jsonString: value)

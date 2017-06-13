@@ -55,3 +55,5 @@
 "Sidebar.SettingsMenu.GeneralButton" = "GENERAL";
 "Sidebar.SettingsMenu.NotificationsButton" = "NOTIFICATIONS";
 "Sidebar.SettingsMenu.SecurityButton" = "SECURITY";
+
+"Common.InvalidContent" = "Cannot Display Content";

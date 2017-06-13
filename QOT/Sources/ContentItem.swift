@@ -81,19 +81,20 @@ extension ContentItem: DownSyncable {
         tabs = data.tabs
         layoutInfo = data.layoutInfo
         collection = try objectStore.uniqueObject(ContentCollection.self, predicate: NSPredicate(remoteID: data.contentID))
-
-        let _ = try getContentItemValue()
     }
 }
 
 extension ContentItem {
 
-    func getContentItemValue() throws -> ContentItemValue {
-        guard let format = ContentItemFormat(rawValue: format) else {
-            throw InvalidDataError(data: self)
+    var contentItemValue: ContentItemValue {
+        guard
+            let format = ContentItemFormat(rawValue: format),
+            let value = try? ContentItemValue(format: format, value: value)
+        else {
+            return .invalid
         }
 
-        return try ContentItemValue(format: format, value: value)
+        return value
     }
 
     func accordionTitle() -> String? {

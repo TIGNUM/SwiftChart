@@ -14,16 +14,7 @@ protocol SidebarContentItem: TrackableEntity {
     /// Whether the content has been viewed.
     var viewed: Bool { get }
 
-    var sidebarContentItemValue: ContentItemValue { get }
+    var contentItemValue: ContentItemValue { get }
 }
 
-extension ContentItem: SidebarContentItem {
-
-    var sidebarContentItemValue: ContentItemValue {
-        do {
-            return try getContentItemValue()
-        } catch let error {
-            fatalError("OMG \(error)")
-        }
-    }
-}
+extension ContentItem: SidebarContentItem {}

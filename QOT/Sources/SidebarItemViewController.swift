@@ -31,7 +31,8 @@ final class SidebarItemViewController: UIViewController {
             dequeables:
             ContentItemTextTableViewCell.self,
             SideBarShareAction.self,
-            ImageSubtitleTableViewCell.self
+            ImageSubtitleTableViewCell.self,
+            ErrorCell.self
         )
     }()
 
@@ -92,7 +93,7 @@ extension SidebarItemViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let sidebarItem = viewModel.sidebarContentItems(at: indexPath)
 
-        switch sidebarItem.sidebarContentItemValue {
+        switch sidebarItem.contentItemValue {
         case .audio(_, let description, let placeholderURL, _, _, _):
             let cell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.setupData(placeHolder: placeholderURL, description: attributedString(description: description))
@@ -117,6 +118,10 @@ extension SidebarItemViewController: UITableViewDataSource {
             let cell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.setupData(placeHolder: placeholderURL, description: attributedString(description: description))
             cell.setInsets(insets: UIEdgeInsets(top: 0, left: 32, bottom: 32, right: 40))
+            return cell
+        case .invalid:
+            let cell: ErrorCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(text: R.string.localized.commonInvalidContent())
             return cell
         }
     }

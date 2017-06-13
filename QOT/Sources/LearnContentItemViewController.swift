@@ -35,7 +35,8 @@ final class LearnContentItemViewController: UIViewController {
             dataSource: self,
             dequeables:
             ContentItemTextTableViewCell.self,
-            ImageSubtitleTableViewCell.self
+            ImageSubtitleTableViewCell.self,
+            ErrorCell.self
         )
     }()
 
@@ -124,6 +125,8 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
                 title: title,
                 url: url
             )
+        case .invalid:
+            return invalidContentCell(tableView: tableView, indexPath: indexPath)
         }
     }
 
@@ -183,6 +186,12 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
             imageCell.setupData(placeHolder: url, description: Style.headlineSmall(title, .blackTwo).attributedString())
             imageCell.setInsets(insets: UIEdgeInsets(top: 14, left: 14, bottom: 14, right: 14))
             return imageCell
+    }
+
+    private func invalidContentCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        let cell: ErrorCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(text: R.string.localized.commonInvalidContent())
+        return cell
     }
 
     private func shouldMarkItemAsViewed(contentItem: ContentItem?) {

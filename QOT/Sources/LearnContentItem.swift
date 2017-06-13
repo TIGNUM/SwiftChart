@@ -19,14 +19,6 @@ protocol LearnContentItem: TrackableEntity {
 
 extension ContentItem: LearnContentItem {
 
-    var contentItemValue: ContentItemValue {
-        do {
-            return try getContentItemValue()
-        } catch let error {
-            fatalError("That should not happen ;) [Error while parsing contentItemValue] \(error)")
-        }
-    }
-
     var trackableEntityID: Int {
         return Int.randomID
     }
