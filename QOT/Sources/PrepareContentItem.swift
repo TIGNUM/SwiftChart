@@ -15,6 +15,17 @@ protocol PrepareContentItem {
     var subTitle: String { get }
 }
 
+extension ContentItem: PrepareContentItem {
+
+    var subTitle: String {
+        return "subTitle"
+    }
+
+    var title: String {
+        return "title"
+    }
+}
+
 struct PrepareItem: PrepareContentItem {
     var title: String
     var subTitle: String
