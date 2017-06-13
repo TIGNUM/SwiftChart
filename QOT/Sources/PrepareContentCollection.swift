@@ -32,7 +32,6 @@ extension ContentCollection: PrepareContentCollection {
     }
 
     var prepareItems: DataProvider<PrepareContentItem> {
-        return DataProvider(list: items, map: { $0 as! PrepareContentItem })
-//        return DataProvider(list: items, map: { $0 as PrepareContentItem })
+        return DataProvider(list: items, map: { $0 as PrepareContentItem })
     }
 }
