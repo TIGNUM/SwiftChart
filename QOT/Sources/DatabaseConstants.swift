@@ -52,35 +52,41 @@ enum Database {
 }
 
 enum JsonKey: String {
-    case resultList
-    case id
-    case syncStatus
-    case createdAt
-    case modifiedAt
-    case sortOrder
-    case section
-    case title
-    case subtitle
-    case keypathID
-    case layoutInfo
-    case page
-    case pageSize
-    case maxResults
-    case maxPages
-    case timestamp
-    case relatedContentIds
+    case associatedValueId
+    case associatedValueType
     case categoryIds
     case contentId
+    case createdAt
+    case format
+    case id
+    case keypathID
+    case layoutInfo
+    case maxPages
+    case maxResults
+    case modifiedAt
+    case nextSyncToken
+    case page
+    case pageId
+    case pageSize
+    case referrerAssociatedValueId
+    case referrerAssociatedValueType
+    case referrerPageId
+    case relatedContentIds
+    case resultList
     case searchTags
     case secondsRequired
-    case value
-    case format
-    case viewed
-    case nextSyncToken
+    case section
+    case sortOrder
+    case subtitle
+    case syncStatus
     case syncTime
     case syncTokenHeaderKey
     case tabs
     case thumbnailURL
+    case timestamp
+    case title
+    case value
+    case viewed
 
     var value: String {
         return rawValue

@@ -88,6 +88,4 @@ private extension ActivityChartView {
         line.path = linePath.cgPath
         return line
     }
-    
-    
 }

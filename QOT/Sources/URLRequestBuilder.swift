@@ -48,15 +48,3 @@ extension URLRequest {
         }
     }
 }
-
-// MARK: Private helpers
-
-private extension Dictionary {
-    func mapKeys<T>(_ transform: (Key) -> T) -> [T: Value] {
-        var result: [T: Value] = [:]
-        for (key, value) in self {
-            result[transform(key)] = value
-        }
-        return result
-    }
-}

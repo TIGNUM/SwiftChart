@@ -64,6 +64,7 @@
 		CB0A4A581ECC4C25006A2D85 /* AddSensorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A4A571ECC4C25006A2D85 /* AddSensorCoordinator.swift */; };
 		CB0A4A5A1ECC4C3E006A2D85 /* AddSensorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A4A591ECC4C3E006A2D85 /* AddSensorViewModel.swift */; };
 		CB0A4A5D1ECC4C72006A2D85 /* AddSensorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A4A5B1ECC4C72006A2D85 /* AddSensorViewController.swift */; };
+		CB14675E1EF18F5F00A60E31 /* Dictionary+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14675D1EF18F5F00A60E31 /* Dictionary+Convenience.swift */; };
 		CB18BCBF1EEABD890035C1BB /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB18BCBE1EEABD890035C1BB /* MockNetworkManager.swift */; };
 		CB18BCC11EEABFA60035C1BB /* MockStartSync.json in Resources */ = {isa = PBXBuildFile; fileRef = CB18BCC01EEABFA60035C1BB /* MockStartSync.json */; };
 		CB18BCC31EEABFEB0035C1BB /* MockContentCategoryDown.json in Resources */ = {isa = PBXBuildFile; fileRef = CB18BCC21EEABFEB0035C1BB /* MockContentCategoryDown.json */; };
@@ -99,6 +100,8 @@
 		CB6D49541ECC87BF005BC637 /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6D49531ECC87BF005BC637 /* Requests.swift */; };
 		CB6D49561ECCA58D005BC637 /* AuthenticationTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6D49551ECCA58D005BC637 /* AuthenticationTokenParser.swift */; };
 		CB810E611EEFC0D70043E3E5 /* ErrorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB810E601EEFC0D70043E3E5 /* ErrorCell.swift */; };
+		CB810E6E1EF180DC0043E3E5 /* PageTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB810E6D1EF180DC0043E3E5 /* PageTrack.swift */; };
+		CB810E701EF181ED0043E3E5 /* PageTrackAssociatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB810E6F1EF181ED0043E3E5 /* PageTrackAssociatedObject.swift */; };
 		CB8A15221E769F1F0023B2F9 /* EventTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15211E769F1F0023B2F9 /* EventTracker.swift */; };
 		CB8A15271E76A1280023B2F9 /* PageEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15261E76A1280023B2F9 /* PageEvent.swift */; };
 		CB8A152F1E76F27D0023B2F9 /* PageID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A152E1E76F27D0023B2F9 /* PageID.swift */; };
@@ -388,6 +391,7 @@
 		CB0A4A571ECC4C25006A2D85 /* AddSensorCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorCoordinator.swift; sourceTree = "<group>"; };
 		CB0A4A591ECC4C3E006A2D85 /* AddSensorViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorViewModel.swift; sourceTree = "<group>"; };
 		CB0A4A5B1ECC4C72006A2D85 /* AddSensorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorViewController.swift; sourceTree = "<group>"; };
+		CB14675D1EF18F5F00A60E31 /* Dictionary+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Convenience.swift"; sourceTree = "<group>"; };
 		CB18BCBE1EEABD890035C1BB /* MockNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockNetworkManager.swift; sourceTree = "<group>"; };
 		CB18BCC01EEABFA60035C1BB /* MockStartSync.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockStartSync.json; sourceTree = "<group>"; };
 		CB18BCC21EEABFEB0035C1BB /* MockContentCategoryDown.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockContentCategoryDown.json; sourceTree = "<group>"; };
@@ -423,6 +427,8 @@
 		CB6D49531ECC87BF005BC637 /* Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
 		CB6D49551ECCA58D005BC637 /* AuthenticationTokenParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationTokenParser.swift; sourceTree = "<group>"; };
 		CB810E601EEFC0D70043E3E5 /* ErrorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorCell.swift; sourceTree = "<group>"; };
+		CB810E6D1EF180DC0043E3E5 /* PageTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageTrack.swift; sourceTree = "<group>"; };
+		CB810E6F1EF181ED0043E3E5 /* PageTrackAssociatedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageTrackAssociatedObject.swift; sourceTree = "<group>"; };
 		CB8A15211E769F1F0023B2F9 /* EventTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTracker.swift; sourceTree = "<group>"; };
 		CB8A15261E76A1280023B2F9 /* PageEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageEvent.swift; sourceTree = "<group>"; };
 		CB8A152E1E76F27D0023B2F9 /* PageID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageID.swift; sourceTree = "<group>"; };
@@ -689,6 +695,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CB810E6C1EF180CB0043E3E5 /* PageTrack */ = {
+			isa = PBXGroup;
+			children = (
+				CB810E6D1EF180DC0043E3E5 /* PageTrack.swift */,
+				CB810E6F1EF181ED0043E3E5 /* PageTrackAssociatedObject.swift */,
+			);
+			name = PageTrack;
+			sourceTree = "<group>";
+		};
 		CBB237E31E6FFF1200AB5AEF = {
 			isa = PBXGroup;
 			children = (
@@ -877,6 +892,7 @@
 		CBB4DD251EE087830071494A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CB810E6C1EF180CB0043E3E5 /* PageTrack */,
 				CB8A15391E7801B90023B2F9 /* CalendarEvent.swift */,
 				CBDB98FC1E7BE6AF003EC73F /* CalendarEventData.swift */,
 				CB8A153B1E78467D0023B2F9 /* CalendarEventParticipant.swift */,
@@ -1012,18 +1028,19 @@
 			children = (
 				CC05CB741EDEC6D700D15ABC /* CGPoint+Convenience.swift */,
 				CBB303411ECEE3E70011303A /* DateFormatter+Convenience.swift */,
+				CB14675D1EF18F5F00A60E31 /* Dictionary+Convenience.swift */,
 				CCC0C4BD1E82730E002A8362 /* Extensions.swift */,
 				D58BD8691E9D1E7F005676DE /* NSFile+Convenience.swift */,
 				CC4F22EF1EE023F4006C437E /* NSMutableAttributedString+Create.swift */,
 				CCF0F4BD1ECDC57000E8D9C1 /* NSPredicate+Convenience.swift */,
 				CC05CB751EDEC6D700D15ABC /* UIBezierPath+Hexagon.swift */,
+				852DADC11EEDDE5100A10882 /* UIButton+AttributedTitle.swift */,
 				CC1E2A5E1EDF1DE100B9EFD3 /* UICollectionView+Create.swift */,
-				CC05CB781EDEC73C00D15ABC /* UITableView+Create.swift */,
-				CCCC42DE1ED5799D00E73905 /* UIViewController+Transition.swift */,
 				CC64725A1EE6F9DE00BFA3D9 /* UIColor+Palette.swift */,
 				8514A4911EEAA2AE0086C70E /* UILabel+AttributedText.swift */,
-				852DADC11EEDDE5100A10882 /* UIButton+AttributedTitle.swift */,
+				CC05CB781EDEC73C00D15ABC /* UITableView+Create.swift */,
 				852DADD51EF051C400A10882 /* UIView+Layers.swift */,
+				CCCC42DE1ED5799D00E73905 /* UIViewController+Transition.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1758,6 +1775,7 @@
 				8514A4861EE810750086C70E /* DownSyncComplete.swift in Sources */,
 				CC6B3A2F1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift in Sources */,
 				CC34BD561ECF3863007CB365 /* UserCredentials.swift in Sources */,
+				CB810E6E1EF180DC0043E3E5 /* PageTrack.swift in Sources */,
 				0BA3E6411EC1A8280012999E /* DashedProgressWheel.swift in Sources */,
 				CB0A4A5D1ECC4C72006A2D85 /* AddSensorViewController.swift in Sources */,
 				CC94F5621EB08EE400051CF8 /* AudioWaveformView.swift in Sources */,
@@ -1858,6 +1876,7 @@
 				D51B5C491E8D0E7E0084A65B /* LearnContentCell.swift in Sources */,
 				D5FA66971EBB4DA600980EC7 /* HorizontalLinesChartView.swift in Sources */,
 				CCE372F51E8CF10C00B79352 /* WhatsHotViewController.swift in Sources */,
+				CB14675E1EF18F5F00A60E31 /* Dictionary+Convenience.swift in Sources */,
 				CC94F5651EB08EE400051CF8 /* LearnStrategyAudioViewModel.swift in Sources */,
 				CCE3730F1E8D32F800B79352 /* SidebarCoordinator.swift in Sources */,
 				CB1D5E3E1EC5E25A00BCDF8D /* ContentItemData.swift in Sources */,
@@ -1868,6 +1887,7 @@
 				CC5A8D6D1EA65A3E00E5800F /* WeeklyChoicesViewModel.swift in Sources */,
 				CCCC21231E8981CA00133839 /* PrepareContentViewModel.swift in Sources */,
 				CC1E2A5F1EDF1DE100B9EFD3 /* UICollectionView+Create.swift in Sources */,
+				CB810E701EF181ED0043E3E5 /* PageTrackAssociatedObject.swift in Sources */,
 				CBB303421ECEE3E70011303A /* DateFormatter+Convenience.swift in Sources */,
 				CC261A921EBA0A7D0088B3D1 /* PrepareEventsCoordinator.swift in Sources */,
 				CC6B3A291E8158B200E7FDFD /* PresentationManager.swift in Sources */,
