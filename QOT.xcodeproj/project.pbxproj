@@ -40,10 +40,6 @@
 		0BEE8AC01EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BEE8AB71EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib */; };
 		0CC2119BB6C36EF6F43B4ECD /* Pods_QOT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */; };
 		8514A4861EE810750086C70E /* DownSyncComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8514A4851EE810750086C70E /* DownSyncComplete.swift */; };
-		852DADC41EEED5D600A10882 /* AverageMeetingProgressWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADC31EEED5D600A10882 /* AverageMeetingProgressWheel.swift */; };
-		852DADC61EEEE63500A10882 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADC51EEEE63500A10882 /* Math.swift */; };
-		852DADCA1EEFD1F200A10882 /* AverageMeetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADC91EEFD1F200A10882 /* AverageMeetingView.swift */; };
-		852DADCC1EEFD93200A10882 /* MyStatisticsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADCB1EEFD93200A10882 /* MyStatisticsData.swift */; };
 		8514A4881EE93D3C0086C70E /* PrepareContentFooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8514A4871EE93D3C0086C70E /* PrepareContentFooterTableViewCell.swift */; };
 		8514A48A1EE93D640086C70E /* PrepareContentFooterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8514A4891EE93D640086C70E /* PrepareContentFooterTableViewCell.xib */; };
 		8514A48C1EE9663A0086C70E /* PrepareContentMainHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8514A48B1EE9663A0086C70E /* PrepareContentMainHeaderTableViewCell.swift */; };
@@ -55,10 +51,12 @@
 		852DADCA1EEFD1F200A10882 /* AverageMeetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADC91EEFD1F200A10882 /* AverageMeetingView.swift */; };
 		852DADCC1EEFD93200A10882 /* MyStatisticsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADCB1EEFD93200A10882 /* MyStatisticsData.swift */; };
 		852DADCE1EF045FD00A10882 /* MyStatisticsDataMeetingAverage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADCD1EF045FD00A10882 /* MyStatisticsDataMeetingAverage.swift */; };
-		852DADD01EF048E800A10882 /* MyStatisticsDataMeetingAverageLength.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADCF1EF048E800A10882 /* MyStatisticsDataMeetingAverageLength.swift */; };
+		852DADD01EF048E800A10882 /* MyStatisticsDataAverage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADCF1EF048E800A10882 /* MyStatisticsDataAverage.swift */; };
 		852DADD21EF04DEA00A10882 /* AverageMeetingLengthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADD11EF04DEA00A10882 /* AverageMeetingLengthView.swift */; };
 		852DADD41EF0504000A10882 /* AverageMeetingLengthViewProgressWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADD31EF0504000A10882 /* AverageMeetingLengthViewProgressWheel.swift */; };
 		852DADD61EF051C400A10882 /* UIView+Layers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADD51EF051C400A10882 /* UIView+Layers.swift */; };
+		852DADDA1EF147AA00A10882 /* AverageMeetingBetweenLengthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADD91EF147AA00A10882 /* AverageMeetingBetweenLengthView.swift */; };
+		852DADDC1EF1484C00A10882 /* AverageMeetingBetweenLengthProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADDB1EF1484C00A10882 /* AverageMeetingBetweenLengthProgressView.swift */; };
 		8591ED7B1EE6DBA6006FCE89 /* MockingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E0A6A01EE6AF130076169D /* MockingProtocol.swift */; };
 		8591ED7C1EE6DBAC006FCE89 /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E0A6A21EE6B1610076169D /* Mocks.swift */; };
 		85E0A69F1EE6A5E40076169D /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E0A69E1EE6A5E40076169D /* NetworkManagerTests.swift */; };
@@ -366,10 +364,6 @@
 		5C87601C1FE7F833DF0D7A6B /* Pods-QOTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.release.xcconfig"; sourceTree = "<group>"; };
 		82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8514A4851EE810750086C70E /* DownSyncComplete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownSyncComplete.swift; sourceTree = "<group>"; };
-		852DADC31EEED5D600A10882 /* AverageMeetingProgressWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageMeetingProgressWheel.swift; sourceTree = "<group>"; };
-		852DADC51EEEE63500A10882 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
-		852DADC91EEFD1F200A10882 /* AverageMeetingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageMeetingView.swift; sourceTree = "<group>"; };
-		852DADCB1EEFD93200A10882 /* MyStatisticsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsData.swift; sourceTree = "<group>"; };
 		8514A4871EE93D3C0086C70E /* PrepareContentFooterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentFooterTableViewCell.swift; sourceTree = "<group>"; };
 		8514A4891EE93D640086C70E /* PrepareContentFooterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentFooterTableViewCell.xib; sourceTree = "<group>"; };
 		8514A48B1EE9663A0086C70E /* PrepareContentMainHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentMainHeaderTableViewCell.swift; sourceTree = "<group>"; };
@@ -381,10 +375,12 @@
 		852DADC91EEFD1F200A10882 /* AverageMeetingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageMeetingView.swift; sourceTree = "<group>"; };
 		852DADCB1EEFD93200A10882 /* MyStatisticsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsData.swift; sourceTree = "<group>"; };
 		852DADCD1EF045FD00A10882 /* MyStatisticsDataMeetingAverage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsDataMeetingAverage.swift; sourceTree = "<group>"; };
-		852DADCF1EF048E800A10882 /* MyStatisticsDataMeetingAverageLength.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsDataMeetingAverageLength.swift; sourceTree = "<group>"; };
+		852DADCF1EF048E800A10882 /* MyStatisticsDataAverage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsDataAverage.swift; sourceTree = "<group>"; };
 		852DADD11EF04DEA00A10882 /* AverageMeetingLengthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageMeetingLengthView.swift; sourceTree = "<group>"; };
 		852DADD31EF0504000A10882 /* AverageMeetingLengthViewProgressWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageMeetingLengthViewProgressWheel.swift; sourceTree = "<group>"; };
 		852DADD51EF051C400A10882 /* UIView+Layers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layers.swift"; sourceTree = "<group>"; };
+		852DADD91EF147AA00A10882 /* AverageMeetingBetweenLengthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageMeetingBetweenLengthView.swift; sourceTree = "<group>"; };
+		852DADDB1EF1484C00A10882 /* AverageMeetingBetweenLengthProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageMeetingBetweenLengthProgressView.swift; sourceTree = "<group>"; };
 		85E0A69E1EE6A5E40076169D /* NetworkManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		85E0A6A01EE6AF130076169D /* MockingProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockingProtocol.swift; sourceTree = "<group>"; };
 		85E0A6A21EE6B1610076169D /* Mocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
@@ -1005,6 +1001,8 @@
 				852DADC91EEFD1F200A10882 /* AverageMeetingView.swift */,
 				852DADD11EF04DEA00A10882 /* AverageMeetingLengthView.swift */,
 				852DADD31EF0504000A10882 /* AverageMeetingLengthViewProgressWheel.swift */,
+				852DADD91EF147AA00A10882 /* AverageMeetingBetweenLengthView.swift */,
+				852DADDB1EF1484C00A10882 /* AverageMeetingBetweenLengthProgressView.swift */,
 			);
 			name = Charts;
 			sourceTree = "<group>";
@@ -1051,7 +1049,7 @@
 				CC944DB91EE809AA00B8423C /* MyStatisticsCardCell.xib */,
 				852DADCB1EEFD93200A10882 /* MyStatisticsData.swift */,
 				852DADCD1EF045FD00A10882 /* MyStatisticsDataMeetingAverage.swift */,
-				852DADCF1EF048E800A10882 /* MyStatisticsDataMeetingAverageLength.swift */,
+				852DADCF1EF048E800A10882 /* MyStatisticsDataAverage.swift */,
 			);
 			name = "My Statistics";
 			sourceTree = "<group>";
@@ -1733,6 +1731,7 @@
 				CB0A4A581ECC4C25006A2D85 /* AddSensorCoordinator.swift in Sources */,
 				CBB4DD121EDEAD050071494A /* RequestConstants.swift in Sources */,
 				CB2880221E7050EB0067890A /* Coordinator.swift in Sources */,
+				852DADDC1EF1484C00A10882 /* AverageMeetingBetweenLengthProgressView.swift in Sources */,
 				CB1D5E3C1EC5E25A00BCDF8D /* ContentCollectionData.swift in Sources */,
 				CCE579691ECB55AC006E0D45 /* SidebarContentCollection.swift in Sources */,
 				CB55A2DF1E9FDF0A00D721CE /* SettingsMenuViewController.swift in Sources */,
@@ -1825,7 +1824,7 @@
 				CCC0C4DB1E82BDEF002A8362 /* TabBarCoordinator.swift in Sources */,
 				CB369CDB1E8D3E5700522293 /* RealmProvider.swift in Sources */,
 				CBDB98FD1E7BE6AF003EC73F /* CalendarEventData.swift in Sources */,
-				852DADD01EF048E800A10882 /* MyStatisticsDataMeetingAverageLength.swift in Sources */,
+				852DADD01EF048E800A10882 /* MyStatisticsDataAverage.swift in Sources */,
 				D576F06E1ECB45C900363BFE /* WeeklyChoicesCell.swift in Sources */,
 				CBB4DD141EDEBDA80071494A /* URLRequestBuildable.swift in Sources */,
 				CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */,
@@ -1890,6 +1889,7 @@
 				0B254D3E1E97994C006AA4C0 /* PrepareCollectionViewCell.swift in Sources */,
 				CCE5796D1ECB55CE006E0D45 /* SidebarContentService.swift in Sources */,
 				CC9FBDE61EAE155300AF1CF0 /* PrepareContentCoordinator.swift in Sources */,
+				852DADDA1EF147AA00A10882 /* AverageMeetingBetweenLengthView.swift in Sources */,
 				CC0FF8DA1EA790750028D64F /* PartnersCoordinator.swift in Sources */,
 				CB1D5E411EC5E25A00BCDF8D /* JSONDecodable.swift in Sources */,
 				CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */,

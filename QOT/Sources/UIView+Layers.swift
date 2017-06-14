@@ -23,7 +23,7 @@ extension UIView {
         self.layer.addSublayer(shapeLayer)
     }
 
-    func drawDashedCircle(arcCenter: CGPoint, radius: CGFloat, lineWidth: CGFloat, value: CGFloat = 1.0, startAngle: CGFloat = -90.0, dashPattern: [CGFloat] = [1, 2], strokeColour: UIColor, hasShadow: Bool = false) {
+    func drawDashedCircle(arcCenter: CGPoint, radius: CGFloat, lineWidth: CGFloat, dashPattern: [CGFloat] = [1, 2], strokeColour: UIColor, value: CGFloat = 1.0, startAngle: CGFloat = -90.0, hasShadow: Bool = false) {
         let pattern = dashPattern.map { NSNumber(value: Float($0)) }
 
         let angleStart = Math.radians(startAngle)

@@ -117,7 +117,9 @@ private extension MyStatisticsSectionType {
         case .meetingAverage:
             return MyStatisticsDataMeetingAverage(teamMeetings: 200, dataMeetings: 2500, userMeetings: 25, teamDays: 100, dataDays: 1000, userDays: 7, dayThreshold: (upperThreshold: 7, lowerThreshold: 2), weekThreshold: (upperThreshold: 40, lowerThreshold: 11), displayType: .day)
         case .meetingLength:
-            return MyStatisticsDataMeetingAverageLength(teamAverage: 148, dataAverage: 178, userAverage: 42, longest: 200, threshold: (upperThreshold: 120, lowerThreshold: 45))
+            return MyStatisticsDataAverage(teamAverage: 148, dataAverage: 178, userAverage: 42, maximum: 200, threshold: (upperThreshold: 120, lowerThreshold: 45))
+        case .meetingTimeBetween:
+            return MyStatisticsDataAverage(teamAverage: 148, dataAverage: 178, userAverage: 42, maximum: 200, threshold: (upperThreshold: 120, lowerThreshold: 45))
         default:
             return MyStatisticsDataMeetingAverage(teamMeetings: 450, dataMeetings: 12500, userMeetings: 149, teamDays: 100, dataDays: 1000, userDays: 27, dayThreshold: (upperThreshold: 150, lowerThreshold: 25), weekThreshold: (upperThreshold: 250, lowerThreshold: 150), displayType: .day)
         }

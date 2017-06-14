@@ -1,14 +1,14 @@
 //
-//  AverageMeetingProgressWheel.swift
+//  AverageMeetingBetweenLengthProgressView.swift
 //  QOT
 //
-//  Created by Moucheg Mouradian on 12/06/2017.
+//  Created by Moucheg Mouradian on 14/06/2017.
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
 import UIKit
 
-class AverageMeetingProgressWheel: UIView {
+class AverageMeetingBetweenLengthProgressWheel: UIView {
 
     private var pathColour: UIColor
     private var lineWidth: CGFloat
@@ -46,16 +46,25 @@ class AverageMeetingProgressWheel: UIView {
         let strokeColour = UIColor.white20
 
         let innerRadius = radius * 0.6
+        let underRadius = radius - lineWidth / 3
 
         drawSolidCircle(arcCenter: arcCenter, radius: innerRadius, lineWidth: 1, strokeColour: strokeColour)
-        drawDashedCircle(arcCenter: arcCenter, radius: radius, lineWidth: lineWidth, dashPattern: dashPattern, strokeColour: strokeColour)
+        drawSolidCircle(arcCenter: arcCenter, radius: underRadius, lineWidth: lineWidth / 2, strokeColour: strokeColour)
+
+        drawDashedCircle(arcCenter: arcCenter, radius: radius, lineWidth: lineWidth, dashPattern: dashPattern, strokeColour: pathColour, value: value)
 
         let dataAngle = Math.radians(360 * dataValue - 90)
         let teamAngle = Math.radians(360 * teamValue - 90)
 
-        drawAverageLine(center: arcCenter, innerRadius: innerRadius, outerRadius: radius, angle: teamAngle, lineWidth: 1, strokeColour: .azure)
-        drawAverageLine(center: arcCenter, innerRadius: innerRadius, outerRadius: radius, angle: dataAngle, lineWidth: 1, strokeColour: .cherryRed)
+        let userAngleStart = Math.radians(-90)
+        let userAngleEnd = Math.radians(360 * value - 90)
 
-        drawCapRoundLine(center: arcCenter, radius: radius, value: value, lineWidth: lineWidth, strokeColour: pathColour)
+        drawAverageLine(center: arcCenter, innerRadius: 0, outerRadius: radius, angle: teamAngle, lineWidth: 1, strokeColour: .azure)
+        drawAverageLine(center: arcCenter, innerRadius: 0, outerRadius: radius, angle: dataAngle, lineWidth: 1, strokeColour: .cherryRed)
+
+        drawAverageLine(center: arcCenter, innerRadius: 0, outerRadius: radius, angle: userAngleStart, lineWidth: 1, strokeColour: strokeColour)
+        drawAverageLine(center: arcCenter, innerRadius: 0, outerRadius: radius, angle: userAngleEnd, lineWidth: 1, strokeColour: strokeColour)
+
     }
+
 }

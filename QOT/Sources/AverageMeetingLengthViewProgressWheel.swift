@@ -15,15 +15,15 @@ class AverageMeetingLengthProgressWheel: UIView {
     private var wheelValue: CGFloat = 0
     private var teamValue: CGFloat = 0
     private var dataValue: CGFloat = 0
-    private var dashPattern: [NSNumber]
+    private var dashPattern: [CGFloat]
 
-    init(frame: CGRect, value: CGFloat = 0, teamValue: CGFloat = 0, dataValue: CGFloat = 0, pathColor: UIColor, dashPattern: [CGFloat] = [1, 2], lineWidth: CGFloat = 5) {
+    init(frame: CGRect, value: CGFloat = 0, teamValue: CGFloat = 0, dataValue: CGFloat = 0, pathColor: UIColor, dashPattern: [CGFloat] = [1, 1], lineWidth: CGFloat = 5) {
         self.pathColour = pathColor
         self.lineWidth = lineWidth
         self.wheelValue = value
         self.teamValue = teamValue
         self.dataValue = dataValue
-        self.dashPattern = dashPattern.map { NSNumber(value: Float($0)) }
+        self.dashPattern = dashPattern
 
         super.init(frame: frame)
         draw(frame: frame, value: value)
@@ -51,8 +51,8 @@ class AverageMeetingLengthProgressWheel: UIView {
         drawSolidCircle(arcCenter: arcCenter, radius: innerRadius, lineWidth: 1, strokeColour: strokeColour)
         drawSolidCircle(arcCenter: arcCenter, radius: outerRadius, lineWidth: 1, strokeColour: strokeColour)
 
-        drawDashedCircle(arcCenter: arcCenter, radius: radius, lineWidth: lineWidth, strokeColour: strokeColour)
-        drawDashedCircle(arcCenter: arcCenter, radius: radius, lineWidth: lineWidth, value: value, strokeColour: pathColour, hasShadow: true)
+        drawDashedCircle(arcCenter: arcCenter, radius: radius, lineWidth: lineWidth, dashPattern: dashPattern, strokeColour: strokeColour)
+        drawDashedCircle(arcCenter: arcCenter, radius: radius, lineWidth: lineWidth, dashPattern: dashPattern, strokeColour: pathColour, value: value, hasShadow: true)
 
         let dataAngle = Math.radians(360 * dataValue - 90)
         let teamAngle = Math.radians(360 * teamValue - 90)

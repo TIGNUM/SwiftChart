@@ -1,15 +1,15 @@
 //
-//  AverageMeetingLengthView.swift
+//  AverageMeetingBetweenLengthView.swift
 //  QOT
 //
-//  Created by Moucheg Mouradian on 13/06/2017.
+//  Created by Moucheg Mouradian on 14/06/2017.
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
 import UIKit
 import Anchorage
 
-class AverageMeetingLengthView: UIView {
+class AverageMeetingBetweenLengthView: UIView {
 
     private var data: MyStatisticsDataAverage<Int>
 
@@ -33,11 +33,12 @@ class AverageMeetingLengthView: UIView {
         let padding: CGFloat = 8.0
         let separatorHeight: CGFloat = 1.0
 
-        let progressWheel = AverageMeetingLengthProgressWheel(frame: self.bounds,
-                                                              value: userValue,
-                                                              teamValue: teamValue,
-                                                              dataValue: dataValue,
-                                                              pathColor: data.pathColor().color)
+        let progressWheel = AverageMeetingBetweenLengthProgressWheel(frame: self.bounds,
+                                                                       value: userValue,
+                                                                       teamValue: teamValue,
+                                                                       dataValue: dataValue,
+                                                                       pathColor: data.pathColor().color,
+                                                                       lineWidth: 12)
         addSubview(progressWheel)
 
         progressWheel.topAnchor == self.topAnchor + (2 * padding + separatorHeight)

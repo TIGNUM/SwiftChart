@@ -73,7 +73,7 @@ private extension MyStatisticsCardCell {
         case .meetingAverage: addAverageMeetingCountView(data: data)
         case .meetingHeartRateChange: return
         case .meetingLength: addAverageMeetingLengthView(data: data)
-        case .meetingTimeBetween: return
+        case .meetingTimeBetween: addAverageMeetingBetweenLengthView(data: data)
         case .peakPerformanceAveragePerWeek: return
         case .peakPerformanceNextMonth: return
         case .peakPerformanceNextWeek: return
@@ -165,16 +165,29 @@ private extension MyStatisticsCardCell {
     }
 
     private func addAverageMeetingLengthView(data: MyStatisticsData) {
-        guard let meetingData = data as? MyStatisticsDataMeetingAverageLength else { return }
+        guard let meetingData = data as? MyStatisticsDataAverage<Int> else { return }
 
-        titleLabel.attributedText = Style.postTitle(String(format: "%d", meetingData.userMeetingAverageLength), .white).attributedString()
+        titleLabel.attributedText = Style.postTitle(String(format: "%d", meetingData.userAverage), .white).attributedString()
 
-        teamAverageValueLabel.attributedText = Style.tag(String(format: "%d", meetingData.teamMeetingAverageLength), .azure).attributedString()
-        userAverageValueLabel.attributedText = Style.tag(String(format: "%d", meetingData.dataMeetingAverageLength), .cherryRed).attributedString()
+        teamAverageValueLabel.attributedText = Style.tag(String(format: "%d", meetingData.teamAverage), .azure).attributedString()
+        userAverageValueLabel.attributedText = Style.tag(String(format: "%d", meetingData.dataAverage), .cherryRed).attributedString()
 
         let averageMeetingLengthView = AverageMeetingLengthView(frame: centerContentView.bounds, data: meetingData)
         centerContentView.addSubview(averageMeetingLengthView)
-    }    
+    }
+
+    private func addAverageMeetingBetweenLengthView(data: MyStatisticsData) {
+        guard let meetingData = data as? MyStatisticsDataAverage<Int> else { return }
+
+        titleLabel.attributedText = Style.postTitle(String(format: "%d", meetingData.userAverage), .white).attributedString()
+
+        teamAverageValueLabel.attributedText = Style.tag(String(format: "%d", meetingData.teamAverage), .azure).attributedString()
+        userAverageValueLabel.attributedText = Style.tag(String(format: "%d", meetingData.dataAverage), .cherryRed).attributedString()
+
+        let averageMeetingInBetweenLengthView = AverageMeetingBetweenLengthView(frame: centerContentView.bounds, data: meetingData)
+        centerContentView.addSubview(averageMeetingInBetweenLengthView)
+    }
+
     private func addActivityView() {
         let view = ActivityChartView.init(frame: centerContentView.bounds, columns: mockData())
         view.setupAverageLine(color: .red, level: 0.45, lineType: .average)
