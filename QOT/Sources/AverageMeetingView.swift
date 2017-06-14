@@ -21,7 +21,7 @@ enum DataDisplayType: Int {
 class AverageMeetingView: UIView {
 
     private var data: MyStatisticsDataMeetingAverage
-    var delegate: MyStatisticsCardCellDelegate?
+    weak var delegate: MyStatisticsCardCellDelegate?
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -56,10 +56,10 @@ class AverageMeetingView: UIView {
         let separator = UIView()
         let container = UIView()
 
-        self.addSubview(dayButton)
-        self.addSubview(weekButton)
-        self.addSubview(separator)
-        self.addSubview(container)
+        addSubview(dayButton)
+        addSubview(weekButton)
+        addSubview(separator)
+        addSubview(container)
 
         let padding: CGFloat = 8
         let separatorHeight: CGFloat = 1
@@ -86,7 +86,7 @@ class AverageMeetingView: UIView {
         container.trailingAnchor == self.trailingAnchor
         container.bottomAnchor == self.bottomAnchor
 
-        self.layoutIfNeeded()
+        layoutIfNeeded()
 
         let userValue = data.userAverage() / CGFloat(data.userDays)
         let teamValue = data.teamAverage() / CGFloat(data.teamDays)
@@ -104,9 +104,9 @@ class AverageMeetingView: UIView {
 
     func didTapButton(sender: UIButton) {
         guard let type = DataDisplayType.init(rawValue: sender.tag) else { return }
-        guard self.data.displayType != type else { return }
+        guard data.displayType != type else { return }
 
-        self.data.displayType = type
-        self.delegate?.doReload()
+        data.displayType = type
+        delegate?.doReload()
     }
 }

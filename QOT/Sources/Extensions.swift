@@ -40,7 +40,7 @@ extension NSAttributedString {
     }
 }
 
-// MARK String
+// MARK: - String
 
 extension String {
 

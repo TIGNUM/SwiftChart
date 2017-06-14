@@ -50,6 +50,15 @@
 		8514A48E1EE966C30086C70E /* PrepareContentMainHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8514A48D1EE966C30086C70E /* PrepareContentMainHeaderTableViewCell.xib */; };
 		8514A4921EEAA2AE0086C70E /* UILabel+AttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8514A4911EEAA2AE0086C70E /* UILabel+AttributedText.swift */; };
 		852DADC21EEDDE5100A10882 /* UIButton+AttributedTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADC11EEDDE5100A10882 /* UIButton+AttributedTitle.swift */; };
+		852DADC41EEED5D600A10882 /* AverageMeetingProgressWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADC31EEED5D600A10882 /* AverageMeetingProgressWheel.swift */; };
+		852DADC61EEEE63500A10882 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADC51EEEE63500A10882 /* Math.swift */; };
+		852DADCA1EEFD1F200A10882 /* AverageMeetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADC91EEFD1F200A10882 /* AverageMeetingView.swift */; };
+		852DADCC1EEFD93200A10882 /* MyStatisticsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADCB1EEFD93200A10882 /* MyStatisticsData.swift */; };
+		852DADCE1EF045FD00A10882 /* MyStatisticsDataMeetingAverage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADCD1EF045FD00A10882 /* MyStatisticsDataMeetingAverage.swift */; };
+		852DADD01EF048E800A10882 /* MyStatisticsDataMeetingAverageLength.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADCF1EF048E800A10882 /* MyStatisticsDataMeetingAverageLength.swift */; };
+		852DADD21EF04DEA00A10882 /* AverageMeetingLengthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADD11EF04DEA00A10882 /* AverageMeetingLengthView.swift */; };
+		852DADD41EF0504000A10882 /* AverageMeetingLengthViewProgressWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADD31EF0504000A10882 /* AverageMeetingLengthViewProgressWheel.swift */; };
+		852DADD61EF051C400A10882 /* UIView+Layers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADD51EF051C400A10882 /* UIView+Layers.swift */; };
 		8591ED7B1EE6DBA6006FCE89 /* MockingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E0A6A01EE6AF130076169D /* MockingProtocol.swift */; };
 		8591ED7C1EE6DBAC006FCE89 /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E0A6A21EE6B1610076169D /* Mocks.swift */; };
 		85E0A69F1EE6A5E40076169D /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E0A69E1EE6A5E40076169D /* NetworkManagerTests.swift */; };
@@ -367,6 +376,15 @@
 		8514A48D1EE966C30086C70E /* PrepareContentMainHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentMainHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		8514A4911EEAA2AE0086C70E /* UILabel+AttributedText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+AttributedText.swift"; sourceTree = "<group>"; };
 		852DADC11EEDDE5100A10882 /* UIButton+AttributedTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+AttributedTitle.swift"; sourceTree = "<group>"; };
+		852DADC31EEED5D600A10882 /* AverageMeetingProgressWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageMeetingProgressWheel.swift; sourceTree = "<group>"; };
+		852DADC51EEEE63500A10882 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
+		852DADC91EEFD1F200A10882 /* AverageMeetingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageMeetingView.swift; sourceTree = "<group>"; };
+		852DADCB1EEFD93200A10882 /* MyStatisticsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsData.swift; sourceTree = "<group>"; };
+		852DADCD1EF045FD00A10882 /* MyStatisticsDataMeetingAverage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsDataMeetingAverage.swift; sourceTree = "<group>"; };
+		852DADCF1EF048E800A10882 /* MyStatisticsDataMeetingAverageLength.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsDataMeetingAverageLength.swift; sourceTree = "<group>"; };
+		852DADD11EF04DEA00A10882 /* AverageMeetingLengthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageMeetingLengthView.swift; sourceTree = "<group>"; };
+		852DADD31EF0504000A10882 /* AverageMeetingLengthViewProgressWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageMeetingLengthViewProgressWheel.swift; sourceTree = "<group>"; };
+		852DADD51EF051C400A10882 /* UIView+Layers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layers.swift"; sourceTree = "<group>"; };
 		85E0A69E1EE6A5E40076169D /* NetworkManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		85E0A6A01EE6AF130076169D /* MockingProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockingProtocol.swift; sourceTree = "<group>"; };
 		85E0A6A21EE6B1610076169D /* Mocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
@@ -984,6 +1002,8 @@
 				0BCE74401ECD96D70006C0CF /* TripsDashView.swift */,
 				852DADC31EEED5D600A10882 /* AverageMeetingProgressWheel.swift */,
 				852DADC91EEFD1F200A10882 /* AverageMeetingView.swift */,
+				852DADD11EF04DEA00A10882 /* AverageMeetingLengthView.swift */,
+				852DADD31EF0504000A10882 /* AverageMeetingLengthViewProgressWheel.swift */,
 			);
 			name = Charts;
 			sourceTree = "<group>";
@@ -1004,6 +1024,7 @@
 				CC64725A1EE6F9DE00BFA3D9 /* UIColor+Palette.swift */,
 				8514A4911EEAA2AE0086C70E /* UILabel+AttributedText.swift */,
 				852DADC11EEDDE5100A10882 /* UIButton+AttributedTitle.swift */,
+				852DADD51EF051C400A10882 /* UIView+Layers.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1028,6 +1049,8 @@
 				CC944DB71EE8096100B8423C /* MyStatisticsCardCell.swift */,
 				CC944DB91EE809AA00B8423C /* MyStatisticsCardCell.xib */,
 				852DADCB1EEFD93200A10882 /* MyStatisticsData.swift */,
+				852DADCD1EF045FD00A10882 /* MyStatisticsDataMeetingAverage.swift */,
+				852DADCF1EF048E800A10882 /* MyStatisticsDataMeetingAverageLength.swift */,
 			);
 			name = "My Statistics";
 			sourceTree = "<group>";
@@ -1702,6 +1725,7 @@
 				8514A4921EEAA2AE0086C70E /* UILabel+AttributedText.swift in Sources */,
 				CC0FF8D41EA788350028D64F /* PartnersViewController.swift in Sources */,
 				CB27D59D1ECCB6DD00F2B76C /* NetworkError.swift in Sources */,
+				852DADD61EF051C400A10882 /* UIView+Layers.swift in Sources */,
 				CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */,
 				CCCE09CE1EA67F87008730F1 /* MyToBeVisionViewController.swift in Sources */,
 				CB369CE71E8E470800522293 /* LearnContentCategory.swift in Sources */,
@@ -1774,12 +1798,14 @@
 				CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */,
 				0BEE8ABD1EA600A7008077B8 /* PrepareEventSimpleTableViewCell.swift in Sources */,
 				CB369CDE1E8D3F5300522293 /* LearnContentService.swift in Sources */,
+				852DADD21EF04DEA00A10882 /* AverageMeetingLengthView.swift in Sources */,
 				CC27E0BA1EB33760003E5B7F /* SidebarItemCoordinator.swift in Sources */,
 				CC27E0C01EB355BC003E5B7F /* SidebarTableViewCell.swift in Sources */,
 				CB8A153C1E78467D0023B2F9 /* CalendarEventParticipant.swift in Sources */,
 				CC27E0BC1EB337A2003E5B7F /* SidebarItemViewController.swift in Sources */,
 				CB1D5E3D1EC5E25A00BCDF8D /* ContentItem.swift in Sources */,
 				CC94F5641EB08EE400051CF8 /* LearnStrategyAudioViewController.swift in Sources */,
+				852DADCE1EF045FD00A10882 /* MyStatisticsDataMeetingAverage.swift in Sources */,
 				CB1E4F981E7FE22200287613 /* SettingsViewModel.swift in Sources */,
 				CBB4DCFD1EDC27550071494A /* SyncManager.swift in Sources */,
 				CCCC211C1E8981AD00133839 /* ChatViewController.swift in Sources */,
@@ -1798,6 +1824,7 @@
 				CCC0C4DB1E82BDEF002A8362 /* TabBarCoordinator.swift in Sources */,
 				CB369CDB1E8D3E5700522293 /* RealmProvider.swift in Sources */,
 				CBDB98FD1E7BE6AF003EC73F /* CalendarEventData.swift in Sources */,
+				852DADD01EF048E800A10882 /* MyStatisticsDataMeetingAverageLength.swift in Sources */,
 				D576F06E1ECB45C900363BFE /* WeeklyChoicesCell.swift in Sources */,
 				CBB4DD141EDEBDA80071494A /* URLRequestBuildable.swift in Sources */,
 				CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */,
@@ -1853,6 +1880,7 @@
 				0BA3E6421EC1A8280012999E /* DayEventChartView.swift in Sources */,
 				8514A4881EE93D3C0086C70E /* PrepareContentFooterTableViewCell.swift in Sources */,
 				0BC1FF4B1E968E07007DE090 /* CollectionTableViewCell.swift in Sources */,
+				852DADD41EF0504000A10882 /* AverageMeetingLengthViewProgressWheel.swift in Sources */,
 				CC13E2481EB1D72E00C3CE46 /* LatestPostCell.swift in Sources */,
 				CC56D0A91EEACC6200EB71D9 /* LearnWhatsHotService.swift in Sources */,
 				D57ECFB01E924CC2008F401B /* TabBarView.swift in Sources */,
