@@ -113,7 +113,7 @@ private extension LearnContentListViewController {
     func observeViewModel() {
         viewModel.updates.observeNext { [unowned self] (update) in
             switch update {
-            case .reload, .update(_, _, _):
+            case .reload, .update:
                 self.collectionViewLayout.bubbleCount = self.viewModel.itemCount
                 UIView.animate(withDuration: 0.9) {
                     self.collectionView.reloadData()

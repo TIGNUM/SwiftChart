@@ -153,6 +153,16 @@ extension FloatingPoint {
     var radiansToDegrees: Self { return self * 180 / .pi }
 }
 
+// MARK: - CGFLoat
+
+extension CGFloat {
+
+    func radians() -> CGFloat {
+        let b = CGFloat(Float.pi) * (self/180)
+        return b
+    }
+}
+
 // MARK: - Collection
 
 extension MutableCollection where Index == Int {

@@ -43,6 +43,15 @@
 "Me.Sector.My.Why.Weekly.Choices.Title" = "Weekly Choices";
 "Me.Sector.My.Why.Partners.Title" = "QOT Partners";
 
+"Me.Sector.My.Statistics.Day" = "DAY";
+"Me.Sector.My.Statistics.Week" = "WEEK";
+"Me.Sector.My.Statistics.LastWeek" = "LAST WEEK";
+"Me.Sector.My.Statistics.NextWeek" = "NEXT WEEK";
+"Me.Sector.My.Statistics.Month" = "MONTH";
+"Me.Sector.My.Statistics.Year" = "YEAR";
+"Me.Sector.My.Statistics.Weeks" = "%@ WEEKS";
+
+
 "Prepare.PrepareEvents.AddPreparation" = "ADD THIS PREPARATION TO";
 "Prepare.PrepareEvents.AddNewTrip" = "Add new trip";
 "Prepare.Content.ReadMore" = "Read more";

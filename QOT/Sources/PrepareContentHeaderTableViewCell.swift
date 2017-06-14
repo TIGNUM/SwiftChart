@@ -42,7 +42,6 @@ class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
         iconImageView.tintColor = UIColor.blackTwo
     }
 
-
     func setCell(title: String, contentText: String, readMoreID: Int?, position: Int, isExpanded: Bool) {
         headerLabel.text = title
         bottomSeparator.isHidden = isExpanded

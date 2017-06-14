@@ -46,7 +46,7 @@ final class AppCoordinator: ParentCoordinator {
                 self.services = services
                 self.calendarImportManager.importEvents()
                 self.startTabBarCoordinator(services: services)
-            case .failure(_):
+            case .failure:
                 // FIXME: Alert user that the app cannot be run
                 break
             }

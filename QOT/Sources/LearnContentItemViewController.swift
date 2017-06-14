@@ -136,8 +136,8 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
         let cotentItemValue = contentItem[indexPath.row].contentItemValue
 
         switch cotentItemValue {
-        case .video(_, _, _, _, _): streamVideo()
-        case .audio(_, _, _, _, _, _): streamVideo()
+        case .video: streamVideo()
+        case .audio: streamVideo()
         default:
             return
         }

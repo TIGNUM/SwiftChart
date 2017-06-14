@@ -40,6 +40,7 @@ final class MyStatisticsTableViewCell: UITableViewCell, Dequeueable {
         self.cards = cards
         contentView.backgroundColor = .clear
         backgroundColor = .clear
+        self.collectionView.reloadData()
     }
 }
 
@@ -66,12 +67,21 @@ extension MyStatisticsTableViewCell: UICollectionViewDelegateFlowLayout, UIColle
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let card = cards[indexPath.item]
         let cardCell: MyStatisticsCardCell = collectionView.dequeueCell(for: indexPath)
-        cardCell.setup(title: card.title, subTitle: card.subtitle, data: card.data, cardType: card.type)
+        cardCell.setup(subTitle: card.subtitle, data: card.data, cardType: card.type, delegate: self)
 
         return cardCell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 250, height: 330)
+    }
+}
+
+// MARK: - MyStatisticsCardCellDelegate
+
+extension MyStatisticsTableViewCell: MyStatisticsCardCellDelegate {
+
+    func doReload() {
+        self.collectionView.reloadData()
     }
 }

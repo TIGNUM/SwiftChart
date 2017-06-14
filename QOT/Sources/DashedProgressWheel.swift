@@ -52,10 +52,3 @@ class DashedProgressWheel: UIView {
         self.layer.addSublayer(shapeLayer)
     }
 }
-
-extension CGFloat {
-    func radians() -> CGFloat {
-        let b = CGFloat(Float.pi) * (self/180)
-        return b
-    }
-}

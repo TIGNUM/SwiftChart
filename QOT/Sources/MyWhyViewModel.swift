@@ -22,7 +22,7 @@ final class MyWhyViewModel {
 
     func itemCount(for myWhyItem: MyWhy) -> Int {
         switch myWhyItem {
-        case .vision(_): return 0
+        case .vision: return 0
         case .weeklyChoices(_, let choices): return choices.count
         case .partners(_, let partners): return partners.count
         }

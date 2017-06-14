@@ -170,7 +170,7 @@ private extension MyUniverseViewController {
         let beta = acos(xPosShifted / radius)
         let sectorAngle = beta.radiansToDegrees
 
-        for (_, sector) in myDataViewModel.sectors.enumerated() {
+        for sector in myDataViewModel.sectors {
             if yPosShifted >= 0 {
                 if sector.startAngle ... sector.endAngle ~= sectorAngle {
                     return sector

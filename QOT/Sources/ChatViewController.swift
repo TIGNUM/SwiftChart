@@ -69,7 +69,7 @@ class ChatViewController: UIViewController, Dequeueable, CollectionViewCellDeleg
             switch update {
             case .reload:
                 self.tableView.reloadData()
-            case .update(_, _, _):
+            case .update:
                 // Please animate updates as needed
                 self.tableView.reloadData()
             }

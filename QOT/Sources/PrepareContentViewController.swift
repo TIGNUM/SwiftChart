@@ -70,7 +70,7 @@ private extension PrepareContentViewController {
             switch update {
             case .reload:
                 self.tableView.reloadData()
-            case .update(_, _, _):
+            case .update:
                 self.tableView.reloadData()
             }
             }.dispose(in: disposeBag)
@@ -170,4 +170,3 @@ extension PrepareContentViewController: PrepareContentMainHeaderTableViewCellDel
         }
     }
 }
-

@@ -66,12 +66,12 @@ enum SettingsRow {
 
     var identifier: String {
         switch self {
-        case .button(_, _): return R.reuseIdentifier.settingsTableViewCell_Button.identifier
-        case .control(_, _): return R.reuseIdentifier.settingsTableViewCell_Control.identifier
-        case .datePicker(_, _): return R.reuseIdentifier.settingsTableViewCell_Label.identifier
-        case .label(_, _): return R.reuseIdentifier.settingsTableViewCell_Label.identifier
-        case .stringPicker(_, _, _): return R.reuseIdentifier.settingsTableViewCell_Label.identifier
-        case .textField(_, _, _): return R.reuseIdentifier.settingsTableViewCell_TextField.identifier
+        case .button: return R.reuseIdentifier.settingsTableViewCell_Button.identifier
+        case .control: return R.reuseIdentifier.settingsTableViewCell_Control.identifier
+        case .datePicker: return R.reuseIdentifier.settingsTableViewCell_Label.identifier
+        case .label: return R.reuseIdentifier.settingsTableViewCell_Label.identifier
+        case .stringPicker: return R.reuseIdentifier.settingsTableViewCell_Label.identifier
+        case .textField: return R.reuseIdentifier.settingsTableViewCell_TextField.identifier
         }
     }
 }

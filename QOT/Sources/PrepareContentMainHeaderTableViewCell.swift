@@ -14,7 +14,6 @@ protocol PrepareContentMainHeaderTableViewCellDelegate: class {
     func didTapVideo(videoURL: URL?, cell: UITableViewCell)
 }
 
-
 class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable {
     
     @IBOutlet weak var bottomSeparator: UIView!

@@ -121,10 +121,10 @@ extension SettingsViewController {
         let selectedRow = viewModel.row(at: indexPath)
 
         switch selectedRow {
-        case .button(_, _),
-             .control(_, _),
-             .label(_, _),
-             .textField(_, _, _): return
+        case .button,
+             .control,
+             .label,
+             .textField: return
         case .datePicker(let title, let selectedDate): showDatePicker(title: title, selectedDate: selectedDate)
         case .stringPicker(let title, let pickerItems, let selectedIndex):  showStringPicker(title: title, items: pickerItems, selectedIndex: selectedIndex)
         }
@@ -144,9 +144,9 @@ private extension SettingsViewController {
     private func createDatePicker(with title: String, selectedDate: Date) -> ActionSheetDatePicker {
         return ActionSheetDatePicker(title: title, datePickerMode: .date,
             selectedDate: selectedDate,
-            doneBlock: { [unowned self] (picker: ActionSheetDatePicker?, _, _) in
+            doneBlock: { [unowned self] (_, _, _) in
                 self.tableView.reloadData()
-            }, cancel: { (picker: ActionSheetDatePicker?) in
+            }, cancel: { (_) in
                 return
         }, origin: view)
     }
@@ -168,9 +168,9 @@ private extension SettingsViewController {
     }
 
     private func createStringPicker(with title: String, items: [String], selectedIndex: Index) -> ActionSheetStringPicker {
-        return ActionSheetStringPicker(title: title, rows: items, initialSelection: selectedIndex, doneBlock: { (picker, _, _) in
+        return ActionSheetStringPicker(title: title, rows: items, initialSelection: selectedIndex, doneBlock: { (_, _, _) in
             self.tableView.reloadData()
-        }, cancel: { (picker) in
+        }, cancel: { (_) in
             return
         }, origin: view)
     }

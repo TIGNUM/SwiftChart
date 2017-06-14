@@ -45,14 +45,14 @@ enum Style {
 
     private var font: UIFont {
         switch self {
-        case .postTitle(_): return Font.H1MainTitle
-        case .secondaryTitle(_): return Font.H2SecondaryTitle
-        case .subTitle(_): return Font.H3Subtitle
-        case .headline(_): return Font.H4Headline
-        case .headlineSmall(_): return Font.H5SecondaryHeadline
-        case .navigationTitle(_): return Font.H6NavigationTitle
-        case .tag(_): return Font.H7Tag
-        case .paragraph(_): return Font.H7Title
+        case .postTitle: return Font.H1MainTitle
+        case .secondaryTitle: return Font.H2SecondaryTitle
+        case .subTitle: return Font.H3Subtitle
+        case .headline: return Font.H4Headline
+        case .headlineSmall: return Font.H5SecondaryHeadline
+        case .navigationTitle: return Font.H6NavigationTitle
+        case .tag: return Font.H7Tag
+        case .paragraph: return Font.H7Title
         }
     }
 

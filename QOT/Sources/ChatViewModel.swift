@@ -40,7 +40,7 @@ final class ChatViewModel {
     }
 }
 
-// MARK - MOCK
+// MARK: - MOCK
 
 extension ChatViewModel {
 

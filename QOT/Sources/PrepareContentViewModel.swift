@@ -23,8 +23,8 @@ final class PrepareContentViewModel {
     var title: String = ""
     var subTitle: String = ""
     var contentText: String = ""
-    var videoPlaceholder: URL? = nil
-    var video: URL? = nil
+    var videoPlaceholder: URL?
+    var video: URL?
     
     var items: [PrepareContentItemType] = []
 
@@ -48,7 +48,6 @@ final class PrepareContentViewModel {
         }
     }
 
-    
     // MARK: - Init
 
     init() {

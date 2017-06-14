@@ -27,4 +27,3 @@ extension ContentCollection: LearnWhatsHotContentCollection {
         return DataProvider(list: items, map: { $0 as LearnWhatsHotContentItem })
     }
 }
-

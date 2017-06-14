@@ -21,8 +21,6 @@ private let syncManager: SyncManager = {
     return SyncManager(networkManager: networkManager, syncRecordService: syncRecordService, realmProvider: realmProvider)
 }()
 
-
-
 /// Deletes all data in default realm and fills with mock data.
 func setupRealmWithMockData(realm: Realm) {
     do {

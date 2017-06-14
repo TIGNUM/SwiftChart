@@ -40,6 +40,10 @@
 		0BEE8AC01EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BEE8AB71EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib */; };
 		0CC2119BB6C36EF6F43B4ECD /* Pods_QOT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */; };
 		8514A4861EE810750086C70E /* DownSyncComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8514A4851EE810750086C70E /* DownSyncComplete.swift */; };
+		852DADC41EEED5D600A10882 /* AverageMeetingProgressWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADC31EEED5D600A10882 /* AverageMeetingProgressWheel.swift */; };
+		852DADC61EEEE63500A10882 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADC51EEEE63500A10882 /* Math.swift */; };
+		852DADCA1EEFD1F200A10882 /* AverageMeetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADC91EEFD1F200A10882 /* AverageMeetingView.swift */; };
+		852DADCC1EEFD93200A10882 /* MyStatisticsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADCB1EEFD93200A10882 /* MyStatisticsData.swift */; };
 		8514A4881EE93D3C0086C70E /* PrepareContentFooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8514A4871EE93D3C0086C70E /* PrepareContentFooterTableViewCell.swift */; };
 		8514A48A1EE93D640086C70E /* PrepareContentFooterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8514A4891EE93D640086C70E /* PrepareContentFooterTableViewCell.xib */; };
 		8514A48C1EE9663A0086C70E /* PrepareContentMainHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8514A48B1EE9663A0086C70E /* PrepareContentMainHeaderTableViewCell.swift */; };
@@ -353,6 +357,10 @@
 		5C87601C1FE7F833DF0D7A6B /* Pods-QOTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.release.xcconfig"; sourceTree = "<group>"; };
 		82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8514A4851EE810750086C70E /* DownSyncComplete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownSyncComplete.swift; sourceTree = "<group>"; };
+		852DADC31EEED5D600A10882 /* AverageMeetingProgressWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageMeetingProgressWheel.swift; sourceTree = "<group>"; };
+		852DADC51EEEE63500A10882 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
+		852DADC91EEFD1F200A10882 /* AverageMeetingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageMeetingView.swift; sourceTree = "<group>"; };
+		852DADCB1EEFD93200A10882 /* MyStatisticsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsData.swift; sourceTree = "<group>"; };
 		8514A4871EE93D3C0086C70E /* PrepareContentFooterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentFooterTableViewCell.swift; sourceTree = "<group>"; };
 		8514A4891EE93D640086C70E /* PrepareContentFooterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentFooterTableViewCell.xib; sourceTree = "<group>"; };
 		8514A48B1EE9663A0086C70E /* PrepareContentMainHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentMainHeaderTableViewCell.swift; sourceTree = "<group>"; };
@@ -974,6 +982,8 @@
 				D5A64D931EE801970095D01C /* SleepChartView.swift */,
 				0BCE743F1ECD96D70006C0CF /* TripsDashCellView.swift */,
 				0BCE74401ECD96D70006C0CF /* TripsDashView.swift */,
+				852DADC31EEED5D600A10882 /* AverageMeetingProgressWheel.swift */,
+				852DADC91EEFD1F200A10882 /* AverageMeetingView.swift */,
 			);
 			name = Charts;
 			sourceTree = "<group>";
@@ -1017,6 +1027,7 @@
 				CC143A4E1EC47810001FB76E /* MyStatisticsViewModel.swift */,
 				CC944DB71EE8096100B8423C /* MyStatisticsCardCell.swift */,
 				CC944DB91EE809AA00B8423C /* MyStatisticsCardCell.xib */,
+				852DADCB1EEFD93200A10882 /* MyStatisticsData.swift */,
 			);
 			name = "My Statistics";
 			sourceTree = "<group>";
@@ -1358,6 +1369,7 @@
 				CB27D59A1ECCB67300F2B76C /* Result.swift */,
 				CBD791491E71797C0006C590 /* Typealiases.swift */,
 				CC3DFB631E83BDA300FF28DF /* Utils.swift */,
+				852DADC51EEEE63500A10882 /* Math.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -1798,6 +1810,7 @@
 				CBB4DD091EDDC6550071494A /* StartSyncResult.swift in Sources */,
 				CBB4DD071EDDB5860071494A /* SerialRequest.swift in Sources */,
 				CB55A2E11E9FDF1D00D721CE /* SettingsMenuViewModel.swift in Sources */,
+				852DADC61EEEE63500A10882 /* Math.swift in Sources */,
 				CC311A1D1EAF39DF0020C869 /* SettingsTableViewCell.swift in Sources */,
 				CCE372FF1E8D2AE700B79352 /* MyPrepViewModel.swift in Sources */,
 				0BB099CB1EBC6323006B2FB7 /* CarouselCellView.swift in Sources */,
@@ -1866,6 +1879,7 @@
 				CCE5796F1ECB580E006E0D45 /* MockData+Sidebar.swift in Sources */,
 				CCEA22A91E8AC55F003D0CF4 /* PrepareEventsViewController.swift in Sources */,
 				D5485F261ED583BC00A08D1A /* SearchTableCell.swift in Sources */,
+				852DADCC1EEFD93200A10882 /* MyStatisticsData.swift in Sources */,
 				CCC0C4BE1E82730E002A8362 /* Extensions.swift in Sources */,
 				CC9663101EA1B29800B84B1C /* MyWhyViewModel.swift in Sources */,
 				CC6B3A2D1E8163A200E7FDFD /* FadeInOutPresentationController.swift in Sources */,
@@ -1881,7 +1895,9 @@
 				D58BD8771E9F65F7005676DE /* WhatsHotCell.swift in Sources */,
 				CB1D5E3B1EC5E25A00BCDF8D /* ContentCollection.swift in Sources */,
 				0B573CA41EC3218D00A03602 /* MeetingLengthChartView.swift in Sources */,
+				852DADCA1EEFD1F200A10882 /* AverageMeetingView.swift in Sources */,
 				CC8D6D001EC316A1007AE687 /* LearnContentItemBulletViewController.swift in Sources */,
+				852DADC41EEED5D600A10882 /* AverageMeetingProgressWheel.swift in Sources */,
 				D58BD86A1E9D1E7F005676DE /* NSFile+Convenience.swift in Sources */,
 				CCE579671ECB5546006E0D45 /* SidebarContentCategory.swift in Sources */,
 				D5B761871EE6B19C00AE178B /* SpacingInLabel.swift in Sources */,

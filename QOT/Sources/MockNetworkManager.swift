@@ -52,4 +52,3 @@ class MockNetworkManager: NetworkManager {
         }
     }
 }
-

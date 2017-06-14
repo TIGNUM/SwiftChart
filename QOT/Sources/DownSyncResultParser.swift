@@ -17,7 +17,6 @@ struct DownSyncResult<T>: JSONDecodable where T: JSONDecodable {
     let maxPages: Int
     let nextSyncToken: String
 
-    
     init(json: JSON) throws {
         self.items = try json.getArray(at: JsonKey.resultList.value).map { (json) -> DownSyncChange<T> in
             let syncStatus: SyncStatus = try json.getItemValue(at: .syncStatus)

@@ -10,7 +10,6 @@ import Foundation
 import Freddy
 import RealmSwift
 
-
 final class DownSyncOperation<Intermediary, Persistable>: ConcurrentOperation where Intermediary: JSONDecodable, Persistable: DownSyncable, Persistable: Object, Persistable.Data == Intermediary {
 
     private let networkManager: NetworkManager
@@ -25,8 +24,7 @@ final class DownSyncOperation<Intermediary, Persistable>: ConcurrentOperation wh
          description: SyncDescription<Intermediary, Persistable>,
          syncRecordService: SyncRecordService,
          realmProvider: RealmProvider,
-         downSyncImporter: DownSyncImporter<Persistable>)
-    {
+         downSyncImporter: DownSyncImporter<Persistable>) {
         self.networkManager = networkManager
         self.syncDescription = description
         self.syncRecordService = syncRecordService
@@ -86,7 +84,7 @@ final class DownSyncOperation<Intermediary, Persistable>: ConcurrentOperation wh
         let endpoint = DownSyncConfirmRequest(endpoint: .downSyncConfirm, syncToken: syncToken)
         networkManager.request(endpoint, parser: DownSyncComplete.parse, completion: { result in
             switch result {
-            case .success(_):
+            case .success:
                 break
             case .failure(let error):
                 print("Down sync confirm error: \(error)")
