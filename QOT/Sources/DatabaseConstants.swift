@@ -68,9 +68,9 @@ enum JsonKey: String {
     case maxResults
     case maxPages
     case timestamp
-    case relatedContentIDs
-    case categoryIDs
-    case contentID
+    case relatedContentIds
+    case categoryIds
+    case contentId
     case searchTags
     case secondsRequired
     case value

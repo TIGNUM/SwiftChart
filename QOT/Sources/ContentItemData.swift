@@ -87,7 +87,7 @@ extension ContentItemData: JSONDecodable {
         self.searchTags = try (json.getArray(at: .searchTags) as [String]).joined(separator: ",")
         self.tabs = try (json.getArray(at: .tabs) as [String]).joined(separator: ",")
         self.layoutInfo = try json.serializeString(at: .layoutInfo)
-        self.contentID = try json.getItemValue(at: .contentID)
+        self.contentID = try json.getItemValue(at: .contentId)
     }
 }
 
