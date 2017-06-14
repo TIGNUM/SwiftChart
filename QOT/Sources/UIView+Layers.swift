@@ -20,6 +20,7 @@ extension UIView {
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.lineWidth = lineWidth
         shapeLayer.strokeColor = strokeColour.cgColor
+
         self.layer.addSublayer(shapeLayer)
     }
 

@@ -120,6 +120,8 @@ private extension MyStatisticsSectionType {
             return MyStatisticsDataAverage(teamAverage: 148, dataAverage: 178, userAverage: 42, maximum: 200, threshold: (upperThreshold: 120, lowerThreshold: 45))
         case .meetingTimeBetween:
             return MyStatisticsDataAverage(teamAverage: 148, dataAverage: 178, userAverage: 42, maximum: 200, threshold: (upperThreshold: 120, lowerThreshold: 45))
+        case .travelTripsTimeZoneChanged:
+            return MyStatisticsDataAverage(teamAverage: 148, dataAverage: 178, userAverage: 42, maximum: 200, threshold: (upperThreshold: 120, lowerThreshold: 45))
         default:
             return MyStatisticsDataMeetingAverage(teamMeetings: 450, dataMeetings: 12500, userMeetings: 149, teamDays: 100, dataDays: 1000, userDays: 27, dayThreshold: (upperThreshold: 150, lowerThreshold: 25), weekThreshold: (upperThreshold: 250, lowerThreshold: 150), displayType: .day)
         }
@@ -142,11 +144,11 @@ private extension MyStatisticsSectionType {
 
     var travelCards: [MyStatisticsCard] {
         return [
-            MockMyStatisticsCard(title: "25", subtitle: "Trips last four weeks", type: .travelTripsLastFourWeeks, data: makeData(.travelTripsMaxTimeZone)),
-            MockMyStatisticsCard(title: "4", subtitle: "Trips next four Weeks", type: .travelTripsNextFourWeeks, data: makeData(.travelTripsTotalInYear)),
-            MockMyStatisticsCard(title: "2", subtitle: "Of trips with time zone changed", type: .travelTripsMaxTimeZone, data: makeData(.travelTripsLastFourWeeks)),
-            MockMyStatisticsCard(title: "125", subtitle: "Number of trips this year", type: .travelTripsTotalInYear, data: makeData(.travelTripsNextFourWeeks)),
-            MockMyStatisticsCard(title: "13", subtitle: "Time zone  max time zone", type: .travelTripsTimeZoneChanged, data: makeData(.travelTripsTimeZoneChanged))
+            MockMyStatisticsCard(title: "25", subtitle: "Trips last four weeks", type: .travelTripsLastFourWeeks, data: makeData(.travelTripsLastFourWeeks)),
+            MockMyStatisticsCard(title: "4", subtitle: "Trips next four Weeks", type: .travelTripsNextFourWeeks, data: makeData(.travelTripsNextFourWeeks)),
+            MockMyStatisticsCard(title: "2", subtitle: "Of trips with time zone changed", type: .travelTripsMaxTimeZone, data: makeData(.travelTripsMaxTimeZone)),
+            MockMyStatisticsCard(title: "125", subtitle: "Number of trips this year", type: .travelTripsTotalInYear, data: makeData(.travelTripsTotalInYear)),
+            MockMyStatisticsCard(title: "#11", subtitle: "Time zone  max time zone", type: .travelTripsTimeZoneChanged, data: makeData(.travelTripsTimeZoneChanged))
         ]
     }
 

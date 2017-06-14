@@ -1,14 +1,14 @@
 //
-//  AverageMeetingLengthViewProgressWheel.swift
+//  TravelMaxTimeZoneChangesProgressWheel.swift
 //  QOT
 //
-//  Created by Moucheg Mouradian on 13/06/2017.
+//  Created by Moucheg Mouradian on 14/06/2017.
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
 import UIKit
 
-class AverageMeetingLengthProgressWheel: UIView {
+class TravelMaxTimeZoneChangesProgressWheel: UIView {
 
     private var pathColour: UIColor
     private var lineWidth: CGFloat
@@ -42,23 +42,28 @@ class AverageMeetingLengthProgressWheel: UIView {
 
     private func draw(frame: CGRect, value: CGFloat) {
         let arcCenter = CGPoint(x: frame.width / 2, y: frame.height / 2)
-        let radius = CGFloat(frame.height / 2) * 0.75
+        let radius = CGFloat(frame.height / 2) * 0.9
         let strokeColour = UIColor.white20
 
-        let innerRadius = radius * 0.6
         let outerRadius = CGFloat(frame.height / 2)
 
-        drawSolidCircle(arcCenter: arcCenter, radius: innerRadius, lineWidth: 1, strokeColour: strokeColour)
+        let circlePointRadius: CGFloat = lineWidth / 2
+        let circlePointPositionRadius: CGFloat = radius - lineWidth - circlePointRadius
+        if circlePointRadius < 0 { return }
+
         drawSolidCircle(arcCenter: arcCenter, radius: outerRadius, lineWidth: 1, strokeColour: strokeColour)
 
         drawDashedCircle(arcCenter: arcCenter, radius: radius, lineWidth: lineWidth, dashPattern: dashPattern, strokeColour: strokeColour)
-        drawDashedCircle(arcCenter: arcCenter, radius: radius, lineWidth: lineWidth, dashPattern: dashPattern, strokeColour: pathColour, value: value, hasShadow: true)
+        drawCapRoundLine(center: arcCenter, radius: radius, value: value, startAngle: -90, lineWidth: lineWidth, strokeColour: pathColour)
 
         let dataAngle = Math.radians(360 * dataValue - 90)
         let teamAngle = Math.radians(360 * teamValue - 90)
 
-        drawAverageLine(center: arcCenter, innerRadius: innerRadius, outerRadius: outerRadius, angle: teamAngle, lineWidth: 1, strokeColour: .azure)
-        drawAverageLine(center: arcCenter, innerRadius: innerRadius, outerRadius: outerRadius, angle: dataAngle, lineWidth: 1, strokeColour: .cherryRed)
+        let dataCenter = Math.pointOnCircle(center: arcCenter, withRadius: circlePointPositionRadius, andAngle: dataAngle)
+        let teamCenter = Math.pointOnCircle(center: arcCenter, withRadius: circlePointPositionRadius, andAngle: teamAngle)
+
+        drawSolidCircle(arcCenter: dataCenter, radius: circlePointRadius, lineWidth: circlePointRadius, value: 1, startAngle: -90, strokeColour: .cherryRed)
+        drawSolidCircle(arcCenter: teamCenter, radius: circlePointRadius, lineWidth: circlePointRadius, value: 1, startAngle: -90, strokeColour: .azure)
 
         let lineSemiLength = frame.height / 10
         let horizontalFrom = CGPoint(x: arcCenter.x - lineSemiLength, y: arcCenter.y)

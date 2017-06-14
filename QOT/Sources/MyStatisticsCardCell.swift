@@ -86,7 +86,7 @@ private extension MyStatisticsCardCell {
         case .travelTripsLastFourWeeks: addHorizontalLinesChartView(data: dataArray)
         case .travelTripsMaxTimeZone: addLevelsChartView(data: dataArray)
         case .travelTripsTotalInYear: addLevelsChartView(data: dataArray)
-        case .travelTripsTimeZoneChanged: addLevelsChartView(data: dataArray)
+        case .travelTripsTimeZoneChanged: addTravelMaxTimeZoneChanges(data: data)
         case .travelTripsNextFourWeeks: addLevelsChartView(data: dataArray)
         }
     }
@@ -187,6 +187,22 @@ private extension MyStatisticsCardCell {
         let averageMeetingInBetweenLengthView = AverageMeetingBetweenLengthView(frame: centerContentView.bounds, data: meetingData)
         centerContentView.addSubview(averageMeetingInBetweenLengthView)
     }
+
+    // MARK: - Travel
+
+    private func addTravelMaxTimeZoneChanges(data: MyStatisticsData) {
+        guard let meetingData = data as? MyStatisticsDataAverage<Int> else { return }
+
+        titleLabel.attributedText = Style.postTitle(String(format: "%d", meetingData.userAverage), .white).attributedString()
+
+        teamAverageValueLabel.attributedText = Style.tag(String(format: "%d", meetingData.teamAverage), .azure).attributedString()
+        userAverageValueLabel.attributedText = Style.tag(String(format: "%d", meetingData.dataAverage), .cherryRed).attributedString()
+
+        let travelMaxTimeZoneChangesView = TravelMaxTimeZoneChangesView(frame: centerContentView.bounds, data: meetingData)
+        centerContentView.addSubview(travelMaxTimeZoneChangesView)
+    }
+    
+    // MARK: - Activity
 
     private func addActivityView() {
         let view = ActivityChartView.init(frame: centerContentView.bounds, columns: mockData())
