@@ -45,6 +45,7 @@ final class EventGraphView: UIView {
         let layer = CAShapeLayer()
         layer.path = UIBezierPath(roundedRect: frame, cornerRadius: width).cgPath
         layer.fillColor = item.color.cgColor
+        layer.addGlowEffect(color: .white)
         return layer
     }
 

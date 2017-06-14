@@ -67,10 +67,12 @@ private extension MyStatisticsCardCell {
         let dataArray: [CGFloat] = [0.1, 0.4, 0.5, 0.6, 0.3]
 
         switch cardType {
+        case .activitySittingMovementRatio: return
+        case .intensity: return
+        case .meetingAverage: addAverageMeetingsProgressWheel(data: data)
         case .activityLevel: addActivityView()
         case .activitySittingMovementRatio: addDashedProgressWheel(data: dataArray)
         case .intensity: addAverageGraphGridView(data: dataArray)
-        case .meetingAverage: addAverageMeetingCountView(data: data)
         case .meetingHeartRateChange: return
         case .meetingLength: addAverageMeetingLengthView(data: data)
         case .meetingTimeBetween: return
@@ -172,9 +174,7 @@ private extension MyStatisticsCardCell {
         teamAverageValueLabel.attributedText = Style.tag(String(format: "%d", meetingData.teamMeetingAverageLength), .azure).attributedString()
         userAverageValueLabel.attributedText = Style.tag(String(format: "%d", meetingData.dataMeetingAverageLength), .cherryRed).attributedString()
 
-        let averageMeetingLengthView = AverageMeetingLengthView(frame: centerContentView.bounds, data: meetingData)
-        centerContentView.addSubview(averageMeetingLengthView)
-    }    
+<<<<<<< HEAD
     private func addActivityView() {
         let view = ActivityChartView.init(frame: centerContentView.bounds, columns: mockData())
         view.setupAverageLine(color: .red, level: 0.45, lineType: .average)
@@ -193,4 +193,9 @@ private extension MyStatisticsCardCell {
 
         return [column, column, column, column, column]
     }
+=======
+        let averageMeetingLengthView = AverageMeetingLengthView(frame: centerContentView.bounds, data: meetingData)
+        centerContentView.addSubview(averageMeetingLengthView)
+    }    
+>>>>>>> dev
 }

@@ -289,7 +289,7 @@
 		D521E3FE1EB8AF38008E24B1 /* SideBarShareAction.xib in Resources */ = {isa = PBXBuildFile; fileRef = D521E3FD1EB8AF38008E24B1 /* SideBarShareAction.xib */; };
 		D52350961E9FC1120013DE7E /* WhatsHotLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52350951E9FC1120013DE7E /* WhatsHotLayout.swift */; };
 		D52371531EA9F0B100165842 /* PrepareChatTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52371511EA9F0B100165842 /* PrepareChatTableCell.swift */; };
-		D52DAF9B1EC1E87D00C63156 /* SittingMovementChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52DAF9A1EC1E87D00C63156 /* SittingMovementChartView.swift */; };
+		D52DAF9B1EC1E87D00C63156 /* ActivityChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52DAF9A1EC1E87D00C63156 /* ActivityChartView.swift */; };
 		D537B1E61EC200CD004C444D /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D537B1E51EC200CD004C444D /* GridView.swift */; };
 		D5485F221ED57AE200A08D1A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5485F211ED57AE200A08D1A /* SearchViewController.swift */; };
 		D5485F241ED57F0600A08D1A /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5485F231ED57F0600A08D1A /* SearchViewModel.swift */; };
@@ -622,7 +622,7 @@
 		D521E3FD1EB8AF38008E24B1 /* SideBarShareAction.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideBarShareAction.xib; sourceTree = "<group>"; };
 		D52350951E9FC1120013DE7E /* WhatsHotLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsHotLayout.swift; sourceTree = "<group>"; };
 		D52371511EA9F0B100165842 /* PrepareChatTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareChatTableCell.swift; sourceTree = "<group>"; };
-		D52DAF9A1EC1E87D00C63156 /* SittingMovementChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SittingMovementChartView.swift; sourceTree = "<group>"; };
+		D52DAF9A1EC1E87D00C63156 /* ActivityChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityChartView.swift; sourceTree = "<group>"; };
 		D537B1E51EC200CD004C444D /* GridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		D5485F211ED57AE200A08D1A /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		D5485F231ED57F0600A08D1A /* SearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
@@ -996,6 +996,7 @@
 				D5FA66961EBB4DA600980EC7 /* HorizontalLinesChartView.swift */,
 				D50CDDC21EC48EAC00D27072 /* LevelsChartView.swift */,
 				0B573CA31EC3218D00A03602 /* MeetingLengthChartView.swift */,
+				D52DAF9A1EC1E87D00C63156 /* ActivityChartView.swift */,
 				D52DAF9A1EC1E87D00C63156 /* SittingMovementChartView.swift */,
 				D5A64D931EE801970095D01C /* SleepChartView.swift */,
 				0BCE743F1ECD96D70006C0CF /* TripsDashCellView.swift */,
@@ -1829,7 +1830,7 @@
 				CBB4DD141EDEBDA80071494A /* URLRequestBuildable.swift in Sources */,
 				CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */,
 				CC05CB771EDEC6D700D15ABC /* UIBezierPath+Hexagon.swift in Sources */,
-				D52DAF9B1EC1E87D00C63156 /* SittingMovementChartView.swift in Sources */,
+				D52DAF9B1EC1E87D00C63156 /* ActivityChartView.swift in Sources */,
 				CCE373161E8D330100B79352 /* LibraryViewModel.swift in Sources */,
 				CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */,
 				CB8A153A1E7801B90023B2F9 /* CalendarEvent.swift in Sources */,

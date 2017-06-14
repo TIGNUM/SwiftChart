@@ -125,8 +125,8 @@ private extension MyStatisticsSectionType {
 
     var sleepCards: [MyStatisticsCard] {
         return [
-//            MockMyStatisticsCard(title: "8.5H", subtitle: "Sleep Quantity", type: .sleepQuantity, data: makeData()),
-//            MockMyStatisticsCard(title: "7.5H", subtitle: "Sleep Quality", type: .sleepQuality, data: makeData())
+            MockMyStatisticsCard(title: "8.5H", subtitle: "Sleep Quantity", type: .sleepQuantity, data: makeData(.sleepQuantity)),
+            MockMyStatisticsCard(title: "7.5H", subtitle: "Sleep Quality", type: .sleepQuality, data: makeData(.sleepQuality))
         ]
     }
 
@@ -140,32 +140,32 @@ private extension MyStatisticsSectionType {
 
     var travelCards: [MyStatisticsCard] {
         return [
-//            MockMyStatisticsCard(title: "25", subtitle: "Trips last four weeks", type: .travelTripsLastFourWeeks, data: makeData()),
-//            MockMyStatisticsCard(title: "4", subtitle: "Trips next four Weeks", type: .travelTripsNextFourWeeks, data: makeData()),
-//            MockMyStatisticsCard(title: "2", subtitle: "Of trips with time zone changed", type: .travelTripsMaxTimeZone, data: makeData()),
-//            MockMyStatisticsCard(title: "125", subtitle: "Number of trips this year", type: .travelTripsTotalInYear, data: makeData()),
-//            MockMyStatisticsCard(title: "13", subtitle: "Time zone  max time zone", type: .travelTripsTimeZoneChanged, data: makeData())
+            MockMyStatisticsCard(title: "25", subtitle: "Trips last four weeks", type: .travelTripsLastFourWeeks, data: makeData(.travelTripsMaxTimeZone)),
+            MockMyStatisticsCard(title: "4", subtitle: "Trips next four Weeks", type: .travelTripsNextFourWeeks, data: makeData(.travelTripsTotalInYear)),
+            MockMyStatisticsCard(title: "2", subtitle: "Of trips with time zone changed", type: .travelTripsMaxTimeZone, data: makeData(.travelTripsLastFourWeeks)),
+            MockMyStatisticsCard(title: "125", subtitle: "Number of trips this year", type: .travelTripsTotalInYear, data: makeData(.travelTripsNextFourWeeks)),
+            MockMyStatisticsCard(title: "13", subtitle: "Time zone  max time zone", type: .travelTripsTimeZoneChanged, data: makeData(.travelTripsTimeZoneChanged))
         ]
     }
 
     var peakPerformanceCards: [MyStatisticsCard] {
         return [
-//            MockMyStatisticsCard(title: "11", subtitle: "Next Month", type: .peakPerformanceNextMonth, data: makeData()),
-//            MockMyStatisticsCard(title: "222", subtitle: "Average per week", type: .peakPerformanceAveragePerWeek, data: makeData()),
-//            MockMyStatisticsCard(title: "3333", subtitle: "Next week", type: .peakPerformanceNextWeek, data: makeData())
+            MockMyStatisticsCard(title: "11", subtitle: "Next Month", type: .peakPerformanceNextMonth, data: makeData(.peakPerformanceNextMonth)),
+            MockMyStatisticsCard(title: "222", subtitle: "Average per week", type: .peakPerformanceAveragePerWeek, data: makeData(.peakPerformanceAveragePerWeek)),
+            MockMyStatisticsCard(title: "3333", subtitle: "Next week", type: .peakPerformanceNextWeek, data: makeData(.peakPerformanceNextWeek))
         ]
     }
 
     var activityCards: [MyStatisticsCard] {
         return [
-//            MockMyStatisticsCard(title: "4.7H", subtitle: "Sitting / Movement Ratio", type: .activitySittingMovementRatio, data: makeData()),
-//            MockMyStatisticsCard(title: "6.3H", subtitle: "Activity level", type: .activityLevel, data: makeData())
+            MockMyStatisticsCard(title: "4.7H", subtitle: "Sitting / Movement Ratio", type: .activitySittingMovementRatio, data: makeData(.activitySittingMovementRatio)),
+            MockMyStatisticsCard(title: "6.3H", subtitle: "Activity level", type: .activityLevel, data: makeData(.activityLevel))
         ]
     }
     
     var intensityCards: [MyStatisticsCard] {
         return [
-//            MockMyStatisticsCard(title: "4.7H", subtitle: "ava", type: .intensity, data: makeData())
+            MockMyStatisticsCard(title: "4.7H", subtitle: "ava", type: .intensity, data: makeData(.intensity))
         ]
     }
 }

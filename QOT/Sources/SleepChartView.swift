@@ -22,7 +22,7 @@ final class SleepChartView: UIView {
             return .white20
         }
 
-        var sites: Int {
+        var sides: Int {
             return 5
         }
 
@@ -40,24 +40,24 @@ final class SleepChartView: UIView {
 
         makeSleepChart(frame: frame, data: data, average: average, chartType: chartType)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     private func makeSleepChart(frame: CGRect, data: [CGFloat], average: CGFloat, chartType: ChartType) {
-        lineBounds(chartType: chartType, data: data, average: average)
+        lineBounds(rect: frame, data: data, sides: chartType.sides, chartType: chartType, average: average)
         drawShape(chartType: chartType)
         configureInnerPolygon(average: average)
     }
 
     private func drawShape(chartType: ChartType) {
         outerPolygonShape = shape(borderColor: chartType.borderColor)
-        outerPolygonShape.path = UIBezierPath.roundedPolygonPath(rect: bounds, lineWidth: chartType.borderWidth, sides: chartType.sites).cgPath
+        outerPolygonShape.path =  roundedPolygonPath(rect: bounds, lineWidth: chartType.borderWidth, sides: chartType.sides).cgPath
 
         innerPolygonShape = shape(borderColor: chartType.borderColor)
         centerPolygonShape = shape(borderColor: chartType.borderColor, fillColor: .greyish20)
-        centerPolygonShape.path = UIBezierPath.roundedPolygonPath(rect: bounds, lineWidth: chartType.borderWidth, sides: chartType.sites, radius: 10).cgPath
+        centerPolygonShape.path = roundedPolygonPath(rect: bounds, lineWidth: chartType.borderWidth, sides: chartType.sides, radius: 10).cgPath
 
         layer.addSublayer(innerPolygonShape)
         layer.addSublayer(outerPolygonShape)
@@ -74,7 +74,7 @@ final class SleepChartView: UIView {
 
     func configureInnerPolygon(average: CGFloat) {
         let radius = (bounds.width / 2) * average
-        innerPolygonShape.path = UIBezierPath.roundedPolygonPath(rect: bounds, lineWidth: 1, sides: 5, radius: radius).cgPath
+        innerPolygonShape.path = roundedPolygonPath(rect: bounds, lineWidth: 1, sides: 5, radius: radius).cgPath
     }
 
     private func drawLines(chartType: ChartType, center: CGPoint, end: CGPoint, color: UIColor) {
@@ -91,23 +91,56 @@ final class SleepChartView: UIView {
         }
 
         line.strokeColor = color.cgColor
+        line.addGlowEffect(color: .white)
         layer.addSublayer(line)
     }
 
-    private func lineBounds(chartType: ChartType, data: [CGFloat], average: CGFloat) {
+    private func lineBounds(rect: CGRect, data: [CGFloat], sides: NSInteger, cornerRadius: CGFloat = 0, chartType: ChartType, average: CGFloat) {
         precondition(data.isEmpty == false, "No Data available")
+        let tempWidth = rect.width - rect.width / 3
+        let y =  tempWidth / 5
+        let x = tempWidth / 4
+        let rect = CGRect(x: x, y: y, width: tempWidth, height: rect.height)
+        let theta: CGFloat = CGFloat(2.0 * CGFloat.pi) / CGFloat(sides)
+        let width = tempWidth
+        let center = CGPoint(x: rect.origin.x + width / 2.0, y: rect.origin.y + width / 2.0)
+        var angle = CGFloat(0)
 
-        let theta: CGFloat = CGFloat(2.0 * CGFloat.pi) / CGFloat(chartType.sites)
-        let width = min(frame.size.width, frame.size.height)
-        let center = CGPoint(x: frame.origin.x + width / 2.0, y: frame.origin.y + width / 2.0)
-        var angle: CGFloat = 0
-
-        for index in 0..<chartType.sites {
+        for index in 0..<sides {
             angle += theta
-            let length = (bounds.width / 2.2 ) * data[index]
-            let corner = CGPoint(x: center.x + ( length ) * cos(angle), y: center.y + (length ) * sin(angle))
-            let end = CGPoint(x: corner.x * cos(angle + theta), y: corner.y * sin(angle + theta))
+            let length = (width / 2.0 ) * data[index]
+            let corner = CGPoint(x: center.x + (length) * cos(angle), y: center.y + (length) * sin(angle))
+            let end = CGPoint(x: corner.x + cornerRadius * cos(angle + theta), y: corner.y + cornerRadius * sin(angle + theta))
             drawLines(chartType: chartType, center: center, end: end, color: chartType.lineColor(value: data[index], average: average))
         }
     }
+
+    private func roundedPolygonPath(rect: CGRect, lineWidth: CGFloat, sides: NSInteger, cornerRadius: CGFloat = 0, rotationOffset: CGFloat = 0, radius: CGFloat = -1) -> UIBezierPath {
+        let path = UIBezierPath()
+        let tempWidth = rect.width - rect.width / 3
+        let y = rect.height / 5
+        let rect = CGRect(x: tempWidth / 4, y: y, width: tempWidth, height: rect.height)
+        let theta: CGFloat = CGFloat(2.0 * CGFloat.pi) / CGFloat(sides)
+        let width = tempWidth
+        let center = CGPoint(x: rect.origin.x + width / 2.0, y: rect.origin.y + width / 2.0)
+        let radius = radius != -1 ? radius :(width - lineWidth + cornerRadius - (cos(theta) * cornerRadius)) / 2.0
+        var angle = CGFloat(rotationOffset)
+
+        let corner = CGPoint(x: center.x + (radius - cornerRadius) * cos(angle), y: center.y + (radius - cornerRadius) * sin(angle))
+        path.move(to: CGPoint(x: corner.x + cornerRadius * cos(angle + theta), y: corner.y + cornerRadius * sin(angle + theta)))
+
+        for _ in 0..<sides {
+            angle += theta
+            let corner = CGPoint(x: center.x + (radius - cornerRadius) * cos(angle), y: center.y + (radius - cornerRadius) * sin(angle))
+            let tip = CGPoint(x: center.x + radius * cos(angle), y: center.y + radius * sin(angle))
+            let start = CGPoint(x: corner.x + cornerRadius * cos(angle - theta), y: corner.y + cornerRadius * sin(angle - theta))
+            let end = CGPoint(x: corner.x + cornerRadius * cos(angle + theta), y: corner.y + cornerRadius * sin(angle + theta))
+            path.addLine(to: start)
+            path.addQuadCurve(to: end, controlPoint: tip)
+        }
+        
+        path.close()
+        return path
+    }
+    
 }
