@@ -37,6 +37,8 @@ class MockNetworkManager: NetworkManager {
             name = "MockContentItemDown"
         case .downSyncConfirm:
             name = "MockDownSyncConfirm"
+        case .user:
+            name = "MockUserDown"
         default:
             fatalError("Unsupported request for MockNetworkManager")
         }

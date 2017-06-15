@@ -54,16 +54,32 @@ enum Database {
 enum JsonKey: String {
     case associatedValueId
     case associatedValueType
+    case birthdate
     case categoryIds
+    case city
+    case company
     case contentId
+    case country
     case createdAt
+    case email
+    case employment
+    case firstName
     case format
+    case gender
+    case height
+    case heightUnit
+    case heightUnits
     case id
+    case increment
+    case jobTitle
     case keypathID
+    case lastName
     case layoutInfo
     case maxPages
     case maxResults
+    case memberSince
     case modifiedAt
+    case name
     case nextSyncToken
     case page
     case pageId
@@ -77,16 +93,26 @@ enum JsonKey: String {
     case secondsRequired
     case section
     case sortOrder
+    case street
+    case streetNumber
     case subtitle
     case syncStatus
     case syncTime
     case syncTokenHeaderKey
     case tabs
+    case telephone
     case thumbnailURL
     case timestamp
     case title
+    case userImageURL
+    case userInfo
     case value
     case viewed
+    case weight
+    case weightUnit
+    case weightUnits
+    case zip
+    case zone
 
     var value: String {
         return rawValue
@@ -134,9 +160,12 @@ extension JSON {
         return try json.serializeString()
     }
 
-//    subscript(key: JsonKey) -> JSON? {
-//        return self[key.value]
-//    }
+    func json(at key: JsonKey) throws -> JSON {
+        guard let json = self[key.value], json != .null else {
+            throw JSON.Error.keyNotFound(key: key.value)
+        }
+        return json
+    }
 
     func makeJSONDictionary(_ jsonDict: [Swift.String: Any]) throws -> JSON {
         return try JSON(jsonDict.lazy.map { (key, value) in

@@ -45,4 +45,3 @@ class TravelMaxTimeZoneChangesView: UIView {
             progressWheel.rightAnchor == self.rightAnchor
         }
 }
-

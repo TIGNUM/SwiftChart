@@ -15,6 +15,7 @@ enum Endpoint: String {
     case contentCategories = "/personal/p/qot/contentCategory"
     case contentCollection = "/personal/p/qot/content"
     case contentItems = "/personal/p/qot/contentItem"
+    case user = "/personal/p/qot/userData"
     case downSyncConfirm = "/personal/p/qot/confirm"
 
     func url(baseURL: URL) -> URL {

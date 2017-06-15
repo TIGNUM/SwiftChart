@@ -102,6 +102,9 @@
 		CB6D49541ECC87BF005BC637 /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6D49531ECC87BF005BC637 /* Requests.swift */; };
 		CB6D49561ECCA58D005BC637 /* AuthenticationTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6D49551ECCA58D005BC637 /* AuthenticationTokenParser.swift */; };
 		CB810E611EEFC0D70043E3E5 /* ErrorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB810E601EEFC0D70043E3E5 /* ErrorCell.swift */; };
+		CB810E641EF00DB70043E3E5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB810E631EF00DB70043E3E5 /* User.swift */; };
+		CB810E661EF00DCA0043E3E5 /* UserIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB810E651EF00DCA0043E3E5 /* UserIntermediary.swift */; };
+		CB810E681EF00E2C0043E3E5 /* MockUserDown.json in Resources */ = {isa = PBXBuildFile; fileRef = CB810E671EF00E2C0043E3E5 /* MockUserDown.json */; };
 		CB810E6E1EF180DC0043E3E5 /* PageTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB810E6D1EF180DC0043E3E5 /* PageTrack.swift */; };
 		CB810E701EF181ED0043E3E5 /* PageTrackAssociatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB810E6F1EF181ED0043E3E5 /* PageTrackAssociatedObject.swift */; };
 		CB8A15221E769F1F0023B2F9 /* EventTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15211E769F1F0023B2F9 /* EventTracker.swift */; };
@@ -431,6 +434,9 @@
 		CB6D49531ECC87BF005BC637 /* Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
 		CB6D49551ECCA58D005BC637 /* AuthenticationTokenParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationTokenParser.swift; sourceTree = "<group>"; };
 		CB810E601EEFC0D70043E3E5 /* ErrorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorCell.swift; sourceTree = "<group>"; };
+		CB810E631EF00DB70043E3E5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		CB810E651EF00DCA0043E3E5 /* UserIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserIntermediary.swift; sourceTree = "<group>"; };
+		CB810E671EF00E2C0043E3E5 /* MockUserDown.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockUserDown.json; sourceTree = "<group>"; };
 		CB810E6D1EF180DC0043E3E5 /* PageTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageTrack.swift; sourceTree = "<group>"; };
 		CB810E6F1EF181ED0043E3E5 /* PageTrackAssociatedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageTrackAssociatedObject.swift; sourceTree = "<group>"; };
 		CB8A15211E769F1F0023B2F9 /* EventTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTracker.swift; sourceTree = "<group>"; };
@@ -699,6 +705,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CB810E621EF00D9F0043E3E5 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				CB810E631EF00DB70043E3E5 /* User.swift */,
+				CB810E651EF00DCA0043E3E5 /* UserIntermediary.swift */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
 		CB810E6C1EF180CB0043E3E5 /* PageTrack */ = {
 			isa = PBXGroup;
 			children = (
@@ -896,6 +911,7 @@
 		CBB4DD251EE087830071494A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CB810E621EF00D9F0043E3E5 /* User */,
 				CB810E6C1EF180CB0043E3E5 /* PageTrack */,
 				CB8A15391E7801B90023B2F9 /* CalendarEvent.swift */,
 				CBDB98FC1E7BE6AF003EC73F /* CalendarEventData.swift */,
@@ -1347,11 +1363,12 @@
 				CB18BCC41EEAC2CE0035C1BB /* MockDownSyncConfirm.json */,
 				CB18BCC61EEACF890035C1BB /* MockDownSyncContentCollection.json */,
 				CB18BCC01EEABFA60035C1BB /* MockStartSync.json */,
+				CB810E671EF00E2C0043E3E5 /* MockUserDown.json */,
 				CBD791531E72A4BB0006C590 /* MockData.swift */,
 				CC1465361EC60D0C00DEC3C5 /* MockData+Prepare.swift */,
 				CCE5796E1ECB580E006E0D45 /* MockData+Sidebar.swift */,
-				CB18BCBE1EEABD890035C1BB /* MockNetworkManager.swift */,
 				CC56D0B01EEAE05400EB71D9 /* MockData+WhatsHot.swift */,
+				CB18BCBE1EEABD890035C1BB /* MockNetworkManager.swift */,
 			);
 			name = "Mock - DELETE";
 			sourceTree = "<group>";
@@ -1550,6 +1567,7 @@
 				CC13E2471EB1D72E00C3CE46 /* CategoryPostCell.xib in Resources */,
 				D50D6C251EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib in Resources */,
 				CB18BCC91EEAE9070035C1BB /* MockContentItemDown.json in Resources */,
+				CB810E681EF00E2C0043E3E5 /* MockUserDown.json in Resources */,
 				0B40DC161E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib in Resources */,
 				CCC0C4D41E82A8D9002A8362 /* Simple-Regular.ttf in Resources */,
 				CC311A2D1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib in Resources */,
@@ -1770,6 +1788,7 @@
 				D537B1E61EC200CD004C444D /* GridView.swift in Sources */,
 				CCCE09CC1EA67C78008730F1 /* MyToBeVisionViewModel.swift in Sources */,
 				CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */,
+				CB810E661EF00DCA0043E3E5 /* UserIntermediary.swift in Sources */,
 				D5EC34AB1EB0D2FC00F86B09 /* LearnStrategyAudioPlayerView.swift in Sources */,
 				CC33CA281EC601DF008E6B33 /* PrepareContentCategory.swift in Sources */,
 				CBB4DD541EE151100071494A /* DownSyncImporter.swift in Sources */,
@@ -1820,6 +1839,7 @@
 				CB8A15271E76A1280023B2F9 /* PageEvent.swift in Sources */,
 				CCEA22A41E8AC53E003D0CF4 /* PrepareCheckListViewController.swift in Sources */,
 				CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */,
+				CB810E641EF00DB70043E3E5 /* User.swift in Sources */,
 				0BEE8ABD1EA600A7008077B8 /* PrepareEventSimpleTableViewCell.swift in Sources */,
 				CB369CDE1E8D3F5300522293 /* LearnContentService.swift in Sources */,
 				852DADD21EF04DEA00A10882 /* AverageMeetingLengthView.swift in Sources */,

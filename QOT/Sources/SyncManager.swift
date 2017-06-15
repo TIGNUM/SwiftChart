@@ -30,6 +30,7 @@ final class SyncManager {
     func syncAll() {
         let context = SyncContext(queue: operationQueue)
         let operations: [Operation] = [
+            downSyncOperation(for: UserDown, context: context),
             downSyncOperation(for: ContentCategoryDown, context: context),
             downSyncOperation(for: ContentCollectionDown, context: context),
             downSyncOperation(for: ContentItemDown, context: context)

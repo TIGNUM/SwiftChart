@@ -12,12 +12,14 @@ enum SyncType: String {
     case contentCategoryDown
     case contentCollectionDown
     case contentItemDown
+    case userDown
 
     var endpoint: Endpoint {
         switch self {
         case .contentCategoryDown: return .contentCategories
         case .contentCollectionDown: return .contentCollection
         case .contentItemDown: return .contentItems
+        case .userDown: return .user
         }
     }
 }
