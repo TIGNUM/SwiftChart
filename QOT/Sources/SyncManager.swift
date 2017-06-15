@@ -33,7 +33,8 @@ final class SyncManager {
             downSyncOperation(for: UserDown, context: context),
             downSyncOperation(for: ContentCategoryDown, context: context),
             downSyncOperation(for: ContentCollectionDown, context: context),
-            downSyncOperation(for: ContentItemDown, context: context)
+            downSyncOperation(for: ContentItemDown, context: context),
+            downSyncOperation(for: PageDown, context: context)
         ]
 
         operationQueue.addOperations(operations, waitUntilFinished: false)

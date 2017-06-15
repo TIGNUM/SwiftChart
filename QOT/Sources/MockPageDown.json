@@ -1,0 +1,42 @@
+{
+  "resultList": [
+    {
+      "name": "Learn.CategoryListPage.Full",
+      "displayName": "Learn CategoryListPage Full",
+      "layoutInfo": {
+        "foo": "bar"
+      },
+      "id": 100000,
+      "syncStatus": 0,
+      "createdAt": "2017-06-09T12:23:09.986Z",
+      "modifiedAt": "2017-06-12T16:57:43.252Z"
+    },
+    {
+      "name": "Learn.CategoryListPage.Bullets",
+      "displayName": "Learn CategoryListPage Bullets",
+      "layoutInfo": {
+        "foo": "bar"
+      },
+      "id": 100001,
+      "syncStatus": 0,
+      "createdAt": "2017-06-09T12:23:09.986Z",
+      "modifiedAt": "2017-06-12T16:57:43.252Z"
+    },
+    {
+      "name": "Learn.CategoryListPage.Audio",
+      "displayName": "Learn CategoryListPage Audio",
+      "layoutInfo": {
+        "foo": "bar"
+      },
+      "id": 100002,
+      "syncStatus": 0,
+      "createdAt": "2017-06-09T12:23:09.986Z",
+      "modifiedAt": "2017-06-12T16:57:43.252Z"
+    }
+  ],
+  "page": 1,
+  "pageSize": 10,
+  "maxResults": 3,
+  "maxPages": 1,
+  "nextSyncToken": "eyJhbGciOiJIUzI1Ni"
+}

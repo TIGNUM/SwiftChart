@@ -67,6 +67,9 @@
 		CB0A4A5A1ECC4C3E006A2D85 /* AddSensorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A4A591ECC4C3E006A2D85 /* AddSensorViewModel.swift */; };
 		CB0A4A5D1ECC4C72006A2D85 /* AddSensorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A4A5B1ECC4C72006A2D85 /* AddSensorViewController.swift */; };
 		CB14675E1EF18F5F00A60E31 /* Dictionary+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14675D1EF18F5F00A60E31 /* Dictionary+Convenience.swift */; };
+		CB1467651EF2779700A60E31 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1467641EF2779700A60E31 /* Page.swift */; };
+		CB1467671EF277AA00A60E31 /* PageIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1467661EF277AA00A60E31 /* PageIntermediary.swift */; };
+		CB14676C1EF2801F00A60E31 /* MockPageDown.json in Resources */ = {isa = PBXBuildFile; fileRef = CB14676B1EF2801F00A60E31 /* MockPageDown.json */; };
 		CB18BCBF1EEABD890035C1BB /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB18BCBE1EEABD890035C1BB /* MockNetworkManager.swift */; };
 		CB18BCC11EEABFA60035C1BB /* MockStartSync.json in Resources */ = {isa = PBXBuildFile; fileRef = CB18BCC01EEABFA60035C1BB /* MockStartSync.json */; };
 		CB18BCC31EEABFEB0035C1BB /* MockContentCategoryDown.json in Resources */ = {isa = PBXBuildFile; fileRef = CB18BCC21EEABFEB0035C1BB /* MockContentCategoryDown.json */; };
@@ -399,6 +402,9 @@
 		CB0A4A591ECC4C3E006A2D85 /* AddSensorViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorViewModel.swift; sourceTree = "<group>"; };
 		CB0A4A5B1ECC4C72006A2D85 /* AddSensorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorViewController.swift; sourceTree = "<group>"; };
 		CB14675D1EF18F5F00A60E31 /* Dictionary+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Convenience.swift"; sourceTree = "<group>"; };
+		CB1467641EF2779700A60E31 /* Page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		CB1467661EF277AA00A60E31 /* PageIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageIntermediary.swift; sourceTree = "<group>"; };
+		CB14676B1EF2801F00A60E31 /* MockPageDown.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockPageDown.json; sourceTree = "<group>"; };
 		CB18BCBE1EEABD890035C1BB /* MockNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockNetworkManager.swift; sourceTree = "<group>"; };
 		CB18BCC01EEABFA60035C1BB /* MockStartSync.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockStartSync.json; sourceTree = "<group>"; };
 		CB18BCC21EEABFEB0035C1BB /* MockContentCategoryDown.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockContentCategoryDown.json; sourceTree = "<group>"; };
@@ -705,6 +711,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CB1467631EF2778400A60E31 /* Page */ = {
+			isa = PBXGroup;
+			children = (
+				CB1467641EF2779700A60E31 /* Page.swift */,
+				CB1467661EF277AA00A60E31 /* PageIntermediary.swift */,
+			);
+			name = Page;
+			sourceTree = "<group>";
+		};
 		CB810E621EF00D9F0043E3E5 /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -911,8 +926,6 @@
 		CBB4DD251EE087830071494A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CB810E621EF00D9F0043E3E5 /* User */,
-				CB810E6C1EF180CB0043E3E5 /* PageTrack */,
 				CB8A15391E7801B90023B2F9 /* CalendarEvent.swift */,
 				CBDB98FC1E7BE6AF003EC73F /* CalendarEventData.swift */,
 				CB8A153B1E78467D0023B2F9 /* CalendarEventParticipant.swift */,
@@ -924,6 +937,9 @@
 				CB1D5E321EC5E25A00BCDF8D /* ContentItem.swift */,
 				CB1D5E331EC5E25A00BCDF8D /* ContentItemData.swift */,
 				CB1D5E341EC5E25A00BCDF8D /* ContentItemValue.swift */,
+				CB1467631EF2778400A60E31 /* Page */,
+				CB810E6C1EF180CB0043E3E5 /* PageTrack */,
+				CB810E621EF00D9F0043E3E5 /* User */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1029,7 +1045,6 @@
 				D50CDDC21EC48EAC00D27072 /* LevelsChartView.swift */,
 				0B573CA31EC3218D00A03602 /* MeetingLengthChartView.swift */,
 				D52DAF9A1EC1E87D00C63156 /* ActivityChartView.swift */,
-				D52DAF9A1EC1E87D00C63156 /* SittingMovementChartView.swift */,
 				D5A64D931EE801970095D01C /* SleepChartView.swift */,
 				0BCE743F1ECD96D70006C0CF /* TripsDashCellView.swift */,
 				0BCE74401ECD96D70006C0CF /* TripsDashView.swift */,
@@ -1364,6 +1379,7 @@
 				CB18BCC61EEACF890035C1BB /* MockDownSyncContentCollection.json */,
 				CB18BCC01EEABFA60035C1BB /* MockStartSync.json */,
 				CB810E671EF00E2C0043E3E5 /* MockUserDown.json */,
+				CB14676B1EF2801F00A60E31 /* MockPageDown.json */,
 				CBD791531E72A4BB0006C590 /* MockData.swift */,
 				CC1465361EC60D0C00DEC3C5 /* MockData+Prepare.swift */,
 				CCE5796E1ECB580E006E0D45 /* MockData+Sidebar.swift */,
@@ -1589,6 +1605,7 @@
 				0BB099CD1EBC6323006B2FB7 /* PartnersViewController.xib in Resources */,
 				D521E3FE1EB8AF38008E24B1 /* SideBarShareAction.xib in Resources */,
 				D519E08F1EAA5403004F96E7 /* PrepareChatTableCell.xib in Resources */,
+				CB14676C1EF2801F00A60E31 /* MockPageDown.json in Resources */,
 				CC7D21DB1EDD5FE800C6B8E0 /* LearnPagingCollectionViewCell.xib in Resources */,
 				CBB237F71E6FFF1200AB5AEF /* Assets.xcassets in Resources */,
 				D58BD8781E9F65F7005676DE /* WhatsHotCell.xib in Resources */,
@@ -1889,6 +1906,7 @@
 				CCE372FD1E8D2AD100B79352 /* MyPrepViewController.swift in Sources */,
 				CC0FF8D81EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift in Sources */,
 				CC4F37B11EBB575B004BDC70 /* LearnContentItem.swift in Sources */,
+				CB1467651EF2779700A60E31 /* Page.swift in Sources */,
 				CB6D49561ECCA58D005BC637 /* AuthenticationTokenParser.swift in Sources */,
 				CC33CA301EC60447008E6B33 /* DatabaseConstants.swift in Sources */,
 				CB810E611EEFC0D70043E3E5 /* ErrorCell.swift in Sources */,
@@ -1965,6 +1983,7 @@
 				CC4AB7E51EA8A36B000F43B1 /* TopTabBarController.swift in Sources */,
 				CCEFCFB01E8D3D7500E9FC72 /* SidebarViewController.swift in Sources */,
 				CBB4DCF11EDC0C420071494A /* SyncRecord.swift in Sources */,
+				CB1467671EF277AA00A60E31 /* PageIntermediary.swift in Sources */,
 				CC96630A1EA1B27F00B84B1C /* MyDataViewModel.swift in Sources */,
 				CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */,
 				CCEA22A51E8AC53E003D0CF4 /* PrepareCheckListViewModel.swift in Sources */,

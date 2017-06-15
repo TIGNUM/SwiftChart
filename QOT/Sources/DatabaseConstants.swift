@@ -61,6 +61,7 @@ enum JsonKey: String {
     case contentId
     case country
     case createdAt
+    case displayName
     case email
     case employment
     case firstName
@@ -88,6 +89,7 @@ enum JsonKey: String {
     case referrerAssociatedValueType
     case referrerPageId
     case relatedContentIds
+    case settingsIds
     case resultList
     case searchTags
     case secondsRequired
@@ -122,6 +124,10 @@ enum JsonKey: String {
 extension JSON {
 
     func getItemValue<T: JSONDecodable>(at jsonKey: JsonKey) throws -> T {
+        return try decode(at: jsonKey.value, type: T.self)
+    }
+
+    func getItemValue<T: JSONDecodable>(at jsonKey: JsonKey) throws -> T? {
         return try decode(at: jsonKey.value, type: T.self)
     }
 

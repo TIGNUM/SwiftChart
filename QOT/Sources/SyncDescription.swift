@@ -13,6 +13,7 @@ let ContentCategoryDown = SyncDescription<ContentCategoryData, ContentCategory>(
 let ContentCollectionDown = SyncDescription<ContentCollectionData, ContentCollection>(syncType: .contentCollectionDown)
 let ContentItemDown = SyncDescription<ContentItemData, ContentItem>(syncType: .contentItemDown)
 let UserDown = SyncDescription<UserIntermediary, User>(syncType: .userDown)
+let PageDown = SyncDescription<PageIntermediary, Page>(syncType: .pageDown)
 
 struct SyncDescription<Intermediary, Persistable> where Intermediary: JSONDecodable {
     let syncType: SyncType
