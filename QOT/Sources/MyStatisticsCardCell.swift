@@ -78,11 +78,12 @@ private extension MyStatisticsCardCell {
         case .peakPerformanceNextMonth: return
         case .peakPerformanceNextWeek: return
         case .sleepQuality:
-            let data: [CGFloat] = [0.1, 0.4, 0.5, 0.6, 0.3]
-            addSleepChart(data: data, average: 0.5, type: .quality)
+            let data: [CGFloat] = [0.1, 0.2, 0.3, 0.4, 0.5]
+            addSleepChart(data: data, average: 0.3, type: .quality)
         case .sleepQuantity:
-            let data: [CGFloat] = [0.1, 0.4, 0.5, 0.6, 0.3]
+            let data: [CGFloat] = [0.6, 0.7, 0.8, 0.9, 1]
             addSleepChart(data: data, average: 0.5, type: .quantity)
+
         case .travelTripsLastFourWeeks: addHorizontalLinesChartView(data: dataArray)
         case .travelTripsMaxTimeZone: addLevelsChartView(data: dataArray)
         case .travelTripsTotalInYear: addLevelsChartView(data: dataArray)
@@ -91,12 +92,13 @@ private extension MyStatisticsCardCell {
         }
     }
 
-    private func addSleepChart(data: [CGFloat], average: CGFloat, type: SleepChartView.ChartType) {
-        let sleepChart = SleepChartView(frame: centerContentView.bounds, data: data, average: average, chartType: type)
+    func addSleepChart(data: [CGFloat], average: CGFloat, type: SleepChartView.ChartType) {
+        let day = ["M", "T", "W", "T", "F"]
+        let sleepChart = SleepChartView(frame: centerContentView.bounds, data: data, average: average, chartType: type, day: day)
         centerContentView.addSubview(sleepChart)
     }
 
-    private func addLevelsChartView(data: [CGFloat]) {
+    func addLevelsChartView(data: [CGFloat]) {
         var items: [LevelsChartView.Item] = []
         for column in 0...7 {
             for row in 0...7 {
@@ -110,7 +112,7 @@ private extension MyStatisticsCardCell {
         centerContentView.addSubview(levelsChartView)
     }
 
-    private func addDailyMeetingChartView(data: [CGFloat]) {
+    func addDailyMeetingChartView(data: [CGFloat]) {
         var events: [Event] = []
         data.forEach { (dataItem) in
             let event = Event(start: dataItem, end: dataItem, color: .cherryRed)
@@ -121,7 +123,7 @@ private extension MyStatisticsCardCell {
         centerContentView.addSubview(dailyMeetingChartView)
     }
 
-    private func addAverageGraphGridView(data: [CGFloat]) {
+    func addAverageGraphGridView(data: [CGFloat]) {
         var items: [EventGraphView.Item] = []
         data.forEach { (item) in
             let eventItem = EventGraphView.Item(start: item - 0.2, end: item + 0.2, color: .cherryRed)
@@ -133,18 +135,18 @@ private extension MyStatisticsCardCell {
         centerContentView.addSubview(averageGraphGridView)
     }
 
-    private func addAverageGraphView(data: [CGFloat]) {
+    func addAverageGraphView(data: [CGFloat]) {
         let averageGraphView = AverageGraphView(frame: centerContentView.bounds)
         averageGraphView.configure(position: data[0], knobColor: .cherryRed, lineColor: .white)
         centerContentView.addSubview(averageGraphView)
     }
 
-    private func addDashedProgressWheel(data: [CGFloat]) {
+    func addDashedProgressWheel(data: [CGFloat]) {
         let dashedProgressWheel = DashedProgressWheel(frame: centerContentView.bounds, value: data[0], dashPattern: data)
         centerContentView.addSubview(dashedProgressWheel)
     }
 
-    private func addHorizontalLinesChartView(data: [CGFloat]) {
+    func addHorizontalLinesChartView(data: [CGFloat]) {
         let horizontalLinesChartView = HorizontalLinesChartView(frame: centerContentView.bounds)
         horizontalLinesChartView.setUp(rowCount: data.count, seperatorHeight: 20, seperatorColor: .white20)
         centerContentView.addSubview(horizontalLinesChartView)
@@ -174,6 +176,7 @@ private extension MyStatisticsCardCell {
 
         let averageMeetingLengthView = AverageMeetingLengthView(frame: centerContentView.bounds, data: meetingData)
         centerContentView.addSubview(averageMeetingLengthView)
+
     }
 
     private func addAverageMeetingBetweenLengthView(data: MyStatisticsData) {
@@ -190,7 +193,7 @@ private extension MyStatisticsCardCell {
 
     // MARK: - Travel
 
-    private func addTravelMaxTimeZoneChanges(data: MyStatisticsData) {
+    func addTravelMaxTimeZoneChanges(data: MyStatisticsData) {
         guard let meetingData = data as? MyStatisticsDataAverage<Int> else { return }
 
         titleLabel.attributedText = Style.postTitle(String(format: "%d", meetingData.userAverage), .white).attributedString()
@@ -201,7 +204,7 @@ private extension MyStatisticsCardCell {
         let travelMaxTimeZoneChangesView = TravelMaxTimeZoneChangesView(frame: centerContentView.bounds, data: meetingData)
         centerContentView.addSubview(travelMaxTimeZoneChangesView)
     }
-    
+
     // MARK: - Activity
 
     private func addActivityView() {
@@ -217,9 +220,9 @@ private extension MyStatisticsCardCell {
             EventGraphView.Item(start: 0.9, end: 0.4, color: .red),
             EventGraphView.Item(start: 0.4, end: 0.1, color: .gray)
         ]
-
+        
         let column = EventGraphView.Column(items: items, width: 0.02)
-
+        
         return [column, column, column, column, column]
     }
 }
