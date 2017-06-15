@@ -51,7 +51,7 @@ class AverageMeetingBetweenLengthProgressWheel: UIView {
         drawSolidCircle(arcCenter: arcCenter, radius: innerRadius, lineWidth: 1, strokeColour: strokeColour)
         drawSolidCircle(arcCenter: arcCenter, radius: underRadius, lineWidth: lineWidth / 2, strokeColour: strokeColour)
 
-        drawDashedCircle(arcCenter: arcCenter, radius: radius, lineWidth: lineWidth, dashPattern: dashPattern, strokeColour: pathColour, value: value)
+        drawDashedCircle(arcCenter: arcCenter, radius: radius, lineWidth: lineWidth, dashPattern: dashPattern, value: value, strokeColour: pathColour)
 
         let dataAngle = Math.radians(360 * dataValue - 90)
         let teamAngle = Math.radians(360 * teamValue - 90)

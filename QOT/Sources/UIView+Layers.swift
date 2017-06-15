@@ -9,11 +9,11 @@
 import UIKit
 
 extension UIView {
-    func drawSolidCircle(arcCenter: CGPoint, radius: CGFloat, lineWidth: CGFloat, value: CGFloat = 1.0, startAngle: CGFloat = -90.0, strokeColour: UIColor) {
+    func drawSolidCircle(arcCenter: CGPoint, radius: CGFloat, lineWidth: CGFloat, value: CGFloat = 1.0, startAngle: CGFloat = -90.0, endAngle: CGFloat = 360.0, strokeColour: UIColor, clockwise: Bool = true) {
         let angleStart = Math.radians(startAngle)
-        let angleEnd = Math.radians(360 * value + startAngle)
+        let angleEnd = Math.radians(endAngle * value + startAngle)
 
-        let circlePath = UIBezierPath(arcCenter: arcCenter, radius: radius - lineWidth / 2, startAngle: angleStart, endAngle: angleEnd, clockwise: true)
+        let circlePath = UIBezierPath(arcCenter: arcCenter, radius: radius - lineWidth / 2, startAngle: angleStart, endAngle: angleEnd, clockwise: clockwise)
 
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = circlePath.cgPath
@@ -24,11 +24,11 @@ extension UIView {
         self.layer.addSublayer(shapeLayer)
     }
 
-    func drawDashedCircle(arcCenter: CGPoint, radius: CGFloat, lineWidth: CGFloat, dashPattern: [CGFloat] = [1, 2], strokeColour: UIColor, value: CGFloat = 1.0, startAngle: CGFloat = -90.0, hasShadow: Bool = false) {
+    func drawDashedCircle(arcCenter: CGPoint, radius: CGFloat, lineWidth: CGFloat, dashPattern: [CGFloat] = [1, 2], value: CGFloat = 1.0, startAngle: CGFloat = -90.0, endAngle: CGFloat = 360.0, strokeColour: UIColor, hasShadow: Bool = false) {
         let pattern = dashPattern.map { NSNumber(value: Float($0)) }
 
         let angleStart = Math.radians(startAngle)
-        let angleEnd = Math.radians(360 * value + startAngle)
+        let angleEnd = Math.radians(endAngle * value + startAngle)
 
         let circlePath = UIBezierPath(arcCenter: arcCenter, radius: radius - lineWidth / 2, startAngle: angleStart, endAngle: angleEnd, clockwise: true)
 
@@ -75,9 +75,9 @@ extension UIView {
         self.layer.addSublayer(shapeLayer)
     }
 
-    func drawCapRoundLine(center: CGPoint, radius: CGFloat, value: CGFloat, startAngle: CGFloat = -90.0, lineWidth: CGFloat, strokeColour: UIColor) {
+    func drawCapRoundLine(center: CGPoint, radius: CGFloat, value: CGFloat, startAngle: CGFloat = -90.0, endAngle: CGFloat = 360.0, lineWidth: CGFloat, strokeColour: UIColor) {
         let angleStart = Math.radians(startAngle)
-        let angleEnd = Math.radians(360.0 * value + startAngle)
+        let angleEnd = Math.radians(endAngle * value + startAngle)
 
         let circlePath = UIBezierPath(arcCenter: center, radius: radius - lineWidth / 2, startAngle: angleStart, endAngle: angleEnd, clockwise: true)
 

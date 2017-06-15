@@ -27,7 +27,7 @@ enum DataDisplayColor {
 }
 
 protocol MyStatisticsData {
-    var displayType: DataDisplayType { get }
+    var displayType: DataDisplayType { get set }
 }
 
 typealias StatisticsThreshold<T> = (upperThreshold: T, lowerThreshold: T)

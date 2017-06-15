@@ -59,7 +59,7 @@ enum MyStatisticsCardType {
     case travelTripsTotalInYear
     case travelTripsMaxTimeZone
     case peakPerformanceNextMonth
-    case peakPerformanceAveragePerWeek
+    case peakPerformanceAverage
     case peakPerformanceNextWeek
     case sleepQuantity
     case sleepQuality
@@ -115,15 +115,26 @@ private extension MyStatisticsSectionType {
     private func makeData(_ cardType: MyStatisticsCardType) -> MyStatisticsData {
         switch cardType {
         case .meetingAverage:
-            return MyStatisticsDataMeetingAverage(teamMeetings: 200, dataMeetings: 2500, userMeetings: 25, teamDays: 100, dataDays: 1000, userDays: 7, dayThreshold: (upperThreshold: 7, lowerThreshold: 2), weekThreshold: (upperThreshold: 40, lowerThreshold: 11), displayType: .day)
+            return MyStatisticsDataPeriodAverage(teamData: [DataDisplayType.day.id(): 3.5, DataDisplayType.week.id(): 15],
+                                                 dataData: [DataDisplayType.day.id(): 4.7, DataDisplayType.week.id(): 17],
+                                                 userData: [DataDisplayType.day.id(): 5.9, DataDisplayType.week.id(): 32],
+                                                 maxData: [DataDisplayType.day.id(): 12, DataDisplayType.week.id(): 50],
+                                                 thresholds: [DataDisplayType.day.id(): (upperThreshold: 0.8, lowerThreshold: 0.5), DataDisplayType.week.id(): (upperThreshold: 0.8, lowerThreshold: 0.5)],
+                                                 displayType: .day)
         case .meetingLength:
             return MyStatisticsDataAverage(teamAverage: 148, dataAverage: 178, userAverage: 42, maximum: 200, threshold: (upperThreshold: 120, lowerThreshold: 45))
         case .meetingTimeBetween:
             return MyStatisticsDataAverage(teamAverage: 148, dataAverage: 178, userAverage: 42, maximum: 200, threshold: (upperThreshold: 120, lowerThreshold: 45))
+        case .peakPerformanceAverage:
+            return MyStatisticsDataPeriodAverage(teamData: [DataDisplayType.week.id(): 3.5, DataDisplayType.month.id(): 15],
+                                                 dataData: [DataDisplayType.week.id(): 4.7, DataDisplayType.month.id(): 15],
+                                                 userData: [DataDisplayType.week.id(): 7, DataDisplayType.month.id(): 32],
+                                                 maxData: [DataDisplayType.week.id(): 12, DataDisplayType.month.id(): 50],
+                                                 thresholds: [DataDisplayType.week.id(): (upperThreshold: 0.8, lowerThreshold: 0.5), DataDisplayType.month.id(): (upperThreshold: 0.8, lowerThreshold: 0.5)])
         case .travelTripsTimeZoneChanged:
             return MyStatisticsDataAverage(teamAverage: 148, dataAverage: 178, userAverage: 42, maximum: 200, threshold: (upperThreshold: 120, lowerThreshold: 45))
         default:
-            return MyStatisticsDataMeetingAverage(teamMeetings: 450, dataMeetings: 12500, userMeetings: 149, teamDays: 100, dataDays: 1000, userDays: 27, dayThreshold: (upperThreshold: 150, lowerThreshold: 25), weekThreshold: (upperThreshold: 250, lowerThreshold: 150), displayType: .day)
+            return MyStatisticsDataAverage(teamAverage: 148, dataAverage: 178, userAverage: 42, maximum: 200, threshold: (upperThreshold: 120, lowerThreshold: 45))
         }
     }
 
@@ -155,7 +166,7 @@ private extension MyStatisticsSectionType {
     var peakPerformanceCards: [MyStatisticsCard] {
         return [
             MockMyStatisticsCard(title: "11", subtitle: "Next Month", type: .peakPerformanceNextMonth, data: makeData(.peakPerformanceNextMonth)),
-            MockMyStatisticsCard(title: "222", subtitle: "Average per week", type: .peakPerformanceAveragePerWeek, data: makeData(.peakPerformanceAveragePerWeek)),
+            MockMyStatisticsCard(title: "222", subtitle: "Average number of peak performances", type: .peakPerformanceAverage, data: makeData(.peakPerformanceAverage)),
             MockMyStatisticsCard(title: "3333", subtitle: "Next week", type: .peakPerformanceNextWeek, data: makeData(.peakPerformanceNextWeek))
         ]
     }

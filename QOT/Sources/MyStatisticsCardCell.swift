@@ -74,7 +74,7 @@ private extension MyStatisticsCardCell {
         case .meetingHeartRateChange: return
         case .meetingLength: addAverageMeetingLengthView(data: data)
         case .meetingTimeBetween: addAverageMeetingBetweenLengthView(data: data)
-        case .peakPerformanceAveragePerWeek: return
+        case .peakPerformanceAverage: addAveragePeakPerformanceView(data: data)
         case .peakPerformanceNextMonth: return
         case .peakPerformanceNextWeek: return
         case .sleepQuality:
@@ -152,17 +152,31 @@ private extension MyStatisticsCardCell {
         centerContentView.addSubview(horizontalLinesChartView)
     }
 
+    // MARK: - Peak Performances
+
+    private func addAveragePeakPerformanceView(data: MyStatisticsData) {
+        guard let performanceData = data as? MyStatisticsDataPeriodAverage else { return }
+
+        titleLabel.attributedText = Style.postTitle(String(format: "%.1f", performanceData.userAverage()), .white).attributedString()
+
+        teamAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", performanceData.teamAverage()), .azure).attributedString()
+        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", performanceData.dataAverage()), .cherryRed).attributedString()
+
+        let peakPerformanceView = SegmentedView(frame: centerContentView.bounds, type: .peakPerformanceAverage, data: performanceData, delegate: self.delegate, leftButtonType: .week, rightButtonType: .month)
+        centerContentView.addSubview(peakPerformanceView)
+    }
+
     // MARK: - Meetings
 
     private func addAverageMeetingCountView(data: MyStatisticsData) {
-        guard let meetingData = data as? MyStatisticsDataMeetingAverage else { return }
+        guard let meetingData = data as? MyStatisticsDataPeriodAverage else { return }
 
         titleLabel.attributedText = Style.postTitle(String(format: "%.1f", meetingData.userAverage()), .white).attributedString()
 
         teamAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", meetingData.teamAverage()), .azure).attributedString()
         userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", meetingData.dataAverage()), .cherryRed).attributedString()
 
-        let averageMeetingView = AverageMeetingView(frame: centerContentView.bounds, data: meetingData, delegate: self.delegate)
+        let averageMeetingView = SegmentedView(frame: centerContentView.bounds, type: .meetingAverage, data: meetingData, delegate: self.delegate, leftButtonType: .day, rightButtonType: .week)
         centerContentView.addSubview(averageMeetingView)
     }
 
