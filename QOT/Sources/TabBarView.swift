@@ -9,7 +9,7 @@
 import UIKit
 
 protocol TabBarViewDelegate: class {
-    func didSelectItemAtIndex(index: Int?, sender: TabBarView)
+    func didSelectItemAtIndex(index: Int, sender: TabBarView)
 }
 
 class TabBarView: UIView {

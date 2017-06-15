@@ -241,6 +241,10 @@
 		CC9663181EA1B86100B84B1C /* MyDataSectorLabelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9663171EA1B86100B84B1C /* MyDataSectorLabelsView.swift */; };
 		CC9FBDE61EAE155300AF1CF0 /* PrepareContentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9FBDE51EAE155300AF1CF0 /* PrepareContentCoordinator.swift */; };
 		CC9FBDE81EAE58F300AF1CF0 /* SettingsMenuCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9FBDE71EAE58F300AF1CF0 /* SettingsMenuCoordinator.swift */; };
+		CCA2DC671EF17BCE00D1DF6A /* LearnContentItemHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA2DC661EF17BCE00D1DF6A /* LearnContentItemHeaderView.swift */; };
+		CCA2DC691EF17BFA00D1DF6A /* LearnContentItemHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCA2DC681EF17BFA00D1DF6A /* LearnContentItemHeaderView.xib */; };
+		CCA2DC6C1EF290DF00D1DF6A /* LearnContentItemBulletCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA2DC6A1EF290DF00D1DF6A /* LearnContentItemBulletCell.swift */; };
+		CCA2DC6D1EF290DF00D1DF6A /* LearnContentItemBulletCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCA2DC6B1EF290DF00D1DF6A /* LearnContentItemBulletCell.xib */; };
 		CCAF03241E801B0E00015125 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF03211E801B0E00015125 /* SettingsCoordinator.swift */; };
 		CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF03221E801B0E00015125 /* SettingsViewController.swift */; };
 		CCC0C4BE1E82730E002A8362 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC0C4BD1E82730E002A8362 /* Extensions.swift */; };
@@ -584,6 +588,10 @@
 		CC9663171EA1B86100B84B1C /* MyDataSectorLabelsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataSectorLabelsView.swift; sourceTree = "<group>"; };
 		CC9FBDE51EAE155300AF1CF0 /* PrepareContentCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentCoordinator.swift; sourceTree = "<group>"; };
 		CC9FBDE71EAE58F300AF1CF0 /* SettingsMenuCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuCoordinator.swift; sourceTree = "<group>"; };
+		CCA2DC661EF17BCE00D1DF6A /* LearnContentItemHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentItemHeaderView.swift; sourceTree = "<group>"; };
+		CCA2DC681EF17BFA00D1DF6A /* LearnContentItemHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnContentItemHeaderView.xib; sourceTree = "<group>"; };
+		CCA2DC6A1EF290DF00D1DF6A /* LearnContentItemBulletCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentItemBulletCell.swift; sourceTree = "<group>"; };
+		CCA2DC6B1EF290DF00D1DF6A /* LearnContentItemBulletCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnContentItemBulletCell.xib; sourceTree = "<group>"; };
 		CCAF03211E801B0E00015125 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		CCAF03221E801B0E00015125 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		CCC0C4BD1E82730E002A8362 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -875,6 +883,7 @@
 				CBB4DD3F1EE08EF90071494A /* Launch */,
 				CBB4DD281EE088050071494A /* Learn Category */,
 				CBB4DD291EE0882D0071494A /* Learn Content */,
+				CCDCE7321EEFE63600BD019C /* Learn Content Item */,
 				CBB4DD3B1EE08D560071494A /* Learn Strategy Audio */,
 				CBB4DD3C1EE08D7F0071494A /* Library */,
 				CBB4DD321EE089FD0071494A /* My Prep */,
@@ -974,9 +983,6 @@
 			children = (
 				D51B5C471E8D0E7E0084A65B /* LearnContentCell.swift */,
 				CCC1B6AD1E8B9B7F00D1461F /* LearnContentCollectionViewModel.swift */,
-				CC8D6CFF1EC316A1007AE687 /* LearnContentItemBulletViewController.swift */,
-				CC8D6D021EC316BF007AE687 /* LearnContentItemViewController.swift */,
-				CC8D6D031EC316BF007AE687 /* LearnContentItemViewModel.swift */,
 				D51B5C481E8D0E7E0084A65B /* LearnContentLayout.swift */,
 				CCC1B6AC1E8B9B7F00D1461F /* LearnContentListViewController.swift */,
 				CC2EE2491EDC88F0006CBFC8 /* LearnPagingCollectionViewCell.swift */,
@@ -1469,6 +1475,20 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		CCDCE7321EEFE63600BD019C /* Learn Content Item */ = {
+			isa = PBXGroup;
+			children = (
+				CCA2DC6A1EF290DF00D1DF6A /* LearnContentItemBulletCell.swift */,
+				CCA2DC6B1EF290DF00D1DF6A /* LearnContentItemBulletCell.xib */,
+				CC8D6CFF1EC316A1007AE687 /* LearnContentItemBulletViewController.swift */,
+				CCA2DC661EF17BCE00D1DF6A /* LearnContentItemHeaderView.swift */,
+				CCA2DC681EF17BFA00D1DF6A /* LearnContentItemHeaderView.xib */,
+				CC8D6D021EC316BF007AE687 /* LearnContentItemViewController.swift */,
+				CC8D6D031EC316BF007AE687 /* LearnContentItemViewModel.swift */,
+			);
+			name = "Learn Content Item";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1568,6 +1588,7 @@
 				0BC9F93A1E96118C009E8204 /* StatusTableViewCell.xib in Resources */,
 				0BEE8ABE1EA600A7008077B8 /* PrepareEventSimpleTableViewCell.xib in Resources */,
 				D5C15BAD1EB350FB0030953F /* SideBarTextCell.xib in Resources */,
+				CCA2DC691EF17BFA00D1DF6A /* LearnContentItemHeaderView.xib in Resources */,
 				CB18BCC31EEABFEB0035C1BB /* MockContentCategoryDown.json in Resources */,
 				CC311A271EAF434F0020C869 /* SettingsLabelTableViewCell.xib in Resources */,
 				D5EC34B71EB0D35D00F86B09 /* LearnStrategyTitleAudioCell.xib in Resources */,
@@ -1599,6 +1620,7 @@
 				CC335EE71EBC84780085F5C5 /* ContentItemTextTableViewCell.xib in Resources */,
 				D5EC34AD1EB0D32D00F86B09 /* LearnStrategyAudioPlayerView.xib in Resources */,
 				8514A48A1EE93D640086C70E /* PrepareContentFooterTableViewCell.xib in Resources */,
+				CCA2DC6D1EF290DF00D1DF6A /* LearnContentItemBulletCell.xib in Resources */,
 				D5EC34B31EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.xib in Resources */,
 				0BD6F6BA1EA0E81E001EBC4D /* MyPrepTableViewCell.xib in Resources */,
 				CB8C34521EAF61E50003AB65 /* SettingsMenuViewController.xib in Resources */,
@@ -1808,6 +1830,7 @@
 				CB27D59F1ECDE96F00F2B76C /* DownSyncResultParser.swift in Sources */,
 				CCF0F4C01ECDC57000E8D9C1 /* NSPredicate+Convenience.swift in Sources */,
 				D537B1E61EC200CD004C444D /* GridView.swift in Sources */,
+				CCA2DC6C1EF290DF00D1DF6A /* LearnContentItemBulletCell.swift in Sources */,
 				CCCE09CC1EA67C78008730F1 /* MyToBeVisionViewModel.swift in Sources */,
 				CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */,
 				CB810E661EF00DCA0043E3E5 /* UserIntermediary.swift in Sources */,
@@ -1867,6 +1890,7 @@
 				852DADD21EF04DEA00A10882 /* AverageMeetingLengthView.swift in Sources */,
 				CC27E0BA1EB33760003E5B7F /* SidebarItemCoordinator.swift in Sources */,
 				CC27E0C01EB355BC003E5B7F /* SidebarTableViewCell.swift in Sources */,
+				CCA2DC671EF17BCE00D1DF6A /* LearnContentItemHeaderView.swift in Sources */,
 				CB8A153C1E78467D0023B2F9 /* CalendarEventParticipant.swift in Sources */,
 				CC27E0BC1EB337A2003E5B7F /* SidebarItemViewController.swift in Sources */,
 				CB1D5E3D1EC5E25A00BCDF8D /* ContentItem.swift in Sources */,

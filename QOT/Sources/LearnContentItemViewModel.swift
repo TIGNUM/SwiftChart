@@ -51,6 +51,18 @@ private struct ReadMoreItem: LearnContentItem {
     var trackableEntityID: Int {
         return Int(randomNumber)
     }
+
+    var format: String {
+        return ""
+    }
+
+    var contentItemTextStyle: ContentItemTextStyle {
+        return ContentItemTextStyle.h1
+    }
+
+    var remoteID: Int {
+        return 0
+    }
 }
 
 private var mockReadMoreContentItems: [LearnContentItem] {

@@ -116,11 +116,7 @@ extension TabBarController {
 
 extension TabBarController: TabBarViewDelegate {
 
-    func didSelectItemAtIndex(index: Int?, sender: TabBarView) {
-        guard let index = index else {
-            return
-        }
-        
+    func didSelectItemAtIndex(index: Int, sender: TabBarView) {
         displayContentController(items[index].controller)
         delegate?.didSelectTab(at: index, in: self)
     }

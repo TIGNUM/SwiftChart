@@ -15,9 +15,26 @@ protocol LearnContentItem: TrackableEntity {
     var viewed: Bool { get }
 
     var contentItemValue: ContentItemValue { get }
+
+    var format: String { get }
+
+    var contentItemTextStyle: ContentItemTextStyle { get }
+
+    var remoteID: Int { get }
+
 }
 
 extension ContentItem: LearnContentItem {
+
+    var contentItemTextStyle: ContentItemTextStyle {
+        guard
+            let contentItemFormat = ContentItemFormat(rawValue: format),
+            let contentItemTextStyle = ContentItemTextStyle.createStyle(for: contentItemFormat) else {
+                fatalError("ContentItemFormat is not valid or nil.")
+        }
+
+        return contentItemTextStyle
+    }
 
     var trackableEntityID: Int {
         return Int.randomID

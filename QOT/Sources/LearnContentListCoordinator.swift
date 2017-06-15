@@ -81,7 +81,7 @@ extension LearnContentListCoordinator: TopTabBarDelegate {
         print("Search button pressed", sender)
     }
 
-    func didSelectItemAtIndex(index: Int?, sender: TopTabBarController) {
+    func didSelectItemAtIndex(index: Int, sender: TopTabBarController) {
         print("didSelectItemAtIndex", index as Any, sender)
     }
 }

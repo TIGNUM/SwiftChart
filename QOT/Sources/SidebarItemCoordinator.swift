@@ -90,7 +90,7 @@ extension SidebarItemCoordinator: TopTabBarDelegate {
         print("didSelectRightButton")
     }
 
-    func didSelectItemAtIndex(index: Int?, sender: TopTabBarController) {
+    func didSelectItemAtIndex(index: Int, sender: TopTabBarController) {
         print("didSelectItemAtIndex")
     }
 }

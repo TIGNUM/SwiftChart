@@ -11,7 +11,9 @@ import RealmSwift
 import Realm
 
 protocol PrepareContentItem {
+
     var title: String { get }
+
     var subTitle: String { get }
 }
 

@@ -305,7 +305,7 @@ extension TabBarCoordinator: TopTabBarDelegate {
         startChild(child: coordinator)
     }
 
-    func didSelectItemAtIndex(index: Int?, sender: TopTabBarController) {
-        print("didSelectItemAtIndex", index as Any, sender)
+    func didSelectItemAtIndex(index: Int, sender: TopTabBarController) {
+        print("didSelectItemAtIndex", index, sender)
     }
 }

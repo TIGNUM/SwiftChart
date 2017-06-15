@@ -90,7 +90,7 @@ extension PrepareContentCoordinator: TopTabBarDelegate {
         sender.dismiss(animated: true, completion: nil)
     }
 
-    func didSelectItemAtIndex(index: Int?, sender: TopTabBarController) {
+    func didSelectItemAtIndex(index: Int, sender: TopTabBarController) {
         print(index as Any, sender)
     }
 }

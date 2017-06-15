@@ -9,6 +9,7 @@
 import UIKit
 
 final class LearnContentItemCoordinator: ParentCoordinator {
+    
     fileprivate let rootVC: LearnContentListViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
@@ -25,17 +26,16 @@ final class LearnContentItemCoordinator: ParentCoordinator {
     }
     
     func start() {
-        let viewModel = LearnContentItemViewModel(contentCollection: category.learnContent.item(at: selectedCategoryIndex))
-        let vc = LearnContentItemViewController(viewModel: viewModel)
-        let audioViewModel = LearnStrategyAudioViewModel()
-        let audioViewController = LearnStrategyAudioViewController(viewModel: audioViewModel)
-        let bulletViewController = LearnContentItemBulletViewController(viewModel: viewModel)
-
-        vc.modalTransitionStyle = .crossDissolve
-        vc.modalPresentationStyle = .custom
+        let categoryTitle = category.title.capitalized
+        let selectedContent = category.learnContent.item(at: selectedCategoryIndex)
+        let contentTitle = selectedContent.title.capitalized
+        let viewModel = LearnContentItemViewModel(contentCollection: selectedContent)
+        let fullViewController = LearnContentItemViewController(viewModel: viewModel, categoryTitle: categoryTitle, contentTitle: contentTitle)
+        let bulletViewController = LearnContentItemViewController(viewModel: viewModel, categoryTitle: categoryTitle, contentTitle: contentTitle)
+        let audioViewController = LearnContentItemViewController(viewModel: viewModel, categoryTitle: categoryTitle, contentTitle: contentTitle)
 
         let topTabBarControllerItem = TopTabBarController.Item(
-            controllers: [vc, bulletViewController, audioViewController],
+            controllers: [fullViewController, bulletViewController, audioViewController],
             themes: [.light, .light, .light],
             titles: [
                 R.string.localized.learnContentItemTitleFull(),
@@ -46,12 +46,16 @@ final class LearnContentItemCoordinator: ParentCoordinator {
 
         let topTabBarController = TopTabBarController(
             item: topTabBarControllerItem,
-            leftIcon: R.image.ic_minimize()
+            leftIcon: R.image.ic_minimize(),
+            learnHeaderTitle: contentTitle,
+            learnHeaderSubTitle: categoryTitle
         )
 
-        vc.delegate = self
-        vc.serviceDelegate = services
+        fullViewController.serviceDelegate = services
+        topTabBarController.modalTransitionStyle = .crossDissolve
+        topTabBarController.modalPresentationStyle = .custom
         topTabBarController.delegate = self
+        topTabBarController.learnContentItemViewControllerDelegate = fullViewController
         rootVC.present(topTabBarController, animated: true)
         // FIXME: Add page tracking
     }
@@ -69,30 +73,10 @@ extension LearnContentItemCoordinator: LearnContentListViewControllerDelegate {
     }
 }
 
-extension LearnContentItemCoordinator: LearnContentItemViewControllerDelegate {
-    
-    func didTapClose(in viewController: LearnContentItemViewController) {
-        rootVC.dismiss(animated: true, completion: nil)
-        removeChild(child: self)
-    }
-    
-    func didTapShare(in viewController: LearnContentItemViewController) {
-        log("did tap share")
-    }
-    
-    func didTapVideo(with video: LearnContentItem, from view: UIView, in viewController: LearnContentItemViewController) {
-        log("did tap video: \(video)")
-    }
-    
-    func didTapArticle(with article: LearnContentItem, from view: UIView, in viewController: LearnContentItemViewController) {
-        log("did tap article: \(article)")
-    }
-}
-
 extension LearnContentItemCoordinator: TopTabBarDelegate {
 
-    func didSelectItemAtIndex(index: Int?, sender: TopTabBarController) {
-        print(index as Any, sender)
+    func didSelectItemAtIndex(index: Int, sender: TopTabBarController) {
+        print(index, sender)
     }
 
     func didSelectLeftButton(sender: TopTabBarController) {

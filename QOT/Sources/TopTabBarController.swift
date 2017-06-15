@@ -34,7 +34,7 @@ enum Theme {
         switch self {
         case .dark: return Color.navigationBarDark
         case .darkClear: return .clear
-        case .light: return UIColor.white.withAlphaComponent(0.825)
+        case .light: return .white
         }
     }
 
@@ -48,12 +48,15 @@ enum Theme {
 }
 
 protocol TopTabBarDelegate: class {
-    func didSelectItemAtIndex(index: Int?, sender: TopTabBarController)
+
+    func didSelectItemAtIndex(index: Int, sender: TopTabBarController)
+
     func didSelectLeftButton(sender: TopTabBarController)
+
     func didSelectRightButton(sender: TopTabBarController)
 }
 
-final class TopTabBarController: UIViewController {
+class TopTabBarController: UIViewController {
 
     // MARK: - TopTabBarController Item
 
@@ -71,7 +74,9 @@ final class TopTabBarController: UIViewController {
             titles: [String] = [],
             containsScrollView: Bool = false,
             enableTabScrolling: Bool = true,
-            contentView: UIView? = nil) {
+            contentView: UIView? = nil,
+            learnHeaderTitle: String = "",
+            learnHeaderSubTitle: String = "") {
                 self.containsScrollView = containsScrollView
                 self.enableTabScrolling = enableTabScrolling
                 self.contentView = contentView
@@ -91,13 +96,28 @@ final class TopTabBarController: UIViewController {
 
     // MARK: Properties
 
+    var item: Item
+    weak var delegate: TopTabBarDelegate?
+    weak var learnContentItemViewControllerDelegate: LearnContentItemViewControllerDelegate?
     fileprivate var selectedIndex: Int = 0
     fileprivate var previousIndex: Int = 0
     fileprivate lazy var currentView: UIView = UIView()
     fileprivate lazy var nextView: UIView = UIView()
     fileprivate var scrollViewContentOffset: CGFloat = 0
-    var item: Item
-    weak var delegate: TopTabBarDelegate?
+    fileprivate var scrollViewIsDragging = false
+    fileprivate var scrollViewCurrentOffsetX: CGFloat = 0
+    fileprivate let learnHeaderTitle: String
+    fileprivate let learnHeaderSubTitle: String
+
+    lazy var learnHeaderView: LearnContentItemHeaderView = {
+        let title = Style.postTitle(self.learnHeaderTitle, .darkIndigo).attributedString()
+        let subTitle = Style.tag(self.learnHeaderSubTitle, .black30).attributedString()
+        let nib = R.nib.learnContentItemHeaderView()
+        let headerView = (nib.instantiate(withOwner: self, options: nil).first as? LearnContentItemHeaderView)!
+        headerView.setupView(title: title, subtitle: subTitle)
+
+        return headerView
+    }()
 
     fileprivate lazy var navigationItemBar: UIView = {
         let view = UIView()
@@ -138,16 +158,23 @@ final class TopTabBarController: UIViewController {
 
     // MARK: - Init
     
-    init(item: Item, selectedIndex: Index = 0, leftIcon: UIImage? = nil, rightIcon: UIImage? = nil) {
-        precondition(selectedIndex >= 0 && selectedIndex < item.controllers.count, "Out of bounds selectedIndex")
+    init(item: Item,
+         selectedIndex: Index = 0,
+         leftIcon: UIImage? = nil,
+         rightIcon: UIImage? = nil,
+         learnHeaderTitle: String = "",
+         learnHeaderSubTitle: String = "") {
+            precondition(selectedIndex >= 0 && selectedIndex < item.controllers.count, "Out of bounds selectedIndex")
 
-        self.selectedIndex = selectedIndex
-        self.item = item        
-        
-        super.init(nibName: nil, bundle: nil)
+            self.selectedIndex = selectedIndex
+            self.item = item
+            self.learnHeaderTitle = learnHeaderTitle
+            self.learnHeaderSubTitle = learnHeaderSubTitle
 
-        setupButton(with: leftIcon, button: leftButton)
-        setupButton(with: rightIcon, button: rightButton)
+            super.init(nibName: nil, bundle: nil)
+
+            setupButton(with: leftIcon, button: leftButton)
+            setupButton(with: rightIcon, button: rightButton)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -168,6 +195,7 @@ final class TopTabBarController: UIViewController {
         super.viewDidAppear(animated)
 
         didSelectItemAtIndex(index: selectedIndex, sender: tabBarView)
+        learnHeaderView.alpha = 0
     }
 
     override func viewWillLayoutSubviews() {
@@ -212,7 +240,7 @@ private extension TopTabBarController {
 
         let width: CGFloat = view.bounds.width
         scrollView.frame = view.bounds
-        let multiplier: CGFloat = item.enableTabScrolling == false ? CGFloat(1) : CGFloat(item.controllers.count)
+        let multiplier: CGFloat = item.enableTabScrolling == false ? CGFloat(1) : CGFloat(item.titles.count)
         scrollView.contentSize = CGSize(width: multiplier * width, height: 0)
         scrollViewContentOffset = scrollView.bounds.size.width
 
@@ -227,6 +255,15 @@ private extension TopTabBarController {
         scrollView.addSubview(viewController.view)
         viewController.didMove(toParentViewController: self)
         addChildViewController(viewController)
+    }
+
+    func shouldShowLearnHeaderView(at currentIndex: Index, nextIndex: Index) {
+        if item.theme(at: currentIndex) == .light && item.theme(at: nextIndex) == .light,
+            let currentLearnController = (item.controller(at: currentIndex) as? LearnContentItemViewController),
+            let nextLearnController = (item.controller(at: nextIndex) as? LearnContentItemViewController) {
+                let areBoothOnTop = currentLearnController.isTableViewScrolledToTop() == true && nextLearnController.isTableViewScrolledToTop() == true
+                learnHeaderView.alpha = areBoothOnTop == true ? 1 : 0
+        }
     }
 }
 
@@ -249,9 +286,33 @@ extension TopTabBarController: UIScrollViewDelegate {
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         tabBarView.setSelectedIndex(scrollView.currentPage, animated: true)
+        learnContentItemViewControllerDelegate?.didChangeTab(to: scrollView.currentPage, in: self)
+        learnHeaderView.alpha = 0
+
+    }
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        scrollViewIsDragging = true
+        learnContentItemViewControllerDelegate?.didChangeTab(to: scrollView.currentPage, in: self)
+        shouldShowLearnHeaderView(at: selectedIndex, nextIndex: scrollView.currentPage)
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        scrollViewIsDragging = false
+        scrollViewCurrentOffsetX = scrollView.contentOffset.x
+    }
+
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        learnContentItemViewControllerDelegate?.didChangeTab(to: scrollView.currentPage, in: self)
+        learnHeaderView.alpha = 0
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollViewIsDragging == true {
+            let index = nextIndex(scrollView: scrollView, scrollViewCurrentOffsetX: scrollViewCurrentOffsetX, selectedIndex: selectedIndex)
+            shouldShowLearnHeaderView(at: scrollView.currentPage, nextIndex: index)
+        }
+
         guard item.enableTabScrolling == false else {
             return
         }
@@ -261,6 +322,16 @@ extension TopTabBarController: UIScrollViewDelegate {
         nextView.alpha = selectedIndex > previousIndex ? alpha : 1 - alpha
         currentView.alpha = selectedIndex > previousIndex ? 1 - alpha : alpha
         navigationItemBar.backgroundColor = item.theme(at: selectedIndex).navigationBarBackgroundColor
+    }
+
+    private func nextIndex(scrollView: UIScrollView, scrollViewCurrentOffsetX: CGFloat, selectedIndex: Index) -> Index {
+        if (selectedIndex == 0 || selectedIndex == 2) && scrollView.contentOffset.x < scrollViewCurrentOffsetX {
+            return selectedIndex
+        } else if scrollView.contentOffset.x > scrollViewCurrentOffsetX {
+            return selectedIndex + 1
+        } else {
+            return selectedIndex - 1
+        }
     }
 }
 
@@ -280,6 +351,10 @@ private extension TopTabBarController {
         navigationItemBar.addSubview(leftButton)
         navigationItemBar.addSubview(rightButton)
         navigationItemBar.addSubview(tabBarView)
+
+        if item.theme(at: 0) == .light {
+            view.addSubview(learnHeaderView)
+        }
     }
 
     func addContentView() {
@@ -320,6 +395,14 @@ private extension TopTabBarController {
         tabBarView.topAnchor == navigationItemBar.topAnchor + 20
         tabBarView.bottomAnchor == navigationItemBar.bottomAnchor
 
+        if item.theme(at: 0) == .light {
+            learnHeaderView.leftAnchor == view.leftAnchor
+            learnHeaderView.rightAnchor == view.rightAnchor
+            learnHeaderView.topAnchor == navigationItemBar.bottomAnchor
+            learnHeaderView.horizontalAnchors == navigationItemBar.horizontalAnchors
+            learnHeaderView.heightAnchor == 200
+        }
+
         if item.containsScrollView == true,
             let contentView = item.contentView {
                 setContentViewAnchors(contentView: contentView)
@@ -347,13 +430,10 @@ private extension TopTabBarController {
 
 extension TopTabBarController: TabBarViewDelegate {
     
-    func didSelectItemAtIndex(index: Int?, sender: TabBarView) {
-        guard let index = index else {
-            return
-        }
-
+    func didSelectItemAtIndex(index: Int, sender: TabBarView) {
         previousIndex = selectedIndex
         selectedIndex = index
+        shouldShowLearnHeaderView(at: previousIndex, nextIndex: selectedIndex)
 
         guard index != scrollView.currentPage || item.containsScrollView == true else {
             return

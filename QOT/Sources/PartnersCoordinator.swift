@@ -57,7 +57,7 @@ final class PartnersCoordinator: ParentCoordinator {
 
 extension PartnersCoordinator: TopTabBarDelegate {
 
-    func didSelectItemAtIndex(index: Int?, sender: TopTabBarController) {
+    func didSelectItemAtIndex(index: Int, sender: TopTabBarController) {
         print(index as Any, sender)
     }
 

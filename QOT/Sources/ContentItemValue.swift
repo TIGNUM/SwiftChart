@@ -31,6 +31,7 @@ enum ContentItemValue {
              .textParagraph,
              .textQuote:
             let text = try json.getString(at: "text")
+
             guard let style = ContentItemTextStyle.createStyle(for: format) else {
                 throw ContentItemTextStyleError.noValidItemTextStyleError
             }
@@ -59,6 +60,19 @@ enum ContentItemValue {
             let description = try json.getString(at: "description", alongPath: .NullBecomesNil)
             let url = try json.decode(at: "url", type: URL.self)
             self = .image(title: title, description: description, url: url)
+        }
+    }
+
+    func style(textStyle: ContentItemTextStyle, text: String, textColor: UIColor) -> NSAttributedString {
+        switch textStyle {
+        case .h1: return Style.postTitle(text, textColor).attributedString()
+        case .h2: return Style.secondaryTitle(text, textColor).attributedString()
+        case .h3: return Style.subTitle(text, textColor).attributedString()
+        case .h4: return Style.headline(text, textColor).attributedString()
+        case .h5: return Style.headlineSmall(text, textColor).attributedString()
+        case .h6: return Style.navigationTitle(text, textColor).attributedString()
+        case .paragraph: return Style.paragraph(text, textColor).attributedString()
+        case .quote: return Style.tag(text, textColor).attributedString()
         }
     }
 }

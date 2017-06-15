@@ -37,7 +37,17 @@ extension UIColor {
 
     /// UIColor(red: 8/255, green: 8/255, blue: 8/255, alpha: 0.6)
     class var blackTwo: UIColor {
-        return UIColor(red: 8/255, green: 8/255, blue: 8/255, alpha: 0.6)
+        return UIColor(red: 8/255, green: 8/255, blue: 8/255, alpha: 1)
+    }
+
+    /// UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+    class var black30: UIColor {
+        return UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+    }
+
+    /// UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+    class var black40: UIColor {
+        return UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
     }
 
     /// UIColor(red: 230/255, green: 0, blue: 34/255, alpha: 1)

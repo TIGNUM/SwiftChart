@@ -67,7 +67,7 @@ extension MyStatisticsCoordinator: TopTabBarDelegate {
         print("didSelectRightButton", sender)
     }
 
-    func didSelectItemAtIndex(index: Int?, sender: TopTabBarController) {
+    func didSelectItemAtIndex(index: Int, sender: TopTabBarController) {
         print("didSelectItemAtIndex", index as Any, sender)
     }
 }

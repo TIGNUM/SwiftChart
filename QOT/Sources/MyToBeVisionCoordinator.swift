@@ -61,7 +61,7 @@ extension MyToBeVisionCoordinator: MyToBeVisionViewControllerDelegate {
 
 extension MyToBeVisionCoordinator: TopTabBarDelegate {
 
-    func didSelectItemAtIndex(index: Int?, sender: TopTabBarController) {
+    func didSelectItemAtIndex(index: Int, sender: TopTabBarController) {
         print(sender)
     }
 
