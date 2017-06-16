@@ -18,19 +18,23 @@ final class DownSyncOperation<Intermediary, Persistable>: ConcurrentOperation wh
     private let realmProvider: RealmProvider
     private let downSyncImporter: DownSyncImporter<Persistable>
     private let context: SyncContext
+    private let isFinalOperation: Bool
 
     init(context: SyncContext,
          networkManager: NetworkManager,
          description: SyncDescription<Intermediary, Persistable>,
          syncRecordService: SyncRecordService,
          realmProvider: RealmProvider,
-         downSyncImporter: DownSyncImporter<Persistable>) {
+         downSyncImporter: DownSyncImporter<Persistable>,
+         isFinalOperation: Bool = false
+        ) {
         self.networkManager = networkManager
         self.syncDescription = description
         self.syncRecordService = syncRecordService
         self.realmProvider = realmProvider
         self.downSyncImporter = downSyncImporter
         self.context = context
+        self.isFinalOperation = isFinalOperation
     }
 
     override func execute() {
@@ -119,8 +123,11 @@ final class DownSyncOperation<Intermediary, Persistable>: ConcurrentOperation wh
 
     private func finish(error: SyncError?) {
         if let error = error {
-            context.failed(error: error)
+            context.finish(error: error)
+        } else if isFinalOperation {
+            context.finish(error: nil)
         }
+
         finish()
     }
 

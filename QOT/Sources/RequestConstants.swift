@@ -8,6 +8,8 @@
 
 import Alamofire
 
+let baseURL = URL(string: "https://esb2.tignum.com")!
+
 enum Endpoint: String {
 
     case authentication = "/service/auth"
@@ -35,4 +37,5 @@ enum HTTPHeader: String {
     case authToken = "token"
     case contentType = "Content-Type"
     case syncToken = "x-tignum-sync-token"
+    case deviceID = "X-Tignum-Device-Identifier"
 }

@@ -34,7 +34,7 @@ class NetworkManagerTests: XCTestCase {
         let sessionManager = SessionManager(configuration: configuration)
         let credentialsManager = CredentialsManager()
         credentialsManager.credential = Credential(username: username, password: password, token: token)
-        let requestBuilder = URLRequestBuilder(baseURL: URL(string: "http://localhost")!)
+        let requestBuilder = URLRequestBuilder(baseURL: URL(string: "http://localhost")!, deviceID: "Some ID")
         
         networkManager = NetworkManager(sessionManager: sessionManager, credentialsManager: credentialsManager, requestBuilder: requestBuilder)
     }
@@ -52,7 +52,7 @@ class NetworkManagerTests: XCTestCase {
         let sessionManager = SessionManager(configuration: configuration)
         let credentialsManager = CredentialsManager()
         credentialsManager.credential = Credential(username: username, password: password, token: nil)
-        let requestBuilder = URLRequestBuilder(baseURL: URL(string: "http://localhost")!)
+        let requestBuilder = URLRequestBuilder(baseURL: URL(string: "http://localhost")!, deviceID: "Some ID")
         
         networkManager = NetworkManager(sessionManager: sessionManager, credentialsManager: credentialsManager, requestBuilder: requestBuilder)
     }
@@ -99,7 +99,7 @@ class NetworkManagerTests: XCTestCase {
             case .success(_):
                 XCTAssert(false)
             case .failure(let error):
-                switch error {
+                switch error.type {
                 case .unauthenticated:
                     XCTAssert(false)
                 default:
@@ -129,7 +129,7 @@ class NetworkManagerTests: XCTestCase {
             case .success(_):
                 XCTAssert(false)
             case .failure(let error):
-                switch error {
+                switch error.type {
                 case .unauthenticated:
                     XCTAssert(true)
                 default:
@@ -159,7 +159,7 @@ class NetworkManagerTests: XCTestCase {
             case .success(_):
                 XCTAssert(true)
             case .failure(let error):
-                switch error {
+                switch error.type {
                 case .unauthenticated:
                     XCTAssert(false)
                 default:
@@ -188,7 +188,7 @@ class NetworkManagerTests: XCTestCase {
             case .success(_):
                 XCTAssert(false)
             case .failure(let error):
-                switch error {
+                switch error.type {
                 case .failedToParseData(_):
                     XCTAssert(true)
                 default:
@@ -217,7 +217,7 @@ class NetworkManagerTests: XCTestCase {
             case .success(_):
                 XCTAssert(false)
             case .failure(let error):
-                switch error {
+                switch error.type {
                 case .cancelled:
                     XCTAssert(true)
                 default:

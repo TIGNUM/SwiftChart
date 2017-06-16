@@ -15,39 +15,40 @@ struct Credential {
     let token: String?
 }
 
-private let keychain = Keychain(service: "com.tignum.qot")
+private let keychain = Keychain(service: KeychainConstant.service.rawValue)
+
+// FIXME: Remove
+private let tempUsername = "m.buettner@tignum.com"
+private let tempPassword = "1111"
 
 class CredentialsManager {
 
-    enum Key: String {
-        case username = "com.tignum.qot.username"
-        case password = "com.tignum.qot.password"
-        case token = "com.tignum.qot.token"
-    }
-
     var credential: Credential? {
         get {
-            guard let username = value(key: .username), let password = value(key: .password) else {
-                return nil
-            }
-            return Credential(username: username, password: password, token: value(key: .token))
+            return Credential(username: tempUsername, password: tempPassword, token: value(key: .authToken))
+
+            // FIXME: Uncomment
+//            guard let username = value(key: .username), let password = value(key: .password) else {
+//                return nil
+//            }
+//            return Credential(username: username, password: password, token: value(key: .authToken))
         }
         set {
             set(value: newValue?.username, key: .username)
             set(value: newValue?.password, key: .password)
-            set(value: newValue?.token, key: .token)
+            set(value: newValue?.token, key: .authToken)
         }
     }
 
     func deleteToken() {
-        set(value: nil, key: .token)
+        set(value: nil, key: .authToken)
     }
 
-    private func value(key: Key) -> String? {
+    private func value(key: KeychainConstant) -> String? {
         return keychain[key.rawValue]
     }
 
-    private func set(value: String?, key: Key) {
+    private func set(value: String?, key: KeychainConstant) {
         keychain[key.rawValue] = value
     }
 }

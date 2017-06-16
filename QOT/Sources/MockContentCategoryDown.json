@@ -2,7 +2,7 @@
   "resultList": [
     {
       "sortOrder": 0,
-      "section": "learn.strategy",
+      "section": "LEARN_STRATEGIES",
       "title": "Performance Mindset",
       "layoutInfo": {
         "bubble": {
@@ -22,7 +22,7 @@
     },
     {
       "sortOrder": 1,
-      "section": "learn.strategy",
+      "section": "LEARN_STRATEGIES",
       "title": "Performance Recovery",
       "layoutInfo": {
         "bubble": {
@@ -42,7 +42,7 @@
     },
     {
       "sortOrder": 2,
-      "section": "learn.strategy",
+      "section": "LEARN_STRATEGIES",
       "title": "Performance Foundation",
       "layoutInfo": {
         "bubble": {
@@ -62,7 +62,7 @@
     },
     {
       "sortOrder": 3,
-      "section": "learn.strategy",
+      "section": "LEARN_STRATEGIES",
       "title": "Performance Nutrition",
       "layoutInfo": {
         "bubble": {
@@ -82,7 +82,7 @@
     },
     {
       "sortOrder": 4,
-      "section": "learn.strategy",
+      "section": "LEARN_STRATEGIES",
       "title": "Performance Movement",
       "layoutInfo": {
         "bubble": {
@@ -102,7 +102,7 @@
     },
     {
       "sortOrder": 5,
-      "section": "learn.strategy",
+      "section": "LEARN_STRATEGIES",
       "title": "Movement",
       "layoutInfo": {
         "bubble": {

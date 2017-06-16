@@ -16,7 +16,10 @@ class NetworkManager {
     private let credentialsManager: CredentialsManager
     private let requestBuilder: URLRequestBuilder
 
-    init(sessionManager: SessionManager, credentialsManager: CredentialsManager, requestBuilder: URLRequestBuilder) {
+    init(sessionManager: SessionManager = SessionManager.default,
+         credentialsManager: CredentialsManager = CredentialsManager(),
+         requestBuilder: URLRequestBuilder = URLRequestBuilder(baseURL: baseURL, deviceID: deviceID)
+        ) {
         self.sessionManager = sessionManager
         self.credentialsManager = credentialsManager
         self.requestBuilder = requestBuilder
@@ -31,7 +34,7 @@ class NetworkManager {
     */
     @discardableResult func request<T>(_ urlRequest: URLRequestBuildable, parser: @escaping (Data) throws -> T, completion: @escaping (Result<T, NetworkError>) -> Void) -> SerialRequest {
         guard let credential = credentialsManager.credential else {
-            completion(.failure(.unauthenticated))
+            completion(.failure(NetworkError(type: .unauthenticated)))
             return SerialRequest()
         }
 
@@ -42,7 +45,7 @@ class NetworkManager {
                 case .success:
                     completion(result)
                 case .failure(let error):
-                    switch error {
+                    switch error.type {
                     case .unauthenticated:
                         self?.authenticateAndRequest(urlRequest, username: credential.username, password: credential.password, parser: parser, serialRequest: serialRequest, completion: completion)
                     default:
@@ -91,7 +94,7 @@ class NetworkManager {
                 strongSelf.credentialsManager.credential = Credential(username: username, password: password, token: token)
                 strongSelf.setTokenAndRequest(urlRequest, token: token, parser: parser, serialRequest: serialRequest, completion: completion)
             case .failure(let error):
-                switch error {
+                switch error.type {
                 case .unauthenticated:
                     strongSelf.credentialsManager.credential = nil
                 default:
@@ -122,10 +125,11 @@ extension SessionManager {
                     do {
                         result = .success(try parser(data))
                     } catch let error {
-                        result = .failure(.failedToParseData(data, error: error))
+                        let networkError = NetworkError(type: .failedToParseData(data, error: error))
+                        result = .failure(networkError)
                     }
                 case .failure(let error):
-                    let networkError = NetworkError(error: error as NSError, statusCode: response.response?.statusCode)
+                    let networkError = NetworkError(error: error as NSError, request: response.request, response: response.response)
                     result = .failure(networkError)
                 }
                 completion(result)

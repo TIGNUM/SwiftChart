@@ -18,6 +18,7 @@ enum SyncError: Error {
 }
 
 class SyncContext {
+    typealias Completion = ((State) -> Void)?
 
     enum State {
         case `default`
@@ -27,15 +28,24 @@ class SyncContext {
 
     private(set) var state: State = .default
     private weak var queue: OperationQueue?
+    private var completion: Completion
 
-    init(queue: OperationQueue) {
+    init(queue: OperationQueue, completion: Completion) {
         self.queue = queue
+        self.completion = completion
     }
 
-    func failed(error: SyncError) {
-        print("Sync failed with error: /(error)")
+    func finish(error: SyncError?) {
+        if case State.finished = state {
+            return
+        }
 
-        state = .errored(error)
+        if let error = error {
+            state = .errored(error)
+        } else {
+            state = .finished
+        }
         queue?.cancelAllOperations()
+        completion?(state)
     }
 }

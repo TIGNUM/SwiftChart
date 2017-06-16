@@ -14,7 +14,7 @@ import Alamofire
 // FIXME: Remove when no longer needed
 
 private let syncManager: SyncManager = {
-    let requestBuilder = URLRequestBuilder(baseURL: URL(string: "http://example.com")!)
+    let requestBuilder = URLRequestBuilder(baseURL: URL(string: "http://example.com")!, deviceID: deviceID)
     let networkManager = MockNetworkManager(sessionManager: SessionManager.default, credentialsManager: CredentialsManager(), requestBuilder: requestBuilder)
     let realmProvider = RealmProvider()
     let syncRecordService = SyncRecordService(realmProvider: realmProvider)
@@ -26,7 +26,9 @@ func setupRealmWithMockData(realm: Realm) {
     do {
         try realm.write {
             if realm.objects(ContentCategory.self).count == 0 {
-                syncManager.syncAll()
+                if MockToggle.json == true {
+                    syncManager.syncAllMockJSONs()
+                }
 
                 addMockWhatsHotContentCategories(realm: realm)
                 addMockPrepareContentCategories(realm: realm)

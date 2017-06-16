@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import EventKit
+import Alamofire
 
 final class AppCoordinator: ParentCoordinator {
     
@@ -18,6 +19,13 @@ final class AppCoordinator: ParentCoordinator {
     fileprivate var services: Services?
     fileprivate lazy var eventTracker: EventTracker = {
         return EventTracker(realmProvider: { return try Realm() })
+    }()
+
+    fileprivate lazy var syncManager: SyncManager = {
+        let realmProvider = RealmProvider()
+        let syncRecordService =  SyncRecordService(realmProvider: realmProvider)
+
+        return SyncManager(networkManager: NetworkManager(), syncRecordService: syncRecordService, realmProvider: realmProvider)
     }()
     
     fileprivate lazy var calendarImportManager: CalendarImportManger = {
@@ -46,6 +54,10 @@ final class AppCoordinator: ParentCoordinator {
                 self.services = services
                 self.calendarImportManager.importEvents()
                 self.startTabBarCoordinator(services: services)
+
+                if MockToggle.json == false {
+                    self.syncManager.syncContent()
+                }
             case .failure:
                 // FIXME: Alert user that the app cannot be run
                 break

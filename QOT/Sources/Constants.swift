@@ -189,6 +189,14 @@ enum Identifier: String {
     case chatTableViewCell = "Cell"
 }
 
+enum KeychainConstant: String {
+    case service = "com.tignum.qot"
+    case username = "com.tignum.qot.username"
+    case password = "com.tignum.qot.password"
+    case authToken = "com.tignum.qot.token"
+    case deviceID = "com.tignum.qot.device-identifier"
+}
+
 struct Font {
 
     enum Name: String {

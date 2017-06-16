@@ -13,30 +13,74 @@ enum HTTPStatusCode: Int {
     case unauthorized = 401
 }
 
-enum NetworkError: Error {
-    
-    case failedToParseData(Data, error: Error)
-    case unknown(error: Error, statusCode: Int?)
-    case noNetworkConnection
-    case cancelled
-    case unauthenticated
+struct NetworkError: Error {
 
-    init(error: NSError, statusCode: Int?) {
-        if let code = statusCode {
+    enum NetworkErrorType {
+        case failedToParseData(Data, error: Error)
+        case unknown(error: Error, statusCode: Int?)
+        case noNetworkConnection
+        case cancelled
+        case unauthenticated
+    }
+
+    let type: NetworkErrorType
+    let request: URLRequest?
+    let response: URLResponse?
+
+    init(type: NetworkErrorType) {
+        self.type = type
+        self.request = nil
+        self.response = nil
+    }
+
+    init(error: NSError, request: URLRequest?, response: HTTPURLResponse?) {
+        if let code = response?.statusCode {
             if let httpStatusCode = HTTPStatusCode(rawValue: code), httpStatusCode == .unauthorized {
-                self = .unauthenticated
+                type = .unauthenticated
             } else {
-                self = .unknown(error: error, statusCode: code)
+                type = .unknown(error: error, statusCode: code)
             }
         } else if error.domain == NSURLErrorDomain {
             switch error.code {
-            case NSURLErrorNotConnectedToInternet: self = .noNetworkConnection
-            case NSURLErrorCancelled: self = .cancelled
-            case NSURLErrorUserAuthenticationRequired: self = .unauthenticated
-            default: self = .unknown(error: error, statusCode: nil)
+            case NSURLErrorNotConnectedToInternet: type = .noNetworkConnection
+            case NSURLErrorCancelled: type = .cancelled
+            case NSURLErrorUserAuthenticationRequired: type = .unauthenticated
+            default: type = .unknown(error: error, statusCode: nil)
             }
         } else {
-            self = .unknown(error: error, statusCode: nil)
+            type = .unknown(error: error, statusCode: nil)
         }
+
+        self.request = request
+        self.response = response
+    }
+}
+
+extension NetworkError.NetworkErrorType: CustomDebugStringConvertible {
+
+    var debugDescription: String {
+        switch self {
+        case .failedToParseData(let data, let error):
+            let dataString = String(data: data, encoding: .utf8) ?? "Unable to decode data to string"
+            return "Failed to parse data: \(dataString), error: \(error)"
+        case .cancelled:
+            return "Request cancelled"
+        case .noNetworkConnection:
+            return "No network connection"
+        case .unauthenticated:
+            return "Unauthenticated"
+        case .unknown(let error, let statusCode):
+            return "Unknow error: \(error), status code: \(String(describing: statusCode))"
+        }
+    }
+}
+
+extension NetworkError: CustomDebugStringConvertible {
+
+    var debugDescription: String {
+        let requestDescription = request?.debugDescription ?? "none"
+        let responseDescription = response?.debugDescription ?? "none"
+        let errorType = type.debugDescription
+        return "NETWORK ERROR - \(errorType), REQUEST: \(requestDescription), RESPONSE: \(responseDescription)"
     }
 }

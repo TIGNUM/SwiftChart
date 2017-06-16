@@ -31,14 +31,6 @@ protocol LearnContentCategory: TrackableEntity {
 
 extension ContentCategory: LearnContentCategory {
 
-    var bubbleLayoutInfo: BubbleLayoutInfo {
-        do {
-            return try getBubbleLayoutInfo()
-        } catch let error {
-            fatalError("bubbleLayoutInfo \(error)")
-        }
-    }
-
     /// Returns a `Double` between 0 and 1 representing the cells radius.
     var radius: Double {
         return bubbleLayoutInfo.radius

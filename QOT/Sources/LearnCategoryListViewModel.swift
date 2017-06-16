@@ -15,6 +15,7 @@ final class LearnCategoryListViewModel {
     // MARK: - Properties
 
     private let _categories: DataProvider<LearnContentCategory>
+    fileprivate let disposeBag = DisposeBag()
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
     /// The number of categories to display.
@@ -30,6 +31,10 @@ final class LearnCategoryListViewModel {
 
     init(categories: DataProvider<LearnContentCategory>) {
         self._categories = categories
+
+        categories.observeChange { [unowned self] (_) in
+            self.updates.next(.reload)
+        }.dispose(in: disposeBag)
     }
 
     /// Returns the `LearnCategory` to display at `index`.

@@ -84,10 +84,18 @@ extension ContentItemData: JSONDecodable {
         self.value = try json.serializeString(at: .value)
         self.format = try json.getItemValue(at: .format)
         self.viewed = try json.getItemValue(at: .viewed)
-        self.searchTags = try (json.getArray(at: .searchTags) as [String]).joined(separator: ",")
-        self.tabs = try (json.getArray(at: .tabs) as [String]).joined(separator: ",")
+        self.searchTags = ContentItemData.commaSeperatedStringFromArray(in: json, at: .searchTags)
+        self.tabs = ContentItemData.commaSeperatedStringFromArray(in: json, at: .tabs)
         self.layoutInfo = try json.serializeString(at: .layoutInfo)
         self.contentID = try json.getItemValue(at: .contentId)
+    }
+
+    private static func commaSeperatedStringFromArray(in json: JSON, at key: JsonKey) -> String {
+        do {
+            return try (json.getArray(at: key) as [String]).joined(separator: ",")
+        } catch {
+            return ""
+        }
     }
 }
 

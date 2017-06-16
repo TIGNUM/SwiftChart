@@ -72,13 +72,16 @@ extension ContentCategory: DownSyncable {
 
 extension ContentCategory {
 
-    func getBubbleLayoutInfo() throws -> BubbleLayoutInfo {
-        guard let jsonString = layoutInfo else {
-            throw QOTDatabaseError.noLayoutInfo
+    var bubbleLayoutInfo: BubbleLayoutInfo {
+        guard
+            let jsonString = layoutInfo,
+            let json = try? JSON(jsonString: jsonString),
+            let info = try? BubbleLayoutInfo(json: json)
+            else {
+                return BubbleLayoutInfo.invalid
         }
 
-        let json = try JSON(jsonString: jsonString)
-        return try BubbleLayoutInfo(json: json)
+        return info
     }
 
     func getSidebarLayoutInfo() throws -> SidebarLayoutInfo {
@@ -97,10 +100,20 @@ struct BubbleLayoutInfo: JSONDecodable {
     let centerX: Double
     let centerY: Double
 
+    init(radius: Double = 0.2, centerX: Double = 0.2, centerY: Double = 0.2) {
+        self.radius = radius
+        self.centerX = centerX
+        self.centerY = centerY
+    }
+
     init(json: JSON) throws {
         radius = try json.getDouble(at: "bubble", "radius")
         centerX = try json.getDouble(at: "bubble", "centerX")
         centerY = try json.getDouble(at: "bubble", "centerY")
+    }
+
+    static var invalid: BubbleLayoutInfo {
+        return BubbleLayoutInfo()
     }
 }
 

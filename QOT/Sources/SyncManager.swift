@@ -28,7 +28,19 @@ final class SyncManager {
     }
 
     func syncAll() {
-        let context = SyncContext(queue: operationQueue)
+
+    }
+
+    func syncAllMockJSONs() {
+        let context = SyncContext(queue: operationQueue) { (state) in
+            switch state {
+            case .errored(let error):
+                print("CONTENT SYNC FAILED: \(error)")
+            default:
+                break
+            }
+        }
+
         let operations: [Operation] = [
             downSyncOperation(for: UserDown, context: context),
             downSyncOperation(for: ContentCategoryDown, context: context),
@@ -40,12 +52,32 @@ final class SyncManager {
         operationQueue.addOperations(operations, waitUntilFinished: false)
     }
 
-    private func downSyncOperation<I, P>(for description: SyncDescription<I, P>, context: SyncContext) -> DownSyncOperation<I, P> where I: JSONDecodable, P: DownSyncable, P: Object, P.Data == I {
+    func syncContent() {
+        let context = SyncContext(queue: operationQueue) { (state) in
+            switch state {
+            case .errored(let error):
+                print("CONTENT SYNC FAILED: \(error)")
+            default:
+                break
+            }
+        }
+
+        let operations: [Operation] = [
+            downSyncOperation(for: ContentCategoryDown, context: context),
+            downSyncOperation(for: ContentCollectionDown, context: context),
+            downSyncOperation(for: ContentItemDown, context: context)
+        ]
+
+        operationQueue.addOperations(operations, waitUntilFinished: false)
+    }
+
+    private func downSyncOperation<I, P>(for description: SyncDescription<I, P>, context: SyncContext, isFinalOperation: Bool = false) -> DownSyncOperation<I, P> where I: JSONDecodable, P: DownSyncable, P: Object, P.Data == I {
         return DownSyncOperation(context: context,
                                  networkManager: networkManager,
                                  description: description,
                                  syncRecordService: syncRecordService,
                                  realmProvider: realmProvider,
-                                 downSyncImporter: DownSyncImporter())
+                                 downSyncImporter: DownSyncImporter(),
+                                 isFinalOperation: isFinalOperation)
     }
 }

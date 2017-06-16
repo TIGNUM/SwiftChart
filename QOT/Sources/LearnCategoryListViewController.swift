@@ -9,6 +9,8 @@
 import UIKit
 import Anchorage
 import Foundation
+import Bond
+import ReactiveKit
 
 /// The delegate of a `LearnCategoryListViewController`.
 protocol LearnCategoryListViewControllerDelegate: class {
@@ -27,7 +29,8 @@ final class LearnCategoryListViewController: UIViewController {
     // MARK: - Properties
     
     fileprivate let viewModel: LearnCategoryListViewModel
-    weak var delegate: LearnCategoryListViewControllerDelegate?    
+    fileprivate let disposeBag = DisposeBag()
+    weak var delegate: LearnCategoryListViewControllerDelegate?
 
     fileprivate lazy var collectionView: UICollectionView = {
         let layout = LearnCategoryLayout(
@@ -63,6 +66,9 @@ final class LearnCategoryListViewController: UIViewController {
         super.viewDidLoad()
 
         setupLayout()
+        viewModel.updates.observeNext { [unowned self] (_) in
+            self.collectionView.reloadData()
+        }.dispose(in: disposeBag)
     }
 
     override func viewWillAppear(_ animated: Bool) {

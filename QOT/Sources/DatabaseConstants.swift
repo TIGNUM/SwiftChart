@@ -12,7 +12,7 @@ import Freddy
 enum Database {
 
     enum Section: String {
-        case learnStrategy = "learn.strategy"
+        case learnStrategy = "LEARN_STRATEGIES"
         case learnWhatsHot = "learn.whatshot"
         case prepareCoach = "prepare.coach"
         case sidebar = "sidebar"
@@ -103,7 +103,7 @@ enum JsonKey: String {
     case syncTokenHeaderKey
     case tabs
     case telephone
-    case thumbnailURL
+    case thumbnail
     case timestamp
     case title
     case userImageURL

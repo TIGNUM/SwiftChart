@@ -33,3 +33,7 @@ struct LogToggle {
         static let TabBar = false
     }
 }
+
+struct MockToggle {
+    static let json = true
+}

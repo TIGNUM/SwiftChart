@@ -11,15 +11,18 @@ import Alamofire
 final class URLRequestBuilder {
 
     let baseURL: URL
+    let deviceID: String
 
-    init(baseURL: URL) {
+    init(baseURL: URL, deviceID: String) {
         self.baseURL = baseURL
+        self.deviceID = deviceID
     }
 
     func make(with buildable: URLRequestBuildable, authToken: String) -> URLRequest {
         var httpHeaders = buildable.headers
         httpHeaders[.contentType] = "application/json"
         httpHeaders[.authToken] = authToken
+        httpHeaders[.deviceID] = deviceID
 
         let url = buildable.endpoint.url(baseURL: baseURL)
         let method = buildable.httpMethod
@@ -31,7 +34,10 @@ final class URLRequestBuilder {
 
     func authentication(username: String, password: String) -> URLRequest {
         let url = Endpoint.authentication.url(baseURL: baseURL)
-        let headers = [HTTPHeader.Authorization.rawValue: "\(username):\(password)"]
+        var httpHeaders: [HTTPHeader: String] = [:]
+        httpHeaders[.Authorization] = "\(username):\(password)"
+        httpHeaders[.deviceID] = deviceID
+        let headers = httpHeaders.mapKeys { $0.rawValue }
 
         return URLRequest(url: url, method: .post, headers: headers, parameters: nil)
     }
