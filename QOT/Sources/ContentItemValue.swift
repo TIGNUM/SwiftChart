@@ -19,6 +19,58 @@ enum ContentItemValue {
     case image(title: String, description: String?, url: URL)
     case invalid
 
+    init(item: ContentItem) {
+        guard let format = ContentItemFormat(rawValue: item.format) else {
+            self = .invalid
+            return
+        }
+
+        let mediaURL = item.valueMediaURL.flatMap { URL(string: $0) }
+        let imageURL = item.valueImageURL.flatMap { URL(string: $0) }
+        let duration = item.valueDuration.value.map { TimeInterval($0) }
+
+        switch format {
+        case .textH1,
+             .textH2,
+             .textH3,
+             .textH4,
+             .textH5,
+             .textH6,
+             .textParagraph,
+             .textQuote:
+            if let text = item.valueText, let style = ContentItemTextStyle.createStyle(for: format) {
+                self = .text(text: text, style: style)
+            } else {
+                self = .invalid
+            }
+        case .listItem:
+            if let text = item.valueText {
+                self = .listItem(text: text)
+            } else {
+                self = .invalid
+            }
+        case .video:
+            if let title = item.valueText, let placeholder = imageURL, let video = mediaURL, let duration = duration {
+                self = .video(title: title, description: item.valueDescription, placeholderURL: placeholder, videoURL: video, duration: duration)
+            } else {
+                self = .invalid
+            }
+        case .audio:
+            if let title = item.valueText, let placeholder = imageURL, let audio = mediaURL, let duration = duration, let waveform = item.waveformData {
+                self = .audio(title: title, description: item.valueDescription, placeholderURL: placeholder, audioURL: audio, duration: duration, waveformData: waveform)
+            } else {
+                self = .invalid
+            }
+        case .image:
+            if let title = item.valueText, let url = imageURL {
+                self = .image(title: title, description: item.valueDescription, url: url)
+            } else {
+                self = .invalid
+            }
+        }
+    }
+
+    // FIXME: Remove once not needed for mocks
     init(format: ContentItemFormat, value: String) throws {
         let json = try JSON(jsonString: value)
         switch format {
@@ -35,7 +87,7 @@ enum ContentItemValue {
             guard let style = ContentItemTextStyle.createStyle(for: format) else {
                 throw ContentItemTextStyleError.noValidItemTextStyleError
             }
-            
+
             self = .text(text: text, style: style)
 
         case .listItem:
@@ -73,6 +125,25 @@ enum ContentItemValue {
         case .h6: return Style.navigationTitle(text, textColor).attributedString()
         case .paragraph: return Style.paragraph(text, textColor).attributedString()
         case .quote: return Style.tag(text, textColor).attributedString()
+        }
+    }
+}
+
+private extension ContentItem {
+
+    var waveformData: [Float]? {
+        return valueWavformData.flatMap { (jsonString) -> [Float]? in
+            do {
+                if let json = try? JSON(jsonString: jsonString) {
+                    let jsons = try json.getArray()
+                    let doubles = try jsons.map { try Double(json: $0) }
+                    return doubles.map { Float($0) }
+                } else {
+                    return nil
+                }
+            } catch {
+                return nil
+            }
         }
     }
 }

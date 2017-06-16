@@ -86,7 +86,7 @@
 		CB1D5E3B1EC5E25A00BCDF8D /* ContentCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D5E301EC5E25A00BCDF8D /* ContentCollection.swift */; };
 		CB1D5E3C1EC5E25A00BCDF8D /* ContentCollectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D5E311EC5E25A00BCDF8D /* ContentCollectionData.swift */; };
 		CB1D5E3D1EC5E25A00BCDF8D /* ContentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D5E321EC5E25A00BCDF8D /* ContentItem.swift */; };
-		CB1D5E3E1EC5E25A00BCDF8D /* ContentItemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D5E331EC5E25A00BCDF8D /* ContentItemData.swift */; };
+		CB1D5E3E1EC5E25A00BCDF8D /* ContentItemIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D5E331EC5E25A00BCDF8D /* ContentItemIntermediary.swift */; };
 		CB1D5E3F1EC5E25A00BCDF8D /* ContentItemValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D5E341EC5E25A00BCDF8D /* ContentItemValue.swift */; };
 		CB1D5E401EC5E25A00BCDF8D /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D5E351EC5E25A00BCDF8D /* Error.swift */; };
 		CB1D5E411EC5E25A00BCDF8D /* JSONDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D5E361EC5E25A00BCDF8D /* JSONDecodable.swift */; };
@@ -430,7 +430,7 @@
 		CB1D5E301EC5E25A00BCDF8D /* ContentCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCollection.swift; sourceTree = "<group>"; };
 		CB1D5E311EC5E25A00BCDF8D /* ContentCollectionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCollectionData.swift; sourceTree = "<group>"; };
 		CB1D5E321EC5E25A00BCDF8D /* ContentItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentItem.swift; sourceTree = "<group>"; };
-		CB1D5E331EC5E25A00BCDF8D /* ContentItemData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentItemData.swift; sourceTree = "<group>"; };
+		CB1D5E331EC5E25A00BCDF8D /* ContentItemIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentItemIntermediary.swift; sourceTree = "<group>"; };
 		CB1D5E341EC5E25A00BCDF8D /* ContentItemValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentItemValue.swift; sourceTree = "<group>"; };
 		CB1D5E351EC5E25A00BCDF8D /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		CB1D5E361EC5E25A00BCDF8D /* JSONDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONDecodable.swift; sourceTree = "<group>"; };
@@ -738,6 +738,16 @@
 			name = Page;
 			sourceTree = "<group>";
 		};
+		CB14676F1EF3E86900A60E31 /* ContentItem */ = {
+			isa = PBXGroup;
+			children = (
+				CB1D5E321EC5E25A00BCDF8D /* ContentItem.swift */,
+				CB1D5E331EC5E25A00BCDF8D /* ContentItemIntermediary.swift */,
+				CB1D5E341EC5E25A00BCDF8D /* ContentItemValue.swift */,
+			);
+			name = ContentItem;
+			sourceTree = "<group>";
+		};
 		CB810E621EF00D9F0043E3E5 /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -954,9 +964,7 @@
 				CB1D5E2F1EC5E25A00BCDF8D /* ContentCategoryData.swift */,
 				CB1D5E301EC5E25A00BCDF8D /* ContentCollection.swift */,
 				CB1D5E311EC5E25A00BCDF8D /* ContentCollectionData.swift */,
-				CB1D5E321EC5E25A00BCDF8D /* ContentItem.swift */,
-				CB1D5E331EC5E25A00BCDF8D /* ContentItemData.swift */,
-				CB1D5E341EC5E25A00BCDF8D /* ContentItemValue.swift */,
+				CB14676F1EF3E86900A60E31 /* ContentItem */,
 				CB1467631EF2778400A60E31 /* Page */,
 				CB810E6C1EF180CB0043E3E5 /* PageTrack */,
 				CB810E621EF00D9F0043E3E5 /* User */,
@@ -1968,7 +1976,7 @@
 				CB14675E1EF18F5F00A60E31 /* Dictionary+Convenience.swift in Sources */,
 				CC94F5651EB08EE400051CF8 /* LearnStrategyAudioViewModel.swift in Sources */,
 				CCE3730F1E8D32F800B79352 /* SidebarCoordinator.swift in Sources */,
-				CB1D5E3E1EC5E25A00BCDF8D /* ContentItemData.swift in Sources */,
+				CB1D5E3E1EC5E25A00BCDF8D /* ContentItemIntermediary.swift in Sources */,
 				CC944DB81EE8096100B8423C /* MyStatisticsCardCell.swift in Sources */,
 				CBB4DCFB1EDC23AE0071494A /* SyncDescription.swift in Sources */,
 				CCC1B6AF1E8B9B7F00D1461F /* LearnContentCollectionViewModel.swift in Sources */,

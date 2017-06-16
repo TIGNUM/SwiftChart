@@ -162,7 +162,7 @@ private func mockSidebarContentItem(sortOrder: Int, title: String) -> ContentIte
     let contentItem = ContentItem()
     let randomContentItemFormatFormat = ContentItemFormat.randomItemFormat
     let randomContentItemFormat = ContentItemFormat(rawValue: randomContentItemFormatFormat.rawValue)
-    let contentItemData = ContentItemData(
+    let contentItemData = ContentItemIntermediary(
         sortOrder: sortOrder,
         title: title,
         secondsRequired: Int.random(between: 30, and: 240),

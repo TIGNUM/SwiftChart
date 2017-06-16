@@ -11,7 +11,7 @@ import Freddy
 
 let ContentCategoryDown = SyncDescription<ContentCategoryData, ContentCategory>(syncType: .contentCategoryDown)
 let ContentCollectionDown = SyncDescription<ContentCollectionData, ContentCollection>(syncType: .contentCollectionDown)
-let ContentItemDown = SyncDescription<ContentItemData, ContentItem>(syncType: .contentItemDown)
+let ContentItemDown = SyncDescription<ContentItemIntermediary, ContentItem>(syncType: .contentItemDown)
 let UserDown = SyncDescription<UserIntermediary, User>(syncType: .userDown)
 let PageDown = SyncDescription<PageIntermediary, Page>(syncType: .pageDown)
 

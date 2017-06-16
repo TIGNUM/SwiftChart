@@ -11,7 +11,7 @@ import RealmSwift
 import Freddy
 
 // FIXME: Unit test.
-final class ContentItem: Object, ContentItemDataProtocol {
+final class ContentItem: Object {
 
     // MARK: SyncableRealmObject
 
@@ -25,15 +25,21 @@ final class ContentItem: Object, ContentItemDataProtocol {
 
     dynamic var collection: ContentCollection?
 
-    func setData(_ data: ContentItemDataProtocol) throws {
+    func setData(_ data: ContentItemIntermediary) throws {
         sortOrder = data.sortOrder
         secondsRequired = data.secondsRequired
-        value = data.value
         format = data.format
         viewed = data.viewed
         searchTags = data.searchTags
         layoutInfo = data.layoutInfo
         tabs = data.tabs
+        value = data.value
+        valueText = data.valueText
+        valueDescription = data.valueDescription
+        valueImageURL = data.valueImageURL
+        valueMediaURL = data.valueMediaURL
+        valueDuration.value = data.valueDuration
+        valueWavformData = data.valueWavformData
     }
 
     // MARK: ContentData
@@ -41,8 +47,6 @@ final class ContentItem: Object, ContentItemDataProtocol {
     fileprivate(set) dynamic var sortOrder: Int = 0
 
     fileprivate(set) dynamic var secondsRequired: Int = 0
-
-    fileprivate(set) dynamic var value: String = ""
 
     fileprivate(set) dynamic var format: String = ""
 
@@ -53,6 +57,20 @@ final class ContentItem: Object, ContentItemDataProtocol {
     fileprivate(set) dynamic var layoutInfo: String?
 
     fileprivate(set) dynamic var contentID: Int = 0
+
+    fileprivate(set) dynamic var value: String?
+
+    fileprivate(set) dynamic var valueText: String?
+
+    fileprivate(set) dynamic var valueDescription: String?
+
+    fileprivate(set) dynamic var valueImageURL: String?
+
+    fileprivate(set) dynamic var valueMediaURL: String?
+
+    let valueDuration = RealmOptional<Double>(nil)
+
+    fileprivate(set) dynamic var valueWavformData: String?
 
     dynamic var viewed: Bool = false
 
@@ -71,30 +89,40 @@ extension ContentItem: DownSyncable {
         return item
     }
 
-    func setData(_ data: ContentItemData, objectStore: ObjectStore) throws {
+    func setData(_ data: ContentItemIntermediary, objectStore: ObjectStore) throws {
         sortOrder = data.sortOrder
         secondsRequired = data.secondsRequired
-        value = data.value
         format = data.format
         viewed = data.viewed
         searchTags = data.searchTags
         tabs = data.tabs
         layoutInfo = data.layoutInfo
         collection = try objectStore.uniqueObject(ContentCollection.self, predicate: NSPredicate(remoteID: data.contentID))
+        value = data.value
+        valueText = data.valueText
+        valueDescription = data.valueDescription
+        valueImageURL = data.valueImageURL
+        valueMediaURL = data.valueMediaURL
+        valueDuration.value = data.valueDuration
+        valueWavformData = data.valueWavformData
     }
 }
 
 extension ContentItem {
 
     var contentItemValue: ContentItemValue {
-        guard
-            let format = ContentItemFormat(rawValue: format),
-            let value = try? ContentItemValue(format: format, value: value)
-        else {
-            return .invalid
+        // FIXME: Remove once not needed for mock data
+        if let jsonValue = value {
+            guard
+                let format = ContentItemFormat(rawValue: format),
+                let value = try? ContentItemValue(format: format, value: jsonValue)
+                else {
+                    return .invalid
+            }
+            return value
         }
 
-        return value
+        return ContentItemValue(item: self)
     }
 
     func accordionTitle() -> String? {

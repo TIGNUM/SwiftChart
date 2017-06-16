@@ -117,7 +117,7 @@ private func addMockWhatsHotContentItems(contentCollection: ContentCollection, r
 
 private func mockWhatsHotContentItem(sortOrder: Int, title: String) -> ContentItem {
     let contentItem = ContentItem()
-    let contentItemData = ContentItemData(
+    let contentItemData = ContentItemIntermediary(
         sortOrder: sortOrder,
         title: title,
         value: textItemJSON,
@@ -131,7 +131,7 @@ private func mockWhatsHotContentItem(sortOrder: Int, title: String) -> ContentIt
     return contentItem
 }
 
-private extension ContentItemData {
+private extension ContentItemIntermediary {
 
     init(sortOrder: Int, title: String, value: String, format: String, searchTags: String, layoutInfo: String?) {
         self.init(

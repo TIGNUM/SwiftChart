@@ -61,7 +61,9 @@ enum JsonKey: String {
     case contentId
     case country
     case createdAt
+    case description
     case displayName
+    case duration
     case email
     case employment
     case firstName
@@ -72,12 +74,14 @@ enum JsonKey: String {
     case heightUnits
     case id
     case increment
+    case imageURL
     case jobTitle
     case keypathID
     case lastName
     case layoutInfo
     case maxPages
     case maxResults
+    case mediaURL
     case memberSince
     case modifiedAt
     case name
@@ -103,6 +107,7 @@ enum JsonKey: String {
     case syncTokenHeaderKey
     case tabs
     case telephone
+    case text
     case thumbnail
     case timestamp
     case title
@@ -110,6 +115,7 @@ enum JsonKey: String {
     case userInfo
     case value
     case viewed
+    case waveformData
     case weight
     case weightUnit
     case weightUnits
@@ -128,7 +134,7 @@ extension JSON {
     }
 
     func getItemValue<T: JSONDecodable>(at jsonKey: JsonKey) throws -> T? {
-        return try decode(at: jsonKey.value, type: T.self)
+        return try decode(at: jsonKey.value, alongPath: .MissingKeyBecomesNil)
     }
 
     func getItemValue<T: JSONDecodable>(at jsonKey: JsonKey, alongPath options: SubscriptingOptions) throws -> T? {

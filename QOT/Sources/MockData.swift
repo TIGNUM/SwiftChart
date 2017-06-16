@@ -186,7 +186,7 @@ private func addMockContentItems(content: ContentCollection, realm: Realm) {
 private func mockContentItem(sortOrder: Int, title: String, secondsRequired: Int) -> ContentItem {
     let contentItem = ContentItem()
     let randomContentItemFormat = ContentItemFormat.randomItemFormat
-    let contentItemData = ContentItemData(
+    let contentItemData = ContentItemIntermediary(
         sortOrder: sortOrder,
         title: title,
         secondsRequired: secondsRequired,

@@ -103,7 +103,7 @@ private func addMockPrepareContentItems(contentCollection: ContentCollection, re
 
 private func mockPrepareContentItem(sortOrder: Int, title: String) -> ContentItem {
     let contentItem = ContentItem()
-    let contentItemData = ContentItemData(
+    let contentItemData = ContentItemIntermediary(
         sortOrder: sortOrder,
         title: title,
         value: textItemJSON,
@@ -124,7 +124,7 @@ private var prepareContentItemLayoutInfo: String {
     return jsonDictToString(dict: dict)
 }
 
-private extension ContentItemData {
+private extension ContentItemIntermediary {
 
     init(sortOrder: Int, title: String, value: String, format: String, searchTags: String, layoutInfo: String?) {
         self.init(
