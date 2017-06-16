@@ -88,7 +88,7 @@ private extension MyStatisticsCardCell {
         case .travelTripsMaxTimeZone: addLevelsChartView(data: dataArray)
         case .travelTripsTotalInYear: addLevelsChartView(data: dataArray)
         case .travelTripsTimeZoneChanged: addTravelMaxTimeZoneChanges(data: data)
-        case .travelTripsNextFourWeeks: addLevelsChartView(data: dataArray)
+        case .travelTripsNextFourWeeks: addUpcomingTravels(data: data)
         }
     }
 
@@ -217,6 +217,18 @@ private extension MyStatisticsCardCell {
 
         let travelMaxTimeZoneChangesView = TravelMaxTimeZoneChangesView(frame: centerContentView.bounds, data: meetingData)
         centerContentView.addSubview(travelMaxTimeZoneChangesView)
+    }
+
+    func addUpcomingTravels(data: MyStatisticsData) {
+        guard let tripsData = data as? MyStatisticsDataUpcomingTrips else { return }
+
+        titleLabel.attributedText = Style.postTitle(String(format: "%.1f", tripsData.userAverage), .white).attributedString()
+
+        teamAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.teamAverage), .azure).attributedString()
+        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.dataAverage), .cherryRed).attributedString()
+
+        let upcomingTravelsView = UpcomingTravelsView(frame: centerContentView.bounds, data: tripsData.userUpcomingTrips)
+        centerContentView.addSubview(upcomingTravelsView)
     }
 
     // MARK: - Activity

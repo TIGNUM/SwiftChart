@@ -133,6 +133,13 @@ private extension MyStatisticsSectionType {
                                                  thresholds: [DataDisplayType.week.id(): (upperThreshold: 0.8, lowerThreshold: 0.5), DataDisplayType.month.id(): (upperThreshold: 0.8, lowerThreshold: 0.5)])
         case .travelTripsTimeZoneChanged:
             return MyStatisticsDataAverage(teamAverage: 148, dataAverage: 178, userAverage: 42, maximum: 200, threshold: (upperThreshold: 120, lowerThreshold: 45))
+        case .travelTripsNextFourWeeks:
+            let userTrips: UserUpcomingTrips = [[1, 2, 1, 0, 1, 0, 1],
+                                                [2, 0, 1, 3, 1, 1, 0],
+                                                [0, 1, 1, 5, 1, 0, 0],
+                                                [1, 0, 1, 0, 2, 0, 0]]
+
+            return MyStatisticsDataUpcomingTrips(teamAverage: 24.2, dataAverage: 32.1, userAverage: 24.9, userUpcomingTrips: userTrips)
         default:
             return MyStatisticsDataAverage(teamAverage: 148, dataAverage: 178, userAverage: 42, maximum: 200, threshold: (upperThreshold: 120, lowerThreshold: 45))
         }
