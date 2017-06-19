@@ -53,10 +53,9 @@ enum MyStatisticsCardType {
     case meetingLength
     case meetingTimeBetween
     case meetingHeartRateChange
-    case travelTripsLastFourWeeks
+    case travelTripsMeeting
     case travelTripsNextFourWeeks
     case travelTripsTimeZoneChanged
-    case travelTripsTotalInYear
     case travelTripsMaxTimeZone
     case peakPerformanceNextMonth
     case peakPerformanceAverage
@@ -131,15 +130,36 @@ private extension MyStatisticsSectionType {
                                                  userData: [DataDisplayType.week.id(): 7, DataDisplayType.month.id(): 32],
                                                  maxData: [DataDisplayType.week.id(): 12, DataDisplayType.month.id(): 50],
                                                  thresholds: [DataDisplayType.week.id(): (upperThreshold: 0.8, lowerThreshold: 0.5), DataDisplayType.month.id(): (upperThreshold: 0.8, lowerThreshold: 0.5)])
-        case .travelTripsTimeZoneChanged:
-            return MyStatisticsDataAverage(teamAverage: 148, dataAverage: 178, userAverage: 42, maximum: 200, threshold: (upperThreshold: 120, lowerThreshold: 45))
+        case .travelTripsMeeting:
+            let now = Date()
+            let now3 = now.addingTimeInterval(3 * 24 * 3600)
+
+            let nowWeek = now.addingTimeInterval(7 * 24 * 3600)
+            let now145 = now.addingTimeInterval(-145 * 24 * 3600)
+            let now245 = now.addingTimeInterval(-245 * 24 * 3600)
+
+            let periods: [Period] = [(start: now, duration: 12 * 3600),
+                                     (start: now3, duration: 24 * 3600),
+                                    (start: now145, duration: 12 * 24 * 3600),
+                                    (start: now245, duration: 2 * 24 * 3600),
+                                    (start: nowWeek, duration: 6 * 3600)]
+            
+            return MyStatisticsDataTravelPeriods(teamData: [DataDisplayType.weeks.id(): 3.5, DataDisplayType.year.id(): 15],
+                                                 dataData: [DataDisplayType.weeks.id(): 4.7, DataDisplayType.year.id(): 15],
+                                                 userData: [DataDisplayType.weeks.id(): 7, DataDisplayType.year.id(): 32],
+                                                 periods: periods,
+                                                 statsPeriods: [DataDisplayType.weeks.id(): ChartDimensions(columns: 4, rows: 7, length: 24), DataDisplayType.year.id(): ChartDimensions(columns: 12, rows: 5, length: 7)],
+                                                 thresholds: [DataDisplayType.weeks.id(): (upperThreshold: 12800, lowerThreshold: 4000), DataDisplayType.year.id(): (upperThreshold: 500000, lowerThreshold: 200000)])
         case .travelTripsNextFourWeeks:
             let userTrips: UserUpcomingTrips = [[1, 2, 1, 0, 1, 0, 1],
                                                 [2, 0, 1, 3, 1, 1, 0],
                                                 [0, 1, 1, 5, 1, 0, 0],
                                                 [1, 0, 1, 0, 2, 0, 0]]
+            let labels: [String] = ["+1", "+2", "+3", "+4"]
 
-            return MyStatisticsDataUpcomingTrips(teamAverage: 24.2, dataAverage: 32.1, userAverage: 24.9, userUpcomingTrips: userTrips)
+            return MyStatisticsDataUpcomingTrips(teamAverage: 24.2, dataAverage: 32.1, userAverage: 24.9, userUpcomingTrips: userTrips, labels: labels)
+        case .travelTripsMaxTimeZone:
+            return MyStatisticsDataAverage(teamAverage: 148, dataAverage: 178, userAverage: 42, maximum: 200, threshold: (upperThreshold: 120, lowerThreshold: 45))
         default:
             return MyStatisticsDataAverage(teamAverage: 148, dataAverage: 178, userAverage: 42, maximum: 200, threshold: (upperThreshold: 120, lowerThreshold: 45))
         }
@@ -162,11 +182,10 @@ private extension MyStatisticsSectionType {
 
     var travelCards: [MyStatisticsCard] {
         return [
-            MockMyStatisticsCard(title: "25", subtitle: "Trips last four weeks", type: .travelTripsLastFourWeeks, data: makeData(.travelTripsLastFourWeeks)),
+            MockMyStatisticsCard(title: "125", subtitle: "Averagennumber of meetings", type: .travelTripsMeeting, data: makeData(.travelTripsMeeting)),
             MockMyStatisticsCard(title: "4", subtitle: "Trips next four Weeks", type: .travelTripsNextFourWeeks, data: makeData(.travelTripsNextFourWeeks)),
-            MockMyStatisticsCard(title: "2", subtitle: "Of trips with time zone changed", type: .travelTripsMaxTimeZone, data: makeData(.travelTripsMaxTimeZone)),
-            MockMyStatisticsCard(title: "125", subtitle: "Number of trips this year", type: .travelTripsTotalInYear, data: makeData(.travelTripsTotalInYear)),
-            MockMyStatisticsCard(title: "#11", subtitle: "Time zone  max time zone", type: .travelTripsTimeZoneChanged, data: makeData(.travelTripsTimeZoneChanged))
+            MockMyStatisticsCard(title: "2", subtitle: "# Of trips with time zone changed", type: .travelTripsTimeZoneChanged, data: makeData(.travelTripsTimeZoneChanged)),
+            MockMyStatisticsCard(title: "#11", subtitle: "Time zone  max time zone", type: .travelTripsMaxTimeZone, data: makeData(.travelTripsMaxTimeZone))
         ]
     }
 

@@ -19,16 +19,18 @@ class MyStatisticsDataUpcomingTrips: MyStatisticsData {
     public private(set) var dataAverage: CGFloat
     public private(set) var userAverage: CGFloat
     public private(set) var userUpcomingTrips: UserUpcomingTrips
+    public private(set) var labels: [String]
 
     // MARK: - Initialisation
 
-    init(teamAverage: CGFloat, dataAverage: CGFloat, userAverage: CGFloat, userUpcomingTrips: UserUpcomingTrips) {
+    init(teamAverage: CGFloat, dataAverage: CGFloat, userAverage: CGFloat, userUpcomingTrips: UserUpcomingTrips, labels: [String]) {
         self.displayType = .all
 
         self.teamAverage = teamAverage
         self.dataAverage = dataAverage
         self.userAverage = userAverage
         self.userUpcomingTrips = userUpcomingTrips
+        self.labels = labels
     }
 
     // MARK: - Public methods

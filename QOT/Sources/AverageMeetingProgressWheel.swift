@@ -56,6 +56,6 @@ class AverageMeetingProgressWheel: UIView {
         drawAverageLine(center: arcCenter, innerRadius: innerRadius, outerRadius: radius, angle: teamAngle, lineWidth: 1, strokeColour: .azure)
         drawAverageLine(center: arcCenter, innerRadius: innerRadius, outerRadius: radius, angle: dataAngle, lineWidth: 1, strokeColour: .cherryRed)
 
-        drawCapRoundLine(center: arcCenter, radius: radius, value: value, lineWidth: lineWidth, strokeColour: pathColour)
+        drawCapRoundCircle(center: arcCenter, radius: radius, value: value, lineWidth: lineWidth, strokeColour: pathColour)
     }
 }

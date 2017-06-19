@@ -54,7 +54,7 @@ class TravelMaxTimeZoneChangesProgressWheel: UIView {
         drawSolidCircle(arcCenter: arcCenter, radius: outerRadius, lineWidth: 1, strokeColour: strokeColour)
 
         drawDashedCircle(arcCenter: arcCenter, radius: radius, lineWidth: lineWidth, dashPattern: dashPattern, strokeColour: strokeColour)
-        drawCapRoundLine(center: arcCenter, radius: radius, value: value, startAngle: -90, lineWidth: lineWidth, strokeColour: pathColour)
+        drawCapRoundCircle(center: arcCenter, radius: radius, value: value, startAngle: -90, lineWidth: lineWidth, strokeColour: pathColour)
 
         let dataAngle = Math.radians(360 * dataValue - 90)
         let teamAngle = Math.radians(360 * teamValue - 90)

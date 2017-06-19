@@ -84,11 +84,10 @@ private extension MyStatisticsCardCell {
             let data: [CGFloat] = [0.6, 0.7, 0.8, 0.9, 1]
             addSleepChart(data: data, average: 0.5, type: .quantity)
 
-        case .travelTripsLastFourWeeks: addHorizontalLinesChartView(data: dataArray)
-        case .travelTripsMaxTimeZone: addLevelsChartView(data: dataArray)
-        case .travelTripsTotalInYear: addLevelsChartView(data: dataArray)
-        case .travelTripsTimeZoneChanged: addTravelMaxTimeZoneChanges(data: data)
+        case .travelTripsMeeting: addAverageNumberOfMeetingDuringTravel(data: data)
         case .travelTripsNextFourWeeks: addUpcomingTravels(data: data)
+        case .travelTripsTimeZoneChanged: addLevelsChartView(data: dataArray)
+        case .travelTripsMaxTimeZone: addTravelMaxTimeZoneChanges(data: data)
         }
     }
 
@@ -207,16 +206,16 @@ private extension MyStatisticsCardCell {
 
     // MARK: - Travel
 
-    func addTravelMaxTimeZoneChanges(data: MyStatisticsData) {
-        guard let meetingData = data as? MyStatisticsDataAverage<Int> else { return }
+    func addAverageNumberOfMeetingDuringTravel(data: MyStatisticsData) {
+        guard let tripsData = data as? MyStatisticsDataTravelPeriods else { return }
 
-        titleLabel.attributedText = Style.postTitle(String(format: "%d", meetingData.userAverage), .white).attributedString()
+        titleLabel.attributedText = Style.postTitle(String(format: "%.1f", tripsData.userAverage()), .white).attributedString()
 
-        teamAverageValueLabel.attributedText = Style.tag(String(format: "%d", meetingData.teamAverage), .azure).attributedString()
-        userAverageValueLabel.attributedText = Style.tag(String(format: "%d", meetingData.dataAverage), .cherryRed).attributedString()
+        teamAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.teamAverage()), .azure).attributedString()
+        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.dataAverage()), .cherryRed).attributedString()
 
-        let travelMaxTimeZoneChangesView = TravelMaxTimeZoneChangesView(frame: centerContentView.bounds, data: meetingData)
-        centerContentView.addSubview(travelMaxTimeZoneChangesView)
+        let meetingsDuringTravelView = SegmentedView(frame: centerContentView.bounds, type: .travelTripsMeeting, data: tripsData, delegate: self.delegate, leftButtonType: .weeks, rightButtonType: .year)
+        centerContentView.addSubview(meetingsDuringTravelView)
     }
 
     func addUpcomingTravels(data: MyStatisticsData) {
@@ -227,8 +226,20 @@ private extension MyStatisticsCardCell {
         teamAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.teamAverage), .azure).attributedString()
         userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.dataAverage), .cherryRed).attributedString()
 
-        let upcomingTravelsView = UpcomingTravelsView(frame: centerContentView.bounds, data: tripsData.userUpcomingTrips)
+        let upcomingTravelsView = UpcomingTravelsView(frame: centerContentView.bounds, data: tripsData)
         centerContentView.addSubview(upcomingTravelsView)
+    }
+
+    func addTravelMaxTimeZoneChanges(data: MyStatisticsData) {
+        guard let meetingData = data as? MyStatisticsDataAverage<Int> else { return }
+
+        titleLabel.attributedText = Style.postTitle(String(format: "%d", meetingData.userAverage), .white).attributedString()
+
+        teamAverageValueLabel.attributedText = Style.tag(String(format: "%d", meetingData.teamAverage), .azure).attributedString()
+        userAverageValueLabel.attributedText = Style.tag(String(format: "%d", meetingData.dataAverage), .cherryRed).attributedString()
+
+        let travelMaxTimeZoneChangesView = TravelMaxTimeZoneChangesView(frame: centerContentView.bounds, data: meetingData)
+        centerContentView.addSubview(travelMaxTimeZoneChangesView)
     }
 
     // MARK: - Activity

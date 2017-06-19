@@ -68,7 +68,7 @@ class UpcomingTravelsChartView: UIView {
                     radius = (cellWidth - CGFloat(count) * padding - padding) / CGFloat(count) / 2
                 }
 
-                let columnY = CGFloat(self.frame.origin.y) + self.frame.height - (CGFloat(y) * cellHeight) - cellHeight / 2
+                let columnY = CGFloat(self.frame.origin.y) + (CGFloat(y) * cellHeight) + cellHeight / 2
                 for i in 0..<count {
                     let arcCenter = CGPoint(x: columnX + radius + CGFloat(i) * (2 * radius) + CGFloat(i + 1) * padding, y: columnY)
                     drawSolidCircle(arcCenter: arcCenter, radius: radius, lineWidth: radius, startAngle: startAngle, endAngle: endAngle, strokeColour: strokeColour)

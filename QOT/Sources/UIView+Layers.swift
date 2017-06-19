@@ -92,7 +92,21 @@ extension UIView {
         self.layer.addSublayer(shapeLayer)
     }
 
-    func drawCapRoundLine(center: CGPoint, radius: CGFloat, value: CGFloat, startAngle: CGFloat = -90.0, endAngle: CGFloat = 360.0, lineWidth: CGFloat, strokeColour: UIColor) {
+    func drawCapRoundLine(from: CGPoint, to: CGPoint, lineWidth: CGFloat, strokeColour: UIColor) {
+        let linePath = UIBezierPath()
+        linePath.move(to: from)
+        linePath.addLine(to: to)
+
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = linePath.cgPath
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.lineWidth = lineWidth
+        shapeLayer.lineCap = kCALineCapRound
+        shapeLayer.strokeColor = strokeColour.cgColor
+        self.layer.addSublayer(shapeLayer)
+    }
+
+    func drawCapRoundCircle(center: CGPoint, radius: CGFloat, value: CGFloat, startAngle: CGFloat = -90.0, endAngle: CGFloat = 360.0, lineWidth: CGFloat, strokeColour: UIColor) {
         let angleStart = Math.radians(startAngle)
         let angleEnd = Math.radians(endAngle * value + startAngle)
 

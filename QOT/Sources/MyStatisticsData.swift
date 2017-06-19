@@ -21,9 +21,21 @@ enum DataDisplayColor {
         case .inBetween:
             return .gray
         case .below:
-            return UIColor.white
+            return .white90
         }
     }
+
+    var secondaryColor: UIColor {
+        switch self {
+        case .above:
+            return .cherryRedTwo
+        case .inBetween:
+            return .lightGray
+        case .below:
+            return .white
+        }
+    }
+
 }
 
 protocol MyStatisticsData {

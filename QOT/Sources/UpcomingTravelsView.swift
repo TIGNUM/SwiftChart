@@ -10,13 +10,13 @@ import UIKit
 import Anchorage
 
 class UpcomingTravelsView: UIView {
-    private var data: UserUpcomingTrips
+    private var data: MyStatisticsDataUpcomingTrips
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    init(frame: CGRect, data: UserUpcomingTrips) {
+    init(frame: CGRect, data: MyStatisticsDataUpcomingTrips) {
         self.data = data
 
         super.init(frame: frame)
@@ -31,8 +31,6 @@ class UpcomingTravelsView: UIView {
 
         let container = UIView()
         let labelContainer = UIView()
-
-        let labels = ["+1", "+2", "+3", "+4"]
 
         addSubview(container)
         addSubview(labelContainer)
@@ -49,9 +47,11 @@ class UpcomingTravelsView: UIView {
 
         layoutIfNeeded()
 
-        labelContainer.drawLabelsForColumns(labels: labels, columnCount: 4, textColour: .white20, font: UIFont(name: "BentonSans-Book", size: 11)!)
+        let labels = data.labels
 
-        let travelChart = UpcomingTravelsChartView(frame: container.bounds, data: data)
+        labelContainer.drawLabelsForColumns(labels: labels, columnCount: labels.count, textColour: .white20, font: UIFont(name: "BentonSans-Book", size: 11)!)
+
+        let travelChart = UpcomingTravelsChartView(frame: container.bounds, data: data.userUpcomingTrips)
         container.addSubview(travelChart)
     }
 }

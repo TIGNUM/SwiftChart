@@ -162,6 +162,11 @@ class SegmentedView: UIView {
                                                             threshold: object.threshold(),
                                                             pathColor: object.pathColor().color,
                                                             lineWidth: 10)
+        case .travelTripsMeeting:
+            guard let object = (data as? MyStatisticsDataTravelPeriods) else { return }
+
+            chartView = TravelTripsMeetingView(frame: container.bounds,
+                                               data: object)
         default:
             return
         }
