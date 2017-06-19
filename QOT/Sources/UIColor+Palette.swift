@@ -97,11 +97,26 @@ extension UIColor {
 
     /// UIColor(red: 0, green: 149/255, blue: 255/255, alpha: 1)
     class var azure: UIColor {
-        return UIColor(red: 0, green: 149/255, blue: 255/255, alpha: 1)
+        return UIColor(red: 0/255, green: 149/255, blue: 255/255, alpha: 0.2)
     }
 
-    /// UIColor(red: 1, green: 0, blue: 38/255, alpha: 0.3)
+    /// UIColor(red: 0/255, green: 149/255, blue: 255/255, alpha: 0.2)
+    class var azure20: UIColor {
+        return UIColor(red: 0/255, green: 149/255, blue: 255/255, alpha: 0.2)
+    }
+
+    /// UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.08)
+    class var white8: UIColor {
+        return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.08)
+    }
+
+    ///  UIColor(red: 255/255, green: 0/255, blue: 38/255, alpha: 0.3)
     class var cherryRedTwo30: UIColor {
-        return UIColor(red: 1, green: 0, blue: 38/255, alpha: 0.3)
+        return UIColor(red: 255/255, green: 0/255, blue: 38/255, alpha: 0.3)
+    }
+
+    ///  UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+    class var whiteLightTwo: UIColor {
+        return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
     }
 }

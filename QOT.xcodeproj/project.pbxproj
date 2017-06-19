@@ -330,6 +330,7 @@
 		D5B761871EE6B19C00AE178B /* SpacingInLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B761861EE6B19C00AE178B /* SpacingInLabel.swift */; };
 		D5C15BAC1EB350FB0030953F /* SideBarTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C15BAA1EB350FB0030953F /* SideBarTextCell.swift */; };
 		D5C15BAD1EB350FB0030953F /* SideBarTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5C15BAB1EB350FB0030953F /* SideBarTextCell.xib */; };
+		D5CB5BBE1EF2D45F0029D224 /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CB5BBD1EF2D45F0029D224 /* ContainerView.swift */; };
 		D5CD23D81E8BB73A002742C4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CD23D71E8BB73A002742C4 /* TabBarController.swift */; };
 		D5DDAA3C1EAA136C0053C5D6 /* DashPatternView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DDAA3B1EAA136C0053C5D6 /* DashPatternView.swift */; };
 		D5EC34AB1EB0D2FC00F86B09 /* LearnStrategyAudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EC34AA1EB0D2FC00F86B09 /* LearnStrategyAudioPlayerView.swift */; };
@@ -684,6 +685,7 @@
 		D5B761861EE6B19C00AE178B /* SpacingInLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpacingInLabel.swift; sourceTree = "<group>"; };
 		D5C15BAA1EB350FB0030953F /* SideBarTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarTextCell.swift; sourceTree = "<group>"; };
 		D5C15BAB1EB350FB0030953F /* SideBarTextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideBarTextCell.xib; sourceTree = "<group>"; };
+		D5CB5BBD1EF2D45F0029D224 /* ContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
 		D5CD23D71E8BB73A002742C4 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D5DDAA3B1EAA136C0053C5D6 /* DashPatternView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashPatternView.swift; sourceTree = "<group>"; };
 		D5EC34AA1EB0D2FC00F86B09 /* LearnStrategyAudioPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnStrategyAudioPlayerView.swift; sourceTree = "<group>"; };
@@ -1096,11 +1098,12 @@
 				D5DDAA3B1EAA136C0053C5D6 /* DashPatternView.swift */,
 				0BA3E6401EC1A8280012999E /* DayEventChartView.swift */,
 				D5FA66941EB9FF0B00980EC7 /* EventGraphView.swift */,
+				D52DAF9A1EC1E87D00C63156 /* ActivityChartView.swift */,
+				D5CB5BBD1EF2D45F0029D224 /* ContainerView.swift */,
 				D537B1E51EC200CD004C444D /* GridView.swift */,
 				D5FA66961EBB4DA600980EC7 /* HorizontalLinesChartView.swift */,
 				D50CDDC21EC48EAC00D27072 /* LevelsChartView.swift */,
 				0B573CA31EC3218D00A03602 /* MeetingLengthChartView.swift */,
-				D52DAF9A1EC1E87D00C63156 /* ActivityChartView.swift */,
 				D5A64D931EE801970095D01C /* SleepChartView.swift */,
 				0BCE743F1ECD96D70006C0CF /* TripsDashCellView.swift */,
 				0BCE74401ECD96D70006C0CF /* TripsDashView.swift */,
@@ -1969,6 +1972,7 @@
 				CC05CB771EDEC6D700D15ABC /* UIBezierPath+Hexagon.swift in Sources */,
 				D52DAF9B1EC1E87D00C63156 /* ActivityChartView.swift in Sources */,
 				CCE373161E8D330100B79352 /* LibraryViewModel.swift in Sources */,
+				D5CB5BBE1EF2D45F0029D224 /* ContainerView.swift in Sources */,
 				CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */,
 				CB8A153A1E7801B90023B2F9 /* CalendarEvent.swift in Sources */,
 				CB8C344F1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift in Sources */,

@@ -34,7 +34,7 @@ final class MyStatisticsCardCell: UICollectionViewCell, Dequeueable {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        backgroundColor = .clear
+        backgroundColor = .lightGray
         contentView.backgroundColor = .clear
         topContentView.backgroundColor = .clear
         centerContentView.backgroundColor = .clear
@@ -67,8 +67,8 @@ private extension MyStatisticsCardCell {
         let dataArray: [CGFloat] = [0.1, 0.4, 0.5, 0.6, 0.3]
 
         switch cardType {
-        case .activityLevel: addActivityView()
-        case .activitySittingMovementRatio: addDashedProgressWheel(data: dataArray)
+        case .activityLevel: addSittingMovementView()
+        case .activitySittingMovementRatio: addActivityView()
         case .intensity: addAverageGraphGridView(data: dataArray)
         case .meetingAverage: addAverageMeetingCountView(data: data)
         case .meetingHeartRateChange: return
@@ -125,7 +125,7 @@ private extension MyStatisticsCardCell {
     func addAverageGraphGridView(data: [CGFloat]) {
         var items: [EventGraphView.Item] = []
         data.forEach { (item) in
-            let eventItem = EventGraphView.Item(start: item - 0.2, end: item + 0.2, color: .cherryRed)
+            let eventItem = EventGraphView.Item(start: item - 0.2, end: item + 0.2, color: EventGraphView.Color.lowColor)
             items.append(eventItem)
         }
         let columns = EventGraphView.Column(items: items, width: centerContentView.bounds.width - 20)
@@ -245,21 +245,38 @@ private extension MyStatisticsCardCell {
     // MARK: - Activity
 
     private func addActivityView() {
-        let view = ActivityChartView.init(frame: centerContentView.bounds, columns: mockData())
-        view.setupAverageLine(color: .red, level: 0.45, lineType: .average)
-        view.setupAverageLine(color: .green, level: 0.42, lineType: .team)
-        view.setupAverageLine(color: .blue, level: 0.4, lineType: .personal)
+        let view = ActivityChartView(frame: centerContentView.bounds, columns: mockData(), dayNames: ["M", "T", "W", "T", "F"])
+        view.setupAverageLine(level: 0.45, lineType: .average)
+        view.setupAverageLine(level: 0.42, lineType: .team)
+        view.setupAverageLine(level: 0.4, lineType: .personal)
+        centerContentView.addSubview(view)
+    }
+
+    private func addSittingMovementView() {
+        let view = ActivityChartView.init(frame: centerContentView.bounds, columns: mockDataSittingMovement(), dayNames: ["M", "T", "W", "T", "F"])
+        view.setupAverageLine(level: 0.45, lineType: .average)
+        view.setupAverageLine(level: 0.42, lineType: .team)
+        view.setupAverageLine(level: 0.4, lineType: .personal)
         centerContentView.addSubview(view)
     }
 
     private func mockData() -> [EventGraphView.Column] {
         let items: [EventGraphView.Item] = [
-            EventGraphView.Item(start: 0.9, end: 0.4, color: .red),
-            EventGraphView.Item(start: 0.4, end: 0.1, color: .gray)
+            EventGraphView.Item(start: 1, end: 0.4, color: EventGraphView.Color.normalColor),
+            EventGraphView.Item(start: 0.4, end: 0.1, color: EventGraphView.Color.lowColor)
         ]
-        
         let column = EventGraphView.Column(items: items, width: 0.02)
         
         return [column, column, column, column, column]
     }
+
+    private func mockDataSittingMovement() -> [EventGraphView.Column] {
+        let items: [EventGraphView.Item] = [
+            EventGraphView.Item(start: 1, end: 0.5, color: EventGraphView.Color.criticalColor)
+        ]
+        let column = EventGraphView.Column(items: items, width: 0.02)
+
+        return [column, column, column, column, column]
+    }
+
 }

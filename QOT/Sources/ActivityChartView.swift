@@ -19,11 +19,12 @@ final class ActivityChartView: UIView {
     fileprivate var averageLine = CAShapeLayer()
     fileprivate var teamLine = CAShapeLayer()
     fileprivate var personalLine = CAShapeLayer()
-    fileprivate lazy var eventView: EventGraphView = EventGraphView()
 
-    init(frame: CGRect, columns: [EventGraphView.Column]) {
+    fileprivate var containerView: ContainerView = ContainerView()
+
+    init(frame: CGRect, columns: [EventGraphView.Column], dayNames: [String]) {
         super.init(frame: frame)
-        eventView.columns = columns
+        containerView.setup(columns: columns, dayNames: dayNames)
         setup()
     }
 
@@ -37,19 +38,19 @@ final class ActivityChartView: UIView {
         loadSubViews()
     }
 
-    func setupAverageLine(color: UIColor, level: CGFloat, lineType: LineType) {
+    func setupAverageLine(level: CGFloat, lineType: LineType) {
         let position = bounds.height * level
         let frame = CGRect(x: bounds.minX + 5, y: bounds.height - position, width: bounds.width - 15, height: 0)
         switch lineType {
         case .average:
             averageLine.path = UIBezierPath(roundedRect: frame, cornerRadius: 0).cgPath
-            averageLine.strokeColor = color.cgColor
+            averageLine.strokeColor = UIColor.cherryRedTwo30.cgColor
         case .personal:
             personalLine.path = UIBezierPath(roundedRect: frame, cornerRadius: 0).cgPath
-            personalLine.strokeColor = color.cgColor
+            personalLine.strokeColor = UIColor.white8.cgColor
         case .team:
             teamLine.path = UIBezierPath(roundedRect: frame, cornerRadius: 0).cgPath
-            teamLine.strokeColor = color.cgColor
+            teamLine.strokeColor = UIColor.azure20.cgColor
         }
     }
 }
@@ -57,13 +58,12 @@ final class ActivityChartView: UIView {
 private extension ActivityChartView {
 
     func setup() {
-        addSubview(eventView)
-
         addLines()
+        addSubview(containerView)
     }
 
     func loadSubViews() {
-        eventView.frame = bounds
+        containerView.frame = bounds
     }
 
     func addLines() {
@@ -83,8 +83,8 @@ private extension ActivityChartView {
         line.strokeColor = UIColor.clear.cgColor
         line.fillColor = UIColor.clear.cgColor
         line.frame = linePath.bounds
-        line.lineWidth = 2.0
-        line.lineDashPattern = [2, 4.5]
+        line.lineWidth = 1.5
+        line.lineDashPattern = [1.5, 3]
         line.path = linePath.cgPath
         return line
     }
