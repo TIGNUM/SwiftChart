@@ -24,16 +24,35 @@ final class LearnContentItemCoordinator: ParentCoordinator {
         self.category = category
         self.selectedCategoryIndex = index
     }
-    
+
     func start() {
         let categoryTitle = category.title.capitalized
         let selectedContent = category.learnContent.item(at: selectedCategoryIndex)
+        let relatedContents = services.learnContentService.contentCollections(for: selectedContent.relatedContentIDs)
+        let recommentedContentCollections = services.learnContentService.relatedContentCollections(for: category.remoteID)
         let contentTitle = selectedContent.title.capitalized
-        let viewModel = LearnContentItemViewModel(contentCollection: selectedContent)
-        let fullViewController = LearnContentItemViewController(viewModel: viewModel, categoryTitle: categoryTitle, contentTitle: contentTitle)
-        let bulletViewController = LearnContentItemViewController(viewModel: viewModel, categoryTitle: categoryTitle, contentTitle: contentTitle)
-        let audioViewController = LearnContentItemViewController(viewModel: viewModel, categoryTitle: categoryTitle, contentTitle: contentTitle)
-
+        let viewModel = LearnContentItemViewModel(
+            contentCollection: selectedContent,
+            relatedContentCollections: relatedContents,
+            recommentedContentCollections: recommentedContentCollections)
+        let fullViewController = LearnContentItemViewController(
+            viewModel: viewModel,
+            categoryTitle: categoryTitle,
+            contentTitle: contentTitle,
+            tabType: .full
+        )
+        let bulletViewController = LearnContentItemViewController(
+            viewModel: viewModel,
+            categoryTitle: categoryTitle,
+            contentTitle: contentTitle,
+            tabType: .bullets
+        )
+        let audioViewController = LearnContentItemViewController(
+            viewModel: viewModel,
+            categoryTitle: categoryTitle,
+            contentTitle: contentTitle,
+            tabType: .audio
+        )
         let topTabBarControllerItem = TopTabBarController.Item(
             controllers: [fullViewController, bulletViewController, audioViewController],
             themes: [.light, .light, .light],
@@ -43,7 +62,6 @@ final class LearnContentItemCoordinator: ParentCoordinator {
                 R.string.localized.learnContentItemTitleAudio()
             ]
         )
-
         let topTabBarController = TopTabBarController(
             item: topTabBarControllerItem,
             leftIcon: R.image.ic_minimize(),

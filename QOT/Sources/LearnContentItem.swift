@@ -22,6 +22,7 @@ protocol LearnContentItem: TrackableEntity {
 
     var remoteID: Int { get }
 
+    var tabs: String { get }    
 }
 
 extension ContentItem: LearnContentItem {

@@ -13,7 +13,7 @@ final class LearnStrategyPlaylistAudioCell: UITableViewCell, Dequeueable {
     // MARK: - Properties
 
     @IBOutlet weak private var titleLabel: UILabel!
-    @IBOutlet weak private var iconView: UIImageView!
+    @IBOutlet weak private var iconView: UIImageView!    
 
     // MARK: - Setup
 

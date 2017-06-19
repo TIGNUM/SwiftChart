@@ -22,9 +22,12 @@ protocol LearnContentCollection: TrackableEntity {
     var contentItems: DataProvider<LearnContentItem> { get }
 
     var relatedContentIDs: [Int] { get }
+
+    var remoteID: Int { get }
 }
 
 extension ContentCollection: LearnContentCollection {
+
     var viewed: Bool {
         return percentageViewed > 0
     }

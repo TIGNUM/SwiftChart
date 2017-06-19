@@ -33,7 +33,31 @@ final class LearnContentService {
         self.token = mainRealm.addNotificationBlock({ (_, _) in
             self.learnCategoryUpdateDelegate?.didUpdateCategoryViewedPercentage()
         })
+
         return DataProvider<LearnContentCategory>(items: results, map: { $0 as LearnContentCategory })
+    }
+
+    // TODO: That func might become handy also for other services. Modify to generic func.
+    func contentCollections(for relatedContentIDs: [Int]) -> DataProvider<LearnContentCollection> {
+        let filter = String.realmContentIDFilter(for: relatedContentIDs)
+        let results = mainRealm.objects(ContentCollection.self).sorted(byKeyPath: "sortOrder").filter(filter)
+
+        return DataProvider<LearnContentCollection>(items: results, map: { $0 as LearnContentCollection })
+    }
+
+    func relatedContentCollections(for categoryID: Int) -> DataProvider<LearnContentCollection> {
+        let learnCategory = category(for: categoryID)
+        let contenCollectionIDs = learnCategory.learnContent.items.map { $0.remoteID }
+
+        return contentCollections(for: contenCollectionIDs)
+    }
+
+    func category(for categoryID: Int) -> LearnContentCategory {
+        guard let category = mainRealm.object(ofType: ContentCategory.self, forPrimaryKey: categoryID) else {
+            fatalError("No Category found for categoryID: \(categoryID)")
+        }
+
+        return category
     }
 
     func updatedViewedAt(with itemId: Int) {

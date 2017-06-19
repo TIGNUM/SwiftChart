@@ -328,7 +328,7 @@ extension TopTabBarController: UIScrollViewDelegate {
         if (selectedIndex == 0 || selectedIndex == 2) && scrollView.contentOffset.x < scrollViewCurrentOffsetX {
             return selectedIndex
         } else if scrollView.contentOffset.x > scrollViewCurrentOffsetX {
-            return selectedIndex + 1
+            return selectedIndex + 1 < item.themes.count ? selectedIndex + 1 : selectedIndex - 1
         } else {
             return selectedIndex - 1
         }

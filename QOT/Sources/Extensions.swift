@@ -47,6 +47,28 @@ extension String {
     static func realmSectionFilter(filter: String) -> String {
         return String(format: "section == '%@'", filter)
     }
+
+    static func realmContentIDFilter(for contentIDs: [Int]) -> String {
+        var filter = ""
+
+        guard contentIDs.isEmpty == false else {
+            return filter
+        }
+
+        guard contentIDs.count > 1 else {
+            return String(format: "remoteID == %d", contentIDs[0])
+        }
+
+        for (index, identifier) in contentIDs.enumerated() {
+            if index == contentIDs.count - 1 {
+                filter += String(format: "remoteID == %d", identifier)
+            } else {
+                filter += String(format: "remoteID == %d OR ", identifier)
+            }
+        }
+        
+        return filter
+    }
 }
 
 // MARK: - UIBezierPath

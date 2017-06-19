@@ -27,6 +27,8 @@ protocol LearnContentCategory: TrackableEntity {
     var learnContent: DataProvider<LearnContentCollection> { get }
 
     var bubbleLayoutInfo: BubbleLayoutInfo { get }
+
+    var remoteID: Int { get }
 }
 
 extension ContentCategory: LearnContentCategory {

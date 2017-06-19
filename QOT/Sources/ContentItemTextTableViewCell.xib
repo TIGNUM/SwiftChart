@@ -19,16 +19,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="xtJ-nQ-MxV">
-                        <rect key="frame" x="14" y="14" width="449" height="100.5"/>
+                        <rect key="frame" x="28" y="14" width="421" height="100.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bLT-zD-gDJ">
-                                <rect key="frame" x="0.0" y="0.0" width="449" height="20.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="421" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Snz-zp-lvY">
-                                <rect key="frame" x="0.0" y="80" width="449" height="20.5"/>
+                                <rect key="frame" x="0.0" y="80" width="421" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -39,8 +39,8 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="xtJ-nQ-MxV" secondAttribute="bottom" constant="14" id="4dD-qk-wkp"/>
-                    <constraint firstAttribute="trailing" secondItem="xtJ-nQ-MxV" secondAttribute="trailing" constant="14" id="Pp4-ii-yOy"/>
-                    <constraint firstItem="xtJ-nQ-MxV" firstAttribute="leading" secondItem="ebe-l7-M4G" secondAttribute="leading" constant="14" id="QcA-LZ-4xw"/>
+                    <constraint firstAttribute="trailing" secondItem="xtJ-nQ-MxV" secondAttribute="trailing" constant="28" id="Pp4-ii-yOy"/>
+                    <constraint firstItem="xtJ-nQ-MxV" firstAttribute="leading" secondItem="ebe-l7-M4G" secondAttribute="leading" constant="28" id="QcA-LZ-4xw"/>
                     <constraint firstItem="xtJ-nQ-MxV" firstAttribute="top" secondItem="ebe-l7-M4G" secondAttribute="top" constant="14" id="slm-zK-tZM"/>
                 </constraints>
             </tableViewCellContentView>

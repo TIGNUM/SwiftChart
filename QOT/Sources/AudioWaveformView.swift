@@ -13,13 +13,13 @@ final  class AudioWaveformView: UIView {
 
     // MARK: - Properties
 
-    var data: [CGFloat] = [] {
+    var data: [Float] = [] {
         didSet {
             redraw()
         }
     }
 
-    private(set) var progress: CGFloat = 0.0
+    private(set) var progress: Float = 0.0
     private(set) var minColorBottom: UIColor = .black
     private(set) var minColorTop: UIColor = .lightGray
     private(set) var maxColorBottom: UIColor = .blue
@@ -32,7 +32,7 @@ final  class AudioWaveformView: UIView {
         redraw()
     }
 
-    func setProgress(value: CGFloat) {
+    func setProgress(value: Float) {
         let new = min(max(0, value), 1)
         if new < progress {
             progress = new
@@ -58,11 +58,11 @@ final  class AudioWaveformView: UIView {
         gradientLayers = []
     }
 
-    private func processedData() -> [CGFloat: CGFloat] {
-        let multiplier = (bounds.width / 2) / CGFloat(data.count)
-        var dictionary: [CGFloat: CGFloat] = [:]
+    private func processedData() -> [Float: Float] {
+        let multiplier = Float(bounds.width / 2) / Float(data.count)
+        var dictionary: [Float: Float] = [:]
         for (index, value) in data.enumerated() {
-            let x = round(CGFloat(index) * multiplier)
+            let x = round(Float(index) * multiplier)
             if let stored = dictionary[x] {
                 if stored >= value {
                     continue
@@ -71,7 +71,7 @@ final  class AudioWaveformView: UIView {
             dictionary[x] = value
         }
 
-        var final: [CGFloat: CGFloat] = [:]
+        var final: [Float: Float] = [:]
         for (key, value) in dictionary {
             let x = key * 2
             final[x] = value
@@ -79,7 +79,7 @@ final  class AudioWaveformView: UIView {
 
         var last = final[0.0]!
         for i in 0..<Int(bounds.width / 2) + 1 {
-            let x = CGFloat(i) * CGFloat(2)
+            let x = Float(i) * Float(2)
             if let existing = final[x] {
                 last = existing
             } else {
@@ -90,9 +90,9 @@ final  class AudioWaveformView: UIView {
         return final
     }
 
-    private func drawLayers(data: [CGFloat: CGFloat]) {
-        let baseHeight: CGFloat = 5
-        let topHeight = bounds.height - baseHeight
+    private func drawLayers(data: [Float: Float]) {
+        let baseHeight: Float = 5
+        let topHeight = Float(bounds.height) - baseHeight
 
         for x in data.keys.sorted() {
             let value = data[x]!
@@ -103,11 +103,11 @@ final  class AudioWaveformView: UIView {
         syncColors()
     }
 
-    private func addGradiantLayer(x: CGFloat, height: CGFloat) {
+    private func addGradiantLayer(x: Float, height: Float) {
         let gradient: CAGradientLayer = CAGradientLayer()
         gradient.colors = [UIColor.black.cgColor, UIColor.black.cgColor]
         gradient.locations = [0.1, 1.0]
-        gradient.frame = CGRect(x: x, y: bounds.height - height, width: 1, height: height)
+        gradient.frame = CGRect(x: CGFloat(x), y: bounds.height - CGFloat(height), width: 1, height: CGFloat(height))
         gradientLayers.append(gradient)
         layer.addSublayer(gradient)
     }
@@ -118,7 +118,7 @@ final  class AudioWaveformView: UIView {
     }
 
     private func syncColors(forward: Bool) {
-        let index = Int(round(progress * bounds.width / 2))
+        let index = Int(round(CGFloat(progress) * bounds.width / 2))
 
         guard index >= 0 && index <= gradientLayers.count else {
             return

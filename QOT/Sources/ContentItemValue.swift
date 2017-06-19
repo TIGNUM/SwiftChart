@@ -162,7 +162,7 @@ enum ContentItemTextStyle: String {
     case h5 = "text.h5"
     case h6 = "text.h6"
     case paragraph = "text.paragraph"
-    case quote = "text.quote"
+    case quote = "text.quote"    
 
     static func createStyle(for format: ContentItemFormat) -> ContentItemTextStyle? {
         return ContentItemTextStyle(rawValue: format.rawValue)
