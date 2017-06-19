@@ -137,7 +137,7 @@ private func addMockContent(category: ContentCategory, realm: Realm) {
     let titles = possibleTitles.prefix(upTo: Int.random(between: 3, and: possibleTitles.count + 1))
     let contents = titles.enumerated().map { (index: Index, title: String) -> ContentCollection in
         let contentCollection = mockContentCollection(sortOrder: index, title: title)
-        contentCollection.categories.append(category)
+        contentCollection.categoryIDs.append(RemoteID(remoteID: category.remoteID))
         contentCollection.remoteID = Int.randomID
         return contentCollection
     }
@@ -176,7 +176,7 @@ private func addMockContentItems(content: ContentCollection, realm: Realm) {
         )
 
         item.remoteID = Int.randomID
-        item.collection = content
+        item.collectionID.value = content.remoteID
         items.append(item)
     }
 

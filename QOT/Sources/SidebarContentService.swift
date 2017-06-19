@@ -27,7 +27,7 @@ final class SidebarContentService {
         let results = mainRealm.objects(ContentCategory.self)
             .sorted(byKeyPath: Database.ItemKey.sortOrder.value)
             .filter(filter)
-        return DataProvider<SidebarContentCategory>(results: results, map: { $0 as SidebarContentCategory })
+        return DataProvider<SidebarContentCategory>(items: results, map: { $0 as SidebarContentCategory })
     }
 
     func collection(for collectionSection: String) -> DataProvider<SidebarContentCollection> {
@@ -35,6 +35,6 @@ final class SidebarContentService {
         let results = mainRealm.objects(ContentCollection.self)
             .sorted(byKeyPath: Database.ItemKey.sortOrder.value)
             .filter(filter)
-        return DataProvider<SidebarContentCollection>(results: results, map: { $0 as SidebarContentCollection })
+        return DataProvider<SidebarContentCollection>(items: results, map: { $0 as SidebarContentCollection })
     }
 }

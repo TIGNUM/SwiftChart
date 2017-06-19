@@ -23,7 +23,7 @@ final class ContentCollection: Object, ContentCollectionDataProtocol {
 
     dynamic var modifiedAt: Date = Date()
 
-    let categories: List<ContentCategory> = List()
+    let categoryIDs: List<RemoteID> = List()
 
     func setData(_ data: ContentCollectionDataProtocol) {
         sortOrder = data.sortOrder
@@ -55,7 +55,14 @@ final class ContentCollection: Object, ContentCollectionDataProtocol {
 
     // MARK: Relationships
 
-    let items = LinkingObjects(fromType: ContentItem.self, property: "collection")
+    lazy var items: Results<ContentItem> = {
+        guard let realm = self.realm else {
+            preconditionFailure("Attempted to access items on an unmanaged ContentCollection: \(self)")
+        }
+
+        let predicate = NSPredicate(format: "collectionID == %d", self.remoteID)
+        return realm.objects(ContentItem.self).filter(predicate)
+    }()
 
     // MARK: Computed Properties
 
@@ -86,11 +93,8 @@ extension ContentCollection: DownSyncable {
         searchTags = data.searchTags
         thumbnailURLString = data.thumbnailURLString
         relatedContent = data.relatedContentIDs
-        // FIXME: set Related Content
-        let categoryPredicates = data.categoryIDs.map { NSPredicate(remoteID: $0) }
-        let categories = try objectStore.uniqueObjects(ContentCategory.self, predicates: categoryPredicates )
 
-        self.categories.removeAll()
-        self.categories.append(objectsIn: categories)
+        objectStore.delete(categoryIDs)
+        categoryIDs.append(objectsIn: data.categoryIDs.map({ RemoteID(remoteID: $0) }))
     }
 }

@@ -24,6 +24,6 @@ protocol LearnWhatsHotContentCollection: TrackableEntity {
 extension ContentCollection: LearnWhatsHotContentCollection {
 
     var learnWhatsHotItems: DataProvider<LearnWhatsHotContentItem> {
-        return DataProvider(list: items, map: { $0 as LearnWhatsHotContentItem })
+        return DataProvider(items: items, map: { $0 as LearnWhatsHotContentItem })
     }
 }

@@ -31,7 +31,7 @@ final class LearnWhatsHotService {
         let filter = String.realmSectionFilter(filter: Database.Section.learnWhatsHot.rawValue)
         let results = mainRealm.objects(ContentCategory.self).sorted(byKeyPath: "sortOrder").filter(filter)
         
-        return DataProvider<LearnWhatsHotContentCategory>(results: results, map: { $0 as LearnWhatsHotContentCategory })
+        return DataProvider<LearnWhatsHotContentCategory>(items: results, map: { $0 as LearnWhatsHotContentCategory })
     }
 
     func updatedViewedAt(with itemId: Int) {

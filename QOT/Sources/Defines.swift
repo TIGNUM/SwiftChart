@@ -32,8 +32,12 @@ struct LogToggle {
         static let FileManager = true
         static let TabBar = false
     }
+
+    struct NetworkManager {
+        static let responseBody = false
+    }
 }
 
 struct MockToggle {
-    static let json = true
+    static let json = false
 }

@@ -16,6 +16,6 @@ protocol PrepareContentCategory: TrackableEntity {
 extension ContentCategory: PrepareContentCategory {
 
     var prepareContentCollection: DataProvider<PrepareContentCollection> {
-         return DataProvider(list: contentCollections, map: { $0 as PrepareContentCollection })
+         return DataProvider(items: contentCollections, map: { $0 as PrepareContentCollection })
     }
 }

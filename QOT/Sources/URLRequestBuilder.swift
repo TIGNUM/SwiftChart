@@ -45,7 +45,7 @@ final class URLRequestBuilder {
 
 extension URLRequest {
 
-    init(url: URLConvertible, method: HTTPMethod, headers: HTTPHeaders? = nil, parameters: Parameters? = nil, encoding: ParameterEncoding = URLEncoding.default) {
+    init(url: URLConvertible, method: HTTPMethod, headers: HTTPHeaders? = nil, parameters: Parameters? = nil, encoding: ParameterEncoding = JSONEncoding.default) {
         do {
             let request = try URLRequest(url: url, method: method, headers: headers)
             self = try encoding.encode(request, with: parameters)

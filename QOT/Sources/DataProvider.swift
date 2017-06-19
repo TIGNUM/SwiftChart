@@ -22,31 +22,31 @@ final class DataProvider<Element> {
     private let _itemAt: (Int) -> Element
     private let _items: () -> [Element]
 
-    init<T: Object>(results: Results<T>, map: @escaping (T) -> Element ) {
-        self._count = { results.count }
+    init<T: Object>(items: Results<T>, map: @escaping (T) -> Element ) {
+        self._count = { items.count }
         self._itemAt = { (index) in
-            return map(results[index])
+            return map(items[index])
         }
-        self._items = { results.map(map) }
-        self.token = results.addNotificationBlock(notificationBlock())
+        self._items = { items.map(map) }
+        self.token = items.addNotificationBlock(notificationBlock())
     }
 
-    init<T: Object>(list: List<T>, map: @escaping (T) -> Element ) {
-        self._count = { list.count }
+    init<T: Object>(items: List<T>, map: @escaping (T) -> Element ) {
+        self._count = { items.count }
         self._itemAt = { (index) in
-            return map(list[index])
+            return map(items[index])
         }
-        self._items = { list.map(map) }
-        self.token = list.addNotificationBlock(notificationBlock())
+        self._items = { items.map(map) }
+        self.token = items.addNotificationBlock(notificationBlock())
     }
 
-    init<T: Object>(list: LinkingObjects<T>, map: @escaping (T) -> Element ) {
-        self._count = { list.count }
+    init<T: Object>(items: LinkingObjects<T>, map: @escaping (T) -> Element ) {
+        self._count = { items.count }
         self._itemAt = { (index) in
-            return map(list[index])
+            return map(items[index])
         }
-        self._items = { list.map(map) }
-        self.token = list.addNotificationBlock(notificationBlock())
+        self._items = { items.map(map) }
+        self.token = items.addNotificationBlock(notificationBlock())
     }
 
     var count: Int {

@@ -33,7 +33,7 @@ final class LearnContentService {
         self.token = mainRealm.addNotificationBlock({ (_, _) in
             self.learnCategoryUpdateDelegate?.didUpdateCategoryViewedPercentage()
         })
-        return DataProvider<LearnContentCategory>(results: results, map: { $0 as LearnContentCategory })
+        return DataProvider<LearnContentCategory>(items: results, map: { $0 as LearnContentCategory })
     }
 
     func updatedViewedAt(with itemId: Int) {

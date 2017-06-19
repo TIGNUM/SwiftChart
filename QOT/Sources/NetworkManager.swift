@@ -119,6 +119,8 @@ extension SessionManager {
         return self.request(urlRequest)
             .validate(statusCode: 200..<300)
             .responseData { response in
+                log("RESPONSE BODY DATA: \(response.data?.utf8String ?? "No response data")", enabled: LogToggle.NetworkManager.responseBody)
+                
                 let result: Result<T, NetworkError>
                 switch response.result {
                 case .success(let data):
@@ -129,7 +131,7 @@ extension SessionManager {
                         result = .failure(networkError)
                     }
                 case .failure(let error):
-                    let networkError = NetworkError(error: error as NSError, request: response.request, response: response.response)
+                    let networkError = NetworkError(error: error as NSError, request: response.request, response: response.response, data: response.data)
                     result = .failure(networkError)
                 }
                 completion(result)

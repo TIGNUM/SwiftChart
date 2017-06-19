@@ -58,7 +58,7 @@ extension ContentCategory: LearnContentCategory {
     }
 
     var learnContent: DataProvider<LearnContentCollection> {
-        return DataProvider(list: contentCollections, map: { $0 as LearnContentCollection })
+        return DataProvider(items: contentCollections, map: { $0 as LearnContentCollection })
     }
 
     var trackableEntityID: Int {

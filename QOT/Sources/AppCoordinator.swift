@@ -56,7 +56,7 @@ final class AppCoordinator: ParentCoordinator {
                 self.startTabBarCoordinator(services: services)
 
                 if MockToggle.json == false {
-                    self.syncManager.syncContent()
+                    self.syncManager.syncAll()
                 }
             case .failure:
                 // FIXME: Alert user that the app cannot be run

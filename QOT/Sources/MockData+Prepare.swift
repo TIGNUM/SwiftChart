@@ -56,7 +56,7 @@ private func addMockPrepareContentCollection(category: ContentCategory, realm: R
 
     for (index, title) in titles.enumerated() {
         let contentCollection = mockPrepareContentCollection(sortOrder: index, title: title)
-        contentCollection.categories.append(category)
+        contentCollection.categoryIDs.append(RemoteID(remoteID: category.remoteID))
         contentCollection.remoteID = Int.randomID
         contentCollections.append(contentCollection)
     }
@@ -94,7 +94,7 @@ private func addMockPrepareContentItems(contentCollection: ContentCollection, re
         )
 
         item.remoteID = Int.randomID
-        item.collection = contentCollection
+        item.collectionID.value = contentCollection.remoteID
         items.append(item)
     }
 

@@ -43,6 +43,6 @@ extension ContentCollection: LearnContentCollection {
     }
 
     var contentItems: DataProvider<LearnContentItem> {
-        return DataProvider(list: items, map: { $0 as LearnContentItem })
+        return DataProvider(items: items, map: { $0 as LearnContentItem })
     }
 }

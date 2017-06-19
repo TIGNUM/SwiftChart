@@ -25,15 +25,17 @@ struct NetworkError: Error {
 
     let type: NetworkErrorType
     let request: URLRequest?
-    let response: URLResponse?
+    let response: HTTPURLResponse?
+    let data: Data?
 
-    init(type: NetworkErrorType) {
+    init(type: NetworkErrorType, request: URLRequest? = nil, response: HTTPURLResponse? = nil, data: Data? = nil) {
         self.type = type
-        self.request = nil
-        self.response = nil
+        self.request = request
+        self.response = response
+        self.data = data
     }
 
-    init(error: NSError, request: URLRequest?, response: HTTPURLResponse?) {
+    init(error: NSError, request: URLRequest?, response: HTTPURLResponse?, data: Data?) {
         if let code = response?.statusCode {
             if let httpStatusCode = HTTPStatusCode(rawValue: code), httpStatusCode == .unauthorized {
                 type = .unauthenticated
@@ -53,6 +55,7 @@ struct NetworkError: Error {
 
         self.request = request
         self.response = response
+        self.data = data
     }
 }
 
@@ -81,6 +84,7 @@ extension NetworkError: CustomDebugStringConvertible {
         let requestDescription = request?.debugDescription ?? "none"
         let responseDescription = response?.debugDescription ?? "none"
         let errorType = type.debugDescription
-        return "NETWORK ERROR - \(errorType), REQUEST: \(requestDescription), RESPONSE: \(responseDescription)"
+        let dataDescription = data?.utf8String ?? "none"
+        return "NETWORK ERROR - \(errorType), REQUEST: \(requestDescription), RESPONSE: \(responseDescription), DATA: \(dataDescription)"
     }
 }

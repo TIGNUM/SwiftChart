@@ -23,7 +23,7 @@ final class ContentItem: Object {
 
     dynamic var modifiedAt: Date = Date()
 
-    dynamic var collection: ContentCollection?
+    let collectionID = RealmOptional<Int>(nil)
 
     func setData(_ data: ContentItemIntermediary) throws {
         sortOrder = data.sortOrder
@@ -97,7 +97,7 @@ extension ContentItem: DownSyncable {
         searchTags = data.searchTags
         tabs = data.tabs
         layoutInfo = data.layoutInfo
-        collection = try objectStore.uniqueObject(ContentCollection.self, predicate: NSPredicate(remoteID: data.contentID))
+        collectionID.value = data.contentID
         value = data.value
         valueText = data.valueText
         valueDescription = data.valueDescription

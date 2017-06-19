@@ -25,6 +25,6 @@ protocol SidebarContentCollection: TrackableEntity {
 extension ContentCollection: SidebarContentCollection {
 
     var sidebarContentItems: DataProvider<SidebarContentItem> {
-        return DataProvider(list: items, map: { $0 as SidebarContentItem })
+        return DataProvider(items: items, map: { $0 as SidebarContentItem })
     }
 }

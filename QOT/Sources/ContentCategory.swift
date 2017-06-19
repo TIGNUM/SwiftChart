@@ -51,7 +51,14 @@ final class ContentCategory: Object, ContentCategoryDataProtocol {
 
     // MARK: Relationships
 
-    let contentCollections = LinkingObjects(fromType: ContentCollection.self, property: "categories")
+    lazy var contentCollections: Results<ContentCollection> = {
+        guard let realm = self.realm else {
+            preconditionFailure("Attempted to access contentCollections on an unmanaged ContentCategory: \(self)")
+        }
+
+        let predicate = NSPredicate(format: "ANY categoryIDs.value == %d", self.remoteID)
+        return realm.objects(ContentCollection.self).filter(predicate)
+    }()
 }
 
 extension ContentCategory: DownSyncable {

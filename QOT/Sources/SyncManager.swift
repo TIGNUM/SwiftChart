@@ -28,7 +28,26 @@ final class SyncManager {
     }
 
     func syncAll() {
+        let context = SyncContext(queue: operationQueue) { (state) in
+            switch state {
+            case .errored(let error):
+                print("SYNC FAILED: \(error)")
+            case .finished:
+                print("SYNC SUCCEEDED")
+            default:
+                break
+            }
+        }
 
+        let operations: [Operation] = [
+//            downSyncOperation(for: UserDown, context: context), API is currently returning non parsable data.
+            downSyncOperation(for: PageDown, context: context),
+            downSyncOperation(for: ContentCategoryDown, context: context),
+            downSyncOperation(for: ContentCollectionDown, context: context),
+            downSyncOperation(for: ContentItemDown, context: context, isFinalOperation: true)
+        ]
+
+        operationQueue.addOperations(operations, waitUntilFinished: false)
     }
 
     func syncAllMockJSONs() {
@@ -47,25 +66,6 @@ final class SyncManager {
             downSyncOperation(for: ContentCollectionDown, context: context),
             downSyncOperation(for: ContentItemDown, context: context),
             downSyncOperation(for: PageDown, context: context)
-        ]
-
-        operationQueue.addOperations(operations, waitUntilFinished: false)
-    }
-
-    func syncContent() {
-        let context = SyncContext(queue: operationQueue) { (state) in
-            switch state {
-            case .errored(let error):
-                print("CONTENT SYNC FAILED: \(error)")
-            default:
-                break
-            }
-        }
-
-        let operations: [Operation] = [
-            downSyncOperation(for: ContentCategoryDown, context: context),
-            downSyncOperation(for: ContentCollectionDown, context: context),
-            downSyncOperation(for: ContentItemDown, context: context)
         ]
 
         operationQueue.addOperations(operations, waitUntilFinished: false)

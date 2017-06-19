@@ -96,7 +96,7 @@ private func addMockContentCollection(category: ContentCategory, realm: Realm) {
             section: Database.Section.Sidebar.benefits.value,
             realm: realm
         )
-        sidebarContentCollection.categories.append(category)
+        sidebarContentCollection.categoryIDs.append(RemoteID(remoteID: category.remoteID))
         contentCollections.append(sidebarContentCollection)
 
     case Database.Section.Sidebar.settings.value: break
@@ -108,7 +108,7 @@ private func addMockContentCollection(category: ContentCategory, realm: Realm) {
             section: Database.Section.Sidebar.about.value,
             realm: realm
         )
-        sidebarContentCollection.categories.append(category)
+        sidebarContentCollection.categoryIDs.append(RemoteID(remoteID: category.remoteID))
         contentCollections.append(sidebarContentCollection)
     case Database.Section.Sidebar.privacy.value:
         let sidebarContentCollection = mockSidebarCollection(
@@ -117,7 +117,7 @@ private func addMockContentCollection(category: ContentCategory, realm: Realm) {
             section: Database.Section.Sidebar.privacy.value,
             realm: realm
         )
-        sidebarContentCollection.categories.append(category)
+        sidebarContentCollection.categoryIDs.append(RemoteID(remoteID: category.remoteID))
         contentCollections.append(sidebarContentCollection)
 
     case Database.Section.Sidebar.logout.value: break
@@ -151,7 +151,7 @@ private func addMockSidebarContentItems(contentCollection: ContentCollection, re
     for index in 0...8 {
         let benefitsContentItem = mockSidebarContentItem(sortOrder: index, title: LoremIpsum.name())
         benefitsContentItem.remoteID = Int.randomID
-        benefitsContentItem.collection = contentCollection
+        benefitsContentItem.collectionID.value = contentCollection.remoteID
         benefitsContentItems.append(benefitsContentItem)
     }
 

@@ -53,6 +53,6 @@ extension ContentCategory: SidebarContentCategory {
     }
 
     var sidebarContentCollection: DataProvider<SidebarContentCollection> {
-        return DataProvider(list: contentCollections, map: { $0 as SidebarContentCollection })
+        return DataProvider(items: contentCollections, map: { $0 as SidebarContentCollection })
     }
 }

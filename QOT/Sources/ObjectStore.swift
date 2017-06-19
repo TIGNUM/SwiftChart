@@ -25,6 +25,8 @@ protocol ObjectStore {
     func deleteObjects<T: Object>(_ type: T.Type, predicate: NSPredicate)
 
     func write(_ block: (() throws -> Void)) throws
+
+    func delete<T: Object>(_ objects: List<T>)
 }
 
 extension Realm: ObjectStore {

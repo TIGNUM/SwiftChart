@@ -17,6 +17,6 @@ protocol LearnWhatsHotContentCategory: TrackableEntity {
 extension ContentCategory: LearnWhatsHotContentCategory {
 
     var learnWhatsHotContent: DataProvider<LearnWhatsHotContentCollection> {
-        return DataProvider(list: contentCollections, map: { $0 as LearnWhatsHotContentCollection })
+        return DataProvider(items: contentCollections, map: { $0 as LearnWhatsHotContentCollection })
     }
 }
