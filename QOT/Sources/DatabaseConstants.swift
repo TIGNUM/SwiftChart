@@ -134,7 +134,7 @@ extension JSON {
     }
 
     func getItemValue<T: JSONDecodable>(at jsonKey: JsonKey) throws -> T? {
-        return try decode(at: jsonKey.value, alongPath: .MissingKeyBecomesNil)
+        return try decode(at: jsonKey.value, alongPath: [.MissingKeyBecomesNil, .NullBecomesNil])
     }
 
     func getItemValue<T: JSONDecodable>(at jsonKey: JsonKey, alongPath options: SubscriptingOptions) throws -> T? {
