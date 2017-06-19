@@ -8,32 +8,42 @@
 
 import UIKit
 
+protocol LearnCategoryLayoutDelegate: UICollectionViewDelegate {
+    func bubbleLayoutInfo(layout: LearnCategoryLayout, index: Index) -> BubbleLayoutInfo
+}
+
 final class LearnCategoryLayout: UICollectionViewLayout {
     
     private var layoutAttributes = [UICollectionViewLayoutAttributes]()
     private var contentSize = CGSize.zero
-    
-    init(height: CGFloat, categories: [LearnContentCategory]) {
-        super.init()
-        
-        setup(height: height, categories: categories)
-    }
-    
-    func setup(height: CGFloat, categories: [LearnContentCategory]) {
-        let multiplier = height
 
-        let frames = categories.map { (category) -> CGRect in
-            let center = CGPoint(x: category.center.x * multiplier, y: category.center.y * multiplier)
-            let radius = CGFloat(category.radius) * height
+    override func prepare() {
+        guard let collectionView = collectionView, let delegate = collectionView.delegate as? LearnCategoryLayoutDelegate else {
+            layoutAttributes = []
+            contentSize = .zero
+
+            return
+        }
+
+        let multiplier = collectionView.bounds.height
+
+        var bubbles: [BubbleLayoutInfo] = []
+        for i in 0..<collectionView.numberOfItems(inSection: 0) {
+            bubbles.append(delegate.bubbleLayoutInfo(layout: self, index: i))
+        }
+
+        let frames = bubbles.map { (bubble) -> CGRect in
+            let center = CGPoint(x: CGFloat(bubble.centerX) * multiplier, y: CGFloat(bubble.centerY) * multiplier)
+            let radius = CGFloat(bubble.radius) * multiplier
             return CGRect(x: center.x - radius, y: center.y - (radius + radius / 2), width: 2 * radius, height: 2 * radius).integral
         }
-        
+
         layoutAttributes = frames.enumerated().map { (index: Index, frame: CGRect) -> UICollectionViewLayoutAttributes in
             let attrs = UICollectionViewLayoutAttributes(forCellWith: IndexPath(item: index, section: 0))
             attrs.frame = frame
             return attrs
         }
-        
+
         if let first = frames.first {
             var minX: CGFloat = first.minX
             var maxX: CGFloat = first.maxX
@@ -49,10 +59,6 @@ final class LearnCategoryLayout: UICollectionViewLayout {
         } else {
             contentSize = .zero
         }
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {

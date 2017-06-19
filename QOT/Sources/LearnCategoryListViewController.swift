@@ -31,15 +31,11 @@ final class LearnCategoryListViewController: UIViewController {
     fileprivate let viewModel: LearnCategoryListViewModel
     fileprivate let disposeBag = DisposeBag()
     weak var delegate: LearnCategoryListViewControllerDelegate?
+    let page = LearnCategoryListPage()
 
     fileprivate lazy var collectionView: UICollectionView = {
-        let layout = LearnCategoryLayout(
-            height: self.view.frame.height - Layout.TabBarView.height,
-            categories: self.viewModel.categories
-        )
-
         return UICollectionView(
-            layout: layout,
+            layout: LearnCategoryLayout(),
             delegate: self,
             dataSource: self,
             dequeables:
@@ -100,7 +96,7 @@ private extension LearnCategoryListViewController {
 
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegate
 
-extension LearnCategoryListViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension LearnCategoryListViewController: UICollectionViewDataSource, LearnCategoryLayoutDelegate {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.categoryCount
@@ -116,6 +112,10 @@ extension LearnCategoryListViewController: UICollectionViewDataSource, UICollect
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.didSelectCategory(at: indexPath.row, category: viewModel.category(at: indexPath.row), in: self)
+    }
+
+    func bubbleLayoutInfo(layout: LearnCategoryLayout, index: Index) -> BubbleLayoutInfo {
+        return page.bubbleLayoutInfo(at: index)
     }
 }
 
