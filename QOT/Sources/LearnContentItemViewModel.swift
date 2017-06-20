@@ -46,34 +46,56 @@ final class LearnContentItemViewModel {
 
 extension LearnContentItemViewModel {
 
-    func sectionCount(_ tabType: TabType) -> Int {
-        switch tabType {
-        case .audio: return relatedContentCollections.count > 0 ? 3 : 2
-        case .bullets,
-             .full: return relatedContentCollections.count > 0 ? 2 : 1
-        }
+    func sectionCount() -> Int {
+        let sections = containsAudioItem() == true ? 2 : 1
+        let relatedSectionCount = relatedContentCollections.count > 0 ? 1 : 0
+        return sections + relatedSectionCount
     }
 
     func numberOfItemsInSection(in section: Int, tabType: TabType) -> Int {
-        guard sectionCount(tabType) > 1 else {
+        guard sectionCount() > 1 else {
             return contentItems(at: tabType).count
         }
 
-        switch tabType {
-        case .audio:
+        if sectionCount() == 3 {
             switch section {
             case 0: return 1
             case 1: return contentItems(at: tabType).count
             case 2: return relatedContentCollections.count > 3 ? 3 : relatedContentCollections.count
             default: return 0
             }
-        case .bullets,
-             .full:
+        } else if sectionCount() == 2 && containsAudioItem() == true {
+            switch section {
+            case 0: return 1
+            case 1: return contentItems(at: tabType).count
+            default: return 0
+            }
+        } else {
             switch section {
             case 0: return contentItems(at: tabType).count
             case 1: return relatedContentCollections.count > 3 ? 3 : relatedContentCollections.count
             default: return 0
             }
+        }
+    }
+
+    func heightForRow(at section: Int) -> CGFloat {
+        guard sectionCount() > 1 else {
+            return UITableViewAutomaticDimension
+        }
+
+        if sectionCount() == 3 {
+            switch section {
+            case 0: return CGFloat(100)
+            default: return UITableViewAutomaticDimension
+            }
+        } else if sectionCount() == 2 && containsAudioItem() == true {
+            switch section {
+            case 0: return CGFloat(100)
+            default: return UITableViewAutomaticDimension
+            }
+        } else {
+            return UITableViewAutomaticDimension
         }
     }
 
@@ -87,6 +109,24 @@ extension LearnContentItemViewModel {
 
     func relatedContent(at indexPath: IndexPath) -> LearnContentCollection {
         return relatedContentCollections.item(at: indexPath.row)
+    }
+
+    func containsAudioItem() -> Bool {
+        return contentCollection.contentItems.items.contains { (item: LearnContentItem) -> Bool in
+            switch item.contentItemValue {
+            case .audio(_): return true
+            default: return false
+            }
+        }
+    }
+
+    func firstAudioItem() -> ContentItemValue {
+        return contentCollection.contentItems.items.filter { (item: LearnContentItem) -> Bool in
+            switch item.contentItemValue {
+            case .audio(_): return true
+            default:  return false
+            }
+        }[0].contentItemValue
     }
 
     var format: String {

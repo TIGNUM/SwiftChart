@@ -543,10 +543,10 @@
       "viewed": false,
       "format": "video",
       "value": {
-        "title": "This is a video title - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "text": "This is a video title - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "description": "This is a video description - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "thumbnailURL": "https://cdn.pixabay.com/photo/2011/07/25/23/42/comb-8351_960_720.jpg",
-        "videoURL": "http://avikam.com/wp-content/uploads/2016/09/SpeechRecognitionTutorial.mp4",
+        "imageURL": "https://cdn.pixabay.com/photo/2011/07/25/23/42/comb-8351_960_720.jpg",
+        "mediaURL": "http://avikam.com/wp-content/uploads/2016/09/SpeechRecognitionTutorial.mp4",
         "duration": 245.3
       },
       "secondsRequired": 10,
@@ -569,10 +569,10 @@
       "viewed": false,
       "format": "audio",
       "value": {
-        "title": "This is an audio title - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "text": "This is an audio title - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "description": "This is a video description - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "thumbnailURL": "https://cdn.pixabay.com/photo/2011/07/25/23/42/comb-8351_960_720.jpg",
-        "audioURL": "http://extracoding.com/demo/wp/iloverockband/light/wp-content/uploads/2013/07/Lorem-ipsum-dolor-sit-amet1.mp3",
+        "imageURL": "https://cdn.pixabay.com/photo/2011/07/25/23/42/comb-8351_960_720.jpg",
+        "mediaURL": "http://extracoding.com/demo/wp/iloverockband/light/wp-content/uploads/2013/07/Lorem-ipsum-dolor-sit-amet1.mp3",
         "duration": 329.3,
         "waveformData": [
           0.12,
@@ -604,10 +604,10 @@
       "viewed": false,
       "format": "audio",
       "value": {
-        "title": "This is an audio title - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "text": "This is an audio title - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "description": "This is a video description - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "thumbnailURL": "https://cdn.pixabay.com/photo/2011/07/25/23/42/comb-8351_960_720.jpg",
-        "audioURL": "http://extracoding.com/demo/wp/iloverockband/light/wp-content/uploads/2013/07/Lorem-ipsum-dolor-sit-amet1.mp3",
+        "imageURL": "https://cdn.pixabay.com/photo/2011/07/25/23/42/comb-8351_960_720.jpg",
+        "mediaURL": "http://extracoding.com/demo/wp/iloverockband/light/wp-content/uploads/2013/07/Lorem-ipsum-dolor-sit-amet1.mp3",
         "duration": 456.3,
         "waveformData": [
           0.42,
@@ -639,10 +639,10 @@
       "viewed": false,
       "format": "audio",
       "value": {
-        "title": "This is an audio title - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "text": "This is an audio title - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "description": "This is a video description - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "thumbnailURL": "https://cdn.pixabay.com/photo/2011/07/25/23/42/comb-8351_960_720.jpg",
-        "audioURL": "http://extracoding.com/demo/wp/iloverockband/light/wp-content/uploads/2013/07/Lorem-ipsum-dolor-sit-amet1.mp3",
+        "imageURL": "https://cdn.pixabay.com/photo/2011/07/25/23/42/comb-8351_960_720.jpg",
+        "mediaURL": "http://extracoding.com/demo/wp/iloverockband/light/wp-content/uploads/2013/07/Lorem-ipsum-dolor-sit-amet1.mp3",
         "duration": 529.3,
         "waveformData": [
           0.92,
@@ -674,10 +674,10 @@
       "viewed": false,
       "format": "audio",
       "value": {
-        "title": "This is an audio title - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "text": "This is an audio title - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "description": "This is a video description - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "thumbnailURL": "https://cdn.pixabay.com/photo/2011/07/25/23/42/comb-8351_960_720.jpg",
-        "audioURL": "http://extracoding.com/demo/wp/iloverockband/light/wp-content/uploads/2013/07/Lorem-ipsum-dolor-sit-amet1.mp3",
+        "imageURL": "https://cdn.pixabay.com/photo/2011/07/25/23/42/comb-8351_960_720.jpg",
+        "mediaURL": "http://extracoding.com/demo/wp/iloverockband/light/wp-content/uploads/2013/07/Lorem-ipsum-dolor-sit-amet1.mp3",
         "duration": 345.3,
         "waveformData": [
           0.32,
@@ -709,10 +709,10 @@
       "viewed": false,
       "format": "audio",
       "value": {
-        "title": "This is an audio title - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "text": "This is an audio title - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "description": "This is a video description - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "thumbnailURL": "https://cdn.pixabay.com/photo/2011/07/25/23/42/comb-8351_960_720.jpg",
-        "audioURL": "http://extracoding.com/demo/wp/iloverockband/light/wp-content/uploads/2013/07/Lorem-ipsum-dolor-sit-amet1.mp3",
+        "imageURL": "https://cdn.pixabay.com/photo/2011/07/25/23/42/comb-8351_960_720.jpg",
+        "mediaURL": "http://extracoding.com/demo/wp/iloverockband/light/wp-content/uploads/2013/07/Lorem-ipsum-dolor-sit-amet1.mp3",
         "duration": 292.3,
         "waveformData": [
           0.92,
@@ -744,9 +744,9 @@
       "viewed": false,
       "format": "image",
       "value": {
-        "title": "This is an image title - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "text": "This is an image title - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "description": "This is an image description - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "url": "https://cdn.pixabay.com/photo/2011/07/25/23/42/comb-8351_960_720.jpg"
+        "imageURL": "https://cdn.pixabay.com/photo/2011/07/25/23/42/comb-8351_960_720.jpg"
       },
       "secondsRequired": 10,
       "layoutinfo": null,

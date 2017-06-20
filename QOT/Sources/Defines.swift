@@ -39,5 +39,5 @@ struct LogToggle {
 }
 
 struct MockToggle {
-    static let json = false
+    static let json = true
 }
