@@ -10,13 +10,13 @@ import UIKit
 import Anchorage
 
 class TravelTripsPeriodView: UIView {
-    private var data: MyStatisticsDataTravelPeriods
+    private var data: MyStatisticsDataPeriods
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    init(frame: CGRect, data: MyStatisticsDataTravelPeriods) {
+    init(frame: CGRect, data: MyStatisticsDataPeriods) {
         self.data = data
 
         super.init(frame: frame)

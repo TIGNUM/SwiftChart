@@ -57,9 +57,8 @@ enum MyStatisticsCardType {
     case travelTripsNextFourWeeks
     case travelTripsTimeZoneChanged
     case travelTripsMaxTimeZone
-    case peakPerformanceNextMonth
+    case peakPerformanceUpcoming
     case peakPerformanceAverage
-    case peakPerformanceNextWeek
     case sleepQuantity
     case sleepQuality
     case activitySittingMovementRatio
@@ -124,6 +123,33 @@ private extension MyStatisticsSectionType {
             return MyStatisticsDataAverage(teamAverage: 148, dataAverage: 178, userAverage: 42, maximum: 200, threshold: (upperThreshold: 120, lowerThreshold: 45))
         case .meetingTimeBetween:
             return MyStatisticsDataAverage(teamAverage: 148, dataAverage: 178, userAverage: 42, maximum: 200, threshold: (upperThreshold: 120, lowerThreshold: 45))
+        case .peakPerformanceUpcoming:
+            let lastWeek = Date().addingTimeInterval(-7 * 24 * 3600)
+            let lastWeek8 = Date().addingTimeInterval(-8 * 24 * 3600)
+            let lastWeek6 = Date().addingTimeInterval(-6 * 24 * 3600)
+            let nextWeek = Date().addingTimeInterval(7 * 24 * 3600)
+            let nextWeek10 = Date().addingTimeInterval(10 * 24 * 3600)
+
+            let lastWeekPlus2h = lastWeek.addingTimeInterval(2 * 3600)
+            let lastWeekMinus2h = lastWeek.addingTimeInterval(-2 * 3600)
+            let nextWeekPlus5h = nextWeek.addingTimeInterval(5 * 3600)
+
+            let periods: [Period] = [(start: lastWeek, duration: 3 * 3600),
+                                     (start: lastWeek6, duration: 3 * 3600),
+                                     (start: lastWeek8, duration: 3 * 3600),
+                                     (start: lastWeekMinus2h, duration: 1 * 3600),
+                                     (start: lastWeekPlus2h, duration: 4 * 3600),
+                                     (start: nextWeek, duration: 1 * 3600),
+                                     (start: nextWeek10, duration: 2 * 3600),
+                                     (start: nextWeekPlus5h, duration: 16 * 3600)]
+
+            return MyStatisticsDataPeriods(teamData: [DataDisplayType.lastWeek.id(): 3.5, DataDisplayType.nextWeek.id(): 15],
+                                           dataData: [DataDisplayType.lastWeek.id(): 4.7, DataDisplayType.nextWeek.id(): 15],
+                                           userData: [DataDisplayType.lastWeek.id(): 7, DataDisplayType.nextWeek.id(): 32],
+                                           periods: periods,
+                                           statsPeriods: [DataDisplayType.lastWeek.id(): ChartDimensions(columns: 7, rows: 24, length: 3600), DataDisplayType.nextWeek.id(): ChartDimensions(columns: 7, rows: 24, length: 3600)],
+                                           thresholds: [DataDisplayType.lastWeek.id(): (upperThreshold: 12800, lowerThreshold: 4000), DataDisplayType.nextWeek.id(): (upperThreshold: 500000, lowerThreshold: 200000)],
+                                           displayType: .lastWeek)
         case .peakPerformanceAverage:
             return MyStatisticsDataPeriodAverage(teamData: [DataDisplayType.week.id(): 3.5, DataDisplayType.month.id(): 15],
                                                  dataData: [DataDisplayType.week.id(): 4.7, DataDisplayType.month.id(): 15],
@@ -144,12 +170,12 @@ private extension MyStatisticsSectionType {
                                     (start: now245, duration: 2 * 24 * 3600),
                                     (start: nowWeek, duration: 6 * 3600)]
             
-            return MyStatisticsDataTravelPeriods(teamData: [DataDisplayType.weeks.id(): 3.5, DataDisplayType.year.id(): 15],
-                                                 dataData: [DataDisplayType.weeks.id(): 4.7, DataDisplayType.year.id(): 15],
-                                                 userData: [DataDisplayType.weeks.id(): 7, DataDisplayType.year.id(): 32],
-                                                 periods: periods,
-                                                 statsPeriods: [DataDisplayType.weeks.id(): ChartDimensions(columns: 4, rows: 7, length: 24), DataDisplayType.year.id(): ChartDimensions(columns: 12, rows: 5, length: 7)],
-                                                 thresholds: [DataDisplayType.weeks.id(): (upperThreshold: 12800, lowerThreshold: 4000), DataDisplayType.year.id(): (upperThreshold: 500000, lowerThreshold: 200000)])
+            return MyStatisticsDataPeriods(teamData: [DataDisplayType.weeks.id(): 3.5, DataDisplayType.year.id(): 15],
+                                           dataData: [DataDisplayType.weeks.id(): 4.7, DataDisplayType.year.id(): 15],
+                                           userData: [DataDisplayType.weeks.id(): 7, DataDisplayType.year.id(): 32],
+                                           periods: periods,
+                                           statsPeriods: [DataDisplayType.weeks.id(): ChartDimensions(columns: 4, rows: 7, length: 24), DataDisplayType.year.id(): ChartDimensions(columns: 12, rows: 5, length: 7)],
+                                           thresholds: [DataDisplayType.weeks.id(): (upperThreshold: 12800, lowerThreshold: 4000), DataDisplayType.year.id(): (upperThreshold: 500000, lowerThreshold: 200000)])
         case .travelTripsNextFourWeeks:
             let userTrips: UserUpcomingTrips = [[1, 2, 1, 0, 1, 0, 1],
                                                 [2, 0, 1, 3, 1, 1, 0],
@@ -172,12 +198,12 @@ private extension MyStatisticsSectionType {
                                      (start: now245, duration: 2 * 24 * 3600),
                                      (start: nowWeek, duration: 6 * 3600)]
 
-            return MyStatisticsDataTravelPeriods(teamData: [DataDisplayType.weeks.id(): 3.5, DataDisplayType.year.id(): 15],
-                                                 dataData: [DataDisplayType.weeks.id(): 4.7, DataDisplayType.year.id(): 15],
-                                                 userData: [DataDisplayType.weeks.id(): 7, DataDisplayType.year.id(): 32],
-                                                 periods: periods,
-                                                 statsPeriods: [DataDisplayType.weeks.id(): ChartDimensions(columns: 4, rows: 7, length: 24), DataDisplayType.year.id(): ChartDimensions(columns: 12, rows: 5, length: 7)],
-                                                 thresholds: [DataDisplayType.weeks.id(): (upperThreshold: 12800, lowerThreshold: 4000), DataDisplayType.year.id(): (upperThreshold: 500000, lowerThreshold: 200000)])
+            return MyStatisticsDataPeriods(teamData: [DataDisplayType.weeks.id(): 3.5, DataDisplayType.year.id(): 15],
+                                           dataData: [DataDisplayType.weeks.id(): 4.7, DataDisplayType.year.id(): 15],
+                                           userData: [DataDisplayType.weeks.id(): 7, DataDisplayType.year.id(): 32],
+                                           periods: periods,
+                                           statsPeriods: [DataDisplayType.weeks.id(): ChartDimensions(columns: 4, rows: 7, length: 24), DataDisplayType.year.id(): ChartDimensions(columns: 12, rows: 5, length: 7)],
+                                           thresholds: [DataDisplayType.weeks.id(): (upperThreshold: 12800, lowerThreshold: 4000), DataDisplayType.year.id(): (upperThreshold: 500000, lowerThreshold: 200000)])
         case .travelTripsMaxTimeZone:
             return MyStatisticsDataAverage(teamAverage: 148, dataAverage: 178, userAverage: 42, maximum: 200, threshold: (upperThreshold: 120, lowerThreshold: 45))
         default:
@@ -211,9 +237,8 @@ private extension MyStatisticsSectionType {
 
     var peakPerformanceCards: [MyStatisticsCard] {
         return [
-            MockMyStatisticsCard(title: "11", subtitle: "Next Month", type: .peakPerformanceNextMonth, data: makeData(.peakPerformanceNextMonth)),
-            MockMyStatisticsCard(title: "222", subtitle: "Average number of peak performances", type: .peakPerformanceAverage, data: makeData(.peakPerformanceAverage)),
-            MockMyStatisticsCard(title: "3333", subtitle: "Next week", type: .peakPerformanceNextWeek, data: makeData(.peakPerformanceNextWeek))
+            MockMyStatisticsCard(title: "11", subtitle: "# of upcoming peak peak performances", type: .peakPerformanceUpcoming, data: makeData(.peakPerformanceUpcoming)),
+            MockMyStatisticsCard(title: "222", subtitle: "Average number of peak performances", type: .peakPerformanceAverage, data: makeData(.peakPerformanceAverage))
         ]
     }
 

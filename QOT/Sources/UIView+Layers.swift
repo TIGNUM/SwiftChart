@@ -63,7 +63,7 @@ extension UIView {
         self.layer.addSublayer(shapeLayer)
     }
 
-    func drawSolidLine(from: CGPoint, to: CGPoint, lineWidth: CGFloat, strokeColour: UIColor) {
+    func drawSolidLine(from: CGPoint, to: CGPoint, lineWidth: CGFloat, strokeColour: UIColor, hasShadow: Bool = false) {
         let linePath = UIBezierPath()
         linePath.move(to: from)
         linePath.addLine(to: to)
@@ -73,6 +73,11 @@ extension UIView {
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.lineWidth = lineWidth
         shapeLayer.strokeColor = strokeColour.cgColor
+
+        if hasShadow {
+            shapeLayer.addGlowEffect(color: strokeColour, shadowRadius: lineWidth / 2, shadowOpacity: 1)
+        }
+
         self.layer.addSublayer(shapeLayer)
     }
 
@@ -121,7 +126,7 @@ extension UIView {
         self.layer.addSublayer(shapeLayer)
     }
 
-    func drawColumns(columnWidth: CGFloat, columnHeight: CGFloat, rowHeight: CGFloat, columnCount: Int, rowCount: Int, strokeWidth: CGFloat, strokeColour: UIColor) {
+    func drawDottedColumns(columnWidth: CGFloat, columnHeight: CGFloat, rowHeight: CGFloat, columnCount: Int, rowCount: Int, strokeWidth: CGFloat, strokeColour: UIColor) {
 
         for x in 0..<columnCount {
             let columnX = CGFloat(self.frame.origin.x) + CGFloat(x) * columnWidth + strokeWidth / 2
@@ -134,15 +139,28 @@ extension UIView {
             }
         }
     }
-    
-    func drawLabelsForColumns(labels: [String], columnCount: Int, textColour: UIColor, font: UIFont) {
+
+    func drawSolidColumns(columnWidth: CGFloat, columnHeight: CGFloat, columnCount: Int, strokeWidth: CGFloat, strokeColour: UIColor) {
+
+        for x in 0...columnCount {
+            let columnX = CGFloat(self.frame.origin.x) + CGFloat(x) * columnWidth + (x == columnCount ? -strokeWidth / 2 : strokeWidth / 2)
+            let columnY = CGFloat(self.frame.origin.y) + columnHeight - strokeWidth / 2
+
+            let startPoint = CGPoint(x: columnX, y: self.frame.origin.y)
+            let endPoint = CGPoint(x: columnX, y: columnY)
+
+            drawSolidLine(from: startPoint, to: endPoint, lineWidth: strokeWidth / 2, strokeColour: strokeColour)
+        }
+    }
+
+    func drawLabelsForColumns(labels: [String], columnCount: Int, textColour: UIColor, font: UIFont, center: Bool = false) {
         var lastLabel: UILabel? = nil
 
         for i in 0..<columnCount {
             let label = UILabel()
             label.text = labels[i]
 
-            label.prepareAndSetTextAttributes(text: labels[i], font: font)
+            label.prepareAndSetTextAttributes(text: labels[i], font: font, alignment: (center ? .center : .natural))
             label.textColor = .white20
 
             addSubview(label)

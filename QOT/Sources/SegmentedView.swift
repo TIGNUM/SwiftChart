@@ -14,6 +14,8 @@ enum DataDisplayType {
     case day
     case week
     case weeks
+    case lastWeek
+    case nextWeek
     case month
     case year
 
@@ -23,6 +25,8 @@ enum DataDisplayType {
         case .day: return R.string.localized.meSectorMyStatisticsDay()
         case .week: return R.string.localized.meSectorMyStatisticsWeek()
         case .weeks: return R.string.localized.meSectorMyStatisticsWeeks("4")
+        case .lastWeek: return R.string.localized.meSectorMyStatisticsLastWeek()
+        case .nextWeek: return R.string.localized.meSectorMyStatisticsNextWeek()
         case .month: return R.string.localized.meSectorMyStatisticsMonth()
         case .year: return R.string.localized.meSectorMyStatisticsYear()
         }
@@ -34,8 +38,10 @@ enum DataDisplayType {
         case .day: return 2
         case .week: return 3
         case .weeks: return 4
-        case .month: return 5
-        case .year: return 6
+        case .lastWeek: return 5
+        case .nextWeek: return 6
+        case .month: return 7
+        case .year: return 8
         }
     }
 
@@ -44,8 +50,10 @@ enum DataDisplayType {
         case 2: return .day
         case 3: return .week
         case 4: return .weeks
-        case 5: return .month
-        case 6: return .year
+        case 5: return .lastWeek
+        case 6: return .nextWeek
+        case 7: return .month
+        case 8: return .year
         default: return .all
         }
     }
@@ -121,10 +129,16 @@ class SegmentedView: UIView {
         separator.trailingAnchor == self.trailingAnchor - padding
         separator.heightAnchor == 1
 
-        container.topAnchor == separator.bottomAnchor + padding
         container.leadingAnchor == self.leadingAnchor + padding
         container.trailingAnchor == self.trailingAnchor - padding
         container.bottomAnchor == self.bottomAnchor
+
+        switch type {
+        case .peakPerformanceUpcoming:
+            container.topAnchor == separator.bottomAnchor
+        default:
+            container.topAnchor == separator.bottomAnchor + padding
+        }
 
         layoutIfNeeded()
 
@@ -165,10 +179,15 @@ class SegmentedView: UIView {
         case .travelTripsMeeting:
             fallthrough
         case .travelTripsTimeZoneChanged:
-            guard let object = (data as? MyStatisticsDataTravelPeriods) else { return }
+            guard let object = (data as? MyStatisticsDataPeriods) else { return }
 
             chartView = TravelTripsPeriodView(frame: container.bounds,
                                               data: object)
+        case .peakPerformanceUpcoming:
+            guard let object = (data as? MyStatisticsDataPeriods) else { return }
+
+            chartView = PeakPerformanceUpcomingView(frame: container.bounds,
+                                                    data: object)
         default:
             return
         }

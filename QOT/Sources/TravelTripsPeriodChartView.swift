@@ -10,9 +10,9 @@ import UIKit
 
 class TravelTripsPeriodChartView: UIView {
 
-    private var data: MyStatisticsDataTravelPeriods
+    private var data: MyStatisticsDataPeriods
 
-    init(frame: CGRect, data: MyStatisticsDataTravelPeriods) {
+    init(frame: CGRect, data: MyStatisticsDataPeriods) {
         self.data = data
 
         super.init(frame: frame)
@@ -43,7 +43,7 @@ class TravelTripsPeriodChartView: UIView {
         let endPoint = CGPoint(x: self.frame.origin.x + self.frame.width, y: self.frame.origin.y + columnHeight)
 
         drawSolidLine(from: startPoint, to: endPoint, lineWidth: strokeWidth, strokeColour: strokeColour)
-        drawColumns(columnWidth: cellWidth, columnHeight: columnHeight, rowHeight: cellHeight, columnCount: columns, rowCount: rows, strokeWidth: strokeWidth, strokeColour: strokeColour)
+        drawDottedColumns(columnWidth: cellWidth, columnHeight: columnHeight, rowHeight: cellHeight, columnCount: columns, rowCount: rows, strokeWidth: strokeWidth, strokeColour: strokeColour)
 
         for period in data.periods {
 

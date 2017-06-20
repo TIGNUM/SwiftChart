@@ -74,9 +74,8 @@ private extension MyStatisticsCardCell {
         case .meetingHeartRateChange: return
         case .meetingLength: addAverageMeetingLengthView(data: data)
         case .meetingTimeBetween: addAverageMeetingBetweenLengthView(data: data)
+        case .peakPerformanceUpcoming: addUpcomingPeakPerformancesView(data: data)
         case .peakPerformanceAverage: addAveragePeakPerformanceView(data: data)
-        case .peakPerformanceNextMonth: return
-        case .peakPerformanceNextWeek: return
         case .sleepQuality:
             let data: [CGFloat] = [0.1, 0.2, 0.3, 0.4, 0.5]
             addSleepChart(data: data, average: 0.3, type: .quality)
@@ -153,6 +152,18 @@ private extension MyStatisticsCardCell {
 
     // MARK: - Peak Performances
 
+    func addUpcomingPeakPerformancesView(data: MyStatisticsData) {
+        guard let tripsData = data as? MyStatisticsDataPeriods else { return }
+
+        titleLabel.attributedText = Style.postTitle(String(format: "%.1f", tripsData.userAverage()), .white).attributedString()
+
+        teamAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.teamAverage()), .azure).attributedString()
+        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.dataAverage()), .cherryRed).attributedString()
+
+        let meetingsDuringTravelView = SegmentedView(frame: centerContentView.bounds, type: .peakPerformanceUpcoming, data: tripsData, delegate: self.delegate, leftButtonType: .lastWeek, rightButtonType: .nextWeek)
+        centerContentView.addSubview(meetingsDuringTravelView)
+    }
+
     private func addAveragePeakPerformanceView(data: MyStatisticsData) {
         guard let performanceData = data as? MyStatisticsDataPeriodAverage else { return }
 
@@ -207,7 +218,7 @@ private extension MyStatisticsCardCell {
     // MARK: - Travel
 
     func addAverageNumberOfMeetingDuringTravel(data: MyStatisticsData) {
-        guard let tripsData = data as? MyStatisticsDataTravelPeriods else { return }
+        guard let tripsData = data as? MyStatisticsDataPeriods else { return }
 
         titleLabel.attributedText = Style.postTitle(String(format: "%.1f", tripsData.userAverage()), .white).attributedString()
 
@@ -231,7 +242,7 @@ private extension MyStatisticsCardCell {
     }
 
     func addTravelTripsTimeZoneChanges(data: MyStatisticsData) {
-        guard let tripsData = data as? MyStatisticsDataTravelPeriods else { return }
+        guard let tripsData = data as? MyStatisticsDataPeriods else { return }
 
         titleLabel.attributedText = Style.postTitle(String(format: "%.1f", tripsData.userAverage()), .white).attributedString()
 

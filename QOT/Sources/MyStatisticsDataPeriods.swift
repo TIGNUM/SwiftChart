@@ -1,5 +1,5 @@
 //
-//  MyStatisticsDataTravelPeriods.swift
+//  MyStatisticsDataPeriods.swift
 //  QOT
 //
 //  Created by Moucheg Mouradian on 16/06/2017.
@@ -11,7 +11,7 @@ import UIKit
 typealias Period = (start: Date, duration: TimeInterval)
 typealias ChartDimensions = (columns: Int, rows: Int, length: Int)
 
-class MyStatisticsDataTravelPeriods: MyStatisticsData {
+class MyStatisticsDataPeriods: MyStatisticsData {
     var displayType: DataDisplayType
 
     private var teamData: [Int: CGFloat]

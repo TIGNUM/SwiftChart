@@ -43,7 +43,7 @@ class UpcomingTravelsChartView: UIView {
         let endPoint = CGPoint(x: self.frame.origin.x + self.frame.width, y: self.frame.origin.y + columnHeight)
 
         drawSolidLine(from: startPoint, to: endPoint, lineWidth: strokeWidth, strokeColour: strokeColour)
-        drawColumns(columnWidth: cellWidth, columnHeight: columnHeight, rowHeight: cellHeight, columnCount: columns, rowCount: rows, strokeWidth: strokeWidth, strokeColour: strokeColour)
+        drawDottedColumns(columnWidth: cellWidth, columnHeight: columnHeight, rowHeight: cellHeight, columnCount: columns, rowCount: rows, strokeWidth: strokeWidth, strokeColour: strokeColour)
 
         var column = 0
         for week in data {
