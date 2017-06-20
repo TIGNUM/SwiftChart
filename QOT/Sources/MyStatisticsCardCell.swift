@@ -86,7 +86,7 @@ private extension MyStatisticsCardCell {
 
         case .travelTripsMeeting: addAverageNumberOfMeetingDuringTravel(data: data)
         case .travelTripsNextFourWeeks: addUpcomingTravels(data: data)
-        case .travelTripsTimeZoneChanged: addLevelsChartView(data: dataArray)
+        case .travelTripsTimeZoneChanged: addTravelTripsTimeZoneChanges(data: data)
         case .travelTripsMaxTimeZone: addTravelMaxTimeZoneChanges(data: data)
         }
     }
@@ -228,6 +228,18 @@ private extension MyStatisticsCardCell {
 
         let upcomingTravelsView = UpcomingTravelsView(frame: centerContentView.bounds, data: tripsData)
         centerContentView.addSubview(upcomingTravelsView)
+    }
+
+    func addTravelTripsTimeZoneChanges(data: MyStatisticsData) {
+        guard let tripsData = data as? MyStatisticsDataTravelPeriods else { return }
+
+        titleLabel.attributedText = Style.postTitle(String(format: "%.1f", tripsData.userAverage()), .white).attributedString()
+
+        teamAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.teamAverage()), .azure).attributedString()
+        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.dataAverage()), .cherryRed).attributedString()
+
+        let meetingsDuringTravelView = SegmentedView(frame: centerContentView.bounds, type: .travelTripsTimeZoneChanged, data: tripsData, delegate: self.delegate, leftButtonType: .weeks, rightButtonType: .year)
+        centerContentView.addSubview(meetingsDuringTravelView)
     }
 
     func addTravelMaxTimeZoneChanges(data: MyStatisticsData) {

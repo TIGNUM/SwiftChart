@@ -158,6 +158,26 @@ private extension MyStatisticsSectionType {
             let labels: [String] = ["+1", "+2", "+3", "+4"]
 
             return MyStatisticsDataUpcomingTrips(teamAverage: 24.2, dataAverage: 32.1, userAverage: 24.9, userUpcomingTrips: userTrips, labels: labels)
+        case .travelTripsTimeZoneChanged:
+            let now = Date()
+            let now3 = now.addingTimeInterval(3 * 24 * 3600)
+
+            let nowWeek = now.addingTimeInterval(7 * 24 * 3600)
+            let now145 = now.addingTimeInterval(-145 * 24 * 3600)
+            let now245 = now.addingTimeInterval(-245 * 24 * 3600)
+
+            let periods: [Period] = [(start: now, duration: 12 * 3600),
+                                     (start: now3, duration: 24 * 3600),
+                                     (start: now145, duration: 12 * 24 * 3600),
+                                     (start: now245, duration: 2 * 24 * 3600),
+                                     (start: nowWeek, duration: 6 * 3600)]
+
+            return MyStatisticsDataTravelPeriods(teamData: [DataDisplayType.weeks.id(): 3.5, DataDisplayType.year.id(): 15],
+                                                 dataData: [DataDisplayType.weeks.id(): 4.7, DataDisplayType.year.id(): 15],
+                                                 userData: [DataDisplayType.weeks.id(): 7, DataDisplayType.year.id(): 32],
+                                                 periods: periods,
+                                                 statsPeriods: [DataDisplayType.weeks.id(): ChartDimensions(columns: 4, rows: 7, length: 24), DataDisplayType.year.id(): ChartDimensions(columns: 12, rows: 5, length: 7)],
+                                                 thresholds: [DataDisplayType.weeks.id(): (upperThreshold: 12800, lowerThreshold: 4000), DataDisplayType.year.id(): (upperThreshold: 500000, lowerThreshold: 200000)])
         case .travelTripsMaxTimeZone:
             return MyStatisticsDataAverage(teamAverage: 148, dataAverage: 178, userAverage: 42, maximum: 200, threshold: (upperThreshold: 120, lowerThreshold: 45))
         default:
@@ -182,7 +202,7 @@ private extension MyStatisticsSectionType {
 
     var travelCards: [MyStatisticsCard] {
         return [
-            MockMyStatisticsCard(title: "125", subtitle: "Averagennumber of meetings", type: .travelTripsMeeting, data: makeData(.travelTripsMeeting)),
+            MockMyStatisticsCard(title: "125", subtitle: "Average number of meetings", type: .travelTripsMeeting, data: makeData(.travelTripsMeeting)),
             MockMyStatisticsCard(title: "4", subtitle: "Trips next four Weeks", type: .travelTripsNextFourWeeks, data: makeData(.travelTripsNextFourWeeks)),
             MockMyStatisticsCard(title: "2", subtitle: "# Of trips with time zone changed", type: .travelTripsTimeZoneChanged, data: makeData(.travelTripsTimeZoneChanged)),
             MockMyStatisticsCard(title: "#11", subtitle: "Time zone  max time zone", type: .travelTripsMaxTimeZone, data: makeData(.travelTripsMaxTimeZone))

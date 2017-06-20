@@ -66,8 +66,8 @@
 		8591ED7C1EE6DBAC006FCE89 /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E0A6A21EE6B1610076169D /* Mocks.swift */; };
 		85DC6F831EF3C161004F4B4D /* UpcomingTravelsChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DC6F821EF3C161004F4B4D /* UpcomingTravelsChartView.swift */; };
 		85DC6F851EF3E32A004F4B4D /* MyStatisticsDataTravelPeriods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DC6F841EF3E32A004F4B4D /* MyStatisticsDataTravelPeriods.swift */; };
-		85DC6F871EF40767004F4B4D /* TravelTripsMeetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DC6F861EF40767004F4B4D /* TravelTripsMeetingView.swift */; };
-		85DC6F891EF40B36004F4B4D /* TravelTripsMeetingChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DC6F881EF40B36004F4B4D /* TravelTripsMeetingChartView.swift */; };
+		85DC6F871EF40767004F4B4D /* TravelTripsPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DC6F861EF40767004F4B4D /* TravelTripsPeriodView.swift */; };
+		85DC6F891EF40B36004F4B4D /* TravelTripsPeriodChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DC6F881EF40B36004F4B4D /* TravelTripsPeriodChartView.swift */; };
 		85E0A69F1EE6A5E40076169D /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E0A69E1EE6A5E40076169D /* NetworkManagerTests.swift */; };
 		A29C0C8591D20568D6B8EB3E /* Pods_QOTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */; };
 		CB0A4A581ECC4C25006A2D85 /* AddSensorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A4A571ECC4C25006A2D85 /* AddSensorCoordinator.swift */; };
@@ -412,8 +412,8 @@
 		852DADEB1EF2BE3C00A10882 /* UpcomingTravelsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingTravelsView.swift; sourceTree = "<group>"; };
 		85DC6F821EF3C161004F4B4D /* UpcomingTravelsChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingTravelsChartView.swift; sourceTree = "<group>"; };
 		85DC6F841EF3E32A004F4B4D /* MyStatisticsDataTravelPeriods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsDataTravelPeriods.swift; sourceTree = "<group>"; };
-		85DC6F861EF40767004F4B4D /* TravelTripsMeetingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelTripsMeetingView.swift; sourceTree = "<group>"; };
-		85DC6F881EF40B36004F4B4D /* TravelTripsMeetingChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelTripsMeetingChartView.swift; sourceTree = "<group>"; };
+		85DC6F861EF40767004F4B4D /* TravelTripsPeriodView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelTripsPeriodView.swift; sourceTree = "<group>"; };
+		85DC6F881EF40B36004F4B4D /* TravelTripsPeriodChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelTripsPeriodChartView.swift; sourceTree = "<group>"; };
 		85E0A69E1EE6A5E40076169D /* NetworkManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		85E0A6A01EE6AF130076169D /* MockingProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockingProtocol.swift; sourceTree = "<group>"; };
 		85E0A6A21EE6B1610076169D /* Mocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
@@ -1118,8 +1118,8 @@
 				852DADDF1EF1741400A10882 /* TravelMaxTimeZoneChangesProgressWheel.swift */,
 				852DADEB1EF2BE3C00A10882 /* UpcomingTravelsView.swift */,
 				85DC6F821EF3C161004F4B4D /* UpcomingTravelsChartView.swift */,
-				85DC6F861EF40767004F4B4D /* TravelTripsMeetingView.swift */,
-				85DC6F881EF40B36004F4B4D /* TravelTripsMeetingChartView.swift */,
+				85DC6F861EF40767004F4B4D /* TravelTripsPeriodView.swift */,
+				85DC6F881EF40B36004F4B4D /* TravelTripsPeriodChartView.swift */,
 			);
 			name = Charts;
 			sourceTree = "<group>";
@@ -1884,7 +1884,7 @@
 				CCCE09CC1EA67C78008730F1 /* MyToBeVisionViewModel.swift in Sources */,
 				CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */,
 				CB810E661EF00DCA0043E3E5 /* UserIntermediary.swift in Sources */,
-				85DC6F871EF40767004F4B4D /* TravelTripsMeetingView.swift in Sources */,
+				85DC6F871EF40767004F4B4D /* TravelTripsPeriodView.swift in Sources */,
 				D5EC34AB1EB0D2FC00F86B09 /* LearnStrategyAudioPlayerView.swift in Sources */,
 				CC33CA281EC601DF008E6B33 /* PrepareContentCategory.swift in Sources */,
 				CBB4DD541EE151100071494A /* DownSyncImporter.swift in Sources */,
@@ -1926,7 +1926,7 @@
 				D5C15BAC1EB350FB0030953F /* SideBarTextCell.swift in Sources */,
 				CB1D5E401EC5E25A00BCDF8D /* Error.swift in Sources */,
 				CCD377541E8D3C2D00BB8031 /* WhatsHotNewTemplateViewModel.swift in Sources */,
-				85DC6F891EF40B36004F4B4D /* TravelTripsMeetingChartView.swift in Sources */,
+				85DC6F891EF40B36004F4B4D /* TravelTripsPeriodChartView.swift in Sources */,
 				CBB4DCDC1ED475F00071494A /* DownSyncChange.swift in Sources */,
 				D52371531EA9F0B100165842 /* PrepareChatTableCell.swift in Sources */,
 				0B573CA61EC3219900A03602 /* DailyMeetingChartView.swift in Sources */,

@@ -163,10 +163,12 @@ class SegmentedView: UIView {
                                                             pathColor: object.pathColor().color,
                                                             lineWidth: 10)
         case .travelTripsMeeting:
+            fallthrough
+        case .travelTripsTimeZoneChanged:
             guard let object = (data as? MyStatisticsDataTravelPeriods) else { return }
 
-            chartView = TravelTripsMeetingView(frame: container.bounds,
-                                               data: object)
+            chartView = TravelTripsPeriodView(frame: container.bounds,
+                                              data: object)
         default:
             return
         }
