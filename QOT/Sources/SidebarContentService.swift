@@ -23,7 +23,7 @@ final class SidebarContentService {
     }
 
     func categories(with sectionFilter: String? = nil) -> DataProvider<SidebarContentCategory> {
-        let filter = String.realmSectionFilter(filter: sectionFilter ?? Database.Section.sidebar.value)
+        let filter = NSPredicate(section: sectionFilter ?? Database.Section.sidebar.value)
         let results = mainRealm.objects(ContentCategory.self)
             .sorted(byKeyPath: Database.ItemKey.sortOrder.value)
             .filter(filter)
@@ -31,7 +31,7 @@ final class SidebarContentService {
     }
 
     func collection(for collectionSection: String) -> DataProvider<SidebarContentCollection> {
-        let filter = String.realmSectionFilter(filter: collectionSection)
+        let filter = NSPredicate(section: collectionSection)
         let results = mainRealm.objects(ContentCollection.self)
             .sorted(byKeyPath: Database.ItemKey.sortOrder.value)
             .filter(filter)

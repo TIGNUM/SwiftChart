@@ -28,8 +28,8 @@ final class LearnContentService {
     }
 
     func categories() -> DataProvider<LearnContentCategory> {
-        let filter = String.realmSectionFilter(filter: Database.Section.learnStrategy.rawValue)
-        let results = mainRealm.objects(ContentCategory.self).sorted(byKeyPath: "sortOrder").filter(filter)
+        let predicate = NSPredicate(section: Database.Section.learnStrategy.rawValue)
+        let results = mainRealm.objects(ContentCategory.self).sorted(byKeyPath: "sortOrder").filter(predicate)
         self.token = mainRealm.addNotificationBlock({ (_, _) in
             self.learnCategoryUpdateDelegate?.didUpdateCategoryViewedPercentage()
         })
@@ -39,7 +39,7 @@ final class LearnContentService {
 
     // TODO: That func might become handy also for other services. Modify to generic func.
     func contentCollections(for relatedContentIDs: [Int]) -> DataProvider<LearnContentCollection> {
-        let filter = String.realmContentIDFilter(for: relatedContentIDs)
+        let filter = NSPredicate(remoteIDs: relatedContentIDs)
         let results = mainRealm.objects(ContentCollection.self).sorted(byKeyPath: "sortOrder").filter(filter)
 
         return DataProvider<LearnContentCollection>(items: results, map: { $0 as LearnContentCollection })

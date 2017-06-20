@@ -14,9 +14,9 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [
-        "full",
-        "bullets",
-        "audio"
+        "FULL",
+        "BULLETS",
+        "AUDIO"
       ],
       "contentId": 100000,
       "searchTags": [
@@ -38,9 +38,9 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [
-        "full",
-        "bullets",
-        "audio"
+        "FULL",
+        "BULLETS",
+        "AUDIO"
       ],
       "contentId": 100000,
       "searchTags": [
@@ -62,9 +62,9 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [
-        "full",
-        "bullets",
-        "audio"
+        "FULL",
+        "BULLETS",
+        "AUDIO"
       ],
       "contentId": 100000,
       "searchTags": [
@@ -86,9 +86,9 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [
-        "full",
-        "bullets",
-        "audio"
+        "FULL",
+        "BULLETS",
+        "AUDIO"
       ],
       "contentId": 100000,
       "searchTags": [
@@ -110,9 +110,9 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [
-        "full",
-        "bullets",
-        "audio"
+        "FULL",
+        "BULLETS",
+        "AUDIO"
       ],
       "contentId": 100000,
       "searchTags": [
@@ -134,9 +134,9 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [
-        "full",
-        "bullets",
-        "audio"
+        "FULL",
+        "BULLETS",
+        "AUDIO"
       ],
       "contentId": 100000,
       "searchTags": [
@@ -158,9 +158,9 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [
-        "full",
-        "bullets",
-        "audio"
+        "FULL",
+        "BULLETS",
+        "AUDIO"
       ],
       "contentId": 100000,
       "searchTags": [
@@ -182,9 +182,9 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [
-        "full",
-        "bullets",
-        "audio"
+        "FULL",
+        "BULLETS",
+        "AUDIO"
       ],
       "contentId": 100000,
       "searchTags": [
@@ -206,9 +206,9 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [
-        "full",
-        "bullets",
-        "audio"
+        "FULL",
+        "BULLETS",
+        "AUDIO"
       ],
       "contentId": 100000,
       "searchTags": [
@@ -234,9 +234,9 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [
-        "full",
-        "bullets",
-        "audio"
+        "FULL",
+        "BULLETS",
+        "AUDIO"
       ],
       "contentId": 100000,
       "searchTags": [
@@ -276,9 +276,9 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [
-        "full",
-        "bullets",
-        "audio"
+        "FULL",
+        "BULLETS",
+        "AUDIO"
       ],
       "contentId": 100000,
       "searchTags": [
@@ -302,9 +302,9 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [
-        "full",
-        "bullets",
-        "audio"
+        "FULL",
+        "BULLETS",
+        "AUDIO"
       ],
       "contentId": 100000,
       "searchTags": [
@@ -326,9 +326,9 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [
-        "full",
-        "bullets",
-        "audio"
+        "FULL",
+        "BULLETS",
+        "AUDIO"
       ],
       "contentId": 100000,
       "searchTags": [
@@ -350,7 +350,7 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [
-        "bullets"
+        "BULLETS"
       ],
       "contentId": 100000,
       "searchTags": [
@@ -372,7 +372,7 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [
-        "bullets"
+        "BULLETS"
       ],
       "contentId": 100000,
       "searchTags": [
@@ -394,7 +394,7 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [
-        "bullets"
+        "BULLETS"
       ],
       "contentId": 100000,
       "searchTags": [
@@ -416,7 +416,7 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [
-        "bullets"
+        "BULLETS"
       ],
       "contentId": 100000,
       "searchTags": [
@@ -438,7 +438,7 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [
-        "bullets"
+        "BULLETS"
       ],
       "contentId": 100000,
       "searchTags": [
@@ -460,7 +460,7 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [
-        "bullets"
+        "BULLETS"
       ],
       "contentId": 100000,
       "searchTags": [
@@ -482,7 +482,7 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [
-        "bullets"
+        "BULLETS"
       ],
       "contentId": 100000,
       "searchTags": [
@@ -504,7 +504,7 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [
-        "bullets"
+        "BULLETS"
       ],
       "contentId": 100000,
       "searchTags": [
@@ -526,7 +526,7 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [
-        "bullets"
+        "BULLETS"
       ],
       "contentId": 100000,
       "searchTags": [
@@ -552,7 +552,7 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [
-        "bullets"
+        "BULLETS"
       ],
       "contentId": 100000,
       "searchTags": [
@@ -587,7 +587,7 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [
-        "audio"
+        "AUDIO"
       ],
       "contentId": 100000,
       "searchTags": [
@@ -622,7 +622,7 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [
-        "audio"
+        "AUDIO"
       ],
       "contentId": 100000,
       "searchTags": [
@@ -657,7 +657,7 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [
-        "audio"
+        "AUDIO"
       ],
       "contentId": 100000,
       "searchTags": [
@@ -692,7 +692,7 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [
-        "audio"
+        "AUDIO"
       ],
       "contentId": 100000,
       "searchTags": [
@@ -727,7 +727,7 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [
-        "audio"
+        "AUDIO"
       ],
       "contentId": 100000,
       "searchTags": [
@@ -751,7 +751,7 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [        
-        "bullets"
+        "BULLETS"
       ],
       "contentId": 100000,
       "searchTags": [
@@ -773,7 +773,7 @@
       "secondsRequired": 10,
       "layoutinfo": null,
       "tabs": [        
-        "bullets"
+        "BULLETS"
       ],
       "contentId": 100000,
       "searchTags": [

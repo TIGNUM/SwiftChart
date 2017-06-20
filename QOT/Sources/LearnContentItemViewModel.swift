@@ -11,9 +11,9 @@ import ReactiveKit
 import AVFoundation
 
 enum TabType: String {
-    case full
-    case bullets
-    case audio
+    case full = "FULL"
+    case bullets = "BULLETS"
+    case audio = "AUDIO"
 }
 
 final class LearnContentItemViewModel {

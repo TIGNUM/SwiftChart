@@ -12,4 +12,12 @@ extension NSPredicate {
     convenience init(remoteID: Int) {
         self.init(format: "remoteID == %d", remoteID)
     }
+
+    convenience init(section: String) {
+        self.init(format: "section == %@", section)
+    }
+
+    convenience init(remoteIDs: [Int]) {
+        self.init(format: "remoteID IN %@", remoteIDs)
+    }
 }

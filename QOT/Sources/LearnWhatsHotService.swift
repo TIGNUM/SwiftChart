@@ -28,7 +28,7 @@ final class LearnWhatsHotService {
     }
 
     func categories() -> DataProvider<LearnWhatsHotContentCategory> {
-        let filter = String.realmSectionFilter(filter: Database.Section.learnWhatsHot.rawValue)
+        let filter = NSPredicate(section: Database.Section.learnWhatsHot.rawValue)
         let results = mainRealm.objects(ContentCategory.self).sorted(byKeyPath: "sortOrder").filter(filter)
         
         return DataProvider<LearnWhatsHotContentCategory>(items: results, map: { $0 as LearnWhatsHotContentCategory })
