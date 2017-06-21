@@ -39,8 +39,11 @@ final class ActivityChartView: UIView {
     }
 
     func setupAverageLine(level: CGFloat, lineType: LineType) {
-        let position = bounds.height * level
-        let frame = CGRect(x: bounds.minX + 5, y: bounds.height - position, width: bounds.width - 15, height: 0)
+        let padding: CGFloat = 7
+        let separatorHeight: CGFloat = 1
+        let height = bounds.height - padding - separatorHeight
+        let position = height * level
+        let frame = CGRect(x: bounds.minX + padding, y: bounds.height - position, width: bounds.width - 2 * padding, height: 0)
         switch lineType {
         case .average:
             averageLine.path = UIBezierPath(roundedRect: frame, cornerRadius: 0).cgPath

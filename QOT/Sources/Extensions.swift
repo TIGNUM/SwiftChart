@@ -253,3 +253,25 @@ extension UIScrollView {
         return Int(round(contentOffset.x / bounds.size.width))
     }
 }
+
+// MARK: - SequSequenceType
+
+extension Sequence where Iterator.Element == String {
+    func mondayFirst(withWeekend: Bool = true) -> [String] {
+        let selfCast = self as? [String]
+
+        guard var week = selfCast else { return [] }
+
+        let tempDay = week.first
+
+        week.removeFirst()
+
+        if !withWeekend {
+            week.removeLast()
+        } else if let day = tempDay {
+            week.append(day)
+        }
+
+        return week
+    }
+}

@@ -67,8 +67,8 @@ private extension MyStatisticsCardCell {
         let dataArray: [CGFloat] = [0.1, 0.4, 0.5, 0.6, 0.3]
 
         switch cardType {
-        case .activityLevel: addSittingMovementView()
-        case .activitySittingMovementRatio: addActivityView()
+        case .activityLevel: addSittingMovementView(data: data)
+        case .activitySittingMovementRatio: addActivityView(data: data)
         case .intensity: addAverageGraphGridView(data: dataArray)
         case .meetingAverage: addAverageMeetingCountView(data: data)
         case .meetingHeartRateChange: return
@@ -267,39 +267,37 @@ private extension MyStatisticsCardCell {
 
     // MARK: - Activity
 
-    private func addActivityView() {
-        let view = ActivityChartView(frame: centerContentView.bounds, columns: mockData(), dayNames: ["M", "T", "W", "T", "F"])
-        view.setupAverageLine(level: 0.45, lineType: .average)
-        view.setupAverageLine(level: 0.42, lineType: .team)
-        view.setupAverageLine(level: 0.4, lineType: .personal)
+    private func addActivityView(data: MyStatisticsData) {
+        guard let activityData = data as? MyStatisticsDataActivity else { return }
+
+        titleLabel.attributedText = Style.postTitle(String(format: "%.1f", activityData.userAverage), .white).attributedString()
+
+        teamAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", activityData.teamAverage), .azure).attributedString()
+        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", activityData.dataAverage), .cherryRed).attributedString()
+
+        let dayLabels = DateFormatter().veryShortStandaloneWeekdaySymbols.mondayFirst(withWeekend: false)
+
+        let view = ActivityChartView(frame: centerContentView.bounds, columns: activityData.data, dayNames: dayLabels)
+        view.setupAverageLine(level: activityData.dataActivityLevel, lineType: .average)
+        view.setupAverageLine(level: activityData.teamActivityLevel, lineType: .team)
+        view.setupAverageLine(level: activityData.userActivityLevel, lineType: .personal)
         centerContentView.addSubview(view)
     }
 
-    private func addSittingMovementView() {
-        let view = ActivityChartView.init(frame: centerContentView.bounds, columns: mockDataSittingMovement(), dayNames: ["M", "T", "W", "T", "F"])
-        view.setupAverageLine(level: 0.45, lineType: .average)
-        view.setupAverageLine(level: 0.42, lineType: .team)
-        view.setupAverageLine(level: 0.4, lineType: .personal)
+    private func addSittingMovementView(data: MyStatisticsData) {
+        guard let activityData = data as? MyStatisticsDataActivity else { return }
+
+        titleLabel.attributedText = Style.postTitle(String(format: "%.1f", activityData.userAverage), .white).attributedString()
+
+        teamAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", activityData.teamAverage), .azure).attributedString()
+        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", activityData.dataAverage), .cherryRed).attributedString()
+
+        let dayLabels = DateFormatter().veryShortStandaloneWeekdaySymbols.mondayFirst(withWeekend: false)
+
+        let view = ActivityChartView(frame: centerContentView.bounds, columns: activityData.data, dayNames: dayLabels)
+        view.setupAverageLine(level: activityData.dataActivityLevel, lineType: .average)
+        view.setupAverageLine(level: activityData.teamActivityLevel, lineType: .team)
+        view.setupAverageLine(level: activityData.userActivityLevel, lineType: .personal)
         centerContentView.addSubview(view)
     }
-
-    private func mockData() -> [EventGraphView.Column] {
-        let items: [EventGraphView.Item] = [
-            EventGraphView.Item(start: 1, end: 0.4, color: EventGraphView.Color.normalColor),
-            EventGraphView.Item(start: 0.4, end: 0.1, color: EventGraphView.Color.lowColor)
-        ]
-        let column = EventGraphView.Column(items: items, width: 0.02)
-        
-        return [column, column, column, column, column]
-    }
-
-    private func mockDataSittingMovement() -> [EventGraphView.Column] {
-        let items: [EventGraphView.Item] = [
-            EventGraphView.Item(start: 1, end: 0.5, color: EventGraphView.Color.criticalColor)
-        ]
-        let column = EventGraphView.Column(items: items, width: 0.02)
-
-        return [column, column, column, column, column]
-    }
-
 }

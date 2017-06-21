@@ -33,7 +33,7 @@ final class ContainerView: UIView {
         super.layoutSubviews()
         setupLayout()
         addBottomLine()
-         addDays()
+        addDays()
     }
 
     func setup(columns: [EventGraphView.Column], dayNames: [String]) {
@@ -53,8 +53,10 @@ private extension ContainerView {
     }
 
     func setupLayout() {
+        let padding: CGFloat = 8
+        let separatorHeight: CGFloat = 1
 
-        eventView.topAnchor == topAnchor
+        eventView.topAnchor == topAnchor + padding + separatorHeight
         eventView.horizontalAnchors == horizontalAnchors
         eventView.bottomAnchor == bottomView.topAnchor
 
@@ -67,7 +69,7 @@ private extension ContainerView {
 
     func addBottomLine() {
 
-            bottomLine.frame = CGRect(x: bottomView.bounds.minX + 5, y: bottomView.bounds.minY - 1, width: bottomView.bounds.width - 10, height: 1)
+        bottomLine.frame = CGRect(x: bottomView.bounds.minX + 5, y: bottomView.bounds.minY - 1, width: bottomView.bounds.width - 10, height: 1)
     }
 
     func addDays() {
@@ -76,18 +78,18 @@ private extension ContainerView {
         for index in 0..<eventView.columns.count {
             let width = CGFloat(16.2)
             let frame = CGRect(x: computedWidth * CGFloat(index) + width / 2, y: bottomView.bounds.minX + 3, width: width, height: 10)
-            daysArray.append(dayLabel())
+            daysArray.append(dayLabel(text: dayNames[index]))
             daysArray[index].frame = CGRect(x: frame.midX, y: frame.minY, width: frame.width, height: frame.height)
-            daysArray[index].text = dayNames[index]
             bottomView.addSubview(daysArray[index])
         }
     }
 
-    func dayLabel() -> UILabel {
+    func dayLabel(text: String) -> UILabel {
         let label = UILabel()
-        label.font = UIFont.bentonRegularFont(ofSize: 8)
-        label.textAlignment = .center
-        label.textColor = .white8
+
+        label.prepareAndSetTextAttributes(text: text, font: UIFont(name: "BentonSans-Book", size: 11)!, alignment: .center)
+        label.textColor = .white20
+
         return label
     }
 

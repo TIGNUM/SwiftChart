@@ -58,10 +58,10 @@ final class EventGraphView: UIView {
         case .mediumColor:
             layer.fillColor = UIColor.azure20.cgColor
         case .normalColor:
+            layer.fillColor = UIColor.white8.cgColor
+        case .lowColor:
             layer.fillColor = UIColor.whiteLightTwo.cgColor
             layer.addGlowEffect(color: .white)
-        case .lowColor:
-            layer.fillColor = UIColor.white8.cgColor
         }
         return layer
     }

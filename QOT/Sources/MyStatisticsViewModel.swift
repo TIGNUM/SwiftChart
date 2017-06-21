@@ -112,6 +112,24 @@ private extension MyStatisticsSectionType {
 
     private func makeData(_ cardType: MyStatisticsCardType) -> MyStatisticsData {
         switch cardType {
+        case .activitySittingMovementRatio:
+            let data: [EventGraphData] = [EventGraphData(start: 1, end: 0.4),
+                                            EventGraphData(start: 1, end: 0.65),
+                                            EventGraphData(start: 1, end: 0.2),
+                                            EventGraphData(start: 1, end: 0.3),
+                                            EventGraphData(start: 1, end: 0.8)]
+            let threshold = StatisticsThreshold<CGFloat>(upperThreshold: 0.6, lowerThreshold: 0.2)
+
+            return MyStatisticsDataActivity(teamAverage: 3.2, dataAverage: 5.4, userAverage: 2.1, teamActivityLevel: 1, dataActivityLevel: 0.55, userActivityLevel: 0.5, threshold: threshold, data: data, fillColumn: true)
+        case .activityLevel:
+            let data: [EventGraphData] = [EventGraphData(start: 1, end: 0.4),
+                                            EventGraphData(start: 1, end: 0.65),
+                                            EventGraphData(start: 1, end: 0.2),
+                                            EventGraphData(start: 1, end: 0.3),
+                                            EventGraphData(start: 1, end: 0.8)]
+            let threshold = StatisticsThreshold<CGFloat>(upperThreshold: 0.6, lowerThreshold: 0.2)
+
+            return MyStatisticsDataActivity(teamAverage: 3.2, dataAverage: 5.4, userAverage: 2.1, teamActivityLevel: 0.4, dataActivityLevel: 0.55, userActivityLevel: 0.5, threshold: threshold, data: data)
         case .meetingAverage:
             return MyStatisticsDataPeriodAverage(teamData: [DataDisplayType.day.id(): 3.5, DataDisplayType.week.id(): 15],
                                                  dataData: [DataDisplayType.day.id(): 4.7, DataDisplayType.week.id(): 17],
