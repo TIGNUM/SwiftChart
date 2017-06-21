@@ -62,7 +62,7 @@ class NetworkManager {
     @discardableResult func request<T: JSONDecodable>(token: String, endpoint: Endpoint, page: Int, accumulator: [DownSyncChange<T>] = [], serialRequest: SerialRequest? = nil, completion: @escaping (Result<([DownSyncChange<T>], String), NetworkError>) -> Void) -> SerialRequest {
         let serialRequest = serialRequest ?? SerialRequest()
 
-        let urlRequest = DownSyncRequest(endpoint: endpoint, syncToken: token, page: 1)
+        let urlRequest = DownSyncRequest(endpoint: endpoint, syncToken: token, page: page)
         serialRequest.request = self.request(urlRequest, parser: DownSyncResultParser<T>.parse) { [weak self] (result) in
             switch result {
             case .success(let value):
