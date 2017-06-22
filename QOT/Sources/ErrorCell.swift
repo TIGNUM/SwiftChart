@@ -13,5 +13,6 @@ final class ErrorCell: UITableViewCell, Dequeueable {
     func configure(text: String) {
         textLabel?.textColor = .red
         textLabel?.text = text
+        selectionStyle = .none
     }
 }

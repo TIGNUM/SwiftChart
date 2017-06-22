@@ -60,6 +60,14 @@ final class LearnContentService {
         return category
     }
 
+    func contentCollection(for collectionID: Int) -> LearnContentCollection {
+        guard let collection = mainRealm.object(ofType: ContentCollection.self, forPrimaryKey: collectionID) else {
+            fatalError("No ContentCollection found for collectionID: \(collectionID)")
+        }
+
+        return collection
+    }
+
     func updatedViewedAt(with itemId: Int) {
         DispatchQueue.global().async {
             do {

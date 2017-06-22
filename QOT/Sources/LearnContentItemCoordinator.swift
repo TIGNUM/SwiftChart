@@ -15,6 +15,15 @@ final class LearnContentItemCoordinator: ParentCoordinator {
     fileprivate let eventTracker: EventTracker
     fileprivate let category: LearnContentCategory
     fileprivate let selectedCategoryIndex: Index
+    fileprivate var categoryTitle: String
+    fileprivate var selectedContent: LearnContentCollection
+    fileprivate var relatedContents: DataProvider<LearnContentCollection>
+    fileprivate var recommentedContentCollections: DataProvider<LearnContentCollection>
+    fileprivate var fullViewController: LearnContentItemViewController
+    fileprivate var bulletViewController: LearnContentItemViewController
+    fileprivate var audioViewController: LearnContentItemViewController
+    fileprivate var viewModel: LearnContentItemViewModel
+    weak var topTabBarControllerDelegate: TopTabBarControllerDelegate?
     var children: [Coordinator] = []
     
     init(root: LearnContentListViewController, services: Services, eventTracker: EventTracker, category: LearnContentCategory, at index: Index) {
@@ -23,36 +32,36 @@ final class LearnContentItemCoordinator: ParentCoordinator {
         self.eventTracker = eventTracker
         self.category = category
         self.selectedCategoryIndex = index
+        self.categoryTitle = category.title.capitalized
+        self.selectedContent = category.learnContent.item(at: selectedCategoryIndex)
+        self.relatedContents = services.learnContentService.contentCollections(for: selectedContent.relatedContentIDs)
+        self.recommentedContentCollections = services.learnContentService.relatedContentCollections(for: category.remoteID)
+        self.viewModel = LearnContentItemViewModel(
+            contentCollection: selectedContent,
+            relatedContentCollections: relatedContents,
+            recommentedContentCollections: recommentedContentCollections
+        )
+        self.fullViewController = LearnContentItemViewController(
+            viewModel: viewModel,
+            categoryTitle: categoryTitle,
+            contentTitle: selectedContent.title,
+            tabType: .full
+        )
+        self.bulletViewController = LearnContentItemViewController(
+            viewModel: viewModel,
+            categoryTitle: categoryTitle,
+            contentTitle: selectedContent.title,
+            tabType: .bullets
+        )
+        self.audioViewController = LearnContentItemViewController(
+            viewModel: viewModel,
+            categoryTitle: categoryTitle,
+            contentTitle: selectedContent.title,
+            tabType: .audio
+        )
     }
 
     func start() {
-        let categoryTitle = category.title.capitalized
-        let selectedContent = category.learnContent.item(at: selectedCategoryIndex)
-        let relatedContents = services.learnContentService.contentCollections(for: selectedContent.relatedContentIDs)
-        let recommentedContentCollections = services.learnContentService.relatedContentCollections(for: category.remoteID)
-        let contentTitle = selectedContent.title.capitalized
-        let viewModel = LearnContentItemViewModel(
-            contentCollection: selectedContent,
-            relatedContentCollections: relatedContents,
-            recommentedContentCollections: recommentedContentCollections)
-        let fullViewController = LearnContentItemViewController(
-            viewModel: viewModel,
-            categoryTitle: categoryTitle,
-            contentTitle: contentTitle,
-            tabType: .full
-        )
-        let bulletViewController = LearnContentItemViewController(
-            viewModel: viewModel,
-            categoryTitle: categoryTitle,
-            contentTitle: contentTitle,
-            tabType: .bullets
-        )
-        let audioViewController = LearnContentItemViewController(
-            viewModel: viewModel,
-            categoryTitle: categoryTitle,
-            contentTitle: contentTitle,
-            tabType: .audio
-        )
         let topTabBarControllerItem = TopTabBarController.Item(
             controllers: [fullViewController, bulletViewController, audioViewController],
             themes: [.light, .light, .light],
@@ -65,18 +74,22 @@ final class LearnContentItemCoordinator: ParentCoordinator {
         let topTabBarController = TopTabBarController(
             item: topTabBarControllerItem,
             leftIcon: R.image.ic_minimize(),
-            learnHeaderTitle: contentTitle,
+            learnHeaderTitle: selectedContent.title,
             learnHeaderSubTitle: categoryTitle
         )
 
         fullViewController.serviceDelegate = services
+        fullViewController.delegate = self
+        bulletViewController.delegate = self
+        audioViewController.delegate = self
         topTabBarController.modalTransitionStyle = .crossDissolve
         topTabBarController.modalPresentationStyle = .custom
         topTabBarController.delegate = self
-        topTabBarController.learnContentItemViewControllerDelegate = fullViewController
+        topTabBarController.learnContentItemViewControllerDelegate = self
+        topTabBarControllerDelegate = topTabBarController
         rootVC.present(topTabBarController, animated: true)
         // FIXME: Add page tracking
-    }
+    }    
 }
 
 extension LearnContentItemCoordinator: LearnContentListViewControllerDelegate {
@@ -103,5 +116,43 @@ extension LearnContentItemCoordinator: TopTabBarDelegate {
 
     func didSelectRightButton(sender: TopTabBarController) {
         print("did select book mark")
+    }
+}
+
+extension LearnContentItemCoordinator: LearnContentItemViewControllerDelegate {
+
+    func didTapFinish(from view: UIView) {
+        print("didTapFinish")
+    }
+
+    func didTapShare(in viewController: LearnContentItemViewController) {
+        print("didTapShare")
+    }
+
+    func didChangeTab(to nextIndex: Index, in viewController: TopTabBarController) {
+        print("didChangeTab")
+    }
+
+    func didSelectReadMoreContentCollection(with collectionID: Int, in viewController: LearnContentItemViewController) {        
+        selectedContent = services.learnContentService.contentCollection(for: collectionID)
+        relatedContents = services.learnContentService.contentCollections(for: selectedContent.relatedContentIDs)
+        recommentedContentCollections = services.learnContentService.relatedContentCollections(for: category.remoteID)
+        viewModel = LearnContentItemViewModel(
+            contentCollection: selectedContent,
+            relatedContentCollections: relatedContents,
+            recommentedContentCollections: recommentedContentCollections
+        )
+        topTabBarControllerDelegate?.updateHeaderView(title: categoryTitle, subTitle: selectedContent.title)
+        fullViewController.reloadData(viewModel: viewModel, contentTitle: selectedContent.title)
+        bulletViewController.reloadData(viewModel: viewModel, contentTitle: selectedContent.title)
+        audioViewController.reloadData(viewModel: viewModel, contentTitle: selectedContent.title)
+    }
+
+    func didTapVideo(with video: LearnContentItem, from view: UIView, in viewController: LearnContentItemViewController) {
+        print("didTapVideo")
+    }
+
+    func didTapArticle(with article: LearnContentItem, from view: UIView, in viewController: LearnContentItemViewController) {
+        print("didTapArticle")
     }
 }

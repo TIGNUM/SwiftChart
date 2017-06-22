@@ -63,8 +63,8 @@
 		852DADE81EF26B1D00A10882 /* PeakPerformanceAverageProgressWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADE71EF26B1D00A10882 /* PeakPerformanceAverageProgressWheel.swift */; };
 		852DADEA1EF2B83100A10882 /* MyStatisticsDataUpcomingTrips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADE91EF2B83100A10882 /* MyStatisticsDataUpcomingTrips.swift */; };
 		852DADEC1EF2BE3C00A10882 /* UpcomingTravelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADEB1EF2BE3C00A10882 /* UpcomingTravelsView.swift */; };
-		858AF6951EF9544000486605 /* MyStatisticsDataActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858AF6941EF9544000486605 /* MyStatisticsDataActivity.swift */; };
 		858AF6931EF904AB00486605 /* PeakPerformanceUpcomingChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858AF6921EF904AB00486605 /* PeakPerformanceUpcomingChartView.swift */; };
+		858AF6951EF9544000486605 /* MyStatisticsDataActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858AF6941EF9544000486605 /* MyStatisticsDataActivity.swift */; };
 		8591ED7B1EE6DBA6006FCE89 /* MockingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E0A6A01EE6AF130076169D /* MockingProtocol.swift */; };
 		8591ED7C1EE6DBAC006FCE89 /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E0A6A21EE6B1610076169D /* Mocks.swift */; };
 		85DC6F831EF3C161004F4B4D /* UpcomingTravelsChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DC6F821EF3C161004F4B4D /* UpcomingTravelsChartView.swift */; };
@@ -414,8 +414,8 @@
 		852DADE71EF26B1D00A10882 /* PeakPerformanceAverageProgressWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakPerformanceAverageProgressWheel.swift; sourceTree = "<group>"; };
 		852DADE91EF2B83100A10882 /* MyStatisticsDataUpcomingTrips.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsDataUpcomingTrips.swift; sourceTree = "<group>"; };
 		852DADEB1EF2BE3C00A10882 /* UpcomingTravelsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingTravelsView.swift; sourceTree = "<group>"; };
-		858AF6941EF9544000486605 /* MyStatisticsDataActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsDataActivity.swift; sourceTree = "<group>"; };
 		858AF6921EF904AB00486605 /* PeakPerformanceUpcomingChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakPerformanceUpcomingChartView.swift; sourceTree = "<group>"; };
+		858AF6941EF9544000486605 /* MyStatisticsDataActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsDataActivity.swift; sourceTree = "<group>"; };
 		85DC6F821EF3C161004F4B4D /* UpcomingTravelsChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingTravelsChartView.swift; sourceTree = "<group>"; };
 		85DC6F841EF3E32A004F4B4D /* MyStatisticsDataPeriods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsDataPeriods.swift; sourceTree = "<group>"; };
 		85DC6F861EF40767004F4B4D /* TravelTripsPeriodView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelTripsPeriodView.swift; sourceTree = "<group>"; };

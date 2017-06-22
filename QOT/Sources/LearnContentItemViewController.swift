@@ -25,6 +25,8 @@ protocol LearnContentItemViewControllerDelegate: class {
     func didChangeTab(to nextIndex: Index, in viewController: TopTabBarController)
 
     func didTapFinish(from view: UIView)
+
+    func didSelectReadMoreContentCollection(with collectionID: Int, in viewController: LearnContentItemViewController)
 }
 
 final class LearnContentItemViewController: UIViewController {
@@ -34,9 +36,9 @@ final class LearnContentItemViewController: UIViewController {
     weak var delegate: LearnContentItemViewControllerDelegate?
     weak var serviceDelegate: LearnContentServiceDelegate?
     fileprivate let disposeBag = DisposeBag()
-    fileprivate let viewModel: LearnContentItemViewModel
+    fileprivate var viewModel: LearnContentItemViewModel
     fileprivate let categoryTitle: String
-    fileprivate let contentTitle: String
+    fileprivate var contentTitle: String
     fileprivate let tabType: TabType
     fileprivate var soundPattern = Property([Float(0)])
 
@@ -57,16 +59,16 @@ final class LearnContentItemViewController: UIViewController {
         )
     }()
 
-    fileprivate lazy var headerView: LearnContentItemHeaderView = {
-        let title = Style.postTitle(self.contentTitle, .darkIndigo).attributedString()
-        let subTitle = Style.tag(self.categoryTitle, .black30).attributedString()
+    fileprivate func headerView(contentTitle: String, categoryTitle: String) -> LearnContentItemHeaderView {
+        let title = Style.postTitle(contentTitle.uppercased(), .darkIndigo).attributedString()
+        let subTitle = Style.tag(categoryTitle.uppercased(), .black30).attributedString()
         let nib = R.nib.learnContentItemHeaderView()
         let headerView = (nib.instantiate(withOwner: self, options: nil).first as? LearnContentItemHeaderView)!
         headerView.setupView(title: title, subtitle: subTitle)
         headerView.backgroundColor = .white
 
         return headerView
-    }()
+    }
 
     func isTableViewScrolledToTop() -> Bool {
         return self.tableView.contentOffset.y == -64
@@ -76,8 +78,8 @@ final class LearnContentItemViewController: UIViewController {
     
     init(viewModel: LearnContentItemViewModel, categoryTitle: String, contentTitle: String, tabType: TabType) {
         self.viewModel = viewModel
-        self.categoryTitle = categoryTitle
-        self.contentTitle = contentTitle
+        self.categoryTitle = categoryTitle.capitalized
+        self.contentTitle = contentTitle.capitalized
         self.tabType = tabType
         
         super.init(nibName: nil, bundle: nil)
@@ -99,6 +101,13 @@ final class LearnContentItemViewController: UIViewController {
         super.viewWillAppear(animated)
 
         tableView.reloadData()
+    }
+
+    func reloadData(viewModel: LearnContentItemViewModel, contentTitle: String) {
+        self.viewModel = viewModel
+        self.contentTitle = contentTitle
+        tableView.reloadData()
+        tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
     }
 }
 
@@ -183,12 +192,20 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let cotentItemValue = viewModel.learnContentItem(at: indexPath, tabType: tabType).contentItemValue
-        switch cotentItemValue {
+
+        let item =  viewModel.learnContentItem(at: indexPath, tabType: tabType)
+        switch item.contentItemValue {
         case .audio(_, _, _, let audioURL, let duration, _):
             viewModel.playItem(at: indexPath, audioURL: audioURL, duration: duration)
         case .video: streamVideo()
-        default: return
+        default:
+            if
+                viewModel.sectionCount() == 3 && indexPath.section == 2 ||
+                viewModel.sectionCount() == 2 && viewModel.containsAudioItem() == false && indexPath.section == 1 {
+                    let selectedItem = viewModel.relatedContent(at: indexPath)
+                    print("viewModel.relatedContent(at: indexPath)", selectedItem)
+                    delegate?.didSelectReadMoreContentCollection(with: selectedItem.remoteID, in: self)
+            }
         }
     }
 
@@ -197,11 +214,11 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return section == 0 ? headerView : contentItemTextTableViewCell(
+        return section == 0 ? headerView(contentTitle: contentTitle.uppercased(), categoryTitle: categoryTitle.uppercased()) : contentItemTextTableViewCell(
             tableView: tableView,
             indexPath: IndexPath(row: 0, section: 1),
             topText: NSMutableAttributedString(
-                string: R.string.localized.prepareContentReadMore().capitalized,
+                string: R.string.localized.prepareContentReadMore().uppercased(),
                 font: Font.H5SecondaryHeadline,
                 textColor: .black),
             bottomText: nil
@@ -280,19 +297,23 @@ private extension LearnContentItemViewController {
             string: relatedContent.title,
             letterSpacing: CGFloat(-0.8),
             font: Font.H4Headline,
-            textColor: .black)
+            textColor: .black
+        )
         let bottomText = NSMutableAttributedString(
             string: String(format: "%d MIN TO READ", relatedContent.minutesRequired),
             letterSpacing: CGFloat(2),
             font: Font.H7Tag,
-            textColor: .black30)
-
-        return contentItemTextTableViewCell(
+            textColor: .black30
+        )
+        let cell = contentItemTextTableViewCell(
             tableView: tableView,
             indexPath: indexPath,
             topText: topText,
             bottomText: bottomText
         )
+        cell.selectionStyle = .gray
+
+        return cell
     }
 
     func streamVideo() {
@@ -390,30 +411,5 @@ extension LearnContentItemViewController: AudioPlayerViewSliderDelegate {
 
     func value(at layout: Float, in view: LearnStrategyAudioPlayerView) {
         viewModel.forward(value: layout)
-    }
-}
-
-// MARK: - LearnContentItemViewControllerDelegate
-
-extension LearnContentItemViewController: LearnContentItemViewControllerDelegate {
-
-    func didTapFinish(from view: UIView) {
-        print("didTapFinish")
-    }
-
-    func didChangeTab(to nextIndex: Index, in viewController: TopTabBarController) {
-        print("nextIndex", nextIndex)
-    }
-
-    func didTapShare(in viewController: LearnContentItemViewController) {
-        log("did tap share")
-    }
-
-    func didTapVideo(with video: LearnContentItem, from view: UIView, in viewController: LearnContentItemViewController) {
-        log("did tap video: \(video)")
-    }
-
-    func didTapArticle(with article: LearnContentItem, from view: UIView, in viewController: LearnContentItemViewController) {
-        log("did tap article: \(article)")
     }
 }
