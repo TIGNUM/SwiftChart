@@ -22,7 +22,6 @@ class LearnContentCell: UICollectionViewCell, Dequeueable {
         let label = UILabel()
         label.textColor = .white
         label.font = UIFont.simpleFont(ofSize: 16)
-        label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.1
         label.lineBreakMode = .byTruncatingTail
         label.numberOfLines = 3
@@ -49,9 +48,9 @@ class LearnContentCell: UICollectionViewCell, Dequeueable {
         view.contentMode = .scaleAspectFit
         return view
     }()
-    
+
     func configure(with content: LearnContentCollection, index: Int) {
-        indexLabel.addCharactersSpacing(spacing: 1, text: "# \(String(format: "%02d", index))")
+        indexLabel.addCharactersSpacing(spacing: 1, text: "#\(String(format: "%02d", index))")
         titleLabel.addCharactersSpacing(spacing: 1, text: content.title, uppercased: true)
         let min = String(content.minutesRequired)
         videoDurationLabel.addCharactersSpacing(spacing: 1, text: R.string.localized.learnContentListViewMinutesLabel(min))
@@ -95,7 +94,7 @@ private extension LearnContentCell {
 
         titleLabel.topAnchor == indexLabel.bottomAnchor
         titleLabel.horizontalAnchors == textContainerView.horizontalAnchors
-        titleLabel.bottomAnchor == videoDurationLabel.topAnchor - 6
+        titleLabel.bottomAnchor == videoDurationLabel.topAnchor - 8
         
         videoDurationLabel.horizontalAnchors == textContainerView.horizontalAnchors
         videoDurationLabel.bottomAnchor == textContainerView.bottomAnchor - 30

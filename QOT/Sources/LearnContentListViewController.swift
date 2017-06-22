@@ -28,17 +28,22 @@ final class LearnContentListViewController: UIViewController {
     fileprivate let viewModel: LearnContentCollectionViewModel
     fileprivate var selectedCategoryIndex: Index
     weak var delegate: LearnContentListViewControllerDelegate?
+    fileprivate var isDragging = false
 
     fileprivate lazy var pagingCellSize: CGSize = {
-        return CGSize(width: self.view.frame.width / 3, height: 100)
+        return CGSize(width: self.view.frame.width / 2, height: 40)
+    }()
+
+    fileprivate lazy var performanceLabelSize: CGSize = {
+        return CGSize(width: self.view.frame.width, height: 40)
     }()
 
     fileprivate lazy var screenSize: CGFloat = {
         return UIScreen.main.bounds.height > 568 ? 160 : 125
     }()
 
-    fileprivate lazy var collectionViewLayout: LearnContentLayout = {
-        return LearnContentLayout(bubbleCount: self.viewModel.itemCount, bubbleDiameter: self.screenSize)
+    fileprivate lazy var collectionViewLayout: LearnStrategyListLayout = {
+        return LearnStrategyListLayout()
     }()
 
     fileprivate lazy var collectionView: UICollectionView = {
@@ -50,17 +55,28 @@ final class LearnContentListViewController: UIViewController {
         )
     }()
 
+    fileprivate lazy var headerLabel: UILabel = {
+        let label = UILabel()
+
+        label.text = R.string.localized.learnContentPerformanceTitle()
+        label.textColor = .white
+        label.font = Font.H6NavigationTitle
+        label.textAlignment = .center
+        label.backgroundColor = .clear
+
+        return label
+    }()
+
     fileprivate lazy var pagingCollectionView: UICollectionView = {        
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
 
         return UICollectionView(
             layout: layout,
-            contentInsets: UIEdgeInsets(top: 0, left: self.pagingCellSize.width, bottom: 0, right: self.pagingCellSize.width),
+            contentInsets: UIEdgeInsets(top: 0, left: self.pagingCellSize.width / 2, bottom: 0, right: self.pagingCellSize.width / 2),
             delegate: self,
             dataSource: self,
-            dequeables: LearnPagingCollectionViewCell.self
-        )
+            dequeables: LearnPagingCollectionViewCell.self)
     }()
 
     fileprivate lazy var getBackButton: UIButton = {
@@ -101,7 +117,7 @@ final class LearnContentListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        centerCollectionView()
+//        centerCollectionView()
         pagingCollectionViewScrollToSelectedIndex()
     }
 }
@@ -114,20 +130,46 @@ private extension LearnContentListViewController {
         viewModel.updates.observeNext { [unowned self] (update) in
             switch update {
             case .reload, .update:
-                self.collectionViewLayout.bubbleCount = self.viewModel.itemCount
-                UIView.animate(withDuration: 0.9) {
-                    self.collectionView.reloadData()
-                    self.pagingCollectionView.reloadData()
-                }
-
-                self.pagingCollectionViewScrollToSelectedIndex()
+                self.collectionView.reloadData()
+                self.pagingCollectionViewScrollToSelectedIndex(false)
             }
         }.dispose(in: disposeBag)
     }
 
-    func pagingCollectionViewScrollToSelectedIndex() {
-        let indexPath = IndexPath(item: selectedCategoryIndex, section: 0)
-        pagingCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    func pagingCollectionViewScrollToSelectedIndex(_ reloadAll: Bool = true) {
+        guard selectedCategoryIndex < pagingCollectionView.numberOfItems(inSection: 0) else { return }
+        guard let flowLayout = pagingCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+
+        let originX = (pagingCellSize.width + flowLayout.minimumInteritemSpacing) * CGFloat(selectedCategoryIndex)
+
+        let origin = CGPoint(x: originX, y: 0)
+        let rect = CGRect(x: origin.x, y: origin.y, width: pagingCellSize.width, height: pagingCellSize.height)
+        pagingCollectionView.scrollRectToVisible(rect, animated: true)
+
+        pagingCollectionView.reloadData()
+
+        viewModel.updateContentCollection(at: selectedCategoryIndex)
+
+        if reloadAll {
+            collecitonViewScrollToCategory(false)
+        }
+    }
+
+    func collecitonViewScrollToCategory(_ reloadAll: Bool = true) {
+        guard selectedCategoryIndex < numberOfSections(in: collectionView) else { return }
+        guard let layout = collectionView.collectionViewLayout as? LearnStrategyListLayout else { return }
+
+        if selectedCategoryIndex < layout.sectionOrigins.count {
+            let origin = layout.sectionOrigins.item(at: selectedCategoryIndex)
+            let rect = CGRect(x: origin.x, y: origin.y, width: collectionView.frame.width, height: collectionView.frame.height)
+            collectionView.scrollRectToVisible(rect, animated: true)
+
+            collectionView.reloadData()
+        }
+
+        if reloadAll {
+            pagingCollectionViewScrollToSelectedIndex(false)
+        }
     }
 
     func centerCollectionView() {
@@ -144,7 +186,8 @@ private extension LearnContentListViewController {
     }
 
     func setupHierachy() {
-        view.insertSubview(pagingCollectionView, at: 0)
+        view.insertSubview(headerLabel, at: 0)
+        view.insertSubview(pagingCollectionView, at: 1)
         view.addSubview(collectionView)
         view.addSubview(getBackButton)
     }
@@ -154,13 +197,17 @@ private extension LearnContentListViewController {
     }
 
     func setupLayout() {
-        collectionView.topAnchor == view.topAnchor + pagingCellSize.height
-        collectionView.bottomAnchor == view.bottomAnchor
+        collectionView.topAnchor == view.topAnchor + pagingCellSize.height + performanceLabelSize.height
+        collectionView.bottomAnchor == view.bottomAnchor - 64
         collectionView.horizontalAnchors == view.horizontalAnchors
 
-        pagingCollectionView.topAnchor == view.topAnchor
-        pagingCollectionView.bottomAnchor == view.topAnchor + pagingCellSize.height
+        pagingCollectionView.topAnchor == headerLabel.bottomAnchor
+        pagingCollectionView.bottomAnchor == headerLabel.bottomAnchor + pagingCellSize.height
         pagingCollectionView.horizontalAnchors == view.horizontalAnchors
+
+        headerLabel.topAnchor == view.topAnchor + 20
+        headerLabel.bottomAnchor == view.topAnchor + performanceLabelSize.height
+        headerLabel.horizontalAnchors == view.horizontalAnchors
 
         view.layoutIfNeeded()
     }
@@ -169,9 +216,14 @@ private extension LearnContentListViewController {
 // MARK: UICollectionViewDataSource
 
 extension LearnContentListViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+
+        return collectionView === self.collectionView ? viewModel.categoryCount : 1
+    }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView === self.collectionView {
-            return viewModel.itemCount
+            return viewModel.category(at: section).itemCount
         } else {
             return viewModel.categoryCount
         }
@@ -179,9 +231,8 @@ extension LearnContentListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView === self.collectionView {
-            let content = viewModel.item(at: indexPath.item)
             let cell: LearnContentCell = collectionView.dequeueCell(for: indexPath)
-            cell.configure(with: content, index: indexPath.item)
+            cell.configure(with: viewModel.category(at: indexPath.section).learnContent.item(at: indexPath.item), index: indexPath.item)
 
             return cell
         }
@@ -194,16 +245,16 @@ extension LearnContentListViewController: UICollectionViewDataSource {
     }
 }
 
-// MARK: UICollectionViewDelegate
+// MARK: UICollectionViewDelegateFlowLayout
 
 extension LearnContentListViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView === self.collectionView {
-            delegate?.didSelectContent(at: indexPath.item, in: self)
+//            delegate?.didSelectContent(at: indexPath.item, in: self)
         } else {
             selectedCategoryIndex = indexPath.item
-            viewModel.updateContentCollection(at: indexPath.item)
+            pagingCollectionViewScrollToSelectedIndex()
         }
     }
 
@@ -213,5 +264,80 @@ extension LearnContentListViewController: UICollectionViewDelegateFlowLayout {
         }
 
         return .zero
+    }
+}
+
+// MARK: UIScrollViewDelegate
+
+extension LearnContentListViewController: UIScrollViewDelegate {
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        guard let collectionView = (scrollView as? UICollectionView) else { return }
+        guard collectionView === self.collectionView else { return }
+
+        isDragging = true
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard let collectionView = (scrollView as? UICollectionView) else { return }
+        guard collectionView === self.collectionView else { return }
+        guard isDragging == true else { return }
+
+        let center = CGPoint(x: collectionView.frame.midX, y: collectionView.frame.midY)
+        let convertedCenter = view.convert(center, to: collectionView)
+
+        guard let indexPath = collectionView.indexPathForItem(at: convertedCenter) else { return }
+
+        if selectedCategoryIndex != indexPath.section {
+            selectedCategoryIndex = indexPath.section
+            pagingCollectionViewScrollToSelectedIndex(false)
+        }
+    }
+
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        scrollViewDidScroll(scrollView)
+    }
+
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        isDragging = false
+
+        guard let collectionView = (scrollView as? UICollectionView) else { return }
+        guard collectionView === pagingCollectionView else { return }
+        guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+
+        let spacing = flowLayout.minimumInteritemSpacing
+        let pageWidth: Float = Float(pagingCellSize.width + spacing)
+        let currentOffset: Float = Float(scrollView.contentOffset.x)
+        let targetOffset: Float = Float(targetContentOffset.pointee.x)
+        var newTargetOffset: Float = 0
+
+        if targetOffset > currentOffset {
+            newTargetOffset = ceilf(currentOffset / pageWidth) * pageWidth
+        } else {
+            newTargetOffset = floorf(currentOffset / pageWidth) * pageWidth
+        }
+
+        var index = selectedCategoryIndex
+        if newTargetOffset < 0 {
+            newTargetOffset = 0
+            index = 0
+        } else if newTargetOffset > Float(collectionView.contentSize.width) {
+            newTargetOffset = Float(Float(collectionView.contentSize.width))
+            let items = collectionView.numberOfItems(inSection: 0)
+            index = items > 0 ? items - 1 : index
+        } else {
+            index = Int(newTargetOffset / pageWidth) + 1
+        }
+
+        selectedCategoryIndex = index
+
+        if index == 0 {
+            pagingCollectionViewScrollToSelectedIndex()
+        } else {
+            targetContentOffset.pointee.x = CGFloat(currentOffset)
+            scrollView.setContentOffset(CGPoint(x: CGFloat(newTargetOffset), y: scrollView.contentOffset.y), animated: true)
+            collectionView.reloadData()
+            collecitonViewScrollToCategory(false)
+        }
     }
 }

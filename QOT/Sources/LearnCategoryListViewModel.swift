@@ -39,6 +39,16 @@ final class LearnCategoryListViewModel {
 
     /// Returns the `LearnCategory` to display at `index`.
     func category(at index: Index) -> LearnContentCategory {
-        return _categories.item(at: index)
+        var counter = 0
+        for i in 0..<_categories.count {
+            let cat = _categories.item(at: i)
+            if cat.itemCount > 0 {
+                if counter == index {
+                    return cat
+                }
+                counter += 1
+            }
+        }
+        return _categories.item(at: 0)
     }
 }

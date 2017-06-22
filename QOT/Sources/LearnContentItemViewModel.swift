@@ -114,7 +114,7 @@ extension LearnContentItemViewModel {
     func containsAudioItem() -> Bool {
         return contentCollection.contentItems.items.contains { (item: LearnContentItem) -> Bool in
             switch item.contentItemValue {
-            case .audio(_): return true
+            case .audio: return true
             default: return false
             }
         }
@@ -123,7 +123,7 @@ extension LearnContentItemViewModel {
     func firstAudioItem() -> ContentItemValue {
         return contentCollection.contentItems.items.filter { (item: LearnContentItem) -> Bool in
             switch item.contentItemValue {
-            case .audio(_): return true
+            case .audio: return true
             default:  return false
             }
         }[0].contentItemValue

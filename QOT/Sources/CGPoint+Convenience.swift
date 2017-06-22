@@ -32,4 +32,8 @@ extension CGPoint {
         let yPos = self.y + distance * sin(converted)
         return CGPoint(x: xPos, y: yPos)
     }
+
+    var rounded: CGPoint {
+        return CGPoint(x: x.rounded(), y: y.rounded())
+    }
 }

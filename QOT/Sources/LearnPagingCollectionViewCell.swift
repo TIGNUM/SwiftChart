@@ -24,8 +24,8 @@ final class LearnPagingCollectionViewCell: UICollectionViewCell, Dequeueable {
     }
 
     func configure(title: String, shouldHighlight: Bool) {
-        categoryTitleLabel.text = title        
-        categoryTitleLabel.font = shouldHighlight == true ? Font.H6NavigationTitle : Font.H7Title
+        categoryTitleLabel.text = title.uppercased()
+        categoryTitleLabel.font = Font.H6NavigationTitle
         categoryTitleLabel.textColor = shouldHighlight == true ? .white : Color.whiteMedium
     }
 }

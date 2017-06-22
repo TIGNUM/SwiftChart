@@ -8,7 +8,7 @@
 
 // An example
 "learn.category-list-view.title" = "Categories";
-"learn.content-list-view.minutes-label" = "%@ MIN";
+"learn.content-list-view.minutes-label" = "%@ MIN TO READ";
 
 "Settings.Title" = "Settings";
 "Settings.Title.General" = "General";
@@ -59,6 +59,7 @@
 "Learn.Content.Item.Title.Full" = "Full";
 "Learn.Content.Item.Title.Bullets" = "Bullets";
 "Learn.Content.Item.Title.Audio" = "Audio";
+"Learn.Content.Performance.Title" = "PERFORMANCE";
 
 "Sidebar.SettingsMenu.Settings" = "SETTINGS";
 "Sidebar.SettingsMenu.GeneralButton" = "GENERAL";

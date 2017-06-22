@@ -20,5 +20,5 @@ extension UILabel {
         attrString.addAttribute(NSFontAttributeName, value: font, range: NSRange(location: 0, length: text.characters.count))
         self.attributedText = attrString
     }
-    
 }
+

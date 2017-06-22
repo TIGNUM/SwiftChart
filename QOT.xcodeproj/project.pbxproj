@@ -111,6 +111,7 @@
 		CB369CE21E8D5E3D00522293 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB369CE11E8D5E3D00522293 /* Services.swift */; };
 		CB369CE51E8E46B600522293 /* LearnContentCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB369CE41E8E46B600522293 /* LearnContentCollection.swift */; };
 		CB369CE71E8E470800522293 /* LearnContentCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB369CE61E8E470800522293 /* LearnContentCategory.swift */; };
+		CB38DBDF1EF52D5C000E0F92 /* LearnStrategyListLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB38DBDE1EF52D5C000E0F92 /* LearnStrategyListLayout.swift */; };
 		CB48814B1EF7B1EA00389C88 /* Data+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB48814A1EF7B1EA00389C88 /* Data+Convenience.swift */; };
 		CB48814E1EF7BD6E00389C88 /* RemoteID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB48814D1EF7BD6E00389C88 /* RemoteID.swift */; };
 		CB55A2DF1E9FDF0A00D721CE /* SettingsMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB55A2DE1E9FDF0A00D721CE /* SettingsMenuViewController.swift */; };
@@ -462,6 +463,7 @@
 		CB369CE11E8D5E3D00522293 /* Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		CB369CE41E8E46B600522293 /* LearnContentCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentCollection.swift; sourceTree = "<group>"; };
 		CB369CE61E8E470800522293 /* LearnContentCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentCategory.swift; sourceTree = "<group>"; };
+		CB38DBDE1EF52D5C000E0F92 /* LearnStrategyListLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnStrategyListLayout.swift; sourceTree = "<group>"; };
 		CB48814A1EF7B1EA00389C88 /* Data+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Convenience.swift"; sourceTree = "<group>"; };
 		CB48814D1EF7BD6E00389C88 /* RemoteID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteID.swift; sourceTree = "<group>"; };
 		CB4881511EF7F45D00389C88 /* LearnCategoryListPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnCategoryListPage.swift; sourceTree = "<group>"; };
@@ -1039,6 +1041,7 @@
 				D51B5C471E8D0E7E0084A65B /* LearnContentCell.swift */,
 				CCC1B6AD1E8B9B7F00D1461F /* LearnContentCollectionViewModel.swift */,
 				D51B5C481E8D0E7E0084A65B /* LearnContentLayout.swift */,
+				CB38DBDE1EF52D5C000E0F92 /* LearnStrategyListLayout.swift */,
 				CCC1B6AC1E8B9B7F00D1461F /* LearnContentListViewController.swift */,
 				CC2EE2491EDC88F0006CBFC8 /* LearnPagingCollectionViewCell.swift */,
 				CC7D21DA1EDD5FE800C6B8E0 /* LearnPagingCollectionViewCell.xib */,
@@ -1980,6 +1983,7 @@
 				CC05CB771EDEC6D700D15ABC /* UIBezierPath+Hexagon.swift in Sources */,
 				D52DAF9B1EC1E87D00C63156 /* ActivityChartView.swift in Sources */,
 				CCE373161E8D330100B79352 /* LibraryViewModel.swift in Sources */,
+				CB38DBDF1EF52D5C000E0F92 /* LearnStrategyListLayout.swift in Sources */,
 				D5CB5BBE1EF2D45F0029D224 /* ContainerView.swift in Sources */,
 				CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */,
 				CB8A153A1E7801B90023B2F9 /* CalendarEvent.swift in Sources */,
