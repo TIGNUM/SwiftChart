@@ -68,6 +68,11 @@ final class CalendarEvent: Object {
             return .updated
         }
     }
+
+    func setRemoteID(_ id: Int) {
+        remoteID.value = id
+        dirty = false
+    }
 }
 
 enum UpSyncStatus: Int {

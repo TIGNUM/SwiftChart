@@ -76,7 +76,9 @@ final class UpSyncCalendarEventsOperation: ConcurrentOperation {
     func saveUpSyncResult(result: UpSyncResult) {
         do {
             let realm = try realmProvider.realm()
-            realm.setCalendarEventRemoteIDs(remoteIDs: result.remoteIDs)
+            try realm.write {
+                realm.setCalendarEventRemoteIDs(remoteIDs: result.remoteIDs)
+            }
             fetchDirtyEventsAndContinue(nextSyncToken: result.nextSyncToken)
         } catch let error {
             finish(error: .upSyncSendCalendarEventsFailed(error: error))

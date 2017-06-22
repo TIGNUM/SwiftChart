@@ -19,7 +19,9 @@ extension Realm {
         let predicate = NSPredicate(eventIDs: Array(remoteIDs.keys))
         let events: Results<CalendarEvent> = objects(predicate: predicate)
         for event in events {
-            event.remoteID.value = remoteIDs[event.eventID]
+            if let remoteID = remoteIDs[event.eventID] {
+                event.setRemoteID(remoteID)
+            }
         }
     }
 
