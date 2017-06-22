@@ -315,6 +315,7 @@
 		D5485F241ED57F0600A08D1A /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5485F231ED57F0600A08D1A /* SearchViewModel.swift */; };
 		D5485F261ED583BC00A08D1A /* SearchTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5485F251ED583BC00A08D1A /* SearchTableCell.swift */; };
 		D5485F281ED583E300A08D1A /* SearchCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5485F271ED583E300A08D1A /* SearchCollectionCell.swift */; };
+		D569769C1EF94094000FF777 /* MyStatisticsDataSleepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D569769B1EF94094000FF777 /* MyStatisticsDataSleepView.swift */; };
 		D576F06E1ECB45C900363BFE /* WeeklyChoicesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D576F06C1ECB45C900363BFE /* WeeklyChoicesCell.swift */; };
 		D576F06F1ECB45C900363BFE /* WeeklyChoicesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D576F06D1ECB45C900363BFE /* WeeklyChoicesCell.xib */; };
 		D576F0711ECB49F400363BFE /* WeeklyChoicesLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D576F0701ECB49F400363BFE /* WeeklyChoicesLayout.swift */; };
@@ -667,6 +668,7 @@
 		D5485F231ED57F0600A08D1A /* SearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		D5485F251ED583BC00A08D1A /* SearchTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableCell.swift; sourceTree = "<group>"; };
 		D5485F271ED583E300A08D1A /* SearchCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCollectionCell.swift; sourceTree = "<group>"; };
+		D569769B1EF94094000FF777 /* MyStatisticsDataSleepView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsDataSleepView.swift; sourceTree = "<group>"; };
 		D576F06C1ECB45C900363BFE /* WeeklyChoicesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesCell.swift; sourceTree = "<group>"; };
 		D576F06D1ECB45C900363BFE /* WeeklyChoicesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeeklyChoicesCell.xib; sourceTree = "<group>"; };
 		D576F0701ECB49F400363BFE /* WeeklyChoicesLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesLayout.swift; sourceTree = "<group>"; };
@@ -1170,6 +1172,8 @@
 				852DADCF1EF048E800A10882 /* MyStatisticsDataAverage.swift */,
 				852DADE31EF190D100A10882 /* MyStatisticsDataPeriodAverage.swift */,
 				852DADE91EF2B83100A10882 /* MyStatisticsDataUpcomingTrips.swift */,
+				85DC6F841EF3E32A004F4B4D /* MyStatisticsDataTravelPeriods.swift */,
+				D569769B1EF94094000FF777 /* MyStatisticsDataSleepView.swift */,
 				85DC6F841EF3E32A004F4B4D /* MyStatisticsDataPeriods.swift */,
 				858AF6941EF9544000486605 /* MyStatisticsDataActivity.swift */,
 			);
@@ -1872,6 +1876,7 @@
 				852DADEC1EF2BE3C00A10882 /* UpcomingTravelsView.swift in Sources */,
 				CC33CA2E1EC603BC008E6B33 /* PrepareContentService.swift in Sources */,
 				CB27D59B1ECCB67300F2B76C /* Result.swift in Sources */,
+				D569769C1EF94094000FF777 /* MyStatisticsDataSleepView.swift in Sources */,
 				CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */,
 				CCCC42DF1ED5799D00E73905 /* UIViewController+Transition.swift in Sources */,
 				CB27D59F1ECDE96F00F2B76C /* DownSyncResultParser.swift in Sources */,

@@ -112,6 +112,10 @@ private extension MyStatisticsSectionType {
 
     private func makeData(_ cardType: MyStatisticsCardType) -> MyStatisticsData {
         switch cardType {
+        case .sleepQuantity:
+            return MyStatisticsDataSleepView(chart: MyStatisticsDataSleepView.ChartType.quantitySleep, teamAverage: 0.6, dataAverage: 0.4, userAverage: 0.5, data: [0.1, 0.2, 0.3, 0.4, 0.5])
+        case .sleepQuality:
+                return MyStatisticsDataSleepView(chart: MyStatisticsDataSleepView.ChartType.qualitySleep, teamAverage: 0.4, dataAverage: 0.5, userAverage: 0.6, data: [0.9, 0.4, 0.6, 0.7, 0.8])
         case .activitySittingMovementRatio:
             let data: [EventGraphData] = [EventGraphData(start: 1, end: 0.4),
                                             EventGraphData(start: 1, end: 0.65),

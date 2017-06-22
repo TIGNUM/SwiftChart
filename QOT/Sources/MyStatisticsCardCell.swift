@@ -77,11 +77,9 @@ private extension MyStatisticsCardCell {
         case .peakPerformanceUpcoming: addUpcomingPeakPerformancesView(data: data)
         case .peakPerformanceAverage: addAveragePeakPerformanceView(data: data)
         case .sleepQuality:
-            let data: [CGFloat] = [0.1, 0.2, 0.3, 0.4, 0.5]
-            addSleepChart(data: data, average: 0.3, type: .quality)
+            addSleepChart(data: data)
         case .sleepQuantity:
-            let data: [CGFloat] = [0.6, 0.7, 0.8, 0.9, 1]
-            addSleepChart(data: data, average: 0.5, type: .quantity)
+            addSleepChart(data: data)
 
         case .travelTripsMeeting: addAverageNumberOfMeetingDuringTravel(data: data)
         case .travelTripsNextFourWeeks: addUpcomingTravels(data: data)
@@ -90,10 +88,18 @@ private extension MyStatisticsCardCell {
         }
     }
 
-    func addSleepChart(data: [CGFloat], average: CGFloat, type: SleepChartView.ChartType) {
-        let day = ["M", "T", "W", "T", "F"]
-        let sleepChart = SleepChartView(frame: centerContentView.bounds, data: data, average: average, chartType: type, day: day)
-        centerContentView.addSubview(sleepChart)
+//    func addSleepChart(data: [CGFloat], average: CGFloat, type: MyStatisticsDataSleepView.ChartType) {
+    func addSleepChart(data: MyStatisticsData) {
+        guard let sleepData = data as? MyStatisticsDataSleepView else { return }
+
+        titleLabel.attributedText = Style.postTitle(String(format: "%.1f", sleepData.userAverage), .white).attributedString()
+
+        teamAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", sleepData.teamAverage), .azure).attributedString()
+        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", sleepData.userAverage), .cherryRed).attributedString()
+
+        let view = SleepChartView(frame: centerContentView.bounds, data: sleepData)
+        centerContentView.addSubview(view)
+
     }
 
     func addLevelsChartView(data: [CGFloat]) {
