@@ -21,16 +21,22 @@ class WhatsHotCell: UICollectionViewCell, Dequeueable {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        imageView.layer.cornerRadius = 2
+        imageView.layer.cornerRadius = 10
+
     }
 
-    func configure(with item: LearnWhatsHotContentItem) {
-        identifier.attributedText = Style.headline(".087", .white).attributedString()
-        subTitle.attributedText = Style.paragraph("Q O T   / /   T H O U G H T S", .white60).attributedString()
-        textLabel.attributedText = Style.headline("IMPACT OF EXTRINSIC POLJ MOTIVATION ON INTRINSIC", .white).attributedString()
-        mediaInformation.attributedText = Style.paragraph("V I D E O     /  /    2   M I N", .white60).attributedString()
+    func configure(sortOrder: String, title: String, description: String, imageURL: URL?, duration: String) {
+        identifier.attributedText = Style.headline(sortOrder, .white).attributedString()
+        subTitle.attributedText = Style.paragraph(title.uppercased(), .white60).attributedString()
+        textLabel.attributedText = Style.headline(description.uppercased(), .white).attributedString()
+        mediaInformation.attributedText = Style.paragraph(duration.uppercased(), .white60).attributedString()
         imageView.kf.indicatorType = .activity
-        imageView.kf.setImage(with: URL(string:"https://static.pexels.com/photos/348323/pexels-photo-348323.jpeg")!)
-        iconImageView.isHidden = true
+
+        guard let imageURL = imageURL else {
+            iconImageView.isHidden = true
+            return
+        }
+
+        imageView.kf.setImage(with: imageURL)
     }
 }

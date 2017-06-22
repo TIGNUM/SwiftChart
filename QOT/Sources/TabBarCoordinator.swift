@@ -25,9 +25,10 @@ final class TabBarCoordinator: ParentCoordinator {
     fileprivate lazy var topTabBarControllerLearn: TopTabBarController = {
         let categories = self.services.learnContentService.categories()
         let whatsHotCategories = self.services.learnWhatsHotService.categories()
+        let whatsHotContentCollections = self.services.learnWhatsHotService.contentCollections(for: whatsHotCategories)
         let viewModel = LearnCategoryListViewModel(categories: categories)
         let learnCategoryListVC = LearnCategoryListViewController(viewModel: viewModel)
-        let whatsHotViewModel = WhatsHotViewModel(categories: whatsHotCategories)
+        let whatsHotViewModel = WhatsHotViewModel(categories: whatsHotCategories, contentCollections: whatsHotContentCollections)
         let whatsHotViewController = WhatsHotViewController(viewModel: whatsHotViewModel)
 
         let topBarControllerItem = TopTabBarController.Item(

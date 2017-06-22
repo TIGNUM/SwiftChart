@@ -19,11 +19,25 @@ protocol LearnWhatsHotContentCollection: TrackableEntity {
     var selected: Bool { get }
 
     var learnWhatsHotItems: DataProvider<LearnWhatsHotContentItem> { get }
+
+    var categoryIDs: List<IntObject> { get }
+
+    var sortOrder: Int { get }
+
+    var thumbnailURL: URL? { get}
 }
 
 extension ContentCollection: LearnWhatsHotContentCollection {
 
     var learnWhatsHotItems: DataProvider<LearnWhatsHotContentItem> {
         return DataProvider(items: items, map: { $0 as LearnWhatsHotContentItem })
+    }
+
+    var thumbnailURL: URL? {
+        guard let stringURL = thumbnailURLString else {
+            return nil
+        }
+
+        return URL(string: stringURL)
     }
 }

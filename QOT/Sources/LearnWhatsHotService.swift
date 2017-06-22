@@ -34,6 +34,16 @@ final class LearnWhatsHotService {
         return DataProvider<LearnWhatsHotContentCategory>(items: results, map: { $0 as LearnWhatsHotContentCategory })
     }
 
+    func contentCollections(for categories: DataProvider<LearnWhatsHotContentCategory>) -> [LearnWhatsHotContentCollection] {
+        var whatsHotCollections = [LearnWhatsHotContentCollection]()
+
+        categories.items.forEach { (category: LearnWhatsHotContentCategory) in
+            whatsHotCollections.append(contentsOf: category.learnWhatsHotContent.items)
+        }
+
+        return whatsHotCollections
+    }    
+
     func updatedViewedAt(with itemId: Int) {
         DispatchQueue.global().async {
             do {

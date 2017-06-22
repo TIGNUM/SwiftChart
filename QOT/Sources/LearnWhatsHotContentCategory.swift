@@ -12,6 +12,10 @@ import UIKit
 protocol LearnWhatsHotContentCategory: TrackableEntity {
 
     var learnWhatsHotContent: DataProvider<LearnWhatsHotContentCollection> { get }
+
+    var title: String { get }
+
+    var remoteID: Int { get }
 }
 
 extension ContentCategory: LearnWhatsHotContentCategory {

@@ -63,7 +63,7 @@ extension WhatsHotViewController {
         view.backgroundColor = .clear
         view.addSubview(collectionView)
         collectionView.topAnchor == view.topAnchor
-        collectionView.heightAnchor == view.heightAnchor - Layout.TabBarView.height
+        collectionView.heightAnchor == view.heightAnchor
         collectionView.horizontalAnchors == view.horizontalAnchors
         view.layoutIfNeeded()
     }
@@ -78,11 +78,23 @@ extension WhatsHotViewController: UICollectionViewDataSource, UICollectionViewDe
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = viewModel.item(at: indexPath.item)
+        let index = indexPath.item
         let cell: WhatsHotCell = collectionView.dequeueCell(for: indexPath)
-        cell.configure(with: item)
+        cell.configure(sortOrder:
+            viewModel.sortOrder(at: index),
+            title: viewModel.title(at: index),
+            description: viewModel.description(at: index),
+            imageURL: viewModel.previewImageURL(at: index),
+            duration: "TODO"
+        )
 
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedCollection = viewModel.contentCollection(at: indexPath.item)
+        print("didSelecteItem: ", selectedCollection)
+        print("selectedCollection: ", selectedCollection.learnWhatsHotItems.items)
     }
 }
 
