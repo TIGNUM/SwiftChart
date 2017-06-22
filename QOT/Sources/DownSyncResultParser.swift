@@ -48,7 +48,7 @@ struct DownSyncResultParser<T: JSONDecodable> {
     }
 }
 
-private enum SyncStatus: Int, JSONDecodable {
+enum SyncStatus: Int, JSONDecodable {
     case created = 0
     case updated = 1
     case deleted = 2

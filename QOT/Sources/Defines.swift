@@ -34,6 +34,7 @@ struct LogToggle {
     }
 
     struct NetworkManager {
+        static let requestBody = false
         static let responseBody = false
     }
 }

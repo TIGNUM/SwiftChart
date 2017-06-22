@@ -20,4 +20,12 @@ extension NSPredicate {
     convenience init(remoteIDs: [Int]) {
         self.init(format: "remoteID IN %@", remoteIDs)
     }
+
+    convenience init(dirty: Bool) {
+        self.init(format: "dirty == %@", NSNumber(value: dirty))
+    }
+
+    convenience init(eventIDs: [String]) {
+        self.init(format: "eventID IN %@", eventIDs)
+    }
 }

@@ -57,6 +57,7 @@ final class AppCoordinator: ParentCoordinator {
 
                 if MockToggle.json == false {
                     self.syncManager.syncAll()
+                    self.syncManager.syncCalendarEvents()
                 }
             case .failure:
                 // FIXME: Alert user that the app cannot be run

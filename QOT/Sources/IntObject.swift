@@ -2,20 +2,20 @@
 //  IntObject.swift
 //  QOT
 //
-//  Created by Sam Wyndham on 19.06.17.
+//  Created by Sam Wyndham on 20.06.17.
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
 import Foundation
 import RealmSwift
 
-final class RemoteID: Object {
+final class IntObject: Object {
 
     private(set) dynamic var value: Int = 0
 
-    convenience init(remoteID: Int) {
+    convenience init(int: Int) {
         self.init()
 
-        self.value = remoteID
+        self.value = int
     }
 }

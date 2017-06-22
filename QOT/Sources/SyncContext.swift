@@ -15,6 +15,10 @@ enum SyncError: Error {
     case downSyncFetchIntermediatesFailed(type: SyncType, error: NetworkError)
     case downSyncImportChangesFailed(type: SyncType, error: Error)
     case downSyncSaveSyncDateFailed(type: SyncType, error: Error)
+    case upSyncCalendarEventsStartSyncFailed(error: NetworkError)
+    case upSyncFetchDirtyCalendarEventsFailed(error: Error)
+    case upSyncSendCalendarEventsFailed(error: Error)
+    case upSyncSendCalendarSaveRemoteIDsFailed(error: Error)
 }
 
 class SyncContext {
@@ -27,11 +31,10 @@ class SyncContext {
     }
 
     private(set) var state: State = .default
-    private weak var queue: OperationQueue?
+
     private var completion: Completion
 
     init(queue: OperationQueue, completion: Completion) {
-        self.queue = queue
         self.completion = completion
     }
 
@@ -45,7 +48,6 @@ class SyncContext {
         } else {
             state = .finished
         }
-        queue?.cancelAllOperations()
         completion?(state)
     }
 }

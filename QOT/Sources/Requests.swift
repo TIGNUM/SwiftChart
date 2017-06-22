@@ -42,3 +42,16 @@ struct DownSyncConfirmRequest: URLRequestBuildable {
         self.headers = [.syncToken: syncToken]
     }
 }
+
+struct UpSyncRequest: URLRequestBuildable {
+    let endpoint: Endpoint
+    let httpMethod: HTTPMethod = .put
+    let headers: [HTTPHeader: String]
+    let body: Data?
+
+    init(endpoint: Endpoint, body: Data, syncToken: String) {
+        self.endpoint = endpoint
+        self.body = body
+        self.headers = [.syncToken: syncToken]
+    }
+}

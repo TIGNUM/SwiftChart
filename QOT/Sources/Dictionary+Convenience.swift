@@ -16,4 +16,13 @@ extension Dictionary {
         }
         return result
     }
+
+    func mapKeyValues<T, U>(_ transform: (Key, Value) -> (T, U)) -> [T: U] {
+        var result: [T: U] = [:]
+        for (key, value) in self {
+            let mapped = transform(key, value)
+            result[mapped.0] = mapped.1
+        }
+        return result
+    }
 }

@@ -70,7 +70,7 @@ private func addMockWhatsHotContentCollection(category: ContentCategory, realm: 
 
     for (index, title) in titles.enumerated() {
         let contentCollection = mockWhatsHotContentCollection(sortOrder: index, title: title)
-        contentCollection.categoryIDs.append(RemoteID(remoteID: category.remoteID))
+        contentCollection.categoryIDs.append(IntObject(int: category.remoteID))
         contentCollection.remoteID = Int.randomID
         contentCollections.append(contentCollection)
     }

@@ -96,7 +96,7 @@ private func addMockContentCollection(category: ContentCategory, realm: Realm) {
             section: Database.Section.Sidebar.benefits.value,
             realm: realm
         )
-        sidebarContentCollection.categoryIDs.append(RemoteID(remoteID: category.remoteID))
+        sidebarContentCollection.categoryIDs.append(IntObject(int: category.remoteID))
         contentCollections.append(sidebarContentCollection)
 
     case Database.Section.Sidebar.settings.value: break
@@ -108,7 +108,7 @@ private func addMockContentCollection(category: ContentCategory, realm: Realm) {
             section: Database.Section.Sidebar.about.value,
             realm: realm
         )
-        sidebarContentCollection.categoryIDs.append(RemoteID(remoteID: category.remoteID))
+        sidebarContentCollection.categoryIDs.append(IntObject(int: category.remoteID))
         contentCollections.append(sidebarContentCollection)
     case Database.Section.Sidebar.privacy.value:
         let sidebarContentCollection = mockSidebarCollection(
@@ -117,7 +117,7 @@ private func addMockContentCollection(category: ContentCategory, realm: Realm) {
             section: Database.Section.Sidebar.privacy.value,
             realm: realm
         )
-        sidebarContentCollection.categoryIDs.append(RemoteID(remoteID: category.remoteID))
+        sidebarContentCollection.categoryIDs.append(IntObject(int: category.remoteID))
         contentCollections.append(sidebarContentCollection)
 
     case Database.Section.Sidebar.logout.value: break

@@ -23,7 +23,7 @@ final class ContentCollection: Object, ContentCollectionDataProtocol {
 
     dynamic var modifiedAt: Date = Date()
 
-    let categoryIDs: List<RemoteID> = List()
+    let categoryIDs: List<IntObject> = List()
 
     func setData(_ data: ContentCollectionDataProtocol) {
         sortOrder = data.sortOrder
@@ -95,6 +95,6 @@ extension ContentCollection: DownSyncable {
         relatedContent = data.relatedContentIDs
 
         objectStore.delete(categoryIDs)
-        categoryIDs.append(objectsIn: data.categoryIDs.map({ RemoteID(remoteID: $0) }))
+        categoryIDs.append(objectsIn: data.categoryIDs.map({ IntObject(int: $0) }))
     }
 }

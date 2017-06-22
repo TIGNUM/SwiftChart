@@ -50,6 +50,25 @@ final class SyncManager {
         operationQueue.addOperations(operations, waitUntilFinished: false)
     }
 
+    func syncCalendarEvents() {
+        let context = SyncContext(queue: operationQueue) { (state) in
+            switch state {
+            case .errored(let error):
+                print("SYNC FAILED: \(error)")
+            case .finished:
+                print("SYNC SUCCEEDED")
+            default:
+                break
+            }
+        }
+
+        let operations: [Operation] = [
+            UpSyncCalendarEventsOperation(networkManager: networkManager, realmProvider: realmProvider, syncContext: context, isFinalOperation: true)
+        ]
+
+        operationQueue.addOperations(operations, waitUntilFinished: false)
+    }
+
     func syncAllMockJSONs() {
         let context = SyncContext(queue: operationQueue) { (state) in
             switch state {

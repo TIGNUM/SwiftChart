@@ -97,14 +97,13 @@
 		CB1D5E401EC5E25A00BCDF8D /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D5E351EC5E25A00BCDF8D /* Error.swift */; };
 		CB1D5E411EC5E25A00BCDF8D /* JSONDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D5E361EC5E25A00BCDF8D /* JSONDecodable.swift */; };
 		CB1E4F981E7FE22200287613 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1E4F971E7FE22200287613 /* SettingsViewModel.swift */; };
-		CB1E4FDB1E80225800287613 /* EKParticipantTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1E4FDA1E80225800287613 /* EKParticipantTypeTests.swift */; };
-		CB1E4FDD1E8024E900287613 /* EKEventStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1E4FDC1E8024E900287613 /* EKEventStatusTests.swift */; };
 		CB27D59B1ECCB67300F2B76C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB27D59A1ECCB67300F2B76C /* Result.swift */; };
 		CB27D59D1ECCB6DD00F2B76C /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB27D59C1ECCB6DD00F2B76C /* NetworkError.swift */; };
 		CB27D59F1ECDE96F00F2B76C /* DownSyncResultParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB27D59E1ECDE96F00F2B76C /* DownSyncResultParser.swift */; };
 		CB2880221E7050EB0067890A /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880211E7050EB0067890A /* Coordinator.swift */; };
 		CB2880241E7051710067890A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880231E7051710067890A /* AppCoordinator.swift */; };
 		CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880331E7144E60067890A /* CollectionUpdate.swift */; };
+		CB3437531EFAC8F500D89D4F /* UpSyncResultParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3437521EFAC8F500D89D4F /* UpSyncResultParser.swift */; };
 		CB369CDB1E8D3E5700522293 /* RealmProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB369CDA1E8D3E5700522293 /* RealmProvider.swift */; };
 		CB369CDE1E8D3F5300522293 /* LearnContentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB369CDD1E8D3F5300522293 /* LearnContentService.swift */; };
 		CB369CE01E8D407C00522293 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB369CDF1E8D407C00522293 /* DataProvider.swift */; };
@@ -113,7 +112,6 @@
 		CB369CE71E8E470800522293 /* LearnContentCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB369CE61E8E470800522293 /* LearnContentCategory.swift */; };
 		CB38DBDF1EF52D5C000E0F92 /* LearnStrategyListLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB38DBDE1EF52D5C000E0F92 /* LearnStrategyListLayout.swift */; };
 		CB48814B1EF7B1EA00389C88 /* Data+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB48814A1EF7B1EA00389C88 /* Data+Convenience.swift */; };
-		CB48814E1EF7BD6E00389C88 /* RemoteID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB48814D1EF7BD6E00389C88 /* RemoteID.swift */; };
 		CB55A2DF1E9FDF0A00D721CE /* SettingsMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB55A2DE1E9FDF0A00D721CE /* SettingsMenuViewController.swift */; };
 		CB55A2E11E9FDF1D00D721CE /* SettingsMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB55A2E01E9FDF1D00D721CE /* SettingsMenuViewModel.swift */; };
 		CB6D49541ECC87BF005BC637 /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6D49531ECC87BF005BC637 /* Requests.swift */; };
@@ -130,8 +128,6 @@
 		CB8A15311E76F31B0023B2F9 /* PageTrackable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15301E76F31B0023B2F9 /* PageTrackable.swift */; };
 		CB8A15331E76F56D0023B2F9 /* TrackableEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15321E76F56D0023B2F9 /* TrackableEntity.swift */; };
 		CB8A15351E77DB3B0023B2F9 /* PageEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15341E77DB3B0023B2F9 /* PageEventTests.swift */; };
-		CB8A153A1E7801B90023B2F9 /* CalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15391E7801B90023B2F9 /* CalendarEvent.swift */; };
-		CB8A153C1E78467D0023B2F9 /* CalendarEventParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A153B1E78467D0023B2F9 /* CalendarEventParticipant.swift */; };
 		CB8A154A1E7A7FA20023B2F9 /* CalendarImportManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15491E7A7FA20023B2F9 /* CalendarImportManger.swift */; };
 		CB8A154C1E7A8AD30023B2F9 /* CalendarImportTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A154B1E7A8AD30023B2F9 /* CalendarImportTask.swift */; };
 		CB8C344F1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8C344D1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift */; };
@@ -140,6 +136,12 @@
 		CB8C34541EAF7F190003AB65 /* MyToBeVisionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB8C34531EAF7F190003AB65 /* MyToBeVisionViewController.xib */; };
 		CB8C34561EAF7F200003AB65 /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = CB8C34551EAF7F200003AB65 /* styles.css */; };
 		CB9B07531EF7FE410017F6C3 /* LearnCategoryListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4881511EF7F45D00389C88 /* LearnCategoryListPage.swift */; };
+		CB9B075C1EF911AD0017F6C3 /* IntObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9B075B1EF911AD0017F6C3 /* IntObject.swift */; };
+		CB9B07631EF91B860017F6C3 /* CalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9B07621EF91B860017F6C3 /* CalendarEvent.swift */; };
+		CB9B07651EF929E50017F6C3 /* EKEvent+JSONEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9B07641EF929E50017F6C3 /* EKEvent+JSONEncodable.swift */; };
+		CB9B07671EF953D80017F6C3 /* JSONKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9B07661EF953D80017F6C3 /* JSONKey.swift */; };
+		CB9B076B1EFAA7990017F6C3 /* Realm+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9B076A1EFAA7990017F6C3 /* Realm+Convenience.swift */; };
+		CB9B076D1EFAAB6E0017F6C3 /* UpSyncCalendarEventsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9B076C1EFAAB6E0017F6C3 /* UpSyncCalendarEventsOperation.swift */; };
 		CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA054481E890560009E28D6 /* Dequeueable.swift */; };
 		CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB237EF1E6FFF1200AB5AEF /* AppDelegate.swift */; };
 		CBB237F71E6FFF1200AB5AEF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBB237F61E6FFF1200AB5AEF /* Assets.xcassets */; };
@@ -164,16 +166,7 @@
 		CBD791541E72A4BB0006C590 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791531E72A4BB0006C590 /* MockData.swift */; };
 		CBDB98F21E7AA510003EC73F /* CalendarImportResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB98F11E7AA510003EC73F /* CalendarImportResult.swift */; };
 		CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB98F31E7B000A003EC73F /* NotificationHandler.swift */; };
-		CBDB98F71E7BD192003EC73F /* CalendarImportTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB98F61E7BD192003EC73F /* CalendarImportTaskTests.swift */; };
 		CBDB98F91E7BD26A003EC73F /* Realm+TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB98F81E7BD26A003EC73F /* Realm+TestUtils.swift */; };
-		CBDB98FD1E7BE6AF003EC73F /* CalendarEventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB98FC1E7BE6AF003EC73F /* CalendarEventData.swift */; };
-		CBDB99021E7BE91D003EC73F /* EKEvent+CalendarEventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB99011E7BE91D003EC73F /* EKEvent+CalendarEventData.swift */; };
-		CBDB99081E7BEE05003EC73F /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB99071E7BEE05003EC73F /* EventStore.swift */; };
-		CBDB990A1E7BEECC003EC73F /* MockEventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB99091E7BEECC003EC73F /* MockEventStore.swift */; };
-		CBDB990C1E7BEEDA003EC73F /* MockCalendarEventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB990B1E7BEEDA003EC73F /* MockCalendarEventData.swift */; };
-		CBDB990E1E7BFD05003EC73F /* CalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB990D1E7BFD05003EC73F /* CalendarEventParticipantData.swift */; };
-		CBDB99101E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB990F1E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift */; };
-		CBDB99121E7BFEED003EC73F /* MockCalendarEventParticipantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB99111E7BFEED003EC73F /* MockCalendarEventParticipantData.swift */; };
 		CC05CB761EDEC6D700D15ABC /* CGPoint+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC05CB741EDEC6D700D15ABC /* CGPoint+Convenience.swift */; };
 		CC05CB771EDEC6D700D15ABC /* UIBezierPath+Hexagon.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC05CB751EDEC6D700D15ABC /* UIBezierPath+Hexagon.swift */; };
 		CC05CB791EDEC73C00D15ABC /* UITableView+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC05CB781EDEC73C00D15ABC /* UITableView+Create.swift */; };
@@ -449,14 +442,13 @@
 		CB1D5E351EC5E25A00BCDF8D /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		CB1D5E361EC5E25A00BCDF8D /* JSONDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONDecodable.swift; sourceTree = "<group>"; };
 		CB1E4F971E7FE22200287613 /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
-		CB1E4FDA1E80225800287613 /* EKParticipantTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKParticipantTypeTests.swift; sourceTree = "<group>"; };
-		CB1E4FDC1E8024E900287613 /* EKEventStatusTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKEventStatusTests.swift; sourceTree = "<group>"; };
 		CB27D59A1ECCB67300F2B76C /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		CB27D59C1ECCB6DD00F2B76C /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		CB27D59E1ECDE96F00F2B76C /* DownSyncResultParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownSyncResultParser.swift; sourceTree = "<group>"; };
 		CB2880211E7050EB0067890A /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		CB2880231E7051710067890A /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		CB2880331E7144E60067890A /* CollectionUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionUpdate.swift; sourceTree = "<group>"; };
+		CB3437521EFAC8F500D89D4F /* UpSyncResultParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpSyncResultParser.swift; sourceTree = "<group>"; };
 		CB369CDA1E8D3E5700522293 /* RealmProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmProvider.swift; sourceTree = "<group>"; };
 		CB369CDD1E8D3F5300522293 /* LearnContentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentService.swift; sourceTree = "<group>"; };
 		CB369CDF1E8D407C00522293 /* DataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
@@ -465,7 +457,6 @@
 		CB369CE61E8E470800522293 /* LearnContentCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentCategory.swift; sourceTree = "<group>"; };
 		CB38DBDE1EF52D5C000E0F92 /* LearnStrategyListLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnStrategyListLayout.swift; sourceTree = "<group>"; };
 		CB48814A1EF7B1EA00389C88 /* Data+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Convenience.swift"; sourceTree = "<group>"; };
-		CB48814D1EF7BD6E00389C88 /* RemoteID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteID.swift; sourceTree = "<group>"; };
 		CB4881511EF7F45D00389C88 /* LearnCategoryListPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnCategoryListPage.swift; sourceTree = "<group>"; };
 		CB55A2DE1E9FDF0A00D721CE /* SettingsMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuViewController.swift; sourceTree = "<group>"; };
 		CB55A2E01E9FDF1D00D721CE /* SettingsMenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuViewModel.swift; sourceTree = "<group>"; };
@@ -483,8 +474,6 @@
 		CB8A15301E76F31B0023B2F9 /* PageTrackable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageTrackable.swift; sourceTree = "<group>"; };
 		CB8A15321E76F56D0023B2F9 /* TrackableEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackableEntity.swift; sourceTree = "<group>"; };
 		CB8A15341E77DB3B0023B2F9 /* PageEventTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageEventTests.swift; sourceTree = "<group>"; };
-		CB8A15391E7801B90023B2F9 /* CalendarEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEvent.swift; sourceTree = "<group>"; };
-		CB8A153B1E78467D0023B2F9 /* CalendarEventParticipant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventParticipant.swift; sourceTree = "<group>"; };
 		CB8A15491E7A7FA20023B2F9 /* CalendarImportManger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarImportManger.swift; sourceTree = "<group>"; };
 		CB8A154B1E7A8AD30023B2F9 /* CalendarImportTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarImportTask.swift; sourceTree = "<group>"; };
 		CB8C344D1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -492,6 +481,12 @@
 		CB8C34511EAF61E50003AB65 /* SettingsMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsMenuViewController.xib; sourceTree = "<group>"; };
 		CB8C34531EAF7F190003AB65 /* MyToBeVisionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyToBeVisionViewController.xib; sourceTree = "<group>"; };
 		CB8C34551EAF7F200003AB65 /* styles.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = styles.css; sourceTree = "<group>"; };
+		CB9B075B1EF911AD0017F6C3 /* IntObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntObject.swift; sourceTree = "<group>"; };
+		CB9B07621EF91B860017F6C3 /* CalendarEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEvent.swift; sourceTree = "<group>"; };
+		CB9B07641EF929E50017F6C3 /* EKEvent+JSONEncodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKEvent+JSONEncodable.swift"; sourceTree = "<group>"; };
+		CB9B07661EF953D80017F6C3 /* JSONKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONKey.swift; sourceTree = "<group>"; };
+		CB9B076A1EFAA7990017F6C3 /* Realm+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm+Convenience.swift"; sourceTree = "<group>"; };
+		CB9B076C1EFAAB6E0017F6C3 /* UpSyncCalendarEventsOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpSyncCalendarEventsOperation.swift; sourceTree = "<group>"; };
 		CBA054481E890560009E28D6 /* Dequeueable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dequeueable.swift; sourceTree = "<group>"; };
 		CBB237EC1E6FFF1200AB5AEF /* QOT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QOT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBB237EF1E6FFF1200AB5AEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -521,16 +516,7 @@
 		CBD791531E72A4BB0006C590 /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		CBDB98F11E7AA510003EC73F /* CalendarImportResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarImportResult.swift; sourceTree = "<group>"; };
 		CBDB98F31E7B000A003EC73F /* NotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
-		CBDB98F61E7BD192003EC73F /* CalendarImportTaskTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarImportTaskTests.swift; sourceTree = "<group>"; };
 		CBDB98F81E7BD26A003EC73F /* Realm+TestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm+TestUtils.swift"; sourceTree = "<group>"; };
-		CBDB98FC1E7BE6AF003EC73F /* CalendarEventData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventData.swift; sourceTree = "<group>"; };
-		CBDB99011E7BE91D003EC73F /* EKEvent+CalendarEventData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKEvent+CalendarEventData.swift"; sourceTree = "<group>"; };
-		CBDB99071E7BEE05003EC73F /* EventStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
-		CBDB99091E7BEECC003EC73F /* MockEventStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockEventStore.swift; sourceTree = "<group>"; };
-		CBDB990B1E7BEEDA003EC73F /* MockCalendarEventData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCalendarEventData.swift; sourceTree = "<group>"; };
-		CBDB990D1E7BFD05003EC73F /* CalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventParticipantData.swift; sourceTree = "<group>"; };
-		CBDB990F1E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKParticipant+CalendarEventParticipantData.swift"; sourceTree = "<group>"; };
-		CBDB99111E7BFEED003EC73F /* MockCalendarEventParticipantData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCalendarEventParticipantData.swift; sourceTree = "<group>"; };
 		CC05CB741EDEC6D700D15ABC /* CGPoint+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Convenience.swift"; sourceTree = "<group>"; };
 		CC05CB751EDEC6D700D15ABC /* UIBezierPath+Hexagon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+Hexagon.swift"; sourceTree = "<group>"; };
 		CC05CB781EDEC73C00D15ABC /* UITableView+Create.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Create.swift"; sourceTree = "<group>"; };
@@ -765,14 +751,6 @@
 			name = ContentItem;
 			sourceTree = "<group>";
 		};
-		CB48814C1EF7BD4B00389C88 /* RemoteID */ = {
-			isa = PBXGroup;
-			children = (
-				CB48814D1EF7BD6E00389C88 /* RemoteID.swift */,
-			);
-			name = RemoteID;
-			sourceTree = "<group>";
-		};
 		CB48814F1EF7BF5B00389C88 /* ContentCollection */ = {
 			isa = PBXGroup;
 			children = (
@@ -807,6 +785,23 @@
 				CB810E6F1EF181ED0043E3E5 /* PageTrackAssociatedObject.swift */,
 			);
 			name = PageTrack;
+			sourceTree = "<group>";
+		};
+		CB9B07581EF904410017F6C3 /* CalendarEvent */ = {
+			isa = PBXGroup;
+			children = (
+				CB9B07621EF91B860017F6C3 /* CalendarEvent.swift */,
+				CB9B07641EF929E50017F6C3 /* EKEvent+JSONEncodable.swift */,
+			);
+			name = CalendarEvent;
+			sourceTree = "<group>";
+		};
+		CB9B075D1EF911B40017F6C3 /* IntObject */ = {
+			isa = PBXGroup;
+			children = (
+				CB9B075B1EF911AD0017F6C3 /* IntObject.swift */,
+			);
+			name = IntObject;
 			sourceTree = "<group>";
 		};
 		CBB237E31E6FFF1200AB5AEF = {
@@ -867,12 +862,6 @@
 			children = (
 				85E0A6A01EE6AF130076169D /* MockingProtocol.swift */,
 				85E0A6A21EE6B1610076169D /* Mocks.swift */,
-				CBDB98F61E7BD192003EC73F /* CalendarImportTaskTests.swift */,
-				CB1E4FDC1E8024E900287613 /* EKEventStatusTests.swift */,
-				CB1E4FDA1E80225800287613 /* EKParticipantTypeTests.swift */,
-				CBDB990B1E7BEEDA003EC73F /* MockCalendarEventData.swift */,
-				CBDB99111E7BFEED003EC73F /* MockCalendarEventParticipantData.swift */,
-				CBDB99091E7BEECC003EC73F /* MockEventStore.swift */,
 				CB8A15341E77DB3B0023B2F9 /* PageEventTests.swift */,
 				CBDB98F81E7BD26A003EC73F /* Realm+TestUtils.swift */,
 				85E0A69E1EE6A5E40076169D /* NetworkManagerTests.swift */,
@@ -920,9 +909,9 @@
 				CB369CDF1E8D407C00522293 /* DataProvider.swift */,
 				CB14676D1EF2AB7000A60E31 /* DeviceIdentifier.swift */,
 				CB1D5E351EC5E25A00BCDF8D /* Error.swift */,
-				CBDB99071E7BEE05003EC73F /* EventStore.swift */,
 				CB8A15211E769F1F0023B2F9 /* EventTracker.swift */,
 				CB1D5E361EC5E25A00BCDF8D /* JSONDecodable.swift */,
+				CB9B07661EF953D80017F6C3 /* JSONKey.swift */,
 				CB8A152E1E76F27D0023B2F9 /* PageID.swift */,
 				CB369CDA1E8D3E5700522293 /* RealmProvider.swift */,
 				CBB4DD4F1EE094E50071494A /* Calendar Import */,
@@ -973,6 +962,7 @@
 			children = (
 				CBB4DCDF1ED8178A0071494A /* ConcurrentOperation.swift */,
 				CBB4DD551EE152EC0071494A /* DownSyncOperation.swift */,
+				CB9B076C1EFAAB6E0017F6C3 /* UpSyncCalendarEventsOperation.swift */,
 			);
 			name = Operations;
 			sourceTree = "<group>";
@@ -982,14 +972,16 @@
 			children = (
 				CCF0F4BC1ECDC57000E8D9C1 /* DownSyncable.swift */,
 				CBB4DCDB1ED475F00071494A /* DownSyncChange.swift */,
+				8514A4851EE810750086C70E /* DownSyncComplete.swift */,
 				CBB4DD531EE151100071494A /* DownSyncImporter.swift */,
 				CB27D59E1ECDE96F00F2B76C /* DownSyncResultParser.swift */,
-				8514A4851EE810750086C70E /* DownSyncComplete.swift */,
 				CCF0F4BE1ECDC57000E8D9C1 /* ObjectStore.swift */,
+				CB9B076A1EFAA7990017F6C3 /* Realm+Convenience.swift */,
 				CBB4DD081EDDC6550071494A /* StartSyncResult.swift */,
 				CBB4DCE31ED827840071494A /* SyncContext.swift */,
 				CBB4DCFA1EDC23AE0071494A /* SyncDescription.swift */,
 				CBB4DCFC1EDC27550071494A /* SyncManager.swift */,
+				CB3437521EFAC8F500D89D4F /* UpSyncResultParser.swift */,
 				CBB4DD231EE0874F0071494A /* Operations */,
 			);
 			name = Sync;
@@ -998,16 +990,13 @@
 		CBB4DD251EE087830071494A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CB8A15391E7801B90023B2F9 /* CalendarEvent.swift */,
-				CBDB98FC1E7BE6AF003EC73F /* CalendarEventData.swift */,
-				CB8A153B1E78467D0023B2F9 /* CalendarEventParticipant.swift */,
-				CBDB990D1E7BFD05003EC73F /* CalendarEventParticipantData.swift */,
+				CB9B075D1EF911B40017F6C3 /* IntObject */,
+				CB9B07581EF904410017F6C3 /* CalendarEvent */,
 				CB4881501EF7BF6400389C88 /* ContentCategory */,
 				CB48814F1EF7BF5B00389C88 /* ContentCollection */,
 				CB14676F1EF3E86900A60E31 /* ContentItem */,
 				CB1467631EF2778400A60E31 /* Page */,
 				CB810E6C1EF180CB0043E3E5 /* PageTrack */,
-				CB48814C1EF7BD4B00389C88 /* RemoteID */,
 				CB810E621EF00D9F0043E3E5 /* User */,
 			);
 			name = Models;
@@ -1481,8 +1470,6 @@
 				CB8A15491E7A7FA20023B2F9 /* CalendarImportManger.swift */,
 				CBDB98F11E7AA510003EC73F /* CalendarImportResult.swift */,
 				CB8A154B1E7A8AD30023B2F9 /* CalendarImportTask.swift */,
-				CBDB99011E7BE91D003EC73F /* EKEvent+CalendarEventData.swift */,
-				CBDB990F1E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift */,
 			);
 			name = "Calendar Import";
 			sourceTree = "<group>";
@@ -1840,7 +1827,6 @@
 				CC05CB791EDEC73C00D15ABC /* UITableView+Create.swift in Sources */,
 				D5CD23D81E8BB73A002742C4 /* TabBarController.swift in Sources */,
 				D50CDDC31EC48EAC00D27072 /* LevelsChartView.swift in Sources */,
-				CBDB99021E7BE91D003EC73F /* EKEvent+CalendarEventData.swift in Sources */,
 				CB369CE01E8D407C00522293 /* DataProvider.swift in Sources */,
 				CCF0F4C11ECDC57000E8D9C1 /* ObjectStore.swift in Sources */,
 				8514A48C1EE9663A0086C70E /* PrepareContentMainHeaderTableViewCell.swift in Sources */,
@@ -1849,9 +1835,9 @@
 				CC143A4F1EC47810001FB76E /* MyStatisticsViewModel.swift in Sources */,
 				CC5A8D6F1EA65A6400E5800F /* WeeklyChoicesViewController.swift in Sources */,
 				CBB4DCE01ED8178A0071494A /* ConcurrentOperation.swift in Sources */,
+				CB9B07671EF953D80017F6C3 /* JSONKey.swift in Sources */,
 				CC96630F1EA1B29800B84B1C /* MyWhyView.swift in Sources */,
 				D5EC34B21EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.swift in Sources */,
-				CBDB99081E7BEE05003EC73F /* EventStore.swift in Sources */,
 				852DADEA1EF2B83100A10882 /* MyStatisticsDataUpcomingTrips.swift in Sources */,
 				CC33CA2C1EC602E9008E6B33 /* PrepareContentItem.swift in Sources */,
 				D51B5C4C1E8D133B0084A65B /* LearnContentItemCoordinator.swift in Sources */,
@@ -1859,13 +1845,13 @@
 				CCCC21221E8981CA00133839 /* PrepareContentViewController.swift in Sources */,
 				0BC9F9391E96118C009E8204 /* StatusTableViewCell.swift in Sources */,
 				CBD791541E72A4BB0006C590 /* MockData.swift in Sources */,
+				CB9B07651EF929E50017F6C3 /* EKEvent+JSONEncodable.swift in Sources */,
 				CCCC211D1E8981AD00133839 /* ChatViewModel.swift in Sources */,
 				CC4F22F01EE023F4006C437E /* NSMutableAttributedString+Create.swift in Sources */,
 				0B2CA37B1ED2BC93006B355F /* SensorCollectionViewCell.swift in Sources */,
 				CBB4DCF51EDC10FA0071494A /* SyncRecordService.swift in Sources */,
 				D51B5C4A1E8D0E7E0084A65B /* LearnContentLayout.swift in Sources */,
 				CCE5796B1ECB55BE006E0D45 /* SidebarContentItem.swift in Sources */,
-				CBDB99101E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift in Sources */,
 				852DADE41EF190D100A10882 /* MyStatisticsDataPeriodAverage.swift in Sources */,
 				8514A4921EEAA2AE0086C70E /* UILabel+AttributedText.swift in Sources */,
 				CC0FF8D41EA788350028D64F /* PartnersViewController.swift in Sources */,
@@ -1929,6 +1915,7 @@
 				D50CDDC11EC48CA700D27072 /* AverageGraphView.swift in Sources */,
 				CBB4DD0D1EDEAA610071494A /* URLRequestBuilder.swift in Sources */,
 				CC56D0AD1EEAD68000EB71D9 /* LearnWhatsHotContentCategory.swift in Sources */,
+				CB9B076D1EFAAB6E0017F6C3 /* UpSyncCalendarEventsOperation.swift in Sources */,
 				CC27E0B81EB33722003E5B7F /* SidebarItemViewModel.swift in Sources */,
 				CC1465371EC60D0C00DEC3C5 /* MockData+Prepare.swift in Sources */,
 				D5485F221ED57AE200A08D1A /* SearchViewController.swift in Sources */,
@@ -1944,7 +1931,6 @@
 				CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */,
 				CC56D0AF1EEAD6AB00EB71D9 /* LearnWhatsHotContentItem.swift in Sources */,
 				CC05CB761EDEC6D700D15ABC /* CGPoint+Convenience.swift in Sources */,
-				CBDB990E1E7BFD05003EC73F /* CalendarEventParticipantData.swift in Sources */,
 				CB8A15271E76A1280023B2F9 /* PageEvent.swift in Sources */,
 				CCEA22A41E8AC53E003D0CF4 /* PrepareCheckListViewController.swift in Sources */,
 				CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */,
@@ -1955,7 +1941,6 @@
 				CC27E0BA1EB33760003E5B7F /* SidebarItemCoordinator.swift in Sources */,
 				CC27E0C01EB355BC003E5B7F /* SidebarTableViewCell.swift in Sources */,
 				CCA2DC671EF17BCE00D1DF6A /* LearnContentItemHeaderView.swift in Sources */,
-				CB8A153C1E78467D0023B2F9 /* CalendarEventParticipant.swift in Sources */,
 				CC27E0BC1EB337A2003E5B7F /* SidebarItemViewController.swift in Sources */,
 				CB1D5E3D1EC5E25A00BCDF8D /* ContentItem.swift in Sources */,
 				CB1E4F981E7FE22200287613 /* SettingsViewModel.swift in Sources */,
@@ -1975,7 +1960,6 @@
 				CCC1B6A81E8B9B7300D1461F /* LearnCategoryLayout.swift in Sources */,
 				CCC0C4DB1E82BDEF002A8362 /* TabBarCoordinator.swift in Sources */,
 				CB369CDB1E8D3E5700522293 /* RealmProvider.swift in Sources */,
-				CBDB98FD1E7BE6AF003EC73F /* CalendarEventData.swift in Sources */,
 				852DADD01EF048E800A10882 /* MyStatisticsDataAverage.swift in Sources */,
 				D576F06E1ECB45C900363BFE /* WeeklyChoicesCell.swift in Sources */,
 				CBB4DD141EDEBDA80071494A /* URLRequestBuildable.swift in Sources */,
@@ -1986,7 +1970,6 @@
 				CB38DBDF1EF52D5C000E0F92 /* LearnStrategyListLayout.swift in Sources */,
 				D5CB5BBE1EF2D45F0029D224 /* ContainerView.swift in Sources */,
 				CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */,
-				CB8A153A1E7801B90023B2F9 /* CalendarEvent.swift in Sources */,
 				CB8C344F1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift in Sources */,
 				CBB4DD091EDDC6550071494A /* StartSyncResult.swift in Sources */,
 				CBB4DD071EDDB5860071494A /* SerialRequest.swift in Sources */,
@@ -1999,6 +1982,7 @@
 				CB48814B1EF7B1EA00389C88 /* Data+Convenience.swift in Sources */,
 				CCC1B6AB1E8B9B7300D1461F /* LearnCategoryListViewModel.swift in Sources */,
 				CCE372FD1E8D2AD100B79352 /* MyPrepViewController.swift in Sources */,
+				CB3437531EFAC8F500D89D4F /* UpSyncResultParser.swift in Sources */,
 				CC0FF8D81EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift in Sources */,
 				CC8813EB1EF2EA33000FB85F /* LearnContentItemRecommendedCell.swift in Sources */,
 				CC4F37B11EBB575B004BDC70 /* LearnContentItem.swift in Sources */,
@@ -2023,10 +2007,10 @@
 				CCE3730F1E8D32F800B79352 /* SidebarCoordinator.swift in Sources */,
 				CB1D5E3E1EC5E25A00BCDF8D /* ContentItemIntermediary.swift in Sources */,
 				CC944DB81EE8096100B8423C /* MyStatisticsCardCell.swift in Sources */,
-				CB48814E1EF7BD6E00389C88 /* RemoteID.swift in Sources */,
 				CBB4DCFB1EDC23AE0071494A /* SyncDescription.swift in Sources */,
 				CCC1B6AF1E8B9B7F00D1461F /* LearnContentCollectionViewModel.swift in Sources */,
 				CBB4DCE41ED827840071494A /* SyncContext.swift in Sources */,
+				CB9B076B1EFAA7990017F6C3 /* Realm+Convenience.swift in Sources */,
 				CC5A8D6D1EA65A3E00E5800F /* WeeklyChoicesViewModel.swift in Sources */,
 				CCCC21231E8981CA00133839 /* PrepareContentViewModel.swift in Sources */,
 				CC1E2A5F1EDF1DE100B9EFD3 /* UICollectionView+Create.swift in Sources */,
@@ -2041,6 +2025,7 @@
 				CBB4DD561EE152EC0071494A /* DownSyncOperation.swift in Sources */,
 				CC13E2401EB1D72400C3CE46 /* LatestCollectionCell.swift in Sources */,
 				CC944DB61EE804CD00B8423C /* MyStatisticsTableViewCell.swift in Sources */,
+				CB9B075C1EF911AD0017F6C3 /* IntObject.swift in Sources */,
 				CC0FF8D61EA78C810028D64F /* MyToBeVisionCoordinator.swift in Sources */,
 				0BA3E6421EC1A8280012999E /* DayEventChartView.swift in Sources */,
 				852DADE61EF1A40200A10882 /* SegmentedView.swift in Sources */,
@@ -2100,6 +2085,7 @@
 				D5FA66951EB9FF0B00980EC7 /* EventGraphView.swift in Sources */,
 				CB2880241E7051710067890A /* AppCoordinator.swift in Sources */,
 				CBB4DCFF1EDD6CE50071494A /* NetworkManager.swift in Sources */,
+				CB9B07631EF91B860017F6C3 /* CalendarEvent.swift in Sources */,
 				CB1D5E3A1EC5E25A00BCDF8D /* ContentCategoryData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2110,14 +2096,8 @@
 			files = (
 				8591ED7C1EE6DBAC006FCE89 /* Mocks.swift in Sources */,
 				85E0A69F1EE6A5E40076169D /* NetworkManagerTests.swift in Sources */,
-				CB1E4FDB1E80225800287613 /* EKParticipantTypeTests.swift in Sources */,
 				8591ED7B1EE6DBA6006FCE89 /* MockingProtocol.swift in Sources */,
-				CBDB990A1E7BEECC003EC73F /* MockEventStore.swift in Sources */,
 				CBDB98F91E7BD26A003EC73F /* Realm+TestUtils.swift in Sources */,
-				CBDB99121E7BFEED003EC73F /* MockCalendarEventParticipantData.swift in Sources */,
-				CB1E4FDD1E8024E900287613 /* EKEventStatusTests.swift in Sources */,
-				CBDB98F71E7BD192003EC73F /* CalendarImportTaskTests.swift in Sources */,
-				CBDB990C1E7BEEDA003EC73F /* MockCalendarEventData.swift in Sources */,
 				CB8A15351E77DB3B0023B2F9 /* PageEventTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

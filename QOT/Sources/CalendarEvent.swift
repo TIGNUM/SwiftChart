@@ -9,74 +9,70 @@
 import Foundation
 import RealmSwift
 import EventKit
+import Freddy
 
-private let tempDate = Date()
+final class CalendarEvent: Object {
 
-// FIXME: Unit test once data model is finalized.
-final class CalendarEvent: Object, CalendarEventData {
-    private dynamic var _status: Int = -1
-    private let _latitude: RealmOptional<Double> = RealmOptional(nil)
-    private let _longitude: RealmOptional<Double> = RealmOptional(nil)
-    
-    private(set) dynamic var id: String = ""
-    private(set) dynamic var title: String = ""
-    private(set) dynamic var location: String?
-    private(set) dynamic var notes: String?
-    private(set) dynamic var modified: Date = tempDate
-    private(set) dynamic var timeZoneID: String?
-    private(set) dynamic var isAllDay: Bool = false
-    private(set) dynamic var startDate: Date = tempDate
-    private(set) dynamic var endDate: Date = tempDate
-    
-    dynamic var deleted: Bool = false
-    /// The realm participants of the event.
-    let participants = List<CalendarEventParticipant>()
-    
-    var participantsData: [CalendarEventParticipantData] {
-        return participants.map { $0 }
-    }
-    
-    var status: EKEventStatus {
-        guard let status = EKEventStatus(rawValue: _status) else {
-            preconditionFailure("\(_status) is not a valid status")
-        }
-        return status
-    }
-    
-    var coordinate: CLLocationCoordinate2D? {
-        guard let latitude = _latitude.value, let longitude = _longitude.value else {
-            return nil
-        }
-        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-    }
+    let remoteID = RealmOptional<Int>(nil)
+
+    private(set) dynamic var deleted: Bool = false
+
+    private(set) dynamic var dirty: Bool = true
+
+    private(set) dynamic var createdAt: Date = Date()
+
+    private(set) dynamic var modifiedAt: Date = Date()
+
+    private(set) dynamic var eventID: String = ""
 
     override class func primaryKey() -> String? {
-        return "id"
+        return "eventID"
     }
-    
-    convenience init(event: CalendarEventData) {
+
+    convenience init(event: EKEvent) {
         self.init()
-        
-        self.id = event.id
-        update(with: event)
+
+        let now = Date()
+        self.createdAt = event.creationDate ?? now
+        self.modifiedAt = event.lastModifiedDate ?? now
+        self.eventID = event.eventIdentifier
     }
-    
-    func update(with event: CalendarEventData) {
-        self.title = event.title
-        self.location = event.location
-        self.notes = event.notes
-        self.modified = event.modified
-        self.timeZoneID = event.timeZoneID
-        self.isAllDay = event.isAllDay
-        self.startDate = event.startDate
-        self.endDate = event.endDate
-        self.deleted = event.deleted
-        
-        self._status = event.status.rawValue
-        self._latitude.value = event.coordinate?.latitude
-        self._longitude.value = event.coordinate?.longitude
-        
-        self.participants.removeAll()
-        self.participants.append(objectsIn: event.participantsData.map { CalendarEventParticipant(participant: $0) })
+
+    func update(event: EKEvent) {
+        let now = Date()
+
+        self.modifiedAt = event.lastModifiedDate ?? now
+        self.dirty = true
+        self.deleted = false
     }
+
+    func delete() {
+        self.deleted = true
+    }
+
+    func json(eventStore: EKEventStore) -> JSON? {
+        guard let event = eventStore.event(withIdentifier: eventID) else {
+            return nil
+        }
+        return event.toJSON(id: remoteID.value, createdAt: createdAt, modifiedAt: modifiedAt, syncStatus: syncStatus.rawValue, eventID: eventID)
+    }
+
+    var syncStatus: UpSyncStatus {
+        if !dirty {
+            return .clean
+        } else if deleted {
+            return .deleted
+        } else if remoteID.value == nil {
+            return .created
+        } else {
+            return .updated
+        }
+    }
+}
+
+enum UpSyncStatus: Int {
+    case clean = -1
+    case created = 0
+    case updated = 1
+    case deleted = 2
 }

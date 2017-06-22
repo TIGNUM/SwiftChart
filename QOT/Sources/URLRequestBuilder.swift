@@ -29,7 +29,7 @@ final class URLRequestBuilder {
         let headers = httpHeaders.mapKeys { $0.rawValue }
         let params = buildable.paramaters.mapKeys { $0.rawValue }
 
-        return URLRequest(url: url, method: method, headers: headers, parameters: params)
+        return URLRequest(url: url, method: method, headers: headers, parameters: params, body: buildable.body)
     }
 
     func authentication(username: String, password: String) -> URLRequest {
@@ -45,10 +45,14 @@ final class URLRequestBuilder {
 
 extension URLRequest {
 
-    init(url: URLConvertible, method: HTTPMethod, headers: HTTPHeaders? = nil, parameters: Parameters? = nil, encoding: ParameterEncoding = JSONEncoding.default) {
+    init(url: URLConvertible, method: HTTPMethod, headers: HTTPHeaders? = nil, parameters: Parameters? = nil, encoding: ParameterEncoding = JSONEncoding.default, body: Data? = nil) {
         do {
             let request = try URLRequest(url: url, method: method, headers: headers)
             self = try encoding.encode(request, with: parameters)
+
+            if let body = body {
+                self.httpBody = body
+            }
         } catch let error {
             fatalError("Cannot create URLRequest: \(error)")
         }
