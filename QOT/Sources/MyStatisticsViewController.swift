@@ -82,7 +82,7 @@ extension MyStatisticsViewController: UITableViewDelegate, UITableViewDataSource
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView(frame: CGRect(x: 20, y: 0, width: tableView.bounds.width, height: 44))
+        let view = UIView(frame: CGRect(x: 20, y: 0, width: tableView.bounds.width, height: 20))
         let label = UILabel(frame: view.frame)
         let headline = viewModel.title(in: section).uppercased()
         view.addSubview(label)
@@ -92,7 +92,7 @@ extension MyStatisticsViewController: UITableViewDelegate, UITableViewDataSource
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CGFloat(44)
+        return CGFloat(20)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -67,13 +67,31 @@ extension MyStatisticsTableViewCell: UICollectionViewDelegateFlowLayout, UIColle
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let card = cards[indexPath.item]
         let cardCell: MyStatisticsCardCell = collectionView.dequeueCell(for: indexPath)
-        cardCell.setup(subTitle: card.subtitle, data: card.data, cardType: card.type, delegate: self)
+        cardCell.setup(headerTitle: card.subtitle, data: card.data, cardType: card.type, delegate: self)
+
+        let cellRect = collectionView.convert(cardCell.frame, to: collectionView.superview)
+        cardCell.animateHeader(withCellRect: cellRect, inParentRect: collectionView.frame)
 
         return cardCell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 250, height: 330)
+        return CGSize(width: 250, height: 370)
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+
+extension MyStatisticsTableViewCell: UIScrollViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let visibleCells = collectionView.visibleCells
+
+        visibleCells.forEach { tempCell in
+            guard let cell = tempCell as? MyStatisticsCardCell else { return }
+            let cellRect = collectionView.convert(cell.frame, to: collectionView.superview)
+            cell.animateHeader(withCellRect: cellRect, inParentRect: collectionView.frame)
+        }
     }
 }
 

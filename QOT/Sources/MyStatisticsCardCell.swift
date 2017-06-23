@@ -25,28 +25,70 @@ final class MyStatisticsCardCell: UICollectionViewCell, Dequeueable {
     @IBOutlet fileprivate weak var userAverageLabel: UILabel!
     @IBOutlet fileprivate weak var teamLabel: UILabel!
     @IBOutlet fileprivate weak var userLabel: UILabel!
+    @IBOutlet fileprivate weak var containerView: UIView!
     @IBOutlet fileprivate weak var topContentView: UIView!
     @IBOutlet fileprivate weak var centerContentView: UIView!
     @IBOutlet fileprivate weak var bottomContentView: UIView!
 
+    @IBOutlet weak var headerLabel: UILabel!
+
+    @IBOutlet weak var headerLabelLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var headerLabelTrailingConstraint: NSLayoutConstraint!
     fileprivate weak var delegate: MyStatisticsCardCellDelegate?
+
+    // MARK: - Initialisation
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        backgroundColor = .lightGray
+        backgroundColor = .clear
+        containerView.backgroundColor = .white8
         contentView.backgroundColor = .clear
         topContentView.backgroundColor = .clear
         centerContentView.backgroundColor = .clear
         bottomContentView.backgroundColor = .clear
-        layer.cornerRadius = 10
+        containerView.layer.cornerRadius = 10
     }
 
-    func setup(subTitle: String, data: MyStatisticsData, cardType: MyStatisticsCardType, delegate: MyStatisticsCardCellDelegate?) {
+    func setup(headerTitle: String, data: MyStatisticsData, cardType: MyStatisticsCardType, delegate: MyStatisticsCardCellDelegate?) {
         centerContentView.removeSubViews()
         self.delegate = delegate
-        setupLabels(subTitle: subTitle)
+        setupLabels(headerTitle: headerTitle)
         setupCardView(cardType: cardType, data: data)
+    }
+
+    // MARK: - Public
+
+    func animateHeader(withCellRect cellRect: CGRect, inParentRect parentRect: CGRect) {
+        let rightCorner = CGPoint(x: cellRect.origin.x + cellRect.size.width, y: cellRect.origin.y)
+        let containsLeftCorner = parentRect.contains(cellRect.origin)
+        let containsRightCorner = parentRect.contains(rightCorner)
+
+        var opacity: CGFloat = 1
+        var hidden: CGFloat = 0
+        var hiddenAmount: CGFloat = 0
+
+        if containsLeftCorner && !containsRightCorner {
+            hiddenAmount = cellRect.width - (parentRect.width - cellRect.origin.x)
+        } else if containsRightCorner && !containsLeftCorner {
+            hiddenAmount = cellRect.width - (cellRect.width - cellRect.origin.x)
+        }
+
+        hidden = hiddenAmount / cellRect.width
+        opacity = 1 - hidden
+
+        headerLabel.alpha = opacity
+
+        var leadingConstant: CGFloat = 0
+        var trailingConstant: CGFloat = 0
+
+        leadingConstant = cellRect.width * hidden
+        trailingConstant = -leadingConstant
+
+        headerLabelLeadingConstraint.constant = leadingConstant
+        headerLabelTrailingConstraint.constant = trailingConstant
+
+        headerLabel.setNeedsUpdateConstraints()
     }
 }
 
@@ -54,13 +96,17 @@ final class MyStatisticsCardCell: UICollectionViewCell, Dequeueable {
 
 private extension MyStatisticsCardCell {
 
-    func setupLabels(subTitle: String) {
-        subTitleLabel.attributedText = Style.tag(subTitle, .white40).attributedString()
+    func setupLabels(headerTitle: String) {
         teamAverageLabel.attributedText = Style.tag("AVG", .azure).attributedString()
-        userAverageLabel.attributedText = Style.tag("AVG", .cherryRed).attributedString()
+        userAverageLabel.attributedText = Style.tag("AVG", .cherryRedTwo).attributedString()
         teamLabel.attributedText = Style.tag("TEAM", .azure).attributedString()
-        userLabel.attributedText = Style.tag("DATA", .cherryRed).attributedString()
-        subTitleLabel.sizeToFit()
+        userLabel.attributedText = Style.tag("DATA", .cherryRedTwo).attributedString()
+        subTitleLabel.attributedText = Style.tag("PERSONAL AVG", .white40).attributedString()
+
+        headerLabel.attributedText = Style.headlineSmall(headerTitle.uppercased(), .white).attributedString()
+        headerLabel.numberOfLines = 2
+        headerLabel.lineBreakMode = .byWordWrapping
+        headerLabel.sizeToFit()
     }
 
     func setupCardView(cardType: MyStatisticsCardType, data: MyStatisticsData) {
@@ -164,7 +210,7 @@ private extension MyStatisticsCardCell {
         titleLabel.attributedText = Style.postTitle(String(format: "%.1f", tripsData.userAverage()), .white).attributedString()
 
         teamAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.teamAverage()), .azure).attributedString()
-        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.dataAverage()), .cherryRed).attributedString()
+        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.dataAverage()), .cherryRedTwo).attributedString()
 
         let meetingsDuringTravelView = SegmentedView(frame: centerContentView.bounds, type: .peakPerformanceUpcoming, data: tripsData, delegate: self.delegate, leftButtonType: .lastWeek, rightButtonType: .nextWeek)
         centerContentView.addSubview(meetingsDuringTravelView)
@@ -176,7 +222,7 @@ private extension MyStatisticsCardCell {
         titleLabel.attributedText = Style.postTitle(String(format: "%.1f", performanceData.userAverage()), .white).attributedString()
 
         teamAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", performanceData.teamAverage()), .azure).attributedString()
-        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", performanceData.dataAverage()), .cherryRed).attributedString()
+        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", performanceData.dataAverage()), .cherryRedTwo).attributedString()
 
         let peakPerformanceView = SegmentedView(frame: centerContentView.bounds, type: .peakPerformanceAverage, data: performanceData, delegate: self.delegate, leftButtonType: .week, rightButtonType: .month)
         centerContentView.addSubview(peakPerformanceView)
@@ -190,7 +236,7 @@ private extension MyStatisticsCardCell {
         titleLabel.attributedText = Style.postTitle(String(format: "%.1f", meetingData.userAverage()), .white).attributedString()
 
         teamAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", meetingData.teamAverage()), .azure).attributedString()
-        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", meetingData.dataAverage()), .cherryRed).attributedString()
+        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", meetingData.dataAverage()), .cherryRedTwo).attributedString()
 
         let averageMeetingView = SegmentedView(frame: centerContentView.bounds, type: .meetingAverage, data: meetingData, delegate: self.delegate, leftButtonType: .day, rightButtonType: .week)
         centerContentView.addSubview(averageMeetingView)
@@ -202,7 +248,7 @@ private extension MyStatisticsCardCell {
         titleLabel.attributedText = Style.postTitle(String(format: "%d", meetingData.userAverage), .white).attributedString()
 
         teamAverageValueLabel.attributedText = Style.tag(String(format: "%d", meetingData.teamAverage), .azure).attributedString()
-        userAverageValueLabel.attributedText = Style.tag(String(format: "%d", meetingData.dataAverage), .cherryRed).attributedString()
+        userAverageValueLabel.attributedText = Style.tag(String(format: "%d", meetingData.dataAverage), .cherryRedTwo).attributedString()
 
         let averageMeetingLengthView = AverageMeetingLengthView(frame: centerContentView.bounds, data: meetingData)
         centerContentView.addSubview(averageMeetingLengthView)
@@ -215,7 +261,7 @@ private extension MyStatisticsCardCell {
         titleLabel.attributedText = Style.postTitle(String(format: "%d", meetingData.userAverage), .white).attributedString()
 
         teamAverageValueLabel.attributedText = Style.tag(String(format: "%d", meetingData.teamAverage), .azure).attributedString()
-        userAverageValueLabel.attributedText = Style.tag(String(format: "%d", meetingData.dataAverage), .cherryRed).attributedString()
+        userAverageValueLabel.attributedText = Style.tag(String(format: "%d", meetingData.dataAverage), .cherryRedTwo).attributedString()
 
         let averageMeetingInBetweenLengthView = AverageMeetingBetweenLengthView(frame: centerContentView.bounds, data: meetingData)
         centerContentView.addSubview(averageMeetingInBetweenLengthView)
@@ -229,7 +275,7 @@ private extension MyStatisticsCardCell {
         titleLabel.attributedText = Style.postTitle(String(format: "%.1f", tripsData.userAverage()), .white).attributedString()
 
         teamAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.teamAverage()), .azure).attributedString()
-        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.dataAverage()), .cherryRed).attributedString()
+        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.dataAverage()), .cherryRedTwo).attributedString()
 
         let meetingsDuringTravelView = SegmentedView(frame: centerContentView.bounds, type: .travelTripsMeeting, data: tripsData, delegate: self.delegate, leftButtonType: .weeks, rightButtonType: .year)
         centerContentView.addSubview(meetingsDuringTravelView)
@@ -241,7 +287,7 @@ private extension MyStatisticsCardCell {
         titleLabel.attributedText = Style.postTitle(String(format: "%.1f", tripsData.userAverage), .white).attributedString()
 
         teamAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.teamAverage), .azure).attributedString()
-        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.dataAverage), .cherryRed).attributedString()
+        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.dataAverage), .cherryRedTwo).attributedString()
 
         let upcomingTravelsView = UpcomingTravelsView(frame: centerContentView.bounds, data: tripsData)
         centerContentView.addSubview(upcomingTravelsView)
@@ -253,7 +299,7 @@ private extension MyStatisticsCardCell {
         titleLabel.attributedText = Style.postTitle(String(format: "%.1f", tripsData.userAverage()), .white).attributedString()
 
         teamAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.teamAverage()), .azure).attributedString()
-        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.dataAverage()), .cherryRed).attributedString()
+        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.dataAverage()), .cherryRedTwo).attributedString()
 
         let meetingsDuringTravelView = SegmentedView(frame: centerContentView.bounds, type: .travelTripsTimeZoneChanged, data: tripsData, delegate: self.delegate, leftButtonType: .weeks, rightButtonType: .year)
         centerContentView.addSubview(meetingsDuringTravelView)
@@ -265,7 +311,7 @@ private extension MyStatisticsCardCell {
         titleLabel.attributedText = Style.postTitle(String(format: "%d", meetingData.userAverage), .white).attributedString()
 
         teamAverageValueLabel.attributedText = Style.tag(String(format: "%d", meetingData.teamAverage), .azure).attributedString()
-        userAverageValueLabel.attributedText = Style.tag(String(format: "%d", meetingData.dataAverage), .cherryRed).attributedString()
+        userAverageValueLabel.attributedText = Style.tag(String(format: "%d", meetingData.dataAverage), .cherryRedTwo).attributedString()
 
         let travelMaxTimeZoneChangesView = TravelMaxTimeZoneChangesView(frame: centerContentView.bounds, data: meetingData)
         centerContentView.addSubview(travelMaxTimeZoneChangesView)
@@ -279,7 +325,7 @@ private extension MyStatisticsCardCell {
         titleLabel.attributedText = Style.postTitle(String(format: "%.1f", activityData.userAverage), .white).attributedString()
 
         teamAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", activityData.teamAverage), .azure).attributedString()
-        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", activityData.dataAverage), .cherryRed).attributedString()
+        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", activityData.dataAverage), .cherryRedTwo).attributedString()
 
         let dayLabels = DateFormatter().veryShortStandaloneWeekdaySymbols.mondayFirst(withWeekend: false)
 
@@ -296,7 +342,7 @@ private extension MyStatisticsCardCell {
         titleLabel.attributedText = Style.postTitle(String(format: "%.1f", activityData.userAverage), .white).attributedString()
 
         teamAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", activityData.teamAverage), .azure).attributedString()
-        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", activityData.dataAverage), .cherryRed).attributedString()
+        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", activityData.dataAverage), .cherryRedTwo).attributedString()
 
         let dayLabels = DateFormatter().veryShortStandaloneWeekdaySymbols.mondayFirst(withWeekend: false)
 
