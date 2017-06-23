@@ -1,5 +1,5 @@
 //
-//  WhatsHotLayout.swift
+//  ArticleCollectionLayout.swift
 //  QOT
 //
 //  Created by AamirSuhialMir on 4/13/17.
@@ -9,15 +9,17 @@
 import Foundation
 import UIKit
 
-protocol WhatsHotLayoutDelegate: class {
-    func standardHeightForLayout(_ layout: WhatsHotLayout) -> CGFloat
-    func featuredHeightForLayout(_ layout: WhatsHotLayout) -> CGFloat
+protocol ArticleCollectionLayoutDelegate: class {
+
+    func standardHeightForLayout(_ layout: ArticleCollectionLayout) -> CGFloat
+
+    func featuredHeightForLayout(_ layout: ArticleCollectionLayout) -> CGFloat
 }
 
-final class WhatsHotLayout: UICollectionViewLayout {
+final class ArticleCollectionLayout: UICollectionViewLayout {
 
     private var cache = [UICollectionViewLayoutAttributes]()
-    weak var delegate: WhatsHotLayoutDelegate?
+    weak var delegate: ArticleCollectionLayoutDelegate?
     private var positionOne: CGFloat = 0
     fileprivate var width: CGFloat {
         return collectionView?.bounds.width ?? 0

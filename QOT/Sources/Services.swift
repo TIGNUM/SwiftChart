@@ -13,18 +13,18 @@ import RealmSwift
 final class Services {
 
     let learnContentService: LearnContentService
-    let learnWhatsHotService: LearnWhatsHotService
+    let articleService: ArticleService
     let prepareContentService: PrepareContentService
     let sidebarContentService: SidebarContentService
     weak var learnCategoryUpdateDelegate: LearnCategoryUpdateDelegate?
 
     init(
         learnContentService: LearnContentService,
-        learnWhatsHotService: LearnWhatsHotService,
+        articleService: ArticleService,
         prepareContentService: PrepareContentService,
         sidebarContentService: SidebarContentService) {
             self.learnContentService = learnContentService
-            self.learnWhatsHotService = learnWhatsHotService
+            self.articleService = articleService
             self.prepareContentService = prepareContentService
             self.sidebarContentService = sidebarContentService
     }
@@ -45,12 +45,12 @@ final class Services {
                     let realmProvider = RealmProvider()
                     let mainRealm = try realmProvider.realm()
                     let learnContentService = LearnContentService(mainRealm: mainRealm, realmProvider: realmProvider)
-                    let learnWhatsHotService = LearnWhatsHotService(mainRealm: mainRealm, realmProvider: realmProvider)
+                    let articleService = ArticleService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let prepareContentService = PrepareContentService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let sidebarContentService = SidebarContentService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let services = Services(
                         learnContentService: learnContentService,
-                        learnWhatsHotService: learnWhatsHotService,
+                        articleService: articleService,
                         prepareContentService: prepareContentService,
                         sidebarContentService: sidebarContentService
                     )

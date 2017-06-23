@@ -29,7 +29,7 @@ final class LearnContentService {
 
     func categories() -> DataProvider<LearnContentCategory> {
         let predicate = NSPredicate(section: Database.Section.learnStrategy.rawValue)
-        let results = mainRealm.objects(ContentCategory.self).sorted(byKeyPath: "sortOrder").filter(predicate)
+        let results = mainRealm.objects(ContentCategory.self).sorted(byKeyPath: JsonKey.sortOrder.value).filter(predicate)
         self.token = mainRealm.addNotificationBlock({ (_, _) in
             self.learnCategoryUpdateDelegate?.didUpdateCategoryViewedPercentage()
         })

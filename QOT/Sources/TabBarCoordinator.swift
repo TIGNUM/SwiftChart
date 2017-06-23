@@ -24,15 +24,15 @@ final class TabBarCoordinator: ParentCoordinator {
 
     fileprivate lazy var topTabBarControllerLearn: TopTabBarController = {
         let categories = self.services.learnContentService.categories()
-        let whatsHotCategories = self.services.learnWhatsHotService.categories()
-        let whatsHotContentCollections = self.services.learnWhatsHotService.contentCollections(for: whatsHotCategories)
+        let articleCategories = self.services.articleService.categories()
+        let articlesCollections = self.services.articleService.contentCollections(for: articleCategories)
         let viewModel = LearnCategoryListViewModel(categories: categories)
         let learnCategoryListVC = LearnCategoryListViewController(viewModel: viewModel)
-        let whatsHotViewModel = WhatsHotViewModel(categories: whatsHotCategories, contentCollections: whatsHotContentCollections)
-        let whatsHotViewController = WhatsHotViewController(viewModel: whatsHotViewModel)
+        let articleCollectionViewModel = ArticleCollectionViewModel(categories: articleCategories, contentCollections: articlesCollections)
+        let articleCollectionViewController = ArticleCollectionViewController(viewModel: articleCollectionViewModel)
 
         let topBarControllerItem = TopTabBarController.Item(
-            controllers: [learnCategoryListVC, whatsHotViewController],
+            controllers: [learnCategoryListVC, articleCollectionViewController],
             themes: [.darkClear, .dark],
             titles: [
                 R.string.localized.topTabBarItemTitleLearnStrategies(),
@@ -47,7 +47,7 @@ final class TabBarCoordinator: ParentCoordinator {
             rightIcon: R.image.ic_menu()
         )
 
-        whatsHotViewController.delegate = self
+        articleCollectionViewController.delegate = self
         topTabBarController.delegate = self
         learnCategoryListVC.delegate = self
         self.services.learnContentService.learnCategoryUpdateDelegate = learnCategoryListVC
@@ -239,44 +239,14 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
 
 // MARK: - WhatsHotViewControllerDelegate
 
-extension TabBarCoordinator: WhatsHotViewControllerDelegate {
+extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
 
-    func didTapVideo(at index: Index, with whatsHot: LearnWhatsHotContentItem, from view: UIView, in viewController: WhatsHotViewController) {
+    func didTapVideo(at index: Index, with whatsHot: ArticleContentItem, from view: UIView, in viewController: ArticleCollectionViewController) {
         log("didTapVideo: index: \(index)")
     }
 
-    func didTapBookmark(at index: Index, with whatsHot: LearnWhatsHotContentItem, in view: UIView, in viewController: WhatsHotViewController) {
+    func didTapBookmark(at index: Index, with whatsHot: ArticleContentItem, in view: UIView, in viewController: ArticleCollectionViewController) {
         log("didTapBookmark: index: \(index)")
-    }
-}
-
-// MARK: - WhatsHotNewTemplateViewControllerDelegate
-
-extension TabBarCoordinator: WhatsHotNewTemplateViewControllerDelegate {
-
-    func didTapClose(in viewController: WhatsHotNewTemplateViewController) {
-        viewController.dismiss(animated: true, completion: nil)
-        removeChild(child: self)
-    }
-
-    func didTapLoadMore(from view: UIView, in viewController: WhatsHotNewTemplateViewController) {
-        log("didTapLoadMore")
-    }
-
-    func didTapBookmark(with item: WhatsHotNewTemplateItem, in viewController: WhatsHotNewTemplateViewController) {
-        log("didTapBookmark, item: \(item)")
-    }
-
-    func didTapMedia(with mediaItem: WhatsHotNewTemplateItem, from view: UIView, in viewController: WhatsHotNewTemplateViewController) {
-        log("didTapMedia")
-    }
-
-    func didTapArticle(with articleItem: WhatsHotNewTemplateItem, from view: UIView, in viewController: WhatsHotNewTemplateViewController) {
-        log("didTapArticle")
-    }
-
-    func didTapLoadMoreItem(with loadMoreItem: WhatsHotNewTemplateItem, from view: UIView, in viewController: WhatsHotNewTemplateViewController) {
-        log("didTapLoadMoreItem: with item: \(loadMoreItem)")
     }
 }
 

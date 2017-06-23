@@ -79,6 +79,7 @@ final class ContentCollection: Object, ContentCollectionDataProtocol {
 }
 
 extension ContentCollection: DownSyncable {
+
     static func make(remoteID: Int, createdAt: Date) -> ContentCollection {
         let collection = ContentCollection()
         collection.remoteID = remoteID
