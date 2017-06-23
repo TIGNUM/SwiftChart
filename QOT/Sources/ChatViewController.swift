@@ -12,17 +12,23 @@ import ReactiveKit
 import Bond
 import Anchorage
 
-protocol ChatViewDelegate: class {
-    func didSelectChatNavigation(_ navigation: PrepareContentCollection, in viewController: ChatViewController)
-    func didSelectChatInput(_ input: ChatMessageInput, in viewController: ChatViewController)
-}
-
-class ChatViewController: UIViewController, Dequeueable, CollectionViewCellDelegate {
-    // MARK: - Properties
+class ChatViewController<T: ChatChoice>: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     private let disposeBag = DisposeBag()
-    fileprivate let viewModel: ChatViewModel
-    weak var delegate: ChatViewDelegate?
+    let viewModel: ChatViewModel<T>
+
+    var didSelectChoice: ((T, ChatViewController) -> Void)?
+
+    init(viewModel: ChatViewModel<T>) {
+        self.viewModel = viewModel
+
+        super.init(nibName: nil, bundle: nil)
+        setupView()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     fileprivate lazy var tableView: UITableView = {
         return UITableView(
@@ -36,23 +42,18 @@ class ChatViewController: UIViewController, Dequeueable, CollectionViewCellDeleg
         )
     }()
 
-    // MARK: - Life Cycle
-
-    init(viewModel: ChatViewModel) {
-        self.viewModel = viewModel
-
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        setupView()
-        updateTableView(with: tableView)
+        viewModel.updates.observeNext { [unowned self] (update) in
+            switch update {
+            case .reload:
+                self.tableView.reloadData()
+            case .update:
+                // FIXME: Animate updates
+                self.tableView.reloadData()
+            }
+            }.dispose(in: disposeBag)
     }
 
     private func setupView() {
@@ -64,121 +65,25 @@ class ChatViewController: UIViewController, Dequeueable, CollectionViewCellDeleg
         view.layoutIfNeeded()
     }
 
-    private func updateTableView(with tableView: UITableView) {
-        viewModel.updates.observeNext { [unowned self] (update) in
-            switch update {
-            case .reload:
-                self.tableView.reloadData()
-            case .update:
-                // Please animate updates as needed
-                self.tableView.reloadData()
-            }
-        }.dispose(in: disposeBag)
-    }
-
-    func heightOfCollectionViewBasedOnNumberOfItems(items: ([String])) -> CGFloat {
-        let screenSize: CGRect = UIScreen.main.bounds
-        var total: CGFloat = 0.0
-        for i: Int  in stride(from: 1, to: items.count, by: 1) {
-            total += items.item(at: i).width(withConstrainedHeight: 0, font: UIFont(name: "BentonSans", size: 16)!) + 70
-        }
-        total /= screenSize.width
-        total *= 80
-        return total > 100 ? total : 100
-    }
-
-    func didSelectItemAtIndex(_ index: Index, in cell: CollectionTableViewCell) {
-        guard let indexPath = tableView.indexPath(for: cell) else {
-            return
-        }
-
-        let chatMessage = viewModel.item(at: indexPath.row)
-        switch chatMessage {
-        case .instruction, .header:
-            break
-        case .navigation(let prepareContentCategory):
-            delegate?.didSelectChatNavigation(prepareContentCategory.prepareContentCollection.item(at: index), in: self)
-        case .input(let items):
-            delegate?.didSelectChatInput(items.item(at: index), in: self)
-        }
-    }
-}
-
-// MARK: - UITableViewDelegate, UITableViewDataSource
-
-extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.itemCount
+        return viewModel.itemCount
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let chatMessage = viewModel.item(at: indexPath.row)
-        
-        switch chatMessage {
-        case .instruction(let type, let showIcon):
-            switch type {
-            case .message(let message):
-                let cell: ChatTableViewCell = tableView.dequeueCell(for: indexPath)
-                cell.chatLabel.text = message
-                cell.setup(showIcon: showIcon)
-                return cell
-
-            case .typing:
-                let cell: ChatTableViewCell = tableView.dequeueCell(for: indexPath)
-                cell.chatLabel.text = "..."
-                return cell
-            }
-            
-        case .header(let title, _):
-            let cell: StatusTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.statusLabel.text = title
-            return cell
-
-        case .navigation(let prepareContentCategory):
-            let collectionCell: CollectionTableViewCell = tableView.dequeueCell(for: indexPath)
-            collectionCell.cellTitleLabel.text = "Preparations".uppercased()
-            collectionCell.delegate = self
-
-            var prepareChatObjects: [PrepareChatObject] = []
-
-            for item in prepareContentCategory.prepareContentCollection.items {
-                let obj = PrepareChatObject(title: item.title, localID: item.localID, selected: item.selected, style: .dashed)
-                prepareChatObjects.append(obj)
-            }
-            collectionCell.inputWithDataModel(dataModel: prepareChatObjects)
-
-            return collectionCell
-
-        case .input(let items):
-            let collectionCell: CollectionTableViewCell = tableView.dequeueCell(for: indexPath)
-            collectionCell.cellTitleLabel.text = "Day Protocol".uppercased()
-            collectionCell.delegate = self
-            var prepareChatObjects: [PrepareChatObject] = []
-            for item in items {
-                let obj = PrepareChatObject(title: item.title, localID: item.localID, selected: item.selected, style: .plain)
-                prepareChatObjects.append(obj)
-            }
-            collectionCell.inputWithDataModel(dataModel: prepareChatObjects)
-            return collectionCell
-        }
+        return UITableViewCell()
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let chatMessage = viewModel.item(at: indexPath.row)
-        switch chatMessage {
-        case .instruction, .header:
-            return UITableViewAutomaticDimension
-        case .navigation(let prepareContentCategory):
-            let titles = prepareContentCategory.prepareContentCollection.items.map {$0.title}
-            return heightOfCollectionViewBasedOnNumberOfItems(items: titles)
-        case .input(let items):
-            let titles = items.map {$0.title}
-            return heightOfCollectionViewBasedOnNumberOfItems(items: titles)
+        // FIXME: Select correct item
+        let item = viewModel.item(at: indexPath.row)
+        switch item.type {
+        case .choiceList(let choices, _):
+            if let choice = choices.first {
+                didSelectChoice?(choice, self)
+            }
+        default:
+            break
         }
+
     }
 }

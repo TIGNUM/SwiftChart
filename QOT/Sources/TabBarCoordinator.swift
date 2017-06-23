@@ -90,8 +90,8 @@ final class TabBarCoordinator: ParentCoordinator {
 
     fileprivate lazy var topTabBarControllerPrepare: TopTabBarController = {
         let prepareContentCategory = self.services.prepareContentService.categories().item(at: 0)
-        let cahtViewModel = ChatViewModel(prepareContentCategory: prepareContentCategory)
-        let chatViewController = ChatViewController(viewModel: cahtViewModel)
+        let chatViewModel = ChatViewModel<PrepareChatChoice>(items: mockPrepareChatItems())
+        let chatViewController = ChatViewController(viewModel: chatViewModel)
         let myPrepViewModel = MyPrepViewModel()
         let myPrepViewController = MyPrepViewController(viewModel: myPrepViewModel)
 
@@ -110,7 +110,13 @@ final class TabBarCoordinator: ParentCoordinator {
             rightIcon: R.image.ic_menu()
         )
 
-        chatViewController.delegate = self
+        chatViewController.didSelectChoice = { [weak self] (choice, viewController) in
+            print(choice)
+            // FIXME: Implement next logic
+            // let coordinator = PrepareContentCoordinator(root: viewController, services: services, eventTracker: eventTracker, collection: chatMessageNavigation)
+            // coordinator.startChild(child: coordinator)
+        }
+
         topTabBarController.delegate = self
         
         return topTabBarController
@@ -178,7 +184,7 @@ extension TabBarCoordinator: TabBarControllerDelegate {
         switch viewController {
         case let learnCategory as LearnCategoryListViewController: eventTracker.track(page: learnCategory.pageID, referer: learnCategory.pageID, associatedEntity: nil)
         case let meCategory as MyUniverseViewController: eventTracker.track(page: meCategory.pageID, referer: meCategory.pageID, associatedEntity: nil)
-        case let chat as ChatViewController: eventTracker.track(page: chat.pageID, referer: chat.pageID, associatedEntity: nil)
+        case let chat as ChatViewController<PrepareChatChoice>: eventTracker.track(page: chat.pageID, referer: chat.pageID, associatedEntity: nil)
         default: break
         }
     }
@@ -228,20 +234,6 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
     func didTapQOTPartner(selectedIndex: Index, partners: [Partner], from view: UIView, in viewController: MyUniverseViewController) {
         let coordinator = PartnersCoordinator(root: topTabBarControllerMe, services: services, eventTracker: eventTracker, partners: partners, selectedIndex: selectedIndex)
         startChild(child: coordinator)
-    }
-}
-
-// MARK: - PrepareChatBotDelegate
-
-extension TabBarCoordinator: ChatViewDelegate {
-
-    func didSelectChatInput(_ input: ChatMessageInput, in viewController: ChatViewController) {
-        log("didSelectChatInput: \(input)")
-    }
-    
-    func didSelectChatNavigation(_ chatMessageNavigation: PrepareContentCollection, in viewController: ChatViewController) {
-        let coordinator = PrepareContentCoordinator(root: viewController, services: services, eventTracker: eventTracker, collection: chatMessageNavigation)
-        coordinator.startChild(child: coordinator)
     }
 }
 

@@ -9,95 +9,100 @@
 import Foundation
 import ReactiveKit
 
-final class ChatViewModel {
+protocol ChatChoice {
+    var title: String { get }
+}
 
-    // MARK: - Properties
+struct ChatItem<T: ChatChoice> {
 
-    fileprivate var chatMessages = [ChatMessage]()
-    fileprivate let prepareContentCategory: PrepareContentCategory
-    fileprivate var timer: Timer?
+    enum ChatItemType {
+        case message(String)
+        case choiceList([T], display: ChoiceListDisplay)
+        case header(String, alignment: NSTextAlignment)
+        case footer(String, alignment: NSTextAlignment)
+    }
+
+    let type: ChatItemType
+    let delay: TimeInterval
+
+    init(type: ChatItemType, delay: TimeInterval = 2) {
+        self.type = type
+        self.delay = delay
+    }
+}
+
+enum ChoiceListDisplay {
+    case flow
+    case list
+}
+
+final class ChatViewModel<T: ChatChoice> {
+
+    private let operationQueue = OperationQueue()
+    private var items: [ChatItem<T>] = []
+
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
-    fileprivate lazy var mockChatMessages: [ChatMessage] = {
-        return mockChatMessage(prepareContentCategory: self.prepareContentCategory)
-    }()
+    init(items: [ChatItem<T>] = []) {
+        operationQueue.maxConcurrentOperationCount = 1
+        append(items: items)
+    }
 
-    init(prepareContentCategory: PrepareContentCategory) {
-        self.prepareContentCategory = prepareContentCategory
-        setupTimer()
+    func append(items: [ChatItem<T>]) {
+        for item in items {
+            operationQueue.addOperation { [weak self] in
+                let delay = item.delay * 1000000
+                usleep(useconds_t(delay))
+                DispatchQueue.main.async {
+                    guard let strongSelf = self else {
+                        return
+                    }
+
+                    let indexPath = IndexPath(item: strongSelf.items.count, section: 0)
+                    let update = CollectionUpdate.update(deletions: [], insertions: [indexPath], modifications: [])
+                    strongSelf.items.append(item)
+                    strongSelf.updates.next(update)
+                }
+            }
+        }
     }
 
     var itemCount: Index {
-        return chatMessages.count
+        return items.count
     }
 
-    func item(at row: Index) -> ChatMessage {
-        return chatMessages[row]
-    }
-
-    deinit {
-        timer?.invalidate()
+    func item(at index: Index) -> ChatItem<T> {
+        return items[index]
     }
 }
 
-// MARK: - MOCK
-
-extension ChatViewModel {
-
-    fileprivate func setupTimer() {
-        let timer = Timer.init(fire: Date(timeIntervalSinceNow: 1), interval: 2, repeats: true) { [unowned self] (timer) in
-            if let first = self.mockChatMessages.first {
-                let index = self.chatMessages.count
-                self.mockChatMessages.remove(at: 0)
-                self.chatMessages.append(first)
-                let update = CollectionUpdate.update(deletions: [], insertions: [IndexPath(item: index, section: 0)], modifications: [])
-                self.updates.next(update)
-            } else {
-                self.timer?.invalidate()
-            }
-        }
-
-        RunLoop.main.add(timer, forMode: .defaultRunLoopMode)
-    }
-}
-
-enum ChatMessage {
-    case instruction(type: InstructionType, showIcon: Bool)
-    case header(title: String, alignment: NSTextAlignment)
-    case navigation(PrepareContentCategory)
-    case input([ChatMessageInput])
-
-    enum InstructionType {
-        case message(String)
-        case typing
-    }
-}
-
-protocol ChatMessageInput {
-    var localID: String { get }
-    var title: String { get }
-    var selected: Bool { get }
-}
-
-private struct MockChatMessageInput: ChatMessageInput {
-    let localID = UUID().uuidString
+struct PrepareChatChoice: ChatChoice {
+    let id: Int
     let title: String
-    let selected: Bool
 }
 
-private var chatMessageInputs: [ChatMessageInput] {
-    return [
-        MockChatMessageInput(title: "Normal day", selected: false),
-        MockChatMessageInput(title: "Tough day", selected: false)
-    ]
-}
+func mockPrepareChatItems() -> [ChatItem<PrepareChatChoice>] {
+    let choices1 = [PrepareChatChoice(id: 0, title: "i want to prepare for an event"),
+                    PrepareChatChoice(id: 1, title: "i want to check in with my normal $ tough day protocols"),
+                    PrepareChatChoice(id: 2, title: "i struggle and i am looking for some solutions")]
+    let choices2 = [PrepareChatChoice(id: 3, title: "Meeting"),
+                    PrepareChatChoice(id: 4, title: "Negotiation"),
+                    PrepareChatChoice(id: 5, title: "Presentation"),
+                    PrepareChatChoice(id: 6, title: "Business dinner"),
+                    PrepareChatChoice(id: 7, title: "Pre-vacation"),
+                    PrepareChatChoice(id: 8, title: "High performance travel"),
+                    PrepareChatChoice(id: 9, title: "Work to home transition")]
 
-private func mockChatMessage(prepareContentCategory: PrepareContentCategory) -> [ChatMessage] {
-    let instructionTypeMessage = ChatMessage.InstructionType.message("Hi Louis what are you preparing for?")
-    let instruction = ChatMessage.instruction(type: instructionTypeMessage, showIcon: true)
-    let header = ChatMessage.header(title: "Delivered: 12:34", alignment: .left)
-    let navigations = ChatMessage.navigation(prepareContentCategory)
-    let inputs = ChatMessage.input(chatMessageInputs)
+    var items: [ChatItem<PrepareChatChoice>] = []
+    items.append(ChatItem(type: .message("Hi Louis\nWhat are you preparing for?")))
+    items.append(ChatItem(type: .footer("Delivered at 12:58", alignment: .left)))
+    items.append(ChatItem(type: .choiceList(choices1, display: .list)))
+    items.append(ChatItem(type: .footer("Delivered at 12:58", alignment: .right)))
+    items.append(ChatItem(type: .message("Here what you need")))
+    items.append(ChatItem(type: .footer("Delivered at 12:58", alignment: .left)))
+    items.append(ChatItem(type: .footer("PREPARATIONS", alignment: .left)))
+    items.append(ChatItem(type: .choiceList(choices2, display: .flow)))
+    items.append(ChatItem(type: .message("Your preparation for **Trip to Basel on 21st April 2017** has been saved in the calendar")))
 
-    return [instruction, header, navigations, inputs]
+    return items
 }
