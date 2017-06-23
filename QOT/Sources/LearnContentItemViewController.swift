@@ -386,7 +386,7 @@ private extension LearnContentItemViewController {
             return imageCell
     }
 
-    func invalidContentCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+    func invalidContentCell(tableView: UITableView, indexPath: IndexPath) -> ErrorCell {
         let cell: ErrorCell = tableView.dequeueCell(for: indexPath)
         cell.configure(text: R.string.localized.commonInvalidContent())
 

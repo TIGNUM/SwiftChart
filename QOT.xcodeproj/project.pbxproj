@@ -211,6 +211,11 @@
 		CC34BD561ECF3863007CB365 /* UserCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC34BD551ECF3863007CB365 /* UserCredentials.swift */; };
 		CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB631E83BDA300FF28DF /* Utils.swift */; };
 		CC3DFB661E83C19C00FF28DF /* Defines.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB651E83C19C00FF28DF /* Defines.swift */; };
+		CC41A5411EFD241100B9AE8E /* ArticleItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC41A5401EFD241100B9AE8E /* ArticleItemTableViewCell.swift */; };
+		CC41A5441EFD250700B9AE8E /* ArticleRelatedItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC41A5421EFD250700B9AE8E /* ArticleRelatedItemCell.swift */; };
+		CC41A5451EFD250700B9AE8E /* ArticleRelatedItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC41A5431EFD250700B9AE8E /* ArticleRelatedItemCell.xib */; };
+		CC41A5491EFD59FC00B9AE8E /* ArticleItemHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC41A5481EFD59FC00B9AE8E /* ArticleItemHeaderView.swift */; };
+		CC41A54B1EFD5A1400B9AE8E /* ArticleItemHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC41A54A1EFD5A1400B9AE8E /* ArticleItemHeaderView.xib */; };
 		CC4AB7E51EA8A36B000F43B1 /* TopTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4AB7E41EA8A36B000F43B1 /* TopTabBarController.swift */; };
 		CC4F22F01EE023F4006C437E /* NSMutableAttributedString+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4F22EF1EE023F4006C437E /* NSMutableAttributedString+Create.swift */; };
 		CC4F37B11EBB575B004BDC70 /* LearnContentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4F37B01EBB575B004BDC70 /* LearnContentItem.swift */; };
@@ -319,9 +324,6 @@
 		D5485F261ED583BC00A08D1A /* SearchTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5485F251ED583BC00A08D1A /* SearchTableCell.swift */; };
 		D5485F281ED583E300A08D1A /* SearchCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5485F271ED583E300A08D1A /* SearchCollectionCell.swift */; };
 		D569769C1EF94094000FF777 /* MyStatisticsDataSleepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D569769B1EF94094000FF777 /* MyStatisticsDataSleepView.swift */; };
-		D576F06E1ECB45C900363BFE /* WeeklyChoicesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D576F06C1ECB45C900363BFE /* WeeklyChoicesCell.swift */; };
-		D576F06F1ECB45C900363BFE /* WeeklyChoicesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D576F06D1ECB45C900363BFE /* WeeklyChoicesCell.xib */; };
-		D576F0711ECB49F400363BFE /* WeeklyChoicesLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D576F0701ECB49F400363BFE /* WeeklyChoicesLayout.swift */; };
 		D57ECFB01E924CC2008F401B /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57ECFAF1E924CC2008F401B /* TabBarView.swift */; };
 		D58BD86A1E9D1E7F005676DE /* NSFile+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58BD8691E9D1E7F005676DE /* NSFile+Convenience.swift */; };
 		D58BD86C1E9E846C005676DE /* ScrollViewAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58BD86B1E9E846C005676DE /* ScrollViewAnimation.swift */; };
@@ -566,6 +568,11 @@
 		CC37B1301E93CDD600651C46 /* QOTDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QOTDatabase.framework; path = "Pods/../build/Release-iphoneos/QOTDatabase/QOTDatabase.framework"; sourceTree = "<group>"; };
 		CC3DFB631E83BDA300FF28DF /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		CC3DFB651E83C19C00FF28DF /* Defines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defines.swift; sourceTree = "<group>"; };
+		CC41A5401EFD241100B9AE8E /* ArticleItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleItemTableViewCell.swift; sourceTree = "<group>"; };
+		CC41A5421EFD250700B9AE8E /* ArticleRelatedItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleRelatedItemCell.swift; sourceTree = "<group>"; };
+		CC41A5431EFD250700B9AE8E /* ArticleRelatedItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleRelatedItemCell.xib; sourceTree = "<group>"; };
+		CC41A5481EFD59FC00B9AE8E /* ArticleItemHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleItemHeaderView.swift; sourceTree = "<group>"; };
+		CC41A54A1EFD5A1400B9AE8E /* ArticleItemHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleItemHeaderView.xib; sourceTree = "<group>"; };
 		CC4AB7E41EA8A36B000F43B1 /* TopTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopTabBarController.swift; sourceTree = "<group>"; };
 		CC4F22EF1EE023F4006C437E /* NSMutableAttributedString+Create.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Create.swift"; sourceTree = "<group>"; };
 		CC4F37B01EBB575B004BDC70 /* LearnContentItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentItem.swift; sourceTree = "<group>"; };
@@ -675,9 +682,6 @@
 		D5485F251ED583BC00A08D1A /* SearchTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableCell.swift; sourceTree = "<group>"; };
 		D5485F271ED583E300A08D1A /* SearchCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCollectionCell.swift; sourceTree = "<group>"; };
 		D569769B1EF94094000FF777 /* MyStatisticsDataSleepView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsDataSleepView.swift; sourceTree = "<group>"; };
-		D576F06C1ECB45C900363BFE /* WeeklyChoicesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesCell.swift; sourceTree = "<group>"; };
-		D576F06D1ECB45C900363BFE /* WeeklyChoicesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeeklyChoicesCell.xib; sourceTree = "<group>"; };
-		D576F0701ECB49F400363BFE /* WeeklyChoicesLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesLayout.swift; sourceTree = "<group>"; };
 		D57ECFAF1E924CC2008F401B /* TabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		D58BD8691E9D1E7F005676DE /* NSFile+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFile+Convenience.swift"; sourceTree = "<group>"; };
 		D58BD86B1E9E846C005676DE /* ScrollViewAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewAnimation.swift; sourceTree = "<group>"; };
@@ -1153,7 +1157,6 @@
 				852DADCF1EF048E800A10882 /* MyStatisticsDataAverage.swift */,
 				852DADE31EF190D100A10882 /* MyStatisticsDataPeriodAverage.swift */,
 				852DADE91EF2B83100A10882 /* MyStatisticsDataUpcomingTrips.swift */,
-				85DC6F841EF3E32A004F4B4D /* MyStatisticsDataTravelPeriods.swift */,
 				D569769B1EF94094000FF777 /* MyStatisticsDataSleepView.swift */,
 				85DC6F841EF3E32A004F4B4D /* MyStatisticsDataPeriods.swift */,
 				858AF6941EF9544000486605 /* MyStatisticsDataActivity.swift */,
@@ -1507,8 +1510,13 @@
 				D52350951E9FC1120013DE7E /* ArticleCollectionLayout.swift */,
 				CCE372F41E8CF10C00B79352 /* ArticleCollectionViewController.swift */,
 				CCE372F21E8C1EDF00B79352 /* ArticleCollectionViewModel.swift */,
+				CC41A5401EFD241100B9AE8E /* ArticleItemTableViewCell.swift */,
 				CC7D21A71EFC051B007A062E /* ArticleItemViewController.swift */,
 				CC7D21A51EFBF52A007A062E /* ArticleItemViewModel.swift */,
+				CC41A5421EFD250700B9AE8E /* ArticleRelatedItemCell.swift */,
+				CC41A5431EFD250700B9AE8E /* ArticleRelatedItemCell.xib */,
+				CC41A5481EFD59FC00B9AE8E /* ArticleItemHeaderView.swift */,
+				CC41A54A1EFD5A1400B9AE8E /* ArticleItemHeaderView.xib */,
 			);
 			name = Article;
 			sourceTree = "<group>";
@@ -1660,6 +1668,7 @@
 				CCF0F4C61ECDD0DA00E8D9C1 /* contentCategory.json in Resources */,
 				CC6251DB1EE00DD800C6F546 /* Localized.strings in Resources */,
 				CC944DBA1EE809AA00B8423C /* MyStatisticsCardCell.xib in Resources */,
+				CC41A5451EFD250700B9AE8E /* ArticleRelatedItemCell.xib in Resources */,
 				CB8C34541EAF7F190003AB65 /* MyToBeVisionViewController.xib in Resources */,
 				CC13E2471EB1D72E00C3CE46 /* CategoryPostCell.xib in Resources */,
 				D50D6C251EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib in Resources */,
@@ -1686,6 +1695,7 @@
 				0B2CA37C1ED2BC93006B355F /* SensorCollectionViewCell.xib in Resources */,
 				0BB099CD1EBC6323006B2FB7 /* PartnersViewController.xib in Resources */,
 				D521E3FE1EB8AF38008E24B1 /* SideBarShareAction.xib in Resources */,
+				CC41A54B1EFD5A1400B9AE8E /* ArticleItemHeaderView.xib in Resources */,
 				D519E08F1EAA5403004F96E7 /* PrepareChatTableCell.xib in Resources */,
 				CB14676C1EF2801F00A60E31 /* MockPageDown.json in Resources */,
 				CC7D21DB1EDD5FE800C6B8E0 /* LearnPagingCollectionViewCell.xib in Resources */,
@@ -1879,6 +1889,7 @@
 				CCC1B6A91E8B9B7300D1461F /* LearnCategoryListViewController.swift in Sources */,
 				CB369CE51E8E46B600522293 /* LearnContentCollection.swift in Sources */,
 				852DADEC1EF2BE3C00A10882 /* UpcomingTravelsView.swift in Sources */,
+				CC41A5441EFD250700B9AE8E /* ArticleRelatedItemCell.swift in Sources */,
 				CC33CA2E1EC603BC008E6B33 /* PrepareContentService.swift in Sources */,
 				CB27D59B1ECCB67300F2B76C /* Result.swift in Sources */,
 				D569769C1EF94094000FF777 /* MyStatisticsDataSleepView.swift in Sources */,
@@ -1901,6 +1912,7 @@
 				CC9663181EA1B86100B84B1C /* MyDataSectorLabelsView.swift in Sources */,
 				CCF0F4BF1ECDC57000E8D9C1 /* DownSyncable.swift in Sources */,
 				8514A4861EE810750086C70E /* DownSyncComplete.swift in Sources */,
+				CC41A5411EFD241100B9AE8E /* ArticleItemTableViewCell.swift in Sources */,
 				CC6B3A2F1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift in Sources */,
 				CC34BD561ECF3863007CB365 /* UserCredentials.swift in Sources */,
 				CB810E6E1EF180DC0043E3E5 /* PageTrack.swift in Sources */,
@@ -1924,7 +1936,7 @@
 				CB0A4A5A1ECC4C3E006A2D85 /* AddSensorViewModel.swift in Sources */,
 				D50CDDC11EC48CA700D27072 /* AverageGraphView.swift in Sources */,
 				CBB4DD0D1EDEAA610071494A /* URLRequestBuilder.swift in Sources */,
-				CC56D0AD1EEAD68000EB71D9 /* ArticleContentCategory.swift in Sources */,				
+				CC56D0AD1EEAD68000EB71D9 /* ArticleContentCategory.swift in Sources */,
 				CB9B076D1EFAAB6E0017F6C3 /* UpSyncCalendarEventsOperation.swift in Sources */,
 				CC27E0B81EB33722003E5B7F /* SidebarItemViewModel.swift in Sources */,
 				CC1465371EC60D0C00DEC3C5 /* MockData+Prepare.swift in Sources */,
@@ -2020,7 +2032,6 @@
 				CCC1B6AF1E8B9B7F00D1461F /* LearnContentCollectionViewModel.swift in Sources */,
 				CBB4DCE41ED827840071494A /* SyncContext.swift in Sources */,
 				CB9B076B1EFAA7990017F6C3 /* Realm+Convenience.swift in Sources */,
-				CC5A8D6D1EA65A3E00E5800F /* WeeklyChoicesViewModel.swift in Sources */,
 				CCCC21231E8981CA00133839 /* PrepareContentViewModel.swift in Sources */,
 				CC1E2A5F1EDF1DE100B9EFD3 /* UICollectionView+Create.swift in Sources */,
 				CB810E701EF181ED0043E3E5 /* PageTrackAssociatedObject.swift in Sources */,
@@ -2029,6 +2040,7 @@
 				CC261A921EBA0A7D0088B3D1 /* PrepareEventsCoordinator.swift in Sources */,
 				CC6B3A291E8158B200E7FDFD /* PresentationManager.swift in Sources */,
 				CC7D21B41EFC1348007A062E /* WeeklyChoicesViewModel.swift in Sources */,
+				CC41A5491EFD59FC00B9AE8E /* ArticleItemHeaderView.swift in Sources */,
 				858AF6951EF9544000486605 /* MyStatisticsDataActivity.swift in Sources */,
 				CCAF03241E801B0E00015125 /* SettingsCoordinator.swift in Sources */,
 				D52350961E9FC1120013DE7E /* ArticleCollectionLayout.swift in Sources */,

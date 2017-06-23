@@ -38,7 +38,7 @@ final class ArticleService {
         var articleCollections = [ArticleContentCollection]()
 
         categories.items.forEach { (category: ArticleContentCategory) in
-            articleCollections.append(contentsOf: category.learnWhatsHotContent.items)
+            articleCollections.append(contentsOf: category.articleContent.items)
         }
 
         return articleCollections

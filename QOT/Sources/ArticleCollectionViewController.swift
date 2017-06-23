@@ -11,9 +11,7 @@ import Anchorage
 
 protocol ArticleCollectionViewControllerDelegate: class {
 
-    func didTapVideo(at index: Index, with whatsHot: ArticleContentItem, from view: UIView, in viewController: ArticleCollectionViewController)
-    
-    func didTapBookmark(at index: Index, with whatsHot: ArticleContentItem, in view: UIView, in viewController: ArticleCollectionViewController)
+    func didTapItem(articleHeader: ArticleCollectionHeader, in viewController: ArticleCollectionViewController)
 }
 
 class ArticleCollectionViewController: UIViewController {
@@ -59,10 +57,9 @@ class ArticleCollectionViewController: UIViewController {
 
 // MARK: - Private
 
-extension ArticleCollectionViewController {
+private extension ArticleCollectionViewController {
 
-    func setupLayout() {
-        view.backgroundColor = .clear
+    func setupLayout() {        
         view.addSubview(collectionView)
         collectionView.topAnchor == view.topAnchor
         collectionView.heightAnchor == view.heightAnchor
@@ -94,7 +91,17 @@ extension ArticleCollectionViewController: UICollectionViewDataSource, UICollect
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedCollection = viewModel.contentCollection(at: indexPath.item)
+        let index = indexPath.item
+        let selectedCollection = viewModel.contentCollection(at: index)
+        let articleHeader = ArticleCollectionHeader(
+            articleTitle: viewModel.title(at: index),
+            articleSubTitle: viewModel.description(at: index),
+            articleDate: "TODO",
+            articleDuration: "TODO",
+            articleContentCollection: selectedCollection
+        )
+
+        delegate?.didTapItem(articleHeader: articleHeader, in: self)
         print("didSelecteItem: ", selectedCollection)
         print("selectedCollection: ", selectedCollection.articleItems.items)
     }

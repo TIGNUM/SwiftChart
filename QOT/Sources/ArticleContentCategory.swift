@@ -11,7 +11,7 @@ import UIKit
 /// Encapsulates data to display in a `LearnCategoryListViewController`.
 protocol ArticleContentCategory: TrackableEntity {
 
-    var learnWhatsHotContent: DataProvider<ArticleContentCollection> { get }
+    var articleContent: DataProvider<ArticleContentCollection> { get }
 
     var title: String { get }
 
@@ -20,7 +20,7 @@ protocol ArticleContentCategory: TrackableEntity {
 
 extension ContentCategory: ArticleContentCategory {
 
-    var learnWhatsHotContent: DataProvider<ArticleContentCollection> {
+    var articleContent: DataProvider<ArticleContentCollection> {
         return DataProvider(items: contentCollections, map: { $0 as ArticleContentCollection })
     }
 }

@@ -42,6 +42,7 @@ enum Style {
     case navigationTitle(String, UIColor)
     case tag(String, UIColor)
     case paragraph(String, UIColor)
+    case qoute(String, UIColor)
 
     private var font: UIFont {
         switch self {
@@ -53,14 +54,16 @@ enum Style {
         case .navigationTitle: return Font.H6NavigationTitle
         case .tag: return Font.H7Tag
         case .paragraph: return Font.H7Title
+        case .qoute: return Font.Qoute
         }
     }
 
-    private func stringStyle(color: UIColor, lineSpacing: CGFloat) -> StringStyle {
+    private func stringStyle(color: UIColor, lineSpacing: CGFloat, alignment: NSTextAlignment = .left) -> StringStyle {
         return StringStyle(
             .font(self.font),
             .color(color),
-            .lineSpacing(lineSpacing)
+            .lineSpacing(lineSpacing),
+            .alignment(alignment)
         )
     }
 
@@ -82,6 +85,8 @@ enum Style {
             return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing))
         case .paragraph(let string, let color):
             return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing))
+        case .qoute(let string, let color):
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, alignment: .right))
         }
     }
 }

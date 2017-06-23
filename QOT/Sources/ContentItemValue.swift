@@ -124,7 +124,7 @@ enum ContentItemValue {
         case .h5: return Style.headlineSmall(text, textColor).attributedString()
         case .h6: return Style.navigationTitle(text, textColor).attributedString()
         case .paragraph: return Style.paragraph(text, textColor).attributedString()
-        case .quote: return Style.tag(text, textColor).attributedString()
+        case .quote: return Style.tag(text, .white60).attributedString()
         }
     }
 }

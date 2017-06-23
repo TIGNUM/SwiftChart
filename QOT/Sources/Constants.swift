@@ -245,8 +245,11 @@ struct Font {
     /// BENTON SANS 13 // paragraph, body text
     static let PTextSmall = UIFont.bentonRegularFont(ofSize: 13)
 
-    /// BENTON SAN BOOK 16 // body text
+    /// BENTON SANS BOOK 16 // body text
     static let DPText = UIFont.bentonBookFont(ofSize: 16)
+
+    /// BENTON SANS BOOK 28 // QOUTES
+    static let Qoute = UIFont.bentonRegularFont(ofSize: 28)
 }
 
 struct Color {

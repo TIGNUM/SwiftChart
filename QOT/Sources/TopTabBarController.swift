@@ -72,6 +72,7 @@ class TopTabBarController: UIViewController {
         let containsScrollView: Bool
         let enableTabScrolling: Bool
         let contentView: UIView?
+        let header: ArticleCollectionHeader?
 
         init(
             controllers: [UIViewController],
@@ -81,13 +82,15 @@ class TopTabBarController: UIViewController {
             enableTabScrolling: Bool = true,
             contentView: UIView? = nil,
             learnHeaderTitle: String = "",
-            learnHeaderSubTitle: String = "") {
+            learnHeaderSubTitle: String = "",
+            header: ArticleCollectionHeader? = nil) {
                 self.containsScrollView = containsScrollView
                 self.enableTabScrolling = enableTabScrolling
                 self.contentView = contentView
                 self.titles = titles
                 self.controllers = controllers
                 self.themes = themes
+                self.header = header
         }
 
         func controller(at index: Index) -> UIViewController {

@@ -9,10 +9,15 @@
 import UIKit
 
 struct ArticleCollectionHeader {
+
     let articleTitle: String
+
     let articleSubTitle: String
+
     let articleDate: String
+
     let articleDuration: String
+
     let articleContentCollection: ArticleContentCollection
 }
 
@@ -26,13 +31,11 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
     fileprivate var relatedArticles: DataProvider<ArticleContentCollection>
     fileprivate var fullViewController: ArticleItemViewController
     fileprivate var audioViewController: ArticleItemViewController
-    fileprivate var videoViewController: ArticleItemViewController
-    fileprivate var slideShowViewController: ArticleItemViewController
     fileprivate var viewModel: ArticleItemViewModel
     var children: [Coordinator] = []
 
     init(
-        root: LearnContentListViewController,
+        root: UIViewController,
         services: Services,
         eventTracker: EventTracker,
         articleHeader: ArticleCollectionHeader) {
@@ -45,39 +48,63 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
             self.viewModel = ArticleItemViewModel(items: selectedContent.articleItems,
                                                   articleHeader: articleHeader,
                                                   relatedArticles: relatedArticles)
-            self.fullViewController = ArticleItemViewController()
-            self.audioViewController = ArticleItemViewController()
-            self.videoViewController = ArticleItemViewController()
-            self.slideShowViewController = ArticleItemViewController()
+            self.fullViewController = ArticleItemViewController(viewModel: viewModel)
+            self.audioViewController = ArticleItemViewController(viewModel: viewModel)
     }
 
     func start() {
-//        let topTabBarControllerItem = TopTabBarController.Item(
-//            controllers: [fullViewController, bulletViewController, audioViewController],
-//            themes: [.light, .light, .light],
-//            titles: [
-//                R.string.localized.learnContentItemTitleFull(),
-//                R.string.localized.learnContentItemTitleBullets(),
-//                R.string.localized.learnContentItemTitleAudio()
-//            ]
-//        )
-//        let topTabBarController = TopTabBarController(
-//            item: topTabBarControllerItem,
-//            leftIcon: R.image.ic_minimize(),
-//            learnHeaderTitle: selectedContent.title,
-//            learnHeaderSubTitle: categoryTitle
-//        )
+        let tabs = TabType.allTabs(for: selectedContent.articleItems.items)
+        var controllers = [UIViewController]()
+        var titles = [String]()
+        var themes = [Theme]()
 
-//        fullViewController.serviceDelegate = services
-//        fullViewController.delegate = self
-//        bulletViewController.delegate = self
-//        audioViewController.delegate = self
-//        topTabBarController.modalTransitionStyle = .crossDissolve
-//        topTabBarController.modalPresentationStyle = .custom
-//        topTabBarController.delegate = self
-//        topTabBarController.learnContentItemViewControllerDelegate = self
-//        topTabBarControllerDelegate = topTabBarController
-//        rootVC.present(topTabBarController, animated: true)
+        tabs.forEach { (tabType: TabType) in
+            switch tabType {
+            case .full:
+                controllers.append(fullViewController)
+                titles.append(R.string.localized.learnContentItemTitleFull())
+                themes.append(.dark)
+            case .audio:
+                controllers.append(audioViewController)
+                titles.append(R.string.localized.learnContentItemTitleAudio())
+                themes.append(.dark)
+            case .bullets: return
+            }
+        }
+
+        let topTabBarControllerItem = TopTabBarController.Item(
+            controllers: controllers,
+            themes: themes,
+            titles: titles,
+            header: articleHeader
+        )
+
+        let topTabBarController = TopTabBarController(
+            item: topTabBarControllerItem,
+            leftIcon: R.image.ic_minimize()
+        )
+
+        topTabBarController.modalTransitionStyle = .crossDissolve
+        topTabBarController.modalPresentationStyle = .custom
+        topTabBarController.delegate = self
+        rootVC.present(topTabBarController, animated: true)
         // FIXME: Add page tracking
+    }
+}
+
+// MARK: - TopTabBarDelegate
+
+extension ArticleContentItemCoordinator: TopTabBarDelegate {
+
+    func didSelectItemAtIndex(index: Int, sender: TopTabBarController) {
+        print("didSelectItemAtIndex: at index:", index)
+    }
+
+    func didSelectLeftButton(sender: TopTabBarController) {
+        sender.dismiss(animated: true, completion: nil)
+    }
+
+    func didSelectRightButton(sender: TopTabBarController) {
+        print("didSelectItemAtIndex")
     }
 }

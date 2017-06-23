@@ -237,16 +237,18 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
     }
 }
 
-// MARK: - WhatsHotViewControllerDelegate
+// MARK: - ArticleCollectionViewControllerDelegate
 
 extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
 
-    func didTapVideo(at index: Index, with whatsHot: ArticleContentItem, from view: UIView, in viewController: ArticleCollectionViewController) {
-        log("didTapVideo: index: \(index)")
-    }
-
-    func didTapBookmark(at index: Index, with whatsHot: ArticleContentItem, in view: UIView, in viewController: ArticleCollectionViewController) {
-        log("didTapBookmark: index: \(index)")
+    func didTapItem(articleHeader: ArticleCollectionHeader, in viewController: ArticleCollectionViewController) {
+        let coordinator = ArticleContentItemCoordinator(
+            root: viewController,
+            services: services,
+            eventTracker: eventTracker,
+            articleHeader: articleHeader
+        )
+        coordinator.startChild(child: coordinator)
     }
 }
 

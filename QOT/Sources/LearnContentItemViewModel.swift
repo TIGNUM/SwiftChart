@@ -14,6 +14,21 @@ enum TabType: String {
     case full = "FULL"
     case bullets = "BULLETS"
     case audio = "AUDIO"
+
+    static func allTabs(for items: [ArticleContentItem]) -> [TabType] {
+        var tabs = [TabType]()
+
+        items.forEach { (item: ArticleContentItem) in
+            item.tabs.components(separatedBy: ",").forEach({ (tab: String) in
+                let tabType = TabType(rawValue: tab) ?? .full
+                if tabs.contains(tabType) == false {
+                    tabs.append(tabType)
+                }
+            })
+        }
+
+        return tabs
+    }
 }
 
 final class LearnContentItemViewModel {
