@@ -11,11 +11,9 @@ import Anchorage
 import ReactiveKit
 import Bond
 
-/// The delegate of a `LearnContentListViewController`.
 protocol LearnContentListViewControllerDelegate: class {
-    /// Notifies `self` that the content was selected at `index` in `viewController`.
-    func didSelectContent(at index: Index, in viewController: LearnContentListViewController)
-    /// Notifies `self` that the back button was tapped in `viewController`.
+
+    func didSelectContent(_ content: LearnContentCollection, category: LearnContentCategory, in viewController: LearnContentListViewController)
     func didTapBack(in viewController: LearnContentListViewController)
 }
 
@@ -148,8 +146,6 @@ private extension LearnContentListViewController {
 
         pagingCollectionView.reloadData()
 
-        viewModel.updateContentCollection(at: selectedCategoryIndex)
-
         if reloadAll {
             collecitonViewScrollToCategory(false)
         }
@@ -163,8 +159,6 @@ private extension LearnContentListViewController {
             let origin = layout.sectionOrigins.item(at: selectedCategoryIndex)
             let rect = CGRect(x: origin.x, y: origin.y, width: collectionView.frame.width, height: collectionView.frame.height)
             collectionView.scrollRectToVisible(rect, animated: true)
-
-            collectionView.reloadData()
         }
 
         if reloadAll {
@@ -223,7 +217,7 @@ extension LearnContentListViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView === self.collectionView {
-            return viewModel.category(at: section).itemCount
+            return viewModel.itemCount(categoryIndex: section)
         } else {
             return viewModel.categoryCount
         }
@@ -231,8 +225,9 @@ extension LearnContentListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView === self.collectionView {
+            let item = viewModel.item(at: indexPath)
             let cell: LearnContentCell = collectionView.dequeueCell(for: indexPath)
-            cell.configure(with: viewModel.category(at: indexPath.section).learnContent.item(at: indexPath.item), index: indexPath.item)
+            cell.configure(with: item, index: indexPath.item)
 
             return cell
         }
@@ -251,7 +246,9 @@ extension LearnContentListViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView === self.collectionView {
-//            delegate?.didSelectContent(at: indexPath.item, in: self)
+            let content = viewModel.item(at: indexPath)
+            let category = viewModel.category(at: indexPath.section)
+            delegate?.didSelectContent(content, category: category, in: self)
         } else {
             selectedCategoryIndex = indexPath.item
             pagingCollectionViewScrollToSelectedIndex()

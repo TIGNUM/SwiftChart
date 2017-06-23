@@ -29,7 +29,7 @@ final class LearnContentListCoordinator: ParentCoordinator {
     }
     
     func start() {
-        let viewModel = LearnContentCollectionViewModel(category: category, allCategories: services.learnContentService.categories())
+        let viewModel = LearnContentCollectionViewModel(categories: services.learnContentService.categories(), selectedIndex: selectedCategoryIndex)
         let contentListViewController = LearnContentListViewController(viewModel: viewModel, selectedCategoryIndex: self.selectedCategoryIndex)
         contentListViewController.modalTransitionStyle = .crossDissolve
         contentListViewController.modalPresentationStyle = .custom
@@ -51,15 +51,8 @@ final class LearnContentListCoordinator: ParentCoordinator {
 }
 
 extension LearnContentListCoordinator: LearnContentListViewControllerDelegate {
-
-    func didSelectContent(at index: Index, in viewController: LearnContentListViewController) {
-        let coordinator = LearnContentItemCoordinator(
-            root: viewController,
-            services: services,
-            eventTracker: eventTracker,
-            category: category,
-            at: index
-        )
+    func didSelectContent(_ content: LearnContentCollection, category: LearnContentCategory, in viewController: LearnContentListViewController) {
+        let coordinator = LearnContentItemCoordinator(root: viewController, services: services, eventTracker: eventTracker, content: content, category: category)
         startChild(child: coordinator)
     }
     

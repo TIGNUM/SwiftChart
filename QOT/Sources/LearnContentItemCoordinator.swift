@@ -14,7 +14,6 @@ final class LearnContentItemCoordinator: ParentCoordinator {
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
     fileprivate let category: LearnContentCategory
-    fileprivate let selectedCategoryIndex: Index
     fileprivate var categoryTitle: String
     fileprivate var selectedContent: LearnContentCollection
     fileprivate var relatedContents: DataProvider<LearnContentCollection>
@@ -26,14 +25,13 @@ final class LearnContentItemCoordinator: ParentCoordinator {
     weak var topTabBarControllerDelegate: TopTabBarControllerDelegate?
     var children: [Coordinator] = []
     
-    init(root: LearnContentListViewController, services: Services, eventTracker: EventTracker, category: LearnContentCategory, at index: Index) {
+    init(root: LearnContentListViewController, services: Services, eventTracker: EventTracker, content: LearnContentCollection, category: LearnContentCategory) {
         self.rootVC = root
         self.services = services
         self.eventTracker = eventTracker
         self.category = category
-        self.selectedCategoryIndex = index
         self.categoryTitle = category.title.capitalized
-        self.selectedContent = category.learnContent.item(at: selectedCategoryIndex)
+        self.selectedContent = content
         self.relatedContents = services.learnContentService.contentCollections(for: selectedContent.relatedContentIDs)
         self.recommentedContentCollections = services.learnContentService.relatedContentCollections(for: category.remoteID)
         self.viewModel = LearnContentItemViewModel(
@@ -90,18 +88,6 @@ final class LearnContentItemCoordinator: ParentCoordinator {
         rootVC.present(topTabBarController, animated: true)
         // FIXME: Add page tracking
     }    
-}
-
-extension LearnContentItemCoordinator: LearnContentListViewControllerDelegate {
-
-    func didSelectContent(at index: Index, in viewController: LearnContentListViewController) {
-        log("Did select content at index: \(index)")
-    }
-    
-    func didTapBack(in: LearnContentListViewController) {
-        rootVC.dismiss(animated: true)
-        removeChild(child: self)
-    }
 }
 
 extension LearnContentItemCoordinator: TopTabBarDelegate {

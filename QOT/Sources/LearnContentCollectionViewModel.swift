@@ -15,54 +15,27 @@ final class LearnContentCollectionViewModel {
 
     // MARK: - Properties
 
-    private(set) public var contentCollection: DataProvider<LearnContentCollection>
     private let categories: DataProvider<LearnContentCategory>
-    let title: String
+
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
-    /// The number of items of content to display.
-    var itemCount: Int {
-        return contentCollection.items.count
+    init(categories: DataProvider<LearnContentCategory>, selectedIndex: Index) {
+        self.categories = categories
     }
 
     var categoryCount: Int {
-        var counter = 0
-        for i in 0..<categories.count {
-            let cat = categories.item(at: i)
-            counter += cat.itemCount > 0 ? 1 : 0
-        }
-        return counter
+        return categories.count
     }
 
     func category(at index: Index) -> LearnContentCategory {
-        var counter = 0
-        for i in 0..<categories.count {
-            let cat = categories.item(at: i)
-            if cat.itemCount > 0 {
-                if counter == index {
-                    return cat
-                }
-                counter += 1
-            }
-        }
-        return categories.item(at: 0)
+        return  categories.item(at: index)
     }
 
-    func updateContentCollection(at index: Index) {
-        self.contentCollection = category(at: index).learnContent
-        //        updates.next(.reload)
+    func itemCount(categoryIndex: Index) -> Int {
+        return category(at: categoryIndex).learnContent.count
     }
 
-    // MARK: - Init
-
-    init(category: LearnContentCategory, allCategories: DataProvider<LearnContentCategory>) {
-        self.title = category.title
-        self.contentCollection = category.learnContent
-        self.categories = allCategories
-    }
-
-    /// Returns the `LearnContent` to display at `index`.
-    func item(at index: Index) -> LearnContentCollection {
-        return contentCollection.item(at: index)
+    func item(at indexPath: IndexPath) -> LearnContentCollection {
+        return category(at: indexPath.section).learnContent.item(at: indexPath.row)
     }
 }
