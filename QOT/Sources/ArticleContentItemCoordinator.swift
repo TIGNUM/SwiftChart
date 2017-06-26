@@ -85,11 +85,28 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
             leftIcon: R.image.ic_minimize()
         )
 
+        fullViewController.delegate = self
+        audioViewController.delegate = self
         topTabBarController.modalTransitionStyle = .crossDissolve
         topTabBarController.modalPresentationStyle = .custom
         topTabBarController.delegate = self
         rootVC.present(topTabBarController, animated: true)
         // FIXME: Add page tracking
+    }
+}
+
+// MARK: - ArticleItemViewControllerDelegate
+
+extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
+
+    func didSelectRelatedArticle(selectedArticle: ContentCollection, form viewController: ArticleItemViewController) {
+        self.selectedContent = selectedArticle
+        relatedArticles = services.articleService.relatedArticles(for: selectedArticle)
+        viewModel = ArticleItemViewModel(items: selectedContent.articleItems,
+                                              articleHeader: articleHeader,
+                                              relatedArticles: relatedArticles)
+        fullViewController.reloadArticles(viewModel: viewModel)
+        audioViewController.reloadArticles(viewModel: viewModel)
     }
 }
 

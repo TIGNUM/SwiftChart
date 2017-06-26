@@ -9,11 +9,17 @@
 import UIKit
 import Anchorage
 
+protocol ArticleItemViewControllerDelegate: class {
+
+    func didSelectRelatedArticle(selectedArticle: ContentCollection, form viewController: ArticleItemViewController)
+}
+
 final class ArticleItemViewController: UIViewController {
 
     // MARK: - Properties
 
-    fileprivate let viewModel: ArticleItemViewModel
+    fileprivate var viewModel: ArticleItemViewModel
+    weak var delegate: ArticleItemViewControllerDelegate?
 
     fileprivate lazy var tableView: UITableView = {
         return UITableView(
@@ -22,7 +28,7 @@ final class ArticleItemViewController: UIViewController {
             dequeables:
                 ContentItemTextTableViewCell.self,
                 ImageSubtitleTableViewCell.self,
-                ArticleRelatedItemCell.self,
+                ArticleRelatedCell.self,
                 ErrorCell.self
             )
     }()
@@ -57,6 +63,14 @@ final class ArticleItemViewController: UIViewController {
         super.viewDidLayoutSubviews()
 
         resizeHeaderView()
+    }
+
+    func reloadArticles(viewModel: ArticleItemViewModel) {
+        self.viewModel = viewModel
+        tableView.tableHeaderView = nil
+        setTableViewHeader()
+        tableView.reloadData()
+        tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
     }
 }
 
@@ -150,8 +164,10 @@ private extension ArticleItemViewController {
         return cell
     }
 
-    func relatedArticleCell(tableView: UITableView, indexPath: IndexPath) -> ArticleItemTableViewCell {
-        let relatedArticleCell: ArticleItemTableViewCell = tableView.dequeueCell(for: indexPath)
+    func relatedArticleCell(tableView: UITableView, indexPath: IndexPath) -> ArticleRelatedCell {
+        let relatedArticleCell: ArticleRelatedCell = tableView.dequeueCell(for: indexPath)
+        let relatedArticle = viewModel.relatedArticle(at: indexPath)
+        relatedArticleCell.setupView(title: relatedArticle.title, subTitle: "TODO MIN TO CONSUME", previewImageURL: relatedArticle.thumbnailURL)
         
         return relatedArticleCell
     }
@@ -219,5 +235,15 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
             return relatedArticleCell(tableView: tableView, indexPath: indexPath)
         default: fatalError("Wrong Section!")
         }
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        guard indexPath.section == 1 else {
+            return
+        }
+
+        delegate?.didSelectRelatedArticle(selectedArticle: viewModel.relatedArticle(at: indexPath), form: self)
     }
 }

@@ -115,8 +115,8 @@ extension UIColor {
         return UIColor(red: 255/255, green: 0/255, blue: 38/255, alpha: 0.3)
     }
 
-    ///  UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+    ///  UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.3)
     class var whiteLightTwo: UIColor {
-        return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+        return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.3)
     }
 }

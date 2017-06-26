@@ -13,12 +13,16 @@ import ReactiveKit
 final class ArticleItemViewModel {
 
     fileprivate let items: [ContentItem]
-    fileprivate let relatedArticles: AnyRealmCollection<ContentCollection>
+    fileprivate let relatedArticles: [ContentCollection]
     let articleHeader: ArticleCollectionHeader
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
     func itemCount(in section: Index) -> Int {
-        return section == 0 ? items.count : 1
+        switch section {
+        case 0: return items.count
+        case 1: return relatedArticles.count > 3 ? 3 : relatedArticles.count
+        default: return 0
+        }
     }
 
     var sectionCount: Int {
@@ -29,15 +33,22 @@ final class ArticleItemViewModel {
         return items[indexPath.row]
     }
 
+    func relatedArticle(at indexPath: IndexPath) -> ContentCollection {
+        return relatedArticles[indexPath.row]
+    }
+
     // MARK: - Init
 
     init(items: AnyRealmCollection<ContentItem>,
          articleHeader: ArticleCollectionHeader,
          relatedArticles: AnyRealmCollection<ContentCollection>) {
             self.articleHeader = articleHeader
-            self.relatedArticles = relatedArticles
-            self.items = items.sorted(by: { (lhs: ContentItem, rhs: ContentItem) -> Bool in
+            self.relatedArticles = relatedArticles.sorted(by: { (lhs: ContentCollection, rhs: ContentCollection) -> Bool in
                 return lhs.sortOrder < rhs.sortOrder
+            })
+
+            self.items = items.sorted(by: { (lhs: ContentItem, rhs: ContentItem) -> Bool in
+                    return lhs.sortOrder < rhs.sortOrder
             })
     }
 }
