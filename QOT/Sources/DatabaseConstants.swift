@@ -49,6 +49,10 @@ enum Database {
             return self.rawValue
         }
     }
+
+    enum QuestionGroup: String {
+        case PREPARE
+    }
 }
 
 extension JSON {

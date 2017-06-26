@@ -39,11 +39,11 @@ final class PrepareChatDecisionManager {
     }
 
     func didSelectChoice(_ choice: Answer) {
-        if let next = choice.next {
-            switch next {
-            case .content(let id):
+        if let target = choice.target {
+            switch target {
+            case .content(let id, _):
                 delegate?.showContent(id: id, manager: self)
-            case .question(let id):
+            case .question(let id, _):
                 if let question = questionsService.question(id: id) {
                     process(question: question)
                 }
@@ -67,10 +67,12 @@ final class PrepareChatDecisionManager {
     }
 
     private func chatItemForAnswers(_ answers: [Answer]) -> ChatItem<Answer> {
-        let flowDisplayCount = answers.filter { $0.choiceListDisplay == .flow }.count
-        let listDisplayCount = answers.filter { $0.choiceListDisplay == .list }.count
+        let prepareAnswers = answers.filter { $0.targetGroup == Database.QuestionGroup.PREPARE.rawValue }
+
+        let flowDisplayCount = prepareAnswers.filter { $0.choiceListDisplay == .flow }.count
+        let listDisplayCount = prepareAnswers.filter { $0.choiceListDisplay == .list }.count
         let choiceListDisplay: ChoiceListDisplay = flowDisplayCount > listDisplayCount ? .flow : .list
-        return ChatItem(type: .choiceList(answers, display: choiceListDisplay))
+        return ChatItem(type: .choiceList(prepareAnswers, display: choiceListDisplay))
     }
 
     private func deliveredFooter(date: Date = Date(), alignment: NSTextAlignment) -> ChatItem<Answer> {
@@ -82,11 +84,11 @@ final class PrepareChatDecisionManager {
 private extension Answer {
 
     var choiceListDisplay: ChoiceListDisplay? {
-        guard let next = next else {
+        guard let target = target else {
             return nil
         }
 
-        switch next {
+        switch target {
         case .content:
             return .flow
         case .question:

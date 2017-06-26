@@ -13,23 +13,26 @@ class Answer: Object {
 
     // MARK: Private
 
-    private let _nextID = RealmOptional<Int>(nil)
+    private let _targetID = RealmOptional<Int>(nil)
 
     // MARK: Public
 
     fileprivate(set) dynamic var text: String = ""
 
-    fileprivate(set) dynamic var nextType: String?
+    fileprivate(set) dynamic var targetType: String?
 
-    var nextID: Int? {
-        return _nextID.value
+    fileprivate(set) dynamic var targetGroup: String?
+
+    var targetID: Int? {
+        return _targetID.value
     }
 
     convenience init(intermediary: AnswerIntermediary) {
         self.init()
 
         self.text = intermediary.text
-        self.nextType = intermediary.nextType
-        self._nextID.value = intermediary.nextID
+        self.targetType = intermediary.targetType
+        self._targetID.value = intermediary.targetID
+        self.targetGroup = intermediary.targetGroup
     }
 }

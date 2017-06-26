@@ -11,6 +11,7 @@ import Foundation
 struct AnswerIntermediary {
 
     let text: String
-    let nextType: String?
-    let nextID: Int?
+    let targetType: String?
+    let targetID: Int?
+    let targetGroup: String?
 }

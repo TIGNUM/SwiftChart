@@ -10,26 +10,26 @@ import Foundation
 
 extension Answer {
 
-    enum Next {
-        case question(id: Int)
-        case content(id: Int)
+    enum Target {
+        case question(id: Int, group: String)
+        case content(id: Int, group: String)
 
-        init?(type: String, id: Int) {
+        init?(type: String, id: Int, group: String) {
             switch type {
             case "QUESTION":
-                self = .question(id: id)
+                self = .question(id: id, group: group)
             case "PREPARE_CONTENT":
-                self = .content(id: id)
+                self = .content(id: id, group: group)
             default:
                 return nil
             }
         }
     }
 
-    var next: Next? {
-        guard let type = nextType, let id = nextID else {
+    var target: Target? {
+        guard let type = targetType, let id = targetID, let group = targetGroup else {
             return nil
         }
-        return Next(type: type, id: id)
+        return Target(type: type, id: id, group: group)
     }
 }
