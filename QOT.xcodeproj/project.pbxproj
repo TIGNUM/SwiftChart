@@ -127,7 +127,6 @@
 		CB8A152F1E76F27D0023B2F9 /* PageID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A152E1E76F27D0023B2F9 /* PageID.swift */; };
 		CB8A15311E76F31B0023B2F9 /* PageTrackable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15301E76F31B0023B2F9 /* PageTrackable.swift */; };
 		CB8A15331E76F56D0023B2F9 /* TrackableEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15321E76F56D0023B2F9 /* TrackableEntity.swift */; };
-		CB8A15351E77DB3B0023B2F9 /* PageEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15341E77DB3B0023B2F9 /* PageEventTests.swift */; };
 		CB8A154A1E7A7FA20023B2F9 /* CalendarImportManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15491E7A7FA20023B2F9 /* CalendarImportManger.swift */; };
 		CB8A154C1E7A8AD30023B2F9 /* CalendarImportTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A154B1E7A8AD30023B2F9 /* CalendarImportTask.swift */; };
 		CB8C344F1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8C344D1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift */; };
@@ -469,7 +468,6 @@
 		CB8A152E1E76F27D0023B2F9 /* PageID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageID.swift; sourceTree = "<group>"; };
 		CB8A15301E76F31B0023B2F9 /* PageTrackable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageTrackable.swift; sourceTree = "<group>"; };
 		CB8A15321E76F56D0023B2F9 /* TrackableEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackableEntity.swift; sourceTree = "<group>"; };
-		CB8A15341E77DB3B0023B2F9 /* PageEventTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageEventTests.swift; sourceTree = "<group>"; };
 		CB8A15491E7A7FA20023B2F9 /* CalendarImportManger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarImportManger.swift; sourceTree = "<group>"; };
 		CB8A154B1E7A8AD30023B2F9 /* CalendarImportTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarImportTask.swift; sourceTree = "<group>"; };
 		CB8C344D1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -865,7 +863,6 @@
 			children = (
 				85E0A6A01EE6AF130076169D /* MockingProtocol.swift */,
 				85E0A6A21EE6B1610076169D /* Mocks.swift */,
-				CB8A15341E77DB3B0023B2F9 /* PageEventTests.swift */,
 				CBDB98F81E7BD26A003EC73F /* Realm+TestUtils.swift */,
 				85E0A69E1EE6A5E40076169D /* NetworkManagerTests.swift */,
 			);
@@ -2082,7 +2079,6 @@
 				85E0A69F1EE6A5E40076169D /* NetworkManagerTests.swift in Sources */,
 				8591ED7B1EE6DBA6006FCE89 /* MockingProtocol.swift in Sources */,
 				CBDB98F91E7BD26A003EC73F /* Realm+TestUtils.swift in Sources */,
-				CB8A15351E77DB3B0023B2F9 /* PageEventTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

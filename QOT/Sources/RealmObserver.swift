@@ -19,7 +19,7 @@ final class RealmObserver {
     init(realm: Realm) {
         self.realm = realm
 
-        token = realm.addNotificationBlock { [unowned self] (notification, realm) in
+        token = realm.addNotificationBlock { [unowned self] (_, _) in
             self.handler?()
         }
     }
