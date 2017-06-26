@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import LoremIpsum
 
-// MARK: - PrepareContentCategory
+// MARK: - ContentCategory
 
 func addMockPrepareContentCategories(realm: Realm) {
     let categories: [ContentCategory] = [
@@ -41,7 +41,7 @@ private func mockPrepareContentCategory(sortOrder: Int, title: String, section: 
     return contentCategory
 }
 
-// MARK: - PrepareContentCollection
+// MARK: - ContentCollection
 
 private func addMockPrepareContentCollection(category: ContentCategory, realm: Realm) {
     var contentCollections = [ContentCollection]()

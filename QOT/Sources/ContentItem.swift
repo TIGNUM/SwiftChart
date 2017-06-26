@@ -107,29 +107,3 @@ extension ContentItem: DownSyncable {
         valueWavformData = data.valueWavformData
     }
 }
-
-extension ContentItem {
-
-    var contentItemValue: ContentItemValue {
-        // FIXME: Remove once not needed for mock data
-        if let jsonValue = value {
-            guard
-                let format = ContentItemFormat(rawValue: format),
-                let value = try? ContentItemValue(format: format, value: jsonValue)
-                else {
-                    return .invalid
-            }
-            return value
-        }
-
-        return ContentItemValue(item: self)
-    }
-
-    func accordionTitle() -> String? {
-        guard let jsonString = layoutInfo, let json = try? JSON(jsonString: jsonString) else {
-            return nil
-        }
-
-        return try? json.getString(at: "accordionTitle")
-    }
-}

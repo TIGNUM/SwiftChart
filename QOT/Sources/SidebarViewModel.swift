@@ -8,12 +8,13 @@
 
 import Foundation
 import ReactiveKit
+import RealmSwift
 
 final class SidebarViewModel {
 
     // MARK: - Properties
 
-    var sidebarContentCategories: DataProvider<SidebarContentCategory>
+    var sidebarContentCategories: AnyRealmCollection<ContentCategory>
     let updates = PublishSubject<CollectionUpdate, NoError>()
     
     var itemCount: Int {        
@@ -22,23 +23,21 @@ final class SidebarViewModel {
 
     // MARK: - Init
 
-    init(sidebarContentCategories: DataProvider<SidebarContentCategory>) {
+    init(sidebarContentCategories: AnyRealmCollection<ContentCategory>) {
         self.sidebarContentCategories = sidebarContentCategories
     }
 
     // MARK: - Helper
     
-    func sidebarCategory(at index: Index) -> SidebarContentCategory {
-        return sidebarContentCategories.item(at: index)
+    func sidebarCategory(at index: Index) -> ContentCategory {
+        return sidebarContentCategories[index]
     }
 
-    func sidebarCollection(at index: Index) -> SidebarContentCollection? {
-        guard
-            sidebarContentCategories.item(at: index).sidebarContentCollection.items.isEmpty == false,
-            sidebarContentCategories.item(at: index).sidebarContentCollection.items.count <= index else {
+    func sidebarCollection(at index: Index) -> ContentCollection? {
+        let contentCollections = sidebarCategory(at: index).contentCollections
+        guard contentCollections.isEmpty == false, contentCollections.count <= index else {
                 return nil
         }
-
-        return sidebarContentCategories.item(at: index).sidebarContentCollection.item(at: index - 1)
+        return contentCollections[index - 1]
     }
 }

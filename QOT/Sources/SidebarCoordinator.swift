@@ -70,20 +70,20 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
         startChild(child: coordinator)
     }
 
-    func didTapBenefitsCell(from sidebarContentCategory: SidebarContentCategory, in viewController: SidebarViewController) {
+    func didTapBenefitsCell(from sidebarContentCategory: ContentCategory, in viewController: SidebarViewController) {
         startSidebarItemCoordinator(sidebarContentCategory: sidebarContentCategory, viewController: viewController)
     }
 
-    func didTapAboutCell(from sidebarContentCategory: SidebarContentCategory, in viewController: SidebarViewController) {
+    func didTapAboutCell(from sidebarContentCategory: ContentCategory, in viewController: SidebarViewController) {
         startSidebarItemCoordinator(sidebarContentCategory: sidebarContentCategory, viewController: viewController)
     }
 
-    func didTapPrivacyCell(from sidebarContentCategory: SidebarContentCategory, in viewController: SidebarViewController) {
+    func didTapPrivacyCell(from sidebarContentCategory: ContentCategory, in viewController: SidebarViewController) {
         startSidebarItemCoordinator(sidebarContentCategory: sidebarContentCategory, viewController: viewController)
     }
 
     private func startSidebarItemCoordinator(
-        sidebarContentCategory: SidebarContentCategory,
+        sidebarContentCategory: ContentCategory,
         viewController: SidebarViewController) {
             let coordinator = SidebarItemCoordinator(
                 root: viewController,

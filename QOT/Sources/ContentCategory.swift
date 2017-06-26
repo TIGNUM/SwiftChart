@@ -79,18 +79,6 @@ extension ContentCategory: DownSyncable {
 
 extension ContentCategory {
 
-    var bubbleLayoutInfo: BubbleLayoutInfo {
-        guard
-            let jsonString = layoutInfo,
-            let json = try? JSON(jsonString: jsonString),
-            let info = try? BubbleLayoutInfo(json: json)
-            else {
-                return BubbleLayoutInfo.invalid
-        }
-
-        return info
-    }
-
     func getSidebarLayoutInfo() throws -> SidebarLayoutInfo {
         guard let jsonString = layoutInfo else {
             throw QOTDatabaseError.noLayoutInfo

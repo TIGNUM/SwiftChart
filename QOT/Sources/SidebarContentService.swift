@@ -22,19 +22,19 @@ final class SidebarContentService {
         self.realmProvider = realmProvider
     }
 
-    func categories(with sectionFilter: String? = nil) -> DataProvider<SidebarContentCategory> {
+    func categories(with sectionFilter: String? = nil) -> AnyRealmCollection<ContentCategory> {
         let filter = NSPredicate(section: sectionFilter ?? Database.Section.sidebar.value)
         let results = mainRealm.objects(ContentCategory.self)
             .sorted(byKeyPath: Database.ItemKey.sortOrder.value)
             .filter(filter)
-        return DataProvider<SidebarContentCategory>(items: results, map: { $0 as SidebarContentCategory })
+        return AnyRealmCollection<ContentCategory>(results)
     }
 
-    func collection(for collectionSection: String) -> DataProvider<SidebarContentCollection> {
+    func collection(for collectionSection: String) -> AnyRealmCollection<ContentCollection> {
         let filter = NSPredicate(section: collectionSection)
         let results = mainRealm.objects(ContentCollection.self)
             .sorted(byKeyPath: Database.ItemKey.sortOrder.value)
             .filter(filter)
-        return DataProvider<SidebarContentCollection>(items: results, map: { $0 as SidebarContentCollection })
+        return AnyRealmCollection<ContentCollection>(results)
     }
 }

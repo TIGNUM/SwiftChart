@@ -15,11 +15,11 @@ final class LearnContentCollectionViewModel {
 
     // MARK: - Properties
 
-    private let categories: DataProvider<LearnContentCategory>
+    private let categories: AnyRealmCollection<ContentCategory>
 
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
-    init(categories: DataProvider<LearnContentCategory>, selectedIndex: Index) {
+    init(categories: AnyRealmCollection<ContentCategory>, selectedIndex: Index) {
         self.categories = categories
     }
 
@@ -27,15 +27,15 @@ final class LearnContentCollectionViewModel {
         return categories.count
     }
 
-    func category(at index: Index) -> LearnContentCategory {
-        return  categories.item(at: index)
+    func category(at index: Index) -> ContentCategory {
+        return  categories[index]
     }
 
     func itemCount(categoryIndex: Index) -> Int {
         return category(at: categoryIndex).learnContent.count
     }
 
-    func item(at indexPath: IndexPath) -> LearnContentCollection {
-        return category(at: indexPath.section).learnContent.item(at: indexPath.row)
+    func item(at indexPath: IndexPath) -> ContentCollection {
+        return category(at: indexPath.section).learnContent[indexPath.row]
     }
 }

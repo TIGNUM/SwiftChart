@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 struct ArticleCollectionHeader {
 
@@ -18,7 +19,7 @@ struct ArticleCollectionHeader {
 
     let articleDuration: String
 
-    let articleContentCollection: ArticleContentCollection
+    let articleContentCollection: ContentCollection
 }
 
 final class ArticleContentItemCoordinator: ParentCoordinator {
@@ -27,8 +28,8 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
     fileprivate let articleHeader: ArticleCollectionHeader
-    fileprivate var selectedContent: ArticleContentCollection
-    fileprivate var relatedArticles: DataProvider<ArticleContentCollection>
+    fileprivate var selectedContent: ContentCollection
+    fileprivate var relatedArticles: AnyRealmCollection<ContentCollection>
     fileprivate var fullViewController: ArticleItemViewController
     fileprivate var audioViewController: ArticleItemViewController
     fileprivate var viewModel: ArticleItemViewModel
@@ -53,7 +54,7 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
     }
 
     func start() {
-        let tabs = TabType.allTabs(for: selectedContent.articleItems.items)
+        let tabs = TabType.allTabs(for: Array(selectedContent.articleItems))
         var controllers = [UIViewController]()
         var titles = [String]()
         var themes = [Theme]()

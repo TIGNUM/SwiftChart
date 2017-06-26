@@ -14,7 +14,7 @@ final class SidebarItemCoordinator: ParentCoordinator {
     fileprivate let rootViewController: SidebarViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
-    fileprivate let sidebarContentCategory: SidebarContentCategory
+    fileprivate let sidebarContentCategory: ContentCategory
     var children = [Coordinator]()
     lazy var presentationManager = PresentationManager()
 
@@ -22,7 +22,7 @@ final class SidebarItemCoordinator: ParentCoordinator {
         root: SidebarViewController,
         services: Services,
         eventTracker: EventTracker,
-        sidebarContentCategory: SidebarContentCategory) {
+        sidebarContentCategory: ContentCategory) {
             self.rootViewController = root
             self.services = services
             self.eventTracker = eventTracker

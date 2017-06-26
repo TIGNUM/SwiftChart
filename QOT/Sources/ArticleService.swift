@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import RealmSwift
 
 protocol ArticleServiceDelegate: class {
 
@@ -27,28 +28,28 @@ final class ArticleService {
         self.realmProvider = realmProvider
     }
 
-    func categories() -> DataProvider<ArticleContentCategory> {
+    func categories() -> AnyRealmCollection<ContentCategory> {
         let predicate = NSPredicate(section: Database.Section.learnWhatsHot.rawValue)
         let results = mainRealm.objects(ContentCategory.self).sorted(byKeyPath: JsonKey.sortOrder.value).filter(predicate)
         
-        return DataProvider<ArticleContentCategory>(items: results, map: { $0 as ArticleContentCategory })
+        return AnyRealmCollection<ContentCategory>(results)
     }
 
-    func contentCollections(for categories: DataProvider<ArticleContentCategory>) -> [ArticleContentCollection] {
-        var articleCollections = [ArticleContentCollection]()
+    func contentCollections(for categories: AnyRealmCollection<ContentCategory>) -> [ContentCollection] {
+        var articleCollections = [ContentCollection]()
 
-        categories.items.forEach { (category: ArticleContentCategory) in
-            articleCollections.append(contentsOf: category.articleContent.items)
+        categories.forEach { (category: ContentCategory) in
+            articleCollections.append(contentsOf: category.articleContent)
         }
 
         return articleCollections
     }
 
-    func relatedArticles(for articleCollection: ArticleContentCollection) -> DataProvider<ArticleContentCollection> {
+    func relatedArticles(for articleCollection: ContentCollection) -> AnyRealmCollection<ContentCollection> {
         let predicate = NSPredicate(remoteIDs: articleCollection.relatedContentIDs)
         let results = mainRealm.objects(ContentCollection.self).sorted(byKeyPath: JsonKey.sortOrder.value).filter(predicate)
 
-        return DataProvider<ArticleContentCollection>(items: results, map: { $0 as ArticleContentCollection })
+        return AnyRealmCollection<ContentCollection>(results)
     }
 
     func updatedViewedAt(with itemId: Int) {

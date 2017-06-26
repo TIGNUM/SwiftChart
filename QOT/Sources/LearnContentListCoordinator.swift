@@ -15,12 +15,12 @@ final class LearnContentListCoordinator: ParentCoordinator {
     fileprivate let rootVC: LearnCategoryListViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
-    fileprivate let category: LearnContentCategory
+    fileprivate let category: ContentCategory
     fileprivate let selectedCategoryIndex: Index
     var children: [Coordinator] = []
     weak var delegate: LearnContentListCoordinatorDelegate?
     
-    init(root: LearnCategoryListViewController, services: Services, eventTracker: EventTracker, category: LearnContentCategory, selectedCategoryIndex: Index) {
+    init(root: LearnCategoryListViewController, services: Services, eventTracker: EventTracker, category: ContentCategory, selectedCategoryIndex: Index) {
         self.rootVC = root
         self.services = services
         self.eventTracker = eventTracker
@@ -29,7 +29,7 @@ final class LearnContentListCoordinator: ParentCoordinator {
     }
     
     func start() {
-        let viewModel = LearnContentCollectionViewModel(categories: services.learnContentService.categories(), selectedIndex: selectedCategoryIndex)
+        let viewModel = LearnContentCollectionViewModel(categories: services.contentService.learnContentCategories(), selectedIndex: selectedCategoryIndex)
         let contentListViewController = LearnContentListViewController(viewModel: viewModel, selectedCategoryIndex: self.selectedCategoryIndex)
         contentListViewController.modalTransitionStyle = .crossDissolve
         contentListViewController.modalPresentationStyle = .custom
@@ -51,7 +51,7 @@ final class LearnContentListCoordinator: ParentCoordinator {
 }
 
 extension LearnContentListCoordinator: LearnContentListViewControllerDelegate {
-    func didSelectContent(_ content: LearnContentCollection, category: LearnContentCategory, in viewController: LearnContentListViewController) {
+    func didSelectContent(_ content: ContentCollection, category: ContentCategory, in viewController: LearnContentListViewController) {
         let coordinator = LearnContentItemCoordinator(root: viewController, services: services, eventTracker: eventTracker, content: content, category: category)
         startChild(child: coordinator)
     }

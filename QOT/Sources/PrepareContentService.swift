@@ -23,9 +23,9 @@ final class PrepareContentService {
         self.realmProvider = realmProvider
     }
 
-    func categories() -> DataProvider<PrepareContentCategory> {
+    func categories() -> AnyRealmCollection<ContentCategory> {
         let filter = NSPredicate(section: Database.Section.prepareCoach.rawValue)
         let results = mainRealm.objects(ContentCategory.self).sorted(byKeyPath: "sortOrder").filter(filter)
-        return DataProvider<PrepareContentCategory>(items: results, map: { $0 as PrepareContentCategory })
+        return AnyRealmCollection<ContentCategory>(results)
     }
 }

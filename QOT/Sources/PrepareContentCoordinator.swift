@@ -16,12 +16,12 @@ final class PrepareContentCoordinator: ParentCoordinator {
     fileprivate let rootViewController: UIViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
-    fileprivate let collection: PrepareContentCollection
+    fileprivate let collection: ContentCollection
     var children: [Coordinator] = []
 
     // MARK: - Life Cycle
 
-    init(root: UIViewController, services: Services, eventTracker: EventTracker, collection: PrepareContentCollection) {
+    init(root: UIViewController, services: Services, eventTracker: EventTracker, collection: ContentCollection) {
         self.rootViewController = root
         self.services = services
         self.eventTracker = eventTracker

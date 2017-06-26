@@ -8,28 +8,29 @@
 
 import Foundation
 import ReactiveKit
+import RealmSwift
 
 final class ArticleCollectionViewModel {
     
-    private let categories: DataProvider<ArticleContentCategory>
-    private let contentCollections: [ArticleContentCollection]
+    private let categories: AnyRealmCollection<ContentCategory>
+    private let contentCollections: [ContentCollection]
     let updates = PublishSubject<CollectionUpdate, NoError>()
     
     var itemCount: Int {
         return contentCollections.count
     }
 
-    func contentCollection(at index: Index) -> ArticleContentCollection {
+    func contentCollection(at index: Index) -> ContentCollection {
         return contentCollections[index]
     }
 
-    func items(at index: Index) -> [ArticleContentItem] {
-        return contentCollections[index].articleItems.items
+    func items(at index: Index) -> [ContentItem] {
+        return Array(contentCollections[index].items)
     }
 
     func title(at index: Index) -> String {
         let selectedCategoryID = contentCollection(at: index).categoryIDs[0]
-        return categories.items.filter { $0.remoteID == selectedCategoryID.value }[0].title
+        return categories.filter { $0.remoteID == selectedCategoryID.value }[0].title
     }
 
     func description(at index: Index) -> String {
@@ -46,9 +47,9 @@ final class ArticleCollectionViewModel {
 
     // MARK: - Init
 
-    init(categories: DataProvider<ArticleContentCategory>, contentCollections: [ArticleContentCollection]) {
+    init(categories: AnyRealmCollection<ContentCategory>, contentCollections: [ContentCollection]) {
         self.categories = categories
-        self.contentCollections = contentCollections.sorted { (lhs: ArticleContentCollection, rhs: ArticleContentCollection) -> Bool in
+        self.contentCollections = contentCollections.sorted { (lhs: ContentCollection, rhs: ContentCollection) -> Bool in
             return lhs.sortOrder < rhs.sortOrder
         }
     }

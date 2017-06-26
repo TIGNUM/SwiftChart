@@ -103,7 +103,7 @@ extension ArticleCollectionViewController: UICollectionViewDataSource, UICollect
 
         delegate?.didTapItem(articleHeader: articleHeader, in: self)
         print("didSelecteItem: ", selectedCollection)
-        print("selectedCollection: ", selectedCollection.articleItems.items)
+        print("selectedCollection: ", selectedCollection.articleItems)
     }
 }
 

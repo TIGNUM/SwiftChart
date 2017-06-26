@@ -11,7 +11,7 @@ import Anchorage
 
 class ArticleItemTableViewCell: UITableViewCell, Dequeueable {
 
-    fileprivate lazy var articleItems: [ArticleContentItem] = []
+    fileprivate lazy var articleItems: [ContentItem] = []
     fileprivate lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -35,7 +35,7 @@ class ArticleItemTableViewCell: UITableViewCell, Dequeueable {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setup(articleItems: [ArticleContentItem]) {
+    func setup(articleItems: [ContentItem]) {
         self.articleItems = articleItems
         contentView.backgroundColor = .clear
         backgroundColor = .clear

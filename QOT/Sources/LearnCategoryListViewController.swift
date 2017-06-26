@@ -15,7 +15,7 @@ import ReactiveKit
 /// The delegate of a `LearnCategoryListViewController`.
 protocol LearnCategoryListViewControllerDelegate: class {
     /// Notifies `self` that the category was selected at `index` in `viewController`.
-    func didSelectCategory(at index: Index, category: LearnContentCategory, in viewController: LearnCategoryListViewController)
+    func didSelectCategory(at index: Index, category: ContentCategory, in viewController: LearnCategoryListViewController)
 
 }
 

@@ -18,15 +18,17 @@ protocol LearnContentItemViewControllerDelegate: class {
 
     func didTapShare(in viewController: LearnContentItemViewController)
 
-    func didTapVideo(with video: LearnContentItem, from view: UIView, in viewController: LearnContentItemViewController)
+    func didTapVideo(with video: ContentItem, from view: UIView, in viewController: LearnContentItemViewController)
 
-    func didTapArticle(with article: LearnContentItem, from view: UIView, in viewController: LearnContentItemViewController)
+    func didTapArticle(with article: ContentItem, from view: UIView, in viewController: LearnContentItemViewController)
 
     func didChangeTab(to nextIndex: Index, in viewController: TopTabBarController)
 
     func didTapFinish(from view: UIView)
 
     func didSelectReadMoreContentCollection(with collectionID: Int, in viewController: LearnContentItemViewController)
+
+    func didViewContentItem(id: Int, in viewController: LearnContentItemViewController)
 }
 
 final class LearnContentItemViewController: UIViewController {
@@ -34,7 +36,6 @@ final class LearnContentItemViewController: UIViewController {
     // MARK: properties
 
     weak var delegate: LearnContentItemViewControllerDelegate?
-    weak var serviceDelegate: LearnContentServiceDelegate?
     fileprivate let disposeBag = DisposeBag()
     fileprivate var viewModel: LearnContentItemViewModel
     fileprivate let categoryTitle: String
@@ -283,12 +284,12 @@ private extension LearnContentItemViewController {
         tableView.horizontalAnchors == view.horizontalAnchors
     }
 
-    func shouldMarkItemAsViewed(contentItem: LearnContentItem?) {
+    func shouldMarkItemAsViewed(contentItem: ContentItem?) {
         guard let contentItem = contentItem, contentItem.viewed == false else {
             return
         }
 
-        serviceDelegate?.updatedViewedAt(with: contentItem.remoteID)
+        delegate?.didViewContentItem(id: contentItem.remoteID, in: self)
     }
 
     func relatedContentCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {

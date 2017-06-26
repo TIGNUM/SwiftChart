@@ -7,17 +7,18 @@
 //
 
 import UIKit
+import RealmSwift
 
 final class LearnContentItemCoordinator: ParentCoordinator {
     
     fileprivate let rootVC: LearnContentListViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
-    fileprivate let category: LearnContentCategory
+    fileprivate let category: ContentCategory
     fileprivate var categoryTitle: String
-    fileprivate var selectedContent: LearnContentCollection
-    fileprivate var relatedContents: DataProvider<LearnContentCollection>
-    fileprivate var recommentedContentCollections: DataProvider<LearnContentCollection>
+    fileprivate var selectedContent: ContentCollection
+    fileprivate var relatedContents: AnyRealmCollection<ContentCollection>
+    fileprivate var recommentedContentCollections: AnyRealmCollection<ContentCollection>
     fileprivate var fullViewController: LearnContentItemViewController
     fileprivate var bulletViewController: LearnContentItemViewController
     fileprivate var audioViewController: LearnContentItemViewController
@@ -25,15 +26,15 @@ final class LearnContentItemCoordinator: ParentCoordinator {
     weak var topTabBarControllerDelegate: TopTabBarControllerDelegate?
     var children: [Coordinator] = []
     
-    init(root: LearnContentListViewController, services: Services, eventTracker: EventTracker, content: LearnContentCollection, category: LearnContentCategory) {
+    init(root: LearnContentListViewController, services: Services, eventTracker: EventTracker, content: ContentCollection, category: ContentCategory) {
         self.rootVC = root
         self.services = services
         self.eventTracker = eventTracker
         self.category = category
         self.categoryTitle = category.title.capitalized
         self.selectedContent = content
-        self.relatedContents = services.learnContentService.contentCollections(for: selectedContent.relatedContentIDs)
-        self.recommentedContentCollections = services.learnContentService.relatedContentCollections(for: category.remoteID)
+        self.relatedContents = services.contentService.contentCollections(ids: selectedContent.relatedContentIDs)
+        self.recommentedContentCollections = services.contentService.contentCollections(categoryID: category.remoteID)
         self.viewModel = LearnContentItemViewModel(
             contentCollection: selectedContent,
             relatedContentCollections: relatedContents,
@@ -76,7 +77,6 @@ final class LearnContentItemCoordinator: ParentCoordinator {
             learnHeaderSubTitle: categoryTitle
         )
 
-        fullViewController.serviceDelegate = services
         fullViewController.delegate = self
         bulletViewController.delegate = self
         audioViewController.delegate = self
@@ -119,10 +119,14 @@ extension LearnContentItemCoordinator: LearnContentItemViewControllerDelegate {
         print("didChangeTab")
     }
 
-    func didSelectReadMoreContentCollection(with collectionID: Int, in viewController: LearnContentItemViewController) {        
-        selectedContent = services.learnContentService.contentCollection(for: collectionID)
-        relatedContents = services.learnContentService.contentCollections(for: selectedContent.relatedContentIDs)
-        recommentedContentCollections = services.learnContentService.relatedContentCollections(for: category.remoteID)
+    func didSelectReadMoreContentCollection(with collectionID: Int, in viewController: LearnContentItemViewController) {
+        guard let contentCollection = services.contentService.contentCollection(id: collectionID) else {
+            return
+        }
+
+        selectedContent = contentCollection
+        relatedContents = services.contentService.contentCollections(ids: selectedContent.relatedContentIDs)
+        recommentedContentCollections = services.contentService.contentCollections(categoryID: category.remoteID)
         viewModel = LearnContentItemViewModel(
             contentCollection: selectedContent,
             relatedContentCollections: relatedContents,
@@ -134,11 +138,15 @@ extension LearnContentItemCoordinator: LearnContentItemViewControllerDelegate {
         audioViewController.reloadData(viewModel: viewModel, contentTitle: selectedContent.title)
     }
 
-    func didTapVideo(with video: LearnContentItem, from view: UIView, in viewController: LearnContentItemViewController) {
+    func didTapVideo(with video: ContentItem, from view: UIView, in viewController: LearnContentItemViewController) {
         print("didTapVideo")
     }
 
-    func didTapArticle(with article: LearnContentItem, from view: UIView, in viewController: LearnContentItemViewController) {
+    func didTapArticle(with article: ContentItem, from view: UIView, in viewController: LearnContentItemViewController) {
         print("didTapArticle")
+    }
+
+    func didViewContentItem(id: Int, in viewController: LearnContentItemViewController) {
+        services.contentService.setViewed(itemID: id)
     }
 }

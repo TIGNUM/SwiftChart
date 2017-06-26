@@ -17,25 +17,8 @@ final class EventTracker {
     init(realmProvider: @escaping () throws -> Realm) {
         self.realmProvider = realmProvider
     }
-    
-    /// Tracks a `PageEvent`.
-    ///
-    /// - parameter page: The `PageID` of the tracked page.
-    /// - parameter referer: The `PageID` of the refering page or `nil` if none exists.
-    /// - parameter associatedEntity: The model object/entity associated with the page or `nil` if none exists.
+
     func track(page: PageID, referer: PageID?, associatedEntity: TrackableEntity?) {
-        let associatedID = associatedEntity?.trackableEntityID
-        
-        queue.async {
-            do {
-                let event = PageEvent(pageID: page, referrerPageID: referer, associatedEntityID: associatedID)
-                let realm = try self.realmProvider()
-                try realm.write {
-                    realm.add(event)
-                }
-            } catch let error {
-                assertionFailure("Failed to create event: \(error)")
-            }
-        }
+        // FIXME: Implement
     }
 }

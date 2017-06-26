@@ -7,12 +7,13 @@
 //
 
 import Foundation
+import RealmSwift
 import ReactiveKit
 
 final class ArticleItemViewModel {
 
-    fileprivate let items: [ArticleContentItem]
-    fileprivate let relatedArticles: DataProvider<ArticleContentCollection>
+    fileprivate let items: [ContentItem]
+    fileprivate let relatedArticles: AnyRealmCollection<ContentCollection>
     let articleHeader: ArticleCollectionHeader
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
@@ -24,18 +25,18 @@ final class ArticleItemViewModel {
         return relatedArticles.count > 0 ? 2 : 1
     }
 
-    func articleItem(at indexPath: IndexPath) -> ArticleContentItem {
+    func articleItem(at indexPath: IndexPath) -> ContentItem {
         return items[indexPath.row]
     }
 
     // MARK: - Init
 
-    init(items: DataProvider<ArticleContentItem>,
+    init(items: AnyRealmCollection<ContentItem>,
          articleHeader: ArticleCollectionHeader,
-         relatedArticles: DataProvider<ArticleContentCollection>) {
+         relatedArticles: AnyRealmCollection<ContentCollection>) {
             self.articleHeader = articleHeader
             self.relatedArticles = relatedArticles
-            self.items = items.items.sorted(by: { (lhs: ArticleContentItem, rhs: ArticleContentItem) -> Bool in
+            self.items = items.sorted(by: { (lhs: ContentItem, rhs: ContentItem) -> Bool in
                 return lhs.sortOrder < rhs.sortOrder
             })
     }

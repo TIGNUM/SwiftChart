@@ -13,20 +13,20 @@ final class SidebarItemViewModel {
 
     // MARK: - Properties
 
-    fileprivate let sidebarContentCategory: SidebarContentCategory
+    fileprivate let sidebarContentCategory: ContentCategory
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
     var itemCount: Int {
-        return sidebarContentCategory.sidebarContentCollection.item(at: 0).sidebarContentItems.count
+        return sidebarContentCategory.sidebarContentCollection[0].sidebarContentItems.count
     }
 
-    func sidebarContentItems(at indexPath: IndexPath) -> SidebarContentItem {
-        return sidebarContentCategory.sidebarContentCollection.item(at: indexPath.section).sidebarContentItems.item(at: indexPath.row)
+    func sidebarContentItems(at indexPath: IndexPath) -> ContentItem {
+        return sidebarContentCategory.sidebarContentCollection[indexPath.section].sidebarContentItems[indexPath.row]
     }
 
     // MARK: - Init
 
-    init(sidebarContentCategory: SidebarContentCategory) {
+    init(sidebarContentCategory: ContentCategory) {
         self.sidebarContentCategory = sidebarContentCategory
     }
 }

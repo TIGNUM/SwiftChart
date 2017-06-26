@@ -13,10 +13,10 @@ import Anchorage
 protocol SidebarViewControllerDelegate: class {
     func didTapSettingsMenuCell(in viewController: SidebarViewController)
     func didTapLibraryCell(in viewController: SidebarViewController)
-    func didTapBenefitsCell(from sidebarContentCategory: SidebarContentCategory, in viewController: SidebarViewController)
+    func didTapBenefitsCell(from sidebarContentCategory: ContentCategory, in viewController: SidebarViewController)
     func didTapAddSensorCell(in viewController: SidebarViewController)
-    func didTapPrivacyCell(from sidebarContentCategory: SidebarContentCategory, in viewController: SidebarViewController)
-    func didTapAboutCell(from sidebarContentCategory: SidebarContentCategory, in viewController: SidebarViewController)
+    func didTapPrivacyCell(from sidebarContentCategory: ContentCategory, in viewController: SidebarViewController)
+    func didTapAboutCell(from sidebarContentCategory: ContentCategory, in viewController: SidebarViewController)
     func didTapLogoutCell(in viewController: SidebarViewController)
 }
 
@@ -111,7 +111,7 @@ extension SidebarViewController: UITableViewDelegate, UITableViewDataSource {
 
 private extension SidebarViewController {
     
-    func handleSelection(forSidbarCollection sidebarCategory: SidebarContentCategory?) {
+    func handleSelection(forSidbarCollection sidebarCategory: ContentCategory?) {
         guard
             let sidebarCategory = sidebarCategory,
             let keypathID = sidebarCategory.keypathID,

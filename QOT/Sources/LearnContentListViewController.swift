@@ -13,7 +13,7 @@ import Bond
 
 protocol LearnContentListViewControllerDelegate: class {
 
-    func didSelectContent(_ content: LearnContentCollection, category: LearnContentCategory, in viewController: LearnContentListViewController)
+    func didSelectContent(_ content: ContentCollection, category: ContentCategory, in viewController: LearnContentListViewController)
     func didTapBack(in viewController: LearnContentListViewController)
 }
 

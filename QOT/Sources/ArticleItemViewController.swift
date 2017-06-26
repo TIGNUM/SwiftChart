@@ -175,7 +175,7 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
         switch indexPath.section {
         case 0:
             switch item.contentItemValue {
-            case .audio(let title, let description, let placeholderURL, let audioURL, let duration, let waveformData):
+            case .audio(let title, _, let placeholderURL, _, _, _):
                 return mediaStreamCell(
                     tableView: tableView,
                     indexPath: indexPath,
@@ -183,7 +183,7 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
                     placeholderURL: placeholderURL,
                     attributedString: item.contentItemValue.style(textStyle: .paragraph, text: title, textColor: .white).attributedString()
                 )
-            case .image(let title, let description, let url):
+            case .image(let title, _, let url):
                 return imageTableViweCell(
                     tableView: tableView,
                     indexPath: indexPath,
@@ -206,7 +206,7 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
                     topText: item.contentItemValue.style(textStyle: style, text: text, textColor: .white),
                     bottomText: nil
                 )
-            case .video(let title, let description, let placeholderURL, let videoURL, let duration):
+            case .video(let title, _, let placeholderURL, _, _):
                 return mediaStreamCell(
                     tableView: tableView,
                     indexPath: indexPath,

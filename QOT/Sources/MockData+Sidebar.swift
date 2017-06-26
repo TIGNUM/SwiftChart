@@ -78,7 +78,7 @@ private func mockContentCategory(sortOrder: Int, title: String, section: String,
     return contentCategory
 }
 
-// MARK: - SidebarContentCollection
+// MARK: - ContentCollection
 
 private func addMockContentCollection(category: ContentCategory, realm: Realm) {
     guard let collectionSection = category.keypathID else {

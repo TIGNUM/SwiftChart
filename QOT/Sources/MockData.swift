@@ -39,7 +39,7 @@ func setupRealmWithMockData(realm: Realm) {
     }
 }
 
-// MARK: - LearnContentCategory
+// MARK: - ContentCategory
 
 private func addMockLearnContentCategories(realm: Realm) {
     let categories: [ContentCategory] = [
@@ -114,7 +114,7 @@ private var layoutInfoFoundation: String {
     return "{\"bubble\": {\"radius\": 0.139, \"centerX\": 0.716, \"centerY\": 0.250}}"
 }
 
-// MARK: - LearnContentCollection
+// MARK: - ContentCollection
 
 private func addMockContent(category: ContentCategory, realm: Realm) {
     let possibleTitles = [
@@ -162,7 +162,7 @@ private func mockContentCollection(sortOrder: Int, title: String) -> ContentColl
     return contentCollection
 }
 
-// MARK: - LearnContentItem
+// MARK: - ContentItem
 
 private func addMockContentItems(content: ContentCollection, realm: Realm) {
     var items: [ContentItem] = []

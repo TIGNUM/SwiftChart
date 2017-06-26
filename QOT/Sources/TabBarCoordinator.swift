@@ -23,10 +23,10 @@ final class TabBarCoordinator: ParentCoordinator {
     var children = [Coordinator]()
 
     fileprivate lazy var topTabBarControllerLearn: TopTabBarController = {
-        let categories = self.services.learnContentService.categories()
+        let categories = self.services.contentService.learnContentCategories()
         let articleCategories = self.services.articleService.categories()
         let articlesCollections = self.services.articleService.contentCollections(for: articleCategories)
-        let viewModel = LearnCategoryListViewModel(categories: categories)
+        let viewModel = LearnCategoryListViewModel(categories: categories, realmObserver: RealmObserver(realm: self.services.mainRealm))
         let learnCategoryListVC = LearnCategoryListViewController(viewModel: viewModel)
         let articleCollectionViewModel = ArticleCollectionViewModel(categories: articleCategories, contentCollections: articlesCollections)
         let articleCollectionViewController = ArticleCollectionViewController(viewModel: articleCollectionViewModel)
@@ -50,7 +50,6 @@ final class TabBarCoordinator: ParentCoordinator {
         articleCollectionViewController.delegate = self
         topTabBarController.delegate = self
         learnCategoryListVC.delegate = self
-        self.services.learnContentService.learnCategoryUpdateDelegate = learnCategoryListVC
 
         return topTabBarController
     }()
@@ -89,7 +88,7 @@ final class TabBarCoordinator: ParentCoordinator {
     }()
 
     fileprivate lazy var topTabBarControllerPrepare: TopTabBarController = {
-        let prepareContentCategory = self.services.prepareContentService.categories().item(at: 0)
+        let prepareContentCategory = self.services.prepareContentService.categories()[0]
         let chatViewModel = ChatViewModel<PrepareChatChoice>(items: mockPrepareChatItems())
         let chatViewController = ChatViewController(viewModel: chatViewModel)
         let myPrepViewModel = MyPrepViewModel()
@@ -194,7 +193,7 @@ extension TabBarCoordinator: TabBarControllerDelegate {
 
 extension TabBarCoordinator: LearnCategoryListViewControllerDelegate {
 
-    func didSelectCategory(at index: Index, category: LearnContentCategory, in viewController: LearnCategoryListViewController) {
+    func didSelectCategory(at index: Index, category: ContentCategory, in viewController: LearnCategoryListViewController) {
         let coordinator = LearnContentListCoordinator(root: viewController, services: services, eventTracker: eventTracker, category: category, selectedCategoryIndex: index)
         coordinator.delegate = self
         startChild(child: coordinator)

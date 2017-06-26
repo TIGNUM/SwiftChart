@@ -12,18 +12,21 @@ import RealmSwift
 
 final class Services {
 
-    let learnContentService: LearnContentService
+    let mainRealm: Realm
+    let contentService: ContentService
     let articleService: ArticleService
     let prepareContentService: PrepareContentService
     let sidebarContentService: SidebarContentService
     weak var learnCategoryUpdateDelegate: LearnCategoryUpdateDelegate?
 
     init(
-        learnContentService: LearnContentService,
+        mainRealm: Realm,
+        contentService: ContentService,
         articleService: ArticleService,
         prepareContentService: PrepareContentService,
         sidebarContentService: SidebarContentService) {
-            self.learnContentService = learnContentService
+            self.mainRealm = mainRealm
+            self.contentService = contentService
             self.articleService = articleService
             self.prepareContentService = prepareContentService
             self.sidebarContentService = sidebarContentService
@@ -44,12 +47,13 @@ final class Services {
                 do {
                     let realmProvider = RealmProvider()
                     let mainRealm = try realmProvider.realm()
-                    let learnContentService = LearnContentService(mainRealm: mainRealm, realmProvider: realmProvider)
+                    let contentService = ContentService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let articleService = ArticleService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let prepareContentService = PrepareContentService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let sidebarContentService = SidebarContentService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let services = Services(
-                        learnContentService: learnContentService,
+                        mainRealm: mainRealm,
+                        contentService: contentService,
                         articleService: articleService,
                         prepareContentService: prepareContentService,
                         sidebarContentService: sidebarContentService
@@ -61,12 +65,5 @@ final class Services {
                 }
             }
         }
-    }
-}
-
-extension Services: LearnContentServiceDelegate {
-
-    func updatedViewedAt(with itemId: Int) {
-        learnContentService.updatedViewedAt(with: itemId)
     }
 }

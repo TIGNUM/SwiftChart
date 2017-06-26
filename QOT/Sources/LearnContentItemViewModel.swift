@@ -9,16 +9,17 @@
 import Foundation
 import ReactiveKit
 import AVFoundation
+import RealmSwift
 
 enum TabType: String {
     case full = "FULL"
     case bullets = "BULLETS"
     case audio = "AUDIO"
 
-    static func allTabs(for items: [ArticleContentItem]) -> [TabType] {
+    static func allTabs(for items: [ContentItem]) -> [TabType] {
         var tabs = [TabType]()
 
-        items.forEach { (item: ArticleContentItem) in
+        items.forEach { (item: ContentItem) in
             item.tabs.components(separatedBy: ",").forEach({ (tab: String) in
                 let tabType = TabType(rawValue: tab) ?? .full
                 if tabs.contains(tabType) == false {
@@ -35,22 +36,22 @@ final class LearnContentItemViewModel {
 
     // MARK: - Properties
 
-    fileprivate let contentCollection: LearnContentCollection
-    fileprivate let relatedContentCollections: DataProvider<LearnContentCollection>
-    fileprivate let recommentedContentCollections: DataProvider<LearnContentCollection>
+    fileprivate let contentCollection: ContentCollection
+    fileprivate let relatedContentCollections: AnyRealmCollection<ContentCollection>
+    fileprivate let recommentedContentCollections: AnyRealmCollection<ContentCollection>
     fileprivate var playingIndexPath: IndexPath?
     fileprivate var player = AVPlayer()
     fileprivate var timeObserver: Any?
-    var currentPosition = Property<TimeInterval>(0)
-    var trackDuration = Property<TimeInterval>(0)
+    var currentPosition = ReactiveKit.Property<TimeInterval>(0)
+    var trackDuration = ReactiveKit.Property<TimeInterval>(0)
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
     // MARK: - Init
 
     init(
-        contentCollection: LearnContentCollection,
-        relatedContentCollections: DataProvider<LearnContentCollection>,
-        recommentedContentCollections: DataProvider<LearnContentCollection>) {
+        contentCollection: ContentCollection,
+        relatedContentCollections: AnyRealmCollection<ContentCollection>,
+        recommentedContentCollections: AnyRealmCollection<ContentCollection>) {
             self.contentCollection = contentCollection
             self.relatedContentCollections = relatedContentCollections
             self.recommentedContentCollections = recommentedContentCollections
@@ -114,20 +115,20 @@ extension LearnContentItemViewModel {
         }
     }
 
-    func contentItems(at tabType: TabType) -> [LearnContentItem] {
-        return contentCollection.contentItems.items.filter { $0.tabs.contains(tabType.rawValue) }
+    func contentItems(at tabType: TabType) -> [ContentItem] {
+        return contentCollection.contentItems.filter { $0.tabs.contains(tabType.rawValue) }
     }
 
-    func learnContentItem(at indexPath: IndexPath, tabType: TabType) -> LearnContentItem {
+    func learnContentItem(at indexPath: IndexPath, tabType: TabType) -> ContentItem {
         return contentItems(at: tabType)[indexPath.row]
     }
 
-    func relatedContent(at indexPath: IndexPath) -> LearnContentCollection {
-        return relatedContentCollections.item(at: indexPath.row)
+    func relatedContent(at indexPath: IndexPath) -> ContentCollection {
+        return relatedContentCollections[indexPath.row]
     }
 
     func containsAudioItem() -> Bool {
-        return contentCollection.contentItems.items.contains { (item: LearnContentItem) -> Bool in
+        return contentCollection.contentItems.contains { (item: ContentItem) -> Bool in
             switch item.contentItemValue {
             case .audio: return true
             default: return false
@@ -136,7 +137,7 @@ extension LearnContentItemViewModel {
     }
 
     func firstAudioItem() -> ContentItemValue {
-        return contentCollection.contentItems.items.filter { (item: LearnContentItem) -> Bool in
+        return contentCollection.contentItems.filter { (item: ContentItem) -> Bool in
             switch item.contentItemValue {
             case .audio: return true
             default:  return false

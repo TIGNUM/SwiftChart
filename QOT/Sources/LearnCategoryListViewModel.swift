@@ -8,14 +8,15 @@
 
 import Foundation
 import ReactiveKit
+import RealmSwift
 
 /// The view model of a `LearnCategoryListViewController`.
 final class LearnCategoryListViewModel {
 
     // MARK: - Properties
 
-    private let _categories: DataProvider<LearnContentCategory>
-    fileprivate let disposeBag = DisposeBag()
+    private let _categories: AnyRealmCollection<ContentCategory>
+    private let realmObserver: RealmObserver
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
     /// The number of categories to display.
@@ -23,32 +24,23 @@ final class LearnCategoryListViewModel {
         return _categories.count
     }
 
-    var categories: [LearnContentCategory] {
-        return _categories.items
+    var categories: [ContentCategory] {
+        return Array(_categories)
     }
 
     // MARK: - Init
 
-    init(categories: DataProvider<LearnContentCategory>) {
+    init(categories: AnyRealmCollection<ContentCategory>, realmObserver: RealmObserver) {
         self._categories = categories
+        self.realmObserver = realmObserver
 
-        categories.observeChange { [unowned self] (_) in
-            self.updates.next(.reload)
-        }.dispose(in: disposeBag)
+        realmObserver.handler = { [weak self] in
+            self?.updates.next(.reload)
+        }
     }
 
     /// Returns the `LearnCategory` to display at `index`.
-    func category(at index: Index) -> LearnContentCategory {
-        var counter = 0
-        for i in 0..<_categories.count {
-            let cat = _categories.item(at: i)
-            if cat.itemCount > 0 {
-                if counter == index {
-                    return cat
-                }
-                counter += 1
-            }
-        }
-        return _categories.item(at: 0)
+    func category(at index: Index) -> ContentCategory {
+        return categories[index]
     }
 }

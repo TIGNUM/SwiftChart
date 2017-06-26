@@ -49,7 +49,7 @@ class LearnContentCell: UICollectionViewCell, Dequeueable {
         return view
     }()
 
-    func configure(with content: LearnContentCollection, index: Int) {
+    func configure(with content: ContentCollection, index: Int) {
         indexLabel.addCharactersSpacing(spacing: 1, text: "#\(String(format: "%02d", index))")
         titleLabel.addCharactersSpacing(spacing: 1, text: content.title, uppercased: true)
         let min = String(content.minutesRequired)
