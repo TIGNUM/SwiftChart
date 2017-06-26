@@ -32,6 +32,7 @@ func setupRealmWithMockData(realm: Realm) {
 
                 addMockPrepareContentCategories(realm: realm)
                 addMockSidebarContentCategories(realm: realm)
+                try addQuestions(realm: realm)
             }
         }
     } catch let error {
@@ -302,4 +303,27 @@ private extension Array {
     func randomItem() -> Element {
         return self[Int(arc4random_uniform(UInt32(self.count)))]
     }
+}
+
+// MARK: MOCK QUESTIONS
+
+func addQuestions(realm: Realm) throws {
+    // Prepare Question 1
+    let firstAnswersIntermediaries = [AnswerIntermediary(text: "i want to prepare for an event", nextType: "QUESTION", nextID: 15001),
+                        AnswerIntermediary(text: "i want to check in with my normal tough day protocols", nextType: "QUESTION", nextID: 15001),
+                        AnswerIntermediary(text: "i struggle and i am looking for some solutions", nextType: "QUESTION", nextID: 15001)]
+
+    let firstQuestionIntermediary = QuestionIntermediary(sortOrder: 0, group: "PREPARE,OTHER", text: "Hi Louis\nWhat are you preparing for?", answersDescription: nil, answers: firstAnswersIntermediaries)
+    let firstQuestion = Question.make(remoteID: 15000, createdAt: Date())
+    try firstQuestion.setData(firstQuestionIntermediary, objectStore: realm)
+
+    // Prepare Question 2
+    let secondAnswersIntermediaries = ["Meeting", "Negotiation", "Presentation", "Business dinner", "Pre-vacation", "High performance travel", "Work to home transition"].map { (text) -> AnswerIntermediary in
+        return AnswerIntermediary(text: text, nextType: "PREPARE_CONTENT", nextID: 1)
+    }
+    let secondQuestionIntermediary = QuestionIntermediary(sortOrder: 0, group: "PREPARE", text: "Here is what you need", answersDescription: "PREPARATIONS", answers: secondAnswersIntermediaries)
+    let secondQuestion = Question.make(remoteID: 15001, createdAt: Date())
+    try secondQuestion.setData(secondQuestionIntermediary, objectStore: realm)
+
+    realm.add([firstQuestion, secondQuestion])
 }

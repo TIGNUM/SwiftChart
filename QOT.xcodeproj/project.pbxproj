@@ -104,6 +104,12 @@
 		CB2880241E7051710067890A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880231E7051710067890A /* AppCoordinator.swift */; };
 		CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880331E7144E60067890A /* CollectionUpdate.swift */; };
 		CB3437531EFAC8F500D89D4F /* UpSyncResultParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3437521EFAC8F500D89D4F /* UpSyncResultParser.swift */; };
+		CB3437551EFD1C2600D89D4F /* PrepareChatDecisionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3437541EFD1C2600D89D4F /* PrepareChatDecisionManager.swift */; };
+		CB34375B1EFD652800D89D4F /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB34375A1EFD652800D89D4F /* Question.swift */; };
+		CB34375E1EFD653B00D89D4F /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB34375D1EFD653B00D89D4F /* Answer.swift */; };
+		CB3437601EFD675900D89D4F /* QuestionIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB34375F1EFD675900D89D4F /* QuestionIntermediary.swift */; };
+		CB3437621EFD67B600D89D4F /* AnswerIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3437611EFD67B600D89D4F /* AnswerIntermediary.swift */; };
+		CB3437641EFD6B0100D89D4F /* Answer+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3437631EFD6B0100D89D4F /* Answer+Convenience.swift */; };
 		CB3437671EFE74C700D89D4F /* ContentCollection+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3437661EFE74C700D89D4F /* ContentCollection+Convenience.swift */; };
 		CB3437691EFE75C400D89D4F /* ContentItem+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3437681EFE75C400D89D4F /* ContentItem+Convenience.swift */; };
 		CB34376B1EFE799D00D89D4F /* ContentCategory+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB34376A1EFE799D00D89D4F /* ContentCategory+Convenience.swift */; };
@@ -134,6 +140,7 @@
 		CB8C34521EAF61E50003AB65 /* SettingsMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB8C34511EAF61E50003AB65 /* SettingsMenuViewController.xib */; };
 		CB8C34541EAF7F190003AB65 /* MyToBeVisionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB8C34531EAF7F190003AB65 /* MyToBeVisionViewController.xib */; };
 		CB8C34561EAF7F200003AB65 /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = CB8C34551EAF7F200003AB65 /* styles.css */; };
+		CB9AFD0F1F012A2800D067F2 /* QuestionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9AFD0E1F012A2800D067F2 /* QuestionsService.swift */; };
 		CB9B07531EF7FE410017F6C3 /* LearnCategoryListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4881511EF7F45D00389C88 /* LearnCategoryListPage.swift */; };
 		CB9B075C1EF911AD0017F6C3 /* IntObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9B075B1EF911AD0017F6C3 /* IntObject.swift */; };
 		CB9B07631EF91B860017F6C3 /* CalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9B07621EF91B860017F6C3 /* CalendarEvent.swift */; };
@@ -443,6 +450,12 @@
 		CB2880231E7051710067890A /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		CB2880331E7144E60067890A /* CollectionUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionUpdate.swift; sourceTree = "<group>"; };
 		CB3437521EFAC8F500D89D4F /* UpSyncResultParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpSyncResultParser.swift; sourceTree = "<group>"; };
+		CB3437541EFD1C2600D89D4F /* PrepareChatDecisionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareChatDecisionManager.swift; sourceTree = "<group>"; };
+		CB34375A1EFD652800D89D4F /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		CB34375D1EFD653B00D89D4F /* Answer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
+		CB34375F1EFD675900D89D4F /* QuestionIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionIntermediary.swift; sourceTree = "<group>"; };
+		CB3437611EFD67B600D89D4F /* AnswerIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerIntermediary.swift; sourceTree = "<group>"; };
+		CB3437631EFD6B0100D89D4F /* Answer+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Answer+Convenience.swift"; sourceTree = "<group>"; };
 		CB3437661EFE74C700D89D4F /* ContentCollection+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ContentCollection+Convenience.swift"; sourceTree = "<group>"; };
 		CB3437681EFE75C400D89D4F /* ContentItem+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ContentItem+Convenience.swift"; sourceTree = "<group>"; };
 		CB34376A1EFE799D00D89D4F /* ContentCategory+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ContentCategory+Convenience.swift"; sourceTree = "<group>"; };
@@ -474,6 +487,7 @@
 		CB8C34511EAF61E50003AB65 /* SettingsMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsMenuViewController.xib; sourceTree = "<group>"; };
 		CB8C34531EAF7F190003AB65 /* MyToBeVisionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyToBeVisionViewController.xib; sourceTree = "<group>"; };
 		CB8C34551EAF7F200003AB65 /* styles.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = styles.css; sourceTree = "<group>"; };
+		CB9AFD0E1F012A2800D067F2 /* QuestionsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionsService.swift; sourceTree = "<group>"; };
 		CB9B075B1EF911AD0017F6C3 /* IntObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntObject.swift; sourceTree = "<group>"; };
 		CB9B07621EF91B860017F6C3 /* CalendarEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEvent.swift; sourceTree = "<group>"; };
 		CB9B07641EF929E50017F6C3 /* EKEvent+JSONEncodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKEvent+JSONEncodable.swift"; sourceTree = "<group>"; };
@@ -740,6 +754,25 @@
 			name = ContentItem;
 			sourceTree = "<group>";
 		};
+		CB3437591EFD651600D89D4F /* Question */ = {
+			isa = PBXGroup;
+			children = (
+				CB34375A1EFD652800D89D4F /* Question.swift */,
+				CB34375F1EFD675900D89D4F /* QuestionIntermediary.swift */,
+			);
+			name = Question;
+			sourceTree = "<group>";
+		};
+		CB34375C1EFD652F00D89D4F /* Answer */ = {
+			isa = PBXGroup;
+			children = (
+				CB34375D1EFD653B00D89D4F /* Answer.swift */,
+				CB3437631EFD6B0100D89D4F /* Answer+Convenience.swift */,
+				CB3437611EFD67B600D89D4F /* AnswerIntermediary.swift */,
+			);
+			name = Answer;
+			sourceTree = "<group>";
+		};
 		CB34376C1EFE7F5800D89D4F /* SyncRecord */ = {
 			isa = PBXGroup;
 			children = (
@@ -991,6 +1024,8 @@
 		CBB4DD251EE087830071494A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CB34375C1EFD652F00D89D4F /* Answer */,
+				CB3437591EFD651600D89D4F /* Question */,
 				CB9B07581EF904410017F6C3 /* CalendarEvent */,
 				CB4881501EF7BF6400389C88 /* ContentCategory */,
 				CB48814F1EF7BF5B00389C88 /* ContentCollection */,
@@ -1264,6 +1299,7 @@
 				CCCC211B1E8981AD00133839 /* ChatViewModel.swift */,
 				0BC1FF491E968E07007DE090 /* CollectionTableViewCell.swift */,
 				0BC1FF4A1E968E07007DE090 /* CollectionTableViewCell.xib */,
+				CB3437541EFD1C2600D89D4F /* PrepareChatDecisionManager.swift */,
 				D52371511EA9F0B100165842 /* PrepareChatTableCell.swift */,
 				D519E08E1EAA5403004F96E7 /* PrepareChatTableCell.xib */,
 				0B254D3C1E97994C006AA4C0 /* PrepareCollectionViewCell.swift */,
@@ -1374,6 +1410,7 @@
 				CC56D0A81EEACC6200EB71D9 /* ArticleService.swift */,
 				CB34376F1EFE936F00D89D4F /* ContentService.swift */,
 				CC33CA2D1EC603BC008E6B33 /* PrepareContentService.swift */,
+				CB9AFD0E1F012A2800D067F2 /* QuestionsService.swift */,
 				CB369CE11E8D5E3D00522293 /* Services.swift */,
 				CCE5796C1ECB55CE006E0D45 /* SidebarContentService.swift */,
 				CBB4DCF41EDC10FA0071494A /* SyncRecordService.swift */,
@@ -1825,6 +1862,7 @@
 				D51B5C4C1E8D133B0084A65B /* LearnContentItemCoordinator.swift in Sources */,
 				CBD7914A1E71797C0006C590 /* Typealiases.swift in Sources */,
 				CCCC21221E8981CA00133839 /* PrepareContentViewController.swift in Sources */,
+				CB3437621EFD67B600D89D4F /* AnswerIntermediary.swift in Sources */,
 				0BC9F9391E96118C009E8204 /* StatusTableViewCell.swift in Sources */,
 				CBD791541E72A4BB0006C590 /* MockData.swift in Sources */,
 				CB9B07651EF929E50017F6C3 /* EKEvent+JSONEncodable.swift in Sources */,
@@ -1875,6 +1913,7 @@
 				CC34BD561ECF3863007CB365 /* UserCredentials.swift in Sources */,
 				CB810E6E1EF180DC0043E3E5 /* PageTrack.swift in Sources */,
 				0BA3E6411EC1A8280012999E /* DashedProgressWheel.swift in Sources */,
+				CB34375B1EFD652800D89D4F /* Question.swift in Sources */,
 				CB0A4A5D1ECC4C72006A2D85 /* AddSensorViewController.swift in Sources */,
 				CC94F5621EB08EE400051CF8 /* AudioWaveformView.swift in Sources */,
 				0B40DC151E9CA71400E1659B /* PrepareContentHeaderTableViewCell.swift in Sources */,
@@ -1891,6 +1930,7 @@
 				CC143A511EC495CE001FB76E /* MyStatisticsCoordinator.swift in Sources */,
 				85DC6F851EF3E32A004F4B4D /* MyStatisticsDataPeriods.swift in Sources */,
 				CB0A4A5A1ECC4C3E006A2D85 /* AddSensorViewModel.swift in Sources */,
+				CB3437551EFD1C2600D89D4F /* PrepareChatDecisionManager.swift in Sources */,
 				D50CDDC11EC48CA700D27072 /* AverageGraphView.swift in Sources */,
 				CBB4DD0D1EDEAA610071494A /* URLRequestBuilder.swift in Sources */,
 				CB9B076D1EFAAB6E0017F6C3 /* UpSyncCalendarEventsOperation.swift in Sources */,
@@ -1985,6 +2025,7 @@
 				CBB4DCE41ED827840071494A /* SyncContext.swift in Sources */,
 				CB9B076B1EFAA7990017F6C3 /* Realm+Convenience.swift in Sources */,
 				CCCC21231E8981CA00133839 /* PrepareContentViewModel.swift in Sources */,
+				CB9AFD0F1F012A2800D067F2 /* QuestionsService.swift in Sources */,
 				CC1E2A5F1EDF1DE100B9EFD3 /* UICollectionView+Create.swift in Sources */,
 				CB810E701EF181ED0043E3E5 /* PageTrackAssociatedObject.swift in Sources */,
 				852020351EF8300800EA2032 /* PeakPerformanceUpcomingView.swift in Sources */,
@@ -1995,12 +2036,14 @@
 				CC41A5491EFD59FC00B9AE8E /* ArticleItemHeaderView.swift in Sources */,
 				858AF6951EF9544000486605 /* MyStatisticsDataActivity.swift in Sources */,
 				CCAF03241E801B0E00015125 /* SettingsCoordinator.swift in Sources */,
+				CB3437601EFD675900D89D4F /* QuestionIntermediary.swift in Sources */,
 				D52350961E9FC1120013DE7E /* ArticleCollectionLayout.swift in Sources */,
 				CBB4DD561EE152EC0071494A /* DownSyncOperation.swift in Sources */,
 				CC13E2401EB1D72400C3CE46 /* LatestCollectionCell.swift in Sources */,
 				CC944DB61EE804CD00B8423C /* MyStatisticsTableViewCell.swift in Sources */,
 				CB9B075C1EF911AD0017F6C3 /* IntObject.swift in Sources */,
 				CC0FF8D61EA78C810028D64F /* MyToBeVisionCoordinator.swift in Sources */,
+				CB34375E1EFD653B00D89D4F /* Answer.swift in Sources */,
 				0BA3E6421EC1A8280012999E /* DayEventChartView.swift in Sources */,
 				852DADE61EF1A40200A10882 /* SegmentedView.swift in Sources */,
 				8514A4881EE93D3C0086C70E /* PrepareContentFooterTableViewCell.swift in Sources */,
@@ -2009,6 +2052,7 @@
 				CC13E2481EB1D72E00C3CE46 /* LatestPostCell.swift in Sources */,
 				CC56D0A91EEACC6200EB71D9 /* ArticleService.swift in Sources */,
 				D57ECFB01E924CC2008F401B /* TabBarView.swift in Sources */,
+				CB3437641EFD6B0100D89D4F /* Answer+Convenience.swift in Sources */,
 				CC7D21AA1EFC0856007A062E /* ArticleContentItemCoordinator.swift in Sources */,
 				CCE06FE01E8D44FC009C5AD2 /* LibraryCoordinator.swift in Sources */,
 				0B254D3E1E97994C006AA4C0 /* PrepareCollectionViewCell.swift in Sources */,

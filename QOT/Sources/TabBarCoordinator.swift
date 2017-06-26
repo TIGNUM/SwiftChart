@@ -20,7 +20,19 @@ final class TabBarCoordinator: ParentCoordinator {
     fileprivate let selectedIndex: Index
     fileprivate var viewControllers = [UIViewController]()
     fileprivate var tabBarController: TabBarController?
+    fileprivate let prepareChatDecisionManager: PrepareChatDecisionManager
+
     var children = [Coordinator]()
+
+    fileprivate lazy var prepareChatViewController: ChatViewController<Answer> = {
+        let viewModel = ChatViewModel<Answer>()
+        let viewController = ChatViewController(viewModel: viewModel)
+
+        viewController.didSelectChoice = { [weak self] (choice, viewController) in
+            self?.prepareChatDecisionManager.didSelectChoice(choice)
+        }
+        return viewController
+    }()
 
     fileprivate lazy var topTabBarControllerLearn: TopTabBarController = {
         let categories = self.services.contentService.learnContentCategories()
@@ -89,8 +101,7 @@ final class TabBarCoordinator: ParentCoordinator {
 
     fileprivate lazy var topTabBarControllerPrepare: TopTabBarController = {
         let prepareContentCategory = self.services.prepareContentService.categories()[0]
-        let chatViewModel = ChatViewModel<PrepareChatChoice>(items: mockPrepareChatItems())
-        let chatViewController = ChatViewController(viewModel: chatViewModel)
+        let chatViewController = self.prepareChatViewController
         let myPrepViewModel = MyPrepViewModel()
         let myPrepViewController = MyPrepViewController(viewModel: myPrepViewModel)
 
@@ -109,13 +120,6 @@ final class TabBarCoordinator: ParentCoordinator {
             rightIcon: R.image.ic_menu()
         )
 
-        chatViewController.didSelectChoice = { [weak self] (choice, viewController) in
-            print(choice)
-            // FIXME: Implement next logic
-            // let coordinator = PrepareContentCoordinator(root: viewController, services: services, eventTracker: eventTracker, collection: chatMessageNavigation)
-            // coordinator.startChild(child: coordinator)
-        }
-
         topTabBarController.delegate = self
         
         return topTabBarController
@@ -128,6 +132,9 @@ final class TabBarCoordinator: ParentCoordinator {
         self.services = services
         self.eventTracker = eventTracker
         self.selectedIndex = selectedIndex
+        self.prepareChatDecisionManager = PrepareChatDecisionManager(service: services.questionsService)
+
+        prepareChatDecisionManager.delegate = self
     }
 }
 
@@ -178,13 +185,11 @@ extension TabBarCoordinator {
 extension TabBarCoordinator: TabBarControllerDelegate {
 
     func didSelectTab(at index: Index, in controller: TabBarController) {
-        let viewController = controller.viewControllers.first
-        
-        switch viewController {
-        case let learnCategory as LearnCategoryListViewController: eventTracker.track(page: learnCategory.pageID, referer: learnCategory.pageID, associatedEntity: nil)
-        case let meCategory as MyUniverseViewController: eventTracker.track(page: meCategory.pageID, referer: meCategory.pageID, associatedEntity: nil)
-        case let chat as ChatViewController<PrepareChatChoice>: eventTracker.track(page: chat.pageID, referer: chat.pageID, associatedEntity: nil)
-        default: break
+        switch index {
+        case 2:
+            prepareChatDecisionManager.start()
+        default:
+            break
         }
     }
 }
@@ -271,5 +276,22 @@ extension TabBarCoordinator: TopTabBarDelegate {
 
     func didSelectItemAtIndex(index: Int, sender: TopTabBarController) {
         print("didSelectItemAtIndex", index, sender)
+    }
+}
+
+// MARK: PrepareChatDecisionManagerDelegate
+
+extension TabBarCoordinator: PrepareChatDecisionManagerDelegate {
+
+    func setItems(_ items: [ChatItem<Answer>], manager: PrepareChatDecisionManager) {
+        prepareChatViewController.viewModel.setItems(items: items)
+    }
+
+    func appendItems(_ items: [ChatItem<Answer>], manager: PrepareChatDecisionManager) {
+        prepareChatViewController.viewModel.append(items: items)
+    }
+
+    func showContent(id: Int, manager: PrepareChatDecisionManager) {
+        print("SHOW CHECKLIST FOR ID: \(id)")
     }
 }

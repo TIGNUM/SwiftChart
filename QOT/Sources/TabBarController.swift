@@ -25,8 +25,11 @@ final class TabBarController: UIViewController {
     fileprivate weak var currentViewController: UIViewController?
     fileprivate weak var indicatorViewLeadingConstraint: NSLayoutConstraint?
     fileprivate weak var indicatorViewWidthConstraint: NSLayoutConstraint?
-    lazy var viewControllers = [UIViewController]()
     weak var delegate: TabBarControllerDelegate?
+
+    var viewControllers: [UIViewController] {
+        return items.map { $0.controller }
+    }
     
     fileprivate lazy var tabBarView: TabBarView = {
         let tabBarView = TabBarView(tabBarType: .bottom)

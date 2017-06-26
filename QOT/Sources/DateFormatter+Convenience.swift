@@ -17,9 +17,22 @@ private let iso8601DateFormatter: DateFormatter = {
     return formatter
 }()
 
+private let displayTimeFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.locale = Locale.current
+    formatter.timeZone = TimeZone.current
+    formatter.dateStyle = .none
+    formatter.timeStyle = .short
+    return formatter
+}()
+
 extension DateFormatter {
     // FIXME: MUST MUST MUST be unit tested.
     static var iso8601: DateFormatter {
         return iso8601DateFormatter
+    }
+
+    static var displayTime: DateFormatter {
+        return displayTimeFormatter
     }
 }

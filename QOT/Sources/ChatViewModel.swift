@@ -25,7 +25,7 @@ struct ChatItem<T: ChatChoice> {
     let type: ChatItemType
     let delay: TimeInterval
 
-    init(type: ChatItemType, delay: TimeInterval = 2) {
+    init(type: ChatItemType, delay: TimeInterval = 0.2) {
         self.type = type
         self.delay = delay
     }
@@ -46,6 +46,15 @@ final class ChatViewModel<T: ChatChoice> {
     init(items: [ChatItem<T>] = []) {
         operationQueue.maxConcurrentOperationCount = 1
         append(items: items)
+    }
+
+    func setItems(items: [ChatItem<T>]) {
+        operationQueue.addOperation { [weak self] in
+            DispatchQueue.main.async {
+                self?.items = items
+                self?.updates.next(.reload)
+            }
+        }
     }
 
     func append(items: [ChatItem<T>]) {
@@ -74,35 +83,4 @@ final class ChatViewModel<T: ChatChoice> {
     func item(at index: Index) -> ChatItem<T> {
         return items[index]
     }
-}
-
-struct PrepareChatChoice: ChatChoice {
-    let id: Int
-    let title: String
-}
-
-func mockPrepareChatItems() -> [ChatItem<PrepareChatChoice>] {
-    let choices1 = [PrepareChatChoice(id: 0, title: "i want to prepare for an event"),
-                    PrepareChatChoice(id: 1, title: "i want to check in with my normal $ tough day protocols"),
-                    PrepareChatChoice(id: 2, title: "i struggle and i am looking for some solutions")]
-    let choices2 = [PrepareChatChoice(id: 3, title: "Meeting"),
-                    PrepareChatChoice(id: 4, title: "Negotiation"),
-                    PrepareChatChoice(id: 5, title: "Presentation"),
-                    PrepareChatChoice(id: 6, title: "Business dinner"),
-                    PrepareChatChoice(id: 7, title: "Pre-vacation"),
-                    PrepareChatChoice(id: 8, title: "High performance travel"),
-                    PrepareChatChoice(id: 9, title: "Work to home transition")]
-
-    var items: [ChatItem<PrepareChatChoice>] = []
-    items.append(ChatItem(type: .message("Hi Louis\nWhat are you preparing for?")))
-    items.append(ChatItem(type: .footer("Delivered at 12:58", alignment: .left)))
-    items.append(ChatItem(type: .choiceList(choices1, display: .list)))
-    items.append(ChatItem(type: .footer("Delivered at 12:58", alignment: .right)))
-    items.append(ChatItem(type: .message("Here what you need")))
-    items.append(ChatItem(type: .footer("Delivered at 12:58", alignment: .left)))
-    items.append(ChatItem(type: .footer("PREPARATIONS", alignment: .left)))
-    items.append(ChatItem(type: .choiceList(choices2, display: .flow)))
-    items.append(ChatItem(type: .message("Your preparation for **Trip to Basel on 21st April 2017** has been saved in the calendar")))
-
-    return items
 }

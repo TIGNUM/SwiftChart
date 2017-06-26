@@ -28,4 +28,8 @@ extension NSPredicate {
     convenience init(eventIDs: [String]) {
         self.init(format: "eventID IN %@", eventIDs)
     }
+
+    convenience init(groupContains word: String) {
+        self.init(format: "group CONTAINS %@", word)
+    }
 }
