@@ -240,6 +240,7 @@
 		CC7D21B31EFC1348007A062E /* WeeklyChoicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7D21AE1EFC1348007A062E /* WeeklyChoicesViewController.swift */; };
 		CC7D21B41EFC1348007A062E /* WeeklyChoicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7D21AF1EFC1348007A062E /* WeeklyChoicesViewModel.swift */; };
 		CC7D21DB1EDD5FE800C6B8E0 /* LearnPagingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC7D21DA1EDD5FE800C6B8E0 /* LearnPagingCollectionViewCell.xib */; };
+		CC8018201F0256980040B03F /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC80181F1F0256980040B03F /* UIViewController+Alert.swift */; };
 		CC8813EB1EF2EA33000FB85F /* LearnContentItemRecommendedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8813E91EF2EA33000FB85F /* LearnContentItemRecommendedCell.swift */; };
 		CC8813EC1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC8813EA1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib */; };
 		CC8C982B1EA767580064AFB1 /* MyUniverseViewController+ScreenType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8C982A1EA767580064AFB1 /* MyUniverseViewController+ScreenType.swift */; };
@@ -596,6 +597,7 @@
 		CC7D21AE1EFC1348007A062E /* WeeklyChoicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesViewController.swift; sourceTree = "<group>"; };
 		CC7D21AF1EFC1348007A062E /* WeeklyChoicesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesViewModel.swift; sourceTree = "<group>"; };
 		CC7D21DA1EDD5FE800C6B8E0 /* LearnPagingCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnPagingCollectionViewCell.xib; sourceTree = "<group>"; };
+		CC80181F1F0256980040B03F /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		CC8813E91EF2EA33000FB85F /* LearnContentItemRecommendedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentItemRecommendedCell.swift; sourceTree = "<group>"; };
 		CC8813EA1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnContentItemRecommendedCell.xib; sourceTree = "<group>"; };
 		CC8C982A1EA767580064AFB1 /* MyUniverseViewController+ScreenType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyUniverseViewController+ScreenType.swift"; sourceTree = "<group>"; };
@@ -1181,6 +1183,7 @@
 				8514A4911EEAA2AE0086C70E /* UILabel+AttributedText.swift */,
 				CC05CB781EDEC73C00D15ABC /* UITableView+Create.swift */,
 				852DADD51EF051C400A10882 /* UIView+Layers.swift */,
+				CC80181F1F0256980040B03F /* UIViewController+Alert.swift */,
 				CCCC42DE1ED5799D00E73905 /* UIViewController+Transition.swift */,
 			);
 			name = Extensions;
@@ -1940,6 +1943,7 @@
 				CC6B3A2F1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift in Sources */,
 				CC34BD561ECF3863007CB365 /* UserCredentials.swift in Sources */,
 				CB810E6E1EF180DC0043E3E5 /* PageTrack.swift in Sources */,
+				CC8018201F0256980040B03F /* UIViewController+Alert.swift in Sources */,
 				0BA3E6411EC1A8280012999E /* DashedProgressWheel.swift in Sources */,
 				CB34375B1EFD652800D89D4F /* Question.swift in Sources */,
 				CB0A4A5D1ECC4C72006A2D85 /* AddSensorViewController.swift in Sources */,

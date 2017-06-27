@@ -67,3 +67,8 @@
 "Sidebar.SettingsMenu.SecurityButton" = "SECURITY";
 
 "Common.InvalidContent" = "Cannot Display Content";
+
+"Alert.Title.NoContent" = "No Content";
+"Alert.Message.NoContent" = "The selection have no content, sorry :(";
+"Alert.Button.Title.Ok" = "OK";
+"Alert.Button.Title.Cancel" = "Cancel";

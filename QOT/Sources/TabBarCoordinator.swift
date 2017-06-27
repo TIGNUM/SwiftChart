@@ -246,12 +246,18 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
 extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
 
     func didTapItem(articleHeader: ArticleCollectionHeader, in viewController: ArticleCollectionViewController) {
+        guard articleHeader.articleContentCollection.articleItems.count > 0 else {
+            viewController.showAlert(type: .noContent, handler: nil, handlerDestructive: nil)
+            return
+        }
+
         let coordinator = ArticleContentItemCoordinator(
             root: viewController,
             services: services,
             eventTracker: eventTracker,
             articleHeader: articleHeader
         )
+
         coordinator.startChild(child: coordinator)
     }
 }
