@@ -9,47 +9,53 @@
 import Foundation
 import RealmSwift
 
+extension NSPredicate {
+
+    static func section(_ section: Database.Section) -> NSPredicate {
+        return NSPredicate(section: section.value)
+    }
+}
+
 final class ContentService {
 
-    private let mainRealm: Realm
+    // MARK: - Properties
+
+    fileprivate let mainRealm: Realm
     private let realmProvider: RealmProvider
+
+    // MARK: - Init
 
     init(mainRealm: Realm, realmProvider: RealmProvider) {
         self.mainRealm = mainRealm
         self.realmProvider = realmProvider
     }
 
+    // MARK: - Categories
+
     func libraryCategories() -> AnyRealmCollection<ContentCategory> {
-        let predicate = NSPredicate(section: Database.Section.about.rawValue)
-        let results = mainRealm.objects(ContentCategory.self).sorted(byKeyPath: JsonKey.sortOrder.value).filter(predicate)
-
-        return AnyRealmCollection<ContentCategory>(results)
-    }
-
-    func contentCollections(ids: [Int]) -> AnyRealmCollection<ContentCollection> {
-        let predicate = NSPredicate(remoteIDs: ids)
-        let results = mainRealm.objects(ContentCollection.self).sorted(byKeyPath: "sortOrder").filter(predicate)
-        return AnyRealmCollection(results)
-    }
-
-    func contentCollections(categoryID: Int) -> AnyRealmCollection<ContentCollection> {
-        let predicate = NSPredicate(format: "ANY categoryIDs.value == %d", categoryID)
-        let results = mainRealm.objects(ContentCollection.self).sorted(byKeyPath: "sortOrder").filter(predicate)
-        return AnyRealmCollection(results)
+        return sortedResults(for: .section(.library))
     }
 
     func learnContentCategories() -> AnyRealmCollection<ContentCategory> {
-        let predicate = NSPredicate(section: Database.Section.learnStrategy.rawValue)
-        let results = mainRealm.objects(ContentCategory.self).sorted(byKeyPath: "sortOrder").filter(predicate)
-        return AnyRealmCollection(results)
-    }
-
-    func contentCollection(id: Int) -> ContentCollection? {
-        return mainRealm.object(ofType: ContentCollection.self, forPrimaryKey: id)
+        return sortedResults(for: .section(.learnStrategy))
     }
 
     func contentCategory(id: Int) -> ContentCategory? {
-        return mainRealm.object(ofType: ContentCategory.self, forPrimaryKey: id)
+        return mainRealm.anyCollection(primaryKey: id)
+    }
+
+    // MARK: - Collections
+
+    func contentCollections(ids: [Int]) -> AnyRealmCollection<ContentCollection> {
+        return sortedResults(for: NSPredicate(remoteIDs: ids))
+    }
+
+    func contentCollections(categoryID: Int) -> AnyRealmCollection<ContentCollection> {
+        return sortedResults(for: NSPredicate(format: "ANY categoryIDs.value == %d", categoryID))
+    }
+
+    func contentCollection(id: Int) -> ContentCollection? {
+        return mainRealm.anyCollection(primaryKey: id)
     }
 
     func setViewed(itemID: Int) {
@@ -64,5 +70,37 @@ final class ContentService {
                 assertionFailure("UpdateViewedAt, itemId: \(itemID), error: \(error)")
             }
         }
+    }
+}
+
+// MARK: - Private
+
+extension Realm {
+
+    func anyCollection<T>(_ sort: SortDescriptor? = nil, predicates: NSPredicate...) -> AnyRealmCollection<T> {
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+        if let sort = sort {
+            return AnyRealmCollection(objects(T.self).sorted(by: [sort]).filter(predicate))
+        }
+
+        return AnyRealmCollection(objects(T.self).filter(predicate))
+    }
+
+    func anyCollection<T, K>(primaryKey: K) -> T? where T : RealmSwift.Object {
+        return object(ofType: T.self, forPrimaryKey: primaryKey)
+    }
+}
+
+extension SortDescriptor {
+
+    static func sortOrder(ascending: Bool = true) -> SortDescriptor {
+        return SortDescriptor(keyPath: Database.KeyPath.sortOrder.rawValue, ascending: ascending)
+    }
+}
+
+private extension ContentService {
+
+    func sortedResults<T>(for predicate: NSPredicate) -> AnyRealmCollection<T> {
+        return mainRealm.anyCollection(.sortOrder(), predicates: predicate)
     }
 }

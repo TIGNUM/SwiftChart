@@ -17,6 +17,7 @@ enum Database {
         case prepareCoach = "prepare.coach"
         case sidebar = "sidebar"
         case about = "ABOUT"
+        case library = "QOT_LIBRARY"
 
         enum Sidebar: String {
             case library = "sidebar.library"
@@ -35,6 +36,10 @@ enum Database {
         var value: String {
             return self.rawValue
         }
+    }
+
+    enum KeyPath: String {
+        case sortOrder
     }
 
     enum ItemKey: String {
