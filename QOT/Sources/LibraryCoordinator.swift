@@ -16,6 +16,7 @@ final class LibraryCoordinator: ParentCoordinator {
     fileprivate let rootViewController: SidebarViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
+    fileprivate let libraryViewController: LibraryViewController
     var children = [Coordinator]()
     lazy var presentationManager = PresentationManager()
 
@@ -25,12 +26,13 @@ final class LibraryCoordinator: ParentCoordinator {
         self.rootViewController = root
         self.services = services
         self.eventTracker = eventTracker
+        let categories = services.contentService.libraryCategories()
+        self.libraryViewController = LibraryViewController(viewModel: LibraryViewModel(categories: categories))
     }
 
     // MARK: - Coordinator -> Starts
 
     func start() {
-        let libraryViewController = LibraryViewController(viewModel: LibraryViewModel())
         libraryViewController.delegate = self
         presentationManager.presentationType = .fadeIn
         libraryViewController.modalPresentationStyle = .custom
@@ -60,8 +62,16 @@ final class LibraryCoordinator: ParentCoordinator {
 
 extension LibraryCoordinator: LibraryViewControllerDelegate {
 
-    func didTapMedia(with mediaItem: LibraryMediaItem, from view: UIView, in viewController: UIViewController) {
-        log("didTapMedia: \(mediaItem)")
+    func didTapLibraryItem(item: ContentCollection) {
+        let header = ArticleCollectionHeader(
+            articleTitle: item.title,
+            articleSubTitle: item.description,
+            articleDate: "TODO DATE",
+            articleDuration: "TODO Duration",
+            articleContentCollection: item
+        )
+        let coordinator = ArticleContentItemCoordinator(root: libraryViewController, services: services, eventTracker: eventTracker, articleHeader: header)
+        startChild(child: coordinator)
     }
 }
 

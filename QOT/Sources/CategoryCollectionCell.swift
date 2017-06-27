@@ -26,10 +26,10 @@ final class CategoryCollectionCell: UICollectionViewCell, Dequeueable {
 
     // MARK: - Setup
     
-    func setup(headline: String, placeholderURL: URL, mediaType: String) {
-        headlineLabel.attributedText = Style.tag(headline.makingTwoLines(), .white90).attributedString()
-        mediaTypeLabel.attributedText = Style.tag(mediaType, .white40).attributedString()
+    func setup(title: String, subtitle: String, previewImageURL: URL?) {
+        headlineLabel.attributedText = Style.tag(title.makingTwoLines(), .white90).attributedString()
+        mediaTypeLabel.attributedText = Style.tag(subtitle, .white40).attributedString()
         categoryImageView.kf.indicatorType = .activity
-        categoryImageView.kf.setImage(with: placeholderURL)
+        categoryImageView.kf.setImage(with: previewImageURL)
     }
 }

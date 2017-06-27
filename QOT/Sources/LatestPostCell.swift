@@ -12,14 +12,12 @@ final class LatestPostCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
+    fileprivate var contentCollection = [ContentCollection]()
+    fileprivate let helper = Helper()
+    weak var delegate: LibraryViewControllerDelegate?
 
-    let helper = Helper()
-    lazy var mediaItem = LibraryMediaItem.audio(localID: "", placeholderURL: URL(string: "")!, headline: "", text: "")
-    var sectionCount = 0
-
-    func setUp(title: String, sectionCount: Int, mediaItem: LibraryMediaItem) {
-        self.sectionCount = sectionCount
-        self.mediaItem = mediaItem
+    func setUp(title: String, contentCollection: [ContentCollection]) {
+        self.contentCollection = contentCollection
         titleLabel.attributedText = Style.tag(title, .white90).attributedString()
         collectionView.registerDequeueable(LatestCollectionCell.self)
         collectionView.dataSource = self
@@ -35,20 +33,15 @@ final class LatestPostCell: UITableViewCell, Dequeueable {
 extension LatestPostCell: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sectionCount
+        return contentCollection.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch mediaItem {
-        case .audio ( _, let placeHolderURL, let headline, let text):
-            let cell: LatestCollectionCell = collectionView.dequeueCell(for: indexPath)
-            cell.setup(headline: headline, placeholderURL: placeHolderURL, mediaType: text)
-            return cell
-        case .video( _, let placeHolderURL, let headline, let text):
-            let cell: LatestCollectionCell = collectionView.dequeueCell(for: indexPath)
-            cell.setup(headline: headline, placeholderURL: placeHolderURL, mediaType: text)
-            return cell
-        }
+        let cell: LatestCollectionCell = collectionView.dequeueCell(for: indexPath)
+        let collection = contentCollection[indexPath.item]
+        cell.setup(headline: collection.title, previewImageURL: collection.thumbnailURL, mediaType: collection.description)
+
+        return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -69,5 +62,9 @@ extension LatestPostCell: UICollectionViewDelegateFlowLayout, UICollectionViewDa
 
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         targetContentOffset.pointee.x = helper.scrollViewScroll(scrollView: scrollView, velocity: velocity, targetContentOffset: targetContentOffset, width: 220)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.didTapLibraryItem(item: contentCollection[indexPath.item])
     }
 }

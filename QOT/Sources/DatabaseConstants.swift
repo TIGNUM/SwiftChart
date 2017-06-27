@@ -16,6 +16,7 @@ enum Database {
         case learnWhatsHot = "WHAT_S_HOT"
         case prepareCoach = "prepare.coach"
         case sidebar = "sidebar"
+        case about = "ABOUT"
 
         enum Sidebar: String {
             case library = "sidebar.library"

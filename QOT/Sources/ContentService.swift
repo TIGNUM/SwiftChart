@@ -19,6 +19,13 @@ final class ContentService {
         self.realmProvider = realmProvider
     }
 
+    func libraryCategories() -> AnyRealmCollection<ContentCategory> {
+        let predicate = NSPredicate(section: Database.Section.about.rawValue)
+        let results = mainRealm.objects(ContentCategory.self).sorted(byKeyPath: JsonKey.sortOrder.value).filter(predicate)
+
+        return AnyRealmCollection<ContentCategory>(results)
+    }
+
     func contentCollections(ids: [Int]) -> AnyRealmCollection<ContentCollection> {
         let predicate = NSPredicate(remoteIDs: ids)
         let results = mainRealm.objects(ContentCollection.self).sorted(byKeyPath: "sortOrder").filter(predicate)

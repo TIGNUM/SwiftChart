@@ -10,7 +10,8 @@ import UIKit
 import Anchorage
 
 protocol LibraryViewControllerDelegate: class {
-    func didTapMedia(with mediaItem: LibraryMediaItem, from view: UIView, in viewController: UIViewController)
+
+    func didTapLibraryItem(item: ContentCollection)
 }
 
 final class LibraryViewController: UIViewController {
@@ -25,8 +26,8 @@ final class LibraryViewController: UIViewController {
             delegate: self,
             dataSource: self,
             dequeables:
-            LatestPostCell.self,
-            CategoryPostCell.self
+                LatestPostCell.self,
+                CategoryPostCell.self
         )
     }()
 
@@ -69,10 +70,10 @@ private extension LibraryViewController {
 extension LibraryViewController: UITableViewDelegate {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return viewModel.sectionCount
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.sectionCount
+        return 1
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -87,18 +88,21 @@ extension LibraryViewController: UITableViewDataSource {
     // table DataSource
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = viewModel.styleForSection(indexPath.item)
+        let sectionStyle = viewModel.styleForSection(indexPath.item)
+        let contentCollection = viewModel.contentCollection(at: indexPath)
         tableView.rowHeight = UITableViewAutomaticDimension
 
-        switch section {
+        switch sectionStyle {
         case .lastPost:
             let cell: LatestPostCell = tableView.dequeueCell(for: indexPath)
-            cell.setUp(title: "\(viewModel.titleForSection(indexPath.item))", sectionCount: viewModel.numberOfItemsInSection(in: indexPath.section), mediaItem: viewModel.item(at: indexPath))
+            cell.setUp(title: viewModel.titleForSection(indexPath.section), contentCollection: contentCollection)
+            cell.delegate = delegate
 
             return cell
         case .category:
             let cell: CategoryPostCell = tableView.dequeueCell(for: indexPath)
-            cell.setUp(title: "\(viewModel.titleForSection(indexPath.item))", itemCount: viewModel.sectionCount, mediaItem: viewModel.item(at: indexPath))
+            cell.setUp(title: viewModel.titleForSection(indexPath.section), contentCollection: contentCollection)
+            cell.delegate = delegate
             
             return cell
         }

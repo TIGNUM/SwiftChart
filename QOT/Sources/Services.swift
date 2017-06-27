@@ -31,7 +31,7 @@ final class Services {
             self.contentService = contentService
             self.articleService = articleService
             self.prepareContentService = prepareContentService
-            self.sidebarContentService = sidebarContentService
+            self.sidebarContentService = sidebarContentService            
             self.questionsService = questionsService
     }
 
