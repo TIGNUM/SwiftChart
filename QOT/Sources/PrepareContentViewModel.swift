@@ -10,7 +10,26 @@ import Foundation
 import ReactiveKit
 import LoremIpsum
 
+struct PrepareItem {
+    var title: String
+    var subTitle: String
+    var readMoreID: Int?
+
+    init(title: String, subTitle: String, readMoreID: Int?) {
+        self.title = title
+        self.subTitle = subTitle
+        self.readMoreID = readMoreID
+    }
+}
+
+
+
 final class PrepareContentViewModel {
+
+    struct Video {
+        let url: URL
+        let placeholderURL: URL?
+    }
     
     // MARK: - Properties
 
@@ -48,7 +67,30 @@ final class PrepareContentViewModel {
         }
     }
 
-    // MARK: - Init
+    // TODO: Implement following methods
+
+    // 1. Implement following init method for prepare list... See: https://zpl.io/Z1pglQ8 & https://zpl.io/ZW59tm & https://zpl.io/ZdIaoX
+
+//    init(title: String, subtitle: String, video: Video?, description: String, items: [PrepareItem]) {
+//
+//    }
+
+    // 2. Implement following init method for prepare check list. See: https://zpl.io/9yv39
+    // 
+    // Note that the subtitle is now dyncamic and shows the number of items checked.
+    // `checkedIDs` has the id of checked PrepareItems and when they were checked. 
+
+//    init(title: String, video: Video?, description: String, items: [PrepareItem], checkedIDs: [Int: Date]) {
+//    
+//    }
+
+    // 3. Add id to `PrepareItem` field
+
+    // 4. Use followin to track which items are checked. This dictionary should remain public
+
+    //    var checkedIDs: [Int: Date]
+
+    // 5. Delete the existing init method. Pass in mock data using above init methods
 
     init() {
         createMockData()

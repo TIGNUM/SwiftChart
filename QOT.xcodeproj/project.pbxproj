@@ -295,8 +295,6 @@
 		CCE373161E8D330100B79352 /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE373151E8D330100B79352 /* LibraryViewModel.swift */; };
 		CCE5796D1ECB55CE006E0D45 /* SidebarContentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE5796C1ECB55CE006E0D45 /* SidebarContentService.swift */; };
 		CCE5796F1ECB580E006E0D45 /* MockData+Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE5796E1ECB580E006E0D45 /* MockData+Sidebar.swift */; };
-		CCEA22A41E8AC53E003D0CF4 /* PrepareCheckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A21E8AC53D003D0CF4 /* PrepareCheckListViewController.swift */; };
-		CCEA22A51E8AC53E003D0CF4 /* PrepareCheckListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A31E8AC53D003D0CF4 /* PrepareCheckListViewModel.swift */; };
 		CCEA22A91E8AC55F003D0CF4 /* PrepareEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A71E8AC55F003D0CF4 /* PrepareEventsViewController.swift */; };
 		CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */; };
 		CCEFCFB01E8D3D7500E9FC72 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEFCFAE1E8D3D7500E9FC72 /* SidebarViewController.swift */; };
@@ -652,8 +650,6 @@
 		CCE373151E8D330100B79352 /* LibraryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryViewModel.swift; sourceTree = "<group>"; };
 		CCE5796C1ECB55CE006E0D45 /* SidebarContentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarContentService.swift; sourceTree = "<group>"; };
 		CCE5796E1ECB580E006E0D45 /* MockData+Sidebar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MockData+Sidebar.swift"; sourceTree = "<group>"; };
-		CCEA22A21E8AC53D003D0CF4 /* PrepareCheckListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareCheckListViewController.swift; sourceTree = "<group>"; };
-		CCEA22A31E8AC53D003D0CF4 /* PrepareCheckListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareCheckListViewModel.swift; sourceTree = "<group>"; };
 		CCEA22A71E8AC55F003D0CF4 /* PrepareEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsViewController.swift; sourceTree = "<group>"; };
 		CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsViewModel.swift; sourceTree = "<group>"; };
 		CCEFCFAE1E8D3D7500E9FC72 /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
@@ -1005,7 +1001,6 @@
 				CBB4DD351EE08A3E0071494A /* My Why */,
 				CBB4DD2B1EE088670071494A /* Partners */,
 				CBB4DD3E1EE08EB50071494A /* Prepare Chat */,
-				CBB4DD441EE090750071494A /* Prepare Check List */,
 				CBB4DD3A1EE08C250071494A /* Prepare Content */,
 				CBB4DD391EE08BC20071494A /* Prepare Events */,
 				CBB4DD361EE08A5C0071494A /* Search */,
@@ -1397,15 +1392,6 @@
 				CB1E4F971E7FE22200287613 /* SettingsViewModel.swift */,
 			);
 			name = Settings;
-			sourceTree = "<group>";
-		};
-		CBB4DD441EE090750071494A /* Prepare Check List */ = {
-			isa = PBXGroup;
-			children = (
-				CCEA22A21E8AC53D003D0CF4 /* PrepareCheckListViewController.swift */,
-				CCEA22A31E8AC53D003D0CF4 /* PrepareCheckListViewModel.swift */,
-			);
-			name = "Prepare Check List";
 			sourceTree = "<group>";
 		};
 		CBB4DD451EE0908E0071494A /* Fonts */ = {
@@ -1982,7 +1968,6 @@
 				0B573CA61EC3219900A03602 /* DailyMeetingChartView.swift in Sources */,
 				CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */,
 				CC05CB761EDEC6D700D15ABC /* CGPoint+Convenience.swift in Sources */,
-				CCEA22A41E8AC53E003D0CF4 /* PrepareCheckListViewController.swift in Sources */,
 				CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */,
 				CB810E641EF00DB70043E3E5 /* User.swift in Sources */,
 				0BEE8ABD1EA600A7008077B8 /* PrepareEventSimpleTableViewCell.swift in Sources */,
@@ -2130,7 +2115,6 @@
 				CB1467671EF277AA00A60E31 /* PageIntermediary.swift in Sources */,
 				CC96630A1EA1B27F00B84B1C /* MyDataViewModel.swift in Sources */,
 				CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */,
-				CCEA22A51E8AC53E003D0CF4 /* PrepareCheckListViewModel.swift in Sources */,
 				CB8A15311E76F31B0023B2F9 /* PageTrackable.swift in Sources */,
 				D58BD8771E9F65F7005676DE /* ArticleCollectionCell.swift in Sources */,
 				CC7D21A81EFC051B007A062E /* ArticleItemViewController.swift in Sources */,

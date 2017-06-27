@@ -43,15 +43,3 @@ extension ContentItem {
         return remoteID
     }
 }
-
-struct PrepareItem {
-    var title: String
-    var subTitle: String
-    var readMoreID: Int?
-
-    init(title: String, subTitle: String, readMoreID: Int?) {
-        self.title = title
-        self.subTitle = subTitle
-        self.readMoreID = readMoreID
-    }
-}

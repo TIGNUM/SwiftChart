@@ -30,12 +30,6 @@ extension MyUniverseViewController: PageTrackable {
     }
 }
 
-extension PrepareCheckListViewController: PageTrackable {
-    var pageID: PageID {
-        return .prepareCheckList
-    }
-}
-
 extension ChatViewController: PageTrackable {
     var pageID: PageID {
         return .prepareChat
