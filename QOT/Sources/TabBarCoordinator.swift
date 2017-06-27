@@ -298,6 +298,11 @@ extension TabBarCoordinator: PrepareChatDecisionManagerDelegate {
     }
 
     func showContent(id: Int, manager: PrepareChatDecisionManager) {
-        print("SHOW CHECKLIST FOR ID: \(id)")
+        guard let tabViewController = tabBarController else {
+            return
+        }
+        
+        let coordinator = PrepareContentCoordinator(root: tabViewController, services: services, eventTracker: eventTracker)
+        startChild(child: coordinator)
     }
 }
