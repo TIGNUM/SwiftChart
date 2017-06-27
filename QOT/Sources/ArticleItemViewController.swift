@@ -84,7 +84,7 @@ private extension ArticleItemViewController {
             var headerFrame = headerView.frame
 
             if height != headerFrame.size.height {
-                headerFrame.size.height = 260
+                headerFrame.size.height = height
                 headerView.frame = headerFrame                
                 tableView.tableHeaderView = headerView
             }

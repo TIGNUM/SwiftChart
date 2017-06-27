@@ -22,6 +22,5 @@ final class ArticleItemHeaderView: UIView {
         subTitleLabel.attributedText = Style.postTitle(header.articleSubTitle, .white).attributedString()
         dateLabel.attributedText = Style.tag(header.articleDate, .white60).attributedString()
         durationLabel.attributedText = Style.tag(header.articleDuration, .white60).attributedString()
-        backgroundColor = .green
     }
 }
