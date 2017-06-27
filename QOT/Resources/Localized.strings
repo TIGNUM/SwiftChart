@@ -72,3 +72,5 @@
 "Alert.Message.NoContent" = "The selection have no content, sorry :(";
 "Alert.Button.Title.Ok" = "OK";
 "Alert.Button.Title.Cancel" = "Cancel";
+
+"Library.Footer.View.Label" = "Scroll To Finish";

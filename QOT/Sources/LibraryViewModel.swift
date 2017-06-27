@@ -10,12 +10,9 @@ import Foundation
 import ReactiveKit
 import RealmSwift
 
-enum LibrarySectionStyle: Int {
-    case lastPost = 0
-    case category
-}
-
 final class LibraryViewModel {
+
+    // MARK: - Properties
 
     fileprivate let categories: AnyRealmCollection<ContentCategory>
     let updates = PublishSubject<CollectionUpdate, NoError>()
@@ -24,12 +21,20 @@ final class LibraryViewModel {
         return categories.count
     }
 
-    func styleForSection(_ section: Int) -> LibrarySectionStyle {
-        return section == 0 ? .lastPost : .category
-    }
+    // MARK: - Init
 
-    func titleForSection(_ section: Int) -> String {
-         return categories[section].title
+    init(categories: AnyRealmCollection<ContentCategory>) {
+        self.categories = categories
+    }
+}
+
+// MARK: - Public
+
+extension LibraryViewModel {
+
+    func titleForSection(_ section: Int) -> NSAttributedString {
+        let title = categories[section].title.uppercased()
+        return section == 0 ? Style.headlineSmall(title, .white).attributedString() : Style.subTitle(title, .white).attributedString()
     }
 
     func contentCollection(at indexPath: IndexPath) -> [ContentCollection] {
@@ -38,9 +43,5 @@ final class LibraryViewModel {
 
     func contentCount(at indexPath: IndexPath) -> Int {
         return categories[indexPath.section].contentCollections.count
-    }
-
-    init(categories: AnyRealmCollection<ContentCategory>) {
-        self.categories = categories
     }
 }

@@ -9,6 +9,39 @@
 import UIKit
 import Anchorage
 
+enum SectionType {
+    case latestPost
+    case categoryPost
+
+    var itemWidth: CGFloat {
+        switch self {
+        case .latestPost: return CGFloat(220)
+        case .categoryPost: return CGFloat(275)
+        }
+    }
+
+    var imageBottomConstraint: CGFloat {
+        switch self {
+        case .latestPost: return CGFloat(58)
+        case .categoryPost: return CGFloat(0)
+        }
+    }
+
+    var labelLeftRightMarging: CGFloat {
+        switch self {
+        case .latestPost: return CGFloat(4)
+        case .categoryPost: return CGFloat(8)
+        }
+    }
+
+    var rowHeight: CGFloat {
+        switch self {
+        case .latestPost: return CGFloat(280)
+        case .categoryPost: return CGFloat(300)
+        }
+    }
+}
+
 protocol LibraryViewControllerDelegate: class {
 
     func didTapLibraryItem(item: ContentCollection)
@@ -19,15 +52,14 @@ final class LibraryViewController: UIViewController {
     // MARK: - Properties
 
     fileprivate let viewModel: LibraryViewModel
+    fileprivate var viewDidAppear = false
     weak var delegate: LibraryViewControllerDelegate?
 
     fileprivate lazy var tableView: UITableView = {
         return UITableView(
             delegate: self,
             dataSource: self,
-            dequeables:
-                LatestPostCell.self,
-                CategoryPostCell.self
+            dequeables: LibraryTableViewCell.self
         )
     }()
 
@@ -48,7 +80,14 @@ final class LibraryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setTableViewFooter()
         setupView()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        viewDidAppear = true
     }
 }
 
@@ -63,48 +102,53 @@ private extension LibraryViewController {
         tableView.bottomAnchor == view.bottomAnchor
         tableView.horizontalAnchors == view.horizontalAnchors
     }
+
+    func setTableViewFooter() {
+        let nib = R.nib.libraryFooterView()
+        guard let footerView = (nib.instantiate(withOwner: self, options: nil).first as? LibraryFooterView) else {
+            return
+        }
+
+        footerView.backgroundColor = .clear
+        tableView.tableFooterView = footerView
+    }
 }
 
-// MARK: - UITableViewDelegate
+// MARK: - UITableViewDelegate, UITableViewDataSource
 
-extension LibraryViewController: UITableViewDelegate {
+extension LibraryViewController: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.sectionCount
     }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 317
+        let sectionType: SectionType = indexPath.section == 0 ? .latestPost : .categoryPost
+        return sectionType.rowHeight
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let contentCollection = viewModel.contentCollection(at: indexPath)
+        let cell: LibraryTableViewCell = tableView.dequeueCell(for: indexPath)
+        let sectionType: SectionType = indexPath.section == 0 ? .latestPost : .categoryPost
+        cell.setUp(title: viewModel.titleForSection(indexPath.section), contentCollection: contentCollection, sectionType: sectionType)
+        cell.delegate = delegate
+
+        return cell
     }
 }
 
-// MARK: - UITableViewDataSource
+// MARK: - UIScrollViewDelegate
 
-extension LibraryViewController: UITableViewDataSource {
+extension LibraryViewController: UIScrollViewDelegate {
 
-    // table DataSource
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let sectionStyle = viewModel.styleForSection(indexPath.item)
-        let contentCollection = viewModel.contentCollection(at: indexPath)
-        tableView.rowHeight = UITableViewAutomaticDimension
-
-        switch sectionStyle {
-        case .lastPost:
-            let cell: LatestPostCell = tableView.dequeueCell(for: indexPath)
-            cell.setUp(title: viewModel.titleForSection(indexPath.section), contentCollection: contentCollection)
-            cell.delegate = delegate
-
-            return cell
-        case .category:
-            let cell: CategoryPostCell = tableView.dequeueCell(for: indexPath)
-            cell.setUp(title: viewModel.titleForSection(indexPath.section), contentCollection: contentCollection)
-            cell.delegate = delegate
-            
-            return cell
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if viewDidAppear == true && scrollView.contentOffset.y >= (scrollView.contentSize.height + 100 - scrollView.frame.size.height) {
+            dismiss(animated: true, completion: nil)
         }
     }
 }

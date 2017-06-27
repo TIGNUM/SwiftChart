@@ -20,6 +20,7 @@ final class ArticleRelatedCell: UITableViewCell, Dequeueable {
         backgroundColor = .clear
         previewImageView.kf.setImage(with: previewImageURL)
         previewImageView.layer.cornerRadius = 8
+        previewImageView.layer.masksToBounds = true
         titleLabel.attributedText = Style.headline(title.uppercased(), .white).attributedString()
         subTitleLabel.attributedText = Style.paragraph(subTitle.uppercased(), .whiteLightTwo).attributedString()
     }

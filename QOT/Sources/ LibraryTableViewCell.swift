@@ -1,25 +1,29 @@
 //
-//  LatestPostCell.swift
+//  LibraryTableViewCell.swift
 //  QOT
 //
-//  Created by Aamir Suhial Mir on 4/7/17.
+//  Created by karmic on 27.06.17.
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
 import UIKit
 
-final class LatestPostCell: UITableViewCell, Dequeueable {
+final class LibraryTableViewCell: UITableViewCell, Dequeueable {
 
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var collectionView: UICollectionView!
+    // MARK: - Properties
+
+    @IBOutlet fileprivate weak var titleLabel: UILabel!
+    @IBOutlet fileprivate weak var collectionView: UICollectionView!    
     fileprivate var contentCollection = [ContentCollection]()
+    fileprivate var sectionType = SectionType.latestPost
     fileprivate let helper = Helper()
     weak var delegate: LibraryViewControllerDelegate?
 
-    func setUp(title: String, contentCollection: [ContentCollection]) {
+    func setUp(title: NSAttributedString, contentCollection: [ContentCollection], sectionType: SectionType) {
         self.contentCollection = contentCollection
-        titleLabel.attributedText = Style.tag(title, .white90).attributedString()
-        collectionView.registerDequeueable(LatestCollectionCell.self)
+        self.sectionType = sectionType
+        titleLabel.attributedText = title
+        collectionView.registerDequeueable(LibraryCollectionCell.self)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.reloadData()
@@ -30,22 +34,22 @@ final class LatestPostCell: UITableViewCell, Dequeueable {
     }
 }
 
-extension LatestPostCell: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+extension LibraryTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return contentCollection.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: LatestCollectionCell = collectionView.dequeueCell(for: indexPath)
+        let cell: LibraryCollectionCell = collectionView.dequeueCell(for: indexPath)
         let collection = contentCollection[indexPath.item]
-        cell.setup(headline: collection.title, previewImageURL: collection.thumbnailURL, mediaType: collection.description)
+        cell.setup(headline: collection.title, previewImageURL: collection.thumbnailURL, mediaType: collection.description, sectionType: sectionType)
 
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 15
+        return 19
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -57,11 +61,11 @@ extension LatestPostCell: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 220, height: collectionView.frame.height)
+        return CGSize(width: sectionType.itemWidth, height: collectionView.frame.height)
     }
 
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        targetContentOffset.pointee.x = helper.scrollViewScroll(scrollView: scrollView, velocity: velocity, targetContentOffset: targetContentOffset, width: 220)
+        targetContentOffset.pointee.x = helper.scrollViewScroll(scrollView: scrollView, velocity: velocity, targetContentOffset: targetContentOffset, width: sectionType.itemWidth)
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

@@ -22,7 +22,7 @@ class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
         super.awakeFromNib()
 
         imageView.layer.cornerRadius = 10
-
+        imageView.layer.masksToBounds = true
     }
 
     func configure(sortOrder: String, title: String, description: String, imageURL: URL?, duration: String) {
