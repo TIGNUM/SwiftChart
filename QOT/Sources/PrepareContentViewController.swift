@@ -70,8 +70,8 @@ private extension PrepareContentViewController {
             switch update {
             case .reload:
                 self.tableView.reloadData()
-            case .update:
-                self.tableView.reloadData()
+            case .update(_, _, let modifications):
+                self.tableView.reloadRows(at: modifications, with: .none)
             }
             }.dispose(in: disposeBag)
     }
@@ -100,18 +100,23 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
         case .titleItem(let title, let subTitle, let contentText, let placeholderURL, let videoURL):
             let cell: PrepareContentMainHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
             let isExpanded = viewModel.isCellExpanded(at: indexPath.row)
-            
+
             cell.setCell(title: title, subTitle: subTitle, contentText: contentText, videoPlaceholder: placeholderURL, videoURL: videoURL, isExpanded: isExpanded)
             cell.delegate = self
             return cell
             
-        case .item(let title, let subTitle, let readMoreID):
+        case .item(let id, let title, let subTitle, let readMoreID):
             let cell: PrepareContentHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
             let isExpanded = viewModel.isCellExpanded(at: indexPath.row)
-            
+
             cell.delegate = self
-            cell.setCell(title: title, contentText: subTitle, readMoreID: readMoreID, position: indexPath.row, isExpanded: isExpanded)
-            
+            cell.setCell(title: title,
+                         contentText: subTitle,
+                         readMoreID: readMoreID,
+                         position: indexPath.row,
+                         isExpanded: isExpanded,
+                         displayMode: viewModel.displayMode,
+                         isChecked: viewModel.isChecked(id: id))
             return cell
             
         case .tableFooter(let preparationID):
@@ -154,6 +159,18 @@ extension PrepareContentViewController: PrepareContentHeaderTableViewCellDelegat
             delegate?.didTapReadMore(readMoreID: readMoreID, in: self)
         } else {
             log("didPressReadMore: readMoreID is nil")
+        }
+    }
+
+    func didTapCheckbox(cell: UITableViewCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        let contentItem = viewModel.item(at: indexPath.row)
+
+        switch contentItem {
+        case .item(let id, _, _, _):
+            viewModel.didTapCheckbox(id: id)
+        default:
+            break
         }
     }
 }

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import LoremIpsum
 
 protocol PrepareContentCoordinatorDelegate: class {
     func prepareContentDidFinish(coordinator: PrepareContentCoordinator)
@@ -31,8 +32,58 @@ final class PrepareContentCoordinator: ParentCoordinator {
         self.eventTracker = eventTracker
     }
 
+    func mockPrepareContent() -> PrepareContentViewModel {
+        // TODO: Mock data, should be removed
+        let video = PrepareContentViewModel.Video(url: URL(string: "https://www.youtube.com/watch?v=ScMzIvxBSi4")!, placeholderURL: URL(string: "http://missionemanuel.org/wp-content/uploads/2015/02/photo-video-start-icon1.png?w=640"))
+
+        var items: [PrepareItem] = []
+
+        for _ in 0...Int.random(between: 5, and: 10) {
+            let newItem = PrepareItem(id: Int.randomID,
+                                      title: LoremIpsum.title(),
+                                      subTitle: LoremIpsum.words(withNumber: Int.random(between: 30, and: 100)),
+                                      readMoreID: Int.randomID)
+
+            items.append(newItem)
+        }
+
+        let viewModel = PrepareContentViewModel(title: LoremIpsum.title(),
+                                                subtitle: LoremIpsum.title(),
+                                                video: video,
+                                                description: LoremIpsum.words(withNumber: Int.random(between: 30, and: 100)),
+                                                items: items)
+
+        return viewModel
+    }
+
+    func mockCheckboxPrepareContent() -> PrepareContentViewModel {
+        // TODO: Mock data, should be removed
+        let video = PrepareContentViewModel.Video(url: URL(string: "https://www.youtube.com/watch?v=ScMzIvxBSi4")!, placeholderURL: URL(string: "http://missionemanuel.org/wp-content/uploads/2015/02/photo-video-start-icon1.png?w=640"))
+
+        var items: [PrepareItem] = []
+
+        for _ in 0...Int.random(between: 5, and: 10) {
+            let newItem = PrepareItem(id: Int.randomID,
+                                      title: LoremIpsum.title(),
+                                      subTitle: LoremIpsum.words(withNumber: Int.random(between: 30, and: 100)),
+                                      readMoreID: Int.randomID)
+
+            items.append(newItem)
+        }
+
+        let viewModel = PrepareContentViewModel(title: LoremIpsum.title(),
+                                                video: video,
+                                                description: LoremIpsum.words(withNumber: Int.random(between: 30, and: 100)),
+                                                items: items,
+                                                checkedIDs: [:])
+
+        return viewModel
+    }
+
     func start() {
-        let viewModel = PrepareContentViewModel()
+//        let viewModel = mockPrepareContent()
+        let viewModel = mockCheckboxPrepareContent()
+
         let prepareContentViewController = PrepareContentViewController(viewModel: viewModel)
 
         let topTabBarControllerItem = TopTabBarController.Item(

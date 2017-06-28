@@ -11,6 +11,7 @@ import Anchorage
 
 protocol PrepareContentHeaderTableViewCellDelegate: class {
     func didPressReadMore(readMoreID: Int?, cell: UITableViewCell)
+    func didTapCheckbox(cell: UITableViewCell)
 }
 
 class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
@@ -18,6 +19,7 @@ class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var bottomSeparator: UIView!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var positionLabel: UILabel!
+    @IBOutlet weak var checkboxImageView: UIImageView!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var stackView: UIStackView!
 
@@ -27,14 +29,21 @@ class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
     weak var delegate: PrepareContentHeaderTableViewCellDelegate?
     var readMoreID: Int?
     var contentText = ""
-    
+
+    var displayMode: PrepareContentViewModel.DisplayMode = .normal
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
         contentView.backgroundColor = .clear
         backgroundColor = .clear
+
+        readMoreButton.addTarget(self, action: #selector(PrepareContentHeaderTableViewCell.readMore), for: .touchDown)
+
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PrepareContentHeaderTableViewCell.checkboxTapped))
+        checkboxImageView.addGestureRecognizer(gestureRecognizer)
     }
-    
+
     override func layoutSubviews() {
         super .layoutSubviews()
         
@@ -42,15 +51,26 @@ class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
         iconImageView.tintColor = UIColor.blackTwo
     }
 
-    func setCell(title: String, contentText: String, readMoreID: Int?, position: Int, isExpanded: Bool) {
+    func setCell(title: String, contentText: String, readMoreID: Int?, position: Int, isExpanded: Bool, displayMode: PrepareContentViewModel.DisplayMode = .normal, isChecked: Bool = false) {
         headerLabel.text = title
         bottomSeparator.isHidden = isExpanded
         positionLabel.text = (position > 9 ? "." : ".0") + "\(position)"
 
         self.readMoreID = readMoreID
         self.contentText = contentText
+        self.displayMode = displayMode
 
         iconImageView.image = isExpanded ? R.image.prepareContentMinusIcon() : R.image.prepareContentPlusIcon()
+
+        switch displayMode {
+        case .normal:
+            positionLabel.isHidden = false
+            checkboxImageView.isHidden = true
+        case .checkbox:
+            positionLabel.isHidden = true
+            checkboxImageView.isHidden = false
+            checkboxImageView.image = UIImage(named: isChecked ? "checkbox_checked" : "checkbox_unchecked")
+        }
 
         updateContent(isExpanded: isExpanded)
     }
@@ -70,7 +90,6 @@ class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
                                                             font: UIFont(name: "BentonSans-Book", size: 16)!,
                                                             color: UIColor.blackTwo,
                                                             for: .normal)
-                readMoreButton.addTarget(self, action: #selector(PrepareContentHeaderTableViewCell.readMore), for: .touchDown)
             } else {
                 readMoreButton.isHidden = true
             }
@@ -82,5 +101,9 @@ class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
     
     func readMore() {
         delegate?.didPressReadMore(readMoreID: readMoreID, cell: self)
+    }
+
+    func checkboxTapped() {
+        delegate?.didTapCheckbox(cell: self)
     }
 }

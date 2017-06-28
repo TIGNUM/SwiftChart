@@ -45,6 +45,9 @@
                         <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="24"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gj6-wi-6kO">
+                        <rect key="frame" x="31" y="17" width="24" height="24"/>
+                    </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="bhW-Ua-p8J">
                         <rect key="frame" x="266" y="17.5" width="24" height="24"/>
                         <constraints>
@@ -87,6 +90,8 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
+                    <constraint firstItem="gj6-wi-6kO" firstAttribute="centerY" secondItem="bhW-Ua-p8J" secondAttribute="centerY" id="53G-fQ-qrB"/>
+                    <constraint firstItem="Xep-Tb-3xn" firstAttribute="leading" secondItem="gj6-wi-6kO" secondAttribute="trailing" constant="15" id="6Jw-Ch-Jbw"/>
                     <constraint firstItem="5uP-lK-igH" firstAttribute="top" secondItem="dYr-mX-vz1" secondAttribute="bottom" constant="15" id="6jI-kf-v4Y"/>
                     <constraint firstItem="bhW-Ua-p8J" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Xep-Tb-3xn" secondAttribute="trailing" constant="5" id="7aq-sv-vb5"/>
                     <constraint firstAttribute="trailing" secondItem="bhW-Ua-p8J" secondAttribute="trailing" constant="30" id="98q-Ed-qVZ"/>
@@ -95,9 +100,11 @@
                     <constraint firstItem="5uP-lK-igH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="NEo-ho-rrE"/>
                     <constraint firstAttribute="trailing" secondItem="dYr-mX-vz1" secondAttribute="trailing" constant="30" id="POv-YB-NPu"/>
                     <constraint firstAttribute="trailing" secondItem="5uP-lK-igH" secondAttribute="trailing" constant="30" id="PUH-ls-5LS"/>
+                    <constraint firstItem="gj6-wi-6kO" firstAttribute="width" secondItem="bhW-Ua-p8J" secondAttribute="width" id="TT2-XR-7yd"/>
                     <constraint firstAttribute="bottom" secondItem="5uP-lK-igH" secondAttribute="bottom" id="X1H-5u-KWI"/>
                     <constraint firstItem="3Hv-Om-2Ez" firstAttribute="top" secondItem="rvi-Rq-pK3" secondAttribute="bottom" constant="15" id="bwu-lB-r5j"/>
                     <constraint firstAttribute="trailing" secondItem="rvi-Rq-pK3" secondAttribute="trailing" constant="30" id="bzM-Ud-Ob5"/>
+                    <constraint firstItem="gj6-wi-6kO" firstAttribute="height" secondItem="bhW-Ua-p8J" secondAttribute="height" id="clA-bH-nAb"/>
                     <constraint firstItem="bhW-Ua-p8J" firstAttribute="centerY" secondItem="3Hv-Om-2Ez" secondAttribute="centerY" id="dVV-QC-BHt"/>
                     <constraint firstItem="dYr-mX-vz1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="e29-su-eDo"/>
                     <constraint firstItem="Xep-Tb-3xn" firstAttribute="leading" secondItem="3Hv-Om-2Ez" secondAttribute="trailing" constant="15" id="o8v-dz-nWs"/>
@@ -109,6 +116,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="bottomSeparator" destination="5uP-lK-igH" id="4hO-Tp-lFa"/>
+                <outlet property="checkboxImageView" destination="gj6-wi-6kO" id="JvX-QN-rWh"/>
                 <outlet property="contentLabel" destination="Xj5-nz-ujV" id="ehQ-0V-o9b"/>
                 <outlet property="headerLabel" destination="Xep-Tb-3xn" id="GtW-xi-ilM"/>
                 <outlet property="iconImageView" destination="bhW-Ua-p8J" id="PNm-Bq-MJM"/>

@@ -11,11 +11,13 @@ import ReactiveKit
 import LoremIpsum
 
 struct PrepareItem {
+    var id: Int
     var title: String
     var subTitle: String
     var readMoreID: Int?
 
-    init(title: String, subTitle: String, readMoreID: Int?) {
+    init(id: Int, title: String, subTitle: String, readMoreID: Int?) {
+        self.id = id
         self.title = title
         self.subTitle = subTitle
         self.readMoreID = readMoreID
@@ -24,6 +26,11 @@ struct PrepareItem {
 
 final class PrepareContentViewModel {
 
+    enum DisplayMode {
+        case normal
+        case checkbox
+    }
+
     struct Video {
         let url: URL
         let placeholderURL: URL?
@@ -31,12 +38,13 @@ final class PrepareContentViewModel {
     
     // MARK: - Properties
 
-    //this should be removed when we receive the actual object with the data on viewModel init
-    fileprivate var data: [PrepareItem] = []
-    
     fileprivate var headerToggleState: [Bool] = []
+
     let updates = PublishSubject<CollectionUpdate, NoError>()
-    
+
+    var displayMode: DisplayMode
+    var checkedIDs: [Int: Date]
+
     var title: String = ""
     var subTitle: String = ""
     var contentText: String = ""
@@ -44,26 +52,6 @@ final class PrepareContentViewModel {
     var video: URL?
     
     var items: [PrepareContentItemType] = []
-
-    // MARK: - MockData
-    
-    func createMockData() {
-        
-        title = LoremIpsum.title()
-        subTitle = LoremIpsum.title()
-        contentText = LoremIpsum.words(withNumber: Int.random(between: 30, and: 100))
-        videoPlaceholder = URL(string: "http://missionemanuel.org/wp-content/uploads/2015/02/photo-video-start-icon1.png?w=640")
-        video = URL(string: "https://www.youtube.com/watch?v=ScMzIvxBSi4")
-        
-        for _ in 0...Int.random(between: 5, and: 10) {
-            
-            let newItem = PrepareItem(title: LoremIpsum.title(),
-                               subTitle: LoremIpsum.words(withNumber: Int.random(between: 30, and: 100)),
-                               readMoreID: Int.randomID)
-            
-            data.append(newItem)
-        }
-    }
 
     // TODO: Implement following methods
 
@@ -90,12 +78,78 @@ final class PrepareContentViewModel {
 
     // 5. Delete the existing init method. Pass in mock data using above init methods
 
-    init() {
-        createMockData()
-        makeItems()
+    // MARK: - Initialisation
+
+    init(title: String, subtitle: String, video: Video?, description: String, items: [PrepareItem]) {
+        self.title = title
+        self.subTitle = subtitle
+        self.video = video?.url
+        self.videoPlaceholder = video?.placeholderURL
+        self.contentText = description
+
+        self.checkedIDs = [:]
+        self.displayMode = .normal
+
+        makeItems(items)
+    }
+
+    init(title: String, video: Video?, description: String, items: [PrepareItem], checkedIDs: [Int: Date]) {
+        self.title = title
+        self.video = video?.url
+        self.videoPlaceholder = video?.placeholderURL
+        self.contentText = description
+
+        self.checkedIDs = checkedIDs
+        self.displayMode = .checkbox
+
+        makeItems(items)
+
+        if displayMode == .checkbox {
+            setSubtitle()
+        }
+    }
+
+    fileprivate func setSubtitle() {
+        subTitle = String(format: "%2d/%2d ", checkedIDs.count, items.count - 1) + R.string.localized.prepareContentTasks()
+        items.remove(at: 0)
+        items.insert(.titleItem(title: title, subTitle: subTitle, contentText: contentText, placeholderURL: videoPlaceholder, videoURL: video), at: 0)
     }
 
     // MARK: - Public
+
+    func isChecked(id: Int) -> Bool {
+        if displayMode != .checkbox {
+            return false
+        }
+        return checkedIDs.index(forKey: id) != nil
+    }
+
+    func didTapCheckbox(id: Int) {
+        if displayMode != .checkbox {
+            return
+        }
+        if checkedIDs.index(forKey: id) != nil {
+            checkedIDs.removeValue(forKey: id)
+        } else {
+            checkedIDs[id] = Date()
+        }
+        setSubtitle()
+
+        var indexPaths = [IndexPath(row: 0, section: 0)]
+        for i in 1..<items.count {
+            switch items[i] {
+            case .item(let itemID, _, _, _):
+                if id == itemID {
+                    indexPaths.append(IndexPath(row: i, section: 0))
+                }
+            default:
+                break
+            }
+        }
+
+        let update = CollectionUpdate.update(deletions: [], insertions: [], modifications: indexPaths)
+        updates.next(update)
+    }
 
     var itemCount: Int {
         return items.count
@@ -125,15 +179,17 @@ private extension PrepareContentViewModel {
         }
     }
 
-    func makeItems() {
+    func makeItems(_ items: [PrepareItem]) {
         
-        items.append(.titleItem(title: title, subTitle: subTitle, contentText: contentText, placeholderURL: videoPlaceholder, videoURL: video))
+        self.items.append(.titleItem(title: title, subTitle: subTitle, contentText: contentText, placeholderURL: videoPlaceholder, videoURL: video))
         
-        for element in data {
-            items.append(.item(title: element.title, subTitle: element.subTitle, readMoreID: element.readMoreID))
+        for element in items {
+            self.items.append(.item(id: element.id, title: element.title, subTitle: element.subTitle, readMoreID: element.readMoreID))
         }
 
-        items.append(.tableFooter(preparationID: 1)) //TODO: we need to set the actual ID
+        if displayMode == .normal {
+            self.items.append(.tableFooter(preparationID: 1)) //TODO: we need to set the actual ID
+        }
         
         fillHeaderStatus()
     }
@@ -141,6 +197,6 @@ private extension PrepareContentViewModel {
 
 enum PrepareContentItemType {
     case titleItem(title: String, subTitle: String, contentText: String, placeholderURL: URL?, videoURL: URL?)
-    case item(title: String, subTitle: String, readMoreID: Int?)
+    case item(id: Int, title: String, subTitle: String, readMoreID: Int?)
     case tableFooter(preparationID: Int)
 }

@@ -22,7 +22,6 @@ class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
     fileprivate var display: ChoiceListDisplay = .flow
 
     func inputWithDataModel(dataModel: [PrepareChatObject]!, display: ChoiceListDisplay) {
-        print("dataModel.Count: \(dataModel.count)")
         self.dataModel = dataModel
         self.display = display
     }
