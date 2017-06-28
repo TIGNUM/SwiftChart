@@ -13,28 +13,24 @@ final class SidebarItemViewModel {
 
     // MARK: - Properties
 
-    fileprivate let sidebarContentCategory: ContentCategory
+    fileprivate let contentCollections: [ContentCollection]
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
     var itemCount: Int {
-        return sidebarContentCategory.sidebarContentCollection[0].sidebarContentItems.count
+        guard contentCollections.isEmpty == false else {
+            return 0
+        }
+
+        return contentCollections[0].items.count
     }
 
     func sidebarContentItems(at indexPath: IndexPath) -> ContentItem {
-        return sidebarContentCategory.sidebarContentCollection[indexPath.section].sidebarContentItems[indexPath.row]
+        return contentCollections[0].items[indexPath.row]
     }
 
     // MARK: - Init
 
-    init(sidebarContentCategory: ContentCategory) {
-        self.sidebarContentCategory = sidebarContentCategory
+    init(contentCollections: [ContentCollection]) {
+        self.contentCollections = contentCollections
     }
-}
-
-enum SidebarItem {
-    case text(localID: String, title: NSAttributedString, text: NSAttributedString)
-    case video(localID: String, placeholderURL: URL, description: NSAttributedString?)
-    case audio(localID: String, placeholderURL: URL, description: NSAttributedString?)
-    case image(localID: String, placeholderURL: URL, description: NSAttributedString?)
-    case shareAction(title: NSAttributedString)
 }

@@ -11,12 +11,12 @@ import UIKit
 import Anchorage
 
 protocol SidebarViewControllerDelegate: class {
-    func didTapSettingsMenuCell(in viewController: SidebarViewController)
-    func didTapLibraryCell(in viewController: SidebarViewController)
-    func didTapBenefitsCell(from sidebarContentCategory: ContentCategory, in viewController: SidebarViewController)
-    func didTapAddSensorCell(in viewController: SidebarViewController)
-    func didTapPrivacyCell(from sidebarContentCategory: ContentCategory, in viewController: SidebarViewController)
-    func didTapAboutCell(from sidebarContentCategory: ContentCategory, in viewController: SidebarViewController)
+    func didTapLibraryCell(contentCollections: [ContentCollection], in viewController: SidebarViewController)
+    func didTapSettingsMenuCell(contentCollections: [ContentCollection], in viewController: SidebarViewController)
+    func didTapBenefitsCell(contentCollections: [ContentCollection], in viewController: SidebarViewController)
+    func didTapAddSensorCell(contentCollections: [ContentCollection],in viewController: SidebarViewController)
+    func didTapPrivacyCell(contentCollections: [ContentCollection], in viewController: SidebarViewController)
+    func didTapAboutCell(contentCollections: [ContentCollection], in viewController: SidebarViewController)
     func didTapLogoutCell(in viewController: SidebarViewController)
 }
 
@@ -79,7 +79,7 @@ extension SidebarViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return viewModel.sidebarCategory(at: indexPath.row).cellHeight
+        return viewModel.sidebarItem(at: indexPath)?.cellHeight ?? 0
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -95,15 +95,15 @@ extension SidebarViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: SidebarTableViewCell = tableView.dequeueCell(for: indexPath)
-        let item = viewModel.sidebarCategory(at: indexPath.row)
-        cell.setup(with: item.title, font: item.font, textColor: item.textColor)
+        let sidebarItem = viewModel.sidebarItem(at: indexPath)
+        cell.setup(with: sidebarItem?.title, font: sidebarItem?.font, textColor: sidebarItem?.fontColor)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-        handleSelection(forSidbarCollection: viewModel.sidebarCategory(at: indexPath.row))
+        handleSelection(sidebar: viewModel.sidebarItem(at: indexPath))
     }
 }
 
@@ -111,22 +111,19 @@ extension SidebarViewController: UITableViewDelegate, UITableViewDataSource {
 
 private extension SidebarViewController {
     
-    func handleSelection(forSidbarCollection sidebarCategory: ContentCategory?) {
-        guard
-            let sidebarCategory = sidebarCategory,
-            let keypathID = sidebarCategory.keypathID,
-            let section = Database.Section.Sidebar(rawValue: keypathID) else {
-                return
+    func handleSelection(sidebar: SidebarViewModel.Sidebbar?) {
+        guard let sidebar = sidebar else {
+            return
         }
 
-        switch section {
-        case .about: delegate?.didTapAboutCell(from: sidebarCategory, in: self)
-        case .benefits: delegate?.didTapBenefitsCell(from: sidebarCategory, in: self)
-        case .library: delegate?.didTapLibraryCell(in: self)
+        switch sidebar {
+        case .about: delegate?.didTapAboutCell(contentCollections: [], in: self)
+        case .benefits: delegate?.didTapBenefitsCell(contentCollections: [], in: self)
+        case .library: delegate?.didTapLibraryCell(contentCollections: [], in: self)
         case .logout: delegate?.didTapLogoutCell(in: self)
-        case .privacy: delegate?.didTapPrivacyCell(from: sidebarCategory, in: self)
-        case .sensor: delegate?.didTapAddSensorCell(in: self)
-        case .settings: delegate?.didTapSettingsMenuCell(in: self)
+        case .privacy: delegate?.didTapPrivacyCell(contentCollections: [], in: self)
+        case .sensor: delegate?.didTapAddSensorCell(contentCollections: [], in: self)
+        case .settings: delegate?.didTapSettingsMenuCell(contentCollections: [], in: self)
         }
     }
 }

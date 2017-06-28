@@ -53,6 +53,7 @@ final class LibraryViewController: UIViewController {
 
     fileprivate let viewModel: LibraryViewModel
     fileprivate var viewDidAppear = false
+    fileprivate var scrollToFinish = false
     weak var delegate: LibraryViewControllerDelegate?
 
     fileprivate lazy var tableView: UITableView = {
@@ -148,6 +149,12 @@ extension LibraryViewController: UIScrollViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if viewDidAppear == true && scrollView.contentOffset.y >= (scrollView.contentSize.height + 100 - scrollView.frame.size.height) {
+            scrollToFinish = true
+        }
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollToFinish == true {
             dismiss(animated: false, completion: nil)
         }
     }

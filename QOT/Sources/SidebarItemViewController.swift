@@ -9,20 +9,11 @@
 import UIKit
 import Anchorage
 
-protocol SidebarItemViewControllerDelegate: class {
-    func didTapVideo(with item: SidebarItem, from view: UIView, in viewController: SidebarItemViewController)
-    func didTapAudio(with item: SidebarItem, from view: UIView, in viewController: SidebarItemViewController)
-    func didTapImage(with item: SidebarItem, from view: UIView, in viewController: SidebarItemViewController)
-    func didTapShare(from view: UIView, in viewController: SidebarItemViewController)
-}
-
 final class SidebarItemViewController: UIViewController {
 
     // MARK: - Properties
 
     fileprivate let viewModel: SidebarItemViewModel
-    weak var delegate: SidebarItemViewControllerDelegate?
-    
     fileprivate lazy var tableView: UITableView = {
         return UITableView(
             estimatedRowHeight: 10,

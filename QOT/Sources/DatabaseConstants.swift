@@ -15,23 +15,8 @@ enum Database {
         case learnStrategy = "LEARN_STRATEGIES"
         case learnWhatsHot = "WHAT_S_HOT"
         case prepareCoach = "prepare.coach"
-        case sidebar = "sidebar"
         case about = "ABOUT"
         case library = "QOT_LIBRARY"
-
-        enum Sidebar: String {
-            case library = "sidebar.library"
-            case benefits = "sidebar.benefits"
-            case settings = "sidebar.settings"
-            case sensor = "sidebar.sensor"
-            case about = "sidebar.about"
-            case privacy = "sidebar.privacy"
-            case logout = "sidebar.logout"
-
-            var value: String {
-                return self.rawValue
-            }
-        }
 
         var value: String {
             return self.rawValue

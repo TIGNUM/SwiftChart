@@ -14,7 +14,7 @@ final class SidebarItemCoordinator: ParentCoordinator {
     fileprivate let rootViewController: SidebarViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
-    fileprivate let sidebarContentCategory: ContentCategory
+    fileprivate let contentCollections: [ContentCollection]
     var children = [Coordinator]()
     lazy var presentationManager = PresentationManager()
 
@@ -22,23 +22,19 @@ final class SidebarItemCoordinator: ParentCoordinator {
         root: SidebarViewController,
         services: Services,
         eventTracker: EventTracker,
-        sidebarContentCategory: ContentCategory) {
+        contentCollections: [ContentCollection]) {
             self.rootViewController = root
             self.services = services
             self.eventTracker = eventTracker
-            self.sidebarContentCategory = sidebarContentCategory
+            self.contentCollections = contentCollections
     }
 
     func start() {
-        let viewModel = SidebarItemViewModel(sidebarContentCategory: sidebarContentCategory)
-        let benefitsViewController = SidebarItemViewController(viewModel: viewModel)
-        benefitsViewController.delegate = self
-        presentationManager.presentationType = .fadeIn
-        benefitsViewController.modalPresentationStyle = .custom
-        benefitsViewController.transitioningDelegate = presentationManager
+        let viewModel = SidebarItemViewModel(contentCollections: contentCollections)
+        let sidebarItemViewController = SidebarItemViewController(viewModel: viewModel)
 
         let topTabBarControllerItem = TopTabBarController.Item(
-            controllers: [benefitsViewController],
+            controllers: [sidebarItemViewController],
             themes: [.dark],
             titles: [R.string.localized.sidebarTitleBenefits()]
         )
@@ -49,31 +45,13 @@ final class SidebarItemCoordinator: ParentCoordinator {
             rightIcon: R.image.ic_share()
         )
 
+        presentationManager.presentationType = .fadeIn
+        topTabBarController.modalPresentationStyle = .custom
+        topTabBarController.transitioningDelegate = presentationManager
         topTabBarController.delegate = self
         rootViewController.present(topTabBarController, animated: true)
         // TODO: Update associatedEntity with realm object when its created.
-        eventTracker.track(page: benefitsViewController.pageID, referer: rootViewController.pageID, associatedEntity: nil)
-    }
-}
-
-// MARK: - BenefitsViewControllerDelegate
-
-extension SidebarItemCoordinator: SidebarItemViewControllerDelegate {
-
-    func didTapShare(from view: UIView, in viewController: SidebarItemViewController) {
-        print("share")
-    }
-
-    func didTapAudio(with item: SidebarItem, from view: UIView, in viewController: SidebarItemViewController) {
-        print(didTapAudio)
-    }
-
-    func didTapImage(with item: SidebarItem, from view: UIView, in viewController: SidebarItemViewController) {
-        print("didTapImage")
-    }
-
-    func didTapVideo(with item: SidebarItem, from view: UIView, in viewController: SidebarItemViewController) {
-        print("didTapVideo")
+        eventTracker.track(page: sidebarItemViewController.pageID, referer: rootViewController.pageID, associatedEntity: nil)
     }
 }
 

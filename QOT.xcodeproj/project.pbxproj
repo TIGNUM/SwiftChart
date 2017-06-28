@@ -190,7 +190,6 @@
 		CC143A4F1EC47810001FB76E /* MyStatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC143A4E1EC47810001FB76E /* MyStatisticsViewModel.swift */; };
 		CC143A511EC495CE001FB76E /* MyStatisticsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC143A501EC495CE001FB76E /* MyStatisticsCoordinator.swift */; };
 		CC143A531EC49641001FB76E /* MyStatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC143A521EC49641001FB76E /* MyStatisticsViewController.swift */; };
-		CC1AB4BC1ED30BA8002778FB /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1AB4BB1ED30BA8002778FB /* R.generated.swift */; };
 		CC1E2A5F1EDF1DE100B9EFD3 /* UICollectionView+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1E2A5E1EDF1DE100B9EFD3 /* UICollectionView+Create.swift */; };
 		CC261A921EBA0A7D0088B3D1 /* PrepareEventsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC261A911EBA0A7D0088B3D1 /* PrepareEventsCoordinator.swift */; };
 		CC27E0B81EB33722003E5B7F /* SidebarItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC27E0B71EB33722003E5B7F /* SidebarItemViewModel.swift */; };
@@ -238,6 +237,7 @@
 		CC8018241F026BDA0040B03F /* LibraryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC8018221F026BDA0040B03F /* LibraryTableViewCell.xib */; };
 		CC8018261F028F1D0040B03F /* LibraryFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8018251F028F1D0040B03F /* LibraryFooterView.swift */; };
 		CC8018281F028F2F0040B03F /* LibraryFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC8018271F028F2F0040B03F /* LibraryFooterView.xib */; };
+		CC87F2591F03B92500312189 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87F2581F03B92500312189 /* R.generated.swift */; };
 		CC8813EB1EF2EA33000FB85F /* LearnContentItemRecommendedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8813E91EF2EA33000FB85F /* LearnContentItemRecommendedCell.swift */; };
 		CC8813EC1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC8813EA1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib */; };
 		CC8C982B1EA767580064AFB1 /* MyUniverseViewController+ScreenType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8C982A1EA767580064AFB1 /* MyUniverseViewController+ScreenType.swift */; };
@@ -290,8 +290,6 @@
 		CCE3730F1E8D32F800B79352 /* SidebarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE373091E8D32F800B79352 /* SidebarCoordinator.swift */; };
 		CCE373141E8D32F800B79352 /* SidebarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE3730E1E8D32F800B79352 /* SidebarViewModel.swift */; };
 		CCE373161E8D330100B79352 /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE373151E8D330100B79352 /* LibraryViewModel.swift */; };
-		CCE5796D1ECB55CE006E0D45 /* SidebarContentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE5796C1ECB55CE006E0D45 /* SidebarContentService.swift */; };
-		CCE5796F1ECB580E006E0D45 /* MockData+Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE5796E1ECB580E006E0D45 /* MockData+Sidebar.swift */; };
 		CCEA22A91E8AC55F003D0CF4 /* PrepareEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A71E8AC55F003D0CF4 /* PrepareEventsViewController.swift */; };
 		CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */; };
 		CCEFCFB01E8D3D7500E9FC72 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEFCFAE1E8D3D7500E9FC72 /* SidebarViewController.swift */; };
@@ -541,7 +539,6 @@
 		CC143A4E1EC47810001FB76E /* MyStatisticsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsViewModel.swift; sourceTree = "<group>"; };
 		CC143A501EC495CE001FB76E /* MyStatisticsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsCoordinator.swift; sourceTree = "<group>"; };
 		CC143A521EC49641001FB76E /* MyStatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsViewController.swift; sourceTree = "<group>"; };
-		CC1AB4BB1ED30BA8002778FB /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = ../Generated/R.generated.swift; sourceTree = "<group>"; };
 		CC1E2A5E1EDF1DE100B9EFD3 /* UICollectionView+Create.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Create.swift"; sourceTree = "<group>"; };
 		CC261A911EBA0A7D0088B3D1 /* PrepareEventsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsCoordinator.swift; sourceTree = "<group>"; };
 		CC27E0B71EB33722003E5B7F /* SidebarItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarItemViewModel.swift; sourceTree = "<group>"; };
@@ -590,6 +587,7 @@
 		CC8018221F026BDA0040B03F /* LibraryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryTableViewCell.xib; sourceTree = "<group>"; };
 		CC8018251F028F1D0040B03F /* LibraryFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryFooterView.swift; sourceTree = "<group>"; };
 		CC8018271F028F2F0040B03F /* LibraryFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryFooterView.xib; sourceTree = "<group>"; };
+		CC87F2581F03B92500312189 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = ../Generated/R.generated.swift; sourceTree = "<group>"; };
 		CC8813E91EF2EA33000FB85F /* LearnContentItemRecommendedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentItemRecommendedCell.swift; sourceTree = "<group>"; };
 		CC8813EA1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnContentItemRecommendedCell.xib; sourceTree = "<group>"; };
 		CC8C982A1EA767580064AFB1 /* MyUniverseViewController+ScreenType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyUniverseViewController+ScreenType.swift"; sourceTree = "<group>"; };
@@ -642,8 +640,6 @@
 		CCE373091E8D32F800B79352 /* SidebarCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarCoordinator.swift; sourceTree = "<group>"; };
 		CCE3730E1E8D32F800B79352 /* SidebarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewModel.swift; sourceTree = "<group>"; };
 		CCE373151E8D330100B79352 /* LibraryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryViewModel.swift; sourceTree = "<group>"; };
-		CCE5796C1ECB55CE006E0D45 /* SidebarContentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarContentService.swift; sourceTree = "<group>"; };
-		CCE5796E1ECB580E006E0D45 /* MockData+Sidebar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MockData+Sidebar.swift"; sourceTree = "<group>"; };
 		CCEA22A71E8AC55F003D0CF4 /* PrepareEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsViewController.swift; sourceTree = "<group>"; };
 		CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsViewModel.swift; sourceTree = "<group>"; };
 		CCEFCFAE1E8D3D7500E9FC72 /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
@@ -1421,7 +1417,6 @@
 				CC33CA2D1EC603BC008E6B33 /* PrepareContentService.swift */,
 				CB9AFD0E1F012A2800D067F2 /* QuestionsService.swift */,
 				CB369CE11E8D5E3D00522293 /* Services.swift */,
-				CCE5796C1ECB55CE006E0D45 /* SidebarContentService.swift */,
 				CBB4DCF41EDC10FA0071494A /* SyncRecordService.swift */,
 			);
 			name = Services;
@@ -1439,7 +1434,7 @@
 		CBB4DD4B1EE093A10071494A /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				CC1AB4BB1ED30BA8002778FB /* R.generated.swift */,
+				CC87F2581F03B92500312189 /* R.generated.swift */,
 			);
 			name = Generated;
 			sourceTree = "<group>";
@@ -1455,7 +1450,6 @@
 				CB810E671EF00E2C0043E3E5 /* MockUserDown.json */,
 				CB14676B1EF2801F00A60E31 /* MockPageDown.json */,
 				CBD791531E72A4BB0006C590 /* MockData.swift */,
-				CCE5796E1ECB580E006E0D45 /* MockData+Sidebar.swift */,
 				CB18BCBE1EEABD890035C1BB /* MockNetworkManager.swift */,
 			);
 			name = "Mock - DELETE";
@@ -1911,7 +1905,6 @@
 				CBB4DD541EE151100071494A /* DownSyncImporter.swift in Sources */,
 				0BC9F9361E96118C009E8204 /* ChatTableViewCell.swift in Sources */,
 				CC9FBDE81EAE58F300AF1CF0 /* SettingsMenuCoordinator.swift in Sources */,
-				CC1AB4BC1ED30BA8002778FB /* R.generated.swift in Sources */,
 				CC9663181EA1B86100B84B1C /* MyDataSectorLabelsView.swift in Sources */,
 				CCF0F4BF1ECDC57000E8D9C1 /* DownSyncable.swift in Sources */,
 				8514A4861EE810750086C70E /* DownSyncComplete.swift in Sources */,
@@ -2064,7 +2057,6 @@
 				CC7D21AA1EFC0856007A062E /* ArticleContentItemCoordinator.swift in Sources */,
 				CCE06FE01E8D44FC009C5AD2 /* LibraryCoordinator.swift in Sources */,
 				0B254D3E1E97994C006AA4C0 /* PrepareCollectionViewCell.swift in Sources */,
-				CCE5796D1ECB55CE006E0D45 /* SidebarContentService.swift in Sources */,
 				CC9FBDE61EAE155300AF1CF0 /* PrepareContentCoordinator.swift in Sources */,
 				852DADDA1EF147AA00A10882 /* AverageMeetingBetweenLengthView.swift in Sources */,
 				CC0FF8DA1EA790750028D64F /* PartnersCoordinator.swift in Sources */,
@@ -2085,7 +2077,6 @@
 				CB9AFD141F014BAA00D067F2 /* PreparationStep.swift in Sources */,
 				D5485F241ED57F0600A08D1A /* SearchViewModel.swift in Sources */,
 				D5485F281ED583E300A08D1A /* SearchCollectionCell.swift in Sources */,
-				CCE5796F1ECB580E006E0D45 /* MockData+Sidebar.swift in Sources */,
 				CCEA22A91E8AC55F003D0CF4 /* PrepareEventsViewController.swift in Sources */,
 				852DADE01EF1741400A10882 /* TravelMaxTimeZoneChangesProgressWheel.swift in Sources */,
 				D5485F261ED583BC00A08D1A /* SearchTableCell.swift in Sources */,
@@ -2104,6 +2095,7 @@
 				CC96630A1EA1B27F00B84B1C /* MyDataViewModel.swift in Sources */,
 				CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */,
 				CB8A15311E76F31B0023B2F9 /* PageTrackable.swift in Sources */,
+				CC87F2591F03B92500312189 /* R.generated.swift in Sources */,
 				D58BD8771E9F65F7005676DE /* ArticleCollectionCell.swift in Sources */,
 				CC7D21A81EFC051B007A062E /* ArticleItemViewController.swift in Sources */,
 				CB1D5E3B1EC5E25A00BCDF8D /* ContentCollection.swift in Sources */,

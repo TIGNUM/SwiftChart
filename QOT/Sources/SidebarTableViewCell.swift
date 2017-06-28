@@ -16,10 +16,10 @@ class SidebarTableViewCell: UITableViewCell, Dequeueable {
     
     // MARK: - Properties
 
-    func setup(with title: String, font: UIFont, textColor: UIColor) {
+    func setup(with title: String?, font: UIFont?, textColor: UIColor?) {
         backgroundColor = .clear
         titleLabel.textColor = textColor
-        titleLabel.text = title.uppercased()
+        titleLabel.text = title?.uppercased()
         titleLabel.font = font
     }
 }

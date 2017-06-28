@@ -16,7 +16,6 @@ final class Services {
     let contentService: ContentService
     let articleService: ArticleService
     let prepareContentService: PrepareContentService
-    let sidebarContentService: SidebarContentService
     let questionsService: QuestionsService
     weak var learnCategoryUpdateDelegate: LearnCategoryUpdateDelegate?
 
@@ -25,13 +24,11 @@ final class Services {
         contentService: ContentService,
         articleService: ArticleService,
         prepareContentService: PrepareContentService,
-        sidebarContentService: SidebarContentService,
         questionsService: QuestionsService) {
             self.mainRealm = mainRealm
             self.contentService = contentService
             self.articleService = articleService
             self.prepareContentService = prepareContentService
-            self.sidebarContentService = sidebarContentService            
             self.questionsService = questionsService
     }
 
@@ -53,14 +50,12 @@ final class Services {
                     let contentService = ContentService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let articleService = ArticleService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let prepareContentService = PrepareContentService(mainRealm: mainRealm, realmProvider: realmProvider)
-                    let sidebarContentService = SidebarContentService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let questionsService = QuestionsService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let services = Services(
                         mainRealm: mainRealm,
                         contentService: contentService,
                         articleService: articleService,
                         prepareContentService: prepareContentService,
-                        sidebarContentService: sidebarContentService,
                         questionsService: questionsService
                     )
 

@@ -30,7 +30,6 @@ func setupRealmWithMockData(realm: Realm) {
                     syncManager.syncAllMockJSONs()
                 }
 
-                addMockSidebarContentCategories(realm: realm)
                 try addQuestions(realm: realm)
             }
         }
