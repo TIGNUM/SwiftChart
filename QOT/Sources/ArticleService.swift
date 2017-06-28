@@ -27,13 +27,6 @@ final class ArticleService {
         self.realmProvider = realmProvider
     }
 
-    func categories() -> AnyRealmCollection<ContentCategory> {
-        let predicate = NSPredicate(section: Database.Section.learnWhatsHot.rawValue)
-        let results = mainRealm.objects(ContentCategory.self).sorted(byKeyPath: JsonKey.sortOrder.value).filter(predicate)
-        
-        return AnyRealmCollection<ContentCategory>(results)
-    }
-
     func contentCollections(for categories: AnyRealmCollection<ContentCategory>) -> [ContentCollection] {
         var articleCollections = [ContentCollection]()
 

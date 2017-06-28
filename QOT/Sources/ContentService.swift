@@ -32,6 +32,10 @@ final class ContentService {
 
     // MARK: - Categories
 
+    func articleCategories() -> AnyRealmCollection<ContentCategory> {
+        return mainRealm.contentCategories(section: .learnWhatsHot)
+    }
+
     func libraryCategories() -> AnyRealmCollection<ContentCategory> {
         return mainRealm.contentCategories(section: .library)
     }
@@ -83,7 +87,7 @@ final class ContentService {
 
 // MARK: - Private
 
-extension Realm {
+private extension Realm {
 
     func anyCollection<T>(_ sort: SortDescriptor? = nil, predicates: NSPredicate...) -> AnyRealmCollection<T> {
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
