@@ -20,10 +20,10 @@ final class SidebarItemViewController: UIViewController {
             delegate: self,
             dataSource: self,
             dequeables:
-            ContentItemTextTableViewCell.self,
-            SideBarShareAction.self,
-            ImageSubtitleTableViewCell.self,
-            ErrorCell.self
+                ContentItemTextTableViewCell.self,
+                SideBarShareAction.self,
+                ImageSubtitleTableViewCell.self,
+                ErrorCell.self
         )
     }()
 

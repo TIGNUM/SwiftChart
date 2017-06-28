@@ -254,6 +254,7 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
             root: viewController,
             services: services,
             eventTracker: eventTracker,
+            contentCollection: articleHeader.articleContentCollection,
             articleHeader: articleHeader
         )
 

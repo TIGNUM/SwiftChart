@@ -44,11 +44,11 @@ final class ArticleService {
         return articleCollections
     }
 
-    func relatedArticles(for articleCollection: ContentCollection) -> AnyRealmCollection<ContentCollection> {
+    func relatedArticles(for articleCollection: ContentCollection) -> [ContentCollection] {
         let predicate = NSPredicate(remoteIDs: articleCollection.relatedContentIDs)
         let results = mainRealm.objects(ContentCollection.self).sorted(byKeyPath: JsonKey.sortOrder.value).filter(predicate)
 
-        return AnyRealmCollection<ContentCollection>(results)
+        return Array(AnyRealmCollection<ContentCollection>(results))
     }
 
     func updatedViewedAt(with itemId: Int) {

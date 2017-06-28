@@ -63,14 +63,13 @@ final class LibraryCoordinator: ParentCoordinator {
 extension LibraryCoordinator: LibraryViewControllerDelegate {
 
     func didTapLibraryItem(item: ContentCollection) {
-        let header = ArticleCollectionHeader(
-            articleTitle: item.title,
-            articleSubTitle: item.description,
-            articleDate: "TODO DATE",
-            articleDuration: "TODO Duration",
-            articleContentCollection: item
+        let coordinator = ArticleContentItemCoordinator(
+            root: libraryViewController,
+            services: services,
+            eventTracker: eventTracker,
+            contentCollection: item,
+            articleHeader: nil
         )
-        let coordinator = ArticleContentItemCoordinator(root: libraryViewController, services: services, eventTracker: eventTracker, articleHeader: header)
         startChild(child: coordinator)
     }
 }

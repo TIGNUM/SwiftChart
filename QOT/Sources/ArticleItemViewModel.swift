@@ -14,7 +14,7 @@ final class ArticleItemViewModel {
 
     fileprivate let items: [ContentItem]
     fileprivate let relatedArticles: [ContentCollection]
-    let articleHeader: ArticleCollectionHeader
+    let articleHeader: ArticleCollectionHeader?
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
     func itemCount(in section: Index) -> Int {
@@ -39,9 +39,10 @@ final class ArticleItemViewModel {
 
     // MARK: - Init
 
-    init(items: AnyRealmCollection<ContentItem>,
-         articleHeader: ArticleCollectionHeader,
-         relatedArticles: AnyRealmCollection<ContentCollection>) {
+    init(items: [ContentItem],
+         contentCollection: ContentCollection,
+         articleHeader: ArticleCollectionHeader?,
+         relatedArticles: [ContentCollection]) {
             self.articleHeader = articleHeader
             self.relatedArticles = relatedArticles.sorted(by: { (lhs: ContentCollection, rhs: ContentCollection) -> Bool in
                 return lhs.sortOrder < rhs.sortOrder

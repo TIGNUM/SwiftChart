@@ -12,7 +12,7 @@ import RealmSwift
 
 final class SidebarViewModel {
 
-    enum Sidebbar: Int {
+    enum SidebbarItem: Int {
         case library = 0
         case benefits
         case settings
@@ -21,7 +21,7 @@ final class SidebarViewModel {
         case privacy
         case logout
 
-        static var allValues: [Sidebbar] {
+        static var allValues: [SidebbarItem] {
             return [
                 .library,
                 .benefits,
@@ -92,17 +92,38 @@ final class SidebarViewModel {
             case .logout: return 0
             }
         }
+
+        func contentCollection(for service: ContentService) -> ContentCollection? {
+            switch self {
+            case .library: return nil
+            case .benefits: return service.contentCollection(id: primaryKey)
+            case .settings: return nil
+            case .sensor: return nil
+            case .about: return service.contentCollection(id: primaryKey)
+            case .privacy: return service.contentCollection(id: primaryKey)
+            case .logout: return nil
+            }
+        }
     }
 
     // MARK: - Properties
 
     let updates = PublishSubject<CollectionUpdate, NoError>()
+    let contentService: ContentService
+
+    init(contentService: ContentService) {
+        self.contentService = contentService
+    }
     
     var itemCount: Int {        
-        return Sidebbar.allValues.count
+        return SidebbarItem.allValues.count
     }
 
-    func sidebarItem(at indexPath: IndexPath) -> Sidebbar? {
-        return Sidebbar(rawValue: indexPath.row)
+    func sidebarItem(at indexPath: IndexPath) -> SidebbarItem? {
+        return SidebbarItem(rawValue: indexPath.row)
+    }
+
+    func contentCollection(_ sidebarItem: SidebbarItem) -> ContentCollection? {
+        return sidebarItem.contentCollection(for: contentService)
     }
 }

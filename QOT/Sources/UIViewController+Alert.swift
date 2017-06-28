@@ -86,13 +86,13 @@ extension UIViewController {
     }
     
     private class func defaultAction(type: AlertType, handler: (() -> Void)?) -> UIAlertAction {
-        return UIAlertAction(title: type.buttonTitleDefault, style: .default) { (_) in
+        return UIAlertAction(title: type.buttonTitleDefault, style: .default) { _ in
             handler?()
         }
     }
     
     private class func destructiveAction(type: AlertType, handler: (() -> Void)?) -> UIAlertAction {
-        return UIAlertAction(title: type.buttonTitleDestructive, style: .destructive) { (_) in
+        return UIAlertAction(title: type.buttonTitleDestructive, style: .destructive) { _ in
             handler?()
         }
     }

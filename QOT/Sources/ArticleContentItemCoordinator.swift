@@ -27,9 +27,9 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
     fileprivate let rootVC: UIViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
-    fileprivate let articleHeader: ArticleCollectionHeader
-    fileprivate var selectedContent: ContentCollection
-    fileprivate var relatedArticles: AnyRealmCollection<ContentCollection>
+    fileprivate let articleHeader: ArticleCollectionHeader?
+    fileprivate var selectedContent: ContentCollection?
+    fileprivate var relatedArticles = [ContentCollection]()
     fileprivate var fullViewController: ArticleItemViewController
     fileprivate var audioViewController: ArticleItemViewController
     fileprivate var viewModel: ArticleItemViewModel
@@ -39,22 +39,35 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
         root: UIViewController,
         services: Services,
         eventTracker: EventTracker,
-        articleHeader: ArticleCollectionHeader) {
+        contentCollection: ContentCollection?,
+        articleHeader: ArticleCollectionHeader?) {
             self.rootVC = root
             self.services = services
             self.eventTracker = eventTracker
             self.articleHeader = articleHeader
-            self.selectedContent = articleHeader.articleContentCollection
-            self.relatedArticles = services.articleService.relatedArticles(for: selectedContent)
-            self.viewModel = ArticleItemViewModel(items: selectedContent.articleItems,
+            self.selectedContent = contentCollection
+
+            guard let contentCollection = contentCollection else {
+                fatalError("ContentCollection is nil.")
+            }
+
+            self.relatedArticles = services.articleService.relatedArticles(for: contentCollection)
+            let articleItems = Array(contentCollection.articleItems)
+            self.viewModel = ArticleItemViewModel(items: articleItems,
+                                                  contentCollection: contentCollection,
                                                   articleHeader: articleHeader,
-                                                  relatedArticles: relatedArticles)
+                                                  relatedArticles: relatedArticles
+                            )
             self.fullViewController = ArticleItemViewController(viewModel: viewModel)
             self.audioViewController = ArticleItemViewController(viewModel: viewModel)
     }
 
     func start() {
-        let tabs = TabType.allTabs(for: Array(selectedContent.articleItems))
+        guard let articleItems = selectedContent?.articleItems else {
+            return
+        }
+
+        let tabs = TabType.allTabs(for: Array(articleItems))
         var controllers = [UIViewController]()
         var titles = [String]()
         var themes = [Theme]()
@@ -102,9 +115,12 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
     func didSelectRelatedArticle(selectedArticle: ContentCollection, form viewController: ArticleItemViewController) {
         self.selectedContent = selectedArticle
         relatedArticles = services.articleService.relatedArticles(for: selectedArticle)
-        viewModel = ArticleItemViewModel(items: selectedContent.articleItems,
-                                              articleHeader: articleHeader,
-                                              relatedArticles: relatedArticles)
+        viewModel = ArticleItemViewModel(
+            items: Array(selectedArticle.articleItems),
+            contentCollection: selectedArticle,
+            articleHeader: articleHeader,
+            relatedArticles: relatedArticles
+        )
         fullViewController.reloadArticles(viewModel: viewModel)
         audioViewController.reloadArticles(viewModel: viewModel)
     }

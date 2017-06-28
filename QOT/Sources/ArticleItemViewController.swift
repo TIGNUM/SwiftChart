@@ -79,15 +79,17 @@ final class ArticleItemViewController: UIViewController {
 private extension ArticleItemViewController {
 
     func resizeHeaderView() {
-        if let headerView = tableView.tableHeaderView {
-            let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
-            var headerFrame = headerView.frame
+        guard let headerView = tableView.tableHeaderView else {
+            return
+        }
 
-            if height != headerFrame.size.height {
-                headerFrame.size.height = height
-                headerView.frame = headerFrame                
-                tableView.tableHeaderView = headerView
-            }
+        let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+        var headerFrame = headerView.frame
+
+        if height != headerFrame.size.height {
+            headerFrame.size.height = height
+            headerView.frame = headerFrame
+            tableView.tableHeaderView = headerView
         }
     }
 
@@ -103,12 +105,16 @@ private extension ArticleItemViewController {
     }
 
     func setTableViewHeader() {
+        guard let header = viewModel.articleHeader else {
+            return
+        }
+
         let nib = R.nib.articleItemHeaderView()
         guard let headerView = (nib.instantiate(withOwner: self, options: nil).first as? ArticleItemHeaderView) else {
             return
         }
 
-        headerView.setupView(header: viewModel.articleHeader)
+        headerView.setupView(header: header)
         headerView.backgroundColor = .clear
         tableView.tableHeaderView = headerView
     }

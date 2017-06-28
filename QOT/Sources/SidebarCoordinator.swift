@@ -24,8 +24,9 @@ final class SidebarCoordinator: ParentCoordinator {
     }
     
     func start() {
-        let viewModel = SidebarViewModel()
+        let viewModel = SidebarViewModel(contentService: services.contentService)
         let sideBarViewController = SidebarViewController(viewModel: viewModel)
+
         let topTabBarControllerItem = TopTabBarController.Item(
             controllers: [sideBarViewController],
             themes: [.darkClear]
@@ -53,41 +54,46 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
         print("didTapLogoutCell")
     }
 
-    func didTapAddSensorCell(contentCollections: [ContentCollection], in viewController: SidebarViewController) {
+    func didTapAddSensorCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
         let coordinator = AddSensorCoordinator(root: viewController, services: services, eventTracker: eventTracker)
         startChild(child: coordinator)
     }
 
-    func didTapSettingsMenuCell(contentCollections: [ContentCollection], in viewController: SidebarViewController) {
+    func didTapSettingsMenuCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
         let coordinator = SettingsMenuCoordinator(root: viewController, services: services, eventTracker: eventTracker)
         startChild(child: coordinator)
     }
 
-    func didTapLibraryCell(contentCollections: [ContentCollection], in viewController: SidebarViewController) {
+    func didTapLibraryCell(in viewController: SidebarViewController) {
         let coordinator = LibraryCoordinator(root: viewController, services: services, eventTracker: eventTracker)
         startChild(child: coordinator)
     }
 
-    func didTapBenefitsCell(contentCollections: [ContentCollection], in viewController: SidebarViewController) {
-        startSidebarItemCoordinator(contentCollections: contentCollections, viewController: viewController)
+    func didTapBenefitsCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
+        startSidebarItemCoordinator(contentCollection: contentCollection, viewController: viewController)
     }
 
-    func didTapAboutCell(contentCollections: [ContentCollection], in viewController: SidebarViewController) {
-        startSidebarItemCoordinator(contentCollections: contentCollections, viewController: viewController)
+    func didTapAboutCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
+        startSidebarItemCoordinator(contentCollection: contentCollection, viewController: viewController)
     }
 
-    func didTapPrivacyCell(contentCollections: [ContentCollection], in viewController: SidebarViewController) {
-        startSidebarItemCoordinator(contentCollections: contentCollections, viewController: viewController)
+    func didTapPrivacyCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
+        startSidebarItemCoordinator(contentCollection: contentCollection, viewController: viewController)
     }
 
-    private func startSidebarItemCoordinator(contentCollections: [ContentCollection], viewController: SidebarViewController) {
-        let coordinator = SidebarItemCoordinator(
+    private func startSidebarItemCoordinator(contentCollection: ContentCollection?, viewController: SidebarViewController) {
+        guard let collection = contentCollection else {
+            return
+        }
+
+        let coordinator = ArticleContentItemCoordinator(
             root: viewController,
             services: services,
             eventTracker: eventTracker,
-            contentCollections: contentCollections
+            contentCollection: collection,
+            articleHeader: nil
         )
-        
+
         startChild(child: coordinator)
     }
 }
