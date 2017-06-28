@@ -1288,14 +1288,14 @@
 		CBB4DD3C1EE08D7F0071494A /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				CC8018211F026BDA0040B03F /*  LibraryTableViewCell.swift */,
 				CC13E23C1EB1D72400C3CE46 /* LibraryCollectionCell.swift */,
 				CC13E23D1EB1D72400C3CE46 /* LibraryCollectionCell.xib */,
-				CC8018211F026BDA0040B03F /*  LibraryTableViewCell.swift */,
+				CC8018251F028F1D0040B03F /* LibraryFooterView.swift */,
+				CC8018271F028F2F0040B03F /* LibraryFooterView.xib */,
 				CC8018221F026BDA0040B03F /* LibraryTableViewCell.xib */,
 				CCE373071E8D32CF00B79352 /* LibraryViewController.swift */,
 				CCE373151E8D330100B79352 /* LibraryViewModel.swift */,
-				CC8018251F028F1D0040B03F /* LibraryFooterView.swift */,
-				CC8018271F028F2F0040B03F /* LibraryFooterView.xib */,
 			);
 			name = Library;
 			sourceTree = "<group>";

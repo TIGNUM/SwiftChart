@@ -148,7 +148,7 @@ extension LibraryViewController: UIScrollViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if viewDidAppear == true && scrollView.contentOffset.y >= (scrollView.contentSize.height + 100 - scrollView.frame.size.height) {
-            dismiss(animated: true, completion: nil)
+            dismiss(animated: false, completion: nil)
         }
     }
 }
