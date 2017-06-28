@@ -9,6 +9,15 @@
 import Foundation
 
 extension NSPredicate {
+
+    static func section(_ section: Database.Section) -> NSPredicate {
+        return NSPredicate(section: section.value)
+    }
+
+    static func preparationID(_ id: String) -> NSPredicate {
+        return NSPredicate(format: "preparationID == %@", id)
+    }
+
     convenience init(remoteID: Int) {
         self.init(format: "remoteID == %d", remoteID)
     }

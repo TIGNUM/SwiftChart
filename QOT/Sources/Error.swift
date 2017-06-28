@@ -12,6 +12,7 @@ struct InvalidDataError<Data>: Error {
     let data: Data
 }
 
-enum QOTDatabaseError: Error {
+enum DatabaseError: Error {
     case noLayoutInfo
+    case objectNotFound(primaryKey: Any)
 }

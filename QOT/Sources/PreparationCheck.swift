@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-final class PreparationStep: Object {
+final class PreparationCheck: Object {
 
     // MARK: Private Properties
 
@@ -23,7 +23,7 @@ final class PreparationStep: Object {
 
     private(set) dynamic var dirty: Bool = true
 
-    private(set) dynamic var preparationID: Int = 0
+    private(set) dynamic var preparationID: String = ""
 
     private(set) dynamic var contentItemID: Int = 0
 
@@ -37,7 +37,7 @@ final class PreparationStep: Object {
 
     // MARK: Functions
 
-    convenience init(preparationID: Int, contentItemID: Int, timestamp: Date = Date()) {
+    convenience init(preparationID: String, contentItemID: Int, timestamp: Date) {
         self.init()
         self.preparationID = preparationID
         self.contentItemID = contentItemID

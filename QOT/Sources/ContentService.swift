@@ -9,13 +9,6 @@
 import Foundation
 import RealmSwift
 
-extension NSPredicate {
-
-    static func section(_ section: Database.Section) -> NSPredicate {
-        return NSPredicate(section: section.value)
-    }
-}
-
 final class ContentService {
 
     // MARK: - Properties
@@ -88,19 +81,6 @@ final class ContentService {
 // MARK: - Private
 
 private extension Realm {
-
-    func anyCollection<T>(_ sort: SortDescriptor? = nil, predicates: NSPredicate...) -> AnyRealmCollection<T> {
-        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
-        if let sort = sort {
-            return AnyRealmCollection(objects(T.self).sorted(by: [sort]).filter(predicate))
-        }
-
-        return AnyRealmCollection(objects(T.self).filter(predicate))
-    }
-
-    func anyCollection<T, K>(primaryKey: K) -> T? where T : RealmSwift.Object {
-        return object(ofType: T.self, forPrimaryKey: primaryKey)
-    }
 
     func contentCategories(section: Database.Section) -> AnyRealmCollection<ContentCategory> {
         let contentCollections: AnyRealmCollection<ContentCollection> = anyCollection(predicates: .section(section))

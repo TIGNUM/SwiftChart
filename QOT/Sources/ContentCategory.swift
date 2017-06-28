@@ -79,7 +79,7 @@ extension ContentCategory {
 
     func getSidebarLayoutInfo() throws -> SidebarLayoutInfo {
         guard let jsonString = layoutInfo else {
-            throw QOTDatabaseError.noLayoutInfo
+            throw DatabaseError.noLayoutInfo
         }
 
         let json = try JSON(jsonString: jsonString)

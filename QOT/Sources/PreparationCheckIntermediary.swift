@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PreparationStepIntermediary {
+struct PreparationCheckIntermediary {
 
     let preparationID: Int
     let contentItemID: Int

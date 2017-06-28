@@ -15,11 +15,11 @@ final class Preparation: Object {
 
     private let _remoteID = RealmOptional<Int>(nil)
 
-    private let _eventID = RealmOptional<Int>(nil)
-
     // MARK: Public Properties
 
     private(set) dynamic var localID: String = UUID().uuidString
+
+    private(set) dynamic var eventID: String?
 
     private(set) dynamic var deleted: Bool = false
 
@@ -33,16 +33,12 @@ final class Preparation: Object {
         return _remoteID.value
     }
 
-    var eventID: Int? {
-        return _eventID.value
-    }
-
     // MARK: Functions
 
-    convenience init(contentID: Int, eventID: Int?) {
+    convenience init(contentID: Int, eventID: String?) {
         self.init()
         self.contentID = contentID
-        self._eventID.value = eventID
+        self.eventID = eventID
     }
 
     override class func primaryKey() -> String? {

@@ -11,6 +11,26 @@ import RealmSwift
 
 extension Realm {
 
+    func anyCollection<T, K>(primaryKey: K) -> T? where T : RealmSwift.Object {
+        return object(ofType: T.self, forPrimaryKey: primaryKey)
+    }
+
+    func anyCollection<T>(_ sort: SortDescriptor? = nil, predicates: NSPredicate...) -> AnyRealmCollection<T> {
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+        if let sort = sort {
+            return AnyRealmCollection(objects(T.self).sorted(by: [sort]).filter(predicate))
+        }
+
+        return AnyRealmCollection(objects(T.self).filter(predicate))
+    }
+
+    func object<T, K>(primaryKey: K) throws -> T where T : RealmSwift.Object {
+        guard let object = object(ofType: T.self, forPrimaryKey: primaryKey) else {
+            throw DatabaseError.objectNotFound(primaryKey: primaryKey)
+        }
+        return object
+    }
+
     func dirtyCalandarEvents() -> Results<CalendarEvent> {
         return objects(predicate: NSPredicate(dirty: true))
     }
