@@ -15,16 +15,14 @@ final class LearnContentListCoordinator: ParentCoordinator {
     fileprivate let rootVC: LearnCategoryListViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
-    fileprivate let category: ContentCategory
     fileprivate let selectedCategoryIndex: Index
     var children: [Coordinator] = []
     weak var delegate: LearnContentListCoordinatorDelegate?
     
-    init(root: LearnCategoryListViewController, services: Services, eventTracker: EventTracker, category: ContentCategory, selectedCategoryIndex: Index) {
+    init(root: LearnCategoryListViewController, services: Services, eventTracker: EventTracker, selectedCategoryIndex: Index) {
         self.rootVC = root
         self.services = services
         self.eventTracker = eventTracker
-        self.category = category
         self.selectedCategoryIndex = selectedCategoryIndex
     }
     
@@ -46,7 +44,6 @@ final class LearnContentListCoordinator: ParentCoordinator {
         
         topTabBarController.delegate = self
         rootVC.present(topTabBarController, animated: true)
-        eventTracker.track(page: contentListViewController.pageID, referer: rootVC.pageID, associatedEntity: category)
     }
 }
 

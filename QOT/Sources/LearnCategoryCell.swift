@@ -121,7 +121,7 @@ final class LearnCategoryCell: UICollectionViewCell {
 
     }
 
-    func configure(with category: ContentCategory) {
+    func configure(with category: LearnCategoryListViewModel.Item) {
         titleLabel.text =  category.title
         contentCountLabel.text = "\(category.viewedCount)/\(category.itemCount)"
 

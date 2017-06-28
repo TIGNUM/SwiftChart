@@ -15,7 +15,7 @@ import ReactiveKit
 /// The delegate of a `LearnCategoryListViewController`.
 protocol LearnCategoryListViewControllerDelegate: class {
     /// Notifies `self` that the category was selected at `index` in `viewController`.
-    func didSelectCategory(at index: Index, category: ContentCategory, in viewController: LearnCategoryListViewController)
+    func didSelectCategory(at index: Index, in viewController: LearnCategoryListViewController)
 
 }
 
@@ -111,7 +111,7 @@ extension LearnCategoryListViewController: UICollectionViewDataSource, LearnCate
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.didSelectCategory(at: indexPath.row, category: viewModel.category(at: indexPath.row), in: self)
+        delegate?.didSelectCategory(at: indexPath.row, in: self)
     }
 
     func bubbleLayoutInfo(layout: LearnCategoryLayout, index: Index) -> BubbleLayoutInfo {

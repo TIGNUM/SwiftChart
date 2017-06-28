@@ -33,21 +33,19 @@ final class ContentService {
     // MARK: - Categories
 
     func libraryCategories() -> AnyRealmCollection<ContentCategory> {
-        return contentCategories(section: .library)
+        return mainRealm.contentCategories(section: .library)
     }
 
     func learnContentCategories() -> AnyRealmCollection<ContentCategory> {
-        return contentCategories(section: .learnStrategy)
+        return mainRealm.contentCategories(section: .learnStrategy)
+    }
+
+    func learnContentCategoriesOnBackground() throws -> AnyRealmCollection<ContentCategory> {
+        return try realmProvider.realm().contentCategories(section: .learnStrategy)
     }
 
     func contentCategory(id: Int) -> ContentCategory? {
         return mainRealm.anyCollection(primaryKey: id)
-    }
-
-    func contentCategories(section: Database.Section) -> AnyRealmCollection<ContentCategory> {
-        let contentCollections: AnyRealmCollection<ContentCollection> = mainRealm.anyCollection(predicates: .section(section))
-        let categoryIDs = Set(contentCollections.reduce([IntObject](), { $0.0 + $0.1.categoryIDs }).map { $0.value })
-        return contentCategories(ids: Array(categoryIDs))
     }
 
     func contentCategories(ids: [Int]) -> AnyRealmCollection<ContentCategory> {
@@ -98,6 +96,12 @@ extension Realm {
 
     func anyCollection<T, K>(primaryKey: K) -> T? where T : RealmSwift.Object {
         return object(ofType: T.self, forPrimaryKey: primaryKey)
+    }
+
+    func contentCategories(section: Database.Section) -> AnyRealmCollection<ContentCategory> {
+        let contentCollections: AnyRealmCollection<ContentCollection> = anyCollection(predicates: .section(section))
+        let categoryIDs = Set(contentCollections.reduce([IntObject](), { $0.0 + $0.1.categoryIDs }).map { $0.value })
+        return anyCollection(.sortOrder(), predicates: NSPredicate(remoteIDs: Array(categoryIDs)))
     }
 }
 

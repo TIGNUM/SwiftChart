@@ -10,37 +10,72 @@ import Foundation
 import ReactiveKit
 import RealmSwift
 
-/// The view model of a `LearnCategoryListViewController`.
 final class LearnCategoryListViewModel {
 
-    // MARK: - Properties
+    struct Item: Equatable {
+        let title: String
+        let viewedCount: Int
+        let itemCount: Int
+        let percentageLearned: Double
 
-    private let _categories: AnyRealmCollection<ContentCategory>
-    private let realmObserver: RealmObserver
-    let updates = PublishSubject<CollectionUpdate, NoError>()
+        init(category: ContentCategory) {
+            self.title = category.title
+            self.viewedCount = category.viewedCount
+            self.itemCount = category.itemCount
+            self.percentageLearned = category.percentageLearned
+        }
 
-    /// The number of categories to display.
-    var categoryCount: Index {
-        return _categories.count
+        public static func == (lhs: Item, rhs: Item) -> Bool {
+            return lhs.title == rhs.title
+                && lhs.viewedCount == rhs.viewedCount
+                && lhs.itemCount == rhs.itemCount
+                && lhs.percentageLearned == rhs.percentageLearned
+        }
     }
 
-    var categories: [ContentCategory] {
-        return Array(_categories)
+    private let service: ContentService
+    private let realmObserver: RealmObserver
+    private let queue = DispatchQueue(label: "LearnCategoryListViewModel.queue")
+    private var items: [Item] = [] {
+        didSet { updates.next(.reload) }
+    }
+
+    let updates = PublishSubject<CollectionUpdate, NoError>()
+
+    var categoryCount: Index {
+        return items.count
     }
 
     // MARK: - Init
 
-    init(categories: AnyRealmCollection<ContentCategory>, realmObserver: RealmObserver) {
-        self._categories = categories
+    init(service: ContentService, realmObserver: RealmObserver) {
+        self.service = service
         self.realmObserver = realmObserver
 
+        updateItems()
         realmObserver.handler = { [weak self] in
-            self?.updates.next(.reload)
+            self?.updateItems()
         }
     }
 
-    /// Returns the `LearnCategory` to display at `index`.
-    func category(at index: Index) -> ContentCategory {
-        return categories[index]
+    func category(at index: Index) -> Item {
+        return items[index]
+    }
+
+    private func updateItems() {
+        queue.async { [weak self] in
+            do {
+                if let categories = try self?.service.learnContentCategoriesOnBackground(), let existing = self?.items {
+                    let new = Array(categories).map { Item(category: $0) }
+                    if new != existing {
+                        DispatchQueue.main.async {
+                            self?.items = new
+                        }
+                    }
+                }
+            } catch let error {
+                print("Failed to update category list: \(error)")
+            }
+        }
     }
 }

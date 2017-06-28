@@ -38,7 +38,7 @@ final class TabBarCoordinator: ParentCoordinator {
         let categories = self.services.contentService.learnContentCategories()
         let articleCategories = self.services.articleService.categories()
         let articlesCollections = self.services.articleService.contentCollections(for: articleCategories)
-        let viewModel = LearnCategoryListViewModel(categories: categories, realmObserver: RealmObserver(realm: self.services.mainRealm))
+        let viewModel = LearnCategoryListViewModel(service: self.services.contentService, realmObserver: RealmObserver(realm: self.services.mainRealm))
         let learnCategoryListVC = LearnCategoryListViewController(viewModel: viewModel)
         let articleCollectionViewModel = ArticleCollectionViewModel(categories: articleCategories, contentCollections: articlesCollections)
         let articleCollectionViewController = ArticleCollectionViewController(viewModel: articleCollectionViewModel)
@@ -197,8 +197,8 @@ extension TabBarCoordinator: TabBarControllerDelegate {
 
 extension TabBarCoordinator: LearnCategoryListViewControllerDelegate {
 
-    func didSelectCategory(at index: Index, category: ContentCategory, in viewController: LearnCategoryListViewController) {
-        let coordinator = LearnContentListCoordinator(root: viewController, services: services, eventTracker: eventTracker, category: category, selectedCategoryIndex: index)
+    func didSelectCategory(at index: Index, in viewController: LearnCategoryListViewController) {
+        let coordinator = LearnContentListCoordinator(root: viewController, services: services, eventTracker: eventTracker, selectedCategoryIndex: index)
         coordinator.delegate = self
         startChild(child: coordinator)
     }

@@ -124,7 +124,6 @@ class ChatViewController<T: ChatChoice>: UIViewController, UITableViewDelegate, 
                 return PrepareChatObject(title: choice.title, localID: "", selected: isSelected, style: style) //TODO: set localID
             }
 
-
             cell.inputWithDataModel(dataModel: prepareChatObjects, display: display)
             cell.collectionView.reloadData()
             return cell

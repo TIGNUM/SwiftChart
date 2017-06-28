@@ -14,7 +14,7 @@ protocol SidebarViewControllerDelegate: class {
     func didTapLibraryCell(contentCollections: [ContentCollection], in viewController: SidebarViewController)
     func didTapSettingsMenuCell(contentCollections: [ContentCollection], in viewController: SidebarViewController)
     func didTapBenefitsCell(contentCollections: [ContentCollection], in viewController: SidebarViewController)
-    func didTapAddSensorCell(contentCollections: [ContentCollection],in viewController: SidebarViewController)
+    func didTapAddSensorCell(contentCollections: [ContentCollection], in viewController: SidebarViewController)
     func didTapPrivacyCell(contentCollections: [ContentCollection], in viewController: SidebarViewController)
     func didTapAboutCell(contentCollections: [ContentCollection], in viewController: SidebarViewController)
     func didTapLogoutCell(in viewController: SidebarViewController)

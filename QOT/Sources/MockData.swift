@@ -38,15 +38,12 @@ func setupRealmWithMockData(realm: Realm) {
     }
 }
 
-
 var textItemJSON: String {
     var dict: [String: Any] = [:]
     dict["text"] = LoremIpsum.sentences(withNumber: Int.random(between: 5, and: 15))
 
     return jsonDictToString(dict: dict)
 }
-
-
 
 func jsonDictToString(dict: [String: Any]) -> String {
     if
