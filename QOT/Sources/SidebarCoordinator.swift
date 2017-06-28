@@ -70,18 +70,18 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
     }
 
     func didTapBenefitsCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
-        startSidebarItemCoordinator(contentCollection: contentCollection, viewController: viewController)
+        startSidebarItemCoordinator(contentCollection: contentCollection, viewController: viewController, topTabBarTitle: R.string.localized.sidebarTitleBenefits())
     }
 
     func didTapAboutCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
-        startSidebarItemCoordinator(contentCollection: contentCollection, viewController: viewController)
+        startSidebarItemCoordinator(contentCollection: contentCollection, viewController: viewController, topTabBarTitle: R.string.localized.sidebarTitleAbout())
     }
 
     func didTapPrivacyCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
-        startSidebarItemCoordinator(contentCollection: contentCollection, viewController: viewController)
+        startSidebarItemCoordinator(contentCollection: contentCollection, viewController: viewController, topTabBarTitle: R.string.localized.sidebarTitlePrivacy())
     }
 
-    private func startSidebarItemCoordinator(contentCollection: ContentCollection?, viewController: SidebarViewController) {
+    private func startSidebarItemCoordinator(contentCollection: ContentCollection?, viewController: SidebarViewController, topTabBarTitle: String) {
         guard let collection = contentCollection else {
             return
         }
@@ -91,7 +91,8 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
             services: services,
             eventTracker: eventTracker,
             contentCollection: collection,
-            articleHeader: nil
+            articleHeader: nil,
+            topTabBarTitle: topTabBarTitle.uppercased()
         )
 
         startChild(child: coordinator)

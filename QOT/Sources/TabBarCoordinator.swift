@@ -255,7 +255,8 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
             services: services,
             eventTracker: eventTracker,
             contentCollection: articleHeader.articleContentCollection,
-            articleHeader: articleHeader
+            articleHeader: articleHeader,
+            topTabBarTitle: nil
         )
 
         coordinator.startChild(child: coordinator)

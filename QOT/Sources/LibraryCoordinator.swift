@@ -68,7 +68,8 @@ extension LibraryCoordinator: LibraryViewControllerDelegate {
             services: services,
             eventTracker: eventTracker,
             contentCollection: item,
-            articleHeader: nil
+            articleHeader: nil,
+            topTabBarTitle: R.string.localized.sidebarTitleLibrary().uppercased()
         )
         startChild(child: coordinator)
     }

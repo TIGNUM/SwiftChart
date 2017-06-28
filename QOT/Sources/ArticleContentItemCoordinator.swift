@@ -28,6 +28,7 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
     fileprivate let articleHeader: ArticleCollectionHeader?
+    fileprivate let topTabBarTitle: String?
     fileprivate var selectedContent: ContentCollection?
     fileprivate var relatedArticles = [ContentCollection]()
     fileprivate var fullViewController: ArticleItemViewController
@@ -40,12 +41,14 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
         services: Services,
         eventTracker: EventTracker,
         contentCollection: ContentCollection?,
-        articleHeader: ArticleCollectionHeader?) {
+        articleHeader: ArticleCollectionHeader?,
+        topTabBarTitle: String?) {
             self.rootVC = root
             self.services = services
             self.eventTracker = eventTracker
             self.articleHeader = articleHeader
             self.selectedContent = contentCollection
+            self.topTabBarTitle = topTabBarTitle
 
             guard let contentCollection = contentCollection else {
                 fatalError("ContentCollection is nil.")
@@ -84,6 +87,10 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
                 themes.append(.dark)
             case .bullets: return
             }
+        }
+
+        if let topTabBarTitle = topTabBarTitle {
+            titles = [topTabBarTitle]
         }
 
         let topTabBarControllerItem = TopTabBarController.Item(
