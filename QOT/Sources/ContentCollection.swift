@@ -11,7 +11,7 @@ import RealmSwift
 import Freddy
 
 // FIXME: Unit test.
-final class ContentCollection: Object, ContentCollectionDataProtocol {
+final class ContentCollection: Object {
 
     // MARK: SyncableRealmObject
 
@@ -25,7 +25,8 @@ final class ContentCollection: Object, ContentCollectionDataProtocol {
 
     let categoryIDs: List<IntObject> = List()
 
-    func setData(_ data: ContentCollectionDataProtocol) {
+    func setData(_ data: ContentCollectionData) {
+        section = data.section
         sortOrder = data.sortOrder
         title = data.title
         layoutInfo = data.layoutInfo
@@ -34,6 +35,8 @@ final class ContentCollection: Object, ContentCollectionDataProtocol {
     }
 
     // MARK: ContentData
+
+    fileprivate(set) dynamic var section: String = ""
 
     fileprivate(set) dynamic var sortOrder: Int = 0
 
@@ -88,6 +91,7 @@ extension ContentCollection: DownSyncable {
     }
 
     func setData(_ data: ContentCollectionData, objectStore: ObjectStore) throws {
+        section = data.section
         sortOrder = data.sortOrder
         title = data.title
         layoutInfo = data.layoutInfo

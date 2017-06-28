@@ -67,7 +67,6 @@ private func mockContentCategory(sortOrder: Int, title: String, section: String,
     let contentCategory = ContentCategory()
     let contentCategoryData = ContentCategoryData(
         sortOrder: sortOrder,
-        section: section,
         title: title,
         layoutInfo: layoutInfo
     )
@@ -130,6 +129,7 @@ private func addMockContentCollection(category: ContentCategory, realm: Realm) {
 private func mockSidebarCollection(sortOrder: Int, title: String, section: String, realm: Realm) -> ContentCollection {
     let contentCollection = ContentCollection()
     let contentCollectionData = ContentCollectionData(
+        section: section,
         sortOrder: sortOrder,
         title: title,
         layoutInfo: nil,

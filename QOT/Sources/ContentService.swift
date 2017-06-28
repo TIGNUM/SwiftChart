@@ -33,15 +33,25 @@ final class ContentService {
     // MARK: - Categories
 
     func libraryCategories() -> AnyRealmCollection<ContentCategory> {
-        return sortedResults(for: .section(.library))
+        return contentCategories(section: .library)
     }
 
     func learnContentCategories() -> AnyRealmCollection<ContentCategory> {
-        return sortedResults(for: .section(.learnStrategy))
+        return contentCategories(section: .learnStrategy)
     }
 
     func contentCategory(id: Int) -> ContentCategory? {
         return mainRealm.anyCollection(primaryKey: id)
+    }
+
+    func contentCategories(section: Database.Section) -> AnyRealmCollection<ContentCategory> {
+        let contentCollections: AnyRealmCollection<ContentCollection> = mainRealm.anyCollection(predicates: .section(section))
+        let categoryIDs = Set(contentCollections.reduce([IntObject](), { $0.0 + $0.1.categoryIDs }).map { $0.value })
+        return contentCategories(ids: Array(categoryIDs))
+    }
+
+    func contentCategories(ids: [Int]) -> AnyRealmCollection<ContentCategory> {
+        return sortedResults(for: NSPredicate(remoteIDs: ids))
     }
 
     // MARK: - Collections

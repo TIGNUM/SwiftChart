@@ -100,7 +100,6 @@ final class TabBarCoordinator: ParentCoordinator {
     }()
 
     fileprivate lazy var topTabBarControllerPrepare: TopTabBarController = {
-        let prepareContentCategory = self.services.prepareContentService.categories()[0]
         let chatViewController = self.prepareChatViewController
         let myPrepViewModel = MyPrepViewModel()
         let myPrepViewController = MyPrepViewController(viewModel: myPrepViewModel)

@@ -9,30 +9,9 @@
 import Foundation
 import Freddy
 
-protocol ContentCollectionDataProtocol {
+struct ContentCollectionData {
 
-    var sortOrder: Int { get }
-
-    var title: String { get }
-
-    /** 
-     A JSON string containing layout information. e.g. For the prepare
-     section accordian a group title is necessary:
-
-         {
-           groupTitle: "PRE-TRAVEL"
-         }
-    */
-    var layoutInfo: String? { get }
-
-    /// A comma seperated list of tags: eg. `blog,health`
-    var searchTags: String { get }
-
-    var thumbnailURLString: String? { get }
-}
-
-struct ContentCollectionData: ContentCollectionDataProtocol {
-
+    let section: String
     let sortOrder: Int
     let title: String
     let layoutInfo: String?
@@ -41,7 +20,8 @@ struct ContentCollectionData: ContentCollectionDataProtocol {
     let categoryIDs: [Int]
     let thumbnailURLString: String?
 
-    init(sortOrder: Int, title: String, layoutInfo: String?, searchTags: String, relatedContent: String?, thumbnailURL: String? = nil) {
+    init(section: String, sortOrder: Int, title: String, layoutInfo: String?, searchTags: String, relatedContent: String?, thumbnailURL: String? = nil) {
+        self.section = section
         self.sortOrder = sortOrder
         self.title = title
         self.layoutInfo = layoutInfo
@@ -57,6 +37,7 @@ struct ContentCollectionData: ContentCollectionDataProtocol {
 extension ContentCollectionData: JSONDecodable {
 
     init(json: JSON) throws {
+        self.section = try json.getItemValue(at: .section)
         self.title = try json.getItemValue(at: .title)
         self.sortOrder = try json.getItemValue(at: .sortOrder)
         self.relatedContentIDs = try json.serializeString(at: .relatedContentIds)

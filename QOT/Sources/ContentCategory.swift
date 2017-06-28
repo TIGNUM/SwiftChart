@@ -11,7 +11,7 @@ import RealmSwift
 import Freddy
 
 // FIXME: Unit test.
-final class ContentCategory: Object, ContentCategoryDataProtocol {
+final class ContentCategory: Object {
 
     // MARK: SyncableRealmObject
 
@@ -26,9 +26,8 @@ final class ContentCategory: Object, ContentCategoryDataProtocol {
     // TODO: Remove me please: https://tignum.atlassian.net/browse/IT-553
     dynamic var keypathID: String?
 
-    func setData(_ data: ContentCategoryDataProtocol) {
+    func setData(_ data: ContentCategoryData) {
         sortOrder = data.sortOrder
-        section = data.section
         title = data.title
         layoutInfo = data.layoutInfo
     }
@@ -71,7 +70,6 @@ extension ContentCategory: DownSyncable {
 
     func setData(_ data: ContentCategoryData, objectStore: ObjectStore) throws {
         sortOrder = data.sortOrder
-        section = data.section
         title = data.title
         layoutInfo = data.layoutInfo
     }
