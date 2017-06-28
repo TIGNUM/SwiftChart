@@ -65,12 +65,85 @@ class ChatViewController<T: ChatChoice>: UIViewController, UITableViewDelegate, 
         view.layoutIfNeeded()
     }
 
+    // MARK: - Private methods
+
+    private func heightOfFlowCollectionViewBasedOnNumberOfItems(items: [ChatChoice], tableView: UITableView) -> CGFloat {
+        let screenSize: CGRect = tableView.bounds
+        var total: CGFloat = 0.0
+        for i: Int in stride(from: 1, to: items.count, by: 1) {
+            total += items.item(at: i).title.width(withConstrainedHeight: 0, font: UIFont(name: "BentonSans", size: 16)!) + 40
+        }
+        total /= screenSize.width
+        total *= 80
+        return total > 100 ? total : 100
+    }
+
+    private func heightOfListCollectionViewBasedOnNumberOfItems(items: [ChatChoice], tableView: UITableView) -> CGFloat {
+        var total: CGFloat = 0.0
+        for i: Int in stride(from: 0, to: items.count, by: 1) {
+            total += items.item(at: i).title.height(withConstrainedWidth: tableView.bounds.width, font: UIFont(name: "BentonSans", size: 16)!) + 40
+        }
+
+        return total > 100 ? total : 100
+    }
+
+    // MARK: - UITableViewDelegate, UITableViewDataSource
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.itemCount
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let item = viewModel.item(at: indexPath.row)
+        switch item.type {
+        case .message(let message):
+            let cell: ChatTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.chatLabel.text = message
+            cell.chatLabel.font = UIFont(name: "BentonSans-Book", size: 16)
+            cell.chatLabel.textColor = .blackTwo
+//            cell.iconImageView.image = UIImage(named: "####")
+            return cell
+        case .header(let text, let alignment):
+            let cell: StatusTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.statusLabel.text = text
+            cell.statusLabel.textAlignment = alignment
+            return cell
+        case .footer(let text, let alignment):
+            let cell: StatusTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.statusLabel.text = text
+            cell.statusLabel.textAlignment = alignment
+            return cell
+        case .choiceList(let choices, let display):
+            let cell: CollectionTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.delegate = self
+
+            let prepareChatObjects = choices.enumerated().map { (offset, choice) -> PrepareChatObject in
+                let isSelected = viewModel.isSelected(itemIndex: indexPath.row, choiceIndex: offset)
+                let style: PrepareCollectionViewCell.Style = isSelected ? .dashedSelected : .dashed
+
+                return PrepareChatObject(title: choice.title, localID: "", selected: isSelected, style: style) //TODO: set localID
+            }
+
+
+            cell.inputWithDataModel(dataModel: prepareChatObjects, display: display)
+            cell.collectionView.reloadData()
+            return cell
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let item = viewModel.item(at: indexPath.row)
+        switch item.type {
+        case .message, .header, .footer:
+            return UITableViewAutomaticDimension
+        case .choiceList(let items, let display):
+            switch display {
+            case .flow:
+                return heightOfFlowCollectionViewBasedOnNumberOfItems(items: items, tableView: tableView)
+            case .list:
+                return heightOfListCollectionViewBasedOnNumberOfItems(items: items, tableView: tableView)
+            }
+        }
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -78,12 +151,36 @@ class ChatViewController<T: ChatChoice>: UIViewController, UITableViewDelegate, 
         let item = viewModel.item(at: indexPath.row)
         switch item.type {
         case .choiceList(let choices, _):
-            if let choice = choices.first {
+            if let choice = choices.first, viewModel.canSelectItem(index: indexPath.row) == true {
                 didSelectChoice?(choice, self)
             }
         default:
             break
         }
 
+    }
+}
+
+// MARK: - CollectionViewCellDelegate
+
+extension ChatViewController : CollectionViewCellDelegate {
+    func didSelectItemAtIndex(_ index: Index, in cell: CollectionTableViewCell) {
+        guard let cellIndex = tableView.indexPath(for: cell)?.row, viewModel.canSelectItem(index: cellIndex) == true else { return }
+        let cellItem = viewModel.item(at: cellIndex)
+
+        switch cellItem.type {
+        case .choiceList(let items, let display):
+            switch display {
+            case .flow:
+                fallthrough
+            case .list:
+                viewModel.select(itemIndex: cellIndex, choiceIndex: index)
+                let item = items.item(at: index)
+                didSelectChoice?(item, self)
+
+            }
+        default:
+            break
+        }
     }
 }

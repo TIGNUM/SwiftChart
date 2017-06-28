@@ -22,8 +22,6 @@ struct PrepareItem {
     }
 }
 
-
-
 final class PrepareContentViewModel {
 
     struct Video {

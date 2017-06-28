@@ -38,6 +38,12 @@ final class PrepareChatDecisionManager {
         }
     }
 
+    func repeatFlow() {
+        if let question = questionsService.prepareQuestions().first {
+            process(question: question)
+        }
+    }
+
     func didSelectChoice(_ choice: Answer) {
         if let target = choice.target {
             switch target {

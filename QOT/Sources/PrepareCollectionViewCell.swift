@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Anchorage
 
 class PrepareCollectionViewCell: UICollectionViewCell, Dequeueable {
 
@@ -19,10 +20,30 @@ class PrepareCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     @IBOutlet private weak var titleLbl: UILabel!
 
-    func setStyle(cellStyle: Style, name: String) {
+    fileprivate var currentShapeLayer: CAShapeLayer?
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        currentShapeLayer?.removeFromSuperlayer()
+    }
+
+    func setStyle(cellStyle: Style, name: String, display: ChoiceListDisplay) {
+
+        switch display {
+        case .flow:
+            titleLbl.numberOfLines = 1
+            titleLbl.lineBreakMode = .byTruncatingTail
+            titleLbl.textAlignment = .center
+        case .list:
+            titleLbl.numberOfLines = 0
+            titleLbl.lineBreakMode = .byWordWrapping
+            titleLbl.textAlignment = .right
+        }
+
         titleLbl.text = name
         let borderColour = UIColor.white.withAlphaComponent(0.2)
         let shapeLayer: CAShapeLayer = CAShapeLayer()
+        currentShapeLayer = shapeLayer
         let frame = CGRect(x: 2, y: 2, width: self.frame.size.width-2, height: self.frame.size.height-2)
 
         shapeLayer.bounds = bounds
@@ -35,25 +56,17 @@ class PrepareCollectionViewCell: UICollectionViewCell, Dequeueable {
             shapeLayer.fillColor = UIColor.clear.cgColor
             shapeLayer.path = UIBezierPath(roundedRect: frame, cornerRadius: 12).cgPath
             shapeLayer.lineDashPattern = [6, 3]
-            break
-
         case .dashedSelected:
-            shapeLayer.fillColor = UIColor.blue.cgColor
+            shapeLayer.fillColor = UIColor.white20.cgColor
             shapeLayer.path = UIBezierPath(roundedRect: frame, cornerRadius: 12).cgPath
-            shapeLayer.lineDashPattern = [6, 3]
-            break
-
         case .plain:
             shapeLayer.fillColor = UIColor.white.withAlphaComponent(0.1).cgColor
             shapeLayer.path = UIBezierPath(roundedRect: frame, cornerRadius: 30).cgPath
-            break
-
         case .plainSelected:
             shapeLayer.fillColor = UIColor.blue.cgColor
             shapeLayer.path = UIBezierPath(roundedRect: frame, cornerRadius: 30).cgPath
-            break
         }
-
+        
         layer.addSublayer(shapeLayer)
     }
 }

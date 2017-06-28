@@ -24,6 +24,7 @@ struct ChatItem<T: ChatChoice> {
 
     let type: ChatItemType
     let delay: TimeInterval
+    let identifier = UUID().uuidString
 
     init(type: ChatItemType, delay: TimeInterval = 0.2) {
         self.type = type
@@ -40,6 +41,7 @@ final class ChatViewModel<T: ChatChoice> {
 
     private let operationQueue = OperationQueue()
     private var items: [ChatItem<T>] = []
+    private var selected: [String: Int] = [:]
 
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
@@ -48,7 +50,34 @@ final class ChatViewModel<T: ChatChoice> {
         append(items: items)
     }
 
+    func select(itemIndex: Int, choiceIndex: Int) {
+        let item = items[itemIndex]
+        switch item.type {
+        case .choiceList:
+            selected[item.identifier] = choiceIndex
+        default:
+            assertionFailure("This is not a choiceList")
+        }
+    }
+
+    func isSelected(itemIndex: Int, choiceIndex: Int) -> Bool {
+        let item = items[itemIndex]
+        return selected[item.identifier] == choiceIndex
+    }
+
+    func canSelectItem(index: Index) -> Bool {
+        let item = items[index]
+        switch item.type {
+        case .choiceList:
+            return selected[item.identifier] == nil
+        default:
+            return false
+        }
+    }
+
     func setItems(items: [ChatItem<T>]) {
+        self.items = []
+        selected = [:]
         operationQueue.addOperation { [weak self] in
             DispatchQueue.main.async {
                 self?.items = items

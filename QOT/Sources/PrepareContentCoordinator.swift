@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+protocol PrepareContentCoordinatorDelegate: class {
+    func prepareContentDidFinish(coordinator: PrepareContentCoordinator)
+}
+
 final class PrepareContentCoordinator: ParentCoordinator {
 
     // MARK: - Properties
@@ -17,6 +21,7 @@ final class PrepareContentCoordinator: ParentCoordinator {
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
     var children: [Coordinator] = []
+    weak var delagate: PrepareContentCoordinatorDelegate?
 
     // MARK: - Life Cycle
 
@@ -86,6 +91,7 @@ extension PrepareContentCoordinator: TopTabBarDelegate {
 
     func didSelectLeftButton(sender: TopTabBarController) {
         sender.dismiss(animated: true, completion: nil)
+        delagate?.prepareContentDidFinish(coordinator: self)
     }
 
     func didSelectItemAtIndex(index: Int, sender: TopTabBarController) {

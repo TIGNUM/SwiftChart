@@ -302,6 +302,14 @@ extension TabBarCoordinator: PrepareChatDecisionManagerDelegate {
         }
         
         let coordinator = PrepareContentCoordinator(root: tabViewController, services: services, eventTracker: eventTracker)
+        coordinator.delagate = self
         startChild(child: coordinator)
+    }
+}
+
+extension TabBarCoordinator: PrepareContentCoordinatorDelegate {
+    func prepareContentDidFinish(coordinator: PrepareContentCoordinator) {
+        removeChild(child: coordinator)
+        prepareChatDecisionManager.repeatFlow()
     }
 }

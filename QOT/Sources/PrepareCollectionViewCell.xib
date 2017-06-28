@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -24,7 +24,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RnA-Sm-gnR">
-                        <rect key="frame" x="36" y="29" width="40" height="15.5"/>
+                        <rect key="frame" x="12" y="29" width="88" height="15.5"/>
                         <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="16"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -33,11 +33,10 @@
             </view>
             <constraints>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="RnA-Sm-gnR" secondAttribute="bottom" constant="5" id="0G5-82-fVQ"/>
+                <constraint firstAttribute="trailing" secondItem="RnA-Sm-gnR" secondAttribute="trailing" constant="12" id="0GB-io-AvG"/>
                 <constraint firstItem="RnA-Sm-gnR" firstAttribute="centerY" secondItem="WCg-SH-Ft9" secondAttribute="centerY" id="FpQ-mc-Jhp"/>
-                <constraint firstItem="RnA-Sm-gnR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="WCg-SH-Ft9" secondAttribute="leading" constant="5" id="Iob-8L-7DB"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="RnA-Sm-gnR" secondAttribute="trailing" constant="5" id="PPC-5b-QCX"/>
                 <constraint firstItem="RnA-Sm-gnR" firstAttribute="top" relation="greaterThanOrEqual" secondItem="WCg-SH-Ft9" secondAttribute="top" constant="5" id="WGx-DI-uEE"/>
-                <constraint firstItem="RnA-Sm-gnR" firstAttribute="centerX" secondItem="WCg-SH-Ft9" secondAttribute="centerX" id="paZ-l8-rIF"/>
+                <constraint firstItem="RnA-Sm-gnR" firstAttribute="leading" secondItem="WCg-SH-Ft9" secondAttribute="leading" constant="12" id="X2f-wa-0uE"/>
             </constraints>
             <size key="customSize" width="241" height="70"/>
             <connections>

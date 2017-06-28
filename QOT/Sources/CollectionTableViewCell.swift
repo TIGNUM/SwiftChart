@@ -15,13 +15,16 @@ protocol CollectionViewCellDelegate: class {
 
 class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegateRightAlignedLayout, Dequeueable {
 
-    @IBOutlet weak var cellTitleLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     weak var delegate: CollectionViewCellDelegate?
-    var dataModel: [PrepareChatObject] = []
 
-    func inputWithDataModel(dataModel: [PrepareChatObject]!) {
+    fileprivate var dataModel: [PrepareChatObject] = []
+    fileprivate var display: ChoiceListDisplay = .flow
+
+    func inputWithDataModel(dataModel: [PrepareChatObject]!, display: ChoiceListDisplay) {
+        print("dataModel.Count: \(dataModel.count)")
         self.dataModel = dataModel
+        self.display = display
     }
 
     override func awakeFromNib() {
@@ -38,21 +41,39 @@ class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
 extension CollectionTableViewCell {
 
     // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return  self.dataModel.numberOfItems(inSection: section)
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let title = self.dataModel.item(at: indexPath.row).title
-        let cell: PrepareCollectionViewCell = collectionView.dequeueCell(for: indexPath)
         let object = self.dataModel.item(at: indexPath.row)
-        cell.setStyle(cellStyle: object.style, name: title)
+        let title = object.title
+
+        let cell: PrepareCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+        cell.setStyle(cellStyle: object.style, name: title, display: display)
+
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = self.dataModel.item(at: indexPath.row).title.width(withConstrainedHeight: 00, font: UIFont(name: "BentonSans", size: 16)!) + 25
-        return CGSize(width: cellWidth, height: 40)
+        let padding: CGFloat = 24
+        let font = UIFont(name: "BentonSans", size: 16)!
+        var cellHeight: CGFloat = 40
+        var cellWidth: CGFloat = self.dataModel.item(at: indexPath.row).title.width(withConstrainedHeight: 0, font: font) + padding
+
+        switch display {
+        case .flow:
+            break
+        case .list:
+            if cellWidth > collectionView.frame.width {
+                cellWidth = collectionView.frame.width
+                let lineHeight = "a".height(withConstrainedWidth: cellWidth, font: font)
+                let numberOfLines = self.dataModel.item(at: indexPath.row).title.height(withConstrainedWidth: cellWidth, font: font) / lineHeight
+                cellHeight = lineHeight * CGFloat(ceilf(Float(numberOfLines))) + padding
+            }
+        }
+        return CGSize(width: cellWidth, height: cellHeight)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -79,6 +100,14 @@ extension String {
 
         return boundingBox.width
     }
+
+    func height(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {
+        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
+
+        return boundingBox.height
+    }
+
 }
 
 struct PrepareChatObject {
