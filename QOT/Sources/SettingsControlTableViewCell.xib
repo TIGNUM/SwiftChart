@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsTableViewCell_Control" id="6MG-2K-6Tn" customClass="SettingsTableViewCell" customModule="QOT" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SettingsTableViewCell_Control" id="6MG-2K-6Tn" customClass="SettingsTableViewCell" customModule="QOT" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6MG-2K-6Tn" id="uVH-v5-g75">
@@ -19,16 +19,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="d5X-uW-UxC">
-                        <rect key="frame" x="12" y="6" width="351" height="30.5"/>
+                        <rect key="frame" x="16" y="6" width="343" height="30.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mn6-on-1dV">
-                                <rect key="frame" x="0.0" y="0.0" width="290" height="30.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="282" height="30.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uKP-5y-6Aj">
-                                <rect key="frame" x="302" y="0.0" width="51" height="30.5"/>
+                                <rect key="frame" x="294" y="0.0" width="51" height="30.5"/>
                             </switch>
                         </subviews>
                     </stackView>
@@ -37,8 +37,8 @@
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="d5X-uW-UxC" secondAttribute="bottom" constant="7" id="Aoe-hx-Qar"/>
                     <constraint firstItem="d5X-uW-UxC" firstAttribute="top" secondItem="uVH-v5-g75" secondAttribute="top" constant="6" id="QU8-HN-F5x"/>
-                    <constraint firstItem="d5X-uW-UxC" firstAttribute="leading" secondItem="uVH-v5-g75" secondAttribute="leading" constant="12" id="Vwv-Fz-Sse"/>
-                    <constraint firstAttribute="trailing" secondItem="d5X-uW-UxC" secondAttribute="trailing" constant="12" id="kf4-zi-EEC"/>
+                    <constraint firstItem="d5X-uW-UxC" firstAttribute="leading" secondItem="uVH-v5-g75" secondAttribute="leading" constant="16" id="Vwv-Fz-Sse"/>
+                    <constraint firstAttribute="trailing" secondItem="d5X-uW-UxC" secondAttribute="trailing" constant="16" id="kf4-zi-EEC"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

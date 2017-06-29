@@ -15,6 +15,14 @@ final class SettingsViewModel {
         case general
         case notifications
         case security
+
+        var title: String {
+            switch self {
+            case .general: return R.string.localized.settingsTitleGeneral()
+            case .notifications: return R.string.localized.settingsTitleNotifications()
+            case .security: return R.string.localized.settingsTitleSecurity()
+            }
+        }
     }
 
     // MARK: - Properties

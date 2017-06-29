@@ -224,7 +224,7 @@ struct Font {
     /// SIMPLE REGULAR 20 // recommended article title
     static let H4Headline = UIFont.simpleFont(ofSize: 20)
 
-    /// SIMPLE REGULAR 16 // strategy title
+    /// SIMPLE REGULAR 18 // strategy title
     static let H4Identifier = UIFont.simpleFont(ofSize: 18)
 
     /// SIMPLE REGULAR 16 // strategy title

@@ -29,7 +29,7 @@ final class SettingsCoordinator: ParentCoordinator {
         let topTabBarControllerItem = TopTabBarController.Item(
             controllers: [settingsViewController],
             themes: [.dark],
-            titles: [R.string.localized.settingsTitle()]
+            titles: [settingsType.title]
         )
 
         let topTabBarController = TopTabBarController(

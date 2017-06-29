@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsTableViewCell_Label" id="uWU-kG-ddk" customClass="SettingsTableViewCell" customModule="QOT" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SettingsTableViewCell_Label" id="uWU-kG-ddk" customClass="SettingsTableViewCell" customModule="QOT" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uWU-kG-ddk" id="Klu-AQ-DWN">
@@ -19,28 +19,33 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="g7c-5b-hX5">
-                        <rect key="frame" x="12" y="0.0" width="351" height="43.5"/>
+                        <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v5f-Rt-IVi">
-                                <rect key="frame" x="0.0" y="0.0" width="169.5" height="43.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="165.5" height="43.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Obg-8Z-caX">
-                                <rect key="frame" x="181.5" y="0.0" width="169.5" height="43.5"/>
+                                <rect key="frame" x="177.5" y="0.0" width="165.5" height="43.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="Obg-8Z-caX" firstAttribute="top" secondItem="g7c-5b-hX5" secondAttribute="top" id="Jkf-ir-AeQ"/>
+                            <constraint firstAttribute="trailing" secondItem="Obg-8Z-caX" secondAttribute="trailing" id="ij4-JO-K5K"/>
+                            <constraint firstAttribute="bottom" secondItem="Obg-8Z-caX" secondAttribute="bottom" id="txj-Cn-oih"/>
+                        </constraints>
                     </stackView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="g7c-5b-hX5" secondAttribute="bottom" id="LrP-Ah-MKg"/>
                     <constraint firstItem="g7c-5b-hX5" firstAttribute="top" secondItem="Klu-AQ-DWN" secondAttribute="top" id="jIc-lY-j5d"/>
-                    <constraint firstAttribute="trailing" secondItem="g7c-5b-hX5" secondAttribute="trailing" constant="12" id="qxB-Dz-5KO"/>
-                    <constraint firstItem="g7c-5b-hX5" firstAttribute="leading" secondItem="Klu-AQ-DWN" secondAttribute="leading" constant="12" id="uGe-qm-19b"/>
+                    <constraint firstAttribute="trailing" secondItem="g7c-5b-hX5" secondAttribute="trailing" constant="16" id="qxB-Dz-5KO"/>
+                    <constraint firstItem="g7c-5b-hX5" firstAttribute="leading" secondItem="Klu-AQ-DWN" secondAttribute="leading" constant="16" id="uGe-qm-19b"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

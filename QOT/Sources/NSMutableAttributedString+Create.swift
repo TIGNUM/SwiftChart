@@ -67,24 +67,24 @@ enum Style {
         )
     }
 
-    func attributedString(lineSpacing: CGFloat = 1) -> NSAttributedString {
+    func attributedString(lineSpacing: CGFloat = 1, alignment: NSTextAlignment = .left) -> NSAttributedString {
         switch self {
         case .postTitle(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing))
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, alignment: alignment))
         case .secondaryTitle(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing))
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, alignment: alignment))
         case .subTitle(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing))
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, alignment: alignment))
         case .headline(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing))
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, alignment: alignment))
         case .headlineSmall(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing))
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, alignment: alignment))
         case .navigationTitle(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing))
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, alignment: alignment))
         case .tag(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing))
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, alignment: alignment))
         case .paragraph(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing))
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, alignment: alignment))
         case .qoute(let string, let color):
             return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, alignment: .right))
         }
