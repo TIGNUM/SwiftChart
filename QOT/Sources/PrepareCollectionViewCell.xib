@@ -23,8 +23,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="112" height="72"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RnA-Sm-gnR">
-                        <rect key="frame" x="12" y="29" width="88" height="15.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RnA-Sm-gnR">
+                        <rect key="frame" x="12" y="0.0" width="88" height="72"/>
                         <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="16"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -32,15 +32,16 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="RnA-Sm-gnR" secondAttribute="bottom" constant="5" id="0G5-82-fVQ"/>
+                <constraint firstAttribute="bottom" secondItem="RnA-Sm-gnR" secondAttribute="bottom" id="0G5-82-fVQ"/>
                 <constraint firstAttribute="trailing" secondItem="RnA-Sm-gnR" secondAttribute="trailing" constant="12" id="0GB-io-AvG"/>
                 <constraint firstItem="RnA-Sm-gnR" firstAttribute="centerY" secondItem="WCg-SH-Ft9" secondAttribute="centerY" id="FpQ-mc-Jhp"/>
-                <constraint firstItem="RnA-Sm-gnR" firstAttribute="top" relation="greaterThanOrEqual" secondItem="WCg-SH-Ft9" secondAttribute="top" constant="5" id="WGx-DI-uEE"/>
+                <constraint firstItem="RnA-Sm-gnR" firstAttribute="top" secondItem="WCg-SH-Ft9" secondAttribute="top" id="WGx-DI-uEE"/>
                 <constraint firstItem="RnA-Sm-gnR" firstAttribute="leading" secondItem="WCg-SH-Ft9" secondAttribute="leading" constant="12" id="X2f-wa-0uE"/>
             </constraints>
             <size key="customSize" width="241" height="70"/>
             <connections>
                 <outlet property="titleLbl" destination="RnA-Sm-gnR" id="1bh-2h-D4c"/>
+                <outlet property="trailingConstraint" destination="0GB-io-AvG" id="268-vy-502"/>
             </connections>
             <point key="canvasLocation" x="138" y="64"/>
         </collectionViewCell>

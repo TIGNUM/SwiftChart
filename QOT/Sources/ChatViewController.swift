@@ -65,28 +65,6 @@ class ChatViewController<T: ChatChoice>: UIViewController, UITableViewDelegate, 
         view.layoutIfNeeded()
     }
 
-    // MARK: - Private methods
-
-    private func heightOfFlowCollectionViewBasedOnNumberOfItems(items: [ChatChoice], tableView: UITableView) -> CGFloat {
-        let screenSize: CGRect = tableView.bounds
-        var total: CGFloat = 0.0
-        for i: Int in stride(from: 1, to: items.count, by: 1) {
-            total += items.item(at: i).title.width(withConstrainedHeight: 0, font: UIFont(name: "BentonSans", size: 16)!) + 40
-        }
-        total /= screenSize.width
-        total *= 80
-        return total > 100 ? total : 100
-    }
-
-    private func heightOfListCollectionViewBasedOnNumberOfItems(items: [ChatChoice], tableView: UITableView) -> CGFloat {
-        var total: CGFloat = 0.0
-        for i: Int in stride(from: 0, to: items.count, by: 1) {
-            total += items.item(at: i).title.height(withConstrainedWidth: tableView.bounds.width, font: UIFont(name: "BentonSans", size: 16)!) + 40
-        }
-
-        return total > 100 ? total : 100
-    }
-
     // MARK: - UITableViewDelegate, UITableViewDataSource
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -95,13 +73,13 @@ class ChatViewController<T: ChatChoice>: UIViewController, UITableViewDelegate, 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = viewModel.item(at: indexPath.row)
+
         switch item.type {
         case .message(let message):
             let cell: ChatTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.chatLabel.text = message
-            cell.chatLabel.font = UIFont(name: "BentonSans-Book", size: 16)
+            cell.chatLabel.prepareAndSetTextAttributes(text: message, font: UIFont(name: "BentonSans-Book", size: 16)!, lineSpacing: 7)
             cell.chatLabel.textColor = .blackTwo
-//            cell.iconImageView.image = UIImage(named: "####")
+            cell.iconImageView.image = UIImage(named: "Q-Black")
             return cell
         case .header(let text, let alignment):
             let cell: StatusTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -125,7 +103,9 @@ class ChatViewController<T: ChatChoice>: UIViewController, UITableViewDelegate, 
             }
 
             cell.inputWithDataModel(dataModel: prepareChatObjects, display: display)
+            cell.collectionView.collectionViewLayout.invalidateLayout()
             cell.collectionView.reloadData()
+
             return cell
         }
     }
@@ -135,13 +115,23 @@ class ChatViewController<T: ChatChoice>: UIViewController, UITableViewDelegate, 
         switch item.type {
         case .message, .header, .footer:
             return UITableViewAutomaticDimension
-        case .choiceList(let items, let display):
-            switch display {
-            case .flow:
-                return heightOfFlowCollectionViewBasedOnNumberOfItems(items: items, tableView: tableView)
-            case .list:
-                return heightOfListCollectionViewBasedOnNumberOfItems(items: items, tableView: tableView)
+        case .choiceList(let choices, let display):
+            guard let cell = Bundle.main.loadNibNamed("CollectionTableViewCell", owner: self, options: [:])?[0] as? CollectionTableViewCell else { return UITableViewAutomaticDimension }
+
+            let prepareChatObjects = choices.enumerated().map { (_, choice) -> PrepareChatObject in
+                return PrepareChatObject(title: choice.title, localID: "", selected: false, style: .dashed)
             }
+
+            cell.setup()
+            cell.inputWithDataModel(dataModel: prepareChatObjects, display: display)
+            cell.collectionView.reloadData()
+            cell.layoutIfNeeded()
+
+            let topPadding: CGFloat = 17
+
+            let cellHeight = cell.collectionView.collectionViewLayout.collectionViewContentSize.height + topPadding
+
+            return cellHeight
         }
     }
 

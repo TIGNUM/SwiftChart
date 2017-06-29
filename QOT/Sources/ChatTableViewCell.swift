@@ -16,8 +16,11 @@ class ChatTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        bubbleView.layer.cornerRadius = 10
+
+        iconImageView.layer.cornerRadius = 12
+        iconImageView.layer.masksToBounds = true
+
+        bubbleView.layer.cornerRadius = 8
         bubbleView.layer.masksToBounds = true
         backgroundColor = .clear
     }

@@ -18,8 +18,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="194.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="AV7-kL-11z">
-                        <rect key="frame" x="8" y="5" width="304" height="189.5"/>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="AV7-kL-11z">
+                        <rect key="frame" x="11" y="17" width="298" height="177.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6Ey-53-2QJ">
                             <size key="itemSize" width="50" height="50"/>
@@ -35,10 +35,10 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="AV7-kL-11z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="6aD-H5-LsQ"/>
-                    <constraint firstAttribute="trailing" secondItem="AV7-kL-11z" secondAttribute="trailing" constant="8" id="MuS-sm-FJh"/>
+                    <constraint firstItem="AV7-kL-11z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="17" id="6aD-H5-LsQ"/>
+                    <constraint firstAttribute="trailing" secondItem="AV7-kL-11z" secondAttribute="trailing" constant="11" id="MuS-sm-FJh"/>
                     <constraint firstAttribute="bottom" secondItem="AV7-kL-11z" secondAttribute="bottom" id="Nkt-eB-jrs"/>
-                    <constraint firstItem="AV7-kL-11z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="f39-mZ-w9q"/>
+                    <constraint firstItem="AV7-kL-11z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="f39-mZ-w9q"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

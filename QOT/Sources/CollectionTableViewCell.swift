@@ -29,6 +29,10 @@ class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
     override func awakeFromNib() {
         super.awakeFromNib()
 
+        setup()
+    }
+
+    func setup() {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.registerDequeueable(PrepareCollectionViewCell.self)
@@ -56,31 +60,36 @@ extension CollectionTableViewCell {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let padding: CGFloat = 24
+        let padding: CGFloat = 35
         let font = UIFont(name: "BentonSans", size: 16)!
         var cellHeight: CGFloat = 40
         var cellWidth: CGFloat = self.dataModel.item(at: indexPath.row).title.width(withConstrainedHeight: 0, font: font) + padding
 
+        let maxCellWidth: CGFloat = 285
+
         switch display {
         case .flow:
-            break
+            fallthrough
         case .list:
-            if cellWidth > collectionView.frame.width {
-                cellWidth = collectionView.frame.width
-                let lineHeight = "a".height(withConstrainedWidth: cellWidth, font: font)
-                let numberOfLines = self.dataModel.item(at: indexPath.row).title.height(withConstrainedWidth: cellWidth, font: font) / lineHeight
-                cellHeight = lineHeight * CGFloat(ceilf(Float(numberOfLines))) + padding
+            if cellWidth > maxCellWidth {
+                cellWidth = maxCellWidth
+                cellHeight = self.dataModel.item(at: indexPath.row).title.height(withConstrainedWidth: cellWidth, font: font) + padding
             }
         }
         return CGSize(width: cellWidth, height: cellHeight)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10.0
+        switch display {
+        case .flow:
+            return 6.0
+        case .list:
+            return 1000.0
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10.0
+        return 6.0
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {

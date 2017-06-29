@@ -19,8 +19,23 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I5Z-Ov-G4o">
-                        <rect key="frame" x="74" y="8" width="317" height="128.5"/>
+                        <rect key="frame" x="74" y="9" width="317" height="126.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZBE-PV-KWr">
+                                <rect key="frame" x="15" y="8" width="287" height="110.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="highlightedColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ZBE-PV-KWr" secondAttribute="trailing" constant="15" id="lqK-bO-9tp"/>
+                            <constraint firstItem="ZBE-PV-KWr" firstAttribute="top" secondItem="I5Z-Ov-G4o" secondAttribute="top" constant="8" id="nT0-Nv-tRF"/>
+                            <constraint firstAttribute="bottom" secondItem="ZBE-PV-KWr" secondAttribute="bottom" constant="8" id="oP7-Pb-P6S"/>
+                            <constraint firstItem="ZBE-PV-KWr" firstAttribute="leading" secondItem="I5Z-Ov-G4o" secondAttribute="leading" constant="15" id="y2W-ya-xAM"/>
+                        </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
                                 <real key="value" value="1"/>
@@ -30,24 +45,13 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZBE-PV-KWr">
-                        <rect key="frame" x="86" y="16" width="293" height="112.5"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="highlightedColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="ZBE-PV-KWr" firstAttribute="trailing" secondItem="I5Z-Ov-G4o" secondAttribute="trailing" constant="-12" id="Uvx-VC-UKs"/>
-                    <constraint firstItem="ZBE-PV-KWr" firstAttribute="leading" secondItem="I5Z-Ov-G4o" secondAttribute="leading" constant="12" id="XLg-NQ-Dg4"/>
                     <constraint firstAttribute="trailing" secondItem="I5Z-Ov-G4o" secondAttribute="trailing" constant="14" id="aXO-m4-EXm"/>
-                    <constraint firstAttribute="bottom" secondItem="I5Z-Ov-G4o" secondAttribute="bottom" constant="8" id="cLe-Oc-pCo"/>
-                    <constraint firstItem="I5Z-Ov-G4o" firstAttribute="top" secondItem="Xvs-ip-cgp" secondAttribute="top" constant="8" id="d1h-w6-ckR"/>
+                    <constraint firstAttribute="bottom" secondItem="I5Z-Ov-G4o" secondAttribute="bottom" constant="9" id="cLe-Oc-pCo"/>
+                    <constraint firstItem="I5Z-Ov-G4o" firstAttribute="top" secondItem="Xvs-ip-cgp" secondAttribute="top" constant="9" id="d1h-w6-ckR"/>
                     <constraint firstItem="I5Z-Ov-G4o" firstAttribute="leading" secondItem="Xvs-ip-cgp" secondAttribute="leading" constant="74" id="q35-GS-IDh"/>
-                    <constraint firstItem="ZBE-PV-KWr" firstAttribute="top" secondItem="I5Z-Ov-G4o" secondAttribute="top" constant="8" id="vBC-cG-5Hc"/>
-                    <constraint firstItem="ZBE-PV-KWr" firstAttribute="bottom" secondItem="I5Z-Ov-G4o" secondAttribute="bottom" constant="-8" id="yg7-B0-Qlv"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
