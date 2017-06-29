@@ -21,6 +21,7 @@ enum Endpoint: String {
     case downSyncConfirm = "/personal/p/qot/confirm"
     case page = "/personal/p/qot/qotPage"
     case calendarEvent = "/personal/p/qot/calendarEvent"
+    case question = "/personal/p/qot/question"
 
     func url(baseURL: URL) -> URL {
         return baseURL.appendingPathComponent(rawValue)

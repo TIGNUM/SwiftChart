@@ -9,6 +9,9 @@
 import Foundation
 
 enum JsonKey: String {
+    case answer
+    case answers
+    case answerType
     case associatedValueId
     case associatedValueType
     case attendees
@@ -28,6 +31,7 @@ enum JsonKey: String {
     case daysOfTheMonth
     case daysOfTheWeek
     case daysOfTheYear
+    case decisions
     case description
     case displayName
     case duration
@@ -55,7 +59,6 @@ enum JsonKey: String {
     case latitude
     case layoutInfo
     case location
-    case qotId
     case longitude
     case maxPages
     case maxResults
@@ -72,6 +75,11 @@ enum JsonKey: String {
     case page
     case pageId
     case pageSize
+    case qotId
+    case question
+    case questionDescription
+    case questionGroupId
+    case questionGroups
     case radius
     case recurranceEnd
     case recurrenceRules
@@ -96,6 +104,9 @@ enum JsonKey: String {
     case syncTime
     case syncTokenHeaderKey
     case tabs
+    case targetGroupName
+    case targetType
+    case targetTypeId
     case telephone
     case text
     case thumbnail

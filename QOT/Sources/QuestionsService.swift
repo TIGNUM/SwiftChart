@@ -20,7 +20,7 @@ final class QuestionsService {
     }
 
     func prepareQuestions() -> AnyRealmCollection<Question> {
-        let predicate = NSPredicate(groupContains: Database.QuestionGroup.PREPARE.rawValue)
+        let predicate = NSPredicate(format: "ANY answers.group == %@", Database.QuestionGroup.PREPARE.rawValue)
         let results = mainRealm.objects(Question.self).sorted(byKeyPath: "sortOrder").filter(predicate)
         return AnyRealmCollection(results)
     }

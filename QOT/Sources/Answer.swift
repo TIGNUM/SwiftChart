@@ -17,7 +17,13 @@ class Answer: Object {
 
     // MARK: Public
 
-    fileprivate(set) dynamic var text: String = ""
+    fileprivate(set) dynamic var sortOrder: Int = 0
+
+    fileprivate(set) dynamic var group: String = ""
+
+    fileprivate(set) dynamic var title: String = ""
+
+    fileprivate(set) dynamic var subtitle: String?
 
     fileprivate(set) dynamic var targetType: String?
 
@@ -30,9 +36,12 @@ class Answer: Object {
     convenience init(intermediary: AnswerIntermediary) {
         self.init()
 
-        self.text = intermediary.text
+        self.sortOrder = intermediary.sortOrder
+        self.group = intermediary.group
+        self.title = intermediary.title
+        self.subtitle = intermediary.subtitle
         self.targetType = intermediary.targetType
-        self._targetID.value = intermediary.targetID
         self.targetGroup = intermediary.targetGroup
+        self._targetID.value = intermediary.targetID
     }
 }

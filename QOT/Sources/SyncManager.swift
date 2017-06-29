@@ -41,6 +41,7 @@ final class SyncManager {
 
         let operations: [Operation] = [
 //            downSyncOperation(for: UserDown, context: context), API is currently returning non parsable data.
+            downSyncOperation(for: QuestionDown, context: context),
             downSyncOperation(for: PageDown, context: context),
             downSyncOperation(for: ContentCategoryDown, context: context),
             downSyncOperation(for: ContentCollectionDown, context: context),

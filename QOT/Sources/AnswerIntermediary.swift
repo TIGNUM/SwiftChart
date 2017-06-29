@@ -10,7 +10,10 @@ import Foundation
 
 struct AnswerIntermediary {
 
-    let text: String
+    let sortOrder: Int
+    let group: String
+    let title: String
+    let subtitle: String?
     let targetType: String?
     let targetID: Int?
     let targetGroup: String?

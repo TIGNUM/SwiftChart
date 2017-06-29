@@ -15,11 +15,7 @@ protocol PrepareChatDecisionManagerDelegate: class {
     func showContent(id: Int, manager: PrepareChatDecisionManager)
 }
 
-extension Answer: ChatChoice {
-    var title: String {
-        return text
-    }
-}
+extension Answer: ChatChoice {}
 
 final class PrepareChatDecisionManager {
 
@@ -59,7 +55,7 @@ final class PrepareChatDecisionManager {
 
     private func process(question: Question) {
         var items: [ChatItem<Answer>] = []
-        items.append(ChatItem(type: .message(question.text)))
+        items.append(ChatItem(type: .message(question.title)))
         items.append(deliveredFooter(alignment: .left))
 
         if let headerText = question.answersDescription {
@@ -73,7 +69,8 @@ final class PrepareChatDecisionManager {
     }
 
     private func chatItemForAnswers(_ answers: [Answer]) -> ChatItem<Answer> {
-        let prepareAnswers = answers.filter { $0.targetGroup == Database.QuestionGroup.PREPARE.rawValue }
+        let prepareGroup = Database.QuestionGroup.PREPARE.rawValue
+        let prepareAnswers = answers.filter { $0.group == prepareGroup && $0.targetGroup == prepareGroup }
 
         let flowDisplayCount = prepareAnswers.filter { $0.choiceListDisplay == .flow }.count
         let listDisplayCount = prepareAnswers.filter { $0.choiceListDisplay == .list }.count

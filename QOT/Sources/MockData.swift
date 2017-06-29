@@ -25,7 +25,7 @@ private let syncManager: SyncManager = {
 func setupRealmWithMockData(realm: Realm) {
     do {
         try realm.write {
-            if realm.objects(ContentCategory.self).count == 0 {
+            if realm.isEmpty {
                 if MockToggle.json == true {
                     syncManager.syncAllMockJSONs()
                 }
@@ -79,19 +79,25 @@ private extension Array {
 
 func addQuestions(realm: Realm) throws {
     // Prepare Question 1
-    let firstAnswersIntermediaries = [AnswerIntermediary(text: "i want to prepare for an event", targetType: "QUESTION", targetID: 15001, targetGroup: "PREPARE"),
-                        AnswerIntermediary(text: "i want to check in with my normal tough day protocols", targetType: "QUESTION", targetID: 15001, targetGroup: "PREPARE"),
-                        AnswerIntermediary(text: "i struggle and i am looking for some solutions", targetType: "QUESTION", targetID: 15001, targetGroup: "PREPARE")]
 
-    let firstQuestionIntermediary = QuestionIntermediary(sortOrder: 0, group: "PREPARE,OTHER", text: "Hi Louis\nWhat are you preparing for?", answersDescription: nil, answers: firstAnswersIntermediaries)
+    func answer(sortOrder: Int, title: String, targetType: String, targetID: Int) -> AnswerIntermediary {
+        return AnswerIntermediary(sortOrder: sortOrder, group: "PREPARE", title: title, subtitle: nil, targetType: targetType, targetID: targetID, targetGroup: "PREPARE")
+    }
+
+    let firstAnswersIntermediaries = [
+        answer(sortOrder: 0, title: "i want to prepare for an event", targetType: "QUESTION", targetID: 15001),
+        answer(sortOrder: 0, title: "i want to check in with my normal tough day protocols", targetType: "QUESTION", targetID: 15001),
+        answer(sortOrder: 0, title: "i struggle and i am looking for some solutions", targetType: "QUESTION", targetID: 15001)]
+
+    let firstQuestionIntermediary = QuestionIntermediary(sortOrder: 0, title: "Hi Louis\nWhat are you preparing for?", subtitle: nil, answersDescription: nil, answers: firstAnswersIntermediaries)
     let firstQuestion = Question.make(remoteID: 15000, createdAt: Date())
     try firstQuestion.setData(firstQuestionIntermediary, objectStore: realm)
 
     // Prepare Question 2
-    let secondAnswersIntermediaries = ["Meeting", "Negotiation", "Presentation", "Business dinner", "Pre-vacation", "High performance travel", "Work to home transition"].map { (text) -> AnswerIntermediary in
-        return AnswerIntermediary(text: text, targetType: "PREPARE_CONTENT", targetID: 1, targetGroup: "PREPARE")
+    let secondAnswersIntermediaries = ["Meeting", "Negotiation", "Presentation", "Business dinner", "Pre-vacation", "High performance travel", "Work to home transition"].enumerated().map { (sort, title) -> AnswerIntermediary in
+        answer(sortOrder: sort, title: title, targetType: "PREPARE_CONTENT", targetID: 1)
     }
-    let secondQuestionIntermediary = QuestionIntermediary(sortOrder: 0, group: "PREPARE", text: "Here is what you need", answersDescription: "PREPARATIONS", answers: secondAnswersIntermediaries)
+    let secondQuestionIntermediary = QuestionIntermediary(sortOrder: 0, title: "Here is what you need", subtitle: nil, answersDescription: "PREPARATIONS", answers: secondAnswersIntermediaries)
     let secondQuestion = Question.make(remoteID: 15001, createdAt: Date())
     try secondQuestion.setData(secondQuestionIntermediary, objectStore: realm)
 

@@ -23,9 +23,9 @@ final class Question: Object {
 
     fileprivate(set) dynamic var sortOrder: Int = 0
 
-    fileprivate(set) dynamic var group: String = ""
+    fileprivate(set) dynamic var title: String = ""
 
-    fileprivate(set) dynamic var text: String = ""
+    fileprivate(set) dynamic var subtitle: String?
 
     fileprivate(set) dynamic var answersDescription: String?
 
@@ -42,8 +42,8 @@ extension Question: DownSyncable {
 
     func setData(_ data: QuestionIntermediary, objectStore: ObjectStore) throws {
         sortOrder = data.sortOrder
-        group = data.group
-        text = data.text
+        title = data.title
+        subtitle = data.subtitle
         answersDescription = data.answersDescription
 
         objectStore.delete(answers)
