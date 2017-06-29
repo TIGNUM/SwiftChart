@@ -137,9 +137,10 @@ private extension ArticleItemViewController {
         indexPath: IndexPath,
         title: String,
         placeholderURL: URL,
-        attributedString: NSAttributedString) -> ImageSubtitleTableViewCell {
+        attributedString: NSAttributedString,
+        canStream: Bool) -> ImageSubtitleTableViewCell {
             let imageCell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
-            imageCell.setupData(placeHolder: placeholderURL, description: attributedString)
+            imageCell.setupData(placeHolder: placeholderURL, description: attributedString, canStream: canStream)
             imageCell.setInsets(insets: UIEdgeInsets(top: 14, left: 28, bottom: 14, right: 28))
             imageCell.backgroundColor = .clear
             imageCell.contentView.backgroundColor = .clear
@@ -153,7 +154,7 @@ private extension ArticleItemViewController {
         attributeString: NSAttributedString,
         url: URL) -> ImageSubtitleTableViewCell {
             let imageCell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
-            imageCell.setupData(placeHolder: url, description: attributeString)
+            imageCell.setupData(placeHolder: url, description: attributeString, canStream: false)
             imageCell.setInsets(insets: UIEdgeInsets(top: 14, left: 28, bottom: 14, right: 28))
             imageCell.backgroundColor = .clear
             imageCell.contentView.backgroundColor = .clear
@@ -203,7 +204,9 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
                     indexPath: indexPath,
                     title: title,
                     placeholderURL: placeholderURL,
-                    attributedString: item.contentItemValue.style(textStyle: .paragraph, text: title, textColor: .white).attributedString()
+                    attributedString: item.contentItemValue.style(textStyle: .paragraph, text: title,
+                                                                  textColor: .white).attributedString(),
+                    canStream: true
                 )
             case .image(let title, _, let url):
                 return imageTableViweCell(
@@ -234,7 +237,8 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
                     indexPath: indexPath,
                     title: title,
                     placeholderURL: placeholderURL,
-                    attributedString: item.contentItemValue.style(textStyle: .paragraph, text: title, textColor: .white).attributedString()
+                    attributedString: item.contentItemValue.style(textStyle: .paragraph, text: title, textColor: .white).attributedString(),
+                    canStream: true
                 )
             }
         case 1:

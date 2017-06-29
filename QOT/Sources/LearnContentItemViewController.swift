@@ -176,7 +176,8 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
                     indexPath: indexPath,
                     title: title,
                     placeholderURL: placeholderURL,
-                    attributedString: item.contentItemValue.style(textStyle: .paragraph, text: mediaDescription, textColor: .blackTwo).attributedString()
+                    attributedString: item.contentItemValue.style(textStyle: .paragraph, text: mediaDescription, textColor: .black40).attributedString(),
+                    canStream: true
                 )
             case .image(let title, _, let url):
                 return imageTableViweCell(
@@ -198,7 +199,8 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
         switch item.contentItemValue {
         case .audio(_, _, _, let audioURL, let duration, _):
             viewModel.playItem(at: indexPath, audioURL: audioURL, duration: duration)
-        case .video: streamVideo()
+        case .video(_, _, _, let videoURL, _):
+            streamVideo(videoURL: videoURL)
         default:
             if
                 viewModel.sectionCount() == 3 && indexPath.section == 2 ||
@@ -317,8 +319,8 @@ private extension LearnContentItemViewController {
         return cell
     }
 
-    func streamVideo() {
-        let player = AVPlayer(url: URL(string: "http://avikam.com/wp-content/uploads/2016/09/SpeechRecognitionTutorial.mp4")!)
+    func streamVideo(videoURL: URL) {
+        let player = AVPlayer(url: videoURL)
         let playerController = AVPlayerViewController()
         playerController.player = player
         present(playerController, animated: true) {
@@ -364,11 +366,13 @@ private extension LearnContentItemViewController {
         indexPath: IndexPath,
         title: String,
         placeholderURL: URL,
-        attributedString: NSAttributedString) -> ImageSubtitleTableViewCell {
+        attributedString: NSAttributedString,
+        canStream: Bool) -> ImageSubtitleTableViewCell {
             let imageCell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
             imageCell.setupData(
                 placeHolder: placeholderURL,
-                description: attributedString
+                description: attributedString,
+                canStream: canStream
             )
             imageCell.setInsets(insets: UIEdgeInsets(top: 14, left: 28, bottom: 14, right: 28))
 
@@ -381,7 +385,7 @@ private extension LearnContentItemViewController {
         attributeString: NSAttributedString,
         url: URL) -> ImageSubtitleTableViewCell {
             let imageCell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
-            imageCell.setupData(placeHolder: url, description: attributeString)
+            imageCell.setupData(placeHolder: url, description: attributeString, canStream: false)
             imageCell.setInsets(insets: UIEdgeInsets(top: 14, left: 28, bottom: 14, right: 28))
 
             return imageCell
