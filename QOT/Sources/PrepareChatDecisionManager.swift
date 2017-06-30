@@ -43,9 +43,9 @@ final class PrepareChatDecisionManager {
     func didSelectChoice(_ choice: Answer) {
         if let target = choice.target {
             switch target {
-            case .content(let id, _):
+            case .content(let id):
                 delegate?.showContent(id: id, manager: self)
-            case .question(let id, _):
+            case .question(let id):
                 if let question = questionsService.question(id: id) {
                     process(question: question)
                 }
@@ -70,7 +70,7 @@ final class PrepareChatDecisionManager {
 
     private func chatItemForAnswers(_ answers: [Answer]) -> ChatItem<Answer> {
         let prepareGroup = Database.QuestionGroup.PREPARE.rawValue
-        let prepareAnswers = answers.filter { $0.group == prepareGroup && $0.targetGroup == prepareGroup }
+        let prepareAnswers = answers.filter { $0.group == prepareGroup }
 
         let flowDisplayCount = prepareAnswers.filter { $0.choiceListDisplay == .flow }.count
         let listDisplayCount = prepareAnswers.filter { $0.choiceListDisplay == .list }.count

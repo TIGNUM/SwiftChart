@@ -11,15 +11,15 @@ import Foundation
 extension Answer {
 
     enum Target {
-        case question(id: Int, group: String)
-        case content(id: Int, group: String)
+        case question(id: Int)
+        case content(id: Int)
 
-        init?(type: String, id: Int, group: String) {
+        init?(type: String, id: Int) {
             switch type {
             case "QUESTION":
-                self = .question(id: id, group: group)
-            case "PREPARE_CONTENT":
-                self = .content(id: id, group: group)
+                self = .question(id: id)
+            case "CONTENT":
+                self = .content(id: id)
             default:
                 return nil
             }
@@ -27,9 +27,9 @@ extension Answer {
     }
 
     var target: Target? {
-        guard let type = targetType, let id = targetID, let group = targetGroup else {
+        guard let type = targetType, let id = targetID else {
             return nil
         }
-        return Target(type: type, id: id, group: group)
+        return Target(type: type, id: id)
     }
 }
