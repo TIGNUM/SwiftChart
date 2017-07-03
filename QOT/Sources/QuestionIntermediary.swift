@@ -29,7 +29,7 @@ struct QuestionIntermediary {
 extension QuestionIntermediary: JSONDecodable {
 
     init(json: JSON) throws {
-        self.sortOrder = try json.getItemValue(at: .sortOrder)
+        self.sortOrder = (try json.getItemValue(at: .sortOrder) as Int?) ?? 0
         self.title = try json.getItemValue(at: .question)
         self.subtitle = try json.getItemValue(at: .subtitle)
         self.answersDescription = try json.getItemValue(at: .questionDescription)
