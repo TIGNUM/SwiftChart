@@ -20,17 +20,19 @@ final class TabBarCoordinator: ParentCoordinator {
     fileprivate let selectedIndex: Index
     fileprivate var viewControllers = [UIViewController]()
     fileprivate var tabBarController: TabBarController?
-    fileprivate let prepareChatDecisionManager: PrepareChatDecisionManager
+
+    fileprivate lazy var prepareCoordinator: PrepareCoordinator = {
+        return PrepareCoordinator(services: self.services,
+                                  tabBarController: self.tabBarController!,
+                                  topTabBarController: self.topTabBarControllerPrepare,
+                                  chatViewController: self.prepareChatViewController)
+    }()
 
     var children = [Coordinator]()
 
     fileprivate lazy var prepareChatViewController: ChatViewController<Answer> = {
         let viewModel = ChatViewModel<Answer>()
         let viewController = ChatViewController(viewModel: viewModel)
-
-        viewController.didSelectChoice = { [weak self] (choice, viewController) in
-            self?.prepareChatDecisionManager.didSelectChoice(choice)
-        }
         return viewController
     }()
 
@@ -131,9 +133,6 @@ final class TabBarCoordinator: ParentCoordinator {
         self.services = services
         self.eventTracker = eventTracker
         self.selectedIndex = selectedIndex
-        self.prepareChatDecisionManager = PrepareChatDecisionManager(service: services.questionsService)
-
-        prepareChatDecisionManager.delegate = self
     }
 }
 
@@ -186,7 +185,7 @@ extension TabBarCoordinator: TabBarControllerDelegate {
     func didSelectTab(at index: Index, in controller: TabBarController) {
         switch index {
         case 2:
-            prepareChatDecisionManager.start()
+            prepareCoordinator.focus()
         default:
             break
         }
@@ -283,35 +282,5 @@ extension TabBarCoordinator: TopTabBarDelegate {
 
     func didSelectItemAtIndex(index: Int, sender: TopTabBarController) {
         print("didSelectItemAtIndex", index, sender)
-    }
-}
-
-// MARK: PrepareChatDecisionManagerDelegate
-
-extension TabBarCoordinator: PrepareChatDecisionManagerDelegate {
-
-    func setItems(_ items: [ChatItem<Answer>], manager: PrepareChatDecisionManager) {
-        prepareChatViewController.viewModel.setItems(items: items)
-    }
-
-    func appendItems(_ items: [ChatItem<Answer>], manager: PrepareChatDecisionManager) {
-        prepareChatViewController.viewModel.append(items: items)
-    }
-
-    func showContent(id: Int, manager: PrepareChatDecisionManager) {
-        guard let tabViewController = tabBarController else {
-            return
-        }
-        
-        let coordinator = PrepareContentCoordinator(root: tabViewController, services: services, eventTracker: eventTracker)
-        coordinator.delagate = self
-        startChild(child: coordinator)
-    }
-}
-
-extension TabBarCoordinator: PrepareContentCoordinatorDelegate {
-    func prepareContentDidFinish(coordinator: PrepareContentCoordinator) {
-        removeChild(child: coordinator)
-        prepareChatDecisionManager.repeatFlow()
     }
 }

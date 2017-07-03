@@ -17,7 +17,9 @@ final class Services {
     let articleService: ArticleService
     let prepareContentService: PrepareContentService
     let questionsService: QuestionsService
-    weak var learnCategoryUpdateDelegate: LearnCategoryUpdateDelegate?
+    lazy var trackingService: EventTracker = {
+        return EventTracker(realmProvider: { return try Realm() })
+    }()
 
     init(
         mainRealm: Realm,
