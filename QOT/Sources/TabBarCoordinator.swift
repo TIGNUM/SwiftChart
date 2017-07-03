@@ -25,7 +25,8 @@ final class TabBarCoordinator: ParentCoordinator {
         return PrepareCoordinator(services: self.services,
                                   tabBarController: self.tabBarController!,
                                   topTabBarController: self.topTabBarControllerPrepare,
-                                  chatViewController: self.prepareChatViewController)
+                                  chatViewController: self.prepareChatViewController,
+                                  myPrepViewController: self.myPrepViewController)
     }()
 
     var children = [Coordinator]()
@@ -34,6 +35,11 @@ final class TabBarCoordinator: ParentCoordinator {
         let viewModel = ChatViewModel<Answer>()
         let viewController = ChatViewController(viewModel: viewModel)
         return viewController
+    }()
+
+    fileprivate lazy var myPrepViewController: MyPrepViewController = {
+        let viewModel = MyPrepViewModel()
+        return MyPrepViewController(viewModel: viewModel)
     }()
 
     fileprivate lazy var topTabBarControllerLearn: TopTabBarController = {
@@ -102,12 +108,8 @@ final class TabBarCoordinator: ParentCoordinator {
     }()
 
     fileprivate lazy var topTabBarControllerPrepare: TopTabBarController = {
-        let chatViewController = self.prepareChatViewController
-        let myPrepViewModel = MyPrepViewModel()
-        let myPrepViewController = MyPrepViewController(viewModel: myPrepViewModel)
-
         let topBarControllerItem = TopTabBarController.Item(
-            controllers: [chatViewController, myPrepViewController],
+            controllers: [self.prepareChatViewController, self.myPrepViewController],
             themes: [.dark, .dark],
             titles: [
                 R.string.localized.topTabBarItemTitlePerpareCoach(),

@@ -10,52 +10,38 @@ import Foundation
 import ReactiveKit
 
 final class PrepareEventsViewModel {
-    
-    private let sections: [PrepareEventsSection] = mockSections()
-    let updates = PublishSubject<CollectionUpdate, NoError>()
 
-    var sectionCount: Int {
-        return sections.count
+    struct Event {
+        let eventIdentifier: String
+        let title: String
+        let startDate: Date
+        let endDate: Date
     }
 
-    func title(section: Int) -> String {
-        return sections[section].title
+    private let events: [Event]
+
+    let preparationTitle: String
+
+    init(preparationTitle: String, events: [Event]) {
+        self.preparationTitle = preparationTitle
+        self.events = events
     }
 
-    func itemCount(section: Int) -> Int {
-        return sections[section].items.count
+    var eventCount: Int {
+        return events.count
     }
 
-    func item(at indexPath: IndexPath) -> PrepareEventsItem {
-        return sections[indexPath.section].items[indexPath.row]
+    func event(index: Index) -> Event {
+        return events[index]
     }
 }
 
-enum PrepareEventsItem {
-    case event(localID: String, title: String, subtitle: String)
-    case addEvent(title: String)
-    case addReminder(title: String)
-    case saveToPDF(title: String)
-}
+extension PrepareEventsViewModel {
 
-private struct PrepareEventsSection {
-    let title: String
-    let items: [PrepareEventsItem]
-}
-
-private func mockSections() -> [PrepareEventsSection] {
-    let eventTitle = "FLIGHT TO BASEL NOVARTIS"
-    let eventSubtitle = "12 Sep. // 18 Sep."
-    let event = PrepareEventsItem.event(localID: UUID().uuidString, title: eventTitle, subtitle: eventSubtitle)
-    var events = [PrepareEventsItem](repeating: event, count: 4)
-    events.append(.addEvent(title: "Add new trip"))
-
-    let addReminder = PrepareEventsItem.addReminder(title: "Remind me this preparation")
-    let savePDF = PrepareEventsItem.saveToPDF(title: "Save this preparation as PDF")
-
-    return [
-        PrepareEventsSection(title: "UPCOMING TRIPS", items: events),
-        PrepareEventsSection(title: "ADD TO REMINDER", items: [addReminder]),
-        PrepareEventsSection(title: "SAVE IT AS PDF", items: [savePDF])
-    ]
+    static var mock: PrepareEventsViewModel {
+        let events: [Event] = ["Meeting at Novartis", "Meeting with NOS", "Presenetation at DB"].map { (title) -> Event in
+            return Event(eventIdentifier: UUID().uuidString, title: title, startDate: Date(), endDate: Date())
+        }
+        return PrepareEventsViewModel(preparationTitle: "My Negotiation Prep // 23.04.17", events: events)
+    }
 }

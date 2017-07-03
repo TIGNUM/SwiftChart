@@ -15,6 +15,7 @@ protocol PrepareContentViewControllerDelegate: class {
     func didTapClose(in viewController: PrepareContentViewController)
     func didTapShare(in viewController: PrepareContentViewController)
     func didTapVideo(with videoURL: URL, from view: UIView, in viewController: PrepareContentViewController)
+    func didTapSavePreparation(in viewController: PrepareContentViewController)
     func didTapReadMore(readMoreID: Int, in viewController: PrepareContentViewController)
 }
 
@@ -146,7 +147,7 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
 extension PrepareContentViewController: PrepareContentFooterTableViewCellDelegate {
     
     func didSavePreparation(preparationID: Int, cell: UITableViewCell) {
-        log("didTapSavePreparation: ID: \(preparationID)")
+        delegate?.didTapSavePreparation(in: self)
     }
 }
 
