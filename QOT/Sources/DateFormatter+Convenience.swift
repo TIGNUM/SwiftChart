@@ -17,6 +17,13 @@ private let iso8601DateFormatter: DateFormatter = {
     return formatter
 }()
 
+private let userDateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd"
+
+    return formatter
+}()
+
 private let displayTimeFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.locale = Locale.current
@@ -34,5 +41,9 @@ extension DateFormatter {
 
     static var displayTime: DateFormatter {
         return displayTimeFormatter
+    }
+
+    static var settingsUser: DateFormatter {
+        return userDateFormatter
     }
 }

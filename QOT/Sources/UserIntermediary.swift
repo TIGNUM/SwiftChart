@@ -14,7 +14,7 @@ struct UserIntermediary: JSONDecodable {
     let gender: String
     let givenName: String
     let familyName: String
-    let dateOfBirth: Date?
+    let dateOfBirth: String?
     let email: String
     let telephone: String?
     let zipCode: String?
@@ -40,7 +40,7 @@ struct UserIntermediary: JSONDecodable {
         self.gender = try json.getItemValue(at: .gender)
         self.givenName = try json.getItemValue(at: .firstName)
         self.familyName = try json.getItemValue(at: .lastName)
-        self.dateOfBirth =  try json.getDate(at: .birthdate, alongPath: .NullBecomesNil)
+        self.dateOfBirth =  try json.getItemValue(at: .birthdate)
         self.email = try json.getItemValue(at: .email)
         self.telephone = try json.getItemValue(at: .telephone, alongPath: .NullBecomesNil)
         self.zipCode = try json.getItemValue(at: .zip, alongPath: .NullBecomesNil)

@@ -40,7 +40,5 @@ final class ImageSubtitleTableViewCell: UITableViewCell, Dequeueable {
         mainImageView.kf.setImage(with: placeHolder)
         mainImageView.kf.indicatorType = .activity
         playImageView.isHidden = canStream == false
-        playImageView.image = R.image.ic_play()?.withRenderingMode(.alwaysTemplate)
-        playImageView.tintColor = .white
     }
 }

@@ -16,7 +16,6 @@ final class PrepareContentService {
     private let mainRealm: Realm
     private let realmProvider: RealmProvider
     fileprivate var token: NotificationToken?
-    weak var learnCategoryUpdateDelegate: LearnCategoryUpdateDelegate?
 
     init(mainRealm: Realm, realmProvider: RealmProvider) {
         self.mainRealm = mainRealm

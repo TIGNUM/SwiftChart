@@ -25,7 +25,7 @@ private let syncManager: SyncManager = {
 func setupRealmWithMockData(realm: Realm) {
     do {
         try realm.write {
-            if realm.isEmpty {
+            if realm.isEmpty == true {
                 if MockToggle.json == true {
                     syncManager.syncAllMockJSONs()
                 }

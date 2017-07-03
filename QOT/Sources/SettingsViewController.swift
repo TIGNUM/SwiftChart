@@ -10,17 +10,23 @@ import UIKit
 import ActionSheetPicker_3_0
 
 protocol SettingsViewControllerDelegate: class {
+
     func didValueChanged(at indexPath: IndexPath, enabled: Bool)
+
     func didTapPickerCell(at indexPath: IndexPath, selectedValue: String)
+
     func didTapButton(at indexPath: IndexPath)
+
+    func updateViewModelAndReload(viewController: SettingsViewController)
 }
 
 final class SettingsViewController: UITableViewController {
 
     // MARK: - Properties
 
-    fileprivate let viewModel: SettingsViewModel
+    fileprivate var viewModel: SettingsViewModel
     fileprivate let settingsType: SettingsViewModel.SettingsType
+    weak var delegate: SettingsViewControllerDelegate?
     
     // MARK: - Init
     
@@ -42,6 +48,11 @@ final class SettingsViewController: UITableViewController {
 
         registerCells()
         setupView()
+    }
+
+    func update(viewModel: SettingsViewModel) {
+        self.viewModel = viewModel
+        tableView.reloadData()
     }
 }
 
@@ -85,8 +96,7 @@ extension SettingsViewController {
             fatalError("SettingsTableViewCell DOES NOT EXIST!!!")
         }
 
-        settingsCell.setup(settingsRow: settingsRow, indexPath: indexPath)
-        settingsCell.delegate = self
+        settingsCell.setup(settingsRow: settingsRow, indexPath: indexPath)        
 
         return settingsCell
     }
@@ -125,8 +135,12 @@ extension SettingsViewController {
              .control,
              .label,
              .textField: return
-        case .datePicker(let title, let selectedDate): showDatePicker(title: title, selectedDate: selectedDate)
-        case .stringPicker(let title, let pickerItems, let selectedIndex):  showStringPicker(title: title, items: pickerItems, selectedIndex: selectedIndex)
+        case .datePicker(let title, let selectedDate):
+            showDatePicker(title: title, selectedDate: selectedDate, indexPath: indexPath)
+        case .stringPicker(let title, let pickerItems, let selectedIndex):
+            showStringPicker(title: title, items: pickerItems, selectedIndex: selectedIndex, indexPath: indexPath)
+        case .multipleStringPicker(let title, let rows, let initialSelection):
+            showMultiplePicker(title: title, rows: rows, initialSelection: initialSelection, indexPath: indexPath)
         }
     }
 }
@@ -135,25 +149,25 @@ extension SettingsViewController {
 
 private extension SettingsViewController {
 
-    func showDatePicker(title: String, selectedDate: Date) {
-        let picker = createDatePicker(with: title, selectedDate: selectedDate)
+    func showDatePicker(title: String, selectedDate: Date, indexPath: IndexPath) {
+        let picker = createDatePicker(with: title, selectedDate: selectedDate, indexPath: indexPath)
         self.setupPickerButtons(picker: picker)
         picker.show()
     }
 
-    private func createDatePicker(with title: String, selectedDate: Date) -> ActionSheetDatePicker {
+    private func createDatePicker(with title: String, selectedDate: Date, indexPath: IndexPath) -> ActionSheetDatePicker {
         return ActionSheetDatePicker(title: title, datePickerMode: .date,
             selectedDate: selectedDate,
-            doneBlock: { [unowned self] (_, _, _) in
-                self.tableView.reloadData()
+            doneBlock: { [unowned self] (_, value, _) in
+                if indexPath.section == 1 && indexPath.row == 1,
+                    let date = value as? Date {
+                        let dateOfBirth = DateFormatter.settingsUser.string(from: date)
+                        self.viewModel.updateDateOfBirth(dateOfBirth: dateOfBirth)
+                        self.delegate?.updateViewModelAndReload(viewController: self)
+                }
             }, cancel: { (_) in
                 return
         }, origin: view)
-    }
-
-    private func setupPickerButtons(picker: ActionSheetDatePicker) {
-        picker.setDoneButton(UIBarButtonItem(title: "Done", style: .done, target: self, action: nil))
-        picker.setCancelButton(UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: nil))
     }
 }
 
@@ -161,39 +175,63 @@ private extension SettingsViewController {
 
 private extension SettingsViewController {
 
-    func showStringPicker(title: String, items: [String], selectedIndex: Index) {
-        let picker = createStringPicker(with: title, items: items, selectedIndex: selectedIndex)
+    func showStringPicker(title: String, items: [String], selectedIndex: Index, indexPath: IndexPath) {
+        let picker = createStringPicker(with: title, items: items, selectedIndex: selectedIndex, indexPath: indexPath)
         self.setupPickerButtons(picker: picker)
         picker.show()
     }
 
-    private func createStringPicker(with title: String, items: [String], selectedIndex: Index) -> ActionSheetStringPicker {
-        return ActionSheetStringPicker(title: title, rows: items, initialSelection: selectedIndex, doneBlock: { (_, _, _) in
-            self.tableView.reloadData()
+    private func createStringPicker(with title: String, items: [String], selectedIndex: Index, indexPath: IndexPath) -> ActionSheetStringPicker {
+        return ActionSheetStringPicker(title: title, rows: items, initialSelection: selectedIndex, doneBlock: { [unowned self] (_, index, _) in
+            if indexPath.section == 1 && indexPath.row == 0 {
+                self.viewModel.updateGender(gender: items[index])
+            } else if indexPath.section == 1 && indexPath.row == 2 {
+                self.viewModel.updateWeight(weight: items[index])
+            } else if indexPath.section == 1 && indexPath.row == 3 {
+                self.viewModel.updateHeight(height: items[index])
+            }
+
+            self.delegate?.updateViewModelAndReload(viewController: self)
         }, cancel: { (_) in
             return
         }, origin: view)
     }
 
-    private func setupPickerButtons(picker: ActionSheetStringPicker) {
+    func setupPickerButtons(picker: AbstractActionSheetPicker) {
         picker.setDoneButton(UIBarButtonItem(title: "Done", style: .done, target: self, action: nil))
         picker.setCancelButton(UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: nil))
     }
 }
 
-// MARK: - SettingsViewControllerDelegate
+// MARK: - MultipleStringPicker
 
-extension SettingsViewController: SettingsViewControllerDelegate {
+private extension SettingsViewController {
 
-    func didValueChanged(at indexPath: IndexPath, enabled: Bool) {
-        // Update ViewModel with changes.
+    func showMultiplePicker(title: String, rows: [[String]], initialSelection: [Index], indexPath: IndexPath) {
+        let picker = multipleStringPicker(title: title, rows: rows, initialSelection: initialSelection, indexPath: indexPath)
+        self.setupPickerButtons(picker: picker)
+        picker.show()
     }
 
-    func didTapPickerCell(at indexPath: IndexPath, selectedValue: String) {
-        // Update view with nice animation and show/hide picker view.
-    }
+    private func multipleStringPicker(title: String, rows: [[String]], initialSelection: [Index], indexPath: IndexPath) -> ActionSheetMultipleStringPicker {
+        return ActionSheetMultipleStringPicker(title: title, rows: rows, initialSelection: initialSelection, doneBlock: { (_, _, value) in
+            if indexPath.section == 1 {
+                if indexPath.row == 2,
+                    let weightComponents = value as? [String] {
+                        let weight = String(format: "%@", weightComponents[0])
+                        self.viewModel.updateWeight(weight: weight)
+                        self.viewModel.updateWeightUnit(weightUnit: weightComponents[1])
+                } else if indexPath.row == 3,
+                    let heightComponents = value as? [String] {
+                        let height = String(format: "%@", heightComponents[0])
+                        self.viewModel.updateHeight(height: height)
+                        self.viewModel.updateHeightUnit(heightUnit: heightComponents[1])
+                }
+            }
 
-    func didTapButton(at indexPath: IndexPath) {
-        // Navigate to selected view, like tutorial.
+            self.delegate?.updateViewModelAndReload(viewController: self)
+        }, cancel: { (_) in
+            return
+        }, origin: view)
     }
 }

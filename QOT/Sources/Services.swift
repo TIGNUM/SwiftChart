@@ -17,6 +17,7 @@ final class Services {
     let articleService: ArticleService
     let prepareContentService: PrepareContentService
     let questionsService: QuestionsService
+    let userService: UserService
     lazy var trackingService: EventTracker = {
         return EventTracker(realmProvider: { return try Realm() })
     }()
@@ -26,12 +27,14 @@ final class Services {
         contentService: ContentService,
         articleService: ArticleService,
         prepareContentService: PrepareContentService,
-        questionsService: QuestionsService) {
+        questionsService: QuestionsService,
+        userService: UserService) {
             self.mainRealm = mainRealm
             self.contentService = contentService
             self.articleService = articleService
             self.prepareContentService = prepareContentService
             self.questionsService = questionsService
+            self.userService = userService
     }
 
     static func make(completion: @escaping (Result<Services, NSError>) -> Void) {
@@ -53,12 +56,14 @@ final class Services {
                     let articleService = ArticleService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let prepareContentService = PrepareContentService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let questionsService = QuestionsService(mainRealm: mainRealm, realmProvider: realmProvider)
+                    let userService = UserService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let services = Services(
                         mainRealm: mainRealm,
                         contentService: contentService,
                         articleService: articleService,
                         prepareContentService: prepareContentService,
-                        questionsService: questionsService
+                        questionsService: questionsService,
+                        userService: userService
                     )
 
                     completion(.success(services))

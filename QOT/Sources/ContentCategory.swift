@@ -61,6 +61,7 @@ final class ContentCategory: Object {
 }
 
 extension ContentCategory: DownSyncable {
+
     static func make(remoteID: Int, createdAt: Date) -> ContentCategory {
         let category = ContentCategory()
         category.remoteID = remoteID

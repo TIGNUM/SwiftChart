@@ -41,6 +41,11 @@ class SettingsTableViewCell: UITableViewCell, Dequeueable {
         case .datePicker(let title, let selectedDate): setupDateCell(title: title, selectedDate: selectedDate)
         case .label(let title, let value): setupLabelCell(title: title, value: value)
         case .stringPicker(let title, let pickerItems, let selectedIndex): setupLabelCell(title: title, value: pickerItems[selectedIndex])
+        case .multipleStringPicker(let title, let rows, let initialSelection):
+            let valueIndex = initialSelection[0]
+            let unitIndex = initialSelection[1]
+            let displayableValue = String(format: "%@ %@", rows[0][valueIndex], rows[1][unitIndex])
+            setupLabelCell(title: title, value: displayableValue)
         case .textField(let title, let value, let secure): setupTextFieldCell(title: title, value: value, secure: secure)
         }
     }

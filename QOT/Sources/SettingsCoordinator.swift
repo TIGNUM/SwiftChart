@@ -25,7 +25,11 @@ final class SettingsCoordinator: ParentCoordinator {
     }
 
     func start() {
-        let settingsViewController = SettingsViewController(viewModel: SettingsViewModel(settingsType: settingsType))
+        guard let viewModel = SettingsViewModel(settingsType: settingsType, userService: services.userService) else {
+            return
+        }
+
+        let settingsViewController = SettingsViewController(viewModel: viewModel)
         let topTabBarControllerItem = TopTabBarController.Item(
             controllers: [settingsViewController],
             themes: [.dark],
@@ -38,6 +42,7 @@ final class SettingsCoordinator: ParentCoordinator {
         )
 
         topTabBarController.delegate = self
+        settingsViewController.delegate = self
         rootViewController.presentRightToLeft(controller: topTabBarController)
     }
 }
@@ -57,5 +62,30 @@ extension SettingsCoordinator: TopTabBarDelegate {
 
     func didSelectItemAtIndex(index: Int, sender: TopTabBarController) {
         print("didSelectItemAtIndex", index as Any, sender)
+    }
+}
+
+// MARK: - SettingsViewControllerDelegate
+
+extension SettingsCoordinator: SettingsViewControllerDelegate {
+
+    func didValueChanged(at indexPath: IndexPath, enabled: Bool) {
+        // Update ViewModel with changes.
+    }
+
+    func didTapPickerCell(at indexPath: IndexPath, selectedValue: String) {
+        // Update view with nice animation and show/hide picker view.
+    }
+
+    func didTapButton(at indexPath: IndexPath) {
+        // Navigate to selected view, like tutorial.
+    }
+
+    func updateViewModelAndReload(viewController: SettingsViewController) {
+        guard let viewModel = SettingsViewModel(settingsType: settingsType, userService: services.userService) else {
+            return
+        }
+        
+        viewController.update(viewModel: viewModel)
     }
 }

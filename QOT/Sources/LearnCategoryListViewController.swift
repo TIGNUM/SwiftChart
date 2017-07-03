@@ -19,10 +19,6 @@ protocol LearnCategoryListViewControllerDelegate: class {
 
 }
 
-protocol LearnCategoryUpdateDelegate: class {
-    func didUpdateCategoryViewedPercentage()
-}
-
 /// Displays a collection of learn categories of learn content.
 final class LearnCategoryListViewController: UIViewController {
 
@@ -116,14 +112,5 @@ extension LearnCategoryListViewController: UICollectionViewDataSource, LearnCate
 
     func bubbleLayoutInfo(layout: LearnCategoryLayout, index: Index) -> BubbleLayoutInfo {
         return page.bubbleLayoutInfo(at: index)
-    }
-}
-
-// MARK: - LearnCategoryUpdateDelegate
-
-extension LearnCategoryListViewController: LearnCategoryUpdateDelegate {
-
-    func didUpdateCategoryViewedPercentage() {
-        collectionView.reloadData()
     }
 }

@@ -24,11 +24,11 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hZU-df-wpa">
                                 <rect key="frame" x="12" y="12" width="426" height="176"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_play" translatesAutoresizingMaskIntoConstraints="NO" id="pXC-Sw-H9C">
-                                <rect key="frame" x="187" y="62" width="75" height="75"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_play_video" translatesAutoresizingMaskIntoConstraints="NO" id="pXC-Sw-H9C">
+                                <rect key="frame" x="194.5" y="69.5" width="60" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="Rey-EL-gVa"/>
-                                    <constraint firstAttribute="width" constant="75" id="ves-3t-Ix9"/>
+                                    <constraint firstAttribute="height" constant="60" id="Rey-EL-gVa"/>
+                                    <constraint firstAttribute="width" constant="60" id="ves-3t-Ix9"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -74,6 +74,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="ic_play" width="24" height="24"/>
+        <image name="ic_play_video" width="64" height="64"/>
     </resources>
 </document>

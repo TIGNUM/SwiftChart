@@ -21,15 +21,19 @@ final class User: Object {
 
     dynamic var modifiedAt: Date = Date()
 
-    // MARK: Data
+    dynamic var gender: String = ""
 
-    fileprivate(set) dynamic var gender: String = ""
+    dynamic var dateOfBirth: String?
+
+    dynamic var heightUnit: String?
+
+    dynamic var weightUnit: String?
+
+    // MARK: Data
 
     fileprivate(set) dynamic var givenName: String = ""
 
     fileprivate(set) dynamic var familyName: String = ""
-
-    fileprivate(set) dynamic var dateOfBirth: Date?
 
     fileprivate(set) dynamic var email: String = ""
 
@@ -55,13 +59,9 @@ final class User: Object {
 
     let height = RealmOptional<Double>()
 
-    fileprivate(set) dynamic var heightUnit: String?
-
     fileprivate(set) dynamic var heightUnitsJSON: String = ""
 
     let weight = RealmOptional<Double>()
-
-    fileprivate(set) dynamic var weightUnit: String?
 
     fileprivate(set) dynamic var weightUnitsJSON: String = ""
 
@@ -73,6 +73,7 @@ final class User: Object {
 }
 
 extension User: DownSyncable {
+    
     static func make(remoteID: Int, createdAt: Date) -> User {
         let user = User()
         user.remoteID = remoteID

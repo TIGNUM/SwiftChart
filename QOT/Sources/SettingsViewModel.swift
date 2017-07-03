@@ -9,6 +9,90 @@
 import Foundation
 import ReactiveKit
 
+enum Gender: String {
+    case female
+    case male
+    case neutral
+    case unkown
+
+    static var allValues: [Gender] {
+        return [
+            .female,
+            .male,
+            .neutral,
+            .unkown
+        ]
+    }
+
+    static var allValuesAsStrings: [String] {
+        return Gender.allValues.map { $0.rawValue.capitalized }
+    }
+
+    var selectedIndex: Index? {
+        return Gender.allValuesAsStrings.map({ $0.lowercased() }).index(of: self.rawValue.lowercased())
+    }
+}
+
+enum PersonalData {
+    case weight
+    case height
+
+    var title: String {
+        switch self {
+        case .height: return "Height"
+        case .weight: return "Weight"
+        }
+    }
+
+    var pickerItems: [[String]] {
+        switch self {
+        case .weight: return []
+        case .height: return []
+        }
+    }
+
+    func selectedIndex(user: User) -> Index {
+        switch self {
+        case .weight: return selectedIndex(value: user.weight.value)
+        case .height: return selectedIndex(value: user.height.value)
+        }
+    }
+
+    func selectedUnitIndex(user: User) -> Index {
+        switch self {
+        case .weight: return selectedUnitIndex(unit: user.weightUnit, units: user.weightUnitItems)
+        case .height: return selectedUnitIndex(unit: user.heightUnit, units: user.heightUnitItems)
+        }
+    }
+
+    private var items: [String] {
+        var items = [String]()
+        for weight in 0...634 {
+            items.append(String(format: "%d.0", weight))
+        }
+
+        return items
+    }
+
+    private func selectedIndex(value: Double?) -> Index {
+        var index = 0
+        if let value = value {
+            index = items.index(of: "\(value)") ?? 0
+        }
+
+        return index
+    }
+
+    private func selectedUnitIndex(unit: String?, units: [String]) -> Index {
+        var index = 0
+        if let unit = unit {
+            index = units.index(of: unit) ?? 0
+        }
+
+        return index
+    }
+}
+
 final class SettingsViewModel {
 
     enum SettingsType {
@@ -27,12 +111,14 @@ final class SettingsViewModel {
 
     // MARK: - Properties
 
-    private let settingSections: [SettingsSection]
+    fileprivate var settingsSections = [SettingsSection]()
+    fileprivate let userService: UserService
+    fileprivate let user: User
     let settingsType: SettingsType
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
     var sectionCount: Int {
-        return settingSections.count
+        return settingsSections.count
     }
 
     func numberOfItemsInSection(in section: Int) -> Int {
@@ -44,18 +130,59 @@ final class SettingsViewModel {
     }
 
     func headerTitle(in section: Int) -> String {
-        return settingSections[section].title
+        return settingsSections[section].title
+    }
+
+    func updateDateOfBirth(dateOfBirth: String) {
+        userService.updateUserDateOfBirth(user: user, dateOfBirth: dateOfBirth)
+    }
+
+    func updateGender(gender: String) {
+        userService.updateUserGender(user: user, gender: gender)
+    }
+
+    func updateHeight(height: String) {
+        let userHeight = (height.replacingOccurrences(of: ",", with: ".") as NSString).doubleValue
+        userService.updateUserHeight(user: user, height: userHeight)
+    }
+
+    func updateWeight(weight: String) {
+        let userWeight = (weight.replacingOccurrences(of: ",", with: ".") as NSString).doubleValue
+        userService.updateUserWeight(user: user, weight: userWeight)
+    }
+
+    func updateWeightUnit(weightUnit: String) {
+        userService.updateUserWeightUnit(user: user, weightUnit: weightUnit)
+    }
+
+    func updateHeightUnit(heightUnit: String) {
+        userService.updateUserHeightUnit(user: user, heightUnit: heightUnit)
     }
 
     private func items(in section: Int) -> [SettingsRow] {
-        return settingSections[section].rows
+        return settingsSections[section].rows
+    }
+
+    private func settingSections(user: User?, settingsType: SettingsViewModel.SettingsType) -> [SettingsSection] {
+        switch settingsType {
+        case .general: return generalSettingsSection(for: user)
+        case .notifications: return notificationsSettingsSection
+        case .security: return securitySettingsSection
+        }
     }
 
     // MARK: - Init
     
-    init(settingsType: SettingsType) {
-        self.settingSections = mockSettingSections(settingsType: settingsType)
+    init?(settingsType: SettingsType, userService: UserService) {
+        self.userService = userService
+
+        guard let user = userService.user() else {
+            return nil
+        }
+
+        self.user = user
         self.settingsType = settingsType
+        self.settingsSections = settingSections(user: user, settingsType: settingsType)
     }
 }
 
@@ -67,6 +194,7 @@ protocol SettingsSection {
 enum SettingsRow {
     case label(title: String, value: String?)
     case stringPicker(title: String, pickerItems: [String], selectedIndex: Index)
+    case multipleStringPicker(title: String, rows: [[String]], initialSelection: [Index])
     case datePicker(title: String, selectedDate: Date)
     case control(title: String, isOn: Bool)
     case button(title: String, value: String)
@@ -79,6 +207,7 @@ enum SettingsRow {
         case .datePicker: return R.reuseIdentifier.settingsTableViewCell_Label.identifier
         case .label: return R.reuseIdentifier.settingsTableViewCell_Label.identifier
         case .stringPicker: return R.reuseIdentifier.settingsTableViewCell_Label.identifier
+        case .multipleStringPicker: return R.reuseIdentifier.settingsTableViewCell_Label.identifier
         case .textField: return R.reuseIdentifier.settingsTableViewCell_TextField.identifier
         }
     }
@@ -89,32 +218,24 @@ struct MockSettingsSection: SettingsSection {
     let rows: [SettingsRow]
 }
 
-private func mockSettingSections(settingsType: SettingsViewModel.SettingsType) -> [SettingsSection] {
-    switch settingsType {
-    case .general: return mockGeneralSettingsSection
-    case .notifications: return mockNotificationsSettingsSection
-    case .security: return mockSecuritySettingsSection
-    }
-}
-
-private var mockSecuritySettingsSection: [SettingsSection] {
+private var securitySettingsSection: [SettingsSection] {
     return [
         MockSettingsSection(title: "Account", rows: accountRows),
         MockSettingsSection(title: "About", rows: aboutRows)
     ]
 }
 
-private var mockNotificationsSettingsSection: [SettingsSection] {
+private var notificationsSettingsSection: [SettingsSection] {
     return [
         MockSettingsSection(title: "Categories", rows: categoryNotifications),
         MockSettingsSection(title: "Reminder", rows: sleepRows)
     ]
 }
 
-private var mockGeneralSettingsSection: [SettingsSection] {
+private func generalSettingsSection(for user: User?) -> [SettingsSection] {
     return [
-        MockSettingsSection(title: "Company", rows: companyRows),
-        MockSettingsSection(title: "Personal", rows: personalRows),
+        MockSettingsSection(title: "Company", rows: companyRows(for: user)),
+        MockSettingsSection(title: "Personal", rows: personalRows(for: user)),
         MockSettingsSection(title: "Location", rows: locationRows),
         MockSettingsSection(title: "Calendar", rows: calendarRows),
         MockSettingsSection(title: "Sleep", rows: sleepRows),
@@ -122,20 +243,39 @@ private var mockGeneralSettingsSection: [SettingsSection] {
     ]
 }
 
-private var companyRows: [SettingsRow] {
+private func companyRows(for user: User?) -> [SettingsRow] {
+    guard let user = user else {
+        return []
+    }
+
     return [
-        .label(title: "Company", value: "Tignum"),
-        .label(title: "Email", value: "tignum@tignum.com"),
-        .label(title: "Telephone", value: "555 42 23")
+        .label(title: "Company", value: user.company),
+        .label(title: "Email", value: user.email),
+        .label(title: "Telephone", value: user.telephone)
     ]
 }
 
-private var personalRows: [SettingsRow] {
+private func personalRows(for user: User?) -> [SettingsRow] {
+    guard let user = user else {
+        return []
+    }
+
+    var date = Date()
+    if let dateOfBirth = user.dateOfBirth {    
+        date = DateFormatter.settingsUser.date(from: dateOfBirth) ?? Date()
+    }
+
+    let selectedHeightIndex = PersonalData.height.selectedIndex(user: user)
+    let selectedWeightIndex = PersonalData.weight.selectedIndex(user: user)
+    let selectedHeightUnitIndex = PersonalData.height.selectedUnitIndex(user: user)
+    let selectedWeightUnitIndex = PersonalData.weight.selectedUnitIndex(user: user)
+    let selectedGenderIndex = Gender(rawValue: user.gender.lowercased())?.selectedIndex ?? 0
+
     return [
-        .stringPicker(title: "Gender", pickerItems: ["Female", "Male"], selectedIndex: 0),
-        .datePicker(title: "Date of birth", selectedDate: Date()),
-        .stringPicker(title: "Weight", pickerItems: ["Female", "Male"], selectedIndex: 0),
-        .stringPicker(title: "Height", pickerItems: ["Female", "Male"], selectedIndex: 0)
+        .stringPicker(title: "Gender", pickerItems: Gender.allValuesAsStrings, selectedIndex: selectedGenderIndex),
+        .datePicker(title: "Date of birth", selectedDate: date),
+        .multipleStringPicker(title: "Weight", rows: user.weightPickerItems, initialSelection: [selectedWeightIndex, selectedWeightUnitIndex]),
+        .multipleStringPicker(title: "Height", rows: user.heightPickerItems, initialSelection: [selectedHeightIndex, selectedHeightUnitIndex])
     ]
 }
 

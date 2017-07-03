@@ -84,7 +84,6 @@ final class DownSyncOperation<Intermediary, Persistable>: ConcurrentOperation wh
     }
 
     private func confirmDownSync(syncToken: String, completion: @escaping () -> Void) {
-        
         let endpoint = DownSyncConfirmRequest(endpoint: .downSyncConfirm, syncToken: syncToken)
         networkManager.request(endpoint, parser: DownSyncComplete.parse, completion: { result in
             switch result {
