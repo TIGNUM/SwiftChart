@@ -8,7 +8,6 @@
 
 import UIKit
 import Kingfisher
-import Anchorage
 
 protocol PrepareContentMainHeaderTableViewCellDelegate: class {
     func didTapVideo(videoURL: URL?, cell: UITableViewCell)
@@ -20,8 +19,7 @@ class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var subHeaderLabel: UILabel!
-    @IBOutlet weak var stackView: UIStackView!
-    
+
     @IBOutlet weak var previewImageView: UIButton!
     @IBOutlet weak var contentLabel: UILabel!
 
@@ -46,9 +44,10 @@ class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable {
     
     func setCell(title: String, subTitle: String, contentText: String, videoPlaceholder: URL?, videoURL: URL?, isExpanded: Bool) {
         headerLabel.text = title.uppercased()
+        headerLabel.font = Font.H1MainTitle
         subHeaderLabel.text = subTitle.uppercased()
-        bottomSeparator.isHidden = isExpanded
-        
+        subHeaderLabel.font = Font.H7Title
+
         previewImageURL = videoPlaceholder
         content = contentText
         
@@ -57,8 +56,6 @@ class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable {
     }
     
     func updateContent(isExpanded: Bool) {
-        contentLabel.isHidden = !isExpanded
-        previewImageView.isHidden = !isExpanded
 
         if isExpanded {
 
@@ -71,7 +68,7 @@ class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable {
 
             contentLabel.numberOfLines = 0
             contentLabel.lineBreakMode = .byWordWrapping
-            contentLabel.prepareAndSetTextAttributes(text: content, font: UIFont(name: "BentonSans-Book", size: 16)!)            
+            contentLabel.prepareAndSetTextAttributes(text: content, font: Font.DPText)
         }
     }
     

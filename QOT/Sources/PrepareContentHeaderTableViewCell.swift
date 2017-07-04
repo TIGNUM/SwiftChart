@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Anchorage
 
 protocol PrepareContentHeaderTableViewCellDelegate: class {
     func didPressReadMore(readMoreID: Int?, cell: UITableViewCell)
@@ -21,7 +20,6 @@ class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var positionLabel: UILabel!
     @IBOutlet weak var checkboxImageView: UIImageView!
     @IBOutlet weak var headerLabel: UILabel!
-    @IBOutlet weak var stackView: UIStackView!
 
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var readMoreButton: UIButton!
@@ -53,8 +51,10 @@ class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
 
     func setCell(title: String, contentText: String, readMoreID: Int?, position: Int, isExpanded: Bool, displayMode: PrepareContentViewModel.DisplayMode = .normal, isChecked: Bool = false) {
         headerLabel.text = title
-        bottomSeparator.isHidden = isExpanded
+        headerLabel.font = Font.H4Headline
+
         positionLabel.text = (position > 9 ? "." : ".0") + "\(position)"
+        positionLabel.font = Font.H4Headline
 
         self.readMoreID = readMoreID
         self.contentText = contentText
@@ -74,20 +74,17 @@ class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
 
         updateContent(isExpanded: isExpanded)
     }
-    
+
     func updateContent(isExpanded: Bool) {
-        contentLabel.isHidden = !isExpanded
-        readMoreButton.isHidden = !isExpanded
 
         if isExpanded {
-
             contentLabel.numberOfLines = 0
             contentLabel.lineBreakMode = .byWordWrapping
-            contentLabel.prepareAndSetTextAttributes(text: contentText, font: UIFont(name: "BentonSans-Book", size: 16)!)
+            contentLabel.prepareAndSetTextAttributes(text: contentText, font: Font.DPText)
 
             if readMoreID != nil {
                 readMoreButton.prepareAndSetTitleAttributes(text: R.string.localized.prepareContentReadMore(),
-                                                            font: UIFont(name: "BentonSans-Book", size: 16)!,
+                                                            font: Font.DPText,
                                                             color: UIColor.blackTwo,
                                                             for: .normal)
             } else {
@@ -105,5 +102,6 @@ class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
 
     func checkboxTapped() {
         delegate?.didTapCheckbox(cell: self)
+        self.layoutIfNeeded()
     }
 }

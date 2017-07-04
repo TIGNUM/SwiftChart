@@ -67,17 +67,27 @@ final class PrepareContentCoordinator: ParentCoordinator {
             items.append(newItem)
         }
 
+//        let viewModel = PrepareContentViewModel(title: LoremIpsum.title(),
+//                                                subtitle: LoremIpsum.title(),
+//                                                video: video,
+//                                                description: LoremIpsum.words(withNumber: Int.random(between: 30, and: 100)),
+//                                                items: items)
+
         let viewModel = PrepareContentViewModel(title: LoremIpsum.title(),
-                                                subtitle: LoremIpsum.title(),
                                                 video: video,
                                                 description: LoremIpsum.words(withNumber: Int.random(between: 30, and: 100)),
-                                                items: items)
+                                                items: items,
+                                                checkedIDs: [:])
 
         return viewModel
     }
 
     func start() {
-        rootViewController.present(topTabBarController, animated: true)
+        let viewModel = self.mockPrepareContent()
+        let prepareContentViewController = PrepareContentViewController(viewModel: viewModel)
+        prepareContentViewController.delegate = self
+
+        rootViewController.present(prepareContentViewController, animated: true)
     }
 }
 

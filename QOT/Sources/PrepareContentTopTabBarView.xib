@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="BaX-zb-kQ8" customClass="PrepareContentTopTabBarView" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJC-25-Ysl">
+                    <rect key="frame" x="166.5" y="323" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jr4-sr-HV7">
+                    <rect key="frame" x="15" y="318" width="46" height="30"/>
+                    <state key="normal" title="Button"/>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QFA-qo-egT">
+                    <rect key="frame" x="30" y="666" width="315" height="1"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="21K-eR-VEp"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="su8-HZ-Bci">
+                    <rect key="frame" x="314" y="318" width="46" height="30"/>
+                    <state key="normal" title="Button"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Jr4-sr-HV7" firstAttribute="centerY" secondItem="BaX-zb-kQ8" secondAttribute="centerY" id="6Dp-DV-tB5"/>
+                <constraint firstItem="bJC-25-Ysl" firstAttribute="centerY" secondItem="BaX-zb-kQ8" secondAttribute="centerY" id="74N-ev-taD"/>
+                <constraint firstAttribute="trailing" secondItem="su8-HZ-Bci" secondAttribute="trailing" constant="15" id="Czm-xG-M5H"/>
+                <constraint firstItem="bJC-25-Ysl" firstAttribute="centerX" secondItem="BaX-zb-kQ8" secondAttribute="centerX" id="DzV-9p-5qb"/>
+                <constraint firstAttribute="trailing" secondItem="QFA-qo-egT" secondAttribute="trailing" constant="30" id="OKj-I0-xbE"/>
+                <constraint firstItem="su8-HZ-Bci" firstAttribute="centerY" secondItem="BaX-zb-kQ8" secondAttribute="centerY" id="OMG-Yx-M1U"/>
+                <constraint firstItem="QFA-qo-egT" firstAttribute="leading" secondItem="BaX-zb-kQ8" secondAttribute="leading" constant="30" id="ObV-j2-3jF"/>
+                <constraint firstItem="Jr4-sr-HV7" firstAttribute="leading" secondItem="BaX-zb-kQ8" secondAttribute="leading" constant="15" id="dym-jF-3s3"/>
+                <constraint firstAttribute="bottom" secondItem="QFA-qo-egT" secondAttribute="bottom" id="hwO-S6-jdQ"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <connections>
+                <outlet property="leftButton" destination="Jr4-sr-HV7" id="g38-Cn-3dU"/>
+                <outlet property="rightButton" destination="su8-HZ-Bci" id="S8B-Kz-7rq"/>
+                <outlet property="titleLabel" destination="bJC-25-Ysl" id="RFg-z7-df2"/>
+            </connections>
+            <point key="canvasLocation" x="135" y="88"/>
+        </view>
+    </objects>
+</document>
