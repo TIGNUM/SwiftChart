@@ -31,26 +31,11 @@ final class PrepareCheckListCoordinator: ParentCoordinator {
     }
 
     func start() {
-        //        let viewModel = mockPrepareContent()
         let viewModel = mockCheckboxPrepareContent()
 
         let prepareContentViewController = PrepareContentViewController(viewModel: viewModel)
-
-        let topTabBarControllerItem = TopTabBarController.Item(
-            controllers: [prepareContentViewController],
-            themes: [.light],
-            titles: [R.string.localized.topTabBarItemTitlePerpareCoach()]
-        )
-
-        let topTabBarController = TopTabBarController(
-            item: topTabBarControllerItem,
-            leftIcon: R.image.ic_minimize(),
-            rightIcon: R.image.ic_save()
-        )
-
         prepareContentViewController.delegate = self
-        topTabBarController.delegate = self
-        rootViewController.present(topTabBarController, animated: true)
+        rootViewController.present(prepareContentViewController, animated: true)
     }
 
     private func mockCheckboxPrepareContent() -> PrepareContentViewModel {
@@ -73,7 +58,7 @@ final class PrepareCheckListCoordinator: ParentCoordinator {
                                                 description: LoremIpsum.words(withNumber: Int.random(between: 30, and: 100)),
                                                 items: items,
                                                 checkedIDs: [:])
-        
+
         return viewModel
     }
 }
@@ -101,24 +86,6 @@ extension PrepareCheckListCoordinator: PrepareContentViewControllerDelegate {
 
     func didTapReadMore(readMoreID: Int, in viewController: PrepareContentViewController) {
         log("didTapReadMore: ID: \(readMoreID)")
-        //        startPrepareEventsCoordinator(viewController: viewController)
     }
 }
 
-// MARK: - TopTabBarDelegate
-
-extension PrepareCheckListCoordinator: TopTabBarDelegate {
-
-    func didSelectRightButton(sender: TopTabBarController) {
-        print("didSelectRightButton")
-    }
-
-    func didSelectLeftButton(sender: TopTabBarController) {
-        sender.dismiss(animated: true, completion: nil)
-        delagate?.prepareCheckListDidFinish(coordinator: self)
-    }
-    
-    func didSelectItemAtIndex(index: Int, sender: TopTabBarController) {
-        print(index as Any, sender)
-    }
-}

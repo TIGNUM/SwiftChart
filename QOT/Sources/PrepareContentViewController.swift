@@ -39,10 +39,11 @@ final class PrepareContentViewController: UIViewController {
         )
     }()
 
-    fileprivate lazy var topBarView: PrepareContentTopTabBarView? = {
-        let view = Bundle.main.loadNibNamed("PrepareContentTopTabBarView", owner: self, options: [:])?[0] as? PrepareContentTopTabBarView
-
-        view?.setup(title: R.string.localized.topTabBarItemTitlePerpareCoach(),
+    fileprivate lazy var topBarView: PrepareContentTopTabBarView = {
+        guard let view = Bundle.main.loadNibNamed("PrepareContentTopTabBarView", owner: self, options: [:])?[0] as? PrepareContentTopTabBarView else {
+            preconditionFailure("Failed to PrepareContentTopTabBarView from xib")
+        }
+        view.setup(title: R.string.localized.topTabBarItemTitlePerpareCoach(),
                     leftButtonIcon: R.image.ic_minimize(),
                     rightButtonIcon: self.viewModel.displayMode == .normal ? R.image.ic_save() : nil,
                     delegate: self)
@@ -92,22 +93,15 @@ private extension PrepareContentViewController {
     func setupView() {
         view.backgroundColor = .white
 
-        if let topBarView = topBarView {
+        view.addSubview(topBarView)
+        view.addSubview(tableView)
 
-            view.addSubview(topBarView)
-            view.addSubview(tableView)
-
-            topBarView.topAnchor == view.topAnchor
-            topBarView.horizontalAnchors == view.horizontalAnchors
-            topBarView.heightAnchor == Layout.TabBarView.height
-            tableView.topAnchor == topBarView.bottomAnchor
-            tableView.bottomAnchor == view.bottomAnchor
-            tableView.horizontalAnchors == view.horizontalAnchors
-        } else {
-            tableView.topAnchor == view.topAnchor
-            tableView.bottomAnchor == view.bottomAnchor
-            tableView.horizontalAnchors == view.horizontalAnchors
-        }
+        topBarView.topAnchor == view.topAnchor
+        topBarView.horizontalAnchors == view.horizontalAnchors
+        topBarView.heightAnchor == Layout.TabBarView.height
+        tableView.topAnchor == topBarView.bottomAnchor
+        tableView.bottomAnchor == view.bottomAnchor
+        tableView.horizontalAnchors == view.horizontalAnchors
     }
 
     @discardableResult func configure(cell: UITableViewCell, forIndexPath indexPath: IndexPath) -> UITableViewCell {

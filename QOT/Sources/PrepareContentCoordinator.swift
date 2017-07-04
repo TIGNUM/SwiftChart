@@ -23,28 +23,6 @@ final class PrepareContentCoordinator: ParentCoordinator {
     var children: [Coordinator] = []
     weak var delagate: PrepareContentCoordinatorDelegate?
 
-    fileprivate lazy var topTabBarController: TopTabBarController = {
-        let viewModel = self.mockPrepareContent()
-        let prepareContentViewController = PrepareContentViewController(viewModel: viewModel)
-
-        let topTabBarControllerItem = TopTabBarController.Item(
-            controllers: [prepareContentViewController],
-            themes: [.light],
-            titles: [R.string.localized.topTabBarItemTitlePerpareCoach()]
-        )
-
-        let topTabBarController = TopTabBarController(
-            item: topTabBarControllerItem,
-            leftIcon: R.image.ic_minimize(),
-            rightIcon: R.image.ic_save()
-        )
-
-        prepareContentViewController.delegate = self
-        topTabBarController.delegate = self
-
-        return topTabBarController
-    }()
-
     // MARK: - Life Cycle
 
     init(root: UIViewController, services: Services, eventTracker: EventTracker) {
@@ -67,18 +45,11 @@ final class PrepareContentCoordinator: ParentCoordinator {
             items.append(newItem)
         }
 
-//        let viewModel = PrepareContentViewModel(title: LoremIpsum.title(),
-//                                                subtitle: LoremIpsum.title(),
-//                                                video: video,
-//                                                description: LoremIpsum.words(withNumber: Int.random(between: 30, and: 100)),
-//                                                items: items)
-
         let viewModel = PrepareContentViewModel(title: LoremIpsum.title(),
+                                                subtitle: LoremIpsum.title(),
                                                 video: video,
                                                 description: LoremIpsum.words(withNumber: Int.random(between: 30, and: 100)),
-                                                items: items,
-                                                checkedIDs: [:])
-
+                                                items: items)
         return viewModel
     }
 
@@ -95,13 +66,13 @@ final class PrepareContentCoordinator: ParentCoordinator {
 
 extension PrepareContentCoordinator: PrepareContentViewControllerDelegate {
     func didTapSavePreparation(in viewController: PrepareContentViewController) {
-        let coordinator = CreatePreparationCoordinator(root: topTabBarController, services: services)
+        let coordinator = CreatePreparationCoordinator(root: viewController, services: services)
         startChild(child: coordinator)
     }
 
     func didTapClose(in viewController: PrepareContentViewController) {
         viewController.dismiss(animated: true, completion: nil)
-        removeChild(child: self)
+        delagate?.prepareContentDidFinish(coordinator: self)
     }
 
     func didTapShare(in viewController: PrepareContentViewController) {
