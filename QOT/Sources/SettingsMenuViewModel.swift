@@ -11,12 +11,6 @@ import ReactiveKit
 
 final class SettingsMenuViewModel {
 
-    struct Profile {
-        let name: String
-        let position: String
-        let photoURL: URL
-    }
-
     struct Tile {
         let title: String
         let subtitle: String
@@ -27,12 +21,25 @@ final class SettingsMenuViewModel {
         R.string.localized.sidebarSettingsMenuNotificationsButton(),
         R.string.localized.sidebarSettingsMenuSecurityButton()
     ]
-    private let tiles: [Tile] = mockTiles()
-    let profile: Profile = mockProfile()
+    fileprivate lazy var tiles: [Tile] = userTiles(user: self.user)
+    fileprivate let userService: UserService
+    fileprivate let user: User
     let tileUpdates = PublishSubject<CollectionUpdate, NoError>()
 
     var tileCount: Int {
         return tiles.count
+    }
+
+    var userName: String {
+        return String(format: "%@\n%@", user.givenName, user.familyName).uppercased()
+    }
+
+    var userJobTitle: String? {
+        return user.jobTitle?.uppercased()
+    }
+
+    var userProfileImagePath: String? {
+        return user.userImageURLString
     }
 
     var settingsCount: Int {
@@ -46,20 +53,51 @@ final class SettingsMenuViewModel {
     func settingTitle(at row: Index) -> String {
         return settingTitles[row]
     }
+
+    init?(userService: UserService) {
+        guard let user = userService.user() else {
+            return nil
+        }
+
+        self.userService = userService
+        self.user = user
+    }
 }
 
 // MARK: Mock Data
 
-private func mockProfile() -> SettingsMenuViewModel.Profile {
-    let url = URL(string: "https://randomuser.me/api/portraits/men/20.jpg")!
-    return SettingsMenuViewModel.Profile(name: "CURTIS PHILLIPS", position: "FINANCIAL EXECUTIVE", photoURL: url)
-}
-
-private func mockTiles() -> [SettingsMenuViewModel.Tile] {
+private func userTiles(user: User) -> [SettingsMenuViewModel.Tile] {
     return [
-        SettingsMenuViewModel.Tile(title: "358 days", subtitle: "MEMBER SINCE"),
-        SettingsMenuViewModel.Tile(title: "258784 min", subtitle: "QOT USAGE"),
+        SettingsMenuViewModel.Tile(title: daysBetweenDates(startDate: user.memberSince), subtitle: "MEMBER SINCE"),
+        SettingsMenuViewModel.Tile(title: totalMinutesUsage, subtitle: "QOT USAGE"),
         SettingsMenuViewModel.Tile(title: "258784 min", subtitle: "MESSAGES"),
         SettingsMenuViewModel.Tile(title: "7484", subtitle: "SOMETHING ELSE")
     ]
+}
+
+private var totalMinutesUsage: String {
+    AppDelegate.storeQotUsageTime()
+    let totalSeconds = UserDefault.qotUsage.intValue
+    let totalMinutes = Int(abs(totalSeconds / 60))
+
+    if totalMinutes == 1 {
+        return String(format: "%d MINUTE", totalMinutes)
+    }
+
+    return String(format: "%d MINUTES", totalMinutes)
+}
+
+private func daysBetweenDates(startDate: Date) -> String {
+    let calendar = Calendar.current
+    let components = calendar.dateComponents([Calendar.Component.day], from: startDate, to: Date())
+
+    guard let days = components.day else {
+        return "0 DAYS"
+    }
+
+    if days == 1 {
+        return String(format: "%d DAY", days)
+    }
+
+    return String(format: "%d DAYS", days)
 }

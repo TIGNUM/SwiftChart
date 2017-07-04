@@ -279,6 +279,7 @@
 		CCC1B6AB1E8B9B7300D1461F /* LearnCategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC1B6A61E8B9B7300D1461F /* LearnCategoryListViewModel.swift */; };
 		CCC1B6AE1E8B9B7F00D1461F /* LearnContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC1B6AC1E8B9B7F00D1461F /* LearnContentListViewController.swift */; };
 		CCC1B6AF1E8B9B7F00D1461F /* LearnContentCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC1B6AD1E8B9B7F00D1461F /* LearnContentCollectionViewModel.swift */; };
+		CCC2D3161F0AB1E000951A2E /* UserDefault+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC2D3151F0AB1E000951A2E /* UserDefault+Convenience.swift */; };
 		CCCC211C1E8981AD00133839 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCC211A1E8981AD00133839 /* ChatViewController.swift */; };
 		CCCC211D1E8981AD00133839 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCC211B1E8981AD00133839 /* ChatViewModel.swift */; };
 		CCCC21221E8981CA00133839 /* PrepareContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCC21201E8981CA00133839 /* PrepareContentViewController.swift */; };
@@ -630,6 +631,7 @@
 		CCC1B6A61E8B9B7300D1461F /* LearnCategoryListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnCategoryListViewModel.swift; sourceTree = "<group>"; };
 		CCC1B6AC1E8B9B7F00D1461F /* LearnContentListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentListViewController.swift; sourceTree = "<group>"; };
 		CCC1B6AD1E8B9B7F00D1461F /* LearnContentCollectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentCollectionViewModel.swift; sourceTree = "<group>"; };
+		CCC2D3151F0AB1E000951A2E /* UserDefault+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefault+Convenience.swift"; sourceTree = "<group>"; };
 		CCCC211A1E8981AD00133839 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		CCCC211B1E8981AD00133839 /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		CCCC21201E8981CA00133839 /* PrepareContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentViewController.swift; sourceTree = "<group>"; };
@@ -1177,6 +1179,7 @@
 				852DADD51EF051C400A10882 /* UIView+Layers.swift */,
 				CC80181F1F0256980040B03F /* UIViewController+Alert.swift */,
 				CCCC42DE1ED5799D00E73905 /* UIViewController+Transition.swift */,
+				CCC2D3151F0AB1E000951A2E /* UserDefault+Convenience.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1925,6 +1928,7 @@
 				CB810E6E1EF180DC0043E3E5 /* PageTrack.swift in Sources */,
 				CC8018201F0256980040B03F /* UIViewController+Alert.swift in Sources */,
 				0BA3E6411EC1A8280012999E /* DashedProgressWheel.swift in Sources */,
+				CCC2D3161F0AB1E000951A2E /* UserDefault+Convenience.swift in Sources */,
 				CB34375B1EFD652800D89D4F /* Question.swift in Sources */,
 				CB0A4A5D1ECC4C72006A2D85 /* AddSensorViewController.swift in Sources */,
 				CC94F5621EB08EE400051CF8 /* AudioWaveformView.swift in Sources */,

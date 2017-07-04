@@ -24,7 +24,11 @@ final class SettingsMenuCoordinator: ParentCoordinator {
     }
 
     func start() {
-        let settingsMenuViewController = SettingsMenuViewController(viewModel: SettingsMenuViewModel())
+        guard let viewModel = SettingsMenuViewModel(userService: services.userService) else {
+            return
+        }
+
+        let settingsMenuViewController = SettingsMenuViewController(viewModel: viewModel)
         settingsMenuViewController.delegate = self
         presentationManager.presentationType = .fadeIn
         settingsMenuViewController.modalPresentationStyle = .custom

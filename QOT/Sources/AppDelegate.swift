@@ -13,6 +13,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Properties
 
+    static var enterDate = Date()
+
     private lazy var appCoordinator: AppCoordinator = {
         return AppCoordinator(window: self.window!)
     }()
@@ -22,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Life Cycle
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        AppDelegate.enterDate = Date()
         UIApplication.shared.statusBarStyle = .lightContent
         window = UIWindow(frame: UIScreen.main.bounds)
         appCoordinator.start()
@@ -33,6 +36,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         
         return true
+    }
+
+    func applicationWillTerminate(_ application: UIApplication) {
+        AppDelegate.storeQotUsageTime()
+    }
+
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        AppDelegate.storeQotUsageTime()
+    }
+
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        AppDelegate.enterDate = Date()
+    }
+
+    static func storeQotUsageTime() {
+        let qotSeconds = UserDefault.qotUsage.intValue
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([Calendar.Component.second], from: enterDate, to: Date())
+        let totalSeconds = qotSeconds + (components.second ?? 0)
+        UserDefault.qotUsage.setIntValue(value: totalSeconds)
     }
 }
 

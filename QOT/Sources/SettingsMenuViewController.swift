@@ -69,12 +69,12 @@ private extension SettingsMenuViewController {
 
     private func setupLabels() {
         titleLabel.attributedText = NSMutableAttributedString(
-            string: viewModel.profile.name.uppercased(),
+            string: viewModel.userName,
             letterSpacing: -2,
             font: Font.H2SecondaryTitle
         )
         positionLabel.attributedText = NSMutableAttributedString(
-            string: viewModel.profile.position.uppercased(),
+            string: viewModel.userJobTitle ?? "",
             letterSpacing: 2,
             font: Font.H7Tag,
             lineSpacing: 4
@@ -111,8 +111,17 @@ private extension SettingsMenuViewController {
     }
 
     private func setupImageView() {
-        imgeView.kf.setImage(with: viewModel.profile.photoURL)
+        guard
+            let urlString = viewModel.userProfileImagePath,
+            let downloadURL = URL(string: urlString) else {
+                return
+        }
+
+        let resource = ImageResource(downloadURL: downloadURL)
+        imgeView.kf.setImage(with: resource, placeholder: R.image.placeholder_user(), options: nil, progressBlock: nil, completionHandler: nil)
         imgeView.layer.cornerRadius = 10
+        imgeView.layer.masksToBounds = true
+
     }
 }
 
