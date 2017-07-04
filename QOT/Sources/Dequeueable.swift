@@ -62,6 +62,25 @@ extension UITableView {
         }
         return cast
     }
+
+    /// Registers a `Dequeueable` for use in creating new header/footer.
+    func registerDequeueable<T: UITableViewHeaderFooterView>(_ headerFooterClass: T.Type) where T: Dequeueable {
+        switch headerFooterClass.registration {
+        case .nib(let nib):
+            register(nib, forHeaderFooterViewReuseIdentifier: headerFooterClass.reuseID)
+        case .class:
+            register(headerFooterClass, forHeaderFooterViewReuseIdentifier: headerFooterClass.reuseID)
+        }
+    }
+
+    /// Returns a reusable header/footer of type `T` and adds it to the table view.
+    func dequeueHeaderFooter<T: UITableViewHeaderFooterView>() -> T where T: Dequeueable {
+        let headerFooter = dequeueReusableHeaderFooterView(withIdentifier: T.reuseID)
+        guard let cast = headerFooter as? T else {
+            fatalError("Failed to cast headerFooterView to type: \(String(describing: T.self))")
+        }
+        return cast
+    }
 }
 
 extension UICollectionView {

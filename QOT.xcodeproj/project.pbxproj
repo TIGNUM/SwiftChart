@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B1059861EA77AC700660A1D /* PrepareEventTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1059841EA77AC700660A1D /* PrepareEventTableViewHeader.swift */; };
-		0B1059871EA77AC700660A1D /* PrepareEventTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B1059851EA77AC700660A1D /* PrepareEventTableViewHeader.xib */; };
 		0B254D3E1E97994C006AA4C0 /* PrepareCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B254D3C1E97994C006AA4C0 /* PrepareCollectionViewCell.swift */; };
 		0B254D3F1E97994C006AA4C0 /* PrepareCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B254D3D1E97994C006AA4C0 /* PrepareCollectionViewCell.xib */; };
 		0B2CA37B1ED2BC93006B355F /* SensorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2CA3791ED2BC93006B355F /* SensorCollectionViewCell.swift */; };
@@ -32,10 +30,6 @@
 		0BCE74421ECD96D70006C0CF /* TripsDashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCE74401ECD96D70006C0CF /* TripsDashView.swift */; };
 		0BD6F6B91EA0E81E001EBC4D /* MyPrepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD6F6B61EA0E81E001EBC4D /* MyPrepTableViewCell.swift */; };
 		0BD6F6BA1EA0E81E001EBC4D /* MyPrepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD6F6B71EA0E81E001EBC4D /* MyPrepTableViewCell.xib */; };
-		0BEE8AB91EA600A7008077B8 /* PrepareEventAddNewTripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEE8AAD1EA600A7008077B8 /* PrepareEventAddNewTripTableViewCell.swift */; };
-		0BEE8ABA1EA600A7008077B8 /* PrepareEventAddNewTripTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BEE8AAE1EA600A7008077B8 /* PrepareEventAddNewTripTableViewCell.xib */; };
-		0BEE8ABD1EA600A7008077B8 /* PrepareEventSimpleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEE8AB31EA600A7008077B8 /* PrepareEventSimpleTableViewCell.swift */; };
-		0BEE8ABE1EA600A7008077B8 /* PrepareEventSimpleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BEE8AB41EA600A7008077B8 /* PrepareEventSimpleTableViewCell.xib */; };
 		0BEE8ABF1EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEE8AB61EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.swift */; };
 		0BEE8AC01EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BEE8AB71EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib */; };
 		0CC2119BB6C36EF6F43B4ECD /* Pods_QOT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */; };
@@ -69,6 +63,8 @@
 		858AF6951EF9544000486605 /* MyStatisticsDataActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858AF6941EF9544000486605 /* MyStatisticsDataActivity.swift */; };
 		8591ED7B1EE6DBA6006FCE89 /* MockingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E0A6A01EE6AF130076169D /* MockingProtocol.swift */; };
 		8591ED7C1EE6DBAC006FCE89 /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E0A6A21EE6B1610076169D /* Mocks.swift */; };
+		85C3D6BC1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C3D6BB1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib */; };
+		85C3D6BE1F0B920E00E0CBFE /* PrepareEventTableViewFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3D6BD1F0B920E00E0CBFE /* PrepareEventTableViewFooterView.swift */; };
 		85DC6F831EF3C161004F4B4D /* UpcomingTravelsChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DC6F821EF3C161004F4B4D /* UpcomingTravelsChartView.swift */; };
 		85DC6F851EF3E32A004F4B4D /* MyStatisticsDataPeriods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DC6F841EF3E32A004F4B4D /* MyStatisticsDataPeriods.swift */; };
 		85DC6F871EF40767004F4B4D /* TravelTripsPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DC6F861EF40767004F4B4D /* TravelTripsPeriodView.swift */; };
@@ -178,6 +174,8 @@
 		CBC933081F052DDA00C00007 /* PrepareCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC933071F052DDA00C00007 /* PrepareCoordinator.swift */; };
 		CBC9330A1F0A438600C00007 /* PrepareCheckListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC933091F0A438600C00007 /* PrepareCheckListCoordinator.swift */; };
 		CBC9330C1F0A51EE00C00007 /* CreatePreparationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC9330B1F0A51EE00C00007 /* CreatePreparationCoordinator.swift */; };
+		CBC9330F1F0AA47800C00007 /* PrepareEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC9330D1F0AA47800C00007 /* PrepareEventsViewController.swift */; };
+		CBC933101F0AA47800C00007 /* PrepareEventsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBC9330E1F0AA47800C00007 /* PrepareEventsViewController.xib */; };
 		CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791461E7172390006C590 /* LearnContentListCoordinator.swift */; };
 		CBD7914A1E71797C0006C590 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791491E71797C0006C590 /* Typealiases.swift */; };
 		CBD791541E72A4BB0006C590 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791531E72A4BB0006C590 /* MockData.swift */; };
@@ -296,7 +294,6 @@
 		CCE3730F1E8D32F800B79352 /* SidebarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE373091E8D32F800B79352 /* SidebarCoordinator.swift */; };
 		CCE373141E8D32F800B79352 /* SidebarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE3730E1E8D32F800B79352 /* SidebarViewModel.swift */; };
 		CCE373161E8D330100B79352 /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE373151E8D330100B79352 /* LibraryViewModel.swift */; };
-		CCEA22A91E8AC55F003D0CF4 /* PrepareEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A71E8AC55F003D0CF4 /* PrepareEventsViewController.swift */; };
 		CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */; };
 		CCEFCFB01E8D3D7500E9FC72 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEFCFAE1E8D3D7500E9FC72 /* SidebarViewController.swift */; };
 		CCF0F4BF1ECDC57000E8D9C1 /* DownSyncable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF0F4BC1ECDC57000E8D9C1 /* DownSyncable.swift */; };
@@ -350,8 +347,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0B1059841EA77AC700660A1D /* PrepareEventTableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventTableViewHeader.swift; sourceTree = "<group>"; };
-		0B1059851EA77AC700660A1D /* PrepareEventTableViewHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareEventTableViewHeader.xib; sourceTree = "<group>"; };
 		0B254D3C1E97994C006AA4C0 /* PrepareCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareCollectionViewCell.swift; sourceTree = "<group>"; };
 		0B254D3D1E97994C006AA4C0 /* PrepareCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareCollectionViewCell.xib; sourceTree = "<group>"; };
 		0B2CA3791ED2BC93006B355F /* SensorCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -375,10 +370,6 @@
 		0BCE74401ECD96D70006C0CF /* TripsDashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripsDashView.swift; sourceTree = "<group>"; };
 		0BD6F6B61EA0E81E001EBC4D /* MyPrepTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPrepTableViewCell.swift; sourceTree = "<group>"; };
 		0BD6F6B71EA0E81E001EBC4D /* MyPrepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPrepTableViewCell.xib; sourceTree = "<group>"; };
-		0BEE8AAD1EA600A7008077B8 /* PrepareEventAddNewTripTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventAddNewTripTableViewCell.swift; sourceTree = "<group>"; };
-		0BEE8AAE1EA600A7008077B8 /* PrepareEventAddNewTripTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareEventAddNewTripTableViewCell.xib; sourceTree = "<group>"; };
-		0BEE8AB31EA600A7008077B8 /* PrepareEventSimpleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventSimpleTableViewCell.swift; sourceTree = "<group>"; };
-		0BEE8AB41EA600A7008077B8 /* PrepareEventSimpleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareEventSimpleTableViewCell.xib; sourceTree = "<group>"; };
 		0BEE8AB61EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsUpcomingTripTableViewCell.swift; sourceTree = "<group>"; };
 		0BEE8AB71EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareEventsUpcomingTripTableViewCell.xib; sourceTree = "<group>"; };
 		2F1C8D6D4864F462A3F805BB /* Pods-QOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.release.xcconfig"; sourceTree = "<group>"; };
@@ -413,6 +404,8 @@
 		852DADEB1EF2BE3C00A10882 /* UpcomingTravelsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingTravelsView.swift; sourceTree = "<group>"; };
 		858AF6921EF904AB00486605 /* PeakPerformanceUpcomingChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakPerformanceUpcomingChartView.swift; sourceTree = "<group>"; };
 		858AF6941EF9544000486605 /* MyStatisticsDataActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsDataActivity.swift; sourceTree = "<group>"; };
+		85C3D6BB1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareEventTableViewFooterView.xib; sourceTree = "<group>"; };
+		85C3D6BD1F0B920E00E0CBFE /* PrepareEventTableViewFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventTableViewFooterView.swift; sourceTree = "<group>"; };
 		85DC6F821EF3C161004F4B4D /* UpcomingTravelsChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingTravelsChartView.swift; sourceTree = "<group>"; };
 		85DC6F841EF3E32A004F4B4D /* MyStatisticsDataPeriods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsDataPeriods.swift; sourceTree = "<group>"; };
 		85DC6F861EF40767004F4B4D /* TravelTripsPeriodView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelTripsPeriodView.swift; sourceTree = "<group>"; };
@@ -529,6 +522,8 @@
 		CBC933071F052DDA00C00007 /* PrepareCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareCoordinator.swift; sourceTree = "<group>"; };
 		CBC933091F0A438600C00007 /* PrepareCheckListCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareCheckListCoordinator.swift; sourceTree = "<group>"; };
 		CBC9330B1F0A51EE00C00007 /* CreatePreparationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePreparationCoordinator.swift; sourceTree = "<group>"; };
+		CBC9330D1F0AA47800C00007 /* PrepareEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsViewController.swift; sourceTree = "<group>"; };
+		CBC9330E1F0AA47800C00007 /* PrepareEventsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareEventsViewController.xib; sourceTree = "<group>"; };
 		CBD791461E7172390006C590 /* LearnContentListCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentListCoordinator.swift; sourceTree = "<group>"; };
 		CBD791491E71797C0006C590 /* Typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
 		CBD791531E72A4BB0006C590 /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
@@ -648,7 +643,6 @@
 		CCE373091E8D32F800B79352 /* SidebarCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarCoordinator.swift; sourceTree = "<group>"; };
 		CCE3730E1E8D32F800B79352 /* SidebarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewModel.swift; sourceTree = "<group>"; };
 		CCE373151E8D330100B79352 /* LibraryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryViewModel.swift; sourceTree = "<group>"; };
-		CCEA22A71E8AC55F003D0CF4 /* PrepareEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsViewController.swift; sourceTree = "<group>"; };
 		CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsViewModel.swift; sourceTree = "<group>"; };
 		CCEFCFAE1E8D3D7500E9FC72 /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		CCF0F4BC1ECDC57000E8D9C1 /* DownSyncable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownSyncable.swift; sourceTree = "<group>"; };
@@ -1260,16 +1254,13 @@
 		CBB4DD391EE08BC20071494A /* Prepare Events */ = {
 			isa = PBXGroup;
 			children = (
-				0BEE8AAD1EA600A7008077B8 /* PrepareEventAddNewTripTableViewCell.swift */,
-				0BEE8AAE1EA600A7008077B8 /* PrepareEventAddNewTripTableViewCell.xib */,
-				0BEE8AB31EA600A7008077B8 /* PrepareEventSimpleTableViewCell.swift */,
-				0BEE8AB41EA600A7008077B8 /* PrepareEventSimpleTableViewCell.xib */,
 				0BEE8AB61EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.swift */,
 				0BEE8AB71EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib */,
-				CCEA22A71E8AC55F003D0CF4 /* PrepareEventsViewController.swift */,
+				CBC9330D1F0AA47800C00007 /* PrepareEventsViewController.swift */,
+				CBC9330E1F0AA47800C00007 /* PrepareEventsViewController.xib */,
 				CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */,
-				0B1059841EA77AC700660A1D /* PrepareEventTableViewHeader.swift */,
-				0B1059851EA77AC700660A1D /* PrepareEventTableViewHeader.xib */,
+				85C3D6BB1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib */,
+				85C3D6BD1F0B920E00E0CBFE /* PrepareEventTableViewFooterView.swift */,
 			);
 			name = "Prepare Events";
 			sourceTree = "<group>";
@@ -1665,11 +1656,9 @@
 				CB8C34501EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.xib in Resources */,
 				CC7D21B11EFC1348007A062E /* WeeklyChoicesCell.xib in Resources */,
 				CC27E0C11EB355BC003E5B7F /* SidebarTableViewCell.xib in Resources */,
-				0B1059871EA77AC700660A1D /* PrepareEventTableViewHeader.xib in Resources */,
 				CC8813EC1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib in Resources */,
 				8514A48E1EE966C30086C70E /* PrepareContentMainHeaderTableViewCell.xib in Resources */,
 				0BC9F93A1E96118C009E8204 /* StatusTableViewCell.xib in Resources */,
-				0BEE8ABE1EA600A7008077B8 /* PrepareEventSimpleTableViewCell.xib in Resources */,
 				850A50BD1F0A97FF00350097 /* PrepareContentTopTabBarView.xib in Resources */,
 				CCA2DC691EF17BFA00D1DF6A /* LearnContentItemHeaderView.xib in Resources */,
 				CC3E5D4C1F0109B700B9E11F /* ArticleRelatedCell.xib in Resources */,
@@ -1679,7 +1668,6 @@
 				CC311A211EAF430B0020C869 /* SettingsButtonTableViewCell.xib in Resources */,
 				0B254D3F1E97994C006AA4C0 /* PrepareCollectionViewCell.xib in Resources */,
 				CB18BCC51EEAC2CE0035C1BB /* MockDownSyncConfirm.json in Resources */,
-				0BEE8ABA1EA600A7008077B8 /* PrepareEventAddNewTripTableViewCell.xib in Resources */,
 				0BEE8AC01EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib in Resources */,
 				CC13E2411EB1D72400C3CE46 /* LibraryCollectionCell.xib in Resources */,
 				CCC0C4CC1E828007002A8362 /* BentonSans_Regular.otf in Resources */,
@@ -1697,9 +1685,11 @@
 				CB18BCC11EEABFA60035C1BB /* MockStartSync.json in Resources */,
 				0BC1FF4C1E968E07007DE090 /* CollectionTableViewCell.xib in Resources */,
 				CB8C34561EAF7F200003AB65 /* styles.css in Resources */,
+				85C3D6BC1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib in Resources */,
 				CC335EE71EBC84780085F5C5 /* ContentItemTextTableViewCell.xib in Resources */,
 				D5EC34AD1EB0D32D00F86B09 /* LearnStrategyAudioPlayerView.xib in Resources */,
 				8514A48A1EE93D640086C70E /* PrepareContentFooterTableViewCell.xib in Resources */,
+				CBC933101F0AA47800C00007 /* PrepareEventsViewController.xib in Resources */,
 				CCA2DC6D1EF290DF00D1DF6A /* LearnContentItemBulletCell.xib in Resources */,
 				D5EC34B31EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.xib in Resources */,
 				0BD6F6BA1EA0E81E001EBC4D /* MyPrepTableViewCell.xib in Resources */,
@@ -1881,6 +1871,7 @@
 				CB9B07651EF929E50017F6C3 /* EKEvent+JSONEncodable.swift in Sources */,
 				CCCC211D1E8981AD00133839 /* ChatViewModel.swift in Sources */,
 				CBC9330A1F0A438600C00007 /* PrepareCheckListCoordinator.swift in Sources */,
+				CBC9330F1F0AA47800C00007 /* PrepareEventsViewController.swift in Sources */,
 				CC4F22F01EE023F4006C437E /* NSMutableAttributedString+Create.swift in Sources */,
 				0B2CA37B1ED2BC93006B355F /* SensorCollectionViewCell.swift in Sources */,
 				CBB4DCF51EDC10FA0071494A /* SyncRecordService.swift in Sources */,
@@ -1966,7 +1957,6 @@
 				CC05CB761EDEC6D700D15ABC /* CGPoint+Convenience.swift in Sources */,
 				CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */,
 				CB810E641EF00DB70043E3E5 /* User.swift in Sources */,
-				0BEE8ABD1EA600A7008077B8 /* PrepareEventSimpleTableViewCell.swift in Sources */,
 				852DADD21EF04DEA00A10882 /* AverageMeetingLengthView.swift in Sources */,
 				CC27E0C01EB355BC003E5B7F /* SidebarTableViewCell.swift in Sources */,
 				CCA2DC671EF17BCE00D1DF6A /* LearnContentItemHeaderView.swift in Sources */,
@@ -2078,8 +2068,6 @@
 				CC0FF8D21EA784400028D64F /* PartnersViewModel.swift in Sources */,
 				858AF6931EF904AB00486605 /* PeakPerformanceUpcomingChartView.swift in Sources */,
 				0BEE8ABF1EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.swift in Sources */,
-				0B1059861EA77AC700660A1D /* PrepareEventTableViewHeader.swift in Sources */,
-				0BEE8AB91EA600A7008077B8 /* PrepareEventAddNewTripTableViewCell.swift in Sources */,
 				CB8A152F1E76F27D0023B2F9 /* PageID.swift in Sources */,
 				CB8A154A1E7A7FA20023B2F9 /* CalendarImportManger.swift in Sources */,
 				CB8A154C1E7A8AD30023B2F9 /* CalendarImportTask.swift in Sources */,
@@ -2092,7 +2080,6 @@
 				CBC933081F052DDA00C00007 /* PrepareCoordinator.swift in Sources */,
 				D5485F241ED57F0600A08D1A /* SearchViewModel.swift in Sources */,
 				D5485F281ED583E300A08D1A /* SearchCollectionCell.swift in Sources */,
-				CCEA22A91E8AC55F003D0CF4 /* PrepareEventsViewController.swift in Sources */,
 				CC7C7A051F064F3F00DAAC14 /* User+Convenience.swift in Sources */,
 				852DADE01EF1741400A10882 /* TravelMaxTimeZoneChangesProgressWheel.swift in Sources */,
 				D5485F261ED583BC00A08D1A /* SearchTableCell.swift in Sources */,
@@ -2111,6 +2098,7 @@
 				CC96630A1EA1B27F00B84B1C /* MyDataViewModel.swift in Sources */,
 				CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */,
 				CB8A15311E76F31B0023B2F9 /* PageTrackable.swift in Sources */,
+				85C3D6BE1F0B920E00E0CBFE /* PrepareEventTableViewFooterView.swift in Sources */,
 				CC87F2591F03B92500312189 /* R.generated.swift in Sources */,
 				D58BD8771E9F65F7005676DE /* ArticleCollectionCell.swift in Sources */,
 				CC7D21A81EFC051B007A062E /* ArticleItemViewController.swift in Sources */,

@@ -54,6 +54,10 @@
 
 "Prepare.PrepareEvents.AddPreparation" = "ADD THIS PREPARATION TO";
 "Prepare.PrepareEvents.AddNewTrip" = "Add new trip";
+"Prepare.PrepareEvents.MyPrepList" = "MY PREP LIST";
+"Prepare.PrepareEvents.UpcomingEvents" = "UPCOMING EVENTS";
+"Prepare.PrepareEvents.YourDevice" = "YOUR DEVICE";
+"Prepare.PrepareEvents.SaveThisPreparation" = "Save this preparation";
 "Prepare.Content.ReadMore" = "Read more";
 "Prepare.Content.Tasks" = "Tasks";
 
