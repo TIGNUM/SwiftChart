@@ -45,7 +45,7 @@ final class PrepareContentViewController: UIViewController {
         }
         view.setup(title: R.string.localized.topTabBarItemTitlePerpareCoach(),
                     leftButtonIcon: R.image.ic_minimize(),
-                    rightButtonIcon: self.viewModel.displayMode == .normal ? R.image.ic_save() : nil,
+                    rightButtonIcon: self.viewModel.displayMode == .normal ? R.image.ic_save_prep() : nil,
                     delegate: self)
         return view
     }()

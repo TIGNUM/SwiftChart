@@ -29,7 +29,8 @@ final class MyPrepTableViewCell: UITableViewCell, Dequeueable {
         mainTextLabel.attributedText = NSMutableAttributedString(
             string: header.uppercased(),
             letterSpacing: 0.8,
-            font: Font.H4Headline
+            font: Font.H4Headline,
+            lineSpacing: 4
         )
         footerLabel.attributedText = NSMutableAttributedString(
             string: footer.uppercased(),
