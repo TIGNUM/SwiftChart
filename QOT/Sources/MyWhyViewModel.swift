@@ -32,7 +32,7 @@ final class MyWhyViewModel {
 enum MyWhy {
     case vision(Vision)
     case weeklyChoices(title: String, choices: [WeeklyChoice])
-    case partners(title: String, partners: [Partner])
+    case partners(title: String, partners: [PartnerWireframe])
 
     enum Index: Int {
         case vision = 0
@@ -53,9 +53,10 @@ protocol WeeklyChoice {
     var text: String { get }
 }
 
-protocol Partner {
+protocol PartnerWireframe {
     var localID: String { get }
-    var profileImage: UIImage? { get set }
+    var profileImage: UIImage? { get }
+    var profileImageURL: String? { get set }
     var name: String { get set }
     var surename: String { get set }
     var initials: String { get }
@@ -75,9 +76,10 @@ struct MockWeeklyChoice: WeeklyChoice {
     let text: String
 }
 
-class MockPartner: Partner {
+class MockPartner: PartnerWireframe {
     let localID: String
     var profileImage: UIImage?
+    var profileImageURL: String?
     var name: String
     var surename: String
     var relationship: String
@@ -150,7 +152,7 @@ private var weeklyChoices: [WeeklyChoice] {
     ]
 }
 
-private var partners: [Partner] {
+private var partners: [PartnerWireframe] {
     return [
         MockPartner(
             localID: UUID().uuidString,

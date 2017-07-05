@@ -25,7 +25,8 @@ final class CarouselCellView: UIView {
     @IBOutlet fileprivate weak var editImageViewEmail: UIImageView!
     fileprivate var index: Index = 0
     weak var partnersViewControllerDelegate: PartnersViewControllerDelegate?
-
+    fileprivate(set) var isEditing: Bool
+    
     // MARK: - Init
 
     convenience init(frame: CGRect, index: Index) {
@@ -35,6 +36,8 @@ final class CarouselCellView: UIView {
     }
 
     override init(frame: CGRect) {
+        isEditing = false
+        
         super.init(frame: frame)
 
         nibSetup()
@@ -49,58 +52,93 @@ final class CarouselCellView: UIView {
 
 extension CarouselCellView {
 
-    func setup(with name: String, surename: String, email: String, relationship: String, initials: String, profileImage: UIImage?) {
+    func setup(with name: String?, surename: String?, email: String?, relationship: String?, initials: String?, profileImage: UIImage?) {
         imageView.image = profileImage
+        if profileImage != nil {
+            editPictureButton.setTitle(R.string.localized.meSectorMyWhyPartnersChangePhoto(), for: .normal)
+        } else {
+            editPictureButton.setTitle(R.string.localized.meSectorMyWhyPartnersAddPhoto(), for: .normal)
+        }
         textFieldName.attributedText = NSMutableAttributedString(
-            string: name.uppercased(),
+            string: name ?? "",
+            letterSpacing: -1.1,
+            font: Font.H3Subtitle
+        )
+        textFieldName.attributedPlaceholder = NSMutableAttributedString(
+            string: R.string.localized.meSectorMyWhyPartnersName(),
             letterSpacing: -1.1,
             font: Font.H3Subtitle
         )
         textFieldSurname.attributedText = NSMutableAttributedString(
-            string: surename.uppercased(),
+            string: surename ?? "",
             letterSpacing: -1.1,
             font: Font.H3Subtitle
         )
+        textFieldSurname.attributedPlaceholder = NSMutableAttributedString(
+            string: R.string.localized.meSectorMyWhyPartnersSurname(),
+            letterSpacing: -1.1,
+            font: Font.H3Subtitle
+        )
+        
+        let grey = UIColor.white60
         textFieldMail.attributedText = NSMutableAttributedString(
-            string: email,
+            string: email ?? "",
             letterSpacing: 0,
-            font: Font.H7Title
+            font: Font.H7Title,
+            textColor: grey
+        )
+        textFieldMail.attributedPlaceholder = NSMutableAttributedString(
+            string: R.string.localized.meSectorMyWhyPartnersEmail(),
+            letterSpacing: 0,
+            font: Font.H7Title,
+            textColor: grey
         )
         textFieldSubtitle.attributedText = NSMutableAttributedString(
-            string: relationship.uppercased(),
-            letterSpacing: 2, font: Font.H7Tag
+            string: relationship ?? "",
+            letterSpacing: 2, font: Font.H7Tag,
+            textColor: grey
+        )
+        textFieldSubtitle.attributedPlaceholder = NSMutableAttributedString(
+            string: R.string.localized.meSectorMyWhyPartnersRelationship(),
+            letterSpacing: 2, font: Font.H7Tag,
+            textColor: grey
         )
         initialsLabel.attributedText = NSMutableAttributedString(
-            string: initials.uppercased(),
+            string: initials?.uppercased() ?? "",
             letterSpacing: 2,
             font: Font.H1MainTitle,
             lineSpacing: 0,
+            textColor: grey,
             alignment: .center
         )
-        initialsLabel.sizeToFit()
+        setupEditPictureButton()
     }
 
+    func update(viewModel: PartnersViewModel) {
+        viewModel.updateName(name: textFieldName.text!)
+        viewModel.updateSurname(surname: textFieldSurname.text!)
+        viewModel.updateRelationship(relationship: textFieldSubtitle.text!)
+        viewModel.updateEmail(email: textFieldMail.text!)
+        viewModel.save()
+    }
+    
     func edit(isEnabled: Bool) {
+        isEditing = isEnabled
+        
+        initialsLabel.isHidden = isEnabled
         textFieldName.isEnabled = isEnabled
         textFieldSurname.isEnabled = isEnabled
         textFieldSubtitle.isEnabled = isEnabled
         textFieldMail.isEnabled = isEnabled
-        editPictureButton.isHidden = (isEnabled == false)
+        
+        setupEditPictureButton()
         setupEditImageView(imageView: editImageViewEmail, isHidden: (isEnabled == false))
         setupEditImageView(imageView: editImageViewRelationship, isHidden: (isEnabled == false))
         setupEditImageView(imageView: editImageViewName, isHidden: (isEnabled == false))
-
+        
         if isEnabled == true {
             textFieldName.becomeFirstResponder()
         }
-    }
-
-    // TODO: We will hopefully change this in the near future!!!
-    func update(viewModel: PartnersViewModel) {
-        viewModel.updateName(name: textFieldName.text!)
-        viewModel.updateSurename(surename: textFieldSurname.text!)
-        viewModel.updateRelationship(relationship: textFieldSubtitle.text!)
-        viewModel.updateEmail(email: textFieldMail.text!)
     }
 
     func hideKeyboard() {
@@ -137,7 +175,18 @@ private extension CarouselCellView {
 
         addSubview(view)
         maskFoto(imageView: imageView)
-        edit(isEnabled: false)
+        isEditing = false
+    }
+    
+    func setupEditPictureButton() {
+        // the state of the edit picture button is complicated. it only shows if:
+        //  - editing
+        //  - not editing AND there are initials AND there is no image
+        if isEditing || (!isEditing && initialsLabel.text?.characters.count ?? 0 == 0 && imageView.image == nil) {
+            editPictureButton.isHidden = false
+        } else {
+            editPictureButton.isHidden = true
+        }
     }
 
     func setupEditImageView(imageView: UIImageView, isHidden: Bool) {
@@ -164,7 +213,7 @@ private extension CarouselCellView {
         let borderMask = CAShapeLayer()
         borderMask.path = clippingBorderPath.cgPath
         imageView.layer.mask = borderMask
-        imageView.layer.backgroundColor = UIColor.white.withAlphaComponent(0.3).cgColor
+        imageView.layer.backgroundColor = UIColor.white.withAlphaComponent(0.1).cgColor
         imageView.contentMode = .scaleAspectFill
     }
 }

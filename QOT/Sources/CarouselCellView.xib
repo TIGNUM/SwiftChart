@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -40,8 +40,8 @@
             <rect key="frame" x="0.0" y="0.0" width="186" height="424"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QQ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZC5-Nv-b5d">
-                    <rect key="frame" x="67" y="84" width="53.5" height="43"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZC5-Nv-b5d">
+                    <rect key="frame" x="93" y="105.5" width="0.0" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="36"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -63,42 +63,39 @@
                         <action selector="didTapChangePictureWithSender:" destination="-1" eventType="touchUpInside" id="CoE-rF-5ew"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BROTHER" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tec-JI-rRg">
-                    <rect key="frame" x="0.0" y="283" width="57" height="14"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="tec-JI-rRg">
+                    <rect key="frame" x="0.0" y="283" width="171" height="14"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="14" id="KCT-5B-4aj"/>
                     </constraints>
                     <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" name="BentonSans" family="BentonSans" pointSize="11"/>
-                    <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" keyboardAppearance="alert" returnKeyType="done"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="giorgiomorder@novartis.de" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Iw2-iV-KOy">
-                    <rect key="frame" x="0.0" y="309" width="155" height="14"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Iw2-iV-KOy">
+                    <rect key="frame" x="0.0" y="309" width="171" height="14"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="14" id="isY-vk-nvo"/>
                     </constraints>
                     <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="12"/>
-                    <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
+                    <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Giorgio" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Sl-OW-9lV">
-                    <rect key="frame" x="0.0" y="222" width="126" height="29"/>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="126" id="m4T-m2-NoI"/>
-                    </constraints>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="24"/>
-                    <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
-                </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Moroder" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dFz-9N-vPo">
-                    <rect key="frame" x="0.0" y="249" width="126" height="29"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="5Sl-OW-9lV">
+                    <rect key="frame" x="0.0" y="222" width="171" height="29"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="24"/>
-                    <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" keyboardAppearance="alert" returnKeyType="done"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="dFz-9N-vPo">
+                    <rect key="frame" x="0.0" y="249" width="171" height="29"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="24"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" keyboardAppearance="alert" returnKeyType="done"/>
                 </textField>
                 <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yvr-Iq-iZr">
                     <rect key="frame" x="176" y="228" width="10" height="10"/>
@@ -131,6 +128,7 @@
                 <constraint firstItem="ZNQ-j7-0ax" firstAttribute="leading" secondItem="oPG-k5-iC1" secondAttribute="leading" id="7cW-q6-9m0"/>
                 <constraint firstItem="5Sl-OW-9lV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="AO1-hR-Zyu"/>
                 <constraint firstItem="oPG-k5-iC1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Axi-sw-Kk0"/>
+                <constraint firstItem="Iw2-iV-KOy" firstAttribute="width" secondItem="tec-JI-rRg" secondAttribute="width" id="Dd1-jX-XDX"/>
                 <constraint firstItem="Iw2-iV-KOy" firstAttribute="leading" secondItem="5Sl-OW-9lV" secondAttribute="leading" id="FOZ-PV-86n"/>
                 <constraint firstItem="Iw2-iV-KOy" firstAttribute="leading" secondItem="dFz-9N-vPo" secondAttribute="leading" id="FcA-NU-zjo"/>
                 <constraint firstItem="oPG-k5-iC1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Hxi-AO-jw2"/>
@@ -146,7 +144,9 @@
                 <constraint firstItem="ZNQ-j7-0ax" firstAttribute="top" secondItem="oPG-k5-iC1" secondAttribute="top" id="YvA-vK-k4f"/>
                 <constraint firstItem="yvr-Iq-iZr" firstAttribute="top" secondItem="5Sl-OW-9lV" secondAttribute="top" constant="6" id="aEK-EU-uJS"/>
                 <constraint firstItem="ZC5-Nv-b5d" firstAttribute="centerY" secondItem="oPG-k5-iC1" secondAttribute="centerY" id="cSD-mG-s0a"/>
+                <constraint firstItem="yvr-Iq-iZr" firstAttribute="leading" secondItem="5Sl-OW-9lV" secondAttribute="trailing" constant="5" id="eCF-fc-hLH"/>
                 <constraint firstItem="7ZD-U2-Xv1" firstAttribute="top" secondItem="Iw2-iV-KOy" secondAttribute="top" id="iU4-u8-goK"/>
+                <constraint firstItem="tec-JI-rRg" firstAttribute="width" secondItem="5Sl-OW-9lV" secondAttribute="width" id="ig3-fL-EXN"/>
                 <constraint firstItem="Iw2-iV-KOy" firstAttribute="top" secondItem="tec-JI-rRg" secondAttribute="bottom" constant="12" id="mQz-aR-2fE"/>
                 <constraint firstItem="tec-JI-rRg" firstAttribute="top" secondItem="dFz-9N-vPo" secondAttribute="bottom" constant="5" id="phY-ex-c5H"/>
                 <constraint firstItem="ZNQ-j7-0ax" firstAttribute="trailing" secondItem="oPG-k5-iC1" secondAttribute="trailing" id="ppm-cz-LzE"/>

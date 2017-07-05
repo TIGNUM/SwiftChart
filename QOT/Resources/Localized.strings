@@ -42,6 +42,16 @@
 "Me.Sector.My.Why.Vision.Title" = "My To Be Vision";
 "Me.Sector.My.Why.Weekly.Choices.Title" = "Weekly Choices";
 "Me.Sector.My.Why.Partners.Title" = "QOT Partners";
+"Me.Sector.My.Why.Partners.Header" = "ADD YOUR PARTNERS";
+"Me.Sector.My.Why.Partners.Name" = "Name";
+"Me.Sector.My.Why.Partners.Surname" = "Surname";
+"Me.Sector.My.Why.Partners.Relationship" = "Relationship";
+"Me.Sector.My.Why.Partners.Email" = "e-mail";
+"Me.Sector.My.Why.Partners.Add.Photo" = "Add Photo";
+"Me.Sector.My.Why.Partners.Change.Photo" = "Change Photo";
+"Me.Sector.My.Why.Partners.Photo.Error.Title" = "Error";
+"Me.Sector.My.Why.Partners.Photo.Error.Message" = "There was a problem updating your profile image. Please try again";
+"Me.Sector.My.Why.Partners.Photo.Error.OK.Button" = "OK";
 
 "Me.Sector.My.Statistics.Day" = "DAY";
 "Me.Sector.My.Statistics.Week" = "WEEK";
@@ -50,7 +60,6 @@
 "Me.Sector.My.Statistics.Month" = "MONTH";
 "Me.Sector.My.Statistics.Year" = "YEAR";
 "Me.Sector.My.Statistics.Weeks" = "%@ WEEKS";
-
 
 "Prepare.PrepareEvents.AddPreparation" = "ADD THIS PREPARATION TO";
 "Prepare.PrepareEvents.AddNewTrip" = "Add new trip";

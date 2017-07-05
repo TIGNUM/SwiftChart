@@ -16,7 +16,6 @@ final class PartnersCoordinator: ParentCoordinator {
     fileprivate let rootViewController: UIViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
-    fileprivate let partners: [Partner]
     fileprivate let selectedIndex: Index
     fileprivate let viewModel: PartnersViewModel
 
@@ -24,13 +23,24 @@ final class PartnersCoordinator: ParentCoordinator {
 
     // MARK: - Life Cycle
 
-    init(root: UIViewController, services: Services, eventTracker: EventTracker, partners: [Partner], selectedIndex: Index) {
+    init(root: UIViewController, services: Services, eventTracker: EventTracker, selectedIndex: Index) {
         self.rootViewController = root
         self.services = services
         self.eventTracker = eventTracker
-        self.partners = partners
         self.selectedIndex = selectedIndex
-        self.viewModel = PartnersViewModel(items: partners, selectedIndex: selectedIndex, headline: "Lore ipsum impsum plus")
+        
+        let items: [PartnerIntermediary] = services.partnerService.partners().map({ (partner: Partner) -> PartnerIntermediary in
+            return PartnerIntermediary(
+                localID: partner.localID,
+                profileImage: partner.profileImage,
+                profileImageURL: partner.profileImageURL,
+                name: partner.name ?? "",
+                surname: partner.surname ?? "",
+                initials: partner.initials,
+                relationship: partner.relationship ?? "",
+                email: partner.email ?? "")
+        })
+        self.viewModel = PartnersViewModel(items: items, selectedIndex: selectedIndex, headline: "Lore ipsum impsum plus")
     }
 
     func start() {
@@ -51,6 +61,10 @@ final class PartnersCoordinator: ParentCoordinator {
         topTabBarController.delegate = self
         rootViewController.present(topTabBarController, animated: true)
     }
+    
+    func save() {
+        services.partnerService.update(viewModel.items.flatMap({$0}), completion: nil)
+    }
 }
 
 // MARK: - TopTabBarDelegate
@@ -62,6 +76,7 @@ extension PartnersCoordinator: TopTabBarDelegate {
     }
 
     func didSelectLeftButton(sender: TopTabBarController) {
+        save()
         sender.dismiss(animated: true, completion: nil)
     }
 

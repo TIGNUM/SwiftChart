@@ -17,6 +17,7 @@ final class Services {
     let articleService: ArticleService
     let prepareContentService: PrepareContentService
     let questionsService: QuestionsService
+    let partnerService: PartnerService
     let userService: UserService
     lazy var trackingService: EventTracker = {
         return EventTracker(realmProvider: { return try Realm() })
@@ -28,12 +29,14 @@ final class Services {
         articleService: ArticleService,
         prepareContentService: PrepareContentService,
         questionsService: QuestionsService,
+        partnerService: PartnerService,
         userService: UserService) {
             self.mainRealm = mainRealm
             self.contentService = contentService
             self.articleService = articleService
             self.prepareContentService = prepareContentService
             self.questionsService = questionsService
+            self.partnerService = partnerService
             self.userService = userService
     }
 
@@ -56,6 +59,7 @@ final class Services {
                     let articleService = ArticleService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let prepareContentService = PrepareContentService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let questionsService = QuestionsService(mainRealm: mainRealm, realmProvider: realmProvider)
+                    let partnerService = PartnerService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let userService = UserService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let services = Services(
                         mainRealm: mainRealm,
@@ -63,6 +67,7 @@ final class Services {
                         articleService: articleService,
                         prepareContentService: prepareContentService,
                         questionsService: questionsService,
+                        partnerService: partnerService,
                         userService: userService
                     )
 

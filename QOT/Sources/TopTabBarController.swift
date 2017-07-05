@@ -98,6 +98,11 @@ class TopTabBarController: UIViewController {
         }
 
         func theme(at index: Index) -> Theme {
+            guard index < themes.count else {
+                // FIXME: there is a bug here, index should never be out of bounds, maybe it's to do with 'selectedIndex'
+                // * open partners vc and then close, throws index out of bounds bug
+                return themes[0]
+            }
             return themes[index]
         }
     }

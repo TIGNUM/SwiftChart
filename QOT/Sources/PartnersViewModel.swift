@@ -8,18 +8,24 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 final class PartnersViewModel {
-
+    
     // MARK: - Properties
 
-    let items: [Partner]
+    private let kMaxItems = 3
+
+    var items: [PartnerIntermediary?]
     let headline: String
     private(set) var selectedIndex: Index
-    fileprivate var currentEditPartner: Partner?
-
-    init(items: [Partner], selectedIndex: Index, headline: String) {
+    fileprivate var currentEditPartner: PartnerIntermediary?
+    
+    init(items: [PartnerIntermediary], selectedIndex: Index, headline: String) {
         self.items = items
+        for _ in 0..<(kMaxItems - items.count) { // pad default items with placeholders
+            self.items.append(nil)
+        }
         self.selectedIndex = selectedIndex
         self.headline = headline.uppercased()
     }
@@ -27,80 +33,64 @@ final class PartnersViewModel {
     var itemCount: Int {
         return items.count
     }
-
-    func item(at index: Index) -> Partner {
+    
+    func item(at index: Index) -> PartnerIntermediary? {
         return items[index]
     }
 
     func updateIndex(index: Index) {
+        save()
         selectedIndex = index
-        saveCurrentEditPartnerIfNeeded()
+        currentEditPartner = item(at: index) ?? PartnerIntermediary(
+            localID: UUID().uuidString,
+            profileImage: nil,
+            profileImageURL: nil,
+            name: "", surname: "",
+            initials: "",
+            relationship: "",
+            email: "")
     }
 
     func updateName(name: String) {
-        didSelectEditPartner()
         currentEditPartner?.name = name
+        updateInitials(initials: currentEditPartner?.generateInitials() ?? "")
     }
 
-    func updateSurename(surename: String) {
-        didSelectEditPartner()
-        currentEditPartner?.surename = surename
+    func updateSurname(surname: String) {
+        currentEditPartner?.surname = surname
+        updateInitials(initials: currentEditPartner?.generateInitials() ?? "")
+    }
+    
+    func updateInitials(initials: String) {
+        currentEditPartner?.initials = initials
     }
 
     func updateRelationship(relationship: String) {
-        didSelectEditPartner()
         currentEditPartner?.relationship = relationship
     }
 
     func updateEmail(email: String) {
-        didSelectEditPartner()
         currentEditPartner?.email = email
     }
 
-    func updateProfileImage(image: UIImage) {
-        didSelectEditPartner()
-        currentEditPartner?.profileImage = image        
+    func updateProfileImage(image: UIImage) -> Error? {
+        guard let localID = currentEditPartner?.localID else {
+            return nil
+        }
+        do {
+            let url = try image.save(withName: localID)
+            currentEditPartner?.profileImage = image
+            currentEditPartner?.profileImageURL = url.absoluteString
+            return nil
+        } catch {
+            return error
+        }
     }
 
-    func didSelectEditPartner() {
-        let partnerToEdit = item(at: selectedIndex)
-
-        currentEditPartner = MockPartner(
-            localID: partnerToEdit.localID,
-            profileImage: partnerToEdit.profileImage,
-            name: partnerToEdit.name,
-            surename: partnerToEdit.surename,
-            relationship: partnerToEdit.relationship,
-            email: partnerToEdit.email
-        )
-    }
-
-    func didTapSaveChanges() {
+    func save() {
         guard let updatedPartner = currentEditPartner else {
             return
         }
-
-        var partnerToUpdate = item(at: selectedIndex)
-        partnerToUpdate.profileImage = updatedPartner.profileImage
-        partnerToUpdate.name = updatedPartner.name
-        partnerToUpdate.surename = updatedPartner.surename
-        partnerToUpdate.relationship = updatedPartner.relationship
-        partnerToUpdate.email = updatedPartner.email
-
-        currentEditPartner = nil
-    }
-}
-
-// MARK: - Private Methods
-
-private extension PartnersViewModel {
-
-    func saveCurrentEditPartnerIfNeeded() {
-        guard currentEditPartner != nil else {
-            return
-        }
-
-        didTapSaveChanges()
-        didSelectEditPartner()
+        items[selectedIndex] = updatedPartner
     }
 }

@@ -43,7 +43,7 @@ class PartnersViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setBackgroundColor()
         setupCarousel()
         setupHeadline()
@@ -66,12 +66,14 @@ private extension PartnersViewController {
             font: Font.H1MainTitle,
             alignment: .left
         )
+        bigLabel.text = R.string.localized.meSectorMyWhyPartnersHeader()
     }
 
     func setupCarousel() {
         carousel.type = .linear
         carousel.isPagingEnabled = true
         carousel.contentOffset = CGSize(width: -64, height: 0)
+        viewModel.updateIndex(index: carousel.currentItemIndex)
     }
 
     func scrollAnimated(topInset: CGFloat) {
@@ -86,20 +88,32 @@ private extension PartnersViewController {
 extension PartnersViewController {
 
     func editCurrentItem() {
+        if valueEditing == true {
+            stopEditing()
+        } else {
+            startEditing()
+        }
+    }
+    
+    func startEditing() {
         guard let view = carousel.currentItemView as? CarouselCellView else {
             return
         }
-
-        if valueEditing == true {
-            valueEditing = false
-            view.update(viewModel: viewModel)
-            view.edit(isEnabled: false)
-            scrollAnimated(topInset: 0)
-            view.hideKeyboard()
-        } else {
-            valueEditing = true
-            view.edit(isEnabled: true)
+        valueEditing = true
+        viewModel.updateIndex(index: carousel.currentItemIndex)
+        view.edit(isEnabled: true)
+    }
+    
+    func stopEditing() {
+        guard let view = carousel.currentItemView as? CarouselCellView else {
+            return
         }
+        valueEditing = false
+        view.update(viewModel: viewModel)
+        view.edit(isEnabled: false)
+        carousel.reloadItem(at: carousel.currentItemIndex, animated: false) // flush ui changes
+        scrollAnimated(topInset: 0)
+        view.hideKeyboard()
     }
 }
 
@@ -117,52 +131,28 @@ extension PartnersViewController: iCarouselDataSource, iCarouselDelegate {
         let item = viewModel.item(at: index)
         view.setViewsTextFieldsDelegate(delegate: self)
         view.partnersViewControllerDelegate = self
-        view.setup(with: item.name,
-                   surename: item.surename,
-                   email: item.email,
-                   relationship: item.relationship,
-                   initials: item.initials,
-                   profileImage: item.profileImage
-        )
-
+        view.setup(with: item?.name,
+                   surename: item?.surname,
+                   email: item?.email,
+                   relationship: item?.relationship,
+                   initials: item?.initials,
+                   profileImage: item?.profileImage)
         return view
     }
 
     func carousel(_ carousel: iCarousel, valueFor option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
-
         return option == .spacing ? value * 1.1 : value
     }
 
-    func carouselWillBeginDragging(_ carousel: iCarousel) {
-        if valueEditing == true {
-            guard let view = carousel.currentItemView as? CarouselCellView else {
-                return
-            }
-
-            view.edit(isEnabled: false)
-            view.update(viewModel: viewModel)
-            view.hideKeyboard()
-            scrollAnimated(topInset: 0)
-        }
-    }
-
     func carouselCurrentItemIndexDidChange(_ carousel: iCarousel) {
-        if valueEditing == true {
-            guard let view = carousel.currentItemView as? CarouselCellView else {
-                return
-            }
-
-            view.edit(isEnabled: true)
-        }
+        viewModel.updateIndex(index: carousel.currentItemIndex)
     }
-
-    func carouselWillBeginScrollingAnimation(_ carousel: iCarousel) {
-        guard let view = carousel.currentItemView as? CarouselCellView else {
-            return
+    
+    func carouselDidEndDecelerating(_ carousel: iCarousel) {
+        // FIXME: seems like iCarousel dismisses keyboard on each right swipe. so if we're editing, we bring the keyboard back up by triggering startEditing() again
+        if valueEditing {
+            startEditing()
         }
-
-        view.hideKeyboard()
-        scrollAnimated(topInset: 0)
     }
 }
 
@@ -179,9 +169,17 @@ extension PartnersViewController: UITextFieldDelegate {
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        scrollAnimated(topInset: 0)
+        if valueEditing == true {
+            stopEditing()
+        }
         return false
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if valueEditing == false {
+            startEditing()
+        }
+        return true
     }
 }
 
@@ -242,8 +240,22 @@ extension PartnersViewController: RSKImageCropViewControllerDelegate {
     func imageCropViewController(_ controller: RSKImageCropViewController, didCropImage croppedImage: UIImage, usingCropRect cropRect: CGRect) {
         imagePicker?.dismiss(animated: false, completion: nil)
         controller.dismiss(animated: true, completion: nil)
-        viewModel.updateProfileImage(image: croppedImage)
-        carousel.reloadData()
+      
+        let error = viewModel.updateProfileImage(image: croppedImage)
+        if error != nil {
+            let alertController = UIAlertController(
+                title: R.string.localized.meSectorMyWhyPartnersPhotoErrorTitle(),
+                message: R.string.localized.meSectorMyWhyPartnersPhotoErrorMessage(),
+                preferredStyle: .alert)
+            let alertAction = UIAlertAction(
+                title: R.string.localized.meSectorMyWhyPartnersPhotoErrorOKButton(),
+                style: .default)
+            alertController.addAction(alertAction)
+            present(alertController, animated: true, completion: nil)
+        } else {
+            viewModel.save()
+            carousel.reloadData()
+        }
     }
 }
 

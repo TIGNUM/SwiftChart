@@ -16,7 +16,7 @@ class MyWhyView: UIView, MyUniverseView {
     let myWhyViewModel: MyWhyViewModel
     let screenType: MyUniverseViewController.ScreenType
     lazy var weeklyChoices = [WeeklyChoice]()
-    lazy var partners = [Partner]()
+    lazy var partners = [PartnerWireframe]()
     fileprivate var vision: Vision!
     weak var delegate: MyWhyViewDelegate?
 
@@ -108,7 +108,7 @@ private extension MyWhyView {
         addSubview(footerLabel(with: title, labelFrame: layout.myWhyWeeklyChoicesFooterFrame))
     }
 
-    func addPartners(layout: Layout.MeSection, title: String, partners: [Partner]) {
+    func addPartners(layout: Layout.MeSection, title: String, partners: [PartnerWireframe]) {
         let buttonOffset = layout.profileImageWidth * 0.4
         var xPos = layout.myWhyPartnersFooterXPos
         let yPos = layout.myWhyPartnersFooterYPos - buttonOffset

@@ -88,4 +88,3 @@ extension PrepareCheckListCoordinator: PrepareContentViewControllerDelegate {
         log("didTapReadMore: ID: \(readMoreID)")
     }
 }
-
