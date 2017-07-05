@@ -90,5 +90,9 @@
 
 "Library.Footer.View.Label" = "Scroll To Finish";
 
+"MorningController.titleLabel" = "MORNING INTERVIEW";
+"MorningController.nextButton" = "Next";
+"MorningController.doneButton" = "Done";
+
 "ActivityView.WeekButton" = "WEEK";
 "ActivityView.MonthButton" = "MONTH";

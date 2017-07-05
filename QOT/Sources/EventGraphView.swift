@@ -60,7 +60,7 @@ final class EventGraphView: UIView {
         case .normalColor:
             layer.fillColor = UIColor.white8.cgColor
         case .lowColor:
-            layer.fillColor = UIColor.whiteLightTwo.cgColor
+            layer.fillColor = UIColor.whiteLight40.cgColor
             layer.addGlowEffect(color: .white)
         }
         return layer

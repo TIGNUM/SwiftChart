@@ -329,6 +329,9 @@
 		D58BD8771E9F65F7005676DE /* ArticleCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58BD8751E9F65F7005676DE /* ArticleCollectionCell.swift */; };
 		D58BD8781E9F65F7005676DE /* ArticleCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D58BD8761E9F65F7005676DE /* ArticleCollectionCell.xib */; };
 		D5A64D941EE801970095D01C /* SleepChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A64D931EE801970095D01C /* SleepChartView.swift */; };
+		D5B707261F03A2BF00C812EB /* MorningInterviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B707251F03A2BF00C812EB /* MorningInterviewViewModel.swift */; };
+		D5B707281F03A2CC00C812EB /* MorningInterviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B707271F03A2CC00C812EB /* MorningInterviewViewController.swift */; };
+		D5B7072A1F03AB3900C812EB /* MorningInterviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B707291F03AB3900C812EB /* MorningInterviewCell.swift */; };
 		D5A7671E1EFA700500562CB6 /* IntensityAverageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A7671D1EFA700500562CB6 /* IntensityAverageView.swift */; };
 		D5A767261EFAB9E800562CB6 /* DottedGridWithIntensityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A767251EFAB9E800562CB6 /* DottedGridWithIntensityView.swift */; };
 		D5A767281EFABD1200562CB6 /* IntensityContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A767271EFABD1200562CB6 /* IntensityContainerView.swift */; };
@@ -688,6 +691,9 @@
 		D58BD8751E9F65F7005676DE /* ArticleCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCollectionCell.swift; sourceTree = "<group>"; };
 		D58BD8761E9F65F7005676DE /* ArticleCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleCollectionCell.xib; sourceTree = "<group>"; };
 		D5A64D931EE801970095D01C /* SleepChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepChartView.swift; sourceTree = "<group>"; };
+		D5B707251F03A2BF00C812EB /* MorningInterviewViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewViewModel.swift; sourceTree = "<group>"; };
+		D5B707271F03A2CC00C812EB /* MorningInterviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewViewController.swift; sourceTree = "<group>"; };
+		D5B707291F03AB3900C812EB /* MorningInterviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewCell.swift; sourceTree = "<group>"; };
 		D5A7671D1EFA700500562CB6 /* IntensityAverageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntensityAverageView.swift; sourceTree = "<group>"; };
 		D5A767251EFAB9E800562CB6 /* DottedGridWithIntensityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DottedGridWithIntensityView.swift; sourceTree = "<group>"; };
 		D5A767271EFABD1200562CB6 /* IntensityContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntensityContainerView.swift; sourceTree = "<group>"; };
@@ -1033,6 +1039,7 @@
 				CBB4DD401EE08F600071494A /* Sidebar */,
 				CBB4DD371EE08ABE0071494A /* Tab Bar */,
 				CC7D21B51EFC134E007A062E /* Weekly Choices */,
+				D5B707241F03A21E00C812EB /* Morning Interview */,
 			);
 			name = "View Layer";
 			sourceTree = "<group>";
@@ -1597,6 +1604,16 @@
 			name = "Learn Content Item";
 			sourceTree = "<group>";
 		};
+		D5B707241F03A21E00C812EB /* Morning Interview */ = {
+			isa = PBXGroup;
+			children = (
+				D5B707251F03A2BF00C812EB /* MorningInterviewViewModel.swift */,
+				D5B707271F03A2CC00C812EB /* MorningInterviewViewController.swift */,
+				D5B707291F03AB3900C812EB /* MorningInterviewCell.swift */,
+			);
+			name = "Morning Interview";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1919,6 +1936,7 @@
 				8514A4921EEAA2AE0086C70E /* UILabel+AttributedText.swift in Sources */,
 				CC0FF8D41EA788350028D64F /* PartnersViewController.swift in Sources */,
 				CC8018261F028F1D0040B03F /* LibraryFooterView.swift in Sources */,
+				D5B707281F03A2CC00C812EB /* MorningInterviewViewController.swift in Sources */,
 				CB27D59D1ECCB6DD00F2B76C /* NetworkError.swift in Sources */,
 				852DADD61EF051C400A10882 /* UIView+Layers.swift in Sources */,
 				CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */,
@@ -1978,6 +1996,7 @@
 				CB0A4A5A1ECC4C3E006A2D85 /* AddSensorViewModel.swift in Sources */,
 				CB3437551EFD1C2600D89D4F /* PrepareChatDecisionManager.swift in Sources */,
 				D50CDDC11EC48CA700D27072 /* AverageGraphView.swift in Sources */,
+				D5B7072A1F03AB3900C812EB /* MorningInterviewCell.swift in Sources */,
 				CBB4DD0D1EDEAA610071494A /* URLRequestBuilder.swift in Sources */,
 				CB9B076D1EFAAB6E0017F6C3 /* UpSyncCalendarEventsOperation.swift in Sources */,
 				CBC9330C1F0A51EE00C00007 /* CreatePreparationCoordinator.swift in Sources */,
@@ -2095,6 +2114,7 @@
 				CC944DB61EE804CD00B8423C /* MyStatisticsTableViewCell.swift in Sources */,
 				CB9B075C1EF911AD0017F6C3 /* IntObject.swift in Sources */,
 				CC0FF8D61EA78C810028D64F /* MyToBeVisionCoordinator.swift in Sources */,
+				D5B707261F03A2BF00C812EB /* MorningInterviewViewModel.swift in Sources */,
 				CB34375E1EFD653B00D89D4F /* Answer.swift in Sources */,
 				0BA3E6421EC1A8280012999E /* DayEventChartView.swift in Sources */,
 				852DADE61EF1A40200A10882 /* SegmentedView.swift in Sources */,
@@ -2314,15 +2334,15 @@
 			baseConfigurationReference = 2F1C8D6D4864F462A3F805BB /* Pods-QOT.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = TFH2SGDX62;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/QOT/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.v2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d3bf3ce8-2a79-48f2-8f0b-f94ebe2d9c10";
-				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc com.tignum.qot.v2";
+				PROVISIONING_PROFILE = "15ea5272-a8b1-4f61-80f5-b0d1967745b7";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.tignum.qot.v2";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

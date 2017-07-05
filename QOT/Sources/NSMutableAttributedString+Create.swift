@@ -43,6 +43,9 @@ enum Style {
     case tag(String, UIColor)
     case paragraph(String, UIColor)
     case qoute(String, UIColor)
+    case question(String, UIColor)
+    case sub(String, UIColor)
+    case num(String, UIColor)
 
     private var font: UIFont {
         switch self {
@@ -55,6 +58,9 @@ enum Style {
         case .tag: return Font.H7Tag
         case .paragraph: return Font.H7Title
         case .qoute: return Font.Qoute
+        case .question: return Font.H9Title
+        case .sub: return Font.H8Subtitle
+        case .num: return Font.H0Number
         }
     }
 
@@ -87,6 +93,12 @@ enum Style {
             return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, alignment: alignment))
         case .qoute(let string, let color):
             return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, alignment: .right))
+        case .question(let string, let color):
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, alignment: .center))
+        case .sub(let string, let color):
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, alignment: .center))
+        case .num(let string, let color):
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, alignment: .center))
         }
     }
 }

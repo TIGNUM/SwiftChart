@@ -212,6 +212,9 @@ struct Font {
         }
     }
 
+    /// SIMPLE REGUAR 72 // Number title
+    static let H0Number = UIFont.simpleFont(ofSize: 72)
+
     /// SIMPLE REGULAR 36 // main post title
     static let H1MainTitle = UIFont.simpleFont(ofSize: 36)
 
@@ -241,6 +244,12 @@ struct Font {
 
     /// BENTON SAN BOOK 11 // title
     static let H7Title = UIFont.bentonBookFont(ofSize: 11)
+
+    /// BENTON SAN BOOK 19 // title
+    static let H9Title = UIFont.bentonBookFont(ofSize: 19)
+
+    /// BENTON SAN BOOK 18 // subtitile
+    static let H8Subtitle = UIFont.bentonBookFont(ofSize: 18)
 
     /// BENTON SANS 13 // paragraph, body text
     static let PTextSmall = UIFont.bentonRegularFont(ofSize: 13)
