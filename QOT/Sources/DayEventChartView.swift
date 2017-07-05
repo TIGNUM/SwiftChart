@@ -47,7 +47,7 @@ final class DayEventChartView: UIView {
         shapeLayer.strokeColor = color.cgColor
         shapeLayer.lineCap = kCALineCapRound
         shapeLayer.backgroundColor = UIColor.clear.cgColor
-
+        
         self.layer.addSublayer(shapeLayer)
     }
 }

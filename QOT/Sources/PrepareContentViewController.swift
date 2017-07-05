@@ -255,7 +255,7 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
 
         var headerHeight = text.height(withConstrainedWidth: frameWidth, font: font)
 
-        headerHeight = headerHeight / lineHeight * dispayedLineHeight
+        headerHeight /= lineHeight * dispayedLineHeight
 
         return headerHeight
     }

@@ -174,15 +174,20 @@ private extension MyStatisticsCardCell {
     }
 
     func addAverageGraphGridView(data: [CGFloat]) {
-        var items: [EventGraphView.Item] = []
-        data.forEach { (item) in
-            let eventItem = EventGraphView.Item(start: item - 0.2, end: item + 0.2, color: EventGraphView.Color.lowColor)
-            items.append(eventItem)
+         func mockData() -> [IntensityAverageView.Column] {
+            let items: [IntensityAverageView.Item] = [
+                IntensityAverageView.Item.init(start: 0.9, end: 0.5, color: IntensityAverageView.Color.normalColor),
+                IntensityAverageView.Item.init(start: 0.1, end: 0.4, color: IntensityAverageView.Color.criticalColor)
+            ]
+
+            let column = IntensityAverageView.Column(items: items, eventWidth: 10)
+
+            return [column, column, column, column, column, column, column]
         }
-        let columns = EventGraphView.Column(items: items, width: centerContentView.bounds.width - 20)
-        let averageGraphGridView = AverageGraphGridView(frame: centerContentView.bounds)
-        averageGraphGridView.configure(columns: [columns, columns, columns, columns, columns, columns], value: data[0], knobColor: .green, lineColor: .brown)
-        centerContentView.addSubview(averageGraphGridView)
+        let names = ["M", "T", "w", "T", "F", "s"]
+        let view = IntensityContainerView.init(frame: centerContentView.bounds, items: mockData(), dayNames: names)
+
+        centerContentView.addSubview(view)
     }
 
     func addAverageGraphView(data: [CGFloat]) {

@@ -89,3 +89,6 @@
 "Alert.Button.Title.Cancel" = "Cancel";
 
 "Library.Footer.View.Label" = "Scroll To Finish";
+
+"ActivityView.WeekButton" = "WEEK";
+"ActivityView.MonthButton" = "MONTH";

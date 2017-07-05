@@ -329,9 +329,13 @@
 		D58BD8771E9F65F7005676DE /* ArticleCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58BD8751E9F65F7005676DE /* ArticleCollectionCell.swift */; };
 		D58BD8781E9F65F7005676DE /* ArticleCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D58BD8761E9F65F7005676DE /* ArticleCollectionCell.xib */; };
 		D5A64D941EE801970095D01C /* SleepChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A64D931EE801970095D01C /* SleepChartView.swift */; };
+		D5A7671E1EFA700500562CB6 /* IntensityAverageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A7671D1EFA700500562CB6 /* IntensityAverageView.swift */; };
+		D5A767261EFAB9E800562CB6 /* DottedGridWithIntensityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A767251EFAB9E800562CB6 /* DottedGridWithIntensityView.swift */; };
+		D5A767281EFABD1200562CB6 /* IntensityContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A767271EFABD1200562CB6 /* IntensityContainerView.swift */; };
 		D5B761871EE6B19C00AE178B /* SpacingInLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B761861EE6B19C00AE178B /* SpacingInLabel.swift */; };
 		D5CB5BBE1EF2D45F0029D224 /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CB5BBD1EF2D45F0029D224 /* ContainerView.swift */; };
 		D5CD23D81E8BB73A002742C4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CD23D71E8BB73A002742C4 /* TabBarController.swift */; };
+		D5D6F4B91EFBFDF200848D85 /* MyStatisticsIntensityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D6F4B81EFBFDF200848D85 /* MyStatisticsIntensityData.swift */; };
 		D5DDAA3C1EAA136C0053C5D6 /* DashPatternView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DDAA3B1EAA136C0053C5D6 /* DashPatternView.swift */; };
 		D5EC34AB1EB0D2FC00F86B09 /* LearnStrategyAudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EC34AA1EB0D2FC00F86B09 /* LearnStrategyAudioPlayerView.swift */; };
 		D5EC34AD1EB0D32D00F86B09 /* LearnStrategyAudioPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5EC34AC1EB0D32D00F86B09 /* LearnStrategyAudioPlayerView.xib */; };
@@ -684,9 +688,13 @@
 		D58BD8751E9F65F7005676DE /* ArticleCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCollectionCell.swift; sourceTree = "<group>"; };
 		D58BD8761E9F65F7005676DE /* ArticleCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleCollectionCell.xib; sourceTree = "<group>"; };
 		D5A64D931EE801970095D01C /* SleepChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepChartView.swift; sourceTree = "<group>"; };
+		D5A7671D1EFA700500562CB6 /* IntensityAverageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntensityAverageView.swift; sourceTree = "<group>"; };
+		D5A767251EFAB9E800562CB6 /* DottedGridWithIntensityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DottedGridWithIntensityView.swift; sourceTree = "<group>"; };
+		D5A767271EFABD1200562CB6 /* IntensityContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntensityContainerView.swift; sourceTree = "<group>"; };
 		D5B761861EE6B19C00AE178B /* SpacingInLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpacingInLabel.swift; sourceTree = "<group>"; };
 		D5CB5BBD1EF2D45F0029D224 /* ContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
 		D5CD23D71E8BB73A002742C4 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		D5D6F4B81EFBFDF200848D85 /* MyStatisticsIntensityData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsIntensityData.swift; sourceTree = "<group>"; };
 		D5DDAA3B1EAA136C0053C5D6 /* DashPatternView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashPatternView.swift; sourceTree = "<group>"; };
 		D5EC34AA1EB0D2FC00F86B09 /* LearnStrategyAudioPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnStrategyAudioPlayerView.swift; sourceTree = "<group>"; };
 		D5EC34AC1EB0D32D00F86B09 /* LearnStrategyAudioPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyAudioPlayerView.xib; sourceTree = "<group>"; };
@@ -1161,16 +1169,19 @@
 				852DADD11EF04DEA00A10882 /* AverageMeetingLengthView.swift */,
 				852DADD31EF0504000A10882 /* AverageMeetingLengthViewProgressWheel.swift */,
 				852DADD91EF147AA00A10882 /* AverageMeetingBetweenLengthView.swift */,
-				852DADDB1EF1484C00A10882 /* AverageMeetingBetweenLengthProgressView.swift */,
 				852DADEB1EF2BE3C00A10882 /* UpcomingTravelsView.swift */,
 				85DC6F821EF3C161004F4B4D /* UpcomingTravelsChartView.swift */,
 				85DC6F861EF40767004F4B4D /* TravelTripsPeriodView.swift */,
 				85DC6F881EF40B36004F4B4D /* TravelTripsPeriodChartView.swift */,
+				852DADDB1EF1484C00A10882 /* AverageMeetingBetweenLengthProgressView.swift */,
 				852DADDF1EF1741400A10882 /* TravelMaxTimeZoneChangesProgressWheel.swift */,
 				852DADDD1EF1737700A10882 /* TravelMaxTimeZoneChangesView.swift */,
 				852020341EF8300800EA2032 /* PeakPerformanceUpcomingView.swift */,
 				858AF6921EF904AB00486605 /* PeakPerformanceUpcomingChartView.swift */,
 				852DADE71EF26B1D00A10882 /* PeakPerformanceAverageProgressWheel.swift */,
+				D5A7671D1EFA700500562CB6 /* IntensityAverageView.swift */,
+				D5A767251EFAB9E800562CB6 /* DottedGridWithIntensityView.swift */,
+				D5A767271EFABD1200562CB6 /* IntensityContainerView.swift */,
 			);
 			name = Charts;
 			sourceTree = "<group>";
@@ -1218,6 +1229,7 @@
 				CC143A521EC49641001FB76E /* MyStatisticsViewController.swift */,
 				CC143A4E1EC47810001FB76E /* MyStatisticsViewModel.swift */,
 				CC944DB71EE8096100B8423C /* MyStatisticsCardCell.swift */,
+				D5D6F4B81EFBFDF200848D85 /* MyStatisticsIntensityData.swift */,
 				CC944DB91EE809AA00B8423C /* MyStatisticsCardCell.xib */,
 				852DADCB1EEFD93200A10882 /* MyStatisticsData.swift */,
 				852DADCF1EF048E800A10882 /* MyStatisticsDataAverage.swift */,
@@ -1900,6 +1912,9 @@
 				0B2CA37B1ED2BC93006B355F /* SensorCollectionViewCell.swift in Sources */,
 				CBB4DCF51EDC10FA0071494A /* SyncRecordService.swift in Sources */,
 				D51B5C4A1E8D0E7E0084A65B /* LearnContentLayout.swift in Sources */,
+				D5A767261EFAB9E800562CB6 /* DottedGridWithIntensityView.swift in Sources */,
+				CCE5796B1ECB55BE006E0D45 /* SidebarContentItem.swift in Sources */,
+				CBDB99101E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift in Sources */,
 				852DADE41EF190D100A10882 /* MyStatisticsDataPeriodAverage.swift in Sources */,
 				8514A4921EEAA2AE0086C70E /* UILabel+AttributedText.swift in Sources */,
 				CC0FF8D41EA788350028D64F /* PartnersViewController.swift in Sources */,
@@ -1991,13 +2006,18 @@
 				CCCC211C1E8981AD00133839 /* ChatViewController.swift in Sources */,
 				CC9663161EA1B41500B84B1C /* MyUniverseHelper.swift in Sources */,
 				CC3DFB661E83C19C00FF28DF /* Defines.swift in Sources */,
+				CCD377531E8D3C2D00BB8031 /* WhatsHotNewTemplateViewController.swift in Sources */,
+				D5D6F4B91EFBFDF200848D85 /* MyStatisticsIntensityData.swift in Sources */,
+				CC56D0AB1EEAD65300EB71D9 /* LearnWhatsHotContentCollection.swift in Sources */,
 				CC9663151EA1B41500B84B1C /* MyUniverseViewController.swift in Sources */,
 				CB1D5E3F1EC5E25A00BCDF8D /* ContentItemValue.swift in Sources */,
+				D5A7671E1EFA700500562CB6 /* IntensityAverageView.swift in Sources */,
 				CB6D49541ECC87BF005BC637 /* Requests.swift in Sources */,
 				D50D6C241EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift in Sources */,
 				CC335EE91EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift in Sources */,
 				CB369CE21E8D5E3D00522293 /* Services.swift in Sources */,
 				CC8D6D051EC316BF007AE687 /* LearnContentItemViewModel.swift in Sources */,
+				D5A767281EFABD1200562CB6 /* IntensityContainerView.swift in Sources */,
 				CCC1B6A81E8B9B7300D1461F /* LearnCategoryLayout.swift in Sources */,
 				CCC0C4DB1E82BDEF002A8362 /* TabBarCoordinator.swift in Sources */,
 				CB369CDB1E8D3E5700522293 /* RealmProvider.swift in Sources */,
