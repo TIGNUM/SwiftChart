@@ -8,21 +8,15 @@
 
 import Foundation
 import ReactiveKit
+import EventKit
 
 final class PrepareEventsViewModel {
 
-    struct Event {
-        let eventIdentifier: String
-        let title: String
-        let startDate: Date
-        let endDate: Date
-    }
-
-    private let events: [Event]
+    private let events: [EKEvent]
 
     let preparationTitle: String
 
-    init(preparationTitle: String, events: [Event]) {
+    init(preparationTitle: String, events: [EKEvent]) {
         self.preparationTitle = preparationTitle
         self.events = events
     }
@@ -31,17 +25,7 @@ final class PrepareEventsViewModel {
         return events.count
     }
 
-    func event(index: Index) -> Event {
+    func event(index: Index) -> EKEvent {
         return events[index]
-    }
-}
-
-extension PrepareEventsViewModel {
-
-    static var mock: PrepareEventsViewModel {
-        let events: [Event] = ["Meeting at Novartis", "Meeting with NOS", "Presenetation at DB"].map { (title) -> Event in
-            return Event(eventIdentifier: UUID().uuidString, title: title, startDate: Date(), endDate: Date())
-        }
-        return PrepareEventsViewModel(preparationTitle: "My Negotiation Prep // 23.04.17", events: events)
     }
 }

@@ -21,6 +21,10 @@ final class Preparation: Object {
 
     private(set) dynamic var eventID: String?
 
+    private(set) dynamic var title: String = ""
+
+    private(set) dynamic var subtitle: String = ""
+
     private(set) dynamic var deleted: Bool = false
 
     private(set) dynamic var dirty: Bool = true
@@ -35,10 +39,12 @@ final class Preparation: Object {
 
     // MARK: Functions
 
-    convenience init(contentID: Int, eventID: String?) {
+    convenience init(contentID: Int, eventID: String?, title: String, subtitle: String) {
         self.init()
         self.contentID = contentID
         self.eventID = eventID
+        self.title = title
+        self.subtitle = subtitle
     }
 
     override class func primaryKey() -> String? {

@@ -70,7 +70,6 @@
 "Prepare.Content.ReadMore" = "Read more";
 "Prepare.Content.Tasks" = "Tasks";
 
-
 "Learn.Content.Item.Title.Full" = "Full";
 "Learn.Content.Item.Title.Bullets" = "Bullets";
 "Learn.Content.Item.Title.Audio" = "Audio";
@@ -85,8 +84,11 @@
 
 "Alert.Title.NoContent" = "No Content";
 "Alert.Message.NoContent" = "The selection have no content, sorry :(";
+"Alert.Message.ComingSoon" = "This feature is coming soon";
+"Alert.Message.EditPreparationName" = "Please edit the name and press save";
 "Alert.Button.Title.Ok" = "OK";
 "Alert.Button.Title.Cancel" = "Cancel";
+"Alert.Button.Title.Save" = "Save";
 
 "Library.Footer.View.Label" = "Scroll To Finish";
 

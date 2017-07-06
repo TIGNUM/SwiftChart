@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EventKit
 
 class PrepareEventsUpcomingTripTableViewCell: UITableViewCell, Dequeueable {
 
@@ -17,7 +18,7 @@ class PrepareEventsUpcomingTripTableViewCell: UITableViewCell, Dequeueable {
         super.awakeFromNib()
     }
 
-    func setup(event: PrepareEventsViewModel.Event) {
+    func setup(event: EKEvent) {
         let dateFormatter = DateFormatter()
         dateFormatter.setLocalizedDateFormatFromTemplate("MMMd")
         dateFormatter.locale = Locale.current

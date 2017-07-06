@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import EventKit
 
 protocol PrepareEventsViewControllerDelegate: class {
 
     func didTapClose(viewController: PrepareEventsViewController)
     func didTapAddToPrepList(viewController: PrepareEventsViewController)
-    func didTapEvent(event: PrepareEventsViewModel.Event, viewController: PrepareEventsViewController)
+    func didTapEvent(event: EKEvent, viewController: PrepareEventsViewController)
     func didTapSavePrepToDevice(viewController: PrepareEventsViewController)
     func didTapAddNewTrip(viewController: PrepareEventsViewController)
 }
@@ -29,7 +30,7 @@ final class PrepareEventsViewController: UIViewController {
     @IBOutlet weak var yourDeviceTitleLabel: UILabel!
     @IBOutlet weak var savePreparationButton: UIButton!
 
-    fileprivate let viewModel: PrepareEventsViewModel
+    let viewModel: PrepareEventsViewModel
     weak var delegate: PrepareEventsViewControllerDelegate?
 
     // MARK: - Init

@@ -7,8 +7,21 @@
 //
 
 import UIKit
+import LoremIpsum
+import EventKit
+import EventKitUI
 
-final class PrepareCoordinator: ParentCoordinator {
+final class PrepareCoordinator: Coordinator {
+
+    struct Context {
+        let contentID: Int
+        let listTitle: String
+
+        var defaultPreparationName: String {
+            let dateString = DateFormatter.shortDate.string(from: Date())
+            return "My \(listTitle) Prep // \(dateString)"
+        }
+    }
 
     // MARK: Private properties
 
@@ -18,8 +31,26 @@ final class PrepareCoordinator: ParentCoordinator {
     fileprivate let chatViewController: ChatViewController<Answer>
     fileprivate let myPrepViewController: MyPrepViewController
     fileprivate let chatDecisionManager: PrepareChatDecisionManager
+    fileprivate var context: Context?
 
-    var children = [Coordinator]()
+    fileprivate weak var prepareListViewController: PrepareContentViewController?
+
+    fileprivate lazy var editEventHandler: EditEventHandler = {
+        let delegate = EditEventHandler()
+        delegate.handler = { [weak self] (controller, action) in
+            switch action {
+            case .saved:
+                if let event = controller.event {
+                    self?.createPreparation(name: event.title, eventID: event.eventIdentifier)
+                }
+                self?.tabBarController.dismiss(animated: true)
+                self?.chatDecisionManager.start()
+            case .canceled, .deleted:
+                controller.dismiss(animated: true)
+            }
+        }
+        return delegate
+    }()
 
     init(services: Services,
          tabBarController: TabBarController,
@@ -42,11 +73,148 @@ final class PrepareCoordinator: ParentCoordinator {
     }
 
     func start() {
-
+        
     }
 
     func focus() {
         chatDecisionManager.start()
+    }
+}
+
+private extension PrepareCoordinator {
+
+    func showPrepareList(contentID: Int) {
+        var title: String? = nil
+        var video: PrepareContentViewModel.Video? = nil
+        var items: [PrepareItem] = []
+        for item in services.contentService.contentItems(contentID: contentID) {
+            let value = item.contentItemValue
+            switch value {
+            case .text(let text, style: .h1):
+                title = text
+            case .prepareStep(let title, let description, let relatedContentID):
+                items.append(PrepareItem(id: item.remoteID, title: title, subTitle: description, readMoreID: relatedContentID))
+            case .video(_, _, let placeholderURL, let videoURL, _):
+                video = PrepareContentViewModel.Video(url: videoURL, placeholderURL: placeholderURL)
+            default:
+                break
+            }
+        }
+
+        if let title = title {
+            let viewModel = PrepareContentViewModel(title: title, subtitle: "", video: video, description: "", items: items)
+            let viewController = PrepareContentViewController(viewModel: viewModel)
+            viewController.delegate = self
+            tabBarController.present(viewController, animated: true)
+            prepareListViewController = viewController
+
+            context = Context(contentID: contentID, listTitle: title)
+        } else {
+            tabBarController.showAlert(type: .noContent, handler: { [weak self] in
+                self?.chatDecisionManager.start()
+            }, handlerDestructive: nil)
+        }
+    }
+
+    func showPrepareCheckList(preparationID: String) {
+        guard let preparation = services.preparationService.preparation(localID: preparationID) else {
+            return
+        }
+
+        var title: String? = nil
+        var video: PrepareContentViewModel.Video? = nil
+        var items: [PrepareItem] = []
+        for item in services.contentService.contentItems(contentID: preparation.contentID) {
+            let value = item.contentItemValue
+            switch value {
+            case .text(let text, style: .h1):
+                title = text
+            case .prepareStep(let title, let description, let relatedContentID):
+                items.append(PrepareItem(id: item.remoteID, title: title, subTitle: description, readMoreID: relatedContentID))
+            case .video(_, _, let placeholderURL, let videoURL, _):
+                video = PrepareContentViewModel.Video(url: videoURL, placeholderURL: placeholderURL)
+            default:
+                break
+            }
+        }
+
+        let preparationChecks = services.preparationService.preparationChecks(preparationID: preparationID)
+        var checkedIDs: [Int: Date] = [:]
+        for preparationCheck in preparationChecks {
+            checkedIDs[preparationCheck.contentItemID] = preparationCheck.timestamp
+        }
+
+        if let title = title {
+            let viewModel = PrepareContentViewModel(title: title,
+                                                    video: video,
+                                                    description: "",
+                                                    items: items,
+                                                    checkedIDs: checkedIDs,
+                                                    preparationID: preparationID)
+
+            let viewController = PrepareContentViewController(viewModel: viewModel)
+            viewController.delegate = self
+            tabBarController.present(viewController, animated: true)
+            prepareListViewController = viewController
+        } else {
+            tabBarController.showAlert(type: .noContent, handler: { [weak self] in
+                self?.chatDecisionManager.start()
+                }, handlerDestructive: nil)
+        }
+    }
+
+    func showCreatePreparation(from viewController: PrepareContentViewController) {
+        guard let context = context else {
+            preconditionFailure("No preparation context")
+        }
+
+        let start = Date()
+        let finish = start.addingTimeInterval(TimeInterval(days: 30))
+        let events = services.eventsService.ekEvents(from: start, to: finish)
+
+        let viewModel = PrepareEventsViewModel(preparationTitle: context.defaultPreparationName, events: events)
+        let prepareEventsVC = PrepareEventsViewController(viewModel: viewModel)
+        prepareEventsVC.delegate = self
+        prepareEventsVC.modalPresentationStyle = .custom
+        prepareEventsVC.modalTransitionStyle = .crossDissolve
+
+        viewController.present(prepareEventsVC, animated: true)
+    }
+
+    func createPreparation(name: String, eventID: String?) {
+        guard let context = context else {
+            preconditionFailure("No preparation context")
+        }
+
+        services.preparationService.createPreparation(contentID: context.contentID,
+                                                      eventID: eventID,
+                                                      title: name,
+                                                      subtitle: context.listTitle,
+                                                      completion: nil)
+    }
+}
+
+extension PrepareCoordinator: PrepareContentViewControllerDelegate {
+    func didTapSavePreparation(in viewController: PrepareContentViewController) {
+        showCreatePreparation(from: viewController)
+    }
+
+    func didTapClose(in viewController: PrepareContentViewController) {
+        viewController.dismiss(animated: true, completion: nil)
+        chatDecisionManager.start()
+
+        if let preparationID = viewController.viewModel.preparationID {
+            let checks = viewController.viewModel.checkedIDs
+            services.preparationService.updateChecks(preparationID: preparationID, checks: checks, completion: nil)
+        }
+    }
+
+    func didTapVideo(with videoURL: URL, from view: UIView, in viewController: PrepareContentViewController) {
+        log("didTapVideo: :")
+    }
+
+    func didTapReadMore(readMoreID: Int, in viewController: PrepareContentViewController) {
+        log("didTapReadMore: ID: \(readMoreID)")
     }
 }
 
@@ -61,29 +229,71 @@ extension PrepareCoordinator : PrepareChatDecisionManagerDelegate {
     }
 
     func showContent(id: Int, manager: PrepareChatDecisionManager) {
-        let coordinator = PrepareContentCoordinator(root: tabBarController, services: services, eventTracker: services.trackingService)
-        coordinator.delagate = self
-        startChild(child: coordinator)
+        showPrepareList(contentID: id)
     }
 }
 extension PrepareCoordinator: MyPrepViewControllerDelegate {
 
-    func didTapMyPrepItem(with myPrepItem: MyPrepItem, at index: Index, from view: UIView, in viewController: MyPrepViewController) {
-        let coordinator = PrepareCheckListCoordinator(root: tabBarController, services: services)
-        coordinator.delagate = self
-        startChild(child: coordinator)
+    func didTapMyPrepItem(with item: MyPrepViewModel.Item, viewController: MyPrepViewController) {
+        showPrepareCheckList(preparationID: item.localID)
+    }
+}  
+
+extension PrepareCoordinator: PrepareEventsViewControllerDelegate {
+
+    func didTapClose(viewController: PrepareEventsViewController) {
+        viewController.dismiss(animated: true)
+    }
+
+    func didTapAddToPrepList(viewController: PrepareEventsViewController) {
+        let name = viewController.viewModel.preparationTitle
+        let message = R.string.localized.alertMessageEditPreparationName()
+
+        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alertController.addTextField { (textField) in
+            textField.text = name
+        }
+
+        let saveTitle = R.string.localized.alertButtonTitleSave()
+        let saveAction = UIAlertAction(title: saveTitle, style: .default) { [weak self] (_) in
+            let name = alertController.textFields?.first?.text ?? ""
+            self?.createPreparation(name: name, eventID: nil)
+            self?.topTabBarController.dismiss(animated: true)
+            self?.chatDecisionManager.start()
+        }
+        let cancelTitle = R.string.localized.alertButtonTitleCancel()
+        let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel)
+
+        alertController.addAction(saveAction)
+        alertController.addAction(cancelAction)
+
+        viewController.present(alertController, animated: true)
+    }
+
+    func didTapEvent(event: EKEvent, viewController: PrepareEventsViewController) {
+        createPreparation(name: event.title, eventID: event.eventIdentifier)
+        tabBarController.dismiss(animated: true)
+        chatDecisionManager.start()
+    }
+
+    func didTapSavePrepToDevice(viewController: PrepareEventsViewController) {
+        viewController.showAlert(type: .comingSoon)
+    }
+
+    func didTapAddNewTrip(viewController: PrepareEventsViewController) {
+        let eventEditVC = EKEventEditViewController()
+        eventEditVC.eventStore = services.eventsService.eventStore
+        eventEditVC.editViewDelegate = editEventHandler
+
+        viewController.present(eventEditVC, animated: true)
     }
 }
 
-extension PrepareCoordinator: PrepareContentCoordinatorDelegate {
-    func prepareContentDidFinish(coordinator: PrepareContentCoordinator) {
-        removeChild(child: coordinator)
-        chatDecisionManager.repeatFlow()
-    }
-}
+private class EditEventHandler: NSObject, EKEventEditViewDelegate {
 
-extension PrepareCoordinator: PrepareCheckListCoordinatorDelegate {
-    func prepareCheckListDidFinish(coordinator: PrepareCheckListCoordinator) {
-        removeChild(child: coordinator)
+    var handler: ((EKEventEditViewController, EKEventEditViewAction) -> Void)?
+
+    func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
+        handler?(controller, action)
     }
 }

@@ -8,25 +8,28 @@
 
 import UIKit
 import Anchorage
+import Bond
+import ReactiveKit
 
 protocol MyPrepViewControllerDelegate: class {
-    func didTapMyPrepItem(with myPrepItem: MyPrepItem, at index: Index, from view: UIView, in viewController: MyPrepViewController)
+    func didTapMyPrepItem(with myPrepItem: MyPrepViewModel.Item, viewController: MyPrepViewController)
 }
 
 final class MyPrepViewController: UIViewController {
 
     // MARK: - Properties
 
-    let viewModel: MyPrepViewModel
-    weak var delegate: MyPrepViewControllerDelegate?
-
+    fileprivate let disposeBag = DisposeBag()
     fileprivate lazy var tableView: UITableView = {
-        return UITableView(            
+        return UITableView(
             delegate: self,
             dataSource: self,
             dequeables: MyPrepTableViewCell.self
         )
     }()
+
+    let viewModel: MyPrepViewModel
+    weak var delegate: MyPrepViewControllerDelegate?
 
     // MARK: - Life Cycle
 
@@ -44,6 +47,9 @@ final class MyPrepViewController: UIViewController {
         super.viewDidLoad()
 
         setupView()
+        viewModel.updates.observeNext { [unowned self] _ in
+            self.tableView.reloadData()
+        }.dispose(in: disposeBag)
     }
 }
 
@@ -67,8 +73,9 @@ extension MyPrepViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = viewModel.item(at: indexPath.row)
         let cell: MyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
-        let count: String = String(format: "%02d/%d", item.finishedPreparationCount, item.totalPreparationCount)
-        cell.setup(with: item.header, text: item.text, footer: item.footer, count: count)
+        let count: String = String(format: "%02d/%02d", item.finishedPreparationCount, item.totalPreparationCount)
+        let footer = ""
+        cell.setup(with: item.header, text: item.text, footer: footer, count: count)
 
         return cell
     }
@@ -76,7 +83,7 @@ extension MyPrepViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let item = viewModel.item(at: indexPath.row)
-        delegate?.didTapMyPrepItem(with: item, at: indexPath.row, from: view, in: self)
+        delegate?.didTapMyPrepItem(with: item, viewController: self)
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

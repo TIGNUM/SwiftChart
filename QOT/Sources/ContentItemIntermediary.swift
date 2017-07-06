@@ -17,44 +17,16 @@ struct ContentItemIntermediary {
     let searchTags: String
     let tabs: String
     let layoutInfo: String?
-    var contentID: Int
+    let contentID: Int
+    let relatedContent: [ContentRelationIntermediary]
 
     // Value
-    let value: String?
     let valueText: String?
     let valueDescription: String?
     let valueImageURL: String?
     let valueMediaURL: String?
     let valueDuration: Double?
     let valueWavformData: String?
-
-    // FIXME: Delete me when no longer using for mocks
-    init(sortOrder: Int,
-         title: String,
-         secondsRequired: Int,
-         value: String,
-         format: String,
-         viewed: Bool,
-         searchTags: String,
-         tabs: String = "",
-         layoutInfo: String?) {
-            self.sortOrder = sortOrder
-            self.secondsRequired = secondsRequired
-            self.value = value
-            self.format = format
-            self.viewed = viewed
-            self.searchTags = searchTags
-            self.tabs = tabs
-            self.layoutInfo = layoutInfo
-            self.contentID = 0
-
-        valueText = nil
-        valueDescription = nil
-        valueImageURL = nil
-        valueMediaURL = nil
-        valueDuration = nil
-        valueWavformData = nil
-    }
 }
 
 // MARK: - Parser
@@ -70,6 +42,7 @@ extension ContentItemIntermediary: JSONDecodable {
         self.tabs = ContentItemIntermediary.commaSeperatedStringFromArray(in: json, at: .tabs)
         self.layoutInfo = try json.serializeString(at: .layoutInfo)
         self.contentID = try json.getItemValue(at: .contentId)
+        self.relatedContent = try json.getArray(at: .relatedContent)
 
         let valueJSON = try json.json(at: .value)
         self.valueText = try valueJSON.getItemValue(at: .text)
@@ -78,7 +51,6 @@ extension ContentItemIntermediary: JSONDecodable {
         self.valueMediaURL = try valueJSON.getItemValue(at: .mediaURL)
         self.valueDuration = try valueJSON.getItemValue(at: .duration)
         self.valueWavformData = try valueJSON.serializeString(at: .waveformData)
-        self.value = nil
     }
 
     private static func commaSeperatedStringFromArray(in json: JSON, at key: JsonKey) -> String {

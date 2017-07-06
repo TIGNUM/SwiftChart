@@ -15,10 +15,11 @@ final class Services {
     let mainRealm: Realm
     let contentService: ContentService
     let articleService: ArticleService
-    let prepareContentService: PrepareContentService
+    let preparationService: PreparationService
     let questionsService: QuestionsService
     let partnerService: PartnerService
     let userService: UserService
+    let eventsService: EventsService
     lazy var trackingService: EventTracker = {
         return EventTracker(realmProvider: { return try Realm() })
     }()
@@ -27,17 +28,19 @@ final class Services {
         mainRealm: Realm,
         contentService: ContentService,
         articleService: ArticleService,
-        prepareContentService: PrepareContentService,
+        preparationService: PreparationService,
         questionsService: QuestionsService,
         partnerService: PartnerService,
-        userService: UserService) {
+        userService: UserService,
+        eventsService: EventsService) {
             self.mainRealm = mainRealm
             self.contentService = contentService
             self.articleService = articleService
-            self.prepareContentService = prepareContentService
+            self.preparationService = preparationService
             self.questionsService = questionsService
             self.partnerService = partnerService
             self.userService = userService
+            self.eventsService = eventsService
     }
 
     static func make(completion: @escaping (Result<Services, NSError>) -> Void) {
@@ -57,18 +60,20 @@ final class Services {
                     let mainRealm = try realmProvider.realm()
                     let contentService = ContentService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let articleService = ArticleService(mainRealm: mainRealm, realmProvider: realmProvider)
-                    let prepareContentService = PrepareContentService(mainRealm: mainRealm, realmProvider: realmProvider)
+                    let preparationService = PreparationService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let questionsService = QuestionsService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let partnerService = PartnerService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let userService = UserService(mainRealm: mainRealm, realmProvider: realmProvider)
+                    let eventsService = EventsService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let services = Services(
                         mainRealm: mainRealm,
                         contentService: contentService,
                         articleService: articleService,
-                        prepareContentService: prepareContentService,
+                        preparationService: preparationService,
                         questionsService: questionsService,
                         partnerService: partnerService,
-                        userService: userService
+                        userService: userService,
+                        eventsService: eventsService
                     )
 
                     completion(.success(services))

@@ -18,6 +18,10 @@ extension NSPredicate {
         return NSPredicate(format: "preparationID == %@", id)
     }
 
+    static func deleted(_ deleted: Bool) -> NSPredicate {
+        return NSPredicate(format: "deleted == %@", NSNumber(value: deleted))
+    }
+
     convenience init(remoteID: Int) {
         self.init(format: "remoteID == %d", remoteID)
     }

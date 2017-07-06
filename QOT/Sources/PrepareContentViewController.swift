@@ -13,7 +13,6 @@ import Anchorage
 
 protocol PrepareContentViewControllerDelegate: class {
     func didTapClose(in viewController: PrepareContentViewController)
-    func didTapShare(in viewController: PrepareContentViewController)
     func didTapVideo(with videoURL: URL, from view: UIView, in viewController: PrepareContentViewController)
     func didTapSavePreparation(in viewController: PrepareContentViewController)
     func didTapReadMore(readMoreID: Int, in viewController: PrepareContentViewController)
@@ -23,7 +22,7 @@ final class PrepareContentViewController: UIViewController {
     
     // MARK: - Properties
     
-    fileprivate let viewModel: PrepareContentViewModel
+    let viewModel: PrepareContentViewModel
     fileprivate let disposeBag = DisposeBag()
     weak var delegate: PrepareContentViewControllerDelegate?
     
@@ -278,18 +277,18 @@ extension PrepareContentViewController: PrepareContentHeaderTableViewCellDelegat
     }
 
     func didTapCheckbox(cell: UITableViewCell) {
-        let indexPathHeader = IndexPath(row: 0, section: 0)
         guard let indexPath = tableView.indexPath(for: cell) else { return }
-        guard let cellHeader = tableView.cellForRow(at: indexPathHeader) else { return }
-        guard let cell = tableView.cellForRow(at: indexPath) else { return }
 
         let contentItem = viewModel.item(at: indexPath.row)
-
         switch contentItem {
         case .item(let id, _, _, _):
             viewModel.didTapCheckbox(id: id)
             tableView.beginUpdates()
-            configure(cell: cellHeader, forIndexPath: indexPathHeader)
+            let headerIndexPath = IndexPath(row: 0, section: 0)
+            if let headerCell = tableView.cellForRow(at: headerIndexPath) {
+                configure(cell: headerCell, forIndexPath: headerIndexPath)
+
+            }
             configure(cell: cell, forIndexPath: indexPath)
             tableView.endUpdates()
         default:

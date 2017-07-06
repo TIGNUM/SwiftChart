@@ -27,7 +27,7 @@ final class MyPrepTableViewCell: UITableViewCell, Dequeueable {
             textColor: Color.whiteish
         )
         mainTextLabel.attributedText = NSMutableAttributedString(
-            string: header.uppercased(),
+            string: text.uppercased(),
             letterSpacing: 0.8,
             font: Font.H4Headline,
             lineSpacing: 4

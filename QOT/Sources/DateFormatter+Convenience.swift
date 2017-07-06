@@ -33,6 +33,15 @@ private let displayTimeFormatter: DateFormatter = {
     return formatter
 }()
 
+private let shortDateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.locale = Locale.current
+    formatter.timeZone = TimeZone.current
+    formatter.dateStyle = .short
+    formatter.timeStyle = .none
+    return formatter
+}()
+
 extension DateFormatter {
     // FIXME: MUST MUST MUST be unit tested.
     static var iso8601: DateFormatter {
@@ -45,5 +54,9 @@ extension DateFormatter {
 
     static var settingsUser: DateFormatter {
         return userDateFormatter
+    }
+
+    static var shortDate: DateFormatter {
+        return shortDateFormatter
     }
 }

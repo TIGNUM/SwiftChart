@@ -33,7 +33,6 @@ final class ContentItem: Object {
         searchTags = data.searchTags
         layoutInfo = data.layoutInfo
         tabs = data.tabs
-        value = data.value
         valueText = data.valueText
         valueDescription = data.valueDescription
         valueImageURL = data.valueImageURL
@@ -58,8 +57,6 @@ final class ContentItem: Object {
 
     fileprivate(set) dynamic var contentID: Int = 0
 
-    fileprivate(set) dynamic var value: String?
-
     fileprivate(set) dynamic var valueText: String?
 
     fileprivate(set) dynamic var valueDescription: String?
@@ -73,6 +70,8 @@ final class ContentItem: Object {
     fileprivate(set) dynamic var valueWavformData: String?
 
     dynamic var viewed: Bool = false
+
+    let relatedContent: List<ContentRelation> = List()
 
     // MARK: Realm
 
@@ -98,12 +97,14 @@ extension ContentItem: DownSyncable {
         tabs = data.tabs
         layoutInfo = data.layoutInfo
         collectionID.value = data.contentID
-        value = data.value
         valueText = data.valueText
         valueDescription = data.valueDescription
         valueImageURL = data.valueImageURL
         valueMediaURL = data.valueMediaURL
         valueDuration.value = data.valueDuration
         valueWavformData = data.valueWavformData
+
+        objectStore.delete(relatedContent)
+        relatedContent.append(objectsIn: data.relatedContent.map({ ContentRelation(intermediary: $0) }))
     }
 }

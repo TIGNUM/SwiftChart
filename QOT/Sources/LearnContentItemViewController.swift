@@ -186,7 +186,7 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
                     attributeString: item.contentItemValue.style(textStyle: .paragraph, text: title, textColor: .blackTwo).attributedString(),
                     url: url
                 )
-            case .invalid:
+            default:
                 return invalidContentCell(tableView: tableView, indexPath: indexPath)
             }
         }

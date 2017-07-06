@@ -38,7 +38,7 @@ final class TabBarCoordinator: ParentCoordinator {
     }()
 
     fileprivate lazy var myPrepViewController: MyPrepViewController = {
-        let viewModel = MyPrepViewModel()
+        let viewModel = MyPrepViewModel(services: self.services, realmObserver: RealmObserver(realm: self.services.mainRealm))
         return MyPrepViewController(viewModel: viewModel)
     }()
 

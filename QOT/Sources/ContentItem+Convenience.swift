@@ -11,17 +11,6 @@ import Foundation
 extension ContentItem {
 
     var contentItemValue: ContentItemValue {
-        // FIXME: Remove once not needed for mock data
-        if let jsonValue = value {
-            guard
-                let format = ContentItemFormat(rawValue: format),
-                let value = try? ContentItemValue(format: format, value: jsonValue)
-                else {
-                    return .invalid
-            }
-            return value
-        }
-
         return ContentItemValue(item: self)
     }
 

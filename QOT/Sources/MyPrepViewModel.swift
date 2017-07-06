@@ -7,85 +7,89 @@
 //
 
 import Foundation
+import RealmSwift
 import ReactiveKit
 
 final class MyPrepViewModel {
-    private let items = mockMyPrepItems()
-    let updates = PublishSubject<CollectionUpdate, NoError>()
+
+    struct Item {
+        let localID: String
+        let header: String
+        let text: String
+        let startDate: Date?
+        let totalPreparationCount: Int
+        let finishedPreparationCount: Int
+    }
+
+    fileprivate let queue = DispatchQueue(label: "MyPrepViewModel.queue")
+    fileprivate let services: Services
+    fileprivate let realmObserver: RealmObserver
+    fileprivate var items: [Item] = [] {
+        didSet { updates.next(items) }
+    }
+
+    let updates = PublishSubject<[Item], NoError>()
+
+    init(services: Services, realmObserver: RealmObserver) {
+        self.services = services
+        self.realmObserver = realmObserver
+
+        refresh()
+        realmObserver.handler = { [weak self] in
+            self?.refresh()
+        }
+    }
 
     var itemCount: Int {
         return items.count
     }
 
-    func item(at index: Index) -> MyPrepItem {
+    func item(at index: Index) -> Item {
         return items[index]
     }
-}
 
-protocol MyPrepItem {
-    var header: String { get }
-    var footer: String { get }
-    var text: String { get }
-    var totalPreparationCount: Int { get }
-    var finishedPreparationCount: Int { get }
-}
+    private func refresh() {
+        queue.async { [weak self] in
+            guard let strongSelf = self else {
+                return
+            }
 
-struct MockMyPrepItem: MyPrepItem {
-    let header: String
-    let footer: String
-    let text: String
-    let totalPreparationCount: Int
-    let finishedPreparationCount: Int
-}
+            do {
+                let preparations = try strongSelf.services.preparationService.preparationsOnBackground()
+                var items: [Item] = []
+                for preparation in preparations {
+                    let contentItems = Array(try strongSelf.services.contentService.contentItemsOnBackground(contentID: preparation.contentID))
+                    let contentItemIDs = contentItems.filter ({ (contentItem) -> Bool in
+                        switch contentItem.contentItemValue {
+                        case .prepareStep:
+                            return true
+                        default:
+                            return false
+                        }
+                    }).map { $0.remoteID }
+                    let preparationChecks = try strongSelf.services.preparationService.preparationChecksOnBackground(preparationID: preparation.localID)
 
-private func mockMyPrepItems() -> [MyPrepItem] {
-    return [
-        MockMyPrepItem(
-            header: "High performance travel",
-            footer: "Time to the event 3:25",
-            text: "Flight to Basel for Novartis",
-            totalPreparationCount: 58,
-            finishedPreparationCount: 7
-        ),
+                    var startDate: Date? = nil
+                    if let eventID = preparation.eventID {
+                        startDate = strongSelf.services.eventsService.eventStore.event(withIdentifier: eventID)?.startDate
+                    }
 
-        MockMyPrepItem(
-            header: "High performance travel",
-            footer: "Time to the event 3:25",
-            text: "Flight to Basel for Novartis",
-            totalPreparationCount: 58,
-            finishedPreparationCount: 7
-        ),
+                    let item = Item(localID: preparation.localID,
+                                    header: preparation.subtitle,
+                                    text: preparation.title,
+                                    startDate: startDate,
+                                    totalPreparationCount: contentItemIDs.count,
+                                    finishedPreparationCount: preparationChecks.count)
 
-        MockMyPrepItem(
-            header: "High performance travel",
-            footer: "Time to the event 3:25",
-            text: "Flight to Basel for Novartis",
-            totalPreparationCount: 58,
-            finishedPreparationCount: 7
-        ),
+                    items.append(item)
+                }
 
-        MockMyPrepItem(
-            header: "High performance travel",
-            footer: "Time to the event 3:25",
-            text: "Flight to Basel for Novartis",
-            totalPreparationCount: 58,
-            finishedPreparationCount: 7
-        ),
-
-        MockMyPrepItem(
-            header: "High performance travel",
-            footer: "Time to the event 3:25",
-            text: "Flight to Basel for Novartis",
-            totalPreparationCount: 58,
-            finishedPreparationCount: 7
-        ),
-
-        MockMyPrepItem(
-            header: "High performance travel",
-            footer: "Time to the event 3:25",
-            text: "Flight to Basel for Novartis",
-            totalPreparationCount: 58,
-            finishedPreparationCount: 7
-        )
-    ]
+                DispatchQueue.main.async {
+                    strongSelf.items = items
+                }
+            } catch let error {
+                print("Failed to update MyPrepViewModel: \(error)")
+            }
+        }
+    }
 }

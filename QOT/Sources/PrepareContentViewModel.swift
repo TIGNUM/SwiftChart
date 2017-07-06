@@ -40,8 +40,6 @@ final class PrepareContentViewModel {
 
     fileprivate var headerToggleState: [Bool] = []
 
-//    let updates = PublishSubject<CollectionUpdate, NoError>()
-
     var displayMode: DisplayMode
     var checkedIDs: [Int: Date]
 
@@ -52,6 +50,7 @@ final class PrepareContentViewModel {
     var video: URL?
     
     var items: [PrepareContentItemType] = []
+    var preparationID: String?
 
     // MARK: - Initialisation
 
@@ -68,7 +67,7 @@ final class PrepareContentViewModel {
         makeItems(items)
     }
 
-    init(title: String, video: Video?, description: String, items: [PrepareItem], checkedIDs: [Int: Date]) {
+    init(title: String, video: Video?, description: String, items: [PrepareItem], checkedIDs: [Int: Date], preparationID: String) {
         self.title = title
         self.video = video?.url
         self.videoPlaceholder = video?.placeholderURL
@@ -76,6 +75,7 @@ final class PrepareContentViewModel {
 
         self.checkedIDs = checkedIDs
         self.displayMode = .checkbox
+        self.preparationID = preparationID
 
         makeItems(items)
 
@@ -121,9 +121,6 @@ final class PrepareContentViewModel {
                 break
             }
         }
-
-//        let update = CollectionUpdate.update(deletions: [], insertions: [], modifications: indexPaths)
-//        updates.next(update)
     }
 
     var itemCount: Int {

@@ -215,8 +215,6 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
                     attributeString: item.contentItemValue.style(textStyle: .paragraph, text: title, textColor: .white).attributedString(),
                     url: url
                 )
-            case .invalid:
-                return invalidContentCell(tableView: tableView, indexPath: indexPath)
             case .listItem(let text):
                 return contentItemTextTableViewCell(
                     tableView: tableView,
@@ -240,6 +238,8 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
                     attributedString: item.contentItemValue.style(textStyle: .paragraph, text: title, textColor: .white).attributedString(),
                     canStream: true
                 )
+            default:
+                return invalidContentCell(tableView: tableView, indexPath: indexPath)
             }
         case 1:
             return relatedArticleCell(tableView: tableView, indexPath: indexPath)

@@ -11,46 +11,49 @@ import UIKit
 
 enum AlertType: Int {
     case noContent
+    case comingSoon
 
     var title: String? {
         switch self {
         case .noContent: return R.string.localized.alertTitleNoContent()
+        default: return nil
         }
     }
 
     var message: String? {
         switch self {
         case .noContent: return R.string.localized.alertMessageNoContent()
+        case .comingSoon: return R.string.localized.alertMessageComingSoon()
         }
     }
 
     var buttonTitleCancel: String? {
         switch self {
-        case .noContent: return nil
+        default: return nil
         }
     }
 
     var buttonTitleDefault: String? {
         switch self {
-        case .noContent: return R.string.localized.alertButtonTitleOk()
+        default: return R.string.localized.alertButtonTitleOk()
         }
     }
 
     var buttonTitleDestructive: String? {
         switch self {
-        case .noContent: return nil
+        default: return nil
         }
     }
 
     var actionStyle: [UIAlertActionStyle] {
         switch self {
-        case .noContent: return [.default]
+        default: return [.default]
         }
     }
 
     var alertStyle: UIAlertControllerStyle {
         switch self {
-        case .noContent: return .alert
+        default: return .alert
         }
     }
 }

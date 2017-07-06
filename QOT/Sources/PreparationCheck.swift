@@ -47,4 +47,15 @@ final class PreparationCheck: Object {
     override class func primaryKey() -> String? {
         return "localID"
     }
+
+    func delete() {
+        if let realm = realm {
+            if remoteID == nil {
+                realm.delete(self)
+            } else {
+                deleted = true
+                dirty = true
+            }
+        }
+    }
 }

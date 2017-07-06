@@ -17,6 +17,7 @@ enum ContentItemValue {
     case video(title: String, description: String?, placeholderURL: URL, videoURL: URL, duration: TimeInterval)
     case audio(title: String, description: String?, placeholderURL: URL, audioURL: URL, duration: TimeInterval, waveformData: [Float])
     case image(title: String, description: String?, url: URL)
+    case prepareStep(title: String, description: String, relatedContentID: Int?)
     case invalid
 
     init(item: ContentItem) {
@@ -25,6 +26,8 @@ enum ContentItemValue {
             return
         }
 
+        let text = item.valueText?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let description = item.valueDescription?.trimmingCharacters(in: .whitespacesAndNewlines)
         let mediaURL = item.valueMediaURL.flatMap { URL(string: $0) }
         let imageURL = item.valueImageURL.flatMap { URL(string: $0) }
         let duration = item.valueDuration.value.map { TimeInterval($0) }
@@ -38,80 +41,41 @@ enum ContentItemValue {
              .textH6,
              .textParagraph,
              .textQuote:
-            if let text = item.valueText, let style = ContentItemTextStyle.createStyle(for: format) {
+            if let text = text, let style = ContentItemTextStyle.createStyle(for: format) {
                 self = .text(text: text, style: style)
             } else {
                 self = .invalid
             }
         case .listItem:
-            if let text = item.valueText {
+            if let text = text {
                 self = .listItem(text: text)
             } else {
                 self = .invalid
             }
         case .video:
-            if let title = item.valueText, let placeholder = imageURL, let video = mediaURL, let duration = duration {
-                self = .video(title: title, description: item.valueDescription, placeholderURL: placeholder, videoURL: video, duration: duration)
+            if let title = text, let placeholder = imageURL, let video = mediaURL, let duration = duration {
+                self = .video(title: title, description: description, placeholderURL: placeholder, videoURL: video, duration: duration)
             } else {
                 self = .invalid
             }
         case .audio:
-            if let title = item.valueText, let placeholder = imageURL, let audio = mediaURL, let duration = duration, let waveform = item.waveformData {
-                self = .audio(title: title, description: item.valueDescription, placeholderURL: placeholder, audioURL: audio, duration: duration, waveformData: waveform)
+            if let title = text, let placeholder = imageURL, let audio = mediaURL, let duration = duration, let waveform = item.waveformData {
+                self = .audio(title: title, description: description, placeholderURL: placeholder, audioURL: audio, duration: duration, waveformData: waveform)
             } else {
                 self = .invalid
             }
         case .image:
-            if let title = item.valueText, let url = imageURL {
-                self = .image(title: title, description: item.valueDescription, url: url)
+            if let title = text, let url = imageURL {
+                self = .image(title: title, description: description, url: url)
             } else {
                 self = .invalid
             }
-        }
-    }
-
-    // FIXME: Remove once not needed for mocks
-    init(format: ContentItemFormat, value: String) throws {
-        let json = try JSON(jsonString: value)
-        switch format {
-        case .textH1,
-             .textH2,
-             .textH3,
-             .textH4,
-             .textH5,
-             .textH6,
-             .textParagraph,
-             .textQuote:
-            let text = try json.getString(at: "text")
-
-            guard let style = ContentItemTextStyle.createStyle(for: format) else {
-                throw ContentItemTextStyleError.noValidItemTextStyleError
+        case .preparationStep:
+            if let title = text, let description = description {
+                self = .prepareStep(title: title, description: description, relatedContentID: item.relatedContent.first?.contentID)
+            } else {
+                self = .invalid
             }
-
-            self = .text(text: text, style: style)
-
-        case .listItem:
-            self = .listItem(text: try json.getString(at: "text"))
-        case .video:
-            let title = try json.getString(at: "title")
-            let description = try json.getString(at: "description", alongPath: .NullBecomesNil)
-            let placeholderURL = try json.decode(at: "thumbnailURL", type: URL.self)
-            let videoURL = try json.decode(at: "videoURL", type: URL.self)
-            let duration = TimeInterval(try json.getInt(at: "duration"))
-            self = .video(title: title, description: description, placeholderURL: placeholderURL, videoURL: videoURL, duration: duration)
-        case .audio:
-            let title = try json.getString(at: "title")
-            let description = try json.getString(at: "description", alongPath: .NullBecomesNil)
-            let placeholderURL = try json.decode(at: "thumbnailURL", type: URL.self)
-            let audioURL = try json.decode(at: "audioURL", type: URL.self)
-            let duration = TimeInterval(try json.getInt(at: "duration"))
-            let waveformData = try json.getArray(at: "waveformData").map { try Double(json: $0) }.map { Float($0) }
-            self = .audio(title: title, description: description, placeholderURL: placeholderURL, audioURL: audioURL, duration: duration, waveformData: waveformData)
-        case .image:
-            let title = try json.getString(at: "title")
-            let description = try json.getString(at: "description", alongPath: .NullBecomesNil)
-            let url = try json.decode(at: "url", type: URL.self)
-            self = .image(title: title, description: description, url: url)
         }
     }
 
@@ -182,26 +146,5 @@ enum ContentItemFormat: String {
     case video
     case audio
     case image
-
-    static var allValues: [ContentItemFormat] {
-        return [
-            .textH1,
-            .textH2,
-            .textH3,
-            .textH4,
-            .textH5,
-            .textH6,
-            .textParagraph,
-            .textQuote,
-            .listItem,
-            .video,
-            .audio,
-            .image
-        ]
-    }
-
-    static var randomItemFormat: ContentItemFormat {
-        let randomIndex = Int.random(between: 0, and: ContentItemFormat.allValues.count)
-        return ContentItemFormat.allValues[randomIndex]
-    }
+    case preparationStep = "prepare"
 }

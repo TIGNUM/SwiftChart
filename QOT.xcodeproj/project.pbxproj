@@ -156,6 +156,8 @@
 		CB9B07671EF953D80017F6C3 /* JSONKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9B07661EF953D80017F6C3 /* JSONKey.swift */; };
 		CB9B076B1EFAA7990017F6C3 /* Realm+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9B076A1EFAA7990017F6C3 /* Realm+Convenience.swift */; };
 		CB9B076D1EFAAB6E0017F6C3 /* UpSyncCalendarEventsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9B076C1EFAAB6E0017F6C3 /* UpSyncCalendarEventsOperation.swift */; };
+		CB9BB0C01F0CCC30009067D7 /* EventsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9BB0BF1F0CCC30009067D7 /* EventsService.swift */; };
+		CB9BB0C21F0CD13E009067D7 /* TimeInterval+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9BB0C11F0CD13E009067D7 /* TimeInterval+Convenience.swift */; };
 		CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA054481E890560009E28D6 /* Dequeueable.swift */; };
 		CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB237EF1E6FFF1200AB5AEF /* AppDelegate.swift */; };
 		CBB237F71E6FFF1200AB5AEF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBB237F61E6FFF1200AB5AEF /* Assets.xcassets */; };
@@ -177,10 +179,10 @@
 		CBB4DD561EE152EC0071494A /* DownSyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DD551EE152EC0071494A /* DownSyncOperation.swift */; };
 		CBC933051F05253000C00007 /* JSON+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC933041F05253000C00007 /* JSON+Convenience.swift */; };
 		CBC933081F052DDA00C00007 /* PrepareCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC933071F052DDA00C00007 /* PrepareCoordinator.swift */; };
-		CBC9330A1F0A438600C00007 /* PrepareCheckListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC933091F0A438600C00007 /* PrepareCheckListCoordinator.swift */; };
-		CBC9330C1F0A51EE00C00007 /* CreatePreparationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC9330B1F0A51EE00C00007 /* CreatePreparationCoordinator.swift */; };
 		CBC9330F1F0AA47800C00007 /* PrepareEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC9330D1F0AA47800C00007 /* PrepareEventsViewController.swift */; };
 		CBC933101F0AA47800C00007 /* PrepareEventsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBC9330E1F0AA47800C00007 /* PrepareEventsViewController.xib */; };
+		CBC933121F0B9B3100C00007 /* ContentRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC933111F0B9B3100C00007 /* ContentRelation.swift */; };
+		CBC933151F0B9CC200C00007 /* ContentRelationIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC933141F0B9CC200C00007 /* ContentRelationIntermediary.swift */; };
 		CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791461E7172390006C590 /* LearnContentListCoordinator.swift */; };
 		CBD7914A1E71797C0006C590 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791491E71797C0006C590 /* Typealiases.swift */; };
 		CBD791541E72A4BB0006C590 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791531E72A4BB0006C590 /* MockData.swift */; };
@@ -212,7 +214,6 @@
 		CC311A2D1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC311A2C1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib */; };
 		CC335EE71EBC84780085F5C5 /* ContentItemTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC335EE61EBC84780085F5C5 /* ContentItemTextTableViewCell.xib */; };
 		CC335EE91EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC335EE81EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift */; };
-		CC33CA2E1EC603BC008E6B33 /* PrepareContentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC33CA2D1EC603BC008E6B33 /* PrepareContentService.swift */; };
 		CC33CA301EC60447008E6B33 /* DatabaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC33CA2F1EC60447008E6B33 /* DatabaseConstants.swift */; };
 		CC34BD561ECF3863007CB365 /* UserCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC34BD551ECF3863007CB365 /* UserCredentials.swift */; };
 		CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB631E83BDA300FF28DF /* Utils.swift */; };
@@ -263,7 +264,6 @@
 		CC9663151EA1B41500B84B1C /* MyUniverseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9663121EA1B41500B84B1C /* MyUniverseViewController.swift */; };
 		CC9663161EA1B41500B84B1C /* MyUniverseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9663131EA1B41500B84B1C /* MyUniverseHelper.swift */; };
 		CC9663181EA1B86100B84B1C /* MyDataSectorLabelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9663171EA1B86100B84B1C /* MyDataSectorLabelsView.swift */; };
-		CC9FBDE61EAE155300AF1CF0 /* PrepareContentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9FBDE51EAE155300AF1CF0 /* PrepareContentCoordinator.swift */; };
 		CC9FBDE81EAE58F300AF1CF0 /* SettingsMenuCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9FBDE71EAE58F300AF1CF0 /* SettingsMenuCoordinator.swift */; };
 		CCA2DC671EF17BCE00D1DF6A /* LearnContentItemHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA2DC661EF17BCE00D1DF6A /* LearnContentItemHeaderView.swift */; };
 		CCA2DC691EF17BFA00D1DF6A /* LearnContentItemHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCA2DC681EF17BFA00D1DF6A /* LearnContentItemHeaderView.xib */; };
@@ -511,6 +511,8 @@
 		CB9B07661EF953D80017F6C3 /* JSONKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONKey.swift; sourceTree = "<group>"; };
 		CB9B076A1EFAA7990017F6C3 /* Realm+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm+Convenience.swift"; sourceTree = "<group>"; };
 		CB9B076C1EFAAB6E0017F6C3 /* UpSyncCalendarEventsOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpSyncCalendarEventsOperation.swift; sourceTree = "<group>"; };
+		CB9BB0BF1F0CCC30009067D7 /* EventsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsService.swift; sourceTree = "<group>"; };
+		CB9BB0C11F0CD13E009067D7 /* TimeInterval+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Convenience.swift"; sourceTree = "<group>"; };
 		CBA054481E890560009E28D6 /* Dequeueable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dequeueable.swift; sourceTree = "<group>"; };
 		CBB237EC1E6FFF1200AB5AEF /* QOT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QOT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBB237EF1E6FFF1200AB5AEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -537,10 +539,10 @@
 		CBB4DD551EE152EC0071494A /* DownSyncOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownSyncOperation.swift; sourceTree = "<group>"; };
 		CBC933041F05253000C00007 /* JSON+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Convenience.swift"; sourceTree = "<group>"; };
 		CBC933071F052DDA00C00007 /* PrepareCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareCoordinator.swift; sourceTree = "<group>"; };
-		CBC933091F0A438600C00007 /* PrepareCheckListCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareCheckListCoordinator.swift; sourceTree = "<group>"; };
-		CBC9330B1F0A51EE00C00007 /* CreatePreparationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePreparationCoordinator.swift; sourceTree = "<group>"; };
 		CBC9330D1F0AA47800C00007 /* PrepareEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsViewController.swift; sourceTree = "<group>"; };
 		CBC9330E1F0AA47800C00007 /* PrepareEventsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareEventsViewController.xib; sourceTree = "<group>"; };
+		CBC933111F0B9B3100C00007 /* ContentRelation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentRelation.swift; sourceTree = "<group>"; };
+		CBC933141F0B9CC200C00007 /* ContentRelationIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentRelationIntermediary.swift; sourceTree = "<group>"; };
 		CBD791461E7172390006C590 /* LearnContentListCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentListCoordinator.swift; sourceTree = "<group>"; };
 		CBD791491E71797C0006C590 /* Typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
 		CBD791531E72A4BB0006C590 /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
@@ -572,7 +574,6 @@
 		CC311A2C1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsTextFieldTableViewCell.xib; sourceTree = "<group>"; };
 		CC335EE61EBC84780085F5C5 /* ContentItemTextTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentItemTextTableViewCell.xib; sourceTree = "<group>"; };
 		CC335EE81EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentItemTextTableViewCell.swift; sourceTree = "<group>"; };
-		CC33CA2D1EC603BC008E6B33 /* PrepareContentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentService.swift; sourceTree = "<group>"; };
 		CC33CA2F1EC60447008E6B33 /* DatabaseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseConstants.swift; sourceTree = "<group>"; };
 		CC34BD551ECF3863007CB365 /* UserCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCredentials.swift; sourceTree = "<group>"; };
 		CC37B1301E93CDD600651C46 /* QOTDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QOTDatabase.framework; path = "Pods/../build/Release-iphoneos/QOTDatabase/QOTDatabase.framework"; sourceTree = "<group>"; };
@@ -624,7 +625,6 @@
 		CC9663121EA1B41500B84B1C /* MyUniverseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUniverseViewController.swift; sourceTree = "<group>"; };
 		CC9663131EA1B41500B84B1C /* MyUniverseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUniverseHelper.swift; sourceTree = "<group>"; };
 		CC9663171EA1B86100B84B1C /* MyDataSectorLabelsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataSectorLabelsView.swift; sourceTree = "<group>"; };
-		CC9FBDE51EAE155300AF1CF0 /* PrepareContentCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentCoordinator.swift; sourceTree = "<group>"; };
 		CC9FBDE71EAE58F300AF1CF0 /* SettingsMenuCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuCoordinator.swift; sourceTree = "<group>"; };
 		CCA2DC661EF17BCE00D1DF6A /* LearnContentItemHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentItemHeaderView.swift; sourceTree = "<group>"; };
 		CCA2DC681EF17BFA00D1DF6A /* LearnContentItemHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnContentItemHeaderView.xib; sourceTree = "<group>"; };
@@ -1080,8 +1080,9 @@
 				CB9B07581EF904410017F6C3 /* CalendarEvent */,
 				CB4881501EF7BF6400389C88 /* ContentCategory */,
 				CB48814F1EF7BF5B00389C88 /* ContentCollection */,
-				CB14676F1EF3E86900A60E31 /* ContentItem */,
 				CB9B075D1EF911B40017F6C3 /* IntObject */,
+				CB14676F1EF3E86900A60E31 /* ContentItem */,
+				CBC933131F0B9B3A00C00007 /* ContentRelation */,
 				CB1467631EF2778400A60E31 /* Page */,
 				CB810E6C1EF180CB0043E3E5 /* PageTrack */,
 				7F0888821F0A4B9C005CE966 /* Partner */,
@@ -1203,6 +1204,7 @@
 				CCC0C4BD1E82730E002A8362 /* Extensions.swift */,
 				D58BD8691E9D1E7F005676DE /* NSFile+Convenience.swift */,
 				CC4F22EF1EE023F4006C437E /* NSMutableAttributedString+Create.swift */,
+				CB9BB0C11F0CD13E009067D7 /* TimeInterval+Convenience.swift */,
 				CC05CB751EDEC6D700D15ABC /* UIBezierPath+Hexagon.swift */,
 				852DADC11EEDDE5100A10882 /* UIButton+AttributedTitle.swift */,
 				CC1E2A5E1EDF1DE100B9EFD3 /* UICollectionView+Create.swift */,
@@ -1445,8 +1447,8 @@
 			children = (
 				CC56D0A81EEACC6200EB71D9 /* ArticleService.swift */,
 				CB34376F1EFE936F00D89D4F /* ContentService.swift */,
+				CB9BB0BF1F0CCC30009067D7 /* EventsService.swift */,
 				CB9AFD1F1F029D1500D067F2 /* PreparationService.swift */,
-				CC33CA2D1EC603BC008E6B33 /* PrepareContentService.swift */,
 				CB9AFD0E1F012A2800D067F2 /* QuestionsService.swift */,
 				CB369CE11E8D5E3D00522293 /* Services.swift */,
 				CBB4DCF41EDC10FA0071494A /* SyncRecordService.swift */,
@@ -1533,12 +1535,18 @@
 		CBC933061F052CBA00C00007 /* Prepare */ = {
 			isa = PBXGroup;
 			children = (
-				CBC933091F0A438600C00007 /* PrepareCheckListCoordinator.swift */,
-				CC9FBDE51EAE155300AF1CF0 /* PrepareContentCoordinator.swift */,
 				CBC933071F052DDA00C00007 /* PrepareCoordinator.swift */,
-				CBC9330B1F0A51EE00C00007 /* CreatePreparationCoordinator.swift */,
 			);
 			name = Prepare;
+			sourceTree = "<group>";
+		};
+		CBC933131F0B9B3A00C00007 /* ContentRelation */ = {
+			isa = PBXGroup;
+			children = (
+				CBC933111F0B9B3100C00007 /* ContentRelation.swift */,
+				CBC933141F0B9CC200C00007 /* ContentRelationIntermediary.swift */,
+			);
+			name = ContentRelation;
 			sourceTree = "<group>";
 		};
 		CBD791571E72F10E0006C590 /* Resources */ = {
@@ -1923,7 +1931,6 @@
 				CBD791541E72A4BB0006C590 /* MockData.swift in Sources */,
 				CB9B07651EF929E50017F6C3 /* EKEvent+JSONEncodable.swift in Sources */,
 				CCCC211D1E8981AD00133839 /* ChatViewModel.swift in Sources */,
-				CBC9330A1F0A438600C00007 /* PrepareCheckListCoordinator.swift in Sources */,
 				CBC9330F1F0AA47800C00007 /* PrepareEventsViewController.swift in Sources */,
 				CC4F22F01EE023F4006C437E /* NSMutableAttributedString+Create.swift in Sources */,
 				0B2CA37B1ED2BC93006B355F /* SensorCollectionViewCell.swift in Sources */,
@@ -1950,7 +1957,6 @@
 				CB3437721F00ED3200D89D4F /* RealmObserver.swift in Sources */,
 				CCC1B6A91E8B9B7300D1461F /* LearnCategoryListViewController.swift in Sources */,
 				852DADEC1EF2BE3C00A10882 /* UpcomingTravelsView.swift in Sources */,
-				CC33CA2E1EC603BC008E6B33 /* PrepareContentService.swift in Sources */,
 				CB27D59B1ECCB67300F2B76C /* Result.swift in Sources */,
 				D569769C1EF94094000FF777 /* MyStatisticsDataSleepView.swift in Sources */,
 				CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */,
@@ -1998,8 +2004,8 @@
 				D50CDDC11EC48CA700D27072 /* AverageGraphView.swift in Sources */,
 				D5B7072A1F03AB3900C812EB /* MorningInterviewCell.swift in Sources */,
 				CBB4DD0D1EDEAA610071494A /* URLRequestBuilder.swift in Sources */,
+				CBC933151F0B9CC200C00007 /* ContentRelationIntermediary.swift in Sources */,
 				CB9B076D1EFAAB6E0017F6C3 /* UpSyncCalendarEventsOperation.swift in Sources */,
-				CBC9330C1F0A51EE00C00007 /* CreatePreparationCoordinator.swift in Sources */,
 				D5485F221ED57AE200A08D1A /* SearchViewController.swift in Sources */,
 				0BD6F6B91EA0E81E001EBC4D /* MyPrepTableViewCell.swift in Sources */,
 				CCE372F31E8C1EDF00B79352 /* ArticleCollectionViewModel.swift in Sources */,
@@ -2060,6 +2066,7 @@
 				CB14676E1EF2AB7000A60E31 /* DeviceIdentifier.swift in Sources */,
 				CCE372FF1E8D2AE700B79352 /* MyPrepViewModel.swift in Sources */,
 				0BB099CB1EBC6323006B2FB7 /* CarouselCellView.swift in Sources */,
+				CB9BB0C01F0CCC30009067D7 /* EventsService.swift in Sources */,
 				CB48814B1EF7B1EA00389C88 /* Data+Convenience.swift in Sources */,
 				CCC1B6AB1E8B9B7300D1461F /* LearnCategoryListViewModel.swift in Sources */,
 				CCE372FD1E8D2AD100B79352 /* MyPrepViewController.swift in Sources */,
@@ -2072,6 +2079,7 @@
 				CC178A771F04FD600066A5D4 /* UserService.swift in Sources */,
 				CB9AFD111F014AED00D067F2 /* Preparation.swift in Sources */,
 				CB810E611EEFC0D70043E3E5 /* ErrorCell.swift in Sources */,
+				CB9BB0C21F0CD13E009067D7 /* TimeInterval+Convenience.swift in Sources */,
 				852DADC21EEDDE5100A10882 /* UIButton+AttributedTitle.swift in Sources */,
 				CCC1B6A71E8B9B7300D1461F /* LearnCategoryCell.swift in Sources */,
 				CC143A531EC49641001FB76E /* MyStatisticsViewController.swift in Sources */,
@@ -2116,6 +2124,7 @@
 				CC0FF8D61EA78C810028D64F /* MyToBeVisionCoordinator.swift in Sources */,
 				D5B707261F03A2BF00C812EB /* MorningInterviewViewModel.swift in Sources */,
 				CB34375E1EFD653B00D89D4F /* Answer.swift in Sources */,
+				CBC933121F0B9B3100C00007 /* ContentRelation.swift in Sources */,
 				0BA3E6421EC1A8280012999E /* DayEventChartView.swift in Sources */,
 				852DADE61EF1A40200A10882 /* SegmentedView.swift in Sources */,
 				8514A4881EE93D3C0086C70E /* PrepareContentFooterTableViewCell.swift in Sources */,
@@ -2128,7 +2137,6 @@
 				CC7D21AA1EFC0856007A062E /* ArticleContentItemCoordinator.swift in Sources */,
 				CCE06FE01E8D44FC009C5AD2 /* LibraryCoordinator.swift in Sources */,
 				0B254D3E1E97994C006AA4C0 /* PrepareCollectionViewCell.swift in Sources */,
-				CC9FBDE61EAE155300AF1CF0 /* PrepareContentCoordinator.swift in Sources */,
 				852DADDA1EF147AA00A10882 /* AverageMeetingBetweenLengthView.swift in Sources */,
 				CC0FF8DA1EA790750028D64F /* PartnersCoordinator.swift in Sources */,
 				CB1D5E411EC5E25A00BCDF8D /* JSONDecodable.swift in Sources */,

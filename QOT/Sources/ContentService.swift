@@ -63,6 +63,14 @@ final class ContentService {
         return mainRealm.anyCollection(primaryKey: id)
     }
 
+    func contentItems(contentID: Int) -> AnyRealmCollection<ContentItem> {
+        return mainRealm.anyCollection(predicates: NSPredicate(format: "collectionID == %d", contentID))
+    }
+
+    func contentItemsOnBackground(contentID: Int) throws -> AnyRealmCollection<ContentItem> {
+        return try realmProvider.realm().anyCollection(predicates: NSPredicate(format: "collectionID == %d", contentID))
+    }
+
     func setViewed(itemID: Int) {
         DispatchQueue.global().async {
             do {

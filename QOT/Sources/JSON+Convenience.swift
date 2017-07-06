@@ -24,7 +24,8 @@ extension JSON {
     }
 
     func getArray<T: JSONDecodable>(at jsonKey: JsonKey) throws -> [T] {
-        return try getArray(at: jsonKey.value).map { try T(json: $0) }
+        let jsons = try getArray(at: jsonKey.value, alongPath: [.MissingKeyBecomesNil, .NullBecomesNil]) ?? []
+        return try jsons.map { try T(json: $0) }
     }
 
     func getInt64(at jsonKey: JsonKey) throws -> Int64 {

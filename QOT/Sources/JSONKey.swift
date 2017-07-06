@@ -24,6 +24,7 @@ enum JsonKey: String {
     case city
     case company
     case contentId
+    case contentRelationType
     case coordinates
     case country
     case createdAt
@@ -87,6 +88,7 @@ enum JsonKey: String {
     case referrerAssociatedValueType
     case referrerPageId
     case relatedContentIds
+    case relatedContent
     case resultList
     case role
     case searchTags

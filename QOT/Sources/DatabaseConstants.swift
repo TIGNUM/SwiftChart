@@ -42,6 +42,6 @@ enum Database {
     }
 
     enum QuestionGroup: String {
-        case PREPARE
+        case PREPARE = "Prepare"
     }
 }
