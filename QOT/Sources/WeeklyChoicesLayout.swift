@@ -9,9 +9,9 @@
 import UIKit
 
 protocol WeeklyChoicesDelegate: class {
-    func radius(_ layout: WeeklyChoicesLayout) -> CGFloat
-    func circleX(_ layout: WeeklyChoicesLayout) -> CGFloat
-    func cellSize(_ layout: WeeklyChoicesLayout) -> CGSize
+    func radius() -> CGFloat
+    func circleX() -> CGFloat
+    func cellSize() -> CGSize
 }
 
 final class WeeklyChoicesLayout: UICollectionViewLayout {
@@ -32,7 +32,7 @@ final class WeeklyChoicesLayout: UICollectionViewLayout {
     }
 
     override var collectionViewContentSize: CGSize {
-        guard let cellSize = delegate?.cellSize(self) else {
+        guard let cellSize = delegate?.cellSize() else {
             return .zero
         }
 
@@ -42,9 +42,9 @@ final class WeeklyChoicesLayout: UICollectionViewLayout {
 
     override func prepare() {
         guard
-            let radius = delegate?.radius(self),
-            let circleX = delegate?.circleX(self),
-            let cellSize = delegate?.cellSize(self)
+            let radius = delegate?.radius(),
+            let circleX = delegate?.circleX(),
+            let cellSize = delegate?.cellSize()
             else {
                 self.cache = []
                 return
@@ -62,7 +62,7 @@ final class WeeklyChoicesLayout: UICollectionViewLayout {
             let x = xPos(y: cellCenterY, radius: radius, circleX: circleX) ?? -10000
             let accurateX = (abs(circleX / 2) - (radius - abs(circleX))) - x
 
-            attributes.frame = CGRect(x: accurateX, y: y, width: cellSize.width, height: cellSize.height)
+            attributes.frame = CGRect(x: accurateX, y: y, width: cellSize.width - 20, height: cellSize.height)
             cache.append(attributes)
         }
 
@@ -93,7 +93,7 @@ final class WeeklyChoicesLayout: UICollectionViewLayout {
         guard
             let collectionView = collectionView
             else {
-                fatalError("Collection View Not Availiable")
+                fatalError("Collection View Not Available")
         }
 
         return CGPoint(x: circleX, y: (collectionView.bounds.height / 2) + collectionView.contentOffset.y)

@@ -20,16 +20,19 @@ final class WeeklyChoicesCell: UICollectionViewCell, Dequeueable {
         configure()
     }
 
-    func setUp(title: String, subTitle: String, text: String) {
-        titleLabel.text = text
-        subTitleLabel.text = subTitle
-        choiceLabel.text = title
+    func setUp(title: String, subTitle: String, choice: String) {
+        titleLabel.addCharactersSpacing(spacing: 1, text: title, uppercased: true)
+        subTitleLabel.addCharactersSpacing(spacing: 1, text: subTitle, uppercased: true)
+        choiceLabel.addCharactersSpacing(spacing: 2, text: choice, uppercased: true)
     }
 
     private func configure() {
         CircleView.layer.cornerRadius = CircleView.bounds.width / 2
-        titleLabel.font = UIFont.bentonRegularFont(ofSize: 20)
-        subTitleLabel.font = UIFont.bentonRegularFont(ofSize: 20)
-        choiceLabel.font = UIFont.bentonRegularFont(ofSize: 11)
+        titleLabel.font = Font.H4Headline
+        subTitleLabel.font = Font.H7Title
+        choiceLabel.font = Font.H7Tag
+
+        subTitleLabel.textColor = .white60
+        choiceLabel.textColor = .white50
     }
 }

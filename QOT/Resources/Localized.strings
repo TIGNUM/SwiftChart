@@ -41,6 +41,8 @@
 "Me.Sector.Activity" = "Activity";
 "Me.Sector.My.Why.Vision.Title" = "My To Be Vision";
 "Me.Sector.My.Why.Weekly.Choices.Title" = "Weekly Choices";
+"Me.Sector.My.Why.Weekly.Choices.NoChoice.Title" = "No Choice";
+"Me.Sector.My.Why.Weekly.Choices.Choice" = "CHOICE";
 "Me.Sector.My.Why.Partners.Title" = "QOT Partners";
 "Me.Sector.My.Why.Partners.Header" = "ADD YOUR PARTNERS";
 "Me.Sector.My.Why.Partners.Name" = "Name";

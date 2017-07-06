@@ -100,7 +100,7 @@ private extension MyWhyView {
                 width: layout.viewControllerFrame.width * 0.33,
                 height: Layout.MeSection.labelHeight * 1.125
             )
-            addSubview(weeklyChoiceButton(title: weeklyChoice.text, frame: buttonFrame, index: index))
+            addSubview(weeklyChoiceButton(title: weeklyChoice.title, frame: buttonFrame, index: index))
             yPos += (buttonOffset + 2)
             xPos -= CGFloat(index + 1) * 2
         }

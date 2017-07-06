@@ -50,7 +50,7 @@ protocol Vision {
 protocol WeeklyChoice {
     var localID: String { get }
     var title: String { get }
-    var text: String { get }
+    var subTitle: String { get }
 }
 
 protocol PartnerWireframe {
@@ -73,7 +73,7 @@ struct MockVison: Vision {
 struct MockWeeklyChoice: WeeklyChoice {
     let localID: String
     let title: String
-    let text: String
+    let subTitle: String
 }
 
 class MockPartner: PartnerWireframe {
@@ -122,32 +122,32 @@ private var weeklyChoices: [WeeklyChoice] {
     return [
         MockWeeklyChoice(
             localID: UUID().uuidString,
-            title: ".01 choice",
-            text: "You are having a Lorem ipsum here and"
+            title: "You are having a Lorem ipsum here and",
+            subTitle: ""
         ),
 
         MockWeeklyChoice(
             localID: UUID().uuidString,
-            title: ".02 choice",
-            text: "You are having a Lorem ipsum here and"
+            title: "You are having a Lorem ipsum here and",
+            subTitle: ""
         ),
 
         MockWeeklyChoice(
             localID: UUID().uuidString,
-            title: ".03 choice",
-            text: "You are having a Lorem ipsum here and"
+            title: "You are having a Lorem ipsum here and",
+            subTitle: ""
         ),
 
         MockWeeklyChoice(
             localID: UUID().uuidString,
-            title: ".04 choice",
-            text: "You are having a Lorem ipsum here and"
+            title: "You are having a Lorem ipsum here and",
+            subTitle: ""
         ),
 
         MockWeeklyChoice(
             localID: UUID().uuidString,
-            title: ".05 choice",
-            text: "You are having a Lorem ipsum here and"
+            title: "You are having a Lorem ipsum here and",
+            subTitle: ""
         )
     ]
 }
