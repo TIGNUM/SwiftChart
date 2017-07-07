@@ -28,6 +28,11 @@ final class UpSyncCalendarEventsOperation: ConcurrentOperation {
     }
 
     override func execute() {
+        guard context.state != .finished else {
+            finish()
+            return
+        }
+        
         startSyncAndContinue()
     }
 
@@ -89,7 +94,7 @@ final class UpSyncCalendarEventsOperation: ConcurrentOperation {
 
     private func finish(error: SyncError?) {
         if let error = error {
-            context.finish(error: error)
+            context.add(error: error)
         } else if isFinalOperation {
             context.finish(error: nil)
         }

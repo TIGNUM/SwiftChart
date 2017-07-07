@@ -38,7 +38,7 @@ final class DownSyncOperation<Intermediary, Persistable>: ConcurrentOperation wh
     }
 
     override func execute() {
-        guard case SyncContext.State.default = context.state else {
+        guard context.state != .finished else {
             finish()
             return
         }
@@ -122,7 +122,7 @@ final class DownSyncOperation<Intermediary, Persistable>: ConcurrentOperation wh
 
     private func finish(error: SyncError?) {
         if let error = error {
-            context.finish(error: error)
+            context.add(error: error)
         } else if isFinalOperation {
             context.finish(error: nil)
         }

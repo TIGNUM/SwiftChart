@@ -22,20 +22,23 @@ enum SyncError: Error {
 }
 
 class SyncContext {
-    typealias Completion = ((State) -> Void)?
+    typealias Completion = ((State, [SyncError]) -> Void)?
 
     enum State {
         case `default`
         case finished
-        case errored(SyncError)
     }
 
     private(set) var state: State = .default
-
     private var completion: Completion
-
+    private var errors = [SyncError]()
+    
     init(queue: OperationQueue, completion: Completion) {
         self.completion = completion
+    }
+    
+    func add(error: SyncError) {
+        errors.append(error)
     }
 
     func finish(error: SyncError?) {
@@ -43,11 +46,7 @@ class SyncContext {
             return
         }
 
-        if let error = error {
-            state = .errored(error)
-        } else {
-            state = .finished
-        }
-        completion?(state)
+        state = .finished
+        completion?(state, errors)
     }
 }

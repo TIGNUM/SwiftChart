@@ -28,12 +28,13 @@ final class SyncManager {
     }
 
     func syncAll() {
-        let context = SyncContext(queue: operationQueue) { (state) in
+        let context = SyncContext(queue: operationQueue) { (state, errors) in
             switch state {
-            case .errored(let error):
-                print("SYNC FAILED: \(error)")
             case .finished:
-                print("SYNC SUCCEEDED")
+                print("SYNC ALL FINISHED with \(errors.count) errors")
+                errors.forEach({ (error: SyncError) in
+                    print(error)
+                })
             default:
                 break
             }
@@ -52,12 +53,13 @@ final class SyncManager {
     }
 
     func syncCalendarEvents() {
-        let context = SyncContext(queue: operationQueue) { (state) in
+        let context = SyncContext(queue: operationQueue) { (state, errors) in
             switch state {
-            case .errored(let error):
-                print("SYNC FAILED: \(error)")
             case .finished:
-                print("SYNC SUCCEEDED")
+                print("CALENDAR EVENTS SYNC FINISHED with \(errors.count) errors")
+                errors.forEach({ (error: SyncError) in
+                    print(error)
+                })
             default:
                 break
             }
@@ -71,10 +73,13 @@ final class SyncManager {
     }
 
     func syncAllMockJSONs() {
-        let context = SyncContext(queue: operationQueue) { (state) in
+        let context = SyncContext(queue: operationQueue) { (state, errors) in
             switch state {
-            case .errored(let error):
-                print("CONTENT SYNC FAILED: \(error)")
+            case .finished:
+                print("SYNC ALL MOCK JSON FINISHED with \(errors.count) errors")
+                errors.forEach({ (error: SyncError) in
+                    print(error)
+                })
             default:
                 break
             }
