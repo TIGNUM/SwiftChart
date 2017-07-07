@@ -11,8 +11,8 @@ import RealmSwift
 
 final class UserService {
 
-    private let mainRealm: Realm
-    private let realmProvider: RealmProvider
+    fileprivate let mainRealm: Realm
+    fileprivate let realmProvider: RealmProvider
 
     init(mainRealm: Realm, realmProvider: RealmProvider) {
         self.mainRealm = mainRealm
@@ -22,7 +22,7 @@ final class UserService {
     func user() -> User? {
         return mainRealm.objects(User.self).first
     }
-
+   
     func updateUserGender(user: User, gender: String) {
         do {
             try mainRealm.write {
@@ -82,4 +82,69 @@ final class UserService {
             assertionFailure("Update user, error: \(error)")
         }
     }
+}
+
+// MARK: - MyToBeVision
+
+extension UserService {
+    func myToBeVision() -> MyToBeVision? {
+        return mainRealm.objects(MyToBeVision.self).first
+    }
+    
+    func myToBeVisionIntermediary() -> MyToBeVisionIntermediary? {
+        guard let mytoBeVision = myToBeVision() else {
+            return nil
+        }
+        return MyToBeVisionIntermediary(
+            localID: mytoBeVision.localID,
+            headline: mytoBeVision.headline,
+            subHeadline: mytoBeVision.subHeadline,
+            text: mytoBeVision.text,
+            profileImageURL: mytoBeVision.profileImageURL,
+            date: mytoBeVision.date)
+    }
+    
+    func createMyToBeVision(success: ((MyToBeVision?) -> Void)?, failure: ((Error?) -> Void)?) {
+        DispatchQueue.global().async {
+            do {
+                let realm = try self.realmProvider.realm()
+                try realm.write {
+                    let myToBeVision = realm.create(MyToBeVision.self, value: MyToBeVision(), update: true)
+                    DispatchQueue.main.async {
+                        success?(myToBeVision)
+                    }
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    failure?(error)
+                }
+            }
+        }
+    }
+    
+    func updateMyToBeVision(_ myToBeVision: MyToBeVisionIntermediary, completion: ((Error?) -> Void)?) {
+        DispatchQueue.global().async {
+            do {
+                let realm = try self.realmProvider.realm()
+                try realm.write {
+                    let realmObj = MyToBeVision(
+                        localID: myToBeVision.localID,
+                        headline: myToBeVision.headline,
+                        subHeadline: myToBeVision.subHeadline,
+                        text: myToBeVision.text,
+                        profileImageURL: myToBeVision.profileImageURL,
+                        date: myToBeVision.date)
+                    realm.add(realmObj, update: true)
+                    DispatchQueue.main.async {
+                        completion?(nil)
+                    }
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    completion?(error)
+                }
+            }
+        }
+    }
+
 }

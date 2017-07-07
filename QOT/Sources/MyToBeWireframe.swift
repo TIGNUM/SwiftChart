@@ -1,26 +1,22 @@
 //
-//  Partner+Convenience.swift
+//  MyToBeWireframe.swift
 //  QOT
 //
-//  Created by Lee Arromba on 03/07/2017.
+//  Created by Lee Arromba on 05/07/2017.
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
 import UIKit
-import RealmSwift
 
-extension Partner {
-    var initials: String {
-        var initials = ""
-        if let initial = name?.characters.first {
-            initials += String(initial)
-        }
-        if let initial = surname?.characters.first {
-            initials += String(initial)
-        }
-        return initials
-    }
-    
+protocol MyToBeVisionWireframe {
+    var headline: String? { get set }
+    var subHeadline: String? { get set }
+    var text: String? { get set }
+    var profileImageURL: String? { get set }
+    var date: Date? { get set }
+}
+
+extension MyToBeVisionWireframe {
     var profileImage: UIImage? {
         guard let profileImageURL = profileImageURL, let url = URL(string: profileImageURL) else {
             return nil

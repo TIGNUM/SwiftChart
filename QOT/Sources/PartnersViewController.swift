@@ -242,7 +242,7 @@ extension PartnersViewController: RSKImageCropViewControllerDelegate {
         controller.dismiss(animated: true, completion: nil)
       
         let error = viewModel.updateProfileImage(image: croppedImage)
-        if error != nil {
+        guard error == nil else {
             let alertController = UIAlertController(
                 title: R.string.localized.meSectorMyWhyPartnersPhotoErrorTitle(),
                 message: R.string.localized.meSectorMyWhyPartnersPhotoErrorMessage(),
@@ -252,10 +252,11 @@ extension PartnersViewController: RSKImageCropViewControllerDelegate {
                 style: .default)
             alertController.addAction(alertAction)
             present(alertController, animated: true, completion: nil)
-        } else {
-            viewModel.save()
-            carousel.reloadData()
+            return
         }
+        
+        viewModel.save()
+        carousel.reloadData()
     }
 }
 

@@ -10,13 +10,13 @@ import UIKit
 
 protocol MyUniverseViewControllerDelegate: class {
     func didTapSector(sector: Sector?, in viewController: MyUniverseViewController)
-    func didTapMyToBeVision(vision: Vision?, from view: UIView, in viewController: MyUniverseViewController)
+    func didTapMyToBeVision(vision: MyToBeVision?, from view: UIView, in viewController: MyUniverseViewController)
     func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, from view: UIView, in viewController: MyUniverseViewController)
     func didTapQOTPartner(selectedIndex: Index, partners: [PartnerWireframe], from view: UIView, in viewController: MyUniverseViewController)
 }
 
 protocol MyWhyViewDelegate: class {
-    func didTapMyToBeVision(vision: Vision?, from view: UIView)
+    func didTapMyToBeVision(vision: MyToBeVision?, from view: UIView)
     func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, from view: UIView)
     func didTapQOTPartner(selectedIndex: Index, partners: [PartnerWireframe], from view: UIView)
 }
@@ -34,6 +34,7 @@ final class MyUniverseViewController: UIViewController {
     fileprivate var lastContentOffset: CGFloat = 0
     weak var contentScrollViewDelegate: ContentScrollViewDelegate?
     weak var delegate: MyUniverseViewControllerDelegate?
+    fileprivate var viewDidDisappear: Bool = false
 
     fileprivate lazy var myDataView: MyDataView = {
         return MyDataView(
@@ -109,6 +110,10 @@ final class MyUniverseViewController: UIViewController {
         self.myWhyViewModel = myWhyViewModel
 
         super.init(nibName: nil, bundle: nil)
+        
+        _ = myWhyViewModel.updates.observeNext { [weak self] (_: CollectionUpdate) in
+            self?.myDataView.updateProfileImage(self?.myDataViewModel.profileImage)
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -119,6 +124,16 @@ final class MyUniverseViewController: UIViewController {
         super.viewDidLoad()
 
         addTabRecognizer()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewDidDisappear = false
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        viewDidDisappear = true
     }
 }
 
@@ -206,6 +221,10 @@ private extension MyUniverseViewController {
 extension MyUniverseViewController: UIScrollViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+         // FIXME: this is hacky fix for a bug whereby closing a presented viewcontroller on page 2/2 moves the scrollview back to page 1/2
+        guard !viewDidDisappear else {
+            return
+        }
         setBackgroundParallaxEffect(scrollView)
         updateProfileImageViewAlphaValue(scrollView)
         updateSectorLabelsAlphaValue(scrollView)
@@ -256,7 +275,7 @@ private extension MyUniverseViewController {
 
 extension MyUniverseViewController: MyWhyViewDelegate {
 
-    func didTapMyToBeVision(vision: Vision?, from view: UIView) {
+    func didTapMyToBeVision(vision: MyToBeVision?, from view: UIView) {
         delegate?.didTapMyToBeVision(vision: vision, from: view, in: self)
     }
 

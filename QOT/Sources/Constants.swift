@@ -54,7 +54,8 @@ struct Layout {
 
         static let loadOffset: CGFloat = 12
         static let labelHeight: CGFloat = 21
-
+        static let maxPartners: Int = 3
+        
         var connectionCenter: CGPoint {
             return  CGPoint(x: viewControllerFrame.width, y: viewControllerFrame.height * 0.5)
         }

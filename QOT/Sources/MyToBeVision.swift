@@ -1,15 +1,17 @@
 //
-//  Partner.swift
+//  MyToBeVision.swift
 //  QOT
 //
-//  Created by Lee Arromba on 03/07/2017.
+//  Created by Lee Arromba on 05/07/2017.
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
 import Foundation
+
+import Foundation
 import RealmSwift
 
-final class Partner: Object, PartnerWireframe {
+final class MyToBeVision: Object, MyToBeVisionWireframe {
     
     // MARK: Private Properties
     
@@ -19,26 +21,26 @@ final class Partner: Object, PartnerWireframe {
     
     private(set) dynamic var localID: String = UUID().uuidString
     
-    dynamic var name: String?
-
-    dynamic var surname: String?
+    dynamic var headline: String?
     
-    dynamic var relationship: String?
+    dynamic var subHeadline: String?
     
-    dynamic var email: String?
+    dynamic var text: String?
     
     dynamic var profileImageURL: String?
     
+    dynamic var date: Date?
+    
     // MARK: Functions
     
-    convenience init(localID: String, name: String?, surname: String?, relationship: String?, email: String?, profileImageURL: String?) {
+    convenience init(localID: String, headline: String?, subHeadline: String?, text: String?, profileImageURL: String?, date: Date?) {
         self.init()
         self.localID = localID
-        self.name = name
-        self.surname = surname
-        self.relationship = relationship
-        self.email = email
+        self.headline = headline
+        self.subHeadline = subHeadline
+        self.text = text
         self.profileImageURL = profileImageURL
+        self.date = date
     }
     
     override class func primaryKey() -> String? {

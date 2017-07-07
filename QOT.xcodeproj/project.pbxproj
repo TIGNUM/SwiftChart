@@ -35,9 +35,13 @@
 		0CC2119BB6C36EF6F43B4ECD /* Pods_QOT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */; };
 		7F08887F1F0A4101005CE966 /* PartnerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F08887E1F0A4101005CE966 /* PartnerService.swift */; };
 		7F0888811F0A4B96005CE966 /* Partner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0888801F0A4B96005CE966 /* Partner.swift */; };
-		7F0888841F0A4F4D005CE966 /* Partner+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0888831F0A4F4D005CE966 /* Partner+Convenience.swift */; };
 		7F0888861F0A7602005CE966 /* PartnerIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0888851F0A7602005CE966 /* PartnerIntermediary.swift */; };
 		7F0888881F0AA7DB005CE966 /* UIImage+FileIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0888871F0AA7DB005CE966 /* UIImage+FileIO.swift */; };
+		7F691C531F0CFA8100E2C180 /* PartnerWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F691C521F0CFA8100E2C180 /* PartnerWireframe.swift */; };
+		7F691C551F0D19AE00E2C180 /* MyToBeVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F691C541F0D19AE00E2C180 /* MyToBeVision.swift */; };
+		7F691C581F0D1AAD00E2C180 /* MyToBeWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F691C571F0D1AAD00E2C180 /* MyToBeWireframe.swift */; };
+		7F691C5A1F0D1AB700E2C180 /* MyToBeVisionIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F691C591F0D1AB700E2C180 /* MyToBeVisionIntermediary.swift */; };
+		7F691C5E1F0D30C800E2C180 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F691C5D1F0D30C800E2C180 /* PlaceholderTextView.swift */; };
 		850A50BB1F0A973A00350097 /* PrepareContentTopTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850A50BA1F0A973A00350097 /* PrepareContentTopTabBarView.swift */; };
 		850A50BD1F0A97FF00350097 /* PrepareContentTopTabBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850A50BC1F0A97FF00350097 /* PrepareContentTopTabBarView.xib */; };
 		8514A4861EE810750086C70E /* DownSyncComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8514A4851EE810750086C70E /* DownSyncComplete.swift */; };
@@ -393,9 +397,13 @@
 		5C87601C1FE7F833DF0D7A6B /* Pods-QOTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.release.xcconfig"; sourceTree = "<group>"; };
 		7F08887E1F0A4101005CE966 /* PartnerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerService.swift; sourceTree = "<group>"; };
 		7F0888801F0A4B96005CE966 /* Partner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Partner.swift; sourceTree = "<group>"; };
-		7F0888831F0A4F4D005CE966 /* Partner+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Partner+Convenience.swift"; sourceTree = "<group>"; };
 		7F0888851F0A7602005CE966 /* PartnerIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerIntermediary.swift; sourceTree = "<group>"; };
 		7F0888871F0AA7DB005CE966 /* UIImage+FileIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+FileIO.swift"; sourceTree = "<group>"; };
+		7F691C521F0CFA8100E2C180 /* PartnerWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerWireframe.swift; sourceTree = "<group>"; };
+		7F691C541F0D19AE00E2C180 /* MyToBeVision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToBeVision.swift; sourceTree = "<group>"; };
+		7F691C571F0D1AAD00E2C180 /* MyToBeWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToBeWireframe.swift; sourceTree = "<group>"; };
+		7F691C591F0D1AB700E2C180 /* MyToBeVisionIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToBeVisionIntermediary.swift; sourceTree = "<group>"; };
+		7F691C5D1F0D30C800E2C180 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		850A50BA1F0A973A00350097 /* PrepareContentTopTabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentTopTabBarView.swift; sourceTree = "<group>"; };
 		850A50BC1F0A97FF00350097 /* PrepareContentTopTabBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentTopTabBarView.xib; sourceTree = "<group>"; };
@@ -751,11 +759,21 @@
 		7F0888821F0A4B9C005CE966 /* Partner */ = {
 			isa = PBXGroup;
 			children = (
+				7F691C521F0CFA8100E2C180 /* PartnerWireframe.swift */,
 				7F0888801F0A4B96005CE966 /* Partner.swift */,
-				7F0888831F0A4F4D005CE966 /* Partner+Convenience.swift */,
 				7F0888851F0A7602005CE966 /* PartnerIntermediary.swift */,
 			);
 			name = Partner;
+			sourceTree = "<group>";
+		};
+		7F691C561F0D19B100E2C180 /* MyToBeVision */ = {
+			isa = PBXGroup;
+			children = (
+				7F691C571F0D1AAD00E2C180 /* MyToBeWireframe.swift */,
+				7F691C541F0D19AE00E2C180 /* MyToBeVision.swift */,
+				7F691C591F0D1AB700E2C180 /* MyToBeVisionIntermediary.swift */,
+			);
+			name = MyToBeVision;
 			sourceTree = "<group>";
 		};
 		B1B85C4C58D59EA1163CE83B /* Pods */ = {
@@ -1089,6 +1107,7 @@
 				CB4881501EF7BF6400389C88 /* ContentCategory */,
 				CB48814F1EF7BF5B00389C88 /* ContentCollection */,
 				CB9B075D1EF911B40017F6C3 /* IntObject */,
+				7F691C561F0D19B100E2C180 /* MyToBeVision */,
 				CB14676F1EF3E86900A60E31 /* ContentItem */,
 				CBC933131F0B9B3A00C00007 /* ContentRelation */,
 				CB1467631EF2778400A60E31 /* Page */,
@@ -1448,6 +1467,7 @@
 				D58BD86B1E9E846C005676DE /* ScrollViewAnimation.swift */,
 				D5B761861EE6B19C00AE178B /* SpacingInLabel.swift */,
 				CB810E601EEFC0D70043E3E5 /* ErrorCell.swift */,
+				7F691C5D1F0D30C800E2C180 /* PlaceholderTextView.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -1458,7 +1478,6 @@
 				CC56D0A81EEACC6200EB71D9 /* ArticleService.swift */,
 				CB34376F1EFE936F00D89D4F /* ContentService.swift */,
 				CB9BB0BF1F0CCC30009067D7 /* EventsService.swift */,
-				CB9AFD1F1F029D1500D067F2 /* PreparationService.swift */,
 				CB9AFD0E1F012A2800D067F2 /* QuestionsService.swift */,
 				CB369CE11E8D5E3D00522293 /* Services.swift */,
 				CBB4DCF41EDC10FA0071494A /* SyncRecordService.swift */,
@@ -1934,6 +1953,7 @@
 				CB3437691EFE75C400D89D4F /* ContentItem+Convenience.swift in Sources */,
 				CB9B07671EF953D80017F6C3 /* JSONKey.swift in Sources */,
 				CC96630F1EA1B29800B84B1C /* MyWhyView.swift in Sources */,
+				7F691C5E1F0D30C800E2C180 /* PlaceholderTextView.swift in Sources */,
 				D5EC34B21EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.swift in Sources */,
 				852DADEA1EF2B83100A10882 /* MyStatisticsDataUpcomingTrips.swift in Sources */,
 				D51B5C4C1E8D133B0084A65B /* LearnContentItemCoordinator.swift in Sources */,
@@ -2020,6 +2040,7 @@
 				D5485F221ED57AE200A08D1A /* SearchViewController.swift in Sources */,
 				0BD6F6B91EA0E81E001EBC4D /* MyPrepTableViewCell.swift in Sources */,
 				CCE372F31E8C1EDF00B79352 /* ArticleCollectionViewModel.swift in Sources */,
+				7F691C531F0CFA8100E2C180 /* PartnerWireframe.swift in Sources */,
 				CC8018231F026BDA0040B03F /*  LibraryTableViewCell.swift in Sources */,
 				CB1D5E401EC5E25A00BCDF8D /* Error.swift in Sources */,
 				85DC6F891EF40B36004F4B4D /* TravelTripsPeriodChartView.swift in Sources */,
@@ -2062,7 +2083,6 @@
 				D52DAF9B1EC1E87D00C63156 /* ActivityChartView.swift in Sources */,
 				CCE373161E8D330100B79352 /* LibraryViewModel.swift in Sources */,
 				CB38DBDF1EF52D5C000E0F92 /* LearnStrategyListLayout.swift in Sources */,
-				7F0888841F0A4F4D005CE966 /* Partner+Convenience.swift in Sources */,
 				D5CB5BBE1EF2D45F0029D224 /* ContainerView.swift in Sources */,
 				CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */,
 				CB8C344F1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift in Sources */,
@@ -2081,6 +2101,7 @@
 				CCC1B6AB1E8B9B7300D1461F /* LearnCategoryListViewModel.swift in Sources */,
 				CCE372FD1E8D2AD100B79352 /* MyPrepViewController.swift in Sources */,
 				CB3437531EFAC8F500D89D4F /* UpSyncResultParser.swift in Sources */,
+				7F691C5A1F0D1AB700E2C180 /* MyToBeVisionIntermediary.swift in Sources */,
 				CC0FF8D81EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift in Sources */,
 				CC8813EB1EF2EA33000FB85F /* LearnContentItemRecommendedCell.swift in Sources */,
 				CB1467651EF2779700A60E31 /* Page.swift in Sources */,
@@ -2095,12 +2116,14 @@
 				CC143A531EC49641001FB76E /* MyStatisticsViewController.swift in Sources */,
 				CB9AFD171F014BF800D067F2 /* PreparationIntermediary.swift in Sources */,
 				0BCE74421ECD96D70006C0CF /* TripsDashView.swift in Sources */,
+				7F691C581F0D1AAD00E2C180 /* MyToBeWireframe.swift in Sources */,
 				D58BD86C1E9E846C005676DE /* ScrollViewAnimation.swift in Sources */,
 				85DC6F831EF3C161004F4B4D /* UpcomingTravelsChartView.swift in Sources */,
 				852DADDE1EF1737700A10882 /* TravelMaxTimeZoneChangesView.swift in Sources */,
 				CC96630B1EA1B27F00B84B1C /* MyDataView.swift in Sources */,
 				CCE373141E8D32F800B79352 /* SidebarViewModel.swift in Sources */,
 				852DADE81EF26B1D00A10882 /* PeakPerformanceAverageProgressWheel.swift in Sources */,
+				7F691C551F0D19AE00E2C180 /* MyToBeVision.swift in Sources */,
 				D51B5C491E8D0E7E0084A65B /* LearnContentCell.swift in Sources */,
 				D5FA66971EBB4DA600980EC7 /* HorizontalLinesChartView.swift in Sources */,
 				CCE372F51E8CF10C00B79352 /* ArticleCollectionViewController.swift in Sources */,

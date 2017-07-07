@@ -8,27 +8,11 @@
 
 import UIKit
 
-struct PartnerIntermediary {
+struct PartnerIntermediary: PartnerWireframe {
     let localID: String
-    var profileImage: UIImage?
     var profileImageURL: String?
-    var name: String
-    var surname: String
-    var initials: String
-    var relationship: String
-    var email: String
-}
-
-extension PartnerIntermediary {
-    // TODO: refactor repeated code. @see repetition in Partner
-    func generateInitials() -> String {
-        var initials = ""
-        if let initial = name.characters.first {
-            initials += String(initial)
-        }
-        if let initial = surname.characters.first {
-            initials += String(initial)
-        }
-        return initials
-    }
+    var name: String?
+    var surname: String?
+    var relationship: String?
+    var email: String?
 }

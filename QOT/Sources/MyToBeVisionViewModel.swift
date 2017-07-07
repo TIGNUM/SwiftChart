@@ -6,59 +6,75 @@
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 final class MyToBeVisionViewModel {
 
     // MARK: - Properties
 
-    fileprivate let myToBeVision = mockMyToBeVisionItem
-
-    var title: String {
-        return myToBeVision.title
+    private(set) var item: MyToBeVisionIntermediary
+    var headline: String? {
+        return item.headline
     }
-
-    var headLine: String {
-        return myToBeVision.headline
+    var subHeadline: String? {
+        return item.subHeadline
     }
-
-    var subHeadline: String {
-        return myToBeVision.subHeadline
+    var text: String? {
+        return item.text
     }
-
-    var text: String {
-        return myToBeVision.text
+    var profileImage: UIImage? {
+        return item.profileImage
     }
-
-    var profileImage: URL {
-        return myToBeVision.profileImage
+    var dateText: String? {
+        guard let date = item.date else {
+            return nil
+        }
+        
+        let now = Date()
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .full
+        let calendar = NSCalendar.current
+        let components = calendar.dateComponents([.year, .month, .weekOfMonth, .day, .hour, .minute, .second], from: date, to: now)
+        guard let dateText = formatter.string(from: components) else {
+            return nil
+        }
+        // TODO: lee localise
+        return "Written \(dateText) ago".uppercased()
     }
-}
-
-// MARK: - Mock Data
-
-protocol MyToBeVision {
-    var title: String { get }
-    var headline: String { get }
-    var subHeadline: String { get }
-    var text: String { get }
-    var profileImage: URL { get }
-}
-
-struct MockMyToBeVision: MyToBeVision {
-    let title: String
-    let headline: String
-    let subHeadline: String
-    let text: String
-    let profileImage: URL
-}
-
-private var mockMyToBeVisionItem: MyToBeVision {
-    return MockMyToBeVision(
-        title: "My To Be Vision",
-        headline: "LORE IPSUM IMPUSM PLUS",
-        subHeadline: "Written 45 days ago",
-        text: "Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum textYour are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text Your are having a lorem Issue here and there ipsum text text text text there ipsum text",
-        profileImage: URL(string: "https://randomuser.me/api/portraits/men/10.jpg")!
-    )
+    
+    init(item: MyToBeVisionIntermediary?) {
+        self.item = item ?? MyToBeVisionIntermediary(
+            localID: UUID().uuidString,
+            headline: nil,
+            subHeadline: nil,
+            text: nil,
+            profileImageURL: nil,
+            date: nil)
+    }
+    
+    func updateHeadline(_ headline: String?) {
+        item.headline = headline
+    }
+    
+    func updateText(_ text: String?) {
+        item.text = text
+    }
+    
+    func updateDate(_ date: Date?) {
+        item.date = date
+    }
+    
+    func updateProfileImageURL(_ profileImageURL: String?) {
+        item.profileImageURL = profileImageURL
+    }
+    
+    func updateProfileImage(_ image: UIImage?) -> Error? {
+        do {
+            let url = try image?.save(withName: item.localID)
+            updateProfileImageURL(url?.absoluteString)
+            return nil
+        } catch {
+            return error
+        }
+    }
 }

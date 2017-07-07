@@ -76,8 +76,8 @@ final class TabBarCoordinator: ParentCoordinator {
 
     fileprivate lazy var topTabBarControllerMe: TopTabBarController = {
         let myUniverseViewController = MyUniverseViewController(
-            myDataViewModel: MyDataViewModel(),
-            myWhyViewModel: MyWhyViewModel()
+            myDataViewModel: MyDataViewModel(vision: self.services.userService.myToBeVision()),
+            myWhyViewModel: MyWhyViewModel(partners: self.services.partnerService.partners, vision: self.services.userService.myToBeVision())
         )
 
         let topBarControllerItem = TopTabBarController.Item(
@@ -225,7 +225,7 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
         startChild(child: coordinator)
     }
 
-    func didTapMyToBeVision(vision: Vision?, from view: UIView, in viewController: MyUniverseViewController) {
+    func didTapMyToBeVision(vision: MyToBeVision?, from view: UIView, in viewController: MyUniverseViewController) {
         let coordinator = MyToBeVisionCoordinator(root: topTabBarControllerMe, services: services, eventTracker: eventTracker)
         startChild(child: coordinator)
     }

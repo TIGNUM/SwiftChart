@@ -13,10 +13,13 @@ final class MyDataViewModel {
 
     // MARK: - Properties
 
-    let profileImage = R.image.profileImage()
+    var profileImage: UIImage? {
+        return myToBeVision?.profileImage
+    }
     let sectors = mockSectors
     let updates = PublishSubject<CollectionUpdate, NoError>()
-
+    private let myToBeVision: MyToBeVision?
+    
     var sectorCount: Int {
         return sectors.count
     }
@@ -27,6 +30,10 @@ final class MyDataViewModel {
 
     func sector(at index: Index) -> Sector {
         return sectors[index]
+    }
+    
+    init(vision: MyToBeVision?) {
+        self.myToBeVision = vision
     }
 }
 

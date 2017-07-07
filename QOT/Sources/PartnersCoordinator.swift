@@ -28,19 +28,7 @@ final class PartnersCoordinator: ParentCoordinator {
         self.services = services
         self.eventTracker = eventTracker
         self.selectedIndex = selectedIndex
-        
-        let items: [PartnerIntermediary] = services.partnerService.partners().map({ (partner: Partner) -> PartnerIntermediary in
-            return PartnerIntermediary(
-                localID: partner.localID,
-                profileImage: partner.profileImage,
-                profileImageURL: partner.profileImageURL,
-                name: partner.name ?? "",
-                surname: partner.surname ?? "",
-                initials: partner.initials,
-                relationship: partner.relationship ?? "",
-                email: partner.email ?? "")
-        })
-        self.viewModel = PartnersViewModel(items: items, selectedIndex: selectedIndex, headline: "Lore ipsum impsum plus")
+        self.viewModel = PartnersViewModel(items: services.partnerService.partnersIntermediary, selectedIndex: selectedIndex, headline: "Lore ipsum impsum plus")
     }
 
     func start() {

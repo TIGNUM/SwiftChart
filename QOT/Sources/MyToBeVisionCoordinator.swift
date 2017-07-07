@@ -16,6 +16,7 @@ final class MyToBeVisionCoordinator: ParentCoordinator {
     fileprivate let rootViewController: UIViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
+    private let viewModel: MyToBeVisionViewModel
     var children: [Coordinator] = []
 
     // MARK: - Life Cycle
@@ -24,26 +25,18 @@ final class MyToBeVisionCoordinator: ParentCoordinator {
         self.rootViewController = root
         self.services = services
         self.eventTracker = eventTracker
+        viewModel = MyToBeVisionViewModel(item: services.userService.myToBeVisionIntermediary())
     }
 
     func start() {
-        let myToBeVisionViewController = MyToBeVisionViewController(viewModel: MyToBeVisionViewModel())
+        let myToBeVisionViewController = MyToBeVisionViewController(viewModel: viewModel)
         myToBeVisionViewController.delegate = self
-
-        let topTabBarControllerItem = TopTabBarController.Item(
-            controllers: [myToBeVisionViewController],
-            themes: [.darkClear],
-            titles: [R.string.localized.meSectorMyWhyVisionTitle()]
-        )
-
-        let topTabBarController = TopTabBarController(
-            item: topTabBarControllerItem,            
-            leftIcon: R.image.ic_minimize(),
-            rightIcon: R.image.ic_share()
-        )
-
-        topTabBarController.delegate = self
-        rootViewController.present(topTabBarController, animated: true)
+        rootViewController.present(myToBeVisionViewController, animated: true)
+    }
+    
+    func save() {
+        viewModel.updateDate(Date())
+        services.userService.updateMyToBeVision(viewModel.item, completion: nil)
     }
 }
 
@@ -52,24 +45,9 @@ final class MyToBeVisionCoordinator: ParentCoordinator {
 extension MyToBeVisionCoordinator: MyToBeVisionViewControllerDelegate {
 
     func didTapClose(in viewController: MyToBeVisionViewController) {
-        viewController.dismiss(animated: true, completion: nil)
-        removeChild(child: self)
-    }
-}
-
-// MARK: - TopTabBarDelegate
-
-extension MyToBeVisionCoordinator: TopTabBarDelegate {
-
-    func didSelectItemAtIndex(index: Int, sender: TopTabBarController) {
-        print(sender)
-    }
-
-    func didSelectLeftButton(sender: TopTabBarController) {
-        sender.dismiss(animated: true, completion: nil)
-    }
-
-    func didSelectRightButton(sender: TopTabBarController) {
-        print("didSelectRightButton open share dialog", sender)
+        save()
+        viewController.dismiss(animated: true, completion: {
+            self.removeChild(child: self)
+        })
     }
 }

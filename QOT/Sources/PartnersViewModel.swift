@@ -14,8 +14,6 @@ final class PartnersViewModel {
     
     // MARK: - Properties
 
-    private let kMaxItems = 3
-
     var items: [PartnerIntermediary?]
     let headline: String
     private(set) var selectedIndex: Index
@@ -23,7 +21,7 @@ final class PartnersViewModel {
     
     init(items: [PartnerIntermediary], selectedIndex: Index, headline: String) {
         self.items = items
-        for _ in 0..<(kMaxItems - items.count) { // pad default items with placeholders
+        for _ in 0..<(Layout.MeSection.maxPartners - items.count) { // pad default items with placeholders
             self.items.append(nil)
         }
         self.selectedIndex = selectedIndex
@@ -43,28 +41,21 @@ final class PartnersViewModel {
         selectedIndex = index
         currentEditPartner = item(at: index) ?? PartnerIntermediary(
             localID: UUID().uuidString,
-            profileImage: nil,
             profileImageURL: nil,
-            name: "", surname: "",
-            initials: "",
-            relationship: "",
-            email: "")
+            name: nil,
+            surname: nil,
+            relationship: nil,
+            email: nil)
     }
 
     func updateName(name: String) {
         currentEditPartner?.name = name
-        updateInitials(initials: currentEditPartner?.generateInitials() ?? "")
     }
 
     func updateSurname(surname: String) {
         currentEditPartner?.surname = surname
-        updateInitials(initials: currentEditPartner?.generateInitials() ?? "")
     }
     
-    func updateInitials(initials: String) {
-        currentEditPartner?.initials = initials
-    }
-
     func updateRelationship(relationship: String) {
         currentEditPartner?.relationship = relationship
     }
@@ -79,7 +70,6 @@ final class PartnersViewModel {
         }
         do {
             let url = try image.save(withName: localID)
-            currentEditPartner?.profileImage = image
             currentEditPartner?.profileImageURL = url.absoluteString
             return nil
         } catch {

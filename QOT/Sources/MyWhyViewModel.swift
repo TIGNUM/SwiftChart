@@ -8,13 +8,18 @@
 
 import Foundation
 import ReactiveKit
+import RealmSwift
 
 final class MyWhyViewModel {
 
     // MARK: - Properties
 
-    let items = mockMyWhyItems
+    let items: [MyWhy]
+    let partners: AnyRealmCollection<Partner>
+    var myToBeVision: MyToBeVision?
     let updates = PublishSubject<CollectionUpdate, NoError>()
+    private var partnersNotificationToken: NotificationToken?
+    private var visionNotificationToken: NotificationToken?
 
     var itemCount: Int {
         return items.count
@@ -27,12 +32,46 @@ final class MyWhyViewModel {
         case .partners(_, let partners): return partners.count
         }
     }
+    
+    init(partners: AnyRealmCollection<Partner>, vision: MyToBeVision?) {
+        items = [
+            .vision(vision),
+            .weeklyChoices(title: R.string.localized.meSectorMyWhyWeeklyChoicesTitle(), choices: weeklyChoices),
+            .partners(title: R.string.localized.meSectorMyWhyPartnersTitle(), partners: partners)
+        ]
+        self.partners = partners
+        myToBeVision = vision
+
+        partnersNotificationToken = partners.addNotificationBlock { (changes: RealmCollectionChange<AnyRealmCollection<Partner>>) in
+            switch changes {
+            case .update(_, deletions: _, insertions: _, modifications: _):
+                self.updates.next(.reload)
+                break
+            default:
+                break
+            }
+        }
+        visionNotificationToken = myToBeVision?.addNotificationBlock { (change: ObjectChange) in
+            switch change {
+            case .change:
+                self.updates.next(.reload)
+                break
+            default:
+                break
+            }
+        }
+    }
+    
+    deinit {
+        partnersNotificationToken?.stop()
+        visionNotificationToken?.stop()
+    }
 }
 
 enum MyWhy {
-    case vision(Vision)
+    case vision(MyToBeVision?)
     case weeklyChoices(title: String, choices: [WeeklyChoice])
-    case partners(title: String, partners: [PartnerWireframe])
+    case partners(title: String, partners: AnyRealmCollection<Partner>)
 
     enum Index: Int {
         case vision = 0
@@ -41,81 +80,16 @@ enum MyWhy {
     }
 }
 
-protocol Vision {
-    var localID: String { get }
-    var title: String { get }
-    var text: String { get }
-}
-
 protocol WeeklyChoice {
     var localID: String { get }
     var title: String { get }
     var subTitle: String { get }
 }
 
-protocol PartnerWireframe {
-    var localID: String { get }
-    var profileImage: UIImage? { get }
-    var profileImageURL: String? { get set }
-    var name: String { get set }
-    var surename: String { get set }
-    var initials: String { get }
-    var relationship: String { get set }
-    var email: String { get set }
-}
-
-struct MockVison: Vision {
-    let localID: String
-    let title: String
-    let text: String
-}
-
 struct MockWeeklyChoice: WeeklyChoice {
     let localID: String
     let title: String
     let subTitle: String
-}
-
-class MockPartner: PartnerWireframe {
-    let localID: String
-    var profileImage: UIImage?
-    var profileImageURL: String?
-    var name: String
-    var surename: String
-    var relationship: String
-    var email: String
-
-    var initials: String {
-        guard name.isEmpty == false && surename.isEmpty == false else {
-            return ""
-        }
-
-        return String(name.characters.first!) + String(surename.characters.first!)
-    }
-
-    init(localID: String, profileImage: UIImage?, name: String, surename: String, relationship: String, email: String) {
-        self.profileImage = profileImage
-        self.name = name
-        self.surename = surename
-        self.relationship = relationship
-        self.email = email
-        self.localID = localID
-    }
-}
-
-private var mockMyWhyItems: [MyWhy] {
-    return [
-        .vision(myToBeVision),
-        .weeklyChoices(title: R.string.localized.meSectorMyWhyWeeklyChoicesTitle(), choices: weeklyChoices),
-        .partners(title: R.string.localized.meSectorMyWhyPartnersTitle(), partners: partners)
-    ]
-}
-
-private var myToBeVision: Vision {
-    return MockVison(
-        localID: UUID().uuidString,
-        title: R.string.localized.meSectorMyWhyVisionTitle(),
-        text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut")
 }
 
 private var weeklyChoices: [WeeklyChoice] {
@@ -148,37 +122,6 @@ private var weeklyChoices: [WeeklyChoice] {
             localID: UUID().uuidString,
             title: "You are having a Lorem ipsum here and",
             subTitle: ""
-        )
-    ]
-}
-
-private var partners: [PartnerWireframe] {
-    return [
-        MockPartner(
-            localID: UUID().uuidString,
-            profileImage: R.image.partnerProfileImage(),
-            name: "Giorgio",
-            surename: "Moroder",
-            relationship: "Brother",
-            email: "giorgiomoroder@novartis.com"
-        ),
-
-        MockPartner(
-            localID: UUID().uuidString,
-            profileImage: nil,
-            name: "Giorgio",
-            surename: "Moroder",
-            relationship: "Brother",
-            email: "giorgiomoroder@novartis.com"
-        ),
-
-        MockPartner(
-            localID: UUID().uuidString,
-            profileImage: nil,
-            name: "Simon",
-            surename: "Pebbels",
-            relationship: "Brother",
-            email: "giorgiomoroder@novartis.com"
         )
     ]
 }

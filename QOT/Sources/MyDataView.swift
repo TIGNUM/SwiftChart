@@ -65,6 +65,11 @@ final class MyDataView: UIView, MyUniverseView {
     func draw() {
         drawUniverse(with: sectors, profileImage: profileImage, layout: Layout.MeSection(viewControllerFrame: bounds))
     }
+    
+    func updateProfileImage(_ image: UIImage?) {
+        profileImage = image
+        profileImageView.image = image
+    }
 }
 
 // MARK: - Private Helpers / Draw SolarSystem

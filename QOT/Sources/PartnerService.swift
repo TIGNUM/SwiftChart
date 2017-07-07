@@ -13,14 +13,26 @@ final class PartnerService {
     private let mainRealm: Realm
     private let realmProvider: RealmProvider
  
+    var partners: AnyRealmCollection<Partner> {
+        let results = mainRealm.objects(Partner.self)
+        return AnyRealmCollection(results)
+    }
+    
+    var partnersIntermediary: [PartnerIntermediary] {
+        return partners.map({ (partner: Partner) -> PartnerIntermediary in
+            return PartnerIntermediary(
+                localID: partner.localID,
+                profileImageURL: partner.profileImageURL,
+                name: partner.name,
+                surname: partner.surname,
+                relationship: partner.relationship,
+                email: partner.email)
+        })
+    }
+    
     init(mainRealm: Realm, realmProvider: RealmProvider) {
         self.mainRealm = mainRealm
         self.realmProvider = realmProvider
-    }
-    
-    func partners() -> AnyRealmCollection<Partner> {
-        let results = mainRealm.objects(Partner.self)
-        return AnyRealmCollection(results)
     }
     
     func create(success: ((Partner?) -> Void)?, failure: ((Error?) -> Void)?) {
