@@ -18,6 +18,10 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
     private var outerLayer: CAGradientLayer?
     private var percentageLearned = 0.0
     fileprivate lazy var contentCountLabel = UILabel()
+    fileprivate lazy var contentCountLabelTopAnchor = NSLayoutConstraint()
+    fileprivate lazy var contentCountLabelLeadingAnchor = NSLayoutConstraint()
+    fileprivate lazy var titleLabelCenterXAnchor = NSLayoutConstraint()
+    fileprivate lazy var titleLabelCenterYAnchor = NSLayoutConstraint()
     fileprivate var indexPath = IndexPath(item: 0, section: 0)
     fileprivate var screenType = UIViewController.ScreenType.big
 
@@ -35,7 +39,6 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
         view.addSubview(self.titleLabel)
         view.addSubview(self.contentCountLabel)
         self.contentView.addSubview(view)
-        view.backgroundColor = UIColor.green.withAlphaComponent(0.4)
 
         return view
     }()
@@ -46,6 +49,7 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
         super.init(frame: frame)
 
         backgroundColor = .clear
+        setupLayout()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -139,7 +143,10 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
             setNeedsLayout()
         }
 
-        setupLayout(screenType: screenType)
+        contentCountLabelTopAnchor.constant = (indexPath.item == 0 ? screenType.countLabelTopCenterAnchorOffset : screenType.countLabelTopAnchorOffset)
+        contentCountLabelLeadingAnchor.constant = screenType.countLabelLeadingAnchorOffset
+        titleLabelCenterXAnchor.constant = screenType.contentCenterXAnchorOffset
+        titleLabelCenterYAnchor.constant = (indexPath.item == 0 ? 16 : 12)
     }
 
     private func applyGradient(frame: CGRect) {
@@ -170,16 +177,16 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
 
 private extension LearnCategoryCell {
 
-    func setupLayout(screenType: UIViewController.ScreenType) {
+    func setupLayout() {
         textContainerView.topAnchor == contentView.topAnchor
         textContainerView.widthAnchor == contentView.widthAnchor
         textContainerView.bottomAnchor == contentView.bottomAnchor
 
-        contentCountLabel.topAnchor == contentView.topAnchor + (indexPath.item == 0 ? screenType.countLabelTopCenterAnchorOffset : screenType.countLabelTopAnchorOffset)
-        contentCountLabel.leadingAnchor == contentView.leadingAnchor + screenType.countLabelLeadingAnchorOffset
+        contentCountLabelTopAnchor = contentCountLabel.topAnchor == contentView.topAnchor
+        contentCountLabelLeadingAnchor = contentCountLabel.leadingAnchor == contentView.leadingAnchor
 
         titleLabel.widthAnchor == textContainerView.widthAnchor
-        titleLabel.centerXAnchor == contentView.centerXAnchor + screenType.contentCenterXAnchorOffset
-        titleLabel.centerYAnchor == contentView.centerYAnchor + (indexPath.item == 0 ? 16 : 12)
+        titleLabelCenterXAnchor = titleLabel.centerXAnchor == contentView.centerXAnchor
+        titleLabelCenterYAnchor = titleLabel.centerYAnchor == contentView.centerYAnchor
     }
 }
