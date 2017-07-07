@@ -26,7 +26,8 @@ final class AddSensorViewController: UIViewController {
             layout: layout,
             delegate: self,
             dataSource: self,
-            dequeables: SensorCollectionViewCell.self
+            dequeables: SensorCollectionViewCell.self,
+                        RequestDeviceSensorCollectionViewCell.self
         )
     }()
 
@@ -50,9 +51,9 @@ final class AddSensorViewController: UIViewController {
 
     fileprivate lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "SENSORS"
+        label.addCharactersSpacing(spacing: 2, text: R.string.localized.sidebarSensorsMenuSensors(), uppercased: true)
         label.textColor = .white
-        label.font = UIFont(name:"Simple-Regular", size: 24)
+        label.font = Font.H3Subtitle
 
         return label
     }()
@@ -60,9 +61,9 @@ final class AddSensorViewController: UIViewController {
     fileprivate lazy var headerLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = UIFont(name:"Simple-Regular", size: 24)
+        label.font = Font.H3Subtitle
 
-        label.text = self.viewModel.heading
+        label.addCharactersSpacing(spacing: 2, text: self.viewModel.heading, uppercased: true)
         label.numberOfLines = 0
         return label
     }()
@@ -70,9 +71,7 @@ final class AddSensorViewController: UIViewController {
     fileprivate lazy var textLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = UIFont(name:"BentonSans-Book", size: 16)
-
-        label.text = self.viewModel.text
+        label.prepareAndSetTextAttributes(text: self.viewModel.text, font: Font.DPText, alignment: .left, lineSpacing: 13)
         label.numberOfLines = 0
         return label
     }()
@@ -112,20 +111,32 @@ extension AddSensorViewController: UICollectionViewDelegateFlowLayout, UICollect
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = viewModel.item(at: indexPath.row)
-        let cell: SensorCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-        cell.setup(image: item.image)
 
-        return cell
+        switch item {
+        case .fitbit, .apple:
+            let cell: SensorCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+            cell.setup(image: item.image, sensorName: item.title)
+
+            return cell
+        case .requestDevice:
+            let cell: RequestDeviceSensorCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+            cell.setup(title: item.title)
+
+            return cell
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 164, height: 207)
     }
 
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 16
+    }
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.didTapSensor(viewModel.item(at: indexPath.row), in: self)
     }
-
 }
 
 private extension AddSensorViewController {
@@ -144,16 +155,16 @@ private extension AddSensorViewController {
         contentView.bottomAnchor == scrollView.bottomAnchor
         contentView.widthAnchor == scrollView.widthAnchor
 
-        titleLabel.topAnchor == contentView.topAnchor + Layout.TabBarView.height
+        titleLabel.topAnchor == contentView.topAnchor + Layout.TabBarView.height + 46
         titleLabel.leftAnchor == contentView.leftAnchor + 36
         titleLabel.rightAnchor == contentView.rightAnchor - 59
         titleLabel.heightAnchor == 36
 
-        collectionView.topAnchor == titleLabel.bottomAnchor
+        collectionView.topAnchor == titleLabel.bottomAnchor + 14
         collectionView.horizontalAnchors == contentView.horizontalAnchors
         collectionView.heightAnchor == 220
 
-        headerLabel.topAnchor == collectionView.bottomAnchor + 60
+        headerLabel.topAnchor == collectionView.bottomAnchor + 52
         headerLabel.horizontalAnchors == titleLabel.horizontalAnchors
 
         textLabel.topAnchor == headerLabel.bottomAnchor + 17

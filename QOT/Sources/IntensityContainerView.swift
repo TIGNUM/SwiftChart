@@ -192,6 +192,6 @@ private extension IntensityContainerView {
         ]
 
         let column = IntensityAverageView.Column(items: items, eventWidth: 2.5)
-        return [column,column,column,column,column,column,column,column,column,column,column,column,column,column,column,column,column,column,column,column,column,column,column,column,column,column,column,column,column,column]
+        return [column, column, column, column, column, column, column, column, column, column, column, column, column, column, column, column, column, column, column, column, column,column, column, column, column, column, column, column, column, column]
     }
 }

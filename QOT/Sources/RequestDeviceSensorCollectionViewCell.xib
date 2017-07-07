@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="okm-JH-fa1" customClass="RequestDeviceSensorCollectionViewCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="164" height="207"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="164" height="207"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZpL-NJ-AwW">
+                        <rect key="frame" x="61" y="133" width="42" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RaA-OQ-jTt">
+                        <rect key="frame" x="53" y="52" width="58" height="58"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="RaA-OQ-jTt" secondAttribute="height" multiplier="1:1" id="3sk-q6-sKq"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ZpL-NJ-AwW" secondAttribute="trailing" constant="15" id="EfT-eV-mU5"/>
+                <constraint firstItem="ZpL-NJ-AwW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="okm-JH-fa1" secondAttribute="leading" constant="15" id="Sy5-oQ-jyB"/>
+                <constraint firstItem="ZpL-NJ-AwW" firstAttribute="top" secondItem="RaA-OQ-jTt" secondAttribute="bottom" constant="23" id="TNC-aS-EZg"/>
+                <constraint firstItem="ZpL-NJ-AwW" firstAttribute="centerX" secondItem="okm-JH-fa1" secondAttribute="centerX" id="Up6-Hm-UyQ"/>
+                <constraint firstItem="RaA-OQ-jTt" firstAttribute="leading" secondItem="okm-JH-fa1" secondAttribute="leading" constant="53" id="hcw-B7-gW0"/>
+                <constraint firstItem="RaA-OQ-jTt" firstAttribute="top" secondItem="okm-JH-fa1" secondAttribute="top" constant="52" id="i8L-Bz-U7O"/>
+                <constraint firstAttribute="trailing" secondItem="RaA-OQ-jTt" secondAttribute="trailing" constant="53" id="jED-co-WA4"/>
+            </constraints>
+            <size key="customSize" width="182" height="258"/>
+            <connections>
+                <outlet property="containerView" destination="RaA-OQ-jTt" id="V0v-bm-DQo"/>
+                <outlet property="titleLabel" destination="ZpL-NJ-AwW" id="LyZ-zn-hmF"/>
+            </connections>
+            <point key="canvasLocation" x="44" y="79.5"/>
+        </collectionViewCell>
+    </objects>
+</document>

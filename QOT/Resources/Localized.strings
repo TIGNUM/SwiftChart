@@ -82,6 +82,10 @@
 "Sidebar.SettingsMenu.NotificationsButton" = "NOTIFICATIONS";
 "Sidebar.SettingsMenu.SecurityButton" = "SECURITY";
 
+"Sidebar.SensorsMenu.Sensors" = "SENSORS";
+"Sidebar.SensorsMenu.Fitbit" = "FITBIT";
+"Sidebar.SensorsMenu.Connect" = "CONNECT";
+
 "Common.InvalidContent" = "Cannot Display Content";
 
 "Alert.Title.NoContent" = "No Content";
