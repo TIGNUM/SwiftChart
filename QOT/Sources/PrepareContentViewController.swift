@@ -19,13 +19,13 @@ protocol PrepareContentViewControllerDelegate: class {
 }
 
 final class PrepareContentViewController: UIViewController {
-    
+
     // MARK: - Properties
-    
+
     let viewModel: PrepareContentViewModel
     fileprivate let disposeBag = DisposeBag()
     weak var delegate: PrepareContentViewControllerDelegate?
-    
+
     fileprivate lazy var tableView: UITableView = {
         return UITableView(
             estimatedRowHeight: 140,
@@ -43,29 +43,29 @@ final class PrepareContentViewController: UIViewController {
             preconditionFailure("Failed to PrepareContentTopTabBarView from xib")
         }
         view.setup(title: R.string.localized.topTabBarItemTitlePerpareCoach(),
-                    leftButtonIcon: R.image.ic_minimize(),
-                    rightButtonIcon: self.viewModel.displayMode == .normal ? R.image.ic_save_prep() : nil,
-                    delegate: self)
+                   leftButtonIcon: R.image.ic_minimize(),
+                   rightButtonIcon: self.viewModel.displayMode == .normal ? R.image.ic_save_prep() : nil,
+                   delegate: self)
         return view
     }()
-    
+
     // MARK: - Life Cycle
-    
+
     init(viewModel: PrepareContentViewModel) {
         self.viewModel = viewModel
-        
+
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Life Cycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupView()
     }
 
@@ -152,11 +152,11 @@ private extension PrepareContentViewController {
 // MARK: - UITableViewDelegate, UITableViewDataSource, PrepareContentActionButtonsTableViewCellDelegate
 
 extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSource {
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.itemCount
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let contentItem = viewModel.item(at: indexPath.row)
 
@@ -172,7 +172,7 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
             return configure(cell: cell, forIndexPath: indexPath)
         }
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
 
@@ -248,17 +248,21 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
             return UITableViewAutomaticDimension
         }
     }
-    
+
     private func calculateLabelHeight(text: String, font: UIFont, dispayedLineHeight: CGFloat, frameWidth: CGFloat) -> CGFloat {
         let lineHeight = "a".height(withConstrainedWidth: frameWidth, font: font)
-        return lineHeight
+
+        var headerHeight = text.height(withConstrainedWidth: frameWidth, font: font)
+        headerHeight = headerHeight / lineHeight * dispayedLineHeight
+
+        return headerHeight
     }
 }
 
 // MARK: - PrepareContentFooterTableViewCellDelegate
 
 extension PrepareContentViewController: PrepareContentFooterTableViewCellDelegate {
-    
+
     func didSavePreparation(preparationID: Int, cell: UITableViewCell) {
         delegate?.didTapSavePreparation(in: self)
     }
@@ -267,7 +271,7 @@ extension PrepareContentViewController: PrepareContentFooterTableViewCellDelegat
 // MARK: - PrepareContentHeaderTableViewCellDelegate
 
 extension PrepareContentViewController: PrepareContentHeaderTableViewCellDelegate {
-    
+
     func didPressReadMore(readMoreID: Int?, cell: UITableViewCell) {
         if let readMoreID = readMoreID {
             delegate?.didTapReadMore(readMoreID: readMoreID, in: self)
@@ -300,7 +304,7 @@ extension PrepareContentViewController: PrepareContentHeaderTableViewCellDelegat
 // MARK: - PrepareContentMainHeaderTableViewCellDelegate
 
 extension PrepareContentViewController: PrepareContentMainHeaderTableViewCellDelegate {
-    
+
     func didTapVideo(videoURL: URL?, cell: UITableViewCell) {
         if let videoURL = videoURL {
             delegate?.didTapVideo(with: videoURL, from: cell, in: self)
@@ -313,13 +317,13 @@ extension PrepareContentViewController: PrepareContentMainHeaderTableViewCellDel
 // MARK: - PrepareContentTopTabBarViewDelegate
 
 extension PrepareContentViewController: PrepareContentTopTabBarViewDelegate {
-
+    
     func didTapLeftButton() {
         delegate?.didTapClose(in: self)
     }
-
+    
     func didTapRightButton() {
         delegate?.didTapSavePreparation(in: self)
     }
-
+    
 }
