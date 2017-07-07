@@ -86,6 +86,11 @@
 
 "Alert.Title.NoContent" = "No Content";
 "Alert.Message.NoContent" = "The selection have no content, sorry :(";
+"Alert.Title.Custom" = "Error";
+"Alert.Title.Unauthenticated" = "User not authenticated";
+"Alert.Message.Unauthenticated" = "Unable to authenticated";
+"Alert.Title.NoNetworkConnection" = "No network connection";
+"Alert.Message.NoNetworkConnection" = "No network connection";
 "Alert.Message.ComingSoon" = "This feature is coming soon";
 "Alert.Message.EditPreparationName" = "Please edit the name and press save";
 "Alert.Button.Title.Ok" = "OK";

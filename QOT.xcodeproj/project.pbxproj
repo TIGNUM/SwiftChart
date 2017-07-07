@@ -64,6 +64,8 @@
 		852DADE81EF26B1D00A10882 /* PeakPerformanceAverageProgressWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADE71EF26B1D00A10882 /* PeakPerformanceAverageProgressWheel.swift */; };
 		852DADEA1EF2B83100A10882 /* MyStatisticsDataUpcomingTrips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADE91EF2B83100A10882 /* MyStatisticsDataUpcomingTrips.swift */; };
 		852DADEC1EF2BE3C00A10882 /* UpcomingTravelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADEB1EF2BE3C00A10882 /* UpcomingTravelsView.swift */; };
+		8548BBE01F0D4BF900AC7C06 /* SensorAuthorisationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548BBDF1F0D4BF900AC7C06 /* SensorAuthorisationHandler.swift */; };
+		8548BBE41F0E382900AC7C06 /* GenericParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548BBE31F0E382900AC7C06 /* GenericParser.swift */; };
 		858AF6931EF904AB00486605 /* PeakPerformanceUpcomingChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858AF6921EF904AB00486605 /* PeakPerformanceUpcomingChartView.swift */; };
 		858AF6951EF9544000486605 /* MyStatisticsDataActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858AF6941EF9544000486605 /* MyStatisticsDataActivity.swift */; };
 		8591ED7B1EE6DBA6006FCE89 /* MockingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E0A6A01EE6AF130076169D /* MockingProtocol.swift */; };
@@ -329,12 +331,12 @@
 		D58BD8771E9F65F7005676DE /* ArticleCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58BD8751E9F65F7005676DE /* ArticleCollectionCell.swift */; };
 		D58BD8781E9F65F7005676DE /* ArticleCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D58BD8761E9F65F7005676DE /* ArticleCollectionCell.xib */; };
 		D5A64D941EE801970095D01C /* SleepChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A64D931EE801970095D01C /* SleepChartView.swift */; };
-		D5B707261F03A2BF00C812EB /* MorningInterviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B707251F03A2BF00C812EB /* MorningInterviewViewModel.swift */; };
-		D5B707281F03A2CC00C812EB /* MorningInterviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B707271F03A2CC00C812EB /* MorningInterviewViewController.swift */; };
-		D5B7072A1F03AB3900C812EB /* MorningInterviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B707291F03AB3900C812EB /* MorningInterviewCell.swift */; };
 		D5A7671E1EFA700500562CB6 /* IntensityAverageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A7671D1EFA700500562CB6 /* IntensityAverageView.swift */; };
 		D5A767261EFAB9E800562CB6 /* DottedGridWithIntensityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A767251EFAB9E800562CB6 /* DottedGridWithIntensityView.swift */; };
 		D5A767281EFABD1200562CB6 /* IntensityContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A767271EFABD1200562CB6 /* IntensityContainerView.swift */; };
+		D5B707261F03A2BF00C812EB /* MorningInterviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B707251F03A2BF00C812EB /* MorningInterviewViewModel.swift */; };
+		D5B707281F03A2CC00C812EB /* MorningInterviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B707271F03A2CC00C812EB /* MorningInterviewViewController.swift */; };
+		D5B7072A1F03AB3900C812EB /* MorningInterviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B707291F03AB3900C812EB /* MorningInterviewCell.swift */; };
 		D5B761871EE6B19C00AE178B /* SpacingInLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B761861EE6B19C00AE178B /* SpacingInLabel.swift */; };
 		D5CB5BBE1EF2D45F0029D224 /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CB5BBD1EF2D45F0029D224 /* ContainerView.swift */; };
 		D5CD23D81E8BB73A002742C4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CD23D71E8BB73A002742C4 /* TabBarController.swift */; };
@@ -419,6 +421,8 @@
 		852DADE71EF26B1D00A10882 /* PeakPerformanceAverageProgressWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakPerformanceAverageProgressWheel.swift; sourceTree = "<group>"; };
 		852DADE91EF2B83100A10882 /* MyStatisticsDataUpcomingTrips.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsDataUpcomingTrips.swift; sourceTree = "<group>"; };
 		852DADEB1EF2BE3C00A10882 /* UpcomingTravelsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingTravelsView.swift; sourceTree = "<group>"; };
+		8548BBDF1F0D4BF900AC7C06 /* SensorAuthorisationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorAuthorisationHandler.swift; sourceTree = "<group>"; };
+		8548BBE31F0E382900AC7C06 /* GenericParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericParser.swift; sourceTree = "<group>"; };
 		858AF6921EF904AB00486605 /* PeakPerformanceUpcomingChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakPerformanceUpcomingChartView.swift; sourceTree = "<group>"; };
 		858AF6941EF9544000486605 /* MyStatisticsDataActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsDataActivity.swift; sourceTree = "<group>"; };
 		85C3D6BB1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareEventTableViewFooterView.xib; sourceTree = "<group>"; };
@@ -691,12 +695,12 @@
 		D58BD8751E9F65F7005676DE /* ArticleCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCollectionCell.swift; sourceTree = "<group>"; };
 		D58BD8761E9F65F7005676DE /* ArticleCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleCollectionCell.xib; sourceTree = "<group>"; };
 		D5A64D931EE801970095D01C /* SleepChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepChartView.swift; sourceTree = "<group>"; };
-		D5B707251F03A2BF00C812EB /* MorningInterviewViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewViewModel.swift; sourceTree = "<group>"; };
-		D5B707271F03A2CC00C812EB /* MorningInterviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewViewController.swift; sourceTree = "<group>"; };
-		D5B707291F03AB3900C812EB /* MorningInterviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewCell.swift; sourceTree = "<group>"; };
 		D5A7671D1EFA700500562CB6 /* IntensityAverageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntensityAverageView.swift; sourceTree = "<group>"; };
 		D5A767251EFAB9E800562CB6 /* DottedGridWithIntensityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DottedGridWithIntensityView.swift; sourceTree = "<group>"; };
 		D5A767271EFABD1200562CB6 /* IntensityContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntensityContainerView.swift; sourceTree = "<group>"; };
+		D5B707251F03A2BF00C812EB /* MorningInterviewViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewViewModel.swift; sourceTree = "<group>"; };
+		D5B707271F03A2CC00C812EB /* MorningInterviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewViewController.swift; sourceTree = "<group>"; };
+		D5B707291F03AB3900C812EB /* MorningInterviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewCell.swift; sourceTree = "<group>"; };
 		D5B761861EE6B19C00AE178B /* SpacingInLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpacingInLabel.swift; sourceTree = "<group>"; };
 		D5CB5BBD1EF2D45F0029D224 /* ContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
 		D5CD23D71E8BB73A002742C4 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -1516,6 +1520,7 @@
 				CBB4DD131EDEBDA80071494A /* URLRequestBuildable.swift */,
 				CBB4DD0C1EDEAA610071494A /* URLRequestBuilder.swift */,
 				CC34BD551ECF3863007CB365 /* UserCredentials.swift */,
+				8548BBE31F0E382900AC7C06 /* GenericParser.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -1528,6 +1533,7 @@
 				CBD791491E71797C0006C590 /* Typealiases.swift */,
 				CC3DFB631E83BDA300FF28DF /* Utils.swift */,
 				852DADC51EEEE63500A10882 /* Math.swift */,
+				8548BBDF1F0D4BF900AC7C06 /* SensorAuthorisationHandler.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -1937,8 +1943,6 @@
 				CBB4DCF51EDC10FA0071494A /* SyncRecordService.swift in Sources */,
 				D51B5C4A1E8D0E7E0084A65B /* LearnContentLayout.swift in Sources */,
 				D5A767261EFAB9E800562CB6 /* DottedGridWithIntensityView.swift in Sources */,
-				CCE5796B1ECB55BE006E0D45 /* SidebarContentItem.swift in Sources */,
-				CBDB99101E7BFE4D003EC73F /* EKParticipant+CalendarEventParticipantData.swift in Sources */,
 				852DADE41EF190D100A10882 /* MyStatisticsDataPeriodAverage.swift in Sources */,
 				8514A4921EEAA2AE0086C70E /* UILabel+AttributedText.swift in Sources */,
 				CC0FF8D41EA788350028D64F /* PartnersViewController.swift in Sources */,
@@ -2031,9 +2035,7 @@
 				CCCC211C1E8981AD00133839 /* ChatViewController.swift in Sources */,
 				CC9663161EA1B41500B84B1C /* MyUniverseHelper.swift in Sources */,
 				CC3DFB661E83C19C00FF28DF /* Defines.swift in Sources */,
-				CCD377531E8D3C2D00BB8031 /* WhatsHotNewTemplateViewController.swift in Sources */,
 				D5D6F4B91EFBFDF200848D85 /* MyStatisticsIntensityData.swift in Sources */,
-				CC56D0AB1EEAD65300EB71D9 /* LearnWhatsHotContentCollection.swift in Sources */,
 				CC9663151EA1B41500B84B1C /* MyUniverseViewController.swift in Sources */,
 				CB1D5E3F1EC5E25A00BCDF8D /* ContentItemValue.swift in Sources */,
 				D5A7671E1EFA700500562CB6 /* IntensityAverageView.swift in Sources */,
@@ -2063,6 +2065,7 @@
 				CB55A2E11E9FDF1D00D721CE /* SettingsMenuViewModel.swift in Sources */,
 				852DADC61EEEE63500A10882 /* Math.swift in Sources */,
 				CC311A1D1EAF39DF0020C869 /* SettingsTableViewCell.swift in Sources */,
+				8548BBE01F0D4BF900AC7C06 /* SensorAuthorisationHandler.swift in Sources */,
 				CB14676E1EF2AB7000A60E31 /* DeviceIdentifier.swift in Sources */,
 				CCE372FF1E8D2AE700B79352 /* MyPrepViewModel.swift in Sources */,
 				0BB099CB1EBC6323006B2FB7 /* CarouselCellView.swift in Sources */,
@@ -2099,6 +2102,7 @@
 				7F0888861F0A7602005CE966 /* PartnerIntermediary.swift in Sources */,
 				CB1D5E3E1EC5E25A00BCDF8D /* ContentItemIntermediary.swift in Sources */,
 				CC944DB81EE8096100B8423C /* MyStatisticsCardCell.swift in Sources */,
+				8548BBE41F0E382900AC7C06 /* GenericParser.swift in Sources */,
 				CB9AFD191F014C0800D067F2 /* PreparationCheckIntermediary.swift in Sources */,
 				CBB4DCFB1EDC23AE0071494A /* SyncDescription.swift in Sources */,
 				CCC1B6AF1E8B9B7F00D1461F /* LearnContentCollectionViewModel.swift in Sources */,

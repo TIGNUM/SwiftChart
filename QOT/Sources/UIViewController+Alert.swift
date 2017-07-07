@@ -9,13 +9,19 @@
 import Foundation
 import UIKit
 
-enum AlertType: Int {
+enum AlertType {
     case noContent
+    case custom(title: String, message: String)
+    case unauthenticated
+    case noNetworkConnection
     case comingSoon
 
     var title: String? {
         switch self {
         case .noContent: return R.string.localized.alertTitleNoContent()
+        case .custom(let title, _): return title
+        case .unauthenticated: return R.string.localized.alertTitleUnauthenticated()
+        case .noNetworkConnection: return R.string.localized.alertTitleNoNetworkConnection()
         default: return nil
         }
     }
@@ -23,6 +29,9 @@ enum AlertType: Int {
     var message: String? {
         switch self {
         case .noContent: return R.string.localized.alertMessageNoContent()
+        case .custom(_, let message): return message
+        case .unauthenticated: return R.string.localized.alertMessageUnauthenticated()
+        case .noNetworkConnection: return R.string.localized.alertMessageNoNetworkConnection()
         case .comingSoon: return R.string.localized.alertMessageComingSoon()
         }
     }

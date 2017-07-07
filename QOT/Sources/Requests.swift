@@ -55,3 +55,14 @@ struct UpSyncRequest: URLRequestBuildable {
         self.headers = [.syncToken: syncToken]
     }
 }
+
+struct FitbitTokenRequest: URLRequestBuildable {
+    let endpoint: Endpoint
+    let httpMethod: HTTPMethod = .post
+    let body: Data?
+
+    init(endpoint: Endpoint, body: Data) {
+        self.endpoint = endpoint
+        self.body = body
+    }
+}

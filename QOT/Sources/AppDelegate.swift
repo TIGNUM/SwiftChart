@@ -57,6 +57,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let totalSeconds = qotSeconds + (components.second ?? 0)
         UserDefault.qotUsage.setIntValue(value: totalSeconds)
     }
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+
+        SensorAuthorisationHandler.process(urlString: url.absoluteString, appCoordinator: appCoordinator)
+        AddSensorCoordinator.safariViewController?.dismiss(animated: true, completion: nil)
+
+        return true
+    }
 }
 
 extension AppDelegate {

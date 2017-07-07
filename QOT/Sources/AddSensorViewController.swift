@@ -121,6 +121,11 @@ extension AddSensorViewController: UICollectionViewDelegateFlowLayout, UICollect
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 164, height: 207)
     }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.didTapSensor(viewModel.item(at: indexPath.row), in: self)
+    }
+
 }
 
 private extension AddSensorViewController {

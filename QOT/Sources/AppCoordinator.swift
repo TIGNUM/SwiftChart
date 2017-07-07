@@ -16,6 +16,7 @@ final class AppCoordinator: ParentCoordinator {
     // MARK: - Properties
     
     fileprivate let window: UIWindow
+    let secondaryWindow: UIWindow
     fileprivate var services: Services?
     fileprivate lazy var eventTracker: EventTracker = {
         return EventTracker(realmProvider: { return try Realm() })
@@ -45,6 +46,8 @@ final class AppCoordinator: ParentCoordinator {
 
     init(window: UIWindow) {
         self.window = window
+        secondaryWindow = UIWindow(frame: UIScreen.main.bounds)
+        configureSecondaryWindow()
     }
     
     func start() {
@@ -64,6 +67,28 @@ final class AppCoordinator: ParentCoordinator {
                 break
             }
         }
+    }
+
+    func showAlert(type: AlertType) {
+        switchToSecondaryWindow()
+        secondaryWindow.rootViewController?.showAlert(type: type, handler: { [weak self] in
+            self?.switchToMainWindow()
+        })
+    }
+
+    private func switchToSecondaryWindow() {
+        secondaryWindow.makeKeyAndVisible()
+    }
+
+    private func switchToMainWindow() {
+        window.makeKeyAndVisible()
+    }
+
+    private func configureSecondaryWindow() {
+
+        let viewController = UIViewController()
+        viewController.view.backgroundColor = .clear
+        secondaryWindow.rootViewController = viewController
     }
 
     private func startTabBarCoordinator(services: Services) {
