@@ -72,22 +72,22 @@ extension UIColor {
 
     /// UIColor(white: 255/255, alpha: 0.2)
     class var white20: UIColor {
-        return UIColor(white: 255/255, alpha: 0.2)
+        return UIColor(white: 1, alpha: 0.2)
     }
 
     /// UIColor(white: 255/255, alpha: 0.4)
     class var white40: UIColor {
-        return UIColor(white: 255/255, alpha: 0.4)
+        return UIColor(white: 1, alpha: 0.4)
     }
 
     /// UIColor(white: 255/255, alpha: 0.5)
     class var white50: UIColor {
-        return UIColor(white: 255/255, alpha: 0.5)
+        return UIColor(white: 1, alpha: 0.5)
     }
 
     /// UIColor(white: 255/255, alpha: 0.6)
     class var white60: UIColor {
-        return UIColor(white: 255/255, alpha: 0.6)
+        return UIColor(white: 1, alpha: 0.6)
     }
 
     /// UIColor(white: 179/255, alpha: 0.2)
@@ -97,7 +97,7 @@ extension UIColor {
 
     /// UIColor(white: 255/255, alpha: 0)
     class var white0: UIColor {
-        return UIColor(white: 255/255, alpha: 0)
+        return UIColor(white: 1, alpha: 0)
     }
 
     /// UIColor(red: 39/255, green: 41/255, blue: 57/255, alpha: 1)

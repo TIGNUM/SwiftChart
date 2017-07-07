@@ -9,7 +9,7 @@
 import UIKit
 import Anchorage
 
-final class LearnCategoryCell: UICollectionViewCell {
+final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
 
     // MARK: - Properties
 
@@ -17,24 +17,16 @@ final class LearnCategoryCell: UICollectionViewCell {
     private var shapeDashLayer: CAShapeLayer?
     private var outerLayer: CAGradientLayer?
     private var percentageLearned = 0.0
+    fileprivate lazy var contentCountLabel = UILabel()
+    fileprivate var indexPath = IndexPath(item: 0, section: 0)
+    fileprivate var screenType = UIViewController.ScreenType.big
 
     fileprivate lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.white.withAlphaComponent(0.60)
-        label.font = .bentonBookFont(ofSize: 11)
-        label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.1
+        label.adjustsFontSizeToFitWidth = true        
         label.lineBreakMode = .byTruncatingTail
-        label.numberOfLines = 2
-
-        return label
-    }()
-
-    fileprivate lazy var contentCountLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = .bentonRegularFont(ofSize: 20)
-
+        label.numberOfLines = 0
+        
         return label
     }()
 
@@ -43,6 +35,7 @@ final class LearnCategoryCell: UICollectionViewCell {
         view.addSubview(self.titleLabel)
         view.addSubview(self.contentCountLabel)
         self.contentView.addSubview(view)
+        view.backgroundColor = UIColor.green.withAlphaComponent(0.4)
 
         return view
     }()
@@ -53,7 +46,6 @@ final class LearnCategoryCell: UICollectionViewCell {
         super.init(frame: frame)
 
         backgroundColor = .clear
-        setupLayout()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -64,6 +56,7 @@ final class LearnCategoryCell: UICollectionViewCell {
         super.layoutSubviews()
 
         contentView.layer.cornerRadius = frame.width / 2
+        contentView.layer.masksToBounds = true
         drawCircles(frame: frame)
     }
 
@@ -121,15 +114,32 @@ final class LearnCategoryCell: UICollectionViewCell {
 
     }
 
-    func configure(with category: LearnCategoryListViewModel.Item) {
-        titleLabel.text =  category.title
-        contentCountLabel.text = "\(category.viewedCount)/\(category.itemCount)"
-
+    func configure(with category: LearnCategoryListViewModel.Item, indexPath: IndexPath, screenType: UIViewController.ScreenType) {
+        self.indexPath = indexPath
+        self.screenType = screenType
+        let attributedTextTitle = NSMutableAttributedString(
+            string: category.title.uppercased(),
+            letterSpacing: 2,
+            font: Font.H7Tag,
+            lineSpacing: 2.5,
+            textColor: .white60
+        )
+        let attributedTextCount = NSMutableAttributedString(
+            string: "\(category.viewedCount)/\(category.itemCount)",
+            letterSpacing: -1.1,
+            font: Font.H3Subtitle,
+            lineSpacing: 2
+        )
+        titleLabel.attributedText = attributedTextTitle
+        contentCountLabel.attributedText = attributedTextCount
         let percentageLearned = category.percentageLearned
+
         if percentageLearned != self.percentageLearned {
             self.percentageLearned = percentageLearned
             setNeedsLayout()
         }
+
+        setupLayout(screenType: screenType)
     }
 
     private func applyGradient(frame: CGRect) {
@@ -159,17 +169,17 @@ final class LearnCategoryCell: UICollectionViewCell {
 }
 
 private extension LearnCategoryCell {
-    func setupLayout() {
-        textContainerView.horizontalAnchors == contentView.horizontalAnchors + 20
-        textContainerView.centerAnchors == contentView.centerAnchors
 
-        contentCountLabel.topAnchor == textContainerView.topAnchor
-        contentCountLabel.horizontalAnchors == textContainerView.horizontalAnchors
-        contentCountLabel.bottomAnchor == titleLabel.topAnchor
-        
-        titleLabel.horizontalAnchors == textContainerView.horizontalAnchors
-        titleLabel.bottomAnchor == textContainerView.bottomAnchor
+    func setupLayout(screenType: UIViewController.ScreenType) {
+        textContainerView.topAnchor == contentView.topAnchor
+        textContainerView.widthAnchor == contentView.widthAnchor
+        textContainerView.bottomAnchor == contentView.bottomAnchor
+
+        contentCountLabel.topAnchor == contentView.topAnchor + (indexPath.item == 0 ? screenType.countLabelTopCenterAnchorOffset : screenType.countLabelTopAnchorOffset)
+        contentCountLabel.leadingAnchor == contentView.leadingAnchor + screenType.countLabelLeadingAnchorOffset
+
+        titleLabel.widthAnchor == textContainerView.widthAnchor
+        titleLabel.centerXAnchor == contentView.centerXAnchor + screenType.contentCenterXAnchorOffset
+        titleLabel.centerYAnchor == contentView.centerYAnchor + (indexPath.item == 0 ? 16 : 12)
     }
 }
-
-extension LearnCategoryCell: Dequeueable {}

@@ -155,10 +155,15 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
                     bulletText: itemText
                 )
             case .text(let itemText, let style):
+                var attributedTopText = item.contentItemValue.style(textStyle: style, text: itemText, textColor: .black)
+                if style == .paragraph {
+                    attributedTopText = Style.article(itemText, .black).attributedString(lineHeight: 2)
+                }
+                
                 return contentItemTextTableViewCell(
                     tableView: tableView,
                     indexPath: indexPath,
-                    topText: item.contentItemValue.style(textStyle: style, text: itemText, textColor: .black),
+                    topText: attributedTopText,
                     bottomText: nil
                 )
             case .audio(let title, _, _, _, let duration, let waveformData):

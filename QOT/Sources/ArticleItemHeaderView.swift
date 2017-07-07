@@ -17,10 +17,42 @@ final class ArticleItemHeaderView: UIView {
     @IBOutlet fileprivate weak var dateLabel: UILabel!
     @IBOutlet fileprivate weak var durationLabel: UILabel!
 
-    func setupView(header: ArticleCollectionHeader) {
-        titleLabel.attributedText = Style.headlineSmall(header.articleTitle, .white).attributedString()
-        subTitleLabel.attributedText = Style.postTitle(header.articleSubTitle, .white).attributedString()
-        dateLabel.attributedText = Style.tag(header.articleDate, .white60).attributedString()
-        durationLabel.attributedText = Style.tag(header.articleDuration, .white60).attributedString()
+    func setupView(header: ArticleCollectionHeader) {        
+        titleLabel.attributedText = attributedText(
+            letterSpacing: 1,
+            text: header.articleTitle.uppercased(),
+            font: Font.H5SecondaryHeadline,
+            textColor: .white,
+            alignment: .left
+        )
+        subTitleLabel.attributedText = attributedText(
+            text: header.articleSubTitle.uppercased(),
+            font: Font.H1MainTitle,
+            textColor: .white,
+            alignment: .left
+        )
+        dateLabel.attributedText = attributedText(
+            text: header.articleDate.uppercased(),
+            font: Font.H7Tag,
+            textColor: .white20,
+            alignment: .left
+        )
+        durationLabel.attributedText = attributedText(
+            text: header.articleDuration.uppercased(),
+            font: Font.H7Tag,
+            textColor: .white20,
+            alignment: .left
+        )
+    }
+
+    private func attributedText(letterSpacing: CGFloat = 2, text: String, font: UIFont, textColor: UIColor, alignment: NSTextAlignment) -> NSMutableAttributedString {
+        return NSMutableAttributedString(
+            string: text,
+            letterSpacing: letterSpacing,
+            font: font,
+            lineSpacing: 1.4,
+            textColor: textColor,
+            alignment: alignment
+        )
     }
 }

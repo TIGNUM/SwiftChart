@@ -25,13 +25,15 @@ class LearnContentCell: UICollectionViewCell, Dequeueable {
         label.minimumScaleFactor = 0.1
         label.lineBreakMode = .byTruncatingTail
         label.numberOfLines = 3
+
         return label
     }()
     
     fileprivate lazy var videoDurationLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.white.withAlphaComponent(0.40)
+        label.textColor = .white40
         label.font = UIFont.bentonBookFont(ofSize: 11)
+
         return label
     }()
     
@@ -40,31 +42,42 @@ class LearnContentCell: UICollectionViewCell, Dequeueable {
         view.addSubview(self.indexLabel)
         view.addSubview(self.titleLabel)
         view.addSubview(self.videoDurationLabel)
+
         return view
     }()
     
     fileprivate lazy var imageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFit
+
         return view
     }()
 
     func configure(with content: ContentCollection, index: Int) {
-        indexLabel.addCharactersSpacing(spacing: 1, text: "#\(String(format: "%02d", index))")
-        titleLabel.addCharactersSpacing(spacing: 1, text: content.title, uppercased: true)
         let min = String(content.minutesRequired)
-        videoDurationLabel.addCharactersSpacing(spacing: 1, text: R.string.localized.learnContentListViewMinutesLabel(min))
+        let attributedIndex = Style.headlineSmall("#\(String(format: "%02d", index + 1))", .white50).attributedString()
+        let attributedTitle = Style.headlineSmall(content.title.uppercased(), .white).attributedString()
+        let attributedDuration = NSMutableAttributedString(
+            string: R.string.localized.learnContentListViewMinutesLabel(min),
+            letterSpacing: 2,
+            font: Font.H7Title,
+            textColor: .white40
+        )
+        indexLabel.attributedText = attributedIndex
+        titleLabel.attributedText = attributedTitle
+        videoDurationLabel.attributedText = attributedDuration
         let bubbleSelected = content.viewed
         if !bubbleSelected {
             imageView.image = R.image.strategyback()
         } else {
             imageView.image = R.image.strategyvisited()
-            titleLabel.textColor = UIColor.white.withAlphaComponent(0.40)
+            titleLabel.textColor = .white40
         }
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         backgroundColor = .clear
         contentView.addSubview(textContainerView)
         contentView.addSubview(imageView)
@@ -85,7 +98,7 @@ private extension LearnContentCell {
     func setupLayout() {
         imageView.edgeAnchors == contentView.edgeAnchors
         textContainerView.horizontalAnchors == contentView.horizontalAnchors + 20
-        textContainerView.topAnchor == contentView.topAnchor +  35
+        textContainerView.topAnchor == contentView.topAnchor + 36
         textContainerView.widthAnchor == contentView.widthAnchor - 40
 
         indexLabel.topAnchor == textContainerView.topAnchor
@@ -94,9 +107,11 @@ private extension LearnContentCell {
 
         titleLabel.topAnchor == indexLabel.bottomAnchor
         titleLabel.horizontalAnchors == textContainerView.horizontalAnchors
-        titleLabel.bottomAnchor == videoDurationLabel.topAnchor - 8
+        titleLabel.bottomAnchor == videoDurationLabel.topAnchor
         
         videoDurationLabel.horizontalAnchors == textContainerView.horizontalAnchors
-        videoDurationLabel.bottomAnchor == textContainerView.bottomAnchor - 30
+        videoDurationLabel.bottomAnchor == textContainerView.bottomAnchor
+        videoDurationLabel.heightAnchor == 16
+        textContainerView.layoutIfNeeded()
     }
 }

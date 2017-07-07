@@ -62,54 +62,41 @@ private extension WeeklyChoicesViewController {
 
     func setupView() {
         let coverView = UIView()
-
         view.addSubview(collectionView)
         view.addSubview(dateLabel)
         view.addSubview(coverView)
-
         view.backgroundColor = .clear
-
         dateLabel.topAnchor == view.topAnchor + 60
         dateLabel.horizontalAnchors == view.horizontalAnchors
         dateLabel.heightAnchor == 14
-
         collectionView.topAnchor == dateLabel.bottomAnchor
         collectionView.bottomAnchor == view.bottomAnchor
         collectionView.horizontalAnchors == view.horizontalAnchors
-
         view.layoutIfNeeded()
-
         coverView.horizontalAnchors == view.horizontalAnchors
         coverView.bottomAnchor == view.bottomAnchor
         coverView.heightAnchor == cellSize().height
-
         view.layoutIfNeeded()
-
         setupGradientLayer(coverView)
         configureDateLabel(dateLabel)
-
         view.layoutIfNeeded()
     }
 
     func configureDateLabel(_ dateLabel: UILabel) {
         dateLabel.backgroundColor = .clear
-
         dateLabel.font = Font.H7Title
         dateLabel.textColor = .white50
         dateLabel.textAlignment = .center
     }
 
     func setupGradientLayer(_ coverView: UIView) {
-        coverView.backgroundColor = .clear
-        coverView.isUserInteractionEnabled = false
-
         let gradient = CAGradientLayer()
         gradient.frame = coverView.bounds
         gradient.colors = [UIColor.clear.cgColor, UIColor.black70.cgColor]
-
         gradient.startPoint = CGPoint.zero
         gradient.endPoint = CGPoint(x: 0, y: 1)
-
+        coverView.backgroundColor = .clear
+        coverView.isUserInteractionEnabled = false
         coverView.layer.insertSublayer(gradient, at: 0)
     }
 }
@@ -124,7 +111,6 @@ extension WeeklyChoicesViewController: UICollectionViewDataSource, UICollectionV
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: WeeklyChoicesCell = collectionView.dequeueCell(for: indexPath)
-
         dateLabel.addCharactersSpacing(spacing: 2, text: viewModel.pageDates(forIndex: indexPath.item))
 
         if let item = viewModel.item(at: indexPath.item) {
@@ -150,7 +136,6 @@ extension WeeklyChoicesViewController: UICollectionViewDataSource, UICollectionV
         let pageHeight = CGFloat(cellSize().height) * CGFloat(viewModel.itemsPerWeek)
         let currentOffset: CGFloat = scrollView.contentOffset.y
         var targetOffset: CGFloat = 0
-
         var index = Int(fabs(currentOffset) / pageHeight)
         let remainingOffset = fabs(currentOffset).truncatingRemainder(dividingBy: pageHeight)
 
@@ -159,9 +144,7 @@ extension WeeklyChoicesViewController: UICollectionViewDataSource, UICollectionV
         }
 
         index = index < 0 ? 0 : index >= viewModel.itemCount ? viewModel.itemCount - 1 : index
-
         targetOffset = pageHeight * CGFloat(index)
-
         scrollView.setContentOffset(CGPoint(x: scrollView.contentOffset.x, y: targetOffset), animated: true)
     }
 }
@@ -179,6 +162,5 @@ extension WeeklyChoicesViewController: WeeklyChoicesDelegate {
 
     func cellSize() -> CGSize {
         return CGSize(width: 300, height: collectionView.frame.height / 5.5)
-//        return CGSize(width: 300, height: 80)
     }
 }

@@ -13,16 +13,20 @@ import UIKit
 
 extension UIFont {
     
-    internal class func simpleFont(ofSize: CGFloat) -> UIFont {
+    class func simpleFont(ofSize: CGFloat) -> UIFont {
         return (UIFont(name: FontName.simple.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
     }
     
-    internal class func bentonBookFont(ofSize: CGFloat) -> UIFont {
+    class func bentonBookFont(ofSize: CGFloat) -> UIFont {
         return (UIFont(name: FontName.bentonBook.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
     }
     
-    internal class func bentonRegularFont(ofSize: CGFloat) -> UIFont {
+    class func bentonRegularFont(ofSize: CGFloat) -> UIFont {
         return (UIFont(name: FontName.bentonRegular.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
+    }
+
+    class func bentonCondLightFont(ofSize: CGFloat) -> UIFont {
+        return (UIFont(name: FontName.bentonSansCondLight.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
     }
 }
 

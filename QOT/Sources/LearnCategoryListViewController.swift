@@ -63,10 +63,13 @@ final class LearnCategoryListViewController: UIViewController {
         }.dispose(in: disposeBag)
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
 
-        self.centerCollectionView()
+        centerCollectionView()
+        UIView.animate(withDuration: 0.5) { 
+            self.collectionView.alpha = 1
+        }
     }
 }
 
@@ -81,9 +84,10 @@ private extension LearnCategoryListViewController {
     }
 
     func setupLayout() {
+        collectionView.alpha = 0
         view.backgroundColor = .clear
         view.addSubview(collectionView)
-        collectionView.topAnchor == view.topAnchor + Layout.TabBarView.height
+        collectionView.topAnchor == view.topAnchor + Layout.TabBarView.height + 26
         collectionView.bottomAnchor == view.bottomAnchor
         collectionView.horizontalAnchors == view.horizontalAnchors
         view.layoutIfNeeded()
@@ -101,7 +105,7 @@ extension LearnCategoryListViewController: UICollectionViewDataSource, LearnCate
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let category = viewModel.category(at: indexPath.item)
         let cell: LearnCategoryCell = collectionView.dequeueCell(for: indexPath)
-        cell.configure(with: category)
+        cell.configure(with: category, indexPath: indexPath, screenType: screenType)
         
         return cell
     }

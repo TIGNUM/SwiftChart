@@ -79,16 +79,16 @@ enum ContentItemValue {
         }
     }
 
-    func style(textStyle: ContentItemTextStyle, text: String, textColor: UIColor) -> NSAttributedString {
+    func style(textStyle: ContentItemTextStyle, text: String, textColor: UIColor, lineSpacing: CGFloat = 1, lineHeight: CGFloat = 1) -> NSAttributedString {
         switch textStyle {
-        case .h1: return Style.postTitle(text, textColor).attributedString()
-        case .h2: return Style.secondaryTitle(text, textColor).attributedString()
-        case .h3: return Style.subTitle(text, textColor).attributedString()
-        case .h4: return Style.headline(text, textColor).attributedString()
-        case .h5: return Style.headlineSmall(text, textColor).attributedString()
-        case .h6: return Style.navigationTitle(text, textColor).attributedString()
-        case .paragraph: return Style.paragraph(text, textColor).attributedString()
-        case .quote: return Style.qoute(text, .white60).attributedString()
+        case .h1: return Style.postTitle(text, textColor).attributedString(lineSpacing: lineSpacing, lineHeight: lineHeight)
+        case .h2: return Style.secondaryTitle(text, textColor).attributedString(lineSpacing: lineSpacing, lineHeight: lineHeight)
+        case .h3: return Style.subTitle(text, textColor).attributedString(lineSpacing: lineSpacing, lineHeight: lineHeight)
+        case .h4: return Style.headline(text, textColor).attributedString(lineSpacing: lineSpacing, lineHeight: lineHeight)
+        case .h5: return Style.headlineSmall(text, textColor).attributedString(lineSpacing: lineSpacing, lineHeight: lineHeight)
+        case .h6: return Style.navigationTitle(text, textColor).attributedString(lineSpacing: 2, lineHeight: lineHeight)
+        case .paragraph: return Style.paragraph(text, textColor).attributedString(lineSpacing: lineSpacing, lineHeight: lineHeight)
+        case .quote: return Style.qoute(text, .white60).attributedString(lineSpacing: lineSpacing, lineHeight: lineHeight)
         }
     }
 }

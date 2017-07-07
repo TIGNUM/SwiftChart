@@ -26,7 +26,7 @@ class TabBarView: UIView {
         var font: UIFont {
             switch self {
             case .bottom: return Font.H5SecondaryHeadline
-            case .top: return Font.H6NavigationTitle
+            case .top: return Font.H5SecondaryHeadline
             }
         }
 

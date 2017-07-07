@@ -1,15 +1,15 @@
 //
-//  MyUniverseViewController+ScreenType.swift
+//  UIViewController+ScreenType.swift
 //  QOT
 //
-//  Created by karmic on 19.04.17.
+//  Created by karmic on 07.07.17.
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-extension MyUniverseViewController {
+extension UIViewController {
 
     private enum ScreenSize: CGFloat {
         case bigScreenHeight = 672
@@ -49,6 +49,38 @@ extension MyUniverseViewController {
             case .big: return Font.PText
             case .medium,
                  .small: return Font.PTextSmall
+            }
+        }
+
+        var countLabelLeadingAnchorOffset: CGFloat {
+            switch self {
+            case .big: return 28
+            case .medium: return 20
+            case .small: return 16
+            }
+        }
+
+        var countLabelTopCenterAnchorOffset: CGFloat {
+            switch self {
+            case .big: return 60
+            case .medium: return 50
+            case .small: return 40
+            }
+        }
+
+        var countLabelTopAnchorOffset: CGFloat {
+            switch self {
+            case .big: return 50
+            case .medium: return 40
+            case .small: return 30
+            }
+        }
+
+        var contentCenterXAnchorOffset: CGFloat {
+            switch self {
+            case .big: return 28
+            case .medium: return 20
+            case .small: return 16
             }
         }
     }
@@ -105,3 +137,4 @@ extension MyUniverseViewController {
         return height > width
     }
 }
+

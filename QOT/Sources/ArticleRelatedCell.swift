@@ -22,6 +22,11 @@ final class ArticleRelatedCell: UITableViewCell, Dequeueable {
         previewImageView.layer.cornerRadius = 8
         previewImageView.layer.masksToBounds = true
         titleLabel.attributedText = Style.headline(title.uppercased(), .white).attributedString()
-        subTitleLabel.attributedText = Style.paragraph(subTitle.uppercased(), .whiteLight40).attributedString()
+        subTitleLabel.attributedText = NSMutableAttributedString(
+            string: subTitle.uppercased(),
+            letterSpacing: 2,
+            font: Font.H7Title,
+            textColor: .whiteLight40
+        )
     }
 }

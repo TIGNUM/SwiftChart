@@ -25,6 +25,7 @@ final class LearnContentListViewController: UIViewController {
     fileprivate let disposeBag = DisposeBag()
     fileprivate let viewModel: LearnContentCollectionViewModel
     fileprivate var selectedCategoryIndex: Index
+    fileprivate lazy var collectionViewLayout = LearnStrategyListLayout()
     weak var delegate: LearnContentListViewControllerDelegate?
     fileprivate var isDragging = false
 
@@ -40,10 +41,6 @@ final class LearnContentListViewController: UIViewController {
         return UIScreen.main.bounds.height > 568 ? 160 : 125
     }()
 
-    fileprivate lazy var collectionViewLayout: LearnStrategyListLayout = {
-        return LearnStrategyListLayout()
-    }()
-
     fileprivate lazy var collectionView: UICollectionView = {
         return UICollectionView(
             layout: self.collectionViewLayout,
@@ -51,18 +48,6 @@ final class LearnContentListViewController: UIViewController {
             dataSource: self,
             dequeables: LearnContentCell.self
         )
-    }()
-
-    fileprivate lazy var headerLabel: UILabel = {
-        let label = UILabel()
-
-        label.text = R.string.localized.learnContentPerformanceTitle()
-        label.textColor = .white
-        label.font = Font.H6NavigationTitle
-        label.textAlignment = .center
-        label.backgroundColor = .clear
-
-        return label
     }()
 
     fileprivate lazy var pagingCollectionView: UICollectionView = {        
@@ -115,7 +100,7 @@ final class LearnContentListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        centerCollectionView()
+        centerCollectionView()
         pagingCollectionViewScrollToSelectedIndex()
     }
 }
@@ -180,8 +165,7 @@ private extension LearnContentListViewController {
     }
 
     func setupHierachy() {
-        view.insertSubview(headerLabel, at: 0)
-        view.insertSubview(pagingCollectionView, at: 1)
+        view.addSubview(pagingCollectionView)
         view.addSubview(collectionView)
         view.addSubview(getBackButton)
     }
@@ -194,15 +178,9 @@ private extension LearnContentListViewController {
         collectionView.topAnchor == view.topAnchor + pagingCellSize.height + performanceLabelSize.height
         collectionView.bottomAnchor == view.bottomAnchor - 64
         collectionView.horizontalAnchors == view.horizontalAnchors
-
-        pagingCollectionView.topAnchor == headerLabel.bottomAnchor
-        pagingCollectionView.bottomAnchor == headerLabel.bottomAnchor + pagingCellSize.height
+        pagingCollectionView.topAnchor == view.topAnchor + 20
+        pagingCollectionView.bottomAnchor == view.topAnchor + performanceLabelSize.height + pagingCellSize.height
         pagingCollectionView.horizontalAnchors == view.horizontalAnchors
-
-        headerLabel.topAnchor == view.topAnchor + 20
-        headerLabel.bottomAnchor == view.topAnchor + performanceLabelSize.height
-        headerLabel.horizontalAnchors == view.horizontalAnchors
-
         view.layoutIfNeeded()
     }
 }

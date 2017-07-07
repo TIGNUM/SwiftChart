@@ -83,9 +83,9 @@ extension UIViewController {
 
     private class func addActionStyle(style: UIAlertActionStyle, alertController: UIAlertController, type: AlertType, handler: (() -> Void)?, handlerDestructive: (() -> Void)?) {
         switch style {
-        case .cancel:		alertController.addAction(UIViewController.cancelAction(type: type))
-        case .default:		alertController.addAction(UIViewController.defaultAction(type: type, handler: handler))
-        case .destructive:	alertController.addAction(UIViewController.destructiveAction(type: type, handler: handlerDestructive))
+        case .cancel: alertController.addAction(UIViewController.cancelAction(type: type))
+        case .default: alertController.addAction(UIViewController.defaultAction(type: type, handler: handler))
+        case .destructive: alertController.addAction(UIViewController.destructiveAction(type: type, handler: handlerDestructive))
         }
     }
 

@@ -48,6 +48,7 @@
 	<string>QOT needs Library access for uploading Images.</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>BentonSansCond-Light.otf</string>
 		<string>Simple-Regular.ttf</string>
 		<string>BentonSans_Regular.otf</string>
 		<string>BentonSans_Book.otf</string>

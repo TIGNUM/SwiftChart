@@ -18,6 +18,7 @@ enum FontName: String {
     case simple = "Simple-Regular"
     case bentonBook = "BentonSans-Book"
     case bentonRegular = "BentonSans"
+    case bentonSansCondLight = "BentonSans-CondensedLight"
 }
 
 struct Layout {
@@ -258,8 +259,8 @@ struct Font {
     /// BENTON SANS BOOK 16 // body text
     static let DPText = UIFont.bentonBookFont(ofSize: 16)
 
-    /// BENTON SANS BOOK 28 // QOUTES
-    static let Qoute = UIFont.bentonRegularFont(ofSize: 28)
+    /// BENTON SANS Condensed Light // QOUTES
+    static let Qoute = UIFont.bentonCondLightFont(ofSize: 28)
 }
 
 struct Color {

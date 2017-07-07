@@ -59,9 +59,9 @@ class ArticleCollectionViewController: UIViewController {
 
 private extension ArticleCollectionViewController {
 
-    func setupLayout() {        
+    func setupLayout() {
         view.addSubview(collectionView)
-        collectionView.topAnchor == view.topAnchor
+        collectionView.topAnchor == view.topAnchor + 63
         collectionView.heightAnchor == view.heightAnchor
         collectionView.horizontalAnchors == view.horizontalAnchors
         view.layoutIfNeeded()
@@ -102,8 +102,6 @@ extension ArticleCollectionViewController: UICollectionViewDataSource, UICollect
         )
 
         delegate?.didTapItem(articleHeader: articleHeader, in: self)
-        print("didSelecteItem: ", selectedCollection)
-        print("selectedCollection: ", selectedCollection.articleItems)
     }
 }
 
@@ -112,15 +110,15 @@ extension ArticleCollectionViewController: UICollectionViewDataSource, UICollect
 extension ArticleCollectionViewController: ArticleCollectionLayoutDelegate {
 
     func standardHeightForLayout(_ layout: ArticleCollectionLayout) -> CGFloat {
-        return 130
+        return 150
     }
 
     func featuredHeightForLayout(_ layout: ArticleCollectionLayout) -> CGFloat {
-        let nonPictureHeight: CGFloat = 130
+        let nonPictureHeight: CGFloat = 170
         let nonPictureWidth: CGFloat = 92
         let pictureRatio: CGFloat = 1.5
         let pictureHeight = (view.bounds.width - nonPictureWidth) / pictureRatio
-
+        
         return pictureHeight + nonPictureHeight
     }
 }

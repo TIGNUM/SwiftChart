@@ -251,11 +251,9 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
 
     private func calculateLabelHeight(text: String, font: UIFont, dispayedLineHeight: CGFloat, frameWidth: CGFloat) -> CGFloat {
         let lineHeight = "a".height(withConstrainedWidth: frameWidth, font: font)
+        let headerHeight = text.height(withConstrainedWidth: frameWidth, font: font)
 
-        var headerHeight = text.height(withConstrainedWidth: frameWidth, font: font)
-        headerHeight = headerHeight / lineHeight * dispayedLineHeight
-
-        return headerHeight
+        return headerHeight / lineHeight * dispayedLineHeight
     }
 }
 

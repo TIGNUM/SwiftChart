@@ -42,7 +42,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23 MINUTES TO READ" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CE2-X6-Sye">
-                    <rect key="frame" x="233" y="208" width="114" height="10.5"/>
+                    <rect key="frame" x="122" y="208" width="114" height="10.5"/>
                     <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="11"/>
                     <color key="textColor" white="1" alpha="0.29946082750000003" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -53,7 +53,8 @@
                 <constraint firstItem="8Oy-Ph-XGt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="28" id="0so-He-AR8"/>
                 <constraint firstAttribute="trailing" secondItem="heR-bY-EbL" secondAttribute="trailing" constant="28" id="KMw-Xt-RiH"/>
                 <constraint firstItem="8uF-Nr-OZC" firstAttribute="top" secondItem="8Oy-Ph-XGt" secondAttribute="bottom" constant="12" id="LYN-he-244"/>
-                <constraint firstAttribute="trailing" secondItem="CE2-X6-Sye" secondAttribute="trailing" constant="28" id="Qec-rm-ndm"/>
+                <constraint firstItem="CE2-X6-Sye" firstAttribute="leading" secondItem="8uF-Nr-OZC" secondAttribute="trailing" constant="30" id="Pyv-td-c1j"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="CE2-X6-Sye" secondAttribute="trailing" constant="28" id="Qec-rm-ndm"/>
                 <constraint firstAttribute="bottom" secondItem="8uF-Nr-OZC" secondAttribute="bottom" constant="41.5" id="Th8-j8-LnO"/>
                 <constraint firstItem="8Oy-Ph-XGt" firstAttribute="top" secondItem="heR-bY-EbL" secondAttribute="bottom" constant="8" id="VXM-E3-ODp"/>
                 <constraint firstItem="8uF-Nr-OZC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="28" id="kIp-7A-hQy"/>

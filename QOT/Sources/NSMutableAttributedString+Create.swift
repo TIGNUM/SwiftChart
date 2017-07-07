@@ -43,6 +43,8 @@ enum Style {
     case tag(String, UIColor)
     case paragraph(String, UIColor)
     case qoute(String, UIColor)
+    case article(String, UIColor)
+    case mediaDescription(String, UIColor)
     case question(String, UIColor)
     case sub(String, UIColor)
     case num(String, UIColor)
@@ -58,47 +60,55 @@ enum Style {
         case .tag: return Font.H7Tag
         case .paragraph: return Font.H7Title
         case .qoute: return Font.Qoute
+        case .article: return Font.DPText
+        case .mediaDescription: return Font.DPText
         case .question: return Font.H9Title
         case .sub: return Font.H8Subtitle
         case .num: return Font.H0Number
         }
     }
 
-    private func stringStyle(color: UIColor, lineSpacing: CGFloat, alignment: NSTextAlignment = .left) -> StringStyle {
+    private func stringStyle(color: UIColor, lineSpacing: CGFloat, lineHeight: CGFloat, alignment: NSTextAlignment = .left) -> StringStyle {
         return StringStyle(
             .font(self.font),
             .color(color),
             .lineSpacing(lineSpacing),
-            .alignment(alignment)
+            .alignment(alignment),
+            .lineHeightMultiple(lineHeight),
+            .numberSpacing(.proportional)
         )
     }
 
-    func attributedString(lineSpacing: CGFloat = 1, alignment: NSTextAlignment = .left) -> NSAttributedString {
+    func attributedString(lineSpacing: CGFloat = 1, lineHeight: CGFloat = 1, alignment: NSTextAlignment = .left) -> NSAttributedString {
         switch self {
         case .postTitle(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, alignment: alignment))
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: alignment))
         case .secondaryTitle(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, alignment: alignment))
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: alignment))
         case .subTitle(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, alignment: alignment))
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: alignment))
         case .headline(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, alignment: alignment))
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: alignment))
         case .headlineSmall(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, alignment: alignment))
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: alignment))
         case .navigationTitle(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, alignment: alignment))
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: alignment))
         case .tag(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, alignment: alignment))
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: alignment))
         case .paragraph(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, alignment: alignment))
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: alignment))
         case .qoute(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, alignment: .right))
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: .right))
+        case .article(let string, let color):
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: alignment))
+        case .mediaDescription(let string, let color):
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: .left))
         case .question(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, alignment: .center))
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: .center))
         case .sub(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, alignment: .center))
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: .center))
         case .num(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, alignment: .center))
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: .center))
         }
     }
 }

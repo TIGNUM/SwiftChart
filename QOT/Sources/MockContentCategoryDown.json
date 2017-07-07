@@ -6,7 +6,7 @@
       "title": "Performance Mindset",
       "layoutInfo": {
         "bubble": {
-          "radius": 0.15,
+          "radius": 0.131,
           "centerX": 0.5,
           "centerY": 0.5
         }
@@ -46,7 +46,7 @@
       "title": "Performance Foundation",
       "layoutInfo": {
         "bubble": {
-          "radius": 0.125,
+          "radius": 0.131,
           "centerX": 0.186,
           "centerY": 0.558
         }
@@ -86,7 +86,7 @@
       "title": "Performance Movement",
       "layoutInfo": {
         "bubble": {
-          "radius": 0.111,
+          "radius": 0.131,
           "centerX": 0.788,
           "centerY": 0.585
         }

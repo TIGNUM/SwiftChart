@@ -16,27 +16,43 @@ class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
     @IBOutlet fileprivate weak var subTitle: UILabel!
     @IBOutlet fileprivate weak var textLabel: UILabel!
     @IBOutlet fileprivate weak var mediaInformation: UILabel!
-    @IBOutlet fileprivate weak var iconImageView: UIImageView!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        imageView.layer.cornerRadius = 10
+        imageView.layer.cornerRadius = 8
         imageView.layer.masksToBounds = true
+        layoutSubviews()
     }
 
     func configure(sortOrder: String, title: String, description: String, imageURL: URL?, duration: String) {
-        identifier.attributedText = Style.headline(sortOrder, .white).attributedString()
-        subTitle.attributedText = Style.paragraph(title.uppercased(), .white60).attributedString()
-        textLabel.attributedText = Style.headline(description.uppercased(), .white).attributedString()
-        mediaInformation.attributedText = Style.paragraph(duration.uppercased(), .white60).attributedString()
+        let attributedIdentifier = NSMutableAttributedString(
+            string: sortOrder,
+            letterSpacing: -0.7,
+            font: Font.H4Identifier,
+            lineSpacing: 2
+        )
+        identifier.attributedText = attributedIdentifier
+        subTitle.attributedText = attributedTitle(text: title)
+        textLabel.attributedText = Style.headline(description.uppercased(), .white).attributedString()        
+        mediaInformation.attributedText = attributedTitle(text: duration)
         imageView.kf.indicatorType = .activity
-
-        guard let imageURL = imageURL else {
-            iconImageView.isHidden = true
-            return
-        }
-
         imageView.kf.setImage(with: imageURL)
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        subTitle.sizeToFit()
+    }
+
+    private func attributedTitle(text: String) -> NSMutableAttributedString {
+        return NSMutableAttributedString(
+            string: text.uppercased(),
+            letterSpacing: 2.8,
+            font: Font.H7Tag,
+            lineSpacing: 1.5,
+            textColor: .white60
+        )
     }
 }

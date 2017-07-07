@@ -73,6 +73,7 @@ class TopTabBarController: UIViewController {
         let enableTabScrolling: Bool
         let contentView: UIView?
         let header: ArticleCollectionHeader?
+        let backgroundView: UIImage? = R.image.learnCategory()
 
         init(
             controllers: [UIViewController],

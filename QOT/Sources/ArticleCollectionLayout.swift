@@ -47,13 +47,13 @@ final class ArticleCollectionLayout: UICollectionViewLayout {
             let collectionView = collectionView,
             let delegate = delegate else {
                 self.cache = []
+
                 return
         }
 
         let standardHeight = delegate.standardHeightForLayout(self)
         let featuredHeight = delegate.featuredHeightForLayout(self)
-        let yPosOffset = CGFloat(64)
-
+        let yPosOffset = CGFloat(0)
         var cache = [UICollectionViewLayoutAttributes]()
         cache.reserveCapacity(itemCount)
 
@@ -63,16 +63,16 @@ final class ArticleCollectionLayout: UICollectionViewLayout {
             attributes.zIndex = item
             let y = (CGFloat(item) * standardHeight) + (featuredHeight - standardHeight)
             let frame: CGRect
+
             if collectionView.contentOffset.y < 0.0 {
                 let  height: CGFloat = indexPath.item == 0  ? featuredHeight : standardHeight
                 let convertedY = y + standardHeight - height
-                frame = CGRect(x: 0, y: convertedY + yPosOffset, width: width, height: height)
+                frame = CGRect(x: 0, y: convertedY + yPosOffset, width: width, height: height)                
             } else if y <= collectionView.contentOffset.y + (featuredHeight - standardHeight) {
                 let percentage = ((collectionView.contentOffset.y / standardHeight) - CGFloat(item))
                 let   diff = (featuredHeight - standardHeight) * percentage
                 let convertedY = y - (featuredHeight - standardHeight) - diff
                 frame = CGRect(x: 0, y: convertedY + yPosOffset, width: width, height: featuredHeight)
-
             } else if y <= collectionView.contentOffset.y + featuredHeight {
                 let percentage = ((collectionView.contentOffset.y / standardHeight) - CGFloat(item)) + CGFloat(1)
                 let diff = (featuredHeight - standardHeight) * percentage
@@ -81,7 +81,6 @@ final class ArticleCollectionLayout: UICollectionViewLayout {
                 frame = CGRect(x: 0, y: convertedY + yPosOffset, width: width, height: height)
             } else {
                 frame = CGRect(x: 0, y: y + yPosOffset, width: width, height: standardHeight)
-
             }
 
             attributes.frame = frame

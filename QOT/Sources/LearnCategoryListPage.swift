@@ -12,10 +12,10 @@ struct LearnCategoryListPage {
 
     private let defaultBubbles = [
         BubbleLayoutInfo(radius: 0.15, centerX: 0.5, centerY: 0.5),
-        BubbleLayoutInfo(radius: 0.131, centerX: 0.32, centerY: 0.24),
-        BubbleLayoutInfo(radius: 0.125, centerX: 0.186, centerY: 0.558),
-        BubbleLayoutInfo(radius: 0.131, centerX: 0.442, centerY: 0.804),
-        BubbleLayoutInfo(radius: 0.111, centerX: 0.788, centerY: 0.585),
+        BubbleLayoutInfo(radius: 0.139, centerX: 0.32, centerY: 0.24),
+        BubbleLayoutInfo(radius: 0.139, centerX: 0.186, centerY: 0.558),
+        BubbleLayoutInfo(radius: 0.139, centerX: 0.442, centerY: 0.804),
+        BubbleLayoutInfo(radius: 0.139, centerX: 0.777, centerY: 0.645),
         BubbleLayoutInfo(radius: 0.139, centerX: 0.716, centerY: 0.250)
     ]
 

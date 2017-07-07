@@ -19,10 +19,13 @@ final class ArticleItemViewController: UIViewController {
     // MARK: - Properties
 
     fileprivate var viewModel: ArticleItemViewModel
+    fileprivate var viewDidAppear = false
+    fileprivate var scrollToFinish = false
     weak var delegate: ArticleItemViewControllerDelegate?
 
     fileprivate lazy var tableView: UITableView = {
-        return UITableView(
+        let tableView = UITableView(
+            style: .grouped,
             delegate: self,
             dataSource: self,
             dequeables:
@@ -31,6 +34,9 @@ final class ArticleItemViewController: UIViewController {
                 ArticleRelatedCell.self,
                 ErrorCell.self
             )
+        tableView.backgroundView = UIImageView(image: R.image.backgroundWhatsHot())
+
+        return tableView
     }()
 
     // MARK: - Init
@@ -57,6 +63,12 @@ final class ArticleItemViewController: UIViewController {
         super.viewWillAppear(animated)
 
         tableView.reloadData()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        viewDidAppear = true
     }
 
     override func viewDidLayoutSubviews() {
@@ -94,6 +106,8 @@ private extension ArticleItemViewController {
     }
 
     func setupView() {
+        tableView.estimatedSectionHeaderHeight = 100
+        tableView.estimatedSectionFooterHeight = 100
         setTableViewHeader()
         view.addSubview(tableView)
         view.backgroundColor = .clear
@@ -204,15 +218,14 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
                     indexPath: indexPath,
                     title: title,
                     placeholderURL: placeholderURL,
-                    attributedString: item.contentItemValue.style(textStyle: .paragraph, text: title,
-                                                                  textColor: .white).attributedString(),
+                    attributedString: Style.mediaDescription(title, .white60).attributedString(lineHeight: 2),
                     canStream: true
                 )
             case .image(let title, _, let url):
                 return imageTableViweCell(
                     tableView: tableView,
                     indexPath: indexPath,
-                    attributeString: item.contentItemValue.style(textStyle: .paragraph, text: title, textColor: .white).attributedString(),
+                    attributeString: Style.mediaDescription(title, .white60).attributedString(lineHeight: 2),
                     url: url
                 )
             case .listItem(let text):
@@ -223,10 +236,17 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
                     bottomText: nil
                 )
             case .text(let text, let style):
+                var attributedTopText = item.contentItemValue.style(textStyle: style, text: text, textColor: .white)
+                if style == .paragraph {
+                    attributedTopText = Style.article(text, .white).attributedString(lineHeight: 2)
+                } else if style == .quote {
+                    attributedTopText = Style.qoute(text, .white60).attributedString(lineHeight: 2)
+                }
+
                 return contentItemTextTableViewCell(
                     tableView: tableView,
                     indexPath: indexPath,
-                    topText: item.contentItemValue.style(textStyle: style, text: text, textColor: .white),
+                    topText: attributedTopText,
                     bottomText: nil
                 )
             case .video(let title, _, let placeholderURL, _, _):
@@ -235,7 +255,7 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
                     indexPath: indexPath,
                     title: title,
                     placeholderURL: placeholderURL,
-                    attributedString: item.contentItemValue.style(textStyle: .paragraph, text: title, textColor: .white).attributedString(),
+                    attributedString: Style.mediaDescription(title, .white60).attributedString(lineHeight: 2),
                     canStream: true
                 )
             default:
@@ -247,6 +267,35 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
         }
     }
 
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 1 {
+            let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: tableView.estimatedSectionHeaderHeight))
+            headerView.backgroundColor = .clear
+            let titleLabel = UILabel(frame: CGRect(x: 28, y: 60, width: view.frame.width, height: 18))
+            titleLabel.attributedText = Style.headlineSmall(R.string.localized.learnContentItemTitleRelatedArticles(), .white).attributedString(lineSpacing: 1.5)
+            headerView.addSubview(titleLabel)
+
+            return headerView
+        }
+
+        return nil
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == 1 {
+            let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: tableView.estimatedSectionFooterHeight))
+            footerView.backgroundColor = .clear
+            let loadMoreLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
+            let attributedTitle = Style.headlineSmall(R.string.localized.libraryFooterViewLabel().uppercased(), .white40).attributedString(lineSpacing: 1.5, alignment: .center)
+            loadMoreLabel.attributedText = attributedTitle
+            footerView.addSubview(loadMoreLabel)
+
+            return footerView
+        }
+
+        return nil
+    }
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
@@ -255,5 +304,22 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
         }
 
         delegate?.didSelectRelatedArticle(selectedArticle: viewModel.relatedArticle(at: indexPath), form: self)
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+
+extension ArticleItemViewController: UIScrollViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if viewDidAppear == true && scrollView.contentOffset.y >= (scrollView.contentSize.height + 100 - scrollView.frame.size.height) {
+            scrollToFinish = true
+        }
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollToFinish == true {
+            dismiss(animated: false, completion: nil)
+        }
     }
 }
