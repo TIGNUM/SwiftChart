@@ -16,7 +16,7 @@ final class MyWhyViewModel {
 
     let items: [MyWhy]
     let partners: AnyRealmCollection<Partner>
-    var myToBeVision: MyToBeVision?
+    let myToBeVision: MyToBeVision?
     let updates = PublishSubject<CollectionUpdate, NoError>()
     private var partnersNotificationToken: NotificationToken?
     private var visionNotificationToken: NotificationToken?

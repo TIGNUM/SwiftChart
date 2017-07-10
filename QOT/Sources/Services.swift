@@ -75,8 +75,14 @@ final class Services {
                         userService: userService,
                         eventsService: eventsService
                     )
-
-                    completion(.success(services))
+                    
+                    userService.prepare(completion: { (error: Error?) in
+                        guard error == nil else {
+                            completion(.failure(error as NSError? ?? NSError(domain: "", code: 0, userInfo: nil)))
+                            return
+                        }
+                        completion(.success(services))
+                    })
                 } catch let error as NSError {
                     completion(.failure(error))
                 }

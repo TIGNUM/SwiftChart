@@ -357,7 +357,8 @@ extension TopTabBarController: UIScrollViewDelegate {
 extension TopTabBarController: ContentScrollViewDelegate {
 
     func didEndDecelerating(_ contentOffset: CGPoint) {
-        tabBarView.setSelectedIndex(contentOffset.equalTo(.zero) == true ? 0 : 1, animated: true)
+        selectedIndex = scrollView.currentPage
+        tabBarView.setSelectedIndex(scrollView.currentPage, animated: true)
     }
 }
 

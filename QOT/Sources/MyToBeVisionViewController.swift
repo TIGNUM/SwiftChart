@@ -28,7 +28,8 @@ class MyToBeVisionViewController: UIViewController {
     @IBOutlet weak var messageTextViewBottomConstrant: NSLayoutConstraint!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var imageViewOverlay: UIImageView!
+    @IBOutlet weak var imageViewOverlay: UIView!
+    @IBOutlet weak var imageButton: UIButton!
     @IBOutlet weak var webView: UIWebView!
     fileprivate let viewModel: MyToBeVisionViewModel
     fileprivate var imagePicker: ImagePickerController?
@@ -41,9 +42,6 @@ class MyToBeVisionViewController: UIViewController {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
-        
-        imageTapRecogniser = UITapGestureRecognizer(target: self, action: #selector(imageTapped(_:)))
-        imageTapRecogniser.isEnabled = false
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -114,14 +112,14 @@ private extension MyToBeVisionViewController {
         UIView.animate(withDuration: 0.5, animations: {
             self.messageTextView.alpha = isEditing ? 1.0 : 0.0
             self.webView.alpha = isEditing ? 0.0 : 1.0
-            self.imageViewOverlay.alpha = isEditing ? 1.0 : 0.0
+            self.imageButton.alpha = (isEditing || self.viewModel.profileImage == nil) ? 1.0 : 0.0
         }, completion: { (_: Bool) in
             if isEditing {
                 _ = self.tryFirstResponder()
             }
             self.headlineTextView.isEditable = isEditing
             self.messageTextView.isEditable = isEditing
-            self.imageTapRecogniser.isEnabled = isEditing
+            self.imageButton.isEnabled = isEditing
         })
     }
     
@@ -138,8 +136,9 @@ private extension MyToBeVisionViewController {
         setupLabels()
         configureWebView(string: viewModel.text)
         
-        imageViewOverlay.addGestureRecognizer(imageTapRecogniser)
-        imageView.image = viewModel.profileImage ?? R.image.myToBeVisionPlus()
+        let profileImage = viewModel.profileImage
+        imageView.image = profileImage
+        imageButton.alpha = (profileImage == nil) ? 1.0 : 0.0
         subtitleLabel.text = viewModel.dateText
     }
     
@@ -201,8 +200,7 @@ private extension MyToBeVisionViewController {
 
         let borderMask = CAShapeLayer()
         borderMask.path = clippingBorderPath.cgPath
-        imageView.layer.mask = borderMask
-        imageView.center = view.center
+        imageViewOverlay.layer.mask = borderMask
     }
 
     func configureWebView(string: String?) {
@@ -241,7 +239,7 @@ extension MyToBeVisionViewController {
         edit()
     }
     
-    func imageTapped(_ sender: Any) {
+    @IBAction func imageButtonPressed(_ sender: UIButton) {
         let imagePicker = ImagePickerController()
         imagePicker.delegate = self
         imagePicker.imageLimit = 1

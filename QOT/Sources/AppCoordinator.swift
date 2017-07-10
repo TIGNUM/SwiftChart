@@ -63,7 +63,10 @@ final class AppCoordinator: ParentCoordinator {
                     self.syncManager.syncCalendarEvents()
                 }
             case .failure:
-                // FIXME: Alert user that the app cannot be run
+                // TODO: localise alert text
+                self.showAlert(type: .custom(title: "Error", message: "There was a problem initializing the app's data. Please restart the app and try again"), completion: {
+                    exit(0)
+                })
                 break
             }
         }
@@ -76,9 +79,10 @@ final class AppCoordinator: ParentCoordinator {
         secondaryWindow.rootViewController?.present(morningInterViewController, animated: true, completion: nil)
     }
 
-    func showAlert(type: AlertType) {
+    func showAlert(type: AlertType, completion: (() -> Void)? = nil) {
         switchToSecondaryWindow()
         secondaryWindow.rootViewController?.showAlert(type: type, handler: { [weak self] in
+            completion?()
             self?.switchToMainWindow()
         })
     }

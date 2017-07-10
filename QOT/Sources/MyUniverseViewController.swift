@@ -34,10 +34,10 @@ final class MyUniverseViewController: UIViewController {
     fileprivate var lastContentOffset: CGFloat = 0
     weak var contentScrollViewDelegate: ContentScrollViewDelegate?
     weak var delegate: MyUniverseViewControllerDelegate?
-    fileprivate var viewDidDisappear: Bool = false
 
     fileprivate lazy var myDataView: MyDataView = {
         return MyDataView(
+            delegate: self,
             sectors: self.myDataViewModel.sectors,
             profileImage: self.myDataViewModel.profileImage,
             frame: self.view.bounds
@@ -125,16 +125,6 @@ final class MyUniverseViewController: UIViewController {
 
         addTabRecognizer()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        viewDidDisappear = false
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        viewDidDisappear = true
-    }
 }
 
 // MARK: - ContentScrollView / SubView adding
@@ -180,8 +170,8 @@ private extension MyUniverseViewController {
 
     func sector(location: CGPoint) -> Sector? {
         let radius = lengthFromCenter(for: location)
-        let yPosShifted = location.y - myDataView.profileImageView.center.y
-        let xPosShifted = location.x - myDataView.profileImageView.center.x
+        let yPosShifted = location.y - myDataView.profileImageButton.center.y
+        let xPosShifted = location.x - myDataView.profileImageButton.center.x
         let beta = acos(xPosShifted / radius)
         let sectorAngle = beta.radiansToDegrees
 
@@ -209,8 +199,8 @@ private extension MyUniverseViewController {
     }
 
     func lengthFromCenter(for location: CGPoint) -> CGFloat {
-        let diffX = pow(location.x - myDataView.profileImageView.center.x, 2)
-        let diffY = pow(location.y - myDataView.profileImageView.center.y, 2)
+        let diffX = pow(location.x - myDataView.profileImageButton.center.x, 2)
+        let diffY = pow(location.y - myDataView.profileImageButton.center.y, 2)
         
         return sqrt(diffX + diffY)
     }
@@ -221,10 +211,6 @@ private extension MyUniverseViewController {
 extension MyUniverseViewController: UIScrollViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-         // FIXME: this is hacky fix for a bug whereby closing a presented viewcontroller on page 2/2 moves the scrollview back to page 1/2
-        guard !viewDidDisappear else {
-            return
-        }
         setBackgroundParallaxEffect(scrollView)
         updateProfileImageViewAlphaValue(scrollView)
         updateSectorLabelsAlphaValue(scrollView)
@@ -255,7 +241,7 @@ private extension MyUniverseViewController {
     }
 
     func updateProfileImageViewAlphaValue(_ contentScrollView: UIScrollView) {
-        let alpha = scrollFactor(contentScrollView)
+        let alpha = 1.0 - scrollFactor(contentScrollView)
         myDataView.profileImageViewOverlay.alpha = alpha
         myDataView.profileImageViewOverlayEffect.alpha = alpha
     }
@@ -273,6 +259,8 @@ private extension MyUniverseViewController {
     }
 }
 
+// MARK: - MyWhyViewDelegate
+
 extension MyUniverseViewController: MyWhyViewDelegate {
 
     func didTapMyToBeVision(vision: MyToBeVision?, from view: UIView) {
@@ -285,5 +273,11 @@ extension MyUniverseViewController: MyWhyViewDelegate {
 
     func didTapQOTPartner(selectedIndex: Index, partners: [PartnerWireframe], from view: UIView) {
         delegate?.didTapQOTPartner(selectedIndex: selectedIndex, partners: partners, from: view, in: self)
+    }
+}
+
+extension MyUniverseViewController: MyDataViewDelegate {
+    func myDataView(_ view: MyDataView, pressedProfileButton button: UIButton) {
+        delegate?.didTapMyToBeVision(vision: myWhyViewModel.myToBeVision, from: button, in: self)
     }
 }

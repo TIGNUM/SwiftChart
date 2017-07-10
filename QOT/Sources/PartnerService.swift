@@ -35,14 +35,14 @@ final class PartnerService {
         self.realmProvider = realmProvider
     }
     
-    func create(success: ((Partner?) -> Void)?, failure: ((Error?) -> Void)?) {
+    func create(success: (() -> Void)?, failure: ((Error?) -> Void)?) {
         DispatchQueue.global().async {
             do {
                 let realm = try self.realmProvider.realm()
                 try realm.write {
-                    let partner = realm.create(Partner.self, value: Partner(), update: true)
+                    _ = realm.create(Partner.self, value: Partner(), update: false)
                     DispatchQueue.main.async {
-                        success?(partner)
+                        success?()
                     }
                 }
             } catch {

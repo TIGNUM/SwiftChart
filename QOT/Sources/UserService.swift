@@ -18,6 +18,18 @@ final class UserService {
         self.mainRealm = mainRealm
         self.realmProvider = realmProvider
     }
+    
+    func prepare(completion: @escaping (Error?) -> Void) {
+        guard myToBeVision() != nil else {
+            createMyToBeVision(success: { _ in
+                completion(nil)
+            }, failure: { (error: Error?) in
+                completion(error)
+            })
+            return
+        }
+        completion(nil)
+    }
 
     func user() -> User? {
         return mainRealm.objects(User.self).first
@@ -104,20 +116,18 @@ extension UserService {
             date: mytoBeVision.date)
     }
     
-    func createMyToBeVision(success: ((MyToBeVision?) -> Void)?, failure: ((Error?) -> Void)?) {
-        DispatchQueue.global().async {
-            do {
-                let realm = try self.realmProvider.realm()
-                try realm.write {
-                    let myToBeVision = realm.create(MyToBeVision.self, value: MyToBeVision(), update: true)
-                    DispatchQueue.main.async {
-                        success?(myToBeVision)
-                    }
-                }
-            } catch {
+    func createMyToBeVision(success: ((MyToBeVision) -> Void)?, failure: ((Error?) -> Void)?) {
+        do {
+            let realm = try self.realmProvider.realm()
+            try realm.write {
+                let myToBeVision = realm.create(MyToBeVision.self, value: MyToBeVision(), update: false)
                 DispatchQueue.main.async {
-                    failure?(error)
+                    success?(myToBeVision)
                 }
+            }
+        } catch {
+            DispatchQueue.main.async {
+                failure?(error)
             }
         }
     }

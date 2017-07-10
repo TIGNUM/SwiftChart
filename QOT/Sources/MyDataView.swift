@@ -30,20 +30,26 @@ extension MyUniverseView where Self: UIView {
     }
 }
 
+protocol MyDataViewDelegate: class {
+    func myDataView(_ view: MyDataView, pressedProfileButton button: UIButton)
+}
+
 final class MyDataView: UIView, MyUniverseView {
 
     // MARK: - Properties
 
-    var profileImageView = UIImageView()
-    var profileImageViewOverlay = UIImageView()
-    var profileImageViewOverlayEffect = UIImageView()
+    var profileImageButton: UIButton!
+    var profileImageViewOverlay: UIImageView!
+    var profileImageViewOverlayEffect: UIImageView!
     var sectors = [Sector]()
     var profileImage: UIImage?
     var previousBounds = CGRect.zero
+    weak var delegate: MyDataViewDelegate?
 
     // MARK: - Init
 
-    init(sectors: [Sector], profileImage: UIImage?, frame: CGRect) {
+    init(delegate: MyDataViewDelegate, sectors: [Sector], profileImage: UIImage?, frame: CGRect) {
+        self.delegate = delegate
         self.sectors = sectors
         self.profileImage = profileImage
 
@@ -68,7 +74,7 @@ final class MyDataView: UIView, MyUniverseView {
     
     func updateProfileImage(_ image: UIImage?) {
         profileImage = image
-        profileImageView.image = image
+        profileImageButton.setBackgroundImage(profileImageViewImage(image), for: .normal)
     }
 }
 
@@ -82,27 +88,38 @@ private extension MyDataView {
 
         drawBackCircles(layout: layout, radius: layout.radiusAverageLoad, linesDashPattern: [2, 1])
         drawBackCircles(layout: layout, radius: layout.radiusMaxLoad)
-        setupProfileImage(layout: layout, profileImage: profileImage)
-        MyUniverseHelper.collectCenterPoints(layout: layout, sectors: sectors, relativeCenter: profileImageView.center)
+        setupProfileImage(layout: layout, profileImage: profileImageViewImage(profileImage))
+        MyUniverseHelper.collectCenterPoints(layout: layout, sectors: sectors, relativeCenter: profileImageButton.center)
         drawDataPointConnections(layout: layout, sectors: sectors)
         drawDataPoints(layout: layout, sectors: sectors)
-        addSubview(profileImageView)
+        addSubview(profileImageButton)
         addSubview(profileImageViewOverlay)
         addSubview(profileImageViewOverlayEffect)
     }
-
+    
+    func profileImageViewImage(_ image: UIImage?) -> UIImage? {
+        return image ?? R.image.universe_2state()
+    }
+    
     func setupProfileImage(layout: Layout.MeSection, profileImage: UIImage?) {
-        profileImageView = UIImageView(frame: layout.profileImageViewFrame, image: profileImage)
+        profileImageButton = UIButton(type: .custom)
+        profileImageButton.frame = layout.profileImageViewFrame
+        profileImageButton.setBackgroundImage(profileImage, for: .normal)
+        profileImageButton.addTarget(self, action: #selector(profileButtonPressed(_:)), for: .touchUpInside)
+        profileImageButton.layer.cornerRadius = (profileImageButton.frame.size.width * 0.5)
+        profileImageButton.clipsToBounds = true
         profileImageViewOverlay = UIImageView(frame: layout.profileImageViewFrame, image: profileImage?.convertToGrayScale())
+        profileImageViewOverlay.alpha = 0.0
         profileImageViewOverlayEffect = UIImageView(frame: layout.profileImageViewFrame, image: nil)
         profileImageViewOverlayEffect.backgroundColor = Color.Default.whiteMedium
+        profileImageViewOverlayEffect.alpha = 0.0
         addImageEffect(center: layout.loadCenter)
     }
 
     func addImageEffect(center: CGPoint) {
         let circleLayer = CAShapeLayer.circle(
             center: center,
-            radius: profileImageView.frame.width * 0.5,
+            radius: profileImageButton.frame.width * 0.5,
             fillColor: .clear,
             strokeColor: Color.MeSection.whiteStrokeLight
         )
@@ -136,5 +153,13 @@ private extension MyDataView {
         dataPoints.forEach { (dataPoint: CAShapeLayer) in
             layer.addSublayer(dataPoint)
         }
+    }
+}
+
+// MARK: - Actions
+
+private extension MyDataView {
+    @objc func profileButtonPressed(_ sender: UIButton) {
+        delegate?.myDataView(self, pressedProfileButton: sender)
     }
 }

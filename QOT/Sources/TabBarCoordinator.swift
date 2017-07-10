@@ -75,9 +75,11 @@ final class TabBarCoordinator: ParentCoordinator {
     }()
 
     fileprivate lazy var topTabBarControllerMe: TopTabBarController = {
+        let partners = self.services.partnerService.partners
+        let myToBeVision = self.services.userService.myToBeVision()
         let myUniverseViewController = MyUniverseViewController(
-            myDataViewModel: MyDataViewModel(vision: self.services.userService.myToBeVision()),
-            myWhyViewModel: MyWhyViewModel(partners: self.services.partnerService.partners, vision: self.services.userService.myToBeVision())
+            myDataViewModel: MyDataViewModel(vision: myToBeVision),
+            myWhyViewModel: MyWhyViewModel(partners: partners, vision: myToBeVision)
         )
 
         let topBarControllerItem = TopTabBarController.Item(
