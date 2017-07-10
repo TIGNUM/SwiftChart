@@ -10,6 +10,7 @@ import UIKit
 import Anchorage
 
 protocol MorningInterviewViewControllerDelegate: class {
+
     func didTapClose(viewController: MorningInterviewViewController)
 }
 
@@ -17,6 +18,18 @@ final class MorningInterviewViewController: UIViewController {
 
     weak var delegate: MorningInterviewViewControllerDelegate?
     private var currentIndex: Int = 0
+    fileprivate let viewModel = MorningInterviewViewModel()
+    fileprivate let topView = UIView()
+    fileprivate let bottomView: UIView = UIView()
+    fileprivate var headerLabel: UILabel = UILabel()
+
+    fileprivate lazy var blurView: UIView = {
+        var blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+        blurEffectView.frame = self.view.frame
+
+        return blurEffectView
+    }()
+
     private var isFirstPage: Bool {
         return currentIndex <= 0
     }
@@ -25,12 +38,10 @@ final class MorningInterviewViewController: UIViewController {
         return currentIndex >= viewModel.questions.count - 1
     }
 
-    fileprivate let viewModel = MorningInterviewViewModel()
-    fileprivate let topView = UIView()
-    fileprivate let bottomView: UIView = UIView()
     fileprivate lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+
         return UICollectionView(
             layout: layout,
             delegate: self,
@@ -39,13 +50,13 @@ final class MorningInterviewViewController: UIViewController {
         )
     }()
 
-    fileprivate var headerLabel: UILabel = UILabel()
     fileprivate var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle(R.string.localized.morningControllerNextButton(), for: UIControlState.normal)
         button.titleLabel?.font = Font.DPText
         button.addTarget(self, action: #selector(didTapNext(_:)), for: .touchUpInside)
         button.setTitleColor(.white60, for: .normal)
+
         return button
     }()
 
@@ -55,6 +66,7 @@ final class MorningInterviewViewController: UIViewController {
         button.addTarget(self, action: #selector(didTapPrevious(_:)), for: .touchUpInside)
         button.setTitleColor(.white, for: .normal)
         button.isHidden = true
+
         return button
     }()
 
@@ -63,6 +75,7 @@ final class MorningInterviewViewController: UIViewController {
         button.setImage(R.image.ic_close(), for: UIControlState.normal)
         button.addTarget(self, action: #selector(didTapClose(_:)), for: .touchUpInside)
         button.setTitleColor(.white, for: .normal)
+
         return button
     }()
 
@@ -117,7 +130,6 @@ final class MorningInterviewViewController: UIViewController {
             alignment: .center
         )
         attributedTitle.append(progressTitle)
-
         headerLabel.attributedText = attributedTitle
         headerLabel.textAlignment = .center
     }
@@ -130,6 +142,7 @@ final class MorningInterviewViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         collectionView.isScrollEnabled = false
         setupHierarchy()
         setupLayout()
@@ -137,11 +150,13 @@ final class MorningInterviewViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         syncViews(animated: false)
     }
 }
 
 extension MorningInterviewViewController: UICollectionViewDelegateFlowLayout {
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
@@ -150,15 +165,16 @@ extension MorningInterviewViewController: UICollectionViewDelegateFlowLayout {
 // MARK: Public CollectionView data source
 
 extension MorningInterviewViewController: UICollectionViewDataSource {
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.questions.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let question = viewModel.questions[indexPath.item]
-        let  cell: MorningInterviewCell = collectionView.dequeueCell(for: indexPath)
-
+        let cell: MorningInterviewCell = collectionView.dequeueCell(for: indexPath)
         cell.configure(question: question)
+        
         return cell
     }
 }
@@ -166,17 +182,17 @@ extension MorningInterviewViewController: UICollectionViewDataSource {
 private extension MorningInterviewViewController {
 
     func setupHierarchy() {
-        view.addSubview(topView)
+        view.addSubview(blurView)
+        blurView.addSubview(topView)
         topView.addSubview(leftButton)
         topView.addSubview(closeButton)
         topView.addSubview(headerLabel)
-        view.addSubview(collectionView)
-        view.addSubview(bottomView)
+        blurView.addSubview(collectionView)
+        blurView.addSubview(bottomView)
         bottomView.addSubview(nextButton)
     }
 
     func setupLayout() {
-
         topView.topAnchor == view.topAnchor + 24
         topView.horizontalAnchors == view.horizontalAnchors
         topView.heightAnchor == 30
@@ -196,16 +212,16 @@ private extension MorningInterviewViewController {
 
         collectionView.topAnchor == topView.bottomAnchor
         collectionView.horizontalAnchors == view.horizontalAnchors
-        collectionView.bottomAnchor == bottomView.topAnchor
+        collectionView.bottomAnchor == view.bottomAnchor - 69    
 
         bottomView.topAnchor == collectionView.bottomAnchor
-        bottomView.horizontalAnchors == view.horizontalAnchors
         bottomView.bottomAnchor == view.bottomAnchor
-        bottomView.heightAnchor == 30
+        bottomView.leadingAnchor == view.leadingAnchor
+        bottomView.trailingAnchor == view.trailingAnchor
 
-        nextButton.leftAnchor == bottomView.leftAnchor
-        nextButton.rightAnchor == bottomView.rightAnchor
-        nextButton.topAnchor == bottomView.topAnchor + 16
+        nextButton.leadingAnchor == bottomView.leadingAnchor
+        nextButton.trailingAnchor == bottomView.trailingAnchor
+        nextButton.topAnchor == bottomView.topAnchor
         nextButton.bottomAnchor == bottomView.bottomAnchor
         
         view.layoutIfNeeded()

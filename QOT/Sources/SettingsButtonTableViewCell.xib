@@ -15,19 +15,25 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rhc-Fu-dZk" id="p5A-lN-B0Y">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Or-zV-6lu">
                         <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1y-ql-8Of">
-                                <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="301" height="43.5"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="didTapButtonWithSender:" destination="Rhc-Fu-dZk" eventType="touchUpInside" id="RNq-fs-rtn"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aRV-zL-WS9">
+                                <rect key="frame" x="301" y="0.0" width="42" height="43.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                     </stackView>
                 </subviews>
@@ -40,6 +46,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="button" destination="f1y-ql-8Of" id="92U-od-xcE"/>
+                <outlet property="valueLabel" destination="aRV-zL-WS9" id="EO5-Yb-5pU"/>
             </connections>
             <point key="canvasLocation" x="-1" y="68"/>
         </tableViewCell>

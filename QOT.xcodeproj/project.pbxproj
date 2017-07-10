@@ -2373,6 +2373,7 @@
 				PROVISIONING_PROFILE = "15ea5272-a8b1-4f61-80f5-b0d1967745b7";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.tignum.qot.v2";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -2391,6 +2392,7 @@
 				PROVISIONING_PROFILE = "15ea5272-a8b1-4f61-80f5-b0d1967745b7";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.tignum.qot.v2";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

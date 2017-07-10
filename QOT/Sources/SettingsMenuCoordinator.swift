@@ -57,11 +57,11 @@ extension SettingsMenuCoordinator: SettingsMenuViewControllerDelegate {
     }
 
     func didTapSecurity(in viewController: SettingsMenuViewController) {
-        startSettingsCoordinator(settingsType: .notifications, root: viewController)
+        startSettingsCoordinator(settingsType: .security, root: viewController)
     }
 
     func didTapNotifications(in viewController: SettingsMenuViewController) {
-        startSettingsCoordinator(settingsType: .security, root: viewController)
+        startSettingsCoordinator(settingsType: .notifications, root: viewController)
     }
 
     private func startSettingsCoordinator(settingsType: SettingsViewModel.SettingsType, root: SettingsMenuViewController) {

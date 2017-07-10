@@ -61,6 +61,7 @@ private extension SettingsTableViewCell {
 
     func setupButtonCell(title: String, value: String) {
         button.setAttributedTitle(Style.headlineSmall(title.uppercased(), .white).attributedString(lineSpacing: 2), for: .normal)
+        setValue(value: value)
     }
 
     func setupControlCell(title: String, isOn: Bool) {

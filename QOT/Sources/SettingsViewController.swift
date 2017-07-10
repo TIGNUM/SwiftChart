@@ -8,6 +8,8 @@
 
 import UIKit
 import ActionSheetPicker_3_0
+import UserNotifications
+import UserNotificationsUI
 
 protocol SettingsViewControllerDelegate: class {
 
@@ -132,8 +134,7 @@ extension SettingsViewController {
 
         switch selectedRow {
         case .button,
-             .control,
-             .label,
+             .control,             
              .textField: return
         case .datePicker(let title, let selectedDate):
             showDatePicker(title: title, selectedDate: selectedDate, indexPath: indexPath)
@@ -141,7 +142,24 @@ extension SettingsViewController {
             showStringPicker(title: title, items: pickerItems, selectedIndex: selectedIndex, indexPath: indexPath)
         case .multipleStringPicker(let title, let rows, let initialSelection):
             showMultiplePicker(title: title, rows: rows, initialSelection: initialSelection, indexPath: indexPath)
+        case .label(_, let value):
+            if value == "Morning Inter View" {
+                triggerNotification()
+            }
         }
+    }
+}
+
+// MARK: - Notification
+
+extension SettingsViewController {
+
+    func triggerNotification() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+
+        appDelegate.triggerNotification()
     }
 }
 

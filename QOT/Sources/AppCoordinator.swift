@@ -69,6 +69,13 @@ final class AppCoordinator: ParentCoordinator {
         }
     }
 
+    func presentMorningInterview() {
+        let morningInterViewController = MorningInterviewViewController()
+        morningInterViewController.delegate = self
+        switchToSecondaryWindow()
+        secondaryWindow.rootViewController?.present(morningInterViewController, animated: true, completion: nil)
+    }
+
     func showAlert(type: AlertType) {
         switchToSecondaryWindow()
         secondaryWindow.rootViewController?.showAlert(type: type, handler: { [weak self] in
@@ -80,12 +87,11 @@ final class AppCoordinator: ParentCoordinator {
         secondaryWindow.makeKeyAndVisible()
     }
 
-    private func switchToMainWindow() {
+    fileprivate func switchToMainWindow() {
         window.makeKeyAndVisible()
     }
 
     private func configureSecondaryWindow() {
-
         let viewController = UIViewController()
         viewController.view.backgroundColor = .clear
         secondaryWindow.rootViewController = viewController
@@ -103,6 +109,8 @@ final class AppCoordinator: ParentCoordinator {
     }
 }
 
+// MARK: - CalendarImportMangerDelegate
+
 extension AppCoordinator: CalendarImportMangerDelegate {
 
     func eventStoreAuthorizationRequired(for mangager: CalendarImportManger, currentStatus: EKAuthorizationStatus) {
@@ -118,5 +126,16 @@ extension AppCoordinator: CalendarImportMangerDelegate {
     func calendarImportDidFail(error: Error) {
         // FIXME: Handle error
         assertionFailure("Calendar import failed: \(error)")
+    }
+}
+
+// MARK: - MorningInterviewViewControllerDelegate
+
+extension AppCoordinator: MorningInterviewViewControllerDelegate {
+
+    func didTapClose(viewController: MorningInterviewViewController) {
+        viewController.dismiss(animated: true) { 
+            self.switchToMainWindow()
+        }
     }
 }

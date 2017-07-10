@@ -85,7 +85,7 @@ extension SettingsCoordinator: SettingsViewControllerDelegate {
         guard let viewModel = SettingsViewModel(settingsType: settingsType, userService: services.userService) else {
             return
         }
-        
+
         viewController.update(viewModel: viewModel)
     }
 }
