@@ -13,6 +13,7 @@ protocol PrepareChatDecisionManagerDelegate: class {
     func setItems(_ items: [ChatItem<Answer>], manager: PrepareChatDecisionManager)
     func appendItems(_ items: [ChatItem<Answer>], manager: PrepareChatDecisionManager)
     func showContent(id: Int, manager: PrepareChatDecisionManager)
+    func showNoContentError(manager: PrepareChatDecisionManager)
 }
 
 extension Answer: ChatChoice {}
@@ -21,6 +22,7 @@ final class PrepareChatDecisionManager {
 
     private let questionsService: QuestionsService
     weak var delegate: PrepareChatDecisionManagerDelegate?
+    private var questionGroupID: Int? = 100007 // FIXME: Should be set based on settings
 
     init(service: QuestionsService) {
         self.questionsService = service
@@ -29,20 +31,23 @@ final class PrepareChatDecisionManager {
     func start() {
         delegate?.setItems([], manager: self)
 
-        if let question = questionsService.prepareQuestions().first {
+        if let groupID = questionGroupID, let question = questionsService.prepareQuestions(questionGroupID: groupID).first {
             process(question: question)
         }
     }
 
     func didSelectChoice(_ choice: Answer) {
-        if let target = choice.target {
-            switch target {
-            case .content(let id):
-                delegate?.showContent(id: id, manager: self)
-            case .question(let id):
-                if let question = questionsService.question(id: id) {
-                    process(question: question)
-                }
+        guard let groupID = questionGroupID, let target = questionsService.target(answer: choice, questionGroupID: groupID) else {
+            delegate?.showNoContentError(manager: self)
+            return
+        }
+
+        switch target {
+        case .content(let id):
+            delegate?.showContent(id: id, manager: self)
+        case .question(let id):
+            if let question = questionsService.question(id: id) {
+                process(question: question)
             }
         }
     }
@@ -56,20 +61,22 @@ final class PrepareChatDecisionManager {
             items.append(ChatItem(type: .header(headerText, alignment: .left)))
         }
 
-        items.append(chatItemForAnswers(Array(question.answers)))
-        items.append(deliveredFooter(alignment: .right))
+        if let groupID = questionGroupID {
+            let predicate = NSPredicate(format: "ANY decisions.questionGroupID == %d", groupID)
+            let answers = question.answers.filter(predicate)
+            let decisions = answers.reduce([AnswerDecision](), { (result, answer) -> [AnswerDecision] in
+                return result + Array(answer.decisions)
+            })
+
+            let flowDisplayCount = decisions.filter { $0.choiceListDisplay == .flow }.count
+            let listDisplayCount = decisions.filter { $0.choiceListDisplay == .list }.count
+            let choiceListDisplay: ChoiceListDisplay = flowDisplayCount > listDisplayCount ? .flow : .list
+
+            items.append(ChatItem(type: .choiceList(Array(answers), display: choiceListDisplay)))
+            items.append(deliveredFooter(alignment: .right))
+        }
 
         delegate?.appendItems(items, manager: self)
-    }
-
-    private func chatItemForAnswers(_ answers: [Answer]) -> ChatItem<Answer> {
-        let prepareGroup = Database.QuestionGroup.PREPARE.rawValue
-        let prepareAnswers = answers.filter { $0.group == prepareGroup }
-
-        let flowDisplayCount = prepareAnswers.filter { $0.choiceListDisplay == .flow }.count
-        let listDisplayCount = prepareAnswers.filter { $0.choiceListDisplay == .list }.count
-        let choiceListDisplay: ChoiceListDisplay = flowDisplayCount > listDisplayCount ? .flow : .list
-        return ChatItem(type: .choiceList(prepareAnswers, display: choiceListDisplay))
     }
 
     private func deliveredFooter(date: Date = Date(), alignment: NSTextAlignment) -> ChatItem<Answer> {
@@ -78,7 +85,7 @@ final class PrepareChatDecisionManager {
     }
 }
 
-private extension Answer {
+private extension AnswerDecision {
 
     var choiceListDisplay: ChoiceListDisplay? {
         guard let target = target else {

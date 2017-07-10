@@ -106,6 +106,7 @@ enum JsonKey: String {
     case syncTime
     case syncTokenHeaderKey
     case tabs
+    case targetGroupId
     case targetGroupName
     case targetType
     case targetTypeId

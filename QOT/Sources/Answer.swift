@@ -11,37 +11,25 @@ import RealmSwift
 
 class Answer: Object {
 
-    // MARK: Private
-
-    private let _targetID = RealmOptional<Int>(nil)
-
-    // MARK: Public
-
     fileprivate(set) dynamic var sortOrder: Int = 0
-
-    fileprivate(set) dynamic var group: String = ""
 
     fileprivate(set) dynamic var title: String = ""
 
     fileprivate(set) dynamic var subtitle: String?
 
-    fileprivate(set) dynamic var targetType: String?
-
-    fileprivate(set) dynamic var targetGroup: String?
-
-    var targetID: Int? {
-        return _targetID.value
-    }
+    let decisions = List<AnswerDecision>()
 
     convenience init(intermediary: AnswerIntermediary) {
         self.init()
 
         self.sortOrder = intermediary.sortOrder
-        self.group = intermediary.group
         self.title = intermediary.title
         self.subtitle = intermediary.subtitle
-        self.targetType = intermediary.targetType
-        self.targetGroup = intermediary.targetGroup
-        self._targetID.value = intermediary.targetID
+        self.decisions.append(objectsIn: intermediary.decisions.map { AnswerDecision(intermediary: $0) })
+    }
+
+    override func delete() {
+        decisions.forEach { $0.delete() }
+        super.delete()
     }
 }

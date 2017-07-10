@@ -48,7 +48,7 @@ final class PreparationCheck: Object {
         return "localID"
     }
 
-    func delete() {
+    override func delete() {
         if let realm = realm {
             if remoteID == nil {
                 realm.delete(self)

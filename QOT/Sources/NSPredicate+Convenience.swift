@@ -22,6 +22,10 @@ extension NSPredicate {
         return NSPredicate(format: "deleted == %@", NSNumber(value: deleted))
     }
 
+    static func questionGroupIDis(_ id: Int) -> NSPredicate {
+        return NSPredicate(format: "questionGroupID == %d", id)
+    }
+
     convenience init(remoteID: Int) {
         self.init(format: "remoteID == %d", remoteID)
     }

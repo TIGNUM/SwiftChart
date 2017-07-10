@@ -30,6 +30,8 @@ final class Question: Object {
     fileprivate(set) dynamic var answersDescription: String?
 
     let answers = List<Answer>()
+
+    let groups = List<QuestionGroup>()
 }
 
 extension Question: DownSyncable {
@@ -41,13 +43,13 @@ extension Question: DownSyncable {
     }
 
     func setData(_ data: QuestionIntermediary, objectStore: ObjectStore) throws {
+        answers.forEach { $0.delete() }
+        groups.forEach { $0.delete() }
+
         sortOrder = data.sortOrder
         title = data.title
-        subtitle = data.subtitle
         answersDescription = data.answersDescription
-
-        objectStore.delete(answers)
-        let newAnswers = data.answers.map { Answer(intermediary: $0) }
-        answers.append(objectsIn: newAnswers)
+        answers.append(objectsIn: data.answers.map({ Answer(intermediary: $0) }))
+        groups.append(objectsIn: data.groups.map({ QuestionGroup(intermediary: $0) }))
     }
 }

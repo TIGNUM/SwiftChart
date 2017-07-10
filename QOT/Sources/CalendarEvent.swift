@@ -46,8 +46,15 @@ final class CalendarEvent: Object {
         self.deleted = false
     }
 
-    func delete() {
-        self.deleted = true
+    override func delete() {
+        if let realm = realm {
+            if remoteID.value == nil {
+                realm.delete(self)
+            } else {
+                deleted = true
+                dirty = true
+            }
+        }
     }
 
     func json(eventStore: EKEventStore) -> JSON? {

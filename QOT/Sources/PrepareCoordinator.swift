@@ -231,6 +231,12 @@ extension PrepareCoordinator : PrepareChatDecisionManagerDelegate {
     func showContent(id: Int, manager: PrepareChatDecisionManager) {
         showPrepareList(contentID: id)
     }
+
+    func showNoContentError(manager: PrepareChatDecisionManager) {
+        tabBarController.showAlert(type: .noContent, handler: { [weak self] in
+            self?.chatDecisionManager.start()
+            }, handlerDestructive: nil)
+    }
 }
 extension PrepareCoordinator: MyPrepViewControllerDelegate {
 

@@ -10,26 +10,4 @@ import Foundation
 
 extension Answer {
 
-    enum Target {
-        case question(id: Int)
-        case content(id: Int)
-
-        init?(type: String, id: Int) {
-            switch type {
-            case "QUESTION":
-                self = .question(id: id)
-            case "CONTENT":
-                self = .content(id: id)
-            default:
-                return nil
-            }
-        }
-    }
-
-    var target: Target? {
-        guard let type = targetType, let id = targetID else {
-            return nil
-        }
-        return Target(type: type, id: id)
-    }
 }

@@ -19,13 +19,32 @@ final class QuestionsService {
         self.realmProvider = realmProvider
     }
 
-    func prepareQuestions() -> AnyRealmCollection<Question> {
-        let predicate = NSPredicate(format: "ANY answers.group == %@", Database.QuestionGroup.PREPARE.rawValue)
+    func prepareQuestions(questionGroupID: Int) -> AnyRealmCollection<Question> {
+        let predicate = NSPredicate(format: "ANY answers.decisions.questionGroupID == %d", questionGroupID)
         let results = mainRealm.objects(Question.self).sorted(byKeyPath: "sortOrder", ascending: false).filter(predicate)
         return AnyRealmCollection(results)
     }
 
     func question(id: Int) -> Question? {
         return mainRealm.object(ofType: Question.self, forPrimaryKey: id)
+    }
+
+    func target(answer: Answer, questionGroupID id: Int) -> AnswerDecision.Target? {
+        let decisions = answer.decisions.filter(.questionGroupIDis(id))
+        for decision in decisions {
+            if let target = decision.target {
+                switch target {
+                case .content(let id):
+                    if mainRealm.object(ofType: ContentCollection.self, forPrimaryKey: id) != nil {
+                        return target
+                    }
+                case .question(let id):
+                    if question(id: id) != nil {
+                        return target
+                    }
+                }
+            }
+        }
+        return nil
     }
 }

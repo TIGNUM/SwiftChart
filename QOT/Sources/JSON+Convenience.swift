@@ -11,6 +11,18 @@ import Freddy
 
 extension JSON {
 
+    func getItemValue<T: JSONDecodable>(at jsonKey: JsonKey, fallback: T) throws -> T {
+        let value: T? = try decode(at: jsonKey.value, alongPath: [.MissingKeyBecomesNil, .NullBecomesNil])
+        return value ?? fallback
+    }
+
+    func getArray<T: JSONDecodable>(at jsonKey: JsonKey, fallback: [T]) throws -> [T] {
+        if let jsons = try getArray(at: jsonKey.value, alongPath: [.MissingKeyBecomesNil, .NullBecomesNil]) {
+            return try jsons.map { try T(json: $0) }
+        }
+        return fallback
+    }
+
     func getItemValue<T: JSONDecodable>(at jsonKey: JsonKey) throws -> T {
         return try decode(at: jsonKey.value, type: T.self)
     }

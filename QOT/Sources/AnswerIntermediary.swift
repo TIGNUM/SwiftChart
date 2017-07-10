@@ -7,14 +7,19 @@
 //
 
 import Foundation
+import Freddy
 
-struct AnswerIntermediary {
+struct AnswerIntermediary: JSONDecodable {
 
     let sortOrder: Int
-    let group: String
     let title: String
     let subtitle: String?
-    let targetType: String?
-    let targetID: Int?
-    let targetGroup: String?
+    let decisions: [AnswerDecisionIntermediary]
+
+    init(json: JSON) throws {
+        sortOrder = try json.getItemValue(at: .sortOrder, fallback: 0)
+        title = try json.getItemValue(at: .answer, fallback: "")
+        subtitle = try json.getItemValue(at: .title)
+        decisions = try json.getArray(at: .decisions, fallback: [])
+    }
 }
