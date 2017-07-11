@@ -21,7 +21,7 @@ final class MorningInterviewCell: UICollectionViewCell, Dequeueable {
     fileprivate var numberlabel: UILabel = UILabel()
     fileprivate var subTitleLabel: UILabel = UILabel()
     fileprivate var maxLabel: UILabel = UILabel()
-    fileprivate var question: MorningInterviewViewModel.Question?
+    fileprivate var question: Question?
     weak var delegate: MorningInterviewCellDelegate?
 
     fileprivate var titlelabel: UILabel = {
@@ -63,7 +63,7 @@ final class MorningInterviewCell: UICollectionViewCell, Dequeueable {
         return label
     }()
 
-    func configure(question: MorningInterviewViewModel.Question, answerIndex: Int? = 0) {
+    func configure(question: Question, answerIndex: Int? = 0) {
         setupHierarchy()
         setupLayout()
         self.question = question
@@ -77,7 +77,7 @@ final class MorningInterviewCell: UICollectionViewCell, Dequeueable {
                 alignment: .center
             )
             let attributedSubtitle = NSMutableAttributedString(
-                string: answer.subtitle,
+                string: answer.subtitle ?? "TODO Answer subtitle",
                 letterSpacing: 3.3,
                 font: Font.H8Subtitle,
                 textColor: .white60,
@@ -158,7 +158,7 @@ private extension MorningInterviewCell {
         maxLabel.bottomAnchor == bottomView.bottomAnchor
     }
 
-    func setup(answer: MorningInterviewViewModel.Answer ) {
+    func setup(answer: Answer ) {
 
         let attributedTitle = NSMutableAttributedString(
             string: answer.title,
@@ -169,7 +169,7 @@ private extension MorningInterviewCell {
         )
 
         let attributedSubtitle = NSMutableAttributedString(
-            string: answer.subtitle,
+            string: answer.subtitle ?? "TODO: Answer subtitle",
             letterSpacing: 3.3,
             font: Font.H8Subtitle,
             textColor: .white60,

@@ -18,7 +18,7 @@ final class MorningInterviewViewController: UIViewController {
 
     weak var delegate: MorningInterviewViewControllerDelegate?
     private var currentIndex: Int = 0
-    fileprivate let viewModel = MorningInterviewViewModel()
+    fileprivate let viewModel: MorningInterviewViewModel
     fileprivate let topView = UIView()
     fileprivate let bottomView: UIView = UIView()
     fileprivate var headerLabel: UILabel = UILabel()
@@ -35,7 +35,7 @@ final class MorningInterviewViewController: UIViewController {
     }
 
     private var isLastPage: Bool {
-        return currentIndex >= viewModel.questions.count - 1
+        return currentIndex >= viewModel.questionsCount - 1
     }
 
     fileprivate lazy var collectionView: UICollectionView = {
@@ -121,7 +121,7 @@ final class MorningInterviewViewController: UIViewController {
             textColor: .white,
             alignment: .center
         )
-        let progress =  " \(currentIndex + 1)\("/")\(viewModel.questions.count ) "
+        let progress =  " \(currentIndex + 1)\("/")\(viewModel.questionsCount ) "
         let progressTitle = NSMutableAttributedString(
             string: progress,
             letterSpacing: 0,
@@ -153,6 +153,16 @@ final class MorningInterviewViewController: UIViewController {
 
         syncViews(animated: false)
     }
+
+    init(viewModel: MorningInterviewViewModel) {
+        self.viewModel = viewModel
+
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
 extension MorningInterviewViewController: UICollectionViewDelegateFlowLayout {
@@ -167,11 +177,11 @@ extension MorningInterviewViewController: UICollectionViewDelegateFlowLayout {
 extension MorningInterviewViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.questions.count
+        return viewModel.questionsCount
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let question = viewModel.questions[indexPath.item]
+        let question = viewModel.question(at: indexPath.item)
         let cell: MorningInterviewCell = collectionView.dequeueCell(for: indexPath)
         cell.configure(question: question)
         

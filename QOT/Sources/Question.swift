@@ -50,6 +50,6 @@ extension Question: DownSyncable {
         title = data.title
         answersDescription = data.answersDescription
         answers.append(objectsIn: data.answers.map({ Answer(intermediary: $0) }))
-        groups.append(objectsIn: data.groups.map({ QuestionGroup(intermediary: $0) }))
+        groups.append(objectsIn: data.groups.map({ QuestionGroup(intermediary: $0) }))        
     }
 }

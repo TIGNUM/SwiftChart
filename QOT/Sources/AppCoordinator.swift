@@ -64,26 +64,37 @@ final class AppCoordinator: ParentCoordinator {
                 }
             case .failure:
                 // TODO: localise alert text
-                self.showAlert(type: .custom(title: "Error", message: "There was a problem initializing the app's data. Please restart the app and try again"), completion: {
+                self.showAlert(type: .custom(title: "Error", message: "There was a problem initializing the app's data. Please restart the app and try again"), handler: { 
                     exit(0)
-                })
+                }, handlerDestructive: nil)
+
                 break
             }
         }
     }
 
     func presentMorningInterview() {
-        let morningInterViewController = MorningInterviewViewController()
+        guard let questionService = services?.questionsService else {
+            return
+        }
+
+        let questions = questionService.morningInterviewQuestions(questionGroupID: 100002)
+        let viewModel = MorningInterviewViewModel(questions: questions)
+        let morningInterViewController = MorningInterviewViewController(viewModel: viewModel)
+
         morningInterViewController.delegate = self
         switchToSecondaryWindow()
         secondaryWindow.rootViewController?.present(morningInterViewController, animated: true, completion: nil)
     }
 
-    func showAlert(type: AlertType, completion: (() -> Void)? = nil) {
+    func showAlert(type: AlertType, handler: (() -> Void)? = nil, handlerDestructive: (() -> Void)? = nil) {
         switchToSecondaryWindow()
         secondaryWindow.rootViewController?.showAlert(type: type, handler: { [weak self] in
-            completion?()
             self?.switchToMainWindow()
+            handler?()
+        }, handlerDestructive: { [weak self] in
+            self?.switchToMainWindow()
+            handlerDestructive?()
         })
     }
 

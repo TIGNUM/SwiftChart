@@ -8,39 +8,21 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
-final class MorningInterviewViewModel {
+final class MorningInterviewViewModel: NSObject {
 
-    struct Question {
-        let title: String
-        let answers: [Answer]
+    fileprivate let questions: AnyRealmCollection<Question>
+
+    init(questions: AnyRealmCollection<Question>) {
+        self.questions = questions
     }
 
-    struct Answer {
-        let title: String
-        let subtitle: String
+    var questionsCount: Int {
+        return questions.count
     }
 
-    let questions: [Question] = [
-
-        .init(title: "How would you rate the amount of your sleep today? ", answers: addNumbers()),
-        .init(title: "How would you rate the amount of water you drink today? ", answers: addNumbers()),
-        .init(title: "How would you rate the Tignum services? ", answers: addNumbers()),
-        .init(title: "How would you rate my assiatance? ", answers: addNumbers()),
-        .init(title: "How would you rate the amount of time of your worked today? ", answers: addNumbers()),
-        .init(title: "How would you rate the amount of your time spend with family ? ", answers: addNumbers()),
-        .init(title: "How would you rate the amount of Shut up? ", answers: addNumbers())
-    ]
-
-    let answers: [Int] = []
-}
-
-func addNumbers() -> [MorningInterviewViewModel.Answer] {
-    let names = ["awesome", "best", "better", "good", "average", "awesome", "bad", "very bad"]
-
-    var answers: [MorningInterviewViewModel.Answer] = []
-    for index in 0..<names.count {
-        answers.append(MorningInterviewViewModel.Answer.init(title: String(index), subtitle: names[index]))
+    func question(at index: Index) -> Question {
+        return questions[index]
     }
-    return answers
 }

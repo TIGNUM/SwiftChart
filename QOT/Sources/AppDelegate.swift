@@ -106,7 +106,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         center.requestAuthorization(options: [.alert, .badge, .sound]) { _ in }
     }
 
-    func triggerNotification() {
+    private func triggerNotification() {
         let content = UNMutableNotificationContent()
         content.title = "Good Morning"
         content.subtitle = "Lets start the day with a quick interview."
@@ -118,6 +118,19 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         UNUserNotificationCenter.current().add(request) { (error) in
             if error != nil {
                 print(error?.localizedDescription ?? "Notification Error")
+            }
+        }
+    }
+
+    func shouldTriggerNotification() {
+        let center = UNUserNotificationCenter.current()
+        center.getNotificationSettings { (settings) in
+            if settings.authorizationStatus == .authorized {
+                self.triggerNotification()
+            } else {
+                self.appCoordinator.showAlert(type: .notificationsNotAuthorized, handler: {
+                    UIApplication.openAppSettings()
+                }, handlerDestructive: nil)
             }
         }
     }

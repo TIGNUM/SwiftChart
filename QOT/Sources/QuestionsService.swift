@@ -29,6 +29,13 @@ final class QuestionsService {
         return mainRealm.object(ofType: Question.self, forPrimaryKey: id)
     }
 
+    func morningInterviewQuestions(questionGroupID: Int) -> AnyRealmCollection<Question> {
+        let predicate = NSPredicate(format: "ANY groups.id == %d AND answers.@count > 0", questionGroupID)
+        let results = mainRealm.objects(Question.self).sorted(byKeyPath: "sortOrder", ascending: false).filter(predicate)
+
+        return AnyRealmCollection(results)
+    }
+
     func target(answer: Answer, questionGroupID id: Int) -> AnswerDecision.Target? {
         let decisions = answer.decisions.filter(.questionGroupIDis(id))
         for decision in decisions {

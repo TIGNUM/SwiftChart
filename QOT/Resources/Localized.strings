@@ -92,6 +92,8 @@
 
 "Common.InvalidContent" = "Cannot Display Content";
 
+"Alert.Title.Notifications.Not.Authorized" = "No Authorization";
+"Alert.Message.Notifications.Not.Authorized" = "Push Notifications are not authorized for QOT. To enabled Push Notifications open Settings and enable them. ";
 "Alert.Title.NoContent" = "No Content";
 "Alert.Message.NoContent" = "The selection have no content, sorry :(";
 "Alert.Title.Custom" = "Error";
@@ -104,6 +106,7 @@
 "Alert.Button.Title.Ok" = "OK";
 "Alert.Button.Title.Cancel" = "Cancel";
 "Alert.Button.Title.Save" = "Save";
+"Alert.Button.Title.Open.Settings" = "Open Settings";
 
 "Library.Footer.View.Label" = "Scroll To Finish";
 

@@ -19,6 +19,7 @@ enum AlertType {
     case unauthenticated
     case noNetworkConnection
     case comingSoon
+    case notificationsNotAuthorized
 
     var title: String? {
         switch self {
@@ -28,6 +29,7 @@ enum AlertType {
         case .custom(let title, _): return title
         case .unauthenticated: return R.string.localized.alertTitleUnauthenticated()
         case .noNetworkConnection: return R.string.localized.alertTitleNoNetworkConnection()
+        case .notificationsNotAuthorized: return R.string.localized.alertTitleNotificationsNotAuthorized()
         default: return nil
         }
     }
@@ -39,19 +41,21 @@ enum AlertType {
         case .unauthenticated: return R.string.localized.alertMessageUnauthenticated()
         case .noNetworkConnection: return R.string.localized.alertMessageNoNetworkConnection()
         case .comingSoon: return R.string.localized.alertMessageComingSoon()
+        case .notificationsNotAuthorized: return R.string.localized.alertMessageNotificationsNotAuthorized()
         default: return nil
-
         }
     }
 
     var buttonTitleCancel: String? {
         switch self {
+        case .notificationsNotAuthorized: return R.string.localized.alertButtonTitleCancel()
         default: return nil
         }
     }
 
     var buttonTitleDefault: String? {
         switch self {
+        case .notificationsNotAuthorized: return R.string.localized.alertButtonTitleOpenSettings()
         default: return R.string.localized.alertButtonTitleOk()
         }
     }
@@ -64,6 +68,7 @@ enum AlertType {
 
     var actionStyle: [UIAlertActionStyle] {
         switch self {
+        case .notificationsNotAuthorized: return [.cancel, .default]
         default: return [.default]
         }
     }

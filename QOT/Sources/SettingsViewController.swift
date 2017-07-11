@@ -144,7 +144,7 @@ extension SettingsViewController {
             showMultiplePicker(title: title, rows: rows, initialSelection: initialSelection, indexPath: indexPath)
         case .label(_, let value):
             if value == "Morning Inter View" {
-                triggerNotification()
+                shouldTriggerNotification()
             }
         }
     }
@@ -154,12 +154,12 @@ extension SettingsViewController {
 
 extension SettingsViewController {
 
-    func triggerNotification() {
+    func shouldTriggerNotification() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
 
-        appDelegate.triggerNotification()
+        appDelegate.shouldTriggerNotification()
     }
 }
 
