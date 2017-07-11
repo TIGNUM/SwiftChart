@@ -76,6 +76,7 @@
 		858AF6951EF9544000486605 /* MyStatisticsDataActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858AF6941EF9544000486605 /* MyStatisticsDataActivity.swift */; };
 		8591ED7B1EE6DBA6006FCE89 /* MockingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E0A6A01EE6AF130076169D /* MockingProtocol.swift */; };
 		8591ED7C1EE6DBAC006FCE89 /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E0A6A21EE6B1610076169D /* Mocks.swift */; };
+		85C26F9F1F13DCEB001C2C65 /* UIView+ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C26F9E1F13DCEB001C2C65 /* UIView+ProgressHUD.swift */; };
 		85C3D6BC1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C3D6BB1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib */; };
 		85C3D6BE1F0B920E00E0CBFE /* PrepareEventTableViewFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3D6BD1F0B920E00E0CBFE /* PrepareEventTableViewFooterView.swift */; };
 		85DC6F831EF3C161004F4B4D /* UpcomingTravelsChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DC6F821EF3C161004F4B4D /* UpcomingTravelsChartView.swift */; };
@@ -444,6 +445,7 @@
 		8548BBE31F0E382900AC7C06 /* GenericParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericParser.swift; sourceTree = "<group>"; };
 		858AF6921EF904AB00486605 /* PeakPerformanceUpcomingChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakPerformanceUpcomingChartView.swift; sourceTree = "<group>"; };
 		858AF6941EF9544000486605 /* MyStatisticsDataActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsDataActivity.swift; sourceTree = "<group>"; };
+		85C26F9E1F13DCEB001C2C65 /* UIView+ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ProgressHUD.swift"; sourceTree = "<group>"; };
 		85C3D6BB1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareEventTableViewFooterView.xib; sourceTree = "<group>"; };
 		85C3D6BD1F0B920E00E0CBFE /* PrepareEventTableViewFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventTableViewFooterView.swift; sourceTree = "<group>"; };
 		85DC6F821EF3C161004F4B4D /* UpcomingTravelsChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingTravelsChartView.swift; sourceTree = "<group>"; };
@@ -1256,6 +1258,7 @@
 				8514A4911EEAA2AE0086C70E /* UILabel+AttributedText.swift */,
 				CC05CB781EDEC73C00D15ABC /* UITableView+Create.swift */,
 				852DADD51EF051C400A10882 /* UIView+Layers.swift */,
+				85C26F9E1F13DCEB001C2C65 /* UIView+ProgressHUD.swift */,
 				CC80181F1F0256980040B03F /* UIViewController+Alert.swift */,
 				CC7A91111F0F978E00F791B9 /* UIViewController+ScreenType.swift */,
 				CCCC42DE1ED5799D00E73905 /* UIViewController+Transition.swift */,
@@ -2050,6 +2053,7 @@
 				85DC6F871EF40767004F4B4D /* TravelTripsPeriodView.swift in Sources */,
 				D5EC34AB1EB0D2FC00F86B09 /* LearnStrategyAudioPlayerView.swift in Sources */,
 				7F0888881F0AA7DB005CE966 /* UIImage+FileIO.swift in Sources */,
+				85C26F9F1F13DCEB001C2C65 /* UIView+ProgressHUD.swift in Sources */,
 				CBB4DD541EE151100071494A /* DownSyncImporter.swift in Sources */,
 				0BC9F9361E96118C009E8204 /* ChatTableViewCell.swift in Sources */,
 				CC9FBDE81EAE58F300AF1CF0 /* SettingsMenuCoordinator.swift in Sources */,

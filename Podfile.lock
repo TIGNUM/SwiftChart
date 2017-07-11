@@ -13,6 +13,7 @@ PODS:
   - KeychainAccess (3.0.2)
   - Kingfisher (3.10.1)
   - LoremIpsum (1.0.0)
+  - MBProgressHUD (1.0.0)
   - R.swift (3.3.0):
     - R.swift.Library (~> 3.0.2)
   - R.swift.Library (3.0.2)
@@ -37,6 +38,7 @@ DEPENDENCIES:
   - KeychainAccess (~> 3.0.2)
   - Kingfisher (~> 3.6)
   - LoremIpsum (~> 1.0)
+  - MBProgressHUD (~> 1.0.0)
   - R.swift (~> 3.2)
   - RealmSwift (= 2.7.0)
   - RSKImageCropper (~> 1.6.1)
@@ -55,6 +57,7 @@ SPEC CHECKSUMS:
   KeychainAccess: a986406022dfc7c634c691ad3bec670cc6a32002
   Kingfisher: 33a1b82140fcb14a9fc13f78dfde2a03ff8de8cb
   LoremIpsum: 9029c55d36501b2ee0b05cc9ecda11d3a0479160
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   R.swift: bde9704d50ff36820f49e266bc88ef545e1e9b36
   R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
   ReactiveKit: 4fc2a23db33777358abe93453ece3a69011adeec
@@ -63,6 +66,6 @@ SPEC CHECKSUMS:
   RSKImageCropper: 3e579d0000945a8be1c0efdad728fd9e25c2fd79
   UICollectionViewRightAlignedLayout: 823eef8c567eba4a44c21bc2ffcb0d0d5f361e2d
 
-PODFILE CHECKSUM: b28ffdf0f2360d41be95d142c3c538c377361591
+PODFILE CHECKSUM: 25bccba42b52b802f406be946563ab078ebe03db
 
 COCOAPODS: 1.2.1

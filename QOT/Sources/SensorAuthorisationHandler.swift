@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 final class SensorAuthorisationHandler {
 
@@ -14,12 +15,15 @@ final class SensorAuthorisationHandler {
         case fitbit = "fitbit-integration#"
     }
 
-    static func process(urlString: String, appCoordinator: AppCoordinator) {
+    static func process(urlString: String) {
         // Fitbit
         let urlParts = urlString.components(separatedBy: SensorType.fitbit.rawValue)
         if urlParts.count == 2 {
             guard let accessToken = getFitbitAccessToken(urlString: urlParts[1]) else { return }
-            sendAccessToken(accessToken: accessToken, appCoordinator: appCoordinator)
+
+            AppDelegate.current.window?.showProgressHUD(type: .fitbit, actionBlock: {
+                sendAccessToken(accessToken: accessToken)
+            })
         }
     }
 
@@ -39,30 +43,30 @@ final class SensorAuthorisationHandler {
         return nil
     }
 
-    private static func sendAccessToken(accessToken: String, appCoordinator: AppCoordinator) {
+    private static func sendAccessToken(accessToken: String) {
         let networkManager = NetworkManager()
         let token = ["accessToken": accessToken]
         do {
             let body = try token.toJSON().serialize()
 
             let request = FitbitTokenRequest(endpoint: .fitbitToken, body: body)
-            networkManager.request(request, parser: GenericParser.parse) { [weak appCoordinator] (result) in
+
+            networkManager.request(request, parser: GenericParser.parse) { (result) in
                 switch result {
                 case .success:
-                    print("FITBIT TOKEN UPLOAD #SUCCESS")
+                    AppDelegate.current.window?.showProgressHUD(type: .fitbitSuccess, actionBlock: {})
                 case .failure(let error):
-                    print("FITBIT TOKEN UPLOAD #ERROR: \(error)")
                     switch error.type {
                     case .unauthenticated:
-                        appCoordinator?.showAlert(type: .unauthenticated)
+                        AppDelegate.current.window?.showProgressHUD(type: .unauthenticated, actionBlock: {})
                     case .noNetworkConnection:
-                        appCoordinator?.showAlert(type: .noNetworkConnection)
+                        AppDelegate.current.window?.showProgressHUD(type: .noNetworkConnection, actionBlock: {})
                     case .unknown(let error, _):
-                        appCoordinator?.showAlert(type: .custom(title: R.string.localized.alertTitleCustom(), message: error.localizedDescription))
+                        AppDelegate.current.window?.showProgressHUD(type: .custom(title: R.string.localized.alertTitleCustom(), message: error.localizedDescription), actionBlock: {})
                     case .failedToParseData(_, let error):
-                        appCoordinator?.showAlert(type: .custom(title: R.string.localized.alertTitleCustom(), message: error.localizedDescription))
+                        AppDelegate.current.window?.showProgressHUD(type: .custom(title: R.string.localized.alertTitleCustom(), message: error.localizedDescription), actionBlock: {})
                     default:
-                        break
+                        AppDelegate.current.window?.showProgressHUD(type: .fitbitFailure, actionBlock: {})
                     }
 
                 }

@@ -9,6 +9,16 @@
 import UIKit
 import UserNotifications
 
+extension AppDelegate {
+    static var current: AppDelegate {
+        guard let app = UIApplication.shared.delegate as? AppDelegate else {
+            fatalError("AppDelegate not found")
+        }
+
+        return app
+    }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -16,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     static var enterDate = Date()
     fileprivate let requestIdentifier = "qot.local.notification.morning.interview"
+
     fileprivate lazy var appCoordinator: AppCoordinator = {
         return AppCoordinator(window: self.window!)
     }()
@@ -61,8 +72,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        SensorAuthorisationHandler.process(urlString: url.absoluteString, appCoordinator: appCoordinator)
         AddSensorCoordinator.safariViewController?.dismiss(animated: true, completion: nil)
+        SensorAuthorisationHandler.process(urlString: url.absoluteString)
 
         return true
     }

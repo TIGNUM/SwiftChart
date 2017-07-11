@@ -87,6 +87,8 @@
 "Sidebar.SensorsMenu.Sensors" = "SENSORS";
 "Sidebar.SensorsMenu.Fitbit" = "FITBIT";
 "Sidebar.SensorsMenu.Connect" = "CONNECT";
+"Sidebar.SensorsMenu.Fitbit.Success" = "Fitbit successfully linked";
+"Sidebar.SensorsMenu.Fitbit.Failure" = "Failed to link Fitbit";
 
 "Common.InvalidContent" = "Cannot Display Content";
 

@@ -6,10 +6,14 @@
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
-import Foundation
 import UIKit
+import MBProgressHUD
 
 enum AlertType {
+    case empty
+    case fitbit
+    case fitbitSuccess
+    case fitbitFailure
     case noContent
     case custom(title: String, message: String)
     case unauthenticated
@@ -18,6 +22,8 @@ enum AlertType {
 
     var title: String? {
         switch self {
+        case .fitbitSuccess: return R.string.localized.sidebarSensorsMenuFitbitSuccess()
+        case .fitbitFailure: return R.string.localized.sidebarSensorsMenuFitbitSuccess()
         case .noContent: return R.string.localized.alertTitleNoContent()
         case .custom(let title, _): return title
         case .unauthenticated: return R.string.localized.alertTitleUnauthenticated()
@@ -33,6 +39,8 @@ enum AlertType {
         case .unauthenticated: return R.string.localized.alertMessageUnauthenticated()
         case .noNetworkConnection: return R.string.localized.alertMessageNoNetworkConnection()
         case .comingSoon: return R.string.localized.alertMessageComingSoon()
+        default: return nil
+
         }
     }
 
@@ -65,7 +73,64 @@ enum AlertType {
         default: return .alert
         }
     }
+
+    /**
+     * ONLY FOR PROGRESS HUD
+     * minShowTime: Minimum amount of time the HUD will be displayed
+     */
+    var minShowTime: TimeInterval {
+        switch self {
+        case .fitbitSuccess: return 1
+        case .fitbitFailure: return 1
+        case .custom: return 1
+        case .unauthenticated: return 1
+        case .noNetworkConnection: return 1
+        default: return 0.5
+        }
+    }
+
+    /**
+     * ONLY FOR PROGRESS HUD
+     * graceTime: Time after which the HUD will be displayed. If action is finished before this time is over the HUD won't be displayed
+     */
+    var graceTime: TimeInterval {
+        switch self {
+        default: return 0
+        }
+    }
+
+    /**
+     * ONLY FOR PROGRESS HUD
+     * mode: HUD display mode
+     */
+    var mode: MBProgressHUDMode {
+        switch self {
+        default: return .indeterminate
+        }
+    }
+
+    /**
+     * ONLY FOR PROGRESS HUD
+     * animationType: Progress animation type
+     */
+    var animationType: MBProgressHUDAnimation {
+        switch self {
+        default: return .fade
+        }
+    }
+
+    /**
+     * ONLY FOR PROGRESS HUD
+     * isSquare: Try to set the HUD in a square format
+     */
+    var isSquare: Bool {
+        switch self {
+        default: return false
+        }
+    }
 }
+
+// MARK: - Alert
 
 extension UIViewController {
 

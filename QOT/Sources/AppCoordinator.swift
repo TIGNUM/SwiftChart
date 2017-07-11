@@ -15,7 +15,7 @@ final class AppCoordinator: ParentCoordinator {
     
     // MARK: - Properties
     
-    fileprivate let window: UIWindow
+    let window: UIWindow
     let secondaryWindow: UIWindow
     fileprivate var services: Services?
     fileprivate lazy var eventTracker: EventTracker = {

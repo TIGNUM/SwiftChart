@@ -19,6 +19,7 @@ target 'QOT' do
   pod 'RSKImageCropper', '~> 1.6.1'
   pod 'ImagePicker', '~> 2.1.1'
   pod 'BonMot', '~> 4.3.1'
+  pod 'MBProgressHUD', '~> 1.0.0'
 
   target 'QOTTests' do
     inherit! :search_paths
