@@ -59,7 +59,7 @@ class NetworkManager {
         return serialRequest
     }
 
-    @discardableResult func request<T: JSONDecodable>(token: String, endpoint: Endpoint, page: Int, accumulator: [DownSyncChange<T>] = [], serialRequest: SerialRequest? = nil, completion: @escaping (Result<([DownSyncChange<T>], String), NetworkError>) -> Void) -> SerialRequest {
+    @discardableResult func request<T: DownSyncIntermediary>(token: String, endpoint: Endpoint, page: Int, accumulator: [DownSyncChange<T>] = [], serialRequest: SerialRequest? = nil, completion: @escaping (Result<([DownSyncChange<T>], String), NetworkError>) -> Void) -> SerialRequest {
         let serialRequest = serialRequest ?? SerialRequest()
 
         let urlRequest = DownSyncRequest(endpoint: endpoint, syncToken: token, page: page)

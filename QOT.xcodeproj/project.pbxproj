@@ -187,12 +187,23 @@
 		CBB4DD141EDEBDA80071494A /* URLRequestBuildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DD131EDEBDA80071494A /* URLRequestBuildable.swift */; };
 		CBB4DD541EE151100071494A /* DownSyncImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DD531EE151100071494A /* DownSyncImporter.swift */; };
 		CBB4DD561EE152EC0071494A /* DownSyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DD551EE152EC0071494A /* DownSyncOperation.swift */; };
+		CBC1DC151F0F68F900F6D056 /* SystemSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC141F0F68F900F6D056 /* SystemSetting.swift */; };
+		CBC1DC171F0F690A00F6D056 /* SystemSettingIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC161F0F690A00F6D056 /* SystemSettingIntermediary.swift */; };
+		CBC1DC191F0F7E0200F6D056 /* SettingFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC181F0F7E0200F6D056 /* SettingFormat.swift */; };
+		CBC1DC1B1F0F910600F6D056 /* SettingValueObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC1A1F0F910500F6D056 /* SettingValueObject.swift */; };
+		CBC1DC1D1F0F988E00F6D056 /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC1C1F0F988E00F6D056 /* SettingsService.swift */; };
+		CBC1DC1F1F0F9BA100F6D056 /* SystemSetting+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC1E1F0F9BA100F6D056 /* SystemSetting+Convenience.swift */; };
 		CBC1DC221F0FB36400F6D056 /* QuestionGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC211F0FB36400F6D056 /* QuestionGroup.swift */; };
 		CBC1DC271F0FB55D00F6D056 /* QuestionGroupIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC261F0FB55D00F6D056 /* QuestionGroupIntermediary.swift */; };
 		CBC1DC291F0FB68000F6D056 /* AnswerDecision.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC281F0FB68000F6D056 /* AnswerDecision.swift */; };
 		CBC1DC2B1F0FB68B00F6D056 /* AnswerDecisionIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC2A1F0FB68B00F6D056 /* AnswerDecisionIntermediary.swift */; };
 		CBC1DC2E1F0FC9E800F6D056 /* Object+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC2D1F0FC9E800F6D056 /* Object+Convenience.swift */; };
 		CBC1DC301F0FD0CB00F6D056 /* AnswerDecision+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC2F1F0FD0CB00F6D056 /* AnswerDecision+Convenience.swift */; };
+		CBC1DC351F14D34000F6D056 /* SettingValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC341F14D34000F6D056 /* SettingValue.swift */; };
+		CBC1DC391F14D9ED00F6D056 /* UserSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC381F14D9ED00F6D056 /* UserSetting.swift */; };
+		CBC1DC3B1F14D9FD00F6D056 /* UserSetting+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC3A1F14D9FD00F6D056 /* UserSetting+Convenience.swift */; };
+		CBC1DC3D1F14DA1200F6D056 /* UserSettingIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC3C1F14DA1200F6D056 /* UserSettingIntermediary.swift */; };
+		CBC1DC3F1F16067900F6D056 /* DownSyncIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC3E1F16067900F6D056 /* DownSyncIntermediary.swift */; };
 		CBC933051F05253000C00007 /* JSON+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC933041F05253000C00007 /* JSON+Convenience.swift */; };
 		CBC933081F052DDA00C00007 /* PrepareCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC933071F052DDA00C00007 /* PrepareCoordinator.swift */; };
 		CBC9330F1F0AA47800C00007 /* PrepareEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC9330D1F0AA47800C00007 /* PrepareEventsViewController.swift */; };
@@ -572,12 +583,23 @@
 		CBB4DD131EDEBDA80071494A /* URLRequestBuildable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRequestBuildable.swift; sourceTree = "<group>"; };
 		CBB4DD531EE151100071494A /* DownSyncImporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownSyncImporter.swift; sourceTree = "<group>"; };
 		CBB4DD551EE152EC0071494A /* DownSyncOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownSyncOperation.swift; sourceTree = "<group>"; };
+		CBC1DC141F0F68F900F6D056 /* SystemSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemSetting.swift; sourceTree = "<group>"; };
+		CBC1DC161F0F690A00F6D056 /* SystemSettingIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemSettingIntermediary.swift; sourceTree = "<group>"; };
+		CBC1DC181F0F7E0200F6D056 /* SettingFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingFormat.swift; sourceTree = "<group>"; };
+		CBC1DC1A1F0F910500F6D056 /* SettingValueObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingValueObject.swift; sourceTree = "<group>"; };
+		CBC1DC1C1F0F988E00F6D056 /* SettingsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
+		CBC1DC1E1F0F9BA100F6D056 /* SystemSetting+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SystemSetting+Convenience.swift"; sourceTree = "<group>"; };
 		CBC1DC211F0FB36400F6D056 /* QuestionGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionGroup.swift; sourceTree = "<group>"; };
 		CBC1DC261F0FB55D00F6D056 /* QuestionGroupIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionGroupIntermediary.swift; sourceTree = "<group>"; };
 		CBC1DC281F0FB68000F6D056 /* AnswerDecision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerDecision.swift; sourceTree = "<group>"; };
 		CBC1DC2A1F0FB68B00F6D056 /* AnswerDecisionIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerDecisionIntermediary.swift; sourceTree = "<group>"; };
 		CBC1DC2D1F0FC9E800F6D056 /* Object+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Object+Convenience.swift"; sourceTree = "<group>"; };
 		CBC1DC2F1F0FD0CB00F6D056 /* AnswerDecision+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AnswerDecision+Convenience.swift"; sourceTree = "<group>"; };
+		CBC1DC341F14D34000F6D056 /* SettingValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingValue.swift; sourceTree = "<group>"; };
+		CBC1DC381F14D9ED00F6D056 /* UserSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSetting.swift; sourceTree = "<group>"; };
+		CBC1DC3A1F14D9FD00F6D056 /* UserSetting+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserSetting+Convenience.swift"; sourceTree = "<group>"; };
+		CBC1DC3C1F14DA1200F6D056 /* UserSettingIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingIntermediary.swift; sourceTree = "<group>"; };
+		CBC1DC3E1F16067900F6D056 /* DownSyncIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownSyncIntermediary.swift; sourceTree = "<group>"; };
 		CBC933041F05253000C00007 /* JSON+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Convenience.swift"; sourceTree = "<group>"; };
 		CBC933071F052DDA00C00007 /* PrepareCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareCoordinator.swift; sourceTree = "<group>"; };
 		CBC9330D1F0AA47800C00007 /* PrepareEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsViewController.swift; sourceTree = "<group>"; };
@@ -1130,6 +1152,7 @@
 				CBB4DCDB1ED475F00071494A /* DownSyncChange.swift */,
 				8514A4851EE810750086C70E /* DownSyncComplete.swift */,
 				CBB4DD531EE151100071494A /* DownSyncImporter.swift */,
+				CBC1DC3E1F16067900F6D056 /* DownSyncIntermediary.swift */,
 				CB27D59E1ECDE96F00F2B76C /* DownSyncResultParser.swift */,
 				CCF0F4BE1ECDC57000E8D9C1 /* ObjectStore.swift */,
 				CBB4DD081EDDC6550071494A /* StartSyncResult.swift */,
@@ -1159,6 +1182,7 @@
 				7F0888821F0A4B9C005CE966 /* Partner */,
 				CB9AFD121F014AF300D067F2 /* Preparation */,
 				CB9AFD151F014BAE00D067F2 /* PreparationCheck */,
+				CBC1DC131F0F68E500F6D056 /* Setting */,
 				CBC1DC201F0FB32F00F6D056 /* Questions */,
 				CB34376C1EFE7F5800D89D4F /* SyncRecord */,
 				CB810E621EF00D9F0043E3E5 /* User */,
@@ -1530,6 +1554,7 @@
 				CB9AFD1F1F029D1500D067F2 /* PreparationService.swift */,
 				CB9AFD0E1F012A2800D067F2 /* QuestionsService.swift */,
 				CB369CE11E8D5E3D00522293 /* Services.swift */,
+				CBC1DC1C1F0F988E00F6D056 /* SettingsService.swift */,
 				CBB4DCF41EDC10FA0071494A /* SyncRecordService.swift */,
 				CC178A761F04FD600066A5D4 /* UserService.swift */,
 				CB9AFD211F02A46F00D067F2 /* Extensions */,
@@ -1611,6 +1636,16 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
+		CBC1DC131F0F68E500F6D056 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				CBC1DC371F14D9CC00F6D056 /* SettingValue */,
+				CBC1DC311F13CD8D00F6D056 /* SystemSetting */,
+				CBC1DC361F14D9B800F6D056 /* UserSetting */,
+			);
+			name = Setting;
+			sourceTree = "<group>";
+		};
 		CBC1DC201F0FB32F00F6D056 /* Questions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1639,6 +1674,36 @@
 				CBC1DC2A1F0FB68B00F6D056 /* AnswerDecisionIntermediary.swift */,
 			);
 			name = "Answer Decision";
+			sourceTree = "<group>";
+		};
+		CBC1DC311F13CD8D00F6D056 /* SystemSetting */ = {
+			isa = PBXGroup;
+			children = (
+				CBC1DC141F0F68F900F6D056 /* SystemSetting.swift */,
+				CBC1DC1E1F0F9BA100F6D056 /* SystemSetting+Convenience.swift */,
+				CBC1DC161F0F690A00F6D056 /* SystemSettingIntermediary.swift */,
+			);
+			name = SystemSetting;
+			sourceTree = "<group>";
+		};
+		CBC1DC361F14D9B800F6D056 /* UserSetting */ = {
+			isa = PBXGroup;
+			children = (
+				CBC1DC381F14D9ED00F6D056 /* UserSetting.swift */,
+				CBC1DC3A1F14D9FD00F6D056 /* UserSetting+Convenience.swift */,
+				CBC1DC3C1F14DA1200F6D056 /* UserSettingIntermediary.swift */,
+			);
+			name = UserSetting;
+			sourceTree = "<group>";
+		};
+		CBC1DC371F14D9CC00F6D056 /* SettingValue */ = {
+			isa = PBXGroup;
+			children = (
+				CBC1DC181F0F7E0200F6D056 /* SettingFormat.swift */,
+				CBC1DC341F14D34000F6D056 /* SettingValue.swift */,
+				CBC1DC1A1F0F910500F6D056 /* SettingValueObject.swift */,
+			);
+			name = SettingValue;
 			sourceTree = "<group>";
 		};
 		CBC933061F052CBA00C00007 /* Prepare */ = {
@@ -2079,6 +2144,7 @@
 				D5B707281F03A2CC00C812EB /* MorningInterviewViewController.swift in Sources */,
 				CB27D59D1ECCB6DD00F2B76C /* NetworkError.swift in Sources */,
 				852DADD61EF051C400A10882 /* UIView+Layers.swift in Sources */,
+				CBC1DC1B1F0F910600F6D056 /* SettingValueObject.swift in Sources */,
 				CBC1DC291F0FB68000F6D056 /* AnswerDecision.swift in Sources */,
 				CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */,
 				CCCE09CE1EA67F87008730F1 /* MyToBeVisionViewController.swift in Sources */,
@@ -2132,6 +2198,7 @@
 				CBDB98F21E7AA510003EC73F /* CalendarImportResult.swift in Sources */,
 				CBC1DC301F0FD0CB00F6D056 /* AnswerDecision+Convenience.swift in Sources */,
 				CC7D21A61EFBF52A007A062E /* ArticleItemViewModel.swift in Sources */,
+				CBC1DC391F14D9ED00F6D056 /* UserSetting.swift in Sources */,
 				CC143A511EC495CE001FB76E /* MyStatisticsCoordinator.swift in Sources */,
 				85DC6F851EF3E32A004F4B4D /* MyStatisticsDataPeriods.swift in Sources */,
 				CB0A4A5A1ECC4C3E006A2D85 /* AddSensorViewModel.swift in Sources */,
@@ -2144,6 +2211,7 @@
 				D5485F221ED57AE200A08D1A /* SearchViewController.swift in Sources */,
 				0BD6F6B91EA0E81E001EBC4D /* MyPrepTableViewCell.swift in Sources */,
 				CCE372F31E8C1EDF00B79352 /* ArticleCollectionViewModel.swift in Sources */,
+				CBC1DC3D1F14DA1200F6D056 /* UserSettingIntermediary.swift in Sources */,
 				7F691C531F0CFA8100E2C180 /* PartnerWireframe.swift in Sources */,
 				CC8018231F026BDA0040B03F /*  LibraryTableViewCell.swift in Sources */,
 				CB1D5E401EC5E25A00BCDF8D /* Error.swift in Sources */,
@@ -2175,6 +2243,7 @@
 				CB6D49541ECC87BF005BC637 /* Requests.swift in Sources */,
 				D50D6C241EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift in Sources */,
 				CC335EE91EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift in Sources */,
+				CBC1DC1D1F0F988E00F6D056 /* SettingsService.swift in Sources */,
 				CB369CE21E8D5E3D00522293 /* Services.swift in Sources */,
 				CC8D6D051EC316BF007AE687 /* LearnContentItemViewModel.swift in Sources */,
 				D5A767281EFABD1200562CB6 /* IntensityContainerView.swift in Sources */,
@@ -2190,6 +2259,7 @@
 				D52DAF9B1EC1E87D00C63156 /* ActivityChartView.swift in Sources */,
 				CCE373161E8D330100B79352 /* LibraryViewModel.swift in Sources */,
 				CB38DBDF1EF52D5C000E0F92 /* LearnStrategyListLayout.swift in Sources */,
+				CBC1DC191F0F7E0200F6D056 /* SettingFormat.swift in Sources */,
 				D5CB5BBE1EF2D45F0029D224 /* ContainerView.swift in Sources */,
 				CC3DFB641E83BDA300FF28DF /* Utils.swift in Sources */,
 				CB8C344F1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift in Sources */,
@@ -2199,6 +2269,7 @@
 				CBB4DD071EDDB5860071494A /* SerialRequest.swift in Sources */,
 				CB55A2E11E9FDF1D00D721CE /* SettingsMenuViewModel.swift in Sources */,
 				852DADC61EEEE63500A10882 /* Math.swift in Sources */,
+				CBC1DC3F1F16067900F6D056 /* DownSyncIntermediary.swift in Sources */,
 				CC311A1D1EAF39DF0020C869 /* SettingsTableViewCell.swift in Sources */,
 				8548BBE01F0D4BF900AC7C06 /* SensorAuthorisationHandler.swift in Sources */,
 				CB14676E1EF2AB7000A60E31 /* DeviceIdentifier.swift in Sources */,
@@ -2218,6 +2289,7 @@
 				CBC1DC2B1F0FB68B00F6D056 /* AnswerDecisionIntermediary.swift in Sources */,
 				CC178A771F04FD600066A5D4 /* UserService.swift in Sources */,
 				CB9AFD111F014AED00D067F2 /* Preparation.swift in Sources */,
+				CBC1DC171F0F690A00F6D056 /* SystemSettingIntermediary.swift in Sources */,
 				CB810E611EEFC0D70043E3E5 /* ErrorCell.swift in Sources */,
 				CB9BB0C21F0CD13E009067D7 /* TimeInterval+Convenience.swift in Sources */,
 				852DADC21EEDDE5100A10882 /* UIButton+AttributedTitle.swift in Sources */,
@@ -2233,6 +2305,7 @@
 				CCE373141E8D32F800B79352 /* SidebarViewModel.swift in Sources */,
 				852DADE81EF26B1D00A10882 /* PeakPerformanceAverageProgressWheel.swift in Sources */,
 				7F691C551F0D19AE00E2C180 /* MyToBeVision.swift in Sources */,
+				CBC1DC3B1F14D9FD00F6D056 /* UserSetting+Convenience.swift in Sources */,
 				D51B5C491E8D0E7E0084A65B /* LearnContentCell.swift in Sources */,
 				D5FA66971EBB4DA600980EC7 /* HorizontalLinesChartView.swift in Sources */,
 				CCE372F51E8CF10C00B79352 /* ArticleCollectionViewController.swift in Sources */,
@@ -2289,6 +2362,7 @@
 				CC0FF8DA1EA790750028D64F /* PartnersCoordinator.swift in Sources */,
 				CB1D5E411EC5E25A00BCDF8D /* JSONDecodable.swift in Sources */,
 				CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */,
+				CBC1DC351F14D34000F6D056 /* SettingValue.swift in Sources */,
 				CC0FF8D21EA784400028D64F /* PartnersViewModel.swift in Sources */,
 				8548BBDC1F0D263000AC7C06 /* RequestDeviceSensorCollectionViewCell.swift in Sources */,
 				858AF6931EF904AB00486605 /* PeakPerformanceUpcomingChartView.swift in Sources */,
@@ -2318,6 +2392,7 @@
 				D5DDAA3C1EAA136C0053C5D6 /* DashPatternView.swift in Sources */,
 				CC7D21B31EFC1348007A062E /* WeeklyChoicesViewController.swift in Sources */,
 				CC4AB7E51EA8A36B000F43B1 /* TopTabBarController.swift in Sources */,
+				CBC1DC1F1F0F9BA100F6D056 /* SystemSetting+Convenience.swift in Sources */,
 				CCEFCFB01E8D3D7500E9FC72 /* SidebarViewController.swift in Sources */,
 				CBB4DCF11EDC0C420071494A /* SyncRecord.swift in Sources */,
 				CB1467671EF277AA00A60E31 /* PageIntermediary.swift in Sources */,
@@ -2328,6 +2403,7 @@
 				D58BD8771E9F65F7005676DE /* ArticleCollectionCell.swift in Sources */,
 				CC7D21A81EFC051B007A062E /* ArticleItemViewController.swift in Sources */,
 				CB1D5E3B1EC5E25A00BCDF8D /* ContentCollection.swift in Sources */,
+				CBC1DC151F0F68F900F6D056 /* SystemSetting.swift in Sources */,
 				0B573CA41EC3218D00A03602 /* MeetingLengthChartView.swift in Sources */,
 				852DADC41EEED5D600A10882 /* AverageMeetingProgressWheel.swift in Sources */,
 				D58BD86A1E9D1E7F005676DE /* NSFile+Convenience.swift in Sources */,

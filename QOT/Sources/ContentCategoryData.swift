@@ -28,7 +28,7 @@ struct ContentCategoryData {
 
 // MARK: - Parser
 
-extension ContentCategoryData: JSONDecodable {
+extension ContentCategoryData: DownSyncIntermediary {
 
     init(json: JSON) throws {
         self.title = try json.getItemValue(at: .title)

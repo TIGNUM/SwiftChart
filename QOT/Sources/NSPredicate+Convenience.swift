@@ -18,6 +18,10 @@ extension NSPredicate {
         return NSPredicate(format: "preparationID == %@", id)
     }
 
+    static func key(_ key: String) -> NSPredicate {
+        return NSPredicate(format: "key == %@", key)
+    }
+
     static func deleted(_ deleted: Bool) -> NSPredicate {
         return NSPredicate(format: "deleted == %@", NSNumber(value: deleted))
     }

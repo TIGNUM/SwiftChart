@@ -31,7 +31,7 @@ struct ContentItemIntermediary {
 
 // MARK: - Parser
 
-extension ContentItemIntermediary: JSONDecodable {
+extension ContentItemIntermediary: DownSyncIntermediary {
 
     init(json: JSON) throws {
         self.sortOrder = try json.getItemValue(at: .sortOrder)

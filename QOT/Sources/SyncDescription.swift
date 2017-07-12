@@ -15,7 +15,9 @@ let ContentItemDown = SyncDescription<ContentItemIntermediary, ContentItem>(sync
 let UserDown = SyncDescription<UserIntermediary, User>(syncType: .userDown)
 let PageDown = SyncDescription<PageIntermediary, Page>(syncType: .pageDown)
 let QuestionDown = SyncDescription<QuestionIntermediary, Question>(syncType: .questionDown)
+let SystemSettingDown = SyncDescription<SystemSettingIntermediary, SystemSetting>(syncType: .systemSettingDown)
+let UserSettingDown = SyncDescription<UserSettingIntermediary, UserSetting>(syncType: .userSettingDown)
 
-struct SyncDescription<Intermediary, Persistable> where Intermediary: JSONDecodable {
+struct SyncDescription<Intermediary, Persistable> where Intermediary: DownSyncIntermediary {
     let syncType: SyncType
 }

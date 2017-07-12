@@ -20,6 +20,7 @@ final class Services {
     let partnerService: PartnerService
     let userService: UserService
     let eventsService: EventsService
+    let settingsService: SettingsService
     lazy var trackingService: EventTracker = {
         return EventTracker(realmProvider: { return try Realm() })
     }()
@@ -32,7 +33,8 @@ final class Services {
         questionsService: QuestionsService,
         partnerService: PartnerService,
         userService: UserService,
-        eventsService: EventsService) {
+        eventsService: EventsService,
+        settingsService: SettingsService) {
             self.mainRealm = mainRealm
             self.contentService = contentService
             self.articleService = articleService
@@ -41,6 +43,7 @@ final class Services {
             self.partnerService = partnerService
             self.userService = userService
             self.eventsService = eventsService
+            self.settingsService = settingsService
     }
 
     static func make(completion: @escaping (Result<Services, NSError>) -> Void) {
@@ -65,6 +68,7 @@ final class Services {
                     let partnerService = PartnerService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let userService = UserService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let eventsService = EventsService(mainRealm: mainRealm, realmProvider: realmProvider)
+                    let settingsService = SettingsService(realm: mainRealm)
                     let services = Services(
                         mainRealm: mainRealm,
                         contentService: contentService,
@@ -73,7 +77,8 @@ final class Services {
                         questionsService: questionsService,
                         partnerService: partnerService,
                         userService: userService,
-                        eventsService: eventsService
+                        eventsService: eventsService,
+                        settingsService: settingsService
                     )
                     
                     userService.prepare(completion: { (error: Error?) in

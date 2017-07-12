@@ -34,7 +34,7 @@ struct ContentCollectionData {
 
 // MARK: - Parser
 
-extension ContentCollectionData: JSONDecodable {
+extension ContentCollectionData: DownSyncIntermediary {
 
     init(json: JSON) throws {
         self.section = try json.getItemValue(at: .section)

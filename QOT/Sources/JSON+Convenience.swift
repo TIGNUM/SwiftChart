@@ -23,6 +23,14 @@ extension JSON {
         return fallback
     }
 
+    func getDate(at jsonKey: JsonKey) throws -> Date? {
+        let formatter = DateFormatter.iso8601
+        guard let dateString: String = try getItemValue(at: jsonKey), let date = formatter.date(from: dateString) else {
+            return nil
+        }
+        return date
+    }
+
     func getItemValue<T: JSONDecodable>(at jsonKey: JsonKey) throws -> T {
         return try decode(at: jsonKey.value, type: T.self)
     }

@@ -9,7 +9,7 @@
 import Foundation
 import Freddy
 
-struct DownSyncResult<T>: JSONDecodable where T: JSONDecodable {
+struct DownSyncResult<T: DownSyncIntermediary> {
     let items: [DownSyncChange<T>]
     let page: Int
     let pageSize: Int
@@ -20,10 +20,10 @@ struct DownSyncResult<T>: JSONDecodable where T: JSONDecodable {
     init(json: JSON) throws {
         self.items = try json.getArray(at: JsonKey.resultList.value).map { (json) -> DownSyncChange<T> in
             let syncStatus: SyncStatus = try json.getItemValue(at: .syncStatus)
-            let remoteID: Int = try json.getItemValue(at: .id)
+            let remoteID: Int = try json.getItemValue(at: T.remoteIDKey)
             switch syncStatus {
             case .created, .updated:
-                let createdAt = try json.getDate(at: .createdAt)
+                let createdAt: Date = try json.getDate(at: .createdAt)
                 let modifiedAt = try json.getDate(at: .modifiedAt, alongPath: .NullBecomesNil) ?? createdAt
                 let data: T = try T(json: json)
 
@@ -40,7 +40,7 @@ struct DownSyncResult<T>: JSONDecodable where T: JSONDecodable {
     }
 }
 
-struct DownSyncResultParser<T: JSONDecodable> {
+struct DownSyncResultParser<T: DownSyncIntermediary> {
 
     static func parse(_ data: Data) throws -> DownSyncResult<T> {
         let json = try JSON(data: data)

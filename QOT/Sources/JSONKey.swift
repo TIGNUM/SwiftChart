@@ -9,6 +9,7 @@
 import Foundation
 
 enum JsonKey: String {
+    case `default`
     case answer
     case answers
     case answerType
@@ -23,6 +24,7 @@ enum JsonKey: String {
     case categoryIds
     case city
     case company
+    case component
     case contentId
     case contentRelationType
     case coordinates
@@ -45,6 +47,7 @@ enum JsonKey: String {
     case firstName
     case format
     case frequency
+    case fromDate
     case gender
     case height
     case heightUnit
@@ -64,12 +67,14 @@ enum JsonKey: String {
     case layoutInfo
     case location
     case longitude
+    case max
     case lowerThreshold
     case maximum
     case maxPages
     case maxResults
     case mediaURL
     case memberSince
+    case min
     case modifiedAt
     case monthsOfTheYear
     case name
@@ -80,7 +85,9 @@ enum JsonKey: String {
     case organizer
     case page
     case pageId
+    case pageIds
     case pageSize
+    case publicHolidays
     case periods
     case qotId
     case question
@@ -93,15 +100,25 @@ enum JsonKey: String {
     case referrerAssociatedValueId
     case referrerAssociatedValueType
     case referrerPageId
-    case relatedContentIds
     case relatedContent
+    case relatedContentIds
     case resultList
     case role
     case searchTags
     case secondsRequired
     case section
     case setPositions
+    case settingBoolValue
+    case settingBoolValueDtos
+    case settingId
+    case settingImageValueDtos
+    case settingLongValue
+    case settingLongValueDtos
+    case settingOccurrenceValue
+    case settingOccurrenceValueDtos
     case settingsIds
+    case settingTextValue
+    case settingTextValueDtos
     case sortOrder
     case startDate
     case status
@@ -124,19 +141,23 @@ enum JsonKey: String {
     case timeZoneId
     case title
     case type
+    case untilDate
     case upperThreshold
     case url
     case userAverage
     case userImageURL
     case userInfo
+    case vacation
     case value
     case viewed
     case waveformData
+    case weekend
     case weekNumber
     case weeksOfTheYear
     case weight
     case weightUnit
     case weightUnits
+    case workingDays
     case zip
     case zone
 

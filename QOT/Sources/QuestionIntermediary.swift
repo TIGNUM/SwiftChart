@@ -9,7 +9,7 @@
 import Foundation
 import Freddy
 
-struct QuestionIntermediary: JSONDecodable {
+struct QuestionIntermediary: DownSyncIntermediary {
 
     let sortOrder: Int
     let title: String

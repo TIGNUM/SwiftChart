@@ -22,6 +22,8 @@ enum Endpoint: String {
     case page = "/personal/p/qot/qotPage"
     case calendarEvent = "/personal/p/qot/calendarEvent"
     case question = "/personal/p/qot/question"
+    case systemSetting = "/personal/p/qot/systemSetting"
+    case userSetting = "/personal/p/qot/userSetting2"
     case fitbitToken = "/b2b/fitbit/token"
 
     func url(baseURL: URL) -> URL {

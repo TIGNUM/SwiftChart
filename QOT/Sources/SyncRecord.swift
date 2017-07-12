@@ -15,6 +15,8 @@ enum SyncType: String {
     case userDown
     case pageDown
     case questionDown
+    case systemSettingDown
+    case userSettingDown
 
     var endpoint: Endpoint {
         switch self {
@@ -24,6 +26,8 @@ enum SyncType: String {
         case .userDown: return .user
         case .pageDown: return .page
         case .questionDown: return .question
+        case .systemSettingDown: return .systemSetting
+        case .userSettingDown: return .userSetting
         }
     }
 }

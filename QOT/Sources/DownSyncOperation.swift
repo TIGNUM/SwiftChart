@@ -10,7 +10,7 @@ import Foundation
 import Freddy
 import RealmSwift
 
-final class DownSyncOperation<Intermediary, Persistable>: ConcurrentOperation where Intermediary: JSONDecodable, Persistable: DownSyncable, Persistable: Object, Persistable.Data == Intermediary {
+final class DownSyncOperation<Intermediary, Persistable>: ConcurrentOperation where Intermediary: DownSyncIntermediary, Persistable: DownSyncable, Persistable: Object, Persistable.Data == Intermediary {
 
     private let networkManager: NetworkManager
     private let syncDescription: SyncDescription<Intermediary, Persistable>

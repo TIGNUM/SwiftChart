@@ -41,6 +41,8 @@ final class SyncManager {
         }
 
         let operations: [Operation] = [
+            downSyncOperation(for: SystemSettingDown, context: context),
+            downSyncOperation(for: UserSettingDown, context: context),
             downSyncOperation(for: UserDown, context: context),
             downSyncOperation(for: QuestionDown, context: context),
             downSyncOperation(for: PageDown, context: context),

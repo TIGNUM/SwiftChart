@@ -9,7 +9,7 @@
 import Foundation
 import Freddy
 
-struct UserIntermediary: JSONDecodable {
+struct UserIntermediary: DownSyncIntermediary {
 
     let gender: String
     let givenName: String
