@@ -68,6 +68,7 @@
 		852DADE81EF26B1D00A10882 /* PeakPerformanceAverageProgressWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADE71EF26B1D00A10882 /* PeakPerformanceAverageProgressWheel.swift */; };
 		852DADEA1EF2B83100A10882 /* MyStatisticsDataUpcomingTrips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADE91EF2B83100A10882 /* MyStatisticsDataUpcomingTrips.swift */; };
 		852DADEC1EF2BE3C00A10882 /* UpcomingTravelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADEB1EF2BE3C00A10882 /* UpcomingTravelsView.swift */; };
+		85427DDC1F14D95F00AA714C /* FadeAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85427DDB1F14D95F00AA714C /* FadeAnimator.swift */; };
 		8548BBDC1F0D263000AC7C06 /* RequestDeviceSensorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548BBDB1F0D263000AC7C06 /* RequestDeviceSensorCollectionViewCell.swift */; };
 		8548BBDE1F0D264800AC7C06 /* RequestDeviceSensorCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8548BBDD1F0D264800AC7C06 /* RequestDeviceSensorCollectionViewCell.xib */; };
 		8548BBE01F0D4BF900AC7C06 /* SensorAuthorisationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548BBDF1F0D4BF900AC7C06 /* SensorAuthorisationHandler.swift */; };
@@ -442,6 +443,7 @@
 		852DADE71EF26B1D00A10882 /* PeakPerformanceAverageProgressWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakPerformanceAverageProgressWheel.swift; sourceTree = "<group>"; };
 		852DADE91EF2B83100A10882 /* MyStatisticsDataUpcomingTrips.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsDataUpcomingTrips.swift; sourceTree = "<group>"; };
 		852DADEB1EF2BE3C00A10882 /* UpcomingTravelsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingTravelsView.swift; sourceTree = "<group>"; };
+		85427DDB1F14D95F00AA714C /* FadeAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeAnimator.swift; sourceTree = "<group>"; };
 		8548BBDB1F0D263000AC7C06 /* RequestDeviceSensorCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestDeviceSensorCollectionViewCell.swift; sourceTree = "<group>"; };
 		8548BBDD1F0D264800AC7C06 /* RequestDeviceSensorCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequestDeviceSensorCollectionViewCell.xib; sourceTree = "<group>"; };
 		8548BBDF1F0D4BF900AC7C06 /* SensorAuthorisationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorAuthorisationHandler.swift; sourceTree = "<group>"; };
@@ -797,6 +799,13 @@
 			name = MyToBeVision;
 			sourceTree = "<group>";
 		};
+		85427DDD1F14D96700AA714C /* Animators */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Animators;
+			sourceTree = "<group>";
+		};
 		B1B85C4C58D59EA1163CE83B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -988,6 +997,8 @@
 				CBB4DD4C1EE094150071494A /* Mock - DELETE */,
 				CBB4DD521EE095E50071494A /* Utils */,
 				CBB4DD1C1EE085600071494A /* View Layer */,
+				85427DDD1F14D96700AA714C /* Animators */,
+				85427DDB1F14D95F00AA714C /* FadeAnimator.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -2012,6 +2023,7 @@
 				CB9B07671EF953D80017F6C3 /* JSONKey.swift in Sources */,
 				CC96630F1EA1B29800B84B1C /* MyWhyView.swift in Sources */,
 				7F691C5E1F0D30C800E2C180 /* PlaceholderTextView.swift in Sources */,
+				85427DDC1F14D95F00AA714C /* FadeAnimator.swift in Sources */,
 				D5EC34B21EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.swift in Sources */,
 				852DADEA1EF2B83100A10882 /* MyStatisticsDataUpcomingTrips.swift in Sources */,
 				D51B5C4C1E8D133B0084A65B /* LearnContentItemCoordinator.swift in Sources */,

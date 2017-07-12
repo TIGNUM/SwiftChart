@@ -11,7 +11,7 @@ import LoremIpsum
 import EventKit
 import EventKitUI
 
-final class PrepareCoordinator: Coordinator {
+final class PrepareCoordinator: ParentCoordinator {
 
     struct Context {
         let contentID: Int
@@ -24,6 +24,9 @@ final class PrepareCoordinator: Coordinator {
     }
 
     // MARK: Private properties
+
+    var children: [Coordinator] = []
+
 
     fileprivate let services: Services
     fileprivate let tabBarController: TabBarController
@@ -93,7 +96,9 @@ private extension PrepareCoordinator {
             case .text(let text, style: .h1):
                 title = text
             case .prepareStep(let title, let description, let relatedContentID):
-                items.append(PrepareItem(id: item.remoteID, title: title, subTitle: description, readMoreID: relatedContentID))
+//                items.append(PrepareItem(id: item.remoteID, title: title, subTitle: description, readMoreID: relatedContentID))
+                //TODO: use relatedContentID instead of 100000 when data is available
+                items.append(PrepareItem(id: item.remoteID, title: title, subTitle: description, readMoreID: 100000))
             case .video(_, _, let placeholderURL, let videoURL, _):
                 video = PrepareContentViewModel.Video(url: videoURL, placeholderURL: placeholderURL)
             default:
@@ -215,6 +220,29 @@ extension PrepareCoordinator: PrepareContentViewControllerDelegate {
 
     func didTapReadMore(readMoreID: Int, in viewController: PrepareContentViewController) {
         log("didTapReadMore: ID: \(readMoreID)")
+
+        guard let content = services.contentService.contentCollection(id: readMoreID) else {
+            showReadMoreError(viewController: viewController)
+            return
+        }
+        guard let categoryID = content.categoryIDs.first?.value else {
+            showReadMoreError(viewController: viewController)
+            return
+        }
+        // TODO: we need to use categoryID istead of 100003 when data is correct
+        guard let category = services.contentService.contentCategory(id: 100003) else {
+            showReadMoreError(viewController: viewController)
+            return
+        }
+
+        //TODO: Show error for above guards
+
+        let coordinator = LearnContentItemCoordinator(root: viewController, services: services, eventTracker: services.trackingService, content: content, category: category)
+        startChild(child: coordinator)
+    }
+
+    private func showReadMoreError(viewController: UIViewController) {
+        viewController.showAlert(type: .noContent)
     }
 }
 

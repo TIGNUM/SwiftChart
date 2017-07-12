@@ -26,6 +26,8 @@ final class PrepareContentViewController: UIViewController {
     fileprivate let disposeBag = DisposeBag()
     weak var delegate: PrepareContentViewControllerDelegate?
 
+    fileprivate lazy var transition = FadeAnimator()
+
     fileprivate lazy var tableView: UITableView = {
         return UITableView(
             estimatedRowHeight: 140,
@@ -323,5 +325,19 @@ extension PrepareContentViewController: PrepareContentTopTabBarViewDelegate {
     func didTapRightButton() {
         delegate?.didTapSavePreparation(in: self)
     }
-    
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+
+extension PrepareContentViewController: UIViewControllerTransitioningDelegate {
+
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.presenting = true
+        return transition
+    }
+
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.presenting = false
+        return transition
+    }
 }

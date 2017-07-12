@@ -11,7 +11,7 @@ import RealmSwift
 
 final class LearnContentItemCoordinator: ParentCoordinator {
     
-    fileprivate let rootVC: LearnContentListViewController
+    fileprivate let rootVC: UIViewController
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
     fileprivate let category: ContentCategory
@@ -26,7 +26,7 @@ final class LearnContentItemCoordinator: ParentCoordinator {
     weak var topTabBarControllerDelegate: TopTabBarControllerDelegate?
     var children: [Coordinator] = []
     
-    init(root: LearnContentListViewController, services: Services, eventTracker: EventTracker, content: ContentCollection, category: ContentCategory) {
+    init(root: UIViewController, services: Services, eventTracker: EventTracker, content: ContentCollection, category: ContentCategory) {
         self.rootVC = root
         self.services = services
         self.eventTracker = eventTracker
@@ -80,14 +80,25 @@ final class LearnContentItemCoordinator: ParentCoordinator {
         fullViewController.delegate = self
         bulletViewController.delegate = self
         audioViewController.delegate = self
+
         topTabBarController.modalTransitionStyle = .crossDissolve
-        topTabBarController.modalPresentationStyle = .custom
+        if rootVC is UIViewControllerTransitioningDelegate {
+            topTabBarController.modalPresentationStyle = .fullScreen  // Custom animations doesn't work when this value is set to .custom
+
+            // If rootVC has a custom defined transition that one will be used
+            // We have a custom transition from PrepareContent (when pressing readMore button)
+            guard let transitionDelegate = rootVC as? UIViewControllerTransitioningDelegate else { return }
+            topTabBarController.transitioningDelegate = transitionDelegate
+        } else {
+            topTabBarController.modalPresentationStyle = .custom
+        }
+
         topTabBarController.delegate = self
         topTabBarController.learnContentItemViewControllerDelegate = self
         topTabBarControllerDelegate = topTabBarController
         rootVC.present(topTabBarController, animated: true)
         // FIXME: Add page tracking
-    }    
+    }
 }
 
 extension LearnContentItemCoordinator: TopTabBarDelegate {
