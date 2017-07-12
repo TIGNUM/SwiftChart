@@ -20,6 +20,11 @@ extension UIColor {
         return UIColor(red: 0, green: 45/255, blue: 78/255, alpha: 1)
     }
 
+    /// UIColor(red: 0, green: 45/255, blue: 78/255, alpha: 0.2)
+    class var navy20: UIColor {
+        return UIColor(red: 0, green: 45/255, blue: 78/255, alpha: 0.2)
+    }
+
     /// UIColor(white: 91/255, alpha: 1)
     class var brownishGrey: UIColor {
         return UIColor(white: 91/255, alpha: 1)

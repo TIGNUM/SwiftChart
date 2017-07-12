@@ -340,6 +340,8 @@
 		D5485F261ED583BC00A08D1A /* SearchTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5485F251ED583BC00A08D1A /* SearchTableCell.swift */; };
 		D5485F281ED583E300A08D1A /* SearchCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5485F271ED583E300A08D1A /* SearchCollectionCell.swift */; };
 		D569769C1EF94094000FF777 /* MyStatisticsDataSleepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D569769B1EF94094000FF777 /* MyStatisticsDataSleepView.swift */; };
+		D57ACCAF1F150D1D00906573 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBB237F81E6FFF1200AB5AEF /* LaunchScreen.storyboard */; };
+		D57ACCB21F15122300906573 /* AnimatedLaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57ACCB01F15122300906573 /* AnimatedLaunchScreenViewController.swift */; };
 		D57ECFB01E924CC2008F401B /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57ECFAF1E924CC2008F401B /* TabBarView.swift */; };
 		D58BD86A1E9D1E7F005676DE /* NSFile+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58BD8691E9D1E7F005676DE /* NSFile+Convenience.swift */; };
 		D58BD86C1E9E846C005676DE /* ScrollViewAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58BD86B1E9E846C005676DE /* ScrollViewAnimation.swift */; };
@@ -719,6 +721,7 @@
 		D5485F251ED583BC00A08D1A /* SearchTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableCell.swift; sourceTree = "<group>"; };
 		D5485F271ED583E300A08D1A /* SearchCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCollectionCell.swift; sourceTree = "<group>"; };
 		D569769B1EF94094000FF777 /* MyStatisticsDataSleepView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsDataSleepView.swift; sourceTree = "<group>"; };
+		D57ACCB01F15122300906573 /* AnimatedLaunchScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedLaunchScreenViewController.swift; sourceTree = "<group>"; };
 		D57ECFAF1E924CC2008F401B /* TabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		D58BD8691E9D1E7F005676DE /* NSFile+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFile+Convenience.swift"; sourceTree = "<group>"; };
 		D58BD86B1E9E846C005676DE /* ScrollViewAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewAnimation.swift; sourceTree = "<group>"; };
@@ -1423,6 +1426,7 @@
 			isa = PBXGroup;
 			children = (
 				CBB237F81E6FFF1200AB5AEF /* LaunchScreen.storyboard */,
+				D57ACCB01F15122300906573 /* AnimatedLaunchScreenViewController.swift */,
 			);
 			name = Launch;
 			sourceTree = "<group>";
@@ -1802,6 +1806,7 @@
 				CC8A2EDE1F0CF98B002585CE /* BentonSansCond-Light.otf in Resources */,
 				CC8813EC1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib in Resources */,
 				8514A48E1EE966C30086C70E /* PrepareContentMainHeaderTableViewCell.xib in Resources */,
+				D57ACCAF1F150D1D00906573 /* LaunchScreen.storyboard in Resources */,
 				0BC9F93A1E96118C009E8204 /* StatusTableViewCell.xib in Resources */,
 				850A50BD1F0A97FF00350097 /* PrepareContentTopTabBarView.xib in Resources */,
 				CCA2DC691EF17BFA00D1DF6A /* LearnContentItemHeaderView.xib in Resources */,
@@ -2020,6 +2025,7 @@
 				CBC9330F1F0AA47800C00007 /* PrepareEventsViewController.swift in Sources */,
 				CC4F22F01EE023F4006C437E /* NSMutableAttributedString+Create.swift in Sources */,
 				0B2CA37B1ED2BC93006B355F /* SensorCollectionViewCell.swift in Sources */,
+				D57ACCB21F15122300906573 /* AnimatedLaunchScreenViewController.swift in Sources */,
 				CBB4DCF51EDC10FA0071494A /* SyncRecordService.swift in Sources */,
 				D51B5C4A1E8D0E7E0084A65B /* LearnContentLayout.swift in Sources */,
 				D5A767261EFAB9E800562CB6 /* DottedGridWithIntensityView.swift in Sources */,
