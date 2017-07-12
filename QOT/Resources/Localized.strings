@@ -116,3 +116,5 @@
 
 "ActivityView.WeekButton" = "WEEK";
 "ActivityView.MonthButton" = "MONTH";
+
+"LoadingView.Message" = "We are loading Please wait";

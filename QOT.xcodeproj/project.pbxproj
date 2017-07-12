@@ -327,12 +327,12 @@
 		CCE3730F1E8D32F800B79352 /* SidebarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE373091E8D32F800B79352 /* SidebarCoordinator.swift */; };
 		CCE373141E8D32F800B79352 /* SidebarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE3730E1E8D32F800B79352 /* SidebarViewModel.swift */; };
 		CCE373161E8D330100B79352 /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE373151E8D330100B79352 /* LibraryViewModel.swift */; };
+		CCE6CD751F1390AD00B66DA3 /* UIApplication+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE6CD741F1390AD00B66DA3 /* UIApplication+Convenience.swift */; };
 		CCE6CD7E1F15260D00B66DA3 /* MyStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE6CD7D1F15260D00B66DA3 /* MyStatistics.swift */; };
 		CCE6CD801F15299F00B66DA3 /* MyStatisticsPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE6CD7F1F15299F00B66DA3 /* MyStatisticsPeriod.swift */; };
 		CCE6CD841F152D5800B66DA3 /* DoubleObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE6CD831F152D5800B66DA3 /* DoubleObject.swift */; };
 		CCE6CD861F15313300B66DA3 /* MyStatisticsIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE6CD851F15313300B66DA3 /* MyStatisticsIntermediary.swift */; };
 		CCE6CD881F15357600B66DA3 /* MyStatisticsPeriodIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE6CD871F15357600B66DA3 /* MyStatisticsPeriodIntermediary.swift */; };
-		CCE6CD751F1390AD00B66DA3 /* UIApplication+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE6CD741F1390AD00B66DA3 /* UIApplication+Convenience.swift */; };
 		CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */; };
 		CCEFCFB01E8D3D7500E9FC72 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEFCFAE1E8D3D7500E9FC72 /* SidebarViewController.swift */; };
 		CCF0F4BF1ECDC57000E8D9C1 /* DownSyncable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF0F4BC1ECDC57000E8D9C1 /* DownSyncable.swift */; };
@@ -368,6 +368,7 @@
 		D5A7671E1EFA700500562CB6 /* IntensityAverageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A7671D1EFA700500562CB6 /* IntensityAverageView.swift */; };
 		D5A767261EFAB9E800562CB6 /* DottedGridWithIntensityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A767251EFAB9E800562CB6 /* DottedGridWithIntensityView.swift */; };
 		D5A767281EFABD1200562CB6 /* IntensityContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A767271EFABD1200562CB6 /* IntensityContainerView.swift */; };
+		D5ACF2DA1F1624EB008B0EC1 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ACF2D91F1624EB008B0EC1 /* LoadingViewController.swift */; };
 		D5B707261F03A2BF00C812EB /* MorningInterviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B707251F03A2BF00C812EB /* MorningInterviewViewModel.swift */; };
 		D5B707281F03A2CC00C812EB /* MorningInterviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B707271F03A2CC00C812EB /* MorningInterviewViewController.swift */; };
 		D5B7072A1F03AB3900C812EB /* MorningInterviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B707291F03AB3900C812EB /* MorningInterviewCell.swift */; };
@@ -724,12 +725,12 @@
 		CCE373091E8D32F800B79352 /* SidebarCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarCoordinator.swift; sourceTree = "<group>"; };
 		CCE3730E1E8D32F800B79352 /* SidebarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewModel.swift; sourceTree = "<group>"; };
 		CCE373151E8D330100B79352 /* LibraryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryViewModel.swift; sourceTree = "<group>"; };
+		CCE6CD741F1390AD00B66DA3 /* UIApplication+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Convenience.swift"; sourceTree = "<group>"; };
 		CCE6CD7D1F15260D00B66DA3 /* MyStatistics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatistics.swift; sourceTree = "<group>"; };
 		CCE6CD7F1F15299F00B66DA3 /* MyStatisticsPeriod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsPeriod.swift; sourceTree = "<group>"; };
 		CCE6CD831F152D5800B66DA3 /* DoubleObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleObject.swift; sourceTree = "<group>"; };
 		CCE6CD851F15313300B66DA3 /* MyStatisticsIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsIntermediary.swift; sourceTree = "<group>"; };
 		CCE6CD871F15357600B66DA3 /* MyStatisticsPeriodIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsPeriodIntermediary.swift; sourceTree = "<group>"; };
-		CCE6CD741F1390AD00B66DA3 /* UIApplication+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Convenience.swift"; sourceTree = "<group>"; };
 		CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsViewModel.swift; sourceTree = "<group>"; };
 		CCEFCFAE1E8D3D7500E9FC72 /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		CCF0F4BC1ECDC57000E8D9C1 /* DownSyncable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownSyncable.swift; sourceTree = "<group>"; };
@@ -765,6 +766,7 @@
 		D5A7671D1EFA700500562CB6 /* IntensityAverageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntensityAverageView.swift; sourceTree = "<group>"; };
 		D5A767251EFAB9E800562CB6 /* DottedGridWithIntensityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DottedGridWithIntensityView.swift; sourceTree = "<group>"; };
 		D5A767271EFABD1200562CB6 /* IntensityContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntensityContainerView.swift; sourceTree = "<group>"; };
+		D5ACF2D91F1624EB008B0EC1 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		D5B707251F03A2BF00C812EB /* MorningInterviewViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewViewModel.swift; sourceTree = "<group>"; };
 		D5B707271F03A2CC00C812EB /* MorningInterviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewViewController.swift; sourceTree = "<group>"; };
 		D5B707291F03AB3900C812EB /* MorningInterviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewCell.swift; sourceTree = "<group>"; };
@@ -1115,6 +1117,7 @@
 				CBB4DD291EE0882D0071494A /* Learn Content */,
 				CCDCE7321EEFE63600BD019C /* Learn Content Item */,
 				CBB4DD3C1EE08D7F0071494A /* Library */,
+				D5ACF2D81F1624CB008B0EC1 /* Loading */,
 				D5B707241F03A21E00C812EB /* Morning Interview */,
 				CBB4DD321EE089FD0071494A /* My Prep */,
 				CBB4DD331EE08A230071494A /* My Statistics */,
@@ -1805,6 +1808,14 @@
 			name = DoubleObject;
 			sourceTree = "<group>";
 		};
+		D5ACF2D81F1624CB008B0EC1 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				D5ACF2D91F1624EB008B0EC1 /* LoadingViewController.swift */,
+			);
+			name = Loading;
+			sourceTree = "<group>";
+		};
 		D5B707241F03A21E00C812EB /* Morning Interview */ = {
 			isa = PBXGroup;
 			children = (
@@ -2201,6 +2212,7 @@
 				CBC1DC391F14D9ED00F6D056 /* UserSetting.swift in Sources */,
 				CC143A511EC495CE001FB76E /* MyStatisticsCoordinator.swift in Sources */,
 				85DC6F851EF3E32A004F4B4D /* MyStatisticsDataPeriods.swift in Sources */,
+				D5ACF2DA1F1624EB008B0EC1 /* LoadingViewController.swift in Sources */,
 				CB0A4A5A1ECC4C3E006A2D85 /* AddSensorViewModel.swift in Sources */,
 				CB3437551EFD1C2600D89D4F /* PrepareChatDecisionManager.swift in Sources */,
 				D50CDDC11EC48CA700D27072 /* AverageGraphView.swift in Sources */,

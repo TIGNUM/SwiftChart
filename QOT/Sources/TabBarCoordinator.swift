@@ -50,13 +50,13 @@ final class TabBarCoordinator: ParentCoordinator {
         let learnCategoryListVC = LearnCategoryListViewController(viewModel: viewModel)
         let articleCollectionViewModel = ArticleCollectionViewModel(categories: articleCategories, contentCollections: articlesCollections)
         let articleCollectionViewController = ArticleCollectionViewController(viewModel: articleCollectionViewModel)
-
+        
         let topBarControllerItem = TopTabBarController.Item(
             controllers: [learnCategoryListVC, articleCollectionViewController],
             themes: [.darkClear, .dark],
             titles: [
                 R.string.localized.topTabBarItemTitleLearnStrategies(),
-                R.string.localized.topTabBarItemTitleLearnWhatsHot()
+                R.string.localized.topTabBarItemTitleLearnWhatsHot(),
             ],
             enableTabScrolling: false
         )
