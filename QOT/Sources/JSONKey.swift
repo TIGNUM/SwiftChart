@@ -28,6 +28,8 @@ enum JsonKey: String {
     case coordinates
     case country
     case createdAt
+    case dataAverage
+    case dataPoints
     case dayOfTheWeek
     case daysOfTheMonth
     case daysOfTheWeek
@@ -55,12 +57,15 @@ enum JsonKey: String {
     case isCurrentUser
     case isDetached
     case jobTitle
+    case key
     case keypathID
     case lastName
     case latitude
     case layoutInfo
     case location
     case longitude
+    case lowerThreshold
+    case maximum
     case maxPages
     case maxResults
     case mediaURL
@@ -76,6 +81,7 @@ enum JsonKey: String {
     case page
     case pageId
     case pageSize
+    case periods
     case qotId
     case question
     case questionDescription
@@ -110,6 +116,7 @@ enum JsonKey: String {
     case targetGroupName
     case targetType
     case targetTypeId
+    case teamAverage
     case telephone
     case text
     case thumbnail
@@ -117,7 +124,9 @@ enum JsonKey: String {
     case timeZoneId
     case title
     case type
+    case upperThreshold
     case url
+    case userAverage
     case userImageURL
     case userInfo
     case value

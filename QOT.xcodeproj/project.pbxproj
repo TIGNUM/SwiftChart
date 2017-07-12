@@ -316,6 +316,11 @@
 		CCE3730F1E8D32F800B79352 /* SidebarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE373091E8D32F800B79352 /* SidebarCoordinator.swift */; };
 		CCE373141E8D32F800B79352 /* SidebarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE3730E1E8D32F800B79352 /* SidebarViewModel.swift */; };
 		CCE373161E8D330100B79352 /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE373151E8D330100B79352 /* LibraryViewModel.swift */; };
+		CCE6CD7E1F15260D00B66DA3 /* MyStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE6CD7D1F15260D00B66DA3 /* MyStatistics.swift */; };
+		CCE6CD801F15299F00B66DA3 /* MyStatisticsPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE6CD7F1F15299F00B66DA3 /* MyStatisticsPeriod.swift */; };
+		CCE6CD841F152D5800B66DA3 /* DoubleObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE6CD831F152D5800B66DA3 /* DoubleObject.swift */; };
+		CCE6CD861F15313300B66DA3 /* MyStatisticsIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE6CD851F15313300B66DA3 /* MyStatisticsIntermediary.swift */; };
+		CCE6CD881F15357600B66DA3 /* MyStatisticsPeriodIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE6CD871F15357600B66DA3 /* MyStatisticsPeriodIntermediary.swift */; };
 		CCE6CD751F1390AD00B66DA3 /* UIApplication+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE6CD741F1390AD00B66DA3 /* UIApplication+Convenience.swift */; };
 		CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */; };
 		CCEFCFB01E8D3D7500E9FC72 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEFCFAE1E8D3D7500E9FC72 /* SidebarViewController.swift */; };
@@ -697,6 +702,11 @@
 		CCE373091E8D32F800B79352 /* SidebarCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarCoordinator.swift; sourceTree = "<group>"; };
 		CCE3730E1E8D32F800B79352 /* SidebarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewModel.swift; sourceTree = "<group>"; };
 		CCE373151E8D330100B79352 /* LibraryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryViewModel.swift; sourceTree = "<group>"; };
+		CCE6CD7D1F15260D00B66DA3 /* MyStatistics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatistics.swift; sourceTree = "<group>"; };
+		CCE6CD7F1F15299F00B66DA3 /* MyStatisticsPeriod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsPeriod.swift; sourceTree = "<group>"; };
+		CCE6CD831F152D5800B66DA3 /* DoubleObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleObject.swift; sourceTree = "<group>"; };
+		CCE6CD851F15313300B66DA3 /* MyStatisticsIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsIntermediary.swift; sourceTree = "<group>"; };
+		CCE6CD871F15357600B66DA3 /* MyStatisticsPeriodIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsPeriodIntermediary.swift; sourceTree = "<group>"; };
 		CCE6CD741F1390AD00B66DA3 /* UIApplication+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Convenience.swift"; sourceTree = "<group>"; };
 		CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsViewModel.swift; sourceTree = "<group>"; };
 		CCEFCFAE1E8D3D7500E9FC72 /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
@@ -1135,19 +1145,21 @@
 		CBB4DD251EE087830071494A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CBC1DC201F0FB32F00F6D056 /* Questions */,
 				CB9B07581EF904410017F6C3 /* CalendarEvent */,
 				CB4881501EF7BF6400389C88 /* ContentCategory */,
 				CB48814F1EF7BF5B00389C88 /* ContentCollection */,
-				CB9B075D1EF911B40017F6C3 /* IntObject */,
-				7F691C561F0D19B100E2C180 /* MyToBeVision */,
 				CB14676F1EF3E86900A60E31 /* ContentItem */,
 				CBC933131F0B9B3A00C00007 /* ContentRelation */,
+				CCE6CD821F152D3800B66DA3 /* DoubleObject */,
+				CB9B075D1EF911B40017F6C3 /* IntObject */,
+				CCE6CD7C1F15255500B66DA3 /* MyStatistics */,
+				7F691C561F0D19B100E2C180 /* MyToBeVision */,
 				CB1467631EF2778400A60E31 /* Page */,
 				CB810E6C1EF180CB0043E3E5 /* PageTrack */,
 				7F0888821F0A4B9C005CE966 /* Partner */,
 				CB9AFD121F014AF300D067F2 /* Preparation */,
 				CB9AFD151F014BAE00D067F2 /* PreparationCheck */,
+				CBC1DC201F0FB32F00F6D056 /* Questions */,
 				CB34376C1EFE7F5800D89D4F /* SyncRecord */,
 				CB810E621EF00D9F0043E3E5 /* User */,
 			);
@@ -1709,6 +1721,25 @@
 			name = "Learn Content Item";
 			sourceTree = "<group>";
 		};
+		CCE6CD7C1F15255500B66DA3 /* MyStatistics */ = {
+			isa = PBXGroup;
+			children = (
+				CCE6CD7D1F15260D00B66DA3 /* MyStatistics.swift */,
+				CCE6CD851F15313300B66DA3 /* MyStatisticsIntermediary.swift */,
+				CCE6CD7F1F15299F00B66DA3 /* MyStatisticsPeriod.swift */,
+				CCE6CD871F15357600B66DA3 /* MyStatisticsPeriodIntermediary.swift */,
+			);
+			name = MyStatistics;
+			sourceTree = "<group>";
+		};
+		CCE6CD821F152D3800B66DA3 /* DoubleObject */ = {
+			isa = PBXGroup;
+			children = (
+				CCE6CD831F152D5800B66DA3 /* DoubleObject.swift */,
+			);
+			name = DoubleObject;
+			sourceTree = "<group>";
+		};
 		D5B707241F03A21E00C812EB /* Morning Interview */ = {
 			isa = PBXGroup;
 			children = (
@@ -2124,6 +2155,7 @@
 				CC7D21B01EFC1348007A062E /* WeeklyChoicesCell.swift in Sources */,
 				0B573CA61EC3219900A03602 /* DailyMeetingChartView.swift in Sources */,
 				CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */,
+				CCE6CD881F15357600B66DA3 /* MyStatisticsPeriodIntermediary.swift in Sources */,
 				CC05CB761EDEC6D700D15ABC /* CGPoint+Convenience.swift in Sources */,
 				CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */,
 				CB810E641EF00DB70043E3E5 /* User.swift in Sources */,
@@ -2223,6 +2255,7 @@
 				852020351EF8300800EA2032 /* PeakPerformanceUpcomingView.swift in Sources */,
 				CBB303421ECEE3E70011303A /* DateFormatter+Convenience.swift in Sources */,
 				CC6B3A291E8158B200E7FDFD /* PresentationManager.swift in Sources */,
+				CCE6CD801F15299F00B66DA3 /* MyStatisticsPeriod.swift in Sources */,
 				CC7D21B41EFC1348007A062E /* WeeklyChoicesViewModel.swift in Sources */,
 				CC41A5491EFD59FC00B9AE8E /* ArticleItemHeaderView.swift in Sources */,
 				CCE6CD751F1390AD00B66DA3 /* UIApplication+Convenience.swift in Sources */,
@@ -2237,7 +2270,9 @@
 				CC0FF8D61EA78C810028D64F /* MyToBeVisionCoordinator.swift in Sources */,
 				D5B707261F03A2BF00C812EB /* MorningInterviewViewModel.swift in Sources */,
 				CB34375E1EFD653B00D89D4F /* Answer.swift in Sources */,
+				CCE6CD7E1F15260D00B66DA3 /* MyStatistics.swift in Sources */,
 				CBC933121F0B9B3100C00007 /* ContentRelation.swift in Sources */,
+				CCE6CD841F152D5800B66DA3 /* DoubleObject.swift in Sources */,
 				0BA3E6421EC1A8280012999E /* DayEventChartView.swift in Sources */,
 				852DADE61EF1A40200A10882 /* SegmentedView.swift in Sources */,
 				8514A4881EE93D3C0086C70E /* PrepareContentFooterTableViewCell.swift in Sources */,
@@ -2301,6 +2336,7 @@
 				CB2880241E7051710067890A /* AppCoordinator.swift in Sources */,
 				CBB4DCFF1EDD6CE50071494A /* NetworkManager.swift in Sources */,
 				CB9B07631EF91B860017F6C3 /* CalendarEvent.swift in Sources */,
+				CCE6CD861F15313300B66DA3 /* MyStatisticsIntermediary.swift in Sources */,
 				CB1D5E3A1EC5E25A00BCDF8D /* ContentCategoryData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
