@@ -25,6 +25,7 @@ enum Endpoint: String {
     case systemSetting = "/personal/p/qot/systemSetting"
     case userSetting = "/personal/p/qot/userSetting2"
     case fitbitToken = "/b2b/fitbit/token"
+    case userChoice = "/personal/p/qot/userChoice"
 
     func url(baseURL: URL) -> URL {
         return baseURL.appendingPathComponent(rawValue)

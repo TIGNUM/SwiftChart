@@ -9,6 +9,7 @@
 import Foundation
 
 enum JsonKey: String {
+
     case `default`
     case answer
     case answers
@@ -25,7 +26,9 @@ enum JsonKey: String {
     case city
     case company
     case component
+    case contentCategoryId
     case contentId
+    case contentItemId
     case contentRelationType
     case coordinates
     case country
@@ -38,6 +41,7 @@ enum JsonKey: String {
     case daysOfTheYear
     case decisions
     case description
+    case deviceId
     case displayName
     case duration
     case email
@@ -67,8 +71,8 @@ enum JsonKey: String {
     case layoutInfo
     case location
     case longitude
-    case max
     case lowerThreshold
+    case max
     case maximum
     case maxPages
     case maxResults
@@ -83,12 +87,13 @@ enum JsonKey: String {
     case occurrenceCount
     case occurrenceDate
     case organizer
+    case ownText
     case page
     case pageId
     case pageIds
     case pageSize
-    case publicHolidays
     case periods
+    case publicHolidays
     case qotId
     case question
     case questionDescription
@@ -145,6 +150,7 @@ enum JsonKey: String {
     case upperThreshold
     case url
     case userAverage
+    case userId
     case userImageURL
     case userInfo
     case vacation

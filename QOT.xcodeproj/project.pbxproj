@@ -204,6 +204,9 @@
 		CBC1DC3B1F14D9FD00F6D056 /* UserSetting+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC3A1F14D9FD00F6D056 /* UserSetting+Convenience.swift */; };
 		CBC1DC3D1F14DA1200F6D056 /* UserSettingIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC3C1F14DA1200F6D056 /* UserSettingIntermediary.swift */; };
 		CBC1DC3F1F16067900F6D056 /* DownSyncIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC3E1F16067900F6D056 /* DownSyncIntermediary.swift */; };
+		CBC5ACBF1F162A9C007E1E9C /* UserChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5ACBE1F162A9C007E1E9C /* UserChoice.swift */; };
+		CBC5ACC11F162AAE007E1E9C /* UserChoiceIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5ACC01F162AAE007E1E9C /* UserChoiceIntermediary.swift */; };
+		CBC5ACC31F162ABF007E1E9C /* UserChoice+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5ACC21F162ABF007E1E9C /* UserChoice+Convenience.swift */; };
 		CBC933051F05253000C00007 /* JSON+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC933041F05253000C00007 /* JSON+Convenience.swift */; };
 		CBC933081F052DDA00C00007 /* PrepareCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC933071F052DDA00C00007 /* PrepareCoordinator.swift */; };
 		CBC9330F1F0AA47800C00007 /* PrepareEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC9330D1F0AA47800C00007 /* PrepareEventsViewController.swift */; };
@@ -601,6 +604,9 @@
 		CBC1DC3A1F14D9FD00F6D056 /* UserSetting+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserSetting+Convenience.swift"; sourceTree = "<group>"; };
 		CBC1DC3C1F14DA1200F6D056 /* UserSettingIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingIntermediary.swift; sourceTree = "<group>"; };
 		CBC1DC3E1F16067900F6D056 /* DownSyncIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownSyncIntermediary.swift; sourceTree = "<group>"; };
+		CBC5ACBE1F162A9C007E1E9C /* UserChoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserChoice.swift; sourceTree = "<group>"; };
+		CBC5ACC01F162AAE007E1E9C /* UserChoiceIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserChoiceIntermediary.swift; sourceTree = "<group>"; };
+		CBC5ACC21F162ABF007E1E9C /* UserChoice+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserChoice+Convenience.swift"; sourceTree = "<group>"; };
 		CBC933041F05253000C00007 /* JSON+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Convenience.swift"; sourceTree = "<group>"; };
 		CBC933071F052DDA00C00007 /* PrepareCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareCoordinator.swift; sourceTree = "<group>"; };
 		CBC9330D1F0AA47800C00007 /* PrepareEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsViewController.swift; sourceTree = "<group>"; };
@@ -1185,10 +1191,11 @@
 				7F0888821F0A4B9C005CE966 /* Partner */,
 				CB9AFD121F014AF300D067F2 /* Preparation */,
 				CB9AFD151F014BAE00D067F2 /* PreparationCheck */,
-				CBC1DC131F0F68E500F6D056 /* Setting */,
 				CBC1DC201F0FB32F00F6D056 /* Questions */,
+				CBC1DC131F0F68E500F6D056 /* Setting */,
 				CB34376C1EFE7F5800D89D4F /* SyncRecord */,
 				CB810E621EF00D9F0043E3E5 /* User */,
+				CBC5ACBD1F162A1F007E1E9C /* UserChoice */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1707,6 +1714,16 @@
 				CBC1DC1A1F0F910500F6D056 /* SettingValueObject.swift */,
 			);
 			name = SettingValue;
+			sourceTree = "<group>";
+		};
+		CBC5ACBD1F162A1F007E1E9C /* UserChoice */ = {
+			isa = PBXGroup;
+			children = (
+				CBC5ACBE1F162A9C007E1E9C /* UserChoice.swift */,
+				CBC5ACC21F162ABF007E1E9C /* UserChoice+Convenience.swift */,
+				CBC5ACC01F162AAE007E1E9C /* UserChoiceIntermediary.swift */,
+			);
+			name = UserChoice;
 			sourceTree = "<group>";
 		};
 		CBC933061F052CBA00C00007 /* Prepare */ = {
@@ -2284,6 +2301,7 @@
 				CBC1DC3F1F16067900F6D056 /* DownSyncIntermediary.swift in Sources */,
 				CC311A1D1EAF39DF0020C869 /* SettingsTableViewCell.swift in Sources */,
 				8548BBE01F0D4BF900AC7C06 /* SensorAuthorisationHandler.swift in Sources */,
+				CBC5ACC11F162AAE007E1E9C /* UserChoiceIntermediary.swift in Sources */,
 				CB14676E1EF2AB7000A60E31 /* DeviceIdentifier.swift in Sources */,
 				CCE372FF1E8D2AE700B79352 /* MyPrepViewModel.swift in Sources */,
 				0BB099CB1EBC6323006B2FB7 /* CarouselCellView.swift in Sources */,
@@ -2292,6 +2310,7 @@
 				CCC1B6AB1E8B9B7300D1461F /* LearnCategoryListViewModel.swift in Sources */,
 				CCE372FD1E8D2AD100B79352 /* MyPrepViewController.swift in Sources */,
 				CB3437531EFAC8F500D89D4F /* UpSyncResultParser.swift in Sources */,
+				CBC5ACC31F162ABF007E1E9C /* UserChoice+Convenience.swift in Sources */,
 				7F691C5A1F0D1AB700E2C180 /* MyToBeVisionIntermediary.swift in Sources */,
 				CC0FF8D81EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift in Sources */,
 				CC8813EB1EF2EA33000FB85F /* LearnContentItemRecommendedCell.swift in Sources */,
@@ -2375,6 +2394,7 @@
 				CB1D5E411EC5E25A00BCDF8D /* JSONDecodable.swift in Sources */,
 				CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */,
 				CBC1DC351F14D34000F6D056 /* SettingValue.swift in Sources */,
+				CBC5ACBF1F162A9C007E1E9C /* UserChoice.swift in Sources */,
 				CC0FF8D21EA784400028D64F /* PartnersViewModel.swift in Sources */,
 				8548BBDC1F0D263000AC7C06 /* RequestDeviceSensorCollectionViewCell.swift in Sources */,
 				858AF6931EF904AB00486605 /* PeakPerformanceUpcomingChartView.swift in Sources */,

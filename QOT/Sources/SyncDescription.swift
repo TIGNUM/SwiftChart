@@ -17,6 +17,7 @@ let PageDown = SyncDescription<PageIntermediary, Page>(syncType: .pageDown)
 let QuestionDown = SyncDescription<QuestionIntermediary, Question>(syncType: .questionDown)
 let SystemSettingDown = SyncDescription<SystemSettingIntermediary, SystemSetting>(syncType: .systemSettingDown)
 let UserSettingDown = SyncDescription<UserSettingIntermediary, UserSetting>(syncType: .userSettingDown)
+let UserChoiceDown = SyncDescription<UserChoiceIntermediary, UserChoice>(syncType: .userChoiceDown)
 
 struct SyncDescription<Intermediary, Persistable> where Intermediary: DownSyncIntermediary {
     let syncType: SyncType

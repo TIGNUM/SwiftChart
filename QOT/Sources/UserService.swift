@@ -158,3 +158,19 @@ extension UserService {
     }
 
 }
+
+// MARK: User Choice
+
+extension UserService {
+
+    func createUserChoice(contentCategoryID: Int, contentCollectionID: Int, startDate: Date, endDate: Date) throws -> UserChoice {
+        let choice = UserChoice(contentCategoryID: contentCategoryID,
+                                contentCollectionID: contentCollectionID,
+                                startDate: startDate,
+                                endDate: endDate)
+        try mainRealm.write {
+            mainRealm.add(choice)
+        }
+        return choice
+    }
+}

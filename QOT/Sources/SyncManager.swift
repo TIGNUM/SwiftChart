@@ -46,6 +46,7 @@ final class SyncManager {
             downSyncOperation(for: UserDown, context: context),
             downSyncOperation(for: QuestionDown, context: context),
             downSyncOperation(for: PageDown, context: context),
+            downSyncOperation(for: UserChoiceDown, context: context),
             downSyncOperation(for: ContentCategoryDown, context: context),
             downSyncOperation(for: ContentCollectionDown, context: context),
             downSyncOperation(for: ContentItemDown, context: context, isFinalOperation: true)
