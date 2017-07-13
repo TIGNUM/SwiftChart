@@ -27,7 +27,6 @@ final class ContentItem: Object {
 
     func setData(_ data: ContentItemIntermediary) throws {
         sortOrder = data.sortOrder
-        secondsRequired = data.secondsRequired
         format = data.format
         viewed = data.viewed
         searchTags = data.searchTags
@@ -44,8 +43,6 @@ final class ContentItem: Object {
     // MARK: ContentData
 
     fileprivate(set) dynamic var sortOrder: Int = 0
-
-    fileprivate(set) dynamic var secondsRequired: Int = 0
 
     fileprivate(set) dynamic var format: String = ""
 
@@ -73,6 +70,10 @@ final class ContentItem: Object {
 
     let relatedContent: List<ContentRelation> = List()
 
+    var secondsRequired: Int {
+        return Int(valueDuration.value ?? 0.0)
+    }
+    
     // MARK: Realm
 
     override class func primaryKey() -> String? {
@@ -90,7 +91,6 @@ extension ContentItem: DownSyncable {
 
     func setData(_ data: ContentItemIntermediary, objectStore: ObjectStore) throws {
         sortOrder = data.sortOrder
-        secondsRequired = data.secondsRequired
         format = data.format
         viewed = data.viewed
         searchTags = data.searchTags
