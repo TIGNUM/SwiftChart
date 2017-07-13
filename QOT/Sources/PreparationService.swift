@@ -92,6 +92,6 @@ final class PreparationService {
 private extension Realm {
 
     func preparationChecks(preparationID: String) -> AnyRealmCollection<PreparationCheck> {
-        return  anyCollection(predicates: .deleted(false), .preparationID(preparationID))
+        return anyCollection(predicates: .deleted(false), .preparationID(preparationID))
     }
 }

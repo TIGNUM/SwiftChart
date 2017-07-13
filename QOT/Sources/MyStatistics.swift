@@ -34,10 +34,19 @@ final class MyStatistics: Object {
     var dataPoints: List<DoubleObject> = List()
 
     var periods: List<MyStatisticsPeriod> = List()
+}
 
-    convenience init(_ data: MyStatisticsIntermediary) {
-        self.init()
+extension MyStatistics: DownSyncable {
 
+    static func make(remoteID: Int, createdAt: Date) -> MyStatistics {
+        let myStatistics = MyStatistics()
+        myStatistics.remoteID = remoteID
+        myStatistics.createdAt = createdAt
+
+        return myStatistics
+    }
+
+    func setData(_ data: MyStatisticsIntermediary, objectStore: ObjectStore) throws {
         key = data.key
         userAverage = data.userAverage
         teamAverage = data.teamAverage
@@ -45,7 +54,9 @@ final class MyStatistics: Object {
         upperThreshold = data.upperTreshold
         lowerThreshold = data.lowerTreshold
         maximum = data.maximum
+        dataPoints.forEach { $0.delete() }
+        periods.forEach { $0.delete() }
         dataPoints.append(objectsIn: data.dataPoints.map({ DoubleObject(double: $0) }))
         periods.append(objectsIn: data.periods.map({ MyStatisticsPeriod( $0 ) }))
-    }
+    } 
 }

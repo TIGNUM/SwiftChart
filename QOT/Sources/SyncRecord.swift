@@ -15,6 +15,7 @@ enum SyncType: String {
     case userDown
     case pageDown
     case questionDown
+    case dataPointDown
     case systemSettingDown
     case userSettingDown
     case userChoiceDown
@@ -27,6 +28,7 @@ enum SyncType: String {
         case .userDown: return .user
         case .pageDown: return .page
         case .questionDown: return .question
+        case .dataPointDown: return .dataPoint
         case .systemSettingDown: return .systemSetting
         case .userSettingDown: return .userSetting
         case .userChoiceDown: return .userChoice

@@ -14,6 +14,7 @@ final class MyStatisticsViewModel {
     // MARK: - Properties
 
     let updates = PublishSubject<CollectionUpdate, NoError>()
+    fileprivate let cards: [[MyStatistics]]
 
     var numberOfSections: Int {
         return MyStatisticsSectionType.allValues.count
@@ -29,6 +30,10 @@ final class MyStatisticsViewModel {
         }
 
         return sectionType
+    }
+
+    init(cards: [[MyStatistics]]) {
+        self.cards = cards
     }
 }
 
@@ -64,6 +69,66 @@ enum MyStatisticsCardType {
     case activitySittingMovementRatio
     case activityLevel
     case intensity
+
+    static var allValues: [MyStatisticsCardType] {
+        return [
+            .meetingAverage,
+            .meetingLength,
+            .meetingTimeBetween,
+            .meetingHeartRateChange,
+            .travelTripsMeeting,
+            .travelTripsNextFourWeeks,
+            .travelTripsTimeZoneChanged,
+            .travelTripsMaxTimeZone,
+            .peakPerformanceUpcoming,
+            .peakPerformanceAverage,
+            .sleepQuantity,
+            .sleepQuality,
+            .activitySittingMovementRatio,
+            .activityLevel,
+            .intensity
+        ]
+    }
+
+    var keys: [String] {
+        switch self {
+        case .meetingAverage: return ["meetingsNumber.day", "meetingsNumber.week"]
+        case .meetingLength: return ["meetingsLength"]
+        case .meetingTimeBetween: return ["meetingsTimeBetween"]
+        case .meetingHeartRateChange: return []
+        case .travelTripsMeeting: return ["travelNumberOfMeetings.4weeks", "travelNumberOfMeetings.year"]
+        case .travelTripsNextFourWeeks: return ["travelTripsNextFourWeeks.weeks", "travelTripsNextFourWeeks.year"]
+        case .travelTripsTimeZoneChanged: return ["travelTimeZoneChange.week", "travelTimeZoneChange.year"]
+        case .travelTripsMaxTimeZone: return []
+        case .peakPerformanceUpcoming: return ["peakPerformanceUpcoming.week", "peakPerformanceUpcoming.nextWeek"]
+        case .peakPerformanceAverage: return ["peakPerformanceAverage.week", "peakPerformanceAverage.month"]
+        case .sleepQuantity: return ["Sleep.Quantity"]
+        case .sleepQuality: return ["Sleep.Quality"]
+        case .activitySittingMovementRatio: return ["activitySittingMovement"]
+        case .activityLevel: return ["activityLevel"]
+        case .intensity: return ["intentensity.week", "intentensity.month"]
+        }
+    }
+
+    var myStatistics: [MyStatistics] {
+        switch self {
+        case .meetingAverage: return []
+        case .meetingLength: return []
+        case .meetingTimeBetween: return []
+        case .meetingHeartRateChange: return []
+        case .travelTripsMeeting: return []
+        case .travelTripsNextFourWeeks: return []
+        case .travelTripsTimeZoneChanged: return []
+        case .travelTripsMaxTimeZone: return []
+        case .peakPerformanceUpcoming: return []
+        case .peakPerformanceAverage: return []
+        case .sleepQuantity: return []
+        case .sleepQuality: return []
+        case .activitySittingMovementRatio: return []
+        case .activityLevel: return []
+        case .intensity: return []
+        }
+    }
 }
 
 enum MyStatisticsSectionType: Int {

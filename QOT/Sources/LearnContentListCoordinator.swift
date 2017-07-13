@@ -29,9 +29,6 @@ final class LearnContentListCoordinator: ParentCoordinator {
     func start() {
         let viewModel = LearnContentCollectionViewModel(categories: services.contentService.learnContentCategories(), selectedIndex: selectedCategoryIndex)
         let contentListViewController = LearnContentListViewController(viewModel: viewModel, selectedCategoryIndex: self.selectedCategoryIndex)
-        contentListViewController.modalTransitionStyle = .crossDissolve
-        contentListViewController.modalPresentationStyle = .custom
-        contentListViewController.delegate = self
 
         let topTabBarControllerItem = TopTabBarController.Item(
             controllers: [contentListViewController],
@@ -41,8 +38,11 @@ final class LearnContentListCoordinator: ParentCoordinator {
         let topTabBarController = TopTabBarController(
             item: topTabBarControllerItem
         )
-        
+
+        contentListViewController.delegate = self
         topTabBarController.delegate = self
+        topTabBarController.modalTransitionStyle = .crossDissolve
+        topTabBarController.modalPresentationStyle = .fullScreen
         rootVC.present(topTabBarController, animated: true)
     }
 }

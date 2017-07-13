@@ -27,22 +27,28 @@ final class MyStatisticsCoordinator: ParentCoordinator {
     }
 
     func start() {
-        let myStatisticsViewController = MyStatisticsViewController(viewModel: MyStatisticsViewModel())
-        myStatisticsViewController.delegate = self
+        do {
+            let cards = try services.myStatisticsService.cards()
+            let viewModel = MyStatisticsViewModel(cards: cards)
+            let myStatisticsViewController = MyStatisticsViewController(viewModel: viewModel)
+            myStatisticsViewController.delegate = self
 
-        let topTabBarControllerItem = TopTabBarController.Item(
-            controllers: [myStatisticsViewController],
-            themes: [.darkClear],
-            titles: ["23 SEP // 30 Sep"]
-        )
+            let topTabBarControllerItem = TopTabBarController.Item(
+                controllers: [myStatisticsViewController],
+                themes: [.darkClear],
+                titles: ["23 SEP // 30 Sep"]
+            )
 
-        let topTabBarController = TopTabBarController(
-            item: topTabBarControllerItem,
-            leftIcon: R.image.ic_minimize()
-        )
+            let topTabBarController = TopTabBarController(
+                item: topTabBarControllerItem,
+                leftIcon: R.image.ic_minimize()
+            )
 
-        topTabBarController.delegate = self
-        rootViewController.present(topTabBarController, animated: true)
+            topTabBarController.delegate = self
+            rootViewController.present(topTabBarController, animated: true)
+        } catch let error {
+            assertionFailure("Failed to fetch cards with error: \(error)")
+        }
     }
 }
 

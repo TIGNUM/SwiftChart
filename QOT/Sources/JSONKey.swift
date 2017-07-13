@@ -46,6 +46,7 @@ enum JsonKey: String {
     case duration
     case email
     case employment
+    case end
     case endDate
     case firstDayOfTheWeek
     case firstName
@@ -125,6 +126,7 @@ enum JsonKey: String {
     case settingTextValue
     case settingTextValueDtos
     case sortOrder
+    case start
     case startDate
     case status
     case street

@@ -9,7 +9,7 @@
 import Foundation
 import Freddy
 
-struct MyStatisticsIntermediary: JSONDecodable {
+struct MyStatisticsIntermediary: DownSyncIntermediary {
 
     let key: String
     let userAverage: Double

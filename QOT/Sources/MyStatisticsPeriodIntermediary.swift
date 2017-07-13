@@ -9,13 +9,13 @@
 import Foundation
 import Freddy
 
-struct MyStatisticsPeriodIntermediary: JSONDecodable {
+struct MyStatisticsPeriodIntermediary: DownSyncIntermediary {
 
     let startDate: Date
     let endDate: Date
 
     init(json: JSON) throws {
-        startDate = try json.getDate(at: .startDate)
-        endDate = try json.getDate(at: .endDate)
+        startDate = try json.getDate(at: .start)
+        endDate = try json.getDate(at: .end)
     }
 }

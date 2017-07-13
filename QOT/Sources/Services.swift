@@ -21,6 +21,7 @@ final class Services {
     let userService: UserService
     let eventsService: EventsService
     let settingsService: SettingsService
+    let myStatisticsService: MyStatisticsService
     lazy var trackingService: EventTracker = {
         return EventTracker(realmProvider: { return try Realm() })
     }()
@@ -34,7 +35,8 @@ final class Services {
         partnerService: PartnerService,
         userService: UserService,
         eventsService: EventsService,
-        settingsService: SettingsService) {
+        settingsService: SettingsService,
+        myStatisticsService: MyStatisticsService) {
             self.mainRealm = mainRealm
             self.contentService = contentService
             self.articleService = articleService
@@ -44,6 +46,7 @@ final class Services {
             self.userService = userService
             self.eventsService = eventsService
             self.settingsService = settingsService
+            self.myStatisticsService = myStatisticsService
     }
 
     static func make(completion: @escaping (Result<Services, NSError>) -> Void) {
@@ -69,6 +72,7 @@ final class Services {
                     let userService = UserService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let eventsService = EventsService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let settingsService = SettingsService(realm: mainRealm)
+                    let myStatisticsService = MyStatisticsService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let services = Services(
                         mainRealm: mainRealm,
                         contentService: contentService,
@@ -78,7 +82,8 @@ final class Services {
                         partnerService: partnerService,
                         userService: userService,
                         eventsService: eventsService,
-                        settingsService: settingsService
+                        settingsService: settingsService,
+                        myStatisticsService: myStatisticsService
                     )
                     
                     do {

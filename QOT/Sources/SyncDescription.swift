@@ -15,6 +15,7 @@ let ContentItemDown = SyncDescription<ContentItemIntermediary, ContentItem>(sync
 let UserDown = SyncDescription<UserIntermediary, User>(syncType: .userDown)
 let PageDown = SyncDescription<PageIntermediary, Page>(syncType: .pageDown)
 let QuestionDown = SyncDescription<QuestionIntermediary, Question>(syncType: .questionDown)
+let DataPointDown = SyncDescription<MyStatisticsIntermediary, MyStatistics>(syncType: .dataPointDown)
 let SystemSettingDown = SyncDescription<SystemSettingIntermediary, SystemSetting>(syncType: .systemSettingDown)
 let UserSettingDown = SyncDescription<UserSettingIntermediary, UserSetting>(syncType: .userSettingDown)
 let UserChoiceDown = SyncDescription<UserChoiceIntermediary, UserChoice>(syncType: .userChoiceDown)
