@@ -150,7 +150,7 @@ extension UserService {
 
 extension UserService {
 
-    func userChoices() -> AnyRealmCollection<UserChoice>? {
+    func userChoices() -> AnyRealmCollection<UserChoice> {
         return AnyRealmCollection(mainRealm.objects(UserChoice.self))
     }
     

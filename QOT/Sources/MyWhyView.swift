@@ -75,7 +75,7 @@ private extension MyWhyView {
     func drawMyWhy(myWhyViewModel: MyWhyViewModel, layout: Layout.MeSection) {
         drawSpikes(layout: layout)
 
-        myWhyViewModel.items.forEach { (myWhy: MyWhy) in
+        myWhyViewModel.items?.forEach { (myWhy: MyWhyViewModel.MyWhy) in
             switch myWhy {
             case .vision(let vision):
                 addToBeVision(layout: layout, vision: vision)

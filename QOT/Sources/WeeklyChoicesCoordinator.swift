@@ -26,7 +26,9 @@ final class WeeklyChoicesCoordinator: ParentCoordinator {
     }
 
     func start() {
-        let weeklyChoicesViewController = WeeklyChoicesViewController(viewModel: WeeklyChoicesViewModel())
+        let userChoices = self.services.userService.userChoices()
+        let viewModel = WeeklyChoicesViewModel(contentService: services.contentService, userChoices: userChoices)
+        let weeklyChoicesViewController = WeeklyChoicesViewController(viewModel: viewModel)
         weeklyChoicesViewController.delegate = self
 
         let topTabBarControllerItem = TopTabBarController.Item(

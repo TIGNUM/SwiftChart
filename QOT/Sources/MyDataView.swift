@@ -38,9 +38,9 @@ final class MyDataView: UIView, MyUniverseView {
 
     // MARK: - Properties
 
-    var profileImageButton: UIButton!
-    var profileImageViewOverlay: UIImageView!
-    var profileImageViewOverlayEffect: UIImageView!
+    var profileImageButton = UIButton()
+    var profileImageViewOverlay = UIImageView()
+    var profileImageViewOverlayEffect = UIImageView()
     var sectors = [Sector]()
     var profileImage: UIImage?
     var previousBounds = CGRect.zero

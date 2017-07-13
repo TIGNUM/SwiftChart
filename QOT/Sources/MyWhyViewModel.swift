@@ -11,18 +11,35 @@ import ReactiveKit
 import RealmSwift
 
 final class MyWhyViewModel {
+    enum MyWhy {
+        case vision(MyToBeVision?)
+        case weeklyChoices(title: String, choices: [WeeklyChoice])
+        case partners(title: String, partners: AnyRealmCollection<Partner>)
+        
+        enum Index: Int {
+            case vision = 0
+            case weeklyChoices
+            case partners
+        }
+    }
 
     // MARK: - Properties
 
-    let items: [MyWhy]
+    var items: [MyWhy]?
     let partners: AnyRealmCollection<Partner>
     let myToBeVision: MyToBeVision?
+    let userChoices: AnyRealmCollection<UserChoice>
     let updates = PublishSubject<CollectionUpdate, NoError>()
+    private let contentService: ContentService
     private var partnersNotificationToken: NotificationToken?
     private var visionNotificationToken: NotificationToken?
-
+    private var userChoiceNotificationToken: NotificationToken?
+    private var maxWeeklyItems: Int {
+        return Layout.MeSection.maxWeeklyPage
+    }
+    
     var itemCount: Int {
-        return items.count
+        return items?.count ?? 0
     }
 
     func itemCount(for myWhyItem: MyWhy) -> Int {
@@ -33,103 +50,73 @@ final class MyWhyViewModel {
         }
     }
     
-    init(partners: AnyRealmCollection<Partner>, vision: MyToBeVision?) {
-        items = [
-            .vision(vision),
-            .weeklyChoices(title: R.string.localized.meSectorMyWhyWeeklyChoicesTitle(), choices: weeklyChoices),
-            .partners(title: R.string.localized.meSectorMyWhyPartnersTitle(), partners: partners)
-        ]
+    init(partners: AnyRealmCollection<Partner>, myToBeVision: MyToBeVision?, userChoices: AnyRealmCollection<UserChoice>, contentService: ContentService) {
         self.partners = partners
-        myToBeVision = vision
+        self.myToBeVision = myToBeVision
+        self.userChoices = userChoices
+        self.contentService = contentService
 
-        partnersNotificationToken = partners.addNotificationBlock { (changes: RealmCollectionChange<AnyRealmCollection<Partner>>) in
+        partnersNotificationToken = partners.addNotificationBlock { [weak self] (changes: RealmCollectionChange<AnyRealmCollection<Partner>>) in
             switch changes {
             case .update(_, deletions: _, insertions: _, modifications: _):
-                self.updates.next(.reload)
+                self?.updates.next(.reload)
                 break
             default:
                 break
             }
         }
-        visionNotificationToken = myToBeVision?.addNotificationBlock { (change: ObjectChange) in
+        visionNotificationToken = myToBeVision?.addNotificationBlock { [weak self] (change: ObjectChange) in
             switch change {
             case .change:
-                self.updates.next(.reload)
+                self?.updates.next(.reload)
                 break
             default:
                 break
             }
         }
+        userChoiceNotificationToken = userChoices.addNotificationBlock { [weak self] (changes: RealmCollectionChange<AnyRealmCollection<UserChoice>>) in
+            switch changes {
+            case .update(_, deletions: _, insertions: _, modifications: _):
+                self?.refreshDataSource()
+                self?.updates.next(.reload)
+                break
+            default:
+                break
+            }
+        }
+        refreshDataSource()
     }
     
     deinit {
         partnersNotificationToken?.stop()
         visionNotificationToken?.stop()
+        userChoiceNotificationToken?.stop()
     }
-}
-
-enum MyWhy {
-    case vision(MyToBeVision?)
-    case weeklyChoices(title: String, choices: [WeeklyChoice])
-    case partners(title: String, partners: AnyRealmCollection<Partner>)
-
-    enum Index: Int {
-        case vision = 0
-        case weeklyChoices = 1
-        case partners = 2
+    
+    // MARK: - private
+    
+    private func refreshDataSource() {
+        var userChoices = self.userChoices.sorted { $0.startDate > $1.startDate }
+        userChoices = (userChoices.count > maxWeeklyItems) ? Array(userChoices[0...maxWeeklyItems-1]) : userChoices
+        let weeklyChoices: [WeeklyChoice] = userChoices.map { (userChoice: UserChoice) -> WeeklyChoice in
+            var title: String?
+            if let contentCollectionID = userChoice.contentCollectionID, let contentCollection = self.contentService.contentCollection(id: contentCollectionID) {
+                title = contentCollection.title
+            }
+            return WeeklyChoice(
+                localID: userChoice.localID,
+                contentCollectionID: userChoice.contentCollectionID ?? 0,
+                categoryID: userChoice.contentCategoryID ?? 0,
+                title: title,
+                startDate: userChoice.startDate,
+                endDate: userChoice.endDate,
+                selected: true
+            )
+        }
+        items = [
+            .vision(myToBeVision),
+            .weeklyChoices(title: R.string.localized.meSectorMyWhyWeeklyChoicesTitle(), choices: weeklyChoices),
+            .partners(title: R.string.localized.meSectorMyWhyPartnersTitle(), partners: partners)
+        ]
     }
-}
-
-private var weeklyChoices: [WeeklyChoice] {
-    return [
-        WeeklyChoice(
-            localID: UUID().uuidString,
-            contentCollectionID: 0,
-            categoryID: 0,
-            title: "You are having a Lorem ipsum here and",
-            startDate: Date(),
-            endDate: Date(),
-            selected: false
-        ),
-
-        WeeklyChoice(
-            localID: UUID().uuidString,
-            contentCollectionID: 0,
-            categoryID: 0,
-            title: "You are having a Lorem ipsum here and",
-            startDate: Date(),
-            endDate: Date(),
-            selected: false
-        ),
-
-        WeeklyChoice(
-            localID: UUID().uuidString,
-            contentCollectionID: 0,
-            categoryID: 0,
-            title: "You are having a Lorem ipsum here and",
-            startDate: Date(),
-            endDate: Date(),
-            selected: false
-        ),
-
-        WeeklyChoice(
-            localID: UUID().uuidString,
-            contentCollectionID: 0,
-            categoryID: 0,
-            title: "You are having a Lorem ipsum here and",
-            startDate: Date(),
-            endDate: Date(),
-            selected: false
-        ),
-
-        WeeklyChoice(
-            localID: UUID().uuidString,
-            contentCollectionID: 0,
-            categoryID: 0,
-            title: "You are having a Lorem ipsum here and",
-            startDate: Date(),
-            endDate: Date(),
-            selected: false
-        )
-    ]
 }

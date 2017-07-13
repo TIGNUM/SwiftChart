@@ -8,11 +8,11 @@
 
 import Foundation
 import ReactiveKit
-import LoremIpsum
+import RealmSwift
 
 final class WeeklyChoicesViewModel {
-
     struct WeeklyChoicePage {
+        // TODO: should this be dynamic based on Layout.MeSection.maxWeeklyPage?
         var weekStart: Date
         var choice1: WeeklyChoice?
         var choice2: WeeklyChoice?
@@ -20,25 +20,32 @@ final class WeeklyChoicesViewModel {
         var choice4: WeeklyChoice?
         var choice5: WeeklyChoice?
 
-        init(weekStart: Date, choice1: WeeklyChoice? = nil, choice2: WeeklyChoice? = nil, choice3: WeeklyChoice? = nil, choice4: WeeklyChoice? = nil, choice5: WeeklyChoice? = nil) {
+        init(weekStart: Date, choices: [WeeklyChoice]) {
             self.weekStart = weekStart
-            self.choice1 = choice1
-            self.choice2 = choice2
-            self.choice3 = choice3
-            self.choice4 = choice4
-            self.choice5 = choice5
+            self.choice1 = (choices.count >= 1) ? choices[0] : nil
+            self.choice2 = (choices.count >= 2) ? choices[1] : nil
+            self.choice3 = (choices.count >= 3) ? choices[2] : nil
+            self.choice4 = (choices.count >= 4) ? choices[3] : nil
+            self.choice5 = (choices.count >= 5) ? choices[4] : nil
         }
     }
 
-    // MARK: - Properties
+    var itemsPerWeek: Int {
+        return Layout.MeSection.maxWeeklyPage
+    }
 
-    let itemsPerWeek = 5
-
+    private let contentService: ContentService
+    private let userChoices: AnyRealmCollection<UserChoice>
     var items: [WeeklyChoicePage] = []
     let updates = PublishSubject<CollectionUpdate, NoError>()
-
     var itemCount: Int {
         return items.count * itemsPerWeek
+    }
+    
+    init(contentService: ContentService, userChoices: AnyRealmCollection<UserChoice>) {
+        self.contentService = contentService
+        self.userChoices = userChoices
+        loadWeeklyChoices()
     }
 
     func pageDates(forIndex index: Index) -> String {
@@ -80,60 +87,40 @@ final class WeeklyChoicesViewModel {
         }
     }
 
-    // MARK: - Initialisation
-
-    init() {
-        weeklyChoices()
+    // MARK: - private
+    
+    private func loadWeeklyChoices() {
+        guard userChoices.count > 0 else {
+            return
+        }
+        let sortedUserChoices = userChoices.sorted { $0.startDate > $1.startDate }
+        var index = 0
+        repeat {
+            let date = sortedUserChoices[index].startDate
+            let filteredUserChoices = Array(userChoices.filter { $0.startDate == date })
+            let cappedChoices = (filteredUserChoices.count > itemsPerWeek) ? Array(filteredUserChoices[0...itemsPerWeek-1]) : filteredUserChoices
+            let weeklyChoices = weeklyChoicesFromUserChoices(cappedChoices)
+            let page = WeeklyChoicePage(weekStart: date, choices: weeklyChoices)
+            items.append(page)
+            index += filteredUserChoices.count
+        } while index < userChoices.count
     }
 
-    private func weeklyChoices() {
-
-        for index in 0..<52 {
-            var weekChoices = WeeklyChoicePage(weekStart: Date() - TimeInterval(index * 7 * 24 * 3600))
-
-            weekChoices.choice1 =  WeeklyChoice(
-                localID: UUID().uuidString,
-                contentCollectionID: 0,
-                categoryID: 0,
-                title:  LoremIpsum.title(),
-                startDate: Date(),
-                endDate: Date(),
-                selected: false
+    private func weeklyChoicesFromUserChoices(_ userChoices: [UserChoice]) -> [WeeklyChoice] {
+        return userChoices.map { (userChoice: UserChoice) -> WeeklyChoice in
+            var title: String?
+            if let contentCollectionID = userChoice.contentCollectionID, let contentCollection = self.contentService.contentCollection(id: contentCollectionID) {
+                title = contentCollection.title
+            }
+            return WeeklyChoice(
+                localID: userChoice.localID,
+                contentCollectionID: userChoice.contentCollectionID ?? 0,
+                categoryID: userChoice.contentCategoryID ?? 0,
+                title: title,
+                startDate: userChoice.startDate,
+                endDate: userChoice.endDate,
+                selected: true
             )
-
-            weekChoices.choice2 =  WeeklyChoice(
-                localID: UUID().uuidString,
-                contentCollectionID: 0,
-                categoryID: 0,
-                title:  LoremIpsum.title(),
-                startDate: Date(),
-                endDate: Date(),
-                selected: false
-            )
-
-            weekChoices.choice3 =  WeeklyChoice(
-                localID: UUID().uuidString,
-                contentCollectionID: 0,
-                categoryID: 0,
-                title:  LoremIpsum.title(),
-                startDate: Date(),
-                endDate: Date(),
-                selected: false
-            )
-
-            weekChoices.choice4 = nil
-
-            weekChoices.choice5 =  WeeklyChoice(
-                localID: UUID().uuidString,
-                contentCollectionID: 0,
-                categoryID: 0,
-                title:  LoremIpsum.title(),
-                startDate: Date(),
-                endDate: Date(),
-                selected: false
-            )
-            
-            items.append(weekChoices)
         }
     }
 }

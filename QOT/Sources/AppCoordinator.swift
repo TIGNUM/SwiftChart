@@ -95,7 +95,7 @@ final class AppCoordinator: ParentCoordinator {
             return
         }
         
-        let viewModel = SelectWeeklyChoicesDataModel(data: contentCategories, maxSelectionCount: 5, startDate: startDate, endDate: endDate)
+        let viewModel = SelectWeeklyChoicesDataModel(data: contentCategories, maxSelectionCount: Layout.MeSection.maxWeeklyPage, startDate: startDate, endDate: endDate)
         let image = window.rootViewController?.view.screenshot()
         let viewController = SelectWeeklyChoicesViewController(delegate: self, viewModel: viewModel, backgroundImage: image)
         switchToSecondaryWindow()
@@ -225,24 +225,4 @@ extension AppCoordinator: RemoteNotificationHandlerDelegate {
     func remoteNotificationHandler(_ remoteNotificationHandler: RemoteNotificationHandler, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         // FIXME: handle error
     }    
-}
-
-// MARK: - PrepareContentViewControllerDelegate
-
-extension AppCoordinator: LearnContentItemViewControllerDelegate {
-    // TODO: this implementation
-
-    func didTapShare(in viewController: LearnContentItemViewController) {}
-    
-    func didTapVideo(with video: ContentItem, from view: UIView, in viewController: LearnContentItemViewController) {}
-    
-    func didTapArticle(with article: ContentItem, from view: UIView, in viewController: LearnContentItemViewController) {}
-    
-    func didChangeTab(to nextIndex: Index, in viewController: TopTabBarController) {}
-    
-    func didTapFinish(from view: UIView) {}
-    
-    func didSelectReadMoreContentCollection(with collectionID: Int, in viewController: LearnContentItemViewController) {}
-    
-    func didViewContentItem(id: Int, in viewController: LearnContentItemViewController) {}
 }

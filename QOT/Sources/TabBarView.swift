@@ -122,7 +122,7 @@ class TabBarView: UIView {
 
         setNeedsLayout()
         syncButtonTitles()
-        setSelectedIndex(selectedIndex, animated: false)
+        _ = setSelectedIndex(selectedIndex, animated: false)
     }
 
     // MARK: Private methods
