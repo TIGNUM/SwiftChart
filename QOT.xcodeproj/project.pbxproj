@@ -1899,6 +1899,7 @@
 				CBB2380F1E6FFF2700AB5AEF /* Swift Lint */,
 				81E2E98BE745C586EA31F424 /* [CP] Embed Pods Frameworks */,
 				5EB4CCEE8904BC282CD31F04 /* [CP] Copy Pods Resources */,
+				CBC5ACC41F177F0E007E1E9C /* Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -2166,6 +2167,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		CBC5ACC41F177F0E007E1E9C /* Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Crashlytics;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" c5b6a77e0ac832aeb121a8444afaba1522a28469 d4ca106b8d4d308cc6c505618f78c345e3e6bd462c0bd7a433abfc3f733a4783";
 		};
 /* End PBXShellScriptBuildPhase section */
 

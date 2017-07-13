@@ -8,6 +8,8 @@
 
 import UIKit
 import UserNotifications
+import Fabric
+import Crashlytics
 
 extension AppDelegate {
     static var current: AppDelegate {
@@ -34,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Life Cycle
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        Fabric.with([Crashlytics.self])
         AppDelegate.enterDate = Date()
         UIApplication.shared.statusBarStyle = .lightContent
         window = UIWindow(frame: UIScreen.main.bounds)

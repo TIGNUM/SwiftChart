@@ -20,6 +20,8 @@ target 'QOT' do
   pod 'ImagePicker', '~> 2.1.1'
   pod 'BonMot', '~> 4.3.1'
   pod 'MBProgressHUD', '~> 1.0.0'
+  pod 'Fabric'
+  pod 'Crashlytics'
 
   target 'QOTTests' do
     inherit! :search_paths
