@@ -53,6 +53,7 @@
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <connections>
+                <outlet property="bottomSeparator" destination="QFA-qo-egT" id="6Nb-dJ-EXd"/>
                 <outlet property="leftButton" destination="Jr4-sr-HV7" id="g38-Cn-3dU"/>
                 <outlet property="rightButton" destination="su8-HZ-Bci" id="S8B-Kz-7rq"/>
                 <outlet property="titleLabel" destination="bJC-25-Ysl" id="RFg-z7-df2"/>

@@ -44,7 +44,7 @@ final class PrepareContentViewController: UIViewController {
         guard let view = Bundle.main.loadNibNamed("PrepareContentTopTabBarView", owner: self, options: [:])?[0] as? PrepareContentTopTabBarView else {
             preconditionFailure("Failed to PrepareContentTopTabBarView from xib")
         }
-        view.setup(title: R.string.localized.topTabBarItemTitlePerpareCoach(),
+        view.setup(title: R.string.localized.topTabBarItemTitlePerparePreparation(),
                    leftButtonIcon: R.image.ic_minimize(),
                    rightButtonIcon: self.viewModel.displayMode == .normal ? R.image.ic_save_prep() : nil,
                    delegate: self)
@@ -236,7 +236,7 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
                 let padding: CGFloat = 15
 
                 guard let contentText = cell.contentLabel.text else { return UITableViewAutomaticDimension }
-                contentHeight = calculateLabelHeight(text: contentText, font: Font.DPText, dispayedLineHeight: 29, frameWidth: cell.frame.width - 60)
+                contentHeight = calculateLabelHeight(text: contentText, font: Font.DPText, dispayedLineHeight: 29, frameWidth: cell.frame.width - 99)
 
                 contentHeight += cell.readMoreButton.frame.height + padding
             }

@@ -26,7 +26,15 @@ class PrepareContentFooterTableViewCell: UITableViewCell, Dequeueable {
         backgroundColor = .clear
         
         iconImageView.image = iconImageView.image!.withRenderingMode(.alwaysTemplate)
-        iconImageView.tintColor = UIColor.blackTwo
+        iconImageView.tintColor = .black30
+
+        let title = NSMutableAttributedString(
+            string: R.string.localized.preparePrepareEventsSaveThisPreparation(),
+            letterSpacing: 1,
+            font: Font.DPText,
+            textColor: .black40)
+
+        saveButton.setAttributedTitle(title, for: .normal)
     }
         
     @IBAction func savePreparation(sender: UIButton) {

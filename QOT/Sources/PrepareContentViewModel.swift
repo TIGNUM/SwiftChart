@@ -85,7 +85,7 @@ final class PrepareContentViewModel {
     }
 
     fileprivate func setSubtitle() {
-        subTitle = String(format: "%2d/%2d ", checkedIDs.count, items.count - 1) + R.string.localized.prepareContentTasks()
+        subTitle = String(format: "%02d/%02d ", checkedIDs.count, items.count - 1) + R.string.localized.prepareContentTasks()
         items.remove(at: 0)
         items.insert(.titleItem(title: title, subTitle: subTitle, contentText: contentText, placeholderURL: videoPlaceholder, videoURL: video), at: 0)
     }

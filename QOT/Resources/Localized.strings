@@ -32,6 +32,7 @@
 "Top.Tab.Bar.Item.Title.Me.MyWhy" = "My Why";
 "Top.Tab.Bar.Item.Title.Perpare.Coach" = "QOT Coach";
 "Top.Tab.Bar.Item.Title.Perpare.Prep" = "My Prep";
+"Top.Tab.Bar.Item.Title.Perpare.Preparation" = "PREPARATION";
 
 "Me.Sector.Peak" = "Peak\nPerformance";
 "Me.Sector.Meetings" = "Meetings";
@@ -71,6 +72,9 @@
 "Prepare.PrepareEvents.SaveThisPreparation" = "Save this preparation";
 "Prepare.Content.ReadMore" = "Read more";
 "Prepare.Content.Tasks" = "Tasks";
+"Prepare.Chat.Footer.DeliveredTime" = "Delivered at %@";
+"Prepare.Chat.Header.Preparations" = "PREPARATIONS";
+"Prepare.MyPrep.TimeToEvent" = "Time to the event %@";
 
 "Learn.Content.Item.Title.Full" = "Full";
 "Learn.Content.Item.Title.Bullets" = "Bullets";
@@ -116,6 +120,20 @@
 
 "ActivityView.WeekButton" = "WEEK";
 "ActivityView.MonthButton" = "MONTH";
+
+"Calendar.Year" = "Year";
+"Calendar.Month" = "Month";
+"Calendar.Week" = "Week";
+"Calendar.Day" = "Day";
+"Calendar.Hour" = "Hour";
+"Calendar.Minute" = "Minute";
+
+"Calendar.Years" = "Years";
+"Calendar.Months" = "Months";
+"Calendar.Weeks" = "Weeks";
+"Calendar.Days" = "Days";
+"Calendar.Hours" = "Hours";
+"Calendar.Minutes" = "Minutes";
 
 "LoadingView.Message" = "We are loading Please wait";
 

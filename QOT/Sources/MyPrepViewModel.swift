@@ -35,6 +35,7 @@ final class MyPrepViewModel {
         self.realmObserver = realmObserver
 
         refresh()
+
         realmObserver.handler = { [weak self] in
             self?.refresh()
         }

@@ -23,19 +23,19 @@ final class MyPrepTableViewCell: UITableViewCell, Dequeueable {
         headerLabel.attributedText = NSMutableAttributedString(
             string: header.uppercased(),
             letterSpacing: 2,
-            font: Font.H7Title,
+            font: Font.PTextSubtitle,
             textColor: Color.whiteish
         )
         mainTextLabel.attributedText = NSMutableAttributedString(
             string: text.uppercased(),
-            letterSpacing: 0.8,
+            letterSpacing: -0.8,
             font: Font.H4Headline,
-            lineSpacing: 4
+            lineSpacing: 2
         )
         footerLabel.attributedText = NSMutableAttributedString(
             string: footer.uppercased(),
             letterSpacing: 2,
-            font: Font.H7Title,
+            font: Font.PTextSubtitle,
             textColor: Color.whiteLight
         )
         prepCount.attributedText = NSMutableAttributedString(

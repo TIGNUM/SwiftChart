@@ -62,6 +62,8 @@ final class PrepareChatDecisionManager {
         }
 
         if let groupID = questionGroupID {
+            items.append(ChatItem(type: .header(R.string.localized.prepareChatHeaderPreparations(), alignment: .right)))
+
             let predicate = NSPredicate(format: "ANY decisions.questionGroupID == %d", groupID)
             let answers = question.answers.filter(predicate)
             let decisions = answers.reduce([AnswerDecision](), { (result, answer) -> [AnswerDecision] in
@@ -81,7 +83,7 @@ final class PrepareChatDecisionManager {
 
     private func deliveredFooter(date: Date = Date(), alignment: NSTextAlignment) -> ChatItem<Answer> {
         let time = DateFormatter.displayTime.string(from: Date())
-        return ChatItem(type: .footer("Delivered at \(time)", alignment: alignment))
+        return ChatItem(type: .footer(R.string.localized.prepareChatFooterDeliveredTime(time), alignment: alignment))
     }
 }
 

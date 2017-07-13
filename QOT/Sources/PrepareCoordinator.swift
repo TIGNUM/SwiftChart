@@ -108,6 +108,7 @@ private extension PrepareCoordinator {
 
         if let title = title {
             let viewModel = PrepareContentViewModel(title: title, subtitle: "", video: video, description: "", items: items)
+
             let viewController = PrepareContentViewController(viewModel: viewModel)
             viewController.delegate = self
             tabBarController.present(viewController, animated: true)

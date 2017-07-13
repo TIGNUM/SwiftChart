@@ -43,10 +43,14 @@ class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable {
     }
     
     func setCell(title: String, subTitle: String, contentText: String, videoPlaceholder: URL?, videoURL: URL?, isExpanded: Bool) {
-        headerLabel.text = title.uppercased()
+        bottomSeparator.backgroundColor = .black30
+
+        headerLabel.addCharactersSpacing(spacing: 2, text: title, uppercased: true)
         headerLabel.font = Font.H1MainTitle
-        subHeaderLabel.text = subTitle.uppercased()
+        headerLabel.textColor = .darkIndigo
+        subHeaderLabel.addCharactersSpacing(spacing: 2, text: subTitle, uppercased: true)
         subHeaderLabel.font = Font.H7Title
+        subHeaderLabel.textColor = .black30
 
         previewImageURL = videoPlaceholder
         content = contentText

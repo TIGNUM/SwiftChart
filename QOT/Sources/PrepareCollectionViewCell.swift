@@ -52,6 +52,8 @@ class PrepareCollectionViewCell: UICollectionViewCell, Dequeueable {
         shapeLayer.lineWidth = 1
         shapeLayer.strokeColor = borderColour.cgColor
 
+        titleLbl.textColor = .white60
+
         switch cellStyle {
         case .dashed:
             shapeLayer.fillColor = UIColor.black40.cgColor

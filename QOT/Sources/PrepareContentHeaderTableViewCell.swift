@@ -46,12 +46,15 @@ class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
         super .layoutSubviews()
         
         iconImageView.image = iconImageView.image!.withRenderingMode(.alwaysTemplate)
-        iconImageView.tintColor = UIColor.blackTwo
+        iconImageView.tintColor = .blackTwo
     }
 
     func setCell(title: String, contentText: String, readMoreID: Int?, position: Int, isExpanded: Bool, displayMode: PrepareContentViewModel.DisplayMode = .normal, isChecked: Bool = false) {
-        headerLabel.text = title
-        headerLabel.font = Font.H4Headline
+
+        bottomSeparator.backgroundColor = .black30
+
+        headerLabel.prepareAndSetTextAttributes(text: title.uppercased(), font: Font.H4Headline, lineSpacing: 3, characterSpacing: -0.8)
+        headerLabel.textColor = .black
 
         positionLabel.text = (position > 9 ? "." : ".0") + "\(position)"
         positionLabel.font = Font.H4Headline

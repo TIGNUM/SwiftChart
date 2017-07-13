@@ -59,7 +59,7 @@ class ChatViewController<T: ChatChoice>: UIViewController, UITableViewDelegate, 
     private func setupView() {
         view.backgroundColor = .clear
         view.addSubview(tableView)
-        tableView.topAnchor == view.topAnchor
+        tableView.topAnchor == view.topAnchor + 22
         tableView.bottomAnchor == view.bottomAnchor
         tableView.horizontalAnchors == view.horizontalAnchors
         view.layoutIfNeeded()

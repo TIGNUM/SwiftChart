@@ -28,9 +28,9 @@ struct Layout {
         static let height: CGFloat = 64
         static let animationDuration: TimeInterval = 0.3
         static let selectedButtonColor: UIColor = .white
-        static let deselectedButtonColor: UIColor = UIColor.white.withAlphaComponent(0.4)
+        static let deselectedButtonColor: UIColor = .white40
         static let selectedButtonColorLightTheme: UIColor = .black
-        static let deselectedButtonColorLightTheme: UIColor = UIColor.black.withAlphaComponent(0.3)
+        static let deselectedButtonColorLightTheme: UIColor = .black30
         static let stackViewHorizontalPaddingBottom: CGFloat = 16
         static let indicatorViewExtendedWidthBottom: CGFloat = 16
         static let stackViewHorizontalPaddingTop: CGFloat = 6
@@ -255,6 +255,9 @@ struct Font {
 
     /// BENTON SANS 13 // paragraph, body text
     static let PTextSmall = UIFont.bentonRegularFont(ofSize: 13)
+
+    /// BENTON SANS 11 // paragraph, body text
+    static let PTextSubtitle = UIFont.bentonRegularFont(ofSize: 11)
 
     /// BENTON SANS BOOK 16 // body text
     static let DPText = UIFont.bentonBookFont(ofSize: 16)

@@ -60,7 +60,7 @@ private extension MyPrepViewController {
     func setupView() {
         view.backgroundColor = .clear
         view.addSubview(tableView)
-        tableView.topAnchor == view.topAnchor
+        tableView.topAnchor == view.topAnchor + 26
         tableView.bottomAnchor == view.bottomAnchor
         tableView.horizontalAnchors == view.horizontalAnchors
     }
@@ -74,7 +74,14 @@ extension MyPrepViewController: UITableViewDelegate, UITableViewDataSource {
         let item = viewModel.item(at: indexPath.row)
         let cell: MyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
         let count: String = String(format: "%02d/%02d", item.finishedPreparationCount, item.totalPreparationCount)
-        let footer = ""
+
+        var timeToEvent = ""
+
+        if let startDate = item.startDate {
+            timeToEvent = Date().timeToDateAsString(startDate)
+        }
+
+        let footer = R.string.localized.prepareMyPrepTimeToEvent(timeToEvent)
         cell.setup(with: item.header, text: item.text, footer: footer, count: count)
 
         return cell
