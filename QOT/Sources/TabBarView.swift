@@ -105,15 +105,16 @@ class TabBarView: UIView {
 
     // MARK: Public methods
 
-    func setSelectedIndex(_ index: Int?, animated: Bool) {
+    func setSelectedIndex(_ index: Int?, animated: Bool) -> Bool {
         guard index != selectedIndex else {
-            return
+            return false
         }
 
         selectedIndex = index
         layoutIndicatorView(animated: animated)
         syncButtonColors(animated: animated)
         syncIndicatorViewColor()
+        return true
     }
 
     func setTitles(_ titles: [String], selectedIndex: Int?) {
@@ -155,8 +156,9 @@ extension TabBarView {
         }
 
         let index = button.tag
-        setSelectedIndex(index, animated: true)
-        delegate?.didSelectItemAtIndex(index: index, sender: self)
+        if setSelectedIndex(index, animated: true) {
+            delegate?.didSelectItemAtIndex(index: index, sender: self)
+        }
     }
 }
 

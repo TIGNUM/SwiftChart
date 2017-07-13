@@ -49,7 +49,11 @@ final class ChatViewModel<T: ChatChoice> {
         operationQueue.maxConcurrentOperationCount = 1
         append(items: items)
     }
-
+    
+    func cancelAllOperations() {
+        operationQueue.cancelAllOperations()
+    }
+    
     func select(itemIndex: Int, choiceIndex: Int) {
         let item = items[itemIndex]
         switch item.type {
@@ -76,33 +80,31 @@ final class ChatViewModel<T: ChatChoice> {
     }
 
     func setItems(items: [ChatItem<T>]) {
+        cancelAllOperations()
         self.items = []
         selected = [:]
-        operationQueue.addOperation { [weak self] in
-            DispatchQueue.main.async {
-                self?.items = items
-                self?.updates.next(.reload)
-            }
-        }
+        self.items = items
+        self.updates.next(.reload)
     }
 
     func append(items: [ChatItem<T>]) {
-        for item in items {
-            operationQueue.addOperation { [weak self] in
+        let operations = items.map { (item) -> BlockOperation in
+            return BlockOperation(block: { [weak self] in
                 let delay = item.delay * 1000000
                 usleep(useconds_t(delay))
                 DispatchQueue.main.async {
                     guard let strongSelf = self else {
                         return
                     }
-
+                    
                     let indexPath = IndexPath(item: strongSelf.items.count, section: 0)
                     let update = CollectionUpdate.update(deletions: [], insertions: [indexPath], modifications: [])
                     strongSelf.items.append(item)
                     strongSelf.updates.next(update)
                 }
-            }
+            })
         }
+        operationQueue.addOperations(operations, waitUntilFinished: false)
     }
 
     var itemCount: Index {

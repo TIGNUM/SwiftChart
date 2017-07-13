@@ -305,7 +305,7 @@ extension TopTabBarController {
 extension TopTabBarController: UIScrollViewDelegate {
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        tabBarView.setSelectedIndex(scrollView.currentPage, animated: true)
+        _ = tabBarView.setSelectedIndex(scrollView.currentPage, animated: true)
         learnContentItemViewControllerDelegate?.didChangeTab(to: scrollView.currentPage, in: self)
         learnHeaderView?.alpha = 0
     }
@@ -358,7 +358,7 @@ extension TopTabBarController: ContentScrollViewDelegate {
 
     func didEndDecelerating(_ contentOffset: CGPoint) {
         selectedIndex = scrollView.currentPage
-        tabBarView.setSelectedIndex(scrollView.currentPage, animated: true)
+        _ = tabBarView.setSelectedIndex(scrollView.currentPage, animated: true)
     }
 }
 

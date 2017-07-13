@@ -53,7 +53,13 @@ class ChatViewController<T: ChatChoice>: UIViewController, UITableViewDelegate, 
                 // FIXME: Animate updates
                 self.tableView.reloadData()
             }
-            }.dispose(in: disposeBag)
+        }.dispose(in: disposeBag)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        viewModel.cancelAllOperations()
     }
 
     private func setupView() {
