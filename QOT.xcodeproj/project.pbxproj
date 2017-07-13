@@ -37,11 +37,21 @@
 		7F0888811F0A4B96005CE966 /* Partner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0888801F0A4B96005CE966 /* Partner.swift */; };
 		7F0888861F0A7602005CE966 /* PartnerIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0888851F0A7602005CE966 /* PartnerIntermediary.swift */; };
 		7F0888881F0AA7DB005CE966 /* UIImage+FileIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0888871F0AA7DB005CE966 /* UIImage+FileIO.swift */; };
+		7F0F02F01F13BF8A00007D50 /* RemoteNotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F02EF1F13BF8A00007D50 /* RemoteNotificationHandler.swift */; };
+		7F0F02F21F13CCCB00007D50 /* SelectWeeklyChoicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F02F11F13CCCB00007D50 /* SelectWeeklyChoicesViewController.swift */; };
+		7F0F02F41F13CDAD00007D50 /* SelectWeeklyChoicesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F0F02F31F13CDAD00007D50 /* SelectWeeklyChoicesViewController.xib */; };
+		7F0F02FB1F13D3D900007D50 /* SelectWeeklyChoicesDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F02FA1F13D3D900007D50 /* SelectWeeklyChoicesDataModel.swift */; };
+		7F0F03001F14CE0C00007D50 /* CollapsableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F02FF1F14CE0C00007D50 /* CollapsableCell.swift */; };
+		7F0F03021F14CE1500007D50 /* CollapsableContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F03011F14CE1500007D50 /* CollapsableContentCell.swift */; };
+		7F0F03041F14CE2300007D50 /* CollapsableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F0F03031F14CE2300007D50 /* CollapsableCell.xib */; };
+		7F0F03061F14CE2F00007D50 /* CollapsableContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F0F03051F14CE2F00007D50 /* CollapsableContentCell.xib */; };
+		7F0F03081F14FE9800007D50 /* CollapsableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F03071F14FE9800007D50 /* CollapsableNode.swift */; };
 		7F691C531F0CFA8100E2C180 /* PartnerWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F691C521F0CFA8100E2C180 /* PartnerWireframe.swift */; };
 		7F691C551F0D19AE00E2C180 /* MyToBeVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F691C541F0D19AE00E2C180 /* MyToBeVision.swift */; };
 		7F691C581F0D1AAD00E2C180 /* MyToBeWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F691C571F0D1AAD00E2C180 /* MyToBeWireframe.swift */; };
 		7F691C5A1F0D1AB700E2C180 /* MyToBeVisionIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F691C591F0D1AB700E2C180 /* MyToBeVisionIntermediary.swift */; };
 		7F691C5E1F0D30C800E2C180 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F691C5D1F0D30C800E2C180 /* PlaceholderTextView.swift */; };
+		7F8739071F162300005ED8B8 /* WeeklyChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8739061F162300005ED8B8 /* WeeklyChoice.swift */; };
 		850A50BB1F0A973A00350097 /* PrepareContentTopTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850A50BA1F0A973A00350097 /* PrepareContentTopTabBarView.swift */; };
 		850A50BD1F0A97FF00350097 /* PrepareContentTopTabBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850A50BC1F0A97FF00350097 /* PrepareContentTopTabBarView.xib */; };
 		8514A4861EE810750086C70E /* DownSyncComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8514A4851EE810750086C70E /* DownSyncComplete.swift */; };
@@ -207,7 +217,6 @@
 		CBC1DC3F1F16067900F6D056 /* DownSyncIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC3E1F16067900F6D056 /* DownSyncIntermediary.swift */; };
 		CBC5ACBF1F162A9C007E1E9C /* UserChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5ACBE1F162A9C007E1E9C /* UserChoice.swift */; };
 		CBC5ACC11F162AAE007E1E9C /* UserChoiceIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5ACC01F162AAE007E1E9C /* UserChoiceIntermediary.swift */; };
-		CBC5ACC31F162ABF007E1E9C /* UserChoice+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5ACC21F162ABF007E1E9C /* UserChoice+Convenience.swift */; };
 		CBC933051F05253000C00007 /* JSON+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC933041F05253000C00007 /* JSON+Convenience.swift */; };
 		CBC933081F052DDA00C00007 /* PrepareCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC933071F052DDA00C00007 /* PrepareCoordinator.swift */; };
 		CBC9330F1F0AA47800C00007 /* PrepareEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC9330D1F0AA47800C00007 /* PrepareEventsViewController.swift */; };
@@ -432,11 +441,21 @@
 		7F0888801F0A4B96005CE966 /* Partner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Partner.swift; sourceTree = "<group>"; };
 		7F0888851F0A7602005CE966 /* PartnerIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerIntermediary.swift; sourceTree = "<group>"; };
 		7F0888871F0AA7DB005CE966 /* UIImage+FileIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+FileIO.swift"; sourceTree = "<group>"; };
+		7F0F02EF1F13BF8A00007D50 /* RemoteNotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteNotificationHandler.swift; sourceTree = "<group>"; };
+		7F0F02F11F13CCCB00007D50 /* SelectWeeklyChoicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectWeeklyChoicesViewController.swift; sourceTree = "<group>"; };
+		7F0F02F31F13CDAD00007D50 /* SelectWeeklyChoicesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectWeeklyChoicesViewController.xib; sourceTree = "<group>"; };
+		7F0F02FA1F13D3D900007D50 /* SelectWeeklyChoicesDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectWeeklyChoicesDataModel.swift; sourceTree = "<group>"; };
+		7F0F02FF1F14CE0C00007D50 /* CollapsableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollapsableCell.swift; sourceTree = "<group>"; };
+		7F0F03011F14CE1500007D50 /* CollapsableContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollapsableContentCell.swift; sourceTree = "<group>"; };
+		7F0F03031F14CE2300007D50 /* CollapsableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollapsableCell.xib; sourceTree = "<group>"; };
+		7F0F03051F14CE2F00007D50 /* CollapsableContentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollapsableContentCell.xib; sourceTree = "<group>"; };
+		7F0F03071F14FE9800007D50 /* CollapsableNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollapsableNode.swift; sourceTree = "<group>"; };
 		7F691C521F0CFA8100E2C180 /* PartnerWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerWireframe.swift; sourceTree = "<group>"; };
 		7F691C541F0D19AE00E2C180 /* MyToBeVision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToBeVision.swift; sourceTree = "<group>"; };
 		7F691C571F0D1AAD00E2C180 /* MyToBeWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToBeWireframe.swift; sourceTree = "<group>"; };
 		7F691C591F0D1AB700E2C180 /* MyToBeVisionIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToBeVisionIntermediary.swift; sourceTree = "<group>"; };
 		7F691C5D1F0D30C800E2C180 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
+		7F8739061F162300005ED8B8 /* WeeklyChoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoice.swift; sourceTree = "<group>"; };
 		82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		850A50BA1F0A973A00350097 /* PrepareContentTopTabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentTopTabBarView.swift; sourceTree = "<group>"; };
 		850A50BC1F0A97FF00350097 /* PrepareContentTopTabBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentTopTabBarView.xib; sourceTree = "<group>"; };
@@ -608,7 +627,6 @@
 		CBC1DC3E1F16067900F6D056 /* DownSyncIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownSyncIntermediary.swift; sourceTree = "<group>"; };
 		CBC5ACBE1F162A9C007E1E9C /* UserChoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserChoice.swift; sourceTree = "<group>"; };
 		CBC5ACC01F162AAE007E1E9C /* UserChoiceIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserChoiceIntermediary.swift; sourceTree = "<group>"; };
-		CBC5ACC21F162ABF007E1E9C /* UserChoice+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserChoice+Convenience.swift"; sourceTree = "<group>"; };
 		CBC933041F05253000C00007 /* JSON+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Convenience.swift"; sourceTree = "<group>"; };
 		CBC933071F052DDA00C00007 /* PrepareCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareCoordinator.swift; sourceTree = "<group>"; };
 		CBC9330D1F0AA47800C00007 /* PrepareEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsViewController.swift; sourceTree = "<group>"; };
@@ -831,6 +849,21 @@
 			name = Partner;
 			sourceTree = "<group>";
 		};
+		7F0F02FC1F13D5D500007D50 /* Select Weekly Choices */ = {
+			isa = PBXGroup;
+			children = (
+				7F0F02F11F13CCCB00007D50 /* SelectWeeklyChoicesViewController.swift */,
+				7F0F02F31F13CDAD00007D50 /* SelectWeeklyChoicesViewController.xib */,
+				7F0F02FA1F13D3D900007D50 /* SelectWeeklyChoicesDataModel.swift */,
+				7F0F03071F14FE9800007D50 /* CollapsableNode.swift */,
+				7F0F02FF1F14CE0C00007D50 /* CollapsableCell.swift */,
+				7F0F03031F14CE2300007D50 /* CollapsableCell.xib */,
+				7F0F03011F14CE1500007D50 /* CollapsableContentCell.swift */,
+				7F0F03051F14CE2F00007D50 /* CollapsableContentCell.xib */,
+			);
+			name = "Select Weekly Choices";
+			sourceTree = "<group>";
+		};
 		7F691C561F0D19B100E2C180 /* MyToBeVision */ = {
 			isa = PBXGroup;
 			children = (
@@ -841,9 +874,10 @@
 			name = MyToBeVision;
 			sourceTree = "<group>";
 		};
-		85427DDD1F14D96700AA714C /* Animators */ = {
+		7F8739081F16610F005ED8B8 /* Animators */ = {
 			isa = PBXGroup;
 			children = (
+				85427DDB1F14D95F00AA714C /* FadeAnimator.swift */,
 			);
 			name = Animators;
 			sourceTree = "<group>";
@@ -1039,8 +1073,7 @@
 				CBB4DD4C1EE094150071494A /* Mock - DELETE */,
 				CBB4DD521EE095E50071494A /* Utils */,
 				CBB4DD1C1EE085600071494A /* View Layer */,
-				85427DDD1F14D96700AA714C /* Animators */,
-				85427DDB1F14D95F00AA714C /* FadeAnimator.swift */,
+				7F8739081F16610F005ED8B8 /* Animators */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -1126,7 +1159,6 @@
 				CCDCE7321EEFE63600BD019C /* Learn Content Item */,
 				CBB4DD3C1EE08D7F0071494A /* Library */,
 				D5ACF2D81F1624CB008B0EC1 /* Loading */,
-				D5B707241F03A21E00C812EB /* Morning Interview */,
 				CBB4DD321EE089FD0071494A /* My Prep */,
 				CBB4DD331EE08A230071494A /* My Statistics */,
 				CBB4DD2A1EE088480071494A /* My To Be Vision */,
@@ -1142,6 +1174,8 @@
 				CBB4DD401EE08F600071494A /* Sidebar */,
 				CBB4DD371EE08ABE0071494A /* Tab Bar */,
 				CC7D21B51EFC134E007A062E /* Weekly Choices */,
+				7F0F02FC1F13D5D500007D50 /* Select Weekly Choices */,
+				D5B707241F03A21E00C812EB /* Morning Interview */,
 			);
 			name = "View Layer";
 			sourceTree = "<group>";
@@ -1639,6 +1673,7 @@
 		CBB4DD521EE095E50071494A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				7F0F02EF1F13BF8A00007D50 /* RemoteNotificationHandler.swift */,
 				CBDB98F31E7B000A003EC73F /* NotificationHandler.swift */,
 				CB27D59A1ECCB67300F2B76C /* Result.swift */,
 				CBD791491E71797C0006C590 /* Typealiases.swift */,
@@ -1722,8 +1757,8 @@
 		CBC5ACBD1F162A1F007E1E9C /* UserChoice */ = {
 			isa = PBXGroup;
 			children = (
+				7F8739061F162300005ED8B8 /* WeeklyChoice.swift */,
 				CBC5ACBE1F162A9C007E1E9C /* UserChoice.swift */,
-				CBC5ACC21F162ABF007E1E9C /* UserChoice+Convenience.swift */,
 				CBC5ACC01F162AAE007E1E9C /* UserChoiceIntermediary.swift */,
 			);
 			name = UserChoice;
@@ -1953,10 +1988,12 @@
 				CB18BCC31EEABFEB0035C1BB /* MockContentCategoryDown.json in Resources */,
 				CC311A271EAF434F0020C869 /* SettingsLabelTableViewCell.xib in Resources */,
 				CCC0C4CA1E827F87002A8362 /* BentonSans_Book.otf in Resources */,
+				7F0F03061F14CE2F00007D50 /* CollapsableContentCell.xib in Resources */,
 				CC311A211EAF430B0020C869 /* SettingsButtonTableViewCell.xib in Resources */,
 				0B254D3F1E97994C006AA4C0 /* PrepareCollectionViewCell.xib in Resources */,
 				CB18BCC51EEAC2CE0035C1BB /* MockDownSyncConfirm.json in Resources */,
 				0BEE8AC01EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib in Resources */,
+				7F0F03041F14CE2300007D50 /* CollapsableCell.xib in Resources */,
 				CC13E2411EB1D72400C3CE46 /* LibraryCollectionCell.xib in Resources */,
 				CCC0C4CC1E828007002A8362 /* BentonSans_Regular.otf in Resources */,
 				CC8018281F028F2F0040B03F /* LibraryFooterView.xib in Resources */,
@@ -1964,6 +2001,7 @@
 				CC6251DB1EE00DD800C6F546 /* Localized.strings in Resources */,
 				CC944DBA1EE809AA00B8423C /* MyStatisticsCardCell.xib in Resources */,
 				CB8C34541EAF7F190003AB65 /* MyToBeVisionViewController.xib in Resources */,
+				7F0F02F41F13CDAD00007D50 /* SelectWeeklyChoicesViewController.xib in Resources */,
 				D50D6C251EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib in Resources */,
 				CB18BCC91EEAE9070035C1BB /* MockContentItemDown.json in Resources */,
 				CB810E681EF00E2C0043E3E5 /* MockUserDown.json in Resources */,
@@ -2134,6 +2172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB9B07531EF7FE410017F6C3 /* LearnCategoryListPage.swift in Sources */,
+				7F0F02FB1F13D3D900007D50 /* SelectWeeklyChoicesDataModel.swift in Sources */,
 				CC9663141EA1B41500B84B1C /* MyUniverseCoordinator.swift in Sources */,
 				CCBFFAF91F0D44790007FDE5 /* R.generated.swift in Sources */,
 				CC05CB791EDEC73C00D15ABC /* UITableView+Create.swift in Sources */,
@@ -2206,6 +2245,7 @@
 				CBB4DD541EE151100071494A /* DownSyncImporter.swift in Sources */,
 				0BC9F9361E96118C009E8204 /* ChatTableViewCell.swift in Sources */,
 				CC9FBDE81EAE58F300AF1CF0 /* SettingsMenuCoordinator.swift in Sources */,
+				7F0F03021F14CE1500007D50 /* CollapsableContentCell.swift in Sources */,
 				CC9663181EA1B86100B84B1C /* MyDataSectorLabelsView.swift in Sources */,
 				CCF0F4BF1ECDC57000E8D9C1 /* DownSyncable.swift in Sources */,
 				8514A4861EE810750086C70E /* DownSyncComplete.swift in Sources */,
@@ -2229,6 +2269,7 @@
 				CBDB98F21E7AA510003EC73F /* CalendarImportResult.swift in Sources */,
 				CBC1DC301F0FD0CB00F6D056 /* AnswerDecision+Convenience.swift in Sources */,
 				CC7D21A61EFBF52A007A062E /* ArticleItemViewModel.swift in Sources */,
+				7F8739071F162300005ED8B8 /* WeeklyChoice.swift in Sources */,
 				CBC1DC391F14D9ED00F6D056 /* UserSetting.swift in Sources */,
 				CC143A511EC495CE001FB76E /* MyStatisticsCoordinator.swift in Sources */,
 				85DC6F851EF3E32A004F4B4D /* MyStatisticsDataPeriods.swift in Sources */,
@@ -2250,6 +2291,7 @@
 				85DC6F891EF40B36004F4B4D /* TravelTripsPeriodChartView.swift in Sources */,
 				CC7D21B21EFC1348007A062E /* WeeklyChoicesLayout.swift in Sources */,
 				CBB4DCDC1ED475F00071494A /* DownSyncChange.swift in Sources */,
+				7F0F03081F14FE9800007D50 /* CollapsableNode.swift in Sources */,
 				D52371531EA9F0B100165842 /* PrepareChatTableCell.swift in Sources */,
 				CB3437701EFE937000D89D4F /* ContentService.swift in Sources */,
 				CC7D21B01EFC1348007A062E /* WeeklyChoicesCell.swift in Sources */,
@@ -2262,6 +2304,7 @@
 				852DADD21EF04DEA00A10882 /* AverageMeetingLengthView.swift in Sources */,
 				CC27E0C01EB355BC003E5B7F /* SidebarTableViewCell.swift in Sources */,
 				CCA2DC671EF17BCE00D1DF6A /* LearnContentItemHeaderView.swift in Sources */,
+				7F0F02F21F13CCCB00007D50 /* SelectWeeklyChoicesViewController.swift in Sources */,
 				CB1D5E3D1EC5E25A00BCDF8D /* ContentItem.swift in Sources */,
 				CB1E4F981E7FE22200287613 /* SettingsViewModel.swift in Sources */,
 				CBB4DCFD1EDC27550071494A /* SyncManager.swift in Sources */,
@@ -2313,7 +2356,6 @@
 				CCC1B6AB1E8B9B7300D1461F /* LearnCategoryListViewModel.swift in Sources */,
 				CCE372FD1E8D2AD100B79352 /* MyPrepViewController.swift in Sources */,
 				CB3437531EFAC8F500D89D4F /* UpSyncResultParser.swift in Sources */,
-				CBC5ACC31F162ABF007E1E9C /* UserChoice+Convenience.swift in Sources */,
 				7F691C5A1F0D1AB700E2C180 /* MyToBeVisionIntermediary.swift in Sources */,
 				CC0FF8D81EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift in Sources */,
 				CC8813EB1EF2EA33000FB85F /* LearnContentItemRecommendedCell.swift in Sources */,
@@ -2383,6 +2425,7 @@
 				CCE6CD841F152D5800B66DA3 /* DoubleObject.swift in Sources */,
 				0BA3E6421EC1A8280012999E /* DayEventChartView.swift in Sources */,
 				852DADE61EF1A40200A10882 /* SegmentedView.swift in Sources */,
+				7F0F02F01F13BF8A00007D50 /* RemoteNotificationHandler.swift in Sources */,
 				8514A4881EE93D3C0086C70E /* PrepareContentFooterTableViewCell.swift in Sources */,
 				0BC1FF4B1E968E07007DE090 /* CollectionTableViewCell.swift in Sources */,
 				852DADD41EF0504000A10882 /* AverageMeetingLengthViewProgressWheel.swift in Sources */,
@@ -2392,6 +2435,7 @@
 				CB3437641EFD6B0100D89D4F /* Answer+Convenience.swift in Sources */,
 				CC7D21AA1EFC0856007A062E /* ArticleContentItemCoordinator.swift in Sources */,
 				CCE06FE01E8D44FC009C5AD2 /* LibraryCoordinator.swift in Sources */,
+				7F0F03001F14CE0C00007D50 /* CollapsableCell.swift in Sources */,
 				0B254D3E1E97994C006AA4C0 /* PrepareCollectionViewCell.swift in Sources */,
 				852DADDA1EF147AA00A10882 /* AverageMeetingBetweenLengthView.swift in Sources */,
 				CC0FF8DA1EA790750028D64F /* PartnersCoordinator.swift in Sources */,

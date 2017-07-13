@@ -38,8 +38,7 @@ final class MyToBeVisionViewModel {
         guard let dateText = formatter.string(from: components) else {
             return nil
         }
-        // TODO: lee localise
-        return "Written \(dateText) ago".uppercased()
+        return R.string.localized.meSectorMyWhyVisionWriteDate(dateText).uppercased()
     }
     
     init(item: MyToBeVisionIntermediary?) {

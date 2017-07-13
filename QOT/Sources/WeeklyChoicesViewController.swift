@@ -114,7 +114,7 @@ extension WeeklyChoicesViewController: UICollectionViewDataSource, UICollectionV
         dateLabel.addCharactersSpacing(spacing: 2, text: viewModel.pageDates(forIndex: indexPath.item))
 
         if let item = viewModel.item(at: indexPath.item) {
-            cell.setUp(title: item.title, subTitle: item.subTitle, choice: viewModel.choiceNumber(forIndex: indexPath.item))
+            cell.setUp(title: item.title ?? "", subTitle: "", choice: viewModel.choiceNumber(forIndex: indexPath.item))
         } else {
             cell.setUp(title: R.string.localized.meSectorMyWhyWeeklyChoicesNoChoiceTitle(), subTitle: "", choice: "")
         }

@@ -81,13 +81,12 @@ final class Services {
                         settingsService: settingsService
                     )
                     
-                    userService.prepare(completion: { (error: Error?) in
-                        guard error == nil else {
-                            completion(.failure(error as NSError? ?? NSError(domain: "", code: 0, userInfo: nil)))
-                            return
-                        }
+                    do {
+                        try userService.prepare()
                         completion(.success(services))
-                    })
+                    } catch let error as NSError {
+                        completion(.failure(error))
+                    }
                 } catch let error as NSError {
                     completion(.failure(error))
                 }

@@ -27,7 +27,6 @@ final class PrepareCoordinator: ParentCoordinator {
 
     var children: [Coordinator] = []
 
-
     fileprivate let services: Services
     fileprivate let tabBarController: TabBarController
     fileprivate let topTabBarController: TopTabBarController
@@ -95,7 +94,7 @@ private extension PrepareCoordinator {
             switch value {
             case .text(let text, style: .h1):
                 title = text
-            case .prepareStep(let title, let description, let relatedContentID):
+            case .prepareStep(let title, let description, _)://relatedContentID):
 //                items.append(PrepareItem(id: item.remoteID, title: title, subTitle: description, readMoreID: relatedContentID))
                 //TODO: use relatedContentID instead of 100000 when data is available
                 items.append(PrepareItem(id: item.remoteID, title: title, subTitle: description, readMoreID: 100000))
@@ -226,7 +225,7 @@ extension PrepareCoordinator: PrepareContentViewControllerDelegate {
             showReadMoreError(viewController: viewController)
             return
         }
-        guard let categoryID = content.categoryIDs.first?.value else {
+        guard let/* categoryID*/_ = content.categoryIDs.first?.value else {
             showReadMoreError(viewController: viewController)
             return
         }

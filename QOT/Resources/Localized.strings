@@ -41,9 +41,17 @@
 "Me.Sector.Sleep" = "Sleep";
 "Me.Sector.Activity" = "Activity";
 "Me.Sector.My.Why.Vision.Title" = "My To Be Vision";
+"Me.Sector.My.Why.Vision.Headline.Placeholder" = "Your Headline";
+"Me.Sector.My.Why.Vision.Message.Placeholder" = "Your vision - what inspires you?";
+"Me.Sector.My.Why.Vision.Write.Date" = "Written %@ ago";
 "Me.Sector.My.Why.Weekly.Choices.Title" = "Weekly Choices";
 "Me.Sector.My.Why.Weekly.Choices.NoChoice.Title" = "No Choice";
 "Me.Sector.My.Why.Weekly.Choices.Choice" = "CHOICE";
+"Me.Sector.My.Why.Select.Weekly.Choices.Header" = "Select your %@ strategies you want to challenge this week";
+"Me.Sector.My.Why.Select.Weekly.Choices.Navigation" = "Your %@ weekly choices %@/%@";
+"Me.Sector.My.Why.Select.Weekly.Choices.Max.Choice.Alert.Title" = "Max Limit";
+"Me.Sector.My.Why.Select.Weekly.Choices.Max.Choice.Alert.Message" = "You have already reached the maximum limit of weekly choices. Please unselect something to continue your selection";
+"Me.Sector.My.Why.Select.Weekly.Choices.Max.Choice.Alert.Button" = "OK";
 "Me.Sector.My.Why.Partners.Title" = "QOT Partners";
 "Me.Sector.My.Why.Partners.Header" = "ADD YOUR PARTNERS";
 "Me.Sector.My.Why.Partners.Name" = "Name";

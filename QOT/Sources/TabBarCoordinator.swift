@@ -56,7 +56,7 @@ final class TabBarCoordinator: ParentCoordinator {
             themes: [.darkClear, .dark],
             titles: [
                 R.string.localized.topTabBarItemTitleLearnStrategies(),
-                R.string.localized.topTabBarItemTitleLearnWhatsHot(),
+                R.string.localized.topTabBarItemTitleLearnWhatsHot()
             ],
             enableTabScrolling: false
         )

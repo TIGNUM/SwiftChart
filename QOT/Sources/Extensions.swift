@@ -200,6 +200,19 @@ extension UIView {
             subLayer.removeFromSuperlayer()
         })
     }
+    
+    func screenshot() -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.main.scale)
+        guard let context = UIGraphicsGetCurrentContext() else {
+            UIGraphicsEndImageContext()
+            log("couldnt take screenshot")
+            return nil
+        }
+        layer.render(in: context)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
 }
 
 // MARK: - UIImage
@@ -242,6 +255,17 @@ extension UIImageView {
         mask.strokeColor = UIColor.clear.cgColor
         mask.fillColor = UIColor.white.cgColor
         self.layer.mask = mask
+    }
+}
+
+// MARK: - UITableView
+
+extension UITableView {
+    
+    func reloadDataWithAnimation(duration: TimeInterval = 0.35) {
+        UIView.transition(with: self, duration: duration, options: .transitionCrossDissolve, animations: {
+            self.reloadData()
+        })
     }
 }
 

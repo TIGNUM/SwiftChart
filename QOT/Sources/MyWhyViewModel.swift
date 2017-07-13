@@ -80,48 +80,56 @@ enum MyWhy {
     }
 }
 
-protocol WeeklyChoice {
-    var localID: String { get }
-    var title: String { get }
-    var subTitle: String { get }
-}
-
-struct MockWeeklyChoice: WeeklyChoice {
-    let localID: String
-    let title: String
-    let subTitle: String
-}
-
 private var weeklyChoices: [WeeklyChoice] {
     return [
-        MockWeeklyChoice(
+        WeeklyChoice(
             localID: UUID().uuidString,
+            contentCollectionID: 0,
+            categoryID: 0,
             title: "You are having a Lorem ipsum here and",
-            subTitle: ""
+            startDate: Date(),
+            endDate: Date(),
+            selected: false
         ),
 
-        MockWeeklyChoice(
+        WeeklyChoice(
             localID: UUID().uuidString,
+            contentCollectionID: 0,
+            categoryID: 0,
             title: "You are having a Lorem ipsum here and",
-            subTitle: ""
+            startDate: Date(),
+            endDate: Date(),
+            selected: false
         ),
 
-        MockWeeklyChoice(
+        WeeklyChoice(
             localID: UUID().uuidString,
+            contentCollectionID: 0,
+            categoryID: 0,
             title: "You are having a Lorem ipsum here and",
-            subTitle: ""
+            startDate: Date(),
+            endDate: Date(),
+            selected: false
         ),
 
-        MockWeeklyChoice(
+        WeeklyChoice(
             localID: UUID().uuidString,
+            contentCollectionID: 0,
+            categoryID: 0,
             title: "You are having a Lorem ipsum here and",
-            subTitle: ""
+            startDate: Date(),
+            endDate: Date(),
+            selected: false
         ),
 
-        MockWeeklyChoice(
+        WeeklyChoice(
             localID: UUID().uuidString,
+            contentCollectionID: 0,
+            categoryID: 0,
             title: "You are having a Lorem ipsum here and",
-            subTitle: ""
+            startDate: Date(),
+            endDate: Date(),
+            selected: false
         )
     ]
 }

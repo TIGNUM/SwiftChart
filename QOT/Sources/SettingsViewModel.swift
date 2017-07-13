@@ -301,7 +301,8 @@ private var sleepRows: [SettingsRow] {
 
 private var localNotifications: [SettingsRow] {
     return [
-        .label(title: "Show Notification", value: "Morning Inter View")
+        .label(title: "Show Notification", value: "Morning Inter View"),
+        .label(title: "Show Notification", value: "Your 5 Weekly Choices")
     ]
 }
 

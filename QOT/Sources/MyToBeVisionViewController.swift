@@ -155,7 +155,6 @@ private extension MyToBeVisionViewController {
     }
 
     func setupLabels() {
-        //TODO: lee localise
         headlineTextView.placeholderDelegate = self
         headlineTextView.attributedText = NSMutableAttributedString(
             string: viewModel.headline?.uppercased() ?? "",
@@ -166,7 +165,7 @@ private extension MyToBeVisionViewController {
         headlineTextView.textContainer.maximumNumberOfLines = 2
         headlineTextView.textContainer.lineFragmentPadding = 0
         headlineTextView.textContainerInset = .zero
-        headlineTextView.set(placeholderText: "Your Headline", placeholdeColor: UIColor.white)
+        headlineTextView.set(placeholderText: R.string.localized.meSectorMyWhyVisionHeadlinePlaceholder(), placeholdeColor: UIColor.white)
         
         messageTextView.placeholderDelegate = self
         messageTextView.attributedText = NSMutableAttributedString(
@@ -175,7 +174,7 @@ private extension MyToBeVisionViewController {
             font: UIFont(name: "BentonSans-Book", size: 16)!,
             lineSpacing: 10.0,
             textColor: UIColor.white)
-        messageTextView.set(placeholderText: "Your vision - what inspires you?", placeholdeColor: UIColor.white)
+        messageTextView.set(placeholderText: R.string.localized.meSectorMyWhyVisionMessagePlaceholder(), placeholdeColor: UIColor.white)
         messageTextView.textContainer.lineFragmentPadding = 0
         messageTextView.textContainerInset = UIEdgeInsets(top: 14.0, left: 0.0, bottom: 0.0, right: 0.0)
         
@@ -209,8 +208,7 @@ private extension MyToBeVisionViewController {
         if let string = string, !string.isEmpty {
             text = String(format: format, arguments: [string])
         } else {
-            // TODO: lee localise
-            text = String(format: format, arguments: ["Your vision - what inspires you?"])
+            text = String(format: format, arguments: [R.string.localized.meSectorMyWhyVisionMessagePlaceholder()])
         }
         
         let mainbundle = Bundle.main.bundlePath

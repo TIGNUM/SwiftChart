@@ -19,16 +19,11 @@ final class UserService {
         self.realmProvider = realmProvider
     }
     
-    func prepare(completion: @escaping (Error?) -> Void) {
+    func prepare() throws {
         guard myToBeVision() != nil else {
-            createMyToBeVision(success: { _ in
-                completion(nil)
-            }, failure: { (error: Error?) in
-                completion(error)
-            })
+            _ = try createMyToBeVision()
             return
         }
-        completion(nil)
     }
 
     func user() -> User? {
@@ -116,20 +111,12 @@ extension UserService {
             date: mytoBeVision.date)
     }
     
-    func createMyToBeVision(success: ((MyToBeVision) -> Void)?, failure: ((Error?) -> Void)?) {
-        do {
-            let realm = try self.realmProvider.realm()
-            try realm.write {
-                let myToBeVision = realm.create(MyToBeVision.self, value: MyToBeVision(), update: false)
-                DispatchQueue.main.async {
-                    success?(myToBeVision)
-                }
-            }
-        } catch {
-            DispatchQueue.main.async {
-                failure?(error)
-            }
+    func createMyToBeVision() throws -> MyToBeVision {
+        let myToBeVision = MyToBeVision()
+        try mainRealm.write {
+            mainRealm.add(myToBeVision)
         }
+        return myToBeVision
     }
     
     func updateMyToBeVision(_ myToBeVision: MyToBeVisionIntermediary, completion: ((Error?) -> Void)?) {
@@ -163,6 +150,10 @@ extension UserService {
 
 extension UserService {
 
+    func userChoices() -> AnyRealmCollection<UserChoice>? {
+        return AnyRealmCollection(mainRealm.objects(UserChoice.self))
+    }
+    
     func createUserChoice(contentCategoryID: Int, contentCollectionID: Int, startDate: Date, endDate: Date) throws -> UserChoice {
         let choice = UserChoice(contentCategoryID: contentCategoryID,
                                 contentCollectionID: contentCollectionID,

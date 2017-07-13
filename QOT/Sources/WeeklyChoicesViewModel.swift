@@ -91,30 +91,46 @@ final class WeeklyChoicesViewModel {
         for index in 0..<52 {
             var weekChoices = WeeklyChoicePage(weekStart: Date() - TimeInterval(index * 7 * 24 * 3600))
 
-            weekChoices.choice1 =  MockWeeklyChoice(
+            weekChoices.choice1 =  WeeklyChoice(
                 localID: UUID().uuidString,
+                contentCollectionID: 0,
+                categoryID: 0,
                 title:  LoremIpsum.title(),
-                subTitle: LoremIpsum.title()
+                startDate: Date(),
+                endDate: Date(),
+                selected: false
             )
 
-            weekChoices.choice2 =  MockWeeklyChoice(
+            weekChoices.choice2 =  WeeklyChoice(
                 localID: UUID().uuidString,
-                title: LoremIpsum.title(),
-                subTitle: LoremIpsum.title()
+                contentCollectionID: 0,
+                categoryID: 0,
+                title:  LoremIpsum.title(),
+                startDate: Date(),
+                endDate: Date(),
+                selected: false
             )
 
-            weekChoices.choice3 =  MockWeeklyChoice(
+            weekChoices.choice3 =  WeeklyChoice(
                 localID: UUID().uuidString,
-                title: LoremIpsum.title(),
-                subTitle: LoremIpsum.title()
+                contentCollectionID: 0,
+                categoryID: 0,
+                title:  LoremIpsum.title(),
+                startDate: Date(),
+                endDate: Date(),
+                selected: false
             )
 
             weekChoices.choice4 = nil
 
-            weekChoices.choice5 =  MockWeeklyChoice(
+            weekChoices.choice5 =  WeeklyChoice(
                 localID: UUID().uuidString,
-                title: LoremIpsum.title(),
-                subTitle: LoremIpsum.title()
+                contentCollectionID: 0,
+                categoryID: 0,
+                title:  LoremIpsum.title(),
+                startDate: Date(),
+                endDate: Date(),
+                selected: false
             )
             
             items.append(weekChoices)

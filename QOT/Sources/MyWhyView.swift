@@ -95,9 +95,8 @@ private extension MyWhyView {
         }
     }
 
-    func addToBeVision(layout: Layout.MeSection, vision: MyToBeVision?) {
-        //TODO: lee localise
-        let footLabel = footerLabel(with: "MY TO BE VISION", labelFrame: layout.myWhyVisionFooterFrame(screenType))
+    func addToBeVision(layout: Layout.MeSection, vision: MyToBeVision?) {        
+        let footLabel = footerLabel(with: R.string.localized.meSectorMyWhyVisionTitle().uppercased(), labelFrame: layout.myWhyVisionFooterFrame(screenType))
         addSubview(footLabel)
         
         //TODO: frame based views are now a bit old-school!
@@ -165,9 +164,9 @@ private extension MyWhyView {
 
 private extension MyWhyView {
 
-    func weeklyChoiceButton(title: String, frame: CGRect, index: Index) -> UIButton {
+    func weeklyChoiceButton(title: String?, frame: CGRect, index: Index) -> UIButton {
         let button = UIButton(frame: frame)
-        button.setTitle(title, for: .normal)
+        button.setTitle(title ?? "", for: .normal)
         button.titleLabel?.font = Font.H7Tag
         button.titleLabel?.lineBreakMode = .byTruncatingTail
         button.setTitleColor(Color.MeSection.whiteLabel, for: .normal)
