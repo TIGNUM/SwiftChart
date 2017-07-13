@@ -47,6 +47,7 @@ final class AddSensorViewModel {
     let heading = mockHeading()
     let text = mockText()
 
+
     var itemCount: Int {
         return sensors.count
     }

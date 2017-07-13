@@ -68,6 +68,9 @@ extension AddSensorCoordinator: AddSensorViewControllerDelegate {
             AddSensorCoordinator.safariViewController = SFSafariViewController(url: url)
             guard let webViewController = AddSensorCoordinator.safariViewController else { return }
             viewController.present(webViewController, animated: true)
+        case .requestDevice:
+                viewController.present(setupAlert(), animated: true, completion: nil)
+
         default:
             print("sensor not yet implemented")
         }
@@ -89,5 +92,26 @@ extension AddSensorCoordinator: TopTabBarDelegate {
 
     func didSelectItemAtIndex(index: Int, sender: TopTabBarController) {
         print("didSelectItemAtIndex")
+    }
+}
+
+private extension AddSensorCoordinator {
+    func setupAlert() -> UIAlertController {
+
+        let alertController = UIAlertController(title: R.string.localized.addSensorViewAlertTitle(), message: R.string.localized.addSensorViewAlertMessage(), preferredStyle: .alert)
+        let sendAction = UIAlertAction(title: R.string.localized.addSensorViewAlertSend(), style: .default) { [weak alertController] _ in
+            if let alertController = alertController {
+                let textField = alertController.textFields![0] as UITextField
+                //use data of text feild for storing!!
+            }
+        }
+        let cancelAction = UIAlertAction(title: R.string.localized.addSensorViewAlertCancel(), style: .cancel) { _ in }
+        alertController.addTextField { textField in
+            textField.placeholder = R.string.localized.addSensorViewAlertPlaceholder()
+        }
+
+        alertController.addAction(sendAction)
+        alertController.addAction(cancelAction)
+        return alertController
     }
 }

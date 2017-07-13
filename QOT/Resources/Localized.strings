@@ -118,3 +118,10 @@
 "ActivityView.MonthButton" = "MONTH";
 
 "LoadingView.Message" = "We are loading Please wait";
+
+"AddSensorView.Alert.Title" = "Something else?";
+"AddSensorView.Alert.Message" = "What device would you like us to support?";
+"AddSensorView.Alert.Send" = "Send";
+"AddSensorView.Alert.Cancel" = "Cancel";
+"AddSensorView.Alert.Placeholder" = "Enter your device info.";
+

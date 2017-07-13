@@ -27,7 +27,7 @@ final class AddSensorViewController: UIViewController {
             delegate: self,
             dataSource: self,
             dequeables: SensorCollectionViewCell.self,
-                        RequestDeviceSensorCollectionViewCell.self
+            RequestDeviceSensorCollectionViewCell.self
         )
     }()
 
@@ -93,11 +93,6 @@ final class AddSensorViewController: UIViewController {
 
         setUpHierarchy()
         setUpLayout()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
     }
 }
 
@@ -170,7 +165,7 @@ private extension AddSensorViewController {
         textLabel.topAnchor == headerLabel.bottomAnchor + 17
         textLabel.horizontalAnchors == titleLabel.horizontalAnchors
         textLabel.bottomAnchor == contentView.bottomAnchor - 12
-        
+
         view.layoutIfNeeded()
     }
 }
