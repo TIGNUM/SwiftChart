@@ -18,16 +18,14 @@ final class AddSensorCoordinator: ParentCoordinator {
 
     fileprivate let rootViewController: SidebarViewController
     fileprivate let services: Services
-    fileprivate let eventTracker: EventTracker
     var children = [Coordinator]()
     lazy var presentationManager = PresentationManager()
 
     // MARK: - Init
 
-    init(root: SidebarViewController, services: Services, eventTracker: EventTracker) {
+    init(root: SidebarViewController, services: Services) {
         self.rootViewController = root
         self.services = services
-        self.eventTracker = eventTracker
     }
 
     // MARK: - Coordinator -> Starts
@@ -101,7 +99,7 @@ private extension AddSensorCoordinator {
         let alertController = UIAlertController(title: R.string.localized.addSensorViewAlertTitle(), message: R.string.localized.addSensorViewAlertMessage(), preferredStyle: .alert)
         let sendAction = UIAlertAction(title: R.string.localized.addSensorViewAlertSend(), style: .default) { [weak alertController] _ in
             if let alertController = alertController {
-                let textField = alertController.textFields![0] as UITextField
+                _ = alertController.textFields![0] as UITextField
                 //use data of text feild for storing!!
             }
         }

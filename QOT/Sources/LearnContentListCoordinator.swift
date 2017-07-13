@@ -14,15 +14,13 @@ final class LearnContentListCoordinator: ParentCoordinator {
     
     fileprivate let rootVC: LearnCategoryListViewController
     fileprivate let services: Services
-    fileprivate let eventTracker: EventTracker
     fileprivate let selectedCategoryIndex: Index
     var children: [Coordinator] = []
     weak var delegate: LearnContentListCoordinatorDelegate?
     
-    init(root: LearnCategoryListViewController, services: Services, eventTracker: EventTracker, selectedCategoryIndex: Index) {
+    init(root: LearnCategoryListViewController, services: Services, selectedCategoryIndex: Index) {
         self.rootVC = root
         self.services = services
-        self.eventTracker = eventTracker
         self.selectedCategoryIndex = selectedCategoryIndex
     }
     
@@ -49,7 +47,7 @@ final class LearnContentListCoordinator: ParentCoordinator {
 
 extension LearnContentListCoordinator: LearnContentListViewControllerDelegate {
     func didSelectContent(_ content: ContentCollection, category: ContentCategory, in viewController: LearnContentListViewController) {
-        let coordinator = LearnContentItemCoordinator(root: viewController, services: services, eventTracker: eventTracker, content: content, category: category)
+        let coordinator = LearnContentItemCoordinator(root: viewController, services: services, content: content, category: category)
         startChild(child: coordinator)
     }
     

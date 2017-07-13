@@ -237,7 +237,7 @@ extension PrepareCoordinator: PrepareContentViewControllerDelegate {
 
         //TODO: Show error for above guards
 
-        let coordinator = LearnContentItemCoordinator(root: viewController, services: services, eventTracker: services.trackingService, content: content, category: category)
+        let coordinator = LearnContentItemCoordinator(root: viewController, services: services, content: content, category: category)
         startChild(child: coordinator)
     }
 

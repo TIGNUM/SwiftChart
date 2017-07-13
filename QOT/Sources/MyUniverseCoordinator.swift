@@ -15,16 +15,14 @@ final class MyUniverseCoordinator: ParentCoordinator {
     
     fileprivate let rootViewController: MyUniverseViewController
     fileprivate let services: Services
-    fileprivate let eventTracker: EventTracker
     
     var children: [Coordinator] = []
     
     // MARK: - Life Cycle
     
-    init(root: MyUniverseViewController, services: Services, eventTracker: EventTracker) {
+    init(root: MyUniverseViewController, services: Services) {
         self.rootViewController = root
         self.services = services
-        self.eventTracker = eventTracker
     }
     
     func start() {

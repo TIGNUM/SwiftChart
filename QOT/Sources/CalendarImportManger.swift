@@ -22,7 +22,7 @@ protocol CalendarImportMangerDelegate: class {
 /// when the event `EKEventStoreChanged` notifications are posted.
 final class CalendarImportManger {
     private let store: EKEventStore
-    private let realm: () throws -> Realm
+    private let realmProvider: RealmProvider
     private let queue = DispatchQueue(label: "com.tignum.qot.calendarSync", qos: .background)
     private let notificationHandler: NotificationHandler
 
@@ -32,9 +32,9 @@ final class CalendarImportManger {
     weak var delegate: CalendarImportMangerDelegate?
     
     /// Creates an instance that imports `EKEvent`s from `store` matching `predicate` into `realm`.
-    init(realm: @escaping () throws -> Realm, predicate: @escaping (EKEventStore) -> NSPredicate, store: EKEventStore = EKEventStore(), notificationCenter: NotificationCenter = NotificationCenter.default) {
+    init(realm: RealmProvider, predicate: @escaping (EKEventStore) -> NSPredicate, store: EKEventStore = EKEventStore(), notificationCenter: NotificationCenter = NotificationCenter.default) {
         self.store = store
-        self.realm = realm
+        self.realmProvider = realm
         self.predicate = predicate
         self.notificationHandler = NotificationHandler(name: .EKEventStoreChanged, object: store)
         
@@ -62,11 +62,11 @@ final class CalendarImportManger {
     }
     
     private func sync(predicate: NSPredicate, completion: @escaping (CalendarImportResult) -> Void) {
-        queue.async { [store, realm] in
+        queue.async { [store, realmProvider] in
             let result: CalendarImportResult
             do {
                 let events = store.events(matching: predicate)
-                let realm = try realm()
+                let realm = try realmProvider.realm()
                 let task = CalendarImportTask()
                 result = task.sync(events: events, realm: realm, store: store)
             } catch let error {

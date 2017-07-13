@@ -26,7 +26,6 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
 
     fileprivate let rootVC: UIViewController
     fileprivate let services: Services
-    fileprivate let eventTracker: EventTracker
     fileprivate let articleHeader: ArticleCollectionHeader?
     fileprivate let topTabBarTitle: String?
     fileprivate var selectedContent: ContentCollection?
@@ -39,13 +38,11 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
     init(
         root: UIViewController,
         services: Services,
-        eventTracker: EventTracker,
         contentCollection: ContentCollection?,
         articleHeader: ArticleCollectionHeader?,
         topTabBarTitle: String?) {
             self.rootVC = root
             self.services = services
-            self.eventTracker = eventTracker
             self.articleHeader = articleHeader
             self.selectedContent = contentCollection
             self.topTabBarTitle = topTabBarTitle

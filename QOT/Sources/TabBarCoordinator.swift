@@ -16,7 +16,6 @@ final class TabBarCoordinator: ParentCoordinator {
 
     fileprivate let window: UIWindow
     fileprivate let services: Services
-    fileprivate let eventTracker: EventTracker
     fileprivate let selectedIndex: Index
     fileprivate var viewControllers = [UIViewController]()
     fileprivate var tabBarController: TabBarController?
@@ -132,10 +131,9 @@ final class TabBarCoordinator: ParentCoordinator {
     
     // MARK: - Init
     
-    init(window: UIWindow, selectedIndex: Index, services: Services, eventTracker: EventTracker) {
+    init(window: UIWindow, selectedIndex: Index, services: Services) {
         self.window = window
         self.services = services
-        self.eventTracker = eventTracker
         self.selectedIndex = selectedIndex
     }
 }
@@ -171,7 +169,6 @@ extension TabBarCoordinator {
         let bottomTabBarController = self.bottomTabBarController()
         window.rootViewController = bottomTabBarController
         window.makeKeyAndVisible()
-        eventTracker.track(page: bottomTabBarController.pageID, referer: bottomTabBarController.pageID, associatedEntity: nil)
         tabBarController = bottomTabBarController
     }
 
@@ -201,7 +198,7 @@ extension TabBarCoordinator: TabBarControllerDelegate {
 extension TabBarCoordinator: LearnCategoryListViewControllerDelegate {
 
     func didSelectCategory(at index: Index, in viewController: LearnCategoryListViewController) {
-        let coordinator = LearnContentListCoordinator(root: viewController, services: services, eventTracker: eventTracker, selectedCategoryIndex: index)
+        let coordinator = LearnContentListCoordinator(root: viewController, services: services, selectedCategoryIndex: index)
         coordinator.delegate = self
         startChild(child: coordinator)
     }
@@ -223,22 +220,22 @@ extension TabBarCoordinator: LearnContentListCoordinatorDelegate {
 extension TabBarCoordinator: MyUniverseViewControllerDelegate {
 
     func didTapSector(sector: Sector?, in viewController: MyUniverseViewController) {
-        let coordinator = MyStatisticsCoordinator(root: topTabBarControllerMe, services: services, eventTracker: eventTracker)
+        let coordinator = MyStatisticsCoordinator(root: topTabBarControllerMe, services: services)
         startChild(child: coordinator)
     }
 
     func didTapMyToBeVision(vision: MyToBeVision?, from view: UIView, in viewController: MyUniverseViewController) {
-        let coordinator = MyToBeVisionCoordinator(root: topTabBarControllerMe, services: services, eventTracker: eventTracker)
+        let coordinator = MyToBeVisionCoordinator(root: topTabBarControllerMe, services: services)
         startChild(child: coordinator)
     }
 
     func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, from view: UIView, in viewController: MyUniverseViewController) {
-        let coordinator = WeeklyChoicesCoordinator(root: topTabBarControllerMe, services: services, eventTracker: eventTracker)
+        let coordinator = WeeklyChoicesCoordinator(root: topTabBarControllerMe, services: services)
         startChild(child: coordinator)
     }
 
     func didTapQOTPartner(selectedIndex: Index, partners: [PartnerWireframe], from view: UIView, in viewController: MyUniverseViewController) {
-        let coordinator = PartnersCoordinator(root: topTabBarControllerMe, services: services, eventTracker: eventTracker, selectedIndex: selectedIndex)
+        let coordinator = PartnersCoordinator(root: topTabBarControllerMe, services: services, selectedIndex: selectedIndex)
         startChild(child: coordinator)
     }
 }
@@ -256,7 +253,6 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
         let coordinator = ArticleContentItemCoordinator(
             root: viewController,
             services: services,
-            eventTracker: eventTracker,
             contentCollection: articleHeader.articleContentCollection,
             articleHeader: articleHeader,
             topTabBarTitle: nil
@@ -280,7 +276,7 @@ extension TabBarCoordinator: TopTabBarDelegate {
             return
         }
 
-        let coordinator = SidebarCoordinator(root: tabBarController, services: services, eventTracker: eventTracker)
+        let coordinator = SidebarCoordinator(root: tabBarController, services: services)
         startChild(child: coordinator)
     }
 

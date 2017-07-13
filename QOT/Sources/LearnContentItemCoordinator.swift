@@ -13,7 +13,6 @@ final class LearnContentItemCoordinator: ParentCoordinator {
     
     fileprivate let rootVC: UIViewController
     fileprivate let services: Services
-    fileprivate let eventTracker: EventTracker
     fileprivate let category: ContentCategory
     fileprivate var categoryTitle: String
     fileprivate var selectedContent: ContentCollection
@@ -26,10 +25,9 @@ final class LearnContentItemCoordinator: ParentCoordinator {
     weak var topTabBarControllerDelegate: TopTabBarControllerDelegate?
     var children: [Coordinator] = []
     
-    init(root: UIViewController, services: Services, eventTracker: EventTracker, content: ContentCollection, category: ContentCategory) {
+    init(root: UIViewController, services: Services, content: ContentCollection, category: ContentCategory) {
         self.rootVC = root
         self.services = services
-        self.eventTracker = eventTracker
         self.category = category
         self.categoryTitle = category.title.capitalized
         self.selectedContent = content

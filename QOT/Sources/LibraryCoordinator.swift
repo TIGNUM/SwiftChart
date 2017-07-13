@@ -15,17 +15,15 @@ final class LibraryCoordinator: ParentCoordinator {
 
     fileprivate let rootViewController: SidebarViewController
     fileprivate let services: Services
-    fileprivate let eventTracker: EventTracker
     fileprivate let libraryViewController: LibraryViewController
     var children = [Coordinator]()
     lazy var presentationManager = PresentationManager()
 
     // MARK: - Init
 
-    init(root: SidebarViewController, services: Services, eventTracker: EventTracker) {
+    init(root: SidebarViewController, services: Services) {
         self.rootViewController = root
         self.services = services
-        self.eventTracker = eventTracker
         let categories = services.contentService.libraryCategories()
         self.libraryViewController = LibraryViewController(viewModel: LibraryViewModel(categories: categories))
     }
@@ -51,10 +49,6 @@ final class LibraryCoordinator: ParentCoordinator {
 
         topTabBarController.delegate = self
         rootViewController.present(topTabBarController, animated: true)
-
-        // TODO: Update associatedEntity with realm object when its created.
-        
-        eventTracker.track(page: libraryViewController.pageID, referer: rootViewController.pageID, associatedEntity: nil)
     }
 }
 
@@ -66,7 +60,6 @@ extension LibraryCoordinator: LibraryViewControllerDelegate {
         let coordinator = ArticleContentItemCoordinator(
             root: libraryViewController,
             services: services,
-            eventTracker: eventTracker,
             contentCollection: item,
             articleHeader: nil,
             topTabBarTitle: R.string.localized.sidebarTitleLibrary().uppercased()

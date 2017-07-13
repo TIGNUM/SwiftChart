@@ -13,14 +13,12 @@ final class SettingsCoordinator: ParentCoordinator {
     
     fileprivate let rootViewController: SettingsMenuViewController
     fileprivate let services: Services
-    fileprivate let eventTracker: EventTracker
     fileprivate let settingsType: SettingsViewModel.SettingsType
     var children = [Coordinator]()
 
-    init(root: SettingsMenuViewController, services: Services, eventTracker: EventTracker, settingsType: SettingsViewModel.SettingsType) {
+    init(root: SettingsMenuViewController, services: Services, settingsType: SettingsViewModel.SettingsType) {
         self.rootViewController = root
         self.services = services
-        self.eventTracker = eventTracker
         self.settingsType = settingsType
     }
 

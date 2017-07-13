@@ -105,7 +105,7 @@ class TabBarView: UIView {
 
     // MARK: Public methods
 
-    func setSelectedIndex(_ index: Int?, animated: Bool) -> Bool {
+    @discardableResult func setSelectedIndex(_ index: Int?, animated: Bool) -> Bool {
         guard index != selectedIndex else {
             return false
         }

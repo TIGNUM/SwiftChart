@@ -13,14 +13,12 @@ final class SettingsMenuCoordinator: ParentCoordinator {
 
     fileprivate let rootViewController: SidebarViewController
     fileprivate let services: Services
-    fileprivate let eventTracker: EventTracker
     var children = [Coordinator]()
     lazy var presentationManager = PresentationManager()
 
-    init(root: SidebarViewController, services: Services, eventTracker: EventTracker) {
+    init(root: SidebarViewController, services: Services) {
         self.rootViewController = root
         self.services = services
-        self.eventTracker = eventTracker
     }
 
     func start() {
@@ -65,7 +63,7 @@ extension SettingsMenuCoordinator: SettingsMenuViewControllerDelegate {
     }
 
     private func startSettingsCoordinator(settingsType: SettingsViewModel.SettingsType, root: SettingsMenuViewController) {
-        let coordinator = SettingsCoordinator(root: root, services: services, eventTracker: eventTracker, settingsType: settingsType)
+        let coordinator = SettingsCoordinator(root: root, services: services, settingsType: settingsType)
         startChild(child: coordinator)
     }
 }

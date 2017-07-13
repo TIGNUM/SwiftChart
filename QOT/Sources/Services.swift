@@ -22,9 +22,6 @@ final class Services {
     let eventsService: EventsService
     let settingsService: SettingsService
     let myStatisticsService: MyStatisticsService
-    lazy var trackingService: EventTracker = {
-        return EventTracker(realmProvider: { return try Realm() })
-    }()
 
     init(
         mainRealm: Realm,
@@ -55,7 +52,7 @@ final class Services {
 
             // FIXME: Remove
             do {
-                setupRealmWithMockData(realm: try Realm())
+                setupRealmWithMockData(realm: try RealmProvider().realm())
             } catch let error {
                 fatalError("Cannot create mock data: \(error)")
             }

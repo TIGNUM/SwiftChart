@@ -19,9 +19,7 @@ final class AppCoordinator: ParentCoordinator {
     let window: UIWindow
     let secondaryWindow: UIWindow
     fileprivate var services: Services?
-    fileprivate lazy var eventTracker: EventTracker = {
-        return EventTracker(realmProvider: { return try Realm() })
-    }()
+
     fileprivate lazy var syncManager: SyncManager = {
         let realmProvider = RealmProvider()
         let syncRecordService =  SyncRecordService(realmProvider: realmProvider)
@@ -29,7 +27,7 @@ final class AppCoordinator: ParentCoordinator {
         return SyncManager(networkManager: NetworkManager(), syncRecordService: syncRecordService, realmProvider: realmProvider)
     }()
     fileprivate lazy var calendarImportManager: CalendarImportManger = {
-        let manager = CalendarImportManger(realm: { return try Realm() }, predicate: { (store) -> NSPredicate in
+        let manager = CalendarImportManger(realm: RealmProvider(), predicate: { (store) -> NSPredicate in
             let day: TimeInterval = 60 * 60 * 24
             let start = Date().addingTimeInterval(-(day * 7))
             let end = Date().addingTimeInterval(day * 7)
@@ -133,8 +131,7 @@ final class AppCoordinator: ParentCoordinator {
         let tabBarCoordinator = TabBarCoordinator(
             window: self.window,
             selectedIndex: 0,
-            services: services,
-            eventTracker: self.eventTracker
+            services: services
         )
         tabBarCoordinator.start()
         self.startChild(child: tabBarCoordinator)
@@ -200,7 +197,6 @@ extension AppCoordinator: SelectWeeklyChoicesViewControllerDelegate {
         let coordinator = LearnContentItemCoordinator(
             root: viewController,
             services: services,
-            eventTracker: eventTracker,
             content: contentCollection,
             category: category
         )

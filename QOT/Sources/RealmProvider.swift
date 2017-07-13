@@ -11,6 +11,15 @@ import RealmSwift
 
 final class RealmProvider {
     func realm() throws -> Realm {
-        return try Realm()
+        return try Realm(configuration: RealmProvider.config)
     }
+
+    private static var config: Realm.Configuration = {
+        // FIXME: EncryptionKey
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let url = documentsURL.appendingPathComponent("QOT.realm")
+        return Realm.Configuration(fileURL:url,
+                                   encryptionKey: nil,
+                                   deleteRealmIfMigrationNeeded: true)
+    }()
 }

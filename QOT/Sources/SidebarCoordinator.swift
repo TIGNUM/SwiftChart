@@ -13,14 +13,12 @@ final class SidebarCoordinator: ParentCoordinator {
 
     let rootViewController: UIViewController
     fileprivate let services: Services
-    fileprivate let eventTracker: EventTracker
     var children = [Coordinator]()
     lazy var presentationManager = PresentationManager()
     
-    init(root: UIViewController, services: Services, eventTracker: EventTracker) {
+    init(root: UIViewController, services: Services) {
         self.rootViewController = root
         self.services = services
-        self.eventTracker = eventTracker
     }
     
     func start() {
@@ -55,17 +53,17 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
     }
 
     func didTapAddSensorCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
-        let coordinator = AddSensorCoordinator(root: viewController, services: services, eventTracker: eventTracker)
+        let coordinator = AddSensorCoordinator(root: viewController, services: services)
         startChild(child: coordinator)
     }
 
     func didTapSettingsMenuCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
-        let coordinator = SettingsMenuCoordinator(root: viewController, services: services, eventTracker: eventTracker)
+        let coordinator = SettingsMenuCoordinator(root: viewController, services: services)
         startChild(child: coordinator)
     }
 
     func didTapLibraryCell(in viewController: SidebarViewController) {
-        let coordinator = LibraryCoordinator(root: viewController, services: services, eventTracker: eventTracker)
+        let coordinator = LibraryCoordinator(root: viewController, services: services)
         startChild(child: coordinator)
     }
 
@@ -89,7 +87,6 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
         let coordinator = ArticleContentItemCoordinator(
             root: viewController,
             services: services,
-            eventTracker: eventTracker,
             contentCollection: collection,
             articleHeader: nil,
             topTabBarTitle: topTabBarTitle.uppercased()

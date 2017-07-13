@@ -15,7 +15,6 @@ final class PartnersCoordinator: ParentCoordinator {
 
     fileprivate let rootViewController: UIViewController
     fileprivate let services: Services
-    fileprivate let eventTracker: EventTracker
     fileprivate let selectedIndex: Index
     fileprivate let viewModel: PartnersViewModel
 
@@ -23,10 +22,9 @@ final class PartnersCoordinator: ParentCoordinator {
 
     // MARK: - Life Cycle
 
-    init(root: UIViewController, services: Services, eventTracker: EventTracker, selectedIndex: Index) {
+    init(root: UIViewController, services: Services, selectedIndex: Index) {
         self.rootViewController = root
         self.services = services
-        self.eventTracker = eventTracker
         self.selectedIndex = selectedIndex
         self.viewModel = PartnersViewModel(items: services.partnerService.partnersIntermediary, selectedIndex: selectedIndex, headline: "Lore ipsum impsum plus")
     }

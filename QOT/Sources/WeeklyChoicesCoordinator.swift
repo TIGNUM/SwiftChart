@@ -15,16 +15,14 @@ final class WeeklyChoicesCoordinator: ParentCoordinator {
 
     fileprivate let rootViewController: UIViewController
     fileprivate let services: Services
-    fileprivate let eventTracker: EventTracker
 
     var children: [Coordinator] = []
 
     // MARK: - Life Cycle
 
-    init(root: UIViewController, services: Services, eventTracker: EventTracker) {
+    init(root: UIViewController, services: Services) {
         self.rootViewController = root
         self.services = services
-        self.eventTracker = eventTracker
     }
 
     func start() {
