@@ -241,7 +241,7 @@ private extension MyUniverseViewController {
     }
 
     func updateProfileImageViewAlphaValue(_ contentScrollView: UIScrollView) {
-        let alpha = 1.0 - scrollFactor(contentScrollView)
+        let alpha = scrollFactor(contentScrollView)
         myDataView.profileImageViewOverlay.alpha = alpha
         myDataView.profileImageViewOverlayEffect.alpha = alpha
     }

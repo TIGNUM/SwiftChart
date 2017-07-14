@@ -109,10 +109,8 @@ private extension MyDataView {
         profileImageButton.layer.cornerRadius = (profileImageButton.frame.size.width * 0.5)
         profileImageButton.clipsToBounds = true
         profileImageViewOverlay = UIImageView(frame: layout.profileImageViewFrame, image: profileImage?.convertToGrayScale())
-        profileImageViewOverlay.alpha = 0.0
         profileImageViewOverlayEffect = UIImageView(frame: layout.profileImageViewFrame, image: nil)
         profileImageViewOverlayEffect.backgroundColor = Color.Default.whiteMedium
-        profileImageViewOverlayEffect.alpha = 0.0
         addImageEffect(center: layout.loadCenter)
     }
 

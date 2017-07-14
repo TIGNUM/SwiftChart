@@ -84,7 +84,7 @@ extension ArticleCollectionViewController: UICollectionViewDataSource, UICollect
             title: viewModel.title(at: index),
             description: viewModel.description(at: index),
             imageURL: viewModel.previewImageURL(at: index),
-            duration: "TODO"
+            duration: viewModel.duration(at: index)
         )
 
         return cell
@@ -96,8 +96,8 @@ extension ArticleCollectionViewController: UICollectionViewDataSource, UICollect
         let articleHeader = ArticleCollectionHeader(
             articleTitle: viewModel.title(at: index),
             articleSubTitle: viewModel.description(at: index),
-            articleDate: "TODO",
-            articleDuration: "TODO",
+            articleDate: viewModel.date(at: index),
+            articleDuration: viewModel.duration(at: index),
             articleContentCollection: selectedCollection
         )
 

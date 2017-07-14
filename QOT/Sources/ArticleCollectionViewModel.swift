@@ -36,6 +36,14 @@ final class ArticleCollectionViewModel {
     func description(at index: Index) -> String {
         return contentCollection(at: index).title
     }
+    
+    func date(at index: Index) -> String {
+        return DateFormatter.shortDate.string(from: contentCollection(at: index).createdAt)
+    }
+    
+    func duration(at index: Index) -> String {
+        return "\(contentCollection(at: index).items.reduce(0, { $0.0 + $0.1.secondsRequired }) / 60) MIN" //TODO Localise?
+    }
 
     func sortOrder(at index: Index) -> String {
         return String(format: ".%003d", contentCollection(at: index).sortOrder)
