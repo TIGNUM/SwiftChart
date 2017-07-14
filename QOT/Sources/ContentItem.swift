@@ -52,8 +52,6 @@ final class ContentItem: Object {
 
     fileprivate(set) dynamic var layoutInfo: String?
 
-    fileprivate(set) dynamic var contentID: Int = 0
-
     fileprivate(set) dynamic var valueText: String?
 
     fileprivate(set) dynamic var valueDescription: String?
@@ -74,6 +72,16 @@ final class ContentItem: Object {
         return Int(valueDuration.value ?? 0.0)
     }
     
+    // MARK: Relationships
+
+    fileprivate(set) dynamic var contentCollection: ContentCollection?
+
+    func buildRelations(realm: Realm) {
+        if let id = collectionID.value {
+            contentCollection = realm.object(ofType: ContentCollection.self, forPrimaryKey: id)
+        }
+    }
+
     // MARK: Realm
 
     override class func primaryKey() -> String? {

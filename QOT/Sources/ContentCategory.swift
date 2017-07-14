@@ -50,14 +50,14 @@ final class ContentCategory: Object {
 
     // MARK: Relationships
 
-    lazy var contentCollections: Results<ContentCollection> = {
-        guard let realm = self.realm else {
-            preconditionFailure("Attempted to access contentCollections on an unmanaged ContentCategory: \(self)")
-        }
+    let contentCollections = List<ContentCollection>()
 
-        let predicate = NSPredicate(format: "ANY categoryIDs.value == %d", self.remoteID)
-        return realm.objects(ContentCollection.self).filter(predicate)
-    }()
+    func buildInverseRelations(realm: Realm) {
+        let predicate = NSPredicate(format: "ANY contentCategories == %@", self)
+        let collections = realm.objects(ContentCollection.self).filter(predicate)
+        contentCollections.removeAll()
+        contentCollections.append(objectsIn: collections)
+    }
 }
 
 extension ContentCategory: DownSyncable {

@@ -19,6 +19,7 @@ enum SyncError: Error {
     case upSyncFetchDirtyCalendarEventsFailed(error: Error)
     case upSyncSendCalendarEventsFailed(error: Error)
     case upSyncSendCalendarSaveRemoteIDsFailed(error: Error)
+    case updateRelationsFailed(error: Error)
 }
 
 class SyncContext {

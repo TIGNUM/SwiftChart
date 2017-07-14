@@ -220,6 +220,7 @@
 		CBC1DC3F1F16067900F6D056 /* DownSyncIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC3E1F16067900F6D056 /* DownSyncIntermediary.swift */; };
 		CBC5ACBF1F162A9C007E1E9C /* UserChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5ACBE1F162A9C007E1E9C /* UserChoice.swift */; };
 		CBC5ACC11F162AAE007E1E9C /* UserChoiceIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5ACC01F162AAE007E1E9C /* UserChoiceIntermediary.swift */; };
+		CBC5ACC61F17C58F007E1E9C /* UpdateRelationsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5ACC51F17C58F007E1E9C /* UpdateRelationsOperation.swift */; };
 		CBC933051F05253000C00007 /* JSON+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC933041F05253000C00007 /* JSON+Convenience.swift */; };
 		CBC933081F052DDA00C00007 /* PrepareCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC933071F052DDA00C00007 /* PrepareCoordinator.swift */; };
 		CBC9330F1F0AA47800C00007 /* PrepareEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC9330D1F0AA47800C00007 /* PrepareEventsViewController.swift */; };
@@ -637,6 +638,7 @@
 		CBC1DC3E1F16067900F6D056 /* DownSyncIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownSyncIntermediary.swift; sourceTree = "<group>"; };
 		CBC5ACBE1F162A9C007E1E9C /* UserChoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserChoice.swift; sourceTree = "<group>"; };
 		CBC5ACC01F162AAE007E1E9C /* UserChoiceIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserChoiceIntermediary.swift; sourceTree = "<group>"; };
+		CBC5ACC51F17C58F007E1E9C /* UpdateRelationsOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateRelationsOperation.swift; sourceTree = "<group>"; };
 		CBC933041F05253000C00007 /* JSON+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Convenience.swift"; sourceTree = "<group>"; };
 		CBC933071F052DDA00C00007 /* PrepareCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareCoordinator.swift; sourceTree = "<group>"; };
 		CBC9330D1F0AA47800C00007 /* PrepareEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsViewController.swift; sourceTree = "<group>"; };
@@ -1194,6 +1196,7 @@
 			children = (
 				CBB4DCDF1ED8178A0071494A /* ConcurrentOperation.swift */,
 				CBB4DD551EE152EC0071494A /* DownSyncOperation.swift */,
+				CBC5ACC51F17C58F007E1E9C /* UpdateRelationsOperation.swift */,
 				CB9B076C1EFAAB6E0017F6C3 /* UpSyncCalendarEventsOperation.swift */,
 			);
 			name = Operations;
@@ -2242,6 +2245,7 @@
 				CB3437621EFD67B600D89D4F /* AnswerIntermediary.swift in Sources */,
 				0BC9F9391E96118C009E8204 /* StatusTableViewCell.swift in Sources */,
 				CBD791541E72A4BB0006C590 /* MockData.swift in Sources */,
+				CBC5ACC61F17C58F007E1E9C /* UpdateRelationsOperation.swift in Sources */,
 				CB9B07651EF929E50017F6C3 /* EKEvent+JSONEncodable.swift in Sources */,
 				CCCC211D1E8981AD00133839 /* ChatViewModel.swift in Sources */,
 				CBC9330F1F0AA47800C00007 /* PrepareEventsViewController.swift in Sources */,

@@ -91,9 +91,8 @@ final class ContentService {
 private extension Realm {
 
     func contentCategories(section: Database.Section) -> AnyRealmCollection<ContentCategory> {
-        let contentCollections: AnyRealmCollection<ContentCollection> = anyCollection(predicates: .section(section))
-        let categoryIDs = Set(contentCollections.reduce([IntObject](), { $0.0 + $0.1.categoryIDs }).map { $0.value })
-        return anyCollection(.sortOrder(), predicates: NSPredicate(remoteIDs: Array(categoryIDs)))
+        let predicate = NSPredicate(format: "ANY contentCollections.section == %@", section.rawValue)
+        return anyCollection(.sortOrder(), predicates: predicate)
     }
 }
 

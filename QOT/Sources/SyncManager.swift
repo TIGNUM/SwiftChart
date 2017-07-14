@@ -50,7 +50,8 @@ final class SyncManager {
             downSyncOperation(for: ContentCategoryDown, context: context),
             downSyncOperation(for: ContentCollectionDown, context: context),
             downSyncOperation(for: DataPointDown, context: context),
-            downSyncOperation(for: ContentItemDown, context: context, isFinalOperation: true)
+            downSyncOperation(for: ContentItemDown, context: context),
+            UpdateRelationsOperation(context: context, realmProvider: realmProvider, isFinalOperation: true)
         ]
 
         operationQueue.addOperations(operations, waitUntilFinished: false)

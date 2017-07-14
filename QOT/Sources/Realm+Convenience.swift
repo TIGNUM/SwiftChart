@@ -31,6 +31,12 @@ extension Realm {
         return object
     }
 
+    func objects<T: Object, K>(ofType type: T.Type, forPrimaryKeys keys: [K]) -> [T] {
+        return keys.flatMap { (key) -> T? in
+            return object(ofType: T.self, forPrimaryKey: key)
+        }
+    }
+
     func dirtyCalandarEvents() -> Results<CalendarEvent> {
         return objects(predicate: NSPredicate(dirty: true))
     }

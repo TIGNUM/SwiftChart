@@ -58,14 +58,23 @@ final class ContentCollection: Object {
 
     // MARK: Relationships
 
-    lazy var items: Results<ContentItem> = {
-        guard let realm = self.realm else {
-            preconditionFailure("Attempted to access items on an unmanaged ContentCollection: \(self)")
-        }
+    let items = List<ContentItem>()
 
-        let predicate = NSPredicate(format: "collectionID == %d", self.remoteID)
-        return realm.objects(ContentItem.self).filter(predicate)
-    }()
+    let contentCategories = List<ContentCategory>()
+
+    func buildRelations(realm: Realm) {
+        let categoryIDs = Array(self.categoryIDs.map({ $0.value }))
+        let categories = realm.objects(ofType: ContentCategory.self, forPrimaryKeys: categoryIDs)
+        contentCategories.removeAll()
+        contentCategories.append(objectsIn: categories)
+    }
+
+    func buildInverseRelations(realm: Realm) {
+        let predicate = NSPredicate(format: "contentCollection == %@", self)
+        let items = realm.objects(ContentItem.self).filter(predicate)
+        self.items.removeAll()
+        self.items.append(objectsIn: items)
+    }
 
     // MARK: Computed Properties
 
