@@ -1,6 +1,6 @@
 PODS:
   - ActionSheetPicker-3.0 (2.2.0)
-  - Alamofire (4.5.0)
+  - Alamofire (4.4.0)
   - Anchorage (3.3.0)
   - Bond (6.2.6):
     - Diff (~> 0.4)
@@ -14,19 +14,19 @@ PODS:
   - iCarousel (1.8.3)
   - ImagePicker (2.1.1)
   - KeychainAccess (3.0.2)
-  - Kingfisher (3.10.2)
+  - Kingfisher (3.10.1)
   - LoremIpsum (1.0.0)
   - MBProgressHUD (1.0.0)
   - R.swift (3.3.0):
     - R.swift.Library (~> 3.0.2)
   - R.swift.Library (3.0.2)
-  - ReactiveKit (3.5.5)
+  - ReactiveKit (3.5.4)
   - Realm (2.7.0):
     - Realm/Headers (= 2.7.0)
   - Realm/Headers (2.7.0)
   - RealmSwift (2.7.0):
     - Realm (= 2.7.0)
-  - RSKImageCropper (1.6.3)
+  - RSKImageCropper (1.6.2)
   - UICollectionViewRightAlignedLayout (0.0.3)
 
 DEPENDENCIES:
@@ -51,7 +51,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
-  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   Anchorage: 1444bbd32c4495b32d41c0be9f66efcb0862fe8a
   Bond: 0d7a52e9aec644c3b4985ceeb224a402b1efd691
   BonMot: 043bb5a8834cc6d74e9d624742272b92385e0a27
@@ -62,15 +62,15 @@ SPEC CHECKSUMS:
   iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
   ImagePicker: fe4c699abb56ff03994fa98d8b02e3883ee118be
   KeychainAccess: a986406022dfc7c634c691ad3bec670cc6a32002
-  Kingfisher: 7297492bf8cec9b2e2dee3519f2219948580d98e
+  Kingfisher: 33a1b82140fcb14a9fc13f78dfde2a03ff8de8cb
   LoremIpsum: 9029c55d36501b2ee0b05cc9ecda11d3a0479160
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   R.swift: bde9704d50ff36820f49e266bc88ef545e1e9b36
   R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
-  ReactiveKit: ced30f9647912f74510bd8179790cf2dfc9454c8
+  ReactiveKit: 4fc2a23db33777358abe93453ece3a69011adeec
   Realm: 07e5d3a9e0e41d65fd5f9f05150ed6295d0f093b
   RealmSwift: 6d06425d3900c86473c4f323bf6949b43fca22bc
-  RSKImageCropper: 356e36fc58c57c371b5d8b23d603936d6a73df6c
+  RSKImageCropper: 3e579d0000945a8be1c0efdad728fd9e25c2fd79
   UICollectionViewRightAlignedLayout: 823eef8c567eba4a44c21bc2ffcb0d0d5f361e2d
 
 PODFILE CHECKSUM: 326aa2ebdac868a7cdc42f4e41b8b9b31cd61cfe

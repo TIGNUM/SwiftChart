@@ -9,6 +9,26 @@
 import Foundation
 import Alamofire
 
+struct AuthenticationRequest: URLRequestBuildable {
+    let endpoint: Endpoint = .authentication
+    let httpMethod: HTTPMethod = .post
+    let headers: [HTTPHeader: String]
+    
+    let username: String
+    let password: String
+    let deviceID: String
+    
+    init(username: String, password: String, deviceID: String) {
+        self.username = username
+        self.password = password
+        self.deviceID = deviceID
+        headers = [
+            .Authorization: "\(username):\(password)",
+            .deviceID: deviceID
+        ]
+    }
+}
+
 struct StartSyncRequest: URLRequestBuildable {
     let endpoint: Endpoint = .startSync
     let httpMethod: HTTPMethod = .post
@@ -64,5 +84,27 @@ struct FitbitTokenRequest: URLRequestBuildable {
     init(endpoint: Endpoint, body: Data) {
         self.endpoint = endpoint
         self.body = body
+    }
+}
+
+struct ResetPasswordRequest: URLRequestBuildable {
+    let endpoint: Endpoint
+    let httpMethod: HTTPMethod = .put
+    let body: Data?
+
+    init(endpoint: Endpoint, body: Data) {
+        self.endpoint = endpoint
+        self.body = body
+    }
+}
+
+struct EmailCheckRequest: URLRequestBuildable {
+    let endpoint: Endpoint
+    let httpMethod: HTTPMethod = .get
+    let email: String?
+
+    init(endpoint: Endpoint, email: String?) {
+        self.endpoint = endpoint
+        self.email = email
     }
 }

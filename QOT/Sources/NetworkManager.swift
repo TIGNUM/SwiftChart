@@ -10,19 +10,88 @@ import Foundation
 import Alamofire
 import Freddy
 
+protocol NetworkManagerDelegate: class {
+    func networkManagerFailedToAuthenticate(_ networkManager: NetworkManager)
+}
+
 class NetworkManager {
 
     private let sessionManager: SessionManager
     private let credentialsManager: CredentialsManager
     private let requestBuilder: URLRequestBuilder
-
-    init(sessionManager: SessionManager = SessionManager.default,
+    var credential: Credential? {
+        get {
+            return credentialsManager.credential
+        }
+        set {
+            credentialsManager.credential = newValue
+        }
+    }
+    weak var delegate: NetworkManagerDelegate?
+    
+    init(delegate: NetworkManagerDelegate? = nil,
+         sessionManager: SessionManager = SessionManager.default,
          credentialsManager: CredentialsManager = CredentialsManager(),
          requestBuilder: URLRequestBuilder = URLRequestBuilder(baseURL: baseURL, deviceID: deviceID)
         ) {
+        self.delegate = delegate
         self.sessionManager = sessionManager
         self.credentialsManager = credentialsManager
         self.requestBuilder = requestBuilder
+    }
+    
+    @discardableResult func request(_ authRequest: AuthenticationRequest, parser: @escaping (Data) throws -> String, completion: @escaping (Result<String, NetworkError>) -> Void) -> SerialRequest {
+        let serialRequest = SerialRequest()
+        let request = requestBuilder.make(with: authRequest, authToken: nil)
+        serialRequest.request = sessionManager.request(request, parser: parser) { [weak self] (result) in
+            guard let `self` = self else {
+                return
+            }
+            
+            switch result {
+            case .success(let token):
+                self.credentialsManager.credential = Credential(username: authRequest.username, password: authRequest.password, token: token)
+                completion(result)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+        return serialRequest
+    }
+
+    @discardableResult func request<T>(_ authRequest: ResetPasswordRequest, parser: @escaping (Data) throws -> T, completion: @escaping (Result<T, NetworkError>) -> Void) -> SerialRequest {
+        let serialRequest = SerialRequest()
+        let request = requestBuilder.make(with: authRequest, authToken: nil)
+        serialRequest.request = sessionManager.request(request, parser: parser) { (result) in
+            completion(result)
+        }
+        return serialRequest
+    }
+
+    @discardableResult func request<T>(_ authRequest: EmailCheckRequest, parser: @escaping (Data) throws -> T, completion: @escaping (Result<T, NetworkError>) -> Void) -> SerialRequest {
+
+        var httpHeaders = authRequest.headers
+        httpHeaders[.contentType] = "application/json"
+        httpHeaders[.deviceID] = deviceID
+
+        let method = authRequest.httpMethod
+        let headers = httpHeaders.mapKeys { $0.rawValue }
+        var url = authRequest.endpoint.url(baseURL: baseURL)
+        let params = authRequest.paramaters.mapKeys { $0.rawValue }
+
+        if let string = authRequest.email as? String {
+            url.appendPathComponent(string)
+        }
+
+        print("Check email path: \(url.absoluteString)")
+
+        let request = URLRequest(url: url, method: method, headers: headers, parameters: params, body: authRequest.body)
+
+        let serialRequest = SerialRequest()
+        serialRequest.request = sessionManager.request(request, parser: parser) { (result) in
+            completion(result)
+        }
+        return serialRequest
     }
 
     /**
@@ -33,12 +102,11 @@ class NetworkManager {
      If the users token is not accepted by the server, trys to reauthenticate before reperforming the request.
     */
     @discardableResult func request<T>(_ urlRequest: URLRequestBuildable, parser: @escaping (Data) throws -> T, completion: @escaping (Result<T, NetworkError>) -> Void) -> SerialRequest {
-        guard let credential = credentialsManager.credential else {
-            completion(.failure(NetworkError(type: .unauthenticated)))
-            return SerialRequest()
-        }
-
         let serialRequest = SerialRequest()
+        guard let credential = credential else {
+            completion(.failure(NetworkError(type: .unauthenticated)))
+            return serialRequest
+        }
         if let token = credential.token {
             setTokenAndRequest(urlRequest, token: token, parser: parser, serialRequest: serialRequest) { [weak self] (result) in
                 switch result {
@@ -47,14 +115,20 @@ class NetworkManager {
                 case .failure(let error):
                     switch error.type {
                     case .unauthenticated:
-                        self?.authenticateAndRequest(urlRequest, username: credential.username, password: credential.password, parser: parser, serialRequest: serialRequest, completion: completion)
+                        self?.authenticateAndRequest(urlRequest, username: credential.username ?? "", password: credential.password ?? "", parser: parser, serialRequest: serialRequest, completion: completion)
                     default:
                         completion(result)
                     }
                 }
             }
         } else {
-            authenticateAndRequest(urlRequest, username: credential.username, password: credential.password, parser: parser, serialRequest: serialRequest, completion: completion)
+            authenticateAndRequest(urlRequest, username: credential.username ?? "", password: credential.password ?? "", parser: parser, serialRequest: serialRequest, completion: { [weak self] (authResult) in
+                completion(authResult)
+                guard let `self` = self else {
+                    return
+                }
+                self.delegate?.networkManagerFailedToAuthenticate(self)
+            })
         }
         return serialRequest
     }
@@ -79,12 +153,13 @@ class NetworkManager {
         }.request
         return serialRequest
     }
-
+    
     // MARK: Private
 
     private func authenticateAndRequest<T>(_ urlRequest: URLRequestBuildable, username: String, password: String, parser: @escaping (Data) throws -> T, serialRequest: SerialRequest, completion: @escaping (Result<T, NetworkError>) -> Void) {
-        let authRequest = requestBuilder.authentication(username: username, password: password)
-        serialRequest.request = sessionManager.request(authRequest, parser: AuthenticationTokenParser.parse) { [weak self] (authResult) in
+        let authRequest = AuthenticationRequest(username: username, password: password, deviceID: deviceID)
+        let req = requestBuilder.make(with: authRequest, authToken: nil)
+        serialRequest.request = sessionManager.request(req, parser: AuthenticationTokenParser.parse) { [weak self] (authResult) in
             guard let strongSelf = self else {
                 return
             }

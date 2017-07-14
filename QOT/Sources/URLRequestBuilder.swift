@@ -18,10 +18,12 @@ final class URLRequestBuilder {
         self.deviceID = deviceID
     }
 
-    func make(with buildable: URLRequestBuildable, authToken: String) -> URLRequest {
+    func make(with buildable: URLRequestBuildable, authToken: String?) -> URLRequestConvertible {
         var httpHeaders = buildable.headers
         httpHeaders[.contentType] = "application/json"
-        httpHeaders[.authToken] = authToken
+        if let authToken = authToken {
+            httpHeaders[.authToken] = authToken
+        }
         httpHeaders[.deviceID] = deviceID
 
         let url = buildable.endpoint.url(baseURL: baseURL)
@@ -30,16 +32,6 @@ final class URLRequestBuilder {
         let params = buildable.paramaters.mapKeys { $0.rawValue }
 
         return URLRequest(url: url, method: method, headers: headers, parameters: params, body: buildable.body)
-    }
-
-    func authentication(username: String, password: String) -> URLRequest {
-        let url = Endpoint.authentication.url(baseURL: baseURL)
-        var httpHeaders: [HTTPHeader: String] = [:]
-        httpHeaders[.Authorization] = "\(username):\(password)"
-        httpHeaders[.deviceID] = deviceID
-        let headers = httpHeaders.mapKeys { $0.rawValue }
-
-        return URLRequest(url: url, method: .post, headers: headers, parameters: nil)
     }
 }
 

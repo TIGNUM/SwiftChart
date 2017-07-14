@@ -19,12 +19,16 @@ final class AppCoordinator: ParentCoordinator {
     let window: UIWindow
     let secondaryWindow: UIWindow
     fileprivate var services: Services?
+    
+    fileprivate lazy var networkManager: NetworkManager = {
+        return NetworkManager(delegate: self)
+    }()
 
     fileprivate lazy var syncManager: SyncManager = {
         let realmProvider = RealmProvider()
         let syncRecordService =  SyncRecordService(realmProvider: realmProvider)
-
-        return SyncManager(networkManager: NetworkManager(), syncRecordService: syncRecordService, realmProvider: realmProvider)
+        let networkManager = self.networkManager
+        return SyncManager(networkManager: networkManager, syncRecordService: syncRecordService, realmProvider: realmProvider)
     }()
     fileprivate lazy var calendarImportManager: CalendarImportManger = {
         let manager = CalendarImportManger(realm: RealmProvider(), predicate: { (store) -> NSPredicate in
@@ -112,7 +116,22 @@ final class AppCoordinator: ParentCoordinator {
             handlerDestructive?()
         })
     }
+    
+    func showLogin() {
+        clearWindows()
 
+        let loginCoordinator = LoginCoordinator(window: window, delegate: self, networkManager: networkManager)
+        startChild(child: loginCoordinator)
+    }
+    
+    // MARK: - private
+    
+    fileprivate func clearWindows() {
+        (window.subviews + secondaryWindow.subviews).forEach { (view: UIView) in
+            view.removeFromSuperview()
+        }
+    }
+    
     private func switchToSecondaryWindow() {
         secondaryWindow.makeKeyAndVisible()
     }
@@ -155,6 +174,24 @@ extension AppCoordinator: CalendarImportMangerDelegate {
     func calendarImportDidFail(error: Error) {
         // FIXME: Handle error
         assertionFailure("Calendar import failed: \(error)")
+    }
+}
+
+// MARK: - LoginCoordinatorDelegate
+
+extension AppCoordinator: LoginCoordinatorDelegate {
+
+    func didLoginSuccessfully() {
+        clearWindows()
+        start()
+    }
+}
+
+// MARK: - NetworkManagerDelegate
+
+extension AppCoordinator: NetworkManagerDelegate {
+    func networkManagerFailedToAuthenticate(_ networkManager: NetworkManager) {
+        showLogin()
     }
 }
 

@@ -19,6 +19,8 @@ enum AlertType {
     case unauthenticated
     case noNetworkConnection
     case comingSoon
+    case unknow
+    case loginFailed
     case notificationsNotAuthorized
 
     var title: String? {
@@ -29,6 +31,8 @@ enum AlertType {
         case .custom(let title, _): return title
         case .unauthenticated: return R.string.localized.alertTitleUnauthenticated()
         case .noNetworkConnection: return R.string.localized.alertTitleNoNetworkConnection()
+        case .unknow: return R.string.localized.alertTitleUnknown()
+        case .loginFailed: return R.string.localized.loginViewLoginFailed()
         case .notificationsNotAuthorized: return R.string.localized.alertTitleNotificationsNotAuthorized()
         default: return nil
         }
@@ -41,6 +45,7 @@ enum AlertType {
         case .unauthenticated: return R.string.localized.alertMessageUnauthenticated()
         case .noNetworkConnection: return R.string.localized.alertMessageNoNetworkConnection()
         case .comingSoon: return R.string.localized.alertMessageComingSoon()
+        case .unknow: return R.string.localized.alertMessageUnknown()
         case .notificationsNotAuthorized: return R.string.localized.alertMessageNotificationsNotAuthorized()
         default: return nil
         }
@@ -90,6 +95,7 @@ enum AlertType {
         case .custom: return 1
         case .unauthenticated: return 1
         case .noNetworkConnection: return 1
+        case .loginFailed: return 1
         default: return 0.5
         }
     }

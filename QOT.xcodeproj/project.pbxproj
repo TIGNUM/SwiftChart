@@ -83,10 +83,15 @@
 		8548BBDE1F0D264800AC7C06 /* RequestDeviceSensorCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8548BBDD1F0D264800AC7C06 /* RequestDeviceSensorCollectionViewCell.xib */; };
 		8548BBE01F0D4BF900AC7C06 /* SensorAuthorisationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548BBDF1F0D4BF900AC7C06 /* SensorAuthorisationHandler.swift */; };
 		8548BBE41F0E382900AC7C06 /* GenericParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548BBE31F0E382900AC7C06 /* GenericParser.swift */; };
+		85777E7B1F0F857C00E12477 /* UIViewController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85777E7A1F0F857C00E12477 /* UIViewController+Convenience.swift */; };
 		858AF6931EF904AB00486605 /* PeakPerformanceUpcomingChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858AF6921EF904AB00486605 /* PeakPerformanceUpcomingChartView.swift */; };
 		858AF6951EF9544000486605 /* MyStatisticsDataActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858AF6941EF9544000486605 /* MyStatisticsDataActivity.swift */; };
 		8591ED7B1EE6DBA6006FCE89 /* MockingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E0A6A01EE6AF130076169D /* MockingProtocol.swift */; };
 		8591ED7C1EE6DBAC006FCE89 /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E0A6A21EE6B1610076169D /* Mocks.swift */; };
+		859683411F135C6300A98218 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859683401F135C6300A98218 /* LoginCoordinator.swift */; };
+		859683431F1361E900A98218 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859683421F1361E900A98218 /* ResetPasswordViewController.swift */; };
+		859683451F1362F300A98218 /* ResetPasswordViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859683441F1362F300A98218 /* ResetPasswordViewCell.swift */; };
+		859683471F137FD600A98218 /* ResetPasswordCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859683461F137FD600A98218 /* ResetPasswordCoordinator.swift */; };
 		85C26F9F1F13DCEB001C2C65 /* UIView+ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C26F9E1F13DCEB001C2C65 /* UIView+ProgressHUD.swift */; };
 		85C3D6BC1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C3D6BB1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib */; };
 		85C3D6BE1F0B920E00E0CBFE /* PrepareEventTableViewFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3D6BD1F0B920E00E0CBFE /* PrepareEventTableViewFooterView.swift */; };
@@ -369,6 +374,8 @@
 		D5485F241ED57F0600A08D1A /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5485F231ED57F0600A08D1A /* SearchViewModel.swift */; };
 		D5485F261ED583BC00A08D1A /* SearchTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5485F251ED583BC00A08D1A /* SearchTableCell.swift */; };
 		D5485F281ED583E300A08D1A /* SearchCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5485F271ED583E300A08D1A /* SearchCollectionCell.swift */; };
+		D554CD9D1F0CED50007731DB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D554CD9C1F0CED50007731DB /* LoginViewController.swift */; };
+		D554CD9F1F0CF3B9007731DB /* LoginViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D554CD9E1F0CF3B9007731DB /* LoginViewCell.swift */; };
 		D569769C1EF94094000FF777 /* MyStatisticsDataSleepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D569769B1EF94094000FF777 /* MyStatisticsDataSleepView.swift */; };
 		D57ACCAF1F150D1D00906573 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBB237F81E6FFF1200AB5AEF /* LaunchScreen.storyboard */; };
 		D57ACCB21F15122300906573 /* AnimatedLaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57ACCB01F15122300906573 /* AnimatedLaunchScreenViewController.swift */; };
@@ -488,8 +495,13 @@
 		8548BBDD1F0D264800AC7C06 /* RequestDeviceSensorCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequestDeviceSensorCollectionViewCell.xib; sourceTree = "<group>"; };
 		8548BBDF1F0D4BF900AC7C06 /* SensorAuthorisationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorAuthorisationHandler.swift; sourceTree = "<group>"; };
 		8548BBE31F0E382900AC7C06 /* GenericParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericParser.swift; sourceTree = "<group>"; };
+		85777E7A1F0F857C00E12477 /* UIViewController+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Convenience.swift"; sourceTree = "<group>"; };
 		858AF6921EF904AB00486605 /* PeakPerformanceUpcomingChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakPerformanceUpcomingChartView.swift; sourceTree = "<group>"; };
 		858AF6941EF9544000486605 /* MyStatisticsDataActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsDataActivity.swift; sourceTree = "<group>"; };
+		859683401F135C6300A98218 /* LoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		859683421F1361E900A98218 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		859683441F1362F300A98218 /* ResetPasswordViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewCell.swift; sourceTree = "<group>"; };
+		859683461F137FD600A98218 /* ResetPasswordCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordCoordinator.swift; sourceTree = "<group>"; };
 		85C26F9E1F13DCEB001C2C65 /* UIView+ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ProgressHUD.swift"; sourceTree = "<group>"; };
 		85C3D6BB1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareEventTableViewFooterView.xib; sourceTree = "<group>"; };
 		85C3D6BD1F0B920E00E0CBFE /* PrepareEventTableViewFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventTableViewFooterView.swift; sourceTree = "<group>"; };
@@ -781,6 +793,8 @@
 		D5485F231ED57F0600A08D1A /* SearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		D5485F251ED583BC00A08D1A /* SearchTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableCell.swift; sourceTree = "<group>"; };
 		D5485F271ED583E300A08D1A /* SearchCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCollectionCell.swift; sourceTree = "<group>"; };
+		D554CD9C1F0CED50007731DB /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D554CD9E1F0CF3B9007731DB /* LoginViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewCell.swift; sourceTree = "<group>"; };
 		D569769B1EF94094000FF777 /* MyStatisticsDataSleepView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsDataSleepView.swift; sourceTree = "<group>"; };
 		D57ACCB01F15122300906573 /* AnimatedLaunchScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedLaunchScreenViewController.swift; sourceTree = "<group>"; };
 		D57ECFAF1E924CC2008F401B /* TabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
@@ -1109,6 +1123,8 @@
 				CCC0C4DA1E82BDEF002A8362 /* TabBarCoordinator.swift */,
 				CC0FF8D71EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift */,
 				CBC933061F052CBA00C00007 /* Prepare */,
+				859683401F135C6300A98218 /* LoginCoordinator.swift */,
+				859683461F137FD600A98218 /* ResetPasswordCoordinator.swift */,
 			);
 			name = Coordinators;
 			sourceTree = "<group>";
@@ -1167,6 +1183,8 @@
 				CBB4DD401EE08F600071494A /* Sidebar */,
 				CBB4DD371EE08ABE0071494A /* Tab Bar */,
 				CC7D21B51EFC134E007A062E /* Weekly Choices */,
+				D554CD9B1F0CEC6D007731DB /* Log In */,
+				D5B707241F03A21E00C812EB /* Morning Interview */,
 			);
 			name = "View Layer";
 			sourceTree = "<group>";
@@ -1353,6 +1371,7 @@
 				CC7A91111F0F978E00F791B9 /* UIViewController+ScreenType.swift */,
 				CCCC42DE1ED5799D00E73905 /* UIViewController+Transition.swift */,
 				CCC2D3151F0AB1E000951A2E /* UserDefault+Convenience.swift */,
+				85777E7A1F0F857C00E12477 /* UIViewController+Convenience.swift */,
 				8523E9BF1F1628B50000D20D /* Date+Extension.swift */,
 			);
 			name = Extensions;
@@ -1844,6 +1863,17 @@
 			name = "Learn Content Item";
 			sourceTree = "<group>";
 		};
+		D554CD9B1F0CEC6D007731DB /* Log In */ = {
+			isa = PBXGroup;
+			children = (
+				D554CD9C1F0CED50007731DB /* LoginViewController.swift */,
+				D554CD9E1F0CF3B9007731DB /* LoginViewCell.swift */,
+				859683421F1361E900A98218 /* ResetPasswordViewController.swift */,
+				859683441F1362F300A98218 /* ResetPasswordViewCell.swift */,
+			);
+			name = "Log In";
+			sourceTree = "<group>";
+		};
 		CCE6CD7C1F15255500B66DA3 /* MyStatistics */ = {
 			isa = PBXGroup;
 			children = (
@@ -2216,6 +2246,7 @@
 				CCCC211D1E8981AD00133839 /* ChatViewModel.swift in Sources */,
 				CBC9330F1F0AA47800C00007 /* PrepareEventsViewController.swift in Sources */,
 				CC4F22F01EE023F4006C437E /* NSMutableAttributedString+Create.swift in Sources */,
+				D554CD9D1F0CED50007731DB /* LoginViewController.swift in Sources */,
 				0B2CA37B1ED2BC93006B355F /* SensorCollectionViewCell.swift in Sources */,
 				D57ACCB21F15122300906573 /* AnimatedLaunchScreenViewController.swift in Sources */,
 				CBB4DCF51EDC10FA0071494A /* SyncRecordService.swift in Sources */,
@@ -2240,6 +2271,7 @@
 				CB55A2DF1E9FDF0A00D721CE /* SettingsMenuViewController.swift in Sources */,
 				CB3437721F00ED3200D89D4F /* RealmObserver.swift in Sources */,
 				CCC1B6A91E8B9B7300D1461F /* LearnCategoryListViewController.swift in Sources */,
+				85777E7B1F0F857C00E12477 /* UIViewController+Convenience.swift in Sources */,
 				852DADEC1EF2BE3C00A10882 /* UpcomingTravelsView.swift in Sources */,
 				CB27D59B1ECCB67300F2B76C /* Result.swift in Sources */,
 				D569769C1EF94094000FF777 /* MyStatisticsDataSleepView.swift in Sources */,
@@ -2250,6 +2282,7 @@
 				D537B1E61EC200CD004C444D /* GridView.swift in Sources */,
 				CCA2DC6C1EF290DF00D1DF6A /* LearnContentItemBulletCell.swift in Sources */,
 				CCCE09CC1EA67C78008730F1 /* MyToBeVisionViewModel.swift in Sources */,
+				D554CD9F1F0CF3B9007731DB /* LoginViewCell.swift in Sources */,
 				CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */,
 				CB810E661EF00DCA0043E3E5 /* UserIntermediary.swift in Sources */,
 				85DC6F871EF40767004F4B4D /* TravelTripsPeriodView.swift in Sources */,
@@ -2341,6 +2374,7 @@
 				CCC0C4DB1E82BDEF002A8362 /* TabBarCoordinator.swift in Sources */,
 				CB369CDB1E8D3E5700522293 /* RealmProvider.swift in Sources */,
 				852DADD01EF048E800A10882 /* MyStatisticsDataAverage.swift in Sources */,
+				859683451F1362F300A98218 /* ResetPasswordViewCell.swift in Sources */,
 				CBB4DD141EDEBDA80071494A /* URLRequestBuildable.swift in Sources */,
 				CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */,
 				CC05CB771EDEC6D700D15ABC /* UIBezierPath+Hexagon.swift in Sources */,
@@ -2468,6 +2502,7 @@
 				CB3437671EFE74C700D89D4F /* ContentCollection+Convenience.swift in Sources */,
 				CB18BCBF1EEABD890035C1BB /* MockNetworkManager.swift in Sources */,
 				CCE373081E8D32CF00B79352 /* LibraryViewController.swift in Sources */,
+				859683411F135C6300A98218 /* LoginCoordinator.swift in Sources */,
 				CBC933051F05253000C00007 /* JSON+Convenience.swift in Sources */,
 				CB9AFD141F014BAA00D067F2 /* PreparationCheck.swift in Sources */,
 				CBC933081F052DDA00C00007 /* PrepareCoordinator.swift in Sources */,
@@ -2475,6 +2510,7 @@
 				D5485F281ED583E300A08D1A /* SearchCollectionCell.swift in Sources */,
 				CC7C7A051F064F3F00DAAC14 /* User+Convenience.swift in Sources */,
 				852DADE01EF1741400A10882 /* TravelMaxTimeZoneChangesProgressWheel.swift in Sources */,
+				859683431F1361E900A98218 /* ResetPasswordViewController.swift in Sources */,
 				D5485F261ED583BC00A08D1A /* SearchTableCell.swift in Sources */,
 				CC9A2E4E1F1647D500CEB487 /* MyStatisticsService.swift in Sources */,
 				CB34376B1EFE799D00D89D4F /* ContentCategory+Convenience.swift in Sources */,
@@ -2506,6 +2542,7 @@
 				D5FA66951EB9FF0B00980EC7 /* EventGraphView.swift in Sources */,
 				CB2880241E7051710067890A /* AppCoordinator.swift in Sources */,
 				CBB4DCFF1EDD6CE50071494A /* NetworkManager.swift in Sources */,
+				859683471F137FD600A98218 /* ResetPasswordCoordinator.swift in Sources */,
 				CB9B07631EF91B860017F6C3 /* CalendarEvent.swift in Sources */,
 				CCE6CD861F15313300B66DA3 /* MyStatisticsIntermediary.swift in Sources */,
 				CB1D5E3A1EC5E25A00BCDF8D /* ContentCategoryData.swift in Sources */,

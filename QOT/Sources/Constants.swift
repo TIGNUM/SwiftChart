@@ -248,6 +248,9 @@ struct Font {
     /// BENTON SAN BOOK 11 // title
     static let H7Title = UIFont.bentonBookFont(ofSize: 11)
 
+    /// BENTON SAN BOOK 12 // text
+    static let H8Title = UIFont.bentonBookFont(ofSize: 12)
+
     /// BENTON SAN BOOK 19 // title
     static let H9Title = UIFont.bentonBookFont(ofSize: 19)
 

@@ -25,6 +25,8 @@ enum Endpoint: String {
     case systemSetting = "/personal/p/qot/systemSetting"
     case userSetting = "/personal/p/qot/userSetting2"
     case fitbitToken = "/b2b/fitbit/token"
+    case resetPassword = "/service/personal/p/resetpassword"
+    case emailCheck = "/personal/p/user/by-email"
     case dataPoint = "/personal/p/qot/dataPoint"
     case userChoice = "/personal/p/qot/userChoice"
 

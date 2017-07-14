@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.statusBarStyle = .lightContent
         window = UIWindow(frame: UIScreen.main.bounds)
         appCoordinator.start()
-        
+
         #if DEBUG
             LogSettings.logLevel = .verbose
             logAppLocation()

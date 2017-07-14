@@ -115,6 +115,8 @@
 "Alert.Message.NoNetworkConnection" = "No network connection";
 "Alert.Message.ComingSoon" = "This feature is coming soon";
 "Alert.Message.EditPreparationName" = "Please edit the name and press save";
+"Alert.Title.Unknown" = "Error";
+"Alert.Message.Unknown" = "An unexpected error has occured. Please try again later.";
 "Alert.Button.Title.Ok" = "OK";
 "Alert.Button.Title.Cancel" = "Cancel";
 "Alert.Button.Title.Save" = "Save";
@@ -128,6 +130,20 @@
 
 "ActivityView.WeekButton" = "WEEK";
 "ActivityView.MonthButton" = "MONTH";
+
+"LoginView.InputPlaceHolder" = "Enter your email here";
+"LoginView.PasswordPlaceHolder" = "Enter your password";
+"LoginView.LoginButton" = "Log in";
+"LoginView.ForgotButton" = "Forgot password?";
+"LoginView.ToggleShow" = "SHOW";
+"LoginView.ToggleHide" = "HIDE";
+"LoginView.UnknowEmailMessage" = "This email does not exist in our database";
+"LoginView.LoginFailed" = "Invalid username or password";
+
+"ResetPassword.emailPlaceHolder" = "Enter your email here";
+"ResetPassword.ResetMyPassword" = "Reset my password";
+"ResetPassword.EmailSent" = "Email sent";
+"ResetPassword.ForgottenPasswordMessage" = "Forgot your password? We can help to reset it.";
 
 "Calendar.Year" = "Year";
 "Calendar.Month" = "Month";
@@ -150,4 +166,3 @@
 "AddSensorView.Alert.Send" = "Send";
 "AddSensorView.Alert.Cancel" = "Cancel";
 "AddSensorView.Alert.Placeholder" = "Enter your device info.";
-
