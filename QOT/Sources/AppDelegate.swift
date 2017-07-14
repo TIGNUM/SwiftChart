@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Properties
 
-    static var enterDate = Date()
     lazy var appCoordinator: AppCoordinator = {
         return AppCoordinator(window: self.window!)
     }()
@@ -37,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Fabric.with([Crashlytics.self])
-        AppDelegate.enterDate = Date()
+        QOTUsageTimer.sharedInstance.start()
         UIApplication.shared.statusBarStyle = .lightContent
         window = UIWindow(frame: UIScreen.main.bounds)
         appCoordinator.start()
@@ -52,23 +51,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        AppDelegate.storeQotUsageTime()
+        QOTUsageTimer.sharedInstance.stopAndSave()
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        AppDelegate.storeQotUsageTime()
+        QOTUsageTimer.sharedInstance.stopAndSave()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        AppDelegate.enterDate = Date()
-    }
-
-    static func storeQotUsageTime() {
-        let qotSeconds = UserDefault.qotUsage.intValue
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([Calendar.Component.second], from: enterDate, to: Date())
-        let totalSeconds = qotSeconds + (components.second ?? 0)
-        UserDefault.qotUsage.setIntValue(value: totalSeconds)
+        QOTUsageTimer.sharedInstance.start()
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {

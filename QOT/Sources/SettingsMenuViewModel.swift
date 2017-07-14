@@ -76,10 +76,9 @@ private func userTiles(user: User) -> [SettingsMenuViewModel.Tile] {
 }
 
 private var totalMinutesUsage: String {
-    AppDelegate.storeQotUsageTime()
-    let totalSeconds = UserDefault.qotUsage.intValue
-    let totalMinutes = Int(abs(totalSeconds / 60))
-
+    let totalSeconds = QOTUsageTimer.sharedInstance.totalSeconds
+    let totalMinutes = Int(totalSeconds / 60)
+    
     if totalMinutes == 1 {
         return String(format: "%d MINUTE", totalMinutes)
     }

@@ -27,11 +27,11 @@ extension UserDefault {
         return UserDefaults.standard.bool(forKey: self.rawValue)
     }
 
-    var intValue: Int {
-        return UserDefaults.standard.integer(forKey: self.rawValue)
+    var doubleValue: Double {
+        return UserDefaults.standard.double(forKey: self.rawValue)
     }
 
-    func setIntValue(value: Int) {
+    func setDoubleValue(value: Double) {
         UserDefaults.standard.set(value, forKey: self.rawValue)
         UserDefaults.standard.synchronize()
     }
