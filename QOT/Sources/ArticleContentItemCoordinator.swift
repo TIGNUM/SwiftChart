@@ -51,7 +51,7 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
                 fatalError("ContentCollection is nil.")
             }
 
-            self.relatedArticles = services.articleService.relatedArticles(for: contentCollection)
+            self.relatedArticles = services.contentService.relatedArticles(for: contentCollection)
             let articleItems = Array(contentCollection.articleItems)
             self.viewModel = ArticleItemViewModel(items: articleItems,
                                                   contentCollection: contentCollection,
@@ -118,7 +118,7 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
 
     func didSelectRelatedArticle(selectedArticle: ContentCollection, form viewController: ArticleItemViewController) {
         self.selectedContent = selectedArticle
-        relatedArticles = services.articleService.relatedArticles(for: selectedArticle)
+        relatedArticles = services.contentService.relatedArticles(for: selectedArticle)
         viewModel = ArticleItemViewModel(
             items: Array(selectedArticle.articleItems),
             contentCollection: selectedArticle,

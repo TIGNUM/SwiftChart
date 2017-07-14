@@ -8,6 +8,8 @@
 
 import UIKit
 import Anchorage
+import ReactiveKit
+import Bond
 
 protocol ArticleCollectionViewControllerDelegate: class {
 
@@ -18,6 +20,7 @@ class ArticleCollectionViewController: UIViewController {
 
     // MARK: - Properties
 
+    fileprivate let disposeBag = DisposeBag()
     fileprivate let viewModel: ArticleCollectionViewModel
     weak var delegate: ArticleCollectionViewControllerDelegate?
     let theme: Theme = .dark
@@ -52,6 +55,10 @@ class ArticleCollectionViewController: UIViewController {
         super.viewDidLoad()
 
         setupLayout()
+
+        viewModel.updates.observeNext { [collectionView] (update) in
+            collectionView.reloadData()
+        }.dispose(in: disposeBag)
     }
 }
 

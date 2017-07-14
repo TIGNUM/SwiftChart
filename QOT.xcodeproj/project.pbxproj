@@ -268,7 +268,6 @@
 		CC41A54B1EFD5A1400B9AE8E /* ArticleItemHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC41A54A1EFD5A1400B9AE8E /* ArticleItemHeaderView.xib */; };
 		CC4AB7E51EA8A36B000F43B1 /* TopTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4AB7E41EA8A36B000F43B1 /* TopTabBarController.swift */; };
 		CC4F22F01EE023F4006C437E /* NSMutableAttributedString+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4F22EF1EE023F4006C437E /* NSMutableAttributedString+Create.swift */; };
-		CC56D0A91EEACC6200EB71D9 /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC56D0A81EEACC6200EB71D9 /* ArticleService.swift */; };
 		CC6251DB1EE00DD800C6F546 /* Localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = CC6251DA1EE00DD800C6F546 /* Localized.strings */; };
 		CC64725B1EE6F9DE00BFA3D9 /* UIColor+Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64725A1EE6F9DE00BFA3D9 /* UIColor+Palette.swift */; };
 		CC6B3A291E8158B200E7FDFD /* PresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A281E8158B200E7FDFD /* PresentationManager.swift */; };
@@ -687,7 +686,6 @@
 		CC41A54A1EFD5A1400B9AE8E /* ArticleItemHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleItemHeaderView.xib; sourceTree = "<group>"; };
 		CC4AB7E41EA8A36B000F43B1 /* TopTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopTabBarController.swift; sourceTree = "<group>"; };
 		CC4F22EF1EE023F4006C437E /* NSMutableAttributedString+Create.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Create.swift"; sourceTree = "<group>"; };
-		CC56D0A81EEACC6200EB71D9 /* ArticleService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
 		CC6251DA1EE00DD800C6F546 /* Localized.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localized.strings; sourceTree = "<group>"; };
 		CC64725A1EE6F9DE00BFA3D9 /* UIColor+Palette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Palette.swift"; sourceTree = "<group>"; };
 		CC6B3A281E8158B200E7FDFD /* PresentationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationManager.swift; sourceTree = "<group>"; };
@@ -1168,7 +1166,6 @@
 				CCDCE7321EEFE63600BD019C /* Learn Content Item */,
 				CBB4DD3C1EE08D7F0071494A /* Library */,
 				D5ACF2D81F1624CB008B0EC1 /* Loading */,
-				D5B707241F03A21E00C812EB /* Morning Interview */,
 				CBB4DD321EE089FD0071494A /* My Prep */,
 				CBB4DD331EE08A230071494A /* My Statistics */,
 				CBB4DD2A1EE088480071494A /* My To Be Vision */,
@@ -1607,7 +1604,6 @@
 		CBB4DD471EE093020071494A /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				CC56D0A81EEACC6200EB71D9 /* ArticleService.swift */,
 				CB34376F1EFE936F00D89D4F /* ContentService.swift */,
 				CB9BB0BF1F0CCC30009067D7 /* EventsService.swift */,
 				CC9A2E4D1F1647D500CEB487 /* MyStatisticsService.swift */,
@@ -1866,17 +1862,6 @@
 			name = "Learn Content Item";
 			sourceTree = "<group>";
 		};
-		D554CD9B1F0CEC6D007731DB /* Log In */ = {
-			isa = PBXGroup;
-			children = (
-				D554CD9C1F0CED50007731DB /* LoginViewController.swift */,
-				D554CD9E1F0CF3B9007731DB /* LoginViewCell.swift */,
-				859683421F1361E900A98218 /* ResetPasswordViewController.swift */,
-				859683441F1362F300A98218 /* ResetPasswordViewCell.swift */,
-			);
-			name = "Log In";
-			sourceTree = "<group>";
-		};
 		CCE6CD7C1F15255500B66DA3 /* MyStatistics */ = {
 			isa = PBXGroup;
 			children = (
@@ -1894,6 +1879,17 @@
 				CCE6CD831F152D5800B66DA3 /* DoubleObject.swift */,
 			);
 			name = DoubleObject;
+			sourceTree = "<group>";
+		};
+		D554CD9B1F0CEC6D007731DB /* Log In */ = {
+			isa = PBXGroup;
+			children = (
+				D554CD9C1F0CED50007731DB /* LoginViewController.swift */,
+				D554CD9E1F0CF3B9007731DB /* LoginViewCell.swift */,
+				859683421F1361E900A98218 /* ResetPasswordViewController.swift */,
+				859683441F1362F300A98218 /* ResetPasswordViewCell.swift */,
+			);
+			name = "Log In";
 			sourceTree = "<group>";
 		};
 		D5ACF2D81F1624CB008B0EC1 /* Loading */ = {
@@ -2481,7 +2477,6 @@
 				8514A4881EE93D3C0086C70E /* PrepareContentFooterTableViewCell.swift in Sources */,
 				0BC1FF4B1E968E07007DE090 /* CollectionTableViewCell.swift in Sources */,
 				852DADD41EF0504000A10882 /* AverageMeetingLengthViewProgressWheel.swift in Sources */,
-				CC56D0A91EEACC6200EB71D9 /* ArticleService.swift in Sources */,
 				D57ECFB01E924CC2008F401B /* TabBarView.swift in Sources */,
 				CB9AFD201F029D1500D067F2 /* PreparationService.swift in Sources */,
 				CB3437641EFD6B0100D89D4F /* Answer+Convenience.swift in Sources */,

@@ -11,9 +11,10 @@ import ReactiveKit
 import RealmSwift
 
 final class ArticleCollectionViewModel {
-    
-    private let categories: AnyRealmCollection<ContentCategory>
-    private let contentCollections: [ContentCollection]
+
+    private let contentCollections: AnyRealmCollection<ContentCollection>
+    private var token: NotificationToken?
+
     let updates = PublishSubject<CollectionUpdate, NoError>()
     
     var itemCount: Int {
@@ -29,8 +30,7 @@ final class ArticleCollectionViewModel {
     }
 
     func title(at index: Index) -> String {
-        let selectedCategoryID = contentCollection(at: index).categoryIDs[0]
-        return categories.filter { $0.remoteID == selectedCategoryID.value }[0].title
+        return contentCollections[index].contentCategories.first?.title ?? ""
     }
 
     func description(at index: Index) -> String {
@@ -55,10 +55,12 @@ final class ArticleCollectionViewModel {
 
     // MARK: - Init
 
-    init(categories: AnyRealmCollection<ContentCategory>, contentCollections: [ContentCollection]) {
-        self.categories = categories
-        self.contentCollections = contentCollections.sorted { (lhs: ContentCollection, rhs: ContentCollection) -> Bool in
-            return lhs.sortOrder < rhs.sortOrder
+    init(service: ContentService) {
+        self.contentCollections = service.whatsHotArticles()
+
+        // Post Init
+        token = self.contentCollections.addNotificationBlock { [weak self] (change) in
+            self?.updates.next(.reload)
         }
     }
 }

@@ -25,10 +25,6 @@ final class ContentService {
 
     // MARK: - Categories
 
-    func articleCategories() -> AnyRealmCollection<ContentCategory> {
-        return mainRealm.contentCategories(section: .learnWhatsHot)
-    }
-
     func libraryCategories() -> AnyRealmCollection<ContentCategory> {
         return mainRealm.contentCategories(section: .library)
     }
@@ -51,6 +47,10 @@ final class ContentService {
 
     // MARK: - Collections
 
+    func whatsHotArticles() -> AnyRealmCollection<ContentCollection> {
+        return mainRealm.anyCollection(.sortOrder(), predicates: .section(.learnWhatsHot))
+    }
+
     func contentCollections(ids: [Int]) -> AnyRealmCollection<ContentCollection> {
         return sortedResults(for: NSPredicate(remoteIDs: ids))
     }
@@ -69,6 +69,13 @@ final class ContentService {
 
     func contentItemsOnBackground(contentID: Int) throws -> AnyRealmCollection<ContentItem> {
         return try realmProvider.realm().anyCollection(predicates: NSPredicate(format: "collectionID == %d", contentID))
+    }
+
+    func relatedArticles(for articleCollection: ContentCollection) -> [ContentCollection] {
+        let predicate = NSPredicate(remoteIDs: articleCollection.relatedContentIDs)
+        let results = mainRealm.objects(ContentCollection.self).sorted(byKeyPath: JsonKey.sortOrder.value).filter(predicate)
+
+        return Array(AnyRealmCollection<ContentCollection>(results))
     }
 
     func setViewed(itemID: Int) {

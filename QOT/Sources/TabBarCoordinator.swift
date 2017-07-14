@@ -42,12 +42,9 @@ final class TabBarCoordinator: ParentCoordinator {
     }()
 
     fileprivate lazy var topTabBarControllerLearn: TopTabBarController = {
-        let categories = self.services.contentService.learnContentCategories()
-        let articleCategories = self.services.contentService.articleCategories()
-        let articlesCollections = self.services.articleService.contentCollections(for: articleCategories)
         let viewModel = LearnCategoryListViewModel(service: self.services.contentService, realmObserver: RealmObserver(realm: self.services.mainRealm))
         let learnCategoryListVC = LearnCategoryListViewController(viewModel: viewModel)
-        let articleCollectionViewModel = ArticleCollectionViewModel(categories: articleCategories, contentCollections: articlesCollections)
+        let articleCollectionViewModel = ArticleCollectionViewModel(service: self.services.contentService)
         let articleCollectionViewController = ArticleCollectionViewController(viewModel: articleCollectionViewModel)
         
         let topBarControllerItem = TopTabBarController.Item(

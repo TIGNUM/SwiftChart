@@ -14,7 +14,6 @@ final class Services {
 
     let mainRealm: Realm
     let contentService: ContentService
-    let articleService: ArticleService
     let preparationService: PreparationService
     let questionsService: QuestionsService
     let partnerService: PartnerService
@@ -26,7 +25,6 @@ final class Services {
     init(
         mainRealm: Realm,
         contentService: ContentService,
-        articleService: ArticleService,
         preparationService: PreparationService,
         questionsService: QuestionsService,
         partnerService: PartnerService,
@@ -36,7 +34,6 @@ final class Services {
         myStatisticsService: MyStatisticsService) {
             self.mainRealm = mainRealm
             self.contentService = contentService
-            self.articleService = articleService
             self.preparationService = preparationService
             self.questionsService = questionsService
             self.partnerService = partnerService
@@ -62,7 +59,6 @@ final class Services {
                     let realmProvider = RealmProvider()
                     let mainRealm = try realmProvider.realm()
                     let contentService = ContentService(mainRealm: mainRealm, realmProvider: realmProvider)
-                    let articleService = ArticleService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let preparationService = PreparationService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let questionsService = QuestionsService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let partnerService = PartnerService(mainRealm: mainRealm, realmProvider: realmProvider)
@@ -73,7 +69,6 @@ final class Services {
                     let services = Services(
                         mainRealm: mainRealm,
                         contentService: contentService,
-                        articleService: articleService,
                         preparationService: preparationService,
                         questionsService: questionsService,
                         partnerService: partnerService,
