@@ -52,6 +52,8 @@
 		7F691C5A1F0D1AB700E2C180 /* MyToBeVisionIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F691C591F0D1AB700E2C180 /* MyToBeVisionIntermediary.swift */; };
 		7F691C5E1F0D30C800E2C180 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F691C5D1F0D30C800E2C180 /* PlaceholderTextView.swift */; };
 		7F8739071F162300005ED8B8 /* WeeklyChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8739061F162300005ED8B8 /* WeeklyChoice.swift */; };
+		7FDFF3691F18FF0B00F7A7EC /* NotificationTokenHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDFF3681F18FF0B00F7A7EC /* NotificationTokenHandler.swift */; };
+		7FDFF36B1F1916B400F7A7EC /* Realm+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDFF36A1F1916B400F7A7EC /* Realm+Utility.swift */; };
 		850A50BB1F0A973A00350097 /* PrepareContentTopTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850A50BA1F0A973A00350097 /* PrepareContentTopTabBarView.swift */; };
 		850A50BD1F0A97FF00350097 /* PrepareContentTopTabBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850A50BC1F0A97FF00350097 /* PrepareContentTopTabBarView.xib */; };
 		8514A4861EE810750086C70E /* DownSyncComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8514A4851EE810750086C70E /* DownSyncComplete.swift */; };
@@ -464,6 +466,8 @@
 		7F691C591F0D1AB700E2C180 /* MyToBeVisionIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToBeVisionIntermediary.swift; sourceTree = "<group>"; };
 		7F691C5D1F0D30C800E2C180 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		7F8739061F162300005ED8B8 /* WeeklyChoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoice.swift; sourceTree = "<group>"; };
+		7FDFF3681F18FF0B00F7A7EC /* NotificationTokenHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTokenHandler.swift; sourceTree = "<group>"; };
+		7FDFF36A1F1916B400F7A7EC /* Realm+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm+Utility.swift"; sourceTree = "<group>"; };
 		82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		850A50BA1F0A973A00350097 /* PrepareContentTopTabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentTopTabBarView.swift; sourceTree = "<group>"; };
 		850A50BC1F0A97FF00350097 /* PrepareContentTopTabBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentTopTabBarView.xib; sourceTree = "<group>"; };
@@ -1375,6 +1379,7 @@
 				CCC2D3151F0AB1E000951A2E /* UserDefault+Convenience.swift */,
 				85777E7A1F0F857C00E12477 /* UIViewController+Convenience.swift */,
 				8523E9BF1F1628B50000D20D /* Date+Extension.swift */,
+				7FDFF36A1F1916B400F7A7EC /* Realm+Utility.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1692,6 +1697,7 @@
 				CC3DFB631E83BDA300FF28DF /* Utils.swift */,
 				852DADC51EEEE63500A10882 /* Math.swift */,
 				8548BBDF1F0D4BF900AC7C06 /* SensorAuthorisationHandler.swift */,
+				7FDFF3681F18FF0B00F7A7EC /* NotificationTokenHandler.swift */,
 				CBC5ACC91F18EF96007E1E9C /* QOTUsageTime.swift */,
 			);
 			name = Utils;
@@ -2381,6 +2387,7 @@
 				CBB4DD141EDEBDA80071494A /* URLRequestBuildable.swift in Sources */,
 				CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */,
 				CC05CB771EDEC6D700D15ABC /* UIBezierPath+Hexagon.swift in Sources */,
+				7FDFF36B1F1916B400F7A7EC /* Realm+Utility.swift in Sources */,
 				CBC1DC221F0FB36400F6D056 /* QuestionGroup.swift in Sources */,
 				D52DAF9B1EC1E87D00C63156 /* ActivityChartView.swift in Sources */,
 				CCE373161E8D330100B79352 /* LibraryViewModel.swift in Sources */,
@@ -2516,6 +2523,7 @@
 				D5485F261ED583BC00A08D1A /* SearchTableCell.swift in Sources */,
 				CC9A2E4E1F1647D500CEB487 /* MyStatisticsService.swift in Sources */,
 				CB34376B1EFE799D00D89D4F /* ContentCategory+Convenience.swift in Sources */,
+				7FDFF3691F18FF0B00F7A7EC /* NotificationTokenHandler.swift in Sources */,
 				852DADCC1EEFD93200A10882 /* MyStatisticsData.swift in Sources */,
 				CCC0C4BE1E82730E002A8362 /* Extensions.swift in Sources */,
 				CC9663101EA1B29800B84B1C /* MyWhyViewModel.swift in Sources */,

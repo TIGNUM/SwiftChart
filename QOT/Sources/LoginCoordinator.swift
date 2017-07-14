@@ -35,7 +35,7 @@ final class LoginCoordinator: ParentCoordinator {
         let navigationController = UINavigationController(rootViewController: loginViewController)
         navigationController.navigationBar.isHidden = true
 
-        window.rootViewController = navigationController
+        window.setRootViewControllerWithFadeAnimation(navigationController)
         window.makeKeyAndVisible()
     }
 }

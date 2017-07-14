@@ -31,9 +31,9 @@ final class MyWhyViewModel {
     let userChoices: AnyRealmCollection<UserChoice>
     let updates = PublishSubject<CollectionUpdate, NoError>()
     private let contentService: ContentService
-    private var partnersNotificationToken: NotificationToken?
-    private var visionNotificationToken: NotificationToken?
-    private var userChoiceNotificationToken: NotificationToken?
+    private var partnersNotificationTokenHandler: NotificationTokenHandler?
+    private var visionNotificationTokenHandler: NotificationTokenHandler?
+    private var userChoiceNotificationTokenHandler: NotificationTokenHandler?
     private var maxWeeklyItems: Int {
         return Layout.MeSection.maxWeeklyPage
     }
@@ -56,7 +56,7 @@ final class MyWhyViewModel {
         self.userChoices = userChoices
         self.contentService = contentService
 
-        partnersNotificationToken = partners.addNotificationBlock { [weak self] (changes: RealmCollectionChange<AnyRealmCollection<Partner>>) in
+        partnersNotificationTokenHandler = partners.addNotificationBlock { [weak self] (changes: RealmCollectionChange<AnyRealmCollection<Partner>>) in
             switch changes {
             case .update(_, deletions: _, insertions: _, modifications: _):
                 self?.updates.next(.reload)
@@ -64,8 +64,8 @@ final class MyWhyViewModel {
             default:
                 break
             }
-        }
-        visionNotificationToken = myToBeVision?.addNotificationBlock { [weak self] (change: ObjectChange) in
+        }.handler
+        visionNotificationTokenHandler = myToBeVision?.addNotificationBlock { [weak self] (change: ObjectChange) in
             switch change {
             case .change:
                 self?.updates.next(.reload)
@@ -73,8 +73,8 @@ final class MyWhyViewModel {
             default:
                 break
             }
-        }
-        userChoiceNotificationToken = userChoices.addNotificationBlock { [weak self] (changes: RealmCollectionChange<AnyRealmCollection<UserChoice>>) in
+        }.handler
+        userChoiceNotificationTokenHandler = userChoices.addNotificationBlock { [weak self] (changes: RealmCollectionChange<AnyRealmCollection<UserChoice>>) in
             switch changes {
             case .update(_, deletions: _, insertions: _, modifications: _):
                 self?.refreshDataSource()
@@ -83,14 +83,9 @@ final class MyWhyViewModel {
             default:
                 break
             }
-        }
+        }.handler
+        
         refreshDataSource()
-    }
-    
-    deinit {
-        partnersNotificationToken?.stop()
-        visionNotificationToken?.stop()
-        userChoiceNotificationToken?.stop()
     }
     
     // MARK: - private

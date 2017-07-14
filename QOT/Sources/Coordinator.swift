@@ -21,6 +21,7 @@ protocol ParentCoordinator: Coordinator {
     var children: [Coordinator] { get set }
     
     func removeChild(child: Coordinator)
+    func removeAllChildren()
 }
 
 extension ParentCoordinator {
@@ -32,5 +33,9 @@ extension ParentCoordinator {
     func startChild(child: Coordinator) {
         children.append(child)
         child.start()
+    }
+    
+    func removeAllChildren() {
+        children.removeAll()
     }
 }

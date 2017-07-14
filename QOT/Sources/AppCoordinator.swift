@@ -18,12 +18,15 @@ final class AppCoordinator: ParentCoordinator {
     
     let window: UIWindow
     let secondaryWindow: UIWindow
+
     fileprivate var services: Services?
     
     fileprivate lazy var networkManager: NetworkManager = {
-        return NetworkManager(delegate: self)
+        return NetworkManager(delegate: self, credentialsManager: self.credentialsManager)
     }()
-
+    fileprivate lazy var credentialsManager: CredentialsManager = {
+        return CredentialsManager()
+    }()
     fileprivate lazy var syncManager: SyncManager = {
         let realmProvider = RealmProvider()
         let syncRecordService =  SyncRecordService(realmProvider: realmProvider)
@@ -40,6 +43,9 @@ final class AppCoordinator: ParentCoordinator {
         manager.delegate = self
         return manager
     }()
+    lazy var logoutNotificationHandler: NotificationHandler = {
+        NotificationHandler(name: .logoutNotification)
+    }()
     lazy var remoteNotificationHandler: RemoteNotificationHandler = {
         return RemoteNotificationHandler(delegate: self)
     }()
@@ -51,35 +57,39 @@ final class AppCoordinator: ParentCoordinator {
         self.window = window
         secondaryWindow = UIWindow(frame: UIScreen.main.bounds)
         configureSecondaryWindow()
+        
+        logoutNotificationHandler.handler = { [weak self] (_: Notification) in
+            self?.restart()
+        }
         remoteNotificationHandler.registerRemoteNotifications(completion: { (error: Error?) in
             // FIXME: handle error
         })
     }
     
     func start() {
-        Services.make { (result) in
-            switch result {
-            case .success(let services):
-                self.services = services
-                self.calendarImportManager.importEvents()
-                self.startTabBarCoordinator(services: services)
+        let viewController = AnimatedLaunchScreenViewController()
+        window.rootViewController = viewController
+        window.makeKeyAndVisible()
 
-                // FIXME: remove this in production?
-                if MockToggle.json == false {
-                    self.syncManager.syncAll()
-                    self.syncManager.syncCalendarEvents()
+        viewController.fadeInLogo()
+        viewController.startAnimatingImages {
+            viewController.fadeOutLogo {
+                if self.credentialsManager.isCredentialValid && self.syncManager.isSyncRecordsValid {
+                    self.showApp()
+                } else {
+                    self.showLogin()
                 }
-            case .failure:
-                // TODO: localise alert text
-                self.showAlert(type: .custom(title: "Error", message: "There was a problem initializing the app's data. Please restart the app and try again"), handler: { 
-                    exit(0)
-                }, handlerDestructive: nil)
-
-                break
             }
         }
     }
-
+    
+    func restart() {
+        secondaryWindow.clear()
+        removeAllChildren()
+        logout()
+        showLogin()
+    }
+    
     func presentMorningInterview() {
         guard let questionService = services?.questionsService else {
             return
@@ -117,20 +127,45 @@ final class AppCoordinator: ParentCoordinator {
         })
     }
     
+    func showApp() {
+        Services.make { (result) in
+            switch result {
+            case .success(let services):
+                self.services = services
+                self.calendarImportManager.importEvents()
+                self.startTabBarCoordinator(services: services)
+                
+                // FIXME: remove this in production?
+                if MockToggle.json == false {
+                    self.syncManager.syncAll()
+                    self.syncManager.syncCalendarEvents()
+                }
+            case .failure:
+                // TODO: localise alert text
+                self.showAlert(type: .custom(title: "Error", message: "There was a problem initializing the app's data. Please restart the app and try again"), handler: {
+                    exit(0)
+                }, handlerDestructive: nil)
+                
+                break
+            }
+        }
+    }
+    
     func showLogin() {
-        clearWindows()
-
         let loginCoordinator = LoginCoordinator(window: window, delegate: self, networkManager: networkManager)
         startChild(child: loginCoordinator)
     }
     
-    // MARK: - private
-    
-    fileprivate func clearWindows() {
-        (window.subviews + secondaryWindow.subviews).forEach { (view: UIView) in
-            view.removeFromSuperview()
+    func logout() {
+        credentialsManager.clear()
+        do {
+            try syncManager.clearAll()
+        } catch {
+            // TODO: handle error
         }
     }
+    
+    // MARK: - private
     
     private func switchToSecondaryWindow() {
         secondaryWindow.makeKeyAndVisible()
@@ -182,8 +217,7 @@ extension AppCoordinator: CalendarImportMangerDelegate {
 extension AppCoordinator: LoginCoordinatorDelegate {
 
     func didLoginSuccessfully() {
-        clearWindows()
-        start()
+        showApp()
     }
 }
 
@@ -191,7 +225,7 @@ extension AppCoordinator: LoginCoordinatorDelegate {
 
 extension AppCoordinator: NetworkManagerDelegate {
     func networkManagerFailedToAuthenticate(_ networkManager: NetworkManager) {
-        showLogin()
+        restart()
     }
 }
 

@@ -10,8 +10,8 @@ import Foundation
 import KeychainAccess
 
 struct Credential {
-    let username: String?
-    let password: String?
+    let username: String
+    let password: String
     let token: String?
 }
 
@@ -20,7 +20,10 @@ private let keychain = Keychain(service: KeychainConstant.service.rawValue)
 class CredentialsManager {
     var credential: Credential? {
         get {
-            return Credential(username: value(key: .username), password: value(key: .password), token: value(key: .authToken))
+            guard let username = value(key: .username), let password = value(key: .password) else {
+                return nil
+            }
+            return Credential(username: username, password: password, token: value(key: .authToken))
         }
         set {
             set(value: newValue?.username, key: .username)
@@ -28,11 +31,26 @@ class CredentialsManager {
             set(value: newValue?.token, key: .authToken)
         }
     }
+    
+    var isCredentialValid: Bool {
+        guard let credential = credential else {
+            return false
+        }
+        return (credential.token != nil)
+    }
 
     func deleteToken() {
         set(value: nil, key: .authToken)
     }
-
+    
+    func clear() {
+        set(value: nil, key: .username)
+        set(value: nil, key: .password)
+        set(value: nil, key: .authToken)
+    }
+    
+    // MARK: - private
+    
     private func value(key: KeychainConstant) -> String? {
         return keychain[key.rawValue]
     }

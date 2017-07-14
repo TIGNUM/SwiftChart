@@ -20,6 +20,18 @@ final class SyncManager {
         queue.maxConcurrentOperationCount = 1
         return queue
     }()
+    var isSyncRecordsValid: Bool {
+        do {
+            for value in SyncType.allValues {
+                guard try syncRecordService.lastSync(type: value) > 0 else {
+                    return false
+                }
+            }
+        } catch {
+            return false
+        }
+        return true
+    }
 
     init(networkManager: NetworkManager, syncRecordService: SyncRecordService, realmProvider: RealmProvider) {
         self.networkManager = networkManager
@@ -27,10 +39,21 @@ final class SyncManager {
         self.realmProvider = realmProvider
     }
 
+    func clearAll() throws {
+        operationQueue.cancelAllOperations()
+        let realm = try realmProvider.realm()
+        try realm.write {
+            realm.deleteAll()
+        }
+    }
+    
     func syncAll() {
+        NotificationHandler.postNotification(withName: .syncStartedNotification)
+        
         let context = SyncContext(queue: operationQueue) { (state, errors) in
             switch state {
             case .finished:
+                NotificationHandler.postNotification(withName: .syncFinishedNotification)
                 print("SYNC ALL FINISHED with \(errors.count) errors")
                 errors.forEach({ (error: SyncError) in
                     print(error)

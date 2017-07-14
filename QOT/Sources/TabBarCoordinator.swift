@@ -19,7 +19,14 @@ final class TabBarCoordinator: ParentCoordinator {
     fileprivate let selectedIndex: Index
     fileprivate var viewControllers = [UIViewController]()
     fileprivate var tabBarController: TabBarController?
-
+    
+    lazy private var syncStartedNotificationHandler: NotificationHandler = {
+        return NotificationHandler(name: .syncStartedNotification)
+    }()
+    lazy private var syncFinishedNotificationHandler: NotificationHandler = {
+        return NotificationHandler(name: .syncFinishedNotification)
+    }()
+    
     fileprivate lazy var prepareCoordinator: PrepareCoordinator = {
         return PrepareCoordinator(services: self.services,
                                   tabBarController: self.tabBarController!,
@@ -132,12 +139,31 @@ final class TabBarCoordinator: ParentCoordinator {
         return topTabBarController
     }()
     
+    lazy private var loadingViewController: LoadingViewController = {
+        let vc = LoadingViewController()
+        vc.modalTransitionStyle = .crossDissolve
+        return vc
+    }()
+    
     // MARK: - Init
     
     init(window: UIWindow, selectedIndex: Index, services: Services) {
         self.window = window
         self.services = services
         self.selectedIndex = selectedIndex
+        
+        syncStartedNotificationHandler.handler = { [weak self] (_: Notification) in
+            guard let `self` = self else {
+                return
+            }
+            window.rootViewController?.present(self.loadingViewController, animated: false, completion: nil)
+            self.loadingViewController.fadeIn()
+        }
+        syncFinishedNotificationHandler.handler = { [weak self] (_: Notification) in
+            self?.loadingViewController.fadeOut(withCompletion: {
+                self?.loadingViewController.dismiss(animated: true, completion: nil)
+            })
+        }
     }
 }
 
@@ -170,7 +196,7 @@ extension TabBarCoordinator {
 
     func start() {
         let bottomTabBarController = self.bottomTabBarController()
-        window.rootViewController = bottomTabBarController
+        window.setRootViewControllerWithFadeAnimation(bottomTabBarController)
         window.makeKeyAndVisible()
         tabBarController = bottomTabBarController
     }

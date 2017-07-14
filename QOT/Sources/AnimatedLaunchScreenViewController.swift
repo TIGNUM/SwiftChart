@@ -13,16 +13,37 @@ final class AnimatedLaunchScreenViewController: UIViewController {
 
     fileprivate var backGroundImageView: UIImageView = UIImageView(image: R.image._1_1Learn())
     fileprivate var logoImageView: UIImageView = UIImageView()
+    fileprivate let imageCount = 92
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHierarchy()
         setupLayout()
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        startAnimating()
+    
+    func fadeInLogo(withCompletion completion: (() -> Void)? = nil) {
+        UIView.animate(withDuration: 2.0, animations: {
+            self.logoImageView.alpha = 1.0
+        }, completion: { (_: Bool) in
+            completion?()
+        })
+    }
+    
+    func fadeOutLogo(withCompletion completion: (() -> Void)? = nil) {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.logoImageView.alpha = 0.0
+        }, completion: { (_: Bool) in
+            completion?()
+        })
+    }
+    
+    func startAnimatingImages(withCompletion completion: (() -> Void)? = nil) {
+        logoImageView.startAnimating()
+        
+        let estimatedTime = Double(imageCount) * (1.0 / 30.0) // 30 fps. @see UIImageView animationDuration
+        DispatchQueue.main.asyncAfter(deadline: .now() + estimatedTime) {
+            completion?()
+        }
     }
 }
 
@@ -46,12 +67,9 @@ private extension AnimatedLaunchScreenViewController {
         view.layoutIfNeeded()
     }
 
-    func startAnimating() {
-        logoImageView.startAnimating()
-    }
-
     func configureAnimation() {
         let images = logoImages()
+        logoImageView.alpha = 0.0
         logoImageView.image = images.last
         logoImageView.animationImages = images
         logoImageView.animationRepeatCount = 1
@@ -59,7 +77,7 @@ private extension AnimatedLaunchScreenViewController {
 
     func logoImages() -> [UIImage] {
         var images = [UIImage?]()
-        for index in 0..<92 {
+        for index in 0..<imageCount {
             let imageName = "anim_\(String(format: "%05d", index))_QOT_LOGO"
             images.append(UIImage(named: imageName))
         }

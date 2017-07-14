@@ -34,9 +34,29 @@ final class LoadingViewController: UIViewController {
         }
         myActivityIndicator.startAnimating()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func fadeIn(withCompletion completion: (() -> Void)? = nil) {
+        messageLabel.alpha = 0.0
+        myActivityIndicator.alpha = 0.0
+        UIView.animate(withDuration: 1.0, animations: {
+            self.messageLabel.alpha = 1.0
+            self.myActivityIndicator.alpha = 1.0
+        }, completion: { (_: Bool) in
+            completion?()
+        })
+    }
+    
+    func fadeOut(withCompletion completion: (() -> Void)? = nil) {
+        UIView.animate(withDuration: 1.0, animations: {
+            self.messageLabel.alpha = 0.0
+            self.myActivityIndicator.alpha = 0.0
+        }, completion: { (_: Bool) in
+            completion?()
+        })
     }
 }
 

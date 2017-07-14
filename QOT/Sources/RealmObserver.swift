@@ -12,15 +12,15 @@ import RealmSwift
 final class RealmObserver {
 
     private let realm: Realm
-    private var token: NotificationToken?
+    private var notificationTokenHandler: NotificationTokenHandler?
 
     var handler: (() -> Void)?
 
     init(realm: Realm) {
         self.realm = realm
 
-        token = realm.addNotificationBlock { [unowned self] (_, _) in
+        notificationTokenHandler = realm.addNotificationBlock { [unowned self] (_, _) in
             self.handler?()
-        }
+        }.handler
     }
 }

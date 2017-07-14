@@ -34,6 +34,21 @@ enum SyncType: String {
         case .userChoiceDown: return .userChoice
         }
     }
+    
+    static var allValues: [SyncType] {
+        return [
+            .contentCategoryDown,
+            .contentCollectionDown,
+            .contentItemDown,
+            .userDown,
+            .pageDown,
+            .questionDown,
+            .dataPointDown,
+            .systemSettingDown,
+            .userSettingDown,
+            .userChoiceDown
+        ]
+    }
 }
 
 final class SyncRecord: Object {

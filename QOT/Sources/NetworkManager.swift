@@ -79,7 +79,7 @@ class NetworkManager {
         var url = authRequest.endpoint.url(baseURL: baseURL)
         let params = authRequest.paramaters.mapKeys { $0.rawValue }
 
-        if let string = authRequest.email as? String {
+        if let string = authRequest.email {
             url.appendPathComponent(string)
         }
 
@@ -115,14 +115,14 @@ class NetworkManager {
                 case .failure(let error):
                     switch error.type {
                     case .unauthenticated:
-                        self?.authenticateAndRequest(urlRequest, username: credential.username ?? "", password: credential.password ?? "", parser: parser, serialRequest: serialRequest, completion: completion)
+                        self?.authenticateAndRequest(urlRequest, username: credential.username, password: credential.password, parser: parser, serialRequest: serialRequest, completion: completion)
                     default:
                         completion(result)
                     }
                 }
             }
         } else {
-            authenticateAndRequest(urlRequest, username: credential.username ?? "", password: credential.password ?? "", parser: parser, serialRequest: serialRequest, completion: { [weak self] (authResult) in
+            authenticateAndRequest(urlRequest, username: credential.username, password: credential.password, parser: parser, serialRequest: serialRequest, completion: { [weak self] (authResult) in
                 completion(authResult)
                 guard let `self` = self else {
                     return

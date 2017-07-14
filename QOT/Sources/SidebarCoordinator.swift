@@ -49,7 +49,7 @@ final class SidebarCoordinator: ParentCoordinator {
 extension SidebarCoordinator: SidebarViewControllerDelegate {
 
     func didTapLogoutCell(in viewController: SidebarViewController) {
-        print("didTapLogoutCell")
+        NotificationHandler.postNotification(withName: .logoutNotification)
     }
 
     func didTapAddSensorCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {

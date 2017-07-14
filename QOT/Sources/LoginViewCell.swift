@@ -73,6 +73,7 @@ class LoginViewCell: UITableViewCell, Dequeueable {
         input.textColor = .white
         input.tintColor = input.textColor
         input.autocorrectionType = .no
+        input.autocapitalizationType = .none
         input.font = Font.DPText
         input.contentVerticalAlignment = .center
         input.keyboardType = .emailAddress

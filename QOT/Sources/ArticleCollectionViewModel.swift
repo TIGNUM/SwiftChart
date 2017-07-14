@@ -13,7 +13,7 @@ import RealmSwift
 final class ArticleCollectionViewModel {
 
     private let contentCollections: AnyRealmCollection<ContentCollection>
-    private var token: NotificationToken?
+    private var notificationTokenHandler: NotificationTokenHandler?
 
     let updates = PublishSubject<CollectionUpdate, NoError>()
     
@@ -56,11 +56,9 @@ final class ArticleCollectionViewModel {
     // MARK: - Init
 
     init(service: ContentService) {
-        self.contentCollections = service.whatsHotArticles()
-
-        // Post Init
-        token = self.contentCollections.addNotificationBlock { [weak self] (change) in
+        contentCollections = service.whatsHotArticles()
+        notificationTokenHandler = contentCollections.addNotificationBlock { [weak self] (change) in
             self?.updates.next(.reload)
-        }
+        }.handler
     }
 }
