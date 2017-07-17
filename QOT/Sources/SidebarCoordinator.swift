@@ -35,9 +35,8 @@ final class SidebarCoordinator: ParentCoordinator {
             rightIcon: R.image.ic_close()
         )
 
-        presentationManager.presentationType = .fadeIn
+        topTabBarController.modalTransitionStyle = .crossDissolve
         topTabBarController.modalPresentationStyle = .overFullScreen
-        topTabBarController.transitioningDelegate = presentationManager
         topTabBarController.delegate = self
         sideBarViewController.delegate = self
         rootViewController.present(topTabBarController, animated: true)
