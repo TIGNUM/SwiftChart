@@ -24,8 +24,18 @@ final class SettingsService {
         return nil
     }
 
-    func setSettingValue(_ value: SettingValue, key: String) {
-        // FIXME: Implement
+    func setSettingValue(_ value: SettingValue, key: String) throws {
+        if let systemSetting = systemSetting(key: key) {
+            try realm.write {
+                if let userSetting = userSetting(systemSetting: systemSetting) {
+                    userSetting.value = value
+                } else {
+                    realm.add(UserSetting(with: value))
+                }
+            }
+        } else {
+            print("Unable to set value: \(value). No system setting with key: \(key)")
+        }
     }
 
     private func userSetting(systemSetting: SystemSetting) -> UserSetting? {

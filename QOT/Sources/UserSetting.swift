@@ -21,24 +21,28 @@ final class UserSetting: Object {
 
     fileprivate(set) dynamic var dirty: Bool = true
 
-    fileprivate(set) dynamic var format: String = ""
-
     var value: SettingValue {
         get {
-            guard let format = SettingFormat(rawValue: format), let value = _value else {
+            guard let value = _value else {
                 return .invalid
             }
-            return SettingValue(setting: value, format: format)
+            return SettingValue(setting: value)
         }
         set {
             _value?.delete()
-            _value = SettingValueObject(value: newValue)
+            _value = SettingValueObject(with: newValue)
             dirty = true
         }
     }
 
     override class func primaryKey() -> String? {
         return "remoteID"
+    }
+
+    convenience init(with value: SettingValue) {
+        self.init()
+
+        self.value = value
     }
 }
 
@@ -52,10 +56,9 @@ extension UserSetting: DownSyncable {
     }
 
     func setData(_ data: UserSettingIntermediary, objectStore: ObjectStore) throws {
-        format = data.format
         dirty = false
 
         _value?.delete()
-        _value = SettingValueObject(value: data.value)
+        _value = SettingValueObject(with: data.value)
     }
 }

@@ -14,7 +14,6 @@ struct SystemSettingIntermediary {
     let sortOrder: Int
     let type: String
     var component: String
-    var format: String
     var key: String
     var displayName: String
     var settingDescription: String
@@ -30,7 +29,6 @@ extension SystemSettingIntermediary: DownSyncIntermediary {
         self.sortOrder = try json.getItemValue(at: .sortOrder, fallback: 0)
         self.type = try json.getItemValue(at: .type, fallback: "")
         self.component = try json.getItemValue(at: .component, fallback: "")
-        self.format = format.rawValue
         self.key = try json.getItemValue(at: .key, fallback: "")
         self.displayName = try json.getItemValue(at: .displayName, fallback: "")
         self.settingDescription = try json.getItemValue(at: .description, fallback: "")

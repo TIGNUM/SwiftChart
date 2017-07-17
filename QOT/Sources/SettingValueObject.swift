@@ -21,6 +21,8 @@ final class SettingValueObject: Object {
 
     // MARK: Public Properties
 
+    fileprivate(set) dynamic var format: String = ""
+
     fileprivate(set) dynamic var text: String?
 
     fileprivate(set) dynamic var from: Date?
@@ -49,7 +51,7 @@ final class SettingValueObject: Object {
         return _max.value
     }
 
-    convenience init(value: SettingValue) {
+    convenience init(with value: SettingValue) {
         self.init()
 
         switch value {
@@ -71,5 +73,6 @@ final class SettingValueObject: Object {
         default:
             break
         }
+        self.format = value.format.map { $0.rawValue } ?? ""
     }
 }

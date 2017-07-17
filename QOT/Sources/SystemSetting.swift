@@ -25,8 +25,6 @@ final class SystemSetting: Object {
 
     fileprivate(set) dynamic var component: String = ""
 
-    fileprivate(set) dynamic var format: String = ""
-
     fileprivate(set) dynamic var key: String = ""
 
     fileprivate(set) dynamic var displayName: String = ""
@@ -38,10 +36,10 @@ final class SystemSetting: Object {
     fileprivate(set) dynamic var isDefault: Bool = true
 
     var value: SettingValue {
-        guard let format = SettingFormat(rawValue: format), let value = _value else {
+        guard let value = _value else {
             return .invalid
         }
-        return SettingValue(setting: value, format: format)
+        return SettingValue(setting: value)
     }
 
     override class func primaryKey() -> String? {
@@ -62,13 +60,12 @@ extension SystemSetting: DownSyncable {
         sortOrder = data.sortOrder
         type = data.type
         component = data.component
-        format = data.format
         key = data.key
         displayName = data.displayName
         settingDescription = data.settingDescription
         pageIDs = data.pageIDs
         isDefault = data.isDefault
         _value?.delete()
-        _value = SettingValueObject(value: data.value)
+        _value = SettingValueObject(with: data.value)
     }
 }

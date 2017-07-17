@@ -16,7 +16,12 @@ enum SettingValue {
     case occurrence(from: Date?, to: Date?, workingDays: Bool, weekend: Bool, publicHolidays: Bool, vacation: Bool)
     case invalid
 
-    init(setting: SettingValueObject, format: SettingFormat) {
+    init(setting: SettingValueObject) {
+        guard let format = SettingFormat(rawValue: setting.format) else {
+            self = .invalid
+            return
+        }
+
         switch format {
         case .text:
             self = setting.text.map { .text($0) } ?? .invalid
@@ -35,6 +40,21 @@ enum SettingValue {
                                weekend: setting.weekend,
                                publicHolidays: setting.publicHolidays,
                                vacation: setting.vacation)
+        }
+    }
+
+    var format: SettingFormat? {
+        switch self {
+        case .text:
+            return .text
+        case .bool:
+            return .boolean
+        case .int:
+            return .int
+        case .occurrence:
+            return .occurrence
+        default:
+            return nil
         }
     }
 }
