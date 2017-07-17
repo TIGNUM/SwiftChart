@@ -27,7 +27,7 @@ final class LearnCategoryListViewModel {
     }
 
     private let categories: AnyRealmCollection<ContentCategory>
-    private var token: NotificationToken? // FIXME: NotificationTokenHandler
+    private var token: NotificationTokenHandler?
 
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
@@ -36,7 +36,7 @@ final class LearnCategoryListViewModel {
 
         token = categories.addNotificationBlock { [unowned self] (change) in
             self.updates.next(change.update(section: 0))
-        }
+        }.handler
     }
 
     var itemCount: Index {

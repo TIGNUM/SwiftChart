@@ -72,13 +72,6 @@ final class LearnCategoryListViewController: UIViewController {
         }.dispose(in: disposeBag)
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        UIView.animate(withDuration: 0.5) { 
-            self.collectionView.alpha = 1
-        }
-    }
 }
 
 // MARK: - Private
@@ -101,7 +94,6 @@ private extension LearnCategoryListViewController {
     }
 
     func setupLayout() {
-        collectionView.alpha = 0
         view.backgroundColor = .clear
         view.addSubview(collectionView)
         collectionView.topAnchor == view.topAnchor + Layout.TabBarView.height + 26
