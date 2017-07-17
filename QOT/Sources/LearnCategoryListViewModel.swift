@@ -12,70 +12,38 @@ import RealmSwift
 
 final class LearnCategoryListViewModel {
 
-    struct Item: Equatable {
+    struct Item {
         let title: String
         let viewedCount: Int
         let itemCount: Int
         let percentageLearned: Double
 
         init(category: ContentCategory) {
-            self.title = category.title
-            self.viewedCount = category.viewedCount
-            self.itemCount = category.itemCount
-            self.percentageLearned = category.percentageLearned
-        }
-
-        public static func == (lhs: Item, rhs: Item) -> Bool {
-            return lhs.title == rhs.title
-                && lhs.viewedCount == rhs.viewedCount
-                && lhs.itemCount == rhs.itemCount
-                && lhs.percentageLearned == rhs.percentageLearned
+            title = category.title
+            viewedCount = category.viewedCount
+            itemCount = category.itemCount
+            percentageLearned = category.percentageLearned
         }
     }
 
-    private let service: ContentService
-    private let realmObserver: RealmObserver
-    private let queue = DispatchQueue(label: "LearnCategoryListViewModel.queue")
-    private var items: [Item] = [] {
-        didSet { updates.next(.reload) }
-    }
+    private let categories: AnyRealmCollection<ContentCategory>
+    private var token: NotificationToken? // FIXME: NotificationTokenHandler
 
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
-    var categoryCount: Index {
-        return items.count
-    }
-
-    // MARK: - Init
-
     init(service: ContentService, realmObserver: RealmObserver) {
-        self.service = service
-        self.realmObserver = realmObserver
+        self.categories = service.learnContentCategories()
 
-        updateItems()
-        realmObserver.handler = { [weak self] in
-            self?.updateItems()
+        token = categories.addNotificationBlock { [unowned self] (change) in
+            self.updates.next(change.update(section: 0))
         }
     }
 
-    func category(at index: Index) -> Item {
-        return items[index]
+    var itemCount: Index {
+        return categories.count
     }
 
-    private func updateItems() {
-        queue.async { [weak self] in
-            do {
-                if let categories = try self?.service.learnContentCategoriesOnBackground(), let existing = self?.items {
-                    let new = Array(categories).map { Item(category: $0) }
-                    if new != existing {
-                        DispatchQueue.main.async {
-                            self?.items = new
-                        }
-                    }
-                }
-            } catch let error {
-                print("Failed to update category list: \(error)")
-            }
-        }
+    func item(at index: Index) -> Item {
+        return Item(category: categories[index])
     }
 }

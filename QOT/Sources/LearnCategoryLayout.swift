@@ -15,7 +15,13 @@ protocol LearnCategoryLayoutDelegate: UICollectionViewDelegate {
 final class LearnCategoryLayout: UICollectionViewLayout {
     
     private var layoutAttributes = [UICollectionViewLayoutAttributes]()
-    private var contentSize = CGSize.zero
+    private var contentSize = CGSize.zero {
+        didSet {
+            if contentSize != oldValue {
+                centerCollectionView()
+            }
+        }
+    }
 
     override func prepare() {
         guard let collectionView = collectionView, let delegate = collectionView.delegate as? LearnCategoryLayoutDelegate else {
@@ -71,5 +77,12 @@ final class LearnCategoryLayout: UICollectionViewLayout {
     
     override var collectionViewContentSize: CGSize {
         return contentSize
+    }
+
+    private func centerCollectionView() {
+        if let collectionView = collectionView {
+            let xOffset = (contentSize.width - collectionView.frame.width) / 2
+            collectionView.contentOffset = CGPoint(x: xOffset, y: collectionView.contentOffset.y)
+        }
     }
 }

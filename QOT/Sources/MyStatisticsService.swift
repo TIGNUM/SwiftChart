@@ -26,7 +26,9 @@ final class MyStatisticsService {
     }
 
     func card(key: String) -> MyStatistics? {
-        return mainRealm.object(ofType: MyStatistics.self, forPrimaryKey: key)
+        let predicate = NSPredicate(format: "key == %@", key)
+
+        return allCardObjects().filter(predicate).first
     }
 
     func cards() throws -> [[MyStatistics]] {

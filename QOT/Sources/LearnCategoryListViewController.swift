@@ -58,15 +58,23 @@ final class LearnCategoryListViewController: UIViewController {
         super.viewDidLoad()
 
         setupLayout()
-        viewModel.updates.observeNext { [unowned self] (_) in
-            self.collectionView.reloadData()
+        viewModel.updates.observeNext { [unowned self] (update) in
+            switch update {
+            case .reload:
+                self.collectionView.reloadData()
+            case .update(let deletions, let insertions, let modifications):
+                self.collectionView.performBatchUpdates({
+                    self.collectionView.deleteItems(at: deletions)
+                    self.collectionView.insertItems(at: insertions)
+                })
+                self.reloadCells(indexPaths: modifications)
+            }
         }.dispose(in: disposeBag)
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        centerCollectionView()
         UIView.animate(withDuration: 0.5) { 
             self.collectionView.alpha = 1
         }
@@ -76,6 +84,15 @@ final class LearnCategoryListViewController: UIViewController {
 // MARK: - Private
 
 private extension LearnCategoryListViewController {
+
+    func reloadCells(indexPaths: [IndexPath]) {
+        indexPaths.forEach { (indexPath) in
+            let category = viewModel.item(at: indexPath.item)
+            if let cell = collectionView.cellForItem(at: indexPath) as? LearnCategoryCell {
+                cell.configure(with: category, indexPath: indexPath, screenType: screenType)
+            }
+        }
+    }
 
     func centerCollectionView() {
         let contentSize = collectionView.collectionViewLayout.collectionViewContentSize
@@ -99,11 +116,11 @@ private extension LearnCategoryListViewController {
 extension LearnCategoryListViewController: UICollectionViewDataSource, LearnCategoryLayoutDelegate {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.categoryCount
+        return viewModel.itemCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let category = viewModel.category(at: indexPath.item)
+        let category = viewModel.item(at: indexPath.item)
         let cell: LearnCategoryCell = collectionView.dequeueCell(for: indexPath)
         cell.configure(with: category, indexPath: indexPath, screenType: screenType)
         
