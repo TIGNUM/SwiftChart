@@ -48,16 +48,20 @@ final class SyncManager {
     }
     
     func syncAll() {
-        NotificationHandler.postNotification(withName: .syncStartedNotification)
+        NotificationHandler.postNotification(withName: .syncStartedNotification, userInfo: [
+            "isSyncRecordsValid": isSyncRecordsValid
+            ])
         
         let context = SyncContext(queue: operationQueue) { (state, errors) in
             switch state {
             case .finished:
-                NotificationHandler.postNotification(withName: .syncFinishedNotification)
-                print("SYNC ALL FINISHED with \(errors.count) errors")
-                errors.forEach({ (error: SyncError) in
-                    print(error)
-                })
+                DispatchQueue.main.async {
+                    NotificationHandler.postNotification(withName: .syncFinishedNotification)
+                    print("SYNC ALL FINISHED with \(errors.count) errors")
+                    errors.forEach({ (error: SyncError) in
+                        print(error)
+                    })
+                }
             default:
                 break
             }

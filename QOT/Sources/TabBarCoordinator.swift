@@ -155,20 +155,22 @@ final class TabBarCoordinator: ParentCoordinator {
         self.services = services
         self.selectedIndex = selectedIndex
         
-        syncStartedNotificationHandler.handler = { [weak self] (_: Notification) in
-            guard let `self` = self else {
+        syncStartedNotificationHandler.handler = { [weak self] (notification: Notification) in
+            guard let `self` = self, let userInfo = notification.userInfo, let isSyncRecordsValid = userInfo["isSyncRecordsValid"] as? Bool, isSyncRecordsValid == false else {
                 return
             }
             window.rootViewController?.present(self.loadingViewController, animated: false, completion: nil)
             self.loadingViewController.fadeIn()
         }
         syncFinishedNotificationHandler.handler = { [weak self] (_: Notification) in
-
-            self?.loadingViewController.fadeOut(withCompletion: {
-                self?.loadingViewController.dismiss(animated: true, completion: { [weak self] in
-                    self?.hasLoaded = true
-                    if let preparationID = self?.preparationID {
-                        self?.prepareCoordinator.showPrepareCheckList(preparationID: preparationID)
+            guard let `self` = self, self.tabBarController?.presentedViewController == self.loadingViewController else {
+                return
+            }
+            self.loadingViewController.fadeOut(withCompletion: {
+                self.loadingViewController.dismiss(animated: true, completion: {
+                    self.hasLoaded = true
+                    if let preparationID = self.preparationID {
+                        self.prepareCoordinator.showPrepareCheckList(preparationID: preparationID)
                     }
                 })
             })
