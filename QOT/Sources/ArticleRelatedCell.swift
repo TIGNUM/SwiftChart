@@ -15,6 +15,28 @@ final class ArticleRelatedCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subTitleLabel: UILabel!
 
+    // MARK: - Initialisers
+
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        setupCell()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+
+        setupCell()
+    }
+
+    fileprivate func setupCell() {
+        let selectedBackground = UIView()
+        selectedBackground.backgroundColor = UIColor.black15
+        self.selectedBackgroundView = selectedBackground
+    }
+    
+    // MARK: - Setup
+
     func setupView(title: String, subTitle: String, previewImageURL: URL?) {
         contentView.backgroundColor = .clear
         backgroundColor = .clear
