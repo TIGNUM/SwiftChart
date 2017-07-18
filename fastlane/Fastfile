@@ -24,6 +24,21 @@ platform :ios do
     hockey(api_token: ENV["HOCKEYAPP_API_TOKEN"])
   end
 
+  desc "Deploy to Crashlytics Beta"
+  lane :cbeta do
+    # Install certificates and profiles
+    match(type: "adhoc", readonly: true)
+
+    # Build
+    gym(scheme: "QOT")
+
+    # upload to Beta by Crashlytics
+    crashlytics(
+      api_token: "c5b6a77e0ac832aeb121a8444afaba1522a28469",
+      build_secret: "d4ca106b8d4d308cc6c505618f78c345e3e6bd462c0bd7a433abfc3f733a4783"
+    )
+  end
+
   desc "Deploy a new version to the App Store"
   lane :release do
     

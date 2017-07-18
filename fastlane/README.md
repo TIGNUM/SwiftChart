@@ -40,6 +40,11 @@ Runs all the tests
 fastlane ios beta
 ```
 Deploy to Hockeyapp
+### ios cbeta
+```
+fastlane ios cbeta
+```
+Deploy to Crashlytics Beta
 ### ios release
 ```
 fastlane ios release
