@@ -17,6 +17,26 @@ final class MyPrepTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet fileprivate weak var footerLabel: UILabel!
     @IBOutlet fileprivate weak var prepCount: UILabel!
 
+    // MARK: - Initialisers
+
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        setupCell()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+
+        setupCell()
+    }
+
+    fileprivate func setupCell() {
+        let selectedBackground = UIView()
+        selectedBackground.backgroundColor = UIColor.black15
+        self.selectedBackgroundView = selectedBackground
+    }
+
     // MARK: - Setup
 
     func setup(with header: String, text: String, footer: String, count: String) {
