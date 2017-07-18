@@ -125,6 +125,7 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
             articleHeader: articleHeader,
             relatedArticles: relatedArticles
         )
+
         fullViewController.reloadArticles(viewModel: viewModel)
         audioViewController.reloadArticles(viewModel: viewModel)
     }

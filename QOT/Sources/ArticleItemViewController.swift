@@ -82,7 +82,13 @@ final class ArticleItemViewController: UIViewController {
         tableView.tableHeaderView = nil
         setTableViewHeader()
         tableView.reloadData()
-        tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+
+        let sections = tableView.numberOfSections
+        let rowsInSection = tableView.numberOfRows(inSection: 0)
+
+        if 0 < sections && 0 < rowsInSection {
+            tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+        }
     }
 }
 
@@ -207,10 +213,10 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = viewModel.articleItem(at: indexPath)
-
         switch indexPath.section {
         case 0:
+            let item = viewModel.articleItem(at: indexPath)
+
             switch item.contentItemValue {
             case .audio(let title, _, let placeholderURL, _, _, _):
                 return mediaStreamCell(
