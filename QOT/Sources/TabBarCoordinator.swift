@@ -19,6 +19,9 @@ final class TabBarCoordinator: ParentCoordinator {
     fileprivate let selectedIndex: Index
     fileprivate var viewControllers = [UIViewController]()
     fileprivate var tabBarController: TabBarController?
+
+    fileprivate var preparationID: String?
+    fileprivate var hasLoaded = false
     
     lazy private var syncStartedNotificationHandler: NotificationHandler = {
         return NotificationHandler(name: .syncStartedNotification)
@@ -160,9 +163,25 @@ final class TabBarCoordinator: ParentCoordinator {
             self.loadingViewController.fadeIn()
         }
         syncFinishedNotificationHandler.handler = { [weak self] (_: Notification) in
+
             self?.loadingViewController.fadeOut(withCompletion: {
-                self?.loadingViewController.dismiss(animated: true, completion: nil)
+                self?.loadingViewController.dismiss(animated: true, completion: { [weak self] in
+                    self?.hasLoaded = true
+                    if let preparationID = self?.preparationID {
+                        self?.prepareCoordinator.showPrepareCheckList(preparationID: preparationID)
+                    }
+                })
             })
+        }
+    }
+
+    // MARK: -
+
+    func showPreparationCheckList(localID: String) {
+        if hasLoaded {
+            prepareCoordinator.showPrepareCheckList(preparationID: localID)
+        } else {
+            preparationID = localID
         }
     }
 }
@@ -173,7 +192,7 @@ private extension TabBarCoordinator {
     
     func bottomTabBarController() -> TabBarController {
         addViewControllers()
-        let bottomTabBarController = TabBarController(items: tabBarControllerItems(), selectedIndex: 0)
+        let bottomTabBarController = TabBarController(items: tabBarControllerItems(), selectedIndex: selectedIndex)
         bottomTabBarController.modalTransitionStyle = .crossDissolve
         bottomTabBarController.modalPresentationStyle = .custom
         bottomTabBarController.delegate = self

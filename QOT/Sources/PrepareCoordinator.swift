@@ -83,7 +83,7 @@ final class PrepareCoordinator: ParentCoordinator {
     }
 }
 
-private extension PrepareCoordinator {
+extension PrepareCoordinator {
 
     func showPrepareList(contentID: Int) {
         var title: String? = nil
@@ -191,11 +191,34 @@ private extension PrepareCoordinator {
             preconditionFailure("No preparation context")
         }
 
-        services.preparationService.createPreparation(contentID: context.contentID,
-                                                      eventID: eventID,
-                                                      title: name,
-                                                      subtitle: context.listTitle,
-                                                      completion: nil)
+        services.preparationService.createPreparation(contentID: context.contentID, eventID: eventID, title: name, subtitle: context.listTitle) { error, localID in
+            guard error == nil else { return }
+            guard let localID = localID else { return }
+            guard let eventID = eventID else { return }
+
+            let eventStore = EKEventStore()
+            eventStore.requestAccess(to: .event) { (granted, error) in
+                if !granted || error != nil {
+                    return
+                }
+
+                if let event = eventStore.event(withIdentifier: eventID) {
+                    var notes = event.notes ?? ""
+                    guard let preparationLink = CustomAppLaunchHandler.generatePreparationURL(withID: localID) else { return }
+
+                    notes += "\n\n" + preparationLink
+
+                    print("preparationLink: \(preparationLink)")
+
+                    event.notes = notes
+                    do {
+                        try eventStore.save(event, span: .thisEvent, commit: true)
+                    } catch {
+                        return
+                    }
+                }
+            }
+        }
     }
 }
 

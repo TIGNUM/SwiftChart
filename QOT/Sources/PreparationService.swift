@@ -38,20 +38,22 @@ final class PreparationService {
         return try realmProvider.realm().preparationChecks(preparationID: preparationID)
     }
 
-    func createPreparation(contentID: Int, eventID: String?, title: String, subtitle: String, completion: ((Error?) -> Void)?) {
+    func createPreparation(contentID: Int, eventID: String?, title: String, subtitle: String, completion: ((Error?, String?) -> Void)?) {
         DispatchQueue.global().async {
+            var localID: String?
             do {
                 let realm = try self.realmProvider.realm()
                 try realm.write {
                     let preparation = Preparation(contentID: contentID, eventID: eventID, title: title, subtitle: subtitle)
+                    localID = preparation.localID
                     realm.add(preparation)
                 }
                 DispatchQueue.main.async {
-                    completion?(nil)
+                    completion?(nil, localID)
                 }
             } catch let error {
                 DispatchQueue.main.async {
-                    completion?(error)
+                    completion?(error, nil)
                 }
             }
         }

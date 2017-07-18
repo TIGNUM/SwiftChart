@@ -19,7 +19,10 @@ final class AppCoordinator: ParentCoordinator {
     let window: UIWindow
     let secondaryWindow: UIWindow
 
+    var checkListIDToPresent: String?
+
     fileprivate var services: Services?
+    fileprivate var tabBarCoordinator: TabBarCoordinator?
     
     fileprivate lazy var networkManager: NetworkManager = {
         return NetworkManager(delegate: self, credentialsManager: self.credentialsManager)
@@ -57,7 +60,7 @@ final class AppCoordinator: ParentCoordinator {
         self.window = window
         secondaryWindow = UIWindow(frame: UIScreen.main.bounds)
         configureSecondaryWindow()
-        
+
         logoutNotificationHandler.handler = { [weak self] (_: Notification) in
             self?.restart()
         }
@@ -82,7 +85,16 @@ final class AppCoordinator: ParentCoordinator {
             }
         }
     }
-    
+
+    func presentPreparationCheckList(localID: String) {
+
+        if services != nil {
+            tabBarCoordinator?.showPreparationCheckList(localID: localID)
+        } else {
+            checkListIDToPresent = localID
+        }
+    }
+
     func restart() {
         secondaryWindow.clear()
         removeAllChildren()
@@ -182,13 +194,20 @@ final class AppCoordinator: ParentCoordinator {
     }
 
     private func startTabBarCoordinator(services: Services) {
-        let tabBarCoordinator = TabBarCoordinator(
+        let selectedIndex = checkListIDToPresent != nil ? 2 : 0
+        tabBarCoordinator = TabBarCoordinator(
             window: self.window,
-            selectedIndex: 0,
+            selectedIndex: selectedIndex,
             services: services
         )
+
+        guard let tabBarCoordinator = tabBarCoordinator else { return }
         tabBarCoordinator.start()
         self.startChild(child: tabBarCoordinator)
+
+        guard let localID = checkListIDToPresent else { return }
+        tabBarCoordinator.showPreparationCheckList(localID: localID)
+        checkListIDToPresent = nil
     }
 }
 

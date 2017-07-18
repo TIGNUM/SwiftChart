@@ -19,7 +19,8 @@ final class TabBarController: UIViewController {
         let controller: UIViewController
         let title: String
     }
-    
+
+    fileprivate var selectedIndex: Int = 0
     fileprivate var items: [Item]
     fileprivate lazy var containerView = UIView()
     fileprivate weak var currentViewController: UIViewController?
@@ -33,7 +34,7 @@ final class TabBarController: UIViewController {
     
     fileprivate lazy var tabBarView: TabBarView = {
         let tabBarView = TabBarView(tabBarType: .bottom)
-        tabBarView.setTitles(self.items.map { $0.title }, selectedIndex: 0)
+        tabBarView.setTitles(self.items.map { $0.title }, selectedIndex: self.selectedIndex)
         tabBarView.selectedColor = Layout.TabBarView.selectedButtonColor
         tabBarView.deselectedColor = Layout.TabBarView.deselectedButtonColor
         tabBarView.indicatorViewExtendedWidth = Layout.TabBarView.indicatorViewExtendedWidthBottom
@@ -50,6 +51,7 @@ final class TabBarController: UIViewController {
     init(items: [Item], selectedIndex: Index) {
         precondition(selectedIndex >= 0 && selectedIndex < items.count, "Out of bounds selectedIndex")
 
+        self.selectedIndex = selectedIndex
         self.items = items
         
         super.init(nibName: nil, bundle: nil)

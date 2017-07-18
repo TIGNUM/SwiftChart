@@ -83,7 +83,7 @@
 		852DADEC1EF2BE3C00A10882 /* UpcomingTravelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADEB1EF2BE3C00A10882 /* UpcomingTravelsView.swift */; };
 		8548BBDC1F0D263000AC7C06 /* RequestDeviceSensorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548BBDB1F0D263000AC7C06 /* RequestDeviceSensorCollectionViewCell.swift */; };
 		8548BBDE1F0D264800AC7C06 /* RequestDeviceSensorCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8548BBDD1F0D264800AC7C06 /* RequestDeviceSensorCollectionViewCell.xib */; };
-		8548BBE01F0D4BF900AC7C06 /* SensorAuthorisationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548BBDF1F0D4BF900AC7C06 /* SensorAuthorisationHandler.swift */; };
+		8548BBE01F0D4BF900AC7C06 /* CustomAppLaunchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548BBDF1F0D4BF900AC7C06 /* CustomAppLaunchHandler.swift */; };
 		8548BBE41F0E382900AC7C06 /* GenericParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548BBE31F0E382900AC7C06 /* GenericParser.swift */; };
 		85777E7B1F0F857C00E12477 /* UIViewController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85777E7A1F0F857C00E12477 /* UIViewController+Convenience.swift */; };
 		858AF6931EF904AB00486605 /* PeakPerformanceUpcomingChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858AF6921EF904AB00486605 /* PeakPerformanceUpcomingChartView.swift */; };
@@ -498,7 +498,7 @@
 		852DADEB1EF2BE3C00A10882 /* UpcomingTravelsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingTravelsView.swift; sourceTree = "<group>"; };
 		8548BBDB1F0D263000AC7C06 /* RequestDeviceSensorCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestDeviceSensorCollectionViewCell.swift; sourceTree = "<group>"; };
 		8548BBDD1F0D264800AC7C06 /* RequestDeviceSensorCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequestDeviceSensorCollectionViewCell.xib; sourceTree = "<group>"; };
-		8548BBDF1F0D4BF900AC7C06 /* SensorAuthorisationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorAuthorisationHandler.swift; sourceTree = "<group>"; };
+		8548BBDF1F0D4BF900AC7C06 /* CustomAppLaunchHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAppLaunchHandler.swift; sourceTree = "<group>"; };
 		8548BBE31F0E382900AC7C06 /* GenericParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericParser.swift; sourceTree = "<group>"; };
 		85777E7A1F0F857C00E12477 /* UIViewController+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Convenience.swift"; sourceTree = "<group>"; };
 		858AF6921EF904AB00486605 /* PeakPerformanceUpcomingChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakPerformanceUpcomingChartView.swift; sourceTree = "<group>"; };
@@ -1696,7 +1696,7 @@
 				CBD791491E71797C0006C590 /* Typealiases.swift */,
 				CC3DFB631E83BDA300FF28DF /* Utils.swift */,
 				852DADC51EEEE63500A10882 /* Math.swift */,
-				8548BBDF1F0D4BF900AC7C06 /* SensorAuthorisationHandler.swift */,
+				8548BBDF1F0D4BF900AC7C06 /* CustomAppLaunchHandler.swift */,
 				7FDFF3681F18FF0B00F7A7EC /* NotificationTokenHandler.swift */,
 				CBC5ACC91F18EF96007E1E9C /* QOTUsageTime.swift */,
 			);
@@ -2404,7 +2404,7 @@
 				852DADC61EEEE63500A10882 /* Math.swift in Sources */,
 				CBC1DC3F1F16067900F6D056 /* DownSyncIntermediary.swift in Sources */,
 				CC311A1D1EAF39DF0020C869 /* SettingsTableViewCell.swift in Sources */,
-				8548BBE01F0D4BF900AC7C06 /* SensorAuthorisationHandler.swift in Sources */,
+				8548BBE01F0D4BF900AC7C06 /* CustomAppLaunchHandler.swift in Sources */,
 				CBC5ACC11F162AAE007E1E9C /* UserChoiceIntermediary.swift in Sources */,
 				CB14676E1EF2AB7000A60E31 /* DeviceIdentifier.swift in Sources */,
 				CCE372FF1E8D2AE700B79352 /* MyPrepViewModel.swift in Sources */,

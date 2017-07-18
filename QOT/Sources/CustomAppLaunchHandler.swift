@@ -1,5 +1,5 @@
 //
-//  SensorAuthorisationHandler.swift
+//  CustomAppLaunchHandler.swift
 //  QOT
 //
 //  Created by Moucheg Mouradian on 05/07/2017.
@@ -9,27 +9,67 @@
 import UIKit
 import MBProgressHUD
 
-final class SensorAuthorisationHandler {
+final class CustomAppLaunchHandler {
 
-    private enum SensorType: String {
+    enum CustomType: String {
         case fitbit = "fitbit-integration#"
+        case preparation = "preparation#"
     }
 
     static func process(urlString: String) {
         // Fitbit
-        let urlParts = urlString.components(separatedBy: SensorType.fitbit.rawValue)
-        if urlParts.count == 2 {
-            guard let accessToken = getFitbitAccessToken(urlString: urlParts[1]) else { return }
+        let types: [CustomType] = [.fitbit, .preparation]
 
-            AppDelegate.current.window?.showProgressHUD(type: .fitbit, actionBlock: {
-                sendAccessToken(accessToken: accessToken)
-            })
+        for type in types {
+            let urlParts = urlString.components(separatedBy: type.rawValue)
+            if urlParts.count == 2 {
+                switch type {
+                case .fitbit:
+                    fitbit(url: urlParts[1])
+                case .preparation:
+                    preparation(localID: urlParts[1])
+                }
+
+                return
+            }
         }
     }
 
-    // MARK: - Fitbit
+    static func generatePreparationURL(withID localID: String) -> String? {
+        guard let urlTypes = Bundle.main.infoDictionary?["CFBundleURLTypes"] as? [[String: Any]] else { return nil }
+        guard let urlSchemes = urlTypes[0]["CFBundleURLSchemes"] as? [String] else { return nil }
+        let urlScheme = urlSchemes[0]
 
-    private static func getFitbitAccessToken(urlString: String) -> String? {
+        return "\(urlScheme)://\(CustomType.preparation.rawValue)\(localID)"
+    }
+}
+
+// MARK: - Preparation
+
+private extension CustomAppLaunchHandler {
+
+    static func preparation(localID: String) {
+        print("Preparation localID: \(localID)")
+
+        AppDelegate.current.appCoordinator.presentPreparationCheckList(localID: localID)
+    }
+}
+
+// MARK: - Fitbit
+
+private extension CustomAppLaunchHandler {
+
+    static func fitbit(url: String) {
+        AddSensorCoordinator.safariViewController?.dismiss(animated: true, completion: nil)
+
+        guard let accessToken = getFitbitAccessToken(urlString: url) else { return }
+
+        AppDelegate.current.window?.showProgressHUD(type: .fitbit) {
+            sendAccessToken(accessToken: accessToken)
+        }
+    }
+
+    static func getFitbitAccessToken(urlString: String) -> String? {
         let parameters = urlString.components(separatedBy: "&")
         if parameters.count > 0 {
             for parameter in parameters {
@@ -43,7 +83,7 @@ final class SensorAuthorisationHandler {
         return nil
     }
 
-    private static func sendAccessToken(accessToken: String) {
+    static func sendAccessToken(accessToken: String) {
         let networkManager = NetworkManager()
         let token = ["accessToken": accessToken]
         do {
@@ -74,6 +114,6 @@ final class SensorAuthorisationHandler {
         } catch {
             return
         }
-
+        
     }
 }

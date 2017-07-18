@@ -63,8 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        AddSensorCoordinator.safariViewController?.dismiss(animated: true, completion: nil)
-        SensorAuthorisationHandler.process(urlString: url.absoluteString)
+        CustomAppLaunchHandler.process(urlString: url.absoluteString)
 
         return true
     }
