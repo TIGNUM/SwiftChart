@@ -249,11 +249,15 @@ extension ResetPasswordViewCell: UITextFieldDelegate {
         guard let text = textField.text else { return }
 
         if textField == userInput {
-            if !text.isEmpty {
-                checkEmail(text, completion: { (bool) in
-                    self.isValidEmail(valid: bool)
-                })
+            userView.backgroundColor = .white
+            if text.isEmpty {
+                userView.backgroundColor = .whiteLight14
             }
+//            if !text.isEmpty {
+//                checkEmail(text, completion: { (bool) in
+//                    self.isValidEmail(valid: bool)
+//                })
+//            }
         }
     }
     
