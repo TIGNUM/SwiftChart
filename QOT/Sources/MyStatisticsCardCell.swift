@@ -29,9 +29,7 @@ final class MyStatisticsCardCell: UICollectionViewCell, Dequeueable {
     @IBOutlet fileprivate weak var topContentView: UIView!
     @IBOutlet fileprivate weak var centerContentView: UIView!
     @IBOutlet fileprivate weak var bottomContentView: UIView!
-
     @IBOutlet weak var headerLabel: UILabel!
-
     @IBOutlet weak var headerLabelLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerLabelTrailingConstraint: NSLayoutConstraint!
     fileprivate weak var delegate: MyStatisticsCardCellDelegate?
@@ -50,11 +48,16 @@ final class MyStatisticsCardCell: UICollectionViewCell, Dequeueable {
         containerView.layer.cornerRadius = 10
     }
 
-    func setup(headerTitle: String, data: MyStatisticsData, cardType: MyStatisticsCardType, delegate: MyStatisticsCardCellDelegate?) {
+    func setup(headerTitle: String, cardType: MyStatisticsCardType, delegate: MyStatisticsCardCellDelegate?, myStatistics: MyStatistics?, allCards: [MyStatistics]) {
         centerContentView.removeSubViews()
         self.delegate = delegate
         setupLabels(headerTitle: headerTitle)
-        setupCardView(cardType: cardType, data: data)
+
+        guard let myStatistics = myStatistics else {
+            return
+        }
+
+        setupCardView(cardType: cardType, myStatistics: myStatistics, allCards: allCards)
     }
 
     // MARK: - Public
@@ -63,9 +66,6 @@ final class MyStatisticsCardCell: UICollectionViewCell, Dequeueable {
         let rightCorner = CGPoint(x: cellRect.origin.x + cellRect.size.width, y: cellRect.origin.y)
         let containsLeftCorner = parentRect.contains(cellRect.origin)
         let containsRightCorner = parentRect.contains(rightCorner)
-
-        var opacity: CGFloat = 1
-        var hidden: CGFloat = 0
         var hiddenAmount: CGFloat = 0
 
         if containsLeftCorner && !containsRightCorner {
@@ -74,20 +74,13 @@ final class MyStatisticsCardCell: UICollectionViewCell, Dequeueable {
             hiddenAmount = cellRect.width - (cellRect.width - cellRect.origin.x)
         }
 
-        hidden = hiddenAmount / cellRect.width
-        opacity = 1 - hidden
-
+        let hidden = hiddenAmount / cellRect.width
+        let opacity = 1 - hidden
         headerLabel.alpha = opacity
-
-        var leadingConstant: CGFloat = 0
-        var trailingConstant: CGFloat = 0
-
-        leadingConstant = cellRect.width * hidden
-        trailingConstant = -leadingConstant
-
+        let leadingConstant = cellRect.width * hidden
+        let trailingConstant = -leadingConstant
         headerLabelLeadingConstraint.constant = leadingConstant
         headerLabelTrailingConstraint.constant = trailingConstant
-
         headerLabel.setNeedsUpdateConstraints()
     }
 }
@@ -102,50 +95,40 @@ private extension MyStatisticsCardCell {
         teamLabel.attributedText = Style.tag("TEAM", .azure).attributedString()
         userLabel.attributedText = Style.tag("DATA", .cherryRedTwo).attributedString()
         subTitleLabel.attributedText = Style.tag("PERSONAL AVG", .white40).attributedString()
-
         headerLabel.attributedText = Style.headlineSmall(headerTitle.uppercased(), .white).attributedString()
         headerLabel.numberOfLines = 2
         headerLabel.lineBreakMode = .byWordWrapping
         headerLabel.sizeToFit()
     }
 
-    func setupCardView(cardType: MyStatisticsCardType, data: MyStatisticsData) {
-        let dataArray: [CGFloat] = [0.1, 0.4, 0.5, 0.6, 0.3]
+    func setupCardView(cardType: MyStatisticsCardType, myStatistics: MyStatistics, allCards: [MyStatistics]) {
+        setLabels(myStatistics: myStatistics)
 
         switch cardType {
-        case .activityLevel: addSittingMovementView(data: data)
-        case .activitySittingMovementRatio: addActivityView(data: data)
-        case .intensity: addAverageGraphGridView(data: dataArray)
-        case .meetingAverage: addAverageMeetingCountView(data: data)
-        case .meetingHeartRateChange: return
-        case .meetingLength: addAverageMeetingLengthView(data: data)
-        case .meetingTimeBetween: addAverageMeetingBetweenLengthView(data: data)
-        case .peakPerformanceUpcoming: addUpcomingPeakPerformancesView(data: data)
-        case .peakPerformanceAverage: addAveragePeakPerformanceView(data: data)
-        case .sleepQuality:
-            addSleepChart(data: data)
-        case .sleepQuantity:
-            addSleepChart(data: data)
-
-        case .travelTripsMeeting: addAverageNumberOfMeetingDuringTravel(data: data)
-        case .travelTripsNextFourWeeks: addUpcomingTravels(data: data)
-        case .travelTripsTimeZoneChanged: addTravelTripsTimeZoneChanges(data: data)
-        case .travelTripsMaxTimeZone: addTravelMaxTimeZoneChanges(data: data)
+        case .activityLevel: addActivityView(myStatistics: myStatistics)
+        case .activitySittingMovementRatio: addActivityView(myStatistics: myStatistics)
+        case .intensity: addAverageGraphGridView(myStatistics: myStatistics)
+        case .meetingAverage: addAverageMeetingCountView(cardType: cardType, allCards: allCards)
+        case .meetingLength: addAverageMeetingLengthView(myStatistics: myStatistics)
+        case .meetingTimeBetween: addAverageMeetingBetweenLengthView(myStatistics: myStatistics)
+        case .peakPerformanceUpcoming: addUpcomingPeakPerformancesView(cardType: cardType, allCards: allCards)
+        case .peakPerformanceAverage: addAveragePeakPerformanceView(cardType: cardType, allCards: allCards)
+        case .sleepQuality: addSleepChart(myStatistics: myStatistics, cardType: cardType)
+        case .sleepQuantity:addSleepChart(myStatistics: myStatistics, cardType: cardType)
+        case .travelTripsMeeting: addAverageNumberOfMeetingDuringTravel(cardType: cardType, allCards: allCards)
+        case .travelTripsNextFourWeeks: addUpcomingTravels(myStatistics: myStatistics)
+        case .travelTripsTimeZoneChanged: addTravelTripsTimeZoneChanges(cardType: cardType, allCards: allCards)
+        case .travelTripsMaxTimeZone: addTravelMaxTimeZoneChanges(myStatistics: myStatistics)
         }
     }
 
-//    func addSleepChart(data: [CGFloat], average: CGFloat, type: MyStatisticsDataSleepView.ChartType) {
-    func addSleepChart(data: MyStatisticsData) {
-        guard let sleepData = data as? MyStatisticsDataSleepView else { return }
-
-        titleLabel.attributedText = Style.postTitle(String(format: "%.1f", sleepData.userAverage), .white).attributedString()
-
-        teamAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", sleepData.teamAverage), .azure).attributedString()
-        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", sleepData.userAverage), .cherryRed).attributedString()
-
-        let view = SleepChartView(frame: centerContentView.bounds, data: sleepData)
+    func addSleepChart(myStatistics: MyStatistics, cardType: MyStatisticsCardType) {
+        guard myStatistics.dataPoints.isEmpty == false else {
+            return
+        }
+    
+        let view = SleepChartView(frame: centerContentView.bounds, myStatistics: myStatistics, cardType: cardType)
         centerContentView.addSubview(view)
-
     }
 
     func addLevelsChartView(data: [CGFloat]) {
@@ -173,21 +156,22 @@ private extension MyStatisticsCardCell {
         centerContentView.addSubview(dailyMeetingChartView)
     }
 
-    func addAverageGraphGridView(data: [CGFloat]) {
-         func mockData() -> [IntensityAverageView.Column] {
-            let items: [IntensityAverageView.Item] = [
-                IntensityAverageView.Item.init(start: 0.9, end: 0.5, color: IntensityAverageView.Color.normalColor),
-                IntensityAverageView.Item.init(start: 0.1, end: 0.4, color: IntensityAverageView.Color.criticalColor)
-            ]
-
-            let column = IntensityAverageView.Column(items: items, eventWidth: 10)
-
-            return [column, column, column, column, column, column, column]
-        }
+    func addAverageGraphGridView(myStatistics: MyStatistics) {
         let names = ["M", "T", "w", "T", "F", "s"]
-        let view = IntensityContainerView.init(frame: centerContentView.bounds, items: mockData(), dayNames: names)
+        let view = IntensityContainerView(frame: centerContentView.bounds, items: mockData(myStatistics: myStatistics), dayNames: names)
 
         centerContentView.addSubview(view)
+    }
+
+    func mockData(myStatistics: MyStatistics) -> [IntensityAverageView.Column] {
+        let items: [IntensityAverageView.Item] = [
+            IntensityAverageView.Item(start: 0.9, end: 0.5, color: IntensityAverageView.Color.normalColor),
+            IntensityAverageView.Item(start: 0.1, end: 0.4, color: IntensityAverageView.Color.criticalColor)
+        ]
+
+        let column = IntensityAverageView.Column(items: items, eventWidth: 10)
+
+        return [column, column, column, column, column, column, column]
     }
 
     func addAverageGraphView(data: [CGFloat]) {
@@ -209,114 +193,156 @@ private extension MyStatisticsCardCell {
 
     // MARK: - Peak Performances
 
-    func addUpcomingPeakPerformancesView(data: MyStatisticsData) {
-        guard let tripsData = data as? MyStatisticsDataPeriods else { return }
-
-        titleLabel.attributedText = Style.postTitle(String(format: "%.1f", tripsData.userAverage()), .white).attributedString()
-
-        teamAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.teamAverage()), .azure).attributedString()
-        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.dataAverage()), .cherryRedTwo).attributedString()
-
-        let meetingsDuringTravelView = SegmentedView(frame: centerContentView.bounds, type: .peakPerformanceUpcoming, data: tripsData, delegate: self.delegate, leftButtonType: .lastWeek, rightButtonType: .nextWeek)
+    func addUpcomingPeakPerformancesView(cardType: MyStatisticsCardType, allCards: [MyStatistics]) {
+        let data = segmentedDataPeriod(cardType: cardType, allCards: allCards)
+        let meetingsDuringTravelView = SegmentedView(frame: centerContentView.bounds, type: .peakPerformanceUpcoming, data: data, delegate: delegate, leftButtonType: .lastWeek, rightButtonType: .nextWeek)
         centerContentView.addSubview(meetingsDuringTravelView)
     }
 
-    private func addAveragePeakPerformanceView(data: MyStatisticsData) {
-        guard let performanceData = data as? MyStatisticsDataPeriodAverage else { return }
-
-        titleLabel.attributedText = Style.postTitle(String(format: "%.1f", performanceData.userAverage()), .white).attributedString()
-
-        teamAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", performanceData.teamAverage()), .azure).attributedString()
-        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", performanceData.dataAverage()), .cherryRedTwo).attributedString()
-
-        let peakPerformanceView = SegmentedView(frame: centerContentView.bounds, type: .peakPerformanceAverage, data: performanceData, delegate: self.delegate, leftButtonType: .week, rightButtonType: .month)
+    private func addAveragePeakPerformanceView(cardType: MyStatisticsCardType, allCards: [MyStatistics]) {
+        let data = segmentedData(cardType: cardType, allCards: allCards)
+        let peakPerformanceView = SegmentedView(frame: centerContentView.bounds, type: .peakPerformanceAverage, data: data, delegate: delegate, leftButtonType: .week, rightButtonType: .month)
         centerContentView.addSubview(peakPerformanceView)
     }
 
     // MARK: - Meetings
 
-    private func addAverageMeetingCountView(data: MyStatisticsData) {
-        guard let meetingData = data as? MyStatisticsDataPeriodAverage else { return }
-
-        titleLabel.attributedText = Style.postTitle(String(format: "%.1f", meetingData.userAverage()), .white).attributedString()
-
-        teamAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", meetingData.teamAverage()), .azure).attributedString()
-        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", meetingData.dataAverage()), .cherryRedTwo).attributedString()
-
-        let averageMeetingView = SegmentedView(frame: centerContentView.bounds, type: .meetingAverage, data: meetingData, delegate: self.delegate, leftButtonType: .day, rightButtonType: .week)
+    private func addAverageMeetingCountView(cardType: MyStatisticsCardType, allCards: [MyStatistics]) {
+        let data = segmentedData(cardType: cardType, allCards: allCards)
+        let averageMeetingView = SegmentedView(frame: centerContentView.bounds, type: .meetingAverage, data: data, delegate: delegate, leftButtonType: .day, rightButtonType: .week)
         centerContentView.addSubview(averageMeetingView)
     }
 
-    private func addAverageMeetingLengthView(data: MyStatisticsData) {
-        guard let meetingData = data as? MyStatisticsDataAverage<Int> else { return }
-
-        titleLabel.attributedText = Style.postTitle(String(format: "%d", meetingData.userAverage), .white).attributedString()
-
-        teamAverageValueLabel.attributedText = Style.tag(String(format: "%d", meetingData.teamAverage), .azure).attributedString()
-        userAverageValueLabel.attributedText = Style.tag(String(format: "%d", meetingData.dataAverage), .cherryRedTwo).attributedString()
-
-        let averageMeetingLengthView = AverageMeetingLengthView(frame: centerContentView.bounds, data: meetingData)
-        centerContentView.addSubview(averageMeetingLengthView)
-
+    private func segmentedData(cardType: MyStatisticsCardType, allCards: [MyStatistics]) -> MyStatisticsDataPeriodAverage {
+        let cards = cardType.cards(cards: allCards)
+        let firstCard = cards[0]
+        let secondCard = cards[1]
+        let firstDisplayType = cardType.displayTypes[0]
+        let secondDisplayType = cardType.displayTypes[1]
+        return MyStatisticsDataPeriodAverage(teamData: [firstDisplayType.id: firstCard.teamAverage.toFloat, secondDisplayType.id: secondCard.teamAverage.toFloat],
+                                             dataData: [firstDisplayType.id: firstCard.dataAverage.toFloat, secondDisplayType.id: secondCard.dataAverage.toFloat],
+                                             userData: [firstDisplayType.id: firstCard.userAverage.toFloat, secondDisplayType.id: secondCard.userAverage.toFloat],
+                                             maxData: [firstDisplayType.id: firstCard.maximum.toFloat, secondDisplayType.id: secondCard.maximum.toFloat],
+                                             thresholds: [
+                                                firstDisplayType.id: (upperThreshold: firstCard.upperThreshold.toFloat, lowerThreshold: firstCard.lowerThreshold.toFloat),
+                                                secondDisplayType.id: (upperThreshold: secondCard.upperThreshold.toFloat, lowerThreshold: secondCard.lowerThreshold.toFloat)],
+                                             displayType: firstDisplayType)
     }
 
-    private func addAverageMeetingBetweenLengthView(data: MyStatisticsData) {
-        guard let meetingData = data as? MyStatisticsDataAverage<Int> else { return }
+    private func segmentedDataPeriod(cardType: MyStatisticsCardType, allCards: [MyStatistics]) -> MyStatisticsDataPeriods {
+        let cards = cardType.cards(cards: allCards)
+        let firstCard = cards[0]
+        let secondCard = cards[1]
+        let firstDisplayType = cardType.displayTypes[0]
+        let secondDisplayType = cardType.displayTypes[1]
 
-        titleLabel.attributedText = Style.postTitle(String(format: "%d", meetingData.userAverage), .white).attributedString()
+        return MyStatisticsDataPeriods(
+            teamData: [firstDisplayType.id: firstCard.teamAverage.toFloat, secondDisplayType.id: secondCard.teamAverage.toFloat],
+            dataData: [firstDisplayType.id: firstCard.dataAverage.toFloat, secondDisplayType.id: secondCard.dataAverage.toFloat],
+            userData: [firstDisplayType.id: firstCard.userAverage.toFloat, secondDisplayType.id: secondCard.userAverage.toFloat],
+            periods: periods(myStatistics: firstCard),
+            statsPeriods: cardType.statsPeriods,
+            thresholds: [
+                firstDisplayType.id: (upperThreshold: TimeInterval(firstCard.upperThreshold.toInt), lowerThreshold: TimeInterval(firstCard.lowerThreshold.toInt)),
+                secondDisplayType.id: (upperThreshold: TimeInterval(secondCard.userAverage.toInt), lowerThreshold: TimeInterval(secondCard.lowerThreshold.toInt))
+            ],
+            displayType: firstDisplayType
+        )
+    }
 
-        teamAverageValueLabel.attributedText = Style.tag(String(format: "%d", meetingData.teamAverage), .azure).attributedString()
-        userAverageValueLabel.attributedText = Style.tag(String(format: "%d", meetingData.dataAverage), .cherryRedTwo).attributedString()
+    private func periods(myStatistics: MyStatistics) -> [Period] {
+        var periods: [Period] = []
+        myStatistics.periods.forEach { (myStatisticsPeriod: MyStatisticsPeriod) in
+            print("myStatisticsPeriod: ", myStatisticsPeriod.startDate, myStatisticsPeriod.endDate)
+            let period = Period(start: myStatisticsPeriod.startDate, duration: duration(myStatisticsPeriod: myStatisticsPeriod))
+            periods.append(period)
+        }
 
-        let averageMeetingInBetweenLengthView = AverageMeetingBetweenLengthView(frame: centerContentView.bounds, data: meetingData)
+        return periods
+    }
+
+    private func duration(myStatisticsPeriod: MyStatisticsPeriod) -> TimeInterval {
+        let calendarComponents: Set<Calendar.Component> = [.minute, .hour, .day]
+        let components: DateComponents = Calendar.current.dateComponents(calendarComponents, from: Date(), to: Date().addingTimeInterval(24 * 3 * 24 * 3600))
+        var daysBetween = 0
+        var hoursBetween = 0
+        var minutesBetween = 0
+
+        if let days = components.day {
+            daysBetween = days * 3600 * 24
+        }
+
+        if let hours = components.hour {
+            hoursBetween = hours * 3600
+        }
+
+        if let minutes = components.minute {
+            minutesBetween = minutes * 60
+        }
+
+        return TimeInterval(minutesBetween + hoursBetween + daysBetween)
+    }
+
+    private func addAverageMeetingLengthView(myStatistics: MyStatistics) {
+        let averageMeetingLengthView = AverageMeetingLengthView(frame: centerContentView.bounds, myStatistics: myStatistics)
+        centerContentView.addSubview(averageMeetingLengthView)
+    }
+
+    private func addAverageMeetingBetweenLengthView(myStatistics: MyStatistics) {
+        let averageMeetingInBetweenLengthView = AverageMeetingBetweenLengthView(frame: centerContentView.bounds, myStatistics: myStatistics)
         centerContentView.addSubview(averageMeetingInBetweenLengthView)
     }
 
     // MARK: - Travel
 
-    func addAverageNumberOfMeetingDuringTravel(data: MyStatisticsData) {
-        guard let tripsData = data as? MyStatisticsDataPeriods else { return }
-
-        titleLabel.attributedText = Style.postTitle(String(format: "%.1f", tripsData.userAverage()), .white).attributedString()
-
-        teamAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.teamAverage()), .azure).attributedString()
-        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.dataAverage()), .cherryRedTwo).attributedString()
-
-        let meetingsDuringTravelView = SegmentedView(frame: centerContentView.bounds, type: .travelTripsMeeting, data: tripsData, delegate: self.delegate, leftButtonType: .weeks, rightButtonType: .year)
+    func addAverageNumberOfMeetingDuringTravel(cardType: MyStatisticsCardType, allCards: [MyStatistics]) {
+        let data = segmentedDataPeriod(cardType: cardType, allCards: allCards)
+        let meetingsDuringTravelView = SegmentedView(frame: centerContentView.bounds, type: .travelTripsMeeting, data: data, delegate: delegate, leftButtonType: .weeks, rightButtonType: .year)
         centerContentView.addSubview(meetingsDuringTravelView)
     }
 
-    func addUpcomingTravels(data: MyStatisticsData) {
-        guard let tripsData = data as? MyStatisticsDataUpcomingTrips else { return }
+    func addUpcomingTravels(myStatistics: MyStatistics) {
+        let labels: [String] = ["+1", "+2", "+3", "+4"]
+        userUpcomingTrips(myStatistics: myStatistics)
+        let data = MyStatisticsDataUpcomingTrips(
+            teamAverage: myStatistics.teamAverage.toFloat,
+            dataAverage: myStatistics.dataAverage.toFloat,
+            userAverage: myStatistics.userAverage.toFloat,
+            userUpcomingTrips: [],
+            labels: labels)
 
-        titleLabel.attributedText = Style.postTitle(String(format: "%.1f", tripsData.userAverage), .white).attributedString()
-
-        teamAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.teamAverage), .azure).attributedString()
-        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.dataAverage), .cherryRedTwo).attributedString()
-
-        let upcomingTravelsView = UpcomingTravelsView(frame: centerContentView.bounds, data: tripsData)
+        let upcomingTravelsView = UpcomingTravelsView(frame: centerContentView.bounds, data: data)
         centerContentView.addSubview(upcomingTravelsView)
     }
 
-    func addTravelTripsTimeZoneChanges(data: MyStatisticsData) {
-        guard let tripsData = data as? MyStatisticsDataPeriods else { return }
+    private func userUpcomingTrips(myStatistics: MyStatistics) {
+        var counts: [Int: Int] = [:]
+        for period in myStatistics.periods {
+            for i in 0..<28 {                
+                if Range<Date>.makeOneDay(daysFromNow: i).overlaps(period.range) {
+                    counts[i] = (counts[i] ?? 0) + 1
+                }
+            }
+        }
+    }
 
-        titleLabel.attributedText = Style.postTitle(String(format: "%.1f", tripsData.userAverage()), .white).attributedString()
-
-        teamAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.teamAverage()), .azure).attributedString()
-        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", tripsData.dataAverage()), .cherryRedTwo).attributedString()
-
-        let meetingsDuringTravelView = SegmentedView(frame: centerContentView.bounds, type: .travelTripsTimeZoneChanged, data: tripsData, delegate: self.delegate, leftButtonType: .weeks, rightButtonType: .year)
+    func addTravelTripsTimeZoneChanges(cardType: MyStatisticsCardType, allCards: [MyStatistics]) {
+        let data = segmentedDataPeriod(cardType: cardType, allCards: allCards)
+        let meetingsDuringTravelView = SegmentedView(frame: centerContentView.bounds, type: .travelTripsTimeZoneChanged, data: data, delegate: delegate, leftButtonType: .weeks, rightButtonType: .year)
         centerContentView.addSubview(meetingsDuringTravelView)
     }
 
-    func addTravelMaxTimeZoneChanges(data: MyStatisticsData) {
-        guard let meetingData = data as? MyStatisticsDataAverage<Int> else { return }
-
-        titleLabel.attributedText = Style.postTitle(String(format: "%d", meetingData.userAverage), .white).attributedString()
-
-        teamAverageValueLabel.attributedText = Style.tag(String(format: "%d", meetingData.teamAverage), .azure).attributedString()
-        userAverageValueLabel.attributedText = Style.tag(String(format: "%d", meetingData.dataAverage), .cherryRedTwo).attributedString()
+    func addTravelMaxTimeZoneChanges(myStatistics: MyStatistics) {
+        let meetingData = MyStatisticsDataAverage(
+            teamAverage: myStatistics.teamAverage.toInt,
+            dataAverage: myStatistics.dataAverage.toInt,
+            userAverage: myStatistics.userAverage.toInt,
+            maximum: myStatistics.maximum.toInt,
+            threshold: (
+                upperThreshold: myStatistics.upperThreshold.toInt,
+                lowerThreshold: myStatistics.lowerThreshold.toInt
+            )
+        )
 
         let travelMaxTimeZoneChangesView = TravelMaxTimeZoneChangesView(frame: centerContentView.bounds, data: meetingData)
         centerContentView.addSubview(travelMaxTimeZoneChangesView)
@@ -324,37 +350,18 @@ private extension MyStatisticsCardCell {
 
     // MARK: - Activity
 
-    private func addActivityView(data: MyStatisticsData) {
-        guard let activityData = data as? MyStatisticsDataActivity else { return }
-
-        titleLabel.attributedText = Style.postTitle(String(format: "%.1f", activityData.userAverage), .white).attributedString()
-
-        teamAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", activityData.teamAverage), .azure).attributedString()
-        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", activityData.dataAverage), .cherryRedTwo).attributedString()
-
+    private func addActivityView(myStatistics: MyStatistics) {
         let dayLabels = DateFormatter().veryShortStandaloneWeekdaySymbols.mondayFirst(withWeekend: false)
-
-        let view = ActivityChartView(frame: centerContentView.bounds, columns: activityData.data, dayNames: dayLabels)
-        view.setupAverageLine(level: activityData.dataActivityLevel, lineType: .average)
-        view.setupAverageLine(level: activityData.teamActivityLevel, lineType: .team)
-        view.setupAverageLine(level: activityData.userActivityLevel, lineType: .personal)
+        let view = ActivityChartView(frame: centerContentView.bounds, dayNames: dayLabels, myStatistics: myStatistics)
+        view.setupAverageLine(level: CGFloat(myStatistics.dataAverage), lineType: .average)
+        view.setupAverageLine(level: CGFloat(myStatistics.teamAverage), lineType: .team)
+        view.setupAverageLine(level: CGFloat(myStatistics.userAverage), lineType: .personal)
         centerContentView.addSubview(view)
     }
 
-    private func addSittingMovementView(data: MyStatisticsData) {
-        guard let activityData = data as? MyStatisticsDataActivity else { return }
-
-        titleLabel.attributedText = Style.postTitle(String(format: "%.1f", activityData.userAverage), .white).attributedString()
-
-        teamAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", activityData.teamAverage), .azure).attributedString()
-        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", activityData.dataAverage), .cherryRedTwo).attributedString()
-
-        let dayLabels = DateFormatter().veryShortStandaloneWeekdaySymbols.mondayFirst(withWeekend: false)
-
-        let view = ActivityChartView(frame: centerContentView.bounds, columns: activityData.data, dayNames: dayLabels)
-        view.setupAverageLine(level: activityData.dataActivityLevel, lineType: .average)
-        view.setupAverageLine(level: activityData.teamActivityLevel, lineType: .team)
-        view.setupAverageLine(level: activityData.userActivityLevel, lineType: .personal)
-        centerContentView.addSubview(view)
+    private func setLabels(myStatistics: MyStatistics) {
+        titleLabel.attributedText = Style.postTitle(String(format: "%.1f", CGFloat(myStatistics.userAverage)), .white).attributedString()
+        teamAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", CGFloat(myStatistics.teamAverage)), .azure).attributedString()
+        userAverageValueLabel.attributedText = Style.tag(String(format: "%.1f", CGFloat(myStatistics.dataAverage)), .cherryRedTwo).attributedString()
     }
 }

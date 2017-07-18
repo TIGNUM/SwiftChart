@@ -311,6 +311,7 @@
 		CC9663161EA1B41500B84B1C /* MyUniverseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9663131EA1B41500B84B1C /* MyUniverseHelper.swift */; };
 		CC9663181EA1B86100B84B1C /* MyDataSectorLabelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9663171EA1B86100B84B1C /* MyDataSectorLabelsView.swift */; };
 		CC9A2E4E1F1647D500CEB487 /* MyStatisticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9A2E4D1F1647D500CEB487 /* MyStatisticsService.swift */; };
+		CC9F4F971F1D15C70027003D /* Range+MakeOneDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9F4F961F1D15C70027003D /* Range+MakeOneDay.swift */; };
 		CC9FBDE81EAE58F300AF1CF0 /* SettingsMenuCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9FBDE71EAE58F300AF1CF0 /* SettingsMenuCoordinator.swift */; };
 		CCA2DC671EF17BCE00D1DF6A /* LearnContentItemHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA2DC661EF17BCE00D1DF6A /* LearnContentItemHeaderView.swift */; };
 		CCA2DC691EF17BFA00D1DF6A /* LearnContentItemHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCA2DC681EF17BFA00D1DF6A /* LearnContentItemHeaderView.xib */; };
@@ -732,6 +733,7 @@
 		CC9663131EA1B41500B84B1C /* MyUniverseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUniverseHelper.swift; sourceTree = "<group>"; };
 		CC9663171EA1B86100B84B1C /* MyDataSectorLabelsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataSectorLabelsView.swift; sourceTree = "<group>"; };
 		CC9A2E4D1F1647D500CEB487 /* MyStatisticsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsService.swift; sourceTree = "<group>"; };
+		CC9F4F961F1D15C70027003D /* Range+MakeOneDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Range+MakeOneDay.swift"; sourceTree = "<group>"; };
 		CC9FBDE71EAE58F300AF1CF0 /* SettingsMenuCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuCoordinator.swift; sourceTree = "<group>"; };
 		CCA2DC661EF17BCE00D1DF6A /* LearnContentItemHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentItemHeaderView.swift; sourceTree = "<group>"; };
 		CCA2DC681EF17BFA00D1DF6A /* LearnContentItemHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnContentItemHeaderView.xib; sourceTree = "<group>"; };
@@ -1314,40 +1316,40 @@
 		CBB4DD2E1EE088B80071494A /* Charts */ = {
 			isa = PBXGroup;
 			children = (
+				D52DAF9A1EC1E87D00C63156 /* ActivityChartView.swift */,
 				D50CDDBE1EC48CA700D27072 /* AverageGraphGridView.swift */,
 				D50CDDBF1EC48CA700D27072 /* AverageGraphView.swift */,
+				852DADDB1EF1484C00A10882 /* AverageMeetingBetweenLengthProgressView.swift */,
+				852DADD91EF147AA00A10882 /* AverageMeetingBetweenLengthView.swift */,
+				852DADD11EF04DEA00A10882 /* AverageMeetingLengthView.swift */,
+				852DADD31EF0504000A10882 /* AverageMeetingLengthViewProgressWheel.swift */,
+				852DADC31EEED5D600A10882 /* AverageMeetingProgressWheel.swift */,
+				D5CB5BBD1EF2D45F0029D224 /* ContainerView.swift */,
 				0B573CA51EC3219900A03602 /* DailyMeetingChartView.swift */,
 				0BA3E63F1EC1A8280012999E /* DashedProgressWheel.swift */,
 				D5DDAA3B1EAA136C0053C5D6 /* DashPatternView.swift */,
 				0BA3E6401EC1A8280012999E /* DayEventChartView.swift */,
+				D5A767251EFAB9E800562CB6 /* DottedGridWithIntensityView.swift */,
 				D5FA66941EB9FF0B00980EC7 /* EventGraphView.swift */,
-				D52DAF9A1EC1E87D00C63156 /* ActivityChartView.swift */,
-				D5CB5BBD1EF2D45F0029D224 /* ContainerView.swift */,
 				D537B1E51EC200CD004C444D /* GridView.swift */,
 				D5FA66961EBB4DA600980EC7 /* HorizontalLinesChartView.swift */,
+				D5A7671D1EFA700500562CB6 /* IntensityAverageView.swift */,
+				D5A767271EFABD1200562CB6 /* IntensityContainerView.swift */,
 				D50CDDC21EC48EAC00D27072 /* LevelsChartView.swift */,
 				0B573CA31EC3218D00A03602 /* MeetingLengthChartView.swift */,
-				D5A64D931EE801970095D01C /* SleepChartView.swift */,
-				0BCE743F1ECD96D70006C0CF /* TripsDashCellView.swift */,
-				0BCE74401ECD96D70006C0CF /* TripsDashView.swift */,
+				852DADE71EF26B1D00A10882 /* PeakPerformanceAverageProgressWheel.swift */,
+				858AF6921EF904AB00486605 /* PeakPerformanceUpcomingChartView.swift */,
+				852020341EF8300800EA2032 /* PeakPerformanceUpcomingView.swift */,
 				852DADE51EF1A40200A10882 /* SegmentedView.swift */,
-				852DADC31EEED5D600A10882 /* AverageMeetingProgressWheel.swift */,
-				852DADD11EF04DEA00A10882 /* AverageMeetingLengthView.swift */,
-				852DADD31EF0504000A10882 /* AverageMeetingLengthViewProgressWheel.swift */,
-				852DADD91EF147AA00A10882 /* AverageMeetingBetweenLengthView.swift */,
-				852DADEB1EF2BE3C00A10882 /* UpcomingTravelsView.swift */,
-				85DC6F821EF3C161004F4B4D /* UpcomingTravelsChartView.swift */,
-				85DC6F861EF40767004F4B4D /* TravelTripsPeriodView.swift */,
-				85DC6F881EF40B36004F4B4D /* TravelTripsPeriodChartView.swift */,
-				852DADDB1EF1484C00A10882 /* AverageMeetingBetweenLengthProgressView.swift */,
+				D5A64D931EE801970095D01C /* SleepChartView.swift */,
 				852DADDF1EF1741400A10882 /* TravelMaxTimeZoneChangesProgressWheel.swift */,
 				852DADDD1EF1737700A10882 /* TravelMaxTimeZoneChangesView.swift */,
-				852020341EF8300800EA2032 /* PeakPerformanceUpcomingView.swift */,
-				858AF6921EF904AB00486605 /* PeakPerformanceUpcomingChartView.swift */,
-				852DADE71EF26B1D00A10882 /* PeakPerformanceAverageProgressWheel.swift */,
-				D5A7671D1EFA700500562CB6 /* IntensityAverageView.swift */,
-				D5A767251EFAB9E800562CB6 /* DottedGridWithIntensityView.swift */,
-				D5A767271EFABD1200562CB6 /* IntensityContainerView.swift */,
+				85DC6F881EF40B36004F4B4D /* TravelTripsPeriodChartView.swift */,
+				85DC6F861EF40767004F4B4D /* TravelTripsPeriodView.swift */,
+				0BCE743F1ECD96D70006C0CF /* TripsDashCellView.swift */,
+				0BCE74401ECD96D70006C0CF /* TripsDashView.swift */,
+				85DC6F821EF3C161004F4B4D /* UpcomingTravelsChartView.swift */,
+				852DADEB1EF2BE3C00A10882 /* UpcomingTravelsView.swift */,
 			);
 			name = Charts;
 			sourceTree = "<group>";
@@ -1357,11 +1359,14 @@
 			children = (
 				CC05CB741EDEC6D700D15ABC /* CGPoint+Convenience.swift */,
 				CB48814A1EF7B1EA00389C88 /* Data+Convenience.swift */,
+				8523E9BF1F1628B50000D20D /* Date+Extension.swift */,
 				CBB303411ECEE3E70011303A /* DateFormatter+Convenience.swift */,
 				CB14675D1EF18F5F00A60E31 /* Dictionary+Convenience.swift */,
 				CCC0C4BD1E82730E002A8362 /* Extensions.swift */,
 				D58BD8691E9D1E7F005676DE /* NSFile+Convenience.swift */,
 				CC4F22EF1EE023F4006C437E /* NSMutableAttributedString+Create.swift */,
+				CC9F4F961F1D15C70027003D /* Range+MakeOneDay.swift */,
+				7FDFF36A1F1916B400F7A7EC /* Realm+Utility.swift */,
 				CB9BB0C11F0CD13E009067D7 /* TimeInterval+Convenience.swift */,
 				CCE6CD741F1390AD00B66DA3 /* UIApplication+Convenience.swift */,
 				CC05CB751EDEC6D700D15ABC /* UIBezierPath+Hexagon.swift */,
@@ -1374,12 +1379,10 @@
 				852DADD51EF051C400A10882 /* UIView+Layers.swift */,
 				85C26F9E1F13DCEB001C2C65 /* UIView+ProgressHUD.swift */,
 				CC80181F1F0256980040B03F /* UIViewController+Alert.swift */,
+				85777E7A1F0F857C00E12477 /* UIViewController+Convenience.swift */,
 				CC7A91111F0F978E00F791B9 /* UIViewController+ScreenType.swift */,
 				CCCC42DE1ED5799D00E73905 /* UIViewController+Transition.swift */,
 				CCC2D3151F0AB1E000951A2E /* UserDefault+Convenience.swift */,
-				85777E7A1F0F857C00E12477 /* UIViewController+Convenience.swift */,
-				8523E9BF1F1628B50000D20D /* Date+Extension.swift */,
-				7FDFF36A1F1916B400F7A7EC /* Realm+Utility.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -2323,6 +2326,7 @@
 				CC64725B1EE6F9DE00BFA3D9 /* UIColor+Palette.swift in Sources */,
 				0BCE74411ECD96D70006C0CF /* TripsDashCellView.swift in Sources */,
 				CBDB98F21E7AA510003EC73F /* CalendarImportResult.swift in Sources */,
+				CC9F4F971F1D15C70027003D /* Range+MakeOneDay.swift in Sources */,
 				CBC1DC301F0FD0CB00F6D056 /* AnswerDecision+Convenience.swift in Sources */,
 				CC7D21A61EFBF52A007A062E /* ArticleItemViewModel.swift in Sources */,
 				7F8739071F162300005ED8B8 /* WeeklyChoice.swift in Sources */,

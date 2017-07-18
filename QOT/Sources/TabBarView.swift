@@ -128,7 +128,9 @@ class TabBarView: UIView {
     // MARK: Private methods
 
     private func syncButtonTitles() {
-        buttons.forEach { $0.removeFromSuperview() }
+        buttons.forEach {
+            $0.removeFromSuperview()
+        }
 
         buttons = titles.enumerated().map { (index: Index, title: String) in
             let button = UIButton(type: .custom)

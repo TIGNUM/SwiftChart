@@ -9,8 +9,8 @@ import UIKit
 import Foundation
 
 final class MyStatisticsDataSleepView: MyStatisticsData {
-    var displayType: DataDisplayType
 
+    var displayType: DataDisplayType
     public private(set) var data: [CGFloat]
     public private(set) var threshold: CGFloat
     public private(set) var dataAverage: CGFloat
@@ -52,7 +52,7 @@ final class MyStatisticsDataSleepView: MyStatisticsData {
         }
     }
 
-    init (chart: ChartType, teamAverage: CGFloat, dataAverage: CGFloat, userAverage: CGFloat, data: [CGFloat]) {
+    init(chart: ChartType, teamAverage: CGFloat, dataAverage: CGFloat, userAverage: CGFloat, data: [CGFloat]) {
         self.displayType = DataDisplayType.all
         self.teamAverage = teamAverage
         self.dataAverage = dataAverage

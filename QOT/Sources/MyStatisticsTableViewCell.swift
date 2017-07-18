@@ -8,10 +8,12 @@
 
 import UIKit
 import Anchorage
+import RealmSwift
 
 final class MyStatisticsTableViewCell: UITableViewCell, Dequeueable {
 
-    fileprivate lazy var cards: [MyStatisticsCard] = []
+    fileprivate lazy var viewModel = MyStatisticsViewModel(cards: [], allCards: [])
+    fileprivate lazy var currentSection = 0
 
     fileprivate lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -36,8 +38,9 @@ final class MyStatisticsTableViewCell: UITableViewCell, Dequeueable {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setup(cards: [MyStatisticsCard]) {
-        self.cards = cards
+    func setup(viewModel: MyStatisticsViewModel, currentSection: Int) {
+        self.viewModel = viewModel
+        self.currentSection = currentSection
         contentView.backgroundColor = .clear
         backgroundColor = .clear
         self.collectionView.reloadData()
@@ -61,14 +64,17 @@ private extension MyStatisticsTableViewCell {
 extension MyStatisticsTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cards.count
+        print("viewModel.numberOfItems(in: section): ", currentSection, " : ", viewModel.numberOfItems(in: currentSection), viewModel.sectionType(in: currentSection))
+
+        return viewModel.numberOfItems(in: currentSection)
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let card = cards[indexPath.item]
+        let cardTitle = viewModel.cardTitle(section: currentSection, item: indexPath.item)
+        let myStatistics = viewModel.myStatistics(section: currentSection, item: indexPath.item)
         let cardCell: MyStatisticsCardCell = collectionView.dequeueCell(for: indexPath)
-        cardCell.setup(headerTitle: card.subtitle, data: card.data, cardType: card.type, delegate: self)
-
+        let cardType = viewModel.cardType(section: currentSection, item: indexPath.item)
+        cardCell.setup(headerTitle: cardTitle, cardType: cardType, delegate: self, myStatistics: myStatistics, allCards: viewModel.allCards)
         let cellRect = collectionView.convert(cardCell.frame, to: collectionView.superview)
         cardCell.animateHeader(withCellRect: cellRect, inParentRect: collectionView.frame)
 

@@ -320,3 +320,27 @@ extension Sequence where Iterator.Element == String {
         return week
     }
 }
+
+// MARK: - Double
+
+extension Double {
+
+    var toFloat: CGFloat {
+        return CGFloat(self)
+    }
+
+    var toInt: Int {
+        return Int(self)
+    }
+}
+
+extension DoubleObject {
+
+    var toFloat: CGFloat {
+        return self.value.toFloat
+    }
+
+    var toInt: Int {
+        return self.value.toInt
+    }
+}

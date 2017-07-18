@@ -11,42 +11,28 @@ import UIKit
 typealias EventGraphData = (start: CGFloat, end: CGFloat)
 
 class MyStatisticsDataActivity: MyStatisticsData {
-    var displayType: DataDisplayType
 
+    var displayType: DataDisplayType
     public private(set) var teamAverage: CGFloat
     public private(set) var dataAverage: CGFloat
     public private(set) var userAverage: CGFloat
-
-    // These values must be between 0 and 1
-    public private(set) var teamActivityLevel: CGFloat
-    public private(set) var dataActivityLevel: CGFloat
-    public private(set) var userActivityLevel: CGFloat
-
-    // These values must be between 0 and 1
     private var threshold: StatisticsThreshold<CGFloat>
-
     public private(set) var data: [EventGraphView.Column]
 
     // MARK: - Initialisation
 
-    init(teamAverage: CGFloat, dataAverage: CGFloat, userAverage: CGFloat, teamActivityLevel: CGFloat, dataActivityLevel: CGFloat, userActivityLevel: CGFloat, threshold: StatisticsThreshold<CGFloat>, data: [EventGraphData], fillColumn: Bool = false) {
+    init(teamAverage: CGFloat, dataAverage: CGFloat, userAverage: CGFloat, threshold: StatisticsThreshold<CGFloat>, data: [EventGraphData], fillColumn: Bool = false) {
         self.displayType = .all
-
         self.teamAverage = teamAverage
         self.dataAverage = dataAverage
         self.userAverage = userAverage
-
-        self.teamActivityLevel = teamActivityLevel
-        self.dataActivityLevel = dataActivityLevel
-        self.userActivityLevel = userActivityLevel
-
         self.threshold = threshold
 
         self.data = data.map { columnData in
             var items: [EventGraphView.Item] = []
-
             let value = columnData.start - columnData.end
             var color = EventGraphView.Color.normalColor
+
             if threshold.upperThreshold <= value {
                 color = EventGraphView.Color.criticalColor
             } else if value <= threshold.lowerThreshold {
@@ -54,6 +40,7 @@ class MyStatisticsDataActivity: MyStatisticsData {
             }
 
             items.append(EventGraphView.Item(start: columnData.start, end: columnData.end, color: color))
+
             if fillColumn && columnData.end > 0 {
                 items.append(EventGraphView.Item(start: columnData.end, end: 0, color: .normalColor))
             }

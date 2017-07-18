@@ -37,33 +37,33 @@ class MyStatisticsDataPeriodAverage: MyStatisticsData {
     // MARK: - Public methods
 
     func userAverage() -> CGFloat {
-        guard let value = userData[displayType.id()] else { return 0 }
+        guard let value = userData[displayType.id] else { return 0 }
         return value
     }
 
     func teamAverage() -> CGFloat {
-        guard let value = teamData[displayType.id()] else { return 0 }
+        guard let value = teamData[displayType.id] else { return 0 }
         return value
     }
 
     func dataAverage() -> CGFloat {
-        guard let value = dataData[displayType.id()] else { return 0 }
+        guard let value = dataData[displayType.id] else { return 0 }
         return value
     }
 
     func threshold() -> StatisticsThreshold<CGFloat> {
-        guard let value = thresholds[displayType.id()] else { return StatisticsThreshold(upperThreshold: 0, lowerThreshold: 0) }
+        guard let value = thresholds[displayType.id] else { return StatisticsThreshold(upperThreshold: 0, lowerThreshold: 0) }
 
         return value
     }
 
     func maxValue() -> CGFloat {
-        guard let value = maxData[displayType.id()] else { return 0 }
+        guard let value = maxData[displayType.id] else { return 0 }
         return value
     }
 
     func pathColor() -> DataDisplayColor {
-        guard let limits = thresholds[displayType.id()] else { return .inBetween }
+        guard let limits = thresholds[displayType.id] else { return .inBetween }
         let average = userAverage()
         let max = maxValue()
 

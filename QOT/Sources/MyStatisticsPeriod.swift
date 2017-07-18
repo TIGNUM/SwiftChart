@@ -13,12 +13,20 @@ final class MyStatisticsPeriod: Object {
 
     dynamic var startDate = Date()
 
-    dynamic var enbdDate = Date()
+    dynamic var endDate = Date()
 
     convenience init(_ data: MyStatisticsPeriodIntermediary) {
         self.init()
 
         self.startDate = data.startDate
-        self.enbdDate = data.endDate
+        self.endDate = data.endDate
     }
 }
+
+extension MyStatisticsPeriod {
+
+    var range: Range<Date> {
+        return startDate..<endDate
+    }
+}
+

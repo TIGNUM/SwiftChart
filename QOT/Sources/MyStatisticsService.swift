@@ -33,14 +33,14 @@ final class MyStatisticsService {
 
     func cards() throws -> [[MyStatistics]] {
         var results = [[MyStatistics]]()
-        var cardSections = [MyStatistics]()
 
         MyStatisticsCardType.allValues.forEach { (cardType: MyStatisticsCardType) in
+            var cardSections = [MyStatistics]()
             cardType.keys.forEach({ (key: String) in
                 if let card = card(key: key) {
                     cardSections.append(card)
                 }
-
+                
                 results.append(cardSections)
             })
         }

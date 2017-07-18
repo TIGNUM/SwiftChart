@@ -8,9 +8,6 @@
 
 import UIKit
 
-typealias Period = (start: Date, duration: TimeInterval)
-typealias ChartDimensions = (columns: Int, rows: Int, length: Int)
-
 class MyStatisticsDataPeriods: MyStatisticsData {
     var displayType: DataDisplayType
 
@@ -42,33 +39,33 @@ class MyStatisticsDataPeriods: MyStatisticsData {
     // MARK: - Public methods
 
     func userAverage() -> CGFloat {
-        guard let value = userData[displayType.id()] else { return 0 }
+        guard let value = userData[displayType.id] else { return 0 }
         return value
     }
 
     func teamAverage() -> CGFloat {
-        guard let value = teamData[displayType.id()] else { return 0 }
+        guard let value = teamData[displayType.id] else { return 0 }
         return value
     }
 
     func dataAverage() -> CGFloat {
-        guard let value = dataData[displayType.id()] else { return 0 }
+        guard let value = dataData[displayType.id] else { return 0 }
         return value
     }
 
     func statsPeriod() -> ChartDimensions {
-        guard let value = statsPeriods[displayType.id()] else { return ChartDimensions(columns: 1, rows: 1, length: 1) }
+        guard let value = statsPeriods[displayType.id] else { return ChartDimensions(columns: 1, rows: 1, length: 1) }
         return value
     }
 
     func threshold() -> StatisticsThreshold<TimeInterval> {
-        guard let value = thresholds[displayType.id()] else { return StatisticsThreshold(upperThreshold: 0, lowerThreshold: 0) }
+        guard let value = thresholds[displayType.id] else { return StatisticsThreshold(upperThreshold: 0, lowerThreshold: 0) }
 
         return value
     }
 
     func pathColor(forPeriod period: Period) -> DataDisplayColor {
-        guard let limits = thresholds[displayType.id()] else { return .inBetween }
+        guard let limits = thresholds[displayType.id] else { return .inBetween }
 
         if limits.upperThreshold <= period.duration {
             return .above
@@ -79,3 +76,6 @@ class MyStatisticsDataPeriods: MyStatisticsData {
         return .inBetween
     }
 }
+
+typealias Period = (start: Date, duration: TimeInterval)
+typealias ChartDimensions = (columns: Int, rows: Int, length: Int)

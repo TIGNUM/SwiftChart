@@ -95,13 +95,9 @@ extension MyStatisticsViewController: UITableViewDelegate, UITableViewDataSource
         return CGFloat(20)
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let sectionType = MyStatisticsSectionType(rawValue: indexPath.section) else {
-            fatalError("No valid section type")
-        }
-
-        let cell: MyStatisticsTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.setup(cards: sectionType.cards)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {        
+        let cell: MyStatisticsTableViewCell = tableView.dequeueCell(for: indexPath)        
+        cell.setup(viewModel: viewModel, currentSection: indexPath.section)
 
         return cell
     }

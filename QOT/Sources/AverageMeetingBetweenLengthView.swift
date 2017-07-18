@@ -17,8 +17,17 @@ class AverageMeetingBetweenLengthView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    init(frame: CGRect, data: MyStatisticsDataAverage<Int>) {
-        self.data = data
+    init(frame: CGRect, myStatistics: MyStatistics) {
+        self.data = MyStatisticsDataAverage(
+            teamAverage: myStatistics.teamAverage.toInt * 10,
+            dataAverage: myStatistics.dataAverage.toInt * 10,
+            userAverage: myStatistics.userAverage.toInt * 10,
+            maximum: myStatistics.maximum.toInt,
+            threshold: (
+                upperThreshold: myStatistics.upperThreshold.toInt,
+                lowerThreshold: myStatistics.lowerThreshold.toInt
+            )
+        )
 
         super.init(frame: frame)
 
@@ -29,10 +38,8 @@ class AverageMeetingBetweenLengthView: UIView {
         let userValue = CGFloat(data.userAverage) / CGFloat(data.maximum)
         let teamValue = CGFloat(data.teamAverage) / CGFloat(data.maximum)
         let dataValue = CGFloat(data.dataAverage) / CGFloat(data.maximum)
-
         let padding: CGFloat = 8.0
         let separatorHeight: CGFloat = 1.0
-
         let progressWheel = AverageMeetingBetweenLengthProgressWheel(frame: self.bounds,
                                                                        value: userValue,
                                                                        teamValue: teamValue,
@@ -40,7 +47,6 @@ class AverageMeetingBetweenLengthView: UIView {
                                                                        pathColor: data.pathColor().color,
                                                                        lineWidth: 12)
         addSubview(progressWheel)
-
         progressWheel.topAnchor == self.topAnchor + (2 * padding + separatorHeight)
         progressWheel.bottomAnchor == self.bottomAnchor - padding
         progressWheel.leftAnchor == self.leftAnchor

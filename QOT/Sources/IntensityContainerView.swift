@@ -13,24 +13,27 @@ final class IntensityContainerView: UIView {
 
     fileprivate var daysArray = [UILabel]()
     fileprivate var daysNames = [String]()
+    fileprivate var gridView = DottedGridWithIntensityView()
+    fileprivate var intensityView = IntensityAverageView()
+    fileprivate var footter = UIView()
 
-    fileprivate var weekButton: UIButton = {
-        let button = UIButton()
-        button.titleLabel?.textColor = .white
-        button.setTitle(R.string.localized.activityViewWeekButton(), for: .normal)
-        button.titleLabel?.font = .bentonRegularFont(ofSize: 11)
-        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-        return button
+    fileprivate lazy var weekButton: UIButton = {        
+        return self.button(title: R.string.localized.activityViewWeekButton(), textColor: .white)
     }()
 
-    fileprivate var monthButton: UIButton = {
-        let button = UIButton()
-        button.titleLabel?.textColor = .whiteLight
-        button.titleLabel?.font = .bentonRegularFont(ofSize: 11)
-        button.setTitle(R.string.localized.activityViewMonthButton(), for: .normal)
-        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-        return button
+    fileprivate lazy  var monthButton: UIButton = {
+        return self.button(title: R.string.localized.activityViewMonthButton(), textColor: .whiteLight)
     }()
+
+    fileprivate func button(title: String, textColor: UIColor) -> UIButton {
+        let button = UIButton()
+        button.titleLabel?.textColor = textColor
+        button.setTitle(title, for: .normal)
+        button.titleLabel?.font = .bentonRegularFont(ofSize: 11)
+        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+
+        return button
+    }
 
     func buttonPressed(_ sender: UIButton) {
         if sender == weekButton {
@@ -68,20 +71,6 @@ final class IntensityContainerView: UIView {
         return view
     }()
 
-    fileprivate var gridView: DottedGridWithIntensityView = {
-        let view = DottedGridWithIntensityView()
-        return view
-    }()
-
-    fileprivate  var intensityView: IntensityAverageView = {
-        let view = IntensityAverageView()
-        return view
-    }()
-
-    fileprivate  var footter: UIView = {
-        let view = UIView()
-        return view
-    }()
 
     init(frame: CGRect, items: [IntensityAverageView.Column], dayNames: [String]) {
         self.daysNames = dayNames
@@ -96,10 +85,6 @@ final class IntensityContainerView: UIView {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
     }
 }
 

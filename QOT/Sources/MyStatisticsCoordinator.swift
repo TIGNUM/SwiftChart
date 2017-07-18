@@ -27,7 +27,8 @@ final class MyStatisticsCoordinator: ParentCoordinator {
     func start() {
         do {
             let cards = try services.myStatisticsService.cards()
-            let viewModel = MyStatisticsViewModel(cards: cards)
+            let allCards = Array(services.myStatisticsService.allCardObjects())
+            let viewModel = MyStatisticsViewModel(cards: cards, allCards: allCards)
             let myStatisticsViewController = MyStatisticsViewController(viewModel: viewModel)
             myStatisticsViewController.delegate = self
 

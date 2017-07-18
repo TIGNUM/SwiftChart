@@ -8,6 +8,7 @@
 
 import Foundation
 import ReactiveKit
+import RealmSwift
 
 final class MyStatisticsViewModel {
 
@@ -15,16 +16,21 @@ final class MyStatisticsViewModel {
 
     let updates = PublishSubject<CollectionUpdate, NoError>()
     fileprivate let cards: [[MyStatistics]]
+    let allCards: [MyStatistics]
 
     var numberOfSections: Int {
         return MyStatisticsSectionType.allValues.count
+    }
+
+    func numberOfItems(in section: Int) -> Int {
+        return sectionType(in: section).cardTypes.count
     }
 
     func title(in section: Int) -> String {
         return sectionType(in: section).title
     }
 
-    private func sectionType(in section: Int) -> MyStatisticsSectionType {
+    func sectionType(in section: Int) -> MyStatisticsSectionType {
         guard let sectionType = MyStatisticsSectionType(rawValue: section) else {
             fatalError("Invalid section type")
         }
@@ -32,32 +38,58 @@ final class MyStatisticsViewModel {
         return sectionType
     }
 
-    init(cards: [[MyStatistics]]) {
-        self.cards = cards
+    func cardType(section: Int, item: Int) -> MyStatisticsCardType {
+        let section = sectionType(in: section)
+
+        return section.cardTypes[item]
     }
-}
 
-// MARK: - Mocks
+    init(cards: [[MyStatistics]], allCards: [MyStatistics]) {
+        self.cards = cards
+        self.allCards = allCards
+    }
 
-protocol MyStatisticsCard {
-    var title: String { get }
-    var subtitle: String { get }
-    var type: MyStatisticsCardType { get }
-    var data: MyStatisticsData { get }
-}
+    func cardTitle(section: Int, item: Int) -> String {
+        return cardType(section: section, item: item).title
+    }
 
-struct MockMyStatisticsCard: MyStatisticsCard {
-    let title: String
-    let subtitle: String
-    let type: MyStatisticsCardType
-    let data: MyStatisticsData
+    func userAverage(section: Int, item: Int) -> CGFloat {
+        guard let myStatistics = myStatistics(section: section, item: item) else {
+            return 0
+        }
+
+        return CGFloat(myStatistics.userAverage)
+    }
+
+    func teamAverage(section: Int, item: Int) -> CGFloat {
+        guard let myStatistics = myStatistics(section: section, item: item) else {
+            return 0
+        }
+
+        return CGFloat(myStatistics.teamAverage)
+    }
+
+    func dataAverage(section: Int, item: Int) -> CGFloat {
+        guard let myStatistics = myStatistics(section: section, item: item) else {
+            return 0
+        }
+
+        return CGFloat(myStatistics.dataAverage)
+    }
+
+    func cardType(sectionType: MyStatisticsSectionType, item: Int) -> MyStatisticsCardType {
+        return sectionType.cardTypes[item]
+    }
+
+    func myStatistics(section: Int, item: Int) -> MyStatistics? {
+        return cardType(section: section, item: item).myStatistics(cards: allCards)
+    }
 }
 
 enum MyStatisticsCardType {
     case meetingAverage
     case meetingLength
     case meetingTimeBetween
-    case meetingHeartRateChange
     case travelTripsMeeting
     case travelTripsNextFourWeeks
     case travelTripsTimeZoneChanged
@@ -75,7 +107,6 @@ enum MyStatisticsCardType {
             .meetingAverage,
             .meetingLength,
             .meetingTimeBetween,
-            .meetingHeartRateChange,
             .travelTripsMeeting,
             .travelTripsNextFourWeeks,
             .travelTripsTimeZoneChanged,
@@ -90,16 +121,53 @@ enum MyStatisticsCardType {
         ]
     }
 
+    var sectionType: MyStatisticsSectionType {
+        switch self {
+        case .meetingAverage: return .meetings
+        case .meetingLength: return .meetings
+        case .meetingTimeBetween: return .meetings
+        case .travelTripsMeeting: return .travel
+        case .travelTripsNextFourWeeks: return .travel
+        case .travelTripsTimeZoneChanged: return .travel
+        case .travelTripsMaxTimeZone: return .travel
+        case .peakPerformanceUpcoming: return .peakPerformance
+        case .peakPerformanceAverage: return .peakPerformance
+        case .sleepQuantity: return .sleep
+        case .sleepQuality: return .sleep
+        case .activitySittingMovementRatio: return .activity
+        case .activityLevel: return .activity
+        case .intensity: return .intensity
+        }
+    }
+
+    var title: String {
+        switch self {
+        case .meetingAverage: return R.string.localized.meCardTitleMeetingsNumber()
+        case .meetingLength: return R.string.localized.meCardTitleMeetingsLength()
+        case .meetingTimeBetween: return R.string.localized.meCardTitleMeetingsTimeBetween()
+        case .travelTripsMeeting: return R.string.localized.meCardTitleTravelMeetings()
+        case .travelTripsNextFourWeeks: return R.string.localized.meCardTitleTravelTrips()
+        case .travelTripsTimeZoneChanged: return R.string.localized.meCardTitleTravelTimeZoneChange()
+        case .travelTripsMaxTimeZone: return R.string.localized.meCardTitleTravelTimeZoneMax()
+        case .peakPerformanceUpcoming: return R.string.localized.meCardTitlePeakPerformacneUpcoming()
+        case .peakPerformanceAverage: return R.string.localized.meCardTitlePeakPerformacneAverage()
+        case .sleepQuantity: return R.string.localized.meCardTitleSleepQuantity()
+        case .sleepQuality: return R.string.localized.meCardTitleSleepQuality()
+        case .activitySittingMovementRatio: return R.string.localized.meCardTitleActivityRatio()
+        case .activityLevel: return R.string.localized.meCardTitleActivityLevel()
+        case .intensity: return R.string.localized.meCardTitleIntensity()
+        }
+    }
+
     var keys: [String] {
         switch self {
         case .meetingAverage: return ["meetingsNumber.day", "meetingsNumber.week"]
         case .meetingLength: return ["meetingsLength"]
         case .meetingTimeBetween: return ["meetingsTimeBetween"]
-        case .meetingHeartRateChange: return []
         case .travelTripsMeeting: return ["travelNumberOfMeetings.4weeks", "travelNumberOfMeetings.year"]
         case .travelTripsNextFourWeeks: return ["travelTripsNextFourWeeks.weeks", "travelTripsNextFourWeeks.year"]
         case .travelTripsTimeZoneChanged: return ["travelTimeZoneChange.week", "travelTimeZoneChange.year"]
-        case .travelTripsMaxTimeZone: return []
+        case .travelTripsMaxTimeZone: return ["travelTimeZoneChange.week"]
         case .peakPerformanceUpcoming: return ["peakPerformanceUpcoming.week", "peakPerformanceUpcoming.nextWeek"]
         case .peakPerformanceAverage: return ["peakPerformanceAverage.week", "peakPerformanceAverage.month"]
         case .sleepQuantity: return ["Sleep.Quantity"]
@@ -110,24 +178,77 @@ enum MyStatisticsCardType {
         }
     }
 
-    var myStatistics: [MyStatistics] {
+    func myStatistics(cards: [MyStatistics]) -> MyStatistics? {
+        guard self.keys.isEmpty == false else {
+            return nil
+        }
+
+        return cards.filter { $0.key == self.keys[0] }[0]
+    }
+
+    var statsPeriods: [Int: ChartDimensions] {
         switch self {
-        case .meetingAverage: return []
+        case .meetingAverage: return [:]
+        case .meetingLength: return [:]
+        case .meetingTimeBetween: return [:]
+        case .travelTripsMeeting:
+            return [
+                DataDisplayType.weeks.id: ChartDimensions(columns: 4, rows: 7, length: 24),
+                DataDisplayType.year.id: ChartDimensions(columns: 12, rows: 5, length: 7)
+            ]
+        case .travelTripsNextFourWeeks: return [:]
+        case .travelTripsTimeZoneChanged:
+            return [
+                DataDisplayType.weeks.id: ChartDimensions(columns: 4, rows: 7, length: 24),
+                DataDisplayType.year.id: ChartDimensions(columns: 12, rows: 5, length: 7)
+            ]
+        case .travelTripsMaxTimeZone: return [:]
+        case .peakPerformanceUpcoming:
+            return [
+                DataDisplayType.week.id: ChartDimensions(columns: 7, rows: 24, length: 3600),
+                DataDisplayType.nextWeek.id: ChartDimensions(columns: 7, rows: 24, length: 3600)
+            ]
+        case .peakPerformanceAverage: return [:]
+        case .sleepQuantity: return [:]
+        case .sleepQuality: return [:]
+        case .activitySittingMovementRatio: return [:]
+        case .activityLevel: return [:]
+        case .intensity: return [:]
+        }
+    }
+
+    var displayTypes: [DataDisplayType] {
+        switch self {
+        case .meetingAverage: return [DataDisplayType.day, DataDisplayType.week]
         case .meetingLength: return []
         case .meetingTimeBetween: return []
-        case .meetingHeartRateChange: return []
-        case .travelTripsMeeting: return []
+        case .travelTripsMeeting: return [DataDisplayType.weeks, DataDisplayType.year]
         case .travelTripsNextFourWeeks: return []
-        case .travelTripsTimeZoneChanged: return []
+        case .travelTripsTimeZoneChanged: return [DataDisplayType.weeks, DataDisplayType.year]
         case .travelTripsMaxTimeZone: return []
-        case .peakPerformanceUpcoming: return []
-        case .peakPerformanceAverage: return []
+        case .peakPerformanceUpcoming: return [DataDisplayType.week, DataDisplayType.nextWeek]
+        case .peakPerformanceAverage: return [DataDisplayType.week, DataDisplayType.month]
         case .sleepQuantity: return []
         case .sleepQuality: return []
         case .activitySittingMovementRatio: return []
         case .activityLevel: return []
         case .intensity: return []
         }
+    }
+
+    func cards(cards: [MyStatistics]) -> [MyStatistics] {
+        guard self.keys.isEmpty == false else {
+            return []
+        }
+
+        var myStatisticsArray: [MyStatistics] = []
+        keys.forEach { (key: String) in
+            if let card = (cards.filter { $0.key == key }).first {
+                myStatisticsArray.append(card)
+            }
+        }
+
+        return myStatisticsArray
     }
 }
 
@@ -161,184 +282,14 @@ enum MyStatisticsSectionType: Int {
         }
     }
 
-    var cards: [MyStatisticsCard] {
+    var cardTypes: [MyStatisticsCardType] {
         switch self {
-        case .sleep: return sleepCards
-        case .activity: return activityCards
-        case .peakPerformance: return peakPerformanceCards
-        case .intensity: return intensityCards
-        case .meetings: return meetingCards
-        case .travel: return travelCards
+        case .sleep: return [.sleepQuantity, .sleepQuality]
+        case .activity: return [.activitySittingMovementRatio, .activityLevel]
+        case .peakPerformance: return [.peakPerformanceUpcoming, .peakPerformanceAverage]
+        case .intensity: return [.intensity]
+        case .meetings: return [.meetingAverage, .meetingLength, .meetingTimeBetween]
+        case .travel: return [.travelTripsMeeting, .travelTripsNextFourWeeks, .travelTripsMaxTimeZone, .travelTripsTimeZoneChanged]
         }
-    }
-}
-
-private extension MyStatisticsSectionType {
-
-    private func makeData(_ cardType: MyStatisticsCardType) -> MyStatisticsData {
-        switch cardType {
-        case .sleepQuantity:
-            return MyStatisticsDataSleepView(chart: MyStatisticsDataSleepView.ChartType.quantitySleep, teamAverage: 0.6, dataAverage: 0.4, userAverage: 0.5, data: [0.1, 0.2, 0.3, 0.4, 0.5])
-        case .sleepQuality:
-                return MyStatisticsDataSleepView(chart: MyStatisticsDataSleepView.ChartType.qualitySleep, teamAverage: 0.4, dataAverage: 0.5, userAverage: 0.6, data: [0.9, 0.4, 0.6, 0.7, 0.8])
-        case .activitySittingMovementRatio:
-            let data: [EventGraphData] = [EventGraphData(start: 1, end: 0.4),
-                                            EventGraphData(start: 1, end: 0.65),
-                                            EventGraphData(start: 1, end: 0.2),
-                                            EventGraphData(start: 1, end: 0.3),
-                                            EventGraphData(start: 1, end: 0.8)]
-            let threshold = StatisticsThreshold<CGFloat>(upperThreshold: 0.6, lowerThreshold: 0.2)
-
-            return MyStatisticsDataActivity(teamAverage: 3.2, dataAverage: 5.4, userAverage: 2.1, teamActivityLevel: 1, dataActivityLevel: 0.55, userActivityLevel: 0.5, threshold: threshold, data: data, fillColumn: true)
-        case .activityLevel:
-            let data: [EventGraphData] = [EventGraphData(start: 1, end: 0.4),
-                                            EventGraphData(start: 1, end: 0.65),
-                                            EventGraphData(start: 1, end: 0.2),
-                                            EventGraphData(start: 1, end: 0.3),
-                                            EventGraphData(start: 1, end: 0.8)]
-            let threshold = StatisticsThreshold<CGFloat>(upperThreshold: 0.6, lowerThreshold: 0.2)
-
-            return MyStatisticsDataActivity(teamAverage: 3.2, dataAverage: 5.4, userAverage: 2.1, teamActivityLevel: 0.4, dataActivityLevel: 0.55, userActivityLevel: 0.5, threshold: threshold, data: data)
-        case .meetingAverage:
-            return MyStatisticsDataPeriodAverage(teamData: [DataDisplayType.day.id(): 3.5, DataDisplayType.week.id(): 15],
-                                                 dataData: [DataDisplayType.day.id(): 4.7, DataDisplayType.week.id(): 17],
-                                                 userData: [DataDisplayType.day.id(): 5.9, DataDisplayType.week.id(): 32],
-                                                 maxData: [DataDisplayType.day.id(): 12, DataDisplayType.week.id(): 50],
-                                                 thresholds: [DataDisplayType.day.id(): (upperThreshold: 0.8, lowerThreshold: 0.5), DataDisplayType.week.id(): (upperThreshold: 0.8, lowerThreshold: 0.5)],
-                                                 displayType: .day)
-        case .meetingLength:
-            return MyStatisticsDataAverage(teamAverage: 148, dataAverage: 178, userAverage: 42, maximum: 200, threshold: (upperThreshold: 120, lowerThreshold: 45))
-        case .meetingTimeBetween:
-            return MyStatisticsDataAverage(teamAverage: 148, dataAverage: 178, userAverage: 42, maximum: 200, threshold: (upperThreshold: 120, lowerThreshold: 45))
-        case .peakPerformanceUpcoming:
-            let lastWeek = Date().addingTimeInterval(-7 * 24 * 3600)
-            let lastWeek8 = Date().addingTimeInterval(-8 * 24 * 3600)
-            let lastWeek6 = Date().addingTimeInterval(-6 * 24 * 3600)
-            let nextWeek = Date().addingTimeInterval(7 * 24 * 3600)
-            let nextWeek10 = Date().addingTimeInterval(10 * 24 * 3600)
-
-            let lastWeekPlus2h = lastWeek.addingTimeInterval(2 * 3600)
-            let lastWeekMinus2h = lastWeek.addingTimeInterval(-2 * 3600)
-            let nextWeekPlus5h = nextWeek.addingTimeInterval(5 * 3600)
-
-            let periods: [Period] = [(start: lastWeek, duration: 3 * 3600),
-                                     (start: lastWeek6, duration: 3 * 3600),
-                                     (start: lastWeek8, duration: 3 * 3600),
-                                     (start: lastWeekMinus2h, duration: 1 * 3600),
-                                     (start: lastWeekPlus2h, duration: 4 * 3600),
-                                     (start: nextWeek, duration: 1 * 3600),
-                                     (start: nextWeek10, duration: 2 * 3600),
-                                     (start: nextWeekPlus5h, duration: 16 * 3600)]
-
-            return MyStatisticsDataPeriods(teamData: [DataDisplayType.lastWeek.id(): 3.5, DataDisplayType.nextWeek.id(): 15],
-                                           dataData: [DataDisplayType.lastWeek.id(): 4.7, DataDisplayType.nextWeek.id(): 15],
-                                           userData: [DataDisplayType.lastWeek.id(): 7, DataDisplayType.nextWeek.id(): 32],
-                                           periods: periods,
-                                           statsPeriods: [DataDisplayType.lastWeek.id(): ChartDimensions(columns: 7, rows: 24, length: 3600), DataDisplayType.nextWeek.id(): ChartDimensions(columns: 7, rows: 24, length: 3600)],
-                                           thresholds: [DataDisplayType.lastWeek.id(): (upperThreshold: 12800, lowerThreshold: 4000), DataDisplayType.nextWeek.id(): (upperThreshold: 500000, lowerThreshold: 200000)],
-                                           displayType: .lastWeek)
-        case .peakPerformanceAverage:
-            return MyStatisticsDataPeriodAverage(teamData: [DataDisplayType.week.id(): 3.5, DataDisplayType.month.id(): 15],
-                                                 dataData: [DataDisplayType.week.id(): 4.7, DataDisplayType.month.id(): 15],
-                                                 userData: [DataDisplayType.week.id(): 7, DataDisplayType.month.id(): 32],
-                                                 maxData: [DataDisplayType.week.id(): 12, DataDisplayType.month.id(): 50],
-                                                 thresholds: [DataDisplayType.week.id(): (upperThreshold: 0.8, lowerThreshold: 0.5), DataDisplayType.month.id(): (upperThreshold: 0.8, lowerThreshold: 0.5)])
-        case .travelTripsMeeting:
-            let now = Date()
-            let now3 = now.addingTimeInterval(3 * 24 * 3600)
-
-            let nowWeek = now.addingTimeInterval(7 * 24 * 3600)
-            let now145 = now.addingTimeInterval(-145 * 24 * 3600)
-            let now245 = now.addingTimeInterval(-245 * 24 * 3600)
-
-            let periods: [Period] = [(start: now, duration: 12 * 3600),
-                                     (start: now3, duration: 24 * 3600),
-                                    (start: now145, duration: 12 * 24 * 3600),
-                                    (start: now245, duration: 2 * 24 * 3600),
-                                    (start: nowWeek, duration: 6 * 3600)]
-            
-            return MyStatisticsDataPeriods(teamData: [DataDisplayType.weeks.id(): 3.5, DataDisplayType.year.id(): 15],
-                                           dataData: [DataDisplayType.weeks.id(): 4.7, DataDisplayType.year.id(): 15],
-                                           userData: [DataDisplayType.weeks.id(): 7, DataDisplayType.year.id(): 32],
-                                           periods: periods,
-                                           statsPeriods: [DataDisplayType.weeks.id(): ChartDimensions(columns: 4, rows: 7, length: 24), DataDisplayType.year.id(): ChartDimensions(columns: 12, rows: 5, length: 7)],
-                                           thresholds: [DataDisplayType.weeks.id(): (upperThreshold: 12800, lowerThreshold: 4000), DataDisplayType.year.id(): (upperThreshold: 500000, lowerThreshold: 200000)])
-        case .travelTripsNextFourWeeks:
-            let userTrips: UserUpcomingTrips = [[1, 2, 1, 0, 1, 0, 1],
-                                                [2, 0, 1, 3, 1, 1, 0],
-                                                [0, 1, 1, 5, 1, 0, 0],
-                                                [1, 0, 1, 0, 2, 0, 0]]
-            let labels: [String] = ["+1", "+2", "+3", "+4"]
-
-            return MyStatisticsDataUpcomingTrips(teamAverage: 24.2, dataAverage: 32.1, userAverage: 24.9, userUpcomingTrips: userTrips, labels: labels)
-        case .travelTripsTimeZoneChanged:
-            let now = Date()
-            let now3 = now.addingTimeInterval(3 * 24 * 3600)
-
-            let nowWeek = now.addingTimeInterval(7 * 24 * 3600)
-            let now145 = now.addingTimeInterval(-145 * 24 * 3600)
-            let now245 = now.addingTimeInterval(-245 * 24 * 3600)
-
-            let periods: [Period] = [(start: now, duration: 12 * 3600),
-                                     (start: now3, duration: 24 * 3600),
-                                     (start: now145, duration: 12 * 24 * 3600),
-                                     (start: now245, duration: 2 * 24 * 3600),
-                                     (start: nowWeek, duration: 6 * 3600)]
-
-            return MyStatisticsDataPeriods(teamData: [DataDisplayType.weeks.id(): 3.5, DataDisplayType.year.id(): 15],
-                                           dataData: [DataDisplayType.weeks.id(): 4.7, DataDisplayType.year.id(): 15],
-                                           userData: [DataDisplayType.weeks.id(): 7, DataDisplayType.year.id(): 32],
-                                           periods: periods,
-                                           statsPeriods: [DataDisplayType.weeks.id(): ChartDimensions(columns: 4, rows: 7, length: 24), DataDisplayType.year.id(): ChartDimensions(columns: 12, rows: 5, length: 7)],
-                                           thresholds: [DataDisplayType.weeks.id(): (upperThreshold: 12800, lowerThreshold: 4000), DataDisplayType.year.id(): (upperThreshold: 500000, lowerThreshold: 200000)])
-        case .travelTripsMaxTimeZone:
-            return MyStatisticsDataAverage(teamAverage: 148, dataAverage: 178, userAverage: 42, maximum: 200, threshold: (upperThreshold: 120, lowerThreshold: 45))
-        default:
-            return MyStatisticsDataAverage(teamAverage: 148, dataAverage: 178, userAverage: 42, maximum: 200, threshold: (upperThreshold: 120, lowerThreshold: 45))
-        }
-    }
-
-    var sleepCards: [MyStatisticsCard] {
-        return [
-            MockMyStatisticsCard(title: "8.5H", subtitle: "Sleep Quantity", type: .sleepQuantity, data: makeData(.sleepQuantity)),
-            MockMyStatisticsCard(title: "7.5H", subtitle: "Sleep Quality", type: .sleepQuality, data: makeData(.sleepQuality))
-        ]
-    }
-
-    var meetingCards: [MyStatisticsCard] {
-        return [
-            MockMyStatisticsCard(title: "#11", subtitle: "Number of Meetings", type: .meetingAverage, data: makeData(.meetingAverage)),
-            MockMyStatisticsCard(title: "2.4H", subtitle: "Length of Meetings", type: .meetingLength, data: makeData(.meetingLength)),
-            MockMyStatisticsCard(title: "1.5H", subtitle: "Time Between Meetings", type: .meetingTimeBetween, data: makeData(.meetingTimeBetween))
-        ]
-    }
-
-    var travelCards: [MyStatisticsCard] {
-        return [
-            MockMyStatisticsCard(title: "125", subtitle: "Average number of meetings", type: .travelTripsMeeting, data: makeData(.travelTripsMeeting)),
-            MockMyStatisticsCard(title: "4", subtitle: "Trips next four Weeks", type: .travelTripsNextFourWeeks, data: makeData(.travelTripsNextFourWeeks)),
-            MockMyStatisticsCard(title: "2", subtitle: "# Of trips with time zone changed", type: .travelTripsTimeZoneChanged, data: makeData(.travelTripsTimeZoneChanged)),
-            MockMyStatisticsCard(title: "#11", subtitle: "Time zone  max time zone", type: .travelTripsMaxTimeZone, data: makeData(.travelTripsMaxTimeZone))
-        ]
-    }
-
-    var peakPerformanceCards: [MyStatisticsCard] {
-        return [
-            MockMyStatisticsCard(title: "11", subtitle: "# of upcoming peak peak performances", type: .peakPerformanceUpcoming, data: makeData(.peakPerformanceUpcoming)),
-            MockMyStatisticsCard(title: "222", subtitle: "Average number of peak performances", type: .peakPerformanceAverage, data: makeData(.peakPerformanceAverage))
-        ]
-    }
-
-    var activityCards: [MyStatisticsCard] {
-        return [
-            MockMyStatisticsCard(title: "4.7H", subtitle: "Sitting / Movement Ratio", type: .activitySittingMovementRatio, data: makeData(.activitySittingMovementRatio)),
-            MockMyStatisticsCard(title: "6.3H", subtitle: "Activity level", type: .activityLevel, data: makeData(.activityLevel))
-        ]
-    }
-    
-    var intensityCards: [MyStatisticsCard] {
-        return [
-            MockMyStatisticsCard(title: "4.7H", subtitle: "ava", type: .intensity, data: makeData(.intensity))
-        ]
     }
 }

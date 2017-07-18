@@ -19,7 +19,7 @@ enum DataDisplayType {
     case month
     case year
 
-    func title() -> String {
+    var title: String {
         switch self {
         case .all: return ""
         case .day: return R.string.localized.meSectorMyStatisticsDay()
@@ -32,7 +32,7 @@ enum DataDisplayType {
         }
     }
 
-    func id() -> Int {
+    var id: Int {
         switch self {
         case .all: return 1
         case .day: return 2
@@ -77,22 +77,19 @@ class SegmentedView: UIView {
         self.leftButtonType = leftButtonType
         self.rightButtonType = rightButtonType
         self.type = type
+        self.delegate = delegate
 
         super.init(frame: frame)
-
-        self.delegate = delegate
 
         setup()
     }
 
     private func createButton(type: DataDisplayType) -> UIButton {
         let button = UIButton()
-
-        let color: UIColor = type.id() == data.displayType.id() ? .white : .white40
-        let attributedTitle = Style.navigationTitle(type.title().uppercased(), color).attributedString(lineSpacing: 2)
-
+        let color: UIColor = type.id == data.displayType.id ? .white : .white40
+        let attributedTitle = Style.navigationTitle(type.title.uppercased(), color).attributedString(lineSpacing: 2)
         button.setAttributedTitle(attributedTitle, for: .normal)
-        button.tag = type.id()
+        button.tag = type.id
         button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
 
         return button
@@ -103,15 +100,12 @@ class SegmentedView: UIView {
         let rightButton = createButton(type: rightButtonType)
         let separator = UIView()
         let container = UIView()
-
+        let padding: CGFloat = 8
+        let separatorHeight: CGFloat = 1
         addSubview(leftButton)
         addSubview(rightButton)
         addSubview(separator)
         addSubview(container)
-
-        let padding: CGFloat = 8
-        let separatorHeight: CGFloat = 1
-
         separator.backgroundColor = .white40
 
         leftButton.leadingAnchor == self.leadingAnchor
@@ -197,7 +191,7 @@ class SegmentedView: UIView {
     }
 
     func didTapButton(sender: UIButton) {
-        guard data.displayType.id() != sender.tag else { return }
+        guard data.displayType.id != sender.tag else { return }
         let type = DataDisplayType.create(id: sender.tag)
         
         data.displayType = type
