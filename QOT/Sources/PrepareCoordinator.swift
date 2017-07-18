@@ -229,7 +229,7 @@ extension PrepareCoordinator: PrepareContentViewControllerDelegate {
 
     func didTapClose(in viewController: PrepareContentViewController) {
         viewController.dismiss(animated: true, completion: nil)
-        chatDecisionManager.start()
+        chatDecisionManager.addQuestions()
 
         if let preparationID = viewController.viewModel.preparationID {
             let checks = viewController.viewModel.checkedIDs
@@ -285,7 +285,7 @@ extension PrepareCoordinator : PrepareChatDecisionManagerDelegate {
 
     func showNoContentError(manager: PrepareChatDecisionManager) {
         tabBarController.showAlert(type: .noContent, handler: { [weak self] in
-            self?.chatDecisionManager.start()
+            self?.chatDecisionManager.addQuestions()
             }, handlerDestructive: nil)
     }
 }
@@ -316,7 +316,7 @@ extension PrepareCoordinator: PrepareEventsViewControllerDelegate {
             let name = alertController.textFields?.first?.text ?? ""
             self?.createPreparation(name: name, eventID: nil)
             self?.topTabBarController.dismiss(animated: true)
-            self?.chatDecisionManager.start()
+            self?.chatDecisionManager.preparationSaved()
         }
         let cancelTitle = R.string.localized.alertButtonTitleCancel()
         let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel)
@@ -330,7 +330,7 @@ extension PrepareCoordinator: PrepareEventsViewControllerDelegate {
     func didTapEvent(event: EKEvent, viewController: PrepareEventsViewController) {
         createPreparation(name: event.title, eventID: event.eventIdentifier)
         tabBarController.dismiss(animated: true)
-        chatDecisionManager.start()
+        chatDecisionManager.preparationSaved()
     }
 
     func didTapSavePrepToDevice(viewController: PrepareEventsViewController) {

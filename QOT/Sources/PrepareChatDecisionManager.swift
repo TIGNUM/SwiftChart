@@ -31,6 +31,16 @@ final class PrepareChatDecisionManager {
     func start() {
         delegate?.setItems([], manager: self)
 
+        addQuestions()
+    }
+
+    func preparationSaved() {
+
+        addMessage(R.string.localized.prepareChatPreparationSaved())
+        addQuestions()
+    }
+
+    func addQuestions() {
         if let groupID = questionGroupID, let question = questionsService.prepareQuestions(questionGroupID: groupID).first {
             process(question: question)
         }
@@ -50,6 +60,15 @@ final class PrepareChatDecisionManager {
                 process(question: question)
             }
         }
+    }
+
+    func addMessage(_ message: String) {
+        var items: [ChatItem<Answer>] = []
+
+        items.append(ChatItem(type: .message(message)))
+        items.append(deliveredFooter(alignment: .left))
+
+        delegate?.appendItems(items, manager: self)
     }
 
     private func process(question: Question) {

@@ -83,6 +83,8 @@
 "Prepare.Chat.Footer.DeliveredTime" = "Delivered at %@";
 "Prepare.Chat.Header.Preparations" = "PREPARATIONS";
 "Prepare.MyPrep.TimeToEvent" = "Time to the event %@";
+"Prepare.Chat.PreparationSaved" = "Your preparation has been saved";
+
 
 "Learn.Content.Item.Title.Full" = "Full";
 "Learn.Content.Item.Title.Bullets" = "Bullets";

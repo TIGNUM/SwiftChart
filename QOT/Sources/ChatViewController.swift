@@ -53,6 +53,16 @@ class ChatViewController<T: ChatChoice>: UIViewController, UITableViewDelegate, 
                 // FIXME: Animate updates
                 self.tableView.reloadData()
             }
+            let sections = self.tableView.numberOfSections
+
+            if 0 < sections {
+                let rowsInSection = self.tableView.numberOfRows(inSection: sections - 1)
+
+                if 0 < rowsInSection {
+                    let indexPath = IndexPath(row: rowsInSection - 1, section: sections - 1)
+                    self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                }
+            }
         }.dispose(in: disposeBag)
     }
     
