@@ -69,9 +69,7 @@ final class SettingsMenuViewModel {
 private func userTiles(user: User) -> [SettingsMenuViewModel.Tile] {
     return [
         SettingsMenuViewModel.Tile(title: daysBetweenDates(startDate: user.memberSince), subtitle: "MEMBER SINCE"),
-        SettingsMenuViewModel.Tile(title: totalMinutesUsage, subtitle: "QOT USAGE"),
-        SettingsMenuViewModel.Tile(title: "258784 min", subtitle: "MESSAGES"),
-        SettingsMenuViewModel.Tile(title: "7484", subtitle: "SOMETHING ELSE")
+        SettingsMenuViewModel.Tile(title: totalMinutesUsage, subtitle: "QOT USAGE")
     ]
 }
 
