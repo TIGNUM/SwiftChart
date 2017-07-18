@@ -102,13 +102,14 @@ private extension MyDataView {
     }
     
     func setupProfileImage(layout: Layout.MeSection, profileImage: UIImage?) {
+        let grayscaleProfile = profileImage.flatMap { UIImage.makeGrayscale($0) }
         profileImageButton = UIButton(type: .custom)
         profileImageButton.frame = layout.profileImageViewFrame
         profileImageButton.setBackgroundImage(profileImage, for: .normal)
         profileImageButton.addTarget(self, action: #selector(profileButtonPressed(_:)), for: .touchUpInside)
         profileImageButton.layer.cornerRadius = (profileImageButton.frame.size.width * 0.5)
         profileImageButton.clipsToBounds = true
-        profileImageViewOverlay = UIImageView(frame: layout.profileImageViewFrame, image: profileImage?.convertToGrayScale())
+        profileImageViewOverlay = UIImageView(frame: layout.profileImageViewFrame, image: grayscaleProfile)
         profileImageViewOverlayEffect = UIImageView(frame: layout.profileImageViewFrame, image: nil)
         profileImageViewOverlayEffect.backgroundColor = Color.Default.whiteMedium
         addImageEffect(center: layout.loadCenter)

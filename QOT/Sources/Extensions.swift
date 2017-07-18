@@ -236,18 +236,20 @@ extension UIWindow {
 
 extension UIImage {
 
-    func convertToGrayScale() -> UIImage? {
-        let filter = CIFilter(name: "CIPhotoEffectNoir")
-        filter?.setDefaults()
-        filter?.setValue(CoreImage.CIImage(image: self), forKey: kCIInputImageKey)
-
-        guard
-            let outputImage = filter?.outputImage,
-            let cgImage = CIContext(options:nil).createCGImage(outputImage, from: outputImage.extent) else {
-                return nil
+    // This is a static func because of a possible bug causing a crash: @see: https://petercompernolle.com/2015/excbadaccess-with-coreimage
+    static func makeGrayscale(_ image: UIImage) -> UIImage? {
+        guard let image = CIImage(image: image), let filter = CIFilter(name: "CIPhotoEffectNoir") else {
+            return nil
         }
 
-        return UIImage(cgImage: cgImage)
+        filter.setDefaults()
+        filter.setValue(image, forKey: kCIInputImageKey)
+
+        let context = CIContext(options: nil)
+        if let output = filter.outputImage, let cgImage = context.createCGImage(output, from: output.extent) {
+            return UIImage(cgImage: cgImage)
+        }
+        return nil
     }
 }
 

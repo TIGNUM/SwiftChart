@@ -29,4 +29,3 @@ extension MyStatisticsPeriod {
         return startDate..<endDate
     }
 }
-

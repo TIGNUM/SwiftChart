@@ -71,7 +71,6 @@ final class IntensityContainerView: UIView {
         return view
     }()
 
-
     init(frame: CGRect, items: [IntensityAverageView.Column], dayNames: [String]) {
         self.daysNames = dayNames
         super.init(frame: frame)
