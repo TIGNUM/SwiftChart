@@ -82,7 +82,7 @@ private extension LearnCategoryListViewController {
         indexPaths.forEach { (indexPath) in
             let category = viewModel.item(at: indexPath.item)
             if let cell = collectionView.cellForItem(at: indexPath) as? LearnCategoryCell {
-                cell.configure(with: category, indexPath: indexPath, screenType: screenType)
+                cell.configure(with: category, indexPath: indexPath)
             }
         }
     }
@@ -114,7 +114,7 @@ extension LearnCategoryListViewController: UICollectionViewDataSource, LearnCate
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let category = viewModel.item(at: indexPath.item)
         let cell: LearnCategoryCell = collectionView.dequeueCell(for: indexPath)
-        cell.configure(with: category, indexPath: indexPath, screenType: screenType)
+        cell.configure(with: category, indexPath: indexPath)
         
         return cell
     }

@@ -59,7 +59,7 @@ struct Layout {
         static let maxWeeklyPage = 5
         
         var connectionCenter: CGPoint {
-            return  CGPoint(x: viewControllerFrame.width, y: viewControllerFrame.height * 0.5)
+            return  CGPoint(x: viewControllerFrame.width, y: viewControllerFrame.height * 0.45)
         }
 
         var radiusMaxLoad: CGFloat {

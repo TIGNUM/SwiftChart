@@ -33,7 +33,7 @@ class TabBarView: UIView {
         func distribution(width: CGFloat) -> Distribution {
             switch self {
             case .bottom: return .fillEqually
-            case .top: return .fillProportionally(spacing: width / 6)
+            case .top: return .fillProportionally(spacing: width / 12.0)
             }
         }
     }

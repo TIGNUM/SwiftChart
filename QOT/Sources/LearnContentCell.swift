@@ -11,29 +11,18 @@ import Anchorage
 
 class LearnContentCell: UICollectionViewCell, Dequeueable {
 
-    fileprivate lazy var indexLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor.white.withAlphaComponent(0.40)
-        label.font = UIFont.simpleFont(ofSize: 16)
-        return label
-    }()
+    fileprivate lazy var indexLabel = UILabel()
     
     fileprivate lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white
-        label.font = UIFont.simpleFont(ofSize: 16)
-        label.minimumScaleFactor = 0.1
-        label.lineBreakMode = .byTruncatingTail
-        label.numberOfLines = 3
-
+        label.numberOfLines = 2
         return label
     }()
     
     fileprivate lazy var videoDurationLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white40
-        label.font = UIFont.bentonBookFont(ofSize: 11)
-
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
@@ -56,7 +45,13 @@ class LearnContentCell: UICollectionViewCell, Dequeueable {
     func configure(with content: ContentCollection, index: Int) {
         let min = String(content.minutesRequired)
         let attributedIndex = Style.headlineSmall("#\(String(format: "%02d", index + 1))", .white50).attributedString()
-        let attributedTitle = Style.headlineSmall(content.title.uppercased(), .white).attributedString()
+        let attributedTitle = NSMutableAttributedString(
+            string: content.title.uppercased(),
+            letterSpacing: 1,
+            font: Font.H5SecondaryHeadline,
+            textColor: .white,
+            lineBreakMode: .byTruncatingTail
+        )
         let attributedDuration = NSMutableAttributedString(
             string: R.string.localized.learnContentListViewMinutesLabel(min),
             letterSpacing: 2,

@@ -18,10 +18,14 @@ extension NSMutableAttributedString {
         font: UIFont,
         lineSpacing: CGFloat = 0,
         textColor: UIColor = .white,
-        alignment: NSTextAlignment = .left) {
+        alignment: NSTextAlignment = .left,
+        lineBreakMode: NSLineBreakMode? = nil) {
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineSpacing = lineSpacing
             paragraphStyle.alignment = alignment
+            if let lineBreakMode = lineBreakMode {
+                paragraphStyle.lineBreakMode = lineBreakMode
+            }
             let attributes: [String: Any] = [
                 NSForegroundColorAttributeName: textColor,
                 NSParagraphStyleAttributeName: paragraphStyle,

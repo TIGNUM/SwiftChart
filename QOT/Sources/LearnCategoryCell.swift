@@ -18,19 +18,13 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
     private var outerLayer: CAGradientLayer?
     private var percentageLearned = 0.0
     fileprivate lazy var contentCountLabel = UILabel()
-    fileprivate lazy var contentCountLabelTopAnchor = NSLayoutConstraint()
-    fileprivate lazy var contentCountLabelLeadingAnchor = NSLayoutConstraint()
-    fileprivate lazy var titleLabelCenterXAnchor = NSLayoutConstraint()
-    fileprivate lazy var titleLabelCenterYAnchor = NSLayoutConstraint()
     fileprivate var indexPath = IndexPath(item: 0, section: 0)
-    fileprivate var screenType = UIViewController.ScreenType.big
-
+    fileprivate var leftMarginConstraint: NSLayoutConstraint!
+    fileprivate var rightMarginConstraint: NSLayoutConstraint!
+    
     fileprivate lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.adjustsFontSizeToFitWidth = true        
-        label.lineBreakMode = .byTruncatingTail
-        label.numberOfLines = 0
-        
+        label.numberOfLines = 2
         return label
     }()
 
@@ -58,10 +52,18 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-
+        
         contentView.layer.cornerRadius = frame.width / 2
         contentView.layer.masksToBounds = true
         drawCircles(frame: frame)
+    }
+    
+    override func updateConstraints() {
+        let margin = contentView.bounds.width * (1.0 / 9.0)
+        leftMarginConstraint.constant = margin
+        rightMarginConstraint.constant = -margin
+        
+        super.updateConstraints()
     }
 
     private func drawCircles(frame: CGRect) {
@@ -118,15 +120,15 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
 
     }
 
-    func configure(with category: LearnCategoryListViewModel.Item, indexPath: IndexPath, screenType: UIViewController.ScreenType) {
+    func configure(with category: LearnCategoryListViewModel.Item, indexPath: IndexPath) {
         self.indexPath = indexPath
-        self.screenType = screenType
         let attributedTextTitle = NSMutableAttributedString(
             string: category.title.uppercased(),
             letterSpacing: 2,
             font: Font.H7Tag,
             lineSpacing: 2.5,
-            textColor: .white60
+            textColor: .white60,
+            lineBreakMode: .byTruncatingTail
         )
         let attributedTextCount = NSMutableAttributedString(
             string: "\(category.viewedCount)/\(category.itemCount)",
@@ -142,11 +144,6 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
             self.percentageLearned = percentageLearned
             setNeedsLayout()
         }
-
-        contentCountLabelTopAnchor.constant = (indexPath.item == 0 ? screenType.countLabelTopCenterAnchorOffset : screenType.countLabelTopAnchorOffset)
-        contentCountLabelLeadingAnchor.constant = screenType.countLabelLeadingAnchorOffset
-        titleLabelCenterXAnchor.constant = screenType.contentCenterXAnchorOffset
-        titleLabelCenterYAnchor.constant = (indexPath.item == 0 ? 16 : 12)
     }
 
     private func applyGradient(frame: CGRect) {
@@ -179,14 +176,16 @@ private extension LearnCategoryCell {
 
     func setupLayout() {
         textContainerView.topAnchor == contentView.topAnchor
-        textContainerView.widthAnchor == contentView.widthAnchor
+        textContainerView.leadingAnchor == contentView.leadingAnchor
+        textContainerView.trailingAnchor == contentView.trailingAnchor
         textContainerView.bottomAnchor == contentView.bottomAnchor
+        
+        leftMarginConstraint = contentCountLabel.leadingAnchor == contentView.leadingAnchor
+        rightMarginConstraint = contentCountLabel.trailingAnchor == contentView.trailingAnchor
+        contentCountLabel.bottomAnchor == titleLabel.topAnchor
 
-        contentCountLabelTopAnchor = contentCountLabel.topAnchor == contentView.topAnchor
-        contentCountLabelLeadingAnchor = contentCountLabel.leadingAnchor == contentView.leadingAnchor
-
-        titleLabel.widthAnchor == textContainerView.widthAnchor
-        titleLabelCenterXAnchor = titleLabel.centerXAnchor == contentView.centerXAnchor
-        titleLabelCenterYAnchor = titleLabel.centerYAnchor == contentView.centerYAnchor
+        titleLabel.leftAnchor == contentCountLabel.leftAnchor
+        titleLabel.rightAnchor == contentCountLabel.rightAnchor
+        titleLabel.centerYAnchor == contentView.centerYAnchor + 15.0
     }
 }
