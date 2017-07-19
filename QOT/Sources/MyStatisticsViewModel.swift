@@ -161,29 +161,29 @@ enum MyStatisticsCardType {
 
     var keys: [String] {
         switch self {
-        case .meetingAverage: return ["meetingsNumber.day", "meetingsNumber.week"]
-        case .meetingLength: return ["meetingsLength"]
-        case .meetingTimeBetween: return ["meetingsTimeBetween"]
-        case .travelTripsMeeting: return ["travelNumberOfMeetings.4weeks", "travelNumberOfMeetings.year"]
-        case .travelTripsNextFourWeeks: return ["travelTripsNextFourWeeks.weeks", "travelTripsNextFourWeeks.year"]
-        case .travelTripsTimeZoneChanged: return ["travelTimeZoneChange.week", "travelTimeZoneChange.year"]
-        case .travelTripsMaxTimeZone: return ["travelTimeZoneChange.week"]
-        case .peakPerformanceUpcoming: return ["peakPerformanceUpcoming.week", "peakPerformanceUpcoming.nextWeek"]
-        case .peakPerformanceAverage: return ["peakPerformanceAverage.week", "peakPerformanceAverage.month"]
-        case .sleepQuantity: return ["Sleep.Quantity"]
-        case .sleepQuality: return ["Sleep.Quality"]
-        case .activitySittingMovementRatio: return ["activitySittingMovement"]
-        case .activityLevel: return ["activityLevel"]
+        case .meetingAverage: return ["meetings.number.day", "meetings.number.week"]
+        case .meetingLength: return ["meetings.length"]
+        case .meetingTimeBetween: return ["meetings.timeBetween"]
+        case .travelTripsMeeting: return ["travel.numberOfMeetings.4weeks", "travel.numberOfMeetings.year"]
+        case .travelTripsNextFourWeeks: return ["travel.tripsNextFourWeeks"]
+        case .travelTripsTimeZoneChanged: return ["travel.timeZoneChange.week", "travel.timeZoneChange.year"]
+        case .travelTripsMaxTimeZone: return ["travel.tripsMaxTimeZone"]
+        case .peakPerformanceUpcoming: return ["peakPerformance.upcoming.week", "peakPerformance.upcoming.nextWeek"]
+        case .peakPerformanceAverage: return ["peakPerformance.average.week", "peakPerformance.average.month"]
+        case .sleepQuantity: return ["sleep.quantity"]
+        case .sleepQuality: return ["sleep.quality"]
+        case .activitySittingMovementRatio: return ["activity.sittingMovement"]
+        case .activityLevel: return ["activity.level"]
         case .intensity: return ["intentensity.week", "intentensity.month"]
         }
     }
 
     func myStatistics(cards: [MyStatistics]) -> MyStatistics? {
-        guard self.keys.isEmpty == false else {
+        guard let key = keys.first else {
             return nil
         }
 
-        return cards.filter { $0.key == self.keys[0] }[0]
+        return cards.filter { $0.key == key }.first
     }
 
     var statsPeriods: [Int: ChartDimensions] {
