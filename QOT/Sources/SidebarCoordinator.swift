@@ -49,6 +49,7 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
 
     func didTapLogoutCell(in viewController: SidebarViewController) {
         NotificationHandler.postNotification(withName: .logoutNotification)
+        viewController.dismiss(animated: true, completion: nil)
     }
 
     func didTapAddSensorCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
