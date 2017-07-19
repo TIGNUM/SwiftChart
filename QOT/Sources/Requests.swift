@@ -24,7 +24,8 @@ struct AuthenticationRequest: URLRequestBuildable {
         self.deviceID = deviceID
         headers = [
             .Authorization: "\(username):\(password)",
-            .deviceID: deviceID
+            .deviceID: deviceID,
+            .authUser: "qot"
         ]
     }
 }
