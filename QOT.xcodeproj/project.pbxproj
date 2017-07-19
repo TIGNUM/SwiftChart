@@ -302,6 +302,7 @@
 		CC944DB81EE8096100B8423C /* MyStatisticsCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC944DB71EE8096100B8423C /* MyStatisticsCardCell.swift */; };
 		CC944DBA1EE809AA00B8423C /* MyStatisticsCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC944DB91EE809AA00B8423C /* MyStatisticsCardCell.xib */; };
 		CC94F5621EB08EE400051CF8 /* AudioWaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC94F55E1EB08EE400051CF8 /* AudioWaveformView.swift */; };
+		CC9622081F1F48A8007A9ED0 /* URL+Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9622071F1F48A8007A9ED0 /* URL+Components.swift */; };
 		CC96630A1EA1B27F00B84B1C /* MyDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9663051EA1B27F00B84B1C /* MyDataViewModel.swift */; };
 		CC96630B1EA1B27F00B84B1C /* MyDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9663061EA1B27F00B84B1C /* MyDataView.swift */; };
 		CC96630F1EA1B29800B84B1C /* MyWhyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC96630D1EA1B29800B84B1C /* MyWhyView.swift */; };
@@ -724,6 +725,7 @@
 		CC944DB71EE8096100B8423C /* MyStatisticsCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsCardCell.swift; sourceTree = "<group>"; };
 		CC944DB91EE809AA00B8423C /* MyStatisticsCardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyStatisticsCardCell.xib; sourceTree = "<group>"; };
 		CC94F55E1EB08EE400051CF8 /* AudioWaveformView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioWaveformView.swift; sourceTree = "<group>"; };
+		CC9622071F1F48A8007A9ED0 /* URL+Components.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Components.swift"; sourceTree = "<group>"; };
 		CC9663051EA1B27F00B84B1C /* MyDataViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataViewModel.swift; sourceTree = "<group>"; };
 		CC9663061EA1B27F00B84B1C /* MyDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataView.swift; sourceTree = "<group>"; };
 		CC96630D1EA1B29800B84B1C /* MyWhyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyWhyView.swift; sourceTree = "<group>"; };
@@ -1382,6 +1384,7 @@
 				85777E7A1F0F857C00E12477 /* UIViewController+Convenience.swift */,
 				CC7A91111F0F978E00F791B9 /* UIViewController+ScreenType.swift */,
 				CCCC42DE1ED5799D00E73905 /* UIViewController+Transition.swift */,
+				CC9622071F1F48A8007A9ED0 /* URL+Components.swift */,
 				CCC2D3151F0AB1E000951A2E /* UserDefault+Convenience.swift */,
 			);
 			name = Extensions;
@@ -2506,6 +2509,7 @@
 				CBC5ACBF1F162A9C007E1E9C /* UserChoice.swift in Sources */,
 				CC0FF8D21EA784400028D64F /* PartnersViewModel.swift in Sources */,
 				8548BBDC1F0D263000AC7C06 /* RequestDeviceSensorCollectionViewCell.swift in Sources */,
+				CC9622081F1F48A8007A9ED0 /* URL+Components.swift in Sources */,
 				858AF6931EF904AB00486605 /* PeakPerformanceUpcomingChartView.swift in Sources */,
 				0BEE8ABF1EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.swift in Sources */,
 				7F08887F1F0A4101005CE966 /* PartnerService.swift in Sources */,

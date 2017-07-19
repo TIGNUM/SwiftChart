@@ -22,10 +22,20 @@ final class CustomAppLaunchHandler {
 
         for type in types {
             let urlParts = urlString.components(separatedBy: type.rawValue)
-            if urlParts.count == 2 {
+            if urlParts.count == 1 {
                 switch type {
                 case .fitbit:
-                    fitbit(url: urlParts[1])
+                    let fitURLString = urlParts[0]
+                    let fitbitToken = URL(string: fitURLString)?.getQueryStringParameter(url: fitURLString, param: "code")
+                    fitbit(accessToken: fitbitToken ?? "")
+                default: return
+                }
+
+                return
+            } else if urlParts.count == 2 {
+                switch type {
+                case .fitbit:
+                    fitbit(accessToken: urlParts[1])
                 case .preparation:
                     preparation(localID: urlParts[1])
                 }
@@ -59,28 +69,12 @@ private extension CustomAppLaunchHandler {
 
 private extension CustomAppLaunchHandler {
 
-    static func fitbit(url: String) {
+    static func fitbit(accessToken: String) {
         AddSensorCoordinator.safariViewController?.dismiss(animated: true, completion: nil)
-
-        guard let accessToken = getFitbitAccessToken(urlString: url) else { return }
 
         AppDelegate.current.window?.showProgressHUD(type: .fitbit) {
             sendAccessToken(accessToken: accessToken)
         }
-    }
-
-    static func getFitbitAccessToken(urlString: String) -> String? {
-        let parameters = urlString.components(separatedBy: "&")
-        if parameters.count > 0 {
-            for parameter in parameters {
-                if parameter.contains("access_token=") {
-                    let accessToken = parameter.components(separatedBy: "=")
-                    return accessToken.count > 0 ? accessToken[1] : nil
-                }
-            }
-        }
-
-        return nil
     }
 
     static func sendAccessToken(accessToken: String) {
