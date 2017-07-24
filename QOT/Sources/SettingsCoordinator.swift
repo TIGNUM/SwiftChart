@@ -23,7 +23,7 @@ final class SettingsCoordinator: ParentCoordinator {
     }
 
     func start() {
-        guard let viewModel = SettingsViewModel(settingsType: settingsType, userService: services.userService) else {
+        guard let viewModel = SettingsViewModel(services: services, settingsType: settingsType) else {
             return
         }
 
@@ -80,7 +80,7 @@ extension SettingsCoordinator: SettingsViewControllerDelegate {
     }
 
     func updateViewModelAndReload(viewController: SettingsViewController) {
-        guard let viewModel = SettingsViewModel(settingsType: settingsType, userService: services.userService) else {
+        guard let viewModel = SettingsViewModel(services: services, settingsType: settingsType) else {
             return
         }
 

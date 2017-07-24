@@ -109,10 +109,10 @@ final class SidebarViewModel {
     // MARK: - Properties
 
     let updates = PublishSubject<CollectionUpdate, NoError>()
-    let contentService: ContentService
+    let services: Services
 
-    init(contentService: ContentService) {
-        self.contentService = contentService
+    init(services: Services) {
+        self.services = services
     }
     
     var itemCount: Int {        
@@ -124,6 +124,6 @@ final class SidebarViewModel {
     }
 
     func contentCollection(_ sidebarItem: SidebbarItem) -> ContentCollection? {
-        return sidebarItem.contentCollection(for: contentService)
+        return sidebarItem.contentCollection(for: services.contentService)
     }
 }

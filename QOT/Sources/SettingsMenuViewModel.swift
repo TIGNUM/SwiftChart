@@ -22,7 +22,6 @@ final class SettingsMenuViewModel {
         R.string.localized.sidebarSettingsMenuSecurityButton()
     ]
     fileprivate lazy var tiles: [Tile] = userTiles(user: self.user)
-    fileprivate let userService: UserService
     fileprivate let user: User
     let tileUpdates = PublishSubject<CollectionUpdate, NoError>()
 
@@ -54,12 +53,11 @@ final class SettingsMenuViewModel {
         return settingTitles[row]
     }
 
-    init?(userService: UserService) {
-        guard let user = userService.user() else {
+    init?(services: Services) {
+        guard let user = services.userService.user() else {
             return nil
         }
 
-        self.userService = userService
         self.user = user
     }
 }

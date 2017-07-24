@@ -10,6 +10,8 @@ import UIKit
 import RealmSwift
 
 class SelectWeeklyChoicesDataModel {
+
+    fileprivate var services: Services
     private let rawData: AnyRealmCollection<ContentCategory>
     private(set) var dataSource: [CollapsableNode]
     
@@ -31,11 +33,12 @@ class SelectWeeklyChoicesDataModel {
     }
     let maxSelectionCount: Int
     
-    init(data: AnyRealmCollection<ContentCategory>, maxSelectionCount: Int, startDate: Date, endDate: Date) {
+    init(services: Services, maxSelectionCount: Int, startDate: Date, endDate: Date) {
+        self.services = services
         self.maxSelectionCount = maxSelectionCount
-        self.rawData = data
+        self.rawData = services.contentService.learnContentCategories()
         
-        dataSource = data.map({ (contentCategory: ContentCategory) -> CollapsableNode in
+        dataSource = rawData.map({ (contentCategory: ContentCategory) -> CollapsableNode in
             let children: [WeeklyChoice] = contentCategory.contentCollections.map({ (contentCollection: ContentCollection) -> WeeklyChoice in
                 return WeeklyChoice(
                     localID: UUID().uuidString,
@@ -86,5 +89,26 @@ class SelectWeeklyChoicesDataModel {
         var node = dataSource[indexPath.section]
         node.replace(item, atRow: indexPath.row - 1) // 1 needed for node row, so offset
         dataSource[indexPath.section] = node
+    }
+
+    func createUsersWeeklyChoices() {
+        selected.forEach({ [unowned self] (choice: WeeklyChoice) in
+            _ = try? self.services.userService.createUserChoice(
+                contentCategoryID: choice.categoryID,
+                contentCollectionID: choice.contentCollectionID,
+                startDate: choice.startDate,
+                endDate: choice.endDate
+            )
+        })
+    }
+
+    func contentCollection(forIndexPath indexPath: IndexPath) -> ContentCollection? {
+        let item = self.item(forIndexPath: indexPath)
+        return services.contentService.contentCollection(id: item.contentCollectionID)
+    }
+
+    func contentCategory(forIndexPath indexPath: IndexPath) -> ContentCategory? {
+        let item = self.item(forIndexPath: indexPath)
+        return services.contentService.contentCategory(id: item.categoryID)
     }
 }

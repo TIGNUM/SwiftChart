@@ -34,7 +34,7 @@ final class WeeklyChoicesViewModel {
         return Layout.MeSection.maxWeeklyPage
     }
 
-    private let contentService: ContentService
+    private let services: Services
     private let userChoices: AnyRealmCollection<UserChoice>
     var items: [WeeklyChoicePage] = []
     let updates = PublishSubject<CollectionUpdate, NoError>()
@@ -42,9 +42,9 @@ final class WeeklyChoicesViewModel {
         return items.count * itemsPerWeek
     }
     
-    init(contentService: ContentService, userChoices: AnyRealmCollection<UserChoice>) {
-        self.contentService = contentService
-        self.userChoices = userChoices
+    init(services: Services) {
+        self.services = services
+        self.userChoices = services.userService.userChoices()
         loadWeeklyChoices()
     }
 
@@ -109,7 +109,7 @@ final class WeeklyChoicesViewModel {
     private func weeklyChoicesFromUserChoices(_ userChoices: [UserChoice]) -> [WeeklyChoice] {
         return userChoices.map { (userChoice: UserChoice) -> WeeklyChoice in
             var title: String?
-            if let contentCollectionID = userChoice.contentCollectionID, let contentCollection = self.contentService.contentCollection(id: contentCollectionID) {
+            if let contentCollectionID = userChoice.contentCollectionID, let contentCollection = self.services.contentService.contentCollection(id: contentCollectionID) {
                 title = contentCollection.title
             }
             return WeeklyChoice(

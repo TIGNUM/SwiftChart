@@ -32,8 +32,8 @@ final class MyDataViewModel {
         return sectors[index]
     }
     
-    init(vision: MyToBeVision?) {
-        self.myToBeVision = vision
+    init(services: Services) {
+        self.myToBeVision = services.userService.myToBeVision()
     }
 }
 

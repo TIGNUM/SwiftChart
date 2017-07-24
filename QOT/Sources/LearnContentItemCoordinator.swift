@@ -16,8 +16,6 @@ final class LearnContentItemCoordinator: ParentCoordinator {
     fileprivate let category: ContentCategory
     fileprivate var categoryTitle: String
     fileprivate var selectedContent: ContentCollection
-    fileprivate var relatedContents: AnyRealmCollection<ContentCollection>
-    fileprivate var recommentedContentCollections: AnyRealmCollection<ContentCollection>
     fileprivate var fullViewController: LearnContentItemViewController
     fileprivate var bulletViewController: LearnContentItemViewController
     fileprivate var audioViewController: LearnContentItemViewController
@@ -31,12 +29,10 @@ final class LearnContentItemCoordinator: ParentCoordinator {
         self.category = category
         self.categoryTitle = category.title.capitalized
         self.selectedContent = content
-        self.relatedContents = services.contentService.contentCollections(ids: selectedContent.relatedContentIDs)
-        self.recommentedContentCollections = services.contentService.contentCollections(categoryID: category.remoteID)
         self.viewModel = LearnContentItemViewModel(
+            services: services,
             contentCollection: selectedContent,
-            relatedContentCollections: relatedContents,
-            recommentedContentCollections: recommentedContentCollections
+            categoryID: category.remoteID
         )
         self.fullViewController = LearnContentItemViewController(
             viewModel: viewModel,
@@ -134,17 +130,15 @@ extension LearnContentItemCoordinator: LearnContentItemViewControllerDelegate {
         }
 
         selectedContent = contentCollection
-        relatedContents = services.contentService.contentCollections(ids: selectedContent.relatedContentIDs)
-        recommentedContentCollections = services.contentService.contentCollections(categoryID: category.remoteID)
         viewModel = LearnContentItemViewModel(
+            services: services,
             contentCollection: selectedContent,
-            relatedContentCollections: relatedContents,
-            recommentedContentCollections: recommentedContentCollections
+            categoryID: category.remoteID
         )
         topTabBarControllerDelegate?.updateHeaderView(title: categoryTitle, subTitle: selectedContent.title)
-        fullViewController.reloadData(viewModel: viewModel, contentTitle: selectedContent.title)
-        bulletViewController.reloadData(viewModel: viewModel, contentTitle: selectedContent.title)
-        audioViewController.reloadData(viewModel: viewModel, contentTitle: selectedContent.title)
+        fullViewController.reloadData(viewModel: viewModel)
+        bulletViewController.reloadData(viewModel: viewModel)
+        audioViewController.reloadData(viewModel: viewModel)
     }
 
     func didTapVideo(with video: ContentItem, from view: UIView, in viewController: LearnContentItemViewController) {
@@ -153,9 +147,5 @@ extension LearnContentItemCoordinator: LearnContentItemViewControllerDelegate {
 
     func didTapArticle(with article: ContentItem, from view: UIView, in viewController: LearnContentItemViewController) {
         print("didTapArticle")
-    }
-
-    func didViewContentItem(id: Int, in viewController: LearnContentItemViewController) {
-        services.contentService.setViewed(itemID: id)
     }
 }

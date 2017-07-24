@@ -30,9 +30,9 @@ final class MyPrepViewModel {
 
     let updates = PublishSubject<[Item], NoError>()
 
-    init(services: Services, realmObserver: RealmObserver) {
+    init(services: Services) {
         self.services = services
-        self.realmObserver = realmObserver
+        self.realmObserver = RealmObserver(realm: services.mainRealm)
 
         refresh()
 

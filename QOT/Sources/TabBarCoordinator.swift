@@ -47,14 +47,14 @@ final class TabBarCoordinator: ParentCoordinator {
     }()
 
     fileprivate lazy var myPrepViewController: MyPrepViewController = {
-        let viewModel = MyPrepViewModel(services: self.services, realmObserver: RealmObserver(realm: self.services.mainRealm))
+        let viewModel = MyPrepViewModel(services: self.services)
         return MyPrepViewController(viewModel: viewModel)
     }()
 
     fileprivate lazy var topTabBarControllerLearn: TopTabBarController = {
-        let viewModel = LearnCategoryListViewModel(service: self.services.contentService, realmObserver: RealmObserver(realm: self.services.mainRealm))
+        let viewModel = LearnCategoryListViewModel(services: self.services)
         let learnCategoryListVC = LearnCategoryListViewController(viewModel: viewModel)
-        let articleCollectionViewModel = ArticleCollectionViewModel(service: self.services.contentService)
+        let articleCollectionViewModel = ArticleCollectionViewModel(services: self.services)
         let articleCollectionViewController = ArticleCollectionViewController(viewModel: articleCollectionViewModel)
         
         let topBarControllerItem = TopTabBarController.Item(
@@ -81,17 +81,9 @@ final class TabBarCoordinator: ParentCoordinator {
     }()
 
     fileprivate lazy var topTabBarControllerMe: TopTabBarController = {
-        let partners = self.services.partnerService.partners
-        let myToBeVision = self.services.userService.myToBeVision()
-        let userChoices = self.services.userService.userChoices()
         let myUniverseViewController = MyUniverseViewController(
-            myDataViewModel: MyDataViewModel(vision: myToBeVision),
-            myWhyViewModel: MyWhyViewModel(
-                partners: partners,
-                myToBeVision: myToBeVision,
-                userChoices: userChoices,
-                contentService: self.services.contentService
-            )
+            myDataViewModel: MyDataViewModel(services: self.services),
+            myWhyViewModel: MyWhyViewModel(services: self.services)
         )
 
         let topBarControllerItem = TopTabBarController.Item(

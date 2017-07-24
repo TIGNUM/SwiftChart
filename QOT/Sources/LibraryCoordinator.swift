@@ -24,8 +24,7 @@ final class LibraryCoordinator: ParentCoordinator {
     init(root: SidebarViewController, services: Services) {
         self.rootViewController = root
         self.services = services
-        let categories = services.contentService.libraryCategories()
-        self.libraryViewController = LibraryViewController(viewModel: LibraryViewModel(categories: categories))
+        self.libraryViewController = LibraryViewController(viewModel: LibraryViewModel(services: services))
     }
 
     // MARK: - Coordinator -> Starts

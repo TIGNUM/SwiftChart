@@ -12,7 +12,7 @@ import RealmSwift
 
 final class MyStatisticsTableViewCell: UITableViewCell, Dequeueable {
 
-    fileprivate lazy var viewModel = MyStatisticsViewModel(cards: [], allCards: [])
+    fileprivate var viewModel: MyStatisticsViewModel?
     fileprivate lazy var currentSection = 0
 
     fileprivate lazy var collectionView: UICollectionView = {
@@ -64,12 +64,16 @@ private extension MyStatisticsTableViewCell {
 extension MyStatisticsTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let viewModel = viewModel else { return 0 }
+
         print("viewModel.numberOfItems(in: section): ", currentSection, " : ", viewModel.numberOfItems(in: currentSection), viewModel.sectionType(in: currentSection))
 
         return viewModel.numberOfItems(in: currentSection)
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let viewModel = viewModel else { return UICollectionViewCell() }
+
         let cardTitle = viewModel.cardTitle(section: currentSection, item: indexPath.item)
         let myStatistics = viewModel.myStatistics(section: currentSection, item: indexPath.item)
         let cardCell: MyStatisticsCardCell = collectionView.dequeueCell(for: indexPath)

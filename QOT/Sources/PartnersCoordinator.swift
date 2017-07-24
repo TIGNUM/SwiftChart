@@ -26,7 +26,7 @@ final class PartnersCoordinator: ParentCoordinator {
         self.rootViewController = root
         self.services = services
         self.selectedIndex = selectedIndex
-        self.viewModel = PartnersViewModel(items: services.partnerService.partnersIntermediary, selectedIndex: selectedIndex, headline: "Lore ipsum impsum plus")
+        self.viewModel = PartnersViewModel(services: services, selectedIndex: selectedIndex, headline: "Lore ipsum impsum plus")
     }
 
     func start() {

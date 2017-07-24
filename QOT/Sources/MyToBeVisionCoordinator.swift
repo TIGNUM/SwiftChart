@@ -23,7 +23,7 @@ final class MyToBeVisionCoordinator: ParentCoordinator {
     init(root: UIViewController, services: Services) {
         self.rootViewController = root
         self.services = services
-        viewModel = MyToBeVisionViewModel(item: services.userService.myToBeVisionIntermediary())
+        viewModel = MyToBeVisionViewModel(services: services)
     }
 
     func start() {

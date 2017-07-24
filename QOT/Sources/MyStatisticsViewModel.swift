@@ -44,9 +44,13 @@ final class MyStatisticsViewModel {
         return section.cardTypes[item]
     }
 
-    init(cards: [[MyStatistics]], allCards: [MyStatistics]) {
-        self.cards = cards
-        self.allCards = allCards
+    init(services: Services) throws {
+        do {
+            self.cards = try services.myStatisticsService.cards()
+            self.allCards = Array(services.myStatisticsService.allCardObjects())
+        } catch let error {
+            throw error
+        }
     }
 
     func cardTitle(section: Int, item: Int) -> String {

@@ -29,7 +29,6 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
     fileprivate let articleHeader: ArticleCollectionHeader?
     fileprivate let topTabBarTitle: String?
     fileprivate var selectedContent: ContentCollection?
-    fileprivate var relatedArticles = [ContentCollection]()
     fileprivate var fullViewController: ArticleItemViewController
     fileprivate var audioViewController: ArticleItemViewController
     fileprivate var viewModel: ArticleItemViewModel
@@ -51,13 +50,12 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
                 fatalError("ContentCollection is nil.")
             }
 
-            self.relatedArticles = services.contentService.relatedArticles(for: contentCollection)
             let articleItems = Array(contentCollection.articleItems)
-            self.viewModel = ArticleItemViewModel(items: articleItems,
+            self.viewModel = ArticleItemViewModel(services: services,
+                                                  items: articleItems,
                                                   contentCollection: contentCollection,
-                                                  articleHeader: articleHeader,
-                                                  relatedArticles: relatedArticles
-                            )
+                                                  articleHeader: articleHeader)
+
             self.fullViewController = ArticleItemViewController(viewModel: viewModel)
             self.audioViewController = ArticleItemViewController(viewModel: viewModel)
     }
@@ -118,13 +116,10 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
 
     func didSelectRelatedArticle(selectedArticle: ContentCollection, form viewController: ArticleItemViewController) {
         self.selectedContent = selectedArticle
-        relatedArticles = services.contentService.relatedArticles(for: selectedArticle)
-        viewModel = ArticleItemViewModel(
-            items: Array(selectedArticle.articleItems),
-            contentCollection: selectedArticle,
-            articleHeader: articleHeader,
-            relatedArticles: relatedArticles
-        )
+        viewModel = ArticleItemViewModel(services: services,
+                                         items: Array(selectedArticle.articleItems),
+                                         contentCollection: selectedArticle,
+                                         articleHeader: articleHeader)
 
         fullViewController.reloadArticles(viewModel: viewModel)
         audioViewController.reloadArticles(viewModel: viewModel)

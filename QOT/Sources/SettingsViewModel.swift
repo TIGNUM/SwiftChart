@@ -112,7 +112,7 @@ final class SettingsViewModel {
     // MARK: - Properties
 
     fileprivate var settingsSections = [SettingsSection]()
-    fileprivate let userService: UserService
+    fileprivate let services: Services
     fileprivate let user: User
     let settingsType: SettingsType
     let updates = PublishSubject<CollectionUpdate, NoError>()
@@ -134,29 +134,29 @@ final class SettingsViewModel {
     }
 
     func updateDateOfBirth(dateOfBirth: String) {
-        userService.updateUserDateOfBirth(user: user, dateOfBirth: dateOfBirth)
+        services.userService.updateUserDateOfBirth(user: user, dateOfBirth: dateOfBirth)
     }
 
     func updateGender(gender: String) {
-        userService.updateUserGender(user: user, gender: gender)
+        services.userService.updateUserGender(user: user, gender: gender)
     }
 
     func updateHeight(height: String) {
         let userHeight = (height.replacingOccurrences(of: ",", with: ".") as NSString).doubleValue
-        userService.updateUserHeight(user: user, height: userHeight)
+        services.userService.updateUserHeight(user: user, height: userHeight)
     }
 
     func updateWeight(weight: String) {
         let userWeight = (weight.replacingOccurrences(of: ",", with: ".") as NSString).doubleValue
-        userService.updateUserWeight(user: user, weight: userWeight)
+        services.userService.updateUserWeight(user: user, weight: userWeight)
     }
 
     func updateWeightUnit(weightUnit: String) {
-        userService.updateUserWeightUnit(user: user, weightUnit: weightUnit)
+        services.userService.updateUserWeightUnit(user: user, weightUnit: weightUnit)
     }
 
     func updateHeightUnit(heightUnit: String) {
-        userService.updateUserHeightUnit(user: user, heightUnit: heightUnit)
+        services.userService.updateUserHeightUnit(user: user, heightUnit: heightUnit)
     }
 
     private func items(in section: Int) -> [SettingsRow] {
@@ -173,10 +173,10 @@ final class SettingsViewModel {
 
     // MARK: - Init
     
-    init?(settingsType: SettingsType, userService: UserService) {
-        self.userService = userService
+    init?(services: Services, settingsType: SettingsType) {
+        self.services = services
 
-        guard let user = userService.user() else {
+        guard let user = services.userService.user() else {
             return nil
         }
 

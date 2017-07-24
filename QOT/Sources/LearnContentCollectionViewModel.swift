@@ -20,8 +20,8 @@ final class LearnContentCollectionViewModel {
 
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
-    init(categories: AnyRealmCollection<ContentCategory>, selectedIndex: Index) {
-        self.categories = categories
+    init(services: Services, selectedIndex: Index) {
+        self.categories = services.contentService.learnContentCategories()
 
         token = categories.addNotificationBlock({ [unowned self] (_) in
             self.updates.next(.reload)

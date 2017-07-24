@@ -55,8 +55,8 @@ final class ArticleCollectionViewModel {
 
     // MARK: - Init
 
-    init(service: ContentService) {
-        contentCollections = service.whatsHotArticles()
+    init(services: Services) {
+        contentCollections = services.contentService.whatsHotArticles()
         notificationTokenHandler = contentCollections.addNotificationBlock { [weak self] (change) in
             self?.updates.next(.reload)
         }.handler

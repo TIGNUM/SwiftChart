@@ -23,8 +23,8 @@ final class LibraryViewModel {
 
     // MARK: - Init
 
-    init(categories: AnyRealmCollection<ContentCategory>) {
-        self.categories = categories
+    init(services: Services) {
+        self.categories = services.contentService.libraryCategories()
     }
 }
 

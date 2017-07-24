@@ -31,8 +31,8 @@ final class LearnCategoryListViewModel {
 
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
-    init(service: ContentService, realmObserver: RealmObserver) {
-        self.categories = service.learnContentCategories()
+    init(services: Services) {
+        self.categories = services.contentService.learnContentCategories()
 
         token = categories.addNotificationBlock { [unowned self] (change) in
             self.updates.next(change.update(section: 0))

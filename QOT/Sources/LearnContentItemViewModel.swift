@@ -36,9 +36,11 @@ final class LearnContentItemViewModel {
 
     // MARK: - Properties
 
+    fileprivate let services: Services
     fileprivate let contentCollection: ContentCollection
     fileprivate let relatedContentCollections: AnyRealmCollection<ContentCollection>
     fileprivate let recommentedContentCollections: AnyRealmCollection<ContentCollection>
+    fileprivate let categoryID: Int
     fileprivate var playingIndexPath: IndexPath?
     fileprivate var player = AVPlayer()
     fileprivate var timeObserver: Any?
@@ -48,13 +50,12 @@ final class LearnContentItemViewModel {
 
     // MARK: - Init
 
-    init(
-        contentCollection: ContentCollection,
-        relatedContentCollections: AnyRealmCollection<ContentCollection>,
-        recommentedContentCollections: AnyRealmCollection<ContentCollection>) {
-            self.contentCollection = contentCollection
-            self.relatedContentCollections = relatedContentCollections
-            self.recommentedContentCollections = recommentedContentCollections
+    init(services: Services, contentCollection: ContentCollection, categoryID: Int) {
+        self.services = services
+        self.contentCollection = contentCollection
+        self.categoryID = categoryID
+        self.relatedContentCollections = services.contentService.contentCollections(ids: contentCollection.relatedContentIDs)
+        self.recommentedContentCollections = services.contentService.contentCollections(categoryID: categoryID)
     }
 }
 
@@ -145,8 +146,16 @@ extension LearnContentItemViewModel {
         }[0].contentItemValue
     }
 
+    func didViewContentItem(id: Int) {
+        services.contentService.setViewed(itemID: id)
+    }
+
     var format: String {
         return ""
+    }
+
+    var contentTitle: String {
+        return contentCollection.title
     }
 
     var contentItemTextStyle: ContentItemTextStyle {

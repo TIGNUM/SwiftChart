@@ -27,8 +27,6 @@ protocol LearnContentItemViewControllerDelegate: class {
     func didTapFinish(from view: UIView)
 
     func didSelectReadMoreContentCollection(with collectionID: Int, in viewController: LearnContentItemViewController)
-
-    func didViewContentItem(id: Int, in viewController: LearnContentItemViewController)
 }
 
 final class LearnContentItemViewController: UIViewController {
@@ -104,11 +102,17 @@ final class LearnContentItemViewController: UIViewController {
         tableView.reloadData()
     }
 
-    func reloadData(viewModel: LearnContentItemViewModel, contentTitle: String) {
+    func reloadData(viewModel: LearnContentItemViewModel) {
         self.viewModel = viewModel
-        self.contentTitle = contentTitle
+        self.contentTitle = viewModel.contentTitle
         tableView.reloadData()
-        tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+
+        let sections = tableView.numberOfSections
+        let rowsInSection = tableView.numberOfRows(inSection: 0)
+
+        if 0 < sections && 0 < rowsInSection {
+            tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+        }
     }
 }
 
@@ -211,8 +215,8 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
                 viewModel.sectionCount() == 3 && indexPath.section == 2 ||
                 viewModel.sectionCount() == 2 && viewModel.containsAudioItem() == false && indexPath.section == 1 {
                     let selectedItem = viewModel.relatedContent(at: indexPath)
-                    print("viewModel.relatedContent(at: indexPath)", selectedItem)
-                    delegate?.didSelectReadMoreContentCollection(with: selectedItem.remoteID, in: self)
+
+                delegate?.didSelectReadMoreContentCollection(with: selectedItem.remoteID, in: self)
             }
         }
     }
@@ -296,7 +300,7 @@ private extension LearnContentItemViewController {
             return
         }
 
-        delegate?.didViewContentItem(id: contentItem.remoteID, in: self)
+        viewModel.didViewContentItem(id: contentItem.remoteID)
     }
 
     func relatedContentCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {

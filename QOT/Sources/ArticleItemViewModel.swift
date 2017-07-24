@@ -39,11 +39,13 @@ final class ArticleItemViewModel {
 
     // MARK: - Init
 
-    init(items: [ContentItem],
+    init(services: Services,
+         items: [ContentItem],
          contentCollection: ContentCollection,
-         articleHeader: ArticleCollectionHeader?,
-         relatedArticles: [ContentCollection]) {
+         articleHeader: ArticleCollectionHeader?) {
             self.articleHeader = articleHeader
+
+            let relatedArticles = services.contentService.relatedArticles(for: contentCollection)
             self.relatedArticles = relatedArticles.sorted(by: { (lhs: ContentCollection, rhs: ContentCollection) -> Bool in
                 return lhs.sortOrder < rhs.sortOrder
             })

@@ -25,7 +25,7 @@ final class LearnContentListCoordinator: ParentCoordinator {
     }
     
     func start() {
-        let viewModel = LearnContentCollectionViewModel(categories: services.contentService.learnContentCategories(), selectedIndex: selectedCategoryIndex)
+        let viewModel = LearnContentCollectionViewModel(services: services, selectedIndex: selectedCategoryIndex)
         let contentListViewController = LearnContentListViewController(viewModel: viewModel, selectedCategoryIndex: self.selectedCategoryIndex)
 
         let topTabBarControllerItem = TopTabBarController.Item(

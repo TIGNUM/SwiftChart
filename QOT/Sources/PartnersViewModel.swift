@@ -18,9 +18,9 @@ final class PartnersViewModel {
     let headline: String
     private(set) var selectedIndex: Index
     fileprivate var currentEditPartner: PartnerIntermediary?
-    
-    init(items: [PartnerIntermediary], selectedIndex: Index, headline: String) {
-        self.items = items
+
+    init(services: Services, selectedIndex: Index, headline: String) {
+        self.items = services.partnerService.partnersIntermediary
         for _ in 0..<(Layout.MeSection.maxPartners - items.count) { // pad default items with placeholders
             self.items.append(nil)
         }

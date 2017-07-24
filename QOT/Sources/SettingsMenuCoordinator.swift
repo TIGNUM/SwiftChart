@@ -22,7 +22,7 @@ final class SettingsMenuCoordinator: ParentCoordinator {
     }
 
     func start() {
-        guard let viewModel = SettingsMenuViewModel(userService: services.userService) else {
+        guard let viewModel = SettingsMenuViewModel(services: services) else {
             return
         }
 

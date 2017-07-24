@@ -41,7 +41,8 @@ final class MyToBeVisionViewModel {
         return R.string.localized.meSectorMyWhyVisionWriteDate(dateText).uppercased()
     }
     
-    init(item: MyToBeVisionIntermediary?) {
+    init(services: Services) {
+        let item = services.userService.myToBeVisionIntermediary()
         self.item = item ?? MyToBeVisionIntermediary(
             localID: UUID().uuidString,
             headline: nil,

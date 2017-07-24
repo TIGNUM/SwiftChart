@@ -22,7 +22,7 @@ final class SidebarCoordinator: ParentCoordinator {
     }
     
     func start() {
-        let viewModel = SidebarViewModel(contentService: services.contentService)
+        let viewModel = SidebarViewModel(services: services)
         let sideBarViewController = SidebarViewController(viewModel: viewModel)
 
         let topTabBarControllerItem = TopTabBarController.Item(

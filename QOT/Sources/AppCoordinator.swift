@@ -103,12 +103,11 @@ final class AppCoordinator: ParentCoordinator {
     }
     
     func presentMorningInterview() {
-        guard let questionService = services?.questionsService else {
+        guard let services = services else {
             return
         }
 
-        let questions = questionService.morningInterviewQuestions(questionGroupID: 100002)
-        let viewModel = MorningInterviewViewModel(questions: questions)
+        let viewModel = MorningInterviewViewModel(services: services, questionGroupID: 100002)
         let morningInterViewController = MorningInterviewViewController(viewModel: viewModel)
 
         morningInterViewController.delegate = self
@@ -117,11 +116,11 @@ final class AppCoordinator: ParentCoordinator {
     }
     
     func presentWeeklyChoices(forStartDate startDate: Date, endDate: Date) {
-        guard let contentCategories = services?.contentService.learnContentCategories() else {
+        guard let services = services else {
             return
         }
         
-        let viewModel = SelectWeeklyChoicesDataModel(data: contentCategories, maxSelectionCount: Layout.MeSection.maxWeeklyPage, startDate: startDate, endDate: endDate)
+        let viewModel = SelectWeeklyChoicesDataModel(services: services, maxSelectionCount: Layout.MeSection.maxWeeklyPage, startDate: startDate, endDate: endDate)
         let image = window.rootViewController?.view.screenshot()
         let viewController = SelectWeeklyChoicesViewController(delegate: self, viewModel: viewModel, backgroundImage: image)
         switchToSecondaryWindow()
@@ -262,33 +261,21 @@ extension AppCoordinator: MorningInterviewViewControllerDelegate {
 // MARK: - SelectWeeklyChoicesViewControllerDelegate
 
 extension AppCoordinator: SelectWeeklyChoicesViewControllerDelegate {
-    func selectWeeklyChoicesViewController(_ viewController: SelectWeeklyChoicesViewController, selectedChoices choices: [WeeklyChoice]?) {
-        choices?.forEach({ (choice: WeeklyChoice) in
-            _ = try? services?.userService.createUserChoice(
-                contentCategoryID: choice.categoryID,
-                contentCollectionID: choice.contentCollectionID,
-                startDate: choice.startDate,
-                endDate: choice.endDate
-            )
-        })
+    func dismiss(viewController: SelectWeeklyChoicesViewController) {
         viewController.dismiss(animated: true) {
             self.switchToMainWindow()
         }
     }
-    
-    func selectWeeklyChoicesViewController(_ viewController: SelectWeeklyChoicesViewController, didSelectItem item: WeeklyChoice) {
-        guard
-            let services = services,
-            let contentCollection = services.contentService.contentCollection(id: item.contentCollectionID),
-            let category = services.contentService.contentCategory(id: item.categoryID) else {
-            return
-        }
-        
+
+    func didTapRow(_ viewController: SelectWeeklyChoicesViewController, contentCollection: ContentCollection, contentCategory: ContentCategory) {
+
+        guard let services = services else { return }
+
         let coordinator = LearnContentItemCoordinator(
             root: viewController,
             services: services,
             content: contentCollection,
-            category: category
+            category: contentCategory
         )
         startChild(child: coordinator)
     }

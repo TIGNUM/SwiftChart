@@ -30,7 +30,7 @@ final class MyWhyViewModel {
     let myToBeVision: MyToBeVision?
     let userChoices: AnyRealmCollection<UserChoice>
     let updates = PublishSubject<CollectionUpdate, NoError>()
-    private let contentService: ContentService
+    private let services: Services
     private var partnersNotificationTokenHandler: NotificationTokenHandler?
     private var visionNotificationTokenHandler: NotificationTokenHandler?
     private var userChoiceNotificationTokenHandler: NotificationTokenHandler?
@@ -50,11 +50,12 @@ final class MyWhyViewModel {
         }
     }
     
-    init(partners: AnyRealmCollection<Partner>, myToBeVision: MyToBeVision?, userChoices: AnyRealmCollection<UserChoice>, contentService: ContentService) {
-        self.partners = partners
-        self.myToBeVision = myToBeVision
-        self.userChoices = userChoices
-        self.contentService = contentService
+    init(services: Services) {
+        self.services = services
+
+        self.partners = services.partnerService.partners
+        self.myToBeVision = services.userService.myToBeVision()
+        self.userChoices = services.userService.userChoices()
 
         partnersNotificationTokenHandler = partners.addNotificationBlock { [weak self] (changes: RealmCollectionChange<AnyRealmCollection<Partner>>) in
             switch changes {
@@ -95,7 +96,7 @@ final class MyWhyViewModel {
         userChoices = (userChoices.count > maxWeeklyItems) ? Array(userChoices[0...maxWeeklyItems-1]) : userChoices
         let weeklyChoices: [WeeklyChoice] = userChoices.map { (userChoice: UserChoice) -> WeeklyChoice in
             var title: String?
-            if let contentCollectionID = userChoice.contentCollectionID, let contentCollection = self.contentService.contentCollection(id: contentCollectionID) {
+            if let contentCollectionID = userChoice.contentCollectionID, let contentCollection = self.services.contentService.contentCollection(id: contentCollectionID) {
                 title = contentCollection.title
             }
             return WeeklyChoice(

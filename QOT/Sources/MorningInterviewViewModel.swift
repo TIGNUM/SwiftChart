@@ -14,8 +14,8 @@ final class MorningInterviewViewModel: NSObject {
 
     fileprivate let questions: AnyRealmCollection<Question>
 
-    init(questions: AnyRealmCollection<Question>) {
-        self.questions = questions
+    init(services: Services, questionGroupID: Int) {
+        self.questions = services.questionsService.morningInterviewQuestions(questionGroupID: questionGroupID)
     }
 
     var questionsCount: Int {

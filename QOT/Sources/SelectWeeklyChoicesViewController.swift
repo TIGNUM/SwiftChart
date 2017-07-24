@@ -9,8 +9,8 @@
 import UIKit
 
 protocol SelectWeeklyChoicesViewControllerDelegate: class {
-    func selectWeeklyChoicesViewController(_ viewController: SelectWeeklyChoicesViewController, selectedChoices choices: [WeeklyChoice]?)
-    func selectWeeklyChoicesViewController(_ viewController: SelectWeeklyChoicesViewController, didSelectItem item: WeeklyChoice)
+    func dismiss(viewController: SelectWeeklyChoicesViewController)
+    func didTapRow(_ viewController: SelectWeeklyChoicesViewController, contentCollection: ContentCollection, contentCategory: ContentCategory)
 }
 
 class SelectWeeklyChoicesViewController: UIViewController {
@@ -108,11 +108,12 @@ class SelectWeeklyChoicesViewController: UIViewController {
     // MARK: - actions
     
     @IBAction private func closePressed(_ sender: UIBarButtonItem) {
-        delegate?.selectWeeklyChoicesViewController(self, selectedChoices: nil)
+        delegate?.dismiss(viewController: self)
     }
     
     @IBAction private func donePressed(_ sender: UIBarButtonItem) {
-        delegate?.selectWeeklyChoicesViewController(self, selectedChoices: viewModel.selected)
+        viewModel.createUsersWeeklyChoices()
+        delegate?.dismiss(viewController: self)
     }
 }
 
@@ -129,8 +130,13 @@ extension SelectWeeklyChoicesViewController: UITableViewDelegate {
             viewModel.setIsOpen(!node.isOpen, forNodeAtSection: indexPath.section)
             tableView.reloadDataWithAnimation()
         } else {
-            let item = viewModel.item(forIndexPath: indexPath)
-            delegate?.selectWeeklyChoicesViewController(self, didSelectItem: item)
+            guard
+                let contentCollection = viewModel.contentCollection(forIndexPath: indexPath),
+                let contentCategory = viewModel.contentCategory(forIndexPath: indexPath) else {
+                    return
+            }
+
+            delegate?.didTapRow(self, contentCollection: contentCollection, contentCategory: contentCategory)
         }
     }
 }
