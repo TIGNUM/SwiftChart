@@ -37,12 +37,6 @@ struct Layout {
         static let indicatorViewExtendedWidthTop: CGFloat = 6
     }
 
-    enum CellHeight: CGFloat {
-        case sidebar = 75
-        case sidebarSmall = 65
-        case sidebarHeader = 50
-    }
-
     enum CornerRadius: CGFloat {
         case chatLabelInstruction = 8
         case chatLabelOptionNavigation = 5

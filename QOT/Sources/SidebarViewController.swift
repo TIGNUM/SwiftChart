@@ -73,7 +73,7 @@ private extension SidebarViewController {
         tableView.bounces = false
         tableView.topAnchor == view.topAnchor
         tableView.bottomAnchor == view.bottomAnchor
-        tableView.horizontalAnchors == view.horizontalAnchors        
+        tableView.horizontalAnchors == view.horizontalAnchors
     }
 }
 
@@ -86,25 +86,20 @@ extension SidebarViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return viewModel.sidebarItem(at: indexPath)?.cellHeight ?? 0
+        return viewModel.sidebarItem(at: indexPath)?.cellHeight(screenType: screenType) ?? 0
     }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return tableView.frame.height <= 632 ? 0 : Layout.CellHeight.sidebarHeader.rawValue
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView()
-        view.backgroundColor = .clear
-        
-        return view
-    }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: SidebarTableViewCell = tableView.dequeueCell(for: indexPath)
         let sidebarItem = viewModel.sidebarItem(at: indexPath)
-        cell.setup(with: sidebarItem?.title, font: sidebarItem?.font, textColor: sidebarItem?.fontColor)
-        
+        cell.setup(
+            with: sidebarItem?.title,
+            font: sidebarItem?.font,
+            textColor: sidebarItem?.fontColor,
+            topAnchor: sidebarItem?.topAnchor(screenType: screenType),
+            height: sidebarItem?.cellHeight(screenType: screenType)
+        )
+
         return cell
     }
     

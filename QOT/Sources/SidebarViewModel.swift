@@ -69,15 +69,47 @@ final class SidebarViewModel {
             }
         }
 
-        var cellHeight: CGFloat {
+        func cellHeight(screenType: UIViewController.ScreenType) -> CGFloat {
             switch self {
-            case .library: return 75
-            case .benefits: return 75
-            case .settings: return 75
-            case .sensor: return 75
-            case .about: return 65
+            case .library:
+                switch screenType {
+                case .big: return 180
+                case .medium: return 140
+                case .small: return 100
+                }
+            case .benefits: return 80
+            case .settings: return 80
+            case .sensor: return 80
+            case .about:
+                switch screenType {
+                case .big: return 100
+                case .medium: return 80
+                case .small: return 65
+                }
             case .privacy: return 65
             case .logout: return 65
+            }
+        }
+
+        func topAnchor(screenType: UIViewController.ScreenType) -> CGFloat {
+            switch self {
+            case .library:
+                switch screenType {
+                case .big: return 100
+                case .medium: return 60
+                case .small: return 20
+                }
+            case .benefits: return 0
+            case .settings: return 0
+            case .sensor: return 0
+            case .about:
+                switch screenType {
+                case .big: return 35
+                case .medium: return 15
+                case .small: return 0
+                }
+            case .privacy: return 0
+            case .logout: return 0
             }
         }
 

@@ -26,7 +26,7 @@ enum AlertType {
     var title: String? {
         switch self {
         case .fitbitSuccess: return R.string.localized.sidebarSensorsMenuFitbitSuccess()
-        case .fitbitFailure: return R.string.localized.sidebarSensorsMenuFitbitSuccess()
+        case .fitbitFailure: return R.string.localized.sidebarSensorsMenuFitbitFailure()
         case .noContent: return R.string.localized.alertTitleNoContent()
         case .custom(let title, _): return title
         case .unauthenticated: return R.string.localized.alertTitleUnauthenticated()

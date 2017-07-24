@@ -252,7 +252,6 @@
 		CC178A771F04FD600066A5D4 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC178A761F04FD600066A5D4 /* UserService.swift */; };
 		CC1E2A5F1EDF1DE100B9EFD3 /* UICollectionView+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1E2A5E1EDF1DE100B9EFD3 /* UICollectionView+Create.swift */; };
 		CC27E0C01EB355BC003E5B7F /* SidebarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC27E0BE1EB355BC003E5B7F /* SidebarTableViewCell.swift */; };
-		CC27E0C11EB355BC003E5B7F /* SidebarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC27E0BF1EB355BC003E5B7F /* SidebarTableViewCell.xib */; };
 		CC2EE24A1EDC88F0006CBFC8 /* LearnPagingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2EE2491EDC88F0006CBFC8 /* LearnPagingCollectionViewCell.swift */; };
 		CC311A1D1EAF39DF0020C869 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC311A1C1EAF39DF0020C869 /* SettingsTableViewCell.swift */; };
 		CC311A211EAF430B0020C869 /* SettingsButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC311A201EAF430B0020C869 /* SettingsButtonTableViewCell.xib */; };
@@ -674,7 +673,6 @@
 		CC178A761F04FD600066A5D4 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		CC1E2A5E1EDF1DE100B9EFD3 /* UICollectionView+Create.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Create.swift"; sourceTree = "<group>"; };
 		CC27E0BE1EB355BC003E5B7F /* SidebarTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarTableViewCell.swift; sourceTree = "<group>"; };
-		CC27E0BF1EB355BC003E5B7F /* SidebarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidebarTableViewCell.xib; sourceTree = "<group>"; };
 		CC2EE2491EDC88F0006CBFC8 /* LearnPagingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnPagingCollectionViewCell.swift; sourceTree = "<group>"; };
 		CC311A1C1EAF39DF0020C869 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		CC311A201EAF430B0020C869 /* SettingsButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsButtonTableViewCell.xib; sourceTree = "<group>"; };
@@ -1552,7 +1550,6 @@
 			isa = PBXGroup;
 			children = (
 				CC27E0BE1EB355BC003E5B7F /* SidebarTableViewCell.swift */,
-				CC27E0BF1EB355BC003E5B7F /* SidebarTableViewCell.xib */,
 				CCEFCFAE1E8D3D7500E9FC72 /* SidebarViewController.swift */,
 				CCE3730E1E8D32F800B79352 /* SidebarViewModel.swift */,
 			);
@@ -2020,7 +2017,6 @@
 			files = (
 				CB8C34501EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.xib in Resources */,
 				CC7D21B11EFC1348007A062E /* WeeklyChoicesCell.xib in Resources */,
-				CC27E0C11EB355BC003E5B7F /* SidebarTableViewCell.xib in Resources */,
 				CC8A2EDE1F0CF98B002585CE /* BentonSansCond-Light.otf in Resources */,
 				CC8813EC1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib in Resources */,
 				8514A48E1EE966C30086C70E /* PrepareContentMainHeaderTableViewCell.xib in Resources */,
