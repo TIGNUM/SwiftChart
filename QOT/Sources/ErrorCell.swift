@@ -10,9 +10,9 @@ import UIKit
 
 final class ErrorCell: UITableViewCell, Dequeueable {
 
-    func configure(text: String) {
+    func configure(text: String, format: String = "") {
         textLabel?.textColor = .red
-        textLabel?.text = text
+        textLabel?.text = String(format: "%@ %@", text, format)
         selectionStyle = .none
     }
 }

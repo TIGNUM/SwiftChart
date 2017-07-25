@@ -121,7 +121,7 @@ final class LearnContentItemViewController: UIViewController {
 extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.sectionCount()
+        return viewModel.sectionCount(tabType: tabType)
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -129,14 +129,14 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return viewModel.heightForRow(at: indexPath.section)
+        return viewModel.heightForRow(at: indexPath.section, tabType: tabType)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = viewModel.learnContentItem(at: indexPath, tabType: tabType)
         shouldMarkItemAsViewed(contentItem: item)
 
-        if viewModel.containsAudioItem() == true && indexPath.section == 0 {
+        if viewModel.containsAudioItem(tabType: tabType) == true && indexPath.section == 0 {
             switch viewModel.firstAudioItem() {
             case .audio(_, _, _, _, let duration, let waveformData):
                 let cell: LearnStrategyAudioPlayerView = tableView.dequeueCell(for: indexPath)
@@ -147,8 +147,8 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
             default: fatalError("That should not happen!")
             }
         } else if
-            viewModel.sectionCount() == 3 && indexPath.section == 2 ||
-            viewModel.sectionCount() == 2 && viewModel.containsAudioItem() == false && indexPath.section == 1 {
+            viewModel.sectionCount(tabType: tabType) == 3 && indexPath.section == 2 ||
+            viewModel.sectionCount(tabType: tabType) == 2 && viewModel.containsAudioItem(tabType: tabType) == false && indexPath.section == 1 {
             return relatedContentCell(tableView, indexPath)
         } else {
             switch item.contentItemValue {
@@ -170,13 +170,12 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
                     topText: attributedTopText,
                     bottomText: nil
                 )
-            case .audio(let title, _, _, _, let duration, let waveformData):
+            case .audio(let title, _, _, _, let duration, _):
                 return contentItemAudioCell(
                     tableView: tableView,
                     indexPath: indexPath,
                     title: title,
-                    duration: duration,
-                    waveFormData: waveformData
+                    duration: duration
                 )
             case .video(let title, _, let placeholderURL, _, let duration):
                 let mediaDescription = String(format: "%@ (%02i:%02i)", title, Int(duration) / 60 % 60, Int(duration) % 60)
@@ -196,7 +195,7 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
                     url: url
                 )
             default:
-                return invalidContentCell(tableView: tableView, indexPath: indexPath)
+                return invalidContentCell(tableView: tableView, indexPath: indexPath, format: item.format)
             }
         }
     }
@@ -212,8 +211,8 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
             streamVideo(videoURL: videoURL)
         default:
             if
-                viewModel.sectionCount() == 3 && indexPath.section == 2 ||
-                viewModel.sectionCount() == 2 && viewModel.containsAudioItem() == false && indexPath.section == 1 {
+                viewModel.sectionCount(tabType: tabType) == 3 && indexPath.section == 2 ||
+                viewModel.sectionCount(tabType: tabType) == 2 && viewModel.containsAudioItem(tabType: tabType) == false && indexPath.section == 1 {
                     let selectedItem = viewModel.relatedContent(at: indexPath)
 
                 delegate?.didSelectReadMoreContentCollection(with: selectedItem.remoteID, in: self)
@@ -341,8 +340,7 @@ private extension LearnContentItemViewController {
         tableView: UITableView,
         indexPath: IndexPath,
         title: String,
-        duration: TimeInterval,
-        waveFormData: [Float]) -> LearnStrategyPlaylistAudioCell {
+        duration: TimeInterval) -> LearnStrategyPlaylistAudioCell {
             let cell: LearnStrategyPlaylistAudioCell = tableView.dequeueCell(for: indexPath)
             cell.setUp(title: title, playing: viewModel.isPlaying(indexPath: indexPath))
 
@@ -400,9 +398,9 @@ private extension LearnContentItemViewController {
             return imageCell
     }
 
-    func invalidContentCell(tableView: UITableView, indexPath: IndexPath) -> ErrorCell {
+    func invalidContentCell(tableView: UITableView, indexPath: IndexPath, format: String) -> ErrorCell {
         let cell: ErrorCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(text: R.string.localized.commonInvalidContent())
+        cell.configure(text: R.string.localized.commonInvalidContent(), format: (": " + format))
 
         return cell
     }

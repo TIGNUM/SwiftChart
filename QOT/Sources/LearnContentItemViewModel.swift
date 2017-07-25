@@ -63,25 +63,25 @@ final class LearnContentItemViewModel {
 
 extension LearnContentItemViewModel {
 
-    func sectionCount() -> Int {
-        let sections = containsAudioItem() == true ? 2 : 1
+    func sectionCount(tabType: TabType) -> Int {
+        let sections = containsAudioItem(tabType: tabType) == true ? 2 : 1
         let relatedSectionCount = relatedContentCollections.count > 0 ? 1 : 0
         return sections + relatedSectionCount
     }
 
     func numberOfItemsInSection(in section: Int, tabType: TabType) -> Int {
-        guard sectionCount() > 1 else {
+        guard sectionCount(tabType: tabType) > 1 else {
             return contentItems(at: tabType).count
         }
 
-        if sectionCount() == 3 {
+        if sectionCount(tabType: tabType) == 3 {
             switch section {
             case 0: return 1
             case 1: return contentItems(at: tabType).count
             case 2: return relatedContentCollections.count > 3 ? 3 : relatedContentCollections.count
             default: return 0
             }
-        } else if sectionCount() == 2 && containsAudioItem() == true {
+        } else if sectionCount(tabType: tabType) == 2 && containsAudioItem(tabType: tabType) == true {
             switch section {
             case 0: return 1
             case 1: return contentItems(at: tabType).count
@@ -96,17 +96,17 @@ extension LearnContentItemViewModel {
         }
     }
 
-    func heightForRow(at section: Int) -> CGFloat {
-        guard sectionCount() > 1 else {
+    func heightForRow(at section: Int, tabType: TabType) -> CGFloat {
+        guard sectionCount(tabType: tabType) > 1 else {
             return UITableViewAutomaticDimension
         }
 
-        if sectionCount() == 3 {
+        if sectionCount(tabType: tabType) == 3 {
             switch section {
             case 0: return CGFloat(100)
             default: return UITableViewAutomaticDimension
             }
-        } else if sectionCount() == 2 && containsAudioItem() == true {
+        } else if sectionCount(tabType: tabType) == 2 && containsAudioItem(tabType: tabType) == true {
             switch section {
             case 0: return CGFloat(100)
             default: return UITableViewAutomaticDimension
@@ -128,8 +128,8 @@ extension LearnContentItemViewModel {
         return relatedContentCollections[indexPath.row]
     }
 
-    func containsAudioItem() -> Bool {
-        return contentCollection.contentItems.contains { (item: ContentItem) -> Bool in
+    func containsAudioItem(tabType: TabType) -> Bool {
+        return contentItems(at: tabType).contains { (item: ContentItem) -> Bool in
             switch item.contentItemValue {
             case .audio: return true
             default: return false
