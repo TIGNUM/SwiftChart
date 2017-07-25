@@ -28,6 +28,7 @@ final class PrepareCoordinator: ParentCoordinator {
     var children: [Coordinator] = []
 
     fileprivate let services: Services
+    fileprivate let permissionHandler: PermissionHandler
     fileprivate let tabBarController: TabBarController
     fileprivate let topTabBarController: TopTabBarController
     fileprivate let chatViewController: ChatViewController<Answer>
@@ -55,11 +56,13 @@ final class PrepareCoordinator: ParentCoordinator {
     }()
 
     init(services: Services,
+         permissionHandler: PermissionHandler,
          tabBarController: TabBarController,
          topTabBarController: TopTabBarController,
          chatViewController: ChatViewController<Answer>,
          myPrepViewController: MyPrepViewController) {
         self.services = services
+        self.permissionHandler = permissionHandler
         self.tabBarController = tabBarController
         self.topTabBarController = topTabBarController
         self.chatViewController = chatViewController
@@ -191,25 +194,24 @@ extension PrepareCoordinator {
             preconditionFailure("No preparation context")
         }
 
-        services.preparationService.createPreparation(contentID: context.contentID, eventID: eventID, title: name, subtitle: context.listTitle) { error, localID in
+        services.preparationService.createPreparation(contentID: context.contentID, eventID: eventID, title: name, subtitle: context.listTitle) { [unowned self] error, localID in
             guard error == nil else { return }
             guard let localID = localID else { return }
             guard let eventID = eventID else { return }
 
-            let eventStore = EKEventStore()
-            eventStore.requestAccess(to: .event) { (granted, error) in
-                if !granted || error != nil {
+            self.permissionHandler.askPermissionForCalendar(completion: { (granted: Bool) in
+                guard granted else {
                     return
                 }
-
+                
+                let eventStore = EKEventStore()
                 if let event = eventStore.event(withIdentifier: eventID) {
                     var notes = event.notes ?? ""
-                    guard let preparationLink = CustomAppLaunchHandler.generatePreparationURL(withID: localID) else { return }
-
+                    guard let preparationLink = CustomAppLaunchHandler.generatePreparationURL(withID: localID) else {
+                        return
+                    }
                     notes += "\n\n" + preparationLink
-
                     print("preparationLink: \(preparationLink)")
-
                     event.notes = notes
                     do {
                         try eventStore.save(event, span: .thisEvent, commit: true)
@@ -217,7 +219,7 @@ extension PrepareCoordinator {
                         return
                     }
                 }
-            }
+            })
         }
     }
 }
@@ -272,7 +274,7 @@ extension PrepareCoordinator: PrepareContentViewControllerDelegate {
 extension PrepareCoordinator : PrepareChatDecisionManagerDelegate {
 
     func setItems(_ items: [ChatItem<Answer>], manager: PrepareChatDecisionManager) {
-        chatViewController.viewModel.setItems(items: items)
+        chatViewController.viewModel.set(items: items)
     }
 
     func appendItems(_ items: [ChatItem<Answer>], manager: PrepareChatDecisionManager) {

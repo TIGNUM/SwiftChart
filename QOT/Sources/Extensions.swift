@@ -286,6 +286,19 @@ extension UITableView {
             self.reloadData()
         })
     }
+    
+    func scrollToBottom(animated: Bool) {
+        let sections = numberOfSections
+        guard sections > 0 else {
+            return
+        }
+        let rows = numberOfRows(inSection: sections - 1)
+        guard rows > 0 else {
+            return
+        }
+        let indexPath = IndexPath(row: rows - 1, section: sections - 1)
+        scrollToRow(at: indexPath, at: .bottom, animated: animated)
+    }
 }
 
 // MARK: - UIScrollView

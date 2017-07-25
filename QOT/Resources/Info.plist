@@ -60,6 +60,8 @@
 	<string>QOT needs camera access for changing images.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>QOT needs Library access for uploading Images.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>QOT needs location access to track your steps</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>BentonSansCond-Light.otf</string>

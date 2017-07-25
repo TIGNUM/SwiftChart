@@ -102,7 +102,10 @@ private extension MyDataView {
     }
     
     func setupProfileImage(layout: Layout.MeSection, profileImage: UIImage?) {
-        let grayscaleProfile = profileImage.flatMap { UIImage.makeGrayscale($0) }
+        var grayscaleProfile: UIImage?
+        if let profileImage = profileImage {
+            grayscaleProfile = UIImage.makeGrayscale(profileImage)
+        }
         profileImageButton = UIButton(type: .custom)
         profileImageButton.frame = layout.profileImageViewFrame
         profileImageButton.setBackgroundImage(profileImage, for: .normal)

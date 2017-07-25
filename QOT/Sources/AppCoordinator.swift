@@ -24,6 +24,9 @@ final class AppCoordinator: ParentCoordinator {
     fileprivate var services: Services?
     fileprivate var tabBarCoordinator: TabBarCoordinator?
     
+    fileprivate lazy var permissionHandler: PermissionHandler = {
+        return PermissionHandler()
+    }()
     fileprivate lazy var networkManager: NetworkManager = {
         return NetworkManager(delegate: self, credentialsManager: self.credentialsManager)
     }()
@@ -50,7 +53,7 @@ final class AppCoordinator: ParentCoordinator {
         NotificationHandler(name: .logoutNotification)
     }()
     lazy var remoteNotificationHandler: RemoteNotificationHandler = {
-        return RemoteNotificationHandler(delegate: self)
+        return RemoteNotificationHandler(delegate: self, permissionHandler: self.permissionHandler)
     }()
     var children = [Coordinator]()
     
@@ -64,9 +67,6 @@ final class AppCoordinator: ParentCoordinator {
         logoutNotificationHandler.handler = { [weak self] (_: Notification) in
             self?.restart()
         }
-        remoteNotificationHandler.registerRemoteNotifications(completion: { (error: Error?) in
-            // FIXME: handle error
-        })
     }
     
     func start() {
@@ -78,7 +78,11 @@ final class AppCoordinator: ParentCoordinator {
         viewController.startAnimatingImages {
             viewController.fadeOutLogo {
                 if self.credentialsManager.isCredentialValid {
-                    self.showApp()
+                    if OnboardingCoordinator.isOnboardingComplete {
+                        self.showApp()
+                    } else {
+                        self.showOnboarding()
+                    }
                 } else {
                     self.showLogin()
                 }
@@ -142,9 +146,10 @@ final class AppCoordinator: ParentCoordinator {
         Services.make { (result) in
             switch result {
             case .success(let services):
+                self.remoteNotificationHandler.registerRemoteNotifications(completion: nil)
                 self.services = services
                 self.calendarImportManager.importEvents()
-                self.startTabBarCoordinator(services: services)
+                self.startTabBarCoordinator(services: services, permissionHandler: self.permissionHandler)
                 
                 // FIXME: remove this in production?
                 if MockToggle.json == false {
@@ -160,6 +165,11 @@ final class AppCoordinator: ParentCoordinator {
                 break
             }
         }
+    }
+    
+    func showOnboarding() {
+        let coordinator = OnboardingCoordinator(window: window, delegate: self, permissionHandler: permissionHandler)
+        startChild(child: coordinator)
     }
     
     func showLogin() {
@@ -192,12 +202,13 @@ final class AppCoordinator: ParentCoordinator {
         secondaryWindow.rootViewController = viewController
     }
 
-    private func startTabBarCoordinator(services: Services) {
+    private func startTabBarCoordinator(services: Services, permissionHandler: PermissionHandler) {
         let selectedIndex = checkListIDToPresent != nil ? 2 : 0
         tabBarCoordinator = TabBarCoordinator(
             window: self.window,
             selectedIndex: selectedIndex,
-            services: services
+            services: services,
+            permissionHandler: permissionHandler
         )
 
         guard let tabBarCoordinator = tabBarCoordinator else { return }
@@ -215,8 +226,8 @@ final class AppCoordinator: ParentCoordinator {
 extension AppCoordinator: CalendarImportMangerDelegate {
 
     func eventStoreAuthorizationRequired(for mangager: CalendarImportManger, currentStatus: EKAuthorizationStatus) {
-        EKEventStore().requestAccess(to: .event) { (success, _) in
-            if success {
+        permissionHandler.askPermissionForCalendar { (granted: Bool) in
+            if granted {
                 mangager.importEvents()
             } else {
                 // FIXME: Handle error
@@ -302,4 +313,13 @@ extension AppCoordinator: RemoteNotificationHandlerDelegate {
     func remoteNotificationHandler(_ remoteNotificationHandler: RemoteNotificationHandler, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         // FIXME: handle error
     }    
+}
+
+// MARK: - OnboardingCoordinatorDelegate
+
+extension AppCoordinator: OnboardingCoordinatorDelegate {
+    func onboardingCoordinatorDidFinish(_ onboardingCoordinator: OnboardingCoordinator) {
+        removeChild(child: onboardingCoordinator)
+        showApp()
+    }
 }

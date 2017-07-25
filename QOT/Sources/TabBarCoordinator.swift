@@ -19,6 +19,7 @@ final class TabBarCoordinator: ParentCoordinator {
     fileprivate let selectedIndex: Index
     fileprivate var viewControllers = [UIViewController]()
     fileprivate var tabBarController: TabBarController?
+    fileprivate let permissionHandler: PermissionHandler
 
     fileprivate var preparationID: String?
     fileprivate var hasLoaded = false
@@ -32,6 +33,7 @@ final class TabBarCoordinator: ParentCoordinator {
     
     fileprivate lazy var prepareCoordinator: PrepareCoordinator = {
         return PrepareCoordinator(services: self.services,
+                                  permissionHandler: self.permissionHandler,
                                   tabBarController: self.tabBarController!,
                                   topTabBarController: self.topTabBarControllerPrepare,
                                   chatViewController: self.prepareChatViewController,
@@ -142,10 +144,11 @@ final class TabBarCoordinator: ParentCoordinator {
     
     // MARK: - Init
     
-    init(window: UIWindow, selectedIndex: Index, services: Services) {
+    init(window: UIWindow, selectedIndex: Index, services: Services, permissionHandler: PermissionHandler) {
         self.window = window
         self.services = services
         self.selectedIndex = selectedIndex
+        self.permissionHandler = permissionHandler
         
         syncStartedNotificationHandler.handler = { [weak self] (notification: Notification) in
             guard let `self` = self, let userInfo = notification.userInfo, let isSyncRecordsValid = userInfo["isSyncRecordsValid"] as? Bool, isSyncRecordsValid == false else {

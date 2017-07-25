@@ -22,31 +22,33 @@ class RemoteNotificationHandler: NSObject {
     
     weak var delegate: RemoteNotificationHandlerDelegate?
     var deviceToken: Data?
+    private let permissionHandler: PermissionHandler
+    private var notificationCenter: UNUserNotificationCenter {
+        return UNUserNotificationCenter.current()
+    }
     
-    init(delegate: RemoteNotificationHandlerDelegate) {
+    init(delegate: RemoteNotificationHandlerDelegate, permissionHandler: PermissionHandler) {
         self.delegate = delegate
+        self.permissionHandler = permissionHandler
         super.init()
     }
     
     func isAuthorised(_ completion: @escaping (Bool) -> Void) {
-        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+        notificationCenter.getNotificationSettings { (settings) in
             completion(settings.authorizationStatus == .authorized)
         }
     }
         
-    func registerRemoteNotifications(completion: ((Error?) -> Void)?) {
-        let center = UNUserNotificationCenter.current()
-        center.delegate = self
-        center.requestAuthorization(options: [.sound, .alert, .badge]) { (_: Bool, error: Error?) in
-            if error == nil {
+    func registerRemoteNotifications(completion: ((Bool) -> Void)?) {
+        permissionHandler.askPermissionForRemoteNotifications { (granted: Bool) in
+            if granted {
                 UIApplication.shared.registerForRemoteNotifications()
             }
-            completion?(error)
+            completion?(granted)
         }
     }
     
     func triggerLocalNotification(withTitle title: String? = nil, subtitle: String? = nil, body: String? = nil, identifier: String, userInfo: [AnyHashable : Any]? = nil, completion: ((Error?) -> Void)? = nil) {
-        let center = UNUserNotificationCenter.current()
         let content = UNMutableNotificationContent()
         if let title = title {
             content.title = title
@@ -63,8 +65,8 @@ class RemoteNotificationHandler: NSObject {
         content.sound = UNNotificationSound.default()
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
-        center.delegate = self
-        center.add(request) { (error) in
+        notificationCenter.delegate = self
+        notificationCenter.add(request) { (error) in
             completion?(error)
         }
     }

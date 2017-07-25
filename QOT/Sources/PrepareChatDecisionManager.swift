@@ -65,7 +65,7 @@ final class PrepareChatDecisionManager {
     func addMessage(_ message: String) {
         var items: [ChatItem<Answer>] = []
 
-        items.append(ChatItem(type: .message(message)))
+        items.append(ChatItem(type: .message(message), state: .typing, delay: 2.0))
         items.append(deliveredFooter(alignment: .left))
 
         delegate?.appendItems(items, manager: self)
@@ -73,7 +73,7 @@ final class PrepareChatDecisionManager {
 
     private func process(question: Question) {
         var items: [ChatItem<Answer>] = []
-        items.append(ChatItem(type: .message(question.title)))
+        items.append(ChatItem(type: .message(question.title), state: .typing, delay: 2.0))
         items.append(deliveredFooter(alignment: .left))
 
         if let headerText = question.answersDescription {
