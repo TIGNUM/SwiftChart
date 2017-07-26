@@ -185,7 +185,19 @@ final class AppCoordinator: ParentCoordinator {
             // TODO: handle error
         }
     }
-    
+
+    func showTutorial(_ tutorial: Tutorials, buttonFrame: CGRect?, completion: @escaping () -> Void) {
+
+        switch tutorial {
+        default:
+            let vm = TutorialViewModel(tutorial: tutorial, buttonFrame: buttonFrame, completion: completion)
+            let viewController = TutorialViewController(viewModel: vm, delegate: self)
+
+            self.switchToSecondaryWindow()
+            self.secondaryWindow.rootViewController = viewController
+        }
+    }
+
     // MARK: - private
     
     private func switchToSecondaryWindow() {
@@ -218,6 +230,18 @@ final class AppCoordinator: ParentCoordinator {
         guard let localID = checkListIDToPresent else { return }
         tabBarCoordinator.showPreparationCheckList(localID: localID)
         checkListIDToPresent = nil
+    }
+}
+
+// MARK: - TutorialViewControllerDelegate
+
+extension AppCoordinator: TutorialViewControllerDelegate {
+
+    func didCloseTutorial(completion: @escaping () -> Void) {
+        print("didCloseTutorial")
+        switchToMainWindow()
+        secondaryWindow.rootViewController = nil
+        completion()
     }
 }
 

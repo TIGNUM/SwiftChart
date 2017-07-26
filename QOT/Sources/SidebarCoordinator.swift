@@ -43,7 +43,7 @@ final class SidebarCoordinator: ParentCoordinator {
     }
 }
 
-// MARK: - SettingsViewControllerDelegate
+// MARK: - SidebarViewControllerDelegate
 
 extension SidebarCoordinator: SidebarViewControllerDelegate {
 

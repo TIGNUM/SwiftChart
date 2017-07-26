@@ -75,8 +75,15 @@ extension SettingsCoordinator: SettingsViewControllerDelegate {
         // Update view with nice animation and show/hide picker view.
     }
 
-    func didTapButton(at indexPath: IndexPath) {
+    func didTapButton(at indexPath: IndexPath, settingsType: SettingsType) {
         // Navigate to selected view, like tutorial.
+
+        switch settingsType {
+        case .tutorial:
+            Tutorials.resetTutorial()
+            AppDelegate.current.window?.showProgressHUD(type: .tutorialReset, actionBlock: {})
+        default: break
+        }
     }
 
     func updateViewModelAndReload(viewController: SettingsViewController) {

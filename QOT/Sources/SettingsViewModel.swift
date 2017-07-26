@@ -191,13 +191,18 @@ protocol SettingsSection {
     var rows: [SettingsRow] { get }
 }
 
+enum SettingsType {
+    case tutorial
+    case undefined
+}
+
 enum SettingsRow {
     case label(title: String, value: String?)
     case stringPicker(title: String, pickerItems: [String], selectedIndex: Index)
     case multipleStringPicker(title: String, rows: [[String]], initialSelection: [Index])
     case datePicker(title: String, selectedDate: Date)
     case control(title: String, isOn: Bool)
-    case button(title: String, value: String)
+    case button(title: String, value: String, type: SettingsType)
     case textField(title: String, value: String, secure: Bool)
 
     var identifier: String {
@@ -288,7 +293,7 @@ private var locationRows: [SettingsRow] {
 
 private var calendarRows: [SettingsRow] {
     return [
-        .button(title: "Calendar", value: "Google Luca"),
+        .button(title: "Calendar", value: "Google Luca", type: .undefined),
         .control(title: "Location", isOn: true)
     ]
 }
@@ -308,9 +313,9 @@ private var localNotifications: [SettingsRow] {
 
 private var tignumRows: [SettingsRow] {
     return [
-        .button(title: "Tutorial", value: "Google Luca"),
-        .button(title: "Initial Interview", value: "Google Luca"),
-        .button(title: "Support", value: "Google Luca")
+        .button(title: "Tutorial", value: "Google Luca", type: .tutorial),
+        .button(title: "Initial Interview", value: "Google Luca", type: .undefined),
+        .button(title: "Support", value: "Google Luca", type: .undefined)
     ]
 }
 
@@ -331,9 +336,9 @@ private var accountRows: [SettingsRow] {
 
 private var aboutRows: [SettingsRow] {
     return [
-        .button(title: "Terms and Conditions", value: ""),
-        .button(title: "Legal Notes", value: ""),
-        .button(title: "Notes and Data Protections", value: ""),
-        .button(title: "Content Copyrights", value: "")
+        .button(title: "Terms and Conditions", value: "", type: .undefined),
+        .button(title: "Legal Notes", value: "", type: .undefined),
+        .button(title: "Notes and Data Protections", value: "", type: .undefined),
+        .button(title: "Content Copyrights", value: "", type: .undefined)
     ]
 }

@@ -117,6 +117,22 @@ extension TabBarController {
     }
 }
 
+extension TabBarController {
+
+    func buttonFrame() -> CGRect {
+        return tabBarView.selecetedButtomFrame()
+
+    }
+
+    func tutorial(show: Bool) {
+        if show {
+            tabBarView.tutorialSetup()
+        } else {
+            tabBarView.clearTutorialSetup()
+        }
+    }
+}
+
 // MARK: - TabBarViewDelegate
 
 extension TabBarController: TabBarViewDelegate {

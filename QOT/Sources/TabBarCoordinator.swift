@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import RealmSwift
+import Bond
+import ReactiveKit
 
 final class TabBarCoordinator: ParentCoordinator {
 
@@ -16,13 +18,17 @@ final class TabBarCoordinator: ParentCoordinator {
 
     fileprivate let window: UIWindow
     fileprivate let services: Services
-    fileprivate let selectedIndex: Index
+    fileprivate let selectedIndex: Observable<Index>
+    fileprivate var tutorialDispatchWorkItem: DispatchWorkItem?
     fileprivate var viewControllers = [UIViewController]()
     fileprivate var tabBarController: TabBarController?
     fileprivate let permissionHandler: PermissionHandler
 
     fileprivate var preparationID: String?
     fileprivate var hasLoaded = false
+    fileprivate var hasStarted = false
+
+    fileprivate var disposeBag = DisposeBag()
     
     lazy private var syncStartedNotificationHandler: NotificationHandler = {
         return NotificationHandler(name: .syncStartedNotification)
@@ -147,7 +153,7 @@ final class TabBarCoordinator: ParentCoordinator {
     init(window: UIWindow, selectedIndex: Index, services: Services, permissionHandler: PermissionHandler) {
         self.window = window
         self.services = services
-        self.selectedIndex = selectedIndex
+        self.selectedIndex = Observable(selectedIndex)
         self.permissionHandler = permissionHandler
         
         syncStartedNotificationHandler.handler = { [weak self] (notification: Notification) in
@@ -166,6 +172,10 @@ final class TabBarCoordinator: ParentCoordinator {
                     self.hasLoaded = true
                     if let preparationID = self.preparationID {
                         self.prepareCoordinator.showPrepareCheckList(preparationID: preparationID)
+                    } else {
+                        if self.hasStarted {
+                            self.startTutorials()
+                        }
                     }
                 })
             })
@@ -189,7 +199,7 @@ private extension TabBarCoordinator {
     
     func bottomTabBarController() -> TabBarController {
         addViewControllers()
-        let bottomTabBarController = TabBarController(items: tabBarControllerItems(), selectedIndex: selectedIndex)
+        let bottomTabBarController = TabBarController(items: tabBarControllerItems(), selectedIndex: selectedIndex.value)
         bottomTabBarController.modalTransitionStyle = .crossDissolve
         bottomTabBarController.modalPresentationStyle = .custom
         bottomTabBarController.delegate = self
@@ -215,6 +225,11 @@ extension TabBarCoordinator {
         window.setRootViewControllerWithFadeAnimation(bottomTabBarController)
         window.makeKeyAndVisible()
         tabBarController = bottomTabBarController
+        hasStarted = true
+
+        if hasLoaded {
+            startTutorials()
+        }
     }
 
     func addViewControllers() {
@@ -224,11 +239,43 @@ extension TabBarCoordinator {
     }
 }
 
+// MARK: - Private
+
+private extension TabBarCoordinator {
+
+    func startTutorials() {
+        self.selectedIndex.observeNext { [unowned self] value in
+            let tutorial: Tutorials = (value == 0 ? .learnTutorial : (value == 1 ? .meTutorial : .prepareTutorial))
+
+            self.tutorialDispatchWorkItem?.cancel()
+
+            if !tutorial.exists() {
+
+                let dispatchWorkItem = DispatchWorkItem { [unowned self] in
+                    self.tabBarController?.tutorial(show: true)
+                    AppDelegate.current.appCoordinator.showTutorial(tutorial, buttonFrame: self.tabBarController?.buttonFrame()) { [unowned self] in
+                        print("Completion block for tutorial")
+                        self.tabBarController?.tutorial(show: false)
+                        tutorial.set()
+                    }
+                }
+
+                self.tutorialDispatchWorkItem = dispatchWorkItem
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: dispatchWorkItem)
+            }
+            }
+            .dispose(in: disposeBag)
+    }
+}
+
 // MARK: - TabBarControllerDelegate
 
 extension TabBarCoordinator: TabBarControllerDelegate {
 
     func didSelectTab(at index: Index, in controller: TabBarController) {
+        selectedIndex.value = index
+
         switch index {
         case 2:
             prepareCoordinator.focus()

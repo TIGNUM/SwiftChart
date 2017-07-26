@@ -17,10 +17,12 @@ class SettingsTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet fileprivate weak var switchControl: UISwitch!
     @IBOutlet fileprivate weak var button: UIButton!
     @IBOutlet fileprivate weak var textField: UITextField!
+
     fileprivate lazy var pickerItems = [String]()
     fileprivate lazy var selectedIndex = 0
     fileprivate lazy var indexPath = IndexPath(row: 0, section: 0)
-    weak var delegate: SettingsViewControllerDelegate?
+    fileprivate var settingsRow: SettingsRow?
+    fileprivate weak var delegate: SettingsViewControllerDelegate?
 
     // MARK: - Life Cycle
 
@@ -32,11 +34,13 @@ class SettingsTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Setup
 
-    func setup(settingsRow: SettingsRow, indexPath: IndexPath) {
+    func setup(settingsRow: SettingsRow, indexPath: IndexPath, delegate: SettingsViewControllerDelegate?) {
         self.indexPath = indexPath
+        self.settingsRow = settingsRow
+        self.delegate = delegate
 
         switch settingsRow {
-        case .button(let title, let value): setupButtonCell(title: title, value: value)
+        case .button(let title, let value, _): setupButtonCell(title: title, value: value)
         case .control(let title, let enabled): setupControlCell(title: title, isOn: enabled)
         case .datePicker(let title, let selectedDate): setupDateCell(title: title, selectedDate: selectedDate)
         case .label(let title, let value): setupLabelCell(title: title, value: value)
@@ -132,7 +136,15 @@ extension SettingsTableViewCell {
     }
 
     @IBAction private func didTapButton(sender: UIButton) {
-        delegate?.didTapButton(at: indexPath)
+        guard let settings = self.settingsRow else { return }
+
+        switch settings {
+        case .button(_, _, let type):
+            delegate?.didTapButton(at: indexPath, settingsType: type)
+        default:
+            break
+        }
+
     }
 }
 

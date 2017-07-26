@@ -271,3 +271,29 @@ private extension TabBarView {
         addSubview(indicatorView)
     }
 }
+
+// MARK: Tutorial
+
+extension TabBarView {
+
+    func selecetedButtomFrame() -> CGRect {
+        guard let index = self.selectedIndex else { return CGRect.zero }
+
+        return buttons[index].frame
+    }
+
+    func tutorialSetup() {
+        guard let index = self.selectedIndex else { return }
+        let button = buttons[index]
+
+        button.layer.addGlowEffect(color: .white)
+    }
+
+    func clearTutorialSetup() {
+        guard let index = self.selectedIndex else { return }
+        let button = buttons[index]
+
+        button.layer.removeGlowEffect()
+    }
+
+}

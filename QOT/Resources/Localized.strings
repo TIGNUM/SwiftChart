@@ -10,6 +10,8 @@
 "learn.category-list-view.title" = "Categories";
 "learn.content-list-view.minutes-label" = "%@ MIN TO READ";
 
+"Settings.Tutorial.Reset.Title" = "Tutorial reset";
+
 "Settings.Title" = "Settings";
 "Settings.Title.General" = "General";
 "Settings.Title.Notifications" = "Notifications";

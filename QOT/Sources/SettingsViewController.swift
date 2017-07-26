@@ -17,7 +17,7 @@ protocol SettingsViewControllerDelegate: class {
 
     func didTapPickerCell(at indexPath: IndexPath, selectedValue: String)
 
-    func didTapButton(at indexPath: IndexPath)
+    func didTapButton(at indexPath: IndexPath, settingsType: SettingsType)
 
     func updateViewModelAndReload(viewController: SettingsViewController)
 }
@@ -98,7 +98,7 @@ extension SettingsViewController {
             fatalError("SettingsTableViewCell DOES NOT EXIST!!!")
         }
 
-        settingsCell.setup(settingsRow: settingsRow, indexPath: indexPath)        
+        settingsCell.setup(settingsRow: settingsRow, indexPath: indexPath, delegate: self.delegate)
 
         return settingsCell
     }
@@ -134,7 +134,7 @@ extension SettingsViewController {
 
         switch selectedRow {
         case .button,
-             .control,             
+             .control,
              .textField: return
         case .datePicker(let title, let selectedDate):
             showDatePicker(title: title, selectedDate: selectedDate, indexPath: indexPath)

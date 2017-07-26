@@ -22,6 +22,7 @@ enum AlertType {
     case unknow
     case loginFailed
     case notificationsNotAuthorized
+    case tutorialReset
 
     var title: String? {
         switch self {
@@ -34,6 +35,7 @@ enum AlertType {
         case .unknow: return R.string.localized.alertTitleUnknown()
         case .loginFailed: return R.string.localized.loginViewLoginFailed()
         case .notificationsNotAuthorized: return R.string.localized.alertTitleNotificationsNotAuthorized()
+        case .tutorialReset: return R.string.localized.settingsTutorialResetTitle()
         default: return nil
         }
     }
