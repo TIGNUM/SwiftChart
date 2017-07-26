@@ -15,11 +15,11 @@ enum SyncError: Error {
     case downSyncFetchIntermediatesFailed(type: SyncType, error: NetworkError)
     case downSyncImportChangesFailed(type: SyncType, error: Error)
     case downSyncSaveSyncDateFailed(type: SyncType, error: Error)
-    case upSyncCalendarEventsStartSyncFailed(error: NetworkError)
-    case upSyncFetchDirtyCalendarEventsFailed(error: Error)
-    case upSyncSendCalendarEventsFailed(error: Error)
-    case upSyncSendCalendarSaveRemoteIDsFailed(error: Error)
     case updateRelationsFailed(error: Error)
+    case upSyncStartSyncFailed(error: Error)
+    case upSyncFetchDirtyFailed(error: Error)
+    case upSyncSendDirtyFailed(error: Error)
+    case upSyncUpdateDirtyFailed(error: Error)
 }
 
 class SyncContext {
@@ -42,7 +42,7 @@ class SyncContext {
         errors.append(error)
     }
 
-    func finish(error: SyncError?) {
+    func finish() {
         if case State.finished = state {
             return
         }

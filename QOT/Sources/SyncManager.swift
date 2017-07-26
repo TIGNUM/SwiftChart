@@ -9,6 +9,7 @@
 import Foundation
 import Freddy
 import RealmSwift
+import EventKit
 
 final class SyncManager {
 
@@ -97,8 +98,17 @@ final class SyncManager {
             }
         }
 
+        let jsonEncoder: (CalendarEvent) -> JSON? = { (event) in
+            let store = EKEventStore()
+            return event.json(eventStore: store)
+        }
+
         let operations: [Operation] = [
-            UpSyncCalendarEventsOperation(networkManager: networkManager, realmProvider: realmProvider, syncContext: context, isFinalOperation: true)
+            UpSyncOperation<CalendarEvent>(networkManager: networkManager,
+                                           realmProvider: realmProvider,
+                                           syncContext: context,
+                                           jsonEncoder: jsonEncoder,
+                                           isFinalOperation: true)
         ]
 
         operationQueue.addOperations(operations, waitUntilFinished: false)

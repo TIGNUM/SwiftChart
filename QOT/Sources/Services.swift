@@ -47,13 +47,6 @@ final class Services {
         DispatchQueue.global().async {
             // Do expensive things here such as migrations.
 
-            // FIXME: Remove
-            do {
-                setupRealmWithMockData(realm: try RealmProvider().realm())
-            } catch let error {
-                fatalError("Cannot create mock data: \(error)")
-            }
-
             DispatchQueue.main.async {
                 do {
                     let realmProvider = RealmProvider()

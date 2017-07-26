@@ -53,8 +53,10 @@ final class UpdateRelationsOperation: ConcurrentOperation {
     private func finish(error: SyncError?) {
         if let error = error {
             context.add(error: error)
-        } else if isFinalOperation {
-            context.finish(error: nil)
+        }
+
+        if isFinalOperation {
+            context.finish()
         }
 
         finish()

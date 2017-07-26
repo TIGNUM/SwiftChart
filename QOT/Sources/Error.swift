@@ -16,3 +16,7 @@ enum DatabaseError: Error {
     case noLayoutInfo
     case objectNotFound(primaryKey: Any)
 }
+
+struct SimpleError: Error {
+    let localizedDescription: String
+}

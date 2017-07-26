@@ -11,22 +11,22 @@ import RealmSwift
 import EventKit
 import Freddy
 
-final class CalendarEvent: Object {
+final class CalendarEvent: Object, UpSyncableWithLocalAndRemoteIDs {
 
     let remoteID = RealmOptional<Int>(nil)
 
-    private(set) dynamic var deleted: Bool = false
+    private(set) dynamic var localID: String = ""
 
-    private(set) dynamic var dirty: Bool = true
+    dynamic var deleted: Bool = false
 
     private(set) dynamic var createdAt: Date = Date()
 
     private(set) dynamic var modifiedAt: Date = Date()
 
-    private(set) dynamic var eventID: String = ""
+    dynamic var localChangeID: String? = UUID().uuidString
 
     override class func primaryKey() -> String? {
-        return "eventID"
+        return "localID"
     }
 
     convenience init(event: EKEvent) {
@@ -35,7 +35,7 @@ final class CalendarEvent: Object {
         let now = Date()
         self.createdAt = event.creationDate ?? now
         self.modifiedAt = event.lastModifiedDate ?? now
-        self.eventID = event.eventIdentifier
+        self.localID = event.eventIdentifier
     }
 
     func update(event: EKEvent) {
@@ -48,7 +48,7 @@ final class CalendarEvent: Object {
 
     override func delete() {
         if let realm = realm {
-            if remoteID.value == nil {
+            if existsOnServer == false {
                 realm.delete(self)
             } else {
                 deleted = true
@@ -64,27 +64,11 @@ final class CalendarEvent: Object {
         return event.toJSON(id: remoteID.value, createdAt: createdAt, modifiedAt: modifiedAt, syncStatus: syncStatus.rawValue, eventID: eventID)
     }
 
-    var syncStatus: UpSyncStatus {
-        if !dirty {
-            return .clean
-        } else if deleted {
-            return .deleted
-        } else if remoteID.value == nil {
-            return .created
-        } else {
-            return .updated
-        }
+    var eventID: String {
+        return localID
     }
 
-    func setRemoteID(_ id: Int) {
-        remoteID.value = id
-        dirty = false
+    static var endpoint: Endpoint {
+        return .calendarEvent
     }
-}
-
-enum UpSyncStatus: Int {
-    case clean = -1
-    case created = 0
-    case updated = 1
-    case deleted = 2
 }

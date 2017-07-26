@@ -37,21 +37,7 @@ extension Realm {
         }
     }
 
-    func dirtyCalandarEvents() -> Results<CalendarEvent> {
-        return objects(predicate: NSPredicate(dirty: true))
-    }
-
-    func setCalendarEventRemoteIDs(remoteIDs: LocalIDToRemoteIDMap) {
-        let predicate = NSPredicate(eventIDs: Array(remoteIDs.keys))
-        let events: Results<CalendarEvent> = objects(predicate: predicate)
-        for event in events {
-            if let remoteID = remoteIDs[event.eventID] {
-                event.setRemoteID(remoteID)
-            }
-        }
-    }
-
-    private func objects<T>(predicate: NSPredicate? = nil) -> Results<T> {
+    func objects<T>(predicate: NSPredicate? = nil) -> Results<T> {
         if let predicate = predicate {
             return objects(T.self).filter(predicate)
         } else {

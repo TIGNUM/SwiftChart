@@ -23,6 +23,13 @@ extension JSON {
         return fallback
     }
 
+    func getArray(at jsonKey: JsonKey, fallback: [JSON]) throws -> [JSON] {
+        if let jsons = try getArray(at: jsonKey.value, alongPath: [.MissingKeyBecomesNil, .NullBecomesNil]) {
+            return jsons
+        }
+        return fallback
+    }
+
     func getDate(at jsonKey: JsonKey) throws -> Date? {
         let formatter = DateFormatter.iso8601
         guard let dateString: String = try getItemValue(at: jsonKey), let date = formatter.date(from: dateString) else {

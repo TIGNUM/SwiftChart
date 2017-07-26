@@ -17,11 +17,12 @@ struct UpSyncResult {
 
     init(json: JSON) throws {
         var remoteIDs: LocalIDToRemoteIDMap = [:]
-        let resultList = try json.getArray(at: JsonKey.resultList.value)
+        let resultList: [JSON] = try json.getArray(at: .resultList, fallback: [])
         for json in resultList {
-            let localID: String = try json.getItemValue(at: .qotId)
-            let remoteID: Int = try json.getItemValue(at: .id)
-            remoteIDs[localID] = remoteID
+            if let localID: String = try json.getItemValue(at: .qotId),
+                let remoteID: Int = try json.getItemValue(at: .id) {
+                remoteIDs[localID] = remoteID
+            }
         }
         self.remoteIDs = remoteIDs
         self.nextSyncToken = try json.getItemValue(at: .nextSyncToken)
