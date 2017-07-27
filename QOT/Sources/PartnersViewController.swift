@@ -276,3 +276,16 @@ extension PartnersViewController: RSKImageCropViewControllerDataSource {
         return UIBezierPath.roundedPolygonPath(rect: controller.maskRect, lineWidth: 0, sides: 6, rotationOffset: CGFloat(CGFloat.pi * 0.5))
     }
 }
+
+// MARK: - CustomPresentationAnimatorDelegate
+
+extension PartnersViewController: CustomPresentationAnimatorDelegate {
+    func animationsForAnimator(_ animator: CustomPresentationAnimator) -> (() -> Void)? {
+        scrollView.transform = animator.isPresenting ? CGAffineTransform(translationX: 0.0, y: 100.0) : .identity
+        parent?.view.alpha = animator.isPresenting ? 0.0 : 1.0
+        return { [unowned self] in
+            self.scrollView.transform = animator.isPresenting ? .identity : CGAffineTransform(translationX: 0.0, y: 100.0)
+            self.parent?.view.alpha = animator.isPresenting ? 1.0 : 0.0
+        }
+    }
+}

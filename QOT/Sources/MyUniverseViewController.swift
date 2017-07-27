@@ -300,6 +300,14 @@ extension MyUniverseViewController: CustomPresentationAnimatorDelegate {
                 self.myWhyView.weeklyChoicesBox.transform = .identity
                 self.myWhyView.qotPartnersBox.transform = .identity
             }
+        } else if let tabBarController = animator.toViewController as? TopTabBarController, tabBarController.item.controllers.first is PartnersViewController {
+            return { [unowned self] in
+                self.myWhyView.qotPartnersBox.transform = CGAffineTransform(translationX: 200.0, y: -300.0).scaledBy(x: 2.5, y: 2.5)
+            }
+        } else if let tabBarController = animator.fromViewController as? TopTabBarController, tabBarController.item.controllers.first is PartnersViewController {
+            return { [unowned self] in
+                self.myWhyView.qotPartnersBox.transform = .identity
+            }
         }
         return nil
     }

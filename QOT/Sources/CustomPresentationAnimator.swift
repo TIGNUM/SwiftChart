@@ -53,15 +53,18 @@ extension CustomPresentationAnimator: UIViewControllerAnimatedTransitioning {
                 return
         }
         
-        let containerView = transitionContext.containerView
-        containerView.addSubview(view)
-        view.frame = containerView.bounds
+        if isPresenting {
+            let containerView = transitionContext.containerView
+            containerView.addSubview(view)
+            view.frame = containerView.bounds
+        }
         
         UIView.animate(withDuration: duration, animations: {
             fromAnimations()
             toAnimations()
         }, completion: { (finished: Bool) in
             transitionContext.completeTransition(finished)
+            fromViewController.viewDidDisappear(true)
             toViewController.viewDidAppear(true)
         })
     }
