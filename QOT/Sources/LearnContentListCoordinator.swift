@@ -17,11 +17,14 @@ final class LearnContentListCoordinator: ParentCoordinator {
     fileprivate let selectedCategoryIndex: Index
     var children: [Coordinator] = []
     weak var delegate: LearnContentListCoordinatorDelegate?
-    
-    init(root: LearnCategoryListViewController, services: Services, selectedCategoryIndex: Index) {
+
+    fileprivate let presentationManager: ZoomPresentationManager
+
+    init(root: LearnCategoryListViewController, services: Services, selectedCategoryIndex: Index, originFrame: CGRect) {
         self.rootVC = root
         self.services = services
         self.selectedCategoryIndex = selectedCategoryIndex
+        self.presentationManager = ZoomPresentationManager(openingFrame: originFrame)
     }
     
     func start() {
@@ -39,8 +42,10 @@ final class LearnContentListCoordinator: ParentCoordinator {
 
         contentListViewController.delegate = self
         topTabBarController.delegate = self
-        topTabBarController.modalTransitionStyle = .crossDissolve
-        topTabBarController.modalPresentationStyle = .fullScreen
+        topTabBarController.modalPresentationStyle = .custom
+
+        topTabBarController.transitioningDelegate = presentationManager
+
         rootVC.present(topTabBarController, animated: true)
     }
 }

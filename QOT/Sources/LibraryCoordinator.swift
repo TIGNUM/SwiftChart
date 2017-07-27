@@ -17,7 +17,7 @@ final class LibraryCoordinator: ParentCoordinator {
     fileprivate let services: Services
     fileprivate let libraryViewController: LibraryViewController
     var children = [Coordinator]()
-    lazy var presentationManager = PresentationManager()
+    lazy var presentationManager = PresentationManager(type: .fadeIn)
 
     // MARK: - Init
 
@@ -31,7 +31,6 @@ final class LibraryCoordinator: ParentCoordinator {
 
     func start() {
         libraryViewController.delegate = self
-        presentationManager.presentationType = .fadeIn
         libraryViewController.modalPresentationStyle = .custom
         libraryViewController.transitioningDelegate = presentationManager
 

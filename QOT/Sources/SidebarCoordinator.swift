@@ -14,7 +14,7 @@ final class SidebarCoordinator: ParentCoordinator {
     let rootViewController: UIViewController
     fileprivate let services: Services
     var children = [Coordinator]()
-    lazy var presentationManager = PresentationManager()
+    lazy var presentationManager = PresentationManager(type: .fadeIn)
     
     init(root: UIViewController, services: Services) {
         self.rootViewController = root

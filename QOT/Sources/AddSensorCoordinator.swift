@@ -19,7 +19,7 @@ final class AddSensorCoordinator: ParentCoordinator {
     fileprivate let rootViewController: SidebarViewController
     fileprivate let services: Services
     var children = [Coordinator]()
-    lazy var presentationManager = PresentationManager()
+    lazy var presentationManager = PresentationManager(type: .fadeIn)
 
     // MARK: - Init
 
@@ -32,7 +32,6 @@ final class AddSensorCoordinator: ParentCoordinator {
 
     func start() {
         let addSensorVC = AddSensorViewController(viewModel: AddSensorViewModel())
-        presentationManager.presentationType = .fadeIn
         addSensorVC.modalPresentationStyle = .custom
         addSensorVC.transitioningDelegate = presentationManager
 

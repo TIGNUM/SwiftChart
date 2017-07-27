@@ -221,10 +221,9 @@ private extension TabBarCoordinator {
 extension TabBarCoordinator {
 
     func start() {
-        let bottomTabBarController = self.bottomTabBarController()
-        window.setRootViewControllerWithFadeAnimation(bottomTabBarController)
+        window.setRootViewControllerWithFadeAnimation(bottomTabBarController())
         window.makeKeyAndVisible()
-        tabBarController = bottomTabBarController
+        tabBarController = bottomTabBarController()
         hasStarted = true
 
         if hasLoaded {
@@ -289,8 +288,8 @@ extension TabBarCoordinator: TabBarControllerDelegate {
 
 extension TabBarCoordinator: LearnCategoryListViewControllerDelegate {
 
-    func didSelectCategory(at index: Index, in viewController: LearnCategoryListViewController) {
-        let coordinator = LearnContentListCoordinator(root: viewController, services: services, selectedCategoryIndex: index)
+    func didSelectCategory(at index: Index, withFrame frame: CGRect, in viewController: LearnCategoryListViewController) {
+        let coordinator = LearnContentListCoordinator(root: viewController, services: services, selectedCategoryIndex: index, originFrame: frame)
         coordinator.delegate = self
         startChild(child: coordinator)
     }

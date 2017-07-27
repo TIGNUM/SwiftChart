@@ -26,6 +26,7 @@ final class TabBarController: UIViewController {
     fileprivate weak var currentViewController: UIViewController?
     fileprivate weak var indicatorViewLeadingConstraint: NSLayoutConstraint?
     fileprivate weak var indicatorViewWidthConstraint: NSLayoutConstraint?
+    fileprivate weak var tabBarBottomConstraint: NSLayoutConstraint?
     weak var delegate: TabBarControllerDelegate?
 
     var viewControllers: [UIViewController] {
@@ -109,7 +110,7 @@ extension TabBarController {
         containerView.horizontalAnchors == view.horizontalAnchors
         containerView.bottomAnchor == tabBarView.topAnchor
         
-        tabBarView.bottomAnchor == view.bottomAnchor
+        tabBarBottomConstraint = (tabBarView.bottomAnchor == view.bottomAnchor)
         tabBarView.horizontalAnchors == view.horizontalAnchors + Layout.TabBarView.stackViewHorizontalPaddingBottom
         tabBarView.heightAnchor == 64
         
@@ -140,6 +141,25 @@ extension TabBarController: TabBarViewDelegate {
     func didSelectItemAtIndex(index: Int, sender: TabBarView) {
         displayContentController(items[index].controller)
         delegate?.didSelectTab(at: index, in: self)
+    }
+}
+
+// MARK: - ZoomPresentationAnimatable
+
+extension TabBarController: ZoomPresentationAnimatable {
+    func startAnimation(presenting: Bool, animationDuration: TimeInterval, openingFrame: CGRect) {
+        tabBarBottomConstraint?.constant = presenting ? 0 : 64
+
+        UIView.transition(with: self.view, duration: animationDuration, options: [.allowAnimatedContent, .curveEaseOut], animations: {
+            self.tabBarBottomConstraint?.constant = presenting ? 64 : 0
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+
+        guard
+            let currentVC = currentViewController as? ZoomPresentationAnimatable
+            else { return }
+
+        currentVC.startAnimation(presenting: presenting, animationDuration: animationDuration, openingFrame: openingFrame)
     }
 }
 

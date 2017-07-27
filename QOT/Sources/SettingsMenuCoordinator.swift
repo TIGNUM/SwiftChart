@@ -14,7 +14,7 @@ final class SettingsMenuCoordinator: ParentCoordinator {
     fileprivate let rootViewController: SidebarViewController
     fileprivate let services: Services
     var children = [Coordinator]()
-    lazy var presentationManager = PresentationManager()
+    lazy var presentationManager = PresentationManager(type: .fadeIn)
 
     init(root: SidebarViewController, services: Services) {
         self.rootViewController = root
@@ -28,7 +28,6 @@ final class SettingsMenuCoordinator: ParentCoordinator {
 
         let settingsMenuViewController = SettingsMenuViewController(viewModel: viewModel)
         settingsMenuViewController.delegate = self
-        presentationManager.presentationType = .fadeIn
         settingsMenuViewController.modalPresentationStyle = .custom
         settingsMenuViewController.transitioningDelegate = presentationManager
 

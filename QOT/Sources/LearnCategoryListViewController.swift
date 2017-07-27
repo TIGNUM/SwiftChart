@@ -15,15 +15,14 @@ import ReactiveKit
 /// The delegate of a `LearnCategoryListViewController`.
 protocol LearnCategoryListViewControllerDelegate: class {
     /// Notifies `self` that the category was selected at `index` in `viewController`.
-    func didSelectCategory(at index: Index, in viewController: LearnCategoryListViewController)
-
+    func didSelectCategory(at index: Index, withFrame frame: CGRect, in viewController: LearnCategoryListViewController)
 }
 
 /// Displays a collection of learn categories of learn content.
 final class LearnCategoryListViewController: UIViewController {
 
     // MARK: - Properties
-    
+
     fileprivate let viewModel: LearnCategoryListViewModel
     fileprivate let disposeBag = DisposeBag()
     weak var delegate: LearnCategoryListViewControllerDelegate?
@@ -120,10 +119,32 @@ extension LearnCategoryListViewController: UICollectionViewDataSource, LearnCate
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.didSelectCategory(at: indexPath.row, in: self)
+        guard let attributes = collectionView.layoutAttributesForItem(at: indexPath) else { return }
+
+        let cellFrame = collectionView.convert(attributes.frame, to: view)
+
+        delegate?.didSelectCategory(at: indexPath.row, withFrame: cellFrame, in: self)
     }
 
     func bubbleLayoutInfo(layout: LearnCategoryLayout, index: Index) -> BubbleLayoutInfo {
         return page.bubbleLayoutInfo(at: index)
+    }
+}
+
+// MARK: - ZoomPresentationAnimatable
+
+extension LearnCategoryListViewController: ZoomPresentationAnimatable {
+    func startAnimation(presenting: Bool, animationDuration: TimeInterval, openingFrame: CGRect) {
+        let upScale: CGFloat = 1.3
+
+        let toTransform = presenting ? CGAffineTransform(scaleX: upScale, y: upScale) : CGAffineTransform(scaleX: 1, y: 1)
+        collectionView.transform = presenting ? CGAffineTransform(scaleX: 1, y: 1) : collectionView.transform
+
+        self.view.layoutIfNeeded()
+
+        UIView.transition(with: self.view, duration: animationDuration, options: [.allowAnimatedContent, .curveEaseOut], animations: {
+            self.collectionView.transform = toTransform
+            self.view.layoutIfNeeded()
+        }, completion: nil)
     }
 }

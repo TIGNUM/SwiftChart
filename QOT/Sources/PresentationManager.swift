@@ -16,6 +16,12 @@ enum PresentationType {
 final class PresentationManager: NSObject {
 
     var presentationType = PresentationType.fadeIn
+
+    init(type: PresentationType) {
+        self.presentationType = type
+
+        super.init()
+    }
 }
 
 extension PresentationManager: UIViewControllerTransitioningDelegate {

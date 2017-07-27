@@ -22,6 +22,9 @@ final class LearnContentListViewController: UIViewController {
 
     // MARK: - Properties
 
+    fileprivate weak var pagingCollectionViewTopConstraint: NSLayoutConstraint?
+    fileprivate weak var pagingCollectionViewBottomConstraint: NSLayoutConstraint?
+    fileprivate weak var getBackButtonBottomConstraint: NSLayoutConstraint?
     fileprivate let disposeBag = DisposeBag()
     fileprivate let viewModel: LearnContentCollectionViewModel
     fileprivate var selectedCategoryIndex: Index
@@ -178,9 +181,14 @@ private extension LearnContentListViewController {
         collectionView.topAnchor == view.topAnchor + pagingCellSize.height + performanceLabelSize.height
         collectionView.bottomAnchor == view.bottomAnchor - 64
         collectionView.horizontalAnchors == view.horizontalAnchors
-        pagingCollectionView.topAnchor == view.topAnchor + 20
-        pagingCollectionView.bottomAnchor == view.topAnchor + performanceLabelSize.height + pagingCellSize.height
+        pagingCollectionViewTopConstraint = (pagingCollectionView.topAnchor == view.topAnchor + 20)
+        pagingCollectionViewBottomConstraint = (pagingCollectionView.bottomAnchor == view.topAnchor + performanceLabelSize.height + pagingCellSize.height)
         pagingCollectionView.horizontalAnchors == view.horizontalAnchors
+
+        getBackButtonBottomConstraint = (getBackButton.bottomAnchor == view.bottomAnchor)
+        getBackButton.horizontalAnchors == view.horizontalAnchors
+        getBackButton.heightAnchor == Layout.TabBarView.height
+
         view.layoutIfNeeded()
     }
 }
@@ -314,5 +322,31 @@ extension LearnContentListViewController: UIScrollViewDelegate {
             collectionView.reloadData()
             collecitonViewScrollToCategory(false)
         }
+    }
+}
+
+// MARK: - ZoomPresentationAnimatable
+
+extension LearnContentListViewController: ZoomPresentationAnimatable {
+    func startAnimation(presenting: Bool, animationDuration: TimeInterval, openingFrame: CGRect) {
+
+        let pagingTopConstraint = performanceLabelSize.height + pagingCellSize.height
+        let pagingBottomConstraint = performanceLabelSize.height + pagingCellSize.height
+        pagingCollectionViewTopConstraint?.constant = presenting ? -pagingTopConstraint : 0
+        pagingCollectionViewBottomConstraint?.constant = presenting ? 0 : pagingBottomConstraint
+
+        let bottomConstraint = Layout.TabBarView.height
+        getBackButtonBottomConstraint?.constant = presenting ? bottomConstraint : 0
+
+        self.view.layoutIfNeeded()
+
+        UIView.transition(with: self.view, duration: animationDuration, options: [.allowAnimatedContent, .curveEaseOut], animations: {
+
+            self.pagingCollectionViewTopConstraint?.constant = presenting ? 0 : -pagingTopConstraint
+            self.pagingCollectionViewBottomConstraint?.constant = presenting ? pagingBottomConstraint : 0
+            self.getBackButtonBottomConstraint?.constant = presenting ? 0 : bottomConstraint
+
+            self.view.layoutIfNeeded()
+        }, completion: nil)
     }
 }

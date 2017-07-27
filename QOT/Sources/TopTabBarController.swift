@@ -124,6 +124,7 @@ class TopTabBarController: UIViewController {
     fileprivate var learnHeaderView: LearnContentItemHeaderView?
     fileprivate var learnHeaderTitle: String
     fileprivate var learnHeaderSubTitle: String
+    fileprivate weak var tabBarViewTopConstraint: NSLayoutConstraint?
 
     func headerView(title: String, subtitle: String) -> LearnContentItemHeaderView {
         if let header = learnHeaderView {
@@ -214,6 +215,7 @@ class TopTabBarController: UIViewController {
         addContentView()
         setupHierarchy()
         setupScrollView()
+        setupLayout()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -232,7 +234,7 @@ class TopTabBarController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        setupLayout()
+//        setupLayout()
     }
 }
 
@@ -413,7 +415,7 @@ private extension TopTabBarController {
         
         tabBarView.leftAnchor == leftButton.rightAnchor
         tabBarView.rightAnchor == rightButton.leftAnchor
-        tabBarView.topAnchor == navigationItemBar.topAnchor + 20
+        tabBarViewTopConstraint = (tabBarView.topAnchor == navigationItemBar.topAnchor + 20)
         tabBarView.bottomAnchor == navigationItemBar.bottomAnchor
 
         if item.theme(at: 0) == .light {
@@ -421,7 +423,7 @@ private extension TopTabBarController {
             view.addSubview(header)
             header.leftAnchor == view.leftAnchor
             header.rightAnchor == view.rightAnchor
-            header.topAnchor == navigationItemBar.bottomAnchor
+            header.topAnchor == view.topAnchor + 64
             header.horizontalAnchors == navigationItemBar.horizontalAnchors
             header.heightAnchor == 200
         }
@@ -490,6 +492,31 @@ extension TopTabBarController: TopTabBarControllerDelegate {
         header.heightAnchor == 200
         header.alpha = 0
         learnHeaderView = header
+    }
+}
+
+// MARK: - ZoomPresentationAnimatable
+
+extension TopTabBarController: ZoomPresentationAnimatable {
+    func startAnimation(presenting: Bool, animationDuration: TimeInterval, openingFrame: CGRect) {
+        let tabBarHeight = -Layout.TabBarView.height - 20
+
+        if tabBarViewTopConstraint != nil {
+            tabBarViewTopConstraint?.constant = presenting ? 20 : tabBarHeight
+
+            self.navigationItemBar.layoutIfNeeded()
+
+            UIView.transition(with: self.view, duration: animationDuration, options: [.allowAnimatedContent, .curveEaseOut], animations: { [unowned self] in
+                self.tabBarViewTopConstraint?.constant = presenting ? tabBarHeight : 20
+                self.navigationItemBar.layoutIfNeeded()
+                }, completion: nil)
+        }
+
+        guard
+            let currentVC = item.controllers[selectedIndex] as? ZoomPresentationAnimatable
+            else { return }
+
+        currentVC.startAnimation(presenting: presenting, animationDuration: animationDuration, openingFrame: openingFrame)
     }
 }
 
