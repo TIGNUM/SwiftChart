@@ -66,6 +66,11 @@ class MyToBeVisionViewController: UIViewController {
         super.viewDidAppear(animated)
         
         setupNotifications()
+        
+        UIView.animate(withDuration: 0.7) {
+            self.imageView.alpha = 1.0
+            self.imageViewOverlay.alpha = 1.0
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -138,6 +143,8 @@ private extension MyToBeVisionViewController {
         
         let profileImage = viewModel.profileImage
         imageView.image = profileImage
+        imageView.alpha = 0.0
+        imageViewOverlay.alpha = 0.0
         imageButton.alpha = (profileImage == nil) ? 1.0 : 0.0
         subtitleLabel.text = viewModel.dateText
     }
@@ -398,5 +405,16 @@ extension MyToBeVisionViewController: RSKImageCropViewControllerDataSource {
     
     func imageCropViewControllerCustomMaskPath(_ controller: RSKImageCropViewController) -> UIBezierPath {
         return UIBezierPath.circlePath(center: view.center, radius: view.bounds.width / 4.0)
+    }
+}
+
+// MARK: - CustomPresentationAnimatorDelegate
+
+extension MyToBeVisionViewController: CustomPresentationAnimatorDelegate {
+    func animationsForAnimator(_ animator: CustomPresentationAnimator) -> (() -> Void)? {
+        view.alpha = animator.isPresenting ? 0.0 : 1.0
+        return { [unowned self] in
+            self.view.alpha = animator.isPresenting ? 1.0 : 0.0
+        }
     }
 }

@@ -94,15 +94,16 @@ class TopTabBarController: UIViewController {
                 self.header = header
         }
 
-        func controller(at index: Index) -> UIViewController {
+        func controller(at index: Index) -> UIViewController? {
+            guard index < controllers.count else {
+                return nil
+            }
             return controllers[index]
         }
 
-        func theme(at index: Index) -> Theme {
+        func theme(at index: Index) -> Theme? {
             guard index < themes.count else {
-                // FIXME: there is a bug here, index should never be out of bounds, maybe it's to do with 'selectedIndex'
-                // * open partners vc and then close, throws index out of bounds bug
-                return themes[0]
+                return nil
             }
             return themes[index]
         }
@@ -141,7 +142,7 @@ class TopTabBarController: UIViewController {
 
     fileprivate lazy var navigationItemBar: UIView = {
         let view = UIView()
-        view.backgroundColor = self.item.theme(at: self.selectedIndex).navigationBarBackgroundColor
+        view.backgroundColor = self.item.theme(at: self.selectedIndex)?.navigationBarBackgroundColor
 
         return view
     }()
@@ -156,7 +157,7 @@ class TopTabBarController: UIViewController {
     
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.backgroundColor = self.item.theme(at: self.selectedIndex).scrollViewBackgroundColor
+        scrollView.backgroundColor = self.item.theme(at: self.selectedIndex)?.scrollViewBackgroundColor
         scrollView.isPagingEnabled = true
         scrollView.delegate = self
         scrollView.showsHorizontalScrollIndicator = false
@@ -167,8 +168,12 @@ class TopTabBarController: UIViewController {
     fileprivate lazy var tabBarView: TabBarView = {
         let tabBarView = TabBarView(tabBarType: .top)
         tabBarView.setTitles(self.item.titles, selectedIndex: self.item.titles.count == 1 ? nil : 0)
-        tabBarView.selectedColor = self.item.theme(at: self.selectedIndex).selectedColor
-        tabBarView.deselectedColor = self.item.theme(at: self.selectedIndex).deselectedColor
+        if let selectedColor = self.item.theme(at: self.selectedIndex)?.selectedColor {
+            tabBarView.selectedColor = selectedColor
+        }
+        if let deselectedColor = self.item.theme(at: self.selectedIndex)?.deselectedColor {
+            tabBarView.deselectedColor = deselectedColor
+        }
         tabBarView.indicatorViewExtendedWidth = Layout.TabBarView.indicatorViewExtendedWidthTop
         tabBarView.delegate = self
         tabBarView.backgroundColor = .clear
@@ -244,7 +249,7 @@ private extension TopTabBarController {
 
     func setupButton(with image: UIImage?, button: UIButton) {
         button.setImage(image?.withRenderingMode(.alwaysTemplate), for: .normal)
-        button.imageView?.tintColor = item.theme(at: selectedIndex).selectedColor
+        button.imageView?.tintColor = item.theme(at: selectedIndex)?.selectedColor
         button.isHidden = image == nil
         button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)        
     }
@@ -340,7 +345,7 @@ extension TopTabBarController: UIScrollViewDelegate {
         let alpha = scrollView.contentOffset.x / offsetX
         nextView.alpha = selectedIndex > previousIndex ? alpha : 1 - alpha
         currentView.alpha = selectedIndex > previousIndex ? 1 - alpha : alpha
-        navigationItemBar.backgroundColor = item.theme(at: selectedIndex).navigationBarBackgroundColor
+        navigationItemBar.backgroundColor = item.theme(at: selectedIndex)?.navigationBarBackgroundColor
     }
 
     private func nextIndex(scrollView: UIScrollView, scrollViewCurrentOffsetX: CGFloat, selectedIndex: Index) -> Index {
@@ -485,5 +490,21 @@ extension TopTabBarController: TopTabBarControllerDelegate {
         header.heightAnchor == 200
         header.alpha = 0
         learnHeaderView = header
+    }
+}
+
+// MARK: - CustomPresentationAnimatorDelegate {
+
+extension TopTabBarController: CustomPresentationAnimatorDelegate {
+    func animationsForAnimator(_ animator: CustomPresentationAnimator) -> (() -> Void)? {
+        var viewController: CustomPresentationAnimatorDelegate
+        if let controller = item.controller(at: selectedIndex) as? CustomPresentationAnimatorDelegate {
+            viewController = controller
+        } else if let controller = item.controller(at: 0) as? CustomPresentationAnimatorDelegate { // my universe only has 1 view controller, but 2 tabs
+            viewController = controller
+        } else {
+            return nil
+        }
+        return viewController.animationsForAnimator(animator)
     }
 }

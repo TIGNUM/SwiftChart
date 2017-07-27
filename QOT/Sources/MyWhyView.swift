@@ -18,7 +18,13 @@ class MyWhyView: UIView, MyUniverseView {
     lazy var weeklyChoices = [WeeklyChoice]()
     lazy var partners = [PartnerWireframe]()
     weak var delegate: MyWhyViewDelegate?
-
+    var myToBeVisionBox: PassthroughView!
+    var weeklyChoicesBox: PassthroughView!
+    var qotPartnersBox: PassthroughView!
+    fileprivate var myToBeVisionLabel: UILabel!
+    fileprivate var weeklyChoiceButtons = [UIButton]()
+    fileprivate var qotPartnersButtons = [UIButton]()
+    
     // MARK: - Init
 
     init(myWhyViewModel: MyWhyViewModel, frame: CGRect, screenType: MyUniverseViewController.ScreenType, delegate: MyWhyViewDelegate?) {
@@ -63,18 +69,41 @@ class MyWhyView: UIView, MyUniverseView {
 private extension MyWhyView {
 
     func reload() {
-        subviews.forEach { (view: UIView) in
-            view.removeFromSuperview()
+        myWhyViewModel.items?.forEach { (myWhy: MyWhyViewModel.MyWhy) in
+            switch myWhy {
+            case .vision(let vision):
+                // TODO: localise
+                var visionText = "Your vision - what inspires you?"
+                if let vision = vision, let text = vision.text, !text.isEmpty {
+                    visionText = text
+                }
+                myToBeVisionLabel.text = visionText
+            case .weeklyChoices(_, let choices):
+                weeklyChoices = choices
+                for index in 0..<Layout.MeSection.maxWeeklyPage {
+                    var choice: WeeklyChoice?
+                    if index < choices.count {
+                        choice = choices[index]
+                    }
+                    weeklyChoiceButtons[index].setTitle(choice?.title?.uppercased(), for: .normal)
+                }
+            case .partners(_, let partners):
+                self.partners = Array(partners)
+                for index in 0..<Layout.MeSection.maxPartners {
+                    var partner: Partner?
+                    if index < partners.count {
+                        partner = partners[index]
+                    }
+                    qotPartnersButtons[index].setTitle((partner?.profileImage == nil ? partner?.initials.uppercased() : nil), for: .normal)
+                    qotPartnersButtons[index].setImage(partner?.profileImage, for: .normal)
+                    qotPartnersButtons[index].imageView?.setupHexagonImageView()
+                }
+            }
         }
-        layer.sublayers?.forEach({ (layer: CALayer) in
-            layer.removeFromSuperlayer()
-        })
-        drawMyWhy(myWhyViewModel: myWhyViewModel, layout: Layout.MeSection(viewControllerFrame: bounds))
     }
     
     func drawMyWhy(myWhyViewModel: MyWhyViewModel, layout: Layout.MeSection) {
         drawSpikes(layout: layout)
-
         myWhyViewModel.items?.forEach { (myWhy: MyWhyViewModel.MyWhy) in
             switch myWhy {
             case .vision(let vision):
@@ -96,8 +125,11 @@ private extension MyWhyView {
     }
 
     func addToBeVision(layout: Layout.MeSection, vision: MyToBeVision?) {        
+        myToBeVisionBox = PassthroughView(frame: bounds)
+        myToBeVisionBox.backgroundColor = .clear
+        
         let footLabel = footerLabel(with: R.string.localized.meSectorMyWhyVisionTitle().uppercased(), labelFrame: layout.myWhyVisionFooterFrame(screenType))
-        addSubview(footLabel)
+        myToBeVisionBox.addSubview(footLabel)
         
         //TODO: frame based views are now a bit old-school!
         var visionText = "Your vision - what inspires you?"
@@ -114,30 +146,47 @@ private extension MyWhyView {
             width: layout.myWhyVisionLabelFrame(screenType).width - 10.0,
             height: (footLabel.frame.origin.y - 30.0)
         )
-        addSubview(stackView)
+        myToBeVisionBox.addSubview(stackView)
+        addSubview(myToBeVisionBox)
+        myToBeVisionLabel = visLabel
     }
 
     func addWeeklyChoices(layout: Layout.MeSection, title: String, choices: [WeeklyChoice]) {
+        weeklyChoicesBox = PassthroughView(frame: bounds)
+        weeklyChoicesBox.backgroundColor = .clear
+        
+        let max = Layout.MeSection.maxWeeklyPage
         let buttonOffset = Layout.MeSection.labelHeight * 1.3
-        var xPos = layout.myWhyWeeklyChoicesFooterXPos + CGFloat(choices.count * choices.count)
-        var yPos = layout.myWhyWeeklyChoicesFooterYPos - ((buttonOffset + 1) * CGFloat(choices.count))
+        var xPos = layout.myWhyWeeklyChoicesFooterXPos + CGFloat(max * max)
+        var yPos = layout.myWhyWeeklyChoicesFooterYPos - ((buttonOffset + 1) * CGFloat(max))
 
-        for (index, weeklyChoice) in choices.enumerated() {
+        for index in 0..<max {
+            var choice: WeeklyChoice?
+            if index < choices.count {
+                choice = choices[index]
+            }
             let buttonFrame = CGRect(
                 x: xPos,
                 y: yPos,
                 width: layout.viewControllerFrame.width * 0.33,
                 height: Layout.MeSection.labelHeight * 1.125
             )
-            addSubview(weeklyChoiceButton(title: weeklyChoice.title, frame: buttonFrame, index: index))
+            
+            let button = weeklyChoiceButton(title: choice?.title, frame: buttonFrame, index: index)
+            weeklyChoiceButtons.append(button)
+            weeklyChoicesBox.addSubview(button)
             yPos += (buttonOffset + 2)
             xPos -= CGFloat(index + 1) * 2
         }
 
-        addSubview(footerLabel(with: title, labelFrame: layout.myWhyWeeklyChoicesFooterFrame))
+        weeklyChoicesBox.addSubview(footerLabel(with: title, labelFrame: layout.myWhyWeeklyChoicesFooterFrame))
+        addSubview(weeklyChoicesBox)
     }
 
     func addPartners(layout: Layout.MeSection, title: String, partners: [PartnerWireframe]) {
+        qotPartnersBox = PassthroughView(frame: bounds)
+        qotPartnersBox.backgroundColor = .clear
+        
         let buttonOffset = layout.profileImageWidth * 0.4
         var xPos = layout.myWhyPartnersFooterXPos
         let yPos = layout.myWhyPartnersFooterYPos - buttonOffset
@@ -153,10 +202,14 @@ private extension MyWhyView {
                 width: (layout.profileImageWidth * 0.4) * layout.myWhyPartnerScaleFactor,
                 height: (layout.profileImageWidth * 0.4)
             )
-            addSubview(partnerButton(title: partner?.initials, frame: buttonFrame, profileImage: partner?.profileImage, index: index))
+            
+            let button = partnerButton(title: partner?.initials, frame: buttonFrame, profileImage: partner?.profileImage, index: index)
+            qotPartnersButtons.append(button)
+            qotPartnersBox.addSubview(button)
             xPos += buttonFrame.width + 4
         }
-        addSubview(footerLabel(with: title, labelFrame: layout.myWhyPartnersFooterFrame))
+        qotPartnersBox.addSubview(footerLabel(with: title, labelFrame: layout.myWhyPartnersFooterFrame))
+        addSubview(qotPartnersBox)
     }
 }
 
@@ -200,6 +253,9 @@ private extension MyWhyView {
 private extension MyWhyView {
 
     @objc func didTapWeeklyChoices(sender: UIButton) {
+        guard sender.tag < weeklyChoices.count else {
+            return
+        }
         delegate?.didTapWeeklyChoices(weeklyChoice: weeklyChoices[sender.tag], from: self)
     }
 

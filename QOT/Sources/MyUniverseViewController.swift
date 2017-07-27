@@ -281,3 +281,26 @@ extension MyUniverseViewController: MyDataViewDelegate {
         delegate?.didTapMyToBeVision(vision: myWhyViewModel.myToBeVision, from: button, in: self)
     }
 }
+
+// MARK: - CustomPresentationAnimatorDelegate {
+
+extension MyUniverseViewController: CustomPresentationAnimatorDelegate {
+    func animationsForAnimator(_ animator: CustomPresentationAnimator) -> (() -> Void)? {
+        if animator.toViewController is MyToBeVisionViewController {
+            return { [unowned self] in
+                self.myDataView.profileImageButton.transform = CGAffineTransform(translationX: 90.0, y: 260.0).scaledBy(x: 4.0, y: 3.0)
+                self.myWhyView.myToBeVisionBox.transform = CGAffineTransform(translationX: -120.0, y: 20.0)
+                self.myWhyView.weeklyChoicesBox.transform = CGAffineTransform(translationX: 100.0, y: 10.0)
+                self.myWhyView.qotPartnersBox.transform = CGAffineTransform(translationX: 10.0, y: 100.0)
+            }
+        } else if animator.fromViewController is MyToBeVisionViewController {
+            return { [unowned self] in
+                self.myDataView.profileImageButton.transform = .identity
+                self.myWhyView.myToBeVisionBox.transform = .identity
+                self.myWhyView.weeklyChoicesBox.transform = .identity
+                self.myWhyView.qotPartnersBox.transform = .identity
+            }
+        }
+        return nil
+    }
+}

@@ -142,3 +142,14 @@ extension TabBarController: TabBarViewDelegate {
         delegate?.didSelectTab(at: index, in: self)
     }
 }
+
+// MARK: - CustomPresentationAnimatorDelegate {
+
+extension TabBarController: CustomPresentationAnimatorDelegate {
+    func animationsForAnimator(_ animator: CustomPresentationAnimator) -> (() -> Void)? {
+        if let viewController = currentViewController as? CustomPresentationAnimatorDelegate {
+            return viewController.animationsForAnimator(animator)
+        }
+        return nil
+    }
+}

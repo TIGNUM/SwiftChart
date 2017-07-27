@@ -96,7 +96,7 @@ final class TabBarCoordinator: ParentCoordinator {
 
         let topBarControllerItem = TopTabBarController.Item(
             controllers: [myUniverseViewController],
-            themes: [.darkClear],
+            themes: [.darkClear, .darkClear],
             titles: [
                 R.string.localized.topTabBarItemTitleMeMyData(),
                 R.string.localized.topTabBarItemTitleMeMyWhy()

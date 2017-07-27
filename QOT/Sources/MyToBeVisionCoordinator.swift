@@ -9,12 +9,13 @@
 import Foundation
 import UIKit
 
-final class MyToBeVisionCoordinator: ParentCoordinator {
+final class MyToBeVisionCoordinator: NSObject, ParentCoordinator {
 
     // MARK: - Properties
 
     fileprivate let rootViewController: UIViewController
     fileprivate let services: Services
+    fileprivate var myToBeVisionViewController: MyToBeVisionViewController!
     private let viewModel: MyToBeVisionViewModel
     var children: [Coordinator] = []
 
@@ -24,11 +25,14 @@ final class MyToBeVisionCoordinator: ParentCoordinator {
         self.rootViewController = root
         self.services = services
         viewModel = MyToBeVisionViewModel(services: services)
+        super.init()
     }
 
     func start() {
-        let myToBeVisionViewController = MyToBeVisionViewController(viewModel: viewModel)
+        myToBeVisionViewController = MyToBeVisionViewController(viewModel: viewModel)
         myToBeVisionViewController.delegate = self
+        myToBeVisionViewController.modalPresentationStyle = .custom
+        myToBeVisionViewController.transitioningDelegate = self
         rootViewController.present(myToBeVisionViewController, animated: true)
     }
     
@@ -47,5 +51,21 @@ extension MyToBeVisionCoordinator: MyToBeVisionViewControllerDelegate {
         viewController.dismiss(animated: true, completion: {
             self.removeChild(child: self)
         })
+    }
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+
+extension MyToBeVisionCoordinator: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        return nil
+    }
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return CustomPresentationAnimator(isPresenting: true, duration: 0.4)
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return CustomPresentationAnimator(isPresenting: false, duration: 0.4)
     }
 }

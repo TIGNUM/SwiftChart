@@ -78,11 +78,7 @@ final class AppCoordinator: ParentCoordinator {
         viewController.startAnimatingImages {
             viewController.fadeOutLogo {
                 if self.credentialsManager.isCredentialValid {
-                    if OnboardingCoordinator.isOnboardingComplete {
-                        self.showApp()
-                    } else {
-                        self.showOnboarding()
-                    }
+                    self.showApp()
                 } else {
                     self.showLogin()
                 }
@@ -143,6 +139,10 @@ final class AppCoordinator: ParentCoordinator {
     }
     
     func showApp() {
+        guard OnboardingCoordinator.isOnboardingComplete else {
+            showOnboarding()
+            return
+        }
         Services.make { (result) in
             switch result {
             case .success(let services):
