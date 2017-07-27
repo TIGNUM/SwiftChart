@@ -28,6 +28,7 @@ PODS:
     - Realm (= 2.7.0)
   - RSKImageCropper (1.6.2)
   - UICollectionViewRightAlignedLayout (0.0.3)
+  - UrbanAirship-iOS-SDK (8.4.1)
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (~> 2.2.0)
@@ -48,6 +49,7 @@ DEPENDENCIES:
   - RealmSwift (= 2.7.0)
   - RSKImageCropper (~> 1.6.1)
   - UICollectionViewRightAlignedLayout (~> 0.0)
+  - UrbanAirship-iOS-SDK
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
@@ -72,7 +74,8 @@ SPEC CHECKSUMS:
   RealmSwift: 6d06425d3900c86473c4f323bf6949b43fca22bc
   RSKImageCropper: 3e579d0000945a8be1c0efdad728fd9e25c2fd79
   UICollectionViewRightAlignedLayout: 823eef8c567eba4a44c21bc2ffcb0d0d5f361e2d
+  UrbanAirship-iOS-SDK: 70dd4423697e775becd8d5f6049397f2a78dc40b
 
-PODFILE CHECKSUM: 326aa2ebdac868a7cdc42f4e41b8b9b31cd61cfe
+PODFILE CHECKSUM: dfd22a6a9ab8ba3b7967a2823b8d90d61e0d43c2
 
 COCOAPODS: 1.2.1

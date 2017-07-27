@@ -22,6 +22,7 @@ target 'QOT' do
   pod 'MBProgressHUD', '~> 1.0.0'
   pod 'Fabric'
   pod 'Crashlytics'
+  pod 'UrbanAirship-iOS-SDK'
 
   target 'QOTTests' do
     inherit! :search_paths

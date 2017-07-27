@@ -10,6 +10,7 @@ import UIKit
 import UserNotifications
 import Fabric
 import Crashlytics
+import AirshipKit
 
 extension AppDelegate {
     static var current: AppDelegate {
@@ -40,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.statusBarStyle = .lightContent
         window = UIWindow(frame: UIScreen.main.bounds)
         appCoordinator.start()
+        setupUAirship()
 
         #if DEBUG
             LogSettings.logLevel = .verbose
@@ -48,6 +50,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         
         return true
+    }
+
+    private func setupUAirship() {
+
+        guard let path = Bundle.main.path(forResource: "AirshipConfig", ofType: "plist") else {
+            return
+        }
+
+        let config = UAConfig(contentsOfFile: path)
+        UAirship.takeOff(config)
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

@@ -58,16 +58,20 @@
 	<string>We use this for flight info</string>
 	<key>NSCameraUsageDescription</key>
 	<string>QOT needs camera access for changing images.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>QOT needs Library access for uploading Images.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>QOT needs location access to track your steps</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>QOT needs Library access for uploading Images.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>BentonSansCond-Light.otf</string>
 		<string>Simple-Regular.ttf</string>
 		<string>BentonSans_Regular.otf</string>
 		<string>BentonSans_Book.otf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
