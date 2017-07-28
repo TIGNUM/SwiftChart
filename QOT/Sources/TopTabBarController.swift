@@ -532,6 +532,15 @@ extension TopTabBarController: CustomPresentationAnimatorDelegate {
         } else {
             return nil
         }
+
+        if viewController is WeeklyChoicesViewController {
+            view.alpha = animator.isPresenting ? 0.0 : 1.0
+            return { [unowned self] in
+                self.view.alpha = animator.isPresenting ? 1.0 : 0.0
+                viewController.animationsForAnimator(animator)?()
+            }
+        }
+
         return viewController.animationsForAnimator(animator)
     }
 }

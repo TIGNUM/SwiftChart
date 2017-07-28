@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-final class WeeklyChoicesCoordinator: ParentCoordinator {
+final class WeeklyChoicesCoordinator: NSObject, ParentCoordinator {
 
     // MARK: - Properties
 
@@ -40,8 +40,11 @@ final class WeeklyChoicesCoordinator: ParentCoordinator {
             item: topTabBarControllerItem,            
             leftIcon: R.image.ic_minimize()
         )
-        
+
         topTabBarController.delegate = self
+        topTabBarController.modalPresentationStyle = .custom
+        topTabBarController.transitioningDelegate = self
+
         rootViewController.present(topTabBarController, animated: true)
     }
 }
@@ -74,4 +77,22 @@ extension WeeklyChoicesCoordinator: TopTabBarDelegate {
         print(sender)
     }
 
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+
+extension WeeklyChoicesCoordinator: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        return nil
+    }
+
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//        return CustomPresentationAnimator(isPresenting: true, duration: 0.5)
+        return CustomPresentationAnimator(isPresenting: true, presentingDuration: 0.5, presentedDuration: 0.3)
+    }
+
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//        return CustomPresentationAnimator(isPresenting: false, duration: 0.5)
+        return CustomPresentationAnimator(isPresenting: false, presentingDuration: 0.3, presentedDuration: 0.5)
+    }
 }

@@ -15,25 +15,37 @@ protocol CustomPresentationAnimatorDelegate: class {
 
 class CustomPresentationAnimator: NSObject {
     let isPresenting: Bool
-    let duration: TimeInterval
+    let presentingDuration: TimeInterval
+    let presentedDuration: TimeInterval
     fileprivate(set) var fromViewController: UIViewController?
     fileprivate(set) var toViewController: UIViewController?
-    
+
+    fileprivate var finishedAnimations = 0
+
     init(isPresenting: Bool, duration: TimeInterval) {
         self.isPresenting = isPresenting
-        self.duration = duration
-        
+        self.presentingDuration = duration
+        self.presentedDuration = duration
+
+        super.init()
+    }
+
+    init(isPresenting: Bool, presentingDuration: TimeInterval, presentedDuration: TimeInterval) {
+        self.isPresenting = isPresenting
+        self.presentingDuration = presentingDuration
+        self.presentedDuration = presentedDuration
+
         super.init()
     }
 }
 
 extension CustomPresentationAnimator: UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return duration
+        return presentingDuration > presentedDuration ? presentingDuration : presentedDuration
     }
-    
+
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        let duration = transitionDuration(using: transitionContext)
+
         guard
             let fromViewController = transitionContext.viewController(forKey: .from),
             let toViewController = transitionContext.viewController(forKey: .to) else {
@@ -52,20 +64,35 @@ extension CustomPresentationAnimator: UIViewControllerAnimatedTransitioning {
                 transitionContext.completeTransition(false)
                 return
         }
-        
+
         if isPresenting {
             let containerView = transitionContext.containerView
             containerView.addSubview(view)
             view.frame = containerView.bounds
         }
-        
-        UIView.animate(withDuration: duration, animations: {
+
+        UIView.animate(withDuration: presentingDuration, animations: {
             fromAnimations()
-            toAnimations()
-        }, completion: { (finished: Bool) in
-            transitionContext.completeTransition(finished)
-            fromViewController.viewDidDisappear(true)
-            toViewController.viewDidAppear(true)
+        }, completion: { [unowned self] (finished: Bool) in
+            self.finishedAnimations += 1
+            self.completion(finished, transitionContext: transitionContext)
         })
+
+        UIView.animate(withDuration: presentedDuration, animations: {
+            toAnimations()
+        }, completion: { [unowned self] (finished: Bool) in
+            self.finishedAnimations += 1
+            self.completion(finished, transitionContext: transitionContext)
+        })
+    }
+
+    fileprivate func completion(_ finished: Bool, transitionContext: UIViewControllerContextTransitioning) {
+        if finishedAnimations == 2 {
+            transitionContext.completeTransition(finished)
+            if finished {
+                fromViewController?.viewDidDisappear(true)
+                toViewController?.viewDidAppear(true)
+            }
+        }
     }
 }

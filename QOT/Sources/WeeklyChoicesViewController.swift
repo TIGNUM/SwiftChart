@@ -164,3 +164,14 @@ extension WeeklyChoicesViewController: WeeklyChoicesDelegate {
         return CGSize(width: 300, height: collectionView.frame.height / 5.5)
     }
 }
+
+// MARK: - CustomPresentationAnimatorDelegate
+
+extension WeeklyChoicesViewController: CustomPresentationAnimatorDelegate {
+    func animationsForAnimator(_ animator: CustomPresentationAnimator) -> (() -> Void)? {
+        view.alpha = animator.isPresenting ? 0.0 : 1.0
+        return { [unowned self] in
+            self.view.alpha = animator.isPresenting ? 1.0 : 0.0
+        }
+    }
+}

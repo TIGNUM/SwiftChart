@@ -21,10 +21,11 @@ class MyWhyView: UIView, MyUniverseView {
     var myToBeVisionBox: PassthroughView!
     var weeklyChoicesBox: PassthroughView!
     var qotPartnersBox: PassthroughView!
+    fileprivate var hasBeenDrawn: Bool = false
     fileprivate var myToBeVisionLabel: UILabel!
     fileprivate var weeklyChoiceButtons = [UIButton]()
     fileprivate var qotPartnersButtons = [UIButton]()
-    
+
     // MARK: - Init
 
     init(myWhyViewModel: MyWhyViewModel, frame: CGRect, screenType: MyUniverseViewController.ScreenType, delegate: MyWhyViewDelegate?) {
@@ -35,7 +36,10 @@ class MyWhyView: UIView, MyUniverseView {
         super.init(frame: frame)
         
         _ = myWhyViewModel.updates.observeNext { [weak self] (_: CollectionUpdate) in
-            self?.reload()
+            guard let `self` = self else { return }
+            if self.hasBeenDrawn {
+                self.reload()
+            }
         }
     }
 
@@ -49,6 +53,7 @@ class MyWhyView: UIView, MyUniverseView {
         super.layoutSubviews()
 
         cleanUpAndDraw()
+        hasBeenDrawn = true
     }
 
     func draw() {
