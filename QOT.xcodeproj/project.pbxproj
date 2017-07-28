@@ -197,6 +197,7 @@
 		CB9BB0C01F0CCC30009067D7 /* EventsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9BB0BF1F0CCC30009067D7 /* EventsService.swift */; };
 		CB9BB0C21F0CD13E009067D7 /* TimeInterval+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9BB0C11F0CD13E009067D7 /* TimeInterval+Convenience.swift */; };
 		CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA054481E890560009E28D6 /* Dequeueable.swift */; };
+		CBAF6FD41F2A2D1F00E57426 /* PartnerValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAF6FD31F2A2D1F00E57426 /* PartnerValue.swift */; };
 		CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB237EF1E6FFF1200AB5AEF /* AppDelegate.swift */; };
 		CBB237F71E6FFF1200AB5AEF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBB237F61E6FFF1200AB5AEF /* Assets.xcassets */; };
 		CBB303421ECEE3E70011303A /* DateFormatter+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB303411ECEE3E70011303A /* DateFormatter+Convenience.swift */; };
@@ -626,6 +627,7 @@
 		CB9BB0BF1F0CCC30009067D7 /* EventsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsService.swift; sourceTree = "<group>"; };
 		CB9BB0C11F0CD13E009067D7 /* TimeInterval+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Convenience.swift"; sourceTree = "<group>"; };
 		CBA054481E890560009E28D6 /* Dequeueable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dequeueable.swift; sourceTree = "<group>"; };
+		CBAF6FD31F2A2D1F00E57426 /* PartnerValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerValue.swift; sourceTree = "<group>"; };
 		CBB237EC1E6FFF1200AB5AEF /* QOT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QOT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBB237EF1E6FFF1200AB5AEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBB237F61E6FFF1200AB5AEF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -891,9 +893,10 @@
 		7F0888821F0A4B9C005CE966 /* Partner */ = {
 			isa = PBXGroup;
 			children = (
-				7F691C521F0CFA8100E2C180 /* PartnerWireframe.swift */,
 				7F0888801F0A4B96005CE966 /* Partner.swift */,
 				7F0888851F0A7602005CE966 /* PartnerIntermediary.swift */,
+				CBAF6FD31F2A2D1F00E57426 /* PartnerValue.swift */,
+				7F691C521F0CFA8100E2C180 /* PartnerWireframe.swift */,
 			);
 			name = Partner;
 			sourceTree = "<group>";
@@ -2422,6 +2425,7 @@
 				CC05CB761EDEC6D700D15ABC /* CGPoint+Convenience.swift in Sources */,
 				CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */,
 				CB810E641EF00DB70043E3E5 /* User.swift in Sources */,
+				CBAF6FD41F2A2D1F00E57426 /* PartnerValue.swift in Sources */,
 				852DADD21EF04DEA00A10882 /* AverageMeetingLengthView.swift in Sources */,
 				CC27E0C01EB355BC003E5B7F /* SidebarTableViewCell.swift in Sources */,
 				CCA2DC671EF17BCE00D1DF6A /* LearnContentItemHeaderView.swift in Sources */,

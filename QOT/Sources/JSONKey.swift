@@ -58,6 +58,7 @@ enum JsonKey: String {
     case heightUnit
     case heightUnits
     case id
+    case images
     case imageURL
     case increment
     case interval
@@ -96,6 +97,7 @@ enum JsonKey: String {
     case periods
     case publicHolidays
     case qotId
+    case qotPartnerUserId
     case question
     case questionDescription
     case questionGroupId
@@ -108,6 +110,7 @@ enum JsonKey: String {
     case referrerPageId
     case relatedContent
     case relatedContentIds
+    case relationship
     case resultList
     case role
     case searchTags
@@ -142,6 +145,7 @@ enum JsonKey: String {
     case targetTypeId
     case teamAverage
     case telephone
+    case telephoneNumber
     case text
     case thumbnail
     case timestamp

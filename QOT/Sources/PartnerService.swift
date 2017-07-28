@@ -18,9 +18,9 @@ final class PartnerService {
         return AnyRealmCollection(results)
     }
     
-    var partnersIntermediary: [PartnerIntermediary] {
-        return partners.map({ (partner: Partner) -> PartnerIntermediary in
-            return PartnerIntermediary(
+    var partnerValues: [PartnerValue] {
+        return partners.map({ (partner: Partner) -> PartnerValue in
+            return PartnerValue(
                 localID: partner.localID,
                 profileImageURL: partner.profileImageURL,
                 name: partner.name,
@@ -53,12 +53,12 @@ final class PartnerService {
         }
     }
     
-    func update(_ partners: [PartnerIntermediary], completion: ((Error?) -> Void)?) {
+    func update(_ partners: [PartnerValue], completion: ((Error?) -> Void)?) {
         DispatchQueue.global().async {
             do {
                 let realm = try self.realmProvider.realm()
                 try realm.write {
-                    partners.forEach({ (p: PartnerIntermediary) in
+                    partners.forEach({ (p: PartnerValue) in
                         let partner = Partner(
                             localID: p.localID,
                             name: p.name,

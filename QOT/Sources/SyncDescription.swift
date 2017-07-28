@@ -19,6 +19,7 @@ let DataPointDown = SyncDescription<MyStatisticsIntermediary, MyStatistics>(sync
 let SystemSettingDown = SyncDescription<SystemSettingIntermediary, SystemSetting>(syncType: .systemSettingDown)
 let UserSettingDown = SyncDescription<UserSettingIntermediary, UserSetting>(syncType: .userSettingDown)
 let UserChoiceDown = SyncDescription<UserChoiceIntermediary, UserChoice>(syncType: .userChoiceDown)
+let PartnerDown = SyncDescription<PartnerIntermediary, Partner>(syncType: .partnerDown)
 
 struct SyncDescription<Intermediary, Persistable> where Intermediary: DownSyncIntermediary {
     let syncType: SyncType

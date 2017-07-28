@@ -64,6 +64,13 @@ final class CalendarEvent: Object, UpSyncableWithLocalAndRemoteIDs {
         return event.toJSON(id: remoteID.value, createdAt: createdAt, modifiedAt: modifiedAt, syncStatus: syncStatus.rawValue, eventID: eventID)
     }
 
+    static var jsonEncoder: (CalendarEvent) -> JSON? {
+        return { (event) in
+            let store = EKEventStore()
+            return event.json(eventStore: store)
+        }
+    }
+
     var eventID: String {
         return localID
     }

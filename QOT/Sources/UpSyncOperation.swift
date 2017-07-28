@@ -15,14 +15,14 @@ final class UpSyncOperation<T>: ConcurrentOperation where T: Object, T: UpSyncab
     private let networkManager: NetworkManager
     private let realmProvider: RealmProvider
     private let context: SyncContext
-    private let jsonEncoder: (T) -> JSON?
     private let isFinalOperation: Bool
+    private let jsonEncoder: (T) -> JSON?
 
     init(networkManager: NetworkManager,
          realmProvider: RealmProvider,
          syncContext: SyncContext,
-         jsonEncoder: @escaping (T) -> JSON?,
-         isFinalOperation: Bool) {
+         isFinalOperation: Bool,
+         jsonEncoder: @escaping (T) -> JSON?) {
         self.networkManager = networkManager
         self.realmProvider = realmProvider
         self.context = syncContext

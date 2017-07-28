@@ -79,46 +79,18 @@ final class SyncManager {
             downSyncOperation(for: ContentCollectionDown, context: context),
             downSyncOperation(for: DataPointDown, context: context),
             downSyncOperation(for: ContentItemDown, context: context),
+            downSyncOperation(for: PartnerDown, context: context),
             UpdateRelationsOperation(context: context, realmProvider: realmProvider, isFinalOperation: true)
         ]
 
         operationQueue.addOperations(operations, waitUntilFinished: false)
     }
 
-    func syncCalendarEvents() {
+    func upSyncAll() {
         let context = SyncContext(queue: operationQueue) { (state, errors) in
             switch state {
             case .finished:
-                print("CALENDAR EVENTS SYNC FINISHED with \(errors.count) errors")
-                errors.forEach({ (error: SyncError) in
-                    print(error)
-                })
-            default:
-                break
-            }
-        }
-
-        let jsonEncoder: (CalendarEvent) -> JSON? = { (event) in
-            let store = EKEventStore()
-            return event.json(eventStore: store)
-        }
-
-        let operations: [Operation] = [
-            UpSyncOperation<CalendarEvent>(networkManager: networkManager,
-                                           realmProvider: realmProvider,
-                                           syncContext: context,
-                                           jsonEncoder: jsonEncoder,
-                                           isFinalOperation: true)
-        ]
-
-        operationQueue.addOperations(operations, waitUntilFinished: false)
-    }
-
-    func syncAllMockJSONs() {
-        let context = SyncContext(queue: operationQueue) { (state, errors) in
-            switch state {
-            case .finished:
-                print("SYNC ALL MOCK JSON FINISHED with \(errors.count) errors")
+                print("UP SYNC ALL FINISHED with \(errors.count) errors")
                 errors.forEach({ (error: SyncError) in
                     print(error)
                 })
@@ -128,11 +100,8 @@ final class SyncManager {
         }
 
         let operations: [Operation] = [
-            downSyncOperation(for: UserDown, context: context),
-            downSyncOperation(for: ContentCategoryDown, context: context),
-            downSyncOperation(for: ContentCollectionDown, context: context),
-            downSyncOperation(for: ContentItemDown, context: context),
-            downSyncOperation(for: PageDown, context: context)
+            upSyncOperation(context: context, jsonEncoder: CalendarEvent.jsonEncoder),
+            upSyncOperation(context: context, isFinalOperation: true, jsonEncoder: Partner.jsonEncoder)
         ]
 
         operationQueue.addOperations(operations, waitUntilFinished: false)
@@ -146,5 +115,15 @@ final class SyncManager {
                                  realmProvider: realmProvider,
                                  downSyncImporter: DownSyncImporter(),
                                  isFinalOperation: isFinalOperation)
+    }
+
+    private func upSyncOperation<T>(context: SyncContext,
+                                    isFinalOperation: Bool = false,
+                                    jsonEncoder: @escaping (T) -> JSON?) -> UpSyncOperation<T> where T: Object, T: UpSyncable {
+        return UpSyncOperation<T>(networkManager: networkManager,
+                                  realmProvider: realmProvider,
+                                  syncContext: context,
+                                  isFinalOperation: isFinalOperation,
+                                  jsonEncoder: jsonEncoder)
     }
 }

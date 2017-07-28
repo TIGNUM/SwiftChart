@@ -29,6 +29,7 @@ enum Endpoint: String {
     case emailCheck = "/personal/p/user/by-email"
     case dataPoint = "/personal/p/qot/dataPoint"
     case userChoice = "/personal/p/qot/userChoice"
+    case partner = "/personal/p/qot/qotPartner"
 
     func url(baseURL: URL) -> URL {
         return baseURL.appendingPathComponent(rawValue)

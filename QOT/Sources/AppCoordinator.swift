@@ -150,12 +150,9 @@ final class AppCoordinator: ParentCoordinator {
                 self.services = services
                 self.calendarImportManager.importEvents()
                 self.startTabBarCoordinator(services: services, permissionHandler: self.permissionHandler)
-                
-                // FIXME: remove this in production?
-                if MockToggle.json == false {
-                    self.syncManager.syncAll()
-                    self.syncManager.syncCalendarEvents()
-                }
+
+                self.syncManager.upSyncAll()
+                self.syncManager.syncAll()
             case .failure:
                 // TODO: localise alert text
                 self.showAlert(type: .custom(title: "Error", message: "There was a problem initializing the app's data. Please restart the app and try again"), handler: {

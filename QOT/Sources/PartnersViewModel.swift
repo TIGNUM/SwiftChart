@@ -14,14 +14,15 @@ final class PartnersViewModel {
     
     // MARK: - Properties
 
-    var items: [PartnerIntermediary?]
+    var items: [PartnerValue?]
     let headline: String
     private(set) var selectedIndex: Index
-    fileprivate var currentEditPartner: PartnerIntermediary?
+    fileprivate var currentEditPartner: PartnerValue?
 
     init(services: Services, selectedIndex: Index, headline: String) {
-        self.items = services.partnerService.partnersIntermediary
-        for _ in 0..<(Layout.MeSection.maxPartners - items.count) { // pad default items with placeholders
+        let maxPartners = Layout.MeSection.maxPartners
+        self.items = Array(services.partnerService.partnerValues.prefix(maxPartners))
+        for _ in 0..<(maxPartners - items.count) { // pad default items with placeholders
             self.items.append(nil)
         }
         self.selectedIndex = selectedIndex
@@ -32,14 +33,14 @@ final class PartnersViewModel {
         return items.count
     }
     
-    func item(at index: Index) -> PartnerIntermediary? {
+    func item(at index: Index) -> PartnerValue? {
         return items[index]
     }
 
     func updateIndex(index: Index) {
         save()
         selectedIndex = index
-        currentEditPartner = item(at: index) ?? PartnerIntermediary(
+        currentEditPartner = item(at: index) ?? PartnerValue(
             localID: UUID().uuidString,
             profileImageURL: nil,
             name: nil,

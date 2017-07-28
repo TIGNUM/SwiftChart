@@ -7,12 +7,25 @@
 //
 
 import UIKit
+import Freddy
 
-struct PartnerIntermediary: PartnerWireframe {
-    let localID: String
-    var profileImageURL: String?
+struct PartnerIntermediary {
+
+    var remoteProfileImageURL: String?
     var name: String?
     var surname: String?
     var relationship: String?
     var email: String?
+}
+
+extension PartnerIntermediary: DownSyncIntermediary {
+
+    init(json: JSON) throws {
+        remoteProfileImageURL = try json.getString(at: JsonKey.images.rawValue, 0, JsonKey.mediaURL.rawValue,
+                                                   alongPath: [.MissingKeyBecomesNil, .NullBecomesNil])
+        name = try json.getItemValue(at: .firstName)
+        surname = try json.getItemValue(at: .lastName)
+        relationship = try json.getItemValue(at: .relationship)
+        email = try json.getItemValue(at: .email)
+    }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReactiveKit
 
 class MyWhyView: UIView, MyUniverseView {
 
@@ -21,11 +22,11 @@ class MyWhyView: UIView, MyUniverseView {
     var myToBeVisionBox: PassthroughView!
     var weeklyChoicesBox: PassthroughView!
     var qotPartnersBox: PassthroughView!
-    fileprivate var hasBeenDrawn: Bool = false
     fileprivate var myToBeVisionLabel: UILabel!
     fileprivate var weeklyChoiceButtons = [UIButton]()
     fileprivate var qotPartnersButtons = [UIButton]()
-
+    fileprivate var updatesToken: Disposable?
+    
     // MARK: - Init
 
     init(myWhyViewModel: MyWhyViewModel, frame: CGRect, screenType: MyUniverseViewController.ScreenType, delegate: MyWhyViewDelegate?) {
@@ -34,13 +35,6 @@ class MyWhyView: UIView, MyUniverseView {
         self.screenType = screenType
 
         super.init(frame: frame)
-        
-        _ = myWhyViewModel.updates.observeNext { [weak self] (_: CollectionUpdate) in
-            guard let `self` = self else { return }
-            if self.hasBeenDrawn {
-                self.reload()
-            }
-        }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -53,7 +47,12 @@ class MyWhyView: UIView, MyUniverseView {
         super.layoutSubviews()
 
         cleanUpAndDraw()
-        hasBeenDrawn = true
+
+        if updatesToken == nil {
+            updatesToken = myWhyViewModel.updates.observeNext { [weak self] (_: CollectionUpdate) in
+                self?.reload()
+            }
+        }
     }
 
     func draw() {
@@ -66,6 +65,10 @@ class MyWhyView: UIView, MyUniverseView {
     private func addGestureRecognizer() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapMyToBeVision))
         addGestureRecognizer(tapGestureRecognizer)
+    }
+
+    deinit {
+        updatesToken?.dispose()
     }
 }
 

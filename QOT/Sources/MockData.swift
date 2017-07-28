@@ -21,21 +21,6 @@ private let syncManager: SyncManager = {
     return SyncManager(networkManager: networkManager, syncRecordService: syncRecordService, realmProvider: realmProvider)
 }()
 
-/// Deletes all data in default realm and fills with mock data.
-func setupRealmWithMockData(realm: Realm) {
-    do {
-        try realm.write {
-            if realm.isEmpty == true {
-                if MockToggle.json == true {
-                    syncManager.syncAllMockJSONs()
-                }
-            }
-        }
-    } catch let error {
-        fatalError("Realm error: \(error)")
-    }
-}
-
 var textItemJSON: String {
     var dict: [String: Any] = [:]
     dict["text"] = LoremIpsum.sentences(withNumber: Int.random(between: 5, and: 15))
