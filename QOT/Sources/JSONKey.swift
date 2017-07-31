@@ -128,6 +128,7 @@ enum JsonKey: String {
     case settingsIds
     case settingTextValue
     case settingTextValueDtos
+    case shortDescription
     case sortOrder
     case start
     case startDate
@@ -160,6 +161,8 @@ enum JsonKey: String {
     case userImageURL
     case userInfo
     case vacation
+    case validFrom
+    case validUntil
     case value
     case viewed
     case waveformData

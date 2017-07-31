@@ -13,7 +13,7 @@ protocol MyToBeVisionWireframe {
     var subHeadline: String? { get set }
     var text: String? { get set }
     var profileImageURL: String? { get set }
-    var date: Date? { get set }
+    var date: Date { get set }
 }
 
 extension MyToBeVisionWireframe {
@@ -28,5 +28,12 @@ extension MyToBeVisionWireframe {
             log(error)
             return nil
         }
+    }
+
+    func shouldUpdate(with new: MyToBeVisionWireframe) -> Bool {
+        return headline != new.headline ||
+            subHeadline != new.subHeadline ||
+            text != new.text ||
+            profileImageURL != new.profileImageURL
     }
 }

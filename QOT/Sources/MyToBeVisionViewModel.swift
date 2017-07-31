@@ -12,7 +12,7 @@ final class MyToBeVisionViewModel {
 
     // MARK: - Properties
 
-    private(set) var item: MyToBeVisionIntermediary
+    private(set) var item: MyToBeVisionValue
     var headline: String? {
         return item.headline
     }
@@ -26,15 +26,12 @@ final class MyToBeVisionViewModel {
         return item.profileImage
     }
     var dateText: String? {
-        guard let date = item.date else {
-            return nil
-        }
-        
+
         let now = Date()
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .full
         let calendar = NSCalendar.current
-        let components = calendar.dateComponents([.year, .month, .weekOfMonth, .day, .hour, .minute, .second], from: date, to: now)
+        let components = calendar.dateComponents([.year, .month, .weekOfMonth, .day, .hour, .minute, .second], from: item.date, to: now)
         guard let dateText = formatter.string(from: components) else {
             return nil
         }
@@ -42,14 +39,14 @@ final class MyToBeVisionViewModel {
     }
     
     init(services: Services) {
-        let item = services.userService.myToBeVisionIntermediary()
-        self.item = item ?? MyToBeVisionIntermediary(
+        let item = services.userService.myToBeVisionValue()
+        self.item = item ?? MyToBeVisionValue(
             localID: UUID().uuidString,
             headline: nil,
             subHeadline: nil,
             text: nil,
             profileImageURL: nil,
-            date: nil)
+            date: Date())
     }
     
     func updateHeadline(_ headline: String?) {
@@ -58,10 +55,6 @@ final class MyToBeVisionViewModel {
     
     func updateText(_ text: String?) {
         item.text = text
-    }
-    
-    func updateDate(_ date: Date?) {
-        item.date = date
     }
     
     func updateProfileImageURL(_ profileImageURL: String?) {

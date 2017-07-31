@@ -17,4 +17,13 @@ protocol DownSyncable: class {
     var modifiedAt: Date { get set }
 
     func setData(_ data: Data, objectStore: ObjectStore) throws
+
+    static func object(remoteID: Int, store: ObjectStore) throws -> Self?
+}
+
+extension DownSyncable where Self: Object {
+
+    static func object(remoteID: Int, store: ObjectStore) throws -> Self? {
+        return try store.uniqueObject(Self.self, predicate: NSPredicate(remoteID: remoteID))
+    }
 }

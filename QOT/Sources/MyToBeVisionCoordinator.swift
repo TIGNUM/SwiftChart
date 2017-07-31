@@ -37,7 +37,6 @@ final class MyToBeVisionCoordinator: NSObject, ParentCoordinator {
     }
     
     func save() {
-        viewModel.updateDate(Date())
         services.userService.updateMyToBeVision(viewModel.item, completion: nil)
     }
 }

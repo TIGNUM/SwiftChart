@@ -79,7 +79,7 @@ extension Partner: DownSyncable {
 
 extension Partner {
 
-    func json() -> JSON? {
+    func toJson() -> JSON? {
         guard syncStatus != .clean else { return nil }
 
         let dict: [JsonKey: JSONEncodable] = [
@@ -94,11 +94,5 @@ extension Partner {
             .relationship: relationship.toJSONEncodable
         ]
         return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
-    }
-
-    static var jsonEncoder: (Partner) -> JSON? {
-        return { (partner) in
-            return partner.json()
-        }
     }
 }

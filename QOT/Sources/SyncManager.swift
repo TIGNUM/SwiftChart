@@ -80,6 +80,7 @@ final class SyncManager {
             downSyncOperation(for: DataPointDown, context: context),
             downSyncOperation(for: ContentItemDown, context: context),
             downSyncOperation(for: PartnerDown, context: context),
+            downSyncOperation(for: MyToBeVisionDown, context: context),
             UpdateRelationsOperation(context: context, realmProvider: realmProvider, isFinalOperation: true)
         ]
 
@@ -100,8 +101,9 @@ final class SyncManager {
         }
 
         let operations: [Operation] = [
-            upSyncOperation(context: context, jsonEncoder: CalendarEvent.jsonEncoder),
-            upSyncOperation(context: context, isFinalOperation: true, jsonEncoder: Partner.jsonEncoder)
+            upSyncOperation(CalendarEvent.self, context: context),
+            upSyncOperation(MyToBeVision.self, context: context),
+            upSyncOperation(Partner.self, context: context, isFinalOperation: true)
         ]
 
         operationQueue.addOperations(operations, waitUntilFinished: false)
@@ -117,13 +119,12 @@ final class SyncManager {
                                  isFinalOperation: isFinalOperation)
     }
 
-    private func upSyncOperation<T>(context: SyncContext,
-                                    isFinalOperation: Bool = false,
-                                    jsonEncoder: @escaping (T) -> JSON?) -> UpSyncOperation<T> where T: Object, T: UpSyncable {
+    private func upSyncOperation<T>(_ type: T.Type,
+                                    context: SyncContext,
+                                    isFinalOperation: Bool = false) -> UpSyncOperation<T> where T: Object, T: UpSyncable {
         return UpSyncOperation<T>(networkManager: networkManager,
                                   realmProvider: realmProvider,
                                   syncContext: context,
-                                  isFinalOperation: isFinalOperation,
-                                  jsonEncoder: jsonEncoder)
+                                  isFinalOperation: isFinalOperation)
     }
 }

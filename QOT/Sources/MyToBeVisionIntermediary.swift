@@ -2,17 +2,29 @@
 //  MyToBeVisionIntermediary.swift
 //  QOT
 //
-//  Created by Lee Arromba on 05/07/2017.
+//  Created by Sam Wyndham on 28.07.17.
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
 import Foundation
+import Freddy
 
-struct MyToBeVisionIntermediary: MyToBeVisionWireframe {
-    var localID: String
+struct MyToBeVisionIntermediary: DownSyncIntermediary {
+
     var headline: String?
     var subHeadline: String?
     var text: String?
     var profileImageURL: String?
-    var date: Date?
+    var validFrom: Date
+    var validTo: Date?
+
+    init(json: JSON) throws {
+        profileImageURL = try json.getString(at: JsonKey.images.rawValue, 0, JsonKey.mediaURL.rawValue,
+                                                   alongPath: [.MissingKeyBecomesNil, .NullBecomesNil])
+        headline = try json.getItemValue(at: .title)
+        subHeadline = try json.getItemValue(at: .shortDescription)
+        text = try json.getItemValue(at: .description)
+        validFrom = (try json.getDate(at: .validFrom) as Date?) ?? Date()
+        validTo = try json.getDate(at: .validUntil)
+    }
 }

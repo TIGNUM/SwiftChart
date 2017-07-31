@@ -20,6 +20,7 @@ let SystemSettingDown = SyncDescription<SystemSettingIntermediary, SystemSetting
 let UserSettingDown = SyncDescription<UserSettingIntermediary, UserSetting>(syncType: .userSettingDown)
 let UserChoiceDown = SyncDescription<UserChoiceIntermediary, UserChoice>(syncType: .userChoiceDown)
 let PartnerDown = SyncDescription<PartnerIntermediary, Partner>(syncType: .partnerDown)
+let MyToBeVisionDown = SyncDescription<MyToBeVisionIntermediary, MyToBeVision>(syncType: .myToBeVisionDown)
 
 struct SyncDescription<Intermediary, Persistable> where Intermediary: DownSyncIntermediary {
     let syncType: SyncType

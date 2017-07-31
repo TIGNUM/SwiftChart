@@ -57,17 +57,14 @@ final class CalendarEvent: Object, UpSyncableWithLocalAndRemoteIDs {
         }
     }
 
-    func json(eventStore: EKEventStore) -> JSON? {
-        guard let event = eventStore.event(withIdentifier: eventID) else {
+    func toJson() -> JSON? {
+        if let event = eventStore.event(withIdentifier: eventID) {
+            return event.toJSON(id: remoteID.value, createdAt: createdAt, modifiedAt: modifiedAt, syncStatus: syncStatus.rawValue, eventID: eventID)
+        } else if syncStatus == .deleted, let remoteID = remoteID.value {
+            let dict: [JsonKey: JSONEncodable] = [.id: remoteID, .syncStatus: syncStatus.rawValue]
+            return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
+        } else {
             return nil
-        }
-        return event.toJSON(id: remoteID.value, createdAt: createdAt, modifiedAt: modifiedAt, syncStatus: syncStatus.rawValue, eventID: eventID)
-    }
-
-    static var jsonEncoder: (CalendarEvent) -> JSON? {
-        return { (event) in
-            let store = EKEventStore()
-            return event.json(eventStore: store)
         }
     }
 
@@ -79,3 +76,5 @@ final class CalendarEvent: Object, UpSyncableWithLocalAndRemoteIDs {
         return .calendarEvent
     }
 }
+
+private let eventStore = EKEventStore()

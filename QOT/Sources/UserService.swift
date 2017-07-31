@@ -98,11 +98,11 @@ extension UserService {
         return mainRealm.objects(MyToBeVision.self).first
     }
     
-    func myToBeVisionIntermediary() -> MyToBeVisionIntermediary? {
+    func myToBeVisionValue() -> MyToBeVisionValue? {
         guard let mytoBeVision = myToBeVision() else {
             return nil
         }
-        return MyToBeVisionIntermediary(
+        return MyToBeVisionValue(
             localID: mytoBeVision.localID,
             headline: mytoBeVision.headline,
             subHeadline: mytoBeVision.subHeadline,
@@ -119,7 +119,7 @@ extension UserService {
         return myToBeVision
     }
     
-    func updateMyToBeVision(_ myToBeVision: MyToBeVisionIntermediary, completion: ((Error?) -> Void)?) {
+    func updateMyToBeVision(_ myToBeVision: MyToBeVisionValue, completion: ((Error?) -> Void)?) {
         DispatchQueue.global().async {
             do {
                 let realm = try self.realmProvider.realm()

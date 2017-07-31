@@ -17,7 +17,7 @@ class DownSyncImporter<T> where T: DownSyncable, T: Object {
                 switch change {
                 case .createdOrUpdated(let remoteID, let createdAt, let modifiedAt, let data):
                     let object: T
-                    if let existing = try store.uniqueObject(T.self, predicate: NSPredicate(remoteID: remoteID)) {
+                    if let existing = try T.object(remoteID: remoteID, store: store) {
                         object = existing
                     } else {
                         object = T.make(remoteID: remoteID, createdAt: createdAt)

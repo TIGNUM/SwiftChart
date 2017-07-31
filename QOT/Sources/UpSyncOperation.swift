@@ -16,17 +16,14 @@ final class UpSyncOperation<T>: ConcurrentOperation where T: Object, T: UpSyncab
     private let realmProvider: RealmProvider
     private let context: SyncContext
     private let isFinalOperation: Bool
-    private let jsonEncoder: (T) -> JSON?
 
     init(networkManager: NetworkManager,
          realmProvider: RealmProvider,
          syncContext: SyncContext,
-         isFinalOperation: Bool,
-         jsonEncoder: @escaping (T) -> JSON?) {
+         isFinalOperation: Bool) {
         self.networkManager = networkManager
         self.realmProvider = realmProvider
         self.context = syncContext
-        self.jsonEncoder = jsonEncoder
         self.isFinalOperation = isFinalOperation
     }
 
@@ -55,35 +52,33 @@ final class UpSyncOperation<T>: ConcurrentOperation where T: Object, T: UpSyncab
 
     private func fetchDirtyObjects(syncToken: String) {
         do {
-            let dirty = try DirtyObjects<T>(realm: realmProvider, encoder: jsonEncoder)
-            if dirty.count == 0 {
-                finish(error: nil)
+            if let dirty = try T.upSyncData(realm: realmProvider) {
+                sendDirty(data: dirty, syncToken: syncToken)
             } else {
-                sendDirty(objects: dirty, syncToken: syncToken)
+                finish(error: nil)
             }
         } catch let error {
             finish(error: .upSyncFetchDirtyFailed(error: error))
         }
     }
 
-    private func sendDirty(objects: DirtyObjects<T>, syncToken: String) {
-        let request = UpSyncRequest(endpoint: T.endpoint, body: objects.body, syncToken: syncToken)
+    private func sendDirty(data: UpSyncData, syncToken: String) {
+        let request = UpSyncRequest(endpoint: T.endpoint, body: data.body, syncToken: syncToken)
         networkManager.request(request, parser: UpSyncResultParser.parse) { [weak self] (result) in
             switch result {
             case .success(let upSyncResult):
-                self?.updateDirty(objects: objects, result: upSyncResult)
+                self?.updateDirty(data: data, result: upSyncResult)
             case .failure(let error):
                 self?.finish(error: .upSyncSendDirtyFailed(error: error))
             }
         }
     }
 
-    private func updateDirty(objects: DirtyObjects<T>, result: UpSyncResult) {
+    private func updateDirty(data: UpSyncData, result: UpSyncResult) {
         do {
-            let remoteIDs = result.remoteIDs
             let realm = try realmProvider.realm()
             try realm.write {
-                try objects.completions.forEach { try $0(remoteIDs, realm)  }
+                try data.completion(result.remoteIDs, realm)
             }
             fetchDirtyObjects(syncToken: result.nextSyncToken)
         } catch let error {
@@ -101,29 +96,5 @@ final class UpSyncOperation<T>: ConcurrentOperation where T: Object, T: UpSyncab
         }
 
         finish()
-    }
-}
-
-private struct DirtyObjects<T> where T: Object, T: UpSyncable {
-
-    let body: Data
-    let completions: [(LocalIDToRemoteIDMap, Realm) throws -> Void]
-
-    var count: Int {
-        return completions.count
-    }
-
-    init(realm: RealmProvider, encoder: @escaping (T) -> JSON?, max: Int = 50) throws {
-        let realm = try realm.realm()
-        let objectsWithJSON = (realm.objects(predicate: T.dirtyPredicate) as Results<T>).prefix(max).flatMap { (object) -> (T, JSON)? in
-            if let json = encoder(object), object.syncStatus != .clean {
-                return (object, json)
-            } else {
-                return nil
-            }
-        }
-
-        self.body = try objectsWithJSON.map { $0.1 }.toJSON().serialize()
-        self.completions = objectsWithJSON.map { $0.0.completeUpSync() }
     }
 }
