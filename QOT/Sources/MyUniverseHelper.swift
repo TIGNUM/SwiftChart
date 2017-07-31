@@ -12,12 +12,12 @@ import UIKit
 struct MyUniverseHelper {
 
     fileprivate static var dataCenterPoints = [[CGPoint]]()
-    fileprivate static var connectionCenterPoitns = [[CGPoint]]()
+    fileprivate static var connectionCenterPoints = [[CGPoint]]()
 
-    static func radius(for load: CGFloat, layout: Layout.MeSection) -> CGFloat {
+    static func radius(for load: CGFloat, layout: Layout.MeSection, radiusOffset: CGFloat = 0) -> CGFloat {
         let factor: CGFloat = layout.radiusMaxLoad
         let offset: CGFloat = (layout.profileImageWidth * 0.5 + Layout.MeSection.loadOffset)
-        return (load * (factor - Layout.MeSection.loadOffset)) + (offset * 0.4)
+        return (load * (factor - Layout.MeSection.loadOffset)) + (offset * 0.4) - radiusOffset
     }
 }
 
@@ -27,9 +27,9 @@ extension MyUniverseHelper {
 
     static func collectCenterPoints(layout: Layout.MeSection, sectors: [Sector], relativeCenter: CGPoint) {
         sectors.forEach { (sector: Sector) in
-            let centerPoints = sector.spikes.map({ relativeCenter.shifted(radius(for: $0.spikeLoad(), layout: layout), with: $0.angle) })
+            let centerPoints = sector.spikes.map({ relativeCenter.shifted(radius(for: $0.spikeLoad(), layout: layout, radiusOffset: sector.type.lineWidth(load: $0.spikeLoad()) + $0.spikeLoad() * 6.6), with: $0.angle) })
             dataCenterPoints.append(centerPoints)            
-            connectionCenterPoitns.append(centerPoints)
+            connectionCenterPoints.append(centerPoints)
         }
     }
 
@@ -43,7 +43,7 @@ extension MyUniverseHelper {
                 centerPoints.append(layout.loadCenter)
             }
 
-            connectionCenterPoitns.append(centerPoints)
+            connectionCenterPoints.append(centerPoints)
         }
     }
 }
@@ -55,7 +55,7 @@ extension MyUniverseHelper {
     static func dataPointConnections(sectors: [Sector], layout: Layout.MeSection) -> [CAShapeLayer] {
         var connections = [CAShapeLayer]()
         MyUniverseHelper.addAditionalConnectionPoints(sectors: sectors, layout: layout)
-        connectionCenterPoitns.shuffled().forEach { (centerPopints: [CGPoint]) in
+        connectionCenterPoints.shuffled().forEach { (centerPopints: [CGPoint]) in
             for (index, center) in centerPopints.shuffled().enumerated() {
                 let nextIndex = (index + 1)
 

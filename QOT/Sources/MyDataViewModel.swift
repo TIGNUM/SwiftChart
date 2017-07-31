@@ -115,9 +115,9 @@ struct MockSpike: Spike {
     let angle: CGFloat
     let load: CGFloat
 
-    // TODO: What da hack! Actually the load is always from 0.1 to 0.9.
     func spikeLoad() -> CGFloat {
-        return (load > 0.9 ? 0.9 : ((load < 0.15) ? 0.15 : load))
+        return (load < 0.15) ? 0.15 : load
+//        return (load > 0.9 ? 0.9 : ((load < 0.15) ? 0.15 : load))
     }
 }
 

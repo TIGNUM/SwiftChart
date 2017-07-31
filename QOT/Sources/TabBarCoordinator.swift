@@ -221,9 +221,9 @@ private extension TabBarCoordinator {
 extension TabBarCoordinator {
 
     func start() {
-        window.setRootViewControllerWithFadeAnimation(bottomTabBarController())
-        window.makeKeyAndVisible()
         tabBarController = bottomTabBarController()
+        window.setRootViewControllerWithFadeAnimation(tabBarController!)
+        window.makeKeyAndVisible()
         hasStarted = true
 
         if hasLoaded {

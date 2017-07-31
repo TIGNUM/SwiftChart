@@ -81,82 +81,6 @@ struct Layout {
             return viewControllerFrame.height * 0.412
         }
 
-        var myWhyVisionFooterXPos: CGFloat {
-            return viewControllerFrame.width * 0.115
-        }
-
-        var myWhyVisionFooterYPos: CGFloat {
-            return viewControllerFrame.height * 0.325
-        }
-
-        func myWhyVisionFooterFrame(_ screenType: MyUniverseViewController.ScreenType) -> CGRect {
-            var deviceOffset: CGFloat = 0
-
-            switch screenType {
-            case .big: deviceOffset = 0
-            case .medium: deviceOffset = 0
-            case .small: deviceOffset = -15
-            }
-
-            return CGRect(
-                x: myWhyVisionFooterXPos,
-                y: myWhyVisionFooterYPos + deviceOffset,
-                width: 0,
-                height: Layout.MeSection.labelHeight
-            )
-        }
-
-        func myWhyVisionLabelFrame(_ screenType: MyUniverseViewController.ScreenType) -> CGRect {
-            var deviceOffset: CGFloat = 0
-
-            switch screenType {
-            case .big: deviceOffset = 0
-            case .medium: deviceOffset = 15
-            case .small: deviceOffset = -15
-            }
-
-            return CGRect(
-                x: myWhyVisionFooterXPos,
-                y: (viewControllerFrame.height * 0.15) + deviceOffset,
-                width: profileImageWidth * 2.25,
-                height: Layout.MeSection.labelHeight
-            )
-        }
-
-        var myWhyWeeklyChoicesFooterXPos: CGFloat {
-            return viewControllerFrame.width * 0.25
-        }
-
-        var myWhyWeeklyChoicesFooterYPos: CGFloat {
-            return viewControllerFrame.height * 0.57
-        }
-
-        var myWhyWeeklyChoicesFooterFrame: CGRect {
-            return CGRect(
-                x: myWhyWeeklyChoicesFooterXPos,
-                y: myWhyWeeklyChoicesFooterYPos + 10,
-                width: 0,
-                height: Layout.MeSection.labelHeight
-            )
-        }
-
-        var myWhyPartnersFooterXPos: CGFloat {
-            return viewControllerFrame.width * 0.08
-        }
-
-        var myWhyPartnersFooterYPos: CGFloat {
-            return viewControllerFrame.height * 0.7
-        }
-
-        var myWhyPartnersFooterFrame: CGRect {
-            return CGRect(
-                x: myWhyPartnersFooterXPos,
-                y: myWhyPartnersFooterYPos + 10,
-                width: 0,
-                height: Layout.MeSection.labelHeight
-            )
-        }
-
         var loadCenter: CGPoint {
             return CGPoint(x: loadCenterX, y: loadCenterY)
         }
@@ -173,6 +97,15 @@ struct Layout {
                 height: profileImageWidth
             )
         }
+
+        func myWhyDeviceOffset(_ screenType: MyUniverseViewController.ScreenType) -> CGFloat {
+            switch screenType {
+            case .big: return 0
+            case .medium: return 0
+            case .small: return -15
+            }
+        }
+
     }
 }
 

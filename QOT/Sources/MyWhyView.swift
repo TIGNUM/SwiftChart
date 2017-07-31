@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Anchorage
 import ReactiveKit
 
 class MyWhyView: UIView, MyUniverseView {
@@ -25,16 +26,21 @@ class MyWhyView: UIView, MyUniverseView {
     fileprivate var myToBeVisionLabel: UILabel!
     fileprivate var weeklyChoiceButtons = [UIButton]()
     fileprivate var qotPartnersButtons = [UIButton]()
+    fileprivate let fullViewFrame: CGRect
     fileprivate var updatesToken: Disposable?
-    
+
     // MARK: - Init
 
     init(myWhyViewModel: MyWhyViewModel, frame: CGRect, screenType: MyUniverseViewController.ScreenType, delegate: MyWhyViewDelegate?) {
         self.myWhyViewModel = myWhyViewModel
         self.delegate = delegate
         self.screenType = screenType
+        self.fullViewFrame = frame
 
-        super.init(frame: frame)
+        let viewRightMargin = Layout.MeSection(viewControllerFrame: frame).scrollViewOffset * 3.5
+
+        let viewFrame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.width - viewRightMargin, height: frame.height)
+        super.init(frame: viewFrame)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -56,7 +62,7 @@ class MyWhyView: UIView, MyUniverseView {
     }
 
     func draw() {
-        drawMyWhy(myWhyViewModel: myWhyViewModel, layout: Layout.MeSection(viewControllerFrame: bounds))
+        drawMyWhy(myWhyViewModel: myWhyViewModel, layout: Layout.MeSection(viewControllerFrame: self.fullViewFrame))
         addGestureRecognizer()
     }
 
@@ -133,91 +139,143 @@ private extension MyWhyView {
     }
 
     func addToBeVision(layout: Layout.MeSection, vision: MyToBeVision?) {        
-        myToBeVisionBox = PassthroughView(frame: bounds)
+        myToBeVisionBox = PassthroughView()
         myToBeVisionBox.backgroundColor = .clear
         
-        let footLabel = footerLabel(with: R.string.localized.meSectorMyWhyVisionTitle().uppercased(), labelFrame: layout.myWhyVisionFooterFrame(screenType))
+        let footLabel = footerLabel(with: R.string.localized.meSectorMyWhyVisionTitle().uppercased())
         myToBeVisionBox.addSubview(footLabel)
         
-        //TODO: frame based views are now a bit old-school!
         var visionText = "Your vision - what inspires you?"
         if let vision = vision, let text = vision.text, !text.isEmpty {
             visionText = text
         }
-        let visLabel = visionLabel(with: visionText, labelFrame: .zero, screenType)
+        let visLabel = visionLabel(with: visionText)
+        myToBeVisionLabel = visLabel
         let stackView = UIStackView(arrangedSubviews: [visLabel])
         stackView.alignment = .bottom
         stackView.spacing = 0.0
-        stackView.frame = CGRect(
-            x: footLabel.frame.origin.x,
-            y: 20.0,
-            width: layout.myWhyVisionLabelFrame(screenType).width - 10.0,
-            height: (footLabel.frame.origin.y - 30.0)
-        )
+
         myToBeVisionBox.addSubview(stackView)
         addSubview(myToBeVisionBox)
-        myToBeVisionLabel = visLabel
+
+        myToBeVisionBox.topAnchor == self.topAnchor + 20
+        myToBeVisionBox.leftAnchor == self.leftAnchor + 40
+        myToBeVisionBox.rightAnchor == self.rightAnchor - 62
+
+        stackView.topAnchor == myToBeVisionBox.topAnchor
+        stackView.heightAnchor == bounds.height * 0.325 + layout.myWhyDeviceOffset(screenType) - 30
+        stackView.leftAnchor == myToBeVisionBox.leftAnchor
+        stackView.rightAnchor == myToBeVisionBox.rightAnchor
+
+        footLabel.topAnchor == stackView.bottomAnchor + 5
+        footLabel.heightAnchor == Layout.MeSection.labelHeight
+        footLabel.leftAnchor == stackView.leftAnchor
+        footLabel.rightAnchor == stackView.rightAnchor
+        footLabel.bottomAnchor == myToBeVisionBox.bottomAnchor
     }
 
     func addWeeklyChoices(layout: Layout.MeSection, title: String, choices: [WeeklyChoice]) {
-        weeklyChoicesBox = PassthroughView(frame: bounds)
+        weeklyChoicesBox = PassthroughView()
         weeklyChoicesBox.backgroundColor = .clear
         
         let max = Layout.MeSection.maxWeeklyPage
-        let buttonOffset = Layout.MeSection.labelHeight * 1.3
-        var xPos = layout.myWhyWeeklyChoicesFooterXPos + CGFloat(max * max)
-        var yPos = layout.myWhyWeeklyChoicesFooterYPos - ((buttonOffset + 1) * CGFloat(max))
+
+        var previousButton: UIButton?
 
         for index in 0..<max {
             var choice: WeeklyChoice?
             if index < choices.count {
                 choice = choices[index]
             }
-            let buttonFrame = CGRect(
-                x: xPos,
-                y: yPos,
-                width: layout.viewControllerFrame.width * 0.33,
-                height: Layout.MeSection.labelHeight * 1.125
-            )
-            
-            let button = weeklyChoiceButton(title: choice?.title, frame: buttonFrame, index: index)
+
+            let button = weeklyChoiceButton(title: choice?.title, index: index)
             weeklyChoiceButtons.append(button)
             weeklyChoicesBox.addSubview(button)
-            yPos += (buttonOffset + 2)
-            xPos -= CGFloat(index + 1) * 2
+
+            button.widthAnchor == layout.viewControllerFrame.width * 0.33
+            button.heightAnchor == Layout.MeSection.labelHeight * 1.125
+
+            guard let topButton = previousButton else {
+
+                button.topAnchor == weeklyChoicesBox.topAnchor
+                button.rightAnchor == weeklyChoicesBox.rightAnchor - CGFloat(index + 1) * 2
+
+                previousButton = button
+                continue
+            }
+
+            button.topAnchor == topButton.bottomAnchor + 5
+            button.rightAnchor == topButton.rightAnchor - CGFloat(index + 1) * 2
+
+            previousButton = button
         }
 
-        weeklyChoicesBox.addSubview(footerLabel(with: title, labelFrame: layout.myWhyWeeklyChoicesFooterFrame))
+        let weeklyChoicesFooterLabel = footerLabel(with: title)
+        weeklyChoicesBox.addSubview(weeklyChoicesFooterLabel)
         addSubview(weeklyChoicesBox)
+
+        if let lastButton = previousButton {
+            weeklyChoicesFooterLabel.topAnchor == lastButton.bottomAnchor + 10
+            weeklyChoicesFooterLabel.rightAnchor == lastButton.rightAnchor - CGFloat(max + 1) * 2
+            weeklyChoicesFooterLabel.widthAnchor == layout.viewControllerFrame.width * 0.33
+            weeklyChoicesFooterLabel.heightAnchor == Layout.MeSection.labelHeight
+            weeklyChoicesFooterLabel.bottomAnchor == weeklyChoicesBox.bottomAnchor
+        }
+
+        weeklyChoicesBox.topAnchor == myToBeVisionBox.bottomAnchor + 10 + layout.myWhyDeviceOffset(screenType)
+        weeklyChoicesBox.leftAnchor == self.leftAnchor
+        weeklyChoicesBox.rightAnchor == self.rightAnchor - 30
     }
 
     func addPartners(layout: Layout.MeSection, title: String, partners: [PartnerWireframe]) {
-        qotPartnersBox = PassthroughView(frame: bounds)
+        qotPartnersBox = PassthroughView()
         qotPartnersBox.backgroundColor = .clear
-        
-        let buttonOffset = layout.profileImageWidth * 0.4
-        var xPos = layout.myWhyPartnersFooterXPos
-        let yPos = layout.myWhyPartnersFooterYPos - buttonOffset
+
+        var previousButton: UIButton?
 
         for index in 0..<Layout.MeSection.maxPartners {
             var partner: PartnerWireframe?
             if index < partners.count {
                 partner = partners[index]
             }
-            let buttonFrame = CGRect(
-                x: xPos,
-                y: yPos,
-                width: (layout.profileImageWidth * 0.4) * layout.myWhyPartnerScaleFactor,
-                height: (layout.profileImageWidth * 0.4)
-            )
-            
-            let button = partnerButton(title: partner?.initials, frame: buttonFrame, profileImage: partner?.profileImage, index: index)
+
+            let button = partnerButton(title: partner?.initials, profileImage: partner?.profileImage, index: index)
             qotPartnersButtons.append(button)
             qotPartnersBox.addSubview(button)
-            xPos += buttonFrame.width + 4
+
+            button.topAnchor == qotPartnersBox.topAnchor
+            button.widthAnchor == (layout.profileImageWidth * 0.4) * layout.myWhyPartnerScaleFactor
+            button.heightAnchor == (layout.profileImageWidth * 0.4)
+
+            guard let leftButton = previousButton else {
+
+                button.leftAnchor == qotPartnersBox.leftAnchor
+
+                previousButton = button
+                continue
+            }
+
+            button.leftAnchor == leftButton.rightAnchor + 4
+
+            previousButton = button
         }
-        qotPartnersBox.addSubview(footerLabel(with: title, labelFrame: layout.myWhyPartnersFooterFrame))
+
+        let partnerFooterLabel = footerLabel(with: title)
+        qotPartnersBox.addSubview(partnerFooterLabel)
         addSubview(qotPartnersBox)
+
+        if qotPartnersButtons.count > 0 {
+            let firstButton = qotPartnersButtons[0]
+
+            partnerFooterLabel.leftAnchor == firstButton.leftAnchor
+            partnerFooterLabel.rightAnchor == self.rightAnchor
+            partnerFooterLabel.topAnchor == firstButton.bottomAnchor + 10
+            partnerFooterLabel.bottomAnchor == qotPartnersBox.bottomAnchor
+        }
+
+        qotPartnersBox.topAnchor == weeklyChoicesBox.bottomAnchor + 12
+        qotPartnersBox.leftAnchor == self.leftAnchor + 30
+        qotPartnersBox.rightAnchor == self.rightAnchor
     }
 }
 
@@ -225,8 +283,8 @@ private extension MyWhyView {
 
 private extension MyWhyView {
 
-    func weeklyChoiceButton(title: String?, frame: CGRect, index: Index) -> UIButton {
-        let button = UIButton(frame: frame)
+    func weeklyChoiceButton(title: String?, index: Index) -> UIButton {
+        let button = UIButton()
         button.setTitle(title ?? "", for: .normal)
         button.titleLabel?.font = Font.H7Tag
         button.titleLabel?.lineBreakMode = .byTruncatingTail
@@ -240,8 +298,8 @@ private extension MyWhyView {
         return button
     }
 
-    func partnerButton(title: String?, frame: CGRect, profileImage: UIImage?, index: Index) -> UIButton {
-        let button = UIButton(frame: frame)
+    func partnerButton(title: String?, profileImage: UIImage?, index: Index) -> UIButton {
+        let button = UIButton()
         button.setTitle((profileImage == nil ? title : nil), for: .normal)
         button.titleLabel?.font = Font.H6NavigationTitle
         button.setTitleColor(Color.MeSection.whiteLabel, for: .normal)
@@ -280,21 +338,21 @@ private extension MyWhyView {
 
 private extension MyWhyView {
 
-    func footerLabel(with text: String, labelFrame: CGRect) -> UILabel {
-        return label(with: text, labelFrame: labelFrame, textColor: Color.MeSection.whiteLabel, font: Font.H7Tag)
+    func footerLabel(with text: String) -> UILabel {
+        return label(with: text, textColor: Color.MeSection.whiteLabel, font: Font.H7Tag)
     }
 
-    func visionLabel(with text: String, labelFrame: CGRect, _ screenType: MyUniverseViewController.ScreenType) -> UILabel {
+    func visionLabel(with text: String) -> UILabel {
         switch screenType {
-        case .big: return label(with: text, labelFrame: labelFrame, textColor: .white, font: Font.H4Headline)
-        case .medium: return label(with: text, labelFrame: labelFrame, textColor: .white, font: Font.H5SecondaryHeadline)
-        case .small: return label(with: text, labelFrame: labelFrame, textColor: .white, font: Font.H6NavigationTitle)
+        case .big: return label(with: text, textColor: .white, font: Font.H4Headline, uppercase: false)
+        case .medium: return label(with: text, textColor: .white, font: Font.H5SecondaryHeadline, uppercase: false)
+        case .small: return label(with: text, textColor: .white, font: Font.H6NavigationTitle, uppercase: false)
         }
     }
 
-    func label(with text: String, labelFrame: CGRect, textColor: UIColor, font: UIFont) -> UILabel {
-        let label = UILabel(frame: labelFrame)
-        label.text = text.uppercased()
+    func label(with text: String, textColor: UIColor, font: UIFont, uppercase: Bool = true) -> UILabel {
+        let label = UILabel()
+        label.text = uppercase ? text.uppercased() : text
         label.textColor = textColor
         label.font = font
         label.numberOfLines = 0
