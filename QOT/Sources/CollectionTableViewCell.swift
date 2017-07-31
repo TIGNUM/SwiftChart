@@ -60,7 +60,7 @@ extension CollectionTableViewCell {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let padding: CGFloat = 35
+        let padding: CGFloat = 40
         let font = UIFont(name: "BentonSans", size: 16)!
         var cellHeight: CGFloat = 40
         var cellWidth: CGFloat = self.dataModel.item(at: indexPath.row).title.width(withConstrainedHeight: 0, font: font) + padding
