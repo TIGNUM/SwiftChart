@@ -135,71 +135,15 @@ extension SettingsViewController {
         switch selectedRow {
         case .button,
              .control,
-             .textField: return
+             .textField,
+             .label: return
         case .datePicker(let title, let selectedDate):
             showDatePicker(title: title, selectedDate: selectedDate, indexPath: indexPath)
         case .stringPicker(let title, let pickerItems, let selectedIndex):
             showStringPicker(title: title, items: pickerItems, selectedIndex: selectedIndex, indexPath: indexPath)
         case .multipleStringPicker(let title, let rows, let initialSelection):
             showMultiplePicker(title: title, rows: rows, initialSelection: initialSelection, indexPath: indexPath)
-        case .label(_, let value):
-            triggerNotification(withName: value)
         }
-    }
-}
-
-// MARK: - Notification
-
-extension SettingsViewController {
-
-    // FIXME: remove when remote notifications available
-    func triggerNotification(withName name: String?) {
-        guard let name = name, let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        let handler = appDelegate.appCoordinator.remoteNotificationHandler
-        let appCoordinator = appDelegate.appCoordinator
-        let completion = { (error: Error?) in
-            handler.isAuthorised({ (isAuthorised: Bool) in
-                if isAuthorised {
-                    if let error = error {
-                        self.showNotificationErrorAlert(error)
-                    }
-                } else {
-                    appCoordinator.showAlert(type: .notificationsNotAuthorized, handler: {
-                        UIApplication.openAppSettings()
-                    }, handlerDestructive: nil)
-                }
-            })
-        }
-        
-        switch name {
-        case "Morning Inter View":
-            handler.triggerLocalNotification(withTitle: "Good Morning", subtitle: "Lets start the day with a quick interview.", body: "Its about your qualitiy of sleep and will take not longer then 2 minutes.", identifier: RemoteNotificationHandler.LocalNotifcationIdentifier.interviewIdentifier, completion: completion)
-        case "Your 5 Weekly Choices":
-            let calendar = Calendar.current
-            var dateComponents = calendar.dateComponents([.year, .month, .weekOfYear, .weekday], from: Date())
-            dateComponents.weekOfYear! += 1
-            dateComponents.weekday! = 1
-            let startDate = calendar.date(from: dateComponents)!
-            dateComponents.weekOfYear! += 1
-            let endDate = calendar.date(from: dateComponents)!
-            let userInfo = [
-                "startDate": startDate,
-                "endDate": endDate
-            ]
-            handler.triggerLocalNotification(withTitle: "Let's get going!", subtitle: "Choose your 5 weekly choices", body: "Focusing on the things that really matter will help your productivity.", identifier: RemoteNotificationHandler.LocalNotifcationIdentifier.weeklyChoicesIdentifier, userInfo: userInfo, completion: completion)
-        default:
-            log("unknown notification recieved: \(name)")
-            break
-        }
-    }
-    
-    func showNotificationErrorAlert(_ error: Error) {
-        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
     }
 }
 

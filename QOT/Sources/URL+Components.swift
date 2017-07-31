@@ -10,11 +10,21 @@ import UIKit
 
 extension URL {
 
-    func getQueryStringParameter(url: String, param: String) -> String? {
-        guard let url = URLComponents(string: url) else {
+    func queryStringParameter(param: String) -> String? {
+        guard let url = URLComponents(string: self.absoluteString) else {
             return nil
         }
 
         return url.queryItems?.first(where: { $0.name == param })?.value
+    }
+
+    func queryItems() -> [URLQueryItem] {
+        guard
+            let url = URLComponents(string: self.absoluteString),
+            let queryItems = url.queryItems else {
+                return []
+        }
+
+        return queryItems
     }
 }

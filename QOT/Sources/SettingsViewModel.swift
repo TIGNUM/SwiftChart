@@ -233,8 +233,7 @@ private var securitySettingsSection: [SettingsSection] {
 private var notificationsSettingsSection: [SettingsSection] {
     return [
         MockSettingsSection(title: "Categories", rows: categoryNotifications),
-        MockSettingsSection(title: "Reminder", rows: sleepRows),
-        MockSettingsSection(title: "Local Notifications", rows: localNotifications)
+        MockSettingsSection(title: "Reminder", rows: sleepRows)
     ]
 }
 
@@ -301,13 +300,6 @@ private var calendarRows: [SettingsRow] {
 private var sleepRows: [SettingsRow] {
     return [
         .control(title: "I sleep alone", isOn: true)
-    ]
-}
-
-private var localNotifications: [SettingsRow] {
-    return [
-        .label(title: "Show Notification", value: "Morning Inter View"),
-        .label(title: "Show Notification", value: "Your 5 Weekly Choices")
     ]
 }
 

@@ -11,6 +11,7 @@ import RealmSwift
 import EventKit
 import Alamofire
 import UserNotifications
+import AirshipKit
 
 final class AppCoordinator: ParentCoordinator {
     
@@ -18,45 +19,36 @@ final class AppCoordinator: ParentCoordinator {
     
     let window: UIWindow
     let secondaryWindow: UIWindow
-
     var checkListIDToPresent: String?
-
+    var children = [Coordinator]()
+    lazy var logoutNotificationHandler: NotificationHandler = NotificationHandler(name: .logoutNotification)
     fileprivate var services: Services?
     fileprivate var tabBarCoordinator: TabBarCoordinator?
-    
-    fileprivate lazy var permissionHandler: PermissionHandler = {
-        return PermissionHandler()
-    }()
-    fileprivate lazy var networkManager: NetworkManager = {
-        return NetworkManager(delegate: self, credentialsManager: self.credentialsManager)
-    }()
-    fileprivate lazy var credentialsManager: CredentialsManager = {
-        return CredentialsManager()
-    }()
+    fileprivate lazy var permissionHandler: PermissionHandler = PermissionHandler()
+    fileprivate lazy var networkManager: NetworkManager = NetworkManager(delegate: self, credentialsManager: self.credentialsManager)
+    fileprivate lazy var credentialsManager: CredentialsManager = CredentialsManager()
+
     fileprivate lazy var syncManager: SyncManager = {
         let realmProvider = RealmProvider()
         let syncRecordService =  SyncRecordService(realmProvider: realmProvider)
         let networkManager = self.networkManager
+
         return SyncManager(networkManager: networkManager, syncRecordService: syncRecordService, realmProvider: realmProvider)
     }()
+
     fileprivate lazy var calendarImportManager: CalendarImportManger = {
         let manager = CalendarImportManger(realm: RealmProvider(), predicate: { (store) -> NSPredicate in
             let day: TimeInterval = 60 * 60 * 24
             let start = Date().addingTimeInterval(-(day * 7))
             let end = Date().addingTimeInterval(day * 7)
+
             return store.predicateForEvents(withStart: start, end: end, calendars: nil)
         })
         manager.delegate = self
+
         return manager
     }()
-    lazy var logoutNotificationHandler: NotificationHandler = {
-        NotificationHandler(name: .logoutNotification)
-    }()
-    lazy var remoteNotificationHandler: RemoteNotificationHandler = {
-        return RemoteNotificationHandler(delegate: self, permissionHandler: self.permissionHandler)
-    }()
-    var children = [Coordinator]()
-    
+
     // MARK: - Life Cycle
 
     init(window: UIWindow) {
@@ -86,67 +78,23 @@ final class AppCoordinator: ParentCoordinator {
         }
     }
 
-    func presentPreparationCheckList(localID: String) {
-
-        if services != nil {
-            tabBarCoordinator?.showPreparationCheckList(localID: localID)
-        } else {
-            checkListIDToPresent = localID
-        }
-    }
-
     func restart() {
         secondaryWindow.clear()
         removeAllChildren()
         logout()
         showLogin()
     }
-    
-    func presentMorningInterview() {
-        guard let services = services else {
-            return
-        }
 
-        let viewModel = MorningInterviewViewModel(services: services, questionGroupID: 100002)
-        let morningInterViewController = MorningInterviewViewController(viewModel: viewModel)
-
-        morningInterViewController.delegate = self
-        switchToSecondaryWindow()
-        secondaryWindow.rootViewController?.present(morningInterViewController, animated: true, completion: nil)
-    }
-    
-    func presentWeeklyChoices(forStartDate startDate: Date, endDate: Date) {
-        guard let services = services else {
-            return
-        }
-        
-        let viewModel = SelectWeeklyChoicesDataModel(services: services, maxSelectionCount: Layout.MeSection.maxWeeklyPage, startDate: startDate, endDate: endDate)
-        let image = window.rootViewController?.view.screenshot()
-        let viewController = SelectWeeklyChoicesViewController(delegate: self, viewModel: viewModel, backgroundImage: image)
-        switchToSecondaryWindow()
-        secondaryWindow.rootViewController?.present(viewController, animated: true, completion: nil)
-    }
-
-    func showAlert(type: AlertType, handler: (() -> Void)? = nil, handlerDestructive: (() -> Void)? = nil) {
-        switchToSecondaryWindow()
-        secondaryWindow.rootViewController?.showAlert(type: type, handler: { [weak self] in
-            self?.switchToMainWindow()
-            handler?()
-        }, handlerDestructive: { [weak self] in
-            self?.switchToMainWindow()
-            handlerDestructive?()
-        })
-    }
-    
     func showApp() {
-        guard OnboardingCoordinator.isOnboardingComplete else {
+        guard OnboardingCoordinator.isOnboardingComplete == true else {
             showOnboarding()
             return
         }
+        
         Services.make { (result) in
             switch result {
             case .success(let services):
-                self.remoteNotificationHandler.registerRemoteNotifications(completion: nil)
+                self.registerRemoteNotifications()
                 self.services = services
                 self.calendarImportManager.importEvents()
                 self.startTabBarCoordinator(services: services, permissionHandler: self.permissionHandler)
@@ -163,17 +111,126 @@ final class AppCoordinator: ParentCoordinator {
             }
         }
     }
-    
+}
+
+// MARK: - private
+
+private extension AppCoordinator {
+
+    func registerRemoteNotifications() {
+        permissionHandler.askPermissionForRemoteNotifications { (granted: Bool) in
+            UAirship.push().userPushNotificationsEnabled = granted
+        }
+    }
+
+    func switchToSecondaryWindow() {
+        secondaryWindow.makeKeyAndVisible()
+    }
+
+    func switchToMainWindow() {
+        window.makeKeyAndVisible()
+    }
+
+    func configureSecondaryWindow() {
+        let viewController = UIViewController()
+        viewController.view.backgroundColor = .clear
+        secondaryWindow.rootViewController = viewController
+    }
+
+    func startTabBarCoordinator(services: Services, permissionHandler: PermissionHandler) {
+        let selectedIndex = checkListIDToPresent != nil ? 2 : 0
+        tabBarCoordinator = TabBarCoordinator(
+            window: self.window,
+            selectedIndex: selectedIndex,
+            services: services,
+            permissionHandler: permissionHandler
+        )
+
+        guard let tabBarCoordinator = tabBarCoordinator else { return }
+        tabBarCoordinator.start()
+        self.startChild(child: tabBarCoordinator)
+
+        guard let localID = checkListIDToPresent else { return }
+        tabBarCoordinator.showPreparationCheckList(localID: localID)
+        checkListIDToPresent = nil
+    }
+}
+
+// MARK: - Navigation
+
+extension AppCoordinator {
+
+    func presentPreparationCheckList(localID: String) {
+        if services != nil {
+            tabBarCoordinator?.showPreparationCheckList(localID: localID)
+        } else {
+            checkListIDToPresent = localID
+        }
+    }
+
+    func presentMorningInterview(groupID: Int) {
+        guard let services = services else {
+            return
+        }
+
+        let viewModel = MorningInterviewViewModel(services: services, questionGroupID: groupID)
+        let morningInterViewController = MorningInterviewViewController(viewModel: viewModel)
+
+        morningInterViewController.delegate = self
+        switchToSecondaryWindow()
+        secondaryWindow.rootViewController?.present(morningInterViewController, animated: true, completion: nil)
+    }
+
+    func presentWeeklyChoices(forStartDate startDate: Date, endDate: Date) {
+        guard let services = services else {
+            return
+        }
+
+        let viewModel = SelectWeeklyChoicesDataModel(services: services, maxSelectionCount: Layout.MeSection.maxWeeklyPage, startDate: startDate, endDate: endDate)
+        let image = window.rootViewController?.view.screenshot()
+        let viewController = SelectWeeklyChoicesViewController(delegate: self, viewModel: viewModel, backgroundImage: image)
+        switchToSecondaryWindow()
+        secondaryWindow.rootViewController?.present(viewController, animated: true, completion: nil)
+    }
+
+    func presentArticleView(contentID: Int) {
+        guard
+            let root = window.rootViewController,
+            let services = services else {
+                return
+        }
+
+        let coordinator = ArticleContentItemCoordinator(
+            root: root,
+            services: services,
+            contentCollection: services.contentService.contentCollection(id: contentID),
+            articleHeader: nil,
+            topTabBarTitle: R.string.localized.sidebarTitleLibrary().uppercased()
+        )
+        startChild(child: coordinator)
+    }
+
+    func showAlert(type: AlertType, handler: (() -> Void)? = nil, handlerDestructive: (() -> Void)? = nil) {
+        switchToSecondaryWindow()
+        secondaryWindow.rootViewController?.showAlert(type: type, handler: { [weak self] in
+            self?.switchToMainWindow()
+            handler?()
+            }, handlerDestructive: { [weak self] in
+                self?.switchToMainWindow()
+                handlerDestructive?()
+        })
+    }
+
     func showOnboarding() {
         let coordinator = OnboardingCoordinator(window: window, delegate: self, permissionHandler: permissionHandler)
         startChild(child: coordinator)
     }
-    
+
     func showLogin() {
         let loginCoordinator = LoginCoordinator(window: window, delegate: self, networkManager: networkManager)
         startChild(child: loginCoordinator)
     }
-    
+
     func logout() {
         credentialsManager.clear()
         do {
@@ -193,40 +250,6 @@ final class AppCoordinator: ParentCoordinator {
             self.switchToSecondaryWindow()
             self.secondaryWindow.rootViewController = viewController
         }
-    }
-
-    // MARK: - private
-    
-    private func switchToSecondaryWindow() {
-        secondaryWindow.makeKeyAndVisible()
-    }
-
-    fileprivate func switchToMainWindow() {
-        window.makeKeyAndVisible()
-    }
-
-    private func configureSecondaryWindow() {
-        let viewController = UIViewController()
-        viewController.view.backgroundColor = .clear
-        secondaryWindow.rootViewController = viewController
-    }
-
-    private func startTabBarCoordinator(services: Services, permissionHandler: PermissionHandler) {
-        let selectedIndex = checkListIDToPresent != nil ? 2 : 0
-        tabBarCoordinator = TabBarCoordinator(
-            window: self.window,
-            selectedIndex: selectedIndex,
-            services: services,
-            permissionHandler: permissionHandler
-        )
-
-        guard let tabBarCoordinator = tabBarCoordinator else { return }
-        tabBarCoordinator.start()
-        self.startChild(child: tabBarCoordinator)
-
-        guard let localID = checkListIDToPresent else { return }
-        tabBarCoordinator.showPreparationCheckList(localID: localID)
-        checkListIDToPresent = nil
     }
 }
 
@@ -248,7 +271,7 @@ extension AppCoordinator: CalendarImportMangerDelegate {
 
     func eventStoreAuthorizationRequired(for mangager: CalendarImportManger, currentStatus: EKAuthorizationStatus) {
         permissionHandler.askPermissionForCalendar { (granted: Bool) in
-            if granted {
+            if granted == true {
                 mangager.importEvents()
             } else {
                 // FIXME: Handle error
@@ -311,29 +334,6 @@ extension AppCoordinator: SelectWeeklyChoicesViewControllerDelegate {
         )
         startChild(child: coordinator)
     }
-}
-
-// MARK: - RemoteNotificationHandler
-
-extension AppCoordinator: RemoteNotificationHandlerDelegate {
-    func remoteNotificationHandler(_ remoteNotificationHandler: RemoteNotificationHandler, didReceiveNotification notification: UNNotification, withIdentifier identifier: String) {
-        switch identifier {
-        case RemoteNotificationHandler.LocalNotifcationIdentifier.interviewIdentifier:
-            presentMorningInterview()
-        case RemoteNotificationHandler.LocalNotifcationIdentifier.weeklyChoicesIdentifier:
-            let userInfo = notification.request.content.userInfo
-            guard let startDate = userInfo["startDate"] as? Date, let endDate = userInfo["endDate"] as? Date else {
-                return
-            }
-            presentWeeklyChoices(forStartDate: startDate, endDate: endDate)
-        default:
-            break
-        }
-    }
-    
-    func remoteNotificationHandler(_ remoteNotificationHandler: RemoteNotificationHandler, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        // FIXME: handle error
-    }    
 }
 
 // MARK: - OnboardingCoordinatorDelegate

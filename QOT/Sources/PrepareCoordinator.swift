@@ -195,19 +195,22 @@ extension PrepareCoordinator {
         }
 
         services.preparationService.createPreparation(contentID: context.contentID, eventID: eventID, title: name, subtitle: context.listTitle) { [unowned self] error, localID in
-            guard error == nil else { return }
-            guard let localID = localID else { return }
-            guard let eventID = eventID else { return }
+            guard
+                error == nil,
+                let localID = localID,
+                let eventID = eventID else {
+                    return
+            }
 
-            self.permissionHandler.askPermissionForCalendar(completion: { (granted: Bool) in
-                guard granted else {
+            self.permissionHandler.askPermissionForCalendar { (granted: Bool) in
+                guard granted == true else {
                     return
                 }
                 
                 let eventStore = EKEventStore()
                 if let event = eventStore.event(withIdentifier: eventID) {
                     var notes = event.notes ?? ""
-                    guard let preparationLink = CustomAppLaunchHandler.generatePreparationURL(withID: localID) else {
+                    guard let preparationLink = LaunchHandler.default.generatePreparationURL(withID: localID) else {
                         return
                     }
                     notes += "\n\n" + preparationLink
@@ -215,16 +218,20 @@ extension PrepareCoordinator {
                     event.notes = notes
                     do {
                         try eventStore.save(event, span: .thisEvent, commit: true)
-                    } catch {
+                    } catch let error {
+                        print("createPreparation - eventStore.save.error: ", error.localizedDescription)
                         return
                     }
                 }
-            })
+            }
         }
     }
 }
 
+// MARK: - PrepareContentViewControllerDelegate
+
 extension PrepareCoordinator: PrepareContentViewControllerDelegate {
+
     func didTapSavePreparation(in viewController: PrepareContentViewController) {
         showCreatePreparation(from: viewController)
     }

@@ -11,13 +11,10 @@ import MBProgressHUD
 
 extension UIView {
 
-    /**
-     * type: Message type
-     * completionBlock: Action to exectue after the HUD has been dismissed
-     * actionBlock: Action to execute
-     */
-    func showProgressHUD(type: AlertType, completionBlock: @escaping MBProgressHUDCompletionBlock = {}, actionBlock: @escaping () -> Void) {
-
+    /// type: Message type
+    /// completionBlock: Action to exectue after the HUD has been dismissed
+    /// actionBlock: Action to execute
+    func showProgressHUD(type: AlertType, completionBlock: @escaping MBProgressHUDCompletionBlock = {}, actionBlock: (() -> Void)? = nil) {
         let hud = MBProgressHUD.showAdded(to: self, animated: true)
         hud.label.text = type.title
         hud.detailsLabel.text = type.message
@@ -29,7 +26,7 @@ extension UIView {
         hud.completionBlock = completionBlock
 
         DispatchQueue.global(qos: .background).async {
-            actionBlock()
+            actionBlock?()
             DispatchQueue.main.async {
                 hud.hide(animated: true)
             }

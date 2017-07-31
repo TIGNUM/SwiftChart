@@ -7,12 +7,12 @@
 //
 
 import UIKit
-import UserNotifications
 import Fabric
 import Crashlytics
 import AirshipKit
 
 extension AppDelegate {
+
     static var current: AppDelegate {
         guard let app = UIApplication.shared.delegate as? AppDelegate else {
             fatalError("AppDelegate not found")
@@ -32,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
     
     var window: UIWindow?
+    fileprivate var canOpenURL = true
 
     // MARK: - Life Cycle
 
@@ -53,13 +54,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func setupUAirship() {
-
         guard let path = Bundle.main.path(forResource: "AirshipConfig", ofType: "plist") else {
             return
         }
 
         let config = UAConfig(contentsOfFile: path)
         UAirship.takeOff(config)
+        UAirship.push().pushNotificationDelegate = self
+        UAirship.shared().analytics.isEnabled = true        
+        UAirship.push().updateRegistration()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -71,22 +74,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
+        UAirship.push().resetBadge()
         QOTUsageTimer.sharedInstance.start()
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        print(url.absoluteString)
-        CustomAppLaunchHandler.process(urlString: url.absoluteString)
+        if canOpenURL == true {
+            LaunchHandler.default.process(url: url)
+        }
 
         return true
-    }
-    
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        appCoordinator.remoteNotificationHandler.didRegisterForRemoteNotificationsWithDeviceToken(deviceToken)
-    }
-    
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        appCoordinator.remoteNotificationHandler.didFailToRegisterForRemoteNotificationsWithError(error)
     }
 }
 
@@ -105,5 +102,32 @@ extension AppDelegate {
                 log("== \(names)", enabled: LogToggle.Manager.Font)
             }
         }
+    }
+}
+
+// MARK: - UAPushNotificationDelegate
+
+extension AppDelegate: UAPushNotificationDelegate {
+
+    func receivedNotificationResponse(_ notificationResponse: UANotificationResponse, completionHandler: @escaping () -> Void) {
+        canOpenURL = true
+        if
+            let deepLink = notificationResponse.notificationContent.notificationInfo.values.first as? String,
+            let url = URL(string: deepLink) {
+                LaunchHandler.default.process(url: url)
+
+        }
+        completionHandler()
+    }
+
+    func receivedForegroundNotification(_ notificationContent: UANotificationContent, completionHandler: @escaping () -> Void) {
+        canOpenURL = false
+        completionHandler()
+    }
+
+    func presentationOptions(for notification: UNNotification) -> UNNotificationPresentationOptions {
+        canOpenURL = false
+
+        return [.alert, .sound]
     }
 }
