@@ -83,8 +83,6 @@ class NetworkManager {
             url.appendPathComponent(string)
         }
 
-        print("Check email path: \(url.absoluteString)")
-
         let request = URLRequest(url: url, method: method, headers: headers, parameters: params, body: authRequest.body)
 
         let serialRequest = SerialRequest()

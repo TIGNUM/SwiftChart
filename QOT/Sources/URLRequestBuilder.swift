@@ -12,10 +12,12 @@ final class URLRequestBuilder {
 
     let baseURL: URL
     let deviceID: String
+    let appVersion: String
 
     init(baseURL: URL, deviceID: String) {
         self.baseURL = baseURL
         self.deviceID = deviceID
+        self.appVersion = Bundle.main.versionNumber
     }
 
     func make(with buildable: URLRequestBuildable, authToken: String?) -> URLRequestConvertible {
@@ -25,6 +27,7 @@ final class URLRequestBuilder {
             httpHeaders[.authToken] = authToken
         }
         httpHeaders[.deviceID] = deviceID
+        httpHeaders[.version] = appVersion
 
         let url = buildable.endpoint.url(baseURL: baseURL)
         let method = buildable.httpMethod

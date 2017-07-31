@@ -69,6 +69,7 @@
 		8514A4921EEAA2AE0086C70E /* UILabel+AttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8514A4911EEAA2AE0086C70E /* UILabel+AttributedText.swift */; };
 		852020351EF8300800EA2032 /* PeakPerformanceUpcomingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852020341EF8300800EA2032 /* PeakPerformanceUpcomingView.swift */; };
 		8523E9C01F1628B50000D20D /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8523E9BF1F1628B50000D20D /* Date+Extension.swift */; };
+		852988951F2F3E15003A36DF /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852988941F2F3E15003A36DF /* Bundle+Extensions.swift */; };
 		852DADC21EEDDE5100A10882 /* UIButton+AttributedTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADC11EEDDE5100A10882 /* UIButton+AttributedTitle.swift */; };
 		852DADC41EEED5D600A10882 /* AverageMeetingProgressWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADC31EEED5D600A10882 /* AverageMeetingProgressWheel.swift */; };
 		852DADC61EEEE63500A10882 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADC51EEEE63500A10882 /* Math.swift */; };
@@ -499,6 +500,7 @@
 		8514A4911EEAA2AE0086C70E /* UILabel+AttributedText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+AttributedText.swift"; sourceTree = "<group>"; };
 		852020341EF8300800EA2032 /* PeakPerformanceUpcomingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakPerformanceUpcomingView.swift; sourceTree = "<group>"; };
 		8523E9BF1F1628B50000D20D /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		852988941F2F3E15003A36DF /* Bundle+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		852DADC11EEDDE5100A10882 /* UIButton+AttributedTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+AttributedTitle.swift"; sourceTree = "<group>"; };
 		852DADC31EEED5D600A10882 /* AverageMeetingProgressWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageMeetingProgressWheel.swift; sourceTree = "<group>"; };
 		852DADC51EEEE63500A10882 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
@@ -1427,6 +1429,7 @@
 				CCCC42DE1ED5799D00E73905 /* UIViewController+Transition.swift */,
 				CC9622071F1F48A8007A9ED0 /* URL+Components.swift */,
 				CCC2D3151F0AB1E000951A2E /* UserDefault+Convenience.swift */,
+				852988941F2F3E15003A36DF /* Bundle+Extensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -2346,6 +2349,7 @@
 				CB3437721F00ED3200D89D4F /* RealmObserver.swift in Sources */,
 				CCC1B6A91E8B9B7300D1461F /* LearnCategoryListViewController.swift in Sources */,
 				85777E7B1F0F857C00E12477 /* UIViewController+Convenience.swift in Sources */,
+				852988951F2F3E15003A36DF /* Bundle+Extensions.swift in Sources */,
 				852DADEC1EF2BE3C00A10882 /* UpcomingTravelsView.swift in Sources */,
 				CB27D59B1ECCB67300F2B76C /* Result.swift in Sources */,
 				D569769C1EF94094000FF777 /* MyStatisticsDataSleepView.swift in Sources */,
