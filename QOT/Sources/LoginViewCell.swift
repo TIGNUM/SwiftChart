@@ -79,7 +79,6 @@ class LoginViewCell: UITableViewCell, Dequeueable {
         input.keyboardType = .emailAddress
         input.keyboardAppearance = .dark
         input.returnKeyType = .next
-        input.clearsOnBeginEditing = true
         input.delegate = self
         input.attributedPlaceholder = placeHolder
         return input
@@ -196,18 +195,6 @@ class LoginViewCell: UITableViewCell, Dequeueable {
         self.parentViewController = parentViewController
         backgroundColor = .clear
         selectionStyle = .none
-    }
-
-    let checkEmailQueue = DispatchQueue(label: "TEMP") // FIXME: REMOVE
-
-    func checkEmail(_ email: String, completion: @escaping (Bool) -> Void) {
-        checkEmailQueue.async { [weak self] in
-            self?.delegate?.checkIfEmailAvailable(email: email) { result in
-                DispatchQueue.main.async {
-                    completion(result)
-                }
-            }
-        }
     }
 
     func keyboardWillAppear() {
@@ -335,11 +322,6 @@ extension LoginViewCell: UITextFieldDelegate {
             if text.isEmpty {
                 userView.backgroundColor = .whiteLight14
             }
-//            if !text.isEmpty {
-//                checkEmail(text, completion: { (bool) in
-//                    self.isValidEmail(valid: bool)
-//                })
-//            }
         } else if textField == passwordInput {
             passwordView.backgroundColor = .white
             if text.isEmpty {
