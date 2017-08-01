@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import AirshipKit
 
 final class User: Object {
 
@@ -28,6 +29,8 @@ final class User: Object {
     dynamic var heightUnit: String?
 
     dynamic var weightUnit: String?
+
+    dynamic var urbanAirshipDeviceToken: String?
 
     // MARK: Data
 
@@ -106,5 +109,13 @@ extension User: DownSyncable {
         company = data.company
         jobTitle = data.jobTitle
         memberSince = data.memberSince
+        urbanAirshipDeviceToken = UAirship.push().deviceToken
+        updateUrbanAirshipTags(tags: data.urbanAirshipTags)
+    }
+
+    private func updateUrbanAirshipTags(tags: [String]) {
+        UAirship.push().removeTags(UAirship.push().tags)
+        UAirship.push().addTags(tags)
+        UAirship.push().updateRegistration()
     }
 }

@@ -61,8 +61,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let config = UAConfig(contentsOfFile: path)
         UAirship.takeOff(config)
         UAirship.push().pushNotificationDelegate = self
-        UAirship.shared().analytics.isEnabled = true        
+        UAirship.shared().analytics.isEnabled = true
         UAirship.push().updateRegistration()
+        print("devie token: ", UAirship.push().deviceToken ?? "nil")
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

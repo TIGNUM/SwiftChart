@@ -155,6 +155,8 @@ enum JsonKey: String {
     case type
     case untilDate
     case upperThreshold
+    case urbanAirshipDeviceToken
+    case urbanAirshipTags
     case url
     case userAverage
     case userId
