@@ -22,12 +22,14 @@ final class LearnContentItemCoordinator: ParentCoordinator {
     fileprivate var topTabBarController: UINavigationController!
     fileprivate var viewModel: LearnContentItemViewModel
     var children: [Coordinator] = []
-    
-    init(root: UIViewController, services: Services, content: ContentCollection, category: ContentCategory) {
+    fileprivate var presentationManager: CircularPresentationManager?
+
+    init(root: UIViewController, services: Services, content: ContentCollection, category: ContentCategory, presentationManager: CircularPresentationManager? = nil) {
         self.rootVC = root
         self.services = services
         self.category = category
         self.categoryTitle = category.title.capitalized
+        self.presentationManager = presentationManager
         self.selectedContent = content
         self.viewModel = LearnContentItemViewModel(
             services: services,
@@ -74,6 +76,8 @@ final class LearnContentItemCoordinator: ParentCoordinator {
             // We have a custom transition from PrepareContent (when pressing readMore button)
             guard let transitionDelegate = rootVC as? UIViewControllerTransitioningDelegate else { return }
             topTabBarController.transitioningDelegate = transitionDelegate
+        } else if let presentationManager = presentationManager {
+            topTabBarController.transitioningDelegate = presentationManager
         } else {
             topTabBarController.modalPresentationStyle = .custom
         }

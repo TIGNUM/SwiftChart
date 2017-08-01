@@ -91,6 +91,8 @@
 		852DADE81EF26B1D00A10882 /* PeakPerformanceAverageProgressWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADE71EF26B1D00A10882 /* PeakPerformanceAverageProgressWheel.swift */; };
 		852DADEA1EF2B83100A10882 /* MyStatisticsDataUpcomingTrips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADE91EF2B83100A10882 /* MyStatisticsDataUpcomingTrips.swift */; };
 		852DADEC1EF2BE3C00A10882 /* UpcomingTravelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADEB1EF2BE3C00A10882 /* UpcomingTravelsView.swift */; };
+		854708E21F306628007AB971 /* CircularAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854708E01F306628007AB971 /* CircularAnimation.swift */; };
+		854708E31F306628007AB971 /* CircularPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854708E11F306628007AB971 /* CircularPresentationManager.swift */; };
 		8548BBDC1F0D263000AC7C06 /* RequestDeviceSensorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548BBDB1F0D263000AC7C06 /* RequestDeviceSensorCollectionViewCell.swift */; };
 		8548BBDE1F0D264800AC7C06 /* RequestDeviceSensorCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8548BBDD1F0D264800AC7C06 /* RequestDeviceSensorCollectionViewCell.xib */; };
 		8548BBE01F0D4BF900AC7C06 /* LaunchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548BBDF1F0D4BF900AC7C06 /* LaunchHandler.swift */; };
@@ -526,6 +528,8 @@
 		852DADE71EF26B1D00A10882 /* PeakPerformanceAverageProgressWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakPerformanceAverageProgressWheel.swift; sourceTree = "<group>"; };
 		852DADE91EF2B83100A10882 /* MyStatisticsDataUpcomingTrips.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsDataUpcomingTrips.swift; sourceTree = "<group>"; };
 		852DADEB1EF2BE3C00A10882 /* UpcomingTravelsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingTravelsView.swift; sourceTree = "<group>"; };
+		854708E01F306628007AB971 /* CircularAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularAnimation.swift; sourceTree = "<group>"; };
+		854708E11F306628007AB971 /* CircularPresentationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularPresentationManager.swift; sourceTree = "<group>"; };
 		8548BBDB1F0D263000AC7C06 /* RequestDeviceSensorCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestDeviceSensorCollectionViewCell.swift; sourceTree = "<group>"; };
 		8548BBDD1F0D264800AC7C06 /* RequestDeviceSensorCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequestDeviceSensorCollectionViewCell.xib; sourceTree = "<group>"; };
 		8548BBDF1F0D4BF900AC7C06 /* LaunchHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchHandler.swift; sourceTree = "<group>"; };
@@ -1693,6 +1697,8 @@
 		CBB4DD491EE0933B0071494A /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				854708E01F306628007AB971 /* CircularAnimation.swift */,
+				854708E11F306628007AB971 /* CircularPresentationManager.swift */,
 				CC6B3A2E1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift */,
 				CC6B3A2C1E8163A200E7FDFD /* FadeInOutPresentationController.swift */,
 				7FE38DBE1F279F8C0061E98F /* CustomPresentationAnimator.swift */,
@@ -2462,6 +2468,7 @@
 				CB6D49541ECC87BF005BC637 /* Requests.swift in Sources */,
 				D50D6C241EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift in Sources */,
 				CC335EE91EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift in Sources */,
+				854708E21F306628007AB971 /* CircularAnimation.swift in Sources */,
 				CBC1DC1D1F0F988E00F6D056 /* SettingsService.swift in Sources */,
 				CB369CE21E8D5E3D00522293 /* Services.swift in Sources */,
 				CC8D6D051EC316BF007AE687 /* LearnContentItemViewModel.swift in Sources */,
@@ -2584,6 +2591,7 @@
 				0BC1FF4B1E968E07007DE090 /* CollectionTableViewCell.swift in Sources */,
 				852DADD41EF0504000A10882 /* AverageMeetingLengthViewProgressWheel.swift in Sources */,
 				D57ECFB01E924CC2008F401B /* TabBarView.swift in Sources */,
+				854708E31F306628007AB971 /* CircularPresentationManager.swift in Sources */,
 				CB9AFD201F029D1500D067F2 /* PreparationService.swift in Sources */,
 				CB3437641EFD6B0100D89D4F /* Answer+Convenience.swift in Sources */,
 				CC7D21AA1EFC0856007A062E /* ArticleContentItemCoordinator.swift in Sources */,

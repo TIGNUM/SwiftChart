@@ -13,7 +13,7 @@ import Bond
 
 protocol LearnContentListViewControllerDelegate: class {
 
-    func didSelectContent(_ content: ContentCollection, category: ContentCategory, in viewController: LearnContentListViewController)
+    func didSelectContent(_ content: ContentCollection, category: ContentCategory, originFrame: CGRect, in viewController: LearnContentListViewController)
     func didTapBack(in viewController: LearnContentListViewController)
 }
 
@@ -234,7 +234,9 @@ extension LearnContentListViewController: UICollectionViewDelegateFlowLayout {
         if collectionView === self.collectionView {
             let content = viewModel.item(at: indexPath)
             let category = viewModel.category(at: indexPath.section)
-            delegate?.didSelectContent(content, category: category, in: self)
+            guard var originFrame = collectionView.cellForItem(at: indexPath)?.frame else { return }
+            originFrame = collectionView.convert(originFrame, to: view)
+            delegate?.didSelectContent(content, category: category, originFrame: originFrame, in: self)
         } else {
             selectedCategoryIndex = indexPath.item
             pagingCollectionViewScrollToSelectedIndex()

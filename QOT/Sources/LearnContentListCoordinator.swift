@@ -45,8 +45,9 @@ final class LearnContentListCoordinator: ParentCoordinator {
 }
 
 extension LearnContentListCoordinator: LearnContentListViewControllerDelegate {
-    func didSelectContent(_ content: ContentCollection, category: ContentCategory, in viewController: LearnContentListViewController) {
-        let coordinator = LearnContentItemCoordinator(root: viewController, services: services, content: content, category: category)
+    func didSelectContent(_ content: ContentCollection, category: ContentCategory, originFrame: CGRect, in viewController: LearnContentListViewController) {
+        let presentationManager = CircularPresentationManager(originFrame: originFrame)
+        let coordinator = LearnContentItemCoordinator(root: viewController, services: services, content: content, category: category, presentationManager: presentationManager)
         startChild(child: coordinator)
     }
     
