@@ -170,8 +170,10 @@ extension WeeklyChoicesViewController: WeeklyChoicesDelegate {
 extension WeeklyChoicesViewController: CustomPresentationAnimatorDelegate {
     func animationsForAnimator(_ animator: CustomPresentationAnimator) -> (() -> Void)? {
         view.alpha = animator.isPresenting ? 0.0 : 1.0
+        parent?.view.alpha = animator.isPresenting ? 0.0 : 1.0
         return { [unowned self] in
             self.view.alpha = animator.isPresenting ? 1.0 : 0.0
+            self.parent?.view.alpha = animator.isPresenting ? 1.0 : 0.0
         }
     }
 }

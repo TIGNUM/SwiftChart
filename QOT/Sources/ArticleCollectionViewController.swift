@@ -22,8 +22,8 @@ class ArticleCollectionViewController: UIViewController {
 
     fileprivate let disposeBag = DisposeBag()
     fileprivate let viewModel: ArticleCollectionViewModel
+    fileprivate let backgroundImageView: UIImageView
     weak var delegate: ArticleCollectionViewControllerDelegate?
-    let theme: Theme = .dark
     
     fileprivate lazy var collectionView: UICollectionView = {
         let layout = ArticleCollectionLayout()
@@ -41,7 +41,8 @@ class ArticleCollectionViewController: UIViewController {
 
     init(viewModel: ArticleCollectionViewModel) {
         self.viewModel = viewModel
-
+        backgroundImageView = UIImageView(image: R.image.backgroundStrategies())
+        
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -67,6 +68,10 @@ class ArticleCollectionViewController: UIViewController {
 private extension ArticleCollectionViewController {
 
     func setupLayout() {
+        view.addSubview(backgroundImageView)
+        backgroundImageView.verticalAnchors == view.verticalAnchors
+        backgroundImageView.horizontalAnchors == view.horizontalAnchors
+        
         view.addSubview(collectionView)
         collectionView.topAnchor == view.topAnchor + 63
         collectionView.heightAnchor == view.heightAnchor

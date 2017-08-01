@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Anchorage
 
 final class LearnContentItemHeaderView: UIView {
 
@@ -31,6 +32,16 @@ final class LearnContentItemHeaderView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    class func fromXib(contentTitle: String, categoryTitle: String) -> LearnContentItemHeaderView {
+        let title = Style.postTitle(contentTitle.uppercased(), .darkIndigo).attributedString()
+        let subTitle = Style.tag(categoryTitle.uppercased(), .black30).attributedString()
+        let nib = R.nib.learnContentItemHeaderView()
+        let headerView = (nib.instantiate(withOwner: self, options: nil).first as? LearnContentItemHeaderView)!
+        headerView.setupView(title: title, subtitle: subTitle)
+        headerView.backgroundColor = .white
+        return headerView
     }
 
     func setupView(title: NSAttributedString, subtitle: NSAttributedString) {        

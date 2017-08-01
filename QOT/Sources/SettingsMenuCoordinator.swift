@@ -13,39 +13,40 @@ final class SettingsMenuCoordinator: ParentCoordinator {
 
     fileprivate let rootViewController: SidebarViewController
     fileprivate let services: Services
+    fileprivate var presentationManager: PresentationManager
+    fileprivate var topTabBarController: UINavigationController!
+    fileprivate let settingsMenuViewController: SettingsMenuViewController
+    
     var children = [Coordinator]()
-    lazy var presentationManager = PresentationManager(type: .fadeIn)
 
-    init(root: SidebarViewController, services: Services) {
+    init?(root: SidebarViewController, services: Services) {
         self.rootViewController = root
         self.services = services
+        
+        presentationManager = PresentationManager(type: .fadeIn)
+        
+        guard let viewModel = SettingsMenuViewModel(services: services) else {
+            return nil
+        }
+
+        settingsMenuViewController = SettingsMenuViewController(viewModel: viewModel)
+        presentationManager.presentationType = .fadeIn
+        settingsMenuViewController.modalPresentationStyle = .custom
+        settingsMenuViewController.transitioningDelegate = presentationManager
+        settingsMenuViewController.title = R.string.localized.settingsTitle()
+
+        let leftButton = UIBarButtonItem(withImage: R.image.ic_minimize())
+        topTabBarController = UINavigationController(withPages: [settingsMenuViewController], topBarDelegate: self, leftButton: leftButton)
+        
+        settingsMenuViewController.delegate = self
     }
 
     func start() {
-        guard let viewModel = SettingsMenuViewModel(services: services) else {
-            return
-        }
-
-        let settingsMenuViewController = SettingsMenuViewController(viewModel: viewModel)
-        settingsMenuViewController.delegate = self
-        settingsMenuViewController.modalPresentationStyle = .custom
-        settingsMenuViewController.transitioningDelegate = presentationManager
-
-        let topTabBarControllerItem = TopTabBarController.Item(
-            controllers: [settingsMenuViewController],
-            themes: [.dark],
-            titles: [R.string.localized.settingsTitle()]
-        )
-
-        let topTabBarController = TopTabBarController(
-            item: topTabBarControllerItem,            
-            leftIcon: R.image.ic_minimize()
-        )
-
-        topTabBarController.delegate = self
         rootViewController.present(topTabBarController, animated: true)
     }
 }
+
+// MARK: - SettingsMenuViewControllerDelegate
 
 extension SettingsMenuCoordinator: SettingsMenuViewControllerDelegate {
 
@@ -62,25 +63,24 @@ extension SettingsMenuCoordinator: SettingsMenuViewControllerDelegate {
     }
 
     private func startSettingsCoordinator(settingsType: SettingsViewModel.SettingsType, root: SettingsMenuViewController) {
-        let coordinator = SettingsCoordinator(root: root, services: services, settingsType: settingsType)
+        guard let coordinator = SettingsCoordinator(root: root, services: services, settingsType: settingsType) else {
+            print("could not init \(SettingsCoordinator.self)")
+            return
+        }
         startChild(child: coordinator)
     }
 }
 
-// MARK: - TopTabBarDelegate
+// MARK: - TopNavigationBarDelegate
 
-extension SettingsMenuCoordinator: TopTabBarDelegate {
-
-    func didSelectLeftButton(sender: TopTabBarController) {
-        sender.dismiss(animated: true, completion: nil)
-        removeChild(child: self)
+extension SettingsMenuCoordinator: TopNavigationBarDelegate {
+    func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
+        topTabBarController.dismiss(animated: true, completion: nil)
     }
-
-    func didSelectRightButton(sender: TopTabBarController) {
-        print("didSelectRightButton")
+    
+    func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
     }
-
-    func didSelectItemAtIndex(index: Int, sender: TopTabBarController) {
-        print("didSelectItemAtIndex", index as Any, sender)
+    
+    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
     }
 }

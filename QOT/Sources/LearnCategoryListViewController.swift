@@ -25,6 +25,7 @@ final class LearnCategoryListViewController: UIViewController {
 
     fileprivate let viewModel: LearnCategoryListViewModel
     fileprivate let disposeBag = DisposeBag()
+    fileprivate let backgroundImageView: UIImageView
     weak var delegate: LearnCategoryListViewControllerDelegate?
     let page = LearnCategoryListPage()
 
@@ -43,7 +44,7 @@ final class LearnCategoryListViewController: UIViewController {
     
     init(viewModel: LearnCategoryListViewModel) {
         self.viewModel = viewModel
-
+        backgroundImageView = UIImageView(image: R.image.backgroundStrategies())
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -94,6 +95,11 @@ private extension LearnCategoryListViewController {
 
     func setupLayout() {
         view.backgroundColor = .clear
+        
+        view.addSubview(backgroundImageView)
+        backgroundImageView.verticalAnchors == view.verticalAnchors
+        backgroundImageView.horizontalAnchors == view.horizontalAnchors
+
         view.addSubview(collectionView)
         collectionView.topAnchor == view.topAnchor + Layout.TabBarView.height + 26
         collectionView.bottomAnchor == view.bottomAnchor

@@ -11,34 +11,31 @@ import UIKit
 
 final class SidebarCoordinator: ParentCoordinator {
 
-    let rootViewController: UIViewController
+    fileprivate let rootViewController: UIViewController
     fileprivate let services: Services
+    fileprivate let presentationManager: PresentationManager
+    fileprivate var topTabBarController: UINavigationController!
+    fileprivate let sideBarViewController: SidebarViewController
     var children = [Coordinator]()
-    lazy var presentationManager = PresentationManager(type: .fadeIn)
-    
+
     init(root: UIViewController, services: Services) {
         self.rootViewController = root
         self.services = services
+        presentationManager = PresentationManager(type: .fadeIn)
+        
+        let viewModel = SidebarViewModel(services: services)
+        sideBarViewController = SidebarViewController(viewModel: viewModel)
+        
+        let leftButton = UIBarButtonItem(withImage: R.image.ic_logo())
+        let rightButton = UIBarButtonItem(withImage: R.image.ic_close())
+        topTabBarController = UINavigationController(withPages: [sideBarViewController], topBarDelegate: self, backgroundImage: R.image.sidebar(), leftButton: leftButton, rightButton: rightButton)
+        topTabBarController.modalTransitionStyle = .crossDissolve
+        topTabBarController.modalPresentationStyle = .overFullScreen
+
+        sideBarViewController.delegate = self
     }
     
     func start() {
-        let viewModel = SidebarViewModel(services: services)
-        let sideBarViewController = SidebarViewController(viewModel: viewModel)
-
-        let topTabBarControllerItem = TopTabBarController.Item(
-            controllers: [sideBarViewController],
-            themes: [.darkClear]
-        )
-        let topTabBarController = TopTabBarController(
-            item: topTabBarControllerItem,
-            leftIcon: R.image.ic_logo(),
-            rightIcon: R.image.ic_close()
-        )
-
-        topTabBarController.modalTransitionStyle = .crossDissolve
-        topTabBarController.modalPresentationStyle = .overFullScreen
-        topTabBarController.delegate = self
-        sideBarViewController.delegate = self
         rootViewController.present(topTabBarController, animated: true)
     }
 }
@@ -58,7 +55,10 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
     }
 
     func didTapSettingsMenuCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
-        let coordinator = SettingsMenuCoordinator(root: viewController, services: services)
+        guard let coordinator = SettingsMenuCoordinator(root: viewController, services: services) else {
+            print("could not init \(SettingsMenuCoordinator.self)")
+            return
+        }
         startChild(child: coordinator)
     }
 
@@ -80,36 +80,29 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
     }
 
     private func startSidebarItemCoordinator(contentCollection: ContentCollection?, viewController: SidebarViewController, topTabBarTitle: String) {
-        guard let collection = contentCollection else {
-            return
-        }
-
-        let coordinator = ArticleContentItemCoordinator(
+        guard let coordinator = ArticleContentItemCoordinator(
             root: viewController,
             services: services,
-            contentCollection: collection,
+            contentCollection: contentCollection,
             articleHeader: nil,
-            topTabBarTitle: topTabBarTitle.uppercased()
-        )
-
+            topTabBarTitle: topTabBarTitle.uppercased()) else {
+                return
+        }
         startChild(child: coordinator)
     }
 }
 
-// MARK: - TopTabBarDelegate
+// MARK: - TopNavigationBarDelegate
 
-extension SidebarCoordinator: TopTabBarDelegate {
-
-    func didSelectItemAtIndex(index: Int, sender: TopTabBarController) {
-        print("didSelectItemAtIndex", index as Any, sender)
+extension SidebarCoordinator: TopNavigationBarDelegate {
+    func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
     }
-
-    func didSelectRightButton(sender: TopTabBarController) {
-        sender.dismiss(animated: true, completion: nil)
+    
+    func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
+    }
+    
+    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
+        topTabBarController.dismiss(animated: true, completion: nil)
         removeChild(child: self)
-    }
-
-    func didSelectLeftButton(sender: TopTabBarController) {
-        print("didSelectLeftButton", sender)
     }
 }

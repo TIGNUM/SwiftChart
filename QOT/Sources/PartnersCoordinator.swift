@@ -17,7 +17,8 @@ final class PartnersCoordinator: NSObject, ParentCoordinator {
     fileprivate let services: Services
     fileprivate let selectedIndex: Index
     fileprivate let viewModel: PartnersViewModel
-    fileprivate var partnersViewController: PartnersViewController!
+    fileprivate var topTabBarController: UINavigationController!
+    fileprivate let partnersViewController: PartnersViewController
 
     var children: [Coordinator] = []
 
@@ -27,26 +28,20 @@ final class PartnersCoordinator: NSObject, ParentCoordinator {
         self.rootViewController = root
         self.services = services
         self.selectedIndex = selectedIndex
-        self.viewModel = PartnersViewModel(services: services, selectedIndex: selectedIndex, headline: "Lore ipsum impsum plus")
+        viewModel = PartnersViewModel(services: services, selectedIndex: selectedIndex, headline: "Lore ipsum impsum plus")
+        partnersViewController = PartnersViewController(viewModel: viewModel)
+        partnersViewController.title = R.string.localized.meSectorMyWhyPartnersTitle()
         
         super.init()
+        
+        let leftButton = UIBarButtonItem(withImage: R.image.ic_minimize())
+        let rightButton = UIBarButtonItem(withImage: R.image.ic_edit())
+        topTabBarController = UINavigationController(withPages: [partnersViewController], topBarDelegate: self, leftButton: leftButton, rightButton: rightButton)
+        topTabBarController.modalPresentationStyle = .custom
+        topTabBarController.transitioningDelegate = self
     }
 
     func start() {
-        partnersViewController = PartnersViewController(viewModel: viewModel)
-        let topTabBarControllerItem = TopTabBarController.Item(
-            controllers: [partnersViewController],
-            themes: [.dark],
-            titles: [R.string.localized.meSectorMyWhyPartnersTitle()]
-        )
-        let topTabBarController = TopTabBarController(
-            item: topTabBarControllerItem,
-            leftIcon: R.image.ic_minimize(),
-            rightIcon: R.image.ic_edit()
-        )
-        topTabBarController.modalPresentationStyle = .custom
-        topTabBarController.transitioningDelegate = self
-        topTabBarController.delegate = self
         rootViewController.present(topTabBarController, animated: true)
     }
     
@@ -57,23 +52,17 @@ final class PartnersCoordinator: NSObject, ParentCoordinator {
 
 // MARK: - TopTabBarDelegate
 
-extension PartnersCoordinator: TopTabBarDelegate {
-
-    func didSelectItemAtIndex(index: Int, sender: TopTabBarController) {
-        print(index as Any, sender)
-    }
-
-    func didSelectLeftButton(sender: TopTabBarController) {
+extension PartnersCoordinator: TopNavigationBarDelegate {
+    func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
         save()
-        sender.dismiss(animated: true, completion: nil)
+        topTabBarController.dismiss(animated: true, completion: nil)
     }
-
-    func didSelectRightButton(sender: TopTabBarController) {
-        guard let partnersController = sender.item.controllers.first as? PartnersViewController else {
-            return
-        }
-
-        partnersController.editCurrentItem()
+    
+    func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
+    }
+    
+    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
+        partnersViewController.editCurrentItem()
     }
 }
 

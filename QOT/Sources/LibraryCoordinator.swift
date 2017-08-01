@@ -16,36 +16,31 @@ final class LibraryCoordinator: ParentCoordinator {
     fileprivate let rootViewController: SidebarViewController
     fileprivate let services: Services
     fileprivate let libraryViewController: LibraryViewController
+    fileprivate var topTabBarController: UINavigationController!
+    fileprivate let presentationManager: PresentationManager
     var children = [Coordinator]()
-    lazy var presentationManager = PresentationManager(type: .fadeIn)
 
     // MARK: - Init
 
     init(root: SidebarViewController, services: Services) {
         self.rootViewController = root
         self.services = services
-        self.libraryViewController = LibraryViewController(viewModel: LibraryViewModel(services: services))
-    }
+        
+        presentationManager = PresentationManager(type: .fadeIn)
+        presentationManager.presentationType = .fadeIn
 
-    // MARK: - Coordinator -> Starts
-
-    func start() {
-        libraryViewController.delegate = self
+        libraryViewController = LibraryViewController(viewModel: LibraryViewModel(services: services))
         libraryViewController.modalPresentationStyle = .custom
         libraryViewController.transitioningDelegate = presentationManager
-
-        let topTabBarControllerItem = TopTabBarController.Item(
-            controllers: [libraryViewController],
-            themes: [.dark],
-            titles: [R.string.localized.sidebarTitleLibrary()]
-        )
-
-        let topTabBarController = TopTabBarController(
-            item: topTabBarControllerItem,            
-            leftIcon: R.image.ic_minimize()
-        )
-
-        topTabBarController.delegate = self
+        libraryViewController.title = R.string.localized.sidebarTitleLibrary()
+        
+        let leftButton = UIBarButtonItem(withImage: R.image.ic_minimize())
+        topTabBarController = UINavigationController(withPages: [libraryViewController], topBarDelegate: self, leftButton: leftButton)
+        
+        libraryViewController.delegate = self
+    }
+    
+    func start() {
         rootViewController.present(topTabBarController, animated: true)
     }
 }
@@ -55,31 +50,29 @@ final class LibraryCoordinator: ParentCoordinator {
 extension LibraryCoordinator: LibraryViewControllerDelegate {
 
     func didTapLibraryItem(item: ContentCollection) {
-        let coordinator = ArticleContentItemCoordinator(
+        guard let coordinator = ArticleContentItemCoordinator(
             root: libraryViewController,
             services: services,
             contentCollection: item,
             articleHeader: nil,
-            topTabBarTitle: R.string.localized.sidebarTitleLibrary().uppercased()
-        )
+            topTabBarTitle: R.string.localized.sidebarTitleLibrary().uppercased()) else {
+                return
+        }
         startChild(child: coordinator)
     }
 }
 
-// MARK: - TopTabBarDelegate
+// MARK: - TopNavigationBarDelegate
 
-extension LibraryCoordinator: TopTabBarDelegate {
-
-    func didSelectLeftButton(sender: TopTabBarController) {
-        sender.dismiss(animated: true, completion: nil)
+extension LibraryCoordinator: TopNavigationBarDelegate {
+    func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
+        topTabBarController.dismiss(animated: true, completion: nil)
         removeChild(child: self)
     }
-
-    func didSelectRightButton(sender: TopTabBarController) {
-        print("didSelectRightButton")
+    
+    func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
     }
-
-    func didSelectItemAtIndex(index: Int, sender: TopTabBarController) {
-        print("didSelectItemAtIndex")
+    
+    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
     }
 }

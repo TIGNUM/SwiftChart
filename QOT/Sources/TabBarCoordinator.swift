@@ -51,93 +51,48 @@ final class TabBarCoordinator: ParentCoordinator {
     fileprivate lazy var prepareChatViewController: ChatViewController<Answer> = {
         let viewModel = ChatViewModel<Answer>()
         let viewController = ChatViewController(viewModel: viewModel)
+        viewController.title = R.string.localized.topTabBarItemTitlePerpareCoach()
         return viewController
     }()
 
     fileprivate lazy var myPrepViewController: MyPrepViewController = {
         let viewModel = MyPrepViewModel(services: self.services)
-        return MyPrepViewController(viewModel: viewModel)
+        let viewController = MyPrepViewController(viewModel: viewModel)
+        viewController.title = R.string.localized.topTabBarItemTitlePerparePrep()
+        return viewController
     }()
 
-    fileprivate lazy var topTabBarControllerLearn: TopTabBarController = {
+    fileprivate lazy var topTabBarControllerLearn: UINavigationController = {
         let viewModel = LearnCategoryListViewModel(services: self.services)
         let learnCategoryListVC = LearnCategoryListViewController(viewModel: viewModel)
-        let articleCollectionViewModel = ArticleCollectionViewModel(services: self.services)
-        let articleCollectionViewController = ArticleCollectionViewController(viewModel: articleCollectionViewModel)
-        
-        let topBarControllerItem = TopTabBarController.Item(
-            controllers: [learnCategoryListVC, articleCollectionViewController],
-            themes: [.darkClear, .dark],
-            titles: [
-                R.string.localized.topTabBarItemTitleLearnStrategies(),
-                R.string.localized.topTabBarItemTitleLearnWhatsHot()
-            ],
-            enableTabScrolling: false
-        )
-
-        let topTabBarController = TopTabBarController(
-            item: topBarControllerItem,
-            leftIcon: R.image.ic_search(),
-            rightIcon: R.image.ic_menu()
-        )
-
-        articleCollectionViewController.delegate = self
-        topTabBarController.delegate = self
+        learnCategoryListVC.title = R.string.localized.topTabBarItemTitleLearnStrategies()
         learnCategoryListVC.delegate = self
 
+        let articleCollectionViewModel = ArticleCollectionViewModel(services: self.services)
+        let articleCollectionViewController = ArticleCollectionViewController(viewModel: articleCollectionViewModel)
+        articleCollectionViewController.title = R.string.localized.topTabBarItemTitleLearnWhatsHot()
+        articleCollectionViewController.delegate = self
+
+        let leftButton = UIBarButtonItem(withImage: R.image.ic_search())
+        let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())
+        let topTabBarController = UINavigationController(withPages: [learnCategoryListVC, articleCollectionViewController], topBarDelegate: self, pageDelegate: self, leftButton: leftButton, rightButton: rightButton)
+        
         return topTabBarController
     }()
 
-    fileprivate lazy var topTabBarControllerMe: TopTabBarController = {
+    fileprivate lazy var topTabBarControllerMe: MyUniverseViewController = {
         let myUniverseViewController = MyUniverseViewController(
             myDataViewModel: MyDataViewModel(services: self.services),
             myWhyViewModel: MyWhyViewModel(services: self.services)
         )
-
-        let topBarControllerItem = TopTabBarController.Item(
-            controllers: [myUniverseViewController],
-            themes: [.darkClear, .darkClear],
-            titles: [
-                R.string.localized.topTabBarItemTitleMeMyData(),
-                R.string.localized.topTabBarItemTitleMeMyWhy()
-            ],
-            containsScrollView: true,
-            contentView: myUniverseViewController.contentView
-        )
-
-        let topTabBarController = TopTabBarController(
-            item: topBarControllerItem,
-            rightIcon: R.image.ic_menu()
-        )
-
-        topTabBarController.delegate = self        
         myUniverseViewController.delegate = self
-        myUniverseViewController.contentScrollViewDelegate = topTabBarController
-
-        let contentScrollView = myUniverseViewController.scrollView()
-        myUniverseViewController.addSubViews(contentScrollView: contentScrollView)
-        topTabBarController.scrollView = contentScrollView
-
-        return topTabBarController
+        return myUniverseViewController
     }()
 
-    fileprivate lazy var topTabBarControllerPrepare: TopTabBarController = {
-        let topBarControllerItem = TopTabBarController.Item(
-            controllers: [self.prepareChatViewController, self.myPrepViewController],
-            themes: [.dark, .dark],
-            titles: [
-                R.string.localized.topTabBarItemTitlePerpareCoach(),
-                R.string.localized.topTabBarItemTitlePerparePrep()
-            ]
-        )
-        
-        let topTabBarController = TopTabBarController(
-            item: topBarControllerItem,
-            leftIcon: R.image.ic_search(),
-            rightIcon: R.image.ic_menu()
-        )
-
-        topTabBarController.delegate = self
+    fileprivate lazy var topTabBarControllerPrepare: UINavigationController = {
+        let leftButton = UIBarButtonItem(withImage: R.image.ic_search())
+        let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())
+        let topTabBarController = UINavigationController(withPages: [self.prepareChatViewController, self.myPrepViewController], topBarDelegate: self, pageDelegate: self, leftButton: leftButton, rightButton: rightButton)
         
         return topTabBarController
     }()
@@ -309,6 +264,9 @@ extension TabBarCoordinator: LearnContentListCoordinatorDelegate {
 // MARK: - MeSectionDelegate
 
 extension TabBarCoordinator: MyUniverseViewControllerDelegate {
+    func didTapRightBarButton(_ button: UIBarButtonItem, from topNavigationBar: TopNavigationBar, in viewController: MyUniverseViewController) {
+        self.topNavigationBar(topNavigationBar, rightButtonPressed: button)
+    }
 
     func didTapSector(sector: Sector?, in viewController: MyUniverseViewController) {
         let coordinator = MyStatisticsCoordinator(root: topTabBarControllerMe, services: services)
@@ -340,38 +298,48 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
             viewController.showAlert(type: .noContent, handler: nil, handlerDestructive: nil)
             return
         }
-
-        let coordinator = ArticleContentItemCoordinator(
+        guard let coordinator = ArticleContentItemCoordinator(
             root: viewController,
             services: services,
             contentCollection: articleHeader.articleContentCollection,
             articleHeader: articleHeader,
-            topTabBarTitle: nil
-        )
-
-        coordinator.startChild(child: coordinator)
+            topTabBarTitle: nil) else {
+                return
+        }
+        startChild(child: coordinator)
     }
 }
 
-// MARK: - TopTabBarDelegate
+// MARK: - TopNavigationBarDelegate
 
-extension TabBarCoordinator: TopTabBarDelegate {
-
-    func didSelectLeftButton(sender: TopTabBarController) {
-        print("didSelectLeftButton", sender)
+extension TabBarCoordinator: TopNavigationBarDelegate {
+    func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
     }
-
-    func didSelectRightButton(sender: TopTabBarController) {
-        print("didSelectRightButton", sender)
+    
+    func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
+        guard let navigationController = viewControllers[selectedIndex.value] as? UINavigationController, let pageViewController = navigationController.viewControllers.first as? PageViewController else {
+            return
+        }
+        pageViewController.setPageIndex(index, animated: true)
+    }
+    
+    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
         guard let tabBarController = tabBarController else {
             return
         }
-
+        
         let coordinator = SidebarCoordinator(root: tabBarController, services: services)
         startChild(child: coordinator)
     }
+}
 
-    func didSelectItemAtIndex(index: Int, sender: TopTabBarController) {
-        print("didSelectItemAtIndex", index, sender)
+// MARK: - PageViewControllerDelegate
+
+extension TabBarCoordinator: PageViewControllerDelegate {
+    func pageViewController(_ controller: UIPageViewController, didSelectPageIndex index: Int) {
+        guard let navigationController = controller.navigationController, let topNavigationBar = navigationController.navigationBar as? TopNavigationBar else {
+            return
+        }
+        topNavigationBar.setIndicatorToButtonIndex(index)
     }
 }

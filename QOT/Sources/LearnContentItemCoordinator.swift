@@ -16,11 +16,11 @@ final class LearnContentItemCoordinator: ParentCoordinator {
     fileprivate let category: ContentCategory
     fileprivate var categoryTitle: String
     fileprivate var selectedContent: ContentCollection
-    fileprivate var fullViewController: LearnContentItemViewController
-    fileprivate var bulletViewController: LearnContentItemViewController
-    fileprivate var audioViewController: LearnContentItemViewController
+    fileprivate let fullViewController: LearnContentItemViewController
+    fileprivate let bulletViewController: LearnContentItemViewController
+    fileprivate let audioViewController: LearnContentItemViewController
+    fileprivate var topTabBarController: UINavigationController!
     fileprivate var viewModel: LearnContentItemViewModel
-    weak var topTabBarControllerDelegate: TopTabBarControllerDelegate?
     var children: [Coordinator] = []
     
     init(root: UIViewController, services: Services, content: ContentCollection, category: ContentCategory) {
@@ -34,48 +34,39 @@ final class LearnContentItemCoordinator: ParentCoordinator {
             contentCollection: selectedContent,
             categoryID: category.remoteID
         )
-        self.fullViewController = LearnContentItemViewController(
+        
+        let headerView = LearnContentItemHeaderView.fromXib(contentTitle: selectedContent.title.capitalized, categoryTitle: categoryTitle.capitalized)
+        
+        fullViewController = LearnContentItemViewController(
             viewModel: viewModel,
-            categoryTitle: categoryTitle,
-            contentTitle: selectedContent.title,
             tabType: .full
         )
-        self.bulletViewController = LearnContentItemViewController(
+        fullViewController.title = R.string.localized.learnContentItemTitleFull()
+        
+        bulletViewController = LearnContentItemViewController(
             viewModel: viewModel,
-            categoryTitle: categoryTitle,
-            contentTitle: selectedContent.title,
             tabType: .bullets
         )
-        self.audioViewController = LearnContentItemViewController(
+        bulletViewController.title = R.string.localized.learnContentItemTitleBullets()
+        
+        audioViewController = LearnContentItemViewController(
             viewModel: viewModel,
-            categoryTitle: categoryTitle,
-            contentTitle: selectedContent.title,
             tabType: .audio
         )
-    }
-
-    func start() {
-        let topTabBarControllerItem = TopTabBarController.Item(
-            controllers: [fullViewController, bulletViewController, audioViewController],
-            themes: [.light, .light, .light],
-            titles: [
-                R.string.localized.learnContentItemTitleFull(),
-                R.string.localized.learnContentItemTitleBullets(),
-                R.string.localized.learnContentItemTitleAudio()
-            ]
-        )
-        let topTabBarController = TopTabBarController(
-            item: topTabBarControllerItem,
-            leftIcon: R.image.ic_minimize(),
-            learnHeaderTitle: selectedContent.title,
-            learnHeaderSubTitle: categoryTitle
-        )
-
+        audioViewController.title = R.string.localized.learnContentItemTitleAudio()
+        
+        let leftButton = UIBarButtonItem(withImage: R.image.ic_minimize())
+        topTabBarController = UINavigationController(withPages: [fullViewController, bulletViewController, audioViewController], headerView: headerView, topBarDelegate: self, pageDelegate: self, backgroundColor: .white, backgroundImage: nil, leftButton: leftButton)
+        if let navigationBar = topTabBarController.navigationBar as? TopNavigationBar {
+            navigationBar.setStyle(tintColor: .black70, backgroundColor: .white)
+        }
+        
         fullViewController.delegate = self
         bulletViewController.delegate = self
         audioViewController.delegate = self
+    }
 
-        topTabBarController.modalTransitionStyle = .crossDissolve
+    func start() {
         if rootVC is UIViewControllerTransitioningDelegate {
             topTabBarController.modalPresentationStyle = .fullScreen  // Custom animations doesn't work when this value is set to .custom
 
@@ -87,28 +78,31 @@ final class LearnContentItemCoordinator: ParentCoordinator {
             topTabBarController.modalPresentationStyle = .custom
         }
 
-        topTabBarController.delegate = self
-        topTabBarController.learnContentItemViewControllerDelegate = self
-        topTabBarControllerDelegate = topTabBarController
         rootVC.present(topTabBarController, animated: true)
         // FIXME: Add page tracking
     }
 }
 
-extension LearnContentItemCoordinator: TopTabBarDelegate {
+// MARK: - TopNavigationBarDelegate
 
-    func didSelectItemAtIndex(index: Int, sender: TopTabBarController) {
-        print(index, sender)
+extension LearnContentItemCoordinator: TopNavigationBarDelegate {
+    func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
+        topTabBarController.dismiss(animated: true, completion: nil)
     }
-
-    func didSelectLeftButton(sender: TopTabBarController) {
-        sender.dismiss(animated: true, completion: nil)
+    
+    func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
+        guard let pageViewController = topTabBarController.viewControllers.first as? PageViewController else {
+            return
+        }
+        pageViewController.setPageIndex(index, animated: true)
     }
-
-    func didSelectRightButton(sender: TopTabBarController) {
+    
+    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
         print("did select book mark")
     }
 }
+
+// MARK: - LearnContentItemViewControllerDelegate
 
 extension LearnContentItemCoordinator: LearnContentItemViewControllerDelegate {
 
@@ -118,10 +112,6 @@ extension LearnContentItemCoordinator: LearnContentItemViewControllerDelegate {
 
     func didTapShare(in viewController: LearnContentItemViewController) {
         print("didTapShare")
-    }
-
-    func didChangeTab(to nextIndex: Index, in viewController: TopTabBarController) {
-        print("didChangeTab")
     }
 
     func didSelectReadMoreContentCollection(with collectionID: Int, in viewController: LearnContentItemViewController) {
@@ -135,7 +125,8 @@ extension LearnContentItemCoordinator: LearnContentItemViewControllerDelegate {
             contentCollection: selectedContent,
             categoryID: category.remoteID
         )
-        topTabBarControllerDelegate?.updateHeaderView(title: categoryTitle, subTitle: selectedContent.title)
+        // TODO: this
+        //topTabBarControllerDelegate?.updateHeaderView(title: categoryTitle, subTitle: selectedContent.title)
         fullViewController.reloadData(viewModel: viewModel)
         bulletViewController.reloadData(viewModel: viewModel)
         audioViewController.reloadData(viewModel: viewModel)
@@ -147,5 +138,16 @@ extension LearnContentItemCoordinator: LearnContentItemViewControllerDelegate {
 
     func didTapArticle(with article: ContentItem, from view: UIView, in viewController: LearnContentItemViewController) {
         print("didTapArticle")
+    }
+}
+
+// MARK: - PageViewControllerDelegate
+
+extension LearnContentItemCoordinator: PageViewControllerDelegate {
+    func pageViewController(_ controller: UIPageViewController, didSelectPageIndex index: Int) {
+        guard let navigationController = controller.navigationController, let topNavigationBar = navigationController.navigationBar as? TopNavigationBar else {
+            return
+        }
+        topNavigationBar.setIndicatorToButtonIndex(index)
     }
 }

@@ -22,8 +22,6 @@ protocol LearnContentItemViewControllerDelegate: class {
 
     func didTapArticle(with article: ContentItem, from view: UIView, in viewController: LearnContentItemViewController)
 
-    func didChangeTab(to nextIndex: Index, in viewController: TopTabBarController)
-
     func didTapFinish(from view: UIView)
 
     func didSelectReadMoreContentCollection(with collectionID: Int, in viewController: LearnContentItemViewController)
@@ -36,8 +34,6 @@ final class LearnContentItemViewController: UIViewController {
     weak var delegate: LearnContentItemViewControllerDelegate?
     fileprivate let disposeBag = DisposeBag()
     fileprivate var viewModel: LearnContentItemViewModel
-    fileprivate let categoryTitle: String
-    fileprivate var contentTitle: String
     fileprivate let tabType: TabType
     fileprivate var soundPattern = Property([Float(0)])
 
@@ -58,27 +54,10 @@ final class LearnContentItemViewController: UIViewController {
         )
     }()
 
-    fileprivate func headerView(contentTitle: String, categoryTitle: String) -> LearnContentItemHeaderView {
-        let title = Style.postTitle(contentTitle.uppercased(), .darkIndigo).attributedString()
-        let subTitle = Style.tag(categoryTitle.uppercased(), .black30).attributedString()
-        let nib = R.nib.learnContentItemHeaderView()
-        let headerView = (nib.instantiate(withOwner: self, options: nil).first as? LearnContentItemHeaderView)!
-        headerView.setupView(title: title, subtitle: subTitle)
-        headerView.backgroundColor = .white
-
-        return headerView
-    }
-
-    func isTableViewScrolledToTop() -> Bool {
-        return self.tableView.contentOffset.y == -64
-    }
-
     // MARK: Init
     
-    init(viewModel: LearnContentItemViewModel, categoryTitle: String, contentTitle: String, tabType: TabType) {
+    init(viewModel: LearnContentItemViewModel, tabType: TabType) {
         self.viewModel = viewModel
-        self.categoryTitle = categoryTitle.capitalized
-        self.contentTitle = contentTitle.capitalized
         self.tabType = tabType
         
         super.init(nibName: nil, bundle: nil)
@@ -94,6 +73,10 @@ final class LearnContentItemViewController: UIViewController {
         super.viewDidLoad()
 
         setupView()
+        
+        if let parent = parent as? PageScroll {
+            parent.pageDidLoad(self, scrollView: tableView)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -104,7 +87,8 @@ final class LearnContentItemViewController: UIViewController {
 
     func reloadData(viewModel: LearnContentItemViewModel) {
         self.viewModel = viewModel
-        self.contentTitle = viewModel.contentTitle
+        //TODO:this
+        //self.contentTitle = viewModel.contentTitle
         tableView.reloadData()
 
         let sections = tableView.numberOfSections
@@ -219,22 +203,6 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
             }
         }
     }
-
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? CGFloat(200) : CGFloat(44)
-    }
-
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return section == 0 ? headerView(contentTitle: contentTitle.uppercased(), categoryTitle: categoryTitle.uppercased()) : contentItemTextTableViewCell(
-            tableView: tableView,
-            indexPath: IndexPath(row: 0, section: 1),
-            topText: NSMutableAttributedString(
-                string: R.string.localized.prepareContentReadMore().uppercased(),
-                font: Font.H5SecondaryHeadline,
-                textColor: .black),
-            bottomText: nil
-        )
-    }
 }
 
 // MARK: - Audio/Private
@@ -289,9 +257,11 @@ private extension LearnContentItemViewController {
 
     func setupView() {
         view.addSubview(tableView)
+        view.backgroundColor = .clear
         tableView.topAnchor == view.topAnchor
         tableView.bottomAnchor == view.bottomAnchor
         tableView.horizontalAnchors == view.horizontalAnchors
+        tableView.backgroundColor = .clear
     }
 
     func shouldMarkItemAsViewed(contentItem: ContentItem?) {
@@ -423,5 +393,23 @@ extension LearnContentItemViewController: AudioPlayerViewSliderDelegate {
 
     func value(at layout: Float, in view: LearnStrategyAudioPlayerView) {
         viewModel.forward(value: layout)
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+
+extension LearnContentItemViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if let parent = parent as? PageScroll {
+            parent.pageDidScroll(self, scrollView: tableView)
+        }
+    }
+}
+
+// MARK: - Page
+
+extension LearnContentItemViewController: PageScrollView {
+    func scrollView() -> UIScrollView {
+        return tableView
     }
 }

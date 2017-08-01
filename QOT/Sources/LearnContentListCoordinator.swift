@@ -15,6 +15,9 @@ final class LearnContentListCoordinator: ParentCoordinator {
     fileprivate let rootVC: LearnCategoryListViewController
     fileprivate let services: Services
     fileprivate let selectedCategoryIndex: Index
+    fileprivate let learnContentListViewController: LearnContentListViewController
+    fileprivate var topTabBarController: UINavigationController!
+
     var children: [Coordinator] = []
     weak var delegate: LearnContentListCoordinatorDelegate?
 
@@ -24,28 +27,19 @@ final class LearnContentListCoordinator: ParentCoordinator {
         self.rootVC = root
         self.services = services
         self.selectedCategoryIndex = selectedCategoryIndex
-        self.presentationManager = ZoomPresentationManager(openingFrame: originFrame)
+        
+        presentationManager = ZoomPresentationManager(openingFrame: originFrame)
+        
+        let viewModel = LearnContentCollectionViewModel(services: services, selectedIndex: selectedCategoryIndex)
+        learnContentListViewController = LearnContentListViewController(viewModel: viewModel, selectedCategoryIndex: self.selectedCategoryIndex)
+        topTabBarController = UINavigationController(withPages: [learnContentListViewController], topBarDelegate: self)
+        topTabBarController.modalPresentationStyle = .custom
+        topTabBarController.transitioningDelegate = presentationManager
+
+        learnContentListViewController.delegate = self
     }
     
     func start() {
-        let viewModel = LearnContentCollectionViewModel(services: services, selectedIndex: selectedCategoryIndex)
-        let contentListViewController = LearnContentListViewController(viewModel: viewModel, selectedCategoryIndex: self.selectedCategoryIndex)
-
-        let topTabBarControllerItem = TopTabBarController.Item(
-            controllers: [contentListViewController],
-            themes: [.dark]
-        )
-
-        let topTabBarController = TopTabBarController(
-            item: topTabBarControllerItem
-        )
-
-        contentListViewController.delegate = self
-        topTabBarController.delegate = self
-        topTabBarController.modalPresentationStyle = .custom
-
-        topTabBarController.transitioningDelegate = presentationManager
-
         rootVC.present(topTabBarController, animated: true)
     }
 }
@@ -62,19 +56,16 @@ extension LearnContentListCoordinator: LearnContentListViewControllerDelegate {
     }
 }
 
-// MARK: - TopTabBarDelegate
+// MARK: - TopNavigationBarDelegate
 
-extension LearnContentListCoordinator: TopTabBarDelegate {
-
-    func didSelectRightButton(sender: TopTabBarController) {
-        sender.dismiss(animated: true, completion: nil)
+extension LearnContentListCoordinator: TopNavigationBarDelegate {
+    func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
     }
-
-    func didSelectLeftButton(sender: TopTabBarController) {
-        print("Search button pressed", sender)
+    
+    func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
     }
-
-    func didSelectItemAtIndex(index: Int, sender: TopTabBarController) {
-        print("didSelectItemAtIndex", index as Any, sender)
+    
+    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
+        topTabBarController.dismiss(animated: true, completion: nil)
     }
 }

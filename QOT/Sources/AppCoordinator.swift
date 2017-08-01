@@ -63,9 +63,6 @@ final class AppCoordinator: ParentCoordinator {
     
     func start() {
         let viewController = AnimatedLaunchScreenViewController()
-        window.rootViewController = viewController
-        window.makeKeyAndVisible()
-
         viewController.fadeInLogo()
         viewController.startAnimatingImages {
             viewController.fadeOutLogo {
@@ -196,17 +193,15 @@ extension AppCoordinator {
     func presentArticleView(contentID: Int) {
         guard
             let root = window.rootViewController,
-            let services = services else {
-                return
+            let services = services,
+            let coordinator = ArticleContentItemCoordinator(
+                root: root,
+                services: services,
+                contentCollection: services.contentService.contentCollection(id: contentID),
+                articleHeader: nil,
+                topTabBarTitle: R.string.localized.sidebarTitleLibrary().uppercased()) else {
+                    return
         }
-
-        let coordinator = ArticleContentItemCoordinator(
-            root: root,
-            services: services,
-            contentCollection: services.contentService.contentCollection(id: contentID),
-            articleHeader: nil,
-            topTabBarTitle: R.string.localized.sidebarTitleLibrary().uppercased()
-        )
         startChild(child: coordinator)
     }
 

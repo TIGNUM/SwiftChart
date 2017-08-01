@@ -30,7 +30,7 @@ final class PrepareCoordinator: ParentCoordinator {
     fileprivate let services: Services
     fileprivate let permissionHandler: PermissionHandler
     fileprivate let tabBarController: TabBarController
-    fileprivate let topTabBarController: TopTabBarController
+    fileprivate let topTabBarController: UINavigationController
     fileprivate let chatViewController: ChatViewController<Answer>
     fileprivate let myPrepViewController: MyPrepViewController
     fileprivate let chatDecisionManager: PrepareChatDecisionManager
@@ -58,7 +58,7 @@ final class PrepareCoordinator: ParentCoordinator {
     init(services: Services,
          permissionHandler: PermissionHandler,
          tabBarController: TabBarController,
-         topTabBarController: TopTabBarController,
+         topTabBarController: UINavigationController,
          chatViewController: ChatViewController<Answer>,
          myPrepViewController: MyPrepViewController) {
         self.services = services
@@ -69,16 +69,15 @@ final class PrepareCoordinator: ParentCoordinator {
         self.chatDecisionManager = PrepareChatDecisionManager(service: services.questionsService)
         self.myPrepViewController = myPrepViewController
 
+        myPrepViewController.delegate = self
+
         chatDecisionManager.delegate = self
         chatViewController.didSelectChoice = { [weak self] (choice, viewController) in
             self?.chatDecisionManager.didSelectChoice(choice)
         }
-
-        myPrepViewController.delegate = self
     }
 
     func start() {
-        
     }
 
     func focus() {

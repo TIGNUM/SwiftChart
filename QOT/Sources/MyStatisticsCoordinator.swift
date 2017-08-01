@@ -15,6 +15,8 @@ final class MyStatisticsCoordinator: ParentCoordinator {
 
     fileprivate let rootViewController: UIViewController
     fileprivate let services: Services
+    fileprivate var topTabBarController: UINavigationController!
+    
     var children: [Coordinator] = []
 
     // MARK: - Life Cycle
@@ -29,19 +31,11 @@ final class MyStatisticsCoordinator: ParentCoordinator {
             let viewModel = try MyStatisticsViewModel(services: services)
             let myStatisticsViewController = MyStatisticsViewController(viewModel: viewModel)
             myStatisticsViewController.delegate = self
+            myStatisticsViewController.title = "23 SEP // 30 Sep" //TODO: localise
+   
+            let leftButton = UIBarButtonItem(withImage: R.image.ic_minimize())
+            topTabBarController = UINavigationController(withPages: [myStatisticsViewController], topBarDelegate: self, leftButton: leftButton)
 
-            let topTabBarControllerItem = TopTabBarController.Item(
-                controllers: [myStatisticsViewController],
-                themes: [.darkClear],
-                titles: ["23 SEP // 30 Sep"]
-            )
-
-            let topTabBarController = TopTabBarController(
-                item: topTabBarControllerItem,
-                leftIcon: R.image.ic_minimize()
-            )
-
-            topTabBarController.delegate = self
             rootViewController.present(topTabBarController, animated: true)
         } catch let error {
             assertionFailure("Failed to fetch cards with error: \(error)")
@@ -58,19 +52,16 @@ extension MyStatisticsCoordinator: MyStatisticsViewControllerDelegate {
     }
 }
 
-// MARK: - TopTabBarDelegate
+// MARK: - TopNavigationBarDelegate
 
-extension MyStatisticsCoordinator: TopTabBarDelegate {
-
-    func didSelectLeftButton(sender: TopTabBarController) {
-        sender.dismiss(animated: true, completion: nil)
+extension MyStatisticsCoordinator: TopNavigationBarDelegate {
+    func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
+        topTabBarController.dismiss(animated: true, completion: nil)
     }
-
-    func didSelectRightButton(sender: TopTabBarController) {
-        print("didSelectRightButton", sender)
+    
+    func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
     }
-
-    func didSelectItemAtIndex(index: Int, sender: TopTabBarController) {
-        print("didSelectItemAtIndex", index as Any, sender)
+    
+    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
     }
 }

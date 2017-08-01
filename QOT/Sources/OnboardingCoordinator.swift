@@ -59,13 +59,7 @@ final class OnboardingCoordinator: ParentCoordinator {
         
         let navigationController = UINavigationController(rootViewController: chatViewController)
         let navigationBar = navigationController.navigationBar
-        navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationBar.shadowImage = UIImage()
-        navigationBar.isTranslucent = true
-        navigationBar.titleTextAttributes = [
-            NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: Font.H5SecondaryHeadline
-        ]
+        navigationBar.applyDefaultStyle()
         
         startOnboarding() // must be called before adding chat vc to window, else chat won't animate
 

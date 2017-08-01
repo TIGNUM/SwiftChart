@@ -13,16 +13,13 @@ protocol MyUniverseViewControllerDelegate: class {
     func didTapMyToBeVision(vision: MyToBeVision?, from view: UIView, in viewController: MyUniverseViewController)
     func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, from view: UIView, in viewController: MyUniverseViewController)
     func didTapQOTPartner(selectedIndex: Index, partners: [PartnerWireframe], from view: UIView, in viewController: MyUniverseViewController)
+    func didTapRightBarButton(_ button: UIBarButtonItem, from topNavigationBar: TopNavigationBar, in viewController: MyUniverseViewController)
 }
 
 protocol MyWhyViewDelegate: class {
     func didTapMyToBeVision(vision: MyToBeVision?, from view: UIView)
     func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, from view: UIView)
     func didTapQOTPartner(selectedIndex: Index, partners: [PartnerWireframe], from view: UIView)
-}
-
-protocol ContentScrollViewDelegate: class {
-    func didEndDecelerating(_ contentOffset: CGPoint)
 }
 
 final class MyUniverseViewController: UIViewController {
@@ -32,9 +29,39 @@ final class MyUniverseViewController: UIViewController {
     fileprivate let myDataViewModel: MyDataViewModel
     fileprivate let myWhyViewModel: MyWhyViewModel
     fileprivate var lastContentOffset: CGFloat = 0
-    weak var contentScrollViewDelegate: ContentScrollViewDelegate?
     weak var delegate: MyUniverseViewControllerDelegate?
 
+    fileprivate lazy var topBar: TopNavigationBar = {
+        let topBar = TopNavigationBar(frame: CGRect(
+            x: 0.0,
+            y: 20.0,
+            width: self.view.bounds.size.width,
+            height: 44.0
+        ))
+        topBar.items = [UINavigationItem()]
+        topBar.topNavigationBarDelegate = self
+        let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())
+        topBar.setRightButton(rightButton)
+        topBar.setMiddleButtons(self.middleButtons)
+        return topBar
+    }()
+    
+    fileprivate lazy var middleButtons: [UIButton] = {
+        let myDataButton = UIButton(type: .custom)
+        myDataButton.setTitle(R.string.localized.topTabBarItemTitleMeMyData().uppercased(), for: .normal)
+        myDataButton.setTitleColor(.white, for: .normal)
+        myDataButton.titleLabel?.font = Font.H5SecondaryHeadline
+        myDataButton.backgroundColor = .clear
+        
+        let myWhyButton = UIButton(type: .custom)
+        myWhyButton.setTitle(R.string.localized.topTabBarItemTitleMeMyWhy().uppercased(), for: .normal)
+        myWhyButton.setTitleColor(.white, for: .normal)
+        myWhyButton.titleLabel?.font = Font.H5SecondaryHeadline
+        myWhyButton.backgroundColor = .clear
+        
+        return [myDataButton, myWhyButton]
+    }()
+    
     fileprivate lazy var myDataView: MyDataView = {
         return MyDataView(
             delegate: self,
@@ -73,6 +100,20 @@ final class MyUniverseViewController: UIViewController {
             frame: myDataSectorLablesViewFrame,
             screenType: self.screenType
         )
+    }()
+    
+    fileprivate lazy var scrollView: UIScrollView = {
+        let layout = Layout.MeSection(viewControllerFrame: self.view.bounds)
+        let contentScrollView = MyUniverseHelper.createScrollView(self.view.bounds, layout: layout)
+        contentScrollView.delegate = self
+        contentScrollView.isPagingEnabled = true
+        contentScrollView.contentInset = UIEdgeInsets(
+            top: self.topBar.bounds.size.height + 20.0,
+            left: contentScrollView.contentInset.left,
+            bottom: contentScrollView.contentInset.bottom,
+            right: contentScrollView.contentInset.right
+        )
+        return contentScrollView
     }()
 
     fileprivate lazy var backgroundScrollView: UIScrollView = {
@@ -124,29 +165,22 @@ final class MyUniverseViewController: UIViewController {
         super.viewDidLoad()
 
         addTabRecognizer()
+        addSubViews()
     }
 }
 
 // MARK: - ContentScrollView / SubView adding
 
-extension MyUniverseViewController {
+private extension MyUniverseViewController {
 
-    func scrollView() -> UIScrollView {
-        let layout = Layout.MeSection(viewControllerFrame: self.view.bounds)
-        let contentScrollView = MyUniverseHelper.createScrollView(self.view.frame, layout: layout)
-        contentScrollView.delegate = self
-        contentScrollView.isPagingEnabled = true
-
-        return contentScrollView
-    }
-
-    func addSubViews(contentScrollView: UIScrollView) {
+    func addSubViews() {
         backgroundScrollView.addSubview(backgroundImage)
         view.addSubview(backgroundScrollView)
-        view.addSubview(contentScrollView)
-        contentScrollView.addSubview(myWhyView)
-        contentScrollView.addSubview(myDataSectorLabelsView)
-        contentScrollView.addSubview(myDataView)
+        view.addSubview(scrollView)
+        view.addSubview(topBar)
+        scrollView.addSubview(myWhyView)
+        scrollView.addSubview(myDataSectorLabelsView)
+        scrollView.addSubview(myDataView)
     }
 }
 
@@ -218,7 +252,29 @@ extension MyUniverseViewController: UIScrollViewDelegate {
     }
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        contentScrollViewDelegate?.didEndDecelerating(scrollView.contentOffset)
+        guard scrollView.contentOffset.x > 0.0 else {
+            topBar.setIndicatorToButtonIndex(0)
+            return
+        }
+        
+        topBar.setIndicatorToButtonIndex(pageIndex)
+    }
+    
+    var pageIndex: Int {
+        guard scrollView.contentOffset.x > 0.0 else {
+            return 0
+        }
+        return Int(floor(scrollView.frame.size.width / scrollView.contentOffset.x))
+    }
+    
+    func pageOffsetForIndex(_ index: Int) -> CGFloat {
+        switch index {
+        case 1:
+            // @warning hacky - but not sure how else to handle this. returning myDataView.width, or myWhyView.x doesnt work - the page offset is too large
+            return scrollView.contentSize.width - view.bounds.size.width
+        default:
+            return 0.0
+        }
     }
 }
 
@@ -300,7 +356,7 @@ extension MyUniverseViewController: CustomPresentationAnimatorDelegate {
                 self.myWhyView.weeklyChoicesBox.transform = .identity
                 self.myWhyView.qotPartnersBox.transform = .identity
             }
-        } else if animator.toViewController is TopTabBarController {
+        } else if let toViewController = animator.toViewController, toViewController.contains(WeeklyChoicesViewController.self) {
             self.myWhyView.weeklyChoicesBox.alpha = 1
             return { [unowned self] in
                 self.myWhyView.weeklyChoicesBox.alpha = 0
@@ -310,7 +366,7 @@ extension MyUniverseViewController: CustomPresentationAnimatorDelegate {
 
                 self.view.transform = CGAffineTransform(translationX: -580.0, y: -50.0).scaledBy(x: 4.0, y: 3.0)
             }
-        } else if animator.fromViewController is TopTabBarController {
+        } else if let fromViewController = animator.fromViewController, fromViewController.contains(WeeklyChoicesViewController.self) {
             self.myWhyView.weeklyChoicesBox.alpha = 0
             return { [unowned self] in
                 self.myWhyView.weeklyChoicesBox.alpha = 1
@@ -320,15 +376,47 @@ extension MyUniverseViewController: CustomPresentationAnimatorDelegate {
 
                 self.view.transform = .identity
             }
-        } else if let tabBarController = animator.toViewController as? TopTabBarController, tabBarController.item.controllers.first is PartnersViewController {
+        } else if let toViewController = animator.toViewController, toViewController.contains(PartnersViewController.self) {
             return { [unowned self] in
                 self.myWhyView.qotPartnersBox.transform = CGAffineTransform(translationX: 200.0, y: -300.0).scaledBy(x: 2.5, y: 2.5)
             }
-        } else if let tabBarController = animator.fromViewController as? TopTabBarController, tabBarController.item.controllers.first is PartnersViewController {
+        } else if let fromViewController = animator.fromViewController, fromViewController.contains(PartnersViewController.self) {
             return { [unowned self] in
                 self.myWhyView.qotPartnersBox.transform = .identity
             }
         }
         return nil
+    }
+}
+
+// MARK: - TopNavigationBarDelegate
+
+extension MyUniverseViewController: TopNavigationBarDelegate {
+    func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
+    }
+    
+    func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
+        guard let index = middleButtons.index(of: button) else {
+            return
+        }
+        scrollView.setContentOffset(CGPoint(
+            x: pageOffsetForIndex(index),
+            y: scrollView.contentOffset.y
+        ), animated: true)
+    }
+    
+    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
+        delegate?.didTapRightBarButton(button, from: navigationBar, in: self)
+    }
+}
+
+// MARK: - animation helper
+
+private extension UIViewController {
+    func contains(_ classId: AnyClass) -> Bool {
+        if let navigationController = self as? UINavigationController, let pageViewController = navigationController.viewControllers.first as? PageViewController, let viewController = pageViewController.data?.first, viewController.classForCoder == classId {
+            return true
+        }
+        return false
     }
 }

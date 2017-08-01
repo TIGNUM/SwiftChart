@@ -15,7 +15,9 @@ final class WeeklyChoicesCoordinator: NSObject, ParentCoordinator {
 
     fileprivate let rootViewController: UIViewController
     fileprivate let services: Services
-
+    fileprivate let weeklyChoicesViewController: WeeklyChoicesViewController
+    fileprivate var topTabBarController: UINavigationController!
+    
     var children: [Coordinator] = []
 
     // MARK: - Life Cycle
@@ -23,28 +25,22 @@ final class WeeklyChoicesCoordinator: NSObject, ParentCoordinator {
     init(root: UIViewController, services: Services) {
         self.rootViewController = root
         self.services = services
+        
+        let viewModel = WeeklyChoicesViewModel(services: services)
+        weeklyChoicesViewController = WeeklyChoicesViewController(viewModel: viewModel)
+        weeklyChoicesViewController.title = R.string.localized.meSectorMyWhyWeeklyChoicesTitle()
+
+        super.init()
+        
+        let leftButton = UIBarButtonItem(withImage: R.image.ic_minimize())
+        topTabBarController = UINavigationController(withPages: [weeklyChoicesViewController], topBarDelegate: self, leftButton: leftButton)
+        topTabBarController.modalPresentationStyle = .custom
+        topTabBarController.transitioningDelegate = self
+        
+        weeklyChoicesViewController.delegate = self
     }
 
     func start() {
-        let viewModel = WeeklyChoicesViewModel(services: services)
-        let weeklyChoicesViewController = WeeklyChoicesViewController(viewModel: viewModel)
-        weeklyChoicesViewController.delegate = self
-
-        let topTabBarControllerItem = TopTabBarController.Item(
-            controllers: [weeklyChoicesViewController],
-            themes: [.darkClear],
-            titles: [R.string.localized.meSectorMyWhyWeeklyChoicesTitle()]
-        )
-
-        let topTabBarController = TopTabBarController(
-            item: topTabBarControllerItem,            
-            leftIcon: R.image.ic_minimize()
-        )
-
-        topTabBarController.delegate = self
-        topTabBarController.modalPresentationStyle = .custom
-        topTabBarController.transitioningDelegate = self
-
         rootViewController.present(topTabBarController, animated: true)
     }
 }
@@ -63,20 +59,18 @@ extension WeeklyChoicesCoordinator: WeeklyChoicesViewControllerDelegate {
     }
 }
 
-extension WeeklyChoicesCoordinator: TopTabBarDelegate {
+// MARK: - TopNavigationBarDelegate
 
-    func didSelectItemAtIndex(index: Int, sender: TopTabBarController) {
-        print(index as Any, sender)
+extension WeeklyChoicesCoordinator: TopNavigationBarDelegate {
+    func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
+        topTabBarController.dismiss(animated: true, completion: nil)
     }
-
-    func didSelectLeftButton(sender: TopTabBarController) {
-        sender.dismiss(animated: true, completion: nil)
+    
+    func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
     }
-
-    func didSelectRightButton(sender: TopTabBarController) {
-        print(sender)
+    
+    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
     }
-
 }
 
 // MARK: - UIViewControllerTransitioningDelegate

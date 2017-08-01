@@ -14,52 +14,45 @@ final class SettingsCoordinator: ParentCoordinator {
     fileprivate let rootViewController: SettingsMenuViewController
     fileprivate let services: Services
     fileprivate let settingsType: SettingsViewModel.SettingsType
+    fileprivate let settingsViewController: SettingsViewController
+    fileprivate var topTabBarController: UINavigationController!
     var children = [Coordinator]()
 
-    init(root: SettingsMenuViewController, services: Services, settingsType: SettingsViewModel.SettingsType) {
+    init?(root: SettingsMenuViewController, services: Services, settingsType: SettingsViewModel.SettingsType) {
         self.rootViewController = root
         self.services = services
         self.settingsType = settingsType
+        
+        guard let viewModel = SettingsViewModel(services: services, settingsType: settingsType) else {
+            return nil
+        }
+        
+        settingsViewController = SettingsViewController(viewModel: viewModel)
+        settingsViewController.title = settingsType.title
+        
+        let leftButton = UIBarButtonItem(withImage: R.image.ic_back())
+        topTabBarController = UINavigationController(withPages: [settingsViewController], topBarDelegate: self, leftButton: leftButton)
+
+        settingsViewController.delegate = self
     }
 
     func start() {
-        guard let viewModel = SettingsViewModel(services: services, settingsType: settingsType) else {
-            return
-        }
-
-        let settingsViewController = SettingsViewController(viewModel: viewModel)
-        let topTabBarControllerItem = TopTabBarController.Item(
-            controllers: [settingsViewController],
-            themes: [.dark],
-            titles: [settingsType.title]
-        )
-
-        let topTabBarController = TopTabBarController(
-            item: topTabBarControllerItem,            
-            leftIcon: R.image.ic_back()
-        )
-
-        topTabBarController.delegate = self
-        settingsViewController.delegate = self
         rootViewController.presentRightToLeft(controller: topTabBarController)
     }
 }
 
-// MARK: - TopTabBarDelegate
+// MARK: - TopNavigationBarDelegate
 
-extension SettingsCoordinator: TopTabBarDelegate {
-
-    func didSelectLeftButton(sender: TopTabBarController) {
-        sender.dismissLeftToRight()
+extension SettingsCoordinator: TopNavigationBarDelegate {
+    func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
+        topTabBarController.dismissLeftToRight()
         removeChild(child: self)
     }
-
-    func didSelectRightButton(sender: TopTabBarController) {
-        print("didSelectRightButton")
+    
+    func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
     }
-
-    func didSelectItemAtIndex(index: Int, sender: TopTabBarController) {
-        print("didSelectItemAtIndex", index as Any, sender)
+    
+    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
     }
 }
 

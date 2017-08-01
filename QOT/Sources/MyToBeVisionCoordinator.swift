@@ -25,14 +25,16 @@ final class MyToBeVisionCoordinator: NSObject, ParentCoordinator {
         self.rootViewController = root
         self.services = services
         viewModel = MyToBeVisionViewModel(services: services)
+        myToBeVisionViewController = MyToBeVisionViewController(viewModel: viewModel)
+        myToBeVisionViewController.modalPresentationStyle = .custom
+        
         super.init()
+        
+        myToBeVisionViewController.transitioningDelegate = self
+        myToBeVisionViewController.delegate = self
     }
 
     func start() {
-        myToBeVisionViewController = MyToBeVisionViewController(viewModel: viewModel)
-        myToBeVisionViewController.delegate = self
-        myToBeVisionViewController.modalPresentationStyle = .custom
-        myToBeVisionViewController.transitioningDelegate = self
         rootViewController.present(myToBeVisionViewController, animated: true)
     }
     
