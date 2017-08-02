@@ -36,7 +36,7 @@ final class CalendarImportTask {
     ///
     /// - warning: This method may only be called during a write transaction.
     private func sync(event: EKEvent, realm: Realm) {
-        if let existing = realm.object(ofType: CalendarEvent.self, forPrimaryKey: event.eventIdentifier) {
+        if let existing = realm.syncableObject(ofType: CalendarEvent.self, localID: event.eventIdentifier) {
             if let modifiedAt = event.lastModifiedDate, modifiedAt > existing.modifiedAt {
                 existing.update(event: event)
             }

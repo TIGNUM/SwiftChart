@@ -10,21 +10,13 @@ import Foundation
 import RealmSwift
 import Freddy
 
-final class Partner: Object, PartnerWireframe, UpSyncableWithLocalAndRemoteIDs {
+final class Partner: SyncableObject, PartnerWireframe, UpSyncableWithLocalAndRemoteIDs {
 
     // MARK: Public Properties
 
     static var endpoint: Endpoint {
         return .partner
     }
-
-    let remoteID = RealmOptional<Int>(nil)
-
-    dynamic var createdAt: Date = Date()
-
-    dynamic var modifiedAt: Date = Date()
-    
-    private(set) dynamic var localID: String = UUID().uuidString
     
     dynamic var name: String?
 
@@ -53,20 +45,9 @@ final class Partner: Object, PartnerWireframe, UpSyncableWithLocalAndRemoteIDs {
 
         dirty = true
     }
-    
-    override class func primaryKey() -> String? {
-        return "localID"
-    }
 }
 
 extension Partner: DownSyncable {
-
-    static func make(remoteID: Int, createdAt: Date) -> Partner {
-        let partner = Partner()
-        partner.remoteID.value = remoteID
-        partner.createdAt = createdAt
-        return partner
-    }
 
     func setData(_ data: PartnerIntermediary, objectStore: ObjectStore) throws {
         name = data.name

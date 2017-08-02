@@ -9,17 +9,7 @@
 import Foundation
 import RealmSwift
 
-final class Page: Object {
-
-    // MARK: SyncableRealmObject
-
-    dynamic var remoteID: Int = 0
-
-    dynamic var _syncStatus: Int8 = 0
-
-    dynamic var createdAt: Date = Date()
-
-    dynamic var modifiedAt: Date = Date()
+final class Page: SyncableObject {
 
     // MARK: Data
 
@@ -36,12 +26,6 @@ final class Page: Object {
 }
 
 extension Page: DownSyncable {
-    static func make(remoteID: Int, createdAt: Date) -> Page {
-        let page = Page()
-        page.remoteID = remoteID
-        page.createdAt = createdAt
-        return page
-    }
 
     func setData(_ data: PageIntermediary, objectStore: ObjectStore) throws {
         name = data.name

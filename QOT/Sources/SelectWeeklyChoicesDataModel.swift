@@ -42,8 +42,8 @@ class SelectWeeklyChoicesDataModel {
             let children: [WeeklyChoice] = contentCategory.contentCollections.map({ (contentCollection: ContentCollection) -> WeeklyChoice in
                 return WeeklyChoice(
                     localID: UUID().uuidString,
-                    contentCollectionID: contentCollection.remoteID,
-                    categoryID: contentCategory.remoteID,
+                    contentCollectionID: contentCollection.forcedRemoteID,
+                    categoryID: contentCategory.forcedRemoteID,
                     title: contentCollection.title,
                     startDate: startDate,
                     endDate: endDate,

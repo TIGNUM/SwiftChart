@@ -146,8 +146,8 @@ extension LearnContentItemViewModel {
         }[0].contentItemValue
     }
 
-    func didViewContentItem(id: Int) {
-        services.contentService.setViewed(itemID: id)
+    func didViewContentItem(localID: String) {
+        services.contentService.setViewed(localID: localID)
     }
 
     var format: String {

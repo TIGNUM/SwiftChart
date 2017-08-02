@@ -9,15 +9,9 @@
 import Foundation
 import RealmSwift
 
-final class PreparationCheck: Object {
-
-    // MARK: Private Properties
-
-    private let _remoteID = RealmOptional<Int>(nil)
+final class PreparationCheck: SyncableObject {
 
     // MARK: Public Properties
-
-    private(set) dynamic var localID: String = UUID().uuidString
 
     private(set) dynamic var deleted: Bool = false
 
@@ -29,12 +23,6 @@ final class PreparationCheck: Object {
 
     private(set) dynamic var timestamp: Date = Date()
 
-    // MARK: Computed Properties
-
-    var remoteID: Int? {
-        return _remoteID.value
-    }
-
     // MARK: Functions
 
     convenience init(preparationID: String, contentItemID: Int, timestamp: Date) {
@@ -42,10 +30,6 @@ final class PreparationCheck: Object {
         self.preparationID = preparationID
         self.contentItemID = contentItemID
         self.timestamp = timestamp
-    }
-
-    override class func primaryKey() -> String? {
-        return "localID"
     }
 
     override func delete() {

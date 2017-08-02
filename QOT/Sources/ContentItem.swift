@@ -11,17 +11,7 @@ import RealmSwift
 import Freddy
 
 // FIXME: Unit test.
-final class ContentItem: Object {
-
-    // MARK: SyncableRealmObject
-
-    dynamic var remoteID: Int = 0
-
-    dynamic var _syncStatus: Int8 = 0
-
-    dynamic var createdAt: Date = Date()
-
-    dynamic var modifiedAt: Date = Date()
+final class ContentItem: SyncableObject {
 
     let collectionID = RealmOptional<Int>(nil)
 
@@ -78,24 +68,12 @@ final class ContentItem: Object {
 
     func buildRelations(realm: Realm) {
         if let id = collectionID.value {
-            contentCollection = realm.object(ofType: ContentCollection.self, forPrimaryKey: id)
+            contentCollection = realm.syncableObject(ofType: ContentCollection.self, remoteID: id)
         }
-    }
-
-    // MARK: Realm
-
-    override class func primaryKey() -> String? {
-        return "remoteID"
     }
 }
 
 extension ContentItem: DownSyncable {
-    static func make(remoteID: Int, createdAt: Date) -> ContentItem {
-        let item = ContentItem()
-        item.remoteID = remoteID
-        item.createdAt = createdAt
-        return item
-    }
 
     func setData(_ data: ContentItemIntermediary, objectStore: ObjectStore) throws {
         sortOrder = data.sortOrder

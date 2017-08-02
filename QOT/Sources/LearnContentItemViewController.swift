@@ -199,7 +199,7 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
                 viewModel.sectionCount(tabType: tabType) == 2 && viewModel.containsAudioItem(tabType: tabType) == false && indexPath.section == 1 {
                     let selectedItem = viewModel.relatedContent(at: indexPath)
 
-                delegate?.didSelectReadMoreContentCollection(with: selectedItem.remoteID, in: self)
+                delegate?.didSelectReadMoreContentCollection(with: selectedItem.forcedRemoteID, in: self)
             }
         }
     }
@@ -269,7 +269,7 @@ private extension LearnContentItemViewController {
             return
         }
 
-        viewModel.didViewContentItem(id: contentItem.remoteID)
+        viewModel.didViewContentItem(localID: contentItem.localID)
     }
 
     func relatedContentCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {

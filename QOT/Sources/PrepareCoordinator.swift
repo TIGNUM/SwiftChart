@@ -99,7 +99,7 @@ extension PrepareCoordinator {
             case .prepareStep(let title, let description, _)://relatedContentID):
 //                items.append(PrepareItem(id: item.remoteID, title: title, subTitle: description, readMoreID: relatedContentID))
                 //TODO: use relatedContentID instead of 100000 when data is available
-                items.append(PrepareItem(id: item.remoteID, title: title, subTitle: description, readMoreID: 100000))
+                items.append(PrepareItem(id: item.forcedRemoteID, title: title, subTitle: description, readMoreID: 100000))
             case .video(_, _, let placeholderURL, let videoURL, _):
                 video = PrepareContentViewModel.Video(url: videoURL, placeholderURL: placeholderURL)
             default:
@@ -137,7 +137,7 @@ extension PrepareCoordinator {
             case .text(let text, style: .h1):
                 title = text
             case .prepareStep(let title, let description, let relatedContentID):
-                items.append(PrepareItem(id: item.remoteID, title: title, subTitle: description, readMoreID: relatedContentID))
+                items.append(PrepareItem(id: item.forcedRemoteID, title: title, subTitle: description, readMoreID: relatedContentID))
             case .video(_, _, let placeholderURL, let videoURL, _):
                 video = PrepareContentViewModel.Video(url: videoURL, placeholderURL: placeholderURL)
             default:

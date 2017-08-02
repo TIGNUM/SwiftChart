@@ -9,17 +9,7 @@
 import Foundation
 import RealmSwift
 
-final class Question: Object {
-
-    dynamic var remoteID: Int = 0
-
-    dynamic var createdAt: Date = Date()
-
-    dynamic var modifiedAt: Date = Date()
-
-    override class func primaryKey() -> String? {
-        return "remoteID"
-    }
+final class Question: SyncableObject {
 
     fileprivate(set) dynamic var sortOrder: Int = 0
 
@@ -35,12 +25,6 @@ final class Question: Object {
 }
 
 extension Question: DownSyncable {
-    static func make(remoteID: Int, createdAt: Date) -> Question {
-        let question = Question()
-        question.remoteID = remoteID
-        question.createdAt = createdAt
-        return question
-    }
 
     func setData(_ data: QuestionIntermediary, objectStore: ObjectStore) throws {
         answers.forEach { $0.delete() }

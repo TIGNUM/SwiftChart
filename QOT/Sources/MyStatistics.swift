@@ -9,13 +9,7 @@
 import Foundation
 import RealmSwift
 
-final class MyStatistics: Object {
-
-    dynamic var remoteID: Int = 0    
-
-    dynamic var createdAt: Date = Date()
-
-    dynamic var modifiedAt: Date = Date()
+final class MyStatistics: SyncableObject {
 
     fileprivate(set) dynamic var key: String = ""
 
@@ -37,14 +31,6 @@ final class MyStatistics: Object {
 }
 
 extension MyStatistics: DownSyncable {
-
-    static func make(remoteID: Int, createdAt: Date) -> MyStatistics {
-        let myStatistics = MyStatistics()
-        myStatistics.remoteID = remoteID
-        myStatistics.createdAt = createdAt
-
-        return myStatistics
-    }
 
     func setData(_ data: MyStatisticsIntermediary, objectStore: ObjectStore) throws {
         key = data.key

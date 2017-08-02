@@ -23,7 +23,7 @@ final class PreparationService {
     }
 
     func preparation(localID: String) -> Preparation? {
-        return mainRealm.object(ofType: Preparation.self, forPrimaryKey: localID)
+        return mainRealm.syncableObject(ofType: Preparation.self, localID: localID)
     }
 
     func preparationChecks(preparationID: String) -> AnyRealmCollection<PreparationCheck> {

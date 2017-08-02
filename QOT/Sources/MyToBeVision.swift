@@ -10,17 +10,7 @@ import Foundation
 import RealmSwift
 import Freddy
 
-final class MyToBeVision: Object, MyToBeVisionWireframe {
-    
-    // MARK: Public Properties
-
-    let remoteID = RealmOptional<Int>(nil)
-
-    dynamic var createdAt: Date = Date()
-
-    dynamic var modifiedAt: Date = Date()
-    
-    private(set) dynamic var localID: String = UUID().uuidString
+final class MyToBeVision: SyncableObject, MyToBeVisionWireframe {
     
     dynamic var headline: String?
     
@@ -47,20 +37,10 @@ final class MyToBeVision: Object, MyToBeVisionWireframe {
 
         dirty = true
     }
-    
-    override class func primaryKey() -> String? {
-        return "localID"
-    }
+
 }
 
 extension MyToBeVision: DownSyncable {
-
-    static func make(remoteID: Int, createdAt: Date) -> MyToBeVision {
-        let partner = MyToBeVision()
-        partner.remoteID.value = remoteID
-        partner.createdAt = createdAt
-        return partner
-    }
 
     func setData(_ data: MyToBeVisionIntermediary, objectStore: ObjectStore) throws {
         headline = data.headline

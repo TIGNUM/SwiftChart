@@ -11,23 +11,11 @@ import RealmSwift
 import EventKit
 import Freddy
 
-final class CalendarEvent: Object, UpSyncableWithLocalAndRemoteIDs {
-
-    let remoteID = RealmOptional<Int>(nil)
-
-    private(set) dynamic var localID: String = ""
+final class CalendarEvent: SyncableObject, UpSyncableWithLocalAndRemoteIDs {
 
     dynamic var deleted: Bool = false
 
-    private(set) dynamic var createdAt: Date = Date()
-
-    private(set) dynamic var modifiedAt: Date = Date()
-
     dynamic var localChangeID: String? = UUID().uuidString
-
-    override class func primaryKey() -> String? {
-        return "localID"
-    }
 
     convenience init(event: EKEvent) {
         self.init()

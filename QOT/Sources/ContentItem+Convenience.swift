@@ -27,8 +27,4 @@ extension ContentItem {
     var trackableEntityID: Int {
         return Int.randomID
     }
-
-    var remoteIdentifier: Int {
-        return remoteID
-    }
 }

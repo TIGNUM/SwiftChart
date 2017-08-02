@@ -10,9 +10,7 @@ import Foundation
 import RealmSwift
 import Freddy
 
-final class PageTrack: Object {
-
-    fileprivate dynamic var createdAt: Date = Date()
+final class PageTrack: SyncableObject {
 
     fileprivate dynamic var pageID: Int = 0
 

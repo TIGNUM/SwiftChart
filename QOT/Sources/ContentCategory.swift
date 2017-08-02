@@ -11,17 +11,7 @@ import RealmSwift
 import Freddy
 
 // FIXME: Unit test.
-final class ContentCategory: Object {
-
-    // MARK: SyncableRealmObject
-
-    dynamic var remoteID: Int = 0
-
-    dynamic var _syncStatus: Int8 = 0
-
-    dynamic var createdAt: Date = Date()
-
-    dynamic var modifiedAt: Date = Date()
+final class ContentCategory: SyncableObject {
 
     // TODO: Remove me please: https://tignum.atlassian.net/browse/IT-553
     dynamic var keypathID: String?
@@ -41,12 +31,6 @@ final class ContentCategory: Object {
     fileprivate(set) dynamic var title: String = ""
 
     fileprivate(set) dynamic var layoutInfo: String?
-    
-    // MARK: Realm
-
-    override class func primaryKey() -> String? {
-        return "remoteID"
-    }
 
     // MARK: Relationships
 
@@ -61,13 +45,6 @@ final class ContentCategory: Object {
 }
 
 extension ContentCategory: DownSyncable {
-
-    static func make(remoteID: Int, createdAt: Date) -> ContentCategory {
-        let category = ContentCategory()
-        category.remoteID = remoteID
-        category.createdAt = createdAt
-        return category
-    }
 
     func setData(_ data: ContentCategoryData, objectStore: ObjectStore) throws {
         sortOrder = data.sortOrder

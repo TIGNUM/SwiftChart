@@ -39,7 +39,7 @@ final class SettingsService {
     }
 
     private func userSetting(systemSetting: SystemSetting) -> UserSetting? {
-        return realm.object(ofType: UserSetting.self, forPrimaryKey: systemSetting.remoteID)
+        return realm.syncableObject(ofType: UserSetting.self, remoteID: systemSetting.forcedRemoteID)
     }
 
     private func systemSetting(key: String) -> SystemSetting? {

@@ -15,10 +15,6 @@ extension ContentCategory: TrackableEntity {
         return AnyRealmCollection(contentCollections)
     }
 
-    var localID: String {
-        return String(Int.randomID)
-    }
-
     var itemCount: Int {
         return contentCollections.count
     }

@@ -9,15 +9,9 @@
 import Foundation
 import RealmSwift
 
-final class SystemSetting: Object {
+final class SystemSetting: SyncableObject {
 
     fileprivate dynamic var _value: SettingValueObject?
-
-    dynamic var remoteID: Int = 0
-
-    dynamic var createdAt: Date = Date()
-
-    dynamic var modifiedAt: Date = Date()
 
     fileprivate(set) dynamic var sortOrder: Int = 0
 
@@ -41,20 +35,9 @@ final class SystemSetting: Object {
         }
         return SettingValue(setting: value)
     }
-
-    override class func primaryKey() -> String? {
-        return "remoteID"
-    }
 }
 
 extension SystemSetting: DownSyncable {
-
-    static func make(remoteID: Int, createdAt: Date) -> SystemSetting {
-        let question = SystemSetting()
-        question.remoteID = remoteID
-        question.createdAt = createdAt
-        return question
-    }
 
     func setData(_ data: SystemSettingIntermediary, objectStore: ObjectStore) throws {
         sortOrder = data.sortOrder

@@ -26,7 +26,7 @@ final class QuestionsService {
     }
 
     func question(id: Int) -> Question? {
-        return mainRealm.object(ofType: Question.self, forPrimaryKey: id)
+        return mainRealm.syncableObject(ofType: Question.self, remoteID: id)
     }
 
     func morningInterviewQuestions(questionGroupID: Int) -> AnyRealmCollection<Question> {
@@ -42,7 +42,7 @@ final class QuestionsService {
             if let target = decision.target {
                 switch target {
                 case .content(let id):
-                    if mainRealm.object(ofType: ContentCollection.self, forPrimaryKey: id) != nil {
+                    if mainRealm.syncableObject(ofType: ContentCollection.self, remoteID: id) != nil {
                         return target
                     }
                 case .question(let id):

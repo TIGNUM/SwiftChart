@@ -10,17 +10,7 @@ import Foundation
 import RealmSwift
 import AirshipKit
 
-final class User: Object {
-
-    // MARK: SyncableRealmObject
-
-    dynamic var remoteID: Int = 0
-
-    dynamic var _syncStatus: Int8 = 0
-
-    dynamic var createdAt: Date = Date()
-
-    dynamic var modifiedAt: Date = Date()
+final class User: SyncableObject {
 
     dynamic var gender: String = ""
 
@@ -76,13 +66,6 @@ final class User: Object {
 }
 
 extension User: DownSyncable {
-    
-    static func make(remoteID: Int, createdAt: Date) -> User {
-        let user = User()
-        user.remoteID = remoteID
-        user.createdAt = createdAt
-        return user
-    }
 
     func setData(_ data: UserIntermediary, objectStore: ObjectStore) throws {
         gender = data.gender

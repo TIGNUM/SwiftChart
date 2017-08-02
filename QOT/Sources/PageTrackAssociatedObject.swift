@@ -39,11 +39,11 @@ final class PageTrackAssociatedObject: Object {
 
     var values: (type: String, id: Int)? {
         if let value = contentCategory {
-            return values(type: .CONTENTCATEGORY, id: value.remoteID)
+            return values(type: .CONTENTCATEGORY, id: value.forcedRemoteID)
         } else if let value = contentCollection {
-            return values(type: .CONTENT, id: value.remoteID)
+            return values(type: .CONTENT, id: value.forcedRemoteID)
         } else if let value = contentItem {
-            return values(type: .CONTENTITEM, id: value.remoteID)
+            return values(type: .CONTENTITEM, id: value.forcedRemoteID)
         } else {
             return nil
         }

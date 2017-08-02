@@ -34,7 +34,7 @@ final class LearnContentItemCoordinator: ParentCoordinator {
         self.viewModel = LearnContentItemViewModel(
             services: services,
             contentCollection: selectedContent,
-            categoryID: category.remoteID
+            categoryID: category.forcedRemoteID
         )
         
         let headerView = LearnContentItemHeaderView.fromXib(contentTitle: selectedContent.title.capitalized, categoryTitle: categoryTitle.capitalized)
@@ -127,7 +127,7 @@ extension LearnContentItemCoordinator: LearnContentItemViewControllerDelegate {
         viewModel = LearnContentItemViewModel(
             services: services,
             contentCollection: selectedContent,
-            categoryID: category.remoteID
+            categoryID: category.forcedRemoteID
         )
         // TODO: this
         //topTabBarControllerDelegate?.updateHeaderView(title: categoryTitle, subTitle: selectedContent.title)

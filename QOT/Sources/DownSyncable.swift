@@ -21,9 +21,16 @@ protocol DownSyncable: class {
     static func object(remoteID: Int, store: ObjectStore) throws -> Self?
 }
 
-extension DownSyncable where Self: Object {
+extension DownSyncable where Self: SyncableObject {
 
     static func object(remoteID: Int, store: ObjectStore) throws -> Self? {
         return try store.uniqueObject(Self.self, predicate: NSPredicate(remoteID: remoteID))
+    }
+
+    static func make(remoteID: Int, createdAt: Date) -> Self {
+        let object = Self()
+        object.remoteID.value = remoteID
+        object.createdAt = createdAt
+        return object
     }
 }

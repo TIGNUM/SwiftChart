@@ -11,17 +11,7 @@ import RealmSwift
 import Freddy
 
 // FIXME: Unit test.
-final class ContentCollection: Object {
-
-    // MARK: SyncableRealmObject
-
-    dynamic var remoteID: Int = 0
-
-    dynamic var _syncStatus: Int8 = 0
-
-    dynamic var createdAt: Date = Date()
-
-    dynamic var modifiedAt: Date = Date()
+final class ContentCollection: SyncableObject {
 
     let categoryIDs: List<IntObject> = List()
 
@@ -50,12 +40,6 @@ final class ContentCollection: Object {
 
     fileprivate(set) dynamic var thumbnailURLString: String?
 
-    // MARK: Realm
-
-    override class func primaryKey() -> String? {
-        return "remoteID"
-    }
-
     // MARK: Relationships
 
     let items = List<ContentItem>()
@@ -64,7 +48,7 @@ final class ContentCollection: Object {
 
     func buildRelations(realm: Realm) {
         let categoryIDs = Array(self.categoryIDs.map({ $0.value }))
-        let categories = realm.objects(ofType: ContentCategory.self, forPrimaryKeys: categoryIDs)
+        let categories = realm.syncableObjects(ofType: ContentCategory.self, remoteIDs: categoryIDs)
         contentCategories.removeAll()
         contentCategories.append(objectsIn: categories)
     }
@@ -91,13 +75,6 @@ final class ContentCollection: Object {
 }
 
 extension ContentCollection: DownSyncable {
-
-    static func make(remoteID: Int, createdAt: Date) -> ContentCollection {
-        let collection = ContentCollection()
-        collection.remoteID = remoteID
-        collection.createdAt = createdAt
-        return collection
-    }
 
     func setData(_ data: ContentCollectionData, objectStore: ObjectStore) throws {
         section = data.section

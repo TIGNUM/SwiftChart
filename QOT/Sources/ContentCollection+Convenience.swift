@@ -40,10 +40,6 @@ extension ContentCollection {
         return AnyRealmCollection(items)
     }
 
-    var localID: String {
-        return String(Int.randomID)
-    }
-
     var selected: Bool {
         return viewed
     }

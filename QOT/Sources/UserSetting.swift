@@ -9,15 +9,9 @@
 import Foundation
 import RealmSwift
 
-final class UserSetting: Object {
+final class UserSetting: SyncableObject {
 
     fileprivate dynamic var _value: SettingValueObject?
-
-    fileprivate(set) dynamic var remoteID: Int = 0
-
-    dynamic var createdAt: Date = Date()
-
-    dynamic var modifiedAt: Date = Date()
 
     fileprivate(set) dynamic var dirty: Bool = true
 
@@ -35,10 +29,6 @@ final class UserSetting: Object {
         }
     }
 
-    override class func primaryKey() -> String? {
-        return "remoteID"
-    }
-
     convenience init(with value: SettingValue) {
         self.init()
 
@@ -47,13 +37,6 @@ final class UserSetting: Object {
 }
 
 extension UserSetting: DownSyncable {
-
-    static func make(remoteID: Int, createdAt: Date) -> UserSetting {
-        let setting = UserSetting()
-        setting.remoteID = remoteID
-        setting.createdAt = createdAt
-        return setting
-    }
 
     func setData(_ data: UserSettingIntermediary, objectStore: ObjectStore) throws {
         dirty = false

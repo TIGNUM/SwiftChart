@@ -52,7 +52,7 @@ protocol UpSyncableDeleting: UpSyncable {
     var localID: String { get }
 }
 
-extension UpSyncableDeleting where Self: Object {
+extension UpSyncableDeleting where Self: SyncableObject {
 
     var syncStatus: UpSyncStatus {
         return .created
@@ -72,7 +72,7 @@ extension UpSyncableDeleting where Self: Object {
         let completions = items.map { (object, _) -> (LocalIDToRemoteIDMap, Realm) -> Void in
             let localID = object.localID
             return { (map: LocalIDToRemoteIDMap, realm: Realm) in
-                if let object = realm.object(ofType: Self.self, forPrimaryKey: localID) {
+                if let object = realm.syncableObject(ofType: Self.self, localID: localID) {
                     realm.delete(object)
                 }
             }
@@ -97,7 +97,7 @@ protocol UpSyncableWithLocalAndRemoteIDs: UpSyncable {
     var deleted: Bool { get set }
 }
 
-extension UpSyncableWithLocalAndRemoteIDs where Self: Object {
+extension UpSyncableWithLocalAndRemoteIDs where Self: SyncableObject {
 
     var syncStatus: UpSyncStatus {
         if localChangeID == nil {
@@ -135,7 +135,7 @@ extension UpSyncableWithLocalAndRemoteIDs where Self: Object {
             let localID = object.localID
             let changeID = object.localChangeID
             return { (map: LocalIDToRemoteIDMap, realm: Realm) in
-                if let object = realm.object(ofType: Self.self, forPrimaryKey: localID), changeID == object.localChangeID {
+                if let object = realm.syncableObject(ofType: Self.self, localID: localID), changeID == object.localChangeID {
                     switch object.syncStatus {
                     case .clean:
                         break

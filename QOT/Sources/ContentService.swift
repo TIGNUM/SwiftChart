@@ -38,7 +38,7 @@ final class ContentService {
     }
 
     func contentCategory(id: Int) -> ContentCategory? {
-        return mainRealm.anyCollection(primaryKey: id)
+        return mainRealm.syncableObject(ofType: ContentCategory.self, remoteID: id)
     }
 
     func contentCategories(ids: [Int]) -> AnyRealmCollection<ContentCategory> {
@@ -60,7 +60,7 @@ final class ContentService {
     }
 
     func contentCollection(id: Int) -> ContentCollection? {
-        return mainRealm.anyCollection(primaryKey: id)
+        return mainRealm.syncableObject(ofType: ContentCollection.self, remoteID: id)
     }
 
     func contentItems(contentID: Int) -> AnyRealmCollection<ContentItem> {
@@ -78,16 +78,16 @@ final class ContentService {
         return Array(AnyRealmCollection<ContentCollection>(results))
     }
 
-    func setViewed(itemID: Int) {
+    func setViewed(localID: String) {
         DispatchQueue.global().async {
             do {
                 let realm = try self.realmProvider.realm()
                 try realm.write {
-                    let contentItem = realm.object(ofType: ContentItem.self, forPrimaryKey: itemID)
+                    let contentItem = realm.syncableObject(ofType: ContentItem.self, localID: localID)
                     contentItem?.viewed = true
                 }
             } catch let error {
-                assertionFailure("UpdateViewedAt, itemId: \(itemID), error: \(error)")
+                assertionFailure("UpdateViewedAt, itemId: \(localID), error: \(error)")
             }
         }
     }

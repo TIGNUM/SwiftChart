@@ -258,6 +258,7 @@
 		CBDB98F21E7AA510003EC73F /* CalendarImportResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB98F11E7AA510003EC73F /* CalendarImportResult.swift */; };
 		CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB98F31E7B000A003EC73F /* NotificationHandler.swift */; };
 		CBDB98F91E7BD26A003EC73F /* Realm+TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB98F81E7BD26A003EC73F /* Realm+TestUtils.swift */; };
+		CBFECCA51F30BB4D0076ACE6 /* SyncableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFECCA41F30BB4D0076ACE6 /* SyncableObject.swift */; };
 		CC05CB761EDEC6D700D15ABC /* CGPoint+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC05CB741EDEC6D700D15ABC /* CGPoint+Convenience.swift */; };
 		CC05CB771EDEC6D700D15ABC /* UIBezierPath+Hexagon.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC05CB751EDEC6D700D15ABC /* UIBezierPath+Hexagon.swift */; };
 		CC05CB791EDEC73C00D15ABC /* UITableView+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC05CB781EDEC73C00D15ABC /* UITableView+Create.swift */; };
@@ -700,6 +701,7 @@
 		CBDB98F11E7AA510003EC73F /* CalendarImportResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarImportResult.swift; sourceTree = "<group>"; };
 		CBDB98F31E7B000A003EC73F /* NotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 		CBDB98F81E7BD26A003EC73F /* Realm+TestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm+TestUtils.swift"; sourceTree = "<group>"; };
+		CBFECCA41F30BB4D0076ACE6 /* SyncableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncableObject.swift; sourceTree = "<group>"; };
 		CC05CB741EDEC6D700D15ABC /* CGPoint+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Convenience.swift"; sourceTree = "<group>"; };
 		CC05CB751EDEC6D700D15ABC /* UIBezierPath+Hexagon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+Hexagon.swift"; sourceTree = "<group>"; };
 		CC05CB781EDEC73C00D15ABC /* UITableView+Create.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Create.swift"; sourceTree = "<group>"; };
@@ -1304,6 +1306,7 @@
 				CB9AFD151F014BAE00D067F2 /* PreparationCheck */,
 				CBC1DC201F0FB32F00F6D056 /* Questions */,
 				CBC1DC131F0F68E500F6D056 /* Setting */,
+				CBFECCA31F30BADF0076ACE6 /* SyncableObject */,
 				CB34376C1EFE7F5800D89D4F /* SyncRecord */,
 				CB810E621EF00D9F0043E3E5 /* User */,
 				CBC5ACBD1F162A1F007E1E9C /* UserChoice */,
@@ -1887,6 +1890,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		CBFECCA31F30BADF0076ACE6 /* SyncableObject */ = {
+			isa = PBXGroup;
+			children = (
+				CBFECCA41F30BB4D0076ACE6 /* SyncableObject.swift */,
+			);
+			name = SyncableObject;
+			sourceTree = "<group>";
+		};
 		CC7D21A41EFBF50A007A062E /* Article */ = {
 			isa = PBXGroup;
 			children = (
@@ -2362,6 +2373,7 @@
 				85945C731F27760500F090C8 /* ZoomPresentationManager.swift in Sources */,
 				CB0A4A581ECC4C25006A2D85 /* AddSensorCoordinator.swift in Sources */,
 				CBB4DD121EDEAD050071494A /* RequestConstants.swift in Sources */,
+				CBFECCA51F30BB4D0076ACE6 /* SyncableObject.swift in Sources */,
 				CB2880221E7050EB0067890A /* Coordinator.swift in Sources */,
 				852DADDC1EF1484C00A10882 /* AverageMeetingBetweenLengthProgressView.swift in Sources */,
 				CB1D5E3C1EC5E25A00BCDF8D /* ContentCollectionData.swift in Sources */,

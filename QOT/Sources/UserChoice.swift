@@ -9,19 +9,11 @@
 import Foundation
 import RealmSwift
 
-final class UserChoice: Object {
+final class UserChoice: SyncableObject {
 
     fileprivate let _contentCategoryID = RealmOptional<Int>()
 
     fileprivate let _contentCollectionID = RealmOptional<Int>()
-
-    dynamic var localID: String = UUID().uuidString
-
-    dynamic var remoteID: Int = -1
-
-    dynamic var createdAt: Date = Date()
-
-    dynamic var modifiedAt: Date = Date()
 
     fileprivate(set) dynamic var dirty: Bool = true
 
@@ -41,10 +33,6 @@ final class UserChoice: Object {
         return _contentCollectionID.value
     }
 
-    override class func primaryKey() -> String? {
-        return "localID"
-    }
-
     convenience init(contentCategoryID: Int, contentCollectionID: Int, startDate: Date, endDate: Date) {
         self.init()
 
@@ -56,13 +44,6 @@ final class UserChoice: Object {
 }
 
 extension UserChoice: DownSyncable {
-
-    static func make(remoteID: Int, createdAt: Date) -> UserChoice {
-        let choice = UserChoice()
-        choice.remoteID = remoteID
-        choice.createdAt = createdAt
-        return choice
-    }
 
     func setData(_ data: UserChoiceIntermediary, objectStore: ObjectStore) throws {
         type = data.type
