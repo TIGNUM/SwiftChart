@@ -43,7 +43,11 @@ final class UserChoice: SyncableObject {
     }
 }
 
-extension UserChoice: DownSyncable {
+extension UserChoice: OneWaySyncableDown {
+
+    static var endpoint: Endpoint {
+        return .userChoice
+    }
 
     func setData(_ data: UserChoiceIntermediary, objectStore: ObjectStore) throws {
         type = data.type

@@ -23,8 +23,8 @@ final class SyncManager {
     }()
     var isSyncRecordsValid: Bool {
         do {
-            for value in SyncType.allValues {
-                guard try syncRecordService.lastSync(type: value) > 0 else {
+            for value in downSyncClasses {
+                guard try syncRecordService.lastSync(className: String(describing: value.self)) > 0 else {
                     return false
                 }
             }
@@ -32,6 +32,23 @@ final class SyncManager {
             return false
         }
         return true
+    }
+
+    var downSyncClasses: [AnyClass] {
+        return [
+            ContentCategory.self,
+            ContentCollection.self,
+            ContentItem.self,
+            User.self,
+            Page.self,
+            Question.self,
+            MyStatistics.self,
+            SystemSetting.self,
+            UserSetting.self,
+            UserChoice.self,
+            Partner.self,
+            MyToBeVision.self
+        ]
     }
 
     init(networkManager: NetworkManager, syncRecordService: SyncRecordService, realmProvider: RealmProvider) {
@@ -69,18 +86,18 @@ final class SyncManager {
         }
 
         let operations: [Operation] = [
-            downSyncOperation(for: SystemSettingDown, context: context),
-            downSyncOperation(for: UserSettingDown, context: context),
-            downSyncOperation(for: UserDown, context: context),
-            downSyncOperation(for: QuestionDown, context: context),
-            downSyncOperation(for: PageDown, context: context),
-            downSyncOperation(for: UserChoiceDown, context: context),
-            downSyncOperation(for: ContentCategoryDown, context: context),
-            downSyncOperation(for: ContentCollectionDown, context: context),
-            downSyncOperation(for: DataPointDown, context: context),
-            downSyncOperation(for: ContentItemDown, context: context),
-            downSyncOperation(for: PartnerDown, context: context),
-            downSyncOperation(for: MyToBeVisionDown, context: context),
+            downSyncOperation(for: SystemSetting.self, context: context),
+            downSyncOperation(for: UserSetting.self, context: context),
+            downSyncOperation(for: User.self, context: context),
+            downSyncOperation(for: Question.self, context: context),
+            downSyncOperation(for: Page.self, context: context),
+            downSyncOperation(for: UserChoice.self, context: context),
+            downSyncOperation(for: ContentCategory.self, context: context),
+            downSyncOperation(for: ContentCollection.self, context: context),
+            downSyncOperation(for: MyStatistics.self, context: context),
+            downSyncOperation(for: ContentItem.self, context: context),
+            downSyncOperation(for: Partner.self, context: context),
+            downSyncOperation(for: MyToBeVision.self, context: context),
             UpdateRelationsOperation(context: context, realmProvider: realmProvider, isFinalOperation: true)
         ]
 
@@ -103,16 +120,16 @@ final class SyncManager {
         let operations: [Operation] = [
             upSyncOperation(CalendarEvent.self, context: context),
             upSyncOperation(MyToBeVision.self, context: context),
-            upSyncOperation(Partner.self, context: context, isFinalOperation: true)
+            upSyncOperation(Partner.self, context: context),
+            upSyncOperation(User.self, context: context, isFinalOperation: true)
         ]
 
         operationQueue.addOperations(operations, waitUntilFinished: false)
     }
 
-    private func downSyncOperation<I, P>(for description: SyncDescription<I, P>, context: SyncContext, isFinalOperation: Bool = false) -> DownSyncOperation<I, P> where I: JSONDecodable, P: DownSyncable, P: Object, P.Data == I {
-        return DownSyncOperation(context: context,
+    private func downSyncOperation<P>(for: P.Type, context: SyncContext, isFinalOperation: Bool = false) -> DownSyncOperation<P> where P: DownSyncable, P: Object {
+        return DownSyncOperation<P>(context: context,
                                  networkManager: networkManager,
-                                 description: description,
                                  syncRecordService: syncRecordService,
                                  realmProvider: realmProvider,
                                  downSyncImporter: DownSyncImporter(),

@@ -215,7 +215,6 @@
 		CBB4DCE41ED827840071494A /* SyncContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DCE31ED827840071494A /* SyncContext.swift */; };
 		CBB4DCF11EDC0C420071494A /* SyncRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DCF01EDC0C420071494A /* SyncRecord.swift */; };
 		CBB4DCF51EDC10FA0071494A /* SyncRecordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DCF41EDC10FA0071494A /* SyncRecordService.swift */; };
-		CBB4DCFB1EDC23AE0071494A /* SyncDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DCFA1EDC23AE0071494A /* SyncDescription.swift */; };
 		CBB4DCFD1EDC27550071494A /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DCFC1EDC27550071494A /* SyncManager.swift */; };
 		CBB4DCFF1EDD6CE50071494A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DCFE1EDD6CE50071494A /* NetworkManager.swift */; };
 		CBB4DD071EDDB5860071494A /* SerialRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DD061EDDB5860071494A /* SerialRequest.swift */; };
@@ -259,6 +258,7 @@
 		CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB98F31E7B000A003EC73F /* NotificationHandler.swift */; };
 		CBDB98F91E7BD26A003EC73F /* Realm+TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB98F81E7BD26A003EC73F /* Realm+TestUtils.swift */; };
 		CBFECCA51F30BB4D0076ACE6 /* SyncableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFECCA41F30BB4D0076ACE6 /* SyncableObject.swift */; };
+		CBFECCA81F31D7480076ACE6 /* SyncTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFECCA71F31D7480076ACE6 /* SyncTypes.swift */; };
 		CC05CB761EDEC6D700D15ABC /* CGPoint+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC05CB741EDEC6D700D15ABC /* CGPoint+Convenience.swift */; };
 		CC05CB771EDEC6D700D15ABC /* UIBezierPath+Hexagon.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC05CB751EDEC6D700D15ABC /* UIBezierPath+Hexagon.swift */; };
 		CC05CB791EDEC73C00D15ABC /* UITableView+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC05CB781EDEC73C00D15ABC /* UITableView+Create.swift */; };
@@ -658,7 +658,6 @@
 		CBB4DCE31ED827840071494A /* SyncContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncContext.swift; sourceTree = "<group>"; };
 		CBB4DCF01EDC0C420071494A /* SyncRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncRecord.swift; sourceTree = "<group>"; };
 		CBB4DCF41EDC10FA0071494A /* SyncRecordService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncRecordService.swift; sourceTree = "<group>"; };
-		CBB4DCFA1EDC23AE0071494A /* SyncDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncDescription.swift; sourceTree = "<group>"; };
 		CBB4DCFC1EDC27550071494A /* SyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
 		CBB4DCFE1EDD6CE50071494A /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CBB4DD061EDDB5860071494A /* SerialRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerialRequest.swift; sourceTree = "<group>"; };
@@ -702,6 +701,7 @@
 		CBDB98F31E7B000A003EC73F /* NotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 		CBDB98F81E7BD26A003EC73F /* Realm+TestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm+TestUtils.swift"; sourceTree = "<group>"; };
 		CBFECCA41F30BB4D0076ACE6 /* SyncableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncableObject.swift; sourceTree = "<group>"; };
+		CBFECCA71F31D7480076ACE6 /* SyncTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncTypes.swift; sourceTree = "<group>"; };
 		CC05CB741EDEC6D700D15ABC /* CGPoint+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Convenience.swift"; sourceTree = "<group>"; };
 		CC05CB751EDEC6D700D15ABC /* UIBezierPath+Hexagon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+Hexagon.swift"; sourceTree = "<group>"; };
 		CC05CB781EDEC73C00D15ABC /* UITableView+Create.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Create.swift"; sourceTree = "<group>"; };
@@ -1268,7 +1268,6 @@
 		CBB4DD241EE0876E0071494A /* Sync */ = {
 			isa = PBXGroup;
 			children = (
-				CCF0F4BC1ECDC57000E8D9C1 /* DownSyncable.swift */,
 				CBB4DCDB1ED475F00071494A /* DownSyncChange.swift */,
 				8514A4851EE810750086C70E /* DownSyncComplete.swift */,
 				CBB4DD531EE151100071494A /* DownSyncImporter.swift */,
@@ -1277,12 +1276,11 @@
 				CCF0F4BE1ECDC57000E8D9C1 /* ObjectStore.swift */,
 				CBB4DD081EDDC6550071494A /* StartSyncResult.swift */,
 				CBB4DCE31ED827840071494A /* SyncContext.swift */,
-				CBB4DCFA1EDC23AE0071494A /* SyncDescription.swift */,
 				CBB4DCFC1EDC27550071494A /* SyncManager.swift */,
-				CB3BD4181F2877E50071F51E /* UpSyncable.swift */,
 				CBAF6FD71F2B88E500E57426 /* UpSyncData.swift */,
 				CB3437521EFAC8F500D89D4F /* UpSyncResultParser.swift */,
 				CBB4DD231EE0874F0071494A /* Operations */,
+				CBFECCA61F31B5F00076ACE6 /* Protocols */,
 			);
 			name = Sync;
 			sourceTree = "<group>";
@@ -1898,6 +1896,16 @@
 			name = SyncableObject;
 			sourceTree = "<group>";
 		};
+		CBFECCA61F31B5F00076ACE6 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				CCF0F4BC1ECDC57000E8D9C1 /* DownSyncable.swift */,
+				CBFECCA71F31D7480076ACE6 /* SyncTypes.swift */,
+				CB3BD4181F2877E50071F51E /* UpSyncable.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		CC7D21A41EFBF50A007A062E /* Article */ = {
 			isa = PBXGroup;
 			children = (
@@ -2391,6 +2399,7 @@
 				CCF0F4C01ECDC57000E8D9C1 /* NSPredicate+Convenience.swift in Sources */,
 				D537B1E61EC200CD004C444D /* GridView.swift in Sources */,
 				7FE38DD51F2B2E760061E98F /* UIBarButtonItem+Convenience.swift in Sources */,
+				CBFECCA81F31D7480076ACE6 /* SyncTypes.swift in Sources */,
 				CCA2DC6C1EF290DF00D1DF6A /* LearnContentItemBulletCell.swift in Sources */,
 				CCCE09CC1EA67C78008730F1 /* MyToBeVisionViewModel.swift in Sources */,
 				D554CD9F1F0CF3B9007731DB /* LoginViewCell.swift in Sources */,
@@ -2564,7 +2573,6 @@
 				CC944DB81EE8096100B8423C /* MyStatisticsCardCell.swift in Sources */,
 				8548BBE41F0E382900AC7C06 /* GenericParser.swift in Sources */,
 				CB9AFD191F014C0800D067F2 /* PreparationCheckIntermediary.swift in Sources */,
-				CBB4DCFB1EDC23AE0071494A /* SyncDescription.swift in Sources */,
 				CCC1B6AF1E8B9B7F00D1461F /* LearnContentCollectionViewModel.swift in Sources */,
 				CBB4DCE41ED827840071494A /* SyncContext.swift in Sources */,
 				CB9B076B1EFAA7990017F6C3 /* Realm+Convenience.swift in Sources */,

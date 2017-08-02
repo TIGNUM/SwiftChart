@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class DownSyncImporter<T> where T: DownSyncable, T: Object {
+class DownSyncImporter<T> where T: DownSyncable, T: SyncableObject {
 
     func importChanges(_ changes: [DownSyncChange<T.Data>], store: ObjectStore) throws {
         for change in changes {
@@ -20,7 +20,9 @@ class DownSyncImporter<T> where T: DownSyncable, T: Object {
                     if let existing = try T.object(remoteID: remoteID, store: store) {
                         object = existing
                     } else {
-                        object = T.make(remoteID: remoteID, createdAt: createdAt)
+                        object = T()
+                        object.remoteID.value = remoteID
+                        object.createdAt = createdAt
                         store.addObject(object)
                     }
 

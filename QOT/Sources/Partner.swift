@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import Freddy
 
-final class Partner: SyncableObject, PartnerWireframe, UpSyncableWithLocalAndRemoteIDs {
+final class Partner: SyncableObject, PartnerWireframe {
 
     // MARK: Public Properties
 
@@ -30,7 +30,7 @@ final class Partner: SyncableObject, PartnerWireframe, UpSyncableWithLocalAndRem
 
     dynamic var deleted: Bool = false
 
-    dynamic var localChangeID: String? = UUID().uuidString
+    dynamic var changeStamp: String? = UUID().uuidString
     
     // MARK: Functions
     
@@ -47,7 +47,7 @@ final class Partner: SyncableObject, PartnerWireframe, UpSyncableWithLocalAndRem
     }
 }
 
-extension Partner: DownSyncable {
+extension Partner: TwoWaySyncable {
 
     func setData(_ data: PartnerIntermediary, objectStore: ObjectStore) throws {
         name = data.name
@@ -56,9 +56,6 @@ extension Partner: DownSyncable {
         email = data.email
         // FIXME: We need to do something with remoteProfileImageURL
     }
-}
-
-extension Partner {
 
     func toJson() -> JSON? {
         guard syncStatus != .clean else { return nil }

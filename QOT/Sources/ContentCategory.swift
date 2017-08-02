@@ -44,7 +44,10 @@ final class ContentCategory: SyncableObject {
     }
 }
 
-extension ContentCategory: DownSyncable {
+extension ContentCategory: OneWaySyncableDown {
+    static var endpoint: Endpoint {
+        return .contentCategories
+    }
 
     func setData(_ data: ContentCategoryData, objectStore: ObjectStore) throws {
         sortOrder = data.sortOrder

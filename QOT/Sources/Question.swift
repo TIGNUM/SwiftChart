@@ -24,7 +24,11 @@ final class Question: SyncableObject {
     let groups = List<QuestionGroup>()
 }
 
-extension Question: DownSyncable {
+extension Question: OneWaySyncableDown {
+
+    static var endpoint: Endpoint {
+        return .question
+    }
 
     func setData(_ data: QuestionIntermediary, objectStore: ObjectStore) throws {
         answers.forEach { $0.delete() }

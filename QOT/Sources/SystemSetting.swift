@@ -37,7 +37,11 @@ final class SystemSetting: SyncableObject {
     }
 }
 
-extension SystemSetting: DownSyncable {
+extension SystemSetting: OneWaySyncableDown {
+
+    static var endpoint: Endpoint {
+        return .systemSetting
+    }
 
     func setData(_ data: SystemSettingIntermediary, objectStore: ObjectStore) throws {
         sortOrder = data.sortOrder

@@ -25,7 +25,11 @@ final class Page: SyncableObject {
     // FIXME: Implement settings relationship
 }
 
-extension Page: DownSyncable {
+extension Page: OneWaySyncableDown {
+
+    static var endpoint: Endpoint {
+        return .page
+    }
 
     func setData(_ data: PageIntermediary, objectStore: ObjectStore) throws {
         name = data.name

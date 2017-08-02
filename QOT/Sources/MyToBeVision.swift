@@ -22,7 +22,7 @@ final class MyToBeVision: SyncableObject, MyToBeVisionWireframe {
     
     dynamic var date: Date = Date()
 
-    dynamic var localChangeID: String? = UUID().uuidString
+    dynamic var changeStamp: String? = UUID().uuidString
     
     // MARK: Functions
     
@@ -40,7 +40,7 @@ final class MyToBeVision: SyncableObject, MyToBeVisionWireframe {
 
 }
 
-extension MyToBeVision: DownSyncable {
+extension MyToBeVision: TwoWaySyncableUniqueObject {
 
     func setData(_ data: MyToBeVisionIntermediary, objectStore: ObjectStore) throws {
         headline = data.headline
@@ -53,9 +53,6 @@ extension MyToBeVision: DownSyncable {
     static func object(remoteID: Int, store: ObjectStore) throws -> MyToBeVision? {
         return store.objects(MyToBeVision.self).first
     }
-}
-
-extension MyToBeVision: UpsyncableUnique {
 
     static var endpoint: Endpoint {
         return .myToBeVision

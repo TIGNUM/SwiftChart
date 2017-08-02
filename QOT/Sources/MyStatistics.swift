@@ -30,7 +30,11 @@ final class MyStatistics: SyncableObject {
     var periods: List<MyStatisticsPeriod> = List()
 }
 
-extension MyStatistics: DownSyncable {
+extension MyStatistics: OneWaySyncableDown {
+
+    static var endpoint: Endpoint {
+        return .dataPoint
+    }
 
     func setData(_ data: MyStatisticsIntermediary, objectStore: ObjectStore) throws {
         key = data.key

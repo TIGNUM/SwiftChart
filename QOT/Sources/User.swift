@@ -9,8 +9,11 @@
 import Foundation
 import RealmSwift
 import AirshipKit
+import Freddy
 
 final class User: SyncableObject {
+
+    dynamic var changeStamp: String? = UUID().uuidString
 
     dynamic var gender: String = ""
 
@@ -65,7 +68,11 @@ final class User: SyncableObject {
     fileprivate(set) dynamic var memberSince: Date = Date()
 }
 
-extension User: DownSyncable {
+extension User: TwoWaySyncableUniqueObject {
+
+    static var endpoint: Endpoint {
+        return .user
+    }
 
     func setData(_ data: UserIntermediary, objectStore: ObjectStore) throws {
         gender = data.gender
@@ -93,12 +100,60 @@ extension User: DownSyncable {
         jobTitle = data.jobTitle
         memberSince = data.memberSince
         urbanAirshipDeviceToken = UAirship.push().deviceToken
-        updateUrbanAirshipTags(tags: data.urbanAirshipTags)
+
+        UAirship.push().removeTags(UAirship.push().tags)
+        UAirship.push().addTags(data.urbanAirshipTags)
+        UAirship.push().updateRegistration()
     }
 
-    private func updateUrbanAirshipTags(tags: [String]) {
-        UAirship.push().removeTags(UAirship.push().tags)
-        UAirship.push().addTags(tags)
-        UAirship.push().updateRegistration()
+    func toJson() -> JSON? {
+        guard syncStatus != .clean else { return nil }
+
+        let country: [JsonKey: JSONEncodable] = [
+            .id: countryID,
+            .name: countryName
+        ]
+
+        let zone: [JsonKey: JSONEncodable] = [
+            .id: zoneID,
+            .name: zoneName
+        ]
+
+        let employment: [JsonKey: JSONEncodable] = [
+            .company: company.toJSONEncodable,
+            .jobTitle: jobTitle.toJSONEncodable
+        ]
+
+        let userInfo: [JsonKey: JSONEncodable] = [
+            .height: height.value.toJSONEncodable,
+            .heightUnit: heightUnit.toJSONEncodable,
+            .weight: weight.value.toJSONEncodable,
+            .weightUnit: weightUnit.toJSONEncodable
+        ]
+
+        let dict: [JsonKey: JSONEncodable] = [
+            .gender: gender,
+            .firstName: givenName,
+            .lastName: familyName,
+            .birthdate: dateOfBirth.toJSONEncodable,
+            .email: email,
+            .telephone: telephone.toJSONEncodable,
+            .zip: zipCode.toJSONEncodable,
+            .city: city.toJSONEncodable,
+            .street: street.toJSONEncodable,
+            .streetNumber: streetNumber.toJSONEncodable,
+            .country: JSON.dictionary(country.mapKeyValues({ ($0.rawValue, $1.toJSON()) })),
+            .zone: JSON.dictionary(zone.mapKeyValues({ ($0.rawValue, $1.toJSON()) })),
+            .userImageURL: userImageURLString.toJSONEncodable,
+            .memberSince: memberSince,
+            .employment: JSON.dictionary(employment.mapKeyValues({ ($0.rawValue, $1.toJSON()) })),
+            .userInfo: JSON.dictionary(userInfo.mapKeyValues({ ($0.rawValue, $1.toJSON()) })),
+            .urbanAirshipDeviceToken: urbanAirshipDeviceToken.toJSONEncodable
+        ]
+        return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
+    }
+
+    static func object(remoteID: Int, store: ObjectStore) throws -> User? {
+        return store.objects(User.self).first
     }
 }

@@ -73,7 +73,11 @@ final class ContentItem: SyncableObject {
     }
 }
 
-extension ContentItem: DownSyncable {
+extension ContentItem: OneWaySyncableDown {
+
+    static var endpoint: Endpoint {
+        return .contentItems
+    }
 
     func setData(_ data: ContentItemIntermediary, objectStore: ObjectStore) throws {
         sortOrder = data.sortOrder

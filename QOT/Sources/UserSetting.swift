@@ -36,7 +36,11 @@ final class UserSetting: SyncableObject {
     }
 }
 
-extension UserSetting: DownSyncable {
+extension UserSetting: OneWaySyncableDown {
+
+    static var endpoint: Endpoint {
+        return .userSetting
+    }
 
     func setData(_ data: UserSettingIntermediary, objectStore: ObjectStore) throws {
         dirty = false

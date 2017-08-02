@@ -31,59 +31,46 @@ final class UserService {
     }
    
     func updateUserGender(user: User, gender: String) {
-        do {
-            try mainRealm.write {
-                user.gender = gender
-            }
-        } catch let error {
-            assertionFailure("Update user, error: \(error)")
+        updateUser(user: user) {
+            $0.gender = gender
         }
     }
 
     func updateUserDateOfBirth(user: User, dateOfBirth: String) {
-        do {
-            try mainRealm.write {
-                user.dateOfBirth = dateOfBirth
-            }
-        } catch let error {
-            assertionFailure("Update user, error: \(error)")
+        updateUser(user: user) {
+            $0.dateOfBirth = dateOfBirth
         }
     }
 
     func updateUserWeight(user: User, weight: Double) {
-        do {
-            try mainRealm.write {
-                user.weight.value = weight
-            }
-        } catch let error {
-            assertionFailure("Update user, error: \(error)")
+        updateUser(user: user) {
+            $0.weight.value = weight
         }
     }
 
     func updateUserWeightUnit(user: User, weightUnit: String) {
-        do {
-            try mainRealm.write {
-                user.weightUnit = weightUnit
-            }
-        } catch let error {
-            assertionFailure("Update user, error: \(error)")
+        updateUser(user: user) {
+            $0.weightUnit = weightUnit
         }
     }
 
     func updateUserHeight(user: User, height: Double) {
-        do {
-            try mainRealm.write {
-                user.height.value = height
-            }
-        } catch let error {
-            assertionFailure("Update user, error: \(error)")
+        updateUser(user: user) {
+            $0.height.value = height
         }
     }
 
     func updateUserHeightUnit(user: User, heightUnit: String) {
+        updateUser(user: user) {
+            $0.heightUnit = heightUnit
+        }
+    }
+
+    func updateUser(user: User, block: (User) -> Void) {
         do {
             try mainRealm.write {
-                user.heightUnit = heightUnit
+                block(user)
+                user.didUpdate()
             }
         } catch let error {
             assertionFailure("Update user, error: \(error)")

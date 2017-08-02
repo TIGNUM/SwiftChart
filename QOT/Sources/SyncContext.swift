@@ -10,11 +10,11 @@ import Foundation
 
 enum SyncError: Error {
 
-    case downSyncReadLastSyncDateFailed(type: SyncType, error: Error)
-    case downSyncStartSyncFailed(type: SyncType, error: NetworkError)
-    case downSyncFetchIntermediatesFailed(type: SyncType, error: NetworkError)
-    case downSyncImportChangesFailed(type: SyncType, error: Error)
-    case downSyncSaveSyncDateFailed(type: SyncType, error: Error)
+    case downSyncReadLastSyncDateFailed(type: String, error: Error)
+    case downSyncStartSyncFailed(type: String, error: NetworkError)
+    case downSyncFetchIntermediatesFailed(type: String, error: NetworkError)
+    case downSyncImportChangesFailed(type: String, error: Error)
+    case downSyncSaveSyncDateFailed(type: String, error: Error)
     case updateRelationsFailed(error: Error)
     case upSyncStartSyncFailed(error: Error)
     case upSyncFetchDirtyFailed(error: Error)

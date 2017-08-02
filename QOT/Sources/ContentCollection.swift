@@ -74,7 +74,11 @@ final class ContentCollection: SyncableObject {
     }
 }
 
-extension ContentCollection: DownSyncable {
+extension ContentCollection: OneWaySyncableDown {
+
+    static var endpoint: Endpoint {
+        return .contentCollection
+    }
 
     func setData(_ data: ContentCollectionData, objectStore: ObjectStore) throws {
         section = data.section

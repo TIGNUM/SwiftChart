@@ -45,6 +45,23 @@ extension UpSyncable where Self: Object {
     }
 }
 
+protocol Dirty: class {
+
+    var changeStamp: String? { get set }
+}
+
+extension Dirty {
+
+    var dirty: Bool {
+        get { return changeStamp != nil }
+        set { changeStamp = newValue == true ? UUID().uuidString : nil }
+    }
+
+    func didUpdate() {
+        dirty = true
+    }
+}
+
 // MARK: UpSyncableDeleting
 
 protocol UpSyncableDeleting: UpSyncable {
@@ -86,9 +103,7 @@ extension UpSyncableDeleting where Self: SyncableObject {
 
 // MARK: UpSyncableWithLocalAndRemoteIDs
 
-protocol UpSyncableWithLocalAndRemoteIDs: UpSyncable {
-
-    var localChangeID: String? { get set }
+protocol UpSyncableWithLocalAndRemoteIDs: UpSyncable, Dirty {
 
     var localID: String { get }
 
@@ -100,7 +115,7 @@ protocol UpSyncableWithLocalAndRemoteIDs: UpSyncable {
 extension UpSyncableWithLocalAndRemoteIDs where Self: SyncableObject {
 
     var syncStatus: UpSyncStatus {
-        if localChangeID == nil {
+        if changeStamp == nil {
             return .clean
         } else if deleted {
             return .deleted
@@ -112,16 +127,11 @@ extension UpSyncableWithLocalAndRemoteIDs where Self: SyncableObject {
     }
 
     static var dirtyPredicate: NSPredicate {
-        return NSPredicate(format: "localChangeID != nil")
+        return NSPredicate(format: "changeStamp != nil")
     }
 
     var existsOnServer: Bool {
         return remoteID.value != nil
-    }
-
-    var dirty: Bool {
-        get { return localChangeID != nil }
-        set { localChangeID = newValue == true ? UUID().uuidString : nil }
     }
 
     static func upSyncData(realm: RealmProvider) throws -> UpSyncData? {
@@ -133,9 +143,10 @@ extension UpSyncableWithLocalAndRemoteIDs where Self: SyncableObject {
 
         let completions = items.map { (object, _) -> (LocalIDToRemoteIDMap, Realm) throws -> Void in
             let localID = object.localID
-            let changeID = object.localChangeID
+            let previousChangeStamp = object.changeStamp
             return { (map: LocalIDToRemoteIDMap, realm: Realm) in
-                if let object = realm.syncableObject(ofType: Self.self, localID: localID), changeID == object.localChangeID {
+                if let object = realm.syncableObject(ofType: Self.self, localID: localID),
+                    previousChangeStamp == object.changeStamp {
                     switch object.syncStatus {
                     case .clean:
                         break
@@ -163,15 +174,14 @@ extension UpSyncableWithLocalAndRemoteIDs where Self: SyncableObject {
 
 // MARK: UpsyncableUnique
 
-protocol UpsyncableUnique: UpSyncable {
+protocol UpsyncableUnique: UpSyncable, Dirty {
 
-    var localChangeID: String? { get set }
 }
 
 extension UpsyncableUnique where Self: Object {
 
     var syncStatus: UpSyncStatus {
-        if localChangeID == nil {
+        if changeStamp == nil {
             return .clean
         } else {
             return .updated
@@ -179,12 +189,7 @@ extension UpsyncableUnique where Self: Object {
     }
 
     static var dirtyPredicate: NSPredicate {
-        return NSPredicate(format: "localChangeID != nil")
-    }
-
-    var dirty: Bool {
-        get { return localChangeID != nil }
-        set { localChangeID = newValue == true ? UUID().uuidString : nil }
+        return NSPredicate(format: "changeStamp != nil")
     }
 
     static func upSyncData(realm: RealmProvider) throws -> UpSyncData? {
