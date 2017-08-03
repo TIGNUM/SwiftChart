@@ -21,7 +21,7 @@ final class QuestionsService {
 
     func prepareQuestions(questionGroupID: Int) -> AnyRealmCollection<Question> {
         let predicate = NSPredicate(format: "ANY answers.decisions.questionGroupID == %d", questionGroupID)
-        let results = mainRealm.objects(Question.self).sorted(byKeyPath: "sortOrder", ascending: false).filter(predicate)
+        let results = mainRealm.objects(Question.self).sorted(by: [.sortOrder()]).filter(predicate)
         return AnyRealmCollection(results)
     }
 
@@ -31,7 +31,7 @@ final class QuestionsService {
 
     func morningInterviewQuestions(questionGroupID: Int) -> AnyRealmCollection<Question> {
         let predicate = NSPredicate(format: "ANY groups.id == %d AND answers.@count > 0", questionGroupID)
-        let results = mainRealm.objects(Question.self).sorted(byKeyPath: "sortOrder", ascending: false).filter(predicate)
+        let results = mainRealm.objects(Question.self).sorted(by: [.sortOrder()]).filter(predicate)
 
         return AnyRealmCollection(results)
     }

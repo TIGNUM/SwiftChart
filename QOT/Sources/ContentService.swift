@@ -73,7 +73,7 @@ final class ContentService {
 
     func relatedArticles(for articleCollection: ContentCollection) -> [ContentCollection] {
         let predicate = NSPredicate(remoteIDs: articleCollection.relatedContentIDs)
-        let results = mainRealm.objects(ContentCollection.self).sorted(byKeyPath: JsonKey.sortOrder.value).filter(predicate)
+        let results = mainRealm.objects(ContentCollection.self).sorted(by: [.sortOrder()]).filter(predicate)
 
         return Array(AnyRealmCollection<ContentCollection>(results))
     }
@@ -105,7 +105,7 @@ private extension Realm {
 
 extension SortDescriptor {
 
-    static func sortOrder(ascending: Bool = true) -> SortDescriptor {
+    static func sortOrder(ascending: Bool = false) -> SortDescriptor {
         return SortDescriptor(keyPath: Database.KeyPath.sortOrder.rawValue, ascending: ascending)
     }
 }
