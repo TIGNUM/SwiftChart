@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReactiveKit
 
 protocol MyUniverseViewControllerDelegate: class {
     func didTapSector(sector: Sector?, in viewController: MyUniverseViewController)
@@ -26,6 +27,7 @@ final class MyUniverseViewController: UIViewController {
     
     // MARK: - Properties
 
+    fileprivate let disposeBag = DisposeBag()
     fileprivate let myDataViewModel: MyDataViewModel
     fileprivate let myWhyViewModel: MyWhyViewModel
     fileprivate var lastContentOffset: CGFloat = 0
@@ -151,10 +153,6 @@ final class MyUniverseViewController: UIViewController {
         self.myWhyViewModel = myWhyViewModel
 
         super.init(nibName: nil, bundle: nil)
-        
-        _ = myWhyViewModel.updates.observeNext { [weak self] (_: CollectionUpdate) in
-            self?.myDataView.updateProfileImage(self?.myDataViewModel.profileImage)
-        }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -163,6 +161,10 @@ final class MyUniverseViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        myWhyViewModel.updates.observeNext { [weak self] (_: CollectionUpdate) in
+            self?.myDataView.updateProfileImage(self?.myDataViewModel.profileImage)
+        }.dispose(in: disposeBag)
 
         addTabRecognizer()
         addSubViews()
