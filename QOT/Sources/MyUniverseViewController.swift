@@ -10,7 +10,7 @@ import UIKit
 import ReactiveKit
 
 protocol MyUniverseViewControllerDelegate: class {
-    func didTapSector(sector: Sector?, in viewController: MyUniverseViewController)
+    func didTapSector(startingSection: MyStatisticsSectionType?, in viewController: MyUniverseViewController)
     func didTapMyToBeVision(vision: MyToBeVision?, from view: UIView, in viewController: MyUniverseViewController)
     func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, from view: UIView, in viewController: MyUniverseViewController)
     func didTapQOTPartner(selectedIndex: Index, partners: [PartnerWireframe], from view: UIView, in viewController: MyUniverseViewController)
@@ -168,6 +168,10 @@ final class MyUniverseViewController: UIViewController {
 
         addTabRecognizer()
         addSubViews()
+
+        _ = myWhyViewModel.updates.observeNext { [weak self] (_: CollectionUpdate) in
+            self?.myDataView.updateProfileImage(self?.myDataViewModel.profileImage)
+        }
     }
 }
 
@@ -196,7 +200,7 @@ private extension MyUniverseViewController {
     }
 
     @objc func didTapSector(recognizer: UITapGestureRecognizer) {
-        delegate?.didTapSector(sector: sector(location: recognizer.location(in: view)), in: self)
+        delegate?.didTapSector(startingSection: section(location: recognizer.location(in: view)), in: self)
     }
 }
 
@@ -204,7 +208,7 @@ private extension MyUniverseViewController {
 
 private extension MyUniverseViewController {
 
-    func sector(location: CGPoint) -> Sector? {
+    func section(location: CGPoint) -> MyStatisticsSectionType? {
         let radius = lengthFromCenter(for: location)
         let yPosShifted = location.y - myDataView.profileImageButton.center.y
         let xPosShifted = location.x - myDataView.profileImageButton.center.x
@@ -214,24 +218,46 @@ private extension MyUniverseViewController {
         for sector in myDataViewModel.sectors {
             if yPosShifted >= 0 {
                 if sector.startAngle ... sector.endAngle ~= sectorAngle {
-                    return sector
+                    return sectionType(for: sector.labelType)
                 }
 
                 if sectorAngle < 119 {
-                    return myDataViewModel.sectors.last                }
+                    guard let type = myDataViewModel.sectors.last?.labelType else { return nil }
+
+                    return sectionType(for: type)
+                }
             } else {
                 let mappedSectorAngle = 180 + (180 - sectorAngle)
                 if sector.startAngle ... sector.endAngle ~= mappedSectorAngle {
-                    return sector
+                    return sectionType(for: sector.labelType)
                 }
 
                 if sectorAngle < 100 {
-                    return myDataViewModel.sectors.first
+                    guard let type = myDataViewModel.sectors.first?.labelType else { return nil }
+
+                    return sectionType(for: type)
                 }
             }
         }
 
         return nil
+    }
+
+    func sectionType(for type: SectorLabelType) -> MyStatisticsSectionType {
+        switch type {
+        case .activity:
+            return .activity
+        case .intensity:
+            return .intensity
+        case .meetings:
+            return .meetings
+        case .peak:
+            return .peakPerformance
+        case .sleep:
+            return .sleep
+        case .travel:
+            return .travel
+        }
     }
 
     func lengthFromCenter(for location: CGPoint) -> CGFloat {
@@ -357,6 +383,42 @@ extension MyUniverseViewController: CustomPresentationAnimatorDelegate {
                 self.myWhyView.myToBeVisionBox.transform = .identity
                 self.myWhyView.weeklyChoicesBox.transform = .identity
                 self.myWhyView.qotPartnersBox.transform = .identity
+            }
+        } else if let toViewController = animator.toViewController, toViewController.contains(PartnersViewController.self) {
+            return { [unowned self] in
+                self.myWhyView.qotPartnersBox.transform = CGAffineTransform(translationX: 200.0, y: -300.0).scaledBy(x: 2.5, y: 2.5)
+            }
+        } else if let fromViewController = animator.fromViewController, fromViewController.contains(PartnersViewController.self) {
+            return { [unowned self] in
+                self.myWhyView.qotPartnersBox.transform = .identity
+            }
+        } else if let toViewController = animator.toViewController, toViewController.contains(MyStatisticsViewController.self) {
+            self.parent?.view.alpha = 1
+
+            return { [unowned self] in
+                self.parent?.view.alpha = 0
+
+                self.myDataView.profileImageButton.transform = CGAffineTransform(translationX: 300.0, y: 0)
+                self.view.transform = CGAffineTransform(scaleX: 3, y: 3)//.translatedBy(x: -180, y: 0)
+
+                if let layerTransform = self.myDataView.universeDotsLayer?.transform {
+                    self.myDataView.universeDotsLayer?.transform = CATransform3DTranslate(layerTransform, -200, 0, 0)
+                }
+            }
+        } else if let fromViewController = animator.fromViewController, fromViewController.contains(MyStatisticsViewController.self) {
+            self.parent?.view.alpha = 0
+
+            if let layerTransform = self.myDataView.universeDotsLayer?.transform {
+                self.myDataView.universeDotsLayer?.transform = CATransform3DTranslate(layerTransform, -200, 0, 0)
+            }
+
+            return { [unowned self] in
+                self.parent?.view.alpha = 1
+
+                self.myDataView.profileImageButton.transform = .identity
+                self.view.transform = .identity
+
+                self.myDataView.universeDotsLayer?.transform = CATransform3DIdentity
             }
         } else if let toViewController = animator.toViewController, toViewController.contains(WeeklyChoicesViewController.self) {
             self.myWhyView.weeklyChoicesBox.alpha = 1

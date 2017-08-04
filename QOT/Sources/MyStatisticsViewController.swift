@@ -102,3 +102,15 @@ extension MyStatisticsViewController: UITableViewDelegate, UITableViewDataSource
         return cell
     }
 }
+
+// MARK: - CustomPresentationAnimatorDelegate {
+
+extension MyStatisticsViewController: CustomPresentationAnimatorDelegate {
+    func animationsForAnimator(_ animator: CustomPresentationAnimator) -> (() -> Void)? {
+
+        parent?.view.alpha = animator.isPresenting ? 0.0 : 1.0
+        return { [unowned self] in
+            self.parent?.view.alpha = animator.isPresenting ? 1.0 : 0.0
+        }
+    }
+}

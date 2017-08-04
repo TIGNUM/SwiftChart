@@ -9,32 +9,36 @@
 import Foundation
 import UIKit
 
-final class MyStatisticsCoordinator: ParentCoordinator {
+final class MyStatisticsCoordinator: NSObject, ParentCoordinator {
 
     // MARK: - Properties
 
     fileprivate let rootViewController: UIViewController
     fileprivate let services: Services
+    fileprivate let startingSection: MyStatisticsSectionType
     fileprivate var topTabBarController: UINavigationController!
     
     var children: [Coordinator] = []
 
     // MARK: - Life Cycle
 
-    init(root: UIViewController, services: Services) {
+    init(root: UIViewController, services: Services, startingSection: MyStatisticsSectionType? = nil) {
         self.rootViewController = root
         self.services = services
+        self.startingSection = startingSection ?? .sleep
     }
 
     func start() {
         do {
-            let viewModel = try MyStatisticsViewModel(services: services)
+            let viewModel = try MyStatisticsViewModel(services: services, startingSection: startingSection)
             let myStatisticsViewController = MyStatisticsViewController(viewModel: viewModel)
             myStatisticsViewController.delegate = self
             myStatisticsViewController.title = "23 SEP // 30 Sep" //TODO: localise
    
             let leftButton = UIBarButtonItem(withImage: R.image.ic_minimize())
-            topTabBarController = UINavigationController(withPages: [myStatisticsViewController], topBarDelegate: self, leftButton: leftButton)
+            topTabBarController = UINavigationController(withPages: [myStatisticsViewController], topBarDelegate: self, leftButton: leftButton, rightButton: nil)
+            topTabBarController.modalPresentationStyle = .custom
+            topTabBarController.transitioningDelegate = self
 
             rootViewController.present(topTabBarController, animated: true)
         } catch let error {
@@ -63,5 +67,18 @@ extension MyStatisticsCoordinator: TopNavigationBarDelegate {
     }
     
     func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
+    }
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+
+extension MyStatisticsCoordinator: UIViewControllerTransitioningDelegate {
+
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return CustomPresentationAnimator(isPresenting: true, presentingDuration: 0.3, presentedDuration: 0.8)
+    }
+
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return CustomPresentationAnimator(isPresenting: false, presentingDuration: 0.3, presentedDuration: 0.8)
     }
 }

@@ -38,6 +38,7 @@ final class MyDataView: UIView, MyUniverseView {
 
     // MARK: - Properties
 
+    var universeDotsLayer: CAShapeLayer?
     var profileImageButton = UIButton()
     var profileImageViewOverlay = UIImageView()
     var profileImageViewOverlayEffect = UIImageView()
@@ -83,6 +84,7 @@ final class MyDataView: UIView, MyUniverseView {
 private extension MyDataView {
 
     func drawUniverse(with sectors: [Sector], profileImage: UIImage?, layout: Layout.MeSection) {
+        self.universeDotsLayer = CAShapeLayer()
         self.sectors = sectors
         self.profileImage = profileImage
 
@@ -92,6 +94,9 @@ private extension MyDataView {
         MyUniverseHelper.collectCenterPoints(layout: layout, sectors: sectors, relativeCenter: profileImageButton.center)
         drawDataPointConnections(layout: layout, sectors: sectors)
         drawDataPoints(layout: layout, sectors: sectors)
+
+        layer.addSublayer(universeDotsLayer!)
+
         addSubview(profileImageButton)
         addSubview(profileImageViewOverlay)
         addSubview(profileImageViewOverlayEffect)
@@ -151,9 +156,11 @@ private extension MyDataView {
     }
 
     func drawDataPoints(layout: Layout.MeSection, sectors: [Sector]) {
+        guard let universeDotsLayer = universeDotsLayer else { return }
+
         let dataPoints = MyUniverseHelper.dataPoints(sectors: sectors, layout: layout)
         dataPoints.forEach { (dataPoint: CAShapeLayer) in
-            layer.addSublayer(dataPoint)
+            universeDotsLayer.addSublayer(dataPoint)
         }
     }
 }

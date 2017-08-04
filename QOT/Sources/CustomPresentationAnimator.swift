@@ -74,19 +74,19 @@ extension CustomPresentationAnimator: UIViewControllerAnimatedTransitioning {
         UIView.animate(withDuration: presentingDuration, animations: {
             fromAnimations()
         }, completion: { [unowned self] (finished: Bool) in
-            self.finishedAnimations += 1
             self.completion(finished, transitionContext: transitionContext)
         })
 
         UIView.animate(withDuration: presentedDuration, animations: {
             toAnimations()
         }, completion: { [unowned self] (finished: Bool) in
-            self.finishedAnimations += 1
             self.completion(finished, transitionContext: transitionContext)
         })
     }
 
     fileprivate func completion(_ finished: Bool, transitionContext: UIViewControllerContextTransitioning) {
+        finishedAnimations += 1
+
         if finishedAnimations == 2 {
             transitionContext.completeTransition(finished)
             if finished {

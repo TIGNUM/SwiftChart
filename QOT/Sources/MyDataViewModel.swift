@@ -191,7 +191,6 @@ private var mockSectors: [Sector] {
 private var peakSpikes: [Spike] {
     return [
         MockSpike(localID: UUID().uuidString, angle: 245, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, angle: 240, load: randomNumber),
         MockSpike(localID: UUID().uuidString, angle: 235, load: randomNumber)
     ]
 }
@@ -199,8 +198,6 @@ private var peakSpikes: [Spike] {
 private var meetingsSpikes: [Spike] {
     return [
         MockSpike(localID: UUID().uuidString, angle: 225, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, angle: 220, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, angle: 215, load: randomNumber),
         MockSpike(localID: UUID().uuidString, angle: 210, load: randomNumber),
         MockSpike(localID: UUID().uuidString, angle: 205, load: randomNumber)
     ]
@@ -208,8 +205,6 @@ private var meetingsSpikes: [Spike] {
 
 private var intensitySpikes: [Spike] {
     return [
-        MockSpike(localID: UUID().uuidString, angle: 195, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, angle: 190, load: randomNumber),
         MockSpike(localID: UUID().uuidString, angle: 185, load: randomNumber)
     ]
 }
@@ -218,7 +213,6 @@ private var travelSpikes: [Spike] {
     return [
         MockSpike(localID: UUID().uuidString, angle: 175, load: randomNumber),
         MockSpike(localID: UUID().uuidString, angle: 170, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, angle: 165, load: randomNumber),
         MockSpike(localID: UUID().uuidString, angle: 160, load: randomNumber),
         MockSpike(localID: UUID().uuidString, angle: 155, load: randomNumber)
     ]
@@ -234,7 +228,6 @@ private var sleepSpikes: [Spike] {
 private var activitySpikes: [Spike] {
     return [
         MockSpike(localID: UUID().uuidString, angle: 130, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, angle: 125, load: randomNumber),
         MockSpike(localID: UUID().uuidString, angle: 112, load: randomNumber)
     ]
 }

@@ -16,10 +16,11 @@ final class MyStatisticsViewModel {
 
     let updates = PublishSubject<CollectionUpdate, NoError>()
     fileprivate let cards: [[MyStatistics]]
+    fileprivate var cardsOrder = [MyStatisticsSectionType]()
     let allCards: [MyStatistics]
 
     var numberOfSections: Int {
-        return MyStatisticsSectionType.allValues.count
+        return cardsOrder.count
     }
 
     func numberOfItems(in section: Int) -> Int {
@@ -31,11 +32,11 @@ final class MyStatisticsViewModel {
     }
 
     func sectionType(in section: Int) -> MyStatisticsSectionType {
-        guard let sectionType = MyStatisticsSectionType(rawValue: section) else {
+        guard section < cardsOrder.count else {
             fatalError("Invalid section type")
         }
 
-        return sectionType
+        return cardsOrder[section]
     }
 
     func cardType(section: Int, item: Int) -> MyStatisticsCardType {
@@ -44,13 +45,34 @@ final class MyStatisticsViewModel {
         return section.cardTypes[item]
     }
 
-    init(services: Services) throws {
+    init(services: Services, startingSection: MyStatisticsSectionType) throws {
         do {
             self.cards = try services.myStatisticsService.cards()
             self.allCards = Array(services.myStatisticsService.allCardObjects())
+            orderCards(startingSection: startingSection)
         } catch let error {
             throw error
         }
+    }
+
+    // Ordering cards depending on their level of criticality.
+    // The selected card/section will be shown first
+    fileprivate func orderCards(startingSection: MyStatisticsSectionType) {
+        MyStatisticsSectionType.allValues.forEach { cardType in
+
+            if cardType != startingSection {
+
+                let currentSectionCriticality = cardType.criticalityLevel(statistics: cards)
+                var currentSectionIndex = 0
+
+                cardsOrder.forEach { card in
+                    let criticality = card.criticalityLevel(statistics: cards)
+                    currentSectionIndex += currentSectionCriticality >= criticality ? 1 : 0
+                }
+                cardsOrder.insert(cardType, at: currentSectionIndex)
+            }
+        }
+        cardsOrder.insert(startingSection, at: 0)
     }
 
     func cardTitle(section: Int, item: Int) -> String {
@@ -90,8 +112,8 @@ final class MyStatisticsViewModel {
     }
 }
 
-enum MyStatisticsCardType {
-    case meetingAverage
+enum MyStatisticsCardType: Int {
+    case meetingAverage = 0
     case meetingLength
     case meetingTimeBetween
     case travelTripsMeeting
@@ -180,6 +202,27 @@ enum MyStatisticsCardType {
         case .activityLevel: return ["activity.level"]
         case .intensity: return ["intentensity.week", "intentensity.month"]
         }
+    }
+
+    var criticalityInverted: Bool {
+        switch self {
+        case .meetingTimeBetween: return true
+        case .sleepQuantity: return true
+        default: return false
+        }
+    }
+
+    // Calculating the level of criticality of a card
+    // Value goes from 0 to 1, 0 being not critical
+    func criticalityLevel(statistics: [MyStatistics]) -> CGFloat {
+        var result: CGFloat = 0
+
+        for key in keys {
+            for statistic in statistics where statistic.key == key {
+                result += CGFloat(statistic.userAverage / statistic.maximum)
+            }
+        }
+        return criticalityInverted ? CGFloat(1) - result : result
     }
 
     func myStatistics(cards: [MyStatistics]) -> MyStatistics? {
@@ -295,5 +338,19 @@ enum MyStatisticsSectionType: Int {
         case .meetings: return [.meetingAverage, .meetingLength, .meetingTimeBetween]
         case .travel: return [.travelTripsMeeting, .travelTripsNextFourWeeks, .travelTripsMaxTimeZone, .travelTripsTimeZoneChanged]
         }
+    }
+
+    // Calculating the level of criticality of a section
+    func criticalityLevel(statistics: [[MyStatistics]]) -> CGFloat {
+        let cards = cardTypes
+
+        guard cards.count > 0 else { return 0 }
+
+        var result: CGFloat = 0
+        cards.forEach { card in
+            result += card.criticalityLevel(statistics: statistics[card.rawValue])
+        }
+
+        return result / CGFloat(cards.count)
     }
 }
