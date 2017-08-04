@@ -121,6 +121,7 @@ final class SyncManager {
             upSyncOperation(CalendarEvent.self, context: context),
             upSyncOperation(MyToBeVision.self, context: context),
             upSyncOperation(Partner.self, context: context),
+            upSyncOperation(UserChoice.self, context: context),
             upSyncOperation(User.self, context: context, isFinalOperation: true)
         ]
 
