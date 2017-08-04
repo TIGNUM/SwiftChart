@@ -21,10 +21,11 @@ protocol CalendarImportMangerDelegate: class {
 /// Manages the one-way sync of `EKEvent`'s into `Realm`, both manually by calling `importEvents()`, and automatically
 /// when the event `EKEventStoreChanged` notifications are posted.
 final class CalendarImportManger {
-    private let store: EKEventStore
+        
     private let realmProvider: RealmProvider
     private let queue = DispatchQueue(label: "com.tignum.qot.calendarSync", qos: .background)
     private let notificationHandler: NotificationHandler
+    private let store = EKEventStore.shared
 
     /// The predicate for for which `EKEvents` to fetch from `EKEventStore`.
     var predicate: (EKEventStore) -> NSPredicate
@@ -32,8 +33,7 @@ final class CalendarImportManger {
     weak var delegate: CalendarImportMangerDelegate?
     
     /// Creates an instance that imports `EKEvent`s from `store` matching `predicate` into `realm`.
-    init(realm: RealmProvider, predicate: @escaping (EKEventStore) -> NSPredicate, store: EKEventStore = EKEventStore(), notificationCenter: NotificationCenter = NotificationCenter.default) {
-        self.store = store
+    init(realm: RealmProvider, predicate: @escaping (EKEventStore) -> NSPredicate) {
         self.realmProvider = realm
         self.predicate = predicate
         self.notificationHandler = NotificationHandler(name: .EKEventStoreChanged, object: store)
@@ -48,7 +48,7 @@ final class CalendarImportManger {
         let status = EKEventStore.authorizationStatus(for: .event)
         
         if status == .authorized {
-            sync(predicate: predicate(store)) { [weak self] (result) in
+            sync(predicate: predicate(store)) { [weak self] (result: CalendarImportResult) in
                 switch result {
                 case .success:
                     break // No operation needed
@@ -60,8 +60,8 @@ final class CalendarImportManger {
             delegate?.eventStoreAuthorizationRequired(for: self, currentStatus: status)
         }
     }
-    
-    private func sync(predicate: NSPredicate, completion: @escaping (CalendarImportResult) -> Void) {
+
+    private func sync(predicate: NSPredicate, completion: @escaping (CalendarImportResult) -> Void) {        
         queue.async { [store, realmProvider] in
             let result: CalendarImportResult
             do {
@@ -76,9 +76,5 @@ final class CalendarImportManger {
                 completion(result)
             }
         }
-    }
-    
-    @objc func calendarDidChange() {
-        importEvents()
     }
 }

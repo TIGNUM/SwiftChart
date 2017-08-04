@@ -62,11 +62,11 @@ extension SettingsMenuCoordinator: SettingsMenuViewControllerDelegate {
         startSettingsCoordinator(settingsType: .notifications, root: viewController)
     }
 
-    private func startSettingsCoordinator(settingsType: SettingsViewModel.SettingsType, root: SettingsMenuViewController) {
+    private func startSettingsCoordinator(settingsType: SettingsType.SectionType, root: SettingsMenuViewController) {
         guard let coordinator = SettingsCoordinator(root: root, services: services, settingsType: settingsType) else {
-            print("could not init \(SettingsCoordinator.self)")
             return
         }
+
         startChild(child: coordinator)
     }
 }

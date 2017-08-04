@@ -10,12 +10,15 @@ import UIKit
 import Anchorage
 
 protocol LoginViewControllerDelegate: class {
+
     func didTapLogin(withEmail email: String, password: String, viewController: UIViewController, completion: @escaping (Error?) -> Void)
+
     func didTapResetPassword(viewController: UIViewController)
+
     func checkIfEmailAvailable(email: String, completion: @escaping (Bool) -> Void)
 }
 
-class LoginViewController: UITableViewController {
+final class LoginViewController: UITableViewController {
 
     // MARK: - Properties
 
@@ -52,11 +55,6 @@ class LoginViewController: UITableViewController {
         super.viewWillAppear(animated)
 
         startObservingKeyboard()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
     }
 
     override func viewWillDisappear(_ animated: Bool) {

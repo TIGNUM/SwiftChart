@@ -16,6 +16,31 @@
 "Settings.Title.General" = "General";
 "Settings.Title.Notifications" = "Notifications";
 "Settings.Title.Security" = "Security";
+
+"Settings.General.Company.Title" = "Company";
+"Settings.General.Email.Title" = "Email";
+"Settings.General.Telephone.Title" = "Telephone";
+"Settings.General.Gender.Title" = "Gender";
+"Settings.General.DateOfBirth.Title" = "Date Of Birth";
+"Settings.General.Weight.Title" = "Weight";
+"Settings.General.Height.Title" = "Height";
+"Settings.General.Location.Title" = "Share Location with QOT";
+"Settings.General.Calendar.Title" = "Synchronized Calendars";
+"Settings.General.Tutorial.Title" = "Tutorial";
+"Settings.General.Interview.Title" = "Initial Interview";
+"Settings.General.Support.Title" = "Support";
+
+"Settings.Notifications.Strategies.Title" = "55 Strategies";
+"Settings.Notifications.DailyPrep.Title" = "Daily Prep";
+"Settings.Notifications.WeeklyChoices.Title" = "Your 5 Weekly Choices";
+
+"Settings.Security.Password.Title" = "Change Password";
+"Settings.Security.Confirm.Title" = "Confirm";
+"Settings.Security.Terms.Title" = "Terms And Conditions";
+"Settings.Security.LegalNotes.Title" = "Legal Notes";
+"Settings.Security.DataProtection.Title" = "Notes and Data Protections";
+"Settings.Security.Copyrights.Title" = "Content And Copyrights";
+
 "Sidebar.Title.Library" = "QOT Library";
 "Sidebar.Title.Benefits" = "QOT Benefits";
 "Sidebar.Title.Settings" = "Settings";
@@ -138,6 +163,8 @@
 "Alert.Button.Title.Cancel" = "Cancel";
 "Alert.Button.Title.Save" = "Save";
 "Alert.Button.Title.Open.Settings" = "Open Settings";
+"Alert.Title.LocationServices" = "Location Services";
+"Alert.Message.LocationServices" = "To change the location service permissions please go the settings.";
 
 "Library.Footer.View.Label" = "Scroll To Finish";
 
@@ -161,6 +188,9 @@
 "ResetPassword.ResetMyPassword" = "Reset my password";
 "ResetPassword.EmailSent" = "Email sent";
 "ResetPassword.ForgottenPasswordMessage" = "Forgot your password? We can help to reset it.";
+
+"Change.Password.Issue.Confirm.Not.Match" = "Password doesn't match the confirmation";
+"Change.Password.Issue.Old.Password.Not.Valid" = "Old password isn't valid";
 
 "Calendar.Year" = "Year";
 "Calendar.Month" = "Month";

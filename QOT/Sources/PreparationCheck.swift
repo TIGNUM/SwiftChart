@@ -34,7 +34,7 @@ final class PreparationCheck: SyncableObject {
 
     override func delete() {
         if let realm = realm {
-            if remoteID == nil {
+            if remoteID.value == nil {
                 realm.delete(self)
             } else {
                 deleted = true

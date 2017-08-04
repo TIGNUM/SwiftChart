@@ -23,6 +23,7 @@ enum AlertType {
     case loginFailed
     case notificationsNotAuthorized
     case tutorialReset
+    case settingsLoccationService
 
     var title: String? {
         switch self {
@@ -36,6 +37,7 @@ enum AlertType {
         case .loginFailed: return R.string.localized.loginViewLoginFailed()
         case .notificationsNotAuthorized: return R.string.localized.alertTitleNotificationsNotAuthorized()
         case .tutorialReset: return R.string.localized.settingsTutorialResetTitle()
+        case .settingsLoccationService: return R.string.localized.alertTitleLocationServices()
         default: return nil
         }
     }
@@ -49,20 +51,23 @@ enum AlertType {
         case .comingSoon: return R.string.localized.alertMessageComingSoon()
         case .unknow: return R.string.localized.alertMessageUnknown()
         case .notificationsNotAuthorized: return R.string.localized.alertMessageNotificationsNotAuthorized()
+        case .settingsLoccationService: return R.string.localized.alertMessageLocationServices()
         default: return nil
         }
     }
 
     var buttonTitleCancel: String? {
         switch self {
-        case .notificationsNotAuthorized: return R.string.localized.alertButtonTitleCancel()
+        case .notificationsNotAuthorized,
+             .settingsLoccationService: return R.string.localized.alertButtonTitleCancel()
         default: return nil
         }
     }
 
     var buttonTitleDefault: String? {
         switch self {
-        case .notificationsNotAuthorized: return R.string.localized.alertButtonTitleOpenSettings()
+        case .notificationsNotAuthorized,
+             .settingsLoccationService: return R.string.localized.alertButtonTitleOpenSettings()
         default: return R.string.localized.alertButtonTitleOk()
         }
     }
@@ -75,7 +80,8 @@ enum AlertType {
 
     var actionStyle: [UIAlertActionStyle] {
         switch self {
-        case .notificationsNotAuthorized: return [.cancel, .default]
+        case .notificationsNotAuthorized,
+             .settingsLoccationService: return [.cancel, .default]
         default: return [.default]
         }
     }

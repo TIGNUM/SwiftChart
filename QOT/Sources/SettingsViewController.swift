@@ -10,16 +10,17 @@ import UIKit
 import ActionSheetPicker_3_0
 import UserNotifications
 import UserNotificationsUI
+import CoreLocation
 
 protocol SettingsViewControllerDelegate: class {
 
-    func didValueChanged(at indexPath: IndexPath, enabled: Bool)
+    func didValueChanged(at indexPath: IndexPath, sender: UISwitch, settingsCell: SettingsTableViewCell)
 
     func didTapPickerCell(at indexPath: IndexPath, selectedValue: String)
 
     func didTapButton(at indexPath: IndexPath, settingsType: SettingsType)
 
-    func updateViewModelAndReload(viewController: SettingsViewController)
+    func didChangeLocationValue(sender: UISwitch, settingsCell: SettingsTableViewCell)
 }
 
 final class SettingsViewController: UITableViewController {
@@ -27,8 +28,9 @@ final class SettingsViewController: UITableViewController {
     // MARK: - Properties
 
     fileprivate var viewModel: SettingsViewModel
-    fileprivate let settingsType: SettingsViewModel.SettingsType
-    weak var delegate: SettingsViewControllerDelegate?
+    fileprivate let settingsType: SettingsType.SectionType
+    fileprivate let locationManager = CLLocationManager()
+    weak var delegate: SettingsCoordinatorDelegate?
     
     // MARK: - Init
     
@@ -49,11 +51,12 @@ final class SettingsViewController: UITableViewController {
         super.viewDidLoad()
 
         registerCells()
-        setupView()
+        setupView()        
     }
 
-    func update(viewModel: SettingsViewModel) {
-        self.viewModel = viewModel
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
         tableView.reloadData()
     }
 }
@@ -65,7 +68,7 @@ private extension SettingsViewController {
     func setupView() {
         view.backgroundColor = .clear
         tableView.backgroundColor = .clear
-        tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 64, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 110, left: 0, bottom: 64, right: 0)
         tableView.tableFooterView = UIView()
         tableView.separatorColor = .clear
         tableView.allowsSelection = true
@@ -94,11 +97,13 @@ extension SettingsViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let settingsRow = viewModel.row(at: indexPath)
+
         guard let settingsCell = tableView.dequeueReusableCell(withIdentifier: settingsRow.identifier, for: indexPath) as? SettingsTableViewCell else {
             fatalError("SettingsTableViewCell DOES NOT EXIST!!!")
         }
-
-        settingsCell.setup(settingsRow: settingsRow, indexPath: indexPath, delegate: self.delegate)
+        
+        settingsCell.settingsDelegate = self
+        settingsCell.setup(settingsRow: settingsRow, indexPath: indexPath)
 
         return settingsCell
     }
@@ -125,6 +130,7 @@ extension SettingsViewController {
         }
 
         headerCell.setupHeaderCell(title: viewModel.headerTitle(in: section))
+        
         return headerCell.contentView
     }
 
@@ -135,14 +141,19 @@ extension SettingsViewController {
         switch selectedRow {
         case .button,
              .control,
-             .textField,
-             .label: return
-        case .datePicker(let title, let selectedDate):
+             .textField: return
+        case .datePicker(let title, let selectedDate, _):
             showDatePicker(title: title, selectedDate: selectedDate, indexPath: indexPath)
-        case .stringPicker(let title, let pickerItems, let selectedIndex):
+        case .stringPicker(let title, let pickerItems, let selectedIndex, _):
             showStringPicker(title: title, items: pickerItems, selectedIndex: selectedIndex, indexPath: indexPath)
-        case .multipleStringPicker(let title, let rows, let initialSelection):
+        case .multipleStringPicker(let title, let rows, let initialSelection, _):
             showMultiplePicker(title: title, rows: rows, initialSelection: initialSelection, indexPath: indexPath)
+        case .label(_, _, let settingsType):
+            switch settingsType {
+            case .calendar: delegate?.openCalendarListViewController(settingsViewController: self)
+            case .password: delegate?.openChangePasswordViewController(settingsViewController: self)
+            default: return
+            }
         }
     }
 }
@@ -165,7 +176,7 @@ private extension SettingsViewController {
                     let date = value as? Date {
                         let dateOfBirth = DateFormatter.settingsUser.string(from: date)
                         self.viewModel.updateDateOfBirth(dateOfBirth: dateOfBirth)
-                        self.delegate?.updateViewModelAndReload(viewController: self)
+                        self.tableView.reloadData()
                 }
             }, cancel: { (_) in
                 return
@@ -193,7 +204,7 @@ private extension SettingsViewController {
                 self.viewModel.updateHeight(height: items[index])
             }
 
-            self.delegate?.updateViewModelAndReload(viewController: self)
+            self.tableView.reloadData()
         }, cancel: { (_) in
             return
         }, origin: view)
@@ -231,9 +242,53 @@ private extension SettingsViewController {
                 }
             }
 
-            self.delegate?.updateViewModelAndReload(viewController: self)
+            self.tableView.reloadData()
         }, cancel: { (_) in
             return
         }, origin: view)
+    }
+}
+
+// MARK: - SettingsViewControllerDelegate
+
+extension SettingsViewController: SettingsViewControllerDelegate {
+
+    func didTapButton(at indexPath: IndexPath, settingsType: SettingsType) {
+        // Navigate to selected view, like tutorial.
+    }
+
+    func didValueChanged(at indexPath: IndexPath, sender: UISwitch, settingsCell: SettingsTableViewCell) {
+        // Update ViewModel with changes.
+    }
+
+    func didTapPickerCell(at indexPath: IndexPath, selectedValue: String) {
+        // Update view with nice animation and show/hide picker view.
+    }
+
+    func didTapButton(at indexPath: IndexPath) {
+        // Navigate to selected view, like tutorial.
+    }
+
+    func didChangeLocationValue(sender: UISwitch, settingsCell: SettingsTableViewCell) {
+        if LocationManager.authorizationStatus == .notDetermined {
+            // TODO: Connect with PremissionManager and requesst for the very first time.            
+            resetLocationSwitch(sender: sender, settingsCell: settingsCell)
+            locationManager.requestWhenInUseAuthorization()
+        } else if LocationManager.authorizationStatus == .denied || LocationManager.authorizationStatus == .restricted {
+            resetLocationSwitch(sender: sender, settingsCell: settingsCell)
+            showAlert(type: .settingsLoccationService, handler: { 
+                UIApplication.openAppSettings()
+            }, handlerDestructive: nil)
+        } else {
+            UserDefault.locationService.setBoolValue(value: sender.isOn)
+            settingsCell.controlUpdate = false
+            settingsCell.setSwitchState(switchControl: sender)
+        }
+    }
+
+    private func resetLocationSwitch(sender: UISwitch, settingsCell: SettingsTableViewCell) {
+        sender.isOn = false
+        settingsCell.setSwitchState(switchControl: sender)
+        settingsCell.controlUpdate = false
     }
 }

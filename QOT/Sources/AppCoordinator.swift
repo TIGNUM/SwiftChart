@@ -37,12 +37,13 @@ final class AppCoordinator: ParentCoordinator {
     }()
 
     fileprivate lazy var calendarImportManager: CalendarImportManger = {
-        let manager = CalendarImportManger(realm: RealmProvider(), predicate: { (store) -> NSPredicate in
+        let manager = CalendarImportManger(realm: RealmProvider(), predicate: { (store: EKEventStore) -> NSPredicate in
             let day: TimeInterval = 60 * 60 * 24
             let start = Date().addingTimeInterval(-(day * 7))
             let end = Date().addingTimeInterval(day * 7)
+            let calendars = EKEventStore.shared.syncEnabledCalendars
 
-            return store.predicateForEvents(withStart: start, end: end, calendars: nil)
+            return store.predicateForEvents(withStart: start, end: end, calendars: calendars)
         })
         manager.delegate = self
 
@@ -95,7 +96,6 @@ final class AppCoordinator: ParentCoordinator {
                 self.services = services
                 self.calendarImportManager.importEvents()
                 self.startTabBarCoordinator(services: services, permissionHandler: self.permissionHandler)
-
                 self.syncManager.upSyncAll()
                 self.syncManager.syncAll()
             case .failure:

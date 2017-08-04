@@ -62,7 +62,8 @@ class PermissionHandler: NSObject {
             completion(false)
             return
         }
-        EKEventStore().requestAccess(to: .event) { (granted: Bool, _: Error?) in
+        
+        EKEventStore.shared.requestAccess(to: .event) { (granted: Bool, _: Error?) in
             completion(granted)
         }
     }

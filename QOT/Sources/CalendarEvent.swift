@@ -17,12 +17,15 @@ final class CalendarEvent: SyncableObject, UpSyncableWithLocalAndRemoteIDs {
 
     dynamic var changeStamp: String? = UUID().uuidString
 
+    dynamic var ekEventModifiedAt = Date()
+
     convenience init(event: EKEvent) {
         self.init()
 
         let now = Date()
         self.createdAt = event.creationDate ?? now
         self.modifiedAt = event.lastModifiedDate ?? now
+        self.ekEventModifiedAt = event.lastModifiedDate ?? now
         self.localID = event.eventIdentifier
     }
 
@@ -30,6 +33,7 @@ final class CalendarEvent: SyncableObject, UpSyncableWithLocalAndRemoteIDs {
         let now = Date()
 
         self.modifiedAt = event.lastModifiedDate ?? now
+        self.ekEventModifiedAt = event.lastModifiedDate ?? now
         self.dirty = true
         self.deleted = false
     }
@@ -45,8 +49,19 @@ final class CalendarEvent: SyncableObject, UpSyncableWithLocalAndRemoteIDs {
         }
     }
 
+    func deleteOrMarkDeleted() {
+        if let realm = realm {
+            if existsOnServer == false {
+                realm.delete(self)
+            } else {
+                deleted = true
+                dirty = true
+            }
+        }
+    }
+
     func toJson() -> JSON? {
-        if let event = eventStore.event(withIdentifier: eventID) {
+        if let event = EKEventStore.shared.event(withIdentifier: eventID) {
             return event.toJSON(id: remoteID.value, createdAt: createdAt, modifiedAt: modifiedAt, syncStatus: syncStatus.rawValue, eventID: eventID)
         } else if syncStatus == .deleted, let remoteID = remoteID.value {
             let dict: [JsonKey: JSONEncodable] = [.id: remoteID, .syncStatus: syncStatus.rawValue]
@@ -64,5 +79,3 @@ final class CalendarEvent: SyncableObject, UpSyncableWithLocalAndRemoteIDs {
         return .calendarEvent
     }
 }
-
-private let eventStore = EKEventStore()

@@ -73,7 +73,7 @@ private extension SidebarViewController {
         tableView.bounces = false
         tableView.topAnchor == view.topAnchor
         tableView.bottomAnchor == view.bottomAnchor
-        tableView.horizontalAnchors == view.horizontalAnchors
+        tableView.horizontalAnchors == view.horizontalAnchors        
     }
 }
 
@@ -104,7 +104,7 @@ extension SidebarViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
+        tableView.deselectRow(at: indexPath, animated: true)
         handleSelection(sidebarItem: viewModel.sidebarItem(at: indexPath))
     }
 }

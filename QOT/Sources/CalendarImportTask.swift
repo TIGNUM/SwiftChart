@@ -10,20 +10,14 @@ import Foundation
 import RealmSwift
 import EventKit
 
-/// Performs the one-way sync of `EKEvent`'s into `Realm`.
 final class CalendarImportTask {
-    /// Syncs `events` with `realm`.
+
     func sync(events: [EKEvent], realm: Realm, store: EKEventStore) -> CalendarImportResult {
-        let markDeleted = fetchEventsNeedingDeletion(in: realm, store: store)
-        
         let result: CalendarImportResult
         do {
             try realm.write {
-                markDeleted.forEach { $0.delete() }
-                
-                for event in events {
-                    sync(event: event, realm: realm)
-                }
+                createOrUpdateCalendarEvents(with: events, realm: realm)
+                deleteCalendarEventsNotInSyncEnabledCalendarsOrThatReferenceDeletedEKEvents(in: realm, store: store)
             }
             result = .success
         } catch let error {
@@ -31,25 +25,33 @@ final class CalendarImportTask {
         }
         return result
     }
-    
-    /// Syncs `event` with `realm`.
-    ///
-    /// - warning: This method may only be called during a write transaction.
-    private func sync(event: EKEvent, realm: Realm) {
-        if let existing = realm.syncableObject(ofType: CalendarEvent.self, localID: event.eventIdentifier) {
-            if let modifiedAt = event.lastModifiedDate, modifiedAt > existing.modifiedAt {
-                existing.update(event: event)
+
+    // MARK: Private
+
+    func createOrUpdateCalendarEvents(with ekEvents: [EKEvent], realm: Realm) {
+        for ekEvent in ekEvents {
+            if let existingCalendarEvent = realm.syncableObject(ofType: CalendarEvent.self, localID: ekEvent.eventIdentifier) {
+                if let modifiedAt = ekEvent.lastModifiedDate, modifiedAt > existingCalendarEvent.ekEventModifiedAt {
+                    existingCalendarEvent.update(event: ekEvent)
+                }
+
+                // The event might have been soft deleted before so un delete it
+                existingCalendarEvent.deleted = false
+            } else {
+                let new = CalendarEvent(event: ekEvent)
+                realm.add(new)
             }
-        } else {
-            // Create the event.
-            let new = CalendarEvent(event: event)
-            realm.add(new)
         }
     }
-    
-    private func fetchEventsNeedingDeletion(in realm: Realm, store: EKEventStore) -> [CalendarEvent] {
-        return realm.objects(CalendarEvent.self)
-            .filter("deleted == false")
-            .filter { store.event(withIdentifier: $0.eventID) == nil }
+
+    func deleteCalendarEventsNotInSyncEnabledCalendarsOrThatReferenceDeletedEKEvents(in realm: Realm, store: EKEventStore) {
+        let enabledCalendars = store.syncEnabledCalendars
+        let calendarEvents = realm.objects(CalendarEvent.self).filter(.deleted(false)).filter { (calendarEvent) -> Bool in
+            if let ekEvent = store.event(withIdentifier: calendarEvent.eventID) {
+                return enabledCalendars.contains(ekEvent.calendar) == false
+            }
+            return true
+        }
+        calendarEvents.forEach { $0.deleteOrMarkDeleted() }
     }
 }

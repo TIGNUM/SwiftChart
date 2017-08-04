@@ -9,16 +9,23 @@
 import Foundation
 import UIKit
 
+protocol SettingsCoordinatorDelegate: class {
+
+    func openCalendarListViewController(settingsViewController: SettingsViewController)
+
+    func openChangePasswordViewController(settingsViewController: SettingsViewController)
+}
+
 final class SettingsCoordinator: ParentCoordinator {
     
     fileprivate let rootViewController: SettingsMenuViewController
     fileprivate let services: Services
-    fileprivate let settingsType: SettingsViewModel.SettingsType
+    fileprivate let settingsType: SettingsType.SectionType
     fileprivate let settingsViewController: SettingsViewController
     fileprivate var topTabBarController: UINavigationController!
     var children = [Coordinator]()
 
-    init?(root: SettingsMenuViewController, services: Services, settingsType: SettingsViewModel.SettingsType) {
+    init?(root: SettingsMenuViewController, services: Services, settingsType: SettingsType.SectionType) {
         self.rootViewController = root
         self.services = services
         self.settingsType = settingsType
@@ -32,7 +39,6 @@ final class SettingsCoordinator: ParentCoordinator {
         
         let leftButton = UIBarButtonItem(withImage: R.image.ic_back())
         topTabBarController = UINavigationController(withPages: [settingsViewController], topBarDelegate: self, leftButton: leftButton)
-
         settingsViewController.delegate = self
     }
 
@@ -56,34 +62,17 @@ extension SettingsCoordinator: TopNavigationBarDelegate {
     }
 }
 
-// MARK: - SettingsViewControllerDelegate
+// MARK: - SettingsCoordinatorDelegate
 
-extension SettingsCoordinator: SettingsViewControllerDelegate {
+extension SettingsCoordinator: SettingsCoordinatorDelegate {
 
-    func didValueChanged(at indexPath: IndexPath, enabled: Bool) {
-        // Update ViewModel with changes.
+    func openCalendarListViewController(settingsViewController: SettingsViewController) {
+        let coordinator = SettingsCalendarListCoordinator(root: settingsViewController, services: services)
+        startChild(child: coordinator)
     }
 
-    func didTapPickerCell(at indexPath: IndexPath, selectedValue: String) {
-        // Update view with nice animation and show/hide picker view.
-    }
-
-    func didTapButton(at indexPath: IndexPath, settingsType: SettingsType) {
-        // Navigate to selected view, like tutorial.
-
-        switch settingsType {
-        case .tutorial:
-            Tutorials.resetTutorial()
-            AppDelegate.current.window?.showProgressHUD(type: .tutorialReset, actionBlock: {})
-        default: break
-        }
-    }
-
-    func updateViewModelAndReload(viewController: SettingsViewController) {
-        guard let viewModel = SettingsViewModel(services: services, settingsType: settingsType) else {
-            return
-        }
-
-        viewController.update(viewModel: viewModel)
+    func openChangePasswordViewController(settingsViewController: SettingsViewController) {
+        let coordinator = SettingsChangePasswordCoordinator(root: settingsViewController, services: services)
+        startChild(child: coordinator)
     }
 }

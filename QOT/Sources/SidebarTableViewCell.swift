@@ -53,6 +53,7 @@ class SidebarTableViewCell: UITableViewCell, Dequeueable {
     }
 
     private func setupView() {
+        selectionStyle = .none
         contentView.addSubview(titleLabel)
         topAnchorConstraint = titleLabel.topAnchor == contentView.topAnchor
         titleLabel.bottomAnchor == contentView.bottomAnchor

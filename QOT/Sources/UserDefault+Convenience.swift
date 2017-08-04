@@ -10,17 +10,14 @@ import Foundation
 
 enum UserDefault: String {
     case qotUsage = "qot.userdefault.key.usage.in.minutes"
+    case locationService = "qot.userdefault.key.location.service"
+    case calendarDictionary = "qot.userdefault.key.calendar.dictionary"
 }
 
 extension UserDefault {
 
     static func objectsToClearOnLogout() -> [UserDefault] {
-        return [.qotUsage]
-    }
-
-    func setBoolValue(value: Bool) {
-        UserDefaults.standard.set(value, forKey: self.rawValue)
-        UserDefaults.standard.synchronize
+        return [.qotUsage, .locationService, .calendarDictionary]
     }
 
     var boolValue: Bool {
@@ -31,7 +28,30 @@ extension UserDefault {
         return UserDefaults.standard.double(forKey: self.rawValue)
     }
 
+    var stringValue: String? {
+        return UserDefaults.standard.string(forKey: self.rawValue)
+    }
+
+    var object: Any? {
+        return UserDefaults.standard.object(forKey: self.rawValue)
+    }
+
+    func setObject(_ object: Any?) {
+        UserDefaults.standard.setValue(object, forKey: self.rawValue)
+        UserDefaults.standard.synchronize()
+    }
+
+    func setBoolValue(value: Bool) {
+        UserDefaults.standard.set(value, forKey: self.rawValue)
+        UserDefaults.standard.synchronize()
+    }
+
     func setDoubleValue(value: Double) {
+        UserDefaults.standard.set(value, forKey: self.rawValue)
+        UserDefaults.standard.synchronize()
+    }
+
+    func setStringValue(value: String) {
         UserDefaults.standard.set(value, forKey: self.rawValue)
         UserDefaults.standard.synchronize()
     }

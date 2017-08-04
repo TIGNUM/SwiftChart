@@ -9,6 +9,70 @@
 import Foundation
 import ReactiveKit
 
+enum SettingsType: Int {
+    case company = 0
+    case email
+    case phone
+    case gender
+    case dateOfBirth
+    case weight
+    case height
+    case location
+    case calendar    
+    case tutorial
+    case interview
+    case support
+    case strategies
+    case dailyPrep
+    case weeklyChoices
+    case password
+    case confirm
+    case terms
+    case legalNotes
+    case dataProtection
+    case copyrights
+
+    var title: String {
+        switch self {
+        case .company: return R.string.localized.settingsGeneralCompanyTitle()
+        case .email: return R.string.localized.settingsGeneralEmailTitle()
+        case .phone: return R.string.localized.settingsGeneralTelephoneTitle()
+        case .gender: return R.string.localized.settingsGeneralGenderTitle()
+        case .dateOfBirth: return R.string.localized.settingsGeneralDateOfBirthTitle()
+        case .weight: return R.string.localized.settingsGeneralWeightTitle()
+        case .height: return R.string.localized.settingsGeneralHeightTitle()
+        case .location: return R.string.localized.settingsGeneralLocationTitle()
+        case .calendar: return R.string.localized.settingsGeneralCalendarTitle()
+        case .tutorial: return R.string.localized.settingsGeneralTutorialTitle()
+        case .interview: return R.string.localized.settingsGeneralInterviewTitle()
+        case .support: return R.string.localized.settingsGeneralSupportTitle()
+        case .strategies: return R.string.localized.settingsNotificationsStrategiesTitle()
+        case .dailyPrep: return R.string.localized.settingsNotificationsDailyPrepTitle()
+        case .weeklyChoices: return R.string.localized.settingsNotificationsWeeklyChoicesTitle()
+        case .password: return R.string.localized.settingsSecurityPasswordTitle()
+        case .confirm: return R.string.localized.settingsSecurityConfirmTitle()
+        case .terms: return R.string.localized.settingsSecurityTermsTitle()
+        case .legalNotes: return R.string.localized.settingsSecurityLegalNotesTitle()
+        case .dataProtection: return R.string.localized.settingsSecurityDataProtectionTitle()
+        case .copyrights: return R.string.localized.settingsSecurityCopyrightsTitle()
+        }
+    }
+
+    enum SectionType {
+        case general
+        case notifications
+        case security
+
+        var title: String {
+            switch self {
+            case .general: return R.string.localized.settingsTitleGeneral()
+            case .notifications: return R.string.localized.settingsTitleNotifications()
+            case .security: return R.string.localized.settingsTitleSecurity()
+            }
+        }
+    }
+}
+
 enum Gender: String {
     case female
     case male
@@ -95,26 +159,12 @@ enum PersonalData {
 
 final class SettingsViewModel {
 
-    enum SettingsType {
-        case general
-        case notifications
-        case security
-
-        var title: String {
-            switch self {
-            case .general: return R.string.localized.settingsTitleGeneral()
-            case .notifications: return R.string.localized.settingsTitleNotifications()
-            case .security: return R.string.localized.settingsTitleSecurity()
-            }
-        }
-    }
-
     // MARK: - Properties
 
     fileprivate var settingsSections = [SettingsSection]()
     fileprivate let services: Services
     fileprivate let user: User
-    let settingsType: SettingsType
+    let settingsType: SettingsType.SectionType
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
     var sectionCount: Int {
@@ -163,17 +213,17 @@ final class SettingsViewModel {
         return settingsSections[section].rows
     }
 
-    private func settingSections(user: User?, settingsType: SettingsViewModel.SettingsType) -> [SettingsSection] {
+    private func settingSections(user: User?, settingsType: SettingsType.SectionType) -> [SettingsSection] {
         switch settingsType {
         case .general: return generalSettingsSection(for: user)
-        case .notifications: return notificationsSettingsSection
+        case .notifications: return notificationsSettingsSection(services: services)
         case .security: return securitySettingsSection
         }
     }
 
     // MARK: - Init
     
-    init?(services: Services, settingsType: SettingsType) {
+    init?(services: Services, settingsType: SettingsType.SectionType) {
         self.services = services
 
         guard let user = services.userService.user() else {
@@ -191,19 +241,15 @@ protocol SettingsSection {
     var rows: [SettingsRow] { get }
 }
 
-enum SettingsType {
-    case tutorial
-    case undefined
-}
-
 enum SettingsRow {
-    case label(title: String, value: String?)
-    case stringPicker(title: String, pickerItems: [String], selectedIndex: Index)
-    case multipleStringPicker(title: String, rows: [[String]], initialSelection: [Index])
-    case datePicker(title: String, selectedDate: Date)
-    case control(title: String, isOn: Bool)
-    case button(title: String, value: String, type: SettingsType)
-    case textField(title: String, value: String, secure: Bool)
+
+    case label(title: String, value: String?, settingsType: SettingsType)
+    case stringPicker(title: String, pickerItems: [String], selectedIndex: Index, settingsType: SettingsType)
+    case multipleStringPicker(title: String, rows: [[String]], initialSelection: [Index], settingsType: SettingsType)
+    case datePicker(title: String, selectedDate: Date, settingsType: SettingsType)
+    case control(title: String, isOn: Bool, settingsType: SettingsType, key: String?)
+    case button(title: String, value: String, settingsType: SettingsType)
+    case textField(title: String, value: String, secure: Bool, settingsType: SettingsType)
 
     var identifier: String {
         switch self {
@@ -230,10 +276,9 @@ private var securitySettingsSection: [SettingsSection] {
     ]
 }
 
-private var notificationsSettingsSection: [SettingsSection] {
+private func notificationsSettingsSection(services: Services) -> [SettingsSection] {
     return [
-        MockSettingsSection(title: "Categories", rows: categoryNotifications),
-        MockSettingsSection(title: "Reminder", rows: sleepRows)
+        MockSettingsSection(title: "Categories", rows: categoryNotifications(services: services))        
     ]
 }
 
@@ -243,8 +288,7 @@ private func generalSettingsSection(for user: User?) -> [SettingsSection] {
         MockSettingsSection(title: "Personal", rows: personalRows(for: user)),
         MockSettingsSection(title: "Location", rows: locationRows),
         MockSettingsSection(title: "Calendar", rows: calendarRows),
-        MockSettingsSection(title: "Sleep", rows: sleepRows),
-        MockSettingsSection(title: "Tignum", rows: tignumRows)
+        MockSettingsSection(title: "QOT", rows: tignumRows)
     ]
 }
 
@@ -254,9 +298,9 @@ private func companyRows(for user: User?) -> [SettingsRow] {
     }
 
     return [
-        .label(title: "Company", value: user.company),
-        .label(title: "Email", value: user.email),
-        .label(title: "Telephone", value: user.telephone)
+        .label(title: SettingsType.company.title, value: user.company, settingsType: .company),
+        .label(title: SettingsType.email.title, value: user.email, settingsType: .email),
+        .label(title: SettingsType.phone.title, value: user.telephone, settingsType: .phone)
     ]
 }
 
@@ -277,60 +321,60 @@ private func personalRows(for user: User?) -> [SettingsRow] {
     let selectedGenderIndex = Gender(rawValue: user.gender.lowercased())?.selectedIndex ?? 0
 
     return [
-        .stringPicker(title: "Gender", pickerItems: Gender.allValuesAsStrings, selectedIndex: selectedGenderIndex),
-        .datePicker(title: "Date of birth", selectedDate: date),
-        .multipleStringPicker(title: "Weight", rows: user.weightPickerItems, initialSelection: [selectedWeightIndex, selectedWeightUnitIndex]),
-        .multipleStringPicker(title: "Height", rows: user.heightPickerItems, initialSelection: [selectedHeightIndex, selectedHeightUnitIndex])
+        .stringPicker(title: SettingsType.gender.title, pickerItems: Gender.allValuesAsStrings, selectedIndex: selectedGenderIndex, settingsType: .gender),
+        .datePicker(title: SettingsType.dateOfBirth.title, selectedDate: date, settingsType: .dateOfBirth),
+        .multipleStringPicker(title: SettingsType.weight.title, rows: user.weightPickerItems, initialSelection: [selectedWeightIndex, selectedWeightUnitIndex], settingsType: .weight),
+        .multipleStringPicker(title: SettingsType.height.title, rows: user.heightPickerItems, initialSelection: [selectedHeightIndex, selectedHeightUnitIndex], settingsType: .height)
     ]
 }
 
 private var locationRows: [SettingsRow] {
+    let canShareLocation = LocationManager.locationServiceEnabled == true && UserDefault.locationService.boolValue == true
     return [
-        .control(title: "Location", isOn: true)
+        .control(title: SettingsType.location.title, isOn: canShareLocation, settingsType: .location, key: UserDefault.locationService.rawValue)
     ]
 }
 
 private var calendarRows: [SettingsRow] {
     return [
-        .button(title: "Calendar", value: "Google Luca", type: .undefined),
-        .control(title: "Location", isOn: true)
-    ]
-}
-
-private var sleepRows: [SettingsRow] {
-    return [
-        .control(title: "I sleep alone", isOn: true)
+        .label(title: SettingsType.calendar.title, value: "", settingsType: .calendar)
     ]
 }
 
 private var tignumRows: [SettingsRow] {
     return [
-        .button(title: "Tutorial", value: "Google Luca", type: .tutorial),
-        .button(title: "Initial Interview", value: "Google Luca", type: .undefined),
-        .button(title: "Support", value: "Google Luca", type: .undefined)
+        .label(title: SettingsType.tutorial.title, value: "", settingsType: .tutorial),
+        .label(title: SettingsType.interview.title, value: "", settingsType: .interview),
+        .label(title: SettingsType.support.title, value: "", settingsType: .support)
     ]
 }
 
-private var categoryNotifications: [SettingsRow] {
-    return [
-        .control(title: "55 Strategies", isOn: true),
-        .control(title: "QOT Whats Hot", isOn: true),
-        .control(title: "My To Be Visison", isOn: false),
-        .control(title: "Daily Prep", isOn: true)
-    ]
+private func categoryNotifications(services: Services) -> [SettingsRow] {
+    let notificationSettings = services.settingsService.notificationSettings()
+    var settingsRows = [SettingsRow]()
+
+    notificationSettings.forEach { (systemSetting: SystemSetting) in
+        switch systemSetting.value {
+        case .bool(let boolValue):
+            settingsRows.append(.control(title: systemSetting.displayName, isOn: boolValue, settingsType: .strategies, key: systemSetting.key))
+        default: return
+        }
+    }
+
+    return settingsRows
 }
 
 private var accountRows: [SettingsRow] {
     return [
-        .textField(title: "Password", value: "password", secure: true)
+        .label(title: SettingsType.password.title, value: "", settingsType: .password)
     ]
 }
 
 private var aboutRows: [SettingsRow] {
     return [
-        .button(title: "Terms and Conditions", value: "", type: .undefined),
-        .button(title: "Legal Notes", value: "", type: .undefined),
-        .button(title: "Notes and Data Protections", value: "", type: .undefined),
-        .button(title: "Content Copyrights", value: "", type: .undefined)
+        .button(title: SettingsType.terms.title, value: "", settingsType: .terms),
+        .button(title: SettingsType.legalNotes.title, value: "", settingsType: .legalNotes),
+        .button(title: SettingsType.dataProtection.title, value: "", settingsType: .dataProtection),
+        .button(title: SettingsType.copyrights.title, value: "", settingsType: .copyrights)
     ]
 }

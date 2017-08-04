@@ -10,6 +10,7 @@ import UIKit
 import Fabric
 import Crashlytics
 import AirshipKit
+import CoreLocation
 
 extension AppDelegate {
 
@@ -49,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             logAppLocation()
             logAvailableFonts()
         #endif
-        
+
         return true
     }
 
@@ -63,7 +64,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UAirship.push().pushNotificationDelegate = self
         UAirship.shared().analytics.isEnabled = true
         UAirship.push().updateRegistration()
-        print("devie token: ", UAirship.push().deviceToken ?? "nil")
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

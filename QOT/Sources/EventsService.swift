@@ -14,13 +14,11 @@ final class EventsService {
 
     fileprivate let mainRealm: Realm
     fileprivate let realmProvider: RealmProvider
+    let eventStore = EKEventStore.shared
 
-    let eventStore: EKEventStore
-
-    init(mainRealm: Realm, realmProvider: RealmProvider, eventStore: EKEventStore = EKEventStore()) {
+    init(mainRealm: Realm, realmProvider: RealmProvider) {
         self.mainRealm = mainRealm
-        self.realmProvider = realmProvider
-        self.eventStore = eventStore
+        self.realmProvider = realmProvider        
     }
 
     func ekEvents(from: Date, to: Date) -> [EKEvent] {

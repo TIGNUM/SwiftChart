@@ -11,10 +11,25 @@ import RealmSwift
 
 final class SettingsService {
 
-    private let realm: Realm
+    // MARK: - Properties
+
+    fileprivate let realm: Realm
+
+    // MARK: - Init
 
     init(realm: Realm) {
         self.realm = realm
+    }
+}
+
+// MARK: - Public
+
+extension SettingsService {
+
+    func notificationSettings() -> AnyRealmCollection<SystemSetting> {
+        let predicate = NSPredicate(format: "key BEGINSWITH[c] %@", "system.notification.")
+
+        return AnyRealmCollection(realm.objects(SystemSetting.self).filter(predicate))
     }
 
     func settingValue(key: String) -> SettingValue? {
@@ -37,12 +52,17 @@ final class SettingsService {
             print("Unable to set value: \(value). No system setting with key: \(key)")
         }
     }
+}
 
-    private func userSetting(systemSetting: SystemSetting) -> UserSetting? {
+// MARK: - Private
+
+private extension SettingsService {
+
+    func userSetting(systemSetting: SystemSetting) -> UserSetting? {
         return realm.syncableObject(ofType: UserSetting.self, remoteID: systemSetting.forcedRemoteID)
     }
 
-    private func systemSetting(key: String) -> SystemSetting? {
+    func systemSetting(key: String) -> SystemSetting? {
         return realm.objects(SystemSetting.self).filter(.key(key)).first
     }
 }

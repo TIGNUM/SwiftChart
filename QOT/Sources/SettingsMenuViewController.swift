@@ -111,17 +111,17 @@ private extension SettingsMenuViewController {
     }
 
     private func setupImageView() {
-        guard
-            let urlString = viewModel.userProfileImagePath,
-            let downloadURL = URL(string: urlString) else {
-                return
-        }
-
-        let resource = ImageResource(downloadURL: downloadURL)
-        imgeView.kf.setImage(with: resource, placeholder: R.image.placeholder_user(), options: nil, progressBlock: nil, completionHandler: nil)
         imgeView.layer.cornerRadius = 10
         imgeView.layer.masksToBounds = true
+        var resource: ImageResource? = nil
 
+        if
+            let urlString = viewModel.userProfileImagePath,
+            let downloadURL = URL(string: urlString) {
+                resource = ImageResource(downloadURL: downloadURL)
+        }
+
+        imgeView.kf.setImage(with: resource, placeholder: R.image.placeholder_user(), options: nil, progressBlock: nil, completionHandler: nil)
     }
 }
 

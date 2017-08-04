@@ -17,12 +17,14 @@ class SettingsTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet fileprivate weak var switchControl: UISwitch!
     @IBOutlet fileprivate weak var button: UIButton!
     @IBOutlet fileprivate weak var textField: UITextField!
-
     fileprivate lazy var pickerItems = [String]()
     fileprivate lazy var selectedIndex = 0
     fileprivate lazy var indexPath = IndexPath(row: 0, section: 0)
-    fileprivate var settingsRow: SettingsRow?
-    fileprivate weak var delegate: SettingsViewControllerDelegate?
+    fileprivate lazy var settingsType = SettingsType.calendar
+    fileprivate var calendarIdentifier: String?
+    var controlUpdate = false
+    weak var settingsDelegate: SettingsViewControllerDelegate?
+    weak var calendarSyncDelegate: SettingsCalendarListViewControllerDelegate?
 
     // MARK: - Life Cycle
 
@@ -34,23 +36,39 @@ class SettingsTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Setup
 
-    func setup(settingsRow: SettingsRow, indexPath: IndexPath, delegate: SettingsViewControllerDelegate?) {
+    func setup(settingsRow: SettingsRow, indexPath: IndexPath, calendarIdentifier: String? = nil) {
         self.indexPath = indexPath
-        self.settingsRow = settingsRow
-        self.delegate = delegate
+        self.calendarIdentifier = calendarIdentifier
 
         switch settingsRow {
-        case .button(let title, let value, _): setupButtonCell(title: title, value: value)
-        case .control(let title, let enabled): setupControlCell(title: title, isOn: enabled)
-        case .datePicker(let title, let selectedDate): setupDateCell(title: title, selectedDate: selectedDate)
-        case .label(let title, let value): setupLabelCell(title: title, value: value)
-        case .stringPicker(let title, let pickerItems, let selectedIndex): setupLabelCell(title: title, value: pickerItems[selectedIndex])
-        case .multipleStringPicker(let title, let rows, let initialSelection):
+        case .button(let title, let value, let settingsType):
+            self.settingsType = settingsType
+            setupButtonCell(title: title, value: value)
+        case .control(let title, let enabled, let settingsType, _):
+            self.settingsType = settingsType
+            setupControlCell(title: title, isOn: enabled)
+        case .datePicker(let title, let selectedDate, let settingsType):
+            self.settingsType = settingsType
+            setupDateCell(title: title, selectedDate: selectedDate)
+        case .label(let title, let value, let settingsType):
+            self.settingsType = settingsType
+            setupLabelCell(title: title, value: value)
+        case .stringPicker(let title, let pickerItems, let selectedIndex, let settingsType):
+            self.settingsType = settingsType
+            setupLabelCell(title: title, value: pickerItems[selectedIndex])
+        case .multipleStringPicker(let title, let rows, let initialSelection, let settingsType):
+            self.settingsType = settingsType
             let valueIndex = initialSelection[0]
             let unitIndex = initialSelection[1]
             let displayableValue = String(format: "%@ %@", rows[0][valueIndex], rows[1][unitIndex])
             setupLabelCell(title: title, value: displayableValue)
-        case .textField(let title, let value, let secure): setupTextFieldCell(title: title, value: value, secure: secure)
+        case .textField(let title, let value, let secure, let settingsType):
+            self.settingsType = settingsType
+            setupTextFieldCell(title: title, value: value, secure: secure)
+        }
+
+        if (settingsType == .calendar && settingsDelegate != nil) || settingsType == .password {
+            accessoryType = .disclosureIndicator
         }
     }
 
@@ -90,6 +108,7 @@ private extension SettingsTableViewCell {
         setValue(value: value)
         if value == nil {
             titleLabel.attributedText = Style.tag(title.uppercased(), .white40).attributedString(lineSpacing: 2)
+            valueLabel.isHidden = true
         } else {
             setTitle(title: title)
         }
@@ -121,8 +140,15 @@ private extension SettingsTableViewCell {
 extension SettingsTableViewCell {
 
     func valueChanged(sender: UISwitch) {
-        delegate?.didValueChanged(at: indexPath, enabled: sender.isEnabled)
-        setSwitchState(switchControl: sender)
+        if controlUpdate == false {
+            controlUpdate = true            
+            settingsDelegate?.didChangeLocationValue(sender: sender, settingsCell: self)            
+        }
+
+        if let calendarIdentifier = calendarIdentifier {
+            calendarSyncDelegate?.didChangeCalendarSyncValue(sender: sender, calendarIdentifier: calendarIdentifier)
+            setSwitchState(switchControl: sender)
+        }
     }
 
     func setSwitchState(switchControl: UISwitch) {
@@ -136,15 +162,7 @@ extension SettingsTableViewCell {
     }
 
     @IBAction private func didTapButton(sender: UIButton) {
-        guard let settings = self.settingsRow else { return }
-
-        switch settings {
-        case .button(_, _, let type):
-            delegate?.didTapButton(at: indexPath, settingsType: type)
-        default:
-            break
-        }
-
+        settingsDelegate?.didTapButton(at: indexPath, settingsType: .calendar)
     }
 }
 
@@ -168,6 +186,6 @@ extension SettingsTableViewCell: UIPickerViewDataSource, UIPickerViewDelegate {
         let selectedValue = pickerItems[row]
         valueLabel.text = selectedValue
         selectedIndex = row
-        delegate?.didTapPickerCell(at: indexPath, selectedValue: selectedValue)
+        settingsDelegate?.didTapPickerCell(at: indexPath, selectedValue: selectedValue)
     }
 }
