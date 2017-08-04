@@ -98,6 +98,7 @@ final class SyncManager {
             downSyncOperation(for: ContentItem.self, context: context),
             downSyncOperation(for: Partner.self, context: context),
             downSyncOperation(for: MyToBeVision.self, context: context),
+            downSyncOperation(for: Preparation.self, context: context),
             UpdateRelationsOperation(context: context, realmProvider: realmProvider, isFinalOperation: true)
         ]
 
@@ -121,6 +122,7 @@ final class SyncManager {
             upSyncOperation(CalendarEvent.self, context: context),
             upSyncOperation(MyToBeVision.self, context: context),
             upSyncOperation(Partner.self, context: context),
+            upSyncOperation(Preparation.self, context: context),
             upSyncOperation(UserChoice.self, context: context),
             upSyncOperation(User.self, context: context, isFinalOperation: true)
         ]
@@ -128,7 +130,7 @@ final class SyncManager {
         operationQueue.addOperations(operations, waitUntilFinished: false)
     }
 
-    private func downSyncOperation<P>(for: P.Type, context: SyncContext, isFinalOperation: Bool = false) -> DownSyncOperation<P> where P: DownSyncable, P: Object {
+    private func downSyncOperation<P>(for: P.Type, context: SyncContext, isFinalOperation: Bool = false) -> DownSyncOperation<P> where P: DownSyncable, P: SyncableObject {
         return DownSyncOperation<P>(context: context,
                                  networkManager: networkManager,
                                  syncRecordService: syncRecordService,

@@ -16,9 +16,13 @@ final class CalendarEvent: SyncableObject, UpSyncableWithLocalAndRemoteIDs {
     dynamic var deleted: Bool = false
 
     dynamic var changeStamp: String? = UUID().uuidString
-
+    
     dynamic var ekEventModifiedAt = Date()
 
+    var event: EKEvent? {
+        return EKEventStore.shared.event(withIdentifier: eventID)
+    }
+    
     convenience init(event: EKEvent) {
         self.init()
 

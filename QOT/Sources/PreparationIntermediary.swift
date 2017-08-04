@@ -7,9 +7,19 @@
 //
 
 import Foundation
+import Freddy
 
-struct PreparationIntermediary {
+struct PreparationIntermediary: DownSyncIntermediary {
 
     let contentID: Int
-    let eventID: Int
+    let calendarEventRemoteId: Int
+    let title: String
+    let subtitle: String
+    
+    init(json: JSON) throws {
+        self.contentID = try json.getItemValue(at: .contentId)
+        self.calendarEventRemoteId = try json.getItemValue(at: .eventId)
+        self.title = try json.serializeString(at: .title)
+        self.subtitle = try json.serializeString(at: .subtitle)
+    }
 }

@@ -68,20 +68,14 @@ final class MyPrepViewModel {
                             return false
                         }
                     }).map { $0.remoteID }
+                    
                     let preparationChecks = try strongSelf.services.preparationService.preparationChecksOnBackground(preparationID: preparation.localID)
-
-                    var startDate: Date? = nil
-                    if let eventID = preparation.eventID {
-                        startDate = strongSelf.services.eventsService.eventStore.event(withIdentifier: eventID)?.startDate
-                    }
-
                     let item = Item(localID: preparation.localID,
                                     header: preparation.subtitle,
                                     text: preparation.title,
-                                    startDate: startDate,
+                                    startDate: preparation.calendarEvent?.event?.startDate,
                                     totalPreparationCount: contentItemIDs.count,
                                     finishedPreparationCount: preparationChecks.count)
-
                     items.append(item)
                 }
 

@@ -7,6 +7,7 @@
 //
 
 import RealmSwift
+import EventKit
 
 final class PreparationService {
 
@@ -43,8 +44,13 @@ final class PreparationService {
             var localID: String?
             do {
                 let realm = try self.realmProvider.realm()
+                var calendarEvent: CalendarEvent?
+                if let eventID = eventID {
+                    calendarEvent = realm.calendarEventForEventID(eventID)
+                }
+                
                 try realm.write {
-                    let preparation = Preparation(contentID: contentID, eventID: eventID, title: title, subtitle: subtitle)
+                    let preparation = Preparation(contentID: contentID, calendarEvent: calendarEvent, title: title, subtitle: subtitle)
                     localID = preparation.localID
                     realm.add(preparation)
                 }
@@ -91,9 +97,22 @@ final class PreparationService {
     }
 }
 
+// MARK: - private
+
 private extension Realm {
 
     func preparationChecks(preparationID: String) -> AnyRealmCollection<PreparationCheck> {
         return anyCollection(predicates: .deleted(false), .preparationID(preparationID))
+    }
+    
+    func calendarEventForEventID(_ eventID: String) -> CalendarEvent? {
+        var calendarEvent = syncableObject(ofType: CalendarEvent.self, localID: eventID)
+        if calendarEvent == nil {
+            let store = EKEventStore()
+            if let event = store.event(withIdentifier: eventID) {
+                calendarEvent = CalendarEvent(event: event)
+            }
+        }
+        return calendarEvent
     }
 }

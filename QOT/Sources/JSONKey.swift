@@ -48,6 +48,7 @@ enum JsonKey: String {
     case employment
     case end
     case endDate
+    case eventId
     case firstDayOfTheWeek
     case firstName
     case format

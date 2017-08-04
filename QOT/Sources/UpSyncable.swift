@@ -12,8 +12,8 @@ import Freddy
 
 enum UpSyncStatus: Int {
     case clean = -1
-    case createdLocally = 0
-    case updatedLocally = 1
+    case createdLocally = 0 // does not exist on server
+    case updatedLocally = 1 // does exist on server
     case deletedLocally = 2
 }
 
