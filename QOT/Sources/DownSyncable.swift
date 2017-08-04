@@ -23,7 +23,7 @@ protocol DownSyncable: class {
 
 extension DownSyncable where Self: SyncableObject {
 
-    static func object(remoteID: Int, store: ObjectStore) throws -> Self? {
-        return try store.uniqueObject(Self.self, predicate: NSPredicate(remoteID: remoteID))
+    static func object(remoteID: Int, store: ObjectStore) -> Self? {
+        return store.syncableObject(ofType: Self.self, remoteID: remoteID)
     }
 }

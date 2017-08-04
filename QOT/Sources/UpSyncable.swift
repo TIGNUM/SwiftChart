@@ -12,9 +12,9 @@ import Freddy
 
 enum UpSyncStatus: Int {
     case clean = -1
-    case created = 0
-    case updated = 1
-    case deleted = 2
+    case createdLocally = 0
+    case updatedLocally = 1
+    case deletedLocally = 2
 }
 
 protocol UpSyncable: class {
@@ -72,7 +72,7 @@ protocol UpSyncableDeleting: UpSyncable {
 extension UpSyncableDeleting where Self: SyncableObject {
 
     var syncStatus: UpSyncStatus {
-        return .created
+        return .createdLocally
     }
 
     static var dirtyPredicate: NSPredicate {
@@ -118,11 +118,11 @@ extension UpSyncableWithLocalAndRemoteIDs where Self: SyncableObject {
         if changeStamp == nil {
             return .clean
         } else if deleted {
-            return .deleted
+            return .deletedLocally
         } else if existsOnServer == false {
-            return .created
+            return .createdLocally
         } else {
-            return .updated
+            return .updatedLocally
         }
     }
 
@@ -150,16 +150,16 @@ extension UpSyncableWithLocalAndRemoteIDs where Self: SyncableObject {
                     switch object.syncStatus {
                     case .clean:
                         break
-                    case .created:
+                    case .createdLocally:
                         guard let remoteID = map[object.localID] else {
                             throw SimpleError(localizedDescription: "No remote ID for object: \(object)")
                         }
 
                         object.remoteID.value = remoteID
                         object.dirty = false
-                    case .updated:
+                    case .updatedLocally:
                         object.dirty = false
-                    case .deleted:
+                    case .deletedLocally:
                         realm.delete(object)
                     }
                 }
@@ -184,7 +184,7 @@ extension UpsyncableUnique where Self: Object {
         if changeStamp == nil {
             return .clean
         } else {
-            return .updated
+            return .updatedLocally
         }
     }
 

@@ -63,7 +63,7 @@ final class CalendarEvent: SyncableObject, UpSyncableWithLocalAndRemoteIDs {
     func toJson() -> JSON? {
         if let event = EKEventStore.shared.event(withIdentifier: eventID) {
             return event.toJSON(id: remoteID.value, createdAt: createdAt, modifiedAt: modifiedAt, syncStatus: syncStatus.rawValue, eventID: eventID)
-        } else if syncStatus == .deleted, let remoteID = remoteID.value {
+        } else if syncStatus == .deletedLocally, let remoteID = remoteID.value {
             let dict: [JsonKey: JSONEncodable] = [.id: remoteID, .syncStatus: syncStatus.rawValue]
             return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
         } else {
