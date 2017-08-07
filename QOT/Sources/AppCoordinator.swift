@@ -64,9 +64,12 @@ final class AppCoordinator: ParentCoordinator {
     
     func start() {
         let viewController = AnimatedLaunchScreenViewController()
+        window.rootViewController = viewController
+        window.makeKeyAndVisible()
+
         viewController.fadeInLogo()
         viewController.startAnimatingImages {
-            viewController.fadeOutLogo {
+            viewController.fadeOutLogo { [unowned self] in
                 if self.credentialsManager.isCredentialValid {
                     self.showApp()
                 } else {
