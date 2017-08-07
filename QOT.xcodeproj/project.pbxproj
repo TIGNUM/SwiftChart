@@ -63,6 +63,8 @@
 		7FE38DD31F2B2E230061E98F /* UINavigationController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE38DD21F2B2E230061E98F /* UINavigationController+Convenience.swift */; };
 		7FE38DD51F2B2E760061E98F /* UIBarButtonItem+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE38DD41F2B2E760061E98F /* UIBarButtonItem+Convenience.swift */; };
 		7FE38DD71F2B636F0061E98F /* UINavigationBar+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE38DD61F2B636F0061E98F /* UINavigationBar+Style.swift */; };
+		850312EB1F33670900DB5A6B /* ClickableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850312EA1F33670900DB5A6B /* ClickableLabel.swift */; };
+		850312ED1F34732F00DB5A6B /* UIGestureRecognizer+ClickableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850312EC1F34732F00DB5A6B /* UIGestureRecognizer+ClickableLabel.swift */; };
 		850A50BB1F0A973A00350097 /* PrepareContentTopTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850A50BA1F0A973A00350097 /* PrepareContentTopTabBarView.swift */; };
 		850A50BD1F0A97FF00350097 /* PrepareContentTopTabBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850A50BC1F0A97FF00350097 /* PrepareContentTopTabBarView.xib */; };
 		8514A4861EE810750086C70E /* DownSyncComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8514A4851EE810750086C70E /* DownSyncComplete.swift */; };
@@ -510,6 +512,8 @@
 		7FE38DD41F2B2E760061E98F /* UIBarButtonItem+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Convenience.swift"; sourceTree = "<group>"; };
 		7FE38DD61F2B636F0061E98F /* UINavigationBar+Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Style.swift"; sourceTree = "<group>"; };
 		82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		850312EA1F33670900DB5A6B /* ClickableLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClickableLabel.swift; sourceTree = "<group>"; };
+		850312EC1F34732F00DB5A6B /* UIGestureRecognizer+ClickableLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+ClickableLabel.swift"; sourceTree = "<group>"; };
 		850A50BA1F0A973A00350097 /* PrepareContentTopTabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentTopTabBarView.swift; sourceTree = "<group>"; };
 		850A50BC1F0A97FF00350097 /* PrepareContentTopTabBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentTopTabBarView.xib; sourceTree = "<group>"; };
 		8514A4851EE810750086C70E /* DownSyncComplete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownSyncComplete.swift; sourceTree = "<group>"; };
@@ -1471,6 +1475,7 @@
 				7FE38DD41F2B2E760061E98F /* UIBarButtonItem+Convenience.swift */,
 				7FE38DD61F2B636F0061E98F /* UINavigationBar+Style.swift */,
 				852988941F2F3E15003A36DF /* Bundle+Extensions.swift */,
+				850312EC1F34732F00DB5A6B /* UIGestureRecognizer+ClickableLabel.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1697,6 +1702,7 @@
 				7FE38DC01F28D2940061E98F /* PassthroughView.swift */,
 				7FE38DC61F2A14160061E98F /* PageViewController.swift */,
 				7FE38DCE1F2A48480061E98F /* TopNavigationBar.swift */,
+				850312EA1F33670900DB5A6B /* ClickableLabel.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -2424,6 +2430,7 @@
 				CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */,
 				CCCE09CE1EA67F87008730F1 /* MyToBeVisionViewController.swift in Sources */,
 				85945C731F27760500F090C8 /* ZoomPresentationManager.swift in Sources */,
+				850312ED1F34732F00DB5A6B /* UIGestureRecognizer+ClickableLabel.swift in Sources */,
 				CB0A4A581ECC4C25006A2D85 /* AddSensorCoordinator.swift in Sources */,
 				CBB4DD121EDEAD050071494A /* RequestConstants.swift in Sources */,
 				CBFECCA51F30BB4D0076ACE6 /* SyncableObject.swift in Sources */,
@@ -2454,6 +2461,7 @@
 				7FE38DBD1F2210D60061E98F /* WaitBlockOperation.swift in Sources */,
 				85DC6F871EF40767004F4B4D /* TravelTripsPeriodView.swift in Sources */,
 				D5EC34AB1EB0D2FC00F86B09 /* LearnStrategyAudioPlayerView.swift in Sources */,
+				850312EB1F33670900DB5A6B /* ClickableLabel.swift in Sources */,
 				7F0888881F0AA7DB005CE966 /* UIImage+FileIO.swift in Sources */,
 				85C26F9F1F13DCEB001C2C65 /* UIView+ProgressHUD.swift in Sources */,
 				CBB4DD541EE151100071494A /* DownSyncImporter.swift in Sources */,

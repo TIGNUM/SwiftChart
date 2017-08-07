@@ -12,11 +12,14 @@ class ContentItemTextTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Outlets
 
-    @IBOutlet fileprivate weak var topLabel: UILabel!
-    @IBOutlet fileprivate weak var bottomLabel: UILabel!
+    @IBOutlet fileprivate weak var topLabel: ClickableLabel!
+    @IBOutlet fileprivate weak var bottomLabel: ClickableLabel!
     weak var delegate: LearnContentItemViewController?
 
-    func setup(topText: NSAttributedString, bottomText: NSAttributedString?, backgroundColor: UIColor = .white) {
+    func setup(topText: NSAttributedString, bottomText: NSAttributedString?, backgroundColor: UIColor = .white, delegate: ClickableLabelDelegate? = nil) {
+        topLabel.delegate = delegate
+        bottomLabel.delegate = delegate
+
         bottomLabel.isHidden = bottomText == nil
         topLabel.attributedText = topText
         bottomLabel.attributedText = bottomText

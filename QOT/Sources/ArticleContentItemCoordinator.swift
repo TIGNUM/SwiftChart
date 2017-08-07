@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import SafariServices
 
 struct ArticleCollectionHeader {
 
@@ -101,6 +102,12 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
 
         fullViewController.reloadArticles(viewModel: viewModel)
         audioViewController.reloadArticles(viewModel: viewModel)
+    }
+
+    func didTapLink(_ url: URL, in viewController: ArticleItemViewController) {
+        let webViewController = SFSafariViewController(url: url)
+
+        viewController.present(webViewController, animated: true, completion: nil)
     }
 }
 

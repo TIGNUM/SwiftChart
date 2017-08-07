@@ -12,6 +12,7 @@ import Anchorage
 protocol ArticleItemViewControllerDelegate: class {
 
     func didSelectRelatedArticle(selectedArticle: ContentCollection, form viewController: ArticleItemViewController)
+    func didTapLink(_ url: URL, in viewController: ArticleItemViewController)
 }
 
 final class ArticleItemViewController: UIViewController {
@@ -145,7 +146,7 @@ private extension ArticleItemViewController {
         topText: NSAttributedString,
         bottomText: NSAttributedString?) -> ContentItemTextTableViewCell {
             let itemTextCell: ContentItemTextTableViewCell = tableView.dequeueCell(for: indexPath)
-            itemTextCell.setup(topText: topText, bottomText: bottomText)
+            itemTextCell.setup(topText: topText, bottomText: bottomText, delegate: self)
             itemTextCell.backgroundColor = .clear
             itemTextCell.contentView.backgroundColor = .clear
 
@@ -242,6 +243,7 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
                     bottomText: nil
                 )
             case .text(let text, let style):
+
                 var attributedTopText = item.contentItemValue.style(textStyle: style, text: text, textColor: .white)
                 if style == .paragraph {
                     attributedTopText = Style.article(text, .white).attributedString(lineHeight: 2)
@@ -327,5 +329,14 @@ extension ArticleItemViewController: UIScrollViewDelegate {
         if scrollToFinish == true {
             dismiss(animated: false, completion: nil)
         }
+    }
+}
+
+// MARK: - ClickableLabelDelegate 
+
+extension ArticleItemViewController: ClickableLabelDelegate {
+
+    func openLink(withURL url: URL) {
+        self.delegate?.didTapLink(url, in: self)
     }
 }
