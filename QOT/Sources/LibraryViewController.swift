@@ -45,6 +45,7 @@ enum SectionType {
 protocol LibraryViewControllerDelegate: class {
 
     func didTapLibraryItem(item: ContentCollection)
+    func didTapClose(in viewController: LibraryViewController)
 }
 
 final class LibraryViewController: UIViewController {
@@ -62,6 +63,22 @@ final class LibraryViewController: UIViewController {
             dataSource: self,
             dequeables: LibraryTableViewCell.self
         )
+    }()
+
+    fileprivate lazy var topBarView: ArticleItemTopTabBarView = {
+        guard let view = Bundle.main.loadNibNamed("ArticleItemTopTabBarView", owner: self, options: [:])?[0] as? ArticleItemTopTabBarView else {
+            preconditionFailure("Failed to load ArticleItemTopTabBarView from xib")
+        }
+
+        var title = ""
+        if self.title != nil {
+            title = self.title!
+        }
+
+        view.setup(title: title,
+                   leftButtonIcon: R.image.ic_minimize(),
+                   delegate: self)
+        return view
     }()
 
     // MARK: - Init
@@ -97,9 +114,23 @@ final class LibraryViewController: UIViewController {
 private extension LibraryViewController {
 
     func setupView() {
-        view.backgroundColor = .clear
+
+        let backgroundImageView = UIImageView(image: R.image.backgroundSidebar())
+
+        view.addSubview(backgroundImageView)
         view.addSubview(tableView)
-        tableView.topAnchor == view.topAnchor
+        view.addSubview(topBarView)
+
+        backgroundImageView.horizontalAnchors == view.horizontalAnchors
+        backgroundImageView.verticalAnchors == view.verticalAnchors
+
+        topBarView.backgroundColor = .clear
+        topBarView.topAnchor == view.topAnchor
+        topBarView.horizontalAnchors == view.horizontalAnchors
+        topBarView.heightAnchor == Layout.TabBarView.height
+        tableView.topAnchor == topBarView.bottomAnchor
+
+        view.backgroundColor = .clear
         tableView.bottomAnchor == view.bottomAnchor
         tableView.horizontalAnchors == view.horizontalAnchors
     }
@@ -157,5 +188,14 @@ extension LibraryViewController: UIScrollViewDelegate {
         if scrollToFinish == true {
             dismiss(animated: false, completion: nil)
         }
+    }
+}
+
+// MARK: - ArticleItemTopTabBarViewDelegate
+
+extension LibraryViewController: ArticleItemTopTabBarViewDelegate {
+
+    func didTapLeftButton() {
+        self.delegate?.didTapClose(in: self)
     }
 }

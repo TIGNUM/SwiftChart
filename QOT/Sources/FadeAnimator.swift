@@ -29,8 +29,8 @@ class FadeAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         animatedView.alpha = presenting ? 0 : 1
         UIView.animate(withDuration: duration, animations: {
             animatedView.alpha = self.presenting ? 1 : 0
-        }, completion: { _ in
-            transitionContext.completeTransition(true)
+        }, completion: { finished in
+            transitionContext.completeTransition(finished)
         })
     }
 }

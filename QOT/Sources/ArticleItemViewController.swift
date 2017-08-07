@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import Rswift
 import Anchorage
 
 protocol ArticleItemViewControllerDelegate: class {
 
     func didSelectRelatedArticle(selectedArticle: ContentCollection, form viewController: ArticleItemViewController)
+    func didTapClose(in viewController: ArticleItemViewController)
     func didTapLink(_ url: URL, in viewController: ArticleItemViewController)
 }
 
@@ -35,17 +37,34 @@ final class ArticleItemViewController: UIViewController {
                 ArticleRelatedCell.self,
                 ErrorCell.self
             )
-        tableView.backgroundView = UIImageView(image: R.image.backgroundWhatsHot())
 
         return tableView
     }()
 
+    fileprivate lazy var topBarView: ArticleItemTopTabBarView = {
+        guard let view = Bundle.main.loadNibNamed("ArticleItemTopTabBarView", owner: self, options: [:])?[0] as? ArticleItemTopTabBarView else {
+            preconditionFailure("Failed to load ArticleItemTopTabBarView from xib")
+        }
+
+        var title = ""
+        if self.title != nil {
+            title = self.title!
+        }
+
+        view.setup(title: title,
+                   leftButtonIcon: R.image.ic_minimize(),
+                   delegate: self)
+        return view
+    }()
+
     // MARK: - Init
 
-    init(viewModel: ArticleItemViewModel) {
+    init(viewModel: ArticleItemViewModel, title: String? = nil) {
         self.viewModel = viewModel
 
         super.init(nibName: nil, bundle: nil)
+
+        self.title = title
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -113,12 +132,26 @@ private extension ArticleItemViewController {
     }
 
     func setupView() {
+
+        let backgroundImageView = UIImageView(image: R.image.backgroundWhatsHot())
+
+        view.addSubview(backgroundImageView)
+        view.addSubview(tableView)
+        view.addSubview(topBarView)
+
+        backgroundImageView.horizontalAnchors == view.horizontalAnchors
+        backgroundImageView.verticalAnchors == view.verticalAnchors
+
+        topBarView.backgroundColor = .clear
+        topBarView.topAnchor == view.topAnchor
+        topBarView.horizontalAnchors == view.horizontalAnchors
+        topBarView.heightAnchor == Layout.TabBarView.height
+        tableView.topAnchor == topBarView.bottomAnchor
+
         tableView.estimatedSectionHeaderHeight = 100
         tableView.estimatedSectionFooterHeight = 100
         setTableViewHeader()
-        view.addSubview(tableView)
         view.backgroundColor = .clear
-        tableView.topAnchor == view.topAnchor + 64
         tableView.bottomAnchor == view.bottomAnchor
         tableView.horizontalAnchors == view.horizontalAnchors
         tableView.layoutIfNeeded()
@@ -332,7 +365,16 @@ extension ArticleItemViewController: UIScrollViewDelegate {
     }
 }
 
-// MARK: - ClickableLabelDelegate 
+// MARK: - ArticleItemTopTabBarViewDelegate
+
+extension ArticleItemViewController: ArticleItemTopTabBarViewDelegate {
+
+    func didTapLeftButton() {
+        self.delegate?.didTapClose(in: self)
+    }
+}
+
+// MARK: - ClickableLabelDelegate
 
 extension ArticleItemViewController: ClickableLabelDelegate {
 
