@@ -204,3 +204,46 @@ extension UpsyncableUnique where Self: Object {
         }
     }
 }
+
+// MARK: UpsyncableUpdateOnly
+
+protocol UpsyncableUpdateOnly: UpSyncable, Dirty {}
+
+extension UpsyncableUpdateOnly where Self: SyncableObject {
+
+    var syncStatus: UpSyncStatus {
+        return dirty ? .updatedLocally : .clean
+    }
+
+    static var dirtyPredicate: NSPredicate {
+        return NSPredicate(format: "changeStamp != nil")
+    }
+
+    static func upSyncData(realm: RealmProvider) throws -> UpSyncData? {
+        let realm = try realm.realm()
+        let items = objectsAndJSONs(realm: realm)
+        if items.count == 0 {
+            return nil
+        }
+
+        let completions = items.map { (object, _) -> (LocalIDToRemoteIDMap, Realm) throws -> Void in
+            let localID = object.localID
+            let previousChangeStamp = object.changeStamp
+            return { (map: LocalIDToRemoteIDMap, realm: Realm) in
+                if let object = realm.syncableObject(ofType: Self.self, localID: localID),
+                    previousChangeStamp == object.changeStamp {
+                    object.dirty = false
+                }
+            }
+        }
+
+        return UpSyncData(body: try items.map { $0.1 }.toJSON().serialize()) { (localIDtoRemoteIDMap, realm) in
+            try completions.forEach { try $0(localIDtoRemoteIDMap, realm) }
+        }
+    }
+}
+
+
+
+
+

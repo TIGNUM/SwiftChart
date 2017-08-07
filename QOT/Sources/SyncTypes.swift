@@ -8,7 +8,7 @@
 
 import Foundation
 
-// TODO: typealias TwoWaySyncableCreatedRemoteOnly = DownSyncable &
+typealias TwoWaySyncableWithUpdateOnlyUpsyncing = DownSyncable & UpsyncableUpdateOnly
 typealias TwoWaySyncable = DownSyncable & UpSyncableWithLocalAndRemoteIDs
 typealias OneWaySyncableDown = DownSyncable
 typealias OneWaySyncableUp = UpSyncableDeleting

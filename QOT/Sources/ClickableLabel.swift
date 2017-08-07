@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ClickableLabelDelegate {
+protocol ClickableLabelDelegate: class {
     func openLink(withURL url: URL)
 }
 
@@ -23,7 +23,7 @@ class ClickableLabel: UILabel {
 
     // MARK: - Properties
 
-    var delegate: ClickableLabelDelegate?
+    weak var delegate: ClickableLabelDelegate?
 
     public fileprivate(set) var links: [MarkdownLink] = []
 

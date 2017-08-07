@@ -45,7 +45,9 @@ extension SettingsService {
                 if let userSetting = userSetting(systemSetting: systemSetting) {
                     userSetting.value = value
                 } else {
-                    realm.add(UserSetting(with: value))
+                    let newSetting = UserSetting(with: value)
+                    newSetting.remoteID.value = systemSetting.remoteID.value
+                    realm.add(newSetting)
                 }
             }
         } else {

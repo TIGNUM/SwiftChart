@@ -8,12 +8,13 @@
 
 import Foundation
 import RealmSwift
+import Freddy
 
 final class UserSetting: SyncableObject {
 
     fileprivate dynamic var _value: SettingValueObject?
 
-    fileprivate(set) dynamic var dirty: Bool = true
+    dynamic var changeStamp: String? = UUID().uuidString
 
     var value: SettingValue {
         get {
@@ -25,7 +26,7 @@ final class UserSetting: SyncableObject {
         set {
             _value?.delete()
             _value = SettingValueObject(with: newValue)
-            dirty = true
+            didUpdate()
         }
     }
 
@@ -36,16 +37,24 @@ final class UserSetting: SyncableObject {
     }
 }
 
-extension UserSetting: OneWaySyncableDown {
+extension UserSetting: TwoWaySyncableWithUpdateOnlyUpsyncing {
 
     static var endpoint: Endpoint {
         return .userSetting
     }
 
     func setData(_ data: UserSettingIntermediary, objectStore: ObjectStore) throws {
-        dirty = false
-
         _value?.delete()
         _value = SettingValueObject(with: data.value)
+
+        dirty = false
+    }
+
+    func toJson() -> JSON? {
+        guard let value = _value, let settingID = remoteID.value else {
+            return nil
+        }
+
+        return SettingValue(setting: value).toJSON(settingID: settingID)
     }
 }

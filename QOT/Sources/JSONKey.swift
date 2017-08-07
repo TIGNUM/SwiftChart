@@ -19,6 +19,7 @@ enum JsonKey: String {
     case attendees
     case availability
     case birthdate
+    case boolValue
     case calendarId
     case calendarItemExternalId
     case calendarName
@@ -74,6 +75,7 @@ enum JsonKey: String {
     case layoutInfo
     case location
     case longitude
+    case longValue
     case lowerThreshold
     case max
     case maximum
@@ -89,6 +91,7 @@ enum JsonKey: String {
     case notes
     case occurrenceCount
     case occurrenceDate
+    case occurrenceValue
     case organizer
     case ownText
     case page
@@ -149,6 +152,7 @@ enum JsonKey: String {
     case telephone
     case telephoneNumber
     case text
+    case textValue
     case thumbnail
     case timestamp
     case timeZoneId

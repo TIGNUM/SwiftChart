@@ -123,4 +123,8 @@ extension JSON {
         }
         return date
     }
+
+    init(dictionary: [JsonKey: JSONEncodable]) {
+        self = .dictionary(dictionary.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
+    }
 }

@@ -80,4 +80,37 @@ extension SettingValue {
                                vacation: try json.getItemValue(at: .vacation, fallback: true))
         }
     }
+
+    func toJSON(settingID: Int) -> JSON? {
+        switch self {
+        case .text(let value):
+            return toJSON(settingID: settingID, rootKey: .textValue, dictionary: [.value: value])
+        case .bool(let value):
+            return toJSON(settingID: settingID, rootKey: .boolValue, dictionary: [.value: value])
+        case .int(let value, let min, let max):
+            return toJSON(settingID: settingID, rootKey: .longValue, dictionary: [
+                .value: value,
+                .min: min.toJSONEncodable,
+                .max: max.toJSONEncodable
+                ])
+        case .occurrence(let from, let to, let workingDays, let weekend, let publicHolidays, let vacation):
+            return toJSON(settingID: settingID, rootKey: .occurrenceValue, dictionary: [
+                .fromDate: from.toJSONEncodable,
+                .untilDate: to.toJSONEncodable,
+                .workingDays: workingDays,
+                .weekend: weekend,
+                .publicHolidays: publicHolidays,
+                .vacation: vacation
+                ])
+        case .invalid:
+            return nil
+        }
+    }
+
+    private func toJSON(settingID: Int, rootKey: JsonKey, dictionary: [JsonKey: JSONEncodable]) -> JSON {
+        var dict = dictionary
+        dict[.settingId] = settingID
+        let json = JSON(dictionary: dict)
+        return .dictionary([rootKey.rawValue: json])
+    }
 }
