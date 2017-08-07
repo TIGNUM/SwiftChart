@@ -91,17 +91,19 @@ extension PrepareCoordinator {
         var title: String? = nil
         var video: PrepareContentViewModel.Video? = nil
         var items: [PrepareItem] = []
-        for item in services.contentService.contentItems(contentID: contentID) {
-            let value = item.contentItemValue
-            switch value {
-            case .text(let text, style: .h1):
-                title = text
-            case .prepareStep(let title, let description, let relatedContentID):
-                items.append(PrepareItem(id: item.forcedRemoteID, title: title, subTitle: description, readMoreID: relatedContentID))
-            case .video(_, _, let placeholderURL, let videoURL, _):
-                video = PrepareContentViewModel.Video(url: videoURL, placeholderURL: placeholderURL)
-            default:
-                break
+
+        if let content = services.contentService.contentCollection(id: contentID) {
+            title = content.title
+            for item in content.contentItems {
+                let value = item.contentItemValue
+                switch value {
+                case .prepareStep(let title, let description, let relatedContentID):
+                    items.append(PrepareItem(id: item.forcedRemoteID, title: title, subTitle: description, readMoreID: relatedContentID))
+                case .video(_, _, let placeholderURL, let videoURL, _):
+                    video = PrepareContentViewModel.Video(url: videoURL, placeholderURL: placeholderURL)
+                default:
+                    break
+                }
             }
         }
 
@@ -129,17 +131,19 @@ extension PrepareCoordinator {
         var title: String? = nil
         var video: PrepareContentViewModel.Video? = nil
         var items: [PrepareItem] = []
-        for item in services.contentService.contentItems(contentID: preparation.contentID) {
-            let value = item.contentItemValue
-            switch value {
-            case .text(let text, style: .h1):
-                title = text
-            case .prepareStep(let title, let description, let relatedContentID):
-                items.append(PrepareItem(id: item.forcedRemoteID, title: title, subTitle: description, readMoreID: relatedContentID))
-            case .video(_, _, let placeholderURL, let videoURL, _):
-                video = PrepareContentViewModel.Video(url: videoURL, placeholderURL: placeholderURL)
-            default:
-                break
+
+        if let content = services.contentService.contentCollection(id: preparation.contentID) {
+            title = content.title
+            for item in content.contentItems {
+                let value = item.contentItemValue
+                switch value {
+                case .prepareStep(let title, let description, let relatedContentID):
+                    items.append(PrepareItem(id: item.forcedRemoteID, title: title, subTitle: description, readMoreID: relatedContentID))
+                case .video(_, _, let placeholderURL, let videoURL, _):
+                    video = PrepareContentViewModel.Video(url: videoURL, placeholderURL: placeholderURL)
+                default:
+                    break
+                }
             }
         }
 
