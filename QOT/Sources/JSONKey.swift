@@ -155,6 +155,7 @@ enum JsonKey: String {
     case textValue
     case thumbnail
     case timestamp
+    case timeZone
     case timeZoneId
     case title
     case type

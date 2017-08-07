@@ -79,6 +79,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         QOTUsageTimer.sharedInstance.start()
     }
 
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        appCoordinator.appDidBecomeActive()
+    }
+
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         if canOpenURL == true {
             LaunchHandler.default.process(url: url)

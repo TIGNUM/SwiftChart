@@ -36,6 +36,7 @@ struct UserIntermediary: DownSyncIntermediary {
     let jobTitle: String?
     let memberSince: Date
     let urbanAirshipTags: [String]
+    let timeZone: String?
 
     init(json: JSON) throws {
         self.gender = try json.getItemValue(at: .gender)
@@ -57,6 +58,7 @@ struct UserIntermediary: DownSyncIntermediary {
         self.company = try json.getString(at: JsonKey.employment.rawValue, JsonKey.company.rawValue, alongPath: .NullBecomesNil)
         self.jobTitle = try json.getString(at: JsonKey.employment.rawValue, JsonKey.jobTitle.rawValue, alongPath: .NullBecomesNil)
         self.urbanAirshipTags = try json.getArray(at: .urbanAirshipTags, fallback: [])
+        self.timeZone = try json.getItemValue(at: .timeZone)
 
         let userInfo = try json.json(at: .userInfo)
         self.height = try userInfo.getItemValue(at: .height, alongPath: .NullBecomesNil)

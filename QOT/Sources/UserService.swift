@@ -17,6 +17,8 @@ final class UserService {
     init(mainRealm: Realm, realmProvider: RealmProvider) {
         self.mainRealm = mainRealm
         self.realmProvider = realmProvider
+
+        updateTimeZone()
     }
     
     func prepare() throws {
@@ -63,6 +65,15 @@ final class UserService {
     func updateUserHeightUnit(user: User, heightUnit: String) {
         updateUser(user: user) {
             $0.heightUnit = heightUnit
+        }
+    }
+
+    func updateTimeZone() {
+        let timeZone = TimeZone.currentName
+        if let user = user(), timeZone != user.timeZone {
+            updateUser(user: user) {
+                $0.timeZone = timeZone
+            }
         }
     }
 

@@ -262,6 +262,7 @@
 		CBFECCA51F30BB4D0076ACE6 /* SyncableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFECCA41F30BB4D0076ACE6 /* SyncableObject.swift */; };
 		CBFECCA81F31D7480076ACE6 /* SyncTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFECCA71F31D7480076ACE6 /* SyncTypes.swift */; };
 		CBFECCAA1F33492D0076ACE6 /* EKEventStore+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFECCA91F33492D0076ACE6 /* EKEventStore+Settings.swift */; };
+		CBFECCAD1F388B500076ACE6 /* TimeZone+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFECCAC1F388B500076ACE6 /* TimeZone+Convenience.swift */; };
 		CC02E1441F2789FE00134574 /* CLLocationManager+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC02E1431F2789FE00134574 /* CLLocationManager+Convenience.swift */; };
 		CC02E1461F27996800134574 /* SettingsCalendarListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC02E1451F27996800134574 /* SettingsCalendarListCoordinator.swift */; };
 		CC02E1491F279A0F00134574 /* SettingsCalendarListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC02E1481F279A0F00134574 /* SettingsCalendarListViewModel.swift */; };
@@ -716,6 +717,7 @@
 		CBFECCA41F30BB4D0076ACE6 /* SyncableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncableObject.swift; sourceTree = "<group>"; };
 		CBFECCA71F31D7480076ACE6 /* SyncTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncTypes.swift; sourceTree = "<group>"; };
 		CBFECCA91F33492D0076ACE6 /* EKEventStore+Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKEventStore+Settings.swift"; sourceTree = "<group>"; };
+		CBFECCAC1F388B500076ACE6 /* TimeZone+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeZone+Convenience.swift"; sourceTree = "<group>"; };
 		CC02E1431F2789FE00134574 /* CLLocationManager+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLLocationManager+Convenience.swift"; sourceTree = "<group>"; };
 		CC02E1451F27996800134574 /* SettingsCalendarListCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCalendarListCoordinator.swift; sourceTree = "<group>"; };
 		CC02E1481F279A0F00134574 /* SettingsCalendarListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCalendarListViewModel.swift; sourceTree = "<group>"; };
@@ -1793,16 +1795,17 @@
 		CBB4DD521EE095E50071494A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				8548BBDF1F0D4BF900AC7C06 /* LaunchHandler.swift */,
+				852DADC51EEEE63500A10882 /* Math.swift */,
 				CBDB98F31E7B000A003EC73F /* NotificationHandler.swift */,
+				7FDFF3681F18FF0B00F7A7EC /* NotificationTokenHandler.swift */,
+				7F4251C21F211BC600EA451D /* PermissionHandler.swift */,
+				CBC5ACC91F18EF96007E1E9C /* QOTUsageTime.swift */,
 				CB27D59A1ECCB67300F2B76C /* Result.swift */,
+				CBFECCAC1F388B500076ACE6 /* TimeZone+Convenience.swift */,
+				855C4FC41F25F7D10068DDE3 /* Tutorials.swift */,
 				CBD791491E71797C0006C590 /* Typealiases.swift */,
 				CC3DFB631E83BDA300FF28DF /* Utils.swift */,
-				852DADC51EEEE63500A10882 /* Math.swift */,
-				8548BBDF1F0D4BF900AC7C06 /* LaunchHandler.swift */,
-				7FDFF3681F18FF0B00F7A7EC /* NotificationTokenHandler.swift */,
-				CBC5ACC91F18EF96007E1E9C /* QOTUsageTime.swift */,
-				855C4FC41F25F7D10068DDE3 /* Tutorials.swift */,
-				7F4251C21F211BC600EA451D /* PermissionHandler.swift */,
 				7FE38DBC1F2210D60061E98F /* WaitBlockOperation.swift */,
 			);
 			name = Utils;
@@ -2518,6 +2521,7 @@
 				7F0F03081F14FE9800007D50 /* CollapsableNode.swift in Sources */,
 				D52371531EA9F0B100165842 /* PrepareChatTableCell.swift in Sources */,
 				CB3437701EFE937000D89D4F /* ContentService.swift in Sources */,
+				CBFECCAD1F388B500076ACE6 /* TimeZone+Convenience.swift in Sources */,
 				CC7D21B01EFC1348007A062E /* WeeklyChoicesCell.swift in Sources */,
 				0B573CA61EC3219900A03602 /* DailyMeetingChartView.swift in Sources */,
 				CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */,

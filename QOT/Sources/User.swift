@@ -66,6 +66,8 @@ final class User: SyncableObject {
     fileprivate(set) dynamic var jobTitle: String?
 
     fileprivate(set) dynamic var memberSince: Date = Date()
+
+    dynamic var timeZone: String = TimeZone.currentName
 }
 
 extension User: TwoWaySyncableUniqueObject {
@@ -100,6 +102,7 @@ extension User: TwoWaySyncableUniqueObject {
         jobTitle = data.jobTitle
         memberSince = data.memberSince
         urbanAirshipDeviceToken = UAirship.push().deviceToken
+        timeZone = data.timeZone ?? TimeZone.currentName
 
         UAirship.push().removeTags(UAirship.push().tags)
         UAirship.push().addTags(data.urbanAirshipTags)

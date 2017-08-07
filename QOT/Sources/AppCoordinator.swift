@@ -108,6 +108,10 @@ final class AppCoordinator: ParentCoordinator {
             }
         }
     }
+
+    func appDidBecomeActive() {
+        services?.userService.updateTimeZone()
+    }
 }
 
 // MARK: - private
