@@ -101,23 +101,6 @@ extension CollectionTableViewCell {
     }
 }
 
-extension String {
-    func width(withConstrainedHeight height: CGFloat, font: UIFont) -> CGFloat {
-        let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
-        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
-
-        return boundingBox.width
-    }
-
-    func height(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {
-        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
-        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
-
-        return boundingBox.height
-    }
-
-}
-
 struct PrepareChatObject {
 
     var selected: Bool

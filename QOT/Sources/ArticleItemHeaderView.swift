@@ -17,7 +17,7 @@ final class ArticleItemHeaderView: UIView {
     @IBOutlet fileprivate weak var dateLabel: UILabel!
     @IBOutlet fileprivate weak var durationLabel: UILabel!
 
-    func setupView(header: ArticleCollectionHeader) {        
+    func setupView(header: ArticleCollectionHeader) {
         titleLabel.attributedText = attributedText(
             letterSpacing: 1,
             text: header.articleTitle.uppercased(),
@@ -52,7 +52,8 @@ final class ArticleItemHeaderView: UIView {
             font: font,
             lineSpacing: 1.4,
             textColor: textColor,
-            alignment: alignment
+            alignment: alignment,
+            lineBreakMode: .byWordWrapping
         )
     }
 }

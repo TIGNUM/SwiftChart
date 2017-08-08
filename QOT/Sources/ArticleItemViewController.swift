@@ -29,6 +29,7 @@ final class ArticleItemViewController: UIViewController {
     fileprivate lazy var tableView: UITableView = {
         let tableView = UITableView(
             style: .grouped,
+            contentInsets: UIEdgeInsets(top: 35, left: 0, bottom: 0, right: 0),
             delegate: self,
             dataSource: self,
             dequeables:
@@ -94,6 +95,7 @@ final class ArticleItemViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
+        setTableViewHeader()
         resizeHeaderView()
     }
 
@@ -117,11 +119,21 @@ final class ArticleItemViewController: UIViewController {
 private extension ArticleItemViewController {
 
     func resizeHeaderView() {
-        guard let headerView = tableView.tableHeaderView else {
+        guard let headerView = tableView.tableHeaderView,
+            let header = viewModel.articleHeader else {
             return
         }
 
-        let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+        let sidePadding = CGFloat(56)
+        let frameWidth = tableView.frame.size.width - sidePadding
+
+        let titleHeight = calculateLabelHeight(text: header.articleTitle, font: Font.H5SecondaryHeadline, dispayedLineHeight: 18, frameWidth: frameWidth, characterSpacing: 1)
+        let subTitleHeight = calculateLabelHeight(text: header.articleSubTitle, font: Font.H1MainTitle, dispayedLineHeight: 46, frameWidth: frameWidth, characterSpacing: 2)
+        let dateHeight = CGFloat(14)
+        let spacing: CGFloat = 20
+
+        let height = titleHeight + subTitleHeight + dateHeight + spacing
+
         var headerFrame = headerView.frame
 
         if height != headerFrame.size.height {
@@ -129,6 +141,13 @@ private extension ArticleItemViewController {
             headerView.frame = headerFrame
             tableView.tableHeaderView = headerView
         }
+    }
+
+    func calculateLabelHeight(text: String, font: UIFont, dispayedLineHeight: CGFloat, frameWidth: CGFloat, characterSpacing: CGFloat?) -> CGFloat {
+        let lineHeight = "a".height(withConstrainedWidth: frameWidth, font: font)
+        let headerHeight = text.height(withConstrainedWidth: frameWidth, font: font, characterSpacing: characterSpacing)
+
+        return headerHeight / lineHeight * dispayedLineHeight
     }
 
     func setupView() {
@@ -150,7 +169,7 @@ private extension ArticleItemViewController {
 
         tableView.estimatedSectionHeaderHeight = 100
         tableView.estimatedSectionFooterHeight = 100
-        setTableViewHeader()
+//        setTableViewHeader()
         view.backgroundColor = .clear
         tableView.bottomAnchor == view.bottomAnchor
         tableView.horizontalAnchors == view.horizontalAnchors
@@ -279,9 +298,9 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
 
                 var attributedTopText = item.contentItemValue.style(textStyle: style, text: text, textColor: .white)
                 if style == .paragraph {
-                    attributedTopText = Style.article(text, .white).attributedString(lineHeight: 2)
+                    attributedTopText = Style.article(text, .white).attributedString(lineHeight: 1.8)
                 } else if style == .quote {
-                    attributedTopText = Style.qoute(text, .white60).attributedString(lineHeight: 2)
+                    attributedTopText = Style.qoute(text, .white60).attributedString(lineHeight: 1.8)
                 }
 
                 return contentItemTextTableViewCell(
