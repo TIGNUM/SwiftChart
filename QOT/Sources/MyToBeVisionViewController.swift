@@ -9,6 +9,7 @@
 import UIKit
 import RSKImageCropper
 import ImagePicker
+import Kingfisher
 
 protocol MyToBeVisionViewControllerDelegate: class {
 
@@ -35,7 +36,7 @@ class MyToBeVisionViewController: UIViewController {
     fileprivate var imagePicker: ImagePickerController?
     fileprivate var imageTapRecogniser: UITapGestureRecognizer!
     weak var delegate: MyToBeVisionViewControllerDelegate?
-    
+ 
     // MARK: - Init
 
     init(viewModel: MyToBeVisionViewModel) {
@@ -117,7 +118,7 @@ private extension MyToBeVisionViewController {
         UIView.animate(withDuration: 0.5, animations: {
             self.messageTextView.alpha = isEditing ? 1.0 : 0.0
             self.webView.alpha = isEditing ? 0.0 : 1.0
-            self.imageButton.alpha = (isEditing || self.viewModel.profileImage == nil) ? 1.0 : 0.0
+            self.imageButton.alpha = (isEditing || !(self.viewModel.profileImageResource?.isAvailable ?? false)) ? 1.0 : 0.0
         }, completion: { (_: Bool) in
             if isEditing {
                 _ = self.tryFirstResponder()
@@ -141,11 +142,12 @@ private extension MyToBeVisionViewController {
         setupLabels()
         configureWebView(string: viewModel.text)
         
-        let profileImage = viewModel.profileImage
-        imageView.image = profileImage
+        if let profileImageResource = viewModel.profileImageResource {
+            imageView.setImageFromResource(profileImageResource)
+        }
         imageView.alpha = 0.0
         imageViewOverlay.alpha = 0.0
-        imageButton.alpha = (profileImage == nil) ? 1.0 : 0.0
+        imageButton.alpha = (viewModel.profileImageResource?.isAvailable ?? false) ? 0.0 : 1.0
         subtitleLabel.text = viewModel.dateText
     }
     

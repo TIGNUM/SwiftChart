@@ -11,6 +11,10 @@ import Freddy
 import RealmSwift
 import EventKit
 
+extension Notification.Name {
+    static let startUpSyncMediaNotification = Notification.Name(rawValue: "qot_startUpSyncMediaNotification")
+}
+
 final class SyncManager {
 
     let networkManager: NetworkManager
@@ -55,6 +59,12 @@ final class SyncManager {
         self.networkManager = networkManager
         self.syncRecordService = syncRecordService
         self.realmProvider = realmProvider
+        
+        setupNotifications()
+    }
+    
+    deinit {
+        tearDownNotifications()
     }
 
     func clearAll() throws {
@@ -129,8 +139,43 @@ final class SyncManager {
         ]
 
         operationQueue.addOperations(operations, waitUntilFinished: false)
+        
+        upSyncMedia()
+    }
+    
+    @objc func upSyncMedia() {
+        let context = SyncContext(queue: operationQueue) { (state, errors) in
+            switch state {
+            case .finished:
+                print("UP SYNC MEDIA FINISHED with \(errors.count) errors")
+                errors.forEach({ (error: SyncError) in
+                    print(error)
+                })
+            default:
+                break
+            }
+        }
+        
+        do {
+            let realm = try realmProvider.realm()
+            let itemsToUpload = realm.objects(MediaResource.self).filter(MediaResource.dirtyPredicate)
+            let operations: [Operation] = itemsToUpload.map({ (resource: MediaResource) -> Operation in
+                return upSyncMediaOperation(forItem: resource, context: context, isFinalOperation: (resource == itemsToUpload.last))
+            })
+            operationQueue.addOperations(operations, waitUntilFinished: false)
+        } catch {}
     }
 
+    // MARK: - private
+    
+    private func setupNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(upSyncMedia), name: .startUpSyncMediaNotification, object: nil)
+    }
+    
+    private func tearDownNotifications() {
+        NotificationCenter.default.removeObserver(self, name: .startUpSyncMediaNotification, object: nil)
+    }
+    
     private func downSyncOperation<P>(for: P.Type, context: SyncContext, isFinalOperation: Bool = false) -> DownSyncOperation<P> where P: DownSyncable, P: SyncableObject {
         return DownSyncOperation<P>(context: context,
                                  networkManager: networkManager,
@@ -147,5 +192,15 @@ final class SyncManager {
                                   realmProvider: realmProvider,
                                   syncContext: context,
                                   isFinalOperation: isFinalOperation)
+    }
+    
+    private func upSyncMediaOperation(forItem item: MediaResource,
+                                      context: SyncContext,
+                                      isFinalOperation: Bool = false) -> UpSyncMediaOperation {
+        return UpSyncMediaOperation(networkManager: networkManager,
+                                    realmProvider: realmProvider,
+                                    syncContext: context,
+                                    item: item,
+                                    isFinalOperation: isFinalOperation)
     }
 }

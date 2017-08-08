@@ -12,9 +12,10 @@ import Freddy
 typealias LocalIDToRemoteIDMap = [String: Int]
 
 struct UpSyncResult {
+    
     let remoteIDs: LocalIDToRemoteIDMap
     let nextSyncToken: String
-
+    
     init(json: JSON) throws {
         var remoteIDs: LocalIDToRemoteIDMap = [:]
         let resultList: [JSON] = try json.getArray(at: .resultList, fallback: [])

@@ -95,53 +95,50 @@ extension UserService {
     func myToBeVision() -> MyToBeVision? {
         return mainRealm.objects(MyToBeVision.self).first
     }
-    
-    func myToBeVisionValue() -> MyToBeVisionValue? {
-        guard let mytoBeVision = myToBeVision() else {
-            return nil
-        }
-        return MyToBeVisionValue(
-            localID: mytoBeVision.localID,
-            headline: mytoBeVision.headline,
-            subHeadline: mytoBeVision.subHeadline,
-            text: mytoBeVision.text,
-            profileImageURL: mytoBeVision.profileImageURL,
-            date: mytoBeVision.date)
-    }
-    
+
     func createMyToBeVision() throws -> MyToBeVision {
         let myToBeVision = MyToBeVision()
+        myToBeVision.profileImageResource = MediaResource(
+            localURLString: nil,
+            remoteURLString: nil,
+            relatedEntityID: myToBeVision.remoteID.value,
+            mediaFormat: "JPG",
+            mediaEntity: "TOBEVISION"
+        )
         try mainRealm.write {
             mainRealm.add(myToBeVision)
         }
         return myToBeVision
     }
     
-    func updateMyToBeVision(_ myToBeVision: MyToBeVisionValue, completion: ((Error?) -> Void)?) {
-        DispatchQueue.global().async {
-            do {
-                let realm = try self.realmProvider.realm()
-                try realm.write {
-                    let realmObj = MyToBeVision(
-                        localID: myToBeVision.localID,
-                        headline: myToBeVision.headline,
-                        subHeadline: myToBeVision.subHeadline,
-                        text: myToBeVision.text,
-                        profileImageURL: myToBeVision.profileImageURL,
-                        date: myToBeVision.date)
-                    realm.add(realmObj, update: true)
-                    DispatchQueue.main.async {
-                        completion?(nil)
-                    }
-                }
-            } catch {
-                DispatchQueue.main.async {
-                    completion?(error)
-                }
-            }
+    func updateProfileImageResource(myToBeVision: MyToBeVision, resource: MediaResource) {
+        updateMyToBeVision(myToBeVision) {
+            $0.profileImageResource = resource
         }
     }
-
+    
+    func updateHeadline(myToBeVision: MyToBeVision, headline: String?) {
+        updateMyToBeVision(myToBeVision) {
+            $0.headline = headline
+        }
+    }
+    
+    func updateText(myToBeVision: MyToBeVision, text: String?) {
+        updateMyToBeVision(myToBeVision) {
+            $0.text = text
+        }
+    }
+    
+    func updateMyToBeVision(_ myToBeVision: MyToBeVision, block: (MyToBeVision) -> Void) {
+        do {
+            try mainRealm.write {
+                block(myToBeVision)
+                myToBeVision.didUpdate()
+            }
+        } catch let error {
+            assertionFailure("Update \(MyToBeVision.self), error: \(error)")
+        }
+    }
 }
 
 // MARK: User Choice

@@ -18,6 +18,7 @@ enum JsonKey: String {
     case associatedValueType
     case attendees
     case availability
+    case base64Data
     case birthdate
     case boolValue
     case calendarId
@@ -60,6 +61,7 @@ enum JsonKey: String {
     case heightUnit
     case heightUnits
     case id
+    case idOfRelatedEntity
     case images
     case imageURL
     case increment
@@ -81,7 +83,10 @@ enum JsonKey: String {
     case maximum
     case maxPages
     case maxResults
+    case mediaEntity
+    case mediaFormat
     case mediaURL
+    case mediaUrl
     case memberSince
     case min
     case modifiedAt

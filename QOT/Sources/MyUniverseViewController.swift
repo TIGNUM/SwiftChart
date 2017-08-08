@@ -68,7 +68,7 @@ final class MyUniverseViewController: UIViewController {
         return MyDataView(
             delegate: self,
             sectors: self.myDataViewModel.sectors,
-            profileImage: self.myDataViewModel.profileImage,
+            myDataViewModel: self.myDataViewModel,
             frame: self.view.bounds
         )
     }()
@@ -162,16 +162,14 @@ final class MyUniverseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        myWhyViewModel.updates.observeNext { [weak self] (_: CollectionUpdate) in
-            self?.myDataView.updateProfileImage(self?.myDataViewModel.profileImage)
-        }.dispose(in: disposeBag)
-
         addTabRecognizer()
         addSubViews()
 
-        _ = myWhyViewModel.updates.observeNext { [weak self] (_: CollectionUpdate) in
-            self?.myDataView.updateProfileImage(self?.myDataViewModel.profileImage)
-        }
+        myWhyViewModel.updates.observeNext { [weak self, weak myWhyViewModel] (_: CollectionUpdate) in
+            if let resource = myWhyViewModel?.myToBeVision?.profileImageResource {
+                self?.myDataView.updateProfileImageResource(resource)
+            }
+        }.dispose(in: disposeBag)
     }
 }
 
@@ -401,16 +399,14 @@ extension MyUniverseViewController: CustomPresentationAnimatorDelegate {
                 self.myDataView.profileImageButton.transform = CGAffineTransform(translationX: 300.0, y: 0)
                 self.view.transform = CGAffineTransform(scaleX: 3, y: 3)//.translatedBy(x: -180, y: 0)
 
-                if let layerTransform = self.myDataView.universeDotsLayer?.transform {
-                    self.myDataView.universeDotsLayer?.transform = CATransform3DTranslate(layerTransform, -200, 0, 0)
-                }
+                let layerTransform = self.myDataView.universeDotsLayer.transform
+                self.myDataView.universeDotsLayer.transform = CATransform3DTranslate(layerTransform, -200, 0, 0)
             }
         } else if let fromViewController = animator.fromViewController, fromViewController.contains(MyStatisticsViewController.self) {
             self.parent?.view.alpha = 0
 
-            if let layerTransform = self.myDataView.universeDotsLayer?.transform {
-                self.myDataView.universeDotsLayer?.transform = CATransform3DTranslate(layerTransform, -200, 0, 0)
-            }
+            let layerTransform = self.myDataView.universeDotsLayer.transform
+            self.myDataView.universeDotsLayer.transform = CATransform3DTranslate(layerTransform, -200, 0, 0)
 
             return { [unowned self] in
                 self.parent?.view.alpha = 1
@@ -418,7 +414,7 @@ extension MyUniverseViewController: CustomPresentationAnimatorDelegate {
                 self.myDataView.profileImageButton.transform = .identity
                 self.view.transform = .identity
 
-                self.myDataView.universeDotsLayer?.transform = CATransform3DIdentity
+                self.myDataView.universeDotsLayer.transform = CATransform3DIdentity
             }
         } else if let toViewController = animator.toViewController, toViewController.contains(WeeklyChoicesViewController.self) {
             self.myWhyView.weeklyChoicesBox.alpha = 1

@@ -21,12 +21,13 @@ class DownSyncImporter<T> where T: DownSyncable, T: SyncableObject {
                         object = existing
                     } else {
                         object = T()
-                        object.remoteID.value = remoteID
                         object.createdAt = createdAt
                         store.addObject(object)
                     }
 
                     object.modifiedAt = modifiedAt
+                    object.remoteID.value = remoteID
+                    object.didSetRemoteID()
                     try object.setData(data, objectStore: store)
                 case .deleted(let remoteID):
                     store.deleteObjects(T.self, predicate: NSPredicate(remoteID: remoteID))

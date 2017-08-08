@@ -21,7 +21,7 @@ extension UIImage {
             log("couldn't find directory")
             throw ImageError.directoryNotFound
         }
-        guard let data = UIImagePNGRepresentation(self) else {
+        guard let data = UIImageJPEGRepresentation(self, 0.3) else {
             log("problem converting image data")
             throw ImageError.imageConvertionError
         }
@@ -35,7 +35,7 @@ extension UIImage {
             }
         }
         
-        path = path.appendingFormat("/%@.png", name)
+        path = path.appendingFormat("/%@.jpg", name)
         let url = URL(fileURLWithPath: path)
         do {
             try data.write(to: url)

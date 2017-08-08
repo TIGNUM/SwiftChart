@@ -21,6 +21,7 @@ final class Services {
     let eventsService: EventsService
     let settingsService: SettingsService
     let myStatisticsService: MyStatisticsService
+    let mediaService: MediaService
 
     init(
         mainRealm: Realm,
@@ -31,7 +32,8 @@ final class Services {
         userService: UserService,
         eventsService: EventsService,
         settingsService: SettingsService,
-        myStatisticsService: MyStatisticsService) {
+        myStatisticsService: MyStatisticsService,
+        mediaService: MediaService) {
             self.mainRealm = mainRealm
             self.contentService = contentService
             self.preparationService = preparationService
@@ -41,6 +43,7 @@ final class Services {
             self.eventsService = eventsService
             self.settingsService = settingsService
             self.myStatisticsService = myStatisticsService
+            self.mediaService = mediaService
     }
 
     static func make(completion: @escaping (Result<Services, NSError>) -> Void) {
@@ -59,6 +62,7 @@ final class Services {
                     let eventsService = EventsService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let settingsService = SettingsService(realm: mainRealm)
                     let myStatisticsService = MyStatisticsService(mainRealm: mainRealm, realmProvider: realmProvider)
+                    let mediaService = MediaService(mainRealm: mainRealm, realmProvider: realmProvider)
                     let services = Services(
                         mainRealm: mainRealm,
                         contentService: contentService,
@@ -68,7 +72,8 @@ final class Services {
                         userService: userService,
                         eventsService: eventsService,
                         settingsService: settingsService,
-                        myStatisticsService: myStatisticsService
+                        myStatisticsService: myStatisticsService,
+                        mediaService: mediaService
                     )
                     
                     do {

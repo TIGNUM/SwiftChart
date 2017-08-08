@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import Freddy
 
-final class MyToBeVision: SyncableObject, MyToBeVisionWireframe {
+final class MyToBeVision: SyncableObject {
     
     dynamic var headline: String?
     
@@ -18,26 +18,29 @@ final class MyToBeVision: SyncableObject, MyToBeVisionWireframe {
     
     dynamic var text: String?
     
-    dynamic var profileImageURL: String?
+    dynamic var profileImageResource: MediaResource?
     
     dynamic var date: Date = Date()
 
     dynamic var changeStamp: String? = UUID().uuidString
-    
+
     // MARK: Functions
     
-    convenience init(localID: String, headline: String?, subHeadline: String?, text: String?, profileImageURL: String?, date: Date) {
+    convenience init(localID: String, headline: String?, subHeadline: String?, text: String?, profileImageResource: MediaResource, date: Date) {
         self.init()
         self.localID = localID
         self.headline = headline
         self.subHeadline = subHeadline
         self.text = text
-        self.profileImageURL = profileImageURL
+        self.profileImageResource = profileImageResource
         self.date = date
 
         dirty = true
     }
-
+    
+    override func didSetRemoteID() {
+        profileImageResource?.relatedEntityID.value = remoteID.value
+    }
 }
 
 extension MyToBeVision: TwoWaySyncableUniqueObject {
@@ -47,7 +50,7 @@ extension MyToBeVision: TwoWaySyncableUniqueObject {
         subHeadline = data.subHeadline
         text = data.text
         date = data.validFrom
-        // FIXME: We need to do something with remoteProfileImageURL
+        profileImageResource?.remoteURLString = data.remoteProfileImageURL
     }
 
     static func object(remoteID: Int, store: ObjectStore) throws -> MyToBeVision? {

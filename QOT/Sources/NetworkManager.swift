@@ -192,6 +192,12 @@ extension SessionManager {
         return self.request(urlRequest)
             .validate(statusCode: 200..<300)
             .responseData { response in
+                // @note useful for big responses
+//                let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+//                var path = "\(paths[0])/result.txt"
+//                print(path)
+//                try? response.request?.httpBody?.write(to: URL(fileURLWithPath: path))
+                
                 log("REQUEST BODY DATA: \(response.request?.httpBody?.utf8String ?? "No request body data")", enabled: LogToggle.NetworkManager.requestBody)
                 log("RESPONSE BODY DATA: \(response.data?.utf8String ?? "No response data")", enabled: LogToggle.NetworkManager.responseBody)
                 

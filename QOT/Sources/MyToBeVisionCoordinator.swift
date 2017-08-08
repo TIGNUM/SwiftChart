@@ -24,8 +24,8 @@ final class MyToBeVisionCoordinator: NSObject, ParentCoordinator {
     init(root: UIViewController, services: Services) {
         self.rootViewController = root
         self.services = services
-        viewModel = MyToBeVisionViewModel(services: services)
-        myToBeVisionViewController = MyToBeVisionViewController(viewModel: viewModel)
+        self.viewModel = MyToBeVisionViewModel(services: services)
+        myToBeVisionViewController = MyToBeVisionViewController(viewModel: self.viewModel)
         myToBeVisionViewController.modalPresentationStyle = .custom
         
         super.init()
@@ -37,10 +37,6 @@ final class MyToBeVisionCoordinator: NSObject, ParentCoordinator {
     func start() {
         rootViewController.present(myToBeVisionViewController, animated: true)
     }
-    
-    func save() {
-        services.userService.updateMyToBeVision(viewModel.item, completion: nil)
-    }
 }
 
 // MARK: - MyToBeVisionViewControllerDelegate
@@ -48,7 +44,6 @@ final class MyToBeVisionCoordinator: NSObject, ParentCoordinator {
 extension MyToBeVisionCoordinator: MyToBeVisionViewControllerDelegate {
 
     func didTapClose(in viewController: MyToBeVisionViewController) {
-        save()
         viewController.dismiss(animated: true, completion: {
             self.removeChild(child: self)
         })

@@ -13,12 +13,12 @@ final class MyDataViewModel {
 
     // MARK: - Properties
 
-    var profileImage: UIImage? {
-        return myToBeVision?.profileImage
+    private let services: Services
+    var profileImageResource: MediaResource? {
+        return services.userService.myToBeVision()?.profileImageResource
     }
     let sectors = mockSectors
     let updates = PublishSubject<CollectionUpdate, NoError>()
-    private let myToBeVision: MyToBeVision?
     
     var sectorCount: Int {
         return sectors.count
@@ -33,7 +33,7 @@ final class MyDataViewModel {
     }
     
     init(services: Services) {
-        self.myToBeVision = services.userService.myToBeVision()
+        self.services = services
     }
 }
 

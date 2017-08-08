@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 // MARK: - UIFont
 
@@ -251,6 +252,16 @@ extension UIImage {
         }
         return nil
     }
+    
+    convenience init?(dataUrl: URL) {
+        do {
+            let data = try Data(contentsOf: dataUrl)
+            self.init(data: data)
+        } catch {
+            log(error)
+            return nil
+        }
+    }
 }
 
 // MARK: - UIImageView
@@ -274,6 +285,42 @@ extension UIImageView {
         mask.strokeColor = UIColor.clear.cgColor
         mask.fillColor = UIColor.white.cgColor
         self.layer.mask = mask
+    }
+    
+    func setImageFromResource(_ resource: MediaResource, defaultImage: UIImage? = nil, completion: ((UIImage?, Error?) -> Void)? = nil) {
+        if let localURL = resource.localURL {
+            image = UIImage(dataUrl: localURL)
+            completion?(image, nil)
+        } else if let remoteURL = resource.remoteURL {
+            let options: [KingfisherOptionsInfoItem] = [.targetCache(KingfisherManager.shared.cache)]
+            kf.setImage(with: remoteURL, placeholder: defaultImage, options: options, progressBlock: nil, completionHandler: { (image: Image?, error: NSError?, cacheType: CacheType, url: URL?) in
+                completion?(image, error)
+            })
+        } else {
+            image = defaultImage
+            completion?(image, nil)
+        }
+    }
+}
+
+// MARK: - UIButton
+
+extension UIButton {
+    
+    func setBackgroundImageFromResource(_ resource: MediaResource, defaultImage: UIImage? = nil, completion: ((UIImage?, Error?) -> Void)? = nil) {
+        if let localURL = resource.localURL {
+            let image = UIImage(dataUrl: localURL)
+            setBackgroundImage(image, for: .normal)
+            completion?(image, nil)
+        } else if let remoteURL = resource.remoteURL {
+            let options: [KingfisherOptionsInfoItem] = [.targetCache(KingfisherManager.shared.cache)]
+            kf.setBackgroundImage(with: remoteURL, for: .normal, placeholder: defaultImage, options: options, progressBlock: nil, completionHandler: { (image: Image?, error: NSError?, cacheType: CacheType, url: URL?) in
+                completion?(image, error)
+            })
+        } else {
+            setBackgroundImage(defaultImage, for: .normal)
+            completion?(defaultImage, nil)
+        }
     }
 }
 

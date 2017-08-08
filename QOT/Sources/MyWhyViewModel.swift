@@ -34,6 +34,7 @@ final class MyWhyViewModel {
     private var partnersNotificationTokenHandler: NotificationTokenHandler?
     private var visionNotificationTokenHandler: NotificationTokenHandler?
     private var userChoiceNotificationTokenHandler: NotificationTokenHandler?
+    private var profileImageNotificationTokenHandler: NotificationTokenHandler?
     private var maxWeeklyItems: Int {
         return Layout.MeSection.maxWeeklyPage
     }
@@ -75,6 +76,16 @@ final class MyWhyViewModel {
                 break
             }
         }.handler
+        profileImageNotificationTokenHandler = myToBeVision?.profileImageResource?.addNotificationBlock({ [weak self]  (change: ObjectChange) in
+            switch change {
+            case .change:
+                self?.updates.next(.reload)
+                NotificationCenter.default.post(name: .startUpSyncMediaNotification, object: nil)
+                break
+            default:
+                break
+            }
+        }).handler
         userChoiceNotificationTokenHandler = userChoices.addNotificationBlock { [weak self] (changes: RealmCollectionChange<AnyRealmCollection<UserChoice>>) in
             switch changes {
             case .update(_, deletions: _, insertions: _, modifications: _):
