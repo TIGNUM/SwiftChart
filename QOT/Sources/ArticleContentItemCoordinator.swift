@@ -83,9 +83,12 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
     }
 
     func didTapLink(_ url: URL, in viewController: ArticleItemViewController) {
-        let webViewController = SFSafariViewController(url: url)
-
-        viewController.present(webViewController, animated: true, completion: nil)
+        if url.scheme == "mailto" {
+            UIApplication.shared.open(url)
+        } else {
+            let webViewController = SFSafariViewController(url: url)
+            viewController.present(webViewController, animated: true, completion: nil)
+        }
     }
 
     func didTapClose(in viewController: ArticleItemViewController) {
