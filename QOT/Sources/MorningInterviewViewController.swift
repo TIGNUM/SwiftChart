@@ -81,6 +81,7 @@ final class MorningInterviewViewController: UIViewController {
 
     @objc func didTapNext(_ sender: UIButton) {
         if isLastPage {
+            try? viewModel.save()
             delegate?.didTapClose(viewController: self)
         } else {
             currentIndex += 1
@@ -183,8 +184,7 @@ extension MorningInterviewViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let question = viewModel.question(at: indexPath.item)
         let cell: MorningInterviewCell = collectionView.dequeueCell(for: indexPath)
-        cell.configure(question: question)
-        
+        cell.configure(question: question, defaultAnswerIndex: (question.answers.count - 1) / 2)
         return cell
     }
 }

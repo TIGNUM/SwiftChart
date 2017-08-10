@@ -9,10 +9,6 @@
 import UIKit
 import Anchorage
 
-protocol MorningInterviewCellDelegate: class {
-    func didSelectAnswer(index: Int, cell: MorningInterviewCell)
-}
-
 final class MorningInterviewCell: UICollectionViewCell, Dequeueable {
     
     fileprivate var topview: UIView = UIView()
@@ -21,8 +17,7 @@ final class MorningInterviewCell: UICollectionViewCell, Dequeueable {
     fileprivate var numberlabel: UILabel = UILabel()
     fileprivate var subTitleLabel: UILabel = UILabel()
     fileprivate var maxLabel: UILabel = UILabel()
-    fileprivate var question: Question?
-    weak var delegate: MorningInterviewCellDelegate?
+    fileprivate var question: InterviewQuestion?
 
     fileprivate var titlelabel: UILabel = {
         let label = UILabel()
@@ -35,23 +30,21 @@ final class MorningInterviewCell: UICollectionViewCell, Dequeueable {
         let slider = UISlider()
         slider.minimumTrackTintColor = .white
         slider.maximumTrackTintColor = .gray
-        slider.minimumValue = 0
+        slider.isContinuous = true
         return slider
     }()
 
     @objc func valueChanged(sender: UISlider) {
-        guard let question = question else {
+        let index = Int(sender.value.rounded())
+        guard let question = question, question.answerIndex != index else {
             return
         }
-        let index = Int(sender.value.rounded())
-        let answer = question.answers[index]
-        numberlabel.attributedText = Style.num(String(index), .white).attributedString(lineSpacing: -3.3)
-        setup(answer: answer)
-    }
 
-    @objc func valueDidChange(sender: UISlider) {
-        let index = Int(sender.value.rounded())
-        delegate?.didSelectAnswer(index: index, cell: self)
+        question.answerIndex = index
+        if let answer = question.currentAnswer {
+            numberlabel.attributedText = Style.num(String(index), .white).attributedString(lineSpacing: -3.3)
+            setup(answer: answer)
+        }
     }
 
     fileprivate var minLabel: UILabel = {
@@ -59,44 +52,54 @@ final class MorningInterviewCell: UICollectionViewCell, Dequeueable {
         label.textColor = .white90
         label.font = .bentonBookFont(ofSize: 11)
         label.textAlignment = .center
-        label.text = "0"
         return label
     }()
 
-    func configure(question: Question, answerIndex: Int? = 0) {
+    func configure(question: InterviewQuestion, defaultAnswerIndex: Int) {
         setupHierarchy()
         setupLayout()
+
         self.question = question
-        if let answerIndex = answerIndex {
-            let answer = question.answers[answerIndex]
-            let attributedTitle = NSMutableAttributedString(
-                string: answer.title,
-                letterSpacing: -3.3,
-                font: Font.H0Number,
-                textColor: .white,
-                alignment: .center
-            )
-            let attributedSubtitle = NSMutableAttributedString(
-                string: answer.subtitle ?? "TODO Answer subtitle",
-                letterSpacing: 3.3,
-                font: Font.H8Subtitle,
-                textColor: .white60,
-                alignment: .center
-            )
-            numberlabel.attributedText = attributedTitle
-            subTitleLabel.attributedText = attributedSubtitle
+
+        let startIndex = question.answers.startIndex
+        minLabel.attributedText = Style.tag("\(startIndex + 1)", .white90).attributedString(lineSpacing: 2)
+        slider.minimumValue = Float(startIndex)
+        
+        let endIndex = question.answers.endIndex
+        slider.maximumValue = Float(endIndex - 1)
+        maxLabel.attributedText = Style.tag("\(endIndex)", .white90).attributedString(lineSpacing: 2)
+
+        if let answer = question.currentAnswer {
+            setCurrentAnswerLabels(answer: answer)
+        } else {
+            setCurrentAnswerLabels(answer: question.answers[defaultAnswerIndex])
+            slider.value = Float(defaultAnswerIndex)
         }
-        slider.maximumValue = Float(question.answers.count - 1)
-        let text = String(question.answers.count - 1)
-        maxLabel.attributedText = Style.tag(text, .white90).attributedString(lineSpacing: 2)
-        let attributedTitle = NSMutableAttributedString(
+        
+        titlelabel.attributedText = NSMutableAttributedString(
             string: question.title,
             letterSpacing: 1.1,
             font: Font.H9Title,
             textColor: .white90,
             alignment: .center
         )
-        titlelabel.attributedText = attributedTitle
+    }
+
+    fileprivate func setCurrentAnswerLabels(answer: Answer) {
+        numberlabel.attributedText = NSMutableAttributedString(
+            string: answer.title,
+            letterSpacing: -3.3,
+            font: Font.H0Number,
+            textColor: .white,
+            alignment: .center
+        )
+        subTitleLabel.attributedText = NSMutableAttributedString(
+            string: answer.subtitle ?? "",
+            letterSpacing: 3.3,
+            font: Font.H8Subtitle,
+            textColor: .white60,
+            alignment: .center
+        )
     }
 }
 
@@ -143,39 +146,18 @@ private extension MorningInterviewCell {
         bottomView.bottomAnchor == bottomAnchor
 
         minLabel.leftAnchor == bottomView.leftAnchor + 35
-        minLabel.widthAnchor == 7
-        minLabel.topAnchor == bottomView.topAnchor - 10
-        minLabel.bottomAnchor == bottomView.bottomAnchor
+        minLabel.centerYAnchor == bottomView.centerYAnchor
 
         slider.leftAnchor == minLabel.rightAnchor + 25
         slider.topAnchor == bottomView.topAnchor - 10
         slider.bottomAnchor == bottomView.bottomAnchor
         slider.rightAnchor == maxLabel.leftAnchor - 18
 
-        maxLabel.widthAnchor == 7
         maxLabel.rightAnchor == bottomView.rightAnchor - 32
-        maxLabel.topAnchor == bottomView.topAnchor - 10
-        maxLabel.bottomAnchor == bottomView.bottomAnchor
+        maxLabel.centerYAnchor == bottomView.centerYAnchor
     }
 
     func setup(answer: Answer ) {
-
-        let attributedTitle = NSMutableAttributedString(
-            string: answer.title,
-            letterSpacing: -3.3,
-            font: Font.H0Number,
-            textColor: .white,
-            alignment: .center
-        )
-
-        let attributedSubtitle = NSMutableAttributedString(
-            string: answer.subtitle ?? "TODO: Answer subtitle",
-            letterSpacing: 3.3,
-            font: Font.H8Subtitle,
-            textColor: .white60,
-            alignment: .center
-        )
-        numberlabel.attributedText = attributedTitle
-        subTitleLabel.attributedText = attributedSubtitle
+        setCurrentAnswerLabels(answer: answer)
     }
 }

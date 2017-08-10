@@ -150,7 +150,8 @@ extension LaunchHandler {
                 return
         }
 
-        AppDelegate.current.appCoordinator.presentMorningInterview(groupID: groupIDIntValue)
+        //TODO: dates?
+        AppDelegate.current.appCoordinator.presentMorningInterview(groupID: groupIDIntValue, validFrom: Date(), validTo: Date())
     }
 }
 

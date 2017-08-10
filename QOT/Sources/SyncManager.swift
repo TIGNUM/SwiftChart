@@ -135,6 +135,7 @@ final class SyncManager {
             upSyncOperation(Preparation.self, context: context),
             upSyncOperation(UserChoice.self, context: context),
             upSyncOperation(UserSetting.self, context: context),
+            upSyncOperation(UserAnswer.self, context: context),
             upSyncOperation(User.self, context: context, isFinalOperation: true)
         ]
 

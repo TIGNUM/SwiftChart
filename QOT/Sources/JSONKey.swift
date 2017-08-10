@@ -12,6 +12,7 @@ enum JsonKey: String {
 
     case `default`
     case answer
+    case answerId
     case answers
     case answerType
     case associatedValueId
@@ -108,6 +109,7 @@ enum JsonKey: String {
     case qotId
     case qotPartnerUserId
     case question
+    case questionId
     case questionDescription
     case questionGroupId
     case questionGroups
@@ -169,6 +171,7 @@ enum JsonKey: String {
     case urbanAirshipDeviceToken
     case urbanAirshipTags
     case url
+    case userAnswer
     case userAverage
     case userId
     case userImageURL

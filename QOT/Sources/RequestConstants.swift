@@ -33,7 +33,8 @@ enum Endpoint: String {
     case myToBeVision = "/personal/p/qot/toBeVision"
     case media = "/personal/p/qot/media"
     case userPreparation = "/personal/p/qot/userPreparation"
-
+    case userAnswer = "/personal/p/qot/userAnswer"
+    
     func url(baseURL: URL) -> URL {
         return baseURL.appendingPathComponent(rawValue)
     }

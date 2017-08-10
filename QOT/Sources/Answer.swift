@@ -11,6 +11,8 @@ import RealmSwift
 
 class Answer: Object {
 
+    let remoteID = RealmOptional<Int>(nil)
+    
     fileprivate(set) dynamic var sortOrder: Int = 0
 
     fileprivate(set) dynamic var title: String = ""
@@ -22,6 +24,7 @@ class Answer: Object {
     convenience init(intermediary: AnswerIntermediary) {
         self.init()
 
+        self.remoteID.value = intermediary.remoteID
         self.sortOrder = intermediary.sortOrder
         self.title = intermediary.title
         self.subtitle = intermediary.subtitle

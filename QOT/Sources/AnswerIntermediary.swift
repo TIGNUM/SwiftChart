@@ -11,12 +11,14 @@ import Freddy
 
 struct AnswerIntermediary: JSONDecodable {
 
+    let remoteID: Int
     let sortOrder: Int
     let title: String
     let subtitle: String?
     let decisions: [AnswerDecisionIntermediary]
 
     init(json: JSON) throws {
+        remoteID = try json.getItemValue(at: .id)
         sortOrder = try json.getItemValue(at: .sortOrder, fallback: 0)
         title = try json.getItemValue(at: .answer, fallback: "")
         subtitle = try json.getItemValue(at: .title)

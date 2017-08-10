@@ -172,15 +172,15 @@ extension AppCoordinator {
         }
     }
 
-    func presentMorningInterview(groupID: Int) {
+    func presentMorningInterview(groupID: Int, validFrom: Date, validTo: Date) {
         guard let services = services else {
             return
         }
 
-        let viewModel = MorningInterviewViewModel(services: services, questionGroupID: groupID)
+        let viewModel = MorningInterviewViewModel(services: services, questionGroupID: groupID, validFrom: validFrom, validTo: validTo)
         let morningInterViewController = MorningInterviewViewController(viewModel: viewModel)
-
         morningInterViewController.delegate = self
+        
         switchToSecondaryWindow()
         secondaryWindow.rootViewController?.present(morningInterViewController, animated: true, completion: nil)
     }

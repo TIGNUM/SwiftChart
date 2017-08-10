@@ -81,6 +81,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         appCoordinator.appDidBecomeActive()
+
+        //TODO: comment in to test
+//        Timer.scheduledTimer(withTimeInterval: 4, repeats: false) { _ in
+//            self.appCoordinator.presentMorningInterview(groupID: 100002, validFrom: Date(), validTo: Date())
+//        }
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
