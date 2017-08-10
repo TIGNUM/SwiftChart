@@ -15,6 +15,7 @@ protocol ArticleItemViewControllerDelegate: class {
     func didSelectRelatedArticle(selectedArticle: ContentCollection, form viewController: ArticleItemViewController)
     func didTapClose(in viewController: ArticleItemViewController)
     func didTapLink(_ url: URL, in viewController: ArticleItemViewController)
+    func didTapMedia(withURL url: URL, in viewController: ArticleItemViewController)
 }
 
 final class ArticleItemViewController: UIViewController {
@@ -169,7 +170,6 @@ private extension ArticleItemViewController {
 
         tableView.estimatedSectionHeaderHeight = 100
         tableView.estimatedSectionFooterHeight = 100
-//        setTableViewHeader()
         view.backgroundColor = .clear
         tableView.bottomAnchor == view.bottomAnchor
         tableView.horizontalAnchors == view.horizontalAnchors
@@ -210,10 +210,12 @@ private extension ArticleItemViewController {
         indexPath: IndexPath,
         title: String,
         placeholderURL: URL,
+        placeholderImage: UIImage? = nil,
         attributedString: NSAttributedString,
         canStream: Bool) -> ImageSubtitleTableViewCell {
             let imageCell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
-            imageCell.setupData(placeHolder: placeholderURL, description: attributedString, canStream: canStream)
+
+        imageCell.setupData(placeHolder: placeholderURL, placeHolderImage: placeholderImage, description: attributedString, canStream: canStream)
             imageCell.setInsets(insets: UIEdgeInsets(top: 14, left: 28, bottom: 14, right: 28))
             imageCell.backgroundColor = .clear
             imageCell.contentView.backgroundColor = .clear
@@ -277,6 +279,7 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
                     indexPath: indexPath,
                     title: title,
                     placeholderURL: placeholderURL,
+                    placeholderImage: R.image.audioPlaceholder(),
                     attributedString: Style.mediaDescription(title, .white60).attributedString(lineHeight: 2),
                     canStream: true
                 )
@@ -359,11 +362,20 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        guard indexPath.section == 1 else {
-            return
-        }
+        switch indexPath.section {
+        case 0:
+            let item = viewModel.articleItem(at: indexPath)
 
-        delegate?.didSelectRelatedArticle(selectedArticle: viewModel.relatedArticle(at: indexPath), form: self)
+            switch item.contentItemValue {
+            case .audio(_, _, _, let audioURL, _, _):
+                self.delegate?.didTapMedia(withURL: audioURL, in: self)
+            default:
+                return
+            }
+        case 1:
+            delegate?.didSelectRelatedArticle(selectedArticle: viewModel.relatedArticle(at: indexPath), form: self)
+        default: return
+        }
     }
 }
 

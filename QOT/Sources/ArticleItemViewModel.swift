@@ -15,7 +15,6 @@ final class ArticleItemViewModel {
     fileprivate let items: [ContentItem]
     fileprivate let relatedArticles: [ContentCollection]
     let articleHeader: ArticleCollectionHeader?
-    let updates = PublishSubject<CollectionUpdate, NoError>()
 
     func itemCount(in section: Index) -> Int {
         switch section {
