@@ -18,6 +18,7 @@ enum ContentItemValue {
     case audio(title: String, description: String?, placeholderURL: URL, audioURL: URL, duration: TimeInterval, waveformData: [Float])
     case image(title: String, description: String?, url: URL)
     case prepareStep(title: String, description: String, relatedContentID: Int?)
+    case pdf(title: String, description: String?, pdfURL: URL)
     case invalid
 
     init(item: ContentItem) {
@@ -73,6 +74,12 @@ enum ContentItemValue {
         case .preparationStep:
             if let title = text, let description = description {
                 self = .prepareStep(title: title, description: description, relatedContentID: item.relatedContent.first?.contentID)
+            } else {
+                self = .invalid
+            }
+        case .pdf:
+            if let title = text, let description = description, let pdf = mediaURL {
+                self = .pdf(title: title, description: description, pdfURL: pdf)
             } else {
                 self = .invalid
             }
@@ -147,4 +154,5 @@ enum ContentItemFormat: String {
     case audio
     case image
     case preparationStep = "prepare"
+    case pdf
 }

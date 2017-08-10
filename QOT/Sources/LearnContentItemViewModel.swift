@@ -71,29 +71,42 @@ extension LearnContentItemViewModel {
 
     func numberOfItemsInSection(in section: Int, tabType: TabType) -> Int {
         guard sectionCount(tabType: tabType) > 1 else {
-            return contentItems(at: tabType).count
+            return contentItemsCount(at: tabType)
         }
 
         if sectionCount(tabType: tabType) == 3 {
             switch section {
             case 0: return 1
-            case 1: return contentItems(at: tabType).count
+            case 1: return contentItemsCount(at: tabType)
             case 2: return relatedContentCollections.count > 3 ? 3 : relatedContentCollections.count
             default: return 0
             }
         } else if sectionCount(tabType: tabType) == 2 && containsAudioItem(tabType: tabType) == true {
             switch section {
             case 0: return 1
-            case 1: return contentItems(at: tabType).count
+            case 1: return contentItemsCount(at: tabType)
             default: return 0
             }
         } else {
             switch section {
-            case 0: return contentItems(at: tabType).count
+            case 0: return contentItemsCount(at: tabType)
             case 1: return relatedContentCollections.count > 3 ? 3 : relatedContentCollections.count
             default: return 0
             }
         }
+    }
+
+    fileprivate func contentItemsCount(at tabType: TabType) -> Int {
+        var count = contentItems(at: tabType).count
+
+        count += contentItems(at: tabType).filter({
+            switch $0.contentItemValue {
+            case .pdf: return true
+            default: return false
+            }
+        }).count > 0 ? 1 : 0
+
+        return count
     }
 
     func heightForRow(at section: Int, tabType: TabType) -> CGFloat {
@@ -121,7 +134,55 @@ extension LearnContentItemViewModel {
     }
 
     func learnContentItem(at indexPath: IndexPath, tabType: TabType) -> ContentItem {
-        return contentItems(at: tabType)[indexPath.row]
+        return contentItems(at: tabType).filter({
+            switch $0.contentItemValue {
+            case .pdf: return false
+            default: return true
+            }
+        })[indexPath.row]
+    }
+
+    func learnPDFContentItem(at indexPath: IndexPath, tabType: TabType) -> ContentItem {
+        let otherItems = contentItems(at: tabType).filter({
+            switch $0.contentItemValue {
+            case .pdf: return false
+            default: return true
+            }
+        })
+
+        return contentItems(at: tabType).filter({
+            switch $0.contentItemValue {
+            case .pdf: return true
+            default: return false
+            }
+        })[indexPath.row - otherItems.count - 1]
+    }
+
+    func pdfCount(at indexPath: IndexPath, tabType: TabType) -> Int {
+        return contentItems(at: tabType).filter({
+            switch $0.contentItemValue {
+            case .pdf: return true
+            default: return false
+            }
+        }).count
+    }
+
+    func isReadMoreItem(at indexPath: IndexPath, tabType: TabType) -> Bool {
+        return contentItems(at: tabType).filter({
+            switch $0.contentItemValue {
+            case .pdf: return false
+            default: return true
+            }
+        }).count == indexPath.row
+    }
+
+    func isPDFItem(at indexPath: IndexPath, tabType: TabType) -> Bool {
+        return contentItems(at: tabType).filter({
+            switch $0.contentItemValue {
+            case .pdf: return false
+            default: return true
+            }
+        }).count < indexPath.row
     }
 
     func relatedContent(at indexPath: IndexPath) -> ContentCollection {

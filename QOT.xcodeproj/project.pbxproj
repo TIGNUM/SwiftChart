@@ -82,6 +82,10 @@
 		8514A48E1EE966C30086C70E /* PrepareContentMainHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8514A48D1EE966C30086C70E /* PrepareContentMainHeaderTableViewCell.xib */; };
 		8514A4921EEAA2AE0086C70E /* UILabel+AttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8514A4911EEAA2AE0086C70E /* UILabel+AttributedText.swift */; };
 		851676CA1F39AA9C007A1DD6 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851676C91F39AA9C007A1DD6 /* String+Extensions.swift */; };
+		851676D91F3C55C8007A1DD6 /* LearnPDFCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 851676D81F3C55C8007A1DD6 /* LearnPDFCell.xib */; };
+		851676DB1F3C57D4007A1DD6 /* LearnPDFCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851676DA1F3C57D4007A1DD6 /* LearnPDFCell.swift */; };
+		851676DD1F3C68F8007A1DD6 /* LearnReadMoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851676DC1F3C68F8007A1DD6 /* LearnReadMoreCell.swift */; };
+		851676DF1F3C694B007A1DD6 /* LearnReadMoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 851676DE1F3C694B007A1DD6 /* LearnReadMoreCell.xib */; };
 		852020351EF8300800EA2032 /* PeakPerformanceUpcomingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852020341EF8300800EA2032 /* PeakPerformanceUpcomingView.swift */; };
 		8523E9C01F1628B50000D20D /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8523E9BF1F1628B50000D20D /* Date+Extension.swift */; };
 		852988951F2F3E15003A36DF /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852988941F2F3E15003A36DF /* Bundle+Extensions.swift */; };
@@ -542,6 +546,10 @@
 		8514A48D1EE966C30086C70E /* PrepareContentMainHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentMainHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		8514A4911EEAA2AE0086C70E /* UILabel+AttributedText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+AttributedText.swift"; sourceTree = "<group>"; };
 		851676C91F39AA9C007A1DD6 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		851676D81F3C55C8007A1DD6 /* LearnPDFCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnPDFCell.xib; sourceTree = "<group>"; };
+		851676DA1F3C57D4007A1DD6 /* LearnPDFCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnPDFCell.swift; sourceTree = "<group>"; };
+		851676DC1F3C68F8007A1DD6 /* LearnReadMoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnReadMoreCell.swift; sourceTree = "<group>"; };
+		851676DE1F3C694B007A1DD6 /* LearnReadMoreCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnReadMoreCell.xib; sourceTree = "<group>"; };
 		852020341EF8300800EA2032 /* PeakPerformanceUpcomingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakPerformanceUpcomingView.swift; sourceTree = "<group>"; };
 		8523E9BF1F1628B50000D20D /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		852988941F2F3E15003A36DF /* Bundle+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
@@ -2068,6 +2076,10 @@
 				D5EC34AC1EB0D32D00F86B09 /* LearnStrategyAudioPlayerView.xib */,
 				D5EC34B01EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.swift */,
 				D5EC34B11EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.xib */,
+				851676D81F3C55C8007A1DD6 /* LearnPDFCell.xib */,
+				851676DA1F3C57D4007A1DD6 /* LearnPDFCell.swift */,
+				851676DC1F3C68F8007A1DD6 /* LearnReadMoreCell.swift */,
+				851676DE1F3C694B007A1DD6 /* LearnReadMoreCell.xib */,
 			);
 			name = "Learn Content Item";
 			sourceTree = "<group>";
@@ -2228,6 +2240,7 @@
 				CC8813EC1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib in Resources */,
 				8514A48E1EE966C30086C70E /* PrepareContentMainHeaderTableViewCell.xib in Resources */,
 				D57ACCAF1F150D1D00906573 /* LaunchScreen.storyboard in Resources */,
+				851676DF1F3C694B007A1DD6 /* LearnReadMoreCell.xib in Resources */,
 				0BC9F93A1E96118C009E8204 /* StatusTableViewCell.xib in Resources */,
 				850A50BD1F0A97FF00350097 /* PrepareContentTopTabBarView.xib in Resources */,
 				CCA2DC691EF17BFA00D1DF6A /* LearnContentItemHeaderView.xib in Resources */,
@@ -2276,6 +2289,7 @@
 				0B2CA37C1ED2BC93006B355F /* SensorCollectionViewCell.xib in Resources */,
 				0BB099CD1EBC6323006B2FB7 /* PartnersViewController.xib in Resources */,
 				CC41A54B1EFD5A1400B9AE8E /* ArticleItemHeaderView.xib in Resources */,
+				851676D91F3C55C8007A1DD6 /* LearnPDFCell.xib in Resources */,
 				CC8018241F026BDA0040B03F /* LibraryTableViewCell.xib in Resources */,
 				D519E08F1EAA5403004F96E7 /* PrepareChatTableCell.xib in Resources */,
 				CB14676C1EF2801F00A60E31 /* MockPageDown.json in Resources */,
@@ -2572,6 +2586,7 @@
 				7F0888881F0AA7DB005CE966 /* UIImage+FileIO.swift in Sources */,
 				85C26F9F1F13DCEB001C2C65 /* UIView+ProgressHUD.swift in Sources */,
 				CBB4DD541EE151100071494A /* DownSyncImporter.swift in Sources */,
+				851676DD1F3C68F8007A1DD6 /* LearnReadMoreCell.swift in Sources */,
 				CB3BD4191F2877E50071F51E /* UpSyncable.swift in Sources */,
 				0BC9F9361E96118C009E8204 /* ChatTableViewCell.swift in Sources */,
 				CCFCCB141F31C8E8004A4D7E /* R.generated.swift in Sources */,
@@ -2759,6 +2774,7 @@
 				CB3BD4161F2637940071F51E /* UpSyncOperation.swift in Sources */,
 				858AF6951EF9544000486605 /* MyStatisticsDataActivity.swift in Sources */,
 				CCAF03241E801B0E00015125 /* SettingsCoordinator.swift in Sources */,
+				851676DB1F3C57D4007A1DD6 /* LearnPDFCell.swift in Sources */,
 				8523E9C01F1628B50000D20D /* Date+Extension.swift in Sources */,
 				CB3437601EFD675900D89D4F /* QuestionIntermediary.swift in Sources */,
 				D52350961E9FC1120013DE7E /* ArticleCollectionLayout.swift in Sources */,

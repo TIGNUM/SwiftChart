@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import SafariServices
 
 final class LearnContentItemCoordinator: ParentCoordinator {
     
@@ -142,6 +143,16 @@ extension LearnContentItemCoordinator: LearnContentItemViewControllerDelegate {
 
     func didTapArticle(with article: ContentItem, from view: UIView, in viewController: LearnContentItemViewController) {
         print("didTapArticle")
+    }
+
+    func didTapPDF(withURL url: URL, in viewController: LearnContentItemViewController) {
+
+        // SFSafariViewController will crash if url doesn't hae one of these schemes
+        guard ["http", "https"].contains(url.scheme?.lowercased() ?? "") else { return }
+
+        let webViewController = SFSafariViewController(url: url)
+
+        viewController.present(webViewController, animated: true, completion: nil)
     }
 }
 

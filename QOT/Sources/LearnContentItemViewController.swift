@@ -24,6 +24,8 @@ protocol LearnContentItemViewControllerDelegate: class {
 
     func didTapFinish(from view: UIView)
 
+    func didTapPDF(withURL url: URL, in viewController: LearnContentItemViewController)
+
     func didSelectReadMoreContentCollection(with collectionID: Int, in viewController: LearnContentItemViewController)
 }
 
@@ -50,6 +52,8 @@ final class LearnContentItemViewController: UIViewController {
                 LearnContentItemBulletCell.self,
                 LearnStrategyAudioPlayerView.self,
                 LearnStrategyPlaylistAudioCell.self,
+                LearnReadMoreCell.self,
+                LearnPDFCell.self,
                 ErrorCell.self
         )
     }()
@@ -117,7 +121,19 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = viewModel.learnContentItem(at: indexPath, tabType: tabType)
+
+        var item: ContentItem!
+
+        if viewModel.isPDFItem(at: indexPath, tabType: tabType) {
+            item = viewModel.learnPDFContentItem(at: indexPath, tabType: tabType)
+        } else if viewModel.isReadMoreItem(at: indexPath, tabType: tabType) {
+            return readMoreTableViewCell(
+                tableView: tableView,
+                indexPath: indexPath
+            )
+        } else {
+            item = viewModel.learnContentItem(at: indexPath, tabType: tabType)
+        }
         shouldMarkItemAsViewed(contentItem: item)
 
         if viewModel.containsAudioItem(tabType: tabType) == true && indexPath.section == 0 {
@@ -172,11 +188,18 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
                     canStream: true
                 )
             case .image(let title, _, let url):
-                return imageTableViweCell(
+                return imageTableViewCell(
                     tableView: tableView,
                     indexPath: indexPath,
                     attributeString: item.contentItemValue.style(textStyle: .paragraph, text: title, textColor: .blackTwo).attributedString(),
                     url: url
+                )
+            case .pdf(let title, _, _):
+                return PDFTableViewCell(
+                    tableView: tableView,
+                    indexPath: indexPath,
+                    attributedString: item.contentItemValue.style(textStyle: .h4, text: title, textColor: .blackTwo).attributedString(),
+                    timeToReadSeconds: item.secondsRequired
                 )
             default:
                 return invalidContentCell(tableView: tableView, indexPath: indexPath, format: item.format)
@@ -187,12 +210,21 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        let item =  viewModel.learnContentItem(at: indexPath, tabType: tabType)
+        var item: ContentItem!
+
+        if viewModel.isPDFItem(at: indexPath, tabType: tabType) {
+            item = viewModel.learnPDFContentItem(at: indexPath, tabType: tabType)
+        } else {
+            item =  viewModel.learnContentItem(at: indexPath, tabType: tabType)
+        }
+
         switch item.contentItemValue {
         case .audio(_, _, _, let audioURL, let duration, _):
             viewModel.playItem(at: indexPath, audioURL: audioURL, duration: duration)
         case .video(_, _, _, let videoURL, _):
             streamVideo(videoURL: videoURL)
+        case .pdf(_, _, let pdfURL):
+            delegate?.didTapPDF(withURL: pdfURL, in: self)
         default:
             if
                 viewModel.sectionCount(tabType: tabType) == 3 && indexPath.section == 2 ||
@@ -306,6 +338,15 @@ private extension LearnContentItemViewController {
         }
     }
 
+    func readMoreTableViewCell(
+        tableView: UITableView,
+        indexPath: IndexPath) -> LearnReadMoreCell {
+        let readMoreCell: LearnReadMoreCell = tableView.dequeueCell(for: indexPath)
+        readMoreCell.configure(numberOfArticles: viewModel.pdfCount(at: indexPath, tabType: tabType))
+
+        return readMoreCell
+    }
+
     func contentItemAudioCell(
         tableView: UITableView,
         indexPath: IndexPath,
@@ -356,7 +397,7 @@ private extension LearnContentItemViewController {
             return imageCell
     }
 
-    func imageTableViweCell(
+    func imageTableViewCell(
         tableView: UITableView,
         indexPath: IndexPath,
         attributeString: NSAttributedString,
@@ -371,6 +412,13 @@ private extension LearnContentItemViewController {
     func invalidContentCell(tableView: UITableView, indexPath: IndexPath, format: String) -> ErrorCell {
         let cell: ErrorCell = tableView.dequeueCell(for: indexPath)
         cell.configure(text: R.string.localized.commonInvalidContent(), format: (": " + format))
+
+        return cell
+    }
+
+    func PDFTableViewCell(tableView: UITableView, indexPath: IndexPath, attributedString: NSAttributedString, timeToReadSeconds: Int) -> LearnPDFCell {
+        let cell: LearnPDFCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(titleText: attributedString, timeToReadSeconds: timeToReadSeconds)
 
         return cell
     }

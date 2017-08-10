@@ -12,6 +12,8 @@ import Crashlytics
 import AirshipKit
 import CoreLocation
 
+import Realm
+
 extension AppDelegate {
 
     static var current: AppDelegate {
@@ -46,6 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupUAirship()
 
         #if DEBUG
+            print("PATH: \(RLMRealmConfiguration.default().fileURL)")
             LogSettings.logLevel = .verbose
             logAppLocation()
             logAvailableFonts()

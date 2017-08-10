@@ -133,6 +133,10 @@
 "Learn.Content.Item.Title.Related.Articles" = "RELATED ARTICLES";
 "Learn.Content.Item.Title.Related.Articles.Load.More" = "Load more";
 "Learn.Content.Performance.Title" = "PERFORMANCE";
+"Learn.Content.Item.Article" = "Article";
+"Learn.Content.Item.Articles" = "Articles";
+"Learn.Content.Item.ToRead" = "To read";
+
 
 "Sidebar.SettingsMenu.Settings" = "SETTINGS";
 "Sidebar.SettingsMenu.GeneralButton" = "GENERAL";
