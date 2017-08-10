@@ -103,6 +103,10 @@ final class TabBarCoordinator: ParentCoordinator {
         return vc
     }()
     
+    var isLoading: Bool {
+        return window.rootViewController is LoadingViewController
+    }
+    
     // MARK: - Init
     
     init(window: UIWindow, selectedIndex: Index, services: Services, permissionHandler: PermissionHandler) {
@@ -115,8 +119,7 @@ final class TabBarCoordinator: ParentCoordinator {
             guard let `self` = self, let userInfo = notification.userInfo, let isSyncRecordsValid = userInfo["isSyncRecordsValid"] as? Bool, isSyncRecordsValid == false else {
                 return
             }
-            window.rootViewController?.present(self.loadingViewController, animated: false, completion: nil)
-            self.loadingViewController.fadeIn()
+            self.showLoading()
         }
         syncFinishedNotificationHandler.handler = { [weak self] (_: Notification) in
             guard let `self` = self, self.tabBarController?.presentedViewController == self.loadingViewController else {
@@ -145,6 +148,11 @@ final class TabBarCoordinator: ParentCoordinator {
         } else {
             preparationID = localID
         }
+    }
+    
+    func showLoading() {
+        window.rootViewController?.present(self.loadingViewController, animated: false, completion: nil)
+        loadingViewController.fadeIn()
     }
 }
 

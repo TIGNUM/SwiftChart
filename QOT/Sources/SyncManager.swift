@@ -37,7 +37,10 @@ final class SyncManager {
         }
         return true
     }
-
+    var isSyncingAll: Bool = false
+    var isUpSyncingAll: Bool = false
+    var isUpSyncingMedia: Bool = false
+    
     var downSyncClasses: [AnyClass] {
         return [
             ContentCategory.self,
@@ -76,6 +79,8 @@ final class SyncManager {
     }
     
     func syncAll() {
+        isSyncingAll = true
+        
         NotificationHandler.postNotification(withName: .syncStartedNotification, userInfo: [
             "isSyncRecordsValid": isSyncRecordsValid
             ])
@@ -84,6 +89,7 @@ final class SyncManager {
             switch state {
             case .finished:
                 DispatchQueue.main.async {
+                    self.isSyncingAll = false
                     NotificationHandler.postNotification(withName: .syncFinishedNotification)
                     print("SYNC ALL FINISHED with \(errors.count) errors")
                     errors.forEach({ (error: SyncError) in
@@ -116,9 +122,12 @@ final class SyncManager {
     }
 
     func upSyncAll() {
+        isUpSyncingAll = true
+        
         let context = SyncContext(queue: operationQueue) { (state, errors) in
             switch state {
             case .finished:
+                self.isUpSyncingAll = false
                 print("UP SYNC ALL FINISHED with \(errors.count) errors")
                 errors.forEach({ (error: SyncError) in
                     print(error)
@@ -145,9 +154,12 @@ final class SyncManager {
     }
     
     @objc func upSyncMedia() {
+        isUpSyncingMedia = true
+        
         let context = SyncContext(queue: operationQueue) { (state, errors) in
             switch state {
             case .finished:
+                self.isUpSyncingMedia = false
                 print("UP SYNC MEDIA FINISHED with \(errors.count) errors")
                 errors.forEach({ (error: SyncError) in
                     print(error)

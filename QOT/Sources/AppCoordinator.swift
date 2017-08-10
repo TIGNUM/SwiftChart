@@ -88,27 +88,35 @@ final class AppCoordinator: ParentCoordinator {
     }
 
     func showApp() {
-        guard OnboardingCoordinator.isOnboardingComplete == true else {
-            showOnboarding()
-            return
-        }
-        
         Services.make { (result) in
             switch result {
             case .success(let services):
-                self.registerRemoteNotifications()
                 self.services = services
-                self.calendarImportManager.importEvents()
-                self.startTabBarCoordinator(services: services, permissionHandler: self.permissionHandler)
-                self.syncManager.upSyncAll()
                 self.syncManager.syncAll()
+
+                guard OnboardingCoordinator.isOnboardingComplete == true else {
+                    self.showOnboarding()
+                    return
+                }
+                
+                self.registerRemoteNotifications()
+                self.calendarImportManager.importEvents()
+                self.syncManager.upSyncAll()
+                self.startTabBarCoordinator(services: services, permissionHandler: self.permissionHandler)
+                
+                // if the tab controller isn't loading, but we're still syncing all, show loading
+                if let tabBarCoordinator = self.tabBarCoordinator,
+                    !tabBarCoordinator.isLoading,
+                    self.syncManager.isSyncingAll,
+                    self.syncManager.isSyncRecordsValid == false {
+
+                    tabBarCoordinator.showLoading()
+                }
             case .failure:
                 // TODO: localise alert text
                 self.showAlert(type: .custom(title: "Error", message: "There was a problem initializing the app's data. Please restart the app and try again"), handler: {
                     exit(0)
                 }, handlerDestructive: nil)
-                
-                break
             }
         }
     }
@@ -143,20 +151,23 @@ private extension AppCoordinator {
     }
 
     func startTabBarCoordinator(services: Services, permissionHandler: PermissionHandler) {
+        // create coordinator
         let selectedIndex = checkListIDToPresent != nil ? 2 : 0
-        tabBarCoordinator = TabBarCoordinator(
+        let coordinator = TabBarCoordinator(
             window: self.window,
             selectedIndex: selectedIndex,
             services: services,
             permissionHandler: permissionHandler
         )
+        self.tabBarCoordinator = coordinator
+        
+        // start coordinator
+        coordinator.start()
+        startChild(child: coordinator)
 
-        guard let tabBarCoordinator = tabBarCoordinator else { return }
-        tabBarCoordinator.start()
-        self.startChild(child: tabBarCoordinator)
-
+        // apply any story logic that applies after start
         guard let localID = checkListIDToPresent else { return }
-        tabBarCoordinator.showPreparationCheckList(localID: localID)
+        coordinator.showPreparationCheckList(localID: localID)
         checkListIDToPresent = nil
     }
 }
