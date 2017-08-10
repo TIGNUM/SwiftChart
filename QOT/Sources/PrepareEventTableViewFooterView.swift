@@ -9,13 +9,14 @@
 import UIKit
 
 protocol PrepareEventTableViewFooterViewDelegate: class {
+
     func didTapAddNewTrip()
 }
 
 class PrepareEventTableViewFooterView: UITableViewHeaderFooterView, Dequeueable {
 
-    @IBOutlet weak var addNewTripButton: UIButton!
-    weak var delegate: PrepareEventTableViewFooterViewDelegate?
+    @IBOutlet private weak var addNewTripButton: UIButton!
+    private weak var delegate: PrepareEventTableViewFooterViewDelegate?
 
     func setup(title: String, delegate: PrepareEventTableViewFooterViewDelegate) {
         addNewTripButton.setTitle(title, for: .normal)

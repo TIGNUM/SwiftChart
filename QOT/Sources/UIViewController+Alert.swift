@@ -24,6 +24,7 @@ enum AlertType {
     case notificationsNotAuthorized
     case tutorialReset
     case settingsLoccationService
+    case settingsCalendars
 
     var title: String? {
         switch self {
@@ -38,6 +39,7 @@ enum AlertType {
         case .notificationsNotAuthorized: return R.string.localized.alertTitleNotificationsNotAuthorized()
         case .tutorialReset: return R.string.localized.settingsTutorialResetTitle()
         case .settingsLoccationService: return R.string.localized.alertTitleLocationServices()
+        case .settingsCalendars: return R.string.localized.alertTitleCalendarNoAccess()
         default: return nil
         }
     }
@@ -52,6 +54,7 @@ enum AlertType {
         case .unknow: return R.string.localized.alertMessageUnknown()
         case .notificationsNotAuthorized: return R.string.localized.alertMessageNotificationsNotAuthorized()
         case .settingsLoccationService: return R.string.localized.alertMessageLocationServices()
+        case .settingsCalendars: return R.string.localized.alertMessageCalendarNoAccess()
         default: return nil
         }
     }
@@ -59,7 +62,8 @@ enum AlertType {
     var buttonTitleCancel: String? {
         switch self {
         case .notificationsNotAuthorized,
-             .settingsLoccationService: return R.string.localized.alertButtonTitleCancel()
+             .settingsLoccationService,
+             .settingsCalendars: return R.string.localized.alertButtonTitleCancel()
         default: return nil
         }
     }
@@ -67,7 +71,8 @@ enum AlertType {
     var buttonTitleDefault: String? {
         switch self {
         case .notificationsNotAuthorized,
-             .settingsLoccationService: return R.string.localized.alertButtonTitleOpenSettings()
+             .settingsLoccationService,
+             .settingsCalendars: return R.string.localized.alertButtonTitleOpenSettings()
         default: return R.string.localized.alertButtonTitleOk()
         }
     }
@@ -81,7 +86,8 @@ enum AlertType {
     var actionStyle: [UIAlertActionStyle] {
         switch self {
         case .notificationsNotAuthorized,
-             .settingsLoccationService: return [.cancel, .default]
+             .settingsLoccationService,
+             .settingsCalendars: return [.cancel, .default]
         default: return [.default]
         }
     }

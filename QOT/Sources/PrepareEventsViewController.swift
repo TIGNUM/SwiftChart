@@ -12,9 +12,13 @@ import EventKit
 protocol PrepareEventsViewControllerDelegate: class {
 
     func didTapClose(viewController: PrepareEventsViewController)
+
     func didTapAddToPrepList(viewController: PrepareEventsViewController)
+
     func didTapEvent(event: EKEvent, viewController: PrepareEventsViewController)
+
     func didTapSavePrepToDevice(viewController: PrepareEventsViewController)
+
     func didTapAddNewTrip(viewController: PrepareEventsViewController)
 }
 
@@ -29,7 +33,6 @@ final class PrepareEventsViewController: UIViewController {
     @IBOutlet weak var eventsTableView: UITableView!
     @IBOutlet weak var yourDeviceTitleLabel: UILabel!
     @IBOutlet weak var savePreparationButton: UIButton!
-
     let viewModel: PrepareEventsViewModel
     weak var delegate: PrepareEventsViewControllerDelegate?
 
@@ -56,7 +59,6 @@ final class PrepareEventsViewController: UIViewController {
         eventsTableView.estimatedRowHeight = 65
         eventsTableView.registerDequeueable(PrepareEventsUpcomingTripTableViewCell.self)
         eventsTableView.registerDequeueable(PrepareEventTableViewFooterView.self)
-
         setupUI()
     }
 
@@ -78,10 +80,8 @@ final class PrepareEventsViewController: UIViewController {
         myPrepListTitleLabel.addCharactersSpacing(spacing: 2, text: R.string.localized.preparePrepareEventsMyPrepList(), uppercased: true)
         upcomingEventsTitleLabel.addCharactersSpacing(spacing: 2, text: R.string.localized.preparePrepareEventsUpcomingEvents(), uppercased: true)
         yourDeviceTitleLabel.addCharactersSpacing(spacing: 2, text: R.string.localized.preparePrepareEventsYourDevice(), uppercased: true)
-
         addToPreparationButton.setTitle(viewModel.preparationTitle.uppercased(), for: .normal)
         addToPreparationButton.titleLabel?.addCharactersSpacing(spacing: 0.6, text: viewModel.preparationTitle, uppercased: true)
-
         viewTitleLabel.addCharactersSpacing(spacing: 1, text: R.string.localized.preparePrepareEventsAddPreparation(), uppercased: true)
     }
 }
@@ -89,8 +89,6 @@ final class PrepareEventsViewController: UIViewController {
 // MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension PrepareEventsViewController: UITableViewDelegate, UITableViewDataSource {
-
-    // MARK: - UITableViewDataSource
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.eventCount
@@ -118,7 +116,6 @@ extension PrepareEventsViewController: UITableViewDelegate, UITableViewDataSourc
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footer: PrepareEventTableViewFooterView = tableView.dequeueHeaderFooter()
-
         footer.setup(title: R.string.localized.preparePrepareEventsAddNewEvent(), delegate: self)
 
         return footer
@@ -126,17 +123,13 @@ extension PrepareEventsViewController: UITableViewDelegate, UITableViewDataSourc
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UIView()
-
         header.backgroundColor = .clear
 
         return header
     }
 
-    // MARK: - UITableViewDelegate
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-
         delegate?.didTapEvent(event: viewModel.event(index: indexPath.row), viewController: self)
     }
 }
@@ -144,6 +137,7 @@ extension PrepareEventsViewController: UITableViewDelegate, UITableViewDataSourc
 // MARK: - PrepareEventTableViewFooterViewDelegate
 
 extension PrepareEventsViewController: PrepareEventTableViewFooterViewDelegate {
+
     func didTapAddNewTrip() {
         delegate?.didTapAddNewTrip(viewController: self)
     }

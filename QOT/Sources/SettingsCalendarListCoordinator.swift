@@ -8,12 +8,14 @@
 
 import Foundation
 import UIKit
+import EventKit
 
 final class SettingsCalendarListCoordinator: ParentCoordinator {
 
     fileprivate let rootViewController: SettingsViewController
     fileprivate let services: Services
     fileprivate var topTabBarController: UINavigationController!
+    fileprivate lazy var permissionHandler: PermissionHandler = PermissionHandler()
     var children = [Coordinator]()
 
     init(root: SettingsViewController, services: Services) {
@@ -27,7 +29,14 @@ final class SettingsCalendarListCoordinator: ParentCoordinator {
     }
 
     func start() {
-        rootViewController.presentRightToLeft(controller: topTabBarController)
+        permissionHandler.askPermissionForCalendar { (garanted: Bool) in
+            switch garanted {
+            case true: self.rootViewController.presentRightToLeft(controller: self.topTabBarController)
+            case false: self.rootViewController.showAlert(type: .settingsCalendars, handler: { 
+                    UIApplication.openAppSettings()
+                }, handlerDestructive: nil)
+            }
+        }
     }
 }
 

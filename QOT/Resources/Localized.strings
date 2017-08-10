@@ -165,6 +165,9 @@
 "Alert.Button.Title.Open.Settings" = "Open Settings";
 "Alert.Title.LocationServices" = "Location Services";
 "Alert.Message.LocationServices" = "To change the location service permissions please go the settings.";
+"Alert.Title.Calendar.No.Access" = "No Access";
+"Alert.Message.Calendar.No.Access" = "This app does not have access to your calendars.\nYou can enable access in Privacy Settings";
+
 
 "Library.Footer.View.Label" = "Scroll To Finish";
 
