@@ -261,6 +261,6 @@ extension ChatViewController : CollectionViewCellDelegate {
 
 extension ChatViewController: ChatViewModelDelegate {
     func canChatStart() -> Bool {
-        return isViewLoaded && (view.window != nil)
+        return isViewLoaded
     }
 }
