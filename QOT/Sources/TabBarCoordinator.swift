@@ -73,9 +73,9 @@ final class TabBarCoordinator: ParentCoordinator {
         articleCollectionViewController.title = R.string.localized.topTabBarItemTitleLearnWhatsHot()
         articleCollectionViewController.delegate = self
 
-        let leftButton = UIBarButtonItem(withImage: R.image.ic_search())
+//        let leftButton = UIBarButtonItem(withImage: R.image.ic_search())
         let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())
-        let topTabBarController = UINavigationController(withPages: [learnCategoryListVC, articleCollectionViewController], topBarDelegate: self, pageDelegate: self, leftButton: leftButton, rightButton: rightButton)
+        let topTabBarController = UINavigationController(withPages: [learnCategoryListVC, articleCollectionViewController], topBarDelegate: self, pageDelegate: self, leftButton: nil, rightButton: rightButton)
         
         return topTabBarController
     }()
@@ -90,9 +90,9 @@ final class TabBarCoordinator: ParentCoordinator {
     }()
 
     fileprivate lazy var topTabBarControllerPrepare: UINavigationController = {
-        let leftButton = UIBarButtonItem(withImage: R.image.ic_search())
+//        let leftButton = UIBarButtonItem(withImage: R.image.ic_search())
         let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())
-        let topTabBarController = UINavigationController(withPages: [self.prepareChatViewController, self.myPrepViewController], topBarDelegate: self, pageDelegate: self, leftButton: leftButton, rightButton: rightButton)
+        let topTabBarController = UINavigationController(withPages: [self.prepareChatViewController, self.myPrepViewController], topBarDelegate: self, pageDelegate: self, leftButton: nil, rightButton: rightButton)
         
         return topTabBarController
     }()
