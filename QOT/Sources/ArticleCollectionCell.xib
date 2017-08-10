@@ -101,6 +101,7 @@
                 <outlet property="mediaInformation" destination="5di-4K-nT6" id="Fn0-cV-54Y"/>
                 <outlet property="subTitle" destination="Oa2-gh-lrd" id="qzs-DW-Yc7"/>
                 <outlet property="textLabel" destination="hKO-zn-69f" id="EBh-A4-z8V"/>
+                <outlet property="topSeparator" destination="awG-he-L07" id="nDS-5m-Jzs"/>
             </connections>
             <point key="canvasLocation" x="37" y="-149.5"/>
         </collectionViewCell>
