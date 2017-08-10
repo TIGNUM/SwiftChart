@@ -47,7 +47,6 @@
 		7F0F03081F14FE9800007D50 /* CollapsableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F03071F14FE9800007D50 /* CollapsableNode.swift */; };
 		7F4251BD1F20F05D00EA451D /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4251BC1F20F05D00EA451D /* OnboardingCoordinator.swift */; };
 		7F4251C31F211BC600EA451D /* PermissionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4251C21F211BC600EA451D /* PermissionHandler.swift */; };
-		7F691C531F0CFA8100E2C180 /* PartnerWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F691C521F0CFA8100E2C180 /* PartnerWireframe.swift */; };
 		7F691C551F0D19AE00E2C180 /* MyToBeVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F691C541F0D19AE00E2C180 /* MyToBeVision.swift */; };
 		7F691C5E1F0D30C800E2C180 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F691C5D1F0D30C800E2C180 /* PlaceholderTextView.swift */; };
 		7F8739071F162300005ED8B8 /* WeeklyChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8739061F162300005ED8B8 /* WeeklyChoice.swift */; };
@@ -212,7 +211,6 @@
 		CB9BB0C01F0CCC30009067D7 /* EventsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9BB0BF1F0CCC30009067D7 /* EventsService.swift */; };
 		CB9BB0C21F0CD13E009067D7 /* TimeInterval+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9BB0C11F0CD13E009067D7 /* TimeInterval+Convenience.swift */; };
 		CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA054481E890560009E28D6 /* Dequeueable.swift */; };
-		CBAF6FD41F2A2D1F00E57426 /* PartnerValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAF6FD31F2A2D1F00E57426 /* PartnerValue.swift */; };
 		CBAF6FD61F2B5AE500E57426 /* MyToBeVisionIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAF6FD51F2B5AE500E57426 /* MyToBeVisionIntermediary.swift */; };
 		CBAF6FD81F2B88E500E57426 /* UpSyncData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAF6FD71F2B88E500E57426 /* UpSyncData.swift */; };
 		CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB237EF1E6FFF1200AB5AEF /* AppDelegate.swift */; };
@@ -502,7 +500,6 @@
 		7F0F03071F14FE9800007D50 /* CollapsableNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollapsableNode.swift; sourceTree = "<group>"; };
 		7F4251BC1F20F05D00EA451D /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		7F4251C21F211BC600EA451D /* PermissionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionHandler.swift; sourceTree = "<group>"; };
-		7F691C521F0CFA8100E2C180 /* PartnerWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerWireframe.swift; sourceTree = "<group>"; };
 		7F691C541F0D19AE00E2C180 /* MyToBeVision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToBeVision.swift; sourceTree = "<group>"; };
 		7F691C5D1F0D30C800E2C180 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		7F8739061F162300005ED8B8 /* WeeklyChoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoice.swift; sourceTree = "<group>"; };
@@ -668,7 +665,6 @@
 		CB9BB0BF1F0CCC30009067D7 /* EventsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsService.swift; sourceTree = "<group>"; };
 		CB9BB0C11F0CD13E009067D7 /* TimeInterval+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Convenience.swift"; sourceTree = "<group>"; };
 		CBA054481E890560009E28D6 /* Dequeueable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dequeueable.swift; sourceTree = "<group>"; };
-		CBAF6FD31F2A2D1F00E57426 /* PartnerValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerValue.swift; sourceTree = "<group>"; };
 		CBAF6FD51F2B5AE500E57426 /* MyToBeVisionIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToBeVisionIntermediary.swift; sourceTree = "<group>"; };
 		CBAF6FD71F2B88E500E57426 /* UpSyncData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpSyncData.swift; sourceTree = "<group>"; };
 		CBB237EC1E6FFF1200AB5AEF /* QOT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QOT.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -947,8 +943,6 @@
 			children = (
 				7F0888801F0A4B96005CE966 /* Partner.swift */,
 				7F0888851F0A7602005CE966 /* PartnerIntermediary.swift */,
-				CBAF6FD31F2A2D1F00E57426 /* PartnerValue.swift */,
-				7F691C521F0CFA8100E2C180 /* PartnerWireframe.swift */,
 			);
 			name = Partner;
 			sourceTree = "<group>";
@@ -2587,7 +2581,6 @@
 				0BD6F6B91EA0E81E001EBC4D /* MyPrepTableViewCell.swift in Sources */,
 				CCE372F31E8C1EDF00B79352 /* ArticleCollectionViewModel.swift in Sources */,
 				CBC1DC3D1F14DA1200F6D056 /* UserSettingIntermediary.swift in Sources */,
-				7F691C531F0CFA8100E2C180 /* PartnerWireframe.swift in Sources */,
 				CC8018231F026BDA0040B03F /*  LibraryTableViewCell.swift in Sources */,
 				CB1D5E401EC5E25A00BCDF8D /* Error.swift in Sources */,
 				85DC6F891EF40B36004F4B4D /* TravelTripsPeriodChartView.swift in Sources */,
@@ -2604,7 +2597,6 @@
 				CC05CB761EDEC6D700D15ABC /* CGPoint+Convenience.swift in Sources */,
 				CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */,
 				CB810E641EF00DB70043E3E5 /* User.swift in Sources */,
-				CBAF6FD41F2A2D1F00E57426 /* PartnerValue.swift in Sources */,
 				852DADD21EF04DEA00A10882 /* AverageMeetingLengthView.swift in Sources */,
 				CC27E0C01EB355BC003E5B7F /* SidebarTableViewCell.swift in Sources */,
 				CCA2DC671EF17BCE00D1DF6A /* LearnContentItemHeaderView.swift in Sources */,

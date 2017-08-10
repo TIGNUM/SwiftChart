@@ -18,7 +18,7 @@ class MyWhyView: UIView, MyUniverseView {
     let myWhyViewModel: MyWhyViewModel
     let screenType: MyUniverseViewController.ScreenType
     lazy var weeklyChoices = [WeeklyChoice]()
-    lazy var partners = [PartnerWireframe]()
+    lazy var partners = [Partner]()
     weak var delegate: MyWhyViewDelegate?
     var myToBeVisionBox: PassthroughView!
     var weeklyChoicesBox: PassthroughView!
@@ -108,8 +108,11 @@ private extension MyWhyView {
                     if index < partners.count {
                         partner = partners[index]
                     }
-                    qotPartnersButtons[index].setTitle((partner?.profileImage == nil ? partner?.initials.uppercased() : nil), for: .normal)
-                    qotPartnersButtons[index].setImage(partner?.profileImage, for: .normal)
+                    let title = (partner?.profileImageResource?.isAvailable ?? false) ? nil : partner?.initials.uppercased()
+                    qotPartnersButtons[index].setTitle(title, for: .normal)
+                    if let resource = partner?.profileImageResource {
+                        qotPartnersButtons[index].setImageFromResource(resource)
+                    }
                     qotPartnersButtons[index].imageView?.setupHexagonImageView()
                 }
             }
@@ -227,19 +230,19 @@ private extension MyWhyView {
         weeklyChoicesBox.rightAnchor == self.rightAnchor - 30
     }
 
-    func addPartners(layout: Layout.MeSection, title: String, partners: [PartnerWireframe]) {
+    func addPartners(layout: Layout.MeSection, title: String, partners: [Partner]) {
         qotPartnersBox = PassthroughView()
         qotPartnersBox.backgroundColor = .clear
 
         var previousButton: UIButton?
 
         for index in 0..<Layout.MeSection.maxPartners {
-            var partner: PartnerWireframe?
+            var partner: Partner?
             if index < partners.count {
                 partner = partners[index]
             }
 
-            let button = partnerButton(title: partner?.initials, profileImage: partner?.profileImage, index: index)
+            let button = partnerButton(title: partner?.initials, profileImageResource: partner?.profileImageResource, index: index)
             qotPartnersButtons.append(button)
             qotPartnersBox.addSubview(button)
 
@@ -248,15 +251,12 @@ private extension MyWhyView {
             button.heightAnchor == (layout.profileImageWidth * 0.4)
 
             guard let leftButton = previousButton else {
-
                 button.leftAnchor == qotPartnersBox.leftAnchor
-
                 previousButton = button
                 continue
             }
 
             button.leftAnchor == leftButton.rightAnchor + 4
-
             previousButton = button
         }
 
@@ -298,14 +298,17 @@ private extension MyWhyView {
         return button
     }
 
-    func partnerButton(title: String?, profileImage: UIImage?, index: Index) -> UIButton {
+    func partnerButton(title: String?, profileImageResource: MediaResource?, index: Index) -> UIButton {
         let button = UIButton()
-        button.setTitle((profileImage == nil ? title : nil), for: .normal)
+        let title = (profileImageResource?.isAvailable ?? false) ? nil : title
+        button.setTitle(title, for: .normal)
         button.titleLabel?.font = Font.H6NavigationTitle
         button.setTitleColor(Color.MeSection.whiteLabel, for: .normal)
         button.setBackgroundImage(R.image.myWhyPartnerFrame(), for: .normal)
         button.addTarget(self, action: #selector(didTapPartner), for: .touchUpInside)
-        button.setImage(profileImage, for: .normal)
+        if let resource = profileImageResource {
+            button.setImageFromResource(resource)
+        }
         button.imageView?.setupHexagonImageView()
         button.imageView?.contentMode = .scaleAspectFill
         button.tag = index

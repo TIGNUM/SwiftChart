@@ -13,7 +13,7 @@ class SyncableObject: Object {
     dynamic var localID: String = UUID().uuidString
 
     let remoteID = RealmOptional<Int>(nil)
-
+    
     dynamic var createdAt: Date = Date()
 
     dynamic var modifiedAt: Date = Date()
@@ -29,9 +29,15 @@ class SyncableObject: Object {
     class func additionalIndexedProperties() -> [String] {
         return []
     }
-    
+
+    final func setRemoteIDValue(_ value: Int) {
+        remoteID.value = value
+        didSetRemoteID()
+    }
+
     // @note we use didSetRemoteID() as using an inverse relationship to a base class (e.g. SyncableObject) doesn't pick superclass changes to remoteID
     func didSetRemoteID() {
+
     }
 
     // FIXME: This should be part of a protocol and only applied to types which a only created server side.

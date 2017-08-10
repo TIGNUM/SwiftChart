@@ -136,7 +136,7 @@ extension PartnersViewController: iCarouselDataSource, iCarouselDelegate {
                    email: item?.email,
                    relationship: item?.relationship,
                    initials: item?.initials,
-                   profileImage: item?.profileImage)
+                   profileImageResource: item?.profileImageResource)
         return view
     }
 

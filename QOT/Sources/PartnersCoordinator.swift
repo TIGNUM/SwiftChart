@@ -44,17 +44,12 @@ final class PartnersCoordinator: NSObject, ParentCoordinator {
     func start() {
         rootViewController.present(topTabBarController, animated: true)
     }
-    
-    func save() {
-        services.partnerService.update(viewModel.items.flatMap({$0}), completion: nil)
-    }
 }
 
 // MARK: - TopTabBarDelegate
 
 extension PartnersCoordinator: TopNavigationBarDelegate {
     func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
-        save()
         topTabBarController.dismiss(animated: true, completion: nil)
     }
     

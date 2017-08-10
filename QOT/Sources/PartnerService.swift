@@ -18,65 +18,58 @@ final class PartnerService {
         return AnyRealmCollection(results)
     }
     
-    var partnerValues: [PartnerValue] {
-        return partners.map({ (partner: Partner) -> PartnerValue in
-            return PartnerValue(
-                localID: partner.localID,
-                profileImageURL: partner.profileImageURL,
-                name: partner.name,
-                surname: partner.surname,
-                relationship: partner.relationship,
-                email: partner.email)
-        })
-    }
-    
     init(mainRealm: Realm, realmProvider: RealmProvider) {
         self.mainRealm = mainRealm
         self.realmProvider = realmProvider
     }
     
-    func create(success: (() -> Void)?, failure: ((Error?) -> Void)?) {
-        DispatchQueue.global().async {
-            do {
-                let realm = try self.realmProvider.realm()
-                try realm.write {
-                    _ = realm.create(Partner.self, value: Partner(), update: false)
-                    DispatchQueue.main.async {
-                        success?()
-                    }
-                }
-            } catch {
-                DispatchQueue.main.async {
-                    failure?(error)
-                }
-            }
+    func createPartner() throws -> Partner {
+        let partner = Partner()
+        partner.profileImageResource = MediaResource(
+            localURLString: nil,
+            remoteURLString: nil,
+            relatedEntityID: partner.remoteID.value,
+            mediaFormat: .jpg,
+            mediaEntity: .qotPartner
+        )
+        try mainRealm.write {
+            mainRealm.add(partner)
+        }
+        return partner
+    }
+    
+    func updateName(partner: Partner, name: String) {
+        updatePartner(partner) {
+            $0.name = name
         }
     }
     
-    func update(_ partners: [PartnerValue], completion: ((Error?) -> Void)?) {
-        DispatchQueue.global().async {
-            do {
-                let realm = try self.realmProvider.realm()
-                try realm.write {
-                    partners.forEach({ (p: PartnerValue) in
-                        let partner = Partner(
-                            localID: p.localID,
-                            name: p.name,
-                            surname: p.surname,
-                            relationship: p.relationship,
-                            email: p.email,
-                            profileImageURL: p.profileImageURL)
-                        realm.add(partner, update: true)
-                    })
-                    DispatchQueue.main.async {
-                        completion?(nil)
-                    }
-                }
-            } catch {
-                DispatchQueue.main.async {
-                    completion?(error)
-                }
+    func updateSurname(partner: Partner, surname: String) {
+        updatePartner(partner) {
+            $0.surname = surname
+        }
+    }
+    
+    func updateRelationship(partner: Partner, relationship: String) {
+        updatePartner(partner) {
+            $0.relationship = relationship
+        }
+    }
+    
+    func updateEmail(partner: Partner, email: String) {
+        updatePartner(partner) {
+            $0.email = email
+        }
+    }
+    
+    func updatePartner(_ partner: Partner, block: (Partner) -> Void) {
+        do {
+            try mainRealm.write {
+                block(partner)
+                partner.didUpdate()
             }
+        } catch let error {
+            assertionFailure("Update \(Partner.self), error: \(error)")
         }
     }
 }

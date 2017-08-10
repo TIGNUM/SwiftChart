@@ -102,8 +102,8 @@ extension UserService {
             localURLString: nil,
             remoteURLString: nil,
             relatedEntityID: myToBeVision.remoteID.value,
-            mediaFormat: "JPG",
-            mediaEntity: "TOBEVISION"
+            mediaFormat: .jpg,
+            mediaEntity: .toBeVision
         )
         try mainRealm.write {
             mainRealm.add(myToBeVision)

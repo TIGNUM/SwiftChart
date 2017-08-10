@@ -283,7 +283,7 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
         startChild(child: coordinator)
     }
 
-    func didTapQOTPartner(selectedIndex: Index, partners: [PartnerWireframe], from view: UIView, in viewController: MyUniverseViewController) {
+    func didTapQOTPartner(selectedIndex: Index, partners: [Partner], from view: UIView, in viewController: MyUniverseViewController) {
         let coordinator = PartnersCoordinator(root: topTabBarControllerMe, services: services, selectedIndex: selectedIndex)
         startChild(child: coordinator)
     }

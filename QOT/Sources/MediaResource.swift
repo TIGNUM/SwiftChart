@@ -10,6 +10,23 @@ import RealmSwift
 import Freddy
 
 class MediaResource: SyncableObject {
+    
+    enum Entity: String {
+        case setting = "SETTING"
+        case qotPartner = "QOTPARTNER"
+        case toBeVision = "TOBEVISION"
+        case contentCategory = "CONTENTCATEGORY"
+        case content = "CONTENT"
+        case user = "USER"
+        case contentItem = "CONTENTITEM"
+        case company = "COMPANY"
+        case tignumEmployee = "TIGNUMEMPLOYEE"
+    }
+    enum Format: String {
+        case png = "PNG"
+        case jpg = "JPG"
+    }
+    
     dynamic var localURLString: String?
     dynamic var remoteURLString: String?
     dynamic var mediaFormat: String = ""
@@ -32,14 +49,14 @@ class MediaResource: SyncableObject {
         return (localURLString != nil || remoteURLString != nil)
     }
     
-    convenience init(localURLString: String?, remoteURLString: String?, relatedEntityID: Int?, mediaFormat: String, mediaEntity: String) {
+    convenience init(localURLString: String?, remoteURLString: String?, relatedEntityID: Int?, mediaFormat: Format, mediaEntity: Entity) {
         self.init()
         
         self.localURLString = localURLString
         self.remoteURLString = remoteURLString
         self.relatedEntityID.value = relatedEntityID
-        self.mediaFormat = mediaFormat
-        self.mediaEntity = mediaEntity
+        self.mediaFormat = mediaFormat.rawValue
+        self.mediaEntity = mediaEntity.rawValue
     }
 }
 

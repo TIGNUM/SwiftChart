@@ -52,12 +52,15 @@ final class CarouselCellView: UIView {
 
 extension CarouselCellView {
 
-    func setup(with name: String?, surename: String?, email: String?, relationship: String?, initials: String?, profileImage: UIImage?) {
-        imageView.image = profileImage
-        if profileImage != nil {
-            editPictureButton.setTitle(R.string.localized.meSectorMyWhyPartnersChangePhoto(), for: .normal)
-        } else {
+    func setup(with name: String?, surename: String?, email: String?, relationship: String?, initials: String?, profileImageResource: MediaResource?) {
+        if let profileImageResource = profileImageResource {
+            imageView.setImageFromResource(profileImageResource)
+        }
+        let isAvailable = profileImageResource?.isAvailable ?? false
+        if isAvailable {
             editPictureButton.setTitle(R.string.localized.meSectorMyWhyPartnersAddPhoto(), for: .normal)
+        } else {
+            editPictureButton.setTitle(R.string.localized.meSectorMyWhyPartnersChangePhoto(), for: .normal)
         }
         textFieldName.attributedText = NSMutableAttributedString(
             string: name ?? "",

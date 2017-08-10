@@ -13,14 +13,14 @@ protocol MyUniverseViewControllerDelegate: class {
     func didTapSector(startingSection: MyStatisticsSectionType?, in viewController: MyUniverseViewController)
     func didTapMyToBeVision(vision: MyToBeVision?, from view: UIView, in viewController: MyUniverseViewController)
     func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, from view: UIView, in viewController: MyUniverseViewController)
-    func didTapQOTPartner(selectedIndex: Index, partners: [PartnerWireframe], from view: UIView, in viewController: MyUniverseViewController)
+    func didTapQOTPartner(selectedIndex: Index, partners: [Partner], from view: UIView, in viewController: MyUniverseViewController)
     func didTapRightBarButton(_ button: UIBarButtonItem, from topNavigationBar: TopNavigationBar, in viewController: MyUniverseViewController)
 }
 
 protocol MyWhyViewDelegate: class {
     func didTapMyToBeVision(vision: MyToBeVision?, from view: UIView)
     func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, from view: UIView)
-    func didTapQOTPartner(selectedIndex: Index, partners: [PartnerWireframe], from view: UIView)
+    func didTapQOTPartner(selectedIndex: Index, partners: [Partner], from view: UIView)
 }
 
 final class MyUniverseViewController: UIViewController {
@@ -353,7 +353,7 @@ extension MyUniverseViewController: MyWhyViewDelegate {
         delegate?.didTapWeeklyChoices(weeklyChoice: weeklyChoice, from: view, in: self)
     }
 
-    func didTapQOTPartner(selectedIndex: Index, partners: [PartnerWireframe], from view: UIView) {
+    func didTapQOTPartner(selectedIndex: Index, partners: [Partner], from view: UIView) {
         delegate?.didTapQOTPartner(selectedIndex: selectedIndex, partners: partners, from: view, in: self)
     }
 }

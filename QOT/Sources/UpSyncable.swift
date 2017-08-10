@@ -155,7 +155,7 @@ extension UpSyncableWithLocalAndRemoteIDs where Self: SyncableObject {
                             throw SimpleError(localizedDescription: "No remote ID for object: \(object)")
                         }
 
-                        object.remoteID.value = remoteID
+                        object.setRemoteIDValue(remoteID)
                         object.dirty = false
                     case .updatedLocally:
                         object.dirty = false

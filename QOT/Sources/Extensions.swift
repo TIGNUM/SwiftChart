@@ -307,6 +307,22 @@ extension UIImageView {
 
 extension UIButton {
     
+    func setImageFromResource(_ resource: MediaResource, defaultImage: UIImage? = nil, completion: ((UIImage?, Error?) -> Void)? = nil) {
+        if let localURL = resource.localURL {
+            let image = UIImage(dataUrl: localURL)
+            setImage(image, for: .normal)
+            completion?(image, nil)
+        } else if let remoteURL = resource.remoteURL {
+            let options: [KingfisherOptionsInfoItem] = [.targetCache(KingfisherManager.shared.cache)]
+            kf.setImage(with: remoteURL, for: .normal, placeholder: defaultImage, options: options, progressBlock: nil, completionHandler: { (image: Image?, error: NSError?, cacheType: CacheType, url: URL?) in
+                completion?(image, error)
+            })
+        } else {
+            setImage(defaultImage, for: .normal)
+            completion?(defaultImage, nil)
+        }
+    }
+    
     func setBackgroundImageFromResource(_ resource: MediaResource, defaultImage: UIImage? = nil, completion: ((UIImage?, Error?) -> Void)? = nil) {
         if let localURL = resource.localURL {
             let image = UIImage(dataUrl: localURL)

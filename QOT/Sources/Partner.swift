@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import Freddy
 
-final class Partner: SyncableObject, PartnerWireframe {
+final class Partner: SyncableObject {
 
     // MARK: Public Properties
 
@@ -26,7 +26,7 @@ final class Partner: SyncableObject, PartnerWireframe {
     
     dynamic var email: String?
 
-    dynamic var profileImageURL: String?
+    dynamic var profileImageResource: MediaResource?
 
     dynamic var deleted: Bool = false
 
@@ -34,16 +34,20 @@ final class Partner: SyncableObject, PartnerWireframe {
     
     // MARK: Functions
     
-    convenience init(localID: String, name: String?, surname: String?, relationship: String?, email: String?, profileImageURL: String?) {
+    convenience init(localID: String, name: String?, surname: String?, relationship: String?, email: String?, profileImageResource: MediaResource) {
         self.init()
         self.localID = localID
         self.name = name
         self.surname = surname
         self.relationship = relationship
         self.email = email
-        self.profileImageURL = profileImageURL
+        self.profileImageResource = profileImageResource
 
         dirty = true
+    }
+    
+    override func didSetRemoteID() {
+        profileImageResource?.relatedEntityID.value = remoteID.value
     }
 }
 
@@ -54,7 +58,7 @@ extension Partner: TwoWaySyncable {
         surname = data.surname
         relationship = data.relationship
         email = data.email
-        // FIXME: We need to do something with remoteProfileImageURL
+        profileImageResource?.remoteURLString = data.remoteProfileImageURL
     }
 
     func toJson() -> JSON? {
@@ -72,5 +76,18 @@ extension Partner: TwoWaySyncable {
             .relationship: relationship.toJSONEncodable
         ]
         return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
+    }
+}
+
+extension Partner {
+    var initials: String {
+        var initials = ""
+        if let initial = name?.characters.first {
+            initials += String(initial)
+        }
+        if let initial = surname?.characters.first {
+            initials += String(initial)
+        }
+        return initials
     }
 }
