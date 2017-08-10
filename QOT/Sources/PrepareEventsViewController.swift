@@ -119,7 +119,7 @@ extension PrepareEventsViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footer: PrepareEventTableViewFooterView = tableView.dequeueHeaderFooter()
 
-        footer.setup(title: R.string.localized.preparePrepareEventsAddNewTrip(), delegate: self)
+        footer.setup(title: R.string.localized.preparePrepareEventsAddNewEvent(), delegate: self)
 
         return footer
     }

@@ -77,11 +77,10 @@ final class PrepareChatDecisionManager {
         items.append(deliveredFooter(alignment: .left))
 
         if let headerText = question.answersDescription {
-            items.append(ChatItem(type: .header(headerText, alignment: .left)))
+            items.append(ChatItem(type: .header(headerText, alignment: .right)))
         }
 
         if let groupID = questionGroupID {
-            items.append(ChatItem(type: .header(R.string.localized.prepareChatHeaderPreparations(), alignment: .right)))
 
             let predicate = NSPredicate(format: "ANY decisions.questionGroupID == %d", groupID)
             let answers = question.answers.filter(predicate)

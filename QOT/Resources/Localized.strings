@@ -113,7 +113,7 @@
 "Me.Card.Title.Intensity" = "Average";
 
 "Prepare.PrepareEvents.AddPreparation" = "ADD THIS PREPARATION TO";
-"Prepare.PrepareEvents.AddNewTrip" = "Add new trip";
+"Prepare.PrepareEvents.AddNewEvent" = "Add new event";
 "Prepare.PrepareEvents.MyPrepList" = "MY PREP LIST";
 "Prepare.PrepareEvents.UpcomingEvents" = "UPCOMING EVENTS";
 "Prepare.PrepareEvents.YourDevice" = "YOUR DEVICE";
