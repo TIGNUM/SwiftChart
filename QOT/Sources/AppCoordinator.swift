@@ -53,6 +53,7 @@ final class AppCoordinator: ParentCoordinator {
     // MARK: - Life Cycle
 
     init(window: UIWindow) {
+        PageTracker.default.start()
         self.window = window
         secondaryWindow = UIWindow(frame: UIScreen.main.bounds)
         configureSecondaryWindow()

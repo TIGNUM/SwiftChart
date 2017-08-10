@@ -21,6 +21,10 @@ final class AnimatedLaunchScreenViewController: UIViewController {
         setupLayout()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
     func fadeInLogo(withCompletion completion: (() -> Void)? = nil) {
         UIView.animate(withDuration: 2.0, animations: {
             self.logoImageView.alpha = 1.0
