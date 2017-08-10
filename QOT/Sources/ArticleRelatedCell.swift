@@ -40,7 +40,7 @@ final class ArticleRelatedCell: UITableViewCell, Dequeueable {
     func setupView(title: String, subTitle: String, previewImageURL: URL?) {
         contentView.backgroundColor = .clear
         backgroundColor = .clear
-        previewImageView.kf.setImage(with: previewImageURL)
+        previewImageView.kf.setImage(with: previewImageURL, placeholder: R.image.preloading(), options: nil, progressBlock: nil, completionHandler: nil)
         previewImageView.layer.cornerRadius = 8
         previewImageView.layer.masksToBounds = true
         titleLabel.attributedText = Style.headline(title.uppercased(), .white).attributedString()

@@ -37,7 +37,7 @@ class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
         textLabel.attributedText = Style.headline(description.uppercased(), .white).attributedString()        
         mediaInformation.attributedText = attributedTitle(text: duration)
         imageView.kf.indicatorType = .activity
-        imageView.kf.setImage(with: imageURL)
+        imageView.kf.setImage(with: imageURL, placeholder: R.image.preloading(), options: nil, progressBlock: nil, completionHandler: nil)
     }
 
     override func layoutSubviews() {
