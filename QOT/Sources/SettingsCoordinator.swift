@@ -14,10 +14,12 @@ protocol SettingsCoordinatorDelegate: class {
     func openCalendarListViewController(settingsViewController: SettingsViewController)
 
     func openChangePasswordViewController(settingsViewController: SettingsViewController)
+
+    func openArticleViewController(viewController: SettingsViewController, settingsType: SettingsType)
 }
 
 final class SettingsCoordinator: ParentCoordinator {
-    
+
     fileprivate let rootViewController: SettingsMenuViewController
     fileprivate let services: Services
     fileprivate let settingsType: SettingsType.SectionType
@@ -50,6 +52,7 @@ final class SettingsCoordinator: ParentCoordinator {
 // MARK: - TopNavigationBarDelegate
 
 extension SettingsCoordinator: TopNavigationBarDelegate {
+    
     func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
         topTabBarController.dismissLeftToRight()
         removeChild(child: self)
@@ -73,6 +76,20 @@ extension SettingsCoordinator: SettingsCoordinatorDelegate {
 
     func openChangePasswordViewController(settingsViewController: SettingsViewController) {
         let coordinator = SettingsChangePasswordCoordinator(root: settingsViewController, services: services)
+        startChild(child: coordinator)
+    }
+
+    func openArticleViewController(viewController: SettingsViewController, settingsType: SettingsType) {
+        let contentCollection = settingsType.contentCollection(service: services.contentService)
+        guard let coordinator = ArticleContentItemCoordinator(
+            root: viewController,
+            services: services,
+            contentCollection: contentCollection,
+            articleHeader: nil,
+            topTabBarTitle: contentCollection?.title) else {
+                return
+        }
+        
         startChild(child: coordinator)
     }
 }

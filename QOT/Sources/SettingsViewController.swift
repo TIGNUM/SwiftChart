@@ -152,6 +152,11 @@ extension SettingsViewController {
             switch settingsType {
             case .calendar: delegate?.openCalendarListViewController(settingsViewController: self)
             case .password: delegate?.openChangePasswordViewController(settingsViewController: self)
+            case .copyrights,
+                 .legalNotes,
+                 .terms,
+                 .security,
+                 .dataProtection: delegate?.openArticleViewController(viewController: self, settingsType: settingsType)
             default: return
             }
         }

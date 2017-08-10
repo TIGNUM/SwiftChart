@@ -48,11 +48,11 @@
 		7F4251BD1F20F05D00EA451D /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4251BC1F20F05D00EA451D /* OnboardingCoordinator.swift */; };
 		7F4251C31F211BC600EA451D /* PermissionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4251C21F211BC600EA451D /* PermissionHandler.swift */; };
 		7F507BA11F3B0F8A0091742D /* EventTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F507BA01F3B0F8A0091742D /* EventTracker.swift */; };
+		7F507BA31F3B4DEC0091742D /* UserAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F507BA21F3B4DEC0091742D /* UserAnswer.swift */; };
 		7F5A25B01F3C4BC700A11466 /* PageTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A25AF1F3C4BC700A11466 /* PageTracker.swift */; };
 		7F5A25B21F3C515800A11466 /* Swizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A25B11F3C515800A11466 /* Swizzle.swift */; };
 		7F5A25B41F3C569300A11466 /* TrackablePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A25B31F3C569300A11466 /* TrackablePage.swift */; };
 		7F5A25B61F3C56A600A11466 /* EventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A25B51F3C56A600A11466 /* EventData.swift */; };
-		7F507BA31F3B4DEC0091742D /* UserAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F507BA21F3B4DEC0091742D /* UserAnswer.swift */; };
 		7F691C551F0D19AE00E2C180 /* MyToBeVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F691C541F0D19AE00E2C180 /* MyToBeVision.swift */; };
 		7F691C5E1F0D30C800E2C180 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F691C5D1F0D30C800E2C180 /* PlaceholderTextView.swift */; };
 		7F8739071F162300005ED8B8 /* WeeklyChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8739061F162300005ED8B8 /* WeeklyChoice.swift */; };
@@ -507,11 +507,11 @@
 		7F4251BC1F20F05D00EA451D /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		7F4251C21F211BC600EA451D /* PermissionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionHandler.swift; sourceTree = "<group>"; };
 		7F507BA01F3B0F8A0091742D /* EventTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTracker.swift; sourceTree = "<group>"; };
+		7F507BA21F3B4DEC0091742D /* UserAnswer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAnswer.swift; sourceTree = "<group>"; };
 		7F5A25AF1F3C4BC700A11466 /* PageTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageTracker.swift; sourceTree = "<group>"; };
 		7F5A25B11F3C515800A11466 /* Swizzle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swizzle.swift; sourceTree = "<group>"; };
 		7F5A25B31F3C569300A11466 /* TrackablePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackablePage.swift; sourceTree = "<group>"; };
 		7F5A25B51F3C56A600A11466 /* EventData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventData.swift; sourceTree = "<group>"; };
-		7F507BA21F3B4DEC0091742D /* UserAnswer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAnswer.swift; sourceTree = "<group>"; };
 		7F691C541F0D19AE00E2C180 /* MyToBeVision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToBeVision.swift; sourceTree = "<group>"; };
 		7F691C5D1F0D30C800E2C180 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		7F8739061F162300005ED8B8 /* WeeklyChoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoice.swift; sourceTree = "<group>"; };
@@ -974,6 +974,14 @@
 			name = "Select Weekly Choices";
 			sourceTree = "<group>";
 		};
+		7F507BA41F3B4E7A0091742D /* UserAnswer */ = {
+			isa = PBXGroup;
+			children = (
+				7F507BA21F3B4DEC0091742D /* UserAnswer.swift */,
+			);
+			name = UserAnswer;
+			sourceTree = "<group>";
+		};
 		7F5A25AE1F3C4BB400A11466 /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
@@ -983,14 +991,6 @@
 				7F5A25B51F3C56A600A11466 /* EventData.swift */,
 			);
 			name = Analytics;
-			sourceTree = "<group>";
-		};
-		7F507BA41F3B4E7A0091742D /* UserAnswer */ = {
-			isa = PBXGroup;
-			children = (
-				7F507BA21F3B4DEC0091742D /* UserAnswer.swift */,
-			);
-			name = UserAnswer;
 			sourceTree = "<group>";
 		};
 		7F691C561F0D19B100E2C180 /* MyToBeVision */ = {

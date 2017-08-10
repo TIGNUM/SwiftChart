@@ -54,6 +54,7 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
         fullViewController = ArticleItemViewController(viewModel: viewModel)
         fullViewController.modalTransitionStyle = .crossDissolve
         fullViewController.modalPresentationStyle = .custom
+        fullViewController.title = topTabBarTitle
         
         fullViewController.delegate = self
     }
