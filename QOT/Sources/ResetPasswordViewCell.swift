@@ -131,7 +131,7 @@ class ResetPasswordViewCell: UITableViewCell, Dequeueable {
     }
 
     func doPasswordReset() {
-        guard let username = userInput.text else { return }
+        guard let username = userInput.text?.trimmingCharacters(in: .whitespacesAndNewlines), username.characters.count > 0 else { return }
 
         cellDelegate?.didTapResetPassword(withUserName: username) { [weak self] in
             guard let strongSelf = self else { return }
