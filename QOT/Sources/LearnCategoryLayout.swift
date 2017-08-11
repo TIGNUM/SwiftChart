@@ -12,15 +12,32 @@ protocol LearnCategoryLayoutDelegate: UICollectionViewDelegate {
     func bubbleLayoutInfo(layout: LearnCategoryLayout, index: Index) -> BubbleLayoutInfo
 }
 
+private let backgroundViewDecorationKind = "backgroundViewDecorationKind"
+private let backgroundViewIndexPath = IndexPath(item: 0, section: 0)
+
 final class LearnCategoryLayout: UICollectionViewLayout {
-    
+
     private var layoutAttributes = [UICollectionViewLayoutAttributes]()
+    private var backgroundImageAttributes: LearnCategoryListBackgroundViewLayoutAttributes = {
+        return LearnCategoryListBackgroundViewLayoutAttributes(forDecorationViewOfKind: backgroundViewDecorationKind,
+                                                               with:backgroundViewIndexPath)
+    }()
     private var contentSize = CGSize.zero {
         didSet {
             if contentSize != oldValue {
                 centerCollectionView()
             }
         }
+    }
+
+    override init() {
+        super.init()
+
+        register(LearnCategoryListBackgroundView.self, forDecorationViewOfKind: backgroundViewDecorationKind)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     override func prepare() {
@@ -65,6 +82,10 @@ final class LearnCategoryLayout: UICollectionViewLayout {
         } else {
             contentSize = .zero
         }
+
+        backgroundImageAttributes.frame = CGRect(origin: CGPoint.zero, size: contentSize)
+        backgroundImageAttributes.zIndex = -1
+        backgroundImageAttributes.bubbleFrames = frames
     }
     
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
@@ -72,9 +93,15 @@ final class LearnCategoryLayout: UICollectionViewLayout {
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        return layoutAttributes.filter { $0.frame.intersects(rect) }
+        var attrs = layoutAttributes.filter { $0.frame.intersects(rect) }
+        attrs.append(backgroundImageAttributes)
+        return attrs
     }
-    
+
+    override func layoutAttributesForDecorationView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        return backgroundImageAttributes
+    }
+
     override var collectionViewContentSize: CGSize {
         return contentSize
     }

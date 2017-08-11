@@ -277,6 +277,7 @@
 		CBFECCA81F31D7480076ACE6 /* SyncTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFECCA71F31D7480076ACE6 /* SyncTypes.swift */; };
 		CBFECCAA1F33492D0076ACE6 /* EKEventStore+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFECCA91F33492D0076ACE6 /* EKEventStore+Settings.swift */; };
 		CBFECCAD1F388B500076ACE6 /* TimeZone+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFECCAC1F388B500076ACE6 /* TimeZone+Convenience.swift */; };
+		CBFECCC21F3C9CA00076ACE6 /* LearnCategoryListBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFECCC11F3C9CA00076ACE6 /* LearnCategoryListBackgroundView.swift */; };
 		CC02E1441F2789FE00134574 /* CLLocationManager+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC02E1431F2789FE00134574 /* CLLocationManager+Convenience.swift */; };
 		CC02E1461F27996800134574 /* SettingsCalendarListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC02E1451F27996800134574 /* SettingsCalendarListCoordinator.swift */; };
 		CC02E1491F279A0F00134574 /* SettingsCalendarListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC02E1481F279A0F00134574 /* SettingsCalendarListViewModel.swift */; };
@@ -746,6 +747,7 @@
 		CBFECCA71F31D7480076ACE6 /* SyncTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncTypes.swift; sourceTree = "<group>"; };
 		CBFECCA91F33492D0076ACE6 /* EKEventStore+Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKEventStore+Settings.swift"; sourceTree = "<group>"; };
 		CBFECCAC1F388B500076ACE6 /* TimeZone+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeZone+Convenience.swift"; sourceTree = "<group>"; };
+		CBFECCC11F3C9CA00076ACE6 /* LearnCategoryListBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnCategoryListBackgroundView.swift; sourceTree = "<group>"; };
 		CC02E1431F2789FE00134574 /* CLLocationManager+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLLocationManager+Convenience.swift"; sourceTree = "<group>"; };
 		CC02E1451F27996800134574 /* SettingsCalendarListCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCalendarListCoordinator.swift; sourceTree = "<group>"; };
 		CC02E1481F279A0F00134574 /* SettingsCalendarListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCalendarListViewModel.swift; sourceTree = "<group>"; };
@@ -1415,6 +1417,7 @@
 				CCC1B6A31E8B9B7300D1461F /* LearnCategoryLayout.swift */,
 				CCC1B6A41E8B9B7300D1461F /* LearnCategoryListViewController.swift */,
 				CCC1B6A61E8B9B7300D1461F /* LearnCategoryListViewModel.swift */,
+				CBFECCC11F3C9CA00076ACE6 /* LearnCategoryListBackgroundView.swift */,
 			);
 			name = "Learn Category";
 			sourceTree = "<group>";
@@ -2622,6 +2625,7 @@
 				85DC6F851EF3E32A004F4B4D /* MyStatisticsDataPeriods.swift in Sources */,
 				D5ACF2DA1F1624EB008B0EC1 /* LoadingViewController.swift in Sources */,
 				CB0A4A5A1ECC4C3E006A2D85 /* AddSensorViewModel.swift in Sources */,
+				CBFECCC21F3C9CA00076ACE6 /* LearnCategoryListBackgroundView.swift in Sources */,
 				CB3437551EFD1C2600D89D4F /* PrepareChatDecisionManager.swift in Sources */,
 				D50CDDC11EC48CA700D27072 /* AverageGraphView.swift in Sources */,
 				D5B7072A1F03AB3900C812EB /* MorningInterviewCell.swift in Sources */,
