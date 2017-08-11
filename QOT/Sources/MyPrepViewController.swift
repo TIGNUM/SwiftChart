@@ -81,7 +81,7 @@ extension MyPrepViewController: UITableViewDelegate, UITableViewDataSource {
             timeToEvent = Date().timeToDateAsString(startDate)
         }
 
-        let footer = R.string.localized.prepareMyPrepTimeToEvent(timeToEvent)
+        let footer = timeToEvent.isEmpty ? "" : R.string.localized.prepareMyPrepTimeToEvent(timeToEvent)
         cell.setup(with: item.header, text: item.text, footer: footer, count: count)
 
         return cell
