@@ -88,6 +88,7 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
             topTabBarTitle: topTabBarTitle.uppercased()) else {
                 return
         }
+        
         startChild(child: coordinator)
     }
 }

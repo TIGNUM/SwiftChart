@@ -21,6 +21,8 @@ protocol SettingsViewControllerDelegate: class {
     func didTapButton(at indexPath: IndexPath, settingsType: SettingsType)
 
     func didChangeLocationValue(sender: UISwitch, settingsCell: SettingsTableViewCell)
+
+    func didChangeNotificationValue(sender: UISwitch, settingsCell: SettingsTableViewCell, key: String?)
 }
 
 final class SettingsViewController: UITableViewController {
@@ -29,14 +31,16 @@ final class SettingsViewController: UITableViewController {
 
     fileprivate var viewModel: SettingsViewModel
     fileprivate let settingsType: SettingsType.SectionType
+    fileprivate let services: Services
     fileprivate let locationManager = CLLocationManager()
     weak var delegate: SettingsCoordinatorDelegate?
     
     // MARK: - Init
     
-    init(viewModel: SettingsViewModel) {
+    init(viewModel: SettingsViewModel, services: Services, settingsType: SettingsType.SectionType) {
         self.viewModel = viewModel
-        self.settingsType = viewModel.settingsType
+        self.settingsType = settingsType
+        self.services = services
 
         super.init(style: .grouped)
     }
@@ -80,6 +84,15 @@ private extension SettingsViewController {
         tableView.register(R.nib.settingsButtonTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Button.identifier)
         tableView.register(R.nib.settingsControlTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Control.identifier)
         tableView.register(R.nib.settingsTextFieldTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_TextField.identifier)
+    }
+
+    func updateViewModelAndReloadTableView() {
+        guard let settingsViewModel = SettingsViewModel(services: services, settingsType: settingsType) else {
+            return
+        }
+
+        viewModel = settingsViewModel
+        tableView.reloadData()
     }
 }
 
@@ -157,6 +170,9 @@ extension SettingsViewController {
                  .terms,
                  .security,
                  .dataProtection: delegate?.openArticleViewController(viewController: self, settingsType: settingsType)
+            case .tutorial: print("tutorial")
+            case .interview: print("interview")
+            case .support: print("support")
             default: return
             }
         }
@@ -181,7 +197,7 @@ private extension SettingsViewController {
                     let date = value as? Date {
                         let dateOfBirth = DateFormatter.settingsUser.string(from: date)
                         self.viewModel.updateDateOfBirth(dateOfBirth: dateOfBirth)
-                        self.tableView.reloadData()
+                        self.updateViewModelAndReloadTableView()
                 }
             }, cancel: { (_) in
                 return
@@ -209,7 +225,7 @@ private extension SettingsViewController {
                 self.viewModel.updateHeight(height: items[index])
             }
 
-            self.tableView.reloadData()
+            self.updateViewModelAndReloadTableView()
         }, cancel: { (_) in
             return
         }, origin: view)
@@ -247,7 +263,7 @@ private extension SettingsViewController {
                 }
             }
 
-            self.tableView.reloadData()
+            self.updateViewModelAndReloadTableView()
         }, cancel: { (_) in
             return
         }, origin: view)
@@ -274,7 +290,15 @@ extension SettingsViewController: SettingsViewControllerDelegate {
         // Navigate to selected view, like tutorial.
     }
 
-    func didChangeLocationValue(sender: UISwitch, settingsCell: SettingsTableViewCell) {
+    func didChangeNotificationValue(sender: UISwitch, settingsCell: SettingsTableViewCell, key: String?) {
+        guard let key = key else {
+            return
+        }
+
+        viewModel.updateNotificationSetting(key: key, value: sender.isOn)
+    }
+
+    func didChangeLocationValue(sender: UISwitch, settingsCell: SettingsTableViewCell) {        
         if LocationManager.authorizationStatus == .notDetermined {
             // TODO: Connect with PremissionManager and requesst for the very first time.            
             resetLocationSwitch(sender: sender, settingsCell: settingsCell)

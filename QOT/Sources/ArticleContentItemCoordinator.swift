@@ -46,18 +46,16 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
         self.articleHeader = articleHeader
         self.selectedContent = contentCollection
         self.topTabBarTitle = topTabBarTitle
-
         let articleItems = Array(contentCollection.articleItems)
         viewModel = ArticleItemViewModel(services: services,
                                          items: articleItems,
                                          contentCollection: contentCollection,
-                                         articleHeader: articleHeader)
-        
+                                         articleHeader: articleHeader
+                    )
         fullViewController = ArticleItemViewController(viewModel: viewModel)
         fullViewController.modalTransitionStyle = .crossDissolve
         fullViewController.modalPresentationStyle = .custom
         fullViewController.title = topTabBarTitle
-        
         fullViewController.delegate = self
     }
 

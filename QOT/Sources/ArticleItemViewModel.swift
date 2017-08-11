@@ -50,7 +50,7 @@ final class ArticleItemViewModel {
             })
 
             self.items = items.sorted(by: { (lhs: ContentItem, rhs: ContentItem) -> Bool in
-                    return lhs.sortOrder < rhs.sortOrder
+                    return lhs.sortOrder > rhs.sortOrder
             })
     }
 }

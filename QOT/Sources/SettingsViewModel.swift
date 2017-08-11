@@ -71,6 +71,27 @@ enum SettingsType: Int {
         }
     }
 
+    static func notificationType(key: String) -> SettingsType? {
+        if key == SettingsType.strategies.notificationKey {
+            return .strategies
+        } else if key == SettingsType.dailyPrep.notificationKey {
+            return .dailyPrep
+        } else if key == SettingsType.weeklyChoices.notificationKey {
+            return .weeklyChoices
+        }
+
+        return nil
+    }
+
+    var notificationKey: String? {
+        switch self {
+        case .strategies: return "system.notification.strategies"
+        case .dailyPrep: return "system.notification.dailyPrep"
+        case .weeklyChoices: return "system.notification.weeklyChoices"
+        default: return nil
+        }
+    }
+
     enum SectionType {
         case general
         case notifications
@@ -177,7 +198,7 @@ final class SettingsViewModel {
     fileprivate var settingsSections = [SettingsSection]()
     fileprivate let services: Services
     fileprivate let user: User
-    let settingsType: SettingsType.SectionType
+    fileprivate let settingsType: SettingsType.SectionType
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
     var sectionCount: Int {
@@ -220,6 +241,14 @@ final class SettingsViewModel {
 
     func updateHeightUnit(heightUnit: String) {
         services.userService.updateUserHeightUnit(user: user, heightUnit: heightUnit)
+    }
+
+    func updateNotificationSetting(key: String, value: Bool) {
+        do {
+            try services.settingsService.setSettingValue(SettingValue.bool(value), key: key)
+        } catch let error {
+            print(error)
+        }
     }
 
     private func items(in section: Int) -> [SettingsRow] {
@@ -300,8 +329,8 @@ private func generalSettingsSection(for user: User?) -> [SettingsSection] {
         MockSettingsSection(title: "Company", rows: companyRows(for: user)),
         MockSettingsSection(title: "Personal", rows: personalRows(for: user)),
         MockSettingsSection(title: "Location", rows: locationRows),
-        MockSettingsSection(title: "Calendar", rows: calendarRows),
-        MockSettingsSection(title: "QOT", rows: tignumRows)
+        MockSettingsSection(title: "Calendar", rows: calendarRows)
+//        MockSettingsSection(title: "QOT", rows: tignumRows)
     ]
 }
 
@@ -363,18 +392,21 @@ private var tignumRows: [SettingsRow] {
 }
 
 private func categoryNotifications(services: Services) -> [SettingsRow] {
-    let notificationSettings = services.settingsService.notificationSettings()
-    var settingsRows = [SettingsRow]()
-
-    notificationSettings.forEach { (systemSetting: SystemSetting) in
-        switch systemSetting.value {
-        case .bool(let boolValue):
-            settingsRows.append(.control(title: systemSetting.displayName, isOn: boolValue, settingsType: .strategies, key: systemSetting.key))
-        default: return
+    let service = services.settingsService
+    let notificationSettings = service.notificationSettings()
+    let settingsRows = notificationSettings.map { (systemSetting) -> SettingsRow? in
+        let key = systemSetting.key
+        if let settingType = SettingsType.notificationType(key: key), let value = service.settingValue(key: key) {
+            switch value {
+            case .bool(let boolValue):
+                return .control(title: systemSetting.displayName, isOn: boolValue, settingsType: settingType, key: systemSetting.key)
+            default:
+                return nil
+            }
         }
+        return nil
     }
-
-    return settingsRows
+    return settingsRows.flatMap { $0 }
 }
 
 private var accountRows: [SettingsRow] {

@@ -13,10 +13,10 @@ final class ResetPasswordCoordinator: ParentCoordinator {
     // MARK: - Properties
 
     var children: [Coordinator] = []
-
     fileprivate let rootViewController: UIViewController
     fileprivate let networkManager: NetworkManager
     fileprivate let parentCoordinator: ParentCoordinator
+    fileprivate var topTabBarController: UINavigationController!
 
     // MARK: - Lifecycle
 
@@ -24,18 +24,34 @@ final class ResetPasswordCoordinator: ParentCoordinator {
         self.rootViewController = rootVC
         self.networkManager = networkManager
         self.parentCoordinator = parentCoordinator
+
+        let leftButton = UIBarButtonItem(withImage: R.image.ic_back(), tintColor: .clear)
+        let resetPasswordViewController = ResetPasswordViewController(delegate: self)
+        topTabBarController = UINavigationController(withPages: [resetPasswordViewController], topBarDelegate: self, leftButton: leftButton)
     }
 
     func start() {
-        let resetPasswordViewController = ResetPasswordViewController(delegate: self)
-
-        rootViewController.present(resetPasswordViewController, animated: true, completion: nil)
+        rootViewController.presentRightToLeft(controller: topTabBarController)
     }
+}
+
+// MARK: - TopNavigationBarDelegate
+
+extension ResetPasswordCoordinator: TopNavigationBarDelegate {
+
+    func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
+        topTabBarController.dismissLeftToRight()
+    }
+
+    func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {}
+
+    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {}
 }
 
 // MARK: - LoginDelegate
 
 extension ResetPasswordCoordinator: ResetPasswordViewControllerDelegate {
+    
     func didTapResetPassword(withUsername username: String, completion: @escaping (NetworkError?) -> Void) {
         AppDelegate.current.window?.showProgressHUD(type: .fitbit, actionBlock: { [unowned self] in
             let token = ["email": username]
@@ -57,8 +73,7 @@ extension ResetPasswordCoordinator: ResetPasswordViewControllerDelegate {
     }
 
     func didTapBack(viewController: UIViewController) {
-        viewController.dismiss(animated: true, completion: nil)
-        parentCoordinator.removeChild(child: self)
+        topTabBarController.dismissLeftToRight()
     }
 
     func checkIfEmailAvailable(email: String, completion: @escaping (Bool) -> Void) {

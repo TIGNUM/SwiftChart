@@ -35,11 +35,10 @@ final class SettingsCoordinator: ParentCoordinator {
         guard let viewModel = SettingsViewModel(services: services, settingsType: settingsType) else {
             return nil
         }
-        
-        settingsViewController = SettingsViewController(viewModel: viewModel)
-        settingsViewController.title = settingsType.title
-        
+
         let leftButton = UIBarButtonItem(withImage: R.image.ic_back())
+        settingsViewController = SettingsViewController(viewModel: viewModel, services: services, settingsType: settingsType)
+        settingsViewController.title = settingsType.title
         topTabBarController = UINavigationController(withPages: [settingsViewController], topBarDelegate: self, leftButton: leftButton)
         settingsViewController.delegate = self
     }
@@ -75,7 +74,7 @@ extension SettingsCoordinator: SettingsCoordinatorDelegate {
     }
 
     func openChangePasswordViewController(settingsViewController: SettingsViewController) {
-        let coordinator = SettingsChangePasswordCoordinator(root: settingsViewController, services: services)
+        let coordinator = ResetPasswordCoordinator(rootVC: settingsViewController, parentCoordinator: self, networkManager: NetworkManager())
         startChild(child: coordinator)
     }
 

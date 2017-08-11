@@ -140,11 +140,29 @@ private extension SettingsTableViewCell {
 extension SettingsTableViewCell {
 
     func valueChanged(sender: UISwitch) {
-        if controlUpdate == false {
-            controlUpdate = true            
-            settingsDelegate?.didChangeLocationValue(sender: sender, settingsCell: self)            
+        switch settingsType {
+        case .location: updateLocationSettings(sender)
+        case .calendar: updateCalendarSettings(sender)
+        case .strategies,
+             .dailyPrep,
+             .weeklyChoices: updateNotificationSettings(sender)
+        default: return
         }
+    }
 
+    private func updateNotificationSettings(_ sender: UISwitch) {
+        settingsDelegate?.didChangeNotificationValue(sender: sender, settingsCell: self, key: settingsType.notificationKey)
+        setSwitchState(switchControl: sender)
+    }
+
+    private func updateLocationSettings(_ sender: UISwitch) {
+        if controlUpdate == false {
+            controlUpdate = true
+            settingsDelegate?.didChangeLocationValue(sender: sender, settingsCell: self)
+        }
+    }
+
+    private func updateCalendarSettings(_ sender: UISwitch) {
         if let calendarIdentifier = calendarIdentifier {
             calendarSyncDelegate?.didChangeCalendarSyncValue(sender: sender, calendarIdentifier: calendarIdentifier)
             setSwitchState(switchControl: sender)

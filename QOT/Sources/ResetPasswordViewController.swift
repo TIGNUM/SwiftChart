@@ -15,7 +15,7 @@ protocol ResetPasswordViewControllerDelegate: class {
     func checkIfEmailAvailable(email: String, completion: @escaping (Bool) -> Void)
 }
 
-class ResetPasswordViewController: UITableViewController {
+final class ResetPasswordViewController: UITableViewController {
 
     // MARK: - Properties
 
@@ -72,10 +72,9 @@ extension ResetPasswordViewController {
 // MARK: - ResetPasswordViewCellDelegate
 
 extension ResetPasswordViewController: ResetPasswordViewCellDelegate {
+
     func keyboardAppeared(viewHeight: CGFloat) {
-
         let bottom: CGFloat = viewHeight - tableView.frame.height
-
         let contentInsets = UIEdgeInsets(top: 20, left: 0, bottom: bottom, right: 0)
         tableView.contentInset = contentInsets
         tableView.scrollIndicatorInsets = contentInsets
@@ -84,7 +83,6 @@ extension ResetPasswordViewController: ResetPasswordViewCellDelegate {
     func didTapResetPassword(withUserName username: String, successCompletion: @escaping () -> Void) {
         delegate?.didTapResetPassword(withUsername: username) { [weak self] error in
             guard let failure = error else {
-
                 successCompletion()
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: { [weak self] in
@@ -109,6 +107,7 @@ extension ResetPasswordViewController: ResetPasswordViewCellDelegate {
 }
 
 extension ResetPasswordViewController {
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
@@ -118,7 +117,6 @@ extension ResetPasswordViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         let cell: ResetPasswordViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(delegate: self.delegate, cellDelegate: self, parentViewController: self)
         return cell
@@ -138,7 +136,6 @@ extension ResetPasswordViewController {
     func setupLayout() {
         tableView.horizontalAnchors == horizontalAnchors
         tableView.verticalAnchors == verticalAnchors
-        
         view.layoutIfNeeded()
     }
 }

@@ -29,20 +29,18 @@ final class SettingsMenuCoordinator: ParentCoordinator {
             return nil
         }
 
+        let leftButton = UIBarButtonItem(withImage: R.image.ic_back())
         settingsMenuViewController = SettingsMenuViewController(viewModel: viewModel)
         presentationManager.presentationType = .fadeIn
         settingsMenuViewController.modalPresentationStyle = .custom
         settingsMenuViewController.transitioningDelegate = presentationManager
         settingsMenuViewController.title = R.string.localized.settingsTitle()
-
-        let leftButton = UIBarButtonItem(withImage: R.image.ic_minimize())
         topTabBarController = UINavigationController(withPages: [settingsMenuViewController], topBarDelegate: self, leftButton: leftButton)
-        
         settingsMenuViewController.delegate = self
     }
 
     func start() {
-        rootViewController.present(topTabBarController, animated: true)
+        rootViewController.presentRightToLeft(controller: topTabBarController)
     }
 }
 
@@ -75,12 +73,13 @@ extension SettingsMenuCoordinator: SettingsMenuViewControllerDelegate {
 
 extension SettingsMenuCoordinator: TopNavigationBarDelegate {
     func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
-        topTabBarController.dismiss(animated: true, completion: nil)
+        topTabBarController.dismissLeftToRight()
+        removeChild(child: self)
     }
     
     func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
     }
     
-    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
+    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {        
     }
 }
