@@ -15,24 +15,16 @@ final class UpSyncOperation<T>: ConcurrentOperation where T: Object, T: UpSyncab
     private let networkManager: NetworkManager
     private let realmProvider: RealmProvider
     private let context: SyncContext
-    private let isFinalOperation: Bool
 
     init(networkManager: NetworkManager,
          realmProvider: RealmProvider,
-         syncContext: SyncContext,
-         isFinalOperation: Bool) {
+         syncContext: SyncContext) {
         self.networkManager = networkManager
         self.realmProvider = realmProvider
         self.context = syncContext
-        self.isFinalOperation = isFinalOperation
     }
 
     override func execute() {
-        guard context.state != .finished else {
-            finish()
-            return
-        }
-
         fetchSyncToken()
     }
 
@@ -90,11 +82,6 @@ final class UpSyncOperation<T>: ConcurrentOperation where T: Object, T: UpSyncab
         if let error = error {
             context.add(error: error)
         }
-
-        if isFinalOperation {
-            context.finish()
-        }
-
         finish()
     }
 }

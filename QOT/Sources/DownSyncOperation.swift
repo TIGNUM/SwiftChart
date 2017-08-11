@@ -17,29 +17,21 @@ final class DownSyncOperation<T>: ConcurrentOperation where T: DownSyncable, T: 
     private let realmProvider: RealmProvider
     private let downSyncImporter: DownSyncImporter<T>
     private let context: SyncContext
-    private let isFinalOperation: Bool
 
     init(context: SyncContext,
          networkManager: NetworkManager,
          syncRecordService: SyncRecordService,
          realmProvider: RealmProvider,
-         downSyncImporter: DownSyncImporter<T>,
-         isFinalOperation: Bool = false
+         downSyncImporter: DownSyncImporter<T>
         ) {
         self.networkManager = networkManager
         self.syncRecordService = syncRecordService
         self.realmProvider = realmProvider
         self.downSyncImporter = downSyncImporter
         self.context = context
-        self.isFinalOperation = isFinalOperation
     }
 
     override func execute() {
-        guard context.state != .finished else {
-            finish()
-            return
-        }
-
         getLastSyncDateAndContinue()
     }
 
@@ -120,10 +112,6 @@ final class DownSyncOperation<T>: ConcurrentOperation where T: DownSyncable, T: 
     private func finish(error: SyncError?) {
         if let error = error {
             context.add(error: error)
-        }
-
-        if isFinalOperation {
-            context.finish()
         }
 
         finish()

@@ -11,23 +11,49 @@ import Freddy
 import RealmSwift
 import EventKit
 
+// Callback notifications
 extension Notification.Name {
-    static let startUpSyncMediaNotification = Notification.Name(rawValue: "qot_startUpSyncMediaNotification")
+    static let syncAllDidStartNotification = Notification.Name(rawValue: "qot_syncAllDidStartNotification") // userInfo -> { isDownloadRecordsValid : Bool }
+    static let syncAllDidFinishNotification = Notification.Name(rawValue: "qot_syncAllDidFinishNotification")
+}
+
+// Command notifications
+extension Notification.Name {
+    static let startSyncAllNotification = Notification.Name(rawValue: "qot_startSyncAllNotification")
+    static let startSyncDownloadNotification = Notification.Name(rawValue: "qot_startSyncDownloadNotification")
+    static let startSyncUploadMediaNotification = Notification.Name(rawValue: "qot_startSyncUploadMediaNotification")
+    static let startSyncUploadNonMediaNotification = Notification.Name(rawValue: "qot_startSyncUploadNonMediaNotification")
 }
 
 final class SyncManager {
 
-    let networkManager: NetworkManager
-    let syncRecordService: SyncRecordService
-    let realmProvider: RealmProvider
-    let operationQueue: OperationQueue = {
+    private let networkManager: NetworkManager
+    private let syncRecordService: SyncRecordService
+    private let realmProvider: RealmProvider
+    private let operationQueue: OperationQueue = {
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
         return queue
     }()
-    var isSyncRecordsValid: Bool {
+    private var syncCheckTimer: Timer?
+
+    @objc var isDownloadRecordsValid: Bool {
         do {
-            for value in downSyncClasses {
+            let downloadClasses: [AnyClass] = [
+                ContentCategory.self,
+                ContentCollection.self,
+                ContentItem.self,
+                User.self,
+                Page.self,
+                Question.self,
+                MyStatistics.self,
+                SystemSetting.self,
+                UserSetting.self,
+                UserChoice.self,
+                Partner.self,
+                MyToBeVision.self
+            ]
+            for value in downloadClasses {
                 guard try syncRecordService.lastSync(className: String(describing: value.self)) > 0 else {
                     return false
                 }
@@ -37,25 +63,9 @@ final class SyncManager {
         }
         return true
     }
-    var isSyncingAll: Bool = false
-    var isUpSyncingAll: Bool = false
-    var isUpSyncingMedia: Bool = false
-    
-    var downSyncClasses: [AnyClass] {
-        return [
-            ContentCategory.self,
-            ContentCollection.self,
-            ContentItem.self,
-            User.self,
-            Page.self,
-            Question.self,
-            MyStatistics.self,
-            SystemSetting.self,
-            UserSetting.self,
-            UserChoice.self,
-            Partner.self,
-            MyToBeVision.self
-        ]
+
+    var isSyncing: Bool {
+        return operationQueue.operationCount > 0
     }
 
     init(networkManager: NetworkManager, syncRecordService: SyncRecordService, realmProvider: RealmProvider) {
@@ -64,10 +74,11 @@ final class SyncManager {
         self.realmProvider = realmProvider
         
         setupNotifications()
+        setupTimer()
     }
-    
+
     deinit {
-        tearDownNotifications()
+        tearDownTimer()
     }
 
     func clearAll() throws {
@@ -77,31 +88,108 @@ final class SyncManager {
             realm.deleteAll()
         }
     }
-    
+
+    // MARK: Private
+
+    private func setupNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(startSyncAllNotification(_:)), name: .startSyncAllNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(startSyncDownloadNotification(_:)), name: .startSyncDownloadNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(startSyncUploadNonMediaNotification(_:)), name: .startSyncUploadNonMediaNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(startSyncUploadMediaNotification(_:)), name: .startSyncUploadMediaNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActiveNotification(_:)), name: .UIApplicationDidBecomeActive, object: nil)
+    }
+
+    private func setupTimer() {
+        syncCheckTimer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true) { [unowned self] (timer: Timer) in
+            self.syncAll()
+            self.uploadMedia()
+        }
+    }
+
+    private func tearDownTimer() {
+        syncCheckTimer?.invalidate()
+        syncCheckTimer = nil
+    }
+
+    // MARK: Syncs
+
     func syncAll() {
-        isSyncingAll = true
-        
-        NotificationHandler.postNotification(withName: .syncStartedNotification, userInfo: [
-            "isSyncRecordsValid": isSyncRecordsValid
-            ])
-        
-        let context = SyncContext(queue: operationQueue) { (state, errors) in
-            switch state {
-            case .finished:
-                DispatchQueue.main.async {
-                    self.isSyncingAll = false
-                    NotificationHandler.postNotification(withName: .syncFinishedNotification)
-                    print("SYNC ALL FINISHED with \(errors.count) errors")
-                    errors.forEach({ (error: SyncError) in
-                        print(error)
-                    })
+        let context = SyncContext()
+
+        let startOperation = BlockOperation { [unowned self] in
+            DispatchQueue.main.async {
+                let key = NSStringFromSelector(#selector(getter: self.isDownloadRecordsValid))
+                let userInfo = [key: self.isDownloadRecordsValid]
+                NotificationHandler.postNotification(withName: .syncAllDidStartNotification, userInfo: userInfo)
+                log("SYNC ALL STARTED", enabled: LogToggle.Manager.Sync)
+            }
+        }
+        let finishOperation = BlockOperation {
+            DispatchQueue.main.async {
+                let errors = context.errors
+                NotificationHandler.postNotification(withName: .syncAllDidFinishNotification)
+                log("SYNC ALL FINISHED with \(errors.count) errors", enabled: LogToggle.Manager.Sync)
+                errors.forEach { (error: SyncError) in
+                    log(error, enabled: LogToggle.Manager.Sync)
                 }
-            default:
-                break
             }
         }
 
-        let operations: [Operation] = [
+        var operations: [Operation] = [startOperation]
+        operations.append(contentsOf: allUpSyncOperations(context: context))
+        operations.append(contentsOf: allDownSyncOperations(context: context))
+        operations.append(finishOperation)
+
+        operationQueue.addOperations(operations, waitUntilFinished: false)
+    }
+
+    func uploadMedia() {
+        do {
+            let context = SyncContext()
+            var operations: [Operation] = try uploadMediaOperations(context: context)
+
+            guard operations.count > 0 else {
+                log("UPLOAD MEDIA SYNC - NO ITEMS TO UPLOAD", enabled: LogToggle.Manager.Sync)
+                return
+            }
+            let startOperation = BlockOperation {
+                DispatchQueue.main.async {
+                    log("UPLOAD MEDIA SYNC STARTED", enabled: LogToggle.Manager.Sync)
+                }
+            }
+            let finishOperation = BlockOperation {
+                DispatchQueue.main.async {
+                    let errors = context.errors
+
+                    log("UPLOAD MEDIA SYNC FINISHED with \(errors.count) errors", enabled: LogToggle.Manager.Sync)
+                    errors.forEach { (error: SyncError) in
+                        log(error, enabled: LogToggle.Manager.Sync)
+                    }
+                }
+            }
+
+            operations.insert(startOperation, at: 0)
+            operations.append(finishOperation)
+            operationQueue.addOperations(operations, waitUntilFinished: false)
+        } catch {
+            log("UPLOAD MEDIA SYNC FAILED TO START: \(error)", enabled: LogToggle.Manager.Sync)
+        }
+    }
+
+    private func allUpSyncOperations(context: SyncContext) -> [Operation] {
+        return [
+            upSyncOperation(CalendarEvent.self, context: context),
+            upSyncOperation(MyToBeVision.self, context: context),
+            upSyncOperation(Partner.self, context: context),
+            upSyncOperation(Preparation.self, context: context),
+            upSyncOperation(UserChoice.self, context: context),
+            upSyncOperation(UserSetting.self, context: context),
+            upSyncOperation(User.self, context: context)
+        ]
+    }
+
+    private func allDownSyncOperations(context: SyncContext) -> [Operation] {
+        return [
             downSyncOperation(for: SystemSetting.self, context: context),
             downSyncOperation(for: UserSetting.self, context: context),
             downSyncOperation(for: User.self, context: context),
@@ -115,105 +203,64 @@ final class SyncManager {
             downSyncOperation(for: Partner.self, context: context),
             downSyncOperation(for: MyToBeVision.self, context: context),
             downSyncOperation(for: Preparation.self, context: context),
-            UpdateRelationsOperation(context: context, realmProvider: realmProvider, isFinalOperation: true)
+            UpdateRelationsOperation(context: context, realmProvider: realmProvider)
         ]
-
-        operationQueue.addOperations(operations, waitUntilFinished: false)
     }
 
-    func upSyncAll() {
-        isUpSyncingAll = true
-        
-        let context = SyncContext(queue: operationQueue) { (state, errors) in
-            switch state {
-            case .finished:
-                self.isUpSyncingAll = false
-                print("UP SYNC ALL FINISHED with \(errors.count) errors")
-                errors.forEach({ (error: SyncError) in
-                    print(error)
-                })
-            default:
-                break
-            }
+    private func uploadMediaOperations(context: SyncContext) throws -> [Operation] {
+        let realm = try realmProvider.realm()
+        let itemsToUpload = realm.objects(MediaResource.self).filter(MediaResource.dirtyPredicate)
+        return itemsToUpload.map { (resource: MediaResource) -> Operation in
+            return upSyncMediaOperation(localID: resource.localID, context: context)
         }
-
-        let operations: [Operation] = [
-            upSyncOperation(CalendarEvent.self, context: context),
-            upSyncOperation(MyToBeVision.self, context: context),
-            upSyncOperation(Partner.self, context: context),
-            upSyncOperation(Preparation.self, context: context),
-            upSyncOperation(UserChoice.self, context: context),
-            upSyncOperation(UserSetting.self, context: context),
-            upSyncOperation(UserAnswer.self, context: context),
-            upSyncOperation(User.self, context: context, isFinalOperation: true)
-        ]
-
-        operationQueue.addOperations(operations, waitUntilFinished: false)
-        
-        upSyncMedia()
-    }
-    
-    @objc func upSyncMedia() {
-        isUpSyncingMedia = true
-        
-        let context = SyncContext(queue: operationQueue) { (state, errors) in
-            switch state {
-            case .finished:
-                self.isUpSyncingMedia = false
-                print("UP SYNC MEDIA FINISHED with \(errors.count) errors")
-                errors.forEach({ (error: SyncError) in
-                    print(error)
-                })
-            default:
-                break
-            }
-        }
-        
-        do {
-            let realm = try realmProvider.realm()
-            let itemsToUpload = realm.objects(MediaResource.self).filter(MediaResource.dirtyPredicate)
-            let operations: [Operation] = itemsToUpload.map({ (resource: MediaResource) -> Operation in
-                return upSyncMediaOperation(forItem: resource, context: context, isFinalOperation: (resource == itemsToUpload.last))
-            })
-            operationQueue.addOperations(operations, waitUntilFinished: false)
-        } catch {}
     }
 
-    // MARK: - private
-    
-    private func setupNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(upSyncMedia), name: .startUpSyncMediaNotification, object: nil)
-    }
-    
-    private func tearDownNotifications() {
-        NotificationCenter.default.removeObserver(self, name: .startUpSyncMediaNotification, object: nil)
-    }
-    
-    private func downSyncOperation<P>(for: P.Type, context: SyncContext, isFinalOperation: Bool = false) -> DownSyncOperation<P> where P: DownSyncable, P: SyncableObject {
+    // MARK: Operation Factories
+
+    private func downSyncOperation<P>(for: P.Type, context: SyncContext) -> DownSyncOperation<P> where P: DownSyncable, P: SyncableObject {
         return DownSyncOperation<P>(context: context,
-                                 networkManager: networkManager,
-                                 syncRecordService: syncRecordService,
-                                 realmProvider: realmProvider,
-                                 downSyncImporter: DownSyncImporter(),
-                                 isFinalOperation: isFinalOperation)
+                                    networkManager: networkManager,
+                                    syncRecordService: syncRecordService,
+                                    realmProvider: realmProvider,
+                                    downSyncImporter: DownSyncImporter())
     }
 
     private func upSyncOperation<T>(_ type: T.Type,
-                                    context: SyncContext,
-                                    isFinalOperation: Bool = false) -> UpSyncOperation<T> where T: Object, T: UpSyncable {
+                                    context: SyncContext) -> UpSyncOperation<T> where T: Object, T: UpSyncable {
         return UpSyncOperation<T>(networkManager: networkManager,
                                   realmProvider: realmProvider,
-                                  syncContext: context,
-                                  isFinalOperation: isFinalOperation)
+                                  syncContext: context)
     }
-    
-    private func upSyncMediaOperation(forItem item: MediaResource,
-                                      context: SyncContext,
-                                      isFinalOperation: Bool = false) -> UpSyncMediaOperation {
+
+    private func upSyncMediaOperation(localID: String,
+                                      context: SyncContext) -> UpSyncMediaOperation {
         return UpSyncMediaOperation(networkManager: networkManager,
                                     realmProvider: realmProvider,
                                     syncContext: context,
-                                    item: item,
-                                    isFinalOperation: isFinalOperation)
+                                    localID: localID)
+    }
+
+    // MARK: Notifications
+    
+    @objc private func startSyncAllNotification(_ notification: Notification) {
+        syncAll()
+        uploadMedia()
+    }
+    
+    @objc private func startSyncDownloadNotification(_ notification: Notification) {
+        fatalError("Not implemented")
+    }
+    
+    @objc private func startSyncUploadMediaNotification(_ notification: Notification) {
+        uploadMedia()
+    }
+    
+    @objc private func startSyncUploadNonMediaNotification(_ notification: Notification) {
+        fatalError("Not implemented")
+    }
+    
+    @objc private func didBecomeActiveNotification(_ notification: Notification) {
+        syncAll()
+        uploadMedia()
     }
 }

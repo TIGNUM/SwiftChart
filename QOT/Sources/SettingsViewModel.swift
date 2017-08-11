@@ -201,7 +201,7 @@ final class SettingsViewModel {
     }
 
     func updateGender(gender: String) {
-        services.userService.updateUserGender(user: user, gender: gender)
+        services.userService.updateUserGender(user: user, gender: gender.uppercased())
     }
 
     func updateHeight(height: String) {

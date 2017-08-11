@@ -31,6 +31,7 @@ struct LogToggle {
         static let Font = false
         static let FileManager = true
         static let TabBar = false
+        static let Sync = true
     }
 
     struct NetworkManager {

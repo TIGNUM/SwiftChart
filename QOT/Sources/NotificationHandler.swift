@@ -10,8 +10,6 @@ import Foundation
 
 extension Notification.Name {
     static let logoutNotification = Notification.Name(rawValue: "qot_logoutNotification")
-    static let syncStartedNotification = Notification.Name(rawValue: "qot_syncStartedNotification")
-    static let syncFinishedNotification = Notification.Name(rawValue: "qot_syncFinishedNotification")
 }
 
 final class NotificationHandler {

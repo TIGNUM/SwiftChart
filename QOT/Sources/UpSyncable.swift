@@ -217,7 +217,7 @@ protocol UpSyncableMedia: class {
     
     func toJson() -> JSON?
     
-    var endpoint: Endpoint { get }
+    static var endpoint: Endpoint { get }
     
     static var dirtyPredicate: NSPredicate { get }
     

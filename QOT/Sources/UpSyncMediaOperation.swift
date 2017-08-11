@@ -15,27 +15,19 @@ final class UpSyncMediaOperation: ConcurrentOperation {
     private let networkManager: NetworkManager
     private let realmProvider: RealmProvider
     private let context: SyncContext
-    private let item: MediaResource
-    private let isFinalOperation: Bool
+    private let localID: String
     
     init(networkManager: NetworkManager,
          realmProvider: RealmProvider,
          syncContext: SyncContext,
-         item: MediaResource,
-         isFinalOperation: Bool) {
+         localID: String) {
         self.networkManager = networkManager
         self.realmProvider = realmProvider
         self.context = syncContext
-        self.item = item
-        self.isFinalOperation = isFinalOperation
+        self.localID = localID
     }
     
     override func execute() {
-        guard context.state != .finished else {
-            finish()
-            return
-        }
-        
         fetchSyncToken()
     }
     
@@ -55,8 +47,11 @@ final class UpSyncMediaOperation: ConcurrentOperation {
 
     private func fetchData(syncToken: String) {
         do {
-            if let data = try item.upSyncData(realm: realmProvider) {
-                sendData(data, syncToken: syncToken)
+            let realm = try realmProvider.realm()
+            if let resource = realm.syncableObject(ofType: MediaResource.self, localID: localID),
+                let data = try resource.upSyncData(realm: realmProvider),
+                let localURL = resource.localURL {
+                sendData(data, syncToken: syncToken, localURL: localURL)
             } else {
                 finish(error: nil)
             }
@@ -65,33 +60,29 @@ final class UpSyncMediaOperation: ConcurrentOperation {
         }
     }
 
-    private func sendData(_ data: UpSyncMediaData, syncToken: String) {
-        let request = UpSyncRequest(endpoint: item.endpoint, body: data.body, syncToken: syncToken)
+    private func sendData(_ data: UpSyncMediaData, syncToken: String, localURL: URL) {
+        let request = UpSyncRequest(endpoint: MediaResource.endpoint, body: data.body, syncToken: syncToken)
         networkManager.request(request, parser: UpSyncMediaResultParser.parse) { [weak self] (result) in
             switch result {
             case .success(let upSyncResult):
-                self?.handleResult(upSyncResult)
+                self?.handleResult(upSyncResult, localURL: localURL)
             case .failure(let error):
                 self?.finish(error: .upSyncSendDirtyFailed(error: error))
             }
         }
     }
     
-    private func handleResult(_ result: UpSyncMediaResult) {
-        guard let localURL = item.localURL else {
-            let error = SimpleError(localizedDescription: "missing local url")
-            finish(error: .upSyncUpdateDirtyFailed(error: error))
-            return
-        }
+    private func handleResult(_ result: UpSyncMediaResult, localURL: URL) {
         let cacheKey = result.remoteURLString
         do {
             try cacheImage(withURL: localURL, key: cacheKey, completion: { [unowned self] in
                 do {
                     let realm = try self.realmProvider.realm()
+                    let resource = realm.syncableObject(ofType: MediaResource.self, localID: self.localID)
                     try realm.write {
-                        self.item.remoteID.value = result.remoteID
-                        self.item.localURLString = nil
-                        self.item.remoteURLString = result.remoteURLString
+                        resource?.remoteID.value = result.remoteID
+                        resource?.localURLString = nil
+                        resource?.remoteURLString = result.remoteURLString
                     }
                     try FileManager.default.removeItem(at: localURL)
                     self.finish(error: nil)
@@ -110,11 +101,6 @@ final class UpSyncMediaOperation: ConcurrentOperation {
         if let error = error {
             context.add(error: error)
         }
-        
-        if isFinalOperation {
-            context.finish()
-        }
-        
         finish()
     }
     

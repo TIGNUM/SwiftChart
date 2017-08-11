@@ -12,20 +12,13 @@ final class UpdateRelationsOperation: ConcurrentOperation {
 
     private let context: SyncContext
     private let realmProvider: RealmProvider
-    private let isFinalOperation: Bool
 
-    init(context: SyncContext, realmProvider: RealmProvider, isFinalOperation: Bool = false) {
+    init(context: SyncContext, realmProvider: RealmProvider) {
         self.context = context
         self.realmProvider = realmProvider
-        self.isFinalOperation = isFinalOperation
     }
 
     override func execute() {
-        guard context.state != .finished else {
-            finish()
-            return
-        }
-
         do {
             let realm = try realmProvider.realm()
             try realm.write {
@@ -54,11 +47,6 @@ final class UpdateRelationsOperation: ConcurrentOperation {
         if let error = error {
             context.add(error: error)
         }
-
-        if isFinalOperation {
-            context.finish()
-        }
-
         finish()
     }
 }

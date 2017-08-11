@@ -63,7 +63,7 @@ class MediaResource: SyncableObject {
 // MARK: - OneWaySyncableUp
 
 extension MediaResource: OneWayMediaSyncableUp {
-    var endpoint: Endpoint {
+    static var endpoint: Endpoint {
         return .media
     }
     

@@ -93,6 +93,7 @@ final class AppCoordinator: ParentCoordinator {
             case .success(let services):
                 self.services = services
                 self.syncManager.syncAll()
+                self.syncManager.uploadMedia()
 
                 guard OnboardingCoordinator.isOnboardingComplete == true else {
                     self.showOnboarding()
@@ -101,15 +102,11 @@ final class AppCoordinator: ParentCoordinator {
                 
                 self.registerRemoteNotifications()
                 self.calendarImportManager.importEvents()
-                self.syncManager.upSyncAll()
                 self.startTabBarCoordinator(services: services, permissionHandler: self.permissionHandler)
                 
                 // if the tab controller isn't loading, but we're still syncing all, show loading
-                if let tabBarCoordinator = self.tabBarCoordinator,
-                    !tabBarCoordinator.isLoading,
-                    self.syncManager.isSyncingAll,
-                    self.syncManager.isSyncRecordsValid == false {
-
+                let doingInitialSync = self.syncManager.isSyncing && (self.syncManager.isDownloadRecordsValid == false)
+                if let tabBarCoordinator = self.tabBarCoordinator, !tabBarCoordinator.isLoading, doingInitialSync {
                     tabBarCoordinator.showLoading()
                 }
             case .failure:

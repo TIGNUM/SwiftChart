@@ -80,7 +80,7 @@ final class MyWhyViewModel {
             switch change {
             case .change:
                 self?.updates.next(.reload)
-                NotificationCenter.default.post(name: .startUpSyncMediaNotification, object: nil)
+                NotificationCenter.default.post(name: .startSyncUploadMediaNotification, object: nil)
                 break
             default:
                 break

@@ -30,11 +30,11 @@ final class TabBarCoordinator: ParentCoordinator {
 
     fileprivate var disposeBag = DisposeBag()
     
-    lazy private var syncStartedNotificationHandler: NotificationHandler = {
-        return NotificationHandler(name: .syncStartedNotification)
+    lazy private var syncAllStartedNotificationHandler: NotificationHandler = {
+        return NotificationHandler(name: .syncAllDidStartNotification)
     }()
-    lazy private var syncFinishedNotificationHandler: NotificationHandler = {
-        return NotificationHandler(name: .syncFinishedNotification)
+    lazy private var syncAllFinishedNotificationHandler: NotificationHandler = {
+        return NotificationHandler(name: .syncAllDidFinishNotification)
     }()
     
     fileprivate lazy var prepareCoordinator: PrepareCoordinator = {
@@ -115,13 +115,13 @@ final class TabBarCoordinator: ParentCoordinator {
         self.selectedIndex = Observable(selectedIndex)
         self.permissionHandler = permissionHandler
         
-        syncStartedNotificationHandler.handler = { [weak self] (notification: Notification) in
-            guard let `self` = self, let userInfo = notification.userInfo, let isSyncRecordsValid = userInfo["isSyncRecordsValid"] as? Bool, isSyncRecordsValid == false else {
+        syncAllStartedNotificationHandler.handler = { [weak self] (notification: Notification) in
+            guard let `self` = self, let userInfo = notification.userInfo, let isDownloadRecordsValid = userInfo["isDownloadRecordsValid"] as? Bool, isDownloadRecordsValid == false else {
                 return
             }
             self.showLoading()
         }
-        syncFinishedNotificationHandler.handler = { [weak self] (_: Notification) in
+        syncAllFinishedNotificationHandler.handler = { [weak self] (_: Notification) in
             guard let `self` = self, self.tabBarController?.presentedViewController == self.loadingViewController else {
                 return
             }

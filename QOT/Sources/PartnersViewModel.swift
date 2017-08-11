@@ -88,7 +88,7 @@ final class PartnersViewModel {
         do {
             let url = try image.save(withName: currentEditPartner.localID)
             mediaService.updateLocalURLString(mediaResource: profileImageResource, localURLString: url.absoluteString)
-            NotificationCenter.default.post(name: .startUpSyncMediaNotification, object: nil)
+            NotificationCenter.default.post(name: .startSyncAllNotification, object: nil)
             return nil
         } catch {
             return error
