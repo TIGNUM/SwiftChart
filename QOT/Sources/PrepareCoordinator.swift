@@ -47,7 +47,7 @@ final class PrepareCoordinator: ParentCoordinator {
                     self?.createPreparation(name: event.title, eventID: event.eventIdentifier)
                 }
                 self?.tabBarController.dismiss(animated: true)
-                self?.chatDecisionManager.start()
+                self?.chatDecisionManager.preparationSaved()
             case .canceled, .deleted:
                 controller.dismiss(animated: true)
             }
