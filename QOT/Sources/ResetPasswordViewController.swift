@@ -99,6 +99,8 @@ extension ResetPasswordViewController: ResetPasswordViewCellDelegate {
             switch failure.type {
             case .noNetworkConnection:
                 self?.showAlert(type: .noNetworkConnection)
+            case .notFound:
+                self?.showAlert(type: .emailNotFound)
             default:
                 self?.showAlert(type: .unknow)
             }

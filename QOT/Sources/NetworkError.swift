@@ -11,6 +11,7 @@ import Alamofire
 
 enum HTTPStatusCode: Int {
     case unauthorized = 401
+    case notFound = 404
 }
 
 struct NetworkError: Error {
@@ -21,6 +22,7 @@ struct NetworkError: Error {
         case noNetworkConnection
         case cancelled
         case unauthenticated
+        case notFound
     }
 
     let type: NetworkErrorType
@@ -37,8 +39,11 @@ struct NetworkError: Error {
 
     init(error: NSError, request: URLRequest?, response: HTTPURLResponse?, data: Data?) {
         if let code = response?.statusCode {
-            if let httpStatusCode = HTTPStatusCode(rawValue: code), httpStatusCode == .unauthorized {
+            let httpStatusCode = HTTPStatusCode(rawValue: code)
+            if httpStatusCode == .unauthorized {
                 type = .unauthenticated
+            } else if httpStatusCode == .notFound {
+                type = .notFound
             } else {
                 type = .unknown(error: error, statusCode: code)
             }
@@ -74,6 +79,8 @@ extension NetworkError.NetworkErrorType: CustomDebugStringConvertible {
             return "Unauthenticated"
         case .unknown(let error, let statusCode):
             return "Unknow error: \(error), status code: \(String(describing: statusCode))"
+        case .notFound:
+            return "404 Not Found"
         }
     }
 }

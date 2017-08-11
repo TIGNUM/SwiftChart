@@ -131,6 +131,7 @@ extension LaunchHandler {
         case .unknown(let error, _),
              .failedToParseData(_, let error): showHUD(type: .custom(title: R.string.localized.alertTitleCustom(), message: error.localizedDescription))
         case .cancelled: showHUD(type: .fitbitFailure)
+        default: break
         }
     }
 
