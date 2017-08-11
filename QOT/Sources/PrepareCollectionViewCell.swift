@@ -33,7 +33,7 @@ class PrepareCollectionViewCell: UICollectionViewCell, Dequeueable {
         var alignment: NSTextAlignment = .center
         switch display {
         case .flow:
-            alignment = .center
+            alignment = .left
             trailingConstraint.constant = 12
         case .list:
             alignment = .left
