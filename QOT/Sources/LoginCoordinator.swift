@@ -54,7 +54,7 @@ extension LoginCoordinator: LoginViewControllerDelegate {
                     self?.delegate?.didLoginSuccessfully()
                 case .failure(let error):
                     completion(error)
-                    AppDelegate.current.window?.showProgressHUD(type: .loginFailed, actionBlock: {})
+                    viewController.showAlert(type: .loginFailed)
                 }
             }
         })
