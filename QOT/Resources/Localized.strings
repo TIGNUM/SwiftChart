@@ -223,3 +223,7 @@
 "AddSensorView.Alert.Send" = "Send";
 "AddSensorView.Alert.Cancel" = "Cancel";
 "AddSensorView.Alert.Placeholder" = "Enter your device info.";
+
+"Tutorial.Learn.Text" = "The Learn area contains great content on all of the QOT 55 strategies. You can go there to learn, review, or deep dive into any of the strategies. This Learn area also hosts your “What’s Hot” portal where we periodically place new information that we feel you would love.";
+"Tutorial.Me.Text" = "The Me area is where we house all of your data, your To Be Vision, your support team, and any other information that pertains only to you. This area is always growing so we recommend you visit it often.";
+"Tutorial.Prepare.Text" = "The Prepare area is your QOT game changer area. In this area you will find your normal day and rough day plans but also you can prepare for any event you have coming up where you want to improve your QOT and the QOT of those around you.";

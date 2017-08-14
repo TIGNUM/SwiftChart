@@ -33,11 +33,11 @@ class TutorialViewModel: NSObject {
     lazy var content: String = {
         switch self.tutorial {
         case .learnTutorial:
-            return LoremIpsum.paragraph()
+            return R.string.localized.tutorialLearnText()
         case .meTutorial:
-            return LoremIpsum.paragraph()
+            return R.string.localized.tutorialMeText()
         case .prepareTutorial:
-            return LoremIpsum.paragraph()
+            return R.string.localized.tutorialPrepareText()
         }
     }()
 
