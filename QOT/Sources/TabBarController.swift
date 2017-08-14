@@ -108,7 +108,7 @@ extension TabBarController {
     func setupLayout() {
         containerView.topAnchor == view.topAnchor
         containerView.horizontalAnchors == view.horizontalAnchors
-        containerView.bottomAnchor == tabBarView.topAnchor
+        containerView.bottomAnchor == tabBarView.bottomAnchor
         
         tabBarBottomConstraint = (tabBarView.bottomAnchor == view.bottomAnchor)
         tabBarView.horizontalAnchors == view.horizontalAnchors + Layout.TabBarView.stackViewHorizontalPaddingBottom
