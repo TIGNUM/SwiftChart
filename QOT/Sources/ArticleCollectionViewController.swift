@@ -91,13 +91,13 @@ extension ArticleCollectionViewController: UICollectionViewDataSource, UICollect
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let index = indexPath.item
         let cell: ArticleCollectionCell = collectionView.dequeueCell(for: indexPath)
-        cell.configure(sortOrder:
-            viewModel.sortOrder(at: index),
-            title: viewModel.title(at: index),
-            description: viewModel.description(at: index),
-            imageURL: viewModel.previewImageURL(at: index),
-            duration: viewModel.duration(at: index),
-            showSeparator: indexPath.row != 0
+        cell.configure(articleDate: viewModel.articleDate(at: index),
+                       sortOrder: viewModel.sortOrder(at: index),
+                       title: viewModel.title(at: index),
+                       description: viewModel.description(at: index),
+                       imageURL: viewModel.previewImageURL(at: index),
+                       duration: viewModel.duration(at: index),
+                       showSeparator: indexPath.row != 0
         )
 
         return cell

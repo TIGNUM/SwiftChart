@@ -45,8 +45,18 @@ final class ArticleCollectionViewModel {
         return "\(contentCollection(at: index).items.reduce(0, { $0.0 + $0.1.secondsRequired }) / 60) MIN" //TODO Localise?
     }
 
+    func articleDate(at index: Index) -> String {
+
+        let date = contentCollection(at: index).editedAt
+        
+        let df = DateFormatter()
+        df.dateFormat = "MMMdd"
+        df.locale = Locale.current
+        return df.string(from: date)
+    }
+
     func sortOrder(at index: Index) -> String {
-        return String(format: ".%003d", contentCollection(at: index).sortOrder)
+        return String(format: "#%002d", contentCollection(at: index).sortOrder)
     }
 
     func previewImageURL(at index: Index) -> URL? {

@@ -12,7 +12,8 @@ import Kingfisher
 class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
     
     @IBOutlet fileprivate weak var imageView: UIImageView!
-    @IBOutlet fileprivate weak var identifier: UILabel!
+    @IBOutlet fileprivate weak var date: UILabel!
+    @IBOutlet fileprivate weak var sortTag: UILabel!
     @IBOutlet fileprivate weak var subTitle: UILabel!
     @IBOutlet fileprivate weak var textLabel: UILabel!
     @IBOutlet fileprivate weak var mediaInformation: UILabel!
@@ -26,14 +27,27 @@ class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
         layoutSubviews()
     }
 
-    func configure(sortOrder: String, title: String, description: String, imageURL: URL?, duration: String, showSeparator: Bool) {
-        let attributedIdentifier = NSMutableAttributedString(
-            string: sortOrder,
-            letterSpacing: -0.7,
-            font: Font.H4Identifier,
-            lineSpacing: 2
+    func configure(articleDate: String, sortOrder: String, title: String, description: String, imageURL: URL?, duration: String, showSeparator: Bool) {
+
+        let attributedCustomDate = NSMutableAttributedString(
+            string: articleDate.uppercased(),
+            letterSpacing: 0.5,
+            font: Font.H7Tag,
+            lineSpacing: 0
         )
-        identifier.attributedText = attributedIdentifier
+
+        let attributedSortTag = NSMutableAttributedString(
+            string: sortOrder,
+            letterSpacing: -0.72,
+            font: Font.H4Identifier,
+            lineSpacing: 0
+        )
+
+        date.attributedText = attributedCustomDate
+        date.alpha = 0.6
+        date.textAlignment = .right
+        sortTag.attributedText = attributedSortTag
+        sortTag.textAlignment = .right
         subTitle.attributedText = attributedTitle(text: title)
         textLabel.attributedText = Style.headline(description.uppercased(), .white).attributedString()        
         mediaInformation.attributedText = attributedTitle(text: duration)

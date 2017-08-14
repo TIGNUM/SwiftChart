@@ -51,4 +51,8 @@ extension ContentCollection {
     var sidebarContentItems: AnyRealmCollection<ContentItem> {
         return AnyRealmCollection(items)
     }
+
+    var editedAt: Date {
+        return self.modifiedAt
+    }
 }
