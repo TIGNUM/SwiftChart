@@ -54,7 +54,9 @@ class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable {
 
         previewImageURL = videoPlaceholder
         content = contentText
-        
+
+        iconImageView.isHidden = contentText.isEmpty && videoURL == nil
+
         setExpandImageState(isExpanded: isExpanded)
         updateContent(isExpanded: isExpanded)
     }

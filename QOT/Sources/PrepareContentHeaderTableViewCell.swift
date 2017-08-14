@@ -88,7 +88,7 @@ class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
             if readMoreID != nil {
                 readMoreButton.prepareAndSetTitleAttributes(text: R.string.localized.prepareContentReadMore(),
                                                             font: Font.DPText,
-                                                            color: UIColor.blackTwo,
+                                                            color: .black40,
                                                             for: .normal)
             } else {
                 readMoreButton.isHidden = true
