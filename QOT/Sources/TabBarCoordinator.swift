@@ -159,7 +159,10 @@ final class TabBarCoordinator: ParentCoordinator {
     }
     
     func showLoading() {
-        window.rootViewController?.present(self.loadingViewController, animated: false, completion: nil)
+        guard let rootViewController = window.rootViewController, !(rootViewController.presentedViewController is LoadingViewController) else {
+            return
+        }
+        window.rootViewController?.present(loadingViewController, animated: false, completion: nil)
         loadingViewController.fadeIn()
     }
 }

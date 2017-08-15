@@ -74,21 +74,12 @@ final class SyncManager {
         self.realmProvider = realmProvider
         
         setupNotifications()
-        setupTimer()
     }
 
     deinit {
         tearDownTimer()
     }
-
-    func clearAll() throws {
-        operationQueue.cancelAllOperations()
-        let realm = try realmProvider.realm()
-        try realm.write {
-            realm.deleteAll()
-        }
-    }
-
+    
     // MARK: Private
 
     private func setupNotifications() {
@@ -96,7 +87,7 @@ final class SyncManager {
         NotificationCenter.default.addObserver(self, selector: #selector(startSyncDownloadNotification(_:)), name: .startSyncDownloadNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(startSyncUploadNonMediaNotification(_:)), name: .startSyncUploadNonMediaNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(startSyncUploadMediaNotification(_:)), name: .startSyncUploadMediaNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActiveNotification(_:)), name: .UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForegroundNotification(_:)), name: .UIApplicationWillEnterForeground, object: nil)
     }
 
     private func setupTimer() {
@@ -113,6 +104,21 @@ final class SyncManager {
 
     // MARK: Syncs
 
+    func startAutoSync() {
+        setupTimer()
+    }
+    
+    func stopAutoSync() {
+        tearDownTimer()
+    }
+    
+    func stopCurrentSync(waitUntilStopped: Bool) {
+        operationQueue.cancelAllOperations()
+        if waitUntilStopped == true {
+            operationQueue.waitUntilAllOperationsAreFinished()
+        }
+    }
+    
     func syncAll() {
         let context = SyncContext()
 
@@ -259,7 +265,7 @@ final class SyncManager {
         fatalError("Not implemented")
     }
     
-    @objc private func didBecomeActiveNotification(_ notification: Notification) {
+    @objc private func willEnterForegroundNotification(_ notification: Notification) {
         syncAll()
         uploadMedia()
     }

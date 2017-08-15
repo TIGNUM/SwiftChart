@@ -28,4 +28,14 @@ final class SyncRecordService {
         let realm = try realmProvider.realm()
         return realm.object(ofType: SyncRecord.self, forPrimaryKey: className)?.date ?? 0
     }
+    
+    func deleteSyncRecordsForClassNames(_ names: [String]) throws {
+        let realm = try realmProvider.realm()
+        try names.forEach { (name: String) in
+            let objects = realm.objects(SyncRecord.self).filter(NSPredicate(format: "%K == %@", "associatedClassName", name))
+            try realm.write {
+                realm.delete(objects)
+            }
+        }
+    }
 }

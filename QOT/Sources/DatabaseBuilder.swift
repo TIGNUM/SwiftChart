@@ -16,6 +16,8 @@ class DatabaseBuilder {
     private let networkManager: NetworkManager
     private let syncRecordService: SyncRecordService
     private let realmProvider: RealmProvider
+    private let deviceID: String
+
     private let operationQueue: OperationQueue = {
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
@@ -23,11 +25,12 @@ class DatabaseBuilder {
     }()
     private var operations: [Operation]?
     
-    init(config: Realm.Configuration, networkManager: NetworkManager, syncRecordService: SyncRecordService, realmProvider: RealmProvider) {
+    init(config: Realm.Configuration, networkManager: NetworkManager, syncRecordService: SyncRecordService, realmProvider: RealmProvider, deviceID: String) {
         self.config = config
         self.networkManager = networkManager
         self.syncRecordService = syncRecordService
         self.realmProvider = realmProvider
+        self.deviceID = deviceID
     }
     
     func setContentOperations(_ operations: [ConcurrentOperation]) {
@@ -41,6 +44,15 @@ class DatabaseBuilder {
     func build() {
         guard let operations = operations else {
             return
+        }
+        let request = AuthenticationRequest(username: "qotapptester@tignum.com", password: "1111", deviceID: deviceID)
+        self.networkManager.request(request, parser: AuthenticationTokenParser.parse) { [weak self] (result) in
+            switch result {
+            case .success:
+                self?.operationQueue.addOperations(operations, waitUntilFinished: false)
+            case .failure(let error):
+                log(error)
+            }
         }
         operationQueue.addOperations(operations, waitUntilFinished: false)
     }

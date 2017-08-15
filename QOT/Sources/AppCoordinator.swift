@@ -27,25 +27,23 @@ final class AppCoordinator: ParentCoordinator {
     fileprivate lazy var permissionHandler: PermissionHandler = PermissionHandler()
     fileprivate lazy var networkManager: NetworkManager = NetworkManager(delegate: self, credentialsManager: self.credentialsManager)
     fileprivate lazy var credentialsManager: CredentialsManager = CredentialsManager()
-
+    fileprivate lazy var realmProvider: RealmProvider = {
+        return RealmProvider()
+    }()
     fileprivate lazy var databaseManager: DatabaseManager = {
         return DatabaseManager(config: RealmProvider.config)
     }()
-    
     fileprivate lazy var pageTracker: PageTracker = {
         return PageTracker.default
     }()
-
-    fileprivate lazy var syncManager: SyncManager = {
-        let realmProvider = RealmProvider()
-        let syncRecordService =  SyncRecordService(realmProvider: realmProvider)
-        let networkManager = self.networkManager
-
-        return SyncManager(networkManager: networkManager, syncRecordService: syncRecordService, realmProvider: realmProvider)
+    fileprivate lazy var syncRecordService: SyncRecordService = {
+        return SyncRecordService(realmProvider: self.realmProvider)
     }()
-
+    fileprivate lazy var syncManager: SyncManager = {
+        return SyncManager(networkManager: self.networkManager, syncRecordService: self.syncRecordService, realmProvider: self.realmProvider)
+    }()
     fileprivate lazy var calendarImportManager: CalendarImportManger = {
-        let manager = CalendarImportManger(realm: RealmProvider(), predicate: { (store: EKEventStore) -> NSPredicate in
+        let manager = CalendarImportManger(realm: self.realmProvider, predicate: { (store: EKEventStore) -> NSPredicate in
             let day: TimeInterval = 60 * 60 * 24
             let start = Date().addingTimeInterval(-(day * 7))
             let end = Date().addingTimeInterval(day * 7)
@@ -97,8 +95,8 @@ final class AppCoordinator: ParentCoordinator {
     }
 
     func restart() {
-        secondaryWindow.clear()
         removeAllChildren()
+        secondaryWindow.clear()
         logout()
         showLogin()
     }
@@ -108,6 +106,7 @@ final class AppCoordinator: ParentCoordinator {
             switch result {
             case .success(let services):
                 self.services = services
+                self.syncManager.startAutoSync()
                 self.syncManager.syncAll()
                 self.syncManager.uploadMedia()
 
@@ -261,9 +260,25 @@ extension AppCoordinator {
     func logout() {
         credentialsManager.clear()
         do {
-            try syncManager.clearAll()
+            syncManager.stopAutoSync()
+            syncManager.stopCurrentSync(waitUntilStopped: true)
+           
+            let bundledDatabase = try databaseManager.loadDatabase(.v1)
+            let currentDatabase = try realmProvider.realm()
+            
+            // FIXME: this doesn't work due to inverse relationships. Realm is unidirectional, so crashes with stack overflow (infinate loop) from recursively creating each direction.
+            //try databaseManager.populateAllObjects(fromDatabase: fromDatabase, toDatabase: toDatabase)
+
+            // For now we just delete all types that aren't in the bundled db
+            let classNamesToKeep = Set(databaseManager.classNamesWithEntitiesFromDatabase(bundledDatabase))
+            var classNamesToDelete = Set(databaseManager.classNamesFromDatabase(currentDatabase))
+            classNamesToDelete.subtract(classNamesToKeep)
+            let classNamesToDeleteArray = Array(classNamesToDelete)
+            try syncRecordService.deleteSyncRecordsForClassNames(classNamesToDeleteArray)
+            try databaseManager.deleteAllObjectsWithClassNames(classNamesToDeleteArray, fromDatabase: currentDatabase)
+            bundledDatabase.invalidate()
         } catch {
-            // TODO: handle error
+            log(error.localizedDescription)
         }
     }
 

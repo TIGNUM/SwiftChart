@@ -41,7 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             config: RealmProvider.config,
             networkManager: NetworkManager(),
             syncRecordService: SyncRecordService(realmProvider: realmProvider),
-            realmProvider: realmProvider
+            realmProvider: realmProvider,
+            deviceID: deviceID
         )
     }()
     #endif
@@ -55,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
 
         #if BUILD_DATABASE
-            // @warning REINSTALL before running
+            // @warning REINSTALL before running. Must be logged in
             __buildDatabase()
             return true
         #endif
@@ -67,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupUAirship()
 
         #if DEBUG
-            print("PATH: \(RLMRealmConfiguration.default().fileURL!)")
+            log("\nopen -a \"Realm Browser\" \(RealmProvider.config.fileURL!)\n")
             LogSettings.logLevel = .verbose
             logAppLocation()
             logAvailableFonts()
@@ -103,11 +104,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         appCoordinator.appDidBecomeActive()
-
-        //TODO: comment in to test
-//        Timer.scheduledTimer(withTimeInterval: 4, repeats: false) { _ in
-//            self.appCoordinator.presentMorningInterview(groupID: 100002, validFrom: Date(), validTo: Date())
-//        }
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
