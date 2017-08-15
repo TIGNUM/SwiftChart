@@ -17,6 +17,7 @@ class ChatViewController<T: ChatChoice>: UIViewController, UITableViewDelegate, 
 
     private let disposeBag = DisposeBag()
     private var isUpdating = false
+    fileprivate var dontAnimateCellAtIndexPath: IndexPath?
     let viewModel: ChatViewModel<T>
 
     var didSelectChoice: ((T, ChatViewController) -> Void)?
@@ -163,6 +164,12 @@ class ChatViewController<T: ChatChoice>: UIViewController, UITableViewDelegate, 
         guard isUpdating else {
             return
         }
+
+        if dontAnimateCellAtIndexPath?.section == indexPath.section
+        && dontAnimateCellAtIndexPath?.row == indexPath.row {
+            dontAnimateCellAtIndexPath = nil
+            return
+        }
         
         let item = viewModel.item(at: indexPath.row)
         switch item.type {
@@ -250,6 +257,9 @@ extension ChatViewController : CollectionViewCellDelegate {
                 let item = items.item(at: index)
                 didSelectChoice?(item, self)
 
+                guard let indexPath = tableView.indexPath(for: cell) else { return }
+                dontAnimateCellAtIndexPath = indexPath
+                tableView.reloadRows(at: [indexPath], with: .automatic)
             }
         default:
             break
