@@ -14,8 +14,7 @@ final class RealmProvider {
         return try Realm(configuration: RealmProvider.config)
     }
 
-    private static var config: Realm.Configuration = {
-        // FIXME: EncryptionKey
+    static var config: Realm.Configuration = {
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let url = documentsURL.appendingPathComponent("QOT.realm")
         return Realm.Configuration(fileURL:url,

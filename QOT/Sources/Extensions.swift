@@ -10,6 +10,15 @@ import Foundation
 import UIKit
 import Kingfisher
 
+// MARK: - String
+
+extension String {
+    
+    var removeFilePrefix: String {
+        return replacingOccurrences(of: "file://", with: "")
+    }
+}
+
 // MARK: - UIFont
 
 extension UIFont {

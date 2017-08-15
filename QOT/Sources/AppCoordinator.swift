@@ -28,6 +28,14 @@ final class AppCoordinator: ParentCoordinator {
     fileprivate lazy var networkManager: NetworkManager = NetworkManager(delegate: self, credentialsManager: self.credentialsManager)
     fileprivate lazy var credentialsManager: CredentialsManager = CredentialsManager()
 
+    fileprivate lazy var databaseManager: DatabaseManager = {
+        return DatabaseManager(config: RealmProvider.config)
+    }()
+    
+    fileprivate lazy var pageTracker: PageTracker = {
+        return PageTracker.default
+    }()
+
     fileprivate lazy var syncManager: SyncManager = {
         let realmProvider = RealmProvider()
         let syncRecordService =  SyncRecordService(realmProvider: realmProvider)
@@ -53,17 +61,25 @@ final class AppCoordinator: ParentCoordinator {
     // MARK: - Life Cycle
 
     init(window: UIWindow) {
-        PageTracker.default.start()
         self.window = window
         secondaryWindow = UIWindow(frame: UIScreen.main.bounds)
         configureSecondaryWindow()
-
+        
         logoutNotificationHandler.handler = { [weak self] (_: Notification) in
             self?.restart()
         }
     }
     
     func start() {
+        if !databaseManager.isDatabaseCreated {
+            do {
+                try databaseManager.copyDefault(withName: .v1)
+            } catch {
+                log(error)
+            }
+        }
+        pageTracker.start()
+
         let viewController = AnimatedLaunchScreenViewController()
         window.rootViewController = viewController
         window.makeKeyAndVisible()

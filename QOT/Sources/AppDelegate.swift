@@ -34,21 +34,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return AppCoordinator(window: self.window!)
     }()
     
+    #if BUILD_DATABASE
+    lazy var databaseBuilder: DatabaseBuilder = {
+        let realmProvider = RealmProvider()
+        return DatabaseBuilder(
+            config: RealmProvider.config,
+            networkManager: NetworkManager(),
+            syncRecordService: SyncRecordService(realmProvider: realmProvider),
+            realmProvider: realmProvider
+        )
+    }()
+    #endif
+
     var window: UIWindow?
     fileprivate var canOpenURL = true
 
     // MARK: - Life Cycle
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        window = UIWindow(frame: UIScreen.main.bounds)
+
+        #if BUILD_DATABASE
+            // @warning REINSTALL before running
+            __buildDatabase()
+            return true
+        #endif
+        
         Fabric.with([Crashlytics.self])
         QOTUsageTimer.sharedInstance.start()
         UIApplication.shared.statusBarStyle = .lightContent
-        window = UIWindow(frame: UIScreen.main.bounds)
         appCoordinator.start()
         setupUAirship()
 
         #if DEBUG
-            print("PATH: \(RLMRealmConfiguration.default().fileURL)")
+            print("PATH: \(RLMRealmConfiguration.default().fileURL!)")
             LogSettings.logLevel = .verbose
             logAppLocation()
             logAvailableFonts()
@@ -102,10 +121,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate {
 
-    fileprivate func logAppLocation() {
+    fileprivate var appFilePath: String {
         let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let url = documents.deletingLastPathComponent()
-        log("App location: \(url)", enabled: LogToggle.Manager.FileManager)
+        return url.absoluteString.removeFilePrefix
+    }
+    
+    fileprivate func logAppLocation() {
+        log("App location: \(appFilePath)", enabled: LogToggle.Manager.FileManager)
     }
 
     fileprivate func logAvailableFonts() {
@@ -144,3 +167,43 @@ extension AppDelegate: UAPushNotificationDelegate {
         return [.alert, .sound]
     }
 }
+
+// MARK: - BUILD_DATABASE
+
+#if BUILD_DATABASE
+extension AppDelegate {
+    fileprivate func __buildDatabase() {
+        log("\nbuild database started (may take some time - get a tea...)\n")
+        
+        let context = SyncContext()
+        
+        databaseBuilder.setContentOperations([
+            databaseBuilder.downSyncOperation(for: ContentCategory.self, context: context),
+            databaseBuilder.downSyncOperation(for: ContentCollection.self, context: context),
+            databaseBuilder.downSyncOperation(for: ContentItem.self, context: context),
+            databaseBuilder.updateRelationsOperation(context: context)
+        ])
+        databaseBuilder.setCompletion({
+            guard context.errors.count == 0 else {
+                log(context.errors[0].localizedDescription)
+                return
+            }
+            
+            do {
+                let name = "default-v1.realm"
+                let fileURL = try self.databaseBuilder.copyWithName(name)
+                log("\nbuild database completed successfully. paste this into terminal:")
+                log("cd <qot project>")
+                log("cp \"\(fileURL!.absoluteString.removeFilePrefix)\" \"QOT/Resources/Database/\(name)\"")
+                log("\nnow verify it by opening the database:")
+                log("open \"QOT/Resources/Database/\(name)\"")
+                log("\nthen close Realm browser, and remove all the crap:")
+                log("rm QOT/Resources/Database/*.lock;rm -r QOT/Resources/Database/*.management;rm QOT/Resources/Database/*.note")
+            } catch {
+                log("\nbuild database failed with error: \(error.localizedDescription)")
+            }
+        })
+        databaseBuilder.build()
+    }
+}
+#endif

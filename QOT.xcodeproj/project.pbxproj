@@ -53,9 +53,11 @@
 		7F5A25B21F3C515800A11466 /* Swizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A25B11F3C515800A11466 /* Swizzle.swift */; };
 		7F5A25B41F3C569300A11466 /* TrackablePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A25B31F3C569300A11466 /* TrackablePage.swift */; };
 		7F5A25B61F3C56A600A11466 /* EventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A25B51F3C56A600A11466 /* EventData.swift */; };
+		7F5A25BF1F3CB71100A11466 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A25BE1F3CB71100A11466 /* DatabaseManager.swift */; };
 		7F691C551F0D19AE00E2C180 /* MyToBeVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F691C541F0D19AE00E2C180 /* MyToBeVision.swift */; };
 		7F691C5E1F0D30C800E2C180 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F691C5D1F0D30C800E2C180 /* PlaceholderTextView.swift */; };
 		7F8739071F162300005ED8B8 /* WeeklyChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8739061F162300005ED8B8 /* WeeklyChoice.swift */; };
+		7F99ABB11F3DF38E009CA587 /* Database in Resources */ = {isa = PBXBuildFile; fileRef = 7F99ABB01F3DF38E009CA587 /* Database */; };
 		7FB9AD0B1F39BD1400E0D621 /* UpSyncMediaResultParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB9AD0A1F39BD1400E0D621 /* UpSyncMediaResultParser.swift */; };
 		7FB9AD0D1F39BD2B00E0D621 /* UpSyncMediaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB9AD0C1F39BD2B00E0D621 /* UpSyncMediaData.swift */; };
 		7FBC3E7E1F34AB8D005BD772 /* MediaResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBC3E7D1F34AB8D005BD772 /* MediaResource.swift */; };
@@ -63,6 +65,7 @@
 		7FBC3E891F38B9D1005BD772 /* UpSyncMediaOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBC3E881F38B9D1005BD772 /* UpSyncMediaOperation.swift */; };
 		7FDFF3691F18FF0B00F7A7EC /* NotificationTokenHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDFF3681F18FF0B00F7A7EC /* NotificationTokenHandler.swift */; };
 		7FDFF36B1F1916B400F7A7EC /* Realm+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDFF36A1F1916B400F7A7EC /* Realm+Utility.swift */; };
+		7FE151C81F3DDAE600DA8F37 /* DatabaseBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE151C71F3DDAE600DA8F37 /* DatabaseBuilder.swift */; };
 		7FE38DBD1F2210D60061E98F /* WaitBlockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE38DBC1F2210D60061E98F /* WaitBlockOperation.swift */; };
 		7FE38DBF1F279F8C0061E98F /* CustomPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE38DBE1F279F8C0061E98F /* CustomPresentationAnimator.swift */; };
 		7FE38DC11F28D2940061E98F /* PassthroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE38DC01F28D2940061E98F /* PassthroughView.swift */; };
@@ -498,6 +501,8 @@
 		0BD6F6B71EA0E81E001EBC4D /* MyPrepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPrepTableViewCell.xib; sourceTree = "<group>"; };
 		0BEE8AB61EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsUpcomingTripTableViewCell.swift; sourceTree = "<group>"; };
 		0BEE8AB71EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareEventsUpcomingTripTableViewCell.xib; sourceTree = "<group>"; };
+		2BFF26100D7FF8708F5EF189 /* Pods-QOT.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.database.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.database.xcconfig"; sourceTree = "<group>"; };
+		2C2AD94F9096EA48FAC24935 /* Pods-DatabaseBuilder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseBuilder.release.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseBuilder/Pods-DatabaseBuilder.release.xcconfig"; sourceTree = "<group>"; };
 		2F1C8D6D4864F462A3F805BB /* Pods-QOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.release.xcconfig"; sourceTree = "<group>"; };
 		42795728C4F3229DFB18981E /* Pods-QOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.debug.xcconfig"; sourceTree = "<group>"; };
 		5C87601C1FE7F833DF0D7A6B /* Pods-QOTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -521,9 +526,11 @@
 		7F5A25B11F3C515800A11466 /* Swizzle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swizzle.swift; sourceTree = "<group>"; };
 		7F5A25B31F3C569300A11466 /* TrackablePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackablePage.swift; sourceTree = "<group>"; };
 		7F5A25B51F3C56A600A11466 /* EventData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventData.swift; sourceTree = "<group>"; };
+		7F5A25BE1F3CB71100A11466 /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		7F691C541F0D19AE00E2C180 /* MyToBeVision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToBeVision.swift; sourceTree = "<group>"; };
 		7F691C5D1F0D30C800E2C180 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		7F8739061F162300005ED8B8 /* WeeklyChoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoice.swift; sourceTree = "<group>"; };
+		7F99ABB01F3DF38E009CA587 /* Database */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Database; sourceTree = "<group>"; };
 		7FB9AD0A1F39BD1400E0D621 /* UpSyncMediaResultParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpSyncMediaResultParser.swift; sourceTree = "<group>"; };
 		7FB9AD0C1F39BD2B00E0D621 /* UpSyncMediaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpSyncMediaData.swift; sourceTree = "<group>"; };
 		7FBC3E7D1F34AB8D005BD772 /* MediaResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaResource.swift; sourceTree = "<group>"; };
@@ -531,6 +538,7 @@
 		7FBC3E881F38B9D1005BD772 /* UpSyncMediaOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpSyncMediaOperation.swift; sourceTree = "<group>"; };
 		7FDFF3681F18FF0B00F7A7EC /* NotificationTokenHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTokenHandler.swift; sourceTree = "<group>"; };
 		7FDFF36A1F1916B400F7A7EC /* Realm+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm+Utility.swift"; sourceTree = "<group>"; };
+		7FE151C71F3DDAE600DA8F37 /* DatabaseBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseBuilder.swift; sourceTree = "<group>"; };
 		7FE38DBC1F2210D60061E98F /* WaitBlockOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitBlockOperation.swift; sourceTree = "<group>"; };
 		7FE38DBE1F279F8C0061E98F /* CustomPresentationAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPresentationAnimator.swift; sourceTree = "<group>"; };
 		7FE38DC01F28D2940061E98F /* PassthroughView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassthroughView.swift; sourceTree = "<group>"; };
@@ -607,6 +615,8 @@
 		85E1F1C61F1F94C7003FA349 /* ZoomAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomAnimator.swift; sourceTree = "<group>"; };
 		85E1F1C81F20C24F003FA349 /* ZoomPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomPresentationController.swift; sourceTree = "<group>"; };
 		97F1D8A9256524F33CBB9303 /* Pods-QOTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B3EE7DF60C9A17B5F331C145 /* Pods-QOTTests.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.database.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.database.xcconfig"; sourceTree = "<group>"; };
+		C18DB768AC204FC05E0EFE96 /* Pods-DatabaseBuilder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseBuilder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseBuilder/Pods-DatabaseBuilder.debug.xcconfig"; sourceTree = "<group>"; };
 		CB0A4A571ECC4C25006A2D85 /* AddSensorCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorCoordinator.swift; sourceTree = "<group>"; };
 		CB0A4A591ECC4C3E006A2D85 /* AddSensorViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorViewModel.swift; sourceTree = "<group>"; };
 		CB0A4A5B1ECC4C72006A2D85 /* AddSensorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorViewController.swift; sourceTree = "<group>"; };
@@ -899,7 +909,7 @@
 		D519E08E1EAA5403004F96E7 /* PrepareChatTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareChatTableCell.xib; sourceTree = "<group>"; };
 		D51B5C471E8D0E7E0084A65B /* LearnContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentCell.swift; sourceTree = "<group>"; };
 		D51B5C481E8D0E7E0084A65B /* LearnContentLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentLayout.swift; sourceTree = "<group>"; };
-		D51B5C4B1E8D133B0084A65B /* LearnContentItemCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = LearnContentItemCoordinator.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		D51B5C4B1E8D133B0084A65B /* LearnContentItemCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = LearnContentItemCoordinator.swift; sourceTree = "<group>"; };
 		D52350951E9FC1120013DE7E /* ArticleCollectionLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCollectionLayout.swift; sourceTree = "<group>"; };
 		D52371511EA9F0B100165842 /* PrepareChatTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareChatTableCell.swift; sourceTree = "<group>"; };
 		D52DAF9A1EC1E87D00C63156 /* ActivityChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityChartView.swift; sourceTree = "<group>"; };
@@ -936,6 +946,7 @@
 		D5EC34B11EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyPlaylistAudioCell.xib; sourceTree = "<group>"; };
 		D5FA66941EB9FF0B00980EC7 /* EventGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventGraphView.swift; sourceTree = "<group>"; };
 		D5FA66961EBB4DA600980EC7 /* HorizontalLinesChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalLinesChartView.swift; sourceTree = "<group>"; };
+		D78A1DCB6CFBD03D6588DCB6 /* Pods_DatabaseBuilder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DatabaseBuilder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -964,6 +975,7 @@
 				CC37B1301E93CDD600651C46 /* QOTDatabase.framework */,
 				82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */,
 				CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */,
+				D78A1DCB6CFBD03D6588DCB6 /* Pods_DatabaseBuilder.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1044,6 +1056,10 @@
 				2F1C8D6D4864F462A3F805BB /* Pods-QOT.release.xcconfig */,
 				97F1D8A9256524F33CBB9303 /* Pods-QOTTests.debug.xcconfig */,
 				5C87601C1FE7F833DF0D7A6B /* Pods-QOTTests.release.xcconfig */,
+				C18DB768AC204FC05E0EFE96 /* Pods-DatabaseBuilder.debug.xcconfig */,
+				2C2AD94F9096EA48FAC24935 /* Pods-DatabaseBuilder.release.xcconfig */,
+				2BFF26100D7FF8708F5EF189 /* Pods-QOT.database.xcconfig */,
+				B3EE7DF60C9A17B5F331C145 /* Pods-QOTTests.database.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1285,6 +1301,8 @@
 			isa = PBXGroup;
 			children = (
 				CC33CA2F1EC60447008E6B33 /* DatabaseConstants.swift */,
+				7F5A25BE1F3CB71100A11466 /* DatabaseManager.swift */,
+				7FE151C71F3DDAE600DA8F37 /* DatabaseBuilder.swift */,
 				CB14676D1EF2AB7000A60E31 /* DeviceIdentifier.swift */,
 				CB1D5E351EC5E25A00BCDF8D /* Error.swift */,
 				CB1D5E361EC5E25A00BCDF8D /* JSONDecodable.swift */,
@@ -1991,6 +2009,7 @@
 				CC38B11F1F29EDA900C2BB87 /* AirshipConfig.plist */,
 				CBB237FB1E6FFF1200AB5AEF /* Info.plist */,
 				CC6251DA1EE00DD800C6F546 /* Localized.strings */,
+				7F99ABB01F3DF38E009CA587 /* Database */,
 				CBB237F61E6FFF1200AB5AEF /* Assets.xcassets */,
 				CBB4DD451EE0908E0071494A /* Fonts */,
 			);
@@ -2200,7 +2219,7 @@
 		CBB237E41E6FFF1200AB5AEF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = Tignum;
 				TargetAttributes = {
@@ -2300,6 +2319,7 @@
 				D5EC34B31EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.xib in Resources */,
 				0BD6F6BA1EA0E81E001EBC4D /* MyPrepTableViewCell.xib in Resources */,
 				CB8C34521EAF61E50003AB65 /* SettingsMenuViewController.xib in Resources */,
+				7F99ABB11F3DF38E009CA587 /* Database in Resources */,
 				0BC9F9371E96118C009E8204 /* ChatTableViewCell.xib in Resources */,
 				CB18BCC71EEACF890035C1BB /* MockDownSyncContentCollection.json in Resources */,
 				CC311A231EAF431E0020C869 /* SettingsControlTableViewCell.xib in Resources */,
@@ -2357,7 +2377,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		5EB4CCEE8904BC282CD31F04 /* [CP] Copy Pods Resources */ = {
@@ -2461,7 +2481,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		CB8A15401E7981900023B2F9 /* Generate R.Swift */ = {
@@ -2844,7 +2864,9 @@
 				CB18BCBF1EEABD890035C1BB /* MockNetworkManager.swift in Sources */,
 				CCE373081E8D32CF00B79352 /* LibraryViewController.swift in Sources */,
 				859683411F135C6300A98218 /* LoginCoordinator.swift in Sources */,
+				7F5A25BF1F3CB71100A11466 /* DatabaseManager.swift in Sources */,
 				CBC933051F05253000C00007 /* JSON+Convenience.swift in Sources */,
+				7FE151C81F3DDAE600DA8F37 /* DatabaseBuilder.swift in Sources */,
 				CB9AFD141F014BAA00D067F2 /* PreparationCheck.swift in Sources */,
 				CBC933081F052DDA00C00007 /* PrepareCoordinator.swift in Sources */,
 				D5485F241ED57F0600A08D1A /* SearchViewModel.swift in Sources */,
@@ -2931,6 +2953,94 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		7FE151CC1F3DDC6200DA8F37 /* Database */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DBUILD_DATABASE";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_WHOLE_MODULE_OPTIMIZATION = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Database;
+		};
+		7FE151CD1F3DDC6200DA8F37 /* Database */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2BFF26100D7FF8708F5EF189 /* Pods-QOT.database.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = QOT/QOT.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = TFH2SGDX62;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "$(SRCROOT)/QOT/Resources/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.v2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "15ea5272-a8b1-4f61-80f5-b0d1967745b7";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.tignum.qot.v2";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Database;
+		};
+		7FE151CE1F3DDC6200DA8F37 /* Database */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3EE7DF60C9A17B5F331C145 /* Pods-QOTTests.database.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = QOTTests/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QOT.app/QOT";
+			};
+			name = Database;
+		};
 		CBB238071E6FFF1300AB5AEF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2974,6 +3084,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -3018,6 +3129,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_WHOLE_MODULE_OPTIMIZATION = NO;
@@ -3104,6 +3216,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBB238071E6FFF1300AB5AEF /* Debug */,
+				7FE151CC1F3DDC6200DA8F37 /* Database */,
 				CBB238081E6FFF1300AB5AEF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -3113,6 +3226,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBB2380A1E6FFF1300AB5AEF /* Debug */,
+				7FE151CD1F3DDC6200DA8F37 /* Database */,
 				CBB2380B1E6FFF1300AB5AEF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -3122,6 +3236,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBB2380D1E6FFF1300AB5AEF /* Debug */,
+				7FE151CE1F3DDC6200DA8F37 /* Database */,
 				CBB2380E1E6FFF1300AB5AEF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
