@@ -79,7 +79,7 @@ final class LearnCategoryLayout: UICollectionViewLayout {
                 maxY = max(maxY, frame.maxY)
             }
 
-            contentSize = CGSize(width: maxX + minX, height: maxY)
+            contentSize = CGSize(width: maxX + minX, height: collectionView.bounds.height)
         } else {
             contentSize = .zero
         }

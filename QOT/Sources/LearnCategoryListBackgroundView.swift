@@ -40,10 +40,9 @@ private extension LearnCategoryListBackgroundView {
     func setup() {
         backgroundColor = .clear
         addSubview(imageView)
-        // FIXME: Set image
-        // imageView.image =
+        imageView.image = R.image.ray()
         imageView.edgeAnchors == edgeAnchors
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
     }
 
     func setMask(frames: [CGRect]) {
