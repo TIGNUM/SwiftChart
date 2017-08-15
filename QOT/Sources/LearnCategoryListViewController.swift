@@ -101,8 +101,8 @@ private extension LearnCategoryListViewController {
         backgroundImageView.horizontalAnchors == view.horizontalAnchors
 
         view.addSubview(collectionView)
-        collectionView.topAnchor == view.topAnchor + Layout.TabBarView.height + 26
-        collectionView.bottomAnchor == view.bottomAnchor
+        collectionView.topAnchor == view.topAnchor + Layout.TabBarView.height
+        collectionView.bottomAnchor == view.bottomAnchor - Layout.TabBarView.height
         collectionView.horizontalAnchors == view.horizontalAnchors
         view.layoutIfNeeded()
     }

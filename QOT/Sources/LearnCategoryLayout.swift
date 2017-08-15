@@ -58,7 +58,8 @@ final class LearnCategoryLayout: UICollectionViewLayout {
         let frames = bubbles.map { (bubble) -> CGRect in
             let center = CGPoint(x: CGFloat(bubble.centerX) * multiplier, y: CGFloat(bubble.centerY) * multiplier)
             let radius = CGFloat(bubble.radius) * multiplier
-            return CGRect(x: center.x - radius, y: center.y - (radius + radius / 2), width: 2 * radius, height: 2 * radius).integral
+
+            return CGRect(x: center.x - radius, y: center.y - radius, width: 2 * radius, height: 2 * radius).integral
         }
 
         layoutAttributes = frames.enumerated().map { (index: Index, frame: CGRect) -> UICollectionViewLayoutAttributes in

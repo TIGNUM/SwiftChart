@@ -11,12 +11,12 @@ import Foundation
 struct LearnCategoryListPage {
 
     private let defaultBubbles = [
-        BubbleLayoutInfo(radius: 0.15, centerX: 0.5, centerY: 0.5),
-        BubbleLayoutInfo(radius: 0.139, centerX: 0.32, centerY: 0.24),
-        BubbleLayoutInfo(radius: 0.139, centerX: 0.186, centerY: 0.558),
-        BubbleLayoutInfo(radius: 0.139, centerX: 0.442, centerY: 0.804),
-        BubbleLayoutInfo(radius: 0.139, centerX: 0.777, centerY: 0.645),
-        BubbleLayoutInfo(radius: 0.139, centerX: 0.716, centerY: 0.250)
+        BubbleLayoutInfo(radius: 0.156771799628942, centerX: 0.485157699443414, centerY: 0.481447124304267),
+        BubbleLayoutInfo(radius: 0.150278293135436, centerX: 0.315398886827458, centerY: 0.196660482374768),
+        BubbleLayoutInfo(radius: 0.141929499072356, centerX: 0.175324675324675, centerY: 0.568645640074211),
+        BubbleLayoutInfo(radius: 0.146567717996289, centerX: 0.452690166975881, centerY: 0.812615955473098),
+        BubbleLayoutInfo(radius: 0.125231910946197, centerX: 0.778293135435993, centerY: 0.61317254174397),
+        BubbleLayoutInfo(radius: 0.156771799628942, centerX: 0.722634508348794, centerY: 0.212430426716141)
     ]
 
     func bubbleLayoutInfo(at index: Index) -> BubbleLayoutInfo {
