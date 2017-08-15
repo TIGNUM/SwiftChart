@@ -14,7 +14,6 @@ class SidebarTableViewCell: UITableViewCell, Dequeueable {
     // MARK: - Properties
 
     fileprivate lazy var titleLabel: UILabel = UILabel(frame: self.frame)
-    fileprivate var topAnchorConstraint: NSLayoutConstraint?
     fileprivate var heightAnchorConstraint: NSLayoutConstraint?
 
     // MARK: - Init
@@ -29,7 +28,7 @@ class SidebarTableViewCell: UITableViewCell, Dequeueable {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setup(with title: String?, font: UIFont?, textColor: UIColor?, topAnchor: CGFloat?, height: CGFloat?) {
+    func setup(with title: String?, font: UIFont?, textColor: UIColor?, height: CGFloat?) {
         backgroundColor = .clear
 
         guard
@@ -48,14 +47,13 @@ class SidebarTableViewCell: UITableViewCell, Dequeueable {
         )
 
         titleLabel.attributedText = attributedText
-        topAnchorConstraint?.constant = topAnchor ?? 0
         heightAnchorConstraint?.constant = height ?? 0
     }
 
     private func setupView() {
         selectionStyle = .none
         contentView.addSubview(titleLabel)
-        topAnchorConstraint = titleLabel.topAnchor == contentView.topAnchor
+        titleLabel.topAnchor == contentView.topAnchor
         titleLabel.bottomAnchor == contentView.bottomAnchor
         titleLabel.leftAnchor == contentView.leftAnchor + 55
         titleLabel.rightAnchor == contentView.rightAnchor - 20

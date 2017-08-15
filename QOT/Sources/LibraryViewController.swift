@@ -20,24 +20,10 @@ enum SectionType {
         }
     }
 
-    var imageBottomConstraint: CGFloat {
-        switch self {
-        case .latestPost: return CGFloat(58)
-        case .categoryPost: return CGFloat(0)
-        }
-    }
-
-    var labelLeftRightMarging: CGFloat {
-        switch self {
-        case .latestPost: return CGFloat(4)
-        case .categoryPost: return CGFloat(8)
-        }
-    }
-
     var rowHeight: CGFloat {
         switch self {
-        case .latestPost: return CGFloat(280)
-        case .categoryPost: return CGFloat(300)
+        case .latestPost: return CGFloat(412)
+        case .categoryPost: return CGFloat(432)
         }
     }
 }
@@ -61,7 +47,9 @@ final class LibraryViewController: UIViewController {
         return UITableView(
             delegate: self,
             dataSource: self,
-            dequeables: LibraryTableViewCell.self
+            dequeables:
+                LibraryTableViewCell.self,
+                LibraryTableViewCategoryCell.self
         )
     }()
 
@@ -114,22 +102,17 @@ final class LibraryViewController: UIViewController {
 private extension LibraryViewController {
 
     func setupView() {
-
         let backgroundImageView = UIImageView(image: R.image.backgroundSidebar())
-
         view.addSubview(backgroundImageView)
         view.addSubview(tableView)
         view.addSubview(topBarView)
-
         backgroundImageView.horizontalAnchors == view.horizontalAnchors
         backgroundImageView.verticalAnchors == view.verticalAnchors
-
         topBarView.backgroundColor = .clear
         topBarView.topAnchor == view.topAnchor
         topBarView.horizontalAnchors == view.horizontalAnchors
         topBarView.heightAnchor == Layout.TabBarView.height
         tableView.topAnchor == topBarView.bottomAnchor
-
         view.backgroundColor = .clear
         tableView.bottomAnchor == view.bottomAnchor
         tableView.horizontalAnchors == view.horizontalAnchors
@@ -137,6 +120,7 @@ private extension LibraryViewController {
 
     func setTableViewFooter() {
         let nib = R.nib.libraryFooterView()
+        
         guard let footerView = (nib.instantiate(withOwner: self, options: nil).first as? LibraryFooterView) else {
             return
         }
@@ -160,15 +144,28 @@ extension LibraryViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let sectionType: SectionType = indexPath.section == 0 ? .latestPost : .categoryPost
+        
         return sectionType.rowHeight
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let contentCollection = viewModel.contentCollection(at: indexPath)
-        let cell: LibraryTableViewCell = tableView.dequeueCell(for: indexPath)
         let sectionType: SectionType = indexPath.section == 0 ? .latestPost : .categoryPost
+
+        if sectionType == .latestPost {
+            let cell: LibraryTableViewCell = tableView.dequeueCell(for: indexPath)
+            let contentCollection = viewModel.contentCollection(at: indexPath)
+            cell.setUp(title: viewModel.titleForSection(indexPath.section), contentCollection: contentCollection, sectionType: sectionType)
+            cell.delegate = delegate
+            cell.backgroundColor = .clear
+
+            return cell
+        }
+
+        let cell: LibraryTableViewCategoryCell = tableView.dequeueCell(for: indexPath)
+        let contentCollection = viewModel.contentCollection(at: indexPath)
         cell.setUp(title: viewModel.titleForSection(indexPath.section), contentCollection: contentCollection, sectionType: sectionType)
         cell.delegate = delegate
+        cell.backgroundColor = .clear
 
         return cell
     }

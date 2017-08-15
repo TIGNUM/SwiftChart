@@ -36,7 +36,8 @@ final class SettingsMenuCollectionViewCell: UICollectionViewCell, Dequeueable {
             string: subTitle,
             letterSpacing: 2,
             font: Font.H7Tag,
-            lineSpacing: 3.2
+            lineSpacing: 3.2,
+            textColor: .white30
         )
     }
 }

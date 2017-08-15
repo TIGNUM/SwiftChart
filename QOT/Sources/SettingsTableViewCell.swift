@@ -107,7 +107,14 @@ private extension SettingsTableViewCell {
     func setupLabelCell(title: String, value: String?) {
         setValue(value: value)
         if value == nil {
-            titleLabel.attributedText = Style.tag(title.uppercased(), .white40).attributedString(lineSpacing: 2)
+            titleLabel.attributedText = NSMutableAttributedString(
+                string: title.uppercased(),
+                letterSpacing: 2,
+                font: Font.H7Tag,
+                lineSpacing: 4,
+                textColor: .white40
+            )
+            
             valueLabel.isHidden = true
         } else {
             setTitle(title: title)

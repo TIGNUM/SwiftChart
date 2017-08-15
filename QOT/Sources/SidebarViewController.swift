@@ -71,7 +71,7 @@ private extension SidebarViewController {
     func setupView() {
         view.addSubview(tableView)
         tableView.bounces = false
-        tableView.topAnchor == view.topAnchor
+        tableView.topAnchor == view.topAnchor + 50
         tableView.bottomAnchor == view.bottomAnchor
         tableView.horizontalAnchors == view.horizontalAnchors        
     }
@@ -94,12 +94,11 @@ extension SidebarViewController: UITableViewDelegate, UITableViewDataSource {
         let sidebarItem = viewModel.sidebarItem(at: indexPath)
         cell.setup(
             with: sidebarItem?.title,
-            font: sidebarItem?.font,
-            textColor: sidebarItem?.fontColor,
-            topAnchor: sidebarItem?.topAnchor(screenType: screenType),
+            font: sidebarItem?.font(screenType: screenType),
+            textColor: sidebarItem?.fontColor,           
             height: sidebarItem?.cellHeight(screenType: screenType)
         )
-
+        
         return cell
     }
     
@@ -126,6 +125,7 @@ private extension SidebarViewController {
         case .privacy: delegate?.didTapPrivacyCell(with: viewModel.contentCollection(sidebarItem), in: self)
         case .sensor: delegate?.didTapAddSensorCell(with: viewModel.contentCollection(sidebarItem), in: self)
         case .settings: delegate?.didTapSettingsMenuCell(with: viewModel.contentCollection(sidebarItem), in: self)
+        case .placeholder: return
         }
     }
 }

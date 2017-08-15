@@ -77,7 +77,8 @@ private extension SettingsMenuViewController {
             string: viewModel.userJobTitle ?? "",
             letterSpacing: 2,
             font: Font.H7Tag,
-            lineSpacing: 4
+            lineSpacing: 4,
+            textColor: .white80
         )
         generalButton.setAttributedTitle(
             NSMutableAttributedString(
