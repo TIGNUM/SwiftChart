@@ -65,6 +65,9 @@ extension CustomPresentationAnimator: UIViewControllerAnimatedTransitioning {
                 return
         }
 
+        toViewController.beginAppearanceTransition(true, animated: true)
+        fromViewController.beginAppearanceTransition(false, animated: false)
+
         if isPresenting {
             let containerView = transitionContext.containerView
             containerView.addSubview(view)
@@ -90,8 +93,8 @@ extension CustomPresentationAnimator: UIViewControllerAnimatedTransitioning {
         if finishedAnimations == 2 {
             transitionContext.completeTransition(finished)
             if finished {
-                fromViewController?.viewDidDisappear(true)
-                toViewController?.viewDidAppear(true)
+                toViewController?.endAppearanceTransition()
+                fromViewController?.endAppearanceTransition()
             }
         }
     }

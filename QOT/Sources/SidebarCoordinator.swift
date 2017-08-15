@@ -30,7 +30,6 @@ final class SidebarCoordinator: ParentCoordinator {
         let rightButton = UIBarButtonItem(withImage: R.image.ic_close())
         topTabBarController = UINavigationController(withPages: [sideBarViewController], topBarDelegate: self, backgroundImage: R.image.sidebar(), leftButton: leftButton, rightButton: rightButton)
         topTabBarController.modalTransitionStyle = .crossDissolve
-        topTabBarController.modalPresentationStyle = .overFullScreen
 
         sideBarViewController.delegate = self
     }

@@ -27,6 +27,8 @@ final class TabBarCoordinator: ParentCoordinator {
     fileprivate var preparationID: String?
     fileprivate var hasLoaded = false
     fileprivate var hasStarted = false
+    fileprivate var hasTutorialStarted = false
+    fileprivate var tutorialIsStopped = false
 
     fileprivate var disposeBag = DisposeBag()
     
@@ -122,17 +124,23 @@ final class TabBarCoordinator: ParentCoordinator {
             self.showLoading()
         }
         syncAllFinishedNotificationHandler.handler = { [weak self] (_: Notification) in
-            guard let `self` = self, self.tabBarController?.presentedViewController == self.loadingViewController else {
+            guard let strongSelf = self, strongSelf.tabBarController?.presentedViewController == strongSelf.loadingViewController else {
+                DispatchQueue.main.async {
+                    self?.hasLoaded = true
+                    if let `self` = self, self.hasStarted && !self.hasTutorialStarted {
+                        self.startTutorials()
+                    }
+                }
                 return
             }
-            self.loadingViewController.fadeOut(withCompletion: {
-                self.loadingViewController.dismiss(animated: true, completion: {
-                    self.hasLoaded = true
-                    if let preparationID = self.preparationID {
-                        self.prepareCoordinator.showPrepareCheckList(preparationID: preparationID)
+            strongSelf.loadingViewController.fadeOut(withCompletion: {
+                strongSelf.loadingViewController.dismiss(animated: true, completion: {
+                    strongSelf.hasLoaded = true
+                    if let preparationID = strongSelf.preparationID {
+                        strongSelf.prepareCoordinator.showPrepareCheckList(preparationID: preparationID)
                     } else {
-                        if self.hasStarted {
-                            self.startTutorials()
+                        if strongSelf.hasStarted && !strongSelf.hasTutorialStarted {
+                            strongSelf.startTutorials()
                         }
                     }
                 })
@@ -189,7 +197,7 @@ extension TabBarCoordinator {
         window.makeKeyAndVisible()
         hasStarted = true
 
-        if hasLoaded {
+        if hasLoaded && !hasTutorialStarted {
             startTutorials()
         }
     }
@@ -206,17 +214,17 @@ extension TabBarCoordinator {
 private extension TabBarCoordinator {
 
     func startTutorials() {
+        hasTutorialStarted = true
         self.selectedIndex.observeNext { [unowned self] value in
             let tutorial: Tutorials = (value == 0 ? .learnTutorial : (value == 1 ? .meTutorial : .prepareTutorial))
 
             self.tutorialDispatchWorkItem?.cancel()
 
-            if !tutorial.exists() {
+            if !tutorial.exists() && !self.tutorialIsStopped {
 
                 let dispatchWorkItem = DispatchWorkItem { [unowned self] in
                     self.tabBarController?.tutorial(show: true)
                     AppDelegate.current.appCoordinator.showTutorial(tutorial, buttonFrame: self.tabBarController?.buttonFrame()) { [unowned self] in
-                        print("Completion block for tutorial")
                         self.tabBarController?.tutorial(show: false)
                         tutorial.set()
                     }
@@ -244,6 +252,16 @@ extension TabBarCoordinator: TabBarControllerDelegate {
         default:
             break
         }
+    }
+
+    func viewWillDisappear() {
+        self.tutorialIsStopped = true
+        self.tutorialDispatchWorkItem?.cancel()
+    }
+
+    func viewDidAppear() {
+        self.tutorialIsStopped = false
+        selectedIndex.value = selectedIndex.value
     }
 }
 
@@ -335,7 +353,7 @@ extension TabBarCoordinator: TopNavigationBarDelegate {
         guard let tabBarController = tabBarController else {
             return
         }
-        
+
         let coordinator = SidebarCoordinator(root: tabBarController, services: services)
         startChild(child: coordinator)
     }

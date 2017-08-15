@@ -11,6 +11,8 @@ import Anchorage
 
 protocol TabBarControllerDelegate: class {
     func didSelectTab(at index: Index, in controller: TabBarController)
+    func viewWillDisappear()
+    func viewDidAppear()
 }
 
 final class TabBarController: UIViewController {
@@ -68,6 +70,16 @@ final class TabBarController: UIViewController {
         setupHierarchy()
         setupLayout()
         loadFirstView()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.delegate?.viewWillDisappear()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.delegate?.viewDidAppear()
     }
     
     fileprivate func displayContentController(_ viewController: UIViewController) {

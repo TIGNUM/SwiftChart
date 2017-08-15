@@ -12,7 +12,9 @@ final class FadeInOutPresentationAnimator: NSObject {
 
     let presentationType: PresentationType
     let isPresentation: Bool
-    
+    fileprivate(set) var fromViewController: UIViewController?
+    fileprivate(set) var toViewController: UIViewController?
+
     init(presentationType: PresentationType, isPresentation: Bool) {
         self.presentationType = presentationType
         self.isPresentation = isPresentation
@@ -30,7 +32,19 @@ extension FadeInOutPresentationAnimator: UIViewControllerAnimatedTransitioning {
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let key = isPresentation ? UITransitionContextViewControllerKey.to : UITransitionContextViewControllerKey.from
         let controller = transitionContext.viewController(forKey: key)!
-        
+
+        guard
+            let fromViewController = transitionContext.viewController(forKey: .from),
+            let toViewController = transitionContext.viewController(forKey: .to) else {
+                transitionContext.completeTransition(false)
+                return
+        }
+        self.fromViewController = fromViewController
+        self.toViewController = toViewController
+
+        toViewController.beginAppearanceTransition(true, animated: true)
+        fromViewController.beginAppearanceTransition(false, animated: false)
+
         if isPresentation == true {
             transitionContext.containerView.addSubview(controller.view)
         }
@@ -51,8 +65,12 @@ extension FadeInOutPresentationAnimator: UIViewControllerAnimatedTransitioning {
         
         UIView.animate(withDuration: animationDuration, animations: {
             controller.view.frame = finalFrame
-        }) { (finished: Bool) in
+        }) { [unowned self] (finished: Bool) in
             transitionContext.completeTransition(finished)
+            if finished {
+                self.toViewController?.endAppearanceTransition()
+                self.fromViewController?.endAppearanceTransition()
+            }
         }
     }
 }
