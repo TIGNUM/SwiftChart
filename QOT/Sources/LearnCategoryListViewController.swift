@@ -143,14 +143,12 @@ extension LearnCategoryListViewController: ZoomPresentationAnimatable {
     func startAnimation(presenting: Bool, animationDuration: TimeInterval, openingFrame: CGRect) {
         let upScale: CGFloat = 1.3
 
-        let toTransform = presenting ? CGAffineTransform(scaleX: upScale, y: upScale) : CGAffineTransform(scaleX: 1, y: 1)
-        collectionView.transform = presenting ? CGAffineTransform(scaleX: 1, y: 1) : collectionView.transform
-
-        self.view.layoutIfNeeded()
-
         UIView.transition(with: self.view, duration: animationDuration, options: [.allowAnimatedContent, .curveEaseOut], animations: {
-            self.collectionView.transform = toTransform
+            self.collectionView.transform = presenting ? CGAffineTransform(scaleX: upScale, y: upScale) : .identity
             self.view.layoutIfNeeded()
+            if !presenting {
+                self.collectionView.reloadData()
+            }
         }, completion: nil)
     }
 }
