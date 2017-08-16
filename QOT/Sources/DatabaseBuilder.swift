@@ -17,7 +17,6 @@ class DatabaseBuilder {
     private let syncRecordService: SyncRecordService
     private let realmProvider: RealmProvider
     private let deviceID: String
-
     private let operationQueue: OperationQueue = {
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
@@ -54,7 +53,6 @@ class DatabaseBuilder {
                 log(error)
             }
         }
-        operationQueue.addOperations(operations, waitUntilFinished: false)
     }
     
     func downSyncOperation<P>(for: P.Type, context: SyncContext) -> DownSyncOperation<P> where P: DownSyncable, P: SyncableObject {

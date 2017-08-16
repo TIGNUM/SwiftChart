@@ -58,6 +58,8 @@
 		7F691C5E1F0D30C800E2C180 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F691C5D1F0D30C800E2C180 /* PlaceholderTextView.swift */; };
 		7F8739071F162300005ED8B8 /* WeeklyChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8739061F162300005ED8B8 /* WeeklyChoice.swift */; };
 		7F99ABB11F3DF38E009CA587 /* Database in Resources */ = {isa = PBXBuildFile; fileRef = 7F99ABB01F3DF38E009CA587 /* Database */; };
+		7FB32D111F42E8620027BF4E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB32D101F42E8620027BF4E /* Security.framework */; };
+		7FB32D131F42E8EE0027BF4E /* DatabaseKeyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB32D121F42E8EE0027BF4E /* DatabaseKeyService.swift */; };
 		7FB9AD0B1F39BD1400E0D621 /* UpSyncMediaResultParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB9AD0A1F39BD1400E0D621 /* UpSyncMediaResultParser.swift */; };
 		7FB9AD0D1F39BD2B00E0D621 /* UpSyncMediaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB9AD0C1F39BD2B00E0D621 /* UpSyncMediaData.swift */; };
 		7FBC3E7E1F34AB8D005BD772 /* MediaResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBC3E7D1F34AB8D005BD772 /* MediaResource.swift */; };
@@ -531,6 +533,8 @@
 		7F691C5D1F0D30C800E2C180 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		7F8739061F162300005ED8B8 /* WeeklyChoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoice.swift; sourceTree = "<group>"; };
 		7F99ABB01F3DF38E009CA587 /* Database */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Database; sourceTree = "<group>"; };
+		7FB32D101F42E8620027BF4E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		7FB32D121F42E8EE0027BF4E /* DatabaseKeyService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseKeyService.swift; sourceTree = "<group>"; };
 		7FB9AD0A1F39BD1400E0D621 /* UpSyncMediaResultParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpSyncMediaResultParser.swift; sourceTree = "<group>"; };
 		7FB9AD0C1F39BD2B00E0D621 /* UpSyncMediaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpSyncMediaData.swift; sourceTree = "<group>"; };
 		7FBC3E7D1F34AB8D005BD772 /* MediaResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaResource.swift; sourceTree = "<group>"; };
@@ -954,6 +958,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FB32D111F42E8620027BF4E /* Security.framework in Frameworks */,
 				0CC2119BB6C36EF6F43B4ECD /* Pods_QOT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -972,6 +977,7 @@
 		7BD58BE66F7DCDCEF349DBD8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7FB32D101F42E8620027BF4E /* Security.framework */,
 				CC37B1301E93CDD600651C46 /* QOTDatabase.framework */,
 				82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */,
 				CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */,
@@ -1302,6 +1308,7 @@
 			children = (
 				CC33CA2F1EC60447008E6B33 /* DatabaseConstants.swift */,
 				7F5A25BE1F3CB71100A11466 /* DatabaseManager.swift */,
+				7FB32D121F42E8EE0027BF4E /* DatabaseKeyService.swift */,
 				7FE151C71F3DDAE600DA8F37 /* DatabaseBuilder.swift */,
 				CB14676D1EF2AB7000A60E31 /* DeviceIdentifier.swift */,
 				CB1D5E351EC5E25A00BCDF8D /* Error.swift */,
@@ -2639,6 +2646,7 @@
 				CC8018201F0256980040B03F /* UIViewController+Alert.swift in Sources */,
 				0BA3E6411EC1A8280012999E /* DashedProgressWheel.swift in Sources */,
 				CCC2D3161F0AB1E000951A2E /* UserDefault+Convenience.swift in Sources */,
+				7FB32D131F42E8EE0027BF4E /* DatabaseKeyService.swift in Sources */,
 				CB34375B1EFD652800D89D4F /* Question.swift in Sources */,
 				CB0A4A5D1ECC4C72006A2D85 /* AddSensorViewController.swift in Sources */,
 				CC94F5621EB08EE400051CF8 /* AudioWaveformView.swift in Sources */,

@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import Security
 
 class DatabaseManager {
     enum Name: String {
@@ -35,14 +36,13 @@ class DatabaseManager {
     }
     
     func copyDefault(withName name: Name) throws {
-        guard let realmURL = Realm.Configuration.defaultConfiguration.fileURL else {
-            throw SimpleError(localizedDescription: "couldn't load Realm.Configuration.defaultConfiguration.fileURL")
+        guard let url = config.fileURL else {
+            throw SimpleError(localizedDescription: "couldn't load config.fileURL")
         }
-        guard let defaultURL = fileURLForName(name) else {
-            throw SimpleError(localizedDescription: "couldn't find database with name \(name.rawValue)")
-        }
-        try FileManager.default.copyItem(at: defaultURL, to: realmURL)
-        log("copied \(defaultURL) to \(realmURL)")
+        let database = try loadDatabase(name)
+        let service = DatabaseKeyService()
+        try database.writeCopy(toFile: url, encryptionKey: service.keyData)
+        log("copied bundled database \(name.rawValue) to \(url)")
     }
     
     func loadDatabase(_ name: Name) throws -> Realm {
