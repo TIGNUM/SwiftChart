@@ -66,11 +66,11 @@ extension FadeInOutPresentationAnimator: UIViewControllerAnimatedTransitioning {
         UIView.animate(withDuration: animationDuration, animations: {
             controller.view.frame = finalFrame
         }) { [unowned self] (finished: Bool) in
-            transitionContext.completeTransition(finished)
             if finished {
                 self.toViewController?.endAppearanceTransition()
                 self.fromViewController?.endAppearanceTransition()
             }
+            transitionContext.completeTransition(finished)
         }
     }
 }
