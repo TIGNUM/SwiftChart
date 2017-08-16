@@ -23,6 +23,7 @@ target 'QOT' do
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'UrbanAirship-iOS-SDK'
+  pod 'Buglife'
 
   target 'QOTTests' do
     inherit! :search_paths

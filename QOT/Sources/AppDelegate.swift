@@ -11,8 +11,8 @@ import Fabric
 import Crashlytics
 import AirshipKit
 import CoreLocation
-
 import Realm
+import Buglife
 
 extension AppDelegate {
 
@@ -68,6 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupUAirship()
 
         #if DEBUG
+            Buglife.shared().start(withEmail: "m.karbe@tignum.com")
             log("\nopen -a \"Realm Browser\" \(RealmProvider.config.fileURL!)\n")
             LogSettings.logLevel = .verbose
             logAppLocation()

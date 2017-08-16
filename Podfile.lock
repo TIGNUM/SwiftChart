@@ -6,6 +6,7 @@ PODS:
     - Diff (~> 0.4)
     - ReactiveKit (~> 3.5.3)
   - BonMot (4.3.1)
+  - Buglife (1.6.0)
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - Diff (0.5.3)
@@ -36,6 +37,7 @@ DEPENDENCIES:
   - Anchorage (~> 3.1)
   - Bond (~> 6.0)
   - BonMot (~> 4.3.1)
+  - Buglife
   - Crashlytics
   - Fabric
   - Freddy (= 3.0.0)
@@ -57,6 +59,7 @@ SPEC CHECKSUMS:
   Anchorage: 1444bbd32c4495b32d41c0be9f66efcb0862fe8a
   Bond: 0d7a52e9aec644c3b4985ceeb224a402b1efd691
   BonMot: 043bb5a8834cc6d74e9d624742272b92385e0a27
+  Buglife: a2f899044cd0a4953421797d86c0bfa1c4fe71a2
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   Diff: befa1d19c32726b2b36ce915d98793e2fbde8dcc
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
@@ -76,6 +79,6 @@ SPEC CHECKSUMS:
   UICollectionViewRightAlignedLayout: 823eef8c567eba4a44c21bc2ffcb0d0d5f361e2d
   UrbanAirship-iOS-SDK: 70dd4423697e775becd8d5f6049397f2a78dc40b
 
-PODFILE CHECKSUM: dfd22a6a9ab8ba3b7967a2823b8d90d61e0d43c2
+PODFILE CHECKSUM: 0b72724c8d61e8805933533d1a7c8ad31955db1a
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1
