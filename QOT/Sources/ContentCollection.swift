@@ -10,7 +10,6 @@ import UIKit
 import RealmSwift
 import Freddy
 
-// FIXME: Unit test.
 final class ContentCollection: SyncableObject {
 
     let categoryIDs: List<IntObject> = List()
@@ -46,20 +45,6 @@ final class ContentCollection: SyncableObject {
 
     let contentCategories = List<ContentCategory>()
 
-    func buildRelations(realm: Realm) {
-        let categoryIDs = Array(self.categoryIDs.map({ $0.value }))
-        let categories = realm.syncableObjects(ofType: ContentCategory.self, remoteIDs: categoryIDs)
-        contentCategories.removeAll()
-        contentCategories.append(objectsIn: categories)
-    }
-
-    func buildInverseRelations(realm: Realm) {
-        let predicate = NSPredicate(format: "contentCollection == %@", self)
-        let items = realm.objects(ContentItem.self).filter(predicate)
-        self.items.removeAll()
-        self.items.append(objectsIn: items)
-    }
-
     // MARK: Computed Properties
 
     var relatedContentIDs: [Int] {
@@ -73,6 +58,27 @@ final class ContentCollection: SyncableObject {
         return ids
     }
 }
+
+// MARK: - BuildRelations
+
+extension ContentCollection: BuildRelations {
+    
+    func buildRelations(realm: Realm) {
+        let categoryIDs = Array(self.categoryIDs.map({ $0.value }))
+        let categories = realm.syncableObjects(ofType: ContentCategory.self, remoteIDs: categoryIDs)
+        contentCategories.removeAll()
+        contentCategories.append(objectsIn: categories)
+    }
+    
+    func buildInverseRelations(realm: Realm) {
+        let predicate = NSPredicate(format: "contentCollection == %@", self)
+        let items = realm.objects(ContentItem.self).filter(predicate)
+        self.items.removeAll()
+        self.items.append(objectsIn: items)
+    }
+}
+
+// MARK: - OneWaySyncableDown
 
 extension ContentCollection: OneWaySyncableDown {
 

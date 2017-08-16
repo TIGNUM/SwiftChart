@@ -7,10 +7,24 @@
 //
 
 import Foundation
+import Freddy
 
-struct PreparationCheckIntermediary {
+struct PreparationCheckIntermediary: DownSyncIntermediary {
 
     let preparationID: Int
+    let contentID: Int
     let contentItemID: Int
-    let timestamp: Date
+    var covered: Date?
+    
+    init(json: JSON) throws {
+        self.preparationID = try json.getItemValue(at: .userPreparationId)
+        self.contentID = try json.getItemValue(at: .contentId)
+        self.contentItemID = try json.getItemValue(at: .contentItemId)
+        
+        do {
+            self.covered = try json.getDate(at: .covered)
+        } catch {
+            self.covered = nil
+        }
+    }
 }

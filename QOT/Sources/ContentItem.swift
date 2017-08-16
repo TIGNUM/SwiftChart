@@ -65,13 +65,20 @@ final class ContentItem: SyncableObject {
     // MARK: Relationships
 
     fileprivate(set) dynamic var contentCollection: ContentCollection?
+}
 
+// MARK: - BuildRelations
+
+extension ContentItem: BuildRelations {
+    
     func buildRelations(realm: Realm) {
         if let id = collectionID.value {
             contentCollection = realm.syncableObject(ofType: ContentCollection.self, remoteID: id)
         }
     }
 }
+
+// MARK: - OneWaySyncableDown
 
 extension ContentItem: OneWaySyncableDown {
 

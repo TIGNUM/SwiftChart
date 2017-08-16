@@ -63,12 +63,12 @@ final class ContentService {
         return mainRealm.syncableObject(ofType: ContentCollection.self, remoteID: id)
     }
 
-    func contentItems(contentID: Int) -> AnyRealmCollection<ContentItem> {
-        return mainRealm.anyCollection(predicates: NSPredicate(format: "collectionID == %d", contentID))
+    func contentItems(contentCollectionID: Int) -> AnyRealmCollection<ContentItem> {
+        return mainRealm.anyCollection(predicates: NSPredicate(format: "collectionID == %d", contentCollectionID))
     }
 
-    func contentItemsOnBackground(contentID: Int) throws -> AnyRealmCollection<ContentItem> {
-        return try realmProvider.realm().anyCollection(predicates: NSPredicate(format: "collectionID == %d", contentID))
+    func contentItemsOnBackground(contentCollectionID: Int) throws -> AnyRealmCollection<ContentItem> {
+        return try realmProvider.realm().anyCollection(predicates: NSPredicate(format: "collectionID == %d", contentCollectionID))
     }
 
     func relatedArticles(for articleCollection: ContentCollection) -> [ContentCollection] {

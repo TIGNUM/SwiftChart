@@ -7,6 +7,16 @@
 //
 
 import Foundation
+import RealmSwift
+
+protocol BuildRelations {
+    func buildRelations(realm: Realm)
+    func buildInverseRelations(realm: Realm)
+}
+extension BuildRelations { // optional
+    func buildRelations(realm: Realm) {}
+    func buildInverseRelations(realm: Realm) {}
+}
 
 final class UpdateRelationsOperation: ConcurrentOperation {
 
@@ -22,17 +32,15 @@ final class UpdateRelationsOperation: ConcurrentOperation {
         do {
             let realm = try realmProvider.realm()
             try realm.write {
-                let contentCategories = realm.objects(ContentCategory.self)
-                let contentCollections = realm.objects(ContentCollection.self)
-                let contentItems = realm.objects(ContentItem.self)
-
-                // First create relationships in one direction
-                contentCollections.forEach { $0.buildRelations(realm: realm) }
-                contentItems.forEach { $0.buildRelations(realm: realm) }
-
-                // Next create inverse relationships. Must happen after above relationships created
-                contentCategories.forEach { $0.buildInverseRelations(realm: realm) }
-                contentCollections.forEach { $0.buildInverseRelations(realm: realm) }
+                let collections: [[BuildRelations]] = [
+                    Array(realm.objects(ContentCategory.self)),
+                    Array(realm.objects(ContentCollection.self)),
+                    Array(realm.objects(ContentItem.self)),
+                    Array(realm.objects(Preparation.self)),
+                    Array(realm.objects(PreparationCheck.self))
+                ]
+                collections.forEach { $0.forEach { $0.buildRelations(realm: realm) } }
+                collections.forEach { $0.forEach { $0.buildInverseRelations(realm: realm) } }
             }
 
             finish(error: nil)

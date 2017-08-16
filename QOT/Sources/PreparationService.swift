@@ -39,60 +39,50 @@ final class PreparationService {
         return try realmProvider.realm().preparationChecks(preparationID: preparationID)
     }
 
-    func createPreparation(contentID: Int, eventID: String?, title: String, subtitle: String, completion: ((Error?, String?) -> Void)?) {
-        DispatchQueue.global().async {
-            var localID: String?
-            do {
-                let realm = try self.realmProvider.realm()
-                var calendarEvent: CalendarEvent?
-                if let eventID = eventID {
-                    calendarEvent = realm.calendarEventForEventID(eventID)
-                }
-                
-                try realm.write {
-                    let preparation = Preparation(contentID: contentID, calendarEvent: calendarEvent, title: title, subtitle: subtitle)
-                    localID = preparation.localID
-                    realm.add(preparation)
-                }
-                DispatchQueue.main.async {
-                    completion?(nil, localID)
-                }
-            } catch let error {
-                DispatchQueue.main.async {
-                    completion?(error, nil)
-                }
-            }
+    func createPreparation(contentCollectionID: Int, eventID: String?, name: String, subtitle: String) throws -> String {
+        let realm = try self.realmProvider.realm()
+        guard let contentCollection = realm.syncableObject(ofType: ContentCollection.self, remoteID: contentCollectionID) else {
+            throw SimpleError(localizedDescription: "No content collection for contentCollectionID: \(contentCollectionID)")
         }
+        
+        var calendarEvent: CalendarEvent?
+        if let eventID = eventID {
+            calendarEvent = realm.calendarEventForEventID(eventID)
+        }
+        
+        let preparation = Preparation(calendarEvent: calendarEvent, contentCollectionID: contentCollectionID, name: name, subtitle: subtitle)
+        let items = contentCollection.items.filter ({ (item: ContentItem) -> Bool in
+            switch item.contentItemValue {
+            case .prepareStep:
+                return true
+            default:
+                return false
+            }
+        })
+        items.forEach({ (item: ContentItem) in
+            preparation.checks.append(PreparationCheck(preparation: preparation, contentItem: item, covered: nil))
+        })
+        try realm.write {
+            realm.add(preparation)
+        }
+        return preparation.localID
     }
 
     /// Updates `PreparationCheck`s for a `Preparation.localID`. `checks` is a map of `ContentItem.remoteID` to check date.
-    func updateChecks(preparationID: String, checks: [Int: Date], completion: ((Error?) -> Void)?) {
-        DispatchQueue.global().async {
-            do {
-                let realm = try self.realmProvider.realm()
-                let currentChecks: AnyRealmCollection<PreparationCheck> = realm.anyCollection(predicates: .preparationID(preparationID))
-                var newChecks = checks
-
-                try realm.write {
-                    for check in currentChecks {
-                        if newChecks[check.contentItemID] == nil {
-                            check.delete()
-                        } else {
-                            newChecks[check.contentItemID] = nil
-                        }
-                    }
-                    for check in newChecks {
-                        realm.add(PreparationCheck(preparationID: preparationID, contentItemID: check.key, timestamp: check.value))
-                    }
+    func updateChecks(preparationID: String, checks: [Int: Date?]) throws {
+        let realm = try self.realmProvider.realm()
+        let checkObjects = preparationChecks(preparationID: preparationID)
+        try realm.write {
+            checkObjects.forEach({ (checkObject: PreparationCheck) in
+                guard let covered: Date? = checks[checkObject.contentItemID],
+                    // guards state did change
+                    ((covered == nil && checkObject.covered != nil) ||
+                     (covered != nil && checkObject.covered == nil)) else {
+                        return
                 }
-                DispatchQueue.main.async {
-                    completion?(nil)
-                }
-            } catch let error {
-                DispatchQueue.main.async {
-                    completion?(error)
-                }
-            }
+                checkObject.covered = covered
+                checkObject.didUpdate()
+            })
         }
     }
 }

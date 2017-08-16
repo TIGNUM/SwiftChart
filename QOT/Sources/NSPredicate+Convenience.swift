@@ -15,7 +15,7 @@ extension NSPredicate {
     }
 
     static func preparationID(_ id: String) -> NSPredicate {
-        return NSPredicate(format: "preparationID == %@", id)
+        return NSPredicate(format: "preparation.localID == %@", id)
     }
 
     static func key(_ key: String) -> NSPredicate {

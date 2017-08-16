@@ -35,7 +35,12 @@ final class ContentCategory: SyncableObject {
     // MARK: Relationships
 
     let contentCollections = List<ContentCollection>()
+}
 
+// MARK: - BuildRelations
+
+extension ContentCategory: BuildRelations {
+    
     func buildInverseRelations(realm: Realm) {
         let predicate = NSPredicate(format: "ANY contentCategories == %@", self)
         let collections = realm.objects(ContentCollection.self).filter(predicate)
@@ -43,6 +48,8 @@ final class ContentCategory: SyncableObject {
         contentCollections.append(objectsIn: collections)
     }
 }
+
+// MARK: - OneWaySyncableDown
 
 extension ContentCategory: OneWaySyncableDown {
     static var endpoint: Endpoint {

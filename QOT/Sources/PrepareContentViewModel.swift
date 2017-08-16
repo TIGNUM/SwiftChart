@@ -41,7 +41,7 @@ final class PrepareContentViewModel {
     fileprivate var headerToggleState: [Bool] = []
 
     var displayMode: DisplayMode
-    var checkedIDs: [Int: Date]
+    var checkedIDs: [Int: Date?]
 
     var title: String = ""
     var subTitle: String = ""
@@ -52,6 +52,12 @@ final class PrepareContentViewModel {
     var items: [PrepareContentItemType] = []
     var preparationID: String?
 
+    var checkedCount: Int {
+        return checkedIDs.reduce(0) { (result: Int, check: (key: Int, value: Date?)) -> Int in
+            return (check.value == nil) ? result : result + 1
+        }
+    }
+    
     // MARK: - Initialisation
 
     init(title: String, subtitle: String, video: Video?, description: String, items: [PrepareItem]) {
@@ -67,7 +73,7 @@ final class PrepareContentViewModel {
         makeItems(items)
     }
 
-    init(title: String, video: Video?, description: String, items: [PrepareItem], checkedIDs: [Int: Date], preparationID: String) {
+    init(title: String, video: Video?, description: String, items: [PrepareItem], checkedIDs: [Int: Date?], preparationID: String) {
         self.title = title
         self.video = video?.url
         self.videoPlaceholder = video?.placeholderURL
@@ -85,9 +91,17 @@ final class PrepareContentViewModel {
     }
 
     fileprivate func setSubtitle() {
-        subTitle = String(format: "%02d/%02d ", checkedIDs.count, items.count - 1) + R.string.localized.prepareContentTasks()
+        subTitle = String(format: "%02d/%02d ", checkedCount, items.count - 1) + R.string.localized.prepareContentTasks()
         items.remove(at: 0)
         items.insert(.titleItem(title: title, subTitle: subTitle, contentText: contentText, placeholderURL: videoPlaceholder, videoURL: video), at: 0)
+    }
+    
+    private func dateForID(_ id: Int) -> Date? {
+        guard let date: Date? = checkedIDs[id] else {
+            assertionFailure("date shouldnt be missing")
+            return nil
+        }
+        return date
     }
 
     // MARK: - Public
@@ -96,31 +110,19 @@ final class PrepareContentViewModel {
         if displayMode != .checkbox {
             return false
         }
-        return checkedIDs.index(forKey: id) != nil
+        return dateForID(id) != nil
     }
 
     func didTapCheckbox(id: Int) {
         if displayMode != .checkbox {
             return
         }
-        if checkedIDs.index(forKey: id) != nil {
-            checkedIDs.removeValue(forKey: id)
+        if dateForID(id) == nil {
+            checkedIDs.updateValue(Date(), forKey: id)
         } else {
-            checkedIDs[id] = Date()
+            checkedIDs.updateValue(nil, forKey: id)
         }
         setSubtitle()
-
-        var indexPaths = [IndexPath(row: 0, section: 0)]
-        for i in 1..<items.count {
-            switch items[i] {
-            case .item(let itemID, _, _, _):
-                if id == itemID {
-                    indexPaths.append(IndexPath(row: i, section: 0))
-                }
-            default:
-                break
-            }
-        }
     }
 
     var itemCount: Int {

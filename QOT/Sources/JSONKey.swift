@@ -35,6 +35,7 @@ enum JsonKey: String {
     case contentRelationType
     case coordinates
     case country
+    case covered
     case createdAt
     case dataAverage
     case dataPoints
@@ -106,6 +107,7 @@ enum JsonKey: String {
     case pageSize
     case periods
     case publicHolidays
+    case preparationId
     case qotId
     case qotPartnerUserId
     case question
@@ -176,6 +178,7 @@ enum JsonKey: String {
     case userId
     case userImageURL
     case userInfo
+    case userPreparationId
     case vacation
     case validFrom
     case validUntil

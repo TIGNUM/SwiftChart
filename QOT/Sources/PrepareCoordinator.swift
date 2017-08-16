@@ -14,7 +14,7 @@ import EventKitUI
 final class PrepareCoordinator: ParentCoordinator {
 
     struct Context {
-        let contentID: Int
+        let contentCollectionID: Int
         let listTitle: String
 
         var defaultPreparationName: String {
@@ -87,12 +87,12 @@ final class PrepareCoordinator: ParentCoordinator {
 
 extension PrepareCoordinator {
 
-    func showPrepareList(contentID: Int) {
+    func showPrepareList(contentCollectionID: Int) {
         var title: String? = nil
         var video: PrepareContentViewModel.Video? = nil
         var items: [PrepareItem] = []
 
-        if let content = services.contentService.contentCollection(id: contentID) {
+        if let content = services.contentService.contentCollection(id: contentCollectionID) {
             title = content.title
             for item in content.contentItems {
                 let value = item.contentItemValue
@@ -115,7 +115,7 @@ extension PrepareCoordinator {
             tabBarController.present(viewController, animated: true)
             prepareListViewController = viewController
 
-            context = Context(contentID: contentID, listTitle: title)
+            context = Context(contentCollectionID: contentCollectionID, listTitle: title)
         } else {
             tabBarController.showAlert(type: .noContent, handler: { [weak self] in
                 self?.chatDecisionManager.start()
@@ -132,7 +132,7 @@ extension PrepareCoordinator {
         var video: PrepareContentViewModel.Video? = nil
         var items: [PrepareItem] = []
 
-        if let content = services.contentService.contentCollection(id: preparation.contentID) {
+        if let content = services.contentService.contentCollection(id: preparation.contentCollectionID) {
             title = content.title
             for item in content.contentItems {
                 let value = item.contentItemValue
@@ -148,9 +148,9 @@ extension PrepareCoordinator {
         }
 
         let preparationChecks = services.preparationService.preparationChecks(preparationID: preparationID)
-        var checkedIDs: [Int: Date] = [:]
+        var checkedIDs: [Int: Date?] = [:]
         for preparationCheck in preparationChecks {
-            checkedIDs[preparationCheck.contentItemID] = preparationCheck.timestamp
+            checkedIDs[preparationCheck.contentItemID] = preparationCheck.covered
         }
 
         if let title = title {
@@ -195,34 +195,36 @@ extension PrepareCoordinator {
             preconditionFailure("No preparation context")
         }
 
-        services.preparationService.createPreparation(contentID: context.contentID, eventID: eventID, title: name, subtitle: context.listTitle) { [unowned self] error, localID in
-            guard
-                error == nil,
-                let localID = localID,
-                let eventID = eventID else {
-                    return
+        let localID: String
+        do {
+            localID = try services.preparationService.createPreparation(contentCollectionID: context.contentCollectionID, eventID: eventID, name: name, subtitle: context.listTitle)
+        } catch {
+            log(error)
+            return
+        }
+        
+        guard let eventID = eventID else {
+            return
+        }
+        self.permissionHandler.askPermissionForCalendar { (granted: Bool) in
+            guard granted == true else {
+                return
             }
-
-            self.permissionHandler.askPermissionForCalendar { (granted: Bool) in
-                guard granted == true else {
+            
+            let eventStore = EKEventStore.shared
+            if let event = eventStore.event(withIdentifier: eventID) {
+                var notes = event.notes ?? ""
+                guard let preparationLink = LaunchHandler.default.generatePreparationURL(withID: localID) else {
                     return
                 }
-                
-                let eventStore = EKEventStore.shared
-                if let event = eventStore.event(withIdentifier: eventID) {
-                    var notes = event.notes ?? ""
-                    guard let preparationLink = LaunchHandler.default.generatePreparationURL(withID: localID) else {
-                        return
-                    }
-                    notes += "\n\n" + preparationLink
-                    print("preparationLink: \(preparationLink)")
-                    event.notes = notes
-                    do {
-                        try eventStore.save(event, span: .thisEvent, commit: true)
-                    } catch let error {
-                        print("createPreparation - eventStore.save.error: ", error.localizedDescription)
-                        return
-                    }
+                notes += "\n\n" + preparationLink
+                print("preparationLink: \(preparationLink)")
+                event.notes = notes
+                do {
+                    try eventStore.save(event, span: .thisEvent, commit: true)
+                } catch let error {
+                    print("createPreparation - eventStore.save.error: ", error.localizedDescription)
+                    return
                 }
             }
         }
@@ -243,7 +245,7 @@ extension PrepareCoordinator: PrepareContentViewControllerDelegate {
 
         if let preparationID = viewController.viewModel.preparationID {
             let checks = viewController.viewModel.checkedIDs
-            services.preparationService.updateChecks(preparationID: preparationID, checks: checks, completion: nil)
+            try? services.preparationService.updateChecks(preparationID: preparationID, checks: checks)
         }
     }
 
@@ -290,7 +292,7 @@ extension PrepareCoordinator : PrepareChatDecisionManagerDelegate {
     }
 
     func showContent(id: Int, manager: PrepareChatDecisionManager) {
-        showPrepareList(contentID: id)
+        showPrepareList(contentCollectionID: id)
     }
 
     func showNoContentError(manager: PrepareChatDecisionManager) {

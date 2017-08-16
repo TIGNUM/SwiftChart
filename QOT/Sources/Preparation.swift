@@ -14,29 +14,45 @@ import EventKit
 final class Preparation: SyncableObject {
 
     // MARK: Public Properties
-
-    fileprivate(set) dynamic var contentID: Int = 0
-
-    fileprivate(set) dynamic var title: String = ""
+    
+    fileprivate(set) dynamic var name: String = ""
     
     fileprivate(set) dynamic var subtitle: String = ""
     
-    fileprivate(set) dynamic var calendarEventRemoteId: Int = 0
-
-    dynamic var calendarEvent: CalendarEvent?
+    fileprivate(set) dynamic var calendarEventRemoteID: Int = 0
     
+    fileprivate(set) dynamic var contentCollectionID: Int = 0
+
     dynamic var changeStamp: String? = UUID().uuidString
     
     dynamic var deleted: Bool = false
     
+    // MARK: Relationships
+    
+    fileprivate(set) dynamic var calendarEvent: CalendarEvent?
+
+    let checks = List<PreparationCheck>()
+
     // MARK: Functions
 
-    convenience init(contentID: Int, calendarEvent: CalendarEvent?, title: String, subtitle: String) {
+    convenience init(calendarEvent: CalendarEvent?, contentCollectionID: Int, name: String, subtitle: String) {
         self.init()
-        self.contentID = contentID
         self.calendarEvent = calendarEvent
-        self.title = title
+        self.contentCollectionID = contentCollectionID
+        self.name = name
         self.subtitle = subtitle
+    }
+}
+
+// MARK: - BuildRelations
+
+extension Preparation: BuildRelations {
+    
+    func buildInverseRelations(realm: Realm) {
+        let predicate = NSPredicate(format: "preparation == %@", self)
+        let collections = realm.objects(PreparationCheck.self).filter(predicate)
+        checks.removeAll()
+        checks.append(objectsIn: collections)
     }
 }
 
@@ -45,10 +61,10 @@ final class Preparation: SyncableObject {
 extension Preparation: TwoWaySyncable {
     
     func setData(_ data: PreparationIntermediary, objectStore: ObjectStore) throws {
-        contentID = data.contentID
-        title = data.title
+        name = data.name
         subtitle = data.subtitle
-        calendarEventRemoteId = data.calendarEventRemoteId
+        calendarEventRemoteID = data.calendarEventRemoteID
+        contentCollectionID = data.contentID
     }
     
     static var endpoint: Endpoint {
@@ -65,14 +81,15 @@ extension Preparation: TwoWaySyncable {
 
         let dateFormatter = DateFormatter.iso8601
         var dict: [JsonKey: JSONEncodable] = [
-            .qotId: localID,
+            .id: remoteID.value.toJSONEncodable,
             .createdAt: dateFormatter.string(from: createdAt),
+            .contentId: contentCollectionID,
             .modifiedAt: dateFormatter.string(from: modifiedAt),
+            .qotId: localID,
+            .name: name,
             .syncStatus: syncStatus.rawValue,
-            .title: title,
             .subtitle: subtitle,
-            .contentId: contentID,
-            .id: remoteID.value.toJSONEncodable
+            .eventId: (calendarEvent?.remoteID.value ?? nil).toJSONEncodable
         ]
         if let calendarEvent = calendarEvent {
             dict[.eventId] = calendarEvent.remoteID.value.toJSONEncodable

@@ -117,30 +117,32 @@ final class TabBarCoordinator: ParentCoordinator {
         self.selectedIndex = Observable(selectedIndex)
         self.permissionHandler = permissionHandler
         
-        syncAllStartedNotificationHandler.handler = { [weak self] (notification: Notification) in
-            guard let `self` = self, let userInfo = notification.userInfo, let isDownloadRecordsValid = userInfo["isDownloadRecordsValid"] as? Bool, isDownloadRecordsValid == false else {
+        syncAllStartedNotificationHandler.handler = { (notification: Notification) in
+            guard let userInfo = notification.userInfo, let isDownloadRecordsValid = userInfo["isDownloadRecordsValid"] as? Bool, isDownloadRecordsValid == false else {
                 return
             }
             self.showLoading()
         }
-        syncAllFinishedNotificationHandler.handler = { [weak self] (_: Notification) in
-            guard let strongSelf = self, strongSelf.tabBarController?.presentedViewController == strongSelf.loadingViewController else {
+        syncAllFinishedNotificationHandler.handler = { (_: Notification) in
+            guard self.tabBarController?.presentedViewController == self.loadingViewController else {
                 DispatchQueue.main.async {
-                    self?.hasLoaded = true
-                    if let `self` = self, self.hasStarted && !self.hasTutorialStarted {
+                    self.hasLoaded = true
+                    if self.hasStarted && !self.hasTutorialStarted {
                         self.startTutorials()
                     }
                 }
                 return
             }
-            strongSelf.loadingViewController.fadeOut(withCompletion: {
-                strongSelf.loadingViewController.dismiss(animated: true, completion: {
-                    strongSelf.hasLoaded = true
-                    if let preparationID = strongSelf.preparationID {
-                        strongSelf.prepareCoordinator.showPrepareCheckList(preparationID: preparationID)
+            
+            let loadingViewController = self.loadingViewController
+            loadingViewController.fadeOut(withCompletion: { [unowned loadingViewController] in
+                loadingViewController.dismiss(animated: true, completion: {
+                    self.hasLoaded = true
+                    if let preparationID = self.preparationID {
+                        self.prepareCoordinator.showPrepareCheckList(preparationID: preparationID)
                     } else {
-                        if strongSelf.hasStarted && !strongSelf.hasTutorialStarted {
-                            strongSelf.startTutorials()
+                        if self.hasStarted && !self.hasTutorialStarted {
+                            self.startTutorials()
                         }
                     }
                 })

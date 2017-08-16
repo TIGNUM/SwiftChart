@@ -11,15 +11,15 @@ import Freddy
 
 struct PreparationIntermediary: DownSyncIntermediary {
 
-    let contentID: Int
-    let calendarEventRemoteId: Int
-    let title: String
+    let name: String
     let subtitle: String
+    let calendarEventRemoteID: Int
+    let contentID: Int
     
     init(json: JSON) throws {
-        self.contentID = try json.getItemValue(at: .contentId)
-        self.calendarEventRemoteId = try json.getItemValue(at: .eventId)
-        self.title = try json.serializeString(at: .title)
+        self.name = try json.serializeString(at: .name)
         self.subtitle = try json.serializeString(at: .subtitle)
+        self.calendarEventRemoteID = try json.getItemValue(at: .eventId)
+        self.contentID = try json.getItemValue(at: .contentId)
     }
 }

@@ -188,6 +188,7 @@ final class SyncManager {
             upSyncOperation(MyToBeVision.self, context: context),
             upSyncOperation(Partner.self, context: context),
             upSyncOperation(Preparation.self, context: context),
+            upSyncOperation(PreparationCheck.self, context: context),
             upSyncOperation(UserChoice.self, context: context),
             upSyncOperation(UserSetting.self, context: context),
             upSyncOperation(User.self, context: context)
@@ -209,6 +210,7 @@ final class SyncManager {
             downSyncOperation(for: Partner.self, context: context),
             downSyncOperation(for: MyToBeVision.self, context: context),
             downSyncOperation(for: Preparation.self, context: context),
+            downSyncOperation(for: PreparationCheck.self, context: context),
             UpdateRelationsOperation(context: context, realmProvider: realmProvider)
         ]
     }

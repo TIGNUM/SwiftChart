@@ -59,7 +59,7 @@ final class MyPrepViewModel {
                 let preparations = try strongSelf.services.preparationService.preparationsOnBackground()
                 var items: [Item] = []
                 for preparation in preparations {
-                    let contentItems = Array(try strongSelf.services.contentService.contentItemsOnBackground(contentID: preparation.contentID))
+                    let contentItems = Array(try strongSelf.services.contentService.contentItemsOnBackground(contentCollectionID: preparation.contentCollectionID))
                     let contentItemIDs = contentItems.filter ({ (contentItem) -> Bool in
                         switch contentItem.contentItemValue {
                         case .prepareStep:
@@ -70,12 +70,15 @@ final class MyPrepViewModel {
                     }).map { $0.remoteID }
                     
                     let preparationChecks = try strongSelf.services.preparationService.preparationChecksOnBackground(preparationID: preparation.localID)
+                    let finishedPreparationCount = preparationChecks.reduce(0, { (result: Int, check: PreparationCheck) -> Int in
+                        return (check.covered == nil) ? result : result + 1
+                    })
                     let item = Item(localID: preparation.localID,
                                     header: preparation.subtitle,
-                                    text: preparation.title,
+                                    text: preparation.name,
                                     startDate: preparation.calendarEvent?.event?.startDate,
                                     totalPreparationCount: contentItemIDs.count,
-                                    finishedPreparationCount: preparationChecks.count)
+                                    finishedPreparationCount: finishedPreparationCount)
                     items.append(item)
                 }
 
