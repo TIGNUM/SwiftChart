@@ -26,7 +26,6 @@ final class LibraryTableViewCategoryCell: UITableViewCell, Dequeueable {
         collectionView.registerDequeueable(LibraryCollectionCell.self)
         collectionView.dataSource = self
         collectionView.delegate = self
-//        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         collectionView.decelerationRate = UIScrollViewDecelerationRateFast
         collectionView.backgroundColor = .clear
         collectionView.showsVerticalScrollIndicator = false
@@ -46,7 +45,7 @@ extension LibraryTableViewCategoryCell: UICollectionViewDelegateFlowLayout, UICo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: LibraryCollectionCell = collectionView.dequeueCell(for: indexPath)
         let collection = contentCollection[indexPath.item]
-        cell.setup(headline: collection.title, previewImageURL: collection.thumbnailURL, mediaType: collection.description, sectionType: sectionType)
+        cell.setup(headline: collection.title, previewImageURL: collection.thumbnailURL, mediaType: collection.items.first?.format, sectionType: sectionType)
         cell.backgroundColor = .clear
 
         return cell

@@ -18,9 +18,12 @@ final class LibraryCollectionLatestPostCell: UICollectionViewCell, Dequeueable {
 
     // MARK: - Setup
     
-    func setup(headline: String, previewImageURL: URL?, mediaType: String, sectionType: SectionType) {
+    func setup(headline: String, previewImageURL: URL?, mediaType: String?, sectionType: SectionType) {
+        if let mediaType = mediaType {
+            mediaTypeLabel.attributedText = Style.tag(mediaType.uppercased(), .white60).attributedString()
+        }
+
         headlineLabel.attributedText = Style.headlineSmall(headline.makingTwoLines().uppercased(), .white).attributedString()
-        mediaTypeLabel.attributedText = Style.tag(mediaType.uppercased(), .white60).attributedString()
         latestPostImageView.kf.setImage(with: previewImageURL, placeholder: R.image.preloading(), options: nil, progressBlock: nil, completionHandler: nil)
         latestPostImageView.layer.cornerRadius = 10.0
         latestPostImageView.layer.masksToBounds = true        
