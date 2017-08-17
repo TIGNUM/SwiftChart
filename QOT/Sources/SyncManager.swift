@@ -35,23 +35,26 @@ final class SyncManager {
         queue.maxConcurrentOperationCount = 1
         return queue
     }()
-    private var syncCheckTimer: Timer?
+    private var syncAllTimer: Timer?
+    private var uploadTimer: Timer?
 
     @objc var isDownloadRecordsValid: Bool {
         do {
             let downloadClasses: [AnyClass] = [
-                ContentCategory.self,
-                ContentCollection.self,
-                ContentItem.self,
-                User.self,
-                Page.self,
-                Question.self,
-                MyStatistics.self,
                 SystemSetting.self,
                 UserSetting.self,
+                User.self,
+                Question.self,
+                Page.self,
                 UserChoice.self,
+                ContentCategory.self,
+                ContentCollection.self,
+                MyStatistics.self,
+                ContentItem.self,
                 Partner.self,
-                MyToBeVision.self
+                MyToBeVision.self,
+                Preparation.self,
+                PreparationCheck.self
             ]
             for value in downloadClasses {
                 guard try syncRecordService.lastSync(className: String(describing: value.self)) > 0 else {
@@ -77,9 +80,9 @@ final class SyncManager {
     }
 
     deinit {
-        tearDownTimer()
+        tearDownTimers()
     }
-    
+
     // MARK: Private
 
     private func setupNotifications() {
@@ -90,35 +93,42 @@ final class SyncManager {
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForegroundNotification(_:)), name: .UIApplicationWillEnterForeground, object: nil)
     }
 
-    private func setupTimer() {
-        syncCheckTimer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true) { [unowned self] (timer: Timer) in
+    private func setupTimers() {
+        syncAllTimer = Timer.scheduledTimer(withTimeInterval: 60.0 * 60.0 * 10.0 /* 10 mins */, repeats: true) { [unowned self] (timer: Timer) in
             self.syncAll()
+            self.uploadMedia()
+        }
+        uploadTimer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true) { [unowned self] (timer: Timer) in
+            self.uploadNonMedia()
             self.uploadMedia()
         }
     }
 
-    private func tearDownTimer() {
-        syncCheckTimer?.invalidate()
-        syncCheckTimer = nil
+    private func tearDownTimers() {
+        syncAllTimer?.invalidate()
+        syncAllTimer = nil
+
+        uploadTimer?.invalidate()
+        uploadTimer = nil
     }
 
     // MARK: Syncs
 
     func startAutoSync() {
-        setupTimer()
+        setupTimers()
     }
-    
+
     func stopAutoSync() {
-        tearDownTimer()
+        tearDownTimers()
     }
-    
+
     func stopCurrentSync(waitUntilStopped: Bool) {
         operationQueue.cancelAllOperations()
         if waitUntilStopped == true {
             operationQueue.waitUntilAllOperationsAreFinished()
         }
     }
-    
+
     func syncAll() {
         let context = SyncContext()
 
@@ -148,6 +158,52 @@ final class SyncManager {
 
         operationQueue.addOperations(operations, waitUntilFinished: false)
     }
+    
+    func download() {
+        let context = SyncContext()
+        
+        let startOperation = BlockOperation {
+            log("DOWNLOAD STARTED", enabled: LogToggle.Manager.Sync)
+        }
+        let finishOperation = BlockOperation {
+            DispatchQueue.main.async {
+                let errors = context.errors
+                log("DOWNLOAD FINISHED with \(errors.count) errors", enabled: LogToggle.Manager.Sync)
+                errors.forEach { (error: SyncError) in
+                    log(error, enabled: LogToggle.Manager.Sync)
+                }
+            }
+        }
+        
+        var operations: [Operation] = [startOperation]
+        operations.append(contentsOf: allDownSyncOperations(context: context))
+        operations.append(finishOperation)
+        
+        operationQueue.addOperations(operations, waitUntilFinished: false)
+    }
+    
+    func uploadNonMedia() {
+        let context = SyncContext()
+        
+        let startOperation = BlockOperation {
+            log("UPLOAD NON MEDIA STARTED", enabled: LogToggle.Manager.Sync)
+        }
+        let finishOperation = BlockOperation {
+            DispatchQueue.main.async {
+                let errors = context.errors
+                log("UPLOAD NON MEDIA FINISHED with \(errors.count) errors", enabled: LogToggle.Manager.Sync)
+                errors.forEach { (error: SyncError) in
+                    log(error, enabled: LogToggle.Manager.Sync)
+                }
+            }
+        }
+        
+        var operations: [Operation] = [startOperation]
+        operations.append(contentsOf: allUpSyncOperations(context: context))
+        operations.append(finishOperation)
+        
+        operationQueue.addOperations(operations, waitUntilFinished: false)
+    }
 
     func uploadMedia() {
         do {
@@ -155,19 +211,19 @@ final class SyncManager {
             var operations: [Operation] = try uploadMediaOperations(context: context)
 
             guard operations.count > 0 else {
-                log("UPLOAD MEDIA SYNC - NO ITEMS TO UPLOAD", enabled: LogToggle.Manager.Sync)
+                log("UPLOAD MEDIA - NO ITEMS TO UPLOAD", enabled: LogToggle.Manager.Sync)
                 return
             }
             let startOperation = BlockOperation {
                 DispatchQueue.main.async {
-                    log("UPLOAD MEDIA SYNC STARTED", enabled: LogToggle.Manager.Sync)
+                    log("UPLOAD MEDIA STARTED", enabled: LogToggle.Manager.Sync)
                 }
             }
             let finishOperation = BlockOperation {
                 DispatchQueue.main.async {
                     let errors = context.errors
-
-                    log("UPLOAD MEDIA SYNC FINISHED with \(errors.count) errors", enabled: LogToggle.Manager.Sync)
+                    
+                    log("UPLOAD MEDIA FINISHED with \(errors.count) errors", enabled: LogToggle.Manager.Sync)
                     errors.forEach { (error: SyncError) in
                         log(error, enabled: LogToggle.Manager.Sync)
                     }
@@ -178,7 +234,7 @@ final class SyncManager {
             operations.append(finishOperation)
             operationQueue.addOperations(operations, waitUntilFinished: false)
         } catch {
-            log("UPLOAD MEDIA SYNC FAILED TO START: \(error)", enabled: LogToggle.Manager.Sync)
+            log("UPLOAD MEDIA FAILED TO START: \(error)", enabled: LogToggle.Manager.Sync)
         }
     }
 
@@ -197,6 +253,7 @@ final class SyncManager {
 
     private func allDownSyncOperations(context: SyncContext) -> [Operation] {
         return [
+            // @warning also add to isDownloadRecordsValid
             downSyncOperation(for: SystemSetting.self, context: context),
             downSyncOperation(for: UserSetting.self, context: context),
             downSyncOperation(for: User.self, context: context),
@@ -233,15 +290,13 @@ final class SyncManager {
                                     downSyncImporter: DownSyncImporter())
     }
 
-    private func upSyncOperation<T>(_ type: T.Type,
-                                    context: SyncContext) -> UpSyncOperation<T> where T: Object, T: UpSyncable {
+    private func upSyncOperation<T>(_ type: T.Type, context: SyncContext) -> UpSyncOperation<T> where T: Object, T: UpSyncable {
         return UpSyncOperation<T>(networkManager: networkManager,
                                   realmProvider: realmProvider,
                                   syncContext: context)
     }
 
-    private func upSyncMediaOperation(localID: String,
-                                      context: SyncContext) -> UpSyncMediaOperation {
+    private func upSyncMediaOperation(localID: String, context: SyncContext) -> UpSyncMediaOperation {
         return UpSyncMediaOperation(networkManager: networkManager,
                                     realmProvider: realmProvider,
                                     syncContext: context,
@@ -256,7 +311,7 @@ final class SyncManager {
     }
     
     @objc private func startSyncDownloadNotification(_ notification: Notification) {
-        fatalError("Not implemented")
+        download()
     }
     
     @objc private func startSyncUploadMediaNotification(_ notification: Notification) {
@@ -264,7 +319,7 @@ final class SyncManager {
     }
     
     @objc private func startSyncUploadNonMediaNotification(_ notification: Notification) {
-        fatalError("Not implemented")
+        uploadNonMedia()
     }
     
     @objc private func willEnterForegroundNotification(_ notification: Notification) {
