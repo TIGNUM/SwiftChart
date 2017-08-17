@@ -77,8 +77,8 @@ final class OnboardingCoordinator: ParentCoordinator {
             Choice(title: "Why?", type: .why)
         ]
         let items = [
-            ChatItem(type: .message("Welcome Jogi Rippel"), state: .typing, delay: 3.0),
-            ChatItem(type: .message("QOT needs the access to:\n_calendar\n_notification\n_location\nWill you allow?"), state: .typing, delay: 1.0),
+            ChatItem(type: .message("Welcome"), state: .typing, delay: 3.0),
+            ChatItem(type: .message("QOT needs access to:\n_calendar\n_notification\n_location\nWill you allow?"), state: .typing, delay: 1.0),
             deliveredFooter(alignment: .left),
             ChatItem(type: .choiceList(choices, display: .list)),
             deliveredFooter(alignment: .right)
