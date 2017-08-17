@@ -62,13 +62,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         
         Fabric.with([Crashlytics.self])
+        Buglife.shared().start(withEmail: "m.karbe@tignum.com")
         QOTUsageTimer.sharedInstance.start()
         UIApplication.shared.statusBarStyle = .lightContent
         appCoordinator.start()
         setupUAirship()
 
         #if DEBUG
-            Buglife.shared().start(withEmail: "m.karbe@tignum.com")
             log("\nopen -a \"Realm Browser\" \(RealmProvider.config.fileURL!)\n")
             LogSettings.logLevel = .verbose
             logAppLocation()
