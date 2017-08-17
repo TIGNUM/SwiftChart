@@ -91,7 +91,7 @@ private extension TutorialViewController {
         view.backgroundColor = UIColor.black70
         view.alpha = 0
 
-        crossImage.tintColor = .white30
+        crossImage.tintColor = .white
 
         titleLabel.backgroundColor = .clear
         titleLabel.numberOfLines = 1

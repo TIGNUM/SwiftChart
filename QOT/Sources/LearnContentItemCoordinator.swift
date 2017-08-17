@@ -22,7 +22,7 @@ final class LearnContentItemCoordinator: ParentCoordinator {
     fileprivate let audioViewController: LearnContentItemViewController
     fileprivate var viewModel: LearnContentItemViewModel
     fileprivate var presentationManager: CircularPresentationManager?
-    fileprivate var topBarDelegate: TopNavigationBarDelegate?
+    fileprivate weak var topBarDelegate: TopNavigationBarDelegate?
     var children: [Coordinator] = []
     var topTabBarController: UINavigationController!
 

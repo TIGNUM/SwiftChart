@@ -23,13 +23,11 @@ final class TabBarCoordinator: ParentCoordinator {
     fileprivate var viewControllers = [UIViewController]()
     fileprivate var tabBarController: TabBarController?
     fileprivate let permissionHandler: PermissionHandler
-
     fileprivate var preparationID: String?
     fileprivate var hasLoaded = false
     fileprivate var hasStarted = false
     fileprivate var hasTutorialStarted = false
     fileprivate var tutorialIsStopped = false
-
     fileprivate var disposeBag = DisposeBag()
     
     lazy private var syncAllStartedNotificationHandler: NotificationHandler = {
@@ -38,7 +36,6 @@ final class TabBarCoordinator: ParentCoordinator {
     lazy private var syncAllFinishedNotificationHandler: NotificationHandler = {
         return NotificationHandler(name: .syncAllDidFinishNotification)
     }()
-    
     fileprivate lazy var prepareCoordinator: PrepareCoordinator = {
         return PrepareCoordinator(services: self.services,
                                   permissionHandler: self.permissionHandler,
@@ -47,23 +44,18 @@ final class TabBarCoordinator: ParentCoordinator {
                                   chatViewController: self.prepareChatViewController,
                                   myPrepViewController: self.myPrepViewController)
     }()
-
-    var children = [Coordinator]()
-
     fileprivate lazy var prepareChatViewController: ChatViewController<Answer> = {
         let viewModel = ChatViewModel<Answer>()
         let viewController = ChatViewController(viewModel: viewModel)
         viewController.title = R.string.localized.topTabBarItemTitlePerpareCoach()
         return viewController
     }()
-
     fileprivate lazy var myPrepViewController: MyPrepViewController = {
         let viewModel = MyPrepViewModel(services: self.services)
         let viewController = MyPrepViewController(viewModel: viewModel)
         viewController.title = R.string.localized.topTabBarItemTitlePerparePrep()
         return viewController
     }()
-
     fileprivate lazy var topTabBarControllerLearn: UINavigationController = {
         let viewModel = LearnCategoryListViewModel(services: self.services)
         let learnCategoryListVC = LearnCategoryListViewController(viewModel: viewModel)
@@ -81,7 +73,6 @@ final class TabBarCoordinator: ParentCoordinator {
         
         return topTabBarController
     }()
-
     fileprivate lazy var topTabBarControllerMe: MyUniverseViewController = {
         let myUniverseViewController = MyUniverseViewController(
             myDataViewModel: MyDataViewModel(services: self.services),
@@ -90,7 +81,6 @@ final class TabBarCoordinator: ParentCoordinator {
         myUniverseViewController.delegate = self
         return myUniverseViewController
     }()
-
     fileprivate lazy var topTabBarControllerPrepare: UINavigationController = {
 //        let leftButton = UIBarButtonItem(withImage: R.image.ic_search())
         let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())
@@ -98,15 +88,15 @@ final class TabBarCoordinator: ParentCoordinator {
         
         return topTabBarController
     }()
-    
     lazy private var loadingViewController: LoadingViewController = {
         let vc = LoadingViewController()
         vc.modalTransitionStyle = .crossDissolve
         return vc
     }()
-    
+
+    var children = [Coordinator]()
     var isLoading: Bool {
-        return window.rootViewController is LoadingViewController
+        return window.rootViewController?.presentedViewController is LoadingViewController
     }
     
     // MARK: - Init
@@ -118,34 +108,22 @@ final class TabBarCoordinator: ParentCoordinator {
         self.permissionHandler = permissionHandler
         
         syncAllStartedNotificationHandler.handler = { (notification: Notification) in
+            self.hasLoaded = false
             guard let userInfo = notification.userInfo, let isDownloadRecordsValid = userInfo["isDownloadRecordsValid"] as? Bool, isDownloadRecordsValid == false else {
                 return
             }
             self.showLoading()
         }
         syncAllFinishedNotificationHandler.handler = { (_: Notification) in
-            guard self.tabBarController?.presentedViewController == self.loadingViewController else {
-                DispatchQueue.main.async {
-                    self.hasLoaded = true
+            self.hasLoaded = true
+            self.hideLoading(completion: {
+                if let preparationID = self.preparationID {
+                    self.prepareCoordinator.showPrepareCheckList(preparationID: preparationID)
+                } else {
                     if self.hasStarted && !self.hasTutorialStarted {
                         self.startTutorials()
                     }
                 }
-                return
-            }
-            
-            let loadingViewController = self.loadingViewController
-            loadingViewController.fadeOut(withCompletion: { [unowned loadingViewController] in
-                loadingViewController.dismiss(animated: true, completion: {
-                    self.hasLoaded = true
-                    if let preparationID = self.preparationID {
-                        self.prepareCoordinator.showPrepareCheckList(preparationID: preparationID)
-                    } else {
-                        if self.hasStarted && !self.hasTutorialStarted {
-                            self.startTutorials()
-                        }
-                    }
-                })
             })
         }
     }
@@ -160,12 +138,28 @@ final class TabBarCoordinator: ParentCoordinator {
         }
     }
     
-    func showLoading() {
-        guard let rootViewController = window.rootViewController, !(rootViewController.presentedViewController is LoadingViewController) else {
+    func showLoading(completion: (() -> Void)? = nil) {
+        guard !isLoading else {
             return
         }
         window.rootViewController?.present(loadingViewController, animated: false, completion: nil)
-        loadingViewController.fadeIn()
+        loadingViewController.fadeIn(withCompletion: completion)
+    }
+    
+    func hideLoading(completion: (() -> Void)? = nil) {
+        guard isLoading else {
+            DispatchQueue.main.async {
+                completion?()
+            }
+            return
+        }
+        
+        let loadingViewController = self.loadingViewController
+        loadingViewController.fadeOut(withCompletion: { [unowned loadingViewController] in
+            loadingViewController.dismiss(animated: true, completion: {
+                completion?()
+            })
+        })
     }
 }
 
@@ -237,7 +231,7 @@ private extension TabBarCoordinator {
 
                 self.tutorialDispatchWorkItem = dispatchWorkItem
 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: dispatchWorkItem)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: dispatchWorkItem)
             }
             }
             .dispose(in: disposeBag)
