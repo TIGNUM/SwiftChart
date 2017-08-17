@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         QOTUsageTimer.sharedInstance.start()
         UIApplication.shared.statusBarStyle = .lightContent
         appCoordinator.start()
-        setupUAirship()
+        setupUAirship()        
 
         #if DEBUG
             log("\nopen -a \"Realm Browser\" \(RealmProvider.config.fileURL!)\n")

@@ -17,5 +17,8 @@ extension Bundle {
     var buildNumber: String {
         return infoDictionary?["CFBundleVersion"] as? String ?? ""
     }
-    
+
+    var versionAndBuildNumber: String {
+        return String(format: "Version %@ (%@)", versionNumber, buildNumber)
+    }
 }

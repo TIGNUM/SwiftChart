@@ -101,6 +101,19 @@ extension SidebarViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 15
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 15))
+        label.attributedText = Style.tag(Bundle.main.versionAndBuildNumber, .white20).attributedString(alignment: .center)
+        let footer = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 15))
+        footer.addSubview(label)
+
+        return footer
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
