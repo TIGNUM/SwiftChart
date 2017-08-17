@@ -94,9 +94,9 @@ private extension CircularAnimation {
 
     func animationsCompleted(bubbleView: UIView) {
         bubbleView.removeFromSuperview()
-        self.transitionContext?.completeTransition(true)
         self.fromViewController?.endAppearanceTransition()
         self.toViewController?.endAppearanceTransition()
+        self.transitionContext?.completeTransition(true)
     }
 
     func contentAnimation(bubbleView: UIView, animatedView: UIView, maskLayer: CAShapeLayer, maskPath: UIBezierPath, endFrame: CGRect) {

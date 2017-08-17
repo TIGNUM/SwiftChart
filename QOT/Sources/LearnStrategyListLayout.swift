@@ -11,6 +11,7 @@ import UIKit
 final class LearnStrategyListLayout: UICollectionViewLayout {
 
     let cellCount = 100
+    var topOffset: CGFloat = 0
 
     var cache: [UICollectionViewLayoutAttributes] = []
 
@@ -26,15 +27,30 @@ final class LearnStrategyListLayout: UICollectionViewLayout {
 
     private var contentSize = CGSize.zero
 
+    private var backgroundImageAttributes: [LearnContentListBackgroundViewLayoutAttributes] = []
+
+    override init() {
+        super.init()
+
+        register(LearnContentListBackgroundView.self, forDecorationViewOfKind: LearnContentListBackgroundView.kind)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func prepare() {
         guard let collectionView = collectionView else {
             contentSize = CGSize.zero
             self.cache = []
+            self.backgroundImageAttributes = []
             return
         }
 
-        let viewHeight = collectionView.bounds.height
+        let viewHeight = collectionView.bounds.height - topOffset
         let layoutRadius = viewHeight * LearnStrategyListLayout.layoutRadiusFactor
+
+        var decorationCounter = 0
 
         var sectionMaxXs: [CGFloat] = []
         var cache: [UICollectionViewLayoutAttributes] = []
@@ -51,11 +67,39 @@ final class LearnStrategyListLayout: UICollectionViewLayout {
             if attrs.first != nil {
                 sectionOrigins.append(attrs.first!.frame.origin)
             }
+
+            makeDecorationAttributes(for: collectionView, withSectionMinX: sectionMinX, andSectinoMaxX: sectionMaxX, inSection: section, counter: &decorationCounter)
         }
 
         let viewWidth = sectionMaxXs.last ?? 0
         contentSize = CGSize(width: viewWidth, height: viewHeight)
         self.cache = cache
+    }
+
+    private func makeDecorationAttributes(for collectionView: UICollectionView, withSectionMinX sectionMinX: CGFloat, andSectinoMaxX sectionMaxX: CGFloat, inSection section: Int, counter: inout Int) {
+        let screenWidth = collectionView.bounds.width
+        let totalWidth = collectionView.contentSize.width
+        var item = 0
+        var xPosition: CGFloat = 0
+
+        if let attribute = backgroundImageAttributes.last {
+            xPosition = attribute.frame.origin.x + attribute.frame.width
+        }
+
+        while xPosition < sectionMaxX {
+            let decorationAttrs = LearnContentListBackgroundViewLayoutAttributes(forDecorationViewOfKind: LearnContentListBackgroundView.kind, with: IndexPath(item: item, section: section))
+            decorationAttrs.frame = CGRect(origin: CGPoint(x: xPosition, y: 0), size: collectionView.bounds.size)
+            decorationAttrs.zIndex = -1
+            decorationAttrs.image = (counter % 2) == 0 ? R.image.learnBack1() : R.image.learnBack2()
+            backgroundImageAttributes.append(decorationAttrs)
+
+            print("xPos: \(xPosition) | screenWidth: \(screenWidth) | totalWidth: \(totalWidth) | sectionMaxX: \(sectionMaxX)")
+
+            item += 1
+            counter += 1
+            xPosition += screenWidth
+        }
+
     }
 
     private func makeAttributes(section: Int, itemCount: Int, viewHeight: CGFloat, initialX: CGFloat, layoutRadius: CGFloat) -> [UICollectionViewLayoutAttributes] {
@@ -68,7 +112,7 @@ final class LearnStrategyListLayout: UICollectionViewLayout {
                 center = nextCenter(current: current, radius: layoutRadius, viewHeight: viewHeight)
             } else {
                 // First item
-                center = CGPoint(x: initialX + layoutRadius, y: viewHeight * LearnStrategyListLayout.initialYPosFactor)
+                center = CGPoint(x: initialX + layoutRadius, y: viewHeight * LearnStrategyListLayout.initialYPosFactor + topOffset)
             }
 
             if index % 7 == 0 { // Ensure pattern doesn't drift down/up.
@@ -106,7 +150,7 @@ final class LearnStrategyListLayout: UICollectionViewLayout {
         let radius = LearnStrategyListLayout.visibleRadiusFactor * layoutRadius
         let maxRandom = (layoutRadius - radius) / 2
         let x = center.x + CGFloat.random(min: -maxRandom, max: maxRandom)
-        let y = center.y + CGFloat.random(min: -maxRandom, max: maxRandom)
+        let y = center.y + CGFloat.random(min: -maxRandom, max: maxRandom) + topOffset / 2
 
         let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
         attributes.frame = CGRect(x: x - radius, y: y - radius, width: 2 * radius, height: 2 * radius)
@@ -122,7 +166,7 @@ final class LearnStrategyListLayout: UICollectionViewLayout {
     }
 
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        return cache.filter { $0.frame.intersects(rect) }
+        return cache.filter { $0.frame.intersects(rect) } + backgroundImageAttributes.filter { $0.frame.intersects(rect) }
     }
 }
 

@@ -104,6 +104,7 @@ final class LearnContentListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        collectionView.reloadData()
         centerCollectionView()
         pagingCollectionViewScrollToSelectedIndex()
     }
@@ -179,9 +180,10 @@ private extension LearnContentListViewController {
     }
 
     func setupLayout() {
-        collectionView.topAnchor == view.topAnchor + pagingCellSize.height + performanceLabelSize.height
-        collectionView.bottomAnchor == view.bottomAnchor - 64
+        collectionView.topAnchor == view.topAnchor
+        collectionView.bottomAnchor == view.bottomAnchor
         collectionView.horizontalAnchors == view.horizontalAnchors
+
         pagingCollectionViewTopConstraint = (pagingCollectionView.topAnchor == view.topAnchor + 20)
         pagingCollectionViewBottomConstraint = (pagingCollectionView.bottomAnchor == view.topAnchor + performanceLabelSize.height + pagingCellSize.height)
         pagingCollectionView.horizontalAnchors == view.horizontalAnchors
@@ -189,6 +191,8 @@ private extension LearnContentListViewController {
         getBackButtonBottomConstraint = (getBackButton.bottomAnchor == view.bottomAnchor)
         getBackButton.horizontalAnchors == view.horizontalAnchors
         getBackButton.heightAnchor == Layout.TabBarView.height
+
+        collectionViewLayout.topOffset = pagingCellSize.height + performanceLabelSize.height + Layout.TabBarView.height + 20
 
         view.layoutIfNeeded()
     }
