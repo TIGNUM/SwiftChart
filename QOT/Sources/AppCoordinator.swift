@@ -23,6 +23,7 @@ final class AppCoordinator: ParentCoordinator {
     var children = [Coordinator]()
     lazy var logoutNotificationHandler: NotificationHandler = NotificationHandler(name: .logoutNotification)
     fileprivate var services: Services?
+    fileprivate var topTabBarController: UINavigationController?
     fileprivate var tabBarCoordinator: TabBarCoordinator?
     fileprivate lazy var permissionHandler: PermissionHandler = PermissionHandler()
     fileprivate lazy var networkManager: NetworkManager = NetworkManager(delegate: self, credentialsManager: self.credentialsManager)
@@ -124,6 +125,7 @@ final class AppCoordinator: ParentCoordinator {
                 if let tabBarCoordinator = self.tabBarCoordinator, !tabBarCoordinator.isLoading, doingInitialSync {
                     tabBarCoordinator.showLoading()
                 }
+                self.updateDeviceToken()
             case .failure:
                 // TODO: localise alert text
                 self.showAlert(type: .custom(title: "Error", message: "There was a problem initializing the app's data. Please restart the app and try again"), handler: {
@@ -141,6 +143,16 @@ final class AppCoordinator: ParentCoordinator {
 // MARK: - private
 
 private extension AppCoordinator {
+
+    func updateDeviceToken() {
+        guard
+            let user = services?.userService.user(),
+            let deviceToken = UAirship.push().deviceToken else {
+                return
+        }
+
+        services?.userService.updateUserDeviceToken(user: user, deviceToken: deviceToken)
+    }
 
     func registerRemoteNotifications() {
         permissionHandler.askPermissionForRemoteNotifications { (granted: Bool) in
@@ -233,7 +245,25 @@ extension AppCoordinator {
                 topTabBarTitle: R.string.localized.sidebarTitleLibrary().uppercased()) else {
                     return
         }
+        
         startChild(child: coordinator)
+    }
+
+    func presentLearnContentItems(contentID: Int, categoryTitle: String) {
+
+        guard
+            let services = services,
+            let content = services.contentService.contentCollection(id: contentID),
+            let category = services.contentService.learnContentCategory(categoryTitle: categoryTitle),
+            let rootViewController = window.rootViewController else {
+                return
+        }
+
+        let presentationManager = CircularPresentationManager(originFrame: rootViewController.view.frame)
+        let coordinator = LearnContentItemCoordinator(root: rootViewController, services: services, content: content, category: category, presentationManager: presentationManager, topBarDelegate: self)
+        topTabBarController = coordinator.topTabBarController        
+        switchToSecondaryWindow()
+        secondaryWindow.rootViewController?.present(coordinator.topTabBarController, animated: true, completion: nil)
     }
 
     func showAlert(type: AlertType, handler: (() -> Void)? = nil, handlerDestructive: (() -> Void)? = nil) {
@@ -283,7 +313,6 @@ extension AppCoordinator {
     }
 
     func showTutorial(_ tutorial: Tutorials, buttonFrame: CGRect?, completion: @escaping () -> Void) {
-
         switch tutorial {
         default:
             let vm = TutorialViewModel(tutorial: tutorial, buttonFrame: buttonFrame, completion: completion)
@@ -292,6 +321,25 @@ extension AppCoordinator {
             self.switchToSecondaryWindow()
             self.secondaryWindow.rootViewController = viewController
         }
+    }
+}
+
+extension AppCoordinator: TopNavigationBarDelegate {
+
+    func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
+        topTabBarController?.dismiss(animated: true, completion: nil)
+        switchToMainWindow()
+    }
+
+    func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
+        guard let pageViewController = topTabBarController?.viewControllers.first as? PageViewController else {
+            return
+        }
+        pageViewController.setPageIndex(index, animated: true)
+    }
+
+    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
+        print("did select book mark")
     }
 }
 
@@ -365,7 +413,6 @@ extension AppCoordinator: SelectWeeklyChoicesViewControllerDelegate {
     }
 
     func didTapRow(_ viewController: SelectWeeklyChoicesViewController, contentCollection: ContentCollection, contentCategory: ContentCategory) {
-
         guard let services = services else { return }
 
         let coordinator = LearnContentItemCoordinator(

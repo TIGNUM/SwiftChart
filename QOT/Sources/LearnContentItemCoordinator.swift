@@ -12,7 +12,7 @@ import SafariServices
 
 final class LearnContentItemCoordinator: ParentCoordinator {
     
-    fileprivate let rootVC: UIViewController
+    let rootVC: UIViewController
     fileprivate let services: Services
     fileprivate let category: ContentCategory
     fileprivate var categoryTitle: String
@@ -20,18 +20,20 @@ final class LearnContentItemCoordinator: ParentCoordinator {
     fileprivate let fullViewController: LearnContentItemViewController
     fileprivate let bulletViewController: LearnContentItemViewController
     fileprivate let audioViewController: LearnContentItemViewController
-    fileprivate var topTabBarController: UINavigationController!
     fileprivate var viewModel: LearnContentItemViewModel
-    var children: [Coordinator] = []
     fileprivate var presentationManager: CircularPresentationManager?
+    fileprivate var topBarDelegate: TopNavigationBarDelegate?
+    var children: [Coordinator] = []
+    var topTabBarController: UINavigationController!
 
-    init(root: UIViewController, services: Services, content: ContentCollection, category: ContentCategory, presentationManager: CircularPresentationManager? = nil) {
+    init(root: UIViewController, services: Services, content: ContentCollection, category: ContentCategory, presentationManager: CircularPresentationManager? = nil, topBarDelegate: TopNavigationBarDelegate? = nil) {
         self.rootVC = root
         self.services = services
         self.category = category
         self.categoryTitle = category.title.capitalized
         self.presentationManager = presentationManager
         self.selectedContent = content
+        self.topBarDelegate = topBarDelegate
         self.viewModel = LearnContentItemViewModel(
             services: services,
             contentCollection: selectedContent,
@@ -59,7 +61,7 @@ final class LearnContentItemCoordinator: ParentCoordinator {
         audioViewController.title = R.string.localized.learnContentItemTitleAudio()
         
         let leftButton = UIBarButtonItem(withImage: R.image.ic_minimize())
-        topTabBarController = UINavigationController(withPages: [fullViewController, bulletViewController, audioViewController], headerView: headerView, topBarDelegate: self, pageDelegate: self, backgroundColor: .white, backgroundImage: nil, leftButton: leftButton)
+        topTabBarController = UINavigationController(withPages: [fullViewController, bulletViewController, audioViewController], headerView: headerView, topBarDelegate: topBarDelegate ?? self, pageDelegate: self, backgroundColor: .white, backgroundImage: nil, leftButton: leftButton)
         if let navigationBar = topTabBarController.navigationBar as? TopNavigationBar {
             navigationBar.setStyle(tintColor: .black70, backgroundColor: .white)
         }
@@ -91,6 +93,7 @@ final class LearnContentItemCoordinator: ParentCoordinator {
 // MARK: - TopNavigationBarDelegate
 
 extension LearnContentItemCoordinator: TopNavigationBarDelegate {
+
     func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
         topTabBarController.dismiss(animated: true, completion: nil)
     }
@@ -159,6 +162,7 @@ extension LearnContentItemCoordinator: LearnContentItemViewControllerDelegate {
 // MARK: - PageViewControllerDelegate
 
 extension LearnContentItemCoordinator: PageViewControllerDelegate {
+
     func pageViewController(_ controller: UIPageViewController, didSelectPageIndex index: Int) {
         guard let navigationController = controller.navigationController, let topNavigationBar = navigationController.navigationBar as? TopNavigationBar else {
             return

@@ -24,8 +24,8 @@ final class TabBarController: UIViewController {
 
     fileprivate var selectedIndex: Int = 0
     fileprivate var items: [Item]
-    fileprivate lazy var containerView = UIView()
     fileprivate weak var currentViewController: UIViewController?
+    fileprivate lazy var containerView = UIView()
     fileprivate weak var indicatorViewLeadingConstraint: NSLayoutConstraint?
     fileprivate weak var indicatorViewWidthConstraint: NSLayoutConstraint?
     fileprivate weak var tabBarBottomConstraint: NSLayoutConstraint?

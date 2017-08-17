@@ -35,7 +35,7 @@ final class LibraryTableViewCell: UITableViewCell, Dequeueable {
         backgroundColor = .clear
         collectionView.reloadData()
     }
-}
+}   
 
 extension LibraryTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 

@@ -38,7 +38,7 @@ struct LaunchHandler {
             case .preparation: return "#"
             case .dailyPrep: return "groupID"
             case .weeklyChoices: return ""
-            case .randomContent: return "key"
+            case .randomContent: return "contentID"
             case .weeklyPeakPerformance: return ""
             }
         }
@@ -59,7 +59,7 @@ struct LaunchHandler {
         case .dailyPrep: dailyPrep(groupID: scheme.queryParametter(url: url))
         case .fitbit: fitbit(accessToken: scheme.queryParametter(url: url))
         case .preparation: preparation(localID: url.absoluteString.components(separatedBy: scheme.queryName).last)
-        case .randomContent: randomContent(contentID: scheme.queryParametter(url: url))
+        case .randomContent: randomContent(url: url, scheme: scheme)
         case .weeklyChoices: weeklyChoiches()
         case .weeklyPeakPerformance: return
         }
@@ -182,13 +182,15 @@ extension LaunchHandler {
 
 extension LaunchHandler {
 
-    func randomContent(contentID: String?) {
+    func randomContent(url: URL, scheme: URLScheme) {
         guard
-            let contentIDString = contentID,
-            let contentID = Int(contentIDString) else {
+            let contentIDString = scheme.queryParametter(url: url),
+            let contentID = Int(contentIDString),
+            let title = url.pathComponents.last?.capitalized else {
                 return
         }
 
-        AppDelegate.current.appCoordinator.presentArticleView(contentID: contentID)
+        let categoryTitle = String(format: "Performance %@", title)
+        AppDelegate.current.appCoordinator.presentLearnContentItems(contentID: contentID, categoryTitle: categoryTitle)
     }
 }

@@ -14,6 +14,7 @@ import Bond
 protocol LearnContentListViewControllerDelegate: class {
 
     func didSelectContent(_ content: ContentCollection, category: ContentCategory, originFrame: CGRect, in viewController: LearnContentListViewController)
+
     func didTapBack(in viewController: LearnContentListViewController)
 }
 

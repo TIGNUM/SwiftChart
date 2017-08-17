@@ -101,11 +101,16 @@ extension User: TwoWaySyncableUniqueObject {
         company = data.company
         jobTitle = data.jobTitle
         memberSince = data.memberSince
-        urbanAirshipDeviceToken = UAirship.push().deviceToken
         timeZone = data.timeZone ?? TimeZone.currentName
+        updateUAirship(urbanAirshipTags: data.urbanAirshipTags)
+    }
 
+    private func updateUAirship(urbanAirshipTags: [String]) {
+        var tags = urbanAirshipTags
+        tags.append(email)
+        urbanAirshipDeviceToken = UAirship.push().deviceToken
         UAirship.push().removeTags(UAirship.push().tags)
-        UAirship.push().addTags(data.urbanAirshipTags)
+        UAirship.push().addTags(tags)
         UAirship.push().updateRegistration()
     }
 

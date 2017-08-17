@@ -104,6 +104,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
+        UAirship.push().resetBadge()
         appCoordinator.appDidBecomeActive()
     }
 
@@ -147,7 +148,7 @@ extension AppDelegate: UAPushNotificationDelegate {
         if
             let deepLink = notificationResponse.notificationContent.notificationInfo.values.first as? String,
             let url = URL(string: deepLink) {
-                LaunchHandler.default.process(url: url)
+                LaunchHandler.default.process(url: url)                
 
         }
         completionHandler()
