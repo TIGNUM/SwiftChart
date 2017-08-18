@@ -23,7 +23,7 @@ struct AuthenticationRequest: URLRequestBuildable {
         self.password = password
         self.deviceID = deviceID
         headers = [
-            .Authorization: "\(username):\(password)",
+            .Authorization: "Basic " + "\(username):\(password)".toBase64(),
             .deviceID: deviceID,
             .authUser: "qot"
         ]
