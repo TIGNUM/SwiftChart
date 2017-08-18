@@ -39,6 +39,7 @@ final class ImageSubtitleTableViewCell: UITableViewCell, Dequeueable {
         label.attributedText = description
         mainImageView.kf.setImage(with: placeHolder, placeholder: placeHolderImage, options: nil, progressBlock: nil, completionHandler: nil)
         mainImageView.kf.indicatorType = .activity
+        mainImageView.contentMode = .scaleAspectFill
         playImageView.isHidden = canStream == false
         playImageView.image = R.image.ic_play_video()
     }
