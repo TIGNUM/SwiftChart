@@ -329,15 +329,6 @@ private extension LearnContentItemViewController {
         return cell
     }
 
-    func streamVideo(videoURL: URL) {
-        let player = AVPlayer(url: videoURL)
-        let playerController = AVPlayerViewController()
-        playerController.player = player
-        present(playerController, animated: true) {
-            player.play()
-        }
-    }
-
     func readMoreTableViewCell(
         tableView: UITableView,
         indexPath: IndexPath) -> LearnReadMoreCell {

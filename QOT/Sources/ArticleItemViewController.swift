@@ -13,8 +13,11 @@ import Anchorage
 protocol ArticleItemViewControllerDelegate: class {
 
     func didSelectRelatedArticle(selectedArticle: ContentCollection, form viewController: ArticleItemViewController)
+
     func didTapClose(in viewController: ArticleItemViewController)
+
     func didTapLink(_ url: URL, in viewController: ArticleItemViewController)
+
     func didTapMedia(withURL url: URL, in viewController: ArticleItemViewController)
 }
 
@@ -48,14 +51,7 @@ final class ArticleItemViewController: UIViewController {
             preconditionFailure("Failed to load ArticleItemTopTabBarView from xib")
         }
 
-        var title = ""
-        if self.title != nil {
-            title = self.title!
-        }
-
-        view.setup(title: title,
-                   leftButtonIcon: R.image.ic_minimize(),
-                   delegate: self)
+        view.setup(title: self.title ?? "", leftButtonIcon: R.image.ic_minimize(), delegate: self)
         return view
     }()
 
@@ -105,7 +101,6 @@ final class ArticleItemViewController: UIViewController {
         tableView.tableHeaderView = nil
         setTableViewHeader()
         tableView.reloadData()
-
         let sections = tableView.numberOfSections
         let rowsInSection = tableView.numberOfRows(inSection: 0)
 
@@ -120,21 +115,19 @@ final class ArticleItemViewController: UIViewController {
 private extension ArticleItemViewController {
 
     func resizeHeaderView() {
-        guard let headerView = tableView.tableHeaderView,
+        guard
+            let headerView = tableView.tableHeaderView,
             let header = viewModel.articleHeader else {
-            return
+                return
         }
 
         let sidePadding = CGFloat(56)
         let frameWidth = tableView.frame.size.width - sidePadding
-
         let titleHeight = calculateLabelHeight(text: header.articleTitle, font: Font.H5SecondaryHeadline, dispayedLineHeight: 18, frameWidth: frameWidth, characterSpacing: 1)
         let subTitleHeight = calculateLabelHeight(text: header.articleSubTitle, font: Font.H1MainTitle, dispayedLineHeight: 46, frameWidth: frameWidth, characterSpacing: 2)
         let dateHeight = CGFloat(14)
         let spacing: CGFloat = 20
-
         let height = titleHeight + subTitleHeight + dateHeight + spacing
-
         var headerFrame = headerView.frame
 
         if height != headerFrame.size.height {
@@ -152,22 +145,17 @@ private extension ArticleItemViewController {
     }
 
     func setupView() {
-
         let backgroundImageView = UIImageView(image: R.image.backgroundWhatsHot())
-
         view.addSubview(backgroundImageView)
         view.addSubview(tableView)
         view.addSubview(topBarView)
-
         backgroundImageView.horizontalAnchors == view.horizontalAnchors
         backgroundImageView.verticalAnchors == view.verticalAnchors
-
         topBarView.backgroundColor = .clear
         topBarView.topAnchor == view.topAnchor
         topBarView.horizontalAnchors == view.horizontalAnchors
         topBarView.heightAnchor == Layout.TabBarView.height
         tableView.topAnchor == topBarView.bottomAnchor
-
         tableView.estimatedSectionHeaderHeight = 100
         tableView.estimatedSectionFooterHeight = 100
         view.backgroundColor = .clear
@@ -371,8 +359,8 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
             let item = viewModel.articleItem(at: indexPath)
 
             switch item.contentItemValue {
-            case .audio(_, _, _, let audioURL, _, _):
-                self.delegate?.didTapMedia(withURL: audioURL, in: self)
+            case .audio(_, _, _, let audioURL, _, _): delegate?.didTapMedia(withURL: audioURL, in: self)   
+            case .video(_, _, _, let videoURL, _): streamVideo(videoURL: videoURL)
             default:
                 return
             }
