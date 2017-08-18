@@ -53,7 +53,6 @@ final class ArticleCollectionLayout: UICollectionViewLayout {
 
         let standardHeight = delegate.standardHeightForLayout(self)
         let featuredHeight = delegate.featuredHeightForLayout(self)
-        let yPosOffset = CGFloat(0)
         var cache = [UICollectionViewLayoutAttributes]()
         cache.reserveCapacity(itemCount)
 
@@ -62,28 +61,42 @@ final class ArticleCollectionLayout: UICollectionViewLayout {
             let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
             attributes.zIndex = item
             let y = (CGFloat(item) * standardHeight) + (featuredHeight - standardHeight)
+            let minimumAlpha: CGFloat = 0.18
             let frame: CGRect
+            var alpha: CGFloat = minimumAlpha
 
             if collectionView.contentOffset.y < 0.0 {
-                let  height: CGFloat = indexPath.item == 0  ? featuredHeight : standardHeight
+                let  height: CGFloat = indexPath.item == 0 ? featuredHeight : standardHeight
                 let convertedY = y + standardHeight - height
-                frame = CGRect(x: 0, y: convertedY + yPosOffset, width: width, height: height)                
+                frame = CGRect(x: 0, y: convertedY, width: width, height: height)
+                alpha = indexPath.item == 0 ? 1.0 : minimumAlpha
             } else if y <= collectionView.contentOffset.y + (featuredHeight - standardHeight) {
                 let percentage = ((collectionView.contentOffset.y / standardHeight) - CGFloat(item))
                 let   diff = (featuredHeight - standardHeight) * percentage
                 let convertedY = y - (featuredHeight - standardHeight) - diff
-                frame = CGRect(x: 0, y: convertedY + yPosOffset, width: width, height: featuredHeight)
+                frame = CGRect(x: 0, y: convertedY, width: width, height: featuredHeight)
+                alpha = 1 - percentage
+                alpha = alpha < minimumAlpha ? minimumAlpha : alpha
             } else if y <= collectionView.contentOffset.y + featuredHeight {
                 let percentage = ((collectionView.contentOffset.y / standardHeight) - CGFloat(item)) + CGFloat(1)
                 let diff = (featuredHeight - standardHeight) * percentage
                 let height: CGFloat = standardHeight + diff
                 let convertedY = y + standardHeight - height
-                frame = CGRect(x: 0, y: convertedY + yPosOffset, width: width, height: height)
+                frame = CGRect(x: 0, y: convertedY, width: width, height: height)
+                alpha =  percentage
+                alpha = alpha < minimumAlpha ? minimumAlpha : alpha
+
             } else {
-                frame = CGRect(x: 0, y: y + yPosOffset, width: width, height: standardHeight)
+                frame = CGRect(x: 0, y: y, width: width, height: standardHeight)
+
+                if y > collectionView.contentOffset.y + featuredHeight {
+                    let percentage = ((collectionView.contentOffset.y / standardHeight) - CGFloat(item - 2))
+                    alpha = percentage < 0.05 ? 0.05 : percentage > minimumAlpha ? minimumAlpha : percentage
+                }
             }
 
             attributes.frame = frame
+            attributes.alpha = alpha
             cache.append(attributes)
         }
 
