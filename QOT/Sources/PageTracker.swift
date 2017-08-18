@@ -50,7 +50,7 @@ class PageTracker {
     }
     
     func track(_ page: TrackablePage) {
-        log(">>>> WILL TRACK \(page) from \(String(describing: lastPage))")
+        //log(">>>> WILL TRACK \(page) from \(String(describing: lastPage))")
         EventTracker.default.track(.didShowPage(page, from: lastPage))
         lastPage = page
     }
