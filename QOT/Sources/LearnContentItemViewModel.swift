@@ -289,6 +289,12 @@ extension LearnContentItemViewModel {
     private func play(url: URL) {
         log("Did start to play item at index: \(index)")
 
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+        } catch let error {
+            print("Error while trying to set catgeory for AVAudioSession: ", error)
+        }
+
         let playerItem = AVPlayerItem(url: url)
         player = AVPlayer(playerItem: playerItem)
         player?.volume = 1.0

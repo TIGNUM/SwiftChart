@@ -96,15 +96,18 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
     }
 
     func didTapMedia(withURL url: URL, in viewController: ArticleItemViewController) {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+        } catch let error {
+            print("Error while trying to set catgeory for AVAudioSession: ", error)
+        }
+
         let playerItem = AVPlayerItem(url: url)
         let player = AVPlayer(playerItem: playerItem)
         player.volume = 1.0
         player.play()
-
         let playerVC = AVPlayerViewController()
         playerVC.player = player
-
         viewController.present(playerVC, animated: true, completion: nil)
-
     }
 }
