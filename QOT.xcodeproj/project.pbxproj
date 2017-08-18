@@ -1034,9 +1034,6 @@
 		7FB32D161F4479620027BF4E /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				CC33CA2F1EC60447008E6B33 /* DatabaseConstants.swift */,
-				7F5A25BE1F3CB71100A11466 /* DatabaseManager.swift */,
-				7FE151C71F3DDAE600DA8F37 /* DatabaseBuilder.swift */,
 			);
 			name = Database;
 			sourceTree = "<group>";
@@ -1324,7 +1321,6 @@
 				7FE151C71F3DDAE600DA8F37 /* DatabaseBuilder.swift */,
 				CB14676D1EF2AB7000A60E31 /* DeviceIdentifier.swift */,
 				CB1D5E351EC5E25A00BCDF8D /* Error.swift */,
-				7F5A25AE1F3C4BB400A11466 /* Analytics */,
 				7FB32D171F4479760027BF4E /* Realm */,
 				7FB32D161F4479620027BF4E /* Database */,
 				CBB4DD4F1EE094E50071494A /* Calendar Import */,
