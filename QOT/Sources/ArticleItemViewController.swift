@@ -26,8 +26,6 @@ final class ArticleItemViewController: UIViewController {
     // MARK: - Properties
 
     fileprivate var viewModel: ArticleItemViewModel
-    fileprivate var viewDidAppear = false
-    fileprivate var scrollToFinish = false
     weak var delegate: ArticleItemViewControllerDelegate?
 
     fileprivate lazy var tableView: UITableView = {
@@ -81,12 +79,6 @@ final class ArticleItemViewController: UIViewController {
         super.viewWillAppear(animated)
 
         tableView.reloadData()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        viewDidAppear = true
     }
 
     override func viewDidLayoutSubviews() {
@@ -336,21 +328,6 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
         return nil
     }
 
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if section == 1 {
-            let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: tableView.estimatedSectionFooterHeight))
-            footerView.backgroundColor = .clear
-            let loadMoreLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
-            let attributedTitle = Style.headlineSmall(R.string.localized.libraryFooterViewLabel().uppercased(), .white40).attributedString(lineSpacing: 1.5, alignment: .center)
-            loadMoreLabel.attributedText = attributedTitle
-            footerView.addSubview(loadMoreLabel)
-
-            return footerView
-        }
-
-        return nil
-    }
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
@@ -367,23 +344,6 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
         case 1:
             delegate?.didSelectRelatedArticle(selectedArticle: viewModel.relatedArticle(at: indexPath), form: self)
         default: return
-        }
-    }
-}
-
-// MARK: - UIScrollViewDelegate
-
-extension ArticleItemViewController: UIScrollViewDelegate {
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if viewDidAppear == true && scrollView.contentOffset.y >= (scrollView.contentSize.height + 100 - scrollView.frame.size.height) {
-            scrollToFinish = true
-        }
-    }
-
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if scrollToFinish == true {
-            dismiss(animated: false, completion: nil)
         }
     }
 }

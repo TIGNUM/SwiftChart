@@ -67,7 +67,6 @@ final class TabBarCoordinator: ParentCoordinator {
         articleCollectionViewController.title = R.string.localized.topTabBarItemTitleLearnWhatsHot()
         articleCollectionViewController.delegate = self
 
-//        let leftButton = UIBarButtonItem(withImage: R.image.ic_search())
         let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())
         let topTabBarController = UINavigationController(withPages: [learnCategoryListVC, articleCollectionViewController], topBarDelegate: self, pageDelegate: self, leftButton: nil, rightButton: rightButton)
         
@@ -82,7 +81,6 @@ final class TabBarCoordinator: ParentCoordinator {
         return myUniverseViewController
     }()
     fileprivate lazy var topTabBarControllerPrepare: UINavigationController = {
-//        let leftButton = UIBarButtonItem(withImage: R.image.ic_search())
         let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())
         let topTabBarController = UINavigationController(withPages: [self.prepareChatViewController, self.myPrepViewController], topBarDelegate: self, pageDelegate: self, leftButton: nil, rightButton: rightButton)
         
@@ -108,8 +106,7 @@ final class TabBarCoordinator: ParentCoordinator {
         self.permissionHandler = permissionHandler
         
         syncAllStartedNotificationHandler.handler = { (notification: Notification) in
-            self.hasLoaded = false
-            guard let userInfo = notification.userInfo, let isDownloadRecordsValid = userInfo["isDownloadRecordsValid"] as? Bool, isDownloadRecordsValid == false else {
+            guard let userInfo = notification.userInfo, let isDownloadRecordsValid = userInfo["isDownloadRecordsValid"] as? Bool, isDownloadRecordsValid == false, !self.hasLoaded else {
                 return
             }
             self.showLoading()
@@ -148,9 +145,7 @@ final class TabBarCoordinator: ParentCoordinator {
     
     func hideLoading(completion: (() -> Void)? = nil) {
         guard isLoading else {
-            DispatchQueue.main.async {
-                completion?()
-            }
+            completion?()
             return
         }
         

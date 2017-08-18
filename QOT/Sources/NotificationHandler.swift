@@ -24,7 +24,9 @@ final class NotificationHandler {
     // MARK: - private
     
     @objc private func performHandler(notification: Notification) {
-        handler?(notification)
+        DispatchQueue.main.async {
+            self.handler?(notification)
+        }
     }
 }
 

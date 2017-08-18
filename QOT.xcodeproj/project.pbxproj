@@ -342,8 +342,6 @@
 		CC8018201F0256980040B03F /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC80181F1F0256980040B03F /* UIViewController+Alert.swift */; };
 		CC8018231F026BDA0040B03F /*  LibraryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8018211F026BDA0040B03F /*  LibraryTableViewCell.swift */; };
 		CC8018241F026BDA0040B03F /* LibraryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC8018221F026BDA0040B03F /* LibraryTableViewCell.xib */; };
-		CC8018261F028F1D0040B03F /* LibraryFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8018251F028F1D0040B03F /* LibraryFooterView.swift */; };
-		CC8018281F028F2F0040B03F /* LibraryFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC8018271F028F2F0040B03F /* LibraryFooterView.xib */; };
 		CC8813EB1EF2EA33000FB85F /* LearnContentItemRecommendedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8813E91EF2EA33000FB85F /* LearnContentItemRecommendedCell.swift */; };
 		CC8813EC1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC8813EA1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib */; };
 		CC8A2EDE1F0CF98B002585CE /* BentonSansCond-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = CC8A2EDD1F0CF98B002585CE /* BentonSansCond-Light.otf */; };
@@ -824,8 +822,6 @@
 		CC80181F1F0256980040B03F /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		CC8018211F026BDA0040B03F /*  LibraryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = " LibraryTableViewCell.swift"; sourceTree = "<group>"; };
 		CC8018221F026BDA0040B03F /* LibraryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryTableViewCell.xib; sourceTree = "<group>"; };
-		CC8018251F028F1D0040B03F /* LibraryFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryFooterView.swift; sourceTree = "<group>"; };
-		CC8018271F028F2F0040B03F /* LibraryFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryFooterView.xib; sourceTree = "<group>"; };
 		CC8813E91EF2EA33000FB85F /* LearnContentItemRecommendedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentItemRecommendedCell.swift; sourceTree = "<group>"; };
 		CC8813EA1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnContentItemRecommendedCell.xib; sourceTree = "<group>"; };
 		CC8A2EDD1F0CF98B002585CE /* BentonSansCond-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BentonSansCond-Light.otf"; sourceTree = "<group>"; };
@@ -1690,12 +1686,10 @@
 				CC8018211F026BDA0040B03F /*  LibraryTableViewCell.swift */,
 				CC59A88E1F41C18100D22353 /* LibraryCollectionCell.swift */,
 				CC13E23C1EB1D72400C3CE46 /* LibraryCollectionLatestPostCell.swift */,
-				CC8018251F028F1D0040B03F /* LibraryFooterView.swift */,
 				CCE373071E8D32CF00B79352 /* LibraryViewController.swift */,
 				CCE373151E8D330100B79352 /* LibraryViewModel.swift */,
 				CC59A88C1F41C0E100D22353 /* LibraryCollectionCell.xib */,
 				CC13E23D1EB1D72400C3CE46 /* LibraryCollectionLatestPostCell.xib */,
-				CC8018271F028F2F0040B03F /* LibraryFooterView.xib */,
 				CC8018221F026BDA0040B03F /* LibraryTableViewCell.xib */,
 				CC59A8901F41C95600D22353 /* LibraryTableViewCategoryCell.xib */,
 				CC59A8921F41C9EA00D22353 /* LibraryTableViewCategoryCell.swift */,
@@ -2307,7 +2301,6 @@
 				7F0F03041F14CE2300007D50 /* CollapsableCell.xib in Resources */,
 				CC13E2411EB1D72400C3CE46 /* LibraryCollectionLatestPostCell.xib in Resources */,
 				CCC0C4CC1E828007002A8362 /* BentonSans_Regular.otf in Resources */,
-				CC8018281F028F2F0040B03F /* LibraryFooterView.xib in Resources */,
 				CCF0F4C61ECDD0DA00E8D9C1 /* contentCategory.json in Resources */,
 				CC6251DB1EE00DD800C6F546 /* Localized.strings in Resources */,
 				CC944DBA1EE809AA00B8423C /* MyStatisticsCardCell.xib in Resources */,
@@ -2591,7 +2584,6 @@
 				852DADE41EF190D100A10882 /* MyStatisticsDataPeriodAverage.swift in Sources */,
 				8514A4921EEAA2AE0086C70E /* UILabel+AttributedText.swift in Sources */,
 				CC0FF8D41EA788350028D64F /* PartnersViewController.swift in Sources */,
-				CC8018261F028F1D0040B03F /* LibraryFooterView.swift in Sources */,
 				D5B707281F03A2CC00C812EB /* MorningInterviewViewController.swift in Sources */,
 				CB27D59D1ECCB6DD00F2B76C /* NetworkError.swift in Sources */,
 				852DADD61EF051C400A10882 /* UIView+Layers.swift in Sources */,

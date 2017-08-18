@@ -175,9 +175,6 @@
 "Alert.Title.EmailNotFound" = "Email not found";
 "Alert.Message.EmailNotFound" = "Please try again";
 
-
-"Library.Footer.View.Label" = "Scroll To Finish";
-
 "MorningController.titleLabel" = "MORNING INTERVIEW";
 "MorningController.nextButton" = "Next";
 "MorningController.doneButton" = "Done";

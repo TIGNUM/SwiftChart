@@ -39,8 +39,6 @@ final class LibraryViewController: UIViewController {
     // MARK: - Properties
 
     fileprivate let viewModel: LibraryViewModel
-    fileprivate var viewDidAppear = false
-    fileprivate var scrollToFinish = false
     weak var delegate: LibraryViewControllerDelegate?
 
     fileprivate lazy var tableView: UITableView = {
@@ -86,14 +84,7 @@ final class LibraryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setTableViewFooter()
         setupView()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        viewDidAppear = true
     }
 }
 
@@ -116,17 +107,6 @@ private extension LibraryViewController {
         view.backgroundColor = .clear
         tableView.bottomAnchor == view.bottomAnchor
         tableView.horizontalAnchors == view.horizontalAnchors
-    }
-
-    func setTableViewFooter() {
-        let nib = R.nib.libraryFooterView()
-        
-        guard let footerView = (nib.instantiate(withOwner: self, options: nil).first as? LibraryFooterView) else {
-            return
-        }
-
-        footerView.backgroundColor = .clear
-        tableView.tableFooterView = footerView
     }
 }
 
@@ -168,23 +148,6 @@ extension LibraryViewController: UITableViewDelegate, UITableViewDataSource {
         cell.backgroundColor = .clear
 
         return cell
-    }
-}
-
-// MARK: - UIScrollViewDelegate
-
-extension LibraryViewController: UIScrollViewDelegate {
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if viewDidAppear == true && scrollView.contentOffset.y >= (scrollView.contentSize.height + 100 - scrollView.frame.size.height) {
-            scrollToFinish = true
-        }
-    }
-
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if scrollToFinish == true {
-            dismiss(animated: false, completion: nil)
-        }
     }
 }
 
