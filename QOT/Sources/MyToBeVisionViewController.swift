@@ -31,6 +31,7 @@ class MyToBeVisionViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var imageViewOverlay: UIView!
     @IBOutlet weak var imageButton: UIButton!
+    @IBOutlet weak var imageEditLabel: UILabel!
     @IBOutlet weak var webView: UIWebView!
     fileprivate let viewModel: MyToBeVisionViewModel
     fileprivate var imagePicker: ImagePickerController?
@@ -116,16 +117,15 @@ private extension MyToBeVisionViewController {
         
         editButton.tintColor = isEditing ? UIColor.white40 : UIColor.white
         UIView.animate(withDuration: 0.5, animations: {
-            self.messageTextView.alpha = isEditing ? 1.0 : 0.0
-            self.webView.alpha = isEditing ? 0.0 : 1.0
-            self.imageButton.alpha = (isEditing || !(self.viewModel.profileImageResource?.isAvailable ?? false)) ? 1.0 : 0.0
+            self.messageTextView.alpha = isEditing ? 1 : 0
+            self.webView.alpha = isEditing ? 0 : 1
+            self.setImageButton(isEditing: isEditing)
         }, completion: { (_: Bool) in
             if isEditing {
                 _ = self.tryFirstResponder()
             }
             self.headlineTextView.isEditable = isEditing
             self.messageTextView.isEditable = isEditing
-            self.imageButton.isEnabled = isEditing
         })
     }
     
@@ -145,12 +145,25 @@ private extension MyToBeVisionViewController {
         if let profileImageResource = viewModel.profileImageResource {
             imageView.setImageFromResource(profileImageResource)
         }
+
+        setImageButton()
         imageView.alpha = 0.0
         imageViewOverlay.alpha = 0.0
-        imageButton.alpha = (viewModel.profileImageResource?.isAvailable ?? false) ? 0.0 : 1.0
         subtitleLabel.text = viewModel.dateText
     }
-    
+
+    private func setImageButton(isEditing: Bool = false) {
+        if imageView.image == nil {
+            imageButton.alpha = 1
+            imageButton.isEnabled = true
+            imageEditLabel.alpha = 1
+        } else {
+            imageButton.alpha = isEditing == true ? 1 : 0
+            imageButton.isEnabled = isEditing == true
+            imageEditLabel.alpha = isEditing == true ? 1 : 0
+        }
+    }
+
     func setupNavigation() {
         navigationBar.topItem?.title = R.string.localized.meSectorMyWhyVisionTitle()
         navigationBar.titleTextAttributes = [

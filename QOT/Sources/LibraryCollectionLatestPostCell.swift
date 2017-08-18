@@ -18,8 +18,15 @@ final class LibraryCollectionLatestPostCell: UICollectionViewCell, Dequeueable {
 
     // MARK: - Setup
     
-    func setup(headline: String, previewImageURL: URL?, mediaType: String?, sectionType: SectionType) {
-        if let mediaType = mediaType {
+    func setup(headline: String, previewImageURL: URL?, contentItemValue: ContentItemValue?, sectionType: SectionType) {
+        if let contentItemValue = contentItemValue {
+            var mediaType = ""
+            switch contentItemValue {
+            case .audio: mediaType = "Audio"
+            case .video: mediaType = "Video"
+            default: mediaType = "Text"
+            }
+
             mediaTypeLabel.attributedText = Style.tag(mediaType.uppercased(), .white60).attributedString()
         }
 

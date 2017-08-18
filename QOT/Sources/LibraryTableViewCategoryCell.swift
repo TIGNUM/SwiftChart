@@ -45,7 +45,7 @@ extension LibraryTableViewCategoryCell: UICollectionViewDelegateFlowLayout, UICo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: LibraryCollectionCell = collectionView.dequeueCell(for: indexPath)
         let collection = contentCollection[indexPath.item]
-        cell.setup(headline: collection.title, previewImageURL: collection.thumbnailURL, mediaType: collection.items.first?.format, sectionType: sectionType)
+        cell.setup(headline: collection.title, previewImageURL: collection.thumbnailURL, contentItemValue: collection.items.first?.contentItemValue, sectionType: sectionType)
         cell.backgroundColor = .clear
 
         return cell

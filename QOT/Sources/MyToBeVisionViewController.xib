@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -24,6 +24,7 @@
                 <outlet property="headlineTextView" destination="uuS-Dz-bUg" id="RBI-XE-pRQ"/>
                 <outlet property="headlineTextViewHightConstrant" destination="Hzn-z9-l2c" id="fKu-cv-ekc"/>
                 <outlet property="imageButton" destination="RJI-t0-ZYc" id="itt-et-1k1"/>
+                <outlet property="imageEditLabel" destination="3Ik-TR-2gA" id="4aR-6W-GVE"/>
                 <outlet property="imageView" destination="bfh-6q-eoT" id="hcV-JT-FHR"/>
                 <outlet property="imageViewOverlay" destination="Bbh-3u-HIM" id="Pve-ck-qh5"/>
                 <outlet property="messageTextView" destination="Bt0-lW-TcB" id="Zxh-wr-RnJ"/>
@@ -46,6 +47,7 @@
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uuS-Dz-bUg" customClass="PlaceholderTextView" customModule="QOT" customModuleProvider="target">
                     <rect key="frame" x="29" y="110" width="300" height="50"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="Hzn-z9-l2c"/>
                     </constraints>
@@ -70,6 +72,7 @@
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Bt0-lW-TcB" customClass="PlaceholderTextView" customModule="QOT" customModuleProvider="target">
                     <rect key="frame" x="29" y="254" width="316" height="413"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -119,11 +122,19 @@
                                 <action selector="imageButtonPressed:" destination="-1" eventType="touchUpInside" id="TWw-Lk-zKo"/>
                             </connections>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Picture" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ik-TR-2gA">
+                            <rect key="frame" x="16" y="137" width="351" height="19.5"/>
+                            <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="bfh-6q-eoT" secondAttribute="bottom" id="8lS-GU-3cJ"/>
                         <constraint firstItem="eHf-qV-wwH" firstAttribute="top" secondItem="Bbh-3u-HIM" secondAttribute="top" id="AsP-pv-AGE"/>
+                        <constraint firstItem="3Ik-TR-2gA" firstAttribute="top" secondItem="RJI-t0-ZYc" secondAttribute="bottom" constant="8" id="EIs-7S-Vse"/>
+                        <constraint firstAttribute="trailing" secondItem="3Ik-TR-2gA" secondAttribute="trailing" constant="8" id="JFy-2A-Y4r"/>
                         <constraint firstItem="bfh-6q-eoT" firstAttribute="top" secondItem="Bbh-3u-HIM" secondAttribute="top" id="Tvd-Xh-ou7"/>
                         <constraint firstItem="bfh-6q-eoT" firstAttribute="leading" secondItem="Bbh-3u-HIM" secondAttribute="leading" id="b8V-uR-jdA"/>
                         <constraint firstItem="RJI-t0-ZYc" firstAttribute="centerX" secondItem="Bbh-3u-HIM" secondAttribute="centerX" id="dfN-FV-2c1"/>
@@ -131,6 +142,7 @@
                         <constraint firstAttribute="trailing" secondItem="eHf-qV-wwH" secondAttribute="trailing" id="i24-Ir-PUG"/>
                         <constraint firstItem="RJI-t0-ZYc" firstAttribute="centerY" secondItem="Bbh-3u-HIM" secondAttribute="centerY" constant="-0.25" id="nJh-eu-CFB"/>
                         <constraint firstAttribute="bottom" secondItem="eHf-qV-wwH" secondAttribute="bottom" id="r3i-HM-O4d"/>
+                        <constraint firstItem="3Ik-TR-2gA" firstAttribute="leading" secondItem="Bbh-3u-HIM" secondAttribute="leading" constant="16" id="u6w-MQ-f0g"/>
                         <constraint firstItem="eHf-qV-wwH" firstAttribute="leading" secondItem="Bbh-3u-HIM" secondAttribute="leading" id="zUq-qX-eFa"/>
                     </constraints>
                 </view>

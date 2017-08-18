@@ -47,7 +47,7 @@ extension LibraryTableViewCell: UICollectionViewDelegateFlowLayout, UICollection
         if sectionType == .latestPost {
             let cell: LibraryCollectionLatestPostCell = collectionView.dequeueCell(for: indexPath)
             let collection = contentCollection[indexPath.item]
-            cell.setup(headline: collection.title, previewImageURL: collection.thumbnailURL, mediaType: collection.items.first?.format, sectionType: sectionType)
+            cell.setup(headline: collection.title, previewImageURL: collection.thumbnailURL, contentItemValue: collection.items.first?.contentItemValue, sectionType: sectionType)
             cell.backgroundColor = .clear
 
             return cell
@@ -55,7 +55,7 @@ extension LibraryTableViewCell: UICollectionViewDelegateFlowLayout, UICollection
 
         let cell: LibraryCollectionCell = collectionView.dequeueCell(for: indexPath)
         let collection = contentCollection[indexPath.item]
-        cell.setup(headline: collection.title, previewImageURL: collection.thumbnailURL, mediaType: collection.description, sectionType: sectionType)
+        cell.setup(headline: collection.title, previewImageURL: collection.thumbnailURL, contentItemValue: collection.items.first?.contentItemValue, sectionType: sectionType)
         cell.backgroundColor = .green
 
         return cell
