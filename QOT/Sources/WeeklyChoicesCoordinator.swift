@@ -81,12 +81,10 @@ extension WeeklyChoicesCoordinator: UIViewControllerTransitioningDelegate {
     }
 
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-//        return CustomPresentationAnimator(isPresenting: true, duration: 0.5)
         return CustomPresentationAnimator(isPresenting: true, presentingDuration: 0.5, presentedDuration: 0.3)
     }
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-//        return CustomPresentationAnimator(isPresenting: false, duration: 0.5)
         return CustomPresentationAnimator(isPresenting: false, presentingDuration: 0.3, presentedDuration: 0.5)
     }
 }

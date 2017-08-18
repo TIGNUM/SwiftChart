@@ -20,6 +20,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyToBeVisionViewController" customModule="QOT" customModuleProvider="target">
             <connections>
+                <outlet property="circleContainerView" destination="8Ht-Mn-n41" id="NCL-Rb-Sz5"/>
                 <outlet property="editButton" destination="Zz7-dR-bqc" id="D81-CD-QhJ"/>
                 <outlet property="headlineTextView" destination="uuS-Dz-bUg" id="RBI-XE-pRQ"/>
                 <outlet property="headlineTextViewHightConstrant" destination="Hzn-z9-l2c" id="fKu-cv-ekc"/>
@@ -41,9 +42,13 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="solarSystemBackground" translatesAutoresizingMaskIntoConstraints="NO" id="UbZ-c7-cw0">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundWeeklyChoices" translatesAutoresizingMaskIntoConstraints="NO" id="UbZ-c7-cw0">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Ht-Mn-n41">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uuS-Dz-bUg" customClass="PlaceholderTextView" customModule="QOT" customModuleProvider="target">
                     <rect key="frame" x="29" y="110" width="300" height="50"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -150,15 +155,18 @@
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="uuS-Dz-bUg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="29" id="0Vz-dt-2LY"/>
+                <constraint firstItem="8Ht-Mn-n41" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="33e-cH-PS5"/>
                 <constraint firstAttribute="bottom" secondItem="Bt0-lW-TcB" secondAttribute="bottom" id="3FA-TN-j3U"/>
                 <constraint firstItem="UbZ-c7-cw0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="51i-CZ-UWA"/>
                 <constraint firstAttribute="bottom" secondItem="Bbh-3u-HIM" secondAttribute="bottom" id="6ha-Ym-kF0"/>
+                <constraint firstItem="8Ht-Mn-n41" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="8g0-sh-Ifb"/>
                 <constraint firstItem="Bbh-3u-HIM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="8y4-eh-pUC"/>
                 <constraint firstItem="Bbh-3u-HIM" firstAttribute="top" secondItem="PGq-7l-TOU" secondAttribute="bottom" id="A0q-dN-fRy"/>
                 <constraint firstItem="Bbh-3u-HIM" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.32" priority="750" id="FPl-fG-5gS"/>
                 <constraint firstAttribute="trailing" secondItem="Cks-DY-TaL" secondAttribute="trailing" id="Fhe-6s-eg4"/>
                 <constraint firstItem="PGq-7l-TOU" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.3" id="Kxa-RX-5d4"/>
                 <constraint firstItem="PGq-7l-TOU" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2O5-1G-1AK" secondAttribute="bottom" constant="20" id="Mqj-7P-BFl"/>
+                <constraint firstAttribute="bottom" secondItem="8Ht-Mn-n41" secondAttribute="bottom" id="TAr-bt-c5t"/>
                 <constraint firstItem="UbZ-c7-cw0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="U2l-9b-SxA"/>
                 <constraint firstItem="Cks-DY-TaL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="Wna-eB-RhT"/>
                 <constraint firstItem="PGq-7l-TOU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Zo4-r1-8dC"/>
@@ -167,6 +175,7 @@
                 <constraint firstItem="Bt0-lW-TcB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="29" id="edU-XO-IZH"/>
                 <constraint firstItem="Cks-DY-TaL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="fe9-5x-ihh"/>
                 <constraint firstAttribute="bottom" secondItem="UbZ-c7-cw0" secondAttribute="bottom" id="fyZ-br-26Y"/>
+                <constraint firstAttribute="trailing" secondItem="8Ht-Mn-n41" secondAttribute="trailing" id="jUl-sk-YJU"/>
                 <constraint firstItem="uuS-Dz-bUg" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.8" id="lOJ-7O-mjB"/>
                 <constraint firstItem="2O5-1G-1AK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="29" id="ooB-b1-vfV"/>
                 <constraint firstAttribute="trailing" secondItem="Bbh-3u-HIM" secondAttribute="trailing" id="q2t-XB-ST8"/>
@@ -180,9 +189,9 @@
     </objects>
     <resources>
         <image name="Universe mytobevision" width="375" height="230"/>
+        <image name="backgroundWeeklyChoices" width="187" height="333"/>
         <image name="ic_edit" width="23" height="22"/>
         <image name="ic_minimize" width="22" height="12"/>
         <image name="prepare-content-plus-icon" width="24" height="24"/>
-        <image name="solarSystemBackground" width="750" height="667"/>
     </resources>
 </document>

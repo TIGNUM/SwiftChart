@@ -11,9 +11,10 @@ import UIKit
 final class ZoomAnimator: NSObject {
 
     fileprivate let presenting: Bool
-
     fileprivate let zoomDuration = Animation.zoomDuration
-
+    fileprivate(set) var fromViewController: UIViewController?
+    fileprivate(set) var toViewController: UIViewController?
+    
     init(isPresentating: Bool) {
         self.presenting = isPresentating
 
@@ -31,21 +32,28 @@ extension ZoomAnimator: UIViewControllerAnimatedTransitioning {
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let containerView = transitionContext.containerView
-
-        let toViewController = transitionContext.viewController(forKey: .to)
-        let fromViewController = transitionContext.viewController(forKey: .from)
-
         guard
-            let toView = toViewController?.view,
-            let fromView = fromViewController?.view
-            else { return }
+            let toViewController = transitionContext.viewController(forKey: .to),
+            let fromViewController = transitionContext.viewController(forKey: .from) else {
+                transitionContext.completeTransition(false)
+                return
+        }
+        self.fromViewController = fromViewController
+        self.toViewController = toViewController
 
+        fromViewController.beginAppearanceTransition(false, animated: true)
+        toViewController.beginAppearanceTransition(true, animated: true)
+        
         if presenting {
-            containerView.insertSubview(toView, belowSubview: fromView)
+            containerView.insertSubview(toViewController.view, belowSubview: fromViewController.view)
         }
 
-        UIView.animate(withDuration: zoomDuration, animations: {}, completion: { _ in
-            transitionContext.completeTransition(true)
+        UIView.animate(withDuration: zoomDuration, animations: {}, completion: { finished in
+            if finished {
+                fromViewController.endAppearanceTransition()
+                toViewController.endAppearanceTransition()
+            }
+            transitionContext.completeTransition(finished)
         })
     }
 }

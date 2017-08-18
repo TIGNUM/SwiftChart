@@ -36,24 +36,22 @@ final class CircularAnimation: NSObject, UIViewControllerAnimatedTransitioning {
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         self.transitionContext = transitionContext
-
-        let containerView = transitionContext.containerView
-        fromViewController = transitionContext.viewController(forKey: .from)
-        toViewController = transitionContext.viewController(forKey: .to)
-
-        guard let fromViewController = fromViewController, let toViewController = toViewController else {
+        guard
+            let fromViewController = transitionContext.viewController(forKey: .from),
+            let toViewController = transitionContext.viewController(forKey: .to) else {
             self.transitionContext?.completeTransition(true)
             return
         }
-
-        let animatedViewController = isPresenting ? toViewController : fromViewController
-        let animatedView = animatedViewController.view!
-
-        let bubbleView = UIView(frame: animatedView.frame)
-
+        self.fromViewController = fromViewController
+        self.toViewController = toViewController
+        
         fromViewController.beginAppearanceTransition(false, animated: true)
         toViewController.beginAppearanceTransition(true, animated: true)
-
+        
+        let animatedViewController = isPresenting ? toViewController : fromViewController
+        let animatedView = animatedViewController.view!
+        let bubbleView = UIView(frame: animatedView.frame)
+        let containerView = transitionContext.containerView
         containerView.addSubview(toViewController.view!)
         containerView.addSubview(bubbleView)
         if !isPresenting {
@@ -94,9 +92,9 @@ private extension CircularAnimation {
 
     func animationsCompleted(bubbleView: UIView) {
         bubbleView.removeFromSuperview()
-        self.fromViewController?.endAppearanceTransition()
-        self.toViewController?.endAppearanceTransition()
-        self.transitionContext?.completeTransition(true)
+        fromViewController?.endAppearanceTransition()
+        toViewController?.endAppearanceTransition()
+        transitionContext?.completeTransition(!(transitionContext?.transitionWasCancelled ?? false))
     }
 
     func contentAnimation(bubbleView: UIView, animatedView: UIView, maskLayer: CAShapeLayer, maskPath: UIBezierPath, endFrame: CGRect) {

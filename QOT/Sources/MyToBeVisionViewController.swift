@@ -33,6 +33,7 @@ class MyToBeVisionViewController: UIViewController {
     @IBOutlet weak var imageButton: UIButton!
     @IBOutlet weak var imageEditLabel: UILabel!
     @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var circleContainerView: UIView!
     fileprivate let viewModel: MyToBeVisionViewModel
     fileprivate var imagePicker: ImagePickerController?
     fileprivate var imageTapRecogniser: UITapGestureRecognizer!
@@ -62,6 +63,7 @@ class MyToBeVisionViewController: UIViewController {
         super.viewWillLayoutSubviews()
 
         maskImageView(imageView: imageView)
+        drawCircles()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,6 +72,7 @@ class MyToBeVisionViewController: UIViewController {
         setupNotifications()
         
         UIView.animate(withDuration: 0.7) {
+            self.view.alpha = 1.0
             self.imageView.alpha = 1.0
             self.imageViewOverlay.alpha = 1.0
         }
@@ -99,6 +102,26 @@ class MyToBeVisionViewController: UIViewController {
 
 private extension MyToBeVisionViewController {
 
+    func drawCircles() {
+        var center = view.center; center.x *= 0.2; center.y *= 1.1
+        let circleLayer1 = CAShapeLayer.circle(
+            center: center,
+            radius: view.bounds.width * 0.55,
+            fillColor: .clear,
+            strokeColor: Color.MeSection.whiteStrokeLight
+        )
+        circleLayer1.lineDashPattern = [1, 2]
+        circleContainerView.layer.addSublayer(circleLayer1)
+        
+        let circleLayer2 = CAShapeLayer.circle(
+            center: center,
+            radius: view.bounds.width * 0.9,
+            fillColor: .clear,
+            strokeColor: Color.MeSection.whiteStrokeLight
+        )
+        circleContainerView.layer.addSublayer(circleLayer2)
+    }
+    
     func setupNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)

@@ -14,14 +14,14 @@ protocol CustomPresentationAnimatorDelegate: class {
 }
 
 class CustomPresentationAnimator: NSObject {
+    fileprivate(set) var fromViewController: UIViewController?
+    fileprivate(set) var toViewController: UIViewController?
+    fileprivate var finishedAnimations = 0
+
     let isPresenting: Bool
     let presentingDuration: TimeInterval
     let presentedDuration: TimeInterval
-    fileprivate(set) var fromViewController: UIViewController?
-    fileprivate(set) var toViewController: UIViewController?
-
-    fileprivate var finishedAnimations = 0
-
+    
     init(isPresenting: Bool, duration: TimeInterval) {
         self.isPresenting = isPresenting
         self.presentingDuration = duration
@@ -45,28 +45,28 @@ extension CustomPresentationAnimator: UIViewControllerAnimatedTransitioning {
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-
         guard
             let fromViewController = transitionContext.viewController(forKey: .from),
             let toViewController = transitionContext.viewController(forKey: .to) else {
                 transitionContext.completeTransition(false)
                 return
         }
+        // these must be set before delegte.animationsForAnimator(self) called
         self.fromViewController = fromViewController
         self.toViewController = toViewController
+
         guard
             let fromViewControllerDelegate = fromViewController as? CustomPresentationAnimatorDelegate,
             let fromAnimations = fromViewControllerDelegate.animationsForAnimator(self),
             let toViewControllerDelegate = toViewController as? CustomPresentationAnimatorDelegate,
             let toAnimations = toViewControllerDelegate.animationsForAnimator(self),
-            let view = isPresenting ? toViewController.view : fromViewController.view
-            else {
+            let view = isPresenting ? toViewController.view : fromViewController.view else {
                 transitionContext.completeTransition(false)
                 return
         }
 
         toViewController.beginAppearanceTransition(true, animated: true)
-        fromViewController.beginAppearanceTransition(false, animated: false)
+        fromViewController.beginAppearanceTransition(false, animated: true)
 
         if isPresenting {
             let containerView = transitionContext.containerView
@@ -77,25 +77,22 @@ extension CustomPresentationAnimator: UIViewControllerAnimatedTransitioning {
         UIView.animate(withDuration: presentingDuration, animations: {
             fromAnimations()
         }, completion: { [unowned self] (finished: Bool) in
+            fromViewController.endAppearanceTransition()
             self.completion(finished, transitionContext: transitionContext)
         })
 
         UIView.animate(withDuration: presentedDuration, animations: {
             toAnimations()
         }, completion: { [unowned self] (finished: Bool) in
+            toViewController.endAppearanceTransition()
             self.completion(finished, transitionContext: transitionContext)
         })
     }
 
     fileprivate func completion(_ finished: Bool, transitionContext: UIViewControllerContextTransitioning) {
         finishedAnimations += 1
-
         if finishedAnimations == 2 {
-            transitionContext.completeTransition(finished)
-            if finished {
-                toViewController?.endAppearanceTransition()
-                fromViewController?.endAppearanceTransition()
-            }
+            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
     }
 }

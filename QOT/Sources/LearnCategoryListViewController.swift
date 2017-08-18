@@ -71,7 +71,6 @@ final class LearnCategoryListViewController: UIViewController {
             }
         }.dispose(in: disposeBag)
     }
-
 }
 
 // MARK: - Private

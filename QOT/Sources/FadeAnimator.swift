@@ -9,7 +9,9 @@
 import UIKit
 
 class FadeAnimator: NSObject, UIViewControllerAnimatedTransitioning {
-
+    
+    fileprivate(set) var fromViewController: UIViewController?
+    fileprivate(set) var toViewController: UIViewController?
     fileprivate let duration = 1.0
     var presenting = true
 
@@ -18,10 +20,21 @@ class FadeAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        guard
+            let fromViewController = transitionContext.viewController(forKey: .from),
+            let toViewController = transitionContext.viewController(forKey: .to) else {
+                transitionContext.completeTransition(false)
+                return
+        }
+        self.fromViewController = fromViewController
+        self.toViewController = toViewController
+
+        fromViewController.beginAppearanceTransition(false, animated: true)
+        toViewController.beginAppearanceTransition(true, animated: true)
+        
         let containerView = transitionContext.containerView
         let toView = transitionContext.view(forKey: .to)!
         let animatedView = presenting ? toView : transitionContext.view(forKey: .from)!
-
         containerView.addSubview(toView)
         containerView.bringSubview(toFront: animatedView)
 
@@ -30,6 +43,10 @@ class FadeAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         UIView.animate(withDuration: duration, animations: {
             animatedView.alpha = self.presenting ? 1 : 0
         }, completion: { finished in
+            if finished {
+                fromViewController.endAppearanceTransition()
+                toViewController.endAppearanceTransition()
+            }
             transitionContext.completeTransition(finished)
         })
     }
