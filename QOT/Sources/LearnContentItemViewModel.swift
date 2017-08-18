@@ -41,8 +41,8 @@ final class LearnContentItemViewModel {
     fileprivate let recommentedContentCollections: AnyRealmCollection<ContentCollection>
     fileprivate let categoryID: Int
     fileprivate var playingIndexPath: IndexPath?
-    fileprivate var player = AVPlayer()
     fileprivate var timeObserver: Any?
+    fileprivate var player: AVPlayer? = AVPlayer()
     let contentCollection: ContentCollection
     var currentPosition = ReactiveKit.Property<TimeInterval>(0)
     var trackDuration = ReactiveKit.Property<TimeInterval>(0)
@@ -237,7 +237,7 @@ extension LearnContentItemViewModel {
             return false
         }
 
-        return player.rate != 0
+        return player == nil ? false : player?.rate != 0
     }
 
     func playItem(at indexPath: IndexPath, audioURL: URL, duration: TimeInterval) {
@@ -264,22 +264,26 @@ extension LearnContentItemViewModel {
             play(url: audioURL)
         }
 
-        updates.next(.update(deletions: [], insertions: [], modifications:modifications))
+        updates.next(.update(deletions: [], insertions: [], modifications: modifications))
     }
 
     func stopPlayback() {
         log("Did stop playback")
-        player.pause()
 
         if let timeObserver = timeObserver {
-            player.removeTimeObserver(timeObserver)
+            player?.removeTimeObserver(timeObserver)
         }
+
+        player?.pause()
+        player = nil
+        currentPosition.value = 0
+        playingIndexPath = nil
     }
 
     func forward(value: Float) {
         let time = TimeInterval(value) * trackDuration.value
-        player.seek(to: CMTimeMakeWithSeconds(time, 1))
-        player.play()
+        player?.seek(to: CMTimeMakeWithSeconds(time, 1))
+        player?.play()
     }
 
     private func play(url: URL) {
@@ -287,13 +291,13 @@ extension LearnContentItemViewModel {
 
         let playerItem = AVPlayerItem(url: url)
         player = AVPlayer(playerItem: playerItem)
-        player.volume = 1.0
-        player.play()
+        player?.volume = 1.0
+        player?.play()
         observePlayerTime()
     }
 
     private func observePlayerTime() {
-        timeObserver = player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 1), queue: .main) { (time: CMTime) in
+        timeObserver = player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 1), queue: .main) { (time: CMTime) in
             self.currentPosition.value = time.seconds
         }
     }

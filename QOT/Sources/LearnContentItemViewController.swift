@@ -89,6 +89,12 @@ final class LearnContentItemViewController: UIViewController {
         tableView.reloadData()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        viewModel.stopPlayback()
+    }
+
     func reloadData(viewModel: LearnContentItemViewModel) {
         self.viewModel = viewModel
         //TODO:this
@@ -121,16 +127,12 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         var item: ContentItem!
 
         if viewModel.isPDFItem(at: indexPath, tabType: tabType) {
             item = viewModel.learnPDFContentItem(at: indexPath, tabType: tabType)
         } else if viewModel.isReadMoreItem(at: indexPath, tabType: tabType) {
-            return readMoreTableViewCell(
-                tableView: tableView,
-                indexPath: indexPath
-            )
+            return readMoreTableViewCell(tableView: tableView, indexPath: indexPath)
         } else {
             item = viewModel.learnContentItem(at: indexPath, tabType: tabType)
         }
@@ -143,13 +145,15 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
                 viewModel.trackDuration = Property(duration)
                 soundPattern = Property(waveformData)
                 observeViewModel(audioView: cell)
+
                 return cell
             default: fatalError("That should not happen!")
             }
         } else if
             viewModel.sectionCount(tabType: tabType) == 3 && indexPath.section == 2 ||
             viewModel.sectionCount(tabType: tabType) == 2 && viewModel.containsAudioItem(tabType: tabType) == false && indexPath.section == 1 {
-            return relatedContentCell(tableView, indexPath)
+
+                return relatedContentCell(tableView, indexPath)
         } else {
             switch item.contentItemValue {
             case .listItem(let itemText):
@@ -346,7 +350,7 @@ private extension LearnContentItemViewController {
             let cell: LearnStrategyPlaylistAudioCell = tableView.dequeueCell(for: indexPath)
             cell.setUp(title: title, playing: viewModel.isPlaying(indexPath: indexPath))
 
-            return cell
+        return cell
     }
 
     func contentItemBulletTableViewCell(
