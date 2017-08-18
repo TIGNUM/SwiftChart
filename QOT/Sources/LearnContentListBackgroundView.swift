@@ -10,7 +10,6 @@ import UIKit
 import Rswift
 import Anchorage
 
-
 final class LearnContentListBackgroundView: UICollectionReusableView {
 
     static let kind = "LearnContentListBackgroundViewKind"

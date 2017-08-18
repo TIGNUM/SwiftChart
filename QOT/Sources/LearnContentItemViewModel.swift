@@ -37,13 +37,13 @@ final class LearnContentItemViewModel {
     // MARK: - Properties
 
     fileprivate let services: Services
-    fileprivate let contentCollection: ContentCollection
     fileprivate let relatedContentCollections: AnyRealmCollection<ContentCollection>
     fileprivate let recommentedContentCollections: AnyRealmCollection<ContentCollection>
     fileprivate let categoryID: Int
     fileprivate var playingIndexPath: IndexPath?
     fileprivate var player = AVPlayer()
     fileprivate var timeObserver: Any?
+    let contentCollection: ContentCollection
     var currentPosition = ReactiveKit.Property<TimeInterval>(0)
     var trackDuration = ReactiveKit.Property<TimeInterval>(0)
     let updates = PublishSubject<CollectionUpdate, NoError>()

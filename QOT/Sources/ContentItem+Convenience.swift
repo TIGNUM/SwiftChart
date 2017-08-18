@@ -23,8 +23,4 @@ extension ContentItem {
 
         return contentItemTextStyle
     }
-
-    var trackableEntityID: Int {
-        return Int.randomID
-    }
 }

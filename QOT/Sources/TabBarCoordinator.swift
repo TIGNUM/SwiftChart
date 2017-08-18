@@ -63,7 +63,7 @@ final class TabBarCoordinator: ParentCoordinator {
         learnCategoryListVC.delegate = self
 
         let articleCollectionViewModel = ArticleCollectionViewModel(services: self.services)
-        let articleCollectionViewController = ArticleCollectionViewController(viewModel: articleCollectionViewModel)
+        let articleCollectionViewController = ArticleCollectionViewController(pageName: .whatsHot, pageAssociatedObject: nil, viewModel: articleCollectionViewModel)
         articleCollectionViewController.title = R.string.localized.topTabBarItemTitleLearnWhatsHot()
         articleCollectionViewController.delegate = self
 

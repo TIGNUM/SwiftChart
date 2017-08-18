@@ -37,6 +37,9 @@ final class AppCoordinator: ParentCoordinator {
     fileprivate lazy var pageTracker: PageTracker = {
         return PageTracker.default
     }()
+    fileprivate lazy var eventTracker: EventTracker = {
+        return EventTracker.default
+    }()
     fileprivate lazy var syncRecordService: SyncRecordService = {
         return SyncRecordService(realmProvider: self.realmProvider)
     }()
@@ -77,6 +80,7 @@ final class AppCoordinator: ParentCoordinator {
                 log(error)
             }
         }
+        eventTracker.realmProvider = realmProvider
         pageTracker.start()
 
         let viewController = AnimatedLaunchScreenViewController()

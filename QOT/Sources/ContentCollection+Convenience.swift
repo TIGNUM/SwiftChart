@@ -27,10 +27,6 @@ extension ContentCollection {
         return items.reduce(0, { $0.0 + $0.1.secondsRequired }) / 60
     }
 
-    var trackableEntityID: Int {
-        return Int.randomID
-    }
-
     var percentageViewed: Double {
         let viewed = items.filter { $0.viewed != false }
         return Double(viewed.count) / Double(items.count)

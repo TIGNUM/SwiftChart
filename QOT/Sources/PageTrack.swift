@@ -12,67 +12,59 @@ import Freddy
 
 final class PageTrack: SyncableObject {
 
-    fileprivate dynamic var pageID: Int = 0
+    fileprivate dynamic var page: Page?
+    
+    fileprivate dynamic var referrerPage: Page?
+    
+    fileprivate dynamic var associatedValue: SyncableObject?
+    
+    fileprivate dynamic var associatedValueType: String?
+    
+    fileprivate dynamic var referrerAssociatedValue: SyncableObject?
+    
+    fileprivate dynamic var referrerAssociatedValueType: String?
 
-    fileprivate let referrerPageID: RealmOptional<Int> = RealmOptional(nil)
-
-    fileprivate dynamic var associatedObject: PageTrackAssociatedObject?
-
-    fileprivate dynamic var referrerAssociatedObject: PageTrackAssociatedObject?
-
-    convenience init(pageID: Int, referrerPageID: Int?, associatedObject: AnyObject?, referrerAssociatedObject: AnyObject?) {
+    convenience init(page: Page, referrerPage: Page?, associatedValue: SyncableObject?, associatedValueType: String?, referrerAssociatedValue: SyncableObject?, referrerAssociatedValueType: String?) {
         self.init()
 
-        self.pageID = pageID
-        self.referrerPageID.value = referrerPageID
-        self.associatedObject = associatedObject.map { PageTrackAssociatedObject(object: $0) }
-        self.referrerAssociatedObject = referrerAssociatedObject.map { PageTrackAssociatedObject(object: $0) }
+        self.page = page
+        self.referrerPage = referrerPage
+        self.associatedValue = associatedValue
+        self.associatedValueType = associatedValueType
+        self.referrerAssociatedValue = referrerAssociatedValue
+        self.referrerAssociatedValueType = referrerAssociatedValueType
     }
 }
 
-extension PageTrack: JSONEncodable {
+// MARK: - OneWaySyncable
 
-    func toJSON() -> JSON {
-        guard readyToUpload else {
-            return .null
+extension PageTrack: OneWaySyncableUp {
+    
+    static var endpoint: Endpoint {
+        return .pageTracking
+    }
+    
+    func toJson() -> JSON? {
+        guard
+            syncStatus != .clean,
+            let pageID = page?.remoteID.value,
+            (associatedValue == nil || associatedValue?.remoteID != nil),
+            (referrerAssociatedValue == nil || referrerAssociatedValue?.remoteID != nil) else {
+            return nil
         }
-
+        let referrerPageID = referrerPage?.remoteID.value
+        let associatedValueID = associatedValue?.remoteID.value
+        let referrerAssociatedValueID = referrerAssociatedValue?.remoteID.value
         let dateFormatter = DateFormatter.iso8601
-        let dict: [JsonKey: JSON] = [
-            .createdAt: .string(dateFormatter.string(from: createdAt)),
-            .pageId: .int(pageID),
-            .referrerPageId: JSON.make(with: referrerPageID.value),
-            .associatedValueId: JSON.make(with: associatedObject?.values?.id),
-            .associatedValueType: JSON.make(with: associatedObject?.values?.type),
-            .referrerAssociatedValueId: JSON.make(with: referrerAssociatedObject?.values?.id),
-            .referrerAssociatedValueType: JSON.make(with: referrerAssociatedObject?.values?.type)
+        let dict: [JsonKey: JSONEncodable] = [
+            .createdAt: dateFormatter.string(from: createdAt),
+            .pageId: pageID,
+            .referrerPageId: (referrerPageID ?? nil).toJSONEncodable,
+            .associatedValueId: (associatedValueID ?? nil).toJSONEncodable,
+            .associatedValueType: associatedValueType.toJSONEncodable,
+            .referrerAssociatedValueId: (referrerAssociatedValueID ?? nil).toJSONEncodable,
+            .referrerAssociatedValueType: referrerAssociatedValueType.toJSONEncodable
         ]
-
-        return .dictionary(dict.mapKeys({ $0.rawValue }))
-    }
-
-    // MARK: Private
-
-    private var readyToUpload: Bool {
-        if let associatedObject = associatedObject, associatedObject.values == nil {
-            return false
-        }
-        if let referrerAssociatedObject = referrerAssociatedObject, referrerAssociatedObject.values == nil {
-            return false
-        }
-        return true
-    }
-}
-
-// MARK: Private helpers
-
-private extension JSON {
-
-    static func make(with value: String?) -> JSON {
-        return value.map { .string($0) } ?? .null
-    }
-
-    static func make(with value: Int?) -> JSON {
-        return value.map { .int($0) } ?? .null
+        return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
     }
 }

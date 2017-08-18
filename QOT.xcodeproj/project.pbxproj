@@ -51,8 +51,6 @@
 		7F507BA31F3B4DEC0091742D /* UserAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F507BA21F3B4DEC0091742D /* UserAnswer.swift */; };
 		7F5A25B01F3C4BC700A11466 /* PageTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A25AF1F3C4BC700A11466 /* PageTracker.swift */; };
 		7F5A25B21F3C515800A11466 /* Swizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A25B11F3C515800A11466 /* Swizzle.swift */; };
-		7F5A25B41F3C569300A11466 /* TrackablePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A25B31F3C569300A11466 /* TrackablePage.swift */; };
-		7F5A25B61F3C56A600A11466 /* EventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A25B51F3C56A600A11466 /* EventData.swift */; };
 		7F5A25BF1F3CB71100A11466 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A25BE1F3CB71100A11466 /* DatabaseManager.swift */; };
 		7F691C551F0D19AE00E2C180 /* MyToBeVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F691C541F0D19AE00E2C180 /* MyToBeVision.swift */; };
 		7F691C5E1F0D30C800E2C180 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F691C5D1F0D30C800E2C180 /* PlaceholderTextView.swift */; };
@@ -60,6 +58,7 @@
 		7F99ABB11F3DF38E009CA587 /* Database in Resources */ = {isa = PBXBuildFile; fileRef = 7F99ABB01F3DF38E009CA587 /* Database */; };
 		7FB32D111F42E8620027BF4E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB32D101F42E8620027BF4E /* Security.framework */; };
 		7FB32D131F42E8EE0027BF4E /* DatabaseKeyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB32D121F42E8EE0027BF4E /* DatabaseKeyService.swift */; };
+		7FB32D151F44793F0027BF4E /* TrackablePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB32D141F44793F0027BF4E /* TrackablePage.swift */; };
 		7FB9AD0B1F39BD1400E0D621 /* UpSyncMediaResultParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB9AD0A1F39BD1400E0D621 /* UpSyncMediaResultParser.swift */; };
 		7FB9AD0D1F39BD2B00E0D621 /* UpSyncMediaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB9AD0C1F39BD2B00E0D621 /* UpSyncMediaData.swift */; };
 		7FBC3E7E1F34AB8D005BD772 /* MediaResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBC3E7D1F34AB8D005BD772 /* MediaResource.swift */; };
@@ -201,10 +200,6 @@
 		CB810E661EF00DCA0043E3E5 /* UserIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB810E651EF00DCA0043E3E5 /* UserIntermediary.swift */; };
 		CB810E681EF00E2C0043E3E5 /* MockUserDown.json in Resources */ = {isa = PBXBuildFile; fileRef = CB810E671EF00E2C0043E3E5 /* MockUserDown.json */; };
 		CB810E6E1EF180DC0043E3E5 /* PageTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB810E6D1EF180DC0043E3E5 /* PageTrack.swift */; };
-		CB810E701EF181ED0043E3E5 /* PageTrackAssociatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB810E6F1EF181ED0043E3E5 /* PageTrackAssociatedObject.swift */; };
-		CB8A152F1E76F27D0023B2F9 /* PageID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A152E1E76F27D0023B2F9 /* PageID.swift */; };
-		CB8A15311E76F31B0023B2F9 /* PageTrackable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15301E76F31B0023B2F9 /* PageTrackable.swift */; };
-		CB8A15331E76F56D0023B2F9 /* TrackableEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15321E76F56D0023B2F9 /* TrackableEntity.swift */; };
 		CB8A154A1E7A7FA20023B2F9 /* CalendarImportManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15491E7A7FA20023B2F9 /* CalendarImportManger.swift */; };
 		CB8A154C1E7A8AD30023B2F9 /* CalendarImportTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A154B1E7A8AD30023B2F9 /* CalendarImportTask.swift */; };
 		CB8C344F1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8C344D1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift */; };
@@ -528,8 +523,6 @@
 		7F507BA21F3B4DEC0091742D /* UserAnswer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAnswer.swift; sourceTree = "<group>"; };
 		7F5A25AF1F3C4BC700A11466 /* PageTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageTracker.swift; sourceTree = "<group>"; };
 		7F5A25B11F3C515800A11466 /* Swizzle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swizzle.swift; sourceTree = "<group>"; };
-		7F5A25B31F3C569300A11466 /* TrackablePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackablePage.swift; sourceTree = "<group>"; };
-		7F5A25B51F3C56A600A11466 /* EventData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventData.swift; sourceTree = "<group>"; };
 		7F5A25BE1F3CB71100A11466 /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		7F691C541F0D19AE00E2C180 /* MyToBeVision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToBeVision.swift; sourceTree = "<group>"; };
 		7F691C5D1F0D30C800E2C180 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
@@ -537,6 +530,7 @@
 		7F99ABB01F3DF38E009CA587 /* Database */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Database; sourceTree = "<group>"; };
 		7FB32D101F42E8620027BF4E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7FB32D121F42E8EE0027BF4E /* DatabaseKeyService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseKeyService.swift; sourceTree = "<group>"; };
+		7FB32D141F44793F0027BF4E /* TrackablePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackablePage.swift; sourceTree = "<group>"; };
 		7FB9AD0A1F39BD1400E0D621 /* UpSyncMediaResultParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpSyncMediaResultParser.swift; sourceTree = "<group>"; };
 		7FB9AD0C1F39BD2B00E0D621 /* UpSyncMediaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpSyncMediaData.swift; sourceTree = "<group>"; };
 		7FBC3E7D1F34AB8D005BD772 /* MediaResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaResource.swift; sourceTree = "<group>"; };
@@ -682,10 +676,6 @@
 		CB810E651EF00DCA0043E3E5 /* UserIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserIntermediary.swift; sourceTree = "<group>"; };
 		CB810E671EF00E2C0043E3E5 /* MockUserDown.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockUserDown.json; sourceTree = "<group>"; };
 		CB810E6D1EF180DC0043E3E5 /* PageTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageTrack.swift; sourceTree = "<group>"; };
-		CB810E6F1EF181ED0043E3E5 /* PageTrackAssociatedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageTrackAssociatedObject.swift; sourceTree = "<group>"; };
-		CB8A152E1E76F27D0023B2F9 /* PageID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageID.swift; sourceTree = "<group>"; };
-		CB8A15301E76F31B0023B2F9 /* PageTrackable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageTrackable.swift; sourceTree = "<group>"; };
-		CB8A15321E76F56D0023B2F9 /* TrackableEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackableEntity.swift; sourceTree = "<group>"; };
 		CB8A15491E7A7FA20023B2F9 /* CalendarImportManger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarImportManger.swift; sourceTree = "<group>"; };
 		CB8A154B1E7A8AD30023B2F9 /* CalendarImportTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarImportTask.swift; sourceTree = "<group>"; };
 		CB8C344D1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1026,9 +1016,8 @@
 			isa = PBXGroup;
 			children = (
 				7F5A25AF1F3C4BC700A11466 /* PageTracker.swift */,
-				7F5A25B31F3C569300A11466 /* TrackablePage.swift */,
 				7F507BA01F3B0F8A0091742D /* EventTracker.swift */,
-				7F5A25B51F3C56A600A11466 /* EventData.swift */,
+				7FB32D141F44793F0027BF4E /* TrackablePage.swift */,
 			);
 			name = Analytics;
 			sourceTree = "<group>";
@@ -1040,6 +1029,26 @@
 				CBAF6FD51F2B5AE500E57426 /* MyToBeVisionIntermediary.swift */,
 			);
 			name = MyToBeVision;
+			sourceTree = "<group>";
+		};
+		7FB32D161F4479620027BF4E /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				CC33CA2F1EC60447008E6B33 /* DatabaseConstants.swift */,
+				7F5A25BE1F3CB71100A11466 /* DatabaseManager.swift */,
+				7FE151C71F3DDAE600DA8F37 /* DatabaseBuilder.swift */,
+			);
+			name = Database;
+			sourceTree = "<group>";
+		};
+		7FB32D171F4479760027BF4E /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				CBC1DC2D1F0FC9E800F6D056 /* Object+Convenience.swift */,
+				CB369CDA1E8D3E5700522293 /* RealmProvider.swift */,
+				CB3437711F00ED3200D89D4F /* RealmObserver.swift */,
+			);
+			name = Realm;
 			sourceTree = "<group>";
 		};
 		7FBC3E811F3865D4005BD772 /* MediaResource */ = {
@@ -1156,7 +1165,6 @@
 			isa = PBXGroup;
 			children = (
 				CB810E6D1EF180DC0043E3E5 /* PageTrack.swift */,
-				CB810E6F1EF181ED0043E3E5 /* PageTrackAssociatedObject.swift */,
 			);
 			name = PageTrack;
 			sourceTree = "<group>";
@@ -1316,14 +1324,9 @@
 				7FE151C71F3DDAE600DA8F37 /* DatabaseBuilder.swift */,
 				CB14676D1EF2AB7000A60E31 /* DeviceIdentifier.swift */,
 				CB1D5E351EC5E25A00BCDF8D /* Error.swift */,
-				CB1D5E361EC5E25A00BCDF8D /* JSONDecodable.swift */,
-				CB9B07661EF953D80017F6C3 /* JSONKey.swift */,
-				CBC1DC2D1F0FC9E800F6D056 /* Object+Convenience.swift */,
-				CB8A152E1E76F27D0023B2F9 /* PageID.swift */,
-				CB8A15301E76F31B0023B2F9 /* PageTrackable.swift */,
-				CB3437711F00ED3200D89D4F /* RealmObserver.swift */,
-				CB369CDA1E8D3E5700522293 /* RealmProvider.swift */,
-				CB8A15321E76F56D0023B2F9 /* TrackableEntity.swift */,
+				7F5A25AE1F3C4BB400A11466 /* Analytics */,
+				7FB32D171F4479760027BF4E /* Realm */,
+				7FB32D161F4479620027BF4E /* Database */,
 				CBB4DD4F1EE094E50071494A /* Calendar Import */,
 				CBB4DD251EE087830071494A /* Models */,
 				CBB4DD511EE095B30071494A /* Network */,
@@ -1575,6 +1578,7 @@
 				CCCC42DE1ED5799D00E73905 /* UIViewController+Transition.swift */,
 				CC9622071F1F48A8007A9ED0 /* URL+Components.swift */,
 				CCC2D3151F0AB1E000951A2E /* UserDefault+Convenience.swift */,
+				CBFECCAC1F388B500076ACE6 /* TimeZone+Convenience.swift */,
 				CCDD549D1F46C0A7002F4933 /* UIViewController+StreamVideo.swift */,
 			);
 			name = Extensions;
@@ -1881,6 +1885,8 @@
 		CBB4DD511EE095B30071494A /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				CB9B07661EF953D80017F6C3 /* JSONKey.swift */,
+				CB1D5E361EC5E25A00BCDF8D /* JSONDecodable.swift */,
 				CB6D49551ECCA58D005BC637 /* AuthenticationTokenParser.swift */,
 				CBC933041F05253000C00007 /* JSON+Convenience.swift */,
 				CB27D59C1ECCB6DD00F2B76C /* NetworkError.swift */,
@@ -1899,7 +1905,6 @@
 		CBB4DD521EE095E50071494A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				7F5A25AE1F3C4BB400A11466 /* Analytics */,
 				7F5A25B11F3C515800A11466 /* Swizzle.swift */,
 				8548BBDF1F0D4BF900AC7C06 /* LaunchHandler.swift */,
 				852DADC51EEEE63500A10882 /* Math.swift */,
@@ -1908,7 +1913,6 @@
 				7F4251C21F211BC600EA451D /* PermissionHandler.swift */,
 				CBC5ACC91F18EF96007E1E9C /* QOTUsageTime.swift */,
 				CB27D59A1ECCB67300F2B76C /* Result.swift */,
-				CBFECCAC1F388B500076ACE6 /* TimeZone+Convenience.swift */,
 				855C4FC41F25F7D10068DDE3 /* Tutorials.swift */,
 				CBD791491E71797C0006C590 /* Typealiases.swift */,
 				CC3DFB631E83BDA300FF28DF /* Utils.swift */,
@@ -2390,7 +2394,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		5EB4CCEE8904BC282CD31F04 /* [CP] Copy Pods Resources */ = {
@@ -2494,7 +2498,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		CB8A15401E7981900023B2F9 /* Generate R.Swift */ = {
@@ -2614,7 +2618,6 @@
 				852988951F2F3E15003A36DF /* Bundle+Extensions.swift in Sources */,
 				852DADEC1EF2BE3C00A10882 /* UpcomingTravelsView.swift in Sources */,
 				CB27D59B1ECCB67300F2B76C /* Result.swift in Sources */,
-				7F5A25B41F3C569300A11466 /* TrackablePage.swift in Sources */,
 				D569769C1EF94094000FF777 /* MyStatisticsDataSleepView.swift in Sources */,
 				CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */,
 				CCCC42DF1ED5799D00E73905 /* UIViewController+Transition.swift in Sources */,
@@ -2657,7 +2660,6 @@
 				CB0A4A5D1ECC4C72006A2D85 /* AddSensorViewController.swift in Sources */,
 				CC94F5621EB08EE400051CF8 /* AudioWaveformView.swift in Sources */,
 				0B40DC151E9CA71400E1659B /* PrepareContentHeaderTableViewCell.swift in Sources */,
-				CB8A15331E76F56D0023B2F9 /* TrackableEntity.swift in Sources */,
 				D50CDDC01EC48CA700D27072 /* AverageGraphGridView.swift in Sources */,
 				CB1D5E391EC5E25A00BCDF8D /* ContentCategory.swift in Sources */,
 				D5A64D941EE801970095D01C /* SleepChartView.swift in Sources */,
@@ -2675,6 +2677,7 @@
 				CB0A4A5A1ECC4C3E006A2D85 /* AddSensorViewModel.swift in Sources */,
 				CBFECCC21F3C9CA00076ACE6 /* LearnCategoryListBackgroundView.swift in Sources */,
 				CB3437551EFD1C2600D89D4F /* PrepareChatDecisionManager.swift in Sources */,
+				7FB32D151F44793F0027BF4E /* TrackablePage.swift in Sources */,
 				D50CDDC11EC48CA700D27072 /* AverageGraphView.swift in Sources */,
 				D5B7072A1F03AB3900C812EB /* MorningInterviewCell.swift in Sources */,
 				CBB4DD0D1EDEAA610071494A /* URLRequestBuilder.swift in Sources */,
@@ -2758,7 +2761,6 @@
 				7F5A25B01F3C4BC700A11466 /* PageTracker.swift in Sources */,
 				8548BBE01F0D4BF900AC7C06 /* LaunchHandler.swift in Sources */,
 				CBC5ACC11F162AAE007E1E9C /* UserChoiceIntermediary.swift in Sources */,
-				7F5A25B61F3C56A600A11466 /* EventData.swift in Sources */,
 				CB14676E1EF2AB7000A60E31 /* DeviceIdentifier.swift in Sources */,
 				CCE372FF1E8D2AE700B79352 /* MyPrepViewModel.swift in Sources */,
 				0BB099CB1EBC6323006B2FB7 /* CarouselCellView.swift in Sources */,
@@ -2816,7 +2818,6 @@
 				CB9AFD0F1F012A2800D067F2 /* QuestionsService.swift in Sources */,
 				CBC1DC271F0FB55D00F6D056 /* QuestionGroupIntermediary.swift in Sources */,
 				CC1E2A5F1EDF1DE100B9EFD3 /* UICollectionView+Create.swift in Sources */,
-				CB810E701EF181ED0043E3E5 /* PageTrackAssociatedObject.swift in Sources */,
 				852020351EF8300800EA2032 /* PeakPerformanceUpcomingView.swift in Sources */,
 				CBB303421ECEE3E70011303A /* DateFormatter+Convenience.swift in Sources */,
 				CC6B3A291E8158B200E7FDFD /* PresentationManager.swift in Sources */,
@@ -2873,7 +2874,6 @@
 				858AF6931EF904AB00486605 /* PeakPerformanceUpcomingChartView.swift in Sources */,
 				0BEE8ABF1EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.swift in Sources */,
 				7F08887F1F0A4101005CE966 /* PartnerService.swift in Sources */,
-				CB8A152F1E76F27D0023B2F9 /* PageID.swift in Sources */,
 				CB8A154A1E7A7FA20023B2F9 /* CalendarImportManger.swift in Sources */,
 				CB8A154C1E7A8AD30023B2F9 /* CalendarImportTask.swift in Sources */,
 				CB3437671EFE74C700D89D4F /* ContentCollection+Convenience.swift in Sources */,
@@ -2911,7 +2911,6 @@
 				CB1467671EF277AA00A60E31 /* PageIntermediary.swift in Sources */,
 				CC96630A1EA1B27F00B84B1C /* MyDataViewModel.swift in Sources */,
 				CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */,
-				CB8A15311E76F31B0023B2F9 /* PageTrackable.swift in Sources */,
 				85C3D6BE1F0B920E00E0CBFE /* PrepareEventTableViewFooterView.swift in Sources */,
 				D58BD8771E9F65F7005676DE /* ArticleCollectionCell.swift in Sources */,
 				CC7D21A81EFC051B007A062E /* ArticleItemViewController.swift in Sources */,

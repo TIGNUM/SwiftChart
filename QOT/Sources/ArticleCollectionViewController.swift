@@ -24,6 +24,8 @@ class ArticleCollectionViewController: UIViewController {
     fileprivate let viewModel: ArticleCollectionViewModel
     fileprivate let backgroundImageView: UIImageView
     weak var delegate: ArticleCollectionViewControllerDelegate?
+    let pageName: PageName
+    let pageAssociatedObject: PageObject?
     
     fileprivate lazy var collectionView: UICollectionView = {
         let layout = ArticleCollectionLayout()
@@ -39,7 +41,9 @@ class ArticleCollectionViewController: UIViewController {
 
     // MARK: Init
 
-    init(viewModel: ArticleCollectionViewModel) {
+    init(pageName: PageName, pageAssociatedObject: PageObject?, viewModel: ArticleCollectionViewModel) {
+        self.pageName = pageName
+        self.pageAssociatedObject = pageAssociatedObject
         self.viewModel = viewModel
         backgroundImageView = UIImageView(image: R.image.backgroundStrategies())
         

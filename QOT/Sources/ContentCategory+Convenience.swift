@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-extension ContentCategory: TrackableEntity {
+extension ContentCategory {
 
     var articleContent: AnyRealmCollection<ContentCollection> {
         return AnyRealmCollection(contentCollections)
@@ -30,10 +30,6 @@ extension ContentCategory: TrackableEntity {
 
     var learnContent: AnyRealmCollection<ContentCollection> {
         return AnyRealmCollection(contentCollections)
-    }
-
-    var trackableEntityID: Int {
-        return Int.randomID
     }
 
     var prepareContentCollection: AnyRealmCollection<ContentCollection> {
