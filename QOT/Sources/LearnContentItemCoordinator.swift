@@ -41,7 +41,7 @@ final class LearnContentItemCoordinator: ParentCoordinator {
         )
         
         let headerView = LearnContentItemHeaderView.fromXib(contentTitle: selectedContent.title.capitalized, categoryTitle: categoryTitle.capitalized)
-        
+
         fullViewController = LearnContentItemViewController(
             viewModel: viewModel,
             tabType: .full
@@ -95,7 +95,9 @@ final class LearnContentItemCoordinator: ParentCoordinator {
 extension LearnContentItemCoordinator: TopNavigationBarDelegate {
 
     func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
-        topTabBarController.dismiss(animated: true, completion: nil)
+        topTabBarController.dismiss(animated: true) { 
+            UIApplication.shared.statusBarStyle = .lightContent
+        }
     }
     
     func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {

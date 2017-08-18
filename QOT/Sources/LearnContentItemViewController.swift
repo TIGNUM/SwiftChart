@@ -86,6 +86,7 @@ final class LearnContentItemViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        UIApplication.shared.statusBarStyle = .default
         tableView.reloadData()
     }
 
@@ -213,12 +214,12 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        var item: ContentItem!
+        var item: ContentItem
 
         if viewModel.isPDFItem(at: indexPath, tabType: tabType) {
             item = viewModel.learnPDFContentItem(at: indexPath, tabType: tabType)
         } else {
-            item =  viewModel.learnContentItem(at: indexPath, tabType: tabType)
+            item = viewModel.learnContentItem(at: indexPath, tabType: tabType)
         }
 
         switch item.contentItemValue {
@@ -234,8 +235,7 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
                 viewModel.sectionCount(tabType: tabType) == 3 && indexPath.section == 2 ||
                 viewModel.sectionCount(tabType: tabType) == 2 && viewModel.containsAudioItem(tabType: tabType) == false && indexPath.section == 1 {
                     let selectedItem = viewModel.relatedContent(at: indexPath)
-
-                delegate?.didSelectReadMoreContentCollection(with: selectedItem.forcedRemoteID, in: self)
+                    delegate?.didSelectReadMoreContentCollection(with: selectedItem.forcedRemoteID, in: self)
             }
         }
     }
