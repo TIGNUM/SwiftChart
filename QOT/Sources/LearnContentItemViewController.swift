@@ -140,9 +140,8 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
 
         if viewModel.containsAudioItem(tabType: tabType) == true && indexPath.section == 0 {
             switch viewModel.firstAudioItem() {
-            case .audio(_, _, _, _, let duration, let waveformData):
+            case .audio(_, _, _, _, _, let waveformData):
                 let cell: LearnStrategyAudioPlayerView = tableView.dequeueCell(for: indexPath)
-                viewModel.trackDuration = Property(duration)
                 soundPattern = Property(waveformData)
                 observeViewModel(audioView: cell)
 
@@ -225,6 +224,7 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
         switch item.contentItemValue {
         case .audio(_, _, _, let audioURL, let duration, _):
             viewModel.playItem(at: indexPath, audioURL: audioURL, duration: duration)
+            viewModel.trackDuration = Property(duration)
         case .video(_, _, _, let videoURL, _):
             streamVideo(videoURL: videoURL)
         case .pdf(_, _, let pdfURL):
