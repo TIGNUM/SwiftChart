@@ -87,8 +87,7 @@ private extension MyWhyView {
         myWhyViewModel.items?.forEach { (myWhy: MyWhyViewModel.MyWhy) in
             switch myWhy {
             case .vision(let vision):
-                // TODO: localise
-                var visionText = "Your vision - what inspires you?"
+                var visionText = R.string.localized.meSectorMyWhyVisionMessagePlaceholder()
                 if let vision = vision, let text = vision.text, !text.isEmpty {
                     visionText = text
                 }
@@ -149,7 +148,7 @@ private extension MyWhyView {
         let footLabel = footerLabel(with: R.string.localized.meSectorMyWhyVisionTitle().uppercased())
         myToBeVisionBox.addSubview(footLabel)
         
-        var visionText = "Your vision - what inspires you?"
+        var visionText = R.string.localized.meSectorMyWhyVisionMessagePlaceholder()
         if let vision = vision, let text = vision.text, !text.isEmpty {
             visionText = text
         }
