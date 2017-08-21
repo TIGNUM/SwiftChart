@@ -24,8 +24,7 @@ extension ContentCategory {
     }
 
     var percentageLearned: Double {
-        let total = contentCollections.reduce(0) { $0.0 + $0.1.percentageViewed }
-        return total / Double(contentCollections.count)
+        return Double(viewedCount) / Double(contentCollections.count)
     }
 
     var learnContent: AnyRealmCollection<ContentCollection> {
