@@ -20,7 +20,7 @@ protocol SidebarViewControllerDelegate: class {
 
     func didTapAddSensorCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController)
 
-    func didTapPrivacyCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController)
+    func didTapPrivacyCell(with contentCollection: ContentCollection?, backgroundImage: UIImage?, in viewController: SidebarViewController)
 
     func didTapAboutCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController)
 
@@ -135,7 +135,7 @@ private extension SidebarViewController {
         case .benefits: delegate?.didTapBenefitsCell(with: viewModel.contentCollection(sidebarItem), in: self)
         case .library: delegate?.didTapLibraryCell(in: self)
         case .logout: delegate?.didTapLogoutCell(in: self)
-        case .privacy: delegate?.didTapPrivacyCell(with: viewModel.contentCollection(sidebarItem), in: self)
+        case .privacy: delegate?.didTapPrivacyCell(with: viewModel.contentCollection(sidebarItem), backgroundImage: sidebarItem.backgroundImage, in: self)
         case .sensor: delegate?.didTapAddSensorCell(with: viewModel.contentCollection(sidebarItem), in: self)
         case .settings: delegate?.didTapSettingsMenuCell(with: viewModel.contentCollection(sidebarItem), in: self)
         case .placeholder: return

@@ -36,7 +36,7 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
     fileprivate var viewModel: ArticleItemViewModel
     var children: [Coordinator] = []
 
-    init?(root: UIViewController, services: Services, contentCollection: ContentCollection?, articleHeader: ArticleCollectionHeader?, topTabBarTitle: String?) {
+    init?(root: UIViewController, services: Services, contentCollection: ContentCollection?, articleHeader: ArticleCollectionHeader?, topTabBarTitle: String?, backgroundImage: UIImage? = nil) {
         guard let contentCollection = contentCollection else {
             return nil
         }
@@ -50,7 +50,8 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
         viewModel = ArticleItemViewModel(services: services,
                                          items: articleItems,
                                          contentCollection: contentCollection,
-                                         articleHeader: articleHeader
+                                         articleHeader: articleHeader,
+                                         backgroundImage: backgroundImage
                     )
         fullViewController = ArticleItemViewController(viewModel: viewModel)
         fullViewController.modalTransitionStyle = .crossDissolve

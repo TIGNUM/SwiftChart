@@ -14,6 +14,7 @@ final class ArticleItemViewModel {
 
     fileprivate let items: [ContentItem]
     fileprivate let relatedArticles: [ContentCollection]
+    let backgroundImage: UIImage?
     let articleHeader: ArticleCollectionHeader?
 
     func itemCount(in section: Index) -> Int {
@@ -41,8 +42,10 @@ final class ArticleItemViewModel {
     init(services: Services,
          items: [ContentItem],
          contentCollection: ContentCollection,
-         articleHeader: ArticleCollectionHeader?) {
+         articleHeader: ArticleCollectionHeader?,
+         backgroundImage: UIImage? = nil) {
             self.articleHeader = articleHeader
+            self.backgroundImage = backgroundImage
 
             let relatedArticles = services.contentService.relatedArticles(for: contentCollection)
             self.relatedArticles = relatedArticles.sorted(by: { (lhs: ContentCollection, rhs: ContentCollection) -> Bool in

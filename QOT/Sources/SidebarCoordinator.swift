@@ -74,17 +74,17 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
         startSidebarItemCoordinator(contentCollection: contentCollection, viewController: viewController, topTabBarTitle: R.string.localized.sidebarTitleAbout())
     }
 
-    func didTapPrivacyCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
-        startSidebarItemCoordinator(contentCollection: contentCollection, viewController: viewController, topTabBarTitle: R.string.localized.sidebarTitlePrivacy())
+    func didTapPrivacyCell(with contentCollection: ContentCollection?, backgroundImage: UIImage?, in viewController: SidebarViewController) {
+        startSidebarItemCoordinator(contentCollection: contentCollection, viewController: viewController, topTabBarTitle: R.string.localized.sidebarTitlePrivacy(), backgroundImage: backgroundImage)
     }
 
-    private func startSidebarItemCoordinator(contentCollection: ContentCollection?, viewController: SidebarViewController, topTabBarTitle: String) {
+    private func startSidebarItemCoordinator(contentCollection: ContentCollection?, viewController: SidebarViewController, topTabBarTitle: String, backgroundImage: UIImage? = nil) {
         guard let coordinator = ArticleContentItemCoordinator(
             root: viewController,
             services: services,
             contentCollection: contentCollection,
             articleHeader: nil,
-            topTabBarTitle: topTabBarTitle.uppercased()) else {
+            topTabBarTitle: topTabBarTitle.uppercased(), backgroundImage: backgroundImage) else {
                 return
         }
         

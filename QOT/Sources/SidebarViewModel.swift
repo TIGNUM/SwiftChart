@@ -48,6 +48,14 @@ final class SidebarViewModel {
             }
         }
 
+        var backgroundImage: UIImage? {
+            switch self {
+            case .benefits: fallthrough
+            case .privacy: return R.image.sidebar()
+            default: return nil
+            }
+        }
+
         func font(screenType: UIViewController.ScreenType) -> UIFont? {
             switch self {
             case .library,

@@ -85,7 +85,7 @@ extension SettingsCoordinator: SettingsCoordinatorDelegate {
             services: services,
             contentCollection: contentCollection,
             articleHeader: nil,
-            topTabBarTitle: contentCollection?.title) else {
+            topTabBarTitle: contentCollection?.title, backgroundImage: nil) else {
                 return
         }
         
