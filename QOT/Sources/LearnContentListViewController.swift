@@ -170,8 +170,8 @@ private extension LearnContentListViewController {
     }
 
     func setupHierachy() {
-        view.addSubview(pagingCollectionView)
         view.addSubview(collectionView)
+        view.addSubview(pagingCollectionView)
         view.addSubview(getBackButton)
     }
 
