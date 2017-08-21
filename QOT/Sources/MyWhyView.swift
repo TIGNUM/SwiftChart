@@ -53,6 +53,7 @@ class MyWhyView: UIView, MyUniverseView {
         super.layoutSubviews()
 
         cleanUpAndDraw()
+        reload() // @warning reload after drawing else button bg images draw at the pre-layout constraint size
 
         if updatesToken == nil {
             updatesToken = myWhyViewModel.updates.observeNext { [weak self] (_: CollectionUpdate) in
@@ -310,7 +311,6 @@ private extension MyWhyView {
             button.setImageFromResource(resource)
         }
         button.imageView?.setupHexagonImageView()
-        button.imageView?.contentMode = .scaleAspectFill
         button.tag = index
 
         return button
