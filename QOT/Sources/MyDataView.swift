@@ -40,6 +40,7 @@ final class MyDataView: UIView, MyUniverseView {
     // MARK: - Properties
 
     var universeDotsLayer = CAShapeLayer()
+    var profileImageBackgroundView = UIView()
     var profileImageButton = UIButton()
     var profileImageViewOverlay = UIImageView()
     var profileImageViewOverlayEffect = UIImageView()
@@ -102,6 +103,7 @@ private extension MyDataView {
         drawDataPointConnections(layout: layout, sectors: sectors)
         drawDataPoints(layout: layout, sectors: sectors)
 
+        addSubview(profileImageBackgroundView)
         addSubview(profileImageButton)
         addSubview(profileImageViewOverlay)
         addSubview(profileImageViewOverlayEffect)
@@ -111,6 +113,11 @@ private extension MyDataView {
         let frame = layout.profileImageViewFrame
         let cornerRadius = (frame.size.width * 0.5)
 
+        profileImageBackgroundView = UIView(frame: frame)
+        profileImageBackgroundView.backgroundColor = Color.MeSection.myUniverseBlue
+        profileImageBackgroundView.layer.cornerRadius = cornerRadius
+        profileImageBackgroundView.clipsToBounds = true
+        
         profileImageViewOverlay = UIImageView(frame: frame)
         profileImageViewOverlay.layer.cornerRadius = cornerRadius
         profileImageViewOverlay.clipsToBounds = true
