@@ -175,7 +175,7 @@ private extension MyWhyView {
         footLabel.heightAnchor == Layout.MeSection.labelHeight
         footLabel.leftAnchor == stackView.leftAnchor
         footLabel.rightAnchor == stackView.rightAnchor
-        footLabel.bottomAnchor == myToBeVisionBox.bottomAnchor
+        footLabel.bottomAnchor == myToBeVisionBox.bottomAnchor - 15
     }
 
     func addWeeklyChoices(layout: Layout.MeSection, title: String, choices: [WeeklyChoice]) {
@@ -248,8 +248,8 @@ private extension MyWhyView {
             qotPartnersBox.addSubview(button)
 
             button.topAnchor == qotPartnersBox.topAnchor
-            button.widthAnchor == (layout.profileImageWidth * 0.4) * layout.myWhyPartnerScaleFactor
-            button.heightAnchor == (layout.profileImageWidth * 0.4)
+            button.widthAnchor == (layout.profileImageWidth * 0.45) * layout.myWhyPartnerScaleFactor
+            button.heightAnchor == (layout.profileImageWidth * 0.45)
 
             guard let leftButton = previousButton else {
                 button.leftAnchor == qotPartnersBox.leftAnchor
@@ -257,7 +257,7 @@ private extension MyWhyView {
                 continue
             }
 
-            button.leftAnchor == leftButton.rightAnchor + 4
+            button.leftAnchor == leftButton.rightAnchor + 7
             previousButton = button
         }
 
@@ -275,7 +275,7 @@ private extension MyWhyView {
         }
 
         qotPartnersBox.topAnchor == weeklyChoicesBox.bottomAnchor + 12
-        qotPartnersBox.leftAnchor == self.leftAnchor + 30
+        qotPartnersBox.leftAnchor == self.leftAnchor
         qotPartnersBox.rightAnchor == self.rightAnchor
     }
 }

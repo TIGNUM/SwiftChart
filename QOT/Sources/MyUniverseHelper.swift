@@ -77,7 +77,7 @@ extension MyUniverseHelper {
         let originPoint = CGPoint(x: -shiftedXPos, y: layout.profileImageViewFrame.origin.y + layout.profileImageWidth * 0.5)
         let visionPoint = originPoint.shifted(radius(for: 0.25, layout: layout), with: 310)
         let choicesPoint = originPoint.shifted(radius(for: 0.4, layout: layout), with: 10)
-        let partnersPoint = originPoint.shifted(radius(for: 0.6, layout: layout), with: 60)
+        let partnersPoint = originPoint.shifted(radius(for: 0.55, layout: layout), with: 70)
 
         return [
             CAShapeLayer.line(from: originPoint, to: visionPoint, strokeColor: Color.Default.whiteMedium),
