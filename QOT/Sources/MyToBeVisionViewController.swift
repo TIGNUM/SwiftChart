@@ -108,7 +108,7 @@ private extension MyToBeVisionViewController {
             center: center,
             radius: view.bounds.width * 0.55,
             fillColor: .clear,
-            strokeColor: Color.MeSection.whiteStrokeLight
+            strokeColor: Color.MeSection.backgroundCircle
         )
         circleLayer1.lineDashPattern = [1, 2]
         circleContainerView.layer.addSublayer(circleLayer1)
@@ -117,7 +117,7 @@ private extension MyToBeVisionViewController {
             center: center,
             radius: view.bounds.width * 0.9,
             fillColor: .clear,
-            strokeColor: Color.MeSection.whiteStrokeLight
+            strokeColor: Color.MeSection.backgroundCircle
         )
         circleContainerView.layer.addSublayer(circleLayer2)
     }

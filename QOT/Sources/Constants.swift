@@ -246,5 +246,6 @@ struct Color {
         static let whiteStroke = UIColor(white: 1, alpha: 0.6)
         static let whiteLabel = Color.whiteMedium
         static let whiteStrokeLight = UIColor(white: 1, alpha: 0.2)
+        static let backgroundCircle = UIColor(white: 1, alpha: 0.08)
     }
 }

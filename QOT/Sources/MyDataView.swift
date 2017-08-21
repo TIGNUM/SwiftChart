@@ -147,7 +147,7 @@ private extension MyDataView {
             center: layout.loadCenter,
             radius: radius,
             fillColor: .clear,
-            strokeColor: Color.MeSection.whiteStrokeLight
+            strokeColor: Color.MeSection.backgroundCircle
         )
 
         circleLayer.lineDashPattern = linesDashPattern
