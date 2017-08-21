@@ -302,6 +302,7 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
                     indexPath: indexPath,
                     title: title,
                     placeholderURL: placeholderURL,
+                    placeholderImage: R.image.preloading(),
                     attributedString: Style.mediaDescription(title, .white60).attributedString(lineHeight: 2),
                     canStream: true
                 )
