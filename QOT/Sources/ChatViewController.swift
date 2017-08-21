@@ -86,7 +86,7 @@ class ChatViewController<T: ChatChoice>: UIViewController, UITableViewDelegate, 
         tableView.topAnchor == view.topAnchor + 22
         tableView.bottomAnchor == view.bottomAnchor
         tableView.horizontalAnchors == view.horizontalAnchors
-        tableView.contentInset = UIEdgeInsets(top: tableView.contentInset.top, left: 0.0, bottom: 35.0, right: 0.0)
+        tableView.contentInset = UIEdgeInsets(top: tableView.contentInset.top, left: 0.0, bottom: 86.0, right: 0.0)
         if let backgroundImage = backgroundImage {
             tableView.backgroundView = UIImageView(image: backgroundImage)
         }

@@ -113,6 +113,7 @@ class TabBarView: UIView {
         selectedIndex = index
         layoutIndicatorView(animated: animated)
         syncButtonColors(animated: animated)
+        syncButtonImages(animated: animated)
         syncIndicatorViewColor()
         return true
     }
@@ -171,6 +172,20 @@ private extension TabBarView {
     func syncAppearance(animated: Bool) {
         syncButtonColors(animated: animated)
         layoutIndicatorView(animated: animated)
+    }
+    
+    func syncButtonImages(animated: Bool) {
+        let transition = UIViewAnimationOptions.transitionCrossDissolve
+        let duration = Layout.TabBarView.animationDuration
+        for (index, button) in buttons.enumerated() {
+            if animated {
+                UIView.transition(with: button, duration: duration, options: transition, animations: {
+                    button.setBackgroundImage((index == self.selectedIndex) ? R.image.bgHighlight() : nil, for: .normal)
+                }, completion: nil)
+            } else {
+                button.setBackgroundImage((index == self.selectedIndex) ? R.image.bgHighlight() : nil, for: .normal)
+            }
+        }
     }
 
     func syncButtonColors(animated: Bool) {
