@@ -57,6 +57,15 @@ enum SettingValue {
             return nil
         }
     }
+    
+    var stringValue: String? {
+        switch self {
+        case .text(let string):
+            return string
+        default:
+            return nil
+        }
+    }
 }
 
 extension SettingValue {
