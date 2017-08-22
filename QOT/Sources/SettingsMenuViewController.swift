@@ -10,6 +10,7 @@ import UIKit
 import ReactiveKit
 import Bond
 import Kingfisher
+import Anchorage
 
 protocol SettingsMenuViewControllerDelegate: class {
 
@@ -61,10 +62,17 @@ final class SettingsMenuViewController: UIViewController {
 private extension SettingsMenuViewController {
 
     func setupView() {
-        view.backgroundColor = .clear
         setupCollectionView()
         setupImageView()
         setupLabels()
+
+        view.backgroundColor = .clear
+        let backgroundImage = UIImageView(image: R.image.sidebar())
+
+        view.addSubview(backgroundImage)
+        backgroundImage.verticalAnchors == view.verticalAnchors
+        backgroundImage.horizontalAnchors == view.horizontalAnchors
+        view.sendSubview(toBack: backgroundImage)
     }
 
     private func setupLabels() {
