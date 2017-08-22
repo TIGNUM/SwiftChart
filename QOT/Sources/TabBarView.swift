@@ -248,7 +248,14 @@ private extension TabBarView {
 
     func indicatorFrame(selectedIndex: Index) -> CGRect {
         let button = buttons[selectedIndex]
-        let width = button.intrinsicContentSize.width + indicatorViewExtendedWidth
+        var width = indicatorViewExtendedWidth
+
+        if let titleWidth = button.titleLabel?.intrinsicContentSize.width {
+            width += titleWidth
+        } else {
+            width += button.intrinsicContentSize.width
+        }
+
         let height: CGFloat = 1
         let x = button.center.x - (width / 2)
         let y = bounds.maxY - height
