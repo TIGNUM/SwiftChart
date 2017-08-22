@@ -73,13 +73,13 @@ final class OnboardingCoordinator: ParentCoordinator {
     private func startOnboarding() {
         // TODO: localise?
         let choices = [
-            Choice(title: "Yes, I allow them", type: .yes),
-            Choice(title: "I'll do it later", type: .later),
-            Choice(title: "Why?", type: .why)
+            Choice(title: "Yes, I give you confidential access to all", type: .yes),
+            Choice(title: "Thank you. I prefer to give you access later", type: .later),
+            Choice(title: "Why do you need access?", type: .why)
         ]
         let items = [
             ChatItem(type: .message("Welcome"), state: .typing, delay: 3.0),
-            ChatItem(type: .message("QOT needs access to:\n_calendar\n_notification\n_location\nWill you allow?"), state: .typing, delay: 1.0),
+            ChatItem(type: .message("Before you start, I would like access to your calendar and your location. Also, I would like to get permission to send you notifications. As always, all of your information is secure and confidential."), state: .typing, delay: 1.0),
             deliveredFooter(alignment: .left),
             ChatItem(type: .choiceList(choices, display: .list)),
             deliveredFooter(alignment: .right)
@@ -93,15 +93,16 @@ final class OnboardingCoordinator: ParentCoordinator {
             permissionHandler.askForAllPermissions({ [unowned self] (result: PermissionHandler.Result) in
                 if result.isAllGranted {
                     self.showLastStep()
+                    self.showLetsGo()
                 } else {
                     self.showSettings()
-                    self.showLastStep()
+                    self.showLetsGo()
                 }
             })
         case .later:
             permissionHandler.isEnabledForSession = false
             showSettings()
-            showLastStep()
+            showLetsGo()
         case .why:
             showWhy()
         case .go:
@@ -112,11 +113,11 @@ final class OnboardingCoordinator: ParentCoordinator {
     private func showWhy() {
         // TODO: localise?
         let choices = [
-            Choice(title: "Yes, I allow them", type: .yes),
-            Choice(title: "I'll do it later", type: .later)
+            Choice(title: "Thank you. Yes, I give you confidential access to all", type: .yes),
+            Choice(title: "Thank you. I prefer to give you access later", type: .later)
         ]
         let items = [
-            ChatItem(type: .message("QOT needs permissions to access your calendar, your location and to send you notifications. This is so we can streamline your lifestyle. Will you allow?"), state: .typing, delay: 2.0),
+            ChatItem(type: .message("Your events and, therefore, your load is kept on your calendar. When I analyze your information, I am looking for how many meetings you have, how much time you have between meetings, how often you need to travel, etc. When I know these things, I can help you rule your impact every day. By knowing your location, I can analyze timezone changes when you travel. This way, I can provide you with custom strategies during your entire trip. Lastly, permission to send you notifications allows me to interact with you when you need it most"), state: .typing, delay: 2.0),
             deliveredFooter(alignment: .left),
             ChatItem(type: .choiceList(choices, display: .list)),
             deliveredFooter(alignment: .right)
@@ -127,7 +128,7 @@ final class OnboardingCoordinator: ParentCoordinator {
     private func showSettings() {
         // TODO: localise?
         let items = [
-            ChatItem<Choice>(type: .message("You didn't give QOT permission to access one or more areas of your phone. You can change this later in your 'Settings'"), state: .typing, delay: 3.0),
+            ChatItem<Choice>(type: .message("No worries. If you change your mind, you can change this access in your preferences at any time"), state: .typing, delay: 3.0),
             deliveredFooter(alignment: .left)
         ]
         chatViewModel.append(items: items)
@@ -135,12 +136,19 @@ final class OnboardingCoordinator: ParentCoordinator {
     
     private func showLastStep() {
         // TODO: localise?
+        let items = [
+            ChatItem(type: .message("Thank you, if you give me a minute, I will give you my first analysis"), state: .typing, delay: 1.0),
+            deliveredFooter(alignment: .left)
+        ]
+        chatViewModel.append(items: items)
+    }
+    
+    private func showLetsGo() {
+        // TODO: localise?
         let choices = [
             Choice(title: "Let's go!", type: .go)
-            ]
+        ]
         let items = [
-            ChatItem(type: .message("Now start experiencing the QOT app"), state: .typing, delay: 1.0),
-            deliveredFooter(alignment: .left),
             ChatItem(type: .choiceList(choices, display: .list)),
             deliveredFooter(alignment: .right)
         ]
