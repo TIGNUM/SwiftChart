@@ -135,10 +135,10 @@ extension MyUniverseHelper {
         }
 
         if criticalLoads.isEmpty == true {
-            return Style.tag(text, .white40).attributedString(lineSpacing: screenType.lineSpacingSectorTitle)
+            return Style.sector(text, .white40).attributedString(lineSpacing: screenType.lineSpacingSectorTitle)
         }
 
-        return Style.tag(text, .cherryRedTwo).attributedString(lineSpacing: screenType.lineSpacingSectorTitleCritical)        
+        return Style.sector(text, .cherryRedTwo).attributedString(lineSpacing: screenType.lineSpacingSectorTitleCritical)        
     }
 }
 

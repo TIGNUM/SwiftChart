@@ -52,6 +52,7 @@ enum Style {
     case question(String, UIColor)
     case sub(String, UIColor)
     case num(String, UIColor)
+    case sector(String, UIColor)
 
     private var font: UIFont {
         switch self {
@@ -69,6 +70,7 @@ enum Style {
         case .question: return Font.H9Title
         case .sub: return Font.H8Subtitle
         case .num: return Font.H0Number
+        case .sector: return Font.H7SectorTitle
         }
     }
 
@@ -113,6 +115,8 @@ enum Style {
             return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: .center))
         case .num(let string, let color):
             return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: .center))
+        case .sector(let string, let color):
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: alignment))
         }
     }
 }
