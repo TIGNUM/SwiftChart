@@ -45,7 +45,8 @@ extension AddSensorCoordinator: AddSensorViewControllerDelegate {
         switch sensor {
         case .fitbit:
             guard
-                let urlString = services.settingsService.settingValue(key: "b2b.fitbit.authorizationurl")?.stringValue,
+                let settingValue = services.settingsService.settingValue(key: "b2b.fitbit.authorizationurl"),
+                case .text(let urlString) = settingValue,
                 let url = URL(string: urlString) else {
                     return
             }

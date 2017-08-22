@@ -48,8 +48,17 @@ final class MyPrepViewController: UIViewController {
         super.viewDidLoad()
 
         setupView()
-        viewModel.updates.observeNext { [unowned self] _ in
-            self.tableView.reloadData()
+        viewModel.updates.observeNext { [unowned self] (change: MyPrepViewModel.CollectionUpdate) in
+            switch change {
+            case .willBegin:
+                self.tableView.beginUpdates()
+            case .didFinish:
+                self.tableView.endUpdates()
+            case .reload:
+                self.tableView.reloadData()
+            case .update(let deletions, _, _):
+                self.tableView.deleteRows(at: deletions, with: .automatic)
+            }
         }.dispose(in: disposeBag)
     }
 }
@@ -118,6 +127,12 @@ extension MyPrepViewController: UITableViewDelegate, UITableViewDataSource {
         switch item {
         case .item: return 117
         default: return tableView.bounds.height - Layout.TabBarView.height * 2
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            try? self.viewModel.deleteItem(at: indexPath.row)
         }
     }
 }

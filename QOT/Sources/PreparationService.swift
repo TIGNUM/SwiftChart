@@ -31,8 +31,12 @@ final class PreparationService {
         return mainRealm.preparationChecks(preparationID: preparationID)
     }
 
-    func preparationsOnBackground() throws -> AnyRealmCollection<Preparation> {
-        return try realmProvider.realm().anyCollection()
+    func preparationsOnBackground(predicate: NSPredicate? = nil) throws -> AnyRealmCollection<Preparation> {
+        if let predicate = predicate {
+            return try realmProvider.realm().anyCollection(predicates: predicate)
+        } else {
+            return try realmProvider.realm().anyCollection()
+        }
     }
 
     func preparationChecksOnBackground(preparationID: String) throws -> AnyRealmCollection<PreparationCheck> {
@@ -66,6 +70,48 @@ final class PreparationService {
             realm.add(preparation)
         }
         return preparation.localID
+    }
+    
+    func deletePreparation(withLocalID localID: String) throws {
+        let realm = try self.realmProvider.realm()
+        guard let preparation = realm.syncableObject(ofType: Preparation.self, localID: localID) else {
+            throw SimpleError(localizedDescription: "No preparation with local id: \(localID)")
+        }
+        try removeLinkFromEventNotes(forPreparation: preparation)
+        try deletePreparationChecks(preparation.checks)
+        try realm.write {
+            if preparation.remoteID.value == nil {
+                realm.delete(preparation)
+            } else {
+                preparation.deleted = true
+            }
+        }
+    }
+    
+    func deletePreparationChecks(_ checks: List<PreparationCheck>) throws {
+        let realm = try self.realmProvider.realm()
+        try realm.write {
+            checks.forEach { (check: PreparationCheck) in
+                if check.remoteID.value == nil {
+                    realm.delete(check)
+                } else {
+                    check.deleted = true
+                }
+            }
+        }
+    }
+    
+    func removeLinkFromEventNotes(forPreparation preparation: Preparation) throws {
+        guard let event = preparation.calendarEvent?.event, var notes = event.notes else {
+            return
+        }
+        let regex = try NSRegularExpression(pattern: "(qotapp:\\/\\/preparation#[A-Z0-9-]+)", options: [])
+        guard let regexMatch = regex.matches(in: notes, options: [], range: NSRange(location: 0, length: notes.characters.count)).first else {
+            return
+        }
+        // FIXME: swift 4 has ability to convert NSRange -> Range, so we can then use string.removeSubrange()
+        // @see https://stackoverflow.com/questions/25138339/nsrange-to-rangestring-index
+        event.notes = (notes as NSString).replacingCharacters(in: regexMatch.range, with: "")
     }
 
     /// Updates `PreparationCheck`s for a `Preparation.localID`. `checks` is a map of `ContentItem.remoteID` to check date.
