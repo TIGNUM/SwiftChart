@@ -10,6 +10,11 @@ import Foundation
 import RealmSwift
 import ReactiveKit
 
+enum MyPrepCellType {
+    case placeholder(String)
+    case item(MyPrepViewModel.Item)
+}
+
 final class MyPrepViewModel {
 
     struct Item {
@@ -42,11 +47,11 @@ final class MyPrepViewModel {
     }
 
     var itemCount: Int {
-        return items.count
+        return items.count > 0 ? items.count : 1
     }
 
-    func item(at index: Index) -> Item {
-        return items[index]
+    func item(at index: Index) -> MyPrepCellType {
+        return items.count > 0 ? MyPrepCellType.item(items[index]) : MyPrepCellType.placeholder("SOME PLACEHOLDER TEXT")
     }
 
     private func refresh() {

@@ -124,6 +124,7 @@
 "Prepare.Chat.Footer.DeliveredTime" = "Delivered at %@";
 "Prepare.Chat.Header.Preparations" = "PREPARATIONS";
 "Prepare.MyPrep.TimeToEvent" = "Time to the event %@";
+"Prepare.MyPrep.NoSavePreparations" = "No preparations\nhave been saved yet";
 "Prepare.Chat.PreparationSaved" = "Your preparation has been saved";
 
 

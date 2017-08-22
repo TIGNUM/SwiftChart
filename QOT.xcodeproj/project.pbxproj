@@ -110,6 +110,8 @@
 		852DADE81EF26B1D00A10882 /* PeakPerformanceAverageProgressWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADE71EF26B1D00A10882 /* PeakPerformanceAverageProgressWheel.swift */; };
 		852DADEA1EF2B83100A10882 /* MyStatisticsDataUpcomingTrips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADE91EF2B83100A10882 /* MyStatisticsDataUpcomingTrips.swift */; };
 		852DADEC1EF2BE3C00A10882 /* UpcomingTravelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADEB1EF2BE3C00A10882 /* UpcomingTravelsView.swift */; };
+		853632D01F4AC8FB007F9968 /* MyPrepEmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 853632CF1F4AC8FB007F9968 /* MyPrepEmptyTableViewCell.xib */; };
+		853632D21F4AC912007F9968 /* MyPrepEmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853632D11F4AC912007F9968 /* MyPrepEmptyTableViewCell.swift */; };
 		854708E21F306628007AB971 /* CircularAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854708E01F306628007AB971 /* CircularAnimation.swift */; };
 		854708E31F306628007AB971 /* CircularPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854708E11F306628007AB971 /* CircularPresentationManager.swift */; };
 		8548BBDC1F0D263000AC7C06 /* RequestDeviceSensorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548BBDB1F0D263000AC7C06 /* RequestDeviceSensorCollectionViewCell.swift */; };
@@ -581,6 +583,8 @@
 		852DADE71EF26B1D00A10882 /* PeakPerformanceAverageProgressWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakPerformanceAverageProgressWheel.swift; sourceTree = "<group>"; };
 		852DADE91EF2B83100A10882 /* MyStatisticsDataUpcomingTrips.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsDataUpcomingTrips.swift; sourceTree = "<group>"; };
 		852DADEB1EF2BE3C00A10882 /* UpcomingTravelsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingTravelsView.swift; sourceTree = "<group>"; };
+		853632CF1F4AC8FB007F9968 /* MyPrepEmptyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPrepEmptyTableViewCell.xib; sourceTree = "<group>"; };
+		853632D11F4AC912007F9968 /* MyPrepEmptyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPrepEmptyTableViewCell.swift; sourceTree = "<group>"; };
 		854708E01F306628007AB971 /* CircularAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularAnimation.swift; sourceTree = "<group>"; };
 		854708E11F306628007AB971 /* CircularPresentationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularPresentationManager.swift; sourceTree = "<group>"; };
 		8548BBDB1F0D263000AC7C06 /* RequestDeviceSensorCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestDeviceSensorCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1583,6 +1587,8 @@
 				0BD6F6B71EA0E81E001EBC4D /* MyPrepTableViewCell.xib */,
 				CCE372FC1E8D2AD100B79352 /* MyPrepViewController.swift */,
 				CCE372FE1E8D2AE700B79352 /* MyPrepViewModel.swift */,
+				853632CF1F4AC8FB007F9968 /* MyPrepEmptyTableViewCell.xib */,
+				853632D11F4AC912007F9968 /* MyPrepEmptyTableViewCell.swift */,
 			);
 			name = "My Prep";
 			sourceTree = "<group>";
@@ -2338,6 +2344,7 @@
 				D519E08F1EAA5403004F96E7 /* PrepareChatTableCell.xib in Resources */,
 				CB14676C1EF2801F00A60E31 /* MockPageDown.json in Resources */,
 				CC7D21DB1EDD5FE800C6B8E0 /* LearnPagingCollectionViewCell.xib in Resources */,
+				853632D01F4AC8FB007F9968 /* MyPrepEmptyTableViewCell.xib in Resources */,
 				CBB237F71E6FFF1200AB5AEF /* Assets.xcassets in Resources */,
 				D58BD8781E9F65F7005676DE /* ArticleCollectionCell.xib in Resources */,
 				0BB099CC1EBC6323006B2FB7 /* CarouselCellView.xib in Resources */,
@@ -2571,6 +2578,7 @@
 				CB9B07651EF929E50017F6C3 /* EKEvent+JSONEncodable.swift in Sources */,
 				CCCC211D1E8981AD00133839 /* ChatViewModel.swift in Sources */,
 				CBC9330F1F0AA47800C00007 /* PrepareEventsViewController.swift in Sources */,
+				853632D21F4AC912007F9968 /* MyPrepEmptyTableViewCell.swift in Sources */,
 				CC4F22F01EE023F4006C437E /* NSMutableAttributedString+Create.swift in Sources */,
 				D554CD9D1F0CED50007731DB /* LoginViewController.swift in Sources */,
 				7FE38DD71F2B636F0061E98F /* UINavigationBar+Style.swift in Sources */,
