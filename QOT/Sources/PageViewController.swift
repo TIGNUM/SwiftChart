@@ -10,19 +10,24 @@ import UIKit
 import Anchorage
 
 protocol PageViewControllerDelegate: class {
+
     func pageViewController(_ controller: UIPageViewController, didSelectPageIndex index: Int)
 }
 
 protocol PageScroll: class {
+
     func pageDidLoad(_ controller: UIViewController, scrollView: UIScrollView)
+
     func pageDidScroll(_ controller: UIViewController, scrollView: UIScrollView)
 }
 
 protocol PageScrollView: class {
+
     func scrollView() -> UIScrollView
 }
 
-class PageViewController: UIPageViewController {
+final class PageViewController: UIPageViewController {
+
     fileprivate(set) var data: [UIViewController]?
     fileprivate(set) var currentPageIndex: Int
     fileprivate(set) var backgroundImageView: UIImageView
@@ -31,6 +36,7 @@ class PageViewController: UIPageViewController {
     fileprivate var direction: UIPageViewControllerNavigationDirection
     fileprivate var isPaging: Bool
     weak var pageDelegate: PageViewControllerDelegate?
+
     var currentPage: UIViewController? {
         guard let data = data, currentPageIndex >= data.startIndex, currentPageIndex < data.endIndex else {
             return nil
@@ -38,18 +44,23 @@ class PageViewController: UIPageViewController {
         return data[currentPageIndex]
     }
     
-    init(headerView: UIView?, backgroundImage: UIImage?, pageDelegate: PageViewControllerDelegate?, transitionStyle style: UIPageViewControllerTransitionStyle, navigationOrientation: UIPageViewControllerNavigationOrientation, options: [String : Any]? = nil) {
-        self.headerView = headerView
-        backgroundImageView = UIImageView(image: backgroundImage)
-        self.pageDelegate = pageDelegate
-        currentPageIndex = 0
-        direction = .forward
-        isPaging = false
+    init(headerView: UIView?,
+         backgroundImage: UIImage?,
+         pageDelegate: PageViewControllerDelegate?,
+         transitionStyle style: UIPageViewControllerTransitionStyle,
+         navigationOrientation: UIPageViewControllerNavigationOrientation,
+         options: [String : Any]? = nil) {
+            self.headerView = headerView
+            backgroundImageView = UIImageView(image: backgroundImage)
+            self.pageDelegate = pageDelegate
+            currentPageIndex = 0
+            direction = .forward
+            isPaging = false
         
-        super.init(transitionStyle: style, navigationOrientation: navigationOrientation, options: options)
+            super.init(transitionStyle: style, navigationOrientation: navigationOrientation, options: options)
         
-        delegate = self
-        dataSource = self
+            delegate = self
+            dataSource = self
     }
     
     override func viewDidLoad() {
@@ -116,6 +127,7 @@ class PageViewController: UIPageViewController {
 // MARK: - UIPageViewControllerDelegate
 
 extension PageViewController: UIPageViewControllerDelegate {
+
     public func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         isPaging = true
         guard let viewController = pendingViewControllers.first, let nextIndex = data?.index(of: viewController) else {
@@ -126,9 +138,11 @@ extension PageViewController: UIPageViewControllerDelegate {
 
     public func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         isPaging = false
+
         guard finished, completed, let viewController = previousViewControllers.first, let index = data?.index(of: viewController) else {
             return
         }
+
         currentPageIndex = (direction == .forward) ? index + 1 : index - 1
         pageDelegate?.pageViewController(self, didSelectPageIndex: currentPageIndex)
         
@@ -145,6 +159,7 @@ extension PageViewController: UIPageViewControllerDataSource {
         guard let data = data, let index = data.index(of: viewController), index - 1 >= data.startIndex else {
             return nil
         }
+
         return data[index - 1]
     }
     
@@ -152,6 +167,7 @@ extension PageViewController: UIPageViewControllerDataSource {
         guard let data = data, let index = data.index(of: viewController), index + 1 < data.endIndex else {
             return nil
         }
+
         return data[index + 1]
     }
 }
@@ -163,6 +179,7 @@ extension PageViewController: CustomPresentationAnimatorDelegate {
         guard let viewController = data?.first as? CustomPresentationAnimatorDelegate else {
             return nil
         }
+
         return viewController.animationsForAnimator(animator)
     }
 }
@@ -174,6 +191,7 @@ extension PageViewController: ZoomPresentationAnimatable {
         guard let viewController = data?.first as? ZoomPresentationAnimatable else {
             return
         }
+
         viewController.startAnimation(presenting: presenting, animationDuration: animationDuration, openingFrame: openingFrame)
     }
 }
@@ -181,10 +199,12 @@ extension PageViewController: ZoomPresentationAnimatable {
 // MARK: - PageScroll
 
 extension PageViewController: PageScroll {
+
     func pageDidLoad(_ controller: UIViewController, scrollView: UIScrollView) {
         guard let headerView = headerView else {
             return
         }
+
         scrollView.contentInset = UIEdgeInsets(
             top: headerView.bounds.size.height,
             left: scrollView.contentInset.left,
@@ -204,6 +224,7 @@ extension PageViewController: PageScroll {
 // MARK: - UIScrollView helper
 
 private extension UIScrollView {
+
     var normalized: CGFloat {
         return -(self.contentInset.top + self.contentOffset.y)
     }

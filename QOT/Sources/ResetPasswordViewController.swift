@@ -10,8 +10,9 @@ import UIKit
 import Anchorage
 
 protocol ResetPasswordViewControllerDelegate: class {
+
     func didTapResetPassword(withUsername username: String, completion: @escaping (NetworkError?) -> Void)
-    func didTapBack(viewController: UIViewController)
+    
     func checkIfEmailAvailable(email: String, completion: @escaping (Bool) -> Void)
 }
 
@@ -19,19 +20,9 @@ final class ResetPasswordViewController: UITableViewController {
 
     // MARK: - Properties
 
-    fileprivate weak var delegate: ResetPasswordViewControllerDelegate?
+    weak var delegate: ResetPasswordViewControllerDelegate?
 
-    // MARK: - Initialisation
-
-    init(delegate: ResetPasswordViewControllerDelegate?) {
-        self.delegate = delegate
-        
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +30,6 @@ final class ResetPasswordViewController: UITableViewController {
         registerCell()
         hideKeyboardWhenTappedAround()
         startObservingKeyboard()
-
         tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: -20, right: 0)
         tableView.delegate = self
         tableView.dataSource = self
@@ -86,9 +76,11 @@ extension ResetPasswordViewController: ResetPasswordViewCellDelegate {
                 successCompletion()
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: { [weak self] in
-                    guard let strongSelf = self else { return }
-                    strongSelf.delegate?.didTapBack(viewController: strongSelf)
-                    return
+                    guard let strongSelf = self else {
+                        return
+                    }
+
+                    strongSelf.navigationController?.popViewController(animated: true)
                 })
 
                 return

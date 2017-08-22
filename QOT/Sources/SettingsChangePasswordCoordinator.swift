@@ -11,8 +11,8 @@ import UIKit
 
 final class SettingsChangePasswordCoordinator: ParentCoordinator {
 
-    fileprivate let rootViewController: SettingsViewController
     fileprivate let services: Services
+    fileprivate let rootViewController: UIViewController
     var children = [Coordinator]()
 
     init(root: SettingsViewController, services: Services) {
@@ -21,17 +21,12 @@ final class SettingsChangePasswordCoordinator: ParentCoordinator {
     }
 
     func start() {
-        let storyboard = UIStoryboard(name: "SettingsChangePasswordViewController", bundle: nil)
+        let storyboard = R.storyboard.settingsChangePasswordViewController()
 
-        guard let navigationController = storyboard.instantiateInitialViewController() as? UINavigationController  else {
+        guard let settingsChangePasswordViewController = storyboard.instantiateInitialViewController() as? SettingsChangePasswordViewController  else {
             return
         }
 
-        rootViewController.presentRightToLeft(controller: navigationController)
-//
-//        let changePasswordViewController = SettingsChangePasswordViewController()
-//        let navigationController = UINavigationController(rootViewController: changePasswordViewController)
-//
-//        rootViewController.present(navigationController, animated: true, completion: nil)
+        rootViewController.pushToStart(childViewController: settingsChangePasswordViewController)        
     }
 }

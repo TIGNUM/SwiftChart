@@ -20,47 +20,37 @@ protocol SettingsCoordinatorDelegate: class {
 
 final class SettingsCoordinator: ParentCoordinator {
 
-    fileprivate let rootViewController: SettingsMenuViewController
     fileprivate let services: Services
     fileprivate let settingsType: SettingsType.SectionType
     fileprivate let settingsViewController: SettingsViewController
-    fileprivate var topTabBarController: UINavigationController!
+    fileprivate let permissionHandler = PermissionHandler()
+    fileprivate var calandarAccessGaranted = true
     var children = [Coordinator]()
+    fileprivate let rootViewController: UIViewController
 
     init?(root: SettingsMenuViewController, services: Services, settingsType: SettingsType.SectionType) {
-        self.rootViewController = root
-        self.services = services
-        self.settingsType = settingsType
-        
         guard let viewModel = SettingsViewModel(services: services, settingsType: settingsType) else {
             return nil
         }
 
-        let leftButton = UIBarButtonItem(withImage: R.image.ic_back())
+        self.rootViewController = root
+        self.services = services
+        self.settingsType = settingsType
         settingsViewController = SettingsViewController(viewModel: viewModel, services: services, settingsType: settingsType)
+        settingsViewController.tableView.backgroundView = UIImageView(image: R.image.backgroundSidebar())                                                                
         settingsViewController.title = settingsType.title
-        topTabBarController = UINavigationController(withPages: [settingsViewController], topBarDelegate: self, leftButton: leftButton)
         settingsViewController.delegate = self
+        askPermissionForCalendar()
+    }
+
+    private func askPermissionForCalendar() {
+        PermissionHandler().askPermissionForCalendar { (garanted: Bool) in
+            self.calandarAccessGaranted = garanted
+        }
     }
 
     func start() {
-        rootViewController.presentRightToLeft(controller: topTabBarController)
-    }
-}
-
-// MARK: - TopNavigationBarDelegate
-
-extension SettingsCoordinator: TopNavigationBarDelegate {
-    
-    func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
-        topTabBarController.dismissLeftToRight()
-        removeChild(child: self)
-    }
-    
-    func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
-    }
-    
-    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
+        rootViewController.pushToStart(childViewController: settingsViewController)
     }
 }
 
@@ -69,8 +59,15 @@ extension SettingsCoordinator: TopNavigationBarDelegate {
 extension SettingsCoordinator: SettingsCoordinatorDelegate {
 
     func openCalendarListViewController(settingsViewController: SettingsViewController) {
-        let coordinator = SettingsCalendarListCoordinator(root: settingsViewController, services: services)
-        startChild(child: coordinator)
+        switch calandarAccessGaranted {
+        case true:
+            let coordinator = SettingsCalendarListCoordinator(root: settingsViewController, services: self.services)
+            self.startChild(child: coordinator)
+        case false:
+            settingsViewController.showAlert(type: .settingsCalendars, handler: {
+                UIApplication.openAppSettings()
+            }, handlerDestructive: nil)
+        }
     }
 
     func openChangePasswordViewController(settingsViewController: SettingsViewController) {
@@ -83,8 +80,7 @@ extension SettingsCoordinator: SettingsCoordinatorDelegate {
         guard let coordinator = ArticleContentItemCoordinator(
             root: viewController,
             services: services,
-            contentCollection: contentCollection,
-            articleHeader: nil,
+            contentCollection: contentCollection,            
             topTabBarTitle: contentCollection?.title, backgroundImage: nil) else {
                 return
         }

@@ -76,7 +76,7 @@ private extension SettingsViewController {
         tableView.tableFooterView = UIView()
         tableView.separatorColor = .clear
         tableView.allowsSelection = true
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableViewAutomaticDimension        
     }
 
     func registerCells() {

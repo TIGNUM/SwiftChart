@@ -11,36 +11,31 @@ import UIKit
 protocol LearnContentListCoordinatorDelegate: ParentCoordinator {}
 
 final class LearnContentListCoordinator: ParentCoordinator {
-    
-    fileprivate let rootVC: LearnCategoryListViewController
+
     fileprivate let services: Services
     fileprivate let selectedCategoryIndex: Index
     fileprivate let learnContentListViewController: LearnContentListViewController
     fileprivate var topTabBarController: UINavigationController!
-
+    fileprivate let rootViewController: UIViewController
     var children: [Coordinator] = []
     weak var delegate: LearnContentListCoordinatorDelegate?
-
     fileprivate let presentationManager: ZoomPresentationManager
 
     init(root: LearnCategoryListViewController, services: Services, selectedCategoryIndex: Index, originFrame: CGRect) {
-        self.rootVC = root
+        self.rootViewController = root
         self.services = services
         self.selectedCategoryIndex = selectedCategoryIndex
-        
         presentationManager = ZoomPresentationManager(openingFrame: originFrame)
-        
         let viewModel = LearnContentCollectionViewModel(services: services, selectedIndex: selectedCategoryIndex)
         learnContentListViewController = LearnContentListViewController(viewModel: viewModel, selectedCategoryIndex: self.selectedCategoryIndex)
         topTabBarController = UINavigationController(withPages: [learnContentListViewController], topBarDelegate: self)
         topTabBarController.modalPresentationStyle = .custom
         topTabBarController.transitioningDelegate = presentationManager
-
         learnContentListViewController.delegate = self
     }
     
     func start() {
-        rootVC.present(topTabBarController, animated: true)
+        rootViewController.present(topTabBarController, animated: true)
     }
 }
 
@@ -61,6 +56,7 @@ extension LearnContentListCoordinator: LearnContentListViewControllerDelegate {
 // MARK: - TopNavigationBarDelegate
 
 extension LearnContentListCoordinator: TopNavigationBarDelegate {
+
     func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
     }
     

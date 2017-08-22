@@ -36,6 +36,7 @@ final class AddSensorViewController: UIViewController {
         view.backgroundColor = .clear
         view.delegate = self
         view.addSubview(self.contentView)
+
         return view
     }()
 
@@ -46,6 +47,7 @@ final class AddSensorViewController: UIViewController {
         view.addSubview(self.collectionView)
         view.addSubview(self.headerLabel)
         view.addSubview(self.textLabel)
+
         return view
     }()
 
@@ -62,9 +64,9 @@ final class AddSensorViewController: UIViewController {
         let label = UILabel()
         label.textColor = .white
         label.font = Font.H3Subtitle
-
         label.addCharactersSpacing(spacing: 2, text: self.viewModel.heading, uppercased: true)
         label.numberOfLines = 0
+
         return label
     }()
 
@@ -73,6 +75,7 @@ final class AddSensorViewController: UIViewController {
         label.textColor = .white
         label.prepareAndSetTextAttributes(text: self.viewModel.text, font: Font.DPText, alignment: .left, lineSpacing: 13)
         label.numberOfLines = 0
+        
         return label
     }()
 
@@ -137,6 +140,9 @@ extension AddSensorViewController: UICollectionViewDelegateFlowLayout, UICollect
 private extension AddSensorViewController {
 
     func setUpHierarchy() {
+        let backgroundImageView = UIImageView(frame: view.frame)
+        backgroundImageView.image = R.image.backgroundSidebar()
+        view.addSubview(backgroundImageView)
         view.addSubview(scrollView)
     }
 

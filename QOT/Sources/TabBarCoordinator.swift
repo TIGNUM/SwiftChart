@@ -29,13 +29,20 @@ final class TabBarCoordinator: ParentCoordinator {
     fileprivate var hasTutorialStarted = false
     fileprivate var tutorialIsStopped = false
     fileprivate var disposeBag = DisposeBag()
+    var children = [Coordinator]()
+
+    var isLoading: Bool {
+        return window.rootViewController?.presentedViewController is LoadingViewController
+    }
     
     lazy private var syncAllStartedNotificationHandler: NotificationHandler = {
         return NotificationHandler(name: .syncAllDidStartNotification)
     }()
+
     lazy private var syncAllFinishedNotificationHandler: NotificationHandler = {
         return NotificationHandler(name: .syncAllDidFinishNotification)
     }()
+
     fileprivate lazy var prepareCoordinator: PrepareCoordinator = {
         return PrepareCoordinator(services: self.services,
                                   permissionHandler: self.permissionHandler,
@@ -50,28 +57,34 @@ final class TabBarCoordinator: ParentCoordinator {
         viewController.title = R.string.localized.topTabBarItemTitlePerpareCoach()
         return viewController
     }()
+
     fileprivate lazy var myPrepViewController: MyPrepViewController = {
         let viewModel = MyPrepViewModel(services: self.services)
         let viewController = MyPrepViewController(viewModel: viewModel)
         viewController.title = R.string.localized.topTabBarItemTitlePerparePrep()
         return viewController
     }()
+
     fileprivate lazy var topTabBarControllerLearn: UINavigationController = {
         let viewModel = LearnCategoryListViewModel(services: self.services)
         let learnCategoryListVC = LearnCategoryListViewController(viewModel: viewModel)
         learnCategoryListVC.title = R.string.localized.topTabBarItemTitleLearnStrategies()
         learnCategoryListVC.delegate = self
-
         let articleCollectionViewModel = ArticleCollectionViewModel(services: self.services)
-        let articleCollectionViewController = ArticleCollectionViewController(pageName: .whatsHot, pageAssociatedObject: nil, viewModel: articleCollectionViewModel)
+        let articleCollectionViewController = ArticleCollectionViewController(pageName: .whatsHot,
+                                                                              pageAssociatedObject: nil,
+                                                                              viewModel: articleCollectionViewModel)
         articleCollectionViewController.title = R.string.localized.topTabBarItemTitleLearnWhatsHot()
         articleCollectionViewController.delegate = self
-
         let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())
-        let topTabBarController = UINavigationController(withPages: [learnCategoryListVC, articleCollectionViewController], topBarDelegate: self, pageDelegate: self, leftButton: nil, rightButton: rightButton)
-        
+        let topTabBarController = UINavigationController(withPages: [learnCategoryListVC, articleCollectionViewController],
+                                                         topBarDelegate: self,
+                                                         pageDelegate: self,
+                                                         rightButton: rightButton)
+
         return topTabBarController
     }()
+
     fileprivate lazy var topTabBarControllerMe: MyUniverseViewController = {
         let myUniverseViewController = MyUniverseViewController(
             myDataViewModel: MyDataViewModel(services: self.services),
@@ -80,22 +93,20 @@ final class TabBarCoordinator: ParentCoordinator {
         myUniverseViewController.delegate = self
         return myUniverseViewController
     }()
+
     fileprivate lazy var topTabBarControllerPrepare: UINavigationController = {
         let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())
         let topTabBarController = UINavigationController(withPages: [self.prepareChatViewController, self.myPrepViewController], topBarDelegate: self, pageDelegate: self, leftButton: nil, rightButton: rightButton)
         
         return topTabBarController
     }()
+
     lazy private var loadingViewController: LoadingViewController = {
         let vc = LoadingViewController()
         vc.modalTransitionStyle = .crossDissolve
         return vc
     }()
 
-    var children = [Coordinator]()
-    var isLoading: Bool {
-        return window.rootViewController?.presentedViewController is LoadingViewController
-    }
     
     // MARK: - Init
     
@@ -111,6 +122,7 @@ final class TabBarCoordinator: ParentCoordinator {
             }
             self.showLoading()
         }
+
         syncAllFinishedNotificationHandler.handler = { (_: Notification) in
             self.hasLoaded = true
             self.hideLoading(completion: {
@@ -139,6 +151,7 @@ final class TabBarCoordinator: ParentCoordinator {
         guard !isLoading else {
             return
         }
+
         window.rootViewController?.present(loadingViewController, animated: false, completion: nil)
         loadingViewController.fadeIn(withCompletion: completion)
     }
@@ -228,8 +241,7 @@ private extension TabBarCoordinator {
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: dispatchWorkItem)
             }
-            }
-            .dispose(in: disposeBag)
+            }.dispose(in: disposeBag)
     }
 }
 
@@ -284,6 +296,7 @@ extension TabBarCoordinator: LearnContentListCoordinatorDelegate {
 // MARK: - MeSectionDelegate
 
 extension TabBarCoordinator: MyUniverseViewControllerDelegate {
+
     func didTapRightBarButton(_ button: UIBarButtonItem, from topNavigationBar: TopNavigationBar, in viewController: MyUniverseViewController) {
         self.topNavigationBar(topNavigationBar, rightButtonPressed: button)
     }
@@ -318,14 +331,17 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
             viewController.showAlert(type: .noContent, handler: nil, handlerDestructive: nil)
             return
         }
+
         guard let coordinator = ArticleContentItemCoordinator(
             root: viewController,
             services: services,
             contentCollection: articleHeader.articleContentCollection,
             articleHeader: articleHeader,
-            topTabBarTitle: nil) else {
+            topTabBarTitle: nil,
+            shouldPush: false) else {
                 return
         }
+
         startChild(child: coordinator)
     }
 }
@@ -333,6 +349,7 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
 // MARK: - TopNavigationBarDelegate
 
 extension TabBarCoordinator: TopNavigationBarDelegate {
+
     func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
     }
     
@@ -340,6 +357,7 @@ extension TabBarCoordinator: TopNavigationBarDelegate {
         guard let navigationController = viewControllers[selectedIndex.value] as? UINavigationController, let pageViewController = navigationController.viewControllers.first as? PageViewController else {
             return
         }
+
         pageViewController.setPageIndex(index, animated: true)
     }
     
@@ -360,6 +378,7 @@ extension TabBarCoordinator: PageViewControllerDelegate {
         guard let navigationController = controller.navigationController, let topNavigationBar = navigationController.navigationBar as? TopNavigationBar else {
             return
         }
+        
         topNavigationBar.setIndicatorToButtonIndex(index)
     }
 }

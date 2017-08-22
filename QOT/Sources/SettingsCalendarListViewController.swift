@@ -55,9 +55,8 @@ private extension SettingsCalendarListViewController {
     }
 
     func setupView() {
-        view.backgroundColor = .clear
         tableView.backgroundColor = .clear
-        tableView.contentInset = UIEdgeInsets(top: 110, left: 0, bottom: 64, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
         tableView.tableFooterView = UIView()
         tableView.separatorColor = .clear
         tableView.allowsSelection = true

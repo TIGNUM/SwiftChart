@@ -9,8 +9,24 @@
 import UIKit
 
 extension UINavigationController {
-    convenience init(withPages pages: [UIViewController], headerView: UIView? = nil, topBarDelegate: TopNavigationBarDelegate? = nil, pageDelegate: PageViewControllerDelegate? = nil, backgroundColor: UIColor = .clear, backgroundImage: UIImage? = R.image._1Learn(), titleFont: UIFont = Font.H5SecondaryHeadline, titleColor: UIColor = .white, leftButton: UIBarButtonItem? = nil, rightButton: UIBarButtonItem? = nil) {
-        let pageViewController = PageViewController(headerView: headerView, backgroundImage: backgroundImage, pageDelegate: pageDelegate, transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+
+    convenience init(withPages pages: [UIViewController],
+                     headerView: UIView? = nil,
+                     topBarDelegate: TopNavigationBarDelegate? = nil,
+                     pageDelegate: PageViewControllerDelegate? = nil,
+                     backgroundColor: UIColor = .clear,
+                     backgroundImage: UIImage? = R.image._1Learn(),
+                     titleFont: UIFont = Font.H5SecondaryHeadline,
+                     titleColor: UIColor = .white,
+                     leftButton: UIBarButtonItem? = nil,
+                     rightButton: UIBarButtonItem? = nil) {
+
+        let pageViewController = PageViewController(headerView: headerView,
+                                                    backgroundImage: backgroundImage,
+                                                    pageDelegate: pageDelegate,
+                                                    transitionStyle: .scroll,
+                                                    navigationOrientation: .horizontal,
+                                                    options: nil)
         pageViewController.setPages(pages)
         pageViewController.setPageIndex(0, animated: false)
         
@@ -25,6 +41,7 @@ extension UINavigationController {
             if let leftButton = leftButton {
                 navigationBar.setLeftButton(leftButton)
             }
+            
             if let rightButton = rightButton {
                 navigationBar.setRightButton(rightButton)
             }
@@ -46,6 +63,7 @@ extension UINavigationController {
 // MARK: - CustomPresentationAnimatorDelegate
 
 extension UINavigationController: CustomPresentationAnimatorDelegate {
+    
     func animationsForAnimator(_ animator: CustomPresentationAnimator) -> (() -> Void)? {
         guard let viewController = viewControllers.first as? CustomPresentationAnimatorDelegate else {
             return nil
@@ -57,6 +75,7 @@ extension UINavigationController: CustomPresentationAnimatorDelegate {
 // MARK: - ZoomPresentationAnimatable
 
 extension UINavigationController: ZoomPresentationAnimatable {
+
     func startAnimation(presenting: Bool, animationDuration: TimeInterval, openingFrame: CGRect) {
         guard let viewController = viewControllers.first as? ZoomPresentationAnimatable else {
             return

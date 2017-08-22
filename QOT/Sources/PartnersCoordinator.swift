@@ -13,13 +13,12 @@ final class PartnersCoordinator: NSObject, ParentCoordinator {
 
     // MARK: - Properties
 
-    fileprivate let rootViewController: UIViewController
     fileprivate let services: Services
     fileprivate let selectedIndex: Index
     fileprivate let viewModel: PartnersViewModel
     fileprivate var topTabBarController: UINavigationController!
     fileprivate let partnersViewController: PartnersViewController
-
+    fileprivate let rootViewController: UIViewController
     var children: [Coordinator] = []
 
     // MARK: - Life Cycle

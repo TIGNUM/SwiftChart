@@ -26,12 +26,13 @@ final class ArticleItemViewController: UIViewController {
     // MARK: - Properties
 
     fileprivate var viewModel: ArticleItemViewModel
+    fileprivate let contentInsets: UIEdgeInsets
     weak var delegate: ArticleItemViewControllerDelegate?
 
     fileprivate lazy var tableView: UITableView = {
         let tableView = UITableView(
             style: .grouped,
-            contentInsets: UIEdgeInsets(top: 35, left: 0, bottom: 0, right: 0),
+            contentInsets: self.contentInsets,
             delegate: self,
             dataSource: self,
             dequeables:
@@ -44,19 +45,11 @@ final class ArticleItemViewController: UIViewController {
         return tableView
     }()
 
-    fileprivate lazy var topBarView: ArticleItemTopTabBarView = {
-        guard let view = Bundle.main.loadNibNamed("ArticleItemTopTabBarView", owner: self, options: [:])?[0] as? ArticleItemTopTabBarView else {
-            preconditionFailure("Failed to load ArticleItemTopTabBarView from xib")
-        }
-
-        view.setup(title: self.title ?? "", leftButtonIcon: R.image.ic_minimize(), delegate: self)
-        return view
-    }()
-
     // MARK: - Init
 
-    init(viewModel: ArticleItemViewModel, title: String? = nil) {
+    init(viewModel: ArticleItemViewModel, title: String? = nil, contentInsets: UIEdgeInsets) {
         self.viewModel = viewModel
+        self.contentInsets = contentInsets
 
         super.init(nibName: nil, bundle: nil)
 
@@ -137,20 +130,11 @@ private extension ArticleItemViewController {
     }
 
     func setupView() {
-        let image = (viewModel.backgroundImage != nil) ? viewModel.backgroundImage : R.image.backgroundWhatsHot()
-        let backgroundImageView = UIImageView(image: image)
-        view.addSubview(backgroundImageView)
+        let backgroundImage = (viewModel.backgroundImage != nil) ? viewModel.backgroundImage : R.image.backgroundWhatsHot()
+        tableView.backgroundView = UIImageView(image: backgroundImage)
         view.addSubview(tableView)
-        view.addSubview(topBarView)
-        backgroundImageView.horizontalAnchors == view.horizontalAnchors
-        backgroundImageView.verticalAnchors == view.verticalAnchors
-        topBarView.backgroundColor = .clear
-        topBarView.topAnchor == view.topAnchor
-        topBarView.horizontalAnchors == view.horizontalAnchors
-        topBarView.heightAnchor == Layout.TabBarView.height
-        tableView.topAnchor == topBarView.bottomAnchor
+        tableView.topAnchor == view.topAnchor
         tableView.estimatedSectionHeaderHeight = 100
-        tableView.estimatedSectionFooterHeight = 100
         view.backgroundColor = .clear
         tableView.bottomAnchor == view.bottomAnchor
         tableView.horizontalAnchors == view.horizontalAnchors
@@ -340,22 +324,12 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
             switch item.contentItemValue {
             case .audio(_, _, _, let audioURL, _, _): delegate?.didTapMedia(withURL: audioURL, in: self)   
             case .video(_, _, _, let videoURL, _): streamVideo(videoURL: videoURL)
-            default:
-                return
+            default: return
             }
         case 1:
             delegate?.didSelectRelatedArticle(selectedArticle: viewModel.relatedArticle(at: indexPath), form: self)
         default: return
         }
-    }
-}
-
-// MARK: - ArticleItemTopTabBarViewDelegate
-
-extension ArticleItemViewController: ArticleItemTopTabBarViewDelegate {
-
-    func didTapLeftButton() {
-        self.delegate?.didTapClose(in: self)
     }
 }
 

@@ -13,11 +13,10 @@ final class WeeklyChoicesCoordinator: NSObject, ParentCoordinator {
 
     // MARK: - Properties
 
-    fileprivate let rootViewController: UIViewController
     fileprivate let services: Services
     fileprivate let weeklyChoicesViewController: WeeklyChoicesViewController
     fileprivate var topTabBarController: UINavigationController!
-    
+    fileprivate let rootViewController: UIViewController
     var children: [Coordinator] = []
 
     // MARK: - Life Cycle

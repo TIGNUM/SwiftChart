@@ -11,8 +11,7 @@ import RealmSwift
 import SafariServices
 
 final class LearnContentItemCoordinator: ParentCoordinator {
-    
-    let rootVC: UIViewController
+
     fileprivate let services: Services
     fileprivate let category: ContentCategory
     fileprivate var categoryTitle: String
@@ -24,10 +23,11 @@ final class LearnContentItemCoordinator: ParentCoordinator {
     fileprivate var presentationManager: CircularPresentationManager?
     fileprivate weak var topBarDelegate: TopNavigationBarDelegate?
     var children: [Coordinator] = []
+    fileprivate let rootViewController: UIViewController
     var topTabBarController: UINavigationController!
 
     init(root: UIViewController, services: Services, content: ContentCollection, category: ContentCategory, presentationManager: CircularPresentationManager? = nil, topBarDelegate: TopNavigationBarDelegate? = nil) {
-        self.rootVC = root
+        self.rootViewController = root
         self.services = services
         self.category = category
         self.categoryTitle = category.title.capitalized
@@ -72,12 +72,12 @@ final class LearnContentItemCoordinator: ParentCoordinator {
     }
 
     func start() {
-        if rootVC is UIViewControllerTransitioningDelegate {
+        if rootViewController is UIViewControllerTransitioningDelegate {
             topTabBarController.modalPresentationStyle = .fullScreen  // Custom animations doesn't work when this value is set to .custom
 
             // If rootVC has a custom defined transition that one will be used
             // We have a custom transition from PrepareContent (when pressing readMore button)
-            guard let transitionDelegate = rootVC as? UIViewControllerTransitioningDelegate else { return }
+            guard let transitionDelegate = rootViewController as? UIViewControllerTransitioningDelegate else { return }
             topTabBarController.transitioningDelegate = transitionDelegate
         } else if let presentationManager = presentationManager {
             topTabBarController.transitioningDelegate = presentationManager
@@ -85,7 +85,7 @@ final class LearnContentItemCoordinator: ParentCoordinator {
             topTabBarController.modalPresentationStyle = .custom
         }
 
-        rootVC.present(topTabBarController, animated: true)
+        rootViewController.present(topTabBarController, animated: true)
         // FIXME: Add page tracking
     }
 }

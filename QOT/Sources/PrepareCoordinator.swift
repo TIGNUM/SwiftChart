@@ -25,8 +25,6 @@ final class PrepareCoordinator: ParentCoordinator {
 
     // MARK: Private properties
 
-    var children: [Coordinator] = []
-
     fileprivate let services: Services
     fileprivate let permissionHandler: PermissionHandler
     fileprivate let tabBarController: TabBarController
@@ -35,8 +33,8 @@ final class PrepareCoordinator: ParentCoordinator {
     fileprivate let myPrepViewController: MyPrepViewController
     fileprivate let chatDecisionManager: PrepareChatDecisionManager
     fileprivate var context: Context?
-
-    fileprivate weak var prepareListViewController: PrepareContentViewController?
+    fileprivate weak var prepareListViewController: PrepareContentViewController?    
+    var children: [Coordinator] = []
 
     fileprivate lazy var editEventHandler: EditEventHandler = {
         let delegate = EditEventHandler()
@@ -61,20 +59,19 @@ final class PrepareCoordinator: ParentCoordinator {
          topTabBarController: UINavigationController,
          chatViewController: ChatViewController<Answer>,
          myPrepViewController: MyPrepViewController) {
-        self.services = services
-        self.permissionHandler = permissionHandler
-        self.tabBarController = tabBarController
-        self.topTabBarController = topTabBarController
-        self.chatViewController = chatViewController
-        self.chatDecisionManager = PrepareChatDecisionManager(service: services.questionsService)
-        self.myPrepViewController = myPrepViewController
+            self.services = services
+            self.permissionHandler = permissionHandler
+            self.tabBarController = tabBarController
+            self.topTabBarController = topTabBarController
+            self.chatViewController = chatViewController
+            self.chatDecisionManager = PrepareChatDecisionManager(service: services.questionsService)
+            self.myPrepViewController = myPrepViewController
+            myPrepViewController.delegate = self
+            chatDecisionManager.delegate = self
 
-        myPrepViewController.delegate = self
-
-        chatDecisionManager.delegate = self
-        chatViewController.didSelectChoice = { [weak self] (choice, viewController) in
-            self?.chatDecisionManager.didSelectChoice(choice)
-        }
+            chatViewController.didSelectChoice = { [weak self] (choice, viewController) in
+                self?.chatDecisionManager.didSelectChoice(choice)
+            }
     }
 
     func start() {

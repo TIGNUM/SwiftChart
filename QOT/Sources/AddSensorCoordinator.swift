@@ -15,36 +15,25 @@ final class AddSensorCoordinator: ParentCoordinator {
     // MARK: - Properties
 
     static var safariViewController: SFSafariViewController?
-    fileprivate let rootViewController: SidebarViewController
     fileprivate let services: Services
-    fileprivate let presentationManager: PresentationManager
-    fileprivate var topTabBarController: UINavigationController!
     fileprivate let addSensorViewController: AddSensorViewController
     var children = [Coordinator]()
+    fileprivate let rootViewController: UIViewController
 
     // MARK: - Init
 
     init(root: SidebarViewController, services: Services) {
         self.rootViewController = root
         self.services = services
-        
-        presentationManager = PresentationManager(type: .fadeIn)
-        
-        addSensorViewController = AddSensorViewController(viewModel: AddSensorViewModel())
-        addSensorViewController.modalPresentationStyle = .custom
-        addSensorViewController.transitioningDelegate = presentationManager
+        addSensorViewController = AddSensorViewController(viewModel: AddSensorViewModel())       
         addSensorViewController.title = R.string.localized.sidebarTitleSensor()
-
-        let leftButton = UIBarButtonItem(withImage: R.image.ic_minimize())
-        topTabBarController = UINavigationController(withPages: [addSensorViewController], topBarDelegate: self, leftButton: leftButton)
-        
         addSensorViewController.delegate = self
     }
 
     // MARK: - Coordinator -> Starts
 
     func start() {
-        rootViewController.present(topTabBarController, animated: true)
+        rootViewController.pushToStart(childViewController: addSensorViewController)
     }
 }
 
@@ -53,7 +42,6 @@ final class AddSensorCoordinator: ParentCoordinator {
 extension AddSensorCoordinator: AddSensorViewControllerDelegate {
 
     func didTapSensor(_ sensor: AddSensorViewModel.Sensor, in viewController: UIViewController) {
-        print("Did tap sensor \(sensor)")
         switch sensor {
         case .fitbit:
             guard
@@ -71,21 +59,6 @@ extension AddSensorCoordinator: AddSensorViewControllerDelegate {
         default:
             print("sensor not yet implemented")
         }
-    }
-}
-
-// MARK: - TopNavigationBarDelegate
-
-extension AddSensorCoordinator: TopNavigationBarDelegate {
-    func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
-        topTabBarController.dismiss(animated: true, completion: nil)
-        removeChild(child: self)
-    }
-    
-    func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
-    }
-    
-    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
     }
 }
 

@@ -13,10 +13,10 @@ final class MyToBeVisionCoordinator: NSObject, ParentCoordinator {
 
     // MARK: - Properties
 
-    fileprivate let rootViewController: UIViewController
     fileprivate let services: Services
     fileprivate var myToBeVisionViewController: MyToBeVisionViewController!
     private let viewModel: MyToBeVisionViewModel
+    fileprivate let rootViewController: UIViewController
     var children: [Coordinator] = []
 
     // MARK: - Life Cycle

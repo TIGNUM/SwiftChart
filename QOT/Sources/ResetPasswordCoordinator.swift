@@ -12,11 +12,11 @@ final class ResetPasswordCoordinator: ParentCoordinator {
 
     // MARK: - Properties
 
-    var children: [Coordinator] = []
-    fileprivate let rootViewController: UIViewController
     fileprivate let networkManager: NetworkManager
     fileprivate let parentCoordinator: ParentCoordinator
-    fileprivate var topTabBarController: UINavigationController!
+    fileprivate let resetPasswordViewController: ResetPasswordViewController!
+    fileprivate let rootViewController: UIViewController
+    var children: [Coordinator] = []
 
     // MARK: - Lifecycle
 
@@ -24,28 +24,13 @@ final class ResetPasswordCoordinator: ParentCoordinator {
         self.rootViewController = rootVC
         self.networkManager = networkManager
         self.parentCoordinator = parentCoordinator
-
-        let leftButton = UIBarButtonItem(withImage: R.image.ic_back(), tintColor: .clear)
-        let resetPasswordViewController = ResetPasswordViewController(delegate: self)
-        topTabBarController = UINavigationController(withPages: [resetPasswordViewController], topBarDelegate: self, leftButton: leftButton)
+        resetPasswordViewController = ResetPasswordViewController()
+        resetPasswordViewController.delegate = self
     }
 
     func start() {
-        rootViewController.presentRightToLeft(controller: topTabBarController)
+        rootViewController.pushToStart(childViewController: resetPasswordViewController)
     }
-}
-
-// MARK: - TopNavigationBarDelegate
-
-extension ResetPasswordCoordinator: TopNavigationBarDelegate {
-
-    func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
-        topTabBarController.dismissLeftToRight()
-    }
-
-    func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {}
-
-    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {}
 }
 
 // MARK: - LoginDelegate
@@ -53,7 +38,7 @@ extension ResetPasswordCoordinator: TopNavigationBarDelegate {
 extension ResetPasswordCoordinator: ResetPasswordViewControllerDelegate {
     
     func didTapResetPassword(withUsername username: String, completion: @escaping (NetworkError?) -> Void) {
-        AppDelegate.current.window?.showProgressHUD(type: .fitbit, actionBlock: { [unowned self] in
+        AppDelegate.current.window?.showProgressHUD(type: .fitbit) { [unowned self] in
             let token = ["email": username]
             do {
                 let body = try token.toJSON().serialize()
@@ -69,11 +54,7 @@ extension ResetPasswordCoordinator: ResetPasswordViewControllerDelegate {
             } catch {
                 return
             }
-        })
-    }
-
-    func didTapBack(viewController: UIViewController) {
-        topTabBarController.dismissLeftToRight()
+        }
     }
 
     func checkIfEmailAvailable(email: String, completion: @escaping (Bool) -> Void) {

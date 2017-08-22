@@ -38,4 +38,14 @@ extension UIViewController {
         fatalError("keyboardWillDisappear: must be overriden")
     }
 
+    func pushToStart(childViewController: UIViewController) {
+        let navigationBar = navigationController?.navigationBar
+        navigationBar?.tintColor = .white
+        navigationBar?.topItem?.title = ""
+        navigationBar?.backIndicatorImage = R.image.ic_back()
+        navigationBar?.backIndicatorTransitionMaskImage = R.image.ic_back()
+        navigationBar?.titleTextAttributes = [NSFontAttributeName: Font.H4Headline,
+                                              NSForegroundColorAttributeName: UIColor.white]
+        navigationController?.pushViewController(childViewController, animated: true)
+    }
 }

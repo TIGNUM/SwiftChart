@@ -17,6 +17,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsMenuViewController" customModule="QOT" customModuleProvider="target">
             <connections>
+                <outlet property="backgroundImage" destination="Av3-II-cLv" id="MRO-cV-eZK"/>
                 <outlet property="collectionView" destination="PeA-6k-dwv" id="jVL-EG-MdL"/>
                 <outlet property="generalButton" destination="u4X-Qg-MQg" id="BZI-CY-rIi"/>
                 <outlet property="imgeView" destination="4Gs-35-h8r" id="jz9-Rd-Qe4"/>
@@ -32,6 +33,9 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundSidebar" translatesAutoresizingMaskIntoConstraints="NO" id="Av3-II-cLv">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4Gs-35-h8r">
                     <rect key="frame" x="28" y="82" width="124" height="154"/>
                     <constraints>
@@ -135,11 +139,15 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="Av3-II-cLv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="1Ad-8e-4S4"/>
+                <constraint firstAttribute="bottom" secondItem="Av3-II-cLv" secondAttribute="bottom" id="AO9-uJ-BTQ"/>
                 <constraint firstAttribute="bottom" secondItem="DWU-51-Y5O" secondAttribute="bottom" id="DdM-gq-fVW"/>
                 <constraint firstAttribute="trailing" secondItem="PeA-6k-dwv" secondAttribute="trailing" id="Lu0-QD-Q4N"/>
                 <constraint firstItem="DWU-51-Y5O" firstAttribute="top" secondItem="PeA-6k-dwv" secondAttribute="bottom" id="OH9-rH-S7A"/>
+                <constraint firstItem="Av3-II-cLv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="PZG-vy-MPq"/>
                 <constraint firstItem="PeA-6k-dwv" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" multiplier="1.1" id="UTf-qI-qOt"/>
                 <constraint firstItem="PeA-6k-dwv" firstAttribute="top" secondItem="LAe-jC-hCe" secondAttribute="bottom" constant="16" id="XX3-sj-h40"/>
+                <constraint firstAttribute="trailing" secondItem="Av3-II-cLv" secondAttribute="trailing" id="dRw-iT-7cH"/>
                 <constraint firstAttribute="trailing" secondItem="LAe-jC-hCe" secondAttribute="trailing" constant="8" id="gf9-Yh-Te4"/>
                 <constraint firstItem="PeA-6k-dwv" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ifV-ul-iEs"/>
                 <constraint firstItem="PeA-6k-dwv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="lrw-vi-Gqp"/>
@@ -153,4 +161,7 @@
             <point key="canvasLocation" x="33" y="54"/>
         </view>
     </objects>
+    <resources>
+        <image name="backgroundSidebar" width="375" height="667"/>
+    </resources>
 </document>

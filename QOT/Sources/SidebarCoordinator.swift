@@ -11,26 +11,25 @@ import UIKit
 
 final class SidebarCoordinator: ParentCoordinator {
 
-    fileprivate let rootViewController: UIViewController
     fileprivate let services: Services
     fileprivate let presentationManager: PresentationManager
     fileprivate var topTabBarController: UINavigationController!
-    fileprivate let sideBarViewController: SidebarViewController
+    fileprivate let sideBarViewController: SidebarViewController!
+    fileprivate let rootViewController: UIViewController
     var children = [Coordinator]()
 
     init(root: UIViewController, services: Services) {
         self.rootViewController = root
         self.services = services
         presentationManager = PresentationManager(type: .fadeIn)
-        
         let viewModel = SidebarViewModel(services: services)
         sideBarViewController = SidebarViewController(viewModel: viewModel)
-        
-        let leftButton = UIBarButtonItem(withImage: R.image.ic_logo())
-        let rightButton = UIBarButtonItem(withImage: R.image.ic_close())
-        topTabBarController = UINavigationController(withPages: [sideBarViewController], topBarDelegate: self, backgroundImage: R.image.sidebar(), leftButton: leftButton, rightButton: rightButton)
+        topTabBarController = UINavigationController(withPages: [sideBarViewController],
+                                                     topBarDelegate: self,
+                                                     backgroundImage: R.image.sidebar(),
+                                                     leftButton: UIBarButtonItem(withImage: R.image.ic_logo()),
+                                                     rightButton: UIBarButtonItem(withImage: R.image.ic_close()))
         topTabBarController.modalTransitionStyle = .crossDissolve
-
         sideBarViewController.delegate = self
     }
     
@@ -83,7 +82,6 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
             root: viewController,
             services: services,
             contentCollection: contentCollection,
-            articleHeader: nil,
             topTabBarTitle: topTabBarTitle.uppercased(), backgroundImage: backgroundImage) else {
                 return
         }

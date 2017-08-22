@@ -12,43 +12,23 @@ import EventKit
 
 final class SettingsCalendarListCoordinator: ParentCoordinator {
 
-    fileprivate let rootViewController: SettingsViewController
     fileprivate let services: Services
-    fileprivate var topTabBarController: UINavigationController!
-    fileprivate lazy var permissionHandler: PermissionHandler = PermissionHandler()
+    fileprivate let settingsCalendarListViewController: SettingsCalendarListViewController!
+    fileprivate let rootViewController: UIViewController
     var children = [Coordinator]()
 
     init(root: SettingsViewController, services: Services) {
         self.rootViewController = root
         self.services = services
         let viewModel = SettingsCalendarListViewModel(services: services)
-        let settingsCalendarListViewController = SettingsCalendarListViewController(viewModel: viewModel)
-        settingsCalendarListViewController.title = R.string.localized.settingsGeneralCalendarTitle()
-        let leftButton = UIBarButtonItem(withImage: R.image.ic_back())
-        topTabBarController = UINavigationController(withPages: [settingsCalendarListViewController], topBarDelegate: self, leftButton: leftButton)
+        settingsCalendarListViewController = SettingsCalendarListViewController(viewModel: viewModel)
+        let backgroundImageView = UIImageView(frame: rootViewController.view.frame)
+        backgroundImageView.image = R.image.backgroundSidebar()
+        settingsCalendarListViewController.tableView.backgroundView = backgroundImageView
+        settingsCalendarListViewController.title = R.string.localized.settingsGeneralCalendarTitle().uppercased()
     }
 
     func start() {
-        permissionHandler.askPermissionForCalendar { (garanted: Bool) in
-            switch garanted {
-            case true: self.rootViewController.presentRightToLeft(controller: self.topTabBarController)
-            case false: self.rootViewController.showAlert(type: .settingsCalendars, handler: { 
-                    UIApplication.openAppSettings()
-                }, handlerDestructive: nil)
-            }
-        }
+        rootViewController.pushToStart(childViewController: settingsCalendarListViewController)
     }
-}
-
-// MARK: - TopNavigationBarDelegate
-
-extension SettingsCalendarListCoordinator: TopNavigationBarDelegate {
-
-    func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
-        topTabBarController.dismissLeftToRight()
-    }
-
-    func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {}
-
-    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {}
 }

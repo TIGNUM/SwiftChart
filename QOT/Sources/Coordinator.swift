@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import UIKit
 
 /// A `Coordinator` is responsible for the setting up and flow between 
 /// `UIViewController`s.
-protocol Coordinator: class {
+@objc protocol Coordinator: class {
     /// Starts the coordination process.
     func start()
 }
@@ -19,8 +20,9 @@ protocol Coordinator: class {
 protocol ParentCoordinator: Coordinator {
     /// The children of `self`.
     var children: [Coordinator] { get set }
-    
+
     func removeChild(child: Coordinator)
+
     func removeAllChildren()
 }
 
@@ -34,7 +36,7 @@ extension ParentCoordinator {
         children.append(child)
         child.start()
     }
-    
+
     func removeAllChildren() {
         children.removeAll()
     }

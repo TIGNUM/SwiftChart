@@ -40,14 +40,12 @@ final class LoginViewController: UITableViewController {
         super.viewDidLoad()
 
         registerCell()
-
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .clear
         tableView.backgroundView = UIImageView(image: R.image.loginBackground())
         tableView.separatorStyle = .none
-        tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: -20, right: 0)
-
+        tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: -20, right: 0)        
         hideKeyboardWhenTappedAround()
     }
 
@@ -106,7 +104,6 @@ extension LoginViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         let cell: LoginViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(delegate: self.delegate, cellDelegate: self, parentViewController: self)
 
@@ -118,7 +115,9 @@ extension LoginViewController {
     }
 }
 
-extension LoginViewController {
+// MARK: - Private
+
+private extension LoginViewController {
 
     func registerCell() {
         tableView.registerDequeueable(LoginViewCell.self)

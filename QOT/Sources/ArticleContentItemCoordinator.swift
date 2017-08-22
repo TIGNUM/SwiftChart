@@ -27,46 +27,82 @@ struct ArticleCollectionHeader {
 
 final class ArticleContentItemCoordinator: ParentCoordinator {
 
-    fileprivate let rootVC: UIViewController
     fileprivate let services: Services
     fileprivate let articleHeader: ArticleCollectionHeader?
     fileprivate let topTabBarTitle: String?
     fileprivate var selectedContent: ContentCollection?
     fileprivate var fullViewController: ArticleItemViewController
     fileprivate var viewModel: ArticleItemViewModel
+    fileprivate var topTabBarController: UINavigationController?
+    fileprivate let rootViewController: UIViewController
+    fileprivate let shouldPush: Bool
     var children: [Coordinator] = []
 
-    init?(root: UIViewController, services: Services, contentCollection: ContentCollection?, articleHeader: ArticleCollectionHeader?, topTabBarTitle: String?, backgroundImage: UIImage? = nil) {
-        guard let contentCollection = contentCollection else {
-            return nil
-        }
+    init?(root: UIViewController,
+          services: Services,
+          contentCollection: ContentCollection?,
+          articleHeader: ArticleCollectionHeader? = nil,
+          topTabBarTitle: String?,
+          backgroundImage: UIImage? = nil,
+          shouldPush: Bool = true,
+          contentInsets: UIEdgeInsets = UIEdgeInsets(top: 35, left: 0, bottom: 0, right: 0)) {
+
+            guard let contentCollection = contentCollection else {
+                return nil
+            }
         
-        self.rootVC = root
-        self.services = services
-        self.articleHeader = articleHeader
-        self.selectedContent = contentCollection
-        self.topTabBarTitle = topTabBarTitle
-        let articleItems = Array(contentCollection.articleItems)
-        viewModel = ArticleItemViewModel(services: services,
+            self.rootViewController = root
+            self.services = services
+            self.articleHeader = articleHeader
+            self.selectedContent = contentCollection
+            self.topTabBarTitle = topTabBarTitle
+            self.shouldPush = shouldPush
+            let articleItems = Array(contentCollection.articleItems)
+            viewModel = ArticleItemViewModel(services: services,
                                          items: articleItems,
                                          contentCollection: contentCollection,
                                          articleHeader: articleHeader,
                                          backgroundImage: backgroundImage
-                    )
-        fullViewController = ArticleItemViewController(viewModel: viewModel)
-        fullViewController.modalTransitionStyle = .crossDissolve
-        fullViewController.modalPresentationStyle = .custom
-        fullViewController.title = topTabBarTitle
-        fullViewController.delegate = self
+            )
+
+            fullViewController = ArticleItemViewController(viewModel: viewModel, contentInsets: UIEdgeInsets(top: 110, left: 0, bottom: 0, right: 0))
+            fullViewController.title = topTabBarTitle
+            fullViewController.delegate = self
+
+            if shouldPush == false {
+                topTabBarController = UINavigationController(withPages: [fullViewController],
+                                                             topBarDelegate: self,
+                                                             leftButton: UIBarButtonItem(withImage: R.image.ic_minimize()))
+            }
     }
 
     func start() {
         guard selectedContent != nil else {
             return
         }
-        rootVC.present(fullViewController, animated: true)
+
+        if shouldPush == false,
+            let navigationController = topTabBarController {
+                rootViewController.present(navigationController, animated: true)
+        } else {
+            rootViewController.pushToStart(childViewController: fullViewController)
+        }
+
         // FIXME: Add page tracking
     }
+}
+
+// MARK: - TopNavigationBarDelegate
+
+extension ArticleContentItemCoordinator: TopNavigationBarDelegate {
+
+    func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
+        topTabBarController?.dismiss(animated: true, completion: nil)
+    }
+
+    func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {}
+
+    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {}
 }
 
 // MARK: - ArticleItemViewControllerDelegate
@@ -79,7 +115,6 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
                                          items: Array(selectedArticle.articleItems),
                                          contentCollection: selectedArticle,
                                          articleHeader: articleHeader)
-
         fullViewController.reloadArticles(viewModel: viewModel)
     }
 

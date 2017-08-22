@@ -11,10 +11,12 @@ import Foundation
 import UIKit
 
 protocol OnboardingCoordinatorDelegate: ParentCoordinator {
+
     func onboardingCoordinatorDidFinish(_ onboardingCoordinator: OnboardingCoordinator)
 }
 
 final class OnboardingCoordinator: ParentCoordinator {
+
     private struct Choice: ChatChoice {
         enum `Type` {
             case yes
@@ -28,8 +30,12 @@ final class OnboardingCoordinator: ParentCoordinator {
     }
 
     private static let isOnboardingCompleteKey = "qot_onboarding_complete"
-
     var children: [Coordinator] = [Coordinator]()
+    weak var delegate: OnboardingCoordinatorDelegate?
+    private let window: UIWindow
+    private let chatViewModel = ChatViewModel<Choice>()
+    fileprivate let permissionHandler: PermissionHandler    
+
     class var isOnboardingComplete: Bool {
         get {
             return UserDefaults.standard.bool(forKey: isOnboardingCompleteKey)
@@ -38,11 +44,6 @@ final class OnboardingCoordinator: ParentCoordinator {
             UserDefaults.standard.set(newValue, forKey: isOnboardingCompleteKey)
         }
     }
-    weak var delegate: OnboardingCoordinatorDelegate?
-    
-    private let window: UIWindow
-    private let chatViewModel = ChatViewModel<Choice>()
-    fileprivate let permissionHandler: PermissionHandler
 
     init(window: UIWindow, delegate: OnboardingCoordinatorDelegate, permissionHandler: PermissionHandler) {
         self.window = window

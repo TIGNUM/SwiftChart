@@ -100,20 +100,6 @@ class ResetPasswordViewCell: UITableViewCell, Dequeueable {
         return input
     }()
 
-    fileprivate lazy var backButton: UIButton = {
-        let button = UIButton()
-        button.addTarget(self, action: #selector(didPressBack(_:)), for: .touchUpInside)
-        button.setBackgroundImage(R.image.ic_back(), for: .normal)
-        return button
-    }()
-
-    @objc func didPressBack(_ sender: UIButton) {
-        self.resignFirstResponder()
-        guard let viewController = parentViewController else { return }
-
-        delegate?.didTapBack(viewController: viewController)
-    }
-
     fileprivate lazy var resetPasswordButton: UIButton = {
         let button = UIButton()
         button.addTarget(self, action: #selector(didPressResetPassword(_:)), for: .touchUpInside)
@@ -173,7 +159,6 @@ class ResetPasswordViewCell: UITableViewCell, Dequeueable {
 private extension ResetPasswordViewCell {
 
     func addHierarchy() {
-        contentView.addSubview(backButton)
         contentView.addSubview(logoImageView)
         contentView.addSubview(userView)
         contentView.addSubview(passwordView)
@@ -187,10 +172,6 @@ private extension ResetPasswordViewCell {
     }
 
     func setupLayout() {
-        backButton.topAnchor == contentView.topAnchor + 10
-        backButton.leadingAnchor == contentView.leadingAnchor + 20
-        backButton.heightAnchor == 20
-
         logoImageView.topAnchor == contentView.topAnchor + 20
         logoImageView.heightAnchor == 21
         logoImageView.widthAnchor == 63

@@ -51,22 +51,6 @@ final class LibraryViewController: UIViewController {
         )
     }()
 
-    fileprivate lazy var topBarView: ArticleItemTopTabBarView = {
-        guard let view = Bundle.main.loadNibNamed("ArticleItemTopTabBarView", owner: self, options: [:])?[0] as? ArticleItemTopTabBarView else {
-            preconditionFailure("Failed to load ArticleItemTopTabBarView from xib")
-        }
-
-        var title = ""
-        if self.title != nil {
-            title = self.title!
-        }
-
-        view.setup(title: title,
-                   leftButtonIcon: R.image.ic_minimize(),
-                   delegate: self)
-        return view
-    }()
-
     // MARK: - Init
 
     init(viewModel: LibraryViewModel) {
@@ -93,17 +77,9 @@ final class LibraryViewController: UIViewController {
 private extension LibraryViewController {
 
     func setupView() {
-        let backgroundImageView = UIImageView(image: R.image.backgroundSidebar())
-        view.addSubview(backgroundImageView)
-        view.addSubview(tableView)
-        view.addSubview(topBarView)
-        backgroundImageView.horizontalAnchors == view.horizontalAnchors
-        backgroundImageView.verticalAnchors == view.verticalAnchors
-        topBarView.backgroundColor = .clear
-        topBarView.topAnchor == view.topAnchor
-        topBarView.horizontalAnchors == view.horizontalAnchors
-        topBarView.heightAnchor == Layout.TabBarView.height
-        tableView.topAnchor == topBarView.bottomAnchor
+        tableView.backgroundView = UIImageView(image: R.image.backgroundSidebar())
+        view.addSubview(tableView) 
+        tableView.topAnchor == view.topAnchor
         view.backgroundColor = .clear
         tableView.bottomAnchor == view.bottomAnchor
         tableView.horizontalAnchors == view.horizontalAnchors
@@ -148,14 +124,5 @@ extension LibraryViewController: UITableViewDelegate, UITableViewDataSource {
         cell.backgroundColor = .clear
 
         return cell
-    }
-}
-
-// MARK: - ArticleItemTopTabBarViewDelegate
-
-extension LibraryViewController: ArticleItemTopTabBarViewDelegate {
-
-    func didTapLeftButton() {
-        self.delegate?.didTapClose(in: self)
     }
 }

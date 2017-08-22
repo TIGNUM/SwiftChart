@@ -27,25 +27,32 @@ final class AppCoordinator: ParentCoordinator {
     fileprivate var tabBarCoordinator: TabBarCoordinator?
     fileprivate lazy var permissionHandler: PermissionHandler = PermissionHandler()
     fileprivate lazy var networkManager: NetworkManager = NetworkManager(delegate: self, credentialsManager: self.credentialsManager)
-    fileprivate lazy var credentialsManager: CredentialsManager = CredentialsManager()
+    fileprivate lazy var credentialsManager: CredentialsManager = CredentialsManager()    
+
     fileprivate lazy var realmProvider: RealmProvider = {
         return RealmProvider()
     }()
+
     fileprivate lazy var databaseManager: DatabaseManager = {
         return DatabaseManager(config: RealmProvider.config)
     }()
+
     fileprivate lazy var pageTracker: PageTracker = {
         return PageTracker.default
     }()
+
     fileprivate lazy var eventTracker: EventTracker = {
         return EventTracker.default
     }()
+
     fileprivate lazy var syncRecordService: SyncRecordService = {
         return SyncRecordService(realmProvider: self.realmProvider)
     }()
+
     fileprivate lazy var syncManager: SyncManager = {
         return SyncManager(networkManager: self.networkManager, syncRecordService: self.syncRecordService, realmProvider: self.realmProvider)
     }()
+
     fileprivate lazy var calendarImportManager: CalendarImportManger = {
         let manager = CalendarImportManger(realm: self.realmProvider, predicate: { (store: EKEventStore) -> NSPredicate in
             let day: TimeInterval = 60 * 60 * 24
@@ -82,11 +89,9 @@ final class AppCoordinator: ParentCoordinator {
         }
         eventTracker.realmProvider = realmProvider
         pageTracker.start()
-
         let viewController = AnimatedLaunchScreenViewController()
         window.rootViewController = viewController
         window.makeKeyAndVisible()
-
         viewController.fadeInLogo()
         viewController.startAnimatingImages {
             viewController.fadeOutLogo { [unowned self] in
@@ -244,8 +249,7 @@ extension AppCoordinator {
             let coordinator = ArticleContentItemCoordinator(
                 root: root,
                 services: services,
-                contentCollection: services.contentService.contentCollection(id: contentID),
-                articleHeader: nil,
+                contentCollection: services.contentService.contentCollection(id: contentID),                
                 topTabBarTitle: R.string.localized.sidebarTitleLibrary().uppercased()) else {
                     return
         }

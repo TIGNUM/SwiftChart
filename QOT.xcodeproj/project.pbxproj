@@ -131,8 +131,6 @@
 		859683431F1361E900A98218 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859683421F1361E900A98218 /* ResetPasswordViewController.swift */; };
 		859683451F1362F300A98218 /* ResetPasswordViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859683441F1362F300A98218 /* ResetPasswordViewCell.swift */; };
 		859683471F137FD600A98218 /* ResetPasswordCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859683461F137FD600A98218 /* ResetPasswordCoordinator.swift */; };
-		85A317FC1F38644A00F3DCAE /* ArticleItemTopTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A317FB1F38644A00F3DCAE /* ArticleItemTopTabBarView.swift */; };
-		85A317FE1F3864E600F3DCAE /* ArticleItemTopTabBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85A317FD1F3864E600F3DCAE /* ArticleItemTopTabBarView.xib */; };
 		85AAB53C1F447D1F00C2D53F /* LearnContentListBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AAB53B1F447D1F00C2D53F /* LearnContentListBackgroundView.swift */; };
 		85C26F9F1F13DCEB001C2C65 /* UIView+ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C26F9E1F13DCEB001C2C65 /* UIView+ProgressHUD.swift */; };
 		85C3D6BC1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C3D6BB1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib */; };
@@ -602,8 +600,6 @@
 		859683421F1361E900A98218 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		859683441F1362F300A98218 /* ResetPasswordViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewCell.swift; sourceTree = "<group>"; };
 		859683461F137FD600A98218 /* ResetPasswordCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordCoordinator.swift; sourceTree = "<group>"; };
-		85A317FB1F38644A00F3DCAE /* ArticleItemTopTabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleItemTopTabBarView.swift; sourceTree = "<group>"; };
-		85A317FD1F3864E600F3DCAE /* ArticleItemTopTabBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleItemTopTabBarView.xib; sourceTree = "<group>"; };
 		85AAB53B1F447D1F00C2D53F /* LearnContentListBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentListBackgroundView.swift; sourceTree = "<group>"; };
 		85C26F9E1F13DCEB001C2C65 /* UIView+ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ProgressHUD.swift"; sourceTree = "<group>"; };
 		85C3D6BB1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareEventTableViewFooterView.xib; sourceTree = "<group>"; };
@@ -1692,13 +1688,14 @@
 				CC8018211F026BDA0040B03F /*  LibraryTableViewCell.swift */,
 				CC59A88E1F41C18100D22353 /* LibraryCollectionCell.swift */,
 				CC13E23C1EB1D72400C3CE46 /* LibraryCollectionLatestPostCell.swift */,
+				CC59A8921F41C9EA00D22353 /* LibraryTableViewCategoryCell.swift */,
 				CCE373071E8D32CF00B79352 /* LibraryViewController.swift */,
 				CCE373151E8D330100B79352 /* LibraryViewModel.swift */,
 				CC59A88C1F41C0E100D22353 /* LibraryCollectionCell.xib */,
 				CC13E23D1EB1D72400C3CE46 /* LibraryCollectionLatestPostCell.xib */,
 				CC8018221F026BDA0040B03F /* LibraryTableViewCell.xib */,
 				CC59A8901F41C95600D22353 /* LibraryTableViewCategoryCell.xib */,
-				CC59A8921F41C9EA00D22353 /* LibraryTableViewCategoryCell.swift */,
+				CC8018221F026BDA0040B03F /* LibraryTableViewCell.xib */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -2071,8 +2068,6 @@
 				CC3E5D4B1F0109B700B9E11F /* ArticleRelatedCell.xib */,
 				CC7D21A71EFC051B007A062E /* ArticleItemViewController.swift */,
 				CC7D21A51EFBF52A007A062E /* ArticleItemViewModel.swift */,
-				85A317FB1F38644A00F3DCAE /* ArticleItemTopTabBarView.swift */,
-				85A317FD1F3864E600F3DCAE /* ArticleItemTopTabBarView.xib */,
 			);
 			name = Article;
 			sourceTree = "<group>";
@@ -2312,7 +2307,6 @@
 				CC944DBA1EE809AA00B8423C /* MyStatisticsCardCell.xib in Resources */,
 				CB8C34541EAF7F190003AB65 /* MyToBeVisionViewController.xib in Resources */,
 				7F0F02F41F13CDAD00007D50 /* SelectWeeklyChoicesViewController.xib in Resources */,
-				85A317FE1F3864E600F3DCAE /* ArticleItemTopTabBarView.xib in Resources */,
 				D50D6C251EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib in Resources */,
 				CB18BCC91EEAE9070035C1BB /* MockContentItemDown.json in Resources */,
 				CB810E681EF00E2C0043E3E5 /* MockUserDown.json in Resources */,
@@ -2912,7 +2906,6 @@
 				D58BD8771E9F65F7005676DE /* ArticleCollectionCell.swift in Sources */,
 				CC7D21A81EFC051B007A062E /* ArticleItemViewController.swift in Sources */,
 				CB1D5E3B1EC5E25A00BCDF8D /* ContentCollection.swift in Sources */,
-				85A317FC1F38644A00F3DCAE /* ArticleItemTopTabBarView.swift in Sources */,
 				CBC1DC151F0F68F900F6D056 /* SystemSetting.swift in Sources */,
 				0B573CA41EC3218D00A03602 /* MeetingLengthChartView.swift in Sources */,
 				CCA834E41F17663100FAAA2B /* FadeAnimator.swift in Sources */,

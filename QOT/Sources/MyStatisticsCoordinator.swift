@@ -13,11 +13,10 @@ final class MyStatisticsCoordinator: NSObject, ParentCoordinator {
 
     // MARK: - Properties
 
-    fileprivate let rootViewController: UIViewController
     fileprivate let services: Services
     fileprivate let startingSection: MyStatisticsSectionType
     fileprivate var topTabBarController: UINavigationController!
-    
+    fileprivate let rootViewController: UIViewController
     var children: [Coordinator] = []
 
     // MARK: - Life Cycle
@@ -34,12 +33,12 @@ final class MyStatisticsCoordinator: NSObject, ParentCoordinator {
             let myStatisticsViewController = MyStatisticsViewController(viewModel: viewModel)
             myStatisticsViewController.delegate = self
             myStatisticsViewController.title = "23 SEP // 30 Sep" //TODO: localise
-   
-            let leftButton = UIBarButtonItem(withImage: R.image.ic_minimize())
-            topTabBarController = UINavigationController(withPages: [myStatisticsViewController], topBarDelegate: self, leftButton: leftButton, rightButton: nil)
+
+            topTabBarController = UINavigationController(withPages: [myStatisticsViewController],
+                                                         topBarDelegate: self,
+                                                         leftButton: UIBarButtonItem(withImage: R.image.ic_minimize()))
             topTabBarController.modalPresentationStyle = .custom
             topTabBarController.transitioningDelegate = self
-
             rootViewController.present(topTabBarController, animated: true)
         } catch let error {
             assertionFailure("Failed to fetch cards with error: \(error)")

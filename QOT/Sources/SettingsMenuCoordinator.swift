@@ -11,36 +11,25 @@ import UIKit
 
 final class SettingsMenuCoordinator: ParentCoordinator {
 
-    fileprivate let rootViewController: SidebarViewController
     fileprivate let services: Services
-    fileprivate var presentationManager: PresentationManager
-    fileprivate var topTabBarController: UINavigationController!
     fileprivate let settingsMenuViewController: SettingsMenuViewController
-    
+    fileprivate let rootViewController: UIViewController
     var children = [Coordinator]()
 
     init?(root: SidebarViewController, services: Services) {
-        self.rootViewController = root
-        self.services = services
-        
-        presentationManager = PresentationManager(type: .fadeIn)
-        
         guard let viewModel = SettingsMenuViewModel(services: services) else {
             return nil
         }
-
-        let leftButton = UIBarButtonItem(withImage: R.image.ic_back())
+        
+        self.rootViewController = root
+        self.services = services
         settingsMenuViewController = SettingsMenuViewController(viewModel: viewModel)
-        presentationManager.presentationType = .fadeIn
-        settingsMenuViewController.modalPresentationStyle = .custom
-        settingsMenuViewController.transitioningDelegate = presentationManager
         settingsMenuViewController.title = R.string.localized.settingsTitle()
-        topTabBarController = UINavigationController(withPages: [settingsMenuViewController], topBarDelegate: self, leftButton: leftButton)
         settingsMenuViewController.delegate = self
     }
 
     func start() {
-        rootViewController.presentRightToLeft(controller: topTabBarController)
+        rootViewController.pushToStart(childViewController: settingsMenuViewController)
     }
 }
 
@@ -66,20 +55,5 @@ extension SettingsMenuCoordinator: SettingsMenuViewControllerDelegate {
         }
 
         startChild(child: coordinator)
-    }
-}
-
-// MARK: - TopNavigationBarDelegate
-
-extension SettingsMenuCoordinator: TopNavigationBarDelegate {
-    func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
-        topTabBarController.dismissLeftToRight()
-        removeChild(child: self)
-    }
-    
-    func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
-    }
-    
-    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {        
     }
 }

@@ -30,7 +30,9 @@ class TopNavigationBar: UINavigationBar {
     override init(frame: CGRect) {
         indicatorView = UIView()
         indicatorView.backgroundColor = .white
+
         super.init(frame: frame)
+        
         applyDefaultStyle()
     }
     

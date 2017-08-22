@@ -9,6 +9,7 @@
 import UIKit
 
 protocol LoginCoordinatorDelegate: class {
+
     func didLoginSuccessfully()
 }
 
@@ -16,11 +17,10 @@ final class LoginCoordinator: ParentCoordinator {
 
     // MARK: - Properties
 
-    var children: [Coordinator] = []
-
     fileprivate let window: UIWindow
     fileprivate let networkManager: NetworkManager
-    fileprivate weak var delegate: LoginCoordinatorDelegate?
+    fileprivate weak var delegate: LoginCoordinatorDelegate?    
+    var children: [Coordinator] = []
 
     // MARK: - Lifecycle
 
@@ -33,8 +33,10 @@ final class LoginCoordinator: ParentCoordinator {
     func start() {
         let loginViewController = LoginViewController(delegate: self)
         let navigationController = UINavigationController(rootViewController: loginViewController)
-        navigationController.navigationBar.isHidden = true
-
+        let navigationBar = navigationController.navigationBar
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.shadowImage = UIImage()
+        navigationBar.isTranslucent = true
         window.setRootViewControllerWithFadeAnimation(navigationController)
         window.makeKeyAndVisible()
     }

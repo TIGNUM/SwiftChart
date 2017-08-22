@@ -25,6 +25,7 @@ final class SettingsMenuViewController: UIViewController {
 
     // MARK: - Properties
 
+    @IBOutlet fileprivate weak var backgroundImage: UIImageView!
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
     @IBOutlet fileprivate weak var imgeView: UIImageView!
     @IBOutlet fileprivate weak var titleLabel: UILabel!
@@ -65,10 +66,11 @@ private extension SettingsMenuViewController {
         setupCollectionView()
         setupImageView()
         setupLabels()
+        setupBackgroundImage()
+    }
 
-        view.backgroundColor = .clear
+    private func setupBackgroundImage() {
         let backgroundImage = UIImageView(image: R.image.sidebar())
-
         view.addSubview(backgroundImage)
         backgroundImage.verticalAnchors == view.verticalAnchors
         backgroundImage.horizontalAnchors == view.horizontalAnchors
