@@ -214,7 +214,7 @@
 "Calendar.Hours" = "Hours";
 "Calendar.Minutes" = "Minutes";
 
-"LoadingView.Message" = "We are loading Please wait";
+"LoadingView.Message" = "Standby, I’m getting smarter so I can help you";
 
 "AddSensorView.Alert.Title" = "Something else?";
 "AddSensorView.Alert.Message" = "What device would you like us to support?";

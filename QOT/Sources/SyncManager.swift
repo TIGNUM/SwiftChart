@@ -40,21 +40,16 @@ final class SyncManager {
 
     @objc var isDownloadRecordsValid: Bool {
         do {
+            // There are some classes that must have downloaded to use the app. We only care about those classes
             let downloadClasses: [AnyClass] = [
                 SystemSetting.self,
                 UserSetting.self,
                 User.self,
                 Question.self,
-                Page.self,
-                UserChoice.self,
                 ContentCategory.self,
                 ContentCollection.self,
                 MyStatistics.self,
-                ContentItem.self,
-                Partner.self,
-                MyToBeVision.self,
-                Preparation.self,
-                PreparationCheck.self
+                ContentItem.self
             ]
             for value in downloadClasses {
                 guard try syncRecordService.lastSync(className: String(describing: value.self)) > 0 else {
