@@ -38,6 +38,10 @@ final class PreparationService {
             return try realmProvider.realm().anyCollection()
         }
     }
+    
+    func preparationChecksOnBackground() throws -> AnyRealmCollection<PreparationCheck> {
+        return try realmProvider.realm().anyCollection()
+    }
 
     func preparationChecksOnBackground(preparationID: String) throws -> AnyRealmCollection<PreparationCheck> {
         return try realmProvider.realm().preparationChecks(preparationID: preparationID)

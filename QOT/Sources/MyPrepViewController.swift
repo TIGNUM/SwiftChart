@@ -24,9 +24,26 @@ final class MyPrepViewController: UIViewController {
         return UITableView(
             delegate: self,
             dataSource: self,
-            dequeables: MyPrepTableViewCell.self,
-            MyPrepEmptyTableViewCell.self
+            dequeables: MyPrepTableViewCell.self
         )
+    }()
+    fileprivate lazy var emptyLabel: UILabel = {
+        let label = UILabel()
+
+        label.backgroundColor = .clear
+        label.textColor = .white40
+        label.numberOfLines = 0
+        label.prepareAndSetTextAttributes(text: R.string.localized.prepareMyPrepNoSavePreparations(),
+                                          font: Font.DPText,
+                                          alignment: .center,
+                                          lineSpacing: 7,
+                                          characterSpacing: 1)
+        self.view.addSubview(label)
+
+        label.horizontalAnchors == self.view.horizontalAnchors
+        label.verticalAnchors == self.view.verticalAnchors
+
+        return label
     }()
 
     let viewModel: MyPrepViewModel
@@ -60,6 +77,10 @@ final class MyPrepViewController: UIViewController {
                 self.tableView.deleteRows(at: deletions, with: .automatic)
             }
         }.dispose(in: disposeBag)
+
+        viewModel.itemCountUpdate.observeNext {[unowned self] itemCount in
+            self.emptyLabel.isHidden = !(itemCount == 0)
+        }.dispose(in: disposeBag)
     }
 }
 
@@ -83,38 +104,26 @@ extension MyPrepViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = viewModel.item(at: indexPath.row)
 
-        switch item {
-        case .item(let item):
-            let cell: MyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
-            let count: String = String(format: "%02d/%02d", item.finishedPreparationCount, item.totalPreparationCount)
+        let cell: MyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
+        let count: String = String(format: "%02d/%02d", item.finishedPreparationCount, item.totalPreparationCount)
 
-            var timeToEvent = ""
+        var timeToEvent = ""
 
-            if let startDate = item.startDate {
-                timeToEvent = Date().timeToDateAsString(startDate)
-            }
-
-            let footer = timeToEvent.isEmpty ? "" : R.string.localized.prepareMyPrepTimeToEvent(timeToEvent)
-            cell.setup(with: item.header, text: item.text, footer: footer, count: count)
-            
-            return cell
-        default:
-            let cell: MyPrepEmptyTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.setup(with: R.string.localized.prepareMyPrepNoSavePreparations())
-
-            return cell
+        if let startDate = item.startDate {
+            timeToEvent = Date().timeToDateAsString(startDate)
         }
+
+        let footer = timeToEvent.isEmpty ? "" : R.string.localized.prepareMyPrepTimeToEvent(timeToEvent)
+        cell.setup(with: item.header, text: item.text, footer: footer, count: count)
+
+        return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let item = viewModel.item(at: indexPath.row)
 
-        switch item {
-        case .item(let item):
-            delegate?.didTapMyPrepItem(with: item, viewController: self)
-        default: break
-        }
+        delegate?.didTapMyPrepItem(with: item, viewController: self)
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -122,12 +131,7 @@ extension MyPrepViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let item = viewModel.item(at: indexPath.row)
-
-        switch item {
-        case .item: return 117
-        default: return tableView.bounds.height - Layout.TabBarView.height * 2
-        }
+        return 117
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

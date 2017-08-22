@@ -10,11 +10,6 @@ import Foundation
 import RealmSwift
 import ReactiveKit
 
-enum MyPrepCellType {
-    case placeholder(String)
-    case item(MyPrepViewModel.Item)
-}
-
 final class MyPrepViewModel {
     
     enum CollectionUpdate {
@@ -35,21 +30,23 @@ final class MyPrepViewModel {
 
     fileprivate let services: Services
     fileprivate var preparations: AnyRealmCollection<Preparation>?
-    fileprivate var notificationHandler: NotificationTokenHandler?
+    fileprivate var preparationChecks: AnyRealmCollection<PreparationCheck>?
+    fileprivate var preparationsNotificationHandler: NotificationTokenHandler?
+    fileprivate var preparationChecksNotificationHandler: NotificationTokenHandler?
+
     fileprivate var items = [Item]() {
         didSet {
             updates.next(.reload)
         }
     }
     let updates = PublishSubject<CollectionUpdate, NoError>()
+    let itemCountUpdate = ReplayOneSubject<Int, NoError>()
 
     init(services: Services) {
         self.services = services
         preparations = try? services.preparationService.preparationsOnBackground(predicate: NSPredicate(format: "deleted == false"))
-        
-        refresh()
-
-        notificationHandler = preparations?.addNotificationBlock({ [unowned self] (change: RealmCollectionChange<AnyRealmCollection<Preparation>>) in
+        preparationChecks = try? services.preparationService.preparationChecksOnBackground()
+        preparationsNotificationHandler = preparations?.addNotificationBlock({ [unowned self] (change: RealmCollectionChange<AnyRealmCollection<Preparation>>) in
             switch change {
             case .update(_, let deletions, let insertions, _):
                 guard insertions.count == 0 else {
@@ -64,21 +61,35 @@ final class MyPrepViewModel {
                 self.updates.next(.update(deletions: deletionPaths, insertions: [], modifications: []))
                 self.updates.next(.didFinish)
             default:
-                self.refresh()
+                break
             }
         }).handler
+        preparationChecksNotificationHandler = preparationChecks?.addNotificationBlock({ [unowned self] (change: RealmCollectionChange<AnyRealmCollection<PreparationCheck>>) in
+            switch change {
+            case .update(_, _, _, let modifications):
+                guard modifications.count > 0 else {
+                    return
+                }
+                self.refresh()
+            default:
+                break
+            }
+        }).handler
+        
+        refresh()
     }
 
     var itemCount: Int {
-        return items.count > 0 ? items.count : 1
+        return items.count
     }
 
-    func item(at index: Index) -> MyPrepCellType {
-        return items.count > 0 ? MyPrepCellType.item(items[index]) : MyPrepCellType.placeholder("SOME PLACEHOLDER TEXT")
+    func item(at index: Index) -> MyPrepViewModel.Item {
+        return items[index]
     }
     
     func deleteItem(at index: Index) throws {
         try services.preparationService.deletePreparation(withLocalID: items[index].localID)
+        itemCountUpdate.next(itemCount - 1)
     }
     
     private func refresh() {
@@ -87,7 +98,7 @@ final class MyPrepViewModel {
         }
         do {
             var items: [Item] = []
-            for preparation in preparations {
+            try preparations.forEach({ (preparation: Preparation) in
                 let contentItems = Array(try self.services.contentService.contentItemsOnBackground(contentCollectionID: preparation.contentCollectionID))
                 let contentItemIDs = contentItems.filter ({ (contentItem) -> Bool in
                     switch contentItem.contentItemValue {
@@ -102,15 +113,15 @@ final class MyPrepViewModel {
                 let finishedPreparationCount = preparationChecks.reduce(0, { (result: Int, check: PreparationCheck) -> Int in
                     return (check.covered == nil) ? result : result + 1
                 })
-                let item = Item(localID: preparation.localID,
-                                header: preparation.subtitle,
-                                text: preparation.name,
-                                startDate: preparation.calendarEvent?.event?.startDate,
-                                totalPreparationCount: contentItemIDs.count,
-                                finishedPreparationCount: finishedPreparationCount)
-                items.append(item)
-            }
+                items.append(Item(localID: preparation.localID,
+                                  header: preparation.subtitle,
+                                  text: preparation.name,
+                                  startDate: preparation.calendarEvent?.event?.startDate,
+                                  totalPreparationCount: contentItemIDs.count,
+                                  finishedPreparationCount: finishedPreparationCount))
+            })
             self.items = items
+            itemCountUpdate.next(itemCount)
         } catch let error {
             print("Failed to update MyPrepViewModel: \(error)")
         }
