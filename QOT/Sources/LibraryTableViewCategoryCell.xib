@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -31,7 +31,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="OxE-4o-5gn">
-                        <rect key="frame" x="0.0" y="79" width="286" height="170.5"/>
+                        <rect key="frame" x="0.0" y="79" width="286" height="195"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="195" id="PMC-K1-MCq"/>
+                        </constraints>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="7tb-QI-tWi">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -44,7 +47,6 @@
                 <constraints>
                     <constraint firstItem="OxE-4o-5gn" firstAttribute="top" secondItem="Pfh-gs-qEb" secondAttribute="bottom" constant="8" id="HyM-g4-P82"/>
                     <constraint firstAttribute="trailing" secondItem="Pfh-gs-qEb" secondAttribute="trailing" constant="56" id="Il2-1M-UKi"/>
-                    <constraint firstAttribute="bottom" secondItem="OxE-4o-5gn" secondAttribute="bottom" constant="85" id="Qm4-UH-YDL"/>
                     <constraint firstItem="Pfh-gs-qEb" firstAttribute="leading" secondItem="8W3-Zd-7yE" secondAttribute="leading" constant="28" id="hfB-f9-uNN"/>
                     <constraint firstItem="Pfh-gs-qEb" firstAttribute="top" secondItem="8W3-Zd-7yE" secondAttribute="top" constant="30" id="khe-mA-ijf"/>
                     <constraint firstItem="Pfh-gs-qEb" firstAttribute="top" relation="greaterThanOrEqual" secondItem="8W3-Zd-7yE" secondAttribute="top" id="mll-c6-AOF"/>

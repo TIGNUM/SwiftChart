@@ -16,14 +16,14 @@ enum SectionType {
     var itemWidth: CGFloat {
         switch self {
         case .latestPost: return CGFloat(220)
-        case .categoryPost: return CGFloat(275)
+        case .categoryPost: return CGFloat(272)
         }
     }
 
     var rowHeight: CGFloat {
         switch self {
-        case .latestPost: return CGFloat(412)
-        case .categoryPost: return CGFloat(432)
+        case .latestPost: return CGFloat(312)
+        case .categoryPost: return CGFloat(313)
         }
     }
 }
