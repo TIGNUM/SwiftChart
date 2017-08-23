@@ -91,7 +91,7 @@ private extension MyWhyView {
                 if let vision = vision, let text = vision.text, !text.isEmpty {
                     visionText = text
                 }
-                myToBeVisionLabel.text = visionText
+                visionLabel(with: visionText)
             case .weeklyChoices(_, let choices):
                 weeklyChoices = choices
                 for index in 0..<Layout.MeSection.maxWeeklyPage {
@@ -152,9 +152,9 @@ private extension MyWhyView {
         if let vision = vision, let text = vision.text, !text.isEmpty {
             visionText = text
         }
-        let visLabel = visionLabel(with: visionText)
-        myToBeVisionLabel = visLabel
-        let stackView = UIStackView(arrangedSubviews: [visLabel])
+        myToBeVisionLabel = UILabel()
+        visionLabel(with: visionText)
+        let stackView = UIStackView(arrangedSubviews: [myToBeVisionLabel])
         stackView.alignment = .bottom
         stackView.spacing = 0.0
 
@@ -344,12 +344,12 @@ private extension MyWhyView {
         return label(with: text, textColor: Color.MeSection.whiteLabel, font: Font.H7Tag)
     }
 
-    func visionLabel(with text: String) -> UILabel {
-        switch screenType {
-        case .big: return label(with: text, textColor: .white, font: Font.H4Headline, uppercase: false)
-        case .medium: return label(with: text, textColor: .white, font: Font.H5SecondaryHeadline, uppercase: false)
-        case .small: return label(with: text, textColor: .white, font: Font.H6NavigationTitle, uppercase: false)
-        }
+    func visionLabel(with text: String) {
+
+        myToBeVisionLabel.numberOfLines = 0
+        myToBeVisionLabel.textColor = .white
+        myToBeVisionLabel.sizeToFit()
+        myToBeVisionLabel.prepareAndSetTextAttributes(text: text, font: Font.PTextSmall, lineSpacing: 7, characterSpacing: 1.73)
     }
 
     func label(with text: String, textColor: UIColor, font: UIFont, uppercase: Bool = true) -> UILabel {
