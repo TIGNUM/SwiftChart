@@ -27,10 +27,11 @@ final class LibraryCollectionCell: UICollectionViewCell, Dequeueable {
             default: mediaType = "Text"
             }
 
-            mediaTypeLabel.attributedText = Style.tag(mediaType.uppercased(), .white60).attributedString()
+            mediaTypeLabel.prepareAndSetTextAttributes(text: mediaType.uppercased(), font: Font.H7Tag, characterSpacing: 2)
+            mediaTypeLabel.textColor = .white60
         }
 
-        headlineLabel.attributedText = Style.headlineSmall(headline.makingTwoLines(), .white).attributedString()
+        headlineLabel.attributedText = Style.headlineSmall(headline.makingTwoLines().uppercased(), .white).attributedString()
         latestPostImageView.kf.setImage(with: previewImageURL, placeholder: R.image.preloading(), options: nil, progressBlock: nil, completionHandler: nil)
         latestPostImageView.layer.cornerRadius = 10.0
         latestPostImageView.layer.masksToBounds = true

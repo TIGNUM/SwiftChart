@@ -27,7 +27,8 @@ final class LibraryCollectionLatestPostCell: UICollectionViewCell, Dequeueable {
             default: mediaType = "Text"
             }
 
-            mediaTypeLabel.attributedText = Style.tag(mediaType.uppercased(), .white60).attributedString()
+            mediaTypeLabel.prepareAndSetTextAttributes(text: mediaType.uppercased(), font: Font.H7Tag, characterSpacing: 2)
+            mediaTypeLabel.textColor = .white60
         }
 
         headlineLabel.attributedText = Style.headlineSmall(headline.makingTwoLines().uppercased(), .white).attributedString()
