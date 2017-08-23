@@ -77,12 +77,13 @@ final class LibraryViewController: UIViewController {
 private extension LibraryViewController {
 
     func setupView() {
-        tableView.backgroundView = UIImageView(image: R.image.backgroundSidebar())
-        view.addSubview(tableView) 
-        tableView.topAnchor == view.topAnchor
+        view.addSubview(tableView)
         view.backgroundColor = .clear
+        tableView.topAnchor == view.topAnchor
         tableView.bottomAnchor == view.bottomAnchor
         tableView.horizontalAnchors == view.horizontalAnchors
+        tableView.backgroundView = UIImageView(image: R.image.backgroundSidebar())
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
 }
 
