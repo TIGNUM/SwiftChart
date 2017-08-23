@@ -14,14 +14,18 @@ final class MyDataViewModel {
     // MARK: - Properties
 
     private let services: Services
+    let updates = PublishSubject<CollectionUpdate, NoError>()
+
     var profileImageResource: MediaResource? {
         return services.userService.myToBeVision()?.profileImageResource
     }
-    let sectors = mockSectors
-    let updates = PublishSubject<CollectionUpdate, NoError>()
-    
+
     var sectorCount: Int {
         return sectors.count
+    }
+
+    var sectors: [Sector] {
+        return mockSectors(service: services.myStatisticsService)
     }
 
     func spike(for sector: Sector, at index: Index) -> Spike {
@@ -94,30 +98,41 @@ enum SectorLabelType {
 }
 
 protocol Spike {
-    var localID: String { get }
+
     var angle: CGFloat { get }
+
     var load: CGFloat { get }
 
     func spikeLoad() -> CGFloat
 }
 
 protocol Sector {
+
     var startAngle: CGFloat { get }
+
     var endAngle: CGFloat { get }
+
     var spikes: [Spike] { get }
+
     var labelType: SectorLabelType { get }
+
     var strokeColor: UIColor { get }
+
     var type: SectorType { get }
 }
 
 struct MockSpike: Spike {
-    let localID: String
     let angle: CGFloat
     let load: CGFloat
 
     func spikeLoad() -> CGFloat {
-        return (load < 0.15) ? 0.15 : load
-//        return (load > 0.9 ? 0.9 : ((load < 0.15) ? 0.15 : load))
+        if load < 0.15 {
+            return 0.15
+        } else if load > 0.9 {
+            return 0.9
+        } else {
+            return load
+        }
     }
 }
 
@@ -130,12 +145,12 @@ struct MockSector: Sector {
     let type: SectorType
 }
 
-private var mockSectors: [Sector] {
+private func mockSectors(service: MyStatisticsService) -> [Sector] {
     return [
         MockSector(
             startAngle: 219,
             endAngle: 234,
-            spikes: peakSpikes,
+            spikes: peakSpikes(service: service),
             labelType: .peak,
             strokeColor: .magenta,
             type: .load
@@ -144,7 +159,7 @@ private var mockSectors: [Sector] {
         MockSector(
             startAngle: 200,
             endAngle: 233,
-            spikes: meetingsSpikes,
+            spikes: meetingsSpikes(service: service),
             labelType: .meetings,
             strokeColor: .blue,
             type: .load
@@ -153,7 +168,7 @@ private var mockSectors: [Sector] {
         MockSector(
             startAngle: 176,
             endAngle: 199,
-            spikes: intensitySpikes,
+            spikes: intensitySpikes(service: service),
             labelType: .intensity,
             strokeColor: .yellow,
             type: .load
@@ -162,7 +177,7 @@ private var mockSectors: [Sector] {
         MockSector(
             startAngle: 137,
             endAngle: 175,
-            spikes: travelSpikes,
+            spikes: travelSpikes(service: service),
             labelType: .travel,
             strokeColor: .green,
             type: .load
@@ -171,7 +186,7 @@ private var mockSectors: [Sector] {
         MockSector(
             startAngle: 120,
             endAngle: 136,
-            spikes: sleepSpikes,
+            spikes: sleepSpikes(service: service),
             labelType: .sleep,
             strokeColor: .orange,
             type: .bodyBrain
@@ -180,7 +195,7 @@ private var mockSectors: [Sector] {
         MockSector(
             startAngle: 119,
             endAngle: 135,
-            spikes: activitySpikes,
+            spikes: activitySpikes(service: service),
             labelType: .activity,
             strokeColor: .cyan,
             type: .bodyBrain
@@ -188,46 +203,46 @@ private var mockSectors: [Sector] {
     ]
 }
 
-private var peakSpikes: [Spike] {
+private func peakSpikes(service: MyStatisticsService) -> [Spike] {
     return [
-        MockSpike(localID: UUID().uuidString, angle: 245, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, angle: 235, load: randomNumber)
+        MockSpike(angle: 245, load: service.universeValue(statistics: service.card(key: "peakPerformance.upcoming.week"))),
+        MockSpike(angle: 235, load: service.universeValue(statistics: service.card(key: "peakPerformance.average.week")))
     ]
 }
 
-private var meetingsSpikes: [Spike] {
+private func meetingsSpikes(service: MyStatisticsService) -> [Spike] {
     return [
-        MockSpike(localID: UUID().uuidString, angle: 225, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, angle: 210, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, angle: 205, load: randomNumber)
+        MockSpike(angle: 225, load: service.universeValue(statistics: service.card(key: "meetings.number.day"))),
+        MockSpike(angle: 215, load: service.universeValue(statistics: service.card(key: "meetings.length"))),
+        MockSpike(angle: 205, load: service.universeValue(statistics: service.card(key: "meetings.timeBetween")))
     ]
 }
 
-private var intensitySpikes: [Spike] {
+private func intensitySpikes(service: MyStatisticsService) -> [Spike] {
     return [
-        MockSpike(localID: UUID().uuidString, angle: 185, load: randomNumber)
+        MockSpike(angle: 195, load: service.universeValue(statistics: service.card(key: "intentensity.week")))
     ]
 }
 
-private var travelSpikes: [Spike] {
+private func travelSpikes(service: MyStatisticsService) -> [Spike] {
     return [
-        MockSpike(localID: UUID().uuidString, angle: 175, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, angle: 170, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, angle: 160, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, angle: 155, load: randomNumber)
+        MockSpike(angle: 185, load: service.universeValue(statistics: service.card(key: "travel.numberOfMeetings.4weeks"))),
+        MockSpike(angle: 175, load: service.universeValue(statistics: service.card(key: "travel.tripsNextFourWeeks"))),
+        MockSpike(angle: 165, load: service.universeValue(statistics: service.card(key: "travel.timeZoneChange.week"))),
+        MockSpike(angle: 155, load: service.universeValue(statistics: service.card(key: "travel.tripsMaxTimeZone")))
     ]
 }
 
-private var sleepSpikes: [Spike] {
+private func sleepSpikes(service: MyStatisticsService) -> [Spike] {
     return [
-        MockSpike(localID: UUID().uuidString, angle: 145, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, angle: 140, load: randomNumber)
+        MockSpike(angle: 145, load: service.universeValue(statistics: service.card(key: "sleep.quantity"))),
+        MockSpike(angle: 135, load: service.universeValue(statistics: service.card(key: "sleep.quality")))
     ]
 }
 
-private var activitySpikes: [Spike] {
+private func activitySpikes(service: MyStatisticsService) -> [Spike] {
     return [
-        MockSpike(localID: UUID().uuidString, angle: 130, load: randomNumber),
-        MockSpike(localID: UUID().uuidString, angle: 112, load: randomNumber)
+        MockSpike(angle: 125, load: service.universeValue(statistics: service.card(key: "activity.sittingMovement"))),
+        MockSpike(angle: 115, load: service.universeValue(statistics: service.card(key: "activity.level")))
     ]
 }
