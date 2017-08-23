@@ -65,7 +65,7 @@
 		<false/>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>esb2.tignum.com</key>
+			<key>esb.tignum.com</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>

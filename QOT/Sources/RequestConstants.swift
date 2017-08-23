@@ -8,7 +8,7 @@
 
 import Alamofire
 
-let baseURL = URL(string: "https://esb2.tignum.com")!
+let baseURL = URL(string: "https://esb.tignum.com")!
 
 enum Endpoint: String {
 
