@@ -172,7 +172,6 @@ private extension MyToBeVisionViewController {
         setImageButton()
         imageView.alpha = 0.0
         imageViewOverlay.alpha = 0.0
-        subtitleLabel.text = viewModel.dateText
     }
 
     private func setImageButton(isEditing: Bool = false) {
@@ -216,7 +215,7 @@ private extension MyToBeVisionViewController {
         messageTextView.attributedText = NSMutableAttributedString(
             string: viewModel.text ?? "",
             letterSpacing: -0.4,
-            font: UIFont(name: "BentonSans-Book", size: 16)!,
+            font: Font.DPText,
             lineSpacing: 10.0,
             textColor: UIColor.white)
         messageTextView.set(placeholderText: R.string.localized.meSectorMyWhyVisionMessagePlaceholder(), placeholdeColor: UIColor.white)
@@ -224,10 +223,11 @@ private extension MyToBeVisionViewController {
         messageTextView.textContainerInset = UIEdgeInsets(top: 14.0, left: 0.0, bottom: 0.0, right: 0.0)
         
         subtitleLabel.attributedText = NSMutableAttributedString(
-            string: viewModel.subHeadline?.uppercased() ?? "",
+            string: viewModel.dateText?.uppercased() ?? "",
             letterSpacing: 2,
             font: Font.H7Tag,
             lineSpacing: 0)
+        subtitleLabel.textColor = .white30
     }
 
     func maskImageView(imageView: UIImageView) {
