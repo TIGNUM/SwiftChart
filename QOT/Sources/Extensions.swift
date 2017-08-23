@@ -58,6 +58,12 @@ extension NSAttributedString {
 
 extension UIBezierPath {
 
+    class func hexagonPath(forRect rect: CGRect) -> UIBezierPath {
+        let cornerRadius = max(rect.width, rect.height) * 0.1
+        let path = UIBezierPath(polygonIn: rect, sides: 6, lineWidth: 0, cornerRadius: cornerRadius, rotateByDegs: 180 / 6)
+        return path
+    }
+    
     class func circlePath(center: CGPoint, radius: CGFloat) -> UIBezierPath {
         let startAngle = CGFloat(0)
         let endAngle = CGFloat(Double.pi * 2)
@@ -70,34 +76,62 @@ extension UIBezierPath {
             clockwise: true
         )
     }
-
-    class func roundedPolygonPath(rect: CGRect, lineWidth: CGFloat, sides: NSInteger, cornerRadius: CGFloat = 0, rotationOffset: CGFloat = 0, radius: CGFloat = -1) -> UIBezierPath {
-        let path = UIBezierPath()
-        let theta: CGFloat = CGFloat(2.0 * CGFloat.pi) / CGFloat(sides)
-        let width = min(rect.size.width, rect.size.height)
-        let center = CGPoint(x: rect.origin.x + width / 2.0, y: rect.origin.y + width / 2.0)
-        let radius = radius != -1 ? radius :(width - lineWidth + cornerRadius - (cos(theta) * cornerRadius)) / 2.0
-        var angle = CGFloat(rotationOffset)
-
-        let corner = CGPoint(x: center.x + (radius - cornerRadius) * cos(angle), y: center.y + (radius - cornerRadius) * sin(angle))
-        path.move(to: CGPoint(x: corner.x + cornerRadius * cos(angle + theta), y: corner.y + cornerRadius * sin(angle + theta)))
-
-        for _ in 0..<sides {
-            angle += theta
-            let corner = CGPoint(x: center.x + (radius - cornerRadius) * cos(angle), y: center.y + (radius - cornerRadius) * sin(angle))
-            let tip = CGPoint(x: center.x + radius * cos(angle), y: center.y + radius * sin(angle))
-            let start = CGPoint(x: corner.x + cornerRadius * cos(angle - theta), y: corner.y + cornerRadius * sin(angle - theta))
-            let end = CGPoint(x: corner.x + cornerRadius * cos(angle + theta), y: corner.y + cornerRadius * sin(angle + theta))
-            path.addLine(to: start)
-            path.addQuadCurve(to: end, controlPoint: tip)
-        }
-
-        path.close()
-        let bounds = path.bounds
-        let transform = CGAffineTransform(translationX: -bounds.origin.x + rect.origin.x + lineWidth / 2.0, y: -bounds.origin.y + rect.origin.y + lineWidth / 2.0)
-        path.apply(transform)
+    
+    // @see adapted from https://stackoverflow.com/questions/24767978/how-to-round-corners-of-uiimage-with-hexagon-mask
+    /// Create UIBezierPath for regular polygon with rounded corners
+    ///
+    /// - parameter rect:            The CGRect of the square in which the path should be created.
+    /// - parameter sides:           How many sides to the polygon (e.g. 6=hexagon; 8=octagon, etc.).
+    /// - parameter lineWidth:       The width of the stroke around the polygon. The polygon will be inset such that the stroke stays within the above square. Default value 1.
+    /// - parameter cornerRadius:    The radius to be applied when rounding the corners. Default value 0.
+    /// - parameter rotateByDegs:    The degrees to rotate the final polygon by. Default value 0.
+    
+    convenience init(polygonIn rect: CGRect, sides: Int, lineWidth: CGFloat = 1, cornerRadius: CGFloat = 0, rotateByDegs degs: CGFloat = 0) {
+        self.init()
         
-        return path
+        let theta = 2 * CGFloat.pi / CGFloat(sides)                        // how much to turn at every corner
+        let offset = cornerRadius * tan(theta / 2)                  // offset from which to start rounding corners
+        let squareWidth = min(rect.size.width, rect.size.height)    // width of the square
+        
+        // calculate the length of the sides of the polygon
+        
+        var length = squareWidth - lineWidth
+        if sides % 4 != 0 {                                         // if not dealing with polygon which will be square with all sides ...
+            length = length * cos(theta / 2) + offset / 2           // ... offset it inside a circle inside the square
+        }
+        let sideLength = length * tan(theta / 2)
+        
+        // start drawing at `point` in lower right corner, but center it
+        
+        var point = CGPoint(x: rect.origin.x + rect.size.width / 2 + sideLength / 2 - offset, y: rect.origin.y + rect.size.height / 2 + length / 2)
+        var angle = CGFloat.pi
+        move(to: point)
+        
+        // draw the sides and rounded corners of the polygon
+        
+        for _ in 0 ..< sides {
+            point = CGPoint(x: point.x + (sideLength - offset * 2) * cos(angle), y: point.y + (sideLength - offset * 2) * sin(angle))
+            addLine(to: point)
+            
+            let center = CGPoint(x: point.x + cornerRadius * cos(angle + .pi / 2), y: point.y + cornerRadius * sin(angle + .pi / 2))
+            addArc(withCenter: center, radius: cornerRadius, startAngle: angle - .pi / 2, endAngle: angle + theta - .pi / 2, clockwise: true)
+            
+            point = currentPoint
+            angle += theta
+        }
+        
+        close()
+        
+        if degs != 0 {
+            // @see adapted from https://stackoverflow.com/questions/13738364/rotate-cgpath-without-changing-its-position
+            let center = CGPoint(x: cgPath.boundingBox.midX, y: cgPath.boundingBox.midY)
+            apply(CGAffineTransform(translationX: center.x, y: center.y).inverted())
+            apply(CGAffineTransform(rotationAngle: degs * (CGFloat.pi / 180.0)))
+            apply(CGAffineTransform(translationX: center.x, y: center.y))
+        }
+        
+        self.lineWidth = lineWidth           // in case we're going to use CoreGraphics to stroke path, rather than CAShapeLayer
+        lineJoinStyle = .round
     }
 }
 
@@ -262,6 +296,23 @@ extension UIImage {
         return nil
     }
     
+    // @see adapted from https://stackoverflow.com/questions/6496441/creating-a-uiimage-from-a-uicolor-to-use-as-a-background-image-for-uibutton
+    static func from(color: UIColor, size: CGSize) -> UIImage? {
+        guard size.width > 0, size.height > 0 else {
+            return nil
+        }
+        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        UIGraphicsBeginImageContext(rect.size)
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return nil
+        }
+        context.setFillColor(color.cgColor)
+        context.fill(rect)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img
+    }
+    
     convenience init?(dataUrl: URL) {
         do {
             let data = try Data(contentsOf: dataUrl)
@@ -285,15 +336,11 @@ extension UIImageView {
         self.clipsToBounds = true
     }
 
-    func setupHexagonImageView(lineWidth: CGFloat = 0) {
-        let frame = CGRect(x: self.bounds.origin.x, y: self.bounds.origin.y, width: self.bounds.size.width + 5, height: self.bounds.size.height + 5)
-        let path = UIBezierPath.roundedPolygonPath(rect: frame, lineWidth: lineWidth, sides: 6, cornerRadius: 0, rotationOffset: CGFloat(CGFloat.pi * 0.5))
-        let mask = CAShapeLayer()
-        mask.path = path.cgPath
-        mask.lineWidth = lineWidth
-        mask.strokeColor = UIColor.clear.cgColor
-        mask.fillColor = UIColor.white.cgColor
-        self.layer.mask = mask
+    func applyHexagonMask() {
+        let clippingBorderPath = UIBezierPath.hexagonPath(forRect: bounds)
+        let borderMask = CAShapeLayer()
+        borderMask.path = clippingBorderPath.cgPath
+        layer.mask = borderMask
     }
     
     func setImageFromResource(_ resource: MediaResource, defaultImage: UIImage? = nil, completion: ((UIImage?, Error?) -> Void)? = nil) {
@@ -305,9 +352,11 @@ extension UIImageView {
             kf.setImage(with: remoteURL, placeholder: defaultImage, options: options, progressBlock: nil, completionHandler: { (image: Image?, error: NSError?, cacheType: CacheType, url: URL?) in
                 completion?(image, error)
             })
-        } else {
+        } else if let defaultImage = defaultImage {
             image = defaultImage
             completion?(image, nil)
+        } else {
+            completion?(nil, nil)
         }
     }
 }
@@ -326,9 +375,11 @@ extension UIButton {
             kf.setImage(with: remoteURL, for: .normal, placeholder: defaultImage, options: options, progressBlock: nil, completionHandler: { (image: Image?, error: NSError?, cacheType: CacheType, url: URL?) in
                 completion?(image, error)
             })
-        } else {
+        } else if let defaultImage = defaultImage {
             setImage(defaultImage, for: .normal)
             completion?(defaultImage, nil)
+        } else {
+            completion?(nil, nil)
         }
     }
     
@@ -342,9 +393,11 @@ extension UIButton {
             kf.setBackgroundImage(with: remoteURL, for: .normal, placeholder: defaultImage, options: options, progressBlock: nil, completionHandler: { (image: Image?, error: NSError?, cacheType: CacheType, url: URL?) in
                 completion?(image, error)
             })
-        } else {
+        } else if let defaultImage = defaultImage {
             setBackgroundImage(defaultImage, for: .normal)
             completion?(defaultImage, nil)
+        } else {
+            completion?(nil, nil)
         }
     }
 }

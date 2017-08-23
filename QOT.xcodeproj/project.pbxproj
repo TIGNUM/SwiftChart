@@ -282,7 +282,6 @@
 		CC02E1491F279A0F00134574 /* SettingsCalendarListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC02E1481F279A0F00134574 /* SettingsCalendarListViewModel.swift */; };
 		CC02E14B1F279E6700134574 /* SettingsCalendarListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC02E14A1F279E6700134574 /* SettingsCalendarListViewController.swift */; };
 		CC05CB761EDEC6D700D15ABC /* CGPoint+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC05CB741EDEC6D700D15ABC /* CGPoint+Convenience.swift */; };
-		CC05CB771EDEC6D700D15ABC /* UIBezierPath+Hexagon.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC05CB751EDEC6D700D15ABC /* UIBezierPath+Hexagon.swift */; };
 		CC05CB791EDEC73C00D15ABC /* UITableView+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC05CB781EDEC73C00D15ABC /* UITableView+Create.swift */; };
 		CC0FF8D21EA784400028D64F /* PartnersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0FF8D11EA784400028D64F /* PartnersViewModel.swift */; };
 		CC0FF8D41EA788350028D64F /* PartnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0FF8D31EA788350028D64F /* PartnersViewController.swift */; };
@@ -758,7 +757,6 @@
 		CC02E1481F279A0F00134574 /* SettingsCalendarListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCalendarListViewModel.swift; sourceTree = "<group>"; };
 		CC02E14A1F279E6700134574 /* SettingsCalendarListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCalendarListViewController.swift; sourceTree = "<group>"; };
 		CC05CB741EDEC6D700D15ABC /* CGPoint+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Convenience.swift"; sourceTree = "<group>"; };
-		CC05CB751EDEC6D700D15ABC /* UIBezierPath+Hexagon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+Hexagon.swift"; sourceTree = "<group>"; };
 		CC05CB781EDEC73C00D15ABC /* UITableView+Create.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Create.swift"; sourceTree = "<group>"; };
 		CC0FF8D11EA784400028D64F /* PartnersViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnersViewModel.swift; sourceTree = "<group>"; };
 		CC0FF8D31EA788350028D64F /* PartnersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnersViewController.swift; sourceTree = "<group>"; };
@@ -1548,7 +1546,6 @@
 				CB9BB0C11F0CD13E009067D7 /* TimeInterval+Convenience.swift */,
 				CCE6CD741F1390AD00B66DA3 /* UIApplication+Convenience.swift */,
 				7FE38DD41F2B2E760061E98F /* UIBarButtonItem+Convenience.swift */,
-				CC05CB751EDEC6D700D15ABC /* UIBezierPath+Hexagon.swift */,
 				852DADC11EEDDE5100A10882 /* UIButton+AttributedTitle.swift */,
 				CC1E2A5E1EDF1DE100B9EFD3 /* UICollectionView+Create.swift */,
 				CC64725A1EE6F9DE00BFA3D9 /* UIColor+Palette.swift */,
@@ -2721,7 +2718,6 @@
 				7F4251C31F211BC600EA451D /* PermissionHandler.swift in Sources */,
 				CBB4DD141EDEBDA80071494A /* URLRequestBuildable.swift in Sources */,
 				CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */,
-				CC05CB771EDEC6D700D15ABC /* UIBezierPath+Hexagon.swift in Sources */,
 				7FDFF36B1F1916B400F7A7EC /* Realm+Utility.swift in Sources */,
 				CBC1DC221F0FB36400F6D056 /* QuestionGroup.swift in Sources */,
 				D52DAF9B1EC1E87D00C63156 /* ActivityChartView.swift in Sources */,

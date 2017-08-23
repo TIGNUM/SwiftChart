@@ -46,7 +46,6 @@ final class SleepChartView: UIView {
 
     fileprivate var outerPolygonShape = CAShapeLayer()
     fileprivate var innerPolygonShape = CAShapeLayer()
-    fileprivate var centerPolygonShape = CAShapeLayer()
     fileprivate var arrayOfLabels = [UILabel]()
     fileprivate var myStatistics: MyStatistics
     fileprivate var cardType: MyStatisticsCardType
@@ -67,45 +66,15 @@ final class SleepChartView: UIView {
 
 private extension SleepChartView {
 
-     func configureInnerPolygon() {
-        let radius = (min(bounds.width, bounds.height) / 2.0) * CGFloat(myStatistics.teamAverage)
-        innerPolygonShape.path = roundedPolygonPath(lineWidth: 0, radius: radius).cgPath
-    }
-
-    func roundedPolygonPath( lineWidth: CGFloat, cornerRadius: CGFloat = 0, rotationOffset: CGFloat = 0, radius: CGFloat = -1) -> UIBezierPath {
-        let path = UIBezierPath()
-        let tempWidth = frame.width - frame.width / 3
-        let y = tempWidth / 5
-        let x = tempWidth / 4
-        let rect = CGRect(x: x, y: y, width: tempWidth, height: frame.height)
-        let theta: CGFloat = CGFloat(2.0 * CGFloat.pi) / CGFloat(5)
-        let width = tempWidth
-        let center = CGPoint(x: rect.origin.x + width / 2.0, y: rect.origin.y + width / 2.0)
-        let radius = radius != -1 ? radius :(width - lineWidth + cornerRadius - (cos(theta) * cornerRadius)) / 2.0
-        var angle = CGFloat(rotationOffset)
-
-        let corner = CGPoint(x: center.x + (radius - cornerRadius) * cos(angle), y: center.y + (radius - cornerRadius) * sin(angle))
-        path.move(to: CGPoint(x: corner.x + cornerRadius * cos(angle + theta), y: corner.y + cornerRadius * sin(angle + theta)))
-
-        for _ in 0..<5 {
-            angle += theta
-            let corner = CGPoint(x: center.x + (radius - cornerRadius) * cos(angle), y: center.y + (radius - cornerRadius) * sin(angle))
-            let tip = CGPoint(x: center.x + radius * cos(angle), y: center.y + radius * sin(angle))
-            let start = CGPoint(x: corner.x + cornerRadius * cos(angle - theta), y: corner.y + cornerRadius * sin(angle - theta))
-            let end = CGPoint(x: corner.x + cornerRadius * cos(angle + theta), y: corner.y + cornerRadius * sin(angle + theta))
-            path.addLine(to: start)
-            path.addQuadCurve(to: end, controlPoint: tip)
-        }
-
-        path.close()
-        return path
+    var sleepChartYPos: CGFloat {
+        return frame.height / 5.0
     }
 
     func lineBounds(cornerRadius: CGFloat = 0, rotationOffset: CGFloat = 0, thinLines: Bool) {
         precondition(myStatistics.dataPoints.isEmpty == false, "No Data available")
 
         let tempWidth = frame.width - frame.width / 3
-        let y =  frame.height / 5
+        let y =  sleepChartYPos
         let rect = CGRect(x: tempWidth / 4, y: y, width: tempWidth, height: frame.height)
         let theta: CGFloat = CGFloat(2.0 * CGFloat.pi) / CGFloat(5)
         let width = min(frame.width, frame.height)
@@ -181,16 +150,20 @@ private extension SleepChartView {
 
     func drawShape() {
         outerPolygonShape = shape(borderColor: .white20)
-        outerPolygonShape.path =  roundedPolygonPath(lineWidth: 1).cgPath
-
+        outerPolygonShape.path = UIBezierPath.pentagonPath(forRect: frame).cgPath
+        outerPolygonShape.transform = CATransform3DMakeTranslation(0, sleepChartYPos, 0)
+        
         innerPolygonShape = shape(borderColor: .white20)
-        centerPolygonShape = shape(borderColor: .white20, fillColor: .gray)
-        centerPolygonShape.path = roundedPolygonPath( lineWidth: 1, radius: 5).cgPath
-
+        let scaleFactor = CGFloat(myStatistics.teamAverage)
+        let innerFrame = frame.applying(CGAffineTransform(scaleX: scaleFactor, y: scaleFactor))
+        innerPolygonShape.path = UIBezierPath.pentagonPath(forRect: innerFrame).cgPath
+        innerPolygonShape.transform = CATransform3DMakeTranslation(
+            frame.midX - innerFrame.midX,
+            frame.midY - innerFrame.midY + sleepChartYPos,
+            0)
+        
         layer.addSublayer(innerPolygonShape)
         layer.addSublayer(outerPolygonShape)
-        layer.addSublayer(centerPolygonShape)
-
     }
 
     func createDayLabel() {
@@ -236,7 +209,16 @@ private extension SleepChartView {
         lineBounds(thinLines: true)
         lineBounds(thinLines: false)
         drawShape()
-        configureInnerPolygon()
     }
 
+}
+
+// MARK: - UIBezierPath helper
+
+private extension UIBezierPath {
+    
+    class func pentagonPath(forRect rect: CGRect) -> UIBezierPath {
+        let path = UIBezierPath(polygonIn: rect, sides: 5, lineWidth: 0, cornerRadius: 0, rotateByDegs: 90 / 5)
+        return path
+    }
 }

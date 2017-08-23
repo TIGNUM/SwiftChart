@@ -273,7 +273,7 @@ extension PartnersViewController: RSKImageCropViewControllerDataSource {
     }
 
     func imageCropViewControllerCustomMaskPath(_ controller: RSKImageCropViewController) -> UIBezierPath {
-        return UIBezierPath.roundedPolygonPath(rect: controller.maskRect, lineWidth: 0, sides: 6, rotationOffset: CGFloat(CGFloat.pi * 0.5))
+        return UIBezierPath.hexagonPath(forRect: controller.maskRect)
     }
 }
 

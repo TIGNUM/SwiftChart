@@ -41,6 +41,8 @@ class MyWhyView: UIView, MyUniverseView {
 
         let viewFrame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.width - viewRightMargin, height: frame.height)
         super.init(frame: viewFrame)
+        
+        addGestureRecognizer()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -53,8 +55,8 @@ class MyWhyView: UIView, MyUniverseView {
         super.layoutSubviews()
 
         cleanUpAndDraw()
-        reload() // @warning reload after drawing else button bg images draw at the pre-layout constraint size
-
+        reload() // @warning reload after drawing else views won't be laid out
+        
         if updatesToken == nil {
             updatesToken = myWhyViewModel.updates.observeNext { [weak self] (_: CollectionUpdate) in
                 self?.reload()
@@ -64,7 +66,8 @@ class MyWhyView: UIView, MyUniverseView {
 
     func draw() {
         drawMyWhy(myWhyViewModel: myWhyViewModel, layout: Layout.MeSection(viewControllerFrame: self.fullViewFrame))
-        addGestureRecognizer()
+        layoutIfNeeded()
+        drawMyWhyAfterDidLayoutSubviews()
     }
 
     // MARK: - Gesture Recognizer
@@ -95,25 +98,26 @@ private extension MyWhyView {
             case .weeklyChoices(_, let choices):
                 weeklyChoices = choices
                 for index in 0..<Layout.MeSection.maxWeeklyPage {
-                    var choice: WeeklyChoice?
-                    if index < choices.count {
-                        choice = choices[index]
+                    guard index < choices.count else {
+                        return
                     }
-                    weeklyChoiceButtons[index].setTitle(choice?.title?.uppercased(), for: .normal)
+                    let choice = choices[index]
+                    let button = weeklyChoiceButtons[index]
+                    button.setTitle(choice.title?.uppercased(), for: .normal)
                 }
             case .partners(_, let partners):
                 self.partners = Array(partners)
                 for index in 0..<Layout.MeSection.maxPartners {
-                    var partner: Partner?
-                    if index < partners.count {
-                        partner = partners[index]
+                    guard index < partners.count else {
+                        return
                     }
-                    let title = (partner?.profileImageResource?.isAvailable ?? false) ? nil : partner?.initials.uppercased()
-                    qotPartnersButtons[index].setTitle(title, for: .normal)
-                    if let resource = partner?.profileImageResource {
-                        qotPartnersButtons[index].setImageFromResource(resource)
+                    let partner = partners[index]
+                    let button = qotPartnersButtons[index]
+                    let title = (partner.profileImageResource?.isAvailable ?? false) ? nil : partner.initials.uppercased()
+                    button.setTitle(title, for: .normal)
+                    if let resource = partner.profileImageResource {
+                        button.setImageFromResource(resource)
                     }
-                    qotPartnersButtons[index].imageView?.setupHexagonImageView()
                 }
             }
         }
@@ -132,6 +136,13 @@ private extension MyWhyView {
                 self.partners = Array(partners)
                 addPartners(layout: layout, title: title, partners: self.partners)
             }
+        }
+    }
+    
+    func drawMyWhyAfterDidLayoutSubviews() {
+        qotPartnersButtons.forEach { (button: UIButton) in
+            button.setImage(UIImage.from(color: UIColor.whiteLight, size: button.bounds.size), for: .normal)
+            button.imageView?.applyHexagonMask()
         }
     }
 
@@ -304,12 +315,7 @@ private extension MyWhyView {
         button.setTitle(title, for: .normal)
         button.titleLabel?.font = Font.H6NavigationTitle
         button.setTitleColor(Color.MeSection.whiteLabel, for: .normal)
-        button.setBackgroundImage(R.image.myWhyPartnerFrame(), for: .normal)
         button.addTarget(self, action: #selector(didTapPartner), for: .touchUpInside)
-        if let resource = profileImageResource {
-            button.setImageFromResource(resource)
-        }
-        button.imageView?.setupHexagonImageView()
         button.tag = index
 
         return button

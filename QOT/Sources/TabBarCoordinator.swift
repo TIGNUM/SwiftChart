@@ -106,7 +106,6 @@ final class TabBarCoordinator: ParentCoordinator {
         vc.modalTransitionStyle = .crossDissolve
         return vc
     }()
-
     
     // MARK: - Init
     

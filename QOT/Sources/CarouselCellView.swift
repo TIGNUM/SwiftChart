@@ -177,7 +177,10 @@ private extension CarouselCellView {
         view.translatesAutoresizingMaskIntoConstraints = true
 
         addSubview(view)
-        maskFoto(imageView: imageView)
+        
+        imageView.applyHexagonMask()
+        imageView.backgroundColor = UIColor.whiteLight
+        
         isEditing = false
     }
     
@@ -209,14 +212,5 @@ private extension CarouselCellView {
         let nibView: UIView = (nib.instantiate(withOwner: self, options: nil).first as? UIView)!
 
         return nibView
-    }
-
-    private func maskFoto(imageView: UIImageView) {
-        let clippingBorderPath = UIBezierPath.partnersHexagon
-        let borderMask = CAShapeLayer()
-        borderMask.path = clippingBorderPath.cgPath
-        imageView.layer.mask = borderMask
-        imageView.layer.backgroundColor = UIColor.white.withAlphaComponent(0.1).cgColor
-        imageView.contentMode = .scaleAspectFill
     }
 }
