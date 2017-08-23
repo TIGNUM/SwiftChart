@@ -12,20 +12,6 @@ platform :ios do
     scan(scheme: "QOT")
   end
 
-  desc "Deploy to Hockeyapp"
-  lane :beta do
-    # Install certificates and profiles
-    match(type: "adhoc", readonly: true)
-
-    increment_build_number(build_number: ENV["BITRISE_BUILD_NUMBER"])
-
-    # Build
-    gym(scheme: "QOT")
-
-    # Release to hockey app
-    hockey(api_token: ENV["HOCKEYAPP_API_TOKEN"])
-  end
-
   desc "Deploy to Crashlytics Beta"
   lane :cbeta do
     # Install certificates and profiles
@@ -41,9 +27,19 @@ platform :ios do
     )
   end
 
-  desc "Deploy a new version to the App Store"
+  desc "Deploy to Hockeyapp"
   lane :release do
     
+    # Install certificates and profiles
+    sigh(force: false)
+
+    increment_build_number(build_number: ENV["BITRISE_BUILD_NUMBER"])
+
+    # Build
+    gym(scheme: "QOT")
+
+    # Release to hockey app
+    hockey(api_token: ENV["HOCKEYAPP_API_TOKEN"])
   end
 
   after_all do |lane|

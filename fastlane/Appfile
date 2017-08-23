@@ -1,4 +1,4 @@
-app_identifier "com.tignum.qot.v2" # The bundle identifier of your app
+app_identifier "com.tignum.qot.novartis" # The bundle identifier of your app
 apple_id ENV["APPLE_ID"] # Your Apple email address
 
-team_id "TFH2SGDX62" # Developer Portal Team ID
+team_id "4FQQH349R5" # Developer Portal Team ID

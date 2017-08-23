@@ -2,4 +2,4 @@ git_url "git@github.com:TIGNUM/qot_signing.git"
 
 type "development" # The default type, can be: appstore, adhoc, enterprise or development
 
-app_identifier ["com.tignum.qot.v2"]
+app_identifier ["com.tignum.qot.novartis"]

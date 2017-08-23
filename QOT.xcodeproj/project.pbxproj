@@ -1687,7 +1687,6 @@
 				CCE373151E8D330100B79352 /* LibraryViewModel.swift */,
 				CC59A88C1F41C0E100D22353 /* LibraryCollectionCell.xib */,
 				CC13E23D1EB1D72400C3CE46 /* LibraryCollectionLatestPostCell.xib */,
-				CC8018221F026BDA0040B03F /* LibraryTableViewCell.xib */,
 				CC59A8901F41C95600D22353 /* LibraryTableViewCategoryCell.xib */,
 				CC8018221F026BDA0040B03F /* LibraryTableViewCell.xib */,
 			);
@@ -2228,7 +2227,7 @@
 				TargetAttributes = {
 					CBB237EB1E6FFF1200AB5AEF = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = TFH2SGDX62;
+						DevelopmentTeam = 4FQQH349R5;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -3010,14 +3009,14 @@
 				CODE_SIGN_ENTITLEMENTS = QOT/QOT.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = TFH2SGDX62;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = QOT/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.v2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "15ea5272-a8b1-4f61-80f5-b0d1967745b7";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development com.tignum.qot.v2";
+				PROVISIONING_PROFILE = "20d64035-9abd-4e9c-9756-e0af22ef2d21";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.tignum.qot.novartis";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3143,14 +3142,14 @@
 				CODE_SIGN_ENTITLEMENTS = QOT/QOT.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = TFH2SGDX62;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = QOT/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.v2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "15ea5272-a8b1-4f61-80f5-b0d1967745b7";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development com.tignum.qot.v2";
+				PROVISIONING_PROFILE = "20d64035-9abd-4e9c-9756-e0af22ef2d21";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.tignum.qot.novartis";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3163,14 +3162,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = QOT/QOT.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = TFH2SGDX62;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = QOT/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.v2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d3bf3ce8-2a79-48f2-8f0b-f94ebe2d9c10";
-				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc com.tignum.qot.v2";
+				PROVISIONING_PROFILE = "d26bb900-2a9a-4ff5-ab5f-97ecbe9efa76";
+				PROVISIONING_PROFILE_SPECIFIER = "QOT Novartis Enterprise";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
