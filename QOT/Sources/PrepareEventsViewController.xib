@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -66,7 +66,7 @@
                             <color key="textColor" red="0.60400271419999996" green="0.6039097309" blue="0.60789734129999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MY PREP LIST" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2W-OG-sO4">
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MY PREP LIST" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2W-OG-sO4">
                             <rect key="frame" x="0.0" y="464" width="309" height="10.5"/>
                             <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="11"/>
                             <color key="textColor" red="0.60400271419999996" green="0.6039097309" blue="0.60789734129999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -86,7 +86,7 @@
                                 <constraint firstAttribute="height" constant="1" id="YWk-d3-Bdw"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JuF-ea-S3I">
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JuF-ea-S3I">
                             <rect key="frame" x="0.0" y="490" width="309" height="1"/>
                             <color key="backgroundColor" red="0.60400271419999996" green="0.6039097309" blue="0.60789734129999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <constraints>
@@ -107,7 +107,7 @@
                                 <action selector="didTapAddToPreparationList:" destination="-1" eventType="touchUpInside" id="z42-1H-wqr"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="17c-9e-nki">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="17c-9e-nki">
                             <rect key="frame" x="0.0" y="491" width="309" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="3li-YZ-eLF"/>
