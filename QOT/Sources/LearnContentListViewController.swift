@@ -29,6 +29,8 @@ final class LearnContentListViewController: UIViewController {
     fileprivate let disposeBag = DisposeBag()
     fileprivate lazy var collectionViewLayout = LearnStrategyListLayout()
     fileprivate var isDragging = false
+    fileprivate var firstLaunch = true
+
     let viewModel: LearnContentCollectionViewModel
     var selectedCategoryIndex: Index
     weak var delegate: LearnContentListViewControllerDelegate?
@@ -100,13 +102,16 @@ final class LearnContentListViewController: UIViewController {
         setupLayout()
         observeViewModel()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         collectionView.reloadData()
-        centerCollectionView()
-        pagingCollectionViewScrollToSelectedIndex()
+        if firstLaunch {
+            centerCollectionView()
+            pagingCollectionViewScrollToSelectedIndex()
+            firstLaunch = false
+        }
     }
 }
 
