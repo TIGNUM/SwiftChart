@@ -39,6 +39,7 @@ extension LibraryCoordinator: LibraryViewControllerDelegate {
 
     func didTapLibraryItem(item: ContentCollection) {
         guard let coordinator = ArticleContentItemCoordinator(
+            pageName: .libraryArticle,
             root: libraryViewController,
             services: services,
             contentCollection: item,            

@@ -15,9 +15,7 @@ class EventTracker {
     enum Event {
         case didShowPage(TrackablePage, from: TrackablePage?)
     }
-    
-    static let `default` = EventTracker()
-    
+        
     func track(_ event: Event) {
         switch event {
         case .didShowPage(let trackablePage, let referrerTrackablePage):
@@ -41,9 +39,9 @@ class EventTracker {
                     page: associatedPage,
                     referrerPage: referrerTrackablePage?.associatedPage(realm: realm),
                     associatedValue: trackablePage.pageAssociatedObject?.object,
-                    associatedValueType: trackablePage.pageAssociatedObject?.identifier,
+                    associatedValueType: trackablePage.pageAssociatedObject?.identifier.rawValue,
                     referrerAssociatedValue: referrerTrackablePage?.pageAssociatedObject?.object,
-                    referrerAssociatedValueType: referrerTrackablePage?.pageAssociatedObject?.identifier
+                    referrerAssociatedValueType: referrerTrackablePage?.pageAssociatedObject?.identifier.rawValue
                 ))
             }
         } catch {

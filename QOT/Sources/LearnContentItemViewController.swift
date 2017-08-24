@@ -35,8 +35,8 @@ final class LearnContentItemViewController: UIViewController {
 
     weak var delegate: LearnContentItemViewControllerDelegate?
     var viewModel: LearnContentItemViewModel
+    let tabType: TabType
     fileprivate let disposeBag = DisposeBag()
-    fileprivate let tabType: TabType
     fileprivate var soundPattern = Property([Float(0)])
 
     fileprivate lazy var tableView: UITableView = {

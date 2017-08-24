@@ -38,6 +38,10 @@ struct LogToggle {
         static let requestBody = false
         static let responseBody = false
     }
+    
+    struct Analytics {
+        static let pageTracker = true
+    }
 }
 
 struct MockToggle {

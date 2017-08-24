@@ -8,11 +8,14 @@
 
 import UIKit
 
+// @note using this to avoid singleton pattern
+private weak var _staticPageTracker: PageTracker?
+
 extension UIViewController {
     func QOT_PageTracker_viewDidAppear(_ animated: Bool) {
         QOT_PageTracker_viewDidAppear(animated)
         if let trackablePage = self as? TrackablePage {
-            PageTracker.default.track(trackablePage)
+            _staticPageTracker?.track(trackablePage)
         }
     }
 }
@@ -33,9 +36,17 @@ private struct ViewDidAppearSwizzle: Swizzle {
 
 class PageTracker {
     private var viewDidAppearSwizzle = ViewDidAppearSwizzle()
-   
-    static let `default` = PageTracker()
+    private let eventTracker: EventTracker
+    
     weak var lastPage: TrackablePage?
+    
+    init(eventTracker: EventTracker) {
+        self.eventTracker = eventTracker
+    }
+    
+    class func setStaticTracker(pageTracker: PageTracker) {
+        _staticPageTracker = pageTracker
+    }
     
     func start() {
         if !viewDidAppearSwizzle.isSwizzled {
@@ -50,8 +61,8 @@ class PageTracker {
     }
     
     func track(_ page: TrackablePage) {
-        //log(">>>> WILL TRACK \(page) from \(String(describing: lastPage))")
-        EventTracker.default.track(.didShowPage(page, from: lastPage))
+        log(">>>> WILL TRACK \(String(describing: page.pageName)) from \(String(describing: lastPage?.pageName))", enabled: LogToggle.Analytics.pageTracker)
+        eventTracker.track(.didShowPage(page, from: lastPage))
         lastPage = page
     }
 }

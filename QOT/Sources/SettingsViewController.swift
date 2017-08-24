@@ -30,11 +30,11 @@ final class SettingsViewController: UITableViewController {
     // MARK: - Properties
 
     fileprivate var viewModel: SettingsViewModel
-    fileprivate let settingsType: SettingsType.SectionType
     fileprivate let services: Services
     fileprivate let locationManager = CLLocationManager()
     weak var delegate: SettingsCoordinatorDelegate?
-    
+    let settingsType: SettingsType.SectionType
+
     // MARK: - Init
     
     init(viewModel: SettingsViewModel, services: Services, settingsType: SettingsType.SectionType) {

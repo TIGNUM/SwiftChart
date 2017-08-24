@@ -21,12 +21,12 @@ protocol SettingsCoordinatorDelegate: class {
 final class SettingsCoordinator: ParentCoordinator {
 
     fileprivate let services: Services
-    fileprivate let settingsType: SettingsType.SectionType
     fileprivate let settingsViewController: SettingsViewController
     fileprivate let permissionHandler = PermissionHandler()
     fileprivate var calandarAccessGaranted = true
-    var children = [Coordinator]()
     fileprivate let rootViewController: UIViewController
+    var children = [Coordinator]()
+    let settingsType: SettingsType.SectionType
 
     init?(root: SettingsMenuViewController, services: Services, settingsType: SettingsType.SectionType) {
         guard let viewModel = SettingsViewModel(services: services, settingsType: settingsType) else {
@@ -78,6 +78,7 @@ extension SettingsCoordinator: SettingsCoordinatorDelegate {
     func openArticleViewController(viewController: SettingsViewController, settingsType: SettingsType) {
         let contentCollection = settingsType.contentCollection(service: services.contentService)
         guard let coordinator = ArticleContentItemCoordinator(
+            pageName: .settings, // FIXME: fix
             root: viewController,
             services: services,
             contentCollection: contentCollection,            

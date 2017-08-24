@@ -38,11 +38,13 @@ final class AppCoordinator: ParentCoordinator {
     }()
 
     fileprivate lazy var pageTracker: PageTracker = {
-        return PageTracker.default
+        let tracker = PageTracker(eventTracker: self.eventTracker)
+        PageTracker.setStaticTracker(pageTracker: tracker)
+        return tracker
     }()
 
     fileprivate lazy var eventTracker: EventTracker = {
-        return EventTracker.default
+        return EventTracker()
     }()
 
     fileprivate lazy var syncRecordService: SyncRecordService = {
@@ -187,10 +189,11 @@ private extension AppCoordinator {
         // create coordinator
         let selectedIndex = checkListIDToPresent != nil ? 2 : 0
         let coordinator = TabBarCoordinator(
-            window: self.window,
+            window: window,
             selectedIndex: selectedIndex,
             services: services,
-            permissionHandler: permissionHandler
+            permissionHandler: permissionHandler,
+            pageTracker: pageTracker
         )
         self.tabBarCoordinator = coordinator
         

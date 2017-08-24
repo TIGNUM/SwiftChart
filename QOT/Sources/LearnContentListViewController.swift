@@ -27,11 +27,11 @@ final class LearnContentListViewController: UIViewController {
     fileprivate weak var pagingCollectionViewBottomConstraint: NSLayoutConstraint?
     fileprivate weak var getBackButtonBottomConstraint: NSLayoutConstraint?
     fileprivate let disposeBag = DisposeBag()
-    fileprivate let viewModel: LearnContentCollectionViewModel
-    fileprivate var selectedCategoryIndex: Index
     fileprivate lazy var collectionViewLayout = LearnStrategyListLayout()
-    weak var delegate: LearnContentListViewControllerDelegate?
     fileprivate var isDragging = false
+    let viewModel: LearnContentCollectionViewModel
+    var selectedCategoryIndex: Index
+    weak var delegate: LearnContentListViewControllerDelegate?
 
     fileprivate lazy var pagingCellSize: CGSize = {
         return CGSize(width: self.view.frame.width / 2, height: 40)

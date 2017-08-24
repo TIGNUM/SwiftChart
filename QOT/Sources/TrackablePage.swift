@@ -23,40 +23,58 @@ extension TrackablePage {
 }
 
 enum PageName: String {
-    case addSensor = "add_sensor"
-    case articleItem = "article_item"
-    case launch = "launch"
-    case learnCategoryList = "learn_category_list"
-    case learnContentItem = "learn_content_item"
-    case learnContentList = "learn_content_list"
+    case addSensor = "sidebar.addsensor"
+    case about = "sidebar.abouttignum"
+    case benefits = "sidebar.benefits"
+    case launch = "splashscreen"
+    case learnCategoryList = "learn.strategies.categorylist"
+    case learnContentItemFull = "learn.strategies.strategy.full"
+    case learnContentItemBullet = "learn.strategies.strategy.bullet"
+    case learnContentItemAudio = "learn.strategies.strategy.audio"
+    case learnContentList = "learn.strategies.strategylist"
+    case libraryArticle = "sidebar.library.article"
     case loading = "loading"
     case login = "login"
-    case morningInterview = "morning_interview"
-    case myQOTPartners = "qot_partners"
-    case myStatistics = "my_statistics"
-    case myToBeVision = "my_to_be_vision"
-    case myUniverse = "my_universe"
-    case prepareChat = "prepare_chat"
-    case prepareCheckList = "preapre_check_list"
-    case prepareContent = "prepare_content"
-    case prepareEvents = "prepare_events"
-    case resetPassword = "reset_password"
+    case morningInterview = "notification.dailyprep"
+    case myQOTPartners = "me.mywhy.qotpartners"
+    case myStatistics = "me.mydata.charts"
+    case myToBeVision = "me.mywhy.mytobevision"
+    case myData = "me.mydata"
+    case myWhy = "me.mywhy"
+    case myPreparations = "prepare.mypreparations"
+    case onboardingChat = "oboarding.chat"
+    case prepareChat = "prepare.chat"
+    case prepareCheckList = "prepare.preparationchecklist"
+    case prepareContent = "prepare.preparationlist"
+    case prepareEvents = "prepare.preparationlist.save"
+    case privacy = "sidebar.dataprivacy"
+    case resetPassword = "resetpassword"
     case search = "search"
-    case selectWeeklyChoices = "select_weekly_choices"
-    case settings = "settings"
-    case settingsCalendarList = "settings_calendar_list"
-    case settingsChangePassword = "settings_change_password"
-    case settingsMenu = "settings_menu"
+    case selectWeeklyChoices = "notification.weeklychoices"
+    case settings = "sidebar.settings"
+    case settingsCalendarList = "sidebar.settings.calendar.list"
+    case settingsChangePassword = "sidebar.settings.security.changepassword"
+    case settingsMenu = "sidebar.settings.menu"
+    case settingsGeneral = "sidebar.settings.general"
+    case settingsNotifications = "sidebar.settings.notifications"
+    case settingsSecurity = "sidebar.settings.security"
     case sideBar = "sidebar"
-    case sidebarLibrary = "sidebar_library"
+    case sidebarLibrary = "sidebar.library"
     case tutorial = "tutorial"
-    case weeklyChoices = "weekly_choices"
-    case whatsHot = "whats_hot"
+    case weeklyChoices = "me.mywhy.weeklychoices"
+    case whatsHot = "learn.whatshot.articlelist"
+    case whatsHotArticle = "learn.whatshot.article"
 }
 
 struct PageObject {
+    enum Identifier: String {
+        case contentCollection = "CONTENTCOLLECTION"
+        case myToBeVision = "MYTOBEVISION"
+        case category = "CATEGORY"
+    }
+    
     let object: SyncableObject
-    let identifier: String
+    let identifier: Identifier
 }
 
 // MARK: - extensions
@@ -72,14 +90,15 @@ extension AddSensorViewController: TrackablePage {
 
 extension ArticleCollectionViewController: TrackablePage {
     // @see implementation
+    var pageAssociatedObject: PageObject? {
+        return nil
+    }
 }
 
 extension ArticleItemViewController: TrackablePage {
-    var pageName: PageName {
-        return .articleItem
-    }
+    // @see implementation
     var pageAssociatedObject: PageObject? {
-        return nil
+        return PageObject(object: viewModel.contentCollection, identifier: .contentCollection)
     }
 }
 
@@ -115,16 +134,24 @@ extension LearnContentListViewController: TrackablePage {
         return .learnContentList
     }
     var pageAssociatedObject: PageObject? {
-        return nil
+        let category = viewModel.item(at: IndexPath(row: selectedCategoryIndex, section: 0))
+        return PageObject(object: category, identifier: .category)
     }
 }
 
 extension LearnContentItemViewController: TrackablePage {
     var pageName: PageName {
-        return .learnContentItem
+        switch tabType {
+        case .full:
+            return .learnContentItemFull
+        case .bullets:
+            return .learnContentItemBullet
+        case .audio:
+            return .learnContentItemAudio
+        }
     }
     var pageAssociatedObject: PageObject? {
-        return PageObject(object: viewModel.contentCollection, identifier: "CONTENTCOLLECTION")
+        return PageObject(object: viewModel.contentCollection, identifier: .contentCollection)
     }
 }
 
@@ -175,7 +202,7 @@ extension MorningInterviewViewController: TrackablePage {
 
 extension MyPrepViewController: TrackablePage {
     var pageName: PageName {
-        return .prepareCheckList
+        return .myPreparations
     }
     var pageAssociatedObject: PageObject? {
         return nil
@@ -196,14 +223,15 @@ extension MyToBeVisionViewController: TrackablePage {
         return .myToBeVision
     }
     var pageAssociatedObject: PageObject? {
-        return nil
+        guard let myToBeVision = viewModel.item else {
+            return nil
+        }
+        return PageObject(object: myToBeVision, identifier: .myToBeVision)
     }
 }
 
 extension MyUniverseViewController: TrackablePage {
-    var pageName: PageName {
-        return .myUniverse
-    }
+    // @see implementation
     var pageAssociatedObject: PageObject? {
         return nil
     }
@@ -219,18 +247,14 @@ extension PartnersViewController: TrackablePage {
 }
 
 extension ChatViewController: TrackablePage {
-    var pageName: PageName {
-        return .prepareChat
-    }
+    //@see implementation
     var pageAssociatedObject: PageObject? {
         return nil
     }
 }
 
 extension PrepareContentViewController: TrackablePage {
-    var pageName: PageName {
-        return .prepareContent
-    }
+    //@see implementation
     var pageAssociatedObject: PageObject? {
         return nil
     }
@@ -265,7 +289,14 @@ extension SelectWeeklyChoicesViewController: TrackablePage {
 
 extension SettingsViewController: TrackablePage {
     var pageName: PageName {
-        return .settings
+        switch settingsType {
+        case .general:
+            return .settingsGeneral
+        case .notifications:
+            return .settingsNotifications
+        case .security:
+            return .settingsSecurity
+        }
     }
     var pageAssociatedObject: PageObject? {
         return nil

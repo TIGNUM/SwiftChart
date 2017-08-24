@@ -34,9 +34,9 @@ class MyToBeVisionViewController: UIViewController {
     @IBOutlet weak var imageEditLabel: UILabel!
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var circleContainerView: UIView!
-    fileprivate let viewModel: MyToBeVisionViewModel
     fileprivate var imagePicker: ImagePickerController?
     fileprivate var imageTapRecogniser: UITapGestureRecognizer!
+    let viewModel: MyToBeVisionViewModel
     weak var delegate: MyToBeVisionViewControllerDelegate?
  
     // MARK: - Init

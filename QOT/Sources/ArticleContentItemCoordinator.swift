@@ -36,9 +36,11 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
     fileprivate var topTabBarController: UINavigationController?
     fileprivate let rootViewController: UIViewController
     fileprivate let shouldPush: Bool
+    let pageName: PageName
     var children: [Coordinator] = []
 
-    init?(root: UIViewController,
+    init?(pageName: PageName,
+          root: UIViewController,
           services: Services,
           contentCollection: ContentCollection?,
           articleHeader: ArticleCollectionHeader? = nil,
@@ -46,34 +48,38 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
           backgroundImage: UIImage? = nil,
           shouldPush: Bool = true,
           contentInsets: UIEdgeInsets = UIEdgeInsets(top: 35, left: 0, bottom: 0, right: 0)) {
-
-            guard let contentCollection = contentCollection else {
-                return nil
-            }
-        
-            self.rootViewController = root
-            self.services = services
-            self.articleHeader = articleHeader
-            self.selectedContent = contentCollection
-            self.topTabBarTitle = topTabBarTitle
-            self.shouldPush = shouldPush
-            let articleItems = Array(contentCollection.articleItems)
-            viewModel = ArticleItemViewModel(services: services,
+        guard let contentCollection = contentCollection else {
+            return nil
+        }
+    
+        self.pageName = pageName
+        self.rootViewController = root
+        self.services = services
+        self.articleHeader = articleHeader
+        self.selectedContent = contentCollection
+        self.topTabBarTitle = topTabBarTitle
+        self.shouldPush = shouldPush
+        let articleItems = Array(contentCollection.articleItems)
+        viewModel = ArticleItemViewModel(services: services,
                                          items: articleItems,
                                          contentCollection: contentCollection,
                                          articleHeader: articleHeader,
                                          backgroundImage: backgroundImage
-            )
+        )
 
-            fullViewController = ArticleItemViewController(viewModel: viewModel, contentInsets: UIEdgeInsets(top: 110, left: 0, bottom: 0, right: 0))
-            fullViewController.title = topTabBarTitle
-            fullViewController.delegate = self
+        fullViewController = ArticleItemViewController(
+            pageName: pageName,
+            viewModel: viewModel,
+            contentInsets: UIEdgeInsets(top: 110, left: 0, bottom: 0, right: 0)
+        )
+        fullViewController.title = topTabBarTitle
+        fullViewController.delegate = self
 
-            if shouldPush == false {
-                topTabBarController = UINavigationController(withPages: [fullViewController],
-                                                             topBarDelegate: self,
-                                                             leftButton: UIBarButtonItem(withImage: R.image.ic_minimize()))
-            }
+        if shouldPush == false {
+            topTabBarController = UINavigationController(withPages: [fullViewController],
+                                                         topBarDelegate: self,
+                                                         leftButton: UIBarButtonItem(withImage: R.image.ic_minimize()))
+        }
     }
 
     func start() {

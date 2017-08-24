@@ -25,8 +25,9 @@ final class ArticleItemViewController: UIViewController {
 
     // MARK: - Properties
 
-    fileprivate var viewModel: ArticleItemViewModel
     fileprivate let contentInsets: UIEdgeInsets
+    let pageName: PageName
+    var viewModel: ArticleItemViewModel
     weak var delegate: ArticleItemViewControllerDelegate?
 
     fileprivate lazy var tableView: UITableView = {
@@ -47,7 +48,8 @@ final class ArticleItemViewController: UIViewController {
 
     // MARK: - Init
 
-    init(viewModel: ArticleItemViewModel, title: String? = nil, contentInsets: UIEdgeInsets) {
+    init(pageName: PageName, viewModel: ArticleItemViewModel, title: String? = nil, contentInsets: UIEdgeInsets) {
+        self.pageName = pageName
         self.viewModel = viewModel
         self.contentInsets = contentInsets
 

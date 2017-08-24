@@ -19,6 +19,7 @@ class TutorialViewController: UIViewController {
 
     fileprivate let viewModel: TutorialViewModel
     fileprivate weak var delegate: TutorialViewControllerDelegate?
+
     // MARK: - Life cycle
 
     init(viewModel: TutorialViewModel, delegate: TutorialViewControllerDelegate) {

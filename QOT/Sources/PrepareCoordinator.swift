@@ -107,7 +107,7 @@ extension PrepareCoordinator {
         if let title = title {
             let viewModel = PrepareContentViewModel(title: title, subtitle: "", video: video, description: "", items: items)
 
-            let viewController = PrepareContentViewController(viewModel: viewModel)
+            let viewController = PrepareContentViewController(pageName: .prepareContent, viewModel: viewModel)
             viewController.delegate = self
             tabBarController.present(viewController, animated: true)
             prepareListViewController = viewController
@@ -158,7 +158,7 @@ extension PrepareCoordinator {
                                                     checkedIDs: checkedIDs,
                                                     preparationID: preparationID)
 
-            let viewController = PrepareContentViewController(viewModel: viewModel)
+            let viewController = PrepareContentViewController(pageName: .prepareCheckList, viewModel: viewModel)
             viewController.delegate = self
             tabBarController.present(viewController, animated: true)
             prepareListViewController = viewController

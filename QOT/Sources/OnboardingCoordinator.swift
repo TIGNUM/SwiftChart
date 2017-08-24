@@ -52,7 +52,7 @@ final class OnboardingCoordinator: ParentCoordinator {
     }
     
     func start() {
-        let chatViewController = ChatViewController(viewModel: chatViewModel, backgroundImage: R.image.backgroundChatBot())
+        let chatViewController = ChatViewController(pageName: .onboardingChat, viewModel: chatViewModel, backgroundImage: R.image.backgroundChatBot())
         chatViewController.title = R.string.localized.topTabBarItemTitlePerpareCoach()
         chatViewController.didSelectChoice = { [unowned self] (choice, viewController) in
             self.handleChoice(choice)

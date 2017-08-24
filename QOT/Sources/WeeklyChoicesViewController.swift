@@ -18,11 +18,10 @@ final class WeeklyChoicesViewController: UIViewController {
 
     // MARK: - Properties
 
-    fileprivate let viewModel: WeeklyChoicesViewModel
     weak var delegate: WeeklyChoicesViewControllerDelegate?
 
+    fileprivate let viewModel: WeeklyChoicesViewModel
     fileprivate lazy var dateLabel: UILabel = UILabel()
-
     fileprivate lazy var collectionView: UICollectionView = {
         let layout = WeeklyChoicesLayout()
         layout.delegate = self

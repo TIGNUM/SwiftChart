@@ -29,6 +29,7 @@ final class TabBarCoordinator: ParentCoordinator {
     fileprivate var hasTutorialStarted = false
     fileprivate var tutorialIsStopped = false
     fileprivate var disposeBag = DisposeBag()
+    fileprivate let pageTracker: PageTracker
     var children = [Coordinator]()
 
     var isLoading: Bool {
@@ -53,7 +54,7 @@ final class TabBarCoordinator: ParentCoordinator {
     }()
     fileprivate lazy var prepareChatViewController: ChatViewController<Answer> = {
         let viewModel = ChatViewModel<Answer>()
-        let viewController = ChatViewController(viewModel: viewModel)
+        let viewController = ChatViewController(pageName: .prepareChat, viewModel: viewModel)
         viewController.title = R.string.localized.topTabBarItemTitlePerpareCoach()
         return viewController
     }()
@@ -71,9 +72,7 @@ final class TabBarCoordinator: ParentCoordinator {
         learnCategoryListVC.title = R.string.localized.topTabBarItemTitleLearnStrategies()
         learnCategoryListVC.delegate = self
         let articleCollectionViewModel = ArticleCollectionViewModel(services: self.services)
-        let articleCollectionViewController = ArticleCollectionViewController(pageName: .whatsHot,
-                                                                              pageAssociatedObject: nil,
-                                                                              viewModel: articleCollectionViewModel)
+        let articleCollectionViewController = ArticleCollectionViewController(pageName: .whatsHot, viewModel: articleCollectionViewModel)
         articleCollectionViewController.title = R.string.localized.topTabBarItemTitleLearnWhatsHot()
         articleCollectionViewController.delegate = self
         let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())
@@ -88,7 +87,8 @@ final class TabBarCoordinator: ParentCoordinator {
     fileprivate lazy var topTabBarControllerMe: MyUniverseViewController = {
         let myUniverseViewController = MyUniverseViewController(
             myDataViewModel: MyDataViewModel(services: self.services),
-            myWhyViewModel: MyWhyViewModel(services: self.services)
+            myWhyViewModel: MyWhyViewModel(services: self.services),
+            pageTracker: self.pageTracker
         )
         myUniverseViewController.delegate = self
         return myUniverseViewController
@@ -106,14 +106,15 @@ final class TabBarCoordinator: ParentCoordinator {
         vc.modalTransitionStyle = .crossDissolve
         return vc
     }()
-    
+
     // MARK: - Init
     
-    init(window: UIWindow, selectedIndex: Index, services: Services, permissionHandler: PermissionHandler) {
+    init(window: UIWindow, selectedIndex: Index, services: Services, permissionHandler: PermissionHandler, pageTracker: PageTracker) {
         self.window = window
         self.services = services
         self.selectedIndex = Observable(selectedIndex)
         self.permissionHandler = permissionHandler
+        self.pageTracker = pageTracker
         
         syncAllStartedNotificationHandler.handler = { (notification: Notification) in
             guard let userInfo = notification.userInfo, let isDownloadRecordsValid = userInfo["isDownloadRecordsValid"] as? Bool, isDownloadRecordsValid == false, !self.hasLoaded else {
@@ -332,6 +333,7 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
         }
 
         guard let coordinator = ArticleContentItemCoordinator(
+            pageName: .whatsHotArticle,
             root: viewController,
             services: services,
             contentCollection: articleHeader.articleContentCollection,

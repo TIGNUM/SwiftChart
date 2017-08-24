@@ -16,6 +16,7 @@ final class ArticleItemViewModel {
     fileprivate let relatedArticles: [ContentCollection]
     let backgroundImage: UIImage?
     let articleHeader: ArticleCollectionHeader?
+    let contentCollection: ContentCollection
 
     func itemCount(in section: Index) -> Int {
         switch section {
@@ -44,16 +45,17 @@ final class ArticleItemViewModel {
          contentCollection: ContentCollection,
          articleHeader: ArticleCollectionHeader?,
          backgroundImage: UIImage? = nil) {
-            self.articleHeader = articleHeader
-            self.backgroundImage = backgroundImage
-
-            let relatedArticles = services.contentService.relatedArticles(for: contentCollection)
-            self.relatedArticles = relatedArticles.sorted(by: { (lhs: ContentCollection, rhs: ContentCollection) -> Bool in
-                return lhs.sortOrder < rhs.sortOrder
-            })
-
-            self.items = items.sorted(by: { (lhs: ContentItem, rhs: ContentItem) -> Bool in
-                    return lhs.sortOrder > rhs.sortOrder
-            })
+        self.articleHeader = articleHeader
+        self.backgroundImage = backgroundImage
+        self.contentCollection = contentCollection
+        
+        let relatedArticles = services.contentService.relatedArticles(for: contentCollection)
+        self.relatedArticles = relatedArticles.sorted(by: { (lhs: ContentCollection, rhs: ContentCollection) -> Bool in
+            return lhs.sortOrder < rhs.sortOrder
+        })
+        
+        self.items = items.sorted(by: { (lhs: ContentItem, rhs: ContentItem) -> Bool in
+            return lhs.sortOrder > rhs.sortOrder
+        })
     }
 }

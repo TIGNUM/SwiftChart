@@ -25,7 +25,8 @@ final class PrepareContentViewController: UIViewController {
     let viewModel: PrepareContentViewModel
     fileprivate let disposeBag = DisposeBag()
     weak var delegate: PrepareContentViewControllerDelegate?
-
+    let pageName: PageName
+    
     fileprivate lazy var transition = FadeAnimator()
 
     fileprivate lazy var tableView: UITableView = {
@@ -53,7 +54,8 @@ final class PrepareContentViewController: UIViewController {
 
     // MARK: - Life Cycle
 
-    init(viewModel: PrepareContentViewModel) {
+    init(pageName: PageName, viewModel: PrepareContentViewModel) {
+        self.pageName = pageName
         self.viewModel = viewModel
 
         super.init(nibName: nil, bundle: nil)

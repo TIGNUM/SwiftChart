@@ -31,7 +31,9 @@ final class MyUniverseViewController: UIViewController {
     fileprivate let myDataViewModel: MyDataViewModel
     fileprivate let myWhyViewModel: MyWhyViewModel
     fileprivate var lastContentOffset: CGFloat = 0
+    var pageName: PageName = .myData
     weak var delegate: MyUniverseViewControllerDelegate?
+    let pageTracker: PageTracker
 
     fileprivate lazy var topBar: TopNavigationBar = {
         let topBar = TopNavigationBar(frame: CGRect(
@@ -148,9 +150,10 @@ final class MyUniverseViewController: UIViewController {
 
     // MARK: - Life Cycle
 
-    init(myDataViewModel: MyDataViewModel, myWhyViewModel: MyWhyViewModel) {
+    init(myDataViewModel: MyDataViewModel, myWhyViewModel: MyWhyViewModel, pageTracker: PageTracker) {
         self.myDataViewModel = myDataViewModel
         self.myWhyViewModel = myWhyViewModel
+        self.pageTracker = pageTracker
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -184,7 +187,7 @@ final class MyUniverseViewController: UIViewController {
     }
 }
 
-// MARK: - ContentScrollView / SubView adding
+// MARK: - Private
 
 private extension MyUniverseViewController {
 
@@ -196,6 +199,16 @@ private extension MyUniverseViewController {
         scrollView.addSubview(myWhyView)
         scrollView.addSubview(myDataSectorLabelsView)
         scrollView.addSubview(myDataView)
+    }
+    
+    func updatePageTracking() {
+        switch pageIndex {
+        case 0:
+            pageName = .myData
+        default:
+            pageName = .myWhy
+        }
+        pageTracker.track(self)
     }
 }
 
@@ -289,12 +302,17 @@ extension MyUniverseViewController: UIScrollViewDelegate {
     }
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        updatePageTracking()
         guard scrollView.contentOffset.x > 0.0 else {
             topBar.setIndicatorToButtonIndex(0)
             return
         }
         
         topBar.setIndicatorToButtonIndex(pageIndex)
+    }
+    
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        updatePageTracking()
     }
     
     var pageIndex: Int {

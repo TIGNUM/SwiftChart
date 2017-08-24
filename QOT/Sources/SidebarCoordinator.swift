@@ -66,19 +66,20 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
     }
 
     func didTapBenefitsCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
-        startSidebarItemCoordinator(contentCollection: contentCollection, viewController: viewController, topTabBarTitle: R.string.localized.sidebarTitleBenefits())
+        startSidebarItemCoordinator(pageName: .benefits, contentCollection: contentCollection, viewController: viewController, topTabBarTitle: R.string.localized.sidebarTitleBenefits())
     }
 
     func didTapAboutCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
-        startSidebarItemCoordinator(contentCollection: contentCollection, viewController: viewController, topTabBarTitle: R.string.localized.sidebarTitleAbout())
+        startSidebarItemCoordinator(pageName: .about, contentCollection: contentCollection, viewController: viewController, topTabBarTitle: R.string.localized.sidebarTitleAbout())
     }
 
     func didTapPrivacyCell(with contentCollection: ContentCollection?, backgroundImage: UIImage?, in viewController: SidebarViewController) {
-        startSidebarItemCoordinator(contentCollection: contentCollection, viewController: viewController, topTabBarTitle: R.string.localized.sidebarTitlePrivacy(), backgroundImage: backgroundImage)
+        startSidebarItemCoordinator(pageName: .privacy, contentCollection: contentCollection, viewController: viewController, topTabBarTitle: R.string.localized.sidebarTitlePrivacy(), backgroundImage: backgroundImage)
     }
 
-    private func startSidebarItemCoordinator(contentCollection: ContentCollection?, viewController: SidebarViewController, topTabBarTitle: String, backgroundImage: UIImage? = nil) {
+    private func startSidebarItemCoordinator(pageName: PageName, contentCollection: ContentCollection?, viewController: SidebarViewController, topTabBarTitle: String, backgroundImage: UIImage? = nil) {
         guard let coordinator = ArticleContentItemCoordinator(
+            pageName: pageName,
             root: viewController,
             services: services,
             contentCollection: contentCollection,

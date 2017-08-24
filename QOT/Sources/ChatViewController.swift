@@ -19,10 +19,12 @@ class ChatViewController<T: ChatChoice>: UIViewController, UITableViewDelegate, 
     private var isUpdating = false
     fileprivate var dontAnimateCellAtIndexPath: IndexPath?
     let viewModel: ChatViewModel<T>
-
+    let pageName: PageName
+    
     var didSelectChoice: ((T, ChatViewController) -> Void)?
     
-    init(viewModel: ChatViewModel<T>, backgroundImage: UIImage? = nil) {
+    init(pageName: PageName, viewModel: ChatViewModel<T>, backgroundImage: UIImage? = nil) {
+        self.pageName = pageName
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         viewModel.delegate = self
