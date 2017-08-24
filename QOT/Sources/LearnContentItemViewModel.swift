@@ -45,7 +45,13 @@ final class LearnContentItemViewModel {
     fileprivate var player: AVPlayer? = AVPlayer()
     let contentCollection: ContentCollection
     var currentPosition = ReactiveKit.Property<TimeInterval>(0)
-    var trackDuration = ReactiveKit.Property<TimeInterval>(0)
+    lazy var trackDuration: ReactiveKit.Property<TimeInterval> = {
+        let item = self.contentItems(at: TabType.audio).first
+        let duration = item?.valueDuration.value.map { TimeInterval($0) }
+
+        return ReactiveKit.Property<TimeInterval>(duration ?? 0)
+    }()
+
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
     // MARK: - Init

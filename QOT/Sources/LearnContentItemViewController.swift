@@ -225,7 +225,6 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
         switch item.contentItemValue {
         case .audio(_, _, _, let audioURL, let duration, _):
             viewModel.playItem(at: indexPath, audioURL: audioURL, duration: duration)
-            viewModel.trackDuration = Property(duration)
         case .video(_, _, _, let videoURL, _):
             streamVideo(videoURL: videoURL)
         case .pdf(_, _, let pdfURL):
