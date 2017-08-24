@@ -90,11 +90,11 @@ private extension MyWhyView {
         myWhyViewModel.items?.forEach { (myWhy: MyWhyViewModel.MyWhy) in
             switch myWhy {
             case .vision(let vision):
-                var visionText = R.string.localized.meSectorMyWhyVisionMessagePlaceholder()
-                if let vision = vision, let text = vision.text, !text.isEmpty {
-                    visionText = text
+                guard let vision = vision, let text = vision.text, !text.isEmpty else {
+                    myToBeVisionLabel.text = R.string.localized.meSectorMyWhyVisionMessagePlaceholder()
+                    return
                 }
-                visionLabel(with: visionText)
+                myToBeVisionLabel.text = text
             case .weeklyChoices(_, let choices):
                 weeklyChoices = choices
                 for index in 0..<Layout.MeSection.maxWeeklyPage {
@@ -163,8 +163,7 @@ private extension MyWhyView {
         if let vision = vision, let text = vision.text, !text.isEmpty {
             visionText = text
         }
-        myToBeVisionLabel = UILabel()
-        visionLabel(with: visionText)
+        myToBeVisionLabel = visionLabel(with: visionText)
         let stackView = UIStackView(arrangedSubviews: [myToBeVisionLabel])
         stackView.alignment = .bottom
         stackView.spacing = 0.0
@@ -180,7 +179,7 @@ private extension MyWhyView {
         stackView.heightAnchor == bounds.height * 0.325 + layout.myWhyDeviceOffset(screenType) - 30
         stackView.leftAnchor == myToBeVisionBox.leftAnchor
         stackView.rightAnchor == myToBeVisionBox.rightAnchor
-
+        
         footLabel.topAnchor == stackView.bottomAnchor + 5
         footLabel.heightAnchor == Layout.MeSection.labelHeight
         footLabel.leftAnchor == stackView.leftAnchor
@@ -350,12 +349,13 @@ private extension MyWhyView {
         return label(with: text, textColor: Color.MeSection.whiteLabel, font: Font.H7Tag)
     }
 
-    func visionLabel(with text: String) {
-
-        myToBeVisionLabel.numberOfLines = 0
-        myToBeVisionLabel.textColor = .white
-        myToBeVisionLabel.sizeToFit()
-        myToBeVisionLabel.prepareAndSetTextAttributes(text: text, font: Font.PTextSmall, lineSpacing: 7, characterSpacing: 1.73)
+    func visionLabel(with text: String) -> UILabel {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textColor = .white
+        label.sizeToFit()
+        label.prepareAndSetTextAttributes(text: text, font: Font.PTextSmall, lineSpacing: 7, characterSpacing: 1.73)
+        return label
     }
 
     func label(with text: String, textColor: UIColor, font: UIFont, uppercase: Bool = true) -> UILabel {
