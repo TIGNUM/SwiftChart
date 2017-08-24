@@ -12,6 +12,7 @@ import Anchorage
 final class AnimatedLaunchScreenViewController: UIViewController {
 
     fileprivate var backGroundImageView: UIImageView = UIImageView(image: R.image._1_1Learn())
+    fileprivate var tignumImageView: UIImageView = UIImageView(image: R.image.byTignum())
     fileprivate var logoImageView: UIImageView = UIImageView()
     fileprivate let imageCount = 92
 
@@ -19,10 +20,6 @@ final class AnimatedLaunchScreenViewController: UIViewController {
         super.viewDidLoad()
         setupHierarchy()
         setupLayout()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
     }
     
     func fadeInLogo(withCompletion completion: (() -> Void)? = nil) {
@@ -56,6 +53,7 @@ private extension AnimatedLaunchScreenViewController {
         view.backgroundColor = .navy20
         view.backgroundColor = .red
         view.addSubview(backGroundImageView)
+        view.addSubview(tignumImageView)
         view.addSubview(logoImageView)
         configureAnimation()
     }
@@ -64,6 +62,12 @@ private extension AnimatedLaunchScreenViewController {
         backGroundImageView.horizontalAnchors == view.horizontalAnchors
         backGroundImageView.verticalAnchors == view.verticalAnchors
 
+        tignumImageView.heightAnchor == 50.0
+        tignumImageView.widthAnchor == view.widthAnchor * 0.3
+        tignumImageView.bottomAnchor == view.bottomAnchor - 20.0
+        tignumImageView.centerXAnchor == view.centerXAnchor
+        tignumImageView.contentMode = .scaleAspectFit
+        
         logoImageView.heightAnchor == 48
         logoImageView.widthAnchor == 138
         logoImageView.centerAnchors == view.centerAnchors
