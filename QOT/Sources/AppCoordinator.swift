@@ -245,21 +245,6 @@ extension AppCoordinator {
         secondaryWindow.rootViewController?.present(viewController, animated: true, completion: nil)
     }
 
-    func presentArticleView(contentID: Int) {
-        guard
-            let root = window.rootViewController,
-            let services = services,
-            let coordinator = ArticleContentItemCoordinator(
-                root: root,
-                services: services,
-                contentCollection: services.contentService.contentCollection(id: contentID),                
-                topTabBarTitle: R.string.localized.sidebarTitleLibrary().uppercased()) else {
-                    return
-        }
-        
-        startChild(child: coordinator)
-    }
-
     // TODO: The following 2 methods should be refactored
     func presentLearnContentItems(contentID: Int, categoryTitle: String) {
 
