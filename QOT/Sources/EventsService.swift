@@ -22,7 +22,7 @@ final class EventsService {
     }
 
     func ekEvents(from: Date, to: Date) -> [EKEvent] {
-        let predicate = eventStore.predicateForEvents(withStart: from, end: to, calendars: nil)
+        let predicate = eventStore.predicateForEvents(withStart: from, end: to, calendars: eventStore.syncEnabledCalendars)
         return eventStore.events(matching: predicate)
     }
 }
