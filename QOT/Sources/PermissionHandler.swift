@@ -79,11 +79,12 @@ class PermissionHandler: NSObject {
     }
     
     func askPermissionForLocation(completion: @escaping (Bool) -> Void) {
-        guard isEnabledForSession else {
+        let status = CLLocationManager.authorizationStatus()
+        guard isEnabledForSession, status != .denied, status != .restricted else {
             completion(false)
             return
         }
-        guard CLLocationManager.authorizationStatus() != .authorizedWhenInUse else {
+        guard status != .authorizedWhenInUse, status != .authorizedAlways else {
             completion(true)
             return
         }
