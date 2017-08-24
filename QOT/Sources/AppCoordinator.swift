@@ -257,6 +257,7 @@ extension AppCoordinator {
         startChild(child: coordinator)
     }
 
+    // TODO: The following 2 methods should be refactored
     func presentLearnContentItems(contentID: Int, categoryTitle: String) {
 
         guard
@@ -270,6 +271,23 @@ extension AppCoordinator {
         let presentationManager = CircularPresentationManager(originFrame: rootViewController.view.frame)
         let coordinator = LearnContentItemCoordinator(root: rootViewController, services: services, content: content, category: category, presentationManager: presentationManager, topBarDelegate: self)
         topTabBarController = coordinator.topTabBarController        
+        switchToSecondaryWindow()
+        secondaryWindow.rootViewController?.present(coordinator.topTabBarController, animated: true, completion: nil)
+    }
+
+    func presentLearnContentItems(contentID: Int, categoryID: Int) {
+
+        guard
+            let services = services,
+            let content = services.contentService.contentCollection(id: contentID),
+            let category = services.contentService.contentCategory(id: categoryID),
+            let rootViewController = window.rootViewController else {
+                return
+        }
+
+        let presentationManager = CircularPresentationManager(originFrame: rootViewController.view.frame)
+        let coordinator = LearnContentItemCoordinator(root: rootViewController, services: services, content: content, category: category, presentationManager: presentationManager, topBarDelegate: self)
+        topTabBarController = coordinator.topTabBarController
         switchToSecondaryWindow()
         secondaryWindow.rootViewController?.present(coordinator.topTabBarController, animated: true, completion: nil)
     }

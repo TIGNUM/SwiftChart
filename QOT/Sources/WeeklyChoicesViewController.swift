@@ -109,6 +109,12 @@ extension WeeklyChoicesViewController: UICollectionViewDataSource, UICollectionV
         return cell
     }
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let item = viewModel.item(at: indexPath.item) else { return }
+
+        AppDelegate.current.appCoordinator.presentLearnContentItems(contentID: item.contentCollectionID, categoryID: item.categoryID)
+    }
+
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
             changePage(scrollView: scrollView)

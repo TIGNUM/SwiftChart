@@ -29,6 +29,7 @@ final class WeeklyChoicesCell: UICollectionViewCell, Dequeueable {
     private func configure() {
         CircleView.layer.cornerRadius = CircleView.bounds.width / 2
         titleLabel.font = Font.H4Headline
+        titleLabel.lineBreakMode = .byTruncatingTail
         subTitleLabel.font = Font.H7Title
         choiceLabel.font = Font.H7Tag
 
