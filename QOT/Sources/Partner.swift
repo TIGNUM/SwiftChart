@@ -18,13 +18,13 @@ final class Partner: SyncableObject {
         return .partner
     }
     
-    dynamic var name: String?
+    dynamic var name: String = ""
 
-    dynamic var surname: String?
+    dynamic var surname: String = ""
     
     dynamic var relationship: String?
     
-    dynamic var email: String?
+    dynamic var email: String = ""
 
     dynamic var profileImageResource: MediaResource?
 
@@ -37,10 +37,10 @@ final class Partner: SyncableObject {
     convenience init(localID: String, name: String?, surname: String?, relationship: String?, email: String?, profileImageResource: MediaResource) {
         self.init()
         self.localID = localID
-        self.name = name
-        self.surname = surname
+        self.name = name ?? ""
+        self.surname = surname ?? ""
         self.relationship = relationship
-        self.email = email
+        self.email = email ?? ""
         self.profileImageResource = profileImageResource
 
         dirty = true
@@ -70,9 +70,9 @@ extension Partner: TwoWaySyncable {
             .modifiedAt: modifiedAt,
             .syncStatus: syncStatus.rawValue,
             .qotId: localID,
-            .email: email.toJSONEncodable,
-            .firstName: name.toJSONEncodable,
-            .lastName: surname.toJSONEncodable,
+            .email: email,
+            .firstName: name,
+            .lastName: surname,
             .relationship: relationship.toJSONEncodable
         ]
         return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
@@ -82,10 +82,10 @@ extension Partner: TwoWaySyncable {
 extension Partner {
     var initials: String {
         var initials = ""
-        if let initial = name?.characters.first {
+        if let initial = name.characters.first {
             initials += String(initial)
         }
-        if let initial = surname?.characters.first {
+        if let initial = surname.characters.first {
             initials += String(initial)
         }
         return initials
