@@ -104,6 +104,8 @@ extension PartnersViewController {
         }
         editButton?.tintColor = .white
         valueEditing = true
+        title = R.string.localized.meSectorMyWhyPartnersEditTitle()
+        bigLabel.text = nil
         viewModel.updateIndex(index: carousel.currentItemIndex)
         view.edit(isEnabled: true)
     }
@@ -114,6 +116,8 @@ extension PartnersViewController {
         }
         editButton?.tintColor = .white40
         valueEditing = false
+        title = R.string.localized.meSectorMyWhyPartnersTitle()
+        bigLabel.text = R.string.localized.meSectorMyWhyPartnersHeader()
         view.update(viewModel: viewModel)
         view.edit(isEnabled: false)
         carousel.reloadItem(at: carousel.currentItemIndex, animated: false) // flush ui changes
@@ -166,7 +170,7 @@ extension PartnersViewController: iCarouselDataSource, iCarouselDelegate {
 extension PartnersViewController: UITextFieldDelegate {
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        scrollAnimated(topInset: -120)
+        scrollAnimated(topInset: -120.0)
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {

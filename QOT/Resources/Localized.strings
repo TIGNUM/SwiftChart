@@ -81,6 +81,7 @@
 "Me.Sector.My.Why.Select.Weekly.Choices.Max.Choice.Alert.Message" = "You have already reached the maximum limit of weekly choices. Please unselect something to continue your selection";
 "Me.Sector.My.Why.Select.Weekly.Choices.Max.Choice.Alert.Button" = "OK";
 "Me.Sector.My.Why.Partners.Title" = "QOT Partners";
+"Me.Sector.My.Why.Partners.Edit.Title" = "Edit QOT Partner";
 "Me.Sector.My.Why.Partners.Header" = "MY SUPPORT TEAM";
 "Me.Sector.My.Why.Partners.Name" = "Name";
 "Me.Sector.My.Why.Partners.Surname" = "Surname";
