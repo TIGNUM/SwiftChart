@@ -138,7 +138,7 @@ private extension SettingsTableViewCell {
             return
         }
         
-        valueLabel.attributedText = Style.paragraph(value, .white40).attributedString(lineSpacing: 2, alignment: .right)
+        valueLabel.attributedText = Style.tagTitle(value, .white40).attributedString(lineSpacing: 2, alignment: .right)
     }
 }
 

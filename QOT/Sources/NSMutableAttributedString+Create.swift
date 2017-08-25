@@ -45,6 +45,7 @@ enum Style {
     case headlineSmall(String, UIColor)
     case navigationTitle(String, UIColor)
     case tag(String, UIColor)
+    case tagTitle(String, UIColor)
     case paragraph(String, UIColor)
     case qoute(String, UIColor)
     case article(String, UIColor)
@@ -63,6 +64,7 @@ enum Style {
         case .headlineSmall: return Font.H5SecondaryHeadline
         case .navigationTitle: return Font.H6NavigationTitle
         case .tag: return Font.H7Tag
+        case .tagTitle: return Font.H8Title
         case .paragraph: return Font.H7Title
         case .qoute: return Font.Qoute
         case .article: return Font.DPText
@@ -100,6 +102,8 @@ enum Style {
         case .navigationTitle(let string, let color):
             return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: alignment))
         case .tag(let string, let color):
+            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: alignment))
+        case .tagTitle(let string, let color):
             return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: alignment))
         case .paragraph(let string, let color):
             return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: alignment))
