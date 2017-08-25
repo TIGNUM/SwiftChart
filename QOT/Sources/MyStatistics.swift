@@ -13,6 +13,8 @@ final class MyStatistics: SyncableObject {
 
     fileprivate(set) dynamic var key: String = ""
 
+    fileprivate(set) dynamic var unit: String = ""
+
     fileprivate(set) dynamic var userAverage: Double = 0
 
     fileprivate(set) dynamic var teamAverage: Double = 0
@@ -24,6 +26,8 @@ final class MyStatistics: SyncableObject {
     fileprivate(set) dynamic var lowerThreshold: Double = 0
 
     fileprivate(set) dynamic var maximum: Double = 0
+
+    fileprivate(set) dynamic var multiplier: Double = 0
 
     var dataPoints: List<DoubleObject> = List()
 
@@ -48,5 +52,7 @@ extension MyStatistics: OneWaySyncableDown {
         periods.forEach { $0.delete() }
         dataPoints.append(objectsIn: data.dataPoints.map({ DoubleObject(double: $0) }))
         periods.append(objectsIn: data.periods.map({ MyStatisticsPeriod( $0 ) }))
+        unit = data.unit
+        multiplier = data.multiplier
     } 
 }

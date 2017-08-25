@@ -20,6 +20,8 @@ struct MyStatisticsIntermediary: DownSyncIntermediary {
     let maximum: Double
     let dataPoints: [Double]
     let periods: [MyStatisticsPeriodIntermediary]
+    let unit: String
+    let multiplier: Double
 
     init(json: JSON) throws {
         key = try json .getItemValue(at: .key, fallback: "")
@@ -31,5 +33,7 @@ struct MyStatisticsIntermediary: DownSyncIntermediary {
         maximum = try json .getItemValue(at: .maximum, fallback: 0)
         dataPoints = try json.getArray(at: .dataPoints, fallback: [])
         periods = try json.getArray(at: .periods, fallback: [])
+        unit = try json .getItemValue(at: .unit, fallback: "")
+        multiplier = try json .getItemValue(at: .multiplier, fallback: 1)
     }
 }

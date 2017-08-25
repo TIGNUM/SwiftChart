@@ -27,6 +27,7 @@ enum JsonKey: String {
     case calendarName
     case categoryIds
     case city
+    case colorState
     case company
     case component
     case contentCategoryId
@@ -93,6 +94,7 @@ enum JsonKey: String {
     case min
     case modifiedAt
     case monthsOfTheYear
+    case multiplier
     case name
     case nextSyncToken
     case notes
@@ -168,6 +170,7 @@ enum JsonKey: String {
     case timeZoneId
     case title
     case type
+    case unit
     case untilDate
     case upperThreshold
     case urbanAirshipDeviceToken
