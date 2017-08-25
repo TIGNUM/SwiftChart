@@ -34,7 +34,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hKO-zn-69f">
-                                <rect key="frame" x="0.0" y="31" width="265" height="21"/>
+                                <rect key="frame" x="0.0" y="23" width="265" height="21"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -49,7 +49,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="5di-4K-nT6" firstAttribute="leading" secondItem="WGo-rT-mVM" secondAttribute="leading" id="256-jT-vWO"/>
-                            <constraint firstItem="hKO-zn-69f" firstAttribute="top" secondItem="Oa2-gh-lrd" secondAttribute="bottom" constant="8" id="3sG-ng-6k7"/>
+                            <constraint firstItem="hKO-zn-69f" firstAttribute="top" secondItem="Oa2-gh-lrd" secondAttribute="bottom" id="3sG-ng-6k7"/>
                             <constraint firstAttribute="height" constant="130" id="Cyf-lA-4QD"/>
                             <constraint firstItem="Oa2-gh-lrd" firstAttribute="leading" secondItem="WGo-rT-mVM" secondAttribute="leading" id="FmI-5h-3bB"/>
                             <constraint firstAttribute="trailing" secondItem="5di-4K-nT6" secondAttribute="trailing" id="OZH-uu-yHT"/>
