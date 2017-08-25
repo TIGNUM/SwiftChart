@@ -19,14 +19,17 @@ final class Preparation: SyncableObject {
     
     fileprivate(set) dynamic var subtitle: String = ""
     
-    fileprivate(set) dynamic var calendarEventRemoteID: Int = 0
-    
-    fileprivate(set) dynamic var contentCollectionID: Int = 0
+    let calendarEventRemoteID = RealmOptional<Int>(nil)
 
     dynamic var changeStamp: String? = UUID().uuidString
     
     dynamic var deleted: Bool = false
-    
+
+    // FIXME: This is a hack. The API must change to allow for storing this ID
+    var contentCollectionID: Int {
+        return checks.first?.contentItem?.collectionID.value ?? 0
+    }
+
     // MARK: Relationships
     
     fileprivate(set) dynamic var calendarEvent: CalendarEvent?
@@ -38,7 +41,6 @@ final class Preparation: SyncableObject {
     convenience init(calendarEvent: CalendarEvent?, contentCollectionID: Int, name: String, subtitle: String) {
         self.init()
         self.calendarEvent = calendarEvent
-        self.contentCollectionID = contentCollectionID
         self.name = name
         self.subtitle = subtitle
     }
@@ -63,8 +65,7 @@ extension Preparation: TwoWaySyncable {
     func setData(_ data: PreparationIntermediary, objectStore: ObjectStore) throws {
         name = data.name
         subtitle = data.subtitle
-        calendarEventRemoteID = data.calendarEventRemoteID
-        contentCollectionID = data.contentID
+        calendarEventRemoteID.value = data.calendarEventRemoteID
     }
     
     static var endpoint: Endpoint {

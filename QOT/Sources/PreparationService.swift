@@ -88,6 +88,7 @@ final class PreparationService {
                 realm.delete(preparation)
             } else {
                 preparation.deleted = true
+                preparation.didUpdate()
             }
         }
     }
@@ -100,6 +101,7 @@ final class PreparationService {
                     realm.delete(check)
                 } else {
                     check.deleted = true
+                    check.didUpdate()
                 }
             }
         }
