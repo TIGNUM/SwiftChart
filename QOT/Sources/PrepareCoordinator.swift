@@ -87,6 +87,7 @@ extension PrepareCoordinator {
     func showPrepareList(contentCollectionID: Int) {
         var title: String? = nil
         var video: PrepareContentViewModel.Video? = nil
+        var description: String?
         var items: [PrepareItem] = []
 
         if let content = services.contentService.contentCollection(id: contentCollectionID) {
@@ -98,6 +99,10 @@ extension PrepareCoordinator {
                     items.append(PrepareItem(id: item.forcedRemoteID, title: title, subTitle: description, readMoreID: relatedContentID))
                 case .video(_, _, let placeholderURL, let videoURL, _):
                     video = PrepareContentViewModel.Video(url: videoURL, placeholderURL: placeholderURL)
+                case .text(let text, let style):
+                    if style == .paragraph {
+                        description = text
+                    }
                 default:
                     break
                 }
@@ -105,7 +110,11 @@ extension PrepareCoordinator {
         }
 
         if let title = title {
-            let viewModel = PrepareContentViewModel(title: title, subtitle: "", video: video, description: "", items: items)
+            let viewModel = PrepareContentViewModel(title: title,
+                                                    subtitle: "",
+                                                    video: video,
+                                                    description: description ?? "",
+                                                    items: items)
 
             let viewController = PrepareContentViewController(pageName: .prepareContent, viewModel: viewModel)
             viewController.delegate = self
@@ -127,6 +136,7 @@ extension PrepareCoordinator {
 
         var title: String? = nil
         var video: PrepareContentViewModel.Video? = nil
+        var description: String?
         var items: [PrepareItem] = []
 
         if let content = services.contentService.contentCollection(id: preparation.contentCollectionID) {
@@ -138,6 +148,10 @@ extension PrepareCoordinator {
                     items.append(PrepareItem(id: item.forcedRemoteID, title: title, subTitle: description, readMoreID: relatedContentID))
                 case .video(_, _, let placeholderURL, let videoURL, _):
                     video = PrepareContentViewModel.Video(url: videoURL, placeholderURL: placeholderURL)
+                case .text(let text, let style):
+                    if style == .paragraph {
+                        description = text
+                    }
                 default:
                     break
                 }
@@ -153,7 +167,7 @@ extension PrepareCoordinator {
         if let title = title {
             let viewModel = PrepareContentViewModel(title: title,
                                                     video: video,
-                                                    description: "",
+                                                    description: description ?? "",
                                                     items: items,
                                                     checkedIDs: checkedIDs,
                                                     preparationID: preparationID)

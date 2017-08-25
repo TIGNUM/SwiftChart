@@ -40,7 +40,7 @@ class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable {
 
         iconImageView.image = iconImageView.image!.withRenderingMode(.alwaysTemplate)
         iconImageView.tintColor = UIColor.blackTwo
-        iconImageView.contentMode = .scaleAspectFill
+        previewImageView.contentMode = .scaleAspectFill
     }
     
     func setCell(title: String, subTitle: String, contentText: String, videoPlaceholder: URL?, videoURL: URL?, isExpanded: Bool) {
