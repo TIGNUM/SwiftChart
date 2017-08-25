@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -22,15 +23,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="156" id="dQ7-F5-GM4" customClass="PrepareContentMainHeaderTableViewCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="156"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="357" id="dQ7-F5-GM4" customClass="PrepareContentMainHeaderTableViewCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="357"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dQ7-F5-GM4" id="BJI-XG-0Ha">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="155.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="356.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="LABEL" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPw-x3-hck">
-                        <rect key="frame" x="30" y="15" width="221" height="42"/>
+                        <rect key="frame" x="30" y="15" width="221" height="43"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="41" id="M9B-a5-4F4"/>
                         </constraints>
@@ -38,7 +39,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Label" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQx-xn-2cN">
-                        <rect key="frame" x="30" y="62" width="221" height="18"/>
+                        <rect key="frame" x="30" y="63" width="221" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="nmx-Os-kkw"/>
                         </constraints>
@@ -47,25 +48,27 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UVb-BY-vT7">
-                        <rect key="frame" x="266" y="23.5" width="24" height="24"/>
+                        <rect key="frame" x="266" y="24" width="24" height="24"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="24" id="ATk-bV-f4a"/>
                             <constraint firstAttribute="height" constant="24" id="FBD-OH-NCS"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1gK-sn-BTX">
-                        <rect key="frame" x="30" y="154.5" width="260" height="1"/>
+                        <rect key="frame" x="30" y="355.5" width="260" height="1"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="OCf-uj-xPE"/>
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="upm-Fr-VYW">
-                        <rect key="frame" x="30" y="95" width="260" height="22"/>
-                        <state key="normal" image="ic_edit"/>
+                        <rect key="frame" x="30" y="96" width="260" height="146.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="upm-Fr-VYW" secondAttribute="height" multiplier="16:9" id="HfQ-u7-0XH"/>
+                        </constraints>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lyg-m3-ejQ">
-                        <rect key="frame" x="30" y="132" width="260" height="19"/>
+                        <rect key="frame" x="30" y="257.5" width="260" height="15.5"/>
                         <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -101,10 +104,7 @@
                 <outlet property="previewImageView" destination="upm-Fr-VYW" id="bUh-zF-0rs"/>
                 <outlet property="subHeaderLabel" destination="RQx-xn-2cN" id="dCe-pL-MzC"/>
             </connections>
-            <point key="canvasLocation" x="35" y="110"/>
+            <point key="canvasLocation" x="63" y="-11"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="ic_edit" width="23" height="22"/>
-    </resources>
 </document>

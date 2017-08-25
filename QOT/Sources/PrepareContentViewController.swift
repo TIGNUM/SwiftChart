@@ -209,12 +209,15 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
             configure(cell: cell, forIndexPath: indexPath)
 
             var contentHeight: CGFloat = 0
+            var padding: CGFloat = 36
             if viewModel.isCellExpanded(at: indexPath.row) {
                 guard let contentText = cell.contentLabel.text else { return UITableViewAutomaticDimension }
                 contentHeight = contentText.isEmpty ? 0 : calculateLabelHeight(text: contentText, font: Font.DPText, dispayedLineHeight: 29, frameWidth: cell.frame.width - 60)
 
+                padding += 25
                 if videoURL != nil {
-                    contentHeight += cell.previewImageView.frame.height + 15
+                    contentHeight += cell.previewImageView.frame.height
+                    padding += 50
                 }
             }
 
@@ -224,7 +227,6 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
             guard let subHeaderText = cell.subHeaderLabel.text else { return UITableViewAutomaticDimension }
             let subHeaderHeight = subHeaderText.isEmpty ? 0 : calculateLabelHeight(text: subHeaderText, font: Font.H7Title, dispayedLineHeight: 9, frameWidth: cell.frame.width - 99)
 
-            let padding: CGFloat = 36
             let cellHeight = headerHeight + subHeaderHeight + contentHeight + padding
 
             return cellHeight
