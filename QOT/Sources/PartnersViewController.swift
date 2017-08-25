@@ -25,8 +25,11 @@ class PartnersViewController: UIViewController {
     fileprivate let viewModel: PartnersViewModel
     fileprivate var imagePicker: ImagePickerController?
     fileprivate var valueEditing: Bool = false
+    fileprivate var editButton: UIBarButtonItem? {
+        return navigationController?.navigationBar.topItem?.rightBarButtonItem
+    }
     weak var delegate: PartnersViewControllerDelegate?
-
+    
     // MARK: - Init
 
     init(viewModel: PartnersViewModel) {
@@ -99,6 +102,7 @@ extension PartnersViewController {
         guard let view = carousel.currentItemView as? CarouselCellView else {
             return
         }
+        editButton?.tintColor = .white
         valueEditing = true
         viewModel.updateIndex(index: carousel.currentItemIndex)
         view.edit(isEnabled: true)
@@ -108,6 +112,7 @@ extension PartnersViewController {
         guard let view = carousel.currentItemView as? CarouselCellView else {
             return
         }
+        editButton?.tintColor = .white40
         valueEditing = false
         view.update(viewModel: viewModel)
         view.edit(isEnabled: false)

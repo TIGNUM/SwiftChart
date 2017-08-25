@@ -35,6 +35,7 @@ final class PartnersCoordinator: NSObject, ParentCoordinator {
         
         let leftButton = UIBarButtonItem(withImage: R.image.ic_minimize())
         let rightButton = UIBarButtonItem(withImage: R.image.ic_edit())
+        rightButton.tintColor = .white40
         topTabBarController = UINavigationController(withPages: [partnersViewController], topBarDelegate: self, leftButton: leftButton, rightButton: rightButton)
         topTabBarController.modalPresentationStyle = .custom
         topTabBarController.transitioningDelegate = self

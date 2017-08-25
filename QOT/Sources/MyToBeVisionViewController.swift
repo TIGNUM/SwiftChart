@@ -138,7 +138,7 @@ private extension MyToBeVisionViewController {
             configureWebView(string: messageTextView.text)
         }
         
-        editButton.tintColor = isEditing ? UIColor.white40 : UIColor.white
+        editButton.tintColor = isEditing ? .white : .white40
         UIView.animate(withDuration: 0.5, animations: {
             self.messageTextView.alpha = isEditing ? 1 : 0
             self.webView.alpha = isEditing ? 0 : 1
@@ -172,6 +172,7 @@ private extension MyToBeVisionViewController {
         setImageButton()
         imageView.alpha = 0.0
         imageViewOverlay.alpha = 0.0
+        editButton.tintColor = .white40
     }
 
     private func setImageButton(isEditing: Bool = false) {
