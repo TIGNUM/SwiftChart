@@ -43,6 +43,7 @@ final class LearnContentItemViewModel {
     fileprivate var playingIndexPath: IndexPath?
     fileprivate var timeObserver: Any?
     fileprivate var player: AVPlayer? = AVPlayer()
+    fileprivate(set) var isPlaying: Bool = false
     let contentCollection: ContentCollection
     var currentPosition = ReactiveKit.Property<TimeInterval>(0)
     lazy var trackDuration: ReactiveKit.Property<TimeInterval> = {
@@ -62,6 +63,11 @@ final class LearnContentItemViewModel {
         self.categoryID = categoryID
         self.relatedContentCollections = services.contentService.contentCollections(ids: contentCollection.relatedContentIDs)
         self.recommentedContentCollections = services.contentService.contentCollections(categoryID: categoryID)
+        setupAudioNotifications()
+    }
+    
+    deinit {
+        tearDownAudioNotifications()
     }
 }
 
@@ -251,10 +257,13 @@ extension LearnContentItemViewModel {
         let modifications: [IndexPath]
         if let current = playingIndexPath {
             if current == indexPath {
-                // stop
-                playingIndexPath = nil
+                // pause / unpause
                 modifications = [indexPath]
-                stopPlayback()
+                if isPlaying {
+                    pausePlayback()
+                } else {
+                    unpausePlayback()
+                }
             } else {
                 // stop current
                 // play new
@@ -272,6 +281,20 @@ extension LearnContentItemViewModel {
 
         updates.next(.update(deletions: [], insertions: [], modifications: modifications))
     }
+    
+    func pausePlayback() {
+        guard let playingIndexPath = playingIndexPath else {
+            return
+        }
+        player?.pause()
+        isPlaying = false
+        updates.next(.update(deletions: [], insertions: [], modifications: [playingIndexPath]))
+    }
+    
+    func unpausePlayback() {
+        player?.play()
+        isPlaying = true
+    }
 
     func stopPlayback() {
         log("Did stop playback")
@@ -284,13 +307,17 @@ extension LearnContentItemViewModel {
         player = nil
         currentPosition.value = 0
         playingIndexPath = nil
+        isPlaying = false
     }
 
     func forward(value: Float) {
         let time = TimeInterval(value) * trackDuration.value
         player?.seek(to: CMTimeMakeWithSeconds(time, 1))
         player?.play()
+        isPlaying = true
     }
+    
+    // MARK: - private
 
     private func play(url: URL) {
         log("Did start to play item at index: \(index)")
@@ -305,6 +332,7 @@ extension LearnContentItemViewModel {
         player = AVPlayer(playerItem: playerItem)
         player?.volume = 1.0
         player?.play()
+        isPlaying = true
         observePlayerTime()
     }
 
@@ -312,5 +340,23 @@ extension LearnContentItemViewModel {
         timeObserver = player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 1), queue: .main) { (time: CMTime) in
             self.currentPosition.value = time.seconds
         }
+    }
+    
+    // MARK: - notification 
+    
+    fileprivate func setupAudioNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(playerDidEndNotification(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
+    }
+    
+    fileprivate func tearDownAudioNotifications() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
+    }
+    
+    @objc fileprivate func playerDidEndNotification(_ notification: Notification) {
+        guard let playingIndexPath = playingIndexPath else {
+            return
+        }
+        stopPlayback()
+        updates.next(.update(deletions: [], insertions: [], modifications: [playingIndexPath]))
     }
 }

@@ -143,6 +143,7 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
             switch viewModel.firstAudioItem() {
             case .audio(_, _, _, _, _, let waveformData):
                 let cell: LearnStrategyAudioPlayerView = tableView.dequeueCell(for: indexPath)
+                cell.delegate = self
                 soundPattern = Property(waveformData)
                 observeViewModel(audioView: cell)
 

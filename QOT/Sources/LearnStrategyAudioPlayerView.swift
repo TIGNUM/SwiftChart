@@ -64,7 +64,7 @@ private extension LearnStrategyAudioPlayerView {
     }
 
     private func setupSlider() {
-        audioSlider.addTarget(self, action: #selector(LearnStrategyAudioPlayerView.sliderValueDidChange(_:)), for: .valueChanged)
+        audioSlider.addTarget(self, action: #selector(sliderValueDidChange(_:)), for: .valueChanged)
         let image = thumbImage(size: CGSize(width: 10, height: audioWaveformView.bounds.height))
         audioSlider.setThumbImage(image, for: .normal)
         audioSlider.setThumbImage(image, for: .highlighted)
