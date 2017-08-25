@@ -68,9 +68,11 @@ enum PageName: String {
 
 struct PageObject {
     enum Identifier: String {
-        case contentCollection = "CONTENTCOLLECTION"
         case myToBeVision = "MYTOBEVISION"
-        case category = "CATEGORY"
+        case category = "CONTENTCATEGORY"
+        case contentCollection = "CONTENT"
+        case contentItem = "CONTENTITEM"
+        case preparation = "PREPARATION"
     }
     
     let object: SyncableObject
