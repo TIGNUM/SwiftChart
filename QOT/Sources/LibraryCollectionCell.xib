@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -31,13 +31,13 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="295" verticalCompressionResistancePriority="756" text="Headline lorem ipsum text " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="riM-01-mbz">
-                        <rect key="frame" x="8" y="108.5" width="256" height="19"/>
+                        <rect key="frame" x="9" y="126.5" width="254" height="19"/>
                         <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="16"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Frr-e1-op8">
-                        <rect key="frame" x="8" y="143.5" width="256" height="10.5"/>
+                        <rect key="frame" x="9" y="150.5" width="254" height="10.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="11"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -49,14 +49,14 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="hSh-wr-1za" secondAttribute="trailing" id="0Yb-We-qH5"/>
                 <constraint firstItem="hSh-wr-1za" firstAttribute="leading" secondItem="nsP-So-ihh" secondAttribute="leading" id="5YH-Dg-DlG"/>
-                <constraint firstAttribute="trailing" secondItem="riM-01-mbz" secondAttribute="trailing" constant="8" id="JNG-yf-OaG"/>
-                <constraint firstItem="Frr-e1-op8" firstAttribute="leading" secondItem="nsP-So-ihh" secondAttribute="leading" constant="8" id="OJ9-B9-Jys"/>
-                <constraint firstItem="riM-01-mbz" firstAttribute="leading" secondItem="nsP-So-ihh" secondAttribute="leading" constant="8" id="Rsu-65-IDm"/>
+                <constraint firstAttribute="trailing" secondItem="riM-01-mbz" secondAttribute="trailing" constant="9" id="JNG-yf-OaG"/>
+                <constraint firstItem="Frr-e1-op8" firstAttribute="leading" secondItem="nsP-So-ihh" secondAttribute="leading" constant="9" id="OJ9-B9-Jys"/>
+                <constraint firstItem="riM-01-mbz" firstAttribute="leading" secondItem="nsP-So-ihh" secondAttribute="leading" constant="9" id="Rsu-65-IDm"/>
                 <constraint firstItem="hSh-wr-1za" firstAttribute="top" secondItem="nsP-So-ihh" secondAttribute="top" id="XY6-Td-XD1"/>
-                <constraint firstAttribute="bottom" secondItem="Frr-e1-op8" secondAttribute="bottom" constant="16" id="Xc6-Pf-lLK"/>
+                <constraint firstAttribute="bottom" secondItem="Frr-e1-op8" secondAttribute="bottom" constant="9" id="Xc6-Pf-lLK"/>
                 <constraint firstAttribute="bottom" secondItem="hSh-wr-1za" secondAttribute="bottom" id="ksK-9Z-oe6"/>
-                <constraint firstItem="Frr-e1-op8" firstAttribute="top" secondItem="riM-01-mbz" secondAttribute="bottom" constant="16" id="qZb-kG-FPm"/>
-                <constraint firstAttribute="trailing" secondItem="Frr-e1-op8" secondAttribute="trailing" constant="8" id="uUe-cK-lUT"/>
+                <constraint firstItem="Frr-e1-op8" firstAttribute="top" secondItem="riM-01-mbz" secondAttribute="bottom" constant="5" id="qZb-kG-FPm"/>
+                <constraint firstAttribute="trailing" secondItem="Frr-e1-op8" secondAttribute="trailing" constant="9" id="uUe-cK-lUT"/>
             </constraints>
             <size key="customSize" width="607" height="436"/>
             <connections>
