@@ -13,6 +13,7 @@ protocol LearnContentListCoordinatorDelegate: ParentCoordinator {}
 final class LearnContentListCoordinator: ParentCoordinator {
 
     fileprivate let services: Services
+    fileprivate let eventTracker: EventTracker
     fileprivate let selectedCategoryIndex: Index
     fileprivate let learnContentListViewController: LearnContentListViewController
     fileprivate var topTabBarController: UINavigationController!
@@ -21,9 +22,10 @@ final class LearnContentListCoordinator: ParentCoordinator {
     weak var delegate: LearnContentListCoordinatorDelegate?
     fileprivate let presentationManager: ZoomPresentationManager
 
-    init(root: LearnCategoryListViewController, services: Services, selectedCategoryIndex: Index, originFrame: CGRect) {
+    init(root: LearnCategoryListViewController, services: Services, eventTracker: EventTracker, selectedCategoryIndex: Index, originFrame: CGRect) {
         self.rootViewController = root
         self.services = services
+        self.eventTracker = eventTracker
         self.selectedCategoryIndex = selectedCategoryIndex
         presentationManager = ZoomPresentationManager(openingFrame: originFrame)
         let viewModel = LearnContentCollectionViewModel(services: services, selectedIndex: selectedCategoryIndex)
@@ -43,7 +45,7 @@ extension LearnContentListCoordinator: LearnContentListViewControllerDelegate {
 
     func didSelectContent(_ content: ContentCollection, category: ContentCategory, originFrame: CGRect, in viewController: LearnContentListViewController) {
         let presentationManager = CircularPresentationManager(originFrame: originFrame)
-        let coordinator = LearnContentItemCoordinator(root: viewController, services: services, content: content, category: category, presentationManager: presentationManager)
+        let coordinator = LearnContentItemCoordinator(root: viewController, eventTracker: eventTracker, services: services, content: content, category: category, presentationManager: presentationManager)
         startChild(child: coordinator)
     }
     

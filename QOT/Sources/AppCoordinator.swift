@@ -44,7 +44,7 @@ final class AppCoordinator: ParentCoordinator {
     }()
 
     fileprivate lazy var eventTracker: EventTracker = {
-        return EventTracker()
+        return EventTracker(realmProvider: self.realmProvider)
     }()
 
     fileprivate lazy var syncRecordService: SyncRecordService = {
@@ -89,8 +89,8 @@ final class AppCoordinator: ParentCoordinator {
                 log(error)
             }
         }
-        eventTracker.realmProvider = realmProvider
         pageTracker.start()
+        
         let viewController = AnimatedLaunchScreenViewController()
         window.rootViewController = viewController
         window.makeKeyAndVisible()
@@ -192,6 +192,7 @@ private extension AppCoordinator {
             window: window,
             selectedIndex: selectedIndex,
             services: services,
+            eventTracker: eventTracker,
             permissionHandler: permissionHandler,
             pageTracker: pageTracker
         )
@@ -257,7 +258,7 @@ extension AppCoordinator {
         }
 
         let presentationManager = CircularPresentationManager(originFrame: rootViewController.view.frame)
-        let coordinator = LearnContentItemCoordinator(root: rootViewController, services: services, content: content, category: category, presentationManager: presentationManager, topBarDelegate: self)
+        let coordinator = LearnContentItemCoordinator(root: rootViewController, eventTracker: eventTracker, services: services, content: content, category: category, presentationManager: presentationManager, topBarDelegate: self)
         topTabBarController = coordinator.topTabBarController        
         switchToSecondaryWindow()
         secondaryWindow.rootViewController?.present(coordinator.topTabBarController, animated: true, completion: nil)
@@ -274,7 +275,7 @@ extension AppCoordinator {
         }
 
         let presentationManager = CircularPresentationManager(originFrame: rootViewController.view.frame)
-        let coordinator = LearnContentItemCoordinator(root: rootViewController, services: services, content: content, category: category, presentationManager: presentationManager, topBarDelegate: self)
+        let coordinator = LearnContentItemCoordinator(root: rootViewController, eventTracker: eventTracker, services: services, content: content, category: category, presentationManager: presentationManager, topBarDelegate: self)
         topTabBarController = coordinator.topTabBarController
         switchToSecondaryWindow()
         secondaryWindow.rootViewController?.present(coordinator.topTabBarController, animated: true, completion: nil)
@@ -431,6 +432,7 @@ extension AppCoordinator: SelectWeeklyChoicesViewControllerDelegate {
 
         let coordinator = LearnContentItemCoordinator(
             root: viewController,
+            eventTracker: eventTracker,
             services: services,
             content: contentCollection,
             category: contentCategory

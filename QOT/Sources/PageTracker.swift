@@ -61,7 +61,6 @@ class PageTracker {
     }
     
     func track(_ page: TrackablePage) {
-        log(">>>> WILL TRACK \(String(describing: page.pageName)) from \(String(describing: lastPage?.pageName))", enabled: LogToggle.Analytics.pageTracker)
         eventTracker.track(.didShowPage(page, from: lastPage))
         lastPage = page
     }

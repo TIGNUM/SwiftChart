@@ -26,6 +26,7 @@ final class PrepareCoordinator: ParentCoordinator {
     // MARK: Private properties
 
     fileprivate let services: Services
+    fileprivate let eventTracker: EventTracker
     fileprivate let permissionHandler: PermissionHandler
     fileprivate let tabBarController: TabBarController
     fileprivate let topTabBarController: UINavigationController
@@ -54,12 +55,14 @@ final class PrepareCoordinator: ParentCoordinator {
     }()
 
     init(services: Services,
+         eventTracker: EventTracker,
          permissionHandler: PermissionHandler,
          tabBarController: TabBarController,
          topTabBarController: UINavigationController,
          chatViewController: ChatViewController<Answer>,
          myPrepViewController: MyPrepViewController) {
             self.services = services
+            self.eventTracker = eventTracker
             self.permissionHandler = permissionHandler
             self.tabBarController = tabBarController
             self.topTabBarController = topTabBarController
@@ -283,7 +286,7 @@ extension PrepareCoordinator: PrepareContentViewControllerDelegate {
 
         //TODO: Show error for above guards
 
-        let coordinator = LearnContentItemCoordinator(root: viewController, services: services, content: content, category: category)
+        let coordinator = LearnContentItemCoordinator(root: viewController, eventTracker: eventTracker, services: services, content: content, category: category)
         startChild(child: coordinator)
     }
 

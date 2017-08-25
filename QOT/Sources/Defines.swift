@@ -40,7 +40,8 @@ struct LogToggle {
     }
     
     struct Analytics {
-        static let pageTracker = true
+        static let pageTracking = false
+        static let eventTracking = false
     }
 }
 

@@ -18,6 +18,7 @@ final class TabBarCoordinator: ParentCoordinator {
 
     fileprivate let window: UIWindow
     fileprivate let services: Services
+    fileprivate let eventTracker: EventTracker
     fileprivate let selectedIndex: Observable<Index>
     fileprivate var tutorialDispatchWorkItem: DispatchWorkItem?
     fileprivate var viewControllers = [UIViewController]()
@@ -46,6 +47,7 @@ final class TabBarCoordinator: ParentCoordinator {
 
     fileprivate lazy var prepareCoordinator: PrepareCoordinator = {
         return PrepareCoordinator(services: self.services,
+                                  eventTracker: self.eventTracker,
                                   permissionHandler: self.permissionHandler,
                                   tabBarController: self.tabBarController!,
                                   topTabBarController: self.topTabBarControllerPrepare,
@@ -109,9 +111,10 @@ final class TabBarCoordinator: ParentCoordinator {
 
     // MARK: - Init
     
-    init(window: UIWindow, selectedIndex: Index, services: Services, permissionHandler: PermissionHandler, pageTracker: PageTracker) {
+    init(window: UIWindow, selectedIndex: Index, services: Services, eventTracker: EventTracker, permissionHandler: PermissionHandler, pageTracker: PageTracker) {
         self.window = window
         self.services = services
+        self.eventTracker = eventTracker
         self.selectedIndex = Observable(selectedIndex)
         self.permissionHandler = permissionHandler
         self.pageTracker = pageTracker
@@ -276,7 +279,7 @@ extension TabBarCoordinator: TabBarControllerDelegate {
 extension TabBarCoordinator: LearnCategoryListViewControllerDelegate {
 
     func didSelectCategory(at index: Index, withFrame frame: CGRect, in viewController: LearnCategoryListViewController) {
-        let coordinator = LearnContentListCoordinator(root: viewController, services: services, selectedCategoryIndex: index, originFrame: frame)
+        let coordinator = LearnContentListCoordinator(root: viewController, services: services, eventTracker: eventTracker, selectedCategoryIndex: index, originFrame: frame)
         coordinator.delegate = self
         startChild(child: coordinator)
     }

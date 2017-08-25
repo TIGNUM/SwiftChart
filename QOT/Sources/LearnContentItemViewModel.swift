@@ -43,6 +43,7 @@ final class LearnContentItemViewModel {
     fileprivate var playingIndexPath: IndexPath?
     fileprivate var timeObserver: Any?
     fileprivate var player: AVPlayer? = AVPlayer()
+    fileprivate let eventTracker: EventTracker
     fileprivate(set) var isPlaying: Bool = false
     let contentCollection: ContentCollection
     var currentPosition = ReactiveKit.Property<TimeInterval>(0)
@@ -57,8 +58,9 @@ final class LearnContentItemViewModel {
 
     // MARK: - Init
 
-    init(services: Services, contentCollection: ContentCollection, categoryID: Int) {
+    init(services: Services, eventTracker: EventTracker, contentCollection: ContentCollection, categoryID: Int) {
         self.services = services
+        self.eventTracker = eventTracker
         self.contentCollection = contentCollection
         self.categoryID = categoryID
         self.relatedContentCollections = services.contentService.contentCollections(ids: contentCollection.relatedContentIDs)
@@ -221,6 +223,11 @@ extension LearnContentItemViewModel {
 
     func didViewContentItem(localID: String) {
         services.contentService.setViewed(localID: localID)
+        
+        guard let contentItem = services.mainRealm.syncableObject(ofType: ContentItem.self, localID: localID) else {
+            return
+        }
+        eventTracker.track(.didReadContentItem(contentItem))
     }
 
     var format: String {

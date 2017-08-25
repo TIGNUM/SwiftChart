@@ -13,6 +13,7 @@ import SafariServices
 final class LearnContentItemCoordinator: ParentCoordinator {
 
     fileprivate let services: Services
+    fileprivate let eventTracker: EventTracker
     fileprivate let category: ContentCategory
     fileprivate var categoryTitle: String
     fileprivate var selectedContent: ContentCollection
@@ -22,12 +23,13 @@ final class LearnContentItemCoordinator: ParentCoordinator {
     fileprivate var viewModel: LearnContentItemViewModel
     fileprivate var presentationManager: CircularPresentationManager?
     fileprivate weak var topBarDelegate: TopNavigationBarDelegate?
-    var children: [Coordinator] = []
     fileprivate let rootViewController: UIViewController
+    var children: [Coordinator] = []
     var topTabBarController: UINavigationController!
-
-    init(root: UIViewController, services: Services, content: ContentCollection, category: ContentCategory, presentationManager: CircularPresentationManager? = nil, topBarDelegate: TopNavigationBarDelegate? = nil) {
+    
+    init(root: UIViewController, eventTracker: EventTracker, services: Services, content: ContentCollection, category: ContentCategory, presentationManager: CircularPresentationManager? = nil, topBarDelegate: TopNavigationBarDelegate? = nil) {
         self.rootViewController = root
+        self.eventTracker = eventTracker
         self.services = services
         self.category = category
         self.categoryTitle = category.title.capitalized
@@ -36,6 +38,7 @@ final class LearnContentItemCoordinator: ParentCoordinator {
         self.topBarDelegate = topBarDelegate
         self.viewModel = LearnContentItemViewModel(
             services: services,
+            eventTracker: eventTracker,
             contentCollection: selectedContent,
             categoryID: category.forcedRemoteID
         )
@@ -132,6 +135,7 @@ extension LearnContentItemCoordinator: LearnContentItemViewControllerDelegate {
         selectedContent = contentCollection
         viewModel = LearnContentItemViewModel(
             services: services,
+            eventTracker: eventTracker,
             contentCollection: selectedContent,
             categoryID: category.forcedRemoteID
         )
