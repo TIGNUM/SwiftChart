@@ -179,6 +179,8 @@ extension AppDelegate {
             databaseBuilder.downSyncOperation(for: ContentCategory.self, context: context),
             databaseBuilder.downSyncOperation(for: ContentCollection.self, context: context),
             databaseBuilder.downSyncOperation(for: ContentItem.self, context: context),
+            databaseBuilder.downSyncOperation(for: Question.self, context: context),
+            databaseBuilder.downSyncOperation(for: Page.self, context: context),
             databaseBuilder.updateRelationsOperation(context: context)
         ])
         databaseBuilder.setCompletion({

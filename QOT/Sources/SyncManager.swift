@@ -110,6 +110,10 @@ final class SyncManager {
     // MARK: Syncs
 
     func startAutoSync() {
+        #if BUILD_DATABASE
+            return // Don't do regular sync when building seed database
+        #endif
+
         setupTimers()
     }
 
