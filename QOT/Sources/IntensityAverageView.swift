@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IntensityAverageView: UIView {
+final class IntensityAverageView: UIView {
 
     struct Item {
         let start: CGFloat
@@ -65,6 +65,7 @@ class IntensityAverageView: UIView {
         guard columns.count > 0 else {
             return
         }
+
         let columnWidth = bounds.width / CGFloat(columns.count)
         layer.sublayers = columns.enumerated().map { (index, column) -> [CALayer] in
             let x = (CGFloat(index) * columnWidth) + columnWidth / 2.0

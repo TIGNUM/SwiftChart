@@ -15,6 +15,14 @@ final class MyStatisticsPeriod: Object {
         case low = "LOW"
         case normal = "NORMAL"
         case critical = "CRITICAL"
+
+        var color: UIColor {
+            switch self {
+            case .critical: return .cherryRed
+            case .low: return .gray
+            case .normal: return .white90
+            }
+        }
     }
 
     dynamic var startDate = Date()
@@ -30,12 +38,20 @@ final class MyStatisticsPeriod: Object {
         self.endDate = data.endDate
         self._status = data.status
     }
+
+    convenience init(start: Date, end: Date, status: MyStatisticsPeriod.Status) {
+        self.init()
+
+        self.startDate = start
+        self.endDate = end
+        self._status = status.rawValue
+    }
 }
 
 extension MyStatisticsPeriod {
 
     var range: Range<Date> {
-        return startDate..<endDate
+        return startDate ..< endDate
     }
 
     var status: Status {

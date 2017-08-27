@@ -42,7 +42,7 @@ final class EventGraphView: UIView {
         let adjustedWidth = column.width * bounds.width
         let x = centerX - (adjustedWidth / 2)
 
-        return column.items.map { layerForItem($0, x: x, width: adjustedWidth)}
+        return column.items.map { layerForItem($0, x: x, width: adjustedWidth) }
     }
 
     private func layerForItem(_ item: Item, x: CGFloat, width: CGFloat) -> CALayer {
@@ -60,9 +60,10 @@ final class EventGraphView: UIView {
         case .normalColor:
             layer.fillColor = UIColor.white8.cgColor
         case .lowColor:
-            layer.fillColor = UIColor.whiteLight40.cgColor
+            layer.fillColor = UIColor.white.cgColor
             layer.addGlowEffect(color: .white)
         }
+
         return layer
     }
 
@@ -70,6 +71,7 @@ final class EventGraphView: UIView {
         guard columns.count > 0 else {
             return
         }
+
         let columnWidth = bounds.width / CGFloat(columns.count)
         layer.sublayers = columns.enumerated().map { (index, column) -> [CALayer] in
             let x = (CGFloat(index) * columnWidth) + (columnWidth / 2)

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AverageMeetingBetweenLengthProgressWheel: UIView {
+final class AverageMeetingBetweenLengthProgressWheel: UIView {
 
     private var pathColour: UIColor
     private var lineWidth: CGFloat
@@ -36,7 +36,8 @@ class AverageMeetingBetweenLengthProgressWheel: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        layer.sublayers?.forEach { $0.removeFromSuperlayer() }
+        layer.removeAllSublayer()
+        
         draw(frame: frame, value: wheelValue)
     }
 
@@ -64,7 +65,5 @@ class AverageMeetingBetweenLengthProgressWheel: UIView {
 
         drawAverageLine(center: arcCenter, innerRadius: 0, outerRadius: radius, angle: userAngleStart, lineWidth: 1, strokeColour: strokeColour)
         drawAverageLine(center: arcCenter, innerRadius: 0, outerRadius: radius, angle: userAngleEnd, lineWidth: 1, strokeColour: strokeColour)
-
     }
-
 }

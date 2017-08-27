@@ -7,48 +7,47 @@
 //
 
 import UIKit
-import Anchorage
 
-class AverageMeetingLengthView: UIView {
+final class AverageMeetingLengthView: UIView {
 
-    private var data: MyStatisticsDataAverage<Int>
+    // MARK: - Init
+
+    init(frame: CGRect, myStatistics: MyStatistics) {
+        super.init(frame: frame)
+
+        drawProgressWheel(myStatistics: myStatistics)
+    }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
 
-    init(frame: CGRect, myStatistics: MyStatistics) {
-        self.data = MyStatisticsDataAverage(
-            teamAverage: myStatistics.teamAverage.toInt,
-            dataAverage: myStatistics.dataAverage.toInt,
-            userAverage: myStatistics.userAverage.toInt,
-            maximum: myStatistics.maximum.toInt,
-            threshold: (
-                upperThreshold: myStatistics.upperThreshold.toInt,
-                lowerThreshold: myStatistics.lowerThreshold.toInt
-            )
-        )
+// MARK: - Private
 
-        super.init(frame: frame)
+private extension AverageMeetingLengthView {
 
-        setup()
-    }
+    func drawProgressWheel(myStatistics: MyStatistics) {
+        let arcCenter = CGPoint(x: frame.width * 0.5, y: frame.height * 0.5 + 40)
+        let radius = CGFloat(frame.height * 0.5) * 0.75
+        let strokeColor = UIColor.white20
+        let innerRadius = radius * 0.6
+        let outerRadius = CGFloat(frame.height * 0.5)
+        let lineWidth = CGFloat(5)
+        let dashPattern: [CGFloat] = [1, 1]
+        let lineSemiLength = frame.height / 10
+        let horizontalFrom = CGPoint(x: arcCenter.x - lineSemiLength, y: arcCenter.y)
+        let horizontalTo = CGPoint(x: arcCenter.x + lineSemiLength, y: arcCenter.y)
+        let verticalFrom = CGPoint(x: arcCenter.x, y: arcCenter.y - lineSemiLength)
+        let verticalTo = CGPoint(x: arcCenter.x, y: arcCenter.y + lineSemiLength)
 
-    private func setup() {
-        let userValue = CGFloat(data.userAverage) / CGFloat(data.maximum)
-        let teamValue = CGFloat(data.teamAverage) / CGFloat(data.maximum)
-        let dataValue = CGFloat(data.dataAverage) / CGFloat(data.maximum)
-        let padding: CGFloat = 8.0
-        let separatorHeight: CGFloat = 1.0
-        let progressWheel = AverageMeetingLengthProgressWheel(frame: self.bounds,
-                                                              value: userValue,
-                                                              teamValue: teamValue,
-                                                              dataValue: dataValue,
-                                                              pathColor: data.pathColor().color)
-        addSubview(progressWheel)
-        progressWheel.topAnchor == self.topAnchor + (2 * padding + separatorHeight)
-        progressWheel.bottomAnchor == self.bottomAnchor - padding
-        progressWheel.leftAnchor == self.leftAnchor
-        progressWheel.rightAnchor == self.rightAnchor
+        drawSolidCircle(arcCenter: arcCenter, radius: innerRadius, strokeColour: strokeColor)
+        drawSolidCircle(arcCenter: arcCenter, radius: outerRadius, strokeColour: strokeColor)
+        drawDashedCircle(arcCenter: arcCenter, radius: radius, lineWidth: lineWidth, dashPattern: dashPattern, strokeColour: strokeColor)
+        drawDashedCircle(arcCenter: arcCenter, radius: radius, lineWidth: lineWidth, dashPattern: dashPattern, value: myStatistics.userAverageValue, strokeColour: myStatistics.pathColor, hasShadow: true)
+        drawAverageLine(center: arcCenter, innerRadius: innerRadius, outerRadius: outerRadius, angle: myStatistics.teamAngle, strokeColour: .azure)
+        drawAverageLine(center: arcCenter, innerRadius: innerRadius, outerRadius: outerRadius, angle: myStatistics.dataAngle, strokeColour: .cherryRed)
+        drawSolidLine(from: horizontalFrom, to: horizontalTo, strokeColour: strokeColor)
+        drawSolidLine(from: verticalFrom, to: verticalTo, strokeColour: strokeColor)
     }
 }

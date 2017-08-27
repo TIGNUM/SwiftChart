@@ -68,7 +68,6 @@ private extension ContainerView {
     }
 
     func addBottomLine() {
-
         bottomLine.frame = CGRect(x: bottomView.bounds.minX + 5, y: bottomView.bounds.minY - 1, width: bottomView.bounds.width - 10, height: 1)
     }
 

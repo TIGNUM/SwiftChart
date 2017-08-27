@@ -125,11 +125,12 @@ struct MockSpike: Spike {
     let angle: CGFloat
     let load: CGFloat
 
+    //FIXME
     func spikeLoad() -> CGFloat {
         if load < 0.15 {
             return 0.15
-        } else if load > 0.9 {
-            return 0.9
+        } else if load > 0.98 {
+            return 0.98
         } else {
             return load
         }
@@ -205,44 +206,45 @@ private func mockSectors(service: MyStatisticsService) -> [Sector] {
 
 private func peakSpikes(service: MyStatisticsService) -> [Spike] {
     return [
-        MockSpike(angle: 245, load: service.universeValue(statistics: service.card(key: "peakPerformance.upcoming.week"))),
-        MockSpike(angle: 235, load: service.universeValue(statistics: service.card(key: "peakPerformance.average.week")))
+        MockSpike(angle: 245, load: service.card(key: StatisticCardType.peakPerformanceUpcomingWeek.rawValue)?.universe.toFloat ?? 0),
+        MockSpike(angle: 235, load: service.card(key: StatisticCardType.peakPerformanceAverageWeek.rawValue)?.universe.toFloat ?? 0)
     ]
 }
 
 private func meetingsSpikes(service: MyStatisticsService) -> [Spike] {
     return [
-        MockSpike(angle: 225, load: service.universeValue(statistics: service.card(key: "meetings.number.day"))),
-        MockSpike(angle: 215, load: service.universeValue(statistics: service.card(key: "meetings.length"))),
-        MockSpike(angle: 205, load: service.universeValue(statistics: service.card(key: "meetings.timeBetween")))
+        MockSpike(angle: 225, load: service.card(key: StatisticCardType.meetingAverageDay.rawValue)?.universe.toFloat ?? 0),
+        MockSpike(angle: 215, load: service.card(key: StatisticCardType.meetingLength.rawValue)?.universe.toFloat ?? 0),
+        MockSpike(angle: 205, load: service.card(key: StatisticCardType.meetingTimeBetween.rawValue)?.universe.toFloat ?? 0)
     ]
 }
 
 private func intensitySpikes(service: MyStatisticsService) -> [Spike] {
     return [
-        MockSpike(angle: 195, load: service.universeValue(statistics: service.card(key: "intentensity.week")))
+        MockSpike(angle: 195, load: service.card(key: StatisticCardType.intensityLoadWeek.rawValue)?.universe.toFloat ?? 0),
+        MockSpike(angle: 185, load: service.card(key: StatisticCardType.intensityRecoveryWeek.rawValue)?.universe.toFloat ?? 0)
     ]
 }
 
 private func travelSpikes(service: MyStatisticsService) -> [Spike] {
     return [
-        MockSpike(angle: 185, load: service.universeValue(statistics: service.card(key: "travel.numberOfMeetings.4weeks"))),
-        MockSpike(angle: 175, load: service.universeValue(statistics: service.card(key: "travel.tripsNextFourWeeks"))),
-        MockSpike(angle: 165, load: service.universeValue(statistics: service.card(key: "travel.timeZoneChange.week"))),
-        MockSpike(angle: 155, load: service.universeValue(statistics: service.card(key: "travel.tripsMaxTimeZone")))
+        MockSpike(angle: 175, load: service.card(key: StatisticCardType.travelTripsAverageWeeks.rawValue)?.universe.toFloat ?? 0),
+        MockSpike(angle: 165, load: service.card(key: StatisticCardType.travelTripsNextFourWeeks.rawValue)?.universe.toFloat ?? 0),
+        MockSpike(angle: 155, load: service.card(key: StatisticCardType.travelTripsTimeZoneChangedWeeks.rawValue)?.universe.toFloat ?? 0),
+        MockSpike(angle: 145, load: service.card(key: StatisticCardType.travelTripsMaxTimeZone.rawValue)?.universe.toFloat ?? 0)
     ]
 }
 
 private func sleepSpikes(service: MyStatisticsService) -> [Spike] {
     return [
-        MockSpike(angle: 145, load: service.universeValue(statistics: service.card(key: "sleep.quantity"))),
-        MockSpike(angle: 135, load: service.universeValue(statistics: service.card(key: "sleep.quality")))
+        MockSpike(angle: 135, load: service.card(key: StatisticCardType.sleepQuantity.rawValue)?.universe.toFloat ?? 0),
+        MockSpike(angle: 125, load: service.card(key: StatisticCardType.sleepQuality.rawValue)?.universe.toFloat ?? 0)
     ]
 }
 
 private func activitySpikes(service: MyStatisticsService) -> [Spike] {
     return [
-        MockSpike(angle: 125, load: service.universeValue(statistics: service.card(key: "activity.sittingMovement"))),
-        MockSpike(angle: 115, load: service.universeValue(statistics: service.card(key: "activity.level")))
+        MockSpike(angle: 115, load: service.card(key: StatisticCardType.activitySittingMovementRatio.rawValue)?.universe.toFloat ?? 0),
+        MockSpike(angle: 105, load: service.card(key: StatisticCardType.activityLevel.rawValue)?.universe.toFloat ?? 0)
     ]
 }

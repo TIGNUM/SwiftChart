@@ -62,7 +62,9 @@
 "Top.Tab.Bar.Item.Title.Perpare.Prep" = "My Prep";
 "Top.Tab.Bar.Item.Title.Perpare.Preparation" = "PREPARATION";
 
+"Me.My.Statistics.Navigation.Bar.Title" = "MY STATISTICS";
 "Me.Sector.Peak" = "Peak\nPerformance";
+"Me.Sector.Peak.Performance" = "Peak Performance";
 "Me.Sector.Meetings" = "Meetings";
 "Me.Sector.Intensity" = "Intensity";
 "Me.Sector.Travel" = "Travel";
@@ -104,7 +106,7 @@
 "Me.Card.Title.Meetings.Number" = "Number of Meetings";
 "Me.Card.Title.Meetings.Length" = "Length of Meetings";
 "Me.Card.Title.Meetings.Time.Between" = "Time Between Meetings";
-"Me.Card.Title.Travel.Meetings" = "Average number of meetings";
+"Me.Card.Title.Travel.Average" = "Average number of trips";
 "Me.Card.Title.Travel.Trips" = "Trips next four Weeks";
 "Me.Card.Title.Travel.Time.Zone.Change" = "# Of trips with time zone changed";
 "Me.Card.Title.Travel.Time.Zone.Max" = "Time zone  max time zone";
@@ -112,7 +114,8 @@
 "Me.Card.Title.Peak.Performacne.Average" = "Average number of peak performances";
 "Me.Card.Title.Activity.Ratio" = "Sitting / Movement Ratio";
 "Me.Card.Title.Activity.Level" = "Activity level";
-"Me.Card.Title.Intensity" = "Average";
+"Me.Card.Title.Intensity.Load" = "Load";
+"Me.Card.Title.Intensity.Recovery" = "Recovery";
 
 "Prepare.PrepareEvents.AddPreparation" = "ADD THIS PREPARATION TO";
 "Prepare.PrepareEvents.AddNewEvent" = "Add new event";

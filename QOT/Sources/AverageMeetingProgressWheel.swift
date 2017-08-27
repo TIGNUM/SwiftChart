@@ -8,25 +8,36 @@
 
 import UIKit
 
-class AverageMeetingProgressWheel: UIView {
+final class AverageMeetingProgressWheel: UIView {
 
-    private var pathColour: UIColor
-    private var lineWidth: CGFloat
-    private var wheelValue: CGFloat = 0
-    private var teamValue: CGFloat = 0
-    private var dataValue: CGFloat = 0
-    private var dashPattern: [CGFloat]
+    // MARK: - Properties
 
-    init(frame: CGRect, value: CGFloat = 0, teamValue: CGFloat = 0, dataValue: CGFloat = 0, pathColor: UIColor, dashPattern: [CGFloat] = [1, 1], lineWidth: CGFloat = 5) {
-        self.pathColour = pathColor
-        self.lineWidth = lineWidth
-        self.wheelValue = value
-        self.teamValue = teamValue
-        self.dataValue = dataValue
-        self.dashPattern = dashPattern
+    fileprivate let pathColor: UIColor
+    fileprivate let lineWidth: CGFloat
+    fileprivate let userValue: CGFloat
+    fileprivate let teamValue: CGFloat
+    fileprivate let dataValue: CGFloat
+    fileprivate let dashPattern: [CGFloat]
 
-        super.init(frame: frame)
-        draw(frame: frame, value: value)
+    // MARK: - Init
+
+    init(frame: CGRect,
+         userValue: CGFloat,
+         teamValue: CGFloat,
+         dataValue: CGFloat,
+         pathColor: UIColor,
+         dashPattern: [CGFloat] = [1, 1],
+         lineWidth: CGFloat = 5) {
+            self.pathColor = pathColor
+            self.lineWidth = lineWidth
+            self.userValue = userValue
+            self.teamValue = teamValue
+            self.dataValue = dataValue
+            self.dashPattern = dashPattern
+
+            super.init(frame: frame)
+
+            draw(frame: frame, userValue: userValue)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -36,26 +47,26 @@ class AverageMeetingProgressWheel: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        layer.sublayers?.forEach { $0.removeFromSuperlayer() }
-        draw(frame: frame, value: wheelValue)
+        layer.removeAllSublayer()
+        draw(frame: frame, userValue: userValue)
     }
+}
 
-    private func draw(frame: CGRect, value: CGFloat) {
-        let arcCenter = CGPoint(x: frame.width / 2, y: frame.height / 2)
-        let radius = CGFloat(frame.height / 2)
-        let strokeColour = UIColor.white20
+// MARK: - Private
 
+private extension AverageMeetingProgressWheel {
+
+    func draw(frame: CGRect, userValue: CGFloat) {
+        let arcCenter = CGPoint(x: frame.width * 0.5, y: frame.height * 0.5)
+        let radius = CGFloat(frame.height * 0.5)
+        let strokeColor = UIColor.white20
         let innerRadius = radius * 0.6
-
-        drawSolidCircle(arcCenter: arcCenter, radius: innerRadius, lineWidth: 1, strokeColour: strokeColour)
-        drawDashedCircle(arcCenter: arcCenter, radius: radius, lineWidth: lineWidth, dashPattern: dashPattern, strokeColour: strokeColour)
-
         let dataAngle = Math.radians(360 * dataValue - 90)
         let teamAngle = Math.radians(360 * teamValue - 90)
-
+        drawSolidCircle(arcCenter: arcCenter, radius: innerRadius, lineWidth: 1, strokeColour: strokeColor)
+        drawDashedCircle(arcCenter: arcCenter, radius: radius, lineWidth: lineWidth, dashPattern: dashPattern, strokeColour: strokeColor)
         drawAverageLine(center: arcCenter, innerRadius: innerRadius, outerRadius: radius, angle: teamAngle, lineWidth: 1, strokeColour: .azure)
         drawAverageLine(center: arcCenter, innerRadius: innerRadius, outerRadius: radius, angle: dataAngle, lineWidth: 1, strokeColour: .cherryRed)
-
-        drawCapRoundCircle(center: arcCenter, radius: radius, value: value, lineWidth: lineWidth, strokeColour: pathColour)
+        drawCapRoundCircle(center: arcCenter, radius: radius, value: userValue, lineWidth: lineWidth, strokeColour: pathColor)
     }
 }

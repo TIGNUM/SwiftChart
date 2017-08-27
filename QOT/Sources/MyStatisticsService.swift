@@ -31,25 +31,10 @@ final class MyStatisticsService {
         return allCardObjects().filter(predicate).first
     }
 
-    func universeValue(statistics: MyStatistics?) -> CGFloat {
-        guard let statistics = statistics else {
-            return 0
-        }
-
-        let userAverage = statistics.userAverage.toFloat
-        let maximum = statistics.maximum.toFloat
-
-        guard maximum > 0 else {
-            return 0
-        }
-
-        return userAverage / maximum
-    }
-
     func cards() throws -> [[MyStatistics]] {
         var results = [[MyStatistics]]()
 
-        MyStatisticsCardType.allValues.forEach { (cardType: MyStatisticsCardType) in
+        MyStatisticsType.allValues.forEach { (cardType: MyStatisticsType) in
             var cardSections = [MyStatistics]()
             cardType.keys.forEach({ (key: String) in
                 if let card = card(key: key) {

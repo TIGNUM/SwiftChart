@@ -9,47 +9,40 @@
 import UIKit
 import Anchorage
 
-class AverageMeetingBetweenLengthView: UIView {
+final class AverageMeetingBetweenLengthView: UIView {
 
-    private var data: MyStatisticsDataAverage<Int>
+    // MARK: - Init
+
+    init(frame: CGRect, myStatistics: MyStatistics) {
+        super.init(frame: frame)
+
+        drawProgressWheel(myStatistics: myStatistics)
+    }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
 
-    init(frame: CGRect, myStatistics: MyStatistics) {
-        self.data = MyStatisticsDataAverage(
-            teamAverage: myStatistics.teamAverage.toInt * 10,
-            dataAverage: myStatistics.dataAverage.toInt * 10,
-            userAverage: myStatistics.userAverage.toInt * 10,
-            maximum: myStatistics.maximum.toInt,
-            threshold: (
-                upperThreshold: myStatistics.upperThreshold.toInt,
-                lowerThreshold: myStatistics.lowerThreshold.toInt
-            )
-        )
+// MARK: - Private
 
-        super.init(frame: frame)
+private extension AverageMeetingBetweenLengthView {
 
-        setup()
-    }
+    func drawProgressWheel(myStatistics: MyStatistics) {
+        let arcCenter = CGPoint(x: frame.width * 0.5, y: frame.height * 0.5 + 40)
+        let radius = CGFloat(frame.height * 0.5)
+        let strokeColor = UIColor.white20
+        let lineWidth = CGFloat(12)
+        let dashPattern: [CGFloat] = [1, 1]
+        let innerRadius = radius * 0.6
+        let underRadius = radius - lineWidth / 3
 
-    private func setup() {
-        let userValue = CGFloat(data.userAverage) / CGFloat(data.maximum)
-        let teamValue = CGFloat(data.teamAverage) / CGFloat(data.maximum)
-        let dataValue = CGFloat(data.dataAverage) / CGFloat(data.maximum)
-        let padding: CGFloat = 8.0
-        let separatorHeight: CGFloat = 1.0
-        let progressWheel = AverageMeetingBetweenLengthProgressWheel(frame: self.bounds,
-                                                                       value: userValue,
-                                                                       teamValue: teamValue,
-                                                                       dataValue: dataValue,
-                                                                       pathColor: data.pathColor().color,
-                                                                       lineWidth: 12)
-        addSubview(progressWheel)
-        progressWheel.topAnchor == self.topAnchor + (2 * padding + separatorHeight)
-        progressWheel.bottomAnchor == self.bottomAnchor - padding
-        progressWheel.leftAnchor == self.leftAnchor
-        progressWheel.rightAnchor == self.rightAnchor
+        drawSolidCircle(arcCenter: arcCenter, radius: innerRadius, strokeColour: strokeColor)
+        drawSolidCircle(arcCenter: arcCenter, radius: underRadius, lineWidth: lineWidth * 0.5, strokeColour: strokeColor)
+        drawDashedCircle(arcCenter: arcCenter, radius: radius, lineWidth: lineWidth, dashPattern: dashPattern, value: myStatistics.userAverageValue, strokeColour: myStatistics.pathColor)
+        drawAverageLine(center: arcCenter, outerRadius: radius, angle: myStatistics.teamAngle, strokeColour: .azure)
+        drawAverageLine(center: arcCenter, outerRadius: radius, angle: myStatistics.dataAngle, strokeColour: .cherryRed)
+        drawAverageLine(center: arcCenter, outerRadius: radius, angle: CGFloat(-90).degreesToRadians, strokeColour: strokeColor)
+        drawAverageLine(center: arcCenter, outerRadius: radius, angle: myStatistics.userAngle, strokeColour: strokeColor)
     }
 }

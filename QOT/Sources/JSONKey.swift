@@ -171,6 +171,7 @@ enum JsonKey: String {
     case title
     case type
     case unit
+    case universe
     case untilDate
     case upperThreshold
     case urbanAirshipDeviceToken

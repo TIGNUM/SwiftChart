@@ -22,7 +22,7 @@ class TripsDashCellView: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
+        self.layer.removeAllSublayer()
         configure(day: ownDay!)
     }
 

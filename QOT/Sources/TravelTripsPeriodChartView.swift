@@ -26,7 +26,7 @@ class TravelTripsPeriodChartView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        layer.sublayers?.forEach { $0.removeFromSuperlayer() }
+        layer.removeAllSublayer()
         draw(frame: frame)
     }
 

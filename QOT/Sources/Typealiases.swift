@@ -7,5 +7,20 @@
 //
 
 import Foundation
+import UIKit
+
+// MARK: - Type Alias
 
 typealias Index = Int
+
+typealias Period = (start: Date, duration: TimeInterval)
+
+typealias ChartDimensions = (columns: Int, rows: Int, length: Int)
+
+typealias StatisticsThreshold<T> = (upperThreshold: T, lowerThreshold: T)
+
+typealias EventGraphData = (start: CGFloat, end: CGFloat)
+
+typealias UpcomingTrip = (count: Int, status: MyStatisticsPeriod.Status)
+
+typealias UserUpcomingTrips = [Int: UpcomingTrip]

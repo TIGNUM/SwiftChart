@@ -7,9 +7,9 @@
 //
 
 import Foundation
-import CoreGraphics
+import UIKit
 
-class Math {
+struct Math {
 
     static func pointOnCircle(center: CGPoint, withRadius radius: CGFloat, andAngle angle: CGFloat) -> CGPoint {
         return CGPoint(x: center.x + radius * cos(angle), y: center.y + radius * sin(angle))

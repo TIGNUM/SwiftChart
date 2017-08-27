@@ -152,6 +152,10 @@ extension CALayer {
         self.shadowOpacity = 0
         self.shadowOffset = .zero
     }
+
+    func removeAllSublayer() {
+        sublayers?.forEach { $0.removeFromSuperlayer() }
+    }
 }
 
 // MARK: - CAShapeLayer
@@ -442,6 +446,7 @@ extension UIScrollView {
 // MARK: - SequSequenceType
 
 extension Sequence where Iterator.Element == String {
+    
     func mondayFirst(withWeekend: Bool = true) -> [String] {
         let selfCast = self as? [String]
 

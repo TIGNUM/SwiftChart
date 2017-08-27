@@ -15,7 +15,7 @@ final class DayEventChartView: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
+        self.layer.removeAllSublayer()
         configure(events: self.events, lineWidth: self.lineWidth)
     }
 

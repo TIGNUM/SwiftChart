@@ -10,50 +10,47 @@ import UIKit
 
 final class ActivityChartView: UIView {
 
-    enum LineType {
-        case average
+    enum AverageLineType {
+        case data
         case personal
         case team
+
+        static var allValues: [AverageLineType] {
+            return [.data, .personal, .team]
+        }
+
+        var strokeColor: CGColor {
+            switch self {
+            case .data: return UIColor.cherryRedTwo30.cgColor
+            case .personal: return UIColor.white8.cgColor
+            case .team: return UIColor.azure20.cgColor
+            }
+        }
+
+        func averageValue(myStatistics: MyStatistics) -> CGFloat {
+            switch self {
+            case .data: return myStatistics.dataAverage.toFloat
+            case .personal: return myStatistics.userAverage.toFloat
+            case .team: return myStatistics.teamAverage.toFloat
+            }
+        }
     }
 
-    fileprivate var averageLine = CAShapeLayer()
-    fileprivate var teamLine = CAShapeLayer()
-    fileprivate var personalLine = CAShapeLayer()
-    fileprivate let myStatistics: MyStatistics
-    fileprivate var containerView: ContainerView = ContainerView()
+    // MARK: - Properties
 
-    init(frame: CGRect, dayNames: [String], myStatistics: MyStatistics) {
+    fileprivate let myStatistics: MyStatistics
+    fileprivate let containerView: ContainerView = ContainerView()
+
+    // MARK: - Init
+
+    init(frame: CGRect, myStatistics: MyStatistics) {
         self.myStatistics = myStatistics
+
         super.init(frame: frame)
 
-        guard let activityData = (columns(myStatistics: myStatistics) as? MyStatisticsDataActivity)?.data else {
-            return
-        }
-        
-        containerView.setup(columns: activityData, dayNames: dayNames)
         setupView()
     }
 
-    private func columns(myStatistics: MyStatistics) -> MyStatisticsData {
-        var data: [EventGraphData] = []
-        let threshold = StatisticsThreshold<CGFloat>(
-            upperThreshold: myStatistics.upperThreshold.toFloat,
-            lowerThreshold: myStatistics.lowerThreshold.toFloat
-        )
-
-        myStatistics.dataPoints.forEach { (doubleObject: DoubleObject) in
-            data.append(EventGraphData(start: 1, end: doubleObject.toFloat))
-        }
-
-        return MyStatisticsDataActivity(
-            teamAverage: myStatistics.teamAverage.toFloat/10,
-            dataAverage: myStatistics.dataAverage.toFloat/10,
-            userAverage: myStatistics.userAverage.toFloat/10,
-            threshold: threshold,
-            data: data
-        )
-    }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -63,38 +60,43 @@ final class ActivityChartView: UIView {
 
         containerView.frame = bounds
     }
-
-    func setupAverageLine(level: CGFloat, lineType: LineType) {
-        let padding: CGFloat = 7
-        let separatorHeight: CGFloat = 1
-        let height = bounds.height - padding - separatorHeight
-        let position = height * (level / 10) /// FIXME: level have to be a value bewtween 0...1 
-        let frame = CGRect(x: bounds.minX + padding, y: bounds.height - position, width: bounds.width - 2 * padding, height: 0)
-        switch lineType {
-        case .average:
-            averageLine.path = UIBezierPath(roundedRect: frame, cornerRadius: 0).cgPath
-            averageLine.strokeColor = UIColor.cherryRedTwo30.cgColor
-        case .personal:
-            personalLine.path = UIBezierPath(roundedRect: frame, cornerRadius: 0).cgPath
-            personalLine.strokeColor = UIColor.white8.cgColor
-        case .team:
-            teamLine.path = UIBezierPath(roundedRect: frame, cornerRadius: 0).cgPath
-            teamLine.strokeColor = UIColor.azure20.cgColor
-        }
-    }
 }
+
+// MARK: - Private
 
 private extension ActivityChartView {
 
     func setupView() {
-        averageLine = createDottedLayer()
-        teamLine = createDottedLayer()
-        personalLine = createDottedLayer()
+        setupContainerView()
+        setupAverageLine()
+    }
 
-        layer.addSublayer(averageLine)
-        layer.addSublayer(teamLine)
-        layer.addSublayer(personalLine)
+    func setupContainerView() {
+        guard let activityData = (columns(myStatistics: myStatistics) as? MyStatisticsDataActivity)?.data else {
+            return
+        }
+        
+        let dayNames = DateFormatter().veryShortStandaloneWeekdaySymbols.mondayFirst(withWeekend: false)
+        containerView.setup(columns: activityData, dayNames: dayNames)
         addSubview(containerView)
+    }
+
+    func setupAverageLine() {
+        let padding: CGFloat = 7
+        let separatorHeight: CGFloat = 1
+        let height = bounds.height - padding - separatorHeight
+
+        AverageLineType.allValues.forEach { (averageLineType: AverageLineType) in
+            let position = height * averageLineType.averageValue(myStatistics: myStatistics)
+            let xPos = bounds.minX + padding
+            let yPos = bounds.height - position
+            let width = bounds.width - 2 * padding
+            let frame = CGRect(x: xPos, y: yPos, width: width, height: 0)
+            let averageLayer = createDottedLayer()
+            averageLayer.path = UIBezierPath(roundedRect: frame, cornerRadius: 0).cgPath
+            averageLayer.strokeColor = averageLineType.strokeColor
+            layer.addSublayer(averageLayer)
+        }
     }
 
     func createDottedLayer() -> CAShapeLayer {
@@ -108,5 +110,26 @@ private extension ActivityChartView {
         line.path = linePath.cgPath
 
         return line
+    }
+
+    func columns(myStatistics: MyStatistics) -> MyStatisticsData {
+        var data: [EventGraphData] = []
+        let threshold = StatisticsThreshold<CGFloat>(
+            upperThreshold: myStatistics.upperThreshold.toFloat,
+            lowerThreshold: myStatistics.lowerThreshold.toFloat
+        )
+
+        myStatistics.dataPoints.forEach { (doubleObject: DoubleObject) in
+            data.append(EventGraphData(start: 1, end: doubleObject.toFloat))
+        }
+
+        return MyStatisticsDataActivity(
+            teamAverage: myStatistics.teamAverage.toFloat,
+            dataAverage: myStatistics.dataAverage.toFloat,
+            userAverage: myStatistics.userAverage.toFloat,
+            threshold: threshold,
+            data: data,
+            fillColumn: myStatistics.key == StatisticCardType.activitySittingMovementRatio.rawValue
+        )
     }
 }

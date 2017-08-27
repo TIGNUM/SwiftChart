@@ -11,7 +11,6 @@ import Freddy
 
 struct MyStatisticsPeriodIntermediary: DownSyncIntermediary {
 
-
     let startDate: Date
     let endDate: Date
     let status: String

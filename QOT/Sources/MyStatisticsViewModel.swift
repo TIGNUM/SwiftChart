@@ -9,6 +9,32 @@
 import Foundation
 import ReactiveKit
 import RealmSwift
+import UIKit
+
+enum StatisticCardType: String {
+    case meetingAverageDay = "meetings.number.day"
+    case meetingAverageWeek = "meetings.number.week"
+    case meetingLength = "meetings.length"
+    case meetingTimeBetween = "meetings.timeBetween"
+    case travelTripsAverageWeeks = "travel.numberOfMeetings.4weeks"
+    case travelTripsAverageYear = "travel.numberOfMeetings.year"
+    case travelTripsNextFourWeeks = "travel.tripsNextFourWeeks"
+    case travelTripsTimeZoneChangedWeeks = "travel.timeZoneChange.week"
+    case travelTripsTimeZoneChangedYear = "travel.timeZoneChange.year"
+    case travelTripsMaxTimeZone = "travel.tripsMaxTimeZone"
+    case peakPerformanceUpcomingWeek = "peakPerformance.upcoming.week"
+    case peakPerformanceUpcomingNextWeek = "peakPerformance.upcoming.nextWeek"
+    case peakPerformanceAverageWeek = "peakPerformance.average.week"
+    case peakPerformanceAverageMonth = "peakPerformance.average.month"
+    case sleepQuantity = "sleep.quantity"
+    case sleepQuality = "sleep.quality"
+    case activitySittingMovementRatio = "activity.sedentary"
+    case activityLevel  = "activity.level"
+    case intensityLoadWeek = "intensity.load.week"
+    case intensityLoadMonth = "intensity.load.month"
+    case intensityRecoveryWeek = "intensity.recovery.week"
+    case intensityRecoveryMonth = "intensity.recovery.month"
+}
 
 final class MyStatisticsViewModel {
 
@@ -39,11 +65,13 @@ final class MyStatisticsViewModel {
         return cardsOrder[section]
     }
 
-    func cardType(section: Int, item: Int) -> MyStatisticsCardType {
+    func cardType(section: Int, item: Int) -> MyStatisticsType {
         let section = sectionType(in: section)
 
         return section.cardTypes[item]
     }
+
+    // MARK: - Init
 
     init(services: Services, startingSection: MyStatisticsSectionType) throws {
         do {
@@ -54,6 +82,8 @@ final class MyStatisticsViewModel {
             throw error
         }
     }
+
+    // MARK: - Public functions
 
     // Ordering cards depending on their level of criticality.
     // The selected card/section will be shown first
@@ -103,7 +133,7 @@ final class MyStatisticsViewModel {
         return CGFloat(myStatistics.dataAverage)
     }
 
-    func cardType(sectionType: MyStatisticsSectionType, item: Int) -> MyStatisticsCardType {
+    func cardType(sectionType: MyStatisticsSectionType, item: Int) -> MyStatisticsType {
         return sectionType.cardTypes[item]
     }
 
@@ -112,11 +142,11 @@ final class MyStatisticsViewModel {
     }
 }
 
-enum MyStatisticsCardType: Int {
+enum MyStatisticsType: Int {
     case meetingAverage = 0
     case meetingLength
     case meetingTimeBetween
-    case travelTripsMeeting
+    case travelTripsAverage
     case travelTripsNextFourWeeks
     case travelTripsTimeZoneChanged
     case travelTripsMaxTimeZone
@@ -126,14 +156,15 @@ enum MyStatisticsCardType: Int {
     case sleepQuality
     case activitySittingMovementRatio
     case activityLevel
-    case intensity
+    case intensityLoad
+    case intensityRecovery
 
-    static var allValues: [MyStatisticsCardType] {
+    static var allValues: [MyStatisticsType] {
         return [
             .meetingAverage,
             .meetingLength,
             .meetingTimeBetween,
-            .travelTripsMeeting,
+            .travelTripsAverage,
             .travelTripsNextFourWeeks,
             .travelTripsTimeZoneChanged,
             .travelTripsMaxTimeZone,
@@ -143,7 +174,8 @@ enum MyStatisticsCardType: Int {
             .sleepQuality,
             .activitySittingMovementRatio,
             .activityLevel,
-            .intensity
+            .intensityLoad,
+            .intensityRecovery
         ]
     }
 
@@ -152,7 +184,7 @@ enum MyStatisticsCardType: Int {
         case .meetingAverage: return .meetings
         case .meetingLength: return .meetings
         case .meetingTimeBetween: return .meetings
-        case .travelTripsMeeting: return .travel
+        case .travelTripsAverage: return .travel
         case .travelTripsNextFourWeeks: return .travel
         case .travelTripsTimeZoneChanged: return .travel
         case .travelTripsMaxTimeZone: return .travel
@@ -162,7 +194,8 @@ enum MyStatisticsCardType: Int {
         case .sleepQuality: return .sleep
         case .activitySittingMovementRatio: return .activity
         case .activityLevel: return .activity
-        case .intensity: return .intensity
+        case .intensityLoad: return .intensity
+        case .intensityRecovery: return .intensity
         }
     }
 
@@ -171,7 +204,7 @@ enum MyStatisticsCardType: Int {
         case .meetingAverage: return R.string.localized.meCardTitleMeetingsNumber()
         case .meetingLength: return R.string.localized.meCardTitleMeetingsLength()
         case .meetingTimeBetween: return R.string.localized.meCardTitleMeetingsTimeBetween()
-        case .travelTripsMeeting: return R.string.localized.meCardTitleTravelMeetings()
+        case .travelTripsAverage: return R.string.localized.meCardTitleTravelAverage()
         case .travelTripsNextFourWeeks: return R.string.localized.meCardTitleTravelTrips()
         case .travelTripsTimeZoneChanged: return R.string.localized.meCardTitleTravelTimeZoneChange()
         case .travelTripsMaxTimeZone: return R.string.localized.meCardTitleTravelTimeZoneMax()
@@ -181,26 +214,28 @@ enum MyStatisticsCardType: Int {
         case .sleepQuality: return R.string.localized.meCardTitleSleepQuality()
         case .activitySittingMovementRatio: return R.string.localized.meCardTitleActivityRatio()
         case .activityLevel: return R.string.localized.meCardTitleActivityLevel()
-        case .intensity: return R.string.localized.meCardTitleIntensity()
+        case .intensityLoad: return R.string.localized.meCardTitleIntensityLoad()
+        case .intensityRecovery: return R.string.localized.meCardTitleIntensityRecovery()
         }
     }
 
     var keys: [String] {
         switch self {
-        case .meetingAverage: return ["meetings.number.day", "meetings.number.week"]
-        case .meetingLength: return ["meetings.length"]
-        case .meetingTimeBetween: return ["meetings.timeBetween"]
-        case .travelTripsMeeting: return ["travel.numberOfMeetings.4weeks", "travel.numberOfMeetings.year"]
-        case .travelTripsNextFourWeeks: return ["travel.tripsNextFourWeeks"]
-        case .travelTripsTimeZoneChanged: return ["travel.timeZoneChange.week", "travel.timeZoneChange.year"]
-        case .travelTripsMaxTimeZone: return ["travel.tripsMaxTimeZone"]
-        case .peakPerformanceUpcoming: return ["peakPerformance.upcoming.week", "peakPerformance.upcoming.nextWeek"]
-        case .peakPerformanceAverage: return ["peakPerformance.average.week", "peakPerformance.average.month"]
-        case .sleepQuantity: return ["sleep.quantity"]
-        case .sleepQuality: return ["sleep.quality"]
-        case .activitySittingMovementRatio: return ["activity.sittingMovement"]
-        case .activityLevel: return ["activity.level"]
-        case .intensity: return ["intentensity.week", "intentensity.month"]
+        case .meetingAverage: return [StatisticCardType.meetingAverageDay.rawValue, StatisticCardType.meetingAverageWeek.rawValue]
+        case .meetingLength: return [StatisticCardType.meetingLength.rawValue]
+        case .meetingTimeBetween: return [StatisticCardType.meetingTimeBetween.rawValue]
+        case .travelTripsAverage: return [StatisticCardType.travelTripsAverageWeeks.rawValue, StatisticCardType.travelTripsAverageYear.rawValue]
+        case .travelTripsNextFourWeeks: return [StatisticCardType.travelTripsNextFourWeeks.rawValue]
+        case .travelTripsTimeZoneChanged: return [StatisticCardType.travelTripsTimeZoneChangedWeeks.rawValue, StatisticCardType.travelTripsTimeZoneChangedYear.rawValue]
+        case .travelTripsMaxTimeZone: return [StatisticCardType.travelTripsMaxTimeZone.rawValue]
+        case .peakPerformanceUpcoming: return [StatisticCardType.peakPerformanceUpcomingWeek.rawValue, StatisticCardType.peakPerformanceUpcomingNextWeek.rawValue]
+        case .peakPerformanceAverage: return [StatisticCardType.peakPerformanceAverageWeek.rawValue, StatisticCardType.peakPerformanceAverageMonth.rawValue]
+        case .sleepQuantity: return [StatisticCardType.sleepQuantity.rawValue]
+        case .sleepQuality: return [StatisticCardType.sleepQuality.rawValue]
+        case .activitySittingMovementRatio: return [StatisticCardType.activitySittingMovementRatio.rawValue]
+        case .activityLevel: return [StatisticCardType.activityLevel.rawValue]
+        case .intensityLoad: return [StatisticCardType.intensityLoadWeek.rawValue, StatisticCardType.intensityLoadMonth.rawValue]
+        case .intensityRecovery: return [StatisticCardType.intensityRecoveryWeek.rawValue, StatisticCardType.intensityRecoveryMonth.rawValue]
         }
     }
 
@@ -222,6 +257,7 @@ enum MyStatisticsCardType: Int {
                 result += CGFloat(statistic.userAverage / statistic.maximum)
             }
         }
+
         return criticalityInverted ? CGFloat(1) - result : result
     }
 
@@ -238,7 +274,7 @@ enum MyStatisticsCardType: Int {
         case .meetingAverage: return [:]
         case .meetingLength: return [:]
         case .meetingTimeBetween: return [:]
-        case .travelTripsMeeting:
+        case .travelTripsAverage:
             return [
                 DataDisplayType.weeks.id: ChartDimensions(columns: 4, rows: 7, length: 24),
                 DataDisplayType.year.id: ChartDimensions(columns: 12, rows: 5, length: 7)
@@ -260,35 +296,34 @@ enum MyStatisticsCardType: Int {
         case .sleepQuality: return [:]
         case .activitySittingMovementRatio: return [:]
         case .activityLevel: return [:]
-        case .intensity: return [:]
+        case .intensityLoad: return [:]
+        case .intensityRecovery: return [:]
         }
     }
 
     var displayTypes: [DataDisplayType] {
         switch self {
-        case .meetingAverage: return [DataDisplayType.day, DataDisplayType.week]
+        case .meetingAverage: return [.day, .week]
         case .meetingLength: return []
         case .meetingTimeBetween: return []
-        case .travelTripsMeeting: return [DataDisplayType.weeks, DataDisplayType.year]
+        case .travelTripsAverage: return [.weeks, .year]
         case .travelTripsNextFourWeeks: return []
-        case .travelTripsTimeZoneChanged: return [DataDisplayType.weeks, DataDisplayType.year]
+        case .travelTripsTimeZoneChanged: return [.weeks, .year]
         case .travelTripsMaxTimeZone: return []
-        case .peakPerformanceUpcoming: return [DataDisplayType.week, DataDisplayType.nextWeek]
-        case .peakPerformanceAverage: return [DataDisplayType.week, DataDisplayType.month]
+        case .peakPerformanceUpcoming: return [.week, .nextWeek]
+        case .peakPerformanceAverage: return [.week, .month]
         case .sleepQuantity: return []
         case .sleepQuality: return []
         case .activitySittingMovementRatio: return []
         case .activityLevel: return []
-        case .intensity: return []
+        case .intensityLoad: return [.week, .month]
+        case .intensityRecovery: return [.week, .month]
         }
     }
 
     func cards(cards: [MyStatistics]) -> [MyStatistics] {
-        guard self.keys.isEmpty == false else {
-            return []
-        }
-
         var myStatisticsArray: [MyStatistics] = []
+
         keys.forEach { (key: String) in
             if let card = (cards.filter { $0.key == key }).first {
                 myStatisticsArray.append(card)
@@ -317,40 +352,40 @@ enum MyStatisticsSectionType: Int {
             travel
         ]
     }
-
+    
     var title: String {
         switch self {
-        case .sleep: return "Sleep"
-        case .activity: return "Activity"
-        case .peakPerformance: return "Peak Performance"
-        case .intensity: return "Intensity"
-        case .meetings: return "Meetings"
-        case .travel: return "Travel"
+        case .sleep: return R.string.localized.meSectorSleep()
+        case .activity: return R.string.localized.meSectorActivity()
+        case .peakPerformance: return R.string.localized.meSectorPeakPerformance()
+        case .intensity: return R.string.localized.meSectorIntensity()
+        case .meetings: return R.string.localized.meSectorMeetings()
+        case .travel: return R.string.localized.meSectorTravel()
         }
     }
 
-    var cardTypes: [MyStatisticsCardType] {
+    var cardTypes: [MyStatisticsType] {
         switch self {
         case .sleep: return [.sleepQuantity, .sleepQuality]
         case .activity: return [.activitySittingMovementRatio, .activityLevel]
         case .peakPerformance: return [.peakPerformanceUpcoming, .peakPerformanceAverage]
-        case .intensity: return [.intensity]
+        case .intensity: return [.intensityLoad, .intensityRecovery]
         case .meetings: return [.meetingAverage, .meetingLength, .meetingTimeBetween]
-        case .travel: return [.travelTripsMeeting, .travelTripsNextFourWeeks, .travelTripsMaxTimeZone, .travelTripsTimeZoneChanged]
+        case .travel: return [.travelTripsAverage, .travelTripsNextFourWeeks, .travelTripsMaxTimeZone, .travelTripsTimeZoneChanged]
         }
     }
 
-    // Calculating the level of criticality of a section
     func criticalityLevel(statistics: [[MyStatistics]]) -> CGFloat {
-        let cards = cardTypes
-
-        guard cards.count > 0 else { return 0 }
-
-        var result: CGFloat = 0
-        cards.forEach { card in
-            result += card.criticalityLevel(statistics: statistics[card.rawValue])
+        guard cardTypes.count > 0 else {
+            return 0
         }
 
-        return result / CGFloat(cards.count)
+        var result: CGFloat = 0
+
+        cardTypes.forEach { (cardType: MyStatisticsType) in
+            result += cardType.criticalityLevel(statistics: statistics[cardType.rawValue])
+        }
+
+        return result / CGFloat(cardTypes.count)
     }
 }

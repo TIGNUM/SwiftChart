@@ -97,18 +97,14 @@
 		852DADC41EEED5D600A10882 /* AverageMeetingProgressWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADC31EEED5D600A10882 /* AverageMeetingProgressWheel.swift */; };
 		852DADC61EEEE63500A10882 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADC51EEEE63500A10882 /* Math.swift */; };
 		852DADCC1EEFD93200A10882 /* MyStatisticsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADCB1EEFD93200A10882 /* MyStatisticsData.swift */; };
-		852DADD01EF048E800A10882 /* MyStatisticsDataAverage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADCF1EF048E800A10882 /* MyStatisticsDataAverage.swift */; };
 		852DADD21EF04DEA00A10882 /* AverageMeetingLengthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADD11EF04DEA00A10882 /* AverageMeetingLengthView.swift */; };
-		852DADD41EF0504000A10882 /* AverageMeetingLengthViewProgressWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADD31EF0504000A10882 /* AverageMeetingLengthViewProgressWheel.swift */; };
 		852DADD61EF051C400A10882 /* UIView+Layers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADD51EF051C400A10882 /* UIView+Layers.swift */; };
 		852DADDA1EF147AA00A10882 /* AverageMeetingBetweenLengthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADD91EF147AA00A10882 /* AverageMeetingBetweenLengthView.swift */; };
 		852DADDC1EF1484C00A10882 /* AverageMeetingBetweenLengthProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADDB1EF1484C00A10882 /* AverageMeetingBetweenLengthProgressView.swift */; };
 		852DADDE1EF1737700A10882 /* TravelMaxTimeZoneChangesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADDD1EF1737700A10882 /* TravelMaxTimeZoneChangesView.swift */; };
-		852DADE01EF1741400A10882 /* TravelMaxTimeZoneChangesProgressWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADDF1EF1741400A10882 /* TravelMaxTimeZoneChangesProgressWheel.swift */; };
 		852DADE41EF190D100A10882 /* MyStatisticsDataPeriodAverage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADE31EF190D100A10882 /* MyStatisticsDataPeriodAverage.swift */; };
 		852DADE61EF1A40200A10882 /* SegmentedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADE51EF1A40200A10882 /* SegmentedView.swift */; };
 		852DADE81EF26B1D00A10882 /* PeakPerformanceAverageProgressWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADE71EF26B1D00A10882 /* PeakPerformanceAverageProgressWheel.swift */; };
-		852DADEA1EF2B83100A10882 /* MyStatisticsDataUpcomingTrips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADE91EF2B83100A10882 /* MyStatisticsDataUpcomingTrips.swift */; };
 		852DADEC1EF2BE3C00A10882 /* UpcomingTravelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADEB1EF2BE3C00A10882 /* UpcomingTravelsView.swift */; };
 		854708E21F306628007AB971 /* CircularAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854708E01F306628007AB971 /* CircularAnimation.swift */; };
 		854708E31F306628007AB971 /* CircularPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854708E11F306628007AB971 /* CircularPresentationManager.swift */; };
@@ -133,7 +129,6 @@
 		85C26F9F1F13DCEB001C2C65 /* UIView+ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C26F9E1F13DCEB001C2C65 /* UIView+ProgressHUD.swift */; };
 		85C3D6BC1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C3D6BB1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib */; };
 		85C3D6BE1F0B920E00E0CBFE /* PrepareEventTableViewFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3D6BD1F0B920E00E0CBFE /* PrepareEventTableViewFooterView.swift */; };
-		85DC6F831EF3C161004F4B4D /* UpcomingTravelsChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DC6F821EF3C161004F4B4D /* UpcomingTravelsChartView.swift */; };
 		85DC6F851EF3E32A004F4B4D /* MyStatisticsDataPeriods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DC6F841EF3E32A004F4B4D /* MyStatisticsDataPeriods.swift */; };
 		85DC6F871EF40767004F4B4D /* TravelTripsPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DC6F861EF40767004F4B4D /* TravelTripsPeriodView.swift */; };
 		85DC6F891EF40B36004F4B4D /* TravelTripsPeriodChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DC6F881EF40B36004F4B4D /* TravelTripsPeriodChartView.swift */; };
@@ -277,6 +272,7 @@
 		CBFECCAA1F33492D0076ACE6 /* EKEventStore+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFECCA91F33492D0076ACE6 /* EKEventStore+Settings.swift */; };
 		CBFECCAD1F388B500076ACE6 /* TimeZone+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFECCAC1F388B500076ACE6 /* TimeZone+Convenience.swift */; };
 		CBFECCC21F3C9CA00076ACE6 /* LearnCategoryListBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFECCC11F3C9CA00076ACE6 /* LearnCategoryListBackgroundView.swift */; };
+		CC0238FF1F4EE2B700DD992B /* IntensityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0238FE1F4EE2B700DD992B /* IntensityView.swift */; };
 		CC02E1441F2789FE00134574 /* CLLocationManager+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC02E1431F2789FE00134574 /* CLLocationManager+Convenience.swift */; };
 		CC02E1461F27996800134574 /* SettingsCalendarListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC02E1451F27996800134574 /* SettingsCalendarListCoordinator.swift */; };
 		CC02E1491F279A0F00134574 /* SettingsCalendarListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC02E1481F279A0F00134574 /* SettingsCalendarListViewModel.swift */; };
@@ -369,6 +365,7 @@
 		CCA834E41F17663100FAAA2B /* FadeAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA834E31F17663100FAAA2B /* FadeAnimator.swift */; };
 		CCAF03241E801B0E00015125 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF03211E801B0E00015125 /* SettingsCoordinator.swift */; };
 		CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF03221E801B0E00015125 /* SettingsViewController.swift */; };
+		CCB804231F4F0BFD00C6FB74 /* IntensityChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB804221F4F0BFD00C6FB74 /* IntensityChartView.swift */; };
 		CCC0C4BE1E82730E002A8362 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC0C4BD1E82730E002A8362 /* Extensions.swift */; };
 		CCC0C4CA1E827F87002A8362 /* BentonSans_Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = CCC0C4C91E827F87002A8362 /* BentonSans_Book.otf */; };
 		CCC0C4CC1E828007002A8362 /* BentonSans_Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CCC0C4CB1E828007002A8362 /* BentonSans_Regular.otf */; };
@@ -430,7 +427,6 @@
 		D5485F281ED583E300A08D1A /* SearchCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5485F271ED583E300A08D1A /* SearchCollectionCell.swift */; };
 		D554CD9D1F0CED50007731DB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D554CD9C1F0CED50007731DB /* LoginViewController.swift */; };
 		D554CD9F1F0CF3B9007731DB /* LoginViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D554CD9E1F0CF3B9007731DB /* LoginViewCell.swift */; };
-		D569769C1EF94094000FF777 /* MyStatisticsDataSleepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D569769B1EF94094000FF777 /* MyStatisticsDataSleepView.swift */; };
 		D57ACCAF1F150D1D00906573 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBB237F81E6FFF1200AB5AEF /* LaunchScreen.storyboard */; };
 		D57ACCB21F15122300906573 /* AnimatedLaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57ACCB01F15122300906573 /* AnimatedLaunchScreenViewController.swift */; };
 		D57ECFB01E924CC2008F401B /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57ECFAF1E924CC2008F401B /* TabBarView.swift */; };
@@ -449,7 +445,6 @@
 		D5B761871EE6B19C00AE178B /* SpacingInLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B761861EE6B19C00AE178B /* SpacingInLabel.swift */; };
 		D5CB5BBE1EF2D45F0029D224 /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CB5BBD1EF2D45F0029D224 /* ContainerView.swift */; };
 		D5CD23D81E8BB73A002742C4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CD23D71E8BB73A002742C4 /* TabBarController.swift */; };
-		D5D6F4B91EFBFDF200848D85 /* MyStatisticsIntensityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D6F4B81EFBFDF200848D85 /* MyStatisticsIntensityData.swift */; };
 		D5DDAA3C1EAA136C0053C5D6 /* DashPatternView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DDAA3B1EAA136C0053C5D6 /* DashPatternView.swift */; };
 		D5EC34AB1EB0D2FC00F86B09 /* LearnStrategyAudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EC34AA1EB0D2FC00F86B09 /* LearnStrategyAudioPlayerView.swift */; };
 		D5EC34AD1EB0D32D00F86B09 /* LearnStrategyAudioPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5EC34AC1EB0D32D00F86B09 /* LearnStrategyAudioPlayerView.xib */; };
@@ -565,18 +560,14 @@
 		852DADC31EEED5D600A10882 /* AverageMeetingProgressWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageMeetingProgressWheel.swift; sourceTree = "<group>"; };
 		852DADC51EEEE63500A10882 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		852DADCB1EEFD93200A10882 /* MyStatisticsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsData.swift; sourceTree = "<group>"; };
-		852DADCF1EF048E800A10882 /* MyStatisticsDataAverage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsDataAverage.swift; sourceTree = "<group>"; };
 		852DADD11EF04DEA00A10882 /* AverageMeetingLengthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageMeetingLengthView.swift; sourceTree = "<group>"; };
-		852DADD31EF0504000A10882 /* AverageMeetingLengthViewProgressWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageMeetingLengthViewProgressWheel.swift; sourceTree = "<group>"; };
 		852DADD51EF051C400A10882 /* UIView+Layers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layers.swift"; sourceTree = "<group>"; };
 		852DADD91EF147AA00A10882 /* AverageMeetingBetweenLengthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageMeetingBetweenLengthView.swift; sourceTree = "<group>"; };
 		852DADDB1EF1484C00A10882 /* AverageMeetingBetweenLengthProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageMeetingBetweenLengthProgressView.swift; sourceTree = "<group>"; };
 		852DADDD1EF1737700A10882 /* TravelMaxTimeZoneChangesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelMaxTimeZoneChangesView.swift; sourceTree = "<group>"; };
-		852DADDF1EF1741400A10882 /* TravelMaxTimeZoneChangesProgressWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelMaxTimeZoneChangesProgressWheel.swift; sourceTree = "<group>"; };
 		852DADE31EF190D100A10882 /* MyStatisticsDataPeriodAverage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsDataPeriodAverage.swift; sourceTree = "<group>"; };
 		852DADE51EF1A40200A10882 /* SegmentedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedView.swift; sourceTree = "<group>"; };
 		852DADE71EF26B1D00A10882 /* PeakPerformanceAverageProgressWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakPerformanceAverageProgressWheel.swift; sourceTree = "<group>"; };
-		852DADE91EF2B83100A10882 /* MyStatisticsDataUpcomingTrips.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsDataUpcomingTrips.swift; sourceTree = "<group>"; };
 		852DADEB1EF2BE3C00A10882 /* UpcomingTravelsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingTravelsView.swift; sourceTree = "<group>"; };
 		854708E01F306628007AB971 /* CircularAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularAnimation.swift; sourceTree = "<group>"; };
 		854708E11F306628007AB971 /* CircularPresentationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularPresentationManager.swift; sourceTree = "<group>"; };
@@ -599,7 +590,6 @@
 		85C26F9E1F13DCEB001C2C65 /* UIView+ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ProgressHUD.swift"; sourceTree = "<group>"; };
 		85C3D6BB1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareEventTableViewFooterView.xib; sourceTree = "<group>"; };
 		85C3D6BD1F0B920E00E0CBFE /* PrepareEventTableViewFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventTableViewFooterView.swift; sourceTree = "<group>"; };
-		85DC6F821EF3C161004F4B4D /* UpcomingTravelsChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingTravelsChartView.swift; sourceTree = "<group>"; };
 		85DC6F841EF3E32A004F4B4D /* MyStatisticsDataPeriods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsDataPeriods.swift; sourceTree = "<group>"; };
 		85DC6F861EF40767004F4B4D /* TravelTripsPeriodView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelTripsPeriodView.swift; sourceTree = "<group>"; };
 		85DC6F881EF40B36004F4B4D /* TravelTripsPeriodChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelTripsPeriodChartView.swift; sourceTree = "<group>"; };
@@ -752,6 +742,7 @@
 		CBFECCA91F33492D0076ACE6 /* EKEventStore+Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKEventStore+Settings.swift"; sourceTree = "<group>"; };
 		CBFECCAC1F388B500076ACE6 /* TimeZone+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeZone+Convenience.swift"; sourceTree = "<group>"; };
 		CBFECCC11F3C9CA00076ACE6 /* LearnCategoryListBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnCategoryListBackgroundView.swift; sourceTree = "<group>"; };
+		CC0238FE1F4EE2B700DD992B /* IntensityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntensityView.swift; sourceTree = "<group>"; };
 		CC02E1431F2789FE00134574 /* CLLocationManager+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLLocationManager+Convenience.swift"; sourceTree = "<group>"; };
 		CC02E1451F27996800134574 /* SettingsCalendarListCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCalendarListCoordinator.swift; sourceTree = "<group>"; };
 		CC02E1481F279A0F00134574 /* SettingsCalendarListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCalendarListViewModel.swift; sourceTree = "<group>"; };
@@ -846,6 +837,7 @@
 		CCA834E31F17663100FAAA2B /* FadeAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeAnimator.swift; sourceTree = "<group>"; };
 		CCAF03211E801B0E00015125 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		CCAF03221E801B0E00015125 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		CCB804221F4F0BFD00C6FB74 /* IntensityChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntensityChartView.swift; sourceTree = "<group>"; };
 		CCC0C4BD1E82730E002A8362 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		CCC0C4C91E827F87002A8362 /* BentonSans_Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BentonSans_Book.otf; sourceTree = "<group>"; };
 		CCC0C4CB1E828007002A8362 /* BentonSans_Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BentonSans_Regular.otf; sourceTree = "<group>"; };
@@ -908,7 +900,6 @@
 		D5485F271ED583E300A08D1A /* SearchCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCollectionCell.swift; sourceTree = "<group>"; };
 		D554CD9C1F0CED50007731DB /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D554CD9E1F0CF3B9007731DB /* LoginViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewCell.swift; sourceTree = "<group>"; };
-		D569769B1EF94094000FF777 /* MyStatisticsDataSleepView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsDataSleepView.swift; sourceTree = "<group>"; };
 		D57ACCB01F15122300906573 /* AnimatedLaunchScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedLaunchScreenViewController.swift; sourceTree = "<group>"; };
 		D57ECFAF1E924CC2008F401B /* TabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		D58BD8691E9D1E7F005676DE /* NSFile+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFile+Convenience.swift"; sourceTree = "<group>"; };
@@ -926,7 +917,6 @@
 		D5B761861EE6B19C00AE178B /* SpacingInLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpacingInLabel.swift; sourceTree = "<group>"; };
 		D5CB5BBD1EF2D45F0029D224 /* ContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
 		D5CD23D71E8BB73A002742C4 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		D5D6F4B81EFBFDF200848D85 /* MyStatisticsIntensityData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsIntensityData.swift; sourceTree = "<group>"; };
 		D5DDAA3B1EAA136C0053C5D6 /* DashPatternView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashPatternView.swift; sourceTree = "<group>"; };
 		D5EC34AA1EB0D2FC00F86B09 /* LearnStrategyAudioPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnStrategyAudioPlayerView.swift; sourceTree = "<group>"; };
 		D5EC34AC1EB0D32D00F86B09 /* LearnStrategyAudioPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyAudioPlayerView.xib; sourceTree = "<group>"; };
@@ -1494,7 +1484,6 @@
 				852DADDB1EF1484C00A10882 /* AverageMeetingBetweenLengthProgressView.swift */,
 				852DADD91EF147AA00A10882 /* AverageMeetingBetweenLengthView.swift */,
 				852DADD11EF04DEA00A10882 /* AverageMeetingLengthView.swift */,
-				852DADD31EF0504000A10882 /* AverageMeetingLengthViewProgressWheel.swift */,
 				852DADC31EEED5D600A10882 /* AverageMeetingProgressWheel.swift */,
 				D5CB5BBD1EF2D45F0029D224 /* ContainerView.swift */,
 				0B573CA51EC3219900A03602 /* DailyMeetingChartView.swift */,
@@ -1506,7 +1495,9 @@
 				D537B1E51EC200CD004C444D /* GridView.swift */,
 				D5FA66961EBB4DA600980EC7 /* HorizontalLinesChartView.swift */,
 				D5A7671D1EFA700500562CB6 /* IntensityAverageView.swift */,
+				CCB804221F4F0BFD00C6FB74 /* IntensityChartView.swift */,
 				D5A767271EFABD1200562CB6 /* IntensityContainerView.swift */,
+				CC0238FE1F4EE2B700DD992B /* IntensityView.swift */,
 				D50CDDC21EC48EAC00D27072 /* LevelsChartView.swift */,
 				0B573CA31EC3218D00A03602 /* MeetingLengthChartView.swift */,
 				852DADE71EF26B1D00A10882 /* PeakPerformanceAverageProgressWheel.swift */,
@@ -1514,13 +1505,11 @@
 				852020341EF8300800EA2032 /* PeakPerformanceUpcomingView.swift */,
 				852DADE51EF1A40200A10882 /* SegmentedView.swift */,
 				D5A64D931EE801970095D01C /* SleepChartView.swift */,
-				852DADDF1EF1741400A10882 /* TravelMaxTimeZoneChangesProgressWheel.swift */,
 				852DADDD1EF1737700A10882 /* TravelMaxTimeZoneChangesView.swift */,
 				85DC6F881EF40B36004F4B4D /* TravelTripsPeriodChartView.swift */,
 				85DC6F861EF40767004F4B4D /* TravelTripsPeriodView.swift */,
 				0BCE743F1ECD96D70006C0CF /* TripsDashCellView.swift */,
 				0BCE74401ECD96D70006C0CF /* TripsDashView.swift */,
-				85DC6F821EF3C161004F4B4D /* UpcomingTravelsChartView.swift */,
 				852DADEB1EF2BE3C00A10882 /* UpcomingTravelsView.swift */,
 			);
 			name = Charts;
@@ -1583,19 +1572,15 @@
 		CBB4DD331EE08A230071494A /* My Statistics */ = {
 			isa = PBXGroup;
 			children = (
+				CC944DB71EE8096100B8423C /* MyStatisticsCardCell.swift */,
+				852DADCB1EEFD93200A10882 /* MyStatisticsData.swift */,
+				858AF6941EF9544000486605 /* MyStatisticsDataActivity.swift */,
+				852DADE31EF190D100A10882 /* MyStatisticsDataPeriodAverage.swift */,
+				85DC6F841EF3E32A004F4B4D /* MyStatisticsDataPeriods.swift */,
 				CC944DB51EE804CD00B8423C /* MyStatisticsTableViewCell.swift */,
 				CC143A521EC49641001FB76E /* MyStatisticsViewController.swift */,
 				CC143A4E1EC47810001FB76E /* MyStatisticsViewModel.swift */,
-				CC944DB71EE8096100B8423C /* MyStatisticsCardCell.swift */,
-				D5D6F4B81EFBFDF200848D85 /* MyStatisticsIntensityData.swift */,
 				CC944DB91EE809AA00B8423C /* MyStatisticsCardCell.xib */,
-				852DADCB1EEFD93200A10882 /* MyStatisticsData.swift */,
-				852DADCF1EF048E800A10882 /* MyStatisticsDataAverage.swift */,
-				852DADE31EF190D100A10882 /* MyStatisticsDataPeriodAverage.swift */,
-				852DADE91EF2B83100A10882 /* MyStatisticsDataUpcomingTrips.swift */,
-				D569769B1EF94094000FF777 /* MyStatisticsDataSleepView.swift */,
-				85DC6F841EF3E32A004F4B4D /* MyStatisticsDataPeriods.swift */,
-				858AF6941EF9544000486605 /* MyStatisticsDataActivity.swift */,
 			);
 			name = "My Statistics";
 			sourceTree = "<group>";
@@ -2549,7 +2534,6 @@
 				CC96630F1EA1B29800B84B1C /* MyWhyView.swift in Sources */,
 				7F691C5E1F0D30C800E2C180 /* PlaceholderTextView.swift in Sources */,
 				D5EC34B21EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.swift in Sources */,
-				852DADEA1EF2B83100A10882 /* MyStatisticsDataUpcomingTrips.swift in Sources */,
 				D51B5C4C1E8D133B0084A65B /* LearnContentItemCoordinator.swift in Sources */,
 				CBD7914A1E71797C0006C590 /* Typealiases.swift in Sources */,
 				CCCC21221E8981CA00133839 /* PrepareContentViewController.swift in Sources */,
@@ -2597,7 +2581,6 @@
 				852988951F2F3E15003A36DF /* Bundle+Extensions.swift in Sources */,
 				852DADEC1EF2BE3C00A10882 /* UpcomingTravelsView.swift in Sources */,
 				CB27D59B1ECCB67300F2B76C /* Result.swift in Sources */,
-				D569769C1EF94094000FF777 /* MyStatisticsDataSleepView.swift in Sources */,
 				CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */,
 				CCCC42DF1ED5799D00E73905 /* UIViewController+Transition.swift in Sources */,
 				CB27D59F1ECDE96F00F2B76C /* DownSyncResultParser.swift in Sources */,
@@ -2694,7 +2677,6 @@
 				CC9663161EA1B41500B84B1C /* MyUniverseHelper.swift in Sources */,
 				CC02E1491F279A0F00134574 /* SettingsCalendarListViewModel.swift in Sources */,
 				CC3DFB661E83C19C00FF28DF /* Defines.swift in Sources */,
-				D5D6F4B91EFBFDF200848D85 /* MyStatisticsIntensityData.swift in Sources */,
 				7F507BA31F3B4DEC0091742D /* UserAnswer.swift in Sources */,
 				CC9663151EA1B41500B84B1C /* MyUniverseViewController.swift in Sources */,
 				CB1D5E3F1EC5E25A00BCDF8D /* ContentItemValue.swift in Sources */,
@@ -2713,7 +2695,6 @@
 				7F4251BD1F20F05D00EA451D /* OnboardingCoordinator.swift in Sources */,
 				CCC0C4DB1E82BDEF002A8362 /* TabBarCoordinator.swift in Sources */,
 				CB369CDB1E8D3E5700522293 /* RealmProvider.swift in Sources */,
-				852DADD01EF048E800A10882 /* MyStatisticsDataAverage.swift in Sources */,
 				859683451F1362F300A98218 /* ResetPasswordViewCell.swift in Sources */,
 				7F4251C31F211BC600EA451D /* PermissionHandler.swift in Sources */,
 				CBB4DD141EDEBDA80071494A /* URLRequestBuildable.swift in Sources */,
@@ -2765,8 +2746,8 @@
 				85E1F1C91F20C24F003FA349 /* ZoomPresentationController.swift in Sources */,
 				0BCE74421ECD96D70006C0CF /* TripsDashView.swift in Sources */,
 				7FE38DC11F28D2940061E98F /* PassthroughView.swift in Sources */,
+				CCB804231F4F0BFD00C6FB74 /* IntensityChartView.swift in Sources */,
 				D58BD86C1E9E846C005676DE /* ScrollViewAnimation.swift in Sources */,
-				85DC6F831EF3C161004F4B4D /* UpcomingTravelsChartView.swift in Sources */,
 				852DADDE1EF1737700A10882 /* TravelMaxTimeZoneChangesView.swift in Sources */,
 				CC96630B1EA1B27F00B84B1C /* MyDataView.swift in Sources */,
 				CCE373141E8D32F800B79352 /* SidebarViewModel.swift in Sources */,
@@ -2777,6 +2758,7 @@
 				7F691C551F0D19AE00E2C180 /* MyToBeVision.swift in Sources */,
 				CBC1DC3B1F14D9FD00F6D056 /* UserSetting+Convenience.swift in Sources */,
 				CBAF6FD81F2B88E500E57426 /* UpSyncData.swift in Sources */,
+				CC0238FF1F4EE2B700DD992B /* IntensityView.swift in Sources */,
 				7FE38DBF1F279F8C0061E98F /* CustomPresentationAnimator.swift in Sources */,
 				D51B5C491E8D0E7E0084A65B /* LearnContentCell.swift in Sources */,
 				D5FA66971EBB4DA600980EC7 /* HorizontalLinesChartView.swift in Sources */,
@@ -2828,7 +2810,6 @@
 				7FBC3E7E1F34AB8D005BD772 /* MediaResource.swift in Sources */,
 				8514A4881EE93D3C0086C70E /* PrepareContentFooterTableViewCell.swift in Sources */,
 				0BC1FF4B1E968E07007DE090 /* CollectionTableViewCell.swift in Sources */,
-				852DADD41EF0504000A10882 /* AverageMeetingLengthViewProgressWheel.swift in Sources */,
 				D57ECFB01E924CC2008F401B /* TabBarView.swift in Sources */,
 				854708E31F306628007AB971 /* CircularPresentationManager.swift in Sources */,
 				CB9AFD201F029D1500D067F2 /* PreparationService.swift in Sources */,
@@ -2867,7 +2848,6 @@
 				D5485F281ED583E300A08D1A /* SearchCollectionCell.swift in Sources */,
 				CC59A88F1F41C18100D22353 /* LibraryCollectionCell.swift in Sources */,
 				CC7C7A051F064F3F00DAAC14 /* User+Convenience.swift in Sources */,
-				852DADE01EF1741400A10882 /* TravelMaxTimeZoneChangesProgressWheel.swift in Sources */,
 				859683431F1361E900A98218 /* ResetPasswordViewController.swift in Sources */,
 				D5485F261ED583BC00A08D1A /* SearchTableCell.swift in Sources */,
 				CC9A2E4E1F1647D500CEB487 /* MyStatisticsService.swift in Sources */,

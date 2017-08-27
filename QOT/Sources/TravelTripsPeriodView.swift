@@ -44,7 +44,7 @@ class TravelTripsPeriodView: UIView {
         layoutIfNeeded()
 
         let labels = generateLabels(type: data.displayType)
-        labelContainer.drawLabelsForColumns(labels: labels, columnCount: labels.count, textColour: .white20, font: UIFont(name: "BentonSans-Book", size: 11)!)
+        labelContainer.drawLabelsForColumns(labels: labels, columnCount: labels.count, textColour: .white20, font: UIFont.bentonBookFont(ofSize: 11))
 
         let travelChart = TravelTripsPeriodChartView(frame: container.bounds, data: data)
         container.addSubview(travelChart)

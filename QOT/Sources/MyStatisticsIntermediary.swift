@@ -18,6 +18,7 @@ struct MyStatisticsIntermediary: DownSyncIntermediary {
     let upperTreshold: Double
     let lowerTreshold: Double
     let maximum: Double
+    let universe: Double
     let dataPoints: [Double]
     let periods: [MyStatisticsPeriodIntermediary]
     let unit: String
@@ -31,6 +32,7 @@ struct MyStatisticsIntermediary: DownSyncIntermediary {
         upperTreshold = try json .getItemValue(at: .upperThreshold, fallback: 0)
         lowerTreshold = try json .getItemValue(at: .lowerThreshold, fallback: 0)
         maximum = try json .getItemValue(at: .maximum, fallback: 0)
+        universe = try json .getItemValue(at: .universe, fallback: 0)
         dataPoints = try json.getArray(at: .dataPoints, fallback: [])
         periods = try json.getArray(at: .periods, fallback: [])
         unit = try json .getItemValue(at: .unit, fallback: "")

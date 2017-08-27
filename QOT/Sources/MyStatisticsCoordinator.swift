@@ -32,8 +32,7 @@ final class MyStatisticsCoordinator: NSObject, ParentCoordinator {
             let viewModel = try MyStatisticsViewModel(services: services, startingSection: startingSection)
             let myStatisticsViewController = MyStatisticsViewController(viewModel: viewModel)
             myStatisticsViewController.delegate = self
-            myStatisticsViewController.title = "23 SEP // 30 Sep" //TODO: localise
-
+            myStatisticsViewController.title = R.string.localized.meMyStatisticsNavigationBarTitle()
             topTabBarController = UINavigationController(withPages: [myStatisticsViewController],
                                                          topBarDelegate: self,
                                                          leftButton: UIBarButtonItem(withImage: R.image.ic_minimize()))

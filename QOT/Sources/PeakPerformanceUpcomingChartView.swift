@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PeakPerformanceUpcomingChartView: UIView {
+final class PeakPerformanceUpcomingChartView: UIView {
 
     private var data: MyStatisticsDataPeriods
 
@@ -26,7 +26,7 @@ class PeakPerformanceUpcomingChartView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        layer.sublayers?.forEach { $0.removeFromSuperlayer() }
+        layer.removeAllSublayer()
         draw(frame: frame)
     }
 

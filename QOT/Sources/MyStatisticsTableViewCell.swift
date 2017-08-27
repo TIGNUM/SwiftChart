@@ -12,6 +12,8 @@ import RealmSwift
 
 final class MyStatisticsTableViewCell: UITableViewCell, Dequeueable {
 
+    // MARK: - Properties
+
     fileprivate var viewModel: MyStatisticsViewModel?
     fileprivate lazy var currentSection = 0
 
@@ -27,6 +29,8 @@ final class MyStatisticsTableViewCell: UITableViewCell, Dequeueable {
             dequeables: MyStatisticsCardCell.self
         )
     }()
+
+    // MARK: - Init
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -64,20 +68,22 @@ private extension MyStatisticsTableViewCell {
 extension MyStatisticsTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let viewModel = viewModel else { return 0 }
-
-        print("viewModel.numberOfItems(in: section): ", currentSection, " : ", viewModel.numberOfItems(in: currentSection), viewModel.sectionType(in: currentSection))
+        guard let viewModel = viewModel else {
+            return 0
+        }
 
         return viewModel.numberOfItems(in: currentSection)
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let viewModel = viewModel else { return UICollectionViewCell() }
+        guard let viewModel = viewModel else {
+            return UICollectionViewCell()
+        }
 
         let cardTitle = viewModel.cardTitle(section: currentSection, item: indexPath.item)
         let myStatistics = viewModel.myStatistics(section: currentSection, item: indexPath.item)
-        let cardCell: MyStatisticsCardCell = collectionView.dequeueCell(for: indexPath)
         let cardType = viewModel.cardType(section: currentSection, item: indexPath.item)
+        let cardCell: MyStatisticsCardCell = collectionView.dequeueCell(for: indexPath)
         cardCell.setup(headerTitle: cardTitle, cardType: cardType, delegate: self, myStatistics: myStatistics, allCards: viewModel.allCards)
         let cellRect = collectionView.convert(cardCell.frame, to: collectionView.superview)
         cardCell.animateHeader(withCellRect: cellRect, inParentRect: collectionView.frame)

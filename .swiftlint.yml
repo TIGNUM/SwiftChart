@@ -12,6 +12,7 @@ disabled_rules:
   - file_length
   - unused_closure_parameter
   - type_name
+  - shorthand_operator
 
 included: # paths to include during linting. `--path` is ignored if present.
   - QOT
