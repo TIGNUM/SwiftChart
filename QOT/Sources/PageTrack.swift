@@ -16,23 +16,41 @@ final class PageTrack: SyncableObject {
     
     fileprivate dynamic var referrerPage: Page?
     
-    fileprivate dynamic var associatedValue: SyncableObject?
+    fileprivate dynamic var associatedValueLocalID: String?
     
     fileprivate dynamic var associatedValueType: String?
-    
-    fileprivate dynamic var referrerAssociatedValue: SyncableObject?
+
+    fileprivate dynamic var referrerAssociatedValueLocalID: String?
     
     fileprivate dynamic var referrerAssociatedValueType: String?
-
-    convenience init(page: Page, referrerPage: Page?, associatedValue: SyncableObject?, associatedValueType: String?, referrerAssociatedValue: SyncableObject?, referrerAssociatedValueType: String?) {
+    
+    convenience init(page: Page, referrerPage: Page?, associatedValueLocalID: String?, associatedValueType: String?, referrerAssociatedValueLocalID: String?, referrerAssociatedValueType: String?) {
         self.init()
 
         self.page = page
         self.referrerPage = referrerPage
-        self.associatedValue = associatedValue
+        self.associatedValueLocalID = associatedValueLocalID
         self.associatedValueType = associatedValueType
-        self.referrerAssociatedValue = referrerAssociatedValue
+        self.referrerAssociatedValueLocalID = referrerAssociatedValueLocalID
         self.referrerAssociatedValueType = referrerAssociatedValueType
+    }
+    
+    // MARK: - private
+    
+    // FIXME: refactor when Realm issue is resolved https://github.com/realm/realm-cocoa/issues/1109#issuecomment-143834756
+    fileprivate func syncableObject(forIdentifier identifier: PageObject.Identifier, localID: String) -> SyncableObject? {
+        switch identifier {
+        case .category:
+            return realm?.syncableObject(ofType: ContentCategory.self, localID: localID)
+        case .contentItem:
+            return realm?.syncableObject(ofType: ContentItem.self, localID: localID)
+        case .contentCollection:
+            return realm?.syncableObject(ofType: ContentCollection.self, localID: localID)
+        case .myToBeVision:
+            return realm?.syncableObject(ofType: MyToBeVision.self, localID: localID)
+        case .preparation:
+            return realm?.syncableObject(ofType: Preparation.self, localID: localID)
+        }
     }
 }
 
@@ -47,10 +65,28 @@ extension PageTrack: OneWaySyncableUp {
     func toJson() -> JSON? {
         guard
             syncStatus != .clean,
-            let pageID = page?.remoteID.value,
-            (associatedValue == nil || associatedValue?.remoteID != nil),
-            (referrerAssociatedValue == nil || referrerAssociatedValue?.remoteID != nil) else {
+            let pageID = page?.remoteID.value else {
             return nil
+        }
+        var associatedValue: SyncableObject?
+        if
+            let associatedValueType = associatedValueType,
+            let associatedValueLocalID = associatedValueLocalID,
+            let identifier = PageObject.Identifier(rawValue: associatedValueType) {
+            associatedValue = syncableObject(forIdentifier: identifier, localID: associatedValueLocalID)
+            if associatedValue?.remoteID == nil {
+                return nil
+            }
+        }
+        var referrerAssociatedValue: SyncableObject?
+        if
+            let referrerAssociatedValueType = referrerAssociatedValueType,
+            let referrerAssociatedValueLocalID = referrerAssociatedValueLocalID,
+            let identifier = PageObject.Identifier(rawValue: referrerAssociatedValueType) {
+            referrerAssociatedValue = syncableObject(forIdentifier: identifier, localID: referrerAssociatedValueLocalID)
+            if referrerAssociatedValue?.remoteID == nil {
+                return nil
+            }
         }
         let referrerPageID = referrerPage?.remoteID.value
         let associatedValueID = associatedValue?.remoteID.value

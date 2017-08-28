@@ -47,9 +47,9 @@ class EventTracker {
                 realm.add(PageTrack(
                     page: associatedPage,
                     referrerPage: referrerTrackablePage?.associatedPage(realm: realm),
-                    associatedValue: trackablePage.pageAssociatedObject?.object,
+                    associatedValueLocalID: trackablePage.pageAssociatedObject?.object.localID,
                     associatedValueType: trackablePage.pageAssociatedObject?.identifier.rawValue,
-                    referrerAssociatedValue: referrerTrackablePage?.pageAssociatedObject?.object,
+                    referrerAssociatedValueLocalID: referrerTrackablePage?.pageAssociatedObject?.object.localID,
                     referrerAssociatedValueType: referrerTrackablePage?.pageAssociatedObject?.identifier.rawValue
                 ))
             }
@@ -70,9 +70,9 @@ class EventTracker {
                 realm.add(PageTrack(
                     page: associatedPage,
                     referrerPage: nil,
-                    associatedValue: object,
+                    associatedValueLocalID: object.localID,
                     associatedValueType: PageObject.Identifier.contentItem.rawValue,
-                    referrerAssociatedValue: nil,
+                    referrerAssociatedValueLocalID: nil,
                     referrerAssociatedValueType: nil
                 ))
             }
