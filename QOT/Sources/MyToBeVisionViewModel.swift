@@ -40,7 +40,10 @@ final class MyToBeVisionViewModel {
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .full
         let calendar = NSCalendar.current
-        let components = calendar.dateComponents([.year, .month, .weekOfMonth, .day, .hour, .minute, .second], from: date, to: now)
+        var components = calendar.dateComponents([.year, .month, .weekOfMonth, .day, .hour, .minute, .second], from: date, to: now)
+        if now.timeIntervalSince(date) < 1 { // this avoids returning "UPDATED 0 SECONDS AGO" etc
+            components.second = 1
+        }
         guard let dateText = formatter.string(from: components) else {
             return nil
         }
@@ -55,11 +58,18 @@ final class MyToBeVisionViewModel {
     func updateHeadline(_ headline: String?) {
         guard let item = item else { return }
         userService.updateHeadline(myToBeVision: item, headline: headline)
+        updateDate(Date())
     }
     
     func updateText(_ text: String?) {
         guard let item = item else { return }
         userService.updateText(myToBeVision: item, text: text)
+        updateDate(Date())
+    }
+    
+    func updateDate(_ date: Date) {
+        guard let item = item else { return }
+        userService.updateDate(myToBeVision: item, date: date)
     }
     
     func updateLocalProfileImageURL(_ localProfileImageURL: String?) {
@@ -77,6 +87,7 @@ final class MyToBeVisionViewModel {
         do {
             let url = try image?.save(withName: item.localID)
             updateLocalProfileImageURL(url?.absoluteString)
+            updateDate(Date())
             return nil
         } catch {
             return error

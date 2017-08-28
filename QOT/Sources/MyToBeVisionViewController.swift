@@ -328,8 +328,10 @@ extension MyToBeVisionViewController: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView == headlineTextView {
             viewModel.updateHeadline(headlineTextView.text)
+            setupLabels()
         } else if textView == messageTextView {
             viewModel.updateText(messageTextView.text)
+            setupLabels()
         }
         if let textView = textView as? PlaceholderTextView {
             textView.didEndEditing()
@@ -352,7 +354,7 @@ extension MyToBeVisionViewController: UITextViewDelegate {
             } else if numOfLines == 2 {
                 headlineTextViewHightConstrant.constant = 100
             }
-            headlineTextView.layoutIfNeeded()
+            view.layoutIfNeeded()
         }
     }
 }

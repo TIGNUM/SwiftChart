@@ -135,6 +135,12 @@ extension UserService {
         }
     }
     
+    func updateDate(myToBeVision: MyToBeVision, date: Date) {
+        updateMyToBeVision(myToBeVision) {
+            $0.date = date
+        }
+    }
+    
     func updateMyToBeVision(_ myToBeVision: MyToBeVision, block: (MyToBeVision) -> Void) {
         do {
             try mainRealm.write {
