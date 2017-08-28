@@ -35,18 +35,27 @@ extension UITapGestureRecognizer {
         // Find the tapped character location and compare it to the specified range
         let locationOfTouchInLabel = self.location(in: label)
         let textBoundingBox = layoutManager.usedRect(for: textContainer)
-
-        let textContainerOffset = CGPoint(x: (labelSize.width - textBoundingBox.size.width) * 0.5 - textBoundingBox.origin.x,
-                                          y: (labelSize.height - textBoundingBox.size.height) * 0.5 - textBoundingBox.origin.y)
-        let locationOfTouchInTextContainer = CGPoint(x: locationOfTouchInLabel.x - textContainerOffset.x,
-                                                     y: locationOfTouchInLabel.y - textContainerOffset.y)
-        let indexOfCharacter = layoutManager.characterIndex(for: locationOfTouchInTextContainer, in: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
-
+        
+        // convert location from label.bounds to textBoundingBox
+        guard label.bounds.size.height > 0, label.bounds.size.width > 0 else {
+            return nil
+        }
+        let xScaleFactor = textBoundingBox.height / label.bounds.size.height
+        let yScaleFactor = textBoundingBox.width / label.bounds.size.width
+        let normalizedTouch = CGPoint(
+            x: locationOfTouchInLabel.x * xScaleFactor,
+            y: locationOfTouchInLabel.y * yScaleFactor
+        )
+        
+        // return link for character index
+        let indexOfCharacter = layoutManager.characterIndex(
+            for: normalizedTouch,
+            in: textContainer,
+            fractionOfDistanceBetweenInsertionPoints: nil
+        )
         for link in label.links where NSLocationInRange(indexOfCharacter, link.range) {
             return link.link
         }
-
         return nil
     }
-    
 }
