@@ -62,11 +62,8 @@ private extension AnimatedLaunchScreenViewController {
         backGroundImageView.horizontalAnchors == view.horizontalAnchors
         backGroundImageView.verticalAnchors == view.verticalAnchors
 
-        tignumImageView.heightAnchor == 50.0
-        tignumImageView.widthAnchor == view.widthAnchor * 0.3
-        tignumImageView.bottomAnchor == view.bottomAnchor - 20.0
+        tignumImageView.bottomAnchor == view.bottomAnchor - 34.0
         tignumImageView.centerXAnchor == view.centerXAnchor
-        tignumImageView.contentMode = .scaleAspectFit
         
         logoImageView.heightAnchor == 48
         logoImageView.widthAnchor == 138
