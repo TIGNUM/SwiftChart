@@ -9,7 +9,8 @@
 import UIKit
 import Anchorage
 
-class TravelTripsPeriodView: UIView {
+final class TravelTripsPeriodView: UIView {
+    
     private var data: MyStatisticsDataPeriods
 
     required init?(coder aDecoder: NSCoder) {

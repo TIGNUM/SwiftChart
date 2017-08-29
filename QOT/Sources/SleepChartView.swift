@@ -98,17 +98,17 @@ private extension SleepChartView {
         let rect = CGRect(x: tempWidth / 4, y: yPos, width: tempWidth, height: frame.height)
         let theta: CGFloat = CGFloat(2.0 * CGFloat.pi) / 5
         let width = min(frame.width, frame.height)
-        let startPoint = CGPoint(x: rect.origin.x + width / 2.0, y: rect.origin.y + width / 2.0)
+        let startPoint = CGPoint(x: rect.origin.x + width * 0.5, y: rect.origin.y + width * 0.5)
         var angle = CGFloat(rotationOffset)
 
-        for (index, dataPoint) in myStatistics.dataPoints.enumerated() {
+        for (index, dataPoint) in myStatistics.dataPointObjects.enumerated() {
             angle += theta
             let length: CGFloat
 
             if isDataPoint == true {
-                length = (width / 2.0 ) * dataPoint.value.toFloat
+                length = (width * 0.5 ) * dataPoint.value
             } else {
-                length = (width / 2.0 )
+                length = (width * 0.5 )
                 let corner = CGPoint(x: startPoint.x + length * cos(angle), y: startPoint.y + length * sin(angle))
                 let end = CGPoint(x: corner.x + cornerRadius * cos(angle + theta), y: corner.y + cornerRadius * sin(angle + theta))
                 let frame = CGRect(x: end.x, y: end.y, width: 15, height: 10)
@@ -117,14 +117,8 @@ private extension SleepChartView {
 
             let corner = CGPoint(x: startPoint.x + length * cos(angle), y: startPoint.y + length * sin(angle))
             let endPoint = CGPoint(x: corner.x + cornerRadius * cos(angle + theta), y: corner.y + cornerRadius * sin(angle + theta))
-            let average = myStatistics.teamAverage.toFloat
-            let color = lineColor(value: dataPoint.value.toFloat, average: average)
-            drawLines(startPoint: startPoint, endPoint: endPoint, color: color, isDataPoint: isDataPoint)
+            drawLines(startPoint: startPoint, endPoint: endPoint, color: dataPoint.color, isDataPoint: isDataPoint)
         }
-    }
-
-    func lineColor(value: CGFloat, average: CGFloat) -> UIColor {
-        return value <= average ? .cherryRed : .white
     }
 
     func frameForLabels(frame: CGRect, center: CGPoint, index: Int) {
@@ -172,16 +166,13 @@ private extension SleepChartView {
         outerPolygonShape = shape(borderColor: .white20)
         outerPolygonShape.path = UIBezierPath.pentagonPath(forRect: frame).cgPath
         outerPolygonShape.transform = CATransform3DMakeTranslation(0, sleepChartYPos, 0)
-
         innerPolygonShape = shape(borderColor: .white20)
         let scaleFactor = CGFloat(myStatistics.teamAverage)
         let innerFrame = frame.applying(CGAffineTransform(scaleX: scaleFactor, y: scaleFactor))
         innerPolygonShape.path = UIBezierPath.pentagonPath(forRect: innerFrame).cgPath
-        innerPolygonShape.transform = CATransform3DMakeTranslation(
-            frame.midX - innerFrame.midX,
-            frame.midY - innerFrame.midY + sleepChartYPos,
-            0)
-
+        innerPolygonShape.transform = CATransform3DMakeTranslation(frame.midX - innerFrame.midX,
+                                                                   frame.midY - innerFrame.midY + sleepChartYPos,
+                                                                   0)
         layer.addSublayer(innerPolygonShape)
         layer.addSublayer(outerPolygonShape)
     }

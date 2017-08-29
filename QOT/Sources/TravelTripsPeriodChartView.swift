@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TravelTripsPeriodChartView: UIView {
+final class TravelTripsPeriodChartView: UIView {
 
     private var data: MyStatisticsDataPeriods
 

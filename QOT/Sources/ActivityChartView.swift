@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Anchorage
 
 final class ActivityChartView: UIView {
 
@@ -38,8 +39,9 @@ final class ActivityChartView: UIView {
 
     // MARK: - Properties
 
+    fileprivate let labelContainer = UIView()
     fileprivate let myStatistics: MyStatistics
-    fileprivate let containerView: ContainerView = ContainerView()
+    fileprivate let padding = CGFloat(8)
 
     // MARK: - Init
 
@@ -49,16 +51,11 @@ final class ActivityChartView: UIView {
         super.init(frame: frame)
 
         setupView()
+        drawCharts()
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        containerView.frame = bounds
     }
 }
 
@@ -67,24 +64,31 @@ final class ActivityChartView: UIView {
 private extension ActivityChartView {
 
     func setupView() {
-        setupContainerView()
         setupAverageLine()
+        setupLabels()
     }
 
-    func setupContainerView() {
-        guard let activityData = (columns(myStatistics: myStatistics) as? MyStatisticsDataActivity)?.data else {
-            return
-        }
-        
-        let dayNames = DateFormatter().veryShortStandaloneWeekdaySymbols.mondayFirst(withWeekend: false)
-        containerView.setup(columns: activityData, dayNames: dayNames)
-        addSubview(containerView)
+    private func setupLabels() {
+        addSubview(labelContainer)
+        labelContainer.leadingAnchor == leadingAnchor + padding
+        labelContainer.trailingAnchor == trailingAnchor - padding
+        labelContainer.bottomAnchor == bottomAnchor
+        labelContainer.heightAnchor == 20
+        let startPoint = CGPoint(x: frame.origin.x, y: 0)
+        let endPoint = CGPoint(x: frame.width, y: 0)
+        let labels = DateFormatter().veryShortStandaloneWeekdaySymbols.mondayFirst(withWeekend: false)
+        labelContainer.drawSolidLine(from: startPoint, to: endPoint, strokeColour: .white20)
+        labelContainer.drawLabelsForColumns(labels: labels,
+                                            columnCount: labels.count,
+                                            textColour: .white20,
+                                            font: Font.H7Title,
+                                            center: true)
+        layoutIfNeeded()
     }
 
-    func setupAverageLine() {
-        let padding: CGFloat = 7
+    private func setupAverageLine() {
         let separatorHeight: CGFloat = 1
-        let height = bounds.height - padding - separatorHeight
+        let height = bounds.height - padding - separatorHeight - labelContainer.frame.height
 
         AverageLineType.allValues.forEach { (averageLineType: AverageLineType) in
             let position = height * averageLineType.averageValue(myStatistics: myStatistics)
@@ -112,24 +116,33 @@ private extension ActivityChartView {
         return line
     }
 
-    func columns(myStatistics: MyStatistics) -> MyStatisticsData {
-        var data: [EventGraphData] = []
-        let threshold = StatisticsThreshold<CGFloat>(
-            upperThreshold: myStatistics.upperThreshold.toFloat,
-            lowerThreshold: myStatistics.lowerThreshold.toFloat
-        )
+    func drawCharts() {
+        let lineWidth = CGFloat(8)
+        let bottomPos = frame.height - labelContainer.frame.height - (padding * 0.5)
 
-        myStatistics.dataPoints.forEach { (doubleObject: DoubleObject) in
-            data.append(EventGraphData(start: 1, end: doubleObject.toFloat))
+        for (index, dataPoint) in myStatistics.dataPointObjects.enumerated() {
+            let xPos = xPosition(index: index, columnWidth: lineWidth)
+            let yPos = bottomPos - dataPoint.value * bottomPos + labelContainer.frame.height - (padding * 0.5)
+            let startPoint = CGPoint(x: xPos, y: bottomPos)
+            let endPoint = CGPoint(x: xPos, y: yPos)
+
+            if myStatistics.key == StatisticCardType.activitySittingMovementRatio.rawValue && dataPoint.value < 1 {
+                drawInactivityLine(xPos: xPos, yPos: yPos)
+            }
+
+            drawCapRoundLine(from: startPoint, to: endPoint, lineWidth: lineWidth, strokeColour: dataPoint.color)
         }
+    }
 
-        return MyStatisticsDataActivity(
-            teamAverage: myStatistics.teamAverageValue,
-            dataAverage: myStatistics.dataAverageValue,
-            userAverage: myStatistics.userAverageValue,
-            threshold: threshold,
-            data: data,
-            fillColumn: myStatistics.key == StatisticCardType.activitySittingMovementRatio.rawValue
-        )
+    private func drawInactivityLine(xPos: CGFloat, yPos: CGFloat) {
+        let startPoint = CGPoint(x: xPos, y: yPos)
+        let endPoint = CGPoint(x: xPos, y: labelContainer.frame.height - (padding * 0.5))
+        drawCapRoundLine(from: startPoint, to: endPoint, lineWidth: CGFloat(8), strokeColour: .white20)
+    }
+
+    private func xPosition(index: Int, columnWidth: CGFloat) -> CGFloat {
+        let labelFrame = labelContainer.subviews[index].frame
+
+        return (labelFrame.origin.x + labelFrame.width * 0.5) + padding
     }
 }

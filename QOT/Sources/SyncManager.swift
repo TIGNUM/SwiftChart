@@ -262,7 +262,7 @@ final class SyncManager {
             downSyncOperation(for: UserChoice.self, context: context),
             downSyncOperation(for: ContentCategory.self, context: context),
             downSyncOperation(for: ContentCollection.self, context: context),
-            downSyncOperation(for: MyStatistics.self, context: context),
+//            downSyncOperation(for: MyStatistics.self, context: context),
             downSyncOperation(for: ContentItem.self, context: context),
             downSyncOperation(for: Partner.self, context: context),
             downSyncOperation(for: MyToBeVision.self, context: context),

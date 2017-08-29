@@ -87,7 +87,7 @@ private extension IntensityView {
 
     private func generateLabels(type: DataDisplayType) -> [String] {
         switch type {
-        case .week: return weekdays()
+        case .week: return DateFormatter().veryShortStandaloneWeekdaySymbols.mondayFirst(withWeekend: true)
         case .month: return weekNumbers()
         default: return []
         }
@@ -108,19 +108,6 @@ private extension IntensityView {
         }
         
         return weekNumbers.reversed()
-    }
-
-    private func weekdays() -> [String] {
-        let formatter = DateFormatter()
-        let currentWeekday = Calendar.current.component(.weekday, from: Date())
-
-        guard var weekdaySymbols = formatter.veryShortWeekdaySymbols else {
-            return []
-        }
-
-        weekdaySymbols = Array(weekdaySymbols[currentWeekday - 1 ..< weekdaySymbols.count]) + weekdaySymbols[0 ..< currentWeekday - 1]
-
-        return weekdaySymbols.reversed()
     }
 }
 

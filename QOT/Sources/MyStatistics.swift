@@ -121,8 +121,8 @@ extension MyStatistics {
         var dataPointObjects = [DataPoint]()
 
         dataPoints.forEach { (dataPoint: DoubleObject) in
-            let color: UIColor = dataPoint.value >= upperThreshold ? .cherryRed : dataPoint.value <= lowerThreshold ? .white90 : .gray
-            let dataPointObj: DataPoint = DataPoint(value: dataPoint.value.toFloat, color: color)
+            let dataValue = dataPoint.value.toFloat / (maximum.toFloat > 0 ? maximum.toFloat : 1)
+            let dataPointObj: DataPoint = DataPoint(value: dataValue, color: dataPointColor(dataValue))
             dataPointObjects.append(dataPointObj)
         }
 
@@ -147,6 +147,26 @@ extension MyStatistics {
 // MARK: - Private
 
 private extension MyStatistics {
+
+    func dataPointColor(_ dataValue: CGFloat) -> UIColor {
+        if upperThreshold > lowerThreshold {
+            if dataValue > upperThreshold.toFloat {
+                return .cherryRed
+            } else if  dataValue <= lowerThreshold.toFloat {
+                return .gray
+            } else {
+                return .white90
+            }
+        } else {
+            if dataValue > upperThreshold.toFloat {
+                return .white90
+            } else if  dataValue <= lowerThreshold.toFloat {
+                return .cherryRed
+            } else {
+                return .gray
+            }
+        }
+    }
 
     func averageValue(average: Double) -> CGFloat {
         guard maximum > 0 else {
