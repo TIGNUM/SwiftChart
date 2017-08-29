@@ -172,6 +172,9 @@ private extension MyToBeVisionViewController {
         setupNavigation()
         setupLabels()
 
+        messageTextView.delegate = self
+        messageTextView.returnKeyType = .done
+        
         if let profileImageResource = viewModel.profileImageResource {
             imageView.setImageFromResource(profileImageResource)
         }
@@ -360,6 +363,12 @@ extension MyToBeVisionViewController: UITextViewDelegate {
                 headlineTextViewHightConstrant.constant = 100
             }
             view.layoutIfNeeded()
+        } else if textView == messageTextView, textView.text.characters.count >= 1 {
+
+            if textView.text.characters.first(where: {$0 == "\n"}) != nil {
+                textView.text = textView.text.replacingOccurrences(of: "\n", with: "")
+                textView.resignFirstResponder()
+            }
         }
     }
 }
