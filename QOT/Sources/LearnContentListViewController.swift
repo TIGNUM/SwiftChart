@@ -71,9 +71,9 @@ final class LearnContentListViewController: UIViewController {
     fileprivate lazy var getBackButton: UIButton = {
         let viewFrame = self.view.bounds
         let button = UIButton(frame: CGRect(x: 0, y: viewFrame.height - Layout.TabBarView.height, width: viewFrame.width, height: Layout.TabBarView.height))
-        button.setTitle("TAP TO GET BACK", for: .normal)
+        button.setTitle(R.string.localized.learnContentTapToGetBack(), for: .normal)
         button.setTitleColor(Color.whiteMedium, for: .normal)
-        button.titleLabel?.font = Font.H4Headline
+        button.titleLabel?.font = Font.H5SecondaryHeadline
         button.addTarget(self, action: #selector(didTapGetBack), for: .touchUpInside)
 
         return button
