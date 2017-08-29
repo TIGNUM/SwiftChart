@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -64,7 +64,7 @@
                     </connections>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="tec-JI-rRg">
-                    <rect key="frame" x="0.0" y="283" width="171" height="14"/>
+                    <rect key="frame" x="0.0" y="284" width="171" height="14"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="14" id="KCT-5B-4aj"/>
@@ -74,7 +74,7 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" keyboardAppearance="alert" returnKeyType="done"/>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Iw2-iV-KOy">
-                    <rect key="frame" x="0.0" y="309" width="171" height="14"/>
+                    <rect key="frame" x="0.0" y="318" width="171" height="14"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="14" id="isY-vk-nvo"/>
@@ -91,7 +91,7 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" keyboardAppearance="alert" returnKeyType="done"/>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="dFz-9N-vPo">
-                    <rect key="frame" x="0.0" y="249" width="171" height="29"/>
+                    <rect key="frame" x="0.0" y="247" width="171" height="29"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="24"/>
@@ -106,7 +106,7 @@
                     </constraints>
                 </imageView>
                 <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jxd-mR-cVT">
-                    <rect key="frame" x="176" y="283" width="10" height="10"/>
+                    <rect key="frame" x="176" y="284" width="10" height="10"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="10" id="KSc-2m-OEM"/>
@@ -114,7 +114,7 @@
                     </constraints>
                 </imageView>
                 <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7ZD-U2-Xv1">
-                    <rect key="frame" x="176" y="309" width="10" height="10"/>
+                    <rect key="frame" x="176" y="318" width="10" height="10"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="10" id="7L3-fL-0xU"/>
@@ -124,7 +124,7 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="dFz-9N-vPo" firstAttribute="top" secondItem="5Sl-OW-9lV" secondAttribute="bottom" constant="-2" id="0BB-bf-xwd"/>
+                <constraint firstItem="dFz-9N-vPo" firstAttribute="top" secondItem="5Sl-OW-9lV" secondAttribute="bottom" constant="-4" id="0BB-bf-xwd"/>
                 <constraint firstItem="ZNQ-j7-0ax" firstAttribute="leading" secondItem="oPG-k5-iC1" secondAttribute="leading" id="7cW-q6-9m0"/>
                 <constraint firstItem="5Sl-OW-9lV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="AO1-hR-Zyu"/>
                 <constraint firstItem="oPG-k5-iC1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Axi-sw-Kk0"/>
@@ -147,8 +147,8 @@
                 <constraint firstItem="yvr-Iq-iZr" firstAttribute="leading" secondItem="5Sl-OW-9lV" secondAttribute="trailing" constant="5" id="eCF-fc-hLH"/>
                 <constraint firstItem="7ZD-U2-Xv1" firstAttribute="top" secondItem="Iw2-iV-KOy" secondAttribute="top" id="iU4-u8-goK"/>
                 <constraint firstItem="tec-JI-rRg" firstAttribute="width" secondItem="5Sl-OW-9lV" secondAttribute="width" id="ig3-fL-EXN"/>
-                <constraint firstItem="Iw2-iV-KOy" firstAttribute="top" secondItem="tec-JI-rRg" secondAttribute="bottom" constant="12" id="mQz-aR-2fE"/>
-                <constraint firstItem="tec-JI-rRg" firstAttribute="top" secondItem="dFz-9N-vPo" secondAttribute="bottom" constant="5" id="phY-ex-c5H"/>
+                <constraint firstItem="Iw2-iV-KOy" firstAttribute="top" secondItem="tec-JI-rRg" secondAttribute="bottom" constant="20" id="mQz-aR-2fE"/>
+                <constraint firstItem="tec-JI-rRg" firstAttribute="top" secondItem="dFz-9N-vPo" secondAttribute="bottom" constant="8" id="phY-ex-c5H"/>
                 <constraint firstItem="ZNQ-j7-0ax" firstAttribute="trailing" secondItem="oPG-k5-iC1" secondAttribute="trailing" id="ppm-cz-LzE"/>
                 <constraint firstItem="jxd-mR-cVT" firstAttribute="top" secondItem="tec-JI-rRg" secondAttribute="top" id="zEI-m4-viO"/>
             </constraints>

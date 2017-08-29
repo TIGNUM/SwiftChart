@@ -87,7 +87,7 @@ extension CarouselCellView {
         textFieldMail.attributedText = NSMutableAttributedString(
             string: email ?? "",
             letterSpacing: 0,
-            font: Font.H7Title,
+            font: Font.H8Title,
             textColor: grey
         )
         textFieldMail.attributedPlaceholder = NSMutableAttributedString(
@@ -103,7 +103,8 @@ extension CarouselCellView {
         )
         textFieldSubtitle.attributedPlaceholder = NSMutableAttributedString(
             string: R.string.localized.meSectorMyWhyPartnersRelationship(),
-            letterSpacing: 2, font: Font.H7Tag,
+            letterSpacing: 2,
+            font: Font.H7Tag,
             textColor: grey
         )
         initialsLabel.attributedText = NSMutableAttributedString(
