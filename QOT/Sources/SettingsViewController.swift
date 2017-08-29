@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Anchorage
 import ActionSheetPicker_3_0
 import UserNotifications
 import UserNotificationsUI
@@ -25,7 +26,7 @@ protocol SettingsViewControllerDelegate: class {
     func didChangeNotificationValue(sender: UISwitch, settingsCell: SettingsTableViewCell, key: String?)
 }
 
-final class SettingsViewController: UITableViewController {
+final class SettingsViewController: UIViewController {
 
     // MARK: - Properties
 
@@ -34,6 +35,7 @@ final class SettingsViewController: UITableViewController {
     fileprivate let locationManager = CLLocationManager()
     weak var delegate: SettingsCoordinatorDelegate?
     let settingsType: SettingsType.SectionType
+    var tableView: UITableView!
 
     // MARK: - Init
     
@@ -42,7 +44,7 @@ final class SettingsViewController: UITableViewController {
         self.settingsType = settingsType
         self.services = services
 
-        super.init(style: .grouped)
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -54,8 +56,8 @@ final class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupView()
         registerCells()
-        setupView()        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -70,13 +72,22 @@ final class SettingsViewController: UITableViewController {
 private extension SettingsViewController {
     
     func setupView() {
+        tableView = UITableView(frame: .zero, style: .grouped)
+        view.addSubview(tableView)
         view.backgroundColor = .clear
+        view.applyTopFade()
+
+        tableView.backgroundView = UIImageView(image: R.image.backgroundSidebar())
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.backgroundColor = .clear
         tableView.contentInset = UIEdgeInsets(top: 110, left: 0, bottom: 64, right: 0)
         tableView.tableFooterView = UIView()
         tableView.separatorColor = .clear
         tableView.allowsSelection = true
-        tableView.rowHeight = UITableViewAutomaticDimension        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.horizontalAnchors == view.horizontalAnchors
+        tableView.verticalAnchors == view.verticalAnchors
     }
 
     func registerCells() {
@@ -98,17 +109,17 @@ private extension SettingsViewController {
 
 // MARK: - UITableViewDataSource, UITableViewDelegate
 
-extension SettingsViewController {
+extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.sectionCount
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfItemsInSection(in: section)
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let settingsRow = viewModel.row(at: indexPath)
 
         guard let settingsCell = tableView.dequeueReusableCell(withIdentifier: settingsRow.identifier, for: indexPath) as? SettingsTableViewCell else {
@@ -121,22 +132,22 @@ extension SettingsViewController {
         return settingsCell
     }
 
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 28
     }
 
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 44
     }
 
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footer = UIView()
         footer.backgroundColor = .clear
 
         return footer
     }
 
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let identifier = R.reuseIdentifier.settingsTableViewCell_Label.identifier
         guard let headerCell = tableView.dequeueReusableCell(withIdentifier: identifier) as? SettingsTableViewCell else {
             fatalError("HeaderCell does not exist!")
@@ -147,7 +158,7 @@ extension SettingsViewController {
         return headerCell.contentView
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let selectedRow = viewModel.row(at: indexPath)
 

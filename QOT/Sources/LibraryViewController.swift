@@ -78,6 +78,8 @@ private extension LibraryViewController {
 
     func setupView() {
         view.addSubview(tableView)
+        view.applyTopFade()
+        
         view.backgroundColor = .clear
         tableView.topAnchor == view.topAnchor
         tableView.bottomAnchor == view.bottomAnchor

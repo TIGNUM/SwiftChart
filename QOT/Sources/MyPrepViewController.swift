@@ -91,6 +91,8 @@ private extension MyPrepViewController {
     func setupView() {
         view.backgroundColor = .clear
         view.addSubview(tableView)
+        view.applyTopFade()
+
         tableView.topAnchor == view.topAnchor + 26
         tableView.bottomAnchor == view.bottomAnchor
         tableView.horizontalAnchors == view.horizontalAnchors

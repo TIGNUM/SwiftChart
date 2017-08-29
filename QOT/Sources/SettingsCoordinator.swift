@@ -37,7 +37,6 @@ final class SettingsCoordinator: ParentCoordinator {
         self.services = services
         self.settingsType = settingsType
         settingsViewController = SettingsViewController(viewModel: viewModel, services: services, settingsType: settingsType)
-        settingsViewController.tableView.backgroundView = UIImageView(image: R.image.backgroundSidebar())                                                                
         settingsViewController.title = settingsType.title
         settingsViewController.delegate = self
         askPermissionForCalendar()

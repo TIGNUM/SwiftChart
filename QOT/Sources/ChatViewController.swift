@@ -93,6 +93,7 @@ class ChatViewController<T: ChatChoice>: UIViewController, UITableViewDelegate, 
             tableView.backgroundView = UIImageView(image: backgroundImage)
         }
         view.layoutIfNeeded()
+        view.applyTopFade()
     }
     
     private func animateCellFromLeft(_ cell: UITableViewCell, completion: ((Bool) -> Void)?) {
