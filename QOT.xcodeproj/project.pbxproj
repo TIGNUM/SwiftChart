@@ -284,8 +284,8 @@
 		CC0FF8D61EA78C810028D64F /* MyToBeVisionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0FF8D51EA78C810028D64F /* MyToBeVisionCoordinator.swift */; };
 		CC0FF8D81EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0FF8D71EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift */; };
 		CC0FF8DA1EA790750028D64F /* PartnersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0FF8D91EA790750028D64F /* PartnersCoordinator.swift */; };
-		CC13E2401EB1D72400C3CE46 /* LibraryCollectionLatestPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC13E23C1EB1D72400C3CE46 /* LibraryCollectionLatestPostCell.swift */; };
-		CC13E2411EB1D72400C3CE46 /* LibraryCollectionLatestPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC13E23D1EB1D72400C3CE46 /* LibraryCollectionLatestPostCell.xib */; };
+		CC13E2401EB1D72400C3CE46 /* LibraryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC13E23C1EB1D72400C3CE46 /* LibraryCollectionViewCell.swift */; };
+		CC13E2411EB1D72400C3CE46 /* LibraryLatestPostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC13E23D1EB1D72400C3CE46 /* LibraryLatestPostCollectionViewCell.xib */; };
 		CC143A4F1EC47810001FB76E /* MyStatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC143A4E1EC47810001FB76E /* MyStatisticsViewModel.swift */; };
 		CC143A511EC495CE001FB76E /* MyStatisticsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC143A501EC495CE001FB76E /* MyStatisticsCoordinator.swift */; };
 		CC143A531EC49641001FB76E /* MyStatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC143A521EC49641001FB76E /* MyStatisticsViewController.swift */; };
@@ -310,10 +310,7 @@
 		CC41A5491EFD59FC00B9AE8E /* ArticleItemHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC41A5481EFD59FC00B9AE8E /* ArticleItemHeaderView.swift */; };
 		CC41A54B1EFD5A1400B9AE8E /* ArticleItemHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC41A54A1EFD5A1400B9AE8E /* ArticleItemHeaderView.xib */; };
 		CC4F22F01EE023F4006C437E /* NSMutableAttributedString+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4F22EF1EE023F4006C437E /* NSMutableAttributedString+Create.swift */; };
-		CC59A88D1F41C0E100D22353 /* LibraryCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC59A88C1F41C0E100D22353 /* LibraryCollectionCell.xib */; };
-		CC59A88F1F41C18100D22353 /* LibraryCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC59A88E1F41C18100D22353 /* LibraryCollectionCell.swift */; };
-		CC59A8911F41C95600D22353 /* LibraryTableViewCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC59A8901F41C95600D22353 /* LibraryTableViewCategoryCell.xib */; };
-		CC59A8931F41C9EA00D22353 /* LibraryTableViewCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC59A8921F41C9EA00D22353 /* LibraryTableViewCategoryCell.swift */; };
+		CC59A88D1F41C0E100D22353 /* LibraryCategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC59A88C1F41C0E100D22353 /* LibraryCategoryCollectionViewCell.xib */; };
 		CC6251DB1EE00DD800C6F546 /* Localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = CC6251DA1EE00DD800C6F546 /* Localized.strings */; };
 		CC64725B1EE6F9DE00BFA3D9 /* UIColor+Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64725A1EE6F9DE00BFA3D9 /* UIColor+Palette.swift */; };
 		CC6B3A291E8158B200E7FDFD /* PresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A281E8158B200E7FDFD /* PresentationManager.swift */; };
@@ -430,7 +427,6 @@
 		D57ACCAF1F150D1D00906573 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBB237F81E6FFF1200AB5AEF /* LaunchScreen.storyboard */; };
 		D57ACCB21F15122300906573 /* AnimatedLaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57ACCB01F15122300906573 /* AnimatedLaunchScreenViewController.swift */; };
 		D57ECFB01E924CC2008F401B /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57ECFAF1E924CC2008F401B /* TabBarView.swift */; };
-		D58BD86C1E9E846C005676DE /* ScrollViewAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58BD86B1E9E846C005676DE /* ScrollViewAnimation.swift */; };
 		D58BD8771E9F65F7005676DE /* ArticleCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58BD8751E9F65F7005676DE /* ArticleCollectionCell.swift */; };
 		D58BD8781E9F65F7005676DE /* ArticleCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D58BD8761E9F65F7005676DE /* ArticleCollectionCell.xib */; };
 		D5A64D941EE801970095D01C /* SleepChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A64D931EE801970095D01C /* SleepChartView.swift */; };
@@ -753,8 +749,8 @@
 		CC0FF8D51EA78C810028D64F /* MyToBeVisionCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToBeVisionCoordinator.swift; sourceTree = "<group>"; };
 		CC0FF8D71EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesCoordinator.swift; sourceTree = "<group>"; };
 		CC0FF8D91EA790750028D64F /* PartnersCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnersCoordinator.swift; sourceTree = "<group>"; };
-		CC13E23C1EB1D72400C3CE46 /* LibraryCollectionLatestPostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryCollectionLatestPostCell.swift; sourceTree = "<group>"; };
-		CC13E23D1EB1D72400C3CE46 /* LibraryCollectionLatestPostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryCollectionLatestPostCell.xib; sourceTree = "<group>"; };
+		CC13E23C1EB1D72400C3CE46 /* LibraryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewCell.swift; sourceTree = "<group>"; };
+		CC13E23D1EB1D72400C3CE46 /* LibraryLatestPostCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryLatestPostCollectionViewCell.xib; sourceTree = "<group>"; };
 		CC143A4E1EC47810001FB76E /* MyStatisticsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsViewModel.swift; sourceTree = "<group>"; };
 		CC143A501EC495CE001FB76E /* MyStatisticsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsCoordinator.swift; sourceTree = "<group>"; };
 		CC143A521EC49641001FB76E /* MyStatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsViewController.swift; sourceTree = "<group>"; };
@@ -781,10 +777,7 @@
 		CC41A5481EFD59FC00B9AE8E /* ArticleItemHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleItemHeaderView.swift; sourceTree = "<group>"; };
 		CC41A54A1EFD5A1400B9AE8E /* ArticleItemHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleItemHeaderView.xib; sourceTree = "<group>"; };
 		CC4F22EF1EE023F4006C437E /* NSMutableAttributedString+Create.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Create.swift"; sourceTree = "<group>"; };
-		CC59A88C1F41C0E100D22353 /* LibraryCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryCollectionCell.xib; sourceTree = "<group>"; };
-		CC59A88E1F41C18100D22353 /* LibraryCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryCollectionCell.swift; sourceTree = "<group>"; };
-		CC59A8901F41C95600D22353 /* LibraryTableViewCategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryTableViewCategoryCell.xib; sourceTree = "<group>"; };
-		CC59A8921F41C9EA00D22353 /* LibraryTableViewCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryTableViewCategoryCell.swift; sourceTree = "<group>"; };
+		CC59A88C1F41C0E100D22353 /* LibraryCategoryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryCategoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		CC6251DA1EE00DD800C6F546 /* Localized.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localized.strings; sourceTree = "<group>"; };
 		CC64725A1EE6F9DE00BFA3D9 /* UIColor+Palette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Palette.swift"; sourceTree = "<group>"; };
 		CC6B3A281E8158B200E7FDFD /* PresentationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationManager.swift; sourceTree = "<group>"; };
@@ -901,7 +894,6 @@
 		D554CD9E1F0CF3B9007731DB /* LoginViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewCell.swift; sourceTree = "<group>"; };
 		D57ACCB01F15122300906573 /* AnimatedLaunchScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedLaunchScreenViewController.swift; sourceTree = "<group>"; };
 		D57ECFAF1E924CC2008F401B /* TabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
-		D58BD86B1E9E846C005676DE /* ScrollViewAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewAnimation.swift; sourceTree = "<group>"; };
 		D58BD8751E9F65F7005676DE /* ArticleCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCollectionCell.swift; sourceTree = "<group>"; };
 		D58BD8761E9F65F7005676DE /* ArticleCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleCollectionCell.xib; sourceTree = "<group>"; };
 		D5A64D931EE801970095D01C /* SleepChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepChartView.swift; sourceTree = "<group>"; };
@@ -1007,6 +999,25 @@
 				CBAF6FD51F2B5AE500E57426 /* MyToBeVisionIntermediary.swift */,
 			);
 			name = MyToBeVision;
+			sourceTree = "<group>";
+		};
+		7F93A5FF1F5593800017722A /* CollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				CC13E23C1EB1D72400C3CE46 /* LibraryCollectionViewCell.swift */,
+				CC59A88C1F41C0E100D22353 /* LibraryCategoryCollectionViewCell.xib */,
+				CC13E23D1EB1D72400C3CE46 /* LibraryLatestPostCollectionViewCell.xib */,
+			);
+			name = CollectionCell;
+			sourceTree = "<group>";
+		};
+		7F93A6001F55938B0017722A /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+				CC8018211F026BDA0040B03F /* LibraryTableViewCell.swift */,
+				CC8018221F026BDA0040B03F /* LibraryTableViewCell.xib */,
+			);
+			name = TableCell;
 			sourceTree = "<group>";
 		};
 		7FB32D161F4479620027BF4E /* Database */ = {
@@ -1658,16 +1669,10 @@
 		CBB4DD3C1EE08D7F0071494A /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				CC8018211F026BDA0040B03F /* LibraryTableViewCell.swift */,
-				CC59A88E1F41C18100D22353 /* LibraryCollectionCell.swift */,
-				CC13E23C1EB1D72400C3CE46 /* LibraryCollectionLatestPostCell.swift */,
-				CC59A8921F41C9EA00D22353 /* LibraryTableViewCategoryCell.swift */,
 				CCE373071E8D32CF00B79352 /* LibraryViewController.swift */,
 				CCE373151E8D330100B79352 /* LibraryViewModel.swift */,
-				CC59A88C1F41C0E100D22353 /* LibraryCollectionCell.xib */,
-				CC13E23D1EB1D72400C3CE46 /* LibraryCollectionLatestPostCell.xib */,
-				CC59A8901F41C95600D22353 /* LibraryTableViewCategoryCell.xib */,
-				CC8018221F026BDA0040B03F /* LibraryTableViewCell.xib */,
+				7F93A6001F55938B0017722A /* TableCell */,
+				7F93A5FF1F5593800017722A /* CollectionCell */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -1768,7 +1773,6 @@
 				D50D6C221EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift */,
 				D50D6C231EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib */,
 				CC6B3A281E8158B200E7FDFD /* PresentationManager.swift */,
-				D58BD86B1E9E846C005676DE /* ScrollViewAnimation.swift */,
 				D5B761861EE6B19C00AE178B /* SpacingInLabel.swift */,
 				CB810E601EEFC0D70043E3E5 /* ErrorCell.swift */,
 				7F691C5D1F0D30C800E2C180 /* PlaceholderTextView.swift */,
@@ -2268,11 +2272,11 @@
 				CC311A211EAF430B0020C869 /* SettingsButtonTableViewCell.xib in Resources */,
 				0B254D3F1E97994C006AA4C0 /* PrepareCollectionViewCell.xib in Resources */,
 				CC90ECA31F30A68E00A83DB9 /* SettingsChangePasswordViewController.storyboard in Resources */,
-				CC59A88D1F41C0E100D22353 /* LibraryCollectionCell.xib in Resources */,
+				CC59A88D1F41C0E100D22353 /* LibraryCategoryCollectionViewCell.xib in Resources */,
 				CB18BCC51EEAC2CE0035C1BB /* MockDownSyncConfirm.json in Resources */,
 				0BEE8AC01EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib in Resources */,
 				7F0F03041F14CE2300007D50 /* CollapsableCell.xib in Resources */,
-				CC13E2411EB1D72400C3CE46 /* LibraryCollectionLatestPostCell.xib in Resources */,
+				CC13E2411EB1D72400C3CE46 /* LibraryLatestPostCollectionViewCell.xib in Resources */,
 				CCC0C4CC1E828007002A8362 /* BentonSans_Regular.otf in Resources */,
 				CCF0F4C61ECDD0DA00E8D9C1 /* contentCategory.json in Resources */,
 				CC6251DB1EE00DD800C6F546 /* Localized.strings in Resources */,
@@ -2290,7 +2294,6 @@
 				CB8C34561EAF7F200003AB65 /* styles.css in Resources */,
 				85C3D6BC1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib in Resources */,
 				CC335EE71EBC84780085F5C5 /* ContentItemTextTableViewCell.xib in Resources */,
-				CC59A8911F41C95600D22353 /* LibraryTableViewCategoryCell.xib in Resources */,
 				D5EC34AD1EB0D32D00F86B09 /* LearnStrategyAudioPlayerView.xib in Resources */,
 				8514A48A1EE93D640086C70E /* PrepareContentFooterTableViewCell.xib in Resources */,
 				CBC933101F0AA47800C00007 /* PrepareEventsViewController.xib in Resources */,
@@ -2648,7 +2651,6 @@
 				CBC1DC3D1F14DA1200F6D056 /* UserSettingIntermediary.swift in Sources */,
 				CC8018231F026BDA0040B03F /* LibraryTableViewCell.swift in Sources */,
 				CB1D5E401EC5E25A00BCDF8D /* Error.swift in Sources */,
-				CC59A8931F41C9EA00D22353 /* LibraryTableViewCategoryCell.swift in Sources */,
 				85DC6F891EF40B36004F4B4D /* TravelTripsPeriodChartView.swift in Sources */,
 				CC7D21B21EFC1348007A062E /* WeeklyChoicesLayout.swift in Sources */,
 				CBB4DCDC1ED475F00071494A /* DownSyncChange.swift in Sources */,
@@ -2744,7 +2746,6 @@
 				0BCE74421ECD96D70006C0CF /* TripsDashView.swift in Sources */,
 				7FE38DC11F28D2940061E98F /* PassthroughView.swift in Sources */,
 				CCB804231F4F0BFD00C6FB74 /* IntensityChartView.swift in Sources */,
-				D58BD86C1E9E846C005676DE /* ScrollViewAnimation.swift in Sources */,
 				852DADDE1EF1737700A10882 /* TravelMaxTimeZoneChangesView.swift in Sources */,
 				CC96630B1EA1B27F00B84B1C /* MyDataView.swift in Sources */,
 				CCE373141E8D32F800B79352 /* SidebarViewModel.swift in Sources */,
@@ -2791,7 +2792,7 @@
 				CB3437601EFD675900D89D4F /* QuestionIntermediary.swift in Sources */,
 				D52350961E9FC1120013DE7E /* ArticleCollectionLayout.swift in Sources */,
 				CBB4DD561EE152EC0071494A /* DownSyncOperation.swift in Sources */,
-				CC13E2401EB1D72400C3CE46 /* LibraryCollectionLatestPostCell.swift in Sources */,
+				CC13E2401EB1D72400C3CE46 /* LibraryCollectionViewCell.swift in Sources */,
 				CC944DB61EE804CD00B8423C /* MyStatisticsTableViewCell.swift in Sources */,
 				CB9B075C1EF911AD0017F6C3 /* IntObject.swift in Sources */,
 				CC0FF8D61EA78C810028D64F /* MyToBeVisionCoordinator.swift in Sources */,
@@ -2843,7 +2844,6 @@
 				CBC933081F052DDA00C00007 /* PrepareCoordinator.swift in Sources */,
 				D5485F241ED57F0600A08D1A /* SearchViewModel.swift in Sources */,
 				D5485F281ED583E300A08D1A /* SearchCollectionCell.swift in Sources */,
-				CC59A88F1F41C18100D22353 /* LibraryCollectionCell.swift in Sources */,
 				CC7C7A051F064F3F00DAAC14 /* User+Convenience.swift in Sources */,
 				859683431F1361E900A98218 /* ResetPasswordViewController.swift in Sources */,
 				D5485F261ED583BC00A08D1A /* SearchTableCell.swift in Sources */,
