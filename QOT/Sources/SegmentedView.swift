@@ -131,9 +131,11 @@ private extension SegmentedView {
 
     private func createButton(type: DataDisplayType) -> UIButton {
         let button = UIButton()
-        let color: UIColor = type.id == selectedDisplayType.id ? .white : .white40
-        let attributedTitle = Style.navigationTitle(type.title.uppercased(), color).attributedString(lineSpacing: 2)
-        button.setAttributedTitle(attributedTitle, for: .normal)
+        let color: UIColor = type.id == selectedDisplayType.id ? .white : .white30
+        let label = UILabel()
+        label.prepareAndSetTextAttributes(text: type.title.uppercased(), font: Font.H7Tag, alignment: .center, lineSpacing: 2, characterSpacing: 2, color: color)
+        button.setAttributedTitle(label.attributedText, for: .normal)
+
         button.tag = type.id
         button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
 

@@ -11,14 +11,20 @@ import UIKit
 
 extension UILabel {
     
-    func prepareAndSetTextAttributes(text: String, font: UIFont, alignment: NSTextAlignment = .natural, lineSpacing: CGFloat = 13, characterSpacing: CGFloat = 0) {
+    func prepareAndSetTextAttributes(text: String, font: UIFont, alignment: NSTextAlignment = .natural, lineSpacing: CGFloat = 13, characterSpacing: CGFloat = 0, color: UIColor? = nil) {
         let attrString = NSMutableAttributedString(string: text)
         let style = NSMutableParagraphStyle()
+        let range = NSRange(location: 0, length: text.characters.count)
         style.lineSpacing = lineSpacing
         style.alignment = alignment
-        attrString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSRange(location: 0, length: text.characters.count))
-        attrString.addAttribute(NSFontAttributeName, value: font, range: NSRange(location: 0, length: text.characters.count))
-        attrString.addAttribute(NSKernAttributeName, value: characterSpacing, range: NSRange(location: 0, length: text.characters.count))
+        attrString.addAttribute(NSParagraphStyleAttributeName, value: style, range: range)
+        attrString.addAttribute(NSFontAttributeName, value: font, range: range)
+        attrString.addAttribute(NSKernAttributeName, value: characterSpacing, range: range)
+
+        if let color = color {
+            attrString.addAttribute(NSForegroundColorAttributeName, value: color, range: range)
+        }
+
         self.attributedText = attrString
     }
 }
