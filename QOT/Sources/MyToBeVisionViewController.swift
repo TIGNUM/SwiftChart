@@ -297,21 +297,22 @@ extension MyToBeVisionViewController {
 
 extension MyToBeVisionViewController {
     func keyboardWillShow(_ notification: NSNotification) {
-        guard let userInfo = notification.userInfo, let rect = userInfo[UIKeyboardFrameBeginUserInfoKey] as? CGRect else {
+        guard self.messageTextViewBottomConstrant.constant == 110,
+            let userInfo = notification.userInfo, let rect = userInfo[UIKeyboardFrameBeginUserInfoKey] as? CGRect else {
             return
         }
 
         UIView.animate(withDuration: 0.3) { [unowned self] in
-            let padding = rect.height - self.imageView.bounds.height
+            let padding = self.messageTextView.frame.origin.y + self.messageTextView.frame.height - (rect.origin.y - rect.height)
 
-            self.messageTextViewBottomConstrant.constant = padding > 0 ? padding : 0
+            self.messageTextViewBottomConstrant.constant = 110 + (padding > 0 ? padding : 0)
             self.view.layoutIfNeeded()
         }
     }
     
     func keyboardWillHide(_ notification: NSNotification) {
         UIView.animate(withDuration: 0.3) { [unowned self] in
-            self.messageTextViewBottomConstrant.constant = 0
+            self.messageTextViewBottomConstrant.constant = 110
             self.view.layoutIfNeeded()
         }
     }
