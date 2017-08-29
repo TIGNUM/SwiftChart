@@ -9,6 +9,14 @@
 import UIKit
 import Anchorage
 
+var selectedDisplayTypes: [MyStatisticsType: DataDisplayType] = [.peakPerformanceUpcoming: .lastWeek,
+                                                                 .peakPerformanceAverage: .week,
+                                                                 .intensityLoad: .week,
+                                                                 .intensityRecovery: .week,
+                                                                 .meetingAverage: .day,
+                                                                 .travelTripsAverage: .weeks,
+                                                                 .travelTripsTimeZoneChanged: .weeks]
+
 protocol MyStatisticsCardCellDelegate: class {
     
     func doReload()
@@ -50,6 +58,8 @@ final class MyStatisticsCardCell: UICollectionViewCell, Dequeueable {
         containerView.layer.cornerRadius = 10
     }
 
+    // MARK: - Public
+
     func setup(headerTitle: String,
                cardType: MyStatisticsType,
                delegate: MyStatisticsCardCellDelegate?,
@@ -66,8 +76,6 @@ final class MyStatisticsCardCell: UICollectionViewCell, Dequeueable {
                     setupCardView(cardType: cardType, myStatistics: myStatistics, allCards: allCards)
     }
 
-    // MARK: - Public
-
     func animateHeader(withCellRect cellRect: CGRect, inParentRect parentRect: CGRect) {
         let rightCorner = CGPoint(x: cellRect.origin.x + cellRect.size.width, y: cellRect.origin.y)
         let containsLeftCorner = parentRect.contains(cellRect.origin)
@@ -81,9 +89,9 @@ final class MyStatisticsCardCell: UICollectionViewCell, Dequeueable {
         }
 
         let hidden = hiddenAmount / cellRect.width
-        headerLabel.alpha = 1 - hidden
         let leadingConstant = cellRect.width * hidden
         let trailingConstant = -leadingConstant
+        headerLabel.alpha = 1 - hidden
         headerLabelLeadingConstraint.constant = leadingConstant
         headerLabelTrailingConstraint.constant = trailingConstant
         headerLabel.setNeedsUpdateConstraints()
@@ -115,12 +123,11 @@ private extension MyStatisticsCardCell {
 private extension MyStatisticsCardCell {
 
     func addMeetingsCountView(myStatistics: MyStatistics, cardType: MyStatisticsType, allCards: [MyStatistics]) {
-        currentDisplayType = currentDisplayType == .day ? .week : .day
         let data = segmentedData(cardType: cardType, allCards: allCards)
         let meetingsCountView = SegmentedView(frame: centerContentView.bounds,
                                               myStatistics: myStatistics,
                                               statisticsType: cardType,
-                                              selectedDisplayType: currentDisplayType,
+                                              selectedDisplayType: selectedDisplayTypes[cardType] ?? .all,
                                               data: data,
                                               delegate: delegate)
         centerContentView.addSubview(meetingsCountView)
@@ -142,12 +149,11 @@ private extension MyStatisticsCardCell {
 private extension MyStatisticsCardCell {
 
     func travelNumberOfTrips(myStatistics: MyStatistics, cardType: MyStatisticsType, allCards: [MyStatistics]) {
-        currentDisplayType = currentDisplayType == .weeks ? .year : .weeks
         let data = segmentedDataPeriod(cardType: cardType, allCards: allCards)
         let meetingsDuringTravelView = SegmentedView(frame: centerContentView.bounds,
                                                      myStatistics: myStatistics,
                                                      statisticsType: cardType,
-                                                     selectedDisplayType: currentDisplayType,
+                                                     selectedDisplayType: selectedDisplayTypes[cardType] ?? .all,
                                                      data: data,
                                                      delegate: delegate)
         centerContentView.addSubview(meetingsDuringTravelView)
@@ -159,12 +165,11 @@ private extension MyStatisticsCardCell {
     }
 
     func addTravelTripsTimeZoneChanges(myStatistics: MyStatistics, cardType: MyStatisticsType, allCards: [MyStatistics]) {
-        currentDisplayType = currentDisplayType == .weeks ? .year : .weeks
         let data = segmentedDataPeriod(cardType: cardType, allCards: allCards)
         let meetingsDuringTravelView = SegmentedView(frame: centerContentView.bounds,
                                                      myStatistics: myStatistics,
                                                      statisticsType: cardType,
-                                                     selectedDisplayType: currentDisplayType,
+                                                     selectedDisplayType: selectedDisplayTypes[cardType] ?? .all,
                                                      data: data,
                                                      delegate: delegate)
         centerContentView.addSubview(meetingsDuringTravelView)
@@ -173,6 +178,55 @@ private extension MyStatisticsCardCell {
     func addTravelMaxTimeZoneChanges(myStatistics: MyStatistics) {
         let travelMaxTimeZoneChangesView = TravelMaxTimeZoneChangesView(frame: centerContentView.bounds, myStatistics: myStatistics)
         centerContentView.addSubview(travelMaxTimeZoneChangesView)
+    }
+}
+
+// MARK: - Intensity
+
+private extension MyStatisticsCardCell {
+
+    func addIntensityView(myStatistics: MyStatistics, cardType: MyStatisticsType, allCards: [MyStatistics]) {
+        let currentDisplayType = selectedDisplayTypes[cardType] ?? .all
+        let index = cardType.displayTypes.index(of: currentDisplayType) ?? 0
+        let cards = cardType.cards(cards: allCards)
+        let data = segmentedDataPeriod(cardType: cardType, allCards: allCards)
+        let intensityLoadView = SegmentedView(frame: centerContentView.bounds,
+                                              myStatistics: cards[index],
+                                              statisticsType: cardType,
+                                              selectedDisplayType: currentDisplayType,
+                                              data: data,
+                                              delegate: delegate)
+        centerContentView.addSubview(intensityLoadView)
+    }
+}
+
+// MARK: - Peak Performances
+
+private extension MyStatisticsCardCell {
+
+    func addUpcomingPeakPerformancesView(myStatistics: MyStatistics, cardType: MyStatisticsType, allCards: [MyStatistics]) {
+        let data = segmentedDataPeriod(cardType: cardType, allCards: allCards)
+        let meetingsDuringTravelView = SegmentedView(frame: centerContentView.bounds,
+                                                     myStatistics: myStatistics,
+                                                     statisticsType: cardType,
+                                                     selectedDisplayType: selectedDisplayTypes[cardType] ?? .all,
+                                                     data: data,
+                                                     delegate: delegate)
+        centerContentView.addSubview(meetingsDuringTravelView)
+    }
+
+    func addAveragePeakPerformanceView(myStatistics: MyStatistics, cardType: MyStatisticsType, allCards: [MyStatistics]) {
+        let currentDisplayType = selectedDisplayTypes[cardType] ?? .all
+        let index = cardType.displayTypes.index(of: currentDisplayType) ?? 0
+        let cards = cardType.cards(cards: allCards)
+        let data = segmentedData(cardType: cardType, allCards: allCards)
+        let peakPerformanceView = SegmentedView(frame: centerContentView.bounds,
+                                                myStatistics: cards[index],
+                                                statisticsType: cardType,
+                                                selectedDisplayType: currentDisplayType,
+                                                data: data,
+                                                delegate: delegate)
+        centerContentView.addSubview(peakPerformanceView)
     }
 }
 
@@ -199,8 +253,8 @@ private extension MyStatisticsCardCell {
         switch cardType {
         case .activityLevel: addActivityView(myStatistics: myStatistics)
         case .activitySittingMovementRatio: addActivityView(myStatistics: myStatistics)
-        case .intensityLoad: addIntensityLoadView(myStatistics: myStatistics, cardType: cardType, allCards: allCards)
-        case .intensityRecovery: addIntensityLoadView(myStatistics: myStatistics, cardType: cardType, allCards: allCards)
+        case .intensityLoad: addIntensityView(myStatistics: myStatistics, cardType: cardType, allCards: allCards)
+        case .intensityRecovery: addIntensityView(myStatistics: myStatistics, cardType: cardType, allCards: allCards)
         case .meetingAverage: addMeetingsCountView(myStatistics: myStatistics, cardType: cardType, allCards: allCards)
         case .meetingLength: addMeetingLengthView(myStatistics: myStatistics)
         case .meetingTimeBetween: addMeetingTimeBetweenChart(myStatistics: myStatistics)
@@ -213,43 +267,6 @@ private extension MyStatisticsCardCell {
         case .travelTripsTimeZoneChanged: addTravelTripsTimeZoneChanges(myStatistics: myStatistics, cardType: cardType, allCards: allCards)
         case .travelTripsMaxTimeZone: addTravelMaxTimeZoneChanges(myStatistics: myStatistics)
         }
-    }
-
-    // MARK: - Intensity
-
-    func addIntensityLoadView(myStatistics: MyStatistics, cardType: MyStatisticsType, allCards: [MyStatistics]) {
-        let data = segmentedDataPeriod(cardType: cardType, allCards: allCards)
-        let intensityLoadView = SegmentedView(frame: centerContentView.bounds,
-                                              myStatistics: myStatistics,
-                                              statisticsType: cardType,
-                                              selectedDisplayType: currentDisplayType,
-                                              data: data,
-                                              delegate: delegate)
-        centerContentView.addSubview(intensityLoadView)
-    }
-
-    // MARK: - Peak Performances
-
-    func addUpcomingPeakPerformancesView(myStatistics: MyStatistics, cardType: MyStatisticsType, allCards: [MyStatistics]) {
-        let data = segmentedDataPeriod(cardType: cardType, allCards: allCards)
-        let meetingsDuringTravelView = SegmentedView(frame: centerContentView.bounds,
-                                                     myStatistics: myStatistics,
-                                                     statisticsType: cardType,
-                                                     selectedDisplayType: currentDisplayType,
-                                                     data: data,
-                                                     delegate: delegate)
-        centerContentView.addSubview(meetingsDuringTravelView)
-    }
-
-    private func addAveragePeakPerformanceView(myStatistics: MyStatistics, cardType: MyStatisticsType, allCards: [MyStatistics]) {
-        let data = segmentedData(cardType: cardType, allCards: allCards)
-        let peakPerformanceView = SegmentedView(frame: centerContentView.bounds,
-                                                myStatistics: myStatistics,
-                                                statisticsType: cardType,
-                                                selectedDisplayType: currentDisplayType,
-                                                data: data,
-                                                delegate: delegate)
-        centerContentView.addSubview(peakPerformanceView)
     }
 
     func segmentedData(cardType: MyStatisticsType, allCards: [MyStatistics]) -> MyStatisticsDataPeriodAverage {
@@ -267,7 +284,7 @@ private extension MyStatisticsCardCell {
                                              statsPeriods: cardType.statsPeriods,
                                              thresholds: [firstDisplayType.id: (upperThreshold: firstCard.upperThreshold.toFloat, lowerThreshold: firstCard.lowerThreshold.toFloat),
                                                           secondDisplayType.id: (upperThreshold: secondCard.upperThreshold.toFloat, lowerThreshold: secondCard.lowerThreshold.toFloat)],
-                                             displayType: currentDisplayType)
+                                             displayType: selectedDisplayTypes[cardType] ?? .all)
     }
 
     func segmentedDataPeriod(cardType: MyStatisticsType, allCards: [MyStatistics]) -> MyStatisticsDataPeriods {
@@ -288,7 +305,7 @@ private extension MyStatisticsCardCell {
                                        statsPeriods: cardType.statsPeriods,
                                        thresholds: [firstDisplayType.id: (upperThreshold: firstUpperThreshold, lowerThreshold: firstLowerThreshold),
                                                     secondDisplayType.id: (upperThreshold: secondUpperThreshold, lowerThreshold: secondLowerThreshold)],
-                                       displayType: currentDisplayType
+                                       displayType: selectedDisplayTypes[cardType] ?? .all
         )
     }
 

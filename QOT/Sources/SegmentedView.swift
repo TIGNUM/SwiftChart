@@ -155,17 +155,7 @@ private extension SegmentedView {
                                                     dataValue: object.dataAverage() / object.maxValue(),
                                                     pathColor: object.pathColor().color)
         case .peakPerformanceAverage:
-            guard let object = (data as? MyStatisticsDataPeriodAverage) else {
-                return
-            }
-
-            chartView = PeakPerformanceAverageProgressWheel(frame: container.bounds,
-                                                            value: object.userAverage(),
-                                                            teamValue: object.teamAverage(),
-                                                            dataValue: object.dataAverage(),
-                                                            threshold: object.threshold(),
-                                                            pathColor: object.pathColor().color,
-                                                            lineWidth: 10)
+            chartView = PeakPerformanceAverageProgressWheel(frame: container.bounds, myStatistics: myStatistics)
         case .travelTripsAverage:
             guard let object = (data as? MyStatisticsDataPeriods) else {
                 return
@@ -184,12 +174,13 @@ private extension SegmentedView {
             }
 
             chartView = PeakPerformanceUpcomingView(frame: container.bounds, data: object)
-        case .intensityLoad:
+        case .intensityLoad,
+             .intensityRecovery:
             guard let object = data as? MyStatisticsDataPeriods else {
                 return
             }
 
-            chartView = IntensityView(frame: container.bounds, myStatistics: myStatistics, data: object)
+            chartView = IntensityView(frame: container.bounds, myStatistics: myStatistics, displayType: object.displayType, myStatisticsType: statisticsType)
         default: return
         }
 
@@ -203,6 +194,7 @@ private extension SegmentedView {
         }
 
         selectedDisplayType = DataDisplayType.create(id: sender.tag)
+        selectedDisplayTypes[statisticsType] = selectedDisplayType
         delegate?.doReload()
     }
 }

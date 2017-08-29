@@ -69,8 +69,8 @@ final class IntensityAverageView: UIView {
         let columnWidth = bounds.width / CGFloat(columns.count)
         layer.sublayers = columns.enumerated().map { (index, column) -> [CALayer] in
             let x = (CGFloat(index) * columnWidth) + columnWidth / 2.0
+
             return layersForColumn(column, centerX: x)
-            }.flatMap { $0
-        }
+        }.flatMap { $0 }
     }
 }

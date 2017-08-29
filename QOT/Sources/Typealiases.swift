@@ -24,3 +24,5 @@ typealias EventGraphData = (start: CGFloat, end: CGFloat)
 typealias UpcomingTrip = (count: Int, status: MyStatisticsPeriod.Status)
 
 typealias UserUpcomingTrips = [Int: UpcomingTrip]
+
+typealias DataPoint = (value: CGFloat, color: UIColor)

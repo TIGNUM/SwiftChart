@@ -57,7 +57,7 @@ extension MyStatistics: OneWaySyncableDown {
         periods.append(objectsIn: data.periods.map { MyStatisticsPeriod( $0 ) })
         unit = data.unit
         multiplier = data.multiplier
-    } 
+    }
 }
 
 // MARK: - Displayable Values
@@ -115,6 +115,18 @@ extension MyStatistics {
 
     var pathColor: UIColor {
         return userAverage >= upperThreshold ? .cherryRed : userAverage <= lowerThreshold ? .white90 : .gray
+    }
+
+    var dataPointObjects: [DataPoint] {
+        var dataPointObjects = [DataPoint]()
+
+        dataPoints.forEach { (dataPoint: DoubleObject) in
+            let color: UIColor = dataPoint.value >= upperThreshold ? .cherryRed : dataPoint.value <= lowerThreshold ? .white90 : .gray
+            let dataPointObj: DataPoint = DataPoint(value: dataPoint.value.toFloat, color: color)
+            dataPointObjects.append(dataPointObj)
+        }
+
+        return dataPointObjects
     }
 
     var userUpcomingTrips: UserUpcomingTrips {

@@ -29,9 +29,9 @@ final class ActivityChartView: UIView {
 
         func averageValue(myStatistics: MyStatistics) -> CGFloat {
             switch self {
-            case .data: return myStatistics.dataAverage.toFloat
-            case .personal: return myStatistics.userAverage.toFloat
-            case .team: return myStatistics.teamAverage.toFloat
+            case .data: return myStatistics.dataAverageValue
+            case .personal: return myStatistics.userAverageValue
+            case .team: return myStatistics.teamAverageValue
             }
         }
     }
@@ -124,9 +124,9 @@ private extension ActivityChartView {
         }
 
         return MyStatisticsDataActivity(
-            teamAverage: myStatistics.teamAverage.toFloat,
-            dataAverage: myStatistics.dataAverage.toFloat,
-            userAverage: myStatistics.userAverage.toFloat,
+            teamAverage: myStatistics.teamAverageValue,
+            dataAverage: myStatistics.dataAverageValue,
+            userAverage: myStatistics.userAverageValue,
             threshold: threshold,
             data: data,
             fillColumn: myStatistics.key == StatisticCardType.activitySittingMovementRatio.rawValue
