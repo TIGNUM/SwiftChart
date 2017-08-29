@@ -10,6 +10,7 @@ import UIKit
 import RSKImageCropper
 import ImagePicker
 import Kingfisher
+import Anchorage
 
 protocol MyToBeVisionViewControllerDelegate: class {
 
@@ -32,8 +33,14 @@ class MyToBeVisionViewController: UIViewController {
     @IBOutlet weak var imageViewOverlay: UIView!
     @IBOutlet weak var imageButton: UIButton!
     @IBOutlet weak var imageEditLabel: UILabel!
-    @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var circleContainerView: UIView!
+    @IBOutlet weak var gradientView: UIView!
+    fileprivate lazy var gradientLayer: CAGradientLayer = {
+        let layer = CAGradientLayer()
+        self.gradientView.layer.addSublayer(layer)
+        return layer
+    }()
+
     fileprivate var imagePicker: ImagePickerController?
     fileprivate var imageTapRecogniser: UITapGestureRecognizer!
     let viewModel: MyToBeVisionViewModel
@@ -62,6 +69,7 @@ class MyToBeVisionViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
 
+        setupMessageTextGradientLayer()
         maskImageView(imageView: imageView)
         drawCircles()
     }
@@ -70,7 +78,8 @@ class MyToBeVisionViewController: UIViewController {
         super.viewDidAppear(animated)
         
         setupNotifications()
-        
+//        setupMessageTextGradientLayer()
+
         UIView.animate(withDuration: 0.7) {
             self.view.alpha = 1.0
             self.imageView.alpha = 1.0
@@ -83,7 +92,7 @@ class MyToBeVisionViewController: UIViewController {
         // flush height constraint change
         textViewDidChange(headlineTextView)
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
@@ -135,13 +144,12 @@ private extension MyToBeVisionViewController {
     func edit(_ isEditing: Bool) {
         if !isEditing {
             view.endEditing(true)
-            configureWebView(string: messageTextView.text)
         }
-        
+
+        setupMessageText(editing: isEditing)
+
         editButton.tintColor = isEditing ? .white : .white40
         UIView.animate(withDuration: 0.5, animations: {
-            self.messageTextView.alpha = isEditing ? 1 : 0
-            self.webView.alpha = isEditing ? 0 : 1
             self.setImageButton(isEditing: isEditing)
         }, completion: { (_: Bool) in
             if isEditing {
@@ -163,8 +171,7 @@ private extension MyToBeVisionViewController {
     func setupView() {
         setupNavigation()
         setupLabels()
-        configureWebView(string: viewModel.text)
-        
+
         if let profileImageResource = viewModel.profileImageResource {
             imageView.setImageFromResource(profileImageResource)
         }
@@ -211,24 +218,37 @@ private extension MyToBeVisionViewController {
         headlineTextView.textContainer.lineFragmentPadding = 0
         headlineTextView.textContainerInset = .zero
         headlineTextView.set(placeholderText: R.string.localized.meSectorMyWhyVisionHeadlinePlaceholder(), placeholdeColor: UIColor.white)
-        
-        messageTextView.placeholderDelegate = self
-        messageTextView.attributedText = NSMutableAttributedString(
-            string: viewModel.text ?? "",
-            letterSpacing: -0.4,
-            font: Font.DPText,
-            lineSpacing: 10.0,
-            textColor: UIColor.white)
-        messageTextView.set(placeholderText: R.string.localized.meSectorMyWhyVisionMessagePlaceholder(), placeholdeColor: UIColor.white)
-        messageTextView.textContainer.lineFragmentPadding = 0
-        messageTextView.textContainerInset = UIEdgeInsets(top: 14.0, left: 0.0, bottom: 0.0, right: 0.0)
-        
+
+        setupMessageText(editing: false)
+
         subtitleLabel.attributedText = NSMutableAttributedString(
             string: viewModel.dateText?.uppercased() ?? "",
             letterSpacing: 2,
             font: Font.H7Tag,
             lineSpacing: 0)
         subtitleLabel.textColor = .white30
+    }
+
+    func setupMessageTextGradientLayer() {
+
+        gradientLayer.frame = gradientView.frame
+        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 0, y: 0.2)
+    }
+
+    func setupMessageText(editing: Bool) {
+        messageTextView.alpha = 1
+        messageTextView.placeholderDelegate = self
+        messageTextView.attributedText = NSMutableAttributedString(
+            string: viewModel.text ?? (editing ? "" : R.string.localized.meSectorMyWhyVisionMessagePlaceholder()),
+            letterSpacing: -0.4,
+            font: Font.DPText,
+            lineSpacing: 10.0,
+            textColor: UIColor.white)
+        messageTextView.set(placeholderText: R.string.localized.meSectorMyWhyVisionMessagePlaceholder(), placeholdeColor: UIColor.white)
+        messageTextView.textContainer.lineFragmentPadding = 0
+        messageTextView.textContainerInset = UIEdgeInsets(top: 14.0, left: 0.0, bottom: 10.0, right: 0.0)
     }
 
     func maskImageView(imageView: UIImageView) {
@@ -246,28 +266,6 @@ private extension MyToBeVisionViewController {
         let borderMask = CAShapeLayer()
         borderMask.path = clippingBorderPath.cgPath
         imageViewOverlay.layer.mask = borderMask
-    }
-
-    func configureWebView(string: String?) {
-        let format = "<html><head><link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\"></head>" + "<body style='background:none'><div class='text'>%@</div></body></html>"
-        var text: String
-        if let string = string, !string.isEmpty {
-            text = String(format: format, arguments: [string])
-        } else {
-            text = String(format: format, arguments: [R.string.localized.meSectorMyWhyVisionMessagePlaceholder()])
-        }
-        
-        let mainbundle = Bundle.main.bundlePath
-        let bundleURL = NSURL(fileURLWithPath: mainbundle)
-        webView.loadHTMLString(text, baseURL: bundleURL as URL)
-        webView.backgroundColor = UIColor.clear
-        webView.isOpaque = false
-        webView.scrollView.showsVerticalScrollIndicator = false
-        webView.scrollView.showsHorizontalScrollIndicator = false
-        webView.scrollView.bounces = false
-        webView.scrollView.contentInset.right = 230
-        webView.scrollView.contentInset.left = 21
-        webView.scrollView.delegate = self
     }
 }
 
@@ -299,13 +297,20 @@ extension MyToBeVisionViewController {
         guard let userInfo = notification.userInfo, let rect = userInfo[UIKeyboardFrameBeginUserInfoKey] as? CGRect else {
             return
         }
-        messageTextViewBottomConstrant.constant = rect.height
-        messageTextView.layoutIfNeeded()
+
+        UIView.animate(withDuration: 0.3) { [unowned self] in
+            let padding = rect.height - self.imageView.bounds.height
+
+            self.messageTextViewBottomConstrant.constant = padding > 0 ? padding : 0
+            self.view.layoutIfNeeded()
+        }
     }
     
     func keyboardWillHide(_ notification: NSNotification) {
-        messageTextViewBottomConstrant.constant = 0
-        messageTextView.layoutIfNeeded()
+        UIView.animate(withDuration: 0.3) { [unowned self] in
+            self.messageTextViewBottomConstrant.constant = 0
+            self.view.layoutIfNeeded()
+        }
     }
 }
 

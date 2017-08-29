@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,6 +22,7 @@
             <connections>
                 <outlet property="circleContainerView" destination="8Ht-Mn-n41" id="NCL-Rb-Sz5"/>
                 <outlet property="editButton" destination="Zz7-dR-bqc" id="D81-CD-QhJ"/>
+                <outlet property="gradientView" destination="Eea-Nk-yaf" id="t8M-TN-6uc"/>
                 <outlet property="headlineTextView" destination="uuS-Dz-bUg" id="RBI-XE-pRQ"/>
                 <outlet property="headlineTextViewHightConstrant" destination="Hzn-z9-l2c" id="fKu-cv-ekc"/>
                 <outlet property="imageButton" destination="RJI-t0-ZYc" id="itt-et-1k1"/>
@@ -29,12 +30,11 @@
                 <outlet property="imageView" destination="bfh-6q-eoT" id="hcV-JT-FHR"/>
                 <outlet property="imageViewOverlay" destination="Bbh-3u-HIM" id="Pve-ck-qh5"/>
                 <outlet property="messageTextView" destination="Bt0-lW-TcB" id="Zxh-wr-RnJ"/>
-                <outlet property="messageTextViewBottomConstrant" destination="3FA-TN-j3U" id="zok-bj-UhI"/>
+                <outlet property="messageTextViewBottomConstrant" destination="3FA-TN-j3U" id="XnK-j2-vv6"/>
                 <outlet property="minimiseButton" destination="X5G-vy-FA9" id="YBO-Im-iOC"/>
                 <outlet property="navigationBar" destination="Cks-DY-TaL" id="AFw-2f-gUt"/>
                 <outlet property="subtitleLabel" destination="2O5-1G-1AK" id="JaV-5J-LiT"/>
                 <outlet property="view" destination="iN0-l3-epB" id="vyN-1d-Xye"/>
-                <outlet property="webView" destination="PGq-7l-TOU" id="ZR7-GS-OFw"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -69,13 +69,8 @@
                     <color key="textColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <webView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" allowsInlineMediaPlayback="NO" mediaPlaybackRequiresUserAction="NO" mediaPlaybackAllowsAirPlay="NO" keyboardDisplayRequiresUserAction="NO" pageLength="150" gapBetweenPages="10" translatesAutoresizingMaskIntoConstraints="NO" id="PGq-7l-TOU">
-                    <rect key="frame" x="0.0" y="216" width="485" height="170"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <dataDetectorType key="dataDetectorTypes"/>
-                </webView>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Bt0-lW-TcB" customClass="PlaceholderTextView" customModule="QOT" customModuleProvider="target">
-                    <rect key="frame" x="29" y="216.5" width="261" height="351.5"/>
+                    <rect key="frame" x="29" y="203.5" width="261" height="255.5"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -107,6 +102,10 @@
                         </navigationItem>
                     </items>
                 </navigationBar>
+                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eea-Nk-yaf">
+                    <rect key="frame" x="0.0" y="170.5" width="320" height="397.5"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
                 <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Bbh-3u-HIM">
                     <rect key="frame" x="0.0" y="386" width="320" height="182"/>
                     <subviews>
@@ -156,22 +155,24 @@
             <constraints>
                 <constraint firstItem="uuS-Dz-bUg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="29" id="0Vz-dt-2LY"/>
                 <constraint firstItem="8Ht-Mn-n41" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="33e-cH-PS5"/>
-                <constraint firstAttribute="bottom" secondItem="Bt0-lW-TcB" secondAttribute="bottom" id="3FA-TN-j3U"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Bt0-lW-TcB" secondAttribute="bottom" id="3FA-TN-j3U"/>
                 <constraint firstItem="UbZ-c7-cw0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="51i-CZ-UWA"/>
+                <constraint firstItem="Bt0-lW-TcB" firstAttribute="top" secondItem="2O5-1G-1AK" secondAttribute="bottom" constant="20" id="5Vz-vN-QUr"/>
                 <constraint firstAttribute="bottom" secondItem="Bbh-3u-HIM" secondAttribute="bottom" id="6ha-Ym-kF0"/>
                 <constraint firstItem="8Ht-Mn-n41" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="8g0-sh-Ifb"/>
                 <constraint firstItem="Bbh-3u-HIM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="8y4-eh-pUC"/>
-                <constraint firstItem="Bbh-3u-HIM" firstAttribute="top" secondItem="PGq-7l-TOU" secondAttribute="bottom" id="A0q-dN-fRy"/>
+                <constraint firstItem="Eea-Nk-yaf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="9kq-xs-ccI"/>
                 <constraint firstItem="Bbh-3u-HIM" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.32" priority="750" id="FPl-fG-5gS"/>
                 <constraint firstAttribute="trailing" secondItem="Cks-DY-TaL" secondAttribute="trailing" id="Fhe-6s-eg4"/>
-                <constraint firstItem="PGq-7l-TOU" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.3" id="Kxa-RX-5d4"/>
-                <constraint firstItem="PGq-7l-TOU" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2O5-1G-1AK" secondAttribute="bottom" constant="20" id="Mqj-7P-BFl"/>
+                <constraint firstItem="Eea-Nk-yaf" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.7" id="Fzc-Or-kwJ"/>
+                <constraint firstAttribute="bottom" secondItem="Eea-Nk-yaf" secondAttribute="bottom" id="Iuw-RV-Y8W"/>
                 <constraint firstAttribute="bottom" secondItem="8Ht-Mn-n41" secondAttribute="bottom" id="TAr-bt-c5t"/>
                 <constraint firstItem="UbZ-c7-cw0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="U2l-9b-SxA"/>
+                <constraint firstItem="Bt0-lW-TcB" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.45" id="WZj-fc-vUd"/>
                 <constraint firstItem="Cks-DY-TaL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="Wna-eB-RhT"/>
-                <constraint firstItem="PGq-7l-TOU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Zo4-r1-8dC"/>
                 <constraint firstItem="uuS-Dz-bUg" firstAttribute="top" secondItem="Cks-DY-TaL" secondAttribute="bottom" constant="46" id="bkV-sf-bRf"/>
                 <constraint firstAttribute="trailing" secondItem="UbZ-c7-cw0" secondAttribute="trailing" id="c3a-pH-lm7"/>
+                <constraint firstAttribute="trailing" secondItem="Eea-Nk-yaf" secondAttribute="trailing" id="dnx-ed-hXg"/>
                 <constraint firstItem="Bt0-lW-TcB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="29" id="edU-XO-IZH"/>
                 <constraint firstItem="Cks-DY-TaL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="fe9-5x-ihh"/>
                 <constraint firstAttribute="bottom" secondItem="UbZ-c7-cw0" secondAttribute="bottom" id="fyZ-br-26Y"/>
@@ -181,10 +182,8 @@
                 <constraint firstAttribute="trailing" secondItem="Bbh-3u-HIM" secondAttribute="trailing" id="q2t-XB-ST8"/>
                 <constraint firstAttribute="trailing" secondItem="Bt0-lW-TcB" secondAttribute="trailing" constant="30" id="rHP-KN-psI"/>
                 <constraint firstItem="2O5-1G-1AK" firstAttribute="top" secondItem="uuS-Dz-bUg" secondAttribute="bottom" constant="13" id="s7v-LZ-vzF"/>
-                <constraint firstItem="Bt0-lW-TcB" firstAttribute="top" secondItem="PGq-7l-TOU" secondAttribute="top" id="xi6-A2-8sX"/>
-                <constraint firstAttribute="trailing" secondItem="PGq-7l-TOU" secondAttribute="trailing" constant="-165" id="zgf-yk-wbU"/>
             </constraints>
-            <point key="canvasLocation" x="33.5" y="54.5"/>
+            <point key="canvasLocation" x="33" y="54"/>
         </view>
     </objects>
     <resources>
