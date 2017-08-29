@@ -235,6 +235,12 @@ private extension MyStatisticsCardCell {
 private extension MyStatisticsCardCell {
 
     func setupLabels(headerTitle: String, myStatistics: MyStatistics?) {
+        userAverageValueLabel.prepareAndSetTextAttributes(text: myStatistics?.userAverageDisplayableValue ?? "0.0",
+                                                          font: Font.H1MainTitle,
+                                                          lineSpacing: 1,
+                                                          characterSpacing: -2.7,
+                                                          color: .white)
+
         userAverageValueLabel.attributedText = Style.postTitle(myStatistics?.userAverageDisplayableValue ?? "0.0", .white).attributedString()
         teamAverageValueLabel.attributedText = Style.tag(myStatistics?.teamAverageDisplayableValue ?? "0.0", .azure).attributedString()
         dataAverageValueLabel.attributedText = Style.tag(myStatistics?.dataAverageDisplayableValue ?? "0.0", .cherryRedTwo).attributedString()
