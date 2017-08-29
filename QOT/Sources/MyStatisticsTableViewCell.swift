@@ -92,7 +92,7 @@ extension MyStatisticsTableViewCell: UICollectionViewDelegateFlowLayout, UIColle
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 250, height: 370)
+        return CGSize(width: 250, height: 380)
     }
 }
 
