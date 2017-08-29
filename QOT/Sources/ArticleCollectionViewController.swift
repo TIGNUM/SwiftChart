@@ -134,6 +134,6 @@ extension ArticleCollectionViewController: ArticleCollectionLayoutDelegate {
         let pictureRatio: CGFloat = 1.5
         let pictureHeight = (view.bounds.width - nonPictureWidth) / pictureRatio
         
-        return pictureHeight + nonPictureHeight
+        return pictureHeight + nonPictureHeight + 20
     }
 }

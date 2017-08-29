@@ -68,7 +68,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NvG-HG-VMS">
-                        <rect key="frame" x="11" y="17" width="45" height="20"/>
+                        <rect key="frame" x="11" y="62" width="45" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="Mkc-d3-sbD"/>
                         </constraints>
@@ -77,7 +77,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYk-tW-xJY">
-                        <rect key="frame" x="11" y="37" width="45" height="20"/>
+                        <rect key="frame" x="11" y="82" width="45" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="WxI-YQ-J0T"/>
                         </constraints>
@@ -92,14 +92,15 @@
                 <constraint firstAttribute="trailing" secondItem="awG-he-L07" secondAttribute="trailing" constant="28" id="4UE-oq-0ca"/>
                 <constraint firstItem="NvG-HG-VMS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="11" id="AMR-ID-AV9"/>
                 <constraint firstItem="WGo-rT-mVM" firstAttribute="top" secondItem="VQl-Re-jfO" secondAttribute="bottom" constant="20" id="B6z-0W-pBo"/>
+                <constraint firstItem="NvG-HG-VMS" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gTV-IL-0wX" secondAttribute="top" constant="17" id="FMO-eB-Xev"/>
                 <constraint firstItem="awG-he-L07" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="64" id="Fyy-mZ-uFT"/>
-                <constraint firstItem="NvG-HG-VMS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="17" id="Hpt-yY-KR2"/>
                 <constraint firstItem="VQl-Re-jfO" firstAttribute="leading" secondItem="NvG-HG-VMS" secondAttribute="trailing" constant="8" id="ION-bF-Zna"/>
                 <constraint firstItem="VQl-Re-jfO" firstAttribute="leading" secondItem="uYk-tW-xJY" secondAttribute="trailing" constant="8" id="PKg-T4-eps"/>
                 <constraint firstItem="awG-he-L07" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="WIv-aY-2uP"/>
                 <constraint firstItem="VQl-Re-jfO" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="64" id="a2C-Rn-S17"/>
                 <constraint firstItem="uYk-tW-xJY" firstAttribute="top" secondItem="NvG-HG-VMS" secondAttribute="bottom" id="fi6-Qp-TAe"/>
                 <constraint firstItem="uYk-tW-xJY" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="11" id="l00-QB-QjC"/>
+                <constraint firstItem="NvG-HG-VMS" firstAttribute="top" secondItem="VQl-Re-jfO" secondAttribute="top" priority="750" id="qQ5-Fb-lOj"/>
                 <constraint firstAttribute="trailing" secondItem="VQl-Re-jfO" secondAttribute="trailing" constant="29" id="rOU-ke-AqU"/>
                 <constraint firstItem="WGo-rT-mVM" firstAttribute="leading" secondItem="VQl-Re-jfO" secondAttribute="leading" id="vKd-F6-dnF"/>
                 <constraint firstAttribute="bottom" secondItem="WGo-rT-mVM" secondAttribute="bottom" id="vk0-Gp-NAU"/>
