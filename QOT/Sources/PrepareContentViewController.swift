@@ -244,7 +244,7 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
                 contentHeight = calculateLabelHeight(text: contentText, font: Font.DPText, dispayedLineHeight: 29, frameWidth: cell.frame.width - 99)
 
                 if readMoreID != nil {
-                    contentHeight += cell.readMoreButton.frame.height + 5
+                    contentHeight += cell.readMoreButton.frame.height + 30
                 }
             }
             guard let headerText = cell.headerLabel.text else { return UITableViewAutomaticDimension }
