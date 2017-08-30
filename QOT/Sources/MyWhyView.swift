@@ -10,7 +10,7 @@ import UIKit
 import Anchorage
 import ReactiveKit
 
-class MyWhyView: UIView, MyUniverseView {
+class MyWhyView: PassthroughView, MyUniverseView {
 
     // MARK: - Properties
 
