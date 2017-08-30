@@ -93,9 +93,10 @@ private extension MyPrepViewController {
         view.addSubview(tableView)
         view.applyTopFade()
 
-        tableView.topAnchor == view.topAnchor + 26
+        tableView.topAnchor == view.topAnchor
         tableView.bottomAnchor == view.bottomAnchor
         tableView.horizontalAnchors == view.horizontalAnchors
+        tableView.contentInset = UIEdgeInsets(top: tableView.contentInset.top, left: 0.0, bottom: 64.0, right: 0.0)
     }
 }
 
