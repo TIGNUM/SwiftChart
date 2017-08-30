@@ -41,7 +41,15 @@ class DatabaseManager {
         }
         let database = try loadDatabase(name)
         let service = DatabaseKeyService()
-        try database.writeCopy(toFile: url, encryptionKey: service.keyData)
+
+        #if DEBUG
+            // @warning we can't use the realm browser for an encrypted db at the same time as running the app, so we dont use a encryption key during debug mode
+            let encryptionKey: Data? = nil
+        #else
+            let encryptionKey = service.keyData
+        #endif
+
+        try database.writeCopy(toFile: url, encryptionKey: encryptionKey)
         log("copied bundled database \(name.rawValue) to \(url)")
     }
     
@@ -49,7 +57,7 @@ class DatabaseManager {
         guard let databaseURL = fileURLForName(name) else {
             throw SimpleError(localizedDescription: "couldn't find database with name \(name.rawValue)")
         }
-        let config = Realm.Configuration(fileURL: databaseURL, encryptionKey: nil, deleteRealmIfMigrationNeeded: false)
+        let config = Realm.Configuration(fileURL: databaseURL, encryptionKey: nil, readOnly: true, deleteRealmIfMigrationNeeded: false)
         let database = try Realm(configuration: config)
         return database
     }
