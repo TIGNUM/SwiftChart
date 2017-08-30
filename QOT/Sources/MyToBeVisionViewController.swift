@@ -155,8 +155,6 @@ private extension MyToBeVisionViewController {
             if isEditing {
                 _ = self.tryFirstResponder()
             }
-            self.headlineTextView.isEditable = isEditing
-            self.messageTextView.isEditable = isEditing
         })
     }
     
@@ -174,7 +172,8 @@ private extension MyToBeVisionViewController {
 
         messageTextView.delegate = self
         messageTextView.returnKeyType = .done
-        
+        messageTextView.isEditable = true
+
         if let profileImageResource = viewModel.profileImageResource {
             imageView.setImageFromResource(profileImageResource)
         }
@@ -220,6 +219,7 @@ private extension MyToBeVisionViewController {
         headlineTextView.textContainer.maximumNumberOfLines = 2
         headlineTextView.textContainer.lineFragmentPadding = 0
         headlineTextView.textContainerInset = .zero
+        headlineTextView.isEditable = true
         headlineTextView.set(placeholderText: R.string.localized.meSectorMyWhyVisionHeadlinePlaceholder(), placeholdeColor: UIColor.white)
 
         setupMessageText(editing: false)
