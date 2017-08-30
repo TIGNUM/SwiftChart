@@ -209,12 +209,12 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
             configure(cell: cell, forIndexPath: indexPath)
 
             var contentHeight: CGFloat = 0
-            var padding: CGFloat = 36
+            var padding: CGFloat = 40
             if viewModel.isCellExpanded(at: indexPath.row) {
                 guard let contentText = cell.contentLabel.text else { return UITableViewAutomaticDimension }
-                contentHeight = contentText.isEmpty ? 0 : calculateLabelHeight(text: contentText, font: Font.DPText, dispayedLineHeight: 29, frameWidth: cell.frame.width - 60)
+                contentHeight = contentText.isEmpty ? 0 : calculateLabelHeight(text: contentText, font: Font.DPText, dispayedLineHeight: 28, frameWidth: cell.frame.width - 60)
 
-                padding += 25
+                padding += 20
                 if videoURL != nil {
                     contentHeight += cell.previewImageView.frame.height
                     padding += 50
@@ -222,10 +222,14 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
             }
 
             guard let headerText = cell.headerLabel.text else { return UITableViewAutomaticDimension }
-            let headerHeight = headerText.isEmpty ? 0 : calculateLabelHeight(text: headerText, font: Font.H1MainTitle, dispayedLineHeight: 43, frameWidth: cell.frame.width - 99)
+            let headerHeight = headerText.isEmpty ? 0 : calculateLabelHeight(text: headerText, font: Font.H1MainTitle, dispayedLineHeight: 46, frameWidth: cell.frame.width - 99)
 
             guard let subHeaderText = cell.subHeaderLabel.text else { return UITableViewAutomaticDimension }
-            let subHeaderHeight = subHeaderText.isEmpty ? 0 : calculateLabelHeight(text: subHeaderText, font: Font.H7Title, dispayedLineHeight: 9, frameWidth: cell.frame.width - 99)
+            var subHeaderHeight: CGFloat = 0
+            if !subHeaderText.isEmpty {
+                subHeaderHeight = calculateLabelHeight(text: subHeaderText, font: Font.H7Title, dispayedLineHeight: 16, frameWidth: cell.frame.width - 99)
+                padding += 5
+            }
 
             let cellHeight = headerHeight + subHeaderHeight + contentHeight + padding
 
@@ -241,15 +245,15 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
             if viewModel.isCellExpanded(at: indexPath.row) {
 
                 guard let contentText = cell.contentLabel.text else { return UITableViewAutomaticDimension }
-                contentHeight = calculateLabelHeight(text: contentText, font: Font.DPText, dispayedLineHeight: 29, frameWidth: cell.frame.width - 99)
+                contentHeight = calculateLabelHeight(text: contentText, font: Font.DPText, dispayedLineHeight: 28, frameWidth: cell.frame.width - 99)
 
                 if readMoreID != nil {
                     contentHeight += cell.readMoreButton.frame.height + 30
                 }
             }
             guard let headerText = cell.headerLabel.text else { return UITableViewAutomaticDimension }
-            let headerHeight = calculateLabelHeight(text: headerText, font: Font.H4Headline, dispayedLineHeight: 24, frameWidth: cell.frame.width - 132)
-            let padding: CGFloat = 31
+            let headerHeight = calculateLabelHeight(text: headerText, font: Font.H4Headline, dispayedLineHeight: 26, frameWidth: cell.frame.width - 132)
+            let padding: CGFloat = 38
             let cellHeight = headerHeight + contentHeight + padding
 
             return cellHeight

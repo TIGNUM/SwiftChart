@@ -43,10 +43,7 @@ class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
     }
 
     override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        iconImageView.image = iconImageView.image!.withRenderingMode(.alwaysTemplate)
-        iconImageView.tintColor = .blackTwo
+        super.layoutSubviews()        
     }
 
     func setCell(title: String, contentText: String, readMoreID: Int?, position: Int, isExpanded: Bool, displayMode: PrepareContentViewModel.DisplayMode = .normal, isChecked: Bool = false) {

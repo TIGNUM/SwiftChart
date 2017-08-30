@@ -38,8 +38,6 @@ class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        iconImageView.image = iconImageView.image!.withRenderingMode(.alwaysTemplate)
-        iconImageView.tintColor = UIColor.blackTwo
         previewImageView.contentMode = .scaleAspectFill
     }
     
