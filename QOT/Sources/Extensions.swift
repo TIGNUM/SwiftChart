@@ -236,19 +236,44 @@ extension Collection {
 // MAARK: - UIView
 
 extension UIView {
-    
-    @discardableResult func applyTopFade(height: CGFloat = 70.0, primaryColor: UIColor = .black, fadeColor: UIColor = .clear) -> UIView {
-        let fadeView = UIView(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: bounds.size.width, height: height)))
+
+    enum FadeDirection {
+        case up
+        case down
+    }
+
+    @discardableResult func applyFade(origin: CGPoint = CGPoint.zero, height: CGFloat = 70.0, primaryColor: UIColor = .black, fadeColor: UIColor = .clear, direction: FadeDirection = .down) -> UIView {
+        let fadeView = UIView(frame: CGRect(origin: origin, size: CGSize(width: bounds.size.width, height: height)))
         fadeView.backgroundColor = .clear
-        
+
         let fadeLayer = CAGradientLayer()
         fadeLayer.frame = fadeView.bounds
-        fadeLayer.colors = [primaryColor.cgColor, primaryColor.cgColor, fadeColor.cgColor]
+
+        switch direction {
+        case .down:
+            fadeLayer.colors = [primaryColor.cgColor, primaryColor.cgColor, fadeColor.cgColor]
+        case .up:
+            fadeLayer.colors = [fadeColor.cgColor, primaryColor.cgColor, primaryColor.cgColor]
+        }
+
         fadeView.layer.addSublayer(fadeLayer)
-        
+
         addSubview(fadeView)
         return fadeView
     }
+
+//    @discardableResult func applyTopFade(height: CGFloat = 70.0, primaryColor: UIColor = .black, fadeColor: UIColor = .clear) -> UIView {
+//        let fadeView = UIView(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: bounds.size.width, height: height)))
+//        fadeView.backgroundColor = .clear
+//        
+//        let fadeLayer = CAGradientLayer()
+//        fadeLayer.frame = fadeView.bounds
+//        fadeLayer.colors = [primaryColor.cgColor, primaryColor.cgColor, fadeColor.cgColor]
+//        fadeView.layer.addSublayer(fadeLayer)
+//        
+//        addSubview(fadeView)
+//        return fadeView
+//    }
 
     func removeSubViews() {
         subviews.forEach({ (subView: UIView) in

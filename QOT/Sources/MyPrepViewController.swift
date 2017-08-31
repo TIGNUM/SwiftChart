@@ -91,7 +91,11 @@ private extension MyPrepViewController {
     func setupView() {
         view.backgroundColor = .clear
         view.addSubview(tableView)
-        view.applyTopFade()
+        view.applyFade()
+
+        let height: CGFloat = 70
+        view.applyFade(origin: CGPoint(x: view.bounds.origin.x, y: view.bounds.origin.y + view.bounds.height - height),
+                       height: height, direction: .up)
 
         tableView.topAnchor == view.topAnchor
         tableView.bottomAnchor == view.bottomAnchor

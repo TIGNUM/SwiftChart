@@ -142,7 +142,7 @@ private extension ArticleItemViewController {
         tableView.horizontalAnchors == view.horizontalAnchors
         tableView.layoutIfNeeded()
         view.layoutIfNeeded()
-        view.applyTopFade()
+        view.applyFade()
     }
 
     func setTableViewHeader() {
