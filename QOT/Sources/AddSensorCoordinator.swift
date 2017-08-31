@@ -26,7 +26,7 @@ final class AddSensorCoordinator: ParentCoordinator {
         self.rootViewController = root
         self.services = services
         addSensorViewController = AddSensorViewController(viewModel: AddSensorViewModel())       
-        addSensorViewController.title = R.string.localized.sidebarTitleSensor()
+        addSensorViewController.title = R.string.localized.sidebarTitleSensor().uppercased()
         addSensorViewController.delegate = self
     }
 

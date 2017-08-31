@@ -24,7 +24,7 @@ final class SettingsMenuCoordinator: ParentCoordinator {
         self.rootViewController = root
         self.services = services
         settingsMenuViewController = SettingsMenuViewController(viewModel: viewModel)
-        settingsMenuViewController.title = R.string.localized.settingsTitle()
+        settingsMenuViewController.title = R.string.localized.settingsTitle().uppercased()
         settingsMenuViewController.delegate = self
     }
 
