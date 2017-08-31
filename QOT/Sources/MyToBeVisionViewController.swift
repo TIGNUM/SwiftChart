@@ -197,7 +197,7 @@ private extension MyToBeVisionViewController {
     }
 
     func setupNavigation() {
-        navigationBar.topItem?.title = R.string.localized.meSectorMyWhyVisionTitle()
+        navigationBar.topItem?.title = R.string.localized.meSectorMyWhyVisionTitle().uppercased()
         navigationBar.titleTextAttributes = [
             NSForegroundColorAttributeName: UIColor.white,
             NSFontAttributeName: Font.H6NavigationTitle
@@ -209,6 +209,7 @@ private extension MyToBeVisionViewController {
     }
 
     func setupLabels() {
+        headlineTextView.autocapitalizationType = .allCharacters
         headlineTextView.placeholderDelegate = self
         headlineTextView.attributedText = NSMutableAttributedString(
             string: viewModel.headline?.uppercased() ?? "",
