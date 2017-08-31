@@ -35,21 +35,21 @@ xcode-select --install
 fastlane ios test
 ```
 Runs all the tests
-### ios beta
-```
-fastlane ios beta
-```
-Deploy to Hockeyapp
 ### ios cbeta
 ```
 fastlane ios cbeta
 ```
 Deploy to Crashlytics Beta
+### ios beta
+```
+fastlane ios beta
+```
+Deploy to Hockeyapp
 ### ios release
 ```
 fastlane ios release
 ```
-Deploy a new version to the App Store
+Build and deploy to AWS S3 and hockey
 
 ----
 

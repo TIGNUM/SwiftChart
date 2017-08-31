@@ -1,4 +1,10 @@
 app_identifier "com.tignum.qot.novartis" # The bundle identifier of your app
 apple_id ENV["APPLE_ID"] # Your Apple email address
-
+	
 team_id "4FQQH349R5" # Developer Portal Team ID
+
+# AWS S3
+ENV['S3_BUCKET'] = "qotapp.bucket"
+ENV['S3_REGION'] = "eu-west-1"
+ENV['S3_IPA_NAME'] = "qot.ipa"
+ENV['S3_APP_DIRECTORY'] = "v2"
