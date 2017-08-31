@@ -38,12 +38,30 @@ final class LibraryCoordinator: ParentCoordinator {
 extension LibraryCoordinator: LibraryViewControllerDelegate {
 
     func didTapLibraryItem(item: ContentCollection) {
+
+        var articleHeader: ArticleCollectionHeader?
+
+        let title = item.contentCategories.first?.title
+        let subtitle = item.title
+        let date = DateFormatter.shortDate.string(from: item.createdAt)
+        let duration = "\(item.items.reduce(0, { $0.0 + $0.1.secondsRequired }) / 60) MIN"
+
+        articleHeader = ArticleCollectionHeader(
+            articleTitle: title != nil ? title! : "",
+            articleSubTitle: subtitle,
+            articleDate: date,
+            articleDuration: duration,
+            articleContentCollection: item
+        )
+
         guard let coordinator = ArticleContentItemCoordinator(
             pageName: .libraryArticle,
             root: libraryViewController,
             services: services,
-            contentCollection: item,            
-            topTabBarTitle: R.string.localized.sidebarTitleLibrary().uppercased()) else {
+            contentCollection: item,
+            articleHeader: articleHeader,
+            topTabBarTitle: R.string.localized.sidebarTitleLibrary().uppercased(),
+            contentInsets: UIEdgeInsets(top: 46, left: 0, bottom: 0, right: 0)) else {
                 return
         }
         startChild(child: coordinator)

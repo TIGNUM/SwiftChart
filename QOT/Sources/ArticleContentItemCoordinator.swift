@@ -47,7 +47,7 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
           topTabBarTitle: String?,
           backgroundImage: UIImage? = nil,
           shouldPush: Bool = true,
-          contentInsets: UIEdgeInsets = UIEdgeInsets(top: 35, left: 0, bottom: 0, right: 0)) {
+          contentInsets: UIEdgeInsets = UIEdgeInsets(top: 110, left: 0, bottom: 0, right: 0)) {
         guard let contentCollection = contentCollection else {
             return nil
         }
@@ -70,7 +70,7 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
         fullViewController = ArticleItemViewController(
             pageName: pageName,
             viewModel: viewModel,
-            contentInsets: UIEdgeInsets(top: 110, left: 0, bottom: 0, right: 0)
+            contentInsets: contentInsets
         )
         fullViewController.title = topTabBarTitle
         fullViewController.delegate = self
