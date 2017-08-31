@@ -62,23 +62,25 @@ extension CarouselCellView {
         } else {
             editPictureButton.setTitle(R.string.localized.meSectorMyWhyPartnersChangePhoto(), for: .normal)
         }
+        textFieldName.autocapitalizationType = .allCharacters
         textFieldName.attributedText = NSMutableAttributedString(
             string: name ?? "",
             letterSpacing: -1.1,
             font: Font.H3Subtitle
         )
         textFieldName.attributedPlaceholder = NSMutableAttributedString(
-            string: R.string.localized.meSectorMyWhyPartnersName(),
+            string: R.string.localized.meSectorMyWhyPartnersName().uppercased(),
             letterSpacing: -1.1,
             font: Font.H3Subtitle
         )
+        textFieldSurname.autocapitalizationType = .allCharacters
         textFieldSurname.attributedText = NSMutableAttributedString(
             string: surename ?? "",
             letterSpacing: -1.1,
             font: Font.H3Subtitle
         )
         textFieldSurname.attributedPlaceholder = NSMutableAttributedString(
-            string: R.string.localized.meSectorMyWhyPartnersSurname(),
+            string: R.string.localized.meSectorMyWhyPartnersSurname().uppercased(),
             letterSpacing: -1.1,
             font: Font.H3Subtitle
         )
