@@ -252,7 +252,6 @@ private extension MyStatisticsCardCell {
         headerLabel.attributedText = Style.headlineSmall(headerTitle.uppercased(), .white).attributedString()
         headerLabel.numberOfLines = 2
         headerLabel.lineBreakMode = .byWordWrapping
-        headerLabel.sizeToFit()
     }
 
     func setupCardView(cardType: MyStatisticsType, myStatistics: MyStatistics, allCards: [MyStatistics]) {
