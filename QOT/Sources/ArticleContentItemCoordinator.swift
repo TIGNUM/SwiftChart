@@ -117,6 +117,14 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
 
     func didSelectRelatedArticle(selectedArticle: ContentCollection, form viewController: ArticleItemViewController) {
         self.selectedContent = selectedArticle
+
+        if selectedArticle.section == Database.Section.learnStrategy.rawValue,
+            let contentID = selectedArticle.remoteID.value,
+            let categoryID = selectedArticle.categoryIDs.first?.value {
+            AppDelegate.current.appCoordinator.presentLearnContentItems(contentID: contentID, categoryID: categoryID)
+            return
+        }
+
         viewModel = ArticleItemViewModel(services: services,
                                          items: Array(selectedArticle.articleItems),
                                          contentCollection: selectedArticle,
