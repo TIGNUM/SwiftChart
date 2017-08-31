@@ -257,7 +257,7 @@ extension ChatViewController : CollectionViewCellDelegate {
                 fallthrough
             case .list:
                 viewModel.select(itemIndex: cellIndex, choiceIndex: index)
-                let item = items.item(at: index)
+                let item = items[index]
                 didSelectChoice?(item, self)
 
                 guard let indexPath = tableView.indexPath(for: cell) else { return }

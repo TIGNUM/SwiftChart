@@ -50,7 +50,7 @@ extension CollectionTableViewCell {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let object = self.dataModel.item(at: indexPath.row)
+        let object = self.dataModel[indexPath.row]
         let title = object.title
 
         let cell: PrepareCollectionViewCell = collectionView.dequeueCell(for: indexPath)
@@ -63,7 +63,7 @@ extension CollectionTableViewCell {
         let padding: CGFloat = 40
         let font = UIFont(name: "BentonSans", size: 16)!
         var cellHeight: CGFloat = 40
-        var cellWidth: CGFloat = self.dataModel.item(at: indexPath.row).title.width(withConstrainedHeight: 0, font: font) + padding
+        var cellWidth: CGFloat = self.dataModel[indexPath.row].title.width(withConstrainedHeight: 0, font: font) + padding
 
         let maxCellWidth: CGFloat = 285
 
@@ -73,7 +73,7 @@ extension CollectionTableViewCell {
         case .list:
             if cellWidth > maxCellWidth {
                 cellWidth = maxCellWidth
-                cellHeight = self.dataModel.item(at: indexPath.row).title.height(withConstrainedWidth: cellWidth, font: font) + padding
+                cellHeight = self.dataModel[indexPath.row].title.height(withConstrainedWidth: cellWidth, font: font) + padding
             }
         }
         return CGSize(width: cellWidth, height: cellHeight)

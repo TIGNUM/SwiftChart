@@ -151,7 +151,7 @@ private extension LearnContentListViewController {
         guard let layout = collectionView.collectionViewLayout as? LearnStrategyListLayout else { return }
 
         if selectedCategoryIndex < layout.sectionOrigins.count {
-            let origin = layout.sectionOrigins.item(at: selectedCategoryIndex)
+            let origin = layout.sectionOrigins[selectedCategoryIndex]
             let rect = CGRect(x: origin.x, y: origin.y, width: collectionView.frame.width, height: collectionView.frame.height)
             collectionView.scrollRectToVisible(rect, animated: true)
         }

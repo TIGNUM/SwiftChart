@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -116,18 +116,14 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="182"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJI-t0-ZYc">
-                            <rect key="frame" x="137.5" y="69" width="45" height="45"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="45" id="ILp-nZ-8Vm"/>
-                                <constraint firstAttribute="height" constant="45" id="Q3t-Uu-Wbp"/>
-                            </constraints>
-                            <state key="normal" backgroundImage="my-why-image-plus-icon"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="182"/>
+                            <state key="normal" image="my-why-image-plus-icon"/>
                             <connections>
                                 <action selector="imageButtonPressed:" destination="-1" eventType="touchUpInside" id="TWw-Lk-zKo"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Picture" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ik-TR-2gA">
-                            <rect key="frame" x="16" y="122" width="296" height="19"/>
+                            <rect key="frame" x="98.5" y="111.5" width="123.5" height="19.5"/>
                             <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -137,16 +133,18 @@
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="bfh-6q-eoT" secondAttribute="bottom" id="8lS-GU-3cJ"/>
                         <constraint firstItem="eHf-qV-wwH" firstAttribute="top" secondItem="Bbh-3u-HIM" secondAttribute="top" id="AsP-pv-AGE"/>
-                        <constraint firstItem="3Ik-TR-2gA" firstAttribute="top" secondItem="RJI-t0-ZYc" secondAttribute="bottom" constant="8" id="EIs-7S-Vse"/>
-                        <constraint firstAttribute="trailing" secondItem="3Ik-TR-2gA" secondAttribute="trailing" constant="8" id="JFy-2A-Y4r"/>
+                        <constraint firstItem="3Ik-TR-2gA" firstAttribute="centerX" secondItem="Bbh-3u-HIM" secondAttribute="centerX" id="Fkp-36-ekU"/>
                         <constraint firstItem="bfh-6q-eoT" firstAttribute="top" secondItem="Bbh-3u-HIM" secondAttribute="top" id="Tvd-Xh-ou7"/>
+                        <constraint firstItem="RJI-t0-ZYc" firstAttribute="top" secondItem="Bbh-3u-HIM" secondAttribute="top" id="Tvo-pH-uSi"/>
+                        <constraint firstItem="3Ik-TR-2gA" firstAttribute="centerY" secondItem="Bbh-3u-HIM" secondAttribute="centerY" constant="30" id="Y9N-P7-sX3"/>
                         <constraint firstItem="bfh-6q-eoT" firstAttribute="leading" secondItem="Bbh-3u-HIM" secondAttribute="leading" id="b8V-uR-jdA"/>
                         <constraint firstItem="RJI-t0-ZYc" firstAttribute="centerX" secondItem="Bbh-3u-HIM" secondAttribute="centerX" id="dfN-FV-2c1"/>
                         <constraint firstAttribute="trailing" secondItem="bfh-6q-eoT" secondAttribute="trailing" id="gUG-VU-WZj"/>
                         <constraint firstAttribute="trailing" secondItem="eHf-qV-wwH" secondAttribute="trailing" id="i24-Ir-PUG"/>
+                        <constraint firstItem="RJI-t0-ZYc" firstAttribute="leading" secondItem="Bbh-3u-HIM" secondAttribute="leading" id="iBO-Ha-674"/>
                         <constraint firstItem="RJI-t0-ZYc" firstAttribute="centerY" secondItem="Bbh-3u-HIM" secondAttribute="centerY" constant="-0.25" id="nJh-eu-CFB"/>
                         <constraint firstAttribute="bottom" secondItem="eHf-qV-wwH" secondAttribute="bottom" id="r3i-HM-O4d"/>
-                        <constraint firstItem="3Ik-TR-2gA" firstAttribute="leading" secondItem="Bbh-3u-HIM" secondAttribute="leading" constant="16" id="u6w-MQ-f0g"/>
+                        <constraint firstAttribute="trailing" secondItem="RJI-t0-ZYc" secondAttribute="trailing" id="yQd-ZN-BH0"/>
                         <constraint firstItem="eHf-qV-wwH" firstAttribute="leading" secondItem="Bbh-3u-HIM" secondAttribute="leading" id="zUq-qX-eFa"/>
                     </constraints>
                 </view>
