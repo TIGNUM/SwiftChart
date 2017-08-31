@@ -456,6 +456,22 @@ extension UIScrollView {
     }
 }
 
+// MARK: - UIResponder
+
+extension UIResponder {
+    
+    func findParentResponder<T>() -> T? {
+        var responder: UIResponder? = self
+        while responder != nil {
+            responder = responder?.next
+            if let result = responder as? T {
+                return result
+            }
+        }
+        return nil
+    }
+}
+
 // MARK: - SequSequenceType
 
 extension Sequence where Iterator.Element == String {

@@ -143,3 +143,11 @@ extension MyPrepViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 }
+
+// MARK: - PageSwipe
+
+extension MyPrepViewController: PageSwipe {
+    func canSwipePageDirection(_ direction: PageDirection) -> Bool {
+        return direction == .backward
+    }
+}

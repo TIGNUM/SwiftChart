@@ -11,31 +11,7 @@ import UIKit
 // @note using this to avoid singleton pattern
 private weak var _staticPageTracker: PageTracker?
 
-extension UIViewController {
-    func QOT_PageTracker_viewDidAppear(_ animated: Bool) {
-        QOT_PageTracker_viewDidAppear(animated)
-        if let trackablePage = self as? TrackablePage {
-            _staticPageTracker?.track(trackablePage)
-        }
-    }
-}
-
-private struct ViewDidAppearSwizzle: Swizzle {
-    let classID: AnyClass = UIViewController.self
-    let originalSelector: Selector = #selector(UIViewController.viewDidAppear(_:))
-    let newSelector: Selector = #selector(UIViewController.QOT_PageTracker_viewDidAppear(_:))
-    let originalMethod: Method
-    let newMethod: Method
-    var isSwizzled: Bool = false
-    
-    init() {
-        originalMethod = class_getInstanceMethod(classID, originalSelector)
-        newMethod = class_getInstanceMethod(classID, newSelector)
-    }
-}
-
 class PageTracker {
-    private var viewDidAppearSwizzle = ViewDidAppearSwizzle()
     private let eventTracker: EventTracker
     
     weak var lastPage: TrackablePage?
@@ -63,5 +39,38 @@ class PageTracker {
     func track(_ page: TrackablePage) {
         eventTracker.track(.didShowPage(page, from: lastPage))
         lastPage = page
+    }
+}
+
+// MARK: - Swizevil
+/**
+ @abstract  using this to track all ViewDidAppear events without disturbing / repeating code
+ */
+private var viewDidAppearSwizzle = ViewDidAppearSwizzle()
+
+private struct ViewDidAppearSwizzle: Swizzle {
+    let classID: AnyClass
+    let originalSelector: Selector
+    let newSelector: Selector
+    let originalMethod: Method
+    let newMethod: Method
+    var isSwizzled: Bool
+    
+    init() {
+        classID = UIViewController.self
+        originalSelector = #selector(UIViewController.viewDidAppear(_:))
+        newSelector = #selector(UIViewController.QOT_PageTracker_viewDidAppear(_:))
+        originalMethod = class_getInstanceMethod(classID, originalSelector)
+        newMethod = class_getInstanceMethod(classID, newSelector)
+        isSwizzled = false
+    }
+}
+
+extension UIViewController {
+    func QOT_PageTracker_viewDidAppear(_ animated: Bool) {
+        QOT_PageTracker_viewDidAppear(animated)
+        if let trackablePage = self as? TrackablePage {
+            _staticPageTracker?.track(trackablePage)
+        }
     }
 }
