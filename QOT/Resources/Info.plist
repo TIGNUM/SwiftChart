@@ -80,6 +80,8 @@
 			</dict>
 		</dict>
 	</dict>
+    <key>NSContactsUsageDescription</key>
+    <string>QOT needs access to contacts to create calendar events.</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>We use this for flight info</string>
 	<key>NSCameraUsageDescription</key>
@@ -91,9 +93,9 @@
 	<key>NSLocationUsageDescription</key>
 	<string></string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>QOT needs location access to track your steps</string>
+	<string>QOT needs access to your location to track your steps</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>QOT needs Library access for uploading Images.</string>
+	<string>QOT needs access to your Library to set your images.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>BentonSansCond-Light.otf</string>
