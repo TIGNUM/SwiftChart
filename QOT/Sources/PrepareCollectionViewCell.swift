@@ -40,8 +40,7 @@ class PrepareCollectionViewCell: UICollectionViewCell, Dequeueable {
             trailingConstraint.constant = 25
         }
 
-        titleLbl.prepareAndSetTextAttributes(text: name, font: UIFont(name: "BentonSans-Book", size: 16)!, alignment: alignment, lineSpacing: 7)
-        titleLbl.textColor = .white60
+        titleLbl.prepareAndSetTextAttributes(text: name, font: Font.DPText, alignment: alignment, lineSpacing: 7, characterSpacing: 0.3, color: .white80)
         let borderColour = UIColor.greyish20
         let shapeLayer: CAShapeLayer = CAShapeLayer()
         currentShapeLayer = shapeLayer
@@ -51,8 +50,6 @@ class PrepareCollectionViewCell: UICollectionViewCell, Dequeueable {
         shapeLayer.position = CGPoint(x: frame.width/2, y: frame.height/2)
         shapeLayer.lineWidth = 1
         shapeLayer.strokeColor = borderColour.cgColor
-
-        titleLbl.textColor = .white60
 
         switch cellStyle {
         case .dashed:
@@ -64,10 +61,10 @@ class PrepareCollectionViewCell: UICollectionViewCell, Dequeueable {
             shapeLayer.path = UIBezierPath(roundedRect: frame, cornerRadius: 10).cgPath
             titleLbl.textColor = UIColor.white
         case .plain:
-            shapeLayer.fillColor = UIColor.white.withAlphaComponent(0.1).cgColor
+            shapeLayer.fillColor = UIColor.black40.cgColor
             shapeLayer.path = UIBezierPath(roundedRect: frame, cornerRadius: 30).cgPath
         case .plainSelected:
-            shapeLayer.fillColor = UIColor.blue.cgColor
+            shapeLayer.fillColor = UIColor.black40.cgColor
             shapeLayer.path = UIBezierPath(roundedRect: frame, cornerRadius: 30).cgPath
         }
         
