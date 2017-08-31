@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -121,7 +121,7 @@
                                 <constraint firstAttribute="width" constant="45" id="ILp-nZ-8Vm"/>
                                 <constraint firstAttribute="height" constant="45" id="Q3t-Uu-Wbp"/>
                             </constraints>
-                            <state key="normal" backgroundImage="prepare-content-plus-icon"/>
+                            <state key="normal" backgroundImage="my-why-image-plus-icon"/>
                             <connections>
                                 <action selector="imageButtonPressed:" destination="-1" eventType="touchUpInside" id="TWw-Lk-zKo"/>
                             </connections>
@@ -190,6 +190,6 @@
         <image name="backgroundWeeklyChoices" width="187" height="333"/>
         <image name="ic_edit" width="23" height="22"/>
         <image name="ic_minimize" width="22" height="12"/>
-        <image name="prepare-content-plus-icon" width="24" height="24"/>
+        <image name="my-why-image-plus-icon" width="24" height="24"/>
     </resources>
 </document>
