@@ -114,7 +114,11 @@ extension MyStatistics {
     }
 
     var pathColor: UIColor {
-        return userAverage >= upperThreshold ? .cherryRed : userAverage <= lowerThreshold ? .white90 : .gray
+        if upperThreshold > lowerThreshold {
+            return userAverage >= upperThreshold ? .cherryRed : userAverage <= lowerThreshold ? .gray : .white90
+        }
+
+        return userAverage >= upperThreshold ? .white90 : userAverage <= lowerThreshold ? .cherryRed : .gray
     }
 
     var dataPointObjects: [DataPoint] {
@@ -166,6 +170,14 @@ private extension MyStatistics {
                 return .gray
             }
         }
+    }
+
+    private func tintColor(_ dataValue: CGFloat) -> UIColor {
+        if upperThreshold > lowerThreshold {
+            return dataValue >= upperThreshold.toFloat ? .cherryRed : dataValue <= lowerThreshold.toFloat ? .gray : .white90
+        }
+
+        return dataValue >= upperThreshold.toFloat ? .white90 : dataValue <= lowerThreshold.toFloat ? .cherryRed : .gray
     }
 
     func averageValue(average: Double) -> CGFloat {

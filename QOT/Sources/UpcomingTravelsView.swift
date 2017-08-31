@@ -56,7 +56,8 @@ private extension UpcomingTravelsView {
     func setupView() {
         setupLabels()
         setupChartContainerView()
-        drawBackground()
+        darwLabelTopLine()
+        drawDottedBackground()
     }
 
     private func setupLabels() {
@@ -70,22 +71,32 @@ private extension UpcomingTravelsView {
         layoutIfNeeded()
     }
 
-    private func setupChartContainerView() {
-        let separatorHeight: CGFloat = 1
+    private func setupChartContainerView() {        
         addSubview(chartContainer)
-        chartContainer.topAnchor == topAnchor + padding * 2 + separatorHeight
+        chartContainer.topAnchor == topAnchor + padding * 2 + 1
         chartContainer.leadingAnchor == leadingAnchor + padding
         chartContainer.trailingAnchor == trailingAnchor - padding
-        chartContainer.bottomAnchor == labelContainer.topAnchor
+        chartContainer.bottomAnchor == labelContainer.topAnchor - padding
         layoutIfNeeded()
     }
 
-    private func drawBackground() {
-        let strokeColour = UIColor.white20
+    private func darwLabelTopLine() {
         let startPoint = CGPoint(x: frame.origin.x + padding, y: frame.origin.y + frame.height - labelContainer.frame.height)
         let endPoint = CGPoint(x: frame.origin.x + frame.width - padding, y: frame.origin.y + frame.height - labelContainer.frame.height)
-        drawSolidLine(from: startPoint, to: endPoint, lineWidth: strokeWidth, strokeColour: strokeColour)
-        chartContainer.drawDottedColumns(columnWidth: cellWidth + padding, columnHeight: columnHeight, rowHeight: cellHeight, columnCount: columns, rowCount: rows, strokeWidth: strokeWidth, strokeColour: strokeColour)
+        drawSolidLine(from: startPoint, to: endPoint, lineWidth: strokeWidth, strokeColour: .white20)
+    }
+
+    private func drawDottedBackground() {
+        for x in 0 ..< columns {
+            let columnX = CGFloat(chartContainer.frame.origin.x) + CGFloat(x) * cellWidth + strokeWidth * 0.5
+
+            for y in 0 ..< rows {
+                let columnY = CGFloat(chartContainer.frame.origin.y) + columnHeight - (CGFloat(y) * cellHeight) - cellHeight * 0.5
+                let startPoint = CGPoint(x: columnX, y: columnY - strokeWidth * 0.5)
+                let endPoint = CGPoint(x: columnX, y: columnY + strokeWidth * 0.5)
+                drawSolidLine(from: startPoint, to: endPoint, lineWidth: strokeWidth * 0.5, strokeColour: .white20)
+            }
+        }
     }
 
     func drawTrips() {

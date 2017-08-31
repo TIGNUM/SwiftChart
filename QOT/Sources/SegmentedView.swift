@@ -146,18 +146,8 @@ private extension SegmentedView {
         let chartView: UIView
 
         switch statisticsType {
-        case .meetingAverage:
-            guard let object = (data as? MyStatisticsDataPeriodAverage) else {
-                return
-            }
-
-            chartView = AverageMeetingProgressWheel(frame: container.bounds,
-                                                    userValue: object.userAverage() / object.maxValue(),
-                                                    teamValue: object.teamAverage() / object.maxValue(),
-                                                    dataValue: object.dataAverage() / object.maxValue(),
-                                                    pathColor: object.pathColor().color)
-        case .peakPerformanceAverage:
-            chartView = PeakPerformanceAverageProgressWheel(frame: container.bounds, myStatistics: myStatistics)
+        case .meetingAverage: chartView = AverageMeetingProgressWheel(frame: container.bounds, statistics: myStatistics)
+        case .peakPerformanceAverage: chartView = PeakPerformanceAverageProgressWheel(frame: container.bounds, myStatistics: myStatistics)
         case .travelTripsAverage:
             guard let object = (data as? MyStatisticsDataPeriods) else {
                 return

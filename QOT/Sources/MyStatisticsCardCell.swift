@@ -123,11 +123,14 @@ private extension MyStatisticsCardCell {
 private extension MyStatisticsCardCell {
 
     func addMeetingsCountView(myStatistics: MyStatistics, cardType: MyStatisticsType, allCards: [MyStatistics]) {
+        let currentDisplayType = selectedDisplayTypes[cardType] ?? .all
+        let index = cardType.displayTypes.index(of: currentDisplayType) ?? 0
+        let cards = cardType.cards(cards: allCards)
         let data = segmentedData(cardType: cardType, allCards: allCards)
         let meetingsCountView = SegmentedView(frame: centerContentView.bounds,
-                                              myStatistics: myStatistics,
+                                              myStatistics: cards[index],
                                               statisticsType: cardType,
-                                              selectedDisplayType: selectedDisplayTypes[cardType] ?? .all,
+                                              selectedDisplayType: currentDisplayType,
                                               data: data,
                                               delegate: delegate)
         centerContentView.addSubview(meetingsCountView)
@@ -149,11 +152,14 @@ private extension MyStatisticsCardCell {
 private extension MyStatisticsCardCell {
 
     func travelNumberOfTrips(myStatistics: MyStatistics, cardType: MyStatisticsType, allCards: [MyStatistics]) {
+        let currentDisplayType = selectedDisplayTypes[cardType] ?? .all
+        let index = cardType.displayTypes.index(of: currentDisplayType) ?? 0
+        let cards = cardType.cards(cards: allCards)
         let data = segmentedDataPeriod(cardType: cardType, allCards: allCards)
         let meetingsDuringTravelView = SegmentedView(frame: centerContentView.bounds,
-                                                     myStatistics: myStatistics,
+                                                     myStatistics: cards[index],
                                                      statisticsType: cardType,
-                                                     selectedDisplayType: selectedDisplayTypes[cardType] ?? .all,
+                                                     selectedDisplayType: currentDisplayType,
                                                      data: data,
                                                      delegate: delegate)
         centerContentView.addSubview(meetingsDuringTravelView)
@@ -205,11 +211,14 @@ private extension MyStatisticsCardCell {
 private extension MyStatisticsCardCell {
 
     func addUpcomingPeakPerformancesView(myStatistics: MyStatistics, cardType: MyStatisticsType, allCards: [MyStatistics]) {
+        let currentDisplayType = selectedDisplayTypes[cardType] ?? .all
+        let index = cardType.displayTypes.index(of: currentDisplayType) ?? 0
+        let cards = cardType.cards(cards: allCards)
         let data = segmentedDataPeriod(cardType: cardType, allCards: allCards)
         let meetingsDuringTravelView = SegmentedView(frame: centerContentView.bounds,
-                                                     myStatistics: myStatistics,
+                                                     myStatistics: cards[index],
                                                      statisticsType: cardType,
-                                                     selectedDisplayType: selectedDisplayTypes[cardType] ?? .all,
+                                                     selectedDisplayType: currentDisplayType,
                                                      data: data,
                                                      delegate: delegate)
         centerContentView.addSubview(meetingsDuringTravelView)

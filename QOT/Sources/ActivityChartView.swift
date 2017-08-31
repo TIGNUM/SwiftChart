@@ -64,8 +64,8 @@ final class ActivityChartView: UIView {
 private extension ActivityChartView {
 
     func setupView() {
-        setupAverageLine()
         setupLabels()
+        setupAverageLine()
     }
 
     private func setupLabels() {
@@ -88,18 +88,19 @@ private extension ActivityChartView {
 
     private func setupAverageLine() {
         let separatorHeight: CGFloat = 1
-        let height = bounds.height - padding - separatorHeight - labelContainer.frame.height
+        let height = bounds.height - padding - separatorHeight - labelContainer.bounds.height
 
         AverageLineType.allValues.forEach { (averageLineType: AverageLineType) in
             let position = height * averageLineType.averageValue(myStatistics: myStatistics)
             let xPos = bounds.minX + padding
-            let yPos = bounds.height - position
+            let yPos = bounds.height - labelContainer.frame.height - position
             let width = bounds.width - 2 * padding
             let frame = CGRect(x: xPos, y: yPos, width: width, height: 0)
             let averageLayer = createDottedLayer()
             averageLayer.path = UIBezierPath(roundedRect: frame, cornerRadius: 0).cgPath
             averageLayer.strokeColor = averageLineType.strokeColor
             layer.addSublayer(averageLayer)
+            layoutIfNeeded()
         }
     }
 
@@ -124,10 +125,10 @@ private extension ActivityChartView {
             let xPos = xPosition(index: index, columnWidth: lineWidth)
             let yPos = bottomPos - dataPoint.value * bottomPos + labelContainer.frame.height - (padding * 0.5)
             let startPoint = CGPoint(x: xPos, y: bottomPos)
-            let endPoint = CGPoint(x: xPos, y: yPos)
+            let endPoint = CGPoint(x: xPos, y: min(bottomPos, yPos))
 
             if myStatistics.key == StatisticCardType.activitySittingMovementRatio.rawValue && dataPoint.value < 1 {
-                drawInactivityLine(xPos: xPos, yPos: yPos)
+                drawInactivityLine(xPos: xPos, yPos: min(bottomPos, yPos))
             }
 
             drawCapRoundLine(from: startPoint, to: endPoint, lineWidth: lineWidth, strokeColour: dataPoint.color)

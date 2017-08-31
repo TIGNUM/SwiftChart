@@ -46,7 +46,6 @@ final class TravelTripsPeriodChartView: UIView {
         drawDottedColumns(columnWidth: cellWidth, columnHeight: columnHeight, rowHeight: cellHeight, columnCount: columns, rowCount: rows, strokeWidth: strokeWidth, strokeColour: strokeColour)
 
         for period in data.periods {
-
             if isPeriodValid(period: period) {
                 drawPeriods(period: period, cellWidth: cellWidth, cellHeight: cellHeight, strokeWidth: 4)
             }

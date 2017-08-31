@@ -11,16 +11,30 @@ import Anchorage
 
 final class AverageMeetingBetweenLengthView: UIView {
 
+    // MARK: - Properties
+
+    fileprivate var myStatistics: MyStatistics
+
     // MARK: - Init
 
     init(frame: CGRect, myStatistics: MyStatistics) {
+        self.myStatistics = myStatistics
+
         super.init(frame: frame)
 
-        drawProgressWheel(myStatistics: myStatistics)
+        drawProgressWheel()
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        layer.removeAllSublayer()
+        
+        drawProgressWheel()
     }
 }
 
@@ -28,7 +42,7 @@ final class AverageMeetingBetweenLengthView: UIView {
 
 private extension AverageMeetingBetweenLengthView {
 
-    func drawProgressWheel(myStatistics: MyStatistics) {
+    func drawProgressWheel() {
         let arcCenter = CGPoint(x: frame.width * 0.5, y: frame.height * 0.5 + 40)
         let radius = CGFloat(frame.height * 0.5)
         let strokeColor = UIColor.white20

@@ -10,9 +10,15 @@ import UIKit
 
 final class AverageMeetingLengthView: UIView {
 
+    // MARK: - Properties
+
+    fileprivate let myStatistics: MyStatistics
+
     // MARK: - Init
 
     init(frame: CGRect, myStatistics: MyStatistics) {
+        self.myStatistics = myStatistics
+
         super.init(frame: frame)
 
         drawProgressWheel(myStatistics: myStatistics)
@@ -20,6 +26,12 @@ final class AverageMeetingLengthView: UIView {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        drawProgressWheel(myStatistics: myStatistics)
     }
 }
 
@@ -40,7 +52,6 @@ private extension AverageMeetingLengthView {
         let horizontalTo = CGPoint(x: arcCenter.x + lineSemiLength, y: arcCenter.y)
         let verticalFrom = CGPoint(x: arcCenter.x, y: arcCenter.y - lineSemiLength)
         let verticalTo = CGPoint(x: arcCenter.x, y: arcCenter.y + lineSemiLength)
-
         drawSolidCircle(arcCenter: arcCenter, radius: innerRadius, strokeColour: strokeColor)
         drawSolidCircle(arcCenter: arcCenter, radius: outerRadius, strokeColour: strokeColor)
         drawDashedCircle(arcCenter: arcCenter, radius: radius, lineWidth: lineWidth, dashPattern: dashPattern, strokeColour: strokeColor)

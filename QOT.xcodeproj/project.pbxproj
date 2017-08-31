@@ -2672,7 +2672,6 @@
 				CB9AFD171F014BF800D067F2 /* PreparationIntermediary.swift in Sources */,
 				85E1F1C91F20C24F003FA349 /* ZoomPresentationController.swift in Sources */,
 				7FE38DC11F28D2940061E98F /* PassthroughView.swift in Sources */,
-				CCB804231F4F0BFD00C6FB74 /* IntensityChartView.swift in Sources */,
 				852DADDE1EF1737700A10882 /* TravelMaxTimeZoneChangesView.swift in Sources */,
 				CC96630B1EA1B27F00B84B1C /* MyDataView.swift in Sources */,
 				CCE373141E8D32F800B79352 /* SidebarViewModel.swift in Sources */,
