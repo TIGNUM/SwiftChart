@@ -242,7 +242,7 @@ extension UIView {
         case down
     }
 
-    @discardableResult func applyFade(origin: CGPoint = CGPoint.zero, height: CGFloat = 70.0, primaryColor: UIColor = .black, fadeColor: UIColor = .clear, direction: FadeDirection = .down) -> UIView {
+    @discardableResult func applyFade(origin: CGPoint = CGPoint.zero, height: CGFloat = 70.0, primaryColor: UIColor = .darkIndigo, fadeColor: UIColor = .clear, direction: FadeDirection = .down) -> UIView {
         let fadeView = UIView(frame: CGRect(origin: origin, size: CGSize(width: bounds.size.width, height: height)))
         fadeView.backgroundColor = .clear
 
