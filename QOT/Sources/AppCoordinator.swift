@@ -313,7 +313,6 @@ extension AppCoordinator {
             let classNamesToDeleteArray = Array(classNamesToDelete)
             try syncRecordService.deleteSyncRecordsForClassNames(classNamesToDeleteArray)
             try databaseManager.deleteAllObjectsWithClassNames(classNamesToDeleteArray, fromDatabase: currentDatabase)
-            bundledDatabase.invalidate()
         } catch {
             log(error.localizedDescription)
         }

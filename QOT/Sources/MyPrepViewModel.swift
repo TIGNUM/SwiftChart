@@ -54,8 +54,8 @@ final class MyPrepViewModel {
                     return
                 }
                 self.updates.next(.willBegin)
-                deletions.forEach({ (index: Int) in
-                    self.items.remove(at: index)
+                deletions.sorted(by: >).forEach({ (index: Int) in
+                  self.items.remove(at: index)
                 })
                 let deletionPaths = deletions.map({ IndexPath(row: $0, section: 0) })
                 self.updates.next(.update(deletions: deletionPaths, insertions: [], modifications: []))
