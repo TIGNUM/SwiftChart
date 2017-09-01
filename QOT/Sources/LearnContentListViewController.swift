@@ -43,10 +43,6 @@ final class LearnContentListViewController: UIViewController {
         return CGSize(width: self.view.frame.width, height: 40)
     }()
 
-    fileprivate lazy var screenSize: CGFloat = {
-        return UIScreen.main.bounds.height > 568 ? 160 : 125
-    }()
-
     fileprivate lazy var collectionView: UICollectionView = {
         return UICollectionView(
             layout: self.collectionViewLayout,

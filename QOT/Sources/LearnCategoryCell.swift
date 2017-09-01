@@ -24,7 +24,8 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
     
     fileprivate lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 2
+        label.numberOfLines = 0
+
         return label
     }()
 
@@ -59,9 +60,8 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
     }
     
     override func updateConstraints() {
-        let margin = contentView.bounds.width * (1.0 / 9.0)
-        leftMarginConstraint.constant = margin
-        rightMarginConstraint.constant = -margin
+        leftMarginConstraint.constant = contentView.bounds.width * 0.13
+        rightMarginConstraint.constant = -contentView.bounds.width * 0.08
         
         super.updateConstraints()
     }
@@ -75,7 +75,7 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
 
     private func drawInnerCircle(frame: CGRect) {
         let center = CGPoint(x: frame.width / 2, y: frame.height / 2)
-        let radius = frame.width / 2.3
+        let radius = frame.width / 2.2
         let start: CGFloat = 0.0
         let end = 2.0 * CGFloat.pi
         let path = UIBezierPath(arcCenter: center, radius: radius, startAngle: start, endAngle: end, clockwise: true)
@@ -90,18 +90,16 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
         shape.strokeColor = UIColor.white.cgColor
         shape.fillColor = UIColor.clear.cgColor
         gradient.mask = shape
-
         shape.lineWidth = 0.1
         shape.lineCap = kCALineCapRound
-
-        self.circleLineShape?.removeFromSuperlayer()
+        circleLineShape?.removeFromSuperlayer()
         contentView.layer.addSublayer(gradient)
-        self.circleLineShape = gradient
+        circleLineShape = gradient
     }
 
     private func drawDashedCircle(frame: CGRect) {
         let center = CGPoint(x: frame.width / 2, y: frame.height / 2)
-        let radius = frame.width / 2.3
+        let radius = frame.width / 2.2
         let start: CGFloat = (3 * CGFloat.pi ) / 2
         let end: CGFloat = 2.0 * CGFloat.pi * CGFloat(percentageLearned) + start
         let path = UIBezierPath(arcCenter: center, radius: radius, startAngle: start, endAngle: end, clockwise: true)
@@ -110,7 +108,7 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
         layer.path = path.cgPath
         layer.fillColor = UIColor.clear.cgColor
         layer.strokeColor = UIColor.white.cgColor
-        layer.lineWidth = 6.0
+        layer.lineWidth = 5.0
         layer.lineDashPattern = [1]
         layer.addGlowEffect(color: UIColor.white)
 
@@ -138,10 +136,9 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
         )
         titleLabel.attributedText = attributedTextTitle
         contentCountLabel.attributedText = attributedTextCount
-        let percentageLearned = category.percentageLearned
 
-        if percentageLearned != self.percentageLearned {
-            self.percentageLearned = percentageLearned
+        if percentageLearned != category.percentageLearned {
+            percentageLearned = category.percentageLearned
             setNeedsLayout()
         }
     }
@@ -155,14 +152,12 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
         let shape = CAShapeLayer()
         let lineWidth: CGFloat = 2
         let frame = gradient.bounds
-        let newFrame = CGRect(x: frame.minX + lineWidth, y: frame.minY + lineWidth, width: frame.width - 2 * lineWidth, height: frame.height - 2 * lineWidth)
+        let newFrame = CGRect(x: frame.minX + lineWidth, y: frame.minY + lineWidth, width: (frame.width - (2 * lineWidth)), height: (frame.height - (2 * lineWidth)))
         shape.path = UIBezierPath(roundedRect: newFrame, cornerRadius: frame.width / 2).cgPath
         shape.strokeColor = UIColor.brown.cgColor
         shape.fillColor = UIColor.clear.cgColor
-
         gradient.mask = shape
-
-        self.outerLayer?.removeFromSuperlayer()
+        outerLayer?.removeFromSuperlayer()
         contentView.layer.addSublayer(gradient)
         outerLayer = gradient
     }
@@ -172,6 +167,8 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
     }
 }
 
+// MARK: - Private
+
 private extension LearnCategoryCell {
 
     func setupLayout() {
@@ -179,13 +176,13 @@ private extension LearnCategoryCell {
         textContainerView.leadingAnchor == contentView.leadingAnchor
         textContainerView.trailingAnchor == contentView.trailingAnchor
         textContainerView.bottomAnchor == contentView.bottomAnchor
-        
-        leftMarginConstraint = contentCountLabel.leadingAnchor == contentView.leadingAnchor
-        rightMarginConstraint = contentCountLabel.trailingAnchor == contentView.trailingAnchor
+
+        leftMarginConstraint = contentCountLabel.leadingAnchor == contentView.leadingAnchor + 8
+        rightMarginConstraint = contentCountLabel.trailingAnchor == contentView.trailingAnchor - 2
         contentCountLabel.bottomAnchor == titleLabel.topAnchor
 
         titleLabel.leftAnchor == contentCountLabel.leftAnchor
         titleLabel.rightAnchor == contentCountLabel.rightAnchor
-        titleLabel.centerYAnchor == contentView.centerYAnchor + 15.0
+        titleLabel.centerYAnchor == contentView.centerYAnchor + 8
     }
 }

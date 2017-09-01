@@ -98,6 +98,7 @@ final class UserService {
 // MARK: - MyToBeVision
 
 extension UserService {
+    
     func myToBeVision() -> MyToBeVision? {
         return mainRealm.objects(MyToBeVision.self).first
     }

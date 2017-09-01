@@ -17,7 +17,7 @@ struct Credential {
 
 private let keychain = Keychain(service: KeychainConstant.service.rawValue)
 
-class CredentialsManager {
+final class CredentialsManager {
     var credential: Credential? {
         get {
             guard let username = value(key: .username), let password = value(key: .password) else {

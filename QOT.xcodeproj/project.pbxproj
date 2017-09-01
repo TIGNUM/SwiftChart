@@ -1421,11 +1421,11 @@
 				D51B5C471E8D0E7E0084A65B /* LearnContentCell.swift */,
 				CCC1B6AD1E8B9B7F00D1461F /* LearnContentCollectionViewModel.swift */,
 				D51B5C481E8D0E7E0084A65B /* LearnContentLayout.swift */,
-				CB38DBDE1EF52D5C000E0F92 /* LearnStrategyListLayout.swift */,
+				85AAB53B1F447D1F00C2D53F /* LearnContentListBackgroundView.swift */,
 				CCC1B6AC1E8B9B7F00D1461F /* LearnContentListViewController.swift */,
 				CC2EE2491EDC88F0006CBFC8 /* LearnPagingCollectionViewCell.swift */,
+				CB38DBDE1EF52D5C000E0F92 /* LearnStrategyListLayout.swift */,
 				CC7D21DA1EDD5FE800C6B8E0 /* LearnPagingCollectionViewCell.xib */,
-				85AAB53B1F447D1F00C2D53F /* LearnContentListBackgroundView.swift */,
 			);
 			name = "Learn Content";
 			sourceTree = "<group>";
