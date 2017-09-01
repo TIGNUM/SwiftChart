@@ -11,7 +11,6 @@ import Anchorage
 
 protocol TabBarControllerDelegate: class {
     func didSelectTab(at index: Index, in controller: TabBarController)
-    func viewWillDisappear()
     func viewDidAppear()
 }
 
@@ -35,7 +34,7 @@ final class TabBarController: UIViewController {
         return items.map { $0.controller }
     }
     
-    fileprivate lazy var tabBarView: TabBarView = {
+    lazy var tabBarView: TabBarView = {
         let tabBarView = TabBarView(tabBarType: .bottom)
         tabBarView.setTitles(self.items.map { $0.title }, selectedIndex: self.selectedIndex)
         tabBarView.selectedColor = Layout.TabBarView.selectedButtonColor
@@ -70,11 +69,6 @@ final class TabBarController: UIViewController {
         setupHierarchy()
         setupLayout()
         loadFirstView()
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.delegate?.viewWillDisappear()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -127,22 +121,6 @@ extension TabBarController {
         tabBarView.heightAnchor == 64
         
         view.layoutIfNeeded()
-    }
-}
-
-extension TabBarController {
-
-    func buttonFrame() -> CGRect {
-        return tabBarView.selecetedButtomFrame()
-
-    }
-
-    func tutorial(show: Bool) {
-        if show {
-            tabBarView.tutorialSetup()
-        } else {
-            tabBarView.clearTutorialSetup()
-        }
     }
 }
 

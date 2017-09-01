@@ -9,45 +9,16 @@
 import UIKit
 import MBProgressHUD
 
-struct LaunchHandler {
+class LaunchHandler {
 
-    static let `default` = LaunchHandler()
-
-    enum URLScheme: String {
-        case fitbit = "fitbit-integration"
-        case preparation = "preparation"
-        case dailyPrep = "morning-interview"
-        case weeklyChoices = "weekly-choices"
-        case randomContent = "random-content"
-        case weeklyPeakPerformance = "weekly-peak-performance"
-
-        static var allValues: [URLScheme] {
-            return [
-                .fitbit,
-                .preparation,
-                .dailyPrep,
-                .weeklyChoices,
-                .randomContent,
-                .weeklyPeakPerformance
-            ]
-        }
-
-        var queryName: String {
-            switch self {
-            case .fitbit: return "code"
-            case .preparation: return "#"
-            case .dailyPrep: return "groupID"
-            case .weeklyChoices: return ""
-            case .randomContent: return "contentID"
-            case .weeklyPeakPerformance: return ""
-            }
-        }
-
-        func queryParametter(url: URL) -> String? {
-            return url.queryStringParameter(param: queryName)
-        }
+    fileprivate var appDelegate: AppDelegate {
+        return AppDelegate.current
     }
-
+    
+    func canLaunch(url: URL) -> Bool {
+        return URLScheme.isSupportedURL(url)
+    }
+    
     func process(url: URL) {
         guard
             let host = url.host,
@@ -64,16 +35,6 @@ struct LaunchHandler {
         case .weeklyPeakPerformance: return
         }
     }
-
-    func generatePreparationURL(withID localID: String) -> String? {
-        guard
-            let urlTypes = Bundle.main.infoDictionary?["CFBundleURLTypes"] as? [[String: Any]],
-            let urlSchemes = urlTypes[0]["CFBundleURLSchemes"] as? [String] else {
-                return nil
-        }
-
-        return "\(urlSchemes[0])://\(URLScheme.preparation.rawValue)\(URLScheme.preparation.queryName)\(localID)"
-    }
 }
 
 // MARK: - Preparation
@@ -85,7 +46,7 @@ extension LaunchHandler {
             return
         }
 
-        AppDelegate.current.appCoordinator.presentPreparationCheckList(localID: localID)
+        appDelegate.appCoordinator.presentPreparationCheckList(localID: localID)
     }
 }
 
@@ -95,7 +56,7 @@ extension LaunchHandler {
 
     func fitbit(accessToken: String?) {
         AddSensorCoordinator.safariViewController?.dismiss(animated: true, completion: nil)
-        AppDelegate.current.window?.showProgressHUD(type: .fitbit) {
+        appDelegate.window?.showProgressHUD(type: .fitbit) {
             self.sendAccessToken(accessToken: accessToken)
         }
     }
@@ -136,7 +97,7 @@ extension LaunchHandler {
     }
 
     private func showHUD(type: AlertType) {
-        AppDelegate.current.window?.showProgressHUD(type: type)
+        appDelegate.window?.showProgressHUD(type: type)
     }
 }
 
@@ -152,7 +113,7 @@ extension LaunchHandler {
         }
 
         //TODO: dates?
-        AppDelegate.current.appCoordinator.presentMorningInterview(groupID: groupIDIntValue, validFrom: Date(), validTo: Date())
+        appDelegate.appCoordinator.presentMorningInterview(groupID: groupIDIntValue, validFrom: Date(), validTo: Date())
     }
 }
 
@@ -162,7 +123,7 @@ extension LaunchHandler {
 
     func weeklyChoiches() {
         let dates = startEndDate()
-        AppDelegate.current.appCoordinator.presentWeeklyChoices(forStartDate: dates.startDate, endDate: dates.endDate)
+        appDelegate.appCoordinator.presentWeeklyChoices(forStartDate: dates.startDate, endDate: dates.endDate)
     }
 
     private func startEndDate() -> (startDate: Date, endDate: Date) {
@@ -191,6 +152,6 @@ extension LaunchHandler {
         }
 
         let categoryTitle = String(format: "Performance %@", title)
-        AppDelegate.current.appCoordinator.presentLearnContentItems(contentID: contentID, categoryTitle: categoryTitle)
+        appDelegate.appCoordinator.presentLearnContentItems(contentID: contentID, categoryTitle: categoryTitle)
     }
 }

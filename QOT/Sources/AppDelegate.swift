@@ -14,44 +14,42 @@ import CoreLocation
 import Realm
 import Buglife
 
-extension AppDelegate {
-
-    static var current: AppDelegate {
-        guard let app = UIApplication.shared.delegate as? AppDelegate else {
-            fatalError("AppDelegate not found")
-        }
-
-        return app
-    }
-}
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Properties
 
+    lazy var windowManager: WindowManager = {
+        guard let window = self.window else {
+            fatalError("window shouldn't be nil")
+        }
+        let frame = UIScreen.main.bounds
+        return WindowManager(
+            alertWindow: UIWindow(frame: frame),
+            priorityWindow: UIWindow(frame: frame),
+            overlayWindow: UIWindow(frame: frame),
+            normalWindow: window)
+    }()
     lazy var appCoordinator: AppCoordinator = {
-        return AppCoordinator(window: self.window!)
+        return AppCoordinator(windowManager: self.windowManager, remoteNotificationHandler: self.remoteNotificationHandler)
     }()
-    
-    #if BUILD_DATABASE
-    lazy var databaseBuilder: DatabaseBuilder = {
-        let realmProvider = RealmProvider()
-        return DatabaseBuilder(
-            config: RealmProvider.config,
-            networkManager: NetworkManager(),
-            syncRecordService: SyncRecordService(realmProvider: realmProvider),
-            realmProvider: realmProvider,
-            deviceID: deviceID
-        )
+    lazy var remoteNotificationHandler: RemoteNotificationHandler = {
+        return RemoteNotificationHandler(launchHandler: self.launchHandler)
     }()
-    #endif
+    lazy var launchHandler: LaunchHandler = {
+        return LaunchHandler()
+    }()
 
     var window: UIWindow?
-    fileprivate var canOpenURL = true
-
+    static var current: AppDelegate {
+        guard let app = UIApplication.shared.delegate as? AppDelegate else {
+            fatalError("AppDelegate not found")
+        }
+        return app
+    }
+    
     // MARK: - Life Cycle
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
 
@@ -62,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         
         Fabric.with([Crashlytics.self])
-        Buglife.shared().start(withAPIKey: "fj62sZjDnl3g0dLuXJHUzAtt")
+        Buglife.shared().start(withAPIKey: "fj62sZjDnl3g0dLuXJHUzAtt") // FIXME: obfuscate
         QOTUsageTimer.sharedInstance.start()
         appCoordinator.start()
         UIApplication.shared.statusBarStyle = .lightContent
@@ -76,18 +74,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
 
         return true
-    }
-
-    private func setupUAirship() {
-        guard let path = Bundle.main.path(forResource: "AirshipConfig", ofType: "plist") else {
-            return
-        }
-
-        let config = UAConfig(contentsOfFile: path)
-        UAirship.takeOff(config)
-        UAirship.push().pushNotificationDelegate = self
-        UAirship.shared().analytics.isEnabled = true
-        UAirship.push().updateRegistration()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -109,15 +95,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        if canOpenURL == true {
-            LaunchHandler.default.process(url: url)
-        }
-
-        return true
+        return launchHandler.canLaunch(url: url)
     }
-}
-
-extension AppDelegate {
+    
+    // MARK: - private
+    
+    private func setupUAirship() {
+        guard let path = Bundle.main.path(forResource: "AirshipConfig", ofType: "plist") else {
+            return
+        }
+        
+        let config = UAConfig(contentsOfFile: path)
+        UAirship.takeOff(config)
+        UAirship.push().pushNotificationDelegate = remoteNotificationHandler
+        UAirship.shared().analytics.isEnabled = true
+        UAirship.push().updateRegistration()
+    }
 
     fileprivate var appFilePath: String {
         let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -128,7 +121,7 @@ extension AppDelegate {
     fileprivate func logAppLocation() {
         log("App location: \(appFilePath)", enabled: LogToggle.Manager.FileManager)
     }
-
+    
     fileprivate func logAvailableFonts() {
         for family: String in UIFont.familyNames {
             log("\(family)", enabled: LogToggle.Manager.Font)
@@ -138,72 +131,3 @@ extension AppDelegate {
         }
     }
 }
-
-// MARK: - UAPushNotificationDelegate
-
-extension AppDelegate: UAPushNotificationDelegate {
-
-    func receivedNotificationResponse(_ notificationResponse: UANotificationResponse, completionHandler: @escaping () -> Void) {
-        canOpenURL = true
-        if
-            let deepLink = notificationResponse.notificationContent.notificationInfo.values.first as? String,
-            let url = URL(string: deepLink) {
-                LaunchHandler.default.process(url: url)                
-
-        }
-        completionHandler()
-    }
-
-    func receivedForegroundNotification(_ notificationContent: UANotificationContent, completionHandler: @escaping () -> Void) {
-        canOpenURL = false
-        completionHandler()
-    }
-
-    func presentationOptions(for notification: UNNotification) -> UNNotificationPresentationOptions {
-        canOpenURL = false
-
-        return [.alert, .sound]
-    }
-}
-
-// MARK: - BUILD_DATABASE
-
-#if BUILD_DATABASE
-extension AppDelegate {
-    fileprivate func __buildDatabase() {
-        log("\nbuild database started (may take some time - get a tea...)\n")
-        
-        let context = SyncContext()
-        
-        databaseBuilder.setContentOperations([
-            databaseBuilder.downSyncOperation(for: ContentCategory.self, context: context),
-            databaseBuilder.downSyncOperation(for: ContentCollection.self, context: context),
-            databaseBuilder.downSyncOperation(for: ContentItem.self, context: context),
-            databaseBuilder.downSyncOperation(for: Question.self, context: context),
-            databaseBuilder.downSyncOperation(for: Page.self, context: context),
-            databaseBuilder.updateRelationsOperation(context: context)
-        ])
-        databaseBuilder.setCompletion({
-            guard context.errors.count == 0 else {
-                log(context.errors[0].localizedDescription)
-                return
-            }
-            
-            do {
-                let name = "default-v1.realm"
-                let fileURL = try self.databaseBuilder.copyWithName(name)
-                log("\nbuild database completed successfully. paste this into terminal:")
-                log("cd <qot project>")
-                log("cp \"\(fileURL!.absoluteString.removeFilePrefix)\" \"QOT/Resources/Database/\(name)\"")
-                log("\nnow verify it by opening the database:")
-                log("open \"QOT/Resources/Database/\(name)\"")
-                log("\nthen close Realm browser, and remove all the crap:")
-                log("rm QOT/Resources/Database/*.lock;rm -r QOT/Resources/Database/*.management;rm QOT/Resources/Database/*.note")
-            } catch {
-                log("\nbuild database failed with error: \(error.localizedDescription)")
-            }
-        })
-        databaseBuilder.build()
-    }
-}
-#endif

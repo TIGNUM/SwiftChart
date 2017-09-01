@@ -17,18 +17,19 @@ final class AppCoordinator: ParentCoordinator {
     
     // MARK: - Properties
     
-    let window: UIWindow
-    let secondaryWindow: UIWindow
     var checkListIDToPresent: String?
     var children = [Coordinator]()
     lazy var logoutNotificationHandler: NotificationHandler = NotificationHandler(name: .logoutNotification)
+    fileprivate let windowManager: WindowManager
+    fileprivate let remoteNotificationHandler: RemoteNotificationHandler
     fileprivate var services: Services?
     fileprivate var topTabBarController: UINavigationController?
     fileprivate var tabBarCoordinator: TabBarCoordinator?
     fileprivate lazy var permissionHandler: PermissionHandler = PermissionHandler()
     fileprivate lazy var networkManager: NetworkManager = NetworkManager(delegate: self, credentialsManager: self.credentialsManager)
-    fileprivate lazy var credentialsManager: CredentialsManager = CredentialsManager()    
-
+    fileprivate lazy var credentialsManager: CredentialsManager = CredentialsManager()
+    fileprivate var canProcessRemoteNotifications = false
+    
     fileprivate lazy var realmProvider: RealmProvider = {
         return RealmProvider()
     }()
@@ -71,11 +72,11 @@ final class AppCoordinator: ParentCoordinator {
 
     // MARK: - Life Cycle
 
-    init(window: UIWindow) {
-        self.window = window
-        secondaryWindow = UIWindow(frame: UIScreen.main.bounds)
-        configureSecondaryWindow()
+    init(windowManager: WindowManager, remoteNotificationHandler: RemoteNotificationHandler) {
+        self.windowManager = windowManager
+        self.remoteNotificationHandler = remoteNotificationHandler
         
+        remoteNotificationHandler.delegate = self
         logoutNotificationHandler.handler = { [weak self] (_: Notification) in
             self?.restart()
         }
@@ -92,8 +93,7 @@ final class AppCoordinator: ParentCoordinator {
         pageTracker.start()
         
         let viewController = AnimatedLaunchScreenViewController()
-        window.rootViewController = viewController
-        window.makeKeyAndVisible()
+        windowManager.setRootViewController(viewController, atLevel: .normal, animated: false, completion: nil)
         viewController.fadeInLogo()
         viewController.startAnimatingImages {
             viewController.fadeOutLogo { [unowned self] in
@@ -108,7 +108,7 @@ final class AppCoordinator: ParentCoordinator {
 
     func restart() {
         removeAllChildren()
-        secondaryWindow.clear()
+        windowManager.clearWindows()
         logout()
         showLogin()
     }
@@ -136,10 +136,13 @@ final class AppCoordinator: ParentCoordinator {
                 if let tabBarCoordinator = self.tabBarCoordinator, !tabBarCoordinator.isLoading, doingInitialSync {
                     tabBarCoordinator.showLoading()
                 }
+                
                 self.updateDeviceToken()
+                self.canProcessRemoteNotifications = true
+                self.remoteNotificationHandler.processOutstandingNotifications()
             case .failure:
                 // TODO: localise alert text
-                self.showAlert(type: .custom(title: "Error", message: "There was a problem initializing the app's data. Please restart the app and try again"), handler: {
+                self.showMajorAlert(type: .custom(title: "Error", message: "There was a problem initializing the app's data. Please restart the app and try again"), handler: {
                     exit(0)
                 }, handlerDestructive: nil)
             }
@@ -171,25 +174,11 @@ private extension AppCoordinator {
         }
     }
 
-    func switchToSecondaryWindow() {
-        secondaryWindow.makeKeyAndVisible()
-    }
-
-    func switchToMainWindow() {
-        window.makeKeyAndVisible()
-    }
-
-    func configureSecondaryWindow() {
-        let viewController = UIViewController()
-        viewController.view.backgroundColor = .clear
-        secondaryWindow.rootViewController = viewController
-    }
-
     func startTabBarCoordinator(services: Services, permissionHandler: PermissionHandler) {
         // create coordinator
         let selectedIndex = checkListIDToPresent != nil ? 2 : 0
         let coordinator = TabBarCoordinator(
-            window: window,
+            windowManager: windowManager,
             selectedIndex: selectedIndex,
             services: services,
             eventTracker: eventTracker,
@@ -222,83 +211,86 @@ extension AppCoordinator {
     }
 
     func presentMorningInterview(groupID: Int, validFrom: Date, validTo: Date) {
-        guard let services = services else {
+        guard let services = services, !windowManager.hasContent(atLevel: .priority) else {
             return
         }
 
         let viewModel = MorningInterviewViewModel(services: services, questionGroupID: groupID, validFrom: validFrom, validTo: validTo)
         let morningInterViewController = MorningInterviewViewController(viewModel: viewModel)
         morningInterViewController.delegate = self
-        
-        switchToSecondaryWindow()
-        secondaryWindow.rootViewController?.present(morningInterViewController, animated: true, completion: nil)
+        windowManager.showWindow(atLevel: .priority)
+        windowManager.presentViewController(morningInterViewController, atLevel: .priority, animated: true, completion: nil)
     }
 
     func presentWeeklyChoices(forStartDate startDate: Date, endDate: Date) {
-        guard let services = services else {
+        guard let services = services, !windowManager.hasContent(atLevel: .priority) else {
             return
         }
 
         let viewModel = SelectWeeklyChoicesDataModel(services: services, maxSelectionCount: Layout.MeSection.maxWeeklyPage, startDate: startDate, endDate: endDate)
-        let image = window.rootViewController?.view.screenshot()
+        let image = windowManager.rootViewController(atLevel: .normal)?.view.screenshot()
         let viewController = SelectWeeklyChoicesViewController(delegate: self, viewModel: viewModel, backgroundImage: image)
-        switchToSecondaryWindow()
-        secondaryWindow.rootViewController?.present(viewController, animated: true, completion: nil)
+        windowManager.showWindow(atLevel: .priority)
+        windowManager.presentViewController(viewController, atLevel: .priority, animated: true, completion: nil)
     }
 
-    // TODO: The following 2 methods should be refactored
+    // FIXME: REFACTOR THIS
     func presentLearnContentItems(contentID: Int, categoryTitle: String) {
-
         guard
             let services = services,
             let content = services.contentService.contentCollection(id: contentID),
             let category = services.contentService.learnContentCategory(categoryTitle: categoryTitle),
-            let rootViewController = window.rootViewController else {
+            let rootViewController = windowManager.rootViewController(atLevel: .normal),
+            !windowManager.hasContent(atLevel: .priority) else {
                 return
         }
 
+        // FIXME: do we need to use the coordinator?
         let presentationManager = CircularPresentationManager(originFrame: rootViewController.view.frame)
         let coordinator = LearnContentItemCoordinator(root: rootViewController, eventTracker: eventTracker, services: services, content: content, category: category, presentationManager: presentationManager, topBarDelegate: self)
-        topTabBarController = coordinator.topTabBarController        
-        switchToSecondaryWindow()
-        secondaryWindow.rootViewController?.present(coordinator.topTabBarController, animated: true, completion: nil)
+        topTabBarController = coordinator.topTabBarController
+        windowManager.showWindow(atLevel: .priority)
+        windowManager.presentViewController(coordinator.topTabBarController, atLevel: .priority, animated: true, completion: nil)
     }
 
+    // FIXME: REFACTOR THIS
     func presentLearnContentItems(contentID: Int, categoryID: Int) {
-
         guard
             let services = services,
             let content = services.contentService.contentCollection(id: contentID),
             let category = services.contentService.contentCategory(id: categoryID),
-            let rootViewController = window.rootViewController else {
+            let rootViewController = windowManager.rootViewController(atLevel: .normal),
+            !windowManager.hasContent(atLevel: .priority) else {
                 return
         }
 
+        // FIXME: do we need to use the coordinator?
         let presentationManager = CircularPresentationManager(originFrame: rootViewController.view.frame)
         let coordinator = LearnContentItemCoordinator(root: rootViewController, eventTracker: eventTracker, services: services, content: content, category: category, presentationManager: presentationManager, topBarDelegate: self)
         topTabBarController = coordinator.topTabBarController
-        switchToSecondaryWindow()
-        secondaryWindow.rootViewController?.present(coordinator.topTabBarController, animated: true, completion: nil)
+        windowManager.showWindow(atLevel: .priority)
+        windowManager.presentViewController(coordinator.topTabBarController, atLevel: .priority, animated: true, completion: nil)
     }
 
-    func showAlert(type: AlertType, handler: (() -> Void)? = nil, handlerDestructive: (() -> Void)? = nil) {
-        switchToSecondaryWindow()
-        secondaryWindow.rootViewController?.showAlert(type: type, handler: { [weak self] in
-            self?.switchToMainWindow()
+    func showMajorAlert(type: AlertType, handler: (() -> Void)? = nil, handlerDestructive: (() -> Void)? = nil) {
+        let alert = UIViewController.alert(forType: type, handler: {
+            self.windowManager.resignWindow(atLevel: .alert)
             handler?()
-            }, handlerDestructive: { [weak self] in
-                self?.switchToMainWindow()
-                handlerDestructive?()
+        }, handlerDestructive: {
+            self.windowManager.resignWindow(atLevel: .alert)
+            handlerDestructive?()
         })
+        windowManager.showWindow(atLevel: .alert)
+        windowManager.setRootViewController(alert, atLevel: .alert, animated: true, completion: nil)
     }
 
     func showOnboarding() {
-        let coordinator = OnboardingCoordinator(window: window, delegate: self, permissionHandler: permissionHandler)
+        let coordinator = OnboardingCoordinator(windowManager: windowManager, delegate: self, permissionHandler: permissionHandler)
         startChild(child: coordinator)
     }
 
     func showLogin() {
-        let loginCoordinator = LoginCoordinator(window: window, delegate: self, networkManager: networkManager)
+        let loginCoordinator = LoginCoordinator(windowManager: windowManager, delegate: self, networkManager: networkManager)
         startChild(child: loginCoordinator)
     }
 
@@ -326,24 +318,14 @@ extension AppCoordinator {
             log(error.localizedDescription)
         }
     }
-
-    func showTutorial(_ tutorial: Tutorials, buttonFrame: CGRect?, completion: @escaping () -> Void) {
-        switch tutorial {
-        default:
-            let vm = TutorialViewModel(tutorial: tutorial, buttonFrame: buttonFrame, completion: completion)
-            let viewController = TutorialViewController(viewModel: vm, delegate: self)
-
-            self.switchToSecondaryWindow()
-            self.secondaryWindow.rootViewController = viewController
-        }
-    }
 }
 
 extension AppCoordinator: TopNavigationBarDelegate {
 
     func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
-        topTabBarController?.dismiss(animated: true, completion: nil)
-        switchToMainWindow()
+        topTabBarController?.dismiss(animated: true, completion: {
+            self.windowManager.resignWindow(atLevel: .priority)
+        })
     }
 
     func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
@@ -355,18 +337,6 @@ extension AppCoordinator: TopNavigationBarDelegate {
 
     func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
         print("did select book mark")
-    }
-}
-
-// MARK: - TutorialViewControllerDelegate
-
-extension AppCoordinator: TutorialViewControllerDelegate {
-
-    func didCloseTutorial(completion: @escaping () -> Void) {
-        print("didCloseTutorial")
-        switchToMainWindow()
-        secondaryWindow.rootViewController = nil
-        completion()
     }
 }
 
@@ -413,7 +383,7 @@ extension AppCoordinator: MorningInterviewViewControllerDelegate {
 
     func didTapClose(viewController: MorningInterviewViewController) {
         viewController.dismiss(animated: true) { 
-            self.switchToMainWindow()
+            self.windowManager.resignWindow(atLevel: .priority)
         }
     }
 }
@@ -423,7 +393,7 @@ extension AppCoordinator: MorningInterviewViewControllerDelegate {
 extension AppCoordinator: SelectWeeklyChoicesViewControllerDelegate {
     func dismiss(viewController: SelectWeeklyChoicesViewController) {
         viewController.dismiss(animated: true) {
-            self.switchToMainWindow()
+            self.windowManager.resignWindow(atLevel: .priority)
         }
     }
 
@@ -447,5 +417,14 @@ extension AppCoordinator: OnboardingCoordinatorDelegate {
     func onboardingCoordinatorDidFinish(_ onboardingCoordinator: OnboardingCoordinator) {
         removeChild(child: onboardingCoordinator)
         showApp()
+    }
+}
+
+// MARK: - RemoteNotificationHandlerDelegate
+
+extension AppCoordinator: RemoteNotificationHandlerDelegate {
+    
+    func remoteNotificationHandler(_ handler: RemoteNotificationHandler, canProcessNotificationResponse: UANotificationResponse) -> Bool {
+        return canProcessRemoteNotifications
     }
 }

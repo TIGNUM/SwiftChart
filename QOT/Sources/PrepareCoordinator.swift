@@ -228,7 +228,7 @@ extension PrepareCoordinator {
             let eventStore = EKEventStore.shared
             if let event = eventStore.event(withIdentifier: eventID) {
                 var notes = event.notes ?? ""
-                guard let preparationLink = LaunchHandler.default.generatePreparationURL(withID: localID) else {
+                guard let preparationLink = URLScheme.preparationURL(withID: localID) else {
                     return
                 }
                 notes += "\n\n" + preparationLink

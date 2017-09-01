@@ -32,7 +32,7 @@ final class OnboardingCoordinator: ParentCoordinator {
     private static let isOnboardingCompleteKey = "qot_onboarding_complete"
     var children: [Coordinator] = [Coordinator]()
     weak var delegate: OnboardingCoordinatorDelegate?
-    private let window: UIWindow
+    private let windowManager: WindowManager
     private let chatViewModel = ChatViewModel<Choice>()
     fileprivate let permissionHandler: PermissionHandler    
 
@@ -45,8 +45,8 @@ final class OnboardingCoordinator: ParentCoordinator {
         }
     }
 
-    init(window: UIWindow, delegate: OnboardingCoordinatorDelegate, permissionHandler: PermissionHandler) {
-        self.window = window
+    init(windowManager: WindowManager, delegate: OnboardingCoordinatorDelegate, permissionHandler: PermissionHandler) {
+        self.windowManager = windowManager
         self.delegate = delegate
         self.permissionHandler = permissionHandler
     }
@@ -65,9 +65,8 @@ final class OnboardingCoordinator: ParentCoordinator {
         navigationBar.titleTextAttributes = [NSFontAttributeName: Font.H5SecondaryHeadline, NSForegroundColorAttributeName: UIColor.white]
         
         startOnboarding() // must be called before adding chat vc to window, else chat won't animate
-
-        window.setRootViewControllerWithFadeAnimation(navigationController)
-        window.makeKeyAndVisible()
+        
+        windowManager.setRootViewController(navigationController, atLevel: .normal, animated: true, completion: nil)
     }
     
     // MARK: - private

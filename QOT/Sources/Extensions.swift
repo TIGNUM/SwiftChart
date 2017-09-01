@@ -139,18 +139,32 @@ extension UIBezierPath {
 
 extension CALayer {
 
-    func addGlowEffect(color: UIColor, shadowRadius: CGFloat = 10, shadowOpacity: Float = 0.9) {
+    func addGlowEffect(color: UIColor, shadowRadius: CGFloat = 10, shadowOpacity: Float = 0.9, animate: Bool = true) {
         self.shadowColor = color.cgColor
         self.shadowRadius = shadowRadius
-        self.shadowOpacity = shadowOpacity
         self.shadowOffset = .zero
+        self.shadowOpacity = shadowOpacity
+        
+        if animate {
+            let animation = CABasicAnimation(keyPath: "shadowOpacity")
+            animation.fromValue = 0.0
+            animation.toValue = shadowOpacity
+            animation.duration = 0.5
+            add(animation, forKey: "qot_shadowOpacity")
+        }
     }
 
-    func removeGlowEffect() {
-        self.shadowColor = UIColor.clear.cgColor
-        self.shadowRadius = 0
-        self.shadowOpacity = 0
-        self.shadowOffset = .zero
+    func removeGlowEffect(animate: Bool = true) {
+        let opacity = shadowOpacity
+        shadowOpacity = 0
+
+        if animate {
+            let animation = CABasicAnimation(keyPath: "shadowOpacity")
+            animation.fromValue = opacity
+            animation.toValue = 0.0
+            animation.duration = 0.5
+            add(animation, forKey: "qot_shadowOpacity")
+        }
     }
 
     func removeAllSublayer() {
@@ -162,8 +176,8 @@ extension CALayer {
 
 extension CAShapeLayer {
 
-    override func addGlowEffect(color: UIColor, shadowRadius: CGFloat = 10, shadowOpacity: Float = 0.9) {
-        super.addGlowEffect(color: color, shadowRadius: shadowRadius, shadowOpacity: shadowOpacity)
+    override func addGlowEffect(color: UIColor, shadowRadius: CGFloat = 10, shadowOpacity: Float = 0.9, animate: Bool = true) {
+        super.addGlowEffect(color: color, shadowRadius: shadowRadius, shadowOpacity: shadowOpacity, animate: animate)
     }
 
     class func circle(center: CGPoint, radius: CGFloat, fillColor: UIColor, strokeColor: UIColor) -> CAShapeLayer {
@@ -304,10 +318,12 @@ extension UIView {
 // MARK: - UIWindow
 
 extension UIWindow {
-    func setRootViewControllerWithFadeAnimation(_ viewController: UIViewController, duration: TimeInterval = 1.0) {
+    func setRootViewControllerWithFadeAnimation(_ viewController: UIViewController, duration: TimeInterval = 1.0, completion: (() -> Void)? = nil) {
         UIView.transition(with: self, duration: duration, options: .transitionCrossDissolve, animations: {
             self.rootViewController = viewController
-        }, completion: nil)
+        }, completion: { _ in
+            completion?()
+        })
     }
     
     func clear() {

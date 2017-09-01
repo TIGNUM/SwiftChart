@@ -15,38 +15,33 @@ class TutorialViewModel: NSObject {
 
     // MARK: - Properties
 
-    let tutorial: Tutorials
-    let buttonFrame: CGRect?
-    let completion: () -> Void
+    let tutorial: Tutorial
 
     lazy var title: String = {
         switch self.tutorial {
-        case .learnTutorial:
+        case .learn:
             return "01/03 \(R.string.localized.tabBarItemLearn())"
-        case .meTutorial:
+        case .me:
             return "02/03 \(R.string.localized.tabBarItemMe())"
-        case .prepareTutorial:
+        case .prepare:
             return "03/03 \(R.string.localized.tabBarItemPrepare())"
         }
     }()
 
     lazy var content: String = {
         switch self.tutorial {
-        case .learnTutorial:
+        case .learn:
             return R.string.localized.tutorialLearnText()
-        case .meTutorial:
+        case .me:
             return R.string.localized.tutorialMeText()
-        case .prepareTutorial:
+        case .prepare:
             return R.string.localized.tutorialPrepareText()
         }
     }()
 
     // MARK: - Methods
 
-    init(tutorial: Tutorials, buttonFrame: CGRect?, completion: @escaping () -> Void) {
+    init(tutorial: Tutorial) {
         self.tutorial = tutorial
-        self.buttonFrame = buttonFrame
-        self.completion = completion
     }
-
 }

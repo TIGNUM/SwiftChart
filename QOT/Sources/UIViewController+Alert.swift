@@ -162,6 +162,12 @@ enum AlertType {
 
 extension UIViewController {
 
+    class func alert(forType type: AlertType, handler: (() -> Void)? = nil, handlerDestructive: (() -> Void)? = nil) -> UIAlertController {
+        let alertController = UIViewController.alertController(type: type)
+        addActions(type: type, alertController: alertController, handler: handler, handlerDestructive: handlerDestructive)
+        return alertController
+    }
+    
     func showAlert(type: AlertType, handler: (() -> Void)? = nil, handlerDestructive: (() -> Void)? = nil) {
         let alertController = UIViewController.alertController(type: type)
         UIViewController.addActions(type: type, alertController: alertController, handler: handler, handlerDestructive: handlerDestructive)

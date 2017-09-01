@@ -16,25 +16,20 @@ final class TabBarCoordinator: ParentCoordinator {
 
     // MARK: - Properties
 
-    fileprivate let window: UIWindow
+    fileprivate let windowManager: WindowManager
     fileprivate let services: Services
     fileprivate let eventTracker: EventTracker
     fileprivate let selectedIndex: Observable<Index>
-    fileprivate var tutorialDispatchWorkItem: DispatchWorkItem?
     fileprivate var viewControllers = [UIViewController]()
     fileprivate var tabBarController: TabBarController?
     fileprivate let permissionHandler: PermissionHandler
     fileprivate var preparationID: String?
-    fileprivate var hasLoaded = false
-    fileprivate var hasStarted = false
-    fileprivate var hasTutorialStarted = false
-    fileprivate var tutorialIsStopped = false
-    fileprivate var disposeBag = DisposeBag()
+    fileprivate var hasLoadedFirstTime = false
     fileprivate let pageTracker: PageTracker
     var children = [Coordinator]()
 
     var isLoading: Bool {
-        return window.rootViewController?.presentedViewController is LoadingViewController
+        return windowManager.rootViewController(atLevel: .normal)?.presentedViewController is LoadingViewController
     }
     
     lazy private var syncAllStartedNotificationHandler: NotificationHandler = {
@@ -111,8 +106,8 @@ final class TabBarCoordinator: ParentCoordinator {
 
     // MARK: - Init
     
-    init(window: UIWindow, selectedIndex: Index, services: Services, eventTracker: EventTracker, permissionHandler: PermissionHandler, pageTracker: PageTracker) {
-        self.window = window
+    init(windowManager: WindowManager, selectedIndex: Index, services: Services, eventTracker: EventTracker, permissionHandler: PermissionHandler, pageTracker: PageTracker) {
+        self.windowManager = windowManager
         self.services = services
         self.eventTracker = eventTracker
         self.selectedIndex = Observable(selectedIndex)
@@ -120,21 +115,17 @@ final class TabBarCoordinator: ParentCoordinator {
         self.pageTracker = pageTracker
         
         syncAllStartedNotificationHandler.handler = { (notification: Notification) in
-            guard let userInfo = notification.userInfo, let isDownloadRecordsValid = userInfo["isDownloadRecordsValid"] as? Bool, isDownloadRecordsValid == false, !self.hasLoaded else {
+            guard let userInfo = notification.userInfo, let isDownloadRecordsValid = userInfo["isDownloadRecordsValid"] as? Bool, isDownloadRecordsValid == false, !self.hasLoadedFirstTime else {
                 return
             }
             self.showLoading()
         }
 
         syncAllFinishedNotificationHandler.handler = { (_: Notification) in
-            self.hasLoaded = true
+            self.hasLoadedFirstTime = true
             self.hideLoading(completion: {
                 if let preparationID = self.preparationID {
                     self.prepareCoordinator.showPrepareCheckList(preparationID: preparationID)
-                } else {
-                    if self.hasStarted && !self.hasTutorialStarted {
-                        self.startTutorials()
-                    }
                 }
             })
         }
@@ -143,7 +134,7 @@ final class TabBarCoordinator: ParentCoordinator {
     // MARK: -
 
     func showPreparationCheckList(localID: String) {
-        if hasLoaded {
+        if hasLoadedFirstTime {
             prepareCoordinator.showPrepareCheckList(preparationID: localID)
         } else {
             preparationID = localID
@@ -155,7 +146,7 @@ final class TabBarCoordinator: ParentCoordinator {
             return
         }
 
-        window.rootViewController?.present(loadingViewController, animated: false, completion: nil)
+        windowManager.presentViewController(loadingViewController, atLevel: .normal, animated: true, completion: nil)
         loadingViewController.fadeIn(withCompletion: completion)
     }
     
@@ -172,79 +163,51 @@ final class TabBarCoordinator: ParentCoordinator {
             })
         })
     }
-}
-
-// MARK: - TopTabBarControllers
-
-private extension TabBarCoordinator {
     
-    func bottomTabBarController() -> TabBarController {
-        addViewControllers()
+    func start() {
+        viewControllers.append(topTabBarControllerLearn)
+        viewControllers.append(topTabBarControllerMe)
+        viewControllers.append(topTabBarControllerPrepare)
+        
+        tabBarController = bottomTabBarController()
+        windowManager.setRootViewController(tabBarController!, atLevel: .normal, animated: true, completion: nil)
+    }
+    
+    // MARK: - private
+    
+    private func bottomTabBarController() -> TabBarController {
         let bottomTabBarController = TabBarController(items: tabBarControllerItems(), selectedIndex: selectedIndex.value)
         bottomTabBarController.modalTransitionStyle = .crossDissolve
         bottomTabBarController.modalPresentationStyle = .custom
         bottomTabBarController.delegate = self
-
         return bottomTabBarController
     }
-
-    func tabBarControllerItems() -> [TabBarController.Item] {
+    
+    private func tabBarControllerItems() -> [TabBarController.Item] {
         return [
             TabBarController.Item(controller: topTabBarControllerLearn, title: R.string.localized.tabBarItemLearn()),
             TabBarController.Item(controller: topTabBarControllerMe, title: R.string.localized.tabBarItemMe()),
             TabBarController.Item(controller: topTabBarControllerPrepare, title: R.string.localized.tabBarItemPrepare())
         ]
     }
-}
-
-// MARK: - Helpers
-
-extension TabBarCoordinator {
-
-    func start() {
-        tabBarController = bottomTabBarController()
-        window.setRootViewControllerWithFadeAnimation(tabBarController!)
-        window.makeKeyAndVisible()
-        hasStarted = true
-
-        if hasLoaded && !hasTutorialStarted {
-            startTutorials()
+    
+    fileprivate func showTutorial(_ tutorial: Tutorial) {
+        guard !tutorial.exists(), let tabBarView = tabBarController?.tabBarView else {
+            return
         }
-    }
-
-    func addViewControllers() {
-        viewControllers.append(topTabBarControllerLearn)
-        viewControllers.append(topTabBarControllerMe)
-        viewControllers.append(topTabBarControllerPrepare)
-    }
-}
-
-// MARK: - Private
-
-private extension TabBarCoordinator {
-
-    func startTutorials() {
-        hasTutorialStarted = true
-        self.selectedIndex.observeNext { [unowned self] value in
-            let tutorial: Tutorials = (value == 0 ? .learnTutorial : (value == 1 ? .meTutorial : .prepareTutorial))
-
-            self.tutorialDispatchWorkItem?.cancel()
-
-            if !tutorial.exists() && !self.tutorialIsStopped {
-
-                let dispatchWorkItem = DispatchWorkItem { [unowned self] in
-                    self.tabBarController?.tutorial(show: true)
-                    AppDelegate.current.appCoordinator.showTutorial(tutorial, buttonFrame: self.tabBarController?.buttonFrame()) { [unowned self] in
-                        self.tabBarController?.tutorial(show: false)
-                        tutorial.set()
-                    }
-                }
-
-                self.tutorialDispatchWorkItem = dispatchWorkItem
-
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: dispatchWorkItem)
-            }
-            }.dispose(in: disposeBag)
+        tutorial.set()
+        
+        let selectedIndex = self.selectedIndex.value
+        let viewModel = TutorialViewModel(tutorial: tutorial)
+        let buttonFrame = tabBarView.buttons[selectedIndex].frame
+        let viewController = TutorialViewController(viewModel: viewModel, buttonFrame: buttonFrame, completion: {
+            tabBarView.setGlowEffectForButtonIndex(selectedIndex, enabled: false)
+            self.windowManager.resignWindow(atLevel: .overlay)
+        })
+        windowManager.showWindow(atLevel: .overlay)
+        windowManager.setRootViewController(viewController, atLevel: .overlay, animated: true, completion: {
+            tabBarView.setGlowEffectForButtonIndex(selectedIndex, enabled: true)
+        })
     }
 }
 
@@ -261,16 +224,18 @@ extension TabBarCoordinator: TabBarControllerDelegate {
         default:
             break
         }
-    }
-
-    func viewWillDisappear() {
-        self.tutorialIsStopped = true
-        self.tutorialDispatchWorkItem?.cancel()
+        
+        guard let tutorial = Tutorial(rawValue: index) else {
+            return
+        }
+        showTutorial(tutorial)
     }
 
     func viewDidAppear() {
-        self.tutorialIsStopped = false
-        selectedIndex.value = selectedIndex.value
+        guard let tutorial = Tutorial(rawValue: selectedIndex.value) else {
+            return
+        }
+        showTutorial(tutorial)
     }
 }
 

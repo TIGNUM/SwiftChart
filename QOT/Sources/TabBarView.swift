@@ -125,6 +125,15 @@ class TabBarView: UIView {
         syncButtonTitles()
         _ = setSelectedIndex(selectedIndex, animated: false)
     }
+    
+    func setGlowEffectForButtonIndex(_ index: Int, enabled: Bool) {
+        let button = buttons[index]
+        if enabled {
+            button.layer.addGlowEffect(color: .white)
+        } else {
+            button.layer.removeGlowEffect()
+        }
+    }
 
     // MARK: Private methods
 
@@ -292,30 +301,4 @@ private extension TabBarView {
     func setupHierachy() {
         addSubview(indicatorView)
     }
-}
-
-// MARK: Tutorial
-
-extension TabBarView {
-
-    func selecetedButtomFrame() -> CGRect {
-        guard let index = self.selectedIndex else { return CGRect.zero }
-
-        return buttons[index].frame
-    }
-
-    func tutorialSetup() {
-        guard let index = self.selectedIndex else { return }
-        let button = buttons[index]
-
-        button.layer.addGlowEffect(color: .white)
-    }
-
-    func clearTutorialSetup() {
-        guard let index = self.selectedIndex else { return }
-        let button = buttons[index]
-
-        button.layer.removeGlowEffect()
-    }
-
 }

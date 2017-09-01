@@ -9,22 +9,23 @@
 import UIKit
 import Anchorage
 
-protocol TutorialViewControllerDelegate: class {
-    func didCloseTutorial(completion: @escaping () -> Void)
-}
-
 class TutorialViewController: UIViewController {
 
     // MARK: - Properties
 
     fileprivate let viewModel: TutorialViewModel
-    fileprivate weak var delegate: TutorialViewControllerDelegate?
-
+    fileprivate let buttonFrame: CGRect
+    fileprivate var completion: (() -> Void)?
+    fileprivate var crossImageView: UIImageView!
+    fileprivate var titleLabel: UILabel!
+    fileprivate var contentLabel: UILabel!
+    
     // MARK: - Life cycle
 
-    init(viewModel: TutorialViewModel, delegate: TutorialViewControllerDelegate) {
+    init(viewModel: TutorialViewModel, buttonFrame: CGRect, completion: (() -> Void)?) {
         self.viewModel = viewModel
-        self.delegate = delegate
+        self.buttonFrame = buttonFrame
+        self.completion = completion
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -40,6 +41,16 @@ class TutorialViewController: UIViewController {
         addOverlay()
         addGesture()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.crossImageView.alpha = 1.0
+            self.titleLabel.alpha = 1.0
+            self.contentLabel.alpha = 1.0
+        }, completion: nil)
+    }
 }
 
 // MARK: - Private
@@ -47,9 +58,6 @@ class TutorialViewController: UIViewController {
 private extension TutorialViewController {
 
     func addOverlay() {
-
-        guard let buttonFrame = viewModel.buttonFrame else { return }
-
         let holeCenterX = buttonFrame.origin.x + buttonFrame.width / 2 + Layout.TabBarView.stackViewHorizontalPaddingBottom
         let holeCenter = CGPoint(x: holeCenterX, y: view.frame.size.height)
 
@@ -72,34 +80,35 @@ private extension TutorialViewController {
     }
 
     @objc func dismissAction() {
-        UIView.animate(withDuration: 1, animations: { [unowned self] in
+        UIView.animate(withDuration: 1, animations: {
             self.view.alpha = 0
-        }, completion: { [unowned self] _ in
-            self.delegate?.didCloseTutorial(completion: self.viewModel.completion)
+        }, completion: { _ in
+            self.completion?()
         })
     }
 
     func setupLayout() {
-        let titleLabel = UILabel()
-        let contentLabel = UILabel()
-
-        let crossImage = UIImageView(image: R.image.crossImage()?.withRenderingMode(.alwaysTemplate))
+        titleLabel = UILabel()
+        contentLabel = UILabel()
+        crossImageView = UIImageView(image: R.image.crossImage()?.withRenderingMode(.alwaysTemplate))
 
         view.addSubview(titleLabel)
         view.addSubview(contentLabel)
-        view.addSubview(crossImage)
+        view.addSubview(crossImageView)
 
         view.backgroundColor = UIColor.black70
-        view.alpha = 0
-
-        crossImage.tintColor = .white
-
+        
+        crossImageView.alpha = 0.0
+        crossImageView.tintColor = .white
+        
+        titleLabel.alpha = 0.0
         titleLabel.backgroundColor = .clear
         titleLabel.numberOfLines = 1
         titleLabel.lineBreakMode = .byWordWrapping
         titleLabel.textColor = .white
         titleLabel.prepareAndSetTextAttributes(text: viewModel.title, font: Font.H4Headline, alignment: .left, lineSpacing: 7, characterSpacing: -0.8)
 
+        contentLabel.alpha = 0.0
         contentLabel.backgroundColor = .clear
         contentLabel.text = viewModel.content
         contentLabel.textAlignment = .left
@@ -109,10 +118,10 @@ private extension TutorialViewController {
         contentLabel.text = viewModel.content
         contentLabel.attributedText = Style.article(viewModel.content, .white).attributedString(lineHeight: 1.7)
 
-        crossImage.topAnchor == view.topAnchor + 30
-        crossImage.rightAnchor == view.rightAnchor - 20
-        crossImage.widthAnchor == 17
-        crossImage.heightAnchor == 17
+        crossImageView.topAnchor == view.topAnchor + 30
+        crossImageView.rightAnchor == view.rightAnchor - 20
+        crossImageView.widthAnchor == 17
+        crossImageView.heightAnchor == 17
 
         titleLabel.bottomAnchor == contentLabel.topAnchor
         titleLabel.leftAnchor == view.leftAnchor + 27
@@ -125,9 +134,5 @@ private extension TutorialViewController {
         contentLabel.heightAnchor <= view.heightAnchor - 120
 
         view.layoutIfNeeded()
-
-        UIView.animate(withDuration: 1) { [unowned self] in
-            self.view.alpha = 1
-        }
     }
 }

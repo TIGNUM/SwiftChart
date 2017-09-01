@@ -41,6 +41,10 @@
 		7F0F03081F14FE9800007D50 /* CollapsableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F03071F14FE9800007D50 /* CollapsableNode.swift */; };
 		7F4251BD1F20F05D00EA451D /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4251BC1F20F05D00EA451D /* OnboardingCoordinator.swift */; };
 		7F4251C31F211BC600EA451D /* PermissionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4251C21F211BC600EA451D /* PermissionHandler.swift */; };
+		7F4276771F570DB600AEE3D7 /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4276761F570DB600AEE3D7 /* WindowManager.swift */; };
+		7F4276791F585C7F00AEE3D7 /* AppDelegate+DatabaseBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4276781F585C7F00AEE3D7 /* AppDelegate+DatabaseBuilder.swift */; };
+		7F42767B1F585D1F00AEE3D7 /* RemoteNotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F42767A1F585D1F00AEE3D7 /* RemoteNotificationHandler.swift */; };
+		7F42767D1F58665100AEE3D7 /* URLScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F42767C1F58665100AEE3D7 /* URLScheme.swift */; };
 		7F507BA11F3B0F8A0091742D /* EventTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F507BA01F3B0F8A0091742D /* EventTracker.swift */; };
 		7F507BA31F3B4DEC0091742D /* UserAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F507BA21F3B4DEC0091742D /* UserAnswer.swift */; };
 		7F5A25B01F3C4BC700A11466 /* PageTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A25AF1F3C4BC700A11466 /* PageTracker.swift */; };
@@ -105,7 +109,7 @@
 		8548BBDE1F0D264800AC7C06 /* RequestDeviceSensorCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8548BBDD1F0D264800AC7C06 /* RequestDeviceSensorCollectionViewCell.xib */; };
 		8548BBE01F0D4BF900AC7C06 /* LaunchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548BBDF1F0D4BF900AC7C06 /* LaunchHandler.swift */; };
 		8548BBE41F0E382900AC7C06 /* GenericParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548BBE31F0E382900AC7C06 /* GenericParser.swift */; };
-		855C4FC51F25F7D10068DDE3 /* Tutorials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C4FC41F25F7D10068DDE3 /* Tutorials.swift */; };
+		855C4FC51F25F7D10068DDE3 /* Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C4FC41F25F7D10068DDE3 /* Tutorial.swift */; };
 		855C4FC81F262A3E0068DDE3 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C4FC71F262A3E0068DDE3 /* TutorialViewController.swift */; };
 		855C4FCA1F262B290068DDE3 /* TutorialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C4FC91F262B290068DDE3 /* TutorialViewModel.swift */; };
 		85777E7B1F0F857C00E12477 /* UIViewController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85777E7A1F0F857C00E12477 /* UIViewController+Convenience.swift */; };
@@ -478,6 +482,10 @@
 		7F0F03071F14FE9800007D50 /* CollapsableNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollapsableNode.swift; sourceTree = "<group>"; };
 		7F4251BC1F20F05D00EA451D /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		7F4251C21F211BC600EA451D /* PermissionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionHandler.swift; sourceTree = "<group>"; };
+		7F4276761F570DB600AEE3D7 /* WindowManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
+		7F4276781F585C7F00AEE3D7 /* AppDelegate+DatabaseBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+DatabaseBuilder.swift"; sourceTree = "<group>"; };
+		7F42767A1F585D1F00AEE3D7 /* RemoteNotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteNotificationHandler.swift; sourceTree = "<group>"; };
+		7F42767C1F58665100AEE3D7 /* URLScheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLScheme.swift; sourceTree = "<group>"; };
 		7F507BA01F3B0F8A0091742D /* EventTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTracker.swift; sourceTree = "<group>"; };
 		7F507BA21F3B4DEC0091742D /* UserAnswer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAnswer.swift; sourceTree = "<group>"; };
 		7F5A25AF1F3C4BC700A11466 /* PageTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageTracker.swift; sourceTree = "<group>"; };
@@ -543,7 +551,7 @@
 		8548BBDD1F0D264800AC7C06 /* RequestDeviceSensorCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequestDeviceSensorCollectionViewCell.xib; sourceTree = "<group>"; };
 		8548BBDF1F0D4BF900AC7C06 /* LaunchHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchHandler.swift; sourceTree = "<group>"; };
 		8548BBE31F0E382900AC7C06 /* GenericParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericParser.swift; sourceTree = "<group>"; };
-		855C4FC41F25F7D10068DDE3 /* Tutorials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tutorials.swift; sourceTree = "<group>"; };
+		855C4FC41F25F7D10068DDE3 /* Tutorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tutorial.swift; sourceTree = "<group>"; };
 		855C4FC71F262A3E0068DDE3 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		855C4FC91F262B290068DDE3 /* TutorialViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewModel.swift; sourceTree = "<group>"; };
 		85777E7A1F0F857C00E12477 /* UIViewController+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Convenience.swift"; sourceTree = "<group>"; };
@@ -1621,6 +1629,7 @@
 			isa = PBXGroup;
 			children = (
 				CBB237EF1E6FFF1200AB5AEF /* AppDelegate.swift */,
+				7F4276781F585C7F00AEE3D7 /* AppDelegate+DatabaseBuilder.swift */,
 				CC6B3A301E81713200E7FDFD /* Constants.swift */,
 				CC3DFB651E83C19C00FF28DF /* Defines.swift */,
 			);
@@ -1814,18 +1823,21 @@
 		CBB4DD521EE095E50071494A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				7F4276761F570DB600AEE3D7 /* WindowManager.swift */,
 				7F5A25B11F3C515800A11466 /* Swizzle.swift */,
 				8548BBDF1F0D4BF900AC7C06 /* LaunchHandler.swift */,
+				7F42767C1F58665100AEE3D7 /* URLScheme.swift */,
 				852DADC51EEEE63500A10882 /* Math.swift */,
 				CBDB98F31E7B000A003EC73F /* NotificationHandler.swift */,
 				7FDFF3681F18FF0B00F7A7EC /* NotificationTokenHandler.swift */,
 				7F4251C21F211BC600EA451D /* PermissionHandler.swift */,
 				CBC5ACC91F18EF96007E1E9C /* QOTUsageTime.swift */,
 				CB27D59A1ECCB67300F2B76C /* Result.swift */,
-				855C4FC41F25F7D10068DDE3 /* Tutorials.swift */,
+				855C4FC41F25F7D10068DDE3 /* Tutorial.swift */,
 				CBD791491E71797C0006C590 /* Typealiases.swift */,
 				CC3DFB631E83BDA300FF28DF /* Utils.swift */,
 				7FE38DBC1F2210D60061E98F /* WaitBlockOperation.swift */,
+				7F42767A1F585D1F00AEE3D7 /* RemoteNotificationHandler.swift */,
 				7F5A25AE1F3C4BB400A11466 /* Analytics */,
 			);
 			name = Utils;
@@ -2486,6 +2498,7 @@
 				CBC9330F1F0AA47800C00007 /* PrepareEventsViewController.swift in Sources */,
 				CC4F22F01EE023F4006C437E /* NSMutableAttributedString+Create.swift in Sources */,
 				D554CD9D1F0CED50007731DB /* LoginViewController.swift in Sources */,
+				7F4276771F570DB600AEE3D7 /* WindowManager.swift in Sources */,
 				7FE38DD71F2B636F0061E98F /* UINavigationBar+Style.swift in Sources */,
 				7FE38DC71F2A14160061E98F /* PageViewController.swift in Sources */,
 				0B2CA37B1ED2BC93006B355F /* SensorCollectionViewCell.swift in Sources */,
@@ -2527,7 +2540,7 @@
 				CCA2DC6C1EF290DF00D1DF6A /* LearnContentItemBulletCell.swift in Sources */,
 				CCCE09CC1EA67C78008730F1 /* MyToBeVisionViewModel.swift in Sources */,
 				D554CD9F1F0CF3B9007731DB /* LoginViewCell.swift in Sources */,
-				855C4FC51F25F7D10068DDE3 /* Tutorials.swift in Sources */,
+				855C4FC51F25F7D10068DDE3 /* Tutorial.swift in Sources */,
 				CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */,
 				CB810E661EF00DCA0043E3E5 /* UserIntermediary.swift in Sources */,
 				7FE38DBD1F2210D60061E98F /* WaitBlockOperation.swift in Sources */,
@@ -2554,6 +2567,7 @@
 				CCC2D3161F0AB1E000951A2E /* UserDefault+Convenience.swift in Sources */,
 				7FB32D131F42E8EE0027BF4E /* DatabaseKeyService.swift in Sources */,
 				CB34375B1EFD652800D89D4F /* Question.swift in Sources */,
+				7F42767D1F58665100AEE3D7 /* URLScheme.swift in Sources */,
 				CB0A4A5D1ECC4C72006A2D85 /* AddSensorViewController.swift in Sources */,
 				CC94F5621EB08EE400051CF8 /* AudioWaveformView.swift in Sources */,
 				0B40DC151E9CA71400E1659B /* PrepareContentHeaderTableViewCell.swift in Sources */,
@@ -2712,6 +2726,7 @@
 				CB3BD4161F2637940071F51E /* UpSyncOperation.swift in Sources */,
 				CCAF03241E801B0E00015125 /* SettingsCoordinator.swift in Sources */,
 				851676DB1F3C57D4007A1DD6 /* LearnPDFCell.swift in Sources */,
+				7F4276791F585C7F00AEE3D7 /* AppDelegate+DatabaseBuilder.swift in Sources */,
 				8523E9C01F1628B50000D20D /* Date+Extension.swift in Sources */,
 				CB3437601EFD675900D89D4F /* QuestionIntermediary.swift in Sources */,
 				D52350961E9FC1120013DE7E /* ArticleCollectionLayout.swift in Sources */,
@@ -2784,6 +2799,7 @@
 				CBC1DC1F1F0F9BA100F6D056 /* SystemSetting+Convenience.swift in Sources */,
 				CCEFCFB01E8D3D7500E9FC72 /* SidebarViewController.swift in Sources */,
 				7FBC3E801F385135005BD772 /* MediaService.swift in Sources */,
+				7F42767B1F585D1F00AEE3D7 /* RemoteNotificationHandler.swift in Sources */,
 				CBB4DCF11EDC0C420071494A /* SyncRecord.swift in Sources */,
 				CB1467671EF277AA00A60E31 /* PageIntermediary.swift in Sources */,
 				CC96630A1EA1B27F00B84B1C /* MyDataViewModel.swift in Sources */,

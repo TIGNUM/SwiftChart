@@ -17,15 +17,15 @@ final class LoginCoordinator: ParentCoordinator {
 
     // MARK: - Properties
 
-    fileprivate let window: UIWindow
+    fileprivate let windowManager: WindowManager
     fileprivate let networkManager: NetworkManager
     fileprivate weak var delegate: LoginCoordinatorDelegate?    
     var children: [Coordinator] = []
 
     // MARK: - Lifecycle
 
-    init(window: UIWindow, delegate: LoginCoordinatorDelegate, networkManager: NetworkManager) {
-        self.window = window
+    init(windowManager: WindowManager, delegate: LoginCoordinatorDelegate, networkManager: NetworkManager) {
+        self.windowManager = windowManager
         self.delegate = delegate
         self.networkManager = networkManager
     }
@@ -37,8 +37,7 @@ final class LoginCoordinator: ParentCoordinator {
         navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationBar.shadowImage = UIImage()
         navigationBar.isTranslucent = true
-        window.setRootViewControllerWithFadeAnimation(navigationController)
-        window.makeKeyAndVisible()
+        windowManager.setRootViewController(navigationController, atLevel: .normal, animated: true, completion: nil)
     }
 }
 
