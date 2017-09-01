@@ -55,6 +55,7 @@ final class MyUniverseViewController: UIViewController {
         let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())
         topBar.setRightButton(rightButton)
         topBar.setMiddleButtons(self.middleButtons)
+
         return topBar
     }()
     
@@ -125,6 +126,7 @@ final class MyUniverseViewController: UIViewController {
             bottom: contentScrollView.contentInset.bottom,
             right: contentScrollView.contentInset.right
         )
+
         return contentScrollView
     }()
 
@@ -211,11 +213,10 @@ private extension MyUniverseViewController {
     
     func updatePageTracking() {
         switch pageIndex {
-        case 0:
-            pageName = .myData
-        default:
-            pageName = .myWhy
+        case 0: pageName = .myData
+        default: pageName = .myWhy
         }
+
         pageTracker.track(self)
     }
 }
@@ -252,7 +253,9 @@ private extension MyUniverseViewController {
                 }
 
                 if sectorAngle < 119 {
-                    guard let type = myDataViewModel.sectors.last?.labelType else { return nil }
+                    guard let type = myDataViewModel.sectors.last?.labelType else {
+                        return nil
+                    }
 
                     return sectionType(for: type)
                 }
@@ -263,7 +266,9 @@ private extension MyUniverseViewController {
                 }
 
                 if sectorAngle < 100 {
-                    guard let type = myDataViewModel.sectors.first?.labelType else { return nil }
+                    guard let type = myDataViewModel.sectors.first?.labelType else {
+                        return nil
+                    }
 
                     return sectionType(for: type)
                 }
@@ -275,18 +280,12 @@ private extension MyUniverseViewController {
 
     func sectionType(for type: SectorLabelType) -> MyStatisticsSectionType {
         switch type {
-        case .activity:
-            return .activity
-        case .intensity:
-            return .intensity
-        case .meetings:
-            return .meetings
-        case .peak:
-            return .peakPerformance
-        case .sleep:
-            return .sleep
-        case .travel:
-            return .travel
+        case .activity: return .activity
+        case .intensity: return .intensity
+        case .meetings: return .meetings
+        case .peak: return .peakPerformance
+        case .sleep: return .sleep
+        case .travel: return .travel
         }
     }
 

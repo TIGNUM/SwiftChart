@@ -57,8 +57,8 @@ enum SectorType {
 
 enum SectorLabelType {
     case peak
-    case meetings
     case intensity
+    case meetings
     case travel
     case sleep
     case activity
@@ -66,8 +66,8 @@ enum SectorLabelType {
     var text: String {
         switch self {
         case .peak: return R.string.localized.meSectorPeak()
-        case .meetings: return R.string.localized.meSectorMeetings()
         case .intensity: return R.string.localized.meSectorIntensity()
+        case .meetings: return R.string.localized.meSectorMeetings()
         case .travel: return R.string.localized.meSectorTravel()
         case .sleep: return R.string.localized.meSectorSleep()
         case .activity: return R.string.localized.meSectorActivity()
@@ -77,8 +77,8 @@ enum SectorLabelType {
     var angle: CGFloat {
         switch self {
         case .peak: return 229
-        case .meetings: return 211
-        case .intensity: return 187
+        case .intensity: return 211
+        case .meetings: return 187
         case .travel: return 165
         case .sleep: return 145
         case .activity: return 128
@@ -88,8 +88,8 @@ enum SectorLabelType {
     var load: CGFloat {
         switch self {
         case .peak: return 1.3
-        case .meetings: return 1.28
-        case .intensity: return 1.27
+        case .intensity: return 1.28
+        case .meetings: return 1.27
         case .travel: return 1.17
         case .sleep: return 1.1
         case .activity: return 1.1
@@ -158,26 +158,26 @@ private func mockSectors(service: MyStatisticsService) -> [Sector] {
         ),
 
         MockSector(
-            startAngle: 200,
+            startAngle: 184,
             endAngle: 233,
-            spikes: meetingsSpikes(service: service),
-            labelType: .meetings,
+            spikes: intensitySpikes(service: service),
+            labelType: .intensity,
             strokeColor: .blue,
             type: .load
         ),
 
         MockSector(
-            startAngle: 176,
-            endAngle: 199,
-            spikes: intensitySpikes(service: service),
-            labelType: .intensity,
+            startAngle: 166,
+            endAngle: 183,
+            spikes: meetingsSpikes(service: service),
+            labelType: .meetings,
             strokeColor: .yellow,
             type: .load
         ),
 
         MockSector(
             startAngle: 137,
-            endAngle: 175,
+            endAngle: 165,
             spikes: travelSpikes(service: service),
             labelType: .travel,
             strokeColor: .green,
@@ -211,18 +211,18 @@ private func peakSpikes(service: MyStatisticsService) -> [Spike] {
     ]
 }
 
-private func meetingsSpikes(service: MyStatisticsService) -> [Spike] {
+private func intensitySpikes(service: MyStatisticsService) -> [Spike] {
     return [
-        MockSpike(angle: 225, load: service.card(key: StatisticCardType.meetingAverageDay.rawValue)?.universe.toFloat ?? 0),
-        MockSpike(angle: 215, load: service.card(key: StatisticCardType.meetingLength.rawValue)?.universe.toFloat ?? 0),
-        MockSpike(angle: 205, load: service.card(key: StatisticCardType.meetingTimeBetween.rawValue)?.universe.toFloat ?? 0)
+        MockSpike(angle: 225, load: service.card(key: StatisticCardType.intensityLoadWeek.rawValue)?.universe.toFloat ?? 0),
+        MockSpike(angle: 215, load: service.card(key: StatisticCardType.intensityRecoveryWeek.rawValue)?.universe.toFloat ?? 0)
     ]
 }
 
-private func intensitySpikes(service: MyStatisticsService) -> [Spike] {
+private func meetingsSpikes(service: MyStatisticsService) -> [Spike] {
     return [
-        MockSpike(angle: 195, load: service.card(key: StatisticCardType.intensityLoadWeek.rawValue)?.universe.toFloat ?? 0),
-        MockSpike(angle: 185, load: service.card(key: StatisticCardType.intensityRecoveryWeek.rawValue)?.universe.toFloat ?? 0)
+        MockSpike(angle: 205, load: service.card(key: StatisticCardType.meetingAverageDay.rawValue)?.universe.toFloat ?? 0),
+        MockSpike(angle: 195, load: service.card(key: StatisticCardType.meetingLength.rawValue)?.universe.toFloat ?? 0),
+        MockSpike(angle: 185, load: service.card(key: StatisticCardType.meetingTimeBetween.rawValue)?.universe.toFloat ?? 0)
     ]
 }
 
