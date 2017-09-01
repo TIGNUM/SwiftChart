@@ -12,6 +12,8 @@ When adding a cocoapod to the Podfile please use the pod's *major* & *minor* ver
 
 `pod 'RealmSwift', '~> 2.4'`
 
+`bundle exec pod install`
+
 If you need to install pods use `pod install`. Only use `pod update` if you really intend to update the pods.
 
 # SwiftLint
