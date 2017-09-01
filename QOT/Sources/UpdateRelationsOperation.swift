@@ -29,6 +29,11 @@ final class UpdateRelationsOperation: ConcurrentOperation {
     }
 
     override func execute() {
+        guard isCancelled == false else {
+            finish(error: .didCancel)
+            return
+        }
+
         do {
             let realm = try realmProvider.realm()
             try realm.write {

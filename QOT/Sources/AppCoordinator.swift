@@ -298,7 +298,7 @@ extension AppCoordinator {
         credentialsManager.clear()
         do {
             syncManager.stopAutoSync()
-            syncManager.stopCurrentSync(waitUntilStopped: true)
+            syncManager.stopCurrentSync()
            
             let bundledDatabase = try databaseManager.loadDatabase(.v1)
             let currentDatabase = try realmProvider.realm()

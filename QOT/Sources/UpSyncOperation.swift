@@ -15,6 +15,7 @@ final class UpSyncOperation<T>: ConcurrentOperation where T: Object, T: UpSyncab
     private let networkManager: NetworkManager
     private let realmProvider: RealmProvider
     private let context: SyncContext
+    private var currentRequest: SerialRequest?
 
     init(networkManager: NetworkManager,
          realmProvider: RealmProvider,
@@ -31,8 +32,13 @@ final class UpSyncOperation<T>: ConcurrentOperation where T: Object, T: UpSyncab
     // MARK: Steps
 
     private func fetchSyncToken() {
+        guard isCancelled == false else {
+            finish(error: .didCancel)
+            return
+        }
+
         let request = StartSyncRequest(from: 0) // Any from value is fine here as it is ignored by the server
-        networkManager.request(request, parser: StartSyncResult.parse) { [weak self] (result) in
+        currentRequest = networkManager.request(request, parser: StartSyncResult.parse) { [weak self] (result) in
             switch result {
             case .success(let startSyncRestult):
                 self?.fetchDirtyObjects(syncToken: startSyncRestult.syncToken)
@@ -55,8 +61,13 @@ final class UpSyncOperation<T>: ConcurrentOperation where T: Object, T: UpSyncab
     }
 
     private func sendDirty(data: UpSyncData, syncToken: String) {
+        guard isCancelled == false else {
+            finish(error: .didCancel)
+            return
+        }
+
         let request = UpSyncRequest(endpoint: T.endpoint, body: data.body, syncToken: syncToken)
-        networkManager.request(request, parser: UpSyncResultParser.parse) { [weak self] (result) in
+        currentRequest = networkManager.request(request, parser: UpSyncResultParser.parse) { [weak self] (result) in
             switch result {
             case .success(let upSyncResult):
                 self?.updateDirty(data: data, result: upSyncResult)
@@ -67,6 +78,11 @@ final class UpSyncOperation<T>: ConcurrentOperation where T: Object, T: UpSyncab
     }
 
     private func updateDirty(data: UpSyncData, result: UpSyncResult) {
+        guard isCancelled == false else {
+            finish(error: .didCancel)
+            return
+        }
+
         do {
             let realm = try realmProvider.realm()
             try realm.write {
@@ -76,6 +92,12 @@ final class UpSyncOperation<T>: ConcurrentOperation where T: Object, T: UpSyncab
         } catch let error {
             finish(error: .upSyncUpdateDirtyFailed(error: error))
         }
+    }
+
+    override func cancel() {
+        super.cancel()
+
+        currentRequest?.cancel()
     }
 
     private func finish(error: SyncError?) {

@@ -17,6 +17,7 @@ final class DownSyncOperation<T>: ConcurrentOperation where T: DownSyncable, T: 
     private let realmProvider: RealmProvider
     private let downSyncImporter: DownSyncImporter<T>
     private let context: SyncContext
+    private var currentRequest: SerialRequest?
 
     init(context: SyncContext,
          networkManager: NetworkManager,
@@ -46,8 +47,13 @@ final class DownSyncOperation<T>: ConcurrentOperation where T: DownSyncable, T: 
     }
 
     private func startSync(lastSyncDate: Int64) {
+        guard isCancelled == false else {
+            finish(error: .didCancel)
+            return
+        }
+
         let request = StartSyncRequest(from: lastSyncDate)
-        networkManager.request(request, parser: StartSyncResult.parse) { [weak self, syncDescription] (result) in
+        currentRequest = networkManager.request(request, parser: StartSyncResult.parse) { [weak self, syncDescription] (result) in
             switch result {
             case .success(let startSyncRestult):
                 self?.fetchIntermediaries(syncToken: startSyncRestult.syncToken, syncDate: startSyncRestult.syncDate)
@@ -59,8 +65,13 @@ final class DownSyncOperation<T>: ConcurrentOperation where T: DownSyncable, T: 
     }
 
     private func fetchIntermediaries(syncToken: String, syncDate: Int64) {
+        guard isCancelled == false else {
+            finish(error: .didCancel)
+            return
+        }
+
         let endpoint = T.endpoint
-        networkManager.request(token: syncToken, endpoint: endpoint, page: 1) { [weak self, syncDescription] (result: Result<([DownSyncChange<T.Data>], String), NetworkError>) in
+        currentRequest = networkManager.request(token: syncToken, endpoint: endpoint, page: 1) { [weak self, syncDescription] (result: Result<([DownSyncChange<T.Data>], String), NetworkError>) in
             switch result {
             case .success(let (changes, nextSyncToken)):
                 self?.confirmDownSync(syncToken: nextSyncToken, completion: { [weak self] in
@@ -73,8 +84,13 @@ final class DownSyncOperation<T>: ConcurrentOperation where T: DownSyncable, T: 
     }
 
     private func confirmDownSync(syncToken: String, completion: @escaping () -> Void) {
+        guard isCancelled == false else {
+            finish(error: .didCancel)
+            return
+        }
+
         let endpoint = DownSyncConfirmRequest(endpoint: .downSyncConfirm, syncToken: syncToken)
-        networkManager.request(endpoint, parser: DownSyncComplete.parse, completion: { result in
+        currentRequest = networkManager.request(endpoint, parser: DownSyncComplete.parse, completion: { result in
             switch result {
             case .success:
                 break
@@ -87,6 +103,11 @@ final class DownSyncOperation<T>: ConcurrentOperation where T: DownSyncable, T: 
     }
 
     private func importChanges(changes: [DownSyncChange<T.Data>], syncDate: Int64) {
+        guard isCancelled == false else {
+            finish(error: .didCancel)
+            return
+        }
+
         do {
             let realm = try realmProvider.realm()
             try realm.write {
@@ -105,6 +126,12 @@ final class DownSyncOperation<T>: ConcurrentOperation where T: DownSyncable, T: 
         } catch let error {
             finish(error: .downSyncSaveSyncDateFailed(type: syncDescription, error: error))
         }
+    }
+
+    override func cancel() {
+        super.cancel()
+
+        currentRequest?.cancel()
     }
 
     // MARK: Finish

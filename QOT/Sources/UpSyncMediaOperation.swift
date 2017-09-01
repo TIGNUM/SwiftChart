@@ -16,6 +16,7 @@ final class UpSyncMediaOperation: ConcurrentOperation {
     private let realmProvider: RealmProvider
     private let context: SyncContext
     private let localID: String
+    private var currentRequest: SerialRequest?
     
     init(networkManager: NetworkManager,
          realmProvider: RealmProvider,
@@ -34,8 +35,13 @@ final class UpSyncMediaOperation: ConcurrentOperation {
     // MARK: Steps
     
     private func fetchSyncToken() {
+        guard isCancelled == false else {
+            finish(error: .didCancel)
+            return
+        }
+
         let request = StartSyncRequest(from: 0) // Any from value is fine here as it is ignored by the server
-        networkManager.request(request, parser: StartSyncResult.parse) { [weak self] (result) in
+        currentRequest = networkManager.request(request, parser: StartSyncResult.parse) { [weak self] (result) in
             switch result {
             case .success(let startSyncRestult):
                 self?.fetchData(syncToken: startSyncRestult.syncToken)
@@ -61,8 +67,13 @@ final class UpSyncMediaOperation: ConcurrentOperation {
     }
 
     private func sendData(_ data: UpSyncMediaData, syncToken: String, localURL: URL) {
+        guard isCancelled == false else {
+            finish(error: .didCancel)
+            return
+        }
+
         let request = UpSyncRequest(endpoint: MediaResource.endpoint, body: data.body, syncToken: syncToken)
-        networkManager.request(request, parser: UpSyncMediaResultParser.parse) { [weak self] (result) in
+        currentRequest = networkManager.request(request, parser: UpSyncMediaResultParser.parse) { [weak self] (result) in
             switch result {
             case .success(let upSyncResult):
                 self?.handleResult(upSyncResult, localURL: localURL)
@@ -73,6 +84,11 @@ final class UpSyncMediaOperation: ConcurrentOperation {
     }
     
     private func handleResult(_ result: UpSyncMediaResult, localURL: URL) {
+        guard isCancelled == false else {
+            finish(error: .didCancel)
+            return
+        }
+
         let cacheKey = result.remoteURLString
         do {
             try cacheImage(withURL: localURL, key: cacheKey, completion: { [unowned self] in
@@ -95,6 +111,12 @@ final class UpSyncMediaOperation: ConcurrentOperation {
         } catch {
             finish(error: .upSyncUpdateDirtyFailed(error: error))
         }
+    }
+
+    override func cancel() {
+        super.cancel()
+
+        currentRequest?.cancel()
     }
     
     private func finish(error: SyncError?) {

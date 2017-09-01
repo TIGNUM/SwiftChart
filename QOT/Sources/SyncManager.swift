@@ -121,11 +121,8 @@ final class SyncManager {
         tearDownTimers()
     }
 
-    func stopCurrentSync(waitUntilStopped: Bool) {
+    func stopCurrentSync() {
         operationQueue.cancelAllOperations()
-        if waitUntilStopped == true {
-            operationQueue.waitUntilAllOperationsAreFinished()
-        }
     }
 
     func syncAll() {
