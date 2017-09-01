@@ -63,7 +63,7 @@ platform :ios do
       region: ENV['S3_REGION'],
       ipa: ENV['S3_IPA_NAME'],
       app_directory: ENV['S3_APP_DIRECTORY'], # DON'T DELETE! This stops us overwriting original QOT app.
-      upload_metadata: false # Upload version.json, plist and HTML. Set to false to skip uploading of these files.
+      upload_metadata: true # Upload version.json, plist and HTML. Set to false to skip uploading of these files.
     )
 
     # Release to hockey app
