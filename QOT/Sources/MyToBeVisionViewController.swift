@@ -50,8 +50,10 @@ class MyToBeVisionViewController: UIViewController {
 
     init(viewModel: MyToBeVisionViewModel) {
         self.viewModel = viewModel
-        
+
         super.init(nibName: nil, bundle: nil)
+        
+        imageTapRecogniser = UITapGestureRecognizer(target: self, action: #selector(imageButtonPressed(_:)))
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -74,11 +76,16 @@ class MyToBeVisionViewController: UIViewController {
         drawCircles()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        // flush height constraint change
+        textViewDidChange(headlineTextView)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         setupNotifications()
-//        setupMessageTextGradientLayer()
 
         UIView.animate(withDuration: 0.7) {
             self.view.alpha = 1.0
@@ -86,16 +93,13 @@ class MyToBeVisionViewController: UIViewController {
             self.imageViewOverlay.alpha = 1.0
         }
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        // flush height constraint change
-        textViewDidChange(headlineTextView)
-    }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        if isBeingDismissed {
+            edit(false)
+        }
         tearDownNotifications()
     }
     
@@ -146,9 +150,11 @@ private extension MyToBeVisionViewController {
             view.endEditing(true)
         }
 
+        headlineTextView.isEditable = isEditing
+        messageTextView.isEditable = isEditing
+        editButton.tintColor = isEditing ? .white : .white40
         setupMessageText(editing: isEditing)
 
-        editButton.tintColor = isEditing ? .white : .white40
         UIView.animate(withDuration: 0.5, animations: {
             self.setImageButton(isEditing: isEditing)
         }, completion: { (_: Bool) in
@@ -172,27 +178,29 @@ private extension MyToBeVisionViewController {
 
         messageTextView.delegate = self
         messageTextView.returnKeyType = .done
-        messageTextView.isEditable = true
 
         if let profileImageResource = viewModel.profileImageResource {
             imageView.setImageFromResource(profileImageResource)
         }
 
-        setImageButton()
+        setImageButton(isEditing: false)
         imageView.alpha = 0.0
+        imageView.addGestureRecognizer(imageTapRecogniser)
         imageViewOverlay.alpha = 0.0
         editButton.tintColor = .white40
     }
 
-    private func setImageButton(isEditing: Bool = false) {
+    func setImageButton(isEditing: Bool) {
         if imageView.image == nil {
             imageButton.alpha = 1
             imageButton.isEnabled = true
             imageEditLabel.alpha = 1
+            imageTapRecogniser.isEnabled = true
         } else {
             imageButton.alpha = isEditing == true ? 1 : 0
             imageButton.isEnabled = isEditing == true
             imageEditLabel.alpha = isEditing == true ? 1 : 0
+            imageTapRecogniser.isEnabled = isEditing
         }
     }
 
@@ -220,7 +228,6 @@ private extension MyToBeVisionViewController {
         headlineTextView.textContainer.maximumNumberOfLines = 2
         headlineTextView.textContainer.lineFragmentPadding = 0
         headlineTextView.textContainerInset = .zero
-        headlineTextView.isEditable = true
         headlineTextView.set(placeholderText: R.string.localized.meSectorMyWhyVisionHeadlinePlaceholder(), placeholdeColor: UIColor.white)
 
         setupMessageText(editing: false)
@@ -231,6 +238,9 @@ private extension MyToBeVisionViewController {
             font: Font.H7Tag,
             lineSpacing: 0)
         subtitleLabel.textColor = .white30
+        
+        imageEditLabel.font = Font.DPText
+        imageEditLabel.textColor = (imageView.image == nil) ? .white30 : .white
     }
 
     func setupMessageTextGradientLayer() {
@@ -275,7 +285,7 @@ private extension MyToBeVisionViewController {
 
 // MARK: - Actions
 
-extension MyToBeVisionViewController {
+private extension MyToBeVisionViewController {
 
     @IBAction func closeAction(_ sender: Any) {
         delegate?.didTapClose(in: self)
@@ -296,8 +306,8 @@ extension MyToBeVisionViewController {
 
 // MARK: - Notifications 
 
-extension MyToBeVisionViewController {
-    func keyboardWillShow(_ notification: NSNotification) {
+private extension MyToBeVisionViewController {
+    @objc func keyboardWillShow(_ notification: NSNotification) {
         guard self.messageTextViewBottomConstrant.constant == 110,
             let userInfo = notification.userInfo, let rect = userInfo[UIKeyboardFrameBeginUserInfoKey] as? CGRect else {
             return
@@ -311,7 +321,7 @@ extension MyToBeVisionViewController {
         }
     }
     
-    func keyboardWillHide(_ notification: NSNotification) {
+    @objc func keyboardWillHide(_ notification: NSNotification) {
         UIView.animate(withDuration: 0.3) { [unowned self] in
             self.messageTextViewBottomConstrant.constant = 110
             self.view.layoutIfNeeded()
@@ -366,7 +376,6 @@ extension MyToBeVisionViewController: UITextViewDelegate {
             }
             view.layoutIfNeeded()
         } else if textView == messageTextView, textView.text.characters.count >= 1 {
-
             if textView.text.characters.first(where: {$0 == "\n"}) != nil {
                 textView.text = textView.text.replacingOccurrences(of: "\n", with: "")
                 textView.resignFirstResponder()
@@ -446,6 +455,8 @@ extension MyToBeVisionViewController: RSKImageCropViewControllerDelegate {
         }
         
         imageView.image = croppedImage
+        setupLabels()
+        setImageButton(isEditing: isEditing)
     }
 }
 
