@@ -97,7 +97,7 @@ final class AppCoordinator: ParentCoordinator {
         viewController.fadeInLogo()
         viewController.startAnimatingImages {
             viewController.fadeOutLogo { [unowned self] in
-                if self.credentialsManager.isCredentialValid {
+                if self.credentialsManager.isCredentialValid == true {
                     self.showApp()
                 } else {
                     self.showLogin()

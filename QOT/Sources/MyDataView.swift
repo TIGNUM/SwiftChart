@@ -171,9 +171,11 @@ private extension MyDataView {
     func drawDataPoints(layout: Layout.MeSection, sectors: [Sector]) {
         universeDotsLayer = CAShapeLayer()
         let dataPoints = MyUniverseHelper.dataPoints(sectors: sectors, layout: layout)
+
         dataPoints.forEach { (dataPoint: CAShapeLayer) in
             universeDotsLayer.addSublayer(dataPoint)
         }
+        
         layer.addSublayer(universeDotsLayer)
     }
 }

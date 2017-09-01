@@ -26,6 +26,9 @@ struct MyUniverseHelper {
 extension MyUniverseHelper {
 
     static func collectCenterPoints(layout: Layout.MeSection, sectors: [Sector], relativeCenter: CGPoint) {
+        dataCenterPoints.removeAll()
+        connectionCenterPoints.removeAll()
+        
         sectors.forEach { (sector: Sector) in
             let centerPoints = sector.spikes.map({ relativeCenter.shifted(radius(for: $0.spikeLoad(), layout: layout, radiusOffset: sector.type.lineWidth(load: $0.spikeLoad()) + $0.spikeLoad() * 6.6), with: $0.angle) })
             dataCenterPoints.append(centerPoints)            
