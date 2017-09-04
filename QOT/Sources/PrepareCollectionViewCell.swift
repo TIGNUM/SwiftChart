@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import Anchorage
 
-class PrepareCollectionViewCell: UICollectionViewCell, Dequeueable {
+final class PrepareCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     enum Style {
         case dashed
@@ -20,54 +19,28 @@ class PrepareCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     @IBOutlet private weak var titleLbl: UILabel!
     @IBOutlet weak var trailingConstraint: NSLayoutConstraint!
-
     fileprivate var currentShapeLayer: CAShapeLayer?
 
     override func prepareForReuse() {
         super.prepareForReuse()
+
         currentShapeLayer?.removeFromSuperlayer()
     }
 
     func setStyle(cellStyle: Style, name: String, display: ChoiceListDisplay) {
-
-        var alignment: NSTextAlignment = .center
-        switch display {
-        case .flow:
-            alignment = .left
-            trailingConstraint.constant = 12
-        case .list:
-            alignment = .left
-            trailingConstraint.constant = 25
-        }
-
-        titleLbl.prepareAndSetTextAttributes(text: name, font: Font.DPText, alignment: alignment, lineSpacing: 7, characterSpacing: 0.3, color: .white80)
-        let borderColour = UIColor.greyish20
-        let shapeLayer: CAShapeLayer = CAShapeLayer()
+        trailingConstraint.constant = display == .flow ? 12 : 25
+        titleLbl.prepareAndSetTextAttributes(text: name, font: Font.DPText, alignment: .left, lineSpacing: 7, characterSpacing: 0.3, color: cellStyle == .dashedSelected ? .white : .white60)
+        let shapeLayer = CAShapeLayer()
+        let cornerRadius: CGFloat = cellStyle == .dashed || cellStyle == .dashedSelected ? 10 : 30
         currentShapeLayer = shapeLayer
         let frame = CGRect(x: 2, y: 2, width: self.frame.size.width-2, height: self.frame.size.height-2)
-
         shapeLayer.bounds = bounds
         shapeLayer.position = CGPoint(x: frame.width/2, y: frame.height/2)
         shapeLayer.lineWidth = 1
-        shapeLayer.strokeColor = borderColour.cgColor
-
-        switch cellStyle {
-        case .dashed:
-            shapeLayer.fillColor = UIColor.black40.cgColor
-            shapeLayer.path = UIBezierPath(roundedRect: frame, cornerRadius: 10).cgPath
-            shapeLayer.lineDashPattern = [4, 3]
-        case .dashedSelected:
-            shapeLayer.fillColor = UIColor.black40.cgColor
-            shapeLayer.path = UIBezierPath(roundedRect: frame, cornerRadius: 10).cgPath
-            titleLbl.textColor = UIColor.white
-        case .plain:
-            shapeLayer.fillColor = UIColor.black40.cgColor
-            shapeLayer.path = UIBezierPath(roundedRect: frame, cornerRadius: 30).cgPath
-        case .plainSelected:
-            shapeLayer.fillColor = UIColor.black40.cgColor
-            shapeLayer.path = UIBezierPath(roundedRect: frame, cornerRadius: 30).cgPath
-        }
-        
-        layer.addSublayer(shapeLayer)
+        shapeLayer.strokeColor = UIColor.greyish20.cgColor
+        shapeLayer.fillColor = UIColor.black40.cgColor
+        shapeLayer.lineDashPattern = cellStyle == .dashed ? [4, 3] : nil
+        shapeLayer.path = UIBezierPath(roundedRect: frame, cornerRadius: cornerRadius).cgPath
+        layer.insertSublayer(shapeLayer, at: 0)
     }
 }

@@ -9,6 +9,7 @@
 // An example
 "learn.category-list-view.title" = "Categories";
 "learn.content-list-view.minutes-label" = "%@ MIN TO READ";
+"learn.content-list-view.minutes-label-watch" = "%@ MIN TO WATCH";
 
 "Settings.Tutorial.Reset.Title" = "Tutorial reset";
 
