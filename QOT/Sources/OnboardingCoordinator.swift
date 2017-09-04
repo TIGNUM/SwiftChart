@@ -92,6 +92,11 @@ final class OnboardingCoordinator: ParentCoordinator {
         switch choice.type {
         case .yes:
             permissionHandler.askForAllPermissions({ [unowned self] (result: PermissionHandler.Result) in
+
+                if result.location == true {
+                    UserDefault.locationService.setBoolValue(value: true)
+                }
+
                 if result.isAllGranted {
                     self.showLastStep()
                     self.showLetsGo()
