@@ -58,19 +58,15 @@ class TutorialViewController: UIViewController {
 private extension TutorialViewController {
 
     func addOverlay() {
-        let holeCenterX = buttonFrame.origin.x + buttonFrame.width / 2 + Layout.TabBarView.stackViewHorizontalPaddingBottom
-        let holeCenter = CGPoint(x: holeCenterX, y: view.frame.size.height)
-
-        let ovalPath = UIBezierPath(arcCenter: holeCenter, radius: buttonFrame.width / 2, startAngle: Math.radians(180), endAngle: Math.radians(0), clockwise: true)
-
+        let centerX = buttonFrame.midX + Layout.TabBarView.stackViewHorizontalPaddingBottom
+        let holeCenter = CGPoint(x: centerX, y: view.frame.size.height)
         let overlayPath = UIBezierPath(rect: view.bounds)
-        overlayPath.append(ovalPath)
+        overlayPath.append(UIBezierPath(arcCenter: holeCenter, radius: buttonFrame.width * 0.75, startAngle: Math.radians(180), endAngle: Math.radians(0), clockwise: true))
         overlayPath.usesEvenOddFillRule = true
 
         let layer = CAShapeLayer()
         layer.path = overlayPath.cgPath
         layer.fillRule = kCAFillRuleEvenOdd
-
         view.layer.mask = layer
     }
 
