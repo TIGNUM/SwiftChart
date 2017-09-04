@@ -141,21 +141,12 @@ final class MyUniverseViewController: UIViewController {
 
     fileprivate lazy var backgroundImage: UIView = {
         let frame = self.view.frame
-        let imageViewFrame = CGRect(
-            x: frame.minX,
-            y: frame.minY,
-            width: frame.width * 2,
-            height: frame.height - 84.0
-        )
-
+        let imageViewFrame = CGRect(x: frame.minX, y: frame.minY, width: frame.width * 2, height: frame.height)
         let imageView = UIImageView(frame: imageViewFrame)
         imageView.image = R.image.backgroundMyUniverse()
         imageView.contentMode = .scaleAspectFill
-        return imageView
-    }()
 
-    lazy var contentView: UIView = {
-        return self.view
+        return imageView
     }()
 
     // MARK: - Life Cycle
@@ -183,17 +174,6 @@ final class MyUniverseViewController: UIViewController {
                 self?.myDataView.updateProfileImageResource(resource)
             }
         }.dispose(in: disposeBag)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        backgroundImage.frame = CGRect(
-            x: backgroundImage.bounds.minX,
-            y: backgroundImage.bounds.minY,
-            width: myWhyView.bounds.size.width + myDataView.bounds.size.width,
-            height: backgroundImage.bounds.height
-        )
     }
 }
 
