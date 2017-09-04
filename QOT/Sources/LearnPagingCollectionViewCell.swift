@@ -27,7 +27,7 @@ final class LearnPagingCollectionViewCell: UICollectionViewCell, Dequeueable {
         categoryTitleLabel.text = title.replacingOccurrences(of: " ", with: "\n").uppercased()
         categoryTitleLabel.numberOfLines = 2    
         categoryTitleLabel.textAlignment = .center
-        categoryTitleLabel.font = Font.H6NavigationTitle
+        categoryTitleLabel.font = Font.H5SecondaryHeadline
         categoryTitleLabel.textColor = shouldHighlight == true ? .white : Color.whiteMedium
     }
 }

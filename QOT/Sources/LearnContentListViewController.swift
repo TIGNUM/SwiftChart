@@ -36,7 +36,7 @@ final class LearnContentListViewController: UIViewController {
     weak var delegate: LearnContentListViewControllerDelegate?
 
     fileprivate lazy var pagingCellSize: CGSize = {
-        return CGSize(width: self.view.frame.width / 2, height: 40)
+        return CGSize(width: self.view.frame.width / 2, height: 60)
     }()
 
     fileprivate lazy var performanceLabelSize: CGSize = {
@@ -193,7 +193,7 @@ private extension LearnContentListViewController {
         getBackButton.horizontalAnchors == view.horizontalAnchors
         getBackButton.heightAnchor == Layout.TabBarView.height
 
-        collectionViewLayout.topOffset = pagingCellSize.height + performanceLabelSize.height + Layout.TabBarView.height + 20
+        collectionViewLayout.topOffset = pagingCellSize.height + performanceLabelSize.height + Layout.TabBarView.height
 
         view.layoutIfNeeded()
     }
