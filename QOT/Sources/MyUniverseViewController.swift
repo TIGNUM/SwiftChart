@@ -211,6 +211,9 @@ private extension MyUniverseViewController {
     }
 
     @objc func didTapSector(recognizer: UITapGestureRecognizer) {
+        guard pageIndex == 0 else {
+            return
+        }
         delegate?.didTapSector(startingSection: section(location: recognizer.location(in: view)), in: self)
     }
 }
