@@ -36,7 +36,7 @@ final class AddSensorViewModel {
             case .fitbit:
                 return R.string.localized.sidebarSensorsMenuFitbit()
             case .requestDevice:
-                return "Ask for a ipsum"
+                return R.string.localized.sidebarSensorsMenuRequestSensor()
             }
         }
 

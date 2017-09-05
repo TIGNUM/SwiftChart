@@ -152,6 +152,7 @@
 
 "Sidebar.SensorsMenu.Sensors" = "SENSORS";
 "Sidebar.SensorsMenu.Fitbit" = "FITBIT";
+"Sidebar.SensorsMenu.RequestSensor" = "Request sensor";
 "Sidebar.SensorsMenu.Connect" = "CONNECT";
 "Sidebar.SensorsMenu.Fitbit.Success" = "Fitbit successfully linked";
 "Sidebar.SensorsMenu.Fitbit.Failure" = "Failed to link Fitbit";
