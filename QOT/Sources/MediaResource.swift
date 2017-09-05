@@ -75,7 +75,7 @@ extension MediaResource: OneWayMediaSyncableUp {
         var byteArray = [Int]()
         if let localURL = localURL {
             do {
-                let data = try Data(contentsOf: localURL).base64EncodedData()
+                let data = try Data(contentsOf: localURL)
                 byteArray = data.withUnsafeBytes({ (pointer: UnsafePointer<UInt8>) -> [Int] in
                     var bytes = [Int]()
                     let max = data.count
