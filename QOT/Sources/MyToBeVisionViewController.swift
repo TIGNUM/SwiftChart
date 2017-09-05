@@ -116,6 +116,7 @@ class MyToBeVisionViewController: UIViewController {
 private extension MyToBeVisionViewController {
 
     func drawCircles() {
+        circleContainerView.removeSubLayers()
         var center = view.center; center.x *= 0.2; center.y *= 1.1
         let circleLayer1 = CAShapeLayer.circle(
             center: center,

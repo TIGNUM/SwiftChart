@@ -276,19 +276,6 @@ extension UIView {
         return fadeView
     }
 
-//    @discardableResult func applyTopFade(height: CGFloat = 70.0, primaryColor: UIColor = .black, fadeColor: UIColor = .clear) -> UIView {
-//        let fadeView = UIView(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: bounds.size.width, height: height)))
-//        fadeView.backgroundColor = .clear
-//        
-//        let fadeLayer = CAGradientLayer()
-//        fadeLayer.frame = fadeView.bounds
-//        fadeLayer.colors = [primaryColor.cgColor, primaryColor.cgColor, fadeColor.cgColor]
-//        fadeView.layer.addSublayer(fadeLayer)
-//        
-//        addSubview(fadeView)
-//        return fadeView
-//    }
-
     func removeSubViews() {
         subviews.forEach({ (subView: UIView) in
             subView.removeFromSuperview()
