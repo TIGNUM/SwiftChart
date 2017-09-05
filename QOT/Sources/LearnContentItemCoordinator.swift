@@ -24,6 +24,7 @@ final class LearnContentItemCoordinator: ParentCoordinator {
     fileprivate var presentationManager: CircularPresentationManager?
     fileprivate weak var topBarDelegate: TopNavigationBarDelegate?
     fileprivate let rootViewController: UIViewController
+    fileprivate let headerView: LearnContentItemHeaderView
     var children: [Coordinator] = []
     var topTabBarController: UINavigationController!
     
@@ -43,7 +44,7 @@ final class LearnContentItemCoordinator: ParentCoordinator {
             categoryID: category.forcedRemoteID
         )
         
-        let headerView = LearnContentItemHeaderView.fromXib(contentTitle: selectedContent.title.capitalized, categoryTitle: categoryTitle.capitalized)
+        headerView = LearnContentItemHeaderView.fromXib(contentTitle: selectedContent.title.capitalized, categoryTitle: categoryTitle.capitalized)
 
         fullViewController = LearnContentItemViewController(
             viewModel: viewModel,
@@ -139,8 +140,10 @@ extension LearnContentItemCoordinator: LearnContentItemViewControllerDelegate {
             contentCollection: selectedContent,
             categoryID: category.forcedRemoteID
         )
-        // TODO: this
-        //topTabBarControllerDelegate?.updateHeaderView(title: categoryTitle, subTitle: selectedContent.title)
+
+        // FIXME: We need a more sensible way of getting the subtitle.
+        let subtitle = contentCollection.contentCategories.first?.title.uppercased() ?? ""
+        headerView.setupView(title: contentCollection.title.uppercased(), subtitle: subtitle)
         fullViewController.reloadData(viewModel: viewModel)
         bulletViewController.reloadData(viewModel: viewModel)
         audioViewController.reloadData(viewModel: viewModel)

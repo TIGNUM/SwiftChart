@@ -35,18 +35,16 @@ final class LearnContentItemHeaderView: UIView {
     }
     
     class func fromXib(contentTitle: String, categoryTitle: String) -> LearnContentItemHeaderView {
-        let title = Style.postTitle(contentTitle.uppercased(), .darkIndigo).attributedString()
-        let subTitle = Style.tag(categoryTitle.uppercased(), .black30).attributedString()
         let nib = R.nib.learnContentItemHeaderView()
         let headerView = (nib.instantiate(withOwner: self, options: nil).first as? LearnContentItemHeaderView)!
-        headerView.setupView(title: title, subtitle: subTitle)
+        headerView.setupView(title: contentTitle, subtitle: categoryTitle)
         headerView.backgroundColor = .white
         return headerView
     }
 
-    func setupView(title: NSAttributedString, subtitle: NSAttributedString) {        
-        titleLabel.attributedText = title
-        subTitleLabel.attributedText = subtitle
+    func setupView(title: String, subtitle: String) {
+        titleLabel.attributedText = Style.postTitle(title.uppercased(), .darkIndigo).attributedString()
+        subTitleLabel.attributedText = Style.tag(subtitle.uppercased(), .black30).attributedString()
         backgroundColor = .white
         titleLabel.sizeToFit()
     }

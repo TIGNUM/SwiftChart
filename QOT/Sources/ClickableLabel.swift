@@ -15,7 +15,7 @@ protocol ClickableLabelDelegate: class {
 // Links with the following format: "Some random text with a link...[I'm a link](https://www.google.com)"
 // will be changed to "Some random text with link...I'm a link" with the "I'm a link" part being clickable.
 
-class ClickableLabel: UILabel {
+class ClickableLabel: UILabel, UIGestureRecognizerDelegate {
 
     // MARK: - Types
 
@@ -64,6 +64,12 @@ class ClickableLabel: UILabel {
         super.init(coder: aDecoder)
         setup()
     }
+
+    // MARK: UIGestureRecognizerDelegate
+
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        return links.count > 0
+    }
 }
 
 // MARK: - Private
@@ -75,6 +81,7 @@ private extension ClickableLabel {
         self.isUserInteractionEnabled = true
 
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(linkTapped(_:)))
+        gestureRecognizer.delegate = self
         addGestureRecognizer(gestureRecognizer)
     }
 
