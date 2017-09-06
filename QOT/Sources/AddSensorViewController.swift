@@ -10,6 +10,7 @@ import UIKit
 import Anchorage
 
 protocol AddSensorViewControllerDelegate: class {
+
     func didTapSensor(_ sensor: AddSensorViewModel.Sensor, in viewController: UIViewController)
 }
 

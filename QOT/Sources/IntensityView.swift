@@ -18,9 +18,13 @@ final class IntensityView: UIView {
     fileprivate let displayType: DataDisplayType
     fileprivate let myStatisticsType: MyStatisticsType
 
-    fileprivate lazy var columnWidth: CGFloat = {
-        return self.displayType == .week ? CGFloat(10) : self.frame.width / CGFloat(self.myStatistics.dataPointObjects.count * 2)
-    }()
+    fileprivate var columnWidth: CGFloat {
+        return displayType == .week ? CGFloat(10) : frame.width / CGFloat(myStatistics.dataPointObjects.count * 2)
+    }
+
+    fileprivate var bottomPos: CGFloat {
+        return frame.height - labelContainer.frame.height
+    }
 
     // MARK: - Init
 
@@ -34,7 +38,7 @@ final class IntensityView: UIView {
         setupView()
         drawCharts()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -47,6 +51,7 @@ private extension IntensityView {
     func setupView() {
         setupLabels()
         setupBackground()
+        setupThreshholdLine()
     }
 
     private func setupBackground() {
@@ -59,12 +64,17 @@ private extension IntensityView {
             let startPoint = CGPoint(x: 0, y: yOffset)
             let endPoint = CGPoint(x: frame.width, y: yOffset)
 
-            if Int(myStatistics.upperThreshold.toFloat * CGFloat(numberOfLines)) == index {
-                drawDashedLine(from: startPoint, to: endPoint, lineWidth: lineWidth, strokeColour: .white20, dashPattern: [1.5, 3.0])
-            } else {
+            if (numberOfLines - Int(myStatistics.upperThreshold * Double(numberOfLines))) != index {
                 drawSolidLine(from: startPoint, to: endPoint, lineWidth: lineWidth, strokeColour: .white20)
             }
         }
+    }
+
+    private func setupThreshholdLine() {
+        let yPos = bottomPos - myStatistics.upperThreshold.toFloat * bottomPos
+        let start = CGPoint(x: 0, y: yPos)
+        let end = CGPoint(x: frame.width, y: yPos)
+        drawDashedLine(from: start, to: end, lineWidth: 1, strokeColour: .cherryRedTwo30, dashPattern: [1.5, 3.0])
     }
 
     private func setupLabels() {
@@ -106,7 +116,7 @@ private extension IntensityView {
 
             weekNumbers.append(String(format: "%d", currentWeekNumber))
         }
-        
+
         return weekNumbers.reversed()
     }
 }
@@ -116,16 +126,16 @@ private extension IntensityView {
 private extension IntensityView {
 
     func drawCharts() {
-        for (index, dataPointObject) in myStatistics.dataPointObjects.enumerated() {
-            let bottomPos = frame.height - labelContainer.frame.height
+        for (index, dataPoint) in myStatistics.dataPointObjects.enumerated() {
             let xPos = xPosition(index: index, columnWidth: columnWidth)
-            let yPos = dataPointObject.value > 0 ? (bottomPos * dataPointObject.value) : bottomPos
-            let columnFrame = CGRect(x: xPos, y: bottomPos, width: columnWidth, height: yPos - bottomPos)
+            let yPos = (bottomPos - dataPoint.value * bottomPos) - labelContainer.frame.height
+            let height = dataPoint.value > 0 ? yPos - bottomPos : 0
+            let columnFrame = CGRect(x: xPos, y: bottomPos, width: columnWidth, height: height)
             let column = UIView(frame: columnFrame)
             column.backgroundColor = .white8
             column.layer.cornerRadius = myStatisticsType == .intensityLoad ? 5 : 0
             column.layer.borderWidth = displayType == .week ? 0.5 : 0.2
-            column.layer.borderColor = dataPointObject.color.cgColor
+            column.layer.borderColor = dataPoint.color.cgColor
             column.layer.masksToBounds = true
             addSubview(column)
         }
@@ -137,7 +147,7 @@ private extension IntensityView {
 
             return (labelFrame.origin.x + labelFrame.width * 0.5) - (columnWidth * 0.5)
         }
-
+        
         return columnWidth * CGFloat(index) * 2
     }
 }

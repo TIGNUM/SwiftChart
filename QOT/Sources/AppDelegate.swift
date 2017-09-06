@@ -100,7 +100,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         return launchHandler.canLaunch(url: url)
-    }
+    }    
     
     // MARK: - private
     

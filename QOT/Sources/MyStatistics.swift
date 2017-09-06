@@ -164,7 +164,7 @@ private extension MyStatistics {
         } else {
             if dataValue > upperThreshold.toFloat {
                 return .white90
-            } else if  dataValue <= lowerThreshold.toFloat {
+            } else if  dataValue < upperThreshold.toFloat {
                 return .cherryRed
             } else {
                 return .gray
