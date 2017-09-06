@@ -95,6 +95,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        if launchHandler.canLaunch(url: url) == true && url.host == URLScheme.fitbit.rawValue {
+            launchHandler.process(url: url)
+        }
+
         return launchHandler.canLaunch(url: url)
     }
     
