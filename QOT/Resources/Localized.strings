@@ -115,8 +115,8 @@
 "Me.Card.Title.Peak.Performacne.Average" = "Average number of peak performances";
 "Me.Card.Title.Activity.Ratio" = "Sitting / Movement Ratio";
 "Me.Card.Title.Activity.Level" = "Activity level";
-"Me.Card.Title.Intensity.Load" = "Load";
-"Me.Card.Title.Intensity.Recovery" = "Recovery";
+"Me.Card.Title.Intensity.Load" = "Perceived Load";
+"Me.Card.Title.Intensity.Recovery" = "Perceived Recovery";
 
 "Prepare.PrepareEvents.AddPreparation" = "ADD THIS PREPARATION TO";
 "Prepare.PrepareEvents.AddNewEvent" = "Add new event";
