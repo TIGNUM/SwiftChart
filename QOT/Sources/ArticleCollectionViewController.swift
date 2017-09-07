@@ -99,7 +99,7 @@ extension ArticleCollectionViewController: UICollectionViewDataSource, UICollect
                        description: viewModel.description(at: index),
                        imageURL: viewModel.previewImageURL(at: index),
                        duration: viewModel.duration(at: index),
-                       showSeparator: indexPath.row != 0
+                       showSeparator: indexPath.row + 1 != viewModel.itemCount
         )
 
         return cell

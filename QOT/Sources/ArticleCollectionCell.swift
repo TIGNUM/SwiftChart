@@ -17,7 +17,7 @@ class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
     @IBOutlet fileprivate weak var subTitle: UILabel!
     @IBOutlet fileprivate weak var textLabel: UILabel!
     @IBOutlet fileprivate weak var mediaInformation: UILabel!
-    @IBOutlet weak var topSeparator: UIView!
+    @IBOutlet fileprivate weak var bottomSeparator: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -53,7 +53,7 @@ class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
         mediaInformation.attributedText = attributedTitle(text: duration)
         imageView.kf.indicatorType = .activity
         imageView.kf.setImage(with: imageURL, placeholder: R.image.preloading(), options: nil, progressBlock: nil, completionHandler: nil)
-        topSeparator.isHidden = !showSeparator
+        bottomSeparator.isHidden = !showSeparator
     }
 
     override func layoutSubviews() {
