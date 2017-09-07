@@ -26,10 +26,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.tignum.qotapp</string>
+			<string>com.tignum.qot.novartis</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>qotapp</string>
+				<string>qot</string>
 			</array>
 		</dict>
 	</array>
@@ -81,7 +81,7 @@
 		</dict>
 	</dict>
 	<key>NSCalendarsUsageDescription</key>
-	<string>We use this for flight info</string>
+	<string>We use this for flight info.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>QOT needs camera access for changing images.</string>
 	<key>NSContactsUsageDescription</key>
@@ -93,7 +93,7 @@
 	<key>NSLocationUsageDescription</key>
 	<string></string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>QOT needs access to your location to track your steps</string>
+	<string>QOT needs access to your location to track your steps.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>QOT needs access to your Library to set your images.</string>
 	<key>UIAppFonts</key>
