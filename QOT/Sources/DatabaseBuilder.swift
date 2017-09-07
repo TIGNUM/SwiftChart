@@ -12,7 +12,6 @@ import Foundation
 import RealmSwift
 
 class DatabaseBuilder {
-    private let config: Realm.Configuration
     private let networkManager: NetworkManager
     private let syncRecordService: SyncRecordService
     private let realmProvider: RealmProvider
@@ -24,8 +23,7 @@ class DatabaseBuilder {
     }()
     private var operations: [Operation]?
     
-    init(config: Realm.Configuration, networkManager: NetworkManager, syncRecordService: SyncRecordService, realmProvider: RealmProvider, deviceID: String) {
-        self.config = config
+    init(networkManager: NetworkManager, syncRecordService: SyncRecordService, realmProvider: RealmProvider, deviceID: String) {
         self.networkManager = networkManager
         self.syncRecordService = syncRecordService
         self.realmProvider = realmProvider

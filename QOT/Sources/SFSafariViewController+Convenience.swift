@@ -38,4 +38,3 @@ final class SafariViewController: SFSafariViewController {
         UIApplication.shared.statusBarStyle = .lightContent
     }
 }
-

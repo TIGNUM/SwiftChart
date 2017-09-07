@@ -12,6 +12,7 @@ import EventKit
 import Alamofire
 import UserNotifications
 import AirshipKit
+import Crashlytics
 
 final class AppCoordinator: ParentCoordinator {
     
@@ -32,10 +33,6 @@ final class AppCoordinator: ParentCoordinator {
     
     fileprivate lazy var realmProvider: RealmProvider = {
         return RealmProvider()
-    }()
-
-    fileprivate lazy var databaseManager: DatabaseManager = {
-        return DatabaseManager(config: RealmProvider.config)
     }()
 
     fileprivate lazy var pageTracker: PageTracker = {
@@ -83,13 +80,6 @@ final class AppCoordinator: ParentCoordinator {
     }
     
     func start() {
-        if !databaseManager.isDatabaseCreated {
-            do {
-                try databaseManager.copyDefault(withName: .v1)
-            } catch {
-                log(error)
-            }
-        }
         pageTracker.start()
         
         let viewController = AnimatedLaunchScreenViewController()
@@ -114,37 +104,47 @@ final class AppCoordinator: ParentCoordinator {
     }
 
     func showApp() {
-        Services.make { (result) in
-            switch result {
-            case .success(let services):
-                self.services = services
-                self.syncManager.startAutoSync()
-                self.syncManager.syncAll()
-                self.syncManager.uploadMedia()
+        func handleError(error: Error) {
+            log("Error setting up database: \(error)")
+            Crashlytics.sharedInstance().recordError(error)
+            let message = "There was a problem initializing the app's data. Please restart the app and try again"
+            self.showMajorAlert(type: .custom(title: "Error", message: message), handler: {
+                exit(0)
+            }, handlerDestructive: nil)
+        }
 
-                guard OnboardingCoordinator.isOnboardingComplete == true else {
-                    self.showOnboarding()
-                    return
+        DatabaseManager.shared.onSetupComplete { (error) in
+            if let error = error {
+                handleError(error: error)
+            } else {
+                do {
+                    let services = try Services()
+                    self.services = services
+                    self.syncManager.startAutoSync()
+                    self.syncManager.syncAll()
+                    self.syncManager.uploadMedia()
+
+                    guard OnboardingCoordinator.isOnboardingComplete == true else {
+                        self.showOnboarding()
+                        return
+                    }
+
+                    self.registerRemoteNotifications()
+                    self.calendarImportManager.importEvents()
+                    self.startTabBarCoordinator(services: services, permissionHandler: self.permissionHandler)
+
+                    // if the tab controller isn't loading, but we're still syncing all, show loading
+                    let doingInitialSync = self.syncManager.isSyncing && (self.syncManager.isDownloadRecordsValid == false)
+                    if let tabBarCoordinator = self.tabBarCoordinator, !tabBarCoordinator.isLoading, doingInitialSync {
+                        tabBarCoordinator.showLoading()
+                    }
+
+                    self.updateDeviceToken()
+                    self.canProcessRemoteNotifications = true
+                    self.remoteNotificationHandler.processOutstandingNotifications()
+                } catch {
+                    handleError(error: error)
                 }
-                
-                self.registerRemoteNotifications()
-                self.calendarImportManager.importEvents()
-                self.startTabBarCoordinator(services: services, permissionHandler: self.permissionHandler)
-                
-                // if the tab controller isn't loading, but we're still syncing all, show loading
-                let doingInitialSync = self.syncManager.isSyncing && (self.syncManager.isDownloadRecordsValid == false)
-                if let tabBarCoordinator = self.tabBarCoordinator, !tabBarCoordinator.isLoading, doingInitialSync {
-                    tabBarCoordinator.showLoading()
-                }
-                
-                self.updateDeviceToken()
-                self.canProcessRemoteNotifications = true
-                self.remoteNotificationHandler.processOutstandingNotifications()
-            case .failure:
-                // TODO: localise alert text
-                self.showMajorAlert(type: .custom(title: "Error", message: "There was a problem initializing the app's data. Please restart the app and try again"), handler: {
-                    exit(0)
-                }, handlerDestructive: nil)
             }
         }
     }
@@ -299,20 +299,8 @@ extension AppCoordinator {
         do {
             syncManager.stopAutoSync()
             syncManager.stopCurrentSync()
-           
-            let bundledDatabase = try databaseManager.loadDatabase(.v1)
-            let currentDatabase = try realmProvider.realm()
-            
-            // FIXME: this doesn't work due to inverse relationships. Realm is unidirectional, so crashes with stack overflow (infinate loop) from recursively creating each direction.
-            //try databaseManager.populateAllObjects(fromDatabase: fromDatabase, toDatabase: toDatabase)
 
-            // For now we just delete all types that aren't in the bundled db
-            let classNamesToKeep = Set(databaseManager.classNamesWithEntitiesFromDatabase(bundledDatabase))
-            var classNamesToDelete = Set(databaseManager.classNamesFromDatabase(currentDatabase))
-            classNamesToDelete.subtract(classNamesToKeep)
-            let classNamesToDeleteArray = Array(classNamesToDelete)
-            try syncRecordService.deleteSyncRecordsForClassNames(classNamesToDeleteArray)
-            try databaseManager.deleteAllObjectsWithClassNames(classNamesToDeleteArray, fromDatabase: currentDatabase)
+            try DatabaseManager.shared.resetDatabase(syncRecordService: syncRecordService)
         } catch {
             log(error.localizedDescription)
         }

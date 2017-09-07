@@ -15,7 +15,6 @@
         func __buildDatabase() {
             let realmProvider = RealmProvider()
             databaseBuilder = DatabaseBuilder(
-                config: RealmProvider.config,
                 networkManager: NetworkManager(),
                 syncRecordService: SyncRecordService(realmProvider: realmProvider),
                 realmProvider: realmProvider,

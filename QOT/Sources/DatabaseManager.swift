@@ -7,86 +7,149 @@
 //
 
 import Foundation
+import Realm
 import RealmSwift
 import Security
 
-class DatabaseManager {
-    enum Name: String {
-        case v1 = "default-v1"
+final class DatabaseManager {
 
-        var `extension`: String {
-            return "realm"
-        }
-        var directory: String {
-            return "Database"
-        }
+    enum State {
+        case starting
+        case ready
+        case failed(Error)
     }
-    
-    private let config: Realm.Configuration
-    
-    var isDatabaseCreated: Bool {
-        guard let currentDatabaseFilePath = config.fileURL?.absoluteString.removeFilePrefix else {
-            return false
-        }
-        return FileManager.default.fileExists(atPath: currentDatabaseFilePath)
-    }
-    
-    init(config: Realm.Configuration) {
-        self.config = config
-    }
-    
-    func copyDefault(withName name: Name) throws {
-        guard let url = config.fileURL else {
-            throw SimpleError(localizedDescription: "couldn't load config.fileURL")
-        }
-        let database = try loadDatabase(name)
-        let service = DatabaseKeyService()
 
-        #if DEBUG
-            // @warning we can't use the realm browser for an encrypted db at the same time as running the app, so we dont use a encryption key during debug mode
-            let encryptionKey: Data? = nil
-        #else
-            let encryptionKey = service.keyData
-        #endif
+    private var _state: State = .starting
+    private var _onSetupCompleteClosures: [(Error?) -> Void] = []
+    private var _configuration: Realm.Configuration?
 
-        try database.writeCopy(toFile: url, encryptionKey: encryptionKey)
-        log("copied bundled database \(name.rawValue) to \(url)")
-    }
-    
-    func loadDatabase(_ name: Name) throws -> Realm {
-        guard let databaseURL = fileURLForName(name) else {
-            throw SimpleError(localizedDescription: "couldn't find database with name \(name.rawValue)")
-        }
-        let config = Realm.Configuration(fileURL: databaseURL, encryptionKey: nil, readOnly: true, deleteRealmIfMigrationNeeded: false)
-        let database = try Realm(configuration: config)
-        return database
-    }
-    
-    func fileURLForName(_ name: Name) -> URL? {
-        return Bundle.main.url(forResource: name.rawValue, withExtension: name.extension, subdirectory: name.directory)
-    }
-    
-    func populateAllObjects(fromDatabase: Realm, toDatabase: Realm) throws {
-        let classNames = classNamesFromDatabase(fromDatabase)
-        try classNames.forEach { (className: String) in
-            let objects = fromDatabase.dynamicObjects(className)
-            try toDatabase.write {
-                objects.forEach { (object: DynamicObject) in
-                    toDatabase.dynamicCreate(className, value: object, update: (DynamicObject.primaryKey() != nil))
-                }
+    private let lockQueue = DispatchQueue(label: "com.tignum.qot.databaseManager.lock", qos: .default)
+    private let setupQueue = DispatchQueue(label: "com.tignum.qot.databaseManager.setup", qos: .userInitiated)
+    static let shared = DatabaseManager()
+
+    private(set) var state: State {
+        get {
+            var state: State!
+            lockQueue.sync {
+                state = _state
+            }
+            return state
+        } set {
+            lockQueue.sync {
+                _state = newValue
             }
         }
     }
+
+    static var databaseURL: URL {
+        return URL.mainRealm
+    }
+
+    func onSetupComplete(_ closure: @escaping (Error?) -> Void) {
+        DispatchQueue.main.async { [unowned self] in
+            switch self.state {
+            case .starting:
+                self._onSetupCompleteClosures.append(closure)
+            case .ready:
+                closure(nil)
+            case .failed(let error):
+                closure(error)
+            }
+        }
+    }
+
+    func configuration() throws -> Realm.Configuration {
+        var config: Realm.Configuration?
+        setupQueue.sync {
+            config = _configuration
+        }
+        if let config = config {
+            return config
+        }
+        throw SimpleError(localizedDescription: "DatabaseManager failed to complete setup")
+    }
+
+    // MARK: Setup
+
+    private init() {
+        setupQueue.async { [unowned self] in
+            do {
+                try self.setup()
+                self.state = .ready
+                self.setupComplete(error: nil)
+            } catch {
+                self.state = .failed(error)
+                self.setupComplete(error: error)
+            }
+        }
+    }
+
+    private func setup() throws {
+        let encryptionKey = try DatabaseKeyService().encryptionKey()
+        let mainConfig = Realm.Configuration.main(encryptionKey: encryptionKey)
+
+        let fileManager = FileManager.default
+        if fileManager.fileExists(atPath: mainConfig.fileURL!.path) {
+            do {
+                _ = try Realm(configuration: mainConfig)
+                _configuration = mainConfig
+                // Realm exists and can be opened so return
+                return
+            } catch let error as RLMError {
+                switch error.code {
+                case .schemaMismatch:
+                    try fileManager.removeItem(at: URL.mainRealmDirectory)
+                default:
+                    throw error
+                }
+            }
+        }
+
+        try fileManager.createDirectory(at: URL.mainRealmDirectory, withIntermediateDirectories: true)
+        do {
+            let seedRealm = try Realm(configuration: .seed())
+            try seedRealm.writeCopy(toFile: URL.mainRealm, encryptionKey: encryptionKey)
+            log("copied seed database to \(URL.mainRealm)")
+        } catch {
+            // Just log the errors. The app will still work
+            log("failed to copy seed database to \(URL.mainRealm), error: \(error)")
+        }
+
+        _ = try Realm(configuration: mainConfig)
+        _configuration = mainConfig
+    }
+
+    private func setupComplete(error: Error?) {
+        DispatchQueue.main.async { [unowned self] in
+            let closures = self._onSetupCompleteClosures
+            self._onSetupCompleteClosures = []
+            closures.forEach { $0(error) }
+        }
+    }
+
+    // MARK: Reseting Database
+
+    func resetDatabase(syncRecordService: SyncRecordService) throws {
+        let mainRealm = try Realm(configuration: configuration())
+        let seedRealm = try Realm(configuration: .seed())
+
+        let classNamesToKeep = Set(classNamesWithEntitiesFromDatabase(seedRealm))
+        var classNamesToDelete = Set(classNamesFromDatabase(mainRealm))
+        classNamesToDelete.subtract(classNamesToKeep)
+        let classNamesToDeleteArray = Array(classNamesToDelete)
+        try syncRecordService.deleteSyncRecordsForClassNames(classNamesToDeleteArray)
+        try deleteAllObjectsWithClassNames(classNamesToDeleteArray, fromDatabase: mainRealm)
+    }
     
-    func classNamesFromDatabase(_ database: Realm) -> [String] {
+    private func classNamesFromDatabase(_ database: Realm) -> [String] {
         return database.schema.objectSchema.map({ $0.className })
     }
     
-    func classNamesWithEntitiesFromDatabase(_ database: Realm) -> [String] {
+    private func classNamesWithEntitiesFromDatabase(_ database: Realm) -> [String] {
         return classNamesFromDatabase(database).filter({ database.dynamicObjects($0).count > 0 })
     }
     
-    func deleteAllObjectsWithClassNames(_ classNames: [String], fromDatabase database: Realm) throws {
+    private func deleteAllObjectsWithClassNames(_ classNames: [String], fromDatabase database: Realm) throws {
         try classNames.forEach { (className: String) in
             let objects = database.dynamicObjects(className)
             try database.write {
@@ -94,10 +157,43 @@ class DatabaseManager {
             }
         }
     }
-    
-    func deleteAllObjectsFromDatabase(_ database: Realm) throws {
-        try database.write {
-            database.deleteAll()
-        }
+}
+
+// MARK: Helpers
+
+private extension URL {
+
+    static var mainRealmDirectory: URL {
+        return URL.documentsDirectory.appendingPathComponent("database")
+    }
+
+    static var mainRealm: URL {
+        return mainRealmDirectory.appendingPathComponent("QOT.realm")
+    }
+
+    static var seedRealm: URL {
+        return Bundle.main.url(forResource: "default-v1", withExtension: "realm", subdirectory: "Database")!
+    }
+}
+
+private extension Realm.Configuration {
+
+    static func main(encryptionKey: Data?) -> Realm.Configuration {
+        return Realm.Configuration(fileURL: URL.mainRealm, encryptionKey: encryptionKey)
+    }
+
+    static func seed() -> Realm.Configuration {
+        return Realm.Configuration(fileURL: URL.seedRealm, readOnly: true)
+    }
+}
+
+private extension DatabaseKeyService {
+
+    func encryptionKey() throws -> Data? {
+        #if DEBUG
+            return nil
+        #else
+            return try keyData ?? generateNewKey()
+        #endif
     }
 }

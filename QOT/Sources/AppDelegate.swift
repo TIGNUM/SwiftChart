@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupUAirship()        
 
         #if DEBUG
-            log("\nopen -a \"Realm Browser\" \(RealmProvider.config.fileURL!)\n")
+            log("\nopen -a \"Realm Browser\" \(DatabaseManager.databaseURL)\n")
             LogSettings.logLevel = .verbose
             logAppLocation()
             logAvailableFonts()
@@ -117,11 +117,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     fileprivate var appFilePath: String {
-        let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let url = documents.deletingLastPathComponent()
+        let url = URL.documentsDirectory.deletingLastPathComponent()
         return url.absoluteString.removeFilePrefix
     }
-    
+
     fileprivate func logAppLocation() {
         log("App location: \(appFilePath)", enabled: LogToggle.Manager.FileManager)
     }
