@@ -399,6 +399,7 @@
 		CCF0F4C01ECDC57000E8D9C1 /* NSPredicate+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF0F4BD1ECDC57000E8D9C1 /* NSPredicate+Convenience.swift */; };
 		CCF0F4C11ECDC57000E8D9C1 /* ObjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF0F4BE1ECDC57000E8D9C1 /* ObjectStore.swift */; };
 		CCF0F4C61ECDD0DA00E8D9C1 /* contentCategory.json in Resources */ = {isa = PBXBuildFile; fileRef = CCF0F4C51ECDD0DA00E8D9C1 /* contentCategory.json */; };
+		CCF19C591F6048600020D7B6 /* SFSafariViewController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF19C581F6048600020D7B6 /* SFSafariViewController+Convenience.swift */; };
 		CCFCCB141F31C8E8004A4D7E /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFCCB131F31C8E8004A4D7E /* R.generated.swift */; };
 		D50D6C241EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50D6C221EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift */; };
 		D50D6C251EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D50D6C231EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib */; };
@@ -850,6 +851,7 @@
 		CCF0F4BD1ECDC57000E8D9C1 /* NSPredicate+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPredicate+Convenience.swift"; sourceTree = "<group>"; };
 		CCF0F4BE1ECDC57000E8D9C1 /* ObjectStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectStore.swift; sourceTree = "<group>"; };
 		CCF0F4C51ECDD0DA00E8D9C1 /* contentCategory.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = contentCategory.json; sourceTree = "<group>"; };
+		CCF19C581F6048600020D7B6 /* SFSafariViewController+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SFSafariViewController+Convenience.swift"; sourceTree = "<group>"; };
 		CCFCCB131F31C8E8004A4D7E /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = QOT/Generated/R.generated.swift; sourceTree = SOURCE_ROOT; };
 		CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D50D6C221EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSubtitleTableViewCell.swift; sourceTree = "<group>"; };
@@ -1488,8 +1490,10 @@
 				CC4F22EF1EE023F4006C437E /* NSMutableAttributedString+Create.swift */,
 				CC9F4F961F1D15C70027003D /* Range+MakeOneDay.swift */,
 				7FDFF36A1F1916B400F7A7EC /* Realm+Utility.swift */,
+				CCF19C581F6048600020D7B6 /* SFSafariViewController+Convenience.swift */,
 				851676C91F39AA9C007A1DD6 /* String+Extensions.swift */,
 				CB9BB0C11F0CD13E009067D7 /* TimeInterval+Convenience.swift */,
+				CBFECCAC1F388B500076ACE6 /* TimeZone+Convenience.swift */,
 				CCE6CD741F1390AD00B66DA3 /* UIApplication+Convenience.swift */,
 				7FE38DD41F2B2E760061E98F /* UIBarButtonItem+Convenience.swift */,
 				852DADC11EEDDE5100A10882 /* UIButton+AttributedTitle.swift */,
@@ -1506,11 +1510,10 @@
 				CC80181F1F0256980040B03F /* UIViewController+Alert.swift */,
 				85777E7A1F0F857C00E12477 /* UIViewController+Convenience.swift */,
 				CC7A91111F0F978E00F791B9 /* UIViewController+ScreenType.swift */,
+				CCDD549D1F46C0A7002F4933 /* UIViewController+StreamVideo.swift */,
 				CCCC42DE1ED5799D00E73905 /* UIViewController+Transition.swift */,
 				CC9622071F1F48A8007A9ED0 /* URL+Components.swift */,
 				CCC2D3151F0AB1E000951A2E /* UserDefault+Convenience.swift */,
-				CBFECCAC1F388B500076ACE6 /* TimeZone+Convenience.swift */,
-				CCDD549D1F46C0A7002F4933 /* UIViewController+StreamVideo.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -2796,6 +2799,7 @@
 				CCC1B6AE1E8B9B7F00D1461F /* LearnContentListViewController.swift in Sources */,
 				CC02E14B1F279E6700134574 /* SettingsCalendarListViewController.swift in Sources */,
 				CC7D21B31EFC1348007A062E /* WeeklyChoicesViewController.swift in Sources */,
+				CCF19C591F6048600020D7B6 /* SFSafariViewController+Convenience.swift in Sources */,
 				CBC1DC1F1F0F9BA100F6D056 /* SystemSetting+Convenience.swift in Sources */,
 				CCEFCFB01E8D3D7500E9FC72 /* SidebarViewController.swift in Sources */,
 				7FBC3E801F385135005BD772 /* MediaService.swift in Sources */,

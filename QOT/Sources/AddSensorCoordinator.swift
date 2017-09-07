@@ -50,11 +50,14 @@ extension AddSensorCoordinator: AddSensorViewControllerDelegate {
                 let url = URL(string: urlString) else {
                     return
             }
-            AddSensorCoordinator.safariViewController = SFSafariViewController(url: url)
-            guard let webViewController = AddSensorCoordinator.safariViewController else {
-                return
+
+            do {
+                let safariViewController = try SafariViewController(url)
+                AddSensorCoordinator.safariViewController = safariViewController
+                viewController.present(safariViewController, animated: true)
+            } catch {
+                log("Failed to open url. Error: \(error)")
             }
-            viewController.present(webViewController, animated: true)
         case .requestDevice:
             viewController.present(setupAlert(), animated: true, completion: nil)
         default:

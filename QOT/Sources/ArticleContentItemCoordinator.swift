@@ -133,11 +133,14 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
     }
 
     func didTapLink(_ url: URL, in viewController: ArticleItemViewController) {
-        if url.scheme == "mailto" {
+        if url.scheme == "mailto" && UIApplication.shared.canOpenURL(url) == true {
             UIApplication.shared.open(url)
         } else {
-            let webViewController = SFSafariViewController(url: url)
-            viewController.present(webViewController, animated: true, completion: nil)
+            do {
+                viewController.present(try SafariViewController(url), animated: true, completion: nil)
+            } catch {
+                log("Failed to open url. Error: \(error)")
+            }
         }
     }
 

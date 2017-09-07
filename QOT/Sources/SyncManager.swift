@@ -244,7 +244,8 @@ final class SyncManager {
             upSyncOperation(UserChoice.self, context: context),
             upSyncOperation(UserSetting.self, context: context),
             upSyncOperation(User.self, context: context),
-            upSyncOperation(PageTrack.self, context: context)
+            upSyncOperation(PageTrack.self, context: context),
+            upSyncOperation(UserAnswer.self, context: context)
         ]
     }
 

@@ -158,13 +158,11 @@ extension LearnContentItemCoordinator: LearnContentItemViewControllerDelegate {
     }
 
     func didTapPDF(withURL url: URL, in viewController: LearnContentItemViewController) {
-
-        // SFSafariViewController will crash if url doesn't hae one of these schemes
-        guard ["http", "https"].contains(url.scheme?.lowercased() ?? "") else { return }
-
-        let webViewController = SFSafariViewController(url: url)
-
-        viewController.present(webViewController, animated: true, completion: nil)
+        do {
+            viewController.present(try SafariViewController(url), animated: true, completion: nil)
+        } catch {
+            log("Failed to open url. Error: \(error)")
+        }
     }
 }
 
