@@ -325,6 +325,7 @@
 		CC7D21B31EFC1348007A062E /* WeeklyChoicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7D21AE1EFC1348007A062E /* WeeklyChoicesViewController.swift */; };
 		CC7D21B41EFC1348007A062E /* WeeklyChoicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7D21AF1EFC1348007A062E /* WeeklyChoicesViewModel.swift */; };
 		CC7D21DB1EDD5FE800C6B8E0 /* LearnPagingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC7D21DA1EDD5FE800C6B8E0 /* LearnPagingCollectionViewCell.xib */; };
+		CC7E80BA1F614F1B006F9515 /* QotNotification.aiff in Resources */ = {isa = PBXBuildFile; fileRef = CC7E80B91F614F1B006F9515 /* QotNotification.aiff */; };
 		CC8018201F0256980040B03F /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC80181F1F0256980040B03F /* UIViewController+Alert.swift */; };
 		CC8018231F026BDA0040B03F /* LibraryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8018211F026BDA0040B03F /* LibraryTableViewCell.swift */; };
 		CC8018241F026BDA0040B03F /* LibraryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC8018221F026BDA0040B03F /* LibraryTableViewCell.xib */; };
@@ -777,6 +778,7 @@
 		CC7D21AE1EFC1348007A062E /* WeeklyChoicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesViewController.swift; sourceTree = "<group>"; };
 		CC7D21AF1EFC1348007A062E /* WeeklyChoicesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesViewModel.swift; sourceTree = "<group>"; };
 		CC7D21DA1EDD5FE800C6B8E0 /* LearnPagingCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnPagingCollectionViewCell.xib; sourceTree = "<group>"; };
+		CC7E80B91F614F1B006F9515 /* QotNotification.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = QotNotification.aiff; sourceTree = "<group>"; };
 		CC80181F1F0256980040B03F /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		CC8018211F026BDA0040B03F /* LibraryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryTableViewCell.swift; sourceTree = "<group>"; };
 		CC8018221F026BDA0040B03F /* LibraryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryTableViewCell.xib; sourceTree = "<group>"; };
@@ -1946,14 +1948,15 @@
 		CBD791571E72F10E0006C590 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7F99ABB01F3DF38E009CA587 /* Database */,
 				CB8C34551EAF7F200003AB65 /* styles.css */,
 				CCF0F4C51ECDD0DA00E8D9C1 /* contentCategory.json */,
 				CC38B11F1F29EDA900C2BB87 /* AirshipConfig.plist */,
 				CBB237FB1E6FFF1200AB5AEF /* Info.plist */,
 				CC6251DA1EE00DD800C6F546 /* Localized.strings */,
-				7F99ABB01F3DF38E009CA587 /* Database */,
 				CBB237F61E6FFF1200AB5AEF /* Assets.xcassets */,
 				CBB4DD451EE0908E0071494A /* Fonts */,
+				CC7E80B81F614EEF006F9515 /* Sounds */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -2013,6 +2016,14 @@
 				CC7D21AF1EFC1348007A062E /* WeeklyChoicesViewModel.swift */,
 			);
 			name = "Weekly Choices";
+			sourceTree = "<group>";
+		};
+		CC7E80B81F614EEF006F9515 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				CC7E80B91F614F1B006F9515 /* QotNotification.aiff */,
+			);
+			name = Sounds;
 			sourceTree = "<group>";
 		};
 		CC90EC991F3074A200A83DB9 /* SettingsChangePaasword */ = {
@@ -2214,6 +2225,7 @@
 				CC8813EC1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib in Resources */,
 				8514A48E1EE966C30086C70E /* PrepareContentMainHeaderTableViewCell.xib in Resources */,
 				D57ACCAF1F150D1D00906573 /* LaunchScreen.storyboard in Resources */,
+				CC7E80BA1F614F1B006F9515 /* QotNotification.aiff in Resources */,
 				851676DF1F3C694B007A1DD6 /* LearnReadMoreCell.xib in Resources */,
 				0BC9F93A1E96118C009E8204 /* StatusTableViewCell.xib in Resources */,
 				850A50BD1F0A97FF00350097 /* PrepareContentTopTabBarView.xib in Resources */,
