@@ -297,9 +297,10 @@ private extension MyToBeVisionViewController {
     }
     
     @IBAction func imageButtonPressed(_ sender: UIButton) {
-        let imagePicker = ImagePickerController()
+        var config = Configuration()
+        config.allowMultiplePhotoSelection = false
+        let imagePicker = ImagePickerController(configuration: config)
         imagePicker.delegate = self
-        imagePicker.imageLimit = 1
         present(imagePicker, animated: true, completion: nil)
         self.imagePicker = imagePicker
     }
