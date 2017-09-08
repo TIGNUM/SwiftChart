@@ -37,7 +37,7 @@ final class SettingsCoordinator: ParentCoordinator {
         self.services = services
         self.settingsType = settingsType
         settingsViewController = SettingsViewController(viewModel: viewModel, services: services, settingsType: settingsType)
-        settingsViewController.title = settingsType.title
+        settingsViewController.title = settingsType.title.uppercased()
         settingsViewController.delegate = self
         askPermissionForCalendar()
     }

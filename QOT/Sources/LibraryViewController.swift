@@ -43,7 +43,13 @@ final class LibraryViewController: UIViewController {
 
         setupView()
     }
-    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationItem.title = R.string.localized.sidebarTitleLibrary().uppercased()
+    }
+
     // MARK: - private
     
     private func setupView() {

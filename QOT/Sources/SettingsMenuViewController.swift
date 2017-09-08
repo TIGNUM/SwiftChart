@@ -56,6 +56,12 @@ final class SettingsMenuViewController: UIViewController {
 
         setupView()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationItem.title = R.string.localized.settingsTitle().uppercased()
+    }
 }
 
 // MARK: - Private
