@@ -168,7 +168,6 @@ final class TabBarCoordinator: ParentCoordinator {
         viewControllers.append(topTabBarControllerLearn)
         viewControllers.append(topTabBarControllerMe)
         viewControllers.append(topTabBarControllerPrepare)
-        
         tabBarController = bottomTabBarController()
         windowManager.setRootViewController(tabBarController!, atLevel: .normal, animated: true, completion: nil)
     }

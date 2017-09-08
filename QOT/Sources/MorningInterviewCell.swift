@@ -21,8 +21,9 @@ final class MorningInterviewCell: UICollectionViewCell, Dequeueable {
 
     fileprivate var titlelabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 2
+        label.numberOfLines = 0
         label.minimumScaleFactor = 0.5
+
         return label
     }()
 
@@ -31,6 +32,7 @@ final class MorningInterviewCell: UICollectionViewCell, Dequeueable {
         slider.minimumTrackTintColor = .white
         slider.maximumTrackTintColor = .gray
         slider.isContinuous = true
+
         return slider
     }()
 
@@ -42,14 +44,14 @@ final class MorningInterviewCell: UICollectionViewCell, Dequeueable {
 
         question.answerIndex = index
         if let answer = question.currentAnswer {
-            numberlabel.attributedText = Style.num(String(index), .white).attributedString(lineSpacing: -3.3)
+            numberlabel.attributedText = Style.num(String(index), .white60).attributedString(lineSpacing: -3.3)
             setup(answer: answer)
         }
     }
 
     fileprivate var minLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white90
+        label.textColor = .white60
         label.font = .bentonBookFont(ofSize: 11)
         label.textAlignment = .center
         return label
@@ -60,14 +62,14 @@ final class MorningInterviewCell: UICollectionViewCell, Dequeueable {
         setupLayout()
 
         self.question = question
-
         let startIndex = question.answers.startIndex
-        minLabel.attributedText = Style.tag("\(startIndex + 1)", .white90).attributedString(lineSpacing: 2)
+        minLabel.attributedText = Style.tag("\(startIndex + 1)", .white60).attributedString()
         slider.minimumValue = Float(startIndex)
+        slider.addTarget (self, action: #selector(valueChanged), for: .valueChanged)
         
         let endIndex = question.answers.endIndex
         slider.maximumValue = Float(endIndex - 1)
-        maxLabel.attributedText = Style.tag("\(endIndex)", .white90).attributedString(lineSpacing: 2)
+        maxLabel.attributedText = Style.tag("\(endIndex)", .white60).attributedString()
 
         if let answer = question.currentAnswer {
             setCurrentAnswerLabels(answer: answer)
@@ -75,17 +77,19 @@ final class MorningInterviewCell: UICollectionViewCell, Dequeueable {
             setCurrentAnswerLabels(answer: question.answers[defaultAnswerIndex])
             slider.value = Float(defaultAnswerIndex)
         }
-        
+
         titlelabel.attributedText = NSMutableAttributedString(
             string: question.title,
             letterSpacing: 1.1,
             font: Font.H9Title,
+            lineSpacing: 2.9,
             textColor: .white90,
             alignment: .center
         )
     }
 
     fileprivate func setCurrentAnswerLabels(answer: Answer) {
+        subTitleLabel.numberOfLines = 0
         numberlabel.attributedText = NSMutableAttributedString(
             string: answer.title,
             letterSpacing: -3.3,
@@ -97,6 +101,7 @@ final class MorningInterviewCell: UICollectionViewCell, Dequeueable {
             string: answer.subtitle ?? "",
             letterSpacing: 3.3,
             font: Font.H8Subtitle,
+            lineSpacing: 2.9,
             textColor: .white60,
             alignment: .center
         )
@@ -115,14 +120,12 @@ private extension MorningInterviewCell {
         bottomView.addSubview(slider)
         bottomView.addSubview(minLabel)
         bottomView.addSubview(maxLabel)
-        slider.addTarget (self, action: #selector(valueChanged), for: .valueChanged)
     }
 
     func setupLayout() {
-
         topview.topAnchor == topAnchor
-        topview.leftAnchor == leftAnchor + 49
-        topview.rightAnchor == rightAnchor - 49
+        topview.leftAnchor == leftAnchor + 40
+        topview.rightAnchor == rightAnchor - 40
         topview.heightAnchor == bottomView.heightAnchor
 
         titlelabel.topAnchor == topview.topAnchor + 20
@@ -138,23 +141,24 @@ private extension MorningInterviewCell {
         numberlabel.heightAnchor == 110
 
         subTitleLabel.topAnchor == numberlabel.bottomAnchor - 25
-        subTitleLabel.horizontalAnchors == centerView.horizontalAnchors
+        subTitleLabel.leftAnchor == leftAnchor + 16
+        subTitleLabel.rightAnchor == rightAnchor - 16
         subTitleLabel.bottomAnchor == centerView.bottomAnchor
 
         bottomView.topAnchor == centerView.bottomAnchor
         bottomView.horizontalAnchors == horizontalAnchors
         bottomView.bottomAnchor == bottomAnchor
 
-        minLabel.leftAnchor == bottomView.leftAnchor + 35
-        minLabel.centerYAnchor == bottomView.centerYAnchor
-
         slider.leftAnchor == minLabel.rightAnchor + 25
         slider.topAnchor == bottomView.topAnchor - 10
         slider.bottomAnchor == bottomView.bottomAnchor
         slider.rightAnchor == maxLabel.leftAnchor - 18
 
+        minLabel.leftAnchor == bottomView.leftAnchor + 35
+        minLabel.centerYAnchor == slider.centerYAnchor
+
         maxLabel.rightAnchor == bottomView.rightAnchor - 32
-        maxLabel.centerYAnchor == bottomView.centerYAnchor
+        maxLabel.centerYAnchor == slider.centerYAnchor
     }
 
     func setup(answer: Answer ) {

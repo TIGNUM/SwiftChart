@@ -20,8 +20,8 @@ final class MorningInterviewViewController: UIViewController {
     private var currentIndex: Int = 0
     fileprivate let viewModel: MorningInterviewViewModel
     fileprivate let topView = UIView()
-    fileprivate let bottomView: UIView = UIView()
-    fileprivate var headerLabel: UILabel = UILabel()
+    fileprivate let bottomView = UIView()
+    fileprivate var headerLabel = UILabel()
 
     fileprivate lazy var blurView: UIView = {
         var blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
@@ -55,7 +55,7 @@ final class MorningInterviewViewController: UIViewController {
         button.setTitle(R.string.localized.morningControllerNextButton(), for: UIControlState.normal)
         button.titleLabel?.font = Font.DPText
         button.addTarget(self, action: #selector(didTapNext(_:)), for: .touchUpInside)
-        button.setTitleColor(.white60, for: .normal)
+        button.setTitleColor(.white40, for: .normal)
 
         return button
     }()
@@ -130,7 +130,7 @@ final class MorningInterviewViewController: UIViewController {
             textColor: .white,
             alignment: .center
         )
-        attributedTitle.append(progressTitle)
+        attributedTitle.append(progressTitle)        
         headerLabel.attributedText = attributedTitle
         headerLabel.textAlignment = .center
     }
