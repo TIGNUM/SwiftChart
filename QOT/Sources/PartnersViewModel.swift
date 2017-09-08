@@ -80,14 +80,18 @@ final class PartnersViewModel {
     }
 
     func updateProfileImage(image: UIImage) -> Error? {
-        guard
-            let currentEditPartner = currentEditPartner,
-            let profileImageResource = currentEditPartner.profileImageResource else {
+        guard let currentEditPartner = currentEditPartner else {
             return nil
         }
         do {
             let url = try image.save(withName: currentEditPartner.localID)
-            mediaService.updateLocalURLString(mediaResource: profileImageResource, localURLString: url.absoluteString)
+            if let imageResource = currentEditPartner.profileImageResource {
+                mediaService.updateMediaResource(imageResource) { (resource) in
+                    resource.setEntity(.qotPartner)
+                    resource.setLocalURL(localURL: url, mediaFormat: .jpg)
+                }
+            }
+
             NotificationCenter.default.post(name: .startSyncAllNotification, object: nil)
             return nil
         } catch {

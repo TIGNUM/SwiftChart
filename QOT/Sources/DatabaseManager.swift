@@ -131,14 +131,21 @@ final class DatabaseManager {
 
     func resetDatabase(syncRecordService: SyncRecordService) throws {
         let mainRealm = try Realm(configuration: configuration())
-        let seedRealm = try Realm(configuration: .seed())
 
-        let classNamesToKeep = Set(classNamesWithEntitiesFromDatabase(seedRealm))
-        var classNamesToDelete = Set(classNamesFromDatabase(mainRealm))
-        classNamesToDelete.subtract(classNamesToKeep)
-        let classNamesToDeleteArray = Array(classNamesToDelete)
-        try syncRecordService.deleteSyncRecordsForClassNames(classNamesToDeleteArray)
-        try deleteAllObjectsWithClassNames(classNamesToDeleteArray, fromDatabase: mainRealm)
+        do {
+            let seedRealm = try Realm(configuration: .seed())
+            let classNamesToKeep = Set(classNamesWithEntitiesFromDatabase(seedRealm))
+            var classNamesToDelete = Set(classNamesFromDatabase(mainRealm))
+            classNamesToDelete.subtract(classNamesToKeep)
+            let classNamesToDeleteArray = Array(classNamesToDelete)
+            try syncRecordService.deleteSyncRecordsForClassNames(classNamesToDeleteArray)
+            try deleteAllObjectsWithClassNames(classNamesToDeleteArray, fromDatabase: mainRealm)
+        } catch {
+            log("Failed to parially reset database. Will try to delete all. Error: \(error)")
+            try mainRealm.write {
+                mainRealm.deleteAll()
+            }
+        }
     }
     
     private func classNamesFromDatabase(_ database: Realm) -> [String] {

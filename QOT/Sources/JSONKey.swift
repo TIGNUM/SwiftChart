@@ -98,6 +98,7 @@ enum JsonKey: String {
     case name
     case nextSyncToken
     case notes
+    case notificationEnvironmentType
     case occurrenceCount
     case occurrenceDate
     case occurrenceValue

@@ -72,21 +72,20 @@ final class MyToBeVisionViewModel {
         userService.updateDate(myToBeVision: item, date: date)
     }
     
-    func updateLocalProfileImageURL(_ localProfileImageURL: String?) {
-        guard let profileImageResource = profileImageResource else { return }
-        mediaService.updateLocalURLString(mediaResource: profileImageResource, localURLString: localProfileImageURL)
+    func updateLocalProfileImageURL(_ url: URL) {
+        guard let resource = profileImageResource else { return }
+
+        mediaService.updateMediaResource(resource) { (resource) in
+            resource.setEntity(.toBeVision)
+            resource.setLocalURL(localURL: url, mediaFormat: .jpg)
+        }
     }
-    
-    func updateRemoteProfileImageURL(_ remoteProfileImageURL: String?) {
-        guard let profileImageResource = profileImageResource else { return }
-        mediaService.updateRemoteURLString(mediaResource: profileImageResource, remoteURLString: remoteProfileImageURL)
-    }
-    
-    func updateProfileImage(_ image: UIImage?) -> Error? {
+
+    func updateProfileImage(_ image: UIImage) -> Error? {
         guard let item = item else { return nil }
         do {
-            let url = try image?.save(withName: item.localID)
-            updateLocalProfileImageURL(url?.absoluteString)
+            let url = try image.save(withName: item.localID)
+            updateLocalProfileImageURL(url)
             updateDate(Date())
             return nil
         } catch {

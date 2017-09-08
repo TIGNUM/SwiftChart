@@ -17,6 +17,8 @@ final class Partner: SyncableObject {
     static var endpoint: Endpoint {
         return .partner
     }
+
+    dynamic var profileImageResource: MediaResource? = MediaResource()
     
     dynamic var name: String = ""
 
@@ -26,25 +28,9 @@ final class Partner: SyncableObject {
     
     dynamic var email: String = ""
 
-    dynamic var profileImageResource: MediaResource?
-
     dynamic var deleted: Bool = false
 
     dynamic var changeStamp: String? = UUID().uuidString
-    
-    // MARK: Functions
-    
-    convenience init(localID: String, name: String?, surname: String?, relationship: String?, email: String?, profileImageResource: MediaResource) {
-        self.init()
-        self.localID = localID
-        self.name = name ?? ""
-        self.surname = surname ?? ""
-        self.relationship = relationship
-        self.email = email ?? ""
-        self.profileImageResource = profileImageResource
-
-        dirty = true
-    }
     
     override func didSetRemoteID() {
         profileImageResource?.relatedEntityID.value = remoteID.value

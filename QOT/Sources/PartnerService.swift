@@ -25,13 +25,6 @@ final class PartnerService {
     
     func createPartner() throws -> Partner {
         let partner = Partner()
-        partner.profileImageResource = MediaResource(
-            localURLString: nil,
-            remoteURLString: nil,
-            relatedEntityID: partner.remoteID.value,
-            mediaFormat: .jpg,
-            mediaEntity: .qotPartner
-        )
         try mainRealm.write {
             mainRealm.add(partner)
         }

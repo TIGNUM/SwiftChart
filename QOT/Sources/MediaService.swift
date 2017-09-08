@@ -18,19 +18,7 @@ class MediaService {
         self.mainRealm = mainRealm
         self.realmProvider = realmProvider
     }
-    
-    func updateLocalURLString(mediaResource: MediaResource, localURLString: String?) {
-        updateMediaResource(mediaResource) {
-            $0.localURLString = localURLString
-        }
-    }
-    
-    func updateRemoteURLString(mediaResource: MediaResource, remoteURLString: String?) {
-        updateMediaResource(mediaResource) {
-            $0.remoteURLString = remoteURLString
-        }
-    }
-    
+
     func updateMediaResource(_ mediaResource: MediaResource, block: (MediaResource) -> Void) {
         do {
             try mainRealm.write {

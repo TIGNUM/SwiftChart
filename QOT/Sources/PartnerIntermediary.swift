@@ -21,7 +21,7 @@ struct PartnerIntermediary {
 extension PartnerIntermediary: DownSyncIntermediary {
 
     init(json: JSON) throws {
-        remoteProfileImageURL = try json.getString(at: JsonKey.images.rawValue, 0, JsonKey.mediaURL.rawValue,
+        remoteProfileImageURL = try json.getString(at: JsonKey.images.rawValue, 0, JsonKey.mediaUrl.rawValue,
                                                    alongPath: [.MissingKeyBecomesNil, .NullBecomesNil])
         name = try json.getItemValue(at: .firstName, fallback: "")
         surname = try json.getItemValue(at: .lastName, fallback: "")

@@ -29,13 +29,13 @@ class MediaResource: SyncableObject {
     
     dynamic var localURLString: String?
     dynamic var remoteURLString: String?
-    dynamic var mediaFormat: String = ""
-    dynamic var mediaEntity: String = ""
+    dynamic var mediaFormat: String?
+    dynamic var mediaEntity: String?
     let relatedEntityID = RealmOptional<Int>(nil)
     
     var localURL: URL? {
         if let localURLString = localURLString {
-            return URL(string: localURLString)
+            return URL(fileURLWithPath: localURLString)
         }
         return nil
     }
@@ -48,15 +48,14 @@ class MediaResource: SyncableObject {
     var isAvailable: Bool {
         return (localURLString != nil || remoteURLString != nil)
     }
-    
-    convenience init(localURLString: String?, remoteURLString: String?, relatedEntityID: Int?, mediaFormat: Format, mediaEntity: Entity) {
-        self.init()
-        
-        self.localURLString = localURLString
-        self.remoteURLString = remoteURLString
-        self.relatedEntityID.value = relatedEntityID
+
+    func setEntity(_ entity: Entity) {
+        self.mediaEntity = entity.rawValue
+    }
+
+    func setLocalURL(localURL: URL, mediaFormat: Format) {
+        self.localURLString = localURL.path
         self.mediaFormat = mediaFormat.rawValue
-        self.mediaEntity = mediaEntity.rawValue
     }
 }
 
@@ -68,8 +67,11 @@ extension MediaResource: OneWayMediaSyncableUp {
     }
     
     func toJson() -> JSON? {
-        guard syncStatus != .clean, let relatedEntityID = relatedEntityID.value else {
-            return nil
+        guard syncStatus != .clean,
+            let relatedEntityID = relatedEntityID.value,
+            let mediaFormat = mediaFormat,
+            let mediaEntity = mediaEntity else {
+                return nil
         }
 
         var byteArray = [Int]()

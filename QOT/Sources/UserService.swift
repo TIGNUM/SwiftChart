@@ -105,23 +105,10 @@ extension UserService {
 
     func createMyToBeVision() throws -> MyToBeVision {
         let myToBeVision = MyToBeVision()
-        myToBeVision.profileImageResource = MediaResource(
-            localURLString: nil,
-            remoteURLString: nil,
-            relatedEntityID: myToBeVision.remoteID.value,
-            mediaFormat: .jpg,
-            mediaEntity: .toBeVision
-        )
         try mainRealm.write {
             mainRealm.add(myToBeVision)
         }
         return myToBeVision
-    }
-    
-    func updateProfileImageResource(myToBeVision: MyToBeVision, resource: MediaResource) {
-        updateMyToBeVision(myToBeVision) {
-            $0.profileImageResource = resource
-        }
     }
     
     func updateHeadline(myToBeVision: MyToBeVision, headline: String?) {

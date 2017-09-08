@@ -139,6 +139,12 @@ extension User: TwoWaySyncableUniqueObject {
             .weightUnit: weightUnit.toJSONEncodable
         ]
 
+        #if DEBUG
+            let environment = "DEVELOPMENT"
+        #else
+            let environment = "PRODUCTION"
+        #endif
+
         let dict: [JsonKey: JSONEncodable] = [
             .gender: gender,
             .firstName: givenName,
@@ -156,7 +162,8 @@ extension User: TwoWaySyncableUniqueObject {
             .memberSince: memberSince,
             .employment: JSON.dictionary(employment.mapKeyValues({ ($0.rawValue, $1.toJSON()) })),
             .userInfo: JSON.dictionary(userInfo.mapKeyValues({ ($0.rawValue, $1.toJSON()) })),
-            .urbanAirshipDeviceToken: urbanAirshipDeviceToken.toJSONEncodable
+            .urbanAirshipDeviceToken: urbanAirshipDeviceToken.toJSONEncodable,
+            .notificationEnvironmentType: environment
         ]
         return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
     }

@@ -300,6 +300,13 @@ extension UIView {
         UIGraphicsEndImageContext()
         return image
     }
+
+    func applyHexagonMask() {
+        let clippingBorderPath = UIBezierPath.hexagonPath(forRect: bounds)
+        let borderMask = CAShapeLayer()
+        borderMask.path = clippingBorderPath.cgPath
+        layer.mask = borderMask
+    }
 }
 
 // MARK: - UIWindow
@@ -379,13 +386,6 @@ extension UIImageView {
         self.contentMode = .scaleAspectFill
         self.layer.cornerRadius = frame.width * 0.5
         self.clipsToBounds = true
-    }
-
-    func applyHexagonMask() {
-        let clippingBorderPath = UIBezierPath.hexagonPath(forRect: bounds)
-        let borderMask = CAShapeLayer()
-        borderMask.path = clippingBorderPath.cgPath
-        layer.mask = borderMask
     }
     
     func setImageFromResource(_ resource: MediaResource, defaultImage: UIImage? = nil, completion: ((UIImage?, Error?) -> Void)? = nil) {

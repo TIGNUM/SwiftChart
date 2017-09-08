@@ -113,11 +113,7 @@ private extension MyWhyView {
                     }
                     let partner = partners[index]
                     let button = qotPartnersButtons[index]
-                    let title = (partner.profileImageResource?.isAvailable ?? false) ? nil : partner.initials.uppercased()
-                    button.setTitle(title, for: .normal)
-                    if let resource = partner.profileImageResource {
-                        button.setImageFromResource(resource)
-                    }
+                    button.configure(with: partner)
                 }
             }
         }
@@ -141,8 +137,7 @@ private extension MyWhyView {
     
     func drawMyWhyAfterDidLayoutSubviews() {
         qotPartnersButtons.forEach { (button: UIButton) in
-            button.setImage(UIImage.from(color: UIColor.whiteLight, size: button.bounds.size), for: .normal)
-            button.imageView?.applyHexagonMask()
+            button.applyHexagonMask()
         }
     }
 
@@ -252,7 +247,10 @@ private extension MyWhyView {
                 partner = partners[index]
             }
 
-            let button = partnerButton(title: partner?.initials, profileImageResource: partner?.profileImageResource, index: index)
+            let button = UIButton()
+            button.tag = index
+            button.configure(with: partner)
+            button.addTarget(self, action: #selector(didTapPartner), for: .touchUpInside)
             qotPartnersButtons.append(button)
             qotPartnersBox.addSubview(button)
 
@@ -307,18 +305,6 @@ private extension MyWhyView {
 
         return button
     }
-
-    func partnerButton(title: String?, profileImageResource: MediaResource?, index: Index) -> UIButton {
-        let button = UIButton()
-        let title = (profileImageResource?.isAvailable ?? false) ? nil : title
-        button.setTitle(title, for: .normal)
-        button.titleLabel?.font = Font.H6NavigationTitle
-        button.setTitleColor(Color.MeSection.whiteLabel, for: .normal)
-        button.addTarget(self, action: #selector(didTapPartner), for: .touchUpInside)
-        button.tag = index
-
-        return button
-    }
 }
 
 // MARK: - Actions
@@ -367,5 +353,26 @@ private extension MyWhyView {
         label.sizeToFit()
 
         return label
+    }
+}
+
+private extension UIButton {
+
+    func configure(with partner: Partner?) {
+        titleLabel?.font = Font.H6NavigationTitle
+        setTitleColor(Color.MeSection.whiteLabel, for: .normal)
+        setTitle(nil, for: .normal)
+        setImage(R.image.universe_plus_ico_add_partner(), for: .normal)
+        backgroundColor = .whiteLight
+
+        if let partner = partner {
+            if let imageResource = partner.profileImageResource, imageResource.isAvailable {
+                setTitle(nil, for: .normal)
+                setImageFromResource(imageResource)
+            } else if partner.initials.isEmpty == false {
+                setTitle(partner.initials.uppercased(), for: .normal)
+                setImage(nil, for: .normal)
+            }
+        }
     }
 }
