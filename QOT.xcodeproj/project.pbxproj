@@ -231,6 +231,7 @@
 		CBB4DD541EE151100071494A /* DownSyncImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DD531EE151100071494A /* DownSyncImporter.swift */; };
 		CBB4DD561EE152EC0071494A /* DownSyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DD551EE152EC0071494A /* DownSyncOperation.swift */; };
 		CBC191131F603055009E483B /* URL+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC191121F603055009E483B /* URL+Convenience.swift */; };
+		CBC191151F62918B009E483B /* AppDelegate+Buglife.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC191141F62918B009E483B /* AppDelegate+Buglife.swift */; };
 		CBC1DC151F0F68F900F6D056 /* SystemSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC141F0F68F900F6D056 /* SystemSetting.swift */; };
 		CBC1DC171F0F690A00F6D056 /* SystemSettingIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC161F0F690A00F6D056 /* SystemSettingIntermediary.swift */; };
 		CBC1DC191F0F7E0200F6D056 /* SettingFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC181F0F7E0200F6D056 /* SettingFormat.swift */; };
@@ -683,6 +684,7 @@
 		CBB4DD531EE151100071494A /* DownSyncImporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownSyncImporter.swift; sourceTree = "<group>"; };
 		CBB4DD551EE152EC0071494A /* DownSyncOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownSyncOperation.swift; sourceTree = "<group>"; };
 		CBC191121F603055009E483B /* URL+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Convenience.swift"; sourceTree = "<group>"; };
+		CBC191141F62918B009E483B /* AppDelegate+Buglife.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Buglife.swift"; sourceTree = "<group>"; };
 		CBC1DC141F0F68F900F6D056 /* SystemSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemSetting.swift; sourceTree = "<group>"; };
 		CBC1DC161F0F690A00F6D056 /* SystemSettingIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemSettingIntermediary.swift; sourceTree = "<group>"; };
 		CBC1DC181F0F7E0200F6D056 /* SettingFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingFormat.swift; sourceTree = "<group>"; };
@@ -1638,6 +1640,7 @@
 			children = (
 				CBB237EF1E6FFF1200AB5AEF /* AppDelegate.swift */,
 				7F4276781F585C7F00AEE3D7 /* AppDelegate+DatabaseBuilder.swift */,
+				CBC191141F62918B009E483B /* AppDelegate+Buglife.swift */,
 				CC6B3A301E81713200E7FDFD /* Constants.swift */,
 				CC3DFB651E83C19C00FF28DF /* Defines.swift */,
 			);
@@ -2502,6 +2505,7 @@
 				CC90EC9F1F3076EB00A83DB9 /* SettingsChangePasswordViewController.swift in Sources */,
 				CC96630F1EA1B29800B84B1C /* MyWhyView.swift in Sources */,
 				7F691C5E1F0D30C800E2C180 /* PlaceholderTextView.swift in Sources */,
+				CBC191151F62918B009E483B /* AppDelegate+Buglife.swift in Sources */,
 				D5EC34B21EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.swift in Sources */,
 				D51B5C4C1E8D133B0084A65B /* LearnContentItemCoordinator.swift in Sources */,
 				CBD7914A1E71797C0006C590 /* Typealiases.swift in Sources */,

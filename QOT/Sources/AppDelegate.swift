@@ -61,6 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Fabric.with([Crashlytics.self])
         Buglife.shared().start(withAPIKey: "fj62sZjDnl3g0dLuXJHUzAtt") // FIXME: obfuscate
+        Buglife.shared().delegate = self
         QOTUsageTimer.sharedInstance.start()
         appCoordinator.start()
         UIApplication.shared.statusBarStyle = .lightContent
