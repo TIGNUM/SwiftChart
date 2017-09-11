@@ -20,14 +20,11 @@ class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var positionLabel: UILabel!
     @IBOutlet weak var checkboxImageView: UIImageView!
     @IBOutlet weak var headerLabel: UILabel!
-
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var readMoreButton: UIButton!
-
     weak var delegate: PrepareContentHeaderTableViewCellDelegate?
     var readMoreID: Int?
     var contentText = ""
-
     var displayMode: PrepareContentViewModel.DisplayMode = .normal
 
     override func awakeFromNib() {

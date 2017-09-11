@@ -8,7 +8,12 @@
 
 import Foundation
 import ReactiveKit
-import LoremIpsum
+
+enum PrepareContentItemType {
+    case titleItem(title: String, subTitle: String, contentText: String, placeholderURL: URL?, videoURL: URL?)
+    case item(id: Int, title: String, subTitle: String, readMoreID: Int?)
+    case tableFooter(preparationID: Int)
+}
 
 struct PrepareItem {
     var id: Int
@@ -39,16 +44,13 @@ final class PrepareContentViewModel {
     // MARK: - Properties
 
     fileprivate var headerToggleState: [Bool] = []
-
     var displayMode: DisplayMode
     var checkedIDs: [Int: Date?]
-
     var title: String = ""
     var subTitle: String = ""
     var contentText: String = ""
     var videoPlaceholder: URL?
     var video: URL?
-    
     var items: [PrepareContentItemType] = []
     var preparationID: String?
 
@@ -66,10 +68,8 @@ final class PrepareContentViewModel {
         self.video = video?.url
         self.videoPlaceholder = video?.placeholderURL
         self.contentText = description
-
         self.checkedIDs = [:]
         self.displayMode = .normal
-
         makeItems(items)
     }
 
@@ -78,11 +78,9 @@ final class PrepareContentViewModel {
         self.video = video?.url
         self.videoPlaceholder = video?.placeholderURL
         self.contentText = description
-
         self.checkedIDs = checkedIDs
         self.displayMode = .checkbox
         self.preparationID = preparationID
-
         makeItems(items)
 
         if displayMode == .checkbox {
@@ -114,14 +112,11 @@ final class PrepareContentViewModel {
     }
 
     func didTapCheckbox(id: Int) {
-        if displayMode != .checkbox {
+        guard displayMode == .checkbox else {
             return
         }
-        if dateForID(id) == nil {
-            checkedIDs.updateValue(Date(), forKey: id)
-        } else {
-            checkedIDs.updateValue(nil, forKey: id)
-        }
+
+        checkedIDs.updateValue(dateForID(id) ?? nil, forKey: id)
         setSubtitle()
     }
 
@@ -153,7 +148,6 @@ private extension PrepareContentViewModel {
     }
 
     func makeItems(_ items: [PrepareItem]) {
-        
         self.items.append(.titleItem(title: title, subTitle: subTitle, contentText: contentText, placeholderURL: videoPlaceholder, videoURL: video))
         
         for element in items {
@@ -163,13 +157,7 @@ private extension PrepareContentViewModel {
         if displayMode == .normal {
             self.items.append(.tableFooter(preparationID: 1)) //TODO: we need to set the actual ID
         }
-        
+
         fillHeaderStatus()
     }
-}
-
-enum PrepareContentItemType {
-    case titleItem(title: String, subTitle: String, contentText: String, placeholderURL: URL?, videoURL: URL?)
-    case item(id: Int, title: String, subTitle: String, readMoreID: Int?)
-    case tableFooter(preparationID: Int)
 }

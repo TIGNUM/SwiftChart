@@ -207,7 +207,7 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
                     timeToReadSeconds: item.secondsRequired
                 )
             default:
-                return invalidContentCell(tableView: tableView, indexPath: indexPath, format: item.format)
+                return invalidContentCell(tableView: tableView, indexPath: indexPath, item: item)
             }
         }
     }
@@ -374,22 +374,22 @@ private extension LearnContentItemViewController {
             return itemTextCell
     }
 
-    func mediaStreamCell(
-        tableView: UITableView,
-        indexPath: IndexPath,
-        title: String,
-        placeholderURL: URL,
-        attributedString: NSAttributedString,
-        canStream: Bool) -> ImageSubtitleTableViewCell {
-            let imageCell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
-            imageCell.setupData(
-                placeHolder: placeholderURL,
-                description: attributedString,
-                canStream: canStream
-            )
-            imageCell.setInsets(insets: UIEdgeInsets(top: 14, left: 28, bottom: 14, right: 28))
+    func mediaStreamCell(tableView: UITableView,
+                         indexPath: IndexPath,
+                         title: String,
+                         placeholderURL: URL,
+                         attributedString: NSAttributedString,
+                         canStream: Bool) -> ImageSubtitleTableViewCell {
+        let imageCell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
+        imageCell.mainImageView.backgroundColor = .black
+        imageCell.mainImageView.layer.borderColor = UIColor.black.cgColor
+        imageCell.mainImageView.layer.borderWidth = 0.5
+        imageCell.setupData(placeHolder: placeholderURL,
+                            description: attributedString,
+                            canStream: canStream)
+        imageCell.setInsets(insets: UIEdgeInsets(top: 14, left: 28, bottom: 14, right: 28))
 
-            return imageCell
+        return imageCell
     }
 
     func imageTableViewCell(
@@ -404,9 +404,9 @@ private extension LearnContentItemViewController {
             return imageCell
     }
 
-    func invalidContentCell(tableView: UITableView, indexPath: IndexPath, format: String) -> ErrorCell {
+    func invalidContentCell(tableView: UITableView, indexPath: IndexPath, item: ContentItem) -> ErrorCell {
         let cell: ErrorCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(text: R.string.localized.commonInvalidContent(), format: (": " + format))
+        cell.configure(text: R.string.localized.commonInvalidContent(), item: item)
 
         return cell
     }

@@ -178,7 +178,7 @@ private extension ArticleItemViewController {
         indexPath: IndexPath,
         title: String,
         placeholderURL: URL,
-        placeholderImage: UIImage? = nil,
+        placeholderImage: UIImage? = R.image.preloading(),
         attributedString: NSAttributedString,
         canStream: Bool) -> ImageSubtitleTableViewCell {
             let imageCell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -205,9 +205,9 @@ private extension ArticleItemViewController {
             return imageCell
     }
 
-    func invalidContentCell(tableView: UITableView, indexPath: IndexPath) -> ErrorCell {
+    func invalidContentCell(tableView: UITableView, indexPath: IndexPath, item: ContentItem) -> ErrorCell {
         let cell: ErrorCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(text: R.string.localized.commonInvalidContent())
+        cell.configure(text: R.string.localized.commonInvalidContent(), item: item)
         cell.backgroundColor = .clear
         cell.contentView.backgroundColor = .clear
 
@@ -295,7 +295,7 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
                     canStream: true
                 )
             default:
-                return invalidContentCell(tableView: tableView, indexPath: indexPath)
+                return invalidContentCell(tableView: tableView, indexPath: indexPath, item: item)
             }
         case 1:
             return relatedArticleCell(tableView: tableView, indexPath: indexPath)

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -63,25 +63,30 @@
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="upm-Fr-VYW">
                         <rect key="frame" x="30" y="96" width="260" height="146.5"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="upm-Fr-VYW" secondAttribute="height" multiplier="16:9" id="HfQ-u7-0XH"/>
                         </constraints>
+                        <state key="normal" image="ic_play_video"/>
+                        <connections>
+                            <action selector="playVideo:" destination="dQ7-F5-GM4" eventType="touchUpInside" id="Imk-ql-Rj5"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lyg-m3-ejQ">
-                        <rect key="frame" x="30" y="257.5" width="260" height="15.5"/>
+                        <rect key="frame" x="30" y="262.5" width="260" height="15.5"/>
                         <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <color key="backgroundColor" red="0.1123878911" green="1" blue="0.33953876729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="1gK-sn-BTX" firstAttribute="leading" secondItem="BJI-XG-0Ha" secondAttribute="leading" constant="30" id="0vE-0x-M24"/>
                     <constraint firstItem="RQx-xn-2cN" firstAttribute="leading" secondItem="BJI-XG-0Ha" secondAttribute="leading" constant="30" id="247-Y5-X66"/>
                     <constraint firstItem="upm-Fr-VYW" firstAttribute="leading" secondItem="BJI-XG-0Ha" secondAttribute="leading" constant="30" id="5m0-xn-6Ux"/>
                     <constraint firstItem="WPw-x3-hck" firstAttribute="top" secondItem="BJI-XG-0Ha" secondAttribute="top" constant="15" id="8R6-Ky-cb6"/>
                     <constraint firstAttribute="trailing" secondItem="upm-Fr-VYW" secondAttribute="trailing" constant="30" id="8sW-4A-4Jk"/>
-                    <constraint firstItem="Lyg-m3-ejQ" firstAttribute="top" secondItem="upm-Fr-VYW" secondAttribute="bottom" constant="15" id="F9P-wM-eKP"/>
+                    <constraint firstItem="Lyg-m3-ejQ" firstAttribute="top" secondItem="upm-Fr-VYW" secondAttribute="bottom" constant="20" id="F9P-wM-eKP"/>
                     <constraint firstAttribute="trailing" secondItem="1gK-sn-BTX" secondAttribute="trailing" constant="30" id="Hx8-8y-wYl"/>
                     <constraint firstAttribute="bottom" secondItem="1gK-sn-BTX" secondAttribute="bottom" id="OkT-Nc-Xej"/>
                     <constraint firstAttribute="trailing" secondItem="Lyg-m3-ejQ" secondAttribute="trailing" constant="30" id="Sfx-YV-ems"/>
@@ -101,10 +106,13 @@
                 <outlet property="contentLabel" destination="Lyg-m3-ejQ" id="e3K-Tj-M8K"/>
                 <outlet property="headerLabel" destination="WPw-x3-hck" id="Kn6-gT-o2R"/>
                 <outlet property="iconImageView" destination="UVb-BY-vT7" id="QlI-YM-Esy"/>
-                <outlet property="previewImageView" destination="upm-Fr-VYW" id="bUh-zF-0rs"/>
+                <outlet property="previewImageButton" destination="upm-Fr-VYW" id="g2N-WD-aIf"/>
                 <outlet property="subHeaderLabel" destination="RQx-xn-2cN" id="dCe-pL-MzC"/>
             </connections>
-            <point key="canvasLocation" x="63" y="-11"/>
+            <point key="canvasLocation" x="63" y="-11.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="ic_play_video" width="64" height="64"/>
+    </resources>
 </document>

@@ -12,9 +12,11 @@ import ReactiveKit
 import Anchorage
 
 protocol PrepareContentViewControllerDelegate: class {
+
     func didTapClose(in viewController: PrepareContentViewController)
-    func didTapVideo(with videoURL: URL, from view: UIView, in viewController: PrepareContentViewController)
+
     func didTapSavePreparation(in viewController: PrepareContentViewController)
+
     func didTapReadMore(readMoreID: Int, in viewController: PrepareContentViewController)
 }
 
@@ -95,10 +97,8 @@ private extension PrepareContentViewController {
 
     func setupView() {
         view.backgroundColor = .white
-
         view.addSubview(topBarView)
         view.addSubview(tableView)
-
         topBarView.topAnchor == view.topAnchor
         topBarView.horizontalAnchors == view.horizontalAnchors
         topBarView.heightAnchor == Layout.TabBarView.height
@@ -112,9 +112,11 @@ private extension PrepareContentViewController {
 
         switch contentItem {
         case .titleItem(let title, let subTitle, let contentText, let placeholderURL, let videoURL):
-            guard let castedCell = cell as? PrepareContentMainHeaderTableViewCell else { return cell }
-            let isExpanded = viewModel.isCellExpanded(at: indexPath.row)
+            guard let castedCell = cell as? PrepareContentMainHeaderTableViewCell else {
+                return cell
+            }
 
+            let isExpanded = viewModel.isCellExpanded(at: indexPath.row)
             castedCell.delegate = self
             castedCell.setCell(title: title,
                                subTitle: subTitle,
@@ -122,15 +124,15 @@ private extension PrepareContentViewController {
                                videoPlaceholder: placeholderURL,
                                videoURL: videoURL,
                                isExpanded: isExpanded)
-
             castedCell.contentView.layoutIfNeeded()
 
             return castedCell
-
         case .item(let id, let title, let subTitle, let readMoreID):
-            guard let castedCell = cell as? PrepareContentHeaderTableViewCell else { return cell }
-            let isExpanded = viewModel.isCellExpanded(at: indexPath.row)
+            guard let castedCell = cell as? PrepareContentHeaderTableViewCell else {
+                return cell
+            }
 
+            let isExpanded = viewModel.isCellExpanded(at: indexPath.row)
             castedCell.delegate = self
             castedCell.setCell(title: title,
                                contentText: subTitle,
@@ -139,15 +141,17 @@ private extension PrepareContentViewController {
                                isExpanded: isExpanded,
                                displayMode: viewModel.displayMode,
                                isChecked: viewModel.isChecked(id: id))
-
             castedCell.contentView.layoutIfNeeded()
 
             return castedCell
-
         case .tableFooter(let preparationID):
-            guard let castedCell = cell as? PrepareContentFooterTableViewCell else { return cell }
+            guard let castedCell = cell as? PrepareContentFooterTableViewCell else {
+                return cell
+            }
+
             castedCell.delegate = self
             castedCell.preparationID = preparationID
+
             return castedCell
         }
     }
@@ -216,7 +220,7 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
 
                 padding += 20
                 if videoURL != nil {
-                    contentHeight += cell.previewImageView.frame.height
+                    contentHeight += cell.previewImageButton.frame.height
                     padding += 50
                 }
             }
@@ -318,7 +322,7 @@ extension PrepareContentViewController: PrepareContentMainHeaderTableViewCellDel
 
     func didTapVideo(videoURL: URL?, cell: UITableViewCell) {
         if let videoURL = videoURL {
-            delegate?.didTapVideo(with: videoURL, from: cell, in: self)
+            streamVideo(videoURL: videoURL)
         } else {
             log("didTapVideo: videoURL is nil")
         }

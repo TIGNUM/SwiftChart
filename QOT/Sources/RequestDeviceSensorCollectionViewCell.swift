@@ -17,11 +17,9 @@ final class RequestDeviceSensorCollectionViewCell: UICollectionViewCell, Dequeue
         super.awakeFromNib()
 
         backgroundColor = .clear
-
         layer.cornerRadius = 8.0
         layer.borderWidth = 1
         layer.borderColor = UIColor.white40.cgColor
-
         titleLabel.font = Font.DPText
         titleLabel.textColor = .white40
 

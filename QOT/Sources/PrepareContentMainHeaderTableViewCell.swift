@@ -10,19 +10,20 @@ import UIKit
 import Kingfisher
 
 protocol PrepareContentMainHeaderTableViewCellDelegate: class {
+
     func didTapVideo(videoURL: URL?, cell: UITableViewCell)
 }
 
-class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable {
+final class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable {
+
+    // MARK: - Properties
     
     @IBOutlet weak var bottomSeparator: UIView!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var subHeaderLabel: UILabel!
-
-    @IBOutlet weak var previewImageView: UIButton!
+    @IBOutlet weak var previewImageButton: UIButton!
     @IBOutlet weak var contentLabel: UILabel!
-
     weak var delegate: PrepareContentMainHeaderTableViewCellDelegate?
     var videoURL: URL?
     var previewImageURL: URL?
@@ -30,7 +31,11 @@ class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
+        previewImageButton.layer.borderColor = UIColor.black30.cgColor
+        previewImageButton.layer.borderWidth = 0.5
+        previewImageButton.backgroundColor = .black30
+        bottomSeparator.backgroundColor = .black30
         contentView.backgroundColor = .clear
         backgroundColor = .clear
     }
@@ -38,37 +43,27 @@ class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        previewImageView.contentMode = .scaleAspectFill
+        previewImageButton.contentMode = .scaleAspectFill
     }
     
     func setCell(title: String, subTitle: String, contentText: String, videoPlaceholder: URL?, videoURL: URL?, isExpanded: Bool) {
-        bottomSeparator.backgroundColor = .black30
-
-        headerLabel.addCharactersSpacing(spacing: 2, text: title, uppercased: true)
-        headerLabel.font = Font.H1MainTitle
-        headerLabel.textColor = .darkIndigo
-        subHeaderLabel.addCharactersSpacing(spacing: 2, text: subTitle, uppercased: true)
-        subHeaderLabel.font = Font.H7Title
-        subHeaderLabel.textColor = .black30
-
         previewImageURL = videoPlaceholder
+        self.videoURL = videoURL
         content = contentText
-
         iconImageView.isHidden = contentText.isEmpty && videoURL == nil
-
+        setupLabels(title, subTitle)
         setExpandImageState(isExpanded: isExpanded)
         updateContent(isExpanded: isExpanded)
     }
     
     func updateContent(isExpanded: Bool) {
-
-        if isExpanded {
-
-            if let url = previewImageURL {
-                previewImageView.kf.setImage(with: url, for: .normal)
-                previewImageView.addTarget(self, action: #selector(PrepareContentMainHeaderTableViewCell.playVideo), for: .touchDown)
+        if isExpanded == true {
+            if let previewImageURL = previewImageURL, videoURL != nil {
+                previewImageButton.kf.setBackgroundImage(with: ImageResource(downloadURL: previewImageURL),
+                                                         for: .normal,
+                                                         placeholder: R.image.preloading())
             } else {
-                previewImageView.isHidden = true
+                previewImageButton.isHidden = true
             }
 
             contentLabel.numberOfLines = 0
@@ -80,10 +75,27 @@ class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable {
     func setExpandImageState(isExpanded: Bool) {
         iconImageView.image = isExpanded ? R.image.prepareContentMinusIcon() : R.image.prepareContentPlusIcon()
     }
-    
-    func playVideo() {
-        print("playVideo()")
+}
+
+// MARK: - Private
+
+private extension PrepareContentMainHeaderTableViewCell {
+
+    func setupLabels(_ title: String, _ subTitle: String) {
+        headerLabel.addCharactersSpacing(spacing: 2, text: title, uppercased: true)
+        headerLabel.font = Font.H1MainTitle
+        headerLabel.textColor = .darkIndigo
+        subHeaderLabel.addCharactersSpacing(spacing: 2, text: subTitle, uppercased: true)
+        subHeaderLabel.font = Font.H7Title
+        subHeaderLabel.textColor = .black30
+    }
+}
+
+// MARK: - Actions
+
+extension PrepareContentMainHeaderTableViewCell {
+
+    @IBAction private func playVideo(_ sender: UIButton) {
         delegate?.didTapVideo(videoURL: videoURL, cell: self)
     }
-
 }

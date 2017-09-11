@@ -1264,6 +1264,7 @@
 				CC0FF8D51EA78C810028D64F /* MyToBeVisionCoordinator.swift */,
 				7F4251BC1F20F05D00EA451D /* OnboardingCoordinator.swift */,
 				CC0FF8D91EA790750028D64F /* PartnersCoordinator.swift */,
+				CBC933071F052DDA00C00007 /* PrepareCoordinator.swift */,
 				859683461F137FD600A98218 /* ResetPasswordCoordinator.swift */,
 				CC02E1451F27996800134574 /* SettingsCalendarListCoordinator.swift */,
 				CC90EC9A1F3074DC00A83DB9 /* SettingsChangePasswordCoordinator.swift */,
@@ -1272,7 +1273,6 @@
 				CCE373091E8D32F800B79352 /* SidebarCoordinator.swift */,
 				CCC0C4DA1E82BDEF002A8362 /* TabBarCoordinator.swift */,
 				CC0FF8D71EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift */,
-				CBC933061F052CBA00C00007 /* Prepare */,
 			);
 			name = Coordinators;
 			sourceTree = "<group>";
@@ -1932,14 +1932,6 @@
 				CBC5ACC01F162AAE007E1E9C /* UserChoiceIntermediary.swift */,
 			);
 			name = UserChoice;
-			sourceTree = "<group>";
-		};
-		CBC933061F052CBA00C00007 /* Prepare */ = {
-			isa = PBXGroup;
-			children = (
-				CBC933071F052DDA00C00007 /* PrepareCoordinator.swift */,
-			);
-			name = Prepare;
 			sourceTree = "<group>";
 		};
 		CBC933131F0B9B3A00C00007 /* ContentRelation */ = {

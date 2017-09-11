@@ -12,7 +12,7 @@ final class ImageSubtitleTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Outlets
 
-    @IBOutlet private weak var mainImageView: UIImageView!
+    @IBOutlet weak var mainImageView: UIImageView!
     @IBOutlet private weak var playImageView: UIImageView!
     @IBOutlet private weak var label: UILabel!
     @IBOutlet private weak var topConstraint: NSLayoutConstraint!
@@ -34,7 +34,7 @@ final class ImageSubtitleTableViewCell: UITableViewCell, Dequeueable {
         bottomConstraint.constant = insets.bottom        
     }
 
-    func setupData(placeHolder: URL, placeHolderImage: UIImage? = nil, description: NSAttributedString?, canStream: Bool) {
+    func setupData(placeHolder: URL, placeHolderImage: UIImage? = R.image.preloading(), description: NSAttributedString?, canStream: Bool) {
         label.isHidden = (description == nil)
         label.attributedText = description
         mainImageView.kf.setImage(with: placeHolder, placeholder: placeHolderImage, options: nil, progressBlock: nil, completionHandler: nil)

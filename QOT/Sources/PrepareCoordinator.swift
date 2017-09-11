@@ -263,10 +263,6 @@ extension PrepareCoordinator: PrepareContentViewControllerDelegate {
         }
     }
 
-    func didTapVideo(with videoURL: URL, from view: UIView, in viewController: PrepareContentViewController) {
-        log("didTapVideo: :")
-    }
-
     func didTapReadMore(readMoreID: Int, in viewController: PrepareContentViewController) {
         log("didTapReadMore: ID: \(readMoreID)")
 
