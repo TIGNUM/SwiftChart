@@ -93,6 +93,7 @@ final class LearnContentItemViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
+        UIApplication.shared.statusBarStyle = .lightContent
         viewModel.stopPlayback()
     }
 

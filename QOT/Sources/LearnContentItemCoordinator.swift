@@ -99,9 +99,7 @@ final class LearnContentItemCoordinator: ParentCoordinator {
 extension LearnContentItemCoordinator: TopNavigationBarDelegate {
 
     func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
-        topTabBarController.dismiss(animated: true) { 
-            UIApplication.shared.statusBarStyle = .lightContent
-        }
+        topTabBarController.dismiss(animated: true, completion: nil)        
     }
     
     func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
