@@ -77,9 +77,17 @@ class WindowManager {
         }
     }
     
-    func presentViewController(_ viewController: UIViewController, atLevel level: Level, animated: Bool, completion: (() -> Void)?) {
+    func presentViewController(_ viewController: UIViewController, atLevel level: Level, animated: Bool, replacesContent: Bool = false, completion: (() -> Void)?) {
         let window = windowForLevel(level)
-        window.rootViewController?.present(viewController, animated: animated, completion: completion)
+        if window.rootViewController?.presentedViewController != nil {
+            if replacesContent == true {
+                window.rootViewController?.dismiss(animated: animated, completion: {
+                    window.rootViewController?.present(viewController, animated: animated, completion: completion)
+                })
+            }
+        } else {
+            window.rootViewController?.present(viewController, animated: animated, completion: completion)
+        }
     }
     
     func resignWindow(atLevel level: Level) {

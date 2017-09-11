@@ -9,7 +9,7 @@
 import UIKit
 import MBProgressHUD
 
-class LaunchHandler {
+final class LaunchHandler {
 
     fileprivate var appDelegate: AppDelegate {
         return AppDelegate.current

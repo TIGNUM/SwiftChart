@@ -211,7 +211,7 @@ extension AppCoordinator {
     }
 
     func presentMorningInterview(groupID: Int, validFrom: Date, validTo: Date) {
-        guard let services = services, !windowManager.hasContent(atLevel: .priority) else {
+        guard let services = services else {
             return
         }
 
@@ -219,11 +219,11 @@ extension AppCoordinator {
         let morningInterViewController = MorningInterviewViewController(viewModel: viewModel)
         morningInterViewController.delegate = self
         windowManager.showWindow(atLevel: .priority)
-        windowManager.presentViewController(morningInterViewController, atLevel: .priority, animated: true, completion: nil)
+        windowManager.presentViewController(morningInterViewController, atLevel: .priority, animated: true, replacesContent: true, completion: nil)
     }
 
     func presentWeeklyChoices(forStartDate startDate: Date, endDate: Date) {
-        guard let services = services, !windowManager.hasContent(atLevel: .priority) else {
+        guard let services = services else {
             return
         }
 
@@ -231,7 +231,7 @@ extension AppCoordinator {
         let image = windowManager.rootViewController(atLevel: .normal)?.view.screenshot()
         let viewController = SelectWeeklyChoicesViewController(delegate: self, viewModel: viewModel, backgroundImage: image)
         windowManager.showWindow(atLevel: .priority)
-        windowManager.presentViewController(viewController, atLevel: .priority, animated: true, completion: nil)
+        windowManager.presentViewController(viewController, atLevel: .priority, animated: true, replacesContent: true, completion: nil)
     }
 
     // FIXME: REFACTOR THIS
@@ -240,8 +240,7 @@ extension AppCoordinator {
             let services = services,
             let content = services.contentService.contentCollection(id: contentID),
             let category = services.contentService.learnContentCategory(categoryTitle: categoryTitle),
-            let rootViewController = windowManager.rootViewController(atLevel: .normal),
-            !windowManager.hasContent(atLevel: .priority) else {
+            let rootViewController = windowManager.rootViewController(atLevel: .normal) else {
                 return
         }
 
@@ -250,7 +249,7 @@ extension AppCoordinator {
         let coordinator = LearnContentItemCoordinator(root: rootViewController, eventTracker: eventTracker, services: services, content: content, category: category, presentationManager: presentationManager, topBarDelegate: self)
         topTabBarController = coordinator.topTabBarController
         windowManager.showWindow(atLevel: .priority)
-        windowManager.presentViewController(coordinator.topTabBarController, atLevel: .priority, animated: true, completion: nil)
+        windowManager.presentViewController(coordinator.topTabBarController, atLevel: .priority, animated: true, replacesContent: true, completion: nil)
     }
 
     // FIXME: REFACTOR THIS
@@ -259,17 +258,16 @@ extension AppCoordinator {
             let services = services,
             let content = services.contentService.contentCollection(id: contentID),
             let category = services.contentService.contentCategory(id: categoryID),
-            let rootViewController = windowManager.rootViewController(atLevel: .normal),
-            !windowManager.hasContent(atLevel: .priority) else {
+            let rootViewController = windowManager.rootViewController(atLevel: .normal) else {
                 return
         }
 
         // FIXME: do we need to use the coordinator?
         let presentationManager = CircularPresentationManager(originFrame: rootViewController.view.frame)
         let coordinator = LearnContentItemCoordinator(root: rootViewController, eventTracker: eventTracker, services: services, content: content, category: category, presentationManager: presentationManager, topBarDelegate: self)
-        topTabBarController = coordinator.topTabBarController
+        topTabBarController = coordinator.topTabBarController        
         windowManager.showWindow(atLevel: .priority)
-        windowManager.presentViewController(coordinator.topTabBarController, atLevel: .priority, animated: true, completion: nil)
+        windowManager.presentViewController(coordinator.topTabBarController, atLevel: .priority, animated: true, replacesContent: true, completion: nil)
     }
 
     func showMajorAlert(type: AlertType, handler: (() -> Void)? = nil, handlerDestructive: (() -> Void)? = nil) {
@@ -369,7 +367,7 @@ extension AppCoordinator: NetworkManagerDelegate {
 extension AppCoordinator: MorningInterviewViewControllerDelegate {
 
     func didTapClose(viewController: MorningInterviewViewController) {
-        viewController.dismiss(animated: true) { 
+        viewController.dismiss(animated: true) {
             self.windowManager.resignWindow(atLevel: .priority)
         }
     }
