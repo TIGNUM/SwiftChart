@@ -112,11 +112,14 @@ final class PrepareContentViewModel {
     }
 
     func didTapCheckbox(id: Int) {
-        guard displayMode == .checkbox else {
+        if displayMode != .checkbox {
             return
         }
-
-        checkedIDs.updateValue(dateForID(id) ?? nil, forKey: id)
+        if dateForID(id) == nil {
+            checkedIDs.updateValue(Date(), forKey: id)
+        } else {
+            checkedIDs.updateValue(nil, forKey: id)
+        }
         setSubtitle()
     }
 
