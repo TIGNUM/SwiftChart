@@ -21,6 +21,7 @@ final class AppCoordinator: ParentCoordinator {
     var checkListIDToPresent: String?
     var children = [Coordinator]()
     lazy var logoutNotificationHandler: NotificationHandler = NotificationHandler(name: .logoutNotification)
+    lazy var apnsDeviceTokenRegistrar: APNSDeviceTokenRegistrar = APNSDeviceTokenRegistrar(networkManager: self.networkManager, credentialsManager: self.credentialsManager)
     fileprivate let windowManager: WindowManager
     fileprivate let remoteNotificationHandler: RemoteNotificationHandler
     fileprivate var services: Services?
@@ -28,7 +29,7 @@ final class AppCoordinator: ParentCoordinator {
     fileprivate var tabBarCoordinator: TabBarCoordinator?
     fileprivate lazy var permissionHandler: PermissionHandler = PermissionHandler()
     fileprivate lazy var networkManager: NetworkManager = NetworkManager(delegate: self, credentialsManager: self.credentialsManager)
-    fileprivate lazy var credentialsManager: CredentialsManager = CredentialsManager()
+    fileprivate lazy var credentialsManager: CredentialsManager = CredentialsManager.shared
     fileprivate var canProcessRemoteNotifications = false
     
     fileprivate lazy var realmProvider: RealmProvider = {
@@ -138,8 +139,6 @@ final class AppCoordinator: ParentCoordinator {
                     if let tabBarCoordinator = self.tabBarCoordinator, !tabBarCoordinator.isLoading, doingInitialSync {
                         tabBarCoordinator.showLoading()
                     }
-
-                    self.updateDeviceToken()
                     self.canProcessRemoteNotifications = true
                     self.remoteNotificationHandler.processOutstandingNotifications()
                 } catch {
@@ -157,16 +156,6 @@ final class AppCoordinator: ParentCoordinator {
 // MARK: - private
 
 private extension AppCoordinator {
-
-    func updateDeviceToken() {
-        guard
-            let user = services?.userService.user(),
-            let deviceToken = UAirship.push().deviceToken else {
-                return
-        }
-
-        services?.userService.updateUserDeviceToken(user: user, deviceToken: deviceToken)
-    }
 
     func registerRemoteNotifications() {
         permissionHandler.askPermissionForRemoteNotifications { (granted: Bool) in

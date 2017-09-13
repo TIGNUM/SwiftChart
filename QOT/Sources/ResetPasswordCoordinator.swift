@@ -38,36 +38,8 @@ final class ResetPasswordCoordinator: ParentCoordinator {
 extension ResetPasswordCoordinator: ResetPasswordViewControllerDelegate {
     
     func didTapResetPassword(withUsername username: String, completion: @escaping (NetworkError?) -> Void) {
-        AppDelegate.current.window?.showProgressHUD(type: .fitbit) { [unowned self] in
-            let token = ["email": username]
-            do {
-                let body = try token.toJSON().serialize()
-                let request = ResetPasswordRequest(endpoint: .resetPassword, body: body)
-                self.networkManager.request(request, parser: GenericParser.parse) { (result) in
-                    switch result {
-                    case .success:
-                        completion(nil)
-                    case .failure(let error):
-                        completion(error)
-                    }
-                }
-            } catch {
-                return
-            }
-        }
-    }
-
-    func checkIfEmailAvailable(email: String, completion: @escaping (Bool) -> Void) {
-        let request = EmailCheckRequest(endpoint: .emailCheck, email: email)
-        networkManager.request(request, parser: GenericParser.parse) { (result) in
-            switch result {
-            case .success:
-                print("Check success")
-                completion(true)
-            case .failure:
-                print("Check failure")
-                completion(false)
-            }
+        AppDelegate.current.window?.showProgressHUD(type: .fitbit) { [networkManager] in
+            networkManager.performResetPasswordRequest(username: username, completion: completion)
         }
     }
 }

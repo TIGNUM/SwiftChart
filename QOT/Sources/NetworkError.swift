@@ -62,6 +62,23 @@ struct NetworkError: Error {
         self.response = response
         self.data = data
     }
+
+    static func isUnauthenticatedNetworkError(_ error: Error) -> Bool {
+        guard let error = error as? NetworkError, case NetworkErrorType.unauthenticated = error.type else {
+            return false
+        }
+        return true
+    }
+}
+
+extension Error {
+
+    var networkError: NetworkError {
+        guard let error = self as? NetworkError else {
+            return NetworkError(type: .unknown(error: self, statusCode: nil))
+        }
+        return error
+    }
 }
 
 extension NetworkError.NetworkErrorType: CustomDebugStringConvertible {

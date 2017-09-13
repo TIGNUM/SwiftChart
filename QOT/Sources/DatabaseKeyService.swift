@@ -10,7 +10,7 @@ import Foundation
 import KeychainAccess
 
 class DatabaseKeyService {
-    private let keychain = Keychain(service: KeychainConstant.service.rawValue)
+    private let keychain = Keychain()
     private let length = 64
     
     // print this and use in Realm Browser to open encrypted db

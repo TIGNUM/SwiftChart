@@ -47,14 +47,11 @@ extension LoginCoordinator: LoginViewControllerDelegate {
 
     func didTapLogin(withEmail email: String, password: String, viewController: UIViewController, completion: @escaping (Error?) -> Void) {
         AppDelegate.current.window?.showProgressHUD(type: .fitbit, actionBlock: { [unowned self] in
-            let request = AuthenticationRequest(username: email, password: password, deviceID: deviceID)
-            self.networkManager.request(request, parser: AuthenticationTokenParser.parse) { [weak self] (result) in
-                switch result {
-                case .success:
-                    completion(nil)
+            self.networkManager.performAuthenticationRequest(username: email, password: password) { [weak self] (error) in
+                completion(error)
+                if error == nil {
                     self?.delegate?.didLoginSuccessfully()
-                case .failure(let error):
-                    completion(error)
+                } else {
                     viewController.showAlert(type: .loginFailed)
                 }
             }
@@ -64,17 +61,5 @@ extension LoginCoordinator: LoginViewControllerDelegate {
     func didTapResetPassword(viewController: UIViewController) {
         let resetPasswordCoordinator = ResetPasswordCoordinator(rootVC: viewController, parentCoordinator: self, networkManager: networkManager)
         startChild(child: resetPasswordCoordinator)
-    }
-
-    func checkIfEmailAvailable(email: String, completion: @escaping (Bool) -> Void) {
-        let request = EmailCheckRequest(endpoint: .emailCheck, email: email)
-        networkManager.request(request, parser: GenericParser.parse) { (result) in
-            switch result {
-            case .success:
-                completion(true)
-            case .failure:
-                completion(false)
-            }
-        }
     }
 }

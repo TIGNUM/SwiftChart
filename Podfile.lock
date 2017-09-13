@@ -18,6 +18,17 @@ PODS:
   - Kingfisher (3.10.1)
   - LoremIpsum (1.0.0)
   - MBProgressHUD (1.0.0)
+  - PromiseKit (4.4.0):
+    - PromiseKit/Foundation (= 4.4.0)
+    - PromiseKit/QuartzCore (= 4.4.0)
+    - PromiseKit/UIKit (= 4.4.0)
+  - PromiseKit/CorePromise (4.4.0)
+  - PromiseKit/Foundation (4.4.0):
+    - PromiseKit/CorePromise
+  - PromiseKit/QuartzCore (4.4.0):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (4.4.0):
+    - PromiseKit/CorePromise
   - R.swift (3.3.0):
     - R.swift.Library (~> 3.0.2)
   - R.swift.Library (3.0.2)
@@ -47,6 +58,7 @@ DEPENDENCIES:
   - Kingfisher (~> 3.6)
   - LoremIpsum (~> 1.0)
   - MBProgressHUD (~> 1.0.0)
+  - PromiseKit
   - R.swift (~> 3.2)
   - RealmSwift (= 2.7.0)
   - RSKImageCropper (~> 1.6.1)
@@ -70,6 +82,7 @@ SPEC CHECKSUMS:
   Kingfisher: 33a1b82140fcb14a9fc13f78dfde2a03ff8de8cb
   LoremIpsum: 9029c55d36501b2ee0b05cc9ecda11d3a0479160
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  PromiseKit: ecf5fe92275d57ee77c9ede858af47a162e9b97e
   R.swift: bde9704d50ff36820f49e266bc88ef545e1e9b36
   R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
   ReactiveKit: 4fc2a23db33777358abe93453ece3a69011adeec
@@ -79,6 +92,6 @@ SPEC CHECKSUMS:
   UICollectionViewRightAlignedLayout: 823eef8c567eba4a44c21bc2ffcb0d0d5f361e2d
   UrbanAirship-iOS-SDK: e24b3b46b4492e4ec7d0edcf0872e9408c20e048
 
-PODFILE CHECKSUM: 0b72724c8d61e8805933533d1a7c8ad31955db1a
+PODFILE CHECKSUM: e9a8ae4a8b2a2df9fb2944c2bba6d2311e6ae88f
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.2.0

@@ -20,12 +20,15 @@ final class URLRequestBuilder {
         self.appVersion = Bundle.main.versionNumber
     }
 
-    func make(with buildable: URLRequestBuildable, authToken: String?) -> URLRequestConvertible {
+    func make(with buildable: URLRequestBuildable, authToken: String?) throws -> URLRequestConvertible {
         var httpHeaders = buildable.headers
-        httpHeaders[.contentType] = "application/json"
-        if let authToken = authToken {
+        if buildable.requiresAuthentication {
+            guard let authToken = authToken else {
+                throw NetworkError(type: .unauthenticated)
+            }
             httpHeaders[.authToken] = authToken
         }
+        httpHeaders[.contentType] = "application/json"
         httpHeaders[.deviceID] = deviceID
         httpHeaders[.version] = appVersion
 

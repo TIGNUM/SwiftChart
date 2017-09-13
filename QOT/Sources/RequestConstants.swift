@@ -36,6 +36,7 @@ enum Endpoint: String {
     case userPreparationCheck = "/personal/p/qot/userPreparationContentItem"
     case userAnswer = "/personal/p/qot/userAnswer"
     case pageTracking = "/personal/p/qot/pageTracking"
+    case pushNotificationToken = "/personal/p/qot/deviceToken"
     
     func url(baseURL: URL) -> URL {
         return baseURL.appendingPathComponent(rawValue)
@@ -46,6 +47,9 @@ enum RequestParameter: String {
     case from
     case size
     case page
+    case email
+    case notificationEnvironmentType
+    case notificationToken
 }
 
 enum HTTPHeader: String {

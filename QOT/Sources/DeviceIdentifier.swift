@@ -9,7 +9,7 @@
 import Foundation
 import KeychainAccess
 
-private let keychain = Keychain(service: KeychainConstant.service.rawValue)
+private let keychain = Keychain()
 
 let deviceID: String = {
     if let identifier = keychain[KeychainConstant.deviceID.rawValue] {

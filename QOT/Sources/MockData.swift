@@ -15,7 +15,7 @@ import Alamofire
 
 private let syncManager: SyncManager = {
     let requestBuilder = URLRequestBuilder(baseURL: URL(string: "http://example.com")!, deviceID: deviceID)
-    let networkManager = MockNetworkManager(sessionManager: SessionManager.default, credentialsManager: CredentialsManager(), requestBuilder: requestBuilder)
+    let networkManager = MockNetworkManager(sessionManager: SessionManager.default, credentialsManager: CredentialsManager.shared, requestBuilder: requestBuilder)
     let realmProvider = RealmProvider()
     let syncRecordService = SyncRecordService(realmProvider: realmProvider)
     return SyncManager(networkManager: networkManager, syncRecordService: syncRecordService, realmProvider: realmProvider)

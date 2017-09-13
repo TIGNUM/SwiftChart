@@ -32,7 +32,7 @@ class NetworkManagerTests: XCTestCase {
         }()
         
         let sessionManager = SessionManager(configuration: configuration)
-        let credentialsManager = CredentialsManager()
+        let credentialsManager = CredentialsManager.shared
         credentialsManager.credential = Credential(username: username, password: password, token: token)
         let requestBuilder = URLRequestBuilder(baseURL: URL(string: "http://localhost")!, deviceID: "Some ID")
         
@@ -50,7 +50,7 @@ class NetworkManagerTests: XCTestCase {
         }()
         
         let sessionManager = SessionManager(configuration: configuration)
-        let credentialsManager = CredentialsManager()
+        let credentialsManager = CredentialsManager.shared
         credentialsManager.credential = Credential(username: username, password: password, token: nil)
         let requestBuilder = URLRequestBuilder(baseURL: URL(string: "http://localhost")!, deviceID: "Some ID")
         

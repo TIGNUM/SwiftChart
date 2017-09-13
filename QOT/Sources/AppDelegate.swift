@@ -101,8 +101,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         return launchHandler.canLaunch(url: url)
-    }    
-    
+    }
+
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let deviceToken = UAUtils.deviceTokenString(fromDeviceToken: deviceToken)
+        appCoordinator.apnsDeviceTokenRegistrar.registerDeviceToken(deviceToken)
+    }
+
     // MARK: - private
     
     private func setupUAirship() {
@@ -113,8 +118,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let config = UAConfig(contentsOfFile: path)
         UAirship.takeOff(config)
         UAirship.push().pushNotificationDelegate = remoteNotificationHandler
-        UAirship.shared().analytics.isEnabled = true
         UAirship.push().updateRegistration()
+        UAirship.shared().analytics.isEnabled = true
     }
 
     fileprivate var appFilePath: String {

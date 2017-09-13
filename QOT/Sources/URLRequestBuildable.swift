@@ -15,6 +15,7 @@ protocol URLRequestBuildable {
     var headers: [HTTPHeader: String] { get }
     var paramaters: [RequestParameter: Any] { get }
     var body: Data? { get }
+    var requiresAuthentication: Bool { get }
 }
 
 extension URLRequestBuildable {
@@ -33,5 +34,9 @@ extension URLRequestBuildable {
 
     var body: Data? {
         return nil
+    }
+
+    var requiresAuthentication: Bool {
+        return true
     }
 }

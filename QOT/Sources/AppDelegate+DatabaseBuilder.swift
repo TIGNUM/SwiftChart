@@ -13,7 +13,7 @@
 
     extension AppDelegate {
         func __buildDatabase() {
-            let realmProvider = RealmProvider()
+            let realmProvider = BuilderRealmProvider()
             databaseBuilder = DatabaseBuilder(
                 networkManager: NetworkManager(),
                 syncRecordService: SyncRecordService(realmProvider: realmProvider),
@@ -35,7 +35,7 @@
                 ])
             databaseBuilder.setCompletion({
                 guard context.errors.count == 0 else {
-                    log(context.errors[0].localizedDescription)
+                    log(context.errors[0])
                     return
                 }
                 

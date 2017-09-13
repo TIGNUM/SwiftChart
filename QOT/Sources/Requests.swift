@@ -13,18 +13,11 @@ struct AuthenticationRequest: URLRequestBuildable {
     let endpoint: Endpoint = .authentication
     let httpMethod: HTTPMethod = .post
     let headers: [HTTPHeader: String]
+    let requiresAuthentication = false
     
-    let username: String
-    let password: String
-    let deviceID: String
-    
-    init(username: String, password: String, deviceID: String) {
-        self.username = username
-        self.password = password
-        self.deviceID = deviceID
+    init(username: String, password: String) {
         headers = [
             .Authorization: "Basic " + "\(username):\(password)".toBase64(),
-            .deviceID: deviceID,
             .authUser: "qot"
         ]
     }
@@ -89,23 +82,26 @@ struct FitbitTokenRequest: URLRequestBuildable {
 }
 
 struct ResetPasswordRequest: URLRequestBuildable {
-    let endpoint: Endpoint
+    let endpoint: Endpoint = .resetPassword
     let httpMethod: HTTPMethod = .put
-    let body: Data?
+    let paramaters: [RequestParameter: Any]
+    let requiresAuthentication = false
 
-    init(endpoint: Endpoint, body: Data) {
-        self.endpoint = endpoint
-        self.body = body
+    init(username: String) {
+        self.paramaters = [.email: username]
     }
 }
 
-struct EmailCheckRequest: URLRequestBuildable {
-    let endpoint: Endpoint
-    let httpMethod: HTTPMethod = .get
-    let email: String?
+struct APNSDeviceTokenRequest: URLRequestBuildable {
+    let endpoint: Endpoint = .pushNotificationToken
+    let httpMethod: HTTPMethod = .put
+    let paramaters: [RequestParameter: Any]
+    let requiresAuthentication = true
 
-    init(endpoint: Endpoint, email: String?) {
-        self.endpoint = endpoint
-        self.email = email
+    init(token: String) {
+        self.paramaters = [
+            .notificationToken: token,
+            .notificationEnvironmentType: Environment.name
+        ]
     }
 }

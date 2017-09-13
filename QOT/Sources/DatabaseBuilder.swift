@@ -11,6 +11,15 @@
 import Foundation
 import RealmSwift
 
+class BuilderRealmProvider: RealmProvider {
+
+    override func realm() throws -> Realm {
+        let url = URL.documentsDirectory.appendingPathComponent("temp.realm")
+        let config = Realm.Configuration(fileURL:url, encryptionKey: nil)
+        return try Realm(configuration: config)
+    }
+}
+
 class DatabaseBuilder {
     private let networkManager: NetworkManager
     private let syncRecordService: SyncRecordService
@@ -42,13 +51,12 @@ class DatabaseBuilder {
         guard let operations = operations else {
             return
         }
-        let request = AuthenticationRequest(username: "qotapptester@tignum.com", password: "1111", deviceID: deviceID)
-        self.networkManager.request(request, parser: AuthenticationTokenParser.parse) { [weak self] (result) in
-            switch result {
-            case .success:
-                self?.operationQueue.addOperations(operations, waitUntilFinished: false)
-            case .failure(let error):
+
+        networkManager.performAuthenticationRequest(username: "qotapptester@tignum.com", password: "1111") { (error) in
+            if let error = error {
                 log(error)
+            } else {
+                self.operationQueue.addOperations(operations, waitUntilFinished: false)
             }
         }
     }

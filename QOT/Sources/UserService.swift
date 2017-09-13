@@ -68,12 +68,6 @@ final class UserService {
         }
     }
 
-    func updateUserDeviceToken(user: User, deviceToken: String) {
-        updateUser(user: user) {
-            $0.urbanAirshipDeviceToken = deviceToken
-        }
-    }
-
     func updateTimeZone() {
         let timeZone = TimeZone.currentName
         if let user = user(), timeZone != user.timeZone {

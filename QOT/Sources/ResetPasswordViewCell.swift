@@ -139,18 +139,6 @@ class ResetPasswordViewCell: UITableViewCell, Dequeueable {
         selectionStyle = .none
     }
 
-    let checkEmailQueue = DispatchQueue(label: "TEMP") // FIXME: REMOVE
-
-    func checkEmail(_ email: String, completion: @escaping (Bool) -> Void) {
-        checkEmailQueue.async { [weak self] in
-            self?.delegate?.checkIfEmailAvailable(email: email) { result in
-                DispatchQueue.main.async {
-                    completion(result)
-                }
-            }
-        }
-    }
-
     func keyboardWillAppear() {
         cellDelegate?.keyboardAppeared(viewHeight: resetPasswordButton.frame.origin.y + resetPasswordButton.frame.height)
     }
@@ -234,11 +222,6 @@ extension ResetPasswordViewCell: UITextFieldDelegate {
             if text.isEmpty {
                 userView.backgroundColor = .whiteLight14
             }
-//            if !text.isEmpty {
-//                checkEmail(text, completion: { (bool) in
-//                    self.isValidEmail(valid: bool)
-//                })
-//            }
         }
     }
     

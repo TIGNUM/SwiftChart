@@ -12,8 +12,6 @@ import Anchorage
 protocol ResetPasswordViewControllerDelegate: class {
 
     func didTapResetPassword(withUsername username: String, completion: @escaping (NetworkError?) -> Void)
-    
-    func checkIfEmailAvailable(email: String, completion: @escaping (Bool) -> Void)
 }
 
 final class ResetPasswordViewController: UITableViewController {

@@ -23,8 +23,6 @@ final class User: SyncableObject {
 
     dynamic var weightUnit: String?
 
-    dynamic var urbanAirshipDeviceToken: String?
-
     // MARK: Data
 
     fileprivate(set) dynamic var givenName: String = ""
@@ -102,13 +100,10 @@ extension User: TwoWaySyncableUniqueObject {
         jobTitle = data.jobTitle
         memberSince = data.memberSince
         timeZone = data.timeZone ?? TimeZone.currentName
-        updateUAirship(urbanAirshipTags: data.urbanAirshipTags)
+        updateUAirshipTags(data.urbanAirshipTags + [data.email])
     }
 
-    private func updateUAirship(urbanAirshipTags: [String]) {
-        var tags = urbanAirshipTags
-        tags.append(email)
-        urbanAirshipDeviceToken = UAirship.push().deviceToken
+    private func updateUAirshipTags(_ tags: [String]) {
         UAirship.push().removeTags(UAirship.push().tags)
         UAirship.push().addTags(tags)
         UAirship.push().updateRegistration()
@@ -139,12 +134,6 @@ extension User: TwoWaySyncableUniqueObject {
             .weightUnit: weightUnit.toJSONEncodable
         ]
 
-        #if DEBUG
-            let environment = "DEVELOPMENT"
-        #else
-            let environment = "PRODUCTION"
-        #endif
-
         let dict: [JsonKey: JSONEncodable] = [
             .gender: gender,
             .firstName: givenName,
@@ -161,9 +150,7 @@ extension User: TwoWaySyncableUniqueObject {
             .userImageURL: userImageURLString.toJSONEncodable,
             .memberSince: memberSince,
             .employment: JSON.dictionary(employment.mapKeyValues({ ($0.rawValue, $1.toJSON()) })),
-            .userInfo: JSON.dictionary(userInfo.mapKeyValues({ ($0.rawValue, $1.toJSON()) })),
-            .urbanAirshipDeviceToken: urbanAirshipDeviceToken.toJSONEncodable,
-            .notificationEnvironmentType: environment
+            .userInfo: JSON.dictionary(userInfo.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
         ]
         return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
     }

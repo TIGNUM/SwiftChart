@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-final class RealmProvider {
+class RealmProvider {
     func realm() throws -> Realm {
         let configuration = try DatabaseManager.shared.configuration()
         return try Realm(configuration: configuration)

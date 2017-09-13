@@ -13,6 +13,7 @@ disabled_rules:
   - unused_closure_parameter
   - type_name
   - shorthand_operator
+  - vertical_parameter_alignment
 
 included: # paths to include during linting. `--path` is ignored if present.
   - QOT
