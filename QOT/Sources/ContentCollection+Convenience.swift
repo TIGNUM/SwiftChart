@@ -23,8 +23,18 @@ extension ContentCollection {
         return percentageViewed > 0
     }
 
-    var minutesRequired: Int {
-        return items.reduce(0, { $0.0 + $0.1.secondsRequired }) / 60
+    var minutesToRead: Int {
+        return items.reduce(0, { (sum, item) -> Int in
+            if let format = ContentItemFormat(rawValue: item.format) {
+                switch format {
+                case .video, .audio, .image, .pdf:
+                    return sum
+                default:
+                    return sum + item.secondsRequired
+                }
+            }
+            return sum
+        }) / 60
     }
 
     var percentageViewed: Double {

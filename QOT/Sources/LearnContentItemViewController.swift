@@ -318,7 +318,7 @@ private extension LearnContentItemViewController {
             textColor: .black
         )
         let bottomText = NSMutableAttributedString(
-            string: String(format: "%d MIN TO READ", relatedContent.minutesRequired), //TODO Localise
+            string: String(format: "%d MIN TO READ", relatedContent.minutesToRead), //TODO Localise
             letterSpacing: CGFloat(2),
             font: Font.H7Tag,
             textColor: .black30

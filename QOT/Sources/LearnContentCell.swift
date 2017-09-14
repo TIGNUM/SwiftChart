@@ -53,7 +53,7 @@ final class LearnContentCell: UICollectionViewCell, Dequeueable {
     // MARK: - Configure
 
     func configure(with content: ContentCollection, index: Int) {
-        let min = String(content.minutesRequired)
+        let min = String(content.minutesToRead)
         let attributedIndex = Style.headlineSmall((String(format: "#%02d", index + 1)), .white50).attributedString()
         let attributedTitle = NSMutableAttributedString(
             string: content.title.uppercased(),

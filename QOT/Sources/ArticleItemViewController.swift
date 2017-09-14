@@ -218,7 +218,7 @@ private extension ArticleItemViewController {
         let relatedArticleCell: ArticleRelatedCell = tableView.dequeueCell(for: indexPath)
         let relatedArticle = viewModel.relatedArticle(at: indexPath)
 
-        let date = Date().addingTimeInterval(TimeInterval(relatedArticle.minutesRequired * 60))
+        let date = Date().addingTimeInterval(TimeInterval(relatedArticle.minutesToRead * 60))
         relatedArticleCell.setupView(title: relatedArticle.title, subTitle: Date().timeToDateAsString(date), previewImageURL: relatedArticle.thumbnailURL)
 
         print("time: \(Date().timeToDateAsString(date))")
