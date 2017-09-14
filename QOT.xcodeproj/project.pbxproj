@@ -133,6 +133,7 @@
 		85E1F1C91F20C24F003FA349 /* ZoomPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E1F1C81F20C24F003FA349 /* ZoomPresentationController.swift */; };
 		A29C0C8591D20568D6B8EB3E /* Pods_QOTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */; };
 		CB026FC61F69681300FC5076 /* APNSDeviceTokenRegistrar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrar.swift */; };
+		CB026FCA1F6A89CB00FC5076 /* VersionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB026FC91F6A89CB00FC5076 /* VersionInfo.swift */; };
 		CB0A4A581ECC4C25006A2D85 /* AddSensorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A4A571ECC4C25006A2D85 /* AddSensorCoordinator.swift */; };
 		CB0A4A5A1ECC4C3E006A2D85 /* AddSensorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A4A591ECC4C3E006A2D85 /* AddSensorViewModel.swift */; };
 		CB0A4A5D1ECC4C72006A2D85 /* AddSensorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A4A5B1ECC4C72006A2D85 /* AddSensorViewController.swift */; };
@@ -582,6 +583,7 @@
 		B3EE7DF60C9A17B5F331C145 /* Pods-QOTTests.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.database.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.database.xcconfig"; sourceTree = "<group>"; };
 		C18DB768AC204FC05E0EFE96 /* Pods-DatabaseBuilder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseBuilder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseBuilder/Pods-DatabaseBuilder.debug.xcconfig"; sourceTree = "<group>"; };
 		CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APNSDeviceTokenRegistrar.swift; sourceTree = "<group>"; };
+		CB026FC91F6A89CB00FC5076 /* VersionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionInfo.swift; sourceTree = "<group>"; };
 		CB0A4A571ECC4C25006A2D85 /* AddSensorCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorCoordinator.swift; sourceTree = "<group>"; };
 		CB0A4A591ECC4C3E006A2D85 /* AddSensorViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorViewModel.swift; sourceTree = "<group>"; };
 		CB0A4A5B1ECC4C72006A2D85 /* AddSensorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorViewController.swift; sourceTree = "<group>"; };
@@ -1055,6 +1057,14 @@
 			name = "APNS Device Token";
 			sourceTree = "<group>";
 		};
+		CB026FC81F6A894400FC5076 /* VersionInfo */ = {
+			isa = PBXGroup;
+			children = (
+				CB026FC91F6A89CB00FC5076 /* VersionInfo.swift */,
+			);
+			name = VersionInfo;
+			sourceTree = "<group>";
+		};
 		CB1467631EF2778400A60E31 /* Page */ = {
 			isa = PBXGroup;
 			children = (
@@ -1390,6 +1400,7 @@
 				CBC933131F0B9B3A00C00007 /* ContentRelation */,
 				CCE6CD821F152D3800B66DA3 /* DoubleObject */,
 				CB9B075D1EF911B40017F6C3 /* IntObject */,
+				7FBC3E811F3865D4005BD772 /* MediaResource */,
 				CCE6CD7C1F15255500B66DA3 /* MyStatistics */,
 				7F691C561F0D19B100E2C180 /* MyToBeVision */,
 				CB1467631EF2778400A60E31 /* Page */,
@@ -1404,7 +1415,7 @@
 				CB810E621EF00D9F0043E3E5 /* User */,
 				7F507BA41F3B4E7A0091742D /* UserAnswer */,
 				CBC5ACBD1F162A1F007E1E9C /* UserChoice */,
-				7FBC3E811F3865D4005BD772 /* MediaResource */,
+				CB026FC81F6A894400FC5076 /* VersionInfo */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1825,10 +1836,11 @@
 		CBB4DD511EE095B30071494A /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				CB9B07661EF953D80017F6C3 /* JSONKey.swift */,
-				CB1D5E361EC5E25A00BCDF8D /* JSONDecodable.swift */,
 				CB6D49551ECCA58D005BC637 /* AuthenticationTokenParser.swift */,
+				8548BBE31F0E382900AC7C06 /* GenericParser.swift */,
 				CBC933041F05253000C00007 /* JSON+Convenience.swift */,
+				CB1D5E361EC5E25A00BCDF8D /* JSONDecodable.swift */,
+				CB9B07661EF953D80017F6C3 /* JSONKey.swift */,
 				CB27D59C1ECCB6DD00F2B76C /* NetworkError.swift */,
 				CBB4DCFE1EDD6CE50071494A /* NetworkManager.swift */,
 				CBB4DD111EDEAD050071494A /* RequestConstants.swift */,
@@ -1837,7 +1849,6 @@
 				CBB4DD131EDEBDA80071494A /* URLRequestBuildable.swift */,
 				CBB4DD0C1EDEAA610071494A /* URLRequestBuilder.swift */,
 				CC34BD551ECF3863007CB365 /* UserCredentials.swift */,
-				8548BBE31F0E382900AC7C06 /* GenericParser.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -2587,6 +2598,7 @@
 				CCF0F4BF1ECDC57000E8D9C1 /* DownSyncable.swift in Sources */,
 				8514A4861EE810750086C70E /* DownSyncComplete.swift in Sources */,
 				CC41A5411EFD241100B9AE8E /* ArticleRelatedCell.swift in Sources */,
+				CB026FCA1F6A89CB00FC5076 /* VersionInfo.swift in Sources */,
 				CC6B3A2F1E8166A500E7FDFD /* FadeInOutPresentationAnimator.swift in Sources */,
 				CC34BD561ECF3863007CB365 /* UserCredentials.swift in Sources */,
 				CB810E6E1EF180DC0043E3E5 /* PageTrack.swift in Sources */,

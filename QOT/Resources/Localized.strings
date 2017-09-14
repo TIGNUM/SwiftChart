@@ -182,6 +182,9 @@
 "Alert.Message.Calendar.No.Access" = "This app does not have access to your calendars.\nYou can enable access in Privacy Settings";
 "Alert.Title.EmailNotFound" = "Email not found";
 "Alert.Message.EmailNotFound" = "Please try again";
+"Alert.UpdateNeeded.Title" = "Update needed";
+"Alert.UpdateNeeded.Message" = "A new version of QOT is available. Update now?";
+"Alert.UpdateNeeded.Cancel" = "Later";
 
 "MorningController.titleLabel" = "MORNING INTERVIEW";
 "MorningController.nextButton" = "Next";

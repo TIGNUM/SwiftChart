@@ -37,8 +37,12 @@ enum Endpoint: String {
     case userAnswer = "/personal/p/qot/userAnswer"
     case pageTracking = "/personal/p/qot/pageTracking"
     case pushNotificationToken = "/personal/p/qot/deviceToken"
+    case versionInfo = "https://s3-eu-west-1.amazonaws.com/qotapp.bucket/v2/version.json"
     
     func url(baseURL: URL) -> URL {
+        if let url = URL(string: rawValue), url.host != nil {
+            return url
+        }
         return baseURL.appendingPathComponent(rawValue)
     }
 }

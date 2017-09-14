@@ -70,6 +70,10 @@ class NetworkManager {
         return performRequest(request, completion: completion)
     }
 
+    @discardableResult func performVersionInfoRequest(completion: @escaping (Result<VersionInfo, NetworkError>) -> Void) -> SerialRequest {
+        return performRequest(VersionInfoRequest(), parser: VersionInfo.parse, completion: completion)
+    }
+
     /**
      Performs a network request using credentials from the `CredentialsManager`.
      

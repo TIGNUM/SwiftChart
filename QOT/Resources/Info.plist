@@ -78,6 +78,19 @@
 				<key>NSRequiresCertificateTransparency</key>
 				<true/>
 			</dict>
+            <key>s3-eu-west-1.amazonaws.com/qotapp.bucket/v2/version.json</key>
+            <dict>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <false/>
+                <key>NSExceptionMinimumTLSVersion</key>
+                <string>TLSv1.2</string>
+                <key>NSExceptionRequiresForwardSecrecy</key>
+                <true/>
+                <key>NSIncludesSubdomains</key>
+                <false/>
+                <key>NSRequiresCertificateTransparency</key>
+                <true/>
+            </dict>
 		</dict>
 	</dict>
 	<key>NSCalendarsUsageDescription</key>

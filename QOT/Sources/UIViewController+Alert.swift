@@ -26,6 +26,7 @@ enum AlertType {
     case settingsLoccationService
     case settingsCalendars
     case emailNotFound
+    case updateNeeded
 
     var title: String? {
         switch self {
@@ -42,6 +43,7 @@ enum AlertType {
         case .settingsLoccationService: return R.string.localized.alertTitleLocationServices()
         case .settingsCalendars: return R.string.localized.alertTitleCalendarNoAccess()
         case .emailNotFound: return R.string.localized.alertTitleEmailNotFound()
+        case .updateNeeded: return R.string.localized.alertUpdateNeededTitle()
         default: return nil
         }
     }
@@ -58,6 +60,7 @@ enum AlertType {
         case .settingsLoccationService: return R.string.localized.alertMessageLocationServices()
         case .settingsCalendars: return R.string.localized.alertMessageCalendarNoAccess()
         case .emailNotFound: return R.string.localized.alertMessageEmailNotFound()
+        case .updateNeeded: return R.string.localized.alertUpdateNeededMessage()
         default: return nil
         }
     }
@@ -67,6 +70,7 @@ enum AlertType {
         case .notificationsNotAuthorized,
              .settingsLoccationService,
              .settingsCalendars: return R.string.localized.alertButtonTitleCancel()
+        case .updateNeeded: return R.string.localized.alertUpdateNeededCancel()
         default: return nil
         }
     }
@@ -90,7 +94,8 @@ enum AlertType {
         switch self {
         case .notificationsNotAuthorized,
              .settingsLoccationService,
-             .settingsCalendars: return [.cancel, .default]
+             .settingsCalendars,
+             .updateNeeded: return [.cancel, .default]
         default: return [.default]
         }
     }

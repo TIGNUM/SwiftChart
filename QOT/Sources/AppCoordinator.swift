@@ -95,6 +95,8 @@ final class AppCoordinator: ParentCoordinator {
                 }
             }
         }
+
+        checkAppIsUpToDate()
     }
 
     func restart() {
@@ -144,6 +146,7 @@ final class AppCoordinator: ParentCoordinator {
                 } catch {
                     handleError(error: error)
                 }
+
             }
         }
     }
@@ -184,6 +187,32 @@ private extension AppCoordinator {
         guard let localID = checkListIDToPresent else { return }
         coordinator.showPreparationCheckList(localID: localID)
         checkListIDToPresent = nil
+    }
+
+    func checkAppIsUpToDate() {
+        func needsUpadate(info: VersionInfo) -> Bool {
+            guard let currentBuild = Int(Bundle.main.buildNumber) else {
+                return true
+            }
+            return info.build > currentBuild
+        }
+
+        self.networkManager.performVersionInfoRequest { (result) in
+            switch result {
+            case .success(let versionInfo):
+                if needsUpadate(info: versionInfo) {
+                    #if DEBUG
+                        log("Latest QOT version on AWS_S3: \(versionInfo.version) - \(versionInfo.build)")
+                    #else
+                        self.showMajorAlert(type: .updateNeeded, handler: {
+                            UIApplication.shared.open(versionInfo.updateURL)
+                        })
+                    #endif
+                }
+            case .failure(let error):
+                log("Failed to fetch version info: \(error)")
+            }
+        }
     }
 }
 
@@ -268,7 +297,7 @@ extension AppCoordinator {
             handlerDestructive?()
         })
         windowManager.showWindow(atLevel: .alert)
-        windowManager.setRootViewController(alert, atLevel: .alert, animated: true, completion: nil)
+        windowManager.presentViewController(alert, atLevel: .alert, animated: true, completion: nil)
     }
 
     func showOnboarding() {

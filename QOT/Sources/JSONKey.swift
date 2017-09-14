@@ -76,6 +76,7 @@ enum JsonKey: String {
     case key
     case keypathID
     case lastName
+    case latestVersion
     case latitude
     case layoutInfo
     case location
@@ -173,6 +174,7 @@ enum JsonKey: String {
     case unit
     case universe
     case untilDate
+    case updateUrl
     case upperThreshold
     case urbanAirshipTags
     case url
