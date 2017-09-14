@@ -146,12 +146,10 @@ extension LaunchHandler {
     func randomContent(url: URL, scheme: URLScheme) {
         guard
             let contentIDString = scheme.queryParametter(url: url),
-            let contentID = Int(contentIDString),
-            let title = url.pathComponents.last?.capitalized else {
+            let contentID = Int(contentIDString) else {
                 return
         }
 
-        let categoryTitle = String(format: "Performance %@", title)
-        appDelegate.appCoordinator.presentLearnContentItems(contentID: contentID, categoryTitle: categoryTitle)
+        appDelegate.appCoordinator.presentLearnContentItems(contentID: contentID)
     }
 }

@@ -11,7 +11,7 @@ import UIKit
 extension URL {
 
     func queryStringParameter(param: String) -> String? {
-        guard let url = URLComponents(string: self.absoluteString) else {
+        guard let url = URLComponents(string: absoluteString) else {
             return nil
         }
 
@@ -20,7 +20,7 @@ extension URL {
 
     func queryItems() -> [URLQueryItem] {
         guard
-            let url = URLComponents(string: self.absoluteString),
+            let url = URLComponents(string: absoluteString),
             let queryItems = url.queryItems else {
                 return []
         }

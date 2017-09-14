@@ -253,16 +253,17 @@ extension AppCoordinator {
     }
 
     // FIXME: REFACTOR THIS
-    func presentLearnContentItems(contentID: Int, categoryTitle: String) {
+    func presentLearnContentItems(contentID: Int) {
         guard
             let services = services,
             let content = services.contentService.contentCollection(id: contentID),
-            let category = services.contentService.learnContentCategory(categoryTitle: categoryTitle),
+            let category = content.contentCategories.first,
             let rootViewController = windowManager.rootViewController(atLevel: .normal) else {
                 return
         }
 
         // FIXME: do we need to use the coordinator?
+        
         let presentationManager = CircularPresentationManager(originFrame: rootViewController.view.frame)
         let coordinator = LearnContentItemCoordinator(root: rootViewController, eventTracker: eventTracker, services: services, content: content, category: category, presentationManager: presentationManager, topBarDelegate: self)
         topTabBarController = coordinator.topTabBarController
