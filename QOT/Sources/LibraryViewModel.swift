@@ -43,10 +43,10 @@ extension LibraryViewModel {
     }
 
     func contentCollection(at indexPath: IndexPath) -> [ContentCollection] {
-        return Array(categories[indexPath.section].contentCollections)
+        return Array(categories[indexPath.section].contentCollections(section: .library))
     }
 
     func contentCount(at indexPath: IndexPath) -> Int {
-        return categories[indexPath.section].contentCollections.count
+        return categories[indexPath.section].contentCollections(section: .library).count
     }
 }

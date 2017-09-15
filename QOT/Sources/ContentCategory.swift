@@ -63,18 +63,6 @@ extension ContentCategory: OneWaySyncableDown {
     }
 }
 
-extension ContentCategory {
-
-    func getSidebarLayoutInfo() throws -> SidebarLayoutInfo {
-        guard let jsonString = layoutInfo else {
-            throw DatabaseError.noLayoutInfo
-        }
-
-        let json = try JSON(jsonString: jsonString)
-        return try SidebarLayoutInfo(json: json)
-    }
-}
-
 struct BubbleLayoutInfo: JSONDecodable {
 
     let radius: Double

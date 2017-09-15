@@ -11,51 +11,21 @@ import RealmSwift
 
 extension ContentCategory {
 
-    var articleContent: AnyRealmCollection<ContentCollection> {
-        return AnyRealmCollection(contentCollections)
+    func itemCount(section: Database.Section) -> Int {
+        return contentCollections(section: section).count
     }
 
-    var itemCount: Int {
-        return contentCollections.count
-    }
-
-    var viewedCount: Int {
-        return contentCollections.filter { $0.viewed }.count
-    }
-
-    var percentageLearned: Double {
-        return Double(viewedCount) / Double(contentCollections.count)
+    func viewedCount(section: Database.Section) -> Int {
+        let filtered: LazyFilterCollection<AnyRealmCollection<ContentCollection>>
+            = contentCollections(section: section).filter { $0.viewed }
+        return filtered.count
     }
 
     var learnContent: AnyRealmCollection<ContentCollection> {
-        return AnyRealmCollection(contentCollections)
+        return contentCollections(section: .learnStrategy)
     }
 
-    var prepareContentCollection: AnyRealmCollection<ContentCollection> {
-        return AnyRealmCollection(contentCollections)
-    }
-
-    var textColor: UIColor {
-        return sidebarLayoutInfo.textColor
-    }
-
-    var cellHeight: CGFloat {
-        return sidebarLayoutInfo.cellHeight
-    }
-
-    var font: UIFont {
-        return sidebarLayoutInfo.font
-    }
-
-    var sidebarLayoutInfo: SidebarLayoutInfo {
-        do {
-            return try getSidebarLayoutInfo()
-        } catch let error {
-            fatalError("sidebarLayoutInfo \(error)")
-        }
-    }
-
-    var sidebarContentCollection: AnyRealmCollection<ContentCollection> {
-        return AnyRealmCollection(contentCollections)
+    func contentCollections(section: Database.Section) -> AnyRealmCollection<ContentCollection> {
+        return AnyRealmCollection(contentCollections.filter(NSPredicate(section: section.rawValue)))
     }
 }

@@ -20,9 +20,9 @@ final class LearnCategoryListViewModel {
 
         init(category: ContentCategory) {
             title = category.title
-            viewedCount = category.viewedCount
-            itemCount = category.itemCount
-            percentageLearned = category.percentageLearned
+            viewedCount = category.viewedCount(section: .learnStrategy)
+            itemCount = category.itemCount(section: .learnStrategy)
+            percentageLearned = Double(viewedCount) / Double(itemCount)
         }
     }
 
