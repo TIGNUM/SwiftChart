@@ -36,6 +36,7 @@ final class LearnContentItemViewController: UIViewController {
     weak var delegate: LearnContentItemViewControllerDelegate?
     var viewModel: LearnContentItemViewModel
     let tabType: TabType
+    fileprivate var audioPlayerTopView: LearnStrategyAudioPlayerView?
     fileprivate let disposeBag = DisposeBag()
     fileprivate var soundPattern = Property([Float(0)])
 
@@ -138,6 +139,7 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
         } else {
             item = viewModel.learnContentItem(at: indexPath, tabType: tabType)
         }
+
         shouldMarkItemAsViewed(contentItem: item)
 
         if viewModel.containsAudioItem(tabType: tabType) == true && indexPath.section == 0 {
@@ -145,8 +147,10 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
             case .audio(_, _, _, _, _, let waveformData):
                 let cell: LearnStrategyAudioPlayerView = tableView.dequeueCell(for: indexPath)
                 cell.delegate = self
+                viewModel.audioPlayerViewDelegate = cell
                 soundPattern = Property(waveformData)
-                observeViewModel(audioView: cell)
+                audioPlayerTopView = cell
+                observeAudioPlayerView(cell)
 
                 return cell
             default: fatalError("That should not happen!")
@@ -226,7 +230,8 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
 
         switch item.contentItemValue {
         case .audio(_, _, _, let audioURL, let duration, _):
-            viewModel.playItem(at: indexPath, audioURL: audioURL, duration: duration)
+            let cell = tableView.cellForRow(at: indexPath) as? LearnStrategyPlaylistAudioCell
+            viewModel.playItem(at: indexPath, audioURL: audioURL, duration: duration, cell: cell)
         case .video(_, _, _, let videoURL, _):
             streamVideo(videoURL: videoURL)
         case .pdf(_, _, let pdfURL):
@@ -246,7 +251,7 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
 
 private extension LearnContentItemViewController {
 
-    func observeViewModel(audioView: LearnStrategyAudioPlayerView) {
+    func observeAudioPlayerView(_ audioView: LearnStrategyAudioPlayerView) {
         viewModel.currentPosition.map { [unowned self] (interval) -> String in
             return self.stringFromTimeInterval(interval: interval)
         }.bind(to: audioView.currentPositionLabel)
@@ -263,10 +268,6 @@ private extension LearnContentItemViewController {
 
         soundPattern.observeNext { (data) in
             audioView.audioWaveformView.data = data
-        }.dispose(in: disposeBag)
-
-        viewModel.updates.observeNext { [unowned self] (_) in
-            self.tableView.reloadData()
         }.dispose(in: disposeBag)
     }
 
@@ -349,7 +350,7 @@ private extension LearnContentItemViewController {
         title: String,
         duration: TimeInterval) -> LearnStrategyPlaylistAudioCell {
             let cell: LearnStrategyPlaylistAudioCell = tableView.dequeueCell(for: indexPath)
-            cell.setUp(title: title, playing: viewModel.isPlaying(indexPath: indexPath))
+            cell.setup(title: title, playing: viewModel.isPlaying(indexPath: indexPath))
 
         return cell
     }

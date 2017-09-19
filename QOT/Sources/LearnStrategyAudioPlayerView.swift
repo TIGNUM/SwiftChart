@@ -13,6 +13,13 @@ protocol AudioPlayerViewSliderDelegate: class {
     func value(at layout: Float, in view: LearnStrategyAudioPlayerView)
 }
 
+protocol AudioPlayerViewLabelDelegate: class {
+
+    func startBlinking()
+
+    func stopBlinking()
+}
+
 final class LearnStrategyAudioPlayerView: UITableViewCell, Dequeueable {
 
     // MARK: - Properties
@@ -80,5 +87,18 @@ private extension LearnStrategyAudioPlayerView {
         UIGraphicsEndImageContext()
 
         return image
+    }
+}
+
+// MARK: - AudioPlayerItemDelegate
+
+extension LearnStrategyAudioPlayerView: AudioPlayerViewLabelDelegate {
+
+    func startBlinking() {
+        currentPositionLabel.startBlinking()
+    }
+
+    func stopBlinking() {
+        currentPositionLabel.stopBlinking()        
     }
 }

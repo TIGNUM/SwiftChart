@@ -77,8 +77,7 @@ final class LearnStrategyListLayout: UICollectionViewLayout {
     }
 
     private func makeDecorationAttributes(for collectionView: UICollectionView, withSectionMinX sectionMinX: CGFloat, andSectinoMaxX sectionMaxX: CGFloat, inSection section: Int, counter: inout Int) {
-        let screenWidth = collectionView.bounds.width
-        let totalWidth = collectionView.contentSize.width
+        let screenWidth = collectionView.bounds.width        
         var item = 0
         var xPosition: CGFloat = 0
 
@@ -92,8 +91,6 @@ final class LearnStrategyListLayout: UICollectionViewLayout {
             decorationAttrs.zIndex = -1
             decorationAttrs.image = (counter % 2) == 0 ? R.image.learnBack1() : R.image.learnBack2()
             backgroundImageAttributes.append(decorationAttrs)
-
-            print("xPos: \(xPosition) | screenWidth: \(screenWidth) | totalWidth: \(totalWidth) | sectionMaxX: \(sectionMaxX)")
 
             item += 1
             counter += 1

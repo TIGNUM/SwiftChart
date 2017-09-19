@@ -27,4 +27,15 @@ extension UILabel {
 
         self.attributedText = attrString
     }
+
+    func startBlinking(duration: CGFloat = 0.75) {
+        UIView.animate(withDuration: TimeInterval(duration), delay: 0, options: .repeat, animations: { [unowned self] in
+            self.alpha = 0
+        }, completion: nil)
+    }
+
+    func stopBlinking() {
+        alpha = 1
+        layer.removeAllAnimations()
+    }
 }

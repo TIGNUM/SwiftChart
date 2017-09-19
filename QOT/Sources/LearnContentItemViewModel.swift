@@ -32,7 +32,7 @@ enum TabType: String {
     }
 }
 
-final class LearnContentItemViewModel {
+final class LearnContentItemViewModel: NSObject {
 
     // MARK: - Properties
 
@@ -42,9 +42,14 @@ final class LearnContentItemViewModel {
     fileprivate let categoryID: Int
     fileprivate var playingIndexPath: IndexPath?
     fileprivate var timeObserver: Any?
+    fileprivate var playerItemBufferEmptyObserver: Any?
+    fileprivate var playerItemPlaybackObserver: Any?
     fileprivate var player: AVPlayer? = AVPlayer()
     fileprivate let eventTracker: EventTracker
+    fileprivate var playerItem: AVPlayerItem?
     fileprivate(set) var isPlaying: Bool = false
+    fileprivate var currentPlayingCell: LearnStrategyPlaylistAudioCell?
+    weak var audioPlayerViewDelegate: AudioPlayerViewLabelDelegate?
     let contentCollection: ContentCollection
     var currentPosition = ReactiveKit.Property<TimeInterval>(0)
     lazy var trackDuration: ReactiveKit.Property<TimeInterval> = {
@@ -65,11 +70,35 @@ final class LearnContentItemViewModel {
         self.categoryID = categoryID
         self.relatedContentCollections = services.contentService.contentCollections(ids: contentCollection.relatedContentIDs)
         self.recommentedContentCollections = services.contentService.contentCollections(categoryID: categoryID)
+
+        super.init()
+
         setupAudioNotifications()
     }
     
     deinit {
         tearDownAudioNotifications()
+        removeAudioItemObserver()
+    }
+
+    // MARK: - KVO AudioItem
+
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        guard let playerItem = playerItem else {
+            return
+        }
+
+        if keyPath == "playbackBufferEmpty" {
+            if playerItem.isPlaybackBufferEmpty == true {
+                currentPlayingCell?.updateItem(buffering: false, playing: isPlaying)
+                audioPlayerViewDelegate?.stopBlinking()
+            }
+        } else if keyPath == "playbackLikelyToKeepUp" {
+            if playerItem.isPlaybackLikelyToKeepUp == true {
+                currentPlayingCell?.updateItem(buffering: false, playing: isPlaying)
+                audioPlayerViewDelegate?.stopBlinking()
+            }
+        }
     }
 }
 
@@ -133,13 +162,15 @@ extension LearnContentItemViewModel {
             case 0: return CGFloat(100)
             default: return UITableViewAutomaticDimension
             }
+        } else if tabType == .audio && section == 1 {
+            return 44
         } else if sectionCount(tabType: tabType) == 2 && containsAudioItem(tabType: tabType) == true {
             switch section {
             case 0: return CGFloat(100)
             default: return UITableViewAutomaticDimension
             }
         } else {
-            return UITableViewAutomaticDimension
+             return UITableViewAutomaticDimension
         }
     }
 
@@ -259,7 +290,9 @@ extension LearnContentItemViewModel {
         return player == nil ? false : player?.rate != 0
     }
 
-    func playItem(at indexPath: IndexPath, audioURL: URL, duration: TimeInterval) {
+    func playItem(at indexPath: IndexPath, audioURL: URL, duration: TimeInterval, cell: LearnStrategyPlaylistAudioCell?) {
+        currentPlayingCell?.updateItem(buffering: false, playing: false)
+        currentPlayingCell = cell
         trackDuration = Property(duration)
         let modifications: [IndexPath]
         if let current = playingIndexPath {
@@ -273,17 +306,15 @@ extension LearnContentItemViewModel {
                 }
             } else {
                 // stop current
-                // play new
-                playingIndexPath = indexPath
+                // play new                
                 modifications = [current, indexPath]
                 stopPlayback()
-                play(url: audioURL)
+                play(url: audioURL, cell: cell, playingIndexPath: indexPath)
             }
         } else {
             // play new
-            playingIndexPath = indexPath
             modifications = [indexPath]
-            play(url: audioURL)
+            play(url: audioURL, cell: cell, playingIndexPath: indexPath)
         }
 
         updates.next(.update(deletions: [], insertions: [], modifications: modifications))
@@ -293,6 +324,7 @@ extension LearnContentItemViewModel {
         guard let playingIndexPath = playingIndexPath else {
             return
         }
+
         player?.pause()
         isPlaying = false
         updates.next(.update(deletions: [], insertions: [], modifications: [playingIndexPath]))
@@ -301,16 +333,20 @@ extension LearnContentItemViewModel {
     func unpausePlayback() {
         player?.play()
         isPlaying = true
+        currentPlayingCell?.updateItem(buffering: false, playing: true)
     }
 
     func stopPlayback() {
         log("Did stop playback")
 
+        removeAudioItemObserver()
+        
         if let timeObserver = timeObserver {
             player?.removeTimeObserver(timeObserver)
         }
 
         player?.pause()
+        playerItem = nil
         player = nil
         currentPosition.value = 0
         playingIndexPath = nil
@@ -326,7 +362,7 @@ extension LearnContentItemViewModel {
     
     // MARK: - private
 
-    private func play(url: URL) {
+    private func play(url: URL, cell: LearnStrategyPlaylistAudioCell?, playingIndexPath: IndexPath?) {
         log("Did start to play item at index: \(index)")
 
         do {
@@ -335,12 +371,18 @@ extension LearnContentItemViewModel {
             print("Error while trying to set catgeory for AVAudioSession: ", error)
         }
 
+        removeAudioItemObserver()
         let playerItem = AVPlayerItem(url: url)
         player = AVPlayer(playerItem: playerItem)
+        self.playerItem = playerItem
+        self.playingIndexPath = playingIndexPath
+        cell?.updateItem(buffering: true, playing: true)
+        audioPlayerViewDelegate?.startBlinking()
         player?.volume = 1.0
         player?.play()
         isPlaying = true
         observePlayerTime()
+        observePlayerItem()
     }
 
     private func observePlayerTime() {
@@ -348,8 +390,15 @@ extension LearnContentItemViewModel {
             self.currentPosition.value = time.seconds
         }
     }
-    
-    // MARK: - notification 
+
+    private func observePlayerItem() {
+        if let playerItem = playerItem {
+            playerItemBufferEmptyObserver = playerItem.addObserver(self, forKeyPath: "playbackBufferEmpty", options: .new, context: nil)
+            playerItemPlaybackObserver = playerItem.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: .new, context: nil)
+        }
+    }
+
+    // MARK: - notification
     
     fileprivate func setupAudioNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(playerDidEndNotification(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
@@ -358,7 +407,14 @@ extension LearnContentItemViewModel {
     fileprivate func tearDownAudioNotifications() {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
     }
-    
+
+    fileprivate func removeAudioItemObserver() {
+        if  playerItemBufferEmptyObserver != nil && playerItemPlaybackObserver != nil {
+            playerItem?.removeObserver(self, forKeyPath: "playbackLikelyToKeepUp")
+            playerItem?.removeObserver(self, forKeyPath: "playbackBufferEmpty")
+        }
+    }
+
     @objc fileprivate func playerDidEndNotification(_ notification: Notification) {
         guard let playingIndexPath = playingIndexPath else {
             return
