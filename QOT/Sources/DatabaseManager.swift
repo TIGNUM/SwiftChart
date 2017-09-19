@@ -97,10 +97,10 @@ final class DatabaseManager {
                 return
             } catch let error as RLMError {
                 switch error.code {
-                case .schemaMismatch:
-                    try fileManager.removeItem(at: URL.mainRealmDirectory)
-                default:
+                case .addressSpaceExhausted, .filePermissionDenied:
                     throw error
+                default:
+                    try fileManager.removeItem(at: URL.mainRealmDirectory)
                 }
             }
         }
