@@ -134,6 +134,7 @@
 		A29C0C8591D20568D6B8EB3E /* Pods_QOTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */; };
 		CB026FC61F69681300FC5076 /* APNSDeviceTokenRegistrar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrar.swift */; };
 		CB026FCA1F6A89CB00FC5076 /* VersionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB026FC91F6A89CB00FC5076 /* VersionInfo.swift */; };
+		CB026FCE1F6C013600FC5076 /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB026FCD1F6C013600FC5076 /* CarouselView.swift */; };
 		CB0A4A581ECC4C25006A2D85 /* AddSensorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A4A571ECC4C25006A2D85 /* AddSensorCoordinator.swift */; };
 		CB0A4A5A1ECC4C3E006A2D85 /* AddSensorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A4A591ECC4C3E006A2D85 /* AddSensorViewModel.swift */; };
 		CB0A4A5D1ECC4C72006A2D85 /* AddSensorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A4A5B1ECC4C72006A2D85 /* AddSensorViewController.swift */; };
@@ -292,7 +293,6 @@
 		CC178A771F04FD600066A5D4 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC178A761F04FD600066A5D4 /* UserService.swift */; };
 		CC1E2A5F1EDF1DE100B9EFD3 /* UICollectionView+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1E2A5E1EDF1DE100B9EFD3 /* UICollectionView+Create.swift */; };
 		CC27E0C01EB355BC003E5B7F /* SidebarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC27E0BE1EB355BC003E5B7F /* SidebarTableViewCell.swift */; };
-		CC2EE24A1EDC88F0006CBFC8 /* LearnPagingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2EE2491EDC88F0006CBFC8 /* LearnPagingCollectionViewCell.swift */; };
 		CC311A1D1EAF39DF0020C869 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC311A1C1EAF39DF0020C869 /* SettingsTableViewCell.swift */; };
 		CC311A211EAF430B0020C869 /* SettingsButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC311A201EAF430B0020C869 /* SettingsButtonTableViewCell.xib */; };
 		CC311A231EAF431E0020C869 /* SettingsControlTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC311A221EAF431E0020C869 /* SettingsControlTableViewCell.xib */; };
@@ -328,7 +328,6 @@
 		CC7D21B21EFC1348007A062E /* WeeklyChoicesLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7D21AD1EFC1348007A062E /* WeeklyChoicesLayout.swift */; };
 		CC7D21B31EFC1348007A062E /* WeeklyChoicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7D21AE1EFC1348007A062E /* WeeklyChoicesViewController.swift */; };
 		CC7D21B41EFC1348007A062E /* WeeklyChoicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7D21AF1EFC1348007A062E /* WeeklyChoicesViewModel.swift */; };
-		CC7D21DB1EDD5FE800C6B8E0 /* LearnPagingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC7D21DA1EDD5FE800C6B8E0 /* LearnPagingCollectionViewCell.xib */; };
 		CC7E80BA1F614F1B006F9515 /* QotNotification.aiff in Resources */ = {isa = PBXBuildFile; fileRef = CC7E80B91F614F1B006F9515 /* QotNotification.aiff */; };
 		CC8018201F0256980040B03F /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC80181F1F0256980040B03F /* UIViewController+Alert.swift */; };
 		CC8018231F026BDA0040B03F /* LibraryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8018211F026BDA0040B03F /* LibraryTableViewCell.swift */; };
@@ -584,6 +583,7 @@
 		C18DB768AC204FC05E0EFE96 /* Pods-DatabaseBuilder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseBuilder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseBuilder/Pods-DatabaseBuilder.debug.xcconfig"; sourceTree = "<group>"; };
 		CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APNSDeviceTokenRegistrar.swift; sourceTree = "<group>"; };
 		CB026FC91F6A89CB00FC5076 /* VersionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionInfo.swift; sourceTree = "<group>"; };
+		CB026FCD1F6C013600FC5076 /* CarouselView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
 		CB0A4A571ECC4C25006A2D85 /* AddSensorCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorCoordinator.swift; sourceTree = "<group>"; };
 		CB0A4A591ECC4C3E006A2D85 /* AddSensorViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorViewModel.swift; sourceTree = "<group>"; };
 		CB0A4A5B1ECC4C72006A2D85 /* AddSensorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorViewController.swift; sourceTree = "<group>"; };
@@ -747,7 +747,6 @@
 		CC178A761F04FD600066A5D4 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		CC1E2A5E1EDF1DE100B9EFD3 /* UICollectionView+Create.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Create.swift"; sourceTree = "<group>"; };
 		CC27E0BE1EB355BC003E5B7F /* SidebarTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarTableViewCell.swift; sourceTree = "<group>"; };
-		CC2EE2491EDC88F0006CBFC8 /* LearnPagingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnPagingCollectionViewCell.swift; sourceTree = "<group>"; };
 		CC311A1C1EAF39DF0020C869 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		CC311A201EAF430B0020C869 /* SettingsButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsButtonTableViewCell.xib; sourceTree = "<group>"; };
 		CC311A221EAF431E0020C869 /* SettingsControlTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsControlTableViewCell.xib; sourceTree = "<group>"; };
@@ -785,7 +784,6 @@
 		CC7D21AD1EFC1348007A062E /* WeeklyChoicesLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesLayout.swift; sourceTree = "<group>"; };
 		CC7D21AE1EFC1348007A062E /* WeeklyChoicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesViewController.swift; sourceTree = "<group>"; };
 		CC7D21AF1EFC1348007A062E /* WeeklyChoicesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesViewModel.swift; sourceTree = "<group>"; };
-		CC7D21DA1EDD5FE800C6B8E0 /* LearnPagingCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnPagingCollectionViewCell.xib; sourceTree = "<group>"; };
 		CC7E80B91F614F1B006F9515 /* QotNotification.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = QotNotification.aiff; sourceTree = "<group>"; };
 		CC80181F1F0256980040B03F /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		CC8018211F026BDA0040B03F /* LibraryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryTableViewCell.swift; sourceTree = "<group>"; };
@@ -1065,6 +1063,14 @@
 			name = VersionInfo;
 			sourceTree = "<group>";
 		};
+		CB026FCF1F6C013B00FC5076 /* Carousel */ = {
+			isa = PBXGroup;
+			children = (
+				CB026FCD1F6C013600FC5076 /* CarouselView.swift */,
+			);
+			name = Carousel;
+			sourceTree = "<group>";
+		};
 		CB1467631EF2778400A60E31 /* Page */ = {
 			isa = PBXGroup;
 			children = (
@@ -1323,6 +1329,7 @@
 			children = (
 				CBB4DD271EE087E50071494A /* Add Sensor */,
 				CC7D21A41EFBF50A007A062E /* Article */,
+				CB026FCF1F6C013B00FC5076 /* Carousel */,
 				CBB4DD2E1EE088B80071494A /* Charts */,
 				CBB4DD461EE0911A0071494A /* Common */,
 				CBB4DD3F1EE08EF90071494A /* Launch */,
@@ -1453,8 +1460,6 @@
 				D51B5C481E8D0E7E0084A65B /* LearnContentLayout.swift */,
 				85AAB53B1F447D1F00C2D53F /* LearnContentListBackgroundView.swift */,
 				CCC1B6AC1E8B9B7F00D1461F /* LearnContentListViewController.swift */,
-				CC2EE2491EDC88F0006CBFC8 /* LearnPagingCollectionViewCell.swift */,
-				CC7D21DA1EDD5FE800C6B8E0 /* LearnPagingCollectionViewCell.xib */,
 				CB38DBDE1EF52D5C000E0F92 /* LearnStrategyListLayout.swift */,
 			);
 			name = "Learn Content";
@@ -2299,7 +2304,6 @@
 				CC8018241F026BDA0040B03F /* LibraryTableViewCell.xib in Resources */,
 				D519E08F1EAA5403004F96E7 /* PrepareChatTableCell.xib in Resources */,
 				CB14676C1EF2801F00A60E31 /* MockPageDown.json in Resources */,
-				CC7D21DB1EDD5FE800C6B8E0 /* LearnPagingCollectionViewCell.xib in Resources */,
 				CBB237F71E6FFF1200AB5AEF /* Assets.xcassets in Resources */,
 				D58BD8781E9F65F7005676DE /* ArticleCollectionCell.xib in Resources */,
 				0BB099CC1EBC6323006B2FB7 /* CarouselCellView.xib in Resources */,
@@ -2513,7 +2517,6 @@
 				8514A48C1EE9663A0086C70E /* PrepareContentMainHeaderTableViewCell.swift in Sources */,
 				CC8D6D041EC316BF007AE687 /* LearnContentItemViewController.swift in Sources */,
 				850A50BB1F0A973A00350097 /* PrepareContentTopTabBarView.swift in Sources */,
-				CC2EE24A1EDC88F0006CBFC8 /* LearnPagingCollectionViewCell.swift in Sources */,
 				CC143A4F1EC47810001FB76E /* MyStatisticsViewModel.swift in Sources */,
 				CBB4DCE01ED8178A0071494A /* ConcurrentOperation.swift in Sources */,
 				CB3437691EFE75C400D89D4F /* ContentItem+Convenience.swift in Sources */,
@@ -2554,6 +2557,7 @@
 				CBC1DC1B1F0F910600F6D056 /* SettingValueObject.swift in Sources */,
 				CBC1DC291F0FB68000F6D056 /* AnswerDecision.swift in Sources */,
 				CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */,
+				CB026FCE1F6C013600FC5076 /* CarouselView.swift in Sources */,
 				CCCE09CE1EA67F87008730F1 /* MyToBeVisionViewController.swift in Sources */,
 				85945C731F27760500F090C8 /* ZoomPresentationManager.swift in Sources */,
 				850312ED1F34732F00DB5A6B /* UIGestureRecognizer+ClickableLabel.swift in Sources */,

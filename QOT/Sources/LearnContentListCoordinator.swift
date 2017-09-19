@@ -16,7 +16,6 @@ final class LearnContentListCoordinator: ParentCoordinator {
     fileprivate let eventTracker: EventTracker
     fileprivate let selectedCategoryIndex: Index
     fileprivate let learnContentListViewController: LearnContentListViewController
-    fileprivate var topTabBarController: UINavigationController!
     fileprivate let rootViewController: UIViewController
     var children: [Coordinator] = []
     weak var delegate: LearnContentListCoordinatorDelegate?
@@ -30,14 +29,13 @@ final class LearnContentListCoordinator: ParentCoordinator {
         presentationManager = ZoomPresentationManager(openingFrame: originFrame)
         let viewModel = LearnContentCollectionViewModel(services: services, selectedIndex: selectedCategoryIndex)
         learnContentListViewController = LearnContentListViewController(viewModel: viewModel, selectedCategoryIndex: self.selectedCategoryIndex)
-        topTabBarController = UINavigationController(withPages: [learnContentListViewController], topBarDelegate: self)
-        topTabBarController.modalPresentationStyle = .custom
-        topTabBarController.transitioningDelegate = presentationManager
+        learnContentListViewController.modalPresentationStyle = .custom
+        learnContentListViewController.transitioningDelegate = presentationManager
         learnContentListViewController.delegate = self
     }
     
     func start() {
-        rootViewController.present(topTabBarController, animated: true)
+        rootViewController.present(learnContentListViewController, animated: true)
     }
 }
 
@@ -52,20 +50,5 @@ extension LearnContentListCoordinator: LearnContentListViewControllerDelegate {
     func didTapBack(in viewController: LearnContentListViewController) {
         viewController.dismiss(animated: true)
         delegate?.removeChild(child: self)
-    }
-}
-
-// MARK: - TopNavigationBarDelegate
-
-extension LearnContentListCoordinator: TopNavigationBarDelegate {
-
-    func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
-    }
-    
-    func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
-    }
-    
-    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
-        topTabBarController.dismiss(animated: true, completion: nil)
     }
 }

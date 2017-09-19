@@ -28,7 +28,6 @@ final class LearnContentListViewController: UIViewController {
     fileprivate weak var getBackButtonBottomConstraint: NSLayoutConstraint?
     fileprivate let disposeBag = DisposeBag()
     fileprivate lazy var collectionViewLayout = LearnStrategyListLayout()
-    fileprivate var isDragging = false
     fileprivate var firstLaunch = true
 
     let viewModel: LearnContentCollectionViewModel
@@ -44,24 +43,21 @@ final class LearnContentListViewController: UIViewController {
     }()
 
     fileprivate lazy var collectionView: UICollectionView = {
-        return UICollectionView(
+        let collectionView = UICollectionView(
             layout: self.collectionViewLayout,
             delegate: self,
             dataSource: self,
             dequeables: LearnContentCell.self
         )
+        collectionView.contentInset = UIEdgeInsets(top:80, left: 0, bottom: 55, right: 0)
+        return collectionView
     }()
 
-    fileprivate lazy var pagingCollectionView: UICollectionView = {        
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-
-        return UICollectionView(
-            layout: layout,
-            contentInsets: UIEdgeInsets(top: 0, left: self.pagingCellSize.width / 2, bottom: 0, right: self.pagingCellSize.width / 2),
-            delegate: self,
-            dataSource: self,
-            dequeables: LearnPagingCollectionViewCell.self)
+    fileprivate lazy var carouselView: CarouselView = {
+        let carouselView = CarouselView()
+        carouselView.dataSource = self
+        carouselView.delegate = self
+        return carouselView
     }()
 
     fileprivate lazy var getBackButton: UIButton = {
@@ -74,6 +70,8 @@ final class LearnContentListViewController: UIViewController {
 
         return button
     }()
+
+    fileprivate let backgroundImageView = UIImageView(image: R.image._1Learn())
 
     // MARK: - Init
     
@@ -104,10 +102,19 @@ final class LearnContentListViewController: UIViewController {
 
         collectionView.reloadData()
         if firstLaunch {
-            centerCollectionView()
-            pagingCollectionViewScrollToSelectedIndex()
+            scrollToCategory(index: selectedCategoryIndex, animated: false)
+            carouselView.scrollToItem(at: selectedCategoryIndex, animated: false)
             firstLaunch = false
         }
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        let cellWidth = view.bounds.width / 2
+        let cellInset = view.bounds.width / 4
+        carouselView.cellWidth = cellWidth
+        carouselView.contentInset = UIEdgeInsets(top: 0, left: cellInset, bottom: 0, right: cellInset)
     }
 }
 
@@ -120,59 +127,31 @@ private extension LearnContentListViewController {
             switch update {
             case .reload, .update:
                 self.collectionView.reloadData()
-                self.pagingCollectionViewScrollToSelectedIndex(false)
             }
         }.dispose(in: disposeBag)
     }
 
-    func pagingCollectionViewScrollToSelectedIndex(_ reloadAll: Bool = true) {
-        guard selectedCategoryIndex < pagingCollectionView.numberOfItems(inSection: 0) else { return }
-        guard let flowLayout = pagingCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-
-        let originX = (pagingCellSize.width + flowLayout.minimumInteritemSpacing) * CGFloat(selectedCategoryIndex)
-
-        let origin = CGPoint(x: originX, y: 0)
-        let rect = CGRect(x: origin.x, y: origin.y, width: pagingCellSize.width, height: pagingCellSize.height)
-        pagingCollectionView.scrollRectToVisible(rect, animated: true)
-
-        pagingCollectionView.reloadData()
-
-        if reloadAll {
-            collecitonViewScrollToCategory(false)
-        }
-    }
-
-    func collecitonViewScrollToCategory(_ reloadAll: Bool = true) {
-        guard selectedCategoryIndex < numberOfSections(in: collectionView) else { return }
-        guard let layout = collectionView.collectionViewLayout as? LearnStrategyListLayout else { return }
-
-        if selectedCategoryIndex < layout.sectionOrigins.count {
-            let origin = layout.sectionOrigins[selectedCategoryIndex]
-            let rect = CGRect(x: origin.x, y: origin.y, width: collectionView.frame.width, height: collectionView.frame.height)
-            collectionView.scrollRectToVisible(rect, animated: true)
+    func scrollToCategory(index: Int, animated: Bool) {
+        guard
+            let layout = collectionView.collectionViewLayout as? LearnStrategyListLayout,
+            let minX = layout.minX(section: index) else {
+                return
         }
 
-        if reloadAll {
-            pagingCollectionViewScrollToSelectedIndex(false)
-        }
-    }
-
-    func centerCollectionView() {
-        let contentSize = collectionView.collectionViewLayout.collectionViewContentSize
-        let xOffset = (contentSize.width - collectionView.frame.width) / 2
-        let yOffset = (contentSize.height - collectionView.frame.height) / 2
-        collectionView.contentOffset = CGPoint(x: xOffset, y: yOffset)
+        let offset = CGPoint(x: -collectionView.contentInset.left + minX - 20,
+                             y: -collectionView.contentInset.top)
+        collectionView.setContentOffset(offset, animated: animated)
     }
 
     func setupAppearance() {
         view.backgroundColor = .clear
         collectionView.backgroundColor = .clear
-        pagingCollectionView.backgroundColor = .clear
     }
 
     func setupHierachy() {
+        view.addSubview(backgroundImageView)
         view.addSubview(collectionView)
-        view.addSubview(pagingCollectionView)
+        view.addSubview(carouselView)
         view.addSubview(getBackButton)
     }
 
@@ -181,21 +160,63 @@ private extension LearnContentListViewController {
     }
 
     func setupLayout() {
+        backgroundImageView.edgeAnchors == view.edgeAnchors
+
         collectionView.topAnchor == view.topAnchor
         collectionView.bottomAnchor == view.bottomAnchor
         collectionView.horizontalAnchors == view.horizontalAnchors
 
-        pagingCollectionViewTopConstraint = (pagingCollectionView.topAnchor == view.topAnchor + 20)
-        pagingCollectionViewBottomConstraint = (pagingCollectionView.bottomAnchor == view.topAnchor + performanceLabelSize.height + pagingCellSize.height)
-        pagingCollectionView.horizontalAnchors == view.horizontalAnchors
+        pagingCollectionViewTopConstraint = (carouselView.topAnchor == view.topAnchor + 20)
+        pagingCollectionViewBottomConstraint = (carouselView.bottomAnchor == view.topAnchor + performanceLabelSize.height + pagingCellSize.height)
+        carouselView.horizontalAnchors == view.horizontalAnchors
 
         getBackButtonBottomConstraint = (getBackButton.bottomAnchor == view.bottomAnchor)
         getBackButton.horizontalAnchors == view.horizontalAnchors
         getBackButton.heightAnchor == Layout.TabBarView.height
 
-        collectionViewLayout.topOffset = pagingCellSize.height + performanceLabelSize.height + Layout.TabBarView.height
-
         view.layoutIfNeeded()
+    }
+}
+
+// MARK: CarouselViewDataSource & CarouselViewDelegate
+
+extension LearnContentListViewController: CarouselViewDataSource, CarouselViewDelegate {
+
+    func numberOfItems(in carouselView: CarouselView) -> Int {
+        return viewModel.categoryCount
+    }
+
+    func carouselView(_ carouselView: CarouselView, viewForItemAt index: Int, reusing existing: UIView?) -> UIView {
+        let category = viewModel.category(at: index)
+
+        let label: UILabel
+        if let existing = (existing as? UILabel) {
+            label = existing
+        } else {
+            label = UILabel()
+            label.numberOfLines = 2
+            label.textAlignment = .center
+            label.font = Font.H5SecondaryHeadline
+            label.textColor = .white
+        }
+        label.text = category.title.makingTwoLines().uppercased()
+
+        return label
+    }
+
+    func carouselView(_ carouselView: CarouselView, didSelectItemAt index: Index) {
+        carouselView.scrollToItem(at: index, animated: true)
+        scrollToCategory(index: index, animated: true)
+    }
+
+    func carouselView(_ carouselView: CarouselView, didScrollToItemAt index: Index) {
+        scrollToCategory(index: index, animated: true)
+    }
+
+    func carouselView(_ carouselView: CarouselView, styleView view: UIView, xPos: CGFloat) {
+        let minAlpha: CGFloat = 0.2
+        let maxOffset: CGFloat = 100
+        view.alpha = max(maxOffset / abs(xPos), minAlpha)
     }
 }
 
@@ -203,30 +224,17 @@ private extension LearnContentListViewController {
 
 extension LearnContentListViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-
-        return collectionView === self.collectionView ? viewModel.categoryCount : 1
+        return viewModel.categoryCount
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView === self.collectionView {
-            return viewModel.itemCount(categoryIndex: section)
-        } else {
-            return viewModel.categoryCount
-        }
+        return viewModel.itemCount(categoryIndex: section)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView === self.collectionView {
-            let item = viewModel.item(at: indexPath)
-            let cell: LearnContentCell = collectionView.dequeueCell(for: indexPath)
-            cell.configure(with: item, index: indexPath.item)
-
-            return cell
-        }
-
-        let category = viewModel.category(at: indexPath.item)
-        let cell: LearnPagingCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-        cell.configure(title: category.title, shouldHighlight: selectedCategoryIndex == indexPath.item)
+        let item = viewModel.item(at: indexPath)
+        let cell: LearnContentCell = collectionView.dequeueCell(for: indexPath)
+        cell.configure(with: item, index: indexPath.item)
 
         return cell
     }
@@ -234,27 +242,14 @@ extension LearnContentListViewController: UICollectionViewDataSource {
 
 // MARK: UICollectionViewDelegateFlowLayout
 
-extension LearnContentListViewController: UICollectionViewDelegateFlowLayout {
+extension LearnContentListViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView === self.collectionView {
-            let content = viewModel.item(at: indexPath)
-            let category = viewModel.category(at: indexPath.section)
-            guard var originFrame = collectionView.cellForItem(at: indexPath)?.frame else { return }
-            originFrame = collectionView.convert(originFrame, to: view)
-            delegate?.didSelectContent(content, category: category, originFrame: originFrame, in: self)
-        } else {
-            selectedCategoryIndex = indexPath.item
-            pagingCollectionViewScrollToSelectedIndex()
-        }
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView === self.pagingCollectionView {
-            return pagingCellSize
-        }
-
-        return .zero
+        let content = viewModel.item(at: indexPath)
+        let category = viewModel.category(at: indexPath.section)
+        guard var originFrame = collectionView.cellForItem(at: indexPath)?.frame else { return }
+        originFrame = collectionView.convert(originFrame, to: view)
+        delegate?.didSelectContent(content, category: category, originFrame: originFrame, in: self)
     }
 }
 
@@ -262,73 +257,29 @@ extension LearnContentListViewController: UICollectionViewDelegateFlowLayout {
 
 extension LearnContentListViewController: UIScrollViewDelegate {
 
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        guard let collectionView = (scrollView as? UICollectionView) else { return }
-        guard collectionView === self.collectionView else { return }
-
-        isDragging = true
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        undateSelectedCategoryIndex(scrollCarouselView: scrollView.isDragging)
     }
 
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard let collectionView = (scrollView as? UICollectionView) else { return }
-        guard collectionView === self.collectionView else { return }
-        guard isDragging == true else { return }
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        undateSelectedCategoryIndex(scrollCarouselView: true)
+    }
 
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        undateSelectedCategoryIndex(scrollCarouselView: true)
+    }
+
+    private func undateSelectedCategoryIndex(scrollCarouselView: Bool) {
         let center = CGPoint(x: collectionView.frame.midX, y: collectionView.frame.midY)
         let convertedCenter = view.convert(center, to: collectionView)
 
-        guard let indexPath = collectionView.indexPathForItem(at: convertedCenter) else { return }
+        guard let index = collectionView.indexPathForItem(at: convertedCenter)?.section else { return }
 
-        if selectedCategoryIndex != indexPath.section {
-            selectedCategoryIndex = indexPath.section
-            pagingCollectionViewScrollToSelectedIndex(false)
-        }
-    }
-
-    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        scrollViewDidScroll(scrollView)
-    }
-
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        isDragging = false
-
-        guard let collectionView = (scrollView as? UICollectionView) else { return }
-        guard collectionView === pagingCollectionView else { return }
-        guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-
-        let spacing = flowLayout.minimumInteritemSpacing
-        let pageWidth: Float = Float(pagingCellSize.width + spacing)
-        let currentOffset: Float = Float(scrollView.contentOffset.x)
-        let targetOffset: Float = Float(targetContentOffset.pointee.x)
-        var newTargetOffset: Float = 0
-
-        if targetOffset > currentOffset {
-            newTargetOffset = ceilf(currentOffset / pageWidth) * pageWidth
-        } else {
-            newTargetOffset = floorf(currentOffset / pageWidth) * pageWidth
-        }
-
-        var index = selectedCategoryIndex
-        if newTargetOffset < 0 {
-            newTargetOffset = 0
-            index = 0
-        } else if newTargetOffset > Float(collectionView.contentSize.width) {
-            newTargetOffset = Float(Float(collectionView.contentSize.width))
-            let items = collectionView.numberOfItems(inSection: 0)
-            index = items > 0 ? items - 1 : index
-        } else {
-            index = Int(newTargetOffset / pageWidth) + 1
-        }
-
-        selectedCategoryIndex = index
-
-        if index == 0 {
-            pagingCollectionViewScrollToSelectedIndex()
-        } else {
-            targetContentOffset.pointee.x = CGFloat(currentOffset)
-            scrollView.setContentOffset(CGPoint(x: CGFloat(newTargetOffset), y: scrollView.contentOffset.y), animated: true)
-            collectionView.reloadData()
-            collecitonViewScrollToCategory(false)
+        if selectedCategoryIndex != index, firstLaunch == false {
+            selectedCategoryIndex = index
+            if scrollCarouselView == true {
+                carouselView.scrollToItem(at: index, animated: true)
+            }
         }
     }
 }
