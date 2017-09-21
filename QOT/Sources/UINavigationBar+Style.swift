@@ -10,10 +10,8 @@ import UIKit
 
 extension UINavigationBar {
     func applyDefaultStyle() {
-        titleTextAttributes = [
-            .foregroundColor: UIColor.white,
-            .font: Font.H6NavigationTitle
-        ]
+        titleTextAttributes = [.foregroundColor: UIColor.white,
+                               .font: Font.H6NavigationTitle]
         let dummyImage = UIImage()
         setBackgroundImage(dummyImage, for: .default)
         shadowImage = dummyImage

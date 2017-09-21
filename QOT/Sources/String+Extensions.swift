@@ -20,7 +20,6 @@ extension String {
         var attributes: [NSAttributedStringKey: Any] = [:]
         attributes[.kern] = characterSpacing
         attributes[.font] = font
-
         let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
         let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
 

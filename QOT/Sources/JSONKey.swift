@@ -21,6 +21,7 @@ enum JsonKey: String {
     case availability
     case base64Data
     case birthdate
+    case body
     case boolValue
     case calendarId
     case calendarItemExternalId

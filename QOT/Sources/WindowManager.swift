@@ -94,6 +94,7 @@ class WindowManager {
         guard level != .normal else {
             fatalError("can't resign the normal window")
         }
+
         let window = windowForLevel(level)
         window.isHidden = true
         clearWindow(atLevel: level)
@@ -106,6 +107,7 @@ class WindowManager {
     
     func hasContent(atLevel level: Level) -> Bool {
         let window = windowForLevel(level)
+
         return window.rootViewController?.presentedViewController != nil
     }
     
@@ -126,14 +128,10 @@ class WindowManager {
     
     private func windowForLevel(_ level: Level) -> UIWindow {
         switch level {
-        case .alert:
-            return alertWindow
-        case .priority:
-            return priorityWindow
-        case .overlay:
-            return overlayWindow
-        case .normal:
-            return normalWindow
+        case .alert: return alertWindow
+        case .priority: return priorityWindow
+        case .overlay: return overlayWindow
+        case .normal: return normalWindow
         }
     }
     

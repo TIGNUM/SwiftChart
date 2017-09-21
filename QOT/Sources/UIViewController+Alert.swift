@@ -43,7 +43,7 @@ enum AlertType {
         case .settingsLoccationService: return R.string.localized.alertTitleLocationServices()
         case .settingsCalendars: return R.string.localized.alertTitleCalendarNoAccess()
         case .emailNotFound: return R.string.localized.alertTitleEmailNotFound()
-        case .updateNeeded: return R.string.localized.alertUpdateNeededTitle()
+        case .updateNeeded: return R.string.localized.alertUpdateNeededTitle()        
         default: return nil
         }
     }

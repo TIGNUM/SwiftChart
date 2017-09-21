@@ -154,6 +154,12 @@ final class AppCoordinator: ParentCoordinator {
     func appDidBecomeActive() {
         services?.userService.updateTimeZone()
     }
+
+    func dismiss(_ viewController: UIViewController, level: WindowManager.Level) {
+        viewController.dismiss(animated: true) {
+            self.windowManager.resignWindow(atLevel: level)
+        }
+    }
 }
 
 // MARK: - private
@@ -385,20 +391,40 @@ extension AppCoordinator: NetworkManagerDelegate {
 
 extension AppCoordinator: MorningInterviewViewControllerDelegate {
 
-    func didTapClose(viewController: MorningInterviewViewController) {
-        viewController.dismiss(animated: true) {
-            self.windowManager.resignWindow(atLevel: .priority)
+    func didTapClose(viewController: MorningInterviewViewController, userAnswers: [UserAnswer]) {
+        if userAnswers.isEmpty == false {
+            sendMorningInterviewResults(userAnswers, viewController)
+        } else {
+            dismiss(viewController, level: .priority)
         }
+    }
+
+    private func sendMorningInterviewResults(_ userAnswers: [UserAnswer], _ viewController: MorningInterviewViewController) {
+        do {
+            networkManager.performUserFeedbackRequest(userAnswers) { result in
+                switch result {
+                case .success(let value): self.showFeedbackAlert(value, viewController)
+                case .failure(let error): print("error: ", error)
+                }
+            }
+        } catch {
+            log("Error while trying to serialize userAnwer: \(error)")            
+        }
+    }
+
+    private func showFeedbackAlert(_ userAnswerFeedback: UserAnswerFeedback, _ viewController: MorningInterviewViewController) {
+        viewController.showAlert(type: .custom(title: userAnswerFeedback.title, message: userAnswerFeedback.body), handler: {
+            self.dismiss(viewController, level: .priority)
+        }, handlerDestructive: nil)
     }
 }
 
 // MARK: - SelectWeeklyChoicesViewControllerDelegate
 
 extension AppCoordinator: SelectWeeklyChoicesViewControllerDelegate {
+
     func dismiss(viewController: SelectWeeklyChoicesViewController) {
-        viewController.dismiss(animated: true) {
-            self.windowManager.resignWindow(atLevel: .priority)
-        }
+        dismiss(viewController, level: .priority)
     }
 
     func didTapRow(_ viewController: SelectWeeklyChoicesViewController, contentCollection: ContentCollection, contentCategory: ContentCategory) {

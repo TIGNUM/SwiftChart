@@ -11,10 +11,12 @@ import Anchorage
 
 protocol MorningInterviewViewControllerDelegate: class {
 
-    func didTapClose(viewController: MorningInterviewViewController)
+    func didTapClose(viewController: MorningInterviewViewController, userAnswers: [UserAnswer])
 }
 
 final class MorningInterviewViewController: UIViewController {
+
+    // MARK: - Properties
 
     weak var delegate: MorningInterviewViewControllerDelegate?
     private var currentIndex: Int = 0
@@ -23,7 +25,7 @@ final class MorningInterviewViewController: UIViewController {
     fileprivate let bottomView = UIView()
     fileprivate var headerLabel = UILabel()
 
-    fileprivate lazy var blurView: UIView = {
+    fileprivate lazy var blurView: UIVisualEffectView = {
         var blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
         blurEffectView.frame = self.view.frame
 
@@ -80,10 +82,11 @@ final class MorningInterviewViewController: UIViewController {
     }()
 
     @objc func didTapNext(_ sender: UIButton) {
-        if isLastPage {
+        if isLastPage == true {
+            delegate?.didTapClose(viewController: self, userAnswers: viewModel.userAnswers)
             try? viewModel.save()
-            delegate?.didTapClose(viewController: self)
         } else {
+            (collectionView.cellForItem(at: IndexPath(item: currentIndex, section: 0)) as? MorningInterviewCell)?.setAnswer()            
             currentIndex += 1
             syncViews(animated: true)
         }
@@ -94,12 +97,13 @@ final class MorningInterviewViewController: UIViewController {
             assertionFailure("Tried to go back from first page")
             return
         }
+
         currentIndex -= 1
         syncViews(animated: true)
     }
 
     @objc func didTapClose(_ sender: UIButton) {
-        delegate?.didTapClose(viewController: self)
+        delegate?.didTapClose(viewController: self, userAnswers: [])
     }
 
     func syncViews(animated: Bool) {
@@ -193,12 +197,12 @@ private extension MorningInterviewViewController {
 
     func setupHierarchy() {
         view.addSubview(blurView)
-        blurView.addSubview(topView)
+        blurView.contentView.addSubview(topView)
         topView.addSubview(leftButton)
         topView.addSubview(closeButton)
         topView.addSubview(headerLabel)
-        blurView.addSubview(collectionView)
-        blurView.addSubview(bottomView)
+        blurView.contentView.addSubview(collectionView)
+        blurView.contentView.addSubview(bottomView)
         bottomView.addSubview(nextButton)
     }
 

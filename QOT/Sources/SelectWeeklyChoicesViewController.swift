@@ -61,10 +61,8 @@ class SelectWeeklyChoicesViewController: UIViewController {
         tableView.layoutMargins = .zero
         tableView.separatorInset = .zero
         tableView.tableFooterView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 0.0, height: 20.0))
-        
         backgroundImageView.image = backgroundImage
         backgroundBlurView.alpha = 0.85 // changing blur view alpha is not recommended, but it looks better...
-        
         setSelected(viewModel.numOfItemsSelected)
         navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white, .font: Font.H6NavigationTitle]
         let dummyImage = UIImage()

@@ -214,7 +214,7 @@ final class TabBarCoordinator: ParentCoordinator {
 
 extension TabBarCoordinator: TabBarControllerDelegate {
 
-    func didSelectTab(at index: Index, in controller: TabBarController) {
+    func didSelectTab(at index: Index, in controller: TabBarController) {        
         selectedIndex.value = index
 
         switch index {
@@ -223,7 +223,7 @@ extension TabBarCoordinator: TabBarControllerDelegate {
         default:
             break
         }
-        
+
         guard let tutorial = Tutorial(rawValue: index) else {
             return
         }

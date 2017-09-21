@@ -10,6 +10,8 @@ import UIKit
 import Anchorage
 
 final class MorningInterviewCell: UICollectionViewCell, Dequeueable {
+
+    // MARK: - Properties
     
     fileprivate var topview: UIView = UIView()
     fileprivate var centerView: UIView = UIView()
@@ -37,7 +39,11 @@ final class MorningInterviewCell: UICollectionViewCell, Dequeueable {
     }()
 
     @objc func valueChanged(sender: UISlider) {
-        let index = Int(sender.value.rounded())
+        setAnswer()
+    }
+
+    func setAnswer() {
+        let index = Int(slider.value.rounded())
         guard let question = question, question.answerIndex != index else {
             return
         }

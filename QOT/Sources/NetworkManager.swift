@@ -1,4 +1,4 @@
-//
+      //
 //  NetworkManager.swift
 //  QOT
 //
@@ -74,6 +74,10 @@ class NetworkManager {
         return performRequest(VersionInfoRequest(), parser: VersionInfo.parse, completion: completion)
     }
 
+    @discardableResult func performUserFeedbackRequest(_ userAnswers:  [UserAnswer], completion: @escaping (Result<UserAnswerFeedback, NetworkError>) -> Void) -> SerialRequest {
+        return performRequest(UserFeedbackRequest(userAnswers), parser: UserAnswerFeedback.parse, completion: completion)
+    }
+    
     /**
      Performs a network request using credentials from the `CredentialsManager`.
      

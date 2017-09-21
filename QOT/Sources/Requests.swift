@@ -92,6 +92,16 @@ struct ResetPasswordRequest: URLRequestBuildable {
     }
 }
 
+struct UserFeedbackRequest: URLRequestBuildable {
+    let endpoint: Endpoint = .userFeedback
+    let httpMethod: HTTPMethod = .put
+    let body: Data?
+
+    init(_ userAnswers: [UserAnswer]) {
+        self.body = try? (userAnswers.flatMap { $0.toJson() }).toJSON().serialize()
+    }
+}
+
 struct APNSDeviceTokenRequest: URLRequestBuildable {
     let endpoint: Endpoint = .pushNotificationToken
     let httpMethod: HTTPMethod = .put

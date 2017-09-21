@@ -36,15 +36,16 @@ final class InterviewQuestion {
 
 final class MorningInterviewViewModel: NSObject {
 
+    // MARK: - Properties
+
     private let services: Services
     private let questionGroupID: Int
     private let validFrom: Date
     private let validTo: Date
     private let questions: [InterviewQuestion]
-    var isComplete: Bool {
-        return questions.filter({ $0.currentAnswer == nil }).count == 0
-    }
-    
+
+    // MARK: - Init
+
     init(services: Services, questionGroupID: Int, validFrom: Date, validTo: Date) {
         self.services = services
         self.questionGroupID = questionGroupID
@@ -60,26 +61,34 @@ final class MorningInterviewViewModel: NSObject {
     func question(at index: Index) -> InterviewQuestion {
         return questions[index]
     }
+
+    var userAnswers: [UserAnswer] {
+        var userAnswers = [UserAnswer]()
+
+        questions.forEach { (question: InterviewQuestion) in
+            guard let answer = question.currentAnswer, let answerID = answer.remoteID.value else {
+                return
+            }
+            
+            let userAnswer = UserAnswer(questionID: question.remoteID,
+                                        questionGroupID: self.questionGroupID,
+                                        answerID: answerID,
+                                        userAnswer: answer.title,
+                                        validFrom: self.validFrom,
+                                        validUntil: self.validTo
+            )
+            userAnswers.append(userAnswer)
+        }
+
+        return userAnswers
+    }
     
     func save() throws {
-        guard isComplete else {
-            return
-        }
         let realm = services.mainRealm
         try realm.write {
-            self.questions.forEach({ (question: InterviewQuestion) in
-                guard let answer = question.currentAnswer, let answerID = answer.remoteID.value else {
-                    return
-                }
-                realm.add(UserAnswer(
-                    questionID: question.remoteID,
-                    questionGroupID: self.questionGroupID,
-                    answerID: answerID,
-                    userAnswer: answer.title,
-                    validFrom: self.validFrom,
-                    validUntil: self.validTo
-                ))
-            })
+            userAnswers.forEach { (userAnswer: UserAnswer) in
+                realm.add(userAnswer)
+            }
         }
     }
 }

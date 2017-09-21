@@ -293,6 +293,7 @@
 		CC178A771F04FD600066A5D4 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC178A761F04FD600066A5D4 /* UserService.swift */; };
 		CC1E2A5F1EDF1DE100B9EFD3 /* UICollectionView+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1E2A5E1EDF1DE100B9EFD3 /* UICollectionView+Create.swift */; };
 		CC27E0C01EB355BC003E5B7F /* SidebarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC27E0BE1EB355BC003E5B7F /* SidebarTableViewCell.swift */; };
+		CC309C071F73ADED00A32759 /* UserAnswerFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC309C061F73ADED00A32759 /* UserAnswerFeedback.swift */; };
 		CC311A1D1EAF39DF0020C869 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC311A1C1EAF39DF0020C869 /* SettingsTableViewCell.swift */; };
 		CC311A211EAF430B0020C869 /* SettingsButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC311A201EAF430B0020C869 /* SettingsButtonTableViewCell.xib */; };
 		CC311A231EAF431E0020C869 /* SettingsControlTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC311A221EAF431E0020C869 /* SettingsControlTableViewCell.xib */; };
@@ -747,6 +748,7 @@
 		CC178A761F04FD600066A5D4 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		CC1E2A5E1EDF1DE100B9EFD3 /* UICollectionView+Create.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Create.swift"; sourceTree = "<group>"; };
 		CC27E0BE1EB355BC003E5B7F /* SidebarTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarTableViewCell.swift; sourceTree = "<group>"; };
+		CC309C061F73ADED00A32759 /* UserAnswerFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAnswerFeedback.swift; sourceTree = "<group>"; };
 		CC311A1C1EAF39DF0020C869 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		CC311A201EAF430B0020C869 /* SettingsButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsButtonTableViewCell.xib; sourceTree = "<group>"; };
 		CC311A221EAF431E0020C869 /* SettingsControlTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsControlTableViewCell.xib; sourceTree = "<group>"; };
@@ -956,6 +958,7 @@
 			isa = PBXGroup;
 			children = (
 				7F507BA21F3B4DEC0091742D /* UserAnswer.swift */,
+				CC309C061F73ADED00A32759 /* UserAnswerFeedback.swift */,
 			);
 			name = UserAnswer;
 			sourceTree = "<group>";
@@ -2584,6 +2587,7 @@
 				D554CD9F1F0CF3B9007731DB /* LoginViewCell.swift in Sources */,
 				855C4FC51F25F7D10068DDE3 /* Tutorial.swift in Sources */,
 				CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */,
+				CC309C071F73ADED00A32759 /* UserAnswerFeedback.swift in Sources */,
 				CB810E661EF00DCA0043E3E5 /* UserIntermediary.swift in Sources */,
 				7FE38DBD1F2210D60061E98F /* WaitBlockOperation.swift in Sources */,
 				85DC6F871EF40767004F4B4D /* TravelTripsPeriodView.swift in Sources */,

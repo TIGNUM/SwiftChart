@@ -142,7 +142,7 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
 
         shouldMarkItemAsViewed(contentItem: item)
 
-        if viewModel.containsAudioItem(tabType: tabType) == true && indexPath.section == 0 {
+        if viewModel.containsAudioItem(tabType: tabType) == true && indexPath.section == 0 {            
             switch viewModel.firstAudioItem() {
             case .audio(_, _, _, _, _, let waveformData):
                 let cell: LearnStrategyAudioPlayerView = tableView.dequeueCell(for: indexPath)
