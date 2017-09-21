@@ -24,12 +24,12 @@ extension NSMutableAttributedString {
             paragraphStyle.alignment = alignment
             if let lineBreakMode = lineBreakMode {
                 paragraphStyle.lineBreakMode = lineBreakMode
-                paragraphStyle.paragraphSpacing = letterSpacing
             }
             let attributes: [NSAttributedStringKey: Any] = [
                 .foregroundColor: textColor,
                 .paragraphStyle: paragraphStyle,
-                .font: font
+                .font: font,
+                .kern: letterSpacing
             ]
 
             self.init(string: string, attributes: attributes)

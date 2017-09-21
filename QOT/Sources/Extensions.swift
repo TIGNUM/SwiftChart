@@ -48,7 +48,7 @@ extension NSAttributedString {
         let attributes: [NSAttributedStringKey: Any] = [
             .foregroundColor: color,
             .font: font,
-            .paragraphStyle: letterSpacing
+            .kern: letterSpacing
         ]
         
         return NSAttributedString(string: string, attributes: attributes)
