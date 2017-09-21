@@ -66,10 +66,7 @@ class SelectWeeklyChoicesViewController: UIViewController {
         backgroundBlurView.alpha = 0.85 // changing blur view alpha is not recommended, but it looks better...
         
         setSelected(viewModel.numOfItemsSelected)
-        navigationBar.titleTextAttributes = [
-            NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: Font.H6NavigationTitle
-        ]
+        navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white, .font: Font.H6NavigationTitle]
         let dummyImage = UIImage()
         navigationBar.setBackgroundImage(dummyImage, for: .default)
         navigationBar.shadowImage = dummyImage

@@ -95,7 +95,7 @@ private extension ClickableLabel {
 
     func changeLinkAspect(in mutableAttributedText: NSMutableAttributedString) {
         links.forEach { link in
-            mutableAttributedText.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.styleSingle.rawValue, range: link.range)
+            mutableAttributedText.addAttribute(NSAttributedStringKey.underlineStyle, value: NSUnderlineStyle.styleSingle.rawValue, range: link.range)
         }
     }
 

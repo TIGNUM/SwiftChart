@@ -42,7 +42,7 @@ final class ArticleCollectionViewModel {
     }
     
     func duration(at index: Index) -> String {
-        return "\(contentCollection(at: index).items.reduce(0, { $0.0 + $0.1.secondsRequired }) / 60) MIN" //TODO Localise?
+        return "\(contentCollection(at: index).items.reduce(0) { $0 + $1.secondsRequired } / 60) MIN" //TODO Localise?
     }
 
     func articleDate(at index: Index) -> String {

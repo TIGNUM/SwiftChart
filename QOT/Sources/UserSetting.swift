@@ -12,9 +12,9 @@ import Freddy
 
 final class UserSetting: SyncableObject {
 
-    fileprivate dynamic var _value: SettingValueObject?
+    @objc fileprivate dynamic var _value: SettingValueObject?
 
-    dynamic var changeStamp: String? = UUID().uuidString
+    @objc dynamic var changeStamp: String? = UUID().uuidString
 
     var value: SettingValue {
         get {
@@ -27,6 +27,12 @@ final class UserSetting: SyncableObject {
             _value?.delete()
             _value = SettingValueObject(with: newValue)
             didUpdate()
+        }
+    }
+
+    func delete() {
+        if let realm = realm {
+            realm.delete(self)
         }
     }
 

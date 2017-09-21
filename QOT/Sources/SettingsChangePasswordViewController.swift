@@ -84,7 +84,7 @@ extension SettingsChangePasswordViewController {
 
 extension SettingsChangePasswordViewController {
 
-    func closeView() {
+    @objc func closeView() {
         navigationController?.dismissLeftToRight()
     }
 

@@ -12,19 +12,19 @@ import Freddy
 extension JSON {
 
     func getItemValue<T: JSONDecodable>(at jsonKey: JsonKey, fallback: T) throws -> T {
-        let value: T? = try decode(at: jsonKey.value, alongPath: [.MissingKeyBecomesNil, .NullBecomesNil])
+        let value: T? = try decode(at: jsonKey.value, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])
         return value ?? fallback
     }
 
     func getArray<T: JSONDecodable>(at jsonKey: JsonKey, fallback: [T]) throws -> [T] {
-        if let jsons = try getArray(at: jsonKey.value, alongPath: [.MissingKeyBecomesNil, .NullBecomesNil]) {
+        if let jsons = try getArray(at: jsonKey.value, alongPath: [.missingKeyBecomesNil, .nullBecomesNil]) {
             return try jsons.map { try T(json: $0) }
         }
         return fallback
     }
 
     func getArray(at jsonKey: JsonKey, fallback: [JSON]) throws -> [JSON] {
-        if let jsons = try getArray(at: jsonKey.value, alongPath: [.MissingKeyBecomesNil, .NullBecomesNil]) {
+        if let jsons = try getArray(at: jsonKey.value, alongPath: [.missingKeyBecomesNil, .nullBecomesNil]) {
             return jsons
         }
         return fallback
@@ -43,7 +43,7 @@ extension JSON {
     }
 
     func getItemValue<T: JSONDecodable>(at jsonKey: JsonKey) throws -> T? {
-        return try decode(at: jsonKey.value, alongPath: [.MissingKeyBecomesNil, .NullBecomesNil])
+        return try decode(at: jsonKey.value, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])
     }
 
     func getItemValue<T: JSONDecodable>(at jsonKey: JsonKey, alongPath options: SubscriptingOptions) throws -> T? {
@@ -51,7 +51,7 @@ extension JSON {
     }
 
     func getArray<T: JSONDecodable>(at jsonKey: JsonKey) throws -> [T] {
-        let jsons = try getArray(at: jsonKey.value, alongPath: [.MissingKeyBecomesNil, .NullBecomesNil]) ?? []
+        let jsons = try getArray(at: jsonKey.value, alongPath: [.missingKeyBecomesNil, .nullBecomesNil]) ?? []
         return try jsons.map { try T(json: $0) }
     }
 

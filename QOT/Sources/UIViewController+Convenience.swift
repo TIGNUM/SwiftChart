@@ -16,7 +16,7 @@ extension UIViewController {
         view.addGestureRecognizer(tap)
     }
 
-    func dismissKeyboard() {
+    @objc func dismissKeyboard() {
         view.endEditing(true)
     }
 
@@ -44,8 +44,7 @@ extension UIViewController {
         navigationBar?.topItem?.title = ""
         navigationBar?.backIndicatorImage = R.image.ic_back()
         navigationBar?.backIndicatorTransitionMaskImage = R.image.ic_back()
-        navigationBar?.titleTextAttributes = [NSFontAttributeName: Font.H4Headline,
-                                              NSForegroundColorAttributeName: UIColor.white]
+        navigationBar?.titleTextAttributes = [.font: Font.H4Headline, .foregroundColor: UIColor.white]
         navigationController?.pushViewController(childViewController, animated: true)
     }
 }

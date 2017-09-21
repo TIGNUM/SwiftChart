@@ -21,23 +21,23 @@ final class SettingValueObject: Object {
 
     // MARK: Public Properties
 
-    fileprivate(set) dynamic var format: String = ""
+    @objc fileprivate(set) dynamic var format: String = ""
 
-    fileprivate(set) dynamic var text: String?
+    @objc fileprivate(set) dynamic var text: String?
 
-    fileprivate(set) dynamic var from: Date?
+    @objc fileprivate(set) dynamic var from: Date?
 
-    fileprivate(set) dynamic var to: Date?
+    @objc fileprivate(set) dynamic var to: Date?
 
-    fileprivate(set) dynamic var bool: Bool = false
+    @objc fileprivate(set) dynamic var bool: Bool = false
 
-    fileprivate(set) dynamic var workingDays: Bool = false
+    @objc fileprivate(set) dynamic var workingDays: Bool = false
 
-    fileprivate(set) dynamic var weekend: Bool = false
+    @objc fileprivate(set) dynamic var weekend: Bool = false
 
-    fileprivate(set) dynamic var publicHolidays: Bool = false
+    @objc fileprivate(set) dynamic var publicHolidays: Bool = false
 
-    fileprivate(set) dynamic var vacation: Bool = false
+    @objc fileprivate(set) dynamic var vacation: Bool = false
 
     var int: Int? {
         return _int.value
@@ -74,5 +74,11 @@ final class SettingValueObject: Object {
             break
         }
         self.format = value.format.map { $0.rawValue } ?? ""
+    }
+
+    func delete() {
+        if let realm = realm {
+            realm.delete(self)
+        }
     }
 }

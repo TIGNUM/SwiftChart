@@ -44,6 +44,6 @@ extension ContentCollectionData: DownSyncIntermediary {
         self.searchTags = try (json.getArray(at: .searchTags) as [String]).joined(separator: ",")
         self.categoryIDs = try json.getArray(at: .categoryIds)
         self.layoutInfo = try json.serializeString(at: .layoutInfo)
-        self.thumbnailURLString = try json.getItemValue(at: .thumbnail, alongPath: .NullBecomesNil)
+        self.thumbnailURLString = try json.getItemValue(at: .thumbnail, alongPath: .nullBecomesNil)
     }
 }

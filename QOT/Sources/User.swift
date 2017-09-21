@@ -13,59 +13,59 @@ import Freddy
 
 final class User: SyncableObject {
 
-    dynamic var changeStamp: String? = UUID().uuidString
+    @objc dynamic var changeStamp: String? = UUID().uuidString
 
-    dynamic var gender: String = ""
+    @objc dynamic var gender: String = ""
 
-    dynamic var dateOfBirth: String?
+    @objc dynamic var dateOfBirth: String?
 
-    dynamic var heightUnit: String?
+    @objc dynamic var heightUnit: String?
 
-    dynamic var weightUnit: String?
+    @objc dynamic var weightUnit: String?
 
     // MARK: Data
 
-    fileprivate(set) dynamic var givenName: String = ""
+    @objc fileprivate(set) dynamic var givenName: String = ""
 
-    fileprivate(set) dynamic var familyName: String = ""
+    @objc fileprivate(set) dynamic var familyName: String = ""
 
-    fileprivate(set) dynamic var email: String = ""
+    @objc fileprivate(set) dynamic var email: String = ""
 
-    fileprivate(set) dynamic var telephone: String?
+    @objc fileprivate(set) dynamic var telephone: String?
 
-    fileprivate(set) dynamic var zipCode: String?
+    @objc fileprivate(set) dynamic var zipCode: String?
 
-    fileprivate(set) dynamic var city: String?
+    @objc fileprivate(set) dynamic var city: String?
 
-    fileprivate(set) dynamic var street: String?
+    @objc fileprivate(set) dynamic var street: String?
 
-    fileprivate(set) dynamic var streetNumber: String?
+    @objc fileprivate(set) dynamic var streetNumber: String?
 
-    fileprivate(set) dynamic var countryID: Int = 0
+    @objc fileprivate(set) dynamic var countryID: Int = 0
 
-    fileprivate(set) dynamic var countryName: String = ""
+    @objc fileprivate(set) dynamic var countryName: String = ""
 
-    fileprivate(set) dynamic var zoneID: Int = 0
+    @objc fileprivate(set) dynamic var zoneID: Int = 0
 
-    fileprivate(set) dynamic var zoneName: String = ""
+    @objc fileprivate(set) dynamic var zoneName: String = ""
 
-    fileprivate(set) dynamic var userImageURLString: String?
+    @objc fileprivate(set) dynamic var userImageURLString: String?
 
     let height = RealmOptional<Double>()
 
-    fileprivate(set) dynamic var heightUnitsJSON: String = ""
+    @objc fileprivate(set) dynamic var heightUnitsJSON: String = ""
 
     let weight = RealmOptional<Double>()
 
-    fileprivate(set) dynamic var weightUnitsJSON: String = ""
+    @objc fileprivate(set) dynamic var weightUnitsJSON: String = ""
 
-    fileprivate(set) dynamic var company: String?
+    @objc fileprivate(set) dynamic var company: String?
 
-    fileprivate(set) dynamic var jobTitle: String?
+    @objc fileprivate(set) dynamic var jobTitle: String?
 
-    fileprivate(set) dynamic var memberSince: Date = Date()
+    @objc fileprivate(set) dynamic var memberSince: Date = Date()
 
-    dynamic var timeZone: String = TimeZone.currentName
+    @objc dynamic var timeZone: String = TimeZone.currentName
 }
 
 extension User: TwoWaySyncableUniqueObject {

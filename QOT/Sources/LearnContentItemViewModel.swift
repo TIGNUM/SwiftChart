@@ -244,12 +244,13 @@ extension LearnContentItemViewModel {
     }
 
     func firstAudioItem() -> ContentItemValue {
-        return contentCollection.contentItems.filter { (item: ContentItem) -> Bool in
-            switch item.contentItemValue {
-            case .audio: return true
-            default:  return false
+        for contentItem in contentCollection.contentItems {
+            switch contentItem.contentItemValue {
+            case .audio: return contentItem.contentItemValue
+            default: break
             }
-        }[0].contentItemValue
+        }
+        fatalError("That should not happen!")
     }
 
     func didViewContentItem(localID: String) {

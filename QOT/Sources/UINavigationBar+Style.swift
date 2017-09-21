@@ -11,8 +11,8 @@ import UIKit
 extension UINavigationBar {
     func applyDefaultStyle() {
         titleTextAttributes = [
-            NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: Font.H6NavigationTitle
+            .foregroundColor: UIColor.white,
+            .font: Font.H6NavigationTitle
         ]
         let dummyImage = UIImage()
         setBackgroundImage(dummyImage, for: .default)

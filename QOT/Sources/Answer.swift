@@ -13,11 +13,11 @@ class Answer: Object {
 
     let remoteID = RealmOptional<Int>(nil)
     
-    fileprivate(set) dynamic var sortOrder: Int = 0
+    @objc fileprivate(set) dynamic var sortOrder: Int = 0
 
-    fileprivate(set) dynamic var title: String = ""
+    @objc fileprivate(set) dynamic var title: String = ""
 
-    fileprivate(set) dynamic var subtitle: String?
+    @objc fileprivate(set) dynamic var subtitle: String?
 
     let decisions = List<AnswerDecision>()
 
@@ -31,8 +31,11 @@ class Answer: Object {
         self.decisions.append(objectsIn: intermediary.decisions.map { AnswerDecision(intermediary: $0) })
     }
 
-    override func delete() {
+    func delete() {
         decisions.forEach { $0.delete() }
-        super.delete()
+
+        if let realm = realm {
+            realm.delete(self)
+        }
     }
 }

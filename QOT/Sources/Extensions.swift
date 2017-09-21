@@ -45,11 +45,12 @@ extension UIFont {
 extension NSAttributedString {
 
     internal class func create(for string: String, withColor color: UIColor, andFont font: UIFont, letterSpacing: CGFloat = 1) -> NSAttributedString {
-        let attributes: [String: Any] = [
-            NSForegroundColorAttributeName: color,
-            NSFontAttributeName: font,
-            NSKernAttributeName: letterSpacing
+        let attributes: [NSAttributedStringKey: Any] = [
+            .foregroundColor: color,
+            .font: font,
+            .paragraphStyle: letterSpacing
         ]
+        
         return NSAttributedString(string: string, attributes: attributes)
     }
 }
@@ -176,8 +177,19 @@ extension CALayer {
 
 extension CAShapeLayer {
 
-    override func addGlowEffect(color: UIColor, shadowRadius: CGFloat = 10, shadowOpacity: Float = 0.9, animate: Bool = true) {
-        super.addGlowEffect(color: color, shadowRadius: shadowRadius, shadowOpacity: shadowOpacity, animate: animate)
+    func glowEffect(color: UIColor, shadowRadius: CGFloat = 10, shadowOpacity: Float = 0.9, animate: Bool = true) {
+        self.shadowColor = color.cgColor
+        self.shadowRadius = shadowRadius
+        self.shadowOffset = .zero
+        self.shadowOpacity = shadowOpacity
+
+        if animate {
+            let animation = CABasicAnimation(keyPath: "shadowOpacity")
+            animation.fromValue = 0.0
+            animation.toValue = shadowOpacity
+            animation.duration = 0.5
+            add(animation, forKey: "qot_shadowOpacity")
+        }
     }
 
     class func circle(center: CGPoint, radius: CGFloat, fillColor: UIColor, strokeColor: UIColor) -> CAShapeLayer {
@@ -187,6 +199,7 @@ extension CAShapeLayer {
         shapeLayer.fillColor = fillColor.cgColor
         shapeLayer.strokeColor = strokeColor.cgColor
         shapeLayer.lineWidth = 1.0
+
         return shapeLayer
     }
 
@@ -198,6 +211,7 @@ extension CAShapeLayer {
         line.path = linePath.cgPath
         line.strokeColor = strokeColor.cgColor
         line.lineWidth = 0.4
+
         return line
     }
 }
@@ -232,7 +246,7 @@ extension MutableCollection where Index == Int {
         for index in startIndex ..< endIndex - 1 {
             let element = Int(arc4random_uniform(UInt32(endIndex - index))) + index
             if index != element {
-                swap(&self[index], &self[element])
+                self.swapAt(index, element)
             }
         }
     }

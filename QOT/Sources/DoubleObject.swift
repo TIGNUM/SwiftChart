@@ -11,11 +11,17 @@ import RealmSwift
 
 final class DoubleObject: Object {
 
-    private(set) dynamic var value: Double = 0
+    @objc private(set) dynamic var value: Double = 0
 
     convenience init(double: Double) {
         self.init()
 
         self.value = double
+    }
+
+    func delete() {
+        if let realm = realm {
+            realm.delete(self)
+        }
     }
 }

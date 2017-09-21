@@ -38,8 +38,8 @@ final class LearnContentLayout: UICollectionViewLayout {
                 attrs.frame = CGRect(x: point.x, y: point.y, width: bubbleDiameter, height: bubbleDiameter)
                 return attrs
             }
-            
-            let maxX = attributes.reduce(CGFloat(0), { max($0.0, $0.1.frame.maxX) }) + horizontalPadding
+
+            let maxX = attributes.reduce(CGFloat(0)) { max($0, $1.frame.maxX) } + horizontalPadding
             contentSize = CGSize(width: maxX + horizontalPadding, height: frame.height)
             
             layoutAttributes = attributes

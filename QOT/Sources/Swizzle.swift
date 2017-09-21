@@ -12,8 +12,8 @@ protocol Swizzle {
     var classID: AnyClass { get }
     var originalSelector: Selector { get }
     var newSelector: Selector { get }
-    var originalMethod: Method { get }
-    var newMethod: Method { get }
+    var originalMethod: Method? { get }
+    var newMethod: Method? { get }
     var isSwizzled: Bool { get set } // @note: initial value should be false
     
     mutating func swizzle()
@@ -22,6 +22,10 @@ protocol Swizzle {
 extension Swizzle {
     mutating func swizzle() {
         isSwizzled = !isSwizzled
-        method_exchangeImplementations(originalMethod, newMethod)
+        if
+            let originalMethod = originalMethod,
+            let newMethod = newMethod {
+                method_exchangeImplementations(originalMethod, newMethod)
+        }
     }
 }

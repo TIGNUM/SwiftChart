@@ -44,7 +44,7 @@ extension LibraryCoordinator: LibraryViewControllerDelegate {
         let title = item.contentCategories.first?.title
         let subtitle = item.title
         let date = DateFormatter.shortDate.string(from: item.createdAt)
-        let duration = "\(item.items.reduce(0, { $0.0 + $0.1.secondsRequired }) / 60) MIN"
+        let duration = "\(item.items.reduce(0) { $0 + $1.secondsRequired } / 60) MIN"
 
         articleHeader = ArticleCollectionHeader(
             articleTitle: title != nil ? title! : "",

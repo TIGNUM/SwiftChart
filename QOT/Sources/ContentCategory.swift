@@ -14,7 +14,7 @@ import Freddy
 final class ContentCategory: SyncableObject {
 
     // TODO: Remove me please: https://tignum.atlassian.net/browse/IT-553
-    dynamic var keypathID: String?
+    @objc dynamic var keypathID: String?
 
     func setData(_ data: ContentCategoryData) {
         sortOrder = data.sortOrder
@@ -24,13 +24,13 @@ final class ContentCategory: SyncableObject {
 
     // MARK: ContentData
 
-    fileprivate(set) dynamic var sortOrder: Int = 0
+    @objc fileprivate(set) dynamic var sortOrder: Int = 0
 
-    fileprivate(set) dynamic var section: String = ""
+    @objc fileprivate(set) dynamic var section: String = ""
 
-    fileprivate(set) dynamic var title: String = ""
+    @objc fileprivate(set) dynamic var title: String = ""
 
-    fileprivate(set) dynamic var layoutInfo: String?
+    @objc fileprivate(set) dynamic var layoutInfo: String?
 
     // MARK: Relationships
 

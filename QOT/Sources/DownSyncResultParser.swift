@@ -24,7 +24,7 @@ struct DownSyncResult<T: DownSyncIntermediary> {
             switch syncStatus {
             case .created, .updated:
                 let createdAt: Date = try json.getDate(at: .createdAt)
-                let modifiedAt = try json.getDate(at: .modifiedAt, alongPath: .NullBecomesNil) ?? createdAt
+                let modifiedAt = try json.getDate(at: .modifiedAt, alongPath: .nullBecomesNil) ?? createdAt
                 let data: T = try T(json: json)
 
                 return .createdOrUpdated(remoteID: remoteID, createdAt: createdAt, modifiedAt: modifiedAt, data: data)

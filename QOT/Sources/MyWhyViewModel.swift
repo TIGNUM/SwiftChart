@@ -50,10 +50,11 @@ final class MyWhyViewModel {
         case .partners(_, let partners): return partners.count
         }
     }
+
+    // MARK: - Init
     
     init(services: Services) {
         self.services = services
-
         self.partners = services.partnerService.partners
         self.myToBeVision = services.userService.myToBeVision()
         self.userChoices = services.userService.userChoices()
@@ -76,7 +77,7 @@ final class MyWhyViewModel {
                 break
             }
         }.handler
-        profileImageNotificationTokenHandler = myToBeVision?.profileImageResource?.addNotificationBlock({ [weak self]  (change: ObjectChange) in
+        profileImageNotificationTokenHandler = myToBeVision?.profileImageResource?.addNotificationBlock { [weak self]  (change: ObjectChange) in
             switch change {
             case .change:
                 self?.updates.next(.reload)
@@ -85,7 +86,7 @@ final class MyWhyViewModel {
             default:
                 break
             }
-        }).handler
+        }.handler
         userChoiceNotificationTokenHandler = userChoices.addNotificationBlock { [weak self] (changes: RealmCollectionChange<AnyRealmCollection<UserChoice>>) in
             switch changes {
             case .update(_, deletions: _, insertions: _, modifications: _):

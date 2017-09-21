@@ -13,11 +13,11 @@ import Freddy
 
 final class CalendarEvent: SyncableObject, UpSyncableWithLocalAndRemoteIDs {
 
-    dynamic var deleted: Bool = false
+    @objc dynamic var deleted: Bool = false
 
-    dynamic var changeStamp: String? = UUID().uuidString
+    @objc dynamic var changeStamp: String? = UUID().uuidString
     
-    dynamic var ekEventModifiedAt = Date()
+    @objc dynamic var ekEventModifiedAt = Date()
 
     var event: EKEvent? {
         return EKEventStore.shared.event(withIdentifier: eventID)
@@ -42,7 +42,7 @@ final class CalendarEvent: SyncableObject, UpSyncableWithLocalAndRemoteIDs {
         self.deleted = false
     }
 
-    override func delete() {
+    func delete() {
         if let realm = realm {
             if existsOnServer == false {
                 realm.delete(self)

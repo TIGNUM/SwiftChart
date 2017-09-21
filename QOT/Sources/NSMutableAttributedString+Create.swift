@@ -12,25 +12,24 @@ import BonMot
 
 extension NSMutableAttributedString {
 
-    convenience init(
-        string: String,
-        letterSpacing: CGFloat = 1,
-        font: UIFont,
-        lineSpacing: CGFloat = 0,
-        textColor: UIColor = .white,
-        alignment: NSTextAlignment = .left,
-        lineBreakMode: NSLineBreakMode? = nil) {
+    convenience init(string: String,
+                     letterSpacing: CGFloat = 1,
+                     font: UIFont,
+                     lineSpacing: CGFloat = 0,
+                     textColor: UIColor = .white,
+                     alignment: NSTextAlignment = .left,
+                     lineBreakMode: NSLineBreakMode? = nil) {
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineSpacing = lineSpacing
             paragraphStyle.alignment = alignment
             if let lineBreakMode = lineBreakMode {
                 paragraphStyle.lineBreakMode = lineBreakMode
+                paragraphStyle.paragraphSpacing = letterSpacing
             }
-            let attributes: [String: Any] = [
-                NSForegroundColorAttributeName: textColor,
-                NSParagraphStyleAttributeName: paragraphStyle,
-                NSFontAttributeName: font,
-                NSKernAttributeName: letterSpacing
+            let attributes: [NSAttributedStringKey: Any] = [
+                .foregroundColor: textColor,
+                .paragraphStyle: paragraphStyle,
+                .font: font
             ]
 
             self.init(string: string, attributes: attributes)

@@ -20,17 +20,17 @@ final class UserChoice: SyncableObject {
 
     fileprivate let _contentCollectionID = RealmOptional<Int>()
 
-    fileprivate(set) dynamic var type: String = ""
+    @objc fileprivate(set) dynamic var type: String = ""
 
-    fileprivate(set) dynamic var userText: String?
+    @objc fileprivate(set) dynamic var userText: String?
 
-    fileprivate(set) dynamic var startDate: Date = Date()
+    @objc fileprivate(set) dynamic var startDate: Date = Date()
 
-    fileprivate(set) dynamic var endDate: Date = Date()
+    @objc fileprivate(set) dynamic var endDate: Date = Date()
 
-    dynamic var deleted: Bool = false
+    @objc dynamic var deleted: Bool = false
   
-    dynamic var changeStamp: String? = UUID().uuidString
+    @objc dynamic var changeStamp: String? = UUID().uuidString
     
     var contentCategoryID: Int? {
         return _contentCategoryID.value

@@ -4,22 +4,22 @@ target 'QOT' do
   use_frameworks!
 
   # Pods for QOT
-  pod 'Bond', '~> 6.0'
-  pod 'Anchorage', '~> 3.1'
-  pod 'R.swift', '~> 3.2'
-  pod 'UICollectionViewRightAlignedLayout', '~> 0.0'
+  pod 'Bond'
+  pod 'Anchorage'
+  pod 'R.swift'
+  pod 'UICollectionViewRightAlignedLayout'
   pod 'Kingfisher', '~> 3.6'
-  pod 'LoremIpsum', '~> 1.0'
-  pod 'iCarousel', '~> 1.8.3'
-  pod 'RealmSwift', '2.7.0'
-  pod 'Freddy', '3.0.0'
-  pod 'Alamofire', '~> 4.4'
-  pod 'KeychainAccess', '~> 3.0.2'
-  pod 'ActionSheetPicker-3.0', '~> 2.2.0'
-  pod 'RSKImageCropper', '~> 1.6.1'
-  pod 'ImagePicker', '~> 2.1.1'
-  pod 'BonMot', '~> 4.3.1'
-  pod 'MBProgressHUD', '~> 1.0.0'
+  pod 'LoremIpsum'
+  pod 'iCarousel'
+  pod 'RealmSwift'
+  pod 'Freddy'
+  pod 'Alamofire'
+  pod 'KeychainAccess'
+  pod 'ActionSheetPicker-3.0'
+  pod 'RSKImageCropper'
+  pod 'ImagePicker'
+  pod 'BonMot'
+  pod 'MBProgressHUD'
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'UrbanAirship-iOS-SDK'
@@ -35,7 +35,7 @@ end
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
-      config.build_settings['SWIFT_VERSION'] = '3.0'
+      config.build_settings['SWIFT_VERSION'] = '3.2'
       config.build_settings['CLANG_WARN_DOCUMENTATION_COMMENTS'] = 'NO'
     end
   end

@@ -20,7 +20,7 @@ struct MyToBeVisionIntermediary: DownSyncIntermediary {
 
     init(json: JSON) throws {
         remoteProfileImageURL = try json.getString(at: JsonKey.images.rawValue, 0, JsonKey.mediaUrl.rawValue,
-                                                   alongPath: [.MissingKeyBecomesNil, .NullBecomesNil])
+                                                   alongPath: [.missingKeyBecomesNil, .nullBecomesNil])
         headline = try json.getItemValue(at: .title)
         subHeadline = try json.getItemValue(at: .shortDescription)
         text = try json.getItemValue(at: .description)

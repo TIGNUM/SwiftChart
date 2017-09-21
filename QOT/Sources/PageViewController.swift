@@ -253,12 +253,17 @@ private extension UIScrollView {
 private var gestureRecognizerShouldBeginSwizzle = GestureRecognizerShouldBeginSwizzle()
 
 private struct GestureRecognizerShouldBeginSwizzle: Swizzle {
+
+    // MARK: - Properties
+
     let classID: AnyClass
     let originalSelector: Selector
     let newSelector: Selector
-    let originalMethod: Method
-    let newMethod: Method
+    var originalMethod: Method?
+    var newMethod: Method?
     var isSwizzled: Bool
+
+    // MARK: - Init
     
     init() {
         classID = UIScrollView.self
@@ -271,7 +276,8 @@ private struct GestureRecognizerShouldBeginSwizzle: Swizzle {
 }
 
 extension UIScrollView {
-    func QOT_PageViewControllerr_gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+
+    @objc func QOT_PageViewControllerr_gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         guard
             let panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer,
             let pageViewController: PageViewController = findParentResponder(),

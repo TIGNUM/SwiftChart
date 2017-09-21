@@ -12,17 +12,17 @@ import Freddy
 
 final class PageTrack: SyncableObject {
 
-    fileprivate dynamic var page: Page?
+    @objc fileprivate dynamic var page: Page?
     
-    fileprivate dynamic var referrerPage: Page?
+    @objc fileprivate dynamic var referrerPage: Page?
     
-    fileprivate dynamic var associatedValueLocalID: String?
+    @objc fileprivate dynamic var associatedValueLocalID: String?
     
-    fileprivate dynamic var associatedValueType: String?
+    @objc fileprivate dynamic var associatedValueType: String?
 
-    fileprivate dynamic var referrerAssociatedValueLocalID: String?
+    @objc fileprivate dynamic var referrerAssociatedValueLocalID: String?
     
-    fileprivate dynamic var referrerAssociatedValueType: String?
+    @objc fileprivate dynamic var referrerAssociatedValueType: String?
     
     convenience init(page: Page, referrerPage: Page?, associatedValueLocalID: String?, associatedValueType: String?, referrerAssociatedValueLocalID: String?, referrerAssociatedValueType: String?) {
         self.init()

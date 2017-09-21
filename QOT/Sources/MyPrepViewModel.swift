@@ -28,25 +28,29 @@ final class MyPrepViewModel {
         let finishedPreparationCount: Int
     }
 
+    // MARK: - Properties
+
     fileprivate let services: Services
     fileprivate var preparations: AnyRealmCollection<Preparation>?
     fileprivate var preparationChecks: AnyRealmCollection<PreparationCheck>?
     fileprivate var preparationsNotificationHandler: NotificationTokenHandler?
     fileprivate var preparationChecksNotificationHandler: NotificationTokenHandler?
+    let updates = PublishSubject<CollectionUpdate, NoError>()
+    let itemCountUpdate = ReplayOneSubject<Int, NoError>()
 
     fileprivate var items = [Item]() {
         didSet {
             updates.next(.reload)
         }
     }
-    let updates = PublishSubject<CollectionUpdate, NoError>()
-    let itemCountUpdate = ReplayOneSubject<Int, NoError>()
+
+    // MARK: - Init
 
     init(services: Services) {
         self.services = services
         preparations = try? services.preparationService.preparationsOnBackground(predicate: NSPredicate(format: "deleted == false"))
         preparationChecks = try? services.preparationService.preparationChecksOnBackground()
-        preparationsNotificationHandler = preparations?.addNotificationBlock({ [unowned self] (change: RealmCollectionChange<AnyRealmCollection<Preparation>>) in
+        preparationsNotificationHandler = preparations?.addNotificationBlock { [unowned self] (change: RealmCollectionChange<AnyRealmCollection<Preparation>>) in
             switch change {
             case .update(_, let deletions, let insertions, _):
                 guard insertions.count == 0 else {
@@ -63,8 +67,8 @@ final class MyPrepViewModel {
             default:
                 break
             }
-        }).handler
-        preparationChecksNotificationHandler = preparationChecks?.addNotificationBlock({ [unowned self] (change: RealmCollectionChange<AnyRealmCollection<PreparationCheck>>) in
+        }.handler
+        preparationChecksNotificationHandler = preparationChecks?.addNotificationBlock { [unowned self] (change: RealmCollectionChange<AnyRealmCollection<PreparationCheck>>) in
             switch change {
             case .update(_, _, _, let modifications):
                 guard modifications.count > 0 else {
@@ -74,7 +78,7 @@ final class MyPrepViewModel {
             default:
                 break
             }
-        }).handler
+        }.handler
         
         refresh()
     }

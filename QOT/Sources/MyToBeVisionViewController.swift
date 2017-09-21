@@ -207,10 +207,7 @@ private extension MyToBeVisionViewController {
 
     func setupNavigation() {
         navigationBar.topItem?.title = R.string.localized.meSectorMyWhyVisionTitle().uppercased()
-        navigationBar.titleTextAttributes = [
-            NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: Font.H6NavigationTitle
-        ]
+        navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white, .font: Font.H6NavigationTitle]
         let dummyImage = UIImage()
         navigationBar.setBackgroundImage(dummyImage, for: .default)
         navigationBar.shadowImage = dummyImage

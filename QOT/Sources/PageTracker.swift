@@ -49,12 +49,17 @@ class PageTracker {
 private var viewDidAppearSwizzle = ViewDidAppearSwizzle()
 
 private struct ViewDidAppearSwizzle: Swizzle {
+
+    // MARK: - Properties
+
     let classID: AnyClass
     let originalSelector: Selector
     let newSelector: Selector
-    let originalMethod: Method
-    let newMethod: Method
+    var originalMethod: Method?
+    var newMethod: Method?
     var isSwizzled: Bool
+
+    // MARK: - Init
     
     init() {
         classID = UIViewController.self
@@ -67,7 +72,8 @@ private struct ViewDidAppearSwizzle: Swizzle {
 }
 
 extension UIViewController {
-    func QOT_PageTracker_viewDidAppear(_ animated: Bool) {
+
+    @objc func QOT_PageTracker_viewDidAppear(_ animated: Bool) {
         QOT_PageTracker_viewDidAppear(animated)
         if let trackablePage = self as? TrackablePage {
             _staticPageTracker?.track(trackablePage)

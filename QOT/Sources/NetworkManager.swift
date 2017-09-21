@@ -116,7 +116,7 @@ class NetworkManager {
                                               current: SerialRequest,
                                               completion: @escaping (Result<T, NetworkError>) -> Void) {
 
-        firstly { (_) -> Promise<T> in
+        firstly { 
             return self.performRequest(request, parser: parser, current: current)
         }.then { (value) -> Void in
             completion(.success(value))

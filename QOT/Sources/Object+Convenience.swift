@@ -6,14 +6,13 @@
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
-import Foundation
-import RealmSwift
+//import Foundation
+//import RealmSwift
+//
+//extension Object {
+//
+//    func delete() {
+//        
+//    }
+//}
 
-extension Object {
-
-    func delete() {
-        if let realm = realm {
-            realm.delete(self)
-        }
-    }
-}

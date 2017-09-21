@@ -27,10 +27,10 @@ class MediaResource: SyncableObject {
         case jpg = "JPG"
     }
     
-    dynamic var localURLString: String?
-    dynamic var remoteURLString: String?
-    dynamic var mediaFormat: String?
-    dynamic var mediaEntity: String?
+    @objc dynamic var localURLString: String?
+    @objc dynamic var remoteURLString: String?
+    @objc dynamic var mediaFormat: String?
+    @objc dynamic var mediaEntity: String?
     let relatedEntityID = RealmOptional<Int>(nil)
     
     var localURL: URL? {

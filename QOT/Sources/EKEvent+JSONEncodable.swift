@@ -101,11 +101,11 @@ extension EKRecurrenceRule: JSONEncodable {
             .interval: interval,
             .firstDayOfTheWeek: firstDayOfTheWeek,
             .daysOfTheWeek: (daysOfTheWeek.map { $0.toJSON() }) ?? JSON.null,
-            .daysOfTheMonth: (daysOfTheMonth.map { $0.map({ Int($0) }).toJSON() }) ?? JSON.null,
-            .daysOfTheYear: (daysOfTheYear.map { $0.map({ Int($0) }).toJSON() }) ?? JSON.null,
-            .weeksOfTheYear: (weeksOfTheYear.map { $0.map({ Int($0) }).toJSON() }) ?? JSON.null,
-            .monthsOfTheYear: (monthsOfTheYear.map { $0.map({ Int($0) }).toJSON() }) ?? JSON.null,
-            .setPositions: (setPositions.map { $0.map({ Int($0) }).toJSON() }) ?? JSON.null
+            .daysOfTheMonth: (daysOfTheMonth.map { $0.map({ $0.intValue }).toJSON() }) ?? JSON.null,
+            .daysOfTheYear: (daysOfTheYear.map { $0.map({ $0.intValue }).toJSON() }) ?? JSON.null,
+            .weeksOfTheYear: (weeksOfTheYear.map { $0.map({ $0.intValue }).toJSON() }) ?? JSON.null,
+            .monthsOfTheYear: (monthsOfTheYear.map { $0.map({ $0.intValue }).toJSON() }) ?? JSON.null,
+            .setPositions: (setPositions.map { $0.map({ $0.intValue }).toJSON() }) ?? JSON.null
         ]
         return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
     }

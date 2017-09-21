@@ -41,7 +41,7 @@ extension EKEventStore {
     }
 
     private func syncEnabled(for calendar: EKCalendar) -> Bool {
-        let isDefaultCalendar = calendar.calendarIdentifier == defaultCalendarForNewEvents.calendarIdentifier
+        let isDefaultCalendar = calendar.calendarIdentifier == defaultCalendarForNewEvents?.calendarIdentifier
 
         if let dict = UserDefault.calendarDictionary.object as? [String: Bool],
             let enabled = dict[calendar.calendarIdentifier] {

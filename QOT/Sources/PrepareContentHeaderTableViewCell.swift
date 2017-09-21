@@ -93,11 +93,11 @@ class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
     func setExpandImageState(isExpanded: Bool) {
     }
     
-    func readMore() {
+    @objc func readMore() {
         delegate?.didPressReadMore(readMoreID: readMoreID, cell: self)
     }
 
-    func checkboxTapped() {
+    @objc func checkboxTapped() {
         delegate?.didTapCheckbox(cell: self)
         self.layoutIfNeeded()
     }

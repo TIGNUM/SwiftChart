@@ -25,11 +25,11 @@ final class MyStatisticsPeriod: Object {
         }
     }
 
-    dynamic var startDate = Date()
+    @objc dynamic var startDate = Date()
 
-    dynamic var endDate = Date()
+    @objc dynamic var endDate = Date()
 
-    dynamic var _status = ""
+    @objc dynamic var _status = ""
 
     convenience init(_ data: MyStatisticsPeriodIntermediary) {
         self.init()
@@ -45,6 +45,12 @@ final class MyStatisticsPeriod: Object {
         self.startDate = start
         self.endDate = end
         self._status = status.rawValue
+    }
+
+    func delete() {
+        if let realm = realm {
+            realm.delete(self)
+        }
     }
 }
 

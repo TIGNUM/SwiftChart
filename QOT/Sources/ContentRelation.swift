@@ -11,11 +11,11 @@ import RealmSwift
 
 final class ContentRelation: Object {
 
-    private(set) dynamic var type: String = ""
+    @objc private(set) dynamic var type: String = ""
 
-    private(set) dynamic var weight: Int = 0
+    @objc private(set) dynamic var weight: Int = 0
 
-    private(set) dynamic var contentID: Int = 0
+    @objc private(set) dynamic var contentID: Int = 0
 
     convenience init(intermediary: ContentRelationIntermediary) {
         self.init()

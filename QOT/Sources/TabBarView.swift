@@ -162,7 +162,7 @@ class TabBarView: UIView {
 
 extension TabBarView {
 
-    func buttonPressed(_ button: UIButton) {
+    @objc func buttonPressed(_ button: UIButton) {
         guard titles.count > 1 else {
             return
         }

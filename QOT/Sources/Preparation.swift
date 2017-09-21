@@ -15,15 +15,15 @@ final class Preparation: SyncableObject {
 
     // MARK: Public Properties
     
-    fileprivate(set) dynamic var name: String = ""
+    @objc fileprivate(set) dynamic var name: String = ""
     
-    fileprivate(set) dynamic var subtitle: String = ""
+    @objc fileprivate(set) dynamic var subtitle: String = ""
     
     let calendarEventRemoteID = RealmOptional<Int>(nil)
 
-    dynamic var changeStamp: String? = UUID().uuidString
-    
-    dynamic var deleted: Bool = false
+    @objc dynamic var changeStamp: String? = UUID().uuidString
+
+    @objc dynamic var deleted: Bool = false
 
     // FIXME: This is a hack. The API must change to allow for storing this ID
     var contentCollectionID: Int {
@@ -32,7 +32,7 @@ final class Preparation: SyncableObject {
 
     // MARK: Relationships
     
-    fileprivate(set) dynamic var calendarEvent: CalendarEvent?
+    @objc fileprivate(set) dynamic var calendarEvent: CalendarEvent?
 
     let checks = List<PreparationCheck>()
 

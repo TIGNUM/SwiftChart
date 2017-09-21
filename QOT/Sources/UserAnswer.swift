@@ -11,17 +11,17 @@ import Freddy
     
 final class UserAnswer: SyncableObject {
     
-    dynamic var questionID: Int = 0
+    @objc dynamic var questionID: Int = 0
     
-    dynamic var questionGroupID: Int = 0
+    @objc dynamic var questionGroupID: Int = 0
     
-    dynamic var answerID: Int = 0
+    @objc dynamic var answerID: Int = 0
     
-    dynamic var userAnswer: String = ""
+    @objc dynamic var userAnswer: String = ""
     
-    dynamic var validFrom: Date = Date()
+    @objc dynamic var validFrom: Date = Date()
     
-    dynamic var validUntil: Date = Date()
+    @objc dynamic var validUntil: Date = Date()
     
     convenience init(questionID: Int, questionGroupID: Int, answerID: Int, userAnswer: String, validFrom: Date, validUntil: Date) {
         self.init()

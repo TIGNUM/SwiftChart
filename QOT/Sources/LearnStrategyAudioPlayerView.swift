@@ -44,7 +44,7 @@ final class LearnStrategyAudioPlayerView: UITableViewCell, Dequeueable {
 
 extension LearnStrategyAudioPlayerView {
 
-    func sliderValueDidChange(_ sender: UISlider) {
+    @objc func sliderValueDidChange(_ sender: UISlider) {
         delegate?.value(at: sender.value, in: self)
     }
 }

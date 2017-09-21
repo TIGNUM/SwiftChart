@@ -15,11 +15,11 @@ final class AnswerDecision: Object {
 
     private let _targetGroupID = RealmOptional<Int>(nil)
 
-    fileprivate(set) dynamic var id: Int = 0
+    @objc fileprivate(set) dynamic var id: Int = 0
 
-    fileprivate(set) dynamic var questionGroupID: Int = 0
+    @objc fileprivate(set) dynamic var questionGroupID: Int = 0
 
-    fileprivate(set) dynamic var targetType: String?
+    @objc fileprivate(set) dynamic var targetType: String?
 
     var targetID: Int? {
         return _targetID.value
@@ -37,5 +37,11 @@ final class AnswerDecision: Object {
         targetType = intermediary.targetType
         _targetID.value = intermediary.targetID
         _targetGroupID.value = intermediary.targetGroupID
+    }
+
+    func delete() {
+        if let realm = realm {
+            realm.delete(self)
+        }
     }
 }

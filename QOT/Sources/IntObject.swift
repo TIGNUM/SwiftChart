@@ -11,7 +11,7 @@ import RealmSwift
 
 final class IntObject: Object {
 
-    private(set) dynamic var value: Int = 0
+    @objc private(set) dynamic var value: Int = 0
 
     convenience init(int: Int) {
         self.init()

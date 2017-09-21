@@ -15,9 +15,9 @@ extension UIButton {
         let attrString = NSMutableAttributedString(string: text)
         let style = NSMutableParagraphStyle()
         style.lineSpacing = 13
-        attrString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSRange(location: 0, length: text.characters.count))
-        attrString.addAttribute(NSFontAttributeName, value: font, range: NSRange(location: 0, length: text.characters.count))
-        attrString.addAttribute(NSForegroundColorAttributeName, value: color, range: NSRange(location: 0, length: text.characters.count))
+        attrString.addAttribute(.paragraphStyle, value: style, range: NSRange(location: 0, length: text.characters.count))
+        attrString.addAttribute(.font, value: font, range: NSRange(location: 0, length: text.characters.count))
+        attrString.addAttribute(.foregroundColor, value: color, range: NSRange(location: 0, length: text.characters.count))
         
         self.setAttributedTitle(attrString, for: state)
     }

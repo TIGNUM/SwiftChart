@@ -52,11 +52,11 @@ class PrepareContentTopTabBarView: UIView {
         button.addTarget(self, action: selector, for: .touchUpInside)
     }
 
-    func didTapLeftButton() {
+    @objc func didTapLeftButton() {
         delegate?.didTapLeftButton()
     }
 
-    func didTapRightButton() {
+    @objc func didTapRightButton() {
         delegate?.didTapRightButton()
     }
 }

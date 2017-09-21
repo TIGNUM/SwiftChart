@@ -11,19 +11,16 @@ import UIKit
 extension String {
     func width(withConstrainedHeight height: CGFloat, font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
-        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil)
 
         return boundingBox.width
     }
 
     func height(withConstrainedWidth width: CGFloat, font: UIFont, characterSpacing: CGFloat? = nil) -> CGFloat {
-
-        var attributes: [String: Any] = [:]
-        if let characterSpacing = characterSpacing {
-            attributes[NSKernAttributeName] = characterSpacing
-        }
-
-        attributes[NSFontAttributeName] = font
+        let attributes: [NSAttributedStringKey: Any] = [
+            .font: font,
+            .paragraphStyle: characterSpacing ?? CGFloat(1)
+        ]
 
         let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
         let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)

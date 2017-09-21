@@ -17,15 +17,15 @@ final class LearnContentCollectionViewModel {
 
     private let categories: AnyRealmCollection<ContentCategory>
     private var token: NotificationTokenHandler?
-
     let updates = PublishSubject<CollectionUpdate, NoError>()
+
+    // MARK: - Init
 
     init(services: Services, selectedIndex: Index) {
         self.categories = services.contentService.learnContentCategories()
-
-        token = categories.addNotificationBlock({ [unowned self] (_) in
+        token = categories.addNotificationBlock { [unowned self] (_) in
             self.updates.next(.reload)
-        }).handler
+        }.handler
     }
 
     var categoryCount: Int {

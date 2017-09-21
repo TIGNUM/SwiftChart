@@ -10,10 +10,10 @@ import RealmSwift
 
 final class SyncRecord: Object {
 
-    private(set) dynamic var associatedClassName: String = ""
+    @objc private(set) dynamic var associatedClassName: String = ""
 
     /// Date as milliseconds since Epoch time
-    private(set) dynamic var date: Int64 = 0
+    @objc private(set) dynamic var date: Int64 = 0
 
     // MARK: Realm
 

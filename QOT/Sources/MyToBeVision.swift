@@ -12,17 +12,17 @@ import Freddy
 
 final class MyToBeVision: SyncableObject {
 
-    dynamic var profileImageResource: MediaResource? = MediaResource()
+    @objc dynamic var profileImageResource: MediaResource? = MediaResource()
     
-    dynamic var headline: String?
+    @objc dynamic var headline: String?
     
-    dynamic var subHeadline: String?
+    @objc dynamic var subHeadline: String?
     
-    dynamic var text: String?
+    @objc dynamic var text: String?
     
-    dynamic var date: Date = Date()
+    @objc dynamic var date: Date = Date()
 
-    dynamic var changeStamp: String? = UUID().uuidString
+    @objc dynamic var changeStamp: String? = UUID().uuidString
     
     override func didSetRemoteID() {
         profileImageResource?.relatedEntityID.value = remoteID.value

@@ -10,13 +10,13 @@ import RealmSwift
 
 class SyncableObject: Object {
 
-    dynamic var localID: String = UUID().uuidString
+    @objc dynamic var localID: String = UUID().uuidString
 
     let remoteID = RealmOptional<Int>(nil)
     
-    dynamic var createdAt: Date = Date()
+    @objc dynamic var createdAt: Date = Date()
 
-    dynamic var modifiedAt: Date = Date()
+    @objc dynamic var modifiedAt: Date = Date()
 
     final override class func primaryKey() -> String? {
         return "localID"

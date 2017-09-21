@@ -26,10 +26,13 @@ final class LearnCategoryListViewModel {
         }
     }
 
+    // MARK: - Properties
+
     private let categories: AnyRealmCollection<ContentCategory>
     private var token: NotificationTokenHandler?
-
     let updates = PublishSubject<CollectionUpdate, NoError>()
+
+    // MARK: - Init
 
     init(services: Services) {
         self.categories = services.contentService.learnContentCategories()

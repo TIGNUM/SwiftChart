@@ -11,13 +11,13 @@ import RealmSwift
 
 final class Question: SyncableObject {
 
-    fileprivate(set) dynamic var sortOrder: Int = 0
+    @objc fileprivate(set) dynamic var sortOrder: Int = 0
 
-    fileprivate(set) dynamic var title: String = ""
+    @objc fileprivate(set) dynamic var title: String = ""
 
-    fileprivate(set) dynamic var subtitle: String?
+    @objc fileprivate(set) dynamic var subtitle: String?
 
-    fileprivate(set) dynamic var answersDescription: String?
+    @objc fileprivate(set) dynamic var answersDescription: String?
 
     let answers = List<Answer>()
 
@@ -25,6 +25,12 @@ final class Question: SyncableObject {
 }
 
 extension Question: OneWaySyncableDown {
+
+    func delete() {
+        if let realm = realm {
+            realm.delete(self)
+        }
+    }
 
     static var endpoint: Endpoint {
         return .question

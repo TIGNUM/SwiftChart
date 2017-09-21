@@ -2971,7 +2971,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "20d64035-9abd-4e9c-9756-e0af22ef2d21";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.tignum.qot.novartis";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Database;
@@ -3104,7 +3104,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "20d64035-9abd-4e9c-9756-e0af22ef2d21";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.tignum.qot.novartis";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3124,7 +3124,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "d26bb900-2a9a-4ff5-ab5f-97ecbe9efa76";
 				PROVISIONING_PROFILE_SPECIFIER = "QOT Novartis Enterprise";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

@@ -14,21 +14,21 @@ final class PreparationCheck: SyncableObject {
 
     // MARK: Public Properties
     
-    fileprivate(set) dynamic var preparationID: Int = 0
+    @objc fileprivate(set) dynamic var preparationID: Int = 0
     
-    fileprivate(set) dynamic var contentItemID: Int = 0
+    @objc fileprivate(set) dynamic var contentItemID: Int = 0
 
-    dynamic var covered: Date? // A date indicates the time it was checked and nil indicates it is unchecked
+    @objc dynamic var covered: Date? // A date indicates the time it was checked and nil indicates it is unchecked
 
-    dynamic var deleted: Bool = false
+    @objc dynamic var deleted: Bool = false
 
-    dynamic var changeStamp: String? = UUID().uuidString
+    @objc dynamic var changeStamp: String? = UUID().uuidString
 
     // MARK: - Relationships
     
-    fileprivate(set) dynamic var preparation: Preparation?
+    @objc fileprivate(set) dynamic var preparation: Preparation?
     
-    fileprivate(set) dynamic var contentItem: ContentItem?
+    @objc fileprivate(set) dynamic var contentItem: ContentItem?
     
     // MARK: Functions
 
@@ -45,7 +45,7 @@ final class PreparationCheck: SyncableObject {
         self.covered = covered
     }
 
-    override func delete() {
+    func delete() {
         if let realm = realm {
             if remoteID.value == nil {
                 realm.delete(self)

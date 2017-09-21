@@ -146,7 +146,7 @@ private extension SettingsTableViewCell {
 
 extension SettingsTableViewCell {
 
-    func valueChanged(sender: UISwitch) {
+    @objc func valueChanged(sender: UISwitch) {
         switch settingsType {
         case .location: updateLocationSettings(sender)
         case .calendar: updateCalendarSettings(sender)

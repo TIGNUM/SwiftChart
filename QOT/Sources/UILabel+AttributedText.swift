@@ -17,12 +17,12 @@ extension UILabel {
         let range = NSRange(location: 0, length: text.characters.count)
         style.lineSpacing = lineSpacing
         style.alignment = alignment
-        attrString.addAttribute(NSParagraphStyleAttributeName, value: style, range: range)
-        attrString.addAttribute(NSFontAttributeName, value: font, range: range)
-        attrString.addAttribute(NSKernAttributeName, value: characterSpacing, range: range)
+        attrString.addAttribute(.paragraphStyle, value: style, range: range)
+        attrString.addAttribute(.font, value: font, range: range)
+        attrString.addAttribute(.kern, value: characterSpacing, range: range)
 
         if let color = color {
-            attrString.addAttribute(NSForegroundColorAttributeName, value: color, range: range)
+            attrString.addAttribute(.foregroundColor, value: color, range: range)
         }
 
         self.attributedText = attrString
