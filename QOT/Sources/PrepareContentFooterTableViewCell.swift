@@ -12,33 +12,36 @@ protocol PrepareContentFooterTableViewCellDelegate: class {
     func didSavePreparation(preparationID: Int, cell: UITableViewCell)
 }
 
-class PrepareContentFooterTableViewCell: UITableViewCell, Dequeueable {
-    
+final class PrepareContentFooterTableViewCell: UITableViewCell, Dequeueable {
+
+    // MARK: - Properties
+
     weak var delegate: PrepareContentFooterTableViewCellDelegate?
     var preparationID: Int = 0
-    @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var saveButton: UIButton!
+
+    // MARK: - Life Cycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         contentView.backgroundColor = .clear
         backgroundColor = .clear
-        
-        iconImageView.image = iconImageView.image!.withRenderingMode(.alwaysTemplate)
-        iconImageView.tintColor = .black30
-
-        let title = NSMutableAttributedString(
-            string: R.string.localized.preparePrepareEventsSaveThisPreparation(),
-            letterSpacing: 1,
-            font: Font.DPText,
-            textColor: .black40)
-
+        saveButton.imageView?.image = saveButton.imageView?.image?.withRenderingMode(.alwaysTemplate)
+        saveButton.tintColor = .black30
+        let title = NSMutableAttributedString(string: R.string.localized.preparePrepareEventsSaveThisPreparation(),
+                                              letterSpacing: 1,
+                                              font: Font.DPText,
+                                              textColor: .black40)
         saveButton.setAttributedTitle(title, for: .normal)
     }
-        
-    @IBAction func savePreparation(sender: UIButton) {
+}
+
+// MARK: - Actions
+
+extension PrepareContentFooterTableViewCell {
+
+    @IBAction private func savePreparation(sender: UIButton) {
         delegate?.didSavePreparation(preparationID: preparationID, cell: self)
     }
-
 }
