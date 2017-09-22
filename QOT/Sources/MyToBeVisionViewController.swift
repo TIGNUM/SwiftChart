@@ -306,6 +306,7 @@ private extension MyToBeVisionViewController {
 // MARK: - Notifications 
 
 private extension MyToBeVisionViewController {
+    
     @objc func keyboardWillShow(_ notification: NSNotification) {
         guard self.messageTextViewBottomConstrant.constant == 110,
             let userInfo = notification.userInfo, let rect = userInfo[UIKeyboardFrameBeginUserInfoKey] as? CGRect else {

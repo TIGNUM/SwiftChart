@@ -46,7 +46,14 @@ class SettingsTableViewCell: UITableViewCell, Dequeueable {
             setupButtonCell(title: title, value: value)
         case .control(let title, let enabled, let settingsType, _):
             self.settingsType = settingsType
-            setupControlCell(title: title, isOn: enabled)
+
+            if settingsType == .location {
+                let authorizationStatus = LocationManager.authorizationStatus == .authorizedAlways || LocationManager.authorizationStatus == .authorizedWhenInUse
+                let enabled = authorizationStatus == true && UserDefault.locationService.boolValue == true
+                setupControlCell(title: title, isOn: enabled)
+            } else {                
+                setupControlCell(title: title, isOn: enabled)
+            }
         case .datePicker(let title, let selectedDate, let settingsType):
             self.settingsType = settingsType
             setupDateCell(title: title, selectedDate: selectedDate)

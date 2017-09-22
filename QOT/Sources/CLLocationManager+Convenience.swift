@@ -13,7 +13,7 @@ struct LocationManager {
 
     static var locationServiceEnabled: Bool {
         if CLLocationManager.locationServicesEnabled() == true {
-            switch CLLocationManager.authorizationStatus() {
+            switch LocationManager.authorizationStatus {
             case .authorizedAlways,
                  .authorizedWhenInUse: return true
             case .denied,

@@ -82,12 +82,16 @@ class PermissionHandler: NSObject {
         let status = CLLocationManager.authorizationStatus()
         guard isEnabledForSession, status != .denied, status != .restricted else {
             completion(false)
+
             return
         }
+
         guard status != .authorizedWhenInUse, status != .authorizedAlways else {
             completion(true)
+
             return
         }
+
         locationPermissionCompletion = completion
         locationManager.requestWhenInUseAuthorization()
     }

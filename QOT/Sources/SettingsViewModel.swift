@@ -371,7 +371,9 @@ private func personalRows(for user: User?) -> [SettingsRow] {
 }
 
 private var locationRows: [SettingsRow] {
-    let canShareLocation = LocationManager.locationServiceEnabled == true && UserDefault.locationService.boolValue == true
+    let authorizationStatus = LocationManager.authorizationStatus == .authorizedAlways || LocationManager.authorizationStatus == .authorizedWhenInUse
+    let canShareLocation = authorizationStatus == true && UserDefault.locationService.boolValue == true
+
     return [
         .control(title: SettingsType.location.title, isOn: canShareLocation, settingsType: .location, key: UserDefault.locationService.rawValue)
     ]

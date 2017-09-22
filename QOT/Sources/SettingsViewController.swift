@@ -45,6 +45,8 @@ final class SettingsViewController: UIViewController {
         self.services = services
 
         super.init(nibName: nil, bundle: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView(_:)), name: .UIApplicationWillEnterForeground, object: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -66,6 +68,10 @@ final class SettingsViewController: UIViewController {
         navigationItem.title = settingsType.title.uppercased()
         tableView.reloadData()
     }
+
+    @objc func reloadTableView(_ notification: Notification) {
+        tableView.reloadData()
+    }
 }
 
 // MARK: - Layout
@@ -77,7 +83,6 @@ private extension SettingsViewController {
         view.addSubview(tableView)
         view.backgroundColor = .clear
         view.applyFade()
-
         tableView.backgroundView = UIImageView(image: R.image.backgroundSidebar())
         tableView.delegate = self
         tableView.dataSource = self
@@ -86,7 +91,7 @@ private extension SettingsViewController {
         tableView.tableFooterView = UIView()
         tableView.separatorColor = .clear
         tableView.allowsSelection = true
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = 44
         tableView.horizontalAnchors == view.horizontalAnchors
         tableView.verticalAnchors == view.verticalAnchors
     }
