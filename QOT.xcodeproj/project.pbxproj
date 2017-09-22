@@ -290,6 +290,7 @@
 		CC143A4F1EC47810001FB76E /* MyStatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC143A4E1EC47810001FB76E /* MyStatisticsViewModel.swift */; };
 		CC143A511EC495CE001FB76E /* MyStatisticsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC143A501EC495CE001FB76E /* MyStatisticsCoordinator.swift */; };
 		CC143A531EC49641001FB76E /* MyStatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC143A521EC49641001FB76E /* MyStatisticsViewController.swift */; };
+		CC16578C1F75194900D52660 /* CLLocation+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC16578B1F75194900D52660 /* CLLocation+Convenience.swift */; };
 		CC178A771F04FD600066A5D4 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC178A761F04FD600066A5D4 /* UserService.swift */; };
 		CC1E2A5F1EDF1DE100B9EFD3 /* UICollectionView+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1E2A5E1EDF1DE100B9EFD3 /* UICollectionView+Create.swift */; };
 		CC27E0C01EB355BC003E5B7F /* SidebarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC27E0BE1EB355BC003E5B7F /* SidebarTableViewCell.swift */; };
@@ -745,6 +746,7 @@
 		CC143A4E1EC47810001FB76E /* MyStatisticsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsViewModel.swift; sourceTree = "<group>"; };
 		CC143A501EC495CE001FB76E /* MyStatisticsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsCoordinator.swift; sourceTree = "<group>"; };
 		CC143A521EC49641001FB76E /* MyStatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStatisticsViewController.swift; sourceTree = "<group>"; };
+		CC16578B1F75194900D52660 /* CLLocation+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocation+Convenience.swift"; sourceTree = "<group>"; };
 		CC178A761F04FD600066A5D4 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		CC1E2A5E1EDF1DE100B9EFD3 /* UICollectionView+Create.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Create.swift"; sourceTree = "<group>"; };
 		CC27E0BE1EB355BC003E5B7F /* SidebarTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarTableViewCell.swift; sourceTree = "<group>"; };
@@ -1515,9 +1517,9 @@
 			isa = PBXGroup;
 			children = (
 				CC7682C71F28A85600F852A0 /* Array+Convenience.swift */,
-				CBC191121F603055009E483B /* URL+Convenience.swift */,
 				852988941F2F3E15003A36DF /* Bundle+Extensions.swift */,
 				CC05CB741EDEC6D700D15ABC /* CGPoint+Convenience.swift */,
+				CC16578B1F75194900D52660 /* CLLocation+Convenience.swift */,
 				CC02E1431F2789FE00134574 /* CLLocationManager+Convenience.swift */,
 				CB48814A1EF7B1EA00389C88 /* Data+Convenience.swift */,
 				8523E9BF1F1628B50000D20D /* Date+Extension.swift */,
@@ -1550,6 +1552,7 @@
 				CCDD549D1F46C0A7002F4933 /* UIViewController+StreamVideo.swift */,
 				CCCC42DE1ED5799D00E73905 /* UIViewController+Transition.swift */,
 				CC9622071F1F48A8007A9ED0 /* URL+Components.swift */,
+				CBC191121F603055009E483B /* URL+Convenience.swift */,
 				CCC2D3151F0AB1E000951A2E /* UserDefault+Convenience.swift */,
 			);
 			name = Extensions;
@@ -2766,6 +2769,7 @@
 				852020351EF8300800EA2032 /* PeakPerformanceUpcomingView.swift in Sources */,
 				CBB303421ECEE3E70011303A /* DateFormatter+Convenience.swift in Sources */,
 				CC6B3A291E8158B200E7FDFD /* PresentationManager.swift in Sources */,
+				CC16578C1F75194900D52660 /* CLLocation+Convenience.swift in Sources */,
 				CCE6CD801F15299F00B66DA3 /* MyStatisticsPeriod.swift in Sources */,
 				CC7D21B41EFC1348007A062E /* WeeklyChoicesViewModel.swift in Sources */,
 				CC02E1441F2789FE00134574 /* CLLocationManager+Convenience.swift in Sources */,

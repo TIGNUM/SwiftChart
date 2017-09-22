@@ -316,11 +316,11 @@ extension SettingsViewController: SettingsViewControllerDelegate {
     }
 
     func didChangeLocationValue(sender: UISwitch, settingsCell: SettingsTableViewCell) {        
-        if LocationManager.authorizationStatus == .notDetermined {
+        if LocationManager.shared.authorizationStatus == .notDetermined {
             // TODO: Connect with PremissionManager and requesst for the very first time.            
             resetLocationSwitch(sender: sender, settingsCell: settingsCell)
             locationManager.requestWhenInUseAuthorization()
-        } else if LocationManager.authorizationStatus == .denied || LocationManager.authorizationStatus == .restricted {
+        } else if LocationManager.shared.authorizationStatus == .denied || LocationManager.shared.authorizationStatus == .restricted {
             resetLocationSwitch(sender: sender, settingsCell: settingsCell)
             showAlert(type: .settingsLoccationService, handler: { 
                 UIApplication.openAppSettings()

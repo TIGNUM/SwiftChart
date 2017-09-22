@@ -78,6 +78,8 @@ final class AppCoordinator: ParentCoordinator {
         logoutNotificationHandler.handler = { [weak self] (_: Notification) in
             self?.restart()
         }
+
+        LocationManager.shared.startSignificantLocationMonitoring(didUpdateLocations: sendLocationUpdate)
     }
     
     func start() {
@@ -165,6 +167,14 @@ final class AppCoordinator: ParentCoordinator {
 // MARK: - private
 
 private extension AppCoordinator {
+
+    func sendLocationUpdate(location: CLLocation) {
+        networkManager.performUserLocationUpdateRequest(location: location) { (netwerkError: NetworkError?) in
+            if let error = netwerkError {
+                log("Error while trying to update user location: \(error)")
+            }
+        }
+    }
 
     func registerRemoteNotifications() {
         permissionHandler.askPermissionForRemoteNotifications { (granted: Bool) in
@@ -401,7 +411,7 @@ extension AppCoordinator: MorningInterviewViewControllerDelegate {
 
     private func sendMorningInterviewResults(_ userAnswers: [UserAnswer], _ viewController: MorningInterviewViewController) {
         do {
-            networkManager.performUserFeedbackRequest(userAnswers) { result in
+            networkManager.performUserFeedbackRequest(userAnswers: userAnswers) { result in
                 switch result {
                 case .success(let value): self.showFeedbackAlert(value, viewController)
                 case .failure(let error): print("error: ", error)

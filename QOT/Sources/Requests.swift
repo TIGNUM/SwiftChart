@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import CoreLocation
 
 struct AuthenticationRequest: URLRequestBuildable {
     let endpoint: Endpoint = .authentication
@@ -99,6 +100,21 @@ struct UserFeedbackRequest: URLRequestBuildable {
 
     init(_ userAnswers: [UserAnswer]) {
         self.body = try? (userAnswers.flatMap { $0.toJson() }).toJSON().serialize()
+    }
+}
+
+struct UserLocationUpdateRequest: URLRequestBuildable {
+    let endpoint: Endpoint = .userLocationUpdate
+    let httpMethod: HTTPMethod = .put
+    let body: Data?
+
+    init(_ location: CLLocation) {
+        do {
+            self.body = try location.toJson()?.toJSON().serialize()
+        } catch {
+            body = nil
+            log("Error while trying to serialize user location data: \(error)")
+        }
     }
 }
 

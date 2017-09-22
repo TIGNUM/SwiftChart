@@ -18,6 +18,7 @@ enum JsonKey: String {
     case associatedValueId
     case associatedValueType
     case attendees
+    case attitude
     case availability
     case base64Data
     case birthdate
@@ -57,6 +58,7 @@ enum JsonKey: String {
     case eventId
     case firstDayOfTheWeek
     case firstName
+    case floor
     case format
     case frequency
     case fromDate
@@ -64,6 +66,7 @@ enum JsonKey: String {
     case height
     case heightUnit
     case heightUnits
+    case horizontalAccuracy
     case id
     case idOfRelatedEntity
     case images
@@ -189,6 +192,7 @@ enum JsonKey: String {
     case validFrom
     case validUntil
     case value
+    case verticalAccuracy
     case viewed
     case waveformData
     case weekend

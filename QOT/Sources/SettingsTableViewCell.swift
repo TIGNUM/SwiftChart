@@ -48,7 +48,7 @@ class SettingsTableViewCell: UITableViewCell, Dequeueable {
             self.settingsType = settingsType
 
             if settingsType == .location {
-                let authorizationStatus = LocationManager.authorizationStatus == .authorizedAlways || LocationManager.authorizationStatus == .authorizedWhenInUse
+                let authorizationStatus = LocationManager.shared.authorizationStatus == .authorizedAlways || LocationManager.shared.authorizationStatus == .authorizedWhenInUse
                 let enabled = authorizationStatus == true && UserDefault.locationService.boolValue == true
                 setupControlCell(title: title, isOn: enabled)
             } else {                

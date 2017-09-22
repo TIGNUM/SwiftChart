@@ -10,6 +10,7 @@ import Foundation
 import Alamofire
 import Freddy
 import PromiseKit
+import CoreLocation
 
 protocol NetworkManagerDelegate: class {
     func networkManagerFailedToAuthenticate(_ networkManager: NetworkManager)
@@ -74,8 +75,15 @@ class NetworkManager {
         return performRequest(VersionInfoRequest(), parser: VersionInfo.parse, completion: completion)
     }
 
-    @discardableResult func performUserFeedbackRequest(_ userAnswers:  [UserAnswer], completion: @escaping (Result<UserAnswerFeedback, NetworkError>) -> Void) -> SerialRequest {
+    @discardableResult func performUserFeedbackRequest(userAnswers:  [UserAnswer],
+                                                       completion: @escaping (Result<UserAnswerFeedback, NetworkError>) -> Void) -> SerialRequest {
         return performRequest(UserFeedbackRequest(userAnswers), parser: UserAnswerFeedback.parse, completion: completion)
+    }
+
+    @discardableResult func performUserLocationUpdateRequest(location: CLLocation,
+                                                             completion: @escaping (NetworkError?) -> Void) -> SerialRequest {
+
+        return performRequest(UserLocationUpdateRequest(location), completion: completion)
     }
     
     /**

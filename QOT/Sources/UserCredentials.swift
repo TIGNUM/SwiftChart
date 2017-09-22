@@ -17,10 +17,13 @@ struct Credential {
 
 final class CredentialsManager {
 
+    // MARK: - Properties
+
     private let keychain = Keychain()
     private var credentialDidChangeHandlers: [(Credential?) -> Void] = []
-
     static var shared = CredentialsManager()
+
+    // MARK: - Init
 
     private init() {} // Ensure only singleton instance is used
 
