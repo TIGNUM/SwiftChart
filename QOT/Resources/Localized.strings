@@ -78,6 +78,7 @@
 "Me.Sector.My.Why.Weekly.Choices.Title" = "Weekly Choices";
 "Me.Sector.My.Why.Weekly.Choices.NoChoice.Title" = "No Choice";
 "Me.Sector.My.Why.Weekly.Choices.Choice" = "CHOICE";
+
 "Me.Sector.My.Why.Select.Weekly.Choices.Header" = "Select your %@ strategies you want to challenge this week";
 "Me.Sector.My.Why.Select.Weekly.Choices.Navigation" = "Your %@ weekly choices %@/%@";
 "Me.Sector.My.Why.Select.Weekly.Choices.Max.Choice.Alert.Title" = "Max Limit";
@@ -132,6 +133,7 @@
 "Prepare.MyPrep.NoSavePreparations" = "No preparations\nhave been saved yet";
 "Prepare.Chat.PreparationSaved" = "Your preparation has been saved";
 
+"Weekly.Choices.No.Content" = "No weekly choices\nhave been saved yet.\n\nUse the + button\nto add your weekly choices.";
 
 "Learn.Content.Item.Title.Full" = "Full";
 "Learn.Content.Item.Title.Bullets" = "Bullets";

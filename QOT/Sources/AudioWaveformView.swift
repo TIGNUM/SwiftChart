@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-final  class AudioWaveformView: UIView {
+final class AudioWaveformView: UIView {
 
     // MARK: - Properties
 

@@ -53,6 +53,7 @@ final class TabBarCoordinator: ParentCoordinator {
         let viewModel = ChatViewModel<Answer>()
         let viewController = ChatViewController(pageName: .prepareChat, viewModel: viewModel)
         viewController.title = R.string.localized.topTabBarItemTitlePerpareCoach()
+
         return viewController
     }()
 
@@ -60,6 +61,7 @@ final class TabBarCoordinator: ParentCoordinator {
         let viewModel = MyPrepViewModel(services: self.services)
         let viewController = MyPrepViewController(viewModel: viewModel)
         viewController.title = R.string.localized.topTabBarItemTitlePerparePrep()
+
         return viewController
     }()
 
@@ -92,8 +94,12 @@ final class TabBarCoordinator: ParentCoordinator {
     }()
 
     fileprivate lazy var topTabBarControllerPrepare: UINavigationController = {
-        let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())
-        let topTabBarController = UINavigationController(withPages: [self.prepareChatViewController, self.myPrepViewController], topBarDelegate: self, pageDelegate: self, leftButton: nil, rightButton: rightButton)
+        let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())        
+        let topTabBarController = UINavigationController(withPages: [self.prepareChatViewController, self.myPrepViewController],
+                                                         topBarDelegate: self,
+                                                         pageDelegate: self,
+                                                         leftButton: nil,
+                                                         rightButton: rightButton)
         
         return topTabBarController
     }()
@@ -194,19 +200,19 @@ final class TabBarCoordinator: ParentCoordinator {
         guard !tutorial.exists(), let tabBarView = tabBarController?.tabBarView else {
             return
         }
+
         tutorial.set()
-        
         let selectedIndex = self.selectedIndex.value
         let viewModel = TutorialViewModel(tutorial: tutorial)
         let buttonFrame = tabBarView.buttons[selectedIndex].frame
-        let viewController = TutorialViewController(viewModel: viewModel, buttonFrame: buttonFrame, completion: {
+        let viewController = TutorialViewController(viewModel: viewModel, buttonFrame: buttonFrame) {
             tabBarView.setGlowEffectForButtonIndex(selectedIndex, enabled: false)
             self.windowManager.resignWindow(atLevel: .overlay)
-        })
+        }
         windowManager.showWindow(atLevel: .overlay)
-        windowManager.setRootViewController(viewController, atLevel: .overlay, animated: true, completion: {
+        windowManager.setRootViewController(viewController, atLevel: .overlay, animated: true) {
             tabBarView.setGlowEffectForButtonIndex(selectedIndex, enabled: true)
-        })
+        }
     }
 }
 
@@ -319,6 +325,7 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
 extension TabBarCoordinator: TopNavigationBarDelegate {
 
     func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
+        
     }
     
     func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {

@@ -1,4 +1,4 @@
-//
+  //
 //  WeeklyChoicesViewController.swift
 //  QOT
 //
@@ -8,10 +8,15 @@
 
 import UIKit
 import Anchorage
+import ReactiveKit
 
 protocol WeeklyChoicesViewControllerDelegate: class {
+
     func didTapClose(in viewController: UIViewController, animated: Bool)
+
     func didTapShare(in viewController: UIViewController, from rect: CGRect, with item: WeeklyChoice)
+
+    func didUpdateList(with viewModel: WeeklyChoicesViewModel)
 }
 
 final class WeeklyChoicesViewController: UIViewController {
@@ -19,19 +24,31 @@ final class WeeklyChoicesViewController: UIViewController {
     // MARK: - Properties
 
     weak var delegate: WeeklyChoicesViewControllerDelegate?
-
     fileprivate let viewModel: WeeklyChoicesViewModel
     fileprivate lazy var dateLabel: UILabel = UILabel()
+    private let disposeBag = DisposeBag()
+
     fileprivate lazy var collectionView: UICollectionView = {
         let layout = WeeklyChoicesLayout()
         layout.delegate = self
 
-        return UICollectionView(
-            layout: layout,
-            delegate: self,
-            dataSource: self,
-            dequeables: WeeklyChoicesCell.self
-        )
+        return UICollectionView(layout: layout,
+                                delegate: self,
+                                dataSource: self,
+                                dequeables: WeeklyChoicesCell.self)
+    }()
+
+    fileprivate lazy var emptyLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .clear
+        label.textColor = .white40
+        label.numberOfLines = 0
+        label.prepareAndSetTextAttributes(text: R.string.localized.weeklyChoicesNoContent(),
+                                          font: Font.DPText,
+                                          alignment: .center,
+                                          lineSpacing: 7,
+                                          characterSpacing: 1)
+        return label
     }()
 
     // MARK: - Init
@@ -52,12 +69,21 @@ final class WeeklyChoicesViewController: UIViewController {
         super.viewDidLoad()
 
         setupView()
+        observeViewModel()
     }
 }
 
 // MARK: - Private
 
 private extension WeeklyChoicesViewController {
+
+    func observeViewModel() {
+        viewModel.updates.observeNext { [collectionView] (update) in
+            collectionView.reloadData()
+            self.delegate?.didUpdateList(with: self.viewModel)
+            self.setNoContentLabel()
+        }.dispose(in: disposeBag)
+    }
 
     func setupView() {
         let coverView = UIImageView(image: R.image.backgroundWeeklyChoices())
@@ -75,8 +101,19 @@ private extension WeeklyChoicesViewController {
         coverView.topAnchor == view.topAnchor
         coverView.horizontalAnchors == view.horizontalAnchors
         coverView.bottomAnchor == view.bottomAnchor
+        setNoContentLabel()
         view.layoutIfNeeded()
         configureDateLabel(dateLabel)
+    }
+
+    private func setNoContentLabel() {
+        if viewModel.itemCount <= 0 {
+            view.addSubview(emptyLabel)
+            emptyLabel.horizontalAnchors == view.horizontalAnchors
+            emptyLabel.verticalAnchors == view.verticalAnchors
+        } else {
+            emptyLabel.removeFromSuperview()
+        }
     }
 
     func configureDateLabel(_ dateLabel: UILabel) {

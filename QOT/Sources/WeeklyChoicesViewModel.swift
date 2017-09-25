@@ -10,7 +10,13 @@ import Foundation
 import ReactiveKit
 import RealmSwift
 
+protocol WeeklyChoicesViewModelDelegate: class {
+
+    func fetchWeeklyChoices()
+}
+
 final class WeeklyChoicesViewModel {
+
     struct WeeklyChoicePage {
         // TODO: should this be dynamic based on Layout.MeSection.maxWeeklyPage?
         var weekStart: Date
@@ -30,17 +36,22 @@ final class WeeklyChoicesViewModel {
         }
     }
 
+    // MARK: - Properties
+
+    private let services: Services
+    private var userChoices: AnyRealmCollection<UserChoice>
+    var items: [WeeklyChoicePage] = []
+    let updates = PublishSubject<CollectionUpdate, NoError>()
+
+    var itemCount: Int {
+        return items.count * itemsPerWeek
+    }
+
     var itemsPerWeek: Int {
         return Layout.MeSection.maxWeeklyPage
     }
 
-    private let services: Services
-    private let userChoices: AnyRealmCollection<UserChoice>
-    var items: [WeeklyChoicePage] = []
-    let updates = PublishSubject<CollectionUpdate, NoError>()
-    var itemCount: Int {
-        return items.count * itemsPerWeek
-    }
+    // MARK: - Init
     
     init(services: Services) {
         self.services = services
@@ -72,18 +83,12 @@ final class WeeklyChoicesViewModel {
         let weekChoices = items[week]
 
         switch choiceNumber {
-        case 0:
-            return weekChoices.choice1
-        case 1:
-            return weekChoices.choice2
-        case 2:
-            return weekChoices.choice3
-        case 3:
-            return weekChoices.choice4
-        case 4:
-            return weekChoices.choice5
-        default:
-            return nil
+        case 0: return weekChoices.choice1
+        case 1: return weekChoices.choice2
+        case 2: return weekChoices.choice3
+        case 3: return weekChoices.choice4
+        case 4: return weekChoices.choice5
+        default: return nil
         }
     }
 
@@ -122,5 +127,15 @@ final class WeeklyChoicesViewModel {
                 selected: true
             )
         }
+    }
+}
+
+// MARK: - WeeklyChoicesViewModelDelegate
+
+extension WeeklyChoicesViewModel: WeeklyChoicesViewModelDelegate {
+
+    func fetchWeeklyChoices() {        
+        loadWeeklyChoices()
+        updates.next(.reload)
     }
 }

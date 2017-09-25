@@ -20,7 +20,6 @@ extension UINavigationController {
                      titleColor: UIColor = .white,
                      leftButton: UIBarButtonItem? = nil,
                      rightButton: UIBarButtonItem? = nil) {
-
         let pageViewController = PageViewController(headerView: headerView,
                                                     backgroundImage: backgroundImage,
                                                     pageDelegate: pageDelegate,
@@ -68,6 +67,7 @@ extension UINavigationController: CustomPresentationAnimatorDelegate {
         guard let viewController = viewControllers.first as? CustomPresentationAnimatorDelegate else {
             return nil
         }
+
         return viewController.animationsForAnimator(animator)
     }
 }
@@ -80,6 +80,7 @@ extension UINavigationController: ZoomPresentationAnimatable {
         guard let viewController = viewControllers.first as? ZoomPresentationAnimatable else {
             return
         }
+
         viewController.startAnimation(presenting: presenting, animationDuration: animationDuration, openingFrame: openingFrame)
     }
 }

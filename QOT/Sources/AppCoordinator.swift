@@ -31,6 +31,7 @@ final class AppCoordinator: ParentCoordinator {
     fileprivate lazy var networkManager: NetworkManager = NetworkManager(delegate: self, credentialsManager: self.credentialsManager)
     fileprivate lazy var credentialsManager: CredentialsManager = CredentialsManager.shared
     fileprivate var canProcessRemoteNotifications = false
+    private var onDismiss: (() -> Void)? = nil
     
     fileprivate lazy var realmProvider: RealmProvider = {
         return RealmProvider()
@@ -158,8 +159,10 @@ final class AppCoordinator: ParentCoordinator {
     }
 
     func dismiss(_ viewController: UIViewController, level: WindowManager.Level) {
-        viewController.dismiss(animated: true) {
+        viewController.dismiss(animated: true) { [unowned self] in
             self.windowManager.resignWindow(atLevel: level)
+            self.onDismiss?()
+            self.onDismiss = nil
         }
     }
 }
@@ -183,7 +186,6 @@ private extension AppCoordinator {
     }
 
     func startTabBarCoordinator(services: Services, permissionHandler: PermissionHandler) {
-        // create coordinator
         let selectedIndex = checkListIDToPresent != nil ? 2 : 0
         let coordinator = TabBarCoordinator(
             windowManager: windowManager,
@@ -194,13 +196,13 @@ private extension AppCoordinator {
             pageTracker: pageTracker
         )
         self.tabBarCoordinator = coordinator
-        
-        // start coordinator
         coordinator.start()
         startChild(child: coordinator)
 
-        // apply any story logic that applies after start
-        guard let localID = checkListIDToPresent else { return }
+        guard let localID = checkListIDToPresent else {
+            return
+        }
+
         coordinator.showPreparationCheckList(localID: localID)
         checkListIDToPresent = nil
     }
@@ -210,6 +212,7 @@ private extension AppCoordinator {
             guard let currentBuild = Int(Bundle.main.buildNumber) else {
                 return true
             }
+            
             return info.build > currentBuild
         }
 
@@ -256,11 +259,12 @@ extension AppCoordinator {
         windowManager.presentViewController(morningInterViewController, atLevel: .priority, animated: true, replacesContent: true, completion: nil)
     }
 
-    func presentWeeklyChoices(forStartDate startDate: Date, endDate: Date) {
+    func presentWeeklyChoices(forStartDate startDate: Date, endDate: Date, completion: (() -> Void)?) {
         guard let services = services else {
             return
         }
 
+        onDismiss = completion
         let viewModel = SelectWeeklyChoicesDataModel(services: services, maxSelectionCount: Layout.MeSection.maxWeeklyPage, startDate: startDate, endDate: endDate)
         let image = windowManager.rootViewController(atLevel: .normal)?.view.screenshot()
         let viewController = SelectWeeklyChoicesViewController(delegate: self, viewModel: viewModel, backgroundImage: image)
@@ -392,6 +396,7 @@ extension AppCoordinator: LoginCoordinatorDelegate {
 // MARK: - NetworkManagerDelegate
 
 extension AppCoordinator: NetworkManagerDelegate {
+
     func networkManagerFailedToAuthenticate(_ networkManager: NetworkManager) {
         restart()
     }
@@ -435,6 +440,7 @@ extension AppCoordinator: SelectWeeklyChoicesViewControllerDelegate {
 
     func dismiss(viewController: SelectWeeklyChoicesViewController) {
         dismiss(viewController, level: .priority)
+
     }
 
     func didTapRow(_ viewController: SelectWeeklyChoicesViewController, contentCollection: ContentCollection, contentCategory: ContentCategory) {

@@ -91,7 +91,7 @@ class SelectWeeklyChoicesDataModel {
         dataSource[indexPath.section] = node
     }
 
-    func createUsersWeeklyChoices() {
+    func createUsersWeeklyChoices() {        
         selected.forEach({ [unowned self] (choice: WeeklyChoice) in
             _ = try? self.services.userService.createUserChoice(
                 contentCategoryID: choice.categoryID,

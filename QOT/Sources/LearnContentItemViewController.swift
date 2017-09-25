@@ -219,7 +219,6 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
         var item: ContentItem
 
         if viewModel.isPDFItem(at: indexPath, tabType: tabType) {
@@ -229,9 +228,14 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
         }
 
         switch item.contentItemValue {
-        case .audio(_, _, _, let audioURL, let duration, _):
+        case .audio(_, _, _, let audioURL, let duration, let waveformData):
             let cell = tableView.cellForRow(at: indexPath) as? LearnStrategyPlaylistAudioCell
             viewModel.playItem(at: indexPath, audioURL: audioURL, duration: duration, cell: cell)
+
+            if let audioPlayerTopView = audioPlayerTopView {
+                soundPattern = Property(waveformData)
+                observeAudioPlayerView(audioPlayerTopView)
+            }
         case .video(_, _, _, let videoURL, _):
             streamVideo(videoURL: videoURL)
         case .pdf(_, _, let pdfURL):
@@ -344,13 +348,12 @@ private extension LearnContentItemViewController {
         return readMoreCell
     }
 
-    func contentItemAudioCell(
-        tableView: UITableView,
-        indexPath: IndexPath,
-        title: String,
-        duration: TimeInterval) -> LearnStrategyPlaylistAudioCell {
-            let cell: LearnStrategyPlaylistAudioCell = tableView.dequeueCell(for: indexPath)
-            cell.setup(title: title, playing: viewModel.isPlaying(indexPath: indexPath))
+    func contentItemAudioCell(tableView: UITableView,
+                              indexPath: IndexPath,
+                              title: String,
+                              duration: TimeInterval) -> LearnStrategyPlaylistAudioCell {
+        let cell: LearnStrategyPlaylistAudioCell = tableView.dequeueCell(for: indexPath)
+        cell.setup(title: title, playing: viewModel.isPlaying(indexPath: indexPath))
 
         return cell
     }

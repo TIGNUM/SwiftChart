@@ -9,15 +9,20 @@
 import UIKit
 
 protocol SelectWeeklyChoicesViewControllerDelegate: class {
+
     func dismiss(viewController: SelectWeeklyChoicesViewController)
+
     func didTapRow(_ viewController: SelectWeeklyChoicesViewController, contentCollection: ContentCollection, contentCategory: ContentCategory)
 }
 
-class SelectWeeklyChoicesViewController: UIViewController {
+final class SelectWeeklyChoicesViewController: UIViewController {
+
     fileprivate struct CellReuseIdentifiers {
         static let CollapsableCell = "CollapsableCell"
         static let CollapsableContentCell = "CollapsableContentCell"
     }
+
+    // MARK: - Properties
     
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var backgroundBlurView: UIVisualEffectView!
@@ -27,11 +32,11 @@ class SelectWeeklyChoicesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var tableHeaderView: UIView!
     @IBOutlet weak var tableHeaderViewLabel: UILabel!
-    
     private var backgroundImage: UIImage?
-
     let viewModel: SelectWeeklyChoicesDataModel
     weak var delegate: SelectWeeklyChoicesViewControllerDelegate?
+
+    // MARK: - Init
     
     init(delegate: SelectWeeklyChoicesViewControllerDelegate, viewModel: SelectWeeklyChoicesDataModel, backgroundImage: UIImage?) {
         self.delegate = delegate
@@ -81,8 +86,7 @@ class SelectWeeklyChoicesViewController: UIViewController {
     
     fileprivate func setSelected(_ selected: Int) {
         let maxSelectionCount = viewModel.maxSelectionCount
-        navigationBar.topItem?.title = R.string.localized.meSectorMyWhySelectWeeklyChoicesNavigation("\(maxSelectionCount)", "\(selected)", "\(viewModel.maxSelectionCount)")
-.uppercased()
+        navigationBar.topItem?.title = R.string.localized.meSectorMyWhySelectWeeklyChoicesNavigation("\(maxSelectionCount)", "\(selected)", "\(viewModel.maxSelectionCount)").uppercased()
         doneButton.isEnabled = selected == maxSelectionCount
     }
     
@@ -107,7 +111,10 @@ class SelectWeeklyChoicesViewController: UIViewController {
     }
     
     @IBAction private func donePressed(_ sender: UIBarButtonItem) {
-        viewModel.createUsersWeeklyChoices()
+        view.showProgressHUD(type: .empty)
+        DispatchQueue.main.async { [unowned self] in
+            self.viewModel.createUsersWeeklyChoices()
+        }
         delegate?.dismiss(viewController: self)
     }
 }

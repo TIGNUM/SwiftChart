@@ -312,10 +312,12 @@ private extension MyWhyView {
 private extension MyWhyView {
 
     @objc func didTapWeeklyChoices(sender: UIButton) {
-        guard sender.tag < weeklyChoices.count else {
-            return
+        var selectedWeeklyChoice: WeeklyChoice? = nil
+        if sender.tag < weeklyChoices.count {
+            selectedWeeklyChoice = weeklyChoices[sender.tag]
         }
-        delegate?.didTapWeeklyChoices(weeklyChoice: weeklyChoices[sender.tag], from: self)
+
+        delegate?.didTapWeeklyChoices(weeklyChoice: selectedWeeklyChoice, from: self)
     }
 
     @objc func didTapPartner(sender: UIButton) {

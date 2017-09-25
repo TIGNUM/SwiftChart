@@ -52,18 +52,12 @@ final class MyPrepViewModel {
         preparationChecks = try? services.preparationService.preparationChecksOnBackground()
         preparationsNotificationHandler = preparations?.addNotificationBlock { [unowned self] (change: RealmCollectionChange<AnyRealmCollection<Preparation>>) in
             switch change {
-            case .update(_, let deletions, let insertions, _):
+            case .update(_, _, let insertions, _):
                 guard insertions.count == 0 else {
                     self.refresh()
                     return
                 }
-                self.updates.next(.willBegin)
-                deletions.sorted(by: >).forEach({ (index: Int) in
-                  self.items.remove(at: index)
-                })
-                let deletionPaths = deletions.map({ IndexPath(row: $0, section: 0) })
-                self.updates.next(.update(deletions: deletionPaths, insertions: [], modifications: []))
-                self.updates.next(.didFinish)
+                self.updates.next(.reload)
             default:
                 break
             }
@@ -93,25 +87,26 @@ final class MyPrepViewModel {
     
     func deleteItem(at index: Index) throws {
         try services.preparationService.deletePreparation(withLocalID: items[index].localID)
-        itemCountUpdate.next(itemCount - 1)
+        refresh()
     }
     
     private func refresh() {
         guard let preparations = preparations else {
             return
         }
+        
         do {
             var items: [Item] = []
             try preparations.forEach({ (preparation: Preparation) in
                 let contentItems = Array(try self.services.contentService.contentItemsOnBackground(contentCollectionID: preparation.contentCollectionID))
-                let contentItemIDs = contentItems.filter ({ (contentItem) -> Bool in
+                let contentItemIDs = contentItems.filter { (contentItem) -> Bool in
                     switch contentItem.contentItemValue {
                     case .prepareStep:
                         return true
                     default:
                         return false
                     }
-                }).map { $0.remoteID }
+                }.map { $0.remoteID }
                 
                 let preparationChecks = try self.services.preparationService.preparationChecksOnBackground(preparationID: preparation.localID)
                 let finishedPreparationCount = preparationChecks.reduce(0, { (result: Int, check: PreparationCheck) -> Int in
