@@ -18,7 +18,10 @@ platform :ios do
     match(type: "adhoc", readonly: true)
 
     # Build
-    gym(scheme: "QOT")
+    gym(
+      scheme: "QOT",
+      configuration: "Release"
+    )
 
     # upload to Beta by Crashlytics
     crashlytics(
@@ -36,7 +39,10 @@ platform :ios do
     increment_build_number(build_number: ENV["BITRISE_BUILD_NUMBER"])
 
     # Build
-    gym(scheme: "QOT")
+    gym(
+      scheme: "QOT",
+      configuration: "Release"
+    )
 
     # Release to hockey app
     hockey(api_token: ENV["HOCKEYAPP_API_TOKEN"])
@@ -53,6 +59,7 @@ platform :ios do
     # Build
     gym(
       scheme: "QOT",
+      configuration: "Release"
     )
 
     #Release to AWS S3
