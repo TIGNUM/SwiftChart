@@ -3,6 +3,8 @@ apple_id ENV["APPLE_ID"] # Your Apple email address
 	
 team_id "4FQQH349R5" # Developer Portal Team ID
 
+ENV['INFO_PLIST_PATH'] = "./QOT/Resources/Info.plist"
+
 # AWS S3
 ENV['S3_BUCKET'] = "qotapp.bucket"
 ENV['S3_REGION'] = "eu-west-1"

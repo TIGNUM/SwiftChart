@@ -36,7 +36,8 @@ platform :ios do
     # Install certificates and profiles
     sigh(force: false)
 
-    increment_build_number(build_number: ENV["BITRISE_BUILD_NUMBER"])
+    # Increment build number
+    set_info_plist_value(path: ENV['INFO_PLIST_PATH'], key: "CFBundleVersion", value: ENV["BITRISE_BUILD_NUMBER"])
 
     # Build
     gym(
@@ -54,7 +55,8 @@ platform :ios do
     # Install certificates and profiles
     sigh(force: false)
 
-    increment_build_number(build_number: ENV["BITRISE_BUILD_NUMBER"])
+    # Increment build number
+    set_info_plist_value(path: ENV['INFO_PLIST_PATH'], key: "CFBundleVersion", value: ENV["BITRISE_BUILD_NUMBER"])
 
     # Build
     gym(
