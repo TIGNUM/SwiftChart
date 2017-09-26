@@ -4,6 +4,9 @@ xcuserdata/
 Pods/
 *.generated.swift
 
+# appcode
+.idea
+
 # fastlane
 fastlane/report.xml
 fastlane/Preview.html

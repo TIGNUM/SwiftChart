@@ -59,12 +59,7 @@ final class PageViewController: UIPageViewController {
          pageDelegate: PageViewControllerDelegate?,
          transitionStyle style: UIPageViewControllerTransitionStyle,
          navigationOrientation: UIPageViewControllerNavigationOrientation,
-         options: [String : Any]? = nil) {
-            if !gestureRecognizerShouldBeginSwizzle.isSwizzled {
-                // should only be called once
-                gestureRecognizerShouldBeginSwizzle.swizzle()
-            }
-        
+         options: [String : Any]? = nil) {        
             self.headerView = headerView
             backgroundImageView = UIImageView(image: backgroundImage)
             self.pageDelegate = pageDelegate
@@ -242,54 +237,5 @@ private extension UIScrollView {
 
     var normalized: CGFloat {
         return -(self.contentInset.top + self.contentOffset.y)
-    }
-}
-
-// MARK: - Swizevil
-/**
- @abstract   using this to prevent clashing UIPanGestureRecognizer gestures
- @usage      implement PageSwipe in your PageviewController instance
- */
-private var gestureRecognizerShouldBeginSwizzle = GestureRecognizerShouldBeginSwizzle()
-
-private struct GestureRecognizerShouldBeginSwizzle: Swizzle {
-
-    // MARK: - Properties
-
-    let classID: AnyClass
-    let originalSelector: Selector
-    let newSelector: Selector
-    var originalMethod: Method?
-    var newMethod: Method?
-    var isSwizzled: Bool
-
-    // MARK: - Init
-    
-    init() {
-        classID = UIScrollView.self
-        originalSelector = #selector(UIScrollView.gestureRecognizerShouldBegin(_:))
-        newSelector = #selector(UIScrollView.QOT_PageViewControllerr_gestureRecognizerShouldBegin(_:))
-        originalMethod = class_getInstanceMethod(classID, originalSelector)
-        newMethod = class_getInstanceMethod(classID, newSelector)
-        isSwizzled = false
-    }
-}
-
-extension UIScrollView {
-
-    @objc func QOT_PageViewControllerr_gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        guard
-            let panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer,
-            let pageViewController: PageViewController = findParentResponder(),
-            let currentPage = pageViewController.currentPage as? PageSwipe else {
-                // return original implementation result
-                // FIXME: there's a way to call original method directly. currently unswizzling to call original, then re-swizzling.
-                gestureRecognizerShouldBeginSwizzle.swizzle()
-                let result = gestureRecognizerShouldBegin(gestureRecognizer)
-                gestureRecognizerShouldBeginSwizzle.swizzle()
-                return result
-        }
-        let direction: PageDirection = (panGestureRecognizer.velocity(in: self).x < 0) ? .forward : .backward
-        return currentPage.canSwipePageDirection(direction)
     }
 }
