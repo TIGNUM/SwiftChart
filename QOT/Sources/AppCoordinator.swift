@@ -440,7 +440,6 @@ extension AppCoordinator: SelectWeeklyChoicesViewControllerDelegate {
 
     func dismiss(viewController: SelectWeeklyChoicesViewController) {
         dismiss(viewController, level: .priority)
-
     }
 
     func didTapRow(_ viewController: SelectWeeklyChoicesViewController, contentCollection: ContentCollection, contentCategory: ContentCategory) {

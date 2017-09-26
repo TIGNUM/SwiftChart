@@ -207,7 +207,7 @@ private extension MyUniverseViewController {
 
     func addTabRecognizer() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapSector))
-        view?.addGestureRecognizer(tapGestureRecognizer)
+        scrollView.addGestureRecognizer(tapGestureRecognizer)
     }
 
     @objc func didTapSector(recognizer: UITapGestureRecognizer) {
@@ -378,6 +378,7 @@ extension MyUniverseViewController: MyWhyViewDelegate {
 }
 
 extension MyUniverseViewController: MyDataViewDelegate {
+
     func myDataView(_ view: MyDataView, pressedProfileButton button: UIButton) {
         delegate?.didTapMyToBeVision(vision: myWhyViewModel.myToBeVision, from: button, in: self)
     }
@@ -386,6 +387,7 @@ extension MyUniverseViewController: MyDataViewDelegate {
 // MARK: - CustomPresentationAnimatorDelegate {
 
 extension MyUniverseViewController: CustomPresentationAnimatorDelegate {
+
     func animationsForAnimator(_ animator: CustomPresentationAnimator) -> (() -> Void)? {
         if animator.toViewController is MyToBeVisionViewController {
             return { [unowned self] in
@@ -492,6 +494,7 @@ extension MyUniverseViewController: TopNavigationBarDelegate {
 // MARK: - animation helper
 
 private extension UIViewController {
+
     func contains(_ classId: AnyClass) -> Bool {
         if let navigationController = self as? UINavigationController, let pageViewController = navigationController.viewControllers.first as? PageViewController, let viewController = pageViewController.data?.first, viewController.classForCoder == classId {
             return true
