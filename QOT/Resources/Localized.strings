@@ -38,16 +38,13 @@
 "Settings.Security.Password.Title" = "Change Password";
 "Settings.Security.Confirm.Title" = "Confirm";
 "Settings.Security.Terms.Title" = "Terms And Conditions";
-"Settings.Security.LegalNotes.Title" = "Legal Notes";
-"Settings.Security.DataProtection.Title" = "Notes and Data Protections";
 "Settings.Security.Copyrights.Title" = "Content And Copyrights";
-"Settings.Security.Data.Security.Title" = "Data Security";
+"Settings.Security.Privacy.Policy.Title" = "Privacy Policy";
 
 "Sidebar.Title.Library" = "QOT Library";
 "Sidebar.Title.Benefits" = "QOT Benefits";
 "Sidebar.Title.Settings" = "Settings";
 "Sidebar.Title.Sensor" = "Add Sensor";
-"Sidebar.Title.Privacy" = "Data Privacy";
 "Sidebar.Title.About" = "About Tignum";
 "Sidebar.Title.Logout" = "Logout";
 

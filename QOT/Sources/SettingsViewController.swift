@@ -183,10 +183,8 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             case .calendar: delegate?.openCalendarListViewController(settingsViewController: self)
             case .password: delegate?.openChangePasswordViewController(settingsViewController: self)
             case .copyrights,
-                 .legalNotes,
                  .terms,
-                 .security,
-                 .dataProtection: delegate?.openArticleViewController(viewController: self, settingsType: settingsType)
+                 .security: delegate?.openArticleViewController(viewController: self, settingsType: settingsType)
             case .tutorial: print("tutorial")
             case .interview: print("interview")
             case .support: print("support")

@@ -23,15 +23,14 @@ final class SidebarViewModel {
         case logout
 
         static var allValues: [SidebbarItem] {
-            return [
-                .library,
-                .benefits,
-                .settings,
-                .sensor,
-                .placeholder,
-                .about,
-                .privacy,
-                .logout
+            return [.library,
+                    .benefits,
+                    .settings,
+                    .sensor,
+                    .placeholder,
+                    .about,
+                    .privacy,
+                    .logout
             ]
         }
 
@@ -43,7 +42,7 @@ final class SidebarViewModel {
             case .sensor: return R.string.localized.sidebarTitleSensor()
             case .placeholder: return nil
             case .about: return R.string.localized.sidebarTitleAbout()
-            case .privacy: return R.string.localized.sidebarTitlePrivacy()
+            case .privacy: return R.string.localized.settingsSecurityPrivacyPolicyTitle()
             case .logout: return R.string.localized.sidebarTitleLogout()
             }
         }
@@ -103,7 +102,7 @@ final class SidebarViewModel {
             case .sensor: return 0
             case .placeholder: return 0
             case .about: return 100092
-            case .privacy: return 100100
+            case .privacy: return 100163
             case .logout: return 0
             }
         }

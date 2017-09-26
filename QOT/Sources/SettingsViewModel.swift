@@ -28,8 +28,6 @@ enum SettingsType: Int {
     case password
     case confirm
     case terms
-    case legalNotes
-    case dataProtection
     case copyrights
     case security
 
@@ -53,10 +51,8 @@ enum SettingsType: Int {
         case .password: return R.string.localized.settingsSecurityPasswordTitle()
         case .confirm: return R.string.localized.settingsSecurityConfirmTitle()
         case .terms: return R.string.localized.settingsSecurityTermsTitle()
-        case .legalNotes: return R.string.localized.settingsSecurityLegalNotesTitle()
-        case .dataProtection: return R.string.localized.settingsSecurityDataProtectionTitle()
         case .copyrights: return R.string.localized.settingsSecurityCopyrightsTitle()
-        case .security: return R.string.localized.settingsSecurityDataSecurityTitle()
+        case .security: return R.string.localized.settingsSecurityPrivacyPolicyTitle()
         }
     }
 
@@ -64,8 +60,6 @@ enum SettingsType: Int {
         switch self {
         case .copyrights: return service.contentCollection(id: 100105)
         case .terms: return service.contentCollection(id: 100102)
-        case .legalNotes: return service.contentCollection(id: 100103)
-        case .dataProtection: return service.contentCollection(id: 100104)
         case .security: return service.contentCollection(id: 100163)
         default: return nil
         }
@@ -330,7 +324,6 @@ private func generalSettingsSection(for user: User?) -> [SettingsSection] {
         MockSettingsSection(title: "Personal", rows: personalRows(for: user)),
         MockSettingsSection(title: "Location", rows: locationRows),
         MockSettingsSection(title: "Calendar", rows: calendarRows)
-//        MockSettingsSection(title: "QOT", rows: tignumRows)
     ]
 }
 
@@ -419,10 +412,8 @@ private var accountRows: [SettingsRow] {
 
 private var aboutRows: [SettingsRow] {
     return [
-        .label(title: SettingsType.terms.title, value: "", settingsType: .terms),
-        .label(title: SettingsType.legalNotes.title, value: "", settingsType: .legalNotes),
-        .label(title: SettingsType.dataProtection.title, value: "", settingsType: .dataProtection),
-        .label(title: SettingsType.copyrights.title, value: "", settingsType: .copyrights),
-        .label(title: SettingsType.security.title, value: "", settingsType: .security)
+        .label(title: SettingsType.terms.title.uppercased(), value: "", settingsType: .terms),
+        .label(title: SettingsType.copyrights.title.uppercased(), value: "", settingsType: .copyrights),
+        .label(title: SettingsType.security.title.uppercased(), value: "", settingsType: .security)
     ]
 }

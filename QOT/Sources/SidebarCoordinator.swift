@@ -74,7 +74,7 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
     }
 
     func didTapPrivacyCell(with contentCollection: ContentCollection?, backgroundImage: UIImage?, in viewController: SidebarViewController) {
-        startSidebarItemCoordinator(pageName: .privacy, contentCollection: contentCollection, viewController: viewController, topTabBarTitle: R.string.localized.sidebarTitlePrivacy(), backgroundImage: backgroundImage)
+        startSidebarItemCoordinator(pageName: .privacy, contentCollection: contentCollection, viewController: viewController, topTabBarTitle: R.string.localized.settingsSecurityPrivacyPolicyTitle(), backgroundImage: backgroundImage)
     }
 
     private func startSidebarItemCoordinator(pageName: PageName, contentCollection: ContentCollection?, viewController: SidebarViewController, topTabBarTitle: String, backgroundImage: UIImage? = nil) {
