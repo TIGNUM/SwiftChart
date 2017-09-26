@@ -51,18 +51,40 @@ final class ContentCollection: SyncableObject {
         guard
             let relatedContent = relatedContent,
             let json = try? JSON(jsonString: relatedContent),
-            let ids = try? json.decodedArray(type: Int.self)
-            else {
+            let ids = try? json.decodedArray(type: Int.self) else {
                 return []
         }
+
         return ids
+    }
+
+    var durationString: String {
+        let durationString: String
+
+        if hasVideoOnly == true {
+            let durations = contentItems.flatMap { $0.valueDuration.value?.toFloat }
+            let total = durations.reduce(0) { ($0 / 60) + ($1 / 60) }
+            let min = String(Int(total))
+            durationString = R.string.localized.learnContentListViewMinutesLabelWatch(min)
+        } else {
+            let min = String(minutesToRead)
+            durationString = R.string.localized.learnContentListViewMinutesLabel(min)
+        }
+
+        return durationString
+    }
+
+    var hasVideoOnly: Bool {
+        let contentItemsVideo = contentItems.filter { $0.format == "video" }
+
+        return contentItemsVideo.count == contentItems.count
     }
 }
 
 // MARK: - BuildRelations
 
 extension ContentCollection: BuildRelations {
-    
+
     func buildRelations(realm: Realm) {
         let categoryIDs = Array(self.categoryIDs.map({ $0.value }))
         let categories = realm.syncableObjects(ofType: ContentCategory.self, remoteIDs: categoryIDs)

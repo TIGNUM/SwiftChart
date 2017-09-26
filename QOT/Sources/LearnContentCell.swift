@@ -53,7 +53,6 @@ final class LearnContentCell: UICollectionViewCell, Dequeueable {
     // MARK: - Configure
 
     func configure(with content: ContentCollection, index: Int) {
-        let min = String(content.minutesToRead)
         let attributedIndex = Style.headlineSmall((String(format: "#%02d", index + 1)), .white50).attributedString()
         let attributedTitle = NSMutableAttributedString(
             string: content.title.uppercased(),
@@ -63,7 +62,7 @@ final class LearnContentCell: UICollectionViewCell, Dequeueable {
             lineBreakMode: .byTruncatingTail
         )
         let attributedDuration = NSMutableAttributedString(
-            string: R.string.localized.learnContentListViewMinutesLabel(min),
+            string: content.durationString,
             letterSpacing: contentView.bounds.width < 150 ? 1.3 : 2,
             font: contentView.bounds.width < 150 ? UIFont.bentonBookFont(ofSize: 10) : Font.H7Title,
             textColor: .white40
