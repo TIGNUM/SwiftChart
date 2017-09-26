@@ -42,6 +42,7 @@ final class SelectWeeklyChoicesViewController: UIViewController {
         self.delegate = delegate
         self.viewModel = viewModel
         self.backgroundImage = backgroundImage
+
         super.init(nibName: nil, bundle: nil)
     }
     
