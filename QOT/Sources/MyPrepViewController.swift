@@ -47,21 +47,15 @@ final class MyPrepViewController: UIViewController {
         return label
     }()
 
-    private lazy var editBarButtonItem: UIBarButtonItem = {
-        let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editMode))
-        editButton.setTitleTextAttributes([.foregroundColor: UIColor.white, .font: Font.H5SecondaryHeadline], for: .normal)
-        editButton.setTitleTextAttributes([.foregroundColor: UIColor.white, .font: Font.H5SecondaryHeadline], for: .selected)
+    private func barButtonItem(_ style: UIBarButtonSystemItem, action: Selector?) -> UIBarButtonItem {
+        let barButtonTextAttributes: [NSAttributedStringKey : Any] = [.foregroundColor: UIColor.whiteLight40,
+                                                                      .font: Font.H5SecondaryHeadline]
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: style, target: self, action: action)
+        barButtonItem.setTitleTextAttributes(barButtonTextAttributes, for: .normal)
+        barButtonItem.setTitleTextAttributes(barButtonTextAttributes, for: .selected)
 
-        return editButton
-    }()
-
-    private lazy var cancelBarButtonItem: UIBarButtonItem = {
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelEditMode))
-        cancelButton.setTitleTextAttributes([.foregroundColor: UIColor.white, .font: Font.H5SecondaryHeadline], for: .normal)
-        cancelButton.setTitleTextAttributes([.foregroundColor: UIColor.white, .font: Font.H5SecondaryHeadline], for: .selected)
-
-        return cancelButton
-    }()
+        return barButtonItem
+    }
 
     // MARK: - Init
 
@@ -91,7 +85,7 @@ final class MyPrepViewController: UIViewController {
             return
         }
 
-        navigationController?.navigationBar.topItem?.leftBarButtonItem = editBarButtonItem
+        navigationController?.navigationBar.topItem?.leftBarButtonItem = barButtonItem(.edit, action: #selector(editMode))
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -107,12 +101,12 @@ final class MyPrepViewController: UIViewController {
 private extension MyPrepViewController {
 
     @objc func editMode() {
-        navigationController?.navigationBar.topItem?.leftBarButtonItem = cancelBarButtonItem
+        navigationController?.navigationBar.topItem?.leftBarButtonItem = barButtonItem(.cancel, action: #selector(cancelEditMode))
         tableView.setEditing(true, animated: true)
     }
 
     @objc func cancelEditMode() {
-        navigationController?.navigationBar.topItem?.leftBarButtonItem = editBarButtonItem
+        navigationController?.navigationBar.topItem?.leftBarButtonItem = barButtonItem(.edit, action: #selector(editMode))
         tableView.setEditing(false, animated: true)
     }
 }
@@ -150,8 +144,8 @@ private extension MyPrepViewController {
     }
 
     func updateView() {
-        let barButtonItem = tableView.isEditing == true ? cancelBarButtonItem : editBarButtonItem
-        navigationController?.navigationBar.topItem?.leftBarButtonItem = viewModel.itemCount == 0 ? nil : barButtonItem
+        let barButton = tableView.isEditing == true ? barButtonItem(.cancel, action: #selector(cancelEditMode)) : barButtonItem(.edit, action: #selector(editMode))
+        navigationController?.navigationBar.topItem?.leftBarButtonItem = viewModel.itemCount == 0 ? nil : barButton
         emptyLabel.isHidden = viewModel.itemCount > 0
         tableView.reloadData()
     }
