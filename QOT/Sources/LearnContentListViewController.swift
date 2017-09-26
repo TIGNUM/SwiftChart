@@ -99,7 +99,7 @@ final class LearnContentListViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         collectionView.reloadData()
         if firstLaunch {
             scrollToCategory(index: selectedCategoryIndex, animated: false)

@@ -45,25 +45,12 @@ final class LearnContentItemCoordinator: ParentCoordinator {
         )
         
         headerView = LearnContentItemHeaderView.fromXib(contentTitle: selectedContent.title.capitalized, categoryTitle: categoryTitle.capitalized)
-
-        fullViewController = LearnContentItemViewController(
-            viewModel: viewModel,
-            tabType: .full
-        )
+        fullViewController = LearnContentItemViewController(viewModel: viewModel, tabType: .full)
         fullViewController.title = R.string.localized.learnContentItemTitleFull()
-        
-        bulletViewController = LearnContentItemViewController(
-            viewModel: viewModel,
-            tabType: .bullets
-        )
+        bulletViewController = LearnContentItemViewController(viewModel: viewModel, tabType: .bullets)
         bulletViewController.title = R.string.localized.learnContentItemTitleBullets()
-        
-        audioViewController = LearnContentItemViewController(
-            viewModel: viewModel,
-            tabType: .audio
-        )
+        audioViewController = LearnContentItemViewController(viewModel: viewModel, tabType: .audio)
         audioViewController.title = R.string.localized.learnContentItemTitleAudio()
-        
         let leftButton = UIBarButtonItem(withImage: R.image.ic_minimize())
         topTabBarController = UINavigationController(withPages: [fullViewController, bulletViewController, audioViewController], headerView: headerView, topBarDelegate: topBarDelegate ?? self, pageDelegate: self, backgroundColor: .white, backgroundImage: nil, leftButton: leftButton)
         if let navigationBar = topTabBarController.navigationBar as? TopNavigationBar {
@@ -81,7 +68,10 @@ final class LearnContentItemCoordinator: ParentCoordinator {
 
             // If rootVC has a custom defined transition that one will be used
             // We have a custom transition from PrepareContent (when pressing readMore button)
-            guard let transitionDelegate = rootViewController as? UIViewControllerTransitioningDelegate else { return }
+            guard let transitionDelegate = rootViewController as? UIViewControllerTransitioningDelegate else {
+                return
+            }
+
             topTabBarController.transitioningDelegate = transitionDelegate
         } else if let presentationManager = presentationManager {
             topTabBarController.transitioningDelegate = presentationManager
@@ -99,13 +89,19 @@ final class LearnContentItemCoordinator: ParentCoordinator {
 extension LearnContentItemCoordinator: TopNavigationBarDelegate {
 
     func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
-        topTabBarController.dismiss(animated: true, completion: nil)        
+        topTabBarController.dismiss(animated: true, completion: nil)
+        if AppCoordinator.currentStatusBarStyle != nil {
+            AppCoordinator.updateStatusBarStyleIfNeeded()
+        } else {
+            UIApplication.shared.statusBarStyle = .lightContent
+        }
     }
     
     func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
         guard let pageViewController = topTabBarController.viewControllers.first as? PageViewController else {
             return
         }
+        
         pageViewController.setPageIndex(index, animated: true)
     }
     

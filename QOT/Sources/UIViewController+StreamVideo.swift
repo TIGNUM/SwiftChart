@@ -13,9 +13,11 @@ import AVKit
 extension UIViewController {
 
     func streamVideo(videoURL: URL) {
+        UIApplication.shared.statusBarStyle = .lightContent
         let player = AVPlayer(url: videoURL)
         let playerController = AVPlayerViewController()
         playerController.player = player
+
         present(playerController, animated: true) {
             player.play()
         }

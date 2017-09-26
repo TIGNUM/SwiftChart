@@ -75,6 +75,12 @@ final class PrepareContentViewController: UIViewController {
         setupView()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        UIApplication.shared.statusBarStyle = .default
+    }
+
     func fixTableViewInsets() {
         let zContentInsets = UIEdgeInsets.zero
         tableView.contentInset = zContentInsets

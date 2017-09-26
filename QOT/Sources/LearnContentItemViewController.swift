@@ -93,9 +93,9 @@ final class LearnContentItemViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
-        UIApplication.shared.statusBarStyle = .lightContent
+        
         viewModel.stopPlayback()
+        
     }
 
     func reloadData(viewModel: LearnContentItemViewModel) {
@@ -103,7 +103,6 @@ final class LearnContentItemViewController: UIViewController {
         //TODO:this
         //self.contentTitle = viewModel.contentTitle
         tableView.reloadData()
-
         let sections = tableView.numberOfSections
         let rowsInSection = tableView.numberOfRows(inSection: 0)
 

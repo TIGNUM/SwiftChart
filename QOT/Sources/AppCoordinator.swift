@@ -32,6 +32,7 @@ final class AppCoordinator: ParentCoordinator {
     fileprivate lazy var credentialsManager: CredentialsManager = CredentialsManager.shared
     fileprivate var canProcessRemoteNotifications = false
     private var onDismiss: (() -> Void)? = nil
+    static var currentStatusBarStyle: UIStatusBarStyle?
     
     fileprivate lazy var realmProvider: RealmProvider = {
         return RealmProvider()
@@ -164,6 +165,15 @@ final class AppCoordinator: ParentCoordinator {
             self.onDismiss?()
             self.onDismiss = nil
         }
+
+        AppCoordinator.updateStatusBarStyleIfNeeded()
+    }
+
+    static func updateStatusBarStyleIfNeeded() {
+        if let statusBarStyle = AppCoordinator.currentStatusBarStyle {
+            UIApplication.shared.statusBarStyle = statusBarStyle
+            AppCoordinator.currentStatusBarStyle = nil
+        }
     }
 }
 
@@ -252,6 +262,7 @@ extension AppCoordinator {
             return
         }
 
+        AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
         let viewModel = MorningInterviewViewModel(services: services, questionGroupID: groupID, validFrom: validFrom, validTo: validTo)
         let morningInterViewController = MorningInterviewViewController(viewModel: viewModel)
         morningInterViewController.delegate = self
@@ -265,6 +276,7 @@ extension AppCoordinator {
         }
 
         onDismiss = completion
+        AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
         let viewModel = SelectWeeklyChoicesDataModel(services: services, maxSelectionCount: Layout.MeSection.maxWeeklyPage, startDate: startDate, endDate: endDate)
         let image = windowManager.rootViewController(atLevel: .normal)?.view.screenshot()
         let viewController = SelectWeeklyChoicesViewController(delegate: self, viewModel: viewModel, backgroundImage: image)
@@ -283,7 +295,7 @@ extension AppCoordinator {
         }
 
         // FIXME: do we need to use the coordinator?
-        
+        AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
         let presentationManager = CircularPresentationManager(originFrame: rootViewController.view.frame)
         let coordinator = LearnContentItemCoordinator(root: rootViewController, eventTracker: eventTracker, services: services, content: content, category: category, presentationManager: presentationManager, topBarDelegate: self)
         topTabBarController = coordinator.topTabBarController
@@ -302,6 +314,7 @@ extension AppCoordinator {
         }
 
         // FIXME: do we need to use the coordinator?
+        AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
         let presentationManager = CircularPresentationManager(originFrame: rootViewController.view.frame)
         let coordinator = LearnContentItemCoordinator(root: rootViewController, eventTracker: eventTracker, services: services, content: content, category: category, presentationManager: presentationManager, topBarDelegate: self)
         topTabBarController = coordinator.topTabBarController        
@@ -347,15 +360,18 @@ extension AppCoordinator {
 extension AppCoordinator: TopNavigationBarDelegate {
 
     func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
-        topTabBarController?.dismiss(animated: true, completion: {
+        topTabBarController?.dismiss(animated: true) {
             self.windowManager.resignWindow(atLevel: .priority)
-        })
+        }
+
+        AppCoordinator.updateStatusBarStyleIfNeeded()
     }
 
     func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
         guard let pageViewController = topTabBarController?.viewControllers.first as? PageViewController else {
             return
         }
+        
         pageViewController.setPageIndex(index, animated: true)
     }
 
