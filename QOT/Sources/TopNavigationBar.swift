@@ -18,10 +18,10 @@ protocol TopNavigationBarDelegate: class {
     func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem)
 }
 
-class TopNavigationBar: UINavigationBar {
+final class TopNavigationBar: UINavigationBar {
+
     private let spacing: CGFloat = 15.0
     private let lineHeight: CGFloat = 1.0
-
     private var middleButtons: [UIButton]?
     private var currentButton: UIButton?
     let indicatorView: UIView // automatically hidden when setMiddleButtons(buttons.count == 1)

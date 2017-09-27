@@ -43,7 +43,7 @@ final class LearnContentItemCoordinator: ParentCoordinator {
             contentCollection: selectedContent,
             categoryID: category.forcedRemoteID
         )
-        
+
         headerView = LearnContentItemHeaderView.fromXib(contentTitle: selectedContent.title.capitalized, categoryTitle: categoryTitle.capitalized)
         fullViewController = LearnContentItemViewController(viewModel: viewModel, tabType: .full)
         fullViewController.title = R.string.localized.learnContentItemTitleFull()
@@ -51,12 +51,38 @@ final class LearnContentItemCoordinator: ParentCoordinator {
         bulletViewController.title = R.string.localized.learnContentItemTitleBullets()
         audioViewController = LearnContentItemViewController(viewModel: viewModel, tabType: .audio)
         audioViewController.title = R.string.localized.learnContentItemTitleAudio()
+
+        var pages = [LearnContentItemViewController]()
+
+        if content.hasFullItems == true {
+            pages.append(fullViewController)
+        }
+
+        if content.hasBulletItems == true {
+            pages.append(bulletViewController)
+        }
+
+        if content.hasAudioItems == true {
+            pages.append(audioViewController)
+        }
+
         let leftButton = UIBarButtonItem(withImage: R.image.ic_minimize())
-        topTabBarController = UINavigationController(withPages: [fullViewController, bulletViewController, audioViewController], headerView: headerView, topBarDelegate: topBarDelegate ?? self, pageDelegate: self, backgroundColor: .white, backgroundImage: nil, leftButton: leftButton)
+        topTabBarController = UINavigationController(withPages: pages,
+                                                     headerView: headerView,
+                                                     topBarDelegate: topBarDelegate ?? self,
+                                                     pageDelegate: self,
+                                                     backgroundColor: .white,
+                                                     backgroundImage: nil,
+                                                     leftButton: leftButton)
         if let navigationBar = topTabBarController.navigationBar as? TopNavigationBar {
             navigationBar.setStyle(tintColor: .black70, backgroundColor: .white)
+
+            if pages.count <= 1 {
+                navigationBar.setMiddleButtons([])
+                navigationBar.topItem?.titleView = nil
+            }
         }
-        
+
         fullViewController.delegate = self
         bulletViewController.delegate = self
         audioViewController.delegate = self

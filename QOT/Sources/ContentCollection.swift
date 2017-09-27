@@ -79,6 +79,24 @@ final class ContentCollection: SyncableObject {
 
         return contentItemsVideo.count == contentItems.count
     }
+
+    var hasFullItems: Bool {
+        let contentItemsFull = contentItems.filter { $0.tabs.contains("FULL") == true }
+
+        return contentItemsFull.isEmpty == false
+    }
+
+    var hasBulletItems: Bool {
+        let contentItemsBullet = contentItems.filter { $0.tabs.contains("BULLETS") == true }
+
+        return contentItemsBullet.isEmpty == false
+    }
+
+    var hasAudioItems: Bool {
+        let contentItemsAudio = contentItems.filter { $0.tabs.contains("AUDIO") == true }
+
+        return contentItemsAudio.isEmpty == false
+    }
 }
 
 // MARK: - BuildRelations
