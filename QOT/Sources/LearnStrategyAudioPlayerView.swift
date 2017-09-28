@@ -54,6 +54,7 @@ extension LearnStrategyAudioPlayerView {
 private extension LearnStrategyAudioPlayerView {
 
     func setupView() {
+        selectionStyle = .none
         setupTimerBackground()
         setupLabels()
         setupSlider()

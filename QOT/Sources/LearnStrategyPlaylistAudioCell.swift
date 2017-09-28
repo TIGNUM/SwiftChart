@@ -13,13 +13,14 @@ final class LearnStrategyPlaylistAudioCell: UITableViewCell, Dequeueable {
     // MARK: - Properties
 
     @IBOutlet weak private var titleLabel: UILabel!
-    @IBOutlet weak fileprivate var iconView: UIImageView!
-    @IBOutlet weak fileprivate var audioSpinner: UIActivityIndicatorView!
+    @IBOutlet weak private var iconView: UIImageView!
+    @IBOutlet weak private var audioSpinner: UIActivityIndicatorView!
 
     // MARK: - Setup
 
     func setup(title: String, playing: Bool) {
         titleLabel.font = UIFont.bentonBookFont(ofSize: 16)
+        titleLabel.textColor = playing == true ? .blue : .black
         titleLabel.text = title
         iconView.image = playing == true ? R.image.ic_pause() : R.image.ic_play()
         audioSpinner.stopAnimating()
@@ -40,5 +41,13 @@ extension LearnStrategyPlaylistAudioCell {
             iconView.isHidden = false
             audioSpinner.stopAnimating()
         }
+    }
+
+    func updateTitleColor(enabled: Bool) {
+        titleLabel.textColor = enabled == true ? .blue : .black
+    }
+
+    func resetPlayIcon() {
+        iconView.image = R.image.ic_play()
     }
 }

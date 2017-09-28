@@ -20,12 +20,13 @@ enum TabType: String {
         var tabs = [TabType]()
 
         items.forEach { (item: ContentItem) in
-            item.tabs.components(separatedBy: ",").forEach({ (tab: String) in
+            item.tabs.components(separatedBy: ",").forEach { (tab: String) in
                 let tabType = TabType(rawValue: tab) ?? .full
+
                 if tabs.contains(tabType) == false {
                     tabs.append(tabType)
                 }
-            })
+            }
         }
 
         return tabs
@@ -47,19 +48,19 @@ final class LearnContentItemViewModel: NSObject {
     fileprivate var player: AVPlayer? = AVPlayer()
     fileprivate let eventTracker: EventTracker
     fileprivate var playerItem: AVPlayerItem?
-    fileprivate(set) var isPlaying: Bool = false
+    fileprivate(set) var isPlaying = false
     fileprivate var currentPlayingCell: LearnStrategyPlaylistAudioCell?
     weak var audioPlayerViewDelegate: AudioPlayerViewLabelDelegate?
     let contentCollection: ContentCollection
     var currentPosition = ReactiveKit.Property<TimeInterval>(0)
+    let updates = PublishSubject<CollectionUpdate, NoError>()
+
     lazy var trackDuration: ReactiveKit.Property<TimeInterval> = {
         let item = self.contentItems(at: TabType.audio).first
         let duration = item?.valueDuration.value.map { TimeInterval($0) }
 
         return ReactiveKit.Property<TimeInterval>(duration ?? 0)
     }()
-
-    let updates = PublishSubject<CollectionUpdate, NoError>()
 
     // MARK: - Init
 
@@ -109,6 +110,7 @@ extension LearnContentItemViewModel {
     func sectionCount(tabType: TabType) -> Int {
         let sections = containsAudioItem(tabType: tabType) == true ? 2 : 1
         let relatedSectionCount = relatedContentCollections.count > 0 ? 1 : 0
+
         return sections + relatedSectionCount
     }
 
@@ -159,14 +161,14 @@ extension LearnContentItemViewModel {
 
         if sectionCount(tabType: tabType) == 3 {
             switch section {
-            case 0: return CGFloat(100)
+            case 0: return 100
             default: return UITableViewAutomaticDimension
             }
         } else if tabType == .audio && section == 1 {
             return 44
         } else if sectionCount(tabType: tabType) == 2 && containsAudioItem(tabType: tabType) == true {
             switch section {
-            case 0: return CGFloat(100)
+            case 0: return 100
             default: return UITableViewAutomaticDimension
             }
         } else {
@@ -176,6 +178,14 @@ extension LearnContentItemViewModel {
 
     func contentItems(at tabType: TabType) -> [ContentItem] {
         return contentCollection.contentItems.filter { $0.tabs.contains(tabType.rawValue) }
+    }
+
+    func contentItemValue(at indexPath: IndexPath, tabType: TabType) -> ContentItemValue {
+        if isPDFItem(at: indexPath, tabType: tabType) == true {
+            return learnPDFContentItem(at: indexPath, tabType: tabType).contentItemValue
+        }
+
+        return learnContentItem(at: indexPath, tabType: tabType).contentItemValue
     }
 
     func learnContentItem(at indexPath: IndexPath, tabType: TabType) -> ContentItem {
@@ -292,15 +302,17 @@ extension LearnContentItemViewModel {
     }
 
     func playItem(at indexPath: IndexPath, audioURL: URL, duration: TimeInterval, cell: LearnStrategyPlaylistAudioCell?) {
+        currentPlayingCell?.updateTitleColor(enabled: false)
         currentPlayingCell?.updateItem(buffering: false, playing: false)
         currentPlayingCell = cell
+        currentPlayingCell?.updateTitleColor(enabled: true)
         trackDuration = Property(duration)
         let modifications: [IndexPath]
         if let current = playingIndexPath {
             if current == indexPath {
                 // pause / unpause
                 modifications = [indexPath]
-                if isPlaying {
+                if isPlaying == true {
                     pausePlayback()
                 } else {
                     unpausePlayback()
@@ -351,7 +363,7 @@ extension LearnContentItemViewModel {
         player = nil
         currentPosition.value = 0
         playingIndexPath = nil
-        isPlaying = false
+        isPlaying = false        
     }
 
     func forward(value: Float) {
@@ -420,7 +432,9 @@ extension LearnContentItemViewModel {
         guard let playingIndexPath = playingIndexPath else {
             return
         }
+        
         stopPlayback()
-        updates.next(.update(deletions: [], insertions: [], modifications: [playingIndexPath]))
+        currentPlayingCell?.updateTitleColor(enabled: false)
+        updates.next(.update(deletions: [], insertions: [playingIndexPath], modifications: []))
     }
 }
