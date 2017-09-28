@@ -13,18 +13,27 @@ protocol PrepareEventTableViewFooterViewDelegate: class {
     func didTapAddNewTrip()
 }
 
-class PrepareEventTableViewFooterView: UITableViewHeaderFooterView, Dequeueable {
+final class PrepareEventTableViewFooterView: UITableViewHeaderFooterView, Dequeueable {
+
+    // MARK: - Properties
 
     @IBOutlet private weak var addNewTripButton: UIButton!
     private weak var delegate: PrepareEventTableViewFooterViewDelegate?
+
+    // MARK: - Init
 
     func setup(title: String, delegate: PrepareEventTableViewFooterViewDelegate) {
         addNewTripButton.setTitle(title, for: .normal)
         addNewTripButton.titleLabel?.addCharactersSpacing(spacing: 1, text: title, uppercased: false)
         self.delegate = delegate
     }
+}
 
-    @IBAction func didTapAddNewTrip(_ sender: Any) {
+// MARK: - Actions
+
+extension PrepareEventTableViewFooterView {
+
+    @IBAction private func didTapAddNewTrip(_ sender: Any) {
         delegate?.didTapAddNewTrip()
     }
 }
