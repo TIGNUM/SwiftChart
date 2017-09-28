@@ -234,3 +234,16 @@
 "Tutorial.Learn.Text" = "The Learn area contains great content on all of the QOT 55 strategies. You can go there to learn, review, or deep dive into any of the strategies. This Learn area also hosts your “What’s Hot” portal where we periodically place new information that we feel you would love.";
 "Tutorial.Me.Text" = "The Me area is where we house all of your data, your To Be Vision, your support team, and any other information that pertains only to you. This area is always growing so we recommend you visit it often.";
 "Tutorial.Prepare.Text" = "The Prepare area is your QOT game changer area. In this area you will find your normal day and rough day plans but also you can prepare for any event you have coming up where you want to improve your QOT and the QOT of those around you.";
+
+"Onboarding.Choice.Title.Access.All" = "Yes, I give you confidential access to all.";
+"Onboarding.Choice.Title.Access.Later" = "Thank you. I prefer to give you access later.";
+"Onboarding.Choice.Title.Access.Why" = "Why do you need access?";
+"Onboarding.Choice.Title.Access.All.Why" = "Thank you. Yes, I give you confidential access to all.";
+"Onboarding.Choice.Title.Access.Later.Why" = "Thank you. I prefer to give you access later.";
+"Onboarding.Choice.Title.Lets.Go" = "Let's go!";
+
+"Onboarding.Chat.Item.Welcome" = "Welcome %@";
+"Onboarding.Chat.Item.Permissions" = "Before you start, I would like access to your calendar and your location. Also, I would like to get permission to send you notifications. As always, all of your information is secure and confidential.";
+"Onboarding.Chat.Item.Why" = "Your events and, therefore, your load is kept on your calendar. When I analyze your information, I am looking for how many meetings you have, how much time you have between meetings, how often you need to travel, etc. When I know these things, I can help you rule your impact every day. By knowing your location, I can analyze timezone changes when you travel. This way, I can provide you with custom strategies during your entire trip. Lastly, permission to send you notifications allows me to interact with you when you need it most";
+"Onboarding.Chat.Item.Last.Step" = "Thank you, if you give me a minute, I will give you my first analysis";
+"Onboarding.Chat.Item.Show.Settings" = "No worries. If you change your mind, you can change this access in your preferences at any time";

@@ -335,7 +335,8 @@ extension AppCoordinator {
     }
 
     func showOnboarding() {
-        let coordinator = OnboardingCoordinator(windowManager: windowManager, delegate: self, permissionHandler: permissionHandler)
+        let userName = services?.userService.user()?.givenName ?? ""
+        let coordinator = OnboardingCoordinator(windowManager: windowManager, delegate: self, permissionHandler: permissionHandler, userName: userName)
         startChild(child: coordinator)
     }
 
@@ -475,6 +476,7 @@ extension AppCoordinator: SelectWeeklyChoicesViewControllerDelegate {
 // MARK: - OnboardingCoordinatorDelegate
 
 extension AppCoordinator: OnboardingCoordinatorDelegate {
+    
     func onboardingCoordinatorDidFinish(_ onboardingCoordinator: OnboardingCoordinator) {
         removeChild(child: onboardingCoordinator)
         showApp()
