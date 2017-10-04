@@ -28,13 +28,30 @@ final class QOTUsageTimer {
     var totalSeconds: TimeInterval {
         let oldValue = UserDefault.qotUsage.doubleValue
         let delta = -started.timeIntervalSinceNow
+
         return TimeInterval(oldValue) + delta
+    }
+
+    func totalTimeString(totalSeconds: Int) -> String {
+        var calendar = Calendar.current
+        calendar.locale = Locale(identifier: "en")
+        let formatter = DateComponentsFormatter()
+        formatter.calendar = calendar
+        formatter.unitsStyle = .full
+        formatter.allowedUnits = [.year, .month, .day, .hour, .minute]
+        formatter.collapsesLargestUnit = true
+        let commaSeperatedString = formatter.string(from: TimeInterval(totalSeconds))?.uppercased() ?? "1 MINUTE"
+        let trimmedString = commaSeperatedString.replacingOccurrences(of: ", ", with: ",")
+        let stringArray = trimmedString.split(separator: ",")
+
+        return stringArray.joined(separator: "\n")
     }
 
     private var started: Date {
         guard let started = QOTUsageTimer.started else {
             fatalError("QOTUsageTimer never started")
         }
+
         return started
     }
 }

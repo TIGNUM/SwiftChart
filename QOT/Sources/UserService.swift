@@ -77,6 +77,14 @@ final class UserService {
         }
     }
 
+    func updateTotalUsageTime() {
+        if let user = user() {
+            updateUser(user: user) {
+                $0.totalUsageTime = UserDefault.qotUsage.doubleValue.toInt
+            }
+        }
+    }
+
     func updateUser(user: User, block: (User) -> Void) {
         do {
             try mainRealm.write {

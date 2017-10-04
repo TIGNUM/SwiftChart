@@ -30,8 +30,7 @@ final class SidebarViewModel {
                     .placeholder,
                     .about,
                     .privacy,
-                    .logout
-            ]
+                    .logout]
         }
 
         var title: String? {

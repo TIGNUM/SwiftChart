@@ -31,7 +31,7 @@ final class AppCoordinator: ParentCoordinator {
     fileprivate lazy var networkManager: NetworkManager = NetworkManager(delegate: self, credentialsManager: self.credentialsManager)
     fileprivate lazy var credentialsManager: CredentialsManager = CredentialsManager.shared
     fileprivate var canProcessRemoteNotifications = false
-    private var onDismiss: (() -> Void)? = nil
+    private var onDismiss: (() -> Void)?
     static var currentStatusBarStyle: UIStatusBarStyle?
     
     fileprivate lazy var realmProvider: RealmProvider = {
@@ -174,6 +174,10 @@ final class AppCoordinator: ParentCoordinator {
             UIApplication.shared.statusBarStyle = statusBarStyle
             AppCoordinator.currentStatusBarStyle = nil
         }
+    }
+
+    func updateUserTotalUsageTime() {
+        services?.userService.updateTotalUsageTime()
     }
 }
 

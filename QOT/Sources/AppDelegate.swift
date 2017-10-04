@@ -79,20 +79,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         QOTUsageTimer.sharedInstance.stopAndSave()
+        appCoordinator.updateUserTotalUsageTime()
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
         QOTUsageTimer.sharedInstance.stopAndSave()
+        appCoordinator.updateUserTotalUsageTime()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         UAirship.push().resetBadge()
         QOTUsageTimer.sharedInstance.start()
+        appCoordinator.updateUserTotalUsageTime()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         UAirship.push().resetBadge()
-        appCoordinator.appDidBecomeActive()
+        appCoordinator.appDidBecomeActive()        
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {

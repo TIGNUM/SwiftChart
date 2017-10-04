@@ -35,12 +35,9 @@ final class SidebarViewController: UIViewController {
     weak var delegate: SidebarViewControllerDelegate?
 
     fileprivate lazy var tableView: UITableView = {
-        return UITableView(
-            delegate: self,
-            dataSource: self,
-            dequeables:
-            SidebarTableViewCell.self
-        )
+        return UITableView(delegate: self,
+                           dataSource: self,
+                           dequeables: SidebarTableViewCell.self)
     }()
 
     // MARK: - Life Cycle
@@ -92,12 +89,10 @@ extension SidebarViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: SidebarTableViewCell = tableView.dequeueCell(for: indexPath)
         let sidebarItem = viewModel.sidebarItem(at: indexPath)
-        cell.setup(
-            with: sidebarItem?.title,
-            font: sidebarItem?.font(screenType: screenType),
-            textColor: sidebarItem?.fontColor,           
-            height: sidebarItem?.cellHeight(screenType: screenType)
-        )
+        cell.setup(with: sidebarItem?.title,
+                   font: sidebarItem?.font(screenType: screenType),
+                   textColor: sidebarItem?.fontColor,
+                   height: sidebarItem?.cellHeight(screenType: screenType))
         
         return cell
     }

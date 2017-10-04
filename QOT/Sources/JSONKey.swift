@@ -174,6 +174,7 @@ enum JsonKey: String {
     case timeZone
     case timeZoneId
     case title
+    case totalUsageTime
     case type
     case unit
     case universe

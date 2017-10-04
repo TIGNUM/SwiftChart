@@ -65,6 +65,8 @@ final class User: SyncableObject {
 
     @objc fileprivate(set) dynamic var memberSince: Date = Date()
 
+    @objc dynamic var totalUsageTime: Int = 0
+
     @objc dynamic var timeZone: String = TimeZone.currentName
 }
 
@@ -99,6 +101,7 @@ extension User: TwoWaySyncableUniqueObject {
         company = data.company
         jobTitle = data.jobTitle
         memberSince = data.memberSince
+        totalUsageTime = data.totalUsageTime
         timeZone = data.timeZone ?? TimeZone.currentName
         updateUAirshipTags(data.urbanAirshipTags + [data.email])
     }
@@ -149,9 +152,11 @@ extension User: TwoWaySyncableUniqueObject {
             .zone: JSON.dictionary(zone.mapKeyValues({ ($0.rawValue, $1.toJSON()) })),
             .userImageURL: userImageURLString.toJSONEncodable,
             .memberSince: memberSince,
+            .totalUsageTime: QOTUsageTimer.sharedInstance.totalSeconds.toInt,
             .employment: JSON.dictionary(employment.mapKeyValues({ ($0.rawValue, $1.toJSON()) })),
             .userInfo: JSON.dictionary(userInfo.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
         ]
+        
         return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
     }
 

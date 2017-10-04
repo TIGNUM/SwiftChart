@@ -16,14 +16,12 @@ final class SettingsMenuViewModel {
         let subtitle: String
     }
 
-    private let settingTitles = [
-        R.string.localized.sidebarSettingsMenuGeneralButton(),
-        R.string.localized.sidebarSettingsMenuNotificationsButton(),
-        R.string.localized.sidebarSettingsMenuSecurityButton()
-    ]
     fileprivate lazy var tiles: [Tile] = userTiles(user: self.user)
     fileprivate let user: User
     let tileUpdates = PublishSubject<CollectionUpdate, NoError>()
+    private let settingTitles = [R.string.localized.sidebarSettingsMenuGeneralButton(),
+                                 R.string.localized.sidebarSettingsMenuNotificationsButton(),
+                                 R.string.localized.sidebarSettingsMenuSecurityButton()]
 
     var tileCount: Int {
         return tiles.count
@@ -62,37 +60,40 @@ final class SettingsMenuViewModel {
     }
 }
 
-// MARK: Mock Data
+// MARK: Private
 
-private func userTiles(user: User) -> [SettingsMenuViewModel.Tile] {
-    return [
-        SettingsMenuViewModel.Tile(title: daysBetweenDates(startDate: user.memberSince), subtitle: "MEMBER SINCE"),
-        SettingsMenuViewModel.Tile(title: totalMinutesUsage, subtitle: "QOT USAGE")
-    ]
-}
+private extension SettingsMenuViewModel {
 
-private var totalMinutesUsage: String {
-    let totalSeconds = QOTUsageTimer.sharedInstance.totalSeconds
-    let totalMinutes = Int(totalSeconds / 60)
-    
-    if totalMinutes == 1 {
-        return String(format: "%d MINUTE", totalMinutes)
+    func userTiles(user: User) -> [SettingsMenuViewModel.Tile] {
+        return [
+            SettingsMenuViewModel.Tile(title: daysBetweenDates(startDate: user.memberSince), subtitle: "MEMBER SINCE"),
+            SettingsMenuViewModel.Tile(title: usageTimeString(), subtitle: "QOT USAGE")
+        ]
     }
 
-    return String(format: "%d MINUTES", totalMinutes)
-}
+    private func daysBetweenDates(startDate: Date) -> String {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([Calendar.Component.day], from: startDate, to: Date())
 
-private func daysBetweenDates(startDate: Date) -> String {
-    let calendar = Calendar.current
-    let components = calendar.dateComponents([Calendar.Component.day], from: startDate, to: Date())
+        guard let days = components.day else {
+            return "0 DAYS"
+        }
 
-    guard let days = components.day else {
-        return "0 DAYS"
+        if days == 1 {
+            return String(format: "%d DAY", days)
+        }
+
+        return String(format: "%d DAYS", days)
     }
 
-    if days == 1 {
-        return String(format: "%d DAY", days)
-    }
+    private func usageTimeString() -> String {
+        let remoteUsageTime = Int(user.totalUsageTime)
+        let localUsageTime = Int(QOTUsageTimer.sharedInstance.totalSeconds)
 
-    return String(format: "%d DAYS", days)
+        if remoteUsageTime > localUsageTime {
+            UserDefault.qotUsage.setDoubleValue(value: Double(remoteUsageTime))
+        }
+
+        return QOTUsageTimer.sharedInstance.totalTimeString(totalSeconds: max(remoteUsageTime, localUsageTime))
+    }
 }

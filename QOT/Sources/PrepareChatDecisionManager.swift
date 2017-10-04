@@ -113,10 +113,8 @@ private extension AnswerDecision {
         }
 
         switch target {
-        case .content:
-            return .flow
-        case .question:
-            return .list
+        case .content: return .flow
+        case .question: return .list
         }
     }
 }
