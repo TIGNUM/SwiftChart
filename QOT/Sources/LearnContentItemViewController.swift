@@ -206,12 +206,16 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
         }
     }
 
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if tabType == .audio && indexPath.section == 0 {
+            return nil
+        }
+
+        return indexPath
+    }
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-
-        guard indexPath.section != 0 else {
-            return
-        }
 
         switch viewModel.contentItemValue(at: indexPath, tabType: tabType) {
         case .audio:
