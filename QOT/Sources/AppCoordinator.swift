@@ -429,28 +429,29 @@ extension AppCoordinator: MorningInterviewViewControllerDelegate {
 
     func didTapClose(viewController: MorningInterviewViewController, userAnswers: [UserAnswer]) {
         if userAnswers.isEmpty == false {
-            sendMorningInterviewResults(userAnswers, viewController)
-        } else {
-            dismiss(viewController, level: .priority)
+            sendMorningInterviewResults(userAnswers)
         }
+        dismiss(viewController, level: .priority)
     }
-
-    private func sendMorningInterviewResults(_ userAnswers: [UserAnswer], _ viewController: MorningInterviewViewController) {
-        do {
-            networkManager.performUserFeedbackRequest(userAnswers: userAnswers) { result in
-                switch result {
-                case .success(let value): self.showFeedbackAlert(value, viewController)
-                case .failure(let error): print("error: ", error)
-                }
+    
+    private func sendMorningInterviewResults(_ userAnswers: [UserAnswer]) {
+        networkManager.performUserFeedbackRequest(userAnswers: userAnswers) { result in
+            switch result {
+            case .success(let value):
+                self.showFeedbackAlert(for: value)
+            case .failure(let error):
+                log("error: \(error)")
             }
-        } catch {
-            log("Error while trying to serialize userAnwer: \(error)")            
         }
     }
 
-    private func showFeedbackAlert(_ userAnswerFeedback: UserAnswerFeedback, _ viewController: MorningInterviewViewController) {
-        viewController.showAlert(type: .custom(title: userAnswerFeedback.title, message: userAnswerFeedback.body), handler: {
-            self.dismiss(viewController, level: .priority)
+    private func showFeedbackAlert(for feedback: UserAnswerFeedback) {
+        guard let rootViewController = windowManager.rootViewController(atLevel: .alert) else {
+            return
+        }
+        windowManager.showWindow(atLevel: .alert)
+        rootViewController.showAlert(type: .custom(title: feedback.title, message: feedback.body), handler: {
+            self.windowManager.resignWindow(atLevel: .alert)
         }, handlerDestructive: nil)
     }
 }
