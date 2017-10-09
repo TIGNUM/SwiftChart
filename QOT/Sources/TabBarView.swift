@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Anchorage
 
 protocol TabBarViewDelegate: class {
     func didSelectItemAtIndex(index: Int, sender: TabBarView)
@@ -46,6 +47,7 @@ class TabBarView: UIView {
     fileprivate let tabBarType: TabBarType
     private(set) var selectedIndex: Int?
     private(set) var buttons = [UIButton]()
+    private(set) var buttonHighlights = [UIImageView]()
     weak var delegate: TabBarViewDelegate?
 
     var selectedColor: UIColor = .black {
@@ -138,10 +140,8 @@ class TabBarView: UIView {
     // MARK: Private methods
 
     private func syncButtonTitles() {
-        buttons.forEach {
-            $0.removeFromSuperview()
-        }
-
+        // buttons
+        buttons.forEach { $0.removeFromSuperview() }
         buttons = titles.enumerated().map { (index: Index, title: String) in
             let button = UIButton(type: .custom)
             button.setTitle(title.uppercased(), for: .normal)
@@ -150,11 +150,29 @@ class TabBarView: UIView {
             button.setTitleColor(deselectedColor, for: .normal)
             button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
             button.tag = index
-
+            
             return button
         }
-
         buttons.forEach { addSubview($0) }
+        
+        // highlights
+        buttonHighlights.forEach { $0.removeFromSuperview() }
+        buttonHighlights = buttons.enumerated().map({ (index: Index, button: UIButton) in
+            let imageView = UIImageView(image: R.image.bgHighlight())
+            imageView.alpha = 0.0
+            
+            return imageView
+        })
+        let padding = 50.0
+        for (index, highlight) in buttonHighlights.enumerated() {
+            addSubview(highlight)
+            let button = buttons[index]
+            highlight.leftAnchor == button.leftAnchor - padding
+            highlight.rightAnchor == button.rightAnchor + padding
+            highlight.topAnchor == button.topAnchor - padding
+            highlight.bottomAnchor == button.bottomAnchor
+        }
+        buttons.forEach { bringSubview(toFront: $0) }
     }
 }
 
@@ -184,15 +202,14 @@ private extension TabBarView {
     }
     
     func syncButtonImages(animated: Bool) {
-        let transition = UIViewAnimationOptions.transitionCrossDissolve
         let duration = Layout.TabBarView.animationDuration
-        for (index, button) in buttons.enumerated() {
+        for (index, highlight) in buttonHighlights.enumerated() {
             if animated {
-                UIView.transition(with: button, duration: duration, options: transition, animations: {
-                    button.setBackgroundImage((index == self.selectedIndex) ? R.image.bgHighlight() : nil, for: .normal)
-                }, completion: nil)
+                UIView.animate(withDuration: duration, animations: {
+                    highlight.alpha = (index == self.selectedIndex) ? 1.0 : 0.0
+                })
             } else {
-                button.setBackgroundImage((index == self.selectedIndex) ? R.image.bgHighlight() : nil, for: .normal)
+                highlight.alpha = (index == self.selectedIndex) ? 1.0 : 0.0
             }
         }
     }
@@ -221,7 +238,7 @@ private extension TabBarView {
         case .fillProportionally(let spacing): fillProportionally(spacing: spacing)
         }
     }
-
+    
     func layoutIndicatorView(animated: Bool) {
         guard
             let selectedIndex = selectedIndex,
@@ -230,6 +247,8 @@ private extension TabBarView {
                 buttons.first?.setTitleColor(selectedColor, for: .normal)
                 return
         }
+        
+        bringSubview(toFront: indicatorView)
 
         if animated == true {
             let transition = UIViewAnimationOptions.curveEaseInOut
