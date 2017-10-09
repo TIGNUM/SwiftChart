@@ -210,73 +210,44 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let contentItem = viewModel.item(at: indexPath.row)
 
+        // @note any magic numbers here represent bottom padding
+        // we're setting the cell's frame size, then using autolayout to dynamically calculate top-bottom height
         switch contentItem {
-        case .titleItem(_, _, _, _, let videoURL):
-            guard let cell = Bundle.main.loadNibNamed("PrepareContentMainHeaderTableViewCell", owner: self, options: [:])?[0] as? PrepareContentMainHeaderTableViewCell else { return UITableViewAutomaticDimension }
-
+        case .titleItem:
+            guard let cell = Bundle.main.loadNibNamed("\(PrepareContentMainHeaderTableViewCell.self)", owner: self, options: [:])?.first as? PrepareContentMainHeaderTableViewCell else {
+                return UITableViewAutomaticDimension
+            }
             cell.frame = CGRect(x: cell.frame.origin.x, y: cell.frame.origin.y, width: tableView.frame.width, height: cell.frame.height)
-
             configure(cell: cell, forIndexPath: indexPath)
-
-            var contentHeight: CGFloat = 0
-            var padding: CGFloat = 40
+            cell.layoutIfNeeded()
+            
             if viewModel.isCellExpanded(at: indexPath.row) {
-                guard let contentText = cell.contentLabel.text else { return UITableViewAutomaticDimension }
-                contentHeight = contentText.isEmpty ? 0 : calculateLabelHeight(text: contentText, font: Font.DPText, dispayedLineHeight: 28, frameWidth: cell.frame.width - 60)
-
-                padding += 20
-                if videoURL != nil {
-                    contentHeight += cell.previewImageButton.frame.height
-                    padding += 50
-                }
+                // return content label y position + height + bottom padding
+                return cell.contentLabel.frame.origin.y + cell.contentLabel.frame.height + 20.0
             }
-
-            guard let headerText = cell.headerLabel.text else { return UITableViewAutomaticDimension }
-            let headerHeight = headerText.isEmpty ? 0 : headerText.height(withConstrainedWidth: cell.headerLabel.bounds.width, font: cell.headerLabel.font)
-
-            guard let subHeaderText = cell.subHeaderLabel.text else { return UITableViewAutomaticDimension }
-            var subHeaderHeight: CGFloat = 0
-            if !subHeaderText.isEmpty {
-                subHeaderHeight = calculateLabelHeight(text: subHeaderText, font: Font.H7Title, dispayedLineHeight: 16, frameWidth: cell.frame.width - 99)
-                padding += 5
-            }
-
-            let cellHeight = headerHeight + subHeaderHeight + contentHeight + padding
-
-            return cellHeight
+            // return header label y position + height + bottom padding
+            return cell.headerLabel.frame.origin.y + cell.headerLabel.frame.height + 8.0
         case .item(_, _, _, let readMoreID):
-            guard let cell = Bundle.main.loadNibNamed("PrepareContentHeaderTableViewCell", owner: self, options: [:])?[0] as? PrepareContentHeaderTableViewCell else { return UITableViewAutomaticDimension }
-
-            cell.frame = CGRect(x: cell.frame.origin.x, y: cell.frame.origin.y, width: tableView.frame.width, height: cell.frame.height)
-
-            configure(cell: cell, forIndexPath: indexPath)
-
-            var contentHeight: CGFloat = 0
-            if viewModel.isCellExpanded(at: indexPath.row) {
-
-                guard let contentText = cell.contentLabel.text else { return UITableViewAutomaticDimension }
-                contentHeight = calculateLabelHeight(text: contentText, font: Font.DPText, dispayedLineHeight: 28, frameWidth: cell.frame.width - 99)
-
-                if readMoreID != nil {
-                    contentHeight += cell.readMoreButton.frame.height + 30
-                }
+            guard let cell = Bundle.main.loadNibNamed("\(PrepareContentHeaderTableViewCell.self)", owner: self, options: [:])?.first as? PrepareContentHeaderTableViewCell else {
+                return UITableViewAutomaticDimension
             }
-            guard let headerText = cell.headerLabel.text else { return UITableViewAutomaticDimension }
-            let headerHeight = calculateLabelHeight(text: headerText, font: Font.H4Headline, dispayedLineHeight: 26, frameWidth: cell.frame.width - 132)
-            let padding: CGFloat = 38
-            let cellHeight = headerHeight + contentHeight + padding
-
-            return cellHeight
+            cell.frame = CGRect(x: cell.frame.origin.x, y: cell.frame.origin.y, width: tableView.frame.width, height: cell.frame.height)
+            configure(cell: cell, forIndexPath: indexPath)
+            cell.layoutIfNeeded()
+            
+            if viewModel.isCellExpanded(at: indexPath.row) {
+                if readMoreID == nil {
+                    // return content label y position + height + bottom padding
+                    return cell.contentLabel.frame.origin.y + cell.contentLabel.frame.height + 20.0
+                }
+                // return read more button y position + height + bottom padding
+                return cell.readMoreButton.frame.origin.y + cell.readMoreButton.bounds.height + 20.0
+            }
+            // return header label y position + height + bottom padding
+            return cell.headerLabel.frame.origin.y + cell.headerLabel.frame.height + 20.0
         default:
             return UITableViewAutomaticDimension
         }
-    }
-
-    private func calculateLabelHeight(text: String, font: UIFont, dispayedLineHeight: CGFloat, frameWidth: CGFloat) -> CGFloat {
-        let lineHeight = "a".height(withConstrainedWidth: frameWidth, font: font)
-        let headerHeight = text.height(withConstrainedWidth: frameWidth, font: font)
-
-        return headerHeight / lineHeight * dispayedLineHeight
     }
 }
 
