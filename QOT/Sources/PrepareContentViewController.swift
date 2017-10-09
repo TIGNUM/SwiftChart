@@ -232,7 +232,7 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
             }
 
             guard let headerText = cell.headerLabel.text else { return UITableViewAutomaticDimension }
-            let headerHeight = headerText.isEmpty ? 0 : calculateLabelHeight(text: headerText, font: Font.H1MainTitle, dispayedLineHeight: 46, frameWidth: cell.frame.width - 99)
+            let headerHeight = headerText.isEmpty ? 0 : headerText.height(withConstrainedWidth: cell.headerLabel.bounds.width, font: cell.headerLabel.font)
 
             guard let subHeaderText = cell.subHeaderLabel.text else { return UITableViewAutomaticDimension }
             var subHeaderHeight: CGFloat = 0
