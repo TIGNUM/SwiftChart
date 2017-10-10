@@ -82,7 +82,8 @@ enum Style {
             .lineSpacing(lineSpacing),
             .alignment(alignment),
             .lineHeightMultiple(lineHeight),
-            .numberSpacing(.proportional)
+            .numberSpacing(.proportional),
+            .hyphenationFactor(0.3)
         )
     }
 

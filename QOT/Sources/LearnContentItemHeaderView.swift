@@ -46,6 +46,6 @@ final class LearnContentItemHeaderView: UIView {
         titleLabel.attributedText = Style.postTitle(title.uppercased(), .darkIndigo).attributedString()
         subTitleLabel.attributedText = Style.tag(subtitle.uppercased(), .black30).attributedString()
         backgroundColor = .white
-        titleLabel.sizeToFit()
+        layoutIfNeeded()
     }
 }
