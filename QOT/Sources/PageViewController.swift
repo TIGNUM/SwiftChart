@@ -71,6 +71,25 @@ final class PageViewController: UIPageViewController {
         
             delegate = self
             dataSource = self
+        
+            if let headerView = headerView {
+                // @warning moved here instead of viewDidLoad - in iOS11, the first page loads before PageViewController viewDidLoad called, which causes `pageDidLoad(_ controller: UIViewController, scrollView: UIScrollView)` to be executed before `headerView` is laid out, messing up the top inset calculation. Perhaps here is the best place to accomodate the edge case, but it feels somewhat unsafe to add constraints before the view has loaded
+                edgesForExtendedLayout = []
+                view.addSubview(headerView)
+                headerViewTopConstraint = NSLayoutConstraint(
+                    item: headerView,
+                    attribute: .top,
+                    relatedBy: .equal,
+                    toItem: view,
+                    attribute: .top,
+                    multiplier: 1.0,
+                    constant: 0.0
+                )
+                view.addConstraint(headerViewTopConstraint!)
+                headerView.leftAnchor == view.leftAnchor
+                headerView.rightAnchor == (view.rightAnchor - 10.0)
+                headerView.layoutIfNeeded()
+            }
     }
     
     override func viewDidLoad() {
@@ -81,23 +100,6 @@ final class PageViewController: UIPageViewController {
         backgroundImageView.verticalAnchors == view.verticalAnchors
         backgroundImageView.horizontalAnchors == view.horizontalAnchors
         backgroundImageView.isHidden = (backgroundImageView.image == nil)
-        
-        if let headerView = headerView {
-            edgesForExtendedLayout = []
-            view.addSubview(headerView)
-            headerViewTopConstraint = NSLayoutConstraint(
-                item: headerView,
-                attribute: .top,
-                relatedBy: .equal,
-                toItem: view,
-                attribute: .top,
-                multiplier: 1.0,
-                constant: 0.0
-            )
-            view.addConstraint(headerViewTopConstraint!)
-            headerView.leftAnchor == view.leftAnchor
-            headerView.rightAnchor == (view.rightAnchor - 10.0)
-        }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -214,7 +216,6 @@ extension PageViewController: PageScroll {
         guard let headerView = headerView else {
             return
         }
-
         scrollView.contentInset = UIEdgeInsets(
             top: headerView.bounds.size.height,
             left: scrollView.contentInset.left,

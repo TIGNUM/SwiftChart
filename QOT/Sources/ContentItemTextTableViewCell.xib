@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,16 +19,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="xtJ-nQ-MxV">
-                        <rect key="frame" x="28" y="14" width="421" height="100.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="100.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bLT-zD-gDJ" customClass="ClickableLabel" customModule="QOT" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="421" height="20.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Snz-zp-lvY" customClass="ClickableLabel" customModule="QOT" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="80" width="421" height="20.5"/>
+                                <rect key="frame" x="0.0" y="80" width="0.0" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -38,10 +38,10 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="xtJ-nQ-MxV" secondAttribute="bottom" constant="14" id="4dD-qk-wkp"/>
+                    <constraint firstAttribute="bottom" secondItem="xtJ-nQ-MxV" secondAttribute="bottom" constant="28" id="4dD-qk-wkp"/>
                     <constraint firstAttribute="trailing" secondItem="xtJ-nQ-MxV" secondAttribute="trailing" constant="28" id="Pp4-ii-yOy"/>
                     <constraint firstItem="xtJ-nQ-MxV" firstAttribute="leading" secondItem="ebe-l7-M4G" secondAttribute="leading" constant="28" id="QcA-LZ-4xw"/>
-                    <constraint firstItem="xtJ-nQ-MxV" firstAttribute="top" secondItem="ebe-l7-M4G" secondAttribute="top" constant="14" id="slm-zK-tZM"/>
+                    <constraint firstItem="xtJ-nQ-MxV" firstAttribute="top" secondItem="ebe-l7-M4G" secondAttribute="top" id="slm-zK-tZM"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
