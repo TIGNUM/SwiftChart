@@ -33,7 +33,7 @@ final class OnboardingCoordinator: ParentCoordinator {
     var children: [Coordinator] = [Coordinator]()
     weak var delegate: OnboardingCoordinatorDelegate?
     private let windowManager: WindowManager
-    private let chatViewModel = ChatViewModel<Choice>()
+    private let chatViewModel = ChatViewModel<Choice>(items: [])
     fileprivate let permissionHandler: PermissionHandler
     private var userName: String
 
@@ -74,43 +74,36 @@ final class OnboardingCoordinator: ParentCoordinator {
     // MARK: - private
     
     private func startOnboarding() {
-        // TODO: localise?
         let choices = [
             Choice(title: R.string.localized.onboardingChoiceTitleAccessAll(), type: .yes),
             Choice(title: R.string.localized.onboardingChoiceTitleAccessLater(), type: .later),
             Choice(title: R.string.localized.onboardingChoiceTitleAccessWhy(), type: .why)
         ]
-        let items = [
-            ChatItem(type: .message(R.string.localized.onboardingChatItemWelcome(userName)), state: .typing, delay: 3.0),
-            ChatItem(type: .message(R.string.localized.onboardingChatItemPermissions()), state: .typing, delay: 1.0),
-            deliveredFooter(alignment: .left),
-            ChatItem(type: .choiceList(choices, display: .list)),
-            deliveredFooter(alignment: .right)
+        let messages: [String] = [
+            R.string.localized.onboardingChatItemWelcome(userName),
+            R.string.localized.onboardingChatItemPermissions()
         ]
-        chatViewModel.append(items: items)
+        showMessages(messages, followedByChoices: choices, at: Date())
     }
     
     private func handleChoice(_ choice: Choice) {
         switch choice.type {
         case .yes:
             permissionHandler.askForAllPermissions({ [unowned self] (result: PermissionHandler.Result) in
-
-                if result.location == true {
-                    UserDefault.locationService.setBoolValue(value: true)
-                }
-
-                if result.isAllGranted {
-                    self.showLastStep()
-                    self.showLetsGo()
-                } else {
-                    self.showSettings()
-                    self.showLetsGo()
+                DispatchQueue.main.async {
+                    if result.location == true {
+                        UserDefault.locationService.setBoolValue(value: true)
+                    }
+                    if result.isAllGranted {
+                        self.showLastStep()
+                    } else {
+                        self.showSettings()
+                    }
                 }
             })
         case .later:
             permissionHandler.isEnabledForSession = false
             showSettings()
-            showLetsGo()
         case .why:
             showWhy()
         case .go:
@@ -119,57 +112,62 @@ final class OnboardingCoordinator: ParentCoordinator {
     }
     
     private func showWhy() {
-        // TODO: localise?
         let choices = [
             Choice(title: R.string.localized.onboardingChoiceTitleAccessAllWhy(), type: .yes),
             Choice(title: R.string.localized.onboardingChoiceTitleAccessLaterWhy(), type: .later)
         ]
-        let items = [
-            ChatItem(type: .message(R.string.localized.onboardingChatItemWhy()), state: .typing, delay: 2.0),
-            deliveredFooter(alignment: .left),
-            ChatItem(type: .choiceList(choices, display: .list)),
-            deliveredFooter(alignment: .right)
-        ]
-        chatViewModel.append(items: items)
+        showMessages([R.string.localized.onboardingChatItemWhy()], followedByChoices: choices, at: Date())
     }
     
     private func showSettings() {
-        // TODO: localise?
-        let items = [
-            ChatItem<Choice>(type: .message(R.string.localized.onboardingChatItemShowSettings()), state: .typing, delay: 3.0),
-            deliveredFooter(alignment: .left)
-        ]
-        chatViewModel.append(items: items)
+        let choices = [Choice(title: R.string.localized.onboardingChoiceTitleLetsGo(), type: .go)]
+        showMessages([R.string.localized.onboardingChatItemShowSettings()], followedByChoices: choices, at: Date())
     }
     
     private func showLastStep() {
-        // TODO: localise?
-        let items = [
-            ChatItem(type: .message(R.string.localized.onboardingChatItemLastStep()), state: .typing, delay: 1.0),
-            deliveredFooter(alignment: .left)
-        ]
-        chatViewModel.append(items: items)
+        let choices = [Choice(title: R.string.localized.onboardingChoiceTitleLetsGo(), type: .go)]
+        showMessages([R.string.localized.onboardingChatItemLastStep()], followedByChoices: choices, at: Date())
     }
-    
-    private func showLetsGo() {
-        // TODO: localise?
-        let choices = [
-            Choice(title: R.string.localized.onboardingChoiceTitleLetsGo(), type: .go)
-        ]
-        let items = [
-            ChatItem(type: .choiceList(choices, display: .list)),
-            deliveredFooter(alignment: .right)
-        ]
-        chatViewModel.append(items: items)
+
+    private func showMessages(_ messages: [String], followedByChoices choices: [Choice], at date: Date) {
+        var items: [ChatItem<Choice>] = []
+        for (index, message) in messages.enumerated() {
+            let date = date.addingTimeInterval(TimeInterval(index))
+            let item = messageChatItem(text: message,
+                                       date: date,
+                                       includeFooter: index == messages.count - 1,
+                                       isAutoscrollSnapable: index == 0)
+            items.append(item)
+        }
+        let choiceListDate = date.addingTimeInterval(TimeInterval(choices.count))
+        items.append(choiceListChatItem(choices: choices, date: choiceListDate, includeFooter: true))
+        chatViewModel.appendItems(items)
     }
     
     private func completeOnboarding() {
         OnboardingCoordinator.isOnboardingComplete = true
         delegate?.onboardingCoordinatorDidFinish(self)
     }
-    
-    private func deliveredFooter(date: Date = Date(), alignment: NSTextAlignment) -> ChatItem<Choice> {
-        let time = DateFormatter.displayTime.string(from: Date())
-        return ChatItem(type: .footer(R.string.localized.prepareChatFooterDeliveredTime(time), alignment: alignment))
+
+    private func messageChatItem(text: String, date: Date, includeFooter: Bool, isAutoscrollSnapable: Bool) -> ChatItem<Choice> {
+        var footer: String?
+        if includeFooter == true {
+            let time = DateFormatter.displayTime.string(from: date)
+            footer = R.string.localized.prepareChatFooterDeliveredTime(time)
+        }
+        return ChatItem<Choice>(type: .message(text),
+                                 alignment: .left,
+                                 timestamp: date,
+                                 footer: footer,
+                                 isAutoscrollSnapable: isAutoscrollSnapable)
+    }
+
+    private func choiceListChatItem(choices: [Choice], date: Date, includeFooter: Bool) -> ChatItem<Choice> {
+        var footer: String?
+        if includeFooter == true {
+            let time = DateFormatter.displayTime.string(from: date)
+            footer = R.string.localized.prepareChatFooterDeliveredTime(time)
+        }
+        return ChatItem<Choice>(type: .choiceList(choices), alignment: .right, timestamp: date, footer: footer)
     }
 }

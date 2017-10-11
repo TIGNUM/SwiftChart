@@ -295,11 +295,11 @@ extension PrepareCoordinator: PrepareContentViewControllerDelegate {
 extension PrepareCoordinator : PrepareChatDecisionManagerDelegate {
 
     func setItems(_ items: [ChatItem<Answer>], manager: PrepareChatDecisionManager) {
-        chatViewController.viewModel.set(items: items)
+        chatViewController.viewModel.setItems(items)
     }
 
     func appendItems(_ items: [ChatItem<Answer>], manager: PrepareChatDecisionManager) {
-        chatViewController.viewModel.append(items: items)
+        chatViewController.viewModel.appendItems(items)
     }
 
     func showContent(id: Int, manager: PrepareChatDecisionManager) {

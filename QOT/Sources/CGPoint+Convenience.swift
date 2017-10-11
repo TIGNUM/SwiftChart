@@ -36,4 +36,8 @@ extension CGPoint {
     var rounded: CGPoint {
         return CGPoint(x: x.rounded(), y: y.rounded())
     }
+
+    func adding(x deltaX: CGFloat = 0, y deltaY: CGFloat = 0) -> CGPoint {
+        return CGPoint(x: x + deltaX, y: y + deltaY)
+    }
 }

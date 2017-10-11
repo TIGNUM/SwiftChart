@@ -8,6 +8,8 @@
 
 import UIKit
 
+extension Answer: ChatChoice {}
+
 protocol PrepareChatDecisionManagerDelegate: class {
 
     func setItems(_ items: [ChatItem<Answer>], manager: PrepareChatDecisionManager)
@@ -15,8 +17,6 @@ protocol PrepareChatDecisionManagerDelegate: class {
     func showContent(id: Int, manager: PrepareChatDecisionManager)
     func showNoContentError(manager: PrepareChatDecisionManager)
 }
-
-extension Answer: ChatChoice {}
 
 final class PrepareChatDecisionManager {
 
@@ -36,13 +36,14 @@ final class PrepareChatDecisionManager {
 
     func preparationSaved() {
 
-        addMessage(R.string.localized.prepareChatPreparationSaved())
-        addQuestions()
+        let now = Date()
+        addMessage(R.string.localized.prepareChatPreparationSaved(), timestamp: now, showDeliveredFooter: false)
+        addQuestions(timestamp: now.addingTimeInterval(1), isAutoscrollSnapable: false)
     }
 
-    func addQuestions() {
+    func addQuestions(timestamp: Date = Date(), isAutoscrollSnapable: Bool = true) {
         if let groupID = questionGroupID, let question = questionsService.prepareQuestions(questionGroupID: groupID).first {
-            process(question: question)
+            process(question: question, timestamp: timestamp, isAutoscrollSnapable: isAutoscrollSnapable)
         }
     }
 
@@ -57,64 +58,50 @@ final class PrepareChatDecisionManager {
             delegate?.showContent(id: id, manager: self)
         case .question(let id):
             if let question = questionsService.question(id: id) {
-                process(question: question)
+                process(question: question, timestamp: Date(), isAutoscrollSnapable: true)
             }
         }
     }
 
-    func addMessage(_ message: String) {
-        var items: [ChatItem<Answer>] = []
-
-        items.append(ChatItem(type: .message(message), state: .typing, delay: 2.0))
-        items.append(deliveredFooter(alignment: .left))
-
-        delegate?.appendItems(items, manager: self)
+    func addMessage(_ message: String, timestamp: Date, showDeliveredFooter: Bool) {
+        let footer = showDeliveredFooter ? deliveredFooter(date: timestamp) : nil
+        let item: ChatItem<Answer> = ChatItem(type: .message(message),
+                                                alignment: .left,
+                                                timestamp: timestamp,
+                                                header: nil,
+                                                footer: footer,
+                                                isAutoscrollSnapable: true)
+        delegate?.appendItems([item], manager: self)
     }
 
-    private func process(question: Question) {
+    private func process(question: Question, timestamp: Date, isAutoscrollSnapable: Bool) {
         var items: [ChatItem<Answer>] = []
-        items.append(ChatItem(type: .message(question.title), state: .typing, delay: 2.0))
-        items.append(deliveredFooter(alignment: .left))
-
-        if let headerText = question.answersDescription {
-            items.append(ChatItem(type: .header(headerText, alignment: .right)))
-        }
+        let botMessage: ChatItem<Answer> = ChatItem(type: .message(question.title),
+                                                      alignment: .left,
+                                                      timestamp: timestamp,
+                                                      header: nil,
+                                                      footer: deliveredFooter(date: timestamp),
+                                                      isAutoscrollSnapable: isAutoscrollSnapable)
+        items.append(botMessage)
 
         if let groupID = questionGroupID {
 
             let predicate = NSPredicate(format: "ANY decisions.questionGroupID == %d", groupID)
             let answers = question.answers.filter(predicate)
-            let decisions = answers.reduce([AnswerDecision](), { (result, answer) -> [AnswerDecision] in
-                return result + Array(answer.decisions)
-            })
 
-            let flowDisplayCount = decisions.filter { $0.choiceListDisplay == .flow }.count
-            let listDisplayCount = decisions.filter { $0.choiceListDisplay == .list }.count
-            let choiceListDisplay: ChoiceListDisplay = flowDisplayCount > listDisplayCount ? .flow : .list
-
-            items.append(ChatItem(type: .choiceList(Array(answers), display: choiceListDisplay)))
-            items.append(deliveredFooter(alignment: .right))
+            let item = ChatItem(type: .choiceList(Array(answers)),
+                                 alignment: .right,
+                                 timestamp: timestamp.addingTimeInterval(0.8),
+                                 header: nil,
+                                 footer: deliveredFooter(date: timestamp))
+            items.append(item)
         }
 
         delegate?.appendItems(items, manager: self)
     }
 
-    private func deliveredFooter(date: Date = Date(), alignment: NSTextAlignment) -> ChatItem<Answer> {
+    private func deliveredFooter(date: Date) -> String {
         let time = DateFormatter.displayTime.string(from: Date())
-        return ChatItem(type: .footer(R.string.localized.prepareChatFooterDeliveredTime(time), alignment: alignment))
-    }
-}
-
-private extension AnswerDecision {
-
-    var choiceListDisplay: ChoiceListDisplay? {
-        guard let target = target else {
-            return nil
-        }
-
-        switch target {
-        case .content: return .flow
-        case .question: return .list
-        }
+        return R.string.localized.prepareChatFooterDeliveredTime(time)
     }
 }

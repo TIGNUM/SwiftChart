@@ -72,4 +72,8 @@ extension Date {
 
         return time
     }
+
+    var timeIntervalToNow: TimeInterval {
+        return -timeIntervalSinceNow
+    }
 }

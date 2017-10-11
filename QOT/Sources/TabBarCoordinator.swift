@@ -50,7 +50,7 @@ final class TabBarCoordinator: ParentCoordinator {
                                   myPrepViewController: self.myPrepViewController)
     }()
     fileprivate lazy var prepareChatViewController: ChatViewController<Answer> = {
-        let viewModel = ChatViewModel<Answer>()
+        let viewModel = ChatViewModel<Answer>(items: [])
         let viewController = ChatViewController(pageName: .prepareChat, viewModel: viewModel)
         viewController.title = R.string.localized.topTabBarItemTitlePerpareCoach()
 

@@ -63,4 +63,10 @@ extension String {
 
         return (self as NSString).replacingCharacters(in: candidate.range, with: "\n") as String
     }
+
+    /// Returns nil if string contains only whitespace or new line characters
+    var nilled: String? {
+        let trimmed = trimmingCharacters(in: .whitespacesAndNewlines)
+        return trimmed.isEmpty ? nil : trimmed
+    }
 }

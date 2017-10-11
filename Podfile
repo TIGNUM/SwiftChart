@@ -1,5 +1,8 @@
 platform :ios, '10.0'
 
+# ignore all warnings from all pods
+inhibit_all_warnings!
+
 target 'QOT' do
   use_frameworks!
 
@@ -7,7 +10,6 @@ target 'QOT' do
   pod 'Bond'
   pod 'Anchorage'
   pod 'R.swift'
-  pod 'UICollectionViewRightAlignedLayout'
   pod 'Kingfisher', '~> 3.6'
   pod 'LoremIpsum'
   pod 'iCarousel'

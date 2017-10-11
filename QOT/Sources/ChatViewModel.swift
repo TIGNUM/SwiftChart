@@ -14,91 +14,77 @@ protocol ChatChoice {
 }
 
 struct ChatItem<T: ChatChoice> {
-    enum ChatItemState {
-        case typing
-        case display
-    }
-    enum ChatItemType {
+
+    enum ChatItemType<T: ChatChoice> {
         case message(String)
-        case choiceList([T], display: ChoiceListDisplay)
-        case header(String, alignment: NSTextAlignment)
-        case footer(String, alignment: NSTextAlignment)
+        case choiceList([T])
     }
 
-    let type: ChatItemType
-    var state: ChatItemState
-    let delay: TimeInterval
     let identifier = UUID().uuidString
+    let type: ChatItemType<T>
+    let alignment: ChatViewAlignment
+    let timestamp: Date
+    let header: String?
+    let footer: String?
+    let isAutoscrollSnapable: Bool
 
-    init(type: ChatItemType, state: ChatItemState = .display, delay: TimeInterval = 0.2) {
+    init(type: ChatItemType<T>,
+         alignment: ChatViewAlignment,
+         timestamp: Date,
+         header: String? = nil,
+         footer: String? = nil,
+         isAutoscrollSnapable: Bool = false) {
         self.type = type
-        self.state = state
-        self.delay = delay
+        self.alignment = alignment
+        self.timestamp = timestamp
+        self.header = header?.nilled
+        self.footer = footer?.nilled
+        self.isAutoscrollSnapable = isAutoscrollSnapable
     }
-}
 
-enum ChoiceListDisplay {
-    case flow
-    case list
-}
-
-protocol ChatViewModelDelegate: class {
-    func canChatStart() -> Bool
-}
-
-enum ChatCollectionUpdate {
-    case willBegin
-    case didFinish
-    case reload
-    case update(deletions: [IndexPath], insertions: [IndexPath], modifications: [IndexPath])
+    var isMessage: Bool {
+        guard case ChatItemType<T>.message(_) = self.type else {
+            return false
+        }
+        return true
+    }
 }
 
 final class ChatViewModel<T: ChatChoice> {
 
-    private var queue: [ChatItem<T>] = []
-    private var items: [ChatItem<T>] = []
-    private var selected: [String: Int] = [:]
-    private var timer: Timer?
-    weak var delegate: ChatViewModelDelegate?
-    
-    let updates = PublishSubject<ChatCollectionUpdate, NoError>()
+    enum Update {
+        case reload(items: [ChatItem<T>])
+        case update(items: [ChatItem<T>], deletions: [Index], insertions: [Index], modifications: [Index])
+    }
 
-    init(items: [ChatItem<T>] = []) {
-        set(items: items)
+    private var items: [ChatItem<T>]
+    private var queue: ChatItemQueue<T>?
+    private var selected: [String: Int] = [:]
+
+    let updates = PublishSubject<Update, NoError>()
+
+    init(items: [ChatItem<T>]) {
+        self.items = items
+        setupQueue()
     }
-    
-    func start() {
-        guard timer == nil, let delegate = delegate, delegate.canChatStart(), queue.count > 0 else {
-            return
-        }
-        updates.next(.willBegin)
-        DispatchQueue.main.async {
-            self.timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(self.timerTick(_:)), userInfo: nil, repeats: false)
-        }
-    }
-    
-    func stop() {
-        timer?.invalidate()
-        timer = nil
-    }
-    
-    func select(itemIndex: Int, choiceIndex: Int) {
-        let item = items[itemIndex]
+
+    func didSelectItem(at indexPath: IndexPath) {
+        let item = items[indexPath.section]
         switch item.type {
         case .choiceList:
-            selected[item.identifier] = choiceIndex
+            selected[item.identifier] = indexPath.item
         default:
             assertionFailure("This is not a choiceList")
         }
     }
 
-    func isSelected(itemIndex: Int, choiceIndex: Int) -> Bool {
-        let item = items[itemIndex]
-        return selected[item.identifier] == choiceIndex
+    func isSelectedItem(at indexPath: IndexPath) -> Bool {
+        let item = items[indexPath.section]
+        return selected[item.identifier] == indexPath.item
     }
 
-    func canSelectItem(index: Index) -> Bool {
-        let item = items[index]
+    func canSelectItem(at indexPath: IndexPath) -> Bool {
+        let item = items[indexPath.section]
         switch item.type {
         case .choiceList:
             return selected[item.identifier] == nil
@@ -106,77 +92,33 @@ final class ChatViewModel<T: ChatChoice> {
             return false
         }
     }
-    
-    func setItem(_ item: ChatItem<T>, at index: Index) {
-        items[index] = item
-    }
 
-    func set(items: [ChatItem<T>]) {
-        self.items = []
-        selected = [:]
-        queue = items
-        updates.next(.reload)
-        start()
-    }
-
-    func append(items: [ChatItem<T>]) {
-        queue.append(contentsOf: items)
-        start()
-    }
-
-    var itemCount: Index {
-        return items.count
-    }
-
-    func item(at index: Index) -> ChatItem<T> {
-        return items[index]
+    func setItems(_ newItems: [ChatItem<T>]) {
+        queue?.invalidate()
+        items = newItems
+        updates.next(.reload(items: newItems))
+        setupQueue()
     }
     
-    // MARK: - private
-    
-    private func popQueue() -> ChatItem<T>? {
-        guard let item = queue.first else {
-            return nil
+
+    func appendItems(_ items: [ChatItem<T>]) {
+        for item in items {
+            queue?.push(item)
         }
-        queue.remove(at: 0)
-        return item
     }
-    
-    @objc private func timerTick(_ sender: Timer) {
-        // pop the queue
-        guard let item = popQueue() else {
-            updates.next(.didFinish)
-            stop()
-            return
-        }
-        
-        // restart the timer
-        restart(withTimeInterval: item.delay)
 
-        // insert new row
-        let row = items.count
-        let insertions = [IndexPath(row: row, section: 0)]
-        var modifications = [IndexPath]()
-        
-        // stop typing previous row
-        if row > 0 {
-            let previousRow = row - 1
-            var previousItem = items[previousRow]
-            if previousItem.state == .typing {
-                previousItem.state = .display
-                setItem(previousItem, at: previousRow)
-                modifications.append(IndexPath(row: previousRow, section: 0))
+    private func setupQueue() {
+        queue = ChatItemQueue<T>(popHandler: { [weak self] (item) in
+            guard let `self` = self else {
+                return
             }
-        }
-        
-        // update
-        items.append(item)
-        let update = ChatCollectionUpdate.update(deletions: [], insertions: insertions, modifications: modifications)
-        updates.next(update)
-    }
-    
-    private func restart(withTimeInterval timeInterval: TimeInterval) {
-        stop()
-        timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(timerTick(_:)), userInfo: nil, repeats: false)
+
+            self.items.append(item)
+            let index = self.items.count - 1
+            self.updates.next(.update(items: self.items, deletions: [], insertions: [index], modifications: []))
+        })
     }
 }
+
+
+

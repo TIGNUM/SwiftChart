@@ -558,3 +558,10 @@ extension DoubleObject {
         return self.value.toInt
     }
 }
+
+extension UIEdgeInsets {
+
+    var horizontal: CGFloat {
+        return left + right
+    }
+}
