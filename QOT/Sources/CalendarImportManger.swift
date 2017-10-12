@@ -27,13 +27,10 @@ final class CalendarImportManger {
     private let notificationHandler: NotificationHandler
     private let store = EKEventStore.shared
 
-    /// The predicate for for which `EKEvents` to fetch from `EKEventStore`.
-    var predicate: (EKEventStore) -> NSPredicate
-    /// The delegate of `self`.
+    var predicate: () -> (start: Date, end: Date)
     weak var delegate: CalendarImportMangerDelegate?
-    
-    /// Creates an instance that imports `EKEvent`s from `store` matching `predicate` into `realm`.
-    init(realm: RealmProvider, predicate: @escaping (EKEventStore) -> NSPredicate) {
+
+    init(realm: RealmProvider, predicate: @escaping () -> (start: Date, end: Date)) {
         self.realmProvider = realm
         self.predicate = predicate
         self.notificationHandler = NotificationHandler(name: .EKEventStoreChanged, object: store)
@@ -42,13 +39,13 @@ final class CalendarImportManger {
             self.importEvents()
         }
     }
-    
-    /// Import `EKEvent`s matching `predicate`.
+
     func importEvents() {
         let status = EKEventStore.authorizationStatus(for: .event)
         
         if status == .authorized {
-            sync(predicate: predicate(store)) { [weak self] (result: CalendarImportResult) in
+            let (start, end) = predicate()
+            sync(start: start, end: end) { [weak self] (result: CalendarImportResult) in
                 switch result {
                 case .success:
                     break // No operation needed
@@ -61,14 +58,13 @@ final class CalendarImportManger {
         }
     }
 
-    private func sync(predicate: NSPredicate, completion: @escaping (CalendarImportResult) -> Void) {        
+    private func sync(start: Date, end: Date, completion: @escaping (CalendarImportResult) -> Void) {
         queue.async { [store, realmProvider] in
             let result: CalendarImportResult
             do {
-                let events = store.events(matching: predicate)
                 let realm = try realmProvider.realm()
-                let task = CalendarImportTask()
-                result = task.sync(events: events, realm: realm, store: store)
+                let task = CalendarImportTask(startDate: start, endDate: end, realm: realm, store: store)
+                result = task.sync()
             } catch let error {
                 result = .failure(error)
             }

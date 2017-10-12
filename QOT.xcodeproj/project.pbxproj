@@ -274,7 +274,7 @@
 		CBEB8EF51F82719700C764C2 /* ChatViewAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEB8EF41F82719700C764C2 /* ChatViewAvatarView.swift */; };
 		CBFECCA51F30BB4D0076ACE6 /* SyncableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFECCA41F30BB4D0076ACE6 /* SyncableObject.swift */; };
 		CBFECCA81F31D7480076ACE6 /* SyncTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFECCA71F31D7480076ACE6 /* SyncTypes.swift */; };
-		CBFECCAA1F33492D0076ACE6 /* EKEventStore+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFECCA91F33492D0076ACE6 /* EKEventStore+Settings.swift */; };
+		CBFECCAA1F33492D0076ACE6 /* EKEventStore+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFECCA91F33492D0076ACE6 /* EKEventStore+Convenience.swift */; };
 		CBFECCAD1F388B500076ACE6 /* TimeZone+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFECCAC1F388B500076ACE6 /* TimeZone+Convenience.swift */; };
 		CBFECCC21F3C9CA00076ACE6 /* LearnCategoryListBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFECCC11F3C9CA00076ACE6 /* LearnCategoryListBackgroundView.swift */; };
 		CBFED33A1F7938970006270D /* ChatItemQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFED3391F7938970006270D /* ChatItemQueue.swift */; };
@@ -731,7 +731,7 @@
 		CBEB8EF41F82719700C764C2 /* ChatViewAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewAvatarView.swift; sourceTree = "<group>"; };
 		CBFECCA41F30BB4D0076ACE6 /* SyncableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncableObject.swift; sourceTree = "<group>"; };
 		CBFECCA71F31D7480076ACE6 /* SyncTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncTypes.swift; sourceTree = "<group>"; };
-		CBFECCA91F33492D0076ACE6 /* EKEventStore+Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKEventStore+Settings.swift"; sourceTree = "<group>"; };
+		CBFECCA91F33492D0076ACE6 /* EKEventStore+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKEventStore+Convenience.swift"; sourceTree = "<group>"; };
 		CBFECCAC1F388B500076ACE6 /* TimeZone+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeZone+Convenience.swift"; sourceTree = "<group>"; };
 		CBFECCC11F3C9CA00076ACE6 /* LearnCategoryListBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnCategoryListBackgroundView.swift; sourceTree = "<group>"; };
 		CBFED3391F7938970006270D /* ChatItemQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatItemQueue.swift; sourceTree = "<group>"; };
@@ -1850,7 +1850,7 @@
 				CB8A15491E7A7FA20023B2F9 /* CalendarImportManger.swift */,
 				CBDB98F11E7AA510003EC73F /* CalendarImportResult.swift */,
 				CB8A154B1E7A8AD30023B2F9 /* CalendarImportTask.swift */,
-				CBFECCA91F33492D0076ACE6 /* EKEventStore+Settings.swift */,
+				CBFECCA91F33492D0076ACE6 /* EKEventStore+Convenience.swift */,
 			);
 			name = "Calendar Import";
 			sourceTree = "<group>";
@@ -2544,7 +2544,7 @@
 				CB3437621EFD67B600D89D4F /* AnswerIntermediary.swift in Sources */,
 				CBD791541E72A4BB0006C590 /* MockData.swift in Sources */,
 				CBC5ACC61F17C58F007E1E9C /* UpdateRelationsOperation.swift in Sources */,
-				CBFECCAA1F33492D0076ACE6 /* EKEventStore+Settings.swift in Sources */,
+				CBFECCAA1F33492D0076ACE6 /* EKEventStore+Convenience.swift in Sources */,
 				CB9B07651EF929E50017F6C3 /* EKEvent+JSONEncodable.swift in Sources */,
 				CCCC211D1E8981AD00133839 /* ChatViewModel.swift in Sources */,
 				CBC9330F1F0AA47800C00007 /* PrepareEventsViewController.swift in Sources */,

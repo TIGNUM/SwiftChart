@@ -12,15 +12,30 @@ import EventKit
 
 final class CalendarImportTask {
 
-    func sync(events: [EKEvent], realm: Realm, store: EKEventStore) -> CalendarImportResult {
+    let start: Date
+    let end: Date
+    let realm: Realm
+    let store: EKEventStore
+
+    init(startDate: Date, endDate: Date, realm: Realm, store: EKEventStore) {
+        self.start = startDate
+        self.end = endDate
+        self.realm = realm
+        self.store = store
+    }
+
+    func sync() -> CalendarImportResult {
+        let predicate = store.predicateForEvents(withStart: start, end: end, calendars: store.syncEnabledCalendars)
+        let events = store.events(matching: predicate)
         let result: CalendarImportResult
         do {
+            let existingCalendarEvents: Results<CalendarEvent> = realm.objects()
             try realm.write {
                 createOrUpdateCalendarEvents(with: events, realm: realm)
-                deleteCalendarEventsNotInSyncEnabledCalendarsOrThatReferenceDeletedEKEvents(in: realm, store: store)
+                deleteCalendarEvents(from: Array(existingCalendarEvents), using: events)
             }
             result = .success
-        } catch let error {
+        } catch{
             result = .failure(error)
         }
         return result
@@ -28,13 +43,15 @@ final class CalendarImportTask {
 
     // MARK: Private
 
-    func createOrUpdateCalendarEvents(with ekEvents: [EKEvent], realm: Realm) {
+    private func createOrUpdateCalendarEvents(with ekEvents: [EKEvent], realm: Realm) {
         for ekEvent in ekEvents {
-            if let existingCalendarEvent = realm.syncableObject(ofType: CalendarEvent.self, localID: ekEvent.eventIdentifier) {
+            let predicate = NSPredicate.calendarEvent(title: ekEvent.title,
+                                                      startDate: ekEvent.startDate,
+                                                      endDate: ekEvent.endDate)
+            if let existingCalendarEvent: CalendarEvent = realm.objects(predicate: predicate).first {
                 if let modifiedAt = ekEvent.lastModifiedDate, modifiedAt > existingCalendarEvent.ekEventModifiedAt {
                     existingCalendarEvent.update(event: ekEvent)
                 }
-
                 // The event might have been soft deleted before so un delete it
                 existingCalendarEvent.deleted = false
             } else {
@@ -44,14 +61,14 @@ final class CalendarImportTask {
         }
     }
 
-    func deleteCalendarEventsNotInSyncEnabledCalendarsOrThatReferenceDeletedEKEvents(in realm: Realm, store: EKEventStore) {
-        let enabledCalendars = store.syncEnabledCalendars
-        let calendarEvents = realm.objects(CalendarEvent.self).filter(.deleted(false)).filter { (calendarEvent) -> Bool in
-            if let ekEvent = store.event(withIdentifier: calendarEvent.eventID) {
-                return enabledCalendars.contains(ekEvent.calendar) == false
-            }
-            return true
+    private func deleteCalendarEvents(from calendarEvents: [CalendarEvent], using ekEvents: [EKEvent]) {
+        let relevantCalendarEvents = calendarEvents.filter {
+            return $0.deleted == false && $0.endDate >= start && $0.startDate <= end
         }
-        calendarEvents.forEach { $0.deleteOrMarkDeleted() }
+        for calendarEvent in relevantCalendarEvents {
+            if ekEvents.contains(where: { calendarEvent.matches(event: $0) }) == false {
+                calendarEvent.deleteOrMarkDeleted()
+            }
+        }
     }
 }

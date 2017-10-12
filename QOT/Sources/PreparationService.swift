@@ -47,15 +47,15 @@ final class PreparationService {
         return try realmProvider.realm().preparationChecks(preparationID: preparationID)
     }
 
-    func createPreparation(contentCollectionID: Int, eventID: String?, name: String, subtitle: String) throws -> String {
+    func createPreparation(contentCollectionID: Int, event: EKEvent?, name: String, subtitle: String) throws -> String {
         let realm = try self.realmProvider.realm()
         guard let contentCollection = realm.syncableObject(ofType: ContentCollection.self, remoteID: contentCollectionID) else {
             throw SimpleError(localizedDescription: "No content collection for contentCollectionID: \(contentCollectionID)")
         }
         
         var calendarEvent: CalendarEvent?
-        if let eventID = eventID {
-            calendarEvent = realm.calendarEventForEventID(eventID)
+        if let event = event {
+            calendarEvent = realm.calendarEventForEKEvent(event)
         }
         
         let preparation = Preparation(calendarEvent: calendarEvent, contentCollectionID: contentCollectionID, name: name, subtitle: subtitle)
@@ -147,14 +147,10 @@ private extension Realm {
         return anyCollection(predicates: .deleted(false), .preparationID(preparationID))
     }
     
-    func calendarEventForEventID(_ eventID: String) -> CalendarEvent? {
-        var calendarEvent = syncableObject(ofType: CalendarEvent.self, localID: eventID)
-        if calendarEvent == nil {
-            let store = EKEventStore()
-            if let event = store.event(withIdentifier: eventID) {
-                calendarEvent = CalendarEvent(event: event)
-            }
-        }
-        return calendarEvent
+    func calendarEventForEKEvent(_ ekEvent: EKEvent) -> CalendarEvent {
+        let predicate = NSPredicate.calendarEvent(title: ekEvent.title,
+                                                  startDate: ekEvent.startDate,
+                                                  endDate: ekEvent.endDate)
+        return objects(predicate: predicate).first ?? CalendarEvent(event: ekEvent)
     }
 }

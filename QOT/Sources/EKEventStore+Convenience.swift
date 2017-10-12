@@ -18,9 +18,7 @@ struct CalendarSyncSetting {
 
 extension EKEventStore {
 
-    static var shared: EKEventStore {
-        return sharedEventStore
-    }
+    static var shared = EKEventStore()
 
     var syncEnabledCalendars: [EKCalendar] {
         return calendars(for: .event).filter(syncEnabled)
@@ -50,6 +48,18 @@ extension EKEventStore {
 
         return isDefaultCalendar ? true : false
     }
-}
 
-private let sharedEventStore = EKEventStore()
+    func event(with calendarEvent: CalendarEvent) -> EKEvent? {
+        let startDate = calendarEvent.startDate
+        let endDate = calendarEvent.endDate
+        let predicate = predicateForEvents(withStart: startDate, end: endDate, calendars: syncEnabledCalendars)
+        var event: EKEvent?
+        enumerateEvents(matching: predicate) { (ekEvent, stop) in
+            if calendarEvent.matches(event: ekEvent) {
+                event = ekEvent
+                stop.pointee = true
+            }
+        }
+        return event
+    }
+}

@@ -43,7 +43,7 @@ final class PrepareCoordinator: ParentCoordinator {
             switch action {
             case .saved:
                 if let event = controller.event {
-                    self?.createPreparation(name: event.title, eventID: event.eventIdentifier)
+                    self?.createPreparation(name: event.title, event: event)
                 }
                 self?.tabBarController.dismiss(animated: true)
                 self?.chatDecisionManager.preparationSaved()
@@ -204,20 +204,20 @@ extension PrepareCoordinator {
         viewController.present(prepareEventsVC, animated: true)
     }
 
-    func createPreparation(name: String, eventID: String?) {
+    func createPreparation(name: String, event: EKEvent?) {
         guard let context = context else {
             preconditionFailure("No preparation context")
         }
 
         let localID: String
         do {
-            localID = try services.preparationService.createPreparation(contentCollectionID: context.contentCollectionID, eventID: eventID, name: name, subtitle: context.listTitle)
+            localID = try services.preparationService.createPreparation(contentCollectionID: context.contentCollectionID, event: event, name: name, subtitle: context.listTitle)
         } catch {
             log(error)
             return
         }
         
-        guard let eventID = eventID else {
+        guard let event = event else {
             return
         }
         self.permissionHandler.askPermissionForCalendar { (granted: Bool) in
@@ -226,20 +226,18 @@ extension PrepareCoordinator {
             }
             
             let eventStore = EKEventStore.shared
-            if let event = eventStore.event(withIdentifier: eventID) {
-                var notes = event.notes ?? ""
-                guard let preparationLink = URLScheme.preparationURL(withID: localID) else {
-                    return
-                }
-                notes += "\n\n" + preparationLink
-                log("preparationLink: \(preparationLink)")
-                event.notes = notes
-                do {
-                    try eventStore.save(event, span: .thisEvent, commit: true)
-                } catch let error {
-                    log("createPreparation - eventStore.save.error: \(error.localizedDescription)")
-                    return
-                }
+            var notes = event.notes ?? ""
+            guard let preparationLink = URLScheme.preparationURL(withID: localID) else {
+                return
+            }
+            notes += "\n\n" + preparationLink
+            log("preparationLink: \(preparationLink)")
+            event.notes = notes
+            do {
+                try eventStore.save(event, span: .thisEvent, commit: true)
+            } catch let error {
+                log("createPreparation - eventStore.save.error: \(error.localizedDescription)")
+                return
             }
         }
     }
@@ -337,7 +335,7 @@ extension PrepareCoordinator: PrepareEventsViewControllerDelegate {
         let saveTitle = R.string.localized.alertButtonTitleSave()
         let saveAction = UIAlertAction(title: saveTitle, style: .default) { [weak self] (_) in
             let name = alertController.textFields?.first?.text ?? ""
-            self?.createPreparation(name: name, eventID: nil)
+            self?.createPreparation(name: name, event: nil)
             self?.topTabBarController.dismiss(animated: true)
             self?.chatDecisionManager.preparationSaved()
         }
@@ -351,7 +349,7 @@ extension PrepareCoordinator: PrepareEventsViewControllerDelegate {
     }
 
     func didTapEvent(event: EKEvent, viewController: PrepareEventsViewController) {
-        createPreparation(name: event.title, eventID: event.eventIdentifier)
+        createPreparation(name: event.title, event: event)
         tabBarController.dismiss(animated: true)
         chatDecisionManager.preparationSaved()
     }

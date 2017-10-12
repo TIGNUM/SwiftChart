@@ -57,13 +57,11 @@ final class AppCoordinator: ParentCoordinator {
     }()
 
     fileprivate lazy var calendarImportManager: CalendarImportManger = {
-        let manager = CalendarImportManger(realm: self.realmProvider, predicate: { (store: EKEventStore) -> NSPredicate in
+        let manager = CalendarImportManger(realm: self.realmProvider, predicate: { () -> (start: Date, end: Date) in
             let day: TimeInterval = 60 * 60 * 24
             let start = Date().addingTimeInterval(-(day * 30))
             let end = Date().addingTimeInterval(day * 30)
-            let calendars = EKEventStore.shared.syncEnabledCalendars
-
-            return store.predicateForEvents(withStart: start, end: end, calendars: calendars)
+            return (start, end)
         })
         manager.delegate = self
 

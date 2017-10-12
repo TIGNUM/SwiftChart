@@ -53,4 +53,14 @@ extension NSPredicate {
     convenience init(groupContains word: String) {
         self.init(format: "group CONTAINS %@", word)
     }
+
+    convenience init(title: String, startDate: Date, endDate: Date) {
+        self.init(format: "title == %@ AND startDate == %@ AND endDate == %@", startDate as NSDate, endDate as NSDate)
+    }
+
+    static func calendarEvent(title: String, startDate: Date, endDate: Date) -> NSPredicate {
+        let start = startDate as NSDate
+        let end = endDate as NSDate
+        return NSPredicate(format: "title == %@ AND startDate == %@ AND endDate == %@", title, start, end)
+    }
 }

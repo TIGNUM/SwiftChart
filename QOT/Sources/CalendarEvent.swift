@@ -3,8 +3,7 @@
 //  QOT
 //
 //  Created by Sam Wyndham on 14/03/2017.
-//  Copyright © 2017 Tignum. All rights reserved.
-//
+//  Copyright © 2017 Tignum. All rights reserved.CalendarImportManger//
 
 import Foundation
 import RealmSwift
@@ -17,10 +16,16 @@ final class CalendarEvent: SyncableObject, UpSyncableWithLocalAndRemoteIDs {
 
     @objc dynamic var changeStamp: String? = UUID().uuidString
     
-    @objc dynamic var ekEventModifiedAt = Date()
+    @objc dynamic var ekEventModifiedAt: Date = Date()
+
+    @objc dynamic var title: String = ""
+
+    @objc dynamic var startDate: Date = Date()
+
+    @objc dynamic var endDate: Date = Date()
 
     var event: EKEvent? {
-        return EKEventStore.shared.event(withIdentifier: eventID)
+        return EKEventStore.shared.event(with: self)
     }
     
     convenience init(event: EKEvent) {
@@ -30,7 +35,9 @@ final class CalendarEvent: SyncableObject, UpSyncableWithLocalAndRemoteIDs {
         self.createdAt = event.creationDate ?? now
         self.modifiedAt = event.lastModifiedDate ?? now
         self.ekEventModifiedAt = event.lastModifiedDate ?? now
-        self.localID = event.eventIdentifier
+        self.title = event.title
+        self.startDate = event.startDate
+        self.endDate = event.endDate
     }
 
     func update(event: EKEvent) {
@@ -65,8 +72,8 @@ final class CalendarEvent: SyncableObject, UpSyncableWithLocalAndRemoteIDs {
     }
 
     func toJson() -> JSON? {
-        if let event = EKEventStore.shared.event(withIdentifier: eventID) {
-            return event.toJSON(id: remoteID.value, createdAt: createdAt, modifiedAt: modifiedAt, syncStatus: syncStatus.rawValue, eventID: eventID)
+        if let event = event {
+            return event.toJSON(id: remoteID.value, createdAt: createdAt, modifiedAt: modifiedAt, syncStatus: syncStatus.rawValue, localID: localID)
         } else if syncStatus == .deletedLocally, let remoteID = remoteID.value {
             let dict: [JsonKey: JSONEncodable] = [.id: remoteID, .syncStatus: syncStatus.rawValue]
             return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
@@ -75,11 +82,11 @@ final class CalendarEvent: SyncableObject, UpSyncableWithLocalAndRemoteIDs {
         }
     }
 
-    var eventID: String {
-        return localID
-    }
-
     static var endpoint: Endpoint {
         return .calendarEvent
+    }
+
+    func matches(event: EKEvent) -> Bool {
+        return title == event.title && startDate == event.startDate && endDate == event.endDate
     }
 }
