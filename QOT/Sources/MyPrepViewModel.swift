@@ -122,7 +122,7 @@ final class MyPrepViewModel {
             self.items = items
             itemCountUpdate.next(itemCount)
         } catch let error {
-            print("Failed to update MyPrepViewModel: \(error)")
+            log("Failed to update MyPrepViewModel: \(error)")
         }
     }
 }

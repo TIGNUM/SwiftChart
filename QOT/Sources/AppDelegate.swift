@@ -59,17 +59,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return true
         #endif
         
+        Log.setup()
         Fabric.with([Crashlytics.self])
         Buglife.shared().start(withAPIKey: "fj62sZjDnl3g0dLuXJHUzAtt") // FIXME: obfuscate
         Buglife.shared().delegate = self
         QOTUsageTimer.sharedInstance.start()
         appCoordinator.start()
         UIApplication.shared.statusBarStyle = .lightContent
-        setupUAirship()        
+        setupUAirship()
 
         #if DEBUG
             log("\nopen -a \"Realm Browser\" \(DatabaseManager.databaseURL)\n")
-            LogSettings.logLevel = .verbose
             logAppLocation()
             logAvailableFonts()
         #endif
@@ -124,21 +124,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UAirship.push().updateRegistration()
         UAirship.shared().analytics.isEnabled = true
     }
-
-    fileprivate var appFilePath: String {
+    
+    private var appFilePath: String {
         let url = URL.documentsDirectory.deletingLastPathComponent()
         return url.absoluteString.removeFilePrefix
     }
 
-    fileprivate func logAppLocation() {
-        log("App location: \(appFilePath)", enabled: LogToggle.Manager.FileManager)
+    private func logAppLocation() {
+        log("App location: \(appFilePath)", enabled: Log.Toggle.Manager.FileManager)
     }
     
-    fileprivate func logAvailableFonts() {
+    private func logAvailableFonts() {
         for family: String in UIFont.familyNames {
-            log("\(family)", enabled: LogToggle.Manager.Font)
+            log("\(family)", enabled: Log.Toggle.Manager.Font)
             for names: String in UIFont.fontNames(forFamilyName: family) {
-                log("== \(names)", enabled: LogToggle.Manager.Font)
+                log("== \(names)", enabled: Log.Toggle.Manager.Font)
             }
         }
     }

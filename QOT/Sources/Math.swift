@@ -19,3 +19,7 @@ struct Math {
         return CGFloat(Float.pi) * (angle / 180)
     }
 }
+
+var randomNumber: CGFloat {
+    return (CGFloat(Float(arc4random()) / Float(UINT32_MAX)))
+}

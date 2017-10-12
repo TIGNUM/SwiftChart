@@ -133,16 +133,16 @@ final class SyncManager {
                 let key = NSStringFromSelector(#selector(getter: self.isDownloadRecordsValid))
                 let userInfo = [key: self.isDownloadRecordsValid]
                 NotificationHandler.postNotification(withName: .syncAllDidStartNotification, userInfo: userInfo)
-                log("SYNC ALL STARTED", enabled: LogToggle.Manager.Sync)
+                log("SYNC ALL STARTED", enabled: Log.Toggle.Manager.Sync)
             }
         }
         let finishOperation = BlockOperation {
             DispatchQueue.main.async {
                 let errors = context.errors
                 NotificationHandler.postNotification(withName: .syncAllDidFinishNotification)
-                log("SYNC ALL FINISHED with \(errors.count) errors", enabled: LogToggle.Manager.Sync)
+                log("SYNC ALL FINISHED with \(errors.count) errors", enabled: Log.Toggle.Manager.Sync)
                 errors.forEach { (error: SyncError) in
-                    log(error, enabled: LogToggle.Manager.Sync)
+                    log(error, enabled: Log.Toggle.Manager.Sync)
                 }
             }
         }
@@ -159,14 +159,14 @@ final class SyncManager {
         let context = SyncContext()
         
         let startOperation = BlockOperation {
-            log("DOWNLOAD STARTED", enabled: LogToggle.Manager.Sync)
+            log("DOWNLOAD STARTED", enabled: Log.Toggle.Manager.Sync)
         }
         let finishOperation = BlockOperation {
             DispatchQueue.main.async {
                 let errors = context.errors
-                log("DOWNLOAD FINISHED with \(errors.count) errors", enabled: LogToggle.Manager.Sync)
+                log("DOWNLOAD FINISHED with \(errors.count) errors", enabled: Log.Toggle.Manager.Sync)
                 errors.forEach { (error: SyncError) in
-                    log(error, enabled: LogToggle.Manager.Sync)
+                    log(error, enabled: Log.Toggle.Manager.Sync)
                 }
             }
         }
@@ -182,14 +182,14 @@ final class SyncManager {
         let context = SyncContext()
         
         let startOperation = BlockOperation {
-            log("UPLOAD NON MEDIA STARTED", enabled: LogToggle.Manager.Sync)
+            log("UPLOAD NON MEDIA STARTED", enabled: Log.Toggle.Manager.Sync)
         }
         let finishOperation = BlockOperation {
             DispatchQueue.main.async {
                 let errors = context.errors
-                log("UPLOAD NON MEDIA FINISHED with \(errors.count) errors", enabled: LogToggle.Manager.Sync)
+                log("UPLOAD NON MEDIA FINISHED with \(errors.count) errors", enabled: Log.Toggle.Manager.Sync)
                 errors.forEach { (error: SyncError) in
-                    log(error, enabled: LogToggle.Manager.Sync)
+                    log(error, enabled: Log.Toggle.Manager.Sync)
                 }
             }
         }
@@ -207,21 +207,21 @@ final class SyncManager {
             var operations: [Operation] = try uploadMediaOperations(context: context)
 
             guard operations.count > 0 else {
-                log("UPLOAD MEDIA - NO ITEMS TO UPLOAD", enabled: LogToggle.Manager.Sync)
+                log("UPLOAD MEDIA - NO ITEMS TO UPLOAD", enabled: Log.Toggle.Manager.Sync)
                 return
             }
             let startOperation = BlockOperation {
                 DispatchQueue.main.async {
-                    log("UPLOAD MEDIA STARTED", enabled: LogToggle.Manager.Sync)
+                    log("UPLOAD MEDIA STARTED", enabled: Log.Toggle.Manager.Sync)
                 }
             }
             let finishOperation = BlockOperation {
                 DispatchQueue.main.async {
                     let errors = context.errors
                     
-                    log("UPLOAD MEDIA FINISHED with \(errors.count) errors", enabled: LogToggle.Manager.Sync)
+                    log("UPLOAD MEDIA FINISHED with \(errors.count) errors", enabled: Log.Toggle.Manager.Sync)
                     errors.forEach { (error: SyncError) in
-                        log(error, enabled: LogToggle.Manager.Sync)
+                        log(error, enabled: Log.Toggle.Manager.Sync)
                     }
                 }
             }
@@ -230,7 +230,7 @@ final class SyncManager {
             operations.append(finishOperation)
             operationQueue.addOperations(operations, waitUntilFinished: false)
         } catch {
-            log("UPLOAD MEDIA FAILED TO START: \(error)", enabled: LogToggle.Manager.Sync)
+            log("UPLOAD MEDIA FAILED TO START: \(error)", enabled: Log.Toggle.Manager.Sync)
         }
     }
 

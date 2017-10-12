@@ -217,7 +217,7 @@ private extension ArticleItemViewController {
         let date = Date().addingTimeInterval(TimeInterval(relatedArticle.minutesToRead * 60))
         relatedArticleCell.setupView(title: relatedArticle.title, subTitle: Date().timeToDateAsString(date), previewImageURL: relatedArticle.thumbnailURL)
 
-        print("time: \(Date().timeToDateAsString(date))")
+        log("time: \(Date().timeToDateAsString(date))")
 
         return relatedArticleCell
     }

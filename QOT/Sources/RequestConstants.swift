@@ -40,6 +40,7 @@ enum Endpoint: String {
     case versionInfo = "https://s3-eu-west-1.amazonaws.com/qotapp.bucket/v2/version.json"
     case userFeedback = "/personal/p/qot/userAnswerFeedback"
     case userLocationUpdate = "/personal/p/qot/geolocation"
+    case log = "/personal/p/qot/log"
     
     func url(baseURL: URL) -> URL {
         if let url = URL(string: rawValue), url.host != nil {

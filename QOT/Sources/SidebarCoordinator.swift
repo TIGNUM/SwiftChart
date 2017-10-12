@@ -54,7 +54,7 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
 
     func didTapSettingsMenuCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
         guard let coordinator = SettingsMenuCoordinator(root: viewController, services: services) else {
-            print("could not init \(SettingsMenuCoordinator.self)")
+            log("could not init \(SettingsMenuCoordinator.self)")
             return
         }
         startChild(child: coordinator)

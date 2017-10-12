@@ -51,7 +51,7 @@ extension SettingsService {
                 }
             }
         } else {
-            print("Unable to set value: \(value). No system setting with key: \(key)")
+            log("Unable to set value: \(value). No system setting with key: \(key)")
         }
     }
 }

@@ -95,7 +95,7 @@ final class DownSyncOperation<T>: ConcurrentOperation where T: DownSyncable, T: 
             case .success:
                 break
             case .failure(let error):
-                print("Down sync confirm error: \(error)")
+                log("Down sync confirm error: \(error)")
             }
             
             completion()

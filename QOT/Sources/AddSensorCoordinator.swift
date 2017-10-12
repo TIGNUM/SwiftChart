@@ -61,7 +61,7 @@ extension AddSensorCoordinator: AddSensorViewControllerDelegate {
         case .requestDevice:
             viewController.present(setupAlert(), animated: true, completion: nil)
         default:
-            print("sensor not yet implemented")
+            log("sensor not yet implemented")
         }
     }
 }

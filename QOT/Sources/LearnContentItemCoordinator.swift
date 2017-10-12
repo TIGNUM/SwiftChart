@@ -132,7 +132,7 @@ extension LearnContentItemCoordinator: TopNavigationBarDelegate {
     }
     
     func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
-        print("did select book mark")
+        log("did select book mark")
     }
 }
 
@@ -141,11 +141,11 @@ extension LearnContentItemCoordinator: TopNavigationBarDelegate {
 extension LearnContentItemCoordinator: LearnContentItemViewControllerDelegate {
 
     func didTapFinish(from view: UIView) {
-        print("didTapFinish")
+        log("didTapFinish")
     }
 
     func didTapShare(in viewController: LearnContentItemViewController) {
-        print("didTapShare")
+        log("didTapShare")
     }
 
     func didSelectReadMoreContentCollection(with collectionID: Int, in viewController: LearnContentItemViewController) {
@@ -170,11 +170,11 @@ extension LearnContentItemCoordinator: LearnContentItemViewControllerDelegate {
     }
 
     func didTapVideo(with video: ContentItem, from view: UIView, in viewController: LearnContentItemViewController) {
-        print("didTapVideo")
+        log("didTapVideo")
     }
 
     func didTapArticle(with article: ContentItem, from view: UIView, in viewController: LearnContentItemViewController) {
-        print("didTapArticle")
+        log("didTapArticle")
     }
 
     func didTapPDF(withURL url: URL, in viewController: LearnContentItemViewController) {

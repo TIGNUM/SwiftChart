@@ -241,7 +241,7 @@ final class SettingsViewModel {
         do {
             try services.settingsService.setSettingValue(SettingValue.bool(value), key: key)
         } catch let error {
-            print(error)
+            log(error)
         }
     }
 

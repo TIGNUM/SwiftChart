@@ -219,8 +219,8 @@ extension SessionManager {
         return self.request(urlRequest)
             .validate(statusCode: 200..<300)
             .responseData { response in
-                log("REQUEST BODY DATA: \(response.request?.httpBody?.utf8String ?? "No request body data")", enabled: LogToggle.NetworkManager.requestBody)
-                log("RESPONSE BODY DATA: \(response.data?.utf8String ?? "No response data")", enabled: LogToggle.NetworkManager.responseBody)
+                log("REQUEST BODY DATA: \(response.request?.httpBody?.utf8String ?? "No request body data")", enabled: Log.Toggle.NetworkManager.requestBody)
+                log("RESPONSE BODY DATA: \(response.data?.utf8String ?? "No response data")", enabled: Log.Toggle.NetworkManager.responseBody)
                 
                 let result: Result<T, NetworkError>
                 switch response.result {

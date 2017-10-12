@@ -17,7 +17,7 @@ protocol ObjectStore {
 
     func write(_ block: (() throws -> Void)) throws
 
-    func delete<T: Object>(_ objects: List<T>)
+    func delete<T>(_ objects: List<T>)
 
     func objects<T: Object>(_ type: T.Type) -> Results<T>
 

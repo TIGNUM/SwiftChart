@@ -232,12 +232,12 @@ extension PrepareCoordinator {
                     return
                 }
                 notes += "\n\n" + preparationLink
-                print("preparationLink: \(preparationLink)")
+                log("preparationLink: \(preparationLink)")
                 event.notes = notes
                 do {
                     try eventStore.save(event, span: .thisEvent, commit: true)
                 } catch let error {
-                    print("createPreparation - eventStore.save.error: ", error.localizedDescription)
+                    log("createPreparation - eventStore.save.error: \(error.localizedDescription)")
                     return
                 }
             }

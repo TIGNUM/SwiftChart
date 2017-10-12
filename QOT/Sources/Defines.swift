@@ -16,35 +16,6 @@ import Foundation
     private let isDebug = false
 #endif
 
-struct LogToggle {
-
-    struct Database {
-        static let Content = false
-        static let Learn = false
-        static let Me = false
-        static let Prepare = false
-    }
-
-    struct Manager {
-        static let API = false
-        static let Database = false
-        static let Font = false
-        static let FileManager = true
-        static let TabBar = false
-        static let Sync = true
-    }
-
-    struct NetworkManager {
-        static let requestBody = false
-        static let responseBody = false
-    }
-    
-    struct Analytics {
-        static let pageTracking = false
-        static let eventTracking = false
-    }
-}
-
 struct MockToggle {
     static let json = false
 }

@@ -27,6 +27,7 @@ target 'QOT' do
   pod 'UrbanAirship-iOS-SDK'
   pod 'Buglife'
   pod 'PromiseKit'
+  pod 'SwiftyBeaver'
 
   target 'QOTTests' do
     inherit! :search_paths

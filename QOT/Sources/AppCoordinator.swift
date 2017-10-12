@@ -381,7 +381,7 @@ extension AppCoordinator: TopNavigationBarDelegate {
     }
 
     func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
-        print("did select book mark")
+        log("did select book mark")
     }
 }
 

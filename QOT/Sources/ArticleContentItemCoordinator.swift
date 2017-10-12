@@ -140,7 +140,7 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
         } catch let error {
-            print("Error while trying to set catgeory for AVAudioSession: ", error)
+            log("Error while trying to set catgeory for AVAudioSession: \(error)")
         }
 
         let playerItem = AVPlayerItem(url: url)

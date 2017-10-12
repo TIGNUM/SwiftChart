@@ -37,7 +37,7 @@ class EventTracker {
     // MARK: - private
     
     private func handleDidShowPage(_ trackablePage: TrackablePage, from referrerTrackablePage: TrackablePage?) {
-        log("PAGE TRACK EVENT: \(String(describing: trackablePage.pageName)) from \(String(describing: referrerTrackablePage?.pageName))", enabled: LogToggle.Analytics.pageTracking)
+        log("PAGE TRACK EVENT: \(String(describing: trackablePage.pageName)) from \(String(describing: referrerTrackablePage?.pageName))", enabled: Log.Toggle.Analytics.pageTracking)
         do {
             let realm = try realmProvider.realm()
             guard let associatedPage = trackablePage.associatedPage(realm: realm) else {
@@ -59,7 +59,7 @@ class EventTracker {
     }
     
     private func handleEvent(_ name: EventName, withObject object: SyncableObject) {
-        log("EVENT: \(name.rawValue) withObject \(object.classForCoder)", enabled: LogToggle.Analytics.eventTracking)
+        log("EVENT: \(name.rawValue) withObject \(object.classForCoder)", enabled: Log.Toggle.Analytics.eventTracking)
         do {
             let realm = try realmProvider.realm()
             // FIXME: we shouldn't be sending events as PageTrack events

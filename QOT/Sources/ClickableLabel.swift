@@ -137,7 +137,7 @@ private extension ClickableLabel {
             let results = regex.matches(in: text, range: NSRange(location: 0, length: nsString.length))
             return results.map { $0.range }
         } catch let error {
-            print("invalid regex: \(error.localizedDescription)")
+            log("invalid regex: \(error.localizedDescription)")
             return []
         }
     }
@@ -150,7 +150,7 @@ private extension ClickableLabel {
 
             return results.count > 0 ? nsString.substring(with: results[0].range) : ""
         } catch let error {
-            print("invalid regex: \(error.localizedDescription)")
+            log("invalid regex: \(error.localizedDescription)")
             return ""
         }
     }

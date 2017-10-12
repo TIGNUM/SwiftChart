@@ -50,7 +50,7 @@ final class MyStatisticsCoordinator: NSObject, ParentCoordinator {
 extension MyStatisticsCoordinator: MyStatisticsViewControllerDelegate {
 
     func didSelectStatitcsCard(in section: Index, at index: Index, from viewController: MyStatisticsViewController) {
-        print("didSelectStatitcsCard", section, index, viewController)
+        log("didSelectStatitcsCard \(section), \(index), \(viewController)")
     }
 }
 

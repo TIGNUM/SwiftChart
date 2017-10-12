@@ -185,9 +185,9 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             case .copyrights,
                  .terms,
                  .security: delegate?.openArticleViewController(viewController: self, settingsType: settingsType)
-            case .tutorial: print("tutorial")
-            case .interview: print("interview")
-            case .support: print("support")
+            case .tutorial: log("tutorial")
+            case .interview: log("interview")
+            case .support: log("support")
             default: return
             }
         }
