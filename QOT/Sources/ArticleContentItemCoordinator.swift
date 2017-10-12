@@ -12,23 +12,10 @@ import RealmSwift
 import SafariServices
 import AVFoundation
 
-struct ArticleCollectionHeader {
-
-    let articleTitle: String
-
-    let articleSubTitle: String
-
-    let articleDate: String
-
-    let articleDuration: String
-
-    let articleContentCollection: ContentCollection
-}
-
 final class ArticleContentItemCoordinator: ParentCoordinator {
 
     fileprivate let services: Services
-    fileprivate let articleHeader: ArticleCollectionHeader?
+    fileprivate var articleHeader: ArticleCollectionHeader?
     fileprivate let topTabBarTitle: String?
     fileprivate var selectedContent: ContentCollection?
     fileprivate var fullViewController: ArticleItemViewController
@@ -124,7 +111,8 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
             AppDelegate.current.appCoordinator.presentLearnContentItems(contentID: contentID, categoryID: categoryID)
             return
         }
-
+        
+        articleHeader = ArticleCollectionHeader(contentCollection: selectedArticle)
         viewModel = ArticleItemViewModel(services: services,
                                          items: Array(selectedArticle.articleItems),
                                          contentCollection: selectedArticle,

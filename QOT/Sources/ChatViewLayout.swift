@@ -298,8 +298,6 @@ private class Section {
                     sectionHeight: y + inset.bottom)
     }
 
-
-
     func layoutAttributesForElements(in rect: CGRect) -> [ChatViewLayoutAttibutes] {
         guard frame.intersects(rect) else {
             return []

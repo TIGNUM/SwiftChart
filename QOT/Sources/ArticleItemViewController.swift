@@ -85,15 +85,11 @@ final class ArticleItemViewController: UIViewController {
 
     func reloadArticles(viewModel: ArticleItemViewModel) {
         self.viewModel = viewModel
-        tableView.tableHeaderView = nil
         setTableViewHeader()
+        resizeHeaderView()
         tableView.reloadData()
-        let sections = tableView.numberOfSections
-        let rowsInSection = tableView.numberOfRows(inSection: 0)
-
-        if 0 < sections && 0 < rowsInSection {
-            tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
-        }
+        tableView.layoutIfNeeded()
+        tableView.setContentOffset(CGPoint(x: 0.0, y: -(tableView.tableHeaderView?.bounds.height ?? 0.0)), animated: false)
     }
 }
 

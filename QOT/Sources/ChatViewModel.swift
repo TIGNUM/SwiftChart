@@ -100,7 +100,6 @@ final class ChatViewModel<T: ChatChoice> {
         setupQueue()
     }
     
-
     func appendItems(_ items: [ChatItem<T>]) {
         for item in items {
             queue?.push(item)
@@ -119,6 +118,3 @@ final class ChatViewModel<T: ChatChoice> {
         })
     }
 }
-
-
-

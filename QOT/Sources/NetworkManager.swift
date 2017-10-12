@@ -1,4 +1,4 @@
-      //
+//
 //  NetworkManager.swift
 //  QOT
 //
