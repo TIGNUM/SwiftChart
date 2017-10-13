@@ -128,7 +128,7 @@ private extension ArticleItemViewController {
     }
 
     func setupView() {
-        let backgroundImage = (viewModel.backgroundImage != nil) ? viewModel.backgroundImage : R.image.backgroundWhatsHot()
+        let backgroundImage = (viewModel.backgroundImage == nil) ? R.image.backgroundSidebar() : viewModel.backgroundImage
         tableView.backgroundView = UIImageView(image: backgroundImage)
         view.addSubview(tableView)
         tableView.topAnchor == view.topAnchor
