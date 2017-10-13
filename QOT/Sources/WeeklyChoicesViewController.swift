@@ -104,9 +104,10 @@ private extension WeeklyChoicesViewController {
         setNoContentLabel()
         view.layoutIfNeeded()
         configureDateLabel(dateLabel)
+        drawCircle()
     }
 
-    private func setNoContentLabel() {
+    func setNoContentLabel() {
         if viewModel.itemCount <= 0 {
             view.addSubview(emptyLabel)
             emptyLabel.horizontalAnchors == view.horizontalAnchors
@@ -121,6 +122,18 @@ private extension WeeklyChoicesViewController {
         dateLabel.font = Font.H7Title
         dateLabel.textColor = .white50
         dateLabel.textAlignment = .center
+    }
+    
+    func drawCircle() {
+        let layout = WeeklyChoicesLayout()
+        var center = layout.circleCenter(circleX: circleX(), collectionView: collectionView)
+        center.x += 33  // ... sorry for the magic number. not sure why this is needed :(
+        center.y += collectionView.frame.origin.y
+        view.drawSolidCircle(
+            arcCenter: center,
+            radius: radius(),
+            strokeColour: .white20
+        )
     }
 }
 
@@ -177,6 +190,7 @@ extension WeeklyChoicesViewController: UICollectionViewDataSource, UICollectionV
         scrollView.setContentOffset(CGPoint(x: scrollView.contentOffset.x, y: targetOffset), animated: true)
     }
 }
+
 // MARK: - Layout Delegate
 
 extension WeeklyChoicesViewController: WeeklyChoicesDelegate {

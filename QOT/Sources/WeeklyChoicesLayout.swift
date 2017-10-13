@@ -17,7 +17,7 @@ protocol WeeklyChoicesDelegate: class {
 final class WeeklyChoicesLayout: UICollectionViewLayout {
 
     private var cache = [UICollectionViewLayoutAttributes]()
-     weak var delegate: WeeklyChoicesDelegate? {
+    weak var delegate: WeeklyChoicesDelegate? {
         didSet {
             invalidateLayout()
         }
@@ -89,18 +89,20 @@ final class WeeklyChoicesLayout: UICollectionViewLayout {
         return true
     }
 
-    private func circleCenter(circleX: CGFloat) -> CGPoint {
-        guard
-            let collectionView = collectionView
-            else {
-                fatalError("Collection View Not Available")
+    func circleCenter(circleX: CGFloat, collectionView: UICollectionView?) -> CGPoint {
+        guard let collectionView = collectionView else {
+            return .zero
         }
-
-        return CGPoint(x: circleX, y: (collectionView.bounds.height / 2) + collectionView.contentOffset.y)
+        return CGPoint(
+            x: circleX + collectionView.contentOffset.x,
+            y: (collectionView.bounds.height / 2) + collectionView.contentOffset.y
+        )
     }
+    
+    // MARK: - private
 
     private func xPos(y: CGFloat, radius: CGFloat, circleX: CGFloat) -> CGFloat? {
-        let circleCent = circleCenter(circleX: circleX)
+        let circleCent = circleCenter(circleX: circleX, collectionView: collectionView)
         guard y > circleCent.y - radius && y < circleCent.y + radius else {
             return nil
         }
