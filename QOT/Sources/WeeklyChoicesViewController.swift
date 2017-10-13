@@ -132,7 +132,7 @@ private extension WeeklyChoicesViewController {
         view.drawSolidCircle(
             arcCenter: center,
             radius: radius(),
-            strokeColour: .white20
+            strokeColor: .white20
         )
     }
 }
