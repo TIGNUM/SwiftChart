@@ -42,8 +42,8 @@ extension ChatViewAnimator {
 
             let startTyping: CFTimeInterval = 0
             let stopTyping: CFTimeInterval = 1
-            let fadeInLabel: CFTimeInterval = 1.1
-            let finish: CFTimeInterval = 1.2
+            let fadeInLabel: CFTimeInterval = 1.2
+            let finish: CFTimeInterval = 1.3
 
             func typingBackgroundViewAnimations() -> [CAKeyframeAnimation] {
                 let startBounds = CGRect(x: 0, y: 0, width: 60, height: 40)
@@ -63,6 +63,11 @@ extension ChatViewAnimator {
                 ]
             }
 
+            func typingIndicatorAnimations() -> [CAKeyframeAnimation] {
+                return [CAKeyframeAnimation(keyPath: "opacity",
+                                            valuesAtTimes: [startTyping: 1, stopTyping: 1, fadeInLabel: 0])]
+            }
+
             func labelViewAnimations() -> [CAKeyframeAnimation] {
                 return [CAKeyframeAnimation(keyPath: "opacity",
                                             valuesAtTimes: [startTyping: 0, fadeInLabel: 0, finish: 1])]
@@ -74,7 +79,8 @@ extension ChatViewAnimator {
 
             let animations: [CALayer: [CAPropertyAnimation]] = [
                 view.typingBackgroundView.layer: typingBackgroundViewAnimations(),
-                view.label.layer: labelViewAnimations(),
+                view.typingAnimationView.layer: typingIndicatorAnimations(),
+                view.label.layer: labelViewAnimations(), 
                 view.dashedLineView.layer: dashedViewAnimations()
             ]
 
@@ -83,6 +89,7 @@ extension ChatViewAnimator {
                     layer.add(animation, forKey: animation.keyPath)
                 }
             }
+            view.typingAnimationView.startAnimating()
 
             return {
                 for (layer, anims) in animations {

@@ -55,6 +55,7 @@ final class ChatViewCell: UICollectionViewCell {
     }
 
     let typingBackgroundView = UIView()
+    let typingAnimationView = UIImageView()
     let label = UILabel()
     let dashedLineView = DashedLineView()
     private var animator: ChatViewAnimator?
@@ -96,6 +97,7 @@ final class ChatViewCell: UICollectionViewCell {
 
     private func setup() {
         contentView.addSubview(typingBackgroundView)
+        contentView.addSubview(typingAnimationView)
         contentView.addSubview(dashedLineView)
         contentView.addSubview(label)
 
@@ -103,15 +105,36 @@ final class ChatViewCell: UICollectionViewCell {
         typingBackgroundView.backgroundColor = .white
         typingBackgroundView.layer.cornerRadius = 10
         typingBackgroundView.layer.opacity = 0
+        typingAnimationView.contentMode = .center
+        typingAnimationView.layer.opacity = 0
+        typingAnimationView.backgroundColor = .clear
+        typingAnimationView.animationImages = typingAnimationImages()
+        typingAnimationView.animationRepeatCount = 1
         label.numberOfLines = 0
         label.backgroundColor = .clear
         dashedLineView.cornerRadius = 10
 
         typingBackgroundView.edgeAnchors == contentView.edgeAnchors
+        typingAnimationView.leftAnchor == contentView.leftAnchor
+        typingAnimationView.topAnchor == contentView.topAnchor
+        typingAnimationView.widthAnchor == 60
+        typingAnimationView.heightAnchor == 40
         dashedLineView.edgeAnchors == contentView.edgeAnchors
         label.horizontalAnchors == contentView.horizontalAnchors + 12
         label.topAnchor == contentView.topAnchor + 12
         label.bottomAnchor == contentView.bottomAnchor - 12 ~ .custom(999)
+    }
+
+    func typingAnimationImages() -> [UIImage] {
+        var images: [UIImage] = []
+        for index in 0...27 {
+            let name = String(format: "%05d_QOT_DOTS", index)
+            guard let image = UIImage(named: name) else {
+                fatalError("missing image")
+            }
+            images.append(image)
+        }
+        return images
     }
 }
 
