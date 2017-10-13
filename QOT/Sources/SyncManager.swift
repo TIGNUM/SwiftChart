@@ -48,7 +48,7 @@ final class SyncManager {
                 Question.self,
                 ContentCategory.self,
                 ContentCollection.self,
-                MyStatistics.self,
+                Statistics.self,
                 ContentItem.self
             ]
             for value in downloadClasses {
@@ -260,7 +260,7 @@ final class SyncManager {
             downSyncOperation(for: UserChoice.self, context: context),
             downSyncOperation(for: ContentCategory.self, context: context),
             downSyncOperation(for: ContentCollection.self, context: context),
-            downSyncOperation(for: MyStatistics.self, context: context),
+            downSyncOperation(for: Statistics.self, context: context),
             downSyncOperation(for: ContentItem.self, context: context),
             downSyncOperation(for: Partner.self, context: context),
             downSyncOperation(for: MyToBeVision.self, context: context),

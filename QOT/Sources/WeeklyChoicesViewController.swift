@@ -43,11 +43,11 @@ final class WeeklyChoicesViewController: UIViewController {
         label.backgroundColor = .clear
         label.textColor = .white40
         label.numberOfLines = 0
-        label.prepareAndSetTextAttributes(text: R.string.localized.weeklyChoicesNoContent(),
-                                          font: Font.DPText,
-                                          alignment: .center,
-                                          lineSpacing: 7,
-                                          characterSpacing: 1)
+        label.setAttrText(text: R.string.localized.weeklyChoicesNoContent(),
+                          font: Font.DPText,
+                          alignment: .center,
+                          lineSpacing: 7,
+                          characterSpacing: 1)
         return label
     }()
 

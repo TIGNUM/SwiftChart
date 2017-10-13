@@ -33,8 +33,7 @@ final class QOTUsageTimer {
     }
 
     func totalTimeString(totalSeconds: Int) -> String {
-        var calendar = Calendar.current
-        calendar.locale = Locale(identifier: "en")
+        let calendar = Calendar.sharedUTC        
         let formatter = DateComponentsFormatter()
         formatter.calendar = calendar
         formatter.unitsStyle = .full

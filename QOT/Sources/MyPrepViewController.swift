@@ -35,7 +35,7 @@ final class MyPrepViewController: UIViewController {
         label.backgroundColor = .clear
         label.textColor = .white40
         label.numberOfLines = 0
-        label.prepareAndSetTextAttributes(text: R.string.localized.prepareMyPrepNoSavePreparations(),
+        label.setAttrText(text: R.string.localized.prepareMyPrepNoSavePreparations(),
                                           font: Font.DPText,
                                           alignment: .center,
                                           lineSpacing: 7,

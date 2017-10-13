@@ -13,14 +13,14 @@ import UIKit
 
 typealias Index = Int
 
-typealias Period = (start: Date, duration: TimeInterval)
+typealias Period = (start: Date, duration: TimeInterval, minutes: Int)
 
 typealias ChartDimensions = (columns: Int, rows: Int, length: Int)
 
 typealias StatisticsThreshold<T> = (upperThreshold: T, lowerThreshold: T)
 
-typealias UpcomingTrip = (count: Int, status: MyStatisticsPeriod.Status)
+typealias TravelTrip = (row: Int, column: Int, start: Int, end: Int, color: UIColor)
 
-typealias UserUpcomingTrips = [Int: UpcomingTrip]
+typealias LastFourWeeks = (day: Date, weekNumber: Int, dayNumber: Int)
 
 typealias DataPoint = (value: CGFloat, color: UIColor)

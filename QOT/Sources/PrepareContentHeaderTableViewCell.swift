@@ -47,7 +47,7 @@ class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
 
         bottomSeparator.backgroundColor = .black30
 
-        headerLabel.prepareAndSetTextAttributes(text: title.uppercased(), font: Font.H4Headline, lineSpacing: 3, characterSpacing: -0.8)
+        headerLabel.setAttrText(text: title.uppercased(), font: Font.H4Headline, lineSpacing: 3, characterSpacing: -0.8)
         headerLabel.textColor = .black
 
         positionLabel.text = (position > 9 ? "." : ".0") + "\(position)"
@@ -77,7 +77,7 @@ class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
         if isExpanded {
             contentLabel.numberOfLines = 0
             contentLabel.lineBreakMode = .byWordWrapping
-            contentLabel.prepareAndSetTextAttributes(text: contentText, font: Font.DPText)
+            contentLabel.setAttrText(text: contentText, font: Font.DPText)
 
             if readMoreID != nil {
                 readMoreButton.prepareAndSetTitleAttributes(text: R.string.localized.prepareContentReadMore(),

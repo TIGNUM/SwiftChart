@@ -10,28 +10,60 @@ import Foundation
 
 extension Date {
 
+    func isNextDay(date: Date) -> Bool {
+        let tomorrow = Calendar.sharedUTC.date(byAdding: .day, value: 1, to: self) ?? Date()
+
+        return Calendar.sharedUTC.isDate(tomorrow, inSameDayAs: date)
+    }
+
+    var minutesSinceMidnight: Int {
+        let components = Calendar.sharedUTC.dateComponents([.hour, .minute], from: self)
+
+        return 60 * (components.hour ?? 0) + (components.minute ?? 0)
+    }
+
+    var dayOfMonth: Int {
+        return Calendar.sharedUTC.component(.day, from: self)
+    }
+
+    var dayOfWeek: Int {
+        return Calendar.sharedUTC.component(.weekday, from: self)
+    }
+
+    var weekOfYear: Int {
+        return Calendar.sharedUTC.component(.weekOfYear, from: self)
+    }
+
+    var monthOfYear: Int {
+        return Calendar.sharedUTC.component(.month, from: self)
+    }
+
+    func isInCurrentWeek(date: Date) -> Bool {
+        return Calendar.sharedUTC.isDate(self, equalTo: date, toGranularity: .weekOfYear)
+    }
+
     func years(to date: Date) -> Int {
-        return Calendar.current.dateComponents([.year], from: self, to: date).year ?? 0
+        return Calendar.sharedUTC.dateComponents([.year], from: self, to: date).year ?? 0
     }
 
     func months(to date: Date) -> Int {
-        return Calendar.current.dateComponents([.month], from: self, to: date).month ?? 0
+        return Calendar.sharedUTC.dateComponents([.month], from: self, to: date).month ?? 0
     }
 
     func weeks(to date: Date) -> Int {
-        return Calendar.current.dateComponents([.weekOfMonth], from: self, to: date).weekOfMonth ?? 0
+        return Calendar.sharedUTC.dateComponents([.weekOfMonth], from: self, to: date).weekOfMonth ?? 0
     }
 
     func days(to date: Date) -> Int {
-        return Calendar.current.dateComponents([.day], from: self, to: date).day ?? 0
+        return Calendar.sharedUTC.dateComponents([.day], from: self, to: date).day ?? 0
     }
 
     func hours(to date: Date) -> Int {
-        return Calendar.current.dateComponents([.hour], from: self, to: date).hour ?? 0
+        return Calendar.sharedUTC.dateComponents([.hour], from: self, to: date).hour ?? 0
     }
 
     func minutes(to date: Date) -> Int {
-        return Calendar.current.dateComponents([.minute], from: self, to: date).minute ?? 0
+        return Calendar.sharedUTC.dateComponents([.minute], from: self, to: date).minute ?? 0
     }
 
     func timeToDateAsString(_ date: Date) -> String {
@@ -40,15 +72,15 @@ extension Date {
         var toDate = date
 
         let years = self.years(to: toDate)
-        toDate = Calendar.current.date(byAdding: .year, value: -years, to: toDate)!
+        toDate = Calendar.sharedUTC.date(byAdding: .year, value: -years, to: toDate)!
         let months = self.months(to: toDate)
-        toDate = Calendar.current.date(byAdding: .month, value: -months, to: toDate)!
+        toDate = Calendar.sharedUTC.date(byAdding: .month, value: -months, to: toDate)!
         let weeks = self.weeks(to: toDate)
-        toDate = Calendar.current.date(byAdding: .weekOfMonth, value: -weeks, to: toDate)!
+        toDate = Calendar.sharedUTC.date(byAdding: .weekOfMonth, value: -weeks, to: toDate)!
         let days = self.days(to: toDate)
-        toDate = Calendar.current.date(byAdding: .day, value: -days, to: toDate)!
+        toDate = Calendar.sharedUTC.date(byAdding: .day, value: -days, to: toDate)!
         let hours = self.hours(to: toDate)
-        toDate = Calendar.current.date(byAdding: .hour, value: -hours, to: toDate)!
+        toDate = Calendar.sharedUTC.date(byAdding: .hour, value: -hours, to: toDate)!
         let minutes = self.minutes(to: toDate)
 
         if years > 0 {

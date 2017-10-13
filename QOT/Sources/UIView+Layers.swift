@@ -19,9 +19,9 @@ extension UIView {
                          value: CGFloat = 1,
                          startAngle: CGFloat = -90,
                          endAngle: CGFloat = 360,
-                         strokeColour: UIColor = .white90,
+                         strokeColor: UIColor = .white90,
                          clockwise: Bool = true) {
-        drawCircle(center: arcCenter, radius: radius, lineWidth: lineWidth, value: value, startAngle: startAngle, endAngle: endAngle, color: strokeColour, clockwise: clockwise)
+        drawCircle(center: arcCenter, radius: radius, lineWidth: lineWidth, value: value, startAngle: startAngle, endAngle: endAngle, color: strokeColor, clockwise: clockwise)
     }
 
     func drawDashedCircle(arcCenter: CGPoint,
@@ -31,10 +31,10 @@ extension UIView {
                           value: CGFloat = 1,
                           startAngle: CGFloat = -90,
                           endAngle: CGFloat = 360,
-                          strokeColour: UIColor = .white20,
+                          strokeColor: UIColor = .white20,
                           hasShadow: Bool = false) {
         let pattern = dashPattern.map { NSNumber(value: Float($0)) }
-        drawCircle(center: arcCenter, radius: radius, lineWidth: lineWidth, value: value, startAngle: startAngle, endAngle: endAngle, color: strokeColour, dashPattern: pattern, hasShadow: hasShadow, shadowRadius: lineWidth + 2)
+        drawCircle(center: arcCenter, radius: radius, lineWidth: lineWidth, value: value, startAngle: startAngle, endAngle: endAngle, color: strokeColor, dashPattern: pattern, hasShadow: hasShadow, shadowRadius: lineWidth + 2)
     }
 
     func drawCapRoundCircle(center: CGPoint,
@@ -43,8 +43,8 @@ extension UIView {
                             startAngle: CGFloat = -90,
                             endAngle: CGFloat = 360,
                             lineWidth: CGFloat,
-                            strokeColour: UIColor) {
-        drawCircle(center: center, radius: radius, lineWidth: lineWidth, lineCap: kCALineCapRound, value: value, startAngle: startAngle, endAngle: endAngle, color: strokeColour)
+                            strokeColor: UIColor) {
+        drawCircle(center: center, radius: radius, lineWidth: lineWidth, lineCap: kCALineCapRound, value: value, startAngle: startAngle, endAngle: endAngle, color: strokeColor)
     }
 
     private func drawCircle(center: CGPoint,
@@ -71,27 +71,27 @@ extension UIView {
                          outerRadius: CGFloat,
                          angle: CGFloat,
                          lineWidth: CGFloat = 1,
-                         strokeColour: UIColor) {
+                         strokeColor: UIColor) {
         let startPoint = Math.pointOnCircle(center: center, withRadius: innerRadius, andAngle: angle)
         let endPoint = Math.pointOnCircle(center: center, withRadius: outerRadius, andAngle: angle)
-        drawLine(from: startPoint, to: endPoint, lineWidth: lineWidth, strokeColor: strokeColour)
+        drawLine(from: startPoint, to: endPoint, lineWidth: lineWidth, strokeColor: strokeColor)
     }
 
     func drawSolidLine(from: CGPoint,
                        to: CGPoint,
                        lineWidth: CGFloat = 1,
-                       strokeColour: UIColor = .white20,
+                       strokeColor: UIColor = .white20,
                        hasShadow: Bool = false) {
-        drawLine(from: from, to: to, lineWidth: lineWidth, strokeColor: strokeColour, hasShadow: hasShadow, shadowRadius: lineWidth * 0.5)
+        drawLine(from: from, to: to, lineWidth: lineWidth, strokeColor: strokeColor, hasShadow: hasShadow, shadowRadius: lineWidth * 0.5)
     }
 
-    func drawDashedLine(from: CGPoint, to: CGPoint, lineWidth: CGFloat, strokeColour: UIColor, dashPattern: [CGFloat]) {
+    func drawDashedLine(from: CGPoint, to: CGPoint, lineWidth: CGFloat, strokeColor: UIColor, dashPattern: [CGFloat]) {
         let pattern = dashPattern.map { NSNumber(value: Float($0)) }
-        drawLine(from: from, to: to, lineWidth: lineWidth, strokeColor: strokeColour, dashPattern: pattern)
+        drawLine(from: from, to: to, lineWidth: lineWidth, strokeColor: strokeColor, dashPattern: pattern)
     }
 
-    func drawCapRoundLine(from: CGPoint, to: CGPoint, lineWidth: CGFloat, strokeColour: UIColor) {
-        drawLine(from: from, to: to, lineWidth: lineWidth, lineCap: kCALineCapRound, strokeColor: strokeColour)
+    func drawCapRoundLine(from: CGPoint, to: CGPoint, lineWidth: CGFloat, strokeColor: UIColor, hasShadow: Bool = false) {
+        drawLine(from: from, to: to, lineWidth: lineWidth, lineCap: kCALineCapRound, strokeColor: strokeColor, hasShadow: hasShadow, shadowRadius: lineWidth * 2)
     }
 
     private func drawLine(from: CGPoint,
@@ -107,7 +107,7 @@ extension UIView {
         
     }    
 
-    func drawDottedColumns(columnWidth: CGFloat, columnHeight: CGFloat, rowHeight: CGFloat, columnCount: Int, rowCount: Int, strokeWidth: CGFloat, strokeColour: UIColor) {
+    func drawDottedColumns(columnWidth: CGFloat, columnHeight: CGFloat, rowHeight: CGFloat, columnCount: Int, rowCount: Int, strokeWidth: CGFloat, strokeColor: UIColor) {
         for x in 0..<columnCount {
             let columnX = CGFloat(frame.origin.x) + CGFloat(x) * columnWidth + strokeWidth * 0.5
 
@@ -115,29 +115,29 @@ extension UIView {
                 let columnY = CGFloat(frame.origin.y) + columnHeight - (CGFloat(y) * rowHeight) - rowHeight * 0.5
                 let startPoint = CGPoint(x: columnX, y: columnY - strokeWidth * 0.5)
                 let endPoint = CGPoint(x: columnX, y: columnY + strokeWidth * 0.5)
-                drawSolidLine(from: startPoint, to: endPoint, lineWidth: strokeWidth * 0.5, strokeColour: strokeColour)
+                drawSolidLine(from: startPoint, to: endPoint, lineWidth: strokeWidth * 0.5, strokeColor: strokeColor)
             }
         }
     }
 
-    func drawSolidColumns(columnWidth: CGFloat, columnHeight: CGFloat, columnCount: Int, strokeWidth: CGFloat, strokeColour: UIColor) {
+    func drawSolidColumns(columnWidth: CGFloat, columnHeight: CGFloat, columnCount: Int, strokeWidth: CGFloat, strokeColor: UIColor) {
         for x in 0...columnCount {
             let columnX = CGFloat(frame.origin.x) + CGFloat(x) * columnWidth + (x == columnCount ? -strokeWidth * 0.5 : strokeWidth * 0.5)
             let columnY = CGFloat(frame.origin.y) + columnHeight - strokeWidth * 0.5
             let startPoint = CGPoint(x: columnX, y: frame.origin.y)
             let endPoint = CGPoint(x: columnX, y: columnY)
-            drawSolidLine(from: startPoint, to: endPoint, lineWidth: strokeWidth * 0.5, strokeColour: strokeColour)
+            drawSolidLine(from: startPoint, to: endPoint, lineWidth: strokeWidth * 0.5, strokeColor: strokeColor)
         }
     }
 
-    func drawLabelsForColumns(labels: [String], columnCount: Int, textColour: UIColor, font: UIFont, center: Bool = false) {
+    func drawLabelsForColumns(labels: [String], textColor: UIColor, highlightColor: UIColor, font: UIFont, center: Bool = false) {
         var lastLabel: UILabel? = nil
 
-        for i in 0..<columnCount {
+        for index in 0..<labels.count {
             let label = UILabel()
-            label.text = labels[i]
-            label.prepareAndSetTextAttributes(text: labels[i], font: font, alignment: (center ? .center : .natural))
-            label.textColor = .white20
+            label.text = labels[index]
+            label.setAttrText(text: labels[index], font: font, alignment: (center ? .center : .natural))
+            label.textColor = index == labels.endIndex - 1 ? highlightColor : textColor
             addSubview(label)
             label.topAnchor == topAnchor
             label.bottomAnchor == bottomAnchor
@@ -155,11 +155,9 @@ extension UIView {
             lastLabel = label
         }
 
-        guard let lbl = lastLabel else {
-            return
-        }
+        guard let label = lastLabel else { return }
 
-        lbl.trailingAnchor == self.trailingAnchor
+        label.trailingAnchor == trailingAnchor
     }
 
     private func linePath(from: CGPoint, to: CGPoint) -> UIBezierPath {

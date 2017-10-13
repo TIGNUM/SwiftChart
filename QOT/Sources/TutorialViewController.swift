@@ -102,7 +102,7 @@ private extension TutorialViewController {
         titleLabel.numberOfLines = 1
         titleLabel.lineBreakMode = .byWordWrapping
         titleLabel.textColor = .white
-        titleLabel.prepareAndSetTextAttributes(text: viewModel.title, font: Font.H4Headline, alignment: .left, lineSpacing: 7, characterSpacing: -0.8)
+        titleLabel.setAttrText(text: viewModel.title, font: Font.H4Headline, alignment: .left, lineSpacing: 7, characterSpacing: -0.8)
 
         contentLabel.alpha = 0.0
         contentLabel.backgroundColor = .clear

@@ -1,5 +1,5 @@
 //
-//  MyStatisticsViewController.swift
+//  ChartViewController.swift
 //  QOT
 //
 //  Created by karmic on 11.05.17.
@@ -9,29 +9,28 @@
 import UIKit
 import Anchorage
 
-protocol MyStatisticsViewControllerDelegate: class {
+protocol ChartViewControllerDelegate: class {
 
-    func didSelectStatitcsCard(in section: Index, at index: Index, from viewController: MyStatisticsViewController)
+    func didSelectChart(in section: Index, at index: Index, from viewController: ChartViewController)
 }
 
-final class MyStatisticsViewController: UIViewController {
+final class ChartViewController: UIViewController {
 
     // MARK: - Properties
 
-    fileprivate let viewModel: MyStatisticsViewModel
-    weak var delegate: MyStatisticsViewControllerDelegate?
+    fileprivate let viewModel: ChartViewModel
+    weak var delegate: ChartViewControllerDelegate?
 
     fileprivate lazy var tableView: UITableView = {
-        return UITableView(
-            style: .grouped,
-            delegate: self,
-            dataSource: self,
-            dequeables: MyStatisticsTableViewCell.self)
+        return UITableView(style: .grouped,
+                           delegate: self,
+                           dataSource: self,
+                           dequeables: ChartTableViewCell.self)
     }()
 
     // MARK: - Init
 
-    init(viewModel: MyStatisticsViewModel) {
+    init(viewModel: ChartViewModel) {
         self.viewModel = viewModel
 
         super.init(nibName: nil, bundle: nil)
@@ -58,7 +57,7 @@ final class MyStatisticsViewController: UIViewController {
 
 // MARK: - Private
 
-private extension MyStatisticsViewController {
+private extension ChartViewController {
 
     func setupView() {
         view.addSubview(tableView)
@@ -70,7 +69,7 @@ private extension MyStatisticsViewController {
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 
-extension MyStatisticsViewController: UITableViewDelegate, UITableViewDataSource {
+extension ChartViewController: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.numberOfSections
@@ -81,13 +80,13 @@ extension MyStatisticsViewController: UITableViewDelegate, UITableViewDataSource
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(400)
+        return 380
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView(frame: CGRect(x: 20, y: 0, width: tableView.bounds.width, height: 20))
+        let view = UIView(frame: CGRect(x: 30, y: 0, width: tableView.bounds.width, height: 20))
         let label = UILabel(frame: view.frame)
-        let headline = viewModel.title(in: section).uppercased()
+        let headline = viewModel.sectionTitle(in: section).uppercased()
         view.addSubview(label)
         label.attributedText = Style.subTitle(headline, .white).attributedString()
 
@@ -95,11 +94,11 @@ extension MyStatisticsViewController: UITableViewDelegate, UITableViewDataSource
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CGFloat(20)
+        return 20
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {        
-        let cell: MyStatisticsTableViewCell = tableView.dequeueCell(for: indexPath)        
+        let cell: ChartTableViewCell = tableView.dequeueCell(for: indexPath)        
         cell.setup(viewModel: viewModel, currentSection: indexPath.section)
 
         return cell
@@ -108,10 +107,11 @@ extension MyStatisticsViewController: UITableViewDelegate, UITableViewDataSource
 
 // MARK: - CustomPresentationAnimatorDelegate {
 
-extension MyStatisticsViewController: CustomPresentationAnimatorDelegate {
-    func animationsForAnimator(_ animator: CustomPresentationAnimator) -> (() -> Void)? {
+extension ChartViewController: CustomPresentationAnimatorDelegate {
 
+    func animationsForAnimator(_ animator: CustomPresentationAnimator) -> (() -> Void)? {
         parent?.view.alpha = animator.isPresenting ? 0.0 : 1.0
+
         return { [unowned self] in
             self.parent?.view.alpha = animator.isPresenting ? 1.0 : 0.0
         }

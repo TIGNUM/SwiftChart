@@ -68,7 +68,7 @@ final class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable 
 
             contentLabel.numberOfLines = 0
             contentLabel.lineBreakMode = .byWordWrapping
-            contentLabel.prepareAndSetTextAttributes(text: content, font: Font.DPText)
+            contentLabel.setAttrText(text: content, font: Font.DPText)
         }
     }
     

@@ -274,8 +274,8 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
         self.topNavigationBar(topNavigationBar, rightButtonPressed: button)
     }
 
-    func didTapSector(startingSection: MyStatisticsSectionType?, in viewController: MyUniverseViewController) {
-        let coordinator = MyStatisticsCoordinator(root: topTabBarControllerMe, services: services, startingSection: startingSection)
+    func didTapSector(startingSection: StatisticsSectionType?, in viewController: MyUniverseViewController) {
+        let coordinator = StatisticsCoordinator(root: topTabBarControllerMe, services: services, startingSection: startingSection)
         startChild(child: coordinator)
     }
 

@@ -342,7 +342,7 @@ private extension MyWhyView {
         label.numberOfLines = 0
         label.textColor = .white
         label.sizeToFit()
-        label.prepareAndSetTextAttributes(text: text, font: Font.PTextSmall, lineSpacing: 7, characterSpacing: 1.73)
+        label.setAttrText(text: text, font: Font.PTextSmall, lineSpacing: 7, characterSpacing: 1.73)
         return label
     }
 

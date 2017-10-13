@@ -20,7 +20,7 @@ final class Services {
     let userService: UserService
     let eventsService: EventsService
     let settingsService: SettingsService
-    let myStatisticsService: MyStatisticsService
+    let statisticsService: StatisticsService
     let mediaService: MediaService
 
     init() throws {
@@ -34,7 +34,7 @@ final class Services {
         self.userService = UserService(mainRealm: mainRealm, realmProvider: realmProvider)
         self.eventsService = EventsService(mainRealm: mainRealm, realmProvider: realmProvider)
         self.settingsService = SettingsService(realm: mainRealm)
-        self.myStatisticsService = MyStatisticsService(mainRealm: mainRealm, realmProvider: realmProvider)
+        self.statisticsService = StatisticsService(mainRealm: mainRealm, realmProvider: realmProvider)
         self.mediaService = MediaService(mainRealm: mainRealm, realmProvider: realmProvider)
     }
 }

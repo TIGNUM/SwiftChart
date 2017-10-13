@@ -127,7 +127,7 @@ extension LaunchHandler {
     }
 
     private func startEndDate() -> (startDate: Date, endDate: Date) {
-        let calendar = Calendar.current
+        let calendar = Calendar.sharedUTC
         var dateComponents = calendar.dateComponents([.year, .month, .weekOfYear, .weekday], from: Date())
         dateComponents.weekOfYear! += 1
         dateComponents.weekday! = 1

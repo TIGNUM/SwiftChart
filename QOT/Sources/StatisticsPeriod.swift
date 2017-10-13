@@ -1,5 +1,5 @@
 //
-//  MyStatisticsPeriod.swift
+//  StatisticsPeriod.swift
 //  QOT
 //
 //  Created by karmic on 11.07.17.
@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-final class MyStatisticsPeriod: Object {
+final class StatisticsPeriod: Object {
 
     enum Status: String {
         case low = "LOW"
@@ -31,7 +31,7 @@ final class MyStatisticsPeriod: Object {
 
     @objc dynamic var _status = ""
 
-    convenience init(_ data: MyStatisticsPeriodIntermediary) {
+    convenience init(_ data: StatisticsPeriodIntermediary) {
         self.init()
 
         self.startDate = data.startDate
@@ -39,7 +39,7 @@ final class MyStatisticsPeriod: Object {
         self._status = data.status
     }
 
-    convenience init(start: Date, end: Date, status: MyStatisticsPeriod.Status) {
+    convenience init(start: Date, end: Date, status: StatisticsPeriod.Status) {
         self.init()
 
         self.startDate = start
@@ -54,13 +54,25 @@ final class MyStatisticsPeriod: Object {
     }
 }
 
-extension MyStatisticsPeriod {
+extension StatisticsPeriod {
 
-    var range: Range<Date> {
+    var range: Range<Date> { 
         return startDate ..< endDate
     }
 
     var status: Status {
         return Status(rawValue: _status) ?? .normal
+    }
+
+    var minutes: Int {
+        return Int(endDate.timeIntervalSince(startDate).toInt / 60)
+    }
+
+    var startMinute: Int {
+        return startDate.minutesSinceMidnight
+    }
+
+    var endMinute: Int {
+        return endDate.minutesSinceMidnight
     }
 }

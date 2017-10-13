@@ -72,8 +72,7 @@ private extension SettingsMenuViewModel {
     }
 
     private func daysBetweenDates(startDate: Date) -> String {
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([Calendar.Component.day], from: startDate, to: Date())
+        let components = Calendar.sharedUTC.dateComponents([Calendar.Component.day], from: startDate, to: Date())
 
         guard let days = components.day else {
             return "0 DAYS"

@@ -31,12 +31,12 @@ final class RequestDeviceSensorCollectionViewCell: UICollectionViewCell, Dequeue
 
         let center = containerView.convert(containerView.center, from: self)
         let lineSemiLength = containerView.frame.height / 4
-        let strokeColour = UIColor.white40
+        let strokeColor = UIColor.white40
 
         containerView.drawSolidCircle(arcCenter: center,
                                       radius: containerView.frame.width / 2,
                                       lineWidth: 1,
-                                      strokeColour: strokeColour)
+                                      strokeColor: strokeColor)
 
         let horizontalFrom = CGPoint(x: center.x - lineSemiLength, y: center.y)
         let horizontalTo = CGPoint(x: center.x + lineSemiLength, y: center.y)
@@ -46,12 +46,12 @@ final class RequestDeviceSensorCollectionViewCell: UICollectionViewCell, Dequeue
         containerView.drawSolidLine(from: horizontalFrom,
                                     to: horizontalTo,
                                     lineWidth: 1,
-                                    strokeColour: strokeColour)
+                                    strokeColor: strokeColor)
 
         containerView.drawSolidLine(from: verticalFrom,
                                     to: verticalTo,
                                     lineWidth: 1,
-                                    strokeColour: strokeColour)
+                                    strokeColor: strokeColor)
     }
 
     func setup(title: String) {

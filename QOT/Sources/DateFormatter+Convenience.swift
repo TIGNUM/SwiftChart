@@ -11,7 +11,7 @@ import Foundation
 // Creating date formatters are expensive so using a private global variable
 private let iso8601DateFormatter: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.locale = Locale.posix
     formatter.timeZone = TimeZone(abbreviation: "UTC")
     formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
     return formatter
@@ -58,5 +58,12 @@ extension DateFormatter {
 
     static var shortDate: DateFormatter {
         return shortDateFormatter
+    }
+}
+
+extension Locale {
+
+    static var posix: Locale {
+        return Locale(identifier: "en_US_POSIX")
     }
 }

@@ -27,7 +27,7 @@ final class LibraryCollectionViewCell: UICollectionViewCell, Dequeueable {
             default: mediaType = "Text"
             }
 
-            mediaTypeLabel.prepareAndSetTextAttributes(text: mediaType.uppercased(), font: Font.H7Tag, lineSpacing: 0, characterSpacing: 2)
+            mediaTypeLabel.setAttrText(text: mediaType.uppercased(), font: Font.H7Tag, lineSpacing: 0, characterSpacing: 2)
             mediaTypeLabel.textColor = .white60
         }
 

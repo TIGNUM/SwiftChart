@@ -519,13 +519,14 @@ extension Sequence where Iterator.Element == String {
     func mondayFirst(withWeekend: Bool = true) -> [String] {
         let selfCast = self as? [String]
 
-        guard var week = selfCast else { return [] }
+        guard var week = selfCast else {
+            return []
+        }
 
         let tempDay = week.first
-
         week.removeFirst()
 
-        if !withWeekend {
+        if withWeekend == false {
             week.removeLast()
         } else if let day = tempDay {
             week.append(day)

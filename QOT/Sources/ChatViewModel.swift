@@ -99,7 +99,7 @@ final class ChatViewModel<T: ChatChoice> {
         updates.next(.reload(items: newItems))
         setupQueue()
     }
-    
+
     func appendItems(_ items: [ChatItem<T>]) {
         for item in items {
             queue?.push(item)

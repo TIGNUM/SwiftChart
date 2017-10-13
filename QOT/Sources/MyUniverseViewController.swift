@@ -11,7 +11,7 @@ import ReactiveKit
 
 protocol MyUniverseViewControllerDelegate: class {
 
-    func didTapSector(startingSection: MyStatisticsSectionType?, in viewController: MyUniverseViewController)
+    func didTapSector(startingSection: StatisticsSectionType?, in viewController: MyUniverseViewController)
 
     func didTapMyToBeVision(vision: MyToBeVision?, from view: UIView, in viewController: MyUniverseViewController)
 
@@ -222,7 +222,7 @@ private extension MyUniverseViewController {
 
 private extension MyUniverseViewController {
 
-    func section(location: CGPoint) -> MyStatisticsSectionType? {
+    func section(location: CGPoint) -> StatisticsSectionType? {
         let radius = lengthFromCenter(for: location)
         let yPosShifted = location.y - myDataView.profileImageButton.center.y
         let xPosShifted = location.x - myDataView.profileImageButton.center.x
@@ -261,7 +261,7 @@ private extension MyUniverseViewController {
         return nil
     }
 
-    func sectionType(for type: SectorLabelType) -> MyStatisticsSectionType {
+    func sectionType(for type: SectorLabelType) -> StatisticsSectionType {
         switch type {
         case .activity: return .activity
         case .intensity: return .intensity
@@ -411,7 +411,7 @@ extension MyUniverseViewController: CustomPresentationAnimatorDelegate {
             return { [unowned self] in
                 self.myWhyView.qotPartnersBox.transform = .identity
             }
-        } else if let toViewController = animator.toViewController, toViewController.contains(MyStatisticsViewController.self) {
+        } else if let toViewController = animator.toViewController, toViewController.contains(ChartViewController.self) {
             self.parent?.view.alpha = 1
 
             return { [unowned self] in
@@ -423,7 +423,7 @@ extension MyUniverseViewController: CustomPresentationAnimatorDelegate {
                 let layerTransform = self.myDataView.universeDotsLayer.transform
                 self.myDataView.universeDotsLayer.transform = CATransform3DTranslate(layerTransform, -200, 0, 0)
             }
-        } else if let fromViewController = animator.fromViewController, fromViewController.contains(MyStatisticsViewController.self) {
+        } else if let fromViewController = animator.fromViewController, fromViewController.contains(ChartViewController.self) {
             self.parent?.view.alpha = 0
 
             let layerTransform = self.myDataView.universeDotsLayer.transform

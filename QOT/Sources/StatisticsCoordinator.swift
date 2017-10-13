@@ -9,19 +9,19 @@
 import Foundation
 import UIKit
 
-final class MyStatisticsCoordinator: NSObject, ParentCoordinator {
+final class StatisticsCoordinator: NSObject, ParentCoordinator {
 
     // MARK: - Properties
 
     fileprivate let services: Services
-    fileprivate let startingSection: MyStatisticsSectionType
+    fileprivate let startingSection: StatisticsSectionType
     fileprivate var topTabBarController: UINavigationController!
     fileprivate let rootViewController: UIViewController
     var children: [Coordinator] = []
 
     // MARK: - Life Cycle
 
-    init(root: UIViewController, services: Services, startingSection: MyStatisticsSectionType? = nil) {
+    init(root: UIViewController, services: Services, startingSection: StatisticsSectionType? = nil) {
         self.rootViewController = root
         self.services = services
         self.startingSection = startingSection ?? .sleep
@@ -29,8 +29,8 @@ final class MyStatisticsCoordinator: NSObject, ParentCoordinator {
 
     func start() {
         do {
-            let viewModel = try MyStatisticsViewModel(services: services, startingSection: startingSection)
-            let myStatisticsViewController = MyStatisticsViewController(viewModel: viewModel)
+            let viewModel = try ChartViewModel(services: services, startingSection: startingSection)
+            let myStatisticsViewController = ChartViewController(viewModel: viewModel)
             myStatisticsViewController.delegate = self
             myStatisticsViewController.title = R.string.localized.meMyStatisticsNavigationBarTitle()
             topTabBarController = UINavigationController(withPages: [myStatisticsViewController],
@@ -47,16 +47,16 @@ final class MyStatisticsCoordinator: NSObject, ParentCoordinator {
 
 // MARK: - MyStatisticsViewControllerDelegate
 
-extension MyStatisticsCoordinator: MyStatisticsViewControllerDelegate {
+extension StatisticsCoordinator: ChartViewControllerDelegate {
 
-    func didSelectStatitcsCard(in section: Index, at index: Index, from viewController: MyStatisticsViewController) {
-        log("didSelectStatitcsCard \(section), \(index), \(viewController)")
+    func didSelectChart(in section: Index, at index: Index, from viewController: ChartViewController) {
+        print("didSelectStatitcsCard", section, index, viewController)
     }
 }
 
 // MARK: - TopNavigationBarDelegate
 
-extension MyStatisticsCoordinator: TopNavigationBarDelegate {
+extension StatisticsCoordinator: TopNavigationBarDelegate {
     func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
         topTabBarController.dismiss(animated: true, completion: nil)
     }
@@ -70,7 +70,7 @@ extension MyStatisticsCoordinator: TopNavigationBarDelegate {
 
 // MARK: - UIViewControllerTransitioningDelegate
 
-extension MyStatisticsCoordinator: UIViewControllerTransitioningDelegate {
+extension StatisticsCoordinator: UIViewControllerTransitioningDelegate {
 
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return CustomPresentationAnimator(isPresenting: true, presentingDuration: 0.3, presentedDuration: 0.8)

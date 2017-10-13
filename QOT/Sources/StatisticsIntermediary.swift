@@ -1,5 +1,5 @@
 //
-//  MyStatisticsIntermediary.swift
+//  StatisticsIntermediary.swift
 //  QOT
 //
 //  Created by karmic on 11.07.17.
@@ -9,7 +9,7 @@
 import Foundation
 import Freddy
 
-struct MyStatisticsIntermediary: DownSyncIntermediary {
+struct StatisticsIntermediary: DownSyncIntermediary {
 
     let key: String
     let userAverage: Double
@@ -20,7 +20,7 @@ struct MyStatisticsIntermediary: DownSyncIntermediary {
     let maximum: Double
     let universe: Double
     let dataPoints: [Double]
-    let periods: [MyStatisticsPeriodIntermediary]
+    let periods: [StatisticsPeriodIntermediary]
     let unit: String
     let multiplier: Double
 

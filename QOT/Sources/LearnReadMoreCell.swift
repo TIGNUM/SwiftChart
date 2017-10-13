@@ -19,10 +19,10 @@ class LearnReadMoreCell: UITableViewCell, Dequeueable {
     // MARK: - Methods
 
     func configure(numberOfArticles: Int) {
-        readMore.prepareAndSetTextAttributes(text: R.string.localized.prepareContentReadMore().uppercased(), font: Font.H5SecondaryHeadline, characterSpacing: 1)
+        readMore.setAttrText(text: R.string.localized.prepareContentReadMore().uppercased(), font: Font.H5SecondaryHeadline, characterSpacing: 1)
 
         let articleText = numberOfArticles < 2 ? R.string.localized.learnContentItemArticle() : R.string.localized.learnContentItemArticles()
-        articlesCount.prepareAndSetTextAttributes(text: "\(numberOfArticles) \(articleText)".uppercased(), font: Font.H7Tag, characterSpacing: 2)
+        articlesCount.setAttrText(text: "\(numberOfArticles) \(articleText)".uppercased(), font: Font.H7Tag, characterSpacing: 2)
         articlesCount.textColor = .black30
     }
 }

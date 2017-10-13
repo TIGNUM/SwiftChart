@@ -11,7 +11,7 @@ import UIKit
 extension Range where Bound == Date {
 
     static func makeOneDay(daysFromNow: Int) -> Range<Date> {
-        let calendar = Calendar.current
+        let calendar = Calendar.sharedUTC
         var components = DateComponents()
 
         components.day = daysFromNow

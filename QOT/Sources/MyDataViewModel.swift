@@ -25,7 +25,7 @@ final class MyDataViewModel {
     }
 
     var sectors: [Sector] {
-        return mockSectors(service: services.myStatisticsService)
+        return chartSectors(service: services.statisticsService)
     }
 
     func spike(for sector: Sector, at index: Index) -> Spike {
@@ -41,7 +41,7 @@ final class MyDataViewModel {
     }
 }
 
-// MARK: - Mocks
+// MARK: - Sectors
 
 enum SectorType {
     case bodyBrain
@@ -121,7 +121,7 @@ protocol Sector {
     var type: SectorType { get }
 }
 
-struct MockSpike: Spike {
+struct ChartSpike: Spike {
     let angle: CGFloat
     let load: CGFloat
 
@@ -137,7 +137,7 @@ struct MockSpike: Spike {
     }
 }
 
-struct MockSector: Sector {
+struct ChartSector: Sector {
     let startAngle: CGFloat
     let endAngle: CGFloat
     let spikes: [Spike]
@@ -146,9 +146,9 @@ struct MockSector: Sector {
     let type: SectorType
 }
 
-private func mockSectors(service: MyStatisticsService) -> [Sector] {
+private func chartSectors(service: StatisticsService) -> [Sector] {
     return [
-        MockSector(
+        ChartSector(
             startAngle: 219,
             endAngle: 234,
             spikes: peakSpikes(service: service),
@@ -157,7 +157,7 @@ private func mockSectors(service: MyStatisticsService) -> [Sector] {
             type: .load
         ),
 
-        MockSector(
+        ChartSector(
             startAngle: 184,
             endAngle: 233,
             spikes: intensitySpikes(service: service),
@@ -166,7 +166,7 @@ private func mockSectors(service: MyStatisticsService) -> [Sector] {
             type: .load
         ),
 
-        MockSector(
+        ChartSector(
             startAngle: 166,
             endAngle: 183,
             spikes: meetingsSpikes(service: service),
@@ -175,7 +175,7 @@ private func mockSectors(service: MyStatisticsService) -> [Sector] {
             type: .load
         ),
 
-        MockSector(
+        ChartSector(
             startAngle: 137,
             endAngle: 165,
             spikes: travelSpikes(service: service),
@@ -184,7 +184,7 @@ private func mockSectors(service: MyStatisticsService) -> [Sector] {
             type: .load
         ),
 
-        MockSector(
+        ChartSector(
             startAngle: 120,
             endAngle: 136,
             spikes: sleepSpikes(service: service),
@@ -193,7 +193,7 @@ private func mockSectors(service: MyStatisticsService) -> [Sector] {
             type: .bodyBrain
         ),
 
-        MockSector(
+        ChartSector(
             startAngle: 119,
             endAngle: 135,
             spikes: activitySpikes(service: service),
@@ -204,47 +204,47 @@ private func mockSectors(service: MyStatisticsService) -> [Sector] {
     ]
 }
 
-private func peakSpikes(service: MyStatisticsService) -> [Spike] {
+private func peakSpikes(service: StatisticsService) -> [Spike] {
     return [
-        MockSpike(angle: 245, load: service.card(key: StatisticCardType.peakPerformanceUpcomingWeek.rawValue)?.universe.toFloat ?? 0),
-        MockSpike(angle: 235, load: service.card(key: StatisticCardType.peakPerformanceAverageWeek.rawValue)?.universe.toFloat ?? 0)
+        ChartSpike(angle: 245, load: service.chart(key: ChartType.peakPerformanceUpcomingWeek.rawValue)?.universe.toFloat ?? 0),
+        ChartSpike(angle: 235, load: service.chart(key: ChartType.peakPerformanceAverageWeek.rawValue)?.universe.toFloat ?? 0)
     ]
 }
 
-private func intensitySpikes(service: MyStatisticsService) -> [Spike] {
+private func intensitySpikes(service: StatisticsService) -> [Spike] {
     return [
-        MockSpike(angle: 225, load: service.card(key: StatisticCardType.intensityLoadWeek.rawValue)?.universe.toFloat ?? 0),
-        MockSpike(angle: 215, load: service.card(key: StatisticCardType.intensityRecoveryWeek.rawValue)?.universe.toFloat ?? 0)
+        ChartSpike(angle: 225, load: service.chart(key: ChartType.intensityLoadWeek.rawValue)?.universe.toFloat ?? 0),
+        ChartSpike(angle: 215, load: service.chart(key: ChartType.intensityRecoveryWeek.rawValue)?.universe.toFloat ?? 0)
     ]
 }
 
-private func meetingsSpikes(service: MyStatisticsService) -> [Spike] {
+private func meetingsSpikes(service: StatisticsService) -> [Spike] {
     return [
-        MockSpike(angle: 205, load: service.card(key: StatisticCardType.meetingAverageDay.rawValue)?.universe.toFloat ?? 0),
-        MockSpike(angle: 195, load: service.card(key: StatisticCardType.meetingLength.rawValue)?.universe.toFloat ?? 0),
-        MockSpike(angle: 185, load: service.card(key: StatisticCardType.meetingTimeBetween.rawValue)?.universe.toFloat ?? 0)
+        ChartSpike(angle: 205, load: service.chart(key: ChartType.meetingAverageDay.rawValue)?.universe.toFloat ?? 0),
+        ChartSpike(angle: 195, load: service.chart(key: ChartType.meetingLength.rawValue)?.universe.toFloat ?? 0),
+        ChartSpike(angle: 185, load: service.chart(key: ChartType.meetingTimeBetween.rawValue)?.universe.toFloat ?? 0)
     ]
 }
 
-private func travelSpikes(service: MyStatisticsService) -> [Spike] {
+private func travelSpikes(service: StatisticsService) -> [Spike] {
     return [
-        MockSpike(angle: 175, load: service.card(key: StatisticCardType.travelTripsAverageWeeks.rawValue)?.universe.toFloat ?? 0),
-        MockSpike(angle: 165, load: service.card(key: StatisticCardType.travelTripsNextFourWeeks.rawValue)?.universe.toFloat ?? 0),
-        MockSpike(angle: 155, load: service.card(key: StatisticCardType.travelTripsTimeZoneChangedWeeks.rawValue)?.universe.toFloat ?? 0),
-        MockSpike(angle: 145, load: service.card(key: StatisticCardType.travelTripsMaxTimeZone.rawValue)?.universe.toFloat ?? 0)
+        ChartSpike(angle: 175, load: service.chart(key: ChartType.travelTripsAverageWeeks.rawValue)?.universe.toFloat ?? 0),
+        ChartSpike(angle: 165, load: service.chart(key: ChartType.travelTripsNextFourWeeks.rawValue)?.universe.toFloat ?? 0),
+        ChartSpike(angle: 155, load: service.chart(key: ChartType.travelTripsTimeZoneChangedWeeks.rawValue)?.universe.toFloat ?? 0),
+        ChartSpike(angle: 145, load: service.chart(key: ChartType.travelTripsMaxTimeZone.rawValue)?.universe.toFloat ?? 0)
     ]
 }
 
-private func sleepSpikes(service: MyStatisticsService) -> [Spike] {
+private func sleepSpikes(service: StatisticsService) -> [Spike] {
     return [
-        MockSpike(angle: 135, load: service.card(key: StatisticCardType.sleepQuantity.rawValue)?.universe.toFloat ?? 0),
-        MockSpike(angle: 125, load: service.card(key: StatisticCardType.sleepQuality.rawValue)?.universe.toFloat ?? 0)
+        ChartSpike(angle: 135, load: service.chart(key: ChartType.sleepQuantity.rawValue)?.universe.toFloat ?? 0),
+        ChartSpike(angle: 125, load: service.chart(key: ChartType.sleepQuality.rawValue)?.universe.toFloat ?? 0)
     ]
 }
 
-private func activitySpikes(service: MyStatisticsService) -> [Spike] {
+private func activitySpikes(service: StatisticsService) -> [Spike] {
     return [
-        MockSpike(angle: 115, load: service.card(key: StatisticCardType.activitySittingMovementRatio.rawValue)?.universe.toFloat ?? 0),
-        MockSpike(angle: 105, load: service.card(key: StatisticCardType.activityLevel.rawValue)?.universe.toFloat ?? 0)
+        ChartSpike(angle: 115, load: service.chart(key: ChartType.activitySittingMovementRatio.rawValue)?.universe.toFloat ?? 0),
+        ChartSpike(angle: 105, load: service.chart(key: ChartType.activityLevel.rawValue)?.universe.toFloat ?? 0)
     ]
 }

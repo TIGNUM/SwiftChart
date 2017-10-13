@@ -153,6 +153,7 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
         cell.configure(text: text, style: style)
         return cell
     }
+
     private func textAndStyle(indexPath: IndexPath) -> (text: String, style: ChatViewCell.Style) {
         let item = items[indexPath.section]
         switch item.type {

@@ -37,7 +37,7 @@ enum PageName: String {
     case login = "login"
     case morningInterview = "notification.dailyprep"
     case myQOTPartners = "me.mywhy.qotpartners"
-    case myStatistics = "me.mydata.charts"
+    case statistics = "me.mydata.charts"
     case myToBeVision = "me.mywhy.mytobevision"
     case myData = "me.mydata"
     case myWhy = "me.mywhy"
@@ -211,9 +211,9 @@ extension MyPrepViewController: TrackablePage {
     }
 }
 
-extension MyStatisticsViewController: TrackablePage {
+extension ChartViewController: TrackablePage {
     var pageName: PageName {
-        return .myStatistics
+        return .statistics
     }
     var pageAssociatedObject: PageObject? {
         return nil

@@ -1,5 +1,5 @@
 //
-//  MyStatisticsTableViewCell.swift
+//  ChartTableViewCell.swift
 //  QOT
 //
 //  Created by karmic on 07.06.17.
@@ -10,24 +10,23 @@ import UIKit
 import Anchorage
 import RealmSwift
 
-final class MyStatisticsTableViewCell: UITableViewCell, Dequeueable {
+final class ChartTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Properties
 
-    fileprivate var viewModel: MyStatisticsViewModel?
+    fileprivate var viewModel: ChartViewModel?
     fileprivate lazy var currentSection = 0
+    fileprivate var selectedButtonTag = 0
 
     fileprivate lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 10, right: 20)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 15, bottom: 10, right: 15)
 
-        return UICollectionView(
-            layout: layout,
-            delegate: self,
-            dataSource: self,
-            dequeables: MyStatisticsCardCell.self
-        )
+        return UICollectionView(layout: layout,
+                                delegate: self,
+                                dataSource: self,
+                                dequeables: ChartCell.self)
     }()
 
     // MARK: - Init
@@ -42,7 +41,7 @@ final class MyStatisticsTableViewCell: UITableViewCell, Dequeueable {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setup(viewModel: MyStatisticsViewModel, currentSection: Int) {
+    func setup(viewModel: ChartViewModel, currentSection: Int) {
         self.viewModel = viewModel
         self.currentSection = currentSection
         contentView.backgroundColor = .clear
@@ -53,7 +52,7 @@ final class MyStatisticsTableViewCell: UITableViewCell, Dequeueable {
 
 // MARK: - Private
 
-private extension MyStatisticsTableViewCell {
+private extension ChartTableViewCell {
 
     func setupView() {
         addSubview(collectionView)
@@ -65,7 +64,7 @@ private extension MyStatisticsTableViewCell {
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
 
-extension MyStatisticsTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+extension ChartTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let viewModel = viewModel else {
@@ -80,31 +79,35 @@ extension MyStatisticsTableViewCell: UICollectionViewDelegateFlowLayout, UIColle
             return UICollectionViewCell()
         }
 
-        let cardTitle = viewModel.cardTitle(section: currentSection, item: indexPath.item)
-        let myStatistics = viewModel.myStatistics(section: currentSection, item: indexPath.item)
-        let cardType = viewModel.cardType(section: currentSection, item: indexPath.item)
-        let cardCell: MyStatisticsCardCell = collectionView.dequeueCell(for: indexPath)
-        cardCell.setup(headerTitle: cardTitle, cardType: cardType, delegate: self, myStatistics: myStatistics, allCards: viewModel.allCards)
-        let cellRect = collectionView.convert(cardCell.frame, to: collectionView.superview)
-        cardCell.animateHeader(withCellRect: cellRect, inParentRect: collectionView.frame)
+        let chartTitle = viewModel.chartTitle(section: currentSection, item: indexPath.item)
+        let statistics = viewModel.statistics(section: currentSection, item: indexPath.item)
+        let chartCell: ChartCell = collectionView.dequeueCell(for: indexPath)
+        let chartTypes = viewModel.chartTypes(section: currentSection, item: indexPath.item)
+        chartCell.setup(headerTitle: chartTitle, chartTypes: chartTypes, statistics: statistics, charts: viewModel.allCharts)        
+        chartCell.delegate = self
+        let cellRect = collectionView.convert(chartCell.frame, to: collectionView.superview)
+        chartCell.animateHeader(withCellRect: cellRect, inParentRect: collectionView.frame)
 
-        return cardCell
+        return chartCell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 250, height: 380)
+        return CGSize(width: 255, height: 367)
     }
 }
 
 // MARK: - UIScrollViewDelegate
 
-extension MyStatisticsTableViewCell: UIScrollViewDelegate {
+extension ChartTableViewCell: UIScrollViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let visibleCells = collectionView.visibleCells
 
         visibleCells.forEach { tempCell in
-            guard let cell = tempCell as? MyStatisticsCardCell else { return }
+            guard let cell = tempCell as? ChartCell else {
+                return
+            }
+            
             let cellRect = collectionView.convert(cell.frame, to: collectionView.superview)
             cell.animateHeader(withCellRect: cellRect, inParentRect: collectionView.frame)
         }
@@ -113,7 +116,7 @@ extension MyStatisticsTableViewCell: UIScrollViewDelegate {
 
 // MARK: - MyStatisticsCardCellDelegate
 
-extension MyStatisticsTableViewCell: MyStatisticsCardCellDelegate {
+extension ChartTableViewCell: ChartCellDelegate {
 
     func doReload() {
         self.collectionView.reloadData()

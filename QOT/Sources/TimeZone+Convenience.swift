@@ -11,7 +11,6 @@ import Foundation
 extension TimeZone {
 
     static var currentName: String {
-        let locale = Locale(identifier: "en_US_POSIX")
-        return TimeZone.current.localizedName(for: .shortStandard, locale: locale)!
+        return TimeZone.current.localizedName(for: .shortStandard, locale: Locale.posix)!
     }
 }

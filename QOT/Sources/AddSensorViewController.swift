@@ -74,7 +74,7 @@ final class AddSensorViewController: UIViewController {
     fileprivate lazy var textLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.prepareAndSetTextAttributes(text: self.viewModel.text, font: Font.DPText, alignment: .left, lineSpacing: 13)
+        label.setAttrText(text: self.viewModel.text, font: Font.DPText, alignment: .left, lineSpacing: 13)
         label.numberOfLines = 0
         
         return label

@@ -1,5 +1,5 @@
 //
-//  MyStatisticsPeriodIntermediary.swift
+//  StatisticsPeriodIntermediary.swift
 //  QOT
 //
 //  Created by karmic on 11.07.17.
@@ -9,7 +9,7 @@
 import Foundation
 import Freddy
 
-struct MyStatisticsPeriodIntermediary: DownSyncIntermediary {
+struct StatisticsPeriodIntermediary: DownSyncIntermediary {
 
     let startDate: Date
     let endDate: Date

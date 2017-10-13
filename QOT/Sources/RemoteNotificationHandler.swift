@@ -12,7 +12,7 @@ protocol RemoteNotificationHandlerDelegate: class {
     func remoteNotificationHandler(_ handler: RemoteNotificationHandler, canProcessNotificationResponse: UANotificationResponse) -> Bool
 }
 
-class RemoteNotificationHandler: NSObject, UAPushNotificationDelegate {
+final class RemoteNotificationHandler: NSObject, UAPushNotificationDelegate {
     private var unhandledNotificationResponses = [UANotificationResponse]()
     private let launchHandler: LaunchHandler
     weak var delegate: RemoteNotificationHandlerDelegate?

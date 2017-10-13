@@ -9,6 +9,7 @@
 import UIKit
 
 extension String {
+
     func width(withConstrainedHeight height: CGFloat, font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
         let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil)
@@ -68,5 +69,46 @@ extension String {
     var nilled: String? {
         let trimmed = trimmingCharacters(in: .whitespacesAndNewlines)
         return trimmed.isEmpty ? nil : trimmed
+    }
+}
+
+// MARK: - Attributed Button Title - Charts SegmentedView
+
+extension String {
+
+    func attrString(_ selected: Bool?) -> NSAttributedString {
+        let color: UIColor = selected == true ? .white : .white30
+        let attrString = NSMutableAttributedString(string: self)
+        let style = NSMutableParagraphStyle()
+        let range = NSRange(location: 0, length: characters.count)
+        style.alignment = .center
+        attrString.addAttribute(.paragraphStyle, value: style, range: range)
+        attrString.addAttribute(.font, value: Font.H7Tag, range: range)
+        attrString.addAttribute(.kern, value: 2, range: range)
+        attrString.addAttribute(.foregroundColor, value: color, range: range)
+
+        return attrString
+    }
+}
+
+// MARK: - Chart Labels
+
+extension String {
+
+    func weekNumbers() -> [String] {
+        var weekNumbers = [String]()
+        var currentWeekNumber = Calendar.sharedUTC.component(.weekOfYear, from: Date())
+
+        for _ in 0 ..< 4 {
+            currentWeekNumber = currentWeekNumber - 1
+
+            if currentWeekNumber <= 0 {
+                currentWeekNumber = 52
+            }
+
+            weekNumbers.append(String(format: "%d", currentWeekNumber))
+        }
+
+        return weekNumbers.reversed()
     }
 }
