@@ -98,9 +98,9 @@ final class TabBarCoordinator: ParentCoordinator {
         let topTabBarController = UINavigationController(withPages: [self.prepareChatViewController, self.myPrepViewController],
                                                          topBarDelegate: self,
                                                          pageDelegate: self,
+                                                         backgroundImage: R.image.myprep(),
                                                          leftButton: nil,
                                                          rightButton: rightButton)
-        
         return topTabBarController
     }()
 
