@@ -39,7 +39,9 @@ class SelectWeeklyChoicesDataModel {
         self.rawData = services.contentService.learnContentCategories()
         
         dataSource = rawData.map({ (contentCategory: ContentCategory) -> CollapsableNode in
-            let children: [WeeklyChoice] = contentCategory.contentCollections.map({ (contentCollection: ContentCollection) -> WeeklyChoice in
+            let children: [WeeklyChoice] = contentCategory.contentCollections.filter({
+                $0.section == Database.Section.learnStrategy.rawValue
+            }).map({ (contentCollection: ContentCollection) -> WeeklyChoice in
                 return WeeklyChoice(
                     localID: UUID().uuidString,
                     contentCollectionID: contentCollection.forcedRemoteID,
