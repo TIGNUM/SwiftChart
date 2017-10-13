@@ -116,7 +116,6 @@
 		85945C731F27760500F090C8 /* ZoomPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85945C721F27760500F090C8 /* ZoomPresentationManager.swift */; };
 		859683411F135C6300A98218 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859683401F135C6300A98218 /* LoginCoordinator.swift */; };
 		859683431F1361E900A98218 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859683421F1361E900A98218 /* ResetPasswordViewController.swift */; };
-		859683451F1362F300A98218 /* ResetPasswordViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859683441F1362F300A98218 /* ResetPasswordViewCell.swift */; };
 		859683471F137FD600A98218 /* ResetPasswordCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859683461F137FD600A98218 /* ResetPasswordCoordinator.swift */; };
 		85AAB53C1F447D1F00C2D53F /* LearnContentListBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AAB53B1F447D1F00C2D53F /* LearnContentListBackgroundView.swift */; };
 		85C26F9F1F13DCEB001C2C65 /* UIView+ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C26F9E1F13DCEB001C2C65 /* UIView+ProgressHUD.swift */; };
@@ -422,7 +421,6 @@
 		D5485F261ED583BC00A08D1A /* SearchTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5485F251ED583BC00A08D1A /* SearchTableCell.swift */; };
 		D5485F281ED583E300A08D1A /* SearchCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5485F271ED583E300A08D1A /* SearchCollectionCell.swift */; };
 		D554CD9D1F0CED50007731DB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D554CD9C1F0CED50007731DB /* LoginViewController.swift */; };
-		D554CD9F1F0CF3B9007731DB /* LoginViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D554CD9E1F0CF3B9007731DB /* LoginViewCell.swift */; };
 		D57ACCAF1F150D1D00906573 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBB237F81E6FFF1200AB5AEF /* LaunchScreen.storyboard */; };
 		D57ACCB21F15122300906573 /* AnimatedLaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57ACCB01F15122300906573 /* AnimatedLaunchScreenViewController.swift */; };
 		D57ECFB01E924CC2008F401B /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57ECFAF1E924CC2008F401B /* TabBarView.swift */; };
@@ -564,7 +562,6 @@
 		85945C721F27760500F090C8 /* ZoomPresentationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomPresentationManager.swift; sourceTree = "<group>"; };
 		859683401F135C6300A98218 /* LoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		859683421F1361E900A98218 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
-		859683441F1362F300A98218 /* ResetPasswordViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewCell.swift; sourceTree = "<group>"; };
 		859683461F137FD600A98218 /* ResetPasswordCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordCoordinator.swift; sourceTree = "<group>"; };
 		85AAB53B1F447D1F00C2D53F /* LearnContentListBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentListBackgroundView.swift; sourceTree = "<group>"; };
 		85C26F9E1F13DCEB001C2C65 /* UIView+ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ProgressHUD.swift"; sourceTree = "<group>"; };
@@ -882,7 +879,6 @@
 		D5485F251ED583BC00A08D1A /* SearchTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableCell.swift; sourceTree = "<group>"; };
 		D5485F271ED583E300A08D1A /* SearchCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCollectionCell.swift; sourceTree = "<group>"; };
 		D554CD9C1F0CED50007731DB /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		D554CD9E1F0CF3B9007731DB /* LoginViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewCell.swift; sourceTree = "<group>"; };
 		D57ACCB01F15122300906573 /* AnimatedLaunchScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedLaunchScreenViewController.swift; sourceTree = "<group>"; };
 		D57ECFAF1E924CC2008F401B /* TabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		D58BD8751E9F65F7005676DE /* ArticleCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCollectionCell.swift; sourceTree = "<group>"; };
@@ -2134,9 +2130,7 @@
 			isa = PBXGroup;
 			children = (
 				D554CD9C1F0CED50007731DB /* LoginViewController.swift */,
-				D554CD9E1F0CF3B9007731DB /* LoginViewCell.swift */,
 				859683421F1361E900A98218 /* ResetPasswordViewController.swift */,
-				859683441F1362F300A98218 /* ResetPasswordViewCell.swift */,
 			);
 			name = "Log In";
 			sourceTree = "<group>";
@@ -2592,7 +2586,6 @@
 				CBFECCA81F31D7480076ACE6 /* SyncTypes.swift in Sources */,
 				CCA2DC6C1EF290DF00D1DF6A /* LearnContentItemBulletCell.swift in Sources */,
 				CCCE09CC1EA67C78008730F1 /* MyToBeVisionViewModel.swift in Sources */,
-				D554CD9F1F0CF3B9007731DB /* LoginViewCell.swift in Sources */,
 				855C4FC51F25F7D10068DDE3 /* Tutorial.swift in Sources */,
 				CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */,
 				CC309C071F73ADED00A32759 /* UserAnswerFeedback.swift in Sources */,
@@ -2693,7 +2686,6 @@
 				7FE674B71F8F5CA600FC7407 /* LogInfo.swift in Sources */,
 				CCC0C4DB1E82BDEF002A8362 /* TabBarCoordinator.swift in Sources */,
 				CB369CDB1E8D3E5700522293 /* RealmProvider.swift in Sources */,
-				859683451F1362F300A98218 /* ResetPasswordViewCell.swift in Sources */,
 				7F4251C31F211BC600EA451D /* PermissionHandler.swift in Sources */,
 				CBB4DD141EDEBDA80071494A /* URLRequestBuildable.swift in Sources */,
 				CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */,
