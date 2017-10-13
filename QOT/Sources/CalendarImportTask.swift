@@ -35,7 +35,7 @@ final class CalendarImportTask {
                 deleteCalendarEvents(from: Array(existingCalendarEvents), using: events)
             }
             result = .success
-        } catch{
+        } catch {
             result = .failure(error)
         }
         return result

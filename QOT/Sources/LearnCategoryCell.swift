@@ -19,13 +19,10 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
     private var percentageLearned = 0.0
     fileprivate lazy var contentCountLabel = UILabel()
     fileprivate var indexPath = IndexPath(item: 0, section: 0)
-    fileprivate var leftMarginConstraint: NSLayoutConstraint!
-    fileprivate var rightMarginConstraint: NSLayoutConstraint!
-    
+
     fileprivate lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-
         return label
     }()
 
@@ -59,13 +56,6 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
         drawCircles(frame: frame)
     }
     
-    override func updateConstraints() {
-        leftMarginConstraint.constant = contentView.bounds.width * 0.13
-        rightMarginConstraint.constant = -contentView.bounds.width * 0.08
-        
-        super.updateConstraints()
-    }
-
     private func drawCircles(frame: CGRect) {
         let frame = bounds
         applyGradient(frame: frame)
@@ -115,15 +105,17 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
         shapeDashLayer?.removeFromSuperlayer()
         contentView.layer.addSublayer(layer)
         shapeDashLayer = layer
-
     }
 
     func configure(with category: LearnCategoryListViewModel.Item, indexPath: IndexPath) {
         self.indexPath = indexPath
+        
+        // @warning iPhone5s HACK - we want margins, but in doing so messes up text on the 5s, we go for an old-school hack
+        let titleFont = UIScreen.main.bounds.width >= 375 ? Font.H7Tag : UIFont.bentonRegularFont(ofSize: 10)
         let attributedTextTitle = NSMutableAttributedString(
             string: category.title.uppercased(),
             letterSpacing: 2,
-            font: Font.H7Tag,
+            font: titleFont,
             lineSpacing: 2.5,
             textColor: .white60,
             lineBreakMode: .byTruncatingTail
@@ -134,13 +126,12 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
             font: Font.H3Subtitle,
             lineSpacing: 2
         )
-        titleLabel.attributedText = attributedTextTitle
-        contentCountLabel.attributedText = attributedTextCount
-
         if percentageLearned != category.percentageLearned {
             percentageLearned = category.percentageLearned
-            setNeedsLayout()
         }
+        
+        titleLabel.attributedText = attributedTextTitle
+        contentCountLabel.attributedText = attributedTextCount
     }
 
     private func applyGradient(frame: CGRect) {
@@ -172,17 +163,35 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
 private extension LearnCategoryCell {
 
     func setupLayout() {
-        textContainerView.topAnchor == contentView.topAnchor
-        textContainerView.leadingAnchor == contentView.leadingAnchor
-        textContainerView.trailingAnchor == contentView.trailingAnchor
-        textContainerView.bottomAnchor == contentView.bottomAnchor
+        // textContainerView is subview connected to all sides
+        textContainerView.verticalAnchors == contentView.verticalAnchors
+        textContainerView.horizontalAnchors == contentView.horizontalAnchors
+        
+        // create layout guides
+        let topGuide = UILayoutGuide()
+        let bottomGuide = UILayoutGuide()
+        textContainerView.addLayoutGuide(topGuide)
+        textContainerView.addLayoutGuide(bottomGuide)
+        
+        // connect top guide to top
+        topGuide.topAnchor == textContainerView.topAnchor
+        topGuide.horizontalAnchors == textContainerView.horizontalAnchors
+        
+        // connect bottom guide to bottom
+        bottomGuide.bottomAnchor == textContainerView.bottomAnchor
+        bottomGuide.horizontalAnchors == textContainerView.horizontalAnchors
+        
+        // make them equal heights to center (y) the content inbetween
+        topGuide.heightAnchor == bottomGuide.heightAnchor
 
-        leftMarginConstraint = contentCountLabel.leadingAnchor == contentView.leadingAnchor + 8
-        rightMarginConstraint = contentCountLabel.trailingAnchor == contentView.trailingAnchor - 2
-        contentCountLabel.bottomAnchor == titleLabel.topAnchor
-
-        titleLabel.leftAnchor == contentCountLabel.leftAnchor
-        titleLabel.rightAnchor == contentCountLabel.rightAnchor
-        titleLabel.centerYAnchor == contentView.centerYAnchor + 8
+        // configure the inbtween content
+        let padding = 20.0
+        contentCountLabel.topAnchor == topGuide.bottomAnchor
+        contentCountLabel.leadingAnchor == textContainerView.leadingAnchor + padding
+        contentCountLabel.trailingAnchor == textContainerView.trailingAnchor - padding
+        
+        titleLabel.topAnchor == contentCountLabel.bottomAnchor
+        titleLabel.horizontalAnchors == contentCountLabel.horizontalAnchors
+        titleLabel.bottomAnchor == bottomGuide.topAnchor
     }
 }
