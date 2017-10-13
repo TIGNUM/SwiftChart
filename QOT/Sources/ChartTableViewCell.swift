@@ -14,6 +14,7 @@ final class ChartTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Properties
 
+    static private let chartCellSize = CGSize(width: 255, height: 367)
     fileprivate var viewModel: ChartViewModel?
     fileprivate lazy var currentSection = 0
     fileprivate var selectedButtonTag = 0
@@ -21,7 +22,6 @@ final class ChartTableViewCell: UITableViewCell, Dequeueable {
     fileprivate lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 15, bottom: 10, right: 15)
 
         return UICollectionView(layout: layout,
                                 delegate: self,
@@ -92,7 +92,14 @@ extension ChartTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionVi
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 255, height: 367)
+        return ChartTableViewCell.chartCellSize
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        let cellWidth = ChartTableViewCell.chartCellSize.width
+        let left: CGFloat = 15
+        let right = collectionView.bounds.width - left - cellWidth
+        return UIEdgeInsets(top: 0, left: left, bottom: 10, right: right)
     }
 }
 
