@@ -12,12 +12,13 @@ enum UserDefault: String {
     case qotUsage = "qot.userdefault.key.usage.in.minutes"
     case locationService = "qot.userdefault.key.location.service"
     case calendarDictionary = "qot.userdefault.key.calendar.dictionary"
+    case newWhatsHotArticle = "qot.userdefault.key.new.whats.hot.article"
 }
 
 extension UserDefault {
 
     static func objectsToClearOnLogout() -> [UserDefault] {
-        return [.qotUsage, .locationService, .calendarDictionary]
+        return [.qotUsage, .locationService, .calendarDictionary, .newWhatsHotArticle]
     }
 
     var boolValue: Bool {

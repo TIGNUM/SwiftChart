@@ -24,6 +24,7 @@ final class TopNavigationBar: UINavigationBar {
     private let lineHeight: CGFloat = 1.0
     private var middleButtons: [UIButton]?
     private var currentButton: UIButton?
+    private var whatsHotBadgeCenter: CGPoint = .zero
     let indicatorView: UIView // automatically hidden when setMiddleButtons(buttons.count == 1)
     weak var topNavigationBarDelegate: TopNavigationBarDelegate?
     
@@ -34,8 +35,9 @@ final class TopNavigationBar: UINavigationBar {
         super.init(frame: frame)
         
         applyDefaultStyle()
+        NotificationCenter.default.addObserver(self, selector: #selector(addWhatsHotBadgeIfNeeded), name: UserDefaults.didChangeNotification, object: nil)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -50,9 +52,10 @@ final class TopNavigationBar: UINavigationBar {
     }
     
     func setStyle(tintColor: UIColor, backgroundColor: UIColor) {
-        middleButtons?.forEach({ (button: UIButton) in
+        middleButtons?.forEach { (button: UIButton) in
             button.setTitleColor(tintColor, for: .normal)
-        })
+        }
+
         topItem?.leftBarButtonItem?.tintColor = tintColor
         topItem?.rightBarButtonItem?.tintColor = tintColor
         indicatorView.backgroundColor = tintColor
@@ -88,35 +91,53 @@ final class TopNavigationBar: UINavigationBar {
         view.spacing = spacing
         view.addSubview(indicatorView)
         topItem.titleView = view
-        
+
         indicatorView.isHidden = (buttons.count == 1)
         currentButton = buttons[0]
     }
     
     func setLeftButton(_ button: UIBarButtonItem) {
-        guard let topItem = topItem else {
-            return
-        }
+        guard let topItem = topItem else { return }
+
         button.target = self
         button.action = #selector(leftButtonPressed(_:))
         topItem.leftBarButtonItem = button
     }
     
     func setRightButton(_ button: UIBarButtonItem) {
-        guard let topItem = topItem else {
-            return
-        }
+        guard let topItem = topItem else { return }
+
         button.target = self
         button.action = #selector(rightButtonPressed(_:))
         topItem.rightBarButtonItem = button
     }
+
+    @objc func addWhatsHotBadgeIfNeeded() {
+        if UserDefault.newWhatsHotArticle.boolValue == true && middleButtons?.last?.titleLabel?.text == R.string.localized.topTabBarItemTitleLearnWhatsHot().uppercased(),
+            let buttonFrame = middleButtons?.first?.frame {
+                let centerX = (frame.width * 0.5) + buttonFrame.width
+                whatsHotBadgeCenter = CGPoint(x: centerX, y: 12)
+                drawCapRoundCircle(center: whatsHotBadgeCenter, radius: 3, value: 3, lineWidth: 3, strokeColor: .cherryRed)
+        }
+    }
+
+    private func removeWhatsHotBadgeIfNeeded() {
+        if UserDefault.newWhatsHotArticle.boolValue == true && middleButtons?.last?.titleLabel?.text == R.string.localized.topTabBarItemTitleLearnWhatsHot().uppercased() {
+            layer.sublayers?.forEach { (layer) in
+                if let shapeLayer = layer as? CAShapeLayer {
+                    if shapeLayer.lineCap == kCALineCapRound && shapeLayer.path?.contains(whatsHotBadgeCenter) == true {
+                        shapeLayer.removeFromSuperlayer()
+                        UserDefault.newWhatsHotArticle.setBoolValue(value: false)
+                    }
+                }
+            }
+        }
+    }
     
     func setIndicatorToButtonIndex(_ index: Int, animated: Bool = true) {
-        guard let middleButtons = middleButtons, index >= 0, index < middleButtons.count else {
-            return
-        }
-        let button = middleButtons[index]
-        setIndicatorToButton(button, animated: animated)
+        guard let middleButtons = middleButtons, index >= 0, index < middleButtons.count else { return }
+
+        setIndicatorToButton(middleButtons[index], animated: animated)
     }
     
     func setIndicatorToButton(_ button: UIButton, animated: Bool = true) {
@@ -130,6 +151,7 @@ final class TopNavigationBar: UINavigationBar {
             width: button.bounds.size.width,
             height: self.lineHeight
         )
+
         if animated {
             UIView.animate(withDuration: 0.3) {
                 self.indicatorView.frame = newFrame
@@ -150,11 +172,10 @@ final class TopNavigationBar: UINavigationBar {
     }
     
     @objc private func middleButtonPressed(_ sender: UIButton) {
-        guard let total = middleButtons?.count else {
-            return
-        }
+        guard let total = middleButtons?.count else { return }
         topNavigationBarDelegate?.topNavigationBar(self, middleButtonPressed: sender, withIndex: sender.tag, ofTotal: total)
         setIndicatorToButton(sender)
         currentButton = sender
+        removeWhatsHotBadgeIfNeeded()
     }
 }

@@ -137,5 +137,9 @@ extension ContentCollection: OneWaySyncableDown {
 
         objectStore.delete(categoryIDs)
         categoryIDs.append(objectsIn: data.categoryIDs.map({ IntObject(int: $0) }))
+
+        if section == Database.Section.learnWhatsHot.rawValue {
+            UserDefault.newWhatsHotArticle.setBoolValue(value: true)
+        }
     }
 }

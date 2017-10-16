@@ -1754,21 +1754,21 @@
 		CBB4DD461EE0911A0071494A /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				850312EA1F33670900DB5A6B /* ClickableLabel.swift */,
 				CB2880331E7144E60067890A /* CollectionUpdate.swift */,
 				CC335EE81EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift */,
 				CC335EE61EBC84780085F5C5 /* ContentItemTextTableViewCell.xib */,
 				CBA054481E890560009E28D6 /* Dequeueable.swift */,
+				CB810E601EEFC0D70043E3E5 /* ErrorCell.swift */,
 				D50D6C221EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift */,
 				D50D6C231EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib */,
+				7FE38DC61F2A14160061E98F /* PageViewController.swift */,
+				7FE38DC01F28D2940061E98F /* PassthroughView.swift */,
+				7F691C5D1F0D30C800E2C180 /* PlaceholderTextView.swift */,
 				CC6B3A281E8158B200E7FDFD /* PresentationManager.swift */,
 				D5B761861EE6B19C00AE178B /* SpacingInLabel.swift */,
-				CB810E601EEFC0D70043E3E5 /* ErrorCell.swift */,
-				7F691C5D1F0D30C800E2C180 /* PlaceholderTextView.swift */,
-				85945C721F27760500F090C8 /* ZoomPresentationManager.swift */,
-				7FE38DC01F28D2940061E98F /* PassthroughView.swift */,
-				7FE38DC61F2A14160061E98F /* PageViewController.swift */,
 				7FE38DCE1F2A48480061E98F /* TopNavigationBar.swift */,
-				850312EA1F33670900DB5A6B /* ClickableLabel.swift */,
+				85945C721F27760500F090C8 /* ZoomPresentationManager.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";

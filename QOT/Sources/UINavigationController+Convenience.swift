@@ -55,6 +55,7 @@ extension UINavigationController {
                 pageButtons.append(button)
             }
             navigationBar.setMiddleButtons(pageButtons)
+            navigationBar.addWhatsHotBadgeIfNeeded()
         }
     }
 }

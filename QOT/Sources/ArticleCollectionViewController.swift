@@ -58,7 +58,6 @@ class ArticleCollectionViewController: UIViewController {
         super.viewDidLoad()
 
         setupLayout()
-
         viewModel.updates.observeNext { [collectionView] (update) in
             collectionView.reloadData()
         }.dispose(in: disposeBag)
