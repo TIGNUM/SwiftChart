@@ -83,7 +83,7 @@ enum ChartType: String, EnumCollection {
             currentWeekday = currentWeekday - 1
 
             if currentWeekday < 0 {
-                currentWeekday = lengthOfWeek
+                currentWeekday = symbols.count - 1
             }
 
             weekdaySymbols.insert(symbols[currentWeekday], at: 0)
