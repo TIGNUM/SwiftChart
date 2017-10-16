@@ -154,7 +154,8 @@ extension User: TwoWaySyncableUniqueObject {
             .memberSince: memberSince,
             .totalUsageTime: QOTUsageTimer.sharedInstance.totalSeconds.toInt,
             .employment: JSON.dictionary(employment.mapKeyValues({ ($0.rawValue, $1.toJSON()) })),
-            .userInfo: JSON.dictionary(userInfo.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
+            .userInfo: JSON.dictionary(userInfo.mapKeyValues({ ($0.rawValue, $1.toJSON()) })),
+            .timeZone: timeZone
         ]
         
         return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
