@@ -251,6 +251,16 @@ private extension AppCoordinator {
 
 extension AppCoordinator {
 
+    func presentToBeVision() {
+        guard let services = services else { return }
+
+        let viewModel = MyToBeVisionViewModel(services: services)
+        let myToBeVisionViewController = MyToBeVisionViewController(viewModel: viewModel)
+        myToBeVisionViewController.delegate = self
+        windowManager.showWindow(atLevel: .priority)
+        windowManager.presentViewController(myToBeVisionViewController, atLevel: .priority, animated: true, replacesContent: true, completion: nil)
+    }
+
     func presentPreparationCheckList(localID: String) {
         if services != nil {
             tabBarCoordinator?.showPreparationCheckList(localID: localID)
@@ -260,9 +270,7 @@ extension AppCoordinator {
     }
 
     func presentMorningInterview(groupID: Int, validFrom: Date, validTo: Date) {
-        guard let services = services else {
-            return
-        }
+        guard let services = services else { return }
 
         AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
         let viewModel = MorningInterviewViewModel(services: services, questionGroupID: groupID, validFrom: validFrom, validTo: validTo)
@@ -492,5 +500,12 @@ extension AppCoordinator: RemoteNotificationHandlerDelegate {
     
     func remoteNotificationHandler(_ handler: RemoteNotificationHandler, canProcessNotificationResponse: UANotificationResponse) -> Bool {
         return canProcessRemoteNotifications
+    }
+}
+
+extension AppCoordinator: MyToBeVisionViewControllerDelegate {
+
+    func didTapClose(in viewController: MyToBeVisionViewController) {
+        dismiss(viewController, level: .priority)
     }
 }
