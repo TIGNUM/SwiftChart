@@ -35,7 +35,7 @@ final class TopNavigationBar: UINavigationBar {
         super.init(frame: frame)
         
         applyDefaultStyle()
-        NotificationCenter.default.addObserver(self, selector: #selector(addWhatsHotBadgeIfNeeded), name: UserDefaults.didChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleUserDefaultsDidChangeNotification), name: UserDefaults.didChangeNotification, object: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -112,7 +112,13 @@ final class TopNavigationBar: UINavigationBar {
         topItem.rightBarButtonItem = button
     }
 
-    @objc func addWhatsHotBadgeIfNeeded() {
+    @objc func handleUserDefaultsDidChangeNotification() {
+        DispatchQueue.main.async { [weak self] in
+            self?.addWhatsHotBadgeIfNeeded()
+        }
+    }
+
+    func addWhatsHotBadgeIfNeeded() {
         if UserDefault.newWhatsHotArticle.boolValue == true && middleButtons?.last?.titleLabel?.text == R.string.localized.topTabBarItemTitleLearnWhatsHot().uppercased(),
             let buttonFrame = middleButtons?.first?.frame {
                 let centerX = (frame.width * 0.5) + buttonFrame.width
