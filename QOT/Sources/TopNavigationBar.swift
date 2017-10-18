@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Anchorage
 
 protocol TopNavigationBarDelegate: class {
 
@@ -25,6 +26,8 @@ final class TopNavigationBar: UINavigationBar {
     private var middleButtons: [UIButton]?
     private var currentButton: UIButton?
     private var whatsHotBadgeCenter: CGPoint = .zero
+    private var indicatorViewWidthConstraint: NSLayoutConstraint!
+    private var indicatorViewLeftConstraint: NSLayoutConstraint!
     let indicatorView: UIView // automatically hidden when setMiddleButtons(buttons.count == 1)
     weak var topNavigationBarDelegate: TopNavigationBarDelegate?
     
@@ -66,24 +69,16 @@ final class TopNavigationBar: UINavigationBar {
         guard let topItem = topItem, buttons.count > 0 else {
             return
         }
+        let firstButton = buttons[0]
         middleButtons = buttons
-        
-        // @note unfortunately with the nav titleView it seems much easier to calculate with frames
-        var width: CGFloat = 0.0
+        currentButton = firstButton
         for (index, button) in buttons.enumerated() {
             button.addTarget(self, action: #selector(middleButtonPressed(_:)), for: .touchUpInside)
             button.sizeToFit()
             button.tag = index
-            width += button.bounds.size.width
         }
         
         let view = UIStackView(arrangedSubviews: buttons)
-        view.frame = CGRect(
-            x: 0.0,
-            y: 0.0,
-            width: (width + CGFloat(buttons.count) * spacing),
-            height: bounds.size.height
-        )
         view.backgroundColor = .clear
         view.axis = .horizontal
         view.distribution = .fillProportionally
@@ -92,8 +87,11 @@ final class TopNavigationBar: UINavigationBar {
         view.addSubview(indicatorView)
         topItem.titleView = view
 
+        indicatorView.bottomAnchor == view.bottomAnchor - lineHeight
+        indicatorView.heightAnchor == lineHeight
+        indicatorViewWidthConstraint = indicatorView.widthAnchor == firstButton.bounds.width
+        indicatorViewLeftConstraint = indicatorView.leftAnchor == firstButton.leftAnchor
         indicatorView.isHidden = (buttons.count == 1)
-        currentButton = buttons[0]
     }
     
     func setLeftButton(_ button: UIBarButtonItem) {
@@ -150,20 +148,14 @@ final class TopNavigationBar: UINavigationBar {
         guard let titleView = topItem?.titleView, titleView.subviews.contains(button) else {
             return
         }
-        // @note unfortunately it seems much easier to animate frames in this case
-        let newFrame = CGRect(
-            x: button.frame.origin.x,
-            y: (titleView.bounds.size.height - self.lineHeight),
-            width: button.bounds.size.width,
-            height: self.lineHeight
-        )
-
+        indicatorViewWidthConstraint.constant = button.bounds.width
+        indicatorViewLeftConstraint.constant = button.frame.origin.x
         if animated {
             UIView.animate(withDuration: 0.3) {
-                self.indicatorView.frame = newFrame
+                self.layoutIfNeeded()
             }
         } else {
-            indicatorView.frame = newFrame
+            self.layoutIfNeeded()
         }
     }
     
