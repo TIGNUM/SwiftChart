@@ -45,7 +45,7 @@ private extension IntensityChart {
     func drawCharts() {
         for (index, dataPoint) in statistics.dataPointObjects.enumerated() {
             let xPos = firstSection == true ? xPosition(index) : (columnWidth * CGFloat(index) * 2)
-            let yPos = yPosition(dataPoint.value) - labelContentView.frame.height
+            let yPos = yPosition(dataPoint.value)
             let height = dataPoint.value > 0 ? yPos - bottomPosition : 0
             let columnFrame = CGRect(x: xPos, y: frame.height, width: columnWidth, height: height)
             let column = UIView(frame: columnFrame)
@@ -86,7 +86,7 @@ private extension IntensityChart {
     }
 
     func yPosition(_ value: CGFloat) -> CGFloat {
-        return (bottomPosition - (value * bottomPosition)) + padding
+        return (bottomPosition - ((value <= 1 ? value : 1) * bottomPosition)) + padding
     }
 
     func setupBackground() {

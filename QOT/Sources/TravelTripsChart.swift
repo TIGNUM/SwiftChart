@@ -14,7 +14,6 @@ final class TravelTripsChart: UIView {
 
     fileprivate var statistics: Statistics
     fileprivate var labelContentView: UIView
-    fileprivate let padding: CGFloat = 8
 
     // MARK: - Init
 
@@ -55,6 +54,7 @@ private extension TravelTripsChart {
     }
 
     func drawCharts() {
+        let padding: CGFloat = isWeeks == true ? 8 : 4
         let columnWidth = frame.width / CGFloat(columns)
         let rowHeight = frame.height / CGFloat(isWeeks == true ? rows : 30)
         let lineWidth = rowHeight / (isWeeks == true ? 3 : 2)
@@ -65,8 +65,8 @@ private extension TravelTripsChart {
             let yPosition = (rowHeight * CGFloat(column)) - padding
             let startXPosition = CGFloat(start) * singleStepUnit + xOffset
             let endXPosition = CGFloat(end) * singleStepUnit + xOffset
-            let startPoint = CGPoint(x: startXPosition, y: yPosition)
-            let endPoint = CGPoint(x: endXPosition, y: yPosition)
+            let startPoint = CGPoint(x: startXPosition, y: yPosition > 0 ? yPosition : lineWidth * 2)
+            let endPoint = CGPoint(x: endXPosition, y: yPosition > 0 ? yPosition : lineWidth * 2)
 
             drawCapRoundLine(from: startPoint, to: endPoint, lineWidth: lineWidth, strokeColor: color)
         }
