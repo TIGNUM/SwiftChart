@@ -103,6 +103,7 @@ extension User: TwoWaySyncableUniqueObject {
         memberSince = data.memberSince
         totalUsageTime = data.totalUsageTime
         timeZone = data.timeZone ?? TimeZone.currentName
+        baseURL = URL(string: data.esbDomain) ?? baseURL
         updateUAirshipTags(data.urbanAirshipTags + [data.email])
     }
 

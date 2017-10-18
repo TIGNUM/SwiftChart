@@ -55,6 +55,7 @@ enum JsonKey: String {
     case employment
     case end
     case endDate
+    case esbDomain
     case eventId
     case firstDayOfTheWeek
     case firstName
