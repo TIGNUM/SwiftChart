@@ -124,10 +124,11 @@ struct APNSDeviceTokenRequest: URLRequestBuildable {
     let paramaters: [RequestParameter: Any]
     let requiresAuthentication = true
 
-    init(token: String) {
+    init(token: String, urbanAirshipAppKey: String) {
         self.paramaters = [
             .notificationToken: token,
-            .notificationEnvironmentType: Environment.name
+            .notificationEnvironmentType: Environment.name,
+            .appKey: urbanAirshipAppKey
         ]
     }
 }

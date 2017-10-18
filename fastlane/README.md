@@ -50,6 +50,11 @@ Deploy to Hockeyapp
 fastlane ios release
 ```
 Build and deploy to AWS S3 and hockey
+### ios novartis
+```
+fastlane ios novartis
+```
+Build version for novartis
 
 ----
 

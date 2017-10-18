@@ -5,6 +5,9 @@ team_id "4FQQH349R5" # Developer Portal Team ID
 
 ENV['INFO_PLIST_PATH'] = "./QOT/Resources/Info.plist"
 
+# Urban Airship
+ENV['URBAN_AIRSHIP_PLIST_PATH'] = "./QOT/Resources/AirshipConfig.plist"
+
 # AWS S3
 ENV['S3_BUCKET'] = "qotapp.bucket"
 ENV['S3_REGION'] = "eu-west-1"

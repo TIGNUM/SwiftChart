@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import AirshipKit
 
 final class APNSDeviceTokenRegistrar {
 
@@ -46,10 +47,11 @@ final class APNSDeviceTokenRegistrar {
     }
 
     private func uploadToken() {
-        guard let token = token, credentialsManager.credential != nil else {
+        guard let token = token, let appKey = UAConfig.default().appKey, credentialsManager.credential != nil else {
             return
         }
-        networkManager.performAPNSDeviceTokenRequest(token: token) { [weak self] (error) in
+
+        networkManager.performAPNSDeviceTokenRequest(token: token, urbanAirshipAppKey: appKey) { [weak self] (error) in
             if let error = error {
                 self?.scheduleUpload()
                 log("Failed to upload APNS Token: \(token), error: \(error)")

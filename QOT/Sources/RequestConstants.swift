@@ -57,6 +57,7 @@ enum RequestParameter: String {
     case email
     case notificationEnvironmentType
     case notificationToken
+    case appKey
 }
 
 enum HTTPHeader: String {

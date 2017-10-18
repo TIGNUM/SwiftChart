@@ -66,8 +66,9 @@ class NetworkManager {
     }
 
     @discardableResult func performAPNSDeviceTokenRequest(token: String,
+                                                          urbanAirshipAppKey: String,
                                                           completion: @escaping (NetworkError?) -> Void) -> SerialRequest {
-        let request = APNSDeviceTokenRequest(token: token)
+        let request = APNSDeviceTokenRequest(token: token, urbanAirshipAppKey: urbanAirshipAppKey)
         return performRequest(request, completion: completion)
     }
 
