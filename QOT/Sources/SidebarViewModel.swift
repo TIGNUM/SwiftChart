@@ -14,12 +14,12 @@ final class SidebarViewModel {
 
     enum SidebbarItem: Int {
         case library = 0
-        case benefits
         case settings
         case sensor
         case placeholder
         case about
         case privacy
+        case benefits
         case logout
 
         static var allValues: [SidebbarItem] {
@@ -57,12 +57,12 @@ final class SidebarViewModel {
         func font(screenType: UIViewController.ScreenType) -> UIFont? {
             switch self {
             case .library,
-                 .benefits,
                  .settings,
                  .sensor: return screenType == .small ? Font.H3Subtitle : Font.H2SecondaryTitle
             case .placeholder: return nil
             case .about,
                  .privacy,
+                 .benefits,
                  .logout: return screenType == .small ? Font.H6NavigationTitle : Font.H5SecondaryHeadline
             }
         }
@@ -70,12 +70,12 @@ final class SidebarViewModel {
         var fontColor: UIColor? {
             switch self {
             case .library,
-                 .benefits,
                  .settings,
                  .sensor: return .white
             case .placeholder: return nil
             case .about,
                  .privacy,
+                 .benefits,
                  .logout: return .white40
             }
         }
@@ -83,12 +83,12 @@ final class SidebarViewModel {
         func cellHeight(screenType: UIViewController.ScreenType) -> CGFloat {
             switch self {
             case .library,
-                 .benefits,
                  .settings,
                  .sensor: return screenType == .small ? 60 : screenType == .medium ? 70 : 80
             case .placeholder: return 40
             case .about,
                  .privacy,
+                 .benefits,
                  .logout: return screenType == .small ? 50 : screenType == .medium ? 60 : 70
             }
         }
