@@ -62,13 +62,15 @@ final class MyUniverseViewController: UIViewController {
     fileprivate lazy var middleButtons: [UIButton] = {
         let myDataButton = UIButton(type: .custom)
         myDataButton.setTitle(R.string.localized.topTabBarItemTitleMeMyData().uppercased(), for: .normal)
-        myDataButton.setTitleColor(.white, for: .normal)
+        myDataButton.setTitleColor(.white, for: .selected)
+        myDataButton.setTitleColor(.gray, for: .normal)
         myDataButton.titleLabel?.font = Font.H5SecondaryHeadline
         myDataButton.backgroundColor = .clear
         
         let myWhyButton = UIButton(type: .custom)
         myWhyButton.setTitle(R.string.localized.topTabBarItemTitleMeMyWhy().uppercased(), for: .normal)
-        myWhyButton.setTitleColor(.white, for: .normal)
+        myWhyButton.setTitleColor(.white, for: .selected)
+        myWhyButton.setTitleColor(.gray, for: .normal)
         myWhyButton.titleLabel?.font = Font.H5SecondaryHeadline
         myWhyButton.backgroundColor = .clear
         

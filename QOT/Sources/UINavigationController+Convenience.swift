@@ -17,7 +17,8 @@ extension UINavigationController {
                      backgroundColor: UIColor = .clear,
                      backgroundImage: UIImage? = R.image._1Learn(),
                      titleFont: UIFont = Font.H5SecondaryHeadline,
-                     titleColor: UIColor = .white,
+                     titleSelectedColor: UIColor = .white,
+                     titleNormalColor: UIColor = .gray,
                      leftButton: UIBarButtonItem? = nil,
                      rightButton: UIBarButtonItem? = nil) {
         let pageViewController = PageViewController(headerView: headerView,
@@ -49,7 +50,8 @@ extension UINavigationController {
             pages.forEach { (page: UIViewController) in
                 let button = UIButton(type: .custom)
                 button.setTitle(page.title?.uppercased(), for: .normal)
-                button.setTitleColor(titleColor, for: .normal)
+                button.setTitleColor(titleSelectedColor, for: .selected)
+                button.setTitleColor(titleNormalColor, for: .normal)
                 button.titleLabel?.font = titleFont
                 button.backgroundColor = .clear
                 pageButtons.append(button)

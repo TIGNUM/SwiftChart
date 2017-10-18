@@ -52,6 +52,7 @@ final class TopNavigationBar: UINavigationBar {
             return
         }
         setIndicatorToButton(currentButton, animated: false)
+        setIsSelected(currentButton)
     }
     
     func setStyle(tintColor: UIColor, backgroundColor: UIColor) {
@@ -159,6 +160,10 @@ final class TopNavigationBar: UINavigationBar {
         }
     }
     
+    func setIsSelected(_ button: UIButton) {
+        middleButtons?.forEach({ $0.isSelected = ($0 == button) })
+    }
+
     // MARK: - private
     
     @objc private func leftButtonPressed(_ sender: UIBarButtonItem) {
@@ -173,6 +178,7 @@ final class TopNavigationBar: UINavigationBar {
         guard let total = middleButtons?.count else { return }
         topNavigationBarDelegate?.topNavigationBar(self, middleButtonPressed: sender, withIndex: sender.tag, ofTotal: total)
         setIndicatorToButton(sender)
+        setIsSelected(sender)
         currentButton = sender
         removeWhatsHotBadgeIfNeeded()
     }
