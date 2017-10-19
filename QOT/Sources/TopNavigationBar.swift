@@ -155,6 +155,7 @@ final class TopNavigationBar: UINavigationBar {
     
     func setIndicatorToButton(_ button: UIButton, animated: Bool = true) {
         guard let titleView = topItem?.titleView, titleView.subviews.contains(button) else { return }
+        setIsSelected(button)
         indicatorViewWidthConstraint.constant = button.bounds.width
         indicatorViewLeftConstraint.constant = button.frame.origin.x
         if animated == true {
@@ -184,7 +185,6 @@ final class TopNavigationBar: UINavigationBar {
         guard let total = middleButtons?.count else { return }
         topNavigationBarDelegate?.topNavigationBar(self, middleButtonPressed: sender, withIndex: sender.tag, ofTotal: total)
         setIndicatorToButton(sender)
-        setIsSelected(sender)
         currentButton = sender
         removeWhatsHotBadgeIfNeeded()
     }

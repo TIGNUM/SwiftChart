@@ -23,12 +23,12 @@ final class PartnersCoordinator: NSObject, ParentCoordinator {
 
     // MARK: - Life Cycle
 
-    init(root: UIViewController, services: Services, selectedIndex: Index) {
+    init(root: UIViewController, services: Services, selectedIndex: Index, permissionHandler: PermissionHandler) {
         self.rootViewController = root
         self.services = services
         self.selectedIndex = selectedIndex
         viewModel = PartnersViewModel(services: services, selectedIndex: selectedIndex, headline: "Lore ipsum impsum plus")
-        partnersViewController = PartnersViewController(viewModel: viewModel)
+        partnersViewController = PartnersViewController(viewModel: viewModel, permissionHandler: permissionHandler)
         partnersViewController.title = R.string.localized.meSectorMyWhyPartnersTitle()
         
         super.init()

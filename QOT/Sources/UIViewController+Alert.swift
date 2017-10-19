@@ -27,6 +27,9 @@ enum AlertType {
     case settingsCalendars
     case emailNotFound
     case updateNeeded
+    case cameraNotAvailable
+    case permissionNotGranted
+    case imagePicker
 
     var title: String? {
         switch self {
@@ -43,7 +46,8 @@ enum AlertType {
         case .settingsLoccationService: return R.string.localized.alertTitleLocationServices()
         case .settingsCalendars: return R.string.localized.alertTitleCalendarNoAccess()
         case .emailNotFound: return R.string.localized.alertTitleEmailNotFound()
-        case .updateNeeded: return R.string.localized.alertUpdateNeededTitle()        
+        case .updateNeeded: return R.string.localized.alertUpdateNeededTitle()
+        case .cameraNotAvailable, .permissionNotGranted: return R.string.localized.alertTitleCustom()
         default: return nil
         }
     }
@@ -61,6 +65,8 @@ enum AlertType {
         case .settingsCalendars: return R.string.localized.alertMessageCalendarNoAccess()
         case .emailNotFound: return R.string.localized.alertMessageEmailNotFound()
         case .updateNeeded: return R.string.localized.alertUpdateNeededMessage()
+        case .cameraNotAvailable: return R.string.localized.alertCameraNotAvailableMessage()
+        case .permissionNotGranted: return R.string.localized.alertPermissionNotGrantedMessage()
         default: return nil
         }
     }
@@ -70,7 +76,8 @@ enum AlertType {
         case .notificationsNotAuthorized,
              .settingsLoccationService,
              .settingsCalendars: return R.string.localized.alertButtonTitleCancel()
-        case .updateNeeded: return R.string.localized.alertUpdateNeededCancel()
+        case .updateNeeded,
+             .imagePicker: return R.string.localized.alertUpdateNeededCancel()
         default: return nil
         }
     }
@@ -80,12 +87,14 @@ enum AlertType {
         case .notificationsNotAuthorized,
              .settingsLoccationService,
              .settingsCalendars: return R.string.localized.alertButtonTitleOpenSettings()
+        case .imagePicker: return R.string.localized.imagePickerOptionsButtonPhoto()
         default: return R.string.localized.alertButtonTitleOk()
         }
     }
 
     var buttonTitleDestructive: String? {
         switch self {
+        case .imagePicker: return R.string.localized.imagePickerOptionsButtonCamera()
         default: return nil
         }
     }
@@ -96,12 +105,14 @@ enum AlertType {
              .settingsLoccationService,
              .settingsCalendars,
              .updateNeeded: return [.cancel, .default]
+        case .imagePicker: return [.cancel, .default, .destructive]
         default: return [.default]
         }
     }
 
     var alertStyle: UIAlertControllerStyle {
         switch self {
+        case .imagePicker: return .actionSheet
         default: return .alert
         }
     }

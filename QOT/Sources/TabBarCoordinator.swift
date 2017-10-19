@@ -280,7 +280,7 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
     }
 
     func didTapMyToBeVision(vision: MyToBeVision?, from view: UIView, in viewController: MyUniverseViewController) {
-        let coordinator = MyToBeVisionCoordinator(root: topTabBarControllerMe, services: services)
+        let coordinator = MyToBeVisionCoordinator(root: topTabBarControllerMe, services: services, permissionHandler: permissionHandler)
         startChild(child: coordinator)
     }
 
@@ -290,7 +290,7 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
     }
 
     func didTapQOTPartner(selectedIndex: Index, partners: [Partner], from view: UIView, in viewController: MyUniverseViewController) {
-        let coordinator = PartnersCoordinator(root: topTabBarControllerMe, services: services, selectedIndex: selectedIndex)
+        let coordinator = PartnersCoordinator(root: topTabBarControllerMe, services: services, selectedIndex: selectedIndex, permissionHandler: permissionHandler)
         startChild(child: coordinator)
     }
 }

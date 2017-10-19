@@ -9,7 +9,6 @@
 import UIKit
 import iCarousel
 import RSKImageCropper
-import ImagePicker
 
 protocol PartnersViewControllerDelegate: class {
     func didTapChangeImage(at index: Index)
@@ -23,7 +22,7 @@ class PartnersViewController: UIViewController {
     @IBOutlet fileprivate weak var carousel: iCarousel! = iCarousel()
     @IBOutlet fileprivate weak var scrollView: UIScrollView!
     fileprivate let viewModel: PartnersViewModel
-    fileprivate var imagePicker: ImagePickerController?
+    fileprivate let imagePickerController: ImagePickerController
     fileprivate var valueEditing: Bool = false
     fileprivate var editButton: UIBarButtonItem? {
         return navigationController?.navigationBar.topItem?.rightBarButtonItem
@@ -32,10 +31,13 @@ class PartnersViewController: UIViewController {
     
     // MARK: - Init
 
-    init(viewModel: PartnersViewModel) {
+    init(viewModel: PartnersViewModel, permissionHandler: PermissionHandler) {
         self.viewModel = viewModel
+        imagePickerController = ImagePickerController(cropShape: .hexagon, imageQuality: .low, permissionHandler: permissionHandler)
 
         super.init(nibName: nil, bundle: nil)
+
+        imagePickerController.delegate = self
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -198,60 +200,16 @@ extension PartnersViewController: UITextFieldDelegate {
 extension PartnersViewController: PartnersViewControllerDelegate {
 
     func didTapChangeImage(at index: Index) {
-        let imagePicker = ImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.imageLimit = 1
-        present(imagePicker, animated: true, completion: nil)
-        self.imagePicker = imagePicker
-    }
-
-    private func presentImagePicker(for type: UIImagePickerControllerSourceType) {
-        let imagePickerController = ImagePickerController()
-        imagePickerController.delegate = self
-        present(imagePickerController, animated: true, completion: nil)
+        imagePickerController.show(in: self)
     }
 }
 
 // MARK: - ImagePickerDelegate
 
-extension PartnersViewController: ImagePickerDelegate {
+extension PartnersViewController: ImagePickerControllerDelegate {
 
-    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
-        return
-    }
-
-    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
-        guard let selectedImage = images.first else {
-            return
-        }
-
-        let imageCropper = RSKImageCropViewController(image: selectedImage)
-        imageCropper.delegate = self
-        imageCropper.dataSource = self
-        imageCropper.cropMode = .custom
-        imagePicker.dismiss(animated: false, completion: nil)
-        present(imageCropper, animated: true, completion: nil)
-    }
-
-    func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
-        imagePicker.dismiss(animated: true, completion: nil)
-    }
-}
-
-// MARK: - RSKImageCropViewControllerDelegate
-
-extension PartnersViewController: RSKImageCropViewControllerDelegate {
-
-    func imageCropViewControllerDidCancelCrop(_ controller: RSKImageCropViewController) {
-        imagePicker?.dismiss(animated: false, completion: nil)
-        controller.dismiss(animated: true, completion: nil)
-    }
-
-    func imageCropViewController(_ controller: RSKImageCropViewController, didCropImage croppedImage: UIImage, usingCropRect cropRect: CGRect) {
-        imagePicker?.dismiss(animated: false, completion: nil)
-        controller.dismiss(animated: true, completion: nil)
-      
-        let error = viewModel.updateProfileImage(image: croppedImage)
+    func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
+        let error = viewModel.updateProfileImage(image: image)
         guard error == nil else {
             let alertController = UIAlertController(
                 title: R.string.localized.meSectorMyWhyPartnersPhotoErrorTitle(),
@@ -267,23 +225,6 @@ extension PartnersViewController: RSKImageCropViewControllerDelegate {
         
         viewModel.save()
         carousel.reloadData()
-    }
-}
-
-// MARK: - RSKImageCropViewControllerDataSource
-
-extension PartnersViewController: RSKImageCropViewControllerDataSource {
-
-    func imageCropViewControllerCustomMaskRect(_ controller: RSKImageCropViewController) -> CGRect {
-        return CGRect(x: (view.frame.width - 250) * 0.5, y: (view.frame.height - 250) * 0.5, width: 250, height: 250)
-    }
-
-    func imageCropViewControllerCustomMovementRect(_ controller: RSKImageCropViewController) -> CGRect {
-        return controller.maskRect
-    }
-
-    func imageCropViewControllerCustomMaskPath(_ controller: RSKImageCropViewController) -> UIBezierPath {
-        return UIBezierPath.hexagonPath(forRect: controller.maskRect)
     }
 }
 

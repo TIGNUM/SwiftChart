@@ -10,15 +10,19 @@ import Foundation
 import EventKit
 import UserNotifications
 import CoreLocation
+import Photos
+import AVFoundation
 
 class PermissionHandler: NSObject {
     struct Result {
-        var calendar: Bool
-        var remoteNotification: Bool
-        var location: Bool
+        var calendar = false
+        var remoteNotification = false
+        var location = false
+        var photos = false
+        var camera = false
         
         var isAllGranted: Bool {
-            return calendar && remoteNotification && location
+            return calendar && remoteNotification && location && photos && camera
         }
     }
     
@@ -35,7 +39,7 @@ class PermissionHandler: NSObject {
     }
     
     func askForAllPermissions(_ completion: @escaping (Result) -> Void) {
-        var result = Result(calendar: false, remoteNotification: false, location: false)
+        var result = Result()
         queue.addOperation(WaitBlockOperation { [unowned self] (finish: (() -> Void)?) in
             self.askPermissionForCalendar(completion: { (granted: Bool) in
                 result.calendar = granted
@@ -51,6 +55,18 @@ class PermissionHandler: NSObject {
         queue.addOperation(WaitBlockOperation { [unowned self] (finish: (() -> Void)?) in
             self.askPermissionForLocation(completion: { (granted: Bool) in
                 result.location = granted
+                finish?()
+            })
+        })
+        queue.addOperation(WaitBlockOperation { [unowned self] (finish: (() -> Void)?) in
+            self.askPermissionForPhotos(completion: { (granted: Bool) in
+                result.photos = granted
+                finish?()
+            })
+        })
+        queue.addOperation(WaitBlockOperation { [unowned self] (finish: (() -> Void)?) in
+            self.askPermissionForCamera(completion: { (granted: Bool) in
+                result.camera = granted
                 completion(result)
                 finish?()
             })
@@ -62,7 +78,6 @@ class PermissionHandler: NSObject {
             completion(false)
             return
         }
-        
         EKEventStore.shared.requestAccess(to: .event) { (granted: Bool, _: Error?) in
             completion(granted)
         }
@@ -82,18 +97,48 @@ class PermissionHandler: NSObject {
         let status = CLLocationManager.authorizationStatus()
         guard isEnabledForSession, status != .denied, status != .restricted else {
             completion(false)
-
             return
         }
-
         guard status != .authorizedWhenInUse, status != .authorizedAlways else {
             completion(true)
-
             return
         }
 
         locationPermissionCompletion = completion
         locationManager.requestWhenInUseAuthorization()
+    }
+    
+    func askPermissionForPhotos(completion: @escaping (Bool) -> Void) {
+        guard isEnabledForSession else {
+            completion(false)
+            return
+        }
+        guard PHPhotoLibrary.authorizationStatus() != .authorized else {
+            completion(true)
+            return
+        }
+        PHPhotoLibrary.requestAuthorization { status in
+            switch status {
+            case .authorized:
+                completion(true)
+            case .restricted, .denied, .notDetermined:
+                completion(false)
+            }
+        }
+    }
+    
+    func askPermissionForCamera(completion: @escaping (Bool) -> Void) {
+        guard isEnabledForSession else {
+            completion(false)
+            return
+        }
+        guard AVCaptureDevice.authorizationStatus(for: .video) != .authorized else {
+            completion(true)
+            return
+        }
+        AVCaptureDevice.requestAccess(for: .video) { (granted: Bool) in
+            completion(granted)
+        }
     }
 }
 

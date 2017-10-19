@@ -19,6 +19,9 @@
 		0BEE8ABF1EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEE8AB61EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.swift */; };
 		0BEE8AC01EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BEE8AB71EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib */; };
 		0CC2119BB6C36EF6F43B4ECD /* Pods_QOT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */; };
+		7F01A6211F98A1E7002C7B72 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F01A6201F98A1E7002C7B72 /* ImagePickerController.swift */; };
+		7F01A6241F98A9C1002C7B72 /* ImageCropper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F01A6231F98A9C1002C7B72 /* ImageCropper.swift */; };
+		7F01A6261F98D5E3002C7B72 /* ImageQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F01A6251F98D5E3002C7B72 /* ImageQuality.swift */; };
 		7F08887F1F0A4101005CE966 /* PartnerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F08887E1F0A4101005CE966 /* PartnerService.swift */; };
 		7F0888811F0A4B96005CE966 /* Partner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0888801F0A4B96005CE966 /* Partner.swift */; };
 		7F0888861F0A7602005CE966 /* PartnerIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0888851F0A7602005CE966 /* PartnerIntermediary.swift */; };
@@ -57,6 +60,7 @@
 		7FBC3E7E1F34AB8D005BD772 /* MediaResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBC3E7D1F34AB8D005BD772 /* MediaResource.swift */; };
 		7FBC3E801F385135005BD772 /* MediaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBC3E7F1F385135005BD772 /* MediaService.swift */; };
 		7FBC3E891F38B9D1005BD772 /* UpSyncMediaOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBC3E881F38B9D1005BD772 /* UpSyncMediaOperation.swift */; };
+		7FC86A051F97A511003DC84D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC86A041F97A511003DC84D /* ImagePicker.swift */; };
 		7FDFF3691F18FF0B00F7A7EC /* NotificationTokenHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDFF3681F18FF0B00F7A7EC /* NotificationTokenHandler.swift */; };
 		7FDFF36B1F1916B400F7A7EC /* Realm+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDFF36A1F1916B400F7A7EC /* Realm+Utility.swift */; };
 		7FE151C81F3DDAE600DA8F37 /* DatabaseBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE151C71F3DDAE600DA8F37 /* DatabaseBuilder.swift */; };
@@ -465,6 +469,9 @@
 		2F1C8D6D4864F462A3F805BB /* Pods-QOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.release.xcconfig"; sourceTree = "<group>"; };
 		42795728C4F3229DFB18981E /* Pods-QOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.debug.xcconfig"; sourceTree = "<group>"; };
 		5C87601C1FE7F833DF0D7A6B /* Pods-QOTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.release.xcconfig"; sourceTree = "<group>"; };
+		7F01A6201F98A1E7002C7B72 /* ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
+		7F01A6231F98A9C1002C7B72 /* ImageCropper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCropper.swift; sourceTree = "<group>"; };
+		7F01A6251F98D5E3002C7B72 /* ImageQuality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageQuality.swift; sourceTree = "<group>"; };
 		7F08887E1F0A4101005CE966 /* PartnerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerService.swift; sourceTree = "<group>"; };
 		7F0888801F0A4B96005CE966 /* Partner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Partner.swift; sourceTree = "<group>"; };
 		7F0888851F0A7602005CE966 /* PartnerIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerIntermediary.swift; sourceTree = "<group>"; };
@@ -503,6 +510,7 @@
 		7FBC3E7D1F34AB8D005BD772 /* MediaResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaResource.swift; sourceTree = "<group>"; };
 		7FBC3E7F1F385135005BD772 /* MediaService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaService.swift; sourceTree = "<group>"; };
 		7FBC3E881F38B9D1005BD772 /* UpSyncMediaOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpSyncMediaOperation.swift; sourceTree = "<group>"; };
+		7FC86A041F97A511003DC84D /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		7FDFF3681F18FF0B00F7A7EC /* NotificationTokenHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTokenHandler.swift; sourceTree = "<group>"; };
 		7FDFF36A1F1916B400F7A7EC /* Realm+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm+Utility.swift"; sourceTree = "<group>"; };
 		7FE151C71F3DDAE600DA8F37 /* DatabaseBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseBuilder.swift; sourceTree = "<group>"; };
@@ -926,6 +934,17 @@
 				D78A1DCB6CFBD03D6588DCB6 /* Pods_DatabaseBuilder.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7F01A6221F98A1F5002C7B72 /* ImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				7F01A6201F98A1E7002C7B72 /* ImagePickerController.swift */,
+				7FC86A041F97A511003DC84D /* ImagePicker.swift */,
+				7F01A6231F98A9C1002C7B72 /* ImageCropper.swift */,
+				7F01A6251F98D5E3002C7B72 /* ImageQuality.swift */,
+			);
+			name = ImagePicker;
 			sourceTree = "<group>";
 		};
 		7F0888821F0A4B9C005CE966 /* Partner */ = {
@@ -1892,6 +1911,7 @@
 				CBD791491E71797C0006C590 /* Typealiases.swift */,
 				7FE38DBC1F2210D60061E98F /* WaitBlockOperation.swift */,
 				7F42767A1F585D1F00AEE3D7 /* RemoteNotificationHandler.swift */,
+				7F01A6221F98A1F5002C7B72 /* ImagePicker */,
 				7F5A25AE1F3C4BB400A11466 /* Analytics */,
 			);
 			name = Utils;
@@ -2394,7 +2414,6 @@
 				"${BUILT_PRODUCTS_DIR}/Bond/Bond.framework",
 				"${BUILT_PRODUCTS_DIR}/Diff/Diff.framework",
 				"${BUILT_PRODUCTS_DIR}/Freddy/Freddy.framework",
-				"${BUILT_PRODUCTS_DIR}/ImagePicker/ImagePicker.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/LoremIpsum/LoremIpsum.framework",
@@ -2418,7 +2437,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bond.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Diff.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Freddy.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImagePicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LoremIpsum.framework",
@@ -2568,6 +2586,7 @@
 				CBC1DC1B1F0F910600F6D056 /* SettingValueObject.swift in Sources */,
 				CBC1DC291F0FB68000F6D056 /* AnswerDecision.swift in Sources */,
 				CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */,
+				7F01A6241F98A9C1002C7B72 /* ImageCropper.swift in Sources */,
 				CB026FCE1F6C013600FC5076 /* CarouselView.swift in Sources */,
 				CCCE09CE1EA67F87008730F1 /* MyToBeVisionViewController.swift in Sources */,
 				85945C731F27760500F090C8 /* ZoomPresentationManager.swift in Sources */,
@@ -2712,6 +2731,7 @@
 				852DADC61EEEE63500A10882 /* Math.swift in Sources */,
 				CCDD549E1F46C0A7002F4933 /* UIViewController+StreamVideo.swift in Sources */,
 				CBC1DC3F1F16067900F6D056 /* DownSyncIntermediary.swift in Sources */,
+				7F01A6261F98D5E3002C7B72 /* ImageQuality.swift in Sources */,
 				CC311A1D1EAF39DF0020C869 /* SettingsTableViewCell.swift in Sources */,
 				7F5A25B01F3C4BC700A11466 /* PageTracker.swift in Sources */,
 				8548BBE01F0D4BF900AC7C06 /* LaunchHandler.swift in Sources */,
@@ -2748,6 +2768,7 @@
 				855C4FC81F262A3E0068DDE3 /* TutorialViewController.swift in Sources */,
 				852DADE81EF26B1D00A10882 /* PeakPerformanceAverageChart.swift in Sources */,
 				CB58917B1F7B95B200D63C5E /* ChatViewCell.swift in Sources */,
+				7F01A6211F98A1E7002C7B72 /* ImagePickerController.swift in Sources */,
 				CC02E1461F27996800134574 /* SettingsCalendarListCoordinator.swift in Sources */,
 				CC90EC9B1F3074DC00A83DB9 /* SettingsChangePasswordCoordinator.swift in Sources */,
 				7F691C551F0D19AE00E2C180 /* MyToBeVision.swift in Sources */,
@@ -2813,6 +2834,7 @@
 				7F0F03001F14CE0C00007D50 /* CollapsableCell.swift in Sources */,
 				851676CA1F39AA9C007A1DD6 /* String+Extensions.swift in Sources */,
 				852DADDA1EF147AA00A10882 /* MeetingsTimeBetweenChart.swift in Sources */,
+				7FC86A051F97A511003DC84D /* ImagePicker.swift in Sources */,
 				7FE674B91F8F8F3600FC7407 /* ArticleCollectionHeader.swift in Sources */,
 				CC0FF8DA1EA790750028D64F /* PartnersCoordinator.swift in Sources */,
 				CB1D5E411EC5E25A00BCDF8D /* JSONDecodable.swift in Sources */,

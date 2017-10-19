@@ -8,7 +8,6 @@
 
 import UIKit
 import RSKImageCropper
-import ImagePicker
 import Kingfisher
 import Anchorage
 
@@ -40,19 +39,20 @@ class MyToBeVisionViewController: UIViewController {
         self.gradientView.layer.addSublayer(layer)
         return layer
     }()
-
-    fileprivate var imagePicker: ImagePickerController?
+    fileprivate let imagePickerController: ImagePickerController
     fileprivate var imageTapRecogniser: UITapGestureRecognizer!
     let viewModel: MyToBeVisionViewModel
     weak var delegate: MyToBeVisionViewControllerDelegate?
  
     // MARK: - Init
 
-    init(viewModel: MyToBeVisionViewModel) {
+    init(viewModel: MyToBeVisionViewModel, permissionHandler: PermissionHandler) {
         self.viewModel = viewModel
+        imagePickerController = ImagePickerController(cropShape: .circle, imageQuality: .low, permissionHandler: permissionHandler)
 
         super.init(nibName: nil, bundle: nil)
         
+        imagePickerController.delegate = self
         imageTapRecogniser = UITapGestureRecognizer(target: self, action: #selector(imageButtonPressed(_:)))
     }
 
@@ -294,12 +294,7 @@ private extension MyToBeVisionViewController {
     }
     
     @IBAction func imageButtonPressed(_ sender: UIButton) {
-        var config = Configuration()
-        config.allowMultiplePhotoSelection = false
-        let imagePicker = ImagePickerController(configuration: config)
-        imagePicker.delegate = self
-        present(imagePicker, animated: true, completion: nil)
-        self.imagePicker = imagePicker
+        imagePickerController.show(in: self)
     }
 }
 
@@ -405,42 +400,10 @@ extension MyToBeVisionViewController: UIScrollViewDelegate {
 
 // MARK: - ImagePickerDelegate
 
-extension MyToBeVisionViewController: ImagePickerDelegate {
-    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
-        return
-    }
+extension MyToBeVisionViewController: ImagePickerControllerDelegate {
     
-    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
-        guard let selectedImage = images.first else {
-            return
-        }
-        
-        let imageCropper = RSKImageCropViewController(image: selectedImage)
-        imageCropper.delegate = self
-        imageCropper.dataSource = self
-        imageCropper.cropMode = .custom
-        imagePicker.dismiss(animated: false, completion: nil)
-        present(imageCropper, animated: true, completion: nil)
-    }
-    
-    func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
-        imagePicker.dismiss(animated: true, completion: nil)
-    }
-}
-
-// MARK: - RSKImageCropViewControllerDelegate
-
-extension MyToBeVisionViewController: RSKImageCropViewControllerDelegate {
-    func imageCropViewControllerDidCancelCrop(_ controller: RSKImageCropViewController) {
-        imagePicker?.dismiss(animated: false, completion: nil)
-        controller.dismiss(animated: true, completion: nil)
-    }
-    
-    func imageCropViewController(_ controller: RSKImageCropViewController, didCropImage croppedImage: UIImage, usingCropRect cropRect: CGRect) {
-        imagePicker?.dismiss(animated: false, completion: nil)
-        controller.dismiss(animated: true, completion: nil)
-        
-        let error = viewModel.updateProfileImage(croppedImage)
+    func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
+        let error = viewModel.updateProfileImage(image)
         guard error == nil else {
             let alertController = UIAlertController(
                 title: R.string.localized.meSectorMyWhyPartnersPhotoErrorTitle(),
@@ -454,25 +417,9 @@ extension MyToBeVisionViewController: RSKImageCropViewControllerDelegate {
             return
         }
         
-        imageView.image = croppedImage
+        imageView.image = image
         setupLabels()
         setImageButton(isEditing: isEditing)
-    }
-}
-
-// MARK: - RSKImageCropViewControllerDataSource
-
-extension MyToBeVisionViewController: RSKImageCropViewControllerDataSource {
-    func imageCropViewControllerCustomMaskRect(_ controller: RSKImageCropViewController) -> CGRect {
-        return CGRect(x: (view.frame.width - 250) * 0.5, y: (view.frame.height - 250) * 0.5, width: 250, height: 250)
-    }
-    
-    func imageCropViewControllerCustomMovementRect(_ controller: RSKImageCropViewController) -> CGRect {
-        return controller.maskRect
-    }
-    
-    func imageCropViewControllerCustomMaskPath(_ controller: RSKImageCropViewController) -> UIBezierPath {
-        return UIBezierPath.circlePath(center: view.center, radius: view.bounds.width / 4.0)
     }
 }
 

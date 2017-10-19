@@ -13,7 +13,6 @@ PODS:
   - Fabric (1.6.13)
   - Freddy (3.0.2)
   - iCarousel (1.8.3)
-  - ImagePicker (2.1.1)
   - KeychainAccess (3.1.0)
   - Kingfisher (3.13.1)
   - LoremIpsum (1.0.0)
@@ -53,7 +52,6 @@ DEPENDENCIES:
   - Fabric
   - Freddy
   - iCarousel
-  - ImagePicker
   - KeychainAccess
   - Kingfisher (~> 3.6)
   - LoremIpsum
@@ -77,7 +75,6 @@ SPEC CHECKSUMS:
   Fabric: 2fb5676bc811af011a04513451f463dac6803206
   Freddy: 60e165f3943b116d188c5a89991424a89cd71165
   iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
-  ImagePicker: fe4c699abb56ff03994fa98d8b02e3883ee118be
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   Kingfisher: ed9707a409cc47fddafbcd12a43a9757e3600af5
   LoremIpsum: 9029c55d36501b2ee0b05cc9ecda11d3a0479160
@@ -92,6 +89,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: 91057725648ee4980308f1650af077d04b3654a0
   UrbanAirship-iOS-SDK: 1a2837473096ca63d86f11cadb4710d993237186
 
-PODFILE CHECKSUM: cd164ab8da737b4dff7f69b0566e019ced19e619
+PODFILE CHECKSUM: c85dc1681fddeab4b23e1208c641621213e0dbbd
 
 COCOAPODS: 1.3.1

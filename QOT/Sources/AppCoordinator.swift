@@ -255,7 +255,7 @@ extension AppCoordinator {
         guard let services = services else { return }
 
         let viewModel = MyToBeVisionViewModel(services: services)
-        let myToBeVisionViewController = MyToBeVisionViewController(viewModel: viewModel)
+        let myToBeVisionViewController = MyToBeVisionViewController(viewModel: viewModel, permissionHandler: permissionHandler)
         myToBeVisionViewController.delegate = self
         windowManager.showWindow(atLevel: .priority)
         windowManager.presentViewController(myToBeVisionViewController, atLevel: .priority, animated: true, replacesContent: true, completion: nil)

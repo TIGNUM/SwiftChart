@@ -21,11 +21,11 @@ extension UIImage {
             log("couldn't find directory")
             throw ImageError.directoryNotFound
         }
-        guard let data = UIImageJPEGRepresentation(self, 0.3) else {
+        guard let data = UIImageJPEGRepresentation(self, 1.0) else {
             log("problem converting image data")
             throw ImageError.imageConvertionError
         }
-       
+
         var path = directory.appending("/images")
         if !FileManager.default.fileExists(atPath: path) {
             do {

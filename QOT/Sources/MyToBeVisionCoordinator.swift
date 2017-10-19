@@ -21,11 +21,11 @@ final class MyToBeVisionCoordinator: NSObject, ParentCoordinator {
 
     // MARK: - Life Cycle
 
-    init(root: UIViewController, services: Services) {
+    init(root: UIViewController, services: Services, permissionHandler: PermissionHandler) {
         self.rootViewController = root
         self.services = services
         self.viewModel = MyToBeVisionViewModel(services: services)
-        myToBeVisionViewController = MyToBeVisionViewController(viewModel: self.viewModel)
+        myToBeVisionViewController = MyToBeVisionViewController(viewModel: self.viewModel, permissionHandler: permissionHandler)
         myToBeVisionViewController.modalPresentationStyle = .custom
         
         super.init()

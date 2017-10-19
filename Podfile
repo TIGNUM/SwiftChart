@@ -19,7 +19,6 @@ target 'QOT' do
   pod 'KeychainAccess'
   pod 'ActionSheetPicker-3.0'
   pod 'RSKImageCropper'
-  pod 'ImagePicker'
   pod 'BonMot'
   pod 'MBProgressHUD'
   pod 'Fabric'
