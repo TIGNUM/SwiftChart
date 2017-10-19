@@ -67,7 +67,7 @@ extension ActivityChart {
     }
 
     var bottomPosition: CGFloat {
-        return frame.height - padding
+        return frame.height - padding * 0.75
     }
 
     func xPosition(_ index: Int) -> CGFloat {
@@ -81,7 +81,7 @@ extension ActivityChart {
     }
 
     func yPosition(_ value: CGFloat) -> CGFloat {
-        return (bottomPosition - (value * bottomPosition)) + padding
+        return (bottomPosition - (value * bottomPosition)) + padding * 0.5
     }
 
     func drawCapRoundLine(xPos: CGFloat, startYPos: CGFloat, endYPos: CGFloat, strokeColor: UIColor, hasShadow: Bool = false) {
@@ -115,7 +115,7 @@ extension ActivityChart {
             drawCapRoundLine(xPos: xPos, startYPos: bottomPosition, endYPos: yPos, strokeColor: dataPoint.color, hasShadow: hasShadow(dataPoint))
 
             if statistics.chartType == .activitySittingMovementRatio && dataPoint.value < 1 {
-                drawCapRoundLine(xPos: xPos, startYPos: yPos - padding, endYPos: padding, strokeColor: .white20)
+                drawCapRoundLine(xPos: xPos, startYPos: yPos - padding, endYPos: padding * 0.5, strokeColor: .white20)
             }
         }
     }

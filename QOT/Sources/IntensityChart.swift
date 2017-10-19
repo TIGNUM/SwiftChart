@@ -86,7 +86,8 @@ private extension IntensityChart {
     }
 
     func yPosition(_ value: CGFloat) -> CGFloat {
-        return (bottomPosition - ((value <= 1 ? value : 1) * bottomPosition)) + padding
+        let multiplier = (value <= 1 ? value : 1)
+        return (bottomPosition - (multiplier * bottomPosition)) - padding
     }
 
     func setupBackground() {
