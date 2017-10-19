@@ -73,9 +73,11 @@ final class LearnContentItemCoordinator: ParentCoordinator {
                                                      pageDelegate: self,
                                                      backgroundColor: .white,
                                                      backgroundImage: nil,
+                                                     titleSelectedColor: .black70,
+                                                     titleNormalColor: .black30,
                                                      leftButton: leftButton)
         if let navigationBar = topTabBarController.navigationBar as? TopNavigationBar {
-            navigationBar.setStyle(tintColor: .black70, backgroundColor: .white)
+            navigationBar.setStyle(selectedColor: .black70, normalColor: .black30, backgroundColor: .white)
 
             if pages.count <= 1 {
                 navigationBar.setMiddleButtons([])

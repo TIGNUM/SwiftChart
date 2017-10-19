@@ -55,31 +55,34 @@ final class TopNavigationBar: UINavigationBar {
         setIsSelected(currentButton)
     }
     
-    func setStyle(tintColor: UIColor, backgroundColor: UIColor) {
+    func setStyle(selectedColor: UIColor, normalColor: UIColor, backgroundColor: UIColor) {
         middleButtons?.forEach { (button: UIButton) in
-            button.setTitleColor(tintColor, for: .normal)
+            button.setTitleColor(normalColor, for: .normal)
+            button.setTitleColor(selectedColor, for: .selected)
         }
 
-        topItem?.leftBarButtonItem?.tintColor = tintColor
-        topItem?.rightBarButtonItem?.tintColor = tintColor
-        indicatorView.backgroundColor = tintColor
+        topItem?.leftBarButtonItem?.tintColor = normalColor
+        topItem?.rightBarButtonItem?.tintColor = normalColor
+        indicatorView.backgroundColor = selectedColor
         self.backgroundColor = backgroundColor
     }
     
     func setMiddleButtons(_ buttons: [UIButton]) {
-        guard let topItem = topItem, buttons.count > 0 else {
-            return
-        }
+        guard let topItem = topItem, buttons.count > 0 else { return }
+        var width: CGFloat = 0.0
         let firstButton = buttons[0]
         middleButtons = buttons
-        currentButton = firstButton
+
+        // @note unfortunately with the nav titleView it seems much easier to calculate with frames
         for (index, button) in buttons.enumerated() {
             button.addTarget(self, action: #selector(middleButtonPressed(_:)), for: .touchUpInside)
             button.sizeToFit()
             button.tag = index
+            width += button.bounds.size.width
         }
         
         let view = UIStackView(arrangedSubviews: buttons)
+        view.frame = CGRect(x: 0, y: 0, width: (width + CGFloat(buttons.count) * spacing), height: bounds.size.height)
         view.backgroundColor = .clear
         view.axis = .horizontal
         view.distribution = .fillProportionally
@@ -93,6 +96,7 @@ final class TopNavigationBar: UINavigationBar {
         indicatorViewWidthConstraint = indicatorView.widthAnchor == firstButton.bounds.width
         indicatorViewLeftConstraint = indicatorView.leftAnchor == firstButton.leftAnchor
         indicatorView.isHidden = (buttons.count == 1)
+        currentButton = buttons[0]
     }
     
     func setLeftButton(_ button: UIBarButtonItem) {
@@ -118,8 +122,11 @@ final class TopNavigationBar: UINavigationBar {
     }
 
     func addWhatsHotBadgeIfNeeded() {
-        if UserDefault.newWhatsHotArticle.boolValue == true && middleButtons?.last?.titleLabel?.text == R.string.localized.topTabBarItemTitleLearnWhatsHot().uppercased(),
-            let buttonFrame = middleButtons?.first?.frame {
+        if
+            UserDefault.newWhatsHotArticle.boolValue == true &&
+            whatsHotBadgeCenter == .zero &&
+            middleButtons?.last?.titleLabel?.text == R.string.localized.topTabBarItemTitleLearnWhatsHot().uppercased(),
+                let buttonFrame = middleButtons?.first?.frame {
                 let centerX = (frame.width * 0.5) + buttonFrame.width
                 whatsHotBadgeCenter = CGPoint(x: centerX, y: 12)
                 drawCapRoundCircle(center: whatsHotBadgeCenter, radius: 3, value: 3, lineWidth: 3, strokeColor: .cherryRed)
@@ -146,12 +153,10 @@ final class TopNavigationBar: UINavigationBar {
     }
     
     func setIndicatorToButton(_ button: UIButton, animated: Bool = true) {
-        guard let titleView = topItem?.titleView, titleView.subviews.contains(button) else {
-            return
-        }
+        guard let titleView = topItem?.titleView, titleView.subviews.contains(button) else { return }
         indicatorViewWidthConstraint.constant = button.bounds.width
         indicatorViewLeftConstraint.constant = button.frame.origin.x
-        if animated {
+        if animated == true {
             UIView.animate(withDuration: 0.3) {
                 self.layoutIfNeeded()
             }
