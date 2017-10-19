@@ -139,6 +139,7 @@ final class TopNavigationBar: UINavigationBar {
                 if let shapeLayer = layer as? CAShapeLayer {
                     if shapeLayer.lineCap == kCALineCapRound && shapeLayer.path?.contains(whatsHotBadgeCenter) == true {
                         shapeLayer.removeFromSuperlayer()
+                        whatsHotBadgeCenter = .zero
                         UserDefault.newWhatsHotArticle.setBoolValue(value: false)
                     }
                 }
