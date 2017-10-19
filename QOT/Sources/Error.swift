@@ -20,3 +20,5 @@ enum DatabaseError: Error {
 struct SimpleError: Error {
     let localizedDescription: String
 }
+
+struct CanceledError: Error {}

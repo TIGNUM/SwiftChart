@@ -17,13 +17,11 @@ enum UpSyncStatus: Int {
     case deletedLocally = 2
 }
 
-protocol UpSyncable: class {
+protocol UpSyncable: Syncable {
 
     var syncStatus: UpSyncStatus { get }
 
     func toJson() -> JSON?
-
-    static var endpoint: Endpoint { get }
 
     static var dirtyPredicate: NSPredicate { get }
 

@@ -126,7 +126,7 @@ final class AppCoordinator: ParentCoordinator {
                     let services = try Services()
                     self.services = services
                     self.syncManager.startAutoSync()
-                    self.syncManager.syncAll()
+                    self.syncManager.syncAll(shouldDownload: true)
                     self.syncManager.uploadMedia()
 
                     guard OnboardingCoordinator.isOnboardingComplete == true else {

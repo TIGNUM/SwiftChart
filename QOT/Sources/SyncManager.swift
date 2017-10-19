@@ -20,7 +20,6 @@ extension Notification.Name {
 // Command notifications
 extension Notification.Name {
     static let startSyncAllNotification = Notification.Name(rawValue: "qot_startSyncAllNotification")
-    static let startSyncDownloadNotification = Notification.Name(rawValue: "qot_startSyncDownloadNotification")
     static let startSyncUploadMediaNotification = Notification.Name(rawValue: "qot_startSyncUploadMediaNotification")
     static let startSyncUploadNonMediaNotification = Notification.Name(rawValue: "qot_startSyncUploadNonMediaNotification")
 }
@@ -82,7 +81,6 @@ final class SyncManager {
 
     private func setupNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(startSyncAllNotification(_:)), name: .startSyncAllNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(startSyncDownloadNotification(_:)), name: .startSyncDownloadNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(startSyncUploadNonMediaNotification(_:)), name: .startSyncUploadNonMediaNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(startSyncUploadMediaNotification(_:)), name: .startSyncUploadMediaNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForegroundNotification(_:)), name: .UIApplicationWillEnterForeground, object: nil)
@@ -90,11 +88,11 @@ final class SyncManager {
 
     private func setupTimers() {
         syncAllTimer = Timer.scheduledTimer(withTimeInterval: 60.0 * 60.0 * 10.0 /* 10 mins */, repeats: true) { [unowned self] (timer: Timer) in
-            self.syncAll()
+            self.syncAll(shouldDownload: true)
             self.uploadMedia()
         }
         uploadTimer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true) { [unowned self] (timer: Timer) in
-            self.uploadNonMedia()
+            self.syncAll(shouldDownload: false)
             self.uploadMedia()
         }
     }
@@ -125,7 +123,7 @@ final class SyncManager {
         operationQueue.cancelAllOperations()
     }
 
-    func syncAll() {
+    func syncAll(shouldDownload: Bool) {
         let context = SyncContext()
 
         let startOperation = BlockOperation { [unowned self] in
@@ -148,56 +146,9 @@ final class SyncManager {
         }
 
         var operations: [Operation] = [startOperation]
-        operations.append(contentsOf: allUpSyncOperations(context: context))
-        operations.append(contentsOf: allDownSyncOperations(context: context))
+        operations.append(contentsOf: syncOperations(context: context, shouldDownload: shouldDownload))
         operations.append(finishOperation)
 
-        operationQueue.addOperations(operations, waitUntilFinished: false)
-    }
-    
-    func download() {
-        let context = SyncContext()
-        
-        let startOperation = BlockOperation {
-            log("DOWNLOAD STARTED", enabled: Log.Toggle.Manager.Sync)
-        }
-        let finishOperation = BlockOperation {
-            DispatchQueue.main.async {
-                let errors = context.errors
-                log("DOWNLOAD FINISHED with \(errors.count) errors", enabled: Log.Toggle.Manager.Sync)
-                errors.forEach { (error: SyncError) in
-                    log(error, enabled: Log.Toggle.Manager.Sync)
-                }
-            }
-        }
-        
-        var operations: [Operation] = [startOperation]
-        operations.append(contentsOf: allDownSyncOperations(context: context))
-        operations.append(finishOperation)
-        
-        operationQueue.addOperations(operations, waitUntilFinished: false)
-    }
-    
-    func uploadNonMedia() {
-        let context = SyncContext()
-        
-        let startOperation = BlockOperation {
-            log("UPLOAD NON MEDIA STARTED", enabled: Log.Toggle.Manager.Sync)
-        }
-        let finishOperation = BlockOperation {
-            DispatchQueue.main.async {
-                let errors = context.errors
-                log("UPLOAD NON MEDIA FINISHED with \(errors.count) errors", enabled: Log.Toggle.Manager.Sync)
-                errors.forEach { (error: SyncError) in
-                    log(error, enabled: Log.Toggle.Manager.Sync)
-                }
-            }
-        }
-        
-        var operations: [Operation] = [startOperation]
-        operations.append(contentsOf: allUpSyncOperations(context: context))
-        operations.append(finishOperation)
-        
         operationQueue.addOperations(operations, waitUntilFinished: false)
     }
 
@@ -234,40 +185,28 @@ final class SyncManager {
         }
     }
 
-    private func allUpSyncOperations(context: SyncContext) -> [Operation] {
-        return [
-            upSyncOperation(CalendarEvent.self, context: context),
-            upSyncOperation(MyToBeVision.self, context: context),
-            upSyncOperation(Partner.self, context: context),
-            upSyncOperation(Preparation.self, context: context),
-            upSyncOperation(PreparationCheck.self, context: context),
-            upSyncOperation(UserChoice.self, context: context),
-            upSyncOperation(UserSetting.self, context: context),
-            upSyncOperation(User.self, context: context),
-            upSyncOperation(PageTrack.self, context: context),
-            upSyncOperation(UserAnswer.self, context: context)
-        ]
-    }
-
-    private func allDownSyncOperations(context: SyncContext) -> [Operation] {
-        return [
-            // @warning also add to isDownloadRecordsValid
-            downSyncOperation(for: SystemSetting.self, context: context),
-            downSyncOperation(for: UserSetting.self, context: context),
-            downSyncOperation(for: User.self, context: context),
-            downSyncOperation(for: Question.self, context: context),
-            downSyncOperation(for: Page.self, context: context),
-            downSyncOperation(for: UserChoice.self, context: context),
-            downSyncOperation(for: ContentCategory.self, context: context),
-            downSyncOperation(for: ContentCollection.self, context: context),
-            downSyncOperation(for: Statistics.self, context: context),
-            downSyncOperation(for: ContentItem.self, context: context),
-            downSyncOperation(for: Partner.self, context: context),
-            downSyncOperation(for: MyToBeVision.self, context: context),
-            downSyncOperation(for: Preparation.self, context: context),
-            downSyncOperation(for: PreparationCheck.self, context: context),
+    private func syncOperations(context: SyncContext, shouldDownload: Bool) -> [Operation] {
+        let operations: [Operation?] = [
+            syncOperation(PageTrack.self, context: context, shouldDownload: shouldDownload),
+            syncOperation(CalendarEvent.self, context: context, shouldDownload: shouldDownload),
+            syncOperation(MyToBeVision.self, context: context, shouldDownload: shouldDownload),
+            syncOperation(Partner.self, context: context, shouldDownload: shouldDownload),
+            syncOperation(Preparation.self, context: context, shouldDownload: shouldDownload),
+            syncOperation(PreparationCheck.self, context: context, shouldDownload: shouldDownload),
+            syncOperation(UserChoice.self, context: context, shouldDownload: shouldDownload),
+            syncOperation(UserSetting.self, context: context, shouldDownload: shouldDownload),
+            syncOperation(User.self, context: context, shouldDownload: shouldDownload),
+            syncOperation(UserAnswer.self, context: context, shouldDownload: shouldDownload),
+            syncOperation(SystemSetting.self, context: context, shouldDownload: shouldDownload),
+            syncOperation(Question.self, context: context, shouldDownload: shouldDownload),
+            syncOperation(Page.self, context: context, shouldDownload: shouldDownload),
+            syncOperation(ContentCategory.self, context: context, shouldDownload: shouldDownload),
+            syncOperation(ContentCollection.self, context: context, shouldDownload: shouldDownload),
+            syncOperation(ContentItem.self, context: context, shouldDownload: shouldDownload),
+            syncOperation(Statistics.self, context: context, shouldDownload: shouldDownload),
             UpdateRelationsOperation(context: context, realmProvider: realmProvider)
         ]
+        return operations.flatMap({ $0 })
     }
 
     private func uploadMediaOperations(context: SyncContext) throws -> [Operation] {
@@ -280,18 +219,35 @@ final class SyncManager {
 
     // MARK: Operation Factories
 
-    private func downSyncOperation<P>(for: P.Type, context: SyncContext) -> DownSyncOperation<P> where P: DownSyncable, P: SyncableObject {
-        return DownSyncOperation<P>(context: context,
-                                    networkManager: networkManager,
-                                    syncRecordService: syncRecordService,
-                                    realmProvider: realmProvider,
-                                    downSyncImporter: DownSyncImporter())
+    private func syncOperation<T>(_ type: T.Type, context: SyncContext, shouldDownload: Bool)
+        -> SyncOperation? where T: SyncableObject, T: UpSyncable {
+            let upSyncTask = UpSyncTask<T>(networkManager: networkManager, realmProvider: realmProvider)
+            return SyncOperation(upSyncTask: upSyncTask, downSyncTask: nil, syncContext: context)
     }
 
-    private func upSyncOperation<T>(_ type: T.Type, context: SyncContext) -> UpSyncOperation<T> where T: Object, T: UpSyncable {
-        return UpSyncOperation<T>(networkManager: networkManager,
-                                  realmProvider: realmProvider,
-                                  syncContext: context)
+    private func syncOperation<T>(_ type: T.Type, context: SyncContext, shouldDownload: Bool)
+        -> SyncOperation? where T: SyncableObject, T: DownSyncable, T.Data: DownSyncIntermediary {
+            guard shouldDownload == true else {
+                return nil
+            }
+            let downSyncTask = DownSyncTask<T>(networkManager: networkManager,
+                                               realmProvider: realmProvider,
+                                               syncRecordService: syncRecordService)
+            return SyncOperation(upSyncTask: nil, downSyncTask: downSyncTask, syncContext: context)
+    }
+
+    private func syncOperation<T>(_ type: T.Type, context: SyncContext, shouldDownload: Bool)
+        -> SyncOperation? where T: SyncableObject, T: UpSyncable, T: DownSyncable, T.Data: DownSyncIntermediary {
+            let upSyncTask = UpSyncTask<T>(networkManager: networkManager, realmProvider: realmProvider)
+            let downSyncTask: SyncTask?
+            if shouldDownload == true {
+                downSyncTask = DownSyncTask<T>(networkManager: networkManager,
+                                                realmProvider: realmProvider,
+                                                syncRecordService: syncRecordService)
+            } else {
+                downSyncTask = nil
+            }
+            return SyncOperation(upSyncTask: upSyncTask, downSyncTask: downSyncTask, syncContext: context)
     }
 
     private func upSyncMediaOperation(localID: String, context: SyncContext) -> UpSyncMediaOperation {
@@ -304,12 +260,8 @@ final class SyncManager {
     // MARK: Notifications
     
     @objc private func startSyncAllNotification(_ notification: Notification) {
-        syncAll()
+        syncAll(shouldDownload: true)
         uploadMedia()
-    }
-    
-    @objc private func startSyncDownloadNotification(_ notification: Notification) {
-        download()
     }
     
     @objc private func startSyncUploadMediaNotification(_ notification: Notification) {
@@ -317,11 +269,11 @@ final class SyncManager {
     }
     
     @objc private func startSyncUploadNonMediaNotification(_ notification: Notification) {
-        uploadNonMedia()
+        syncAll(shouldDownload: false)
     }
     
     @objc private func willEnterForegroundNotification(_ notification: Notification) {
-        syncAll()
+        syncAll(shouldDownload: true)
         uploadMedia()
     }
 }

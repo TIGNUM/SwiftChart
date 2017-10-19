@@ -11,6 +11,7 @@ import Foundation
 enum SyncError: Error {
 
     case didCancel
+    case fetchSyncTokenFailed(error: Error)
     case downSyncReadLastSyncDateFailed(type: String, error: Error)
     case downSyncStartSyncFailed(type: String, error: NetworkError)
     case downSyncFetchIntermediatesFailed(type: String, error: NetworkError)

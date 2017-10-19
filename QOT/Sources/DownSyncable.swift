@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-protocol DownSyncable: class {
+protocol DownSyncable: Syncable {
     associatedtype Data
 
     var modifiedAt: Date { get set }
@@ -17,8 +17,6 @@ protocol DownSyncable: class {
     func setData(_ data: Data, objectStore: ObjectStore) throws
 
     static func object(remoteID: Int, store: ObjectStore) throws -> Self?
-
-    static var endpoint: Endpoint { get }
 }
 
 extension DownSyncable where Self: SyncableObject {

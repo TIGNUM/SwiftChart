@@ -136,8 +136,8 @@ extension LearnContentListViewController: TrackablePage {
         return .learnContentList
     }
     var pageAssociatedObject: PageObject? {
-        let category = viewModel.item(at: IndexPath(row: selectedCategoryIndex, section: 0))
-        return PageObject(object: category, identifier: .category)
+        let contentCollection = viewModel.item(at: IndexPath(row: selectedCategoryIndex, section: 0))
+        return PageObject(object: contentCollection, identifier: .contentCollection)
     }
 }
 
@@ -154,7 +154,7 @@ extension LearnContentItemViewController: TrackablePage {
     }
     var pageAssociatedObject: PageObject? {
         return PageObject(object: viewModel.contentCollection, identifier: .contentCollection)
-    }
+    } 
 }
 
 extension LibraryViewController: TrackablePage {
