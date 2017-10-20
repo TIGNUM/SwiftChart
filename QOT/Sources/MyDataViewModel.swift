@@ -95,6 +95,17 @@ enum SectorLabelType {
         case .activity: return 1.1
         }
     }
+    
+    var sectionType: StatisticsSectionType {
+        switch self {
+        case .activity: return .activity
+        case .intensity: return .intensity
+        case .meetings: return .meetings
+        case .peak: return .peakPerformance
+        case .sleep: return .sleep
+        case .travel: return .travel
+        }
+    }
 }
 
 protocol Spike {
@@ -121,6 +132,11 @@ protocol Sector {
     var type: SectorType { get }
 }
 
+struct SectorLabel {
+    var label: UILabel
+    var sector: Sector
+}
+
 struct ChartSpike: Spike {
     let angle: CGFloat
     let load: CGFloat
@@ -144,6 +160,12 @@ struct ChartSector: Sector {
     let labelType: SectorLabelType
     let strokeColor: UIColor
     let type: SectorType
+}
+
+struct ChartDataPoint {
+    let dot: CALayer
+    let sector: Sector
+    let frame: CGRect
 }
 
 private func chartSectors(service: StatisticsService) -> [Sector] {

@@ -216,69 +216,12 @@ private extension MyUniverseViewController {
         guard pageIndex == 0 else {
             return
         }
-        delegate?.didTapSector(startingSection: section(location: recognizer.location(in: view)), in: self)
-    }
-}
-
-// MARK: - TabRecognizer Helper
-
-private extension MyUniverseViewController {
-
-    func section(location: CGPoint) -> StatisticsSectionType? {
-        let radius = lengthFromCenter(for: location)
-        let yPosShifted = location.y - myDataView.profileImageButton.center.y
-        let xPosShifted = location.x - myDataView.profileImageButton.center.x
-        let beta = acos(xPosShifted / radius)
-        let sectorAngle = beta.radiansToDegrees
-
-        for sector in myDataViewModel.sectors {
-            if yPosShifted >= 0 {
-                if sector.startAngle ... sector.endAngle ~= sectorAngle {
-                    return sectionType(for: sector.labelType)
-                }
-
-                if sectorAngle < 119 {
-                    guard let type = myDataViewModel.sectors.last?.labelType else {
-                        return nil
-                    }
-
-                    return sectionType(for: type)
-                }
-            } else {
-                let mappedSectorAngle = 180 + (180 - sectorAngle)
-                if sector.startAngle ... sector.endAngle ~= mappedSectorAngle {
-                    return sectionType(for: sector.labelType)
-                }
-
-                if sectorAngle < 100 {
-                    guard let type = myDataViewModel.sectors.first?.labelType else {
-                        return nil
-                    }
-
-                    return sectionType(for: type)
-                }
-            }
+        let point = recognizer.location(in: myDataView)
+        if let section = myDataSectorLabelsView.labelForPoint(point)?.sector.labelType.sectionType {
+            delegate?.didTapSector(startingSection: section, in: self)
+        } else if let section = myDataView.dataPointForPoint(point)?.sector.labelType.sectionType {
+            delegate?.didTapSector(startingSection: section, in: self)
         }
-
-        return nil
-    }
-
-    func sectionType(for type: SectorLabelType) -> StatisticsSectionType {
-        switch type {
-        case .activity: return .activity
-        case .intensity: return .intensity
-        case .meetings: return .meetings
-        case .peak: return .peakPerformance
-        case .sleep: return .sleep
-        case .travel: return .travel
-        }
-    }
-
-    func lengthFromCenter(for location: CGPoint) -> CGFloat {
-        let diffX = pow(location.x - myDataView.profileImageButton.center.x, 2)
-        let diffY = pow(location.y - myDataView.profileImageButton.center.y, 2)
-        
-        return sqrt(diffX + diffY)
     }
 }
 
@@ -351,8 +294,8 @@ private extension MyUniverseViewController {
 
     func updateSectorLabelsAlphaValue(_ contentScrollView: UIScrollView) {
         let alpha = scrollFactor(contentScrollView)
-        myDataSectorLabelsView.sectorLabels.forEach({ (sectorLabel: UILabel) in
-            sectorLabel.alpha = alpha
+        myDataSectorLabelsView.sectorLabels.forEach({ (sectorLabel: SectorLabel) in
+            sectorLabel.label.alpha = alpha
         })
     }
 

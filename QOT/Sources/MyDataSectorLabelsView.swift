@@ -9,10 +9,9 @@
 import UIKit
 
 final class MyDataSectorLabelsView: UIView, MyUniverseView {
-
     // MARK: - Properties
 
-    var sectorLabels = [UILabel]()
+    var sectorLabels = [SectorLabel]()
     var previousBounds = CGRect.zero
     fileprivate var sectors = [Sector]()
     let screenType: MyUniverseViewController.ScreenType
@@ -42,6 +41,15 @@ final class MyDataSectorLabelsView: UIView, MyUniverseView {
         let layout = Layout.MeSection(viewControllerFrame: bounds)
         addSectorLabels(layout: layout, sectors: sectors)
     }
+    
+    func labelForPoint(_ point: CGPoint) -> SectorLabel? {
+        for sectorLabel in sectorLabels {
+            if sectorLabel.label.frame.contains(point) {
+                return sectorLabel
+            }
+        }
+        return nil
+    }
 }
 
 // MARK: - Build Labels
@@ -52,9 +60,11 @@ private extension MyDataSectorLabelsView {
         sectors.forEach { (sector: Sector) in
             let attributedString = MyUniverseHelper.attributedString(for: sector, layout: layout, screenType: screenType)
             let labelFarme = sectorLabelFrame(sector: sector, layout: layout)
-            let sectorLabel = createSectorLabel(frame: labelFarme, attributedString: attributedString)
-            addSubview(sectorLabel)
-            sectorLabels.append(sectorLabel)
+            let label = createLabel(frame: labelFarme, attributedString: attributedString)
+            addSubview(label)
+            sectorLabels.append(
+                SectorLabel(label: label, sector: sector)
+            )
         }
     }
 
@@ -65,7 +75,7 @@ private extension MyDataSectorLabelsView {
         return CGRect(x: labelCenter.x, y: labelCenter.y, width: 0, height: Layout.MeSection.labelHeight)
     }
 
-    func createSectorLabel(frame: CGRect, attributedString: NSAttributedString) -> UILabel {
+    func createLabel(frame: CGRect, attributedString: NSAttributedString) -> UILabel {
         let label = UILabel(frame: frame)
         label.attributedText = attributedString
         label.numberOfLines = 0

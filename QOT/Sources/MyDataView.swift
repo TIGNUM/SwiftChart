@@ -36,7 +36,6 @@ protocol MyDataViewDelegate: class {
 }
 
 final class MyDataView: UIView, MyUniverseView {
-
     // MARK: - Properties
 
     var universeDotsLayer = CAShapeLayer()
@@ -47,6 +46,7 @@ final class MyDataView: UIView, MyUniverseView {
     var sectors = [Sector]()
     var myDataViewModel: MyDataViewModel
     var previousBounds = CGRect.zero
+    var dataPoints = [ChartDataPoint]()
     weak var delegate: MyDataViewDelegate?
 
     // MARK: - Init
@@ -81,6 +81,15 @@ final class MyDataView: UIView, MyUniverseView {
                 overlay.image = UIImage.makeGrayscale(image)
             }
         }
+    }
+    
+    func dataPointForPoint(_ point: CGPoint) -> ChartDataPoint? {
+        for dataPoint in dataPoints {
+            if dataPoint.frame.contains(point) {
+                return dataPoint
+            }
+        }
+        return nil
     }
 }
 
@@ -170,12 +179,11 @@ private extension MyDataView {
 
     func drawDataPoints(layout: Layout.MeSection, sectors: [Sector]) {
         universeDotsLayer = CAShapeLayer()
-        let dataPoints = MyUniverseHelper.dataPoints(sectors: sectors, layout: layout)
-
-        dataPoints.forEach { (dataPoint: CAShapeLayer) in
-            universeDotsLayer.addSublayer(dataPoint)
+        universeDotsLayer.backgroundColor = UIColor.yellow.cgColor
+        dataPoints = MyUniverseHelper.dataPoints(sectors: sectors, layout: layout)
+        dataPoints.forEach { (dataPoint: ChartDataPoint) in
+            universeDotsLayer.addSublayer(dataPoint.dot)
         }
-        
         layer.addSublayer(universeDotsLayer)
     }
 }

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreGraphics
 
 struct MyUniverseHelper {
 
@@ -94,8 +95,8 @@ extension MyUniverseHelper {
 
 extension MyUniverseHelper {
 
-    static func dataPoints(sectors: [Sector], layout: Layout.MeSection) -> [CAShapeLayer] {
-        var dots = [CAShapeLayer]()
+    static func dataPoints(sectors: [Sector], layout: Layout.MeSection) -> [ChartDataPoint] {
+        var dataPoints = [ChartDataPoint]()
         for (dataIndex, centerPoints) in dataCenterPoints.enumerated() {
             for (centerIndex, center) in centerPoints.enumerated() {
                 guard dataIndex < sectors.count else {
@@ -110,19 +111,23 @@ extension MyUniverseHelper {
 
                 let spike = sector.spikes[centerIndex]
                 let radius = MyUniverseHelper.radius(for: spike.spikeLoad(), layout: layout)
-
-                dots.append(
-                    MyUniverseHelper.dot(
-                        fillColor: fillColor(radius: radius, load: spike.spikeLoad(), sectorType: sector.type, layout: layout),
-                        strokeColor: strokeColor(radius: radius, load: spike.spikeLoad(), sectorType: sector.type, layout: layout),
-                        center: center,
-                        radius: (spike.spikeLoad() * 6.6),
-                        lineWidth: sector.type.lineWidth(load: spike.load)
-                    )
+                let circumference = (spike.spikeLoad() * 6.6) * 2
+                let dot = MyUniverseHelper.dot(
+                    fillColor: fillColor(radius: radius, load: spike.spikeLoad(), sectorType: sector.type, layout: layout),
+                    strokeColor: strokeColor(radius: radius, load: spike.spikeLoad(), sectorType: sector.type, layout: layout),
+                    center: center,
+                    radius: circumference / 2,
+                    lineWidth: sector.type.lineWidth(load: spike.load)
                 )
+                // @note we have to manually store the frame because it's .zero in CALayer
+                // @see https://stackoverflow.com/questions/8662724/setting-correct-frame-of-a-newly-created-cashapelayer
+                let frame = dot.path?.boundingBox ?? .zero
+                let minSize: CGFloat = 40.0 // minimum width & height
+                let padding = circumference < minSize ? minSize - circumference : 0
+                dataPoints.append(ChartDataPoint(dot: dot, sector: sector, frame: frame.insetBy(dx: -padding, dy: -padding)))
             }
         }
-        return dots
+        return dataPoints
     }
 }
 
