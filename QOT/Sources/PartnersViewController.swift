@@ -33,7 +33,7 @@ class PartnersViewController: UIViewController {
 
     init(viewModel: PartnersViewModel, permissionHandler: PermissionHandler) {
         self.viewModel = viewModel
-        imagePickerController = ImagePickerController(cropShape: .hexagon, imageQuality: .low, permissionHandler: permissionHandler)
+        imagePickerController = ImagePickerController(cropShape: .hexagon, imageQuality: .low, imageSize: .small, permissionHandler: permissionHandler)
 
         super.init(nibName: nil, bundle: nil)
 

@@ -14,21 +14,22 @@ protocol ImagePickerControllerDelegate: class {
 }
 
 final class ImagePickerController {
-
     enum Option {
         case camera
         case photo
     }
 
     let imageQuality: ImageQuality
+    let imageSize: ImageSize
     let permissionHandler: PermissionHandler
     let imagePicker: ImagePicker
     let imageCropper: ImageCropper
     weak var viewController: UIViewController?
     weak var delegate: ImagePickerControllerDelegate?
     
-    init(cropShape: ImageCropper.Shape, imageQuality: ImageQuality, permissionHandler: PermissionHandler) {
+    init(cropShape: ImageCropper.Shape, imageQuality: ImageQuality, imageSize: ImageSize, permissionHandler: PermissionHandler) {
         self.imageQuality = imageQuality
+        self.imageSize = imageSize
         self.permissionHandler = permissionHandler
         
         imagePicker = ImagePicker()
@@ -133,7 +134,7 @@ extension ImagePickerController: ImagePickerDelegate {
         imagePicker.dismiss {
             guard
                 let viewController = self.viewController,
-                let compressedImage = image.withQuality(self.imageQuality) else {
+                let compressedImage = image.withQuality(self.imageQuality, size: self.imageSize) else {
                 return
             }
             self.imageCropper.crop(compressedImage, in: viewController)
