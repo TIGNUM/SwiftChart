@@ -132,8 +132,3 @@ struct APNSDeviceTokenRequest: URLRequestBuildable {
         ]
     }
 }
-
-struct VersionInfoRequest: URLRequestBuildable {
-    let endpoint: Endpoint = .versionInfo
-    let requiresAuthentication = true
-}

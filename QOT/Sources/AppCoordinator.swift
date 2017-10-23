@@ -97,8 +97,6 @@ final class AppCoordinator: ParentCoordinator {
                 }
             }
         }
-
-        checkAppIsUpToDate()
     }
 
     func restart() {
@@ -217,33 +215,6 @@ private extension AppCoordinator {
 
         coordinator.showPreparationCheckList(localID: localID)
         checkListIDToPresent = nil
-    }
-
-    func checkAppIsUpToDate() {
-        func needsUpadate(info: VersionInfo) -> Bool {
-            guard let currentBuild = Int(Bundle.main.buildNumber) else {
-                return true
-            }
-            
-            return info.build > currentBuild
-        }
-
-        self.networkManager.performVersionInfoRequest { (result) in
-            switch result {
-            case .success(let versionInfo):
-                if needsUpadate(info: versionInfo) {
-                    #if DEBUG
-                        log("Latest QOT version on AWS_S3: \(versionInfo.version) - \(versionInfo.build)")
-                    #else
-                        self.showMajorAlert(type: .updateNeeded, handler: {
-                            UIApplication.shared.open(versionInfo.updateURL)
-                        })
-                    #endif
-                }
-            case .failure(let error):
-                log("Failed to fetch version info: \(error)")
-            }
-        }
     }
 }
 

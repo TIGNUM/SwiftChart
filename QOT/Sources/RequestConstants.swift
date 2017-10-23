@@ -37,7 +37,6 @@ enum Endpoint: String {
     case userAnswer = "/personal/p/qot/userAnswer"
     case pageTracking = "/personal/p/qot/pageTracking"
     case pushNotificationToken = "/personal/p/qot/deviceToken"
-    case versionInfo = "https://s3-eu-west-1.amazonaws.com/qotapp.bucket/v2/version.json"
     case userFeedback = "/personal/p/qot/userAnswerFeedback"
     case userLocationUpdate = "/personal/p/qot/geolocation"
     case log = "/personal/p/qot/log"

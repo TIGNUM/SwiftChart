@@ -72,10 +72,6 @@ class NetworkManager {
         return performRequest(request, completion: completion)
     }
 
-    @discardableResult func performVersionInfoRequest(completion: @escaping (Result<VersionInfo, NetworkError>) -> Void) -> SerialRequest {
-        return performRequest(VersionInfoRequest(), parser: VersionInfo.parse, completion: completion)
-    }
-
     @discardableResult func performUserFeedbackRequest(userAnswers: [UserAnswer],
                                                        completion: @escaping (Result<UserAnswerFeedback, NetworkError>) -> Void) -> SerialRequest {
         return performRequest(UserFeedbackRequest(userAnswers), parser: UserAnswerFeedback.parse, completion: completion)
