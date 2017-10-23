@@ -8,6 +8,7 @@
 
 #if BUILD_DATABASE
     import Foundation
+    import RealmSwift
     
     var databaseBuilder: DatabaseBuilder!
 
@@ -21,7 +22,7 @@
                 deviceID: deviceID
             )
             
-            log("\nbuild database started (may take some time - get a tea...)\n")
+            print("\nbuild database started (may take some time - get a tea...)\n")
             
             let context = SyncContext()
             
@@ -35,22 +36,30 @@
                 ])
             databaseBuilder.setCompletion({
                 guard context.errors.count == 0 else {
-                    log(context.errors[0])
+                    print(context.errors[0])
                     return
                 }
                 
                 do {
+                    let realm = try realmProvider.realm()
+                    let contentCollections = realm.objects(ContentCollection.self)
+                    try realm.write {
+                        for contentCollection in contentCollections {
+                            contentCollection.viewedAt = nil
+                        }
+                    }
+
                     let name = "default-v1.realm"
                     let fileURL = try databaseBuilder.copyWithName(name)
-                    log("\nbuild database completed successfully. paste this into terminal:")
-                    log("cd <qot project>")
-                    log("cp \"\(fileURL!.absoluteString.removeFilePrefix)\" \"QOT/Resources/Database/\(name)\"")
-                    log("\nnow verify it by opening the database:")
-                    log("open \"QOT/Resources/Database/\(name)\"")
-                    log("\nthen close Realm browser, and remove all the crap:")
-                    log("rm QOT/Resources/Database/*.lock;rm -r QOT/Resources/Database/*.management;rm QOT/Resources/Database/*.note")
+                    print("\nbuild database completed successfully. paste this into terminal:")
+                    print("cd <qot project>")
+                    print("cp \"\(fileURL!.absoluteString.removeFilePrefix)\" \"QOT/Resources/Database/\(name)\"")
+                    print("\nnow verify it by opening the database:")
+                    print("open \"QOT/Resources/Database/\(name)\"")
+                    print("\nthen close Realm browser, and remove all the crap:")
+                    print("rm QOT/Resources/Database/*.lock;rm -r QOT/Resources/Database/*.management;rm QOT/Resources/Database/*.note")
                 } catch {
-                    log("\nbuild database failed with error: \(error.localizedDescription)")
+                    print("\nbuild database failed with error: \(error.localizedDescription)")
                 }
             })
             databaseBuilder.build()

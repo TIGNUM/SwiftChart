@@ -61,12 +61,12 @@ class DatabaseBuilder {
         }
     }
     
-    func downSyncOperation<P>(for: P.Type, context: SyncContext) -> DownSyncOperation<P> where P: DownSyncable, P: SyncableObject {
-        return DownSyncOperation<P>(context: context,
-                                    networkManager: networkManager,
-                                    syncRecordService: syncRecordService,
-                                    realmProvider: realmProvider,
-                                    downSyncImporter: DownSyncImporter())
+    func downSyncOperation<P>(for: P.Type, context: SyncContext)
+        -> SyncOperation where P: DownSyncable, P: SyncableObject, P.Data: DownSyncIntermediary {
+        let downSyncTask = DownSyncTask<P>(networkManager: networkManager,
+                                           realmProvider: realmProvider,
+                                           syncRecordService: syncRecordService)
+        return SyncOperation(upSyncTask: nil, downSyncTask: downSyncTask, syncContext: context)
     }
 
     func updateRelationsOperation(context: SyncContext) -> UpdateRelationsOperation {
