@@ -72,6 +72,7 @@ platform :ios do
       region: ENV['S3_REGION'],
       ipa: ENV['S3_IPA_NAME'],
       app_directory: ENV['S3_APP_DIRECTORY'], # DON'T DELETE! This stops us overwriting original QOT app.
+      version_template_path: ENV['S3_VERSION_TEMPLATE_PATH'],
       upload_metadata: true # Upload version.json, plist and HTML. Set to false to skip uploading of these files.
     )
 
