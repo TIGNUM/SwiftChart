@@ -13,7 +13,6 @@ import CoreGraphics
 struct MyUniverseHelper {
 
     fileprivate static var dataCenterPoints = [[CGPoint]]()
-    fileprivate static var connectionCenterPoints = [[CGPoint]]()
 
     static func radius(for load: CGFloat, layout: Layout.MeSection, radiusOffset: CGFloat = 0) -> CGFloat {
         let factor: CGFloat = layout.radiusMaxLoad
@@ -28,26 +27,10 @@ extension MyUniverseHelper {
 
     static func collectCenterPoints(layout: Layout.MeSection, sectors: [Sector], relativeCenter: CGPoint) {
         dataCenterPoints.removeAll()
-        connectionCenterPoints.removeAll()
         
         sectors.forEach { (sector: Sector) in
             let centerPoints = sector.spikes.map({ relativeCenter.shifted(radius(for: $0.spikeLoad(), layout: layout, radiusOffset: sector.type.lineWidth(load: $0.spikeLoad()) + $0.spikeLoad() * 6.6), with: $0.angle) })
             dataCenterPoints.append(centerPoints)            
-            connectionCenterPoints.append(centerPoints)
-        }
-    }
-
-    static func addAditionalConnectionPoints(sectors: [Sector], layout: Layout.MeSection) {
-        for (sectorIndex, sector) in sectors.enumerated() {
-            var centerPoints = [CGPoint]()
-
-            for index in stride(from: 0, to: sector.spikes.count, by: 2) {
-                let centerPoint = dataCenterPoints[sectorIndex][index]
-                centerPoints.append(centerPoint)
-                centerPoints.append(layout.loadCenter)
-            }
-
-            connectionCenterPoints.append(centerPoints)
         }
     }
 }
@@ -56,22 +39,14 @@ extension MyUniverseHelper {
 
 extension MyUniverseHelper {
 
-    static func dataPointConnections(sectors: [Sector], layout: Layout.MeSection) -> [CAShapeLayer] {
+    static func dataPointConnections(sectors: [Sector], layout: Layout.MeSection, center: CGPoint) -> [CAShapeLayer] {
         var connections = [CAShapeLayer]()
-        MyUniverseHelper.addAditionalConnectionPoints(sectors: sectors, layout: layout)
-        connectionCenterPoints.shuffled().forEach { (centerPopints: [CGPoint]) in
-            for (index, center) in centerPopints.shuffled().enumerated() {
-                let nextIndex = (index + 1)
-
-                guard nextIndex < centerPopints.count else {
-                    return
-                }
-
-                let nextCenter = centerPopints[nextIndex]
+        dataCenterPoints.forEach { (points: [CGPoint]) in
+            points.forEach({ (point: CGPoint) in
                 connections.append(
-                    CAShapeLayer.line(from: center, to: nextCenter, strokeColor: Color.MeSection.whiteStrokeLight)
+                    CAShapeLayer.line(from: center, to: point, strokeColor: Color.MeSection.whiteStrokeLight)
                 )
-            }
+            })
         }
         return connections
     }

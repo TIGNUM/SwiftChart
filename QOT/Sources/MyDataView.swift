@@ -171,7 +171,7 @@ private extension MyDataView {
     }
 
     func drawDataPointConnections(layout: Layout.MeSection, sectors: [Sector]) {
-        let connections = MyUniverseHelper.dataPointConnections(sectors: sectors, layout: layout)
+        let connections = MyUniverseHelper.dataPointConnections(sectors: sectors, layout: layout, center: profileImageButton.center)
         connections.forEach { (connection: CAShapeLayer) in
             layer.addSublayer(connection)
         }

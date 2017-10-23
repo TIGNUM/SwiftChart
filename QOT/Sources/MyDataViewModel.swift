@@ -140,16 +140,34 @@ struct SectorLabel {
 struct ChartSpike: Spike {
     let angle: CGFloat
     let load: CGFloat
-
-    //FIXME
-    func spikeLoad() -> CGFloat {
-        if load < 0.15 {
-            return 0.15
-        } else if load > 0.98 {
-            return 0.98
-        } else {
-            return load
+    
+    private let min: CGFloat = 0.15
+    private let max: CGFloat = 0.98
+    private let divisions: Int = 4 // must be >= 2. represents divisions in the grid that we snap the spikeLoad to
+    private let grid: [CGFloat]
+    
+    init(angle: CGFloat, load: CGFloat) {
+        self.angle = angle
+        self.load = load
+        
+        let jumpValue = (max - min) / CGFloat(divisions - 1)
+        var grid = [min]
+        for i in 1..<divisions {
+            grid.append(grid[i-1] + jumpValue)
         }
+        self.grid = grid
+    }
+    
+    func spikeLoad() -> CGFloat {
+        var gridIndex = -1
+        for (index, value) in grid.enumerated() where load <= value {
+            gridIndex = index
+            break
+        }
+        if gridIndex == -1 {
+            gridIndex = grid.endIndex - 1
+        }
+        return grid[gridIndex]
     }
 }
 
