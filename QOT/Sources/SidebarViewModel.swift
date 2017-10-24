@@ -20,7 +20,6 @@ final class SidebarViewModel {
         case benefits
         case about
         case privacy
-        case benefits
         case logout
 
         static var allValues: [SidebbarItem] {
