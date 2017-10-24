@@ -322,7 +322,9 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
             let item = viewModel.articleItem(at: indexPath)
 
             switch item.contentItemValue {
-            case .audio(_, _, _, let audioURL, _, _): delegate?.didTapMedia(withURL: audioURL, in: self)   
+            case .audio(_, _, _, let remoteURL, _, _):
+                let url = item.bundledAudioURL ?? remoteURL
+                delegate?.didTapMedia(withURL: url, in: self)
             case .video(_, _, _, let videoURL, _): streamVideo(videoURL: videoURL)
             default: return
             }

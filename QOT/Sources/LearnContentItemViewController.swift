@@ -243,9 +243,10 @@ private extension LearnContentItemViewController {
         let item = viewModel.learnContentItem(at: indexPath, tabType: tabType)
 
         switch item.contentItemValue {
-        case .audio(_, _, _, let audioURL, let duration, let waveformData):
+        case .audio(_, _, _, let remoteURL, let duration, let waveformData):
+            let url = item.bundledAudioURL ?? remoteURL
             let cell = itemTableView.cellForRow(at: indexPath) as? LearnStrategyPlaylistAudioCell
-            viewModel.playItem(at: indexPath, audioURL: audioURL, duration: duration, cell: cell)
+            viewModel.playItem(at: indexPath, audioURL: url, duration: duration, cell: cell)
 
             if let audioPlayerTopView = audioPlayerTopView {
                 soundPattern = Property(waveformData)
