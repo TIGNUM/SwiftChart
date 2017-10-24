@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="BentonSans_Regular.otf">
+        <array key="BentonSans_Book.otf">
             <string>BentonSans</string>
         </array>
         <array key="Simple-Regular.ttf">
@@ -30,7 +30,6 @@
                 <outlet property="imageView" destination="bfh-6q-eoT" id="hcV-JT-FHR"/>
                 <outlet property="imageViewOverlay" destination="Bbh-3u-HIM" id="Pve-ck-qh5"/>
                 <outlet property="messageTextView" destination="Bt0-lW-TcB" id="Zxh-wr-RnJ"/>
-                <outlet property="messageTextViewBottomConstrant" destination="3FA-TN-j3U" id="XnK-j2-vv6"/>
                 <outlet property="minimiseButton" destination="X5G-vy-FA9" id="YBO-Im-iOC"/>
                 <outlet property="navigationBar" destination="Cks-DY-TaL" id="AFw-2f-gUt"/>
                 <outlet property="subtitleLabel" destination="2O5-1G-1AK" id="JaV-5J-LiT"/>
@@ -64,13 +63,13 @@
                     </connections>
                 </textView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="1000" text="asdassdad" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2O5-1G-1AK">
-                    <rect key="frame" x="29" y="173" width="55" height="10.5"/>
+                    <rect key="frame" x="29" y="173" width="54" height="13"/>
                     <fontDescription key="fontDescription" name="BentonSans" family="BentonSans" pointSize="11"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Bt0-lW-TcB" customClass="PlaceholderTextView" customModule="QOT" customModuleProvider="target">
-                    <rect key="frame" x="29" y="203.5" width="261" height="254.5"/>
+                    <rect key="frame" x="29" y="206" width="261" height="362"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -127,7 +126,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Picture" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ik-TR-2gA">
-                            <rect key="frame" x="98.5" y="123" width="123.5" height="19"/>
+                            <rect key="frame" x="106.5" y="123" width="107.5" height="19"/>
                             <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -154,7 +153,7 @@
             <constraints>
                 <constraint firstItem="uuS-Dz-bUg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="29" id="0Vz-dt-2LY"/>
                 <constraint firstItem="8Ht-Mn-n41" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="33e-cH-PS5"/>
-                <constraint firstAttribute="bottom" secondItem="Bt0-lW-TcB" secondAttribute="bottom" constant="110" id="3FA-TN-j3U"/>
+                <constraint firstAttribute="bottom" secondItem="Bt0-lW-TcB" secondAttribute="bottom" id="3FA-TN-j3U"/>
                 <constraint firstItem="UbZ-c7-cw0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="51i-CZ-UWA"/>
                 <constraint firstItem="Bt0-lW-TcB" firstAttribute="top" secondItem="2O5-1G-1AK" secondAttribute="bottom" constant="20" id="5Vz-vN-QUr"/>
                 <constraint firstAttribute="bottom" secondItem="Bbh-3u-HIM" secondAttribute="bottom" id="6ha-Ym-kF0"/>

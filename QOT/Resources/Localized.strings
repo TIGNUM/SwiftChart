@@ -47,6 +47,8 @@
 "Sidebar.Title.Sensor" = "Add Sensor";
 "Sidebar.Title.About" = "About Tignum";
 "Sidebar.Title.Logout" = "Logout";
+"Sidebar.User.Titles.Member.Since" = "MEMBER SINCE";
+"Sidebar.User.Titles.Member.QOT.Usage" = "QOT USAGE";
 
 "Tab.Bar.Item.Learn" = "LEARN";
 "Tab.Bar.Item.Me" = "ME";
@@ -251,3 +253,5 @@
 "Onboarding.Chat.Item.Why" = "Your events and, therefore, your load is kept on your calendar. When I analyze your information, I am looking for how many meetings you have, how much time you have between meetings, how often you need to travel, etc. When I know these things, I can help you rule your impact every day. By knowing your location, I can analyze timezone changes when you travel. This way, I can provide you with custom strategies during your entire trip. Lastly, permission to send you notifications allows me to interact with you when you need it most";
 "Onboarding.Chat.Item.Last.Step" = "Thank you, if you give me a minute, I will give you my first analysis";
 "Onboarding.Chat.Item.Show.Settings" = "No worries. If you change your mind, you can change this access in your preferences at any time";
+
+"Qot.Usage.Timer.Default" = "1 MINUTE";

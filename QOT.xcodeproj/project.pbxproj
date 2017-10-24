@@ -60,6 +60,7 @@
 		7FBC3E7E1F34AB8D005BD772 /* MediaResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBC3E7D1F34AB8D005BD772 /* MediaResource.swift */; };
 		7FBC3E801F385135005BD772 /* MediaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBC3E7F1F385135005BD772 /* MediaService.swift */; };
 		7FBC3E891F38B9D1005BD772 /* UpSyncMediaOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBC3E881F38B9D1005BD772 /* UpSyncMediaOperation.swift */; };
+		7FC81E871F9F377600564292 /* DateComponentsFormatter+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC81E861F9F377600564292 /* DateComponentsFormatter+Convenience.swift */; };
 		7FC86A051F97A511003DC84D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC86A041F97A511003DC84D /* ImagePicker.swift */; };
 		7FDFF3691F18FF0B00F7A7EC /* NotificationTokenHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDFF3681F18FF0B00F7A7EC /* NotificationTokenHandler.swift */; };
 		7FDFF36B1F1916B400F7A7EC /* Realm+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDFF36A1F1916B400F7A7EC /* Realm+Utility.swift */; };
@@ -509,6 +510,7 @@
 		7FBC3E7D1F34AB8D005BD772 /* MediaResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaResource.swift; sourceTree = "<group>"; };
 		7FBC3E7F1F385135005BD772 /* MediaService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaService.swift; sourceTree = "<group>"; };
 		7FBC3E881F38B9D1005BD772 /* UpSyncMediaOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpSyncMediaOperation.swift; sourceTree = "<group>"; };
+		7FC81E861F9F377600564292 /* DateComponentsFormatter+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponentsFormatter+Convenience.swift"; sourceTree = "<group>"; };
 		7FC86A041F97A511003DC84D /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		7FDFF3681F18FF0B00F7A7EC /* NotificationTokenHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTokenHandler.swift; sourceTree = "<group>"; };
 		7FDFF36A1F1916B400F7A7EC /* Realm+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm+Utility.swift"; sourceTree = "<group>"; };
@@ -1546,6 +1548,7 @@
 				CB48814A1EF7B1EA00389C88 /* Data+Convenience.swift */,
 				8523E9BF1F1628B50000D20D /* Date+Extension.swift */,
 				CBB303411ECEE3E70011303A /* DateFormatter+Convenience.swift */,
+				7FC81E861F9F377600564292 /* DateComponentsFormatter+Convenience.swift */,
 				CB14675D1EF18F5F00A60E31 /* Dictionary+Convenience.swift */,
 				CC37831D1F5ED306007A16A3 /* EnumCollection+Hashable.swift */,
 				CCC0C4BD1E82730E002A8362 /* Extensions.swift */,
@@ -2706,6 +2709,7 @@
 				7FDFF36B1F1916B400F7A7EC /* Realm+Utility.swift in Sources */,
 				CBC1DC221F0FB36400F6D056 /* QuestionGroup.swift in Sources */,
 				D52DAF9B1EC1E87D00C63156 /* ActivityChart.swift in Sources */,
+				7FC81E871F9F377600564292 /* DateComponentsFormatter+Convenience.swift in Sources */,
 				CCE373161E8D330100B79352 /* LibraryViewModel.swift in Sources */,
 				CB38DBDF1EF52D5C000E0F92 /* LearnStrategyListLayout.swift in Sources */,
 				CBC1DC191F0F7E0200F6D056 /* SettingFormat.swift in Sources */,

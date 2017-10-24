@@ -22,6 +22,7 @@ final class SettingsMenuViewModel {
     private let settingTitles = [R.string.localized.sidebarSettingsMenuGeneralButton(),
                                  R.string.localized.sidebarSettingsMenuNotificationsButton(),
                                  R.string.localized.sidebarSettingsMenuSecurityButton()]
+    private let timer: QOTUsageTimer
 
     var tileCount: Int {
         return tiles.count
@@ -56,6 +57,7 @@ final class SettingsMenuViewModel {
             return nil
         }
 
+        self.timer = QOTUsageTimer.sharedInstance
         self.user = user
     }
 }
@@ -66,33 +68,23 @@ private extension SettingsMenuViewModel {
 
     func userTiles(user: User) -> [SettingsMenuViewModel.Tile] {
         return [
-            SettingsMenuViewModel.Tile(title: daysBetweenDates(startDate: user.memberSince), subtitle: "MEMBER SINCE"),
-            SettingsMenuViewModel.Tile(title: usageTimeString(), subtitle: "QOT USAGE")
+            SettingsMenuViewModel.Tile(title: daysBetweenDates(startDate: user.memberSince), subtitle: R.string.localized.sidebarUserTitlesMemberSince()),
+            SettingsMenuViewModel.Tile(title: usageTimeString(), subtitle: R.string.localized.sidebarUserTitlesMemberQOTUsage())
         ]
     }
 
     private func daysBetweenDates(startDate: Date) -> String {
-        let components = Calendar.sharedUTC.dateComponents([Calendar.Component.day], from: startDate, to: Date())
-
-        guard let days = components.day else {
-            return "0 DAYS"
-        }
-
-        if days == 1 {
-            return String(format: "%d DAY", days)
-        }
-
-        return String(format: "%d DAYS", days)
+        return DateComponentsFormatter.timeIntervalToString(-startDate.timeIntervalSinceNow, isShort: true)?.replacingOccurrences(of: ", ", with: "\n").uppercased() ?? R.string.localized.qotUsageTimerDefault()
     }
 
     private func usageTimeString() -> String {
-        let remoteUsageTime = Int(user.totalUsageTime)
-        let localUsageTime = Int(QOTUsageTimer.sharedInstance.totalSeconds)
+        let remoteUsageTime = Double(user.totalUsageTime)
+        let localUsageTime = timer.totalSeconds
 
         if remoteUsageTime > localUsageTime {
             UserDefault.qotUsage.setDoubleValue(value: Double(remoteUsageTime))
         }
 
-        return QOTUsageTimer.sharedInstance.totalTimeString(totalSeconds: max(remoteUsageTime, localUsageTime))
+        return timer.totalTimeString(max(remoteUsageTime, localUsageTime))
     }
 }

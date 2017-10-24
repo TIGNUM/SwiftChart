@@ -23,9 +23,12 @@ class LearnPDFCell: UITableViewCell, Dequeueable {
         title.textColor = .black
         title.lineBreakMode = .byTruncatingTail
 
-        let startDate = Date().addingTimeInterval(TimeInterval(timeToReadSeconds))
-        let timeToReadText = Date().timeToDateAsString(startDate) + " \(R.string.localized.learnContentItemToRead())"
-        timeToRead.setAttrText(text: timeToReadText.uppercased(), font: Font.H7Tag, characterSpacing: 2)
+        let date = Date().addingTimeInterval(TimeInterval(timeToReadSeconds))
+        var timeToReadText = ""
+        if let timeString = DateComponentsFormatter.timeIntervalToString(date.timeIntervalSinceNow, isShort: true) {
+            timeToReadText = "\(timeString)  \(R.string.localized.learnContentItemToRead())".uppercased()
+        }
+        timeToRead.setAttrText(text: timeToReadText, font: Font.H7Tag, characterSpacing: 2)
         timeToRead.textColor = .black30
     }
 }

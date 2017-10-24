@@ -26,7 +26,6 @@ class MyToBeVisionViewController: UIViewController {
     @IBOutlet weak var headlineTextView: PlaceholderTextView!
     @IBOutlet weak var headlineTextViewHightConstrant: NSLayoutConstraint!
     @IBOutlet weak var messageTextView: PlaceholderTextView!
-    @IBOutlet weak var messageTextViewBottomConstrant: NSLayoutConstraint!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var imageViewOverlay: UIView!
@@ -78,8 +77,12 @@ class MyToBeVisionViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        // flush height constraint change
-        textViewDidChange(headlineTextView)
+        
+        textViewDidChange(headlineTextView) // flush height constraint change
+        
+        if messageTextView.contentInset.bottom == 0 {
+            messageTextView.contentInset.bottom = imageViewOverlay.bounds.height
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -303,24 +306,17 @@ private extension MyToBeVisionViewController {
 private extension MyToBeVisionViewController {
     
     @objc func keyboardWillShow(_ notification: NSNotification) {
-        guard self.messageTextViewBottomConstrant.constant == 110,
-            let userInfo = notification.userInfo, let rect = userInfo[UIKeyboardFrameBeginUserInfoKey] as? CGRect else {
-            return
+        guard
+            let userInfo = notification.userInfo,
+            let rect = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect else {
+                return
         }
-
-        UIView.animate(withDuration: 0.3) { [unowned self] in
-            let padding = self.messageTextView.frame.origin.y + self.messageTextView.frame.height - (rect.origin.y - rect.height)
-
-            self.messageTextViewBottomConstrant.constant = 110 + (padding > 0 ? padding : 0)
-            self.view.layoutIfNeeded()
-        }
+        messageTextView.contentInset.bottom = rect.height
     }
     
     @objc func keyboardWillHide(_ notification: NSNotification) {
-        UIView.animate(withDuration: 0.3) { [unowned self] in
-            self.messageTextViewBottomConstrant.constant = 110
-            self.view.layoutIfNeeded()
-        }
+        messageTextView.contentInset.bottom = imageViewOverlay.bounds.height
+        messageTextView.contentOffset = .zero
     }
 }
 

@@ -159,8 +159,12 @@ extension MyPrepViewController: UITableViewDelegate, UITableViewDataSource {
         let item = viewModel.item(at: indexPath.row)
         let cell: MyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
         let count: String = String(format: "%02d/%02d", item.finishedPreparationCount, item.totalPreparationCount)
-        let timeToEvent = item.startDate == nil ? "" : Date().timeToDateAsString(item.startDate ?? Date())
-        let footer = timeToEvent.isEmpty ? "" : R.string.localized.prepareMyPrepTimeToEvent(timeToEvent)
+        
+        var footer = ""
+        if let startDate = item.startDate, let timeToEvent = DateComponentsFormatter.timeIntervalToString(startDate.timeIntervalSinceNow, isShort: true) {
+            footer = R.string.localized.prepareMyPrepTimeToEvent(timeToEvent)
+        }
+        
         cell.setup(with: item.header, text: item.text, footer: footer, count: count)
 
         return cell

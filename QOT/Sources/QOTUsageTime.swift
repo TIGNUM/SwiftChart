@@ -32,18 +32,8 @@ final class QOTUsageTimer {
         return TimeInterval(oldValue) + delta
     }
 
-    func totalTimeString(totalSeconds: Int) -> String {
-        let calendar = Calendar.sharedUTC        
-        let formatter = DateComponentsFormatter()
-        formatter.calendar = calendar
-        formatter.unitsStyle = .full
-        formatter.allowedUnits = [.year, .month, .day, .hour, .minute]
-        formatter.collapsesLargestUnit = true
-        let commaSeperatedString = formatter.string(from: TimeInterval(totalSeconds))?.uppercased() ?? "1 MINUTE"
-        let trimmedString = commaSeperatedString.replacingOccurrences(of: ", ", with: ",")
-        let stringArray = trimmedString.split(separator: ",")
-
-        return stringArray.joined(separator: "\n")
+    func totalTimeString(_ seconds: TimeInterval) -> String {
+        return DateComponentsFormatter.timeIntervalToString(seconds)?.replacingOccurrences(of: ", ", with: "\n").uppercased() ?? R.string.localized.qotUsageTimerDefault()
     }
 
     private var started: Date {

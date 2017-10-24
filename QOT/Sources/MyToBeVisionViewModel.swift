@@ -36,18 +36,10 @@ final class MyToBeVisionViewModel {
         guard let date = item?.date else {
             return nil
         }
-        let now = Date()
-        let formatter = DateComponentsFormatter()
-        formatter.unitsStyle = .full
-        let calendar = NSCalendar.current
-        var components = calendar.dateComponents([.year, .month, .weekOfMonth, .day, .hour, .minute, .second], from: date, to: now)
-        if now.timeIntervalSince(date) < 1 { // this avoids returning "UPDATED 0 SECONDS AGO" etc
-            components.second = 1
-        }
-        guard let dateText = formatter.string(from: components) else {
+        guard let text = DateComponentsFormatter.timeIntervalToString(-date.timeIntervalSinceNow, isShort: true) else {
             return nil
         }
-        return R.string.localized.meSectorMyWhyVisionWriteDate(dateText).uppercased()
+        return R.string.localized.meSectorMyWhyVisionWriteDate(text).uppercased()
     }
 
     init(services: Services) {
