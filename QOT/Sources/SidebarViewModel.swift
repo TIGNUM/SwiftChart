@@ -17,6 +17,7 @@ final class SidebarViewModel {
         case settings
         case sensor
         case placeholder
+        case benefits
         case about
         case privacy
         case benefits
@@ -24,10 +25,10 @@ final class SidebarViewModel {
 
         static var allValues: [SidebbarItem] {
             return [.library,
-                    .benefits,
                     .settings,
                     .sensor,
                     .placeholder,
+                    .benefits,
                     .about,
                     .privacy,
                     .logout]
