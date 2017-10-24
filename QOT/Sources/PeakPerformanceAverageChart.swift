@@ -22,7 +22,7 @@ final class PeakPerformanceAverageChart: UIView {
         self.statistics = statistics
         self.labelContentView = labelContentView
 
-        super.init(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
+        super.init(frame: frame)
 
         drawCharts()
     }
@@ -39,7 +39,7 @@ private extension PeakPerformanceAverageChart {
     func drawCharts() {
         let lineWidth = CGFloat(10)
         let arcCenter = CGPoint(x: frame.width * 0.5, y: frame.height)
-        let radius = CGFloat(frame.height * 0.8)
+        let radius = CGFloat(frame.width * 0.5)
         let strokeColor = UIColor.white20
         let startAngle = CGFloat(-180)
         let endAngle = CGFloat(180)
@@ -48,7 +48,10 @@ private extension PeakPerformanceAverageChart {
         let outerRadius = radius - (lineWidth - strokeWidth) * 0.5
         let discRadius = radius * 0.1
         let userAverage = statistics.userAverage < statistics.maximum ? statistics.userAverageValue : CGFloat(1)
+        let start = CGPoint(x: 0, y: frame.height)
+        let end = CGPoint(x: frame.width, y: frame.height)
 
+        drawSolidLine(from: start, to: end, lineWidth: 0.5, strokeColor: .white20)
         drawAverageLine(center: arcCenter, outerRadius: outerRadius, angle: (endAngle * userAverage + startAngle).degreesToRadians, strokeColor: UIColor.white8)
         drawDashedCircle(arcCenter: arcCenter, radius: innerRadius, lineWidth: strokeWidth, startAngle: startAngle, endAngle: endAngle, strokeColor: strokeColor)
         drawSolidCircle(arcCenter: arcCenter, radius: discRadius, lineWidth: discRadius, startAngle: startAngle, endAngle: endAngle, strokeColor: .brownishGrey)

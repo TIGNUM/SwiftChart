@@ -12,16 +12,17 @@ final class SleepChart: UIView {
 
     // MARK: - Properties
 
-    fileprivate var arrayOfLabels = [UILabel]()
-    fileprivate var statistics: Statistics
-    fileprivate let padding: CGFloat = 8
+    private var arrayOfLabels = [UILabel]()
+    private var statistics: Statistics
+    private let padding: CGFloat = 8
+    private let yPosition: CGFloat = 40
 
     // MARK: - Init
 
     init(frame: CGRect, statistics: Statistics) {
         self.statistics = statistics        
 
-        super.init(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
+        super.init(frame: frame)
         
         drawCharts()
     }
@@ -42,63 +43,56 @@ private extension SleepChart {
         drawShape()
     }
 
-    var sleepChartYPos: CGFloat {
-        return frame.height / 5
-    }
-
     /// FIXME: REFACTORME This func is actually used to parts from the backgrounds and the userDataPoints.
     /// - isDataPoint will tell us what to draw.
     ///
     /// FIX: That function have to breake down and put a part. The logic should be divided.
     /// There also extensions for drawing lines in the extension file, we should use them.
-    func lineBounds(rotationOffset: CGFloat = 0, isDataPoint: Bool) {
-        precondition(statistics.dataPoints.isEmpty == false, "No Data available")
-
-        let tempWidth = frame.width - frame.width / 3
-        let yPos = sleepChartYPos
-        let rect = CGRect(x: tempWidth / 4, y: yPos, width: tempWidth, height: frame.height)
-        let theta: CGFloat = CGFloat(2.0 * CGFloat.pi) / 5
+    func lineBounds(isDataPoint: Bool) {
+        guard statistics.dataPoints.isEmpty == false else { return }
         let width = min(frame.width, frame.height)
-        let startPoint = CGPoint(x: rect.origin.x + width * 0.5, y: rect.origin.y + width * 0.5)
-        var angle = CGFloat(rotationOffset)
+        let startPoint = CGPoint(x: center.x, y: center.y + yPosition)
+        let theta = 72
+        var angle = 198
 
         for (index, dataPoint) in statistics.dataPointObjects.enumerated() {
-            angle += theta
             let length: CGFloat
 
             if isDataPoint == true {
                 length = (width * 0.5 ) * dataPoint.value
             } else {
                 length = (width * 0.5 )
-                let corner = CGPoint(x: startPoint.x + length * cos(angle), y: startPoint.y + length * sin(angle))
+                let offset = lineLength(length: length, degress: angle)
+                let corner = CGPoint(x: startPoint.x + offset.x, y: startPoint.y + offset.y)
                 let end = CGPoint(x: corner.x, y: corner.y)
                 let frame = CGRect(x: end.x, y: end.y, width: 21, height: 21)
                 frameForLabels(frame: frame, center: startPoint, index: index)
             }
 
-            let corner = CGPoint(x: startPoint.x + length * cos(angle), y: startPoint.y + length * sin(angle))
+            let offset = lineLength(length: length, degress: angle)
+            let corner = CGPoint(x: startPoint.x + offset.x, y: startPoint.y + offset.y)
             let endPoint = CGPoint(x: corner.x, y: corner.y)
             drawLines(startPoint: startPoint, endPoint: endPoint, color: dataPoint.color, isDataPoint: isDataPoint)
             layoutIfNeeded()
+            angle += theta
         }
+    }
+
+    func lineLength(length: CGFloat, degress: Int) -> (x: CGFloat, y: CGFloat) {
+        return (x: length * cos(CGFloat(degress).degreesToRadians), y: length * sin(CGFloat(degress).degreesToRadians))
     }
 
     func frameForLabels(frame: CGRect, center: CGPoint, index: Int) {
         let space: CGFloat = 4
         let label = arrayOfLabels[index]
 
-        if frame.minX >= center.x {
-            if frame.minY >= center.y {
-                label.center = CGPoint(x: frame.minX, y: frame.minY + space)
-            } else {
-                label.center = CGPoint(x: frame.minX + space, y: frame.minY - frame.height)
-            }
-        } else {
-            if frame.minY >= center.y {
-                label.center = CGPoint(x: frame.minX - frame.width - space, y: frame.minY)
-            } else {
-                label.center = CGPoint(x: frame.minX - frame.width - space, y: frame.minY - frame.height / 2)
-            }
+        switch index {
+        case 0: label.center = CGPoint(x: frame.minX - frame.width - space, y: frame.minY - (frame.height * 0.5))
+        case 1: label.center = CGPoint(x: center.x - padding, y: frame.minY - (frame.height * 0.5) - padding)
+        case 2: label.center = CGPoint(x: frame.maxX - padding, y: frame.minY - (frame.height * 0.5))
+        case 3: label.center = CGPoint(x: frame.maxX - frame.width + space, y: frame.maxY - padding)
+        case 4: label.center = CGPoint(x: frame.minX - frame.width - padding, y: frame.maxY - padding)
+        default: break
         }
 
         label.sizeToFit()
@@ -130,13 +124,13 @@ private extension SleepChart {
     func drawShape() {
         let outerPolygonShape = shape(borderColor: .white20)
         outerPolygonShape.path = UIBezierPath.pentagonPath(forRect: frame).cgPath
-        outerPolygonShape.transform = CATransform3DMakeTranslation(0, sleepChartYPos, 0)
+        outerPolygonShape.transform = CATransform3DMakeTranslation(0, yPosition, 0)
         let innerPolygonShape = shape(borderColor: .white20)
         let scaleFactor = CGFloat(statistics.teamAverage)
         let innerFrame = frame.applying(CGAffineTransform(scaleX: scaleFactor, y: scaleFactor))
         innerPolygonShape.path = UIBezierPath.pentagonPath(forRect: innerFrame).cgPath
         innerPolygonShape.transform = CATransform3DMakeTranslation(frame.midX - innerFrame.midX,
-                                                                   frame.midY - innerFrame.midY + sleepChartYPos,
+                                                                   frame.midY - innerFrame.midY + yPosition,
                                                                    0)
         layer.addSublayer(innerPolygonShape)
         layer.addSublayer(outerPolygonShape)
@@ -178,6 +172,6 @@ private extension SleepChart {
 private extension UIBezierPath {
     
     class func pentagonPath(forRect rect: CGRect) -> UIBezierPath {
-        return UIBezierPath(polygonIn: rect, sides: 5, lineWidth: 0, cornerRadius: 0, rotateByDegs: 90 / 5)
+        return UIBezierPath(polygonIn: rect, sides: 5, lineWidth: 0, cornerRadius: 0)
     }
 }

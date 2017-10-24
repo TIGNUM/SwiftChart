@@ -38,7 +38,7 @@ private extension MeetingsLengthChart {
 
     func drawCharts() {
         let arcCenter = CGPoint(x: frame.width * 0.5, y: frame.height * 0.5)
-        let radius = CGFloat(frame.height * 0.4)// * 0.75
+        let radius = CGFloat(frame.height * 0.4)
         let strokeColor = UIColor.white20
         let innerRadius = radius * 0.6
         let outerRadius = CGFloat(frame.height * 0.4)

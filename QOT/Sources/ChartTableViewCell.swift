@@ -14,12 +14,11 @@ final class ChartTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Properties
 
-    static private let chartCellSize = CGSize(width: 255, height: 367)
-    fileprivate var viewModel: ChartViewModel?
-    fileprivate lazy var currentSection = 0
-    fileprivate var selectedButtonTag = 0
+    private var viewModel: ChartViewModel?
+    private lazy var currentSection = 0
+    private var selectedButtonTag = 0
 
-    fileprivate lazy var collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
 
@@ -41,9 +40,15 @@ final class ChartTableViewCell: UITableViewCell, Dequeueable {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        collectionView.setContentOffset(.zero, animated: false)
+    }
+
     func setup(viewModel: ChartViewModel, currentSection: Int) {
         self.viewModel = viewModel
-        self.currentSection = currentSection
+        self.currentSection = currentSection        
         contentView.backgroundColor = .clear
         backgroundColor = .clear
         self.collectionView.reloadData()
@@ -59,6 +64,13 @@ private extension ChartTableViewCell {
         collectionView.topAnchor == topAnchor
         collectionView.bottomAnchor == bottomAnchor
         collectionView.horizontalAnchors == horizontalAnchors
+    }
+
+    func chartCellSize() -> CGSize {
+        let width = frame.width - ChartViewModel.chartViewPadding
+        let height = width * ChartViewModel.chartRatio
+
+        return CGSize(width: width, height: height)
     }
 }
 
@@ -91,14 +103,14 @@ extension ChartTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionVi
         return chartCell
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return ChartTableViewCell.chartCellSize
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {        
+        return chartCellSize()
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let cellWidth = ChartTableViewCell.chartCellSize.width
         let left: CGFloat = 15
-        let right = collectionView.bounds.width - left - cellWidth
+        let right = collectionView.bounds.width - left - chartCellSize().width
+
         return UIEdgeInsets(top: 0, left: left, bottom: 10, right: right)
     }
 }

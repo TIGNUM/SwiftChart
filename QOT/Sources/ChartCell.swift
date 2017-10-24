@@ -60,6 +60,9 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
     weak var delegate: ChartCellDelegate?
     fileprivate var selectedButtonTag = 0
     fileprivate var chartTypes = [ChartType]()
+    private var statistics: Statistics?
+    private var charts: [Statistics] = []
+    private var headerTitle: String = ""
 
     // MARK: - Init
 
@@ -82,36 +85,13 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
         containerView.layer.cornerRadius = 5
     }
 
-    fileprivate lazy var chartViews: [ChartType: UIView?] = {
-        return [.peakPerformanceUpcomingWeek: nil,
-                .peakPerformanceUpcomingNextWeek: nil,
-                .peakPerformanceAverageWeek: nil,
-                .peakPerformanceAverageMonth: nil,
-                .intensityLoadWeek: nil,
-                .intensityLoadMonth: nil,
-                .intensityRecoveryWeek: nil,
-                .intensityRecoveryMonth: nil,
-                .meetingAverageDay: nil,
-                .meetingAverageWeek: nil,
-                .meetingTimeBetween: nil,
-                .meetingLength: nil,
-                .travelTripsAverageWeeks: nil,
-                .travelTripsAverageYear: nil,
-                .travelTripsTimeZoneChangedWeeks: nil,
-                .travelTripsTimeZoneChangedYear: nil,
-                .travelTripsNextFourWeeks: nil,
-                .travelTripsMaxTimeZone: nil,
-                .sleepQuantity: nil,
-                .sleepQuality: nil,
-                .activitySittingMovementRatio: nil,
-                .activityLevel: nil]
-    }()
-
     // MARK: - Public
 
     func setup(headerTitle: String, chartTypes: [ChartType], statistics: Statistics, charts: [Statistics]) {
         self.chartTypes = chartTypes
-        setupView(headerTitle: headerTitle, statistics: statistics, charts: charts)
+        self.statistics = statistics
+        self.charts = charts
+        self.headerTitle = headerTitle
     }
 
     func animateHeader(withCellRect cellRect: CGRect, inParentRect parentRect: CGRect) {
@@ -141,6 +121,16 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
         chartContentView.removeSubViews()
         chartSegmentedContentView.removeSubViews()
     }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        labelContentView.removeSubViews()
+        chartContentView.removeSubViews()
+        chartSegmentedContentView.removeSubViews()
+        guard let statistics = statistics else { return }
+        setupView(headerTitle: headerTitle, statistics: statistics, charts: charts)
+    }
 }
 
 // MARK: - Setup View
@@ -156,9 +146,7 @@ private extension ChartCell {
     private func setupSegmentedView(_ cardType: ChartType) {
         chartSegmentedView?.isHidden = cardType.segmentedView == false
         chartContentView.isHidden = chartSegmentedView?.isHidden == false
-
         guard chartTypes.count == 2 else { return }
-
         updateButtons()
     }
 
@@ -183,22 +171,19 @@ private extension ChartCell {
     func addCharts(statistics: Statistics, allCards: [Statistics]) {
         let stats = statistics.chartType.selectedChart(charts: allCards)
         setupChartViewLabels(stats)
-
-        if let charts = chartViews[stats.chartType] as? UIView {
-            if stats.chartType.segmentedView == true {
-                chartSegmentedContentView.addSubview(charts)
-            } else {
-                chartContentView.addSubview(charts)
-            }
+        let charts = setupChartView(statistics: stats)
+        if stats.chartType.segmentedView == true {
+            chartSegmentedContentView.addSubview(charts)
         } else {
-            chartViews[stats.chartType] = setupChartView(statistics: stats)
-            addCharts(statistics: stats, allCards: allCards)
+            chartContentView.addSubview(charts)
         }
     }
 
     private func setupChartView(statistics: Statistics) -> UIView {
-        let segmentedFrame = chartSegmentedContentView.frame
+        let segmentedFrame = CGRect(x: 0, y: 0, width: chartSegmentedContentView.frame.width, height: chartSegmentedContentView.frame.height)
+        let segmentedBiggerFrame = CGRect(x: 0, y: 0, width: segmentedFrame.width, height: segmentedFrame.height + labelContentView.frame.height)
         let frame = chartContentView.frame
+        let biggerFrame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height + labelContentView.frame.height)
 
         switch statistics.chartType {
         case .activityLevel,
@@ -211,11 +196,11 @@ private extension ChartCell {
             return IntensityChart(frame: segmentedFrame, statistics: statistics, labelContentView: labelContentView)
         case .meetingAverageDay,
              .meetingAverageWeek:
-            return MeetingsAverageChart(frame: segmentedFrame, statistics: statistics, labelContentView: labelContentView)
+            return MeetingsAverageChart(frame: segmentedBiggerFrame, statistics: statistics, labelContentView: labelContentView)
         case .meetingLength:
-            return MeetingsLengthChart(frame: frame, statistics: statistics, labelContentView: labelContentView)
+            return MeetingsLengthChart(frame: biggerFrame, statistics: statistics, labelContentView: labelContentView)
         case .meetingTimeBetween:
-            return MeetingsTimeBetweenChart(frame: frame, statistics: statistics, labelContentView: labelContentView)
+            return MeetingsTimeBetweenChart(frame: biggerFrame, statistics: statistics, labelContentView: labelContentView)
         case .sleepQuality,
              .sleepQuantity:
             return SleepChart(frame: frame, statistics: statistics)
@@ -233,7 +218,7 @@ private extension ChartCell {
             let travelTripFrame = statistics.chartType == .travelTripsNextFourWeeks ? frame : segmentedFrame
             return TravelTripsChart(frame: travelTripFrame, statistics: statistics, labelContentView: labelContentView)
         case .travelTripsMaxTimeZone:
-            return TravelMaxTimeZoneChart(frame: frame, statistics: statistics, labelContentView: labelContentView)
+            return TravelMaxTimeZoneChart(frame: biggerFrame, statistics: statistics, labelContentView: labelContentView)
         }
     }
 }
@@ -270,7 +255,7 @@ private extension ChartCell {
 
     func setupChartViewLabels(_ statistics: Statistics) {
         let isSleepChart = statistics.chartType != .sleepQuantity && statistics.chartType != .sleepQuality
-        seperatorBottomView.isHidden = isSleepChart == false
+        seperatorBottomView.isHidden = statistics.chartType.bottomView == false
 
         guard statistics.chartType.labels.isEmpty == false else { return }
         guard isSleepChart else { return }

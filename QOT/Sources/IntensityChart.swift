@@ -22,7 +22,7 @@ final class IntensityChart: UIView {
         self.statistics = statistics
         self.labelContentView = labelContentView
 
-        super.init(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
+        super.init(frame: frame)
 
         setupView()
         drawCharts()
@@ -47,7 +47,7 @@ private extension IntensityChart {
             let xPos = firstSection == true ? xPosition(index) : (columnWidth * CGFloat(index) * 2)
             let yPos = yPosition(dataPoint.value)
             let height = dataPoint.value > 0 ? yPos - bottomPosition : 0
-            let columnFrame = CGRect(x: xPos, y: frame.height, width: columnWidth, height: height)
+            let columnFrame = CGRect(x: xPos, y: frame.height, width: columnWidth, height: height).integral
             let column = UIView(frame: columnFrame)
             column.backgroundColor = .white8
             column.layer.cornerRadius = firstSection == true ? 5 : 0

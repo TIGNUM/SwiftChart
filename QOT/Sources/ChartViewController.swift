@@ -18,7 +18,7 @@ final class ChartViewController: UIViewController {
 
     // MARK: - Properties
 
-    fileprivate let viewModel: ChartViewModel
+    private let viewModel: ChartViewModel
     weak var delegate: ChartViewControllerDelegate?
 
     fileprivate lazy var tableView: UITableView = {
@@ -80,7 +80,7 @@ extension ChartViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 380
+        return (view.frame.width - ChartViewModel.chartViewPadding) * ChartViewModel.chartRatio
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -98,7 +98,7 @@ extension ChartViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {        
-        let cell: ChartTableViewCell = tableView.dequeueCell(for: indexPath)        
+        let cell: ChartTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.setup(viewModel: viewModel, currentSection: indexPath.section)
 
         return cell
