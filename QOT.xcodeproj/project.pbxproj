@@ -1627,8 +1627,8 @@
 			isa = PBXGroup;
 			children = (
 				CC944DB71EE8096100B8423C /* ChartCell.swift */,
-				CC37831B1F5EA91F007A16A3 /* ChartType.swift */,
 				CC944DB51EE804CD00B8423C /* ChartTableViewCell.swift */,
+				CC37831B1F5EA91F007A16A3 /* ChartType.swift */,
 				CC143A521EC49641001FB76E /* ChartViewController.swift */,
 				CC143A4E1EC47810001FB76E /* ChartViewModel.swift */,
 				CCAE22CF1F6BD7F80017C9EF /* ChartCell.xib */,

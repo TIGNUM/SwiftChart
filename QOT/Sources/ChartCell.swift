@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Anchorage
 
 var selectedChartTypes: [ChartType: Bool] = [.peakPerformanceUpcomingWeek: true,
                                              .peakPerformanceUpcomingNextWeek: false,
@@ -32,34 +33,38 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
 
     // MARK: - Properties
 
-    @IBOutlet fileprivate weak var userAverageValueLabel: UILabel!
-    @IBOutlet fileprivate weak var userAverageLabel: UILabel!
-    @IBOutlet fileprivate weak var teamAverageValueLabel: UILabel!
-    @IBOutlet fileprivate weak var dataAverageValueLabel: UILabel!
-    @IBOutlet fileprivate weak var teamAverageLabel: UILabel!
-    @IBOutlet fileprivate weak var dataAverageLabel: UILabel!
-    @IBOutlet fileprivate weak var teamLabel: UILabel!
-    @IBOutlet fileprivate weak var dataLabel: UILabel!
-    @IBOutlet fileprivate weak var containerView: UIView!
-    @IBOutlet fileprivate weak var topContentView: UIView!
-    @IBOutlet fileprivate weak var chartSegmentedView: UIView!
-    @IBOutlet fileprivate weak var chartSegmentedContentView: UIView!
-    @IBOutlet fileprivate weak var chartContentView: UIView!
-    @IBOutlet fileprivate weak var bottomContentView: UIView!
-    @IBOutlet fileprivate weak var labelContentView: UIView!
-    @IBOutlet fileprivate weak var segmentedView: UIView!
-    @IBOutlet fileprivate weak var seperatorTopView: UIView!
-    @IBOutlet fileprivate weak var seperatorMiddleView: UIView!
-    @IBOutlet fileprivate weak var seperatorBottomView: UIView!
-    @IBOutlet fileprivate weak var leftSegmentedButton: UIButton!
-    @IBOutlet fileprivate weak var rightSegmentedButton: UIButton!
-    @IBOutlet fileprivate weak var bottomLabel: UILabel!
+    @IBOutlet private weak var userAverageValueLabel: UILabel!
+    @IBOutlet private weak var userAverageLabel: UILabel!
+    @IBOutlet private weak var teamAverageValueLabel: UILabel!
+    @IBOutlet private weak var dataAverageValueLabel: UILabel!
+    @IBOutlet private weak var teamAverageLabel: UILabel!
+    @IBOutlet private weak var dataAverageLabel: UILabel!
+    @IBOutlet private weak var teamLabel: UILabel!
+    @IBOutlet private weak var dataLabel: UILabel!
+    @IBOutlet private weak var containerView: UIView!
+    @IBOutlet private weak var topContentView: UIView!
+    @IBOutlet private weak var chartSegmentedView: UIView!
+    @IBOutlet private weak var chartSegmentedContentView: UIView!
+    @IBOutlet private weak var chartContentView: UIView!
+    @IBOutlet private weak var bottomContentView: UIView!
+    @IBOutlet private weak var labelContentView: UIView!
+    @IBOutlet private weak var segmentedView: UIView!
+    @IBOutlet private weak var seperatorTopView: UIView!
+    @IBOutlet private weak var seperatorMiddleView: UIView!
+    @IBOutlet private weak var seperatorBottomView: UIView!
+    @IBOutlet private weak var leftSegmentedButton: UIButton!
+    @IBOutlet private weak var rightSegmentedButton: UIButton!
+    @IBOutlet private weak var bottomLabel: UILabel!
+    @IBOutlet private weak var infoView: UIVisualEffectView!
+    @IBOutlet private weak var infoViewTitleLabel: UILabel!
+    @IBOutlet private weak var infoViewTextLabel: UILabel!
+    @IBOutlet private weak var infoViewCloseButton: UIButton!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var headerLabelLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerLabelTrailingConstraint: NSLayoutConstraint!
     weak var delegate: ChartCellDelegate?
-    fileprivate var selectedButtonTag = 0
-    fileprivate var chartTypes = [ChartType]()
+    private var selectedButtonTag = 0
+    private var chartTypes = [ChartType]()
     private var statistics: Statistics?
     private var charts: [Statistics] = []
     private var headerTitle: String = ""
@@ -82,7 +87,12 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
         seperatorTopView.backgroundColor = .white8
         seperatorBottomView.backgroundColor = .white8
         seperatorMiddleView.backgroundColor = .white8
-        containerView.layer.cornerRadius = 5
+        containerView.layer.cornerRadius = 10
+        containerView.layer.masksToBounds = true
+        infoView.layer.cornerRadius = 10
+        infoView.layer.borderWidth = 1
+        infoView.layer.borderColor = UIColor.white30.cgColor
+        infoView.layer.masksToBounds = true
     }
 
     // MARK: - Public
@@ -92,6 +102,7 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
         self.statistics = statistics
         self.charts = charts
         self.headerTitle = headerTitle
+        infoView.alpha = 0
     }
 
     func animateHeader(withCellRect cellRect: CGRect, inParentRect parentRect: CGRect) {
@@ -120,6 +131,7 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
         labelContentView.removeSubViews()
         chartContentView.removeSubViews()
         chartSegmentedContentView.removeSubViews()
+        infoView.alpha = 0
     }
 
     override func layoutSubviews() {
@@ -141,6 +153,7 @@ private extension ChartCell {
         setupSegmentedView(statistics.chartType)
         setupLabels(headerTitle: headerTitle, statistics: statistics, charts: charts)
         addCharts(statistics: statistics, allCards: charts)
+        setupInfoView()
     }
 
     private func setupSegmentedView(_ cardType: ChartType) {
@@ -152,7 +165,7 @@ private extension ChartCell {
 
     private func setupLabels(headerTitle: String, statistics: Statistics, charts: [Statistics]) {
         let statistics = statistics.chartType.selectedChart(charts: charts)
-        setLabel(text: "QOT COACH", color: .white30, label: bottomLabel)
+        setLabel(text: "INFO", color: .white40, label: bottomLabel)
         setLabel(text: "TEAM", color: .azure, label: teamLabel)
         setLabel(text: "AVG.", color: .azure, label: teamAverageLabel)
         setLabel(text: "AVG.", color: .cherryRedTwo, label: dataAverageLabel)
@@ -227,8 +240,17 @@ private extension ChartCell {
 
 private extension ChartCell {
 
-    @IBAction func coachButtonPressed(sender: UIButton) {
-        print("coachButtonPressed")
+    @IBAction func infoButtonPressed(sender: UIButton) {
+        infoView.alpha = 0
+        UIView.animate(withDuration: 0.5) {
+            self.infoView.alpha = 1
+        }
+    }
+    
+    @IBAction func closeInfoView() {
+        UIView.animate(withDuration: 0.5) {
+            self.infoView.alpha = 0
+        }
     }
 
     @IBAction func segmentedPressed(sender: UIButton) {
@@ -238,7 +260,7 @@ private extension ChartCell {
         updateButtons()
         delegate?.doReload()
     }
-
+    
     func updateButtons() {
         let leftChartType = chartTypes[0]
         let rightChartType = chartTypes[1]
@@ -264,5 +286,17 @@ private extension ChartCell {
         let highlightColor = statistics.chartType.hightlightColor
         labelContentView.drawLabelsForColumns(labels: labels, textColor: .white20, highlightColor: highlightColor, font: Font.H7Title, center: true)
         layoutIfNeeded()
+    }
+}
+
+// MARK: - InfoView
+
+private extension ChartCell {
+
+    func setupInfoView() {
+        infoViewTitleLabel.setAttrText(text: statistics?.chartType.title ?? "Lorem Ipsum", font: Font.H5SecondaryHeadline, characterSpacing: 1, color: .white)
+        infoViewTextLabel.setAttrText(text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took", font: Font.DPText2, color: .white)
+        infoViewCloseButton.setAttributedTitle(Style.tag("CLOSE", .white30).attributedString(lineSpacing: 2), for: .normal)
+        infoViewCloseButton.setAttributedTitle(Style.tag("CLOSE", .white50).attributedString(lineSpacing: 2), for: .selected)
     }
 }
