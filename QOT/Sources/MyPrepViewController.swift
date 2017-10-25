@@ -158,8 +158,10 @@ extension MyPrepViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = viewModel.item(at: indexPath.row)
         let cell: MyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
-        let count: String = String(format: "%02d/%02d", item.finishedPreparationCount, item.totalPreparationCount)
-        
+        var count = ""
+        if item.totalPreparationCount > 0 {
+            count = String(format: "%02d/%02d", item.finishedPreparationCount, item.totalPreparationCount)
+        }
         var footer = ""
         if let startDate = item.startDate, let timeToEvent = DateComponentsFormatter.timeIntervalToString(startDate.timeIntervalSinceNow, isShort: true) {
             footer = R.string.localized.prepareMyPrepTimeToEvent(timeToEvent)
@@ -189,13 +191,9 @@ extension MyPrepViewController: UITableViewDelegate, UITableViewDataSource {
             try? self.viewModel.deleteItem(at: indexPath.row)
         }
     }
-}
 
-// MARK: - PageSwipe
-
-extension MyPrepViewController: PageSwipe {
-
-    func canSwipePageDirection(_ direction: PageDirection) -> Bool {
-        return direction == .backward
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return tableView.isEditing ? .delete : .none
     }
 }
+

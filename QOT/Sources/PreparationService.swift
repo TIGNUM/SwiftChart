@@ -59,17 +59,9 @@ final class PreparationService {
         }
         
         let preparation = Preparation(calendarEvent: calendarEvent, contentCollectionID: contentCollectionID, name: name, subtitle: subtitle)
-        let items = contentCollection.items.filter ({ (item: ContentItem) -> Bool in
-            switch item.contentItemValue {
-            case .prepareStep:
-                return true
-            default:
-                return false
-            }
-        })
-        items.forEach({ (item: ContentItem) in
+        contentCollection.items.forEach { (item: ContentItem) in
             preparation.checks.append(PreparationCheck(preparation: preparation, contentItem: item, covered: nil))
-        })
+        }
         try realm.write {
             realm.add(preparation)
         }

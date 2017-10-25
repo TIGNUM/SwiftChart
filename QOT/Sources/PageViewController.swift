@@ -31,11 +31,6 @@ protocol PageScrollView: class {
     func scrollView() -> UIScrollView
 }
 
-protocol PageSwipe: class {
-    
-    func canSwipePageDirection(_ direction: PageDirection) -> Bool
-}
-
 final class PageViewController: UIPageViewController {
 
     fileprivate(set) var data: [UIViewController]?
