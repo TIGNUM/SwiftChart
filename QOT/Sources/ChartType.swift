@@ -243,6 +243,34 @@ enum ChartType: String, EnumCollection {
         }
     }
 
+    // TODO: Replace return values when available.
+    var infoText: String {
+        switch self {
+        case .meetingAverageDay: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
+        case .meetingAverageWeek: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
+        case .meetingLength: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
+        case .meetingTimeBetween: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
+        case .travelTripsAverageWeeks: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
+        case .travelTripsAverageYear: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
+        case .travelTripsNextFourWeeks: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
+        case .travelTripsTimeZoneChangedYear: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
+        case .travelTripsTimeZoneChangedWeeks: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
+        case .travelTripsMaxTimeZone: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
+        case .peakPerformanceUpcomingWeek: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
+        case .peakPerformanceUpcomingNextWeek: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
+        case .peakPerformanceAverageWeek: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
+        case .peakPerformanceAverageMonth: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
+        case .sleepQuality: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
+        case .sleepQuantity: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
+        case .activitySittingMovementRatio: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
+        case .activityLevel: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
+        case .intensityLoadWeek: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
+        case .intensityLoadMonth: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
+        case .intensityRecoveryWeek: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
+        case .intensityRecoveryMonth: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
+        }
+    }
+
     var segmentedView: Bool {
         switch self {
         case .meetingAverageDay,

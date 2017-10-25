@@ -117,6 +117,7 @@
 "Me.Card.Title.Activity.Level" = "Activity level";
 "Me.Card.Title.Intensity.Load" = "Perceived Load";
 "Me.Card.Title.Intensity.Recovery" = "Perceived Recovery";
+"Me.Chart.Info.Text.Peak.Performance.Upcoming.This.Week" = "QOT® uses your calendar and daily input to determine how many peak performances you have coming up this week and next week as well as your average number of peak performances per week. This data will help you better prepare for your upcoming events and customize your strategies accordingly. The personal average helps bring self-awareness as to how many peak performances you typically have compared to your current load and your future ahead.";
 
 "Prepare.PrepareEvents.AddPreparation" = "ADD THIS PREPARATION TO";
 "Prepare.PrepareEvents.AddNewEvent" = "Add new event";

@@ -56,7 +56,6 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
     @IBOutlet private weak var rightSegmentedButton: UIButton!
     @IBOutlet private weak var bottomLabel: UILabel!
     @IBOutlet private weak var infoView: UIVisualEffectView!
-    @IBOutlet private weak var infoViewTitleLabel: UILabel!
     @IBOutlet private weak var infoViewTextLabel: UILabel!
     @IBOutlet private weak var infoViewCloseButton: UIButton!
     @IBOutlet weak var headerLabel: UILabel!
@@ -294,8 +293,8 @@ private extension ChartCell {
 private extension ChartCell {
 
     func setupInfoView() {
-        infoViewTitleLabel.setAttrText(text: statistics?.chartType.title ?? "Lorem Ipsum", font: Font.H5SecondaryHeadline, characterSpacing: 1, color: .white)
-        infoViewTextLabel.setAttrText(text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took", font: Font.DPText2, color: .white)
+        guard let infoText = statistics?.chartType.infoText else { return }
+        infoViewTextLabel.setAttrText(text: infoText, font: Font.PTextSmall, lineSpacing: 8, color: .white)
         infoViewCloseButton.setAttributedTitle(Style.tag("CLOSE", .white30).attributedString(lineSpacing: 2), for: .normal)
         infoViewCloseButton.setAttributedTitle(Style.tag("CLOSE", .white50).attributedString(lineSpacing: 2), for: .selected)
     }
