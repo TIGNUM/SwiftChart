@@ -180,7 +180,6 @@
 		CB58917B1F7B95B200D63C5E /* ChatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5891791F7B95B200D63C5E /* ChatViewCell.swift */; };
 		CB6D49541ECC87BF005BC637 /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6D49531ECC87BF005BC637 /* Requests.swift */; };
 		CB6D49561ECCA58D005BC637 /* AuthenticationTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6D49551ECCA58D005BC637 /* AuthenticationTokenParser.swift */; };
-		CB78D33D1F9F71460068A54A /* 100837.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CB78D3371F9F67700068A54A /* 100837.m4a */; };
 		CB7F046E1F8E0999001F4DE6 /* SyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F046D1F8E0999001F4DE6 /* SyncOperation.swift */; };
 		CB810E611EEFC0D70043E3E5 /* ErrorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB810E601EEFC0D70043E3E5 /* ErrorCell.swift */; };
 		CB810E641EF00DB70043E3E5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB810E631EF00DB70043E3E5 /* User.swift */; };
@@ -250,11 +249,13 @@
 		CBC1DC3B1F14D9FD00F6D056 /* UserSetting+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC3A1F14D9FD00F6D056 /* UserSetting+Convenience.swift */; };
 		CBC1DC3D1F14DA1200F6D056 /* UserSettingIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC3C1F14DA1200F6D056 /* UserSettingIntermediary.swift */; };
 		CBC1DC3F1F16067900F6D056 /* DownSyncIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC3E1F16067900F6D056 /* DownSyncIntermediary.swift */; };
-		CBC5A56B1F9F7D0E007B9A5B /* 100838.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CB78D33C1F9F67720068A54A /* 100838.m4a */; };
-		CBC5A56C1F9F7D11007B9A5B /* 100839.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CB78D3381F9F67700068A54A /* 100839.m4a */; };
-		CBC5A56D1F9F7D14007B9A5B /* 100840.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CB78D3391F9F67700068A54A /* 100840.m4a */; };
-		CBC5A56E1F9F7D17007B9A5B /* 100841.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CB78D33A1F9F67710068A54A /* 100841.m4a */; };
-		CBC5A56F1F9F7D1B007B9A5B /* 100842.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CB78D33B1F9F67710068A54A /* 100842.m4a */; };
+		CBC5A5711F9FA01D007B9A5B /* Animations.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBC5A5701F9FA01D007B9A5B /* Animations.xcassets */; };
+		CBC5A5781FA0806B007B9A5B /* 100837.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CBC5A5761FA07F11007B9A5B /* 100837.m4a */; };
+		CBC5A5791FA0806E007B9A5B /* 100838.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CBC5A5751FA07F11007B9A5B /* 100838.m4a */; };
+		CBC5A57A1FA08071007B9A5B /* 100839.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CBC5A5721FA07F10007B9A5B /* 100839.m4a */; };
+		CBC5A57B1FA08075007B9A5B /* 100840.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CBC5A5731FA07F10007B9A5B /* 100840.m4a */; };
+		CBC5A57C1FA08077007B9A5B /* 100841.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CBC5A5741FA07F11007B9A5B /* 100841.m4a */; };
+		CBC5A57D1FA0807B007B9A5B /* 100842.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CBC5A5771FA07F11007B9A5B /* 100842.m4a */; };
 		CBC5ACBF1F162A9C007E1E9C /* UserChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5ACBE1F162A9C007E1E9C /* UserChoice.swift */; };
 		CBC5ACC11F162AAE007E1E9C /* UserChoiceIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5ACC01F162AAE007E1E9C /* UserChoiceIntermediary.swift */; };
 		CBC5ACC61F17C58F007E1E9C /* UpdateRelationsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5ACC51F17C58F007E1E9C /* UpdateRelationsOperation.swift */; };
@@ -640,12 +641,6 @@
 		CB5891791F7B95B200D63C5E /* ChatViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewCell.swift; sourceTree = "<group>"; };
 		CB6D49531ECC87BF005BC637 /* Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
 		CB6D49551ECCA58D005BC637 /* AuthenticationTokenParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationTokenParser.swift; sourceTree = "<group>"; };
-		CB78D3371F9F67700068A54A /* 100837.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = 100837.m4a; sourceTree = "<group>"; };
-		CB78D3381F9F67700068A54A /* 100839.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = 100839.m4a; sourceTree = "<group>"; };
-		CB78D3391F9F67700068A54A /* 100840.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = 100840.m4a; sourceTree = "<group>"; };
-		CB78D33A1F9F67710068A54A /* 100841.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = 100841.m4a; sourceTree = "<group>"; };
-		CB78D33B1F9F67710068A54A /* 100842.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = 100842.m4a; sourceTree = "<group>"; };
-		CB78D33C1F9F67720068A54A /* 100838.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = 100838.m4a; sourceTree = "<group>"; };
 		CB7F046D1F8E0999001F4DE6 /* SyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncOperation.swift; sourceTree = "<group>"; };
 		CB810E601EEFC0D70043E3E5 /* ErrorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorCell.swift; sourceTree = "<group>"; };
 		CB810E631EF00DB70043E3E5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -719,6 +714,13 @@
 		CBC1DC3A1F14D9FD00F6D056 /* UserSetting+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserSetting+Convenience.swift"; sourceTree = "<group>"; };
 		CBC1DC3C1F14DA1200F6D056 /* UserSettingIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingIntermediary.swift; sourceTree = "<group>"; };
 		CBC1DC3E1F16067900F6D056 /* DownSyncIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownSyncIntermediary.swift; sourceTree = "<group>"; };
+		CBC5A5701F9FA01D007B9A5B /* Animations.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Animations.xcassets; sourceTree = "<group>"; };
+		CBC5A5721FA07F10007B9A5B /* 100839.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = 100839.m4a; path = Media/100839.m4a; sourceTree = "<group>"; };
+		CBC5A5731FA07F10007B9A5B /* 100840.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = 100840.m4a; path = Media/100840.m4a; sourceTree = "<group>"; };
+		CBC5A5741FA07F11007B9A5B /* 100841.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = 100841.m4a; path = Media/100841.m4a; sourceTree = "<group>"; };
+		CBC5A5751FA07F11007B9A5B /* 100838.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = 100838.m4a; path = Media/100838.m4a; sourceTree = "<group>"; };
+		CBC5A5761FA07F11007B9A5B /* 100837.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = 100837.m4a; path = Media/100837.m4a; sourceTree = "<group>"; };
+		CBC5A5771FA07F11007B9A5B /* 100842.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = 100842.m4a; path = Media/100842.m4a; sourceTree = "<group>"; };
 		CBC5ACBE1F162A9C007E1E9C /* UserChoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserChoice.swift; sourceTree = "<group>"; };
 		CBC5ACC01F162AAE007E1E9C /* UserChoiceIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserChoiceIntermediary.swift; sourceTree = "<group>"; };
 		CBC5ACC51F17C58F007E1E9C /* UpdateRelationsOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateRelationsOperation.swift; sourceTree = "<group>"; };
@@ -1176,12 +1178,12 @@
 		CB78D3361F9F674A0068A54A /* Bundled Media */ = {
 			isa = PBXGroup;
 			children = (
-				CB78D3371F9F67700068A54A /* 100837.m4a */,
-				CB78D33C1F9F67720068A54A /* 100838.m4a */,
-				CB78D3381F9F67700068A54A /* 100839.m4a */,
-				CB78D3391F9F67700068A54A /* 100840.m4a */,
-				CB78D33A1F9F67710068A54A /* 100841.m4a */,
-				CB78D33B1F9F67710068A54A /* 100842.m4a */,
+				CBC5A5761FA07F11007B9A5B /* 100837.m4a */,
+				CBC5A5751FA07F11007B9A5B /* 100838.m4a */,
+				CBC5A5721FA07F10007B9A5B /* 100839.m4a */,
+				CBC5A5731FA07F10007B9A5B /* 100840.m4a */,
+				CBC5A5741FA07F11007B9A5B /* 100841.m4a */,
+				CBC5A5771FA07F11007B9A5B /* 100842.m4a */,
 			);
 			name = "Bundled Media";
 			sourceTree = "<group>";
@@ -2033,6 +2035,7 @@
 				CBB237FB1E6FFF1200AB5AEF /* Info.plist */,
 				CC6251DA1EE00DD800C6F546 /* Localized.strings */,
 				CBB237F61E6FFF1200AB5AEF /* Assets.xcassets */,
+				CBC5A5701F9FA01D007B9A5B /* Animations.xcassets */,
 				CB78D3361F9F674A0068A54A /* Bundled Media */,
 				CBB4DD451EE0908E0071494A /* Fonts */,
 				CC7E80B81F614EEF006F9515 /* Sounds */,
@@ -2299,6 +2302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB8C34501EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.xib in Resources */,
+				CBC5A57D1FA0807B007B9A5B /* 100842.m4a in Resources */,
 				CC7D21B11EFC1348007A062E /* WeeklyChoicesCell.xib in Resources */,
 				CCAE22D01F6BD7F80017C9EF /* ChartCell.xib in Resources */,
 				CC8A2EDE1F0CF98B002585CE /* BentonSansCond-Light.otf in Resources */,
@@ -2311,8 +2315,6 @@
 				850A50BD1F0A97FF00350097 /* PrepareContentTopTabBarView.xib in Resources */,
 				CCA2DC691EF17BFA00D1DF6A /* LearnContentItemHeaderView.xib in Resources */,
 				CC3E5D4C1F0109B700B9E11F /* ArticleRelatedCell.xib in Resources */,
-				CBC5A56F1F9F7D1B007B9A5B /* 100842.m4a in Resources */,
-				CB78D33D1F9F71460068A54A /* 100837.m4a in Resources */,
 				8548BBDE1F0D264800AC7C06 /* RequestDeviceSensorCollectionViewCell.xib in Resources */,
 				CB18BCC31EEABFEB0035C1BB /* MockContentCategoryDown.json in Resources */,
 				CC311A271EAF434F0020C869 /* SettingsLabelTableViewCell.xib in Resources */,
@@ -2320,32 +2322,34 @@
 				7F0F03061F14CE2F00007D50 /* CollapsableContentCell.xib in Resources */,
 				CC311A211EAF430B0020C869 /* SettingsButtonTableViewCell.xib in Resources */,
 				CC90ECA31F30A68E00A83DB9 /* SettingsChangePasswordViewController.storyboard in Resources */,
+				CBC5A57A1FA08071007B9A5B /* 100839.m4a in Resources */,
 				CC59A88D1F41C0E100D22353 /* LibraryCategoryCollectionViewCell.xib in Resources */,
 				CB18BCC51EEAC2CE0035C1BB /* MockDownSyncConfirm.json in Resources */,
+				CBC5A5791FA0806E007B9A5B /* 100838.m4a in Resources */,
 				0BEE8AC01EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib in Resources */,
 				7F0F03041F14CE2300007D50 /* CollapsableCell.xib in Resources */,
+				CBC5A5781FA0806B007B9A5B /* 100837.m4a in Resources */,
 				CC13E2411EB1D72400C3CE46 /* LibraryLatestPostCollectionViewCell.xib in Resources */,
 				CCC0C4CC1E828007002A8362 /* BentonSans_Regular.otf in Resources */,
 				CCF0F4C61ECDD0DA00E8D9C1 /* contentCategory.json in Resources */,
 				CC6251DB1EE00DD800C6F546 /* Localized.strings in Resources */,
 				CB8C34541EAF7F190003AB65 /* MyToBeVisionViewController.xib in Resources */,
 				7F0F02F41F13CDAD00007D50 /* SelectWeeklyChoicesViewController.xib in Resources */,
-				CBC5A56C1F9F7D11007B9A5B /* 100839.m4a in Resources */,
 				D50D6C251EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib in Resources */,
 				CB18BCC91EEAE9070035C1BB /* MockContentItemDown.json in Resources */,
 				CB810E681EF00E2C0043E3E5 /* MockUserDown.json in Resources */,
 				0B40DC161E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib in Resources */,
 				CCC0C4D41E82A8D9002A8362 /* Simple-Regular.ttf in Resources */,
 				CC311A2D1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib in Resources */,
+				CBC5A57B1FA08075007B9A5B /* 100840.m4a in Resources */,
 				CB18BCC11EEABFA60035C1BB /* MockStartSync.json in Resources */,
 				CB8C34561EAF7F200003AB65 /* styles.css in Resources */,
-				CBC5A56E1F9F7D17007B9A5B /* 100841.m4a in Resources */,
+				CBC5A5711F9FA01D007B9A5B /* Animations.xcassets in Resources */,
 				85C3D6BC1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib in Resources */,
 				CC335EE71EBC84780085F5C5 /* ContentItemTextTableViewCell.xib in Resources */,
 				D5EC34AD1EB0D32D00F86B09 /* LearnStrategyAudioPlayerView.xib in Resources */,
 				8514A48A1EE93D640086C70E /* PrepareContentFooterTableViewCell.xib in Resources */,
 				CBC933101F0AA47800C00007 /* PrepareEventsViewController.xib in Resources */,
-				CBC5A56D1F9F7D14007B9A5B /* 100840.m4a in Resources */,
 				CCA2DC6D1EF290DF00D1DF6A /* LearnContentItemBulletCell.xib in Resources */,
 				D5EC34B31EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.xib in Resources */,
 				0BD6F6BA1EA0E81E001EBC4D /* MyPrepTableViewCell.xib in Resources */,
@@ -2353,10 +2357,10 @@
 				7F99ABB11F3DF38E009CA587 /* Database in Resources */,
 				CB18BCC71EEACF890035C1BB /* MockDownSyncContentCollection.json in Resources */,
 				CC311A231EAF431E0020C869 /* SettingsControlTableViewCell.xib in Resources */,
-				CBC5A56B1F9F7D0E007B9A5B /* 100838.m4a in Resources */,
 				0B2CA37C1ED2BC93006B355F /* SensorCollectionViewCell.xib in Resources */,
 				0BB099CD1EBC6323006B2FB7 /* PartnersViewController.xib in Resources */,
 				CC41A54B1EFD5A1400B9AE8E /* ArticleItemHeaderView.xib in Resources */,
+				CBC5A57C1FA08077007B9A5B /* 100841.m4a in Resources */,
 				851676D91F3C55C8007A1DD6 /* LearnPDFCell.xib in Resources */,
 				CC8018241F026BDA0040B03F /* LibraryTableViewCell.xib in Resources */,
 				CB14676C1EF2801F00A60E31 /* MockPageDown.json in Resources */,

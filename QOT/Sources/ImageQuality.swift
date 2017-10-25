@@ -51,7 +51,7 @@ extension UIImage {
     }
     
     func scaledToSize(_ size: CGSize) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(size, false, 0.0);
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
         draw(in: CGRect(origin: .zero, size: size))
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()

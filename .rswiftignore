@@ -1,0 +1,5 @@
+# Ignore animated images
+QOT/Resources/Animations.xcassets
+
+# Ignore bundled media
+QOT/Resources/Media/*

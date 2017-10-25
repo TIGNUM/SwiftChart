@@ -14,6 +14,7 @@ disabled_rules:
   - type_name
   - shorthand_operator
   - vertical_parameter_alignment
+  - type_body_length
 
 included: # paths to include during linting. `--path` is ignored if present.
   - QOT

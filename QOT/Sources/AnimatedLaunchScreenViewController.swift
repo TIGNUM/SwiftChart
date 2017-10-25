@@ -83,7 +83,7 @@ private extension AnimatedLaunchScreenViewController {
     func logoImages() -> [UIImage] {
         var images = [UIImage?]()
         for index in 0..<imageCount {
-            let imageName = "anim_\(String(format: "%05d", index))_QOT_LOGO"
+            let imageName = "\(String(format: "%05d", index))_QOT_LOGO"
             images.append(UIImage(named: imageName))
         }
         return images.flatMap { $0 }
