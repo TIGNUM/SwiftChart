@@ -74,26 +74,8 @@ enum SectorLabelType {
         }
     }
 
-    var angle: CGFloat {
-        switch self {
-        case .peak: return 229
-        case .intensity: return 211
-        case .meetings: return 187
-        case .travel: return 165
-        case .sleep: return 145
-        case .activity: return 128
-        }
-    }
-
     var load: CGFloat {
-        switch self {
-        case .peak: return 1.3
-        case .intensity: return 1.28
-        case .meetings: return 1.27
-        case .travel: return 1.17
-        case .sleep: return 1.1
-        case .activity: return 1.1
-        }
+        return 1.1
     }
     
     var sectionType: StatisticsSectionType {
@@ -105,6 +87,10 @@ enum SectorLabelType {
         case .sleep: return .sleep
         case .travel: return .travel
         }
+    }
+    
+    func angle(for sector: Sector) -> CGFloat {
+        return (sector.startAngle + sector.endAngle) / 2
     }
 }
 
@@ -172,8 +158,26 @@ struct ChartSpike: Spike {
 }
 
 struct ChartSector: Sector {
-    let startAngle: CGFloat
-    let endAngle: CGFloat
+    var startAngle: CGFloat {
+        guard spikes.count > 0 else {
+            return 0.0
+        }
+        var result = spikes[0]
+        for i in 1..<spikes.count where spikes[i].angle < result.angle {
+            result = spikes[i]
+        }
+        return result.angle
+    }
+    var endAngle: CGFloat {
+        guard spikes.count > 0 else {
+            return 0.0
+        }
+        var result = spikes[0]
+        for i in 1..<spikes.count where spikes[i].angle > result.angle {
+            result = spikes[i]
+        }
+        return result.angle
+    }
     let spikes: [Spike]
     let labelType: SectorLabelType
     let strokeColor: UIColor
@@ -186,11 +190,9 @@ struct ChartDataPoint {
     let frame: CGRect
 }
 
-private func chartSectors(service: StatisticsService) -> [Sector] {
+private func chartSectors(service: StatisticsService) -> [ChartSector] {
     return [
         ChartSector(
-            startAngle: 219,
-            endAngle: 234,
             spikes: peakSpikes(service: service),
             labelType: .peak,
             strokeColor: .magenta,
@@ -198,8 +200,6 @@ private func chartSectors(service: StatisticsService) -> [Sector] {
         ),
 
         ChartSector(
-            startAngle: 184,
-            endAngle: 233,
             spikes: intensitySpikes(service: service),
             labelType: .intensity,
             strokeColor: .blue,
@@ -207,8 +207,6 @@ private func chartSectors(service: StatisticsService) -> [Sector] {
         ),
 
         ChartSector(
-            startAngle: 166,
-            endAngle: 183,
             spikes: meetingsSpikes(service: service),
             labelType: .meetings,
             strokeColor: .yellow,
@@ -216,8 +214,6 @@ private func chartSectors(service: StatisticsService) -> [Sector] {
         ),
 
         ChartSector(
-            startAngle: 137,
-            endAngle: 165,
             spikes: travelSpikes(service: service),
             labelType: .travel,
             strokeColor: .green,
@@ -225,8 +221,6 @@ private func chartSectors(service: StatisticsService) -> [Sector] {
         ),
 
         ChartSector(
-            startAngle: 120,
-            endAngle: 136,
             spikes: sleepSpikes(service: service),
             labelType: .sleep,
             strokeColor: .orange,
@@ -234,8 +228,6 @@ private func chartSectors(service: StatisticsService) -> [Sector] {
         ),
 
         ChartSector(
-            startAngle: 119,
-            endAngle: 135,
             spikes: activitySpikes(service: service),
             labelType: .activity,
             strokeColor: .cyan,

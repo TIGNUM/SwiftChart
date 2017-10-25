@@ -78,7 +78,7 @@ private extension PartnersViewController {
     func setupCarousel() {
         carousel.type = .linear
         carousel.isPagingEnabled = true
-        carousel.contentOffset = CGSize(width: -64, height: 0)
+        carousel.contentOffset = CGSize(width: -Layout.TabBarView.height, height: 0)
         viewModel.updateIndex(index: carousel.currentItemIndex)
     }
 

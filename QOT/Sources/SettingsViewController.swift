@@ -87,7 +87,7 @@ private extension SettingsViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .clear
-        tableView.contentInset = UIEdgeInsets(top: 110, left: 0, bottom: 64, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 110, left: 0, bottom: Layout.TabBarView.height, right: 0)
         tableView.tableFooterView = UIView()
         tableView.separatorColor = .clear
         tableView.allowsSelection = true

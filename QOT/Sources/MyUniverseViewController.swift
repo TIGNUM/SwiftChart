@@ -82,14 +82,19 @@ final class MyUniverseViewController: UIViewController {
             delegate: self,
             sectors: self.myDataViewModel.sectors,
             myDataViewModel: self.myDataViewModel,
-            frame: self.view.bounds
+            frame: CGRect(
+                x: self.view.bounds.origin.x,
+                y: 15.0,
+                width: self.view.bounds.width,
+                height: self.view.bounds.height - Layout.TabBarView.height
+            )
         )
     }()
 
     fileprivate lazy var myWhyView: MyWhyView = {
         let myWhyViewFrame = CGRect(
             x: self.view.bounds.width,
-            y: 0,
+            y: self.view.bounds.origin.y,
             width: self.view.bounds.width,
             height: self.view.bounds.height
         )
@@ -103,16 +108,9 @@ final class MyUniverseViewController: UIViewController {
     }()
 
     fileprivate lazy var myDataSectorLabelsView: MyDataSectorLabelsView = {
-        let myDataSectorLablesViewFrame = CGRect(
-            x: 0,
-            y: 0,
-            width: self.view.bounds.width,
-            height: self.view.bounds.height
-        )
-
         return MyDataSectorLabelsView(
             sectors: self.myDataViewModel.sectors,
-            frame: myDataSectorLablesViewFrame,
+            frame: myDataView.frame,
             screenType: self.screenType
         )
     }()

@@ -117,7 +117,7 @@ extension MyUniverseHelper {
             return distanceCenter > average(for: spike.load, layout: layout)
         }
 
-        if criticalLoads.isEmpty == true {
+        if criticalLoads.isEmpty {
             return Style.sector(text, .white40).attributedString(lineSpacing: screenType.lineSpacingSectorTitle)
         }
 

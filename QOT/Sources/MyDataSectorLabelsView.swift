@@ -39,9 +39,24 @@ final class MyDataSectorLabelsView: UIView, MyUniverseView {
 
     func draw() {
         let layout = Layout.MeSection(viewControllerFrame: bounds)
-        addSectorLabels(layout: layout, sectors: sectors)
+        
+        sectors.forEach { (sector: Sector) in
+            let label = UILabel()
+            label.attributedText = MyUniverseHelper.attributedString(for: sector, layout: layout, screenType: screenType)
+            label.numberOfLines = 0
+            label.textAlignment = .center
+            label.sizeToFit()
+
+            let distanceFromCenter = MyUniverseHelper.radius(for: sector.labelType.load, layout: layout)
+            label.center = layout.loadCenter.shifted(distanceFromCenter, with: sector.labelType.angle(for: sector))
+            addSubview(label)
+
+            sectorLabels.append(
+                SectorLabel(label: label, sector: sector)
+            )
+        }
     }
-    
+
     func labelForPoint(_ point: CGPoint) -> SectorLabel? {
         for sectorLabel in sectorLabels {
             if sectorLabel.label.frame.contains(point) {
@@ -49,40 +64,5 @@ final class MyDataSectorLabelsView: UIView, MyUniverseView {
             }
         }
         return nil
-    }
-}
-
-// MARK: - Build Labels
-
-private extension MyDataSectorLabelsView {
-
-    func addSectorLabels(layout: Layout.MeSection, sectors: [Sector]) {
-        sectors.forEach { (sector: Sector) in
-            let attributedString = MyUniverseHelper.attributedString(for: sector, layout: layout, screenType: screenType)
-            let labelFarme = sectorLabelFrame(sector: sector, layout: layout)
-            let label = createLabel(frame: labelFarme, attributedString: attributedString)
-            addSubview(label)
-            sectorLabels.append(
-                SectorLabel(label: label, sector: sector)
-            )
-        }
-    }
-
-    func sectorLabelFrame(sector: Sector, layout: Layout.MeSection) -> CGRect {
-        let distanceFromCenter = MyUniverseHelper.radius(for: sector.labelType.load, layout: layout)
-        let labelCenter = layout.loadCenter.shifted(distanceFromCenter, with: sector.labelType.angle)
-
-        return CGRect(x: labelCenter.x, y: labelCenter.y, width: 0, height: Layout.MeSection.labelHeight)
-    }
-
-    func createLabel(frame: CGRect, attributedString: NSAttributedString) -> UILabel {
-        let label = UILabel(frame: frame)
-        label.attributedText = attributedString
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        label.frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.width, height: Layout.MeSection.labelHeight)
-        label.sizeToFit()
-
-        return label
     }
 }

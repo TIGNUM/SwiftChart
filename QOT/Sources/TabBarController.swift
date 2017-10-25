@@ -76,31 +76,31 @@ final class TabBarController: UIViewController {
         self.delegate?.viewDidAppear()
     }
     
-    fileprivate func displayContentController(_ viewController: UIViewController) {
-        if let existing = currentViewController {
-            existing.willMove(toParentViewController: nil)
-            existing.view.removeFromSuperview()
-            existing.removeFromParentViewController()
-        }
-        
-        addChildViewController(viewController)
-        viewController.view.frame = containerView.frame
-        containerView.addSubview(viewController.view)
-        viewController.didMove(toParentViewController: self)
-        currentViewController = viewController
-    }
-    
     private func loadFirstView() {
         guard let index = tabBarView.selectedIndex else {
             return
         }
         
         let controller = items[index].controller
-        addChildViewController(controller)
-        controller.view.frame = containerView.frame
-        containerView.addSubview(controller.view)
-        controller.didMove(toParentViewController: self)
-        currentViewController = controller
+        load(controller)
+    }
+    
+    private func load(_ viewController: UIViewController) {
+        guard let view = viewController.view else {
+            return
+        }
+        if let existing = currentViewController {
+            existing.willMove(toParentViewController: nil)
+            existing.view.removeFromSuperview()
+            existing.removeFromParentViewController()
+        }
+        addChildViewController(viewController)
+        containerView.addSubview(view)
+        view.horizontalAnchors == containerView.horizontalAnchors
+        view.verticalAnchors == containerView.verticalAnchors
+        view.layoutIfNeeded()
+        viewController.didMove(toParentViewController: self)
+        currentViewController = viewController
     }
 }
 
@@ -112,15 +112,12 @@ extension TabBarController {
     }
     
     func setupLayout() {
-        containerView.topAnchor == view.topAnchor
+        containerView.verticalAnchors == view.verticalAnchors
         containerView.horizontalAnchors == view.horizontalAnchors
-        containerView.bottomAnchor == tabBarView.bottomAnchor
         
         tabBarBottomConstraint = (tabBarView.bottomAnchor == view.bottomAnchor)
         tabBarView.horizontalAnchors == view.horizontalAnchors + Layout.TabBarView.stackViewHorizontalPaddingBottom
-        tabBarView.heightAnchor == 64
-        
-        view.layoutIfNeeded()
+        tabBarView.heightAnchor == Layout.TabBarView.height
     }
 }
 
@@ -129,7 +126,7 @@ extension TabBarController {
 extension TabBarController: TabBarViewDelegate {
 
     func didSelectItemAtIndex(index: Int, sender: TabBarView) {
-        displayContentController(items[index].controller)
+        load(items[index].controller)
         delegate?.didSelectTab(at: index, in: self)
     }
 }
@@ -138,10 +135,10 @@ extension TabBarController: TabBarViewDelegate {
 
 extension TabBarController: ZoomPresentationAnimatable {
     func startAnimation(presenting: Bool, animationDuration: TimeInterval, openingFrame: CGRect) {
-        tabBarBottomConstraint?.constant = presenting ? 0 : 64
+        tabBarBottomConstraint?.constant = presenting ? 0 : Layout.TabBarView.height
 
         UIView.transition(with: self.view, duration: animationDuration, options: [.allowAnimatedContent, .curveEaseOut], animations: {
-            self.tabBarBottomConstraint?.constant = presenting ? 64 : 0
+            self.tabBarBottomConstraint?.constant = presenting ? Layout.TabBarView.height : 0
             self.view.layoutIfNeeded()
         }, completion: nil)
 
