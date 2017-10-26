@@ -74,9 +74,10 @@ private extension ArticleCollectionViewController {
         backgroundImageView.horizontalAnchors == view.horizontalAnchors
         
         view.addSubview(collectionView)
-        collectionView.topAnchor == view.topAnchor + 63
+        collectionView.topAnchor == view.topAnchor + 64
         collectionView.heightAnchor == view.heightAnchor
         collectionView.horizontalAnchors == view.horizontalAnchors
+        collectionView.contentInset = UIEdgeInsets(top: 36, left: 0, bottom: 0, right: 0)
         view.layoutIfNeeded()
     }
 }
