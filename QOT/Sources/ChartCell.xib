@@ -27,10 +27,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tTc-Xf-qts" userLabel="HeaderContentView">
-                        <rect key="frame" x="16" y="0.0" width="287" height="42"/>
+                        <rect key="frame" x="11" y="0.0" width="278" height="42"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R7E-AJ-iMP">
-                                <rect key="frame" x="0.0" y="12" width="263" height="26.5"/>
+                                <rect key="frame" x="0.0" y="12" width="254" height="26.5"/>
                                 <string key="text">sleep quantity average
 for the last 5 days</string>
                                 <fontDescription key="fontDescription" name="BentonSans" family="BentonSans" pointSize="14"/>
@@ -398,12 +398,12 @@ AVG.</string>
             <constraints>
                 <constraint firstItem="frC-oQ-0pa" firstAttribute="leading" secondItem="3zg-UQ-ju6" secondAttribute="leading" id="0ei-Yc-wLg"/>
                 <constraint firstItem="jAq-yR-icS" firstAttribute="top" secondItem="3zg-UQ-ju6" secondAttribute="top" constant="42" id="3H3-GU-dyZ"/>
-                <constraint firstAttribute="trailing" secondItem="tTc-Xf-qts" secondAttribute="trailing" constant="16" id="BFN-fy-qeV"/>
+                <constraint firstAttribute="trailing" secondItem="tTc-Xf-qts" secondAttribute="trailing" constant="30" id="BFN-fy-qeV"/>
                 <constraint firstItem="frC-oQ-0pa" firstAttribute="top" secondItem="tTc-Xf-qts" secondAttribute="bottom" id="DHx-ek-eLo"/>
                 <constraint firstAttribute="bottom" secondItem="frC-oQ-0pa" secondAttribute="bottom" id="HAG-n7-jxv"/>
                 <constraint firstAttribute="bottom" secondItem="jAq-yR-icS" secondAttribute="bottom" priority="750" id="KKt-OD-6uT"/>
                 <constraint firstAttribute="trailing" secondItem="jAq-yR-icS" secondAttribute="trailing" id="KR8-CO-p4h"/>
-                <constraint firstItem="tTc-Xf-qts" firstAttribute="leading" secondItem="3zg-UQ-ju6" secondAttribute="leading" constant="16" id="ZnI-HJ-18y"/>
+                <constraint firstItem="tTc-Xf-qts" firstAttribute="leading" secondItem="3zg-UQ-ju6" secondAttribute="leading" constant="11" id="ZnI-HJ-18y"/>
                 <constraint firstAttribute="trailing" secondItem="frC-oQ-0pa" secondAttribute="trailing" id="eAO-4E-NNR"/>
                 <constraint firstItem="tTc-Xf-qts" firstAttribute="top" secondItem="3zg-UQ-ju6" secondAttribute="top" id="o94-MO-C1g"/>
                 <constraint firstItem="jAq-yR-icS" firstAttribute="leading" secondItem="3zg-UQ-ju6" secondAttribute="leading" id="uOE-6d-9gk"/>

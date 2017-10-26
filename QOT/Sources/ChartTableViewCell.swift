@@ -108,10 +108,10 @@ extension ChartTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionVi
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let left: CGFloat = 15
+        let left: CGFloat = 20
         let right = collectionView.bounds.width - left - chartCellSize().width
 
-        return UIEdgeInsets(top: 0, left: left, bottom: 10, right: right)
+        return UIEdgeInsets(top: 0, left: left, bottom: 20, right: right)
     }
 }
 

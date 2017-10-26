@@ -80,7 +80,7 @@ extension ChartViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return (view.frame.width - ChartViewModel.chartViewPadding) * ChartViewModel.chartRatio
+        return ((view.frame.width - ChartViewModel.chartViewPadding) * ChartViewModel.chartRatio) + ChartViewModel.chartCellOffset
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
