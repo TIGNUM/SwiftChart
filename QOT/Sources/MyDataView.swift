@@ -78,7 +78,12 @@ final class MyDataView: UIView, MyUniverseView {
     func updateProfileImageResource(_ resource: MediaResource) {
         profileImageButton.setBackgroundImageFromResource(resource, defaultImage: R.image.universe_2state()) { [weak self] (image: UIImage?, error: Error?) in
             if let image = image, let overlay = self?.profileImageViewOverlay {
-                overlay.image = UIImage.makeGrayscale(image)
+                DispatchQueue.global(qos: .userInitiated).async {
+                    let processed = UIImage.makeGrayscale(image)
+                    DispatchQueue.main.async {
+                        overlay.image = processed
+                    }
+                }
             }
         }
     }
