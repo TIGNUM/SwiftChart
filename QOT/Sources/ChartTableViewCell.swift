@@ -17,6 +17,7 @@ final class ChartTableViewCell: UITableViewCell, Dequeueable {
     private var viewModel: ChartViewModel?
     private lazy var currentSection = 0
     private var selectedButtonTag = 0
+    private var screenType: UIViewController.ScreenType = .big
 
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -46,9 +47,10 @@ final class ChartTableViewCell: UITableViewCell, Dequeueable {
         collectionView.setContentOffset(.zero, animated: false)
     }
 
-    func setup(viewModel: ChartViewModel, currentSection: Int) {
+    func setup(viewModel: ChartViewModel, currentSection: Int, screenType: UIViewController.ScreenType) {
         self.viewModel = viewModel
-        self.currentSection = currentSection        
+        self.currentSection = currentSection
+        self.screenType = screenType
         contentView.backgroundColor = .clear
         backgroundColor = .clear
         self.collectionView.reloadData()
@@ -95,7 +97,8 @@ extension ChartTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionVi
         let statistics = viewModel.statistics(section: currentSection, item: indexPath.item)
         let chartCell: ChartCell = collectionView.dequeueCell(for: indexPath)
         let chartTypes = viewModel.chartTypes(section: currentSection, item: indexPath.item)
-        chartCell.setup(headerTitle: chartTitle, chartTypes: chartTypes, statistics: statistics, charts: viewModel.allCharts)        
+        let config = ChartCell.Configuration.make(screenType: screenType)
+        chartCell.setup(headerTitle: chartTitle, chartTypes: chartTypes, statistics: statistics, charts: viewModel.allCharts, configuration: config)
         chartCell.delegate = self
         let cellRect = collectionView.convert(chartCell.frame, to: collectionView.superview)
         chartCell.animateHeader(withCellRect: cellRect, inParentRect: collectionView.frame)

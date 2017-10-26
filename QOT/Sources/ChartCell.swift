@@ -31,6 +31,21 @@ protocol ChartCellDelegate: class {
 
 final class ChartCell: UICollectionViewCell, Dequeueable {
 
+    struct Configuration {
+
+        let infoFont: UIFont
+        let infoLineSpacing: CGFloat
+        let infoCharacterSpacing: CGFloat
+
+        static func make(screenType: UIViewController.ScreenType) -> Configuration {
+            switch screenType {
+            case .big: return Configuration(infoFont: Font.DPText, infoLineSpacing: 10, infoCharacterSpacing: 1)
+            case .medium: return Configuration(infoFont: Font.DPText2, infoLineSpacing: 9, infoCharacterSpacing: 1)
+            case .small: return Configuration(infoFont: Font.PTextSmall, infoLineSpacing: 7, infoCharacterSpacing: 0)
+            }
+        }
+    }
+
     // MARK: - Properties
 
     @IBOutlet private weak var userAverageValueLabel: UILabel!
@@ -67,6 +82,7 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
     private var statistics: Statistics?
     private var charts: [Statistics] = []
     private var headerTitle: String = ""
+    private var configuration = Configuration.make(screenType: .big)
 
     // MARK: - Init
 
@@ -96,11 +112,12 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
 
     // MARK: - Public
 
-    func setup(headerTitle: String, chartTypes: [ChartType], statistics: Statistics, charts: [Statistics]) {
+    func setup(headerTitle: String, chartTypes: [ChartType], statistics: Statistics, charts: [Statistics], configuration: Configuration) {
         self.chartTypes = chartTypes
         self.statistics = statistics
         self.charts = charts
         self.headerTitle = headerTitle
+        self.configuration = configuration
         infoView.alpha = 0
     }
 
@@ -292,9 +309,12 @@ private extension ChartCell {
 
 private extension ChartCell {
 
-    func setupInfoView() {
+    func setupInfoView() {        
         guard let infoText = statistics?.chartType.infoText else { return }
-        infoViewTextLabel.setAttrText(text: infoText, font: Font.PTextSmall, lineSpacing: 8, color: .white)
+        let font = configuration.infoFont
+        let lineSpacing = configuration.infoLineSpacing
+        let characterSpacing = configuration.infoCharacterSpacing
+        infoViewTextLabel.setAttrText(text: infoText, font: font, lineSpacing: lineSpacing, characterSpacing: characterSpacing, color: .white)
         infoViewCloseButton.setAttributedTitle(Style.tag("CLOSE", .white30).attributedString(lineSpacing: 2), for: .normal)
         infoViewCloseButton.setAttributedTitle(Style.tag("CLOSE", .white50).attributedString(lineSpacing: 2), for: .selected)
     }

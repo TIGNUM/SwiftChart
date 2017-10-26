@@ -200,9 +200,12 @@ struct Font {
 
     /// BENTON SANS BOOK 16 // body text
     static let DPText = UIFont.bentonBookFont(ofSize: 16)
+
+    /// BENTON SAN BOOK 15 // text
+    static let DPText2 = UIFont.bentonBookFont(ofSize: 15)
     
     /// BENTON SAN BOOK 14 // text
-    static let DPText2 = UIFont.bentonBookFont(ofSize: 14)
+    static let DPText3 = UIFont.bentonBookFont(ofSize: 14)
 
     /// BENTON SANS Condensed Light // QOUTES
     static let Qoute = UIFont.bentonCondLightFont(ofSize: 28)

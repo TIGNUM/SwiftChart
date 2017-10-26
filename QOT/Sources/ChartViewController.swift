@@ -99,7 +99,7 @@ extension ChartViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {        
         let cell: ChartTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.setup(viewModel: viewModel, currentSection: indexPath.section)
+        cell.setup(viewModel: viewModel, currentSection: indexPath.section, screenType: screenType)
 
         return cell
     }

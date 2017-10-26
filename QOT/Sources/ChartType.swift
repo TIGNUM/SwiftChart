@@ -246,28 +246,28 @@ enum ChartType: String, EnumCollection {
     // TODO: Replace return values when available.
     var infoText: String {
         switch self {
-        case .meetingAverageDay: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
-        case .meetingAverageWeek: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
-        case .meetingLength: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
-        case .meetingTimeBetween: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
-        case .travelTripsAverageWeeks: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
-        case .travelTripsAverageYear: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
-        case .travelTripsNextFourWeeks: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
-        case .travelTripsTimeZoneChangedYear: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
-        case .travelTripsTimeZoneChangedWeeks: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
-        case .travelTripsMaxTimeZone: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
-        case .peakPerformanceUpcomingWeek: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
-        case .peakPerformanceUpcomingNextWeek: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
-        case .peakPerformanceAverageWeek: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
-        case .peakPerformanceAverageMonth: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
-        case .sleepQuality: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
-        case .sleepQuantity: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
-        case .activitySittingMovementRatio: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
-        case .activityLevel: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
-        case .intensityLoadWeek: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
-        case .intensityLoadMonth: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
-        case .intensityRecoveryWeek: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
-        case .intensityRecoveryMonth: return R.string.localized.meChartInfoTextPeakPerformanceUpcomingThisWeek()
+        case .meetingAverageDay,
+             .meetingAverageWeek: return R.string.localized.meChartInfoTextMeetingsAverageNumber()
+        case .meetingLength: return R.string.localized.meChartInfoTextMeetingsAverageLength()
+        case .meetingTimeBetween: return R.string.localized.meChartInfoTextMeetingsAverageTimeBetween()
+        case .travelTripsAverageWeeks,
+             .travelTripsAverageYear: return R.string.localized.meChartInfoTextTravelAverageNumber()
+        case .travelTripsNextFourWeeks: return ""
+        case .travelTripsTimeZoneChangedYear: return ""
+        case .travelTripsTimeZoneChangedWeeks: return ""
+        case .travelTripsMaxTimeZone: return ""
+        case .peakPerformanceUpcomingWeek,
+             .peakPerformanceUpcomingNextWeek: return R.string.localized.meChartInfoTextPeakPerformanceUpcoming()
+        case .peakPerformanceAverageWeek,
+             .peakPerformanceAverageMonth: return R.string.localized.meChartInfoTextPeakPerformanceAverage()
+        case .sleepQuality: return R.string.localized.meChartInfoTextSleepQuality()
+        case .sleepQuantity: return R.string.localized.meChartInfoTextSleepQuantity()
+        case .activitySittingMovementRatio: return R.string.localized.meChartInfoTextActivityOscillation()
+        case .activityLevel: return R.string.localized.meChartInfoTextActivityIndex()
+        case .intensityLoadWeek,
+             .intensityLoadMonth: return R.string.localized.meChartInfoTextIntensityLoad()
+        case .intensityRecoveryWeek,
+             .intensityRecoveryMonth: return R.string.localized.meChartInfoTextIntensityRecovery()
         }
     }
 

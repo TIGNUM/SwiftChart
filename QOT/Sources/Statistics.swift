@@ -54,7 +54,7 @@ extension Statistics: OneWaySyncableDown {
         upperThreshold = data.upperTreshold
         lowerThreshold = data.lowerTreshold
         maximum = data.maximum
-        universe = data.universe
+        universe = 0.8//data.universe
         dataPoints.forEach { $0.delete() }
         periods.forEach { $0.delete() }
         dataPoints.append(objectsIn: data.dataPoints.map { DoubleObject(double: $0) })
