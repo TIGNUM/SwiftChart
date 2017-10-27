@@ -10,19 +10,23 @@ import Foundation
 
 final class QOTUsageTimer {
 
-    private static var started: Date?
+    private var _started: Date?
 
     static let sharedInstance = QOTUsageTimer()
 
+    private init() {
+        // Don't delete. Ensures that access is though singleton
+    }
+
     func start() {
-        if QOTUsageTimer.started == nil {
-            QOTUsageTimer.started = Date()
+        if _started == nil {
+            _started = Date()
         }
     }
 
     func stopAndSave() {
         UserDefault.qotUsage.setDoubleValue(value: Double(totalSeconds))
-        QOTUsageTimer.started = nil
+        _started = nil
     }
 
     var totalSeconds: TimeInterval {
@@ -37,10 +41,13 @@ final class QOTUsageTimer {
     }
 
     private var started: Date {
-        guard let started = QOTUsageTimer.started else {
-            fatalError("QOTUsageTimer never started")
+        guard let started = _started else {
+            assertionFailure("QOTUsageTimer never started")
+            // Recover
+            let now = Date()
+            _started = now
+            return now
         }
-
         return started
     }
 }
