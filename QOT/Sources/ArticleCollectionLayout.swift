@@ -61,7 +61,7 @@ final class ArticleCollectionLayout: UICollectionViewLayout {
             let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
             attributes.zIndex = item
             let y = (CGFloat(item) * standardHeight) + (featuredHeight - standardHeight)
-            let minimumAlpha: CGFloat = 0.18
+            let minimumAlpha: CGFloat = 0.3
             var frame: CGRect
             var alpha: CGFloat = minimumAlpha
 

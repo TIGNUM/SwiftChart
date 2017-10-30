@@ -56,7 +56,7 @@ class ArticleCollectionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupLayout()
         viewModel.updates.observeNext { [collectionView] (update) in
             collectionView.reloadData()
@@ -77,7 +77,7 @@ private extension ArticleCollectionViewController {
         collectionView.topAnchor == view.topAnchor + 64
         collectionView.heightAnchor == view.heightAnchor
         collectionView.horizontalAnchors == view.horizontalAnchors
-        collectionView.contentInset = UIEdgeInsets(top: 36, left: 0, bottom: 0, right: 0)
+
         view.layoutIfNeeded()
     }
 }
