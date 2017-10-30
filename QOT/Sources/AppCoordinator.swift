@@ -32,6 +32,8 @@ final class AppCoordinator: ParentCoordinator {
     fileprivate lazy var credentialsManager: CredentialsManager = CredentialsManager.shared
     fileprivate var canProcessRemoteNotifications = false
     private var onDismiss: (() -> Void)?
+    private var currentPresentedController: UIViewController?
+    private var currentPresentedNavigationController: UINavigationController?
     static var currentStatusBarStyle: UIStatusBarStyle?
     
     fileprivate lazy var realmProvider: RealmProvider = {
@@ -222,6 +224,47 @@ private extension AppCoordinator {
 
 extension AppCoordinator {
 
+    // FIXME In the future when everything will change....
+    func presentPreparationList() {        
+        if let viewController = currentPresentedController {
+            dismiss(viewController, level: .priority)
+        }
+        
+        if let navigationController = currentPresentedNavigationController {
+            dismiss(navigationController, level: .priority)
+        }
+
+        guard let topViewController = AppDelegate.topViewController() else { return }
+
+        if let tabBarController = topViewController as? TabBarController {
+            selectTabBarITem(tabBarController: tabBarController, tabBarIndex: 2, topTabBarIndex: 1)
+        } else if let pageViewController = topViewController as? PageViewController {
+            pageViewController.viewControllers?.forEach { viewController in
+                viewController.dismiss(animated: true) {
+                    self.presentPreparationList()
+                }
+            }
+        } else {
+            topViewController.dismiss(animated: true) {
+                self.presentPreparationList()
+            }
+        }
+    }
+
+    private func selectTabBarITem(tabBarController: TabBarController, tabBarIndex: Index, topTabBarIndex: Index) {
+        tabBarController.tabBarView.setSelectedIndex(tabBarIndex, animated: true)
+        tabBarController.didSelectItem(index: tabBarIndex)
+
+        guard
+            let topNavigationBar = (tabBarCoordinator?.topTabBarControllerPrepare.navigationBar as? TopNavigationBar),
+            let myPrepButton = (topNavigationBar.middleButtons?.filter { $0.tag == topTabBarIndex })?.first else {
+                return
+        }
+
+        tabBarCoordinator?.topNavigationBar(TopNavigationBar(), middleButtonPressed: myPrepButton, withIndex: topTabBarIndex, ofTotal: 2)
+        topNavigationBar.setIndicatorToButtonIndex(topTabBarIndex)
+    }
+
     func presentToBeVision() {
         guard let services = services else { return }
 
@@ -230,6 +273,7 @@ extension AppCoordinator {
         myToBeVisionViewController.delegate = self
         windowManager.showWindow(atLevel: .priority)
         windowManager.presentViewController(myToBeVisionViewController, atLevel: .priority, animated: true, replacesContent: true, completion: nil)
+        currentPresentedController = myToBeVisionViewController
     }
 
     func presentPreparationCheckList(localID: String) {
@@ -249,6 +293,7 @@ extension AppCoordinator {
         morningInterViewController.delegate = self
         windowManager.showWindow(atLevel: .priority)
         windowManager.presentViewController(morningInterViewController, atLevel: .priority, animated: true, replacesContent: true, completion: nil)
+        currentPresentedController = morningInterViewController
     }
 
     func presentWeeklyChoices(forStartDate startDate: Date, endDate: Date, completion: (() -> Void)?) {
@@ -263,6 +308,7 @@ extension AppCoordinator {
         let viewController = SelectWeeklyChoicesViewController(delegate: self, viewModel: viewModel, backgroundImage: image)
         windowManager.showWindow(atLevel: .priority)
         windowManager.presentViewController(viewController, atLevel: .priority, animated: true, replacesContent: true, completion: nil)
+        currentPresentedController = viewController
     }
 
     // FIXME: REFACTOR THIS
@@ -282,6 +328,7 @@ extension AppCoordinator {
         topTabBarController = coordinator.topTabBarController
         windowManager.showWindow(atLevel: .priority)
         windowManager.presentViewController(coordinator.topTabBarController, atLevel: .priority, animated: true, replacesContent: true, completion: nil)
+        currentPresentedNavigationController = coordinator.topTabBarController
     }
 
     // FIXME: REFACTOR THIS
@@ -301,6 +348,7 @@ extension AppCoordinator {
         topTabBarController = coordinator.topTabBarController        
         windowManager.showWindow(atLevel: .priority)
         windowManager.presentViewController(coordinator.topTabBarController, atLevel: .priority, animated: true, replacesContent: true, completion: nil)
+        currentPresentedNavigationController = coordinator.topTabBarController
     }
 
     func showMajorAlert(type: AlertType, handler: (() -> Void)? = nil, handlerDestructive: (() -> Void)? = nil) {
@@ -313,6 +361,7 @@ extension AppCoordinator {
         })
         windowManager.showWindow(atLevel: .alert)
         windowManager.presentViewController(alert, atLevel: .alert, animated: true, completion: nil)
+        currentPresentedController = alert
     }
 
     func showOnboarding() {
@@ -409,6 +458,8 @@ extension AppCoordinator: MorningInterviewViewControllerDelegate {
             sendMorningInterviewResults(userAnswers)
         }
         dismiss(viewController, level: .priority)
+        currentPresentedNavigationController = nil
+        currentPresentedController = nil
     }
     
     private func sendMorningInterviewResults(_ userAnswers: [UserAnswer]) {

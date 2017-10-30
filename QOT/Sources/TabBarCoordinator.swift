@@ -21,12 +21,12 @@ final class TabBarCoordinator: ParentCoordinator {
     fileprivate let eventTracker: EventTracker
     fileprivate let selectedIndex: Observable<Index>
     fileprivate var viewControllers = [UIViewController]()
-    fileprivate var tabBarController: TabBarController?
     fileprivate let permissionHandler: PermissionHandler
     fileprivate var preparationID: String?
     fileprivate var hasLoadedFirstTime = false
     fileprivate let pageTracker: PageTracker
     var children = [Coordinator]()
+    var tabBarController: TabBarController?
 
     var isLoading: Bool {
         return windowManager.rootViewController(atLevel: .normal)?.presentedViewController is LoadingViewController
@@ -40,7 +40,7 @@ final class TabBarCoordinator: ParentCoordinator {
         return NotificationHandler(name: .syncAllDidFinishNotification)
     }()
 
-    fileprivate lazy var prepareCoordinator: PrepareCoordinator = {
+    lazy var prepareCoordinator: PrepareCoordinator = {
         return PrepareCoordinator(services: self.services,
                                   eventTracker: self.eventTracker,
                                   permissionHandler: self.permissionHandler,
@@ -49,6 +49,7 @@ final class TabBarCoordinator: ParentCoordinator {
                                   chatViewController: self.prepareChatViewController,
                                   myPrepViewController: self.myPrepViewController)
     }()
+
     fileprivate lazy var prepareChatViewController: ChatViewController<Answer> = {
         let viewModel = ChatViewModel<Answer>(items: [])
         let viewController = ChatViewController(pageName: .prepareChat, viewModel: viewModel)
@@ -93,7 +94,7 @@ final class TabBarCoordinator: ParentCoordinator {
         return myUniverseViewController
     }()
 
-    fileprivate lazy var topTabBarControllerPrepare: UINavigationController = {
+    lazy var topTabBarControllerPrepare: UINavigationController = {
         let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())        
         let topTabBarController = UINavigationController(withPages: [self.prepareChatViewController, self.myPrepViewController],
                                                          topBarDelegate: self,
@@ -354,6 +355,7 @@ extension TabBarCoordinator: TopNavigationBarDelegate {
 // MARK: - PageViewControllerDelegate
 
 extension TabBarCoordinator: PageViewControllerDelegate {
+
     func pageViewController(_ controller: UIPageViewController, didSelectPageIndex index: Int) {
         guard let navigationController = controller.navigationController, let topNavigationBar = navigationController.navigationBar as? TopNavigationBar else {
             return

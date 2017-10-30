@@ -32,6 +32,7 @@ final class MyPrepTableViewCell: UITableViewCell, Dequeueable {
     }
 
     fileprivate func setupCell() {
+        backgroundColor = .clear
         let selectedBackground = UIView()
         selectedBackground.backgroundColor = UIColor.black15
         self.selectedBackgroundView = selectedBackground

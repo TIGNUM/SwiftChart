@@ -23,13 +23,13 @@ final class TopNavigationBar: UINavigationBar {
 
     private let spacing: CGFloat = 15.0
     private let lineHeight: CGFloat = 1.0
-    private var middleButtons: [UIButton]?
     private var currentButton: UIButton?
     private var whatsHotBadgeCenter: CGPoint = .zero
     private var indicatorViewWidthConstraint: NSLayoutConstraint!
     private var indicatorViewLeftConstraint: NSLayoutConstraint!
     let indicatorView: UIView // automatically hidden when setMiddleButtons(buttons.count == 1)
     weak var topNavigationBarDelegate: TopNavigationBarDelegate?
+    var middleButtons: [UIButton]?
     
     override init(frame: CGRect) {
         indicatorView = UIView()
@@ -178,7 +178,7 @@ final class TopNavigationBar: UINavigationBar {
     }
     
     @objc private func rightButtonPressed(_ sender: UIBarButtonItem) {
-        topNavigationBarDelegate?.topNavigationBar(self, rightButtonPressed: sender)
+        topNavigationBarDelegate?.topNavigationBar(self, rightButtonPressed: sender)        
     }
     
     @objc private func middleButtonPressed(_ sender: UIButton) {

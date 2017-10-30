@@ -32,7 +32,7 @@ final class LaunchHandler {
         case .preparation: preparation(localID: url.absoluteString.components(separatedBy: scheme.queryName).last)
         case .randomContent: randomContent(url: url, scheme: scheme)
         case .weeklyChoices: weeklyChoiches()
-        case .myPreps: return
+        case .myPreps: preparationList()
         case .toBeVision: toBeVision()
         case .weeklyPeakPerformance: return
         }
@@ -162,5 +162,14 @@ extension LaunchHandler {
 
     func toBeVision() {
         appDelegate.appCoordinator.presentToBeVision()
+    }
+}
+
+// MARK: - Preparation List
+
+extension LaunchHandler {
+
+    func preparationList() {
+        appDelegate.appCoordinator.presentPreparationList()
     }
 }
