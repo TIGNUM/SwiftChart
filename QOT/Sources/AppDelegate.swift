@@ -63,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self])
         Buglife.shared().start(withAPIKey: "fj62sZjDnl3g0dLuXJHUzAtt") // FIXME: obfuscate
         Buglife.shared().delegate = self
-        QOTUsageTimer.sharedInstance.start()
+        QOTUsageTimer.sharedInstance.observeUsage()
         appCoordinator.start()
         UIApplication.shared.statusBarStyle = .lightContent
         setupUAirship()
@@ -82,13 +82,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        QOTUsageTimer.sharedInstance.stopAndSave()
         appCoordinator.updateUserTotalUsageTime()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         UAirship.push().resetBadge()
-        QOTUsageTimer.sharedInstance.start()
         appCoordinator.updateUserTotalUsageTime()
     }
 
