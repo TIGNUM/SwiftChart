@@ -9,10 +9,7 @@ import Foundation
 import UIKit
 
 struct Animation {
-    static let durationFade: TimeInterval = 0.3
-    static let fadeInHeight: CGFloat = -22
-    static let fadeOutHeight: CGFloat = 22
-    static let zoomDuration: TimeInterval = 0.3
+    static let duration: TimeInterval = 0.3
 }
 
 enum FontName: String {

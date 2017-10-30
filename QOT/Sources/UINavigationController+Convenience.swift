@@ -61,29 +61,3 @@ extension UINavigationController {
         }
     }
 }
-
-// MARK: - CustomPresentationAnimatorDelegate
-
-extension UINavigationController: CustomPresentationAnimatorDelegate {
-    
-    func animationsForAnimator(_ animator: CustomPresentationAnimator) -> (() -> Void)? {
-        guard let viewController = viewControllers.first as? CustomPresentationAnimatorDelegate else {
-            return nil
-        }
-
-        return viewController.animationsForAnimator(animator)
-    }
-}
-
-// MARK: - ZoomPresentationAnimatable
-
-extension UINavigationController: ZoomPresentationAnimatable {
-
-    func startAnimation(presenting: Bool, animationDuration: TimeInterval, openingFrame: CGRect) {
-        guard let viewController = viewControllers.first as? ZoomPresentationAnimatable else {
-            return
-        }
-
-        viewController.startAnimation(presenting: presenting, animationDuration: animationDuration, openingFrame: openingFrame)
-    }
-}

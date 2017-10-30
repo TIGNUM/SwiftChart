@@ -19,18 +19,18 @@ final class LearnContentListCoordinator: ParentCoordinator {
     fileprivate let rootViewController: UIViewController
     var children: [Coordinator] = []
     weak var delegate: LearnContentListCoordinatorDelegate?
-    fileprivate let presentationManager: ZoomPresentationManager
+    fileprivate let transitioningDelegate: UIViewControllerTransitioningDelegate
 
-    init(root: LearnCategoryListViewController, services: Services, eventTracker: EventTracker, selectedCategoryIndex: Index, originFrame: CGRect) {
+    init(root: LearnCategoryListViewController, transitioningDelegate: UIViewControllerTransitioningDelegate, services: Services, eventTracker: EventTracker, selectedCategoryIndex: Index, originFrame: CGRect) {
         self.rootViewController = root
+        self.transitioningDelegate = transitioningDelegate
         self.services = services
         self.eventTracker = eventTracker
         self.selectedCategoryIndex = selectedCategoryIndex
-        presentationManager = ZoomPresentationManager(openingFrame: originFrame)
         let viewModel = LearnContentCollectionViewModel(services: services, selectedIndex: selectedCategoryIndex)
         learnContentListViewController = LearnContentListViewController(viewModel: viewModel, selectedCategoryIndex: self.selectedCategoryIndex)
         learnContentListViewController.modalPresentationStyle = .custom
-        learnContentListViewController.transitioningDelegate = presentationManager
+        learnContentListViewController.transitioningDelegate = transitioningDelegate
         learnContentListViewController.delegate = self
     }
     
@@ -42,7 +42,7 @@ final class LearnContentListCoordinator: ParentCoordinator {
 extension LearnContentListCoordinator: LearnContentListViewControllerDelegate {
 
     func didSelectContent(_ content: ContentCollection, category: ContentCategory, originFrame: CGRect, in viewController: LearnContentListViewController) {
-        let presentationManager = CircularPresentationManager(originFrame: originFrame)
+        let presentationManager = ContentItemAnimator(originFrame: originFrame)
         let coordinator = LearnContentItemCoordinator(root: viewController, eventTracker: eventTracker, services: services, content: content, category: category, presentationManager: presentationManager)
         startChild(child: coordinator)
     }

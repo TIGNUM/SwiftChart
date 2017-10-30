@@ -1,5 +1,5 @@
 //
-//  CircularAnimation.swift
+//  ContentItemAnimation.swift
 //  QOT
 //
 //  Created by Aamir Suhial Mir on 7/12/17.
@@ -9,22 +9,18 @@
 import Foundation
 import UIKit
 
-enum ZoomType {
-    case presenting, dismissing
-}
-
-final class CircularAnimation: NSObject, UIViewControllerAnimatedTransitioning {
-    var duration: TimeInterval
-    var isPresenting: Bool
-    var originFrame: CGRect
+final class ContentItemAnimation: NSObject, UIViewControllerAnimatedTransitioning {
+    let duration: TimeInterval
+    let isPresenting: Bool
+    let originFrame: CGRect
 
     fileprivate var fromViewController: UIViewController?
     fileprivate var toViewController: UIViewController?
     fileprivate var transitionContext: UIViewControllerContextTransitioning?
 
-    init(withDuration duration: TimeInterval = 0.6, forTransitionType type: ZoomType, originFrame: CGRect) {
+    init(isPresenting: Bool, duration: TimeInterval, originFrame: CGRect) {
+        self.isPresenting = isPresenting
         self.duration = duration
-        self.isPresenting = type == .presenting
         self.originFrame = originFrame
 
         super.init()
@@ -79,7 +75,7 @@ final class CircularAnimation: NSObject, UIViewControllerAnimatedTransitioning {
         bubbleView.backgroundColor = .white
 
         if isPresenting {
-            bubbleAnimation(bubbleView: bubbleView, animatedView: animatedView, maskLayer: maskLayer, maskPath: maskPath, endFrame: endFrame)
+            contentItemAnimation(bubbleView: bubbleView, animatedView: animatedView, maskLayer: maskLayer, maskPath: maskPath, endFrame: endFrame)
         } else {
             contentAnimation(bubbleView: bubbleView, animatedView: animatedView, maskLayer: maskLayer, maskPath: maskPath, endFrame: endFrame)
         }
@@ -88,7 +84,7 @@ final class CircularAnimation: NSObject, UIViewControllerAnimatedTransitioning {
 
 // MARK: - private
 
-private extension CircularAnimation {
+private extension ContentItemAnimation {
 
     func animationsCompleted(bubbleView: UIView) {
         bubbleView.removeFromSuperview()
@@ -104,7 +100,7 @@ private extension CircularAnimation {
                 self.animationsCompleted(bubbleView: bubbleView)
             } else {
                 animatedView.layer.opacity = 0
-                self.bubbleAnimation(bubbleView: bubbleView, animatedView: animatedView, maskLayer: maskLayer, maskPath: maskPath, endFrame: endFrame)
+                self.contentItemAnimation(bubbleView: bubbleView, animatedView: animatedView, maskLayer: maskLayer, maskPath: maskPath, endFrame: endFrame)
             }
         })
 
@@ -121,7 +117,7 @@ private extension CircularAnimation {
         CATransaction.commit()
     }
 
-    func bubbleAnimation(bubbleView: UIView, animatedView: UIView, maskLayer: CAShapeLayer, maskPath: UIBezierPath, endFrame: CGRect) {
+    func contentItemAnimation(bubbleView: UIView, animatedView: UIView, maskLayer: CAShapeLayer, maskPath: UIBezierPath, endFrame: CGRect) {
         CATransaction.begin()
         CATransaction.setCompletionBlock({ [unowned self] in
             if self.isPresenting {

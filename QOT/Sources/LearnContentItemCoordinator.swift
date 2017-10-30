@@ -21,14 +21,14 @@ final class LearnContentItemCoordinator: ParentCoordinator {
     fileprivate let bulletViewController: LearnContentItemViewController
     fileprivate let audioViewController: LearnContentItemViewController
     fileprivate var viewModel: LearnContentItemViewModel
-    fileprivate var presentationManager: CircularPresentationManager?
+    fileprivate var presentationManager: ContentItemAnimator?
     fileprivate weak var topBarDelegate: TopNavigationBarDelegate?
     fileprivate let rootViewController: UIViewController
     fileprivate let headerView: LearnContentItemHeaderView
     var children: [Coordinator] = []
     var topTabBarController: UINavigationController!
     
-    init(root: UIViewController, eventTracker: EventTracker, services: Services, content: ContentCollection, category: ContentCategory, presentationManager: CircularPresentationManager? = nil, topBarDelegate: TopNavigationBarDelegate? = nil) {
+    init(root: UIViewController, eventTracker: EventTracker, services: Services, content: ContentCollection, category: ContentCategory, presentationManager: ContentItemAnimator? = nil, topBarDelegate: TopNavigationBarDelegate? = nil) {
         self.rootViewController = root
         self.eventTracker = eventTracker
         self.services = services

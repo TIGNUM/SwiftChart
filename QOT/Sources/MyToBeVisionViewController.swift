@@ -418,14 +418,3 @@ extension MyToBeVisionViewController: ImagePickerControllerDelegate {
         setImageButton(isEditing: isEditing)
     }
 }
-
-// MARK: - CustomPresentationAnimatorDelegate
-
-extension MyToBeVisionViewController: CustomPresentationAnimatorDelegate {
-    func animationsForAnimator(_ animator: CustomPresentationAnimator) -> (() -> Void)? {
-        view.alpha = animator.isPresenting ? 0.0 : 1.0
-        return { [unowned self] in
-            self.view.alpha = animator.isPresenting ? 1.0 : 0.0
-        }
-    }
-}

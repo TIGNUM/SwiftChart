@@ -1,24 +1,22 @@
 //
-//  CircularPresentationManager.swift
+//  ContentItemAnimator.swift
 //  QOT
 //
 //  Created by Aamir Suhial Mir on 7/14/17.
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 //
+
 import Foundation
 import UIKit
 
-enum ZoomPresentationType {
-    case zoomIn
-    case zoomOut
-}
+final class ContentItemAnimator: NSObject {
+    fileprivate let originFrame: CGRect
+    fileprivate let duration: TimeInterval
 
-final class CircularPresentationManager: NSObject {
-    fileprivate var originFrame: CGRect
-
-    init(originFrame: CGRect) {
+    init(originFrame: CGRect, duration: TimeInterval = 0.6) {
         self.originFrame = originFrame
+        self.duration = duration
         super.init()
     }
 
@@ -29,13 +27,13 @@ final class CircularPresentationManager: NSObject {
 
 // MARK: - UIViewControllerTransitioningDelegate
 
-extension CircularPresentationManager: UIViewControllerTransitioningDelegate {
+extension ContentItemAnimator: UIViewControllerTransitioningDelegate {
 
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return CircularAnimation(forTransitionType: .presenting, originFrame: originFrame)
+        return ContentItemAnimation(isPresenting: true, duration: duration, originFrame: originFrame)
     }
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return CircularAnimation(forTransitionType: .dismissing, originFrame: originFrame)
+        return ContentItemAnimation(isPresenting: false, duration: duration, originFrame: originFrame)
     }
 }

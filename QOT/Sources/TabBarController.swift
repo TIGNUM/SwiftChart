@@ -27,7 +27,7 @@ final class TabBarController: UIViewController {
     fileprivate lazy var containerView = UIView()
     fileprivate weak var indicatorViewLeadingConstraint: NSLayoutConstraint?
     fileprivate weak var indicatorViewWidthConstraint: NSLayoutConstraint?
-    fileprivate weak var tabBarBottomConstraint: NSLayoutConstraint?
+    weak var tabBarBottomConstraint: NSLayoutConstraint?
     weak var delegate: TabBarControllerDelegate?
 
     var viewControllers: [UIViewController] {
@@ -128,35 +128,5 @@ extension TabBarController: TabBarViewDelegate {
     func didSelectItemAtIndex(index: Int, sender: TabBarView) {
         load(items[index].controller)
         delegate?.didSelectTab(at: index, in: self)
-    }
-}
-
-// MARK: - ZoomPresentationAnimatable
-
-extension TabBarController: ZoomPresentationAnimatable {
-    func startAnimation(presenting: Bool, animationDuration: TimeInterval, openingFrame: CGRect) {
-        tabBarBottomConstraint?.constant = presenting ? 0 : Layout.TabBarView.height
-
-        UIView.transition(with: self.view, duration: animationDuration, options: [.allowAnimatedContent, .curveEaseOut], animations: {
-            self.tabBarBottomConstraint?.constant = presenting ? Layout.TabBarView.height : 0
-            self.view.layoutIfNeeded()
-        }, completion: nil)
-
-        guard
-            let currentVC = currentViewController as? ZoomPresentationAnimatable
-            else { return }
-
-        currentVC.startAnimation(presenting: presenting, animationDuration: animationDuration, openingFrame: openingFrame)
-    }
-}
-
-// MARK: - CustomPresentationAnimatorDelegate {
-
-extension TabBarController: CustomPresentationAnimatorDelegate {
-    func animationsForAnimator(_ animator: CustomPresentationAnimator) -> (() -> Void)? {
-        if let viewController = currentViewController as? CustomPresentationAnimatorDelegate {
-            return viewController.animationsForAnimator(animator)
-        }
-        return nil
     }
 }

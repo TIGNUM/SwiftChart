@@ -277,7 +277,7 @@ extension AppCoordinator {
 
         // FIXME: do we need to use the coordinator?
         AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
-        let presentationManager = CircularPresentationManager(originFrame: rootViewController.view.frame)
+        let presentationManager = ContentItemAnimator(originFrame: rootViewController.view.frame)
         let coordinator = LearnContentItemCoordinator(root: rootViewController, eventTracker: eventTracker, services: services, content: content, category: category, presentationManager: presentationManager, topBarDelegate: self)
         topTabBarController = coordinator.topTabBarController
         windowManager.showWindow(atLevel: .priority)
@@ -296,7 +296,7 @@ extension AppCoordinator {
 
         // FIXME: do we need to use the coordinator?
         AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
-        let presentationManager = CircularPresentationManager(originFrame: rootViewController.view.frame)
+        let presentationManager = ContentItemAnimator(originFrame: rootViewController.view.frame)
         let coordinator = LearnContentItemCoordinator(root: rootViewController, eventTracker: eventTracker, services: services, content: content, category: category, presentationManager: presentationManager, topBarDelegate: self)
         topTabBarController = coordinator.topTabBarController        
         windowManager.showWindow(atLevel: .priority)

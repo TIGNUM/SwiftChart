@@ -77,7 +77,7 @@ final class MyUniverseViewController: UIViewController {
         return [myDataButton, myWhyButton]
     }()
     
-    fileprivate lazy var myDataView: MyDataView = {
+    lazy var myDataView: MyDataView = {
         return MyDataView(
             delegate: self,
             sectors: self.myDataViewModel.sectors,
@@ -91,7 +91,7 @@ final class MyUniverseViewController: UIViewController {
         )
     }()
 
-    fileprivate lazy var myWhyView: MyWhyView = {
+    lazy var myWhyView: MyWhyView = {
         let myWhyViewFrame = CGRect(
             x: self.view.bounds.width,
             y: self.view.bounds.origin.y,
@@ -324,92 +324,6 @@ extension MyUniverseViewController: MyDataViewDelegate {
 
     func myDataView(_ view: MyDataView, pressedProfileButton button: UIButton) {
         delegate?.didTapMyToBeVision(vision: myWhyViewModel.myToBeVision, from: button, in: self)
-    }
-}
-
-// MARK: - CustomPresentationAnimatorDelegate {
-
-extension MyUniverseViewController: CustomPresentationAnimatorDelegate {
-
-    func animationsForAnimator(_ animator: CustomPresentationAnimator) -> (() -> Void)? {
-        if animator.toViewController is MyToBeVisionViewController {
-            return { [unowned self] in
-                self.myDataView.profileImageButton.transform = CGAffineTransform(translationX: 90.0, y: 260.0).scaledBy(x: 4.0, y: 3.0)
-                self.myWhyView.myToBeVisionBox.transform = CGAffineTransform(translationX: -120.0, y: 20.0)
-                self.myWhyView.weeklyChoicesBox.transform = CGAffineTransform(translationX: 100.0, y: 10.0)
-                self.myWhyView.qotPartnersBox.transform = CGAffineTransform(translationX: 10.0, y: 100.0)
-            }
-        } else if animator.fromViewController is MyToBeVisionViewController {
-            return { [unowned self] in
-                self.myDataView.profileImageButton.transform = .identity
-                self.myWhyView.myToBeVisionBox.transform = .identity
-                self.myWhyView.weeklyChoicesBox.transform = .identity
-                self.myWhyView.qotPartnersBox.transform = .identity
-            }
-        } else if let toViewController = animator.toViewController, toViewController.contains(PartnersViewController.self) {
-            return { [unowned self] in
-                self.myWhyView.qotPartnersBox.transform = CGAffineTransform(translationX: 200.0, y: -300.0).scaledBy(x: 2.5, y: 2.5)
-            }
-        } else if let fromViewController = animator.fromViewController, fromViewController.contains(PartnersViewController.self) {
-            return { [unowned self] in
-                self.myWhyView.qotPartnersBox.transform = .identity
-            }
-        } else if let toViewController = animator.toViewController, toViewController.contains(ChartViewController.self) {
-            self.parent?.view.alpha = 1
-
-            return { [unowned self] in
-                self.parent?.view.alpha = 0
-
-                self.myDataView.profileImageButton.transform = CGAffineTransform(translationX: 300.0, y: 0)
-                self.view.transform = CGAffineTransform(scaleX: 3, y: 3)//.translatedBy(x: -180, y: 0)
-
-                let layerTransform = self.myDataView.universeDotsLayer.transform
-                self.myDataView.universeDotsLayer.transform = CATransform3DTranslate(layerTransform, -200, 0, 0)
-            }
-        } else if let fromViewController = animator.fromViewController, fromViewController.contains(ChartViewController.self) {
-            self.parent?.view.alpha = 0
-
-            let layerTransform = self.myDataView.universeDotsLayer.transform
-            self.myDataView.universeDotsLayer.transform = CATransform3DTranslate(layerTransform, -200, 0, 0)
-
-            return { [unowned self] in
-                self.parent?.view.alpha = 1
-
-                self.myDataView.profileImageButton.transform = .identity
-                self.view.transform = .identity
-
-                self.myDataView.universeDotsLayer.transform = CATransform3DIdentity
-            }
-        } else if let toViewController = animator.toViewController, toViewController.contains(WeeklyChoicesViewController.self) {
-            self.myWhyView.weeklyChoicesBox.alpha = 1
-            return { [unowned self] in
-                self.myWhyView.weeklyChoicesBox.alpha = 0
-                self.myWhyView.myToBeVisionBox.transform = CGAffineTransform(translationX: -120.0, y: -50.0)
-                self.myWhyView.weeklyChoicesBox.transform = CGAffineTransform(translationX: 100.0, y: 10.0)
-                self.myWhyView.qotPartnersBox.transform = CGAffineTransform(translationX: -120.0, y: -50.0)
-
-                self.view.transform = CGAffineTransform(translationX: -580.0, y: -50.0).scaledBy(x: 4.0, y: 3.0)
-            }
-        } else if let fromViewController = animator.fromViewController, fromViewController.contains(WeeklyChoicesViewController.self) {
-            self.myWhyView.weeklyChoicesBox.alpha = 0
-            return { [unowned self] in
-                self.myWhyView.weeklyChoicesBox.alpha = 1
-                self.myWhyView.myToBeVisionBox.transform = .identity
-                self.myWhyView.weeklyChoicesBox.transform = .identity
-                self.myWhyView.qotPartnersBox.transform = .identity
-
-                self.view.transform = .identity
-            }
-        } else if let toViewController = animator.toViewController, toViewController.contains(PartnersViewController.self) {
-            return { [unowned self] in
-                self.myWhyView.qotPartnersBox.transform = CGAffineTransform(translationX: 200.0, y: -300.0).scaledBy(x: 2.5, y: 2.5)
-            }
-        } else if let fromViewController = animator.fromViewController, fromViewController.contains(PartnersViewController.self) {
-            return { [unowned self] in
-                self.myWhyView.qotPartnersBox.transform = .identity
-            }
-        }
-        return nil
     }
 }
 

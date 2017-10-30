@@ -13,18 +13,20 @@ final class WeeklyChoicesCoordinator: NSObject, ParentCoordinator {
 
     // MARK: - Properties
 
+    fileprivate let rootViewController: UIViewController
     fileprivate let services: Services
+    fileprivate let transitioningDelegate: UIViewControllerTransitioningDelegate
     fileprivate let weeklyChoicesViewController: WeeklyChoicesViewController
     fileprivate var topTabBarController: UINavigationController!
-    fileprivate let rootViewController: UIViewController
     private weak var weeklyChoicesDelegate: WeeklyChoicesViewModelDelegate?
     var children: [Coordinator] = []
 
     // MARK: - Life Cycle
 
-    init(root: UIViewController, services: Services) {
+    init(root: UIViewController, services: Services, transitioningDelegate: UIViewControllerTransitioningDelegate) {
         self.rootViewController = root
         self.services = services
+        self.transitioningDelegate = transitioningDelegate
         let viewModel = WeeklyChoicesViewModel(services: services)
         weeklyChoicesViewController = WeeklyChoicesViewController(viewModel: viewModel)
         weeklyChoicesDelegate = viewModel
@@ -36,7 +38,7 @@ final class WeeklyChoicesCoordinator: NSObject, ParentCoordinator {
         let rightButton = viewModel.itemCount == 0 ? UIBarButtonItem(withImage: R.image.prepareContentPlusIcon()) : nil
         topTabBarController = UINavigationController(withPages: [weeklyChoicesViewController], topBarDelegate: self, leftButton: leftButton, rightButton: rightButton)
         topTabBarController.modalPresentationStyle = .custom
-        topTabBarController.transitioningDelegate = self
+        topTabBarController.transitioningDelegate = transitioningDelegate
         weeklyChoicesViewController.delegate = self
     }
 
@@ -80,21 +82,5 @@ extension WeeklyChoicesCoordinator: TopNavigationBarDelegate {
         launchHandler.weeklyChoiches { [unowned self] in
             self.weeklyChoicesDelegate?.fetchWeeklyChoices()
         }
-    }
-}
-
-// MARK: - UIViewControllerTransitioningDelegate
-
-extension WeeklyChoicesCoordinator: UIViewControllerTransitioningDelegate {
-    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return nil
-    }
-
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return CustomPresentationAnimator(isPresenting: true, presentingDuration: 0.5, presentedDuration: 0.3)
-    }
-
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return CustomPresentationAnimator(isPresenting: false, presentingDuration: 0.3, presentedDuration: 0.5)
     }
 }

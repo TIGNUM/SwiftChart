@@ -19,13 +19,15 @@ final class PartnersCoordinator: NSObject, ParentCoordinator {
     fileprivate var topTabBarController: UINavigationController!
     fileprivate let partnersViewController: PartnersViewController
     fileprivate let rootViewController: UIViewController
+    fileprivate let transitioningDelegate: UIViewControllerTransitioningDelegate
     var children: [Coordinator] = []
 
     // MARK: - Life Cycle
 
-    init(root: UIViewController, services: Services, selectedIndex: Index, permissionHandler: PermissionHandler) {
+    init(root: UIViewController, services: Services, transitioningDelegate: UIViewControllerTransitioningDelegate, selectedIndex: Index, permissionHandler: PermissionHandler) {
         self.rootViewController = root
         self.services = services
+        self.transitioningDelegate = transitioningDelegate
         self.selectedIndex = selectedIndex
         viewModel = PartnersViewModel(services: services, selectedIndex: selectedIndex, headline: "Lore ipsum impsum plus")
         partnersViewController = PartnersViewController(viewModel: viewModel, permissionHandler: permissionHandler)
@@ -38,7 +40,7 @@ final class PartnersCoordinator: NSObject, ParentCoordinator {
         rightButton.tintColor = .white40
         topTabBarController = UINavigationController(withPages: [partnersViewController], topBarDelegate: self, leftButton: leftButton, rightButton: rightButton)
         topTabBarController.modalPresentationStyle = .custom
-        topTabBarController.transitioningDelegate = self
+        topTabBarController.transitioningDelegate = transitioningDelegate
     }
 
     func start() {
@@ -58,21 +60,5 @@ extension PartnersCoordinator: TopNavigationBarDelegate {
     
     func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
         partnersViewController.editCurrentItem()
-    }
-}
-
-// MARK: - UIViewControllerTransitioningDelegate
-
-extension PartnersCoordinator: UIViewControllerTransitioningDelegate {
-    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return nil
-    }
-    
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return CustomPresentationAnimator(isPresenting: true, duration: 0.4)
-    }
-    
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return CustomPresentationAnimator(isPresenting: false, duration: 0.4)
     }
 }

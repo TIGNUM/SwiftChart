@@ -179,30 +179,6 @@ extension PageViewController: UIPageViewControllerDataSource {
     }
 }
 
-// MARK: - CustomPresentationAnimatorDelegate
-
-extension PageViewController: CustomPresentationAnimatorDelegate {
-    func animationsForAnimator(_ animator: CustomPresentationAnimator) -> (() -> Void)? {
-        guard let viewController = data?.first as? CustomPresentationAnimatorDelegate else {
-            return nil
-        }
-
-        return viewController.animationsForAnimator(animator)
-    }
-}
-
-// MARK: - ZoomPresentationAnimatable
-
-extension PageViewController: ZoomPresentationAnimatable {
-    func startAnimation(presenting: Bool, animationDuration: TimeInterval, openingFrame: CGRect) {
-        guard let viewController = data?.first as? ZoomPresentationAnimatable else {
-            return
-        }
-
-        viewController.startAnimation(presenting: presenting, animationDuration: animationDuration, openingFrame: openingFrame)
-    }
-}
-
 // MARK: - PageScroll
 
 extension PageViewController: PageScroll {

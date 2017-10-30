@@ -104,16 +104,3 @@ extension ChartViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 }
-
-// MARK: - CustomPresentationAnimatorDelegate {
-
-extension ChartViewController: CustomPresentationAnimatorDelegate {
-
-    func animationsForAnimator(_ animator: CustomPresentationAnimator) -> (() -> Void)? {
-        parent?.view.alpha = animator.isPresenting ? 0.0 : 1.0
-
-        return { [unowned self] in
-            self.parent?.view.alpha = animator.isPresenting ? 1.0 : 0.0
-        }
-    }
-}

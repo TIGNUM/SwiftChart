@@ -29,7 +29,7 @@ final class LearnCategoryListViewController: UIViewController {
     weak var delegate: LearnCategoryListViewControllerDelegate?
     let page = LearnCategoryListPage()
 
-    fileprivate lazy var collectionView: UICollectionView = {
+    lazy var collectionView: UICollectionView = {
         return UICollectionView(
             layout: LearnCategoryLayout(),
             delegate: self,
@@ -133,21 +133,5 @@ extension LearnCategoryListViewController: UICollectionViewDataSource, LearnCate
 
     func bubbleLayoutInfo(layout: LearnCategoryLayout, index: Index) -> BubbleLayoutInfo {
         return page.bubbleLayoutInfo(at: index)
-    }
-}
-
-// MARK: - ZoomPresentationAnimatable
-
-extension LearnCategoryListViewController: ZoomPresentationAnimatable {
-    func startAnimation(presenting: Bool, animationDuration: TimeInterval, openingFrame: CGRect) {
-        let upScale: CGFloat = 1.3
-
-        UIView.transition(with: self.view, duration: animationDuration, options: [.allowAnimatedContent, .curveEaseOut], animations: {
-            self.collectionView.transform = presenting ? CGAffineTransform(scaleX: upScale, y: upScale) : .identity
-            self.view.layoutIfNeeded()
-            if !presenting {
-                self.collectionView.reloadData()
-            }
-        }, completion: nil)
     }
 }

@@ -12,7 +12,6 @@ import UIKit
 final class SidebarCoordinator: ParentCoordinator {
 
     fileprivate let services: Services
-    fileprivate let presentationManager: PresentationManager
     fileprivate var topTabBarController: UINavigationController!
     fileprivate let sideBarViewController: SidebarViewController!
     fileprivate let rootViewController: UIViewController
@@ -21,7 +20,6 @@ final class SidebarCoordinator: ParentCoordinator {
     init(root: UIViewController, services: Services) {
         self.rootViewController = root
         self.services = services
-        presentationManager = PresentationManager(type: .fadeIn)
         let viewModel = SidebarViewModel(services: services)
         sideBarViewController = SidebarViewController(viewModel: viewModel)
         topTabBarController = UINavigationController(withPages: [sideBarViewController],

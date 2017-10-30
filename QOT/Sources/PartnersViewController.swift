@@ -20,7 +20,7 @@ class PartnersViewController: UIViewController {
 
     @IBOutlet fileprivate weak var bigLabel: UILabel!
     @IBOutlet fileprivate weak var carousel: iCarousel! = iCarousel()
-    @IBOutlet fileprivate weak var scrollView: UIScrollView!
+    @IBOutlet weak var scrollView: UIScrollView!
     fileprivate let viewModel: PartnersViewModel
     fileprivate let imagePickerController: ImagePickerController
     fileprivate var valueEditing: Bool = false
@@ -225,18 +225,5 @@ extension PartnersViewController: ImagePickerControllerDelegate {
         
         viewModel.save()
         carousel.reloadData()
-    }
-}
-
-// MARK: - CustomPresentationAnimatorDelegate
-
-extension PartnersViewController: CustomPresentationAnimatorDelegate {
-    func animationsForAnimator(_ animator: CustomPresentationAnimator) -> (() -> Void)? {
-        scrollView.transform = animator.isPresenting ? CGAffineTransform(translationX: 0.0, y: 100.0) : .identity
-        parent?.view.alpha = animator.isPresenting ? 0.0 : 1.0
-        return { [unowned self] in
-            self.scrollView.transform = animator.isPresenting ? .identity : CGAffineTransform(translationX: 0.0, y: 100.0)
-            self.parent?.view.alpha = animator.isPresenting ? 1.0 : 0.0
-        }
     }
 }
