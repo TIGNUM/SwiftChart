@@ -88,7 +88,7 @@ final class MorningInterviewCell: UICollectionViewCell, Dequeueable {
             string: question.title,
             letterSpacing: 1.1,
             font: Font.H9Title,
-            lineSpacing: 2.9,
+            lineSpacing: 10.0,
             textColor: .white90,
             alignment: .center
         )
