@@ -64,24 +64,24 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
     }
 
     func didTapBenefitsCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
-        startSidebarItemCoordinator(pageName: .benefits, contentCollection: contentCollection, viewController: viewController, topTabBarTitle: R.string.localized.sidebarTitleBenefits())
+        startSidebarItemCoordinator(pageName: .benefits, contentCollection: contentCollection, viewController: viewController)
     }
 
     func didTapAboutCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
-        startSidebarItemCoordinator(pageName: .about, contentCollection: contentCollection, viewController: viewController, topTabBarTitle: R.string.localized.sidebarTitleAbout())
+        startSidebarItemCoordinator(pageName: .about, contentCollection: contentCollection, viewController: viewController)
     }
 
     func didTapPrivacyCell(with contentCollection: ContentCollection?, backgroundImage: UIImage?, in viewController: SidebarViewController) {
-        startSidebarItemCoordinator(pageName: .privacy, contentCollection: contentCollection, viewController: viewController, topTabBarTitle: R.string.localized.settingsSecurityPrivacyPolicyTitle(), backgroundImage: backgroundImage)
+        startSidebarItemCoordinator(pageName: .privacy, contentCollection: contentCollection, viewController: viewController, backgroundImage: backgroundImage)
     }
 
-    private func startSidebarItemCoordinator(pageName: PageName, contentCollection: ContentCollection?, viewController: SidebarViewController, topTabBarTitle: String, backgroundImage: UIImage? = nil) {
+    private func startSidebarItemCoordinator(pageName: PageName, contentCollection: ContentCollection?, viewController: SidebarViewController, topTabBarTitle: String? = nil, backgroundImage: UIImage? = nil) {
         guard let coordinator = ArticleContentItemCoordinator(
             pageName: pageName,
             root: viewController,
             services: services,
             contentCollection: contentCollection,
-            topTabBarTitle: topTabBarTitle.uppercased(), backgroundImage: backgroundImage) else {
+            topTabBarTitle: topTabBarTitle?.uppercased(), backgroundImage: backgroundImage) else {
                 return
         }
         
