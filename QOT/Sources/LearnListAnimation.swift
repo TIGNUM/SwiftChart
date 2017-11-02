@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Anchorage
 
 final class LearnListAnimation: NSObject {
 
@@ -105,8 +104,7 @@ extension LearnListAnimation: UIViewControllerAnimatedTransitioning {
         
         if isPresenting {
             containerView.insertSubview(toViewController.view, belowSubview: fromViewController.view)
-            toViewController.view.verticalAnchors == containerView.verticalAnchors
-            toViewController.view.horizontalAnchors == containerView.horizontalAnchors
+            toViewController.view.frame = containerView.bounds
         }
         
         let expectedTabBarController = isPresenting ? fromViewController : toViewController

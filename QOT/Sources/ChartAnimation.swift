@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Anchorage
 
 final class ChartAnimation: NSObject {
 
@@ -85,8 +84,7 @@ extension ChartAnimation: UIViewControllerAnimatedTransitioning {
         
         if isPresenting {
             containerView.insertSubview(toViewController.view, belowSubview: fromViewController.view)
-            toViewController.view.verticalAnchors == containerView.verticalAnchors
-            toViewController.view.horizontalAnchors == containerView.horizontalAnchors
+            toViewController.view.frame = containerView.bounds
         }
 
         let expectedMyUniverseViewController = isPresenting ? fromViewController : toViewController
