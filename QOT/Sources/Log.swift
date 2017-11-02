@@ -46,6 +46,8 @@ struct Log {
     static var main: SwiftyBeaver.Type {
         return SwiftyBeaver.self
     }
+    
+    static var remoteLogLevel: SwiftyBeaver.Level = .error
     static var format = ">>> :line :className.:function --> :obj"
     static var dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
     static var dateFormatter: DateFormatter {
@@ -56,12 +58,12 @@ struct Log {
     
     static func setup() {
         let console = ConsoleDestination()
-        console.format = "$DHH:mm:ss$d $L $M"
-        console.minLevel = .verbose
+        console.format = "$DHH:mm:ss$d $L $M"        
+        console.minLevel = .verbose        
         Log.main.addDestination(console)
         
         let remoteLog = RemoteLogDestination()
-        remoteLog.minLevel = .error
+        remoteLog.minLevel = remoteLogLevel
         Log.main.addDestination(remoteLog)
     }
 }

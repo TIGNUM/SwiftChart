@@ -16,26 +16,29 @@ protocol SettingsCoordinatorDelegate: class {
     func openChangePasswordViewController(settingsViewController: SettingsViewController)
 
     func openArticleViewController(viewController: SettingsViewController, settingsType: SettingsType)
+    
+    func openAdminSettingsViewController(settingsViewController: SettingsViewController)
 }
 
 final class SettingsCoordinator: ParentCoordinator {
 
-    fileprivate let services: Services
-    fileprivate let settingsViewController: SettingsViewController
-    fileprivate let permissionHandler = PermissionHandler()
-    fileprivate var calandarAccessGaranted = true
-    fileprivate let rootViewController: UIViewController
+    private let services: Services
+    private let settingsViewController: SettingsViewController
+    private let permissionHandler = PermissionHandler()
+    private var calandarAccessGaranted = true
+    private let rootViewController: UIViewController
+    private let networkManager: NetworkManager
+    private let syncManager: SyncManager
     var children = [Coordinator]()
     let settingsType: SettingsType.SectionType
 
-    init?(root: SettingsMenuViewController, services: Services, settingsType: SettingsType.SectionType) {
-        guard let viewModel = SettingsViewModel(services: services, settingsType: settingsType) else {
-            return nil
-        }
-
+    init?(root: SettingsMenuViewController, services: Services, settingsType: SettingsType.SectionType, syncManager: SyncManager, networkManager: NetworkManager) {
+        guard let viewModel = SettingsViewModel(services: services, settingsType: settingsType) else { return nil }
         self.rootViewController = root
         self.services = services
         self.settingsType = settingsType
+        self.networkManager = networkManager
+        self.syncManager = syncManager
         settingsViewController = SettingsViewController(viewModel: viewModel, services: services, settingsType: settingsType)
         settingsViewController.title = settingsType.title.uppercased()
         settingsViewController.delegate = self
@@ -85,6 +88,11 @@ extension SettingsCoordinator: SettingsCoordinatorDelegate {
                 return
         }
         
+        startChild(child: coordinator)
+    }
+    
+    func openAdminSettingsViewController(settingsViewController: SettingsViewController) {
+        let coordinator = SettingsAdminCoordinator(root: settingsViewController, services: services, syncManager: syncManager, networkManager: networkManager)
         startChild(child: coordinator)
     }
 }

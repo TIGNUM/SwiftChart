@@ -18,6 +18,16 @@ final class StatisticsService {
         self.mainRealm = mainRealm
         self.realmProvider = realmProvider
     }
+    
+    func eraseData() {
+        do {
+            try mainRealm.write {
+                mainRealm.delete(chartObjects())
+            }
+        } catch {
+            assertionFailure("Failed to delete chartObjects with error: \(error)")
+        }
+    }
 
     func chartObjects() -> AnyRealmCollection<Statistics> {
         let results = mainRealm.objects(Statistics.self)

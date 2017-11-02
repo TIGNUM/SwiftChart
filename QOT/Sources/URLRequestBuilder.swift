@@ -10,12 +10,10 @@ import Alamofire
 
 final class URLRequestBuilder {
 
-    let baseURL: URL
     let deviceID: String
     let appVersion: String
 
-    init(baseURL: URL, deviceID: String) {
-        self.baseURL = baseURL
+    init(deviceID: String) {
         self.deviceID = deviceID
         self.appVersion = Bundle.main.versionNumber
     }

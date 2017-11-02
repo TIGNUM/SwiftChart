@@ -21,7 +21,7 @@ final class Services {
     let eventsService: EventsService
     let settingsService: SettingsService
     let statisticsService: StatisticsService
-    let mediaService: MediaService
+    let mediaService: MediaService    
 
     init() throws {
         let realmProvider = RealmProvider()

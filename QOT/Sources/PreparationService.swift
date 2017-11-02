@@ -99,6 +99,16 @@ final class PreparationService {
         }
     }
     
+    func eraseData() {
+        do {
+            try mainRealm.write {
+                mainRealm.delete(preparations())
+            }
+        } catch {
+            assertionFailure("Failed to delete preparations with error: \(error)")
+        }
+    }
+    
     func removeLinkFromEventNotes(forPreparation preparation: Preparation) throws {
         guard let event = preparation.calendarEvent?.event, var notes = event.notes else {
             return

@@ -30,6 +30,7 @@
 "Settings.General.Tutorial.Title" = "Tutorial";
 "Settings.General.Interview.Title" = "Initial Interview";
 "Settings.General.Support.Title" = "Support";
+"Settings.General.Admin.Title" = "Settings";
 
 "Settings.Notifications.Strategies.Title" = "55 Strategies";
 "Settings.Notifications.DailyPrep.Title" = "Daily Prep";

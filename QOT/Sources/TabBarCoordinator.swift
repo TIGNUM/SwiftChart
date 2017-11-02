@@ -16,15 +16,17 @@ final class TabBarCoordinator: ParentCoordinator {
 
     // MARK: - Properties
 
-    fileprivate let windowManager: WindowManager
-    fileprivate let services: Services
-    fileprivate let eventTracker: EventTracker
-    fileprivate let selectedIndex: Observable<Index>
-    fileprivate var viewControllers = [UIViewController]()
-    fileprivate let permissionHandler: PermissionHandler
-    fileprivate var preparationID: String?
-    fileprivate var hasLoadedFirstTime = false
-    fileprivate let pageTracker: PageTracker
+    private let windowManager: WindowManager
+    private let services: Services
+    private let eventTracker: EventTracker
+    private let selectedIndex: Observable<Index>
+    private var viewControllers = [UIViewController]()
+    private let permissionHandler: PermissionHandler
+    private var preparationID: String?
+    private var hasLoadedFirstTime = false
+    private let pageTracker: PageTracker
+    private let networkManager: NetworkManager
+    private let syncManager: SyncManager
     var children = [Coordinator]()
     var tabBarController: TabBarController?
 
@@ -40,7 +42,7 @@ final class TabBarCoordinator: ParentCoordinator {
         return NotificationHandler(name: .syncAllDidFinishNotification)
     }()
 
-    lazy var prepareCoordinator: PrepareCoordinator = {
+    private lazy var prepareCoordinator: PrepareCoordinator = {
         return PrepareCoordinator(services: self.services,
                                   eventTracker: self.eventTracker,
                                   permissionHandler: self.permissionHandler,
@@ -50,7 +52,7 @@ final class TabBarCoordinator: ParentCoordinator {
                                   myPrepViewController: self.myPrepViewController)
     }()
 
-    fileprivate lazy var prepareChatViewController: ChatViewController<Answer> = {
+    private lazy var prepareChatViewController: ChatViewController<Answer> = {
         let viewModel = ChatViewModel<Answer>(items: [])
         let viewController = ChatViewController(pageName: .prepareChat, viewModel: viewModel)
         viewController.title = R.string.localized.topTabBarItemTitlePerpareCoach()
@@ -58,7 +60,7 @@ final class TabBarCoordinator: ParentCoordinator {
         return viewController
     }()
 
-    fileprivate lazy var myPrepViewController: MyPrepViewController = {
+    private lazy var myPrepViewController: MyPrepViewController = {
         let viewModel = MyPrepViewModel(services: self.services)
         let viewController = MyPrepViewController(viewModel: viewModel)
         viewController.title = R.string.localized.topTabBarItemTitlePerparePrep()
@@ -66,7 +68,7 @@ final class TabBarCoordinator: ParentCoordinator {
         return viewController
     }()
 
-    fileprivate lazy var topTabBarControllerLearn: UINavigationController = {
+    private lazy var topTabBarControllerLearn: UINavigationController = {
         let viewModel = LearnCategoryListViewModel(services: self.services)
         let learnCategoryListVC = LearnCategoryListViewController(viewModel: viewModel)
         learnCategoryListVC.title = R.string.localized.topTabBarItemTitleLearnStrategies()
@@ -84,7 +86,7 @@ final class TabBarCoordinator: ParentCoordinator {
         return topTabBarController
     }()
 
-    fileprivate lazy var topTabBarControllerMe: MyUniverseViewController = {
+    private lazy var topTabBarControllerMe: MyUniverseViewController = {
         let myUniverseViewController = MyUniverseViewController(
             myDataViewModel: MyDataViewModel(services: self.services),
             myWhyViewModel: MyWhyViewModel(services: self.services),
@@ -113,13 +115,22 @@ final class TabBarCoordinator: ParentCoordinator {
 
     // MARK: - Init
     
-    init(windowManager: WindowManager, selectedIndex: Index, services: Services, eventTracker: EventTracker, permissionHandler: PermissionHandler, pageTracker: PageTracker) {
+    init(windowManager: WindowManager,
+         selectedIndex: Index,
+         services: Services,
+         eventTracker: EventTracker,
+         permissionHandler: PermissionHandler,
+         pageTracker: PageTracker,
+         syncManager: SyncManager,
+         networkManager: NetworkManager) {
         self.windowManager = windowManager
         self.services = services
         self.eventTracker = eventTracker
         self.selectedIndex = Observable(selectedIndex)
         self.permissionHandler = permissionHandler
-        self.pageTracker = pageTracker
+        self.pageTracker = pageTracker        
+        self.syncManager = syncManager
+        self.networkManager = networkManager
         
         syncAllStartedNotificationHandler.handler = { (notification: Notification) in
             guard let userInfo = notification.userInfo, let isDownloadRecordsValid = userInfo["isDownloadRecordsValid"] as? Bool, isDownloadRecordsValid == false, !self.hasLoadedFirstTime else {
@@ -197,7 +208,7 @@ final class TabBarCoordinator: ParentCoordinator {
         ]
     }
     
-    fileprivate func showTutorial(_ tutorial: Tutorial) {
+    private func showTutorial(_ tutorial: Tutorial) {
         guard !tutorial.exists(), let tabBarView = tabBarController?.tabBarView else {
             return
         }
@@ -347,7 +358,7 @@ extension TabBarCoordinator: TopNavigationBarDelegate {
             return
         }
 
-        let coordinator = SidebarCoordinator(root: tabBarController, services: services)
+        let coordinator = SidebarCoordinator(root: tabBarController, services: services, syncManager: syncManager, networkManager: networkManager)
         startChild(child: coordinator)
     }
 }

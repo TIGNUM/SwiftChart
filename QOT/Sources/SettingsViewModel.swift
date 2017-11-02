@@ -30,6 +30,7 @@ enum SettingsType: Int {
     case terms
     case copyrights
     case security
+    case adminSettings
 
     var title: String {
         switch self {
@@ -53,6 +54,7 @@ enum SettingsType: Int {
         case .terms: return R.string.localized.settingsSecurityTermsTitle()
         case .copyrights: return R.string.localized.settingsSecurityCopyrightsTitle()
         case .security: return R.string.localized.settingsSecurityPrivacyPolicyTitle()
+        case .adminSettings: return R.string.localized.settingsGeneralAdminTitle()
         }
     }
 
@@ -251,7 +253,7 @@ final class SettingsViewModel {
 
     private func settingSections(user: User?, settingsType: SettingsType.SectionType) -> [SettingsSection] {
         switch settingsType {
-        case .general: return generalSettingsSection(for: user)
+        case .general: return generalSettingsSection(for: user, services: services)
         case .notifications: return notificationsSettingsSection(services: services)
         case .security: return securitySettingsSection
         }
@@ -300,31 +302,37 @@ enum SettingsRow {
     }
 }
 
-struct MockSettingsSection: SettingsSection {
+struct Sections: SettingsSection {
     let title: String
     let rows: [SettingsRow]
 }
 
 private var securitySettingsSection: [SettingsSection] {
     return [
-        MockSettingsSection(title: "Account", rows: accountRows),
-        MockSettingsSection(title: "About", rows: aboutRows)
+        Sections(title: "Account", rows: accountRows),
+        Sections(title: "About", rows: aboutRows)
     ]
 }
 
 private func notificationsSettingsSection(services: Services) -> [SettingsSection] {
     return [
-        MockSettingsSection(title: "Categories", rows: categoryNotifications(services: services))        
+        Sections(title: "Categories", rows: categoryNotifications(services: services))        
     ]
 }
 
-private func generalSettingsSection(for user: User?) -> [SettingsSection] {
-    return [
-        MockSettingsSection(title: "Company", rows: companyRows(for: user)),
-        MockSettingsSection(title: "Personal", rows: personalRows(for: user)),
-        MockSettingsSection(title: "Location", rows: locationRows),
-        MockSettingsSection(title: "Calendar", rows: calendarRows)
+private func generalSettingsSection(for user: User?, services: Services) -> [SettingsSection] {
+    var sections = [
+        Sections(title: "Company", rows: companyRows(for: user)),
+        Sections(title: "Personal", rows: personalRows(for: user)),
+        Sections(title: "Location", rows: locationRows),
+        Sections(title: "Calendar", rows: calendarRows)
     ]
+    
+    if services.settingsService.allowAdminSettings() == true {
+        sections.append(Sections(title: "Admin", rows: adminRows))
+    }
+    
+    return sections
 }
 
 private func companyRows(for user: User?) -> [SettingsRow] {
@@ -375,6 +383,12 @@ private var locationRows: [SettingsRow] {
 private var calendarRows: [SettingsRow] {
     return [
         .label(title: SettingsType.calendar.title, value: "", settingsType: .calendar)
+    ]
+}
+
+private var adminRows: [SettingsRow] {
+    return [
+        .label(title: SettingsType.adminSettings.title, value: "", settingsType: .adminSettings)
     ]
 }
 

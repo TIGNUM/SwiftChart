@@ -11,15 +11,19 @@ import UIKit
 
 final class SidebarCoordinator: ParentCoordinator {
 
-    fileprivate let services: Services
-    fileprivate var topTabBarController: UINavigationController!
-    fileprivate let sideBarViewController: SidebarViewController!
-    fileprivate let rootViewController: UIViewController
+    private let services: Services
+    private var topTabBarController: UINavigationController!
+    private let sideBarViewController: SidebarViewController!
+    private let rootViewController: UIViewController
+    private let networkManager: NetworkManager
+    private let syncManager: SyncManager
     var children = [Coordinator]()
 
-    init(root: UIViewController, services: Services) {
+    init(root: UIViewController, services: Services, syncManager: SyncManager, networkManager: NetworkManager) {
         self.rootViewController = root
         self.services = services
+        self.networkManager = networkManager
+        self.syncManager = syncManager        
         let viewModel = SidebarViewModel(services: services)
         sideBarViewController = SidebarViewController(viewModel: viewModel)
         topTabBarController = UINavigationController(withPages: [sideBarViewController],
@@ -51,9 +55,12 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
     }
 
     func didTapSettingsMenuCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
-        guard let coordinator = SettingsMenuCoordinator(root: viewController, services: services) else {
-            log("could not init \(SettingsMenuCoordinator.self)")
-            return
+        guard let coordinator = SettingsMenuCoordinator(root: viewController,
+                                                        services: services,
+                                                        syncManager: syncManager,
+                                                        networkManager: networkManager) else {
+                                                            log("could not init \(SettingsMenuCoordinator.self)")
+                                                            return
         }
         startChild(child: coordinator)
     }

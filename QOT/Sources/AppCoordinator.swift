@@ -22,43 +22,43 @@ final class AppCoordinator: ParentCoordinator {
     var children = [Coordinator]()
     lazy var logoutNotificationHandler: NotificationHandler = NotificationHandler(name: .logoutNotification)
     lazy var apnsDeviceTokenRegistrar: APNSDeviceTokenRegistrar = APNSDeviceTokenRegistrar(networkManager: self.networkManager, credentialsManager: self.credentialsManager)
-    fileprivate let windowManager: WindowManager
-    fileprivate let remoteNotificationHandler: RemoteNotificationHandler
-    fileprivate var services: Services?
-    fileprivate var topTabBarController: UINavigationController?
-    fileprivate var tabBarCoordinator: TabBarCoordinator?
-    fileprivate lazy var permissionHandler: PermissionHandler = PermissionHandler()
-    fileprivate lazy var networkManager: NetworkManager = NetworkManager(delegate: self, credentialsManager: self.credentialsManager)
-    fileprivate lazy var credentialsManager: CredentialsManager = CredentialsManager.shared
-    fileprivate var canProcessRemoteNotifications = false
+    private let windowManager: WindowManager
+    private let remoteNotificationHandler: RemoteNotificationHandler
+    private var services: Services?
+    private var topTabBarController: UINavigationController?
+    private var tabBarCoordinator: TabBarCoordinator?
+    private lazy var permissionHandler: PermissionHandler = PermissionHandler()
+    private lazy var networkManager: NetworkManager = NetworkManager(delegate: self, credentialsManager: self.credentialsManager)
+    private lazy var credentialsManager: CredentialsManager = CredentialsManager.shared
+    private var canProcessRemoteNotifications = false
     private var onDismiss: (() -> Void)?
     private var currentPresentedController: UIViewController?
     private var currentPresentedNavigationController: UINavigationController?
     static var currentStatusBarStyle: UIStatusBarStyle?
     
-    fileprivate lazy var realmProvider: RealmProvider = {
+    private lazy var realmProvider: RealmProvider = {
         return RealmProvider()
     }()
 
-    fileprivate lazy var pageTracker: PageTracker = {
+    private lazy var pageTracker: PageTracker = {
         let tracker = PageTracker(eventTracker: self.eventTracker)
         PageTracker.setStaticTracker(pageTracker: tracker)
         return tracker
     }()
 
-    fileprivate lazy var eventTracker: EventTracker = {
+    private lazy var eventTracker: EventTracker = {
         return EventTracker(realmProvider: self.realmProvider)
     }()
 
-    fileprivate lazy var syncRecordService: SyncRecordService = {
+    private lazy var syncRecordService: SyncRecordService = {
         return SyncRecordService(realmProvider: self.realmProvider)
     }()
 
-    fileprivate lazy var syncManager: SyncManager = {
+    private lazy var syncManager: SyncManager = {
         return SyncManager(networkManager: self.networkManager, syncRecordService: self.syncRecordService, realmProvider: self.realmProvider)
     }()
 
-    fileprivate lazy var calendarImportManager: CalendarImportManger = {
+    private lazy var calendarImportManager: CalendarImportManger = {
         let manager = CalendarImportManger(realm: self.realmProvider, predicate: { () -> (start: Date, end: Date) in
             let day: TimeInterval = 60 * 60 * 24
             let start = Date().addingTimeInterval(-(day * 30))
@@ -199,22 +199,18 @@ private extension AppCoordinator {
 
     func startTabBarCoordinator(services: Services, permissionHandler: PermissionHandler) {
         let selectedIndex = checkListIDToPresent != nil ? 2 : 0
-        let coordinator = TabBarCoordinator(
-            windowManager: windowManager,
-            selectedIndex: selectedIndex,
-            services: services,
-            eventTracker: eventTracker,
-            permissionHandler: permissionHandler,
-            pageTracker: pageTracker
-        )
+        let coordinator = TabBarCoordinator(windowManager: windowManager,
+                                            selectedIndex: selectedIndex,
+                                            services: services,
+                                            eventTracker: eventTracker,
+                                            permissionHandler: permissionHandler,
+                                            pageTracker: pageTracker,
+                                            syncManager: syncManager,
+                                            networkManager: networkManager)
         self.tabBarCoordinator = coordinator
         coordinator.start()
         startChild(child: coordinator)
-
-        guard let localID = checkListIDToPresent else {
-            return
-        }
-
+        guard let localID = checkListIDToPresent else { return }
         coordinator.showPreparationCheckList(localID: localID)
         checkListIDToPresent = nil
     }
@@ -267,7 +263,6 @@ extension AppCoordinator {
 
     func presentToBeVision() {
         guard let services = services else { return }
-
         let viewModel = MyToBeVisionViewModel(services: services)
         let myToBeVisionViewController = MyToBeVisionViewController(viewModel: viewModel, permissionHandler: permissionHandler)
         myToBeVisionViewController.delegate = self
@@ -297,10 +292,7 @@ extension AppCoordinator {
     }
 
     func presentWeeklyChoices(forStartDate startDate: Date, endDate: Date, completion: (() -> Void)?) {
-        guard let services = services else {
-            return
-        }
-
+        guard let services = services else { return}
         onDismiss = completion
         AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
         let viewModel = SelectWeeklyChoicesDataModel(services: services, maxSelectionCount: Layout.MeSection.maxWeeklyPage, startDate: startDate, endDate: endDate)

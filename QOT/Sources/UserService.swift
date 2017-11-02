@@ -141,6 +141,17 @@ extension UserService {
             assertionFailure("Update \(MyToBeVision.self), error: \(error)")
         }
     }
+    
+    func eraseToBeVision() {
+        guard let toBeVision = myToBeVision() else { return }
+        do {
+            try mainRealm.write {
+                mainRealm.delete(toBeVision)
+            }
+        } catch {
+            assertionFailure("Failed to delete toBeVision with error: \(error)")
+        }
+    }
 }
 
 // MARK: User Choice

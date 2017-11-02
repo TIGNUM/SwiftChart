@@ -16,11 +16,12 @@ protocol NetworkManagerDelegate: class {
     func networkManagerFailedToAuthenticate(_ networkManager: NetworkManager)
 }
 
-class NetworkManager {
+final class NetworkManager {
 
     fileprivate let sessionManager: SessionManager
     fileprivate let credentialsManager: CredentialsManager
     fileprivate let requestBuilder: URLRequestBuilder
+    weak var delegate: NetworkManagerDelegate?
     var credential: Credential? {
         get {
             return credentialsManager.credential
@@ -29,13 +30,11 @@ class NetworkManager {
             credentialsManager.credential = newValue
         }
     }
-    weak var delegate: NetworkManagerDelegate?
     
     init(delegate: NetworkManagerDelegate? = nil,
          sessionManager: SessionManager = SessionManager.default,
          credentialsManager: CredentialsManager = CredentialsManager.shared,
-         requestBuilder: URLRequestBuilder = URLRequestBuilder(baseURL: baseURL, deviceID: deviceID)
-        ) {
+         requestBuilder: URLRequestBuilder = URLRequestBuilder(deviceID: deviceID)) {
         self.delegate = delegate
         self.sessionManager = sessionManager
         self.credentialsManager = credentialsManager

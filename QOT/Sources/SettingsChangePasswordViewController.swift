@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Anchorage
 
 final class SettingsChangePasswordViewController: UITableViewController {
 

@@ -148,7 +148,6 @@ final class SyncManager {
         var operations: [Operation] = [startOperation]
         operations.append(contentsOf: syncOperations(context: context, shouldDownload: shouldDownload))
         operations.append(finishOperation)
-
         operationQueue.addOperations(operations, waitUntilFinished: false)
     }
 

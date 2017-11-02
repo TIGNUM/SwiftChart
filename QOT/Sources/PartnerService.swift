@@ -65,4 +65,14 @@ final class PartnerService {
             assertionFailure("Update \(Partner.self), error: \(error)")
         }
     }
+    
+    func eraseData() {
+        do {
+            try mainRealm.write {
+                mainRealm.delete(partners)
+            }
+        } catch {
+            assertionFailure("Failed to delete partners with error: \(error)")
+        }
+    }
 }

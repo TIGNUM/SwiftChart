@@ -21,7 +21,7 @@ final class CredentialsManager {
 
     private let keychain = Keychain()
     private var credentialDidChangeHandlers: [(Credential?) -> Void] = []
-    static var shared = CredentialsManager()
+    static let shared = CredentialsManager()
 
     // MARK: - Init
 

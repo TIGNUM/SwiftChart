@@ -188,6 +188,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             case .tutorial: log("tutorial")
             case .interview: log("interview")
             case .support: log("support")
+            case .adminSettings: delegate?.openAdminSettingsViewController(settingsViewController: self)
             default: return
             }
         }

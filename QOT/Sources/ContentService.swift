@@ -13,7 +13,7 @@ final class ContentService {
 
     // MARK: - Properties
 
-    fileprivate let mainRealm: Realm
+    private let mainRealm: Realm
     private let realmProvider: RealmProvider
 
     // MARK: - Init
@@ -24,6 +24,18 @@ final class ContentService {
     }
 
     // MARK: - Categories
+    
+    func eraseData() {
+        do {
+            try mainRealm.write {
+                mainRealm.delete(libraryCategories())
+                mainRealm.delete(learnContentCategories())
+                mainRealm.delete(whatsHotArticles())
+            }
+        } catch {
+            assertionFailure("Failed to delete content with error: \(error)")
+        }
+    }
 
     func libraryCategories() -> AnyRealmCollection<ContentCategory> {
         return mainRealm.contentCategories(section: .library)

@@ -19,6 +19,9 @@
 		0BEE8ABF1EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEE8AB61EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.swift */; };
 		0BEE8AC01EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BEE8AB71EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib */; };
 		0CC2119BB6C36EF6F43B4ECD /* Pods_QOT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */; };
+		36927FC41FA7960400EC9B88 /* SettingsAdmin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36927FC31FA7960400EC9B88 /* SettingsAdmin.storyboard */; };
+		36DADE761FA7850100EB00D4 /* SettingsAdminCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DADE751FA7850100EB00D4 /* SettingsAdminCoordinator.swift */; };
+		36DADE791FA786DD00EB00D4 /* SettingsAdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DADE781FA786DD00EB00D4 /* SettingsAdminViewController.swift */; };
 		7F01A6211F98A1E7002C7B72 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F01A6201F98A1E7002C7B72 /* ImagePickerController.swift */; };
 		7F01A6241F98A9C1002C7B72 /* ImageCropper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F01A6231F98A9C1002C7B72 /* ImageCropper.swift */; };
 		7F01A6261F98D5E3002C7B72 /* ImageQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F01A6251F98D5E3002C7B72 /* ImageQuality.swift */; };
@@ -140,14 +143,7 @@
 		CB14675E1EF18F5F00A60E31 /* Dictionary+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14675D1EF18F5F00A60E31 /* Dictionary+Convenience.swift */; };
 		CB1467651EF2779700A60E31 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1467641EF2779700A60E31 /* Page.swift */; };
 		CB1467671EF277AA00A60E31 /* PageIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1467661EF277AA00A60E31 /* PageIntermediary.swift */; };
-		CB14676C1EF2801F00A60E31 /* MockPageDown.json in Resources */ = {isa = PBXBuildFile; fileRef = CB14676B1EF2801F00A60E31 /* MockPageDown.json */; };
 		CB14676E1EF2AB7000A60E31 /* DeviceIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14676D1EF2AB7000A60E31 /* DeviceIdentifier.swift */; };
-		CB18BCBF1EEABD890035C1BB /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB18BCBE1EEABD890035C1BB /* MockNetworkManager.swift */; };
-		CB18BCC11EEABFA60035C1BB /* MockStartSync.json in Resources */ = {isa = PBXBuildFile; fileRef = CB18BCC01EEABFA60035C1BB /* MockStartSync.json */; };
-		CB18BCC31EEABFEB0035C1BB /* MockContentCategoryDown.json in Resources */ = {isa = PBXBuildFile; fileRef = CB18BCC21EEABFEB0035C1BB /* MockContentCategoryDown.json */; };
-		CB18BCC51EEAC2CE0035C1BB /* MockDownSyncConfirm.json in Resources */ = {isa = PBXBuildFile; fileRef = CB18BCC41EEAC2CE0035C1BB /* MockDownSyncConfirm.json */; };
-		CB18BCC71EEACF890035C1BB /* MockDownSyncContentCollection.json in Resources */ = {isa = PBXBuildFile; fileRef = CB18BCC61EEACF890035C1BB /* MockDownSyncContentCollection.json */; };
-		CB18BCC91EEAE9070035C1BB /* MockContentItemDown.json in Resources */ = {isa = PBXBuildFile; fileRef = CB18BCC81EEAE9070035C1BB /* MockContentItemDown.json */; };
 		CB1D5E391EC5E25A00BCDF8D /* ContentCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D5E2E1EC5E25A00BCDF8D /* ContentCategory.swift */; };
 		CB1D5E3A1EC5E25A00BCDF8D /* ContentCategoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D5E2F1EC5E25A00BCDF8D /* ContentCategoryData.swift */; };
 		CB1D5E3B1EC5E25A00BCDF8D /* ContentCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D5E301EC5E25A00BCDF8D /* ContentCollection.swift */; };
@@ -190,7 +186,6 @@
 		CB810E611EEFC0D70043E3E5 /* ErrorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB810E601EEFC0D70043E3E5 /* ErrorCell.swift */; };
 		CB810E641EF00DB70043E3E5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB810E631EF00DB70043E3E5 /* User.swift */; };
 		CB810E661EF00DCA0043E3E5 /* UserIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB810E651EF00DCA0043E3E5 /* UserIntermediary.swift */; };
-		CB810E681EF00E2C0043E3E5 /* MockUserDown.json in Resources */ = {isa = PBXBuildFile; fileRef = CB810E671EF00E2C0043E3E5 /* MockUserDown.json */; };
 		CB810E6E1EF180DC0043E3E5 /* PageTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB810E6D1EF180DC0043E3E5 /* PageTrack.swift */; };
 		CB8A154A1E7A7FA20023B2F9 /* CalendarImportManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15491E7A7FA20023B2F9 /* CalendarImportManger.swift */; };
 		CB8A154C1E7A8AD30023B2F9 /* CalendarImportTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A154B1E7A8AD30023B2F9 /* CalendarImportTask.swift */; };
@@ -279,7 +274,6 @@
 		CBD097371F72646000F71D91 /* ChatViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD097361F72646000F71D91 /* ChatViewLayout.swift */; };
 		CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791461E7172390006C590 /* LearnContentListCoordinator.swift */; };
 		CBD7914A1E71797C0006C590 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791491E71797C0006C590 /* Typealiases.swift */; };
-		CBD791541E72A4BB0006C590 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791531E72A4BB0006C590 /* MockData.swift */; };
 		CBDB98F21E7AA510003EC73F /* CalendarImportResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB98F11E7AA510003EC73F /* CalendarImportResult.swift */; };
 		CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB98F31E7B000A003EC73F /* NotificationHandler.swift */; };
 		CBDB98F91E7BD26A003EC73F /* Realm+TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB98F81E7BD26A003EC73F /* Realm+TestUtils.swift */; };
@@ -476,6 +470,9 @@
 		2BFF26100D7FF8708F5EF189 /* Pods-QOT.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.database.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.database.xcconfig"; sourceTree = "<group>"; };
 		2C2AD94F9096EA48FAC24935 /* Pods-DatabaseBuilder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseBuilder.release.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseBuilder/Pods-DatabaseBuilder.release.xcconfig"; sourceTree = "<group>"; };
 		2F1C8D6D4864F462A3F805BB /* Pods-QOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.release.xcconfig"; sourceTree = "<group>"; };
+		36927FC31FA7960400EC9B88 /* SettingsAdmin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsAdmin.storyboard; sourceTree = "<group>"; };
+		36DADE751FA7850100EB00D4 /* SettingsAdminCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAdminCoordinator.swift; sourceTree = "<group>"; };
+		36DADE781FA786DD00EB00D4 /* SettingsAdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAdminViewController.swift; sourceTree = "<group>"; };
 		42795728C4F3229DFB18981E /* Pods-QOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.debug.xcconfig"; sourceTree = "<group>"; };
 		5C87601C1FE7F833DF0D7A6B /* Pods-QOTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.release.xcconfig"; sourceTree = "<group>"; };
 		7F01A6201F98A1E7002C7B72 /* ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
@@ -602,14 +599,7 @@
 		CB14675D1EF18F5F00A60E31 /* Dictionary+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Convenience.swift"; sourceTree = "<group>"; };
 		CB1467641EF2779700A60E31 /* Page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		CB1467661EF277AA00A60E31 /* PageIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageIntermediary.swift; sourceTree = "<group>"; };
-		CB14676B1EF2801F00A60E31 /* MockPageDown.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockPageDown.json; sourceTree = "<group>"; };
 		CB14676D1EF2AB7000A60E31 /* DeviceIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceIdentifier.swift; sourceTree = "<group>"; };
-		CB18BCBE1EEABD890035C1BB /* MockNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockNetworkManager.swift; sourceTree = "<group>"; };
-		CB18BCC01EEABFA60035C1BB /* MockStartSync.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockStartSync.json; sourceTree = "<group>"; };
-		CB18BCC21EEABFEB0035C1BB /* MockContentCategoryDown.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockContentCategoryDown.json; sourceTree = "<group>"; };
-		CB18BCC41EEAC2CE0035C1BB /* MockDownSyncConfirm.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockDownSyncConfirm.json; sourceTree = "<group>"; };
-		CB18BCC61EEACF890035C1BB /* MockDownSyncContentCollection.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockDownSyncContentCollection.json; sourceTree = "<group>"; };
-		CB18BCC81EEAE9070035C1BB /* MockContentItemDown.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockContentItemDown.json; sourceTree = "<group>"; };
 		CB1D5E2E1EC5E25A00BCDF8D /* ContentCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCategory.swift; sourceTree = "<group>"; };
 		CB1D5E2F1EC5E25A00BCDF8D /* ContentCategoryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCategoryData.swift; sourceTree = "<group>"; };
 		CB1D5E301EC5E25A00BCDF8D /* ContentCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCollection.swift; sourceTree = "<group>"; };
@@ -653,7 +643,6 @@
 		CB810E601EEFC0D70043E3E5 /* ErrorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorCell.swift; sourceTree = "<group>"; };
 		CB810E631EF00DB70043E3E5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CB810E651EF00DCA0043E3E5 /* UserIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserIntermediary.swift; sourceTree = "<group>"; };
-		CB810E671EF00E2C0043E3E5 /* MockUserDown.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockUserDown.json; sourceTree = "<group>"; };
 		CB810E6D1EF180DC0043E3E5 /* PageTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageTrack.swift; sourceTree = "<group>"; };
 		CB8A15491E7A7FA20023B2F9 /* CalendarImportManger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarImportManger.swift; sourceTree = "<group>"; };
 		CB8A154B1E7A8AD30023B2F9 /* CalendarImportTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarImportTask.swift; sourceTree = "<group>"; };
@@ -746,7 +735,6 @@
 		CBD097361F72646000F71D91 /* ChatViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewLayout.swift; sourceTree = "<group>"; };
 		CBD791461E7172390006C590 /* LearnContentListCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentListCoordinator.swift; sourceTree = "<group>"; };
 		CBD791491E71797C0006C590 /* Typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
-		CBD791531E72A4BB0006C590 /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		CBDB98F11E7AA510003EC73F /* CalendarImportResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarImportResult.swift; sourceTree = "<group>"; };
 		CBDB98F31E7B000A003EC73F /* NotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 		CBDB98F81E7BD26A003EC73F /* Realm+TestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm+TestUtils.swift"; sourceTree = "<group>"; };
@@ -942,6 +930,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		36DADE771FA7869000EB00D4 /* SettingsAdmin */ = {
+			isa = PBXGroup;
+			children = (
+				36DADE781FA786DD00EB00D4 /* SettingsAdminViewController.swift */,
+				36927FC31FA7960400EC9B88 /* SettingsAdmin.storyboard */,
+			);
+			name = SettingsAdmin;
+			sourceTree = "<group>";
+		};
 		7BD58BE66F7DCDCEF349DBD8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1367,7 +1364,6 @@
 				CBB4DD1B1EE084DC0071494A /* Data Layer */,
 				CBB4DD2F1EE0893F0071494A /* Extensions */,
 				CBB4DD4B1EE093A10071494A /* Generated */,
-				CBB4DD4C1EE094150071494A /* Mock - DELETE */,
 				7F1D3D231F8E28E70071D322 /* Log */,
 				CBB4DD521EE095E50071494A /* Utils */,
 				CBB4DD1C1EE085600071494A /* View Layer */,
@@ -1405,17 +1401,18 @@
 				CBD791461E7172390006C590 /* LearnContentListCoordinator.swift */,
 				CCE06FDF1E8D44FC009C5AD2 /* LibraryCoordinator.swift */,
 				859683401F135C6300A98218 /* LoginCoordinator.swift */,
-				CC143A501EC495CE001FB76E /* StatisticsCoordinator.swift */,
 				CC0FF8D51EA78C810028D64F /* MyToBeVisionCoordinator.swift */,
 				7F4251BC1F20F05D00EA451D /* OnboardingCoordinator.swift */,
 				CC0FF8D91EA790750028D64F /* PartnersCoordinator.swift */,
 				CBC933071F052DDA00C00007 /* PrepareCoordinator.swift */,
 				859683461F137FD600A98218 /* ResetPasswordCoordinator.swift */,
+				36DADE751FA7850100EB00D4 /* SettingsAdminCoordinator.swift */,
 				CC02E1451F27996800134574 /* SettingsCalendarListCoordinator.swift */,
 				CC90EC9A1F3074DC00A83DB9 /* SettingsChangePasswordCoordinator.swift */,
 				CCAF03211E801B0E00015125 /* SettingsCoordinator.swift */,
 				CC9FBDE71EAE58F300AF1CF0 /* SettingsMenuCoordinator.swift */,
 				CCE373091E8D32F800B79352 /* SidebarCoordinator.swift */,
+				CC143A501EC495CE001FB76E /* StatisticsCoordinator.swift */,
 				CCC0C4DA1E82BDEF002A8362 /* TabBarCoordinator.swift */,
 				CC0FF8D71EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift */,
 			);
@@ -1472,6 +1469,7 @@
 				7F0F02FC1F13D5D500007D50 /* Select Weekly Choices */,
 				CBB4DD431EE090130071494A /* Settings */,
 				CBB4DD421EE090010071494A /* Settings Menu */,
+				36DADE771FA7869000EB00D4 /* SettingsAdmin */,
 				CC02E1471F2799E500134574 /* SettingsCalendarList */,
 				CC90EC991F3074A200A83DB9 /* SettingsChangePaasword */,
 				CBB4DD401EE08F600071494A /* Sidebar */,
@@ -1907,22 +1905,6 @@
 				CCFCCB131F31C8E8004A4D7E /* R.generated.swift */,
 			);
 			name = Generated;
-			sourceTree = "<group>";
-		};
-		CBB4DD4C1EE094150071494A /* Mock - DELETE */ = {
-			isa = PBXGroup;
-			children = (
-				CB18BCC21EEABFEB0035C1BB /* MockContentCategoryDown.json */,
-				CB18BCC81EEAE9070035C1BB /* MockContentItemDown.json */,
-				CB18BCC41EEAC2CE0035C1BB /* MockDownSyncConfirm.json */,
-				CB18BCC61EEACF890035C1BB /* MockDownSyncContentCollection.json */,
-				CB18BCC01EEABFA60035C1BB /* MockStartSync.json */,
-				CB810E671EF00E2C0043E3E5 /* MockUserDown.json */,
-				CB14676B1EF2801F00A60E31 /* MockPageDown.json */,
-				CBD791531E72A4BB0006C590 /* MockData.swift */,
-				CB18BCBE1EEABD890035C1BB /* MockNetworkManager.swift */,
-			);
-			name = "Mock - DELETE";
 			sourceTree = "<group>";
 		};
 		CBB4DD4F1EE094E50071494A /* Calendar Import */ = {
@@ -2362,7 +2344,6 @@
 				CCA2DC691EF17BFA00D1DF6A /* LearnContentItemHeaderView.xib in Resources */,
 				CC3E5D4C1F0109B700B9E11F /* ArticleRelatedCell.xib in Resources */,
 				8548BBDE1F0D264800AC7C06 /* RequestDeviceSensorCollectionViewCell.xib in Resources */,
-				CB18BCC31EEABFEB0035C1BB /* MockContentCategoryDown.json in Resources */,
 				CC311A271EAF434F0020C869 /* SettingsLabelTableViewCell.xib in Resources */,
 				CCC0C4CA1E827F87002A8362 /* BentonSans_Book.otf in Resources */,
 				7F0F03061F14CE2F00007D50 /* CollapsableContentCell.xib in Resources */,
@@ -2370,7 +2351,6 @@
 				CC90ECA31F30A68E00A83DB9 /* SettingsChangePasswordViewController.storyboard in Resources */,
 				CBC5A57A1FA08071007B9A5B /* 100839.m4a in Resources */,
 				CC59A88D1F41C0E100D22353 /* LibraryCategoryCollectionViewCell.xib in Resources */,
-				CB18BCC51EEAC2CE0035C1BB /* MockDownSyncConfirm.json in Resources */,
 				CBC5A5791FA0806E007B9A5B /* 100838.m4a in Resources */,
 				0BEE8AC01EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib in Resources */,
 				7F0F03041F14CE2300007D50 /* CollapsableCell.xib in Resources */,
@@ -2382,13 +2362,10 @@
 				CB8C34541EAF7F190003AB65 /* MyToBeVisionViewController.xib in Resources */,
 				7F0F02F41F13CDAD00007D50 /* SelectWeeklyChoicesViewController.xib in Resources */,
 				D50D6C251EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib in Resources */,
-				CB18BCC91EEAE9070035C1BB /* MockContentItemDown.json in Resources */,
-				CB810E681EF00E2C0043E3E5 /* MockUserDown.json in Resources */,
 				0B40DC161E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib in Resources */,
 				CCC0C4D41E82A8D9002A8362 /* Simple-Regular.ttf in Resources */,
 				CC311A2D1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib in Resources */,
 				CBC5A57B1FA08075007B9A5B /* 100840.m4a in Resources */,
-				CB18BCC11EEABFA60035C1BB /* MockStartSync.json in Resources */,
 				CB8C34561EAF7F200003AB65 /* styles.css in Resources */,
 				CBC5A5711F9FA01D007B9A5B /* Animations.xcassets in Resources */,
 				85C3D6BC1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib in Resources */,
@@ -2396,12 +2373,12 @@
 				D5EC34AD1EB0D32D00F86B09 /* LearnStrategyAudioPlayerView.xib in Resources */,
 				8514A48A1EE93D640086C70E /* PrepareContentFooterTableViewCell.xib in Resources */,
 				CBC933101F0AA47800C00007 /* PrepareEventsViewController.xib in Resources */,
+				36927FC41FA7960400EC9B88 /* SettingsAdmin.storyboard in Resources */,
 				CCA2DC6D1EF290DF00D1DF6A /* LearnContentItemBulletCell.xib in Resources */,
 				D5EC34B31EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.xib in Resources */,
 				0BD6F6BA1EA0E81E001EBC4D /* MyPrepTableViewCell.xib in Resources */,
 				CB8C34521EAF61E50003AB65 /* SettingsMenuViewController.xib in Resources */,
 				7F99ABB11F3DF38E009CA587 /* Database in Resources */,
-				CB18BCC71EEACF890035C1BB /* MockDownSyncContentCollection.json in Resources */,
 				CC311A231EAF431E0020C869 /* SettingsControlTableViewCell.xib in Resources */,
 				0B2CA37C1ED2BC93006B355F /* SensorCollectionViewCell.xib in Resources */,
 				0BB099CD1EBC6323006B2FB7 /* PartnersViewController.xib in Resources */,
@@ -2409,7 +2386,6 @@
 				CBC5A57C1FA08077007B9A5B /* 100841.m4a in Resources */,
 				851676D91F3C55C8007A1DD6 /* LearnPDFCell.xib in Resources */,
 				CC8018241F026BDA0040B03F /* LibraryTableViewCell.xib in Resources */,
-				CB14676C1EF2801F00A60E31 /* MockPageDown.json in Resources */,
 				CBB237F71E6FFF1200AB5AEF /* Assets.xcassets in Resources */,
 				D58BD8781E9F65F7005676DE /* ArticleCollectionCell.xib in Resources */,
 				0BB099CC1EBC6323006B2FB7 /* CarouselCellView.xib in Resources */,
@@ -2637,7 +2613,6 @@
 				CBD7914A1E71797C0006C590 /* Typealiases.swift in Sources */,
 				CCCC21221E8981CA00133839 /* PrepareContentViewController.swift in Sources */,
 				CB3437621EFD67B600D89D4F /* AnswerIntermediary.swift in Sources */,
-				CBD791541E72A4BB0006C590 /* MockData.swift in Sources */,
 				CBC5ACC61F17C58F007E1E9C /* UpdateRelationsOperation.swift in Sources */,
 				CBFECCAA1F33492D0076ACE6 /* EKEventStore+Convenience.swift in Sources */,
 				CB9B07651EF929E50017F6C3 /* EKEvent+JSONEncodable.swift in Sources */,
@@ -2685,6 +2660,7 @@
 				CB27D59F1ECDE96F00F2B76C /* DownSyncResultParser.swift in Sources */,
 				CCF0F4C01ECDC57000E8D9C1 /* NSPredicate+Convenience.swift in Sources */,
 				7FE38DD51F2B2E760061E98F /* UIBarButtonItem+Convenience.swift in Sources */,
+				36DADE761FA7850100EB00D4 /* SettingsAdminCoordinator.swift in Sources */,
 				CBFECCA81F31D7480076ACE6 /* SyncTypes.swift in Sources */,
 				CCA2DC6C1EF290DF00D1DF6A /* LearnContentItemBulletCell.swift in Sources */,
 				CCCE09CC1EA67C78008730F1 /* MyToBeVisionViewModel.swift in Sources */,
@@ -2927,13 +2903,13 @@
 				CB8A154A1E7A7FA20023B2F9 /* CalendarImportManger.swift in Sources */,
 				CB8A154C1E7A8AD30023B2F9 /* CalendarImportTask.swift in Sources */,
 				CB3437671EFE74C700D89D4F /* ContentCollection+Convenience.swift in Sources */,
-				CB18BCBF1EEABD890035C1BB /* MockNetworkManager.swift in Sources */,
 				7F8DB4AB1FA2047D00DFE006 /* PartnersAnimation.swift in Sources */,
 				CCE373081E8D32CF00B79352 /* LibraryViewController.swift in Sources */,
 				859683411F135C6300A98218 /* LoginCoordinator.swift in Sources */,
 				7F5A25BF1F3CB71100A11466 /* DatabaseManager.swift in Sources */,
 				CBC933051F05253000C00007 /* JSON+Convenience.swift in Sources */,
 				7FE151C81F3DDAE600DA8F37 /* DatabaseBuilder.swift in Sources */,
+				36DADE791FA786DD00EB00D4 /* SettingsAdminViewController.swift in Sources */,
 				CB9AFD141F014BAA00D067F2 /* PreparationCheck.swift in Sources */,
 				CBC933081F052DDA00C00007 /* PrepareCoordinator.swift in Sources */,
 				D5485F241ED57F0600A08D1A /* SearchViewModel.swift in Sources */,

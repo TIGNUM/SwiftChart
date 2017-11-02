@@ -11,18 +11,19 @@ import UIKit
 
 final class SettingsMenuCoordinator: ParentCoordinator {
 
-    fileprivate let services: Services
-    fileprivate let settingsMenuViewController: SettingsMenuViewController
-    fileprivate let rootViewController: UIViewController
+    private let services: Services
+    private let settingsMenuViewController: SettingsMenuViewController
+    private let rootViewController: UIViewController
+    private let networkManager: NetworkManager
+    private let syncManager: SyncManager
     var children = [Coordinator]()
 
-    init?(root: SidebarViewController, services: Services) {
-        guard let viewModel = SettingsMenuViewModel(services: services) else {
-            return nil
-        }
-        
+    init?(root: SidebarViewController, services: Services, syncManager: SyncManager, networkManager: NetworkManager) {
+        guard let viewModel = SettingsMenuViewModel(services: services) else { return nil }
         self.rootViewController = root
         self.services = services
+        self.networkManager = networkManager
+        self.syncManager = syncManager
         settingsMenuViewController = SettingsMenuViewController(viewModel: viewModel)
         settingsMenuViewController.title = R.string.localized.settingsTitle().uppercased()
         settingsMenuViewController.delegate = self
@@ -50,10 +51,11 @@ extension SettingsMenuCoordinator: SettingsMenuViewControllerDelegate {
     }
 
     private func startSettingsCoordinator(settingsType: SettingsType.SectionType, root: SettingsMenuViewController) {
-        guard let coordinator = SettingsCoordinator(root: root, services: services, settingsType: settingsType) else {
-            return
-        }
-
+        guard let coordinator = SettingsCoordinator(root: root,
+                                                    services: services,
+                                                    settingsType: settingsType,
+                                                    syncManager: syncManager,
+                                                    networkManager: networkManager) else { return }
         startChild(child: coordinator)
     }
 }

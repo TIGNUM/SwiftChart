@@ -74,7 +74,7 @@ class SettingsTableViewCell: UITableViewCell, Dequeueable {
             setupTextFieldCell(title: title, value: value, secure: secure)
         }
 
-        if (settingsType == .calendar && settingsDelegate != nil) || settingsType == .password {
+        if (settingsType == .calendar && settingsDelegate != nil) || settingsType == .password || settingsType == .adminSettings {
             accessoryType = .disclosureIndicator
         }
     }

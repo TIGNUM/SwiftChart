@@ -114,13 +114,6 @@ struct Layout {
     }
 }
 
-struct Databsase {
-    enum Key: String {
-        case primary = "id"
-        case sort = "sort"
-    }
-}
-
 enum KeychainConstant: String {
     case username = "com.tignum.qot.username"
     case password = "com.tignum.qot.password"
