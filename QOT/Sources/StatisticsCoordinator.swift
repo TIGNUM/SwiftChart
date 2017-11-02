@@ -15,7 +15,7 @@ final class StatisticsCoordinator: NSObject, ParentCoordinator {
 
     fileprivate let rootViewController: UIViewController
     fileprivate let services: Services
-    fileprivate let transitioningDelegate: UIViewControllerTransitioningDelegate
+    fileprivate let transitioningDelegate: UIViewControllerTransitioningDelegate // swiftlint:disable:this weak_delegate
     fileprivate let startingSection: StatisticsSectionType
     fileprivate var topTabBarController: UINavigationController!
     var children: [Coordinator] = []

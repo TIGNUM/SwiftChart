@@ -28,7 +28,8 @@ class MyToBeVisionViewController: UIViewController {
     @IBOutlet weak var messageTextView: PlaceholderTextView!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var imageViewOverlay: UIView!
+    @IBOutlet weak var imageViewPlaceholder: UIImageView!
+    @IBOutlet weak var imageViewContainer: UIView!
     @IBOutlet weak var imageButton: UIButton!
     @IBOutlet weak var imageEditLabel: UILabel!
     @IBOutlet weak var circleContainerView: UIView!
@@ -81,7 +82,7 @@ class MyToBeVisionViewController: UIViewController {
         textViewDidChange(headlineTextView) // flush height constraint change
         
         if messageTextView.contentInset.bottom == 0 {
-            messageTextView.contentInset.bottom = imageViewOverlay.bounds.height
+            messageTextView.contentInset.bottom = imageViewContainer.bounds.height
         }
     }
     
@@ -89,12 +90,6 @@ class MyToBeVisionViewController: UIViewController {
         super.viewDidAppear(animated)
         
         setupNotifications()
-
-        UIView.animate(withDuration: 0.7) {
-            self.view.alpha = 1.0
-            self.imageView.alpha = 1.0
-            self.imageViewOverlay.alpha = 1.0
-        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -157,6 +152,7 @@ private extension MyToBeVisionViewController {
         headlineTextView.isEditable = isEditing
         messageTextView.isEditable = isEditing
         editButton.tintColor = isEditing ? .white : .white40
+        imageView.alpha = isEditing ? 0.25 : 1.0
         setupMessageText(editing: isEditing)
 
         UIView.animate(withDuration: 0.5, animations: {
@@ -182,25 +178,25 @@ private extension MyToBeVisionViewController {
 
         messageTextView.delegate = self
         messageTextView.returnKeyType = .done
-
+        
         if let profileImageResource = viewModel.profileImageResource {
             imageView.setImageFromResource(profileImageResource)
         }
 
         setImageButton(isEditing: false)
-        imageView.alpha = 0.0
         imageView.addGestureRecognizer(imageTapRecogniser)
-        imageViewOverlay.alpha = 0.0
         editButton.tintColor = .white40
     }
 
     func setImageButton(isEditing: Bool) {
         if imageView.image == nil {
-            imageButton.alpha = 1
+            imageViewPlaceholder.isHidden = false
+            imageButton.alpha = isEditing == true ? 1 : 0.3
             imageButton.isEnabled = true
-            imageEditLabel.alpha = 1
+            imageEditLabel.alpha = isEditing == true ? 1 : 0.3
             imageTapRecogniser.isEnabled = true
         } else {
+            imageViewPlaceholder.isHidden = true
             imageButton.alpha = isEditing == true ? 1 : 0
             imageButton.isEnabled = isEditing == true
             imageEditLabel.alpha = isEditing == true ? 1 : 0
@@ -239,9 +235,10 @@ private extension MyToBeVisionViewController {
             font: Font.H7Tag,
             lineSpacing: 0)
         subtitleLabel.textColor = .white30
+        subtitleLabel.text = R.string.localized.meSectorMyWhyVisionProfilePictureEditButtonTitle()
         
         imageEditLabel.font = Font.DPText
-        imageEditLabel.textColor = (imageView.image == nil) ? .white30 : .white
+        imageEditLabel.textColor = .white
     }
 
     func setupMessageTextGradientLayer() {
@@ -271,16 +268,16 @@ private extension MyToBeVisionViewController {
         clippingBorderPath.move(to: CGPoint(x: 0, y: 56))
         clippingBorderPath.addCurve(
             to: CGPoint(x: view.bounds.size.width, y: 56),
-            controlPoint1: CGPoint(x: view.bounds.size.width/2 - 50, y: 5),
-            controlPoint2: CGPoint(x: view.bounds.size.width/2 + 50, y: 5)
+            controlPoint1: CGPoint(x: view.bounds.size.width/2 - 50, y: 0),
+            controlPoint2: CGPoint(x: view.bounds.size.width/2 + 50, y: 0)
         )
-        clippingBorderPath.addLine(to: CGPoint(x:  view.bounds.size.width, y: view.bounds.size.height + 15))
-        clippingBorderPath.addLine(to: CGPoint(x:  0, y: view.bounds.size.height + 15))
+        clippingBorderPath.addLine(to: CGPoint(x:  view.bounds.size.width, y: view.bounds.size.height + 30))
+        clippingBorderPath.addLine(to: CGPoint(x:  0, y: view.bounds.size.height + 30))
         clippingBorderPath.close()
 
         let borderMask = CAShapeLayer()
         borderMask.path = clippingBorderPath.cgPath
-        imageViewOverlay.layer.mask = borderMask
+        imageView.layer.mask = borderMask
     }
 }
 
@@ -315,7 +312,7 @@ private extension MyToBeVisionViewController {
     }
     
     @objc func keyboardWillHide(_ notification: NSNotification) {
-        messageTextView.contentInset.bottom = imageViewOverlay.bounds.height
+        messageTextView.contentInset.bottom = imageViewContainer.bounds.height
         messageTextView.contentOffset = .zero
     }
 }

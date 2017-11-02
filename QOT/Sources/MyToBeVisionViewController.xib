@@ -28,7 +28,8 @@
                 <outlet property="imageButton" destination="RJI-t0-ZYc" id="itt-et-1k1"/>
                 <outlet property="imageEditLabel" destination="3Ik-TR-2gA" id="4aR-6W-GVE"/>
                 <outlet property="imageView" destination="bfh-6q-eoT" id="hcV-JT-FHR"/>
-                <outlet property="imageViewOverlay" destination="Bbh-3u-HIM" id="Pve-ck-qh5"/>
+                <outlet property="imageViewContainer" destination="Bbh-3u-HIM" id="Bh9-AL-Te7"/>
+                <outlet property="imageViewPlaceholder" destination="eHf-qV-wwH" id="a2a-na-h2k"/>
                 <outlet property="messageTextView" destination="Bt0-lW-TcB" id="Zxh-wr-RnJ"/>
                 <outlet property="minimiseButton" destination="X5G-vy-FA9" id="YBO-Im-iOC"/>
                 <outlet property="navigationBar" destination="Cks-DY-TaL" id="AFw-2f-gUt"/>
@@ -115,10 +116,10 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="182"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJI-t0-ZYc">
-                            <rect key="frame" x="137.5" y="69" width="45" height="45"/>
+                            <rect key="frame" x="149.5" y="65.5" width="21" height="21"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="45" id="ILp-nZ-8Vm"/>
-                                <constraint firstAttribute="height" constant="45" id="Q3t-Uu-Wbp"/>
+                                <constraint firstAttribute="width" constant="21" id="ILp-nZ-8Vm"/>
+                                <constraint firstAttribute="height" constant="21" id="Q3t-Uu-Wbp"/>
                             </constraints>
                             <state key="normal" backgroundImage="my-why-image-plus-icon"/>
                             <connections>
@@ -126,7 +127,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Picture" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ik-TR-2gA">
-                            <rect key="frame" x="106.5" y="123" width="107.5" height="19"/>
+                            <rect key="frame" x="106.5" y="95.5" width="107.5" height="19"/>
                             <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -143,7 +144,7 @@
                         <constraint firstAttribute="trailing" secondItem="bfh-6q-eoT" secondAttribute="trailing" id="gUG-VU-WZj"/>
                         <constraint firstAttribute="trailing" secondItem="eHf-qV-wwH" secondAttribute="trailing" id="i24-Ir-PUG"/>
                         <constraint firstItem="3Ik-TR-2gA" firstAttribute="centerX" secondItem="RJI-t0-ZYc" secondAttribute="centerX" id="iBk-6i-Zc4"/>
-                        <constraint firstItem="RJI-t0-ZYc" firstAttribute="centerY" secondItem="Bbh-3u-HIM" secondAttribute="centerY" constant="-0.25" id="nJh-eu-CFB"/>
+                        <constraint firstItem="RJI-t0-ZYc" firstAttribute="centerY" secondItem="Bbh-3u-HIM" secondAttribute="centerY" constant="-15" id="nJh-eu-CFB"/>
                         <constraint firstAttribute="bottom" secondItem="eHf-qV-wwH" secondAttribute="bottom" id="r3i-HM-O4d"/>
                         <constraint firstItem="eHf-qV-wwH" firstAttribute="leading" secondItem="Bbh-3u-HIM" secondAttribute="leading" id="zUq-qX-eFa"/>
                     </constraints>
@@ -188,6 +189,6 @@
         <image name="backgroundWeeklyChoices" width="187" height="333"/>
         <image name="ic_edit" width="23" height="22"/>
         <image name="ic_minimize" width="22" height="12"/>
-        <image name="my-why-image-plus-icon" width="24" height="24"/>
+        <image name="my-why-image-plus-icon" width="29" height="29"/>
     </resources>
 </document>

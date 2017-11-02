@@ -19,7 +19,7 @@ final class LearnContentListCoordinator: ParentCoordinator {
     fileprivate let rootViewController: UIViewController
     var children: [Coordinator] = []
     weak var delegate: LearnContentListCoordinatorDelegate?
-    fileprivate let transitioningDelegate: UIViewControllerTransitioningDelegate
+    fileprivate let transitioningDelegate: UIViewControllerTransitioningDelegate // swiftlint:disable:this weak_delegate
 
     init(root: LearnCategoryListViewController, transitioningDelegate: UIViewControllerTransitioningDelegate, services: Services, eventTracker: EventTracker, selectedCategoryIndex: Index, originFrame: CGRect) {
         self.rootViewController = root

@@ -17,7 +17,7 @@ final class MyToBeVisionCoordinator: NSObject, ParentCoordinator {
     fileprivate var myToBeVisionViewController: MyToBeVisionViewController!
     private let viewModel: MyToBeVisionViewModel
     fileprivate let rootViewController: UIViewController
-    fileprivate let transitioningDelegate: UIViewControllerTransitioningDelegate
+    fileprivate let transitioningDelegate: UIViewControllerTransitioningDelegate // swiftlint:disable:this weak_delegate
     var children: [Coordinator] = []
 
     // MARK: - Life Cycle

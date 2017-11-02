@@ -19,7 +19,7 @@ final class PartnersCoordinator: NSObject, ParentCoordinator {
     fileprivate var topTabBarController: UINavigationController!
     fileprivate let partnersViewController: PartnersViewController
     fileprivate let rootViewController: UIViewController
-    fileprivate let transitioningDelegate: UIViewControllerTransitioningDelegate
+    fileprivate let transitioningDelegate: UIViewControllerTransitioningDelegate // swiftlint:disable:this weak_delegate
     var children: [Coordinator] = []
 
     // MARK: - Life Cycle
