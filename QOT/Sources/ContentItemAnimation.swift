@@ -14,9 +14,9 @@ final class ContentItemAnimation: NSObject, UIViewControllerAnimatedTransitionin
     let isPresenting: Bool
     let originFrame: CGRect
 
-    fileprivate var fromViewController: UIViewController?
-    fileprivate var toViewController: UIViewController?
-    fileprivate var transitionContext: UIViewControllerContextTransitioning?
+    private var fromViewController: UIViewController?
+    private var toViewController: UIViewController?
+    private var transitionContext: UIViewControllerContextTransitioning?
 
     init(isPresenting: Bool, duration: TimeInterval, originFrame: CGRect) {
         self.isPresenting = isPresenting

@@ -11,9 +11,9 @@ import Anchorage
 
 final class SearchViewController: UIViewController {
 
-    fileprivate let viewModel = SearchViewModel()
+    private let viewModel = SearchViewModel()
 
-    fileprivate lazy var collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: 0, left: 55, bottom: 10, right: 0)
@@ -26,7 +26,7 @@ final class SearchViewController: UIViewController {
         )
     }()
 
-    fileprivate lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         return UITableView(
             estimatedRowHeight: 85,
             delegate: self,

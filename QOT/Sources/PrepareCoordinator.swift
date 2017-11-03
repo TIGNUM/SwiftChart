@@ -25,19 +25,19 @@ final class PrepareCoordinator: ParentCoordinator {
 
     // MARK: Private properties
 
-    fileprivate let services: Services
-    fileprivate let eventTracker: EventTracker
-    fileprivate let permissionHandler: PermissionHandler
-    fileprivate let tabBarController: TabBarController
-    fileprivate let topTabBarController: UINavigationController
-    fileprivate let chatViewController: ChatViewController<Answer>
-    fileprivate let myPrepViewController: MyPrepViewController
-    fileprivate let chatDecisionManager: PrepareChatDecisionManager
-    fileprivate var context: Context?
-    fileprivate weak var prepareListViewController: PrepareContentViewController?    
+    private let services: Services
+    private let eventTracker: EventTracker
+    private let permissionHandler: PermissionHandler
+    private let tabBarController: TabBarController
+    private let topTabBarController: UINavigationController
+    private let chatViewController: ChatViewController<Answer>
+    private let myPrepViewController: MyPrepViewController
+    private let chatDecisionManager: PrepareChatDecisionManager
+    private var context: Context?
+    private weak var prepareListViewController: PrepareContentViewController?    
     var children: [Coordinator] = []
 
-    fileprivate lazy var editEventHandler: EditEventHandler = {
+    private lazy var editEventHandler: EditEventHandler = {
         let delegate = EditEventHandler()
         delegate.handler = { [weak self] (controller, action) in
             switch action {

@@ -12,8 +12,8 @@ import ReactiveKit
 
 final class ArticleItemViewModel {
 
-    fileprivate let items: [ContentItem]
-    fileprivate let relatedArticles: [ContentCollection]
+    private let items: [ContentItem]
+    private let relatedArticles: [ContentCollection]
     let backgroundImage: UIImage?
     let articleHeader: ArticleCollectionHeader?
     let contentCollection: ContentCollection

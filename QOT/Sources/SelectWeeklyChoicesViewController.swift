@@ -18,7 +18,7 @@ protocol SelectWeeklyChoicesViewControllerDelegate: class {
 
 final class SelectWeeklyChoicesViewController: UIViewController {
 
-    fileprivate struct CellReuseIdentifiers {
+    private struct CellReuseIdentifiers {
         static let CollapsableCell = "CollapsableCell"
         static let CollapsableContentCell = "CollapsableContentCell"
     }
@@ -86,13 +86,13 @@ final class SelectWeeklyChoicesViewController: UIViewController {
             alignment: .center)
     }
     
-    fileprivate func setSelected(_ selected: Int) {
+    private func setSelected(_ selected: Int) {
         let maxSelectionCount = viewModel.maxSelectionCount
         navigationBar.topItem?.title = R.string.localized.meSectorMyWhySelectWeeklyChoicesNavigation("\(maxSelectionCount)", "\(selected)", "\(viewModel.maxSelectionCount)").uppercased()
         doneButton.isEnabled = selected == maxSelectionCount
     }
     
-    fileprivate func showMaxSelectionCountAlert() {
+    private func showMaxSelectionCountAlert() {
         let alert = UIAlertController(
             title: R.string.localized.meSectorMyWhySelectWeeklyChoicesMaxChoiceAlertTitle(),
             message: R.string.localized.meSectorMyWhySelectWeeklyChoicesMaxChoiceAlertMessage(),

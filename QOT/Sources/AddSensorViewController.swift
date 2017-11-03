@@ -21,7 +21,7 @@ final class AddSensorViewController: UIViewController {
     private let viewModel: AddSensorViewModel
     weak var delegate: AddSensorViewControllerDelegate?
 
-    fileprivate lazy var collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: 0, left: 36, bottom: 10, right: 59)
@@ -33,7 +33,7 @@ final class AddSensorViewController: UIViewController {
                                 RequestDeviceSensorCollectionViewCell.self)
     }()
 
-    fileprivate lazy var scrollView: UIScrollView = {
+    private lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         view.backgroundColor = .clear
         view.delegate = self
@@ -42,7 +42,7 @@ final class AddSensorViewController: UIViewController {
         return view
     }()
 
-    fileprivate lazy var contentView: UIView = {
+    private lazy var contentView: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
         view.addSubview(self.titleLabel)
@@ -53,7 +53,7 @@ final class AddSensorViewController: UIViewController {
         return view
     }()
 
-    fileprivate lazy var titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.addCharactersSpacing(spacing: 2, text: R.string.localized.sidebarSensorsMenuSensors(), uppercased: true)
         label.textColor = .white
@@ -62,7 +62,7 @@ final class AddSensorViewController: UIViewController {
         return label
     }()
 
-    fileprivate lazy var headerLabel: UILabel = {
+    private lazy var headerLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = Font.H3Subtitle
@@ -72,7 +72,7 @@ final class AddSensorViewController: UIViewController {
         return label
     }()
 
-    fileprivate lazy var textLabel: UILabel = {
+    private lazy var textLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.setAttrText(text: self.viewModel.text, font: Font.DPText, alignment: .left, lineSpacing: 13)

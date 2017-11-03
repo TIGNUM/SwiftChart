@@ -13,15 +13,15 @@ final class MorningInterviewCell: UICollectionViewCell, Dequeueable {
 
     // MARK: - Properties
     
-    fileprivate var topview: UIView = UIView()
-    fileprivate var centerView: UIView = UIView()
-    fileprivate var bottomView: UIView = UIView()
-    fileprivate var numberlabel: UILabel = UILabel()
-    fileprivate var subTitleLabel: UILabel = UILabel()
-    fileprivate var maxLabel: UILabel = UILabel()
-    fileprivate var question: InterviewQuestion?
+    private var topview: UIView = UIView()
+    private var centerView: UIView = UIView()
+    private var bottomView: UIView = UIView()
+    private var numberlabel: UILabel = UILabel()
+    private var subTitleLabel: UILabel = UILabel()
+    private var maxLabel: UILabel = UILabel()
+    private var question: InterviewQuestion?
 
-    fileprivate var titlelabel: UILabel = {
+    private var titlelabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.minimumScaleFactor = 0.5
@@ -29,7 +29,7 @@ final class MorningInterviewCell: UICollectionViewCell, Dequeueable {
         return label
     }()
 
-    fileprivate var slider: UISlider = {
+    private var slider: UISlider = {
         let slider = UISlider()
         slider.minimumTrackTintColor = .white
         slider.maximumTrackTintColor = .gray
@@ -55,7 +55,7 @@ final class MorningInterviewCell: UICollectionViewCell, Dequeueable {
         }
     }
 
-    fileprivate var minLabel: UILabel = {
+    private var minLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white60
         label.font = .bentonBookFont(ofSize: 11)
@@ -94,7 +94,7 @@ final class MorningInterviewCell: UICollectionViewCell, Dequeueable {
         )
     }
 
-    fileprivate func setCurrentAnswerLabels(answer: Answer) {
+    private func setCurrentAnswerLabels(answer: Answer) {
         subTitleLabel.numberOfLines = 0
         numberlabel.attributedText = NSMutableAttributedString(
             string: answer.title,

@@ -13,13 +13,13 @@ final class PartnersCoordinator: NSObject, ParentCoordinator {
 
     // MARK: - Properties
 
-    fileprivate let services: Services
-    fileprivate let selectedIndex: Index
-    fileprivate let viewModel: PartnersViewModel
-    fileprivate var topTabBarController: UINavigationController!
-    fileprivate let partnersViewController: PartnersViewController
-    fileprivate let rootViewController: UIViewController
-    fileprivate let transitioningDelegate: UIViewControllerTransitioningDelegate // swiftlint:disable:this weak_delegate
+    private let services: Services
+    private let selectedIndex: Index
+    private let viewModel: PartnersViewModel
+    private var topTabBarController: UINavigationController!
+    private let partnersViewController: PartnersViewController
+    private let rootViewController: UIViewController
+    private let transitioningDelegate: UIViewControllerTransitioningDelegate // swiftlint:disable:this weak_delegate
     var children: [Coordinator] = []
 
     // MARK: - Life Cycle

@@ -12,17 +12,17 @@ import Freddy
 
 final class PageTrack: SyncableObject {
 
-    @objc fileprivate dynamic var page: Page?
+    @objc private dynamic var page: Page?
     
-    @objc fileprivate dynamic var referrerPage: Page?
+    @objc private dynamic var referrerPage: Page?
     
-    @objc fileprivate dynamic var associatedValueLocalID: String?
+    @objc private dynamic var associatedValueLocalID: String?
     
-    @objc fileprivate dynamic var associatedValueType: String?
+    @objc private dynamic var associatedValueType: String?
 
-    @objc fileprivate dynamic var referrerAssociatedValueLocalID: String?
+    @objc private dynamic var referrerAssociatedValueLocalID: String?
     
-    @objc fileprivate dynamic var referrerAssociatedValueType: String?
+    @objc private dynamic var referrerAssociatedValueType: String?
     
     convenience init(page: Page, referrerPage: Page?, associatedValueLocalID: String?, associatedValueType: String?, referrerAssociatedValueLocalID: String?, referrerAssociatedValueType: String?) {
         self.init()
@@ -38,7 +38,7 @@ final class PageTrack: SyncableObject {
     // MARK: - private
     
     // FIXME: refactor when Realm issue is resolved https://github.com/realm/realm-cocoa/issues/1109#issuecomment-143834756
-    fileprivate func syncableObject(forIdentifier identifier: PageObject.Identifier, localID: String) -> SyncableObject? {
+    private func syncableObject(forIdentifier identifier: PageObject.Identifier, localID: String) -> SyncableObject? {
         switch identifier {
         case .category:
             return realm?.syncableObject(ofType: ContentCategory.self, localID: localID)

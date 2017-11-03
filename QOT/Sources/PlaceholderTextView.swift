@@ -15,8 +15,8 @@ protocol PlaceholderTextViewDelegate: class {
 class PlaceholderTextView: UITextView {
     private(set) var placeholderText: String?
     private(set) var plachholderTextColor: UIColor?
-    fileprivate var originalTextColor: UIColor?
-    fileprivate var isPlaceholderShowing: Bool = false
+    private var originalTextColor: UIColor?
+    private var isPlaceholderShowing: Bool = false
     
     weak var placeholderDelegate: PlaceholderTextViewDelegate?
     

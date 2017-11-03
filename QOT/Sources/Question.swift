@@ -11,13 +11,13 @@ import RealmSwift
 
 final class Question: SyncableObject {
 
-    @objc fileprivate(set) dynamic var sortOrder: Int = 0
+    @objc private(set) dynamic var sortOrder: Int = 0
 
-    @objc fileprivate(set) dynamic var title: String = ""
+    @objc private(set) dynamic var title: String = ""
 
-    @objc fileprivate(set) dynamic var subtitle: String?
+    @objc private(set) dynamic var subtitle: String?
 
-    @objc fileprivate(set) dynamic var answersDescription: String?
+    @objc private(set) dynamic var answersDescription: String?
 
     let answers = List<Answer>()
 

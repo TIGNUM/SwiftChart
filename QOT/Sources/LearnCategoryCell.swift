@@ -17,16 +17,16 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
     private var shapeDashLayer: CAShapeLayer?
     private var outerLayer: CAGradientLayer?
     private var percentageLearned = 0.0
-    fileprivate lazy var contentCountLabel = UILabel()
-    fileprivate var indexPath = IndexPath(item: 0, section: 0)
+    private lazy var contentCountLabel = UILabel()
+    private var indexPath = IndexPath(item: 0, section: 0)
 
-    fileprivate lazy var titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         return label
     }()
 
-    fileprivate lazy var textContainerView: UIView = {
+    private lazy var textContainerView: UIView = {
         let view = UIView()
         view.addSubview(self.titleLabel)
         view.addSubview(self.contentCountLabel)

@@ -13,11 +13,11 @@ class Answer: Object {
 
     let remoteID = RealmOptional<Int>(nil)
     
-    @objc fileprivate(set) dynamic var sortOrder: Int = 0
+    @objc private(set) dynamic var sortOrder: Int = 0
 
-    @objc fileprivate(set) dynamic var title: String = ""
+    @objc private(set) dynamic var title: String = ""
 
-    @objc fileprivate(set) dynamic var subtitle: String?
+    @objc private(set) dynamic var subtitle: String?
 
     let decisions = List<AnswerDecision>()
 

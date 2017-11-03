@@ -24,11 +24,11 @@ final class WeeklyChoicesViewController: UIViewController {
     // MARK: - Properties
 
     weak var delegate: WeeklyChoicesViewControllerDelegate?
-    fileprivate let viewModel: WeeklyChoicesViewModel
-    fileprivate lazy var dateLabel: UILabel = UILabel()
+    private let viewModel: WeeklyChoicesViewModel
+    private lazy var dateLabel: UILabel = UILabel()
     private let disposeBag = DisposeBag()
 
-    fileprivate lazy var collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         let layout = WeeklyChoicesLayout()
         layout.delegate = self
 
@@ -38,7 +38,7 @@ final class WeeklyChoicesViewController: UIViewController {
                                 dequeables: WeeklyChoicesCell.self)
     }()
 
-    fileprivate lazy var emptyLabel: UILabel = {
+    private lazy var emptyLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .clear
         label.textColor = .white40

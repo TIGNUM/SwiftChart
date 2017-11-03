@@ -11,13 +11,13 @@ import Kingfisher
 
 class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
     
-    @IBOutlet fileprivate weak var imageView: UIImageView!
-    @IBOutlet fileprivate weak var date: UILabel!
-    @IBOutlet fileprivate weak var sortTag: UILabel!
-    @IBOutlet fileprivate weak var subTitle: UILabel!
-    @IBOutlet fileprivate weak var textLabel: UILabel!
-    @IBOutlet fileprivate weak var mediaInformation: UILabel!
-    @IBOutlet fileprivate weak var bottomSeparator: UIView!
+    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var date: UILabel!
+    @IBOutlet private weak var sortTag: UILabel!
+    @IBOutlet private weak var subTitle: UILabel!
+    @IBOutlet private weak var textLabel: UILabel!
+    @IBOutlet private weak var mediaInformation: UILabel!
+    @IBOutlet private weak var bottomSeparator: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()

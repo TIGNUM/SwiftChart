@@ -41,10 +41,10 @@ class TabBarView: UIView {
 
     // MARK: Private properties
 
-    fileprivate lazy var indicatorView: UIView = UIView()
-    fileprivate var stackViewWidthConstraint: NSLayoutConstraint?
-    fileprivate var titles = [String]()
-    fileprivate let tabBarType: TabBarType
+    private lazy var indicatorView: UIView = UIView()
+    private var stackViewWidthConstraint: NSLayoutConstraint?
+    private var titles = [String]()
+    private let tabBarType: TabBarType
     private(set) var selectedIndex: Int?
     private(set) var buttons = [UIButton]()
     private(set) var buttonHighlights = [UIImageView]()

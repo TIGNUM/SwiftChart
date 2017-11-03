@@ -39,45 +39,45 @@ final class User: SyncableObject {
 
     // MARK: Data
 
-    @objc fileprivate(set) dynamic var givenName: String = ""
+    @objc private(set) dynamic var givenName: String = ""
 
-    @objc fileprivate(set) dynamic var familyName: String = ""
+    @objc private(set) dynamic var familyName: String = ""
 
-    @objc fileprivate(set) dynamic var email: String = ""
+    @objc private(set) dynamic var email: String = ""
 
-    @objc fileprivate(set) dynamic var telephone: String?
+    @objc private(set) dynamic var telephone: String?
 
-    @objc fileprivate(set) dynamic var zipCode: String?
+    @objc private(set) dynamic var zipCode: String?
 
-    @objc fileprivate(set) dynamic var city: String?
+    @objc private(set) dynamic var city: String?
 
-    @objc fileprivate(set) dynamic var street: String?
+    @objc private(set) dynamic var street: String?
 
-    @objc fileprivate(set) dynamic var streetNumber: String?
+    @objc private(set) dynamic var streetNumber: String?
 
-    @objc fileprivate(set) dynamic var countryID: Int = 0
+    @objc private(set) dynamic var countryID: Int = 0
 
-    @objc fileprivate(set) dynamic var countryName: String = ""
+    @objc private(set) dynamic var countryName: String = ""
 
-    @objc fileprivate(set) dynamic var zoneID: Int = 0
+    @objc private(set) dynamic var zoneID: Int = 0
 
-    @objc fileprivate(set) dynamic var zoneName: String = ""
+    @objc private(set) dynamic var zoneName: String = ""
 
-    @objc fileprivate(set) dynamic var userImageURLString: String?
+    @objc private(set) dynamic var userImageURLString: String?
 
     let height = RealmOptional<Double>()
 
-    @objc fileprivate(set) dynamic var heightUnitsJSON: String = ""
+    @objc private(set) dynamic var heightUnitsJSON: String = ""
 
     let weight = RealmOptional<Double>()
 
-    @objc fileprivate(set) dynamic var weightUnitsJSON: String = ""
+    @objc private(set) dynamic var weightUnitsJSON: String = ""
 
-    @objc fileprivate(set) dynamic var company: String?
+    @objc private(set) dynamic var company: String?
 
-    @objc fileprivate(set) dynamic var jobTitle: String?
+    @objc private(set) dynamic var jobTitle: String?
 
-    @objc fileprivate(set) dynamic var memberSince: Date = Date()
+    @objc private(set) dynamic var memberSince: Date = Date()
 
     @objc dynamic var totalUsageTime: Int = 0
 

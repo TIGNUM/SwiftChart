@@ -18,8 +18,8 @@ final class SettingsCalendarListViewController: UITableViewController {
 
     // MARK: - Properties
 
-    fileprivate let viewModel: SettingsCalendarListViewModel
-    fileprivate let notificationHandler: NotificationHandler
+    private let viewModel: SettingsCalendarListViewModel
+    private let notificationHandler: NotificationHandler
 
     // MARK: - Init
 

@@ -13,12 +13,12 @@ class TutorialViewController: UIViewController {
 
     // MARK: - Properties
 
-    fileprivate let viewModel: TutorialViewModel
-    fileprivate let buttonFrame: CGRect
-    fileprivate var completion: (() -> Void)?
-    fileprivate var crossImageView: UIImageView!
-    fileprivate var titleLabel: UILabel!
-    fileprivate var contentLabel: UILabel!
+    private let viewModel: TutorialViewModel
+    private let buttonFrame: CGRect
+    private var completion: (() -> Void)?
+    private var crossImageView: UIImageView!
+    private var titleLabel: UILabel!
+    private var contentLabel: UILabel!
     
     // MARK: - Life cycle
 

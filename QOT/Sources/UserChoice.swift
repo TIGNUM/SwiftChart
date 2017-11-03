@@ -16,17 +16,17 @@ final class UserChoice: SyncableObject {
         case monthly = "MONTHLY"
     }
     
-    fileprivate let _contentCategoryID = RealmOptional<Int>()
+    private let _contentCategoryID = RealmOptional<Int>()
 
-    fileprivate let _contentCollectionID = RealmOptional<Int>()
+    private let _contentCollectionID = RealmOptional<Int>()
 
-    @objc fileprivate(set) dynamic var type: String = ""
+    @objc private(set) dynamic var type: String = ""
 
-    @objc fileprivate(set) dynamic var userText: String?
+    @objc private(set) dynamic var userText: String?
 
-    @objc fileprivate(set) dynamic var startDate: Date = Date()
+    @objc private(set) dynamic var startDate: Date = Date()
 
-    @objc fileprivate(set) dynamic var endDate: Date = Date()
+    @objc private(set) dynamic var endDate: Date = Date()
 
     @objc dynamic var deleted: Bool = false
   

@@ -14,15 +14,15 @@ import AVFoundation
 
 final class ArticleContentItemCoordinator: ParentCoordinator {
 
-    fileprivate let services: Services
-    fileprivate var articleHeader: ArticleCollectionHeader?
-    fileprivate let topTabBarTitle: String?
-    fileprivate var selectedContent: ContentCollection?
-    fileprivate var fullViewController: ArticleItemViewController
-    fileprivate var viewModel: ArticleItemViewModel
-    fileprivate var topTabBarController: UINavigationController?
-    fileprivate let rootViewController: UIViewController
-    fileprivate let shouldPush: Bool
+    private let services: Services
+    private var articleHeader: ArticleCollectionHeader?
+    private let topTabBarTitle: String?
+    private var selectedContent: ContentCollection?
+    private var fullViewController: ArticleItemViewController
+    private var viewModel: ArticleItemViewModel
+    private var topTabBarController: UINavigationController?
+    private let rootViewController: UIViewController
+    private let shouldPush: Bool
     let pageName: PageName
     var children: [Coordinator] = []
 

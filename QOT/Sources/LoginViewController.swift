@@ -17,29 +17,29 @@ protocol LoginViewControllerDelegate: class {
 final class LoginViewController: UIViewController {
     // MARK: - Properties
     
-    fileprivate weak var delegate: LoginViewControllerDelegate?
-    fileprivate var isPasswordHidden = true
-    fileprivate let logoImageView: UIImageView = UIImageView(image: R.image.loginLogo())
-    fileprivate let crossImageView: UIImageView = UIImageView(image: R.image.crossImage())
-    fileprivate let emailCorrectImage: UIImageView = UIImageView(image: R.image.correctEmail())
-    fileprivate let backgroundImageView: UIImageView = UIImageView(image: R.image.loginBackground())
-    fileprivate var topConstraint: NSLayoutConstraint? {
+    private weak var delegate: LoginViewControllerDelegate?
+    private var isPasswordHidden = true
+    private let logoImageView: UIImageView = UIImageView(image: R.image.loginLogo())
+    private let crossImageView: UIImageView = UIImageView(image: R.image.crossImage())
+    private let emailCorrectImage: UIImageView = UIImageView(image: R.image.correctEmail())
+    private let backgroundImageView: UIImageView = UIImageView(image: R.image.loginBackground())
+    private var topConstraint: NSLayoutConstraint? {
         didSet {
             topConstraintOriginalValue = topConstraint?.constant ?? 0.0
         }
     }
-    fileprivate var topConstraintOriginalValue: CGFloat = 0
-    fileprivate let userView: UIView = {
+    private var topConstraintOriginalValue: CGFloat = 0
+    private let userView: UIView = {
         let view = UIView()
         view.backgroundColor = .whiteLight14
         return view
     }()
-    fileprivate let passwordView: UIView = {
+    private let passwordView: UIView = {
         let view = UIView()
         view.backgroundColor = .whiteLight14
         return view
     }()
-    fileprivate let warningLabel: UILabel = {
+    private let warningLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.lineBreakMode = .byTruncatingTail
@@ -53,7 +53,7 @@ final class LoginViewController: UIViewController {
         )
         return label
     }()
-    fileprivate lazy var userInput: UITextField = {
+    private lazy var userInput: UITextField = {
         let input = UITextField()
         let placeHolder = NSMutableAttributedString(string: R.string.localized.loginViewInputPlaceHolder(), letterSpacing: 1.5, font: Font.H8Title, textColor: .white80, alignment: .left)
         input.textColor = .white
@@ -69,7 +69,7 @@ final class LoginViewController: UIViewController {
         input.attributedPlaceholder = placeHolder
         return input
     }()
-    fileprivate lazy var passwordInput: UITextField = {
+    private lazy var passwordInput: UITextField = {
         let input = UITextField()
         let placeHolder = NSMutableAttributedString(string: R.string.localized.loginViewPasswordPlaceHolder(), letterSpacing: 1.5, font: Font.H8Title, textColor: .white80, alignment: .left)
         input.isSecureTextEntry = true
@@ -84,7 +84,7 @@ final class LoginViewController: UIViewController {
         input.attributedPlaceholder = placeHolder
         return input
     }()
-    fileprivate lazy var loginButton: UIButton = {
+    private lazy var loginButton: UIButton = {
         let button = UIButton()
         button.addTarget(self, action: #selector(didPressLogin(_:)), for: .touchUpInside)
         button.setTitleColor(.white40, for: .normal)
@@ -94,7 +94,7 @@ final class LoginViewController: UIViewController {
         button.titleLabel?.textAlignment = .center
         return button
     }()
-    fileprivate lazy var passwordToggle: UIButton = {
+    private lazy var passwordToggle: UIButton = {
         let button = UIButton()
         button.setTitle(R.string.localized.loginViewToggleShow(), for: .normal)
         button.addTarget(self, action: #selector(didPressShow(_:)), for: .touchUpInside)
@@ -102,7 +102,7 @@ final class LoginViewController: UIViewController {
         button.titleLabel?.font = Font.H8Title
         return button
     }()
-    fileprivate lazy var forgotPasswordButton: UIButton = {
+    private lazy var forgotPasswordButton: UIButton = {
         let button = UIButton()
         button.addTarget(self, action: #selector(didPressForgotPassword(_:)), for: .touchUpInside)
         button.setTitleColor(.white40, for: .normal)

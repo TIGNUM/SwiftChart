@@ -23,11 +23,11 @@ class MyWhyView: PassthroughView, MyUniverseView {
     var myToBeVisionBox: PassthroughView!
     var weeklyChoicesBox: PassthroughView!
     var qotPartnersBox: PassthroughView!
-    fileprivate var myToBeVisionLabel: UILabel!
-    fileprivate var weeklyChoiceButtons = [UIButton]()
-    fileprivate var qotPartnersButtons = [UIButton]()
-    fileprivate let fullViewFrame: CGRect
-    fileprivate var updatesToken: Disposable?
+    private var myToBeVisionLabel: UILabel!
+    private var weeklyChoiceButtons = [UIButton]()
+    private var qotPartnersButtons = [UIButton]()
+    private let fullViewFrame: CGRect
+    private var updatesToken: Disposable?
 
     // MARK: - Init
 

@@ -15,9 +15,9 @@ final class Preparation: SyncableObject {
 
     // MARK: Public Properties
     
-    @objc fileprivate(set) dynamic var name: String = ""
+    @objc private(set) dynamic var name: String = ""
     
-    @objc fileprivate(set) dynamic var subtitle: String = ""
+    @objc private(set) dynamic var subtitle: String = ""
     
     let calendarEventRemoteID = RealmOptional<Int>(nil)
 
@@ -32,7 +32,7 @@ final class Preparation: SyncableObject {
 
     // MARK: Relationships
     
-    @objc fileprivate(set) dynamic var calendarEvent: CalendarEvent?
+    @objc private(set) dynamic var calendarEvent: CalendarEvent?
 
     let checks = List<PreparationCheck>()
 

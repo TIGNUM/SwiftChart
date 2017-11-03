@@ -25,19 +25,19 @@ final class ContentCollection: SyncableObject {
 
     // MARK: ContentData
 
-    @objc fileprivate(set) dynamic var section: String = ""
+    @objc private(set) dynamic var section: String = ""
 
-    @objc fileprivate(set) dynamic var sortOrder: Int = 0
+    @objc private(set) dynamic var sortOrder: Int = 0
 
-    @objc fileprivate(set) dynamic var title: String = ""
+    @objc private(set) dynamic var title: String = ""
 
-    @objc fileprivate(set) dynamic var layoutInfo: String?
+    @objc private(set) dynamic var layoutInfo: String?
 
-    @objc fileprivate(set) dynamic var searchTags: String = ""
+    @objc private(set) dynamic var searchTags: String = ""
 
-    @objc fileprivate(set) dynamic var relatedContent: String?
+    @objc private(set) dynamic var relatedContent: String?
 
-    @objc fileprivate(set) dynamic var thumbnailURLString: String?
+    @objc private(set) dynamic var thumbnailURLString: String?
 
     @objc dynamic var contentRead: ContentRead?
 

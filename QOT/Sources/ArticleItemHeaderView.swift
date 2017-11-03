@@ -12,10 +12,10 @@ final class ArticleItemHeaderView: UIView {
 
     // MARK: - Properties
 
-    @IBOutlet fileprivate weak var titleLabel: UILabel!
-    @IBOutlet fileprivate weak var subTitleLabel: UILabel!
-    @IBOutlet fileprivate weak var dateLabel: UILabel!
-    @IBOutlet fileprivate weak var durationLabel: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var subTitleLabel: UILabel!
+    @IBOutlet private weak var dateLabel: UILabel!
+    @IBOutlet private weak var durationLabel: UILabel!
 
     func setupView(header: ArticleCollectionHeader) {
         titleLabel.attributedText = attributedText(

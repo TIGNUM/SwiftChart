@@ -29,7 +29,7 @@ final class ArticleRelatedCell: UITableViewCell, Dequeueable {
         setupCell()
     }
 
-    fileprivate func setupCell() {
+    private func setupCell() {
         let selectedBackground = UIView()
         selectedBackground.backgroundColor = UIColor.black15
         self.selectedBackgroundView = selectedBackground

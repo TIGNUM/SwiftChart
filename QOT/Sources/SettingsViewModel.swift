@@ -191,10 +191,10 @@ final class SettingsViewModel {
 
     // MARK: - Properties
 
-    fileprivate var settingsSections = [SettingsSection]()
-    fileprivate let services: Services
-    fileprivate let user: User
-    fileprivate let settingsType: SettingsType.SectionType
+    private var settingsSections = [SettingsSection]()
+    private let services: Services
+    private let user: User
+    private let settingsType: SettingsType.SectionType
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
     var sectionCount: Int {

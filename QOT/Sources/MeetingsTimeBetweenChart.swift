@@ -12,9 +12,9 @@ final class MeetingsTimeBetweenChart: UIView {
 
     // MARK: - Properties
 
-    fileprivate var statistics: Statistics
-    fileprivate var labelContentView: UIView
-    fileprivate let padding: CGFloat = 8
+    private var statistics: Statistics
+    private var labelContentView: UIView
+    private let padding: CGFloat = 8
 
     // MARK: - Init
 

@@ -13,7 +13,7 @@ class LearnPDFCell: UITableViewCell, Dequeueable {
 
     // MARK: - Properties
 
-    @IBOutlet fileprivate weak var title: UILabel!
+    @IBOutlet private weak var title: UILabel!
     @IBOutlet weak var timeToRead: UILabel!
 
     // MARK: - Methods

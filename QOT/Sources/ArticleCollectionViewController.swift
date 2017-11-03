@@ -20,13 +20,13 @@ class ArticleCollectionViewController: UIViewController {
 
     // MARK: - Properties
 
-    fileprivate let disposeBag = DisposeBag()
-    fileprivate let viewModel: ArticleCollectionViewModel
-    fileprivate let backgroundImageView: UIImageView
+    private let disposeBag = DisposeBag()
+    private let viewModel: ArticleCollectionViewModel
+    private let backgroundImageView: UIImageView
     weak var delegate: ArticleCollectionViewControllerDelegate?
     let pageName: PageName
     
-    fileprivate lazy var collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         let layout = ArticleCollectionLayout()
         layout.delegate = self
 

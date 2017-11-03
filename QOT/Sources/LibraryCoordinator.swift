@@ -13,9 +13,9 @@ final class LibraryCoordinator: ParentCoordinator {
 
     // MARK: - Properties
 
-    fileprivate let services: Services
-    fileprivate let libraryViewController: LibraryViewController
-    fileprivate let rootViewController: UIViewController
+    private let services: Services
+    private let libraryViewController: LibraryViewController
+    private let rootViewController: UIViewController
     var children = [Coordinator]()
 
     // MARK: - Init

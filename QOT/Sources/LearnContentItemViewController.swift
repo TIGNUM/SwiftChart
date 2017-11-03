@@ -36,11 +36,11 @@ final class LearnContentItemViewController: UIViewController {
     weak var delegate: LearnContentItemViewControllerDelegate?
     var viewModel: LearnContentItemViewModel
     let tabType: TabType
-    fileprivate var audioPlayerTopView: LearnStrategyAudioPlayerView?
-    fileprivate let disposeBag = DisposeBag()
-    fileprivate var soundPattern = Property([Float(0)])
+    private var audioPlayerTopView: LearnStrategyAudioPlayerView?
+    private let disposeBag = DisposeBag()
+    private var soundPattern = Property([Float(0)])
 
-    fileprivate lazy var itemTableView: UITableView = {
+    private lazy var itemTableView: UITableView = {
         return UITableView(style: .grouped,
                            backgroundColor: .white,
                            estimatedRowHeight: 100,

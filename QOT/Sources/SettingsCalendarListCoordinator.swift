@@ -12,9 +12,9 @@ import EventKit
 
 final class SettingsCalendarListCoordinator: ParentCoordinator {
 
-    fileprivate let services: Services
-    fileprivate let settingsCalendarListViewController: SettingsCalendarListViewController!
-    fileprivate let rootViewController: UIViewController
+    private let services: Services
+    private let settingsCalendarListViewController: SettingsCalendarListViewController!
+    private let rootViewController: UIViewController
     var children = [Coordinator]()
 
     init(root: SettingsViewController, services: Services) {

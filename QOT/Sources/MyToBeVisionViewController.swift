@@ -34,13 +34,13 @@ class MyToBeVisionViewController: UIViewController {
     @IBOutlet weak var imageEditLabel: UILabel!
     @IBOutlet weak var circleContainerView: UIView!
     @IBOutlet weak var gradientView: UIView!
-    fileprivate lazy var gradientLayer: CAGradientLayer = {
+    private lazy var gradientLayer: CAGradientLayer = {
         let layer = CAGradientLayer()
         self.gradientView.layer.addSublayer(layer)
         return layer
     }()
-    fileprivate let imagePickerController: ImagePickerController
-    fileprivate var imageTapRecogniser: UITapGestureRecognizer!
+    private let imagePickerController: ImagePickerController
+    private var imageTapRecogniser: UITapGestureRecognizer!
     let viewModel: MyToBeVisionViewModel
     weak var delegate: MyToBeVisionViewControllerDelegate?
  

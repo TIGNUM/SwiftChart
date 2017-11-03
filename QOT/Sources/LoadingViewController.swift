@@ -11,10 +11,10 @@ import Anchorage
 
 final class LoadingViewController: UIViewController {
 
-    fileprivate var myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-    fileprivate var backgroundImageView = UIImageView()
+    private var myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    private var backgroundImageView = UIImageView()
 
-    fileprivate var messageLabel: UILabel = {
+    private var messageLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = .center

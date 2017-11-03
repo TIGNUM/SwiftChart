@@ -25,16 +25,16 @@ final class SettingsMenuViewController: UIViewController {
 
     // MARK: - Properties
 
-    @IBOutlet fileprivate weak var backgroundImage: UIImageView!
-    @IBOutlet fileprivate weak var collectionView: UICollectionView!
-    @IBOutlet fileprivate weak var imgeView: UIImageView!
-    @IBOutlet fileprivate weak var titleLabel: UILabel!
-    @IBOutlet fileprivate weak var positionLabel: UILabel!
-    @IBOutlet fileprivate weak var generalButton: UIButton!
-    @IBOutlet fileprivate weak var notificationsButton: UIButton!
-    @IBOutlet fileprivate weak var securityButton: UIButton!
-    fileprivate let disposeBag = DisposeBag()
-    fileprivate let viewModel: SettingsMenuViewModel
+    @IBOutlet private weak var backgroundImage: UIImageView!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var imgeView: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var positionLabel: UILabel!
+    @IBOutlet private weak var generalButton: UIButton!
+    @IBOutlet private weak var notificationsButton: UIButton!
+    @IBOutlet private weak var securityButton: UIButton!
+    private let disposeBag = DisposeBag()
+    private let viewModel: SettingsMenuViewModel
     weak var delegate: SettingsMenuViewControllerDelegate?
 
     // MARK: - Init

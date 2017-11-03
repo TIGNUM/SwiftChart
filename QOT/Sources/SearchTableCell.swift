@@ -20,7 +20,7 @@ final class SearchTableCell: UITableViewCell, Dequeueable {
         fatalError("init(coder:) has not been implemented")
     }
 
-    fileprivate lazy var titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.frame = .zero
         label.font = UIFont.simpleFont(ofSize: 20)
@@ -28,7 +28,7 @@ final class SearchTableCell: UITableViewCell, Dequeueable {
         return label
     }()
 
-    fileprivate lazy var mediaLabel: UILabel = {
+    private lazy var mediaLabel: UILabel = {
         let label = UILabel()
         label.frame = .zero
         label.font = UIFont.bentonBookFont(ofSize: 8)
@@ -36,7 +36,7 @@ final class SearchTableCell: UITableViewCell, Dequeueable {
         return label
     }()
 
-    fileprivate lazy var durationlabel: UILabel = {
+    private lazy var durationlabel: UILabel = {
         let label = UILabel()
         label.frame = .zero
         label.font = UIFont.bentonBookFont(ofSize: 8)

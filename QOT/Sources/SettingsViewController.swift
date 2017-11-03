@@ -30,9 +30,9 @@ final class SettingsViewController: UIViewController {
 
     // MARK: - Properties
 
-    fileprivate var viewModel: SettingsViewModel
-    fileprivate let services: Services
-    fileprivate let locationManager = CLLocationManager()
+    private var viewModel: SettingsViewModel
+    private let services: Services
+    private let locationManager = CLLocationManager()
     weak var delegate: SettingsCoordinatorDelegate?
     let settingsType: SettingsType.SectionType
     var tableView: UITableView!

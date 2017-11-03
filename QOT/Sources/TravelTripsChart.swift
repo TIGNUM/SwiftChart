@@ -12,8 +12,8 @@ final class TravelTripsChart: UIView {
 
     // MARK: - Properties
 
-    fileprivate var statistics: Statistics
-    fileprivate var labelContentView: UIView
+    private var statistics: Statistics
+    private var labelContentView: UIView
 
     // MARK: - Init
 

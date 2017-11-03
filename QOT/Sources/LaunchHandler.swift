@@ -11,7 +11,7 @@ import MBProgressHUD
 
 final class LaunchHandler {
 
-    fileprivate var appDelegate: AppDelegate {
+    private var appDelegate: AppDelegate {
         return AppDelegate.current
     }
     

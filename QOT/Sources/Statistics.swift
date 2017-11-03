@@ -11,25 +11,25 @@ import RealmSwift
 
 final class Statistics: SyncableObject {
 
-    @objc fileprivate(set) dynamic var key: String = ""
+    @objc private(set) dynamic var key: String = ""
 
-    @objc fileprivate(set) dynamic var unit: String = ""
+    @objc private(set) dynamic var unit: String = ""
 
-    @objc fileprivate(set) dynamic var userAverage: Double = 0
+    @objc private(set) dynamic var userAverage: Double = 0
 
-    @objc fileprivate(set) dynamic var teamAverage: Double = 0
+    @objc private(set) dynamic var teamAverage: Double = 0
 
-    @objc fileprivate(set) dynamic var dataAverage: Double = 0
+    @objc private(set) dynamic var dataAverage: Double = 0
 
-    @objc fileprivate(set) dynamic var upperThreshold: Double = 0
+    @objc private(set) dynamic var upperThreshold: Double = 0
 
-    @objc fileprivate(set) dynamic var lowerThreshold: Double = 0
+    @objc private(set) dynamic var lowerThreshold: Double = 0
 
-    @objc fileprivate(set) dynamic var maximum: Double = 0
+    @objc private(set) dynamic var maximum: Double = 0
 
-    @objc fileprivate(set) dynamic var universe: Double = 0
+    @objc private(set) dynamic var universe: Double = 0
 
-    @objc fileprivate(set) dynamic var multiplier: Double = 0
+    @objc private(set) dynamic var multiplier: Double = 0
 
     var dataPoints: List<DoubleObject> = List()
 

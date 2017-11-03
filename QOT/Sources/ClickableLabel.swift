@@ -25,7 +25,7 @@ class ClickableLabel: UILabel, UIGestureRecognizerDelegate {
 
     weak var delegate: ClickableLabelDelegate?
 
-    public fileprivate(set) var links: [MarkdownLink] = []
+    public private(set) var links: [MarkdownLink] = []
 
     override var attributedText: NSAttributedString? {
         get {

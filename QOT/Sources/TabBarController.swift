@@ -21,12 +21,12 @@ final class TabBarController: UIViewController {
         let title: String
     }
 
-    fileprivate var selectedIndex: Int = 0
-    fileprivate var items: [Item]
-    fileprivate weak var currentViewController: UIViewController?
-    fileprivate lazy var containerView = UIView()
-    fileprivate weak var indicatorViewLeadingConstraint: NSLayoutConstraint?
-    fileprivate weak var indicatorViewWidthConstraint: NSLayoutConstraint?
+    private var selectedIndex: Int = 0
+    private var items: [Item]
+    private weak var currentViewController: UIViewController?
+    private lazy var containerView = UIView()
+    private weak var indicatorViewLeadingConstraint: NSLayoutConstraint?
+    private weak var indicatorViewWidthConstraint: NSLayoutConstraint?
     weak var tabBarBottomConstraint: NSLayoutConstraint?
     weak var delegate: TabBarControllerDelegate?
 

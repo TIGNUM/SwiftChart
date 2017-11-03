@@ -24,12 +24,12 @@ final class LibraryTableViewCell: UITableViewCell, Dequeueable {
         }
     }
     
-    @IBOutlet fileprivate weak var titleLabel: UILabel!
-    @IBOutlet fileprivate weak var collectionView: UICollectionView!
-    @IBOutlet fileprivate weak var collectionViewHeightConstraint: NSLayoutConstraint!
-    fileprivate var contentCollection = [ContentCollection]()
-    fileprivate var collectionViewCellSize: CGSize!
-    fileprivate var collectionViewCellType: CollectionViewCellType!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionViewHeightConstraint: NSLayoutConstraint!
+    private var contentCollection = [ContentCollection]()
+    private var collectionViewCellSize: CGSize!
+    private var collectionViewCellType: CollectionViewCellType!
     weak var delegate: LibraryViewControllerDelegate!
 
     func setUp(delegate: LibraryViewControllerDelegate?, title: NSAttributedString, contentCollection: [ContentCollection], collectionViewCellType: CollectionViewCellType) {

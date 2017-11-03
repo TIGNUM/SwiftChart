@@ -12,20 +12,20 @@ final class CarouselCellView: UIView {
 
     // MARK: - Properties
 
-    @IBOutlet fileprivate weak var view: UIView!
-    @IBOutlet fileprivate weak var imageView: UIImageView!
-    @IBOutlet fileprivate weak var textFieldName: UITextField!
-    @IBOutlet fileprivate weak var textFieldSurname: UITextField!
-    @IBOutlet fileprivate weak var textFieldSubtitle: UITextField!
-    @IBOutlet fileprivate weak var textFieldMail: UITextField!
-    @IBOutlet fileprivate weak var initialsLabel: UILabel!
-    @IBOutlet fileprivate weak var editPictureButton: UIButton!
-    @IBOutlet fileprivate weak var editImageViewName: UIImageView!
-    @IBOutlet fileprivate weak var editImageViewRelationship: UIImageView!
-    @IBOutlet fileprivate weak var editImageViewEmail: UIImageView!
-    fileprivate var index: Index = 0
+    @IBOutlet private weak var view: UIView!
+    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var textFieldName: UITextField!
+    @IBOutlet private weak var textFieldSurname: UITextField!
+    @IBOutlet private weak var textFieldSubtitle: UITextField!
+    @IBOutlet private weak var textFieldMail: UITextField!
+    @IBOutlet private weak var initialsLabel: UILabel!
+    @IBOutlet private weak var editPictureButton: UIButton!
+    @IBOutlet private weak var editImageViewName: UIImageView!
+    @IBOutlet private weak var editImageViewRelationship: UIImageView!
+    @IBOutlet private weak var editImageViewEmail: UIImageView!
+    private var index: Index = 0
     weak var partnersViewControllerDelegate: PartnersViewControllerDelegate?
-    fileprivate(set) var isEditing: Bool
+    private(set) var isEditing: Bool
     
     // MARK: - Init
 

@@ -31,10 +31,10 @@ final class SidebarViewController: UIViewController {
     
     // MARK: - Properties
 
-    fileprivate let viewModel: SidebarViewModel
+    private let viewModel: SidebarViewModel
     weak var delegate: SidebarViewControllerDelegate?
 
-    fileprivate lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         return UITableView(delegate: self,
                            dataSource: self,
                            dequeables: SidebarTableViewCell.self)

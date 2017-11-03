@@ -13,12 +13,12 @@ final class Page: SyncableObject {
 
     // MARK: Data
 
-    @objc fileprivate(set) dynamic var name: String = ""
+    @objc private(set) dynamic var name: String = ""
 
     /// The display name in the Admin Tool. We might not use this in the app.
-    @objc fileprivate(set) dynamic var displayName: String?
+    @objc private(set) dynamic var displayName: String?
 
-    @objc fileprivate(set) dynamic var layoutInfo: String?
+    @objc private(set) dynamic var layoutInfo: String?
 
     // MARK: Relationships
 

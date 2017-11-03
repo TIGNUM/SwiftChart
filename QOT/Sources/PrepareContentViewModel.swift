@@ -43,7 +43,7 @@ final class PrepareContentViewModel {
     
     // MARK: - Properties
 
-    fileprivate var headerToggleState: [Bool] = []
+    private var headerToggleState: [Bool] = []
     var displayMode: DisplayMode
     var checkedIDs: [Int: Date?]
     var title: String = ""
@@ -88,7 +88,7 @@ final class PrepareContentViewModel {
         }
     }
 
-    fileprivate func setSubtitle() {
+    private func setSubtitle() {
         subTitle = String(format: "%02d/%02d ", checkedCount, items.count - 1) + R.string.localized.prepareContentTasks()
         items.remove(at: 0)
         items.insert(.titleItem(title: title, subTitle: subTitle, contentText: contentText, placeholderURL: videoPlaceholder, videoURL: video), at: 0)

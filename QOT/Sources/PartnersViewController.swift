@@ -18,13 +18,13 @@ class PartnersViewController: UIViewController {
 
     // MARK: - Properties
 
-    @IBOutlet fileprivate weak var bigLabel: UILabel!
-    @IBOutlet fileprivate weak var carousel: iCarousel! = iCarousel()
+    @IBOutlet private weak var bigLabel: UILabel!
+    @IBOutlet private weak var carousel: iCarousel! = iCarousel()
     @IBOutlet weak var scrollView: UIScrollView!
-    fileprivate let viewModel: PartnersViewModel
-    fileprivate let imagePickerController: ImagePickerController
-    fileprivate var valueEditing: Bool = false
-    fileprivate var editButton: UIBarButtonItem? {
+    private let viewModel: PartnersViewModel
+    private let imagePickerController: ImagePickerController
+    private var valueEditing: Bool = false
+    private var editButton: UIBarButtonItem? {
         return navigationController?.navigationBar.topItem?.rightBarButtonItem
     }
     weak var delegate: PartnersViewControllerDelegate?

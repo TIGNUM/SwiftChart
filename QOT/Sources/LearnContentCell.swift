@@ -13,16 +13,16 @@ final class LearnContentCell: UICollectionViewCell, Dequeueable {
 
     // MARK: - Properties
 
-    fileprivate lazy var indexLabel = UILabel()
+    private lazy var indexLabel = UILabel()
 
-    fileprivate lazy var titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
 
         return label
     }()
     
-    fileprivate lazy var videoDurationLabel: UILabel = {
+    private lazy var videoDurationLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
@@ -30,7 +30,7 @@ final class LearnContentCell: UICollectionViewCell, Dequeueable {
         return label
     }()
     
-    fileprivate lazy var imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFit
 

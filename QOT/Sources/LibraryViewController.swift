@@ -17,10 +17,10 @@ protocol LibraryViewControllerDelegate: class {
 
 final class LibraryViewController: UIViewController {
 
-    fileprivate let viewModel: LibraryViewModel
+    private let viewModel: LibraryViewModel
     weak var delegate: LibraryViewControllerDelegate?
 
-    fileprivate lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         return UITableView(
             delegate: self,
             dataSource: self,

@@ -25,11 +25,11 @@ final class PrepareContentViewController: UIViewController {
     // MARK: - Properties
 
     let viewModel: PrepareContentViewModel
-    fileprivate let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     weak var delegate: PrepareContentViewControllerDelegate?
     let pageName: PageName
     
-    fileprivate lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         return UITableView(
             estimatedRowHeight: 140,
             delegate: self,
@@ -41,7 +41,7 @@ final class PrepareContentViewController: UIViewController {
         )
     }()
 
-    fileprivate lazy var topBarView: PrepareContentTopTabBarView = {
+    private lazy var topBarView: PrepareContentTopTabBarView = {
         guard let view = Bundle.main.loadNibNamed("PrepareContentTopTabBarView", owner: self, options: [:])?[0] as? PrepareContentTopTabBarView else {
             preconditionFailure("Failed to PrepareContentTopTabBarView from xib")
         }

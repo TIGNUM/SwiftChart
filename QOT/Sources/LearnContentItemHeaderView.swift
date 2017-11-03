@@ -11,11 +11,11 @@ import Anchorage
 
 final class LearnContentItemHeaderView: UIView {
 
-    @IBOutlet fileprivate weak var titleLabel: UILabel!
-    @IBOutlet fileprivate weak var subTitleLabel: UILabel!
-    @IBOutlet fileprivate weak var titleLabelTopConstraint: NSLayoutConstraint!
-    @IBOutlet fileprivate weak var subTitleLabelTopConstraint: NSLayoutConstraint!
-    @IBOutlet fileprivate weak var subTitleLabelBottomConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var subTitleLabel: UILabel!
+    @IBOutlet private weak var titleLabelTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var subTitleLabelTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var subTitleLabelBottomConstraint: NSLayoutConstraint!
 
     lazy var viewHeight: CGFloat = {
         return CGFloat(

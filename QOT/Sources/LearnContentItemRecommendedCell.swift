@@ -12,12 +12,12 @@ final class LearnContentItemRecommendedCell: UITableViewCell {
 
     // MARK: - Properties
 
-    @IBOutlet fileprivate weak var titleLabel: UILabel!
-    @IBOutlet fileprivate weak var contentTitleLabel: UILabel!
-    @IBOutlet fileprivate weak var timeLabel: UILabel!
-    @IBOutlet fileprivate weak var roundedContentView: UIView!
-    @IBOutlet fileprivate weak var previewImageView: UIImageView!
-    @IBOutlet fileprivate weak var finishButton: UIButton!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var contentTitleLabel: UILabel!
+    @IBOutlet private weak var timeLabel: UILabel!
+    @IBOutlet private weak var roundedContentView: UIView!
+    @IBOutlet private weak var previewImageView: UIImageView!
+    @IBOutlet private weak var finishButton: UIButton!
     weak var delegate: LearnContentItemViewControllerDelegate?
 
     // MARK: - Life Cycle

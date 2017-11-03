@@ -17,27 +17,27 @@ final class ResetPasswordViewController: UIViewController {
     // MARK: - Properties
 
     weak var delegate: ResetPasswordViewControllerDelegate?
-    fileprivate let logoImageView: UIImageView = UIImageView(image: R.image.loginLogo())
-    fileprivate let crossImageView: UIImageView = UIImageView(image: R.image.crossImage())
-    fileprivate let emailCorrectImage: UIImageView = UIImageView(image: R.image.correctEmail())
-    fileprivate let backgroundImageView: UIImageView = UIImageView(image: R.image.loginBackground())
-    fileprivate var topConstraint: NSLayoutConstraint? {
+    private let logoImageView: UIImageView = UIImageView(image: R.image.loginLogo())
+    private let crossImageView: UIImageView = UIImageView(image: R.image.crossImage())
+    private let emailCorrectImage: UIImageView = UIImageView(image: R.image.correctEmail())
+    private let backgroundImageView: UIImageView = UIImageView(image: R.image.loginBackground())
+    private var topConstraint: NSLayoutConstraint? {
         didSet {
             topConstraintOriginalValue = topConstraint?.constant ?? 0.0
         }
     }
-    fileprivate var topConstraintOriginalValue: CGFloat = 0
-    fileprivate let userView: UIView = {
+    private var topConstraintOriginalValue: CGFloat = 0
+    private let userView: UIView = {
         let view = UIView()
         view.backgroundColor = .whiteLight14
         return view
     }()
-    fileprivate let passwordView: UIView = {
+    private let passwordView: UIView = {
         let view = UIView()
         view.backgroundColor = .whiteLight14
         return view
     }()
-    fileprivate let warningSignLabel: UILabel = {
+    private let warningSignLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.lineBreakMode = .byTruncatingTail
@@ -52,7 +52,7 @@ final class ResetPasswordViewController: UIViewController {
         )
         return label
     }()
-    fileprivate let warningLabel: UILabel = {
+    private let warningLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.lineBreakMode = .byTruncatingTail
@@ -67,7 +67,7 @@ final class ResetPasswordViewController: UIViewController {
         )
         return label
     }()
-    fileprivate lazy var userInput: UITextField = {
+    private lazy var userInput: UITextField = {
         let input = UITextField()
         let placeHolder = NSMutableAttributedString(string: R.string.localized.resetPasswordEmailPlaceHolder(), letterSpacing: 1.5, font: Font.H8Title, textColor: .white80, alignment: .left)
         input.textColor = .white
@@ -84,7 +84,7 @@ final class ResetPasswordViewController: UIViewController {
         input.attributedPlaceholder = placeHolder
         return input
     }()
-    fileprivate lazy var resetPasswordButton: UIButton = {
+    private lazy var resetPasswordButton: UIButton = {
         let button = UIButton()
         button.addTarget(self, action: #selector(didPressResetPassword(_:)), for: .touchUpInside)
         button.setTitleColor(.white40, for: .normal)

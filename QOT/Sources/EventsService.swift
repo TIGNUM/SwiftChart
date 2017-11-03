@@ -12,8 +12,8 @@ import EventKit
 
 final class EventsService {
 
-    fileprivate let mainRealm: Realm
-    fileprivate let realmProvider: RealmProvider
+    private let mainRealm: Realm
+    private let realmProvider: RealmProvider
     let eventStore = EKEventStore.shared
 
     init(mainRealm: Realm, realmProvider: RealmProvider) {

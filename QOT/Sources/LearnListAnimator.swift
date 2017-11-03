@@ -10,7 +10,7 @@ import UIKit
 
 final class LearnListAnimator: NSObject {
 
-    fileprivate let duration: TimeInterval
+    private let duration: TimeInterval
     
     init(duration: TimeInterval = Animation.duration) {
         self.duration = duration

@@ -33,13 +33,13 @@ protocol PageScrollView: class {
 
 final class PageViewController: UIPageViewController {
 
-    fileprivate(set) var data: [UIViewController]?
-    fileprivate(set) var currentPageIndex: Int
-    fileprivate(set) var backgroundImageView: UIImageView
-    fileprivate var headerView: UIView?
-    fileprivate var headerViewTopConstraint: NSLayoutConstraint?
-    fileprivate var direction: UIPageViewControllerNavigationDirection
-    fileprivate var isPaging: Bool
+    private(set) var data: [UIViewController]?
+    private(set) var currentPageIndex: Int
+    private(set) var backgroundImageView: UIImageView
+    private var headerView: UIView?
+    private var headerViewTopConstraint: NSLayoutConstraint?
+    private var direction: UIPageViewControllerNavigationDirection
+    private var isPaging: Bool
     weak var pageDelegate: PageViewControllerDelegate?
 
     var currentPage: UIViewController? {
@@ -116,7 +116,7 @@ final class PageViewController: UIPageViewController {
     
     // MARK: - private
     
-    fileprivate func setHeaderY(_ yPos: CGFloat, animated: Bool) {
+    private func setHeaderY(_ yPos: CGFloat, animated: Bool) {
         guard let headerView = headerView, let headerViewTopConstraint = headerViewTopConstraint else {
             return
         }

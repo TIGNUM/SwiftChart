@@ -34,7 +34,7 @@ final class OnboardingCoordinator: ParentCoordinator {
     weak var delegate: OnboardingCoordinatorDelegate?
     private let windowManager: WindowManager
     private let chatViewModel = ChatViewModel<Choice>(items: [])
-    fileprivate let permissionHandler: PermissionHandler
+    private let permissionHandler: PermissionHandler
     private var userName: String
 
     class var isOnboardingComplete: Bool {

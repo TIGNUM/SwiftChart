@@ -35,15 +35,15 @@ final class MyUniverseViewController: UIViewController {
     
     // MARK: - Properties
 
-    fileprivate let disposeBag = DisposeBag()
-    fileprivate let myDataViewModel: MyDataViewModel
-    fileprivate let myWhyViewModel: MyWhyViewModel
-    fileprivate var lastContentOffset: CGFloat = 0
+    private let disposeBag = DisposeBag()
+    private let myDataViewModel: MyDataViewModel
+    private let myWhyViewModel: MyWhyViewModel
+    private var lastContentOffset: CGFloat = 0
     var pageName: PageName = .myData
     weak var delegate: MyUniverseViewControllerDelegate?
     let pageTracker: PageTracker
 
-    fileprivate lazy var topBar: TopNavigationBar = {
+    private lazy var topBar: TopNavigationBar = {
         let topBar = TopNavigationBar(frame: CGRect(
             x: 0.0,
             y: 20.0,
@@ -59,7 +59,7 @@ final class MyUniverseViewController: UIViewController {
         return topBar
     }()
     
-    fileprivate lazy var middleButtons: [UIButton] = {
+    private lazy var middleButtons: [UIButton] = {
         let myDataButton = UIButton(type: .custom)
         myDataButton.setTitle(R.string.localized.topTabBarItemTitleMeMyData().uppercased(), for: .normal)
         myDataButton.setTitleColor(.white, for: .selected)
@@ -107,7 +107,7 @@ final class MyUniverseViewController: UIViewController {
         )
     }()
 
-    fileprivate lazy var myDataSectorLabelsView: MyDataSectorLabelsView = {
+    private lazy var myDataSectorLabelsView: MyDataSectorLabelsView = {
         return MyDataSectorLabelsView(
             sectors: self.myDataViewModel.sectors,
             frame: myDataView.frame,
@@ -115,7 +115,7 @@ final class MyUniverseViewController: UIViewController {
         )
     }()
     
-    fileprivate lazy var scrollView: UIScrollView = {
+    private lazy var scrollView: UIScrollView = {
         let layout = Layout.MeSection(viewControllerFrame: self.view.bounds)
         let contentScrollView = MyUniverseHelper.createScrollView(self.view.bounds, layout: layout)
         contentScrollView.delegate = self
@@ -130,7 +130,7 @@ final class MyUniverseViewController: UIViewController {
         return contentScrollView
     }()
 
-    fileprivate lazy var backgroundScrollView: UIScrollView = {
+    private lazy var backgroundScrollView: UIScrollView = {
         let layout = Layout.MeSection(viewControllerFrame: self.view.bounds)
         let backgroundScrollView = MyUniverseHelper.createScrollView(self.view.frame, layout: layout)
         backgroundScrollView.isUserInteractionEnabled = false
@@ -139,7 +139,7 @@ final class MyUniverseViewController: UIViewController {
         return backgroundScrollView
     }()
 
-    fileprivate lazy var backgroundImage: UIView = {
+    private lazy var backgroundImage: UIView = {
         let frame = self.view.frame
         let imageViewFrame = CGRect(x: frame.minX, y: frame.minY, width: frame.width * 2, height: frame.height)
         let imageView = UIImageView(frame: imageViewFrame)

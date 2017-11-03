@@ -21,23 +21,23 @@ final class SettingValueObject: Object {
 
     // MARK: Public Properties
 
-    @objc fileprivate(set) dynamic var format: String = ""
+    @objc private(set) dynamic var format: String = ""
 
-    @objc fileprivate(set) dynamic var text: String?
+    @objc private(set) dynamic var text: String?
 
-    @objc fileprivate(set) dynamic var from: Date?
+    @objc private(set) dynamic var from: Date?
 
-    @objc fileprivate(set) dynamic var to: Date?
+    @objc private(set) dynamic var to: Date?
 
-    @objc fileprivate(set) dynamic var bool: Bool = false
+    @objc private(set) dynamic var bool: Bool = false
 
-    @objc fileprivate(set) dynamic var workingDays: Bool = false
+    @objc private(set) dynamic var workingDays: Bool = false
 
-    @objc fileprivate(set) dynamic var weekend: Bool = false
+    @objc private(set) dynamic var weekend: Bool = false
 
-    @objc fileprivate(set) dynamic var publicHolidays: Bool = false
+    @objc private(set) dynamic var publicHolidays: Bool = false
 
-    @objc fileprivate(set) dynamic var vacation: Bool = false
+    @objc private(set) dynamic var vacation: Bool = false
 
     var int: Int? {
         return _int.value

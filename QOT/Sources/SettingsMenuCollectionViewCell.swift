@@ -12,9 +12,9 @@ final class SettingsMenuCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     // MARK: - Attributes
 
-    @IBOutlet fileprivate weak var timeLabel: UILabel!
-    @IBOutlet fileprivate weak var titleLabel: UILabel!
-    @IBOutlet fileprivate weak var cardView: UIView!
+    @IBOutlet private weak var timeLabel: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var cardView: UIView!
 
     // MARK: - Life Cycle
 

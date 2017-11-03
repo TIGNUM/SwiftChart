@@ -12,9 +12,9 @@ final class LibraryCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     // MARK: - Properties
     
-    @IBOutlet fileprivate weak var latestPostImageView: UIImageView!
-    @IBOutlet fileprivate weak var headlineLabel: UILabel!
-    @IBOutlet fileprivate weak var mediaTypeLabel: UILabel!
+    @IBOutlet private weak var latestPostImageView: UIImageView!
+    @IBOutlet private weak var headlineLabel: UILabel!
+    @IBOutlet private weak var mediaTypeLabel: UILabel!
 
     // MARK: - Setup
     

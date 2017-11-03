@@ -13,11 +13,11 @@ final class WeeklyChoicesCoordinator: NSObject, ParentCoordinator {
 
     // MARK: - Properties
 
-    fileprivate let rootViewController: UIViewController
-    fileprivate let services: Services
-    fileprivate let transitioningDelegate: UIViewControllerTransitioningDelegate // swiftlint:disable:this weak_delegate
-    fileprivate let weeklyChoicesViewController: WeeklyChoicesViewController
-    fileprivate var topTabBarController: UINavigationController!
+    private let rootViewController: UIViewController
+    private let services: Services
+    private let transitioningDelegate: UIViewControllerTransitioningDelegate // swiftlint:disable:this weak_delegate
+    private let weeklyChoicesViewController: WeeklyChoicesViewController
+    private var topTabBarController: UINavigationController!
     private weak var weeklyChoicesDelegate: WeeklyChoicesViewModelDelegate?
     var children: [Coordinator] = []
 

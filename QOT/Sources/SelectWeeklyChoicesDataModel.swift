@@ -11,7 +11,7 @@ import RealmSwift
 
 class SelectWeeklyChoicesDataModel {
 
-    fileprivate var services: Services
+    private var services: Services
     private let rawData: AnyRealmCollection<ContentCategory>
     private(set) var dataSource: [CollapsableNode]
     

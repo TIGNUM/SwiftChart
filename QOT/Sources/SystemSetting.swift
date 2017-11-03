@@ -11,23 +11,23 @@ import RealmSwift
 
 final class SystemSetting: SyncableObject {
 
-    @objc fileprivate dynamic var _value: SettingValueObject?
+    @objc private dynamic var _value: SettingValueObject?
 
-    @objc fileprivate(set) dynamic var sortOrder: Int = 0
+    @objc private(set) dynamic var sortOrder: Int = 0
 
-    @objc fileprivate(set) dynamic var type: String = ""
+    @objc private(set) dynamic var type: String = ""
 
-    @objc fileprivate(set) dynamic var component: String = ""
+    @objc private(set) dynamic var component: String = ""
 
-    @objc fileprivate(set) dynamic var key: String = ""
+    @objc private(set) dynamic var key: String = ""
 
-    @objc fileprivate(set) dynamic var displayName: String = ""
+    @objc private(set) dynamic var displayName: String = ""
 
-    @objc fileprivate(set) dynamic var settingDescription: String = ""
+    @objc private(set) dynamic var settingDescription: String = ""
 
-    @objc fileprivate(set) dynamic var pageIDs: String = ""
+    @objc private(set) dynamic var pageIDs: String = ""
 
-    @objc fileprivate(set) dynamic var isDefault: Bool = true
+    @objc private(set) dynamic var isDefault: Bool = true
 
     var value: SettingValue {
         guard let value = _value else {

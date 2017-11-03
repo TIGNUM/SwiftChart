@@ -30,7 +30,7 @@ extension CarouselViewDelegate {
 
 final class CarouselView: UIView {
 
-    fileprivate let collectionView: UICollectionView = {
+    private let collectionView: UICollectionView = {
         let layout = CarouselViewLayout()
         layout.scrollDirection = .horizontal
         return UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
@@ -83,7 +83,7 @@ final class CarouselView: UIView {
         return collectionView.cellForItem(at: indexPath)?.contentView.subviews.first
     }
 
-    fileprivate var layout: UICollectionViewFlowLayout {
+    private var layout: UICollectionViewFlowLayout {
         guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
             preconditionFailure("Wrong layout type")
         }
@@ -107,13 +107,13 @@ final class CarouselView: UIView {
         collectionView.edgeAnchors == edgeAnchors
     }
 
-    fileprivate func contentOffsetForItem(at index: Index) -> CGPoint {
+    private func contentOffsetForItem(at index: Index) -> CGPoint {
         let x = -contentInset.left + (CGFloat(index) * (cellWidth + cellSpacing))
         let y = -contentInset.top
         return CGPoint(x: x, y: y)
     }
 
-    fileprivate func page(contentOffset: CGPoint) -> Int? {
+    private func page(contentOffset: CGPoint) -> Int? {
         let itemCount = collectionView.numberOfItems(inSection: 0)
         let itemAndSpaceWidth = cellWidth + cellSpacing
 
@@ -133,7 +133,7 @@ final class CarouselView: UIView {
         return page
     }
 
-    fileprivate func styleView(_ view: UIView, origin: CGPoint) {
+    private func styleView(_ view: UIView, origin: CGPoint) {
         let xOffest = origin.x - collectionView.contentOffset.x - collectionView.contentInset.left
         delegate?.carouselView(self, styleView: view, xPos: xOffest)
     }

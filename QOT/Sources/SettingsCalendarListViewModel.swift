@@ -11,7 +11,7 @@ import EventKit
 
 final class SettingsCalendarListViewModel {
 
-    fileprivate let services: Services
+    private let services: Services
 
     init(services: Services) {
         self.services = services

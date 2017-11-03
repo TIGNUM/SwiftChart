@@ -11,8 +11,8 @@ import Foundation
 import UIKit
 
 final class ContentItemAnimator: NSObject {
-    fileprivate let originFrame: CGRect
-    fileprivate let duration: TimeInterval
+    private let originFrame: CGRect
+    private let duration: TimeInterval
 
     init(originFrame: CGRect, duration: TimeInterval = 0.6) {
         self.originFrame = originFrame

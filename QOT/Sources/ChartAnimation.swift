@@ -10,8 +10,8 @@ import UIKit
 
 final class ChartAnimation: NSObject {
 
-    fileprivate let isPresenting: Bool
-    fileprivate let duration: TimeInterval
+    private let isPresenting: Bool
+    private let duration: TimeInterval
 
     init(isPresenting: Bool, duration: TimeInterval) {
         self.isPresenting = isPresenting

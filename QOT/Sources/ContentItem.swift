@@ -31,27 +31,27 @@ final class ContentItem: SyncableObject {
 
     // MARK: ContentData
 
-    @objc fileprivate(set) dynamic var sortOrder: Int = 0
+    @objc private(set) dynamic var sortOrder: Int = 0
 
-    @objc fileprivate(set) dynamic var format: String = ""
+    @objc private(set) dynamic var format: String = ""
 
-    @objc fileprivate(set) dynamic var searchTags: String = ""
+    @objc private(set) dynamic var searchTags: String = ""
 
-    @objc fileprivate(set) dynamic var tabs: String = ""
+    @objc private(set) dynamic var tabs: String = ""
 
-    @objc fileprivate(set) dynamic var layoutInfo: String?
+    @objc private(set) dynamic var layoutInfo: String?
 
-    @objc fileprivate(set) dynamic var valueText: String?
+    @objc private(set) dynamic var valueText: String?
 
-    @objc fileprivate(set) dynamic var valueDescription: String?
+    @objc private(set) dynamic var valueDescription: String?
 
-    @objc fileprivate(set) dynamic var valueImageURL: String?
+    @objc private(set) dynamic var valueImageURL: String?
 
-    @objc fileprivate(set) dynamic var valueMediaURL: String?
+    @objc private(set) dynamic var valueMediaURL: String?
 
     let valueDuration = RealmOptional<Double>(nil)
 
-    @objc fileprivate(set) dynamic var valueWavformData: String?
+    @objc private(set) dynamic var valueWavformData: String?
 
     let relatedContent: List<ContentRelation> = List()
 
@@ -61,7 +61,7 @@ final class ContentItem: SyncableObject {
     
     // MARK: Relationships
 
-    @objc fileprivate(set) dynamic var contentCollection: ContentCollection?
+    @objc private(set) dynamic var contentCollection: ContentCollection?
 }
 
 // MARK: - BuildRelations

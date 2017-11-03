@@ -12,14 +12,14 @@ protocol LearnContentListCoordinatorDelegate: ParentCoordinator {}
 
 final class LearnContentListCoordinator: ParentCoordinator {
 
-    fileprivate let services: Services
-    fileprivate let eventTracker: EventTracker
-    fileprivate let selectedCategoryIndex: Index
-    fileprivate let learnContentListViewController: LearnContentListViewController
-    fileprivate let rootViewController: UIViewController
+    private let services: Services
+    private let eventTracker: EventTracker
+    private let selectedCategoryIndex: Index
+    private let learnContentListViewController: LearnContentListViewController
+    private let rootViewController: UIViewController
     var children: [Coordinator] = []
     weak var delegate: LearnContentListCoordinatorDelegate?
-    fileprivate let transitioningDelegate: UIViewControllerTransitioningDelegate // swiftlint:disable:this weak_delegate
+    private let transitioningDelegate: UIViewControllerTransitioningDelegate // swiftlint:disable:this weak_delegate
 
     init(root: LearnCategoryListViewController, transitioningDelegate: UIViewControllerTransitioningDelegate, services: Services, eventTracker: EventTracker, selectedCategoryIndex: Index, originFrame: CGRect) {
         self.rootViewController = root

@@ -18,9 +18,9 @@ protocol NetworkManagerDelegate: class {
 
 final class NetworkManager {
 
-    fileprivate let sessionManager: SessionManager
-    fileprivate let credentialsManager: CredentialsManager
-    fileprivate let requestBuilder: URLRequestBuilder
+    private let sessionManager: SessionManager
+    private let credentialsManager: CredentialsManager
+    private let requestBuilder: URLRequestBuilder
     weak var delegate: NetworkManagerDelegate?
     var credential: Credential? {
         get {

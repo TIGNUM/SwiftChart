@@ -13,8 +13,8 @@ class SidebarTableViewCell: UITableViewCell, Dequeueable {
     
     // MARK: - Properties
 
-    fileprivate lazy var titleLabel: UILabel = UILabel(frame: self.frame)
-    fileprivate var heightAnchorConstraint: NSLayoutConstraint?
+    private lazy var titleLabel: UILabel = UILabel(frame: self.frame)
+    private var heightAnchorConstraint: NSLayoutConstraint?
 
     // MARK: - Init
 

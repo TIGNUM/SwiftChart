@@ -12,10 +12,10 @@ final class MyPrepTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Properties
 
-    @IBOutlet fileprivate weak var headerLabel: UILabel!
-    @IBOutlet fileprivate weak var mainTextLabel: UILabel!
-    @IBOutlet fileprivate weak var footerLabel: UILabel!
-    @IBOutlet fileprivate weak var prepCount: UILabel!
+    @IBOutlet private weak var headerLabel: UILabel!
+    @IBOutlet private weak var mainTextLabel: UILabel!
+    @IBOutlet private weak var footerLabel: UILabel!
+    @IBOutlet private weak var prepCount: UILabel!
 
     // MARK: - Initialisers
 
@@ -31,7 +31,7 @@ final class MyPrepTableViewCell: UITableViewCell, Dequeueable {
         setupCell()
     }
 
-    fileprivate func setupCell() {
+    private func setupCell() {
         backgroundColor = .clear
         let selectedBackground = UIView()
         selectedBackground.backgroundColor = UIColor.black15

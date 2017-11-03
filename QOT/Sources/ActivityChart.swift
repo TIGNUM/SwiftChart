@@ -10,7 +10,7 @@ import UIKit
 
 final class ActivityChart: UIView {
 
-    fileprivate enum AverageLineType: EnumCollection {
+    private enum AverageLineType: EnumCollection {
         case data
         case personal
         case team

@@ -30,15 +30,15 @@ final class MyPrepViewModel {
 
     // MARK: - Properties
 
-    fileprivate let services: Services
-    fileprivate var preparations: AnyRealmCollection<Preparation>?
-    fileprivate var preparationChecks: AnyRealmCollection<PreparationCheck>?
-    fileprivate var preparationsNotificationHandler: NotificationTokenHandler?
-    fileprivate var preparationChecksNotificationHandler: NotificationTokenHandler?
+    private let services: Services
+    private var preparations: AnyRealmCollection<Preparation>?
+    private var preparationChecks: AnyRealmCollection<PreparationCheck>?
+    private var preparationsNotificationHandler: NotificationTokenHandler?
+    private var preparationChecksNotificationHandler: NotificationTokenHandler?
     let updates = PublishSubject<CollectionUpdate, NoError>()
     let itemCountUpdate = ReplayOneSubject<Int, NoError>()
 
-    fileprivate var items = [Item]() {
+    private var items = [Item]() {
         didSet {
             updates.next(.reload)
         }

@@ -12,19 +12,19 @@ import SafariServices
 
 final class LearnContentItemCoordinator: ParentCoordinator {
 
-    fileprivate let services: Services
-    fileprivate let eventTracker: EventTracker
-    fileprivate let category: ContentCategory
-    fileprivate var categoryTitle: String
-    fileprivate var selectedContent: ContentCollection
-    fileprivate let fullViewController: LearnContentItemViewController
-    fileprivate let bulletViewController: LearnContentItemViewController
-    fileprivate let audioViewController: LearnContentItemViewController
-    fileprivate var viewModel: LearnContentItemViewModel
-    fileprivate var presentationManager: ContentItemAnimator?
-    fileprivate weak var topBarDelegate: TopNavigationBarDelegate?
-    fileprivate let rootViewController: UIViewController
-    fileprivate let headerView: LearnContentItemHeaderView
+    private let services: Services
+    private let eventTracker: EventTracker
+    private let category: ContentCategory
+    private var categoryTitle: String
+    private var selectedContent: ContentCollection
+    private let fullViewController: LearnContentItemViewController
+    private let bulletViewController: LearnContentItemViewController
+    private let audioViewController: LearnContentItemViewController
+    private var viewModel: LearnContentItemViewModel
+    private var presentationManager: ContentItemAnimator?
+    private weak var topBarDelegate: TopNavigationBarDelegate?
+    private let rootViewController: UIViewController
+    private let headerView: LearnContentItemHeaderView
     var children: [Coordinator] = []
     var topTabBarController: UINavigationController!
     

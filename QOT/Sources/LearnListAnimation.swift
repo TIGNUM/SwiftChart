@@ -10,9 +10,9 @@ import UIKit
 
 final class LearnListAnimation: NSObject {
 
-    fileprivate let upScale: CGFloat = 1.3
-    fileprivate let isPresenting: Bool
-    fileprivate let duration: TimeInterval
+    private let upScale: CGFloat = 1.3
+    private let isPresenting: Bool
+    private let duration: TimeInterval
     
     init(isPresenting: Bool, duration: TimeInterval) {
         self.isPresenting = isPresenting

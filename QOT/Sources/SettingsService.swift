@@ -13,7 +13,7 @@ final class SettingsService {
 
     // MARK: - Properties
 
-    fileprivate let realm: Realm
+    private let realm: Realm
 
     // MARK: - Init
 

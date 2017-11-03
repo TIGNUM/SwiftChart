@@ -21,11 +21,11 @@ final class ArticleCollectionLayout: UICollectionViewLayout {
     private var cache = [UICollectionViewLayoutAttributes]()
     weak var delegate: ArticleCollectionLayoutDelegate?
     private var positionOne: CGFloat = 0
-    fileprivate var width: CGFloat {
+    private var width: CGFloat {
         return collectionView?.bounds.width ?? 0
     }
 
-    fileprivate var itemCount: Int {
+    private var itemCount: Int {
         return collectionView?.numberOfItems(inSection: 0) ?? 0
     }
 

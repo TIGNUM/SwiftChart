@@ -15,11 +15,11 @@ final class AnswerDecision: Object {
 
     private let _targetGroupID = RealmOptional<Int>(nil)
 
-    @objc fileprivate(set) dynamic var id: Int = 0
+    @objc private(set) dynamic var id: Int = 0
 
-    @objc fileprivate(set) dynamic var questionGroupID: Int = 0
+    @objc private(set) dynamic var questionGroupID: Int = 0
 
-    @objc fileprivate(set) dynamic var targetType: String?
+    @objc private(set) dynamic var targetType: String?
 
     var targetID: Int? {
         return _targetID.value

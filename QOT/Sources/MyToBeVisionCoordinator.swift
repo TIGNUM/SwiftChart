@@ -13,11 +13,11 @@ final class MyToBeVisionCoordinator: NSObject, ParentCoordinator {
 
     // MARK: - Properties
 
-    fileprivate let services: Services
-    fileprivate var myToBeVisionViewController: MyToBeVisionViewController!
+    private let services: Services
+    private var myToBeVisionViewController: MyToBeVisionViewController!
     private let viewModel: MyToBeVisionViewModel
-    fileprivate let rootViewController: UIViewController
-    fileprivate let transitioningDelegate: UIViewControllerTransitioningDelegate // swiftlint:disable:this weak_delegate
+    private let rootViewController: UIViewController
+    private let transitioningDelegate: UIViewControllerTransitioningDelegate // swiftlint:disable:this weak_delegate
     var children: [Coordinator] = []
 
     // MARK: - Life Cycle

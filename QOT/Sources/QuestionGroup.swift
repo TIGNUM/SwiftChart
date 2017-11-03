@@ -11,9 +11,9 @@ import RealmSwift
 
 final class QuestionGroup: Object {
 
-    @objc fileprivate(set) dynamic var id: Int = 0
+    @objc private(set) dynamic var id: Int = 0
 
-    @objc fileprivate(set) dynamic var name: String = ""
+    @objc private(set) dynamic var name: String = ""
 
     convenience init(intermediary: QuestionGroupIntermediary) {
         self.init()

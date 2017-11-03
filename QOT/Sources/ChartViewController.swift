@@ -20,7 +20,7 @@ final class ChartViewController: UIViewController {
 
     private let viewModel: ChartViewModel
 
-    fileprivate lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         return UITableView(style: .grouped,
                            delegate: self,
                            dataSource: self,

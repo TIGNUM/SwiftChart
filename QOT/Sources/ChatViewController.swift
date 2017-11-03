@@ -66,7 +66,7 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
         fatalError("init(coder:) has not been implemented")
     }
 
-    fileprivate lazy var collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         let layout = ChatViewLayout()
         layout.delegate = self
         let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)

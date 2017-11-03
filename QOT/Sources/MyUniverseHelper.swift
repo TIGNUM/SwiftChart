@@ -12,7 +12,7 @@ import CoreGraphics
 
 struct MyUniverseHelper {
 
-    fileprivate static var dataCenterPoints = [[CGPoint]]()
+    private static var dataCenterPoints = [[CGPoint]]()
 
     static func radius(for load: CGFloat, layout: Layout.MeSection, radiusOffset: CGFloat = 0) -> CGFloat {
         let factor: CGFloat = layout.radiusMaxLoad

@@ -16,8 +16,8 @@ final class SettingsMenuViewModel {
         let subtitle: String
     }
 
-    fileprivate lazy var tiles: [Tile] = userTiles(user: self.user)
-    fileprivate let user: User
+    private lazy var tiles: [Tile] = userTiles(user: self.user)
+    private let user: User
     let tileUpdates = PublishSubject<CollectionUpdate, NoError>()
     private let settingTitles = [R.string.localized.sidebarSettingsMenuGeneralButton(),
                                  R.string.localized.sidebarSettingsMenuNotificationsButton(),

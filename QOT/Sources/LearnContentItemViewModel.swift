@@ -37,19 +37,19 @@ final class LearnContentItemViewModel: NSObject {
 
     // MARK: - Properties
 
-    fileprivate let services: Services
-    fileprivate let relatedContentCollections: AnyRealmCollection<ContentCollection>
-    fileprivate let recommentedContentCollections: AnyRealmCollection<ContentCollection>
-    fileprivate let categoryID: Int
-    fileprivate var playingIndexPath: IndexPath?
-    fileprivate var timeObserver: Any?
-    fileprivate var playerItemBufferEmptyObserver: Any?
-    fileprivate var playerItemPlaybackObserver: Any?
-    fileprivate var player: AVPlayer? = AVPlayer()
-    fileprivate let eventTracker: EventTracker
-    fileprivate var playerItem: AVPlayerItem?
-    fileprivate(set) var isPlaying = false
-    fileprivate var currentPlayingCell: LearnStrategyPlaylistAudioCell?
+    private let services: Services
+    private let relatedContentCollections: AnyRealmCollection<ContentCollection>
+    private let recommentedContentCollections: AnyRealmCollection<ContentCollection>
+    private let categoryID: Int
+    private var playingIndexPath: IndexPath?
+    private var timeObserver: Any?
+    private var playerItemBufferEmptyObserver: Any?
+    private var playerItemPlaybackObserver: Any?
+    private var player: AVPlayer? = AVPlayer()
+    private let eventTracker: EventTracker
+    private var playerItem: AVPlayerItem?
+    private(set) var isPlaying = false
+    private var currentPlayingCell: LearnStrategyPlaylistAudioCell?
     weak var audioPlayerViewDelegate: AudioPlayerViewLabelDelegate?
     let contentCollection: ContentCollection
     var currentPosition = ReactiveKit.Property<TimeInterval>(0)
@@ -141,7 +141,7 @@ extension LearnContentItemViewModel {
         }
     }
 
-    fileprivate func contentItemsCount(at tabType: TabType) -> Int {
+    private func contentItemsCount(at tabType: TabType) -> Int {
         var count = contentItems(at: tabType).count
 
         count += contentItems(at: tabType).filter({
@@ -409,22 +409,22 @@ extension LearnContentItemViewModel {
 
     // MARK: - notification
     
-    fileprivate func setupAudioNotifications() {
+    private func setupAudioNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(playerDidEndNotification(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
     }
     
-    fileprivate func tearDownAudioNotifications() {
+    private func tearDownAudioNotifications() {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
     }
 
-    fileprivate func removeAudioItemObserver() {
+    private func removeAudioItemObserver() {
         if  playerItemBufferEmptyObserver != nil && playerItemPlaybackObserver != nil {
             playerItem?.removeObserver(self, forKeyPath: "playbackLikelyToKeepUp")
             playerItem?.removeObserver(self, forKeyPath: "playbackBufferEmpty")
         }
     }
 
-    @objc fileprivate func playerDidEndNotification(_ notification: Notification) {
+    @objc private func playerDidEndNotification(_ notification: Notification) {
         guard let playingIndexPath = playingIndexPath else {
             return
         }

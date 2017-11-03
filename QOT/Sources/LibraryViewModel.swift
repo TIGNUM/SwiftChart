@@ -14,7 +14,7 @@ final class LibraryViewModel {
 
     // MARK: - Properties
 
-    fileprivate let categories: AnyRealmCollection<ContentCategory>
+    private let categories: AnyRealmCollection<ContentCategory>
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
     var sectionCount: Int {

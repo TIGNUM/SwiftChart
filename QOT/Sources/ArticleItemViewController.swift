@@ -25,12 +25,12 @@ final class ArticleItemViewController: UIViewController {
 
     // MARK: - Properties
 
-    fileprivate let contentInsets: UIEdgeInsets
+    private let contentInsets: UIEdgeInsets
     let pageName: PageName
     var viewModel: ArticleItemViewModel
     weak var delegate: ArticleItemViewControllerDelegate?
 
-    fileprivate lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let tableView = UITableView(
             style: .grouped,
             contentInsets: self.contentInsets,

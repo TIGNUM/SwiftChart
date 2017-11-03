@@ -23,7 +23,7 @@ final class SearchCollectionCell: UICollectionViewCell, Dequeueable {
         addSubview(titleLabel)
     }
 
-    fileprivate lazy var titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.bentonBookFont(ofSize: 12)
         label.textColor = .white

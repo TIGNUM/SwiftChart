@@ -10,9 +10,9 @@ import UIKit
 
 final class LearnContentItemBulletCell: UITableViewCell, Dequeueable {
 
-    @IBOutlet fileprivate weak var bulletLabel: UILabel!
-    @IBOutlet fileprivate weak var bulletIndicatorLabel: UILabel!
-    @IBOutlet fileprivate weak var bulletSeperatorView: UIView!
+    @IBOutlet private weak var bulletLabel: UILabel!
+    @IBOutlet private weak var bulletIndicatorLabel: UILabel!
+    @IBOutlet private weak var bulletSeperatorView: UIView!
 
     func setupView(bulletText: String) {
         let attributedString = NSMutableAttributedString(

@@ -26,9 +26,9 @@ final class LearnContentListViewController: UIViewController {
     weak var pagingCollectionViewTopConstraint: NSLayoutConstraint?
     weak var pagingCollectionViewBottomConstraint: NSLayoutConstraint?
     weak var getBackButtonBottomConstraint: NSLayoutConstraint?
-    fileprivate let disposeBag = DisposeBag()
-    fileprivate lazy var collectionViewLayout = LearnStrategyListLayout()
-    fileprivate var firstLaunch = true
+    private let disposeBag = DisposeBag()
+    private lazy var collectionViewLayout = LearnStrategyListLayout()
+    private var firstLaunch = true
 
     let viewModel: LearnContentCollectionViewModel
     var selectedCategoryIndex: Index
@@ -41,7 +41,7 @@ final class LearnContentListViewController: UIViewController {
         return CGSize(width: self.view.frame.width, height: 40)
     }()
 
-    fileprivate lazy var collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(
             layout: self.collectionViewLayout,
             delegate: self,
@@ -52,14 +52,14 @@ final class LearnContentListViewController: UIViewController {
         return collectionView
     }()
 
-    fileprivate lazy var carouselView: CarouselView = {
+    private lazy var carouselView: CarouselView = {
         let carouselView = CarouselView()
         carouselView.dataSource = self
         carouselView.delegate = self
         return carouselView
     }()
 
-    fileprivate lazy var getBackButton: UIButton = {
+    private lazy var getBackButton: UIButton = {
         let viewFrame = self.view.bounds
         let button = UIButton(frame: CGRect(x: 0, y: viewFrame.height - Layout.TabBarView.height, width: viewFrame.width, height: Layout.TabBarView.height))
         button.setTitle(R.string.localized.learnContentTapToGetBack(), for: .normal)
@@ -70,7 +70,7 @@ final class LearnContentListViewController: UIViewController {
         return button
     }()
 
-    fileprivate let backgroundImageView = UIImageView(image: R.image._1Learn())
+    private let backgroundImageView = UIImageView(image: R.image._1Learn())
 
     // MARK: - Init
     

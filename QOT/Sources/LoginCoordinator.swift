@@ -18,9 +18,9 @@ final class LoginCoordinator: ParentCoordinator {
 
     // MARK: - Properties
 
-    fileprivate let windowManager: WindowManager
-    fileprivate let networkManager: NetworkManager
-    fileprivate weak var delegate: LoginCoordinatorDelegate?
+    private let windowManager: WindowManager
+    private let networkManager: NetworkManager
+    private weak var delegate: LoginCoordinatorDelegate?
     var children: [Coordinator] = []
 
     // MARK: - Lifecycle

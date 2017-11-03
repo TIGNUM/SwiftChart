@@ -12,7 +12,7 @@ import Freddy
 
 final class UserSetting: SyncableObject {
 
-    @objc fileprivate dynamic var _value: SettingValueObject?
+    @objc private dynamic var _value: SettingValueObject?
 
     @objc dynamic var changeStamp: String? = UUID().uuidString
 

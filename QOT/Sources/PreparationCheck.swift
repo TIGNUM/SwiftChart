@@ -14,9 +14,9 @@ final class PreparationCheck: SyncableObject {
 
     // MARK: Public Properties
     
-    @objc fileprivate(set) dynamic var preparationID: Int = 0
+    @objc private(set) dynamic var preparationID: Int = 0
     
-    @objc fileprivate(set) dynamic var contentItemID: Int = 0
+    @objc private(set) dynamic var contentItemID: Int = 0
 
     @objc dynamic var covered: Date? // A date indicates the time it was checked and nil indicates it is unchecked
 
@@ -26,9 +26,9 @@ final class PreparationCheck: SyncableObject {
 
     // MARK: - Relationships
     
-    @objc fileprivate(set) dynamic var preparation: Preparation?
+    @objc private(set) dynamic var preparation: Preparation?
     
-    @objc fileprivate(set) dynamic var contentItem: ContentItem?
+    @objc private(set) dynamic var contentItem: ContentItem?
     
     // MARK: Functions
 

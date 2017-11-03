@@ -11,8 +11,8 @@ import RealmSwift
 
 final class UserService {
 
-    fileprivate let mainRealm: Realm
-    fileprivate let realmProvider: RealmProvider
+    private let mainRealm: Realm
+    private let realmProvider: RealmProvider
 
     init(mainRealm: Realm, realmProvider: RealmProvider) {
         self.mainRealm = mainRealm

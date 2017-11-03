@@ -20,12 +20,12 @@ final class MorningInterviewViewController: UIViewController {
 
     weak var delegate: MorningInterviewViewControllerDelegate?
     private var currentIndex: Int = 0
-    fileprivate let viewModel: MorningInterviewViewModel
-    fileprivate let topView = UIView()
-    fileprivate let bottomView = UIView()
-    fileprivate var headerLabel = UILabel()
+    private let viewModel: MorningInterviewViewModel
+    private let topView = UIView()
+    private let bottomView = UIView()
+    private var headerLabel = UILabel()
 
-    fileprivate lazy var blurView: UIVisualEffectView = {
+    private lazy var blurView: UIVisualEffectView = {
         var blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
         blurEffectView.frame = self.view.frame
 
@@ -40,7 +40,7 @@ final class MorningInterviewViewController: UIViewController {
         return currentIndex >= viewModel.questionsCount - 1
     }
 
-    fileprivate lazy var collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
 
@@ -52,7 +52,7 @@ final class MorningInterviewViewController: UIViewController {
         )
     }()
 
-    fileprivate var nextButton: UIButton = {
+    private var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle(R.string.localized.morningControllerNextButton(), for: UIControlState.normal)
         button.titleLabel?.font = Font.DPText
@@ -62,7 +62,7 @@ final class MorningInterviewViewController: UIViewController {
         return button
     }()
 
-    fileprivate var leftButton: UIButton = {
+    private var leftButton: UIButton = {
         let button = UIButton()
         button.setImage(R.image.ic_back(), for: UIControlState.normal)
         button.addTarget(self, action: #selector(didTapPrevious(_:)), for: .touchUpInside)
@@ -72,7 +72,7 @@ final class MorningInterviewViewController: UIViewController {
         return button
     }()
 
-    fileprivate var closeButton: UIButton = {
+    private var closeButton: UIButton = {
         let button = UIButton()
         button.setImage(R.image.ic_close(), for: UIControlState.normal)
         button.addTarget(self, action: #selector(didTapClose(_:)), for: .touchUpInside)

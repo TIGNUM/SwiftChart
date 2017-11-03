@@ -10,7 +10,7 @@ import UIKit
 
 final class MyToBeVisionAnimator: NSObject {
 
-    fileprivate let duration: TimeInterval
+    private let duration: TimeInterval
 
     init(duration: TimeInterval = 0.4) {
         self.duration = duration

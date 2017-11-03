@@ -12,8 +12,8 @@ class ContentItemTextTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Outlets
 
-    @IBOutlet fileprivate weak var topLabel: ClickableLabel!
-    @IBOutlet fileprivate weak var bottomLabel: ClickableLabel!
+    @IBOutlet private weak var topLabel: ClickableLabel!
+    @IBOutlet private weak var bottomLabel: ClickableLabel!
     weak var delegate: LearnContentItemViewController?
 
     func setup(topText: NSAttributedString, bottomText: NSAttributedString?, backgroundColor: UIColor = .white, delegate: ClickableLabelDelegate? = nil) {

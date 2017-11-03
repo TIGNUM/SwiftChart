@@ -11,8 +11,8 @@ import UIKit
 
 final class SettingsChangePasswordCoordinator: ParentCoordinator {
 
-    fileprivate let services: Services
-    fileprivate let rootViewController: UIViewController
+    private let services: Services
+    private let rootViewController: UIViewController
     var children = [Coordinator]()
 
     init(root: SettingsViewController, services: Services) {

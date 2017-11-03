@@ -22,15 +22,15 @@ final class MyPrepViewController: UIViewController {
 
     let viewModel: MyPrepViewModel
     weak var delegate: MyPrepViewControllerDelegate?
-    fileprivate let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
-    fileprivate lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         return UITableView(delegate: self,
                            dataSource: self,
                            dequeables: MyPrepTableViewCell.self)
     }()
 
-    fileprivate lazy var emptyLabel: UILabel = {
+    private lazy var emptyLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .clear
         label.textColor = .white40

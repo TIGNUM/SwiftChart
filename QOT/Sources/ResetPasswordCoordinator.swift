@@ -13,10 +13,10 @@ final class ResetPasswordCoordinator: ParentCoordinator {
 
     // MARK: - Properties
 
-    fileprivate let networkManager: NetworkManager
-    fileprivate let parentCoordinator: ParentCoordinator
-    fileprivate let resetPasswordViewController: ResetPasswordViewController!
-    fileprivate let rootViewController: UIViewController
+    private let networkManager: NetworkManager
+    private let parentCoordinator: ParentCoordinator
+    private let resetPasswordViewController: ResetPasswordViewController!
+    private let rootViewController: UIViewController
     var children: [Coordinator] = []
 
     // MARK: - Lifecycle

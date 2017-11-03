@@ -10,18 +10,18 @@ import UIKit
 
 final class SettingsChangePasswordViewController: UITableViewController {
 
-    @IBOutlet fileprivate weak var oldPasswordTextField: UITextField!
-    @IBOutlet fileprivate weak var newPasswordTextField: UITextField!
-    @IBOutlet fileprivate weak var confirmNewPasswordTextField: UITextField!
-    @IBOutlet fileprivate weak var oldPasswordBottomView: UIView!
-    @IBOutlet fileprivate weak var newPasswordBottomView: UIView!
-    @IBOutlet fileprivate weak var confirmNewPasswordBottomView: UIView!
-    @IBOutlet fileprivate weak var oldPasswordShowHideButton: UIButton!
-    @IBOutlet fileprivate weak var newPasswordShowHideButton: UIButton!
-    @IBOutlet fileprivate weak var confirmNewPasswordShowHideButton: UIButton!
-    @IBOutlet fileprivate weak var updatePasswordButton: UIButton!
-    @IBOutlet fileprivate weak var forgottPasswordButton: UIButton!
-    fileprivate var statusText: String?
+    @IBOutlet private weak var oldPasswordTextField: UITextField!
+    @IBOutlet private weak var newPasswordTextField: UITextField!
+    @IBOutlet private weak var confirmNewPasswordTextField: UITextField!
+    @IBOutlet private weak var oldPasswordBottomView: UIView!
+    @IBOutlet private weak var newPasswordBottomView: UIView!
+    @IBOutlet private weak var confirmNewPasswordBottomView: UIView!
+    @IBOutlet private weak var oldPasswordShowHideButton: UIButton!
+    @IBOutlet private weak var newPasswordShowHideButton: UIButton!
+    @IBOutlet private weak var confirmNewPasswordShowHideButton: UIButton!
+    @IBOutlet private weak var updatePasswordButton: UIButton!
+    @IBOutlet private weak var forgottPasswordButton: UIButton!
+    private var statusText: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()

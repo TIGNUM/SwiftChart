@@ -14,7 +14,7 @@ final class LearnContentListBackgroundView: UICollectionReusableView {
 
     static let kind = "LearnContentListBackgroundViewKind"
 
-    fileprivate let imageView = UIImageView()
+    private let imageView = UIImageView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)

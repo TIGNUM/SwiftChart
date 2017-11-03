@@ -23,9 +23,9 @@ final class LearnCategoryListViewController: UIViewController {
 
     // MARK: - Properties
 
-    fileprivate let viewModel: LearnCategoryListViewModel
-    fileprivate let disposeBag = DisposeBag()
-    fileprivate let backgroundImageView: UIImageView
+    private let viewModel: LearnCategoryListViewModel
+    private let disposeBag = DisposeBag()
+    private let backgroundImageView: UIImageView
     weak var delegate: LearnCategoryListViewControllerDelegate?
     let page = LearnCategoryListPage()
 

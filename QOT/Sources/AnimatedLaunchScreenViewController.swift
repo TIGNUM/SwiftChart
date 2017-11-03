@@ -11,10 +11,10 @@ import Anchorage
 
 final class AnimatedLaunchScreenViewController: UIViewController {
 
-    fileprivate var backGroundImageView: UIImageView = UIImageView(image: R.image._1_1Learn())
-    fileprivate var tignumImageView: UIImageView = UIImageView(image: R.image.byTignum())
-    fileprivate var logoImageView: UIImageView = UIImageView()
-    fileprivate let imageCount = 92
+    private var backGroundImageView: UIImageView = UIImageView(image: R.image._1_1Learn())
+    private var tignumImageView: UIImageView = UIImageView(image: R.image.byTignum())
+    private var logoImageView: UIImageView = UIImageView()
+    private let imageCount = 92
 
     override func viewDidLoad() {
         super.viewDidLoad()

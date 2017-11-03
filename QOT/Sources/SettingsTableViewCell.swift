@@ -12,16 +12,16 @@ class SettingsTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Outlets / Properties
 
-    @IBOutlet fileprivate weak var titleLabel: UILabel!
-    @IBOutlet fileprivate weak var valueLabel: UILabel!
-    @IBOutlet fileprivate weak var switchControl: UISwitch!
-    @IBOutlet fileprivate weak var button: UIButton!
-    @IBOutlet fileprivate weak var textField: UITextField!
-    fileprivate lazy var pickerItems = [String]()
-    fileprivate lazy var selectedIndex = 0
-    fileprivate lazy var indexPath = IndexPath(row: 0, section: 0)
-    fileprivate lazy var settingsType = SettingsType.calendar
-    fileprivate var calendarIdentifier: String?
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var valueLabel: UILabel!
+    @IBOutlet private weak var switchControl: UISwitch!
+    @IBOutlet private weak var button: UIButton!
+    @IBOutlet private weak var textField: UITextField!
+    private lazy var pickerItems = [String]()
+    private lazy var selectedIndex = 0
+    private lazy var indexPath = IndexPath(row: 0, section: 0)
+    private lazy var settingsType = SettingsType.calendar
+    private var calendarIdentifier: String?
     var controlUpdate = false
     weak var settingsDelegate: SettingsViewControllerDelegate?
     weak var calendarSyncDelegate: SettingsCalendarListViewControllerDelegate?
