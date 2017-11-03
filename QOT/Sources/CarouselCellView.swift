@@ -191,7 +191,7 @@ private extension CarouselCellView {
         // the state of the edit picture button is complicated. it only shows if:
         //  - editing
         //  - not editing AND there are initials AND there is no image
-        if isEditing || (!isEditing && initialsLabel.text?.characters.count ?? 0 == 0 && imageView.image == nil) {
+        if isEditing || (!isEditing && initialsLabel.text?.count ?? 0 == 0 && imageView.image == nil) {
             editPictureButton.isHidden = false
         } else {
             editPictureButton.isHidden = true

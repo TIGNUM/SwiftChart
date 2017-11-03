@@ -14,7 +14,7 @@ extension UILabel {
     func setAttrText(text: String, font: UIFont, alignment: NSTextAlignment = .natural, lineSpacing: CGFloat = 13, characterSpacing: CGFloat = 0, color: UIColor? = nil) {
         let attrString = NSMutableAttributedString(string: text)
         let style = NSMutableParagraphStyle()
-        let range = NSRange(location: 0, length: text.characters.count)
+        let range = NSRange(location: 0, length: text.count)
         style.lineSpacing = lineSpacing
         style.alignment = alignment
         attrString.addAttribute(.paragraphStyle, value: style, range: range)

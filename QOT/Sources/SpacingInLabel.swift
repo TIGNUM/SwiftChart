@@ -16,7 +16,7 @@ extension UILabel {
             text = text.uppercased()
         }
         let attributedString = NSMutableAttributedString(string: text)
-        attributedString.addAttribute(.kern, value: spacing, range: NSRange(location: 0, length: text.characters.count))
+        attributedString.addAttribute(.kern, value: spacing, range: NSRange(location: 0, length: text.count))
         self.attributedText = attributedString
     }
 }

@@ -107,9 +107,9 @@ private extension ClickableLabel {
             let linkTitle = getString(for: "\\[.*\\]", in: linkSubstring).trimmingCharacters(in: ["[", "]"])
             let link = getString(for: "\\(.*\\)", in: linkSubstring).trimmingCharacters(in: ["(", ")"])
 
-            let additionalCharactersCount = linkSubstring.characters.count - linkTitle.characters.count
+            let additionalCharactersCount = linkSubstring.count - linkTitle.count
 
-            let newRange =  NSRange(location: range.location, length: linkTitle.characters.count)
+            let newRange =  NSRange(location: range.location, length: linkTitle.count)
 
             let mdLink = MarkdownLink(range: newRange, link: link, title: linkTitle)
 

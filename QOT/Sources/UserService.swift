@@ -68,11 +68,12 @@ final class UserService {
         }
     }
 
-    func updateTimeZone() {
-        let timeZone = TimeZone.currentName
+    func updateTimeZone(completion: (() -> Void)? = nil) {
+        let timeZone = TimeZone.hoursFromGMT
         if let user = user(), timeZone != user.timeZone {
             updateUser(user: user) {
                 $0.timeZone = timeZone
+                completion?()
             }
         }
     }

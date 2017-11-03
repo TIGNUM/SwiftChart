@@ -13,7 +13,7 @@ import CoreLocation
 import Photos
 import AVFoundation
 
-class PermissionHandler: NSObject {
+final class PermissionHandler: NSObject {
     struct Result {
         var calendar = false
         var remoteNotification = false
@@ -26,7 +26,7 @@ class PermissionHandler: NSObject {
         }
     }
     
-    fileprivate var locationPermissionCompletion: ((Bool) -> Void)?
+    private var locationPermissionCompletion: ((Bool) -> Void)?
     private let locationManager = CLLocationManager()
     private let queue = OperationQueue()
     
@@ -34,6 +34,7 @@ class PermissionHandler: NSObject {
     
     override init() {
         super.init()
+        
         locationManager.delegate = self
         queue.maxConcurrentOperationCount = 1
     }
@@ -53,7 +54,7 @@ class PermissionHandler: NSObject {
             })
         })
         queue.addOperation(WaitBlockOperation { [unowned self] (finish: (() -> Void)?) in
-            self.askPermissionForLocation(completion: { (granted: Bool) in
+            self.askPermissionForLocationAlways(completion: { (granted: Bool) in
                 result.location = granted
                 finish?()
             })
@@ -93,19 +94,19 @@ class PermissionHandler: NSObject {
         }
     }
     
-    func askPermissionForLocation(completion: @escaping (Bool) -> Void) {
+    func askPermissionForLocationAlways(completion: @escaping (Bool) -> Void) {
         let status = CLLocationManager.authorizationStatus()
         guard isEnabledForSession, status != .denied, status != .restricted else {
             completion(false)
             return
         }
-        guard status != .authorizedWhenInUse, status != .authorizedAlways else {
+        guard status != .authorizedAlways || status != .authorizedWhenInUse else {
             completion(true)
             return
         }
-
+        
         locationPermissionCompletion = completion
-        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
     }
     
     func askPermissionForPhotos(completion: @escaping (Bool) -> Void) {
@@ -145,8 +146,9 @@ class PermissionHandler: NSObject {
 // MARK: - CLLocationManagerDelegate
 
 extension PermissionHandler: CLLocationManagerDelegate {
+    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        locationPermissionCompletion?(status == .authorizedWhenInUse)
+        locationPermissionCompletion?(status == .authorizedAlways || status == .authorizedWhenInUse)
         locationPermissionCompletion = nil
     }
 }

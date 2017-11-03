@@ -184,7 +184,7 @@ final class ResetPasswordViewController: UIViewController {
     }
     
     private func doPasswordReset() {
-        guard let username = userInput.text?.trimmingCharacters(in: .whitespacesAndNewlines), username.characters.count > 0 else {
+        guard let username = userInput.text?.trimmingCharacters(in: .whitespacesAndNewlines), username.count > 0 else {
             return
         }
 

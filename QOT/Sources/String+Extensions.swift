@@ -80,7 +80,7 @@ extension String {
         let color: UIColor = selected == true ? .white : .white30
         let attrString = NSMutableAttributedString(string: self)
         let style = NSMutableParagraphStyle()
-        let range = NSRange(location: 0, length: characters.count)
+        let range = NSRange(location: 0, length: count)
         style.alignment = .center
         attrString.addAttribute(.paragraphStyle, value: style, range: range)
         attrString.addAttribute(.font, value: Font.H7Tag, range: range)

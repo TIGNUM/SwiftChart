@@ -93,20 +93,22 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSHumanReadableCopyright</key>
+	<false/>
 	<key>NSCalendarsUsageDescription</key>
 	<string>We use this for flight info.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>QOT needs camera access for changing images.</string>
 	<key>NSContactsUsageDescription</key>
 	<string>QOT needs access to contacts to create calendar events.</string>
-	<key>NSHumanReadableCopyright</key>
-	<false/>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string></string>
+	<string>QOT needs access to your location update your time zone.</string>
 	<key>NSLocationUsageDescription</key>
-	<string></string>
+	<string>QOT needs access to your location update your time zone.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>QOT needs access to your location to track your steps.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>QOT needs access to your location update your time zone.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>QOT needs access to your Library to set your images.</string>
 	<key>UIAppFonts</key>

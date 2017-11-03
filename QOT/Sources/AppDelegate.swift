@@ -66,6 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         QOTUsageTimer.sharedInstance.observeUsage()
         appCoordinator.start()
         UIApplication.shared.statusBarStyle = .lightContent
+        incomingLocationEvent(launchOptions: launchOptions)
         setupUAirship()
 
         #if DEBUG
@@ -76,7 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         return true
     }
-
+    
     func applicationWillTerminate(_ application: UIApplication) {
         appCoordinator.updateUserTotalUsageTime()
     }
@@ -95,7 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appCoordinator.appDidBecomeActive()        
     }
 
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
         if launchHandler.canLaunch(url: url) == true && url.host == URLScheme.fitbit.rawValue {
             launchHandler.process(url: url)
         }
@@ -109,6 +110,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // MARK: - private
+    
+    private func incomingLocationEvent(launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
+        guard let locationEvent = launchOptions?[UIApplicationLaunchOptionsKey.location] as? NSNumber else { return }        
+        
+        if locationEvent.boolValue == true {
+            let locationManager = LocationManager()
+            locationManager.startSignificantLocationMonitoring(didUpdateLocations: appCoordinator.sendLocationUpdate)
+        }
+    }
     
     private func setupUAirship() {
         guard let path = Bundle.main.path(forResource: "AirshipConfig", ofType: "plist") else {

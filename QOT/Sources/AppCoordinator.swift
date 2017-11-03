@@ -81,11 +81,13 @@ final class AppCoordinator: ParentCoordinator {
             self?.restart()
         }
 
-        LocationManager.shared.startSignificantLocationMonitoring(didUpdateLocations: sendLocationUpdate)
+        let locationManager = LocationManager()
+        locationManager.startSignificantLocationMonitoring(didUpdateLocations: sendLocationUpdate)
     }
     
     func start() {
         pageTracker.start()
+        observeTimeZoneChange()
         
         let viewController = AnimatedLaunchScreenViewController()
         windowManager.setRootViewController(viewController, atLevel: .normal, animated: false, completion: nil)
@@ -177,17 +179,28 @@ final class AppCoordinator: ParentCoordinator {
     func updateUserTotalUsageTime() {
         services?.userService.updateTotalUsageTime()
     }
+    
+    func sendLocationUpdate(location: CLLocation) {
+        timeZoneDidChange()
+        networkManager.performUserLocationUpdateRequest(location: location) { (netwerkError: NetworkError?) in
+            if let error = netwerkError {
+                log("Error while trying to update user location: \(error)")
+            }
+        }
+    }
 }
 
 // MARK: - private
 
 private extension AppCoordinator {
-
-    func sendLocationUpdate(location: CLLocation) {
-        networkManager.performUserLocationUpdateRequest(location: location) { (netwerkError: NetworkError?) in
-            if let error = netwerkError {
-                log("Error while trying to update user location: \(error)")
-            }
+    
+    func observeTimeZoneChange() {
+        NotificationCenter.default.addObserver(self, selector: #selector(timeZoneDidChange), name: .NSSystemTimeZoneDidChange, object: nil)
+    }
+        
+    @objc func timeZoneDidChange() {
+        services?.userService.updateTimeZone { [unowned self] in
+            self.syncManager.syncAll(shouldDownload: false)
         }
     }
 

@@ -110,11 +110,11 @@ final class PreparationService {
     }
     
     func removeLinkFromEventNotes(forPreparation preparation: Preparation) throws {
-        guard let event = preparation.calendarEvent?.event, var notes = event.notes else {
+        guard let event = preparation.calendarEvent?.event, let notes = event.notes else {
             return
         }
         let regex = try NSRegularExpression(pattern: "(qotapp:\\/\\/preparation#[A-Z0-9-]+)", options: [])
-        guard let regexMatch = regex.matches(in: notes, options: [], range: NSRange(location: 0, length: notes.characters.count)).first else {
+        guard let regexMatch = regex.matches(in: notes, options: [], range: NSRange(location: 0, length: notes.count)).first else {
             return
         }
         // FIXME: swift 4 has ability to convert NSRange -> Range, so we can then use string.removeSubrange()

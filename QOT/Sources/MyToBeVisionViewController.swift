@@ -363,8 +363,8 @@ extension MyToBeVisionViewController: UITextViewDelegate {
                 headlineTextViewHightConstrant.constant = 100
             }
             view.layoutIfNeeded()
-        } else if textView == messageTextView, textView.text.characters.count >= 1 {
-            if textView.text.characters.first(where: {$0 == "\n"}) != nil {
+        } else if textView == messageTextView, textView.text.count >= 1 {
+            if textView.text.first(where: {$0 == "\n"}) != nil {
                 textView.text = textView.text.replacingOccurrences(of: "\n", with: "")
                 textView.resignFirstResponder()
             }

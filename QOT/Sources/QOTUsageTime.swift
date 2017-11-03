@@ -13,7 +13,6 @@ final class QOTUsageTimer {
     private var started: Date?
     private let didBecomeActiveHandler = NotificationHandler(name: .UIApplicationDidBecomeActive)
     private let willResignActiveHandler = NotificationHandler(name: .UIApplicationWillResignActive)
-
     static let sharedInstance = QOTUsageTimer()
 
     private init() {
@@ -37,6 +36,7 @@ final class QOTUsageTimer {
             return oldValue
         }
         let delta = -started.timeIntervalSinceNow
+        
         return TimeInterval(oldValue) + delta
     }
 

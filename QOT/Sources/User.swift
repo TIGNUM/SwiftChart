@@ -81,7 +81,7 @@ final class User: SyncableObject {
 
     @objc dynamic var totalUsageTime: Int = 0
 
-    @objc dynamic var timeZone: String = TimeZone.currentName
+    @objc dynamic var timeZone: String = TimeZone.hoursFromGMT
     
     @objc private(set) dynamic var fitbitStateValue: String = ""
 }
@@ -118,7 +118,7 @@ extension User: TwoWaySyncableUniqueObject {
         jobTitle = data.jobTitle
         memberSince = data.memberSince
         totalUsageTime = data.totalUsageTime
-        timeZone = TimeZone.currentName
+        timeZone = TimeZone.hoursFromGMT
         baseURL = URL(string: data.esbDomain) ?? baseURL
         fitbitStateValue = data.fitbitState
         updateUAirshipTags(data.urbanAirshipTags + [data.email])

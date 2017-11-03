@@ -68,10 +68,10 @@ extension Partner: TwoWaySyncable {
 extension Partner {
     var initials: String {
         var initials = ""
-        if let initial = name.characters.first {
+        if let initial = name.first {
             initials += String(initial)
         }
-        if let initial = surname.characters.first {
+        if let initial = surname.first {
             initials += String(initial)
         }
         return initials

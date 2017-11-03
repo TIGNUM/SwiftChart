@@ -12,16 +12,20 @@ import CoreLocation
 final class LocationManager: CLLocationManager {
 
     // MARK: - Properties
-
-    static let shared = LocationManager()
+    
     var didUpdateLocations: ((_ location: CLLocation) -> Void)?
 
     // MARK: - Init
 
-    private override init() {}
+    override init() {
+        super.init()
+        
+        allowsBackgroundLocationUpdates = true
+        pausesLocationUpdatesAutomatically = true
+    }
 
-    var locationServiceEnabled: Bool {
-        if LocationManager.locationServicesEnabled() == true {
+    class var locationServiceEnabled: Bool {
+        if locationServicesEnabled() == true {
             switch authorizationStatus {
             case .authorizedAlways,
                  .authorizedWhenInUse: return true
@@ -34,15 +38,14 @@ final class LocationManager: CLLocationManager {
         return false
     }
 
-    var authorizationStatus: CLAuthorizationStatus {
-        return LocationManager.authorizationStatus()
+    class var authorizationStatus: CLAuthorizationStatus {
+        return authorizationStatus()
     }
 
     func startSignificantLocationMonitoring(didUpdateLocations: ((_ location: CLLocation) -> Void)?) {
-        guard authorizationStatus == .authorizedAlways || authorizationStatus == .authorizedWhenInUse else {
-            return
-        }
-
+        guard LocationManager.authorizationStatus == .authorizedAlways
+            || LocationManager.authorizationStatus == .authorizedWhenInUse
+            || LocationManager.significantLocationChangeMonitoringAvailable() == true else { return }
         self.didUpdateLocations = didUpdateLocations
         delegate = self
         startMonitoringSignificantLocationChanges()
@@ -52,10 +55,7 @@ final class LocationManager: CLLocationManager {
 extension LocationManager: CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let lastLocation = locations.last else {
-            return
-        }
-
+        guard let lastLocation = locations.last else { return }
         didUpdateLocations?(lastLocation)
     }
 }
