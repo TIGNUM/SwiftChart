@@ -202,6 +202,7 @@ final class SyncManager {
             syncOperation(ContentCategory.self, context: context, shouldDownload: shouldDownload),
             syncOperation(ContentCollection.self, context: context, shouldDownload: shouldDownload),
             syncOperation(ContentItem.self, context: context, shouldDownload: shouldDownload),
+            syncOperation(ContentRead.self, context: context, shouldDownload: shouldDownload),
             syncOperation(Statistics.self, context: context, shouldDownload: shouldDownload),
             UpdateRelationsOperation(context: context, realmProvider: realmProvider)
         ]

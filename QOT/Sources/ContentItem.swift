@@ -18,7 +18,6 @@ final class ContentItem: SyncableObject {
     func setData(_ data: ContentItemIntermediary) throws {
         sortOrder = data.sortOrder
         format = data.format
-        viewed = data.viewed
         searchTags = data.searchTags
         layoutInfo = data.layoutInfo
         tabs = data.tabs
@@ -54,8 +53,6 @@ final class ContentItem: SyncableObject {
 
     @objc fileprivate(set) dynamic var valueWavformData: String?
 
-    @objc dynamic var viewed: Bool = false
-
     let relatedContent: List<ContentRelation> = List()
 
     var secondsRequired: Int {
@@ -89,7 +86,6 @@ extension ContentItem: OneWaySyncableDown {
     func setData(_ data: ContentItemIntermediary, objectStore: ObjectStore) throws {
         sortOrder = data.sortOrder
         format = data.format
-        viewed = data.viewed
         searchTags = data.searchTags
         tabs = data.tabs
         layoutInfo = data.layoutInfo

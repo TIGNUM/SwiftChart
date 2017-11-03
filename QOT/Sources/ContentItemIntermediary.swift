@@ -13,7 +13,6 @@ struct ContentItemIntermediary {
     let sortOrder: Int
     let secondsRequired: Int
     let format: String
-    let viewed: Bool
     let searchTags: String
     let tabs: String
     let layoutInfo: String?
@@ -37,7 +36,6 @@ extension ContentItemIntermediary: DownSyncIntermediary {
         self.sortOrder = try json.getItemValue(at: .sortOrder)
         self.secondsRequired = try json.getItemValue(at: .secondsRequired)
         self.format = try json.getItemValue(at: .format)
-        self.viewed = try json.getItemValue(at: .viewed)
         self.searchTags = ContentItemIntermediary.commaSeperatedStringFromArray(in: json, at: .searchTags)
         self.tabs = ContentItemIntermediary.commaSeperatedStringFromArray(in: json, at: .tabs)
         self.layoutInfo = try json.serializeString(at: .layoutInfo)

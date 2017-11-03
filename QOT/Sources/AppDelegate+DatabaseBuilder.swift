@@ -41,14 +41,6 @@
                 }
                 
                 do {
-                    let realm = try realmProvider.realm()
-                    let contentCollections = realm.objects(ContentCollection.self)
-                    try realm.write {
-                        for contentCollection in contentCollections {
-                            contentCollection.viewedAt = nil
-                        }
-                    }
-
                     let name = "default-v1.realm"
                     let fileURL = try databaseBuilder.copyWithName(name)
                     print("\nbuild database completed successfully. paste this into terminal:")

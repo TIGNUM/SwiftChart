@@ -94,16 +94,21 @@ final class ContentService {
         return Array(AnyRealmCollection<ContentCollection>(results))
     }
 
-    func setViewed(localID: String) {
+    func setContentCollectionViewed(localID: String) {
         DispatchQueue.global().async {
             do {
                 let realm = try self.realmProvider.realm()
                 try realm.write {
-                    let contentItem = realm.syncableObject(ofType: ContentItem.self, localID: localID)
-                    contentItem?.viewed = true
+                    if let contentCollection = realm.syncableObject(ofType: ContentCollection.self, localID: localID) {
+                        if let contentRead = contentCollection.contentRead {
+                            contentRead.viewedAt = Date()
+                        } else {
+                            contentCollection.contentRead = ContentRead(contentCollection: contentCollection)
+                        }
+                    }
                 }
             } catch let error {
-                assertionFailure("UpdateViewedAt, itemId: \(localID), error: \(error)")
+                assertionFailure("UpdateViewedAt, contentId: \(localID), error: \(error)")
             }
         }
     }
