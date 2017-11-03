@@ -58,51 +58,53 @@ extension LaunchHandler {
 
     func fitbit(accessToken: String?) {
         AddSensorCoordinator.safariViewController?.dismiss(animated: true, completion: nil)
-        appDelegate.window?.showProgressHUD(type: .fitbit) {
-            self.sendAccessToken(accessToken: accessToken)
-        }
+        sendAccessToken(accessToken: accessToken)
     }
 
     private func sendAccessToken(accessToken: String?) {
-        guard let accessToken = accessToken else {
-            showHUD(type: .fitbitFailure)
-
+        guard let window = appDelegate.window, let accessToken = accessToken else {
+            showTemporaryHUD(type: .fitbitFailure)
             return
         }
-
+        
+        let hud = MBProgressHUD.showAdded(to: window, animated: true)
         do {
             let body = try ["accessToken": accessToken].toJSON().serialize()
             let request = FitbitTokenRequest(endpoint: .fitbitToken, body: body)
-
+            
             NetworkManager().request(request, parser: GenericParser.parse) { (result: (Result<(), NetworkError>)) in
+                hud.hide(animated: true)
                 switch result {
                 case .success:
-                    self.showHUD(type: .fitbitSuccess)
+                    self.showTemporaryHUD(type: .fitbitSuccess)
                     self.appDelegate.appCoordinator.syncManager.syncAll(shouldDownload: true)
                 case .failure(let error):
                     self.handleFitbitFailure(error)
                 }
             }
         } catch let error {
-            showHUD(type: .custom(title: R.string.localized.alertTitleCustom(), message: error.localizedDescription))
-
-            return
+            hud.hide(animated: true)
+            self.showTemporaryHUD(type: .custom(title: R.string.localized.alertTitleCustom(), message: error.localizedDescription))
         }
     }
 
     private func handleFitbitFailure(_ error: NetworkError) {
         switch error.type {
-        case .unauthenticated: showHUD(type: .unauthenticated)
-        case .noNetworkConnection: showHUD(type: .noNetworkConnection)
+        case .unauthenticated: showTemporaryHUD(type: .unauthenticated)
+        case .noNetworkConnection: showTemporaryHUD(type: .noNetworkConnection)
         case .unknown(let error, _),
-             .failedToParseData(_, let error): showHUD(type: .custom(title: R.string.localized.alertTitleCustom(), message: error.localizedDescription))
-        case .cancelled: showHUD(type: .fitbitFailure)
+             .failedToParseData(_, let error): showTemporaryHUD(type: .custom(title: R.string.localized.alertTitleCustom(), message: error.localizedDescription))
+        case .cancelled: showTemporaryHUD(type: .fitbitFailure)
         default: break
         }
     }
 
-    private func showHUD(type: AlertType) {
-        appDelegate.window?.showProgressHUD(type: type)
+    private func showTemporaryHUD(type: AlertType) {
+        guard let window = appDelegate.window else {
+            return
+        }
+        let hud = MBProgressHUD.showAdded(to: window, animated: true, title: type.title, message: type.message)
+        hud.hide(animated: true, afterDelay: 3.0)
     }
 }
 

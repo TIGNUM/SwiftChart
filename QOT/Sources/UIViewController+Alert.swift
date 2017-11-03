@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 
 enum AlertType {
     case empty
@@ -112,62 +111,6 @@ enum AlertType {
         switch self {
         case .imagePicker: return .actionSheet
         default: return .alert
-        }
-    }
-
-    /**
-     * ONLY FOR PROGRESS HUD
-     * minShowTime: Minimum amount of time the HUD will be displayed
-     */
-    var minShowTime: TimeInterval {
-        switch self {
-        case .fitbitSuccess: return 1
-        case .fitbitFailure: return 1
-        case .custom: return 1
-        case .unauthenticated: return 1
-        case .noNetworkConnection: return 1
-        case .loginFailed: return 1
-        default: return 0.5
-        }
-    }
-
-    /**
-     * ONLY FOR PROGRESS HUD
-     * graceTime: Time after which the HUD will be displayed. If action is finished before this time is over the HUD won't be displayed
-     */
-    var graceTime: TimeInterval {
-        switch self {
-        default: return 0
-        }
-    }
-
-    /**
-     * ONLY FOR PROGRESS HUD
-     * mode: HUD display mode
-     */
-    var mode: MBProgressHUDMode {
-        switch self {
-        default: return .indeterminate
-        }
-    }
-
-    /**
-     * ONLY FOR PROGRESS HUD
-     * animationType: Progress animation type
-     */
-    var animationType: MBProgressHUDAnimation {
-        switch self {
-        default: return .fade
-        }
-    }
-
-    /**
-     * ONLY FOR PROGRESS HUD
-     * isSquare: Try to set the HUD in a square format
-     */
-    var isSquare: Bool {
-        switch self {
-        default: return false
         }
     }
 }

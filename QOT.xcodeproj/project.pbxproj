@@ -61,6 +61,7 @@
 		7F8DB4AB1FA2047D00DFE006 /* PartnersAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8DB4A91FA2047D00DFE006 /* PartnersAnimation.swift */; };
 		7F8DB4AC1FA2047D00DFE006 /* PartnersAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8DB4AA1FA2047D00DFE006 /* PartnersAnimator.swift */; };
 		7F99ABB11F3DF38E009CA587 /* Database in Resources */ = {isa = PBXBuildFile; fileRef = 7F99ABB01F3DF38E009CA587 /* Database */; };
+		7FB0886E1FAB6DB600835D06 /* MBProgressHUD+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB0886D1FAB6DB600835D06 /* MBProgressHUD+Convenience.swift */; };
 		7FB172A01FA1E6AD00112C69 /* MyToBeVisionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB1729F1FA1E6AD00112C69 /* MyToBeVisionAnimation.swift */; };
 		7FB172A21FA1E6CE00112C69 /* MyToBeVisionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB172A11FA1E6CD00112C69 /* MyToBeVisionAnimator.swift */; };
 		7FB32D111F42E8620027BF4E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB32D101F42E8620027BF4E /* Security.framework */; };
@@ -128,7 +129,6 @@
 		859683431F1361E900A98218 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859683421F1361E900A98218 /* ResetPasswordViewController.swift */; };
 		859683471F137FD600A98218 /* ResetPasswordCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859683461F137FD600A98218 /* ResetPasswordCoordinator.swift */; };
 		85AAB53C1F447D1F00C2D53F /* LearnContentListBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AAB53B1F447D1F00C2D53F /* LearnContentListBackgroundView.swift */; };
-		85C26F9F1F13DCEB001C2C65 /* UIView+ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C26F9E1F13DCEB001C2C65 /* UIView+ProgressHUD.swift */; };
 		85C3D6BC1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C3D6BB1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib */; };
 		85C3D6BE1F0B920E00E0CBFE /* PrepareEventTableViewFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3D6BD1F0B920E00E0CBFE /* PrepareEventTableViewFooterView.swift */; };
 		85DC6F891EF40B36004F4B4D /* TravelTripsChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DC6F881EF40B36004F4B4D /* TravelTripsChart.swift */; };
@@ -516,6 +516,7 @@
 		7F8DB4A91FA2047D00DFE006 /* PartnersAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnersAnimation.swift; sourceTree = "<group>"; };
 		7F8DB4AA1FA2047D00DFE006 /* PartnersAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnersAnimator.swift; sourceTree = "<group>"; };
 		7F99ABB01F3DF38E009CA587 /* Database */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Database; sourceTree = "<group>"; };
+		7FB0886D1FAB6DB600835D06 /* MBProgressHUD+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MBProgressHUD+Convenience.swift"; sourceTree = "<group>"; };
 		7FB1729F1FA1E6AD00112C69 /* MyToBeVisionAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionAnimation.swift; sourceTree = "<group>"; };
 		7FB172A11FA1E6CD00112C69 /* MyToBeVisionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionAnimator.swift; sourceTree = "<group>"; };
 		7FB32D101F42E8620027BF4E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -582,7 +583,6 @@
 		859683421F1361E900A98218 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		859683461F137FD600A98218 /* ResetPasswordCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordCoordinator.swift; sourceTree = "<group>"; };
 		85AAB53B1F447D1F00C2D53F /* LearnContentListBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentListBackgroundView.swift; sourceTree = "<group>"; };
-		85C26F9E1F13DCEB001C2C65 /* UIView+ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ProgressHUD.swift"; sourceTree = "<group>"; };
 		85C3D6BB1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareEventTableViewFooterView.xib; sourceTree = "<group>"; };
 		85C3D6BD1F0B920E00E0CBFE /* PrepareEventTableViewFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventTableViewFooterView.swift; sourceTree = "<group>"; };
 		85DC6F881EF40B36004F4B4D /* TravelTripsChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelTripsChart.swift; sourceTree = "<group>"; };
@@ -1668,7 +1668,6 @@
 				7FE38DD21F2B2E230061E98F /* UINavigationController+Convenience.swift */,
 				CC05CB781EDEC73C00D15ABC /* UITableView+Create.swift */,
 				852DADD51EF051C400A10882 /* UIView+Layers.swift */,
-				85C26F9E1F13DCEB001C2C65 /* UIView+ProgressHUD.swift */,
 				CC80181F1F0256980040B03F /* UIViewController+Alert.swift */,
 				85777E7A1F0F857C00E12477 /* UIViewController+Convenience.swift */,
 				CC7A91111F0F978E00F791B9 /* UIViewController+ScreenType.swift */,
@@ -1678,6 +1677,7 @@
 				CBC191121F603055009E483B /* URL+Convenience.swift */,
 				CCC2D3151F0AB1E000951A2E /* UserDefault+Convenience.swift */,
 				7F47E83F1F8E4FE000ED4446 /* UIDevice+Utility.swift */,
+				7FB0886D1FAB6DB600835D06 /* MBProgressHUD+Convenience.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -2688,7 +2688,6 @@
 				850312EB1F33670900DB5A6B /* ClickableLabel.swift in Sources */,
 				7F0888881F0AA7DB005CE966 /* UIImage+FileIO.swift in Sources */,
 				7FB172A21FA1E6CE00112C69 /* MyToBeVisionAnimator.swift in Sources */,
-				85C26F9F1F13DCEB001C2C65 /* UIView+ProgressHUD.swift in Sources */,
 				CBB4DD541EE151100071494A /* DownSyncImporter.swift in Sources */,
 				851676DD1F3C68F8007A1DD6 /* LearnReadMoreCell.swift in Sources */,
 				CB3BD4191F2877E50071F51E /* UpSyncable.swift in Sources */,
@@ -2766,6 +2765,7 @@
 				CB1D5E3F1EC5E25A00BCDF8D /* ContentItemValue.swift in Sources */,
 				7F507BA11F3B0F8A0091742D /* EventTracker.swift in Sources */,
 				CB6D49541ECC87BF005BC637 /* Requests.swift in Sources */,
+				7FB0886E1FAB6DB600835D06 /* MBProgressHUD+Convenience.swift in Sources */,
 				D50D6C241EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift in Sources */,
 				CC335EE91EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift in Sources */,
 				854708E21F306628007AB971 /* ContentItemAnimation.swift in Sources */,

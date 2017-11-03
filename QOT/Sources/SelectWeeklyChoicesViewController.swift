@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 protocol SelectWeeklyChoicesViewControllerDelegate: class {
 
@@ -112,7 +113,7 @@ final class SelectWeeklyChoicesViewController: UIViewController {
     }
     
     @IBAction private func donePressed(_ sender: UIBarButtonItem) {
-        view.showProgressHUD(type: .empty)
+        _ = MBProgressHUD.showAdded(to: view, animated: true)
         DispatchQueue.main.async { [unowned self] in
             self.viewModel.createUsersWeeklyChoices()
         }

@@ -10,8 +10,8 @@ import UIKit
 import Anchorage
 
 protocol LoginViewControllerDelegate: class {
-    func didTapLogin(withEmail email: String, password: String, viewController: UIViewController, completion: @escaping (Error?) -> Void)
-    func didTapResetPassword(viewController: UIViewController)
+    func loginViewController(_ viewController: UIViewController, didTapLoginWithEmail email: String, password: String)
+    func loginViewControllerDidTapResetPassword(_ viewController: UIViewController)
 }
 
 final class LoginViewController: UIViewController {
@@ -168,15 +168,14 @@ final class LoginViewController: UIViewController {
     
     @objc private func didPressForgotPassword(_ sender: UIButton) {
         resignFirstResponder()
-        delegate?.didTapResetPassword(viewController: self)
+        delegate?.loginViewControllerDidTapResetPassword(self)
     }
     
     private func doLogin() {
         guard let email = userInput.text, let password = passwordInput.text else {
             return
         }
-        delegate?.didTapLogin(withEmail: email, password: password, viewController: self, completion: { _ in
-        })
+        delegate?.loginViewController(self, didTapLoginWithEmail: email, password: password)
     }
     
     private func addHierarchy() {

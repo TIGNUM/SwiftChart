@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 final class ResetPasswordCoordinator: ParentCoordinator {
 
@@ -38,8 +39,13 @@ final class ResetPasswordCoordinator: ParentCoordinator {
 extension ResetPasswordCoordinator: ResetPasswordViewControllerDelegate {
     
     func didTapResetPassword(withUsername username: String, completion: @escaping (NetworkError?) -> Void) {
-        AppDelegate.current.window?.showProgressHUD(type: .fitbit) { [networkManager] in
-            networkManager.performResetPasswordRequest(username: username, completion: completion)
+        guard let window = AppDelegate.current.window else {
+            return
         }
+        let progressHUD = MBProgressHUD.showAdded(to: window, animated: true)
+        networkManager.performResetPasswordRequest(username: username, completion: { error in
+            progressHUD.hide(animated: true)
+            completion(error)
+        })
     }
 }

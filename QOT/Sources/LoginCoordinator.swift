@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 protocol LoginCoordinatorDelegate: class {
 
@@ -19,7 +20,7 @@ final class LoginCoordinator: ParentCoordinator {
 
     fileprivate let windowManager: WindowManager
     fileprivate let networkManager: NetworkManager
-    fileprivate weak var delegate: LoginCoordinatorDelegate?    
+    fileprivate weak var delegate: LoginCoordinatorDelegate?
     var children: [Coordinator] = []
 
     // MARK: - Lifecycle
@@ -45,20 +46,22 @@ final class LoginCoordinator: ParentCoordinator {
 
 extension LoginCoordinator: LoginViewControllerDelegate {
 
-    func didTapLogin(withEmail email: String, password: String, viewController: UIViewController, completion: @escaping (Error?) -> Void) {
-        AppDelegate.current.window?.showProgressHUD(type: .fitbit, actionBlock: { [unowned self] in
-            self.networkManager.performAuthenticationRequest(username: email, password: password) { [weak self] (error) in
-                completion(error)
-                if error == nil {
-                    self?.delegate?.didLoginSuccessfully()
-                } else {
-                    viewController.showAlert(type: .loginFailed)
-                }
+    func loginViewController(_ viewController: UIViewController, didTapLoginWithEmail email: String, password: String) {
+        guard let window = AppDelegate.current.window else {
+            return
+        }
+        let progressHUD = MBProgressHUD.showAdded(to: window, animated: true)
+        networkManager.performAuthenticationRequest(username: email, password: password) { error in
+            progressHUD.hide(animated: true)
+            guard error == nil else {
+                viewController.showAlert(type: .loginFailed)
+                return
             }
-        })
+            self.delegate?.didLoginSuccessfully()
+        }
     }
 
-    func didTapResetPassword(viewController: UIViewController) {
+    func loginViewControllerDidTapResetPassword(_ viewController: UIViewController) {
         let resetPasswordCoordinator = ResetPasswordCoordinator(rootVC: viewController, parentCoordinator: self, networkManager: networkManager)
         startChild(child: resetPasswordCoordinator)
     }

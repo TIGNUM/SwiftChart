@@ -76,6 +76,7 @@ final class ResetPasswordViewController: UIViewController {
         input.font = Font.DPText
         input.contentVerticalAlignment = .center
         input.keyboardType = .emailAddress
+        input.autocapitalizationType = .none
         input.keyboardAppearance = .dark
         input.returnKeyType = .send
         input.clearsOnBeginEditing = true

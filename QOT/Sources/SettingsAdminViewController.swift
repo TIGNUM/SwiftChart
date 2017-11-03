@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyBeaver
+import MBProgressHUD
 
 final class SettingsAdminViewController: UITableViewController {
     
@@ -55,6 +56,15 @@ final class SettingsAdminViewController: UITableViewController {
     var services: Services?
     var networkError: NetworkError?
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setupNotifications()
+    }
+    
+    deinit {
+        tearDownNotifcations()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -79,6 +89,21 @@ extension SettingsAdminViewController {
 // MARK: - Private
 
 private extension SettingsAdminViewController {
+    
+    private func setupNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(syncAllDidFinishNotification(_:)), name: .syncAllDidFinishNotification, object: nil)
+    }
+    
+    private func tearDownNotifcations() {
+        NotificationCenter.default.removeObserver(self, name: .syncAllDidFinishNotification, object: nil)
+    }
+    
+    @objc private func syncAllDidFinishNotification(_ notification: Notification) {
+        guard let window = AppDelegate.current.window else {
+            return
+        }
+        MBProgressHUD.hide(for: window, animated: true)
+    }
     
     @IBAction private func updateBaseURLTapped(sender: UIButton) {
         guard
@@ -174,14 +199,18 @@ private extension SettingsAdminViewController {
     func reloginUser(completion: @escaping () -> Void) {
         guard let userName = userName, let password = password else { return }
         CredentialsManager.shared.clear()
-        AppDelegate.current.window?.showProgressHUD(type: .empty) { [unowned self] in
-            self.networkManager?.performAuthenticationRequest(username: userName, password: password) { [unowned self] error in
-                if error != nil {
-                    self.networkError = error
-                    completion()
-                } else {
-                    completion()
-                }
+        
+        guard let window = AppDelegate.current.window, let networkManager = networkManager else {
+            return
+        }
+        let hud = MBProgressHUD.showAdded(to: window, animated: true)
+        networkManager.performAuthenticationRequest(username: userName, password: password) { error in
+            hud.hide(animated: true)
+            if error == nil {
+                completion()
+            } else {
+                self.networkError = error
+                completion()
             }
         }
     }
@@ -207,9 +236,11 @@ private extension SettingsAdminViewController {
     }
     
     func syncData(shouldDownload: Bool) {
-        AppDelegate.current.window?.showProgressHUD(type: .empty) { [unowned self] in
-            self.syncManager?.syncAll(shouldDownload: shouldDownload)
+        guard let window = AppDelegate.current.window else {
+            return
         }
+        _ = MBProgressHUD.showAdded(to: window, animated: true)
+        syncManager?.syncAll(shouldDownload: shouldDownload)
     }
     
     func setupDefaultValues() {
