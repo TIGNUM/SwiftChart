@@ -20,7 +20,7 @@ extension ContentCollection {
     }
 
     var viewed: Bool {
-        return percentageViewed > 0
+        return viewedAt != nil
     }
 
     var minutesToRead: Int {
@@ -35,11 +35,6 @@ extension ContentCollection {
             }
             return sum
         }) / 60
-    }
-
-    var percentageViewed: Double {
-        let viewed = items.filter { $0.viewed != false }
-        return Double(viewed.count) / Double(items.count)
     }
 
     var contentItems: AnyRealmCollection<ContentItem> {

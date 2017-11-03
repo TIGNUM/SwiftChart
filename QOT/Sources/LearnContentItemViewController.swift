@@ -43,7 +43,7 @@ final class LearnContentItemViewController: UIViewController {
     fileprivate lazy var itemTableView: UITableView = {
         return UITableView(style: .grouped,
                            backgroundColor: .white,
-                           estimatedRowHeight: 10,
+                           estimatedRowHeight: 100,
                            delegate: self,
                            dataSource: self,
                            dequeables: ContentItemTextTableViewCell.self,
@@ -92,6 +92,13 @@ final class LearnContentItemViewController: UIViewController {
         itemTableView.reloadData()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // FIXME: Mark viewed at a better time such as when open for some seconds etc. This implementation matches when
+        // the server marks something as viewed (through page tracking!)
+        viewModel.markContentViewed()
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
@@ -138,8 +145,6 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
         } else {
             item = viewModel.learnContentItem(at: indexPath, tabType: tabType)
         }
-
-        shouldMarkItemAsViewed(contentItem: item)
 
         if viewModel.containsAudioItem(tabType: tabType) == true && indexPath.section == 0 {            
             switch viewModel.firstAudioItem() {
@@ -324,14 +329,6 @@ private extension LearnContentItemViewController {
         itemTableView.bottomAnchor == view.bottomAnchor
         itemTableView.horizontalAnchors == view.horizontalAnchors
         itemTableView.backgroundColor = .clear
-    }
-
-    func shouldMarkItemAsViewed(contentItem: ContentItem?) {
-        guard let contentItem = contentItem, contentItem.viewed == false else {
-            return
-        }
-
-        viewModel.didViewContentItem(localID: contentItem.localID)
     }
 
     func relatedContentCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {

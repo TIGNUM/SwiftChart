@@ -19,17 +19,6 @@ struct ContentCollectionData {
     let relatedContentIDs: String
     let categoryIDs: [Int]
     let thumbnailURLString: String?
-
-    init(section: String, sortOrder: Int, title: String, layoutInfo: String?, searchTags: String, relatedContent: String?, thumbnailURL: String? = nil, articleDate: Date? = nil) {
-        self.section = section
-        self.sortOrder = sortOrder
-        self.title = title
-        self.layoutInfo = layoutInfo
-        self.searchTags = searchTags
-        self.relatedContentIDs = "[]"
-        self.categoryIDs = []
-        self.thumbnailURLString = thumbnailURL
-    }
 }
 
 // MARK: - Parser

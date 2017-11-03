@@ -263,13 +263,9 @@ extension LearnContentItemViewModel {
         fatalError("That should not happen!")
     }
 
-    func didViewContentItem(localID: String) {
-        services.contentService.setViewed(localID: localID)
-        
-        guard let contentItem = services.mainRealm.syncableObject(ofType: ContentItem.self, localID: localID) else {
-            return
-        }
-        eventTracker.track(.didReadContentItem(contentItem))
+    func markContentViewed() {
+        let localID = contentCollection.localID
+        services.contentService.setContentCollectionViewed(localID: localID)
     }
 
     var format: String {

@@ -39,6 +39,8 @@ final class ContentCollection: SyncableObject {
 
     @objc fileprivate(set) dynamic var thumbnailURLString: String?
 
+    @objc dynamic var contentRead: ContentRead?
+
     // MARK: Relationships
 
     let items = List<ContentItem>()
@@ -46,6 +48,10 @@ final class ContentCollection: SyncableObject {
     let contentCategories = List<ContentCategory>()
 
     // MARK: Computed Properties
+
+    var viewedAt: Date? {
+        return contentRead?.viewedAt
+    }
 
     var relatedContentIDs: [Int] {
         guard
@@ -108,6 +114,8 @@ extension ContentCollection: BuildRelations {
         let categories = realm.syncableObjects(ofType: ContentCategory.self, remoteIDs: categoryIDs)
         contentCategories.removeAll()
         contentCategories.append(objectsIn: categories)
+        let contentReadPredicate = NSPredicate(format: "contentCollectionId == %d", forcedRemoteID)
+        contentRead = realm.objects(ContentRead.self).filter(contentReadPredicate).first
     }
     
     func buildInverseRelations(realm: Realm) {
