@@ -9,11 +9,31 @@
 import Foundation
 
 extension Date {
+    
+    var startOfDay: Date {
+        return Calendar.sharedUTC.startOfDay(for: self)
+    }
+    
+    var endOfDay: Date {
+        return Calendar.sharedUTC.date(byAdding: .minute, value: -1, to: self.nextDay.startOfDay) ?? self
+    }
+    
+    var nextDay: Date {
+        return Calendar.sharedUTC.date(byAdding: .day, value: 1, to: self) ?? self
+    }
 
     func isNextDay(date: Date) -> Bool {
-        let tomorrow = Calendar.sharedUTC.date(byAdding: .day, value: 1, to: self) ?? Date()
-
-        return Calendar.sharedUTC.isDate(tomorrow, inSameDayAs: date)
+        return date.isSameDay(nextDay)
+    }
+    
+    func isSameDay(_ date: Date) -> Bool {
+        let componentsFirst = Calendar.sharedUTC.dateComponents([.year, .month, .day], from: date)
+        let componentsSecond = Calendar.sharedUTC.dateComponents([.year, .month, .day], from: self)
+        let sameYear = componentsFirst.year == componentsSecond.year
+        let sameMonth = componentsFirst.month == componentsSecond.month
+        let sameDay = componentsFirst.day == componentsSecond.day
+        
+        return sameYear && sameMonth && sameDay
     }
 
     var minutesSinceMidnight: Int {

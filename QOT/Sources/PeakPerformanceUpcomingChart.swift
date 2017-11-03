@@ -48,17 +48,16 @@ private extension PeakPerformanceUpcomingChart {
     func drawCharts() {
         let singleStepUnit = frame.height / (24 * 60)
         let lineWidth = rowWidth / 3
-        let currentPeriod = statistics.chartType == .peakPerformanceUpcomingWeek ? statistics.periodLastWeek : statistics.periodNextWeek
 
-        for (index, periodsInOneDay) in currentPeriod.enumerated() {
+        for (index, periodsInOneDay) in statistics.periodUpcominngWeek.enumerated() {
             let xPos = xPosition(index)
-
+            
             periodsInOneDay.forEach { (period: StatisticsPeriod) in
                 let startPoint = CGPoint(x: xPos, y: CGFloat(period.startMinute) * singleStepUnit)
                 let endPoint = CGPoint(x: xPos, y: CGFloat(period.startMinute + period.minutes) * singleStepUnit)
                 let strokeColor = period.status.color
                 let hasShadow = period.status == .normal
-
+                
                 drawSolidLine(from: startPoint, to: endPoint, lineWidth: lineWidth, strokeColor: strokeColor, hasShadow: hasShadow)
             }
         }
@@ -73,10 +72,7 @@ private extension PeakPerformanceUpcomingChart {
     }
 
     func xPosition(_ index: Int) -> CGFloat {
-        guard labelContentView.subviews.count >= index else {
-            return 0
-        }
-
+        guard labelContentView.subviews.count >= index else { return 0 }
         let labelFrame = labelContentView.subviews[index].frame
 
         return (labelFrame.origin.x + labelFrame.width * 0.5)
