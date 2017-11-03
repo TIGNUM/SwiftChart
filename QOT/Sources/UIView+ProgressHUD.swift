@@ -31,6 +31,5 @@ extension UIView {
                 hud.hide(animated: true)
             }
         }
-        
     }
 }

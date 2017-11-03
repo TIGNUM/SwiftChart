@@ -324,6 +324,16 @@ enum ChartType: String, EnumCollection {
              .intensityRecoveryMonth: return true
         }
     }
+    
+    var sensorRequired: Bool {
+        switch self {
+        case .sleepQuality,
+             .sleepQuantity,
+             .activityLevel,
+             .activitySittingMovementRatio: return true
+        default: return false
+        }
+    }
 
     func segmentedTitle(selected: Bool?) -> NSAttributedString? {
         switch self {

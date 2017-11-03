@@ -10,8 +10,8 @@ import UIKit
 import Anchorage
 
 protocol ChartViewControllerDelegate: class {
-
-    func didSelectChart(in section: Index, at index: Index, from viewController: ChartViewController)
+    
+    func didSelectAddSensor()
 }
 
 final class ChartViewController: UIViewController {
@@ -19,7 +19,6 @@ final class ChartViewController: UIViewController {
     // MARK: - Properties
 
     private let viewModel: ChartViewModel
-    weak var delegate: ChartViewControllerDelegate?
 
     fileprivate lazy var tableView: UITableView = {
         return UITableView(style: .grouped,
@@ -100,7 +99,17 @@ extension ChartViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {        
         let cell: ChartTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.setup(viewModel: viewModel, currentSection: indexPath.section, screenType: screenType)
+        cell.delegate = self
 
         return cell
+    }
+}
+
+// MARK: - StatisticsViewControllerDelegate
+
+extension ChartViewController: ChartViewControllerDelegate {
+    
+    func didSelectAddSensor() {
+        AppDelegate.current.appCoordinator.presentAddSensorView(viewController: self)
     }
 }

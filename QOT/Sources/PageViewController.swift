@@ -54,7 +54,7 @@ final class PageViewController: UIPageViewController {
          pageDelegate: PageViewControllerDelegate?,
          transitionStyle style: UIPageViewControllerTransitionStyle,
          navigationOrientation: UIPageViewControllerNavigationOrientation,
-         options: [String : Any]? = nil) {        
+         options: [String: Any]? = nil) {        
             self.headerView = headerView
             backgroundImageView = UIImageView(image: backgroundImage)
             self.pageDelegate = pageDelegate

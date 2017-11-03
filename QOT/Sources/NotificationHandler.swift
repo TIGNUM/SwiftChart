@@ -13,6 +13,7 @@ extension Notification.Name {
 }
 
 final class NotificationHandler {
+    
     let center: NotificationCenter
     var handler: ((Notification) -> Void)?
     
@@ -31,6 +32,7 @@ final class NotificationHandler {
 }
 
 extension NotificationHandler {
+    
     static func postNotification(withName name: NSNotification.Name, fromNotificationCenter notificationCenter: NotificationCenter = NotificationCenter.default, userInfo: [AnyHashable : Any]? = nil) {
         let notification = Notification(name: name, object: nil, userInfo: userInfo)
         notificationCenter.post(notification)

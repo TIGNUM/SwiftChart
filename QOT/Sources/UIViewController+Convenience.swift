@@ -21,8 +21,8 @@ extension UIViewController {
     }
 
     func startObservingKeyboard() {
-        NotificationCenter.default.addObserver(self, selector:#selector(keyboardWillAppear(notification:)), name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector:#selector(keyboardWillDisappear(notification:)), name: .UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear(notification:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear(notification:)), name: .UIKeyboardWillHide, object: nil)
     }
 
     func stopObservingKeyboard() {

@@ -76,8 +76,11 @@ extension LaunchHandler {
 
             NetworkManager().request(request, parser: GenericParser.parse) { (result: (Result<(), NetworkError>)) in
                 switch result {
-                case .success: self.showHUD(type: .fitbitSuccess)
-                case .failure(let error): self.handleFitbitFailure(error)
+                case .success:
+                    self.showHUD(type: .fitbitSuccess)
+                    self.appDelegate.appCoordinator.syncManager.syncAll(shouldDownload: true)
+                case .failure(let error):
+                    self.handleFitbitFailure(error)
                 }
             }
         } catch let error {

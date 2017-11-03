@@ -32,10 +32,9 @@ final class StatisticsCoordinator: NSObject, ParentCoordinator {
     func start() {
         do {
             let viewModel = try ChartViewModel(services: services, startingSection: startingSection)
-            let myStatisticsViewController = ChartViewController(viewModel: viewModel)
-            myStatisticsViewController.delegate = self
-            myStatisticsViewController.title = R.string.localized.meMyStatisticsNavigationBarTitle()
-            topTabBarController = UINavigationController(withPages: [myStatisticsViewController],
+            let statisticsViewController = ChartViewController(viewModel: viewModel)            
+            statisticsViewController.title = R.string.localized.meMyStatisticsNavigationBarTitle()
+            topTabBarController = UINavigationController(withPages: [statisticsViewController],
                                                          topBarDelegate: self,
                                                          leftButton: UIBarButtonItem(withImage: R.image.ic_minimize()))
             topTabBarController.modalPresentationStyle = .custom
@@ -47,18 +46,10 @@ final class StatisticsCoordinator: NSObject, ParentCoordinator {
     }
 }
 
-// MARK: - MyStatisticsViewControllerDelegate
-
-extension StatisticsCoordinator: ChartViewControllerDelegate {
-
-    func didSelectChart(in section: Index, at index: Index, from viewController: ChartViewController) {
-        print("didSelectStatitcsCard", section, index, viewController)
-    }
-}
-
 // MARK: - TopNavigationBarDelegate
 
 extension StatisticsCoordinator: TopNavigationBarDelegate {
+    
     func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
         topTabBarController.dismiss(animated: true, completion: nil)
     }

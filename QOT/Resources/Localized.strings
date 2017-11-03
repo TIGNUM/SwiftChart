@@ -132,6 +132,9 @@
 "Me.Chart.Info.Text.Activity.Index" = "QOT® computes your personal activity level through the integration of third-party devices like FitBit and gives you a score ranging from 1 (inactive) to 5 (very active). Remember to use your Performance Movement strategies to maximize your QOT®. Your activity level score is particularly helpful to build awareness during long travel days, when you might not realize that you spend most of the day sitting.";
 "Me.Chart.Info.Text.Travel.Average.Number" = "QOT® reviews your calendar to determine the average numbers of trips you have for the next week and month. The personal average helps bring self-awareness as to how you perceive your recovery so that you can plan adjust your time accordingly.";
 
+"Me.Chart.Add.Sensor" = "Add sensor to\nsee this card";
+"Me.Chart.Add.Sensor.Pending" = "Sensor connection state is pending.\nPlease try again in a few minutes.";
+
 "Prepare.PrepareEvents.AddPreparation" = "ADD THIS PREPARATION TO";
 "Prepare.PrepareEvents.AddNewEvent" = "Add new event";
 "Prepare.PrepareEvents.MyPrepList" = "MY PREP LIST";
@@ -171,6 +174,8 @@
 "Sidebar.SensorsMenu.Connect" = "CONNECT";
 "Sidebar.SensorsMenu.Fitbit.Success" = "Fitbit successfully linked";
 "Sidebar.SensorsMenu.Fitbit.Failure" = "Failed to link Fitbit";
+"Sidebar.SensorsMenu.Fitbit.Already.Connected.Message" = "Fitbit is already connected with QOT.";
+"Sidebar.SensorsMenu.Fitbit.Already.Connected.Title" = "CONNECTED";
 
 "Common.InvalidContent" = "Cannot Display Content";
 

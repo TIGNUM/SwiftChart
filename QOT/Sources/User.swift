@@ -12,6 +12,20 @@ import AirshipKit
 import Freddy
 
 final class User: SyncableObject {
+    
+    enum FitbitState: String {
+        case connected = "CONNECTED"
+        case disconnected = "DISCONNECTED"
+        case pending = "PENDING"
+        
+        var addSensorText: String {
+            switch self {
+            case .connected: return ""
+            case .disconnected: return R.string.localized.meChartAddSensor()
+            case .pending: return R.string.localized.meChartAddSensorPending()
+            }
+        }
+    }
 
     @objc dynamic var changeStamp: String? = UUID().uuidString
 
@@ -68,6 +82,8 @@ final class User: SyncableObject {
     @objc dynamic var totalUsageTime: Int = 0
 
     @objc dynamic var timeZone: String = TimeZone.currentName
+    
+    @objc private(set) dynamic var fitbitStateValue: String = ""
 }
 
 extension User: TwoWaySyncableUniqueObject {
@@ -104,6 +120,7 @@ extension User: TwoWaySyncableUniqueObject {
         totalUsageTime = data.totalUsageTime
         timeZone = TimeZone.currentName
         baseURL = URL(string: data.esbDomain) ?? baseURL
+        fitbitStateValue = data.fitbitState
         updateUAirshipTags(data.urbanAirshipTags + [data.email])
     }
 
@@ -164,5 +181,9 @@ extension User: TwoWaySyncableUniqueObject {
 
     static func object(remoteID: Int, store: ObjectStore) throws -> User? {
         return store.objects(User.self).first
+    }
+    
+    var fitbitState: FitbitState {
+        return FitbitState(rawValue: fitbitStateValue) ?? .disconnected
     }
 }

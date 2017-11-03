@@ -18,7 +18,7 @@ class RemoteLogDestination: BaseDestination {
     
     private let session: URLSession
     private let remoteURL: URL?
-    private let headers: [String : String]
+    private let headers: [String: String]
     private let dateFormatter: DateFormatter
     private let realmProvider: RealmProvider
     private var userID: Int? {

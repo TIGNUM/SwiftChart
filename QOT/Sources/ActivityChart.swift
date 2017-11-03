@@ -34,15 +34,15 @@ final class ActivityChart: UIView {
 
     // MARK: - Properties
 
-    fileprivate var statistics: Statistics
-    fileprivate var labelContentView: UIView
-    fileprivate let padding: CGFloat = 8
+    private var statistics: Statistics
+    private var labelContentView: UIView
+    private let padding: CGFloat = 8
 
     // MARK: - Init
 
     init(frame: CGRect, statistics: Statistics, labelContentView: UIView) {
         self.statistics = statistics
-        self.labelContentView = labelContentView
+        self.labelContentView = labelContentView        
 
         super.init(frame: frame)
 

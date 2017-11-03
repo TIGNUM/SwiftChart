@@ -35,7 +35,7 @@ final class SleepChart: UIView {
 // MARK: - Private
 
 private extension SleepChart {
-
+    
     func drawCharts() {
         createDayLabel()
         lineBounds(isDataPoint: false)

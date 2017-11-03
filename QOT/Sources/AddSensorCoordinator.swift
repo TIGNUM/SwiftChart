@@ -15,17 +15,17 @@ final class AddSensorCoordinator: ParentCoordinator {
     // MARK: - Properties
 
     static var safariViewController: SFSafariViewController?
-    fileprivate let services: Services
-    fileprivate let addSensorViewController: AddSensorViewController
+    private let services: Services
+    private let rootViewController: UIViewController
+    let addSensorViewController: AddSensorViewController
     var children = [Coordinator]()
-    fileprivate let rootViewController: UIViewController
 
     // MARK: - Init
 
-    init(root: SidebarViewController, services: Services) {
+    init(root: UIViewController, services: Services) {
         self.rootViewController = root
         self.services = services
-        addSensorViewController = AddSensorViewController(viewModel: AddSensorViewModel())       
+        addSensorViewController = AddSensorViewController(viewModel: AddSensorViewModel(userService: services.userService))
         addSensorViewController.title = R.string.localized.sidebarTitleSensor().uppercased()
         addSensorViewController.delegate = self
     }
@@ -44,19 +44,10 @@ extension AddSensorCoordinator: AddSensorViewControllerDelegate {
     func didTapSensor(_ sensor: AddSensorViewModel.Sensor, in viewController: UIViewController) {
         switch sensor {
         case .fitbit:
-            guard
-                let settingValue = services.settingsService.settingValue(key: "b2b.fitbit.authorizationurl"),
-                case .text(let urlString) = settingValue,
-                let url = URL(string: urlString) else {
-                    return
-            }
-
-            do {
-                let safariViewController = try SafariViewController(url)
-                AddSensorCoordinator.safariViewController = safariViewController
-                viewController.present(safariViewController, animated: true)
-            } catch {
-                log("Failed to open url. Error: \(error)")
+            if services.userService.fitbitState == .connected {
+                viewController.showAlert(type: .fitbitAlreadyConnected)
+            } else {
+                presentFitBitWebView(in: viewController)
             }
         case .requestDevice:
             viewController.present(setupAlert(), animated: true, completion: nil)
@@ -69,8 +60,31 @@ extension AddSensorCoordinator: AddSensorViewControllerDelegate {
 // MARK: - private
 
 private extension AddSensorCoordinator {
+    
+    func presentFitBitWebView(in viewController: UIViewController) {
+        guard
+            let settingValue = services.settingsService.settingValue(key: "b2b.fitbit.authorizationurl"),
+            case .text(let urlString) = settingValue,
+            let url = URL(string: urlString) else {
+                return
+        }
+        
+        do {
+            let safariViewController = try SafariViewController(url)
+            AddSensorCoordinator.safariViewController = safariViewController
+            viewController.present(safariViewController, animated: true)
+            NotificationCenter.default.addObserver(self, selector: #selector(reloadAddSensorViewController), name: .syncAllDidFinishNotification, object: nil)
+        } catch {
+            log("Failed to open url. Error: \(error)")
+        }
+    }
+    
+    @objc func reloadAddSensorViewController() {
+        addSensorViewController.reloadCollectionView()
+        NotificationCenter.default.removeObserver(self, name: .syncAllDidFinishNotification, object: nil)
+    }
+    
     func setupAlert() -> UIAlertController {
-
         let alertController = UIAlertController(title: R.string.localized.addSensorViewAlertTitle(), message: R.string.localized.addSensorViewAlertMessage(), preferredStyle: .alert)
         let sendAction = UIAlertAction(title: R.string.localized.addSensorViewAlertSend(), style: .default) { [weak alertController] _ in
             if let alertController = alertController {
@@ -78,6 +92,7 @@ private extension AddSensorCoordinator {
                 //use data of text feild for storing!!
             }
         }
+        
         let cancelAction = UIAlertAction(title: R.string.localized.addSensorViewAlertCancel(), style: .cancel) { _ in }
         alertController.addTextField { textField in
             textField.placeholder = R.string.localized.addSensorViewAlertPlaceholder()

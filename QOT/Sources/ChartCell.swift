@@ -27,12 +27,14 @@ var selectedChartTypes: [ChartType: Bool] = [.peakPerformanceUpcomingWeek: true,
 protocol ChartCellDelegate: class {
 
     func doReload()
+    
+    func didSelectAddSensor()
+
 }
 
 final class ChartCell: UICollectionViewCell, Dequeueable {
 
     struct Configuration {
-
         let infoFont: UIFont
         let infoLineSpacing: CGFloat
         let infoCharacterSpacing: CGFloat
@@ -73,6 +75,9 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
     @IBOutlet private weak var infoView: UIVisualEffectView!
     @IBOutlet private weak var infoViewTextLabel: UILabel!
     @IBOutlet private weak var infoViewCloseButton: UIButton!
+    @IBOutlet private weak var addSenorView: UIView!
+    @IBOutlet private weak var addSenorViewLabel: UILabel!
+    @IBOutlet private weak var addSenorViewCircleImageView: UIImageView!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var headerLabelLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerLabelTrailingConstraint: NSLayoutConstraint!
@@ -83,6 +88,8 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
     private var charts: [Statistics] = []
     private var headerTitle: String = ""
     private var configuration = Configuration.make(screenType: .big)
+    private var fitbitState = User.FitbitState.disconnected
+    private lazy var shouldShowAddSensorView = fitbitState != .connected && statistics?.chartType.sensorRequired == true
 
     // MARK: - Init
 
@@ -112,12 +119,18 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
 
     // MARK: - Public
 
-    func setup(headerTitle: String, chartTypes: [ChartType], statistics: Statistics, charts: [Statistics], configuration: Configuration) {
+    func setup(headerTitle: String,
+               chartTypes: [ChartType],
+               statistics: Statistics,
+               charts: [Statistics],
+               configuration: Configuration,
+               fitbitState: User.FitbitState) {
         self.chartTypes = chartTypes
         self.statistics = statistics
         self.charts = charts
         self.headerTitle = headerTitle
         self.configuration = configuration
+        self.fitbitState = fitbitState
         infoView.alpha = 0
     }
 
@@ -170,6 +183,7 @@ private extension ChartCell {
         setupLabels(headerTitle: headerTitle, statistics: statistics, charts: charts)
         addCharts(statistics: statistics, allCards: charts)
         setupInfoView()
+        setupAddSensorView()
     }
 
     private func setupSegmentedView(_ cardType: ChartType) {
@@ -181,15 +195,18 @@ private extension ChartCell {
 
     private func setupLabels(headerTitle: String, statistics: Statistics, charts: [Statistics]) {
         let statistics = statistics.chartType.selectedChart(charts: charts)
+        let userAverage = shouldShowAddSensorView == true ? "00" : statistics.userAverageDisplayableValue
+        let teamAverage = shouldShowAddSensorView == true ? "00" : statistics.teamAverageDisplayableValue
+        let dataAverage = shouldShowAddSensorView == true ? "00" : statistics.dataAverageDisplayableValue
         setLabel(text: "INFO", color: .white40, label: bottomLabel)
         setLabel(text: "TEAM", color: .azure, label: teamLabel)
         setLabel(text: "AVG.", color: .azure, label: teamAverageLabel)
         setLabel(text: "AVG.", color: .cherryRedTwo, label: dataAverageLabel)
         setLabel(text: "DATA", color: .cherryRedTwo, label: dataLabel)
         setLabel(text: "PERSONAL\nAVG.", color: .white40, label: userAverageLabel, lineSpacing: 2.5)
-        setLabel(text: statistics.dataAverageDisplayableValue, color: .cherryRedTwo, label: dataAverageValueLabel)
-        setLabel(text: statistics.teamAverageDisplayableValue, color: .azure, label: teamAverageValueLabel)
-        setLabel(text: statistics.userAverageDisplayableValue, color: .white, label: userAverageValueLabel, characterSpacing: -2.7, font: Font.H1MainTitle)
+        setLabel(text: dataAverage, color: .cherryRedTwo, label: dataAverageValueLabel)
+        setLabel(text: teamAverage, color: .azure, label: teamAverageValueLabel)
+        setLabel(text: userAverage, color: .white, label: userAverageValueLabel, characterSpacing: -2.7, font: Font.H1MainTitle)
         setLabel(text: headerTitle.uppercased(), color: .white, label: headerLabel, lineSpacing: 2.5, font: Font.PTextSubtitle)
     }
 
@@ -209,6 +226,7 @@ private extension ChartCell {
     }
 
     private func setupChartView(statistics: Statistics) -> UIView {
+        guard shouldShowAddSensorView == false else { return UIView() }
         let segmentedFrame = CGRect(x: 0, y: 0, width: chartSegmentedContentView.frame.width, height: chartSegmentedContentView.frame.height)
         let segmentedBiggerFrame = CGRect(x: 0, y: 0, width: segmentedFrame.width, height: segmentedFrame.height + labelContentView.frame.height)
         let frame = chartContentView.frame
@@ -255,6 +273,10 @@ private extension ChartCell {
 // MARK: - Actions
 
 private extension ChartCell {
+    
+    @IBAction func addSensorTapped(sender: UIButton) {
+        delegate?.didSelectAddSensor()
+    }
 
     @IBAction func infoButtonPressed(sender: UIButton) {
         infoView.alpha = 0
@@ -317,5 +339,30 @@ private extension ChartCell {
         infoViewTextLabel.setAttrText(text: infoText, font: font, lineSpacing: lineSpacing, characterSpacing: characterSpacing, color: .white)
         infoViewCloseButton.setAttributedTitle(Style.tag("CLOSE", .white30).attributedString(lineSpacing: 2), for: .normal)
         infoViewCloseButton.setAttributedTitle(Style.tag("CLOSE", .white50).attributedString(lineSpacing: 2), for: .selected)
+    }
+}
+
+// MARK: - Add Sensor View
+
+private extension ChartCell {
+    
+    func setupAddSensorView() {
+        guard shouldShowAddSensorView == true else {
+            addSenorView.isHidden = true
+            return
+        }
+        
+        chartContentView.isHidden = true
+        chartSegmentedContentView.isHidden = true
+        seperatorBottomView.isHidden = true
+        labelContentView.isHidden = true
+        bottomContentView.isHidden = true
+        addSenorView.backgroundColor = .clear
+        addSenorViewLabel.setAttrText(text: fitbitState.addSensorText,
+                                      font: Font.DPText,
+                                      alignment: .center,
+                                      lineSpacing: 2.5,
+                                      characterSpacing: 1,
+                                      color: .white40)
     }
 }

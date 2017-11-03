@@ -18,6 +18,7 @@ final class ChartTableViewCell: UITableViewCell, Dequeueable {
     private lazy var currentSection = 0
     private var selectedButtonTag = 0
     private var screenType: UIViewController.ScreenType = .big
+    weak var delegate: ChartViewControllerDelegate?
 
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -98,7 +99,12 @@ extension ChartTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionVi
         let chartCell: ChartCell = collectionView.dequeueCell(for: indexPath)
         let chartTypes = viewModel.chartTypes(section: currentSection, item: indexPath.item)
         let config = ChartCell.Configuration.make(screenType: screenType)
-        chartCell.setup(headerTitle: chartTitle, chartTypes: chartTypes, statistics: statistics, charts: viewModel.allCharts, configuration: config)
+        chartCell.setup(headerTitle: chartTitle,
+                        chartTypes: chartTypes,
+                        statistics: statistics,
+                        charts: viewModel.allCharts,
+                        configuration: config,
+                        fitbitState: viewModel.fitbitState)
         chartCell.delegate = self
         let cellRect = collectionView.convert(chartCell.frame, to: collectionView.superview)
         chartCell.animateHeader(withCellRect: cellRect, inParentRect: collectionView.frame)
@@ -142,5 +148,9 @@ extension ChartTableViewCell: ChartCellDelegate {
 
     func doReload() {
         self.collectionView.reloadData()
+    }
+    
+    func didSelectAddSensor() {
+        delegate?.didSelectAddSensor()
     }
 }

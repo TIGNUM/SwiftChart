@@ -19,13 +19,15 @@ final class ChartViewModel {
     static let chartCellOffset: CGFloat = 20
     static let chartRatio: CGFloat = 1.3479623824
     let updates = PublishSubject<CollectionUpdate, NoError>()
-    fileprivate let charts: [[Statistics]]
-    fileprivate var sortedSections = [StatisticsSectionType]()
+    private let charts: [[Statistics]]
+    private var sortedSections = [StatisticsSectionType]()
+    private let services: Services
     let allCharts: [Statistics]
 
     // MARK: - Init
 
     init(services: Services, startingSection: StatisticsSectionType) throws {
+        self.services = services
         do {
             self.charts = try services.statisticsService.charts()
             self.allCharts = self.charts.flatMap { $0 }
@@ -36,6 +38,10 @@ final class ChartViewModel {
     }
 
     // MARK: - Public
+    
+    var fitbitState: User.FitbitState {
+        return services.userService.fitbitState
+    }
 
     var numberOfSections: Int {
         return sortedSections.count

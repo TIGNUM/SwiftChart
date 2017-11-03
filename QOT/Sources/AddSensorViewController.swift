@@ -15,21 +15,22 @@ protocol AddSensorViewControllerDelegate: class {
 }
 
 final class AddSensorViewController: UIViewController {
+    
+    // MARK: - Properties
 
-    fileprivate let viewModel: AddSensorViewModel
+    private let viewModel: AddSensorViewModel
+    weak var delegate: AddSensorViewControllerDelegate?
 
     fileprivate lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: 0, left: 36, bottom: 10, right: 59)
-
-        return UICollectionView(
-            layout: layout,
-            delegate: self,
-            dataSource: self,
-            dequeables: SensorCollectionViewCell.self,
-            RequestDeviceSensorCollectionViewCell.self
-        )
+        
+        return UICollectionView(layout: layout,
+                                delegate: self,
+                                dataSource: self,
+                                dequeables: SensorCollectionViewCell.self,
+                                RequestDeviceSensorCollectionViewCell.self)
     }()
 
     fileprivate lazy var scrollView: UIScrollView = {
@@ -79,8 +80,8 @@ final class AddSensorViewController: UIViewController {
         
         return label
     }()
-
-    weak var delegate: AddSensorViewControllerDelegate?
+    
+    // MARK: - Init
 
     init(viewModel: AddSensorViewModel) {
         self.viewModel = viewModel
@@ -91,12 +92,18 @@ final class AddSensorViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setUpHierarchy()
         setUpLayout()
+    }
+    
+    func reloadCollectionView() {
+        collectionView.reloadData()
     }
 }
 
@@ -114,7 +121,7 @@ extension AddSensorViewController: UICollectionViewDelegateFlowLayout, UICollect
         switch item {
         case .fitbit, .apple:
             let cell: SensorCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-            cell.setup(image: item.image, sensorName: item.title)
+            cell.setup(image: item.image, sensorName: item.title, fitbitState: viewModel.fitbitState)
 
             return cell
         case .requestDevice:

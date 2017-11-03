@@ -125,7 +125,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var appFilePath: String {
         let url = URL.documentsDirectory.deletingLastPathComponent()
         return url.absoluteString.removeFilePrefix
-    }
+    } 
 
     private func logAppLocation() {
         log("App location: \(appFilePath)", enabled: Log.Toggle.Manager.FileManager)

@@ -54,7 +54,7 @@ final class AppCoordinator: ParentCoordinator {
         return SyncRecordService(realmProvider: self.realmProvider)
     }()
 
-    private lazy var syncManager: SyncManager = {
+    lazy var syncManager: SyncManager = {
         return SyncManager(networkManager: self.networkManager, syncRecordService: self.syncRecordService, realmProvider: self.realmProvider)
     }()
 
@@ -219,6 +219,13 @@ private extension AppCoordinator {
 // MARK: - Navigation
 
 extension AppCoordinator {
+    
+    func presentAddSensorView(viewController: UIViewController) {
+        guard let services = services else { return }
+        let coordinator = AddSensorCoordinator(root: viewController, services: services)
+        startChild(child: coordinator)
+        currentPresentedController = coordinator.addSensorViewController
+    }
 
     // FIXME In the future when everything will change....
     func presentPreparationList() {        
@@ -281,7 +288,6 @@ extension AppCoordinator {
 
     func presentMorningInterview(groupID: Int, validFrom: Date, validTo: Date) {
         guard let services = services else { return }
-
         AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
         let viewModel = MorningInterviewViewModel(services: services, questionGroupID: groupID, validFrom: validFrom, validTo: validTo)
         let morningInterViewController = MorningInterviewViewController(viewModel: viewModel)
@@ -516,6 +522,8 @@ extension AppCoordinator: RemoteNotificationHandlerDelegate {
         return canProcessRemoteNotifications
     }
 }
+
+// MARK: - MyToBeVisionViewControllerDelegate
 
 extension AppCoordinator: MyToBeVisionViewControllerDelegate {
 

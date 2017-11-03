@@ -8,7 +8,6 @@
 
 import Foundation
 import ReactiveKit
-import LoremIpsum
 
 final class AddSensorViewModel {
 
@@ -20,39 +19,42 @@ final class AddSensorViewModel {
         var image: UIImage {
             let size = CGSize(width: 116, height: 116)
             switch self {
-            case .apple:
-                return UIColor.red.image(size: size)
-            case .fitbit:
-                return UIImage(named: "fitbitLogo")!
-            case .requestDevice:
-                return UIColor.gray.image(size: size)
+            case .apple: return UIColor.red.image(size: size)
+            case .fitbit: return UIImage(named: "fitbitLogo")!
+            case .requestDevice: return UIColor.gray.image(size: size)
             }
         }
 
         var title: String {
             switch self {
-            case .apple:
-                return "##APPLE"
-            case .fitbit:
-                return R.string.localized.sidebarSensorsMenuFitbit()
-            case .requestDevice:
-                return R.string.localized.sidebarSensorsMenuRequestSensor()
+            case .apple: return "##APPLE"
+            case .fitbit: return R.string.localized.sidebarSensorsMenuFitbit()
+            case .requestDevice: return R.string.localized.sidebarSensorsMenuRequestSensor()
             }
         }
-
     }
+    
+    // MARK: - Properties
 
     private let sensors: [Sensor] = [.fitbit, .requestDevice]
-
+    private let userService: UserService
     let heading = mockHeading()
     let text = mockText()
 
     var itemCount: Int {
         return sensors.count
     }
+    
+    var fitbitState: User.FitbitState {
+        return userService.fitbitState
+    }
 
     func item(at index: Index) -> Sensor {
         return sensors[index]
+    }
+    
+    init(userService: UserService) {
+        self.userService = userService
     }
 }
 
@@ -68,6 +70,7 @@ private extension UIColor {
         context.fill(frame)
         let image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
+        
         return image
     }
 }

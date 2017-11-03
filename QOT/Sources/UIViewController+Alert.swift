@@ -14,6 +14,7 @@ enum AlertType {
     case fitbit
     case fitbitSuccess
     case fitbitFailure
+    case fitbitAlreadyConnected
     case noContent
     case custom(title: String, message: String)
     case unauthenticated
@@ -34,6 +35,7 @@ enum AlertType {
         switch self {
         case .fitbitSuccess: return R.string.localized.sidebarSensorsMenuFitbitSuccess()
         case .fitbitFailure: return R.string.localized.sidebarSensorsMenuFitbitFailure()
+        case .fitbitAlreadyConnected: return R.string.localized.sidebarSensorsMenuFitbitAlreadyConnectedTitle()
         case .noContent: return R.string.localized.alertTitleNoContent()
         case .custom(let title, _): return title
         case .unauthenticated: return R.string.localized.alertTitleUnauthenticated()
@@ -64,6 +66,7 @@ enum AlertType {
         case .emailNotFound: return R.string.localized.alertMessageEmailNotFound()
         case .cameraNotAvailable: return R.string.localized.alertCameraNotAvailableMessage()
         case .permissionNotGranted: return R.string.localized.alertPermissionNotGrantedMessage()
+        case .fitbitAlreadyConnected: return R.string.localized.sidebarSensorsMenuFitbitAlreadyConnectedMessage()
         default: return nil
         }
     }

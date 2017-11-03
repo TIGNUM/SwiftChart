@@ -57,6 +57,7 @@ enum JsonKey: String {
     case endDate
     case esbDomain
     case eventId
+    case fitbitState
     case firstDayOfTheWeek
     case firstName
     case floor

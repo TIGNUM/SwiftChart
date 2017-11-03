@@ -97,6 +97,15 @@ final class UserService {
     }
 }
 
+// MARK: - FitbitState
+
+extension UserService {
+
+    var fitbitState: User.FitbitState {
+        return user()?.fitbitState ?? .disconnected
+    }
+}
+
 // MARK: - MyToBeVision
 
 extension UserService {
