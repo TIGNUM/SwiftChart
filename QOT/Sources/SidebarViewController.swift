@@ -121,9 +121,7 @@ extension SidebarViewController: UITableViewDelegate, UITableViewDataSource {
 private extension SidebarViewController {
 
     func handleSelection(sidebarItem: SidebarViewModel.SidebbarItem?) {
-        guard let sidebarItem = sidebarItem else {
-            return
-        }
+        guard let sidebarItem = sidebarItem else { return }
 
         switch sidebarItem {
         case .about: delegate?.didTapAboutCell(with: viewModel.contentCollection(sidebarItem), in: self)

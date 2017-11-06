@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContentItemTextTableViewCell: UITableViewCell, Dequeueable {
+final class ContentItemTextTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Outlets
 
@@ -19,7 +19,6 @@ class ContentItemTextTableViewCell: UITableViewCell, Dequeueable {
     func setup(topText: NSAttributedString, bottomText: NSAttributedString?, backgroundColor: UIColor = .white, delegate: ClickableLabelDelegate? = nil) {
         topLabel.delegate = delegate
         bottomLabel.delegate = delegate
-
         bottomLabel.isHidden = bottomText == nil
         topLabel.attributedText = topText
         bottomLabel.attributedText = bottomText

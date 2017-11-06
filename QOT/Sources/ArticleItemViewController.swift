@@ -270,7 +270,7 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
 
                 var attributedTopText = item.contentItemValue.style(textStyle: style, text: text, textColor: .white)
                 if style == .paragraph {
-                    attributedTopText = Style.article(text, .white).attributedString(lineHeight: 1.8)
+                    attributedTopText = Style.article(text.uppercased(), .white).attributedString(lineHeight: 1.8)
                 } else if style == .quote {
                     attributedTopText = Style.qoute(text, .white60).attributedString(lineHeight: 1.8)
                 }

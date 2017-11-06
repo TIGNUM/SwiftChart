@@ -35,9 +35,7 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
           backgroundImage: UIImage? = nil,
           shouldPush: Bool = true,
           contentInsets: UIEdgeInsets = UIEdgeInsets(top: 110, left: 0, bottom: 0, right: 0)) {
-        guard let contentCollection = contentCollection else {
-            return nil
-        }
+        guard let contentCollection = contentCollection else { return nil }
     
         self.pageName = pageName
         self.rootViewController = root
@@ -70,9 +68,7 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
     }
 
     func start() {
-        guard selectedContent != nil else {
-            return
-        }
+        guard selectedContent != nil else { return }
 
         if shouldPush == false,
             let navigationController = topTabBarController {

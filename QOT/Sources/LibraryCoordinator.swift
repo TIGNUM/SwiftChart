@@ -38,9 +38,7 @@ final class LibraryCoordinator: ParentCoordinator {
 extension LibraryCoordinator: LibraryViewControllerDelegate {
 
     func didTapLibraryItem(item: ContentCollection) {
-
         var articleHeader: ArticleCollectionHeader?
-
         let title = item.contentCategories.first?.title
         let subtitle = item.title
         let date = DateFormatter.shortDate.string(from: item.createdAt)
