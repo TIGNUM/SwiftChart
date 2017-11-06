@@ -69,14 +69,19 @@ class ArticleCollectionViewController: UIViewController {
 private extension ArticleCollectionViewController {
 
     func setupLayout() {
+        automaticallyAdjustsScrollViewInsets = false
+
         view.addSubview(backgroundImageView)
         backgroundImageView.verticalAnchors == view.verticalAnchors
         backgroundImageView.horizontalAnchors == view.horizontalAnchors
         
         view.addSubview(collectionView)
-        collectionView.topAnchor == view.topAnchor + 64
+        collectionView.topAnchor == view.topAnchor + (navigationController?.navigationBar.bounds.height ?? 0)
         collectionView.heightAnchor == view.heightAnchor
         collectionView.horizontalAnchors == view.horizontalAnchors
+        if #available(iOS 11.0, *) {
+            collectionView.contentInsetAdjustmentBehavior = .never
+        }
 
         view.layoutIfNeeded()
     }
