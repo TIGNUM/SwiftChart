@@ -102,7 +102,7 @@ enum AlertType {
         case .notificationsNotAuthorized,
              .settingsLoccationService,
              .settingsCalendars: return [.cancel, .default]
-        case .imagePicker: return [.cancel, .default, .destructive]
+        case .imagePicker: return [.cancel]
         default: return [.default]
         }
     }

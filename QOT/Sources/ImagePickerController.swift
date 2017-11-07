@@ -40,11 +40,20 @@ final class ImagePickerController {
     
     func show(in viewController: UIViewController, completion: (() -> Void)? = nil) {
         self.viewController = viewController
-        self.viewController?.showAlert(type: .imagePicker, handler: {
+        let alertController = UIViewController.alert(forType: .imagePicker)
+        let photoAction = UIAlertAction(title: R.string.localized.imagePickerOptionsButtonPhoto(),
+                                        style: .default) { [unowned self] (alertAction: UIAlertAction) in
             self.handleOption(.photo)
-        }, handlerDestructive: {
+        }
+        
+        let cameraAction = UIAlertAction(title: R.string.localized.imagePickerOptionsButtonCamera(),
+                                         style: .default) { [unowned self] (alertAction: UIAlertAction) in
             self.handleOption(.camera)
-        })
+        }
+        
+        alertController.addAction(photoAction)
+        alertController.addAction(cameraAction)
+        self.viewController?.present(alertController, animated: true, completion: nil)
     }
     
     // MARK: - private
