@@ -502,11 +502,12 @@ extension AppCoordinator: MorningInterviewViewControllerDelegate {
     }
 
     private func showFeedbackAlert(for feedback: UserAnswerFeedback) {
-        guard let rootViewController = windowManager.rootViewController(atLevel: .alert) else {
-            return
+        guard let rootViewController = windowManager.rootViewController(atLevel: .alert),
+            let alert = AlertType.makeCustom(title: feedback.title, message: feedback.body) else {
+                return
         }
         windowManager.showWindow(atLevel: .alert)
-        rootViewController.showAlert(type: .custom(title: feedback.title, message: feedback.body), handler: {
+        rootViewController.showAlert(type: alert, handler: {
             self.windowManager.resignWindow(atLevel: .alert)
         }, handlerDestructive: nil)
     }

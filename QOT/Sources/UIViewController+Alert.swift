@@ -15,6 +15,8 @@ enum AlertType {
     case fitbitFailure
     case fitbitAlreadyConnected
     case noContent
+    case title(String)
+    case message(String)
     case custom(title: String, message: String)
     case unauthenticated
     case noNetworkConnection
@@ -37,6 +39,7 @@ enum AlertType {
         case .fitbitAlreadyConnected: return R.string.localized.sidebarSensorsMenuFitbitAlreadyConnectedTitle()
         case .noContent: return R.string.localized.alertTitleNoContent()
         case .custom(let title, _): return title
+        case .title(let title): return title
         case .unauthenticated: return R.string.localized.alertTitleUnauthenticated()
         case .noNetworkConnection: return R.string.localized.alertTitleNoNetworkConnection()
         case .unknow: return R.string.localized.alertTitleUnknown()
@@ -55,6 +58,7 @@ enum AlertType {
         switch self {
         case .noContent: return R.string.localized.alertMessageNoContent()
         case .custom(_, let message): return message
+        case .message(let message): return message
         case .unauthenticated: return R.string.localized.alertMessageUnauthenticated()
         case .noNetworkConnection: return R.string.localized.alertMessageNoNetworkConnection()
         case .comingSoon: return R.string.localized.alertMessageComingSoon()
@@ -111,6 +115,18 @@ enum AlertType {
         switch self {
         case .imagePicker: return .actionSheet
         default: return .alert
+        }
+    }
+
+    static func makeCustom(title: String?, message: String?) -> AlertType? {
+        if let title = title, let message = message {
+            return .custom(title: title, message: message)
+        } else if let title = title {
+            return .title(title)
+        } else if let message = message {
+            return .message(message)
+        } else {
+            return nil
         }
     }
 }

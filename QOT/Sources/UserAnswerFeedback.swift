@@ -11,8 +11,8 @@ import Freddy
 
 struct UserAnswerFeedback {
 
-    let title: String
-    let body: String
+    let title: String?
+    let body: String?
 
     init(json: JSON) throws {
         title = try json.getItemValue(at: .title)
