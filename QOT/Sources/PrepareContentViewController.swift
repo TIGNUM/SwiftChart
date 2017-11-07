@@ -223,8 +223,8 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
                 // return content label y position + height + bottom padding
                 return cell.contentLabel.frame.origin.y + cell.contentLabel.frame.height + 20.0
             }
-            // return header label y position + height + bottom padding
-            return cell.headerLabel.frame.origin.y + cell.headerLabel.frame.height + 8.0
+            // return image button yPos, - an offset
+            return cell.previewImageButton.frame.origin.y - 10
         case .item(_, _, _, let readMoreID):
             guard let cell = Bundle.main.loadNibNamed("\(PrepareContentHeaderTableViewCell.self)", owner: self, options: [:])?.first as? PrepareContentHeaderTableViewCell else {
                 return UITableViewAutomaticDimension
