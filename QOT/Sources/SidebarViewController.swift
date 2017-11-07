@@ -39,6 +39,14 @@ final class SidebarViewController: UIViewController {
                            dataSource: self,
                            dequeables: SidebarTableViewCell.self)
     }()
+    
+    private lazy var versionLabel: UILabel = {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 20))
+        let text = Bundle.main.versionAndBuildNumber
+        label.attributedText = Style.tag(text, .white20).attributedString(alignment: .center)
+        
+        return label
+    }()
 
     // MARK: - Life Cycle
     
@@ -67,10 +75,14 @@ private extension SidebarViewController {
 
     func setupView() {
         view.addSubview(tableView)
+        view.addSubview(versionLabel)
         tableView.bounces = false
         tableView.topAnchor == view.topAnchor + 50
-        tableView.bottomAnchor == view.bottomAnchor
-        tableView.horizontalAnchors == view.horizontalAnchors        
+        tableView.bottomAnchor == view.bottomAnchor - 20
+        tableView.horizontalAnchors == view.horizontalAnchors
+        versionLabel.bottomAnchor == view.bottomAnchor
+        versionLabel.horizontalAnchors == view.horizontalAnchors
+        versionLabel.topAnchor == tableView.bottomAnchor
     }
 }
 
@@ -95,19 +107,6 @@ extension SidebarViewController: UITableViewDelegate, UITableViewDataSource {
                    height: sidebarItem?.cellHeight(screenType: screenType))
         
         return cell
-    }
-
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 15
-    }
-
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 15))
-        label.attributedText = Style.tag(Bundle.main.versionAndBuildNumber, .white20).attributedString(alignment: .center)
-        let footer = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 15))
-        footer.addSubview(label)
-
-        return footer
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

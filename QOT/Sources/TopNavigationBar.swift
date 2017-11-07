@@ -48,9 +48,7 @@ final class TopNavigationBar: UINavigationBar {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        guard let currentButton = currentButton else {
-            return
-        }
+        guard let currentButton = currentButton else { return }
         setIndicatorToButton(currentButton, animated: false)
         setIsSelected(currentButton)
     }
