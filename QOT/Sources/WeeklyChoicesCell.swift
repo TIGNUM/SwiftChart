@@ -17,6 +17,7 @@ final class WeeklyChoicesCell: UICollectionViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         configure()
     }
 
@@ -32,7 +33,6 @@ final class WeeklyChoicesCell: UICollectionViewCell, Dequeueable {
         titleLabel.lineBreakMode = .byTruncatingTail
         subTitleLabel.font = Font.H7Title
         choiceLabel.font = Font.H7Tag
-
         subTitleLabel.textColor = .white60
         choiceLabel.textColor = .white50
     }

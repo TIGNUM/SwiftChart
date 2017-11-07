@@ -91,7 +91,11 @@ final class WeeklyChoicesViewModel {
         default: return nil
         }
     }
-
+    
+    func categoryName(weeklyChoice: WeeklyChoice) -> String {
+        return services.contentService.contentCategory(id: weeklyChoice.categoryID)?.title ?? ""
+    }
+    
     // MARK: - private
     
     private func loadWeeklyChoices() {
