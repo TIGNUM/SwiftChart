@@ -294,7 +294,8 @@ final class LoginViewController: UIViewController {
                 return
         }
         topConstraint.constant = topConstraintOriginalValue - (rect.height / 2.0)
-        UIView.animate(withDuration: duration, delay: 0, options: UIViewAnimationOptions(rawValue: curve), animations: {
+        UIView.animate(withDuration: duration, delay: 0, options: [UIViewAnimationOptions(rawValue: curve), .beginFromCurrentState], animations: {
+            self.logoImageView.alpha = 0.0
             self.view.layoutIfNeeded()
         })
     }
@@ -308,7 +309,8 @@ final class LoginViewController: UIViewController {
                 return
         }
         topConstraint.constant = topConstraintOriginalValue
-        UIView.animate(withDuration: duration, delay: 0, options: UIViewAnimationOptions(rawValue: curve), animations: {
+        UIView.animate(withDuration: duration, delay: 0, options: [UIViewAnimationOptions(rawValue: curve), .beginFromCurrentState], animations: {
+            self.logoImageView.alpha = 1.0
             self.view.layoutIfNeeded()
         })
     }
