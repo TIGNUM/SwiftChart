@@ -12,17 +12,19 @@ protocol PlaceholderTextViewDelegate: class {
     func placeholderDidChange(_ placeholderTextView: PlaceholderTextView)
 }
 
-class PlaceholderTextView: UITextView {
+final class PlaceholderTextView: UITextView {
+    
     private(set) var placeholderText: String?
     private(set) var plachholderTextColor: UIColor?
     private var originalTextColor: UIColor?
     private var isPlaceholderShowing: Bool = false
-    
     weak var placeholderDelegate: PlaceholderTextViewDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         originalTextColor = textColor
+        tintColor = .white
     }
     
     func didBeginEditing() {
@@ -49,6 +51,7 @@ class PlaceholderTextView: UITextView {
 // MARK: - Private
 
 private extension PlaceholderTextView {
+    
     func showPlaceholder(_ isShowing: Bool) {
         isPlaceholderShowing = isShowing
         if isShowing {

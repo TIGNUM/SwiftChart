@@ -46,8 +46,8 @@ final class MyToBeVisionCoordinator: NSObject, ParentCoordinator {
 extension MyToBeVisionCoordinator: MyToBeVisionViewControllerDelegate {
 
     func didTapClose(in viewController: MyToBeVisionViewController) {
-        viewController.dismiss(animated: true, completion: {
+        viewController.dismiss(animated: true) {
             self.removeChild(child: self)
-        })
+        }
     }
 }

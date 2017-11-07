@@ -34,15 +34,16 @@ class MyToBeVisionViewController: UIViewController {
     @IBOutlet weak var imageEditLabel: UILabel!
     @IBOutlet weak var circleContainerView: UIView!
     @IBOutlet weak var gradientView: UIView!
+    private let imagePickerController: ImagePickerController
+    private var imageTapRecogniser: UITapGestureRecognizer!
+    let viewModel: MyToBeVisionViewModel
+    weak var delegate: MyToBeVisionViewControllerDelegate?
+    
     private lazy var gradientLayer: CAGradientLayer = {
         let layer = CAGradientLayer()
         self.gradientView.layer.addSublayer(layer)
         return layer
     }()
-    private let imagePickerController: ImagePickerController
-    private var imageTapRecogniser: UITapGestureRecognizer!
-    let viewModel: MyToBeVisionViewModel
-    weak var delegate: MyToBeVisionViewControllerDelegate?
  
     // MARK: - Init
 
@@ -145,39 +146,24 @@ private extension MyToBeVisionViewController {
     }
     
     func edit(_ isEditing: Bool) {
-        if !isEditing {
-            view.endEditing(true)
-        }
-
         headlineTextView.isEditable = isEditing
         messageTextView.isEditable = isEditing
         editButton.tintColor = isEditing ? .white : .white40
         imageView.alpha = isEditing ? 0.25 : 1.0
         setupMessageText(editing: isEditing)
-
-        UIView.animate(withDuration: 0.5, animations: {
+        
+        UIView.animate(withDuration: 0.5) {
             self.setImageButton(isEditing: isEditing)
-        }, completion: { (_: Bool) in
-            if isEditing {
-                _ = self.tryFirstResponder()
-            }
-        })
+        }
     }
     
-    func tryFirstResponder() -> Bool {
-        if !self.headlineTextView.isFirstResponder &&
-            !self.messageTextView.isFirstResponder {
-            return self.headlineTextView.becomeFirstResponder()
-        }
-        return false
-    }
-
     func setupView() {
         setupNavigation()
         setupLabels()
-
         messageTextView.delegate = self
         messageTextView.returnKeyType = .done
+        messageTextView.tintColor = .white
+        headlineTextView.tintColor = .white
         
         if let profileImageResource = viewModel.profileImageResource {
             imageView.setImageFromResource(profileImageResource)
@@ -320,6 +306,7 @@ private extension MyToBeVisionViewController {
 // MARK: - UITextViewDelegate
 
 extension MyToBeVisionViewController: UITextViewDelegate {
+    
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         if !isEditing {
             edit()
@@ -375,6 +362,7 @@ extension MyToBeVisionViewController: UITextViewDelegate {
 // MARK: - MyToBeVisionViewController: Place
 
 extension MyToBeVisionViewController: PlaceholderTextViewDelegate {
+    
     func placeholderDidChange(_ placeholderTextView: PlaceholderTextView) {
         textViewDidChange(placeholderTextView)
     }
