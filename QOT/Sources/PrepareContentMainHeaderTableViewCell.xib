@@ -11,10 +11,8 @@
     </dependencies>
     <customFonts key="customFonts">
         <array key="BentonSans_Book.otf">
-            <string>BentonSans-Book</string>
-        </array>
-        <array key="BentonSans_Regular.otf">
             <string>BentonSans</string>
+            <string>BentonSans-Book</string>
         </array>
         <array key="Simple-Regular.ttf">
             <string>Simple-Regular</string>

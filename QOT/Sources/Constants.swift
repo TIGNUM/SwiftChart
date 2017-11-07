@@ -31,7 +31,7 @@ struct Layout {
 
     struct TabBarView {
         static let insets = UIEdgeInsets(top: TabBarView.height, left: 0, bottom: 0, right: 0)
-        static let height: CGFloat = 49
+        static let height: CGFloat = 56
         static let animationDuration: TimeInterval = 0.3
         static let selectedButtonColor: UIColor = .white
         static let deselectedButtonColor: UIColor = .white40

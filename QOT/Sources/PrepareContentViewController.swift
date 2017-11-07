@@ -103,7 +103,7 @@ private extension PrepareContentViewController {
         view.backgroundColor = .white
         view.addSubview(topBarView)
         view.addSubview(tableView)
-        topBarView.topAnchor == view.topAnchor
+        topBarView.topAnchor == view.topAnchor + UIApplication.shared.statusBarFrame.height
         topBarView.horizontalAnchors == view.horizontalAnchors
         topBarView.heightAnchor == Layout.TabBarView.height
         tableView.topAnchor == topBarView.bottomAnchor
