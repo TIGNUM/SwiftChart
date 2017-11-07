@@ -130,17 +130,24 @@ private extension MyPrepViewController {
     }
 
     func setupView() {
-        let height: CGFloat = 70
+        automaticallyAdjustsScrollViewInsets = false
         view.backgroundColor = .clear
+
         view.addSubview(tableView)
+        if #available(iOS 11.0, *) {
+            tableView.contentInsetAdjustmentBehavior = .never
+        }
+        tableView.topAnchor == view.topAnchor
+        tableView.bottomAnchor == view.bottomAnchor
+        tableView.horizontalAnchors == view.horizontalAnchors
+        tableView.contentInset.top += 24
+        tableView.contentInset.bottom = 64.0
+        
+        let height: CGFloat = 70
         view.applyFade()
         view.applyFade(origin: CGPoint(x: view.bounds.origin.x, y: view.bounds.origin.y + view.bounds.height - height),
                        height: height,
                        direction: .up)
-        tableView.topAnchor == view.topAnchor
-        tableView.bottomAnchor == view.bottomAnchor
-        tableView.horizontalAnchors == view.horizontalAnchors
-        tableView.contentInset = UIEdgeInsets(top: tableView.contentInset.top, left: 0.0, bottom: 64.0, right: 0.0)
     }
 
     func updateView() {

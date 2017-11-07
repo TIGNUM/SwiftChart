@@ -107,14 +107,19 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
     }
 
     private func setupView(withBackgroundImage backgroundImage: UIImage?) {
-        automaticallyAdjustsScrollViewInsets = false
         view.backgroundColor = .clear
+        automaticallyAdjustsScrollViewInsets = false
+        
         view.addSubview(collectionView)
+        if #available(iOS 11.0, *) {
+            collectionView.contentInsetAdjustmentBehavior = .never
+        }
         collectionView.edgeAnchors == view.edgeAnchors
         collectionView.contentInset = UIEdgeInsets(top: 88, left: 0, bottom: 66.0, right: 0.0)
         if let backgroundImage = backgroundImage {
             collectionView.backgroundView = UIImageView(image: backgroundImage)
         }
+        
         view.layoutIfNeeded()
         view.applyFade()
     }
