@@ -309,6 +309,23 @@ extension AppCoordinator {
         windowManager.presentViewController(morningInterViewController, atLevel: .priority, animated: true, replacesContent: true, completion: nil)
         currentPresentedController = morningInterViewController
     }
+    
+    func presentWeeklyChoicesReminder() {
+        guard
+            let rootViewController = windowManager.rootViewController(atLevel: .normal),
+            let services = services else {
+                return
+        }
+        
+        let coordinator = WeeklyChoicesCoordinator(root: rootViewController,
+                                                   services: services,
+                                                   transitioningDelegate: nil,
+                                                   topBarDelegate: self)
+        topTabBarController = coordinator.topTabBarController        
+        windowManager.showWindow(atLevel: .priority)
+        windowManager.presentViewController(coordinator.topTabBarController, atLevel: .priority, animated: true, replacesContent: true, completion: nil)
+        currentPresentedNavigationController = coordinator.topTabBarController
+    }
 
     func presentWeeklyChoices(forStartDate startDate: Date, endDate: Date, completion: (() -> Void)?) {
         guard let services = services else { return}

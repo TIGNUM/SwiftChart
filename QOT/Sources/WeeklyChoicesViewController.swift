@@ -12,9 +12,7 @@ import ReactiveKit
 
 protocol WeeklyChoicesViewControllerDelegate: class {
 
-    func didTapClose(in viewController: UIViewController, animated: Bool)
-
-    func didTapShare(in viewController: UIViewController, from rect: CGRect, with item: WeeklyChoice)
+    func didTapClose(in viewController: UIViewController, animated: Bool)    
 
     func didUpdateList(with viewModel: WeeklyChoicesViewModel)
 }

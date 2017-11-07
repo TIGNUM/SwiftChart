@@ -32,6 +32,7 @@ final class LaunchHandler {
         case .preparation: preparation(localID: url.absoluteString.components(separatedBy: scheme.queryName).last)
         case .randomContent: randomContent(url: url, scheme: scheme)
         case .weeklyChoices: weeklyChoiches()
+        case .weeklyChoicesReminder: weeklyChoicesReminder()
         case .myPreps: preparationList()
         case .toBeVision: toBeVision()
         case .weeklyPeakPerformance: return
@@ -127,6 +128,10 @@ extension LaunchHandler {
 // MARK: - Weekly Choices
 
 extension LaunchHandler {
+    
+    func weeklyChoicesReminder() {
+        appDelegate.appCoordinator.presentWeeklyChoicesReminder()
+    }
 
     func weeklyChoiches(completion: (() -> Void)? = nil) {
         let dates = startEndDate()

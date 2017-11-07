@@ -15,15 +15,18 @@ final class WeeklyChoicesCoordinator: NSObject, ParentCoordinator {
 
     private let rootViewController: UIViewController
     private let services: Services
-    private let transitioningDelegate: UIViewControllerTransitioningDelegate // swiftlint:disable:this weak_delegate
     private let weeklyChoicesViewController: WeeklyChoicesViewController
-    private var topTabBarController: UINavigationController!
+    private let transitioningDelegate: UIViewControllerTransitioningDelegate? // swiftlint:disable:this weak_delegate
     private weak var weeklyChoicesDelegate: WeeklyChoicesViewModelDelegate?
     var children: [Coordinator] = []
+    var topTabBarController: UINavigationController!
 
     // MARK: - Life Cycle
 
-    init(root: UIViewController, services: Services, transitioningDelegate: UIViewControllerTransitioningDelegate) {
+    init(root: UIViewController,
+         services: Services,
+         transitioningDelegate: UIViewControllerTransitioningDelegate?,
+         topBarDelegate: TopNavigationBarDelegate?) {
         self.rootViewController = root
         self.services = services
         self.transitioningDelegate = transitioningDelegate
@@ -36,9 +39,14 @@ final class WeeklyChoicesCoordinator: NSObject, ParentCoordinator {
 
         let leftButton = UIBarButtonItem(withImage: R.image.ic_minimize())
         let rightButton = viewModel.itemCount == 0 ? UIBarButtonItem(withImage: R.image.prepareContentPlusIcon()) : nil
-        topTabBarController = UINavigationController(withPages: [weeklyChoicesViewController], topBarDelegate: self, leftButton: leftButton, rightButton: rightButton)
+        topTabBarController = UINavigationController(withPages: [weeklyChoicesViewController],
+                                                     topBarDelegate: topBarDelegate ?? self,
+                                                     leftButton: leftButton,
+                                                     rightButton: rightButton)
         topTabBarController.modalPresentationStyle = .custom
-        topTabBarController.transitioningDelegate = transitioningDelegate
+        if transitioningDelegate != nil {
+            topTabBarController.transitioningDelegate = transitioningDelegate
+        }
         weeklyChoicesViewController.delegate = self
     }
 
@@ -54,10 +62,6 @@ extension WeeklyChoicesCoordinator: WeeklyChoicesViewControllerDelegate {
     func didTapClose(in viewController: UIViewController, animated: Bool) {
         viewController.dismiss(animated: true, completion: nil)
         removeChild(child: self)
-    }
-
-    func didTapShare(in viewController: UIViewController, from rect: CGRect, with item: WeeklyChoice) {
-        log("didTapShare in: \(viewController), from rect: \(rect ) with item: \(item)")
     }
 
     func didUpdateList(with viewModel: WeeklyChoicesViewModel) {

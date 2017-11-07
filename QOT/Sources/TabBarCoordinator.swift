@@ -301,7 +301,10 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
 
     func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, from view: UIView, in viewController: MyUniverseViewController) {
         let transitioningDelegate = WeeklyChoicesAnimator()
-        let coordinator = WeeklyChoicesCoordinator(root: topTabBarControllerMe, services: services, transitioningDelegate: transitioningDelegate)
+        let coordinator = WeeklyChoicesCoordinator(root: topTabBarControllerMe,
+                                                   services: services,
+                                                   transitioningDelegate: transitioningDelegate,
+                                                   topBarDelegate: nil)
         startChild(child: coordinator)
     }
 

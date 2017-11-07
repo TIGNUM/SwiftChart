@@ -27,40 +27,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="319" height="472"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jAq-yR-icS">
-                        <rect key="frame" x="0.0" y="42" width="319" height="430"/>
-                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Icu-aw-L2S">
-                            <rect key="frame" x="0.0" y="0.0" width="319" height="430"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0e-fo-1y6">
-                                    <rect key="frame" x="16" y="394" width="46" height="28"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="28" id="Dt7-CH-9HI"/>
-                                    </constraints>
-                                    <state key="normal" title="Button"/>
-                                    <connections>
-                                        <action selector="closeInfoView" destination="3zg-UQ-ju6" eventType="touchUpInside" id="ZTm-zb-E0p"/>
-                                    </connections>
-                                </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vd6-hn-7my">
-                                    <rect key="frame" x="16" y="16" width="287" height="20.5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <constraints>
-                                <constraint firstItem="Vd6-hn-7my" firstAttribute="leading" secondItem="Icu-aw-L2S" secondAttribute="leading" constant="16" id="9Ko-vP-AhR"/>
-                                <constraint firstAttribute="bottom" secondItem="Y0e-fo-1y6" secondAttribute="bottom" constant="8" id="BnH-Z2-5c9"/>
-                                <constraint firstAttribute="trailing" secondItem="Vd6-hn-7my" secondAttribute="trailing" constant="16" id="HrC-UD-yjn"/>
-                                <constraint firstItem="Y0e-fo-1y6" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Vd6-hn-7my" secondAttribute="bottom" constant="4" id="JDF-5e-n2D"/>
-                                <constraint firstItem="Vd6-hn-7my" firstAttribute="top" secondItem="Icu-aw-L2S" secondAttribute="top" constant="16" id="aSL-Le-zQM"/>
-                                <constraint firstItem="Y0e-fo-1y6" firstAttribute="leading" secondItem="Icu-aw-L2S" secondAttribute="leading" constant="16" id="rl6-IU-oJl"/>
-                            </constraints>
-                        </view>
-                        <blurEffect style="dark"/>
-                    </visualEffectView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tTc-Xf-qts" userLabel="HeaderContentView">
                         <rect key="frame" x="11" y="0.0" width="278" height="42"/>
                         <subviews>
@@ -437,6 +403,40 @@ see this card</string>
                             <constraint firstItem="M4b-KY-hcD" firstAttribute="top" secondItem="frC-oQ-0pa" secondAttribute="top" id="uFR-Vp-DFO"/>
                         </constraints>
                     </view>
+                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jAq-yR-icS">
+                        <rect key="frame" x="0.0" y="42" width="319" height="430"/>
+                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Icu-aw-L2S">
+                            <rect key="frame" x="0.0" y="0.0" width="319" height="430"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0e-fo-1y6">
+                                    <rect key="frame" x="16" y="394" width="46" height="28"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="28" id="Dt7-CH-9HI"/>
+                                    </constraints>
+                                    <state key="normal" title="Button"/>
+                                    <connections>
+                                        <action selector="closeInfoView" destination="3zg-UQ-ju6" eventType="touchUpInside" id="ZTm-zb-E0p"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vd6-hn-7my">
+                                    <rect key="frame" x="16" y="16" width="287" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="Vd6-hn-7my" firstAttribute="leading" secondItem="Icu-aw-L2S" secondAttribute="leading" constant="16" id="9Ko-vP-AhR"/>
+                                <constraint firstAttribute="bottom" secondItem="Y0e-fo-1y6" secondAttribute="bottom" constant="8" id="BnH-Z2-5c9"/>
+                                <constraint firstAttribute="trailing" secondItem="Vd6-hn-7my" secondAttribute="trailing" constant="16" id="HrC-UD-yjn"/>
+                                <constraint firstItem="Y0e-fo-1y6" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Vd6-hn-7my" secondAttribute="bottom" constant="4" id="JDF-5e-n2D"/>
+                                <constraint firstItem="Vd6-hn-7my" firstAttribute="top" secondItem="Icu-aw-L2S" secondAttribute="top" constant="16" id="aSL-Le-zQM"/>
+                                <constraint firstItem="Y0e-fo-1y6" firstAttribute="leading" secondItem="Icu-aw-L2S" secondAttribute="leading" constant="16" id="rl6-IU-oJl"/>
+                            </constraints>
+                        </view>
+                        <blurEffect style="dark"/>
+                    </visualEffectView>
                 </subviews>
             </view>
             <constraints>

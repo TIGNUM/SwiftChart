@@ -17,6 +17,7 @@ enum URLScheme: String {
     case weeklyPeakPerformance = "weekly-peak-performance"
     case toBeVision = "to-be-vision"
     case myPreps = "prepare-my-preps"
+    case weeklyChoicesReminder = "weekly-choices-reminder"
 
     static var allValues: [URLScheme] {
         return [
@@ -27,7 +28,8 @@ enum URLScheme: String {
             .randomContent,
             .weeklyPeakPerformance,
             .toBeVision,
-            .myPreps
+            .myPreps,
+            .weeklyChoicesReminder
         ]
     }
     
@@ -40,6 +42,7 @@ enum URLScheme: String {
         case .weeklyPeakPerformance,
              .weeklyChoices,
              .toBeVision,
+             .weeklyChoicesReminder,
              .myPreps: return ""
         }
     }
