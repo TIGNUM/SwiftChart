@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Kingfisher
+import Anchorage
 
 // MARK: - String
 
@@ -421,6 +422,27 @@ extension UIImageView {
 // MARK: - UIButton
 
 extension UIButton {
+    
+    func prepareAndSetTitleAttributes(text: String, font: UIFont, color: UIColor, for state: UIControlState) {
+        let attrString = NSMutableAttributedString(string: text)
+        let style = NSMutableParagraphStyle()
+        style.lineSpacing = 13
+        attrString.addAttribute(.paragraphStyle, value: style, range: NSRange(location: 0, length: text.count))
+        attrString.addAttribute(.font, value: font, range: NSRange(location: 0, length: text.count))
+        attrString.addAttribute(.foregroundColor, value: color, range: NSRange(location: 0, length: text.count))
+        self.setAttributedTitle(attrString, for: state)
+    }
+    
+    func addBadge(with color: UIColor = .cherryRed, size: CGFloat = 6.0, topAnchorOffset: CGFloat = 0, rightAnchorOffset: CGFloat = 0) -> Badge {
+        let badge = Badge()
+        addSubview(badge)
+        badge.backgroundColor = color
+        badge.topAnchor == topAnchor + topAnchorOffset
+        badge.rightAnchor == rightAnchor + rightAnchorOffset
+        badge.widthAnchor == size
+        badge.heightAnchor == size
+        return badge
+    }
     
     func setImageFromResource(_ resource: MediaResource, defaultImage: UIImage? = nil, completion: ((UIImage?, Error?) -> Void)? = nil) {
         if let localURL = resource.localURL {

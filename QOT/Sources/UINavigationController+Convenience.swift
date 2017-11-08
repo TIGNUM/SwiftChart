@@ -57,7 +57,15 @@ extension UINavigationController {
                 pageButtons.append(button)
             }
             navigationBar.setMiddleButtons(pageButtons)
-            navigationBar.addWhatsHotBadgeIfNeeded()
         }
+    }
+    
+    func button(at index: Int) -> UIButton? {
+        guard
+            let stackView = navigationBar.topItem?.titleView as? UIStackView, index < stackView.arrangedSubviews.count,
+            let button = stackView.arrangedSubviews[index] as? UIButton else {
+                return nil
+        }
+        return button
     }
 }

@@ -24,7 +24,6 @@ final class TopNavigationBar: UINavigationBar {
     private let spacing: CGFloat = 15.0
     private let lineHeight: CGFloat = 1.0
     private var currentButton: UIButton?
-    private var whatsHotBadgeCenter: CGPoint = .zero
     private var indicatorViewWidthConstraint: NSLayoutConstraint!
     private var indicatorViewLeftConstraint: NSLayoutConstraint!
     let indicatorView: UIView // automatically hidden when setMiddleButtons(buttons.count == 1)
@@ -38,7 +37,6 @@ final class TopNavigationBar: UINavigationBar {
         super.init(frame: frame)
         
         applyDefaultStyle()
-        NotificationCenter.default.addObserver(self, selector: #selector(handleUserDefaultsDidChangeNotification), name: UserDefaults.didChangeNotification, object: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -71,7 +69,7 @@ final class TopNavigationBar: UINavigationBar {
         let firstButton = buttons[0]
         middleButtons = buttons
 
-        // @note unfortunately with the nav titleView it seems much easier to calculate with frames
+        // @note need to layout buttons with sizeToFit to obtain early width calculation
         for (index, button) in buttons.enumerated() {
             button.addTarget(self, action: #selector(middleButtonPressed(_:)), for: .touchUpInside)
             button.sizeToFit()
@@ -113,38 +111,6 @@ final class TopNavigationBar: UINavigationBar {
         topItem.rightBarButtonItem = button
     }
 
-    @objc func handleUserDefaultsDidChangeNotification() {
-        DispatchQueue.main.async { [weak self] in
-            self?.addWhatsHotBadgeIfNeeded()
-        }
-    }
-
-    func addWhatsHotBadgeIfNeeded() {
-        if
-            UserDefault.newWhatsHotArticle.boolValue == true &&
-            whatsHotBadgeCenter == .zero &&
-            middleButtons?.last?.titleLabel?.text == R.string.localized.topTabBarItemTitleLearnWhatsHot().uppercased(),
-                let buttonFrame = middleButtons?.first?.frame {
-                let centerX = (frame.width * 0.5) + buttonFrame.width
-                whatsHotBadgeCenter = CGPoint(x: centerX, y: 12)
-                drawCapRoundCircle(center: whatsHotBadgeCenter, radius: 3, value: 3, lineWidth: 3, strokeColor: .cherryRed)
-        }
-    }
-
-    private func removeWhatsHotBadgeIfNeeded() {
-        if UserDefault.newWhatsHotArticle.boolValue == true && middleButtons?.last?.titleLabel?.text == R.string.localized.topTabBarItemTitleLearnWhatsHot().uppercased() {
-            layer.sublayers?.forEach { (layer) in
-                if let shapeLayer = layer as? CAShapeLayer {
-                    if shapeLayer.lineCap == kCALineCapRound && shapeLayer.path?.contains(whatsHotBadgeCenter) == true {
-                        shapeLayer.removeFromSuperlayer()
-                        whatsHotBadgeCenter = .zero
-                        UserDefault.newWhatsHotArticle.setBoolValue(value: false)
-                    }
-                }
-            }
-        }
-    }
-    
     func setIndicatorToButtonIndex(_ index: Int, animated: Bool = true) {
         guard let middleButtons = middleButtons, index >= 0, index < middleButtons.count else { return }
 
@@ -184,6 +150,5 @@ final class TopNavigationBar: UINavigationBar {
         topNavigationBarDelegate?.topNavigationBar(self, middleButtonPressed: sender, withIndex: sender.tag, ofTotal: total)
         setIndicatorToButton(sender)
         currentButton = sender
-        removeWhatsHotBadgeIfNeeded()
     }
 }

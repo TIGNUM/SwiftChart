@@ -37,6 +37,8 @@
 		7F0F03041F14CE2300007D50 /* CollapsableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F0F03031F14CE2300007D50 /* CollapsableCell.xib */; };
 		7F0F03061F14CE2F00007D50 /* CollapsableContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F0F03051F14CE2F00007D50 /* CollapsableContentCell.xib */; };
 		7F0F03081F14FE9800007D50 /* CollapsableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F03071F14FE9800007D50 /* CollapsableNode.swift */; };
+		7F1711EB1FB30E0100ED08D8 /* WhatsHotBadgeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1711EA1FB30E0100ED08D8 /* WhatsHotBadgeManager.swift */; };
+		7F1711ED1FB3161C00ED08D8 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1711EC1FB3161C00ED08D8 /* Badge.swift */; };
 		7F1D3D221F8E24620071D322 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1D3D211F8E24620071D322 /* Log.swift */; };
 		7F1D3D251F8E29050071D322 /* RemoteLogDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1D3D241F8E29050071D322 /* RemoteLogDestination.swift */; };
 		7F4251BD1F20F05D00EA451D /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4251BC1F20F05D00EA451D /* OnboardingCoordinator.swift */; };
@@ -103,7 +105,6 @@
 		851676DF1F3C694B007A1DD6 /* LearnReadMoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 851676DE1F3C694B007A1DD6 /* LearnReadMoreCell.xib */; };
 		8523E9C01F1628B50000D20D /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8523E9BF1F1628B50000D20D /* Date+Extension.swift */; };
 		852988951F2F3E15003A36DF /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852988941F2F3E15003A36DF /* Bundle+Extensions.swift */; };
-		852DADC21EEDDE5100A10882 /* UIButton+AttributedTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADC11EEDDE5100A10882 /* UIButton+AttributedTitle.swift */; };
 		852DADC41EEED5D600A10882 /* MeetingsAverageChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADC31EEED5D600A10882 /* MeetingsAverageChart.swift */; };
 		852DADC61EEEE63500A10882 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADC51EEEE63500A10882 /* Math.swift */; };
 		852DADD21EF04DEA00A10882 /* MeetingsLengthChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADD11EF04DEA00A10882 /* MeetingsLengthChart.swift */; };
@@ -493,6 +494,8 @@
 		7F0F03031F14CE2300007D50 /* CollapsableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollapsableCell.xib; sourceTree = "<group>"; };
 		7F0F03051F14CE2F00007D50 /* CollapsableContentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollapsableContentCell.xib; sourceTree = "<group>"; };
 		7F0F03071F14FE9800007D50 /* CollapsableNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollapsableNode.swift; sourceTree = "<group>"; };
+		7F1711EA1FB30E0100ED08D8 /* WhatsHotBadgeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsHotBadgeManager.swift; sourceTree = "<group>"; };
+		7F1711EC1FB3161C00ED08D8 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		7F1D3D211F8E24620071D322 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		7F1D3D241F8E29050071D322 /* RemoteLogDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLogDestination.swift; sourceTree = "<group>"; };
 		7F4251BC1F20F05D00EA451D /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
@@ -560,7 +563,6 @@
 		851676DE1F3C694B007A1DD6 /* LearnReadMoreCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnReadMoreCell.xib; sourceTree = "<group>"; };
 		8523E9BF1F1628B50000D20D /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		852988941F2F3E15003A36DF /* Bundle+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
-		852DADC11EEDDE5100A10882 /* UIButton+AttributedTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+AttributedTitle.swift"; sourceTree = "<group>"; };
 		852DADC31EEED5D600A10882 /* MeetingsAverageChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetingsAverageChart.swift; sourceTree = "<group>"; };
 		852DADC51EEEE63500A10882 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		852DADD11EF04DEA00A10882 /* MeetingsLengthChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetingsLengthChart.swift; sourceTree = "<group>"; };
@@ -1471,6 +1473,7 @@
 		CBB4DD1C1EE085600071494A /* View Layer */ = {
 			isa = PBXGroup;
 			children = (
+				7F01A6221F98A1F5002C7B72 /* ImagePicker */,
 				CBB4DD271EE087E50071494A /* Add Sensor */,
 				CC7D21A41EFBF50A007A062E /* Article */,
 				CB026FCF1F6C013B00FC5076 /* Carousel */,
@@ -1673,7 +1676,6 @@
 				CBFECCAC1F388B500076ACE6 /* TimeZone+Convenience.swift */,
 				CCE6CD741F1390AD00B66DA3 /* UIApplication+Convenience.swift */,
 				7FE38DD41F2B2E760061E98F /* UIBarButtonItem+Convenience.swift */,
-				852DADC11EEDDE5100A10882 /* UIButton+AttributedTitle.swift */,
 				CC1E2A5E1EDF1DE100B9EFD3 /* UICollectionView+Create.swift */,
 				CC64725A1EE6F9DE00BFA3D9 /* UIColor+Palette.swift */,
 				850312EC1F34732F00DB5A6B /* UIGestureRecognizer+ClickableLabel.swift */,
@@ -1905,6 +1907,7 @@
 				7F691C5D1F0D30C800E2C180 /* PlaceholderTextView.swift */,
 				D5B761861EE6B19C00AE178B /* SpacingInLabel.swift */,
 				7FE38DCE1F2A48480061E98F /* TopNavigationBar.swift */,
+				7F1711EC1FB3161C00ED08D8 /* Badge.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -1984,7 +1987,7 @@
 				CBD791491E71797C0006C590 /* Typealiases.swift */,
 				7FE38DBC1F2210D60061E98F /* WaitBlockOperation.swift */,
 				7F42767A1F585D1F00AEE3D7 /* RemoteNotificationHandler.swift */,
-				7F01A6221F98A1F5002C7B72 /* ImagePicker */,
+				7F1711EA1FB30E0100ED08D8 /* WhatsHotBadgeManager.swift */,
 				7F5A25AE1F3C4BB400A11466 /* Analytics */,
 			);
 			name = Utils;
@@ -2712,6 +2715,7 @@
 				CC9FBDE81EAE58F300AF1CF0 /* SettingsMenuCoordinator.swift in Sources */,
 				7F0F03021F14CE1500007D50 /* CollapsableContentCell.swift in Sources */,
 				CC9663181EA1B86100B84B1C /* MyDataSectorLabelsView.swift in Sources */,
+				7F1711EB1FB30E0100ED08D8 /* WhatsHotBadgeManager.swift in Sources */,
 				CCF0F4BF1ECDC57000E8D9C1 /* DownSyncable.swift in Sources */,
 				8514A4861EE810750086C70E /* DownSyncComplete.swift in Sources */,
 				CC41A5411EFD241100B9AE8E /* ArticleRelatedCell.swift in Sources */,
@@ -2840,7 +2844,6 @@
 				CBC1DC171F0F690A00F6D056 /* SystemSettingIntermediary.swift in Sources */,
 				CB810E611EEFC0D70043E3E5 /* ErrorCell.swift in Sources */,
 				CB9BB0C21F0CD13E009067D7 /* TimeInterval+Convenience.swift in Sources */,
-				852DADC21EEDDE5100A10882 /* UIButton+AttributedTitle.swift in Sources */,
 				CCC1B6A71E8B9B7300D1461F /* LearnCategoryCell.swift in Sources */,
 				CC143A531EC49641001FB76E /* ChartViewController.swift in Sources */,
 				CB9AFD171F014BF800D067F2 /* PreparationIntermediary.swift in Sources */,
@@ -2912,6 +2915,7 @@
 				854708E31F306628007AB971 /* ContentItemAnimator.swift in Sources */,
 				CB9AFD201F029D1500D067F2 /* PreparationService.swift in Sources */,
 				CB3437641EFD6B0100D89D4F /* Answer+Convenience.swift in Sources */,
+				7F1711ED1FB3161C00ED08D8 /* Badge.swift in Sources */,
 				CC7D21AA1EFC0856007A062E /* ArticleContentItemCoordinator.swift in Sources */,
 				85AAB53C1F447D1F00C2D53F /* LearnContentListBackgroundView.swift in Sources */,
 				CCE06FE01E8D44FC009C5AD2 /* LibraryCoordinator.swift in Sources */,

@@ -82,8 +82,16 @@ final class TabBarCoordinator: ParentCoordinator {
                                                          topBarDelegate: self,
                                                          pageDelegate: self,
                                                          rightButton: rightButton)
-
+        guard let whatsHotButton = topTabBarController.button(at: 1) else {
+            assertionFailure("expected what's hot button")
+            return topTabBarController
+        }
+        whatsHotBadgeManager.whatsHotButton = whatsHotButton
         return topTabBarController
+    }()
+    
+    private lazy var whatsHotBadgeManager: WhatsHotBadgeManager = {
+        return WhatsHotBadgeManager()
     }()
 
     private lazy var topTabBarControllerMe: MyUniverseViewController = {
@@ -193,10 +201,18 @@ final class TabBarCoordinator: ParentCoordinator {
     // MARK: - private
     
     private func bottomTabBarController() -> TabBarController {
-        let bottomTabBarController = TabBarController(items: tabBarControllerItems(), selectedIndex: selectedIndex.value)
+        let items = tabBarControllerItems()
+        let bottomTabBarController = TabBarController(items: items, selectedIndex: selectedIndex.value)
         bottomTabBarController.modalTransitionStyle = .crossDissolve
         bottomTabBarController.modalPresentationStyle = .custom
         bottomTabBarController.delegate = self
+        
+        guard let learnButton = bottomTabBarController.tabBarView.buttons.first else {
+            assertionFailure("expected learn button")
+            return bottomTabBarController
+        }
+        whatsHotBadgeManager.learnButton = learnButton
+        whatsHotBadgeManager.isShowingLearnTab = true
         return bottomTabBarController
     }
     
@@ -234,7 +250,8 @@ extension TabBarCoordinator: TabBarControllerDelegate {
 
     func didSelectTab(at index: Index, in controller: TabBarController) {        
         selectedIndex.value = index
-
+        whatsHotBadgeManager.isShowingLearnTab = (index == 0)
+        
         switch index {
         case 2:
             prepareCoordinator.focus()
