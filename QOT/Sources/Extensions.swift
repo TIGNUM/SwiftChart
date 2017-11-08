@@ -488,10 +488,8 @@ extension UITableView {
 extension UIScrollView {
 
     var currentPage: Int {
-        guard bounds.size.width != 0 else {
-            return 0
-        }
-
+        guard bounds.size.width != 0 else { return 0 }
+        
         return Int(round(contentOffset.x / bounds.size.width))
     }
 }

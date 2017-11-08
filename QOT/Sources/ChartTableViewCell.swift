@@ -18,6 +18,7 @@ final class ChartTableViewCell: UITableViewCell, Dequeueable {
     private lazy var currentSection = 0
     private var selectedButtonTag = 0
     private var screenType: UIViewController.ScreenType = .big
+    private var pageControl: UIPageControl?
     weak var delegate: ChartViewControllerDelegate?
 
     private lazy var collectionView: UICollectionView = {
@@ -46,12 +47,17 @@ final class ChartTableViewCell: UITableViewCell, Dequeueable {
         super.prepareForReuse()
 
         collectionView.setContentOffset(.zero, animated: false)
+        pageControl?.currentPage = 0
     }
 
-    func setup(viewModel: ChartViewModel, currentSection: Int, screenType: UIViewController.ScreenType) {
+    func setup(viewModel: ChartViewModel,
+               currentSection: Int,
+               screenType: UIViewController.ScreenType,
+               pageControl: UIPageControl) {
         self.viewModel = viewModel
         self.currentSection = currentSection
         self.screenType = screenType
+        self.pageControl = pageControl
         contentView.backgroundColor = .clear
         backgroundColor = .clear
         self.collectionView.reloadData()
@@ -75,6 +81,10 @@ private extension ChartTableViewCell {
 
         return CGSize(width: width, height: height)
     }
+    
+    func updatePageControl(indexPath: IndexPath) {
+        pageControl?.currentPage = indexPath.item
+    }
 }
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
@@ -90,10 +100,7 @@ extension ChartTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionVi
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let viewModel = viewModel else {
-            return UICollectionViewCell()
-        }
-
+        guard let viewModel = viewModel else { return UICollectionViewCell() }
         let chartTitle = viewModel.chartTitle(section: currentSection, item: indexPath.item)
         let statistics = viewModel.statistics(section: currentSection, item: indexPath.item)
         let chartCell: ChartCell = collectionView.dequeueCell(for: indexPath)
@@ -132,13 +139,14 @@ extension ChartTableViewCell: UIScrollViewDelegate {
         let visibleCells = collectionView.visibleCells
 
         visibleCells.forEach { tempCell in
-            guard let cell = tempCell as? ChartCell else {
-                return
-            }
-            
+            guard let cell = tempCell as? ChartCell else { return }
             let cellRect = collectionView.convert(cell.frame, to: collectionView.superview)
             cell.animateHeader(withCellRect: cellRect, inParentRect: collectionView.frame)
         }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        pageControl?.currentPage = scrollView.currentPage
     }
 }
 

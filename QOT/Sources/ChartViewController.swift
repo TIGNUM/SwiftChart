@@ -19,6 +19,7 @@ final class ChartViewController: UIViewController {
     // MARK: - Properties
 
     private let viewModel: ChartViewModel
+    private var pageControls = [UIPageControl]()
 
     private lazy var tableView: UITableView = {
         return UITableView(style: .grouped,
@@ -45,6 +46,7 @@ final class ChartViewController: UIViewController {
         super.viewDidLoad()
 
         setupView()
+        createPageControls()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -63,6 +65,17 @@ private extension ChartViewController {
         view.applyFade()
         tableView.verticalAnchors == view.verticalAnchors
         tableView.horizontalAnchors == view.horizontalAnchors
+    }
+    
+    func createPageControls() {
+        
+        viewModel.sortedSections.forEach { (sectionType: StatisticsSectionType) in
+            let pageControl = UIPageControl(frame: .zero)
+            pageControl.numberOfPages = sectionType.chartTypes.count
+            pageControl.currentPage = 0
+            pageControl.isUserInteractionEnabled = false
+            pageControls.append(pageControl)
+        }
     }
 }
 
@@ -91,17 +104,41 @@ extension ChartViewController: UITableViewDelegate, UITableViewDataSource {
 
         return view
     }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 20))
+        let pageControl = pageControls[section]
+        pageControl.frame = view.frame
+        view.addSubview(pageControl)
+        
+        return view
+    }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 20
     }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 30
+    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {        
         let cell: ChartTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.setup(viewModel: viewModel, currentSection: indexPath.section, screenType: screenType)
+        cell.setup(viewModel: viewModel,
+                   currentSection: indexPath.section,
+                   screenType: screenType,
+                   pageControl: pageControls[indexPath.section])
         cell.delegate = self
 
         return cell
+    }
+}
+
+extension ChartViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let pageControl = pageControls[scrollView.currentSection]
+        pageControl.numberOfPages = viewModel.numberOfItems(in: scrollView.currentSection)        
     }
 }
 
@@ -111,5 +148,17 @@ extension ChartViewController: ChartViewControllerDelegate {
     
     func didSelectAddSensor() {
         AppDelegate.current.appCoordinator.presentAddSensorView(viewController: self)
+    }
+}
+
+// MARK: - UIScrollView
+
+private extension UIScrollView {
+    
+    var currentSection: Int {
+        guard bounds.size.height > 0 else { return 0 }
+        let section = Int(round(contentOffset.y / (bounds.size.height * 0.75)))
+        
+        return section >= 0 ? section : 0
     }
 }

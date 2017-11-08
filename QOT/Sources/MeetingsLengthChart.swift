@@ -43,19 +43,12 @@ private extension MeetingsLengthChart {
         let innerRadius = radius * 0.6
         let outerRadius = CGFloat(frame.height * 0.4)
         let lineWidth = CGFloat(5)
-        let dashPattern: [CGFloat] = [1, 1]
-        let lineSemiLength = frame.height / 10
-        let horizontalFrom = CGPoint(x: arcCenter.x - lineSemiLength, y: arcCenter.y)
-        let horizontalTo = CGPoint(x: arcCenter.x + lineSemiLength, y: arcCenter.y)
-        let verticalFrom = CGPoint(x: arcCenter.x, y: arcCenter.y - lineSemiLength)
-        let verticalTo = CGPoint(x: arcCenter.x, y: arcCenter.y + lineSemiLength)
+        let dashPattern: [CGFloat] = [1, 1]        
         drawSolidCircle(arcCenter: arcCenter, radius: innerRadius, strokeColor: strokeColor)
         drawSolidCircle(arcCenter: arcCenter, radius: outerRadius, strokeColor: strokeColor)
         drawDashedCircle(arcCenter: arcCenter, radius: radius, lineWidth: lineWidth, dashPattern: dashPattern, strokeColor: strokeColor)
         drawDashedCircle(arcCenter: arcCenter, radius: radius, lineWidth: lineWidth, dashPattern: dashPattern, value: statistics.userAverageValue, strokeColor: statistics.pathColor, hasShadow: true)
         drawAverageLine(center: arcCenter, innerRadius: innerRadius, outerRadius: outerRadius, angle: statistics.teamAngle, strokeColor: .azure)
         drawAverageLine(center: arcCenter, innerRadius: innerRadius, outerRadius: outerRadius, angle: statistics.dataAngle, strokeColor: .cherryRed)
-        drawSolidLine(from: horizontalFrom, to: horizontalTo, strokeColor: strokeColor)
-        drawSolidLine(from: verticalFrom, to: verticalTo, strokeColor: strokeColor)
     }
 }

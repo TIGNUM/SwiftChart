@@ -20,9 +20,9 @@ final class ChartViewModel {
     static let chartRatio: CGFloat = 1.3479623824
     let updates = PublishSubject<CollectionUpdate, NoError>()
     private let charts: [[Statistics]]
-    private var sortedSections = [StatisticsSectionType]()
     private let services: Services
     let allCharts: [Statistics]
+    var sortedSections = [StatisticsSectionType]()
 
     // MARK: - Init
 
@@ -97,7 +97,7 @@ final class ChartViewModel {
 // MARK: - Private
 
 private extension ChartViewModel {
-
+    
     func sortCharts(startingSection: StatisticsSectionType) {
         var criticalSectionTypes = [StatisticsSectionType: CGFloat]()
 
