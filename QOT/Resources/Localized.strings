@@ -166,7 +166,7 @@
 "Sidebar.SettingsMenu.Settings" = "SETTINGS";
 "Sidebar.SettingsMenu.GeneralButton" = "GENERAL";
 "Sidebar.SettingsMenu.NotificationsButton" = "NOTIFICATIONS";
-"Sidebar.SettingsMenu.SecurityButton" = "SECURITY";
+"Sidebar.SettingsMenu.SecurityButton" = "SECURITY AND LEGAL";
 
 "Sidebar.SensorsMenu.Sensors" = "SENSORS";
 "Sidebar.SensorsMenu.Fitbit" = "FITBIT";
