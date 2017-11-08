@@ -293,7 +293,7 @@ final class LoginViewController: UIViewController {
             let curve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? UInt else {
                 return
         }
-        topConstraint.constant = topConstraintOriginalValue - (rect.height / 2.0)
+        topConstraint.constant = max(topConstraintOriginalValue - (rect.height / 2.0), 10.0)
         UIView.animate(withDuration: duration, delay: 0, options: [UIViewAnimationOptions(rawValue: curve), .beginFromCurrentState], animations: {
             self.logoImageView.alpha = 0.0
             self.view.layoutIfNeeded()

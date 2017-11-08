@@ -11,6 +11,10 @@ import UIKit
 final class Badge: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
+        guard bounds.width == bounds.height else {
+            assertionFailure("badge width must equal height - w:\(bounds.width), h:\(bounds.height)")
+            return
+        }
         layer.cornerRadius = bounds.height / 2
     }
 }

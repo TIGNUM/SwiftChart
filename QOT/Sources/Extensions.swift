@@ -322,25 +322,6 @@ extension UIView {
     }
 }
 
-// MARK: - UIWindow
-
-extension UIWindow {
-    func setRootViewControllerWithFadeAnimation(_ viewController: UIViewController, duration: TimeInterval = 1.0, completion: (() -> Void)? = nil) {
-        UIView.transition(with: self, duration: duration, options: .transitionCrossDissolve, animations: {
-            self.rootViewController = viewController
-        }, completion: { _ in
-            completion?()
-        })
-    }
-    
-    func clear() {
-        subviews.forEach { (view: UIView) in
-            view.removeFromSuperview()
-        }
-        rootViewController = nil
-    }
-}
-
 // MARK: - UIImage
 
 extension UIImage {

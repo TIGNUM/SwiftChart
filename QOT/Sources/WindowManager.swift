@@ -70,8 +70,13 @@ class WindowManager {
     
     func setRootViewController(_ viewController: UIViewController, atLevel level: Level, animated: Bool, completion: (() -> Void)?) {
         let window = windowForLevel(level)
+        viewController.view.frame = window.bounds
         if animated {
-            window.setRootViewControllerWithFadeAnimation(viewController, completion: completion)
+            UIView.transition(with: window, duration: 1.0, options: .transitionCrossDissolve, animations: {
+                window.rootViewController = viewController
+            }, completion: { _ in
+                completion?()
+            })
         } else {
             window.rootViewController = viewController
         }
@@ -79,12 +84,10 @@ class WindowManager {
     
     func presentViewController(_ viewController: UIViewController, atLevel level: Level, animated: Bool, replacesContent: Bool = false, completion: (() -> Void)?) {
         let window = windowForLevel(level)
-        if window.rootViewController?.presentedViewController != nil {
-            if replacesContent == true {
-                window.rootViewController?.dismiss(animated: animated, completion: {
-                    window.rootViewController?.present(viewController, animated: animated, completion: completion)
-                })
-            }
+        if replacesContent && window.rootViewController?.presentedViewController != nil {
+            window.rootViewController?.dismiss(animated: animated, completion: {
+                window.rootViewController?.present(viewController, animated: animated, completion: completion)
+            })
         } else {
             window.rootViewController?.present(viewController, animated: animated, completion: completion)
         }
@@ -140,5 +143,17 @@ class WindowManager {
         viewController.view.backgroundColor = .clear
         viewController.view.frame = UIScreen.main.bounds
         return viewController
+    }
+}
+
+// MARK: - UIWindow convenience
+
+private extension UIWindow {
+
+    func clear() {
+        subviews.forEach { (view: UIView) in
+            view.removeFromSuperview()
+        }
+        rootViewController = nil
     }
 }

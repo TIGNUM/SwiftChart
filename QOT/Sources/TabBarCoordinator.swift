@@ -237,8 +237,9 @@ final class TabBarCoordinator: ParentCoordinator {
             tabBarView.setGlowEffectForButtonIndex(selectedIndex, enabled: false)
             self.windowManager.resignWindow(atLevel: .overlay)
         }
+        viewController.modalTransitionStyle = .crossDissolve
         windowManager.showWindow(atLevel: .overlay)
-        windowManager.setRootViewController(viewController, atLevel: .overlay, animated: true) {
+        windowManager.presentViewController(viewController, atLevel: .overlay, animated: true) {
             tabBarView.setGlowEffectForButtonIndex(selectedIndex, enabled: true)
         }
     }
