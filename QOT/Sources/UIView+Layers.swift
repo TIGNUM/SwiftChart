@@ -120,10 +120,15 @@ extension UIView {
         }
     }
 
-    func drawSolidColumns(columnWidth: CGFloat, columnHeight: CGFloat, columnCount: Int, strokeWidth: CGFloat, strokeColor: UIColor) {
+    func drawSolidColumns(xPos: CGFloat,
+                          columnWidth: CGFloat,
+                          columnHeight: CGFloat,
+                          columnCount: Int,
+                          strokeWidth: CGFloat,
+                          strokeColor: UIColor) {
         for x in 0...columnCount {
-            let columnX = CGFloat(frame.origin.x) + CGFloat(x) * columnWidth + (x == columnCount ? -strokeWidth * 0.5 : strokeWidth * 0.5)
-            let columnY = CGFloat(frame.origin.y) + columnHeight - strokeWidth * 0.5
+            let columnX = xPos + CGFloat(x) * columnWidth + (x == columnCount ? -strokeWidth * 0.5 : strokeWidth * 0.5)
+            let columnY = frame.origin.y + columnHeight - strokeWidth * 0.5
             let startPoint = CGPoint(x: columnX, y: frame.origin.y)
             let endPoint = CGPoint(x: columnX, y: columnY)
             drawSolidLine(from: startPoint, to: endPoint, lineWidth: strokeWidth * 0.5, strokeColor: strokeColor)

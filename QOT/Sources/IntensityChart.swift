@@ -15,6 +15,8 @@ final class IntensityChart: UIView {
     private var statistics: Statistics
     private var labelContentView: UIView
     private let padding: CGFloat = 8
+    private let yAxisOffset: CGFloat = 20
+    private var yPositions = [CGFloat]()
 
     // MARK: - Init
 
@@ -39,12 +41,13 @@ private extension IntensityChart {
 
     func setupView() {
         setupBackground()
+        addCaptionLabel()
         setupThreshholdLine()
     }
 
     func drawCharts() {
         for (index, dataPoint) in statistics.dataPointObjects.enumerated() {
-            let xPos = firstSection == true ? xPosition(index) : (columnWidth * CGFloat(index) * 2)
+            let xPos = firstSection == true ? xPosition(index) : (columnWidth * CGFloat(index) * 2) + yAxisOffset
             let yPos = yPosition(dataPoint.value)
             let height = dataPoint.value > 0 ? yPos - bottomPosition : 0
             let columnFrame = CGRect(x: xPos, y: frame.height, width: columnWidth, height: height).integral
@@ -64,7 +67,7 @@ private extension IntensityChart {
 private extension IntensityChart {
 
     var columnWidth: CGFloat {
-        return firstSection ? 10 : frame.width / CGFloat(statistics.dataPointObjects.count * 2)
+        return firstSection ? 10 : (frame.width - yAxisOffset) / CGFloat(statistics.dataPointObjects.count * 2)
     }
 
     var firstSection: Bool {
@@ -91,21 +94,32 @@ private extension IntensityChart {
     }
 
     func setupBackground() {
-        let numberOfLines = 10
+        let numberOfLines = 9
         let distance = frame.height / CGFloat(numberOfLines)
 
-        for index in 0 ..< numberOfLines {
+        for index in 1 ..< numberOfLines {
             let yPos = distance * CGFloat(index)
-            let start = CGPoint(x: 0, y: yPos)
+            let start = CGPoint(x: yAxisOffset, y: yPos)
             let end = CGPoint(x: frame.width, y: yPos)
             drawSolidLine(from: start, to: end, lineWidth: 0.5, strokeColor: .white20)
+            yPositions.append(yPos)
         }
     }
 
     func setupThreshholdLine() {
         let yPos = bottomPosition - statistics.upperThreshold.toFloat * bottomPosition
-        let start = CGPoint(x: 0, y: yPos)
+        let start = CGPoint(x: yAxisOffset, y: yPos)
         let end = CGPoint(x: frame.width, y: yPos)
         drawDashedLine(from: start, to: end, lineWidth: 1, strokeColor: .cherryRedTwo30, dashPattern: [1.5, 3.0])
+    }
+    
+    private func addCaptionLabel() {
+        for (index, yPos) in yPositions.reversed().enumerated() where index % 2 == 1 && index > 0 {
+            let labelFrame = CGRect(x: 0, y: yPos - yAxisOffset * 0.5, width: yAxisOffset, height: yAxisOffset)
+            let captionLabel = UILabel(frame: labelFrame)
+            let text = String(format: "%d", index + 2)
+            captionLabel.setAttrText(text: text, font: Font.H7Title, color: .white20)
+            addSubview(captionLabel)
+        }
     }
 }

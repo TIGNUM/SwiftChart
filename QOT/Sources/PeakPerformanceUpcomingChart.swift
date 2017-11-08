@@ -15,6 +15,7 @@ final class PeakPerformanceUpcomingChart: UIView {
     private var statistics: Statistics
     private var labelContentView: UIView
     private let padding: CGFloat = 8
+    private let yAxisOffset: CGFloat = 40
 
     // MARK: - Init
 
@@ -42,7 +43,39 @@ private extension PeakPerformanceUpcomingChart {
     }
 
     private var rowWidth: CGFloat {
-        return frame.width / CGFloat(rows)
+        return (frame.width - yAxisOffset) / CGFloat(rows)
+    }
+    
+    private func xPosition(_ index: Int) -> CGFloat {
+        guard labelContentView.subviews.count >= index else { return 0 }
+        let labelFrame = labelContentView.subviews[index].frame
+        
+        return (labelFrame.origin.x + labelFrame.width * 0.5)
+    }
+    
+    private var bottomPosition: CGFloat {
+        return frame.height - padding * 0.75
+    }
+    
+    private func yPosition(_ value: CGFloat) -> CGFloat {
+        return (bottomPosition - (value * bottomPosition)) + padding * 0.5
+    }
+    
+    private func addCaptionLabel(yPos: CGFloat, text: String) {
+        let captionLabel = UILabel(frame: CGRect(x: 0, y: yPos - yAxisOffset * 0.25, width: yAxisOffset, height: yAxisOffset * 0.5))
+        captionLabel.setAttrText(text: text, font: Font.H7Title, lineSpacing: 1, characterSpacing: 1, color: .white20)
+        addSubview(captionLabel)
+    }
+    
+    private func updateLabelFrames() {
+        for (index, subView) in labelContentView.subviews.enumerated() where subView is UILabel {
+            let frame = subView.frame
+            subView.sizeToFit()
+            subView.frame = CGRect(x: rowWidth * CGFloat(index + 1),
+                                   y: frame.origin.y,
+                                   width: rowWidth,
+                                   height: frame.height)
+        }
     }
 
     func drawCharts() {
@@ -64,17 +97,15 @@ private extension PeakPerformanceUpcomingChart {
     }
 
     func drawBackground() {
-        drawSolidColumns(columnWidth: rowWidth,
+        updateLabelFrames()
+        addCaptionLabel(yPos: yPosition(0.75), text: "06:00")
+        addCaptionLabel(yPos: yPosition(0.50), text: "12:00")
+        addCaptionLabel(yPos: yPosition(0.25), text: "18:00")
+        drawSolidColumns(xPos: yAxisOffset,
+                         columnWidth: rowWidth,
                          columnHeight: frame.height,
                          columnCount: rows,
                          strokeWidth: 1,
                          strokeColor: .white20)
-    }
-
-    func xPosition(_ index: Int) -> CGFloat {
-        guard labelContentView.subviews.count >= index else { return 0 }
-        let labelFrame = labelContentView.subviews[index].frame
-
-        return (labelFrame.origin.x + labelFrame.width * 0.5)
     }
 }

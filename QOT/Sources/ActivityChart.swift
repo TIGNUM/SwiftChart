@@ -37,6 +37,7 @@ final class ActivityChart: UIView {
     private var statistics: Statistics
     private var labelContentView: UIView
     private let padding: CGFloat = 8
+    private let yAxisOffset: CGFloat = 40
 
     // MARK: - Init
 
@@ -55,9 +56,9 @@ final class ActivityChart: UIView {
     }
 }
 
-// MARK: - ChartViewDelegate
+// MARK: - Private
 
-extension ActivityChart {
+private extension ActivityChart {
 
     func hasShadow(_ dataPoint: DataPoint) -> Bool {
         switch dataPoint.color {
@@ -84,17 +85,17 @@ extension ActivityChart {
         return (bottomPosition - (value * bottomPosition)) + padding * 0.5
     }
 
-    func drawCapRoundLine(xPos: CGFloat, startYPos: CGFloat, endYPos: CGFloat, strokeColor: UIColor, hasShadow: Bool = false) {
+    private func drawCapRoundLine(xPos: CGFloat, startYPos: CGFloat, endYPos: CGFloat, strokeColor: UIColor, hasShadow: Bool = false) {
         let startPoint = CGPoint(x: xPos, y: startYPos)
         let endPoint = CGPoint(x: xPos, y: endYPos)
         drawCapRoundLine(from: startPoint, to: endPoint, lineWidth: 8, strokeColor: strokeColor, hasShadow: hasShadow)
         layoutIfNeeded()
     }
-
-    func setupView() {
+    
+    func addAverageLines() {
         AverageLineType.allValues.forEach { (averageLineType: AverageLineType) in
             let yPos = yPosition(averageLineType.average(statistics))
-            let averageFrame = CGRect(x: 0, y: yPos, width: frame.width, height: 0)
+            let averageFrame = CGRect(x: yAxisOffset, y: yPos, width: frame.width - yAxisOffset, height: 0)
             let averageLine = CAShapeLayer()
             averageLine.strokeColor = averageLineType.strokeColor
             averageLine.fillColor = UIColor.clear.cgColor
@@ -104,6 +105,34 @@ extension ActivityChart {
             layer.addSublayer(averageLine)
             layoutIfNeeded()
         }
+    }
+    
+    func addCaptionLabel(yPos: CGFloat, text: String) {
+        let captionLabel = UILabel(frame: CGRect(x: 0, y: yPos - yAxisOffset * 0.25, width: yAxisOffset, height: yAxisOffset * 0.5))
+        captionLabel.setAttrText(text: text, font: Font.H7Title, lineSpacing: 1, characterSpacing: 1, color: .white20)
+        addSubview(captionLabel)
+    }
+    
+    func updateLabelFrames() {
+        labelContentView.subviews.forEach { (subView: UIView) in
+            if subView is UILabel {
+                let frame = subView.frame
+                subView.sizeToFit()
+                let fittedFrame = subView.frame
+                subView.frame = CGRect(x: frame.origin.x + yAxisOffset,
+                                       y: frame.origin.y,
+                                       width: fittedFrame.width,
+                                       height: frame.height)
+            }
+        }
+    }
+
+    func setupView() {
+        updateLabelFrames()
+        addAverageLines()
+        addCaptionLabel(yPos: yPosition(0.25), text: "25%")
+        addCaptionLabel(yPos: yPosition(0.50), text: "50%")
+        addCaptionLabel(yPos: yPosition(0.75), text: "75%")
     }
 
     func drawCharts() {
