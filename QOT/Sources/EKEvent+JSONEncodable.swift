@@ -68,13 +68,18 @@ extension Date: JSONEncodable {
 extension EKParticipant: JSONEncodable {
 
     public func toJSON() -> JSON {
+        /*
+         WARNING ☠️ - There appears to be and EventKit bug that can cause a crash when accessing a participant URL. So
+         we are using safeURL here: See https://stackoverflow.com/q/40804131
+         */
+        let urlString = safeURL()?.absoluteString
         let dict: [JsonKey: JSONEncodable] = [
             .isCurrentUser: isCurrentUser,
             .name: name.toJSONEncodable,
             .role: participantRole,
             .status: participantStatus,
             .type: participantType,
-            .url: url.absoluteString
+            .url: urlString.toJSONEncodable
         ]
         return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
     }

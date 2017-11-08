@@ -184,6 +184,7 @@
 		CB58917B1F7B95B200D63C5E /* ChatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5891791F7B95B200D63C5E /* ChatViewCell.swift */; };
 		CB6D49541ECC87BF005BC637 /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6D49531ECC87BF005BC637 /* Requests.swift */; };
 		CB6D49561ECCA58D005BC637 /* AuthenticationTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6D49551ECCA58D005BC637 /* AuthenticationTokenParser.swift */; };
+		CB78420D1FB30DA800C91546 /* EKParticipant+ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = CB78420C1FB30DA800C91546 /* EKParticipant+ObjC.m */; };
 		CB7F046E1F8E0999001F4DE6 /* SyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F046D1F8E0999001F4DE6 /* SyncOperation.swift */; };
 		CB810E611EEFC0D70043E3E5 /* ErrorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB810E601EEFC0D70043E3E5 /* ErrorCell.swift */; };
 		CB810E641EF00DB70043E3E5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB810E631EF00DB70043E3E5 /* User.swift */; };
@@ -643,6 +644,9 @@
 		CB5891791F7B95B200D63C5E /* ChatViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewCell.swift; sourceTree = "<group>"; };
 		CB6D49531ECC87BF005BC637 /* Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
 		CB6D49551ECCA58D005BC637 /* AuthenticationTokenParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationTokenParser.swift; sourceTree = "<group>"; };
+		CB7842061FB30AC000C91546 /* QOT-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "QOT-Bridging-Header.h"; sourceTree = "<group>"; };
+		CB78420B1FB30DA800C91546 /* EKParticipant+ObjC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EKParticipant+ObjC.h"; sourceTree = "<group>"; };
+		CB78420C1FB30DA800C91546 /* EKParticipant+ObjC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "EKParticipant+ObjC.m"; sourceTree = "<group>"; };
 		CB7F046D1F8E0999001F4DE6 /* SyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncOperation.swift; sourceTree = "<group>"; };
 		CB810E601EEFC0D70043E3E5 /* ErrorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorCell.swift; sourceTree = "<group>"; };
 		CB810E631EF00DB70043E3E5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -1243,6 +1247,16 @@
 			name = ContentRead;
 			sourceTree = "<group>";
 		};
+		CB78420F1FB311DC00C91546 /* ObjC */ = {
+			isa = PBXGroup;
+			children = (
+				CB7842061FB30AC000C91546 /* QOT-Bridging-Header.h */,
+				CB78420B1FB30DA800C91546 /* EKParticipant+ObjC.h */,
+				CB78420C1FB30DA800C91546 /* EKParticipant+ObjC.m */,
+			);
+			name = ObjC;
+			sourceTree = "<group>";
+		};
 		CB78D3361F9F674A0068A54A /* Bundled Media */ = {
 			isa = PBXGroup;
 			children = (
@@ -1378,6 +1392,7 @@
 				CBB4DD2F1EE0893F0071494A /* Extensions */,
 				CBB4DD4B1EE093A10071494A /* Generated */,
 				7F1D3D231F8E28E70071D322 /* Log */,
+				CB78420F1FB311DC00C91546 /* ObjC */,
 				CBB4DD521EE095E50071494A /* Utils */,
 				CBB4DD1C1EE085600071494A /* View Layer */,
 			);
@@ -2067,17 +2082,17 @@
 		CBD791571E72F10E0006C590 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				7F99ABB01F3DF38E009CA587 /* Database */,
-				CB8C34551EAF7F200003AB65 /* styles.css */,
-				CCF0F4C51ECDD0DA00E8D9C1 /* contentCategory.json */,
 				CC38B11F1F29EDA900C2BB87 /* AirshipConfig.plist */,
+				CBC5A5701F9FA01D007B9A5B /* Animations.xcassets */,
+				CBB237F61E6FFF1200AB5AEF /* Assets.xcassets */,
+				CB78D3361F9F674A0068A54A /* Bundled Media */,
+				CCF0F4C51ECDD0DA00E8D9C1 /* contentCategory.json */,
+				7F99ABB01F3DF38E009CA587 /* Database */,
+				CBB4DD451EE0908E0071494A /* Fonts */,
 				CBB237FB1E6FFF1200AB5AEF /* Info.plist */,
 				CC6251DA1EE00DD800C6F546 /* Localized.strings */,
-				CBB237F61E6FFF1200AB5AEF /* Assets.xcassets */,
-				CBC5A5701F9FA01D007B9A5B /* Animations.xcassets */,
-				CB78D3361F9F674A0068A54A /* Bundled Media */,
-				CBB4DD451EE0908E0071494A /* Fonts */,
 				CC7E80B81F614EEF006F9515 /* Sounds */,
+				CB8C34551EAF7F200003AB65 /* styles.css */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -2301,6 +2316,7 @@
 					CBB237EB1E6FFF1200AB5AEF = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 4FQQH349R5;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -2613,6 +2629,7 @@
 				CC8D6D041EC316BF007AE687 /* LearnContentItemViewController.swift in Sources */,
 				850A50BB1F0A973A00350097 /* PrepareContentTopTabBarView.swift in Sources */,
 				CC143A4F1EC47810001FB76E /* ChartViewModel.swift in Sources */,
+				CB78420D1FB30DA800C91546 /* EKParticipant+ObjC.m in Sources */,
 				7FB172A01FA1E6AD00112C69 /* MyToBeVisionAnimation.swift in Sources */,
 				CBB4DCE01ED8178A0071494A /* ConcurrentOperation.swift in Sources */,
 				CB3437691EFE75C400D89D4F /* ContentItem+Convenience.swift in Sources */,
@@ -3067,6 +3084,7 @@
 			baseConfigurationReference = 2BFF26100D7FF8708F5EF189 /* Pods-QOT.database.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = QOT/QOT.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -3079,6 +3097,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "20d64035-9abd-4e9c-9756-e0af22ef2d21";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.tignum.qot.novartis";
+				SWIFT_OBJC_BRIDGING_HEADER = "QOT/Sources/QOT-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3201,6 +3221,7 @@
 			baseConfigurationReference = 42795728C4F3229DFB18981E /* Pods-QOT.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = QOT/QOT.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -3213,6 +3234,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "20d64035-9abd-4e9c-9756-e0af22ef2d21";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.tignum.qot.novartis";
+				SWIFT_OBJC_BRIDGING_HEADER = "QOT/Sources/QOT-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3223,6 +3246,7 @@
 			baseConfigurationReference = 2F1C8D6D4864F462A3F805BB /* Pods-QOT.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = QOT/QOT.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 4FQQH349R5;
@@ -3234,6 +3258,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "d26bb900-2a9a-4ff5-ab5f-97ecbe9efa76";
 				PROVISIONING_PROFILE_SPECIFIER = "QOT Novartis Enterprise";
+				SWIFT_OBJC_BRIDGING_HEADER = "QOT/Sources/QOT-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
