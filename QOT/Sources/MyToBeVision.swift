@@ -19,8 +19,8 @@ final class MyToBeVision: SyncableObject {
     @objc dynamic var subHeadline: String?
     
     @objc dynamic var text: String?
-    
-    @objc dynamic var date: Date = Date()
+
+    @objc dynamic var date: Date = Date.distantPast // We need distantPast so that setData works correctly
 
     @objc dynamic var changeStamp: String? = UUID().uuidString
     
