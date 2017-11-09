@@ -44,8 +44,9 @@ extension AddSensorCoordinator: AddSensorViewControllerDelegate {
     func didTapSensor(_ sensor: AddSensorViewModel.Sensor, in viewController: UIViewController) {
         switch sensor {
         case .fitbit:
-            if services.userService.fitbitState == .connected {
-                viewController.showAlert(type: .fitbitAlreadyConnected)
+            if services.userService.fitbitState == .connected || services.userService.fitbitState == .pending,
+                let url = URL(string: "https://www.fitbit.com/user/profile/apps") {
+                    presentSafariViewController(url: url, viewController: viewController)
             } else {
                 presentFitBitWebView(in: viewController)
             }
@@ -68,7 +69,10 @@ private extension AddSensorCoordinator {
             let url = URL(string: urlString) else {
                 return
         }
-        
+        presentSafariViewController(url: url, viewController: viewController)
+    }
+    
+    func presentSafariViewController(url: URL, viewController: UIViewController) {
         do {
             let safariViewController = try SafariViewController(url)
             AddSensorCoordinator.safariViewController = safariViewController
