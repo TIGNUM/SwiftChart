@@ -27,12 +27,13 @@ final class MyWhyViewModel {
 
     var items: [MyWhy]?
     let partners: AnyRealmCollection<Partner>
-    let myToBeVision: MyToBeVision?
+    private(set) var myToBeVision: MyToBeVision?
     let userChoices: AnyRealmCollection<UserChoice>
     let updates = PublishSubject<CollectionUpdate, NoError>()
     private let services: Services
     private var partnersNotificationTokenHandler: NotificationTokenHandler?
     private var visionNotificationTokenHandler: NotificationTokenHandler?
+    private var visionsNotificationTokenHandler: NotificationTokenHandler?
     private var userChoiceNotificationTokenHandler: NotificationTokenHandler?
     private var profileImageNotificationTokenHandler: NotificationTokenHandler?
     private var maxWeeklyItems: Int {
@@ -73,6 +74,18 @@ final class MyWhyViewModel {
             case .change:
                 self?.updates.next(.reload)
                 break
+            default:
+                break
+            }
+        }.handler
+        visionsNotificationTokenHandler = services.userService.myToBeVisions().addNotificationBlock { [weak self] (changes: RealmCollectionChange<AnyRealmCollection<MyToBeVision>>) in
+            switch changes {
+            case .update(_, _, let insertions, _):
+                // myToBeVision may be nil when app first starts. so set it again when first object [0] is inserted
+                guard insertions.count > 0, insertions[0] == 0 else { return }
+                self?.myToBeVision = services.userService.myToBeVision()
+                self?.refreshDataSource()
+                self?.updates.next(.reload)
             default:
                 break
             }

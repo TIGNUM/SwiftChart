@@ -112,7 +112,11 @@ extension UserService {
 extension UserService {
     
     func myToBeVision() -> MyToBeVision? {
-        return mainRealm.objects(MyToBeVision.self).first
+        return myToBeVisions().first
+    }
+    
+    func myToBeVisions() -> AnyRealmCollection<MyToBeVision> {
+        return AnyRealmCollection(mainRealm.objects(MyToBeVision.self))
     }
 
     func createMyToBeVision() throws -> MyToBeVision {

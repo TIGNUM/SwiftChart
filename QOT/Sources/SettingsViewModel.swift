@@ -427,6 +427,6 @@ private var accountRows: [SettingsRow] {
 private var aboutRows: [SettingsRow] {
     return [
         .label(title: SettingsType.terms.title.uppercased(), value: "", settingsType: .terms),
-        .label(title: SettingsType.copyrights.title.uppercased(), value: "", settingsType: .copyrights),
+        .label(title: SettingsType.copyrights.title.uppercased(), value: "", settingsType: .copyrights)
     ]
 }
