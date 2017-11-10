@@ -232,8 +232,8 @@ enum ChartType: String, EnumCollection {
              .peakPerformanceUpcomingNextWeek: return R.string.localized.meCardTitlePeakPerformacneUpcoming()
         case .peakPerformanceAverageWeek,
              .peakPerformanceAverageMonth: return R.string.localized.meCardTitlePeakPerformacneAverage()
-        case .sleepQuality: return R.string.localized.meCardTitleSleepQuantity()
-        case .sleepQuantity: return R.string.localized.meCardTitleSleepQuality()
+        case .sleepQuality: return R.string.localized.meCardTitleSleepQuality()
+        case .sleepQuantity: return R.string.localized.meCardTitleSleepQuantity()
         case .activitySittingMovementRatio: return R.string.localized.meCardTitleActivityRatio()
         case .activityLevel: return R.string.localized.meCardTitleActivityLevel()
         case .intensityLoadWeek,
@@ -287,8 +287,8 @@ enum ChartType: String, EnumCollection {
              .peakPerformanceUpcomingNextWeek: return true
         case .peakPerformanceAverageWeek,
              .peakPerformanceAverageMonth: return true
-        case .sleepQuality: return false
-        case .sleepQuantity: return false
+        case .sleepQuality,
+             .sleepQuantity: return false
         case .activitySittingMovementRatio: return false
         case .activityLevel: return false
         case .intensityLoadWeek,
@@ -314,8 +314,8 @@ enum ChartType: String, EnumCollection {
              .peakPerformanceUpcomingNextWeek: return true
         case .peakPerformanceAverageWeek,
              .peakPerformanceAverageMonth: return false
-        case .sleepQuality: return false
-        case .sleepQuantity: return false
+        case .sleepQuality,
+             .sleepQuantity: return false
         case .activitySittingMovementRatio,
              .activityLevel,
              .intensityLoadWeek,
@@ -334,7 +334,57 @@ enum ChartType: String, EnumCollection {
         default: return false
         }
     }
-
+    
+    var calendarRequired: Bool {
+        switch self {
+        case .meetingAverageDay,
+             .meetingAverageWeek,
+             .meetingLength,
+             .meetingTimeBetween,
+             .peakPerformanceUpcomingWeek,
+             .peakPerformanceUpcomingNextWeek,
+             .peakPerformanceAverageWeek,
+             .peakPerformanceAverageMonth: return true
+        default: return false
+        }
+    }
+    
+    var commingSoon: Bool {
+        switch self {
+        case .travelTripsAverageYear,
+             .travelTripsAverageWeeks,
+             .travelTripsMaxTimeZone,
+             .travelTripsNextFourWeeks,
+             .travelTripsTimeZoneChangedYear,
+             .travelTripsTimeZoneChangedWeeks: return true
+        default: return false
+        }
+    }
+    
+    var overlayImage: UIImage? {
+        switch self {
+        case .travelTripsTimeZoneChangedYear,
+             .travelTripsTimeZoneChangedWeeks,             
+             .meetingAverageDay,
+             .meetingAverageWeek: return R.image.overlay_travel_01()
+        case .travelTripsMaxTimeZone,
+             .sleepQuantity,
+             .activityLevel,
+             .peakPerformanceUpcomingWeek,
+             .peakPerformanceUpcomingNextWeek,
+             .meetingTimeBetween: return R.image.overlay_travel_02()
+        case .travelTripsNextFourWeeks,
+             .meetingLength,
+             .activitySittingMovementRatio: return R.image.overlay_travel_03()
+        case .sleepQuality,
+             .travelTripsAverageYear,
+             .travelTripsAverageWeeks,
+             .peakPerformanceAverageWeek,
+             .peakPerformanceAverageMonth: return R.image.overlay_travel_04()
+        default: return nil
+        }
+    }
+    
     func segmentedTitle(selected: Bool?) -> NSAttributedString? {
         switch self {
         case .meetingAverageDay: return R.string.localized.meSectorMyStatisticsDay().attrString(selected)
@@ -419,8 +469,8 @@ enum StatisticsSectionType: Int, EnumCollection {
 
     var chartTypes: [[ChartType]] {
         switch self {
-        case .sleep: return [[.sleepQuantity],
-                             [.sleepQuality]]
+        case .sleep: return [[.sleepQuality],
+                             [.sleepQuantity]]
         case .activity: return [[.activitySittingMovementRatio],
                                 [.activityLevel]]
         case .peakPerformance: return [[.peakPerformanceUpcomingWeek, .peakPerformanceUpcomingNextWeek],
@@ -438,7 +488,7 @@ enum StatisticsSectionType: Int, EnumCollection {
 
     var universeChartTypes: [ChartType] {
         switch self {
-        case .sleep: return [.sleepQuantity, .sleepQuality]
+        case .sleep: return [.sleepQuality, .sleepQuantity]
         case .activity: return [.activitySittingMovementRatio, .activityLevel]
         case .peakPerformance: return [.peakPerformanceUpcomingWeek, .peakPerformanceAverageWeek]
         case .intensity: return [.intensityLoadWeek, .intensityRecoveryWeek]

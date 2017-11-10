@@ -12,6 +12,8 @@ import Anchorage
 protocol ChartViewControllerDelegate: class {
     
     func didSelectAddSensor()
+    
+    func didSelectOpenSettings()
 }
 
 final class ChartViewController: UIViewController {
@@ -148,6 +150,10 @@ extension ChartViewController: ChartViewControllerDelegate {
     
     func didSelectAddSensor() {
         AppDelegate.current.appCoordinator.presentAddSensorView(viewController: self)
+    }
+    
+    func didSelectOpenSettings() {
+        UIApplication.openAppSettings()
     }
 }
 

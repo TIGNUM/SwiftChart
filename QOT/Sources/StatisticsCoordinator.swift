@@ -22,7 +22,10 @@ final class StatisticsCoordinator: NSObject, ParentCoordinator {
 
     // MARK: - Life Cycle
 
-    init(root: UIViewController, services: Services, transitioningDelegate: UIViewControllerTransitioningDelegate, startingSection: StatisticsSectionType? = nil) {
+    init(root: UIViewController,
+         services: Services,
+         transitioningDelegate: UIViewControllerTransitioningDelegate,
+         startingSection: StatisticsSectionType? = nil) {
         self.rootViewController = root
         self.services = services
         self.transitioningDelegate = transitioningDelegate

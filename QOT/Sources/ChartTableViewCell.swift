@@ -111,7 +111,8 @@ extension ChartTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionVi
                         statistics: statistics,
                         charts: viewModel.allCharts,
                         configuration: config,
-                        fitbitState: viewModel.fitbitState)
+                        fitbitState: viewModel.fitbitState,
+                        calandarAccessGaranted: viewModel.calandarAccessGaranted)
         chartCell.delegate = self
         let cellRect = collectionView.convert(chartCell.frame, to: collectionView.superview)
         chartCell.animateHeader(withCellRect: cellRect, inParentRect: collectionView.frame)
@@ -160,5 +161,9 @@ extension ChartTableViewCell: ChartCellDelegate {
     
     func didSelectAddSensor() {
         delegate?.didSelectAddSensor()
+    }
+    
+    func didSelectOpenSettings() {
+        delegate?.didSelectOpenSettings()
     }
 }

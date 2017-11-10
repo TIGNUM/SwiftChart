@@ -23,6 +23,7 @@ final class ChartViewModel {
     private let services: Services
     let allCharts: [Statistics]
     var sortedSections = [StatisticsSectionType]()
+    var calandarAccessGaranted = true
 
     // MARK: - Init
 
@@ -32,6 +33,7 @@ final class ChartViewModel {
             self.charts = try services.statisticsService.charts()
             self.allCharts = self.charts.flatMap { $0 }
             sortCharts(startingSection: startingSection)
+            askPermissionForCalendar()
         } catch let error {
             throw error
         }
@@ -109,5 +111,11 @@ private extension ChartViewModel {
         sortedSections = criticalSectionTypes.sorted { $0.value > $1.value }.flatMap { $0.key }
         sortedSections.remove(object: startingSection)
         sortedSections.insert(startingSection, at: 0)
+    }
+    
+    private func askPermissionForCalendar() {
+        PermissionHandler().askPermissionForCalendar { (garanted: Bool) in
+            self.calandarAccessGaranted = garanted
+        }
     }
 }

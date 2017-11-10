@@ -29,6 +29,8 @@ protocol ChartCellDelegate: class {
     func doReload()
     
     func didSelectAddSensor()
+    
+    func didSelectOpenSettings()
 
 }
 
@@ -78,6 +80,10 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
     @IBOutlet private weak var addSenorView: UIView!
     @IBOutlet private weak var addSenorViewLabel: UILabel!
     @IBOutlet private weak var addSenorViewCircleImageView: UIImageView!
+    @IBOutlet private weak var overlayView: UIView!
+    @IBOutlet private weak var overlayBackgroundImageView: UIImageView!
+    @IBOutlet private weak var comingSoonView: UIView!
+    @IBOutlet private weak var comingSoonLabel: UILabel!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var headerLabelLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerLabelTrailingConstraint: NSLayoutConstraint!
@@ -89,7 +95,15 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
     private var headerTitle: String = ""
     private var configuration = Configuration.make(screenType: .big)
     private var fitbitState = User.FitbitState.disconnected
-    private lazy var shouldShowAddSensorView = fitbitState != .connected && statistics?.chartType.sensorRequired == true
+    private var calandarAccessGaranted = true
+    
+    private var shouldShowAddSensorView: Bool {
+        return fitbitState != .connected && statistics?.chartType.sensorRequired == true
+    }
+    
+    private var shouldShowAddCalendarView: Bool {
+        return calandarAccessGaranted == false && statistics?.chartType.calendarRequired == true
+    }
 
     // MARK: - Init
 
@@ -115,6 +129,7 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
         infoView.layer.borderWidth = 1
         infoView.layer.borderColor = UIColor.white30.cgColor
         infoView.layer.masksToBounds = true
+        overlayView.alpha = 0
     }
 
     // MARK: - Public
@@ -124,13 +139,15 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
                statistics: Statistics,
                charts: [Statistics],
                configuration: Configuration,
-               fitbitState: User.FitbitState) {
+               fitbitState: User.FitbitState,
+               calandarAccessGaranted: Bool) {
         self.chartTypes = chartTypes
         self.statistics = statistics
         self.charts = charts
         self.headerTitle = headerTitle
         self.configuration = configuration
         self.fitbitState = fitbitState
+        self.calandarAccessGaranted = calandarAccessGaranted
         infoView.alpha = 0
     }
 
@@ -157,9 +174,11 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
     override func prepareForReuse() {
         super.prepareForReuse()
 
+        chartSegmentedContentView.removeSubViews()
         labelContentView.removeSubViews()
         chartContentView.removeSubViews()
-        chartSegmentedContentView.removeSubViews()
+        containerView.alpha = 1
+        overlayView.alpha = 0
         infoView.alpha = 0
     }
 
@@ -183,35 +202,43 @@ private extension ChartCell {
         setupLabels(headerTitle: headerTitle, statistics: statistics, charts: charts)
         addCharts(statistics: statistics, allCards: charts)
         setupInfoView()
-        setupAddSensorView()
     }
 
-    private func setupSegmentedView(_ cardType: ChartType) {
+    func setupSegmentedView(_ cardType: ChartType) {
         chartSegmentedView?.isHidden = cardType.segmentedView == false
         chartContentView.isHidden = chartSegmentedView?.isHidden == false
         guard chartTypes.count == 2 else { return }
         updateButtons()
     }
 
-    private func setupLabels(headerTitle: String, statistics: Statistics, charts: [Statistics]) {
+    func setupLabels(headerTitle: String, statistics: Statistics, charts: [Statistics]) {
         let statistics = statistics.chartType.selectedChart(charts: charts)
-        let userAverage = shouldShowAddSensorView == true ? "00" : statistics.userAverageDisplayableValue
-        let teamAverage = shouldShowAddSensorView == true ? "00" : statistics.teamAverageDisplayableValue
-        let dataAverage = shouldShowAddSensorView == true ? "00" : statistics.dataAverageDisplayableValue
         setLabel(text: "INFO", color: .white40, label: bottomLabel)
         setLabel(text: "TEAM", color: .azure, label: teamLabel)
         setLabel(text: "AVG.", color: .azure, label: teamAverageLabel)
         setLabel(text: "AVG.", color: .cherryRedTwo, label: dataAverageLabel)
         setLabel(text: "DATA", color: .cherryRedTwo, label: dataLabel)
         setLabel(text: "PERSONAL\nAVG.", color: .white40, label: userAverageLabel, lineSpacing: 2.5)
-        setLabel(text: dataAverage, color: .cherryRedTwo, label: dataAverageValueLabel)
-        setLabel(text: teamAverage, color: .azure, label: teamAverageValueLabel)
-        setLabel(text: userAverage, color: .white, label: userAverageValueLabel, characterSpacing: -2.7, font: Font.H1MainTitle)
+        setLabel(text: statistics.dataAverageDisplayableValue, color: .cherryRedTwo, label: dataAverageValueLabel)
+        setLabel(text: statistics.teamAverageDisplayableValue, color: .azure, label: teamAverageValueLabel)
+        setLabel(text: statistics.userAverageDisplayableValue, color: .white, label: userAverageValueLabel, characterSpacing: -2.7, font: Font.H1MainTitle)
         setLabel(text: headerTitle.uppercased(), color: .white, label: headerLabel, lineSpacing: 2.5, font: Font.PTextSubtitle)
+        setLabel(text: R.string.localized.meChartCommingSoon().uppercased(), color: .white, label: comingSoonLabel, lineSpacing: 2.5, font: Font.PTextSubtitle)
     }
 
-    private func setLabel(text: String, color: UIColor, label: UILabel, lineSpacing: CGFloat = 1, characterSpacing: CGFloat = 2, font: UIFont = Font.H7Tag) {
-        label.setAttrText(text: text, font: font, lineSpacing: lineSpacing, characterSpacing: characterSpacing, color: color)
+    func setLabel(text: String,
+                          color: UIColor,
+                          label: UILabel,
+                          lineSpacing: CGFloat = 1,
+                          characterSpacing: CGFloat = 2,
+                          font: UIFont = Font.H7Tag,
+                          alignment: NSTextAlignment = .natural) {
+        label.setAttrText(text: text,
+                          font: font,
+                          alignment: alignment,
+                          lineSpacing: lineSpacing,
+                          characterSpacing: characterSpacing,
+                          color: color)
     }
 
     func addCharts(statistics: Statistics, allCards: [Statistics]) {
@@ -224,9 +251,8 @@ private extension ChartCell {
             chartContentView.addSubview(charts)
         }
     }
-
-    private func setupChartView(statistics: Statistics) -> UIView {
-        guard shouldShowAddSensorView == false else { return UIView() }
+    
+    func setupChartView(statistics: Statistics) -> UIView {
         let segmentedFrame = CGRect(x: 0, y: 0, width: chartSegmentedContentView.frame.width, height: chartSegmentedContentView.frame.height)
         let segmentedBiggerFrame = CGRect(x: 0, y: 0, width: segmentedFrame.width, height: segmentedFrame.height + labelContentView.frame.height)
         let frame = chartContentView.frame
@@ -235,6 +261,11 @@ private extension ChartCell {
         switch statistics.chartType {
         case .activityLevel,
              .activitySittingMovementRatio:
+            if shouldShowAddSensorView == true {
+                setupOverlayView(text: fitbitState.addSensorText)
+                return UIView()
+            }
+            
             return ActivityChart(frame: frame, statistics: statistics, labelContentView: labelContentView)
         case .intensityLoadWeek,
              .intensityLoadMonth,
@@ -243,28 +274,68 @@ private extension ChartCell {
             return IntensityChart(frame: segmentedFrame, statistics: statistics, labelContentView: labelContentView)
         case .meetingAverageDay,
              .meetingAverageWeek:
+            if shouldShowAddCalendarView == true {
+                setupOverlayView(text: R.string.localized.meChartAddCalendar())
+                return UIView()
+            }
+            
             return MeetingsAverageChart(frame: segmentedBiggerFrame, statistics: statistics, labelContentView: labelContentView)
         case .meetingLength:
+            if shouldShowAddCalendarView == true {
+                setupOverlayView(text: R.string.localized.meChartAddCalendar())
+                return UIView()
+            }
+            
             return MeetingsLengthChart(frame: biggerFrame, statistics: statistics, labelContentView: labelContentView)
         case .meetingTimeBetween:
+            if shouldShowAddCalendarView == true {
+                setupOverlayView(text: R.string.localized.meChartAddCalendar())
+                return UIView()
+            }
+            
             return MeetingsTimeBetweenChart(frame: biggerFrame, statistics: statistics, labelContentView: labelContentView)
         case .sleepQuality,
              .sleepQuantity:
+            if shouldShowAddSensorView == true {
+                setupOverlayView(text: fitbitState.addSensorText)
+                return UIView()
+            }
+            
             return SleepChart(frame: frame, statistics: statistics)
         case .peakPerformanceUpcomingWeek,
              .peakPerformanceUpcomingNextWeek:
+            if shouldShowAddCalendarView == true {
+                setupOverlayView(text: R.string.localized.meChartAddCalendar())
+                return UIView()
+            }
+            
             return PeakPerformanceUpcomingChart(frame: segmentedFrame, statistics: statistics, labelContentView: labelContentView)
         case .peakPerformanceAverageWeek,
              .peakPerformanceAverageMonth:
+            if shouldShowAddCalendarView == true {
+                setupOverlayView(text: R.string.localized.meChartAddCalendar())
+                return UIView()
+            }
+            
             return PeakPerformanceAverageChart(frame: segmentedFrame, statistics: statistics, labelContentView: labelContentView)
         case .travelTripsTimeZoneChangedWeeks,
              .travelTripsTimeZoneChangedYear,
              .travelTripsAverageWeeks,
              .travelTripsAverageYear,
              .travelTripsNextFourWeeks:
+            if statistics.chartType.commingSoon == true {
+                setupOverlayView(text: R.string.localized.meChartCommingSoon())
+                return UIView()
+            }
+            
             let travelTripFrame = statistics.chartType == .travelTripsNextFourWeeks ? frame : segmentedFrame
             return TravelTripsChart(frame: travelTripFrame, statistics: statistics, labelContentView: labelContentView)
         case .travelTripsMaxTimeZone:
+            if statistics.chartType.commingSoon == true {
+                setupOverlayView(text: R.string.localized.meChartCommingSoon())
+                return UIView()
+            }
+            
             return TravelMaxTimeZoneChart(frame: biggerFrame, statistics: statistics, labelContentView: labelContentView)
         }
     }
@@ -274,8 +345,14 @@ private extension ChartCell {
 
 private extension ChartCell {
     
-    @IBAction func addSensorTapped(sender: UIButton) {
-        delegate?.didSelectAddSensor()
+    @IBAction func overlayButtonTapped(sender: UIButton) {
+        if shouldShowAddCalendarView == true {
+            delegate?.didSelectOpenSettings()
+        }
+        
+        if shouldShowAddSensorView == true {
+            delegate?.didSelectAddSensor()
+        }
     }
 
     @IBAction func infoButtonPressed(sender: UIButton) {
@@ -342,27 +419,26 @@ private extension ChartCell {
     }
 }
 
-// MARK: - Add Sensor View
+// MARK: - OverlayView
 
 private extension ChartCell {
     
-    func setupAddSensorView() {
-        guard shouldShowAddSensorView == true else {
-            addSenorView.isHidden = true
-            return
-        }
+    func setupOverlayView(text: String) {
+        overlayView.alpha = 1
+        containerView.alpha = 0
+        overlayBackgroundImageView.image = R.image.overlay_travel_02()
+        addSenorView.isHidden = statistics?.chartType.commingSoon == true
+        comingSoonView.isHidden = statistics?.chartType.commingSoon == false
+        overlayBackgroundImageView.image = statistics?.chartType.overlayImage
         
-        chartContentView.isHidden = true
-        chartSegmentedContentView.isHidden = true
-        seperatorBottomView.isHidden = true
-        labelContentView.isHidden = true
-        bottomContentView.isHidden = true
-        addSenorView.backgroundColor = .clear
-        addSenorViewLabel.setAttrText(text: fitbitState.addSensorText,
-                                      font: Font.DPText,
-                                      alignment: .center,
-                                      lineSpacing: 2.5,
-                                      characterSpacing: 1,
-                                      color: .white40)
+        if statistics?.chartType.commingSoon == false {
+            setLabel(text: text,
+                     color: .white40,
+                     label: addSenorViewLabel,
+                     lineSpacing: 5,
+                     characterSpacing: 1,
+                     font: Font.DPText,
+                     alignment: .center)
+        }
     }
 }
