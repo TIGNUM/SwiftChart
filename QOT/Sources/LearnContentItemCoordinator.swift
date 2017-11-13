@@ -66,18 +66,19 @@ final class LearnContentItemCoordinator: ParentCoordinator {
             pages.append(audioViewController)
         }
 
-        let leftButton = UIBarButtonItem(withImage: R.image.ic_minimize())
+        let leftButton = UIBarButtonItem(withImage: R.image.ic_minimize_dark()?.withRenderingMode(.alwaysOriginal))
         topTabBarController = UINavigationController(withPages: pages,
                                                      headerView: headerView,
                                                      topBarDelegate: topBarDelegate ?? self,
                                                      pageDelegate: self,
                                                      backgroundColor: .white,
                                                      backgroundImage: nil,
-                                                     titleSelectedColor: .black70,
-                                                     titleNormalColor: .black30,
+                                                     titleSelectedColor: .black,
+                                                     titleNormalColor: .black40,
                                                      leftButton: leftButton)
         if let navigationBar = topTabBarController.navigationBar as? TopNavigationBar {
-            navigationBar.setStyle(selectedColor: .black70, normalColor: .black30, backgroundColor: .white)
+            navigationBar.setStyle(selectedColor: .black, normalColor: .black40, backgroundColor: .white)
+            leftButton.tintColor = .black40
 
             if pages.count <= 1 {
                 navigationBar.setMiddleButtons([])
