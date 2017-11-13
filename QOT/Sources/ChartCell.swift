@@ -305,7 +305,10 @@ private extension ChartCell {
             return SleepChart(frame: frame, statistics: statistics)
         case .peakPerformanceUpcomingWeek,
              .peakPerformanceUpcomingNextWeek:
-            if shouldShowAddCalendarView == true {
+            if statistics.chartType.comingSoon == true {
+                setupOverlayView(text: R.string.localized.meChartCommingSoon())
+                return UIView()
+            } else if shouldShowAddCalendarView == true {
                 setupOverlayView(text: R.string.localized.meChartAddCalendar())
                 return UIView()
             }
@@ -313,7 +316,10 @@ private extension ChartCell {
             return PeakPerformanceUpcomingChart(frame: segmentedFrame, statistics: statistics, labelContentView: labelContentView)
         case .peakPerformanceAverageWeek,
              .peakPerformanceAverageMonth:
-            if shouldShowAddCalendarView == true {
+            if statistics.chartType.comingSoon == true {
+                setupOverlayView(text: R.string.localized.meChartCommingSoon())
+                return UIView()
+            } else if shouldShowAddCalendarView == true {
                 setupOverlayView(text: R.string.localized.meChartAddCalendar())
                 return UIView()
             }
@@ -324,7 +330,7 @@ private extension ChartCell {
              .travelTripsAverageWeeks,
              .travelTripsAverageYear,
              .travelTripsNextFourWeeks:
-            if statistics.chartType.commingSoon == true {
+            if statistics.chartType.comingSoon == true {
                 setupOverlayView(text: R.string.localized.meChartCommingSoon())
                 return UIView()
             }
@@ -332,7 +338,7 @@ private extension ChartCell {
             let travelTripFrame = statistics.chartType == .travelTripsNextFourWeeks ? frame : segmentedFrame
             return TravelTripsChart(frame: travelTripFrame, statistics: statistics, labelContentView: labelContentView)
         case .travelTripsMaxTimeZone:
-            if statistics.chartType.commingSoon == true {
+            if statistics.chartType.comingSoon == true {
                 setupOverlayView(text: R.string.localized.meChartCommingSoon())
                 return UIView()
             }
@@ -427,12 +433,11 @@ private extension ChartCell {
     func setupOverlayView(text: String) {
         overlayView.alpha = 1
         containerView.alpha = 0
-        overlayBackgroundImageView.image = R.image.overlay_travel_02()
-        addSenorView.isHidden = statistics?.chartType.commingSoon == true
-        comingSoonView.isHidden = statistics?.chartType.commingSoon == false
+        addSenorView.isHidden = statistics?.chartType.comingSoon == true
+        comingSoonView.isHidden = statistics?.chartType.comingSoon == false
         overlayBackgroundImageView.image = statistics?.chartType.overlayImage
         
-        if statistics?.chartType.commingSoon == false {
+        if statistics?.chartType.comingSoon == false {
             setLabel(text: text,
                      color: .white40,
                      label: addSenorViewLabel,

@@ -52,7 +52,7 @@ final class StatisticsService {
                 chartTypes.forEach { (chartType: ChartType) in
                     if let chart = chart(key: chartType.rawValue) {
                         chart.chartType = chartType
-                        chart.title = chartType.title
+                        chart.title = chartType.title                        
                         chartSections.append(chart)
                     }
                 }

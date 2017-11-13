@@ -27,7 +27,7 @@ final class Statistics: SyncableObject {
 
     @objc private(set) dynamic var maximum: Double = 0
 
-    @objc private(set) dynamic var universe: Double = 0
+    @objc private dynamic var universe: Double = 0
 
     @objc private(set) dynamic var multiplier: Double = 0
 
@@ -67,6 +67,14 @@ extension Statistics: OneWaySyncableDown {
 // MARK: - Displayable Values
 
 extension Statistics {
+    
+    var universeValue: CGFloat {
+        if let chartType = ChartType(rawValue: key) {
+            return chartType.comingSoon == true ? 0 : universe.toFloat
+        }
+        
+        return universe.toFloat
+    }
 
     var userAverageDisplayableValue: String {
         return displayableValue(average: userAverage)

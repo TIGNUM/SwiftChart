@@ -349,14 +349,18 @@ enum ChartType: String, EnumCollection {
         }
     }
     
-    var commingSoon: Bool {
+    var comingSoon: Bool {
         switch self {
         case .travelTripsAverageYear,
              .travelTripsAverageWeeks,
              .travelTripsMaxTimeZone,
              .travelTripsNextFourWeeks,
              .travelTripsTimeZoneChangedYear,
-             .travelTripsTimeZoneChangedWeeks: return true
+             .travelTripsTimeZoneChangedWeeks,
+             .peakPerformanceAverageWeek,
+             .peakPerformanceAverageMonth,
+             .peakPerformanceUpcomingWeek,
+             .peakPerformanceUpcomingNextWeek: return true
         default: return false
         }
     }

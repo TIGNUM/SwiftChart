@@ -238,45 +238,45 @@ private func chartSectors(service: StatisticsService) -> [ChartSector] {
 
 private func peakSpikes(service: StatisticsService) -> [Spike] {
     return [
-        ChartSpike(angle: 245, load: service.chart(key: ChartType.peakPerformanceUpcomingWeek.rawValue)?.universe.toFloat ?? 0),
-        ChartSpike(angle: 235, load: service.chart(key: ChartType.peakPerformanceAverageWeek.rawValue)?.universe.toFloat ?? 0)
+        ChartSpike(angle: 245, load: service.chart(key: ChartType.peakPerformanceUpcomingWeek.rawValue)?.universeValue ?? 0),
+        ChartSpike(angle: 235, load: service.chart(key: ChartType.peakPerformanceAverageWeek.rawValue)?.universeValue ?? 0)
     ]
 }
 
 private func intensitySpikes(service: StatisticsService) -> [Spike] {
     return [
-        ChartSpike(angle: 225, load: service.chart(key: ChartType.intensityLoadWeek.rawValue)?.universe.toFloat ?? 0),
-        ChartSpike(angle: 215, load: service.chart(key: ChartType.intensityRecoveryWeek.rawValue)?.universe.toFloat ?? 0)
+        ChartSpike(angle: 225, load: service.chart(key: ChartType.intensityLoadWeek.rawValue)?.universeValue ?? 0),
+        ChartSpike(angle: 215, load: service.chart(key: ChartType.intensityRecoveryWeek.rawValue)?.universeValue ?? 0)
     ]
 }
 
 private func meetingsSpikes(service: StatisticsService) -> [Spike] {
     return [
-        ChartSpike(angle: 205, load: service.chart(key: ChartType.meetingAverageDay.rawValue)?.universe.toFloat ?? 0),
-        ChartSpike(angle: 195, load: service.chart(key: ChartType.meetingLength.rawValue)?.universe.toFloat ?? 0),
-        ChartSpike(angle: 185, load: service.chart(key: ChartType.meetingTimeBetween.rawValue)?.universe.toFloat ?? 0)
+        ChartSpike(angle: 205, load: service.chart(key: ChartType.meetingAverageDay.rawValue)?.universeValue ?? 0),
+        ChartSpike(angle: 195, load: service.chart(key: ChartType.meetingLength.rawValue)?.universeValue ?? 0),
+        ChartSpike(angle: 185, load: service.chart(key: ChartType.meetingTimeBetween.rawValue)?.universeValue ?? 0)
     ]
 }
 
 private func travelSpikes(service: StatisticsService) -> [Spike] {
     return [
-        ChartSpike(angle: 175, load: service.chart(key: ChartType.travelTripsAverageWeeks.rawValue)?.universe.toFloat ?? 0),
-        ChartSpike(angle: 165, load: service.chart(key: ChartType.travelTripsNextFourWeeks.rawValue)?.universe.toFloat ?? 0),
-        ChartSpike(angle: 155, load: service.chart(key: ChartType.travelTripsTimeZoneChangedWeeks.rawValue)?.universe.toFloat ?? 0),
-        ChartSpike(angle: 145, load: service.chart(key: ChartType.travelTripsMaxTimeZone.rawValue)?.universe.toFloat ?? 0)
+        ChartSpike(angle: 175, load: service.chart(key: ChartType.travelTripsAverageWeeks.rawValue)?.universeValue ?? 0),
+        ChartSpike(angle: 165, load: service.chart(key: ChartType.travelTripsNextFourWeeks.rawValue)?.universeValue ?? 0),
+        ChartSpike(angle: 155, load: service.chart(key: ChartType.travelTripsTimeZoneChangedWeeks.rawValue)?.universeValue ?? 0),
+        ChartSpike(angle: 145, load: service.chart(key: ChartType.travelTripsMaxTimeZone.rawValue)?.universeValue ?? 0)
     ]
 }
 
 private func sleepSpikes(service: StatisticsService) -> [Spike] {
     return [
-        ChartSpike(angle: 135, load: service.chart(key: ChartType.sleepQuantity.rawValue)?.universe.toFloat ?? 0),
-        ChartSpike(angle: 125, load: service.chart(key: ChartType.sleepQuality.rawValue)?.universe.toFloat ?? 0)
+        ChartSpike(angle: 135, load: service.chart(key: ChartType.sleepQuantity.rawValue)?.universeValue ?? 0),
+        ChartSpike(angle: 125, load: service.chart(key: ChartType.sleepQuality.rawValue)?.universeValue ?? 0)
     ]
 }
 
 private func activitySpikes(service: StatisticsService) -> [Spike] {
     return [
-        ChartSpike(angle: 115, load: service.chart(key: ChartType.activitySittingMovementRatio.rawValue)?.universe.toFloat ?? 0),
-        ChartSpike(angle: 105, load: service.chart(key: ChartType.activityLevel.rawValue)?.universe.toFloat ?? 0)
+        ChartSpike(angle: 115, load: service.chart(key: ChartType.activitySittingMovementRatio.rawValue)?.universeValue ?? 0),
+        ChartSpike(angle: 105, load: service.chart(key: ChartType.activityLevel.rawValue)?.universeValue ?? 0)
     ]
 }

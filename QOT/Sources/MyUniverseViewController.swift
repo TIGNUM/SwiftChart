@@ -196,7 +196,7 @@ private extension MyUniverseViewController {
         case 0: pageName = .myData
         default: pageName = .myWhy
         }
-
+        
         pageTracker.track(self)
     }
 }
@@ -211,9 +211,7 @@ private extension MyUniverseViewController {
     }
 
     @objc func didTapSector(recognizer: UITapGestureRecognizer) {
-        guard pageIndex == 0 else {
-            return
-        }
+        guard pageIndex == 0 else { return }
         let point = recognizer.location(in: myDataView)
         if let section = myDataSectorLabelsView.labelForPoint(point)?.sector.labelType.sectionType {
             delegate?.didTapSector(startingSection: section, in: self)
