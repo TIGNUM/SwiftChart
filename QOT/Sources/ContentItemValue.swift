@@ -138,6 +138,13 @@ enum ContentItemTextStyle: String {
     static func createStyle(for format: ContentItemFormat) -> ContentItemTextStyle? {
         return ContentItemTextStyle(rawValue: format.rawValue)
     }
+    
+    var headline: Bool {
+        switch self {
+        case .h1, .h2, .h3, .h4, .h5, .h6: return true
+        default: return false
+        }
+    }
 }
 
 enum ContentItemFormat: String {

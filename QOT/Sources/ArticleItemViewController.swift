@@ -267,10 +267,11 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
                     bottomText: nil
                 )
             case .text(let text, let style):
-
                 var attributedTopText = item.contentItemValue.style(textStyle: style, text: text, textColor: .white)
-                if style == .paragraph {
-                    attributedTopText = Style.article(text.uppercased(), .white).attributedString(lineHeight: 1.8)
+                if style.headline == true {
+                    attributedTopText = item.contentItemValue.style(textStyle: style, text: text.uppercased(), textColor: .white)
+                } else if style == .paragraph {
+                    attributedTopText = Style.article(text, .white).attributedString(lineHeight: 1.8)
                 } else if style == .quote {
                     attributedTopText = Style.qoute(text, .white60).attributedString(lineHeight: 1.8)
                 }
