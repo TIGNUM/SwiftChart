@@ -387,8 +387,8 @@ enum ChartType: String, EnumCollection {
     
     func segmentedTitle(selected: Bool?) -> NSAttributedString? {
         switch self {
-        case .meetingAverageDay: return R.string.localized.meSectorMyStatisticsDay().attrString(selected)
-        case .meetingAverageWeek: return R.string.localized.meSectorMyStatisticsWeek().attrString(selected)
+        case .meetingAverageDay: return R.string.localized.meSectorMyStatisticsToday().attrString(selected)
+        case .meetingAverageWeek: return R.string.localized.meSectorMyStatisticsThisWeek().attrString(selected)
         case .meetingLength: return nil
         case .meetingTimeBetween: return nil
         case .travelTripsAverageWeeks: return R.string.localized.meSectorMyStatisticsWeeks("4").attrString(selected)

@@ -98,6 +98,8 @@
 "Me.Sector.My.Why.Partners.Photo.Error.Message" = "There was a problem updating your profile image. Please try again";
 "Me.Sector.My.Why.Partners.Photo.Error.OK.Button" = "OK";
 "Me.Sector.My.Statistics.Day" = "DAY";
+"Me.Sector.My.Statistics.Today" = "Today";
+"Me.Sector.My.Statistics.This.Week" = "This Week";
 "Me.Sector.My.Statistics.Week" = "WEEK";
 "Me.Sector.My.Statistics.LastWeek" = "LAST WEEK";
 "Me.Sector.My.Statistics.NextWeek" = "NEXT WEEK";
@@ -106,7 +108,7 @@
 "Me.Sector.My.Statistics.Weeks" = "%@ WEEKS";
 "Me.Card.Title.Sleep.Quantity" = "Sleep Quantity Index";
 "Me.Card.Title.Sleep.Quality" = "Sleep Quality Index";
-"Me.Card.Title.Meetings.Number" = "Average Number of Meetings";
+"Me.Card.Title.Meetings.Number" = "Number of Meetings";
 "Me.Card.Title.Meetings.Length" = "Average Length of Meetings";
 "Me.Card.Title.Meetings.Time.Between" = "Average Time between Meetings";
 "Me.Card.Title.Travel.Average" = "Average Number of Trips";

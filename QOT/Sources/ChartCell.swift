@@ -212,13 +212,14 @@ private extension ChartCell {
     }
 
     func setupLabels(headerTitle: String, statistics: Statistics, charts: [Statistics]) {
+        let userText = statistics.chartType == .meetingAverageDay || statistics.chartType == .meetingAverageWeek ? "Take out" : "PERSONAL\nAVG."
         let statistics = statistics.chartType.selectedChart(charts: charts)
         setLabel(text: "INFO", color: .white40, label: bottomLabel)
         setLabel(text: "TEAM", color: .azure, label: teamLabel)
         setLabel(text: "AVG.", color: .azure, label: teamAverageLabel)
         setLabel(text: "AVG.", color: .cherryRedTwo, label: dataAverageLabel)
         setLabel(text: "DATA", color: .cherryRedTwo, label: dataLabel)
-        setLabel(text: "PERSONAL\nAVG.", color: .white40, label: userAverageLabel, lineSpacing: 2.5)
+        setLabel(text: userText, color: .white40, label: userAverageLabel, lineSpacing: 2.5)
         setLabel(text: statistics.dataAverageDisplayableValue, color: .cherryRedTwo, label: dataAverageValueLabel)
         setLabel(text: statistics.teamAverageDisplayableValue, color: .azure, label: teamAverageValueLabel)
         setLabel(text: statistics.userAverageDisplayableValue, color: .white, label: userAverageValueLabel, characterSpacing: -2.7, font: Font.H1MainTitle)
