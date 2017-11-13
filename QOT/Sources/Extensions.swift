@@ -566,4 +566,15 @@ extension UIEdgeInsets {
     var horizontal: CGFloat {
         return left + right
     }
+    
+    var vertical: CGFloat {
+        return top + bottom
+    }
+}
+
+extension Comparable {
+    
+    func constrainedTo(min minimum: Self, max maximum: Self) -> Self {
+        return max(minimum, min(self, maximum))
+    }
 }

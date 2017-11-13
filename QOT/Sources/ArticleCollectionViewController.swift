@@ -76,9 +76,10 @@ private extension ArticleCollectionViewController {
         backgroundImageView.horizontalAnchors == view.horizontalAnchors
         
         view.addSubview(collectionView)
-        collectionView.topAnchor == view.topAnchor + (navigationController?.navigationBar.bounds.height ?? 0)
+        collectionView.topAnchor == view.topAnchor
         collectionView.heightAnchor == view.heightAnchor
         collectionView.horizontalAnchors == view.horizontalAnchors
+        collectionView.contentInset = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)
         if #available(iOS 11.0, *) {
             collectionView.contentInsetAdjustmentBehavior = .never
         }
@@ -130,15 +131,15 @@ extension ArticleCollectionViewController: UICollectionViewDataSource, UICollect
 extension ArticleCollectionViewController: ArticleCollectionLayoutDelegate {
 
     func standardHeightForLayout(_ layout: ArticleCollectionLayout) -> CGFloat {
-        return 150
+        return 130
     }
 
     func featuredHeightForLayout(_ layout: ArticleCollectionLayout) -> CGFloat {
-        let nonPictureHeight: CGFloat = 170
-        let nonPictureWidth: CGFloat = 92
+        let nonPictureHeight: CGFloat = 130
+        let nonPictureWidth: CGFloat = 93
         let pictureRatio: CGFloat = 1.5
         let pictureHeight = (view.bounds.width - nonPictureWidth) / pictureRatio
         
-        return pictureHeight + nonPictureHeight + 20
+        return pictureHeight + nonPictureHeight
     }
 }

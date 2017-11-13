@@ -19,97 +19,72 @@ protocol ArticleCollectionLayoutDelegate: class {
 final class ArticleCollectionLayout: UICollectionViewLayout {
 
     private var cache = [UICollectionViewLayoutAttributes]()
+    private var contentSize: CGSize = .zero
     weak var delegate: ArticleCollectionLayoutDelegate?
-    private var positionOne: CGFloat = 0
-    private var width: CGFloat {
-        return collectionView?.bounds.width ?? 0
-    }
 
     private var itemCount: Int {
         return collectionView?.numberOfItems(inSection: 0) ?? 0
     }
 
     override var collectionViewContentSize: CGSize {
-        guard
-            let standardHeight = delegate?.standardHeightForLayout(self),
-            let featuredHeight = delegate?.featuredHeightForLayout(self) else {
-                return .zero
-        }
-        
-        // FIXME: THis content height is incorrect
-        let contentHeight = (CGFloat(itemCount) * standardHeight) +  (2 * standardHeight + featuredHeight)
-
-        return CGSize(width: width, height: contentHeight)
+        return contentSize
     }
 
     override func prepare() {
-        guard
-            let collectionView = collectionView,
-            let delegate = delegate else {
-                self.cache = []
-
-                return
+        guard let collectionView = collectionView, let delegate = delegate else {
+            self.cache = []
+            self.contentSize = .zero
+            return
         }
-
-        let standardHeight = delegate.standardHeightForLayout(self)
-        let featuredHeight = delegate.featuredHeightForLayout(self)
+        
+        let yOffset = collectionView.insetAdjustedYOffset
+        let contractedHeight = delegate.standardHeightForLayout(self)
+        let expandedHeight = delegate.featuredHeightForLayout(self)
+        let firstContractedRow = Int(yOffset / expandedHeight) + 1
+        let width = collectionView.bounds.width - collectionView.contentInset.horizontal
+        let maxYPositionWithMaxAlpha = yOffset + expandedHeight
+        
         var cache = [UICollectionViewLayoutAttributes]()
         cache.reserveCapacity(itemCount)
-
-        for item in 0..<itemCount {
-            let indexPath = IndexPath(item: item, section: 0)
-            let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-            attributes.zIndex = item
-            let y = (CGFloat(item) * standardHeight) + (featuredHeight - standardHeight)
-            let minimumAlpha: CGFloat = 0.3
-            var frame: CGRect
-            var alpha: CGFloat = minimumAlpha
-
-            let contentOffsetY = collectionView.contentOffset.y + collectionView.contentInset.top
-            if contentOffsetY < 0.0 {
-                let  height: CGFloat = indexPath.item == 0 ? featuredHeight : standardHeight
-                let convertedY = y + standardHeight - height
-                frame = CGRect(x: 0, y: convertedY, width: width, height: height)
-                alpha = indexPath.item == 0 ? 1.0 : minimumAlpha
-            } else if y <= contentOffsetY + (featuredHeight - standardHeight) {
-                let percentage = ((contentOffsetY / standardHeight) - CGFloat(item))
-                let   diff = (featuredHeight - standardHeight) * percentage
-                let convertedY = y - (featuredHeight - standardHeight) - diff
-                frame = CGRect(x: 0, y: convertedY, width: width, height: featuredHeight)
-                alpha = 1 - percentage
-                alpha = alpha < minimumAlpha ? minimumAlpha : alpha
-            } else if y <= contentOffsetY + featuredHeight {
-                let percentage = ((contentOffsetY / standardHeight) - CGFloat(item)) + CGFloat(1)
-                let diff = (featuredHeight - standardHeight) * percentage
-                let height: CGFloat = standardHeight + diff
-                let convertedY = y + standardHeight - height
-                frame = CGRect(x: 0, y: convertedY, width: width, height: height)
-                alpha =  percentage
-                alpha = alpha < minimumAlpha ? minimumAlpha : alpha
+        var y: CGFloat = 0
+        for row in 0..<itemCount {
+            let height: CGFloat
+            if row < firstContractedRow {
+                height = expandedHeight
+            } else if row == firstContractedRow {
+                let adjustedHeight = contractedHeight + expandedHeight - (y - yOffset)
+                height = adjustedHeight.constrainedTo(min: contractedHeight, max: expandedHeight)
             } else {
-                frame = CGRect(x: 0, y: y, width: width, height: standardHeight)
-                if y > contentOffsetY + featuredHeight {
-                    let percentage = ((contentOffsetY / standardHeight) - CGFloat(item - 2))
-                    alpha = percentage < 0.05 ? 0.05 : percentage > minimumAlpha ? minimumAlpha : percentage
-                }
+                height = contractedHeight
             }
-
-            frame.origin.y += collectionView.contentInset.top
-            attributes.frame = frame
+            let indexPath = IndexPath(row: row, section: 0)
+            let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+            attributes.frame = CGRect(x: 0, y: y, width: width, height: height)
+            
+            let rowMaxY = y + height
+            let distanceFromMaxAlpha = abs(rowMaxY - maxYPositionWithMaxAlpha)
+            let minAlphaDistance = collectionView.bounds.height - expandedHeight
+            let alpha = 1 - abs(distanceFromMaxAlpha / minAlphaDistance).constrainedTo(min: 0, max: 1)
             attributes.alpha = alpha
+            
             cache.append(attributes)
+            y += height
         }
-
+        let height = y + collectionView.bounds.height - collectionView.contentInset.vertical - expandedHeight
+        
         self.cache = cache
+        self.contentSize = CGSize(width: width, height: height)
     }
 
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
-        guard let delegate = delegate, let collectionView = collectionView else {
+        guard let delegate = delegate, let collectionView = collectionView, itemCount > 0 else {
             return .zero
         }
-
-        let itemIndex = round(proposedContentOffset.y / (delegate.standardHeightForLayout(self)))
-        let yOffset = (itemIndex * (delegate.standardHeightForLayout(self))) - collectionView.contentInset.top
+        
+        let expandedHeight = delegate.featuredHeightForLayout(self)
+        let targetRowFloat = (proposedContentOffset.y + collectionView.contentInset.top) / expandedHeight
+        let targetRow = Int(round(targetRowFloat)).constrainedTo(min: 0, max: itemCount - 1)
+        let yOffset = (CGFloat(targetRow) * expandedHeight) - collectionView.contentInset.top
         return CGPoint(x: 0, y: yOffset)
     }
 
@@ -131,5 +106,12 @@ final class ArticleCollectionLayout: UICollectionViewLayout {
 
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         return true
+    }
+}
+
+private extension UICollectionView {
+    
+    var insetAdjustedYOffset: CGFloat  {
+        return contentOffset.y + contentInset.top
     }
 }
