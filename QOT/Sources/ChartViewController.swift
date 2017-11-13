@@ -21,7 +21,7 @@ final class ChartViewController: UIViewController {
     // MARK: - Properties
 
     private let viewModel: ChartViewModel
-    private var pageControls = [UIPageControl]()
+    private var pageControls = [PageControl]()
 
     private lazy var tableView: UITableView = {
         return UITableView(style: .grouped,
@@ -72,10 +72,11 @@ private extension ChartViewController {
     func createPageControls() {
         
         viewModel.sortedSections.forEach { (sectionType: StatisticsSectionType) in
-            let pageControl = UIPageControl(frame: .zero)
+            let pageControl = PageControl(frame: .zero)
             pageControl.numberOfPages = sectionType.chartTypes.count
             pageControl.currentPage = 0
             pageControl.isUserInteractionEnabled = false
+            pageControl.size(forNumberOfPages: sectionType.chartTypes.count)
             pageControls.append(pageControl)
         }
     }
@@ -108,7 +109,7 @@ extension ChartViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 20))
+        let view = UIView(frame: CGRect(x: 0, y: -3, width: tableView.bounds.width, height: 10))
         let pageControl = pageControls[section]
         pageControl.frame = view.frame
         view.addSubview(pageControl)

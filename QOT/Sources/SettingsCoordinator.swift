@@ -25,7 +25,7 @@ final class SettingsCoordinator: ParentCoordinator {
     private let services: Services
     private let settingsViewController: SettingsViewController
     private let permissionHandler = PermissionHandler()
-    private var calandarAccessGaranted = true
+    private var calandarAccessGranted = true
     private let rootViewController: UIViewController
     private let networkManager: NetworkManager
     private let syncManager: SyncManager
@@ -46,8 +46,8 @@ final class SettingsCoordinator: ParentCoordinator {
     }
 
     private func askPermissionForCalendar() {
-        PermissionHandler().askPermissionForCalendar { (garanted: Bool) in
-            self.calandarAccessGaranted = garanted
+        PermissionHandler().askPermissionForCalendar { (granted: Bool) in
+            self.calandarAccessGranted = granted
         }
     }
 
@@ -61,7 +61,7 @@ final class SettingsCoordinator: ParentCoordinator {
 extension SettingsCoordinator: SettingsCoordinatorDelegate {
 
     func openCalendarListViewController(settingsViewController: SettingsViewController) {
-        switch calandarAccessGaranted {
+        switch calandarAccessGranted {
         case true:
             let coordinator = SettingsCalendarListCoordinator(root: settingsViewController, services: self.services)
             self.startChild(child: coordinator)

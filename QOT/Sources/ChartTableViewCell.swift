@@ -18,7 +18,7 @@ final class ChartTableViewCell: UITableViewCell, Dequeueable {
     private lazy var currentSection = 0
     private var selectedButtonTag = 0
     private var screenType: UIViewController.ScreenType = .big
-    private var pageControl: UIPageControl?
+    private var pageControl: PageControl?
     weak var delegate: ChartViewControllerDelegate?
 
     private lazy var collectionView: UICollectionView = {
@@ -53,7 +53,7 @@ final class ChartTableViewCell: UITableViewCell, Dequeueable {
     func setup(viewModel: ChartViewModel,
                currentSection: Int,
                screenType: UIViewController.ScreenType,
-               pageControl: UIPageControl) {
+               pageControl: PageControl) {
         self.viewModel = viewModel
         self.currentSection = currentSection
         self.screenType = screenType
@@ -112,7 +112,7 @@ extension ChartTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionVi
                         charts: viewModel.allCharts,
                         configuration: config,
                         fitbitState: viewModel.fitbitState,
-                        calandarAccessGaranted: viewModel.calandarAccessGaranted)
+                        calandarAccessGranted: viewModel.calandarAccessGranted)
         chartCell.delegate = self
         let cellRect = collectionView.convert(chartCell.frame, to: collectionView.superview)
         chartCell.animateHeader(withCellRect: cellRect, inParentRect: collectionView.frame)

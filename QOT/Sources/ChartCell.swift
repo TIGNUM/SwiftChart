@@ -95,14 +95,14 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
     private var headerTitle: String = ""
     private var configuration = Configuration.make(screenType: .big)
     private var fitbitState = User.FitbitState.disconnected
-    private var calandarAccessGaranted = true
+    private var calandarAccessGranted = true
     
     private var shouldShowAddSensorView: Bool {
         return fitbitState != .connected && statistics?.chartType.sensorRequired == true
     }
     
     private var shouldShowAddCalendarView: Bool {
-        return calandarAccessGaranted == false && statistics?.chartType.calendarRequired == true
+        return calandarAccessGranted == false && statistics?.chartType.calendarRequired == true
     }
 
     // MARK: - Init
@@ -140,14 +140,14 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
                charts: [Statistics],
                configuration: Configuration,
                fitbitState: User.FitbitState,
-               calandarAccessGaranted: Bool) {
+               calandarAccessGranted: Bool) {
         self.chartTypes = chartTypes
         self.statistics = statistics
         self.charts = charts
         self.headerTitle = headerTitle
         self.configuration = configuration
         self.fitbitState = fitbitState
-        self.calandarAccessGaranted = calandarAccessGaranted
+        self.calandarAccessGranted = calandarAccessGranted
         infoView.alpha = 0
     }
 

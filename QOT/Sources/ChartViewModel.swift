@@ -23,7 +23,7 @@ final class ChartViewModel {
     private let services: Services
     let allCharts: [Statistics]
     var sortedSections = [StatisticsSectionType]()
-    var calandarAccessGaranted = true
+    var calandarAccessGranted = true
 
     // MARK: - Init
 
@@ -114,8 +114,8 @@ private extension ChartViewModel {
     }
     
     private func askPermissionForCalendar() {
-        PermissionHandler().askPermissionForCalendar { (garanted: Bool) in
-            self.calandarAccessGaranted = garanted
+        PermissionHandler().askPermissionForCalendar { (granted: Bool) in
+            self.calandarAccessGranted = granted
         }
     }
 }
