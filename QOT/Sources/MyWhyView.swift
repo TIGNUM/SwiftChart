@@ -38,11 +38,9 @@ final class MyWhyView: PassthroughView, MyUniverseView {
         self.screenType = screenType
         self.fullViewFrame = frame
         let viewRightMargin = Layout.MeSection(viewControllerFrame: frame).scrollViewOffset * 3.5
-
         let viewFrame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.width - viewRightMargin, height: frame.height)
+
         super.init(frame: viewFrame)
-        
-        addGestureRecognizer()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -68,13 +66,6 @@ final class MyWhyView: PassthroughView, MyUniverseView {
         drawMyWhy(myWhyViewModel: myWhyViewModel, layout: Layout.MeSection(viewControllerFrame: self.fullViewFrame))
         layoutIfNeeded()
         drawMyWhyAfterDidLayoutSubviews()
-    }
-
-    // MARK: - Gesture Recognizer
-
-    private func addGestureRecognizer() {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapMyToBeVision))
-        addGestureRecognizer(tapGestureRecognizer)
     }
 
     deinit {
@@ -159,20 +150,20 @@ private extension MyWhyView {
     func addToBeVision(layout: Layout.MeSection, vision: MyToBeVision?) {        
         myToBeVisionBox = PassthroughView()
         myToBeVisionBox.backgroundColor = .clear
-        
         let footLabel = footerLabel(with: R.string.localized.meSectorMyWhyVisionTitle().uppercased())
-        myToBeVisionBox.addSubview(footLabel)
-        
         var visionHeadline = R.string.localized.meSectorMyWhyVisionHeadlinePlaceholder()
         var visionText = R.string.localized.meSectorMyWhyVisionMessagePlaceholder()
+        
         if let vision = vision, let headline = vision.headline, let text = vision.text, !text.isEmpty {
             visionHeadline = headline
             visionText = text
         }
+        
         myToBeVisionHeaderLabel = visionHeaderLabel(text: visionHeadline)
         myToBeVisionLabel = visionLabel(with: visionText)
-        addSubview(myToBeVisionHeaderLabel)
-        addSubview(myToBeVisionLabel)
+        myToBeVisionBox.addSubview(footLabel)
+        myToBeVisionBox.addSubview(myToBeVisionHeaderLabel)
+        myToBeVisionBox.addSubview(myToBeVisionLabel)
         addSubview(myToBeVisionBox)
         myToBeVisionBox.topAnchor == topAnchor + 20
         myToBeVisionBox.leftAnchor == leftAnchor + 40
@@ -189,14 +180,15 @@ private extension MyWhyView {
         myToBeVisionHeaderLabel.rightAnchor == myToBeVisionBox.rightAnchor
         myToBeVisionHeaderLabel.bottomAnchor == myToBeVisionLabel.topAnchor - 8
         myToBeVisionHeaderLabel.topAnchor >= myToBeVisionBox.topAnchor + 8
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapMyToBeVision))
+        myToBeVisionBox.addGestureRecognizer(tapGestureRecognizer)
     }
 
     func addWeeklyChoices(layout: Layout.MeSection, title: String, choices: [WeeklyChoice]) {
         weeklyChoicesBox = PassthroughView()
         weeklyChoicesBox.backgroundColor = .clear
-        
         let max = Layout.MeSection.maxWeeklyPage
-
         var previousButton: UIButton?
 
         for index in 0..<max {
@@ -208,15 +200,12 @@ private extension MyWhyView {
             let button = weeklyChoiceButton(title: choice?.title, index: index)
             weeklyChoiceButtons.append(button)
             weeklyChoicesBox.addSubview(button)
-
             button.widthAnchor == layout.viewControllerFrame.width * 0.33
             button.heightAnchor == Layout.MeSection.labelHeight * 1.125
 
             guard let topButton = previousButton else {
-
                 button.topAnchor == weeklyChoicesBox.topAnchor
                 button.rightAnchor == weeklyChoicesBox.rightAnchor - CGFloat(index + 1) * 2
-
                 previousButton = button
                 continue
             }
