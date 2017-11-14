@@ -98,8 +98,8 @@
 "Me.Sector.My.Why.Partners.Photo.Error.Message" = "There was a problem updating your profile image. Please try again";
 "Me.Sector.My.Why.Partners.Photo.Error.OK.Button" = "OK";
 "Me.Sector.My.Statistics.Day" = "DAY";
-"Me.Sector.My.Statistics.Today" = "Today";
-"Me.Sector.My.Statistics.This.Week" = "This Week";
+"Me.Sector.My.Statistics.Today" = "TODAY";
+"Me.Sector.My.Statistics.This.Week" = "THIS WEEK";
 "Me.Sector.My.Statistics.Week" = "WEEK";
 "Me.Sector.My.Statistics.LastWeek" = "LAST WEEK";
 "Me.Sector.My.Statistics.NextWeek" = "NEXT WEEK";
@@ -128,8 +128,8 @@
 "Me.Chart.Info.Text.Meetings.Average.Number" = "QOT® reviews your calendar to determine how many meetings you have today and this week. The personal average helps determine which strategies you should use to Rule Your Meetings. The more meetings you have, the more opportunities you have to create Quality of Time.";
 "Me.Chart.Info.Text.Meetings.Average.Length" = "QOT® reviews your calendar to determine how long your average meetings last. This data helps strategically plan your day. Make sure to add the appropriate preparation from your QOT® Coach for each meeting.";
 "Me.Chart.Info.Text.Meetings.Average.Time.Between" = "QOT® reviews your calendar to determine how much time you typically have between your meetings. This data will help strategically plan your day. Make sure to schedule oscillation throughout your day, especially when you have back to back meetings.";
-"Me.Chart.Info.Text.Sleep.Quality" = "Through the integration of third-party devices like FitBit, QOT® analyzes your average daily sleep quantity in hours. See yourself how your averages vary throughout the week. This card also shows the average sleep quantity of your team members (blue) and all QOT® users (red).";
-"Me.Chart.Info.Text.Sleep.Quantity" = "Your sleep quality score is based on an algorithm developed by our recovery experts, ranging on a scale from 1 (bad quality) to 5 (very good sleep quality). Integrating a third-party device like FitBit allows QOT® to measure your personal average sleep quality throughout the week. You can also compare yourself to your team's average (blue) and the average of all users (red). The higher your sleep quality, the more you are maximizing your QOT®.";
+"Me.Chart.Info.Text.Sleep.Quantity" = "Through the integration of third-party devices like FitBit, QOT® analyzes your average daily sleep quantity in hours. See yourself how your averages vary throughout the week. This card also shows the average sleep quantity of your team members (blue) and all QOT® users (red).";
+"Me.Chart.Info.Text.Sleep.Quality" = "Your sleep quality score is based on an algorithm developed by our recovery experts, ranging on a scale from 1 (bad quality) to 5 (very good sleep quality). Integrating a third-party device like FitBit allows QOT® to measure your personal average sleep quality throughout the week. You can also compare yourself to your team's average (blue) and the average of all users (red). The higher your sleep quality, the more you are maximizing your QOT®.";
 "Me.Chart.Info.Text.Activity.Oscillation" = "Your oscillation index measures your sitting to movement ratio through the integration of a third-party device like FitBit. Your oscillation index ranges from 1 (highly sedentary) to 5 (very active). Strive for a score greater than 3 so your brain and body can harness the performance benefits of movement. This card shows your average scores throughout the week and how you compare to your team members (blue) and all QOT® users (red).";
 "Me.Chart.Info.Text.Activity.Index" = "QOT® computes your personal activity level through the integration of third-party devices like FitBit and gives you a score ranging from 1 (inactive) to 5 (very active). Remember to use your Performance Movement strategies to maximize your QOT®. Your activity level score is particularly helpful to build awareness during long travel days, when you might not realize that you spend most of the day sitting.";
 "Me.Chart.Info.Text.Travel.Average.Number" = "QOT® reviews your calendar to determine the average numbers of trips you have for the next week and month. The personal average helps bring self-awareness as to how you perceive your recovery so that you can plan adjust your time accordingly.";
