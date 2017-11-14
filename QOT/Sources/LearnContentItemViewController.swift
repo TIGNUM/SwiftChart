@@ -83,6 +83,8 @@ final class LearnContentItemViewController: UIViewController {
         if let parent = parent as? PageScroll {
             parent.pageDidLoad(self, scrollView: itemTableView)
         }
+    
+        itemTableView.setContentOffset(CGPoint(x: 0, y: -itemTableView.contentInset.top), animated: true)
     }
 
     override func viewWillAppear(_ animated: Bool) {
