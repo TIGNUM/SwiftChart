@@ -24,6 +24,7 @@ final class MyWhyView: PassthroughView, MyUniverseView {
     var weeklyChoicesBox: PassthroughView!
     var qotPartnersBox: PassthroughView!
     private var myToBeVisionLabel: UILabel!
+    private var myToBeVisionHeaderLabel: UILabel!
     private var weeklyChoiceButtons = [UIButton]()
     private var qotPartnersButtons = [UIButton]()
     private let fullViewFrame: CGRect
@@ -89,11 +90,20 @@ private extension MyWhyView {
         myWhyViewModel.items?.forEach { (myWhy: MyWhyViewModel.MyWhy) in
             switch myWhy {
             case .vision(let vision):
-                guard let vision = vision, let text = vision.text, !text.isEmpty else {
-                    myToBeVisionLabel.text = R.string.localized.meSectorMyWhyVisionMessagePlaceholder()
-                    return
+                var visionHeadline = R.string.localized.meSectorMyWhyVisionHeadlinePlaceholder()
+                var visionText = R.string.localized.meSectorMyWhyVisionMessagePlaceholder()
+                if let vision = vision, let headline = vision.headline, let text = vision.text, text.isEmpty == false {
+                    visionHeadline = headline
+                    visionText = text
                 }
-                myToBeVisionLabel.text = text
+                myToBeVisionHeaderLabel.setAttrText(text: visionHeadline.uppercased(),
+                                                          font: Font.H6NavigationTitle,
+                                                          lineSpacing: 3,
+                                                          characterSpacing: 1)
+                myToBeVisionLabel.setAttrText(text: visionText,
+                                              font: Font.PTextSmall,
+                                              lineSpacing: 7,
+                                              characterSpacing: 1.73)
             case .weeklyChoices(_, let choices):
                 weeklyChoices = choices
                 for index in 0..<Layout.MeSection.maxWeeklyPage {
@@ -153,32 +163,32 @@ private extension MyWhyView {
         let footLabel = footerLabel(with: R.string.localized.meSectorMyWhyVisionTitle().uppercased())
         myToBeVisionBox.addSubview(footLabel)
         
+        var visionHeadline = R.string.localized.meSectorMyWhyVisionHeadlinePlaceholder()
         var visionText = R.string.localized.meSectorMyWhyVisionMessagePlaceholder()
-        if let vision = vision, let text = vision.text, !text.isEmpty {
+        if let vision = vision, let headline = vision.headline, let text = vision.text, !text.isEmpty {
+            visionHeadline = headline
             visionText = text
         }
+        myToBeVisionHeaderLabel = visionHeaderLabel(text: visionHeadline)
         myToBeVisionLabel = visionLabel(with: visionText)
-        let stackView = UIStackView(arrangedSubviews: [myToBeVisionLabel])
-        stackView.alignment = .bottom
-        stackView.spacing = 0.0
-
-        myToBeVisionBox.addSubview(stackView)
+        addSubview(myToBeVisionHeaderLabel)
+        addSubview(myToBeVisionLabel)
         addSubview(myToBeVisionBox)
-
-        myToBeVisionBox.topAnchor == self.topAnchor + 20
-        myToBeVisionBox.leftAnchor == self.leftAnchor + 40
-        myToBeVisionBox.rightAnchor == self.rightAnchor - 62
-
-        stackView.topAnchor == myToBeVisionBox.topAnchor
-        stackView.heightAnchor == bounds.height * 0.325 + layout.myWhyDeviceOffset(screenType) - 30
-        stackView.leftAnchor == myToBeVisionBox.leftAnchor
-        stackView.rightAnchor == myToBeVisionBox.rightAnchor
-        
-        footLabel.topAnchor == stackView.bottomAnchor + 5
+        myToBeVisionBox.topAnchor == topAnchor + 20
+        myToBeVisionBox.leftAnchor == leftAnchor + 40
+        myToBeVisionBox.rightAnchor == rightAnchor - 62
+        myToBeVisionBox.heightAnchor == bounds.height * 0.325 + layout.myWhyDeviceOffset(screenType) + 30
         footLabel.heightAnchor == Layout.MeSection.labelHeight
-        footLabel.leftAnchor == stackView.leftAnchor
-        footLabel.rightAnchor == stackView.rightAnchor
-        footLabel.bottomAnchor == myToBeVisionBox.bottomAnchor - 15
+        footLabel.leftAnchor == myToBeVisionBox.leftAnchor
+        footLabel.rightAnchor == myToBeVisionBox.rightAnchor
+        footLabel.bottomAnchor == myToBeVisionBox.bottomAnchor
+        myToBeVisionLabel.leftAnchor == myToBeVisionBox.leftAnchor
+        myToBeVisionLabel.rightAnchor == myToBeVisionBox.rightAnchor
+        myToBeVisionLabel.bottomAnchor == footLabel.topAnchor - 8
+        myToBeVisionHeaderLabel.leftAnchor == myToBeVisionBox.leftAnchor
+        myToBeVisionHeaderLabel.rightAnchor == myToBeVisionBox.rightAnchor
+        myToBeVisionHeaderLabel.bottomAnchor == myToBeVisionLabel.topAnchor - 8
+        myToBeVisionHeaderLabel.topAnchor >= myToBeVisionBox.topAnchor + 8
     }
 
     func addWeeklyChoices(layout: Layout.MeSection, title: String, choices: [WeeklyChoice]) {
@@ -286,7 +296,7 @@ private extension MyWhyView {
             addPartnersComingSoonLabel()
         }
 
-        qotPartnersBox.topAnchor == weeklyChoicesBox.bottomAnchor + 12
+        qotPartnersBox.topAnchor == weeklyChoicesBox.bottomAnchor + 12  + layout.myWhyDeviceOffset(screenType)
         qotPartnersBox.leftAnchor == self.leftAnchor
         qotPartnersBox.rightAnchor == self.rightAnchor
     }
@@ -367,6 +377,17 @@ private extension MyWhyView {
         label.textColor = .white
         label.sizeToFit()
         label.setAttrText(text: text, font: Font.PTextSmall, lineSpacing: 7, characterSpacing: 1.73)
+        
+        return label
+    }
+    
+    func visionHeaderLabel(text: String) -> UILabel {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textColor = .white
+        label.sizeToFit()
+        label.setAttrText(text: text.uppercased(), font: Font.H6NavigationTitle, lineSpacing: 3, characterSpacing: 1)
+        
         return label
     }
 
