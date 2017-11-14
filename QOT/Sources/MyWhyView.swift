@@ -10,7 +10,7 @@ import UIKit
 import Anchorage
 import ReactiveKit
 
-class MyWhyView: PassthroughView, MyUniverseView {
+final class MyWhyView: PassthroughView, MyUniverseView {
 
     // MARK: - Properties
 
@@ -36,7 +36,6 @@ class MyWhyView: PassthroughView, MyUniverseView {
         self.delegate = delegate
         self.screenType = screenType
         self.fullViewFrame = frame
-
         let viewRightMargin = Layout.MeSection(viewControllerFrame: frame).scrollViewOffset * 3.5
 
         let viewFrame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.width - viewRightMargin, height: frame.height)
@@ -113,7 +112,7 @@ private extension MyWhyView {
                     }
                     let partner = partners[index]
                     let button = qotPartnersButtons[index]
-                    button.configure(with: partner)
+                    button.configure(with: partner, index: index)
                 }
             }
         }
@@ -249,11 +248,16 @@ private extension MyWhyView {
 
             let button = UIButton()
             button.tag = index
-            button.configure(with: partner)
+            button.configure(with: partner, index: index)
+            
+            /*
+             TODO:  For now we disable QOT Partners. Enable this bit when we need it.
+             
             button.addTarget(self, action: #selector(didTapPartner), for: .touchUpInside)
+            */
+                        
             qotPartnersButtons.append(button)
             qotPartnersBox.addSubview(button)
-
             button.topAnchor == qotPartnersBox.topAnchor
             button.widthAnchor == (layout.profileImageWidth * 0.45) * layout.myWhyPartnerScaleFactor
             button.heightAnchor == (layout.profileImageWidth * 0.45)
@@ -279,11 +283,31 @@ private extension MyWhyView {
             partnerFooterLabel.rightAnchor == self.rightAnchor
             partnerFooterLabel.topAnchor == firstButton.bottomAnchor + 10
             partnerFooterLabel.bottomAnchor == qotPartnersBox.bottomAnchor
+            addPartnersComingSoonLabel()
         }
 
         qotPartnersBox.topAnchor == weeklyChoicesBox.bottomAnchor + 12
         qotPartnersBox.leftAnchor == self.leftAnchor
         qotPartnersBox.rightAnchor == self.rightAnchor
+    }
+    
+    func addPartnersComingSoonLabel() {
+        let comingSoonLabel = UILabel(frame: .zero)
+        comingSoonLabel.setAttrText(text: R.string.localized.meChartCommingSoon().uppercased(),
+                                    font: Font.PTextSubtitle,
+                                    alignment: .center,
+                                    lineSpacing: 2.5,
+                                    characterSpacing: 2,
+                                    color: .white)
+        
+        if
+            let firstButton = qotPartnersButtons.first,
+            let lastButton = qotPartnersButtons.last {
+                qotPartnersBox.addSubview(comingSoonLabel)
+                comingSoonLabel.leftAnchor == firstButton.leftAnchor
+                comingSoonLabel.rightAnchor == lastButton.rightAnchor
+                comingSoonLabel.centerYAnchor == firstButton.centerYAnchor
+        }
     }
 }
 
@@ -360,13 +384,17 @@ private extension MyWhyView {
 
 private extension UIButton {
 
-    func configure(with partner: Partner?) {
+    func configure(with partner: Partner?, index: Index) {
         titleLabel?.font = Font.H6NavigationTitle
         setTitleColor(Color.MeSection.whiteLabel, for: .normal)
         setTitle(nil, for: .normal)
-        setImage(R.image.universe_plus_ico_add_partner(), for: .normal)
+        setImage(comingSoonImage(index), for: .normal)
         backgroundColor = .whiteLight
 
+        /*
+         TODO:  For now we disable QOT Partners and using default assets.
+                Enable this bit when we need it.
+         
         if let partner = partner {
             if let imageResource = partner.profileImageResource, imageResource.isAvailable {
                 setTitle(nil, for: .normal)
@@ -375,6 +403,15 @@ private extension UIButton {
                 setTitle(partner.initials.uppercased(), for: .normal)
                 setImage(nil, for: .normal)
             }
+        }
+        */
+    }
+    
+    private func comingSoonImage(_ index: Index) -> UIImage? {
+        switch index {
+        case 0: return R.image.partner_comingSoon_01()
+        case 1: return R.image.partner_comingSoon_02()
+        default: return R.image.partner_comingSoon_03()
         }
     }
 }
