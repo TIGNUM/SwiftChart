@@ -16,21 +16,21 @@ final class InterviewQuestion {
     let title: String
     let subtitle: String?
     let answers: [Answer]
+    var answerIndex: Int
 
-    var answerIndex: Int?
-
-    init(question: Question) {
-        remoteID = question.forcedRemoteID
-        title = question.title
-        subtitle = question.subtitle
-        answers = Array(question.answers.sorted(by: [.sortOrder()]))
+    init?(question: Question) {
+        let answers = Array(question.answers.sorted(by: [.sortOrder()]))
+        guard answers.count > 0 else { return nil }
+        
+        self.remoteID = question.forcedRemoteID
+        self.title = question.title
+        self.subtitle = question.subtitle
+        self.answers = answers
+        self.answerIndex = (answers.count - 1) / 2
     }
 
-    var currentAnswer: Answer? {
-        guard let index = answerIndex, index >= answers.startIndex, index < answers.endIndex else {
-            return nil
-        }
-        return answers[index]
+    var currentAnswer: Answer {
+        return answers[answerIndex]
     }
 }
 
@@ -47,11 +47,12 @@ final class MorningInterviewViewModel: NSObject {
     // MARK: - Init
 
     init(services: Services, questionGroupID: Int, validFrom: Date, validTo: Date) {
+        let questions = services.questionsService.morningInterviewQuestions(questionGroupID: questionGroupID)
         self.services = services
         self.questionGroupID = questionGroupID
         self.validFrom = validFrom
         self.validTo = validTo
-        self.questions = Array(services.questionsService.morningInterviewQuestions(questionGroupID: questionGroupID).map(InterviewQuestion.init))
+        self.questions = Array(questions.flatMap(InterviewQuestion.init))
     }
 
     var questionsCount: Int {
@@ -62,11 +63,12 @@ final class MorningInterviewViewModel: NSObject {
         return questions[index]
     }
 
-    var userAnswers: [UserAnswer] {
+    func createUserAnswers() -> [UserAnswer] {
         var userAnswers = [UserAnswer]()
-
+        
         questions.forEach { (question: InterviewQuestion) in
-            guard let answer = question.currentAnswer, let answerID = answer.remoteID.value else {
+            let answer = question.currentAnswer
+            guard let answerID = answer.remoteID.value else {
                 return
             }
             
@@ -79,11 +81,11 @@ final class MorningInterviewViewModel: NSObject {
             )
             userAnswers.append(userAnswer)
         }
-
+        
         return userAnswers
     }
     
-    func save() throws {
+    func save(userAnswers: [UserAnswer]) throws {
         let realm = services.mainRealm
         try realm.write {
             userAnswers.forEach { (userAnswer: UserAnswer) in

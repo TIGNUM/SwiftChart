@@ -42,17 +42,16 @@ final class MorningInterviewCell: UICollectionViewCell, Dequeueable {
         setAnswer()
     }
 
-    func setAnswer() {
+    private func setAnswer() {
         let index = Int(slider.value.rounded())
         guard let question = question, question.answerIndex != index else {
             return
         }
 
         question.answerIndex = index
-        if let answer = question.currentAnswer {
-            numberlabel.attributedText = Style.num(String(index), .white60).attributedString(lineSpacing: -3.3)
-            setup(answer: answer)
-        }
+        let answer = question.currentAnswer
+        numberlabel.attributedText = Style.num(String(index), .white60).attributedString(lineSpacing: -3.3)
+        setup(answer: answer)
     }
 
     private var minLabel: UILabel = {
@@ -63,7 +62,7 @@ final class MorningInterviewCell: UICollectionViewCell, Dequeueable {
         return label
     }()
 
-    func configure(question: InterviewQuestion, defaultAnswerIndex: Int) {
+    func configure(question: InterviewQuestion) {
         setupHierarchy()
         setupLayout()
 
@@ -77,12 +76,9 @@ final class MorningInterviewCell: UICollectionViewCell, Dequeueable {
         slider.maximumValue = Float(endIndex - 1)
         maxLabel.attributedText = Style.tag("\(endIndex)", .white60).attributedString()
 
-        if let answer = question.currentAnswer {
-            setCurrentAnswerLabels(answer: answer)
-        } else {
-            setCurrentAnswerLabels(answer: question.answers[defaultAnswerIndex])
-            slider.value = Float(defaultAnswerIndex)
-        }
+        let answer = question.currentAnswer
+        setCurrentAnswerLabels(answer: answer)
+        slider.value = Float(question.answerIndex)
 
         titlelabel.attributedText = NSMutableAttributedString(
             string: question.title,

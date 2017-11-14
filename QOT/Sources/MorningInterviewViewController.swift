@@ -83,10 +83,10 @@ final class MorningInterviewViewController: UIViewController {
 
     @objc func didTapNext(_ sender: UIButton) {
         if isLastPage == true {
-            delegate?.didTapClose(viewController: self, userAnswers: viewModel.userAnswers)
-            try? viewModel.save()
+            let userAnswers = viewModel.createUserAnswers()
+            delegate?.didTapClose(viewController: self, userAnswers: userAnswers)
+            try? viewModel.save(userAnswers: userAnswers)
         } else {
-            (collectionView.cellForItem(at: IndexPath(item: currentIndex, section: 0)) as? MorningInterviewCell)?.setAnswer()            
             currentIndex += 1
             syncViews(animated: true)
         }
@@ -189,7 +189,7 @@ extension MorningInterviewViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let question = viewModel.question(at: indexPath.item)
         let cell: MorningInterviewCell = collectionView.dequeueCell(for: indexPath)
-        cell.configure(question: question, defaultAnswerIndex: (question.answers.count - 1) / 2)
+        cell.configure(question: question)
         return cell
     }
 }
