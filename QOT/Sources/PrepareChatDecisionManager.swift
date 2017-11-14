@@ -93,7 +93,8 @@ final class PrepareChatDecisionManager {
                                  alignment: .right,
                                  timestamp: timestamp.addingTimeInterval(0.8),
                                  header: nil,
-                                 footer: deliveredFooter(date: timestamp))
+                                 footer: deliveredFooter(date: timestamp),
+                                 allowsMultipleSelection: true)
             items.append(item)
         }
 

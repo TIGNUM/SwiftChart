@@ -27,19 +27,22 @@ struct ChatItem<T: ChatChoice> {
     let header: String?
     let footer: String?
     let isAutoscrollSnapable: Bool
+    let allowsMultipleSelection: Bool
 
     init(type: ChatItemType<T>,
          alignment: ChatViewAlignment,
          timestamp: Date,
          header: String? = nil,
          footer: String? = nil,
-         isAutoscrollSnapable: Bool = false) {
+         isAutoscrollSnapable: Bool = false,
+         allowsMultipleSelection: Bool = false) {
         self.type = type
         self.alignment = alignment
         self.timestamp = timestamp
         self.header = header?.nilled
         self.footer = footer?.nilled
         self.isAutoscrollSnapable = isAutoscrollSnapable
+        self.allowsMultipleSelection = allowsMultipleSelection
     }
 
     var isMessage: Bool {
@@ -86,6 +89,8 @@ final class ChatViewModel<T: ChatChoice> {
     func canSelectItem(at indexPath: IndexPath) -> Bool {
         let item = items[indexPath.section]
         switch item.type {
+        case .choiceList where item.allowsMultipleSelection:
+            return true
         case .choiceList:
             return selected[item.identifier] == nil
         default:
