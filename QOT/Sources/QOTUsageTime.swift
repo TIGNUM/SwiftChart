@@ -32,7 +32,10 @@ final class QOTUsageTimer {
     var totalSeconds: TimeInterval {
         let oldValue = UserDefault.qotUsage.doubleValue
         guard let started = started else {
-            assertionFailure("QOTUsageTimer never started")
+            /*
+             If started is nil the app is not active so just return the oldValue. `totalSeconds` should only reflect
+             active time in the app
+             */
             return oldValue
         }
         let delta = -started.timeIntervalSinceNow
