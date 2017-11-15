@@ -331,7 +331,10 @@ extension TabBarCoordinator: PageViewControllerDelegate {
         guard let navigationController = controller.navigationController, let topNavigationBar = navigationController.navigationBar as? TopNavigationBar else {
             return
         }
-        
         topNavigationBar.setIndicatorToButtonIndex(index)
+        
+        if selectedIndex.value == 0 && index == 1 {
+            whatsHotBadgeManager.didScrollToWhatsHotPage()
+        }
     }
 }

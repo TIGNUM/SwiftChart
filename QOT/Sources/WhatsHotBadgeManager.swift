@@ -40,6 +40,11 @@ final class WhatsHotBadgeManager {
     init() {
         setupNotifications()
     }
+    
+    func didScrollToWhatsHotPage() {
+        UserDefault.newWhatsHotArticle.setBoolValue(value: false)
+        update()
+    }
 
     // MARK: - private
     
