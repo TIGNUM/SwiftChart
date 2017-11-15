@@ -111,7 +111,7 @@ final class ArticleCollectionLayout: UICollectionViewLayout {
 
 private extension UICollectionView {
     
-    var insetAdjustedYOffset: CGFloat  {
+    var insetAdjustedYOffset: CGFloat {
         return contentOffset.y + contentInset.top
     }
 }

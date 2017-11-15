@@ -147,7 +147,7 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
 
     private lazy var backgroundImage: UIView = {
         let frame = self.view.frame
-        let imageViewFrame = CGRect(x: frame.minX, y: frame.minY, width: frame.width * 2, height: frame.height)
+        let imageViewFrame = CGRect(x: 0, y: 0, width: frame.width * 2, height: frame.height)
         let imageView = UIImageView(frame: imageViewFrame)
         imageView.image = R.image.backgroundMyUniverse()
         imageView.contentMode = .scaleAspectFill
@@ -207,6 +207,12 @@ private extension MyUniverseViewController {
         scrollView.addSubview(myWhyView)
         scrollView.addSubview(myDataSectorLabelsView)
         scrollView.addSubview(myDataView)
+        
+        automaticallyAdjustsScrollViewInsets = false
+        if #available(iOS 11.0, *) {
+            scrollView.contentInsetAdjustmentBehavior = .never
+            backgroundScrollView.contentInsetAdjustmentBehavior = .never
+        }
     }
     
     func updateReadyState() {
@@ -303,7 +309,7 @@ private extension MyUniverseViewController {
     }
 
     func setBackgroundParallaxEffect(_ contentScrollView: UIScrollView) {
-        let backgroundContentOffset = CGPoint(x: contentScrollView.contentOffset.x * 1.2, y: contentScrollView.contentOffset.y)
+        let backgroundContentOffset = CGPoint(x: contentScrollView.contentOffset.x * 1.2, y: backgroundScrollView.contentOffset.y)
         backgroundScrollView.setContentOffset(backgroundContentOffset, animated: false)
     }
 
