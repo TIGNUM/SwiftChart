@@ -24,7 +24,7 @@
             <rect key="frame" x="0.0" y="0.0" width="319" height="472"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <userGuides>
-                <userLayoutGuide location="90" affinity="minY"/>
+                <userLayoutGuide location="59" affinity="minY"/>
             </userGuides>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="319" height="472"/>
@@ -34,7 +34,7 @@
                         <rect key="frame" x="11" y="0.0" width="278" height="42"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R7E-AJ-iMP">
-                                <rect key="frame" x="0.0" y="12" width="254" height="33"/>
+                                <rect key="frame" x="0.0" y="12" width="254" height="26.5"/>
                                 <string key="text">sleep quantity average
 for the last 5 days</string>
                                 <fontDescription key="fontDescription" name="BentonSans" family="BentonSans" pointSize="14"/>
@@ -53,8 +53,9 @@ for the last 5 days</string>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="frC-oQ-0pa">
                         <rect key="frame" x="0.0" y="42" width="319" height="430"/>
                         <userGuides>
-                            <userLayoutGuide location="50" affinity="minY"/>
+                            <userLayoutGuide location="49" affinity="minY"/>
                             <userLayoutGuide location="127" affinity="minX"/>
+                            <userLayoutGuide location="302" affinity="minX"/>
                         </userGuides>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M4b-KY-hcD" userLabel="TopView">
@@ -110,46 +111,38 @@ AVG.</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4qW-DQ-BlW" userLabel="Other Average Values">
-                                        <rect key="frame" x="191" y="0.0" width="127.5" height="100"/>
+                                        <rect key="frame" x="169" y="0.0" width="150" height="100"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hi2-v4-DFt">
-                                                <rect key="frame" x="17" y="34" width="42" height="14"/>
+                                                <rect key="frame" x="9" y="16" width="60" height="14"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OVf-jw-ehF">
-                                                <rect key="frame" x="17" y="51" width="42" height="14"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OVf-jw-ehF">
+                                                <rect key="frame" x="9" y="33" width="60" height="51"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b71-Gw-DVQ">
-                                                <rect key="frame" x="17" y="65" width="42" height="14"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <string key="text">Label
+Label
+Label</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uFU-kk-MDf">
-                                                <rect key="frame" x="72" y="34" width="48" height="14"/>
+                                                <rect key="frame" x="73" y="16" width="60" height="14"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13Z-VH-iab">
-                                                <rect key="frame" x="72" y="51" width="42" height="14"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13Z-VH-iab">
+                                                <rect key="frame" x="73" y="33" width="60" height="51"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NTY-tK-SR5">
-                                                <rect key="frame" x="72" y="65" width="42" height="14"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <string key="text">Label
+Label
+Label</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -157,7 +150,7 @@ AVG.</string>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="127.5" id="Tv8-S2-MtX"/>
+                                            <constraint firstAttribute="width" constant="150" id="Tv8-S2-MtX"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -407,7 +400,7 @@ AVG.</string>
                                 <rect key="frame" x="0.0" y="0.0" width="319" height="430"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COMMING SOON" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGM-Rk-USG">
-                                        <rect key="frame" x="61.5" y="200.5" width="195.5" height="28"/>
+                                        <rect key="frame" x="80" y="200" width="158.5" height="29"/>
                                         <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="24"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -499,7 +492,6 @@ see this card</string>
                 <outlet property="comingSoonLabel" destination="xGM-Rk-USG" id="FaK-nz-Xcd"/>
                 <outlet property="comingSoonView" destination="822-sp-On8" id="Wns-uU-SJg"/>
                 <outlet property="containerView" destination="frC-oQ-0pa" id="YYu-Vy-j3f"/>
-                <outlet property="dataAverageLabel" destination="NTY-tK-SR5" id="Kku-Ek-NTT"/>
                 <outlet property="dataAverageValueLabel" destination="uFU-kk-MDf" id="XoB-g5-1di"/>
                 <outlet property="dataLabel" destination="13Z-VH-iab" id="7YY-rh-Tft"/>
                 <outlet property="headerLabel" destination="R7E-AJ-iMP" id="K7y-kl-9ZS"/>
@@ -517,7 +509,6 @@ see this card</string>
                 <outlet property="seperatorBottomView" destination="xcs-BK-i4B" id="s73-AP-ggd"/>
                 <outlet property="seperatorMiddleView" destination="exT-lh-sk3" id="FHB-0e-Xu7"/>
                 <outlet property="seperatorTopView" destination="bvX-DZ-iht" id="MvE-iz-on8"/>
-                <outlet property="teamAverageLabel" destination="b71-Gw-DVQ" id="ely-Ys-6zm"/>
                 <outlet property="teamAverageValueLabel" destination="Hi2-v4-DFt" id="l3w-WB-PhZ"/>
                 <outlet property="teamLabel" destination="OVf-jw-ehF" id="IXK-d9-XVh"/>
                 <outlet property="topContentView" destination="M4b-KY-hcD" id="KDu-0k-Dfg"/>

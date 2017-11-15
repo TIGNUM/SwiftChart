@@ -56,8 +56,6 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
     @IBOutlet private weak var userAverageLabel: UILabel!
     @IBOutlet private weak var teamAverageValueLabel: UILabel!
     @IBOutlet private weak var dataAverageValueLabel: UILabel!
-    @IBOutlet private weak var teamAverageLabel: UILabel!
-    @IBOutlet private weak var dataAverageLabel: UILabel!
     @IBOutlet private weak var teamLabel: UILabel!
     @IBOutlet private weak var dataLabel: UILabel!
     @IBOutlet private weak var containerView: UIView!
@@ -79,7 +77,6 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
     @IBOutlet private weak var infoViewCloseButton: UIButton!
     @IBOutlet private weak var addSenorView: UIView!
     @IBOutlet private weak var addSenorViewLabel: UILabel!
-    @IBOutlet private weak var addSenorViewCircleImageView: UIImageView!
     @IBOutlet private weak var overlayView: UIView!
     @IBOutlet private weak var overlayBackgroundImageView: UIImageView!
     @IBOutlet private weak var comingSoonView: UIView!
@@ -215,16 +212,16 @@ private extension ChartCell {
         let userText = statistics.chartType == .meetingAverageDay || statistics.chartType == .meetingAverageWeek ? "" : "PERSONAL\nAVG."
         guard let statistics = statistics.chartType.selectedChart(charts: charts) else { return }
         setLabel(text: "INFO", color: .white40, label: bottomLabel)
-        setLabel(text: "TEAM", color: .azure, label: teamLabel)
-        setLabel(text: "AVG.", color: .azure, label: teamAverageLabel)
-        setLabel(text: "AVG.", color: .cherryRedTwo, label: dataAverageLabel)
-        setLabel(text: "DATA", color: .cherryRedTwo, label: dataLabel)
+        setLabel(text: "MY\nTEAM\nAVG.", color: .azure, label: teamLabel, lineSpacing: 2.5)
+        setLabel(text: "DATA\nBASE\nAVG.", color: .cherryRedTwo, label: dataLabel, lineSpacing: 2.5)
         setLabel(text: userText, color: .white40, label: userAverageLabel, lineSpacing: 2.5)
         setLabel(text: statistics.dataAverageDisplayableValue, color: .cherryRedTwo, label: dataAverageValueLabel)
         setLabel(text: statistics.teamAverageDisplayableValue, color: .azure, label: teamAverageValueLabel)
         setLabel(text: statistics.userAverageDisplayableValue, color: .white, label: userAverageValueLabel, characterSpacing: -2.7, font: Font.H1MainTitle)
         setLabel(text: headerTitle.uppercased(), color: .white, label: headerLabel, lineSpacing: 2.5, font: Font.PTextSubtitle)
         setLabel(text: R.string.localized.meChartCommingSoon().uppercased(), color: .white, label: comingSoonLabel, lineSpacing: 2.5, font: Font.PTextSubtitle)
+        teamLabel.sizeToFit()
+        dataLabel.sizeToFit()
     }
 
     func setLabel(text: String,
