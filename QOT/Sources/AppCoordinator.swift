@@ -400,6 +400,7 @@ extension AppCoordinator {
 
     func logout() {
         credentialsManager.clear()
+        baseURL = URL(string: "https://esb.tignum.com")!
         do {
             syncManager.stopAutoSync()
             syncManager.stopCurrentSync()

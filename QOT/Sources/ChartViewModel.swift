@@ -104,7 +104,7 @@ private extension ChartViewModel {
         var criticalSectionTypes = [StatisticsSectionType: CGFloat]()
 
         StatisticsSectionType.allValues.forEach { (sectionType: StatisticsSectionType) in
-            let universeValue = (sectionType.universeChartTypes.flatMap { $0.statistics(allCharts).universeValue }).reduce(0, +)
+            let universeValue = (sectionType.universeChartTypes.flatMap { $0.statistics(allCharts)?.universeValue }).reduce(0, +)
             criticalSectionTypes[sectionType] = universeValue
         }
 

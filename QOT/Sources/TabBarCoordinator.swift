@@ -243,7 +243,10 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
 
     func didTapSector(startingSection: StatisticsSectionType?, in viewController: MyUniverseViewController) {
         let transitioningDelegate = ChartAnimator()
-        let coordinator = StatisticsCoordinator(root: topTabBarControllerMe, services: services, transitioningDelegate: transitioningDelegate, startingSection: startingSection)
+        let coordinator = StatisticsCoordinator(root: topTabBarControllerMe,
+                                                services: services,
+                                                transitioningDelegate: transitioningDelegate,
+                                                startingSection: startingSection)
         startChild(child: coordinator)
     }
 

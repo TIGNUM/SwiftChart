@@ -148,7 +148,7 @@ enum ChartType: String, EnumCollection {
         return labels
     }
 
-    func selectedChart(charts: [Statistics]) -> Statistics {
+    func selectedChart(charts: [Statistics]) -> Statistics? {        
         switch self {
         case .meetingAverageDay,
              .meetingAverageWeek:
@@ -447,8 +447,8 @@ enum ChartType: String, EnumCollection {
         }
     }
 
-    func statistics(_ charts: [Statistics]) -> Statistics {
-        return charts.filter { $0.key == rawValue }[0]
+    func statistics(_ charts: [Statistics]) -> Statistics? {
+        return charts.filter { $0.key == rawValue }.first
     }
 }
 

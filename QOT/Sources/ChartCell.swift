@@ -213,7 +213,7 @@ private extension ChartCell {
 
     func setupLabels(headerTitle: String, statistics: Statistics, charts: [Statistics]) {
         let userText = statistics.chartType == .meetingAverageDay || statistics.chartType == .meetingAverageWeek ? "" : "PERSONAL\nAVG."
-        let statistics = statistics.chartType.selectedChart(charts: charts)
+        guard let statistics = statistics.chartType.selectedChart(charts: charts) else { return }
         setLabel(text: "INFO", color: .white40, label: bottomLabel)
         setLabel(text: "TEAM", color: .azure, label: teamLabel)
         setLabel(text: "AVG.", color: .azure, label: teamAverageLabel)
@@ -243,7 +243,7 @@ private extension ChartCell {
     }
 
     func addCharts(statistics: Statistics, allCards: [Statistics]) {
-        let stats = statistics.chartType.selectedChart(charts: allCards)
+        guard let stats = statistics.chartType.selectedChart(charts: allCards) else { return }
         setupChartViewLabels(stats)
         let charts = setupChartView(statistics: stats)
         if stats.chartType.segmentedView == true {
@@ -397,7 +397,8 @@ private extension ChartCell {
 
 private extension ChartCell {
 
-    func setupChartViewLabels(_ statistics: Statistics) {
+    func setupChartViewLabels(_ statistics: Statistics?) {
+        guard let statistics = statistics else { return }
         let isSleepChart = statistics.chartType != .sleepQuantity && statistics.chartType != .sleepQuality
         seperatorBottomView.isHidden = statistics.chartType.bottomView == false
 
