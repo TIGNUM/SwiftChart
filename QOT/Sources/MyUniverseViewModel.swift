@@ -18,7 +18,7 @@ final class MyUniverseViewModel {
     
     let updates = PublishSubject<Update, NoError>()
     var profileImageResource: MediaResource? {
-        return services.userService.myToBeVision()?.profileImageResource
+        return services.userService.myToBeVision().profileImageResource
     }
     var sectorCount: Int {
         return sectors.count

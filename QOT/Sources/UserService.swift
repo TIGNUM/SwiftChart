@@ -104,8 +104,19 @@ extension UserService {
 
 extension UserService {
     
-    func myToBeVision() -> MyToBeVision? {
-        return myToBeVisions().first
+    func myToBeVision() -> MyToBeVision {
+        if let vision = myToBeVisions().first {
+            return vision
+        }
+        let vision = MyToBeVision()
+        do {
+            try mainRealm.write {
+                mainRealm.add(vision)
+            }
+        } catch {
+            assertionFailure("Failed to create toBeVision with error: \(error)")
+        }
+        return vision
     }
     
     func myToBeVisions() -> AnyRealmCollection<MyToBeVision> {
@@ -142,10 +153,9 @@ extension UserService {
     }
     
     func eraseToBeVision() {
-        guard let toBeVision = myToBeVision() else { return }
         do {
             try mainRealm.write {
-                mainRealm.delete(toBeVision)
+                mainRealm.delete(myToBeVision())
             }
         } catch {
             assertionFailure("Failed to delete toBeVision with error: \(error)")
