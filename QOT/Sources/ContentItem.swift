@@ -15,22 +15,6 @@ final class ContentItem: SyncableObject {
 
     let collectionID = RealmOptional<Int>(nil)
 
-    func setData(_ data: ContentItemIntermediary) throws {
-        sortOrder = data.sortOrder
-        format = data.format
-        searchTags = data.searchTags
-        layoutInfo = data.layoutInfo
-        tabs = data.tabs
-        valueText = data.valueText
-        valueDescription = data.valueDescription
-        valueImageURL = data.valueImageURL
-        valueMediaURL = data.valueMediaURL
-        valueDuration.value = data.valueDuration
-        valueWavformData = data.valueWavformData
-    }
-
-    // MARK: ContentData
-
     @objc private(set) dynamic var sortOrder: Int = 0
 
     @objc private(set) dynamic var format: String = ""
@@ -48,6 +32,8 @@ final class ContentItem: SyncableObject {
     @objc private(set) dynamic var valueImageURL: String?
 
     @objc private(set) dynamic var valueMediaURL: String?
+    
+    let valueMediaID = RealmOptional<Int>(nil)
 
     let valueDuration = RealmOptional<Double>(nil)
 
@@ -96,6 +82,7 @@ extension ContentItem: OneWaySyncableDown {
         valueMediaURL = data.valueMediaURL
         valueDuration.value = data.valueDuration
         valueWavformData = data.valueWavformData
+        valueMediaID.value = data.valueMediaID
 
         objectStore.delete(relatedContent)
         relatedContent.append(objectsIn: data.relatedContent.map({ ContentRelation(intermediary: $0) }))

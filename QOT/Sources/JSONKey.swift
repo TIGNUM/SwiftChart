@@ -96,6 +96,7 @@ enum JsonKey: String {
     case maxResults
     case mediaEntity
     case mediaFormat
+    case mediaId
     case mediaURL
     case mediaUrl
     case memberSince

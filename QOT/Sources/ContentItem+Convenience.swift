@@ -25,11 +25,32 @@ extension ContentItem {
     }
 
     var bundledAudioURL: URL? {
-        guard let remoteID = remoteID.value else {
+        guard let mediaID = valueMediaID.value, let fileName = bundledMediaNames[mediaID] else {
             return nil
         }
-        // FIXME: This is bad because we are assuming that the bundled media will only be used by a single content item.
-        // We should really have a new model type and API endpoints specifically for media.
-        return Bundle.main.url(forResource: "\(remoteID)", withExtension: "m4a")
+        return Bundle.main.url(forResource: fileName, withExtension: nil)
     }
 }
+
+// MARK: Helpers
+
+private struct BundledMediaResource: Codable {
+    
+    let mediaID: Int
+    let fileName: String
+}
+
+private var bundledMediaNames: [Int: String] = {
+    let fileURL = Bundle.main.url(forResource: "bundled_media", withExtension: "plist")!
+    do {
+        let data = try Data(contentsOf: fileURL)
+        let decoder = PropertyListDecoder()
+        var names: [Int: String] = [:]
+        for resource in try decoder.decode([BundledMediaResource].self, from: data) {
+            names[resource.mediaID] = resource.fileName
+        }
+        return names
+    } catch {
+        fatalError("cannot decode bundled media plist: \(error)")
+    }
+}()

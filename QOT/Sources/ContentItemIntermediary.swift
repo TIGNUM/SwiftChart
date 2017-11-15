@@ -26,6 +26,7 @@ struct ContentItemIntermediary {
     let valueMediaURL: String?
     let valueDuration: Double?
     let valueWavformData: String?
+    let valueMediaID: Int?
 }
 
 // MARK: - Parser
@@ -49,6 +50,7 @@ extension ContentItemIntermediary: DownSyncIntermediary {
         self.valueMediaURL = try valueJSON.getItemValue(at: .mediaURL)
         self.valueDuration = try valueJSON.getItemValue(at: .duration)
         self.valueWavformData = try valueJSON.serializeString(at: .waveformData)
+        self.valueMediaID = try valueJSON.getItemValue(at: .mediaId)
     }
 
     private static func commaSeperatedStringFromArray(in json: JSON, at key: JsonKey) -> String {
