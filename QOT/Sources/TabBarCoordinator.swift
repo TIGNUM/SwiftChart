@@ -22,27 +22,13 @@ final class TabBarCoordinator: ParentCoordinator {
     private let selectedIndex: Observable<Index>
     private var viewControllers = [UIViewController]()
     private let permissionHandler: PermissionHandler
-    private var preparationID: String?
-    private var hasLoadedFirstTime = false
     private let pageTracker: PageTracker
     private let networkManager: NetworkManager
     private let syncManager: SyncManager
     var children = [Coordinator]()
     var tabBarController: TabBarController?
 
-    var isLoading: Bool {
-        return windowManager.rootViewController(atLevel: .normal)?.presentedViewController is LoadingViewController
-    }
-    
-    lazy private var syncAllStartedNotificationHandler: NotificationHandler = {
-        return NotificationHandler(name: .syncAllDidStartNotification)
-    }()
-
-    lazy private var syncAllFinishedNotificationHandler: NotificationHandler = {
-        return NotificationHandler(name: .syncAllDidFinishNotification)
-    }()
-
-    private lazy var prepareCoordinator: PrepareCoordinator = {
+    lazy var prepareCoordinator: PrepareCoordinator = {
         return PrepareCoordinator(services: self.services,
                                   eventTracker: self.eventTracker,
                                   permissionHandler: self.permissionHandler,
@@ -96,8 +82,7 @@ final class TabBarCoordinator: ParentCoordinator {
 
     private lazy var topTabBarControllerMe: MyUniverseViewController = {
         let myUniverseViewController = MyUniverseViewController(
-            myDataViewModel: MyDataViewModel(services: self.services),
-            myWhyViewModel: MyWhyViewModel(services: self.services),
+            viewModel: MyUniverseViewModel(services: self.services),
             pageTracker: self.pageTracker
         )
         myUniverseViewController.delegate = self
@@ -115,12 +100,6 @@ final class TabBarCoordinator: ParentCoordinator {
         return topTabBarController
     }()
 
-    lazy private var loadingViewController: LoadingViewController = {
-        let vc = LoadingViewController()
-        vc.modalTransitionStyle = .crossDissolve
-        return vc
-    }()
-
     // MARK: - Init
     
     init(windowManager: WindowManager,
@@ -136,58 +115,15 @@ final class TabBarCoordinator: ParentCoordinator {
         self.eventTracker = eventTracker
         self.selectedIndex = Observable(selectedIndex)
         self.permissionHandler = permissionHandler
-        self.pageTracker = pageTracker        
+        self.pageTracker = pageTracker
         self.syncManager = syncManager
         self.networkManager = networkManager
-        
-        syncAllStartedNotificationHandler.handler = { (notification: Notification) in
-            guard let userInfo = notification.userInfo, let isDownloadRecordsValid = userInfo["isDownloadRecordsValid"] as? Bool, isDownloadRecordsValid == false, !self.hasLoadedFirstTime else {
-                return
-            }
-            self.showLoading()
-        }
-
-        syncAllFinishedNotificationHandler.handler = { (_: Notification) in
-            self.hasLoadedFirstTime = true
-            self.hideLoading(completion: {
-                if let preparationID = self.preparationID {
-                    self.prepareCoordinator.showPrepareCheckList(preparationID: preparationID)
-                }
-            })
-        }
     }
 
     // MARK: -
 
     func showPreparationCheckList(localID: String) {
-        if hasLoadedFirstTime {
-            prepareCoordinator.showPrepareCheckList(preparationID: localID)
-        } else {
-            preparationID = localID
-        }
-    }
-    
-    func showLoading(completion: (() -> Void)? = nil) {
-        guard !isLoading else {
-            return
-        }
-
-        windowManager.presentViewController(loadingViewController, atLevel: .normal, animated: true, completion: nil)
-        loadingViewController.fadeIn(withCompletion: completion)
-    }
-    
-    func hideLoading(completion: (() -> Void)? = nil) {
-        guard isLoading else {
-            completion?()
-            return
-        }
-        
-        let loadingViewController = self.loadingViewController
-        loadingViewController.fadeOut(withCompletion: { [unowned loadingViewController] in
-            loadingViewController.dismiss(animated: true, completion: {
-                completion?()
-            })
-        })
+        prepareCoordinator.showPrepareCheckList(preparationID: localID)
     }
     
     func start() {

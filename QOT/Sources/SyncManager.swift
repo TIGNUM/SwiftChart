@@ -13,7 +13,7 @@ import EventKit
 
 // Callback notifications
 extension Notification.Name {
-    static let syncAllDidStartNotification = Notification.Name(rawValue: "qot_syncAllDidStartNotification") // userInfo -> { isDownloadRecordsValid : Bool }
+    static let syncAllDidStartNotification = Notification.Name(rawValue: "qot_syncAllDidStartNotification")
     static let syncAllDidFinishNotification = Notification.Name(rawValue: "qot_syncAllDidFinishNotification")
 }
 
@@ -36,30 +36,7 @@ final class SyncManager {
     }()
     private var syncAllTimer: Timer?
     private var uploadTimer: Timer?
-
-    @objc var isDownloadRecordsValid: Bool {
-        do {
-            // There are some classes that must have downloaded to use the app. We only care about those classes
-            let downloadClasses: [AnyClass] = [
-                SystemSetting.self,
-                UserSetting.self,
-                User.self,
-                Question.self,
-                ContentCategory.self,
-                ContentCollection.self,
-                Statistics.self,
-                ContentItem.self
-            ]
-            for value in downloadClasses {
-                guard try syncRecordService.lastSync(className: String(describing: value.self)) > 0 else {
-                    return false
-                }
-            }
-        } catch {
-            return false
-        }
-        return true
-    }
+    private var syncTask: SyncTask?
 
     var isSyncing: Bool {
         return operationQueue.operationCount > 0
@@ -107,6 +84,17 @@ final class SyncManager {
 
     // MARK: Syncs
 
+    func downSyncUser(completion: @escaping (Error?) -> Void) {
+        syncTask = DownSyncTask<User>(networkManager: networkManager,
+                                      realmProvider: realmProvider,
+                                      syncRecordService: syncRecordService)
+        syncTask?.start { (error) in
+            DispatchQueue.main.async {
+                completion(error)
+            }
+        }
+    }
+
     func startAutoSync() {
         #if BUILD_DATABASE
             return // Don't do regular sync when building seed database
@@ -120,17 +108,16 @@ final class SyncManager {
     }
 
     func stopCurrentSync() {
+        syncTask?.cancel()
         operationQueue.cancelAllOperations()
     }
 
     func syncAll(shouldDownload: Bool) {
         let context = SyncContext()
 
-        let startOperation = BlockOperation { [unowned self] in
+        let startOperation = BlockOperation {
             DispatchQueue.main.async {
-                let key = NSStringFromSelector(#selector(getter: self.isDownloadRecordsValid))
-                let userInfo = [key: self.isDownloadRecordsValid]
-                NotificationHandler.postNotification(withName: .syncAllDidStartNotification, userInfo: userInfo)
+                NotificationHandler.postNotification(withName: .syncAllDidStartNotification)
                 log("SYNC ALL STARTED", enabled: Log.Toggle.Manager.Sync)
             }
         }
@@ -189,6 +176,7 @@ final class SyncManager {
             syncOperation(PageTrack.self, context: context, shouldDownload: shouldDownload),
             syncOperation(CalendarEvent.self, context: context, shouldDownload: shouldDownload),
             syncOperation(MyToBeVision.self, context: context, shouldDownload: shouldDownload),
+            syncOperation(Statistics.self, context: context, shouldDownload: shouldDownload),
             syncOperation(Partner.self, context: context, shouldDownload: shouldDownload),
             syncOperation(Preparation.self, context: context, shouldDownload: shouldDownload),
             syncOperation(PreparationCheck.self, context: context, shouldDownload: shouldDownload),
@@ -203,7 +191,6 @@ final class SyncManager {
             syncOperation(ContentCollection.self, context: context, shouldDownload: shouldDownload),
             syncOperation(ContentItem.self, context: context, shouldDownload: shouldDownload),
             syncOperation(ContentRead.self, context: context, shouldDownload: shouldDownload),
-            syncOperation(Statistics.self, context: context, shouldDownload: shouldDownload),
             UpdateRelationsOperation(context: context, realmProvider: realmProvider)
         ]
         return operations.flatMap({ $0 })

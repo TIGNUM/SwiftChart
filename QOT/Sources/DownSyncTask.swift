@@ -77,7 +77,7 @@ final class DownSyncTask<T>: SyncTask where T: SyncableObject, T: DownSyncable, 
 
     private func getLastSyncDate(completion: @escaping (Result<Int64, SyncError>) -> Void) {
         do {
-            let date = try syncRecordService.lastSync(className: String(describing: T.self))
+            let date = try syncRecordService.lastSync(T.self) ?? 0
             completion(.success(date))
         } catch let error {
             completion(.failure(.downSyncReadLastSyncDateFailed(type: syncDescription, error: error)))
@@ -129,7 +129,7 @@ final class DownSyncTask<T>: SyncTask where T: SyncableObject, T: DownSyncable, 
             try realm.write {
                 try importer.importChanges(changes, store: realm)
             }
-            try syncRecordService.recordSync(className: String(describing: T.self), date: syncDate)
+            try syncRecordService.recordSync(T.self, date: syncDate)
             completion(nil)
         } catch let error {
             completion(.downSyncImportChangesFailed(type: syncDescription, error: error))

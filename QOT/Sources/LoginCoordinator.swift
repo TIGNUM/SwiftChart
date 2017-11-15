@@ -11,7 +11,7 @@ import MBProgressHUD
 
 protocol LoginCoordinatorDelegate: class {
 
-    func didLoginSuccessfully()
+    func loginCoordinatorDidLogin(_ coordinator: LoginCoordinator)
 }
 
 final class LoginCoordinator: ParentCoordinator {
@@ -20,24 +20,26 @@ final class LoginCoordinator: ParentCoordinator {
 
     private let windowManager: WindowManager
     private let networkManager: NetworkManager
+    private let syncManager: SyncManager
     private weak var delegate: LoginCoordinatorDelegate?
     var children: [Coordinator] = []
 
     // MARK: - Lifecycle
 
-    init(windowManager: WindowManager, delegate: LoginCoordinatorDelegate, networkManager: NetworkManager) {
+    init(windowManager: WindowManager,
+         delegate: LoginCoordinatorDelegate,
+         networkManager: NetworkManager,
+         syncManager: SyncManager) {
         self.windowManager = windowManager
         self.delegate = delegate
         self.networkManager = networkManager
+        self.syncManager = syncManager
     }
 
     func start() {
         let loginViewController = LoginViewController(delegate: self)
         let navigationController = UINavigationController(rootViewController: loginViewController)
-        let navigationBar = navigationController.navigationBar
-        navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationBar.shadowImage = UIImage()
-        navigationBar.isTranslucent = true
+        navigationController.navigationBar.applyDefaultStyle()
         windowManager.setRootViewController(navigationController, atLevel: .normal, animated: true, completion: nil)
     }
 }
@@ -47,22 +49,43 @@ final class LoginCoordinator: ParentCoordinator {
 extension LoginCoordinator: LoginViewControllerDelegate {
 
     func loginViewController(_ viewController: UIViewController, didTapLoginWithEmail email: String, password: String) {
-        guard let window = AppDelegate.current.window else {
-            return
-        }
-        let progressHUD = MBProgressHUD.showAdded(to: window, animated: true)
-        networkManager.performAuthenticationRequest(username: email, password: password) { error in
-            progressHUD.hide(animated: true)
-            guard error == nil else {
-                viewController.showAlert(type: .loginFailed)
-                return
+        let hud = MBProgressHUD.showAdded(to: viewController.view, animated: true, title: nil, message: nil)
+        networkManager.performAuthenticationRequest(username: email, password: password) { [weak self] (error) in
+            guard let `self` = self else { return }
+            if let error = error {
+                hud.hide(animated: true)
+                self.handleLoginError(error, viewController: viewController)
+            } else {
+                self.syncManager.downSyncUser { (downSyncError) in
+                    if let downSyncError = downSyncError {
+                        hud.hide(animated: true)
+                        self.handleLoginError(downSyncError, viewController: viewController)
+                    } else {
+                        hud.hide(animated: true)
+                        self.delegate?.loginCoordinatorDidLogin(self)
+                    }
+                }
             }
-            self.delegate?.didLoginSuccessfully()
         }
     }
 
     func loginViewControllerDidTapResetPassword(_ viewController: UIViewController) {
         let resetPasswordCoordinator = ResetPasswordCoordinator(rootVC: viewController, parentCoordinator: self, networkManager: networkManager)
         startChild(child: resetPasswordCoordinator)
+    }
+
+    private func handleLoginError(_ error: Error, viewController: UIViewController) {
+        if let networkError = error as? NetworkError {
+            switch networkError.type {
+            case .unauthenticated:
+                viewController.showAlert(type: .loginFailed)
+            case .noNetworkConnection:
+                viewController.showAlert(type: .noNetworkConnection)
+            default:
+                viewController.showAlert(type: .unknown)
+            }
+        } else {
+            viewController.showAlert(type: .unknown)
+        }
     }
 }

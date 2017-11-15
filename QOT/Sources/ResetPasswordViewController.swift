@@ -196,7 +196,7 @@ final class ResetPasswordViewController: UIViewController {
                 case .notFound:
                     self.showAlert(type: .emailNotFound)
                 default:
-                    self.showAlert(type: .unknow)
+                    self.showAlert(type: .unknown)
                 }
                 return
             }
@@ -235,8 +235,9 @@ final class ResetPasswordViewController: UIViewController {
             let curve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? UInt else {
                 return
         }
-        topConstraint.constant -= (rect.height / 2.0)
-        UIView.animate(withDuration: duration, delay: 0, options: UIViewAnimationOptions(rawValue: curve), animations: {
+        topConstraint.constant = max(topConstraintOriginalValue - (rect.height / 2.0), 10.0)
+        UIView.animate(withDuration: duration, delay: 0, options: [UIViewAnimationOptions(rawValue: curve), .beginFromCurrentState], animations: {
+            self.logoImageView.alpha = 0.0
             self.view.layoutIfNeeded()
         })
     }
@@ -250,7 +251,8 @@ final class ResetPasswordViewController: UIViewController {
                 return
         }
         topConstraint.constant = topConstraintOriginalValue
-        UIView.animate(withDuration: duration, delay: 0, options: UIViewAnimationOptions(rawValue: curve), animations: {
+        UIView.animate(withDuration: duration, delay: 0, options: [UIViewAnimationOptions(rawValue: curve), .beginFromCurrentState], animations: {
+            self.logoImageView.alpha = 1.0
             self.view.layoutIfNeeded()
         })
     }

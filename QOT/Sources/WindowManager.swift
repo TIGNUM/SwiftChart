@@ -57,9 +57,7 @@ class WindowManager {
         allWindows.forEach { (window: UIWindow) in
             window.rootViewController = createBaseViewController()
             window.makeKeyAndVisible()
-            if window != normalWindow {
-                window.isHidden = true
-            }
+            window.isHidden = (window != normalWindow)
         }
     }
     
@@ -68,36 +66,27 @@ class WindowManager {
         return window.rootViewController
     }
     
-    func setRootViewController(_ viewController: UIViewController, atLevel level: Level, animated: Bool, completion: (() -> Void)?) {
-        let window = windowForLevel(level)
-        viewController.view.frame = window.bounds
-        if animated {
-            UIView.transition(with: window, duration: 1.0, options: .transitionCrossDissolve, animations: {
-                window.rootViewController = viewController
-            }, completion: { _ in
-                completion?()
-            })
-        } else {
-            window.rootViewController = viewController
-        }
+    // we do not set the root view controller directly, as the rootViewController is guaraneed to always be a trasparent view. see createBaseViewController()
+    func setRootViewController(_ viewController: UIViewController, transitionStyle: UIModalTransitionStyle = .crossDissolve, atLevel level: Level, animated: Bool, completion: (() -> Void)?) {
+        viewController.modalTransitionStyle = transitionStyle
+        presentViewController(viewController, atLevel: level, animated: animated, completion: completion)
     }
     
-    func presentViewController(_ viewController: UIViewController, atLevel level: Level, animated: Bool, replacesContent: Bool = false, completion: (() -> Void)?) {
+    func presentViewController(_ viewController: UIViewController, atLevel level: Level, animated: Bool, completion: (() -> Void)?) {
         let window = windowForLevel(level)
-        if replacesContent && window.rootViewController?.presentedViewController != nil {
-            window.rootViewController?.dismiss(animated: animated, completion: {
-                window.rootViewController?.present(viewController, animated: animated, completion: completion)
-            })
-        } else {
-            window.rootViewController?.present(viewController, animated: animated, completion: completion)
+        guard let rootViewController = window.rootViewController else {
+            assertionFailure("rootViewController should not be nil")
+            return
         }
+        rootViewController.presentedViewController?.dismiss(animated: false, completion: nil)
+        rootViewController.present(viewController, animated: animated, completion: completion)
     }
     
     func resignWindow(atLevel level: Level) {
         guard level != .normal else {
-            fatalError("can't resign the normal window")
+            assertionFailure("can't resign the normal window")
+            return
         }
-
         let window = windowForLevel(level)
         window.isHidden = true
         clearWindow(atLevel: level)
@@ -109,20 +98,18 @@ class WindowManager {
     }
     
     func hasContent(atLevel level: Level) -> Bool {
-        let window = windowForLevel(level)
-
-        return window.rootViewController?.presentedViewController != nil
+        return rootViewController(atLevel: level)?.presentedViewController != nil
     }
     
     func clearWindow(atLevel level: Level) {
         let window = windowForLevel(level)
-        window.clear()
+        window.rootViewController?.presentedViewController?.dismiss(animated: false, completion: nil)
         window.rootViewController = createBaseViewController()
     }
 
     func clearWindows() {
         allWindows.forEach { (window: UIWindow) in
-            window.clear()
+            window.rootViewController?.presentedViewController?.dismiss(animated: false, completion: nil)
             window.rootViewController = createBaseViewController()
         }
     }
@@ -143,17 +130,5 @@ class WindowManager {
         viewController.view.backgroundColor = .clear
         viewController.view.frame = UIScreen.main.bounds
         return viewController
-    }
-}
-
-// MARK: - UIWindow convenience
-
-private extension UIWindow {
-
-    func clear() {
-        subviews.forEach { (view: UIView) in
-            view.removeFromSuperview()
-        }
-        rootViewController = nil
     }
 }

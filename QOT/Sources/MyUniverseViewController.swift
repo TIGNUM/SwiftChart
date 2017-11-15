@@ -8,6 +8,7 @@
 
 import UIKit
 import ReactiveKit
+import Anchorage
 
 protocol MyUniverseViewControllerDelegate: class {
 
@@ -31,18 +32,24 @@ protocol MyWhyViewDelegate: class {
     func didTapQOTPartner(selectedIndex: Index, partners: [Partner], from view: UIView)
 }
 
-final class MyUniverseViewController: UIViewController {
+final class MyUniverseViewController: UIViewController, FullScreenLoadable {
     
     // MARK: - Properties
 
     private let disposeBag = DisposeBag()
-    private let myDataViewModel: MyDataViewModel
-    private let myWhyViewModel: MyWhyViewModel
+    private let viewModel: MyUniverseViewModel
     private var lastContentOffset: CGFloat = 0
     var pageName: PageName = .myData
     weak var delegate: MyUniverseViewControllerDelegate?
     let pageTracker: PageTracker
 
+    var loadingView: BlurLoadingView?
+    var isLoading: Bool = false {
+        didSet {
+            showLoading(isLoading, text: R.string.localized.meMyUniverseLoading())
+        }
+    }
+    
     private lazy var topBar: TopNavigationBar = {
         let topBar = TopNavigationBar(frame: CGRect(
             x: 0.0,
@@ -80,8 +87,8 @@ final class MyUniverseViewController: UIViewController {
     lazy var myDataView: MyDataView = {
         return MyDataView(
             delegate: self,
-            sectors: self.myDataViewModel.sectors,
-            myDataViewModel: self.myDataViewModel,
+            sectors: self.viewModel.sectors,
+            profileImageResource: self.viewModel.profileImageResource,
             frame: CGRect(
                 x: self.view.bounds.origin.x,
                 y: 15.0,
@@ -92,24 +99,23 @@ final class MyUniverseViewController: UIViewController {
     }()
 
     lazy var myWhyView: MyWhyView = {
-        let myWhyViewFrame = CGRect(
-            x: self.view.bounds.width,
-            y: self.view.bounds.origin.y,
-            width: self.view.bounds.width,
-            height: self.view.bounds.height
-        )
-
         return MyWhyView(
-            myWhyViewModel: self.myWhyViewModel,
-            frame: myWhyViewFrame,
+            frame: CGRect(
+                x: self.view.bounds.width,
+                y: self.view.bounds.origin.y,
+                width: self.view.bounds.width,
+                height: self.view.bounds.height
+            ),
             screenType: self.screenType,
+            items: self.viewModel.myWhyViewDataSource,
+            myToBeVision: self.viewModel.myToBeVisions.first,
             delegate: self
         )
     }()
 
     private lazy var myDataSectorLabelsView: MyDataSectorLabelsView = {
         return MyDataSectorLabelsView(
-            sectors: self.myDataViewModel.sectors,
+            sectors: self.viewModel.sectors,
             frame: myDataView.frame,
             screenType: self.screenType
         )
@@ -151,9 +157,8 @@ final class MyUniverseViewController: UIViewController {
 
     // MARK: - Life Cycle
 
-    init(myDataViewModel: MyDataViewModel, myWhyViewModel: MyWhyViewModel, pageTracker: PageTracker) {
-        self.myDataViewModel = myDataViewModel
-        self.myWhyViewModel = myWhyViewModel
+    init(viewModel: MyUniverseViewModel, pageTracker: PageTracker) {
+        self.viewModel = viewModel
         self.pageTracker = pageTracker
 
         super.init(nibName: nil, bundle: nil)
@@ -162,25 +167,38 @@ final class MyUniverseViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         addTabRecognizer()
         addSubViews()
 
-        myWhyViewModel.updates.observeNext { [weak self, weak myWhyViewModel] (_: CollectionUpdate) in
-            if let resource = myWhyViewModel?.myToBeVision?.profileImageResource {
-                self?.myDataView.updateProfileImageResource(resource)
+        viewModel.updates.observeNext { [unowned self] update in
+            switch update {
+            case .reloadMyWhyView(let dataSource):
+                self.myWhyView.items = dataSource
+                self.myWhyView.reload()
+            case .reloadProfileImageResource(let resource):
+                self.myDataView.updateProfileImageResource(resource)
+                NotificationCenter.default.post(name: .startSyncUploadMediaNotification, object: nil)
+            }
+            DispatchQueue.main.async {
+                self.updateReadyState()
             }
         }.dispose(in: disposeBag)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateReadyState()
     }
 }
 
 // MARK: - Private
 
 private extension MyUniverseViewController {
-
+    
     func addSubViews() {
         backgroundScrollView.addSubview(backgroundImage)
         view.addSubview(backgroundScrollView)
@@ -189,6 +207,13 @@ private extension MyUniverseViewController {
         scrollView.addSubview(myWhyView)
         scrollView.addSubview(myDataSectorLabelsView)
         scrollView.addSubview(myDataView)
+    }
+    
+    func updateReadyState() {
+        myWhyView.userCoicesReady = viewModel.toBeVisionReady()
+        myWhyView.partnersReady = viewModel.partnersReady()
+        myWhyView.toBeVisionReady = viewModel.userChoicesReady()
+        isLoading = !viewModel.isReady()
     }
     
     func updatePageTracking() {
@@ -321,7 +346,7 @@ extension MyUniverseViewController: MyWhyViewDelegate {
 extension MyUniverseViewController: MyDataViewDelegate {
 
     func myDataView(_ view: MyDataView, pressedProfileButton button: UIButton) {
-        delegate?.didTapMyToBeVision(vision: myWhyViewModel.myToBeVision, from: button, in: self)
+        delegate?.didTapMyToBeVision(vision: viewModel.myToBeVisions.first, from: button, in: self)
     }
 }
 
@@ -343,17 +368,5 @@ extension MyUniverseViewController: TopNavigationBarDelegate {
     
     func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
         delegate?.didTapRightBarButton(button, from: navigationBar, in: self)
-    }
-}
-
-// MARK: - animation helper
-
-private extension UIViewController {
-
-    func contains(_ classId: AnyClass) -> Bool {
-        if let navigationController = self as? UINavigationController, let pageViewController = navigationController.viewControllers.first as? PageViewController, let viewController = pageViewController.data?.first, viewController.classForCoder == classId {
-            return true
-        }
-        return false
     }
 }

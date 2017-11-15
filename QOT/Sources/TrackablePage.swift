@@ -166,15 +166,6 @@ extension LibraryViewController: TrackablePage {
     }
 }
 
-extension LoadingViewController: TrackablePage {
-    var pageName: PageName {
-        return .loading
-    }
-    var pageAssociatedObject: PageObject? {
-        return nil
-    }
-}
-
 extension LoginViewController: TrackablePage {
     var pageName: PageName {
         return .login

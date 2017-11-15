@@ -25,15 +25,15 @@ final class AppCoordinator: ParentCoordinator {
     private let windowManager: WindowManager
     private let remoteNotificationHandler: RemoteNotificationHandler
     private var services: Services?
-    private var topTabBarController: UINavigationController?
-    private var tabBarCoordinator: TabBarCoordinator?
+    private weak var topTabBarController: UINavigationController?
+    private weak var tabBarCoordinator: TabBarCoordinator?
     private lazy var permissionHandler: PermissionHandler = PermissionHandler()
     private lazy var networkManager: NetworkManager = NetworkManager(delegate: self, credentialsManager: self.credentialsManager)
     private lazy var credentialsManager: CredentialsManager = CredentialsManager.shared
     private var canProcessRemoteNotifications = false
     private var onDismiss: (() -> Void)?
-    private var currentPresentedController: UIViewController?
-    private var currentPresentedNavigationController: UINavigationController?
+    private weak var currentPresentedController: UIViewController?
+    private weak var currentPresentedNavigationController: UINavigationController?
     static var currentStatusBarStyle: UIStatusBarStyle?
     
     private lazy var realmProvider: RealmProvider = {
@@ -90,22 +90,24 @@ final class AppCoordinator: ParentCoordinator {
         observeTimeZoneChange()
         
         let viewController = AnimatedLaunchScreenViewController()
-        windowManager.setRootViewController(viewController, atLevel: .normal, animated: false, completion: nil)
-        viewController.fadeInLogo()
-        viewController.startAnimatingImages {
-            viewController.fadeOutLogo { [unowned self] in
-                if self.credentialsManager.isCredentialValid == true {
-                    self.showApp()
-                } else {
-                    self.showLogin()
+        windowManager.setRootViewController(viewController, atLevel: .normal, animated: false, completion: {
+            viewController.fadeInLogo()
+            viewController.startAnimatingImages { [unowned viewController] in
+                viewController.fadeOutLogo {
+                    if self.credentialsManager.isCredentialValid == true {
+                        self.showApp()
+                    } else {
+                        self.showLogin()
+                    }
                 }
             }
-        }
+        })
     }
-
+    
     func restart() {
-        removeAllChildren()
+        networkManager.cancelAllRequests()
         windowManager.clearWindows()
+        removeAllChildren()
         logout()
         showLogin()
     }
@@ -139,12 +141,6 @@ final class AppCoordinator: ParentCoordinator {
                     self.registerRemoteNotifications()
                     self.calendarImportManager.importEvents()
                     self.startTabBarCoordinator(services: services, permissionHandler: self.permissionHandler)
-
-                    // if the tab controller isn't loading, but we're still syncing all, show loading
-                    let doingInitialSync = self.syncManager.isSyncing && (self.syncManager.isDownloadRecordsValid == false)
-                    if let tabBarCoordinator = self.tabBarCoordinator, !tabBarCoordinator.isLoading, doingInitialSync {
-                        tabBarCoordinator.showLoading()
-                    }
                     self.canProcessRemoteNotifications = true
                     self.remoteNotificationHandler.processOutstandingNotifications()
                 } catch {
@@ -221,7 +217,6 @@ private extension AppCoordinator {
                                             syncManager: syncManager,
                                             networkManager: networkManager)
         self.tabBarCoordinator = coordinator
-        coordinator.start()
         startChild(child: coordinator)
         guard let localID = checkListIDToPresent else { return }
         coordinator.showPreparationCheckList(localID: localID)
@@ -287,7 +282,7 @@ extension AppCoordinator {
         let myToBeVisionViewController = MyToBeVisionViewController(viewModel: viewModel, permissionHandler: permissionHandler)
         myToBeVisionViewController.delegate = self
         windowManager.showWindow(atLevel: .priority)
-        windowManager.presentViewController(myToBeVisionViewController, atLevel: .priority, animated: true, replacesContent: true, completion: nil)
+        windowManager.presentViewController(myToBeVisionViewController, atLevel: .priority, animated: true, completion: nil)
         currentPresentedController = myToBeVisionViewController
     }
 
@@ -306,7 +301,7 @@ extension AppCoordinator {
         let morningInterViewController = MorningInterviewViewController(viewModel: viewModel)
         morningInterViewController.delegate = self
         windowManager.showWindow(atLevel: .priority)
-        windowManager.presentViewController(morningInterViewController, atLevel: .priority, animated: true, replacesContent: true, completion: nil)
+        windowManager.presentViewController(morningInterViewController, atLevel: .priority, animated: true, completion: nil)
         currentPresentedController = morningInterViewController
     }
     
@@ -323,7 +318,7 @@ extension AppCoordinator {
                                                    topBarDelegate: self)
         topTabBarController = coordinator.topTabBarController        
         windowManager.showWindow(atLevel: .priority)
-        windowManager.presentViewController(coordinator.topTabBarController, atLevel: .priority, animated: true, replacesContent: true, completion: nil)
+        windowManager.presentViewController(coordinator.topTabBarController, atLevel: .priority, animated: true, completion: nil)
         currentPresentedNavigationController = coordinator.topTabBarController
     }
 
@@ -335,7 +330,7 @@ extension AppCoordinator {
         let image = windowManager.rootViewController(atLevel: .normal)?.view.screenshot()
         let viewController = SelectWeeklyChoicesViewController(delegate: self, viewModel: viewModel, backgroundImage: image)
         windowManager.showWindow(atLevel: .priority)
-        windowManager.presentViewController(viewController, atLevel: .priority, animated: true, replacesContent: true, completion: nil)
+        windowManager.presentViewController(viewController, atLevel: .priority, animated: true, completion: nil)
         currentPresentedController = viewController
     }
 
@@ -355,7 +350,7 @@ extension AppCoordinator {
         let coordinator = LearnContentItemCoordinator(root: rootViewController, eventTracker: eventTracker, services: services, content: content, category: category, presentationManager: presentationManager, topBarDelegate: self)
         topTabBarController = coordinator.topTabBarController
         windowManager.showWindow(atLevel: .priority)
-        windowManager.presentViewController(coordinator.topTabBarController, atLevel: .priority, animated: true, replacesContent: true, completion: nil)
+        windowManager.presentViewController(coordinator.topTabBarController, atLevel: .priority, animated: true, completion: nil)
         currentPresentedNavigationController = coordinator.topTabBarController
     }
 
@@ -375,7 +370,7 @@ extension AppCoordinator {
         let coordinator = LearnContentItemCoordinator(root: rootViewController, eventTracker: eventTracker, services: services, content: content, category: category, presentationManager: presentationManager, topBarDelegate: self)
         topTabBarController = coordinator.topTabBarController        
         windowManager.showWindow(atLevel: .priority)
-        windowManager.presentViewController(coordinator.topTabBarController, atLevel: .priority, animated: true, replacesContent: true, completion: nil)
+        windowManager.presentViewController(coordinator.topTabBarController, atLevel: .priority, animated: true, completion: nil)
         currentPresentedNavigationController = coordinator.topTabBarController
     }
 
@@ -399,7 +394,7 @@ extension AppCoordinator {
     }
 
     func showLogin() {
-        let loginCoordinator = LoginCoordinator(windowManager: windowManager, delegate: self, networkManager: networkManager)
+        let loginCoordinator = LoginCoordinator(windowManager: windowManager, delegate: self, networkManager: networkManager, syncManager: syncManager)
         startChild(child: loginCoordinator)
     }
 
@@ -463,7 +458,8 @@ extension AppCoordinator: CalendarImportMangerDelegate {
 
 extension AppCoordinator: LoginCoordinatorDelegate {
 
-    func didLoginSuccessfully() {
+    func loginCoordinatorDidLogin(_ coordinator: LoginCoordinator) {
+        removeChild(child: coordinator)
         showApp()
     }
 }

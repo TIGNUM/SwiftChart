@@ -21,7 +21,7 @@ enum AlertType {
     case unauthenticated
     case noNetworkConnection
     case comingSoon
-    case unknow
+    case unknown
     case loginFailed
     case notificationsNotAuthorized
     case tutorialReset
@@ -31,6 +31,7 @@ enum AlertType {
     case cameraNotAvailable
     case permissionNotGranted
     case imagePicker
+    case notSynced
 
     var title: String? {
         switch self {
@@ -42,7 +43,7 @@ enum AlertType {
         case .title(let title): return title
         case .unauthenticated: return R.string.localized.alertTitleUnauthenticated()
         case .noNetworkConnection: return R.string.localized.alertTitleNoNetworkConnection()
-        case .unknow: return R.string.localized.alertTitleUnknown()
+        case .unknown: return R.string.localized.alertTitleUnknown()
         case .loginFailed: return R.string.localized.loginViewLoginFailed()
         case .notificationsNotAuthorized: return R.string.localized.alertTitleNotificationsNotAuthorized()
         case .tutorialReset: return R.string.localized.settingsTutorialResetTitle()
@@ -62,13 +63,14 @@ enum AlertType {
         case .unauthenticated: return R.string.localized.alertMessageUnauthenticated()
         case .noNetworkConnection: return R.string.localized.alertMessageNoNetworkConnection()
         case .comingSoon: return R.string.localized.alertMessageComingSoon()
-        case .unknow: return R.string.localized.alertMessageUnknown()
+        case .unknown: return R.string.localized.alertMessageUnknown()
         case .notificationsNotAuthorized: return R.string.localized.alertMessageNotificationsNotAuthorized()
         case .settingsLoccationService: return R.string.localized.alertMessageLocationServices()
         case .settingsCalendars: return R.string.localized.alertMessageCalendarNoAccess()
         case .emailNotFound: return R.string.localized.alertMessageEmailNotFound()
         case .cameraNotAvailable: return R.string.localized.alertCameraNotAvailableMessage()
         case .permissionNotGranted: return R.string.localized.alertPermissionNotGrantedMessage()
+        case .notSynced: return R.string.localized.alertNotSyncedMessage()
         case .fitbitAlreadyConnected: return R.string.localized.sidebarSensorsMenuFitbitAlreadyConnectedMessage()
         default: return nil
         }

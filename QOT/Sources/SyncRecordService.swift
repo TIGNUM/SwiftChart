@@ -16,17 +16,19 @@ final class SyncRecordService {
         self.realmProvider = realmProvider
     }
 
-    func recordSync(className: String, date: Int64) throws {
+    func recordSync<T>(_ type: T.Type, date: Int64) throws {
         let realm = try realmProvider.realm()
+        let className = String(describing: T.self)
         try realm.write {
             let record = SyncRecord(associatedClassName: className, date: date)
             realm.create(SyncRecord.self, value: record, update: true)
         }
     }
 
-    func lastSync(className: String) throws -> Int64 {
+    func lastSync<T>(_ type: T.Type) throws -> Int64? {
         let realm = try realmProvider.realm()
-        return realm.object(ofType: SyncRecord.self, forPrimaryKey: className)?.date ?? 0
+        let className = String(describing: T.self)
+        return realm.object(ofType: SyncRecord.self, forPrimaryKey: className)?.date
     }
     
     func deleteSyncRecordsForClassNames(_ names: [String]) throws {

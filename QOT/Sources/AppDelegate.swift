@@ -130,6 +130,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UAirship.push().pushNotificationDelegate = remoteNotificationHandler
         UAirship.push().updateRegistration()
         UAirship.shared().analytics.isEnabled = true
+        UAirship.setLogLevel(.error)
     }
     
     private var appFilePath: String {

@@ -44,17 +44,17 @@ final class MyDataView: UIView, MyUniverseView {
     var profileImageViewOverlay = UIImageView()
     var profileImageViewOverlayEffect = UIImageView()
     var sectors = [Sector]()
-    var myDataViewModel: MyDataViewModel
+    var profileImageResource: MediaResource?
     var previousBounds = CGRect.zero
     var dataPoints = [ChartDataPoint]()
     weak var delegate: MyDataViewDelegate?
 
     // MARK: - Init
 
-    init(delegate: MyDataViewDelegate, sectors: [Sector], myDataViewModel: MyDataViewModel, frame: CGRect) {
+    init(delegate: MyDataViewDelegate, sectors: [Sector], profileImageResource: MediaResource?, frame: CGRect) {
         self.delegate = delegate
         self.sectors = sectors
-        self.myDataViewModel = myDataViewModel
+        self.profileImageResource = profileImageResource
 
         super.init(frame: frame)
     }
@@ -72,17 +72,16 @@ final class MyDataView: UIView, MyUniverseView {
     }
 
     func draw() {
-        drawUniverse(with: sectors, profileImageResource: myDataViewModel.profileImageResource, layout: Layout.MeSection(viewControllerFrame: bounds))
+        drawUniverse(with: sectors, profileImageResource: profileImageResource, layout: Layout.MeSection(viewControllerFrame: bounds))
     }
     
     func updateProfileImageResource(_ resource: MediaResource) {
         profileImageButton.setBackgroundImageFromResource(resource, defaultImage: R.image.universe_2state()) { [weak self] (image: UIImage?, error: Error?) in
-            if let image = image, let overlay = self?.profileImageViewOverlay {
-                DispatchQueue.global(qos: .userInitiated).async {
-                    let processed = UIImage.makeGrayscale(image)
-                    DispatchQueue.main.async {
-                        overlay.image = processed
-                    }
+            guard let `self` = self, let image = image else { return }
+            DispatchQueue.global(qos: .userInitiated).async {
+                let processed = UIImage.makeGrayscale(image)
+                DispatchQueue.main.async {
+                    self.profileImageViewOverlay.image = processed
                 }
             }
         }

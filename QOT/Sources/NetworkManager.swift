@@ -40,7 +40,11 @@ final class NetworkManager {
         self.credentialsManager = credentialsManager
         self.requestBuilder = requestBuilder
     }
-
+    
+    func cancelAllRequests() {
+        sessionManager.session.getAllTasks { $0.forEach { $0.cancel() } }
+    }
+    
     @discardableResult func performAuthenticationRequest(username: String,
                                                          password: String,
                                                          completion: @escaping (NetworkError?) -> Void) -> SerialRequest {

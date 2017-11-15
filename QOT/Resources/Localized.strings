@@ -63,6 +63,10 @@
 "Top.Tab.Bar.Item.Title.Perpare.Prep" = "My Prep";
 "Top.Tab.Bar.Item.Title.Perpare.Preparation" = "PREPARATION";
 
+"Article.Loading" = "Please wait while we configure what's hot";
+
+"Me.My.Universe.Loading" = "Please wait while we configure your universe";
+"Me.My.Prep.Loading" = "Please wait while we configure your preparation";
 "Me.My.Statistics.Navigation.Bar.Title" = "MY STATISTICS";
 "Me.Sector.Peak" = "Peak\nPerformance";
 "Me.Sector.Peak.Performance" = "Peak Performance";
@@ -208,6 +212,8 @@
 "Alert.Message.EmailNotFound" = "Please try again";
 "Alert.CameraNotAvailable.Message" = "The camera is not currently available on this device";
 "Alert.PermissionNotGranted.Message" = "Please open your settings to enable permissions for this action";
+"Alert.NotSynced.Message" = "QOT needs to download more data. Please try again later";
+
 
 "ImagePicker.Options.Message" = "A short description of the action goes here";
 "ImagePicker.Options.Button.Camera" = "Take a Picture";
@@ -251,8 +257,6 @@
 "Calendar.Days" = "Days";
 "Calendar.Hours" = "Hours";
 "Calendar.Minutes" = "Minutes";
-
-"LoadingView.Message" = "Stand by, I’m getting smarter so I can help you";
 
 "AddSensorView.Alert.Title" = "Something else?";
 "AddSensorView.Alert.Message" = "What device would you like us to support?";

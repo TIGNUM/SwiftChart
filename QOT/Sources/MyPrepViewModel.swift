@@ -18,7 +18,6 @@ final class MyPrepViewModel {
         case reload
         case update(deletions: [IndexPath], insertions: [IndexPath], modifications: [IndexPath])
     }
-    
     struct Item {
         let localID: String
         let header: String
@@ -27,27 +26,25 @@ final class MyPrepViewModel {
         let totalPreparationCount: Int
         let finishedPreparationCount: Int
     }
-
-    // MARK: - Properties
-
+    
     private let services: Services
     private var preparations: AnyRealmCollection<Preparation>?
     private var preparationChecks: AnyRealmCollection<PreparationCheck>?
     private var preparationsNotificationHandler: NotificationTokenHandler?
     private var preparationChecksNotificationHandler: NotificationTokenHandler?
-    let updates = PublishSubject<CollectionUpdate, NoError>()
-    let itemCountUpdate = ReplayOneSubject<Int, NoError>()
-
+    private var token: NSKeyValueObservation!
+    private let syncStateObserver: SyncStateObserver
     private var items = [Item]() {
         didSet {
             updates.next(.reload)
         }
     }
-
-    // MARK: - Init
-
+    let updates = PublishSubject<CollectionUpdate, NoError>()
+    let itemCountUpdate = ReplayOneSubject<Int, NoError>()
+    
     init(services: Services) {
         self.services = services
+        syncStateObserver = SyncStateObserver(realm: services.mainRealm)
         preparations = try? services.preparationService.preparationsOnBackground(predicate: NSPredicate(format: "deleted == false"))
         preparationChecks = try? services.preparationService.preparationChecksOnBackground()
         preparationsNotificationHandler = preparations?.addNotificationBlock { [unowned self] (change: RealmCollectionChange<AnyRealmCollection<Preparation>>) in
@@ -73,6 +70,9 @@ final class MyPrepViewModel {
                 break
             }
         }.handler
+        token = syncStateObserver.observe(\.syncedClasses, options: [.new]) { [unowned self] _, _ in
+            self.updates.next(.reload)
+        }
         
         refresh()
     }
@@ -90,6 +90,12 @@ final class MyPrepViewModel {
         refresh()
     }
     
+    func isReady() -> Bool {
+        return syncStateObserver.hasSynced(Preparation.self)
+    }
+    
+    // MARK: - private
+
     private func refresh() {
         guard let preparations = preparations else {
             return

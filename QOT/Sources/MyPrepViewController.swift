@@ -16,20 +16,25 @@ protocol MyPrepViewControllerDelegate: class {
     func didTapMyPrepItem(with myPrepItem: MyPrepViewModel.Item, viewController: MyPrepViewController)
 }
 
-final class MyPrepViewController: UIViewController {
-
+final class MyPrepViewController: UIViewController, FullScreenLoadable {
+    
     // MARK: - Properties
 
     let viewModel: MyPrepViewModel
     weak var delegate: MyPrepViewControllerDelegate?
+    var loadingView: BlurLoadingView?
+    var isLoading: Bool = false {
+        didSet {
+            showLoading(isLoading, text: R.string.localized.meMyPrepLoading())
+        }
+    }
+    
     private let disposeBag = DisposeBag()
-
     private lazy var tableView: UITableView = {
         return UITableView(delegate: self,
                            dataSource: self,
                            dequeables: MyPrepTableViewCell.self)
     }()
-
     private lazy var emptyLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .clear
@@ -46,7 +51,6 @@ final class MyPrepViewController: UIViewController {
 
         return label
     }()
-
     private func barButtonItem(_ style: UIBarButtonSystemItem, action: Selector?) -> UIBarButtonItem {
         let barButtonTextAttributes: [NSAttributedStringKey : Any] = [.foregroundColor: UIColor.whiteLight40,
                                                                       .font: Font.H5SecondaryHeadline]
@@ -88,6 +92,11 @@ final class MyPrepViewController: UIViewController {
         navigationController?.navigationBar.topItem?.leftBarButtonItem = barButtonItem(.edit, action: #selector(editMode))
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateReadyState()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
@@ -115,6 +124,10 @@ private extension MyPrepViewController {
 
 private extension MyPrepViewController {
 
+    func updateReadyState() {
+        isLoading = !viewModel.isReady()
+    }
+    
     func observeViewModel() {
         viewModel.updates.observeNext { [unowned self] (change: MyPrepViewModel.CollectionUpdate) in
             switch change {

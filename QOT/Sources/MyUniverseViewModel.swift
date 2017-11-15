@@ -1,43 +1,158 @@
 //
-//  MyDataViewModel.swift
+//  MyUniverseViewModel.swift
 //  QOT
 //
-//  Created by karmic on 04.04.17.
+//  Created by Lee Arromba on 09/11/2017.
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
 import Foundation
 import ReactiveKit
+import RealmSwift
 
-final class MyDataViewModel {
-
-    // MARK: - Properties
-
-    private let services: Services
-    let updates = PublishSubject<CollectionUpdate, NoError>()
-
+final class MyUniverseViewModel {
+    enum Update {
+        case reloadMyWhyView([MyWhy])
+        case reloadProfileImageResource(MediaResource)
+    }
+    
+    let updates = PublishSubject<Update, NoError>()
     var profileImageResource: MediaResource? {
         return services.userService.myToBeVision()?.profileImageResource
     }
-
     var sectorCount: Int {
         return sectors.count
     }
-
     var sectors: [Sector] {
         return chartSectors(service: services.statisticsService)
     }
+    var myWhyViewDataSource = [MyWhy]()
+    let partners: AnyRealmCollection<Partner>
+    let myToBeVisions: AnyRealmCollection<MyToBeVision>
+    let userChoices: AnyRealmCollection<UserChoice>
+    let syncStateObserver: SyncStateObserver
+    
+    private let services: Services
+    private var partnersNotificationTokenHandler: NotificationTokenHandler?
+    private var visionNotificationTokenHandler: NotificationTokenHandler?
+    private var userChoiceNotificationTokenHandler: NotificationTokenHandler?
+    private var maxWeeklyItems: Int {
+        return Layout.MeSection.maxWeeklyPage
+    }
+    private var token: NSKeyValueObservation!
 
+    init(services: Services) {
+        self.services = services        
+        partners = services.partnerService.partners
+        myToBeVisions = services.userService.myToBeVisions()
+        userChoices = services.userService.userChoices()
+        syncStateObserver = SyncStateObserver(realm: services.mainRealm)
+        partnersNotificationTokenHandler = partners.addNotificationBlock { [unowned self] (changes: RealmCollectionChange<AnyRealmCollection<Partner>>) in
+            switch changes {
+            case .update:
+                self.refreshMyWhyViewDataSource()
+                self.updates.next(.reloadMyWhyView(self.myWhyViewDataSource))
+            default:
+                break
+            }
+        }.handler
+        visionNotificationTokenHandler = services.userService.myToBeVisions().addNotificationBlock { [unowned self] (changes: RealmCollectionChange<AnyRealmCollection<MyToBeVision>>) in
+            switch changes {
+            case .update:
+                self.refreshMyWhyViewDataSource()
+                self.updates.next(.reloadMyWhyView(self.myWhyViewDataSource))
+                if let resource = self.myToBeVisions.first?.profileImageResource {
+                    self.updates.next(.reloadProfileImageResource(resource))
+                }
+            default:
+                break
+            }
+        }.handler
+        userChoiceNotificationTokenHandler = userChoices.addNotificationBlock { [unowned self] (changes: RealmCollectionChange<AnyRealmCollection<UserChoice>>) in
+            switch changes {
+            case .update:
+                self.refreshMyWhyViewDataSource()
+                self.updates.next(.reloadMyWhyView(self.myWhyViewDataSource))
+            default:
+                break
+            }
+        }.handler
+        token = syncStateObserver.observe(\.syncedClasses, options: [.new, .old]) { [unowned self] _, _ in
+            self.refreshMyWhyViewDataSource()
+            self.updates.next(.reloadMyWhyView(self.myWhyViewDataSource))
+            if let resource = self.myToBeVisions.first?.profileImageResource {
+                self.updates.next(.reloadProfileImageResource(resource))
+            }
+        }
+        
+        refreshMyWhyViewDataSource()
+    }
+    
+    // MARK: - internal
+    
     func spike(for sector: Sector, at index: Index) -> Spike {
         return sector.spikes[index]
     }
-
+    
     func sector(at index: Index) -> Sector {
         return sectors[index]
     }
     
-    init(services: Services) {
-        self.services = services
+    func toBeVisionReady() -> Bool {
+        return syncStateObserver.hasSynced(MyToBeVision.self)
+    }
+    
+    func userChoicesReady() -> Bool {
+        return syncStateObserver.hasSynced(UserChoice.self)
+    }
+    
+    func partnersReady() -> Bool {
+        return syncStateObserver.hasSynced(Partner.self)
+    }
+    
+    func isReady() -> Bool {
+        return toBeVisionReady() && userChoicesReady() && partnersReady()
+    }
+    
+    // MARK: - private
+    
+    private func refreshMyWhyViewDataSource() {
+        var userChoices = self.userChoices.sorted { $0.startDate > $1.startDate }
+        userChoices = (userChoices.count > maxWeeklyItems) ? Array(userChoices[0...maxWeeklyItems-1]) : userChoices
+        let weeklyChoices: [WeeklyChoice] = userChoices.map { (userChoice: UserChoice) -> WeeklyChoice in
+            var title: String?
+            if let contentCollectionID = userChoice.contentCollectionID, let contentCollection = self.services.contentService.contentCollection(id: contentCollectionID) {
+                title = contentCollection.title
+            }
+            return WeeklyChoice(
+                localID: userChoice.localID,
+                contentCollectionID: userChoice.contentCollectionID ?? 0,
+                categoryID: userChoice.contentCategoryID ?? 0,
+                title: title,
+                startDate: userChoice.startDate,
+                endDate: userChoice.endDate,
+                selected: true
+            )
+        }
+        myWhyViewDataSource = [
+            .vision(myToBeVisions.first),
+            .weeklyChoices(title: R.string.localized.meSectorMyWhyWeeklyChoicesTitle(), choices: weeklyChoices),
+            .partners(title: R.string.localized.meSectorMyWhyPartnersTitle(), partners: partners)
+        ]
+    }
+}
+
+// MARK: - MyWhy
+
+enum MyWhy {
+    case vision(MyToBeVision?)
+    case weeklyChoices(title: String, choices: [WeeklyChoice])
+    case partners(title: String, partners: AnyRealmCollection<Partner>)
+    
+    enum Index: Int {
+        case vision = 0
+        case weeklyChoices
+        case partners
     }
 }
 
@@ -46,7 +161,7 @@ final class MyDataViewModel {
 enum SectorType {
     case bodyBrain
     case load
-
+    
     func lineWidth(load: CGFloat) -> CGFloat {
         switch self {
         case .load: return load * 16
@@ -62,7 +177,7 @@ enum SectorLabelType {
     case travel
     case sleep
     case activity
-
+    
     var text: String {
         switch self {
         case .peak: return R.string.localized.meSectorPeak()
@@ -73,7 +188,7 @@ enum SectorLabelType {
         case .activity: return R.string.localized.meSectorActivity()
         }
     }
-
+    
     var load: CGFloat {
         return 1.1
     }
@@ -95,26 +210,26 @@ enum SectorLabelType {
 }
 
 protocol Spike {
-
+    
     var angle: CGFloat { get }
-
+    
     var load: CGFloat { get }
-
+    
     func spikeLoad() -> CGFloat
 }
 
 protocol Sector {
-
+    
     var startAngle: CGFloat { get }
-
+    
     var endAngle: CGFloat { get }
-
+    
     var spikes: [Spike] { get }
-
+    
     var labelType: SectorLabelType { get }
-
+    
     var strokeColor: UIColor { get }
-
+    
     var type: SectorType { get }
 }
 
@@ -198,35 +313,35 @@ private func chartSectors(service: StatisticsService) -> [ChartSector] {
             strokeColor: .magenta,
             type: .load
         ),
-
+        
         ChartSector(
             spikes: intensitySpikes(service: service),
             labelType: .intensity,
             strokeColor: .blue,
             type: .load
         ),
-
+        
         ChartSector(
             spikes: meetingsSpikes(service: service),
             labelType: .meetings,
             strokeColor: .yellow,
             type: .load
         ),
-
+        
         ChartSector(
             spikes: travelSpikes(service: service),
             labelType: .travel,
             strokeColor: .green,
             type: .load
         ),
-
+        
         ChartSector(
             spikes: sleepSpikes(service: service),
             labelType: .sleep,
             strokeColor: .orange,
             type: .bodyBrain
         ),
-
+        
         ChartSector(
             spikes: activitySpikes(service: service),
             labelType: .activity,

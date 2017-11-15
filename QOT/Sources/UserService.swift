@@ -20,13 +20,6 @@ final class UserService {
 
         updateTimeZone()
     }
-    
-    func prepare() throws {
-        guard myToBeVision() != nil else {
-            _ = try createMyToBeVision()
-            return
-        }
-    }
 
     func user() -> User? {
         return mainRealm.objects(User.self).first
@@ -117,14 +110,6 @@ extension UserService {
     
     func myToBeVisions() -> AnyRealmCollection<MyToBeVision> {
         return AnyRealmCollection(mainRealm.objects(MyToBeVision.self))
-    }
-
-    func createMyToBeVision() throws -> MyToBeVision {
-        let myToBeVision = MyToBeVision()
-        try mainRealm.write {
-            mainRealm.add(myToBeVision)
-        }
-        return myToBeVision
     }
     
     func updateHeadline(myToBeVision: MyToBeVision, headline: String?) {

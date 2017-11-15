@@ -14,13 +14,25 @@ final class ArticleCollectionViewModel {
 
     private let contentCollections: AnyRealmCollection<ContentCollection>
     private var notificationTokenHandler: NotificationTokenHandler?
+    private let syncStateObserver: SyncStateObserver
+    private var token: NSKeyValueObservation!
 
     let updates = PublishSubject<CollectionUpdate, NoError>()
-    
     var itemCount: Int {
         return contentCollections.count
     }
 
+    init(services: Services) {
+        contentCollections = services.contentService.whatsHotArticles()
+        syncStateObserver = SyncStateObserver(realm: services.mainRealm)
+        notificationTokenHandler = contentCollections.addNotificationBlock { [unowned self] (change) in
+            self.updates.next(.reload)
+        }.handler
+        token = syncStateObserver.observe(\.syncedClasses, options: [.new]) { [unowned self] _, _ in
+            self.updates.next(.reload)
+        }
+    }
+    
     func contentCollection(at index: Index) -> ContentCollection {
         return contentCollections[index]
     }
@@ -62,13 +74,8 @@ final class ArticleCollectionViewModel {
     func previewImageURL(at index: Index) -> URL? {
         return contentCollection(at: index).thumbnailURL
     }
-
-    // MARK: - Init
-
-    init(services: Services) {
-        contentCollections = services.contentService.whatsHotArticles()
-        notificationTokenHandler = contentCollections.addNotificationBlock { [weak self] (change) in
-            self?.updates.next(.reload)
-        }.handler
+    
+    func isReady() -> Bool {
+        return syncStateObserver.hasSynced(ContentCollection.self)
     }
 }

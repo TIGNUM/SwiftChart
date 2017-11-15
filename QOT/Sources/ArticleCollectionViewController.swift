@@ -16,7 +16,7 @@ protocol ArticleCollectionViewControllerDelegate: class {
     func didTapItem(articleHeader: ArticleCollectionHeader, in viewController: ArticleCollectionViewController)
 }
 
-class ArticleCollectionViewController: UIViewController {
+class ArticleCollectionViewController: UIViewController, FullScreenLoadable {
 
     // MARK: - Properties
 
@@ -25,6 +25,12 @@ class ArticleCollectionViewController: UIViewController {
     private let backgroundImageView: UIImageView
     weak var delegate: ArticleCollectionViewControllerDelegate?
     let pageName: PageName
+    var loadingView: BlurLoadingView?
+    var isLoading: Bool = false {
+        didSet {
+            showLoading(isLoading, text: R.string.localized.articleLoading())
+        }
+    }
     
     private lazy var collectionView: UICollectionView = {
         let layout = ArticleCollectionLayout()
@@ -58,9 +64,15 @@ class ArticleCollectionViewController: UIViewController {
         super.viewDidLoad()
         
         setupLayout()
-        viewModel.updates.observeNext { [collectionView] (update) in
-            collectionView.reloadData()
+        viewModel.updates.observeNext { [unowned self] (update) in
+            self.collectionView.reloadData()
+            self.updateReadyState()
         }.dispose(in: disposeBag)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateReadyState()
     }
 }
 
@@ -68,6 +80,10 @@ class ArticleCollectionViewController: UIViewController {
 
 private extension ArticleCollectionViewController {
 
+    func updateReadyState() {
+        isLoading = !viewModel.isReady()
+    }
+    
     func setupLayout() {
         automaticallyAdjustsScrollViewInsets = false
 

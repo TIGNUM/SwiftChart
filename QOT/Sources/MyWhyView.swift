@@ -12,10 +12,7 @@ import ReactiveKit
 
 final class MyWhyView: PassthroughView, MyUniverseView {
 
-    // MARK: - Properties
-
     var previousBounds = CGRect.zero
-    let myWhyViewModel: MyWhyViewModel
     let screenType: MyUniverseViewController.ScreenType
     lazy var weeklyChoices = [WeeklyChoice]()
     lazy var partners = [Partner]()
@@ -23,23 +20,26 @@ final class MyWhyView: PassthroughView, MyUniverseView {
     var myToBeVisionBox: PassthroughView!
     var weeklyChoicesBox: PassthroughView!
     var qotPartnersBox: PassthroughView!
+    var items: [MyWhy]
+    var userCoicesReady = false
+    var partnersReady = false
+    var toBeVisionReady = false
+    var myToBeVision: MyToBeVision?
     private var myToBeVisionLabel: UILabel!
     private var myToBeVisionHeaderLabel: UILabel!
     private var weeklyChoiceButtons = [UIButton]()
     private var qotPartnersButtons = [UIButton]()
     private let fullViewFrame: CGRect
-    private var updatesToken: Disposable?
 
-    // MARK: - Init
-
-    init(myWhyViewModel: MyWhyViewModel, frame: CGRect, screenType: MyUniverseViewController.ScreenType, delegate: MyWhyViewDelegate?) {
-        self.myWhyViewModel = myWhyViewModel
+    init(frame: CGRect, screenType: MyUniverseViewController.ScreenType, items: [MyWhy], myToBeVision: MyToBeVision?, delegate: MyWhyViewDelegate?) {
+        fullViewFrame = frame
         self.delegate = delegate
         self.screenType = screenType
-        self.fullViewFrame = frame
+        self.items = items
+        self.myToBeVision = myToBeVision
+
         let viewRightMargin = Layout.MeSection(viewControllerFrame: frame).scrollViewOffset * 3.5
         let viewFrame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.width - viewRightMargin, height: frame.height)
-
         super.init(frame: viewFrame)
     }
 
@@ -47,38 +47,21 @@ final class MyWhyView: PassthroughView, MyUniverseView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - Layout
-
     override func layoutSubviews() {
         super.layoutSubviews()
 
         cleanUpAndDraw()
         reload() // @warning reload after drawing else views won't be laid out
-        
-        if updatesToken == nil {
-            updatesToken = myWhyViewModel.updates.observeNext { [weak self] (_: CollectionUpdate) in
-                self?.reload()
-            }
-        }
     }
 
     func draw() {
-        drawMyWhy(myWhyViewModel: myWhyViewModel, layout: Layout.MeSection(viewControllerFrame: self.fullViewFrame))
+        drawMyWhy(layout: Layout.MeSection(viewControllerFrame: self.fullViewFrame))
         layoutIfNeeded()
         drawMyWhyAfterDidLayoutSubviews()
     }
 
-    deinit {
-        updatesToken?.dispose()
-    }
-}
-
-// MARK: - Private Functions
-
-private extension MyWhyView {
-
     func reload() {
-        myWhyViewModel.items?.forEach { (myWhy: MyWhyViewModel.MyWhy) in
+        items.forEach { (myWhy: MyWhy) in
             switch myWhy {
             case .vision(let vision):
                 var visionHeadline = R.string.localized.meSectorMyWhyVisionHeadlinePlaceholder()
@@ -118,10 +101,20 @@ private extension MyWhyView {
             }
         }
     }
+}
+
+// MARK: - Private
+
+private extension MyWhyView {
     
-    func drawMyWhy(myWhyViewModel: MyWhyViewModel, layout: Layout.MeSection) {
+    func addGestureRecognizer() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapMyToBeVision))
+        addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    func drawMyWhy(layout: Layout.MeSection) {
         drawSpikes(layout: layout)
-        myWhyViewModel.items?.forEach { (myWhy: MyWhyViewModel.MyWhy) in
+        items.forEach { (myWhy: MyWhy) in
             switch myWhy {
             case .vision(let vision):
                 addToBeVision(layout: layout, vision: vision)
@@ -335,6 +328,11 @@ private extension MyWhyView {
 private extension MyWhyView {
 
     @objc func didTapWeeklyChoices(sender: UIButton) {
+        guard userCoicesReady == true else {
+            (delegate as? UIViewController)?.showAlert(type: .notSynced)
+            return
+        }
+
         var selectedWeeklyChoice: WeeklyChoice? = nil
         if sender.tag < weeklyChoices.count {
             selectedWeeklyChoice = weeklyChoices[sender.tag]
@@ -344,11 +342,21 @@ private extension MyWhyView {
     }
 
     @objc func didTapPartner(sender: UIButton) {
+        guard partnersReady == true else {
+            (delegate as? UIViewController)?.showAlert(type: .notSynced)
+            return
+        }
+
         delegate?.didTapQOTPartner(selectedIndex: sender.tag, partners: partners, from: self)
     }
 
     @objc func didTapMyToBeVision() {
-        delegate?.didTapMyToBeVision(vision: myWhyViewModel.myToBeVision, from: self)
+        guard toBeVisionReady == true else {
+            (delegate as? UIViewController)?.showAlert(type: .notSynced)
+            return
+        }
+
+        delegate?.didTapMyToBeVision(vision: myToBeVision, from: self)
     }
 }
 
