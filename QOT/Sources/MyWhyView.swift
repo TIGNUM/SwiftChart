@@ -168,7 +168,7 @@ private extension MyWhyView {
         footLabel.bottomAnchor == myToBeVisionBox.bottomAnchor
         myToBeVisionLabel.leftAnchor == myToBeVisionBox.leftAnchor
         myToBeVisionLabel.rightAnchor == myToBeVisionBox.rightAnchor
-        myToBeVisionLabel.bottomAnchor == footLabel.topAnchor - 8
+        myToBeVisionLabel.bottomAnchor == footLabel.topAnchor - 4
         myToBeVisionHeaderLabel.leftAnchor == myToBeVisionBox.leftAnchor
         myToBeVisionHeaderLabel.rightAnchor == myToBeVisionBox.rightAnchor
         myToBeVisionHeaderLabel.bottomAnchor == myToBeVisionLabel.topAnchor - 8
@@ -298,7 +298,7 @@ private extension MyWhyView {
                 qotPartnersBox.addSubview(comingSoonLabel)
                 comingSoonLabel.leftAnchor == firstButton.leftAnchor
                 comingSoonLabel.rightAnchor == lastButton.rightAnchor
-                comingSoonLabel.centerYAnchor == firstButton.centerYAnchor
+                comingSoonLabel.centerYAnchor == firstButton.centerYAnchor + 3
         }
     }
 }

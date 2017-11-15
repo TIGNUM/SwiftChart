@@ -17,7 +17,7 @@ protocol WeeklyChoicesViewControllerDelegate: class {
     func didUpdateList(with viewModel: WeeklyChoicesViewModel)
 }
 
-final class WeeklyChoicesViewController: UIViewController {
+final class WeeklyChoicesViewController: UIViewController, PageViewControllerNotSwipeable {
 
     // MARK: - Properties
 

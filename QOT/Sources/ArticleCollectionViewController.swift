@@ -16,7 +16,7 @@ protocol ArticleCollectionViewControllerDelegate: class {
     func didTapItem(articleHeader: ArticleCollectionHeader, in viewController: ArticleCollectionViewController)
 }
 
-class ArticleCollectionViewController: UIViewController, FullScreenLoadable {
+final class ArticleCollectionViewController: UIViewController, FullScreenLoadable {
 
     // MARK: - Properties
 

@@ -14,6 +14,8 @@ enum PageDirection {
     case backward
 }
 
+protocol PageViewControllerNotSwipeable {}
+
 protocol PageViewControllerDelegate: class {
 
     func pageViewController(_ controller: UIPageViewController, didSelectPageIndex index: Int)
@@ -96,19 +98,27 @@ final class PageViewController: UIPageViewController {
         backgroundImageView.horizontalAnchors == view.horizontalAnchors
         backgroundImageView.isHidden = (backgroundImageView.image == nil)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        childViewControllers.forEach { (childViewController: UIViewController) in
+            if childViewController is PageViewControllerNotSwipeable {
+                dataSource = nil
+            }
+        }
+    }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     func setPages(_ viewControllers: [UIViewController]) {
-        self.data = viewControllers
+        data = viewControllers
     }
     
     func setPageIndex(_ pageIndex: Int, animated: Bool) {
-        guard let data = data, pageIndex >= data.startIndex, pageIndex < data.endIndex else {
-            return
-        }
+        guard let data = data, pageIndex >= data.startIndex, pageIndex < data.endIndex else { return }
         let page = data[pageIndex]
         setViewControllers([page], direction: (pageIndex < currentPageIndex) ? .reverse : .forward, animated: animated, completion: nil)
         currentPageIndex = pageIndex
@@ -162,6 +172,7 @@ extension PageViewController: UIPageViewControllerDelegate {
 // MARK: - UIPageViewControllerDataSource
 
 extension PageViewController: UIPageViewControllerDataSource {
+    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let data = data, let index = data.index(of: viewController), index - 1 >= data.startIndex else {
             return nil
@@ -184,9 +195,7 @@ extension PageViewController: UIPageViewControllerDataSource {
 extension PageViewController: PageScroll {
 
     func pageDidLoad(_ controller: UIViewController, scrollView: UIScrollView) {
-        guard let headerView = headerView else {
-            return
-        }
+        guard let headerView = headerView else { return }
         scrollView.contentInset = UIEdgeInsets(
             top: headerView.bounds.size.height,
             left: scrollView.contentInset.left,
@@ -196,9 +205,7 @@ extension PageViewController: PageScroll {
     }
     
     func pageDidScroll(_ controller: UIViewController, scrollView: UIScrollView) {
-        guard !isPaging else {
-            return
-        }
+        guard isPaging == false else { return }
         setHeaderY(scrollView.normalized, animated: false)
     }
 }

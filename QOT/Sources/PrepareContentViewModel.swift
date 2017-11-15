@@ -146,7 +146,7 @@ private extension PrepareContentViewModel {
     
     func fillHeaderStatus() {
         for _ in 0...items.count {
-            headerToggleState.append(false)
+            headerToggleState.append(itemCount == 2)
         }
     }
 
