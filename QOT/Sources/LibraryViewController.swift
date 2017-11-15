@@ -54,7 +54,7 @@ final class LibraryViewController: UIViewController {
     
     private func setupView() {
         view.addSubview(tableView)
-        view.applyFade()
+        view.addFade()
         
         view.backgroundColor = .clear
         tableView.topAnchor == view.topAnchor

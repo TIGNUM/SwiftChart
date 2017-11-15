@@ -268,8 +268,18 @@ extension UIView {
         case up
         case down
     }
+    
+    enum FadeMaskLocation {
+        case top
+        case bottom
+    }
 
-    @discardableResult func applyFade(origin: CGPoint = .zero, height: CGFloat = 70.0, primaryColor: UIColor = .darkIndigo, fadeColor: UIColor = .clear, direction: FadeDirection = .down) -> UIView {
+    @discardableResult func addFade(origin: CGPoint = .zero, height: CGFloat = 70.0, primaryColor: UIColor = .darkIndigo, fadeColor: UIColor = .clear, direction: FadeDirection = .down) -> UIView {
+        guard height > 0 else {
+            assertionFailure("height must be > 0")
+            return UIView()
+        }
+        
         let fadeView = UIView(frame: CGRect(origin: origin, size: CGSize(width: bounds.size.width, height: height)))
         fadeView.backgroundColor = .clear
 
@@ -287,6 +297,44 @@ extension UIView {
 
         addSubview(fadeView)
         return fadeView
+    }
+    
+    @discardableResult func setFadeMask(at location: FadeMaskLocation = .bottom, height: CGFloat = 70.0) -> CALayer {
+        guard height > 0 else {
+            assertionFailure("height must be > 0")
+            return CALayer()
+        }
+    
+        let primaryColor = UIColor.black.cgColor
+        let fadeColor = UIColor.clear.cgColor
+        let offset = bounds.height - height
+        
+        let wrapperLayer = CALayer()
+        wrapperLayer.frame = bounds
+        
+        if height > 0 {
+            let contentY: CGFloat = location == .top ? offset : 0.0
+            let contentLayer = CALayer()
+            contentLayer.backgroundColor = primaryColor
+            contentLayer.frame = CGRect(x: 0.0, y: contentY, width: bounds.width, height: offset)
+            wrapperLayer.addSublayer(contentLayer)
+        }
+        
+        let fadeY: CGFloat = location == .top ? 0.0 : offset
+        let fadeLayer = CAGradientLayer()
+        fadeLayer.frame = CGRect(x: 0.0, y: fadeY, width: bounds.width, height: height)
+       
+        switch location {
+        case .top:
+            fadeLayer.colors = [fadeColor, fadeColor, primaryColor]
+        case .bottom:
+            fadeLayer.colors = [primaryColor, fadeColor, fadeColor]
+        }
+        
+        wrapperLayer.addSublayer(fadeLayer)
+
+        layer.mask = wrapperLayer
+        return wrapperLayer
     }
 
     func removeSubViews() {

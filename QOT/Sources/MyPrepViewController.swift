@@ -156,11 +156,8 @@ private extension MyPrepViewController {
         tableView.contentInset.top += 24
         tableView.contentInset.bottom = 64.0
         
-        let height: CGFloat = 70
-        view.applyFade()
-        view.applyFade(origin: CGPoint(x: view.bounds.origin.x, y: view.bounds.origin.y + view.bounds.height - height),
-                       height: height,
-                       direction: .up)
+        view.addFade()
+        view.setFadeMask()
     }
 
     func updateView() {

@@ -121,7 +121,8 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
         }
         
         view.layoutIfNeeded()
-        view.applyFade()
+        view.addFade()
+        view.setFadeMask()
     }
 
     private func registerReusableViews() {
