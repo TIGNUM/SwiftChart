@@ -7,30 +7,29 @@
 //
 
 import Foundation
+import RealmSwift
 
 final class QOTUsageTimer {
 
     private var started: Date?
-    private let didBecomeActiveHandler = NotificationHandler(name: .UIApplicationDidBecomeActive)
-    private let willResignActiveHandler = NotificationHandler(name: .UIApplicationWillResignActive)
-    static let sharedInstance = QOTUsageTimer()
 
+    static let sharedInstance = QOTUsageTimer()
+    var userService: UserService?
+    
     private init() {
         // Don't delete. Ensures that access is though singleton
     }
-
-    func observeUsage() {
-        didBecomeActiveHandler.handler = { [unowned self] _ in
-            self.started = Date()
-        }
-        willResignActiveHandler.handler = { [unowned self] _ in
-            UserDefault.qotUsage.setDoubleValue(value: Double(self.totalSeconds))
-            self.started = nil
-        }
+    
+    func startTimer() {
+        self.started = Date()
+    }
+    
+    func stopTimer() {
+        self.started = nil
     }
 
     var totalSeconds: TimeInterval {
-        let oldValue = UserDefault.qotUsage.doubleValue
+        let oldValue = TimeInterval(userService?.user()?.totalUsageTime ?? 0)
         guard let started = started else {
             /*
              If started is nil the app is not active so just return the oldValue. `totalSeconds` should only reflect
@@ -39,8 +38,7 @@ final class QOTUsageTimer {
             return oldValue
         }
         let delta = -started.timeIntervalSinceNow
-        
-        return TimeInterval(oldValue) + delta
+        return oldValue + delta
     }
 
     func totalTimeString(_ seconds: TimeInterval) -> String {

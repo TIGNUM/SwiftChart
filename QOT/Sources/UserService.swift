@@ -71,10 +71,10 @@ final class UserService {
         }
     }
 
-    func updateTotalUsageTime() {
+    func updateTotalUsageTime(_ time: TimeInterval) {
         if let user = user() {
             updateUser(user: user) {
-                $0.totalUsageTime = UserDefault.qotUsage.doubleValue.toInt
+                $0.totalUsageTime = time.toInt
             }
         }
     }

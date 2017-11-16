@@ -11,7 +11,7 @@ import Fabric
 import Crashlytics
 import AirshipKit
 import CoreLocation
-import Realm
+import RealmSwift
 import Buglife
 
 @UIApplicationMain
@@ -63,7 +63,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self])
         Buglife.shared().start(withAPIKey: "fj62sZjDnl3g0dLuXJHUzAtt") // FIXME: obfuscate
         Buglife.shared().delegate = self
-        QOTUsageTimer.sharedInstance.observeUsage()
         appCoordinator.start()
         UIApplication.shared.statusBarStyle = .lightContent
         incomingLocationEvent(launchOptions: launchOptions)
@@ -77,23 +76,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         return true
     }
-    
-    func applicationWillTerminate(_ application: UIApplication) {
-        appCoordinator.updateUserTotalUsageTime()
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        appCoordinator.updateUserTotalUsageTime()
-    }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         UAirship.push().resetBadge()
-        appCoordinator.updateUserTotalUsageTime()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
+        QOTUsageTimer.sharedInstance.startTimer()
         UAirship.push().resetBadge()
-        appCoordinator.appDidBecomeActive()        
+        appCoordinator.appDidBecomeActive()
+    }
+    
+    func applicationWillResignActive(_ application: UIApplication) {
+        QOTUsageTimer.sharedInstance.stopTimer()
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {

@@ -134,6 +134,9 @@ final class AppCoordinator: ParentCoordinator {
                 do {
                     let services = try Services()
                     self.services = services
+                    
+                    QOTUsageTimer.sharedInstance.userService = services.userService
+                   
                     self.syncManager.startAutoSync()
                     self.syncManager.syncAll(shouldDownload: true)
                     self.syncManager.uploadMedia()
@@ -177,10 +180,6 @@ final class AppCoordinator: ParentCoordinator {
         }
     }
 
-    func updateUserTotalUsageTime() {
-        services?.userService.updateTotalUsageTime()
-    }
-    
     func sendLocationUpdate(location: CLLocation) {
         timeZoneDidChange()
         networkManager.performUserLocationUpdateRequest(location: location) { (netwerkError: NetworkError?) in
@@ -469,6 +468,7 @@ extension AppCoordinator: LoginCoordinatorDelegate {
 
     func loginCoordinatorDidLogin(_ coordinator: LoginCoordinator) {
         removeChild(child: coordinator)
+        QOTUsageTimer.sharedInstance.startTimer()
         showApp()
     }
 }

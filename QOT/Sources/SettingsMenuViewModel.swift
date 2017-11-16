@@ -78,13 +78,6 @@ private extension SettingsMenuViewModel {
     }
 
     private func usageTimeString() -> String {
-        let remoteUsageTime = Double(user.totalUsageTime)
-        let localUsageTime = timer.totalSeconds
-
-        if remoteUsageTime > localUsageTime {
-            UserDefault.qotUsage.setDoubleValue(value: Double(remoteUsageTime))
-        }
-
-        return timer.totalTimeString(max(remoteUsageTime, localUsageTime))
+        return timer.totalTimeString(timer.totalSeconds)
     }
 }
