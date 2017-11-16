@@ -86,6 +86,11 @@ final class AppCoordinator: ParentCoordinator {
     }
     
     func start() {
+        if Bundle.main.isFirstVersion {
+            self.credentialsManager.clear()
+        }
+        UserDefault.lastInstaledAppVersion.setStringValue(value: Bundle.main.versionNumber)
+
         pageTracker.start()
         observeTimeZoneChange()
         
