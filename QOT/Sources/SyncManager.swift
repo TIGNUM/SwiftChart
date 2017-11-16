@@ -173,6 +173,8 @@ final class SyncManager {
 
     private func syncOperations(context: SyncContext, shouldDownload: Bool) -> [Operation] {
         let operations: [Operation?] = [
+            syncOperation(ContentRead.self, context: context, shouldDownload: shouldDownload),
+            UpdateRelationsOperation(context: context, realmProvider: realmProvider),
             syncOperation(PageTrack.self, context: context, shouldDownload: shouldDownload),
             syncOperation(CalendarEvent.self, context: context, shouldDownload: shouldDownload),
             syncOperation(MyToBeVision.self, context: context, shouldDownload: shouldDownload),
@@ -190,7 +192,6 @@ final class SyncManager {
             syncOperation(ContentCategory.self, context: context, shouldDownload: shouldDownload),
             syncOperation(ContentCollection.self, context: context, shouldDownload: shouldDownload),
             syncOperation(ContentItem.self, context: context, shouldDownload: shouldDownload),
-            syncOperation(ContentRead.self, context: context, shouldDownload: shouldDownload),
             UpdateRelationsOperation(context: context, realmProvider: realmProvider)
         ]
         return operations.flatMap({ $0 })
