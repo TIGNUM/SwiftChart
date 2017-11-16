@@ -17,6 +17,8 @@ final class WeeklyChoicesCoordinator: NSObject, ParentCoordinator {
     private let services: Services
     private let weeklyChoicesViewController: WeeklyChoicesViewController
     private let transitioningDelegate: UIViewControllerTransitioningDelegate? // swiftlint:disable:this weak_delegate
+    private let launchHandler = LaunchHandler()
+    private let rightButton: UIBarButtonItem = UIBarButtonItem(withImage: R.image.prepareContentPlusIcon())
     private weak var weeklyChoicesDelegate: WeeklyChoicesViewModelDelegate?
     var children: [Coordinator] = []
     var topTabBarController: UINavigationController!
@@ -38,11 +40,10 @@ final class WeeklyChoicesCoordinator: NSObject, ParentCoordinator {
         super.init()
 
         let leftButton = UIBarButtonItem(withImage: R.image.ic_minimize())
-        let rightButton = viewModel.itemCount == 0 ? UIBarButtonItem(withImage: R.image.prepareContentPlusIcon()) : nil
         topTabBarController = UINavigationController(withPages: [weeklyChoicesViewController],
                                                      topBarDelegate: topBarDelegate ?? self,
                                                      leftButton: leftButton,
-                                                     rightButton: rightButton)
+                                                     rightButton: (viewModel.itemCount == 0) ? rightButton : nil)
         topTabBarController.modalPresentationStyle = .custom
         if transitioningDelegate != nil {
             topTabBarController.transitioningDelegate = transitioningDelegate
@@ -65,8 +66,7 @@ extension WeeklyChoicesCoordinator: WeeklyChoicesViewControllerDelegate {
     }
 
     func didUpdateList(with viewModel: WeeklyChoicesViewModel) {
-        let rightButton = viewModel.itemCount == 0 ? UIBarButtonItem(withImage: R.image.prepareContentPlusIcon()) : nil
-        topTabBarController.navigationBar.topItem?.rightBarButtonItem = rightButton
+        topTabBarController.navigationBar.topItem?.rightBarButtonItem = (viewModel.itemCount == 0) ? rightButton : nil
     }
 }
 
@@ -75,14 +75,13 @@ extension WeeklyChoicesCoordinator: WeeklyChoicesViewControllerDelegate {
 extension WeeklyChoicesCoordinator: TopNavigationBarDelegate {
 
     func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
-        topTabBarController.dismiss(animated: true, completion: nil)
+        weeklyChoicesViewController.dismiss(animated: true, completion: nil)
     }
     
     func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
     }
     
     func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
-        let launchHandler = LaunchHandler()
         launchHandler.weeklyChoiches { [unowned self] in
             self.weeklyChoicesDelegate?.fetchWeeklyChoices()
         }

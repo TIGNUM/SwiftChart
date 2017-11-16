@@ -286,7 +286,7 @@ extension AppCoordinator {
         let myToBeVisionViewController = MyToBeVisionViewController(viewModel: viewModel, permissionHandler: permissionHandler)
         myToBeVisionViewController.delegate = self
         windowManager.showWindow(atLevel: .priority)
-        windowManager.presentViewController(myToBeVisionViewController, atLevel: .priority, animated: true, completion: nil)
+        windowManager.setRootViewController(myToBeVisionViewController, atLevel: .priority, animated: true, completion: nil)
         currentPresentedController = myToBeVisionViewController
     }
 
@@ -305,7 +305,7 @@ extension AppCoordinator {
         let morningInterViewController = MorningInterviewViewController(viewModel: viewModel)
         morningInterViewController.delegate = self
         windowManager.showWindow(atLevel: .priority)
-        windowManager.presentViewController(morningInterViewController, atLevel: .priority, animated: true, completion: nil)
+        windowManager.setRootViewController(morningInterViewController, atLevel: .priority, animated: true, completion: nil)
         currentPresentedController = morningInterViewController
     }
     
@@ -322,7 +322,7 @@ extension AppCoordinator {
                                                    topBarDelegate: self)
         topTabBarController = coordinator.topTabBarController        
         windowManager.showWindow(atLevel: .priority)
-        windowManager.presentViewController(coordinator.topTabBarController, atLevel: .priority, animated: true, completion: nil)
+        windowManager.setRootViewController(coordinator.topTabBarController, atLevel: .priority, animated: true, completion: nil)
         currentPresentedNavigationController = coordinator.topTabBarController
     }
 
@@ -334,7 +334,7 @@ extension AppCoordinator {
         let image = windowManager.rootViewController(atLevel: .normal)?.view.screenshot()
         let viewController = SelectWeeklyChoicesViewController(delegate: self, viewModel: viewModel, backgroundImage: image)
         windowManager.showWindow(atLevel: .priority)
-        windowManager.presentViewController(viewController, atLevel: .priority, animated: true, completion: nil)
+        windowManager.setRootViewController(viewController, atLevel: .priority, animated: true, completion: nil)
         currentPresentedController = viewController
     }
     
@@ -346,6 +346,7 @@ extension AppCoordinator {
             let rootViewController = windowManager.rootViewController(atLevel: .normal) else {
                 return
         }
+
         startLearnContentItemCoordinator(services: services,
                                          content: content,
                                          category: category,
@@ -377,7 +378,7 @@ extension AppCoordinator {
         startChild(child: coordinator)
         topTabBarController = coordinator.topTabBarController
         windowManager.showWindow(atLevel: .priority)
-        windowManager.presentViewController(coordinator.topTabBarController, atLevel: .priority, animated: true, completion: nil)
+        windowManager.setRootViewController(coordinator.topTabBarController, atLevel: .priority, animated: true, completion: nil)
         currentPresentedNavigationController = coordinator.topTabBarController
     }
 
@@ -390,7 +391,7 @@ extension AppCoordinator {
             handlerDestructive?()
         })
         windowManager.showWindow(atLevel: .alert)
-        windowManager.presentViewController(alert, atLevel: .alert, animated: true, completion: nil)
+        windowManager.setRootViewController(alert, atLevel: .alert, animated: true, completion: nil)
         currentPresentedController = alert
     }
 
