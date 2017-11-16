@@ -338,8 +338,7 @@ extension AppCoordinator {
         windowManager.presentViewController(viewController, atLevel: .priority, animated: true, completion: nil)
         currentPresentedController = viewController
     }
-
-    // FIXME: REFACTOR THIS
+    
     func presentLearnContentItems(contentID: Int) {
         guard
             let services = services,
@@ -348,18 +347,12 @@ extension AppCoordinator {
             let rootViewController = windowManager.rootViewController(atLevel: .normal) else {
                 return
         }
-
-        // FIXME: do we need to use the coordinator?
-        AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
-        let presentationManager = ContentItemAnimator(originFrame: rootViewController.view.frame)
-        let coordinator = LearnContentItemCoordinator(root: rootViewController, eventTracker: eventTracker, services: services, content: content, category: category, presentationManager: presentationManager, topBarDelegate: self)
-        topTabBarController = coordinator.topTabBarController
-        windowManager.showWindow(atLevel: .priority)
-        windowManager.presentViewController(coordinator.topTabBarController, atLevel: .priority, animated: true, completion: nil)
-        currentPresentedNavigationController = coordinator.topTabBarController
+        startLearnContentItemCoordinator(services: services,
+                                         content: content,
+                                         category: category,
+                                         rootViewController: rootViewController)
     }
-
-    // FIXME: REFACTOR THIS
+    
     func presentLearnContentItems(contentID: Int, categoryID: Int) {
         guard
             let services = services,
@@ -369,11 +362,21 @@ extension AppCoordinator {
                 return
         }
 
-        // FIXME: do we need to use the coordinator?
+        startLearnContentItemCoordinator(services: services,
+                                         content: content,
+                                         category: category,
+                                         rootViewController: rootViewController)
+    }
+    
+    private func startLearnContentItemCoordinator(services: Services,
+                                                  content: ContentCollection,
+                                                  category: ContentCategory,
+                                                  rootViewController: UIViewController) {
         AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
         let presentationManager = ContentItemAnimator(originFrame: rootViewController.view.frame)
         let coordinator = LearnContentItemCoordinator(root: rootViewController, eventTracker: eventTracker, services: services, content: content, category: category, presentationManager: presentationManager, topBarDelegate: self)
-        topTabBarController = coordinator.topTabBarController        
+        startChild(child: coordinator)
+        topTabBarController = coordinator.topTabBarController
         windowManager.showWindow(atLevel: .priority)
         windowManager.presentViewController(coordinator.topTabBarController, atLevel: .priority, animated: true, completion: nil)
         currentPresentedNavigationController = coordinator.topTabBarController
