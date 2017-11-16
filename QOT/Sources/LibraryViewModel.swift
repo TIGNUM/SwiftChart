@@ -15,31 +15,35 @@ final class LibraryViewModel {
     // MARK: - Properties
 
     private let categories: AnyRealmCollection<ContentCategory>
+    let tools: Bool
     let updates = PublishSubject<CollectionUpdate, NoError>()
 
     var sectionCount: Int {
         return categories.count
     }
+    
+    var tableViewBackground: UIImageView? {
+        return tools == false ? UIImageView(image: R.image.backgroundSidebar()) : nil
+    }    
 
     // MARK: - Init
 
-    init(services: Services) {
-        self.categories = services.contentService.libraryCategories()
+    init(services: Services, tools: Bool = false) {
+        self.tools = tools
+        self.categories = tools == false ? services.contentService.libraryCategories() : services.contentService.toolsCategories()
     }
 }
 
 // MARK: - Public
 
 extension LibraryViewModel {
-
+    
     func titleForSection(_ section: Int) -> NSAttributedString {
         let title = categories[section].title.uppercased()
-        if section == 0 {
-            return Style.headlineSmall(title, .white).attributedString()
-        } else {
-            let twoLineTitle = title.makingTwoLines()
-            return Style.subTitle(twoLineTitle, .white).attributedString()
-        }
+        let headline = Style.subTitle(title, .white).attributedString()
+        let smallHeadline = Style.headlineSmall(title, .white).attributedString()
+        
+        return tools == true ? headline : (section == 0 ? smallHeadline : headline)
     }
 
     func contentCollection(at indexPath: IndexPath) -> [ContentCollection] {

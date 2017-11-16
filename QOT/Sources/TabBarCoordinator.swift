@@ -35,7 +35,8 @@ final class TabBarCoordinator: ParentCoordinator {
                                   tabBarController: self.tabBarController!,
                                   topTabBarController: self.topTabBarControllerPrepare,
                                   chatViewController: self.prepareChatViewController,
-                                  myPrepViewController: self.myPrepViewController)
+                                  myPrepViewController: self.myPrepViewController,
+                                  toolsViewController: self.toolsViewController)
     }()
 
     private lazy var prepareChatViewController: ChatViewController<Answer> = {
@@ -52,6 +53,15 @@ final class TabBarCoordinator: ParentCoordinator {
         viewController.title = R.string.localized.topTabBarItemTitlePerparePrep()
 
         return viewController
+    }()
+    
+    private lazy var toolsViewController: LibraryViewController = {
+        let viewModel = LibraryViewModel(services: services, tools: true)
+        let toolsViewController = LibraryViewController(viewModel: viewModel)
+        toolsViewController.title = R.string.localized.topTabBarItemTitlePerpareTools()
+        toolsViewController.delegate = self
+        
+        return toolsViewController
     }()
 
     private lazy var topTabBarControllerLearn: UINavigationController = {
@@ -91,7 +101,9 @@ final class TabBarCoordinator: ParentCoordinator {
 
     lazy var topTabBarControllerPrepare: UINavigationController = {
         let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())        
-        let topTabBarController = UINavigationController(withPages: [self.prepareChatViewController, self.myPrepViewController],
+        let topTabBarController = UINavigationController(withPages: [self.prepareChatViewController,
+                                                                     self.myPrepViewController,
+                                                                     self.toolsViewController],
                                                          topBarDelegate: self,
                                                          pageDelegate: self,
                                                          backgroundImage: R.image.myprep(),
@@ -337,4 +349,37 @@ extension TabBarCoordinator: PageViewControllerDelegate {
             whatsHotBadgeManager.didScrollToWhatsHotPage()
         }
     }
+}
+
+extension TabBarCoordinator: LibraryViewControllerDelegate {
+    
+    func didTapLibraryItem(item: ContentCollection) {
+        var articleHeader: ArticleCollectionHeader?
+        let title = item.contentCategories.first?.title
+        let subtitle = item.title
+        let date = DateFormatter.shortDate.string(from: item.createdAt)
+        let duration = "\(item.items.reduce(0) { $0 + $1.secondsRequired } / 60) MIN"
+        
+        articleHeader = ArticleCollectionHeader(
+            articleTitle: title != nil ? title! : "",
+            articleSubTitle: subtitle,
+            articleDate: date,
+            articleDuration: duration,
+            articleContentCollection: item
+        )
+        
+        guard let coordinator = ArticleContentItemCoordinator(
+            pageName: .libraryArticle,
+            root: toolsViewController,
+            services: services,
+            contentCollection: item,
+            articleHeader: articleHeader,
+            topTabBarTitle: R.string.localized.sidebarTitleLibrary().uppercased(),
+            contentInsets: UIEdgeInsets(top: 46, left: 0, bottom: 0, right: 0)) else {
+                return
+        }
+        startChild(child: coordinator)
+    }
+    
+    func didTapClose(in viewController: LibraryViewController) {}
 }

@@ -49,7 +49,7 @@ final class LibraryViewController: UIViewController {
 
         navigationItem.title = R.string.localized.sidebarTitleLibrary().uppercased()
     }
-
+    
     // MARK: - private
     
     private func setupView() {
@@ -60,7 +60,7 @@ final class LibraryViewController: UIViewController {
         tableView.topAnchor == view.topAnchor
         tableView.bottomAnchor == view.bottomAnchor
         tableView.horizontalAnchors == view.horizontalAnchors
-        tableView.backgroundView = UIImageView(image: R.image.backgroundSidebar())
+        tableView.backgroundView = viewModel.tableViewBackground
         tableView.contentInset = UIEdgeInsets(top: 33.0, left: 0, bottom: 0, right: 0)
     }
 }
@@ -78,10 +78,7 @@ extension LibraryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
-            return 316.0
-        }
-        return 313.0
+        return viewModel.tools == true ? 313 : indexPath.section == 0 ? 316 : 313
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -90,8 +87,9 @@ extension LibraryViewController: UITableViewDelegate, UITableViewDataSource {
             delegate: delegate,
             title: viewModel.titleForSection(indexPath.section),
             contentCollection: viewModel.contentCollection(at: indexPath),
-            collectionViewCellType: (indexPath.section == 0) ? .latestPost : .category
+            collectionViewCellType: viewModel.tools == true ? .category : ((indexPath.section == 0) ? .latestPost : .category)
         )
+        
         return cell
     }
 }

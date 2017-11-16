@@ -61,6 +61,7 @@ final class LibraryTableViewCell: UITableViewCell, Dequeueable {
 // MARK: - UICollectionViewDataSource
 
 extension LibraryTableViewCell: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return contentCollection.count
     }
