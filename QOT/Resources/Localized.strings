@@ -73,7 +73,7 @@
 "Me.Sector.Peak.Performance" = "Peak Performance";
 "Me.Sector.Meetings" = "Meetings";
 "Me.Sector.Intensity" = "Intensity";
-"Me.Sector.Travel" = "Travel";
+"Me.Sector.Travel" = "Flights";
 "Me.Sector.Sleep" = "Sleep";
 "Me.Sector.Activity" = "Activity";
 "Me.Sector.My.Why.Vision.Profile.Picture.Edit.Button.Title" = "Add your vision";
@@ -102,6 +102,7 @@
 "Me.Sector.My.Why.Partners.Photo.Error.Title" = "Error";
 "Me.Sector.My.Why.Partners.Photo.Error.Message" = "There was a problem updating your profile image. Please try again";
 "Me.Sector.My.Why.Partners.Photo.Error.OK.Button" = "OK";
+"Me.Sector.My.Statistics.Personal.Average" = "PERSONAL\nAVG.";
 "Me.Sector.My.Statistics.Day" = "DAY";
 "Me.Sector.My.Statistics.Today" = "TODAY";
 "Me.Sector.My.Statistics.This.Week" = "THIS WEEK";
@@ -116,10 +117,10 @@
 "Me.Card.Title.Meetings.Number" = "Number of Meetings";
 "Me.Card.Title.Meetings.Length" = "Average Length of Meetings";
 "Me.Card.Title.Meetings.Time.Between" = "Average Time between Meetings";
-"Me.Card.Title.Travel.Average" = "Average Number of Trips";
-"Me.Card.Title.Travel.Trips" = "Trips next four Weeks";
-"Me.Card.Title.Travel.Time.Zone.Change" = "Number of trips with time zone changed";
-"Me.Card.Title.Travel.Time.Zone.Max" = "Time zone  max time zone";
+"Me.Card.Title.Travel.Average" = "NUMBER OF FLIGHTS";
+"Me.Card.Title.Travel.Trips" = "FLIGHTS NEXT FOUR WEEKS";
+"Me.Card.Title.Travel.Time.Zone.Change" = "NUMBER OF FLIGHTS WITH TIME ZONE CHANGES";
+"Me.Card.Title.Travel.Time.Zone.Max" = "AVERAGE TIME ZONE CHANGE";
 "Me.Card.Title.Peak.Performacne.Upcoming" = "Number of Upcoming Peak Performances";
 "Me.Card.Title.Peak.Performacne.Average" = "Average Number of Peak Performances";
 "Me.Card.Title.Activity.Ratio" = "Oscillation Index";

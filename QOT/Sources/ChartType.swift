@@ -191,28 +191,28 @@ enum ChartType: String, EnumCollection {
 
     var sectionType: StatisticsSectionType {
         switch self {
-            case .meetingAverageDay,
-                 .meetingAverageWeek,
-                 .meetingLength,
-                 .meetingTimeBetween: return .meetings
-            case .travelTripsAverageWeeks,
-                 .travelTripsAverageYear,
-                 .travelTripsNextFourWeeks,
-                 .travelTripsTimeZoneChangedYear,
-                 .travelTripsTimeZoneChangedWeeks,
-                 .travelTripsMaxTimeZone: return .travel
-            case .peakPerformanceUpcomingWeek,
-                 .peakPerformanceUpcomingNextWeek,
-                 .peakPerformanceAverageWeek,
-                 .peakPerformanceAverageMonth: return .peakPerformance
-            case .sleepQuality,
-                 .sleepQuantity: return .sleep
-            case .activitySittingMovementRatio,
-                 .activityLevel: return .activity
-            case .intensityLoadWeek,
-                 .intensityLoadMonth,
-                 .intensityRecoveryWeek,
-                 .intensityRecoveryMonth: return .intensity
+        case .meetingAverageDay,
+             .meetingAverageWeek,
+             .meetingLength,
+             .meetingTimeBetween: return .meetings
+        case .travelTripsAverageWeeks,
+             .travelTripsAverageYear,
+             .travelTripsNextFourWeeks,
+             .travelTripsTimeZoneChangedYear,
+             .travelTripsTimeZoneChangedWeeks,
+             .travelTripsMaxTimeZone: return .travel
+        case .peakPerformanceUpcomingWeek,
+             .peakPerformanceUpcomingNextWeek,
+             .peakPerformanceAverageWeek,
+             .peakPerformanceAverageMonth: return .peakPerformance
+        case .sleepQuality,
+             .sleepQuantity: return .sleep
+        case .activitySittingMovementRatio,
+             .activityLevel: return .activity
+        case .intensityLoadWeek,
+             .intensityLoadMonth,
+             .intensityRecoveryWeek,
+             .intensityRecoveryMonth: return .intensity
         }
     }
 
@@ -351,17 +351,24 @@ enum ChartType: String, EnumCollection {
     
     var comingSoon: Bool {
         switch self {
-        case .travelTripsAverageYear,
-             .travelTripsAverageWeeks,
-             .travelTripsMaxTimeZone,
-             .travelTripsNextFourWeeks,
-             .travelTripsTimeZoneChangedYear,
-             .travelTripsTimeZoneChangedWeeks,
-             .peakPerformanceAverageWeek,
+        case .peakPerformanceAverageWeek,
              .peakPerformanceAverageMonth,
              .peakPerformanceUpcomingWeek,
              .peakPerformanceUpcomingNextWeek: return true
         default: return false
+        }
+    }
+    
+    var personalText: String {
+        switch self {
+        case .meetingAverageWeek,
+             .meetingAverageDay,
+             .travelTripsAverageYear,
+             .travelTripsNextFourWeeks,
+             .travelTripsAverageWeeks,
+             .travelTripsTimeZoneChangedYear,
+             .travelTripsTimeZoneChangedWeeks: return ""
+        default: return R.string.localized.meSectorMyStatisticsPersonalAverage()
         }
     }
     
@@ -483,8 +490,8 @@ enum StatisticsSectionType: Int, EnumCollection {
                                  [.intensityRecoveryWeek, .intensityRecoveryMonth]]
         case .meetings: return [[.meetingAverageDay, .meetingAverageWeek],
                                 [.meetingLength], [.meetingTimeBetween]]
-        case .travel: return [[.travelTripsAverageWeeks, .travelTripsAverageYear],
-                              [.travelTripsNextFourWeeks],
+        case .travel: return [[.travelTripsNextFourWeeks],
+                              [.travelTripsAverageWeeks, .travelTripsAverageYear],
                               [.travelTripsTimeZoneChangedWeeks, .travelTripsTimeZoneChangedYear],
                               [.travelTripsMaxTimeZone]]
         }
