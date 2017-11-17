@@ -43,11 +43,6 @@ private extension SleepChart {
         drawShape()
     }
 
-    /// FIXME: REFACTORME This func is actually used to parts from the backgrounds and the userDataPoints.
-    /// - isDataPoint will tell us what to draw.
-    ///
-    /// FIX: That function have to breake down and put a part. The logic should be divided.
-    /// There also extensions for drawing lines in the extension file, we should use them.
     func lineBounds(isDataPoint: Bool) {
         guard statistics.dataPoints.isEmpty == false else { return }
         let width = min(frame.width, frame.height)
@@ -110,31 +105,42 @@ private extension SleepChart {
             line.lineDashPattern = statistics.chartType == .sleepQuantity ? [1.5, 1] : nil
             line.lineCap = statistics.chartType == .sleepQuantity ? kCALineCapButt : kCALineCapRound
             line.strokeColor = color.cgColor
+            line.addGlowEffect(color: .white)
         } else {
-            line.lineWidth = 1
-            line.lineDashPattern = [0.5, 2]
-            line.lineJoin = kCALineJoinRound
-            line.strokeColor = UIColor.white20.cgColor
+            line.strokeColor = UIColor.white8.cgColor
+            line.fillColor = UIColor.clear.cgColor
+            line.lineWidth = 1.5
+            line.lineDashPattern = [1.5, 3]
         }
-
-        line.addGlowEffect(color: .white)
+        
         layer.addSublayer(line)
+        layoutIfNeeded()
     }
 
     func drawShape() {
-        let outerPolygonShape = shape(borderColor: .white20)
-        outerPolygonShape.path = UIBezierPath.pentagonPath(forRect: frame).cgPath
-        outerPolygonShape.transform = CATransform3DMakeTranslation(0, yPosition, 0)
-        let innerPolygonShape = shape(borderColor: .white20)
+        layer.addSublayer(innerPolygonShape())
+        layer.addSublayer(outerPolygonShape())
+        layoutIfNeeded()
+    }
+    
+    func innerPolygonShape() -> CAShapeLayer {
+        let innerPolygonShape = shape(borderColor: .white8)
         let scaleFactor = CGFloat(statistics.teamAverage)
         let innerFrame = frame.applying(CGAffineTransform(scaleX: scaleFactor, y: scaleFactor))
+        innerPolygonShape.lineDashPattern = [1.5, 3]
         innerPolygonShape.path = UIBezierPath.pentagonPath(forRect: innerFrame).cgPath
         innerPolygonShape.transform = CATransform3DMakeTranslation(frame.midX - innerFrame.midX,
                                                                    frame.midY - innerFrame.midY + yPosition,
                                                                    0)
-        layer.addSublayer(innerPolygonShape)
-        layer.addSublayer(outerPolygonShape)
-        layoutIfNeeded()
+        return innerPolygonShape
+    }
+    
+    func outerPolygonShape() -> CAShapeLayer {
+        let outerPolygonShape = shape(borderColor: .white20)
+        outerPolygonShape.path = UIBezierPath.pentagonPath(forRect: frame).cgPath
+        outerPolygonShape.transform = CATransform3DMakeTranslation(0, yPosition, 0)
+        
+        return outerPolygonShape
     }
 
     func createDayLabel() {
