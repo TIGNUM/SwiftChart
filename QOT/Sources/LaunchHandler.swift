@@ -58,7 +58,7 @@ extension LaunchHandler {
 extension LaunchHandler {
 
     func fitbit(accessToken: String?) {
-        AddSensorCoordinator.safariViewController?.dismiss(animated: true, completion: nil)
+        NotificationCenter.default.post(name: .fitbitAccessTokenReceivedNotification, object: nil)
         sendAccessToken(accessToken: accessToken)
     }
 

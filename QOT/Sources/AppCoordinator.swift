@@ -25,13 +25,15 @@ final class AppCoordinator: ParentCoordinator {
     private let windowManager: WindowManager
     private let remoteNotificationHandler: RemoteNotificationHandler
     private var services: Services?
-    private weak var topTabBarController: UINavigationController?
-    private weak var tabBarCoordinator: TabBarCoordinator?
     private lazy var permissionHandler: PermissionHandler = PermissionHandler()
     private lazy var networkManager: NetworkManager = NetworkManager(delegate: self, credentialsManager: self.credentialsManager)
     private lazy var credentialsManager: CredentialsManager = CredentialsManager.shared
     private var canProcessRemoteNotifications = false
     private var onDismiss: (() -> Void)?
+
+    // current state
+    private weak var topTabBarController: UINavigationController?
+    private weak var tabBarCoordinator: TabBarCoordinator?
     private weak var currentPresentedController: UIViewController?
     private weak var currentPresentedNavigationController: UINavigationController?
     static var currentStatusBarStyle: UIStatusBarStyle?
@@ -342,44 +344,35 @@ extension AppCoordinator {
         guard
             let services = services,
             let content = services.contentService.contentCollection(id: contentID),
-            let category = content.contentCategories.first,
-            let rootViewController = windowManager.rootViewController(atLevel: .normal) else {
+            let category = content.contentCategories.first else {
                 return
         }
-
-        startLearnContentItemCoordinator(services: services,
-                                         content: content,
-                                         category: category,
-                                         rootViewController: rootViewController)
+        startLearnContentItemCoordinator(services: services, content: content, category: category)
     }
     
     func presentLearnContentItems(contentID: Int, categoryID: Int) {
         guard
             let services = services,
             let content = services.contentService.contentCollection(id: contentID),
-            let category = services.contentService.contentCategory(id: categoryID),
-            let rootViewController = windowManager.rootViewController(atLevel: .normal) else {
+            let category = services.contentService.contentCategory(id: categoryID) else {
                 return
         }
-
-        startLearnContentItemCoordinator(services: services,
-                                         content: content,
-                                         category: category,
-                                         rootViewController: rootViewController)
+        startLearnContentItemCoordinator(services: services, content: content, category: category)
     }
     
-    private func startLearnContentItemCoordinator(services: Services,
-                                                  content: ContentCollection,
-                                                  category: ContentCategory,
-                                                  rootViewController: UIViewController) {
+    private func startLearnContentItemCoordinator(services: Services, content: ContentCollection, category: ContentCategory) {
+        let level = WindowManager.Level.priority
+        guard let rootViewController = windowManager.rootViewController(atLevel: level) else {
+            return
+        }
         AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
         let presentationManager = ContentItemAnimator(originFrame: rootViewController.view.frame)
-        let coordinator = LearnContentItemCoordinator(root: rootViewController, eventTracker: eventTracker, services: services, content: content, category: category, presentationManager: presentationManager, topBarDelegate: self)
+        let coordinator = LearnContentItemCoordinator(root: rootViewController, eventTracker: eventTracker, services: services, content: content, category: category, presentationManager: presentationManager, topBarDelegate: self, presentOnStart: false)
         startChild(child: coordinator)
         topTabBarController = coordinator.topTabBarController
-        windowManager.showWindow(atLevel: .priority)
-        windowManager.setRootViewController(coordinator.topTabBarController, atLevel: .priority, animated: true, completion: nil)
         currentPresentedNavigationController = coordinator.topTabBarController
+        windowManager.showWindow(atLevel: level)
+        windowManager.setRootViewController(coordinator.topTabBarController, atLevel: level, animated: true, completion: nil)
     }
 
     func showMajorAlert(type: AlertType, handler: (() -> Void)? = nil, handlerDestructive: (() -> Void)? = nil) {

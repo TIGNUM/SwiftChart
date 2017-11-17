@@ -25,10 +25,11 @@ final class LearnContentItemCoordinator: ParentCoordinator {
     private weak var topBarDelegate: TopNavigationBarDelegate?
     private let rootViewController: UIViewController
     private let headerView: LearnContentItemHeaderView
+    private let presentOnStart: Bool
     var children: [Coordinator] = []
     var topTabBarController: UINavigationController!
     
-    init(root: UIViewController, eventTracker: EventTracker, services: Services, content: ContentCollection, category: ContentCategory, presentationManager: ContentItemAnimator? = nil, topBarDelegate: TopNavigationBarDelegate? = nil) {
+    init(root: UIViewController, eventTracker: EventTracker, services: Services, content: ContentCollection, category: ContentCategory, presentationManager: ContentItemAnimator? = nil, topBarDelegate: TopNavigationBarDelegate? = nil, presentOnStart: Bool = true) {
         self.rootViewController = root
         self.eventTracker = eventTracker
         self.services = services
@@ -37,6 +38,7 @@ final class LearnContentItemCoordinator: ParentCoordinator {
         self.presentationManager = presentationManager
         self.selectedContent = content
         self.topBarDelegate = topBarDelegate
+        self.presentOnStart = presentOnStart
         self.viewModel = LearnContentItemViewModel(
             services: services,
             eventTracker: eventTracker,
@@ -53,15 +55,12 @@ final class LearnContentItemCoordinator: ParentCoordinator {
         audioViewController.title = R.string.localized.learnContentItemTitleAudio()
 
         var pages = [LearnContentItemViewController]()
-
         if content.hasFullItems == true {
             pages.append(fullViewController)
         }
-
         if content.hasBulletItems == true {
             pages.append(bulletViewController)
         }
-
         if content.hasAudioItems == true {
             pages.append(audioViewController)
         }
@@ -108,7 +107,9 @@ final class LearnContentItemCoordinator: ParentCoordinator {
             topTabBarController.modalPresentationStyle = .custom
         }
 
-        rootViewController.present(topTabBarController, animated: true)
+        if presentOnStart {
+            rootViewController.present(topTabBarController, animated: true)
+        }
         // FIXME: Add page tracking
     }
 }
@@ -182,9 +183,14 @@ extension LearnContentItemCoordinator: LearnContentItemViewControllerDelegate {
 
     func didTapPDF(withURL url: URL, in viewController: LearnContentItemViewController) {
         do {
-            viewController.present(try SafariViewController(url), animated: true, completion: nil)
+            // FIXME: apple bug. perhaps because this gets displayed on WindowManager.Level.priority
+            // https://stackoverflow.com/questions/46439142/sfsafariviewcontroller-blank-in-ios-11-xcode-9-0
+            // https://openradar.appspot.com/29108332
+            let vc = try WebViewController(url)
+            viewController.present(vc, animated: true, completion: nil)
         } catch {
             log("Failed to open url. Error: \(error)")
+            viewController.showAlert(type: .message(error.localizedDescription))
         }
     }
 }

@@ -421,7 +421,7 @@
 		CCF0F4C01ECDC57000E8D9C1 /* NSPredicate+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF0F4BD1ECDC57000E8D9C1 /* NSPredicate+Convenience.swift */; };
 		CCF0F4C11ECDC57000E8D9C1 /* ObjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF0F4BE1ECDC57000E8D9C1 /* ObjectStore.swift */; };
 		CCF0F4C61ECDD0DA00E8D9C1 /* contentCategory.json in Resources */ = {isa = PBXBuildFile; fileRef = CCF0F4C51ECDD0DA00E8D9C1 /* contentCategory.json */; };
-		CCF19C591F6048600020D7B6 /* SFSafariViewController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF19C581F6048600020D7B6 /* SFSafariViewController+Convenience.swift */; };
+		CCF19C591F6048600020D7B6 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF19C581F6048600020D7B6 /* WebViewController.swift */; };
 		CCFCCB141F31C8E8004A4D7E /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFCCB131F31C8E8004A4D7E /* R.generated.swift */; };
 		D50D6C241EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50D6C221EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift */; };
 		D50D6C251EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D50D6C231EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib */; };
@@ -893,7 +893,7 @@
 		CCF0F4BD1ECDC57000E8D9C1 /* NSPredicate+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPredicate+Convenience.swift"; sourceTree = "<group>"; };
 		CCF0F4BE1ECDC57000E8D9C1 /* ObjectStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectStore.swift; sourceTree = "<group>"; };
 		CCF0F4C51ECDD0DA00E8D9C1 /* contentCategory.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = contentCategory.json; sourceTree = "<group>"; };
-		CCF19C581F6048600020D7B6 /* SFSafariViewController+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SFSafariViewController+Convenience.swift"; sourceTree = "<group>"; };
+		CCF19C581F6048600020D7B6 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		CCFCCB131F31C8E8004A4D7E /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = QOT/Generated/R.generated.swift; sourceTree = SOURCE_ROOT; };
 		CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D50D6C221EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSubtitleTableViewCell.swift; sourceTree = "<group>"; };
@@ -1397,12 +1397,12 @@
 				CBB4DD3D1EE08DDB0071494A /* App */,
 				CBB4DD1A1EE084C00071494A /* Coordinators */,
 				CBB4DD1B1EE084DC0071494A /* Data Layer */,
+				CBB4DD1C1EE085600071494A /* View Layer */,
 				CBB4DD2F1EE0893F0071494A /* Extensions */,
 				CBB4DD4B1EE093A10071494A /* Generated */,
 				7F1D3D231F8E28E70071D322 /* Log */,
 				CB78420F1FB311DC00C91546 /* ObjC */,
 				CBB4DD521EE095E50071494A /* Utils */,
-				CBB4DD1C1EE085600071494A /* View Layer */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -1675,7 +1675,6 @@
 				CC4F22EF1EE023F4006C437E /* NSMutableAttributedString+Create.swift */,
 				CC9F4F961F1D15C70027003D /* Range+MakeOneDay.swift */,
 				7FDFF36A1F1916B400F7A7EC /* Realm+Utility.swift */,
-				CCF19C581F6048600020D7B6 /* SFSafariViewController+Convenience.swift */,
 				851676C91F39AA9C007A1DD6 /* String+Extensions.swift */,
 				CB9BB0C11F0CD13E009067D7 /* TimeInterval+Convenience.swift */,
 				CBFECCAC1F388B500076ACE6 /* TimeZone+Convenience.swift */,
@@ -1891,6 +1890,7 @@
 		CBB4DD461EE0911A0071494A /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				CCF19C581F6048600020D7B6 /* WebViewController.swift */,
 				850312EA1F33670900DB5A6B /* ClickableLabel.swift */,
 				CB2880331E7144E60067890A /* CollectionUpdate.swift */,
 				CC335EE81EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift */,
@@ -2959,7 +2959,7 @@
 				CCC1B6AE1E8B9B7F00D1461F /* LearnContentListViewController.swift in Sources */,
 				CC02E14B1F279E6700134574 /* SettingsCalendarListViewController.swift in Sources */,
 				CC7D21B31EFC1348007A062E /* WeeklyChoicesViewController.swift in Sources */,
-				CCF19C591F6048600020D7B6 /* SFSafariViewController+Convenience.swift in Sources */,
+				CCF19C591F6048600020D7B6 /* WebViewController.swift in Sources */,
 				CBFED33A1F7938970006270D /* ChatItemQueue.swift in Sources */,
 				CBC1DC1F1F0F9BA100F6D056 /* SystemSetting+Convenience.swift in Sources */,
 				7F1D3D221F8E24620071D322 /* Log.swift in Sources */,

@@ -95,6 +95,7 @@ class WindowManager {
     func showWindow(atLevel level: Level) {
         let window = windowForLevel(level)
         window.isHidden = false
+        window.makeKey()
     }
     
     func hasContent(atLevel level: Level) -> Bool {

@@ -14,11 +14,13 @@ final class AddSensorCoordinator: ParentCoordinator {
 
     // MARK: - Properties
 
-    static var safariViewController: SFSafariViewController?
     private let services: Services
     private let rootViewController: UIViewController
-    let addSensorViewController: AddSensorViewController
+    private var webViewController: WebViewController?
+    private let notificationHandler: NotificationHandler
+   
     var children = [Coordinator]()
+    let addSensorViewController: AddSensorViewController
 
     // MARK: - Init
 
@@ -27,6 +29,10 @@ final class AddSensorCoordinator: ParentCoordinator {
         self.services = services
         addSensorViewController = AddSensorViewController(viewModel: AddSensorViewModel(userService: services.userService))
         addSensorViewController.title = R.string.localized.sidebarTitleSensor().uppercased()
+        notificationHandler = NotificationHandler(center: .default, name: .fitbitAccessTokenReceivedNotification)
+        notificationHandler.handler = { [unowned self] notification in
+            self.webViewController?.dismiss(animated: true, completion: nil)
+        }
         addSensorViewController.delegate = self
     }
 
@@ -74,12 +80,13 @@ private extension AddSensorCoordinator {
     
     func presentSafariViewController(url: URL, viewController: UIViewController) {
         do {
-            let safariViewController = try SafariViewController(url)
-            AddSensorCoordinator.safariViewController = safariViewController
-            viewController.present(safariViewController, animated: true)
+            let webViewController = try WebViewController(url)
+            self.webViewController = webViewController
+            viewController.present(webViewController, animated: true)
             NotificationCenter.default.addObserver(self, selector: #selector(reloadAddSensorViewController), name: .syncAllDidFinishNotification, object: nil)
         } catch {
             log("Failed to open url. Error: \(error)")
+            viewController.showAlert(type: .message(error.localizedDescription))
         }
     }
     

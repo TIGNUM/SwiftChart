@@ -121,9 +121,10 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
             UIApplication.shared.open(url)
         } else {
             do {
-                viewController.present(try SafariViewController(url), animated: true, completion: nil)
+                viewController.present(try WebViewController(url), animated: true, completion: nil)
             } catch {
                 log("Failed to open url. Error: \(error)")
+                viewController.showAlert(type: .message(error.localizedDescription))
             }
         }
     }
