@@ -130,9 +130,9 @@ private extension ActivityChart {
     func setupView() {
         updateLabelFrames()
         addAverageLines()
-        addCaptionLabel(yPos: yPosition(0.25), text: "25%")
-        addCaptionLabel(yPos: yPosition(0.50), text: "50%")
-        addCaptionLabel(yPos: yPosition(0.75), text: "75%")
+        addCaptionLabel(yPos: yPosition(0.25), text: "1.25")
+        addCaptionLabel(yPos: yPosition(0.50), text: "2.50")
+        addCaptionLabel(yPos: yPosition(0.75), text: "3.75")
     }
 
     func drawCharts() {
