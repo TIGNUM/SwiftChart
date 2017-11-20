@@ -16,7 +16,7 @@ protocol MyPrepViewControllerDelegate: class {
     func didTapMyPrepItem(with myPrepItem: MyPrepViewModel.Item, viewController: MyPrepViewController)
 }
 
-final class MyPrepViewController: UIViewController, FullScreenLoadable {
+final class MyPrepViewController: UIViewController, FullScreenLoadable, PageViewControllerNotSwipeable {
     
     // MARK: - Properties
 

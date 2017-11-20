@@ -19,7 +19,7 @@ protocol LearnCategoryListViewControllerDelegate: class {
 }
 
 /// Displays a collection of learn categories of learn content.
-final class LearnCategoryListViewController: UIViewController {
+final class LearnCategoryListViewController: UIViewController, PageViewControllerNotSwipeable {
 
     // MARK: - Properties
 
