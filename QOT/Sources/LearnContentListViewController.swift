@@ -48,7 +48,7 @@ final class LearnContentListViewController: UIViewController {
             dataSource: self,
             dequeables: LearnContentCell.self
         )
-        collectionView.contentInset = UIEdgeInsets(top:80, left: 0, bottom: 55, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 80, left: 0, bottom: 55, right: 0)
         return collectionView
     }()
 

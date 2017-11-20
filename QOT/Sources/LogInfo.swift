@@ -25,7 +25,7 @@ struct LogInfo: Codable {
 }
 
 extension LogInfo {
-    var json: [String : Any]? {
+    var json: [String: Any]? {
         let encoder = JSONEncoder()
         do {
             let data = try encoder.encode(self)

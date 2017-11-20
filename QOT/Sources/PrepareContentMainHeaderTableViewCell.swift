@@ -59,7 +59,7 @@ final class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable 
     func updateContent(isExpanded: Bool) {
         if isExpanded == true {
             if let previewImageURL = previewImageURL, videoURL != nil {
-                previewImageButton.kf.setBackgroundImage(with: ImageResource(downloadURL: previewImageURL),
+                previewImageButton.kf.setBackgroundImage(with: previewImageURL,
                                                          for: .normal,
                                                          placeholder: R.image.preloading())
             } else {

@@ -15,7 +15,7 @@ class BuilderRealmProvider: RealmProvider {
 
     override func realm() throws -> Realm {
         let url = URL.documentsDirectory.appendingPathComponent("temp.realm")
-        let config = Realm.Configuration(fileURL:url, encryptionKey: nil)
+        let config = Realm.Configuration(fileURL: url, encryptionKey: nil)
         return try Realm(configuration: config)
     }
 }

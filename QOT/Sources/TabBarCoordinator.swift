@@ -262,13 +262,13 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
         startChild(child: coordinator)
     }
 
-    func didTapMyToBeVision(vision: MyToBeVision?, from view: UIView, in viewController: MyUniverseViewController) {
+    func didTapMyToBeVision(from view: UIView, in viewController: MyUniverseViewController) {
         let transitioningDelegate = MyToBeVisionAnimator()
         let coordinator = MyToBeVisionCoordinator(root: topTabBarControllerMe, transitioningDelegate: transitioningDelegate, services: services, permissionHandler: permissionHandler)
         startChild(child: coordinator)
     }
 
-    func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, from view: UIView, in viewController: MyUniverseViewController) {
+    func didTapWeeklyChoices(from view: UIView, in viewController: MyUniverseViewController) {
         let transitioningDelegate = WeeklyChoicesAnimator()
         let coordinator = WeeklyChoicesCoordinator(root: topTabBarControllerMe,
                                                    services: services,
@@ -277,7 +277,7 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
         startChild(child: coordinator)
     }
 
-    func didTapQOTPartner(selectedIndex: Index, partners: [Partner], from view: UIView, in viewController: MyUniverseViewController) {
+    func didTapQOTPartner(selectedIndex: Index, from view: UIView, in viewController: MyUniverseViewController) {
         let transitioningDelegate = PartnersAnimator()
         let coordinator = PartnersCoordinator(root: topTabBarControllerMe, services: services, transitioningDelegate: transitioningDelegate, selectedIndex: selectedIndex, permissionHandler: permissionHandler)
         startChild(child: coordinator)

@@ -189,6 +189,7 @@
 		CB58917B1F7B95B200D63C5E /* ChatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5891791F7B95B200D63C5E /* ChatViewCell.swift */; };
 		CB6D49541ECC87BF005BC637 /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6D49531ECC87BF005BC637 /* Requests.swift */; };
 		CB6D49561ECCA58D005BC637 /* AuthenticationTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6D49551ECCA58D005BC637 /* AuthenticationTokenParser.swift */; };
+		CB73991F1FBDA0D900C5FF57 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73991E1FBDA0D900C5FF57 /* Token.swift */; };
 		CB78420D1FB30DA800C91546 /* EKParticipant+ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = CB78420C1FB30DA800C91546 /* EKParticipant+ObjC.m */; };
 		CB7F046E1F8E0999001F4DE6 /* SyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7F046D1F8E0999001F4DE6 /* SyncOperation.swift */; };
 		CB810E611EEFC0D70043E3E5 /* ErrorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB810E601EEFC0D70043E3E5 /* ErrorCell.swift */; };
@@ -653,6 +654,7 @@
 		CB5891791F7B95B200D63C5E /* ChatViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewCell.swift; sourceTree = "<group>"; };
 		CB6D49531ECC87BF005BC637 /* Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
 		CB6D49551ECCA58D005BC637 /* AuthenticationTokenParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationTokenParser.swift; sourceTree = "<group>"; };
+		CB73991E1FBDA0D900C5FF57 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		CB7842061FB30AC000C91546 /* QOT-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "QOT-Bridging-Header.h"; sourceTree = "<group>"; };
 		CB78420B1FB30DA800C91546 /* EKParticipant+ObjC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EKParticipant+ObjC.h"; sourceTree = "<group>"; };
 		CB78420C1FB30DA800C91546 /* EKParticipant+ObjC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "EKParticipant+ObjC.m"; sourceTree = "<group>"; };
@@ -1973,21 +1975,22 @@
 		CBB4DD521EE095E50071494A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				7F4276761F570DB600AEE3D7 /* WindowManager.swift */,
-				7F5A25B11F3C515800A11466 /* Swizzle.swift */,
 				8548BBDF1F0D4BF900AC7C06 /* LaunchHandler.swift */,
-				7F42767C1F58665100AEE3D7 /* URLScheme.swift */,
 				852DADC51EEEE63500A10882 /* Math.swift */,
 				CBDB98F31E7B000A003EC73F /* NotificationHandler.swift */,
 				7FDFF3681F18FF0B00F7A7EC /* NotificationTokenHandler.swift */,
 				7F4251C21F211BC600EA451D /* PermissionHandler.swift */,
 				CBC5ACC91F18EF96007E1E9C /* QOTUsageTime.swift */,
+				7F42767A1F585D1F00AEE3D7 /* RemoteNotificationHandler.swift */,
 				CB27D59A1ECCB67300F2B76C /* Result.swift */,
+				7F5A25B11F3C515800A11466 /* Swizzle.swift */,
+				CB73991E1FBDA0D900C5FF57 /* Token.swift */,
 				855C4FC41F25F7D10068DDE3 /* Tutorial.swift */,
 				CBD791491E71797C0006C590 /* Typealiases.swift */,
+				7F42767C1F58665100AEE3D7 /* URLScheme.swift */,
 				7FE38DBC1F2210D60061E98F /* WaitBlockOperation.swift */,
-				7F42767A1F585D1F00AEE3D7 /* RemoteNotificationHandler.swift */,
 				7F1711EA1FB30E0100ED08D8 /* WhatsHotBadgeManager.swift */,
+				7F4276761F570DB600AEE3D7 /* WindowManager.swift */,
 				7F5A25AE1F3C4BB400A11466 /* Analytics */,
 			);
 			name = Utils;
@@ -2966,6 +2969,7 @@
 				CCEFCFB01E8D3D7500E9FC72 /* SidebarViewController.swift in Sources */,
 				7FBC3E801F385135005BD772 /* MediaService.swift in Sources */,
 				7F708EA01FBAFAF8008A3856 /* FullScreenLoadable.swift in Sources */,
+				CB73991F1FBDA0D900C5FF57 /* Token.swift in Sources */,
 				7F42767B1F585D1F00AEE3D7 /* RemoteNotificationHandler.swift in Sources */,
 				CBB4DCF11EDC0C420071494A /* SyncRecord.swift in Sources */,
 				CBB017B61F9662DD00CC1048 /* UpSyncTask.swift in Sources */,

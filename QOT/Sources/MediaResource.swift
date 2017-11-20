@@ -57,6 +57,10 @@ class MediaResource: SyncableObject {
         self.localURLString = localURL.path
         self.mediaFormat = mediaFormat.rawValue
     }
+    
+    var url: URL? {
+        return localURL ?? remoteURL
+    }
 }
 
 // MARK: - OneWaySyncableUp

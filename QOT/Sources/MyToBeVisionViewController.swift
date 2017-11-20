@@ -257,8 +257,8 @@ private extension MyToBeVisionViewController {
             controlPoint1: CGPoint(x: view.bounds.size.width/2 - 50, y: 0),
             controlPoint2: CGPoint(x: view.bounds.size.width/2 + 50, y: 0)
         )
-        clippingBorderPath.addLine(to: CGPoint(x:  view.bounds.size.width, y: view.bounds.size.height + 30))
-        clippingBorderPath.addLine(to: CGPoint(x:  0, y: view.bounds.size.height + 30))
+        clippingBorderPath.addLine(to: CGPoint(x: view.bounds.size.width, y: view.bounds.size.height + 30))
+        clippingBorderPath.addLine(to: CGPoint(x: 0, y: view.bounds.size.height + 30))
         clippingBorderPath.close()
 
         let borderMask = CAShapeLayer()
