@@ -11,7 +11,7 @@ import SwiftyBeaver
 import Alamofire
 import RealmSwift
 
-class RemoteLogDestination: BaseDestination {
+final class RemoteLogDestination: BaseDestination {
     private enum ErrorType: Error {
         case serialization
     }
@@ -88,9 +88,7 @@ class RemoteLogDestination: BaseDestination {
     // MARK: - private
 
     private func send(_ logInfo: LogInfo) {
-        guard let remoteURL = remoteURL else {
-            return
-        }
+        guard let remoteURL = remoteURL else { return }
         Alamofire.request(remoteURL, method: .put, parameters: logInfo.json, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             if let error = response.result.error {
                 print(error)

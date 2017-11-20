@@ -10,7 +10,7 @@ import UIKit
 import MBProgressHUD
 
 final class LaunchHandler {
-
+    
     private var appDelegate: AppDelegate {
         return AppDelegate.current
     }
@@ -25,7 +25,9 @@ final class LaunchHandler {
             let scheme = URLScheme(rawValue: host) else {
                 return
         }
-
+        
+        logPushNotificationID(urlScheme: scheme, url: url)
+        
         switch scheme {
         case .dailyPrep: dailyPrep(groupID: scheme.queryParametter(url: url))
         case .fitbit: fitbit(accessToken: scheme.queryParametter(url: url))
@@ -37,6 +39,11 @@ final class LaunchHandler {
         case .toBeVision: toBeVision()
         case .weeklyPeakPerformance: return
         }
+    }
+    
+    func logPushNotificationID(urlScheme: URLScheme, url: URL) {
+        guard let pushNotificationID = urlScheme.pushNotificationID(url: url) else { return }
+        log("nid: \(pushNotificationID)", enabled: true, level: .error)
     }
 }
 

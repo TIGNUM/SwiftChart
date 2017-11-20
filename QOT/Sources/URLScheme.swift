@@ -51,6 +51,10 @@ enum URLScheme: String {
         return url.queryStringParameter(param: queryName)
     }
     
+    func pushNotificationID(url: URL) -> String? {
+        return url.queryStringParameter(param: "nid")
+    }
+    
     static func isSupportedURL(_ url: URL) -> Bool {
         guard
             let host = url.host,
