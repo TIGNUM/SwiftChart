@@ -56,18 +56,6 @@ final class PermissionHandler: NSObject {
         queue.addOperation(WaitBlockOperation { [unowned self] (finish: (() -> Void)?) in
             self.askPermissionForLocationAlways(completion: { (granted: Bool) in
                 result.location = granted
-                finish?()
-            })
-        })
-        queue.addOperation(WaitBlockOperation { [unowned self] (finish: (() -> Void)?) in
-            self.askPermissionForPhotos(completion: { (granted: Bool) in
-                result.photos = granted
-                finish?()
-            })
-        })
-        queue.addOperation(WaitBlockOperation { [unowned self] (finish: (() -> Void)?) in
-            self.askPermissionForCamera(completion: { (granted: Bool) in
-                result.camera = granted
                 completion(result)
                 finish?()
             })
