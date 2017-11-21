@@ -46,9 +46,22 @@ final class CalendarImportTask {
 
     private func createOrUpdateCalendarEvents(with ekEvents: [EKEvent], realm: Realm) {
         for ekEvent in ekEvents {
+            // FIXME: DELETE
+            CLSLogv("createOrUpdateCalendarEvents - start logging", getVaList([]))
+            if ekEvent.title == nil {
+                CLSLogv("createOrUpdateCalendarEvents - title is nil!", getVaList([]))
+            }
+            if ekEvent.startDate == nil {
+                CLSLogv("createOrUpdateCalendarEvents - startDate is nil!", getVaList([]))
+            }
+            if ekEvent.endDate == nil {
+                CLSLogv("createOrUpdateCalendarEvents - endDate is nil!", getVaList([]))
+            }
+            CLSLogv("createOrUpdateCalendarEvents - passed nil checks", getVaList([]))
             CLSLogv("Log createOrUpdateCalendarEvents - ekEvent.title %@", getVaList([ekEvent.title]))
             CLSLogv("Log createOrUpdateCalendarEvents - ekEvent.startDate %@", getVaList([ekEvent.startDate.description]))
             CLSLogv("Log createOrUpdateCalendarEvents - ekEvent.endDate %@", getVaList([ekEvent.endDate.description]))
+            CLSLogv("createOrUpdateCalendarEvents - end logging", getVaList([]))
             
             let predicate = NSPredicate.calendarEvent(title: ekEvent.title,
                                                       startDate: ekEvent.startDate,
