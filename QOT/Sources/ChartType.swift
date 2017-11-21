@@ -354,7 +354,10 @@ enum ChartType: String, EnumCollection {
         case .peakPerformanceAverageWeek,
              .peakPerformanceAverageMonth,
              .peakPerformanceUpcomingWeek,
-             .peakPerformanceUpcomingNextWeek: return true
+             .peakPerformanceUpcomingNextWeek,
+             .travelTripsTimeZoneChangedYear,
+             .travelTripsTimeZoneChangedWeeks,
+             .travelTripsMaxTimeZone: return true
         default: return false
         }
     }
