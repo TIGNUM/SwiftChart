@@ -14,29 +14,25 @@ final class MyWhyView: PassthroughView, MyUniverseView {
 
     var previousBounds = CGRect.zero
     let screenType: MyUniverseViewController.ScreenType
-    lazy var weeklyChoices = [WeeklyChoice]()
-    lazy var partners = [Partner]()
     weak var delegate: MyWhyViewDelegate?
     var myToBeVisionBox: PassthroughView!
     var weeklyChoicesBox: PassthroughView!
     var qotPartnersBox: PassthroughView!
-    var items: [MyWhy]
     var userCoicesReady = false
     var partnersReady = false
     var toBeVisionReady = false
-    var myToBeVision: MyToBeVision?
     private var myToBeVisionLabel: UILabel!
     private var myToBeVisionHeaderLabel: UILabel!
     private var weeklyChoiceButtons = [UIButton]()
     private var qotPartnersButtons = [UIButton]()
     private let fullViewFrame: CGRect
+    private let viewModel: MyUniverseViewModel
 
-    init(frame: CGRect, screenType: MyUniverseViewController.ScreenType, items: [MyWhy], myToBeVision: MyToBeVision?, delegate: MyWhyViewDelegate?) {
-        fullViewFrame = frame
+    init(frame: CGRect, screenType: MyUniverseViewController.ScreenType, delegate: MyWhyViewDelegate?, viewModel: MyUniverseViewModel) {
+        self.fullViewFrame = frame
         self.delegate = delegate
         self.screenType = screenType
-        self.items = items
-        self.myToBeVision = myToBeVision
+        self.viewModel = viewModel
 
         let viewRightMargin = Layout.MeSection(viewControllerFrame: frame).scrollViewOffset * 3.5
         let viewFrame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.width - viewRightMargin, height: frame.height)
@@ -61,44 +57,50 @@ final class MyWhyView: PassthroughView, MyUniverseView {
     }
 
     func reload() {
-        items.forEach { (myWhy: MyWhy) in
-            switch myWhy {
-            case .vision(let vision):
-                var visionHeadline = R.string.localized.meSectorMyWhyVisionHeadlinePlaceholder()
-                var visionText = R.string.localized.meSectorMyWhyVisionMessagePlaceholder()
-                if let vision = vision, let headline = vision.headline, let text = vision.text, text.isEmpty == false {
-                    visionHeadline = headline
-                    visionText = text
-                }
-                myToBeVisionHeaderLabel.setAttrText(text: visionHeadline.uppercased(),
-                                                          font: Font.H6NavigationTitle,
-                                                          lineSpacing: 3,
-                                                          characterSpacing: 1)
-                myToBeVisionLabel.setAttrText(text: visionText,
-                                              font: Font.PTextSmall,
-                                              lineSpacing: 7,
-                                              characterSpacing: 1.73)
-            case .weeklyChoices(_, let choices):
-                weeklyChoices = choices
-                for index in 0..<Layout.MeSection.maxWeeklyPage {
-                    guard index < choices.count else {
-                        return
-                    }
-                    let choice = choices[index]
-                    let button = weeklyChoiceButtons[index]
-                    button.setTitle(choice.title?.uppercased(), for: .normal)
-                }
-            case .partners(_, let partners):
-                self.partners = Array(partners)
-                for index in 0..<Layout.MeSection.maxPartners {
-                    guard index < partners.count else {
-                        return
-                    }
-                    let partner = partners[index]
-                    let button = qotPartnersButtons[index]
-                    button.configure(with: partner, index: index)
-                }
+        reloadToBeVision()
+        reloadWeeklyChoices()
+        reloadPartners()
+    }
+    
+    private func reloadToBeVision() {
+        let headline = viewModel.toBeVisionHeadline ?? R.string.localized.meSectorMyWhyVisionHeadlinePlaceholder()
+        let text = viewModel.toBeVisionText ??  R.string.localized.meSectorMyWhyVisionMessagePlaceholder()
+        
+        myToBeVisionHeaderLabel?.setAttrText(text: headline.uppercased(),
+                                            font: Font.H6NavigationTitle,
+                                            lineSpacing: 3,
+                                            characterSpacing: 1)
+        myToBeVisionLabel?.setAttrText(text: text,
+                                      font: Font.PTextSmall,
+                                      lineSpacing: 7,
+                                      characterSpacing: 1.73)
+    }
+    
+    private func reloadWeeklyChoices() {
+        let weeklyChoices = viewModel.weeklyChoices
+        assert(weeklyChoices.count <= Layout.MeSection.maxWeeklyPage, "To many weekly choices")
+        
+        for (index, choice) in weeklyChoices.enumerated() {
+            guard index < weeklyChoiceButtons.count else {
+                return
             }
+            
+            let button = weeklyChoiceButtons[index]
+            button.setTitle(choice.uppercased(), for: .normal)
+        }
+    }
+    
+    private func reloadPartners() {
+        let partners = viewModel.partners
+        assert(partners.count <= Layout.MeSection.maxPartners, "To many weekly choices")
+        
+        for (index, partner) in partners.enumerated() {
+            guard index < qotPartnersButtons.count else {
+                return
+            }
+            
+            let button = qotPartnersButtons[index]
+            button.configureForPartnerWith(initials: partner.initials, imageURL: partner.imageURL, index: index)
         }
     }
 }
@@ -113,19 +115,14 @@ private extension MyWhyView {
     }
     
     func drawMyWhy(layout: Layout.MeSection) {
+        let weeklyChoices = viewModel.weeklyChoices
+        let partners = viewModel.partners
         drawSpikes(layout: layout)
-        items.forEach { (myWhy: MyWhy) in
-            switch myWhy {
-            case .vision(let vision):
-                addToBeVision(layout: layout, vision: vision)
-            case .weeklyChoices(let title, let choices):
-                weeklyChoices = choices
-                addWeeklyChoices(layout: layout, title: title, choices: choices)
-            case .partners(let title, let partners):
-                self.partners = Array(partners)
-                addPartners(layout: layout, title: title, partners: self.partners)
-            }
-        }
+        addToBeVision(layout: layout, headline: viewModel.toBeVisionHeadline, text: viewModel.toBeVisionText)
+        let weeklyChoicesTitle = R.string.localized.meSectorMyWhyWeeklyChoicesTitle()
+        addWeeklyChoices(layout: layout, title: weeklyChoicesTitle, choices: weeklyChoices)
+        let partnersTitle = R.string.localized.meSectorMyWhyPartnersTitle()
+        addPartners(layout: layout, title: partnersTitle, partners: partners)
     }
     
     func drawMyWhyAfterDidLayoutSubviews() {
@@ -140,17 +137,12 @@ private extension MyWhyView {
         }
     }
 
-    func addToBeVision(layout: Layout.MeSection, vision: MyToBeVision?) {        
+    func addToBeVision(layout: Layout.MeSection, headline: String?, text: String?) {
         myToBeVisionBox = PassthroughView()
         myToBeVisionBox.backgroundColor = .clear
         let footLabel = footerLabel(with: R.string.localized.meSectorMyWhyVisionTitle().uppercased())
-        var visionHeadline = R.string.localized.meSectorMyWhyVisionHeadlinePlaceholder()
-        var visionText = R.string.localized.meSectorMyWhyVisionMessagePlaceholder()
-        
-        if let vision = vision, let headline = vision.headline, let text = vision.text, !text.isEmpty {
-            visionHeadline = headline
-            visionText = text
-        }
+        let visionHeadline = headline ?? R.string.localized.meSectorMyWhyVisionHeadlinePlaceholder()
+        let visionText = text ?? R.string.localized.meSectorMyWhyVisionMessagePlaceholder()
         
         myToBeVisionHeaderLabel = visionHeaderLabel(text: visionHeadline)
         myToBeVisionLabel = visionLabel(with: visionText)
@@ -178,19 +170,19 @@ private extension MyWhyView {
         myToBeVisionBox.addGestureRecognizer(tapGestureRecognizer)
     }
 
-    func addWeeklyChoices(layout: Layout.MeSection, title: String, choices: [WeeklyChoice]) {
+    func addWeeklyChoices(layout: Layout.MeSection, title: String, choices: [String]) {
         weeklyChoicesBox = PassthroughView()
         weeklyChoicesBox.backgroundColor = .clear
         let max = Layout.MeSection.maxWeeklyPage
         var previousButton: UIButton?
 
         for index in 0..<max {
-            var choice: WeeklyChoice?
+            var choice: String?
             if index < choices.count {
                 choice = choices[index]
             }
 
-            let button = weeklyChoiceButton(title: choice?.title, index: index)
+            let button = weeklyChoiceButton(title: choice, index: index)
             weeklyChoiceButtons.append(button)
             weeklyChoicesBox.addSubview(button)
             button.widthAnchor == layout.viewControllerFrame.width * 0.33
@@ -226,21 +218,21 @@ private extension MyWhyView {
         weeklyChoicesBox.rightAnchor == self.rightAnchor - 30
     }
 
-    func addPartners(layout: Layout.MeSection, title: String, partners: [Partner]) {
+    func addPartners(layout: Layout.MeSection, title: String, partners: [MyUniverseViewModel.Partner]) {
         qotPartnersBox = PassthroughView()
         qotPartnersBox.backgroundColor = .clear
 
         var previousButton: UIButton?
 
         for index in 0..<Layout.MeSection.maxPartners {
-            var partner: Partner?
+            var partner: MyUniverseViewModel.Partner?
             if index < partners.count {
                 partner = partners[index]
             }
 
             let button = UIButton()
             button.tag = index
-            button.configure(with: partner, index: index)
+            button.configureForPartnerWith(initials: partner?.initials, imageURL: partner?.imageURL, index: index)
             
             /*
              TODO:  For now we disable QOT Partners. Enable this bit when we need it.
@@ -332,13 +324,7 @@ private extension MyWhyView {
             (delegate as? UIViewController)?.showAlert(type: .notSynced)
             return
         }
-
-        var selectedWeeklyChoice: WeeklyChoice? = nil
-        if sender.tag < weeklyChoices.count {
-            selectedWeeklyChoice = weeklyChoices[sender.tag]
-        }
-
-        delegate?.didTapWeeklyChoices(weeklyChoice: selectedWeeklyChoice, from: self)
+        delegate?.didTapWeeklyChoices(from: self)
     }
 
     @objc func didTapPartner(sender: UIButton) {
@@ -347,7 +333,7 @@ private extension MyWhyView {
             return
         }
 
-        delegate?.didTapQOTPartner(selectedIndex: sender.tag, partners: partners, from: self)
+        delegate?.didTapQOTPartner(selectedIndex: sender.tag, from: self)
     }
 
     @objc func didTapMyToBeVision() {
@@ -356,7 +342,7 @@ private extension MyWhyView {
             return
         }
 
-        delegate?.didTapMyToBeVision(vision: myToBeVision, from: self)
+        delegate?.didTapMyToBeVision(from: self)
     }
 }
 
@@ -402,7 +388,7 @@ private extension MyWhyView {
 
 private extension UIButton {
 
-    func configure(with partner: Partner?, index: Index) {
+    func configureForPartnerWith(initials: String?, imageURL: URL?, index: Index) {
         titleLabel?.font = Font.H6NavigationTitle
         setTitleColor(Color.MeSection.whiteLabel, for: .normal)
         setTitle(nil, for: .normal)

@@ -130,15 +130,11 @@ private extension SettingsMenuViewController {
     private func setupImageView() {
         imgeView.layer.cornerRadius = 10
         imgeView.layer.masksToBounds = true
-        var resource: ImageResource? = nil
-
-        if
-            let urlString = viewModel.userProfileImagePath,
-            let downloadURL = URL(string: urlString) {
-                resource = ImageResource(downloadURL: downloadURL)
+        var url: URL? = nil
+        if let urlString = viewModel.userProfileImagePath {
+            url = URL(string: urlString)
         }
-
-        imgeView.kf.setImage(with: resource, placeholder: R.image.placeholder_user(), options: nil, progressBlock: nil, completionHandler: nil)
+        imgeView.kf.setImage(with: url, placeholder: R.image.placeholder_user(), options: nil, progressBlock: nil, completionHandler: nil)
     }
 }
 

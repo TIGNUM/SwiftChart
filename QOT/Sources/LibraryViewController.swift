@@ -15,7 +15,7 @@ protocol LibraryViewControllerDelegate: class {
     func didTapClose(in viewController: LibraryViewController)
 }
 
-final class LibraryViewController: UIViewController {
+final class LibraryViewController: UIViewController, PageViewControllerNotSwipeable {
 
     private let viewModel: LibraryViewModel
     weak var delegate: LibraryViewControllerDelegate?

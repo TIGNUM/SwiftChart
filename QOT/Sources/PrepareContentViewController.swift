@@ -191,9 +191,7 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
         let contentItem = viewModel.item(at: indexPath.row)
 
         switch contentItem {
-        case .titleItem:
-            fallthrough
-        case .item:
+        case .titleItem, .item:
             viewModel.didTapHeader(index: indexPath.row)
 
             guard let cell = tableView.cellForRow(at: indexPath) else { return }

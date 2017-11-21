@@ -88,7 +88,7 @@ private extension SidebarViewController {
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 
-extension SidebarViewController: UITableViewDelegate, UITableViewDataSource {
+extension SidebarViewController: UITableViewDelegate, UITableViewDataSource, PageViewControllerNotSwipeable {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.itemCount

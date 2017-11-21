@@ -20,7 +20,7 @@ final class LearnCategoryLayout: UICollectionViewLayout {
     private var layoutAttributes = [UICollectionViewLayoutAttributes]()
     private var backgroundImageAttributes: LearnCategoryListBackgroundViewLayoutAttributes = {
         return LearnCategoryListBackgroundViewLayoutAttributes(forDecorationViewOfKind: backgroundViewDecorationKind,
-                                                               with:backgroundViewIndexPath)
+                                                               with: backgroundViewIndexPath)
     }()
     private var contentSize = CGSize.zero {
         didSet {

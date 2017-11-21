@@ -14,29 +14,29 @@ protocol MyUniverseViewControllerDelegate: class {
 
     func didTapSector(startingSection: StatisticsSectionType?, in viewController: MyUniverseViewController)
 
-    func didTapMyToBeVision(vision: MyToBeVision?, from view: UIView, in viewController: MyUniverseViewController)
+    func didTapMyToBeVision(from view: UIView, in viewController: MyUniverseViewController)
 
-    func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, from view: UIView, in viewController: MyUniverseViewController)
+    func didTapWeeklyChoices(from view: UIView, in viewController: MyUniverseViewController)
 
-    func didTapQOTPartner(selectedIndex: Index, partners: [Partner], from view: UIView, in viewController: MyUniverseViewController)
+    func didTapQOTPartner(selectedIndex: Index, from view: UIView, in viewController: MyUniverseViewController)
 
     func didTapRightBarButton(_ button: UIBarButtonItem, from topNavigationBar: TopNavigationBar, in viewController: MyUniverseViewController)
 }
 
 protocol MyWhyViewDelegate: class {
 
-    func didTapMyToBeVision(vision: MyToBeVision?, from view: UIView)
+    func didTapMyToBeVision(from view: UIView)
 
-    func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, from view: UIView)
+    func didTapWeeklyChoices(from view: UIView)
 
-    func didTapQOTPartner(selectedIndex: Index, partners: [Partner], from view: UIView)
+    func didTapQOTPartner(selectedIndex: Index, from view: UIView)
 }
 
 final class MyUniverseViewController: UIViewController, FullScreenLoadable {
     
     // MARK: - Properties
 
-    private let disposeBag = DisposeBag()
+    private let tokenBin = TokenBin()
     private let viewModel: MyUniverseViewModel
     private var lastContentOffset: CGFloat = 0
     var pageName: PageName = .myData
@@ -88,7 +88,7 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
         return MyDataView(
             delegate: self,
             sectors: self.viewModel.sectors,
-            profileImageResource: self.viewModel.profileImageResource,
+            viewModel: self.viewModel,
             frame: CGRect(
                 x: self.view.bounds.origin.x,
                 y: 15.0,
@@ -107,9 +107,8 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
                 height: self.view.bounds.height
             ),
             screenType: self.screenType,
-            items: self.viewModel.myWhyViewDataSource,
-            myToBeVision: self.viewModel.myToBeVisions.first,
-            delegate: self
+            delegate: self,
+            viewModel: viewModel
         )
     }()
 
@@ -174,21 +173,30 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
         addTabRecognizer()
         addSubViews()
 
-        viewModel.updates.observeNext { [unowned self] update in
-            switch update {
-            case .reloadMyWhyView(let dataSource):
-                self.myWhyView.items = dataSource
-                self.myWhyView.reload()
-            case .reloadProfileImageResource(let resource):
-                self.myDataView.updateProfileImageResource(resource)
-                NotificationCenter.default.post(name: .startSyncUploadMediaNotification, object: nil)
-            }
-            DispatchQueue.main.async {
-                self.updateReadyState()
-            }
-        }.dispose(in: disposeBag)
+        viewModel.observe(\MyUniverseViewModel.dataReady, options: [.initial]) { [unowned self] _, _ in
+            self.updateReadyState()
+            }.addTo(tokenBin)
+        viewModel.observe(\MyUniverseViewModel.profileImageURL, options: [.initial]) { [unowned self] _, _ in
+            self.myDataView.updateProfileImageResource()
+            NotificationCenter.default.post(name: .startSyncUploadMediaNotification, object: nil)
+            }.addTo(tokenBin)
+        viewModel.observe(\MyUniverseViewModel.toBeVisionHeadline, options: [.initial]) { [unowned self] _, _ in
+            self.myWhyView.reload()
+            }.addTo(tokenBin)
+        viewModel.observe(\MyUniverseViewModel.toBeVisionText, options: [.initial]) { [unowned self] _, _ in
+            self.myWhyView.reload()
+            }.addTo(tokenBin)
+        viewModel.observe(\MyUniverseViewModel.weeklyChoices, options: [.initial]) { [unowned self] _, _ in
+            self.myWhyView.reload()
+            }.addTo(tokenBin)
+        viewModel.observe(\MyUniverseViewModel.partners, options: [.initial]) { [unowned self] _, _ in
+            self.myWhyView.reload()
+            }.addTo(tokenBin)
+        viewModel.observe(\MyUniverseViewModel.statisticsUpdated, options: [.initial]) { [unowned self] _, _ in
+            self.myDataView.reload()
+            }.addTo(tokenBin)
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         updateReadyState()
@@ -216,10 +224,10 @@ private extension MyUniverseViewController {
     }
     
     func updateReadyState() {
-        myWhyView.userCoicesReady = viewModel.toBeVisionReady()
-        myWhyView.partnersReady = viewModel.partnersReady()
-        myWhyView.toBeVisionReady = viewModel.userChoicesReady()
-        isLoading = !viewModel.isReady()
+        myWhyView.userCoicesReady = viewModel.dataReady
+        myWhyView.partnersReady = viewModel.dataReady
+        myWhyView.toBeVisionReady = viewModel.dataReady
+        isLoading = !viewModel.dataReady
     }
     
     func updatePageTracking() {
@@ -336,23 +344,23 @@ private extension MyUniverseViewController {
 
 extension MyUniverseViewController: MyWhyViewDelegate {
 
-    func didTapMyToBeVision(vision: MyToBeVision?, from view: UIView) {
-        delegate?.didTapMyToBeVision(vision: vision, from: view, in: self)
+    func didTapMyToBeVision(from view: UIView) {
+        delegate?.didTapMyToBeVision(from: view, in: self)
     }
 
-    func didTapWeeklyChoices(weeklyChoice: WeeklyChoice?, from view: UIView) {
-        delegate?.didTapWeeklyChoices(weeklyChoice: weeklyChoice, from: view, in: self)
+    func didTapWeeklyChoices(from view: UIView) {
+        delegate?.didTapWeeklyChoices(from: view, in: self)
     }
 
-    func didTapQOTPartner(selectedIndex: Index, partners: [Partner], from view: UIView) {
-        delegate?.didTapQOTPartner(selectedIndex: selectedIndex, partners: partners, from: view, in: self)
+    func didTapQOTPartner(selectedIndex: Index, from view: UIView) {
+        delegate?.didTapQOTPartner(selectedIndex: selectedIndex, from: view, in: self)
     }
 }
 
 extension MyUniverseViewController: MyDataViewDelegate {
 
     func myDataView(_ view: MyDataView, pressedProfileButton button: UIButton) {
-        delegate?.didTapMyToBeVision(vision: viewModel.myToBeVisions.first, from: button, in: self)
+        delegate?.didTapMyToBeVision(from: button, in: self)
     }
 }
 

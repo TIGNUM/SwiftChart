@@ -137,6 +137,14 @@ final class AppCoordinator: ParentCoordinator {
                     let services = try Services()
                     self.services = services
                     
+                    // Create missing database objects
+                    if services.userService.myToBeVision() == nil {
+                        let realm = try RealmProvider().realm()
+                        try realm.write {
+                            realm.add(MyToBeVision())
+                        }
+                    }
+                    
                     QOTUsageTimer.sharedInstance.userService = services.userService
                    
                     self.syncManager.startAutoSync()

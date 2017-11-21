@@ -10,85 +10,67 @@ import Foundation
 import ReactiveKit
 import RealmSwift
 
-final class MyUniverseViewModel {
-    enum Update {
-        case reloadMyWhyView([MyWhy])
-        case reloadProfileImageResource(MediaResource)
+@objcMembers final class MyUniverseViewModel: NSObject {
+    
+    final class Partner: NSObject {
+        
+        let initials: String
+        let imageURL: URL?
+        
+        init(initials: String, imageURL: URL?) {
+            self.initials = initials
+            self.imageURL = imageURL
+        }
     }
     
-    let updates = PublishSubject<Update, NoError>()
-    var profileImageResource: MediaResource? {
-        return services.userService.myToBeVision().profileImageResource
+    private let tokenBin = TokenBin()
+    private let services: Services
+    private let allPartners: AnyRealmCollection<QOT.Partner>
+    private let myToBeVisions: AnyRealmCollection<MyToBeVision>
+    private let userChoices: AnyRealmCollection<UserChoice>
+    private let statistics: AnyRealmCollection<Statistics>
+    private let syncStateObserver: SyncStateObserver
+    @objc private(set) dynamic var dataReady: Bool = false
+    @objc private(set) dynamic var profileImageURL: URL?
+    @objc private(set) dynamic var toBeVisionHeadline: String?
+    @objc private(set) dynamic var toBeVisionText: String?
+    @objc private(set) dynamic var weeklyChoices: [String] = []
+    @objc private(set) dynamic var partners: [Partner] = []
+    @objc private(set) dynamic var statisticsUpdated = Date()
+    
+    init(services: Services) {
+        self.services = services
+        allPartners = services.partnerService.partners
+        myToBeVisions = services.userService.myToBeVisions()
+        userChoices = services.userService.userChoices()
+        statistics = services.statisticsService.chartObjects()
+        syncStateObserver = SyncStateObserver(realm: services.mainRealm)
+        super.init()
+        
+        userChoices.addNotificationBlock { [unowned self] _ in
+            self.refresh()
+            }.addTo(tokenBin)
+        allPartners.addNotificationBlock { [unowned self] _ in
+            self.refresh()
+            }.addTo(tokenBin)
+        myToBeVisions.addNotificationBlock { [unowned self] _ in
+            self.refresh()
+            }.addTo(tokenBin)
+        myToBeVisions.addNotificationBlock { [unowned self] _ in
+            self.statisticsUpdated = Date()
+            }.addTo(tokenBin)
+        syncStateObserver.observe(\SyncStateObserver.syncedClasses, options: [.initial]) { [unowned self] _, _ in
+            self.refresh()
+            }.addTo(tokenBin)
     }
+    
     var sectorCount: Int {
         return sectors.count
     }
+    
     var sectors: [Sector] {
         return chartSectors(service: services.statisticsService)
     }
-    var myWhyViewDataSource = [MyWhy]()
-    let partners: AnyRealmCollection<Partner>
-    let myToBeVisions: AnyRealmCollection<MyToBeVision>
-    let userChoices: AnyRealmCollection<UserChoice>
-    let syncStateObserver: SyncStateObserver
-    
-    private let services: Services
-    private var partnersNotificationTokenHandler: NotificationTokenHandler?
-    private var visionNotificationTokenHandler: NotificationTokenHandler?
-    private var userChoiceNotificationTokenHandler: NotificationTokenHandler?
-    private var maxWeeklyItems: Int {
-        return Layout.MeSection.maxWeeklyPage
-    }
-    private var token: NSKeyValueObservation!
-
-    init(services: Services) {
-        self.services = services        
-        partners = services.partnerService.partners
-        myToBeVisions = services.userService.myToBeVisions()
-        userChoices = services.userService.userChoices()
-        syncStateObserver = SyncStateObserver(realm: services.mainRealm)
-        partnersNotificationTokenHandler = partners.addNotificationBlock { [unowned self] (changes: RealmCollectionChange<AnyRealmCollection<Partner>>) in
-            switch changes {
-            case .update:
-                self.refreshMyWhyViewDataSource()
-                self.updates.next(.reloadMyWhyView(self.myWhyViewDataSource))
-            default:
-                break
-            }
-        }.handler
-        visionNotificationTokenHandler = services.userService.myToBeVisions().addNotificationBlock { [unowned self] (changes: RealmCollectionChange<AnyRealmCollection<MyToBeVision>>) in
-            switch changes {
-            case .update:
-                self.refreshMyWhyViewDataSource()
-                self.updates.next(.reloadMyWhyView(self.myWhyViewDataSource))
-                if let resource = self.myToBeVisions.first?.profileImageResource {
-                    self.updates.next(.reloadProfileImageResource(resource))
-                }
-            default:
-                break
-            }
-        }.handler
-        userChoiceNotificationTokenHandler = userChoices.addNotificationBlock { [unowned self] (changes: RealmCollectionChange<AnyRealmCollection<UserChoice>>) in
-            switch changes {
-            case .update:
-                self.refreshMyWhyViewDataSource()
-                self.updates.next(.reloadMyWhyView(self.myWhyViewDataSource))
-            default:
-                break
-            }
-        }.handler
-        token = syncStateObserver.observe(\.syncedClasses, options: [.new, .old]) { [unowned self] _, _ in
-            self.refreshMyWhyViewDataSource()
-            self.updates.next(.reloadMyWhyView(self.myWhyViewDataSource))
-            if let resource = self.myToBeVisions.first?.profileImageResource {
-                self.updates.next(.reloadProfileImageResource(resource))
-            }
-        }
-        
-        refreshMyWhyViewDataSource()
-    }
-    
-    // MARK: - internal
     
     func spike(for sector: Sector, at index: Index) -> Spike {
         return sector.spikes[index]
@@ -98,61 +80,41 @@ final class MyUniverseViewModel {
         return sectors[index]
     }
     
-    func toBeVisionReady() -> Bool {
+    // MARK: Private
+    
+    private func refresh() {
+        let myToBeVision = fetchMyToBeVision()
+        dataReady = fetchDataReady()
+        profileImageURL = myToBeVision?.profileImageResource?.url
+        toBeVisionHeadline = myToBeVision?.headline
+        toBeVisionText = myToBeVision?.text
+        weeklyChoices = fetchWeeklyChoices()
+        partners = fetchPartners()
+    }
+    
+    private func fetchDataReady() -> Bool {
         return syncStateObserver.hasSynced(MyToBeVision.self)
+            && syncStateObserver.hasSynced(UserChoice.self)
+            && syncStateObserver.hasSynced(Partner.self)
+            && syncStateObserver.hasSynced(ContentCollection.self)
+            && syncStateObserver.hasSynced(Statistics.self)
     }
     
-    func userChoicesReady() -> Bool {
-        return syncStateObserver.hasSynced(UserChoice.self)
+    private func fetchMyToBeVision() -> MyToBeVision? {
+        return services.userService.myToBeVision()
     }
     
-    func partnersReady() -> Bool {
-        return syncStateObserver.hasSynced(Partner.self)
-    }
-    
-    func isReady() -> Bool {
-        return toBeVisionReady() && userChoicesReady() && partnersReady()
-    }
-    
-    // MARK: - private
-    
-    private func refreshMyWhyViewDataSource() {
-        var userChoices = self.userChoices.sorted { $0.startDate > $1.startDate }
-        userChoices = (userChoices.count > maxWeeklyItems) ? Array(userChoices[0...maxWeeklyItems-1]) : userChoices
-        let weeklyChoices: [WeeklyChoice] = userChoices.map { (userChoice: UserChoice) -> WeeklyChoice in
-            var title: String?
-            if let contentCollectionID = userChoice.contentCollectionID, let contentCollection = self.services.contentService.contentCollection(id: contentCollectionID) {
-                title = contentCollection.title
-            }
-            return WeeklyChoice(
-                localID: userChoice.localID,
-                contentCollectionID: userChoice.contentCollectionID ?? 0,
-                categoryID: userChoice.contentCategoryID ?? 0,
-                title: title,
-                startDate: userChoice.startDate,
-                endDate: userChoice.endDate,
-                selected: true
-            )
+    private func fetchWeeklyChoices() -> [String] {
+        let choices = userChoices.sorted { $0.startDate > $1.startDate }.prefix(Layout.MeSection.maxWeeklyPage)
+        return choices.map { (choice) -> String in
+            return choice.contentCollection?.title ?? ""
         }
-        myWhyViewDataSource = [
-            .vision(myToBeVisions.first),
-            .weeklyChoices(title: R.string.localized.meSectorMyWhyWeeklyChoicesTitle(), choices: weeklyChoices),
-            .partners(title: R.string.localized.meSectorMyWhyPartnersTitle(), partners: partners)
-        ]
     }
-}
-
-// MARK: - MyWhy
-
-enum MyWhy {
-    case vision(MyToBeVision?)
-    case weeklyChoices(title: String, choices: [WeeklyChoice])
-    case partners(title: String, partners: AnyRealmCollection<Partner>)
     
-    enum Index: Int {
-        case vision = 0
-        case weeklyChoices
-        case partners
+    private func fetchPartners() -> [Partner] {
+        return allPartners.prefix(Layout.MeSection.maxPartners).map {
+            return Partner(initials: $0.initials, imageURL: $0.profileImageResource?.url)
+        }
     }
 }
 

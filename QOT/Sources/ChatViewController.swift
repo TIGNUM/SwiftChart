@@ -45,7 +45,7 @@ final class GenericCacheKey<T: Hashable>: NSObject {
     }
 }
 
-final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, PageViewControllerNotSwipeable {
 
     private let disposeBag = DisposeBag()
     private var sizingCell = ChatViewCell()

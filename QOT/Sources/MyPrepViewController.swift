@@ -16,7 +16,7 @@ protocol MyPrepViewControllerDelegate: class {
     func didTapMyPrepItem(with myPrepItem: MyPrepViewModel.Item, viewController: MyPrepViewController)
 }
 
-final class MyPrepViewController: UIViewController, FullScreenLoadable {
+final class MyPrepViewController: UIViewController, FullScreenLoadable, PageViewControllerNotSwipeable {
     
     // MARK: - Properties
 
@@ -52,7 +52,7 @@ final class MyPrepViewController: UIViewController, FullScreenLoadable {
         return label
     }()
     private func barButtonItem(_ style: UIBarButtonSystemItem, action: Selector?) -> UIBarButtonItem {
-        let barButtonTextAttributes: [NSAttributedStringKey : Any] = [.foregroundColor: UIColor.whiteLight40,
+        let barButtonTextAttributes: [NSAttributedStringKey: Any] = [.foregroundColor: UIColor.whiteLight40,
                                                                       .font: Font.H5SecondaryHeadline]
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: style, target: self, action: action)
         barButtonItem.setTitleTextAttributes(barButtonTextAttributes, for: .normal)

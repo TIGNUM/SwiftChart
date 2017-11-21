@@ -49,6 +49,14 @@ final class UserChoice: SyncableObject {
         self.endDate = endDate
         self.type = Type.weekly.rawValue
     }
+    
+    // FIXME: This should be an actual realm relationship
+    var contentCollection: ContentCollection? {
+        guard let id = contentCollectionID else {
+            return nil
+        }
+        return realm?.syncableObject(ofType: ContentCollection.self, remoteID: id)
+    }
 }
 
 extension UserChoice: TwoWaySyncable {

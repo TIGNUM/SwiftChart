@@ -48,8 +48,7 @@ final class SidebarViewModel {
 
         var backgroundImage: UIImage? {
             switch self {
-            case .benefits: fallthrough
-            case .privacy: return R.image.sidebar()
+            case .benefits, .privacy: return R.image.sidebar()
             default: return nil
             }
         }

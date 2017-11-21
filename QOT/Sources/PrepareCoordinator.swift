@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import LoremIpsum
 import EventKit
 import EventKitUI
 
@@ -23,7 +22,7 @@ final class PrepareCoordinator: ParentCoordinator {
         }
     }
 
-    // MARK: Private properties
+    // MARK: Properties
 
     private let services: Services
     private let eventTracker: EventTracker
@@ -136,10 +135,7 @@ extension PrepareCoordinator {
     }
 
     func showPrepareCheckList(preparationID: String) {
-        guard let preparation = services.preparationService.preparation(localID: preparationID) else {
-            return
-        }
-
+        guard let preparation = services.preparationService.preparation(localID: preparationID) else { return }
         var title: String? = nil
         var video: PrepareContentViewModel.Video? = nil
         var description: String?
@@ -190,27 +186,20 @@ extension PrepareCoordinator {
     }
 
     func showCreatePreparation(from viewController: PrepareContentViewController) {
-        guard let context = context else {
-            preconditionFailure("No preparation context")
-        }
-
+        guard let context = context else { preconditionFailure("No preparation context") }
         let start = Date()
         let finish = start.addingTimeInterval(TimeInterval(days: 30))
         let events = services.eventsService.ekEvents(from: start, to: finish)
-
         let viewModel = PrepareEventsViewModel(preparationTitle: context.defaultPreparationName, events: events)
         let prepareEventsVC = PrepareEventsViewController(viewModel: viewModel)
         prepareEventsVC.delegate = self
         prepareEventsVC.modalPresentationStyle = .custom
         prepareEventsVC.modalTransitionStyle = .crossDissolve
-
         viewController.present(prepareEventsVC, animated: true)
     }
 
     func createPreparation(name: String, event: EKEvent?) {
-        guard let context = context else {
-            preconditionFailure("No preparation context")
-        }
+        guard let context = context else { preconditionFailure("No preparation context") }
 
         let localID: String
         do {
@@ -220,19 +209,13 @@ extension PrepareCoordinator {
             return
         }
         
-        guard let event = event else {
-            return
-        }
+        guard let event = event else { return }
         self.permissionHandler.askPermissionForCalendar { (granted: Bool) in
-            guard granted == true else {
-                return
-            }
+            guard granted == true else { return }
             
             let eventStore = EKEventStore.shared
             var notes = event.notes ?? ""
-            guard let preparationLink = URLScheme.preparationURL(withID: localID) else {
-                return
-            }
+            guard let preparationLink = URLScheme.preparationURL(withID: localID) else { return }
             notes += "\n\n" + preparationLink
             log("preparationLink: \(preparationLink)")
             event.notes = notes
@@ -313,12 +296,17 @@ extension PrepareCoordinator: PrepareChatDecisionManagerDelegate {
             }, handlerDestructive: nil)
     }
 }
+
+// MARK: - MyPrepViewControllerDelegate
+
 extension PrepareCoordinator: MyPrepViewControllerDelegate {
 
     func didTapMyPrepItem(with item: MyPrepViewModel.Item, viewController: MyPrepViewController) {
         showPrepareCheckList(preparationID: item.localID)
     }
 }  
+
+// MARK: - PrepareEventsViewControllerDelegate
 
 extension PrepareCoordinator: PrepareEventsViewControllerDelegate {
 

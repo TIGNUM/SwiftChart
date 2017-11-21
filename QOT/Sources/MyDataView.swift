@@ -38,23 +38,23 @@ protocol MyDataViewDelegate: class {
 final class MyDataView: UIView, MyUniverseView {
     // MARK: - Properties
 
+    private let viewModel: MyUniverseViewModel
     var universeDotsLayer = CAShapeLayer()
     var profileImageBackgroundView = UIView()
     var profileImageButton = UIButton()
     var profileImageViewOverlay = UIImageView()
     var profileImageViewOverlayEffect = UIImageView()
     var sectors = [Sector]()
-    var profileImageResource: MediaResource?
     var previousBounds = CGRect.zero
     var dataPoints = [ChartDataPoint]()
     weak var delegate: MyDataViewDelegate?
 
     // MARK: - Init
 
-    init(delegate: MyDataViewDelegate, sectors: [Sector], profileImageResource: MediaResource?, frame: CGRect) {
+    init(delegate: MyDataViewDelegate, sectors: [Sector], viewModel: MyUniverseViewModel, frame: CGRect) {
         self.delegate = delegate
         self.sectors = sectors
-        self.profileImageResource = profileImageResource
+        self.viewModel = viewModel
 
         super.init(frame: frame)
     }
@@ -70,13 +70,20 @@ final class MyDataView: UIView, MyUniverseView {
 
         cleanUpAndDraw()
     }
+    
+    func reload() {
+        cleanUpAndDraw()
+    }
 
     func draw() {
-        drawUniverse(with: sectors, profileImageResource: profileImageResource, layout: Layout.MeSection(viewControllerFrame: bounds))
+        drawUniverse(with: sectors, layout: Layout.MeSection(viewControllerFrame: bounds))
     }
     
-    func updateProfileImageResource(_ resource: MediaResource) {
-        profileImageButton.setBackgroundImageFromResource(resource, defaultImage: R.image.universe_2state()) { [weak self] (image: UIImage?, error: Error?) in
+    func updateProfileImageResource() {
+        let placeholder = R.image.universe_2state()
+        profileImageButton.kf.setBackgroundImage(with: viewModel.profileImageURL,
+                                                 for: .normal,
+                                                 placeholder: placeholder) { [weak self] (image, _, _, _) in
             guard let `self` = self, let image = image else { return }
             DispatchQueue.global(qos: .userInitiated).async {
                 let processed = UIImage.makeGrayscale(image)
@@ -101,16 +108,14 @@ final class MyDataView: UIView, MyUniverseView {
 
 private extension MyDataView {
 
-    func drawUniverse(with sectors: [Sector], profileImageResource: MediaResource?, layout: Layout.MeSection) {
+    func drawUniverse(with sectors: [Sector], layout: Layout.MeSection) {
         self.sectors = sectors
 
         drawBackCircles(layout: layout, radius: layout.radiusAverageLoad, linesDashPattern: [2, 1])
         drawBackCircles(layout: layout, radius: layout.radiusMaxLoad)
 
         setupProfileImage(layout: layout)
-        if let profileImageResource = profileImageResource {
-            updateProfileImageResource(profileImageResource)
-        }
+        updateProfileImageResource()
         
         MyUniverseHelper.collectCenterPoints(layout: layout, sectors: sectors, relativeCenter: profileImageButton.center)
         drawDataPointConnections(layout: layout, sectors: sectors)
