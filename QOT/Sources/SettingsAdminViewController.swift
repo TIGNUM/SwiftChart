@@ -165,10 +165,9 @@ private extension SettingsAdminViewController {
     @IBAction private func autoSyncChanged(sender: UISwitch) {
         switch sender.isOn {
         case true:
-            syncManager?.startAutoSync()
+            syncManager?.start()
         case false:
-            syncManager?.stopAutoSync()
-            syncManager?.stopCurrentSync()
+            syncManager?.stop()
         }
     }
     

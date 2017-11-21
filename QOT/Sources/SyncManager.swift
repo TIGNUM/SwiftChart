@@ -10,6 +10,7 @@ import Foundation
 import Freddy
 import RealmSwift
 import EventKit
+import Alamofire
 
 // Callback notifications
 extension Notification.Name {
@@ -21,68 +22,73 @@ extension Notification.Name {
 extension Notification.Name {
     static let startSyncAllNotification = Notification.Name(rawValue: "qot_startSyncAllNotification")
     static let startSyncUploadMediaNotification = Notification.Name(rawValue: "qot_startSyncUploadMediaNotification")
-    static let startSyncUploadNonMediaNotification = Notification.Name(rawValue: "qot_startSyncUploadNonMediaNotification")
 }
 
 final class SyncManager {
+    
+    // MARK: - Private Storage
 
     private let networkManager: NetworkManager
     private let syncRecordService: SyncRecordService
     private let realmProvider: RealmProvider
+    private let reachability = NetworkReachabilityManager()
+    private var syncAllTimer: Timer?
+    private var uploadTimer: Timer?
+    private var syncTask: SyncTask?
+    private var enabled = false
     private let operationQueue: OperationQueue = {
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
         return queue
     }()
-    private var syncAllTimer: Timer?
-    private var uploadTimer: Timer?
-    private var syncTask: SyncTask?
-
-    var isSyncing: Bool {
-        return operationQueue.operationCount > 0
-    }
-
+    
+    // MARK: - Init
+    
     init(networkManager: NetworkManager, syncRecordService: SyncRecordService, realmProvider: RealmProvider) {
         self.networkManager = networkManager
         self.syncRecordService = syncRecordService
         self.realmProvider = realmProvider
         
-        setupNotifications()
+        reachability?.listener = { [weak self] (status) -> Void in
+            switch status {
+            case .unknown, .reachable:
+                self?.syncAll(shouldDownload: true)
+                self?.uploadMedia()
+            case .notReachable:
+                break
+            }
+        }
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(willEnterForegroundNotification(_:)),
+                                               name: .UIApplicationWillEnterForeground, object: nil)
     }
-
+    
     deinit {
-        tearDownTimers()
+        stop()
     }
-
-    // MARK: Private
-
-    private func setupNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(startSyncAllNotification(_:)), name: .startSyncAllNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(startSyncUploadNonMediaNotification(_:)), name: .startSyncUploadNonMediaNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(startSyncUploadMediaNotification(_:)), name: .startSyncUploadMediaNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForegroundNotification(_:)), name: .UIApplicationWillEnterForeground, object: nil)
+    
+    // MARK: - Public
+    
+    var isSyncing: Bool {
+        return operationQueue.operationCount > 0
     }
-
-    private func setupTimers() {
-        syncAllTimer = Timer.scheduledTimer(withTimeInterval: 60.0 * 60.0 * 10.0 /* 10 mins */, repeats: true) { [unowned self] (timer: Timer) in
-            self.syncAll(shouldDownload: true)
-            self.uploadMedia()
-        }
-        uploadTimer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true) { [unowned self] (timer: Timer) in
-            self.syncAll(shouldDownload: false)
-            self.uploadMedia()
-        }
+    
+    func start() {
+        enabled = true
+        syncAll(shouldDownload: true)
+        uploadMedia()
+        reachability?.startListening()
+        startSyncTimers()
+        startObservingSyncNotifications()
     }
-
-    private func tearDownTimers() {
-        syncAllTimer?.invalidate()
-        syncAllTimer = nil
-
-        uploadTimer?.invalidate()
-        uploadTimer = nil
+    
+    func stop() {
+        enabled = false
+        stopCurrentSync()
+        reachability?.stopListening()
+        stopSyncTimers()
+        stopObservingSyncNotifications()
     }
-
-    // MARK: Syncs
 
     func downSyncUser(completion: @escaping (Error?) -> Void) {
         syncTask = DownSyncTask<User>(networkManager: networkManager,
@@ -93,18 +99,6 @@ final class SyncManager {
                 completion(error)
             }
         }
-    }
-
-    func startAutoSync() {
-        #if BUILD_DATABASE
-            return // Don't do regular sync when building seed database
-        #endif
-
-        setupTimers()
-    }
-
-    func stopAutoSync() {
-        tearDownTimers()
     }
 
     func stopCurrentSync() {
@@ -170,8 +164,44 @@ final class SyncManager {
             log("UPLOAD MEDIA FAILED TO START: \(error)", enabled: Log.Toggle.Manager.Sync)
         }
     }
+}
 
-    private func syncOperations(context: SyncContext, shouldDownload: Bool) -> [Operation] {
+private extension SyncManager {
+    
+    func startSyncTimers() {
+        #if BUILD_DATABASE
+            return // Don't do regular sync when building seed database
+        #endif
+        
+        func startSyncTimer(timeInterval: TimeInterval, shouldDownload: Bool) -> Timer {
+            return Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true) { [unowned self] _ in
+                self.syncAll(shouldDownload: shouldDownload)
+                self.uploadMedia()
+            }
+        }
+        syncAllTimer = startSyncTimer(timeInterval: 60.0 * 60.0 * 10.0 /* 10 mins */, shouldDownload: true)
+        uploadTimer = startSyncTimer(timeInterval: 60.0, shouldDownload: false)
+    }
+    
+    func stopSyncTimers() {
+        [syncAllTimer, uploadTimer].forEach { $0?.invalidate() }
+        syncAllTimer = nil
+        uploadTimer = nil
+    }
+    
+    func startObservingSyncNotifications() {
+        let center = NotificationCenter.default
+        center.addObserver(self, selector: #selector(startSyncAllNotification(_:)), name: .startSyncAllNotification, object: nil)
+        center.addObserver(self, selector: #selector(startSyncUploadMediaNotification(_:)), name: .startSyncUploadMediaNotification, object: nil)
+    }
+    
+    func stopObservingSyncNotifications() {
+        let center = NotificationCenter.default
+        center.removeObserver(self, name: .startSyncAllNotification, object: nil)
+        center.removeObserver(self, name: .startSyncUploadMediaNotification, object: nil)
+    }
+    
+    func syncOperations(context: SyncContext, shouldDownload: Bool) -> [Operation] {
         let operations: [Operation?] = [
             syncOperation(ContentRead.self, context: context, shouldDownload: shouldDownload),
             UpdateRelationsOperation(context: context, realmProvider: realmProvider),
@@ -196,24 +226,24 @@ final class SyncManager {
         ]
         return operations.flatMap({ $0 })
     }
-
-    private func uploadMediaOperations(context: SyncContext) throws -> [Operation] {
+    
+    func uploadMediaOperations(context: SyncContext) throws -> [Operation] {
         let realm = try realmProvider.realm()
         let itemsToUpload = realm.objects(MediaResource.self).filter(MediaResource.dirtyPredicate)
         return itemsToUpload.map { (resource: MediaResource) -> Operation in
             return upSyncMediaOperation(localID: resource.localID, context: context)
         }
     }
-
+    
     // MARK: Operation Factories
-
-    private func syncOperation<T>(_ type: T.Type, context: SyncContext, shouldDownload: Bool)
+    
+    func syncOperation<T>(_ type: T.Type, context: SyncContext, shouldDownload: Bool)
         -> SyncOperation? where T: SyncableObject, T: UpSyncable {
             let upSyncTask = UpSyncTask<T>(networkManager: networkManager, realmProvider: realmProvider)
             return SyncOperation(upSyncTask: upSyncTask, downSyncTask: nil, syncContext: context)
     }
-
-    private func syncOperation<T>(_ type: T.Type, context: SyncContext, shouldDownload: Bool)
+    
+    func syncOperation<T>(_ type: T.Type, context: SyncContext, shouldDownload: Bool)
         -> SyncOperation? where T: SyncableObject, T: DownSyncable, T.Data: DownSyncIntermediary {
             guard shouldDownload == true else {
                 return nil
@@ -223,44 +253,42 @@ final class SyncManager {
                                                syncRecordService: syncRecordService)
             return SyncOperation(upSyncTask: nil, downSyncTask: downSyncTask, syncContext: context)
     }
-
-    private func syncOperation<T>(_ type: T.Type, context: SyncContext, shouldDownload: Bool)
+    
+    func syncOperation<T>(_ type: T.Type, context: SyncContext, shouldDownload: Bool)
         -> SyncOperation? where T: SyncableObject, T: UpSyncable, T: DownSyncable, T.Data: DownSyncIntermediary {
             let upSyncTask = UpSyncTask<T>(networkManager: networkManager, realmProvider: realmProvider)
             let downSyncTask: SyncTask?
             if shouldDownload == true {
                 downSyncTask = DownSyncTask<T>(networkManager: networkManager,
-                                                realmProvider: realmProvider,
-                                                syncRecordService: syncRecordService)
+                                               realmProvider: realmProvider,
+                                               syncRecordService: syncRecordService)
             } else {
                 downSyncTask = nil
             }
             return SyncOperation(upSyncTask: upSyncTask, downSyncTask: downSyncTask, syncContext: context)
     }
-
-    private func upSyncMediaOperation(localID: String, context: SyncContext) -> UpSyncMediaOperation {
+    
+    func upSyncMediaOperation(localID: String, context: SyncContext) -> UpSyncMediaOperation {
         return UpSyncMediaOperation(networkManager: networkManager,
                                     realmProvider: realmProvider,
                                     syncContext: context,
                                     localID: localID)
     }
-
+    
     // MARK: Notifications
     
-    @objc private func startSyncAllNotification(_ notification: Notification) {
+    @objc func startSyncAllNotification(_ notification: Notification) {
         syncAll(shouldDownload: true)
         uploadMedia()
     }
     
-    @objc private func startSyncUploadMediaNotification(_ notification: Notification) {
+    @objc func startSyncUploadMediaNotification(_ notification: Notification) {
         uploadMedia()
     }
     
-    @objc private func startSyncUploadNonMediaNotification(_ notification: Notification) {
-        syncAll(shouldDownload: false)
-    }
-    
-    @objc private func willEnterForegroundNotification(_ notification: Notification) {
+    @objc func willEnterForegroundNotification(_ notification: Notification) {
+        guard enabled == true else { return }
+        
         syncAll(shouldDownload: true)
         uploadMedia()
     }

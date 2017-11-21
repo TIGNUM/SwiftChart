@@ -147,10 +147,7 @@ final class AppCoordinator: ParentCoordinator {
                     
                     QOTUsageTimer.sharedInstance.userService = services.userService
                    
-                    self.syncManager.startAutoSync()
-                    self.syncManager.syncAll(shouldDownload: true)
-                    self.syncManager.uploadMedia()
-
+                    self.syncManager.start()
                     guard OnboardingCoordinator.isOnboardingComplete == true else {
                         self.showOnboarding()
                         return
@@ -413,8 +410,7 @@ extension AppCoordinator {
         credentialsManager.clear()
         baseURL = URL(string: "https://esb.tignum.com")!
         do {
-            syncManager.stopAutoSync()
-            syncManager.stopCurrentSync()
+            syncManager.stop()
 
             try DatabaseManager.shared.resetDatabase(syncRecordService: syncRecordService)
         } catch {
