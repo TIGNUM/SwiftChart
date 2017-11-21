@@ -88,7 +88,7 @@ final class PermissionHandler: NSObject {
             completion(false)
             return
         }
-        guard status != .authorizedAlways || status != .authorizedWhenInUse else {
+        guard status != .authorizedAlways && status != .authorizedWhenInUse else {
             completion(true)
             return
         }

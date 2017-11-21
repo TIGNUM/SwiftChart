@@ -254,7 +254,7 @@ extension AppCoordinator {
         guard let topViewController = AppDelegate.topViewController() else { return }
 
         if let tabBarController = topViewController as? TabBarController {
-            selectTabBarITem(tabBarController: tabBarController, tabBarIndex: 2, topTabBarIndex: 1)
+            selectTabBarItem(tabBarController: tabBarController, tabBarIndex: 2, topTabBarIndex: 1)
         } else if let pageViewController = topViewController as? PageViewController {
             pageViewController.viewControllers?.forEach { viewController in
                 viewController.dismiss(animated: true) {
@@ -268,9 +268,11 @@ extension AppCoordinator {
         }
     }
 
-    private func selectTabBarITem(tabBarController: TabBarController, tabBarIndex: Index, topTabBarIndex: Index) {
-        tabBarController.tabBarView.setSelectedIndex(tabBarIndex, animated: true)
-        tabBarController.didSelectItem(index: tabBarIndex)
+    private func selectTabBarItem(tabBarController: TabBarController, tabBarIndex: Index, topTabBarIndex: Index) {
+        guard let viewControllers = tabBarController.viewControllers else {
+            return
+        }
+        tabBarController.selectedViewController = viewControllers[tabBarIndex]
 
         guard
             let topNavigationBar = (tabBarCoordinator?.topTabBarControllerPrepare.navigationBar as? TopNavigationBar),

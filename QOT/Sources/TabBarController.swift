@@ -2,7 +2,7 @@
 //  TabBarController.swift
 //  QOT
 //
-//  Created by karmic on 22/03/2017.
+//  Created by Lee Arromba on 17/11/2017.
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
@@ -10,55 +10,41 @@ import UIKit
 import Anchorage
 
 protocol TabBarControllerDelegate: class {
-    func didSelectTab(at index: Index, in controller: TabBarController)
-    func viewDidAppear()
+    func tabBarController(_ tabBarController: TabBarController, didSelect viewController: UIViewController, at index: Int)
 }
 
-final class TabBarController: UIViewController {
-    
-    struct Item {
-        let controller: UIViewController
-        let title: String
-    }
-
-    private var selectedIndex: Int = 0
-    private var items: [Item]
-    private weak var currentViewController: UIViewController?
-    private lazy var containerView = UIView()
-    private weak var indicatorViewLeadingConstraint: NSLayoutConstraint?
-    private weak var indicatorViewWidthConstraint: NSLayoutConstraint?
-    weak var tabBarBottomConstraint: NSLayoutConstraint?
-    weak var delegate: TabBarControllerDelegate?
-
-    var viewControllers: [UIViewController] {
-        return items.map { $0.controller }
-    }
-    
-    lazy var tabBarView: TabBarView = {
-        let tabBarView = TabBarView(tabBarType: .bottom)
-        tabBarView.setTitles(self.items.map { $0.title }, selectedIndex: self.selectedIndex)
-        tabBarView.selectedColor = Layout.TabBarView.selectedButtonColor
-        tabBarView.deselectedColor = Layout.TabBarView.deselectedButtonColor
-        tabBarView.indicatorViewExtendedWidth = Layout.TabBarView.indicatorViewExtendedWidthBottom
-        tabBarView.delegate = self
-        tabBarView.backgroundColor = .clear
-
-        tabBarView.buttons.forEach { (button: UIButton) in
-            button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
-        }
-
-        return tabBarView
-    }()
-
-    init(items: [Item], selectedIndex: Index) {
-        precondition(selectedIndex >= 0 && selectedIndex < items.count, "Out of bounds selectedIndex")
-
-        self.selectedIndex = selectedIndex
-        self.items = items
+class TabBarController: UITabBarController {
+    struct Config {
+        var tabBarBackgroundColor: UIColor
+        var tabBarBackgroundImage: UIImage?
+        var tabBarShadowImage: UIImage?
+        var useIndicatorView: Bool
+        var indicatorViewHeight: CGFloat
+        var indicatorViewColor: UIColor
         
+        static var `default` = Config(
+            tabBarBackgroundColor: .clear,
+            tabBarBackgroundImage: UIImage(),
+            tabBarShadowImage: UIImage(),
+            useIndicatorView: true,
+            indicatorViewHeight: 1.0,
+            indicatorViewColor: .white
+        )
+    }
+    
+    weak var tabBarBottomConstraint: NSLayoutConstraint?
+    weak var tabBarControllerDelegate: TabBarControllerDelegate?
+
+    let indicatorView: UIView = UIView()
+    var indicatorViewLeftConstraint: NSLayoutConstraint?
+    var indicatorViewWidthConstraint: NSLayoutConstraint?
+    private let config: Config
+    
+    init(config: Config) {
+        self.config = config
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -66,71 +52,117 @@ final class TabBarController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupHierarchy()
-        setupLayout()
-        loadFirstView()
+        apply(config)
+        delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if config.useIndicatorView {
+            setupIndicatorView()
+            setIndicatorViewToButtonIndex(selectedIndex, animated: true)
+        }
+    }
+    
+    func frameForButton(at index: Int) -> CGRect? {
+        guard let items = tabBar.items, index >= items.startIndex, index < items.endIndex else {
+            assertionFailure("index \(index) out of bounds")
+            return nil
+        }
+        let buttonWidth = (items.count == 0) ? tabBar.bounds.width : (tabBar.bounds.width / CGFloat(items.count))
+        return CGRect(
+            x: (index == 0) ? 0 : buttonWidth * CGFloat(index),
+            y: tabBar.frame.origin.y,
+            width: buttonWidth,
+            height: tabBar.frame.height
+        )
+    }
+    
+    func setIndicatorViewToButtonIndex(_ index: Int, animated: Bool) {
+        guard let items = tabBar.items, index >= items.startIndex, index < items.endIndex else {
+            indicatorView.backgroundColor = .clear
+            return
+        }
+        tabBar.bringSubview(toFront: indicatorView)
+        tabBar.layoutIfNeeded()
+
+        let textWidth = items[selectedIndex].textWidth
+        let x = (tabBar.buttonWidth * CGFloat(selectedIndex)) + (tabBar.buttonWidth / 2.0) - (textWidth / 2.0)
+        let animations: () -> Void = {
+            self.indicatorViewWidthConstraint?.constant = textWidth
+            self.indicatorViewLeftConstraint?.constant = x
+            self.tabBar.layoutIfNeeded()
+        }
+        if animated {
+            UIView.animate(withDuration: Layout.TabBarView.animationDuration, delay: 0, options: .curveEaseInOut, animations: animations, completion: nil)
+        } else {
+            animations()
+        }
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.delegate?.viewDidAppear()
-    }
+    // MARK: - private
     
-    private func loadFirstView() {
-        guard let index = tabBarView.selectedIndex else {
+    private func setupIndicatorView() {
+        guard let items = tabBar.items, selectedIndex >= items.startIndex, selectedIndex < items.endIndex else {
             return
+        }
+        indicatorView.backgroundColor = config.indicatorViewColor
+        tabBar.addSubview(indicatorView)
+        
+        let height: CGFloat = config.indicatorViewHeight
+        if #available(iOS 11.0, *) {
+            indicatorView.bottomAnchor == tabBar.safeAreaLayoutGuide.bottomAnchor - height
+        } else {
+            indicatorView.bottomAnchor == tabBar.bottomAnchor - height
         }
         
-        let controller = items[index].controller
-        load(controller)
+        indicatorView.heightAnchor == height
+        indicatorViewWidthConstraint = indicatorView.widthAnchor == 0
+        indicatorViewLeftConstraint = indicatorView.leftAnchor == tabBar.leftAnchor
     }
     
-    private func load(_ viewController: UIViewController) {
-        guard let view = viewController.view else {
-            return
-        }
-        if let existing = currentViewController {
-            existing.willMove(toParentViewController: nil)
-            existing.view.removeFromSuperview()
-            existing.removeFromParentViewController()
-        }
-        addChildViewController(viewController)
-        containerView.addSubview(view)
-        view.horizontalAnchors == containerView.horizontalAnchors
-        view.verticalAnchors == containerView.verticalAnchors
-        view.layoutIfNeeded()
-        viewController.didMove(toParentViewController: self)
-        currentViewController = viewController
+    private func apply(_ config: Config) {
+        tabBar.backgroundColor = config.tabBarBackgroundColor
+        tabBar.backgroundImage = config.tabBarBackgroundImage
+        tabBar.shadowImage = config.tabBarShadowImage
     }
 }
 
-extension TabBarController {
-    
-    func setupHierarchy() {
-        view.addSubview(containerView)
-        view.addSubview(tabBarView)
-    }
-    
-    func setupLayout() {
-        containerView.verticalAnchors == view.verticalAnchors
-        containerView.horizontalAnchors == view.horizontalAnchors
-        
-        tabBarBottomConstraint = (tabBarView.bottomAnchor == view.bottomAnchor)
-        tabBarView.horizontalAnchors == view.horizontalAnchors + Layout.TabBarView.stackViewHorizontalPaddingBottom
-        tabBarView.heightAnchor == Layout.TabBarView.height
+// MARK: - UITabBarDelegate
+
+extension TabBarController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        guard let index = viewControllers?.index(of: viewController), index != NSNotFound else {
+            assertionFailure("index not found")
+            return
+        }
+        tabBarControllerDelegate?.tabBarController(self, didSelect: viewController, at: index)
+        if config.useIndicatorView {
+            setIndicatorViewToButtonIndex(index, animated: true)
+        }
     }
 }
 
-// MARK: - TabBarViewDelegate
+// MARK: - UITabBarItem
 
-extension TabBarController: TabBarViewDelegate {
-
-    func didSelectItemAtIndex(index: Int, sender: TabBarView) {
-        didSelectItem(index: index)
+private extension UITabBarItem {
+    var textWidth: CGFloat {
+        guard let title = title as NSString?, let attributes = titleTextAttributes(for: .normal) else {
+            return 0.0
+        }
+        let convertedAttributes = Dictionary(uniqueKeysWithValues:
+            attributes.lazy.map { (NSAttributedStringKey($0.key), $0.value) }
+        )
+        return title.size(withAttributes: convertedAttributes).width
     }
+}
 
-    func didSelectItem(index: Index) {
-        load(items[index].controller)
-        delegate?.didSelectTab(at: index, in: self)
+// MARK: - UITabBar
+
+private extension UITabBar {
+    var buttonWidth: CGFloat {
+        guard let items = items else { return 0.0 }
+        return (items.count == 0) ? bounds.width : (bounds.width / CGFloat(items.count))
     }
 }

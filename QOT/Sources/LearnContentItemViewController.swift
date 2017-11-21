@@ -440,9 +440,9 @@ private extension LearnContentItemViewController {
 
 // MARK: - TabBarViewDelegate
 
-extension LearnContentItemViewController: TabBarViewDelegate {
+extension LearnContentItemViewController: UITabBarDelegate {
 
-    func didSelectItemAtIndex(index: Int, sender: TabBarView) {
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         itemTableView.reloadData()
     }
 }

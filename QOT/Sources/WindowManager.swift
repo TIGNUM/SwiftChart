@@ -78,6 +78,9 @@ class WindowManager {
             assertionFailure("rootViewController should not be nil")
             return
         }
+        // FIXME: Setting the frame here is necessary to avoid an unintended animation in some situations.
+        // Not sure why this is happening. We should investigate.
+        viewController.view.frame = rootViewController.view.bounds
         rootViewController.presentedViewController?.dismiss(animated: false, completion: nil)
         rootViewController.present(viewController, animated: animated, completion: completion)
     }

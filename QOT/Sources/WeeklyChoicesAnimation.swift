@@ -20,7 +20,7 @@ final class WeeklyChoicesAnimation: NSObject {
     }
     
     private func getMyUniverseViewController(_ viewController: UIViewController) -> MyUniverseViewController? {
-        if let viewController = viewController as? TabBarController, viewController.viewControllers.count > 1, let childViewController = viewController.viewControllers[1] as? MyUniverseViewController {
+        if let viewController = viewController as? TabBarController, let viewControllers = viewController.viewControllers, viewControllers.count > 1, let childViewController = viewControllers[1] as? MyUniverseViewController {
             return childViewController
         }
         return nil

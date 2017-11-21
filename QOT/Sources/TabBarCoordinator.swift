@@ -12,7 +12,7 @@ import RealmSwift
 import Bond
 import ReactiveKit
 
-final class TabBarCoordinator: ParentCoordinator {
+final class TabBarCoordinator: NSObject, ParentCoordinator {
 
     // MARK: - Properties
 
@@ -20,25 +20,23 @@ final class TabBarCoordinator: ParentCoordinator {
     private let services: Services
     private let eventTracker: EventTracker
     private let selectedIndex: Observable<Index>
-    private var viewControllers = [UIViewController]()
     private let permissionHandler: PermissionHandler
     private let pageTracker: PageTracker
     private let networkManager: NetworkManager
     private let syncManager: SyncManager
     var children = [Coordinator]()
-    var tabBarController: TabBarController?
 
     lazy var prepareCoordinator: PrepareCoordinator = {
         return PrepareCoordinator(services: self.services,
                                   eventTracker: self.eventTracker,
                                   permissionHandler: self.permissionHandler,
-                                  tabBarController: self.tabBarController!,
+                                  tabBarController: self.tabBarController,
                                   topTabBarController: self.topTabBarControllerPrepare,
                                   chatViewController: self.prepareChatViewController,
                                   myPrepViewController: self.myPrepViewController,
                                   toolsViewController: self.toolsViewController)
     }()
-
+    
     private lazy var prepareChatViewController: ChatViewController<Answer> = {
         let viewModel = ChatViewModel<Answer>(items: [])
         let viewController = ChatViewController(pageName: .prepareChat, viewModel: viewModel)
@@ -63,6 +61,28 @@ final class TabBarCoordinator: ParentCoordinator {
         
         return toolsViewController
     }()
+    
+    private lazy var whatsHotBadgeManager: WhatsHotBadgeManager = {
+        return WhatsHotBadgeManager()
+    }()
+    
+    // MARK: - tab bar
+    
+    private lazy var tabBarController: TabBarController = {
+        let tabBarController = TabBarController(config: .default)
+        tabBarController.modalTransitionStyle = .crossDissolve
+        tabBarController.modalPresentationStyle = .custom
+        tabBarController.tabBarControllerDelegate = self
+        tabBarController.selectedIndex = selectedIndex.value
+        tabBarController.viewControllers = [
+            topTabBarControllerLearn,
+            topTabBarControllerMe,
+            topTabBarControllerPrepare
+        ]
+        whatsHotBadgeManager.learnButton = topTabBarControllerLearn.tabBarItem
+        whatsHotBadgeManager.isShowingLearnTab = true
+        return tabBarController
+    }()
 
     private lazy var topTabBarControllerLearn: UINavigationController = {
         let viewModel = LearnCategoryListViewModel(services: self.services)
@@ -78,6 +98,10 @@ final class TabBarCoordinator: ParentCoordinator {
                                                          topBarDelegate: self,
                                                          pageDelegate: self,
                                                          rightButton: rightButton)
+        var config = TabBarItem.Config.default
+        config.title = R.string.localized.tabBarItemLearn()
+        config.tag = 0
+        topTabBarController.tabBarItem = TabBarItem(config: config)
         guard let whatsHotButton = topTabBarController.button(at: 1) else {
             assertionFailure("expected what's hot button")
             return topTabBarController
@@ -85,18 +109,18 @@ final class TabBarCoordinator: ParentCoordinator {
         whatsHotBadgeManager.whatsHotButton = whatsHotButton
         return topTabBarController
     }()
-    
-    private lazy var whatsHotBadgeManager: WhatsHotBadgeManager = {
-        return WhatsHotBadgeManager()
-    }()
 
     private lazy var topTabBarControllerMe: MyUniverseViewController = {
-        let myUniverseViewController = MyUniverseViewController(
+        let topTabBarController = MyUniverseViewController(
             viewModel: MyUniverseViewModel(services: self.services),
             pageTracker: self.pageTracker
         )
-        myUniverseViewController.delegate = self
-        return myUniverseViewController
+        topTabBarController.delegate = self
+        var config = TabBarItem.Config.default
+        config.title = R.string.localized.tabBarItemMe()
+        config.tag = 1
+        topTabBarController.tabBarItem = TabBarItem(config: config)
+        return topTabBarController
     }()
 
     lazy var topTabBarControllerPrepare: UINavigationController = {
@@ -109,6 +133,10 @@ final class TabBarCoordinator: ParentCoordinator {
                                                          backgroundImage: R.image.myprep(),
                                                          leftButton: nil,
                                                          rightButton: rightButton)
+        var config = TabBarItem.Config.default
+        config.title = R.string.localized.tabBarItemPrepare()
+        config.tag = 2
+        topTabBarController.tabBarItem = TabBarItem(config: config)
         return topTabBarController
     }()
 
@@ -130,6 +158,8 @@ final class TabBarCoordinator: ParentCoordinator {
         self.pageTracker = pageTracker
         self.syncManager = syncManager
         self.networkManager = networkManager
+        
+        super.init()
     }
 
     // MARK: -
@@ -139,57 +169,30 @@ final class TabBarCoordinator: ParentCoordinator {
     }
     
     func start() {
-        viewControllers.append(topTabBarControllerLearn)
-        viewControllers.append(topTabBarControllerMe)
-        viewControllers.append(topTabBarControllerPrepare)
-        tabBarController = bottomTabBarController()
-        windowManager.setRootViewController(tabBarController!, atLevel: .normal, animated: true, completion: nil)
+        windowManager.setRootViewController(tabBarController, atLevel: .normal, animated: true, completion: {
+            guard let tutorial = Tutorial(rawValue: self.selectedIndex.value) else {
+                return
+            }
+            self.showTutorial(tutorial)
+        })
     }
     
     // MARK: - private
     
-    private func bottomTabBarController() -> TabBarController {
-        let items = tabBarControllerItems()
-        let bottomTabBarController = TabBarController(items: items, selectedIndex: selectedIndex.value)
-        bottomTabBarController.modalTransitionStyle = .crossDissolve
-        bottomTabBarController.modalPresentationStyle = .custom
-        bottomTabBarController.delegate = self
-        
-        guard let learnButton = bottomTabBarController.tabBarView.buttons.first else {
-            assertionFailure("expected learn button")
-            return bottomTabBarController
-        }
-        whatsHotBadgeManager.learnButton = learnButton
-        whatsHotBadgeManager.isShowingLearnTab = true
-        return bottomTabBarController
-    }
-    
-    private func tabBarControllerItems() -> [TabBarController.Item] {
-        return [
-            TabBarController.Item(controller: topTabBarControllerLearn, title: R.string.localized.tabBarItemLearn()),
-            TabBarController.Item(controller: topTabBarControllerMe, title: R.string.localized.tabBarItemMe()),
-            TabBarController.Item(controller: topTabBarControllerPrepare, title: R.string.localized.tabBarItemPrepare())
-        ]
-    }
-    
     private func showTutorial(_ tutorial: Tutorial) {
-        guard !tutorial.exists(), let tabBarView = tabBarController?.tabBarView else {
+        guard !tutorial.exists(), let buttonFrame = tabBarController.frameForButton(at: selectedIndex.value) else {
             return
         }
-
         tutorial.set()
-        let selectedIndex = self.selectedIndex.value
+        
         let viewModel = TutorialViewModel(tutorial: tutorial)
-        let buttonFrame = tabBarView.buttons[selectedIndex].frame
+        let level = WindowManager.Level.overlay
         let viewController = TutorialViewController(viewModel: viewModel, buttonFrame: buttonFrame) {
-            tabBarView.setGlowEffectForButtonIndex(selectedIndex, enabled: false)
-            self.windowManager.resignWindow(atLevel: .overlay)
+            self.windowManager.resignWindow(atLevel: level)
         }
         viewController.modalTransitionStyle = .crossDissolve
-        windowManager.showWindow(atLevel: .overlay)
-        windowManager.presentViewController(viewController, atLevel: .overlay, animated: true) {
-            tabBarView.setGlowEffectForButtonIndex(selectedIndex, enabled: true)
-        }
+        windowManager.showWindow(atLevel: level)
+        windowManager.presentViewController(viewController, atLevel: level, animated: true, completion: nil)
     }
 }
 
@@ -197,7 +200,7 @@ final class TabBarCoordinator: ParentCoordinator {
 
 extension TabBarCoordinator: TabBarControllerDelegate {
 
-    func didSelectTab(at index: Index, in controller: TabBarController) {        
+    func tabBarController(_ tabBarController: TabBarController, didSelect viewController: UIViewController, at index: Int) {
         selectedIndex.value = index
         whatsHotBadgeManager.isShowingLearnTab = (index == 0)
         
@@ -207,15 +210,8 @@ extension TabBarCoordinator: TabBarControllerDelegate {
         default:
             break
         }
-
+        
         guard let tutorial = Tutorial(rawValue: index) else {
-            return
-        }
-        showTutorial(tutorial)
-    }
-
-    func viewDidAppear() {
-        guard let tutorial = Tutorial(rawValue: selectedIndex.value) else {
             return
         }
         showTutorial(tutorial)
@@ -318,7 +314,7 @@ extension TabBarCoordinator: TopNavigationBarDelegate {
     }
     
     func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
-        guard let navigationController = viewControllers[selectedIndex.value] as? UINavigationController, let pageViewController = navigationController.viewControllers.first as? PageViewController else {
+        guard let navigationController = tabBarController.viewControllers?[selectedIndex.value] as? UINavigationController, let pageViewController = navigationController.viewControllers.first as? PageViewController else {
             return
         }
 
@@ -326,10 +322,6 @@ extension TabBarCoordinator: TopNavigationBarDelegate {
     }
     
     func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
-        guard let tabBarController = tabBarController else {
-            return
-        }
-
         let coordinator = SidebarCoordinator(root: tabBarController, services: services, syncManager: syncManager, networkManager: networkManager)
         startChild(child: coordinator)
     }
