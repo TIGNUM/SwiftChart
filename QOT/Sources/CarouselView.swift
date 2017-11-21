@@ -125,7 +125,7 @@ final class CarouselView: UIView {
         var page = Int(x / itemAndSpaceWidth)
 
         let remainder = x - (CGFloat(page) * itemAndSpaceWidth)
-        if remainder > cellWidth + (cellSpacing / 2) {
+        if remainder > (cellWidth / 2) + cellSpacing {
             page += 1
         }
         page = min(max(0, page), itemCount - 1)

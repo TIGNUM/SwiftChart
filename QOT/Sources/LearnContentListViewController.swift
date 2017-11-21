@@ -48,7 +48,7 @@ final class LearnContentListViewController: UIViewController {
             dataSource: self,
             dequeables: LearnContentCell.self
         )
-        collectionView.contentInset = UIEdgeInsets(top:80, left: 0, bottom: 55, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 80, left: 0, bottom: 55, right: 0)
         return collectionView
     }()
 
@@ -271,7 +271,7 @@ extension LearnContentListViewController: UIScrollViewDelegate {
     private func undateSelectedCategoryIndex(scrollCarouselView: Bool) {
         let center = CGPoint(x: collectionView.frame.midX, y: collectionView.frame.midY)
         let convertedCenter = view.convert(center, to: collectionView)
-
+        
         guard let index = collectionView.indexPathForItem(at: convertedCenter)?.section else { return }
 
         if selectedCategoryIndex != index, firstLaunch == false {
