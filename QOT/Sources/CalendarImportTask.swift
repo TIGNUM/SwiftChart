@@ -9,6 +9,7 @@
 import Foundation
 import RealmSwift
 import EventKit
+import Crashlytics
 
 final class CalendarImportTask {
 
@@ -45,6 +46,10 @@ final class CalendarImportTask {
 
     private func createOrUpdateCalendarEvents(with ekEvents: [EKEvent], realm: Realm) {
         for ekEvent in ekEvents {
+            CLSLogv("Log createOrUpdateCalendarEvents - ekEvent.title %@", getVaList([ekEvent.title]))
+            CLSLogv("Log createOrUpdateCalendarEvents - ekEvent.startDate %@", getVaList([ekEvent.startDate.description]))
+            CLSLogv("Log createOrUpdateCalendarEvents - ekEvent.endDate %@", getVaList([ekEvent.endDate.description]))
+            
             let predicate = NSPredicate.calendarEvent(title: ekEvent.title,
                                                       startDate: ekEvent.startDate,
                                                       endDate: ekEvent.endDate)
