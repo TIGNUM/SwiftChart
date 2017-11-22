@@ -17,6 +17,7 @@ protocol LibraryViewControllerDelegate: class {
 
 final class LibraryViewController: UIViewController, PageViewControllerNotSwipeable {
 
+    private let paddingTop: CGFloat = 24.0
     private let viewModel: LibraryViewModel
     weak var delegate: LibraryViewControllerDelegate?
 
@@ -53,15 +54,27 @@ final class LibraryViewController: UIViewController, PageViewControllerNotSwipea
     // MARK: - private
     
     private func setupView() {
-        view.addSubview(tableView)
-        view.addFade()
-        
         view.backgroundColor = .clear
-        tableView.topAnchor == view.topAnchor
-        tableView.bottomAnchor == view.bottomAnchor
-        tableView.horizontalAnchors == view.horizontalAnchors
+        view.addSubview(tableView)
+        
+        automaticallyAdjustsScrollViewInsets = false
+        if #available(iOS 11.0, *) {
+            tableView.contentInsetAdjustmentBehavior = .never
+        }
+        tableView.edgeAnchors == view.edgeAnchors
+        tableView.contentInset.top = view.safeMargins.top + paddingTop
+        tableView.contentInset.bottom = view.safeMargins.bottom
         tableView.backgroundView = viewModel.tableViewBackground
-        tableView.contentInset = UIEdgeInsets(top: 33.0, left: 0, bottom: 0, right: 0)
+        
+        view.addFade(at: .zero, direction: .down)
+        view.setFadeMask(at: .bottom)
+    }
+    
+    @available(iOS 11.0, *)
+    override func viewLayoutMarginsDidChange() {
+        super.viewLayoutMarginsDidChange()
+        tableView.contentInset.top = view.safeMargins.top + paddingTop
+        tableView.contentInset.bottom = view.safeMargins.bottom
     }
 }
 

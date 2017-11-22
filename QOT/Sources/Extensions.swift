@@ -272,9 +272,10 @@ extension UIView {
     enum FadeMaskLocation {
         case top
         case bottom
+        case topAndBottom
     }
 
-    @discardableResult func addFade(origin: CGPoint = .zero, height: CGFloat = 70.0, primaryColor: UIColor = .darkIndigo, fadeColor: UIColor = .clear, direction: FadeDirection = .down) -> UIView {
+    @discardableResult func addFade(at origin: CGPoint, direction: FadeDirection = .down, height: CGFloat = 70.0, primaryColor: UIColor = .darkIndigo, fadeColor: UIColor = .clear) -> UIView {
         guard height > 0 else {
             assertionFailure("height must be > 0")
             return UIView()
@@ -299,40 +300,60 @@ extension UIView {
         return fadeView
     }
     
-    @discardableResult func setFadeMask(at location: FadeMaskLocation = .bottom, height: CGFloat = 70.0) -> CALayer {
+    @discardableResult func setFadeMask(at location: FadeMaskLocation, height: CGFloat = 70.0) -> CALayer {
         guard height > 0 else {
             assertionFailure("height must be > 0")
             return CALayer()
         }
-    
+
         let primaryColor = UIColor.black.cgColor
         let fadeColor = UIColor.clear.cgColor
-        let offset = bounds.height - height
         
         let wrapperLayer = CALayer()
+        wrapperLayer.backgroundColor = fadeColor
         wrapperLayer.frame = bounds
         
-        if height > 0 {
-            let contentY: CGFloat = location == .top ? offset : 0.0
+        switch location {
+        case .top:
+            let fadeLayer = CAGradientLayer()
+            fadeLayer.colors = [fadeColor, fadeColor, primaryColor]
+            fadeLayer.frame = CGRect(x: 0, y: 0, width: wrapperLayer.bounds.width, height: height)
+            
             let contentLayer = CALayer()
             contentLayer.backgroundColor = primaryColor
-            contentLayer.frame = CGRect(x: 0.0, y: contentY, width: bounds.width, height: offset)
+            contentLayer.frame = CGRect(x: 0, y: height, width: wrapperLayer.bounds.width, height: wrapperLayer.bounds.height - height)
+            
+            wrapperLayer.addSublayer(fadeLayer)
+            wrapperLayer.addSublayer(contentLayer)
+        case .bottom:
+            let fadeLayer = CAGradientLayer()
+            fadeLayer.colors = [primaryColor, fadeColor, fadeColor]
+            fadeLayer.frame = CGRect(x: 0, y: wrapperLayer.bounds.height - height, width: wrapperLayer.bounds.width, height: height)
+            
+            let contentLayer = CALayer()
+            contentLayer.backgroundColor = primaryColor
+            contentLayer.frame = CGRect(x: 0, y: 0, width: wrapperLayer.bounds.width, height: wrapperLayer.bounds.height - height)
+            
+            wrapperLayer.addSublayer(fadeLayer)
+            wrapperLayer.addSublayer(contentLayer)
+        case .topAndBottom:
+            let topFadeLayer = CAGradientLayer()
+            topFadeLayer.colors = [fadeColor, fadeColor, primaryColor]
+            topFadeLayer.frame = CGRect(x: 0, y: 0, width: wrapperLayer.bounds.width, height: height)
+            
+            let bottomFadeLayer = CAGradientLayer()
+            bottomFadeLayer.colors = [primaryColor, fadeColor, fadeColor]
+            bottomFadeLayer.frame = CGRect(x: 0, y: wrapperLayer.bounds.height - height, width: wrapperLayer.bounds.width, height: height)
+            
+            let contentLayer = CALayer()
+            contentLayer.backgroundColor = primaryColor
+            contentLayer.frame = CGRect(x: 0, y: height, width: wrapperLayer.bounds.width, height: wrapperLayer.bounds.height - (height * 2.0))
+            
+            wrapperLayer.addSublayer(topFadeLayer)
+            wrapperLayer.addSublayer(bottomFadeLayer)
             wrapperLayer.addSublayer(contentLayer)
         }
         
-        let fadeY: CGFloat = location == .top ? 0.0 : offset
-        let fadeLayer = CAGradientLayer()
-        fadeLayer.frame = CGRect(x: 0.0, y: fadeY, width: bounds.width, height: height)
-       
-        switch location {
-        case .top:
-            fadeLayer.colors = [fadeColor, fadeColor, primaryColor]
-        case .bottom:
-            fadeLayer.colors = [primaryColor, fadeColor, fadeColor]
-        }
-        
-        wrapperLayer.addSublayer(fadeLayer)
-
         layer.mask = wrapperLayer
         return wrapperLayer
     }
@@ -367,6 +388,38 @@ extension UIView {
         let borderMask = CAShapeLayer()
         borderMask.path = clippingBorderPath.cgPath
         layer.mask = borderMask
+    }
+    
+    var safeTopAnchor: NSLayoutYAxisAnchor {
+        if #available(iOS 11.0, *) {
+            return safeAreaLayoutGuide.topAnchor
+        } else {
+            return topAnchor
+        }
+    }
+    
+    var safeBottomAnchor: NSLayoutYAxisAnchor {
+        if #available(iOS 11.0, *) {
+            return safeAreaLayoutGuide.bottomAnchor
+        } else {
+            return bottomAnchor
+        }
+    }
+    
+    var safeVerticalAnchors: AnchorPair<NSLayoutYAxisAnchor, NSLayoutYAxisAnchor> {
+        if #available(iOS 11.0, *) {
+            return safeAreaLayoutGuide.verticalAnchors
+        } else {
+            return verticalAnchors
+        }
+    }
+    
+    var safeMargins: UIEdgeInsets {
+        if #available(iOS 11.0, *) {
+            return safeAreaInsets
+        } else {
+            return layoutMargins
+        }
     }
 }
 

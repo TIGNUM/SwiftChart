@@ -35,9 +35,9 @@ class TabBarController: UITabBarController {
     weak var tabBarBottomConstraint: NSLayoutConstraint?
     weak var tabBarControllerDelegate: TabBarControllerDelegate?
 
-    let indicatorView: UIView = UIView()
-    var indicatorViewLeftConstraint: NSLayoutConstraint?
-    var indicatorViewWidthConstraint: NSLayoutConstraint?
+    private var indicatorView: UIView?
+    private var indicatorViewLeftConstraint: NSLayoutConstraint?
+    private var indicatorViewWidthConstraint: NSLayoutConstraint?
     private let config: Config
     
     init(config: Config) {
@@ -60,7 +60,9 @@ class TabBarController: UITabBarController {
         super.viewWillAppear(animated)
         
         if config.useIndicatorView {
-            setupIndicatorView()
+            if config.useIndicatorView {
+                setupIndicatorView()
+            }
             setIndicatorViewToButtonIndex(selectedIndex, animated: true)
         }
     }
@@ -80,6 +82,9 @@ class TabBarController: UITabBarController {
     }
     
     func setIndicatorViewToButtonIndex(_ index: Int, animated: Bool) {
+        guard let indicatorView = indicatorView else {
+            return
+        }
         guard let items = tabBar.items, index >= items.startIndex, index < items.endIndex else {
             indicatorView.backgroundColor = .clear
             return
@@ -107,19 +112,16 @@ class TabBarController: UITabBarController {
         guard let items = tabBar.items, selectedIndex >= items.startIndex, selectedIndex < items.endIndex else {
             return
         }
+        let indicatorView = UIView()
         indicatorView.backgroundColor = config.indicatorViewColor
         tabBar.addSubview(indicatorView)
         
         let height: CGFloat = config.indicatorViewHeight
-        if #available(iOS 11.0, *) {
-            indicatorView.bottomAnchor == tabBar.safeAreaLayoutGuide.bottomAnchor - height
-        } else {
-            indicatorView.bottomAnchor == tabBar.bottomAnchor - height
-        }
-        
+        indicatorView.bottomAnchor == tabBar.safeBottomAnchor - height
         indicatorView.heightAnchor == height
         indicatorViewWidthConstraint = indicatorView.widthAnchor == 0
         indicatorViewLeftConstraint = indicatorView.leftAnchor == tabBar.leftAnchor
+        self.indicatorView = indicatorView
     }
     
     private func apply(_ config: Config) {

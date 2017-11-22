@@ -47,6 +47,7 @@ final class GenericCacheKey<T: Hashable>: NSObject {
 
 final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, PageViewControllerNotSwipeable {
 
+    private let paddingTop: CGFloat = 30.0
     private let disposeBag = DisposeBag()
     private var sizingCell = ChatViewCell()
     private var sizeCache: NSCache<GenericCacheKey<SizeCacheKey>, NSValue> = NSCache()
@@ -59,7 +60,7 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
         self.pageName = pageName
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        setupView(withBackgroundImage: backgroundImage)
+        setupView(withBackgroundImage: backgroundImage) // FIXME: putting this in viewDidLoad() crashes
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -96,6 +97,13 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
             }
         }.dispose(in: disposeBag)
     }
+    
+    @available(iOS 11.0, *)
+    override func viewLayoutMarginsDidChange() {
+        super.viewLayoutMarginsDidChange()
+        collectionView.contentInset.top = paddingTop + view.safeMargins.top
+        collectionView.contentInset.bottom = view.safeMargins.bottom
+    }
 
     private func scrollToSnapOffset(animated: Bool) {
         guard let layout = collectionView.collectionViewLayout as? ChatViewLayout else {
@@ -108,21 +116,22 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
 
     private func setupView(withBackgroundImage backgroundImage: UIImage?) {
         view.backgroundColor = .clear
-        automaticallyAdjustsScrollViewInsets = false
-        
         view.addSubview(collectionView)
+        
+        automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             collectionView.contentInsetAdjustmentBehavior = .never
         }
         collectionView.edgeAnchors == view.edgeAnchors
-        collectionView.contentInset = UIEdgeInsets(top: 88, left: 0, bottom: 66.0, right: 0.0)
+        collectionView.contentInset.top = paddingTop + view.safeMargins.top
+        collectionView.contentInset.bottom = view.safeMargins.bottom
+      
         if let backgroundImage = backgroundImage {
             collectionView.backgroundView = UIImageView(image: backgroundImage)
         }
-        
-        view.layoutIfNeeded()
-        view.addFade()
-        view.setFadeMask()
+
+        view.addFade(at: .zero, direction: .down)
+        view.setFadeMask(at: .bottom)
     }
 
     private func registerReusableViews() {

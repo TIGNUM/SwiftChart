@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -167,7 +168,7 @@
                 <constraint firstAttribute="bottom" secondItem="Eea-Nk-yaf" secondAttribute="bottom" id="Iuw-RV-Y8W"/>
                 <constraint firstAttribute="bottom" secondItem="8Ht-Mn-n41" secondAttribute="bottom" id="TAr-bt-c5t"/>
                 <constraint firstItem="UbZ-c7-cw0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="U2l-9b-SxA"/>
-                <constraint firstItem="Cks-DY-TaL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="Wna-eB-RhT"/>
+                <constraint firstItem="Cks-DY-TaL" firstAttribute="top" secondItem="RXW-eP-1ao" secondAttribute="top" id="Ug1-kp-VU7"/>
                 <constraint firstItem="uuS-Dz-bUg" firstAttribute="top" secondItem="Cks-DY-TaL" secondAttribute="bottom" constant="46" id="bkV-sf-bRf"/>
                 <constraint firstAttribute="trailing" secondItem="UbZ-c7-cw0" secondAttribute="trailing" id="c3a-pH-lm7"/>
                 <constraint firstAttribute="trailing" secondItem="Eea-Nk-yaf" secondAttribute="trailing" id="dnx-ed-hXg"/>
@@ -181,6 +182,7 @@
                 <constraint firstAttribute="trailing" secondItem="Bt0-lW-TcB" secondAttribute="trailing" constant="30" id="rHP-KN-psI"/>
                 <constraint firstItem="2O5-1G-1AK" firstAttribute="top" secondItem="uuS-Dz-bUg" secondAttribute="bottom" constant="13" id="s7v-LZ-vzF"/>
             </constraints>
+            <viewLayoutGuide key="safeArea" id="RXW-eP-1ao"/>
             <point key="canvasLocation" x="33" y="54"/>
         </view>
     </objects>

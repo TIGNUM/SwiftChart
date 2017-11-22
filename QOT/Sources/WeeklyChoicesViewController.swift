@@ -25,6 +25,7 @@ final class WeeklyChoicesViewController: UIViewController, PageViewControllerNot
     private let viewModel: WeeklyChoicesViewModel
     private lazy var dateLabel: UILabel = UILabel()
     private let disposeBag = DisposeBag()
+    private weak var circleLayer: CALayer?
 
     private lazy var collectionView: UICollectionView = {
         let layout = WeeklyChoicesLayout()
@@ -69,6 +70,12 @@ final class WeeklyChoicesViewController: UIViewController, PageViewControllerNot
         setupView()
         observeViewModel()
     }
+    
+    @available(iOS 11.0, *)
+    override func viewLayoutMarginsDidChange() {
+        super.viewLayoutMarginsDidChange()
+        drawCircle()
+    }
 }
 
 // MARK: - Private
@@ -76,10 +83,10 @@ final class WeeklyChoicesViewController: UIViewController, PageViewControllerNot
 private extension WeeklyChoicesViewController {
 
     func observeViewModel() {
-        viewModel.updates.observeNext { [collectionView] (update) in
-            collectionView.reloadData()
-            self.delegate?.didUpdateList(with: self.viewModel)
+        viewModel.updates.observeNext { [unowned self] (update) in
+            self.collectionView.reloadData()
             self.setNoContentLabel()
+            self.delegate?.didUpdateList(with: self.viewModel)
         }.dispose(in: disposeBag)
     }
 
@@ -90,28 +97,32 @@ private extension WeeklyChoicesViewController {
         view.addSubview(collectionView)
         view.addSubview(dateLabel)
         view.backgroundColor = .clear
-        dateLabel.topAnchor == view.topAnchor + 60
+        dateLabel.topAnchor == view.safeTopAnchor
         dateLabel.horizontalAnchors == view.horizontalAnchors
         dateLabel.heightAnchor == 14
         collectionView.topAnchor == dateLabel.bottomAnchor
         collectionView.bottomAnchor == view.bottomAnchor
         collectionView.horizontalAnchors == view.horizontalAnchors
-        coverView.topAnchor == view.topAnchor
-        coverView.horizontalAnchors == view.horizontalAnchors
-        coverView.bottomAnchor == view.bottomAnchor
+        automaticallyAdjustsScrollViewInsets = false
+        if #available(iOS 11.0, *) {
+            collectionView.contentInsetAdjustmentBehavior = .never
+        }
+        coverView.edgeAnchors == view.edgeAnchors
         setNoContentLabel()
-        view.layoutIfNeeded()
         configureDateLabel(dateLabel)
-        drawCircle()
+        
+        view.layoutIfNeeded()
+        view.setFadeMask(at: .bottom)
     }
 
     func setNoContentLabel() {
         if viewModel.itemCount <= 0 {
             view.addSubview(emptyLabel)
-            emptyLabel.horizontalAnchors == view.horizontalAnchors
-            emptyLabel.verticalAnchors == view.verticalAnchors
+            emptyLabel.edgeAnchors == view.edgeAnchors
+            circleLayer?.removeFromSuperlayer()
         } else {
             emptyLabel.removeFromSuperview()
+            drawCircle()
         }
     }
 
@@ -123,11 +134,17 @@ private extension WeeklyChoicesViewController {
     }
     
     func drawCircle() {
+        guard viewModel.itemCount > 0 else {
+            return
+        }
+        if circleLayer?.superlayer != nil {
+            circleLayer?.removeFromSuperlayer()
+        }
         let layout = WeeklyChoicesLayout()
         var center = layout.circleCenter(circleX: circleX(), collectionView: collectionView)
-        center.x += 33  // ... sorry for the magic number. not sure why this is needed :(
-        center.y += collectionView.frame.origin.y
-        view.drawSolidCircle(
+        center.x += 33 // FIXME: sorry for the magic number. not sure why this is needed :(
+        center.y = collectionView.center.y + (view.safeMargins.top / 2.0)
+        circleLayer = view.drawSolidCircle(
             arcCenter: center,
             radius: radius(),
             strokeColor: .white20

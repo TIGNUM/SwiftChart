@@ -160,15 +160,13 @@ private extension LearnContentListViewController {
 
     func setupLayout() {
         backgroundImageView.edgeAnchors == view.edgeAnchors
-
-        collectionView.topAnchor == view.topAnchor
-        collectionView.bottomAnchor == view.bottomAnchor
+        collectionView.verticalAnchors == view.safeVerticalAnchors
         collectionView.horizontalAnchors == view.horizontalAnchors
 
-        pagingCollectionViewTopConstraint = (carouselView.topAnchor == view.topAnchor + 20)
-        pagingCollectionViewBottomConstraint = (carouselView.bottomAnchor == view.topAnchor + performanceLabelSize.height + pagingCellSize.height)
         carouselView.horizontalAnchors == view.horizontalAnchors
-
+        pagingCollectionViewTopConstraint = (carouselView.topAnchor == view.safeTopAnchor)
+        pagingCollectionViewBottomConstraint = (carouselView.bottomAnchor == view.safeTopAnchor + performanceLabelSize.height + pagingCellSize.height)
+        
         getBackButtonBottomConstraint = (getBackButton.bottomAnchor == view.bottomAnchor)
         getBackButton.horizontalAnchors == view.horizontalAnchors
         getBackButton.heightAnchor == Layout.TabBarView.height

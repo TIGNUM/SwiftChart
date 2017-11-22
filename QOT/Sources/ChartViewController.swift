@@ -64,7 +64,7 @@ private extension ChartViewController {
 
     func setupView() {
         view.addSubview(tableView)
-        view.addFade()
+        view.addFade(at: .zero, direction: .down)
         tableView.verticalAnchors == view.verticalAnchors
         tableView.horizontalAnchors == view.horizontalAnchors
     }

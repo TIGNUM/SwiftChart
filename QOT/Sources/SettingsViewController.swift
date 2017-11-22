@@ -82,7 +82,7 @@ private extension SettingsViewController {
         tableView = UITableView(frame: .zero, style: .grouped)
         view.addSubview(tableView)
         view.backgroundColor = .clear
-        view.addFade()
+        view.addFade(at: .zero, direction: .down)
         tableView.backgroundView = UIImageView(image: R.image.backgroundSidebar())
         tableView.delegate = self
         tableView.dataSource = self

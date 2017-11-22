@@ -20,6 +20,7 @@ final class MyPrepViewController: UIViewController, FullScreenLoadable, PageView
     
     // MARK: - Properties
 
+    fileprivate let paddingTop: CGFloat = 24.0
     let viewModel: MyPrepViewModel
     weak var delegate: MyPrepViewControllerDelegate?
     var loadingView: BlurLoadingView?
@@ -103,6 +104,13 @@ final class MyPrepViewController: UIViewController, FullScreenLoadable, PageView
         tableView.setEditing(false, animated: true)
         navigationController?.navigationBar.topItem?.leftBarButtonItem = nil
     }
+    
+    @available(iOS 11.0, *)
+    override func viewLayoutMarginsDidChange() {
+        super.viewLayoutMarginsDidChange()
+        tableView.contentInset.top = view.safeMargins.top
+        tableView.contentInset.bottom = view.safeMargins.bottom
+    }
 }
 
 // MARK: - Actions
@@ -143,21 +151,19 @@ private extension MyPrepViewController {
     }
 
     func setupView() {
-        automaticallyAdjustsScrollViewInsets = false
         view.backgroundColor = .clear
-
         view.addSubview(tableView)
+        
+        automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
         }
-        tableView.topAnchor == view.topAnchor
-        tableView.bottomAnchor == view.bottomAnchor
-        tableView.horizontalAnchors == view.horizontalAnchors
-        tableView.contentInset.top += 24
-        tableView.contentInset.bottom = 64.0
+        tableView.edgeAnchors == view.edgeAnchors
+        tableView.contentInset.top = view.safeMargins.top + paddingTop
+        tableView.contentInset.bottom = view.safeMargins.bottom
         
-        view.addFade()
-        view.setFadeMask()
+        view.addFade(at: .zero, direction: .down)
+        view.setFadeMask(at: .bottom)
     }
 
     func updateView() {

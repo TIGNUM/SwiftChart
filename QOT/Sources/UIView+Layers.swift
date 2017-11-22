@@ -13,6 +13,7 @@ extension UIView {
 
     // MARK: - Circle
     
+    @discardableResult
     func drawSolidCircle(arcCenter: CGPoint,
                          radius: CGFloat,
                          lineWidth: CGFloat = 1,
@@ -20,10 +21,11 @@ extension UIView {
                          startAngle: CGFloat = -90,
                          endAngle: CGFloat = 360,
                          strokeColor: UIColor = .white90,
-                         clockwise: Bool = true) {
-        drawCircle(center: arcCenter, radius: radius, lineWidth: lineWidth, value: value, startAngle: startAngle, endAngle: endAngle, color: strokeColor, clockwise: clockwise)
+                         clockwise: Bool = true) -> CALayer {
+        return drawCircle(center: arcCenter, radius: radius, lineWidth: lineWidth, value: value, startAngle: startAngle, endAngle: endAngle, color: strokeColor, clockwise: clockwise)
     }
 
+    @discardableResult
     func drawDashedCircle(arcCenter: CGPoint,
                           radius: CGFloat,
                           lineWidth: CGFloat = 1,
@@ -32,36 +34,20 @@ extension UIView {
                           startAngle: CGFloat = -90,
                           endAngle: CGFloat = 360,
                           strokeColor: UIColor = .white20,
-                          hasShadow: Bool = false) {
+                          hasShadow: Bool = false) -> CALayer {
         let pattern = dashPattern.map { NSNumber(value: Float($0)) }
-        drawCircle(center: arcCenter, radius: radius, lineWidth: lineWidth, value: value, startAngle: startAngle, endAngle: endAngle, color: strokeColor, dashPattern: pattern, hasShadow: hasShadow, shadowRadius: lineWidth + 2)
+        return drawCircle(center: arcCenter, radius: radius, lineWidth: lineWidth, value: value, startAngle: startAngle, endAngle: endAngle, color: strokeColor, dashPattern: pattern, hasShadow: hasShadow, shadowRadius: lineWidth + 2)
     }
 
+    @discardableResult
     func drawCapRoundCircle(center: CGPoint,
                             radius: CGFloat,
                             value: CGFloat,
                             startAngle: CGFloat = -90,
                             endAngle: CGFloat = 360,
                             lineWidth: CGFloat,
-                            strokeColor: UIColor) {
-        drawCircle(center: center, radius: radius, lineWidth: lineWidth, lineCap: kCALineCapRound, value: value, startAngle: startAngle, endAngle: endAngle, color: strokeColor)
-    }
-
-    private func drawCircle(center: CGPoint,
-                            radius: CGFloat,
-                            lineWidth: CGFloat,
-                            lineCap: String = kCALineCapButt,
-                            value: CGFloat,
-                            startAngle: CGFloat,
-                            endAngle: CGFloat,
-                            color: UIColor,
-                            clockwise: Bool = true,
-                            dashPattern: [NSNumber]? = nil,
-                            hasShadow: Bool = false,
-                            shadowRadius: CGFloat = 0) {
-        let path = circlePath(value: value, startAngle: startAngle, endAngle: endAngle, radius: radius, center: center, lineWidth: lineWidth, clockwise: clockwise)
-        addShapeLayer(path: path, lineWidth: lineWidth, lineCap: lineCap, strokeColor: color, dashPattern: dashPattern, hasShadow: hasShadow, shadowRadius: shadowRadius)
-        
+                            strokeColor: UIColor) -> CALayer {
+        return drawCircle(center: center, radius: radius, lineWidth: lineWidth, lineCap: kCALineCapRound, value: value, startAngle: startAngle, endAngle: endAngle, color: strokeColor)
     }
 
     // MARK: - Line
@@ -93,19 +79,6 @@ extension UIView {
     func drawCapRoundLine(from: CGPoint, to: CGPoint, lineWidth: CGFloat, strokeColor: UIColor, hasShadow: Bool = false) {
         drawLine(from: from, to: to, lineWidth: lineWidth, lineCap: kCALineCapRound, strokeColor: strokeColor, hasShadow: hasShadow, shadowRadius: lineWidth * 2)
     }
-
-    private func drawLine(from: CGPoint,
-                          to: CGPoint,
-                          lineWidth: CGFloat,
-                          lineCap: String = kCALineCapButt,
-                          strokeColor: UIColor,
-                          dashPattern: [NSNumber]? = nil,
-                          hasShadow: Bool = false,
-                          shadowRadius: CGFloat = 0) {        
-        let path = linePath(from: from, to: to)
-        addShapeLayer(path: path, lineWidth: lineWidth, lineCap: lineCap, strokeColor: strokeColor, dashPattern: dashPattern, hasShadow: hasShadow, shadowRadius: shadowRadius)
-        
-    }    
 
     func drawDottedColumns(columnWidth: CGFloat, columnHeight: CGFloat, rowHeight: CGFloat, columnCount: Int, rowCount: Int, strokeWidth: CGFloat, strokeColor: UIColor) {
         for x in 0..<columnCount {
@@ -165,11 +138,40 @@ extension UIView {
         label.trailingAnchor == trailingAnchor
     }
 
+    // MARK: - private
+    
+    private func drawCircle(center: CGPoint,
+                            radius: CGFloat,
+                            lineWidth: CGFloat,
+                            lineCap: String = kCALineCapButt,
+                            value: CGFloat,
+                            startAngle: CGFloat,
+                            endAngle: CGFloat,
+                            color: UIColor,
+                            clockwise: Bool = true,
+                            dashPattern: [NSNumber]? = nil,
+                            hasShadow: Bool = false,
+                            shadowRadius: CGFloat = 0) -> CALayer {
+        let path = circlePath(value: value, startAngle: startAngle, endAngle: endAngle, radius: radius, center: center, lineWidth: lineWidth, clockwise: clockwise)
+        return addShapeLayer(path: path, lineWidth: lineWidth, lineCap: lineCap, strokeColor: color, dashPattern: dashPattern, hasShadow: hasShadow, shadowRadius: shadowRadius)
+    }
+    
+    private func drawLine(from: CGPoint,
+                          to: CGPoint,
+                          lineWidth: CGFloat,
+                          lineCap: String = kCALineCapButt,
+                          strokeColor: UIColor,
+                          dashPattern: [NSNumber]? = nil,
+                          hasShadow: Bool = false,
+                          shadowRadius: CGFloat = 0) {
+        let path = linePath(from: from, to: to)
+        _ = addShapeLayer(path: path, lineWidth: lineWidth, lineCap: lineCap, strokeColor: strokeColor, dashPattern: dashPattern, hasShadow: hasShadow, shadowRadius: shadowRadius)
+    }
+    
     private func linePath(from: CGPoint, to: CGPoint) -> UIBezierPath {
         let linePath = UIBezierPath()
         linePath.move(to: from)
         linePath.addLine(to: to)
-
         return linePath
     }
 
@@ -177,7 +179,6 @@ extension UIView {
         let angleStart = startAngle.degreesToRadians
         let angleEnd = (endAngle * value + startAngle).degreesToRadians
         let circleRadius = radius - lineWidth * 0.5
-
         return UIBezierPath(arcCenter: center, radius: circleRadius, startAngle: angleStart, endAngle: angleEnd, clockwise: clockwise)
     }
 
@@ -187,7 +188,7 @@ extension UIView {
                                strokeColor: UIColor,
                                dashPattern: [NSNumber]? = nil,
                                hasShadow: Bool = false,
-                               shadowRadius: CGFloat = 0) {
+                               shadowRadius: CGFloat = 0) -> CALayer {
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = path.cgPath
         shapeLayer.fillColor = UIColor.clear.cgColor
@@ -201,5 +202,6 @@ extension UIView {
         }
 
         layer.addSublayer(shapeLayer)
+        return shapeLayer
     }
 }

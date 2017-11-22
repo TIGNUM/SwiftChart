@@ -216,6 +216,10 @@ private extension MyUniverseViewController {
         scrollView.addSubview(myDataSectorLabelsView)
         scrollView.addSubview(myDataView)
         
+        topBar.topAnchor == view.safeTopAnchor
+        topBar.horizontalAnchors == view.horizontalAnchors
+        topBar.heightAnchor == topBar.bounds.height
+        
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             scrollView.contentInsetAdjustmentBehavior = .never

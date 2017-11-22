@@ -20,6 +20,7 @@ final class ArticleCollectionViewController: UIViewController, FullScreenLoadabl
 
     // MARK: - Properties
 
+    private let paddingTop: CGFloat = 26
     private let disposeBag = DisposeBag()
     private let viewModel: ArticleCollectionViewModel
     private let backgroundImageView: UIImageView
@@ -74,6 +75,14 @@ final class ArticleCollectionViewController: UIViewController, FullScreenLoadabl
         super.viewDidAppear(animated)
         updateReadyState()
     }
+    
+    @available(iOS 11.0, *)
+    override func viewLayoutMarginsDidChange() {
+        super.viewLayoutMarginsDidChange()
+        collectionView.contentInset.top = paddingTop + view.safeMargins.top
+        collectionView.contentInset.bottom = view.safeMargins.bottom
+        collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+    }
 }
 
 // MARK: - Private
@@ -86,19 +95,17 @@ private extension ArticleCollectionViewController {
     
     func setupLayout() {
         automaticallyAdjustsScrollViewInsets = false
-
-        view.addSubview(backgroundImageView)
-        backgroundImageView.verticalAnchors == view.verticalAnchors
-        backgroundImageView.horizontalAnchors == view.horizontalAnchors
-        
-        view.addSubview(collectionView)
-        collectionView.topAnchor == view.topAnchor
-        collectionView.heightAnchor == view.heightAnchor
-        collectionView.horizontalAnchors == view.horizontalAnchors
-        collectionView.contentInset = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)
         if #available(iOS 11.0, *) {
             collectionView.contentInsetAdjustmentBehavior = .never
         }
+        
+        view.addSubview(backgroundImageView)
+        backgroundImageView.edgeAnchors == view.edgeAnchors
+        
+        view.addSubview(collectionView)
+        collectionView.edgeAnchors == view.edgeAnchors
+        collectionView.contentInset.top = paddingTop + view.safeMargins.top
+        collectionView.contentInset.bottom = view.safeMargins.bottom
 
         view.layoutIfNeeded()
     }
