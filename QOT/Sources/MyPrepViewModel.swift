@@ -91,7 +91,7 @@ final class MyPrepViewModel {
     }
     
     func isReady() -> Bool {
-        return syncStateObserver.hasSynced(Preparation.self)
+        return syncStateObserver.hasSynced(Preparation.self) && syncStateObserver.hasSynced(PreparationCheck.self)
     }
     
     // MARK: - private
