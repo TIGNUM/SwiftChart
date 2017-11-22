@@ -242,6 +242,7 @@
 		CBB4DD141EDEBDA80071494A /* URLRequestBuildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DD131EDEBDA80071494A /* URLRequestBuildable.swift */; };
 		CBB4DD541EE151100071494A /* DownSyncImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4DD531EE151100071494A /* DownSyncImporter.swift */; };
 		CBB543821FBC816600AFD67B /* bundled_media.plist in Resources */ = {isa = PBXBuildFile; fileRef = CBB543811FBC816600AFD67B /* bundled_media.plist */; };
+		CBBC00FC1FC5B10600C544D8 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBC00FB1FC5B10600C544D8 /* Filters.swift */; };
 		CBC191131F603055009E483B /* URL+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC191121F603055009E483B /* URL+Convenience.swift */; };
 		CBC191151F62918B009E483B /* AppDelegate+Buglife.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC191141F62918B009E483B /* AppDelegate+Buglife.swift */; };
 		CBC1DC151F0F68F900F6D056 /* SystemSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC141F0F68F900F6D056 /* SystemSetting.swift */; };
@@ -713,6 +714,7 @@
 		CBB4DD131EDEBDA80071494A /* URLRequestBuildable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRequestBuildable.swift; sourceTree = "<group>"; };
 		CBB4DD531EE151100071494A /* DownSyncImporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownSyncImporter.swift; sourceTree = "<group>"; };
 		CBB543811FBC816600AFD67B /* bundled_media.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = bundled_media.plist; sourceTree = "<group>"; };
+		CBBC00FB1FC5B10600C544D8 /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
 		CBC191121F603055009E483B /* URL+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Convenience.swift"; sourceTree = "<group>"; };
 		CBC191141F62918B009E483B /* AppDelegate+Buglife.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Buglife.swift"; sourceTree = "<group>"; };
 		CBC1DC141F0F68F900F6D056 /* SystemSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemSetting.swift; sourceTree = "<group>"; };
@@ -1466,6 +1468,7 @@
 				7F5A25BE1F3CB71100A11466 /* DatabaseManager.swift */,
 				CB14676D1EF2AB7000A60E31 /* DeviceIdentifier.swift */,
 				CB1D5E351EC5E25A00BCDF8D /* Error.swift */,
+				CBBC00FB1FC5B10600C544D8 /* Filters.swift */,
 				CB84CDF61FA2345D00970E71 /* SyncStateObserver.swift */,
 				CB026FC41F6967DB00FC5076 /* APNS Device Token */,
 				CBB4DD4F1EE094E50071494A /* Calendar Import */,
@@ -2637,6 +2640,7 @@
 				CC90EC9F1F3076EB00A83DB9 /* SettingsChangePasswordViewController.swift in Sources */,
 				CBB017BB1F9741F200CC1048 /* SyncTask.swift in Sources */,
 				CC96630F1EA1B29800B84B1C /* MyWhyView.swift in Sources */,
+				CBBC00FC1FC5B10600C544D8 /* Filters.swift in Sources */,
 				7F691C5E1F0D30C800E2C180 /* PlaceholderTextView.swift in Sources */,
 				CBC191151F62918B009E483B /* AppDelegate+Buglife.swift in Sources */,
 				D5EC34B21EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.swift in Sources */,

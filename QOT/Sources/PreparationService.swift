@@ -54,7 +54,7 @@ final class PreparationService {
         }
         
         var calendarEvent: CalendarEvent?
-        if let event = event {
+        if let event = event, event.startDate != nil, event.endDate != nil {
             calendarEvent = realm.calendarEventForEKEvent(event)
         }
         
@@ -150,9 +150,13 @@ private extension Realm {
     }
     
     func calendarEventForEKEvent(_ ekEvent: EKEvent) -> CalendarEvent {
-        let predicate = NSPredicate.calendarEvent(title: ekEvent.title,
-                                                  startDate: ekEvent.startDate,
-                                                  endDate: ekEvent.endDate)
-        return objects(predicate: predicate).first ?? CalendarEvent(event: ekEvent)
+        guard let startDate = ekEvent.startDate,
+            let endDate = ekEvent.endDate,
+            let existing = objects(CalendarEvent.self).filter(title: ekEvent.title,
+                                                              startDate: startDate,
+                                                              endDate: endDate).first else {
+            return CalendarEvent(event: ekEvent)
+        }
+        return existing
     }
 }
