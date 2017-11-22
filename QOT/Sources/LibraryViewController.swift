@@ -19,6 +19,7 @@ final class LibraryViewController: UIViewController, PageViewControllerNotSwipea
 
     private let paddingTop: CGFloat = 24.0
     private let viewModel: LibraryViewModelInterface
+    private let fadeMaskLocation: UIView.FadeMaskLocation
     weak var delegate: LibraryViewControllerDelegate?
 
     private lazy var tableView: UITableView = {
@@ -29,8 +30,9 @@ final class LibraryViewController: UIViewController, PageViewControllerNotSwipea
         )
     }()
 
-    init(viewModel: LibraryViewModelInterface) {
+    init(viewModel: LibraryViewModelInterface, fadeMaskLocation: UIView.FadeMaskLocation) {
         self.viewModel = viewModel
+        self.fadeMaskLocation = fadeMaskLocation
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -65,7 +67,7 @@ final class LibraryViewController: UIViewController, PageViewControllerNotSwipea
         tableView.contentInset.top = view.safeMargins.top + paddingTop
         tableView.contentInset.bottom = view.safeMargins.bottom
         tableView.backgroundView = viewModel.tableViewBackground
-        view.setFadeMask(at: viewModel.fadeMaskLocation)
+        view.setFadeMask(at: fadeMaskLocation)
     }
     
     @available(iOS 11.0, *)
@@ -73,7 +75,7 @@ final class LibraryViewController: UIViewController, PageViewControllerNotSwipea
         super.viewLayoutMarginsDidChange()
         tableView.contentInset.top = view.safeMargins.top + paddingTop
         tableView.contentInset.bottom = view.safeMargins.bottom
-        view.setFadeMask(at: viewModel.fadeMaskLocation)
+        view.setFadeMask(at: fadeMaskLocation)
     }
 }
 

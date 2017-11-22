@@ -52,13 +52,15 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
     private var sizingCell = ChatViewCell()
     private var sizeCache: NSCache<GenericCacheKey<SizeCacheKey>, NSValue> = NSCache()
     private var items: [ChatItem<T>] = []
+    private let fadeMaskLocation: UIView.FadeMaskLocation
     let viewModel: ChatViewModel<T>
     let pageName: PageName
     var didSelectChoice: ((T, ChatViewController) -> Void)?
 
-    init(pageName: PageName, viewModel: ChatViewModel<T>, backgroundImage: UIImage? = nil) {
+    init(pageName: PageName, viewModel: ChatViewModel<T>, backgroundImage: UIImage? = nil, fadeMaskLocation: UIView.FadeMaskLocation) {
         self.pageName = pageName
         self.viewModel = viewModel
+        self.fadeMaskLocation = fadeMaskLocation
         super.init(nibName: nil, bundle: nil)
         setupView(withBackgroundImage: backgroundImage) // FIXME: putting this in viewDidLoad() crashes
     }
@@ -103,7 +105,7 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
         super.viewLayoutMarginsDidChange()
         collectionView.contentInset.top = paddingTop + view.safeMargins.top
         collectionView.contentInset.bottom = view.safeMargins.bottom
-        view.setFadeMask(at: .topAndBottom)
+        view.setFadeMask(at: fadeMaskLocation)
     }
 
     private func scrollToSnapOffset(animated: Bool) {
@@ -131,7 +133,7 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
             collectionView.backgroundView = UIImageView(image: backgroundImage)
         }
 
-        view.setFadeMask(at: .topAndBottom)
+        view.setFadeMask(at: fadeMaskLocation)
     }
 
     private func registerReusableViews() {

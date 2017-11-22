@@ -16,7 +16,6 @@ final class LibraryViewModel: LibraryViewModelInterface {
 
     private let categories: AnyRealmCollection<ContentCategory>
     let updates = PublishSubject<CollectionUpdate, NoError>()
-    let fadeMaskLocation: UIView.FadeMaskLocation
 
     var sectionCount: Int {
         return categories.count
@@ -28,9 +27,8 @@ final class LibraryViewModel: LibraryViewModelInterface {
 
     // MARK: - Init
 
-    init(services: Services, fadeMaskLocation: UIView.FadeMaskLocation) {
+    init(services: Services) {
         self.categories = services.contentService.libraryCategories()
-        self.fadeMaskLocation = fadeMaskLocation
     }
 }
 

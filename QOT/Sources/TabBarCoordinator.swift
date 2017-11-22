@@ -39,7 +39,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     
     private lazy var prepareChatViewController: ChatViewController<Answer> = {
         let viewModel = ChatViewModel<Answer>(items: [])
-        let viewController = ChatViewController(pageName: .prepareChat, viewModel: viewModel)
+        let viewController = ChatViewController(pageName: .prepareChat, viewModel: viewModel, fadeMaskLocation: .topAndBottom)
         viewController.title = R.string.localized.topTabBarItemTitlePerpareCoach()
 
         return viewController
@@ -54,8 +54,8 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     }()
     
     private lazy var toolsViewController: LibraryViewController = {
-        let viewModel = ToolsViewModel(services: services, fadeMaskLocation: .topAndBottom)
-        let toolsViewController = LibraryViewController(viewModel: viewModel)
+        let viewModel = ToolsViewModel(services: services)
+        let toolsViewController = LibraryViewController(viewModel: viewModel, fadeMaskLocation: .topAndBottom)
         toolsViewController.title = R.string.localized.topTabBarItemTitlePerpareTools()
         toolsViewController.delegate = self
         
