@@ -79,7 +79,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
             topTabBarControllerMe,
             topTabBarControllerPrepare
         ]
-        whatsHotBadgeManager.learnButton = topTabBarControllerLearn.tabBarItem
+        whatsHotBadgeManager.tabBarController = tabBarController
         whatsHotBadgeManager.isShowingLearnTab = true
         return tabBarController
     }()

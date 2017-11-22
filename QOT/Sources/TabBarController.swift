@@ -21,6 +21,8 @@ class TabBarController: UITabBarController {
         var useIndicatorView: Bool
         var indicatorViewHeight: CGFloat
         var indicatorViewColor: UIColor
+        var indicatorViewSidePadding: CGFloat
+        var readFlagPadding: CGFloat
         
         static var `default` = Config(
             tabBarBackgroundColor: .clear,
@@ -28,7 +30,9 @@ class TabBarController: UITabBarController {
             tabBarShadowImage: UIImage(),
             useIndicatorView: true,
             indicatorViewHeight: 1.0,
-            indicatorViewColor: .white
+            indicatorViewColor: .white,
+            indicatorViewSidePadding: 20.0,
+            readFlagPadding: 2.0
         )
     }
     
@@ -92,7 +96,7 @@ class TabBarController: UITabBarController {
         tabBar.bringSubview(toFront: indicatorView)
         tabBar.layoutIfNeeded()
 
-        let textWidth = items[selectedIndex].textWidth
+        let textWidth = items[selectedIndex].textWidth + config.indicatorViewSidePadding
         let x = (tabBar.buttonWidth * CGFloat(selectedIndex)) + (tabBar.buttonWidth / 2.0) - (textWidth / 2.0)
         let animations: () -> Void = {
             self.indicatorViewWidthConstraint?.constant = textWidth
@@ -105,7 +109,35 @@ class TabBarController: UITabBarController {
             animations()
         }
     }
-
+    
+    func mark(isRead: Bool, at index: Int) {
+        guard let items = tabBar.items, index >= items.startIndex, index < items.endIndex, let item = items[index] as? TabBarItem else {
+            assertionFailure("index \(index) out of bounds")
+            return
+        }
+        item.isRead = isRead
+        updateFlags()
+    }
+    
+    func updateFlags() {
+        guard let items = tabBar.items as? [TabBarItem] else {
+            return
+        }
+        for (index, item) in items.enumerated() {
+            if item.isRead {
+                item.readFlag?.removeFromSuperview()
+                item.readFlag = nil
+            } else if item.readFlag == nil {
+                item.readFlag = self.tabBar.addBadge(origin: CGPoint(
+                    x: ((tabBar.buttonWidth * CGFloat(index)) +
+                        (tabBar.buttonWidth - item.textWidth) +
+                        config.readFlagPadding),
+                    y: -config.readFlagPadding
+                ))
+            }
+        }
+    }
+    
     // MARK: - private
     
     private func setupIndicatorView() {

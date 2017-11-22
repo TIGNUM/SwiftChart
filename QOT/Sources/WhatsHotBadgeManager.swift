@@ -27,7 +27,7 @@ final class WhatsHotBadgeManager {
             whatsHotButton?.addTarget(self, action: #selector(whatsHotButtonPressed(_:)), for: .touchUpInside)
         }
     }
-    weak var learnButton: UITabBarItem?
+    weak var tabBarController: TabBarController?
     var isShowingLearnTab: Bool = false {
         didSet {
             update()
@@ -53,7 +53,7 @@ final class WhatsHotBadgeManager {
 
     private func update() {
         whatsHotBadge?.removeFromSuperview()
-        learnButton?.badgeValue = nil
+        tabBarController?.mark(isRead: true, at: 0)
         
         guard UserDefault.newWhatsHotArticle.boolValue else {
             return
@@ -64,8 +64,7 @@ final class WhatsHotBadgeManager {
             let rightOffset = (whatsHotButton?.bounds.width ?? 0) * 0.08
             whatsHotBadge = whatsHotButton?.addBadge(topAnchorOffset: topOffset, rightAnchorOffset: rightOffset)
         } else {
-            learnButton?.badgeColor = .cherryRed
-            learnButton?.badgeValue = " "
+            tabBarController?.mark(isRead: false, at: 0)
         }
     }
     

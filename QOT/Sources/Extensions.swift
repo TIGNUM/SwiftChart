@@ -300,6 +300,25 @@ extension UIView {
         return fadeView
     }
     
+    @discardableResult func addBadge(with color: UIColor = .cherryRed, size: CGFloat = 6.0, topAnchorOffset: CGFloat = 0, rightAnchorOffset: CGFloat = 0) -> Badge {
+        let badge = Badge()
+        addSubview(badge)
+        badge.backgroundColor = color
+        badge.topAnchor == topAnchor + topAnchorOffset
+        badge.rightAnchor == rightAnchor + rightAnchorOffset
+        badge.widthAnchor == size
+        badge.heightAnchor == size
+        return badge
+    }
+    
+    @discardableResult func addBadge(with color: UIColor = .cherryRed, size: CGFloat = 6.0, origin: CGPoint) -> Badge {
+        let badge = Badge()
+        addSubview(badge)
+        badge.backgroundColor = color
+        badge.frame = CGRect(origin: origin, size: CGSize(width: size, height: size))
+        return badge
+    }
+    
     @discardableResult func setFadeMask(at location: FadeMaskLocation, height: CGFloat = 70.0) -> CALayer {
         guard height > 0 else {
             assertionFailure("height must be > 0")
@@ -513,17 +532,6 @@ extension UIButton {
         attrString.addAttribute(.font, value: font, range: NSRange(location: 0, length: text.count))
         attrString.addAttribute(.foregroundColor, value: color, range: NSRange(location: 0, length: text.count))
         self.setAttributedTitle(attrString, for: state)
-    }
-    
-    func addBadge(with color: UIColor = .cherryRed, size: CGFloat = 6.0, topAnchorOffset: CGFloat = 0, rightAnchorOffset: CGFloat = 0) -> Badge {
-        let badge = Badge()
-        addSubview(badge)
-        badge.backgroundColor = color
-        badge.topAnchor == topAnchor + topAnchorOffset
-        badge.rightAnchor == rightAnchor + rightAnchorOffset
-        badge.widthAnchor == size
-        badge.heightAnchor == size
-        return badge
     }
     
     func setImageFromResource(_ resource: MediaResource, defaultImage: UIImage? = nil, completion: ((UIImage?, Error?) -> Void)? = nil) {
