@@ -87,7 +87,6 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
     lazy var myDataView: MyDataView = {
         return MyDataView(
             delegate: self,
-            sectors: self.viewModel.sectors,
             viewModel: self.viewModel,
             frame: CGRect(
                 x: self.view.bounds.origin.x,
@@ -113,11 +112,9 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
     }()
 
     private lazy var myDataSectorLabelsView: MyDataSectorLabelsView = {
-        return MyDataSectorLabelsView(
-            sectors: self.viewModel.sectors,
-            frame: myDataView.frame,
-            screenType: self.screenType
-        )
+        return MyDataSectorLabelsView(sectors: self.viewModel.sectors,
+                                      frame: myDataView.frame,
+                                      screenType: self.screenType)
     }()
     
     private lazy var scrollView: UIScrollView = {
@@ -172,13 +169,22 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
 
         addTabRecognizer()
         addSubViews()
+        observeViewModel()
+    }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateReadyState()
+    }
+}
+
+// MARK: - Private
+
+private extension MyUniverseViewController {
+    
+    func observeViewModel() {
         viewModel.observe(\MyUniverseViewModel.dataReady, options: [.initial]) { [unowned self] _, _ in
             self.updateReadyState()
-            }.addTo(tokenBin)
-        viewModel.observe(\MyUniverseViewModel.profileImageURL, options: [.initial]) { [unowned self] _, _ in
-            self.myDataView.updateProfileImageResource()
-            NotificationCenter.default.post(name: .startSyncUploadMediaNotification, object: nil)
             }.addTo(tokenBin)
         viewModel.observe(\MyUniverseViewModel.toBeVisionHeadline, options: [.initial]) { [unowned self] _, _ in
             self.myWhyView.reload()
@@ -192,20 +198,14 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
         viewModel.observe(\MyUniverseViewModel.partners, options: [.initial]) { [unowned self] _, _ in
             self.myWhyView.reload()
             }.addTo(tokenBin)
+        viewModel.observe(\MyUniverseViewModel.profileImageURL, options: [.initial]) { [unowned self] _, _ in
+            self.myDataView.updateProfileImageResource()
+            NotificationCenter.default.post(name: .startSyncUploadMediaNotification, object: nil)
+            }.addTo(tokenBin)
         viewModel.observe(\MyUniverseViewModel.statisticsUpdated, options: [.initial]) { [unowned self] _, _ in
             self.myDataView.reload()
             }.addTo(tokenBin)
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        updateReadyState()
-    }
-}
-
-// MARK: - Private
-
-private extension MyUniverseViewController {
     
     func addSubViews() {
         backgroundScrollView.addSubview(backgroundImage)

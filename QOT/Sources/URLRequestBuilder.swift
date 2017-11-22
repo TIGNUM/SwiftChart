@@ -15,7 +15,7 @@ final class URLRequestBuilder {
 
     init(deviceID: String) {
         self.deviceID = deviceID
-        self.appVersion = Bundle.main.versionNumber
+        self.appVersion = Bundle.main.versionAndBuildNumber
     }
 
     func make(with buildable: URLRequestBuildable, authToken: String?) throws -> URLRequestConvertible {

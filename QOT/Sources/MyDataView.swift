@@ -9,54 +9,36 @@
 import UIKit
 import Kingfisher
 
-protocol MyUniverseView: class {
-    var previousBounds: CGRect { get set }
-    func draw()
-}
-
-extension MyUniverseView where Self: UIView {
-    func cleanUpAndDraw() {
-        guard previousBounds.equalTo(bounds) == false else {
-            return
-        }
-
-        cleanUp()
-        previousBounds = bounds
-        draw()
-    }
-
-    func cleanUp() {
-        removeSubLayers()
-        removeSubViews()
-    }
-}
-
 protocol MyDataViewDelegate: class {
     func myDataView(_ view: MyDataView, pressedProfileButton button: UIButton)
 }
 
-final class MyDataView: UIView, MyUniverseView {
+final class MyDataView: UIView {
+    
     // MARK: - Properties
 
     private let viewModel: MyUniverseViewModel
+    private var dataPoints = [ChartDataPoint]()
+    private var dataPointConnections = [CAShapeLayer]()
     var universeDotsLayer = CAShapeLayer()
     var profileImageBackgroundView = UIView()
     var profileImageButton = UIButton()
     var profileImageViewOverlay = UIImageView()
     var profileImageViewOverlayEffect = UIImageView()
-    var sectors = [Sector]()
     var previousBounds = CGRect.zero
-    var dataPoints = [ChartDataPoint]()
     weak var delegate: MyDataViewDelegate?
 
     // MARK: - Init
 
-    init(delegate: MyDataViewDelegate, sectors: [Sector], viewModel: MyUniverseViewModel, frame: CGRect) {
+    init(delegate: MyDataViewDelegate, viewModel: MyUniverseViewModel, frame: CGRect) {
         self.delegate = delegate
-        self.sectors = sectors
         self.viewModel = viewModel
 
         super.init(frame: frame)
+        
+        drawBackground()
+        setupProfileImage()
+        updateProfileImageResource()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -68,17 +50,19 @@ final class MyDataView: UIView, MyUniverseView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        cleanUpAndDraw()
+        guard previousBounds.equalTo(bounds) == false else { return }
+        previousBounds = bounds
+        reload()
     }
     
     func reload() {
-        cleanUpAndDraw()
+        drawUniverse(with: viewModel.sectors)
+        bringSubview(toFront: profileImageBackgroundView)
+        bringSubview(toFront: profileImageButton)
+        bringSubview(toFront: profileImageViewOverlay)
+        bringSubview(toFront: profileImageViewOverlayEffect)
     }
 
-    func draw() {
-        drawUniverse(with: sectors, layout: Layout.MeSection(viewControllerFrame: bounds))
-    }
-    
     func updateProfileImageResource() {
         let placeholder = R.image.universe_2state()
         profileImageButton.kf.setBackgroundImage(with: viewModel.profileImageURL,
@@ -107,27 +91,22 @@ final class MyDataView: UIView, MyUniverseView {
 // MARK: - Private Helpers / Draw SolarSystem
 
 private extension MyDataView {
-
-    func drawUniverse(with sectors: [Sector], layout: Layout.MeSection) {
-        self.sectors = sectors
-
+    
+    func drawBackground() {
+        let layout = Layout.MeSection(viewControllerFrame: bounds)
         drawBackCircles(layout: layout, radius: layout.radiusAverageLoad, linesDashPattern: [2, 1])
         drawBackCircles(layout: layout, radius: layout.radiusMaxLoad)
+    }
 
-        setupProfileImage(layout: layout)
-        updateProfileImageResource()
-        
+    func drawUniverse(with sectors: [Sector]) {
+        let layout = Layout.MeSection(viewControllerFrame: bounds)
         MyUniverseHelper.collectCenterPoints(layout: layout, sectors: sectors, relativeCenter: profileImageButton.center)
         drawDataPointConnections(layout: layout, sectors: sectors)
         drawDataPoints(layout: layout, sectors: sectors)
-
-        addSubview(profileImageBackgroundView)
-        addSubview(profileImageButton)
-        addSubview(profileImageViewOverlay)
-        addSubview(profileImageViewOverlayEffect)
     }
     
-    func setupProfileImage(layout: Layout.MeSection) {
+    func setupProfileImage() {
+        let layout = Layout.MeSection(viewControllerFrame: bounds)
         let frame = layout.profileImageViewFrame
         let cornerRadius = (frame.size.width * 0.5)
 
@@ -152,47 +131,44 @@ private extension MyDataView {
         profileImageButton.clipsToBounds = true
         
         addImageEffect(center: layout.loadCenter)
+        
+        addSubview(profileImageBackgroundView)
+        addSubview(profileImageButton)
+        addSubview(profileImageViewOverlay)
+        addSubview(profileImageViewOverlayEffect)
     }
 
     func addImageEffect(center: CGPoint) {
-        let circleLayer = CAShapeLayer.circle(
-            center: center,
-            radius: profileImageButton.frame.width * 0.5,
-            fillColor: .clear,
-            strokeColor: Color.MeSection.whiteStrokeLight
-        )
-
+        let circleLayer = CAShapeLayer.circle(center: center,
+                                              radius: profileImageButton.frame.width * 0.5,
+                                              fillColor: .clear,
+                                              strokeColor: Color.MeSection.whiteStrokeLight)
         circleLayer.lineWidth = 5
         circleLayer.addGlowEffect(color: .white)
         layer.addSublayer(circleLayer)
     }
-
+    
     func drawBackCircles(layout: Layout.MeSection, radius: CGFloat, linesDashPattern: [NSNumber]? = nil) {
-        let circleLayer = CAShapeLayer.circle(
-            center: layout.loadCenter,
-            radius: radius,
-            fillColor: .clear,
-            strokeColor: Color.MeSection.backgroundCircle
-        )
-
+        let circleLayer = CAShapeLayer.circle(center: layout.loadCenter,
+                                              radius: radius,
+                                              fillColor: .clear,
+                                              strokeColor: Color.MeSection.backgroundCircle)
         circleLayer.lineDashPattern = linesDashPattern
         layer.addSublayer(circleLayer)
     }
 
     func drawDataPointConnections(layout: Layout.MeSection, sectors: [Sector]) {
-        let connections = MyUniverseHelper.dataPointConnections(sectors: sectors, layout: layout, center: profileImageButton.center)
-        connections.forEach { (connection: CAShapeLayer) in
-            layer.addSublayer(connection)
-        }
+        dataPointConnections.forEach { $0.removeFromSuperlayer() }
+        dataPointConnections = MyUniverseHelper.dataPointConnections(sectors: sectors, layout: layout, center: profileImageButton.center)
+        dataPointConnections.forEach { layer.addSublayer($0) }
     }
 
     func drawDataPoints(layout: Layout.MeSection, sectors: [Sector]) {
+        dataPoints.forEach { $0.dot.removeFromSuperlayer() }
         universeDotsLayer = CAShapeLayer()
         universeDotsLayer.backgroundColor = UIColor.yellow.cgColor
         dataPoints = MyUniverseHelper.dataPoints(sectors: sectors, layout: layout)
-        dataPoints.forEach { (dataPoint: ChartDataPoint) in
-            universeDotsLayer.addSublayer(dataPoint.dot)
-        }
+        dataPoints.forEach { universeDotsLayer.addSublayer($0.dot) }
         layer.addSublayer(universeDotsLayer)
     }
 }
@@ -200,6 +176,7 @@ private extension MyDataView {
 // MARK: - Actions
 
 private extension MyDataView {
+    
     @objc func profileButtonPressed(_ sender: UIButton) {
         delegate?.myDataView(self, pressedProfileButton: sender)
     }

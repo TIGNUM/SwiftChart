@@ -10,7 +10,7 @@ import UIKit
 import Anchorage
 import ReactiveKit
 
-final class MyWhyView: PassthroughView, MyUniverseView {
+final class MyWhyView: PassthroughView {
 
     var previousBounds = CGRect.zero
     let screenType: MyUniverseViewController.ScreenType
@@ -37,6 +37,8 @@ final class MyWhyView: PassthroughView, MyUniverseView {
         let viewRightMargin = Layout.MeSection(viewControllerFrame: frame).scrollViewOffset * 3.5
         let viewFrame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.width - viewRightMargin, height: frame.height)
         super.init(frame: viewFrame)
+        
+        draw()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -46,10 +48,11 @@ final class MyWhyView: PassthroughView, MyUniverseView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        cleanUpAndDraw()
+        guard previousBounds.equalTo(bounds) == false else { return }
+        previousBounds = bounds
         reload() // @warning reload after drawing else views won't be laid out
     }
-
+    
     func draw() {
         drawMyWhy(layout: Layout.MeSection(viewControllerFrame: self.fullViewFrame))
         layoutIfNeeded()

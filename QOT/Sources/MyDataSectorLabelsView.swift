@@ -8,7 +8,8 @@
 
 import UIKit
 
-final class MyDataSectorLabelsView: UIView, MyUniverseView {
+final class MyDataSectorLabelsView: UIView {
+    
     // MARK: - Properties
 
     var sectorLabels = [SectorLabel]()
@@ -34,7 +35,14 @@ final class MyDataSectorLabelsView: UIView, MyUniverseView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        cleanUpAndDraw()
+        guard previousBounds.equalTo(bounds) == false else { return }
+        cleanUp()
+        previousBounds = bounds
+        draw()
+    }
+    
+    func cleanUp() {
+        sectorLabels.forEach { $0.label.removeFromSuperview() }
     }
 
     func draw() {
