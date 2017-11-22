@@ -18,7 +18,7 @@ final class CalendarEvent: SyncableObject, UpSyncableWithLocalAndRemoteIDs {
     
     @objc dynamic var ekEventModifiedAt: Date = Date()
 
-    @objc dynamic var title: String = ""
+    @objc dynamic var title: String?
 
     @objc dynamic var startDate: Date = Date()
 

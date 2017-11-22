@@ -26,8 +26,16 @@ final class CalendarImportTask {
     }
 
     func sync() -> CalendarImportResult {
-        let predicate = store.predicateForEvents(withStart: start, end: end, calendars: store.syncEnabledCalendars)
-        let events = store.events(matching: predicate)
+        let calendars = store.syncEnabledCalendars
+        let events: [EKEvent]
+        if calendars.count == 0 {
+            events = []
+        } else {
+            // @warning: if calendars.count == 0 predicate will search all calendars hence the above check.
+            let predicate = store.predicateForEvents(withStart: start, end: end, calendars: calendars)
+            events = store.events(matching: predicate)
+        }
+        
         let result: CalendarImportResult
         do {
             let existingCalendarEvents: Results<CalendarEvent> = realm.objects()
@@ -46,35 +54,20 @@ final class CalendarImportTask {
 
     private func createOrUpdateCalendarEvents(with ekEvents: [EKEvent], realm: Realm) {
         for ekEvent in ekEvents {
-            // FIXME: DELETE
-            CLSLogv("createOrUpdateCalendarEvents - start logging", getVaList([]))
-            if ekEvent.title == nil {
-                CLSLogv("createOrUpdateCalendarEvents - title is nil!", getVaList([]))
-            }
-            if ekEvent.startDate == nil {
-                CLSLogv("createOrUpdateCalendarEvents - startDate is nil!", getVaList([]))
-            }
-            if ekEvent.endDate == nil {
-                CLSLogv("createOrUpdateCalendarEvents - endDate is nil!", getVaList([]))
-            }
-            CLSLogv("createOrUpdateCalendarEvents - passed nil checks", getVaList([]))
-            CLSLogv("Log createOrUpdateCalendarEvents - ekEvent.title %@", getVaList([ekEvent.title]))
-            CLSLogv("Log createOrUpdateCalendarEvents - ekEvent.startDate %@", getVaList([ekEvent.startDate.description]))
-            CLSLogv("Log createOrUpdateCalendarEvents - ekEvent.endDate %@", getVaList([ekEvent.endDate.description]))
-            CLSLogv("createOrUpdateCalendarEvents - end logging", getVaList([]))
-            
-            let predicate = NSPredicate.calendarEvent(title: ekEvent.title,
-                                                      startDate: ekEvent.startDate,
-                                                      endDate: ekEvent.endDate)
-            if let existingCalendarEvent: CalendarEvent = realm.objects(predicate: predicate).first {
-                if let modifiedAt = ekEvent.lastModifiedDate, modifiedAt > existingCalendarEvent.ekEventModifiedAt {
-                    existingCalendarEvent.update(event: ekEvent)
+            if let startDate = ekEvent.startDate, let endDate = ekEvent.endDate {
+                let existingCalendarEvent = realm.objects(CalendarEvent.self).filter(title: ekEvent.title,
+                                                                                     startDate: startDate,
+                                                                                     endDate: endDate).first
+                if let existing = existingCalendarEvent {
+                    if let modifiedAt = ekEvent.lastModifiedDate, modifiedAt > existing.ekEventModifiedAt {
+                        existing.update(event: ekEvent)
+                    }
+                    // The event might have been soft deleted before so un delete it
+                    existing.deleted = false
+                } else {
+                    let new = CalendarEvent(event: ekEvent)
+                    realm.add(new)
                 }
-                // The event might have been soft deleted before so un delete it
-                existingCalendarEvent.deleted = false
-            } else {
-                let new = CalendarEvent(event: ekEvent)
-                realm.add(new)
             }
         }
     }
