@@ -22,7 +22,7 @@ final class ChartViewController: UIViewController {
 
     private let viewModel: ChartViewModel
     private var pageControls = [PageControl]()
-
+    
     private lazy var tableView: UITableView = {
         return UITableView(style: .grouped,
                            delegate: self,
@@ -64,9 +64,8 @@ private extension ChartViewController {
 
     func setupView() {
         view.addSubview(tableView)
-        view.addFade(at: .zero, direction: .down)
-        tableView.verticalAnchors == view.verticalAnchors
-        tableView.horizontalAnchors == view.horizontalAnchors
+        view.addFadeView(at: .top)
+        tableView.edgeAnchors == view.edgeAnchors
     }
     
     func createPageControls() {

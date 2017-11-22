@@ -18,7 +18,7 @@ protocol LibraryViewControllerDelegate: class {
 final class LibraryViewController: UIViewController, PageViewControllerNotSwipeable {
 
     private let paddingTop: CGFloat = 24.0
-    private let viewModel: LibraryViewModel
+    private let viewModel: LibraryViewModelInterface
     weak var delegate: LibraryViewControllerDelegate?
 
     private lazy var tableView: UITableView = {
@@ -29,7 +29,7 @@ final class LibraryViewController: UIViewController, PageViewControllerNotSwipea
         )
     }()
 
-    init(viewModel: LibraryViewModel) {
+    init(viewModel: LibraryViewModelInterface) {
         self.viewModel = viewModel
 
         super.init(nibName: nil, bundle: nil)
@@ -65,9 +65,7 @@ final class LibraryViewController: UIViewController, PageViewControllerNotSwipea
         tableView.contentInset.top = view.safeMargins.top + paddingTop
         tableView.contentInset.bottom = view.safeMargins.bottom
         tableView.backgroundView = viewModel.tableViewBackground
-        
-        view.addFade(at: .zero, direction: .down)
-        view.setFadeMask(at: .bottom)
+        view.setFadeMask(at: viewModel.fadeMaskLocation)
     }
     
     @available(iOS 11.0, *)
@@ -75,6 +73,7 @@ final class LibraryViewController: UIViewController, PageViewControllerNotSwipea
         super.viewLayoutMarginsDidChange()
         tableView.contentInset.top = view.safeMargins.top + paddingTop
         tableView.contentInset.bottom = view.safeMargins.bottom
+        view.setFadeMask(at: viewModel.fadeMaskLocation)
     }
 }
 
@@ -91,7 +90,7 @@ extension LibraryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return viewModel.tools == true ? 313 : indexPath.section == 0 ? 316 : 313
+        return viewModel.heightForRowAt(indexPath)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -100,7 +99,7 @@ extension LibraryViewController: UITableViewDelegate, UITableViewDataSource {
             delegate: delegate,
             title: viewModel.titleForSection(indexPath.section),
             contentCollection: viewModel.contentCollection(at: indexPath),
-            collectionViewCellType: viewModel.tools == true ? .category : ((indexPath.section == 0) ? .latestPost : .category)
+            collectionViewCellType: viewModel.contentCollectionType(at: indexPath)
         )
         
         return cell

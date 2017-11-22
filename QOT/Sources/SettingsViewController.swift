@@ -36,7 +36,7 @@ final class SettingsViewController: UIViewController {
     weak var delegate: SettingsCoordinatorDelegate?
     let settingsType: SettingsType.SectionType
     var tableView: UITableView!
-
+    
     // MARK: - Init
     
     init(viewModel: SettingsViewModel, services: Services, settingsType: SettingsType.SectionType) {
@@ -82,7 +82,7 @@ private extension SettingsViewController {
         tableView = UITableView(frame: .zero, style: .grouped)
         view.addSubview(tableView)
         view.backgroundColor = .clear
-        view.addFade(at: .zero, direction: .down)
+        view.addFadeView(at: .top)
         tableView.backgroundView = UIImageView(image: R.image.backgroundSidebar())
         tableView.delegate = self
         tableView.dataSource = self
@@ -92,8 +92,7 @@ private extension SettingsViewController {
         tableView.separatorColor = .clear
         tableView.allowsSelection = true
         tableView.rowHeight = 44
-        tableView.horizontalAnchors == view.horizontalAnchors
-        tableView.verticalAnchors == view.verticalAnchors
+        tableView.edgeAnchors == view.edgeAnchors
     }
 
     func registerCells() {

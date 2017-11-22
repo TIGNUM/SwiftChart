@@ -61,7 +61,7 @@ private extension PartnersViewController {
 
     func setBackgroundColor() {
         view.backgroundColor = .clear
-        view.addFade(at: .zero, direction: .down)
+        view.addFadeView(at: .top)
         scrollView.backgroundColor = .clear
     }
 

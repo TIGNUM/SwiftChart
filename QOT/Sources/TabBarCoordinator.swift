@@ -54,7 +54,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     }()
     
     private lazy var toolsViewController: LibraryViewController = {
-        let viewModel = LibraryViewModel(services: services, tools: true)
+        let viewModel = ToolsViewModel(services: services, fadeMaskLocation: .topAndBottom)
         let toolsViewController = LibraryViewController(viewModel: viewModel)
         toolsViewController.title = R.string.localized.topTabBarItemTitlePerpareTools()
         toolsViewController.delegate = self

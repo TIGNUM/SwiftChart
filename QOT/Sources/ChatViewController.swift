@@ -103,6 +103,7 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
         super.viewLayoutMarginsDidChange()
         collectionView.contentInset.top = paddingTop + view.safeMargins.top
         collectionView.contentInset.bottom = view.safeMargins.bottom
+        view.setFadeMask(at: .topAndBottom)
     }
 
     private func scrollToSnapOffset(animated: Bool) {
@@ -130,8 +131,7 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
             collectionView.backgroundView = UIImageView(image: backgroundImage)
         }
 
-        view.addFade(at: .zero, direction: .down)
-        view.setFadeMask(at: .bottom)
+        view.setFadeMask(at: .topAndBottom)
     }
 
     private func registerReusableViews() {

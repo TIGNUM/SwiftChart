@@ -45,7 +45,6 @@ final class LearnListAnimation: NSObject {
     }
     
     private func prepare(_ tabBarController: TabBarController, _ learnCategoryListViewController: LearnCategoryListViewController, _ learnContentListViewController: LearnContentListViewController) {
-        tabBarController.tabBarBottomConstraint?.constant = isPresenting ? 0 : 64
         tabBarController.view.layoutIfNeeded()
         tabBarController.view.alpha = isPresenting ? 1 : 0
         
@@ -53,7 +52,7 @@ final class LearnListAnimation: NSObject {
         learnContentListViewController.pagingCollectionViewTopConstraint?.constant = isPresenting ? -constraintValue : 0
         learnContentListViewController.pagingCollectionViewBottomConstraint?.constant = isPresenting ? 0 : constraintValue
         
-        let bottomConstraint = Layout.TabBarView.height
+        let bottomConstraint = tabBarController.tabBar.frame.height
         learnContentListViewController.getBackButtonBottomConstraint?.constant = isPresenting ? bottomConstraint : 0
         learnContentListViewController.view.layoutIfNeeded()
         learnContentListViewController.view.alpha = isPresenting ? 0 : 1
@@ -64,7 +63,8 @@ final class LearnListAnimation: NSObject {
     }
     
     private func animate(_ tabBarController: TabBarController, _ learnCategoryListViewController: LearnCategoryListViewController, _ learnContentListViewController: LearnContentListViewController) {
-        tabBarController.tabBarBottomConstraint?.constant = isPresenting ? 64 : 0
+        let tabBarFrame = tabBarController.tabBar.frame
+        tabBarController.tabBar.frame = tabBarFrame.offsetBy(dx: 0, dy: isPresenting ? tabBarFrame.height : -tabBarFrame.height)
         tabBarController.view.layoutIfNeeded()
         tabBarController.view.alpha = isPresenting ? 0 : 1
         
@@ -72,7 +72,7 @@ final class LearnListAnimation: NSObject {
         learnContentListViewController.pagingCollectionViewTopConstraint?.constant = isPresenting ? 0 : -constraintValue
         learnContentListViewController.pagingCollectionViewBottomConstraint?.constant = isPresenting ? constraintValue : 0
         
-        let bottomConstraint = Layout.TabBarView.height
+        let bottomConstraint = tabBarController.tabBar.frame.height
         learnContentListViewController.getBackButtonBottomConstraint?.constant = isPresenting ? 0 : bottomConstraint
         learnContentListViewController.view.layoutIfNeeded()
         learnContentListViewController.view.alpha = isPresenting ? 1 : 0

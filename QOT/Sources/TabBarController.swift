@@ -36,7 +36,6 @@ class TabBarController: UITabBarController {
         )
     }
     
-    weak var tabBarBottomConstraint: NSLayoutConstraint?
     weak var tabBarControllerDelegate: TabBarControllerDelegate?
 
     private var indicatorView: UIView?
@@ -64,11 +63,16 @@ class TabBarController: UITabBarController {
         super.viewWillAppear(animated)
         
         if config.useIndicatorView {
-            if config.useIndicatorView {
+            if indicatorView == nil {
                 setupIndicatorView()
             }
             setIndicatorViewToButtonIndex(selectedIndex, animated: true)
         }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        updateFlagFrames() // unfortunately we can't manage any auto-layout constraints in UITabBar (iOS forbids it by crashing), so we resort to frame based positioning. This means we must relayout any unread flags (the dots) when viewDidLayoutSubviews() is called
     }
     
     func frameForButton(at index: Int) -> CGRect? {
@@ -123,19 +127,15 @@ class TabBarController: UITabBarController {
         guard let items = tabBar.items as? [TabBarItem] else {
             return
         }
-        for (index, item) in items.enumerated() {
+        items.forEach { (item: TabBarItem) in
             if item.isRead {
                 item.readFlag?.removeFromSuperview()
                 item.readFlag = nil
             } else if item.readFlag == nil {
-                item.readFlag = self.tabBar.addBadge(origin: CGPoint(
-                    x: ((tabBar.buttonWidth * CGFloat(index)) +
-                        (tabBar.buttonWidth - item.textWidth) +
-                        config.readFlagPadding),
-                    y: -config.readFlagPadding
-                ))
+                item.readFlag = self.tabBar.addBadge(origin: .zero)
             }
         }
+        updateFlagFrames()
     }
     
     // MARK: - private
@@ -160,6 +160,23 @@ class TabBarController: UITabBarController {
         tabBar.backgroundColor = config.tabBarBackgroundColor
         tabBar.backgroundImage = config.tabBarBackgroundImage
         tabBar.shadowImage = config.tabBarShadowImage
+    }
+    
+    private func updateFlagFrames() {
+        guard let items = tabBar.items as? [TabBarItem] else {
+            return
+        }
+        for (index, item) in items.enumerated() {
+            guard let flag = item.readFlag else {
+                return
+            }
+            flag.frame = CGRect(origin: CGPoint(
+                x: ((tabBar.buttonWidth * CGFloat(index)) +
+                    (tabBar.buttonWidth - item.textWidth) +
+                    config.readFlagPadding),
+                y: -config.readFlagPadding
+            ), size: flag.bounds.size)
+        }
     }
 }
 

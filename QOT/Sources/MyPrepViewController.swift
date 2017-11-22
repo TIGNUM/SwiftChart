@@ -110,6 +110,7 @@ final class MyPrepViewController: UIViewController, FullScreenLoadable, PageView
         super.viewLayoutMarginsDidChange()
         tableView.contentInset.top = view.safeMargins.top
         tableView.contentInset.bottom = view.safeMargins.bottom
+        view.setFadeMask(at: .topAndBottom)
     }
 }
 
@@ -162,8 +163,7 @@ private extension MyPrepViewController {
         tableView.contentInset.top = view.safeMargins.top + paddingTop
         tableView.contentInset.bottom = view.safeMargins.bottom
         
-        view.addFade(at: .zero, direction: .down)
-        view.setFadeMask(at: .bottom)
+        view.setFadeMask(at: .topAndBottom)
     }
 
     func updateView() {

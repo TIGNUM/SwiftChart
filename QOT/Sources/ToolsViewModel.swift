@@ -1,8 +1,8 @@
 //
-//  LibraryViewModel.swift
+//  ToolsViewModel.swift
 //  QOT
 //
-//  Created by Aamir Suhial Mir on 30/03/2017.
+//  Created by Lee Arromba on 22/11/2017.
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
@@ -10,54 +10,53 @@ import Foundation
 import ReactiveKit
 import RealmSwift
 
-final class LibraryViewModel: LibraryViewModelInterface {
-
+final class ToolsViewModel: LibraryViewModelInterface {
+    
     // MARK: - Properties
-
+    
     private let categories: AnyRealmCollection<ContentCategory>
     let updates = PublishSubject<CollectionUpdate, NoError>()
     let fadeMaskLocation: UIView.FadeMaskLocation
-
+    
     var sectionCount: Int {
         return categories.count
     }
     
     var tableViewBackground: UIImageView? {
-        return UIImageView(image: R.image.backgroundSidebar())
-    }    
-
+        return nil
+    }
+    
     // MARK: - Init
-
+    
     init(services: Services, fadeMaskLocation: UIView.FadeMaskLocation) {
-        self.categories = services.contentService.libraryCategories()
+        self.categories = services.contentService.toolsCategories()
         self.fadeMaskLocation = fadeMaskLocation
     }
 }
 
 // MARK: - Public
 
-extension LibraryViewModel {
+extension ToolsViewModel {
     
     func titleForSection(_ section: Int) -> NSAttributedString {
         let title = categories[section].title.uppercased()
         let headline = Style.subTitle(title, .white).attributedString()
-        let smallHeadline = Style.headlineSmall(title, .white).attributedString()
-        return (section == 0 ? smallHeadline : headline)
+        return headline
     }
-
+    
     func contentCollection(at indexPath: IndexPath) -> [ContentCollection] {
         return Array(categories[indexPath.section].contentCollections(section: .library))
     }
     
     func contentCollectionType(at indexPath: IndexPath) -> LibraryTableViewCell.CollectionViewCellType {
-        return (indexPath.section == 0) ? .latestPost : .category
+        return .category
     }
-
+    
     func contentCount(at indexPath: IndexPath) -> Int {
         return categories[indexPath.section].contentCollections(section: .library).count
     }
     
     func heightForRowAt(_ indexPath: IndexPath) -> CGFloat {
-        return indexPath.section == 0 ? 316 : 313
+        return 313
     }
 }

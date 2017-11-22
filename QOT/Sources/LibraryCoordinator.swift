@@ -23,7 +23,7 @@ final class LibraryCoordinator: ParentCoordinator {
     init(root: SidebarViewController, services: Services) {
         self.rootViewController = root
         self.services = services
-        libraryViewController = LibraryViewController(viewModel: LibraryViewModel(services: services))
+        libraryViewController = LibraryViewController(viewModel: LibraryViewModel(services: services, fadeMaskLocation: .top))
         libraryViewController.title = R.string.localized.sidebarTitleLibrary().uppercased()
         libraryViewController.delegate = self
     }

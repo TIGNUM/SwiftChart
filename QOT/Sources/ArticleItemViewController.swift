@@ -131,14 +131,11 @@ private extension ArticleItemViewController {
         let backgroundImage = (viewModel.backgroundImage == nil) ? R.image.backgroundSidebar() : viewModel.backgroundImage
         tableView.backgroundView = UIImageView(image: backgroundImage)
         view.addSubview(tableView)
-        tableView.topAnchor == view.topAnchor
         tableView.estimatedSectionHeaderHeight = 100
         view.backgroundColor = .clear
-        tableView.bottomAnchor == view.bottomAnchor
-        tableView.horizontalAnchors == view.horizontalAnchors
-        tableView.layoutIfNeeded()
+        tableView.edgeAnchors == view.edgeAnchors
+        view.addFadeView(at: .top)
         view.layoutIfNeeded()
-        view.addFade(at: .zero, direction: .down)
     }
 
     func setTableViewHeader() {

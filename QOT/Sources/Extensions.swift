@@ -264,9 +264,39 @@ extension Collection {
 
 extension UIView {
 
-    enum FadeDirection {
-        case up
-        case down
+    enum FadeViewLocation {
+        case top
+        case bottom
+    }
+    
+    @discardableResult func addFadeView(at location: FadeViewLocation, height: CGFloat = 70.0, primaryColor: UIColor = .darkIndigo, fadeColor: UIColor = .clear) -> UIView {
+        guard height > 0 else {
+            assertionFailure("height must be > 0")
+            return UIView()
+        }
+        
+        let fadeView = UIView()
+        fadeView.backgroundColor = .clear
+
+        let fadeLayer = CAGradientLayer()
+        fadeLayer.frame = fadeView.bounds
+
+        fadeView.layer.addSublayer(fadeLayer)
+        addSubview(fadeView)
+
+        fadeView.horizontalAnchors == horizontalAnchors
+        fadeView.heightAnchor == height
+        
+        switch location {
+        case .top:
+            fadeView.topAnchor == safeTopAnchor
+            fadeLayer.colors = [primaryColor.cgColor, primaryColor.cgColor, fadeColor.cgColor]
+        case .bottom:
+            fadeView.bottomAnchor == safeBottomAnchor
+            fadeLayer.colors = [fadeColor.cgColor, primaryColor.cgColor, primaryColor.cgColor]
+        }
+
+        return fadeView
     }
     
     enum FadeMaskLocation {
@@ -275,50 +305,6 @@ extension UIView {
         case topAndBottom
     }
 
-    @discardableResult func addFade(at origin: CGPoint, direction: FadeDirection = .down, height: CGFloat = 70.0, primaryColor: UIColor = .darkIndigo, fadeColor: UIColor = .clear) -> UIView {
-        guard height > 0 else {
-            assertionFailure("height must be > 0")
-            return UIView()
-        }
-        
-        let fadeView = UIView(frame: CGRect(origin: origin, size: CGSize(width: bounds.size.width, height: height)))
-        fadeView.backgroundColor = .clear
-
-        let fadeLayer = CAGradientLayer()
-        fadeLayer.frame = fadeView.bounds
-
-        switch direction {
-        case .down:
-            fadeLayer.colors = [primaryColor.cgColor, primaryColor.cgColor, fadeColor.cgColor]
-        case .up:
-            fadeLayer.colors = [fadeColor.cgColor, primaryColor.cgColor, primaryColor.cgColor]
-        }
-
-        fadeView.layer.addSublayer(fadeLayer)
-
-        addSubview(fadeView)
-        return fadeView
-    }
-    
-    @discardableResult func addBadge(with color: UIColor = .cherryRed, size: CGFloat = 6.0, topAnchorOffset: CGFloat = 0, rightAnchorOffset: CGFloat = 0) -> Badge {
-        let badge = Badge()
-        addSubview(badge)
-        badge.backgroundColor = color
-        badge.topAnchor == topAnchor + topAnchorOffset
-        badge.rightAnchor == rightAnchor + rightAnchorOffset
-        badge.widthAnchor == size
-        badge.heightAnchor == size
-        return badge
-    }
-    
-    @discardableResult func addBadge(with color: UIColor = .cherryRed, size: CGFloat = 6.0, origin: CGPoint) -> Badge {
-        let badge = Badge()
-        addSubview(badge)
-        badge.backgroundColor = color
-        badge.frame = CGRect(origin: origin, size: CGSize(width: size, height: size))
-        return badge
-    }
-    
     @discardableResult func setFadeMask(at location: FadeMaskLocation, height: CGFloat = 70.0) -> CALayer {
         guard height > 0 else {
             assertionFailure("height must be > 0")
@@ -330,10 +316,11 @@ extension UIView {
         
         let wrapperLayer = CALayer()
         wrapperLayer.backgroundColor = fadeColor
-        wrapperLayer.frame = bounds
         
         switch location {
         case .top:
+            wrapperLayer.frame = bounds.offsetBy(dx: 0, dy: safeMargins.top / 2)
+
             let fadeLayer = CAGradientLayer()
             fadeLayer.colors = [fadeColor, fadeColor, primaryColor]
             fadeLayer.frame = CGRect(x: 0, y: 0, width: wrapperLayer.bounds.width, height: height)
@@ -345,6 +332,8 @@ extension UIView {
             wrapperLayer.addSublayer(fadeLayer)
             wrapperLayer.addSublayer(contentLayer)
         case .bottom:
+            wrapperLayer.frame = bounds
+
             let fadeLayer = CAGradientLayer()
             fadeLayer.colors = [primaryColor, fadeColor, fadeColor]
             fadeLayer.frame = CGRect(x: 0, y: wrapperLayer.bounds.height - height, width: wrapperLayer.bounds.width, height: height)
@@ -356,6 +345,8 @@ extension UIView {
             wrapperLayer.addSublayer(fadeLayer)
             wrapperLayer.addSublayer(contentLayer)
         case .topAndBottom:
+            wrapperLayer.frame = bounds.insetBy(dx: 0, dy: safeMargins.top / 2)
+
             let topFadeLayer = CAGradientLayer()
             topFadeLayer.colors = [fadeColor, fadeColor, primaryColor]
             topFadeLayer.frame = CGRect(x: 0, y: 0, width: wrapperLayer.bounds.width, height: height)
@@ -375,6 +366,25 @@ extension UIView {
         
         layer.mask = wrapperLayer
         return wrapperLayer
+    }
+    
+    @discardableResult func addBadge(with color: UIColor = .cherryRed, size: CGFloat = 6.0, topAnchorOffset: CGFloat = 0, rightAnchorOffset: CGFloat = 0) -> Badge {
+        let badge = Badge()
+        addSubview(badge)
+        badge.backgroundColor = color
+        badge.topAnchor == topAnchor + topAnchorOffset
+        badge.rightAnchor == rightAnchor + rightAnchorOffset
+        badge.widthAnchor == size
+        badge.heightAnchor == size
+        return badge
+    }
+    
+    @discardableResult func addBadge(with color: UIColor = .cherryRed, size: CGFloat = 6.0, origin: CGPoint) -> Badge {
+        let badge = Badge()
+        addSubview(badge)
+        badge.backgroundColor = color
+        badge.frame = CGRect(origin: origin, size: CGSize(width: size, height: size))
+        return badge
     }
 
     func removeSubViews() {
