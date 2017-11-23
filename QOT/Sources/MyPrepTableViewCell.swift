@@ -57,7 +57,8 @@ final class MyPrepTableViewCell: UITableViewCell, Dequeueable {
             string: footer.uppercased(),
             letterSpacing: 2,
             font: Font.PTextSubtitle,
-            textColor: Color.whiteLight
+            textColor: Color.whiteLight,
+            lineBreakMode: NSLineBreakMode.byTruncatingTail
         )
         prepCount.attributedText = NSMutableAttributedString(
             string: count,
