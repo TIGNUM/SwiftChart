@@ -189,8 +189,8 @@ extension WeeklyChoicesViewController: UICollectionViewDataSource, UICollectionV
     }
 
     private func changePage(scrollView: UIScrollView) {
-        let changeOffset = CGFloat(cellSize().height) * CGFloat(viewModel.itemsPerWeek) / 3
-        let pageHeight = CGFloat(cellSize().height) * CGFloat(viewModel.itemsPerWeek)
+        let changeOffset = cellHeight() * CGFloat(viewModel.itemsPerWeek) / 3
+        let pageHeight = cellHeight() * CGFloat(viewModel.itemsPerWeek)
         let currentOffset: CGFloat = scrollView.contentOffset.y
         var targetOffset: CGFloat = 0
         var index = Int(fabs(currentOffset) / pageHeight)
@@ -218,7 +218,7 @@ extension WeeklyChoicesViewController: WeeklyChoicesDelegate {
         return CGFloat(-330)
     }
 
-    func cellSize() -> CGSize {
-        return CGSize(width: 300, height: collectionView.frame.height / 5.5)
+    func cellHeight() -> CGFloat {
+        return collectionView.frame.height / 5.5
     }
 }

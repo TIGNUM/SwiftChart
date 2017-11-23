@@ -11,7 +11,7 @@ import UIKit
 protocol WeeklyChoicesDelegate: class {
     func radius() -> CGFloat
     func circleX() -> CGFloat
-    func cellSize() -> CGSize
+    func cellHeight() -> CGFloat
 }
 
 final class WeeklyChoicesLayout: UICollectionViewLayout {
@@ -32,11 +32,11 @@ final class WeeklyChoicesLayout: UICollectionViewLayout {
     }
 
     override var collectionViewContentSize: CGSize {
-        guard let cellSize = delegate?.cellSize() else {
+        guard let cellHeight = delegate?.cellHeight() else {
             return .zero
         }
 
-        let contentHeight = (CGFloat(itemCount) * cellSize.height) + cellSize.height
+        let contentHeight = (CGFloat(itemCount) * cellHeight) + cellHeight
         return CGSize(width: width, height: contentHeight)
     }
 
@@ -44,7 +44,7 @@ final class WeeklyChoicesLayout: UICollectionViewLayout {
         guard
             let radius = delegate?.radius(),
             let circleX = delegate?.circleX(),
-            let cellSize = delegate?.cellSize()
+            let cellHeight = delegate?.cellHeight()
             else {
                 self.cache = []
                 return
@@ -57,15 +57,21 @@ final class WeeklyChoicesLayout: UICollectionViewLayout {
 
             let indexPath = IndexPath(item: index, section: 0)
             let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-            let y = CGFloat(index) * cellSize.height
-            let cellCenterY = y + (cellSize.height * 0.5)
-            let x = xPos(y: cellCenterY, radius: radius, circleX: circleX) ?? -10000
-            let accurateX = (abs(circleX / 2) - (radius - abs(circleX))) - x
-
-            attributes.frame = CGRect(x: accurateX, y: y, width: cellSize.width - 20, height: cellSize.height)
+            let y = CGFloat(index) * cellHeight
+            let cellCenterY = y + (cellHeight * 0.5)
+            
+            let x: CGFloat
+            let cellWidth: CGFloat
+            if let approxX = xPos(y: cellCenterY, radius: radius, circleX: circleX) {
+                x = (abs(circleX / 2) - (radius - abs(circleX))) - approxX
+                cellWidth = width - x
+            } else {
+                x = -10000
+                cellWidth = width
+            }
+            attributes.frame = CGRect(x: x, y: y, width: cellWidth, height: cellHeight)
             cache.append(attributes)
         }
-
         self.cache = cache
     }
 
