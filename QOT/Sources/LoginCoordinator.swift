@@ -40,7 +40,7 @@ final class LoginCoordinator: ParentCoordinator {
         let loginViewController = LoginViewController(delegate: self)
         let navigationController = UINavigationController(rootViewController: loginViewController)
         navigationController.navigationBar.applyDefaultStyle()
-        windowManager.setRootViewController(navigationController, atLevel: .normal, animated: true, completion: nil)
+        windowManager.show(navigationController, animated: true, completion: nil)
     }
 }
 

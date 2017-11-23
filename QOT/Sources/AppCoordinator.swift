@@ -97,7 +97,7 @@ final class AppCoordinator: ParentCoordinator {
         observeTimeZoneChange()
         
         let viewController = AnimatedLaunchScreenViewController()
-        windowManager.setRootViewController(viewController, atLevel: .normal, animated: false, completion: {
+        windowManager.show(viewController, animated: false, completion: {
             viewController.fadeInLogo()
             viewController.startAnimatingImages { [unowned viewController] in
                 viewController.fadeOutLogo {
@@ -294,8 +294,7 @@ extension AppCoordinator {
         let viewModel = MyToBeVisionViewModel(services: services)
         let myToBeVisionViewController = MyToBeVisionViewController(viewModel: viewModel, permissionHandler: permissionHandler)
         myToBeVisionViewController.delegate = self
-        windowManager.showWindow(atLevel: .priority)
-        windowManager.setRootViewController(myToBeVisionViewController, atLevel: .priority, animated: true, completion: nil)
+        windowManager.showPriority(myToBeVisionViewController, animated: true, completion: nil)
         currentPresentedController = myToBeVisionViewController
     }
 
@@ -313,8 +312,7 @@ extension AppCoordinator {
         let viewModel = MorningInterviewViewModel(services: services, questionGroupID: groupID, validFrom: validFrom, validTo: validTo)
         let morningInterViewController = MorningInterviewViewController(viewModel: viewModel)
         morningInterViewController.delegate = self
-        windowManager.showWindow(atLevel: .priority)
-        windowManager.setRootViewController(morningInterViewController, atLevel: .priority, animated: true, completion: nil)
+        windowManager.showPriority(morningInterViewController, animated: true, completion: nil)
         currentPresentedController = morningInterViewController
     }
     
@@ -330,20 +328,18 @@ extension AppCoordinator {
                                                    transitioningDelegate: nil,
                                                    topBarDelegate: self)
         topTabBarController = coordinator.topTabBarController        
-        windowManager.showWindow(atLevel: .priority)
-        windowManager.setRootViewController(coordinator.topTabBarController, atLevel: .priority, animated: true, completion: nil)
+        windowManager.showPriority(coordinator.topTabBarController, animated: true, completion: nil)
         currentPresentedNavigationController = coordinator.topTabBarController
     }
 
     func presentWeeklyChoices(forStartDate startDate: Date, endDate: Date, completion: (() -> Void)?) {
-        guard let services = services else { return}
+        guard let services = services else { return }
         onDismiss = completion
         AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
         let viewModel = SelectWeeklyChoicesDataModel(services: services, maxSelectionCount: Layout.MeSection.maxWeeklyPage, startDate: startDate, endDate: endDate)
         let image = windowManager.rootViewController(atLevel: .normal)?.view.screenshot()
         let viewController = SelectWeeklyChoicesViewController(delegate: self, viewModel: viewModel, backgroundImage: image)
-        windowManager.showWindow(atLevel: .priority)
-        windowManager.setRootViewController(viewController, atLevel: .priority, animated: true, completion: nil)
+        windowManager.showPriority(viewController, animated: true, completion: nil)
         currentPresentedController = viewController
     }
     
@@ -368,18 +364,14 @@ extension AppCoordinator {
     }
     
     private func startLearnContentItemCoordinator(services: Services, content: ContentCollection, category: ContentCategory) {
-        let level = WindowManager.Level.priority
-        guard let rootViewController = windowManager.rootViewController(atLevel: level) else {
-            return
-        }
         AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
-        let presentationManager = ContentItemAnimator(originFrame: rootViewController.view.frame)
-        let coordinator = LearnContentItemCoordinator(root: rootViewController, eventTracker: eventTracker, services: services, content: content, category: category, presentationManager: presentationManager, topBarDelegate: self, presentOnStart: false)
+        let presentationManager = ContentItemAnimator(originFrame: UIScreen.main.bounds)
+        // FIXME: we shouldn't really init a coordinator just to get some child content
+        let coordinator = LearnContentItemCoordinator(root: UIViewController(), eventTracker: eventTracker, services: services, content: content, category: category, presentationManager: presentationManager, topBarDelegate: self, presentOnStart: false)
         startChild(child: coordinator)
         topTabBarController = coordinator.topTabBarController
         currentPresentedNavigationController = coordinator.topTabBarController
-        windowManager.showWindow(atLevel: level)
-        windowManager.setRootViewController(coordinator.topTabBarController, atLevel: level, animated: true, completion: nil)
+        windowManager.showPriority(coordinator.topTabBarController, animated: true, completion: nil)
     }
 
     func showMajorAlert(type: AlertType, handler: (() -> Void)? = nil, handlerDestructive: (() -> Void)? = nil) {
@@ -390,8 +382,7 @@ extension AppCoordinator {
             self.windowManager.resignWindow(atLevel: .alert)
             handlerDestructive?()
         })
-        windowManager.showWindow(atLevel: .alert)
-        windowManager.setRootViewController(alert, atLevel: .alert, animated: true, completion: nil)
+        windowManager.showAlert(alert, animated: true, completion: nil)
         currentPresentedController = alert
     }
 

@@ -169,7 +169,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     }
     
     func start() {
-        windowManager.setRootViewController(tabBarController, atLevel: .normal, animated: true, completion: {
+        windowManager.show(tabBarController, animated: true, completion: {
             guard let tutorial = Tutorial(rawValue: self.selectedIndex.value) else {
                 return
             }
@@ -186,13 +186,11 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         tutorial.set()
         
         let viewModel = TutorialViewModel(tutorial: tutorial)
-        let level = WindowManager.Level.overlay
         let viewController = TutorialViewController(viewModel: viewModel, buttonFrame: buttonFrame) {
-            self.windowManager.resignWindow(atLevel: level)
+            self.windowManager.resignWindow(atLevel: .overlay)
         }
         viewController.modalTransitionStyle = .crossDissolve
-        windowManager.showWindow(atLevel: level)
-        windowManager.presentViewController(viewController, atLevel: level, animated: true, completion: nil)
+        windowManager.showOverlay(viewController, animated: true, completion: nil)
     }
 }
 

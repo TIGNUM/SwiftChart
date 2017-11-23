@@ -68,7 +68,7 @@ final class OnboardingCoordinator: ParentCoordinator {
         
         startOnboarding() // must be called before adding chat vc to window, else chat won't animate
         
-        windowManager.setRootViewController(navigationController, atLevel: .normal, animated: true, completion: nil)
+        windowManager.show(navigationController, animated: true, completion: nil)
     }
     
     // MARK: - private
