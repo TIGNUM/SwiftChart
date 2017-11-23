@@ -56,7 +56,7 @@ import RealmSwift
         myToBeVisions.addNotificationBlock { [unowned self] _ in
             self.refresh()
             }.addTo(tokenBin)
-        myToBeVisions.addNotificationBlock { [unowned self] _ in
+        statistics.addNotificationBlock { [unowned self] _ in
             self.statisticsUpdated = Date()
             }.addTo(tokenBin)
         syncStateObserver.observe(\SyncStateObserver.syncedClasses, options: [.initial]) { [unowned self] _, _ in
