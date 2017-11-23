@@ -60,8 +60,10 @@ final class WeeklyChoicesViewModel {
     }
 
     func pageDates(forIndex index: Index) -> String {
-        let week = index / itemsPerWeek
-        let weekChoices = items[week]
+        guard index >= items.startIndex, index < items.endIndex else {
+            return ""
+        }
+        let weekChoices = items[index]
         let weekEnd = weekChoices.weekStart + TimeInterval(6 * 24 * 3600)
 
         let dateFormatter = DateFormatter()

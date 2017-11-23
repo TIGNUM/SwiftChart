@@ -22,6 +22,7 @@ final class WeeklyChoicesViewController: UIViewController, PageViewControllerNot
     // MARK: - Properties
 
     weak var delegate: WeeklyChoicesViewControllerDelegate?
+    private let dateLabelSpacing: CGFloat = 2
     private let viewModel: WeeklyChoicesViewModel
     private lazy var dateLabel: UILabel = UILabel()
     private let disposeBag = DisposeBag()
@@ -70,7 +71,7 @@ final class WeeklyChoicesViewController: UIViewController, PageViewControllerNot
         setupView()
         observeViewModel()
     }
-    
+
     @available(iOS 11.0, *)
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()
@@ -100,9 +101,11 @@ private extension WeeklyChoicesViewController {
         dateLabel.topAnchor == view.safeTopAnchor
         dateLabel.horizontalAnchors == view.horizontalAnchors
         dateLabel.heightAnchor == 14
+        dateLabel.addCharactersSpacing(spacing: dateLabelSpacing, text: viewModel.pageDates(forIndex: 0))
         collectionView.topAnchor == dateLabel.bottomAnchor
         collectionView.bottomAnchor == view.bottomAnchor
         collectionView.horizontalAnchors == view.horizontalAnchors
+        collectionView.decelerationRate = UIScrollViewDecelerationRateFast
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             collectionView.contentInsetAdjustmentBehavior = .never
@@ -162,8 +165,6 @@ extension WeeklyChoicesViewController: UICollectionViewDataSource, UICollectionV
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: WeeklyChoicesCell = collectionView.dequeueCell(for: indexPath)
-        dateLabel.addCharactersSpacing(spacing: 2, text: viewModel.pageDates(forIndex: indexPath.item))
-
         if let item = viewModel.item(at: indexPath.item) {            
             cell.setUp(title: item.title ?? "", subTitle: viewModel.categoryName(weeklyChoice: item), choice: viewModel.choiceNumber(forIndex: indexPath.item))
         } else {
@@ -203,6 +204,7 @@ extension WeeklyChoicesViewController: UICollectionViewDataSource, UICollectionV
         index = index < 0 ? 0 : index >= viewModel.itemCount ? viewModel.itemCount - 1 : index
         targetOffset = pageHeight * CGFloat(index)
         scrollView.setContentOffset(CGPoint(x: scrollView.contentOffset.x, y: targetOffset), animated: true)
+        dateLabel.addCharactersSpacing(spacing: dateLabelSpacing, text: viewModel.pageDates(forIndex: index))
     }
 }
 
