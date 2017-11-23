@@ -222,7 +222,7 @@
 "ImagePicker.Options.Button.Photo" = "Choose Photo";
 "ImagePicker.Options.Button.Cancel" = "Cancel";
 
-"MorningController.titleLabel" = "MORNING INTERVIEW";
+"MorningController.titleLabel" = "DAILY PREP MINUTE";
 "MorningController.nextButton" = "Next";
 "MorningController.doneButton" = "Done";
 
