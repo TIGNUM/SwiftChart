@@ -33,8 +33,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
                                   tabBarController: self.tabBarController,
                                   topTabBarController: self.topTabBarControllerPrepare,
                                   chatViewController: self.prepareChatViewController,
-                                  myPrepViewController: self.myPrepViewController,
-                                  toolsViewController: self.toolsViewController)
+                                  myPrepViewController: self.myPrepViewController)
     }()
     
     private lazy var prepareChatViewController: ChatViewController<Answer> = {
@@ -126,8 +125,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     lazy var topTabBarControllerPrepare: UINavigationController = {
         let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())        
         let topTabBarController = UINavigationController(withPages: [self.prepareChatViewController,
-                                                                     self.myPrepViewController,
-                                                                     self.toolsViewController],
+                                                                     self.myPrepViewController],
                                                          topBarDelegate: self,
                                                          pageDelegate: self,
                                                          backgroundImage: R.image.myprep(),
