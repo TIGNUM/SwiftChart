@@ -32,34 +32,6 @@ final class ChartAnimation: NSObject {
         }
         return nil
     }
-    
-    private func prepare(_ myUniverseViewController: MyUniverseViewController, _ chartViewController: ChartViewController) {
-        if isPresenting {
-            chartViewController.navigationController?.view.alpha = 0
-        } else {
-            myUniverseViewController.myDataView.profileImageButton.transform = CGAffineTransform(translationX: 300.0, y: 0)
-            myUniverseViewController.view.transform = CGAffineTransform(scaleX: 3, y: 3)
-            let layerTransform = myUniverseViewController.myDataView.universeDotsLayer.transform
-            myUniverseViewController.myDataView.universeDotsLayer.transform = CATransform3DTranslate(layerTransform, -200, 0, 0)
-            myUniverseViewController.view.alpha = 0
-        }
-    }
-    
-    private func animate(_ myUniverseViewController: MyUniverseViewController, _ chartViewController: ChartViewController) {
-        if isPresenting {
-            chartViewController.navigationController?.view.alpha = 1
-            myUniverseViewController.myDataView.profileImageButton.transform = CGAffineTransform(translationX: 300.0, y: 0)
-            myUniverseViewController.view.transform = CGAffineTransform(scaleX: 3, y: 3)
-            let layerTransform = myUniverseViewController.myDataView.universeDotsLayer.transform
-            myUniverseViewController.myDataView.universeDotsLayer.transform = CATransform3DTranslate(layerTransform, -200, 0, 0)
-        } else {
-            chartViewController.navigationController?.view.alpha = 0
-            myUniverseViewController.myDataView.profileImageButton.transform = .identity
-            myUniverseViewController.view.transform = .identity
-            myUniverseViewController.myDataView.universeDotsLayer.transform = CATransform3DIdentity
-            myUniverseViewController.view.alpha = 1
-        }
-    }
 }
 
 // MARK: - UIViewControllerAnimatedTransitioning
@@ -95,16 +67,56 @@ extension ChartAnimation: UIViewControllerAnimatedTransitioning {
                 fatalError("missing view controllers for animation")
         }
         
-        prepare(myUniverseViewController, chartViewController)
+        if isPresenting {
+            chartViewController.configureForTransitionedState()
+            myUniverseViewController.configureForDefaultState()
+        } else {
+            chartViewController.configureForDefaultState()
+            myUniverseViewController.configureForTransitionedState()
+        }
         
         UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseOut], animations: {
-            self.animate(myUniverseViewController, chartViewController)
+            if self.isPresenting {
+                chartViewController.configureForDefaultState()
+                myUniverseViewController.configureForTransitionedState()
+            } else {
+                chartViewController.configureForTransitionedState()
+                myUniverseViewController.configureForDefaultState()
+            }
         }, completion: { finished in
             if finished {
                 fromViewController.endAppearanceTransition()
                 toViewController.endAppearanceTransition()
             }
+            chartViewController.configureForDefaultState()
+            myUniverseViewController.configureForDefaultState()
             transitionContext.completeTransition(finished)
         })
+    }
+}
+
+private extension ChartViewController {
+    
+    func configureForDefaultState() {
+        navigationController?.view.alpha = 1
+    }
+    
+    func configureForTransitionedState() {
+        navigationController?.view.alpha = 0
+    }
+}
+
+private extension MyUniverseViewController {
+    
+    func configureForDefaultState() {
+        view.alpha = 1
+        view.transform = CGAffineTransform(scaleX: 1, y: 1)
+        view.transform = CGAffineTransform(scaleX: 1, y: 1)
+    }
+    
+    func configureForTransitionedState() {
+        view.alpha = 0
+        view.transform = CGAffineTransform(scaleX: 1, y: 1)
+        view.transform = CGAffineTransform(scaleX: 3, y: 3)
     }
 }

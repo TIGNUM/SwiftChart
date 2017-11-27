@@ -32,35 +32,6 @@ final class WeeklyChoicesAnimation: NSObject {
         }
         return nil
     }
-    
-    private func prepare(_ myUniverseViewController: MyUniverseViewController, _ weeklyChoicesViewController: WeeklyChoicesViewController) {
-        if isPresenting {
-            weeklyChoicesViewController.navigationController?.view.alpha = 0
-        } else {
-            myUniverseViewController.myWhyView.myToBeVisionBox.transform = CGAffineTransform(translationX: -120.0, y: -50.0)
-            myUniverseViewController.myWhyView.weeklyChoicesBox.transform = CGAffineTransform(translationX: 100.0, y: 10.0)
-            myUniverseViewController.myWhyView.qotPartnersBox.transform = CGAffineTransform(translationX: -120.0, y: -50.0)
-            myUniverseViewController.view.transform = CGAffineTransform(translationX: -580.0, y: -50.0).scaledBy(x: 4.0, y: 3.0)
-            myUniverseViewController.view.alpha = 0
-        }
-    }
-    
-    private func animate(_ myUniverseViewController: MyUniverseViewController, _ weeklyChoicesViewController: WeeklyChoicesViewController) {
-        if isPresenting {
-            weeklyChoicesViewController.navigationController?.view.alpha = 1
-            myUniverseViewController.myWhyView.myToBeVisionBox.transform = CGAffineTransform(translationX: -120.0, y: -50.0)
-            myUniverseViewController.myWhyView.weeklyChoicesBox.transform = CGAffineTransform(translationX: 100.0, y: 10.0)
-            myUniverseViewController.myWhyView.qotPartnersBox.transform = CGAffineTransform(translationX: -120.0, y: -50.0)
-            myUniverseViewController.view.transform = CGAffineTransform(translationX: -580.0, y: -50.0).scaledBy(x: 4.0, y: 3.0)
-        } else {
-            weeklyChoicesViewController.navigationController?.view.alpha = 0
-            myUniverseViewController.myWhyView.myToBeVisionBox.transform = .identity
-            myUniverseViewController.myWhyView.weeklyChoicesBox.transform = .identity
-            myUniverseViewController.myWhyView.qotPartnersBox.transform = .identity
-            myUniverseViewController.view.transform = .identity
-            myUniverseViewController.view.alpha = 1
-        }
-    }
 }
 
 // MARK: - UIViewControllerAnimatedTransitioning
@@ -96,16 +67,60 @@ extension WeeklyChoicesAnimation: UIViewControllerAnimatedTransitioning {
                 fatalError("missing view controllers for animation")
         }
         
-        prepare(myUniverseViewController, weeklyChoicesViewController)
+        if isPresenting {
+            weeklyChoicesViewController.configureForTransitionedState()
+            myUniverseViewController.configureForDefaultState()
+        } else {
+            weeklyChoicesViewController.configureForDefaultState()
+            myUniverseViewController.configureForTransitionedState()
+        }
         
         UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseOut], animations: {
-            self.animate(myUniverseViewController, weeklyChoicesViewController)
+            if self.isPresenting {
+                weeklyChoicesViewController.configureForDefaultState()
+                myUniverseViewController.configureForTransitionedState()
+            } else {
+                weeklyChoicesViewController.configureForTransitionedState()
+                myUniverseViewController.configureForDefaultState()
+            }
         }, completion: { finished in
             if finished {
                 fromViewController.endAppearanceTransition()
                 toViewController.endAppearanceTransition()
             }
+            weeklyChoicesViewController.configureForDefaultState()
+            myUniverseViewController.configureForDefaultState()
             transitionContext.completeTransition(finished)
         })
+    }
+}
+
+private extension WeeklyChoicesViewController {
+    
+    func configureForDefaultState() {
+        navigationController?.view.alpha = 1
+    }
+    
+    func configureForTransitionedState() {
+        navigationController?.view.alpha = 0
+    }
+}
+
+private extension MyUniverseViewController {
+    
+    func configureForDefaultState() {
+        myWhyView.myToBeVisionBox.transform = .identity
+        myWhyView.weeklyChoicesBox.transform = .identity
+        myWhyView.qotPartnersBox.transform = .identity
+        view.transform = .identity
+        view.alpha = 1
+    }
+    
+    func configureForTransitionedState() {
+        myWhyView.myToBeVisionBox.transform = CGAffineTransform(translationX: -120.0, y: -50.0)
+        myWhyView.weeklyChoicesBox.transform = CGAffineTransform(translationX: 100.0, y: 10.0)
+        myWhyView.qotPartnersBox.transform = CGAffineTransform(translationX: -120.0, y: -50.0)
+        view.transform = CGAffineTransform(translationX: -580.0, y: -50.0).scaledBy(x: 4.0, y: 3.0)
+        view.alpha = 0
     }
 }
