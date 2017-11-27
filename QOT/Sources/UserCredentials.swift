@@ -64,10 +64,23 @@ final class CredentialsManager {
     // MARK: - private
     
     private func value(key: KeychainConstant) -> String? {
-        return keychain[key.rawValue]
+        do {
+            return try keychain.getString(key.rawValue)
+        } catch {
+            log("Failed to get \(key.rawValue) from keychain: \(error)", level: .error)
+            return nil
+        }
     }
 
     private func set(value: String?, key: KeychainConstant) {
-        keychain[key.rawValue] = value
+        do {
+            if let value =  value {
+                try keychain.set(value, key: key.rawValue)
+            } else {
+                try keychain.remove(key.rawValue)
+            }
+        } catch {
+            log("Failed to set value for \(key.rawValue) in keychain: \(error)", level: .error)
+        }
     }
 }
