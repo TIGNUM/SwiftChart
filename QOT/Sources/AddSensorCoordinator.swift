@@ -85,7 +85,7 @@ private extension AddSensorCoordinator {
             viewController.present(webViewController, animated: true)
             NotificationCenter.default.addObserver(self, selector: #selector(reloadAddSensorViewController), name: .syncAllDidFinishNotification, object: nil)
         } catch {
-            log("Failed to open url. Error: \(error)")
+            log("Failed to open url. Error: \(error)", level: .error)
             viewController.showAlert(type: .message(error.localizedDescription))
         }
     }

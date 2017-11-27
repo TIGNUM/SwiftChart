@@ -18,11 +18,11 @@ extension UIImage {
     func save(withName name: String) throws -> URL {
         let paths = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)
         guard let directory = paths.first else {
-            log("couldn't find directory")
+            log("couldn't find directory", level: .error)
             throw ImageError.directoryNotFound
         }
         guard let data = UIImageJPEGRepresentation(self, 1.0) else {
-            log("problem converting image data")
+            log("problem converting image data", level: .error)
             throw ImageError.imageConvertionError
         }
 
@@ -41,7 +41,7 @@ extension UIImage {
             try data.write(to: url)
             return url
         } catch {
-            log(error)
+            log(error, level: .error)
             throw error
         }
     }

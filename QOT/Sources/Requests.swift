@@ -113,7 +113,7 @@ struct UserLocationUpdateRequest: URLRequestBuildable {
             self.body = try location.toJson()?.toJSON().serialize()
         } catch {
             body = nil
-            log("Error while trying to serialize user location data: \(error)")
+            log("Error while trying to serialize user location data: \(error)", level: .error)
         }
     }
 }

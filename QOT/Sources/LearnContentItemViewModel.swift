@@ -377,7 +377,7 @@ extension LearnContentItemViewModel {
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
         } catch let error {
-            log("Error while trying to set catgeory for AVAudioSession: \(error)")
+            log("Error while trying to set catgeory for AVAudioSession: \(error)", level: .error)
         }
 
         removeAudioItemObserver()

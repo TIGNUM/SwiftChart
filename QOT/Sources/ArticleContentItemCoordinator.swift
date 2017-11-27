@@ -123,7 +123,7 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
             do {
                 viewController.present(try WebViewController(url), animated: true, completion: nil)
             } catch {
-                log("Failed to open url. Error: \(error)")
+                log("Failed to open url. Error: \(error)", level: .error)
                 viewController.showAlert(type: .message(error.localizedDescription))
             }
         }
@@ -137,7 +137,7 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
         } catch let error {
-            log("Error while trying to set catgeory for AVAudioSession: \(error)")
+            log("Error while trying to set catgeory for AVAudioSession: \(error)", level: .error)
         }
 
         let playerItem = AVPlayerItem(url: url)

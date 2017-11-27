@@ -121,7 +121,7 @@ final class AppCoordinator: ParentCoordinator {
 
     func showApp() {
         func handleError(error: Error) {
-            log("Error setting up database: \(error)")
+            log("Error setting up database: \(error)", level: .error)
             Crashlytics.sharedInstance().recordError(error)
             let message = "There was a problem initializing the app's data. Please restart the app and try again"
             self.showMajorAlert(type: .custom(title: "Error", message: message), handler: {
@@ -405,7 +405,7 @@ extension AppCoordinator {
 
             try DatabaseManager.shared.resetDatabase(syncRecordService: syncRecordService)
         } catch {
-            log(error.localizedDescription)
+            log(error.localizedDescription, level: .error)
         }
     }
 }
