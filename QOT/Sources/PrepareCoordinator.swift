@@ -31,7 +31,6 @@ final class PrepareCoordinator: ParentCoordinator {
     private let topTabBarController: UINavigationController
     private let chatViewController: ChatViewController<Answer>
     private let myPrepViewController: MyPrepViewController
-    private let toolsViewController: LibraryViewController
     private let chatDecisionManager: PrepareChatDecisionManager
     private var context: Context?
     private weak var prepareListViewController: PrepareContentViewController?    
@@ -60,8 +59,7 @@ final class PrepareCoordinator: ParentCoordinator {
          tabBarController: TabBarController,
          topTabBarController: UINavigationController,
          chatViewController: ChatViewController<Answer>,
-         myPrepViewController: MyPrepViewController,
-         toolsViewController: LibraryViewController) {
+         myPrepViewController: MyPrepViewController) {
         self.services = services
         self.eventTracker = eventTracker
         self.permissionHandler = permissionHandler
@@ -70,7 +68,6 @@ final class PrepareCoordinator: ParentCoordinator {
         self.chatViewController = chatViewController
         self.chatDecisionManager = PrepareChatDecisionManager(service: services.questionsService)
         self.myPrepViewController = myPrepViewController
-        self.toolsViewController = toolsViewController
         myPrepViewController.delegate = self
         chatDecisionManager.delegate = self
         
