@@ -252,7 +252,7 @@ enum ChartType: String, EnumCollection {
         case .meetingTimeBetween: return R.string.localized.meChartInfoTextMeetingsAverageTimeBetween()
         case .travelTripsAverageWeeks,
              .travelTripsAverageYear: return R.string.localized.meChartInfoTextTravelAverageNumber()
-        case .travelTripsNextFourWeeks: return ""
+        case .travelTripsNextFourWeeks: return R.string.localized.meChartInfoTextTravelTrips()
         case .travelTripsTimeZoneChangedYear: return ""
         case .travelTripsTimeZoneChangedWeeks: return ""
         case .travelTripsMaxTimeZone: return ""
