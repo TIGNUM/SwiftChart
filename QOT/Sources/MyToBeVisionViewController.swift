@@ -216,12 +216,11 @@ private extension MyToBeVisionViewController {
         setupMessageText(editing: false)
 
         subtitleLabel.attributedText = NSMutableAttributedString(
-            string: viewModel.dateText?.uppercased() ?? "",
+            string: viewModel.dateText,
             letterSpacing: 2,
             font: Font.H7Tag,
-            lineSpacing: 0)
-        subtitleLabel.textColor = .white30
-        subtitleLabel.text = R.string.localized.meSectorMyWhyVisionProfilePictureEditButtonTitle()
+            lineSpacing: 0,
+            textColor: .white30)
         
         imageEditLabel.font = Font.DPText
         imageEditLabel.textColor = .white

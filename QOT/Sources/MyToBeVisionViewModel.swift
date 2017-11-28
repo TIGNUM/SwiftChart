@@ -32,12 +32,12 @@ final class MyToBeVisionViewModel {
     var profileImageResource: MediaResource? {
         return item?.profileImageResource
     }
-    var dateText: String? {
+    var dateText: String {
         guard let date = item?.date else {
-            return nil
+            return ""
         }
         guard let text = DateComponentsFormatter.timeIntervalToString(-date.timeIntervalSinceNow, isShort: true) else {
-            return nil
+            return ""
         }
         return R.string.localized.meSectorMyWhyVisionWriteDate(text).uppercased()
     }
