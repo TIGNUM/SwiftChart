@@ -34,17 +34,3 @@ struct WeeklyChoicesViewData {
     let pages: [Page]
     let itemsPerPage: Int
 }
-
-// MARK: - subscript convenience
-
-extension WeeklyChoicesViewData {
-    subscript(index: Int) -> Page {
-        return pages[index]
-    }
-}
-
-extension WeeklyChoicesViewData.Page {
-    subscript(index: Int) -> Item {
-        return items[index]
-    }
-}

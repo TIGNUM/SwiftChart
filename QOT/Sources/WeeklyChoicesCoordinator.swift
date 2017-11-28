@@ -27,13 +27,12 @@ final class WeeklyChoicesCoordinator: NSObject, ParentCoordinator {
 
     init(root: UIViewController,
          services: Services,
-         provider: WeeklyChoicesProvider,
          transitioningDelegate: UIViewControllerTransitioningDelegate?,
          topBarDelegate: TopNavigationBarDelegate?) {
         self.rootViewController = root
         self.services = services
         self.transitioningDelegate = transitioningDelegate
-        self.provider = provider
+        self.provider = WeeklyChoicesProvider(services: services, itemsPerPage: Layout.MeSection.maxWeeklyPage)
         
         let viewData = provider.provideViewData()
         weeklyChoicesViewController = WeeklyChoicesViewController(viewData: viewData)

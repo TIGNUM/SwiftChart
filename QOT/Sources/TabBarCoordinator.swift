@@ -24,6 +24,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     private let pageTracker: PageTracker
     private let networkManager: NetworkManager
     private let syncManager: SyncManager
+    private let articleCollectionProvider: ArticleCollectionProvider
     var children = [Coordinator]()
 
     lazy var prepareCoordinator: PrepareCoordinator = {
@@ -82,16 +83,19 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         whatsHotBadgeManager.isShowingLearnTab = true
         return tabBarController
     }()
+    
+    private lazy var articleCollectionViewController: ArticleCollectionViewController = {
+        let viewController = ArticleCollectionViewController(pageName: .whatsHot, viewData: articleCollectionProvider.provideViewData())
+        viewController.title = R.string.localized.topTabBarItemTitleLearnWhatsHot()
+        viewController.delegate = self
+        return viewController
+    }()
 
     private lazy var topTabBarControllerLearn: UINavigationController = {
         let viewModel = LearnCategoryListViewModel(services: self.services)
         let learnCategoryListVC = LearnCategoryListViewController(viewModel: viewModel)
         learnCategoryListVC.title = R.string.localized.topTabBarItemTitleLearnStrategies()
         learnCategoryListVC.delegate = self
-        let articleCollectionViewModel = ArticleCollectionViewModel(services: self.services)
-        let articleCollectionViewController = ArticleCollectionViewController(pageName: .whatsHot, viewModel: articleCollectionViewModel)
-        articleCollectionViewController.title = R.string.localized.topTabBarItemTitleLearnWhatsHot()
-        articleCollectionViewController.delegate = self
         let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())
         let topTabBarController = UINavigationController(withPages: [learnCategoryListVC, articleCollectionViewController],
                                                          topBarDelegate: self,
@@ -156,8 +160,13 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         self.pageTracker = pageTracker
         self.syncManager = syncManager
         self.networkManager = networkManager
+        articleCollectionProvider = ArticleCollectionProvider(services: services)
         
         super.init()
+        
+        articleCollectionProvider.updateBlock = { [unowned self] viewData in
+            self.articleCollectionViewController.viewData = viewData
+        }
     }
 
     // MARK: -
@@ -262,10 +271,8 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
 
     func didTapWeeklyChoices(from view: UIView, in viewController: MyUniverseViewController) {
         let transitioningDelegate = WeeklyChoicesAnimator()
-        let provider = WeeklyChoicesProvider(services: services, itemsPerPage: Layout.MeSection.maxWeeklyPage)
         let coordinator = WeeklyChoicesCoordinator(root: topTabBarControllerMe,
                                                    services: services,
-                                                   provider: provider,
                                                    transitioningDelegate: transitioningDelegate,
                                                    topBarDelegate: nil)
         startChild(child: coordinator)
@@ -283,7 +290,7 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
 extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
 
     func didTapItem(articleHeader: ArticleCollectionHeader, in viewController: ArticleCollectionViewController) {
-        guard articleHeader.articleContentCollection.articleItems.count > 0 else {
+        guard let contentCollection = services.contentService.contentCollection(id: articleHeader.articleContentCollectionID), contentCollection.articleItems.count > 0 else {
             viewController.showAlert(type: .noContent, handler: nil, handlerDestructive: nil)
             return
         }
@@ -292,7 +299,7 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
             pageName: .whatsHotArticle,
             root: viewController,
             services: services,
-            contentCollection: articleHeader.articleContentCollection,
+            contentCollection: contentCollection,
             articleHeader: articleHeader,
             topTabBarTitle: nil,
             shouldPush: false) else {
@@ -357,7 +364,7 @@ extension TabBarCoordinator: LibraryViewControllerDelegate {
             articleSubTitle: subtitle,
             articleDate: date,
             articleDuration: duration,
-            articleContentCollection: item
+            articleContentCollectionID: item.remoteID.value ?? 0
         )
         
         guard let coordinator = ArticleContentItemCoordinator(

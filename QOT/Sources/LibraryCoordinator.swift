@@ -49,7 +49,7 @@ extension LibraryCoordinator: LibraryViewControllerDelegate {
             articleSubTitle: subtitle,
             articleDate: date,
             articleDuration: duration,
-            articleContentCollection: item
+            articleContentCollectionID: item.remoteID.value ?? 0
         )
 
         guard let coordinator = ArticleContentItemCoordinator(

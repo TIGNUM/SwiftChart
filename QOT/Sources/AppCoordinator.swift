@@ -330,10 +330,8 @@ extension AppCoordinator {
             let services = services else {
                 return
         }
-        let provider = WeeklyChoicesProvider(services: services, itemsPerPage: Layout.MeSection.maxWeeklyPage)
         let coordinator = WeeklyChoicesCoordinator(root: rootViewController,
                                                    services: services,
-                                                   provider: provider,
                                                    transitioningDelegate: nil,
                                                    topBarDelegate: self)
         topTabBarController = coordinator.topTabBarController        

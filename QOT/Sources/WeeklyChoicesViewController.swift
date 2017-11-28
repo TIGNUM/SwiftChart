@@ -28,7 +28,6 @@ final class WeeklyChoicesViewController: UIViewController, PageViewControllerNot
     }
     private lazy var dateLabel: UILabel = UILabel()
     private weak var circleLayer: CALayer?
-    private let disposeBag = DisposeBag()
     private lazy var collectionView: UICollectionView = {
         let layout = WeeklyChoicesLayout()
         layout.delegate = self
@@ -184,12 +183,12 @@ extension WeeklyChoicesViewController: UICollectionViewDataSource, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewData[section].items.count
+        return viewData.pages[section].items.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: WeeklyChoicesCell = collectionView.dequeueCell(for: indexPath)
-        let item = viewData[indexPath.section][indexPath.row]
+        let item = viewData.pages[indexPath.section].items[indexPath.row]
         cell.setUp(
             title: item.title ?? R.string.localized.meSectorMyWhyWeeklyChoicesNoChoiceTitle(),
             subTitle: item.categoryName ?? "",
@@ -199,7 +198,7 @@ extension WeeklyChoicesViewController: UICollectionViewDataSource, UICollectionV
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let item = viewData[indexPath.section][indexPath.row]
+        let item = viewData.pages[indexPath.section].items[indexPath.row]
         guard let contentCollectionID = item.contentCollectionID, let categoryID = item.categoryID else {
             return
         }

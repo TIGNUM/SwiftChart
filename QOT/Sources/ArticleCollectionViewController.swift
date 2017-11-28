@@ -21,15 +21,19 @@ final class ArticleCollectionViewController: UIViewController, FullScreenLoadabl
     // MARK: - Properties
 
     private let paddingTop: CGFloat = 26
-    private let disposeBag = DisposeBag()
-    private let viewModel: ArticleCollectionViewModel
     private let backgroundImageView: UIImageView
+    
     weak var delegate: ArticleCollectionViewControllerDelegate?
     let pageName: PageName
     var loadingView: BlurLoadingView?
     var isLoading: Bool = false {
         didSet {
             showLoading(isLoading, text: R.string.localized.articleLoading())
+        }
+    }
+    var viewData: ArticleCollectionViewData {
+        didSet {
+            reload()
         }
     }
     
@@ -47,9 +51,9 @@ final class ArticleCollectionViewController: UIViewController, FullScreenLoadabl
 
     // MARK: Init
 
-    init(pageName: PageName, viewModel: ArticleCollectionViewModel) {
+    init(pageName: PageName, viewData: ArticleCollectionViewData) {
         self.pageName = pageName
-        self.viewModel = viewModel
+        self.viewData = viewData
         backgroundImageView = UIImageView(image: R.image.backgroundStrategies())
         
         super.init(nibName: nil, bundle: nil)
@@ -65,10 +69,6 @@ final class ArticleCollectionViewController: UIViewController, FullScreenLoadabl
         super.viewDidLoad()
         
         setupLayout()
-        viewModel.updates.observeNext { [unowned self] (update) in
-            self.collectionView.reloadData()
-            self.updateReadyState()
-        }.dispose(in: disposeBag)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -90,7 +90,12 @@ final class ArticleCollectionViewController: UIViewController, FullScreenLoadabl
 private extension ArticleCollectionViewController {
 
     func updateReadyState() {
-        isLoading = !viewModel.isReady()
+        isLoading = !viewData.isReady
+    }
+    
+    func reload() {
+        collectionView.reloadData()
+        updateReadyState()
     }
     
     func setupLayout() {
@@ -116,33 +121,32 @@ private extension ArticleCollectionViewController {
 extension ArticleCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.itemCount
+        return viewData.items.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let index = indexPath.item
         let cell: ArticleCollectionCell = collectionView.dequeueCell(for: indexPath)
-        cell.configure(articleDate: viewModel.articleDate(at: index),
-                       sortOrder: viewModel.sortOrder(at: index),
-                       title: viewModel.title(at: index),
-                       description: viewModel.description(at: index),
-                       imageURL: viewModel.previewImageURL(at: index),
-                       duration: viewModel.duration(at: index),
-                       showSeparator: indexPath.row + 1 != viewModel.itemCount
+        let item = viewData.items[indexPath.row]
+        cell.configure(articleDate: item.articleDate,
+                       sortOrder: item.sortOrder,
+                       title: item.title,
+                       description: item.description,
+                       imageURL: item.previewImageURL,
+                       duration: item.duration,
+                       showSeparator: indexPath.row + 1 != viewData.items.count
         )
 
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let index = indexPath.item
-        let selectedCollection = viewModel.contentCollection(at: index)
+        let item = viewData.items[indexPath.row]
         let articleHeader = ArticleCollectionHeader(
-            articleTitle: viewModel.title(at: index),
-            articleSubTitle: viewModel.description(at: index),
-            articleDate: viewModel.date(at: index),
-            articleDuration: viewModel.duration(at: index),
-            articleContentCollection: selectedCollection
+            articleTitle: item.title,
+            articleSubTitle: item.description,
+            articleDate: item.date,
+            articleDuration: item.duration,
+            articleContentCollectionID: item.contentCollectionID
         )
 
         delegate?.didTapItem(articleHeader: articleHeader, in: self)
