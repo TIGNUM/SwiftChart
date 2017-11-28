@@ -99,8 +99,10 @@ private extension AddSensorCoordinator {
         let alertController = UIAlertController(title: R.string.localized.addSensorViewAlertTitle(), message: R.string.localized.addSensorViewAlertMessage(), preferredStyle: .alert)
         let sendAction = UIAlertAction(title: R.string.localized.addSensorViewAlertSend(), style: .default) { [weak alertController] _ in
             if let alertController = alertController {
-                _ = alertController.textFields![0] as UITextField
-                //use data of text feild for storing!!
+                if let text = alertController.textFields?.first?.text, text.count > 0 {
+                    // FIXME: Hack to send data to server until we implement
+                    log("Add sensor message not sent! MESSAGE: <\(text)>", level: .error)
+                }
             }
         }
         
