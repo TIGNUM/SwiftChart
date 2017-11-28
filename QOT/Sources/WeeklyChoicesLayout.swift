@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol WeeklyChoicesDelegate: class {
+protocol WeeklyChoicesLayoutDelegate: class {
     func radius() -> CGFloat
     func circleX() -> CGFloat
     func cellHeight() -> CGFloat
@@ -16,8 +16,8 @@ protocol WeeklyChoicesDelegate: class {
 
 final class WeeklyChoicesLayout: UICollectionViewLayout {
 
-    private var cache = [UICollectionViewLayoutAttributes]()
-    weak var delegate: WeeklyChoicesDelegate? {
+    private var cache = [[UICollectionViewLayoutAttributes]]()
+    weak var delegate: WeeklyChoicesLayoutDelegate? {
         didSet {
             invalidateLayout()
         }
@@ -26,9 +26,17 @@ final class WeeklyChoicesLayout: UICollectionViewLayout {
     private var width: CGFloat {
         return collectionView?.bounds.width ?? 0
     }
-
-    private var itemCount: Int {
-        return collectionView?.numberOfItems(inSection: 0) ?? 0
+    
+    private var totalItemCount: Int {
+        var total = 0
+        for i in 0..<sections {
+            total += collectionView?.numberOfItems(inSection: i) ?? 0
+        }
+        return total
+    }
+    
+    private var sections: Int {
+        return collectionView?.numberOfSections ?? 0
     }
 
     override var collectionViewContentSize: CGSize {
@@ -36,7 +44,7 @@ final class WeeklyChoicesLayout: UICollectionViewLayout {
             return .zero
         }
 
-        let contentHeight = (CGFloat(itemCount) * cellHeight) + cellHeight
+        let contentHeight = (CGFloat(totalItemCount) * cellHeight) + cellHeight
         return CGSize(width: width, height: contentHeight)
     }
 
@@ -44,47 +52,56 @@ final class WeeklyChoicesLayout: UICollectionViewLayout {
         guard
             let radius = delegate?.radius(),
             let circleX = delegate?.circleX(),
-            let cellHeight = delegate?.cellHeight()
-            else {
-                self.cache = []
+            let cellHeight = delegate?.cellHeight(),
+            let collectionView = collectionView else {
                 return
         }
 
-        var cache = [UICollectionViewLayoutAttributes]()
-        cache.reserveCapacity(itemCount)
+        cache.reserveCapacity(sections)
 
-        for index in 0..<itemCount {
+        for section in 0..<sections {
+            var rowCache = [UICollectionViewLayoutAttributes]()
+            let prevSectionLastFrameOriginY = (
+                (section > 0) ?
+                    (cache[section - 1].last?.frame.origin.y ?? 0) + (cellHeight * 0.5) : 0
+            )
+            let itemCount = collectionView.numberOfItems(inSection: section)
+            rowCache.reserveCapacity(itemCount)
 
-            let indexPath = IndexPath(item: index, section: 0)
-            let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-            let y = CGFloat(index) * cellHeight
-            let cellCenterY = y + (cellHeight * 0.5)
-            
-            let x: CGFloat
-            let cellWidth: CGFloat
-            if let approxX = xPos(y: cellCenterY, radius: radius, circleX: circleX) {
-                x = (abs(circleX / 2) - (radius - abs(circleX))) - approxX
-                cellWidth = width - x
-            } else {
-                x = -10000
-                cellWidth = width
+            for row in 0..<itemCount {
+                let indexPath = IndexPath(row: row, section: section)
+                let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+                let y = (CGFloat(row) * cellHeight) + prevSectionLastFrameOriginY
+                let cellCenterY = y + (cellHeight * 0.5)
+                let x: CGFloat
+                let cellWidth: CGFloat
+                if let approxX = xPos(y: cellCenterY, radius: radius, circleX: circleX) {
+                    x = (abs(circleX / 2) - (radius - abs(circleX))) - approxX
+                    cellWidth = width - x
+                } else {
+                    x = -10000
+                    cellWidth = width
+                }
+                attributes.frame = CGRect(x: x, y: y, width: cellWidth, height: cellHeight)
+                rowCache.append(attributes)
             }
-            attributes.frame = CGRect(x: x, y: y, width: cellWidth, height: cellHeight)
-            cache.append(attributes)
+            
+            cache.append(rowCache)
         }
-        self.cache = cache
     }
 
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        return cache[indexPath.row]
+        return cache[indexPath.section][indexPath.row]
     }
 
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var layoutAttributes = [UICollectionViewLayoutAttributes]()
 
-        for attributes in cache {
-            if attributes.frame.intersects(rect) == true {
-                layoutAttributes.append(attributes)
+        for section in cache {
+            for row in section {
+                if row.frame.intersects(rect) {
+                    layoutAttributes.append(row)
+                }
             }
         }
 

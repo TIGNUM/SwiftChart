@@ -19,7 +19,7 @@ final class WeeklyChoicesCoordinator: NSObject, ParentCoordinator {
     private let transitioningDelegate: UIViewControllerTransitioningDelegate? // swiftlint:disable:this weak_delegate
     private let launchHandler = LaunchHandler()
     private let rightButton: UIBarButtonItem = UIBarButtonItem(withImage: R.image.prepareContentPlusIcon())
-    private weak var weeklyChoicesDelegate: WeeklyChoicesViewModelDelegate?
+    private let provider: WeeklyChoicesProvider
     var children: [Coordinator] = []
     var topTabBarController: UINavigationController!
 
@@ -27,14 +27,16 @@ final class WeeklyChoicesCoordinator: NSObject, ParentCoordinator {
 
     init(root: UIViewController,
          services: Services,
+         provider: WeeklyChoicesProvider,
          transitioningDelegate: UIViewControllerTransitioningDelegate?,
          topBarDelegate: TopNavigationBarDelegate?) {
         self.rootViewController = root
         self.services = services
         self.transitioningDelegate = transitioningDelegate
-        let viewModel = WeeklyChoicesViewModel(services: services)
-        weeklyChoicesViewController = WeeklyChoicesViewController(viewModel: viewModel)
-        weeklyChoicesDelegate = viewModel
+        self.provider = provider
+        
+        let viewData = provider.provideViewData()
+        weeklyChoicesViewController = WeeklyChoicesViewController(viewData: viewData)
         weeklyChoicesViewController.title = R.string.localized.meSectorMyWhyWeeklyChoicesTitle()
 
         super.init()
@@ -43,12 +45,16 @@ final class WeeklyChoicesCoordinator: NSObject, ParentCoordinator {
         topTabBarController = UINavigationController(withPages: [weeklyChoicesViewController],
                                                      topBarDelegate: topBarDelegate ?? self,
                                                      leftButton: leftButton,
-                                                     rightButton: (viewModel.itemCount == 0) ? rightButton : nil)
+                                                     rightButton: (viewData.pages.count == 0) ? rightButton : nil)
         topTabBarController.modalPresentationStyle = .custom
         if transitioningDelegate != nil {
             topTabBarController.transitioningDelegate = transitioningDelegate
         }
         weeklyChoicesViewController.delegate = self
+        
+        provider.updateBlock = { [unowned self] viewData in
+            self.weeklyChoicesViewController.viewData = viewData
+        }
     }
 
     func start() {
@@ -60,13 +66,13 @@ final class WeeklyChoicesCoordinator: NSObject, ParentCoordinator {
 
 extension WeeklyChoicesCoordinator: WeeklyChoicesViewControllerDelegate {
 
-    func didTapClose(in viewController: UIViewController, animated: Bool) {
+    func weeklyChoicesViewController(_ viewController: WeeklyChoicesViewController, didTapClose: Bool, animated: Bool) {
         viewController.dismiss(animated: true, completion: nil)
         removeChild(child: self)
     }
-
-    func didUpdateList(with viewModel: WeeklyChoicesViewModel) {
-        topTabBarController.navigationBar.topItem?.rightBarButtonItem = (viewModel.itemCount == 0) ? rightButton : nil
+    
+    func weeklyChoicesViewController(_ viewController: WeeklyChoicesViewController, didUpdateListWithViewData viewData: WeeklyChoicesViewData) {
+        topTabBarController.navigationBar.topItem?.rightBarButtonItem = (viewData.pages.count == 0) ? rightButton : nil
     }
 }
 
@@ -83,7 +89,7 @@ extension WeeklyChoicesCoordinator: TopNavigationBarDelegate {
     
     func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
         launchHandler.weeklyChoiches { [unowned self] in
-            self.weeklyChoicesDelegate?.fetchWeeklyChoices()
+            self.weeklyChoicesViewController.viewData = self.provider.provideViewData()
         }
     }
 }

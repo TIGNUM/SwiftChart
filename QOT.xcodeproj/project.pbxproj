@@ -64,7 +64,6 @@
 		7F691C551F0D19AE00E2C180 /* MyToBeVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F691C541F0D19AE00E2C180 /* MyToBeVision.swift */; };
 		7F691C5E1F0D30C800E2C180 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F691C5D1F0D30C800E2C180 /* PlaceholderTextView.swift */; };
 		7F708EA01FBAFAF8008A3856 /* FullScreenLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F708E9F1FBAFAF8008A3856 /* FullScreenLoadable.swift */; };
-		7F8739071F162300005ED8B8 /* WeeklyChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8739061F162300005ED8B8 /* WeeklyChoice.swift */; };
 		7F8DB4AB1FA2047D00DFE006 /* PartnersAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8DB4A91FA2047D00DFE006 /* PartnersAnimation.swift */; };
 		7F8DB4AC1FA2047D00DFE006 /* PartnersAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8DB4AA1FA2047D00DFE006 /* PartnersAnimator.swift */; };
 		7F904F661FBF1A550040EF11 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F904F651FBF1A550040EF11 /* TabBarController.swift */; };
@@ -81,6 +80,9 @@
 		7FBC3E7E1F34AB8D005BD772 /* MediaResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBC3E7D1F34AB8D005BD772 /* MediaResource.swift */; };
 		7FBC3E801F385135005BD772 /* MediaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBC3E7F1F385135005BD772 /* MediaService.swift */; };
 		7FBC3E891F38B9D1005BD772 /* UpSyncMediaOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBC3E881F38B9D1005BD772 /* UpSyncMediaOperation.swift */; };
+		7FBFBC0F1FC731FB007B6D2D /* WeeklyChoicesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFBC0E1FC731FB007B6D2D /* WeeklyChoicesProvider.swift */; };
+		7FBFBC111FC7320B007B6D2D /* WeeklyChoicesViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFBC101FC7320B007B6D2D /* WeeklyChoicesViewData.swift */; };
+		7FBFBC131FC73F18007B6D2D /* WeeklyChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFBC121FC73F18007B6D2D /* WeeklyChoice.swift */; };
 		7FC81E871F9F377600564292 /* DateComponentsFormatter+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC81E861F9F377600564292 /* DateComponentsFormatter+Convenience.swift */; };
 		7FC86A051F97A511003DC84D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC86A041F97A511003DC84D /* ImagePicker.swift */; };
 		7FCF5FA41FC2E9FA00CD1E5E /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCF5FA31FC2E9FA00CD1E5E /* TabBarItem.swift */; };
@@ -354,7 +356,6 @@
 		CC7D21B11EFC1348007A062E /* WeeklyChoicesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC7D21AC1EFC1348007A062E /* WeeklyChoicesCell.xib */; };
 		CC7D21B21EFC1348007A062E /* WeeklyChoicesLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7D21AD1EFC1348007A062E /* WeeklyChoicesLayout.swift */; };
 		CC7D21B31EFC1348007A062E /* WeeklyChoicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7D21AE1EFC1348007A062E /* WeeklyChoicesViewController.swift */; };
-		CC7D21B41EFC1348007A062E /* WeeklyChoicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7D21AF1EFC1348007A062E /* WeeklyChoicesViewModel.swift */; };
 		CC7E80BA1F614F1B006F9515 /* QotNotification.aiff in Resources */ = {isa = PBXBuildFile; fileRef = CC7E80B91F614F1B006F9515 /* QotNotification.aiff */; };
 		CC8018201F0256980040B03F /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC80181F1F0256980040B03F /* UIViewController+Alert.swift */; };
 		CC8018231F026BDA0040B03F /* LibraryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8018211F026BDA0040B03F /* LibraryTableViewCell.swift */; };
@@ -528,7 +529,6 @@
 		7F691C541F0D19AE00E2C180 /* MyToBeVision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToBeVision.swift; sourceTree = "<group>"; };
 		7F691C5D1F0D30C800E2C180 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		7F708E9F1FBAFAF8008A3856 /* FullScreenLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenLoadable.swift; sourceTree = "<group>"; };
-		7F8739061F162300005ED8B8 /* WeeklyChoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoice.swift; sourceTree = "<group>"; };
 		7F8DB4A91FA2047D00DFE006 /* PartnersAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnersAnimation.swift; sourceTree = "<group>"; };
 		7F8DB4AA1FA2047D00DFE006 /* PartnersAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnersAnimator.swift; sourceTree = "<group>"; };
 		7F904F651FBF1A550040EF11 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -545,6 +545,9 @@
 		7FBC3E7D1F34AB8D005BD772 /* MediaResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaResource.swift; sourceTree = "<group>"; };
 		7FBC3E7F1F385135005BD772 /* MediaService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaService.swift; sourceTree = "<group>"; };
 		7FBC3E881F38B9D1005BD772 /* UpSyncMediaOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpSyncMediaOperation.swift; sourceTree = "<group>"; };
+		7FBFBC0E1FC731FB007B6D2D /* WeeklyChoicesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesProvider.swift; sourceTree = "<group>"; };
+		7FBFBC101FC7320B007B6D2D /* WeeklyChoicesViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesViewData.swift; sourceTree = "<group>"; };
+		7FBFBC121FC73F18007B6D2D /* WeeklyChoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyChoice.swift; sourceTree = "<group>"; };
 		7FC81E861F9F377600564292 /* DateComponentsFormatter+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponentsFormatter+Convenience.swift"; sourceTree = "<group>"; };
 		7FC86A041F97A511003DC84D /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		7FCF5FA31FC2E9FA00CD1E5E /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
@@ -830,7 +833,6 @@
 		CC7D21AC1EFC1348007A062E /* WeeklyChoicesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeeklyChoicesCell.xib; sourceTree = "<group>"; };
 		CC7D21AD1EFC1348007A062E /* WeeklyChoicesLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesLayout.swift; sourceTree = "<group>"; };
 		CC7D21AE1EFC1348007A062E /* WeeklyChoicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesViewController.swift; sourceTree = "<group>"; };
-		CC7D21AF1EFC1348007A062E /* WeeklyChoicesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesViewModel.swift; sourceTree = "<group>"; };
 		CC7E80B91F614F1B006F9515 /* QotNotification.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = QotNotification.aiff; sourceTree = "<group>"; };
 		CC80181F1F0256980040B03F /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		CC8018211F026BDA0040B03F /* LibraryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryTableViewCell.swift; sourceTree = "<group>"; };
@@ -1001,6 +1003,7 @@
 				7F0F02F11F13CCCB00007D50 /* SelectWeeklyChoicesViewController.swift */,
 				7F0F02F31F13CDAD00007D50 /* SelectWeeklyChoicesViewController.xib */,
 				7F0F02FA1F13D3D900007D50 /* SelectWeeklyChoicesDataModel.swift */,
+				7FBFBC121FC73F18007B6D2D /* WeeklyChoice.swift */,
 				7F0F03071F14FE9800007D50 /* CollapsableNode.swift */,
 				7F0F02FF1F14CE0C00007D50 /* CollapsableCell.swift */,
 				7F0F03031F14CE2300007D50 /* CollapsableCell.xib */,
@@ -2086,7 +2089,6 @@
 		CBC5ACBD1F162A1F007E1E9C /* UserChoice */ = {
 			isa = PBXGroup;
 			children = (
-				7F8739061F162300005ED8B8 /* WeeklyChoice.swift */,
 				CBC5ACBE1F162A9C007E1E9C /* UserChoice.swift */,
 				CBC5ACC01F162AAE007E1E9C /* UserChoiceIntermediary.swift */,
 			);
@@ -2175,7 +2177,8 @@
 				CC7D21AC1EFC1348007A062E /* WeeklyChoicesCell.xib */,
 				CC7D21AD1EFC1348007A062E /* WeeklyChoicesLayout.swift */,
 				CC7D21AE1EFC1348007A062E /* WeeklyChoicesViewController.swift */,
-				CC7D21AF1EFC1348007A062E /* WeeklyChoicesViewModel.swift */,
+				7FBFBC0E1FC731FB007B6D2D /* WeeklyChoicesProvider.swift */,
+				7FBFBC101FC7320B007B6D2D /* WeeklyChoicesViewData.swift */,
 			);
 			name = "Weekly Choices";
 			sourceTree = "<group>";
@@ -2637,6 +2640,7 @@
 			files = (
 				CB9B07531EF7FE410017F6C3 /* LearnCategoryListPage.swift in Sources */,
 				7F0F02FB1F13D3D900007D50 /* SelectWeeklyChoicesDataModel.swift in Sources */,
+				7FBFBC111FC7320B007B6D2D /* WeeklyChoicesViewData.swift in Sources */,
 				855C4FCA1F262B290068DDE3 /* TutorialViewModel.swift in Sources */,
 				CC05CB791EDEC73C00D15ABC /* UITableView+Create.swift in Sources */,
 				CCF0F4C11ECDC57000E8D9C1 /* ObjectStore.swift in Sources */,
@@ -2691,6 +2695,7 @@
 				CCCE09CE1EA67F87008730F1 /* MyToBeVisionViewController.swift in Sources */,
 				85945C731F27760500F090C8 /* LearnListAnimator.swift in Sources */,
 				850312ED1F34732F00DB5A6B /* UIGestureRecognizer+ClickableLabel.swift in Sources */,
+				7FBFBC0F1FC731FB007B6D2D /* WeeklyChoicesProvider.swift in Sources */,
 				CC37831E1F5ED306007A16A3 /* EnumCollection+Hashable.swift in Sources */,
 				CB0A4A581ECC4C25006A2D85 /* AddSensorCoordinator.swift in Sources */,
 				CBB4DD121EDEAD050071494A /* RequestConstants.swift in Sources */,
@@ -2755,7 +2760,6 @@
 				CC9F4F971F1D15C70027003D /* Range+MakeOneDay.swift in Sources */,
 				CBC1DC301F0FD0CB00F6D056 /* AnswerDecision+Convenience.swift in Sources */,
 				CC7D21A61EFBF52A007A062E /* ArticleItemViewModel.swift in Sources */,
-				7F8739071F162300005ED8B8 /* WeeklyChoice.swift in Sources */,
 				7F8DB4AC1FA2047D00DFE006 /* PartnersAnimator.swift in Sources */,
 				CBC1DC391F14D9ED00F6D056 /* UserSetting.swift in Sources */,
 				CC143A511EC495CE001FB76E /* StatisticsCoordinator.swift in Sources */,
@@ -2835,6 +2839,7 @@
 				CB55A2E11E9FDF1D00D721CE /* SettingsMenuViewModel.swift in Sources */,
 				852DADC61EEEE63500A10882 /* Math.swift in Sources */,
 				CCDD549E1F46C0A7002F4933 /* UIViewController+StreamVideo.swift in Sources */,
+				7FBFBC131FC73F18007B6D2D /* WeeklyChoice.swift in Sources */,
 				CBC1DC3F1F16067900F6D056 /* DownSyncIntermediary.swift in Sources */,
 				7F01A6261F98D5E3002C7B72 /* ImageQuality.swift in Sources */,
 				CC311A1D1EAF39DF0020C869 /* SettingsTableViewCell.swift in Sources */,
@@ -2904,7 +2909,6 @@
 				CBB303421ECEE3E70011303A /* DateFormatter+Convenience.swift in Sources */,
 				CCE6CD801F15299F00B66DA3 /* StatisticsPeriod.swift in Sources */,
 				CC16578C1F75194900D52660 /* CLLocation+Convenience.swift in Sources */,
-				CC7D21B41EFC1348007A062E /* WeeklyChoicesViewModel.swift in Sources */,
 				CC02E1441F2789FE00134574 /* CLLocationManager+Convenience.swift in Sources */,
 				CC41A5491EFD59FC00B9AE8E /* ArticleItemHeaderView.swift in Sources */,
 				CCE6CD751F1390AD00B66DA3 /* UIApplication+Convenience.swift in Sources */,

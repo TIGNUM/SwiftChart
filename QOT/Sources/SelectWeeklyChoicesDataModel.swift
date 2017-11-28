@@ -46,6 +46,7 @@ class SelectWeeklyChoicesDataModel {
                     localID: UUID().uuidString,
                     contentCollectionID: contentCollection.forcedRemoteID,
                     categoryID: contentCategory.forcedRemoteID,
+                    categoryName: nil,
                     title: contentCollection.title,
                     startDate: startDate,
                     endDate: endDate,

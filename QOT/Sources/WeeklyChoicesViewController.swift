@@ -12,9 +12,8 @@ import ReactiveKit
 
 protocol WeeklyChoicesViewControllerDelegate: class {
 
-    func didTapClose(in viewController: UIViewController, animated: Bool)    
-
-    func didUpdateList(with viewModel: WeeklyChoicesViewModel)
+    func weeklyChoicesViewController(_ viewController: WeeklyChoicesViewController, didTapClose: Bool, animated: Bool)
+    func weeklyChoicesViewController(_ viewController: WeeklyChoicesViewController, didUpdateListWithViewData viewData: WeeklyChoicesViewData)
 }
 
 final class WeeklyChoicesViewController: UIViewController, PageViewControllerNotSwipeable {
@@ -22,22 +21,22 @@ final class WeeklyChoicesViewController: UIViewController, PageViewControllerNot
     // MARK: - Properties
 
     weak var delegate: WeeklyChoicesViewControllerDelegate?
-    private let dateLabelSpacing: CGFloat = 2
-    private let viewModel: WeeklyChoicesViewModel
+    var viewData: WeeklyChoicesViewData {
+        didSet {
+            reload()
+        }
+    }
     private lazy var dateLabel: UILabel = UILabel()
-    private let disposeBag = DisposeBag()
     private weak var circleLayer: CALayer?
-
+    private let disposeBag = DisposeBag()
     private lazy var collectionView: UICollectionView = {
         let layout = WeeklyChoicesLayout()
         layout.delegate = self
-
         return UICollectionView(layout: layout,
                                 delegate: self,
                                 dataSource: self,
                                 dequeables: WeeklyChoicesCell.self)
     }()
-
     private lazy var emptyLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .clear
@@ -53,9 +52,8 @@ final class WeeklyChoicesViewController: UIViewController, PageViewControllerNot
 
     // MARK: - Init
 
-    init(viewModel: WeeklyChoicesViewModel) {
-        self.viewModel = viewModel
-
+    init(viewData: WeeklyChoicesViewData) {
+        self.viewData = viewData
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -67,29 +65,31 @@ final class WeeklyChoicesViewController: UIViewController, PageViewControllerNot
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupView()
-        observeViewModel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        reload()
     }
 
     @available(iOS 11.0, *)
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()
-        drawCircle()
+        circleLayer?.removeFromSuperlayer()
+        circleLayer = drawCircle()
+    }
+    
+    func reload() {
+        collectionView.reloadData()
+        setNoContentLabel()
+        delegate?.weeklyChoicesViewController(self, didUpdateListWithViewData: viewData)
     }
 }
 
 // MARK: - Private
 
 private extension WeeklyChoicesViewController {
-
-    func observeViewModel() {
-        viewModel.updates.observeNext { [unowned self] (update) in
-            self.collectionView.reloadData()
-            self.setNoContentLabel()
-            self.delegate?.didUpdateList(with: self.viewModel)
-        }.dispose(in: disposeBag)
-    }
 
     func setupView() {
         let coverView = UIImageView(image: R.image.backgroundWeeklyChoices())
@@ -101,8 +101,7 @@ private extension WeeklyChoicesViewController {
         dateLabel.topAnchor == view.safeTopAnchor
         dateLabel.horizontalAnchors == view.horizontalAnchors
         dateLabel.heightAnchor == 14
-        dateLabel.addCharactersSpacing(spacing: dateLabelSpacing, text: viewModel.pageDates(forIndex: 0))
-        collectionView.topAnchor == dateLabel.bottomAnchor
+        collectionView.topAnchor == dateLabel.bottomAnchor + 15
         collectionView.bottomAnchor == view.bottomAnchor
         collectionView.horizontalAnchors == view.horizontalAnchors
         collectionView.decelerationRate = UIScrollViewDecelerationRateFast
@@ -119,13 +118,16 @@ private extension WeeklyChoicesViewController {
     }
 
     func setNoContentLabel() {
-        if viewModel.itemCount <= 0 {
+        if viewData.pages.count == 0 {
             view.addSubview(emptyLabel)
             emptyLabel.edgeAnchors == view.edgeAnchors
             circleLayer?.removeFromSuperlayer()
+            view.layoutIfNeeded()
         } else {
             emptyLabel.removeFromSuperview()
-            drawCircle()
+            if circleLayer?.superlayer == nil {
+                circleLayer = drawCircle()
+            }
         }
     }
 
@@ -134,24 +136,42 @@ private extension WeeklyChoicesViewController {
         dateLabel.font = Font.H7Title
         dateLabel.textColor = .white50
         dateLabel.textAlignment = .center
+        if let text = viewData.pages.first?.dateString {
+            updateDate(text)
+        }
     }
     
-    func drawCircle() {
-        guard viewModel.itemCount > 0 else {
-            return
-        }
-        if circleLayer?.superlayer != nil {
-            circleLayer?.removeFromSuperlayer()
-        }
+    func drawCircle() -> CALayer? {
         let layout = WeeklyChoicesLayout()
         var center = layout.circleCenter(circleX: circleX(), collectionView: collectionView)
         center.x += 33 // FIXME: sorry for the magic number. not sure why this is needed :(
         center.y = collectionView.center.y + (view.safeMargins.top / 2.0)
-        circleLayer = view.drawSolidCircle(
+        return view.drawSolidCircle(
             arcCenter: center,
             radius: radius(),
             strokeColor: .white20
         )
+    }
+    
+    func snapPage(scrollView: UIScrollView) {
+        let itemsPerPage = viewData.itemsPerPage
+        let changeOffset = cellHeight() * CGFloat(itemsPerPage) / 3
+        let pageHeight = cellHeight() * CGFloat(itemsPerPage)
+        let currentOffset: CGFloat = scrollView.contentOffset.y
+        var targetOffset: CGFloat = 0
+        var index = Int(fabs(currentOffset) / pageHeight)
+        let remainingOffset = fabs(currentOffset).truncatingRemainder(dividingBy: pageHeight)
+        if remainingOffset > changeOffset {
+            index += 1
+        }
+        index = index < 0 ? 0 : index >= itemsPerPage ? itemsPerPage - 1 : index
+        targetOffset = pageHeight * CGFloat(index)
+        scrollView.setContentOffset(CGPoint(x: scrollView.contentOffset.x, y: targetOffset), animated: true)
+        updateDate(viewData.pages[index].dateString)
+    }
+    
+    func updateDate(_ text: String) {
+        dateLabel.addCharactersSpacing(spacing: 2, text: text)
     }
 }
 
@@ -159,58 +179,52 @@ private extension WeeklyChoicesViewController {
 
 extension WeeklyChoicesViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return viewData.pages.count
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.itemCount
+        return viewData[section].items.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: WeeklyChoicesCell = collectionView.dequeueCell(for: indexPath)
-        if let item = viewModel.item(at: indexPath.item) {            
-            cell.setUp(title: item.title ?? "", subTitle: viewModel.categoryName(weeklyChoice: item), choice: viewModel.choiceNumber(forIndex: indexPath.item))
-        } else {
-            cell.setUp(title: R.string.localized.meSectorMyWhyWeeklyChoicesNoChoiceTitle(), subTitle: "", choice: "")
-        }
-
+        let item = viewData[indexPath.section][indexPath.row]
+        cell.setUp(
+            title: item.title ?? R.string.localized.meSectorMyWhyWeeklyChoicesNoChoiceTitle(),
+            subTitle: item.categoryName ?? "",
+            choice: item.subtitle ?? ""
+        )
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let item = viewModel.item(at: indexPath.item) else { return }
-
-        AppDelegate.current.appCoordinator.presentLearnContentItems(contentID: item.contentCollectionID, categoryID: item.categoryID)
-    }
-
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if !decelerate {
-            changePage(scrollView: scrollView)
+        let item = viewData[indexPath.section][indexPath.row]
+        guard let contentCollectionID = item.contentCollectionID, let categoryID = item.categoryID else {
+            return
         }
-    }
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        changePage(scrollView: scrollView)
-    }
-
-    private func changePage(scrollView: UIScrollView) {
-        let changeOffset = cellHeight() * CGFloat(viewModel.itemsPerWeek) / 3
-        let pageHeight = cellHeight() * CGFloat(viewModel.itemsPerWeek)
-        let currentOffset: CGFloat = scrollView.contentOffset.y
-        var targetOffset: CGFloat = 0
-        var index = Int(fabs(currentOffset) / pageHeight)
-        let remainingOffset = fabs(currentOffset).truncatingRemainder(dividingBy: pageHeight)
-
-        if remainingOffset > changeOffset {
-            index += 1
-        }
-
-        index = index < 0 ? 0 : index >= viewModel.itemCount ? viewModel.itemCount - 1 : index
-        targetOffset = pageHeight * CGFloat(index)
-        scrollView.setContentOffset(CGPoint(x: scrollView.contentOffset.x, y: targetOffset), animated: true)
-        dateLabel.addCharactersSpacing(spacing: dateLabelSpacing, text: viewModel.pageDates(forIndex: index))
+        AppDelegate.current.appCoordinator.presentLearnContentItems(contentID: contentCollectionID, categoryID: categoryID)
     }
 }
 
-// MARK: - Layout Delegate
+// MARK: - UIScrollViewDelegate
 
-extension WeeklyChoicesViewController: WeeklyChoicesDelegate {
+extension WeeklyChoicesViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            snapPage(scrollView: scrollView)
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        snapPage(scrollView: scrollView)
+    }
+}
+
+// MARK: - WeeklyChoicesLayoutDelegate
+
+extension WeeklyChoicesViewController: WeeklyChoicesLayoutDelegate {
 
     func radius() -> CGFloat {
         return CGFloat(400)
