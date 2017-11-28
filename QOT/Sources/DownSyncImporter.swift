@@ -32,7 +32,7 @@ class DownSyncImporter<T> where T: DownSyncable, T: SyncableObject {
                     store.deleteObjects(T.self, predicate: NSPredicate(remoteID: remoteID))
                 }
             } catch let error {
-                log("Failed to import change: \(change), error: \(error)")
+                log("Failed to import change: \(change), error: \(error)", level: .error)
             }
         }
     }

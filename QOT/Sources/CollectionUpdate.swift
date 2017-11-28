@@ -26,7 +26,7 @@ extension RealmCollectionChange {
         case .initial:
             return .reload
         case .error(let error):
-            log("Realm collection errored: \(error)")
+            log("Realm collection errored: \(error)", level: .error)
             return .reload
         case .update(_, let deletions, let insertions, let modifications):
             return .update(deletions: deletions.map({ IndexPath(item: $0, section: section) }),

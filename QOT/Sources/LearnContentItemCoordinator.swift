@@ -189,7 +189,7 @@ extension LearnContentItemCoordinator: LearnContentItemViewControllerDelegate {
             let vc = try WebViewController(url)
             viewController.present(vc, animated: true, completion: nil)
         } catch {
-            log("Failed to open url. Error: \(error)")
+            log("Failed to open url. Error: \(error)", level: .error)
             viewController.showAlert(type: .message(error.localizedDescription))
         }
     }

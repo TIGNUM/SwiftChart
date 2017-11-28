@@ -121,7 +121,7 @@ final class AppCoordinator: ParentCoordinator {
 
     func showApp() {
         func handleError(error: Error) {
-            log("Error setting up database: \(error)")
+            log("Error setting up database: \(error)", level: .error)
             Crashlytics.sharedInstance().recordError(error)
             let message = "There was a problem initializing the app's data. Please restart the app and try again"
             self.showMajorAlert(type: .custom(title: "Error", message: message), handler: {
@@ -261,11 +261,17 @@ extension AppCoordinator {
         if let tabBarController = topViewController as? TabBarController {
             selectTabBarItem(tabBarController: tabBarController, tabBarIndex: 2, topTabBarIndex: 1)
         } else if let pageViewController = topViewController as? PageViewController {
-            pageViewController.viewControllers?.forEach { viewController in
-                viewController.dismiss(animated: true) {
-                    self.presentPreparationList()
+            if let tabBarController = pageViewController.tabBarController as? TabBarController {
+               selectTabBarItem(tabBarController: tabBarController, tabBarIndex: 2, topTabBarIndex: 1)
+            } else {
+                pageViewController.viewControllers?.forEach { viewController in
+                    viewController.dismiss(animated: true) {
+                        self.presentPreparationList()
+                    }
                 }
             }
+        } else if let tabBarController = (topViewController as? MyUniverseViewController)?.parent as? TabBarController {
+            selectTabBarItem(tabBarController: tabBarController, tabBarIndex: 2, topTabBarIndex: 1)
         } else {
             topViewController.dismiss(animated: true) {
                 self.presentPreparationList()
@@ -274,19 +280,21 @@ extension AppCoordinator {
     }
 
     private func selectTabBarItem(tabBarController: TabBarController, tabBarIndex: Index, topTabBarIndex: Index) {
-        guard let viewControllers = tabBarController.viewControllers else {
-            return
-        }
+        guard let viewControllers = tabBarController.viewControllers else { return }
         tabBarController.selectedViewController = viewControllers[tabBarIndex]
 
         guard
             let topNavigationBar = (tabBarCoordinator?.topTabBarControllerPrepare.navigationBar as? TopNavigationBar),
-            let myPrepButton = (topNavigationBar.middleButtons?.filter { $0.tag == topTabBarIndex })?.first else {
+            let myPrepButton = (topNavigationBar.middleButtons?.filter { $0.tag == topTabBarIndex })?.first,
+            let destinationViewController = tabBarController.selectedViewController else {
                 return
         }
-
-        tabBarCoordinator?.topNavigationBar(TopNavigationBar(), middleButtonPressed: myPrepButton, withIndex: topTabBarIndex, ofTotal: 2)
-        topNavigationBar.setIndicatorToButtonIndex(topTabBarIndex)
+        
+        tabBarController.tabBarController(tabBarController, didSelect: destinationViewController)
+        tabBarCoordinator?.topNavigationBar(topNavigationBar, middleButtonPressed: myPrepButton, withIndex: topTabBarIndex, ofTotal: 2)
+        topNavigationBar.setIndicatorToButtonIndex(topTabBarIndex, animated: true)
+        topNavigationBar.setIndicatorToButton(myPrepButton, animated: true)
+        topNavigationBar.setIsSelected(myPrepButton)
     }
 
     func presentToBeVision() {
@@ -405,7 +413,7 @@ extension AppCoordinator {
 
             try DatabaseManager.shared.resetDatabase(syncRecordService: syncRecordService)
         } catch {
-            log(error.localizedDescription)
+            log(error.localizedDescription, level: .error)
         }
     }
 }

@@ -141,7 +141,7 @@ final class DatabaseManager {
             try syncRecordService.deleteSyncRecordsForClassNames(classNamesToDeleteArray)
             try deleteAllObjectsWithClassNames(classNamesToDeleteArray, fromDatabase: mainRealm)
         } catch {
-            log("Failed to parially reset database. Will try to delete all. Error: \(error)")
+            log("Failed to parially reset database. Will try to delete all. Error: \(error)", level: .error)
             try mainRealm.write {
                 mainRealm.deleteAll()
             }

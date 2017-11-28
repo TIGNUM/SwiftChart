@@ -202,7 +202,7 @@ extension PrepareCoordinator {
         do {
             localID = try services.preparationService.createPreparation(contentCollectionID: context.contentCollectionID, event: event, name: name, subtitle: context.listTitle)
         } catch {
-            log(error)
+            log(error, level: .error)
             return
         }
         
@@ -219,7 +219,7 @@ extension PrepareCoordinator {
             do {
                 try eventStore.save(event, span: .thisEvent, commit: true)
             } catch let error {
-                log("createPreparation - eventStore.save.error: \(error.localizedDescription)")
+                log("createPreparation - eventStore.save.error: \(error.localizedDescription)", level: .error)
                 return
             }
         }

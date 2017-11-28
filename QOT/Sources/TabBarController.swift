@@ -10,10 +10,12 @@ import UIKit
 import Anchorage
 
 protocol TabBarControllerDelegate: class {
+    
     func tabBarController(_ tabBarController: TabBarController, didSelect viewController: UIViewController, at index: Int)
 }
 
-class TabBarController: UITabBarController {
+final class TabBarController: UITabBarController {
+    
     struct Config {
         var tabBarBackgroundColor: UIColor
         var tabBarBackgroundImage: UIImage?
@@ -37,7 +39,6 @@ class TabBarController: UITabBarController {
     }
     
     weak var tabBarControllerDelegate: TabBarControllerDelegate?
-
     private var indicatorView: UIView?
     private var indicatorViewLeftConstraint: NSLayoutConstraint?
     private var indicatorViewWidthConstraint: NSLayoutConstraint?
@@ -90,9 +91,7 @@ class TabBarController: UITabBarController {
     }
     
     func setIndicatorViewToButtonIndex(_ index: Int, animated: Bool) {
-        guard let indicatorView = indicatorView else {
-            return
-        }
+        guard let indicatorView = indicatorView else { return }
         guard let items = tabBar.items, index >= items.startIndex, index < items.endIndex else {
             indicatorView.backgroundColor = .clear
             return
@@ -183,6 +182,7 @@ class TabBarController: UITabBarController {
 // MARK: - UITabBarDelegate
 
 extension TabBarController: UITabBarControllerDelegate {
+    
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         guard let index = viewControllers?.index(of: viewController), index != NSNotFound else {
             assertionFailure("index not found")
@@ -198,6 +198,7 @@ extension TabBarController: UITabBarControllerDelegate {
 // MARK: - UITabBarItem
 
 private extension UITabBarItem {
+    
     var textWidth: CGFloat {
         guard let title = title as NSString?, let attributes = titleTextAttributes(for: .normal) else {
             return 0.0
@@ -212,6 +213,7 @@ private extension UITabBarItem {
 // MARK: - UITabBar
 
 private extension UITabBar {
+    
     var buttonWidth: CGFloat {
         guard let items = items else { return 0.0 }
         return (items.count == 0) ? bounds.width : (bounds.width / CGFloat(items.count))
