@@ -37,7 +37,8 @@ enum Endpoint: String {
     case userAnswer = "/personal/p/qot/userAnswer"
     case pageTracking = "/personal/p/qot/pageTracking"
     case pushNotificationToken = "/personal/p/qot/deviceToken"
-    case userFeedback = "/personal/p/qot/userAnswerFeedback"
+    case userAnswerFeedback = "/personal/p/qot/userAnswerFeedback"
+    case userFeedback = "/personal/p/qot/userFeedback"
     case userLocationUpdate = "/personal/p/qot/geolocation"
     case log = "/personal/p/qot/log"
     

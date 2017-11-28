@@ -100,6 +100,7 @@ enum JsonKey: String {
     case mediaURL
     case mediaUrl
     case memberSince
+    case message
     case min
     case modifiedAt
     case monthsOfTheYear

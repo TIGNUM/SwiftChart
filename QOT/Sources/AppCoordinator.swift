@@ -496,7 +496,7 @@ extension AppCoordinator: MorningInterviewViewControllerDelegate {
     }
     
     private func sendMorningInterviewResults(_ userAnswers: [UserAnswer]) {
-        networkManager.performUserFeedbackRequest(userAnswers: userAnswers) { result in
+        networkManager.performUserAnswerFeedbackRequest(userAnswers: userAnswers) { result in
             switch result {
             case .success(let value):
                 self.showFeedbackAlert(for: value)

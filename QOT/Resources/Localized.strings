@@ -263,6 +263,8 @@
 "AddSensorView.Alert.Message" = "What device would you like us to support?";
 "AddSensorView.Alert.Send" = "Send";
 "AddSensorView.Alert.Cancel" = "Cancel";
+"AddSensorView.Alert.Feedback.Title" = "Thanks for your feedback";
+"AddSensorView.Alert.Feedback.Success.OK" = "OK";
 "AddSensorView.Alert.Placeholder" = "Enter your device info.";
 
 "Tutorial.Learn.Text" = "The Learn area contains great content on all of the QOT 55 strategies. You can go there to learn, review, or deep dive into any of the strategies. This Learn area also hosts your “What’s Hot” portal where we periodically place new information that we feel you would love.";

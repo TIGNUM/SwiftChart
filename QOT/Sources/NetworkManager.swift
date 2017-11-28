@@ -75,9 +75,9 @@ final class NetworkManager {
         return performRequest(request, completion: completion)
     }
 
-    @discardableResult func performUserFeedbackRequest(userAnswers: [UserAnswer],
+    @discardableResult func performUserAnswerFeedbackRequest(userAnswers: [UserAnswer],
                                                        completion: @escaping (Result<UserAnswerFeedback, NetworkError>) -> Void) -> SerialRequest {
-        return performRequest(UserFeedbackRequest(userAnswers), parser: UserAnswerFeedback.parse, completion: completion)
+        return performRequest(UserAnswerFeedbackRequest(userAnswers), parser: UserAnswerFeedback.parse, completion: completion)
     }
 
     @discardableResult func performUserLocationUpdateRequest(location: CLLocation,

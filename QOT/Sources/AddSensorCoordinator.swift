@@ -50,14 +50,20 @@ extension AddSensorCoordinator: AddSensorViewControllerDelegate {
     func didTapSensor(_ sensor: AddSensorViewModel.Sensor, in viewController: UIViewController) {
         switch sensor {
         case .fitbit:
-            if services.userService.fitbitState == .connected || services.userService.fitbitState == .pending,
-                let url = URL(string: "https://www.fitbit.com/user/profile/apps") {
-                    presentSafariViewController(url: url, viewController: viewController)
+            if (services.userService.fitbitState == .connected || services.userService.fitbitState == .pending), let url = URL(string: "https://www.fitbit.com/user/profile/apps") {
+                presentSafariViewController(url: url, viewController: viewController)
             } else {
                 presentFitBitWebView(in: viewController)
             }
         case .requestDevice:
-            viewController.present(setupAlert(), animated: true, completion: nil)
+            presentAddSensorAlert(in: viewController, sendAction: { text in
+                do {
+                    try self.services.feedbackService.recordFeedback(message: text)
+                } catch {
+                    log(error.localizedDescription)
+                }
+                self.presentFeedbackCompletionAlert(in: viewController)
+            })
         default:
             log("sensor not yet implemented")
         }
@@ -95,24 +101,29 @@ private extension AddSensorCoordinator {
         NotificationCenter.default.removeObserver(self, name: .syncAllDidFinishNotification, object: nil)
     }
     
-    func setupAlert() -> UIAlertController {
+    func presentAddSensorAlert(in viewController: UIViewController, sendAction: ((String) -> Void)?) {
         let alertController = UIAlertController(title: R.string.localized.addSensorViewAlertTitle(), message: R.string.localized.addSensorViewAlertMessage(), preferredStyle: .alert)
-        let sendAction = UIAlertAction(title: R.string.localized.addSensorViewAlertSend(), style: .default) { [weak alertController] _ in
-            if let alertController = alertController {
-                if let text = alertController.textFields?.first?.text, text.count > 0 {
-                    // FIXME: Hack to send data to server until we implement
-                    log("Add sensor message not sent! MESSAGE: <\(text)>", level: .error)
-                }
+        let sendAction = UIAlertAction(title: R.string.localized.addSensorViewAlertSend(), style: .default) { [unowned alertController] _ in
+            guard let text = alertController.textFields?.first?.text, text.count > 0 else {
+                return
             }
+            sendAction?(text)
         }
         
-        let cancelAction = UIAlertAction(title: R.string.localized.addSensorViewAlertCancel(), style: .cancel) { _ in }
+        let cancelAction = UIAlertAction(title: R.string.localized.addSensorViewAlertCancel(), style: .cancel)
         alertController.addTextField { textField in
             textField.placeholder = R.string.localized.addSensorViewAlertPlaceholder()
         }
 
         alertController.addAction(sendAction)
         alertController.addAction(cancelAction)
-        return alertController
+        viewController.present(alertController, animated: true, completion: nil)
+    }
+    
+    func presentFeedbackCompletionAlert(in viewController: UIViewController) {
+        let alertController = UIAlertController(title: R.string.localized.addSensorViewAlertFeedbackTitle(), message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: R.string.localized.addSensorViewAlertFeedbackSuccessOK(), style: .default)
+        alertController.addAction(okAction)
+        viewController.present(alertController, animated: true, completion: nil)
     }
 }

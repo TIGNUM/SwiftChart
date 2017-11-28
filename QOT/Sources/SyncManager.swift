@@ -216,6 +216,7 @@ private extension SyncManager {
             syncOperation(UserSetting.self, context: context, shouldDownload: shouldDownload),
             syncOperation(User.self, context: context, shouldDownload: shouldDownload),
             syncOperation(UserAnswer.self, context: context, shouldDownload: shouldDownload),
+            syncOperation(UserFeedback.self, context: context, shouldDownload: shouldDownload),
             syncOperation(SystemSetting.self, context: context, shouldDownload: shouldDownload),
             syncOperation(Question.self, context: context, shouldDownload: shouldDownload),
             syncOperation(Page.self, context: context, shouldDownload: shouldDownload),

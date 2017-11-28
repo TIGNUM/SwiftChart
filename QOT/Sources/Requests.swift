@@ -93,8 +93,8 @@ struct ResetPasswordRequest: URLRequestBuildable {
     }
 }
 
-struct UserFeedbackRequest: URLRequestBuildable {
-    let endpoint: Endpoint = .userFeedback
+struct UserAnswerFeedbackRequest: URLRequestBuildable {
+    let endpoint: Endpoint = .userAnswerFeedback
     let httpMethod: HTTPMethod = .put
     let body: Data?
 
