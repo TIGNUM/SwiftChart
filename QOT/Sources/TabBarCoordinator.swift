@@ -310,8 +310,10 @@ extension TabBarCoordinator: TopNavigationBarDelegate {
     }
     
     func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
-        guard let navigationController = tabBarController.viewControllers?[selectedIndex.value] as? UINavigationController, let pageViewController = navigationController.viewControllers.first as? PageViewController else {
-            return
+        guard
+            let navigationController = tabBarController.viewControllers?[selectedIndex.value] as? UINavigationController,
+            let pageViewController = navigationController.viewControllers.first as? PageViewController else {
+                return
         }
 
         pageViewController.setPageIndex(index, animated: true)
