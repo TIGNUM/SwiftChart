@@ -36,7 +36,7 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
           shouldPush: Bool = true,
           contentInsets: UIEdgeInsets = UIEdgeInsets(top: 110, left: 0, bottom: 0, right: 0)) {
         guard let contentCollection = contentCollection else { return nil }
-    
+
         self.pageName = pageName
         self.rootViewController = root
         self.services = services
@@ -107,7 +107,7 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
             AppDelegate.current.appCoordinator.presentLearnContentItems(contentID: contentID, categoryID: categoryID)
             return
         }
-        
+
         articleHeader = ArticleCollectionHeader(contentCollection: selectedArticle)
         viewModel = ArticleItemViewModel(services: services,
                                          items: Array(selectedArticle.articleItems),

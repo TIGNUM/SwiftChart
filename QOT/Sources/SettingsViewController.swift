@@ -36,19 +36,19 @@ final class SettingsViewController: UIViewController {
     weak var delegate: SettingsCoordinatorDelegate?
     let settingsType: SettingsType.SectionType
     var tableView: UITableView!
-    
+
     // MARK: - Init
-    
+
     init(viewModel: SettingsViewModel, services: Services, settingsType: SettingsType.SectionType) {
         self.viewModel = viewModel
         self.settingsType = settingsType
         self.services = services
 
         super.init(nibName: nil, bundle: nil)
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView(_:)), name: .UIApplicationWillEnterForeground, object: nil)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -77,7 +77,7 @@ final class SettingsViewController: UIViewController {
 // MARK: - Layout
 
 private extension SettingsViewController {
-    
+
     func setupView() {
         tableView = UITableView(frame: .zero, style: .grouped)
         view.addSubview(tableView)
@@ -119,18 +119,18 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.sectionCount
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfItemsInSection(in: section)
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let settingsRow = viewModel.row(at: indexPath)
 
         guard let settingsCell = tableView.dequeueReusableCell(withIdentifier: settingsRow.identifier, for: indexPath) as? SettingsTableViewCell else {
             fatalError("SettingsTableViewCell DOES NOT EXIST!!!")
         }
-        
+
         settingsCell.settingsDelegate = self
         settingsCell.setup(settingsRow: settingsRow, indexPath: indexPath)
 
@@ -159,7 +159,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         }
 
         headerCell.setupHeaderCell(title: viewModel.headerTitle(in: section))
-        
+
         return headerCell.contentView
     }
 
@@ -313,14 +313,14 @@ extension SettingsViewController: SettingsViewControllerDelegate {
         viewModel.updateNotificationSetting(key: key, value: sender.isOn)
     }
 
-    func didChangeLocationValue(sender: UISwitch, settingsCell: SettingsTableViewCell) {        
+    func didChangeLocationValue(sender: UISwitch, settingsCell: SettingsTableViewCell) {
         if LocationManager.authorizationStatus == .notDetermined {
             // TODO: Connect with PremissionManager and requesst for the very first time.            
             resetLocationSwitch(sender: sender, settingsCell: settingsCell)
             locationManager.requestWhenInUseAuthorization()
         } else if LocationManager.authorizationStatus == .denied || LocationManager.authorizationStatus == .restricted {
             resetLocationSwitch(sender: sender, settingsCell: settingsCell)
-            showAlert(type: .settingsLoccationService, handler: { 
+            showAlert(type: .settingsLoccationService, handler: {
                 UIApplication.openAppSettings()
             }, handlerDestructive: nil)
         } else {

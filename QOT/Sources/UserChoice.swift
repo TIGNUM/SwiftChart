@@ -15,7 +15,7 @@ final class UserChoice: SyncableObject {
         case weekly = "WEEKLY"
         case monthly = "MONTHLY"
     }
-    
+
     private let _contentCategoryID = RealmOptional<Int>()
 
     private let _contentCollectionID = RealmOptional<Int>()
@@ -29,9 +29,9 @@ final class UserChoice: SyncableObject {
     @objc private(set) dynamic var endDate: Date = Date()
 
     @objc dynamic var deleted: Bool = false
-  
+
     @objc dynamic var changeStamp: String? = UUID().uuidString
-    
+
     var contentCategoryID: Int? {
         return _contentCategoryID.value
     }
@@ -49,7 +49,7 @@ final class UserChoice: SyncableObject {
         self.endDate = endDate
         self.type = Type.weekly.rawValue
     }
-    
+
     // FIXME: This should be an actual realm relationship
     var contentCollection: ContentCollection? {
         guard let id = contentCollectionID else {
@@ -73,12 +73,12 @@ extension UserChoice: TwoWaySyncable {
         _contentCategoryID.value = data.contentCategoryID
         _contentCollectionID.value = data.contentCollectionID
     }
-    
+
     func toJson() -> JSON? {
         guard syncStatus != .clean else {
             return nil
         }
-        
+
         let dateFormatter = DateFormatter.iso8601
         let dict: [JsonKey: JSONEncodable] = [
             .qotId: localID,

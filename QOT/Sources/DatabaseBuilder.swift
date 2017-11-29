@@ -31,22 +31,22 @@ class DatabaseBuilder {
         return queue
     }()
     private var operations: [Operation]?
-    
+
     init(networkManager: NetworkManager, syncRecordService: SyncRecordService, realmProvider: RealmProvider, deviceID: String) {
         self.networkManager = networkManager
         self.syncRecordService = syncRecordService
         self.realmProvider = realmProvider
         self.deviceID = deviceID
     }
-    
+
     func setContentOperations(_ operations: [ConcurrentOperation]) {
         self.operations = operations
     }
-    
+
     func setCompletion(_ completion: @escaping () -> Void) {
         operations?.append(BlockOperation(block: completion))
     }
-    
+
     func build() {
         guard let operations = operations else {
             return
@@ -60,7 +60,7 @@ class DatabaseBuilder {
             }
         }
     }
-    
+
     func downSyncOperation<P>(for: P.Type, context: SyncContext)
         -> SyncOperation where P: DownSyncable, P: SyncableObject, P.Data: DownSyncIntermediary {
         let downSyncTask = DownSyncTask<P>(networkManager: networkManager,
@@ -72,7 +72,7 @@ class DatabaseBuilder {
     func updateRelationsOperation(context: SyncContext) -> UpdateRelationsOperation {
         return UpdateRelationsOperation(context: context, realmProvider: realmProvider)
     }
-    
+
     // @see https://realm.io/docs/swift/latest/#bundling-a-realm-with-an-app
     func copyWithName(_ name: String) throws -> URL? {
         guard var path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {

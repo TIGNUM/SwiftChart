@@ -57,18 +57,18 @@ final class LearnContentItemViewController: UIViewController {
     }()
 
     // MARK: Init
-    
+
     init(viewModel: LearnContentItemViewModel, tabType: TabType) {
         self.viewModel = viewModel
         self.tabType = tabType
-        
+
         super.init(nibName: nil, bundle: nil)
 
         if tabType == .audio {
             observeViewModelPlayerUpdates()
         }
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -79,11 +79,11 @@ final class LearnContentItemViewController: UIViewController {
         super.viewDidLoad()
 
         setupView()
-        
+
         if let parent = parent as? PageScroll {
             parent.pageDidLoad(self, scrollView: itemTableView)
         }
-    
+
         itemTableView.setContentOffset(CGPoint(x: 0, y: -itemTableView.contentInset.top), animated: true)
     }
 
@@ -103,7 +103,7 @@ final class LearnContentItemViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+
         viewModel.stopPlayback()
     }
 
@@ -124,7 +124,7 @@ final class LearnContentItemViewController: UIViewController {
 // MARK: UITableViewDelegate, UITableViewDataSource
 
 extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSource {
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.sectionCount(tabType: tabType)
     }
@@ -148,7 +148,7 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
             item = viewModel.learnContentItem(at: indexPath, tabType: tabType)
         }
 
-        if viewModel.containsAudioItem(tabType: tabType) == true && indexPath.section == 0 {            
+        if viewModel.containsAudioItem(tabType: tabType) == true && indexPath.section == 0 {
             switch viewModel.firstAudioItem() {
             case .audio(_, _, _, _, _, let waveformData):
                 let cell: LearnStrategyAudioPlayerView = tableView.dequeueCell(for: indexPath)
@@ -175,7 +175,7 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
                 if style == .paragraph {
                     attributedTopText = Style.article(itemText, .black).attributedString(lineHeight: 2)
                 }
-                
+
                 return contentItemTextTableViewCell(tableView: tableView,
                                                     indexPath: indexPath,
                                                     topText: attributedTopText,
@@ -299,7 +299,7 @@ private extension LearnContentItemViewController {
                 }
             case .reload: return
             }
-        }.dispose(in: disposeBag)        
+        }.dispose(in: disposeBag)
     }
 
     private func progress(currentPosition: TimeInterval, trackDuration: TimeInterval) -> CGFloat {

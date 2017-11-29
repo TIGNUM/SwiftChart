@@ -32,7 +32,7 @@ final class ContentItem: SyncableObject {
     @objc private(set) dynamic var valueImageURL: String?
 
     @objc private(set) dynamic var valueMediaURL: String?
-    
+
     let valueMediaID = RealmOptional<Int>(nil)
 
     let valueDuration = RealmOptional<Double>(nil)
@@ -44,7 +44,7 @@ final class ContentItem: SyncableObject {
     var secondsRequired: Int {
         return Int(valueDuration.value ?? 0.0)
     }
-    
+
     // MARK: Relationships
 
     @objc private(set) dynamic var contentCollection: ContentCollection?
@@ -53,7 +53,7 @@ final class ContentItem: SyncableObject {
 // MARK: - BuildRelations
 
 extension ContentItem: BuildRelations {
-    
+
     func buildRelations(realm: Realm) {
         if let id = collectionID.value {
             contentCollection = realm.syncableObject(ofType: ContentCollection.self, remoteID: id)

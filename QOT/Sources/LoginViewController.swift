@@ -16,7 +16,7 @@ protocol LoginViewControllerDelegate: class {
 
 final class LoginViewController: UIViewController {
     // MARK: - Properties
-    
+
     private weak var delegate: LoginViewControllerDelegate?
     private var isPasswordHidden = true
     private let logoImageView: UIImageView = UIImageView(image: R.image.loginLogo())
@@ -111,12 +111,12 @@ final class LoginViewController: UIViewController {
         button.titleLabel?.font = Font.H8Title
         return button
     }()
-    
+
     // MARK: - Initialisation
 
     init(delegate: LoginViewControllerDelegate?) {
         self.delegate = delegate
-        
+
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -125,7 +125,7 @@ final class LoginViewController: UIViewController {
     }
 
     // MARK: - Life Cycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -147,14 +147,14 @@ final class LoginViewController: UIViewController {
         view.endEditing(true)
         stopObservingKeyboard()
     }
-    
+
     // MARK: - private
-    
+
     @objc private func didPressLogin(_ sender: UIButton) {
         resignFirstResponder()
         doLogin()
     }
-    
+
     @objc private func didPressShow(_ sender: UIButton) {
         if isPasswordHidden {
             passwordInput.isSecureTextEntry = false
@@ -165,19 +165,19 @@ final class LoginViewController: UIViewController {
         }
         isPasswordHidden = !isPasswordHidden
     }
-    
+
     @objc private func didPressForgotPassword(_ sender: UIButton) {
         resignFirstResponder()
         delegate?.loginViewControllerDidTapResetPassword(self)
     }
-    
+
     private func doLogin() {
         guard let email = userInput.text, let password = passwordInput.text else {
             return
         }
         delegate?.loginViewController(self, didTapLoginWithEmail: email, password: password)
     }
-    
+
     private func addHierarchy() {
         view.addSubview(backgroundImageView)
         view.addSubview(logoImageView)
@@ -192,62 +192,62 @@ final class LoginViewController: UIViewController {
         view.addSubview(passwordInput)
         view.addSubview(crossImageView)
     }
-    
+
     private func setupLayout() {
         backgroundImageView.horizontalAnchors == view.horizontalAnchors
         backgroundImageView.verticalAnchors == view.verticalAnchors
-        
+
         topConstraint = logoImageView.topAnchor == view.topAnchor + 81
         logoImageView.heightAnchor == 35
         logoImageView.widthAnchor == 116
         logoImageView.centerXAnchor == view.centerXAnchor
         logoImageView.contentMode = .scaleAspectFit
-        
+
         crossImageView.bottomAnchor == warningLabel.topAnchor
         crossImageView.heightAnchor == 10
         crossImageView.widthAnchor == 10
         crossImageView.leadingAnchor == view.leadingAnchor + 38
-        
+
         warningLabel.leadingAnchor == view.leadingAnchor + 36
         warningLabel.trailingAnchor == view.trailingAnchor - 57
         warningLabel.heightAnchor == 53
         warningLabel.bottomAnchor == userInput.topAnchor - 50
-        
+
         userInput.topAnchor == logoImageView.bottomAnchor + 61
         userInput.leadingAnchor == view.leadingAnchor + 40
         userInput.trailingAnchor == emailCorrectImage.leadingAnchor
         userInput.heightAnchor == 33
-        
+
         userView.topAnchor == userInput.bottomAnchor
         userView.leadingAnchor == view.leadingAnchor + 37
         userView.trailingAnchor == view.trailingAnchor - 38
         userView.heightAnchor == 1
-        
+
         emailCorrectImage.bottomAnchor == userInput.bottomAnchor - 12
         emailCorrectImage.trailingAnchor == userView.trailingAnchor - 10
         emailCorrectImage.heightAnchor == 9
         emailCorrectImage.widthAnchor == 14
-        
+
         passwordInput.topAnchor == userView.bottomAnchor + 29
         passwordInput.leadingAnchor == view.leadingAnchor + 40
         passwordInput.trailingAnchor == passwordToggle.leadingAnchor
         passwordInput.heightAnchor == 33
-        
+
         passwordView.topAnchor == passwordInput.bottomAnchor
         passwordView.leadingAnchor == view.leadingAnchor + 37
         passwordView.trailingAnchor == view.trailingAnchor - 38
         passwordView.heightAnchor == 1
-        
+
         passwordToggle.bottomAnchor == passwordInput.bottomAnchor - 5
         passwordToggle.trailingAnchor == passwordView.trailingAnchor
         passwordToggle.heightAnchor == 23
         passwordToggle.widthAnchor == 43
-        
+
         forgotPasswordButton.topAnchor == passwordView.bottomAnchor
         forgotPasswordButton.trailingAnchor == view.trailingAnchor
         forgotPasswordButton.widthAnchor == 197
         forgotPasswordButton.heightAnchor == 53
-        
+
         loginButton.topAnchor == passwordView.bottomAnchor + 75
         loginButton.centerXAnchor == view.centerXAnchor
         loginButton.widthAnchor == 242
@@ -256,11 +256,11 @@ final class LoginViewController: UIViewController {
         loginButton.layer.borderWidth = 2
         loginButton.layer.borderColor = UIColor.azure.cgColor
         loginButton.setTitleColor(.azure, for: .normal)
-        
+
         userInput.tag = 0
-        passwordInput.tag = 1        
+        passwordInput.tag = 1
     }
-    
+
     private func isValidEmail(valid: Bool) {
         if !valid {
             self.emailCorrectImage.isHidden = true
@@ -274,16 +274,16 @@ final class LoginViewController: UIViewController {
             self.userView.backgroundColor = .white
         }
     }
-    
+
     private func hideComponents() {
         self.warningLabel.isHidden = true
         self.crossImageView.isHidden = true
         self.emailCorrectImage.isHidden = true
         self.userView.backgroundColor = .whiteLight14
     }
-    
+
     // MARK: - notification
-    
+
     @objc override func keyboardWillAppear(notification: NSNotification) {
         guard
             let topConstraint = topConstraint,
@@ -299,7 +299,7 @@ final class LoginViewController: UIViewController {
             self.view.layoutIfNeeded()
         })
     }
-    
+
     @objc override func keyboardWillDisappear(notification: NSNotification) {
         guard
             let topConstraint = topConstraint,
@@ -335,13 +335,13 @@ extension LoginViewController: UITextFieldDelegate {
             }
         }
     }
-    
+
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == userInput {
             hideComponents()
         }
     }
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // Try to find next responder
         if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {

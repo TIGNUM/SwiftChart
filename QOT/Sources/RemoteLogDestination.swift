@@ -15,7 +15,7 @@ final class RemoteLogDestination: BaseDestination {
     private enum ErrorType: Error {
         case serialization
     }
-    
+
     private let session: URLSession
     private let remoteURL: URL?
     private let headers: [String: String]
@@ -43,7 +43,7 @@ final class RemoteLogDestination: BaseDestination {
             return
         }
     }
-    
+
     override init() {
         session = URLSession(configuration: .default)
         reachabilityManager = Alamofire.NetworkReachabilityManager(host: "www.apple.com")
@@ -55,13 +55,13 @@ final class RemoteLogDestination: BaseDestination {
         headers = [HTTPHeader.contentType.rawValue: "application/json"]
         dateFormatter = DateFormatter()
         realmProvider = RealmProvider()
-        
+
         super.init()
 
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z"
         reachabilityManager?.startListening()
     }
-    
+
     override public func send(_ level: SwiftyBeaver.Level, msg: String, thread: String, file: String, function: String, line: Int, context: Any? = nil) -> String? {
         guard level.rawValue >= minLevel.rawValue else {
             return nil
@@ -84,7 +84,7 @@ final class RemoteLogDestination: BaseDestination {
         send(logInfo)
         return logInfo.jsonString
     }
-    
+
     // MARK: - private
 
     private func send(_ logInfo: LogInfo) {

@@ -32,7 +32,7 @@ enum URLScheme: String {
             .weeklyChoicesReminder
         ]
     }
-    
+
     var queryName: String {
         switch self {
         case .fitbit: return "code"
@@ -46,15 +46,15 @@ enum URLScheme: String {
              .myPreps: return ""
         }
     }
-    
+
     func queryParametter(url: URL) -> String? {
         return url.queryStringParameter(param: queryName)
     }
-    
+
     func pushNotificationID(url: URL) -> String? {
         return url.queryStringParameter(param: "nid")
     }
-    
+
     static func isSupportedURL(_ url: URL) -> Bool {
         guard
             let host = url.host,
@@ -63,14 +63,14 @@ enum URLScheme: String {
         }
         return true
     }
-    
+
     static func preparationURL(withID localID: String) -> String? {
         guard
             let urlTypes = Bundle.main.infoDictionary?["CFBundleURLTypes"] as? [[String: Any]],
             let urlSchemes = urlTypes[0]["CFBundleURLSchemes"] as? [String] else {
                 return nil
         }
-        
+
         let preparation = URLScheme.preparation
         return "\(urlSchemes[0])://\(preparation.rawValue)\(preparation.queryName)\(localID)"
     }

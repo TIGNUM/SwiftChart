@@ -10,9 +10,9 @@ import Foundation
 import RealmSwift
 
 struct UpSyncMediaData {
-    
+
     let body: Data
-    
+
     init(body: Data) {
         self.body = body
     }

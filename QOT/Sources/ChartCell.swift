@@ -27,9 +27,9 @@ var selectedChartTypes: [ChartType: Bool] = [.peakPerformanceUpcomingWeek: true,
 protocol ChartCellDelegate: class {
 
     func doReload()
-    
+
     func didSelectAddSensor()
-    
+
     func didSelectOpenSettings()
 
 }
@@ -93,11 +93,11 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
     private var configuration = Configuration.make(screenType: .big)
     private var fitbitState = User.FitbitState.disconnected
     private var calandarAccessGranted = true
-    
+
     private var shouldShowAddSensorView: Bool {
         return fitbitState != .connected && statistics?.chartType.sensorRequired == true
     }
-    
+
     private var shouldShowAddCalendarView: Bool {
         return calandarAccessGranted == false && statistics?.chartType.calendarRequired == true
     }
@@ -248,7 +248,7 @@ private extension ChartCell {
             chartContentView.addSubview(charts)
         }
     }
-    
+
     func setupChartView(statistics: Statistics) -> UIView {
         let segmentedFrame = CGRect(x: 0, y: 0, width: chartSegmentedContentView.frame.width, height: chartSegmentedContentView.frame.height)
         let segmentedBiggerFrame = CGRect(x: 0, y: 0, width: segmentedFrame.width, height: segmentedFrame.height + labelContentView.frame.height)
@@ -262,7 +262,7 @@ private extension ChartCell {
                 setupOverlayView(text: fitbitState.addSensorText)
                 return UIView()
             }
-            
+
             return ActivityChart(frame: frame, statistics: statistics, labelContentView: labelContentView)
         case .intensityLoadWeek,
              .intensityLoadMonth,
@@ -275,21 +275,21 @@ private extension ChartCell {
                 setupOverlayView(text: R.string.localized.meChartAddCalendar())
                 return UIView()
             }
-            
+
             return MeetingsAverageChart(frame: segmentedBiggerFrame, statistics: statistics, labelContentView: labelContentView)
         case .meetingLength:
             if shouldShowAddCalendarView == true {
                 setupOverlayView(text: R.string.localized.meChartAddCalendar())
                 return UIView()
             }
-            
+
             return MeetingsLengthChart(frame: biggerFrame, statistics: statistics, labelContentView: labelContentView)
         case .meetingTimeBetween:
             if shouldShowAddCalendarView == true {
                 setupOverlayView(text: R.string.localized.meChartAddCalendar())
                 return UIView()
             }
-            
+
             return MeetingsTimeBetweenChart(frame: biggerFrame, statistics: statistics, labelContentView: labelContentView)
         case .sleepQuality,
              .sleepQuantity:
@@ -297,7 +297,7 @@ private extension ChartCell {
                 setupOverlayView(text: fitbitState.addSensorText)
                 return UIView()
             }
-            
+
             return SleepChart(frame: frame, statistics: statistics)
         case .peakPerformanceUpcomingWeek,
              .peakPerformanceUpcomingNextWeek:
@@ -308,7 +308,7 @@ private extension ChartCell {
                 setupOverlayView(text: R.string.localized.meChartAddCalendar())
                 return UIView()
             }
-            
+
             return PeakPerformanceUpcomingChart(frame: segmentedFrame, statistics: statistics, labelContentView: labelContentView)
         case .peakPerformanceAverageWeek,
              .peakPerformanceAverageMonth:
@@ -319,7 +319,7 @@ private extension ChartCell {
                 setupOverlayView(text: R.string.localized.meChartAddCalendar())
                 return UIView()
             }
-            
+
             return PeakPerformanceAverageChart(frame: segmentedFrame, statistics: statistics, labelContentView: labelContentView)
         case .travelTripsTimeZoneChangedWeeks,
              .travelTripsTimeZoneChangedYear,
@@ -330,7 +330,7 @@ private extension ChartCell {
                 setupOverlayView(text: R.string.localized.meChartCommingSoon())
                 return UIView()
             }
-            
+
             let travelTripFrame = statistics.chartType == .travelTripsNextFourWeeks ? frame : segmentedFrame
             return TravelTripsChart(frame: travelTripFrame, statistics: statistics, labelContentView: labelContentView)
         case .travelTripsMaxTimeZone:
@@ -338,7 +338,7 @@ private extension ChartCell {
                 setupOverlayView(text: R.string.localized.meChartCommingSoon())
                 return UIView()
             }
-            
+
             return TravelMaxTimeZoneChart(frame: biggerFrame, statistics: statistics, labelContentView: labelContentView)
         }
     }
@@ -347,12 +347,12 @@ private extension ChartCell {
 // MARK: - Actions
 
 private extension ChartCell {
-    
+
     @IBAction func overlayButtonTapped(sender: UIButton) {
         if shouldShowAddCalendarView == true {
             delegate?.didSelectOpenSettings()
         }
-        
+
         if shouldShowAddSensorView == true {
             delegate?.didSelectAddSensor()
         }
@@ -364,7 +364,7 @@ private extension ChartCell {
             self.infoView.alpha = 1
         }
     }
-    
+
     @IBAction func closeInfoView() {
         UIView.animate(withDuration: 0.5) {
             self.infoView.alpha = 0
@@ -378,7 +378,7 @@ private extension ChartCell {
         updateButtons()
         delegate?.doReload()
     }
-    
+
     func updateButtons() {
         let leftChartType = chartTypes[0]
         let rightChartType = chartTypes[1]
@@ -412,7 +412,7 @@ private extension ChartCell {
 
 private extension ChartCell {
 
-    func setupInfoView() {        
+    func setupInfoView() {
         guard let infoText = statistics?.chartType.infoText else { return }
         let font = configuration.infoFont
         let lineSpacing = configuration.infoLineSpacing
@@ -426,14 +426,14 @@ private extension ChartCell {
 // MARK: - OverlayView
 
 private extension ChartCell {
-    
+
     func setupOverlayView(text: String) {
         overlayView.alpha = 1
         containerView.alpha = 0
         addSenorView.isHidden = statistics?.chartType.comingSoon == true
         comingSoonView.isHidden = statistics?.chartType.comingSoon == false
         overlayBackgroundImageView.image = statistics?.chartType.overlayImage
-        
+
         if statistics?.chartType.comingSoon == false {
             setLabel(text: text,
                      color: .white40,

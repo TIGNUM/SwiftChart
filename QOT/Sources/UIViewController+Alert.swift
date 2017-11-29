@@ -142,7 +142,7 @@ extension UIViewController {
         addActions(type: type, alertController: alertController, handler: handler, handlerDestructive: handlerDestructive)
         return alertController
     }
-    
+
     func showAlert(type: AlertType, handler: (() -> Void)? = nil, handlerDestructive: (() -> Void)? = nil) {
         let alertController = UIViewController.alertController(type: type)
         UIViewController.addActions(type: type, alertController: alertController, handler: handler, handlerDestructive: handlerDestructive)
@@ -170,13 +170,13 @@ extension UIViewController {
     private class func cancelAction(type: AlertType) -> UIAlertAction {
         return UIAlertAction(title: type.buttonTitleCancel, style: .cancel, handler: nil)
     }
-    
+
     private class func defaultAction(type: AlertType, handler: (() -> Void)?) -> UIAlertAction {
         return UIAlertAction(title: type.buttonTitleDefault, style: .default) { _ in
             handler?()
         }
     }
-    
+
     private class func destructiveAction(type: AlertType, handler: (() -> Void)?) -> UIAlertAction {
         return UIAlertAction(title: type.buttonTitleDestructive, style: .destructive) { _ in
             handler?()

@@ -20,10 +20,10 @@ final class SleepChart: UIView {
     // MARK: - Init
 
     init(frame: CGRect, statistics: Statistics) {
-        self.statistics = statistics        
+        self.statistics = statistics
 
         super.init(frame: frame)
-        
+
         drawCharts()
     }
 
@@ -35,7 +35,7 @@ final class SleepChart: UIView {
 // MARK: - Private
 
 private extension SleepChart {
-    
+
     func drawCharts() {
         createDayLabel()
         lineBounds(isDataPoint: false)
@@ -112,7 +112,7 @@ private extension SleepChart {
             line.lineWidth = 1.5
             line.lineDashPattern = [1.5, 3]
         }
-        
+
         layer.addSublayer(line)
         layoutIfNeeded()
     }
@@ -122,7 +122,7 @@ private extension SleepChart {
         layer.addSublayer(outerPolygonShape())
         layoutIfNeeded()
     }
-    
+
     func innerPolygonShape() -> CAShapeLayer {
         let innerPolygonShape = shape(borderColor: .white8)
         let scaleFactor = CGFloat(statistics.teamAverage)
@@ -134,12 +134,12 @@ private extension SleepChart {
                                                                    0)
         return innerPolygonShape
     }
-    
+
     func outerPolygonShape() -> CAShapeLayer {
         let outerPolygonShape = shape(borderColor: .white20)
         outerPolygonShape.path = UIBezierPath.pentagonPath(forRect: frame).cgPath
         outerPolygonShape.transform = CATransform3DMakeTranslation(0, yPosition, 0)
-        
+
         return outerPolygonShape
     }
 
@@ -176,7 +176,7 @@ private extension SleepChart {
 // MARK: - UIBezierPath helper
 
 private extension UIBezierPath {
-    
+
     class func pentagonPath(forRect rect: CGRect) -> UIBezierPath {
         return UIBezierPath(polygonIn: rect, sides: 5, lineWidth: 0, cornerRadius: 0)
     }

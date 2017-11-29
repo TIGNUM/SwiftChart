@@ -21,7 +21,7 @@ final class LearnContentCell: UICollectionViewCell, Dequeueable {
 
         return label
     }()
-    
+
     private lazy var videoDurationLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
@@ -29,7 +29,7 @@ final class LearnContentCell: UICollectionViewCell, Dequeueable {
 
         return label
     }()
-    
+
     private lazy var imageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFit

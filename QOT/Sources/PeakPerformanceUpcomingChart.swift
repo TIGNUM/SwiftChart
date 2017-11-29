@@ -45,28 +45,28 @@ private extension PeakPerformanceUpcomingChart {
     private var rowWidth: CGFloat {
         return (frame.width - yAxisOffset) / CGFloat(rows)
     }
-    
+
     private func xPosition(_ index: Int) -> CGFloat {
         guard labelContentView.subviews.count >= index else { return 0 }
         let labelFrame = labelContentView.subviews[index].frame
-        
+
         return (labelFrame.origin.x + labelFrame.width * 0.5)
     }
-    
+
     private var bottomPosition: CGFloat {
         return frame.height - padding * 0.75
     }
-    
+
     private func yPosition(_ value: CGFloat) -> CGFloat {
         return (bottomPosition - (value * bottomPosition)) + padding * 0.5
     }
-    
+
     private func addCaptionLabel(yPos: CGFloat, text: String) {
         let captionLabel = UILabel(frame: CGRect(x: 0, y: yPos - yAxisOffset * 0.25, width: yAxisOffset, height: yAxisOffset * 0.5))
         captionLabel.setAttrText(text: text, font: Font.H7Title, lineSpacing: 1, characterSpacing: 1, color: .white20)
         addSubview(captionLabel)
     }
-    
+
     private func updateLabelFrames() {
         for (index, subView) in labelContentView.subviews.enumerated() where subView is UILabel {
             let frame = subView.frame
@@ -84,13 +84,13 @@ private extension PeakPerformanceUpcomingChart {
 
         for (index, periodsInOneDay) in statistics.periodUpcominngWeek.enumerated() {
             let xPos = xPosition(index)
-            
+
             periodsInOneDay.forEach { (period: StatisticsPeriod) in
                 let startPoint = CGPoint(x: xPos, y: CGFloat(period.startMinute) * singleStepUnit)
                 let endPoint = CGPoint(x: xPos, y: CGFloat(period.startMinute + period.minutes) * singleStepUnit)
                 let strokeColor = period.status.color
                 let hasShadow = period.status == .normal
-                
+
                 drawSolidLine(from: startPoint, to: endPoint, lineWidth: lineWidth, strokeColor: strokeColor, hasShadow: hasShadow)
             }
         }

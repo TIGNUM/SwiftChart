@@ -100,6 +100,6 @@ extension LearnStrategyAudioPlayerView: AudioPlayerViewLabelDelegate {
     }
 
     func stopBlinking() {
-        currentPositionLabel.stopBlinking()        
+        currentPositionLabel.stopBlinking()
     }
 }

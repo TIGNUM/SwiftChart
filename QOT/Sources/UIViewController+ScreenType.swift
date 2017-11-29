@@ -132,7 +132,7 @@ extension UIViewController {
     private var height: CGFloat {
         return size.height
     }
-    
+
     private var isPortrait: Bool {
         return height > width
     }

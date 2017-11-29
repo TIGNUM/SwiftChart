@@ -26,7 +26,7 @@ final class WeeklyChoicesLayout: UICollectionViewLayout {
     private var width: CGFloat {
         return collectionView?.bounds.width ?? 0
     }
-    
+
     private var totalItemCount: Int {
         var total = 0
         for i in 0..<sections {
@@ -34,7 +34,7 @@ final class WeeklyChoicesLayout: UICollectionViewLayout {
         }
         return total
     }
-    
+
     private var sections: Int {
         return collectionView?.numberOfSections ?? 0
     }
@@ -85,7 +85,7 @@ final class WeeklyChoicesLayout: UICollectionViewLayout {
                 attributes.frame = CGRect(x: x, y: y, width: cellWidth, height: cellHeight)
                 rowCache.append(attributes)
             }
-            
+
             cache.append(rowCache)
         }
     }
@@ -121,7 +121,7 @@ final class WeeklyChoicesLayout: UICollectionViewLayout {
             y: (collectionView.bounds.height / 2) + collectionView.contentOffset.y
         )
     }
-    
+
     // MARK: - private
 
     private func xPos(y: CGFloat, radius: CGFloat, circleX: CGFloat) -> CGFloat? {

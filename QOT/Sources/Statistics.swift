@@ -67,12 +67,12 @@ extension Statistics: OneWaySyncableDown {
 // MARK: - Displayable Values
 
 extension Statistics {
-    
+
     var universeValue: CGFloat {
         if let chartType = ChartType(rawValue: key) {
             return chartType.comingSoon == true ? 0 : universe.toFloat
         }
-        
+
         return universe.toFloat
     }
 
@@ -250,59 +250,59 @@ extension Statistics {
         var upcomingWeek = [[StatisticsPeriod]]()
         let datesToCheck = chartType == .peakPerformanceUpcomingWeek ? datesLastWeek() : datesNextWeek()
         let periods = self.singleDayPeriods()
-        
+
         datesToCheck.forEach { (date: Date) in
             let periodsForDay = periods.filter { $0.startDate.isSameDay(date) == true }
             upcomingWeek.append(periodsForDay)
         }
-        
+
         return upcomingWeek.reversed()
     }
-    
+
     private func singleDayPeriods() -> [StatisticsPeriod] {
         var singleDayPeriods = [StatisticsPeriod]()
-        
+
         periods.forEach { (period: StatisticsPeriod) in
             if period.startDate.isSameDay(period.endDate) == true {
                 singleDayPeriods.append(period)
             } else {
                 var startDate = period.startDate
-                
+
                 repeat {
                     let singleDayPeriod = StatisticsPeriod(start: startDate, end: startDate.endOfDay, status: period.status)
                     singleDayPeriods.append(singleDayPeriod)
                     startDate = startDate.nextDay.startOfDay
                 } while startDate.isSameDay(period.endDate) == false
-                
+
                 if startDate.isSameDay(period.endDate) == true {
                     let singleDayPeriod = StatisticsPeriod(start: startDate, end: period.endDate, status: period.status)
                     singleDayPeriods.append(singleDayPeriod)
                 }
             }
         }
-        
+
         return singleDayPeriods
     }
-    
+
     private func datesLastWeek() -> [Date] {
         var lastWeek = [Date]()
-        
+
         for dayIndex in 0...6 {
             let day = Calendar.sharedUTC.date(byAdding: .day, value: -dayIndex, to: Date()) ?? Date()
             lastWeek.append(day)
         }
-        
+
         return lastWeek.reversed()
     }
-    
+
     private func datesNextWeek() -> [Date] {
         var nextWeek = [Date]()
-        
+
         for dayIndex in 1...7 {
             let day = Calendar.sharedUTC.date(byAdding: .day, value: dayIndex, to: Date()) ?? Date()
             nextWeek.append(day)
         }
-        
+
         return nextWeek.reversed()
     }
 }

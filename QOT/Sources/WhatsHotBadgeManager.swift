@@ -33,20 +33,20 @@ final class WhatsHotBadgeManager {
             update()
         }
     }
-    
+
     private weak var whatsHotBadge: Badge?
-    
+
     init() {
         setupNotifications()
     }
-    
+
     func didScrollToWhatsHotPage() {
         UserDefault.newWhatsHotArticle.setBoolValue(value: false)
         update()
     }
 
     // MARK: - private
-    
+
     private func setupNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(userDefaultsDidChangeNotification(_:)), name: UserDefaults.didChangeNotification, object: nil)
     }
@@ -54,7 +54,7 @@ final class WhatsHotBadgeManager {
     private func update() {
         whatsHotBadge?.removeFromSuperview()
         tabBarController?.mark(isRead: true, at: 0)
-        
+
         guard UserDefault.newWhatsHotArticle.boolValue else {
             return
         }
@@ -67,16 +67,16 @@ final class WhatsHotBadgeManager {
             tabBarController?.mark(isRead: false, at: 0)
         }
     }
-    
+
     // MARK: - actions
-    
+
     @objc private func whatsHotButtonPressed(_ sender: UIButton) {
         UserDefault.newWhatsHotArticle.setBoolValue(value: false)
         update()
     }
-    
+
     // MARK: - notifications
-    
+
     @objc private func userDefaultsDidChangeNotification(_ noticiation: Notification) {
         DispatchQueue.main.async {
             self.update()

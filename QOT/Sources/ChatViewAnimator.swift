@@ -80,7 +80,7 @@ extension ChatViewAnimator {
             let animations: [CALayer: [CAPropertyAnimation]] = [
                 view.typingBackgroundView.layer: typingBackgroundViewAnimations(),
                 view.typingAnimationView.layer: typingIndicatorAnimations(),
-                view.label.layer: labelViewAnimations(), 
+                view.label.layer: labelViewAnimations(),
                 view.dashedLineView.layer: dashedViewAnimations()
             ]
 

@@ -65,7 +65,7 @@ struct UserIntermediary: DownSyncIntermediary {
         self.totalUsageTime = try json.getItemValue(at: .totalUsageTime)
         self.esbDomain = try json.getItemValue(at: .esbDomain)
         self.fitbitState = try json.getItemValue(at: .fitbitState)
-        
+
         let userInfo = try json.json(at: .userInfo)
         self.height = try userInfo.getItemValue(at: .height, alongPath: .nullBecomesNil)
         self.heightUnit = try userInfo.getItemValue(at: .heightUnit, alongPath: .nullBecomesNil)

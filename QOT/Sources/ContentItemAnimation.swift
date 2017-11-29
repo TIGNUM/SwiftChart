@@ -40,10 +40,10 @@ final class ContentItemAnimation: NSObject, UIViewControllerAnimatedTransitionin
         }
         self.fromViewController = fromViewController
         self.toViewController = toViewController
-        
+
         fromViewController.beginAppearanceTransition(false, animated: true)
         toViewController.beginAppearanceTransition(true, animated: true)
-        
+
         let animatedViewController = isPresenting ? toViewController : fromViewController
         let animatedView = animatedViewController.view!
         let bubbleView = UIView(frame: animatedView.frame)
@@ -146,7 +146,7 @@ private extension ContentItemAnimation {
         opacityAnimation.isRemovedOnCompletion = false
         opacityAnimation.duration = duration / 2
         maskLayer.add(opacityAnimation, forKey: "opacity")
-        
+
         CATransaction.commit()
     }
 }

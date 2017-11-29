@@ -21,7 +21,7 @@ final class AnimatedLaunchScreenViewController: UIViewController {
         setupHierarchy()
         setupLayout()
     }
-    
+
     func fadeInLogo(withCompletion completion: (() -> Void)? = nil) {
         UIView.animate(withDuration: 2.0, animations: {
             self.logoImageView.alpha = 1.0
@@ -29,7 +29,7 @@ final class AnimatedLaunchScreenViewController: UIViewController {
             completion?()
         })
     }
-    
+
     func fadeOutLogo(withCompletion completion: (() -> Void)? = nil) {
         UIView.animate(withDuration: 0.5, animations: {
             self.logoImageView.alpha = 0.0
@@ -37,10 +37,10 @@ final class AnimatedLaunchScreenViewController: UIViewController {
             completion?()
         })
     }
-    
+
     func startAnimatingImages(withCompletion completion: (() -> Void)? = nil) {
         logoImageView.startAnimating()
-        
+
         let estimatedTime = Double(imageCount) * (1.0 / 30.0) // 30 fps. @see UIImageView animationDuration
         DispatchQueue.main.asyncAfter(deadline: .now() + estimatedTime) {
             completion?()
@@ -64,7 +64,7 @@ private extension AnimatedLaunchScreenViewController {
 
         tignumImageView.bottomAnchor == view.bottomAnchor - 34.0
         tignumImageView.centerXAnchor == view.centerXAnchor
-        
+
         logoImageView.heightAnchor == 48
         logoImageView.widthAnchor == 138
         logoImageView.centerAnchors == view.centerAnchors

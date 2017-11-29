@@ -74,7 +74,7 @@ struct PageObject {
         case contentItem = "CONTENTITEM"
         case preparation = "PREPARATION"
     }
-    
+
     let object: SyncableObject
     let identifier: Identifier
 }
@@ -154,7 +154,7 @@ extension LearnContentItemViewController: TrackablePage {
     }
     var pageAssociatedObject: PageObject? {
         return PageObject(object: viewModel.contentCollection, identifier: .contentCollection)
-    } 
+    }
 }
 
 extension LibraryViewController: TrackablePage {

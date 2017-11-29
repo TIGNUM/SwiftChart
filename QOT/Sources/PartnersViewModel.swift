@@ -11,7 +11,7 @@ import UIKit
 import RealmSwift
 
 final class PartnersViewModel {
-    
+
     // MARK: - Properties
 
     let headline: String
@@ -30,7 +30,7 @@ final class PartnersViewModel {
         self.services = services
         self.selectedIndex = selectedIndex
         self.headline = headline.uppercased()
-        
+
         let maxPartners = Layout.MeSection.maxPartners
         self.items = Array(services.partnerService.partners.prefix(maxPartners))
         for _ in 0..<(maxPartners - items.count) { // pad default items with placeholders
@@ -41,7 +41,7 @@ final class PartnersViewModel {
     var itemCount: Int {
         return items.count
     }
-    
+
     func item(at index: Index) -> Partner? {
         return items[index]
     }
@@ -49,7 +49,7 @@ final class PartnersViewModel {
     func updateIndex(index: Index) {
         save()
         selectedIndex = index
-        
+
         if let partner = item(at: index) {
             currentEditPartner = partner
         } else {
@@ -68,7 +68,7 @@ final class PartnersViewModel {
         guard let currentEditPartner = currentEditPartner else { return }
         partnerService.updateSurname(partner: currentEditPartner, surname: surname)
     }
-    
+
     func updateRelationship(relationship: String) {
         guard let currentEditPartner = currentEditPartner else { return }
         partnerService.updateRelationship(partner: currentEditPartner, relationship: relationship)

@@ -35,7 +35,7 @@ extension UITapGestureRecognizer {
         // Find the tapped character location and compare it to the specified range
         let locationOfTouchInLabel = self.location(in: label)
         let textBoundingBox = layoutManager.usedRect(for: textContainer)
-        
+
         // convert location from label.bounds to textBoundingBox
         guard label.bounds.size.height > 0, label.bounds.size.width > 0 else {
             return nil
@@ -46,7 +46,7 @@ extension UITapGestureRecognizer {
             x: locationOfTouchInLabel.x * xScaleFactor,
             y: locationOfTouchInLabel.y * yScaleFactor
         )
-        
+
         // return link for character index
         let indexOfCharacter = layoutManager.characterIndex(
             for: normalizedTouch,

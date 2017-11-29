@@ -40,7 +40,7 @@ final class PrepareContentViewModel {
         let url: URL
         let placeholderURL: URL?
     }
-    
+
     // MARK: - Properties
 
     private var headerToggleState: [Bool] = []
@@ -59,7 +59,7 @@ final class PrepareContentViewModel {
             return (check.value == nil) ? result : result + 1
         }
     }
-    
+
     // MARK: - Initialisation
 
     init(title: String, subtitle: String, video: Video?, description: String, items: [PrepareItem]) {
@@ -93,7 +93,7 @@ final class PrepareContentViewModel {
         items.remove(at: 0)
         items.insert(.titleItem(title: title, subTitle: subTitle, contentText: contentText, placeholderURL: videoPlaceholder, videoURL: video), at: 0)
     }
-    
+
     private func dateForID(_ id: Int) -> Date? {
         guard let date: Date? = checkedIDs[id] else {
             assertionFailure("date shouldnt be missing")
@@ -134,7 +134,7 @@ final class PrepareContentViewModel {
     func didTapHeader(index: Int) {
         headerToggleState[index] = !headerToggleState[index]
     }
-    
+
     func isCellExpanded(at: Int) -> Bool {
         return headerToggleState[at]
     }
@@ -143,7 +143,7 @@ final class PrepareContentViewModel {
 // MARK: - Private
 
 private extension PrepareContentViewModel {
-    
+
     func fillHeaderStatus() {
         for _ in 0...items.count {
             headerToggleState.append(itemCount == 2)
@@ -152,7 +152,7 @@ private extension PrepareContentViewModel {
 
     func makeItems(_ items: [PrepareItem]) {
         self.items.append(.titleItem(title: title, subTitle: subTitle, contentText: contentText, placeholderURL: videoPlaceholder, videoURL: video))
-        
+
         for element in items {
             self.items.append(.item(id: element.id, title: element.title, subTitle: element.subTitle, readMoreID: element.readMoreID))
         }

@@ -33,7 +33,7 @@ protocol MyWhyViewDelegate: class {
 }
 
 final class MyUniverseViewController: UIViewController, FullScreenLoadable {
-    
+
     // MARK: - Properties
 
     private let tokenBin = TokenBin()
@@ -49,7 +49,7 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
             showLoading(isLoading, text: R.string.localized.meMyUniverseLoading())
         }
     }
-    
+
     private lazy var topBar: TopNavigationBar = {
         let topBar = TopNavigationBar(frame: CGRect(
             x: 0.0,
@@ -65,7 +65,7 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
 
         return topBar
     }()
-    
+
     private lazy var middleButtons: [UIButton] = {
         let myDataButton = UIButton(type: .custom)
         myDataButton.setTitle(R.string.localized.topTabBarItemTitleMeMyData().uppercased(), for: .normal)
@@ -73,17 +73,17 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
         myDataButton.setTitleColor(.gray, for: .normal)
         myDataButton.titleLabel?.font = Font.H5SecondaryHeadline
         myDataButton.backgroundColor = .clear
-        
+
         let myWhyButton = UIButton(type: .custom)
         myWhyButton.setTitle(R.string.localized.topTabBarItemTitleMeMyWhy().uppercased(), for: .normal)
         myWhyButton.setTitleColor(.white, for: .selected)
         myWhyButton.setTitleColor(.gray, for: .normal)
         myWhyButton.titleLabel?.font = Font.H5SecondaryHeadline
         myWhyButton.backgroundColor = .clear
-        
+
         return [myDataButton, myWhyButton]
     }()
-    
+
     lazy var myDataView: MyDataView = {
         return MyDataView(
             delegate: self,
@@ -116,7 +116,7 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
                                       frame: myDataView.frame,
                                       screenType: self.screenType)
     }()
-    
+
     private lazy var scrollView: UIScrollView = {
         let layout = Layout.MeSection(viewControllerFrame: self.view.bounds)
         let contentScrollView = MyUniverseHelper.createScrollView(self.view.bounds, layout: layout)
@@ -163,7 +163,7 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -181,7 +181,7 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
 // MARK: - Private
 
 private extension MyUniverseViewController {
-    
+
     func observeViewModel() {
         viewModel.observe(\MyUniverseViewModel.dataReady, options: [.initial]) { [unowned self] _, _ in
             self.updateReadyState()
@@ -206,7 +206,7 @@ private extension MyUniverseViewController {
             self.myDataView.reload()
             }.addTo(tokenBin)
     }
-    
+
     func addSubViews() {
         backgroundScrollView.addSubview(backgroundImage)
         view.addSubview(backgroundScrollView)
@@ -215,31 +215,31 @@ private extension MyUniverseViewController {
         scrollView.addSubview(myWhyView)
         scrollView.addSubview(myDataSectorLabelsView)
         scrollView.addSubview(myDataView)
-        
+
         topBar.topAnchor == view.safeTopAnchor
         topBar.horizontalAnchors == view.horizontalAnchors
         topBar.heightAnchor == topBar.bounds.height
-        
+
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             scrollView.contentInsetAdjustmentBehavior = .never
             backgroundScrollView.contentInsetAdjustmentBehavior = .never
         }
     }
-    
+
     func updateReadyState() {
         myWhyView.userCoicesReady = viewModel.dataReady
         myWhyView.partnersReady = viewModel.dataReady
         myWhyView.toBeVisionReady = viewModel.dataReady
         isLoading = !viewModel.dataReady
     }
-    
+
     func updatePageTracking() {
         switch pageIndex {
         case 0: pageName = .myData
         default: pageName = .myWhy
         }
-        
+
         pageTracker.track(self)
     }
 }
@@ -281,21 +281,21 @@ extension MyUniverseViewController: UIScrollViewDelegate {
             topBar.setIndicatorToButtonIndex(0)
             return
         }
-        
+
         topBar.setIndicatorToButtonIndex(pageIndex)
     }
-    
+
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         updatePageTracking()
     }
-    
+
     var pageIndex: Int {
         guard scrollView.contentOffset.x > 0.0 else {
             return 0
         }
         return Int(floor(scrollView.frame.size.width / scrollView.contentOffset.x))
     }
-    
+
     func pageOffsetForIndex(_ index: Int) -> CGFloat {
         switch index {
         case 1:
@@ -373,7 +373,7 @@ extension MyUniverseViewController: MyDataViewDelegate {
 extension MyUniverseViewController: TopNavigationBarDelegate {
     func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
     }
-    
+
     func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
         guard let index = middleButtons.index(of: button) else {
             return
@@ -383,7 +383,7 @@ extension MyUniverseViewController: TopNavigationBarDelegate {
             y: scrollView.contentOffset.y
         ), animated: true)
     }
-    
+
     func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
         delegate?.didTapRightBarButton(button, from: navigationBar, in: self)
     }

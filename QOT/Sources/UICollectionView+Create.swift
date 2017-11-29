@@ -12,7 +12,7 @@ import UIKit
 extension UICollectionView {
 
     convenience init(
-        layout: UICollectionViewLayout,        
+        layout: UICollectionViewLayout,
         contentInsets: UIEdgeInsets = .zero,
         backgroundColor: UIColor = .clear,
         delegate: UICollectionViewDelegate,
@@ -25,7 +25,7 @@ extension UICollectionView {
             self.dataSource = dataSource
             self.showsVerticalScrollIndicator = false
             self.showsHorizontalScrollIndicator = false
-            self.registerDequeueables(dequeables: dequeables)            
+            self.registerDequeueables(dequeables: dequeables)
     }
 
     private func registerDequeueables(dequeables: [Dequeueable.Type]) {

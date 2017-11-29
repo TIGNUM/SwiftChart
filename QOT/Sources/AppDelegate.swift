@@ -47,9 +47,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return app
     }
-    
+
     // MARK: - Life Cycle
-    
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
 
@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             __buildDatabase()
             return true
         #endif
-        
+
         Log.setup()
         Fabric.with([Crashlytics.self])
         Buglife.shared().start(withAPIKey: "fj62sZjDnl3g0dLuXJHUzAtt") // FIXME: obfuscate
@@ -86,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UAirship.push().resetBadge()
         appCoordinator.appDidBecomeActive()
     }
-    
+
     func applicationWillResignActive(_ application: UIApplication) {
         QOTUsageTimer.sharedInstance.stopTimer()
     }
@@ -105,21 +105,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // MARK: - private
-    
+
     private func incomingLocationEvent(launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
-        guard let locationEvent = launchOptions?[UIApplicationLaunchOptionsKey.location] as? NSNumber else { return }        
-        
+        guard let locationEvent = launchOptions?[UIApplicationLaunchOptionsKey.location] as? NSNumber else { return }
+
         if locationEvent.boolValue == true {
             let locationManager = LocationManager()
             locationManager.startSignificantLocationMonitoring(didUpdateLocations: appCoordinator.sendLocationUpdate)
         }
     }
-    
+
     private func setupUAirship() {
         guard let path = Bundle.main.path(forResource: "AirshipConfig", ofType: "plist") else {
             return
         }
-        
+
         let config = UAConfig(contentsOfFile: path)
         UAirship.takeOff(config)
         UAirship.push().pushNotificationDelegate = remoteNotificationHandler
@@ -127,16 +127,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UAirship.shared().analytics.isEnabled = true
         UAirship.setLogLevel(.error)
     }
-    
+
     private var appFilePath: String {
         let url = URL.documentsDirectory.deletingLastPathComponent()
         return url.absoluteString.removeFilePrefix
-    } 
+    }
 
     private func logAppLocation() {
         log("App location: \(appFilePath)", enabled: Log.Toggle.Manager.FileManager)
     }
-    
+
     private func logAvailableFonts() {
         for family: String in UIFont.familyNames {
             log("\(family)", enabled: Log.Toggle.Manager.Font)
@@ -156,11 +156,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 return topViewController(base: selected)
             }
         }
-        
+
         if let presented = base?.presentedViewController {
             return topViewController(base: presented)
         }
-        
+
         return base
     }
 }

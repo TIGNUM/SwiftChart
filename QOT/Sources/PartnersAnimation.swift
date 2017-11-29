@@ -18,21 +18,21 @@ final class PartnersAnimation: NSObject {
         self.duration = duration
         super.init()
     }
-    
+
     private func getMyUniverseViewController(_ viewController: UIViewController) -> MyUniverseViewController? {
         if let viewController = viewController as? TabBarController, let viewControllers = viewController.viewControllers, viewControllers.count > 1, let childViewController = viewControllers[1] as? MyUniverseViewController {
             return childViewController
         }
         return nil
     }
-    
+
     private func getPartnersViewController(_ viewController: UIViewController) -> PartnersViewController? {
         if let navigationController = viewController as? UINavigationController, let pageViewController = navigationController.viewControllers.first as? PageViewController, let childViewController = pageViewController.viewControllers?.first as? PartnersViewController {
             return childViewController
         }
         return nil
     }
-    
+
     private func prepare(_ myUniverseViewController: MyUniverseViewController, _ partnersViewController: PartnersViewController) {
         if isPresenting {
             partnersViewController.navigationController?.view.alpha = 0
@@ -41,7 +41,7 @@ final class PartnersAnimation: NSObject {
             myUniverseViewController.view.alpha = 0
         }
     }
-    
+
     private func animate(_ myUniverseViewController: MyUniverseViewController, _ partnersViewController: PartnersViewController) {
         if isPresenting {
             partnersViewController.navigationController?.view.alpha = 1
@@ -74,7 +74,7 @@ extension PartnersAnimation: UIViewControllerAnimatedTransitioning {
 
         fromViewController.beginAppearanceTransition(false, animated: true)
         toViewController.beginAppearanceTransition(true, animated: true)
-        
+
         if isPresenting {
             containerView.insertSubview(toViewController.view, belowSubview: fromViewController.view)
             toViewController.view.frame = containerView.bounds
@@ -87,9 +87,9 @@ extension PartnersAnimation: UIViewControllerAnimatedTransitioning {
             let partnersViewController = getPartnersViewController(expectedPartnersViewController) else {
                 fatalError("missing view controllers for animation")
         }
-        
+
         prepare(myUniverseViewController, partnersViewController)
-        
+
         UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseOut], animations: {
             self.animate(myUniverseViewController, partnersViewController)
         }, completion: { finished in

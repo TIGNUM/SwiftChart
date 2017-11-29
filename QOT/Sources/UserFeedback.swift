@@ -23,7 +23,7 @@ extension UserFeedback: OneWaySyncableUp {
     static var endpoint: Endpoint {
         return .userFeedback
     }
-    
+
     func toJson() -> JSON? {
         let dict: [JsonKey: JSONEncodable] = [
             .message: message

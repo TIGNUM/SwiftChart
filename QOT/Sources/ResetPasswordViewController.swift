@@ -94,7 +94,7 @@ final class ResetPasswordViewController: UIViewController {
         button.titleLabel?.textAlignment = .center
         return button
     }()
-    
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -105,10 +105,10 @@ final class ResetPasswordViewController: UIViewController {
         hideComponents()
         hideKeyboardWhenTappedAround()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         startObservingKeyboard()
     }
 
@@ -118,9 +118,9 @@ final class ResetPasswordViewController: UIViewController {
         view.endEditing(true)
         stopObservingKeyboard()
     }
-    
+
     // MARK: - private
-    
+
     private func addHierarchy() {
         view.addSubview(backgroundImageView)
         view.addSubview(logoImageView)
@@ -132,40 +132,40 @@ final class ResetPasswordViewController: UIViewController {
         view.addSubview(userInput)
         view.addSubview(warningSignLabel)
     }
-    
+
     private func setupLayout() {
         backgroundImageView.horizontalAnchors == view.horizontalAnchors
         backgroundImageView.verticalAnchors == view.verticalAnchors
-        
+
         topConstraint = logoImageView.topAnchor == view.topAnchor + 81
         logoImageView.heightAnchor == 35
         logoImageView.widthAnchor == 116
         logoImageView.centerXAnchor == view.centerXAnchor
         logoImageView.contentMode = .scaleAspectFit
-        
+
         warningLabel.topAnchor == logoImageView.bottomAnchor + 61
         warningLabel.leadingAnchor == view.leadingAnchor + 36
         warningLabel.trailingAnchor == view.trailingAnchor - 36
-        
+
         warningSignLabel.bottomAnchor == warningLabel.topAnchor
         warningSignLabel.leadingAnchor == warningLabel.leadingAnchor
         warningSignLabel.trailingAnchor == warningLabel.trailingAnchor
-        
+
         userInput.topAnchor == warningLabel.bottomAnchor + 50
         userInput.leadingAnchor == view.leadingAnchor + 40
         userInput.trailingAnchor == emailCorrectImage.leadingAnchor
         userInput.heightAnchor == 33
-        
+
         userView.topAnchor == userInput.bottomAnchor - 2
         userView.leadingAnchor == view.leadingAnchor + 37
         userView.trailingAnchor == view.trailingAnchor - 38
         userView.heightAnchor == 1
-        
+
         emailCorrectImage.bottomAnchor == userInput.bottomAnchor - 14
         emailCorrectImage.trailingAnchor == userView.trailingAnchor - 10
         emailCorrectImage.heightAnchor == 9
         emailCorrectImage.widthAnchor == 14
-        
+
         resetPasswordButton.topAnchor == userView.bottomAnchor + 65
         resetPasswordButton.centerXAnchor == view.centerXAnchor
         resetPasswordButton.widthAnchor == 242
@@ -174,15 +174,15 @@ final class ResetPasswordViewController: UIViewController {
         resetPasswordButton.layer.borderWidth = 2
         resetPasswordButton.layer.borderColor = UIColor.azure.cgColor
         resetPasswordButton.setTitleColor(.azure, for: .normal)
-        
+
         userInput.tag = 0
     }
-    
+
     @objc private func didPressResetPassword(_ sender: UIButton) {
         self.resignFirstResponder()
         doPasswordReset()
     }
-    
+
     private func doPasswordReset() {
         guard let username = userInput.text?.trimmingCharacters(in: .whitespacesAndNewlines), username.count > 0 else {
             return
@@ -200,7 +200,7 @@ final class ResetPasswordViewController: UIViewController {
                 }
                 return
             }
-            
+
             UIView.transition(with: self.resetPasswordButton, duration: 0.5, options: .transitionCrossDissolve, animations: {
                 self.resetPasswordButton.titleLabel?.addCharactersSpacing(spacing: 1, text: R.string.localized.resetPasswordEmailSent())
             }, completion: { success in
@@ -208,7 +208,7 @@ final class ResetPasswordViewController: UIViewController {
             })
         }
     }
-    
+
     private func isValidEmail(valid: Bool) {
         if !valid {
             self.emailCorrectImage.isHidden = true
@@ -218,14 +218,14 @@ final class ResetPasswordViewController: UIViewController {
             self.userView.backgroundColor = .white
         }
     }
-    
+
     private func hideComponents() {
         self.emailCorrectImage.isHidden = true
         self.userView.backgroundColor = .whiteLight14
     }
-    
+
     // MARK: - notification
-    
+
     @objc override func keyboardWillAppear(notification: NSNotification) {
         guard
             let topConstraint = topConstraint,
@@ -241,7 +241,7 @@ final class ResetPasswordViewController: UIViewController {
             self.view.layoutIfNeeded()
         })
     }
-    
+
     @objc override func keyboardWillDisappear(notification: NSNotification) {
         guard
             let topConstraint = topConstraint,
@@ -272,13 +272,13 @@ extension ResetPasswordViewController: UITextFieldDelegate {
             }
         }
     }
-    
+
     public func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == userInput {
             hideComponents()
         }
     }
-    
+
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // Try to find next responder
         if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {

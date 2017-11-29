@@ -11,18 +11,18 @@ import ReactiveKit
 import RealmSwift
 
 @objcMembers final class MyUniverseViewModel: NSObject {
-    
+
     final class Partner: NSObject {
-        
+
         let initials: String
         let imageURL: URL?
-        
+
         init(initials: String, imageURL: URL?) {
             self.initials = initials
             self.imageURL = imageURL
         }
     }
-    
+
     private let tokenBin = TokenBin()
     private let services: Services
     private let allPartners: AnyRealmCollection<QOT.Partner>
@@ -37,7 +37,7 @@ import RealmSwift
     @objc private(set) dynamic var weeklyChoices: [String] = []
     @objc private(set) dynamic var partners: [Partner] = []
     @objc private(set) dynamic var statisticsUpdated = Date()
-    
+
     init(services: Services) {
         self.services = services
         allPartners = services.partnerService.partners
@@ -46,7 +46,7 @@ import RealmSwift
         statistics = services.statisticsService.chartObjects()
         syncStateObserver = SyncStateObserver(realm: services.mainRealm)
         super.init()
-        
+
         userChoices.addNotificationBlock { [unowned self] _ in
             self.refresh()
             }.addTo(tokenBin)
@@ -63,25 +63,25 @@ import RealmSwift
             self.refresh()
             }.addTo(tokenBin)
     }
-    
+
     var sectorCount: Int {
         return sectors.count
     }
-    
+
     var sectors: [Sector] {
         return chartSectors(service: services.statisticsService)
     }
-    
+
     func spike(for sector: Sector, at index: Index) -> Spike {
         return sector.spikes[index]
     }
-    
+
     func sector(at index: Index) -> Sector {
         return sectors[index]
     }
-    
+
     // MARK: Private
-    
+
     private func refresh() {
         let myToBeVision = fetchMyToBeVision()
         dataReady = fetchDataReady()
@@ -91,7 +91,7 @@ import RealmSwift
         weeklyChoices = fetchWeeklyChoices()
         partners = fetchPartners()
     }
-    
+
     private func fetchDataReady() -> Bool {
         return syncStateObserver.hasSynced(MyToBeVision.self)
             && syncStateObserver.hasSynced(UserChoice.self)
@@ -99,18 +99,18 @@ import RealmSwift
             && syncStateObserver.hasSynced(ContentCollection.self)
             && syncStateObserver.hasSynced(Statistics.self)
     }
-    
+
     private func fetchMyToBeVision() -> MyToBeVision? {
         return services.userService.myToBeVision()
     }
-    
+
     private func fetchWeeklyChoices() -> [String] {
         let choices = userChoices.sorted { $0.startDate > $1.startDate }.prefix(Layout.MeSection.maxWeeklyPage)
         return choices.map { (choice) -> String in
             return choice.contentCollection?.title ?? ""
         }
     }
-    
+
     private func fetchPartners() -> [Partner] {
         return allPartners.prefix(Layout.MeSection.maxPartners).map {
             return Partner(initials: $0.initials, imageURL: $0.profileImageResource?.url)
@@ -123,7 +123,7 @@ import RealmSwift
 enum SectorType {
     case bodyBrain
     case load
-    
+
     func lineWidth(load: CGFloat) -> CGFloat {
         switch self {
         case .load: return load * 16
@@ -139,7 +139,7 @@ enum SectorLabelType {
     case travel
     case sleep
     case activity
-    
+
     var text: String {
         switch self {
         case .peak: return R.string.localized.meSectorPeak()
@@ -150,11 +150,11 @@ enum SectorLabelType {
         case .activity: return R.string.localized.meSectorActivity()
         }
     }
-    
+
     var load: CGFloat {
         return 1.1
     }
-    
+
     var sectionType: StatisticsSectionType {
         switch self {
         case .activity: return .activity
@@ -165,33 +165,33 @@ enum SectorLabelType {
         case .travel: return .travel
         }
     }
-    
+
     func angle(for sector: Sector) -> CGFloat {
         return (sector.startAngle + sector.endAngle) / 2
     }
 }
 
 protocol Spike {
-    
+
     var angle: CGFloat { get }
-    
+
     var load: CGFloat { get }
-    
+
     func spikeLoad() -> CGFloat
 }
 
 protocol Sector {
-    
+
     var startAngle: CGFloat { get }
-    
+
     var endAngle: CGFloat { get }
-    
+
     var spikes: [Spike] { get }
-    
+
     var labelType: SectorLabelType { get }
-    
+
     var strokeColor: UIColor { get }
-    
+
     var type: SectorType { get }
 }
 
@@ -203,16 +203,16 @@ struct SectorLabel {
 struct ChartSpike: Spike {
     let angle: CGFloat
     let load: CGFloat
-    
+
     private let min: CGFloat = 0.15
     private let max: CGFloat = 0.98
     private let divisions: Int = 4 // must be >= 2. represents divisions in the grid that we snap the spikeLoad to
     private let grid: [CGFloat]
-    
+
     init(angle: CGFloat, load: CGFloat) {
         self.angle = angle
         self.load = load
-        
+
         let jumpValue = (max - min) / CGFloat(divisions - 1)
         var grid = [min]
         for i in 1..<divisions {
@@ -220,7 +220,7 @@ struct ChartSpike: Spike {
         }
         self.grid = grid
     }
-    
+
     func spikeLoad() -> CGFloat {
         var gridIndex = -1
         for (index, value) in grid.enumerated() where load <= value {
@@ -275,35 +275,35 @@ private func chartSectors(service: StatisticsService) -> [ChartSector] {
             strokeColor: .magenta,
             type: .load
         ),
-        
+
         ChartSector(
             spikes: intensitySpikes(service: service),
             labelType: .intensity,
             strokeColor: .blue,
             type: .load
         ),
-        
+
         ChartSector(
             spikes: meetingsSpikes(service: service),
             labelType: .meetings,
             strokeColor: .yellow,
             type: .load
         ),
-        
+
         ChartSector(
             spikes: travelSpikes(service: service),
             labelType: .travel,
             strokeColor: .green,
             type: .load
         ),
-        
+
         ChartSector(
             spikes: sleepSpikes(service: service),
             labelType: .sleep,
             strokeColor: .orange,
             type: .bodyBrain
         ),
-        
+
         ChartSector(
             spikes: activitySpikes(service: service),
             labelType: .activity,

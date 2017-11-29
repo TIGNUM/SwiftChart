@@ -12,7 +12,7 @@ import RealmSwift
 class Answer: Object {
 
     let remoteID = RealmOptional<Int>(nil)
-    
+
     @objc private(set) dynamic var sortOrder: Int = 0
 
     @objc private(set) dynamic var title: String = ""

@@ -35,7 +35,7 @@ final class StatisticsCoordinator: NSObject, ParentCoordinator {
     func start() {
         do {
             let viewModel = try ChartViewModel(services: services, startingSection: startingSection)
-            let statisticsViewController = ChartViewController(viewModel: viewModel)            
+            let statisticsViewController = ChartViewController(viewModel: viewModel)
             statisticsViewController.title = R.string.localized.meMyStatisticsNavigationBarTitle()
             topTabBarController = UINavigationController(withPages: [statisticsViewController],
                                                          topBarDelegate: self,
@@ -52,14 +52,14 @@ final class StatisticsCoordinator: NSObject, ParentCoordinator {
 // MARK: - TopNavigationBarDelegate
 
 extension StatisticsCoordinator: TopNavigationBarDelegate {
-    
+
     func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
         topTabBarController.dismiss(animated: true, completion: nil)
     }
-    
+
     func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
     }
-    
+
     func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
     }
 }

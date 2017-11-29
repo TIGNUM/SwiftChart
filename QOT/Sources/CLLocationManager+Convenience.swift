@@ -12,14 +12,14 @@ import CoreLocation
 final class LocationManager: CLLocationManager {
 
     // MARK: - Properties
-    
+
     var didUpdateLocations: ((_ location: CLLocation) -> Void)?
 
     // MARK: - Init
 
     override init() {
         super.init()
-        
+
         allowsBackgroundLocationUpdates = true
         pausesLocationUpdatesAutomatically = true
     }

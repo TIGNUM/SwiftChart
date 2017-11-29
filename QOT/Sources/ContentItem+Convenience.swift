@@ -35,7 +35,7 @@ extension ContentItem {
 // MARK: Helpers
 
 private struct BundledMediaResource: Codable {
-    
+
     let mediaID: Int
     let fileName: String
 }

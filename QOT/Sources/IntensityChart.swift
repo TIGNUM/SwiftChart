@@ -112,7 +112,7 @@ private extension IntensityChart {
         let end = CGPoint(x: frame.width, y: yPos)
         drawDashedLine(from: start, to: end, lineWidth: 1, strokeColor: .cherryRedTwo30, dashPattern: [1.5, 3.0])
     }
-    
+
     private func addCaptionLabel() {
         for (index, yPos) in yPositions.reversed().enumerated() where index % 2 == 1 && index > 0 {
             let labelFrame = CGRect(x: 0, y: yPos - yAxisOffset * 0.5, width: yAxisOffset, height: yAxisOffset)

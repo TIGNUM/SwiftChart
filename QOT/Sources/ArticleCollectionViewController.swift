@@ -22,7 +22,7 @@ final class ArticleCollectionViewController: UIViewController, FullScreenLoadabl
 
     private let paddingTop: CGFloat = 26
     private let backgroundImageView: UIImageView
-    
+
     weak var delegate: ArticleCollectionViewControllerDelegate?
     let pageName: PageName
     var loadingView: BlurLoadingView?
@@ -36,7 +36,7 @@ final class ArticleCollectionViewController: UIViewController, FullScreenLoadabl
             reload()
         }
     }
-    
+
     private lazy var collectionView: UICollectionView = {
         let layout = ArticleCollectionLayout()
         layout.delegate = self
@@ -55,7 +55,7 @@ final class ArticleCollectionViewController: UIViewController, FullScreenLoadabl
         self.pageName = pageName
         self.viewData = viewData
         backgroundImageView = UIImageView(image: R.image.backgroundStrategies())
-        
+
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -67,15 +67,15 @@ final class ArticleCollectionViewController: UIViewController, FullScreenLoadabl
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupLayout()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         updateReadyState()
     }
-    
+
     @available(iOS 11.0, *)
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()
@@ -92,21 +92,21 @@ private extension ArticleCollectionViewController {
     func updateReadyState() {
         isLoading = !viewData.isReady
     }
-    
+
     func reload() {
         collectionView.reloadData()
         updateReadyState()
     }
-    
+
     func setupLayout() {
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             collectionView.contentInsetAdjustmentBehavior = .never
         }
-        
+
         view.addSubview(backgroundImageView)
         backgroundImageView.edgeAnchors == view.edgeAnchors
-        
+
         view.addSubview(collectionView)
         collectionView.edgeAnchors == view.edgeAnchors
         collectionView.contentInset.top = paddingTop + view.safeMargins.top
@@ -166,7 +166,7 @@ extension ArticleCollectionViewController: ArticleCollectionLayoutDelegate {
         let nonPictureWidth: CGFloat = 93
         let pictureRatio: CGFloat = 1.5
         let pictureHeight = (view.bounds.width - nonPictureWidth) / pictureRatio
-        
+
         return pictureHeight + nonPictureHeight
     }
 }

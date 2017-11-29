@@ -18,21 +18,21 @@ final class MyToBeVisionAnimation: NSObject {
         self.duration = duration
         super.init()
     }
-    
+
     private func getMyUniverseViewController(_ viewController: UIViewController) -> MyUniverseViewController? {
         if let viewController = viewController as? TabBarController, let viewControllers = viewController.viewControllers, viewControllers.count > 1, let childViewController = viewControllers[1] as? MyUniverseViewController {
             return childViewController
         }
         return nil
     }
-    
+
     private func getMyToBeVisionViewController(_ viewController: UIViewController) -> MyToBeVisionViewController? {
         if let viewController = viewController as? MyToBeVisionViewController {
             return viewController
         }
         return nil
     }
-    
+
     private func prepare(_ myUniverseViewController: MyUniverseViewController, _ myToBeVisionViewController: MyToBeVisionViewController) {
         if isPresenting {
             myToBeVisionViewController.view.alpha = 0
@@ -40,7 +40,7 @@ final class MyToBeVisionAnimation: NSObject {
             myUniverseViewController.view.alpha = 0
         }
     }
-    
+
     private func animate(_ myUniverseViewController: MyUniverseViewController, _ myToBeVisionViewController: MyToBeVisionViewController) {
         if isPresenting {
             myToBeVisionViewController.view.alpha = 1
@@ -79,7 +79,7 @@ extension MyToBeVisionAnimation: UIViewControllerAnimatedTransitioning {
 
         fromViewController.beginAppearanceTransition(false, animated: true)
         toViewController.beginAppearanceTransition(true, animated: true)
-        
+
         if isPresenting {
             containerView.insertSubview(toViewController.view, belowSubview: fromViewController.view)
             toViewController.view.frame = containerView.bounds
@@ -92,9 +92,9 @@ extension MyToBeVisionAnimation: UIViewControllerAnimatedTransitioning {
             let myToBeVisionViewController = getMyToBeVisionViewController(expectedMyToBeVisionViewController) else {
                 fatalError("missing view controllers for animation")
         }
-        
+
         prepare(myUniverseViewController, myToBeVisionViewController)
-        
+
         UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseOut], animations: {
             self.animate(myUniverseViewController, myToBeVisionViewController)
         }, completion: { finished in

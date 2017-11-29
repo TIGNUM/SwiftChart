@@ -18,7 +18,7 @@ enum SettingsType: Int {
     case weight
     case height
     case location
-    case calendar    
+    case calendar
     case tutorial
     case interview
     case support
@@ -260,7 +260,7 @@ final class SettingsViewModel {
     }
 
     // MARK: - Init
-    
+
     init?(services: Services, settingsType: SettingsType.SectionType) {
         self.services = services
 
@@ -316,7 +316,7 @@ private var securitySettingsSection: [SettingsSection] {
 
 private func notificationsSettingsSection(services: Services) -> [SettingsSection] {
     return [
-        Sections(title: "Categories", rows: categoryNotifications(services: services))        
+        Sections(title: "Categories", rows: categoryNotifications(services: services))
     ]
 }
 
@@ -327,11 +327,11 @@ private func generalSettingsSection(for user: User?, services: Services) -> [Set
         Sections(title: "Location", rows: locationRows),
         Sections(title: "Calendar", rows: calendarRows)
     ]
-    
+
     if services.settingsService.allowAdminSettings() == true {
         sections.append(Sections(title: "Admin", rows: adminRows))
     }
-    
+
     return sections
 }
 
@@ -353,7 +353,7 @@ private func personalRows(for user: User?) -> [SettingsRow] {
     }
 
     var date = Date()
-    if let dateOfBirth = user.dateOfBirth {    
+    if let dateOfBirth = user.dateOfBirth {
         date = DateFormatter.settingsUser.date(from: dateOfBirth) ?? Date()
     }
 

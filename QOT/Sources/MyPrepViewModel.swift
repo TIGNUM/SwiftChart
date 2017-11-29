@@ -11,7 +11,7 @@ import RealmSwift
 import ReactiveKit
 
 final class MyPrepViewModel {
-    
+
     enum CollectionUpdate {
         case willBegin
         case didFinish
@@ -26,7 +26,7 @@ final class MyPrepViewModel {
         let totalPreparationCount: Int
         let finishedPreparationCount: Int
     }
-    
+
     private let services: Services
     private var preparations: AnyRealmCollection<Preparation>?
     private var preparationChecks: AnyRealmCollection<PreparationCheck>?
@@ -41,7 +41,7 @@ final class MyPrepViewModel {
     }
     let updates = PublishSubject<CollectionUpdate, NoError>()
     let itemCountUpdate = ReplayOneSubject<Int, NoError>()
-    
+
     init(services: Services) {
         self.services = services
         syncStateObserver = SyncStateObserver(realm: services.mainRealm)
@@ -73,7 +73,7 @@ final class MyPrepViewModel {
         token = syncStateObserver.observe(\.syncedClasses, options: [.new]) { [unowned self] _, _ in
             self.updates.next(.reload)
         }
-        
+
         refresh()
     }
 
@@ -84,23 +84,23 @@ final class MyPrepViewModel {
     func item(at index: Index) -> MyPrepViewModel.Item {
         return items[index]
     }
-    
+
     func deleteItem(at index: Index) throws {
         try services.preparationService.deletePreparation(withLocalID: items[index].localID)
         refresh()
     }
-    
+
     func isReady() -> Bool {
         return syncStateObserver.hasSynced(Preparation.self) && syncStateObserver.hasSynced(PreparationCheck.self)
     }
-    
+
     // MARK: - private
 
     private func refresh() {
         guard let preparations = preparations else {
             return
         }
-        
+
         do {
             var items: [Item] = []
             try preparations.forEach({ (preparation: Preparation) in
@@ -113,7 +113,7 @@ final class MyPrepViewModel {
                         return false
                     }
                 }.map { $0.remoteID }
-                
+
                 let preparationChecks = try self.services.preparationService.preparationChecksOnBackground(preparationID: preparation.localID)
                 let finishedPreparationCount = preparationChecks.reduce(0, { (result: Int, check: PreparationCheck) -> Int in
                     return (check.covered == nil) ? result : result + 1

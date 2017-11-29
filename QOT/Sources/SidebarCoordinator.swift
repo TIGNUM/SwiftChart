@@ -23,7 +23,7 @@ final class SidebarCoordinator: ParentCoordinator {
         self.rootViewController = root
         self.services = services
         self.networkManager = networkManager
-        self.syncManager = syncManager        
+        self.syncManager = syncManager
         let viewModel = SidebarViewModel(services: services)
         sideBarViewController = SidebarViewController(viewModel: viewModel)
         topTabBarController = UINavigationController(withPages: [sideBarViewController],
@@ -34,7 +34,7 @@ final class SidebarCoordinator: ParentCoordinator {
         topTabBarController.modalTransitionStyle = .crossDissolve
         sideBarViewController.delegate = self
     }
-    
+
     func start() {
         rootViewController.present(topTabBarController, animated: true)
     }
@@ -91,7 +91,7 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
             topTabBarTitle: topTabBarTitle?.uppercased(), backgroundImage: backgroundImage) else {
                 return
         }
-        
+
         startChild(child: coordinator)
     }
 }
@@ -101,10 +101,10 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
 extension SidebarCoordinator: TopNavigationBarDelegate {
     func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
     }
-    
+
     func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
     }
-    
+
     func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
         topTabBarController.dismiss(animated: true, completion: nil)
         removeChild(child: self)

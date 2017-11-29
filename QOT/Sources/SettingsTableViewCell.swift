@@ -51,7 +51,7 @@ class SettingsTableViewCell: UITableViewCell, Dequeueable {
                 let authorizationStatus = LocationManager.authorizationStatus == .authorizedAlways || LocationManager.authorizationStatus == .authorizedWhenInUse
                 let enabled = authorizationStatus == true && UserDefault.locationService.boolValue == true
                 setupControlCell(title: title, isOn: enabled)
-            } else {                
+            } else {
                 setupControlCell(title: title, isOn: enabled)
             }
         case .datePicker(let title, let selectedDate, let settingsType):
@@ -121,7 +121,7 @@ private extension SettingsTableViewCell {
                 lineSpacing: 4,
                 textColor: .white40
             )
-            
+
             valueLabel.isHidden = true
         } else {
             setTitle(title: title)
@@ -144,7 +144,7 @@ private extension SettingsTableViewCell {
             valueLabel.text = nil
             return
         }
-        
+
         valueLabel.attributedText = Style.tagTitle(value, .white80).attributedString(lineSpacing: 2, alignment: .right)
     }
 }
@@ -210,7 +210,7 @@ extension SettingsTableViewCell: UIPickerViewDataSource, UIPickerViewDelegate {
         return pickerItems.count
     }
 
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {        
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return pickerItems[row]
     }
 

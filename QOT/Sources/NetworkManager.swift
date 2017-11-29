@@ -30,7 +30,7 @@ final class NetworkManager {
             credentialsManager.credential = newValue
         }
     }
-    
+
     init(delegate: NetworkManagerDelegate? = nil,
          sessionManager: SessionManager = SessionManager.default,
          credentialsManager: CredentialsManager = CredentialsManager.shared,
@@ -40,11 +40,11 @@ final class NetworkManager {
         self.credentialsManager = credentialsManager
         self.requestBuilder = requestBuilder
     }
-    
+
     func cancelAllRequests() {
         sessionManager.session.getAllTasks { $0.forEach { $0.cancel() } }
     }
-    
+
     @discardableResult func performAuthenticationRequest(username: String,
                                                          password: String,
                                                          completion: @escaping (NetworkError?) -> Void) -> SerialRequest {
@@ -85,7 +85,7 @@ final class NetworkManager {
 
         return performRequest(UserLocationUpdateRequest(location), completion: completion)
     }
-    
+
     /**
      Performs a network request using credentials from the `CredentialsManager`.
      
@@ -119,7 +119,7 @@ final class NetworkManager {
         }.request
         return serialRequest
     }
-    
+
     // MARK: Private
 
     private func performAuthenticatingRequest<T>(_ request: URLRequestBuildable,
@@ -128,7 +128,7 @@ final class NetworkManager {
                                               current: SerialRequest,
                                               completion: @escaping (Result<T, NetworkError>) -> Void) {
 
-        firstly { 
+        firstly {
             return self.performRequest(request, parser: parser, current: current)
         }.then { (value) -> Void in
             completion(.success(value))
@@ -221,7 +221,7 @@ extension SessionManager {
             .responseData { response in
                 log("REQUEST BODY DATA: \(response.request?.httpBody?.utf8String ?? "No request body data")", enabled: Log.Toggle.NetworkManager.requestBody)
                 log("RESPONSE BODY DATA: \(response.data?.utf8String ?? "No response data")", enabled: Log.Toggle.NetworkManager.responseBody)
-                
+
                 let result: Result<T, NetworkError>
                 switch response.result {
                 case .success(let data):

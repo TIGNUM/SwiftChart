@@ -12,7 +12,7 @@ class TabBarItem: UITabBarItem {
     private let config: Config
     var isRead: Bool = true
     var readFlag: Badge?
-    
+
     struct Config {
         var title: String?
         var isTitleUppercased: Bool
@@ -22,7 +22,7 @@ class TabBarItem: UITabBarItem {
         var image: UIImage?
         var selectedImage: UIImage?
         var tag: Int
-        
+
         static var `default` = Config(
             title: nil,
             isTitleUppercased: true,
@@ -40,19 +40,19 @@ class TabBarItem: UITabBarItem {
             tag: 0
         )
     }
-    
+
     init(config: Config) {
         self.config = config
         super.init()
         apply(config)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - private
-    
+
     private func apply(_ config: Config) {
         title = config.isTitleUppercased ? config.title?.uppercased() : config.title
         titlePositionAdjustment = config.titlePositionAdjustment

@@ -52,13 +52,13 @@ final class LibraryViewController: UIViewController, PageViewControllerNotSwipea
 
         navigationItem.title = R.string.localized.sidebarTitleLibrary().uppercased()
     }
-    
+
     // MARK: - private
-    
+
     private func setupView() {
         view.backgroundColor = .clear
         view.addSubview(tableView)
-        
+
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
@@ -69,7 +69,7 @@ final class LibraryViewController: UIViewController, PageViewControllerNotSwipea
         tableView.backgroundView = viewModel.tableViewBackground
         view.setFadeMask(at: fadeMaskLocation)
     }
-    
+
     @available(iOS 11.0, *)
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()
@@ -90,7 +90,7 @@ extension LibraryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return viewModel.heightForRowAt(indexPath)
     }
@@ -103,7 +103,7 @@ extension LibraryViewController: UITableViewDelegate, UITableViewDataSource {
             contentCollection: viewModel.contentCollection(at: indexPath),
             collectionViewCellType: viewModel.contentCollectionType(at: indexPath)
         )
-        
+
         return cell
     }
 }

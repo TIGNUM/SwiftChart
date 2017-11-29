@@ -14,17 +14,17 @@ extension Notification.Name {
 }
 
 final class NotificationHandler {
-    
+
     let center: NotificationCenter
     var handler: ((Notification) -> Void)?
-    
+
     init(center: NotificationCenter = NotificationCenter.default, name: NSNotification.Name, object: Any? = nil) {
         self.center = center
         center.addObserver(self, selector: #selector(performHandler(notification:)), name: name, object: object)
     }
 
     // MARK: - private
-    
+
     @objc private func performHandler(notification: Notification) {
         DispatchQueue.main.async {
             self.handler?(notification)
@@ -33,7 +33,7 @@ final class NotificationHandler {
 }
 
 extension NotificationHandler {
-    
+
     static func postNotification(withName name: NSNotification.Name, fromNotificationCenter notificationCenter: NotificationCenter = NotificationCenter.default, userInfo: [AnyHashable: Any]? = nil) {
         let notification = Notification(name: name, object: nil, userInfo: userInfo)
         notificationCenter.post(notification)

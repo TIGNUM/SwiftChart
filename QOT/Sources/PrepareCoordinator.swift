@@ -33,7 +33,7 @@ final class PrepareCoordinator: ParentCoordinator {
     private let myPrepViewController: MyPrepViewController
     private let chatDecisionManager: PrepareChatDecisionManager
     private var context: Context?
-    private weak var prepareListViewController: PrepareContentViewController?    
+    private weak var prepareListViewController: PrepareContentViewController?
     var children: [Coordinator] = []
 
     private lazy var editEventHandler: EditEventHandler = {
@@ -70,7 +70,7 @@ final class PrepareCoordinator: ParentCoordinator {
         self.myPrepViewController = myPrepViewController
         myPrepViewController.delegate = self
         chatDecisionManager.delegate = self
-        
+
         chatViewController.didSelectChoice = { [weak self] (choice, viewController) in
             self?.chatDecisionManager.didSelectChoice(choice)
         }
@@ -205,11 +205,11 @@ extension PrepareCoordinator {
             log(error, level: .error)
             return
         }
-        
+
         guard let event = event else { return }
         self.permissionHandler.askPermissionForCalendar { (granted: Bool) in
             guard granted == true else { return }
-            
+
             let eventStore = EKEventStore.shared
             var notes = event.notes ?? ""
             guard let preparationLink = URLScheme.preparationURL(withID: localID) else { return }
@@ -301,7 +301,7 @@ extension PrepareCoordinator: MyPrepViewControllerDelegate {
     func didTapMyPrepItem(with item: MyPrepViewModel.Item, viewController: MyPrepViewController) {
         showPrepareCheckList(preparationID: item.localID)
     }
-}  
+}
 
 // MARK: - PrepareEventsViewControllerDelegate
 

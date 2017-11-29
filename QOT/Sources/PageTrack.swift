@@ -13,17 +13,17 @@ import Freddy
 final class PageTrack: SyncableObject {
 
     @objc private dynamic var page: Page?
-    
+
     @objc private dynamic var referrerPage: Page?
-    
+
     @objc private dynamic var associatedValueLocalID: String?
-    
+
     @objc private dynamic var associatedValueType: String?
 
     @objc private dynamic var referrerAssociatedValueLocalID: String?
-    
+
     @objc private dynamic var referrerAssociatedValueType: String?
-    
+
     convenience init(page: Page, referrerPage: Page?, associatedValueLocalID: String?, associatedValueType: String?, referrerAssociatedValueLocalID: String?, referrerAssociatedValueType: String?) {
         self.init()
 
@@ -34,9 +34,9 @@ final class PageTrack: SyncableObject {
         self.referrerAssociatedValueLocalID = referrerAssociatedValueLocalID
         self.referrerAssociatedValueType = referrerAssociatedValueType
     }
-    
+
     // MARK: - private
-    
+
     // FIXME: refactor when Realm issue is resolved https://github.com/realm/realm-cocoa/issues/1109#issuecomment-143834756
     private func syncableObject(forIdentifier identifier: PageObject.Identifier, localID: String) -> SyncableObject? {
         switch identifier {
@@ -57,11 +57,11 @@ final class PageTrack: SyncableObject {
 // MARK: - OneWaySyncable
 
 extension PageTrack: OneWaySyncableUp {
-    
+
     static var endpoint: Endpoint {
         return .pageTracking
     }
-    
+
     func toJson() -> JSON? {
         guard
             syncStatus != .clean,

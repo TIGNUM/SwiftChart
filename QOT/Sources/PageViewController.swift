@@ -50,25 +50,25 @@ final class PageViewController: UIPageViewController {
         }
         return data[currentPageIndex]
     }
-    
+
     init(headerView: UIView?,
          backgroundImage: UIImage?,
          pageDelegate: PageViewControllerDelegate?,
          transitionStyle style: UIPageViewControllerTransitionStyle,
          navigationOrientation: UIPageViewControllerNavigationOrientation,
-         options: [String: Any]? = nil) {        
+         options: [String: Any]? = nil) {
             self.headerView = headerView
             backgroundImageView = UIImageView(image: backgroundImage)
             self.pageDelegate = pageDelegate
             currentPageIndex = 0
             direction = .forward
             isPaging = false
-        
+
             super.init(transitionStyle: style, navigationOrientation: navigationOrientation, options: options)
-        
+
             delegate = self
             dataSource = self
-        
+
             if let headerView = headerView {
                 // @warning moved here instead of viewDidLoad - in iOS11, the first page loads before PageViewController viewDidLoad called, which causes `pageDidLoad(_ controller: UIViewController, scrollView: UIScrollView)` to be executed before `headerView` is laid out, messing up the top inset calculation. Perhaps here is the best place to accomodate the edge case, but it feels somewhat unsafe to add constraints before the view has loaded
                 edgesForExtendedLayout = []
@@ -88,20 +88,20 @@ final class PageViewController: UIPageViewController {
                 headerView.layoutIfNeeded()
             }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         view.addSubview(backgroundImageView)
         view.sendSubview(toBack: backgroundImageView)
         backgroundImageView.verticalAnchors == view.verticalAnchors
         backgroundImageView.horizontalAnchors == view.horizontalAnchors
         backgroundImageView.isHidden = (backgroundImageView.image == nil)
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         childViewControllers.forEach { (childViewController: UIViewController) in
             if childViewController is PageViewControllerNotSwipeable {
                 dataSource = nil
@@ -116,16 +116,16 @@ final class PageViewController: UIPageViewController {
     func setPages(_ viewControllers: [UIViewController]) {
         data = viewControllers
     }
-    
+
     func setPageIndex(_ pageIndex: Int, animated: Bool) {
         guard let data = data, pageIndex >= data.startIndex, pageIndex < data.endIndex else { return }
         let page = data[pageIndex]
         setViewControllers([page], direction: (pageIndex < currentPageIndex) ? .reverse : .forward, animated: animated, completion: nil)
         currentPageIndex = pageIndex
     }
-    
+
     // MARK: - private
-    
+
     private func setHeaderY(_ yPos: CGFloat, animated: Bool) {
         guard let headerView = headerView, let headerViewTopConstraint = headerViewTopConstraint else {
             return
@@ -162,7 +162,7 @@ extension PageViewController: UIPageViewControllerDelegate {
 
         currentPageIndex = (direction == .forward) ? index + 1 : index - 1
         pageDelegate?.pageViewController(self, didSelectPageIndex: currentPageIndex)
-        
+
         if let scrollableViewController = currentPage as? PageScrollView {
             setHeaderY(scrollableViewController.scrollView().normalized, animated: true)
         }
@@ -172,7 +172,7 @@ extension PageViewController: UIPageViewControllerDelegate {
 // MARK: - UIPageViewControllerDataSource
 
 extension PageViewController: UIPageViewControllerDataSource {
-    
+
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let data = data, let index = data.index(of: viewController), index - 1 >= data.startIndex else {
             return nil
@@ -180,7 +180,7 @@ extension PageViewController: UIPageViewControllerDataSource {
 
         return data[index - 1]
     }
-    
+
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let data = data, let index = data.index(of: viewController), index + 1 < data.endIndex else {
             return nil
@@ -203,7 +203,7 @@ extension PageViewController: PageScroll {
             right: scrollView.contentInset.right
         )
     }
-    
+
     func pageDidScroll(_ controller: UIViewController, scrollView: UIScrollView) {
         guard isPaging == false else { return }
         setHeaderY(scrollView.normalized, animated: false)

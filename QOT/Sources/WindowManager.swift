@@ -14,7 +14,7 @@ class WindowManager {
         case priority
         case overlay
         case normal
-        
+
         var windowLevel: UIWindowLevel {
             switch self {
             case .alert:
@@ -28,7 +28,7 @@ class WindowManager {
             }
         }
     }
-    
+
     private let alertWindow: UIWindow       // major alerts
     private let priorityWindow: UIWindow    // priority information
     private let overlayWindow: UIWindow     // transparent views over main window
@@ -41,59 +41,59 @@ class WindowManager {
             normalWindow
         ]
     }
-    
+
     init(alertWindow: UIWindow, priorityWindow: UIWindow, overlayWindow: UIWindow, normalWindow: UIWindow) {
         self.alertWindow = alertWindow
         self.priorityWindow = priorityWindow
         self.overlayWindow = overlayWindow
         self.normalWindow = normalWindow
-        
+
         alertWindow.windowLevel = Level.alert.windowLevel
         priorityWindow.windowLevel = Level.priority.windowLevel
         overlayWindow.windowLevel = Level.overlay.windowLevel
         normalWindow.windowLevel = Level.normal.windowLevel
-        
+
         allWindows.forEach { (window: UIWindow) in
             window.rootViewController = createBaseViewController()
             window.makeKeyAndVisible()
             window.isHidden = (window != normalWindow)
         }
     }
-    
+
     func rootViewController(atLevel level: Level) -> UIViewController? {
         let window = windowForLevel(level)
         return window.rootViewController
     }
-    
+
     func presentedViewController(atLevel level: Level) -> UIViewController? {
         let window = windowForLevel(level)
         return window.rootViewController?.presentedViewController
     }
-        
+
     func show(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
         let level = Level.normal
         showWindow(atLevel: level)
         setRootViewController(viewController, transitionStyle: .transitionCrossDissolve, duration: 0.7, atLevel: level, animated: animated, completion: completion)
     }
-    
+
     func showOverlay(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
         let level = Level.overlay
         showWindow(atLevel: level)
         presentViewController(viewController, atLevel: level, animated: animated, completion: completion)
     }
-    
+
     func showPriority(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
         let level = Level.priority
         showWindow(atLevel: .priority)
         presentViewController(viewController, atLevel: level, animated: animated, completion: completion)
     }
-    
+
     func showAlert(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
         let level = Level.alert
         showWindow(atLevel: .alert)
         presentViewController(viewController, atLevel: level, animated: animated, completion: completion)
     }
-    
+
     func resignWindow(atLevel level: Level) {
         guard level != .normal else {
             assertionFailure("can't resign the normal window")
@@ -103,7 +103,7 @@ class WindowManager {
         window.isHidden = true
         clearWindow(atLevel: level)
     }
-    
+
     func showWindow(atLevel level: Level) {
         let window = windowForLevel(level)
         window.isHidden = false
@@ -122,9 +122,9 @@ class WindowManager {
             window.rootViewController = createBaseViewController()
         }
     }
-    
+
     // MARK: - private
-    
+
     private func windowForLevel(_ level: Level) -> UIWindow {
         switch level {
         case .alert: return alertWindow
@@ -133,14 +133,14 @@ class WindowManager {
         case .normal: return normalWindow
         }
     }
-    
+
     private func createBaseViewController() -> UIViewController {
         let viewController = UIViewController()
         viewController.view.backgroundColor = .clear
         viewController.view.frame = UIScreen.main.bounds
         return viewController
     }
-    
+
     private func setRootViewController(_ viewController: UIViewController, transitionStyle: UIViewAnimationOptions, duration: TimeInterval, atLevel level: Level, animated: Bool, completion: (() -> Void)?) {
         let window = windowForLevel(level)
         guard let rootViewController = window.rootViewController else {
@@ -157,7 +157,7 @@ class WindowManager {
             completion?()
         })
     }
-    
+
     private func presentViewController(_ viewController: UIViewController, atLevel level: Level, animated: Bool, completion: (() -> Void)?) {
         let window = windowForLevel(level)
         guard let rootViewController = window.rootViewController else {

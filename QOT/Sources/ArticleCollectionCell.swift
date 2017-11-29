@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 
 class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
-    
+
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var date: UILabel!
     @IBOutlet private weak var sortTag: UILabel!
@@ -49,7 +49,7 @@ class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
         sortTag.attributedText = attributedSortTag
         sortTag.textAlignment = .right
         subTitle.attributedText = attributedTitle(text: title)
-        textLabel.attributedText = Style.headline(description.uppercased(), .white).attributedString()        
+        textLabel.attributedText = Style.headline(description.uppercased(), .white).attributedString()
         mediaInformation.attributedText = attributedTitle(text: duration)
         imageView.kf.indicatorType = .activity
         imageView.kf.setImage(with: imageURL, placeholder: R.image.preloading(), options: nil, progressBlock: nil, completionHandler: nil)
@@ -58,7 +58,7 @@ class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+
         subTitle.sizeToFit()
     }
 

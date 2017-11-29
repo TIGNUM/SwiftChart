@@ -40,7 +40,7 @@ final class ContentCategory: SyncableObject {
 // MARK: - BuildRelations
 
 extension ContentCategory: BuildRelations {
-    
+
     func buildInverseRelations(realm: Realm) {
         let predicate = NSPredicate(format: "ANY contentCategories == %@", self)
         let collections = realm.objects(ContentCollection.self).filter(predicate)

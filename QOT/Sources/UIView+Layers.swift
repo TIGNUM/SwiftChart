@@ -12,7 +12,7 @@ import Anchorage
 extension UIView {
 
     // MARK: - Circle
-    
+
     @discardableResult
     func drawSolidCircle(arcCenter: CGPoint,
                          radius: CGFloat,
@@ -139,7 +139,7 @@ extension UIView {
     }
 
     // MARK: - private
-    
+
     private func drawCircle(center: CGPoint,
                             radius: CGFloat,
                             lineWidth: CGFloat,
@@ -155,7 +155,7 @@ extension UIView {
         let path = circlePath(value: value, startAngle: startAngle, endAngle: endAngle, radius: radius, center: center, lineWidth: lineWidth, clockwise: clockwise)
         return addShapeLayer(path: path, lineWidth: lineWidth, lineCap: lineCap, strokeColor: color, dashPattern: dashPattern, hasShadow: hasShadow, shadowRadius: shadowRadius)
     }
-    
+
     private func drawLine(from: CGPoint,
                           to: CGPoint,
                           lineWidth: CGFloat,
@@ -167,7 +167,7 @@ extension UIView {
         let path = linePath(from: from, to: to)
         _ = addShapeLayer(path: path, lineWidth: lineWidth, lineCap: lineCap, strokeColor: strokeColor, dashPattern: dashPattern, hasShadow: hasShadow, shadowRadius: shadowRadius)
     }
-    
+
     private func linePath(from: CGPoint, to: CGPoint) -> UIBezierPath {
         let linePath = UIBezierPath()
         linePath.move(to: from)

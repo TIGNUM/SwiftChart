@@ -26,6 +26,7 @@ final class LearnCategoryListViewController: UIViewController, PageViewControlle
     private let viewModel: LearnCategoryListViewModel
     private let disposeBag = DisposeBag()
     private let backgroundImageView: UIImageView
+
     weak var delegate: LearnCategoryListViewControllerDelegate?
     let page = LearnCategoryListPage()
 
@@ -41,19 +42,19 @@ final class LearnCategoryListViewController: UIViewController, PageViewControlle
     }()
 
     // MARK: - Init
-    
+
     init(viewModel: LearnCategoryListViewModel) {
         self.viewModel = viewModel
         backgroundImageView = UIImageView(image: R.image.backgroundStrategies())
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     // MARK: - Life Cycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -95,11 +96,11 @@ private extension LearnCategoryListViewController {
     func setupLayout() {
         view.addSubview(backgroundImageView)
         backgroundImageView.edgeAnchors == view.edgeAnchors
-        
+
         view.addSubview(collectionView)
         collectionView.verticalAnchors == view.safeVerticalAnchors
         collectionView.horizontalAnchors == view.horizontalAnchors
-        
+
         view.backgroundColor = .clear
         view.layoutIfNeeded()
     }
@@ -112,15 +113,15 @@ extension LearnCategoryListViewController: UICollectionViewDataSource, LearnCate
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.itemCount
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let category = viewModel.item(at: indexPath.item)
         let cell: LearnCategoryCell = collectionView.dequeueCell(for: indexPath)
         cell.configure(with: category, indexPath: indexPath)
-        
+
         return cell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let attributes = collectionView.layoutAttributesForItem(at: indexPath) else { return }
 

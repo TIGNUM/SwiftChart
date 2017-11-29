@@ -27,11 +27,11 @@ protocol ParentCoordinator: Coordinator {
 }
 
 extension ParentCoordinator {
-    
+
     func removeChild(child: Coordinator) {
         children = children.filter({ ($0 !== child) })
     }
-    
+
     func startChild(child: Coordinator) {
         children.append(child)
         child.start()

@@ -14,7 +14,7 @@ class SelectWeeklyChoicesDataModel {
     private var services: Services
     private let rawData: AnyRealmCollection<ContentCategory>
     private(set) var dataSource: [CollapsableNode]
-    
+
     var selected: [WeeklyChoice] {
         return dataSource.flatMap({ (node: CollapsableNode) -> [WeeklyChoice] in
             return node.children.flatMap({ (choice: WeeklyChoice) -> WeeklyChoice? in
@@ -32,12 +32,12 @@ class SelectWeeklyChoicesDataModel {
         return selected.count
     }
     let maxSelectionCount: Int
-    
+
     init(services: Services, maxSelectionCount: Int, startDate: Date, endDate: Date) {
         self.services = services
         self.maxSelectionCount = maxSelectionCount
         self.rawData = services.contentService.learnContentCategories()
-        
+
         dataSource = rawData.map({ (contentCategory: ContentCategory) -> CollapsableNode in
             let children: [WeeklyChoice] = contentCategory.contentCollections.filter({
                 $0.section == Database.Section.learnStrategy.rawValue
@@ -60,14 +60,14 @@ class SelectWeeklyChoicesDataModel {
     func numberOfRows(inSection section: Int) -> Int {
         return 1 + dataSource[section].numberOfRows // 1 needed for node row
     }
-    
+
     func rowHeight(forIndexPath indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
             return 64.0
         }
         return 40.0
     }
-    
+
     func isParentNode(atIndexPath indexPath: IndexPath) -> Bool {
         return indexPath.row == 0 // first row in section is always a node
     }
@@ -77,24 +77,24 @@ class SelectWeeklyChoicesDataModel {
         node.isOpen = isOpen
         dataSource[section] = node
     }
-    
+
     func node(forSection section: Int) -> CollapsableNode {
         return dataSource[section]
     }
-    
+
     func item(forIndexPath indexPath: IndexPath) -> WeeklyChoice {
         let node = dataSource[indexPath.section]
         let item = node.children[indexPath.row - 1] // 1 needed for node row, so offset
         return item
     }
-    
+
     func replace(_ item: WeeklyChoice, atIndexPath indexPath: IndexPath) {
         var node = dataSource[indexPath.section]
         node.replace(item, atRow: indexPath.row - 1) // 1 needed for node row, so offset
         dataSource[indexPath.section] = node
     }
 
-    func createUsersWeeklyChoices() {        
+    func createUsersWeeklyChoices() {
         selected.forEach({ [unowned self] (choice: WeeklyChoice) in
             _ = try? self.services.userService.createUserChoice(
                 contentCategoryID: choice.categoryID,

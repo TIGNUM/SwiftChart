@@ -17,7 +17,7 @@ final class WeeklyChoicesCell: UICollectionViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
         configure()
     }
 

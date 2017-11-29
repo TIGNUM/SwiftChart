@@ -20,10 +20,10 @@ final class LibraryViewModel: LibraryViewModelInterface {
     var sectionCount: Int {
         return categories.count
     }
-    
+
     var tableViewBackground: UIImageView? {
         return UIImageView(image: R.image.backgroundSidebar())
-    }    
+    }
 
     // MARK: - Init
 
@@ -35,7 +35,7 @@ final class LibraryViewModel: LibraryViewModelInterface {
 // MARK: - Public
 
 extension LibraryViewModel {
-    
+
     func titleForSection(_ section: Int) -> NSAttributedString {
         let title = categories[section].title.uppercased()
         let headline = Style.subTitle(title, .white).attributedString()
@@ -46,7 +46,7 @@ extension LibraryViewModel {
     func contentCollection(at indexPath: IndexPath) -> [ContentCollection] {
         return Array(categories[indexPath.section].contentCollections(section: .library))
     }
-    
+
     func contentCollectionType(at indexPath: IndexPath) -> LibraryTableViewCell.CollectionViewCellType {
         return (indexPath.section == 0) ? .latestPost : .category
     }
@@ -54,7 +54,7 @@ extension LibraryViewModel {
     func contentCount(at indexPath: IndexPath) -> Int {
         return categories[indexPath.section].contentCollections(section: .library).count
     }
-    
+
     func heightForRowAt(_ indexPath: IndexPath) -> CGFloat {
         return indexPath.section == 0 ? 316 : 313
     }

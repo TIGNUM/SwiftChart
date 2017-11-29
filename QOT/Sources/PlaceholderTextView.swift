@@ -13,32 +13,32 @@ protocol PlaceholderTextViewDelegate: class {
 }
 
 final class PlaceholderTextView: UITextView {
-    
+
     private(set) var placeholderText: String?
     private(set) var plachholderTextColor: UIColor?
     private var originalTextColor: UIColor?
     private var isPlaceholderShowing: Bool = false
     weak var placeholderDelegate: PlaceholderTextViewDelegate?
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
         originalTextColor = textColor
         tintColor = .white
     }
-    
+
     func didBeginEditing() {
         if isPlaceholderShowing {
             showPlaceholder(false)
         }
     }
-    
+
     func didEndEditing() {
         if text.isEmpty {
             showPlaceholder(true)
         }
     }
-    
+
     func set(placeholderText: String?, placeholdeColor: UIColor?) {
         self.placeholderText = placeholderText
         self.plachholderTextColor = placeholdeColor
@@ -51,7 +51,7 @@ final class PlaceholderTextView: UITextView {
 // MARK: - Private
 
 private extension PlaceholderTextView {
-    
+
     func showPlaceholder(_ isShowing: Bool) {
         isPlaceholderShowing = isShowing
         if isShowing {

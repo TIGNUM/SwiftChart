@@ -22,7 +22,7 @@ class ArticleCollectionProvider {
         return dateFormatter
     }()
     var updateBlock: ((ArticleCollectionViewData) -> Void)?
-    
+
     init(services: Services) {
         self.services = services
         contentCollections = services.contentService.whatsHotArticles()
@@ -34,7 +34,7 @@ class ArticleCollectionProvider {
             self.updateBlock?(self.provideViewData())
         }
     }
-    
+
     func provideViewData() -> ArticleCollectionViewData {
         let items = Array(contentCollections).flatMap { contentCollection -> ArticleCollectionViewData.Item? in
             guard contentCollection.articleItems.count > 0 else {

@@ -21,7 +21,7 @@ protocol CalendarImportMangerDelegate: class {
 /// Manages the one-way sync of `EKEvent`'s into `Realm`, both manually by calling `importEvents()`, and automatically
 /// when the event `EKEventStoreChanged` notifications are posted.
 final class CalendarImportManger {
-        
+
     private let realmProvider: RealmProvider
     private let queue = DispatchQueue(label: "com.tignum.qot.calendarSync", qos: .background)
     private let notificationHandler: NotificationHandler
@@ -34,7 +34,7 @@ final class CalendarImportManger {
         self.realmProvider = realm
         self.predicate = predicate
         self.notificationHandler = NotificationHandler(name: .EKEventStoreChanged, object: store)
-        
+
         self.notificationHandler.handler = { [unowned self] (notificationCenter) in
             self.importEvents()
         }
@@ -42,7 +42,7 @@ final class CalendarImportManger {
 
     func importEvents() {
         let status = EKEventStore.authorizationStatus(for: .event)
-        
+
         if status == .authorized {
             let (start, end) = predicate()
             sync(start: start, end: end) { [weak self] (result: CalendarImportResult) in

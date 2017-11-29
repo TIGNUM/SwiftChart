@@ -9,7 +9,7 @@
 #if BUILD_DATABASE
     import Foundation
     import RealmSwift
-    
+
     var databaseBuilder: DatabaseBuilder!
 
     extension AppDelegate {
@@ -21,11 +21,11 @@
                 realmProvider: realmProvider,
                 deviceID: deviceID
             )
-            
+
             print("\nbuild database started (may take some time - get a tea...)\n")
-            
+
             let context = SyncContext()
-            
+
             databaseBuilder.setContentOperations([
                 databaseBuilder.downSyncOperation(for: ContentCategory.self, context: context),
                 databaseBuilder.downSyncOperation(for: ContentCollection.self, context: context),
@@ -39,7 +39,7 @@
                     print(context.errors[0])
                     return
                 }
-                
+
                 do {
                     let name = "default-v1.realm"
                     let fileURL = try databaseBuilder.copyWithName(name)

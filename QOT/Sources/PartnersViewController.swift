@@ -28,7 +28,7 @@ class PartnersViewController: UIViewController {
         return navigationController?.navigationBar.topItem?.rightBarButtonItem
     }
     weak var delegate: PartnersViewControllerDelegate?
-    
+
     // MARK: - Init
 
     init(viewModel: PartnersViewModel, permissionHandler: PermissionHandler) {
@@ -48,7 +48,7 @@ class PartnersViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setBackgroundColor()
         setupCarousel()
         setupHeadline()
@@ -100,7 +100,7 @@ extension PartnersViewController {
             startEditing()
         }
     }
-    
+
     func startEditing() {
         guard let view = carousel.currentItemView as? CarouselCellView else {
             return
@@ -112,7 +112,7 @@ extension PartnersViewController {
         viewModel.updateIndex(index: carousel.currentItemIndex)
         view.edit(isEnabled: true)
     }
-    
+
     func stopEditing() {
         guard let view = carousel.currentItemView as? CarouselCellView else {
             return
@@ -136,7 +136,7 @@ extension PartnersViewController: iCarouselDataSource, iCarouselDelegate {
     func numberOfItems(in carousel: iCarousel) -> Int {
         return viewModel.itemCount
     }
-    
+
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
         let frame = CGRect(x: carousel.frame.origin.x, y: carousel.frame.origin.y, width: 186.0, height: 424.0)
         let view = CarouselCellView(frame: frame)
@@ -159,7 +159,7 @@ extension PartnersViewController: iCarouselDataSource, iCarouselDelegate {
     func carouselCurrentItemIndexDidChange(_ carousel: iCarousel) {
         viewModel.updateIndex(index: carousel.currentItemIndex)
     }
-    
+
     func carouselDidEndDecelerating(_ carousel: iCarousel) {
         // FIXME: seems like iCarousel dismisses keyboard on each right swipe. so if we're editing, we bring the keyboard back up by triggering startEditing() again
         if valueEditing {
@@ -186,7 +186,7 @@ extension PartnersViewController: UITextFieldDelegate {
         }
         return false
     }
-    
+
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if valueEditing == false {
             startEditing()
@@ -222,7 +222,7 @@ extension PartnersViewController: ImagePickerControllerDelegate {
             present(alertController, animated: true, completion: nil)
             return
         }
-        
+
         viewModel.save()
         carousel.reloadData()
     }

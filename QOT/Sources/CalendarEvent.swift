@@ -15,7 +15,7 @@ final class CalendarEvent: SyncableObject, UpSyncableWithLocalAndRemoteIDs {
     @objc dynamic var deleted: Bool = false
 
     @objc dynamic var changeStamp: String? = UUID().uuidString
-    
+
     @objc dynamic var ekEventModifiedAt: Date = Date()
 
     @objc dynamic var title: String?
@@ -27,7 +27,7 @@ final class CalendarEvent: SyncableObject, UpSyncableWithLocalAndRemoteIDs {
     var event: EKEvent? {
         return EKEventStore.shared.event(with: self)
     }
-    
+
     convenience init(event: EKEvent) {
         self.init()
 
@@ -73,7 +73,11 @@ final class CalendarEvent: SyncableObject, UpSyncableWithLocalAndRemoteIDs {
 
     func toJson() -> JSON? {
         if let event = event {
-            return event.toJSON(id: remoteID.value, createdAt: createdAt, modifiedAt: modifiedAt, syncStatus: syncStatus.rawValue, localID: localID)
+            return event.toJSON(id: remoteID.value,
+                                createdAt: createdAt,
+                                modifiedAt: modifiedAt,
+                                syncStatus: syncStatus.rawValue,
+                                localID: localID)
         } else if syncStatus == .deletedLocally, let remoteID = remoteID.value {
             let dict: [JsonKey: JSONEncodable] = [.id: remoteID, .syncStatus: syncStatus.rawValue]
             return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))

@@ -35,7 +35,7 @@ final class CalendarImportTask {
             let predicate = store.predicateForEvents(withStart: start, end: end, calendars: calendars)
             events = store.events(matching: predicate)
         }
-        
+
         let result: CalendarImportResult
         do {
             let existingCalendarEvents: Results<CalendarEvent> = realm.objects()

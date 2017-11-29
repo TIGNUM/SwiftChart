@@ -21,7 +21,7 @@ final class RemoteNotificationHandler: NSObject, UAPushNotificationDelegate {
         self.launchHandler = launchHandler
         super.init()
     }
-    
+
     func receivedNotificationResponse(_ notificationResponse: UANotificationResponse, completionHandler: @escaping () -> Void) {
         if delegate?.remoteNotificationHandler(self, canProcessNotificationResponse: notificationResponse) ?? false {
             process(notificationResponse)
@@ -30,24 +30,24 @@ final class RemoteNotificationHandler: NSObject, UAPushNotificationDelegate {
         }
         completionHandler()
     }
-    
+
     func receivedForegroundNotification(_ notificationContent: UANotificationContent, completionHandler: @escaping () -> Void) {
         completionHandler()
     }
-    
+
     func presentationOptions(for notification: UNNotification) -> UNNotificationPresentationOptions {
         return [.alert, .sound]
     }
-    
+
     func processOutstandingNotifications() {
         if let notificationResponse = unhandledNotificationResponses.first {
             process(notificationResponse)
             unhandledNotificationResponses.removeAll() // TODO: maybe we can handle all of them in the future?
         }
     }
-    
+
     // MARK: - private
-    
+
     private func process(_ notificationResponse: UANotificationResponse) {
         if let deepLinkURL = notificationResponse.notificationContent.deepLinkURL {
             launchHandler.process(url: deepLinkURL)

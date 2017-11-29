@@ -9,7 +9,7 @@
 import UIKit
 
 final class Badge: UIView {
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         guard bounds.width == bounds.height else {

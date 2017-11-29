@@ -13,7 +13,7 @@ extension UIImage {
         case directoryNotFound
         case imageConvertionError
     }
-    
+
     /// Saves image to ...(lib)/image directory
     func save(withName name: String) throws -> URL {
         let paths = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)
@@ -34,7 +34,7 @@ extension UIImage {
                 throw error
             }
         }
-        
+
         path = path.appendingFormat("/%@.jpg", name)
         let url = URL(fileURLWithPath: path)
         do {

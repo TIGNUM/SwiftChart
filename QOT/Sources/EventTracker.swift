@@ -18,13 +18,13 @@ class EventTracker {
         case didShowPage(TrackablePage, from: TrackablePage?)
         case didReadContentItem(ContentItem)
     }
-    
+
     let realmProvider: RealmProvider
-    
+
     init(realmProvider: RealmProvider) {
         self.realmProvider = realmProvider
     }
-        
+
     func track(_ event: Event) {
         switch event {
         case .didShowPage(let trackablePage, let referrerTrackablePage):
@@ -33,9 +33,9 @@ class EventTracker {
             handleEvent(.contentItemRead, withObject: contentItem)
         }
     }
-    
+
     // MARK: - private
-    
+
     private func handleDidShowPage(_ trackablePage: TrackablePage, from referrerTrackablePage: TrackablePage?) {
         log("PAGE TRACK EVENT: \(String(describing: trackablePage.pageName)) from \(String(describing: referrerTrackablePage?.pageName))", enabled: Log.Toggle.Analytics.pageTracking)
         do {
@@ -57,7 +57,7 @@ class EventTracker {
             log(error)
         }
     }
-    
+
     private func handleEvent(_ name: EventName, withObject object: SyncableObject) {
         log("EVENT: \(name.rawValue) withObject \(object.classForCoder)", enabled: Log.Toggle.Analytics.eventTracking)
         do {

@@ -38,7 +38,7 @@ final class ChartTableViewCell: UITableViewCell, Dequeueable {
 
         setupView()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -81,7 +81,7 @@ private extension ChartTableViewCell {
 
         return CGSize(width: width, height: height)
     }
-    
+
     func updatePageControl(indexPath: IndexPath) {
         pageControl?.currentPage = indexPath.item
     }
@@ -120,7 +120,7 @@ extension ChartTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionVi
         return chartCell
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {        
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return chartCellSize()
     }
 
@@ -145,7 +145,7 @@ extension ChartTableViewCell: UIScrollViewDelegate {
             cell.animateHeader(withCellRect: cellRect, inParentRect: collectionView.frame)
         }
     }
-    
+
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         pageControl?.currentPage = scrollView.currentPage
     }
@@ -158,11 +158,11 @@ extension ChartTableViewCell: ChartCellDelegate {
     func doReload() {
         self.collectionView.reloadData()
     }
-    
+
     func didSelectAddSensor() {
         delegate?.didSelectAddSensor()
     }
-    
+
     func didSelectOpenSettings() {
         delegate?.didSelectOpenSettings()
     }

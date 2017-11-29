@@ -33,7 +33,7 @@ final class AddSensorViewModel {
             }
         }
     }
-    
+
     // MARK: - Properties
 
     private let sensors: [Sensor] = [.fitbit, .requestDevice]
@@ -44,7 +44,7 @@ final class AddSensorViewModel {
     var itemCount: Int {
         return sensors.count
     }
-    
+
     var fitbitState: User.FitbitState {
         return userService.fitbitState
     }
@@ -52,7 +52,7 @@ final class AddSensorViewModel {
     func item(at index: Index) -> Sensor {
         return sensors[index]
     }
-    
+
     init(userService: UserService) {
         self.userService = userService
     }
@@ -61,7 +61,7 @@ final class AddSensorViewModel {
 // MARK: Mock data
 
 private extension UIColor {
-    
+
     func image(size: CGSize) -> UIImage {
         let frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         UIGraphicsBeginImageContext(frame.size)
@@ -70,7 +70,7 @@ private extension UIColor {
         context.fill(frame)
         let image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-        
+
         return image
     }
 }

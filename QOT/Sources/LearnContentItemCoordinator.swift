@@ -28,7 +28,7 @@ final class LearnContentItemCoordinator: ParentCoordinator {
     private let presentOnStart: Bool
     var children: [Coordinator] = []
     var topTabBarController: UINavigationController!
-    
+
     init(root: UIViewController, eventTracker: EventTracker, services: Services, content: ContentCollection, category: ContentCategory, presentationManager: ContentItemAnimator? = nil, topBarDelegate: TopNavigationBarDelegate? = nil, presentOnStart: Bool = true) {
         self.rootViewController = root
         self.eventTracker = eventTracker
@@ -126,15 +126,15 @@ extension LearnContentItemCoordinator: TopNavigationBarDelegate {
             UIApplication.shared.statusBarStyle = .lightContent
         }
     }
-    
+
     func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
         guard let pageViewController = topTabBarController.viewControllers.first as? PageViewController else {
             return
         }
-        
+
         pageViewController.setPageIndex(index, animated: true)
     }
-    
+
     func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
         log("did select book mark")
     }

@@ -1,6 +1,4 @@
-disabled_rules:
-  - line_length
-  - trailing_whitespace
+disabled_rules:    
   - variable_name
   - class_delegate_protocol # This can give false positives if the protocol is inherited.
   - large_tuple
@@ -15,9 +13,11 @@ disabled_rules:
   - shorthand_operator
   - vertical_parameter_alignment
   - type_body_length
+  - line_length
 
 included: # paths to include during linting. `--path` is ignored if present.
-  - QOT
+  - QOT  
+  - trailing_whitespace
 
 excluded:
   - QOT/Generated

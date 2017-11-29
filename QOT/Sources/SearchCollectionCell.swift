@@ -34,7 +34,7 @@ final class SearchCollectionCell: UICollectionViewCell, Dequeueable {
     func setUp(title: String) {
         titleLabel.text = title
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         setupLayout()
@@ -46,7 +46,7 @@ extension SearchCollectionCell {
     func setupLayout() {
         titleLabel.horizontalAnchors == contentView.horizontalAnchors
         titleLabel.verticalAnchors == contentView.verticalAnchors
-        
+
         layoutIfNeeded()
     }
 }

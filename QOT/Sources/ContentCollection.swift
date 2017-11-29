@@ -117,7 +117,7 @@ extension ContentCollection: BuildRelations {
         let contentReadPredicate = NSPredicate(format: "contentCollectionId == %d", forcedRemoteID)
         contentRead = realm.objects(ContentRead.self).filter(contentReadPredicate).first
     }
-    
+
     func buildInverseRelations(realm: Realm) {
         let predicate = NSPredicate(format: "contentCollection == %@", self)
         let items = realm.objects(ContentItem.self).filter(predicate)

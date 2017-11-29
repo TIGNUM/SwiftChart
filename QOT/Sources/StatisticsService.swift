@@ -18,7 +18,7 @@ final class StatisticsService {
         self.mainRealm = mainRealm
         self.realmProvider = realmProvider
     }
-    
+
     func eraseData() {
         do {
             try mainRealm.write {
@@ -31,7 +31,7 @@ final class StatisticsService {
 
     func chartObjects() -> AnyRealmCollection<Statistics> {
         let results = mainRealm.objects(Statistics.self)
-        
+
         return AnyRealmCollection(results)
     }
 
@@ -52,7 +52,7 @@ final class StatisticsService {
                 chartTypes.forEach { (chartType: ChartType) in
                     if let chart = chart(key: chartType.rawValue) {
                         chart.chartType = chartType
-                        chart.title = chartType.title                        
+                        chart.title = chartType.title
                         chartSections.append(chart)
                     }
                 }

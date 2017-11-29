@@ -20,25 +20,25 @@ final class PermissionHandler: NSObject {
         var location = false
         var photos = false
         var camera = false
-        
+
         var isAllGranted: Bool {
             return calendar && remoteNotification && location && photos && camera
         }
     }
-    
+
     private var locationPermissionCompletion: ((Bool) -> Void)?
     private let locationManager = CLLocationManager()
     private let queue = OperationQueue()
-    
+
     var isEnabledForSession = true
-    
+
     override init() {
         super.init()
-        
+
         locationManager.delegate = self
         queue.maxConcurrentOperationCount = 1
     }
-    
+
     func askForAllPermissions(_ completion: @escaping (Result) -> Void) {
         var result = Result()
         queue.addOperation(WaitBlockOperation { [unowned self] (finish: (() -> Void)?) in
@@ -61,7 +61,7 @@ final class PermissionHandler: NSObject {
             })
         })
     }
-    
+
     func askPermissionForCalendar(completion: @escaping (Bool) -> Void) {
         guard isEnabledForSession else {
             completion(false)
@@ -71,7 +71,7 @@ final class PermissionHandler: NSObject {
             completion(granted)
         }
     }
-    
+
     func askPermissionForRemoteNotifications(completion: @escaping (Bool) -> Void) {
         guard isEnabledForSession else {
             completion(false)
@@ -81,7 +81,7 @@ final class PermissionHandler: NSObject {
             completion(granted)
         }
     }
-    
+
     func askPermissionForLocationAlways(completion: @escaping (Bool) -> Void) {
         let status = CLLocationManager.authorizationStatus()
         guard isEnabledForSession, status != .denied, status != .restricted else {
@@ -92,11 +92,11 @@ final class PermissionHandler: NSObject {
             completion(true)
             return
         }
-        
+
         locationPermissionCompletion = completion
         locationManager.requestAlwaysAuthorization()
     }
-    
+
     func askPermissionForPhotos(completion: @escaping (Bool) -> Void) {
         guard isEnabledForSession else {
             completion(false)
@@ -115,7 +115,7 @@ final class PermissionHandler: NSObject {
             }
         }
     }
-    
+
     func askPermissionForCamera(completion: @escaping (Bool) -> Void) {
         guard isEnabledForSession else {
             completion(false)
@@ -134,7 +134,7 @@ final class PermissionHandler: NSObject {
 // MARK: - CLLocationManagerDelegate
 
 extension PermissionHandler: CLLocationManagerDelegate {
-    
+
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         locationPermissionCompletion?(status == .authorizedAlways || status == .authorizedWhenInUse)
         locationPermissionCompletion = nil

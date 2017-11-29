@@ -134,7 +134,7 @@ final class MorningInterviewViewController: UIViewController {
             textColor: .white,
             alignment: .center
         )
-        attributedTitle.append(progressTitle)        
+        attributedTitle.append(progressTitle)
         headerLabel.attributedText = attributedTitle
         headerLabel.textAlignment = .center
     }
@@ -227,7 +227,7 @@ private extension MorningInterviewViewController {
 
         collectionView.topAnchor == topView.bottomAnchor
         collectionView.horizontalAnchors == view.horizontalAnchors
-        collectionView.bottomAnchor == view.bottomAnchor - 69    
+        collectionView.bottomAnchor == view.bottomAnchor - 69
 
         bottomView.topAnchor == collectionView.bottomAnchor
         bottomView.bottomAnchor == view.bottomAnchor
@@ -238,7 +238,7 @@ private extension MorningInterviewViewController {
         nextButton.trailingAnchor == bottomView.trailingAnchor
         nextButton.topAnchor == bottomView.topAnchor
         nextButton.bottomAnchor == bottomView.bottomAnchor
-        
+
         view.layoutIfNeeded()
     }
 }

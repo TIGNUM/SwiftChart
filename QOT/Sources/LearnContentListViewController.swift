@@ -73,14 +73,14 @@ final class LearnContentListViewController: UIViewController {
     private let backgroundImageView = UIImageView(image: R.image._1Learn())
 
     // MARK: - Init
-    
+
     init(viewModel: LearnContentCollectionViewModel, selectedCategoryIndex: Index) {
         self.viewModel = viewModel
         self.selectedCategoryIndex = selectedCategoryIndex
 
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -98,7 +98,7 @@ final class LearnContentListViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         collectionView.reloadData()
         if firstLaunch {
             scrollToCategory(index: selectedCategoryIndex, animated: false)
@@ -166,7 +166,7 @@ private extension LearnContentListViewController {
         carouselView.horizontalAnchors == view.horizontalAnchors
         pagingCollectionViewTopConstraint = (carouselView.topAnchor == view.safeTopAnchor)
         pagingCollectionViewBottomConstraint = (carouselView.bottomAnchor == view.safeTopAnchor + performanceLabelSize.height + pagingCellSize.height)
-        
+
         getBackButtonBottomConstraint = (getBackButton.bottomAnchor == view.bottomAnchor)
         getBackButton.horizontalAnchors == view.horizontalAnchors
         getBackButton.heightAnchor == Layout.TabBarView.height
@@ -227,7 +227,7 @@ extension LearnContentListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.itemCount(categoryIndex: section)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = viewModel.item(at: indexPath)
         let cell: LearnContentCell = collectionView.dequeueCell(for: indexPath)
@@ -269,7 +269,7 @@ extension LearnContentListViewController: UIScrollViewDelegate {
     private func undateSelectedCategoryIndex(scrollCarouselView: Bool) {
         let center = CGPoint(x: collectionView.frame.midX, y: collectionView.frame.midY)
         let convertedCenter = view.convert(center, to: collectionView)
-        
+
         guard let index = collectionView.indexPathForItem(at: convertedCenter)?.section else { return }
 
         if selectedCategoryIndex != index, firstLaunch == false {

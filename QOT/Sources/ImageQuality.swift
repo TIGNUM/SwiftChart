@@ -12,7 +12,7 @@ enum ImageQuality {
     case high
     case medium
     case low
-    
+
     var compressionRatio: CGFloat {
         switch self {
         case .high: return 1.0
@@ -26,7 +26,7 @@ enum ImageSize {
     case large
     case medium
     case small
-    
+
     var scaleFactor: CGFloat {
         switch self {
         case .large: return 1.0
@@ -34,7 +34,7 @@ enum ImageSize {
         case .small: return 0.1
         }
     }
-    
+
     func scaleSize(_ size: CGSize) -> CGSize {
         return CGSize(width: size.width * scaleFactor, height: size.height * scaleFactor)
     }
@@ -49,7 +49,7 @@ extension UIImage {
         }
         return compressedImage
     }
-    
+
     func scaledToSize(_ size: CGSize) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
         draw(in: CGRect(origin: .zero, size: size))

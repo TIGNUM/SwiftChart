@@ -11,7 +11,7 @@ import RealmSwift
 class NotificationTokenHandler {
     private let notificationToken: NotificationToken
     private let notificationHandler: NotificationHandler
-    
+
     init(notificationToken: NotificationToken) {
         self.notificationToken = notificationToken
         notificationHandler = NotificationHandler(name: .logoutNotification)
@@ -19,11 +19,11 @@ class NotificationTokenHandler {
             self?.stop()
         }
     }
-    
+
     deinit {
         stop()
     }
-    
+
     func stop() {
         notificationToken.stop()
     }

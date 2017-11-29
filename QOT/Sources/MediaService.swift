@@ -10,10 +10,10 @@ import Foundation
 import RealmSwift
 
 class MediaService {
-    
+
     private let mainRealm: Realm
     private let realmProvider: RealmProvider
-    
+
     init(mainRealm: Realm, realmProvider: RealmProvider) {
         self.mainRealm = mainRealm
         self.realmProvider = realmProvider

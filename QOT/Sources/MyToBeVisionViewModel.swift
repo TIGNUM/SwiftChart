@@ -46,24 +46,24 @@ final class MyToBeVisionViewModel {
         self.services = services
         self.item = services.userService.myToBeVision()
     }
-    
+
     func updateHeadline(_ headline: String?) {
         guard let item = item else { return }
         userService.updateHeadline(myToBeVision: item, headline: headline)
         updateDate(Date())
     }
-    
+
     func updateText(_ text: String?) {
         guard let item = item else { return }
         userService.updateText(myToBeVision: item, text: text)
         updateDate(Date())
     }
-    
+
     func updateDate(_ date: Date) {
         guard let item = item else { return }
         userService.updateDate(myToBeVision: item, date: date)
     }
-    
+
     func updateLocalProfileImageURL(_ url: URL) {
         guard let resource = profileImageResource else { return }
 

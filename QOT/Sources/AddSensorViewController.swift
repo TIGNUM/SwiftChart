@@ -15,7 +15,7 @@ protocol AddSensorViewControllerDelegate: class {
 }
 
 final class AddSensorViewController: UIViewController {
-    
+
     // MARK: - Properties
 
     private let viewModel: AddSensorViewModel
@@ -25,7 +25,7 @@ final class AddSensorViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: 0, left: 36, bottom: 10, right: 59)
-        
+
         return UICollectionView(layout: layout,
                                 delegate: self,
                                 dataSource: self,
@@ -77,10 +77,10 @@ final class AddSensorViewController: UIViewController {
         label.textColor = .white
         label.setAttrText(text: self.viewModel.text, font: Font.DPText, alignment: .left, lineSpacing: 13)
         label.numberOfLines = 0
-        
+
         return label
     }()
-    
+
     // MARK: - Init
 
     init(viewModel: AddSensorViewModel) {
@@ -92,7 +92,7 @@ final class AddSensorViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -101,7 +101,7 @@ final class AddSensorViewController: UIViewController {
         setUpHierarchy()
         setUpLayout()
     }
-    
+
     func reloadCollectionView() {
         collectionView.reloadData()
     }

@@ -147,15 +147,15 @@ final class DatabaseManager {
             }
         }
     }
-    
+
     private func classNamesFromDatabase(_ database: Realm) -> [String] {
         return database.schema.objectSchema.map({ $0.className })
     }
-    
+
     private func classNamesWithEntitiesFromDatabase(_ database: Realm) -> [String] {
         return classNamesFromDatabase(database).filter({ database.dynamicObjects($0).count > 0 })
     }
-    
+
     private func deleteAllObjectsWithClassNames(_ classNames: [String], fromDatabase database: Realm) throws {
         try classNames.forEach { (className: String) in
             let objects = database.dynamicObjects(className)

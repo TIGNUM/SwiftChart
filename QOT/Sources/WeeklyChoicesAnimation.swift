@@ -18,14 +18,14 @@ final class WeeklyChoicesAnimation: NSObject {
         self.duration = duration
         super.init()
     }
-    
+
     private func getMyUniverseViewController(_ viewController: UIViewController) -> MyUniverseViewController? {
         if let viewController = viewController as? TabBarController, let viewControllers = viewController.viewControllers, viewControllers.count > 1, let childViewController = viewControllers[1] as? MyUniverseViewController {
             return childViewController
         }
         return nil
     }
-    
+
     private func getWeeklyChoicesViewController(_ viewController: UIViewController) -> WeeklyChoicesViewController? {
         if let navigationController = viewController as? UINavigationController, let pageViewController = navigationController.viewControllers.first as? PageViewController, let childViewController = pageViewController.viewControllers?.first as? WeeklyChoicesViewController {
             return childViewController
@@ -53,7 +53,7 @@ extension WeeklyChoicesAnimation: UIViewControllerAnimatedTransitioning {
 
         fromViewController.beginAppearanceTransition(false, animated: true)
         toViewController.beginAppearanceTransition(true, animated: true)
-        
+
         if isPresenting {
             containerView.insertSubview(toViewController.view, belowSubview: fromViewController.view)
             toViewController.view.frame = containerView.bounds
@@ -66,7 +66,7 @@ extension WeeklyChoicesAnimation: UIViewControllerAnimatedTransitioning {
             let weeklyChoicesViewController = getWeeklyChoicesViewController(expectedWeeklyChoicesViewController) else {
                 fatalError("missing view controllers for animation")
         }
-        
+
         if isPresenting {
             weeklyChoicesViewController.configureForTransitionedState()
             myUniverseViewController.configureForDefaultState()
@@ -74,7 +74,7 @@ extension WeeklyChoicesAnimation: UIViewControllerAnimatedTransitioning {
             weeklyChoicesViewController.configureForDefaultState()
             myUniverseViewController.configureForTransitionedState()
         }
-        
+
         UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseOut], animations: {
             if self.isPresenting {
                 weeklyChoicesViewController.configureForDefaultState()
@@ -96,18 +96,18 @@ extension WeeklyChoicesAnimation: UIViewControllerAnimatedTransitioning {
 }
 
 private extension WeeklyChoicesViewController {
-    
+
     func configureForDefaultState() {
         navigationController?.view.alpha = 1
     }
-    
+
     func configureForTransitionedState() {
         navigationController?.view.alpha = 0
     }
 }
 
 private extension MyUniverseViewController {
-    
+
     func configureForDefaultState() {
         myWhyView.myToBeVisionBox.transform = .identity
         myWhyView.weeklyChoicesBox.transform = .identity
@@ -115,7 +115,7 @@ private extension MyUniverseViewController {
         view.transform = .identity
         view.alpha = 1
     }
-    
+
     func configureForTransitionedState() {
         myWhyView.myToBeVisionBox.transform = CGAffineTransform(translationX: -120.0, y: -50.0)
         myWhyView.weeklyChoicesBox.transform = CGAffineTransform(translationX: 100.0, y: 10.0)

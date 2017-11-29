@@ -11,7 +11,7 @@ import UIKit
 protocol LibraryViewModelInterface {
     var sectionCount: Int { get }
     var tableViewBackground: UIImageView? { get }
-    
+
     func titleForSection(_ section: Int) -> NSAttributedString
     func contentCollection(at indexPath: IndexPath) -> [ContentCollection]
     func contentCollectionType(at indexPath: IndexPath) -> LibraryTableViewCell.CollectionViewCellType

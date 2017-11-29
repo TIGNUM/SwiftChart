@@ -17,7 +17,7 @@ struct Log {
         case warning
         case error
     }
-    
+
     struct Toggle {
         struct Database {
             static let Content = false
@@ -46,7 +46,7 @@ struct Log {
     static var main: SwiftyBeaver.Type {
         return SwiftyBeaver.self
     }
-    
+
     static var remoteLogLevel: SwiftyBeaver.Level = .error
     static var format = ">>> :line :className.:function --> :obj"
     static var dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
@@ -55,13 +55,13 @@ struct Log {
         formatter.dateFormat = format
         return formatter
     }
-    
+
     static func setup() {
         let console = ConsoleDestination()
-        console.format = "$DHH:mm:ss$d $L $M"        
-        console.minLevel = .verbose        
+        console.format = "$DHH:mm:ss$d $L $M"
+        console.minLevel = .verbose
         Log.main.addDestination(console)
-        
+
         let remoteLog = RemoteLogDestination()
         remoteLog.minLevel = remoteLogLevel
         Log.main.addDestination(remoteLog)
@@ -75,19 +75,19 @@ func log(_ obj: @autoclosure () -> Any, enabled: Bool = true, level: Log.Level =
     switch level {
     case .verbose:
         var logStatement = Log.format.replacingOccurrences(of: ":line", with: "\(line)")
-        
+
         if let className = NSURL(string: file)?.lastPathComponent?.components(separatedBy: ".").first {
             logStatement = logStatement.replacingOccurrences(of: ":className", with: className)
         }
-        
+
         logStatement = logStatement.replacingOccurrences(of: ":function", with: function)
         logStatement = logStatement.replacingOccurrences(of: ":obj", with: "\(obj())")
-        
+
         if logStatement.contains(":date") {
             let replacement = Log.dateFormatter.string(from: Date())
             logStatement = logStatement.replacingOccurrences(of: ":date", with: "\(replacement)")
         }
-        
+
         Log.main.verbose(obj(), file, function, line: line, context: logStatement)
     case .debug:
         Log.main.debug(obj(), file, function, line: line)

@@ -26,7 +26,7 @@ final class CarouselCellView: UIView {
     private var index: Index = 0
     weak var partnersViewControllerDelegate: PartnersViewControllerDelegate?
     private(set) var isEditing: Bool
-    
+
     // MARK: - Init
 
     convenience init(frame: CGRect, index: Index) {
@@ -37,7 +37,7 @@ final class CarouselCellView: UIView {
 
     override init(frame: CGRect) {
         isEditing = false
-        
+
         super.init(frame: frame)
 
         nibSetup()
@@ -84,7 +84,7 @@ extension CarouselCellView {
             letterSpacing: -1.1,
             font: Font.H3Subtitle
         )
-        
+
         let grey = UIColor.white60
         textFieldMail.attributedText = NSMutableAttributedString(
             string: email ?? "",
@@ -127,21 +127,21 @@ extension CarouselCellView {
         viewModel.updateEmail(email: textFieldMail.text!)
         viewModel.save()
     }
-    
+
     func edit(isEnabled: Bool) {
         isEditing = isEnabled
-        
+
         initialsLabel.isHidden = isEnabled
         textFieldName.isEnabled = isEnabled
         textFieldSurname.isEnabled = isEnabled
         textFieldSubtitle.isEnabled = isEnabled
         textFieldMail.isEnabled = isEnabled
-        
+
         setupEditPictureButton()
         setupEditImageView(imageView: editImageViewEmail, isHidden: (isEnabled == false))
         setupEditImageView(imageView: editImageViewRelationship, isHidden: (isEnabled == false))
         setupEditImageView(imageView: editImageViewName, isHidden: (isEnabled == false))
-        
+
         if isEnabled == true {
             textFieldName.becomeFirstResponder()
         }
@@ -180,13 +180,13 @@ private extension CarouselCellView {
         view.translatesAutoresizingMaskIntoConstraints = true
 
         addSubview(view)
-        
+
         imageView.applyHexagonMask()
         imageView.backgroundColor = UIColor.whiteLight
-        
+
         isEditing = false
     }
-    
+
     func setupEditPictureButton() {
         // the state of the edit picture button is complicated. it only shows if:
         //  - editing

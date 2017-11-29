@@ -21,10 +21,10 @@ final class PrepareContentFooterTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var saveButton: UIButton!
 
     // MARK: - Life Cycle
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
         contentView.backgroundColor = .clear
         backgroundColor = .clear
         saveButton.imageView?.image = saveButton.imageView?.image?.withRenderingMode(.alwaysTemplate)

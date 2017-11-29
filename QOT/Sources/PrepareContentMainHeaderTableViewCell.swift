@@ -17,7 +17,7 @@ protocol PrepareContentMainHeaderTableViewCellDelegate: class {
 final class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Properties
-    
+
     @IBOutlet weak var bottomSeparator: UIView!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var headerLabel: UILabel!
@@ -28,7 +28,7 @@ final class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable 
     var videoURL: URL?
     var previewImageURL: URL?
     var content: String = ""
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -39,13 +39,13 @@ final class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable 
         contentView.backgroundColor = .clear
         backgroundColor = .clear
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
 
         previewImageButton.contentMode = .scaleAspectFill
     }
-    
+
     func setCell(title: String, subTitle: String, contentText: String, videoPlaceholder: URL?, videoURL: URL?, isExpanded: Bool) {
         previewImageURL = videoPlaceholder
         self.videoURL = videoURL
@@ -55,7 +55,7 @@ final class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable 
         setExpandImageState(isExpanded: isExpanded)
         updateContent(isExpanded: isExpanded)
     }
-    
+
     func updateContent(isExpanded: Bool) {
         if isExpanded == true {
             if let previewImageURL = previewImageURL, videoURL != nil {
@@ -71,7 +71,7 @@ final class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable 
             contentLabel.setAttrText(text: content, font: Font.DPText)
         }
     }
-    
+
     func setExpandImageState(isExpanded: Bool) {
         iconImageView.image = isExpanded ? R.image.prepareContentMinusIcon() : R.image.prepareContentPlusIcon()
     }

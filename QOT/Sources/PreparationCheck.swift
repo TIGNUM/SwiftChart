@@ -13,9 +13,9 @@ import Freddy
 final class PreparationCheck: SyncableObject {
 
     // MARK: Public Properties
-    
+
     @objc private(set) dynamic var preparationID: Int = 0
-    
+
     @objc private(set) dynamic var contentItemID: Int = 0
 
     @objc dynamic var covered: Date? // A date indicates the time it was checked and nil indicates it is unchecked
@@ -25,11 +25,11 @@ final class PreparationCheck: SyncableObject {
     @objc dynamic var changeStamp: String? = UUID().uuidString
 
     // MARK: - Relationships
-    
+
     @objc private(set) dynamic var preparation: Preparation?
-    
+
     @objc private(set) dynamic var contentItem: ContentItem?
-    
+
     // MARK: Functions
 
     convenience init(preparation: Preparation?, contentItem: ContentItem?, covered: Date?) {
@@ -60,7 +60,7 @@ final class PreparationCheck: SyncableObject {
 // MARK: - BuildRelations
 
 extension PreparationCheck: BuildRelations {
-    
+
     func buildRelations(realm: Realm) {
         guard let preparation = realm.syncableObject(ofType: Preparation.self, remoteID: preparationID) else {
             return
@@ -73,17 +73,17 @@ extension PreparationCheck: BuildRelations {
 // MARK: - TwoWaySyncable
 
 extension PreparationCheck: TwoWaySyncable {
-    
+
     func setData(_ data: PreparationCheckIntermediary, objectStore: ObjectStore) throws {
         preparationID = data.preparationID
         contentItemID = data.contentItemID
         covered = data.covered
     }
-    
+
     static var endpoint: Endpoint {
         return .userPreparationCheck
     }
-    
+
     func toJson() -> JSON? {
         guard syncStatus != .clean else {
             return nil

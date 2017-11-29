@@ -36,7 +36,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
                                   chatViewController: self.prepareChatViewController,
                                   myPrepViewController: self.myPrepViewController)
     }()
-    
+
     private lazy var prepareChatViewController: ChatViewController<Answer> = {
         let viewModel = ChatViewModel<Answer>(items: [])
         let viewController = ChatViewController(pageName: .prepareChat, viewModel: viewModel, fadeMaskLocation: .topAndBottom)
@@ -52,22 +52,22 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
 
         return viewController
     }()
-    
+
     private lazy var toolsViewController: LibraryViewController = {
         let viewModel = ToolsViewModel(services: services)
         let toolsViewController = LibraryViewController(viewModel: viewModel, fadeMaskLocation: .topAndBottom)
         toolsViewController.title = R.string.localized.topTabBarItemTitlePerpareTools()
         toolsViewController.delegate = self
-        
+
         return toolsViewController
     }()
-    
+
     private lazy var whatsHotBadgeManager: WhatsHotBadgeManager = {
         return WhatsHotBadgeManager()
     }()
-    
+
     // MARK: - tab bar
-    
+
     private lazy var tabBarController: TabBarController = {
         let tabBarController = TabBarController(config: .default)
         tabBarController.modalTransitionStyle = .crossDissolve
@@ -83,7 +83,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         whatsHotBadgeManager.isShowingLearnTab = true
         return tabBarController
     }()
-    
+
     private lazy var articleCollectionViewController: ArticleCollectionViewController = {
         let viewController = ArticleCollectionViewController(pageName: .whatsHot, viewData: articleCollectionProvider.provideViewData())
         viewController.title = R.string.localized.topTabBarItemTitleLearnWhatsHot()
@@ -127,7 +127,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     }()
 
     lazy var topTabBarControllerPrepare: UINavigationController = {
-        let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())        
+        let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())
         let topTabBarController = UINavigationController(withPages: [self.prepareChatViewController,
                                                                      self.myPrepViewController],
                                                          topBarDelegate: self,
@@ -143,7 +143,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     }()
 
     // MARK: - Init
-    
+
     init(windowManager: WindowManager,
          selectedIndex: Index,
          services: Services,
@@ -161,9 +161,9 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         self.syncManager = syncManager
         self.networkManager = networkManager
         articleCollectionProvider = ArticleCollectionProvider(services: services)
-        
+
         super.init()
-        
+
         articleCollectionProvider.updateBlock = { [unowned self] viewData in
             self.articleCollectionViewController.viewData = viewData
         }
@@ -174,7 +174,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     func showPreparationCheckList(localID: String) {
         prepareCoordinator.showPrepareCheckList(preparationID: localID)
     }
-    
+
     func start() {
         windowManager.show(tabBarController, animated: true, completion: {
             guard let tutorial = Tutorial(rawValue: self.selectedIndex.value) else {
@@ -183,15 +183,15 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
             self.showTutorial(tutorial)
         })
     }
-    
+
     // MARK: - private
-    
+
     private func showTutorial(_ tutorial: Tutorial) {
         guard !tutorial.exists(), let buttonFrame = tabBarController.frameForButton(at: selectedIndex.value) else {
             return
         }
         tutorial.set()
-        
+
         let viewModel = TutorialViewModel(tutorial: tutorial)
         let viewController = TutorialViewController(viewModel: viewModel, buttonFrame: buttonFrame) {
             self.windowManager.resignWindow(atLevel: .overlay)
@@ -208,14 +208,14 @@ extension TabBarCoordinator: TabBarControllerDelegate {
     func tabBarController(_ tabBarController: TabBarController, didSelect viewController: UIViewController, at index: Int) {
         selectedIndex.value = index
         whatsHotBadgeManager.isShowingLearnTab = (index == 0)
-        
+
         switch index {
         case 2:
             prepareCoordinator.focus()
         default:
             break
         }
-        
+
         guard let tutorial = Tutorial(rawValue: index) else {
             return
         }
@@ -315,9 +315,9 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
 extension TabBarCoordinator: TopNavigationBarDelegate {
 
     func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
-        
+
     }
-    
+
     func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
         guard
             let navigationController = tabBarController.viewControllers?[selectedIndex.value] as? UINavigationController,
@@ -327,7 +327,7 @@ extension TabBarCoordinator: TopNavigationBarDelegate {
 
         pageViewController.setPageIndex(index, animated: true)
     }
-    
+
     func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
         let coordinator = SidebarCoordinator(root: tabBarController, services: services, syncManager: syncManager, networkManager: networkManager)
         startChild(child: coordinator)
@@ -343,7 +343,7 @@ extension TabBarCoordinator: PageViewControllerDelegate {
             return
         }
         topNavigationBar.setIndicatorToButtonIndex(index)
-        
+
         if selectedIndex.value == 0 && index == 1 {
             whatsHotBadgeManager.didScrollToWhatsHotPage()
         }
@@ -351,14 +351,14 @@ extension TabBarCoordinator: PageViewControllerDelegate {
 }
 
 extension TabBarCoordinator: LibraryViewControllerDelegate {
-    
+
     func didTapLibraryItem(item: ContentCollection) {
         var articleHeader: ArticleCollectionHeader?
         let title = item.contentCategories.first?.title
         let subtitle = item.title
         let date = DateFormatter.shortDate.string(from: item.createdAt)
         let duration = "\(item.items.reduce(0) { $0 + $1.secondsRequired } / 60) MIN"
-        
+
         articleHeader = ArticleCollectionHeader(
             articleTitle: title != nil ? title! : "",
             articleSubTitle: subtitle,
@@ -366,7 +366,7 @@ extension TabBarCoordinator: LibraryViewControllerDelegate {
             articleDuration: duration,
             articleContentCollectionID: item.remoteID.value ?? 0
         )
-        
+
         guard let coordinator = ArticleContentItemCoordinator(
             pageName: .libraryArticle,
             root: toolsViewController,
@@ -379,6 +379,6 @@ extension TabBarCoordinator: LibraryViewControllerDelegate {
         }
         startChild(child: coordinator)
     }
-    
+
     func didTapClose(in viewController: LibraryViewController) {}
 }
