@@ -7,28 +7,21 @@ platform :ios do
     cocoapods(repo_update: true)
   end
 
+  after_all do |lane|
+    # This block is called, only if the executed lane was successful
+  end
+
+  error do |lane, exception|
+    # Do something
+  end
+
+  # LANES
+
   desc "Runs all the tests"
   lane :test do
     scan(scheme: "QOT")
   end
 
-  desc "Deploy to Crashlytics Beta"
-  lane :cbeta do
-    # Install certificates and profiles
-    match(type: "adhoc", readonly: true)
-
-    # Build
-    gym(
-      scheme: "QOT",
-      configuration: "Release"
-    )
-
-    # upload to Beta by Crashlytics
-    crashlytics(
-      api_token: "c5b6a77e0ac832aeb121a8444afaba1522a28469",
-      build_secret: "d4ca106b8d4d308cc6c505618f78c345e3e6bd462c0bd7a433abfc3f733a4783"
-    )
-  end
 
   desc "Deploy to Hockeyapp"
   lane :beta do
@@ -48,6 +41,7 @@ platform :ios do
     # Release to hockey app
     hockey(api_token: ENV["HOCKEYAPP_API_TOKEN"])
   end
+
 
   desc "Build and deploy to AWS S3 and hockey"
   lane :release do
@@ -80,7 +74,8 @@ platform :ios do
     hockey(api_token: ENV["HOCKEYAPP_API_TOKEN"])
   end
 
-  desc "Build version for novartis"
+
+  desc "Build and deploy to hockey for Novartis"
   lane :novartis do
     # Update Urban Airship
     update_urban_airship_configuration(
@@ -105,11 +100,34 @@ platform :ios do
     hockey(api_token: ENV["NOVARTIS_BUILD_HOCKEYAPP_API_TOKEN"])
   end
 
-  after_all do |lane|
-    # This block is called, only if the executed lane was successful
+
+  desc "Build and deploy to App Store"
+  lane :app_store do
+    # Update Urban Airship
+    update_urban_airship_configuration(
+      plist_path: ENV['URBAN_AIRSHIP_PLIST_PATH'],
+      production_app_key: ENV['URBAN_AIRSHIP_APP_STORE_PRODUCTION_APP_KEY'],
+      production_app_secret: ENV['URBAN_AIRSHIP_APP_STORE_PRODUCTION_APP_SECRET']
+    )
+
+    # Install certificates and profiles
+    sigh(force: false)
+
+    # Increment build number
+    set_info_plist_value(path: ENV['INFO_PLIST_PATH'], key: "CFBundleVersion", value: ENV["BITRISE_BUILD_NUMBER"])
+
+    # Build
+    gym(
+      scheme: "QOT",
+      configuration: "AppStore"
+    )
+
+    # Upload to testflight
+    testflight(skip_submission: true)
+
+    # Release to hockey app
+    hockey(api_token: ENV["APP_STORE_HOCKEYAPP_API_TOKEN"])
   end
 
-  error do |lane, exception|
-    # Do something
-  end
+
 end
