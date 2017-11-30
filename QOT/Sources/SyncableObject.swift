@@ -13,7 +13,7 @@ class SyncableObject: Object {
     @objc dynamic var localID: String = UUID().uuidString
 
     let remoteID = RealmOptional<Int>(nil)
-    
+
     @objc dynamic var createdAt: Date = Date()
 
     @objc dynamic var modifiedAt: Date = Date()

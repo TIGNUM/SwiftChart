@@ -23,10 +23,10 @@ final class MeetingsTimeBetweenChart: UIView {
         self.labelContentView = labelContentView
 
         super.init(frame: frame)
-        
+
         drawProgressWheel()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

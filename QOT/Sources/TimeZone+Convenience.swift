@@ -13,7 +13,7 @@ extension TimeZone {
     static var currentName: String {
         return TimeZone.current.localizedName(for: .shortStandard, locale: Locale.posix)!
     }
-    
+
     static var hoursFromGMT: String {
         let offsetHours = Float(TimeZone.current.secondsFromGMT()) / 3600
         switch offsetHours {

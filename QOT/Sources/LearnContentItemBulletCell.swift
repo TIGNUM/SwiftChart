@@ -21,7 +21,7 @@ final class LearnContentItemBulletCell: UITableViewCell, Dequeueable {
             lineSpacing: 14,
             textColor: .blackTwo
         )
-        
+
         bulletLabel.attributedText = attributedString
         bulletIndicatorLabel.textColor = .blackTwo
         bulletSeperatorView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)

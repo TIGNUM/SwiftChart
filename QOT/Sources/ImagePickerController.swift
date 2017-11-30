@@ -26,18 +26,18 @@ final class ImagePickerController {
     let imageCropper: ImageCropper
     weak var viewController: UIViewController?
     weak var delegate: ImagePickerControllerDelegate?
-    
+
     init(cropShape: ImageCropper.Shape, imageQuality: ImageQuality, imageSize: ImageSize, permissionHandler: PermissionHandler) {
         self.imageQuality = imageQuality
         self.imageSize = imageSize
         self.permissionHandler = permissionHandler
-        
+
         imagePicker = ImagePicker()
         imageCropper = ImageCropper(shape: cropShape)
         imagePicker.delegte = self
         imageCropper.delegate = self
     }
-    
+
     func show(in viewController: UIViewController, completion: (() -> Void)? = nil) {
         self.viewController = viewController
         let alertController = UIViewController.alert(forType: .imagePicker)
@@ -45,19 +45,19 @@ final class ImagePickerController {
                                         style: .default) { [unowned self] (alertAction: UIAlertAction) in
             self.handleOption(.photo)
         }
-        
+
         let cameraAction = UIAlertAction(title: R.string.localized.imagePickerOptionsButtonCamera(),
                                          style: .default) { [unowned self] (alertAction: UIAlertAction) in
             self.handleOption(.camera)
         }
-        
+
         alertController.addAction(photoAction)
         alertController.addAction(cameraAction)
         self.viewController?.present(alertController, animated: true, completion: nil)
     }
-    
+
     // MARK: - private
-    
+
     private func handleOption(_ option: Option) {
         guard let viewController = viewController else {
             return
@@ -77,7 +77,7 @@ final class ImagePickerController {
             } catch {}
         }
     }
-    
+
     private func handleError(_ error: ImagePicker.ImagePickerError, forOption option: Option) {
         switch error {
         case .sourceNotAvailable:
@@ -88,7 +88,7 @@ final class ImagePickerController {
             handleAuthorizationForOption(option)
         }
     }
-    
+
     private func handleAuthorizationForOption(_ option: Option) {
         switch option {
         case .camera:
@@ -113,7 +113,7 @@ final class ImagePickerController {
             })
         }
     }
-    
+
     private func finish() {
         viewController = nil
     }
@@ -128,7 +128,7 @@ extension ImagePickerController: ImageCropperDelegate {
         }
         delegate?.imagePickerController(self, selectedImage: image)
     }
-    
+
     func imageCropperDidPressCancel(_ imageCropper: ImageCropper) {
         imageCropper.dismiss {
             self.finish()

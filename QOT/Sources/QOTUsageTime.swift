@@ -15,15 +15,15 @@ final class QOTUsageTimer {
 
     static let sharedInstance = QOTUsageTimer()
     var userService: UserService?
-    
+
     private init() {
         // Don't delete. Ensures that access is though singleton
     }
-    
+
     func startTimer() {
         self.started = Date()
     }
-    
+
     func stopTimer() {
         self.started = nil
     }

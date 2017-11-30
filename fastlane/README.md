@@ -35,11 +35,6 @@ xcode-select --install
 fastlane ios test
 ```
 Runs all the tests
-### ios cbeta
-```
-fastlane ios cbeta
-```
-Deploy to Crashlytics Beta
 ### ios beta
 ```
 fastlane ios beta
@@ -55,6 +50,11 @@ Build and deploy to AWS S3 and hockey
 fastlane ios novartis
 ```
 Build version for novartis
+### ios app_store
+```
+fastlane ios app_store
+```
+Build version for App Store
 
 ----
 

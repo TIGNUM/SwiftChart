@@ -49,7 +49,7 @@ struct Layout {
         static let labelHeight: CGFloat = 21
         static let maxPartners: Int = 3
         static let maxWeeklyPage = 5
-        
+
         var connectionCenter: CGPoint {
             return  CGPoint(x: viewControllerFrame.width, y: viewControllerFrame.height * 0.45)
         }
@@ -185,7 +185,7 @@ struct Font {
 
     /// BENTON SAN BOOK 15 // text
     static let DPText2 = UIFont.bentonBookFont(ofSize: 15)
-    
+
     /// BENTON SAN BOOK 14 // text
     static let DPText3 = UIFont.bentonBookFont(ofSize: 14)
 

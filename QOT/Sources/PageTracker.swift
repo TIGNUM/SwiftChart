@@ -13,29 +13,29 @@ private weak var _staticPageTracker: PageTracker?
 
 class PageTracker {
     private let eventTracker: EventTracker
-    
+
     weak var lastPage: TrackablePage?
-    
+
     init(eventTracker: EventTracker) {
         self.eventTracker = eventTracker
     }
-    
+
     class func setStaticTracker(pageTracker: PageTracker) {
         _staticPageTracker = pageTracker
     }
-    
+
     func start() {
         if !viewDidAppearSwizzle.isSwizzled {
             viewDidAppearSwizzle.swizzle()
         }
     }
-    
+
     func stop() {
         if viewDidAppearSwizzle.isSwizzled {
             viewDidAppearSwizzle.swizzle()
         }
     }
-    
+
     func track(_ page: TrackablePage) {
         eventTracker.track(.didShowPage(page, from: lastPage))
         lastPage = page
@@ -60,7 +60,7 @@ private struct ViewDidAppearSwizzle: Swizzle {
     var isSwizzled: Bool
 
     // MARK: - Init
-    
+
     init() {
         classID = UIViewController.self
         originalSelector = #selector(UIViewController.viewDidAppear(_:))

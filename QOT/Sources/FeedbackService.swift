@@ -13,12 +13,12 @@ final class FeedbackService {
 
     private let mainRealm: Realm
     private let realmProvider: RealmProvider
-    
+
     init(mainRealm: Realm, realmProvider: RealmProvider) {
         self.mainRealm = mainRealm
         self.realmProvider = realmProvider
     }
-    
+
     @discardableResult func recordFeedback(message: String) throws -> UserFeedback {
         let feedback = UserFeedback(message: message)
         try mainRealm.write {

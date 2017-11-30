@@ -13,7 +13,7 @@ extension Bundle {
     var versionNumber: String {
         return infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
     }
-    
+
     var isFirstVersion: Bool {
         return UserDefault.lastInstaledAppVersion.stringValue == nil
     }

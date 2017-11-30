@@ -14,7 +14,7 @@ struct ArticleCollectionHeader {
     let articleDate: String
     let articleDuration: String
     let articleContentCollectionID: Int
-    
+
     init(contentCollection: ContentCollection) {
         articleTitle = contentCollection.contentCategories.first?.title ?? ""
         articleSubTitle = contentCollection.title
@@ -22,7 +22,7 @@ struct ArticleCollectionHeader {
         articleDuration = "\(contentCollection.items.reduce(0) { $0 + $1.secondsRequired } / 60) MIN"
         articleContentCollectionID = contentCollection.remoteID.value ?? 0
     }
-    
+
     init(articleTitle: String, articleSubTitle: String, articleDate: String, articleDuration: String, articleContentCollectionID: Int) {
         self.articleTitle = articleTitle
         self.articleSubTitle = articleSubTitle

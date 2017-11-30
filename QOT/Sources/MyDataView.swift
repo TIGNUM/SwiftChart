@@ -14,7 +14,7 @@ protocol MyDataViewDelegate: class {
 }
 
 final class MyDataView: UIView {
-    
+
     // MARK: - Properties
 
     private let viewModel: MyUniverseViewModel
@@ -35,7 +35,7 @@ final class MyDataView: UIView {
         self.viewModel = viewModel
 
         super.init(frame: frame)
-        
+
         drawBackground()
         setupProfileImage()
         updateProfileImageResource()
@@ -54,7 +54,7 @@ final class MyDataView: UIView {
         previousBounds = bounds
         reload()
     }
-    
+
     func reload() {
         drawUniverse(with: viewModel.sectors)
         bringSubview(toFront: profileImageBackgroundView)
@@ -77,7 +77,7 @@ final class MyDataView: UIView {
             }
         }
     }
-    
+
     func dataPointForPoint(_ point: CGPoint) -> ChartDataPoint? {
         for dataPoint in dataPoints {
             if dataPoint.frame.contains(point) {
@@ -91,7 +91,7 @@ final class MyDataView: UIView {
 // MARK: - Private Helpers / Draw SolarSystem
 
 private extension MyDataView {
-    
+
     func drawBackground() {
         let layout = Layout.MeSection(viewControllerFrame: bounds)
         drawBackCircles(layout: layout, radius: layout.radiusAverageLoad, linesDashPattern: [2, 1])
@@ -104,7 +104,7 @@ private extension MyDataView {
         drawDataPointConnections(layout: layout, sectors: sectors)
         drawDataPoints(layout: layout, sectors: sectors)
     }
-    
+
     func setupProfileImage() {
         let layout = Layout.MeSection(viewControllerFrame: bounds)
         let frame = layout.profileImageViewFrame
@@ -114,24 +114,24 @@ private extension MyDataView {
         profileImageBackgroundView.backgroundColor = Color.MeSection.myUniverseBlue
         profileImageBackgroundView.layer.cornerRadius = cornerRadius
         profileImageBackgroundView.clipsToBounds = true
-        
+
         profileImageViewOverlay = UIImageView(frame: frame)
         profileImageViewOverlay.layer.cornerRadius = cornerRadius
         profileImageViewOverlay.clipsToBounds = true
-        
+
         profileImageViewOverlayEffect = UIImageView(frame: frame)
         profileImageViewOverlayEffect.backgroundColor = Color.Default.whiteMedium
         profileImageViewOverlayEffect.layer.cornerRadius = cornerRadius
         profileImageViewOverlayEffect.clipsToBounds = true
-        
+
         profileImageButton = UIButton(type: .custom)
         profileImageButton.frame = frame
         profileImageButton.addTarget(self, action: #selector(profileButtonPressed(_:)), for: .touchUpInside)
         profileImageButton.layer.cornerRadius = cornerRadius
         profileImageButton.clipsToBounds = true
-        
+
         addImageEffect(center: layout.loadCenter)
-        
+
         addSubview(profileImageBackgroundView)
         addSubview(profileImageButton)
         addSubview(profileImageViewOverlay)
@@ -147,7 +147,7 @@ private extension MyDataView {
         circleLayer.addGlowEffect(color: .white)
         layer.addSublayer(circleLayer)
     }
-    
+
     func drawBackCircles(layout: Layout.MeSection, radius: CGFloat, linesDashPattern: [NSNumber]? = nil) {
         let circleLayer = CAShapeLayer.circle(center: layout.loadCenter,
                                               radius: radius,
@@ -176,7 +176,7 @@ private extension MyDataView {
 // MARK: - Actions
 
 private extension MyDataView {
-    
+
     @objc func profileButtonPressed(_ sender: UIButton) {
         delegate?.myDataView(self, pressedProfileButton: sender)
     }

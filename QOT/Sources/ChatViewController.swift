@@ -99,7 +99,7 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
             }
         }.dispose(in: disposeBag)
     }
-    
+
     @available(iOS 11.0, *)
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()
@@ -120,7 +120,7 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
     private func setupView(withBackgroundImage backgroundImage: UIImage?) {
         view.backgroundColor = .clear
         view.addSubview(collectionView)
-        
+
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             collectionView.contentInsetAdjustmentBehavior = .never
@@ -128,7 +128,7 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
         collectionView.edgeAnchors == view.edgeAnchors
         collectionView.contentInset.top = paddingTop + view.safeMargins.top
         collectionView.contentInset.bottom = view.safeMargins.bottom
-      
+
         if let backgroundImage = backgroundImage {
             collectionView.backgroundView = UIImageView(image: backgroundImage)
         }

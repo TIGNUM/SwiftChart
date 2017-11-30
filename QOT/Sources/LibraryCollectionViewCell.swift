@@ -11,13 +11,13 @@ import UIKit
 final class LibraryCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     // MARK: - Properties
-    
+
     @IBOutlet private weak var latestPostImageView: UIImageView!
     @IBOutlet private weak var headlineLabel: UILabel!
     @IBOutlet private weak var mediaTypeLabel: UILabel!
 
     // MARK: - Setup
-    
+
     func setup(headline: String, previewImageURL: URL?, contentItemValue: ContentItemValue?) {
         if let contentItemValue = contentItemValue {
             var mediaType = ""
@@ -35,10 +35,10 @@ final class LibraryCollectionViewCell: UICollectionViewCell, Dequeueable {
         latestPostImageView.kf.setImage(with: previewImageURL, placeholder: R.image.preloading(), options: nil, progressBlock: nil, completionHandler: nil)
         backgroundColor = .clear
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+
         latestPostImageView.layer.masksToBounds = true
         latestPostImageView.layer.cornerRadius = 10.0
     }

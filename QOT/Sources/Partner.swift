@@ -19,19 +19,19 @@ final class Partner: SyncableObject {
     }
 
     @objc dynamic var profileImageResource: MediaResource? = MediaResource()
-    
+
     @objc dynamic var name: String = ""
 
     @objc dynamic var surname: String = ""
-    
+
     @objc dynamic var relationship: String?
-    
+
     @objc dynamic var email: String = ""
 
     @objc dynamic var deleted: Bool = false
 
     @objc dynamic var changeStamp: String? = UUID().uuidString
-    
+
     override func didSetRemoteID() {
         profileImageResource?.relatedEntityID.value = remoteID.value
     }

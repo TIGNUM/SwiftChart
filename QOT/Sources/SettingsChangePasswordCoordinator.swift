@@ -27,6 +27,6 @@ final class SettingsChangePasswordCoordinator: ParentCoordinator {
             return
         }
 
-        rootViewController.pushToStart(childViewController: settingsChangePasswordViewController)        
+        rootViewController.pushToStart(childViewController: settingsChangePasswordViewController)
     }
 }

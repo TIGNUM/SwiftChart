@@ -29,23 +29,23 @@ extension UINavigationController {
                                                     options: nil)
         pageViewController.setPages(pages)
         pageViewController.setPageIndex(0, animated: false)
-        
+
         self.init(navigationBarClass: TopNavigationBar.self, toolbarClass: nil)
-       
+
         view.backgroundColor = backgroundColor
         viewControllers = [pageViewController]
-        
+
         if let navigationBar = navigationBar as? TopNavigationBar {
             navigationBar.topNavigationBarDelegate = topBarDelegate
-            
+
             if let leftButton = leftButton {
                 navigationBar.setLeftButton(leftButton)
             }
-            
+
             if let rightButton = rightButton {
                 navigationBar.setRightButton(rightButton)
             }
-            
+
             var pageButtons = [UIButton]()
             pages.forEach { (page: UIViewController) in
                 let button = UIButton(type: .custom)
@@ -59,7 +59,7 @@ extension UINavigationController {
             navigationBar.setMiddleButtons(pageButtons)
         }
     }
-    
+
     func button(at index: Int) -> UIButton? {
         guard
             let stackView = navigationBar.topItem?.titleView as? UIStackView, index < stackView.arrangedSubviews.count,

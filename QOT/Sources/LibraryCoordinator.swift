@@ -27,7 +27,7 @@ final class LibraryCoordinator: ParentCoordinator {
         libraryViewController.title = R.string.localized.sidebarTitleLibrary().uppercased()
         libraryViewController.delegate = self
     }
-    
+
     func start() {
         rootViewController.pushToStart(childViewController: libraryViewController)
     }

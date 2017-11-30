@@ -24,7 +24,7 @@ final class ContentService {
     }
 
     // MARK: - Categories
-    
+
     func eraseData() {
         do {
             try mainRealm.write {
@@ -40,11 +40,11 @@ final class ContentService {
     func libraryCategories() -> AnyRealmCollection<ContentCategory> {
         return mainRealm.contentCategories(section: .library)
     }
-    
+
     func toolsCategories() -> AnyRealmCollection<ContentCategory> {
         let library = Database.Section.library.rawValue
         let predicate = NSPredicate(format: "ANY contentCollections.section == %@ AND remoteID != %d", library, 100037)
-        
+
         return sortedResults(for: predicate)
     }
 

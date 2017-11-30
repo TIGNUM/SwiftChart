@@ -24,7 +24,7 @@ final class SelectWeeklyChoicesViewController: UIViewController {
     }
 
     // MARK: - Properties
-    
+
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var backgroundBlurView: UIVisualEffectView!
     @IBOutlet weak var navigationBar: UINavigationBar!
@@ -38,7 +38,7 @@ final class SelectWeeklyChoicesViewController: UIViewController {
     weak var delegate: SelectWeeklyChoicesViewControllerDelegate?
 
     // MARK: - Init
-    
+
     init(delegate: SelectWeeklyChoicesViewControllerDelegate, viewModel: SelectWeeklyChoicesDataModel, backgroundImage: UIImage?) {
         self.delegate = delegate
         self.viewModel = viewModel
@@ -46,19 +46,19 @@ final class SelectWeeklyChoicesViewController: UIViewController {
 
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupView()
     }
-    
+
     // MARK: - private
-    
+
     private func setupView() {
         tableView.tableHeaderView = tableHeaderView
         var nib = UINib(nibName: CollapsableCell.nibName, bundle: Bundle.main)
@@ -76,7 +76,7 @@ final class SelectWeeklyChoicesViewController: UIViewController {
         navigationBar.setBackgroundImage(dummyImage, for: .default)
         navigationBar.shadowImage = dummyImage
         navigationBar.isTranslucent = true
-        
+
         tableHeaderViewLabel.attributedText = NSMutableAttributedString(
             string: R.string.localized.meSectorMyWhySelectWeeklyChoicesHeader("\(viewModel.maxSelectionCount)"),
             letterSpacing: 2,
@@ -85,13 +85,13 @@ final class SelectWeeklyChoicesViewController: UIViewController {
             textColor: UIColor.white,
             alignment: .center)
     }
-    
+
     private func setSelected(_ selected: Int) {
         let maxSelectionCount = viewModel.maxSelectionCount
         navigationBar.topItem?.title = R.string.localized.meSectorMyWhySelectWeeklyChoicesNavigation("\(maxSelectionCount)", "\(selected)", "\(viewModel.maxSelectionCount)").uppercased()
         doneButton.isEnabled = selected == maxSelectionCount
     }
-    
+
     private func showMaxSelectionCountAlert() {
         let alert = UIAlertController(
             title: R.string.localized.meSectorMyWhySelectWeeklyChoicesMaxChoiceAlertTitle(),
@@ -107,11 +107,11 @@ final class SelectWeeklyChoicesViewController: UIViewController {
     }
 
     // MARK: - actions
-    
+
     @IBAction private func closePressed(_ sender: UIBarButtonItem) {
         delegate?.dismiss(viewController: self)
     }
-    
+
     @IBAction private func donePressed(_ sender: UIBarButtonItem) {
         _ = MBProgressHUD.showAdded(to: view, animated: true)
         DispatchQueue.main.async { [unowned self] in
@@ -127,7 +127,7 @@ extension SelectWeeklyChoicesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return viewModel.rowHeight(forIndexPath: indexPath)
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if viewModel.isParentNode(atIndexPath: indexPath) {
             let node = viewModel.node(forSection: indexPath.section)
@@ -151,11 +151,11 @@ extension SelectWeeklyChoicesViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.numberOfSections
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRows(inSection: section)
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if viewModel.isParentNode(atIndexPath: indexPath) {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifiers.CollapsableCell) as? CollapsableCell else {

@@ -32,7 +32,7 @@ final class LearnStrategyListLayout: UICollectionViewLayout {
 
         register(LearnContentListBackgroundView.self, forDecorationViewOfKind: LearnContentListBackgroundView.kind)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

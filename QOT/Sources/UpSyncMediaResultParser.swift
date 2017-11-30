@@ -10,10 +10,10 @@ import Foundation
 import Freddy
 
 struct UpSyncMediaResult {
-    
+
     let remoteID: Int
     let remoteURLString: String
-    
+
     init(json: JSON) throws {
         guard let result = try json.getArray(at: .resultList, fallback: []).first else {
             throw SimpleError(localizedDescription: "missing resultList[0]")
@@ -24,7 +24,7 @@ struct UpSyncMediaResult {
 }
 
 struct UpSyncMediaResultParser {
-    
+
     static func parse(_ data: Data) throws -> UpSyncMediaResult {
         let json = try JSON(data: data)
         return try UpSyncMediaResult(json: json)

@@ -37,7 +37,7 @@ final class ResetPasswordCoordinator: ParentCoordinator {
 // MARK: - LoginDelegate
 
 extension ResetPasswordCoordinator: ResetPasswordViewControllerDelegate {
-    
+
     func didTapResetPassword(withUsername username: String, completion: @escaping (NetworkError?) -> Void) {
         guard let window = AppDelegate.current.window else {
             return

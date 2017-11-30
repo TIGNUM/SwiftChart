@@ -14,10 +14,10 @@ protocol CollapsableCellDelegate: class {
 
 class CollapsableCell: UITableViewCell {
     static let nibName = "CollapsableCell"
-    
+
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var label: UILabel!
-    
+
     var isOpen: Bool? {
         didSet {
             reload()
@@ -25,12 +25,12 @@ class CollapsableCell: UITableViewCell {
     }
     var indexPath: IndexPath?
     weak var delegate: CollapsableCellDelegate?
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         separatorInset = UIEdgeInsets(top: 0.0, left: 30.0, bottom: 0.0, right: 30.0)
     }
-    
+
     func setTitleText(_ text: String?) {
         label.attributedText = NSMutableAttributedString(
             string: text?.uppercased() ?? "",
@@ -38,9 +38,9 @@ class CollapsableCell: UITableViewCell {
             font: UIFont.simpleFont(ofSize: 15.0),
             textColor: UIColor.white)
     }
-    
+
     // MARK: - private
-    
+
     private func reload() {
         guard let isOpen = isOpen else {
             return
@@ -48,9 +48,9 @@ class CollapsableCell: UITableViewCell {
         let image = (isOpen == true) ? R.image.prepareContentMinusIcon() : R.image.prepareContentPlusIcon()
         button.setImage(image, for: .normal)
     }
-    
+
     // MARK: - action
-    
+
     @IBAction private func buttonPressed(_ sender: UIButton) {
         guard let delegate = delegate, let indexPath = indexPath else {
             return

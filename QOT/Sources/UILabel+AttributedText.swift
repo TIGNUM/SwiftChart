@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension UILabel {
-    
+
     func setAttrText(text: String, font: UIFont, alignment: NSTextAlignment = .natural, lineSpacing: CGFloat = 13, characterSpacing: CGFloat = 0, color: UIColor? = nil) {
         let attrString = NSMutableAttributedString(string: text)
         let style = NSMutableParagraphStyle()

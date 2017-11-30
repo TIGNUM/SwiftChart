@@ -24,7 +24,7 @@ final class OnboardingCoordinator: ParentCoordinator {
             case why
             case go
         }
-        
+
         var title: String
         var type: Type
     }
@@ -52,27 +52,27 @@ final class OnboardingCoordinator: ParentCoordinator {
         self.permissionHandler = permissionHandler
         self.userName = userName
     }
-    
+
     func start() {
         let chatViewController = ChatViewController(pageName: .onboardingChat, viewModel: chatViewModel, backgroundImage: R.image.backgroundChatBot(), fadeMaskLocation: .top)
         chatViewController.title = R.string.localized.topTabBarItemTitlePerpareCoach()
         chatViewController.didSelectChoice = { [unowned self] (choice, viewController) in
             self.handleChoice(choice)
         }
-        
+
         let navigationController = UINavigationController(rootViewController: chatViewController)
         let navigationBar = navigationController.navigationBar
         navigationBar.applyDefaultStyle()
         navigationBar.topItem?.title = R.string.localized.topTabBarItemTitlePerpareCoach().uppercased()
         navigationBar.titleTextAttributes = [NSAttributedStringKey.font: Font.H5SecondaryHeadline, NSAttributedStringKey.foregroundColor: UIColor.white]
-        
+
         startOnboarding() // must be called before adding chat vc to window, else chat won't animate
-        
+
         windowManager.show(navigationController, animated: true, completion: nil)
     }
-    
+
     // MARK: - private
-    
+
     private func startOnboarding() {
         let choices = [
             Choice(title: R.string.localized.onboardingChoiceTitleAccessAll(), type: .yes),
@@ -85,7 +85,7 @@ final class OnboardingCoordinator: ParentCoordinator {
         ]
         showMessages(messages, followedByChoices: choices, at: Date())
     }
-    
+
     private func handleChoice(_ choice: Choice) {
         switch choice.type {
         case .yes:
@@ -110,7 +110,7 @@ final class OnboardingCoordinator: ParentCoordinator {
             completeOnboarding()
         }
     }
-    
+
     private func showWhy() {
         let choices = [
             Choice(title: R.string.localized.onboardingChoiceTitleAccessAllWhy(), type: .yes),
@@ -118,12 +118,12 @@ final class OnboardingCoordinator: ParentCoordinator {
         ]
         showMessages([R.string.localized.onboardingChatItemWhy()], followedByChoices: choices, at: Date())
     }
-    
+
     private func showSettings() {
         let choices = [Choice(title: R.string.localized.onboardingChoiceTitleLetsGo(), type: .go)]
         showMessages([R.string.localized.onboardingChatItemShowSettings()], followedByChoices: choices, at: Date())
     }
-    
+
     private func showLastStep() {
         let choices = [Choice(title: R.string.localized.onboardingChoiceTitleLetsGo(), type: .go)]
         showMessages([R.string.localized.onboardingChatItemLastStep()], followedByChoices: choices, at: Date())
@@ -143,7 +143,7 @@ final class OnboardingCoordinator: ParentCoordinator {
         items.append(choiceListChatItem(choices: choices, date: choiceListDate, includeFooter: true))
         chatViewModel.appendItems(items)
     }
-    
+
     private func completeOnboarding() {
         OnboardingCoordinator.isOnboardingComplete = true
         delegate?.onboardingCoordinatorDidFinish(self)

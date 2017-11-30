@@ -40,7 +40,7 @@ final class ChartViewModel {
     }
 
     // MARK: - Public
-    
+
     var fitbitState: User.FitbitState {
         return services.userService.fitbitState
     }
@@ -99,7 +99,7 @@ final class ChartViewModel {
 // MARK: - Private
 
 private extension ChartViewModel {
-    
+
     func sortCharts(startingSection: StatisticsSectionType) {
         var criticalSectionTypes = [StatisticsSectionType: CGFloat]()
 
@@ -112,7 +112,7 @@ private extension ChartViewModel {
         sortedSections.remove(object: startingSection)
         sortedSections.insert(startingSection, at: 0)
     }
-    
+
     private func askPermissionForCalendar() {
         PermissionHandler().askPermissionForCalendar { (granted: Bool) in
             self.calandarAccessGranted = granted

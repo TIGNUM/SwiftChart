@@ -9,7 +9,7 @@
 import UIKit
 
 final class MyDataSectorLabelsView: UIView {
-    
+
     // MARK: - Properties
 
     var sectorLabels = [SectorLabel]()
@@ -40,14 +40,14 @@ final class MyDataSectorLabelsView: UIView {
         previousBounds = bounds
         draw()
     }
-    
+
     func cleanUp() {
         sectorLabels.forEach { $0.label.removeFromSuperview() }
     }
 
     func draw() {
         let layout = Layout.MeSection(viewControllerFrame: bounds)
-        
+
         sectors.forEach { (sector: Sector) in
             let label = UILabel()
             label.attributedText = MyUniverseHelper.attributedString(for: sector, layout: layout, screenType: screenType)

@@ -128,7 +128,7 @@ final class SidebarViewModel {
         self.services = services
     }
 
-    var itemCount: Int {        
+    var itemCount: Int {
         return SidebbarItem.allValues.count
     }
 

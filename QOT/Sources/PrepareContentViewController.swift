@@ -28,7 +28,7 @@ final class PrepareContentViewController: UIViewController {
     private let disposeBag = DisposeBag()
     weak var delegate: PrepareContentViewControllerDelegate?
     let pageName: PageName
-    
+
     private lazy var tableView: UITableView = {
         return UITableView(
             estimatedRowHeight: 140,
@@ -216,7 +216,7 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
             cell.frame = CGRect(x: cell.frame.origin.x, y: cell.frame.origin.y, width: tableView.frame.width, height: cell.frame.height)
             configure(cell: cell, forIndexPath: indexPath)
             cell.layoutIfNeeded()
-            
+
             if viewModel.isCellExpanded(at: indexPath.row) {
                 // return content label y position + height + bottom padding
                 return cell.contentLabel.frame.origin.y + cell.contentLabel.frame.height + 20.0
@@ -230,7 +230,7 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
             cell.frame = CGRect(x: cell.frame.origin.x, y: cell.frame.origin.y, width: tableView.frame.width, height: cell.frame.height)
             configure(cell: cell, forIndexPath: indexPath)
             cell.layoutIfNeeded()
-            
+
             if viewModel.isCellExpanded(at: indexPath.row) {
                 if readMoreID == nil {
                     // return content label y position + height + bottom padding
@@ -305,11 +305,11 @@ extension PrepareContentViewController: PrepareContentMainHeaderTableViewCellDel
 // MARK: - PrepareContentTopTabBarViewDelegate
 
 extension PrepareContentViewController: PrepareContentTopTabBarViewDelegate {
-    
+
     func didTapLeftButton() {
         delegate?.didTapClose(in: self)
     }
-    
+
     func didTapRightButton() {
         delegate?.didTapSavePreparation(in: self)
     }

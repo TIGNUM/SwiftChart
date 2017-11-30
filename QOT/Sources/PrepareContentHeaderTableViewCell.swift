@@ -40,7 +40,7 @@ class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
     }
 
     override func layoutSubviews() {
-        super.layoutSubviews()        
+        super.layoutSubviews()
     }
 
     func setCell(title: String, contentText: String, readMoreID: Int?, position: Int, isExpanded: Bool, displayMode: PrepareContentViewModel.DisplayMode = .normal, isChecked: Bool = false) {
@@ -89,10 +89,10 @@ class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
             }
         }
     }
-    
+
     func setExpandImageState(isExpanded: Bool) {
     }
-    
+
     @objc func readMore() {
         delegate?.didPressReadMore(readMoreID: readMoreID, cell: self)
     }

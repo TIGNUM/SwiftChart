@@ -154,7 +154,7 @@ extension UIColor {
     class var whiteLight40: UIColor {
         return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.4)
     }
-    
+
     static var random: UIColor {
         return UIColor(red: randomNumber, green: randomNumber, blue: randomNumber, alpha: 1.0)
     }

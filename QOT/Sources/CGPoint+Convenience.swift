@@ -14,7 +14,7 @@ extension CGPoint {
         let deltaY = abs(point.y - y)
         return sqrt(pow(deltaX, 2) + pow(deltaY, 2))
     }
-    
+
     func insideCircle(frame: CGRect) -> Bool {
         let radius = frame.width / 2
         let center = CGPoint(x: frame.midX, y: frame.midY)

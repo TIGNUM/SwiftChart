@@ -27,7 +27,7 @@ extension URLRequestBuildable {
     var headers: [HTTPHeader: String] {
         return [:]
     }
-    
+
     var paramaters: [RequestParameter: Any] {
         return [:]
     }

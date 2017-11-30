@@ -11,13 +11,13 @@ import Freddy
 import Kingfisher
 
 final class UpSyncMediaOperation: ConcurrentOperation {
-    
+
     private let networkManager: NetworkManager
     private let realmProvider: RealmProvider
     private let context: SyncContext
     private let localID: String
     private var currentRequest: SerialRequest?
-    
+
     init(networkManager: NetworkManager,
          realmProvider: RealmProvider,
          syncContext: SyncContext,
@@ -27,13 +27,13 @@ final class UpSyncMediaOperation: ConcurrentOperation {
         self.context = syncContext
         self.localID = localID
     }
-    
+
     override func execute() {
         fetchSyncToken()
     }
-    
+
     // MARK: Steps
-    
+
     private func fetchSyncToken() {
         guard isCancelled == false else {
             finish(error: .didCancel)
@@ -82,7 +82,7 @@ final class UpSyncMediaOperation: ConcurrentOperation {
             }
         }
     }
-    
+
     private func handleResult(_ result: UpSyncMediaResult, localURL: URL) {
         guard isCancelled == false else {
             finish(error: .didCancel)
@@ -118,14 +118,14 @@ final class UpSyncMediaOperation: ConcurrentOperation {
 
         currentRequest?.cancel()
     }
-    
+
     private func finish(error: SyncError?) {
         if let error = error {
             context.add(error: error)
         }
         finish()
     }
-    
+
     private func cacheImage(withURL url: URL, key: String, completion: @escaping () -> Void) throws {
         guard let image = UIImage(dataUrl: url) else {
             throw SimpleError(localizedDescription: "couldn't load image with url \(url)")
@@ -133,7 +133,7 @@ final class UpSyncMediaOperation: ConcurrentOperation {
         log("caching image with key \(key)")
         KingfisherManager.shared.cache.store(image, forKey: key, completionHandler: completion)
     }
-    
+
     private func uncacheImage(withKey key: String, completion: @escaping () -> Void) {
         log("uncaching image with key \(key)")
         KingfisherManager.shared.cache.removeImage(forKey: key, completionHandler: completion)

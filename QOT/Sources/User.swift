@@ -12,12 +12,12 @@ import AirshipKit
 import Freddy
 
 final class User: SyncableObject {
-    
+
     enum FitbitState: String {
         case connected = "CONNECTED"
         case disconnected = "DISCONNECTED"
         case pending = "PENDING"
-        
+
         var addSensorText: String {
             switch self {
             case .connected: return ""
@@ -82,7 +82,7 @@ final class User: SyncableObject {
     @objc dynamic var totalUsageTime: Int = 0
 
     @objc dynamic var timeZone: String = TimeZone.hoursFromGMT
-    
+
     @objc private(set) dynamic var fitbitStateValue: String = ""
 }
 
@@ -175,14 +175,14 @@ extension User: TwoWaySyncableUniqueObject {
             .userInfo: JSON.dictionary(userInfo.mapKeyValues({ ($0.rawValue, $1.toJSON()) })),
             .timeZone: timeZone
         ]
-        
+
         return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
     }
 
     static func object(remoteID: Int, store: ObjectStore) throws -> User? {
         return store.objects(User.self).first
     }
-    
+
     var fitbitState: FitbitState {
         return FitbitState(rawValue: fitbitStateValue) ?? .disconnected
     }

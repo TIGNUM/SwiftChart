@@ -38,7 +38,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
                                   chatViewController: self.prepareChatViewController,
                                   myPrepViewController: self.myPrepViewController)
     }()
-    
+
     private lazy var prepareChatViewController: ChatViewController<Answer> = {
         let viewModel = ChatViewModel<Answer>(items: [])
         let viewController = ChatViewController(pageName: .prepareChat,
@@ -58,7 +58,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     }()
 
     // MARK: - tab bar
-    
+
     private lazy var tabBarController: TabBarController = {
         let tabBarController = TabBarController(config: .default)
         tabBarController.modalTransitionStyle = .crossDissolve
@@ -73,7 +73,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         whatsHotBadgeManager.isShowingLearnTab = false
         return tabBarController
     }()
-    
+
     private lazy var articleCollectionViewController: ArticleCollectionViewController = {
         let viewController = ArticleCollectionViewController(pageName: .whatsHot,
                                                              viewData: articleCollectionProvider.provideViewData())
@@ -147,7 +147,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     }
 
     // MARK: - Init
-    
+
     init(windowManager: WindowManager,
          selectedIndex: Index,
          services: Services,
@@ -165,9 +165,9 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         self.syncManager = syncManager
         self.networkManager = networkManager
         articleCollectionProvider = ArticleCollectionProvider(services: services)
-        
+
         super.init()
-        
+
         articleCollectionProvider.updateBlock = { [unowned self] viewData in
             self.articleCollectionViewController.viewData = viewData
         }
@@ -178,21 +178,21 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     func showPreparationCheckList(localID: String) {
         prepareCoordinator.showPrepareCheckList(preparationID: localID)
     }
-    
+
     func start() {
         windowManager.show(tabBarController, animated: true) {
             guard let tutorial = Tutorial(rawValue: self.selectedIndex.value) else { return }
             self.showTutorial(tutorial)
         }
     }
-    
+
     // MARK: - private
-    
+
     private func showTutorial(_ tutorial: Tutorial) {
         guard tutorial.exists() == false,
             let buttonFrame = tabBarController.frameForButton(at: selectedIndex.value) else { return }
         tutorial.set()
-        
+
         let viewModel = TutorialViewModel(tutorial: tutorial)
         let viewController = TutorialViewController(viewModel: viewModel, buttonFrame: buttonFrame) {
             self.windowManager.resignWindow(atLevel: .overlay)
@@ -342,7 +342,7 @@ extension TabBarCoordinator: TopNavigationBarDelegate {
 
         pageViewController.setPageIndex(index, animated: true)
     }
-    
+
     func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
         let coordinator = SidebarCoordinator(root: tabBarController,
                                              services: services,
@@ -364,7 +364,7 @@ extension TabBarCoordinator: PageViewControllerDelegate {
         }
 
         topNavigationBar.setIndicatorToButtonIndex(index)
-        
+
         if selectedIndex.value == 0 && index == 1 {
             whatsHotBadgeManager.didScrollToWhatsHotPage()
         }

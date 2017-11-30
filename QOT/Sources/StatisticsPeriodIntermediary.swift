@@ -12,11 +12,11 @@ import Freddy
 struct StatisticsPeriodIntermediary: DownSyncIntermediary {
 
     // MARK: - Properties
-    
+
     let startDate: Date
     let endDate: Date
     let status: String
-    
+
     // MARK: - Init
 
     init(json: JSON) throws {

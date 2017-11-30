@@ -18,7 +18,7 @@ final class AddSensorCoordinator: ParentCoordinator {
     private let rootViewController: UIViewController
     private var webViewController: WebViewController?
     private let notificationHandler: NotificationHandler
-   
+
     var children = [Coordinator]()
     let addSensorViewController: AddSensorViewController
 
@@ -73,7 +73,7 @@ extension AddSensorCoordinator: AddSensorViewControllerDelegate {
 // MARK: - private
 
 private extension AddSensorCoordinator {
-    
+
     func presentFitBitWebView(in viewController: UIViewController) {
         guard
             let settingValue = services.settingsService.settingValue(key: "b2b.fitbit.authorizationurl"),
@@ -83,7 +83,7 @@ private extension AddSensorCoordinator {
         }
         presentSafariViewController(url: url, viewController: viewController)
     }
-    
+
     func presentSafariViewController(url: URL, viewController: UIViewController) {
         do {
             let webViewController = try WebViewController(url)
@@ -95,12 +95,12 @@ private extension AddSensorCoordinator {
             viewController.showAlert(type: .message(error.localizedDescription))
         }
     }
-    
+
     @objc func reloadAddSensorViewController() {
         addSensorViewController.reloadCollectionView()
         NotificationCenter.default.removeObserver(self, name: .syncAllDidFinishNotification, object: nil)
     }
-    
+
     func presentAddSensorAlert(in viewController: UIViewController, sendAction: ((String) -> Void)?) {
         let alertController = UIAlertController(title: R.string.localized.addSensorViewAlertTitle(), message: R.string.localized.addSensorViewAlertMessage(), preferredStyle: .alert)
         let sendAction = UIAlertAction(title: R.string.localized.addSensorViewAlertSend(), style: .default) { [unowned alertController] _ in
@@ -109,7 +109,7 @@ private extension AddSensorCoordinator {
             }
             sendAction?(text)
         }
-        
+
         let cancelAction = UIAlertAction(title: R.string.localized.addSensorViewAlertCancel(), style: .cancel)
         alertController.addTextField { textField in
             textField.placeholder = R.string.localized.addSensorViewAlertPlaceholder()
@@ -119,7 +119,7 @@ private extension AddSensorCoordinator {
         alertController.addAction(cancelAction)
         viewController.present(alertController, animated: true, completion: nil)
     }
-    
+
     func presentFeedbackCompletionAlert(in viewController: UIViewController) {
         let alertController = UIAlertController(title: R.string.localized.addSensorViewAlertFeedbackTitle(), message: nil, preferredStyle: .alert)
         let okAction = UIAlertAction(title: R.string.localized.addSensorViewAlertFeedbackSuccessOK(), style: .default)

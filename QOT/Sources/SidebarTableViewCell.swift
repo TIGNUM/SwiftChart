@@ -10,7 +10,7 @@ import UIKit
 import Anchorage
 
 class SidebarTableViewCell: UITableViewCell, Dequeueable {
-    
+
     // MARK: - Properties
 
     private lazy var titleLabel: UILabel = UILabel(frame: self.frame)
@@ -23,7 +23,7 @@ class SidebarTableViewCell: UITableViewCell, Dequeueable {
 
         setupView()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

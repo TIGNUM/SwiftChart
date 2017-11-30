@@ -20,34 +20,34 @@ class ImagePicker: NSObject {
         case sourceNotAvailable
         case notAuthorized
     }
-    
+
     weak var delegte: ImagePickerDelegate?
     weak var viewController: UIViewController?
     var imagePickerController: UIImagePickerController?
-    
+
     func pickFromPhotos(in viewController: UIViewController, completion: (() -> Void)? = nil) throws {
         guard PHPhotoLibrary.authorizationStatus() == .authorized else {
             throw ImagePickerError.notAuthorized
         }
         try show(in: viewController, for: .photoLibrary, completion: completion)
     }
-    
+
     func pickFromCamera(in viewController: UIViewController, completion: (() -> Void)? = nil) throws {
         guard AVCaptureDevice.authorizationStatus(for: .video) == .authorized else {
             throw ImagePickerError.notAuthorized
         }
         try show(in: viewController, for: .camera, completion: completion)
     }
-    
+
     func dismiss(completion: (() -> Void)? = nil) {
         imagePickerController?.dismiss(animated: true, completion: {
             completion?()
             self.finish()
         })
     }
-    
+
     // MARK: - private
-    
+
     private func show(in viewController: UIViewController, for type: UIImagePickerControllerSourceType, completion: (() -> Void)?) throws {
         guard UIImagePickerController.isSourceTypeAvailable(type) else {
             throw ImagePickerError.sourceNotAvailable
@@ -65,7 +65,7 @@ class ImagePicker: NSObject {
         self.viewController = viewController
         self.imagePickerController = imagePickerController
     }
-    
+
     private func finish() {
         imagePickerController = nil
         viewController = nil
@@ -78,7 +78,7 @@ extension ImagePicker: UIImagePickerControllerDelegate {
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         delegte?.imagePickerDidPressCancel(self)
     }
-    
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
             return

@@ -43,7 +43,7 @@ final class ActivityChart: UIView {
 
     init(frame: CGRect, statistics: Statistics, labelContentView: UIView) {
         self.statistics = statistics
-        self.labelContentView = labelContentView        
+        self.labelContentView = labelContentView
 
         super.init(frame: frame)
 
@@ -91,7 +91,7 @@ private extension ActivityChart {
         drawCapRoundLine(from: startPoint, to: endPoint, lineWidth: 8, strokeColor: strokeColor, hasShadow: hasShadow)
         layoutIfNeeded()
     }
-    
+
     func addAverageLines() {
         AverageLineType.allValues.forEach { (averageLineType: AverageLineType) in
             let yPos = yPosition(averageLineType.average(statistics))
@@ -106,13 +106,13 @@ private extension ActivityChart {
             layoutIfNeeded()
         }
     }
-    
+
     func addCaptionLabel(yPos: CGFloat, text: String) {
         let captionLabel = UILabel(frame: CGRect(x: 0, y: yPos - yAxisOffset * 0.25, width: yAxisOffset, height: yAxisOffset * 0.5))
         captionLabel.setAttrText(text: text, font: Font.H7Title, lineSpacing: 1, characterSpacing: 1, color: .white20)
         addSubview(captionLabel)
     }
-    
+
     func updateLabelFrames() {
         labelContentView.subviews.forEach { (subView: UIView) in
             if subView is UILabel {

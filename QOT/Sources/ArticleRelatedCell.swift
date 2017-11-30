@@ -34,7 +34,7 @@ final class ArticleRelatedCell: UITableViewCell, Dequeueable {
         selectedBackground.backgroundColor = UIColor.black15
         self.selectedBackgroundView = selectedBackground
     }
-    
+
     // MARK: - Setup
 
     func setupView(title: String, subTitle: String, previewImageURL: URL?) {

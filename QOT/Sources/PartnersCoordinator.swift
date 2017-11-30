@@ -32,9 +32,9 @@ final class PartnersCoordinator: NSObject, ParentCoordinator {
         viewModel = PartnersViewModel(services: services, selectedIndex: selectedIndex, headline: "Lore ipsum impsum plus")
         partnersViewController = PartnersViewController(viewModel: viewModel, permissionHandler: permissionHandler)
         partnersViewController.title = R.string.localized.meSectorMyWhyPartnersTitle()
-        
+
         super.init()
-        
+
         let leftButton = UIBarButtonItem(withImage: R.image.ic_minimize())
         let rightButton = UIBarButtonItem(withImage: R.image.ic_edit())
         rightButton.tintColor = .white40
@@ -54,10 +54,10 @@ extension PartnersCoordinator: TopNavigationBarDelegate {
     func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
         topTabBarController.dismiss(animated: true, completion: nil)
     }
-    
+
     func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
     }
-    
+
     func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
         partnersViewController.editCurrentItem()
     }

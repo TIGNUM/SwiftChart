@@ -15,9 +15,9 @@ import AirshipKit
 import Crashlytics
 
 final class AppCoordinator: ParentCoordinator {
-    
+
     // MARK: - Properties
-    
+
     var checkListIDToPresent: String?
     var children = [Coordinator]()
     lazy var logoutNotificationHandler: NotificationHandler = NotificationHandler(name: .logoutNotification)
@@ -37,7 +37,7 @@ final class AppCoordinator: ParentCoordinator {
     private weak var currentPresentedController: UIViewController?
     private weak var currentPresentedNavigationController: UINavigationController?
     static var currentStatusBarStyle: UIStatusBarStyle?
-    
+
     private lazy var realmProvider: RealmProvider = {
         return RealmProvider()
     }()
@@ -77,7 +77,7 @@ final class AppCoordinator: ParentCoordinator {
     init(windowManager: WindowManager, remoteNotificationHandler: RemoteNotificationHandler) {
         self.windowManager = windowManager
         self.remoteNotificationHandler = remoteNotificationHandler
-        
+
         remoteNotificationHandler.delegate = self
         logoutNotificationHandler.handler = { [weak self] (_: Notification) in
             self?.restart()
@@ -86,7 +86,7 @@ final class AppCoordinator: ParentCoordinator {
         let locationManager = LocationManager()
         locationManager.startSignificantLocationMonitoring(didUpdateLocations: sendLocationUpdate)
     }
-    
+
     func start() {
         if Bundle.main.isFirstVersion {
             self.credentialsManager.clear()
@@ -95,7 +95,7 @@ final class AppCoordinator: ParentCoordinator {
 
         pageTracker.start()
         observeTimeZoneChange()
-        
+
         let viewController = AnimatedLaunchScreenViewController()
         windowManager.show(viewController, animated: false, completion: {
             viewController.fadeInLogo()
@@ -110,7 +110,7 @@ final class AppCoordinator: ParentCoordinator {
             }
         })
     }
-    
+
     func restart() {
         networkManager.cancelAllRequests()
         windowManager.clearWindows()
@@ -136,7 +136,7 @@ final class AppCoordinator: ParentCoordinator {
                 do {
                     let services = try Services()
                     self.services = services
-                    
+
                     // Create missing database objects
                     if services.userService.myToBeVision() == nil {
                         let realm = try RealmProvider().realm()
@@ -144,9 +144,9 @@ final class AppCoordinator: ParentCoordinator {
                             realm.add(MyToBeVision())
                         }
                     }
-                    
+
                     QOTUsageTimer.sharedInstance.userService = services.userService
-                   
+
                     self.syncManager.start()
                     guard OnboardingCoordinator.isOnboardingComplete == true else {
                         self.showOnboarding()
@@ -200,11 +200,11 @@ final class AppCoordinator: ParentCoordinator {
 // MARK: - private
 
 private extension AppCoordinator {
-    
+
     func observeTimeZoneChange() {
         NotificationCenter.default.addObserver(self, selector: #selector(timeZoneDidChange), name: .NSSystemTimeZoneDidChange, object: nil)
     }
-        
+
     @objc func timeZoneDidChange() {
         services?.userService.updateTimeZone { [unowned self] in
             self.syncManager.syncAll(shouldDownload: false)
@@ -238,7 +238,7 @@ private extension AppCoordinator {
 // MARK: - Navigation
 
 extension AppCoordinator {
-    
+
     func presentAddSensorView(viewController: UIViewController) {
         guard let services = services else { return }
         let coordinator = AddSensorCoordinator(root: viewController, services: services)
@@ -247,11 +247,11 @@ extension AppCoordinator {
     }
 
     // FIXME In the future when everything will change....
-    func presentPreparationList() {        
+    func presentPreparationList() {
         if let viewController = currentPresentedController {
             dismiss(viewController, level: .priority)
         }
-        
+
         if let navigationController = currentPresentedNavigationController {
             dismiss(navigationController, level: .priority)
         }
@@ -289,7 +289,7 @@ extension AppCoordinator {
             let destinationViewController = tabBarController.selectedViewController else {
                 return
         }
-        
+
         tabBarController.tabBarController(tabBarController, didSelect: destinationViewController)
         tabBarCoordinator?.topNavigationBar(topNavigationBar, middleButtonPressed: myPrepButton, withIndex: topTabBarIndex, ofTotal: 2)
         topNavigationBar.setIndicatorToButtonIndex(topTabBarIndex, animated: true)
@@ -323,7 +323,7 @@ extension AppCoordinator {
         windowManager.showPriority(morningInterViewController, animated: true, completion: nil)
         currentPresentedController = morningInterViewController
     }
-    
+
     func presentWeeklyChoicesReminder() {
         guard
             let rootViewController = windowManager.rootViewController(atLevel: .normal),
@@ -334,7 +334,7 @@ extension AppCoordinator {
                                                    services: services,
                                                    transitioningDelegate: nil,
                                                    topBarDelegate: self)
-        topTabBarController = coordinator.topTabBarController        
+        topTabBarController = coordinator.topTabBarController
         windowManager.showPriority(coordinator.topTabBarController, animated: true, completion: nil)
         currentPresentedNavigationController = coordinator.topTabBarController
     }
@@ -349,7 +349,7 @@ extension AppCoordinator {
         windowManager.showPriority(viewController, animated: true, completion: nil)
         currentPresentedController = viewController
     }
-    
+
     func presentLearnContentItems(contentID: Int) {
         guard
             let services = services,
@@ -359,7 +359,7 @@ extension AppCoordinator {
         }
         startLearnContentItemCoordinator(services: services, content: content, category: category)
     }
-    
+
     func presentLearnContentItems(contentID: Int, categoryID: Int) {
         guard
             let services = services,
@@ -369,7 +369,7 @@ extension AppCoordinator {
         }
         startLearnContentItemCoordinator(services: services, content: content, category: category)
     }
-    
+
     private func startLearnContentItemCoordinator(services: Services, content: ContentCollection, category: ContentCategory) {
         AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
         let presentationManager = ContentItemAnimator(originFrame: UIScreen.main.bounds)
@@ -431,7 +431,7 @@ extension AppCoordinator: TopNavigationBarDelegate {
         guard let pageViewController = topTabBarController?.viewControllers.first as? PageViewController else {
             return
         }
-        
+
         pageViewController.setPageIndex(index, animated: true)
     }
 
@@ -453,7 +453,7 @@ extension AppCoordinator: CalendarImportMangerDelegate {
             }
         }
     }
-    
+
     func calendarImportDidFail(error: Error) {
         // FIXME: Handle error
         assertionFailure("Calendar import failed: \(error)")
@@ -492,7 +492,7 @@ extension AppCoordinator: MorningInterviewViewControllerDelegate {
         currentPresentedNavigationController = nil
         currentPresentedController = nil
     }
-    
+
     private func sendMorningInterviewResults(_ userAnswers: [UserAnswer]) {
         networkManager.performUserAnswerFeedbackRequest(userAnswers: userAnswers) { result in
             switch result {
@@ -542,7 +542,7 @@ extension AppCoordinator: SelectWeeklyChoicesViewControllerDelegate {
 // MARK: - OnboardingCoordinatorDelegate
 
 extension AppCoordinator: OnboardingCoordinatorDelegate {
-    
+
     func onboardingCoordinatorDidFinish(_ onboardingCoordinator: OnboardingCoordinator) {
         removeChild(child: onboardingCoordinator)
         showApp()
@@ -552,7 +552,7 @@ extension AppCoordinator: OnboardingCoordinatorDelegate {
 // MARK: - RemoteNotificationHandlerDelegate
 
 extension AppCoordinator: RemoteNotificationHandlerDelegate {
-    
+
     func remoteNotificationHandler(_ handler: RemoteNotificationHandler, canProcessNotificationResponse: UANotificationResponse) -> Bool {
         return canProcessRemoteNotifications
     }

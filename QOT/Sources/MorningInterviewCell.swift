@@ -12,7 +12,7 @@ import Anchorage
 final class MorningInterviewCell: UICollectionViewCell, Dequeueable {
 
     // MARK: - Properties
-    
+
     private var topview: UIView = UIView()
     private var centerView: UIView = UIView()
     private var bottomView: UIView = UIView()
@@ -71,7 +71,7 @@ final class MorningInterviewCell: UICollectionViewCell, Dequeueable {
         minLabel.attributedText = Style.tag("\(startIndex + 1)", .white60).attributedString()
         slider.minimumValue = Float(startIndex)
         slider.addTarget (self, action: #selector(valueChanged), for: .valueChanged)
-        
+
         let endIndex = question.answers.endIndex
         slider.maximumValue = Float(endIndex - 1)
         maxLabel.attributedText = Style.tag("\(endIndex)", .white60).attributedString()

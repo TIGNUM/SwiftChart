@@ -15,7 +15,7 @@ protocol Swizzle {
     var originalMethod: Method? { get }
     var newMethod: Method? { get }
     var isSwizzled: Bool { get set } // @note: initial value should be false
-    
+
     mutating func swizzle()
 }
 

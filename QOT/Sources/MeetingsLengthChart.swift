@@ -43,7 +43,7 @@ private extension MeetingsLengthChart {
         let innerRadius = radius * 0.6
         let outerRadius = CGFloat(frame.height * 0.4)
         let lineWidth = CGFloat(5)
-        let dashPattern: [CGFloat] = [1, 1]        
+        let dashPattern: [CGFloat] = [1, 1]
         drawSolidCircle(arcCenter: arcCenter, radius: innerRadius, strokeColor: strokeColor)
         drawSolidCircle(arcCenter: arcCenter, radius: outerRadius, strokeColor: strokeColor)
         drawDashedCircle(arcCenter: arcCenter, radius: radius, lineWidth: lineWidth, dashPattern: dashPattern, strokeColor: strokeColor)

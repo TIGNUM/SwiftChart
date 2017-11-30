@@ -15,7 +15,7 @@ struct AuthenticationRequest: URLRequestBuildable {
     let httpMethod: HTTPMethod = .post
     let headers: [HTTPHeader: String]
     let requiresAuthentication = false
-    
+
     init(username: String, password: String) {
         headers = [
             .Authorization: "Basic " + "\(username):\(password)".toBase64(),
@@ -51,7 +51,7 @@ struct DownSyncConfirmRequest: URLRequestBuildable {
     let endpoint: Endpoint
     let httpMethod: HTTPMethod = .post
     let headers: [HTTPHeader: String]
-    
+
     init(endpoint: Endpoint, syncToken: String) {
         self.endpoint = endpoint
         self.headers = [.syncToken: syncToken]

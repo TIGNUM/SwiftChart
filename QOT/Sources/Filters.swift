@@ -9,7 +9,7 @@
 import RealmSwift
 
 extension Results where Element: CalendarEvent {
-    
+
     func filter(title: String?, startDate: Date, endDate: Date) -> LazyFilterBidirectionalCollection<Results<T>> {
         return filter { $0.title == title && $0.startDate == startDate && $0.endDate == endDate }
     }

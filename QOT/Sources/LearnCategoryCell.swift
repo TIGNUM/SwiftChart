@@ -50,12 +50,12 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+
         contentView.layer.cornerRadius = frame.width / 2
         contentView.layer.masksToBounds = true
         drawCircles(frame: frame)
     }
-    
+
     private func drawCircles(frame: CGRect) {
         let frame = bounds
         applyGradient(frame: frame)
@@ -109,7 +109,7 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
 
     func configure(with category: LearnCategoryListViewModel.Item, indexPath: IndexPath) {
         self.indexPath = indexPath
-        
+
         // @warning iPhone5s HACK - we want margins, but in doing so messes up text on the 5s, we go for an old-school hack
         let titleFont = UIScreen.main.bounds.width >= 375 ? Font.H7Tag : UIFont.bentonRegularFont(ofSize: 10)
         let attributedTextTitle = NSMutableAttributedString(
@@ -129,7 +129,7 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
         if percentageLearned != category.percentageLearned {
             percentageLearned = category.percentageLearned
         }
-        
+
         titleLabel.attributedText = attributedTextTitle
         contentCountLabel.attributedText = attributedTextCount
     }
@@ -166,21 +166,21 @@ private extension LearnCategoryCell {
         // textContainerView is subview connected to all sides
         textContainerView.verticalAnchors == contentView.verticalAnchors
         textContainerView.horizontalAnchors == contentView.horizontalAnchors
-        
+
         // create layout guides
         let topGuide = UILayoutGuide()
         let bottomGuide = UILayoutGuide()
         textContainerView.addLayoutGuide(topGuide)
         textContainerView.addLayoutGuide(bottomGuide)
-        
+
         // connect top guide to top
         topGuide.topAnchor == textContainerView.topAnchor
         topGuide.horizontalAnchors == textContainerView.horizontalAnchors
-        
+
         // connect bottom guide to bottom
         bottomGuide.bottomAnchor == textContainerView.bottomAnchor
         bottomGuide.horizontalAnchors == textContainerView.horizontalAnchors
-        
+
         // make them equal heights to center (y) the content inbetween
         topGuide.heightAnchor == bottomGuide.heightAnchor
 
@@ -189,7 +189,7 @@ private extension LearnCategoryCell {
         contentCountLabel.topAnchor == topGuide.bottomAnchor
         contentCountLabel.leadingAnchor == textContainerView.leadingAnchor + padding
         contentCountLabel.trailingAnchor == textContainerView.trailingAnchor - padding
-        
+
         titleLabel.topAnchor == contentCountLabel.bottomAnchor
         titleLabel.horizontalAnchors == contentCountLabel.horizontalAnchors
         titleLabel.bottomAnchor == bottomGuide.topAnchor

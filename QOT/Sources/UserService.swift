@@ -24,7 +24,7 @@ final class UserService {
     func user() -> User? {
         return mainRealm.objects(User.self).first
     }
-   
+
     func updateUserGender(user: User, gender: String) {
         updateUser(user: user) {
             $0.gender = gender
@@ -103,33 +103,33 @@ extension UserService {
 // MARK: - MyToBeVision
 
 extension UserService {
-    
+
     func myToBeVision() -> MyToBeVision? {
         return myToBeVisions().first
     }
-    
+
     func myToBeVisions() -> AnyRealmCollection<MyToBeVision> {
         return AnyRealmCollection(mainRealm.objects(MyToBeVision.self))
     }
-    
+
     func updateHeadline(myToBeVision: MyToBeVision, headline: String?) {
         updateMyToBeVision(myToBeVision) {
             $0.headline = headline
         }
     }
-    
+
     func updateText(myToBeVision: MyToBeVision, text: String?) {
         updateMyToBeVision(myToBeVision) {
             $0.text = text
         }
     }
-    
+
     func updateDate(myToBeVision: MyToBeVision, date: Date) {
         updateMyToBeVision(myToBeVision) {
             $0.date = date
         }
     }
-    
+
     func updateMyToBeVision(_ myToBeVision: MyToBeVision, block: (MyToBeVision) -> Void) {
         do {
             try mainRealm.write {
@@ -140,7 +140,7 @@ extension UserService {
             assertionFailure("Update \(MyToBeVision.self), error: \(error)")
         }
     }
-    
+
     func eraseToBeVision() {
         guard let toBeVision = myToBeVision() else {
             return
@@ -162,7 +162,7 @@ extension UserService {
     func userChoices() -> AnyRealmCollection<UserChoice> {
         return AnyRealmCollection(mainRealm.objects(UserChoice.self))
     }
-    
+
     func createUserChoice(contentCategoryID: Int, contentCollectionID: Int, startDate: Date, endDate: Date) throws -> UserChoice {
         let choice = UserChoice(contentCategoryID: contentCategoryID,
                                 contentCollectionID: contentCollectionID,

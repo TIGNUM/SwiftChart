@@ -56,7 +56,7 @@ final class StatisticsPeriod: Object {
 
 extension StatisticsPeriod {
 
-    var range: Range<Date> { 
+    var range: Range<Date> {
         return startDate ..< endDate
     }
 

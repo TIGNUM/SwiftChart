@@ -9,20 +9,20 @@
 import RealmSwift
 
 final class PartnerService {
-    
+
     private let mainRealm: Realm
     private let realmProvider: RealmProvider
- 
+
     var partners: AnyRealmCollection<Partner> {
         let results = mainRealm.objects(Partner.self)
         return AnyRealmCollection(results)
     }
-    
+
     init(mainRealm: Realm, realmProvider: RealmProvider) {
         self.mainRealm = mainRealm
         self.realmProvider = realmProvider
     }
-    
+
     func createPartner() throws -> Partner {
         let partner = Partner()
         try mainRealm.write {
@@ -30,31 +30,31 @@ final class PartnerService {
         }
         return partner
     }
-    
+
     func updateName(partner: Partner, name: String) {
         updatePartner(partner) {
             $0.name = name
         }
     }
-    
+
     func updateSurname(partner: Partner, surname: String) {
         updatePartner(partner) {
             $0.surname = surname
         }
     }
-    
+
     func updateRelationship(partner: Partner, relationship: String) {
         updatePartner(partner) {
             $0.relationship = relationship
         }
     }
-    
+
     func updateEmail(partner: Partner, email: String) {
         updatePartner(partner) {
             $0.email = email
         }
     }
-    
+
     func updatePartner(_ partner: Partner, block: (Partner) -> Void) {
         do {
             try mainRealm.write {
@@ -65,7 +65,7 @@ final class PartnerService {
             assertionFailure("Update \(Partner.self), error: \(error)")
         }
     }
-    
+
     func eraseData() {
         do {
             try mainRealm.write {

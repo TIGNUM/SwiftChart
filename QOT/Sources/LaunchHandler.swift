@@ -10,24 +10,24 @@ import UIKit
 import MBProgressHUD
 
 final class LaunchHandler {
-    
+
     private var appDelegate: AppDelegate {
         return AppDelegate.current
     }
-    
+
     func canLaunch(url: URL) -> Bool {
         return URLScheme.isSupportedURL(url)
     }
-    
+
     func process(url: URL) {
         guard
             let host = url.host,
             let scheme = URLScheme(rawValue: host) else {
                 return
         }
-        
+
         logPushNotificationID(urlScheme: scheme, url: url)
-        
+
         switch scheme {
         case .dailyPrep: dailyPrep(groupID: scheme.queryParametter(url: url))
         case .fitbit: fitbit(accessToken: scheme.queryParametter(url: url))
@@ -40,7 +40,7 @@ final class LaunchHandler {
         case .weeklyPeakPerformance: return
         }
     }
-    
+
     func logPushNotificationID(urlScheme: URLScheme, url: URL) {
         guard let pushNotificationID = urlScheme.pushNotificationID(url: url) else { return }
         log("nid: \(pushNotificationID)", enabled: true, level: .error)
@@ -74,12 +74,12 @@ extension LaunchHandler {
             showTemporaryHUD(type: .fitbitFailure)
             return
         }
-        
+
         let hud = MBProgressHUD.showAdded(to: window, animated: true)
         do {
             let body = try ["accessToken": accessToken].toJSON().serialize()
             let request = FitbitTokenRequest(endpoint: .fitbitToken, body: body)
-            
+
             NetworkManager().request(request, parser: GenericParser.parse) { (result: (Result<(), NetworkError>)) in
                 hud.hide(animated: true)
                 switch result {
@@ -135,7 +135,7 @@ extension LaunchHandler {
 // MARK: - Weekly Choices
 
 extension LaunchHandler {
-    
+
     func weeklyChoicesReminder() {
         appDelegate.appCoordinator.presentWeeklyChoicesReminder()
     }

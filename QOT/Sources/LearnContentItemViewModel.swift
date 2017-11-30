@@ -76,7 +76,7 @@ final class LearnContentItemViewModel: NSObject {
 
         setupAudioNotifications()
     }
-    
+
     deinit {
         tearDownAudioNotifications()
         removeAudioItemObserver()
@@ -279,7 +279,7 @@ extension LearnContentItemViewModel {
     var contentItemTextStyle: ContentItemTextStyle {
         return ContentItemTextStyle.h1
     }
-    
+
     var remoteID: Int {
         return 0
     }
@@ -328,7 +328,7 @@ extension LearnContentItemViewModel {
 
         updates.next(.update(deletions: [], insertions: [], modifications: modifications))
     }
-    
+
     func pausePlayback() {
         guard let playingIndexPath = playingIndexPath else {
             return
@@ -338,7 +338,7 @@ extension LearnContentItemViewModel {
         isPlaying = false
         updates.next(.update(deletions: [], insertions: [], modifications: [playingIndexPath]))
     }
-    
+
     func unpausePlayback() {
         player?.play()
         isPlaying = true
@@ -349,7 +349,7 @@ extension LearnContentItemViewModel {
         log("Did stop playback")
 
         removeAudioItemObserver()
-        
+
         if let timeObserver = timeObserver {
             player?.removeTimeObserver(timeObserver)
         }
@@ -359,7 +359,7 @@ extension LearnContentItemViewModel {
         player = nil
         currentPosition.value = 0
         playingIndexPath = nil
-        isPlaying = false        
+        isPlaying = false
     }
 
     func forward(value: Float) {
@@ -368,7 +368,7 @@ extension LearnContentItemViewModel {
         player?.play()
         isPlaying = true
     }
-    
+
     // MARK: - private
 
     private func play(url: URL, cell: LearnStrategyPlaylistAudioCell?, playingIndexPath: IndexPath?) {
@@ -408,11 +408,11 @@ extension LearnContentItemViewModel {
     }
 
     // MARK: - notification
-    
+
     private func setupAudioNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(playerDidEndNotification(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
     }
-    
+
     private func tearDownAudioNotifications() {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
     }
@@ -428,7 +428,7 @@ extension LearnContentItemViewModel {
         guard let playingIndexPath = playingIndexPath else {
             return
         }
-        
+
         stopPlayback()
         currentPlayingCell?.updateTitleColor(enabled: false)
         updates.next(.update(deletions: [], insertions: [playingIndexPath], modifications: []))

@@ -37,7 +37,7 @@ final class MyWhyView: PassthroughView {
         let viewRightMargin = Layout.MeSection(viewControllerFrame: frame).scrollViewOffset * 3.5
         let viewFrame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.width - viewRightMargin, height: frame.height)
         super.init(frame: viewFrame)
-        
+
         draw()
     }
 
@@ -52,7 +52,7 @@ final class MyWhyView: PassthroughView {
         previousBounds = bounds
         reload() // @warning reload after drawing else views won't be laid out
     }
-    
+
     func draw() {
         drawMyWhy(layout: Layout.MeSection(viewControllerFrame: self.fullViewFrame))
         layoutIfNeeded()
@@ -64,11 +64,11 @@ final class MyWhyView: PassthroughView {
         reloadWeeklyChoices()
         reloadPartners()
     }
-    
+
     private func reloadToBeVision() {
         let headline = viewModel.toBeVisionHeadline ?? R.string.localized.meSectorMyWhyVisionHeadlinePlaceholder()
         let text = viewModel.toBeVisionText ??  R.string.localized.meSectorMyWhyVisionMessagePlaceholder()
-        
+
         myToBeVisionHeaderLabel?.setAttrText(text: headline.uppercased(),
                                             font: Font.H6NavigationTitle,
                                             lineSpacing: 3,
@@ -78,30 +78,30 @@ final class MyWhyView: PassthroughView {
                                       lineSpacing: 7,
                                       characterSpacing: 1.73)
     }
-    
+
     private func reloadWeeklyChoices() {
         let weeklyChoices = viewModel.weeklyChoices
         assert(weeklyChoices.count <= Layout.MeSection.maxWeeklyPage, "To many weekly choices")
-        
+
         for (index, choice) in weeklyChoices.enumerated() {
             guard index < weeklyChoiceButtons.count else {
                 return
             }
-            
+
             let button = weeklyChoiceButtons[index]
             button.setTitle(choice.uppercased(), for: .normal)
         }
     }
-    
+
     private func reloadPartners() {
         let partners = viewModel.partners
         assert(partners.count <= Layout.MeSection.maxPartners, "To many weekly choices")
-        
+
         for (index, partner) in partners.enumerated() {
             guard index < qotPartnersButtons.count else {
                 return
             }
-            
+
             let button = qotPartnersButtons[index]
             button.configureForPartnerWith(initials: partner.initials, imageURL: partner.imageURL, index: index)
         }
@@ -111,12 +111,12 @@ final class MyWhyView: PassthroughView {
 // MARK: - Private
 
 private extension MyWhyView {
-    
+
     func addGestureRecognizer() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapMyToBeVision))
         addGestureRecognizer(tapGestureRecognizer)
     }
-    
+
     func drawMyWhy(layout: Layout.MeSection) {
         let weeklyChoices = viewModel.weeklyChoices
         let partners = viewModel.partners
@@ -127,7 +127,7 @@ private extension MyWhyView {
         let partnersTitle = R.string.localized.meSectorMyWhyPartnersTitle()
         addPartners(layout: layout, title: partnersTitle, partners: partners)
     }
-    
+
     func drawMyWhyAfterDidLayoutSubviews() {
         qotPartnersButtons.forEach { (button: UIButton) in
             button.applyHexagonMask()
@@ -146,7 +146,7 @@ private extension MyWhyView {
         let footLabel = footerLabel(with: R.string.localized.meSectorMyWhyVisionTitle().uppercased())
         let visionHeadline = headline ?? R.string.localized.meSectorMyWhyVisionHeadlinePlaceholder()
         let visionText = text ?? R.string.localized.meSectorMyWhyVisionMessagePlaceholder()
-        
+
         myToBeVisionHeaderLabel = visionHeaderLabel(text: visionHeadline)
         myToBeVisionLabel = visionLabel(with: visionText)
         myToBeVisionBox.addSubview(footLabel)
@@ -168,7 +168,7 @@ private extension MyWhyView {
         myToBeVisionHeaderLabel.rightAnchor == myToBeVisionBox.rightAnchor
         myToBeVisionHeaderLabel.bottomAnchor == myToBeVisionLabel.topAnchor - 8
         myToBeVisionHeaderLabel.topAnchor >= myToBeVisionBox.topAnchor + 8
-        
+
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapMyToBeVision))
         myToBeVisionBox.addGestureRecognizer(tapGestureRecognizer)
     }
@@ -236,13 +236,13 @@ private extension MyWhyView {
             let button = UIButton()
             button.tag = index
             button.configureForPartnerWith(initials: partner?.initials, imageURL: partner?.imageURL, index: index)
-            
+
             /*
              TODO:  For now we disable QOT Partners. Enable this bit when we need it.
              
             button.addTarget(self, action: #selector(didTapPartner), for: .touchUpInside)
             */
-                        
+
             qotPartnersButtons.append(button)
             qotPartnersBox.addSubview(button)
             button.topAnchor == qotPartnersBox.topAnchor
@@ -277,7 +277,7 @@ private extension MyWhyView {
         qotPartnersBox.leftAnchor == self.leftAnchor
         qotPartnersBox.rightAnchor == self.rightAnchor
     }
-    
+
     func addPartnersComingSoonLabel() {
         let comingSoonLabel = UILabel(frame: .zero)
         comingSoonLabel.setAttrText(text: R.string.localized.meChartCommingSoon().uppercased(),
@@ -286,7 +286,7 @@ private extension MyWhyView {
                                     lineSpacing: 2.5,
                                     characterSpacing: 2,
                                     color: .white)
-        
+
         if
             let firstButton = qotPartnersButtons.first,
             let lastButton = qotPartnersButtons.last {
@@ -308,7 +308,7 @@ private extension MyWhyView {
         button.titleLabel?.font = Font.H7Tag
         button.titleLabel?.lineBreakMode = .byTruncatingTail
         button.setTitleColor(Color.MeSection.whiteLabel, for: .normal)
-        button.setBackgroundImage(R.image.myWhyChoicesFrame(), for: .normal)        
+        button.setBackgroundImage(R.image.myWhyChoicesFrame(), for: .normal)
         button.addTarget(self, action: #selector(didTapWeeklyChoices), for: .touchUpInside)
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         button.alpha = 0.8
@@ -363,17 +363,17 @@ private extension MyWhyView {
         label.textColor = .white
         label.sizeToFit()
         label.setAttrText(text: text, font: Font.PTextSmall, lineSpacing: 7, characterSpacing: 1.73)
-        
+
         return label
     }
-    
+
     func visionHeaderLabel(text: String) -> UILabel {
         let label = UILabel()
         label.numberOfLines = 0
         label.textColor = .white
         label.sizeToFit()
         label.setAttrText(text: text.uppercased(), font: Font.H6NavigationTitle, lineSpacing: 3, characterSpacing: 1)
-        
+
         return label
     }
 
@@ -413,7 +413,7 @@ private extension UIButton {
         }
         */
     }
-    
+
     private func comingSoonImage(_ index: Index) -> UIImage? {
         switch index {
         case 0: return R.image.partner_comingSoon_01()

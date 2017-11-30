@@ -10,7 +10,7 @@ import RealmSwift
 import Freddy
 
 class MediaResource: SyncableObject {
-    
+
     enum Entity: String {
         case setting = "SETTING"
         case qotPartner = "QOTPARTNER"
@@ -26,13 +26,13 @@ class MediaResource: SyncableObject {
         case png = "PNG"
         case jpg = "JPG"
     }
-    
+
     @objc dynamic var localURLString: String?
     @objc dynamic var remoteURLString: String?
     @objc dynamic var mediaFormat: String?
     @objc dynamic var mediaEntity: String?
     let relatedEntityID = RealmOptional<Int>(nil)
-    
+
     var localURL: URL? {
         if let localURLString = localURLString {
             return URL(fileURLWithPath: localURLString)
@@ -57,7 +57,7 @@ class MediaResource: SyncableObject {
         self.localURLString = localURL.path
         self.mediaFormat = mediaFormat.rawValue
     }
-    
+
     var url: URL? {
         return localURL ?? remoteURL
     }
@@ -69,7 +69,7 @@ extension MediaResource: OneWayMediaSyncableUp {
     static var endpoint: Endpoint {
         return .media
     }
-    
+
     func toJson() -> JSON? {
         guard syncStatus != .clean,
             let relatedEntityID = relatedEntityID.value,
@@ -89,7 +89,7 @@ extension MediaResource: OneWayMediaSyncableUp {
                         bytes.append(Int(pointer[i]))
                     }
                     return bytes
-                })                
+                })
             } catch {
                 return nil
             }

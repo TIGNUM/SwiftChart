@@ -17,7 +17,7 @@ protocol MyPrepViewControllerDelegate: class {
 }
 
 final class MyPrepViewController: UIViewController, FullScreenLoadable, PageViewControllerNotSwipeable {
-    
+
     // MARK: - Properties
 
     fileprivate let paddingTop: CGFloat = 24.0
@@ -29,7 +29,7 @@ final class MyPrepViewController: UIViewController, FullScreenLoadable, PageView
             showLoading(isLoading, text: R.string.localized.meMyPrepLoading())
         }
     }
-    
+
     private let disposeBag = DisposeBag()
     private lazy var tableView: UITableView = {
         return UITableView(delegate: self,
@@ -97,14 +97,14 @@ final class MyPrepViewController: UIViewController, FullScreenLoadable, PageView
         super.viewDidAppear(animated)
         updateReadyState()
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
         tableView.setEditing(false, animated: true)
         navigationController?.navigationBar.topItem?.leftBarButtonItem = nil
     }
-    
+
     @available(iOS 11.0, *)
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()
@@ -136,7 +136,7 @@ private extension MyPrepViewController {
     func updateReadyState() {
         isLoading = !viewModel.isReady()
     }
-    
+
     func observeViewModel() {
         viewModel.updates.observeNext { [unowned self] (change: MyPrepViewModel.CollectionUpdate) in
             switch change {
@@ -154,7 +154,7 @@ private extension MyPrepViewController {
     func setupView() {
         view.backgroundColor = .clear
         view.addSubview(tableView)
-        
+
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
@@ -162,7 +162,7 @@ private extension MyPrepViewController {
         tableView.edgeAnchors == view.edgeAnchors
         tableView.contentInset.top = view.safeMargins.top + paddingTop
         tableView.contentInset.bottom = view.safeMargins.bottom
-        
+
         view.setFadeMask(at: .topAndBottom)
     }
 
@@ -189,7 +189,7 @@ extension MyPrepViewController: UITableViewDelegate, UITableViewDataSource {
         if let startDate = item.startDate, let timeToEvent = DateComponentsFormatter.timeIntervalToString(startDate.timeIntervalSinceNow, isShort: true) {
             footer = R.string.localized.prepareMyPrepTimeToEvent(timeToEvent)
         }
-        
+
         cell.setup(with: item.header, text: item.text, footer: footer, count: count)
 
         return cell
@@ -208,7 +208,7 @@ extension MyPrepViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 117
     }
-    
+
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             try? self.viewModel.deleteItem(at: indexPath.row)

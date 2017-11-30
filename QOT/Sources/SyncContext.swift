@@ -26,7 +26,7 @@ enum SyncError: Error {
 
 class SyncContext {
     private(set) var errors = [SyncError]()
-    
+
     func add(error: SyncError) {
         errors.append(error)
     }

@@ -12,7 +12,7 @@ import KeychainAccess
 class DatabaseKeyService {
     private let keychain = Keychain()
     private let length = 64
-    
+
     // print this and use in Realm Browser to open encrypted db
     var keyString: String? {
         guard let data = keyData else {
@@ -28,7 +28,7 @@ class DatabaseKeyService {
     var keyData: Data? {
         return value(key: .databaseKey)
     }
-    
+
     // @see https://developer.apple.com/documentation/security/1399291-secrandomcopybytes
     func generateNewKey() throws -> Data {
         var keyData = Data(count: length)
@@ -41,16 +41,16 @@ class DatabaseKeyService {
         set(value: keyData, key: .databaseKey)
         return keyData
     }
-    
+
     // MARK: - private
-    
+
     private func value(key: KeychainConstant) -> Data? {
         guard let base64EncodedData = keychain[data: key.rawValue] else {
             return nil
         }
         return Data(base64Encoded: base64EncodedData)
     }
-    
+
     private func set(value: Data?, key: KeychainConstant) {
         keychain[data: key.rawValue] = value?.base64EncodedData()
     }

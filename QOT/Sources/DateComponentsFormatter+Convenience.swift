@@ -19,13 +19,13 @@ extension DateComponentsFormatter {
         collapsesLargestUnit: Bool = true) -> String? {
 
         let time = fabs(time) // flip any negative values
-        
+
         let formatter = DateComponentsFormatter()
         formatter.calendar = calendar
         formatter.unitsStyle = unitsStyle
         formatter.allowedUnits = allowedUnits
         formatter.collapsesLargestUnit = collapsesLargestUnit
-        
+
         let timeString = formatter.string(from: time < minimumTime ? minimumTime : time)
         if isShort {
             return timeString?.replacingOccurrences(of: ", ", with: ",").split(separator: ",").map({ String($0) }).first

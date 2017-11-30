@@ -38,13 +38,13 @@ class MyToBeVisionViewController: UIViewController {
     private var imageTapRecogniser: UITapGestureRecognizer!
     let viewModel: MyToBeVisionViewModel
     weak var delegate: MyToBeVisionViewControllerDelegate?
-    
+
     private lazy var gradientLayer: CAGradientLayer = {
         let layer = CAGradientLayer()
         self.gradientView.layer.addSublayer(layer)
         return layer
     }()
- 
+
     // MARK: - Init
 
     init(viewModel: MyToBeVisionViewModel, permissionHandler: PermissionHandler) {
@@ -52,7 +52,7 @@ class MyToBeVisionViewController: UIViewController {
         imagePickerController = ImagePickerController(cropShape: .circle, imageQuality: .low, imageSize: .small, permissionHandler: permissionHandler)
 
         super.init(nibName: nil, bundle: nil)
-        
+
         imagePickerController.delegate = self
         imageTapRecogniser = UITapGestureRecognizer(target: self, action: #selector(imageButtonPressed(_:)))
     }
@@ -76,34 +76,34 @@ class MyToBeVisionViewController: UIViewController {
         maskImageView(imageView: imageView)
         drawCircles()
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
+
         textViewDidChange(headlineTextView) // flush height constraint change
-        
+
         if messageTextView.contentInset.bottom == 0 {
             messageTextView.contentInset.bottom = imageViewContainer.bounds.height
         }
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         setupNotifications()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+
         if isBeingDismissed {
             edit(false)
         }
         tearDownNotifications()
     }
-    
+
     // MARK: - Internal
-    
+
     func edit() {
         isEditing = !isEditing
         edit(isEditing)
@@ -125,7 +125,7 @@ private extension MyToBeVisionViewController {
         )
         circleLayer1.lineDashPattern = [1, 2]
         circleContainerView.layer.addSublayer(circleLayer1)
-        
+
         let circleLayer2 = CAShapeLayer.circle(
             center: center,
             radius: view.bounds.width * 0.9,
@@ -134,29 +134,29 @@ private extension MyToBeVisionViewController {
         )
         circleContainerView.layer.addSublayer(circleLayer2)
     }
-    
+
     func setupNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
     }
-    
+
     func tearDownNotifications() {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
-    
+
     func edit(_ isEditing: Bool) {
         headlineTextView.isEditable = isEditing
         messageTextView.isEditable = isEditing
         editButton.tintColor = isEditing ? .white : .white40
         imageView.alpha = isEditing ? 0.25 : 1.0
         setupMessageText(editing: isEditing)
-        
+
         UIView.animate(withDuration: 0.5) {
             self.setImageButton(isEditing: isEditing)
         }
     }
-    
+
     func setupView() {
         setupNavigation()
         setupLabels()
@@ -164,7 +164,7 @@ private extension MyToBeVisionViewController {
         messageTextView.returnKeyType = .done
         messageTextView.tintColor = .white
         headlineTextView.tintColor = .white
-        
+
         if let profileImageResource = viewModel.profileImageResource {
             imageView.setImageFromResource(profileImageResource)
         }
@@ -221,7 +221,7 @@ private extension MyToBeVisionViewController {
             font: Font.H7Tag,
             lineSpacing: 0,
             textColor: .white30)
-        
+
         imageEditLabel.font = Font.DPText
         imageEditLabel.textColor = .white
     }
@@ -273,11 +273,11 @@ private extension MyToBeVisionViewController {
     @IBAction func closeAction(_ sender: Any) {
         delegate?.didTapClose(in: self)
     }
-    
+
     @IBAction func editTapped(_ sender: Any) {
         edit()
     }
-    
+
     @IBAction func imageButtonPressed(_ sender: UIButton) {
         imagePickerController.show(in: self)
     }
@@ -286,7 +286,7 @@ private extension MyToBeVisionViewController {
 // MARK: - Notifications 
 
 private extension MyToBeVisionViewController {
-    
+
     @objc func keyboardWillShow(_ notification: NSNotification) {
         guard
             let userInfo = notification.userInfo,
@@ -295,7 +295,7 @@ private extension MyToBeVisionViewController {
         }
         messageTextView.contentInset.bottom = rect.height
     }
-    
+
     @objc func keyboardWillHide(_ notification: NSNotification) {
         messageTextView.contentInset.bottom = imageViewContainer.bounds.height
         messageTextView.contentOffset = .zero
@@ -305,20 +305,20 @@ private extension MyToBeVisionViewController {
 // MARK: - UITextViewDelegate
 
 extension MyToBeVisionViewController: UITextViewDelegate {
-    
+
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         if !isEditing {
             edit()
         }
         return true
     }
-    
+
     func textViewDidBeginEditing(_ textView: UITextView) {
         if let textView = textView as? PlaceholderTextView {
             textView.didBeginEditing()
         }
     }
-    
+
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView == headlineTextView {
             viewModel.updateHeadline(headlineTextView.text)
@@ -331,7 +331,7 @@ extension MyToBeVisionViewController: UITextViewDelegate {
             textView.didEndEditing()
         }
     }
-    
+
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if textView == headlineTextView, text == "\n" {
             textView.resignFirstResponder()
@@ -339,7 +339,7 @@ extension MyToBeVisionViewController: UITextViewDelegate {
         }
         return true
     }
-    
+
     func textViewDidChange(_ textView: UITextView) {
         if textView == headlineTextView, let font = textView.font {
             let numOfLines = floorf(Float(textView.contentSize.height / font.lineHeight))
@@ -361,7 +361,7 @@ extension MyToBeVisionViewController: UITextViewDelegate {
 // MARK: - MyToBeVisionViewController: Place
 
 extension MyToBeVisionViewController: PlaceholderTextViewDelegate {
-    
+
     func placeholderDidChange(_ placeholderTextView: PlaceholderTextView) {
         textViewDidChange(placeholderTextView)
     }
@@ -370,7 +370,7 @@ extension MyToBeVisionViewController: PlaceholderTextViewDelegate {
 // MARK: - UIScrollViewDelegate
 
 extension MyToBeVisionViewController: UIScrollViewDelegate {
-    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == headlineTextView, scrollView.contentOffset.y > 0 {
             scrollView.contentOffset = .zero
@@ -381,7 +381,7 @@ extension MyToBeVisionViewController: UIScrollViewDelegate {
 // MARK: - ImagePickerDelegate
 
 extension MyToBeVisionViewController: ImagePickerControllerDelegate {
-    
+
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
         let error = viewModel.updateProfileImage(image)
         guard error == nil else {
@@ -396,7 +396,7 @@ extension MyToBeVisionViewController: ImagePickerControllerDelegate {
             present(alertController, animated: true, completion: nil)
             return
         }
-        
+
         imageView.image = image
         setupLabels()
         setImageButton(isEditing: isEditing)

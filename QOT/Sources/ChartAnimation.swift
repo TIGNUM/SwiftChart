@@ -18,14 +18,14 @@ final class ChartAnimation: NSObject {
         self.duration = duration
         super.init()
     }
-    
+
     private func getMyUniverseViewController(_ viewController: UIViewController) -> MyUniverseViewController? {
         if let viewController = viewController as? TabBarController, let viewControllers = viewController.viewControllers, viewControllers.count > 1, let childViewController = viewControllers[1] as? MyUniverseViewController {
             return childViewController
         }
         return nil
     }
-    
+
     private func getChartViewController(_ viewController: UIViewController) -> ChartViewController? {
         if let navigationController = viewController as? UINavigationController, let pageViewController = navigationController.viewControllers.first as? PageViewController, let childViewController = pageViewController.viewControllers?.first as? ChartViewController {
             return childViewController
@@ -43,7 +43,6 @@ extension ChartAnimation: UIViewControllerAnimatedTransitioning {
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        let containerView = transitionContext.containerView
         guard
             let toViewController = transitionContext.viewController(forKey: .to),
             let fromViewController = transitionContext.viewController(forKey: .from) else {
@@ -53,8 +52,9 @@ extension ChartAnimation: UIViewControllerAnimatedTransitioning {
 
         fromViewController.beginAppearanceTransition(false, animated: true)
         toViewController.beginAppearanceTransition(true, animated: true)
-        
+
         if isPresenting == true {
+            let containerView = transitionContext.containerView
             containerView.insertSubview(toViewController.view, belowSubview: fromViewController.view)
             toViewController.view.frame = containerView.bounds
         }
@@ -66,7 +66,7 @@ extension ChartAnimation: UIViewControllerAnimatedTransitioning {
             let chartViewController = getChartViewController(expectedChartViewController) else {
                 fatalError("missing view controllers for animation")
         }
-        
+
         if isPresenting {
             chartViewController.configureForTransitionedState()
             myUniverseViewController.configureForDefaultState()
@@ -74,7 +74,7 @@ extension ChartAnimation: UIViewControllerAnimatedTransitioning {
             chartViewController.configureForDefaultState()
             myUniverseViewController.configureForTransitionedState()
         }
-        
+
         UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseOut], animations: {
             if self.isPresenting == true {
                 chartViewController.configureForDefaultState()
@@ -96,24 +96,24 @@ extension ChartAnimation: UIViewControllerAnimatedTransitioning {
 }
 
 private extension ChartViewController {
-    
+
     func configureForDefaultState() {
         navigationController?.view.alpha = 1
     }
-    
+
     func configureForTransitionedState() {
         navigationController?.view.alpha = 0
     }
 }
 
 private extension MyUniverseViewController {
-    
+
     func configureForDefaultState() {
         view.alpha = 1
         view.transform = CGAffineTransform(scaleX: 1, y: 1)
         view.transform = CGAffineTransform(scaleX: 1, y: 1)
     }
-    
+
     func configureForTransitionedState() {
         view.alpha = 0
         view.transform = CGAffineTransform(scaleX: 1, y: 1)

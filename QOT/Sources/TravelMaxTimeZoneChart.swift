@@ -22,7 +22,7 @@ final class TravelMaxTimeZoneChart: UIView {
 
     init(frame: CGRect, statistics: Statistics, labelContentView: UIView) {
         self.statistics = statistics
-        self.labelContentView = labelContentView        
+        self.labelContentView = labelContentView
 
         super.init(frame: frame)
 

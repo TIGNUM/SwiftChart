@@ -33,7 +33,7 @@ final class WeeklyChoicesCoordinator: NSObject, ParentCoordinator {
         self.services = services
         self.transitioningDelegate = transitioningDelegate
         self.provider = WeeklyChoicesProvider(services: services, itemsPerPage: Layout.MeSection.maxWeeklyPage)
-        
+
         let viewData = provider.provideViewData()
         weeklyChoicesViewController = WeeklyChoicesViewController(viewData: viewData)
         weeklyChoicesViewController.title = R.string.localized.meSectorMyWhyWeeklyChoicesTitle()
@@ -50,7 +50,7 @@ final class WeeklyChoicesCoordinator: NSObject, ParentCoordinator {
             topTabBarController.transitioningDelegate = transitioningDelegate
         }
         weeklyChoicesViewController.delegate = self
-        
+
         provider.updateBlock = { [unowned self] viewData in
             self.weeklyChoicesViewController.viewData = viewData
         }
@@ -69,7 +69,7 @@ extension WeeklyChoicesCoordinator: WeeklyChoicesViewControllerDelegate {
         viewController.dismiss(animated: true, completion: nil)
         removeChild(child: self)
     }
-    
+
     func weeklyChoicesViewController(_ viewController: WeeklyChoicesViewController, didUpdateListWithViewData viewData: WeeklyChoicesViewData) {
         topTabBarController.navigationBar.topItem?.rightBarButtonItem = (viewData.pages.count == 0) ? rightButton : nil
     }
@@ -82,10 +82,10 @@ extension WeeklyChoicesCoordinator: TopNavigationBarDelegate {
     func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
         weeklyChoicesViewController.dismiss(animated: true, completion: nil)
     }
-    
+
     func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
     }
-    
+
     func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
         launchHandler.weeklyChoiches { [unowned self] in
             self.weeklyChoicesViewController.viewData = self.provider.provideViewData()

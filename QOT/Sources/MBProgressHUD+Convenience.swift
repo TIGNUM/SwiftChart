@@ -9,7 +9,7 @@
 import MBProgressHUD
 
 extension MBProgressHUD {
-    
+
     class func showAdded(to view: UIView, animated: Bool, title: String?, message: String?) -> MBProgressHUD {
         let hud = showAdded(to: view, animated: animated)
         hud.label.text = title
@@ -19,7 +19,7 @@ extension MBProgressHUD {
         hud.mode = .indeterminate
         hud.animationType = .fade
         hud.isSquare = false
-        
+
         return hud
     }
 }

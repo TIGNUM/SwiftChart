@@ -13,7 +13,7 @@ final class LibraryTableViewCell: UITableViewCell, Dequeueable {
     enum CollectionViewCellType: String {
         case latestPost = "LibraryLatestPostCollectionViewCell"
         case category = "LibraryCategoryCollectionViewCell"
-        
+
         var size: CGSize {
             switch self {
             case .latestPost:
@@ -23,7 +23,7 @@ final class LibraryTableViewCell: UITableViewCell, Dequeueable {
             }
         }
     }
-    
+
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var collectionViewHeightConstraint: NSLayoutConstraint!
@@ -37,7 +37,7 @@ final class LibraryTableViewCell: UITableViewCell, Dequeueable {
         titleLabel.attributedText = title
         self.contentCollection = contentCollection
         self.collectionViewCellType = collectionViewCellType
-        
+
         contentView.backgroundColor = .clear
         backgroundColor = .clear
         collectionView.register(
@@ -61,11 +61,11 @@ final class LibraryTableViewCell: UITableViewCell, Dequeueable {
 // MARK: - UICollectionViewDataSource
 
 extension LibraryTableViewCell: UICollectionViewDataSource {
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return contentCollection.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionViewCellType.rawValue, for: indexPath) as? LibraryCollectionViewCell else {
             fatalError("missing xib with name \(collectionViewCellType.rawValue)")

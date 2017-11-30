@@ -14,10 +14,10 @@ protocol CollapsableContentCellDelegate: class {
 
 class CollapsableContentCell: UITableViewCell {
     static let nibName = "CollapsableContentCell"
-    
+
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var label: UILabel!
-    
+
     var isChecked: Bool? {
         didSet {
             reload()
@@ -25,12 +25,12 @@ class CollapsableContentCell: UITableViewCell {
     }
     var indexPath: IndexPath?
     weak var delegate: CollapsableContentCellDelegate?
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         separatorInset = UIEdgeInsets(top: 0.0, left: 55.0, bottom: 0.0, right: 30.0)
     }
-    
+
     func setTitleText(_ text: String?) {
         label.attributedText = NSMutableAttributedString(
             string: text ?? "",
@@ -38,9 +38,9 @@ class CollapsableContentCell: UITableViewCell {
             font: UIFont.simpleFont(ofSize: 14.0),
             textColor: UIColor.white)
     }
-    
+
     // MARK: - private
-    
+
     private func reload() {
         guard let isChecked = isChecked else {
             return
@@ -48,9 +48,9 @@ class CollapsableContentCell: UITableViewCell {
         let image = (isChecked == true) ? R.image.check() : R.image.circle()
         button.setBackgroundImage(image, for: .normal)
     }
-    
+
     // MARK: - action
-    
+
     @IBAction private func buttonPressed(_ sender: UIButton) {
         guard let delegate = delegate, let indexPath = indexPath else {
             return

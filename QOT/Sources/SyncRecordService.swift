@@ -30,7 +30,7 @@ final class SyncRecordService {
         let className = String(describing: T.self)
         return realm.object(ofType: SyncRecord.self, forPrimaryKey: className)?.date
     }
-    
+
     func deleteSyncRecordsForClassNames(_ names: [String]) throws {
         let realm = try realmProvider.realm()
         try names.forEach { (name: String) in

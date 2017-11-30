@@ -14,11 +14,11 @@ import EventKit
 final class Preparation: SyncableObject {
 
     // MARK: Public Properties
-    
+
     @objc private(set) dynamic var name: String = ""
-    
+
     @objc private(set) dynamic var subtitle: String = ""
-    
+
     let calendarEventRemoteID = RealmOptional<Int>(nil)
 
     @objc dynamic var changeStamp: String? = UUID().uuidString
@@ -31,7 +31,7 @@ final class Preparation: SyncableObject {
     }
 
     // MARK: Relationships
-    
+
     @objc private(set) dynamic var calendarEvent: CalendarEvent?
 
     let checks = List<PreparationCheck>()
@@ -49,7 +49,7 @@ final class Preparation: SyncableObject {
 // MARK: - BuildRelations
 
 extension Preparation: BuildRelations {
-    
+
     func buildInverseRelations(realm: Realm) {
         let predicate = NSPredicate(format: "preparation == %@", self)
         let collections = realm.objects(PreparationCheck.self).filter(predicate)
@@ -61,13 +61,13 @@ extension Preparation: BuildRelations {
 // MARK: - TwoWaySyncable
 
 extension Preparation: TwoWaySyncable {
-    
+
     func setData(_ data: PreparationIntermediary, objectStore: ObjectStore) throws {
         name = data.name
         subtitle = data.subtitle
         calendarEventRemoteID.value = data.calendarEventRemoteID
     }
-    
+
     static var endpoint: Endpoint {
         return .userPreparation
     }

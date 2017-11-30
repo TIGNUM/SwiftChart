@@ -18,7 +18,7 @@ final class EventsService {
 
     init(mainRealm: Realm, realmProvider: RealmProvider) {
         self.mainRealm = mainRealm
-        self.realmProvider = realmProvider        
+        self.realmProvider = realmProvider
     }
 
     func ekEvents(from: Date, to: Date) -> [EKEvent] {

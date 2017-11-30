@@ -121,7 +121,7 @@ enum ChartType: String, EnumCollection {
             weekNumbers.append(String(format: "%d", currentWeekNumber))
             currentWeekNumber = currentWeekNumber + 1
         }
-        
+
         return weekNumbers
     }
 
@@ -144,11 +144,11 @@ enum ChartType: String, EnumCollection {
                 labels.append("\(monthOfYear)")
             }
         }
-        
+
         return labels
     }
 
-    func selectedChart(charts: [Statistics]) -> Statistics? {        
+    func selectedChart(charts: [Statistics]) -> Statistics? {
         switch self {
         case .meetingAverageDay,
              .meetingAverageWeek:
@@ -324,7 +324,7 @@ enum ChartType: String, EnumCollection {
              .intensityRecoveryMonth: return true
         }
     }
-    
+
     var sensorRequired: Bool {
         switch self {
         case .sleepQuality,
@@ -334,7 +334,7 @@ enum ChartType: String, EnumCollection {
         default: return false
         }
     }
-    
+
     var calendarRequired: Bool {
         switch self {
         case .meetingAverageDay,
@@ -348,7 +348,7 @@ enum ChartType: String, EnumCollection {
         default: return false
         }
     }
-    
+
     var comingSoon: Bool {
         switch self {
         case .peakPerformanceAverageWeek,
@@ -361,7 +361,7 @@ enum ChartType: String, EnumCollection {
         default: return false
         }
     }
-    
+
     var personalText: String {
         switch self {
         case .meetingAverageWeek,
@@ -374,11 +374,11 @@ enum ChartType: String, EnumCollection {
         default: return R.string.localized.meSectorMyStatisticsPersonalAverage()
         }
     }
-    
+
     var overlayImage: UIImage? {
         switch self {
         case .travelTripsTimeZoneChangedYear,
-             .travelTripsTimeZoneChangedWeeks,             
+             .travelTripsTimeZoneChangedWeeks,
              .meetingAverageDay,
              .meetingAverageWeek: return R.image.overlay_travel_01()
         case .travelTripsMaxTimeZone,
@@ -398,7 +398,7 @@ enum ChartType: String, EnumCollection {
         default: return nil
         }
     }
-    
+
     func segmentedTitle(selected: Bool?) -> NSAttributedString? {
         switch self {
         case .meetingAverageDay: return R.string.localized.meSectorMyStatisticsToday().attrString(selected)

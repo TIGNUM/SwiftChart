@@ -41,14 +41,14 @@ final class WhatsHotBadgeManager {
     init() {
         setupNotifications()
     }
-    
+
     func didScrollToWhatsHotPage() {
         UserDefault.newWhatsHotArticle.setBoolValue(value: false)
         update()
     }
 
     // MARK: - private
-    
+
     private func setupNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(userDefaultsDidChangeNotification(_:)), name: UserDefaults.didChangeNotification, object: nil)
     }
@@ -56,10 +56,10 @@ final class WhatsHotBadgeManager {
     private func update() {
         whatsHotBadge?.removeFromSuperview()
         tabBarController?.mark(isRead: true, at: 1)
-        
         guard UserDefault.newWhatsHotArticle.boolValue else { return }
+
         // @warning - the dot is supposed to be on the top right of the text, not the button. as such, these magic numbers represent a fraction of the button size to position the dot artificially close to the text. percentages keep the effect similar on different device sizes. however with changing texts (e.g. uk / german) the dots will 'seem' in the wrong place as the text will be too close to the dot etc. this should be improved later.
-        if isShowingLearnTab {
+        if isShowingLearnTab == true {
             let topOffset = (whatsHotButton?.bounds.height ?? 0) * 0.1
             let rightOffset = (whatsHotButton?.bounds.width ?? 0) * 0.08
             whatsHotBadge = whatsHotButton?.addBadge(topAnchorOffset: topOffset, rightAnchorOffset: rightOffset)
@@ -67,16 +67,16 @@ final class WhatsHotBadgeManager {
             tabBarController?.mark(isRead: false, at: 1)
         }
     }
-    
+
     // MARK: - actions
-    
+
     @objc private func whatsHotButtonPressed(_ sender: UIButton) {
         UserDefault.newWhatsHotArticle.setBoolValue(value: false)
         update()
     }
-    
+
     // MARK: - notifications
-    
+
     @objc private func userDefaultsDidChangeNotification(_ noticiation: Notification) {
         DispatchQueue.main.async {
             self.update()

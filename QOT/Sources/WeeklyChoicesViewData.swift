@@ -17,12 +17,12 @@ struct WeeklyChoicesViewData {
             let contentCollectionID: Int?
             let categoryID: Int?
         }
-        
+
         let startDate: Date
         let endDate: Date
         let dateString: String
         let items: [Item]
-        
+
         init(startDate: Date, endDate: Date, dateString: String, items: [Item]) {
             self.startDate = startDate
             self.endDate = endDate
@@ -30,7 +30,7 @@ struct WeeklyChoicesViewData {
             self.items = items
         }
     }
-    
+
     let pages: [Page]
     let itemsPerPage: Int
 }

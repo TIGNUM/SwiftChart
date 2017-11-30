@@ -19,7 +19,7 @@ class TutorialViewController: UIViewController {
     private var crossImageView: UIImageView!
     private var titleLabel: UILabel!
     private var contentLabel: UILabel!
-    
+
     // MARK: - Life cycle
 
     init(viewModel: TutorialViewModel, buttonFrame: CGRect, completion: (() -> Void)?) {
@@ -29,7 +29,7 @@ class TutorialViewController: UIViewController {
 
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -41,10 +41,10 @@ class TutorialViewController: UIViewController {
         addOverlay()
         addGesture()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         UIView.animate(withDuration: 0.3, animations: {
             self.crossImageView.alpha = 1.0
             self.titleLabel.alpha = 1.0
@@ -92,10 +92,10 @@ private extension TutorialViewController {
         view.addSubview(crossImageView)
 
         view.backgroundColor = UIColor.black70
-        
+
         crossImageView.alpha = 0.0
         crossImageView.tintColor = .white
-        
+
         titleLabel.alpha = 0.0
         titleLabel.backgroundColor = .clear
         titleLabel.numberOfLines = 1

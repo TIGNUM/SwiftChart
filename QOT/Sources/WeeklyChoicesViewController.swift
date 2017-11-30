@@ -66,7 +66,7 @@ final class WeeklyChoicesViewController: UIViewController, PageViewControllerNot
         super.viewDidLoad()
         setupView()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         reload()
@@ -78,7 +78,7 @@ final class WeeklyChoicesViewController: UIViewController, PageViewControllerNot
         circleLayer?.removeFromSuperlayer()
         circleLayer = drawCircle()
     }
-    
+
     func reload() {
         collectionView.reloadData()
         setNoContentLabel()
@@ -111,7 +111,7 @@ private extension WeeklyChoicesViewController {
         coverView.edgeAnchors == view.edgeAnchors
         setNoContentLabel()
         configureDateLabel(dateLabel)
-        
+
         view.layoutIfNeeded()
         view.setFadeMask(at: .bottom)
     }
@@ -139,7 +139,7 @@ private extension WeeklyChoicesViewController {
             updateDate(text)
         }
     }
-    
+
     func drawCircle() -> CALayer? {
         let layout = WeeklyChoicesLayout()
         var center = layout.circleCenter(circleX: circleX(), collectionView: collectionView)
@@ -151,7 +151,7 @@ private extension WeeklyChoicesViewController {
             strokeColor: .white20
         )
     }
-    
+
     func snapPage(scrollView: UIScrollView) {
         let itemsPerPage = viewData.itemsPerPage
         let changeOffset = cellHeight() * CGFloat(itemsPerPage) / 3
@@ -168,7 +168,7 @@ private extension WeeklyChoicesViewController {
         scrollView.setContentOffset(CGPoint(x: scrollView.contentOffset.x, y: targetOffset), animated: true)
         updateDate(viewData.pages[index].dateString)
     }
-    
+
     func updateDate(_ text: String) {
         dateLabel.addCharactersSpacing(spacing: 2, text: text)
     }
@@ -181,7 +181,7 @@ extension WeeklyChoicesViewController: UICollectionViewDataSource, UICollectionV
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return viewData.pages.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewData.pages[section].items.count
     }
@@ -209,13 +209,13 @@ extension WeeklyChoicesViewController: UICollectionViewDataSource, UICollectionV
 // MARK: - UIScrollViewDelegate
 
 extension WeeklyChoicesViewController: UIScrollViewDelegate {
-    
+
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
             snapPage(scrollView: scrollView)
         }
     }
-    
+
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         snapPage(scrollView: scrollView)
     }

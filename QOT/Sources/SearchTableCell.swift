@@ -79,7 +79,7 @@ private extension SearchTableCell {
         durationlabel.leftAnchor == leftAnchor + 60
         durationlabel.rightAnchor == rightAnchor
         durationlabel.bottomAnchor == bottomAnchor
-        
+
         layoutIfNeeded()
     }
 }

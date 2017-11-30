@@ -29,11 +29,11 @@ final class LearnContentItemHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     class func fromXib(contentTitle: String, categoryTitle: String) -> LearnContentItemHeaderView {
         let nib = R.nib.learnContentItemHeaderView()
         let headerView = (nib.instantiate(withOwner: self, options: nil).first as? LearnContentItemHeaderView)!

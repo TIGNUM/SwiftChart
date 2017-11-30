@@ -16,7 +16,7 @@ protocol SettingsCoordinatorDelegate: class {
     func openChangePasswordViewController(settingsViewController: SettingsViewController)
 
     func openArticleViewController(viewController: SettingsViewController, settingsType: SettingsType)
-    
+
     func openAdminSettingsViewController(settingsViewController: SettingsViewController)
 }
 
@@ -83,14 +83,14 @@ extension SettingsCoordinator: SettingsCoordinatorDelegate {
             pageName: .settings, // FIXME: fix
             root: viewController,
             services: services,
-            contentCollection: contentCollection,            
+            contentCollection: contentCollection,
             topTabBarTitle: contentCollection?.title.uppercased(), backgroundImage: nil) else {
                 return
         }
-        
+
         startChild(child: coordinator)
     }
-    
+
     func openAdminSettingsViewController(settingsViewController: SettingsViewController) {
         let coordinator = SettingsAdminCoordinator(root: settingsViewController, services: services, syncManager: syncManager, networkManager: networkManager)
         startChild(child: coordinator)

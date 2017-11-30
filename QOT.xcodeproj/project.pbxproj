@@ -574,6 +574,7 @@
 		7FE38DD61F2B636F0061E98F /* UINavigationBar+Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Style.swift"; sourceTree = "<group>"; };
 		7FE674B61F8F5CA600FC7407 /* LogInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInfo.swift; sourceTree = "<group>"; };
 		7FE674B81F8F8F3600FC7407 /* ArticleCollectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCollectionHeader.swift; sourceTree = "<group>"; };
+		80E075CE42B2191C23DED0F8 /* Pods-QOT.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.appstore.xcconfig"; sourceTree = "<group>"; };
 		82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		850312EA1F33670900DB5A6B /* ClickableLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClickableLabel.swift; sourceTree = "<group>"; };
 		850312EC1F34732F00DB5A6B /* UIGestureRecognizer+ClickableLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+ClickableLabel.swift"; sourceTree = "<group>"; };
@@ -943,6 +944,7 @@
 		D5EC34B01EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnStrategyPlaylistAudioCell.swift; sourceTree = "<group>"; };
 		D5EC34B11EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyPlaylistAudioCell.xib; sourceTree = "<group>"; };
 		D78A1DCB6CFBD03D6588DCB6 /* Pods_DatabaseBuilder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DatabaseBuilder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD551F312BF873A8D050014D /* Pods-QOTTests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.appstore.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1206,6 +1208,8 @@
 				2C2AD94F9096EA48FAC24935 /* Pods-DatabaseBuilder.release.xcconfig */,
 				2BFF26100D7FF8708F5EF189 /* Pods-QOT.database.xcconfig */,
 				B3EE7DF60C9A17B5F331C145 /* Pods-QOTTests.database.xcconfig */,
+				80E075CE42B2191C23DED0F8 /* Pods-QOT.appstore.xcconfig */,
+				FD551F312BF873A8D050014D /* Pods-QOTTests.appstore.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -3183,6 +3187,89 @@
 			};
 			name = Database;
 		};
+		CBA0EBA11FCDB6C6009B33AB /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_SWIFT_FLAGS = "";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_WHOLE_MODULE_OPTIMIZATION = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = AppStore;
+		};
+		CBA0EBA21FCDB6C6009B33AB /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 80E075CE42B2191C23DED0F8 /* Pods-QOT.appstore.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = QOT/QOT.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = TFH2SGDX62;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = QOT/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.v2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "31d929d7-0e6a-4552-ba10-00e7f559f5b4";
+				PROVISIONING_PROFILE_SPECIFIER = "QOT App Store";
+				SWIFT_OBJC_BRIDGING_HEADER = "QOT/Sources/QOT-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = AppStore;
+		};
+		CBA0EBA31FCDB6C6009B33AB /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FD551F312BF873A8D050014D /* Pods-QOTTests.appstore.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = QOTTests/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QOT.app/QOT";
+			};
+			name = AppStore;
+		};
 		CBB238071E6FFF1300AB5AEF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3367,6 +3454,7 @@
 				CBB238071E6FFF1300AB5AEF /* Debug */,
 				7FE151CC1F3DDC6200DA8F37 /* Database */,
 				CBB238081E6FFF1300AB5AEF /* Release */,
+				CBA0EBA11FCDB6C6009B33AB /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3377,6 +3465,7 @@
 				CBB2380A1E6FFF1300AB5AEF /* Debug */,
 				7FE151CD1F3DDC6200DA8F37 /* Database */,
 				CBB2380B1E6FFF1300AB5AEF /* Release */,
+				CBA0EBA21FCDB6C6009B33AB /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3387,6 +3476,7 @@
 				CBB2380D1E6FFF1300AB5AEF /* Debug */,
 				7FE151CE1F3DDC6200DA8F37 /* Database */,
 				CBB2380E1E6FFF1300AB5AEF /* Release */,
+				CBA0EBA31FCDB6C6009B33AB /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

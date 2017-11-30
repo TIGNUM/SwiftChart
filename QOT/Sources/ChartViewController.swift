@@ -10,9 +10,9 @@ import UIKit
 import Anchorage
 
 protocol ChartViewControllerDelegate: class {
-    
+
     func didSelectAddSensor()
-    
+
     func didSelectOpenSettings()
 }
 
@@ -22,7 +22,7 @@ final class ChartViewController: UIViewController {
 
     private let viewModel: ChartViewModel
     private var pageControls = [PageControl]()
-    
+
     private lazy var tableView: UITableView = {
         return UITableView(style: .grouped,
                            delegate: self,
@@ -37,7 +37,7 @@ final class ChartViewController: UIViewController {
 
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -67,9 +67,9 @@ private extension ChartViewController {
         view.addFadeView(at: .top)
         tableView.edgeAnchors == view.edgeAnchors
     }
-    
+
     func createPageControls() {
-        
+
         viewModel.sortedSections.forEach { (sectionType: StatisticsSectionType) in
             let pageControl = PageControl(frame: .zero)
             pageControl.numberOfPages = sectionType.chartTypes.count
@@ -106,25 +106,25 @@ extension ChartViewController: UITableViewDelegate, UITableViewDataSource {
 
         return view
     }
-    
+
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: -3, width: tableView.bounds.width, height: 10))
         let pageControl = pageControls[section]
         pageControl.frame = view.frame
         view.addSubview(pageControl)
-        
+
         return view
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 20
     }
-    
+
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 30
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {        
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ChartTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.setup(viewModel: viewModel,
                    currentSection: indexPath.section,
@@ -137,21 +137,21 @@ extension ChartViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension ChartViewController: UIScrollViewDelegate {
-    
+
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let pageControl = pageControls[scrollView.currentSection]
-        pageControl.numberOfPages = viewModel.numberOfItems(in: scrollView.currentSection)        
+        pageControl.numberOfPages = viewModel.numberOfItems(in: scrollView.currentSection)
     }
 }
 
 // MARK: - StatisticsViewControllerDelegate
 
 extension ChartViewController: ChartViewControllerDelegate {
-    
+
     func didSelectAddSensor() {
         AppDelegate.current.appCoordinator.presentAddSensorView(viewController: self)
     }
-    
+
     func didSelectOpenSettings() {
         UIApplication.openAppSettings()
     }
@@ -160,11 +160,11 @@ extension ChartViewController: ChartViewControllerDelegate {
 // MARK: - UIScrollView
 
 private extension UIScrollView {
-    
+
     var currentSection: Int {
         guard bounds.size.height > 0 else { return 0 }
         let section = Int(round(contentOffset.y / (bounds.size.height * 0.75)))
-        
+
         return section >= 0 ? section : 0
     }
 }

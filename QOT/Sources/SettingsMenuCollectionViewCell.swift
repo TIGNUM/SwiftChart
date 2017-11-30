@@ -20,7 +20,7 @@ final class SettingsMenuCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
         cardView.layer.cornerRadius = 10
     }
 

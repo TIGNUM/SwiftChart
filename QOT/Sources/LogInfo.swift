@@ -35,7 +35,7 @@ extension LogInfo {
             return nil
         }
     }
-    
+
     var jsonString: String? {
         let encoder = JSONEncoder()
         do {

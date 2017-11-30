@@ -18,24 +18,24 @@ class ImageCropper: NSObject {
     enum Shape {
         case circle
         case hexagon
-        
+
         var size: CGFloat {
             return 250.0
         }
     }
-    
+
     weak var delegate: ImageCropperDelegate?
     weak var viewController: UIViewController?
     var imageCropper: RSKImageCropViewController?
     var shape: Shape
-    
+
     init(shape: Shape) {
         self.shape = shape
     }
-    
+
     func crop(_ image: UIImage, in viewController: UIViewController) {
         self.viewController = viewController
-        
+
         let imageCropper = RSKImageCropViewController(image: image)
         imageCropper.delegate = self
         imageCropper.dataSource = self
@@ -43,7 +43,7 @@ class ImageCropper: NSObject {
         viewController.present(imageCropper, animated: true, completion: nil)
         self.imageCropper = imageCropper
     }
-    
+
     func dismiss(completion: (() -> Void)? = nil) {
         imageCropper?.dismiss(animated: true, completion: {
             completion?()
@@ -52,7 +52,7 @@ class ImageCropper: NSObject {
     }
 
     // MARK: - private
-    
+
     private func finish() {
         viewController = nil
     }
@@ -61,11 +61,11 @@ class ImageCropper: NSObject {
 // MARK: - RSKImageCropViewControllerDelegate
 
 extension ImageCropper: RSKImageCropViewControllerDelegate {
-    
+
     func imageCropViewControllerDidCancelCrop(_ controller: RSKImageCropViewController) {
         delegate?.imageCropperDidPressCancel(self)
     }
-    
+
     func imageCropViewController(_ controller: RSKImageCropViewController, didCropImage croppedImage: UIImage, usingCropRect cropRect: CGRect) {
         delegate?.imageCropper(self, croppedImage: croppedImage)
     }
@@ -74,7 +74,7 @@ extension ImageCropper: RSKImageCropViewControllerDelegate {
 // MARK: - RSKImageCropViewControllerDataSource
 
 extension ImageCropper: RSKImageCropViewControllerDataSource {
-    
+
     func imageCropViewControllerCustomMaskRect(_ controller: RSKImageCropViewController) -> CGRect {
         guard let view = viewController?.view else {
             return .zero
@@ -86,11 +86,11 @@ extension ImageCropper: RSKImageCropViewControllerDataSource {
             height: shape.size
         )
     }
-    
+
     func imageCropViewControllerCustomMovementRect(_ controller: RSKImageCropViewController) -> CGRect {
         return controller.maskRect
     }
-    
+
     func imageCropViewControllerCustomMaskPath(_ controller: RSKImageCropViewController) -> UIBezierPath {
         guard let view = viewController?.view else {
             return UIBezierPath()

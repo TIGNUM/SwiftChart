@@ -45,14 +45,14 @@ final class CredentialsManager {
             }
         }
     }
-    
+
     var isCredentialValid: Bool {
         guard let credential = credential else {
             return false
         }
         return (credential.token != nil)
     }
-    
+
     func clear() {
         credential = nil
     }
@@ -60,9 +60,9 @@ final class CredentialsManager {
     func onCredentialChange(_ handler: @escaping (Credential?) -> Void) {
         credentialDidChangeHandlers.append(handler)
     }
-    
+
     // MARK: - private
-    
+
     private func value(key: KeychainConstant) -> String? {
         do {
             return try keychain.getString(key.rawValue)

@@ -13,27 +13,22 @@ final class LearnListAnimation: NSObject {
     private let upScale: CGFloat = 1.3
     private let isPresenting: Bool
     private let duration: TimeInterval
-    
+
     init(isPresenting: Bool, duration: TimeInterval) {
         self.isPresenting = isPresenting
         self.duration = duration
 
         super.init()
     }
-    
+
     // MARK: - private
-    
+
     private func getTabBarController(_ viewController: UIViewController) -> TabBarController? {
         if let viewController = viewController as? TabBarController { return viewController }
 
         return nil
     }
-    /*
-     po pageViewController.viewControllers?.first
-     ▿ Optional<UIViewController>
-     ▿ some : <QOT.GuideViewController: 0x7ffb78504c70>
-     */
-    
+
     private func getLearnCategoryListViewController(_ viewController: UIViewController) -> LearnCategoryListViewController? {
         if
             let viewController = viewController as? TabBarController,
@@ -46,7 +41,7 @@ final class LearnListAnimation: NSObject {
 
         return nil
     }
-    
+
     private func getLearnContentListViewController(_ viewController: UIViewController) -> LearnContentListViewController? {
         if let viewController = viewController as? LearnContentListViewController { return viewController }
 
@@ -110,7 +105,7 @@ extension LearnListAnimation: UIViewControllerAnimatedTransitioning {
                 transitionContext.completeTransition(false)
                 return
         }
-        
+
         fromViewController.beginAppearanceTransition(false, animated: true)
         toViewController.beginAppearanceTransition(true, animated: true)
         
@@ -119,7 +114,7 @@ extension LearnListAnimation: UIViewControllerAnimatedTransitioning {
             containerView.insertSubview(toViewController.view, belowSubview: fromViewController.view)
             toViewController.view.frame = containerView.bounds
         }
-        
+
         let expectedTabBarController = isPresenting ? fromViewController : toViewController
         let expectedViewController = isPresenting ? toViewController : fromViewController
 
@@ -131,7 +126,7 @@ extension LearnListAnimation: UIViewControllerAnimatedTransitioning {
         }
 
         prepare(tabBarController, learnCategoryListViewController, learnContentListViewController)
-        
+
         UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseOut], animations: {
             self.animate(tabBarController, learnCategoryListViewController, learnContentListViewController)
         }, completion: { (finished: Bool) in

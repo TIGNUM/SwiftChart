@@ -13,7 +13,7 @@ protocol FullScreenLoadable: class {
     var isLoading: Bool { get set }
     var loadingView: BlurLoadingView? { get set }
     var view: UIView! { get set }
-    
+
     func showLoading(_ isLoading: Bool, text: String?)
 }
 

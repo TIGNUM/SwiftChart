@@ -14,7 +14,7 @@ import Anchorage
 // MARK: - String
 
 extension String {
-    
+
     var removeFilePrefix: String {
         return replacingOccurrences(of: "file://", with: "")
     }
@@ -23,15 +23,15 @@ extension String {
 // MARK: - UIFont
 
 extension UIFont {
-    
+
     class func simpleFont(ofSize: CGFloat) -> UIFont {
         return (UIFont(name: FontName.simple.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
     }
-    
+
     class func bentonBookFont(ofSize: CGFloat) -> UIFont {
         return (UIFont(name: FontName.bentonBook.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
     }
-    
+
     class func bentonRegularFont(ofSize: CGFloat) -> UIFont {
         return (UIFont(name: FontName.bentonRegular.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
     }
@@ -63,7 +63,7 @@ extension UIBezierPath {
         let path = UIBezierPath(polygonIn: rect, sides: 6, lineWidth: 0, cornerRadius: cornerRadius, rotateByDegs: 180 / 6)
         return path
     }
-    
+
     class func circlePath(center: CGPoint, radius: CGFloat) -> UIBezierPath {
         let startAngle = CGFloat(0)
         let endAngle = CGFloat(Double.pi * 2)
@@ -76,7 +76,7 @@ extension UIBezierPath {
             clockwise: true
         )
     }
-    
+
     // @see adapted from https://stackoverflow.com/questions/24767978/how-to-round-corners-of-uiimage-with-hexagon-mask
     /// Create UIBezierPath for regular polygon with rounded corners
     ///
@@ -85,43 +85,43 @@ extension UIBezierPath {
     /// - parameter lineWidth:       The width of the stroke around the polygon. The polygon will be inset such that the stroke stays within the above square. Default value 1.
     /// - parameter cornerRadius:    The radius to be applied when rounding the corners. Default value 0.
     /// - parameter rotateByDegs:    The degrees to rotate the final polygon by. Default value 0.
-    
+
     convenience init(polygonIn rect: CGRect, sides: Int, lineWidth: CGFloat = 1, cornerRadius: CGFloat = 0, rotateByDegs degs: CGFloat = 0) {
         self.init()
-        
+
         let theta = 2 * CGFloat.pi / CGFloat(sides)                        // how much to turn at every corner
         let offset = cornerRadius * tan(theta / 2)                  // offset from which to start rounding corners
         let squareWidth = min(rect.size.width, rect.size.height)    // width of the square
-        
+
         // calculate the length of the sides of the polygon
-        
+
         var length = squareWidth - lineWidth
         if sides % 4 != 0 {                                         // if not dealing with polygon which will be square with all sides ...
             length = length * cos(theta / 2) + offset / 2           // ... offset it inside a circle inside the square
         }
         let sideLength = length * tan(theta / 2)
-        
+
         // start drawing at `point` in lower right corner, but center it
-        
+
         var point = CGPoint(x: rect.origin.x + rect.size.width / 2 + sideLength / 2 - offset, y: rect.origin.y + rect.size.height / 2 + length / 2)
         var angle = CGFloat.pi
         move(to: point)
-        
+
         // draw the sides and rounded corners of the polygon
-        
+
         for _ in 0 ..< sides {
             point = CGPoint(x: point.x + (sideLength - offset * 2) * cos(angle), y: point.y + (sideLength - offset * 2) * sin(angle))
             addLine(to: point)
-            
+
             let center = CGPoint(x: point.x + cornerRadius * cos(angle + .pi / 2), y: point.y + cornerRadius * sin(angle + .pi / 2))
             addArc(withCenter: center, radius: cornerRadius, startAngle: angle - .pi / 2, endAngle: angle + theta - .pi / 2, clockwise: true)
-            
+
             point = currentPoint
             angle += theta
         }
-        
+
         close()
-        
+
         if degs != 0 {
             // @see adapted from https://stackoverflow.com/questions/13738364/rotate-cgpath-without-changing-its-position
             let center = CGPoint(x: cgPath.boundingBox.midX, y: cgPath.boundingBox.midY)
@@ -144,7 +144,7 @@ extension CALayer {
         self.shadowRadius = shadowRadius
         self.shadowOffset = .zero
         self.shadowOpacity = shadowOpacity
-        
+
         if animate {
             let animation = CABasicAnimation(keyPath: "shadowOpacity")
             animation.fromValue = 0.0
@@ -268,13 +268,13 @@ extension UIView {
         case top
         case bottom
     }
-    
+
     @discardableResult func addFadeView(at location: FadeViewLocation, height: CGFloat = 70.0, primaryColor: UIColor = .darkIndigo, fadeColor: UIColor = .clear) -> UIView {
         guard height > 0 else {
             assertionFailure("height must be > 0")
             return UIView()
         }
-        
+
         let fadeView = UIView()
         fadeView.backgroundColor = .clear
 
@@ -286,7 +286,7 @@ extension UIView {
 
         fadeView.horizontalAnchors == horizontalAnchors
         fadeView.heightAnchor == height
-        
+
         switch location {
         case .top:
             fadeView.topAnchor == safeTopAnchor
@@ -298,7 +298,7 @@ extension UIView {
 
         return fadeView
     }
-    
+
     enum FadeMaskLocation {
         case top
         case bottom
@@ -313,10 +313,10 @@ extension UIView {
 
         let primaryColor = UIColor.black.cgColor
         let fadeColor = UIColor.clear.cgColor
-        
+
         let wrapperLayer = CALayer()
         wrapperLayer.backgroundColor = fadeColor
-        
+
         switch location {
         case .top:
             wrapperLayer.frame = bounds.offsetBy(dx: 0, dy: safeMargins.top / 2)
@@ -324,11 +324,11 @@ extension UIView {
             let fadeLayer = CAGradientLayer()
             fadeLayer.colors = [fadeColor, fadeColor, primaryColor]
             fadeLayer.frame = CGRect(x: 0, y: 0, width: wrapperLayer.bounds.width, height: height)
-            
+
             let contentLayer = CALayer()
             contentLayer.backgroundColor = primaryColor
             contentLayer.frame = CGRect(x: 0, y: height, width: wrapperLayer.bounds.width, height: wrapperLayer.bounds.height - height)
-            
+
             wrapperLayer.addSublayer(fadeLayer)
             wrapperLayer.addSublayer(contentLayer)
         case .bottom:
@@ -337,11 +337,11 @@ extension UIView {
             let fadeLayer = CAGradientLayer()
             fadeLayer.colors = [primaryColor, fadeColor, fadeColor]
             fadeLayer.frame = CGRect(x: 0, y: wrapperLayer.bounds.height - height, width: wrapperLayer.bounds.width, height: height)
-            
+
             let contentLayer = CALayer()
             contentLayer.backgroundColor = primaryColor
             contentLayer.frame = CGRect(x: 0, y: 0, width: wrapperLayer.bounds.width, height: wrapperLayer.bounds.height - height)
-            
+
             wrapperLayer.addSublayer(fadeLayer)
             wrapperLayer.addSublayer(contentLayer)
         case .topAndBottom:
@@ -350,24 +350,24 @@ extension UIView {
             let topFadeLayer = CAGradientLayer()
             topFadeLayer.colors = [fadeColor, fadeColor, primaryColor]
             topFadeLayer.frame = CGRect(x: 0, y: 0, width: wrapperLayer.bounds.width, height: height)
-            
+
             let bottomFadeLayer = CAGradientLayer()
             bottomFadeLayer.colors = [primaryColor, fadeColor, fadeColor]
             bottomFadeLayer.frame = CGRect(x: 0, y: wrapperLayer.bounds.height - height, width: wrapperLayer.bounds.width, height: height)
-            
+
             let contentLayer = CALayer()
             contentLayer.backgroundColor = primaryColor
             contentLayer.frame = CGRect(x: 0, y: height, width: wrapperLayer.bounds.width, height: wrapperLayer.bounds.height - (height * 2.0))
-            
+
             wrapperLayer.addSublayer(topFadeLayer)
             wrapperLayer.addSublayer(bottomFadeLayer)
             wrapperLayer.addSublayer(contentLayer)
         }
-        
+
         layer.mask = wrapperLayer
         return wrapperLayer
     }
-    
+
     @discardableResult func addBadge(with color: UIColor = .cherryRed, size: CGFloat = 6.0, topAnchorOffset: CGFloat = 0, rightAnchorOffset: CGFloat = 0) -> Badge {
         let badge = Badge()
         addSubview(badge)
@@ -378,7 +378,7 @@ extension UIView {
         badge.heightAnchor == size
         return badge
     }
-    
+
     @discardableResult func addBadge(with color: UIColor = .cherryRed, size: CGFloat = 6.0, origin: CGPoint) -> Badge {
         let badge = Badge()
         addSubview(badge)
@@ -398,7 +398,7 @@ extension UIView {
             subLayer.removeFromSuperlayer()
         })
     }
-    
+
     func screenshot() -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.main.scale)
         guard let context = UIGraphicsGetCurrentContext() else {
@@ -418,7 +418,7 @@ extension UIView {
         borderMask.path = clippingBorderPath.cgPath
         layer.mask = borderMask
     }
-    
+
     var safeTopAnchor: NSLayoutYAxisAnchor {
         if #available(iOS 11.0, *) {
             return safeAreaLayoutGuide.topAnchor
@@ -426,7 +426,7 @@ extension UIView {
             return topAnchor
         }
     }
-    
+
     var safeBottomAnchor: NSLayoutYAxisAnchor {
         if #available(iOS 11.0, *) {
             return safeAreaLayoutGuide.bottomAnchor
@@ -434,7 +434,7 @@ extension UIView {
             return bottomAnchor
         }
     }
-    
+
     var safeVerticalAnchors: AnchorPair<NSLayoutYAxisAnchor, NSLayoutYAxisAnchor> {
         if #available(iOS 11.0, *) {
             return safeAreaLayoutGuide.verticalAnchors
@@ -442,7 +442,7 @@ extension UIView {
             return verticalAnchors
         }
     }
-    
+
     var safeMargins: UIEdgeInsets {
         if #available(iOS 11.0, *) {
             return safeAreaInsets
@@ -461,17 +461,17 @@ extension UIImage {
         guard let image = CIImage(image: image), let filter = CIFilter(name: "CIPhotoEffectNoir") else {
             return nil
         }
-        
+
         filter.setDefaults()
         filter.setValue(image, forKey: kCIInputImageKey)
-        
+
         let context = CIContext(options: nil)
         if let output = filter.outputImage, let cgImage = context.createCGImage(output, from: output.extent) {
             return UIImage(cgImage: cgImage)
         }
         return nil
     }
-    
+
     // @see adapted from https://stackoverflow.com/questions/6496441/creating-a-uiimage-from-a-uicolor-to-use-as-a-background-image-for-uibutton
     static func from(color: UIColor, size: CGSize) -> UIImage? {
         guard size.width > 0, size.height > 0 else {
@@ -488,7 +488,7 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return img
     }
-    
+
     convenience init?(dataUrl: URL) {
         do {
             let data = try Data(contentsOf: dataUrl)
@@ -511,7 +511,7 @@ extension UIImageView {
         self.layer.cornerRadius = frame.width * 0.5
         self.clipsToBounds = true
     }
-    
+
     func setImageFromResource(_ resource: MediaResource, defaultImage: UIImage? = nil, completion: ((UIImage?, Error?) -> Void)? = nil) {
         if let localURL = resource.localURL {
             image = UIImage(dataUrl: localURL)
@@ -533,7 +533,7 @@ extension UIImageView {
 // MARK: - UIButton
 
 extension UIButton {
-    
+
     func prepareAndSetTitleAttributes(text: String, font: UIFont, color: UIColor, for state: UIControlState) {
         let attrString = NSMutableAttributedString(string: text)
         let style = NSMutableParagraphStyle()
@@ -543,7 +543,7 @@ extension UIButton {
         attrString.addAttribute(.foregroundColor, value: color, range: NSRange(location: 0, length: text.count))
         self.setAttributedTitle(attrString, for: state)
     }
-    
+
     func setImageFromResource(_ resource: MediaResource, defaultImage: UIImage? = nil, completion: ((UIImage?, Error?) -> Void)? = nil) {
         if let localURL = resource.localURL {
             let image = UIImage(dataUrl: localURL)
@@ -561,7 +561,7 @@ extension UIButton {
             completion?(nil, nil)
         }
     }
-    
+
     func setBackgroundImageFromResource(_ resource: MediaResource, defaultImage: UIImage? = nil, completion: ((UIImage?, Error?) -> Void)? = nil) {
         if let localURL = resource.localURL {
             let image = UIImage(dataUrl: localURL)
@@ -584,13 +584,13 @@ extension UIButton {
 // MARK: - UITableView
 
 extension UITableView {
-    
+
     func reloadDataWithAnimation(duration: TimeInterval = 0.35) {
         UIView.transition(with: self, duration: duration, options: .transitionCrossDissolve, animations: {
             self.reloadData()
         })
     }
-    
+
     func scrollToBottom(animated: Bool) {
         let sections = numberOfSections
         guard sections > 0 else {
@@ -611,7 +611,7 @@ extension UIScrollView {
 
     var currentPage: Int {
         guard bounds.size.width != 0 else { return 0 }
-        
+
         return Int(round(contentOffset.x / bounds.size.width))
     }
 }
@@ -619,7 +619,7 @@ extension UIScrollView {
 // MARK: - UIResponder
 
 extension UIResponder {
-    
+
     func findParentResponder<T>() -> T? {
         var responder: UIResponder? = self
         while responder != nil {
@@ -635,7 +635,7 @@ extension UIResponder {
 // MARK: - SequSequenceType
 
 extension Sequence where Iterator.Element == String {
-    
+
     func mondayFirst(withWeekend: Bool = true) -> [String] {
         let selfCast = self as? [String]
 
@@ -685,14 +685,14 @@ extension UIEdgeInsets {
     var horizontal: CGFloat {
         return left + right
     }
-    
+
     var vertical: CGFloat {
         return top + bottom
     }
 }
 
 extension Comparable {
-    
+
     func constrainedTo(min minimum: Self, max maximum: Self) -> Self {
         return max(minimum, min(self, maximum))
     }

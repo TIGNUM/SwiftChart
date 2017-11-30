@@ -33,7 +33,7 @@ final class LearnContentListCoordinator: ParentCoordinator {
         learnContentListViewController.transitioningDelegate = transitioningDelegate
         learnContentListViewController.delegate = self
     }
-    
+
     func start() {
         rootViewController.present(learnContentListViewController, animated: true)
     }
@@ -46,7 +46,7 @@ extension LearnContentListCoordinator: LearnContentListViewControllerDelegate {
         let coordinator = LearnContentItemCoordinator(root: viewController, eventTracker: eventTracker, services: services, content: content, category: category, presentationManager: presentationManager)
         startChild(child: coordinator)
     }
-    
+
     func didTapBack(in viewController: LearnContentListViewController) {
         viewController.dismiss(animated: true)
         delegate?.removeChild(child: self)
