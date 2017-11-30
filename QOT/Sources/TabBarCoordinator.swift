@@ -81,7 +81,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         viewController.delegate = self
         return viewController
     }()
-    
+
     private lazy var topTabBarControllerGuide: UINavigationController = {
         let viewModel = GuideViewModel()
         let guideViewController = GuideViewController(viewModel: viewModel)
@@ -110,7 +110,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
             assertionFailure("expected what's hot button")
             return topTabBarController
         }
-        
+
         whatsHotBadgeManager.whatsHotButton = whatsHotButton
         return topTabBarController
     }()
@@ -139,7 +139,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         return topTabBarController
     }()
 
-    private func tabBarItemConfig(title: String, tag: Int) -> TabBarItem.Config {        
+    private func tabBarItemConfig(title: String, tag: Int) -> TabBarItem.Config {
         var config = TabBarItem.Config.default
         config.title = title
         config.tag = tag
@@ -215,7 +215,7 @@ extension TabBarCoordinator: TabBarControllerDelegate {
         if index == 3 {
             prepareCoordinator.focus()
         }
-        
+
         guard let tutorial = Tutorial(rawValue: index) else { return }
         showTutorial(tutorial)
     }
@@ -329,7 +329,7 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
 extension TabBarCoordinator: TopNavigationBarDelegate {
 
     func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {}
-    
+
     func topNavigationBar(_ navigationBar: TopNavigationBar,
                           middleButtonPressed button: UIButton,
                           withIndex index: Int,

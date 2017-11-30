@@ -291,7 +291,10 @@ extension AppCoordinator {
         }
 
         tabBarController.tabBarController(tabBarController, didSelect: destinationViewController)
-        tabBarCoordinator?.topNavigationBar(topNavigationBar, middleButtonPressed: myPrepButton, withIndex: topTabBarIndex, ofTotal: 2)
+        tabBarCoordinator?.topNavigationBar(topNavigationBar,
+                                            middleButtonPressed: myPrepButton,
+                                            withIndex: topTabBarIndex,
+                                            ofTotal: 2)
         topNavigationBar.setIndicatorToButtonIndex(topTabBarIndex, animated: true)
         topNavigationBar.setIndicatorToButton(myPrepButton, animated: true)
         topNavigationBar.setIsSelected(myPrepButton)

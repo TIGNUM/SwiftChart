@@ -47,7 +47,7 @@ final class LearnListAnimation: NSObject {
 
         return nil
     }
-    
+
     private func prepare(_ tabBarController: TabBarController,
                          _ learnCategoryListViewController: LearnCategoryListViewController,
                          _ learnContentListViewController: LearnContentListViewController) {
@@ -62,12 +62,12 @@ final class LearnListAnimation: NSObject {
         learnContentListViewController.getBackButtonBottomConstraint?.constant = isPresenting ? bottomConstraint : 0
         learnContentListViewController.view.layoutIfNeeded()
         learnContentListViewController.view.alpha = isPresenting ? 0 : 1
-        
+
         if isPresenting == false {
             learnCategoryListViewController.collectionView.reloadData()
         }
     }
-    
+
     private func animate(_ tabBarController: TabBarController,
                          _ learnCategoryListViewController: LearnCategoryListViewController,
                          _ learnContentListViewController: LearnContentListViewController) {
@@ -108,7 +108,7 @@ extension LearnListAnimation: UIViewControllerAnimatedTransitioning {
 
         fromViewController.beginAppearanceTransition(false, animated: true)
         toViewController.beginAppearanceTransition(true, animated: true)
-        
+
         if isPresenting == true {
             let containerView = transitionContext.containerView
             containerView.insertSubview(toViewController.view, belowSubview: fromViewController.view)
