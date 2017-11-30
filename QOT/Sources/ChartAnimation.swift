@@ -54,7 +54,7 @@ extension ChartAnimation: UIViewControllerAnimatedTransitioning {
         fromViewController.beginAppearanceTransition(false, animated: true)
         toViewController.beginAppearanceTransition(true, animated: true)
         
-        if isPresenting {
+        if isPresenting == true {
             containerView.insertSubview(toViewController.view, belowSubview: fromViewController.view)
             toViewController.view.frame = containerView.bounds
         }
@@ -76,15 +76,15 @@ extension ChartAnimation: UIViewControllerAnimatedTransitioning {
         }
         
         UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseOut], animations: {
-            if self.isPresenting {
+            if self.isPresenting == true {
                 chartViewController.configureForDefaultState()
                 myUniverseViewController.configureForTransitionedState()
             } else {
                 chartViewController.configureForTransitionedState()
                 myUniverseViewController.configureForDefaultState()
             }
-        }, completion: { finished in
-            if finished {
+        }, completion: { (finished: Bool) in
+            if finished == true {
                 fromViewController.endAppearanceTransition()
                 toViewController.endAppearanceTransition()
             }

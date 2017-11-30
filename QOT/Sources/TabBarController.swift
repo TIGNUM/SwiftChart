@@ -123,15 +123,13 @@ final class TabBarController: UITabBarController {
     }
     
     func updateFlags() {
-        guard let items = tabBar.items as? [TabBarItem] else {
-            return
-        }
+        guard let items = tabBar.items as? [TabBarItem] else { return }
         items.forEach { (item: TabBarItem) in
-            if item.isRead {
+            if item.isRead == true {
                 item.readFlag?.removeFromSuperview()
                 item.readFlag = nil
             } else if item.readFlag == nil {
-                item.readFlag = self.tabBar.addBadge(origin: .zero)
+                item.readFlag = tabBar.addBadge(origin: .zero)
             }
         }
         updateFlagFrames()
@@ -140,9 +138,7 @@ final class TabBarController: UITabBarController {
     // MARK: - private
     
     private func setupIndicatorView() {
-        guard let items = tabBar.items, selectedIndex >= items.startIndex, selectedIndex < items.endIndex else {
-            return
-        }
+        guard let items = tabBar.items, selectedIndex >= items.startIndex, selectedIndex < items.endIndex else { return }
         let indicatorView = UIView()
         indicatorView.backgroundColor = config.indicatorViewColor
         tabBar.addSubview(indicatorView)
@@ -162,13 +158,9 @@ final class TabBarController: UITabBarController {
     }
     
     private func updateFlagFrames() {
-        guard let items = tabBar.items as? [TabBarItem] else {
-            return
-        }
+        guard let items = tabBar.items as? [TabBarItem] else { return }
         for (index, item) in items.enumerated() {
-            guard let flag = item.readFlag else {
-                return
-            }
+            guard let flag = item.readFlag else { return }
             flag.frame = CGRect(origin: CGPoint(
                 x: ((tabBar.buttonWidth * CGFloat(index)) +
                     (tabBar.buttonWidth - item.textWidth) +
