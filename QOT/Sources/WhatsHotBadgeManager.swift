@@ -28,7 +28,7 @@ final class WhatsHotBadgeManager {
 
     weak var whatsHotButton: UIButton? {
         didSet {
-            whatsHotButton?.addTarget(self, action: #selector(whatsHotButtonPressed(_:)), for: .touchUpInside)
+            whatsHotButton?.addTarget(self, action: #selector(whatsHotButtonPressed), for: .touchUpInside)
         }
     }
 
@@ -50,7 +50,9 @@ final class WhatsHotBadgeManager {
     // MARK: - private
 
     private func setupNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(userDefaultsDidChangeNotification(_:)), name: UserDefaults.didChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(userDefaultsDidChangeNotification),
+                                               name: UserDefaults.didChangeNotification,
+                                               object: nil)
     }
 
     private func update() {

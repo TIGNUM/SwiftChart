@@ -680,6 +680,15 @@ extension DoubleObject {
     }
 }
 
+// MARK: - Int
+
+extension Int {
+
+    var toFloat: CGFloat {
+        return CGFloat(self)
+    }
+}
+
 extension UIEdgeInsets {
 
     var horizontal: CGFloat {
