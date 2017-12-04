@@ -33,7 +33,7 @@ final class LearnListAnimation: NSObject {
         if
             let viewController = viewController as? TabBarController,
             let viewControllers = viewController.viewControllers,
-            let navigationController = viewControllers.first as? UINavigationController,
+            let navigationController = viewControllers[1] as? UINavigationController,
             let pageViewController = navigationController.viewControllers.first as? PageViewController,
             let childViewController = pageViewController.viewControllers?.first as? LearnCategoryListViewController {
                 return childViewController
