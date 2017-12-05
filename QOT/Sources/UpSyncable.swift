@@ -31,15 +31,17 @@ protocol UpSyncable: Syncable {
 extension UpSyncable where Self: Object {
 
     static func objectsAndJSONs(realm: Realm, max: Int = 50) -> [(Self, JSON)] {
-        let objects = realm.objects(Self.self).filter(Self.dirtyPredicate).prefix(max)
+        let objects = realm.objects(Self.self).filter(Self.dirtyPredicate)
 
-        return objects.flatMap { (object) -> (Self, JSON)? in
+        var results: [(Self, JSON)] = []
+        for object in objects {
+            guard results.count < max else { break }
+
             if let json = object.toJson(), object.syncStatus != .clean {
-                return (object, json)
-            } else {
-                return nil
+                results.append((object, json))
             }
         }
+        return results
     }
 }
 

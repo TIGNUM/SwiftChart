@@ -53,11 +53,16 @@ extension EKEventStore {
         let title = calendarEvent.title
         let startDate = calendarEvent.startDate
         let endDate = calendarEvent.endDate
-        let predicate = predicateForEvents(withStart: startDate, end: endDate, calendars: syncEnabledCalendars)
+        let predicate = predicateForEvents(withStart: startDate - TimeInterval(days: 1),
+                                           end: endDate + TimeInterval(days: 1),
+                                           calendars: syncEnabledCalendars)
         var event: EKEvent?
         enumerateEvents(matching: predicate) { (ekEvent, stop) in
-            // @warning do not use `calendarEvent.matches(event: EKEvent) -> Bool`
-            // enumerateEvents(...) runs this block on the main thread, which can cause issues the CalendarEvent is from a Realm initialised on another thread (e.g. background thread from sync)
+            /*
+             @warning do not use `calendarEvent.matches(event: EKEvent) -> Bool`
+             enumerateEvents(...) runs this block on the main thread, which can cause issues the CalendarEvent is from a
+             Realm initialised on another thread (e.g. background thread from sync)
+             */
             if title == ekEvent.title && startDate == ekEvent.startDate && endDate == ekEvent.endDate {
                 event = ekEvent
                 stop.pointee = true
