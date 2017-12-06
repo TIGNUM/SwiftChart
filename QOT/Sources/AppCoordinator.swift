@@ -14,7 +14,7 @@ import UserNotifications
 import AirshipKit
 import Crashlytics
 
-final class AppCoordinator: ParentCoordinator {
+final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
     // MARK: - Properties
 
@@ -136,6 +136,9 @@ final class AppCoordinator: ParentCoordinator {
                 do {
                     let services = try Services()
                     self.services = services
+
+                    // Setup AppState
+                    self.appState.services = services
 
                     // Create missing database objects
                     if services.userService.myToBeVision() == nil {
