@@ -20,8 +20,15 @@
 		0BEE8AC01EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BEE8AB71EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib */; };
 		0CC2119BB6C36EF6F43B4ECD /* Pods_QOT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */; };
 		360947A31FB5E684003AF3E9 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360947A21FB5E684003AF3E9 /* PageControl.swift */; };
+		362632451FD6A2710024C626 /* GuideTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 362632441FD6A2710024C626 /* GuideTableViewCell.xib */; };
+		362632471FD6A4210024C626 /* GuideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362632461FD6A4210024C626 /* GuideTableViewCell.swift */; };
+		362632491FD6F72C0024C626 /* GuideConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362632481FD6F72C0024C626 /* GuideConfigurator.swift */; };
+		3626324B1FD6F73D0024C626 /* GuideInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3626324A1FD6F73D0024C626 /* GuideInteractor.swift */; };
+		3626324D1FD6F7520024C626 /* GuidePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3626324C1FD6F7520024C626 /* GuidePresenter.swift */; };
+		3626324F1FD6F7650024C626 /* GuideWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3626324E1FD6F7650024C626 /* GuideWorker.swift */; };
+		362632511FD6F7720024C626 /* GuideRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362632501FD6F7720024C626 /* GuideRouter.swift */; };
 		36328F201FCEB90B004E9034 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36328F1F1FCEB90B004E9034 /* GuideViewController.swift */; };
-		36328F221FCEB92C004E9034 /* GuideViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36328F211FCEB92C004E9034 /* GuideViewModel.swift */; };
+		36328F221FCEB92C004E9034 /* GuideModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36328F211FCEB92C004E9034 /* GuideModel.swift */; };
 		36927FC41FA7960400EC9B88 /* SettingsAdmin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36927FC31FA7960400EC9B88 /* SettingsAdmin.storyboard */; };
 		36DADE761FA7850100EB00D4 /* SettingsAdminCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DADE751FA7850100EB00D4 /* SettingsAdminCoordinator.swift */; };
 		36DADE791FA786DD00EB00D4 /* SettingsAdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DADE781FA786DD00EB00D4 /* SettingsAdminViewController.swift */; };
@@ -488,8 +495,15 @@
 		2C2AD94F9096EA48FAC24935 /* Pods-DatabaseBuilder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseBuilder.release.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseBuilder/Pods-DatabaseBuilder.release.xcconfig"; sourceTree = "<group>"; };
 		2F1C8D6D4864F462A3F805BB /* Pods-QOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.release.xcconfig"; sourceTree = "<group>"; };
 		360947A21FB5E684003AF3E9 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
+		362632441FD6A2710024C626 /* GuideTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideTableViewCell.xib; sourceTree = "<group>"; };
+		362632461FD6A4210024C626 /* GuideTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideTableViewCell.swift; sourceTree = "<group>"; };
+		362632481FD6F72C0024C626 /* GuideConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideConfigurator.swift; sourceTree = "<group>"; };
+		3626324A1FD6F73D0024C626 /* GuideInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideInteractor.swift; sourceTree = "<group>"; };
+		3626324C1FD6F7520024C626 /* GuidePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidePresenter.swift; sourceTree = "<group>"; };
+		3626324E1FD6F7650024C626 /* GuideWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideWorker.swift; sourceTree = "<group>"; };
+		362632501FD6F7720024C626 /* GuideRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideRouter.swift; sourceTree = "<group>"; };
 		36328F1F1FCEB90B004E9034 /* GuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
-		36328F211FCEB92C004E9034 /* GuideViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideViewModel.swift; sourceTree = "<group>"; };
+		36328F211FCEB92C004E9034 /* GuideModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideModel.swift; sourceTree = "<group>"; };
 		36927FC31FA7960400EC9B88 /* SettingsAdmin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsAdmin.storyboard; sourceTree = "<group>"; };
 		36DADE751FA7850100EB00D4 /* SettingsAdminCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAdminCoordinator.swift; sourceTree = "<group>"; };
 		36DADE781FA786DD00EB00D4 /* SettingsAdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAdminViewController.swift; sourceTree = "<group>"; };
@@ -971,8 +985,15 @@
 		36328F1E1FCEB8E3004E9034 /* Guide */ = {
 			isa = PBXGroup;
 			children = (
+				362632481FD6F72C0024C626 /* GuideConfigurator.swift */,
+				3626324A1FD6F73D0024C626 /* GuideInteractor.swift */,
+				3626324C1FD6F7520024C626 /* GuidePresenter.swift */,
+				362632501FD6F7720024C626 /* GuideRouter.swift */,
+				362632461FD6A4210024C626 /* GuideTableViewCell.swift */,
 				36328F1F1FCEB90B004E9034 /* GuideViewController.swift */,
-				36328F211FCEB92C004E9034 /* GuideViewModel.swift */,
+				36328F211FCEB92C004E9034 /* GuideModel.swift */,
+				3626324E1FD6F7650024C626 /* GuideWorker.swift */,
+				362632441FD6A2710024C626 /* GuideTableViewCell.xib */,
 			);
 			name = Guide;
 			sourceTree = "<group>";
@@ -2451,6 +2472,7 @@
 				CC311A2D1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib in Resources */,
 				CBC5A57B1FA08075007B9A5B /* 20_min_power_nap_with_voice_A.m4a in Resources */,
 				CB8C34561EAF7F200003AB65 /* styles.css in Resources */,
+				362632451FD6A2710024C626 /* GuideTableViewCell.xib in Resources */,
 				CBC5A5711F9FA01D007B9A5B /* Animations.xcassets in Resources */,
 				85C3D6BC1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib in Resources */,
 				CC335EE71EBC84780085F5C5 /* ContentItemTextTableViewCell.xib in Resources */,
@@ -2673,6 +2695,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3626324D1FD6F7520024C626 /* GuidePresenter.swift in Sources */,
 				CB9B07531EF7FE410017F6C3 /* LearnCategoryListPage.swift in Sources */,
 				7F0F02FB1F13D3D900007D50 /* SelectWeeklyChoicesDataModel.swift in Sources */,
 				7FBFBC111FC7320B007B6D2D /* WeeklyChoicesViewData.swift in Sources */,
@@ -2814,7 +2837,9 @@
 				CB1D5E401EC5E25A00BCDF8D /* Error.swift in Sources */,
 				85DC6F891EF40B36004F4B4D /* TravelTripsChart.swift in Sources */,
 				CC7D21B21EFC1348007A062E /* WeeklyChoicesLayout.swift in Sources */,
+				3626324B1FD6F73D0024C626 /* GuideInteractor.swift in Sources */,
 				CBB4DCDC1ED475F00071494A /* DownSyncChange.swift in Sources */,
+				3626324F1FD6F7650024C626 /* GuideWorker.swift in Sources */,
 				7F0F03081F14FE9800007D50 /* CollapsableNode.swift in Sources */,
 				CB3437701EFE937000D89D4F /* ContentService.swift in Sources */,
 				CBFECCAD1F388B500076ACE6 /* TimeZone+Convenience.swift in Sources */,
@@ -2831,6 +2856,7 @@
 				CCA2DC671EF17BCE00D1DF6A /* LearnContentItemHeaderView.swift in Sources */,
 				CC37831C1F5EA91F007A16A3 /* ChartType.swift in Sources */,
 				7F0F02F21F13CCCB00007D50 /* SelectWeeklyChoicesViewController.swift in Sources */,
+				362632511FD6F7720024C626 /* GuideRouter.swift in Sources */,
 				CB1D5E3D1EC5E25A00BCDF8D /* ContentItem.swift in Sources */,
 				CB1E4F981E7FE22200287613 /* SettingsViewModel.swift in Sources */,
 				CBB4DCFD1EDC27550071494A /* SyncManager.swift in Sources */,
@@ -2843,7 +2869,7 @@
 				CB1D5E3F1EC5E25A00BCDF8D /* ContentItemValue.swift in Sources */,
 				7F507BA11F3B0F8A0091742D /* EventTracker.swift in Sources */,
 				CB6D49541ECC87BF005BC637 /* Requests.swift in Sources */,
-				36328F221FCEB92C004E9034 /* GuideViewModel.swift in Sources */,
+				36328F221FCEB92C004E9034 /* GuideModel.swift in Sources */,
 				7FB0886E1FAB6DB600835D06 /* MBProgressHUD+Convenience.swift in Sources */,
 				D50D6C241EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift in Sources */,
 				CC335EE91EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift in Sources */,
@@ -2901,6 +2927,7 @@
 				CC178A771F04FD600066A5D4 /* UserService.swift in Sources */,
 				CB9AFD111F014AED00D067F2 /* Preparation.swift in Sources */,
 				CBC1DC171F0F690A00F6D056 /* SystemSettingIntermediary.swift in Sources */,
+				362632471FD6A4210024C626 /* GuideTableViewCell.swift in Sources */,
 				CB810E611EEFC0D70043E3E5 /* ErrorCell.swift in Sources */,
 				CB9BB0C21F0CD13E009067D7 /* TimeInterval+Convenience.swift in Sources */,
 				CCC1B6A71E8B9B7300D1461F /* LearnCategoryCell.swift in Sources */,
@@ -2989,6 +3016,7 @@
 				CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */,
 				CBC1DC351F14D34000F6D056 /* SettingValue.swift in Sources */,
 				CBC5ACBF1F162A9C007E1E9C /* UserChoice.swift in Sources */,
+				362632491FD6F72C0024C626 /* GuideConfigurator.swift in Sources */,
 				CC0FF8D21EA784400028D64F /* PartnersViewModel.swift in Sources */,
 				8548BBDC1F0D263000AC7C06 /* RequestDeviceSensorCollectionViewCell.swift in Sources */,
 				CC9622081F1F48A8007A9ED0 /* URL+Components.swift in Sources */,
