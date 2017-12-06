@@ -16,14 +16,16 @@ final class SettingsMenuCoordinator: ParentCoordinator {
     private let rootViewController: UIViewController
     private let networkManager: NetworkManager
     private let syncManager: SyncManager
+    private let permissionsManager: PermissionsManager
     var children = [Coordinator]()
 
-    init?(root: SidebarViewController, services: Services, syncManager: SyncManager, networkManager: NetworkManager) {
+    init?(root: SidebarViewController, services: Services, syncManager: SyncManager, networkManager: NetworkManager, permissionsManager: PermissionsManager) {
         guard let viewModel = SettingsMenuViewModel(services: services) else { return nil }
         self.rootViewController = root
         self.services = services
         self.networkManager = networkManager
         self.syncManager = syncManager
+        self.permissionsManager = permissionsManager
         settingsMenuViewController = SettingsMenuViewController(viewModel: viewModel)
         settingsMenuViewController.title = R.string.localized.settingsTitle().uppercased()
         settingsMenuViewController.delegate = self
@@ -55,7 +57,8 @@ extension SettingsMenuCoordinator: SettingsMenuViewControllerDelegate {
                                                     services: services,
                                                     settingsType: settingsType,
                                                     syncManager: syncManager,
-                                                    networkManager: networkManager) else { return }
+                                                    networkManager: networkManager,
+                                                    permissionsManager: permissionsManager) else { return }
         startChild(child: coordinator)
     }
 }

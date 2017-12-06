@@ -17,13 +17,16 @@ final class SidebarCoordinator: ParentCoordinator {
     private let rootViewController: UIViewController
     private let networkManager: NetworkManager
     private let syncManager: SyncManager
+    private let permissionsManager: PermissionsManager
     var children = [Coordinator]()
 
-    init(root: UIViewController, services: Services, syncManager: SyncManager, networkManager: NetworkManager) {
+    init(root: UIViewController, services: Services, syncManager: SyncManager, networkManager: NetworkManager, permissionsManager: PermissionsManager) {
         self.rootViewController = root
         self.services = services
         self.networkManager = networkManager
         self.syncManager = syncManager
+        self.permissionsManager = permissionsManager
+
         let viewModel = SidebarViewModel(services: services)
         sideBarViewController = SidebarViewController(viewModel: viewModel)
         topTabBarController = UINavigationController(withPages: [sideBarViewController],
@@ -58,7 +61,8 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
         guard let coordinator = SettingsMenuCoordinator(root: viewController,
                                                         services: services,
                                                         syncManager: syncManager,
-                                                        networkManager: networkManager) else {
+                                                        networkManager: networkManager,
+                                                        permissionsManager: permissionsManager) else {
                                                             log("could not init \(SettingsMenuCoordinator.self)")
                                                             return
         }

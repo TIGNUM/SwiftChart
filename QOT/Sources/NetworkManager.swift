@@ -62,6 +62,13 @@ final class NetworkManager {
         }
     }
 
+    @discardableResult func performDevicePermissionsRequest(with data: Data,
+                                                            completion: @escaping (NetworkError?) -> Void) -> SerialRequest {
+
+        let request = DevicePermissionsRequest(data: data)
+        return performRequest(request, completion: completion)
+    }
+
     @discardableResult func performResetPasswordRequest(username: String,
                                                         completion: @escaping (NetworkError?) -> Void) -> SerialRequest {
         let request = ResetPasswordRequest(username: username)

@@ -26,7 +26,7 @@ final class PrepareCoordinator: ParentCoordinator {
 
     private let services: Services
     private let eventTracker: EventTracker
-    private let permissionHandler: PermissionHandler
+    private let permissionsManager: PermissionsManager
     private let tabBarController: TabBarController
     private let topTabBarController: UINavigationController
     private let chatViewController: ChatViewController<Answer>
@@ -55,14 +55,14 @@ final class PrepareCoordinator: ParentCoordinator {
 
     init(services: Services,
          eventTracker: EventTracker,
-         permissionHandler: PermissionHandler,
+         permissionsManager: PermissionsManager,
          tabBarController: TabBarController,
          topTabBarController: UINavigationController,
          chatViewController: ChatViewController<Answer>,
          myPrepViewController: MyPrepViewController) {
         self.services = services
         self.eventTracker = eventTracker
-        self.permissionHandler = permissionHandler
+        self.permissionsManager = permissionsManager
         self.tabBarController = tabBarController
         self.topTabBarController = topTabBarController
         self.chatViewController = chatViewController
@@ -207,22 +207,30 @@ extension PrepareCoordinator {
         }
 
         guard let event = event else { return }
-        self.permissionHandler.askPermissionForCalendar { (granted: Bool) in
-            guard granted == true else { return }
+        permissionsManager.askPermission(for: [.calendar], completion: { [unowned self] status in
+            guard let status = status[.calendar] else { return }
 
-            let eventStore = EKEventStore.shared
-            var notes = event.notes ?? ""
-            guard let preparationLink = URLScheme.preparationURL(withID: localID) else { return }
-            notes += "\n\n" + preparationLink
-            log("preparationLink: \(preparationLink)")
-            event.notes = notes
-            do {
-                try eventStore.save(event, span: .thisEvent, commit: true)
-            } catch let error {
-                log("createPreparation - eventStore.save.error: \(error.localizedDescription)", level: .error)
-                return
+            switch status {
+            case .granted:
+                let eventStore = EKEventStore.shared
+                var notes = event.notes ?? ""
+                guard let preparationLink = URLScheme.preparationURL(withID: localID) else { return }
+                notes += "\n\n" + preparationLink
+                log("preparationLink: \(preparationLink)")
+                event.notes = notes
+                do {
+                    try eventStore.save(event, span: .thisEvent, commit: true)
+                } catch let error {
+                    log("createPreparation - eventStore.save.error: \(error.localizedDescription)", level: .error)
+                    return
+                }
+            case .later:
+                self.permissionsManager.updateAskStatus(.canAsk, for: .calendar)
+                self.createPreparation(name: name, event: event)
+            default:
+                break
             }
-        }
+        })
     }
 }
 

@@ -34,7 +34,7 @@ final class OnboardingCoordinator: ParentCoordinator {
     weak var delegate: OnboardingCoordinatorDelegate?
     private let windowManager: WindowManager
     private let chatViewModel = ChatViewModel<Choice>(items: [])
-    private let permissionHandler: PermissionHandler
+    private let permissionsManager: PermissionsManager
     private var userName: String
 
     class var isOnboardingComplete: Bool {
@@ -46,10 +46,10 @@ final class OnboardingCoordinator: ParentCoordinator {
         }
     }
 
-    init(windowManager: WindowManager, delegate: OnboardingCoordinatorDelegate, permissionHandler: PermissionHandler, userName: String) {
+    init(windowManager: WindowManager, delegate: OnboardingCoordinatorDelegate, permissionsManager: PermissionsManager, userName: String) {
         self.windowManager = windowManager
         self.delegate = delegate
-        self.permissionHandler = permissionHandler
+        self.permissionsManager = permissionsManager
         self.userName = userName
     }
 
@@ -87,22 +87,29 @@ final class OnboardingCoordinator: ParentCoordinator {
     }
 
     private func handleChoice(_ choice: Choice) {
+        let identifiers: [PermissionsManager.Permission.Identifier] = [
+            .calendar, .remoteNotification, .location
+        ]
+
         switch choice.type {
         case .yes:
-            permissionHandler.askForAllPermissions({ [unowned self] (result: PermissionHandler.Result) in
-                DispatchQueue.main.async {
-                    if result.location == true {
-                        UserDefault.locationService.setBoolValue(value: true)
-                    }
-                    if result.isAllGranted {
-                        self.showLastStep()
-                    } else {
-                        self.showSettings()
-                    }
+            permissionsManager.askPermission(for: identifiers, completion: { status in
+                guard let locationStatus = status[.remoteNotification] else { return }
+                // persist location result
+                UserDefault.locationService.setBoolValue(value: locationStatus == .granted)
+
+                // decide what message to show, based on if everything was granted
+                let isAllGranted = status.filter({ $0.value == .denied }).count == 0
+                if isAllGranted {
+                    self.showLastStep()
+                } else {
+                    self.showSettings()
                 }
             })
         case .later:
-            permissionHandler.isEnabledForSession = false
+            identifiers.forEach({ identifier in
+                permissionsManager.updateAskStatus(.askLater, for: identifier)
+            })
             showSettings()
         case .why:
             showWhy()

@@ -21,17 +21,16 @@ final class ImagePickerController {
 
     let imageQuality: ImageQuality
     let imageSize: ImageSize
-    let permissionHandler: PermissionHandler
+    let permissionsManager: PermissionsManager
     let imagePicker: ImagePicker
     let imageCropper: ImageCropper
     weak var viewController: UIViewController?
     weak var delegate: ImagePickerControllerDelegate?
 
-    init(cropShape: ImageCropper.Shape, imageQuality: ImageQuality, imageSize: ImageSize, permissionHandler: PermissionHandler) {
+    init(cropShape: ImageCropper.Shape, imageQuality: ImageQuality, imageSize: ImageSize, permissionsManager: PermissionsManager) {
         self.imageQuality = imageQuality
         self.imageSize = imageSize
-        self.permissionHandler = permissionHandler
-
+        self.permissionsManager = permissionsManager
         imagePicker = ImagePicker()
         imageCropper = ImageCropper(shape: cropShape)
         imagePicker.delegte = self
@@ -90,28 +89,28 @@ final class ImagePickerController {
     }
 
     private func handleAuthorizationForOption(_ option: Option) {
+        let identifier: PermissionsManager.Permission.Identifier
         switch option {
         case .camera:
-            permissionHandler.askPermissionForCamera(completion: { (granted: Bool) in
-                guard granted else {
-                    self.viewController?.showAlert(type: .permissionNotGranted) {
-                        self.finish()
-                    }
-                    return
-                }
-                self.handleOption(option)
-            })
+            identifier = .camera
         case .photo:
-            permissionHandler.askPermissionForPhotos(completion: { (granted: Bool) in
-                guard granted else {
-                    self.viewController?.showAlert(type: .permissionNotGranted) {
-                        self.finish()
-                    }
-                    return
-                }
-                self.handleOption(option)
-            })
+            identifier = .photos
         }
+
+        permissionsManager.askPermission(for: [identifier], completion: { [unowned self] status in
+            guard let status = status[identifier] else { return }
+            switch status {
+            case .granted:
+                self.handleOption(option)
+            case .denied:
+                self.viewController?.showAlert(type: .permissionNotGranted) {
+                    self.finish()
+                }
+            case .later:
+                self.permissionsManager.updateAskStatus(.canAsk, for: identifier)
+                self.handleAuthorizationForOption(option)
+            }
+        })
     }
 
     private func finish() {

@@ -82,6 +82,16 @@ struct FitbitTokenRequest: URLRequestBuildable {
     }
 }
 
+struct DevicePermissionsRequest: URLRequestBuildable {
+    let endpoint: Endpoint = .devicePermission
+    let httpMethod: HTTPMethod = .put
+    let body: Data?
+
+    init(data: Data) {
+        self.body = data
+    }
+}
+
 struct ResetPasswordRequest: URLRequestBuildable {
     let endpoint: Endpoint = .resetPassword
     let httpMethod: HTTPMethod = .put
@@ -122,7 +132,6 @@ struct APNSDeviceTokenRequest: URLRequestBuildable {
     let endpoint: Endpoint = .pushNotificationToken
     let httpMethod: HTTPMethod = .put
     let paramaters: [RequestParameter: Any]
-    let requiresAuthentication = true
 
     init(token: String, urbanAirshipAppKey: String) {
         self.paramaters = [
