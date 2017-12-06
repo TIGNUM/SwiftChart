@@ -19,10 +19,9 @@ final class GuideTableViewCell: UITableViewCell, Dequeueable {
     override func awakeFromNib() {
         super.awakeFromNib()
 
+        setupStatusView()
         containerView.layer.cornerRadius = 8
-        statusView.layer.cornerRadius = 10
         containerView.layer.masksToBounds = true
-        statusView.layer.masksToBounds = true
         containerView.backgroundColor = Color.Guide.cardBackground
     }
 
@@ -44,16 +43,32 @@ final class GuideTableViewCell: UITableViewCell, Dequeueable {
                                                      alignment: .left)
         statusView.backgroundColor = status.color
     }
+}
 
-    private func attributedText(letterSpacing: CGFloat = 2, text: String, font: UIFont, textColor: UIColor, alignment: NSTextAlignment) -> NSMutableAttributedString {
-        return NSMutableAttributedString(
-            string: text,
-            letterSpacing: letterSpacing,
-            font: font,
-            lineSpacing: 1.4,
-            textColor: textColor,
-            alignment: alignment,
-            lineBreakMode: .byWordWrapping
-        )
+// MARK: - Private
+
+private extension GuideTableViewCell {
+
+    func setupStatusView() {
+        let maskPath = UIBezierPath(roundedRect: statusView.bounds,
+                                    byRoundingCorners: [.bottomLeft, .bottomRight, .topLeft, .topRight],
+                                    cornerRadii: CGSize(width: 10.0, height: 10.0))
+        let shape = CAShapeLayer()
+        shape.path = maskPath.cgPath
+        statusView.layer.mask = shape
+    }
+
+    func attributedText(letterSpacing: CGFloat = 2,
+                        text: String,
+                        font: UIFont,
+                        textColor: UIColor,
+                        alignment: NSTextAlignment) -> NSMutableAttributedString {
+        return NSMutableAttributedString(string: text,
+                                         letterSpacing: letterSpacing,
+                                         font: font,
+                                         lineSpacing: 1.4,
+                                         textColor: textColor,
+                                         alignment: alignment,
+                                         lineBreakMode: .byWordWrapping)
     }
 }

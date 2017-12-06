@@ -25,6 +25,10 @@ extension UIColor {
         return UIColor(red: 0, green: 45/255, blue: 78/255, alpha: 0.2)
     }
 
+    class var pineGreen: UIColor {
+        return UIColor(red: 7/255, green: 24/255, blue: 37/255, alpha: 1)
+    }
+
     /// UIColor(white: 91/255, alpha: 1)
     class var brownishGrey: UIColor {
         return UIColor(white: 91/255, alpha: 1)

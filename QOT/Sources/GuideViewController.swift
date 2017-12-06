@@ -52,7 +52,9 @@ private extension GuideViewController {
         view.addSubview(tableView)
         tableView.topAnchor == view.topAnchor + UIApplication.shared.statusBarFrame.height
         tableView.bottomAnchor == view.bottomAnchor
-        tableView.horizontalAnchors == view.horizontalAnchors
+        tableView.leftAnchor == view.leftAnchor
+        tableView.rightAnchor == view.rightAnchor
+        tableView.backgroundColor = .pineGreen
     }
 }
 
@@ -61,11 +63,11 @@ private extension GuideViewController {
 extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return Int(arc4random_uniform(20))
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return Int(arc4random_uniform(20))
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -80,5 +82,16 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView(frame: CGRect(x: 30, y: 0, width: tableView.bounds.width, height: 20))
+        let label = UILabel(frame: view.frame)
+        let headline = String(format: ".0000%d PLAN", section + 1)
+        view.addSubview(label)
+        view.backgroundColor = .pineGreen
+        label.attributedText = Style.navigationTitle(headline, .white40).attributedString()
+
+        return view
     }
 }

@@ -87,7 +87,6 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         let guideViewController = GuideViewController(viewModel: viewModel)
         guideViewController.title = "GUIDE"
         let topTabBarController = UINavigationController(withPages: [guideViewController],
-                                                         backgroundImage: R.image.myprep(),
                                                          rightButton: sidebarMenuButton)
         let config = tabBarItemConfig(title: "GUIDE", tag: 0)
         topTabBarController.tabBarItem = TabBarItem(config: config)
