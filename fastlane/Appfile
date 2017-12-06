@@ -15,30 +15,32 @@ ENV['S3_VERSION_TEMPLATE_PATH'] = "./fastlane/aws_s3_app_version.erb"
 
 ########## SPECIFIC LANES ###########
 
-for_lane "beta" do
-    app_identifier "com.tignum.qot.novartis"
-    apple_id "app.development@tignum.com"
-    team_id "4FQQH349R5"
-    ENV['FASTLANE_PASSWORD'] = ENV['INHOUSE_FASTLANE_PASSWORD']
-end
-
-for_lane "release" do
-    app_identifier "com.tignum.qot.novartis"
-    apple_id "app.development@tignum.com"
-    team_id "4FQQH349R5"
-    ENV['FASTLANE_PASSWORD'] = ENV['INHOUSE_FASTLANE_PASSWORD']
-end
-
-for_lane "novartis" do
-    app_identifier "com.tignum.qot.novartis"
-    apple_id "app.development@tignum.com"
-    team_id "4FQQH349R5"
-    ENV['FASTLANE_PASSWORD'] = ENV['INHOUSE_FASTLANE_PASSWORD']
-end
-
-for_lane "app_store" do
-    app_identifier "com.tignum.qot.v2"
-    apple_id "berlin.development@tignum.com"
-    team_id "TFH2SGDX62"
-    ENV['FASTLANE_PASSWORD'] = ENV['APPSTORE_FASTLANE_PASSWORD']
+for_platform :ios do 
+    for_lane :beta do
+        app_identifier "com.tignum.qot.novartis"
+        apple_id "app.development@tignum.com"
+        team_id "4FQQH349R5"
+        ENV['FASTLANE_PASSWORD'] = ENV['INHOUSE_FASTLANE_PASSWORD']
+    end
+    
+    for_lane :release do
+        app_identifier "com.tignum.qot.novartis"
+        apple_id "app.development@tignum.com"
+        team_id "4FQQH349R5"
+        ENV['FASTLANE_PASSWORD'] = ENV['INHOUSE_FASTLANE_PASSWORD']
+    end
+    
+    for_lane :novartis do
+        app_identifier "com.tignum.qot.novartis"
+        apple_id "app.development@tignum.com"
+        team_id "4FQQH349R5"
+        ENV['FASTLANE_PASSWORD'] = ENV['INHOUSE_FASTLANE_PASSWORD']
+    end
+    
+    for_lane :app_store do
+        app_identifier "com.tignum.qot.v2"
+        apple_id "berlin.development@tignum.com"
+        team_id "TFH2SGDX62"
+        ENV['FASTLANE_PASSWORD'] = ENV['APPSTORE_FASTLANE_PASSWORD']
+    end
 end
