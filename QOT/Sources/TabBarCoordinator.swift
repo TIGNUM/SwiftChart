@@ -84,7 +84,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
 
     private lazy var topTabBarControllerGuide: UINavigationController = {
         let viewModel = GuideModel()
-        let guideViewController = GuideViewController(viewModel: viewModel)
+        let guideViewController = GuideViewController(viewModel: viewModel, fadeMaskLocation: .topAndBottom)
         guideViewController.title = "GUIDE"
         let topTabBarController = UINavigationController(withPages: [guideViewController],
                                                          rightButton: sidebarMenuButton)

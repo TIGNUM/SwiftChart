@@ -15,18 +15,23 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
     // MARK: - Properties
 
     private let viewModel: GuideModel
+    private let headerRatio: CGFloat = 0.8957219251
+    private let fadeMaskLocation: UIView.FadeMaskLocation
 
     private lazy var tableView: UITableView = {
-        return UITableView(estimatedRowHeight: 100,
+        return UITableView(contentInsets: UIEdgeInsets(top: -8, left: 0, bottom: 0, right: 0),
+                           estimatedRowHeight: 100,
                            delegate: self,
                            dataSource: self,
-                           dequeables: GuideTableViewCell.self)
+                           dequeables: GuideTableViewCell.self,
+                                       GuideHeaderTableViewCell.self)
     }()
 
     // MARK: - Init
 
-    init(viewModel: GuideModel) {
+    init(viewModel: GuideModel, fadeMaskLocation: UIView.FadeMaskLocation) {
         self.viewModel = viewModel
+        self.fadeMaskLocation = fadeMaskLocation
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -50,11 +55,12 @@ private extension GuideViewController {
 
     func setupView() {
         view.addSubview(tableView)
-        tableView.topAnchor == view.topAnchor + UIApplication.shared.statusBarFrame.height
+        tableView.topAnchor == view.topAnchor - UIApplication.shared.statusBarFrame.height
         tableView.bottomAnchor == view.bottomAnchor
         tableView.leftAnchor == view.leftAnchor
         tableView.rightAnchor == view.rightAnchor
         tableView.backgroundColor = .pineGreen
+        view.setFadeMask(at: fadeMaskLocation)
     }
 }
 
@@ -67,10 +73,18 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Int(arc4random_uniform(20))
+        return section == 0 ? 1 : Int(arc4random_uniform(20))
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 && indexPath.row == 0 {
+            let cell: GuideHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(message: "Hi Jogi\nLorem ipsum texh here here there text copy start",
+                           timing: "Plan timing 24 minutes")
+
+            return cell
+        }
+
         let cell: GuideTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(title: LoremIpsum.title(),
                        content: LoremIpsum.sentence(),
@@ -81,17 +95,22 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return (indexPath.section == 0 && indexPath.row == 0) ? (view.bounds.width * headerRatio) : UITableViewAutomaticDimension
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView(frame: CGRect(x: 30, y: 0, width: tableView.bounds.width, height: 20))
+        guard section != 0 else { return nil }
+        let view = UIView(frame: CGRect(x: 30, y: 0, width: tableView.bounds.width, height: 64))
         let label = UILabel(frame: view.frame)
-        let headline = String(format: ".0000%d PLAN", section + 1)
+        let headline = String(format: ".0000%d PLAN", section)
         view.addSubview(label)
         view.backgroundColor = .pineGreen
         label.attributedText = Style.navigationTitle(headline, .white40).attributedString()
 
         return view
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return section == 0 ? 0 : 64
     }
 }
