@@ -89,7 +89,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configure(title: LoremIpsum.title(),
                        content: LoremIpsum.sentence(),
                        type: LoremIpsum.word(),
-                       status: .todo)
+                       status: indexPath.row % 2 == 0 ? .todo : .done)
 
         return cell
     }
