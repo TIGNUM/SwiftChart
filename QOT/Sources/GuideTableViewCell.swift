@@ -22,7 +22,6 @@ final class GuideTableViewCell: UITableViewCell, Dequeueable {
         setupStatusView()
         containerView.layer.cornerRadius = 8
         containerView.layer.masksToBounds = true
-        containerView.backgroundColor = Color.Guide.cardBackground
     }
 
     func configure(title: String, content: String, type: String, status: GuideModel.Status) {
@@ -41,7 +40,8 @@ final class GuideTableViewCell: UITableViewCell, Dequeueable {
                                                      font: Font.H7Tag,
                                                      textColor: .white40,
                                                      alignment: .left)
-        statusView.backgroundColor = status.color
+        statusView.backgroundColor = status.statusViewColor
+        containerView.backgroundColor = status.cardColor
     }
 }
 

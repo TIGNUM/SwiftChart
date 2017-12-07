@@ -990,16 +990,16 @@
 			isa = PBXGroup;
 			children = (
 				362632481FD6F72C0024C626 /* GuideConfigurator.swift */,
+				36939B861FD84E4C00A9DECF /* GuideHeaderTableViewCell.swift */,
 				3626324A1FD6F73D0024C626 /* GuideInteractor.swift */,
+				36328F211FCEB92C004E9034 /* GuideModel.swift */,
 				3626324C1FD6F7520024C626 /* GuidePresenter.swift */,
 				362632501FD6F7720024C626 /* GuideRouter.swift */,
 				362632461FD6A4210024C626 /* GuideTableViewCell.swift */,
 				36328F1F1FCEB90B004E9034 /* GuideViewController.swift */,
-				36328F211FCEB92C004E9034 /* GuideModel.swift */,
 				3626324E1FD6F7650024C626 /* GuideWorker.swift */,
-				362632441FD6A2710024C626 /* GuideTableViewCell.xib */,
-				36939B861FD84E4C00A9DECF /* GuideHeaderTableViewCell.swift */,
 				36939B871FD84E4C00A9DECF /* GuideHeaderTableViewCell.xib */,
+				362632441FD6A2710024C626 /* GuideTableViewCell.xib */,
 			);
 			name = Guide;
 			sourceTree = "<group>";

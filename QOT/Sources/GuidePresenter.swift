@@ -29,7 +29,7 @@ final class GuidePresenter: GuidePresenterInput {
         let viewModel = GuideModel.ViewModel(title: "Morning InterView",
                                              content: "Some content",
                                              type: "Morning InterView",
-                                             status: .open,
+                                             status: .todo,
                                              plan: ".0001 plan")
         output.successFetchedItems(viewModel: viewModel)
     }

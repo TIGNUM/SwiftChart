@@ -12,13 +12,40 @@ import UIKit
 struct GuideModel {
 
     enum Status {
-        case open
+        case todo
         case done
 
-        var color: UIColor {
+        var cardColor: UIColor {
             switch self {
-            case .done: return .lightGray
-            case .open: return .white
+            case .done: return .charcoalGreyDark
+            case .todo: return .charcoalGrey
+            }
+        }
+
+        var statusViewColor: UIColor {
+            switch self {
+            case .done: return .charcoalGreyMedium
+            case .todo: return .white
+            }
+        }
+    }
+
+    enum GuideType {
+        case newFeature
+        case featureExplainer
+        case tignumExplainer
+        case morningInterview
+        case strategy
+        case notification
+
+        var title: String {
+            switch self {
+            case .newFeature: return "New Feature"
+            case .featureExplainer: return "Feature Explainer"
+            case .tignumExplainer: return "Tignum System"
+            case .morningInterview: return "Morning Interview"
+            case .strategy: return "55 Strategies"
+            case .notification: return "Notification"
             }
         }
     }

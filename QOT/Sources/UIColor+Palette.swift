@@ -25,10 +25,6 @@ extension UIColor {
         return UIColor(red: 0, green: 45/255, blue: 78/255, alpha: 0.2)
     }
 
-    class var pineGreen: UIColor {
-        return UIColor(red: 7/255, green: 24/255, blue: 37/255, alpha: 1)
-    }
-
     /// UIColor(white: 91/255, alpha: 1)
     class var brownishGrey: UIColor {
         return UIColor(white: 91/255, alpha: 1)
@@ -163,6 +159,27 @@ extension UIColor {
     class var whiteLight40: UIColor {
         return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.4)
     }
+
+    ///  UIColor(red: 7/255, green: 24/255, blue: 37/255, alpha: 1)
+    class var pineGreen: UIColor {
+        return UIColor(red: 7/255, green: 24/255, blue: 37/255, alpha: 1)
+    }
+
+    /// UIColor(red: 67/255, green: 68/255, blue: 73/255, alpha: 1)
+    class var charcoalGrey: UIColor {
+        return UIColor(red: 67/255, green: 68/255, blue: 73/255, alpha: 1)
+    }
+
+    /// UIColor(red: 53/255, green: 55/255, blue: 61/255, alpha: 1)
+    class var charcoalGreyDark: UIColor {
+        return UIColor(red: 53/255, green: 55/255, blue: 61/255, alpha: 1)
+    }
+
+    /// UIColor(red: 86/255, green: 90/255, blue: 94/255, alpha: 1)
+    class var charcoalGreyMedium: UIColor {
+        return UIColor(red: 86/255, green: 90/255, blue: 94/255, alpha: 1)
+    }
+
 
     static var random: UIColor {
         return UIColor(red: randomNumber, green: randomNumber, blue: randomNumber, alpha: 1.0)
