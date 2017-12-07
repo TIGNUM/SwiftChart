@@ -47,9 +47,9 @@ class MyToBeVisionViewController: UIViewController {
 
     // MARK: - Init
 
-    init(viewModel: MyToBeVisionViewModel, permissionHandler: PermissionHandler) {
+    init(viewModel: MyToBeVisionViewModel, permissionsManager: PermissionsManager) {
         self.viewModel = viewModel
-        imagePickerController = ImagePickerController(cropShape: .circle, imageQuality: .low, imageSize: .small, permissionHandler: permissionHandler)
+        imagePickerController = ImagePickerController(cropShape: .circle, imageQuality: .low, imageSize: .small, permissionsManager: permissionsManager)
 
         super.init(nibName: nil, bundle: nil)
 

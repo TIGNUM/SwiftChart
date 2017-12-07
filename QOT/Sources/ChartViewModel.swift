@@ -21,14 +21,16 @@ final class ChartViewModel {
     let updates = PublishSubject<CollectionUpdate, NoError>()
     private let charts: [[Statistics]]
     private let services: Services
+    private let permissionsManager: PermissionsManager
     let allCharts: [Statistics]
     var sortedSections = [StatisticsSectionType]()
-    var calandarAccessGranted = true
+    var calandarAccessGranted = false
 
     // MARK: - Init
 
-    init(services: Services, startingSection: StatisticsSectionType) throws {
+    init(services: Services, permissionsManager: PermissionsManager, startingSection: StatisticsSectionType) throws {
         self.services = services
+        self.permissionsManager = permissionsManager
         do {
             self.charts = try services.statisticsService.charts()
             self.allCharts = self.charts.flatMap { $0 }
@@ -114,8 +116,9 @@ private extension ChartViewModel {
     }
 
     private func askPermissionForCalendar() {
-        PermissionHandler().askPermissionForCalendar { (granted: Bool) in
-            self.calandarAccessGranted = granted
+        permissionsManager.askPermission(for: [.calendar]) { status in
+            guard let status = status[.calendar] else { return }
+            self.calandarAccessGranted = status == .granted
         }
     }
 }

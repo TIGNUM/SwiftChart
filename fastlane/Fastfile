@@ -123,7 +123,10 @@ platform :ios do
     )
 
     # Upload to testflight
-    testflight(skip_submission: true)
+    testflight(
+      skip_submission: true, 
+      skip_waiting_for_build_processing: true
+    )
 
     # Release to hockey app
     hockey(api_token: ENV["APP_STORE_HOCKEYAPP_API_TOKEN"])

@@ -49,12 +49,12 @@ Build and deploy to AWS S3 and hockey
 ```
 fastlane ios novartis
 ```
-Build version for novartis
+Build and deploy to hockey for Novartis
 ### ios app_store
 ```
 fastlane ios app_store
 ```
-Build version for App Store
+Build and deploy to App Store
 
 ----
 

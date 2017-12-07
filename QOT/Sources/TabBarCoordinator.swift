@@ -20,7 +20,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     private let services: Services
     private let eventTracker: EventTracker
     private let selectedIndex: Observable<Index>
-    private let permissionHandler: PermissionHandler
+    private let permissionsManager: PermissionsManager
     private let pageTracker: PageTracker
     private let networkManager: NetworkManager
     private let syncManager: SyncManager
@@ -32,7 +32,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     lazy var prepareCoordinator: PrepareCoordinator = {
         return PrepareCoordinator(services: self.services,
                                   eventTracker: self.eventTracker,
-                                  permissionHandler: self.permissionHandler,
+                                  permissionsManager: self.permissionsManager,
                                   tabBarController: self.tabBarController,
                                   topTabBarController: self.topTabBarControllerPrepare,
                                   chatViewController: self.prepareChatViewController,
@@ -151,7 +151,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
          selectedIndex: Index,
          services: Services,
          eventTracker: EventTracker,
-         permissionHandler: PermissionHandler,
+         permissionsManager: PermissionsManager,
          pageTracker: PageTracker,
          syncManager: SyncManager,
          networkManager: NetworkManager) {
@@ -159,7 +159,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         self.services = services
         self.eventTracker = eventTracker
         self.selectedIndex = Observable(selectedIndex)
-        self.permissionHandler = permissionHandler
+        self.permissionsManager = permissionsManager
         self.pageTracker = pageTracker
         self.syncManager = syncManager
         self.networkManager = networkManager
@@ -265,7 +265,8 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
         let coordinator = StatisticsCoordinator(root: topTabBarControllerMe,
                                                 services: services,
                                                 transitioningDelegate: transitioningDelegate,
-                                                startingSection: startingSection)
+                                                startingSection: startingSection,
+                                                permissionsManager: permissionsManager)
         startChild(child: coordinator)
     }
 
@@ -273,7 +274,8 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
         let transitioningDelegate = MyToBeVisionAnimator()
         let coordinator = MyToBeVisionCoordinator(root: topTabBarControllerMe,
                                                   transitioningDelegate: transitioningDelegate,
-                                                  services: services, permissionHandler: permissionHandler)
+                                                  services: services,
+                                                  permissionsManager: permissionsManager)
         startChild(child: coordinator)
     }
 
@@ -292,7 +294,7 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
                                               services: services,
                                               transitioningDelegate: transitioningDelegate,
                                               selectedIndex: selectedIndex,
-                                              permissionHandler: permissionHandler)
+                                              permissionsManager: permissionsManager)
         startChild(child: coordinator)
     }
 }
@@ -346,7 +348,8 @@ extension TabBarCoordinator: TopNavigationBarDelegate {
         let coordinator = SidebarCoordinator(root: tabBarController,
                                              services: services,
                                              syncManager: syncManager,
-                                             networkManager: networkManager)
+                                             networkManager: networkManager,
+                                             permissionsManager: permissionsManager)
         startChild(child: coordinator)
     }
 }

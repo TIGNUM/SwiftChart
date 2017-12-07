@@ -24,31 +24,24 @@ final class SettingsCoordinator: ParentCoordinator {
 
     private let services: Services
     private let settingsViewController: SettingsViewController
-    private let permissionHandler = PermissionHandler()
-    private var calandarAccessGranted = true
+    private let permissionsManager: PermissionsManager
     private let rootViewController: UIViewController
     private let networkManager: NetworkManager
     private let syncManager: SyncManager
     var children = [Coordinator]()
     let settingsType: SettingsType.SectionType
 
-    init?(root: SettingsMenuViewController, services: Services, settingsType: SettingsType.SectionType, syncManager: SyncManager, networkManager: NetworkManager) {
+    init?(root: SettingsMenuViewController, services: Services, settingsType: SettingsType.SectionType, syncManager: SyncManager, networkManager: NetworkManager, permissionsManager: PermissionsManager) {
         guard let viewModel = SettingsViewModel(services: services, settingsType: settingsType) else { return nil }
         self.rootViewController = root
         self.services = services
         self.settingsType = settingsType
         self.networkManager = networkManager
         self.syncManager = syncManager
+        self.permissionsManager = permissionsManager
         settingsViewController = SettingsViewController(viewModel: viewModel, services: services, settingsType: settingsType)
         settingsViewController.title = settingsType.title.uppercased()
         settingsViewController.delegate = self
-        askPermissionForCalendar()
-    }
-
-    private func askPermissionForCalendar() {
-        PermissionHandler().askPermissionForCalendar { (granted: Bool) in
-            self.calandarAccessGranted = granted
-        }
     }
 
     func start() {
@@ -61,15 +54,22 @@ final class SettingsCoordinator: ParentCoordinator {
 extension SettingsCoordinator: SettingsCoordinatorDelegate {
 
     func openCalendarListViewController(settingsViewController: SettingsViewController) {
-        switch calandarAccessGranted {
-        case true:
-            let coordinator = SettingsCalendarListCoordinator(root: settingsViewController, services: self.services)
-            self.startChild(child: coordinator)
-        case false:
-            settingsViewController.showAlert(type: .settingsCalendars, handler: {
-                UIApplication.openAppSettings()
-            }, handlerDestructive: nil)
-        }
+        permissionsManager.askPermission(for: [.calendar], completion: { [unowned self] status in
+            guard let status = status[.calendar] else { return }
+
+            switch status {
+            case .granted:
+                let coordinator = SettingsCalendarListCoordinator(root: settingsViewController, services: self.services)
+                self.startChild(child: coordinator)
+            case .denied:
+                settingsViewController.showAlert(type: .settingsCalendars, handler: {
+                    UIApplication.openAppSettings()
+                }, handlerDestructive: nil)
+            case .later:
+                self.permissionsManager.updateAskStatus(.canAsk, for: .calendar)
+                self.openCalendarListViewController(settingsViewController: settingsViewController)
+            }
+        })
     }
 
     func openChangePasswordViewController(settingsViewController: SettingsViewController) {

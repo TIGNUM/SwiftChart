@@ -14,7 +14,7 @@ import UserNotifications
 import AirshipKit
 import Crashlytics
 
-final class AppCoordinator: ParentCoordinator {
+final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
     // MARK: - Properties
 
@@ -25,7 +25,7 @@ final class AppCoordinator: ParentCoordinator {
     private let windowManager: WindowManager
     private let remoteNotificationHandler: RemoteNotificationHandler
     private var services: Services?
-    private lazy var permissionHandler: PermissionHandler = PermissionHandler()
+    private lazy var permissionsManager: PermissionsManager = PermissionsManager(delegate: self)
     private lazy var networkManager: NetworkManager = NetworkManager(delegate: self, credentialsManager: self.credentialsManager)
     private lazy var credentialsManager: CredentialsManager = CredentialsManager.shared
     private var canProcessRemoteNotifications = false
@@ -137,6 +137,9 @@ final class AppCoordinator: ParentCoordinator {
                     let services = try Services()
                     self.services = services
 
+                    // Setup AppState
+                    self.appState.services = services
+
                     // Create missing database objects
                     if services.userService.myToBeVision() == nil {
                         let realm = try RealmProvider().realm()
@@ -155,7 +158,7 @@ final class AppCoordinator: ParentCoordinator {
 
                     self.registerRemoteNotifications()
                     self.calendarImportManager.importEvents()
-                    self.startTabBarCoordinator(services: services, permissionHandler: self.permissionHandler)
+                    self.startTabBarCoordinator(services: services, permissionsManager: self.permissionsManager)
                     self.canProcessRemoteNotifications = true
                     self.remoteNotificationHandler.processOutstandingNotifications()
                 } catch {
@@ -168,6 +171,9 @@ final class AppCoordinator: ParentCoordinator {
 
     func appDidBecomeActive() {
         services?.userService.updateTimeZone()
+        permissionsManager.fetchHasUpdates { [unowned self] hasUpdates in
+            self.reportPermissions(self.permissionsManager.allPermissions)
+        }
     }
 
     func dismiss(_ viewController: UIViewController, level: WindowManager.Level) {
@@ -212,18 +218,19 @@ private extension AppCoordinator {
     }
 
     func registerRemoteNotifications() {
-        permissionHandler.askPermissionForRemoteNotifications { (granted: Bool) in
-            UAirship.push().userPushNotificationsEnabled = granted
+        permissionsManager.askPermission(for: [.remoteNotification]) { status in
+            guard let status = status[.remoteNotification] else { return }
+            UAirship.push().userPushNotificationsEnabled = status == .granted
         }
     }
 
-    func startTabBarCoordinator(services: Services, permissionHandler: PermissionHandler) {
+    func startTabBarCoordinator(services: Services, permissionsManager: PermissionsManager) {
         let selectedIndex = checkListIDToPresent != nil ? 2 : 0
         let coordinator = TabBarCoordinator(windowManager: windowManager,
                                             selectedIndex: selectedIndex,
                                             services: services,
                                             eventTracker: eventTracker,
-                                            permissionHandler: permissionHandler,
+                                            permissionsManager: permissionsManager,
                                             pageTracker: pageTracker,
                                             syncManager: syncManager,
                                             networkManager: networkManager)
@@ -303,7 +310,7 @@ extension AppCoordinator {
     func presentToBeVision() {
         guard let services = services else { return }
         let viewModel = MyToBeVisionViewModel(services: services)
-        let myToBeVisionViewController = MyToBeVisionViewController(viewModel: viewModel, permissionHandler: permissionHandler)
+        let myToBeVisionViewController = MyToBeVisionViewController(viewModel: viewModel, permissionsManager: permissionsManager)
         myToBeVisionViewController.delegate = self
         windowManager.showPriority(myToBeVisionViewController, animated: true, completion: nil)
         currentPresentedController = myToBeVisionViewController
@@ -398,7 +405,7 @@ extension AppCoordinator {
 
     func showOnboarding() {
         let userName = services?.userService.user()?.givenName ?? ""
-        let coordinator = OnboardingCoordinator(windowManager: windowManager, delegate: self, permissionHandler: permissionHandler, userName: userName)
+        let coordinator = OnboardingCoordinator(windowManager: windowManager, delegate: self, permissionsManager: permissionsManager, userName: userName)
         startChild(child: coordinator)
     }
 
@@ -408,6 +415,7 @@ extension AppCoordinator {
     }
 
     func logout() {
+        permissionsManager.reset()
         credentialsManager.clear()
         baseURL = URL(string: "https://esb.tignum.com")!
         do {
@@ -448,11 +456,10 @@ extension AppCoordinator: TopNavigationBarDelegate {
 extension AppCoordinator: CalendarImportMangerDelegate {
 
     func eventStoreAuthorizationRequired(for mangager: CalendarImportManger, currentStatus: EKAuthorizationStatus) {
-        permissionHandler.askPermissionForCalendar { (granted: Bool) in
-            if granted == true {
+        permissionsManager.askPermission(for: [.calendar]) { status in
+            guard let status = status[.calendar] else { return }
+            if status == .granted {
                 mangager.importEvents()
-            } else {
-                // FIXME: Handle error
             }
         }
     }
@@ -567,5 +574,29 @@ extension AppCoordinator: MyToBeVisionViewControllerDelegate {
 
     func didTapClose(in viewController: MyToBeVisionViewController) {
         dismiss(viewController, level: .priority)
+    }
+}
+
+// MARK: - PermissionDelegate
+
+extension AppCoordinator: PermissionManagerDelegate {
+    func permissionManager(_ manager: PermissionsManager, didUpdatePermissions permissions: [PermissionsManager.Permission]) {
+        reportPermissions(permissions)
+    }
+
+    private func reportPermissions(_ permissions: [PermissionsManager.Permission]) {
+        permissionsManager.serializedJSONData(for: permissions) { [unowned self] data in
+            guard let data = data else {
+                assertionFailure("couldn't generate permissions json data")
+                return
+            }
+            self.networkManager.performDevicePermissionsRequest(with: data, completion: { error in
+                if let error = error {
+                    log("failed to report permissions: \(error.localizedDescription)")
+                } else {
+                    log("successfully reported permissions: \(permissions.map({ $0.identifier }))")
+                }
+            })
+        }
     }
 }
