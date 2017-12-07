@@ -205,3 +205,15 @@ extension UIView {
         return shapeLayer
     }
 }
+
+extension UIView {
+
+    func maskPathByRoundingCorners() {
+        let maskPath = UIBezierPath(roundedRect: self.bounds,
+                                    byRoundingCorners: [.bottomLeft, .bottomRight, .topLeft, .topRight],
+                                    cornerRadii: CGSize(width: 10.0, height: 10.0))
+        let shape = CAShapeLayer()
+        shape.path = maskPath.cgPath
+        self.layer.mask = shape
+    }
+}

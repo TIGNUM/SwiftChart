@@ -24,7 +24,8 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
                            delegate: self,
                            dataSource: self,
                            dequeables: GuideTableViewCell.self,
-                                       GuideHeaderTableViewCell.self)
+                                       GuideHeaderTableViewCell.self,
+                                       GuideDailyPrepTableViewCell.self)
     }()
 
     // MARK: - Init
@@ -73,7 +74,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? 1 : Int(arc4random_uniform(20))
+        return section == 0 ? 1 : Int(arc4random_uniform(20)) + 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -81,6 +82,24 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
             let cell: GuideHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(message: "Hi Jogi\nLorem ipsum texh here here there text copy start",
                            timing: "Plan timing 24 minutes")
+
+            return cell
+        }
+
+        if indexPath.row == 0 {
+            let cell: GuideDailyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
+            let dailyPrepResults: [[String: Any?]] = [["value": "5", "color": UIColor.white, "title": "Sleep\nQuality"],
+                                                     ["value": "2", "color": UIColor.white, "title": "Sleep\nQuantity"],
+                                                     ["value": "8", "color": UIColor.cherryRed, "title": "Load\nIndex"],
+                                                     ["value": "2", "color": UIColor.white, "title": "Pressure\nIndex"],
+                                                     ["value": "7", "color": UIColor.cherryRed, "title": "Workday\nLength"]]
+            let dailyPrepToDo: [[String: Any?]] = [["value": nil, "color": nil, "title": "Sleep\nQuality"],
+                                                   ["value": nil, "color": nil, "title": "Sleep\nQuantity"],
+                                                   ["value": nil, "color": nil, "title": "Load\nIndex"],
+                                                   ["value": nil, "color": nil, "title": "Pressure\nIndex"],
+                                                   ["value": nil, "color": nil, "title": "Workday\nLength"]]
+            let dailyPrep = indexPath.section % 2 == 0 ? dailyPrepResults : dailyPrepToDo
+            cell.configure(dailyPrepResults: dailyPrep, status: indexPath.row % 2 == 0 ? .todo : .done)
 
             return cell
         }

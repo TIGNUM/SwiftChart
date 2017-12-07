@@ -19,7 +19,7 @@ final class GuideTableViewCell: UITableViewCell, Dequeueable {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        setupStatusView()
+        statusView.maskPathByRoundingCorners()
         containerView.layer.cornerRadius = 8
         containerView.layer.masksToBounds = true
     }
@@ -48,15 +48,6 @@ final class GuideTableViewCell: UITableViewCell, Dequeueable {
 // MARK: - Private
 
 private extension GuideTableViewCell {
-
-    func setupStatusView() {
-        let maskPath = UIBezierPath(roundedRect: statusView.bounds,
-                                    byRoundingCorners: [.bottomLeft, .bottomRight, .topLeft, .topRight],
-                                    cornerRadii: CGSize(width: 10.0, height: 10.0))
-        let shape = CAShapeLayer()
-        shape.path = maskPath.cgPath
-        statusView.layer.mask = shape
-    }
 
     func attributedText(letterSpacing: CGFloat = 2,
                         text: String,
