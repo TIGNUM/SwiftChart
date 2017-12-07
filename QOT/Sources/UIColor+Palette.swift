@@ -80,9 +80,19 @@ extension UIColor {
         return UIColor(red: 3/255, green: 6/255, blue: 15/255, alpha: 1)
     }
 
-    /// UIColor(white: 255/255, alpha: 0.14)
+    /// UIColor(white: 1, alpha: 0.6)
+    class var whiteLight6: UIColor {
+        return UIColor(white: 1, alpha: 0.06)
+    }
+
+    /// UIColor(white: 1, alpha: 0.12)
+    class var whiteLight12: UIColor {
+        return UIColor(white: 1, alpha: 0.12)
+    }
+
+    /// UIColor(white: 1, alpha: 0.14)
     class var whiteLight14: UIColor {
-        return UIColor(white: 255/255, alpha: 0.14)
+        return UIColor(white: 1, alpha: 0.14)
     }
 
     /// UIColor(white: 255/255, alpha: 0.2)
@@ -175,11 +185,10 @@ extension UIColor {
         return UIColor(red: 53/255, green: 55/255, blue: 61/255, alpha: 1)
     }
 
-    /// UIColor(red: 86/255, green: 90/255, blue: 94/255, alpha: 1)
+    /// UIColor(red: 85/255, green: 90/255, blue: 94/255, alpha: 1)
     class var charcoalGreyMedium: UIColor {
-        return UIColor(red: 86/255, green: 90/255, blue: 94/255, alpha: 1)
+        return UIColor(red: 85/255, green: 90/255, blue: 94/255, alpha: 1)
     }
-
 
     static var random: UIColor {
         return UIColor(red: randomNumber, green: randomNumber, blue: randomNumber, alpha: 1.0)

@@ -17,8 +17,8 @@ struct GuideModel {
 
         var cardColor: UIColor {
             switch self {
-            case .done: return .charcoalGreyDark
-            case .todo: return .charcoalGrey
+            case .done: return .whiteLight6
+            case .todo: return .whiteLight12
             }
         }
 
