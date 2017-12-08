@@ -29,6 +29,7 @@
 		362632511FD6F7720024C626 /* GuideRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362632501FD6F7720024C626 /* GuideRouter.swift */; };
 		36328F201FCEB90B004E9034 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36328F1F1FCEB90B004E9034 /* GuideViewController.swift */; };
 		36328F221FCEB92C004E9034 /* GuideModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36328F211FCEB92C004E9034 /* GuideModel.swift */; };
+		365E98C31FD9A31000248361 /* CLTypingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365E98C21FD9A31000248361 /* CLTypingLabel.swift */; };
 		36927FC41FA7960400EC9B88 /* SettingsAdmin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36927FC31FA7960400EC9B88 /* SettingsAdmin.storyboard */; };
 		36939B881FD84E4C00A9DECF /* GuideHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36939B861FD84E4C00A9DECF /* GuideHeaderTableViewCell.swift */; };
 		36939B891FD84E4C00A9DECF /* GuideHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36939B871FD84E4C00A9DECF /* GuideHeaderTableViewCell.xib */; };
@@ -515,6 +516,7 @@
 		362632501FD6F7720024C626 /* GuideRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideRouter.swift; sourceTree = "<group>"; };
 		36328F1F1FCEB90B004E9034 /* GuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
 		36328F211FCEB92C004E9034 /* GuideModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideModel.swift; sourceTree = "<group>"; };
+		365E98C21FD9A31000248361 /* CLTypingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLTypingLabel.swift; sourceTree = "<group>"; };
 		36927FC31FA7960400EC9B88 /* SettingsAdmin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsAdmin.storyboard; sourceTree = "<group>"; };
 		36939B861FD84E4C00A9DECF /* GuideHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		36939B871FD84E4C00A9DECF /* GuideHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideHeaderTableViewCell.xib; sourceTree = "<group>"; };
@@ -1022,6 +1024,14 @@
 				362632441FD6A2710024C626 /* GuideTableViewCell.xib */,
 			);
 			name = Guide;
+			sourceTree = "<group>";
+		};
+		365E98C41FD9A55900248361 /* CLTypingLabel */ = {
+			isa = PBXGroup;
+			children = (
+				365E98C21FD9A31000248361 /* CLTypingLabel.swift */,
+			);
+			name = CLTypingLabel;
 			sourceTree = "<group>";
 		};
 		36DADE771FA7869000EB00D4 /* SettingsAdmin */ = {
@@ -2306,6 +2316,7 @@
 				7FB172A31FA1E6D100112C69 /* MyToBeVision */,
 				7FB1729E1FA092C400112C69 /* ContentList */,
 				7FB1729D1FA0929200112C69 /* ContentItem */,
+				365E98C41FD9A55900248361 /* CLTypingLabel */,
 			);
 			name = Animation;
 			sourceTree = "<group>";
@@ -2866,6 +2877,7 @@
 				CBC1DC301F0FD0CB00F6D056 /* AnswerDecision+Convenience.swift in Sources */,
 				CC7D21A61EFBF52A007A062E /* ArticleItemViewModel.swift in Sources */,
 				7F8DB4AC1FA2047D00DFE006 /* PartnersAnimator.swift in Sources */,
+				365E98C31FD9A31000248361 /* CLTypingLabel.swift in Sources */,
 				CBC1DC391F14D9ED00F6D056 /* UserSetting.swift in Sources */,
 				CC143A511EC495CE001FB76E /* StatisticsCoordinator.swift in Sources */,
 				CB0A4A5A1ECC4C3E006A2D85 /* AddSensorViewModel.swift in Sources */,

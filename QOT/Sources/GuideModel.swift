@@ -57,7 +57,7 @@ struct GuideModel {
     struct ViewModel {
         var title: String?
         var content: String?
-        var type: String?
+        var type: GuideType
         var status: Status
         var plan: String?
     }
