@@ -208,7 +208,7 @@ private extension MorningInterviewViewController {
     }
 
     func setupLayout() {
-        topView.topAnchor == view.topAnchor + 24
+        topView.topAnchor == view.safeTopAnchor + 24
         topView.horizontalAnchors == view.horizontalAnchors
         topView.heightAnchor == 30
 
