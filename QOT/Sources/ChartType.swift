@@ -33,6 +33,39 @@ enum ChartType: String, EnumCollection {
     case intensityRecoveryWeek = "intensity.recovery.week"
     case intensityRecoveryMonth = "intensity.recovery.month"
 
+    var isBodyBrain: Bool {
+        switch self {
+        case .meetingAverageDay,
+             .meetingAverageWeek,
+             .meetingLength,
+             .meetingTimeBetween:
+            return false
+        case .travelTripsAverageWeeks,
+             .travelTripsAverageYear,
+             .travelTripsNextFourWeeks,
+             .travelTripsTimeZoneChangedWeeks,
+             .travelTripsTimeZoneChangedYear,
+             .travelTripsMaxTimeZone:
+            return false
+        case .peakPerformanceUpcomingWeek,
+             .peakPerformanceUpcomingNextWeek,
+             .peakPerformanceAverageWeek,
+             .peakPerformanceAverageMonth:
+            return false
+        case .sleepQuantity,
+             .sleepQuality:
+            return true
+        case .activitySittingMovementRatio,
+             .activityLevel:
+            return true
+        case .intensityLoadWeek,
+             .intensityLoadMonth,
+             .intensityRecoveryWeek,
+             .intensityRecoveryMonth:
+            return false
+        }
+    }
+
     var labels: [String] {
         switch self {
         case .activityLevel,

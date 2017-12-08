@@ -2,161 +2,111 @@
 //  MyUniverseViewController.swift
 //  QOT
 //
-//  Created by karmic on 22/03/2017.
+//  Created by Lee Arromba on 29/11/2017.
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
 import UIKit
-import ReactiveKit
 import Anchorage
+import Kingfisher
 
 protocol MyUniverseViewControllerDelegate: class {
-
-    func didTapSector(startingSection: StatisticsSectionType?, in viewController: MyUniverseViewController)
-
-    func didTapMyToBeVision(from view: UIView, in viewController: MyUniverseViewController)
-
-    func didTapWeeklyChoices(from view: UIView, in viewController: MyUniverseViewController)
-
-    func didTapQOTPartner(selectedIndex: Index, from view: UIView, in viewController: MyUniverseViewController)
-
-    func didTapRightBarButton(_ button: UIBarButtonItem, from topNavigationBar: TopNavigationBar, in viewController: MyUniverseViewController)
+    func myUniverseViewController(_ viewController: MyUniverseViewController, didTap sector: StatisticsSectionType)
+    func myUniverseViewControllerDidTapVision(_ viewController: MyUniverseViewController)
+    func myUniverseViewController(_ viewController: MyUniverseViewController, didTapWeeklyChoiceAt index: Index)
+    func myUniverseViewController(_ viewController: MyUniverseViewController, didTapQOTPartnerAt index: Index)
+    func myUniverseViewController(_ viewController: MyUniverseViewController,
+                                  didTapRightBarButtonItem buttonItem: UIBarButtonItem,
+                                  in topNavigationBar: TopNavigationBar)
 }
 
-protocol MyWhyViewDelegate: class {
+extension MyUniverseViewController {
+    struct Page {
+        let pageName: PageName
+        let pageTitle: String
+        let widthPercentage: CGFloat
 
-    func didTapMyToBeVision(from view: UIView)
+        static let myDataPage = MyUniverseViewController.Page(
+            pageName: .myData,
+            pageTitle: R.string.localized.topTabBarItemTitleMeMyData().uppercased(),
+            widthPercentage: 1.0
+        )
+        static let myWhyPage = MyUniverseViewController.Page(
+            pageName: .myWhy,
+            pageTitle: R.string.localized.topTabBarItemTitleMeMyWhy().uppercased(),
+            widthPercentage: 0.7
+        )
+    }
+    struct Config {
+        let pages: [Page]
+        let loadingText: String
+        let backgroundImage: UIImage?
+        let profileImagePlaceholder: UIImage?
+        let partnerImagePlaceholder: UIImage?
+        let partnersTitle: String
+        let weeklyChoicesTitle: String
+        let myToBeVisionTitle: String
 
-    func didTapWeeklyChoices(from view: UIView)
-
-    func didTapQOTPartner(selectedIndex: Index, from view: UIView)
+        static let `default` = Config(
+            pages: [Page.myDataPage, Page.myWhyPage],
+            loadingText: R.string.localized.meMyUniverseLoading(),
+            backgroundImage: R.image.backgroundMyUniverse(),
+            profileImagePlaceholder: R.image.universe_2state(),
+            partnerImagePlaceholder: nil,
+            partnersTitle: R.string.localized.meSectorMyWhyPartnersTitle().uppercased(),
+            weeklyChoicesTitle: R.string.localized.meSectorMyWhyWeeklyChoicesTitle().uppercased(),
+            myToBeVisionTitle: R.string.localized.meSectorMyWhyVisionTitle().uppercased()
+        )
+    }
 }
 
 final class MyUniverseViewController: UIViewController, FullScreenLoadable {
+    @IBOutlet private weak var topBar: TopNavigationBar!
+    @IBOutlet private weak var scrollView: UIScrollView!
+    private var config: Config
+    private let pageTracker: PageTracker
+    private var pageNumber: Int {
+        var pageNumber = 0
+        var pageOffset: CGFloat = 0
+        for (index, page) in config.pages.enumerated() {
+            if scrollView.contentOffset.x > pageOffset {
+                pageOffset += scrollView.frame.size.width * page.widthPercentage
+            } else {
+                pageNumber = index
+                break
+            }
+        }
+        return pageNumber
+    }
 
-    // MARK: - Properties
-
-    private let tokenBin = TokenBin()
-    private let viewModel: MyUniverseViewModel
-    private var lastContentOffset: CGFloat = 0
-    var pageName: PageName = .myData
+    let contentView: MyUniverseContentView = {
+        let nib = R.nib.myUniverseContentView()
+        guard let view = nib.instantiate(withOwner: nil, options: nil).first as? MyUniverseContentView else {
+            fatalError("error loading \(MyUniverseContentView.self)")
+        }
+        return view
+    }()
     weak var delegate: MyUniverseViewControllerDelegate?
-    let pageTracker: PageTracker
-
     var loadingView: BlurLoadingView?
     var isLoading: Bool = false {
         didSet {
-            showLoading(isLoading, text: R.string.localized.meMyUniverseLoading())
+            showLoading(isLoading, text: config.loadingText)
+        }
+    }
+    var pageName: PageName {
+        return config.pages[pageNumber].pageName
+    }
+    var viewData: MyUniverseViewData {
+        didSet {
+            guard view != nil else { return } // hacky check to see if view has loaded
+            reload()
         }
     }
 
-    private lazy var topBar: TopNavigationBar = {
-        let topBar = TopNavigationBar(frame: CGRect(
-            x: 0.0,
-            y: 20.0,
-            width: self.view.bounds.size.width,
-            height: 44.0
-        ))
-        topBar.items = [UINavigationItem()]
-        topBar.topNavigationBarDelegate = self
-        let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())
-        topBar.setRightButton(rightButton)
-        topBar.setMiddleButtons(self.middleButtons)
-
-        return topBar
-    }()
-
-    private lazy var middleButtons: [UIButton] = {
-        let myDataButton = UIButton(type: .custom)
-        myDataButton.setTitle(R.string.localized.topTabBarItemTitleMeMyData().uppercased(), for: .normal)
-        myDataButton.setTitleColor(.white, for: .selected)
-        myDataButton.setTitleColor(.gray, for: .normal)
-        myDataButton.titleLabel?.font = Font.H5SecondaryHeadline
-        myDataButton.backgroundColor = .clear
-
-        let myWhyButton = UIButton(type: .custom)
-        myWhyButton.setTitle(R.string.localized.topTabBarItemTitleMeMyWhy().uppercased(), for: .normal)
-        myWhyButton.setTitleColor(.white, for: .selected)
-        myWhyButton.setTitleColor(.gray, for: .normal)
-        myWhyButton.titleLabel?.font = Font.H5SecondaryHeadline
-        myWhyButton.backgroundColor = .clear
-
-        return [myDataButton, myWhyButton]
-    }()
-
-    lazy var myDataView: MyDataView = {
-        return MyDataView(
-            delegate: self,
-            viewModel: self.viewModel,
-            frame: CGRect(
-                x: self.view.bounds.origin.x,
-                y: 15.0,
-                width: self.view.bounds.width,
-                height: self.view.bounds.height - Layout.TabBarView.height
-            )
-        )
-    }()
-
-    lazy var myWhyView: MyWhyView = {
-        return MyWhyView(
-            frame: CGRect(
-                x: self.view.bounds.width,
-                y: self.view.bounds.origin.y,
-                width: self.view.bounds.width,
-                height: self.view.bounds.height
-            ),
-            screenType: self.screenType,
-            delegate: self,
-            viewModel: viewModel
-        )
-    }()
-
-    private lazy var myDataSectorLabelsView: MyDataSectorLabelsView = {
-        return MyDataSectorLabelsView(sectors: self.viewModel.sectors,
-                                      frame: myDataView.frame,
-                                      screenType: self.screenType)
-    }()
-
-    private lazy var scrollView: UIScrollView = {
-        let layout = Layout.MeSection(viewControllerFrame: self.view.bounds)
-        let contentScrollView = MyUniverseHelper.createScrollView(self.view.bounds, layout: layout)
-        contentScrollView.delegate = self
-        contentScrollView.isPagingEnabled = true
-        contentScrollView.contentInset = UIEdgeInsets(
-            top: self.topBar.bounds.size.height + 20.0,
-            left: contentScrollView.contentInset.left,
-            bottom: contentScrollView.contentInset.bottom,
-            right: contentScrollView.contentInset.right
-        )
-
-        return contentScrollView
-    }()
-
-    private lazy var backgroundScrollView: UIScrollView = {
-        let layout = Layout.MeSection(viewControllerFrame: self.view.bounds)
-        let backgroundScrollView = MyUniverseHelper.createScrollView(self.view.frame, layout: layout)
-        backgroundScrollView.isUserInteractionEnabled = false
-        backgroundScrollView.delegate = nil
-
-        return backgroundScrollView
-    }()
-
-    private lazy var backgroundImage: UIView = {
-        let frame = self.view.frame
-        let imageViewFrame = CGRect(x: 0, y: 0, width: frame.width * 2, height: frame.height)
-        let imageView = UIImageView(frame: imageViewFrame)
-        imageView.image = R.image.backgroundMyUniverse()
-        imageView.contentMode = .scaleAspectFill
-
-        return imageView
-    }()
-
-    // MARK: - Life Cycle
-
-    init(viewModel: MyUniverseViewModel, pageTracker: PageTracker) {
-        self.viewModel = viewModel
+    init(config: Config, viewData: MyUniverseViewData, pageTracker: PageTracker) {
+        self.config = config
+        self.viewData = viewData
         self.pageTracker = pageTracker
-
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -167,204 +117,191 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        addTabRecognizer()
-        addSubViews()
-        observeViewModel()
+        setupView()
+        reload()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        updateReadyState()
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        setupScrollViewContent()
+        updateAlphaValues()
+        contentView.setupMyData(for: viewData.sectors)
     }
 }
 
-// MARK: - Private
+// MARK: - private
 
 private extension MyUniverseViewController {
-
-    func observeViewModel() {
-        viewModel.observe(\MyUniverseViewModel.dataReady, options: [.initial]) { [unowned self] _, _ in
-            self.updateReadyState()
-            }.addTo(tokenBin)
-        viewModel.observe(\MyUniverseViewModel.toBeVisionHeadline, options: [.initial]) { [unowned self] _, _ in
-            self.myWhyView.reload()
-            }.addTo(tokenBin)
-        viewModel.observe(\MyUniverseViewModel.toBeVisionText, options: [.initial]) { [unowned self] _, _ in
-            self.myWhyView.reload()
-            }.addTo(tokenBin)
-        viewModel.observe(\MyUniverseViewModel.weeklyChoices, options: [.initial]) { [unowned self] _, _ in
-            self.myWhyView.reload()
-            }.addTo(tokenBin)
-        viewModel.observe(\MyUniverseViewModel.partners, options: [.initial]) { [unowned self] _, _ in
-            self.myWhyView.reload()
-            }.addTo(tokenBin)
-        viewModel.observe(\MyUniverseViewModel.profileImageURL, options: [.initial]) { [unowned self] _, _ in
-            self.myDataView.updateProfileImageResource()
-            NotificationCenter.default.post(name: .startSyncUploadMediaNotification, object: nil)
-            }.addTo(tokenBin)
-        viewModel.observe(\MyUniverseViewModel.statisticsUpdated, options: [.initial]) { [unowned self] _, _ in
-            self.myDataView.reload()
-            }.addTo(tokenBin)
+    func reload() {
+        contentView.profileButton.kf.setBackgroundImage(
+            with: viewData.profileImageURL,
+            for: .normal,
+            placeholder: config.profileImagePlaceholder) { [weak self] (image, _, _, _) in
+                guard let `self` = self, let image = image else { return }
+                DispatchQueue.global(qos: .userInitiated).async {
+                    let processed = UIImage.makeGrayscale(image)
+                    DispatchQueue.main.async {
+                        self.contentView.profileButtonOverlay.image = processed
+                    }
+                }
+        }
+        for (index, partner) in viewData.partners.enumerated() {
+            guard let partnerButtons = contentView.partnerButtons,
+                index >= partnerButtons.startIndex,
+                index <= partnerButtons.endIndex else {
+                    break
+            }
+            contentView.partnerButtons[index].configure(for: partner, placeholder: config.partnerImagePlaceholder)
+        }
+        for (index, weeklyChoice) in viewData.weeklyChoices.enumerated() {
+            guard let weeklyChoiceButtons = contentView.weeklyChoiceButtons,
+                index >= weeklyChoiceButtons.startIndex,
+                index <= weeklyChoiceButtons.endIndex else {
+                    break
+            }
+            contentView.weeklyChoiceButtons[index].configure(for: weeklyChoice)
+        }
+        contentView.visionTextLabel.text = viewData.myToBeVisionText
+        contentView.setupMyData(for: viewData.sectors)
     }
 
-    func addSubViews() {
-        backgroundScrollView.addSubview(backgroundImage)
-        view.addSubview(backgroundScrollView)
-        view.addSubview(scrollView)
-        view.addSubview(topBar)
-        scrollView.addSubview(myWhyView)
-        scrollView.addSubview(myDataSectorLabelsView)
-        scrollView.addSubview(myDataView)
-
-        topBar.topAnchor == view.safeTopAnchor
-        topBar.horizontalAnchors == view.horizontalAnchors
-        topBar.heightAnchor == topBar.bounds.height
-
+    func setupView() {
+        // scroll view
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             scrollView.contentInsetAdjustmentBehavior = .never
-            backgroundScrollView.contentInsetAdjustmentBehavior = .never
+        }
+        scrollView.addSubview(contentView)
+
+        // content view
+        contentView.delegate = self
+        contentView.addGestureRecognizer(
+            UITapGestureRecognizer(target: self, action: #selector(contentViewTapped(_:)))
+        )
+        contentView.backgroundImageView.image = config.backgroundImage
+        contentView.partnersTitleLabel.text = config.partnersTitle
+        contentView.partnersComingSoonLabel.text = R.string.localized.meChartCommingSoon().uppercased()
+        contentView.weeklyChoiceButtons.forEach {
+            $0.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        }
+        contentView.weeklyChoicesTitleLabel.text = config.weeklyChoicesTitle
+        contentView.visionTitleLabel.text = config.myToBeVisionTitle
+
+        // top bar
+        topBar.topNavigationBarDelegate = self
+        topBar.setMiddleButtons(config.pages.map { self.button(with: $0.pageTitle) })
+        topBar.setRightButton(UIBarButtonItem(withImage: R.image.ic_menu()))
+    }
+
+    func setupScrollViewContent() {
+        // set scrollView content size
+        let contentSize = CGSize(
+            width: config.pages.reduce(0.0, { $0 + scrollView.bounds.width * $1.widthPercentage }),
+            height: scrollView.bounds.height
+        )
+        if scrollView.contentSize != contentSize {
+            scrollView.contentSize = contentSize
+        }
+
+        // set contentView frame
+        let frame = CGRect(
+            origin: scrollView.frame.origin,
+            size: contentSize
+        )
+        if contentView.frame != frame {
+            contentView.frame = frame
         }
     }
 
-    func updateReadyState() {
-        myWhyView.userCoicesReady = viewModel.dataReady
-        myWhyView.partnersReady = viewModel.dataReady
-        myWhyView.toBeVisionReady = viewModel.dataReady
-        isLoading = !viewModel.dataReady
+    func button(with title: String) -> UIButton {
+        let button = UIButton(type: .custom)
+        button.setTitle(title, for: .normal)
+        button.setTitleColor(.white, for: .selected)
+        button.setTitleColor(.gray, for: .normal)
+        button.titleLabel?.font = Font.H5SecondaryHeadline
+        button.backgroundColor = .clear
+        return button
     }
 
-    func updatePageTracking() {
-        switch pageIndex {
-        case 0: pageName = .myData
-        default: pageName = .myWhy
+    func scrollToPageNumber(_ number: Int, animated: Bool) {
+        guard number < config.pages.count else { return }
+        let offset: CGFloat
+        switch number {
+        case 0:
+            offset = 0
+        case 1:
+            offset = config.pages[1].widthPercentage * scrollView.bounds.width
+        default:
+            assertionFailure("more than 2 pages is unhandled / untested / unexpected")
+            offset = config.pages[1..<number].reduce(0, {
+                $0 + $1.widthPercentage * scrollView.bounds.width
+            })
         }
+        scrollView.setContentOffset(CGPoint(
+            x: offset,
+            y: scrollView.contentOffset.y
+        ), animated: animated)
+    }
 
-        pageTracker.track(self)
+    func updateAlphaValues() {
+        let alpha = scrollView.contentOffset.x / (scrollView.contentSize.width - scrollView.bounds.width)
+        let inverseAlpha = 1.0 - alpha
+        let normalizedAlpha = max(alpha, 0.45)
+        contentView.profileButtonOverlay.alpha = inverseAlpha
+        contentView.visionWrapperView.alpha = normalizedAlpha
+        contentView.partnersWrapperView.alpha = normalizedAlpha
+        contentView.weeklyChoicesWrapperView.alpha = normalizedAlpha
     }
 }
 
-// MARK: - TabRecognizer
+// MARK: - actions
 
 private extension MyUniverseViewController {
+    @objc func contentViewTapped(_ sender: UIGestureRecognizer) {
+        guard pageNumber == 0 else { return }
+        let point = sender.location(in: contentView)
+        for dataSector in contentView.sectors {
+            if dataSector.contains(point) {
+                delegate?.myUniverseViewController(self, didTap: dataSector.type)
+                break
+            }
+        }
+    }
+}
 
-    func addTabRecognizer() {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapSector))
-        scrollView.addGestureRecognizer(tapGestureRecognizer)
+// MARK: - MyUniverseContentViewDelegate
+
+extension MyUniverseViewController: MyUniverseContentViewDelegate {
+    func myUniverseContentViewDidTapProfile(_ viewController: MyUniverseContentView) {
+        delegate?.myUniverseViewControllerDidTapVision(self)
     }
 
-    @objc func didTapSector(recognizer: UITapGestureRecognizer) {
-        guard pageIndex == 0 else { return }
-        let point = recognizer.location(in: myDataView)
-        if let section = myDataSectorLabelsView.labelForPoint(point)?.sector.labelType.sectionType {
-            delegate?.didTapSector(startingSection: section, in: self)
-        } else if let section = myDataView.dataPointForPoint(point)?.sector.labelType.sectionType {
-            delegate?.didTapSector(startingSection: section, in: self)
-        }
+    func myUniverseContentViewDidTapWeeklyChoice(_ viewController: MyUniverseContentView, at index: Int) {
+        delegate?.myUniverseViewController(self, didTapWeeklyChoiceAt: index)
+    }
+
+    func myUniverseContentViewDidTapPartner(_ viewController: MyUniverseContentView, at index: Int) {
+        print("partner feature not yet available")
+        // FIXME: comment in when feature available
+        //delegate?.myUniverseViewController(self, didTapQOTPartnerAt: index)
     }
 }
 
 // MARK: - ScrollViewDelegate
 
 extension MyUniverseViewController: UIScrollViewDelegate {
-
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        setBackgroundParallaxEffect(scrollView)
-        updateProfileImageViewAlphaValue(scrollView)
-        updateSectorLabelsAlphaValue(scrollView)
-        updateMyWhyViewAlphaValue(scrollView)
+        updateAlphaValues()
     }
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        updatePageTracking()
-        guard scrollView.contentOffset.x > 0.0 else {
-            topBar.setIndicatorToButtonIndex(0)
-            return
-        }
-
-        topBar.setIndicatorToButtonIndex(pageIndex)
+        topBar.setIndicatorToButtonIndex(pageNumber)
+        pageTracker.track(self)
     }
 
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        updatePageTracking()
-    }
-
-    var pageIndex: Int {
-        guard scrollView.contentOffset.x > 0.0 else {
-            return 0
-        }
-        return Int(floor(scrollView.frame.size.width / scrollView.contentOffset.x))
-    }
-
-    func pageOffsetForIndex(_ index: Int) -> CGFloat {
-        switch index {
-        case 1:
-            // @warning hacky - but not sure how else to handle this. returning myDataView.width, or myWhyView.x doesnt work - the page offset is too large
-            return scrollView.contentSize.width - view.bounds.size.width
-        default:
-            return 0.0
-        }
-    }
-}
-
-// MARK: - ScrollView Effects
-
-private extension MyUniverseViewController {
-
-    func scrollFactor(_ contentScrollView: UIScrollView) -> CGFloat {
-        let maxX = contentScrollView.frame.maxX - view.frame.width * 0.24
-        guard maxX > 0 else {
-            return 0
-        }
-
-        return 1 - (contentScrollView.contentOffset.x/maxX)
-    }
-
-    func setBackgroundParallaxEffect(_ contentScrollView: UIScrollView) {
-        let backgroundContentOffset = CGPoint(x: contentScrollView.contentOffset.x * 1.2, y: backgroundScrollView.contentOffset.y)
-        backgroundScrollView.setContentOffset(backgroundContentOffset, animated: false)
-    }
-
-    func updateProfileImageViewAlphaValue(_ contentScrollView: UIScrollView) {
-        let alpha = scrollFactor(contentScrollView)
-        myDataView.profileImageViewOverlay.alpha = alpha
-        myDataView.profileImageViewOverlayEffect.alpha = alpha
-    }
-
-    func updateSectorLabelsAlphaValue(_ contentScrollView: UIScrollView) {
-        let alpha = scrollFactor(contentScrollView)
-        myDataSectorLabelsView.sectorLabels.forEach({ (sectorLabel: SectorLabel) in
-            sectorLabel.label.alpha = alpha
-        })
-    }
-
-    func updateMyWhyViewAlphaValue(_ contentScrollView: UIScrollView) {
-        let alpha = scrollFactor(contentScrollView)
-        myWhyView.alpha = 1 - alpha
-    }
-}
-
-// MARK: - MyWhyViewDelegate
-
-extension MyUniverseViewController: MyWhyViewDelegate {
-
-    func didTapMyToBeVision(from view: UIView) {
-        delegate?.didTapMyToBeVision(from: view, in: self)
-    }
-
-    func didTapWeeklyChoices(from view: UIView) {
-        delegate?.didTapWeeklyChoices(from: view, in: self)
-    }
-
-    func didTapQOTPartner(selectedIndex: Index, from view: UIView) {
-        delegate?.didTapQOTPartner(selectedIndex: selectedIndex, from: view, in: self)
-    }
-}
-
-extension MyUniverseViewController: MyDataViewDelegate {
-
-    func myDataView(_ view: MyDataView, pressedProfileButton button: UIButton) {
-        delegate?.didTapMyToBeVision(from: button, in: self)
+        pageTracker.track(self)
     }
 }
 
@@ -374,17 +311,31 @@ extension MyUniverseViewController: TopNavigationBarDelegate {
     func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
     }
 
-    func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
-        guard let index = middleButtons.index(of: button) else {
-            return
-        }
-        scrollView.setContentOffset(CGPoint(
-            x: pageOffsetForIndex(index),
-            y: scrollView.contentOffset.y
-        ), animated: true)
+    func topNavigationBar(_ navigationBar: TopNavigationBar,
+                          middleButtonPressed button: UIButton,
+                          withIndex index: Int, ofTotal total: Int) {
+        scrollToPageNumber(index, animated: true)
     }
 
     func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
-        delegate?.didTapRightBarButton(button, from: navigationBar, in: self)
+        delegate?.myUniverseViewController(self, didTapRightBarButtonItem: button, in: navigationBar)
+    }
+}
+
+// MARK: - UIButton
+
+private extension UIButton {
+    func configure(for partner: MyUniverseViewData.Partner, placeholder: UIImage?) {
+        if let url = partner.imageURL {
+            setTitle(nil, for: .normal)
+            kf.setBackgroundImage(with: url, for: .normal, placeholder: placeholder)
+        } else {
+            setTitle(partner.initials, for: .normal)
+            setImage(nil, for: .normal)
+        }
+    }
+
+    func configure(for weeklyChoice: WeeklyChoice) {
+        setTitle(weeklyChoice.title?.uppercased(), for: .normal)
     }
 }

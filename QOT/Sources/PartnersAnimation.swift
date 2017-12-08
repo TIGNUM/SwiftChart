@@ -32,27 +32,6 @@ final class PartnersAnimation: NSObject {
         }
         return nil
     }
-
-    private func prepare(_ myUniverseViewController: MyUniverseViewController, _ partnersViewController: PartnersViewController) {
-        if isPresenting {
-            partnersViewController.navigationController?.view.alpha = 0
-        } else {
-            myUniverseViewController.myWhyView.qotPartnersBox.transform = CGAffineTransform(translationX: 200.0, y: -300.0).scaledBy(x: 2.5, y: 2.5)
-            myUniverseViewController.view.alpha = 0
-        }
-    }
-
-    private func animate(_ myUniverseViewController: MyUniverseViewController, _ partnersViewController: PartnersViewController) {
-        if isPresenting {
-            partnersViewController.navigationController?.view.alpha = 1
-            myUniverseViewController.myWhyView.qotPartnersBox.transform = CGAffineTransform(translationX: 200.0, y: -300.0).scaledBy(x: 2.5, y: 2.5)
-        } else {
-            partnersViewController.navigationController?.view.alpha = 0
-            myUniverseViewController.myWhyView.qotPartnersBox.transform = .identity
-            myUniverseViewController.view.alpha = 1
-            partnersViewController.scrollView.transform = CGAffineTransform(translationX: 0.0, y: 100.0)
-        }
-    }
 }
 
 // MARK: - UIViewControllerAnimatedTransitioning
@@ -88,16 +67,56 @@ extension PartnersAnimation: UIViewControllerAnimatedTransitioning {
                 fatalError("missing view controllers for animation")
         }
 
-        prepare(myUniverseViewController, partnersViewController)
+        if isPresenting {
+            partnersViewController.configureForTransitionedState()
+            myUniverseViewController.configureForDefaultState()
+        } else {
+            partnersViewController.configureForDefaultState()
+            myUniverseViewController.configureForTransitionedState()
+        }
 
         UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseOut], animations: {
-            self.animate(myUniverseViewController, partnersViewController)
+            if self.isPresenting {
+                partnersViewController.configureForDefaultState()
+                myUniverseViewController.configureForTransitionedState()
+            } else {
+                partnersViewController.configureForTransitionedState()
+                myUniverseViewController.configureForDefaultState()
+            }
         }, completion: { finished in
+            partnersViewController.configureForDefaultState()
+            myUniverseViewController.configureForDefaultState()
             if finished {
                 fromViewController.endAppearanceTransition()
                 toViewController.endAppearanceTransition()
             }
             transitionContext.completeTransition(finished)
         })
+    }
+}
+
+private extension PartnersViewController {
+
+    func configureForDefaultState() {
+        navigationController?.view.alpha = 1
+        scrollView.transform = .identity
+    }
+
+    func configureForTransitionedState() {
+        navigationController?.view.alpha = 0
+        scrollView.transform = CGAffineTransform(translationX: 0.0, y: 100.0)
+    }
+}
+
+private extension MyUniverseViewController {
+
+    func configureForDefaultState() {
+        contentView.partnersWrapperView.transform = .identity
+        view.alpha = 1
+    }
+
+    func configureForTransitionedState() {
+        contentView.partnersWrapperView.transform = CGAffineTransform(translationX: 200.0, y: -300.0).scaledBy(x: 2.5, y: 2.5)
+        view.alpha = 0
     }
 }

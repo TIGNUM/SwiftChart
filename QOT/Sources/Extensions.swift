@@ -77,6 +77,13 @@ extension UIBezierPath {
         )
     }
 
+    class func linePath(from: CGPoint, to: CGPoint) -> UIBezierPath {
+        let path = UIBezierPath()
+        path.move(to: from)
+        path.addLine(to: to)
+        return path
+    }
+
     // @see adapted from https://stackoverflow.com/questions/24767978/how-to-round-corners-of-uiimage-with-hexagon-mask
     /// Create UIBezierPath for regular polygon with rounded corners
     ///
@@ -191,13 +198,13 @@ extension CAShapeLayer {
         }
     }
 
-    class func circle(center: CGPoint, radius: CGFloat, fillColor: UIColor, strokeColor: UIColor) -> CAShapeLayer {
+    class func circle(center: CGPoint, radius: CGFloat, fillColor: UIColor, strokeColor: UIColor, lineWidth: CGFloat = 1.0) -> CAShapeLayer {
         let circlePath = UIBezierPath.circlePath(center: center, radius: radius).cgPath
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = circlePath
         shapeLayer.fillColor = fillColor.cgColor
         shapeLayer.strokeColor = strokeColor.cgColor
-        shapeLayer.lineWidth = 1.0
+        shapeLayer.lineWidth = lineWidth
 
         return shapeLayer
     }

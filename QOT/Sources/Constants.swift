@@ -42,67 +42,8 @@ struct Layout {
     }
 
     struct MeSection {
-        let viewControllerFrame: CGRect
-        let myWhyPartnerScaleFactor = CGFloat(0.8867924528)
-
-        static let loadOffset: CGFloat = 12
-        static let labelHeight: CGFloat = 21
-        static let maxPartners: Int = 3
         static let maxWeeklyPage = 5
-
-        var connectionCenter: CGPoint {
-            return  CGPoint(x: viewControllerFrame.width, y: viewControllerFrame.height * 0.45)
-        }
-
-        var radiusMaxLoad: CGFloat {
-            return viewControllerFrame.width * 0.66
-        }
-
-        var radiusAverageLoad: CGFloat {
-            return viewControllerFrame.width * 0.45
-        }
-
-        var profileImageWidth: CGFloat {
-            return viewControllerFrame.width * 0.28
-        }
-
-        var scrollViewOffset: CGFloat {
-            return viewControllerFrame.width * 0.07
-        }
-
-        var loadCenterX: CGFloat {
-            return (viewControllerFrame.width - (viewControllerFrame.width * 0.08))
-        }
-
-        var loadCenterY: CGFloat {
-            return viewControllerFrame.height * 0.412
-        }
-
-        var loadCenter: CGPoint {
-            return CGPoint(x: loadCenterX, y: loadCenterY)
-        }
-
-        var universeCenter: CGPoint {
-            return CGPoint(x: loadCenterX - profileImageWidth * 0.5, y: loadCenterY - profileImageWidth * 0.5)
-        }
-
-        var profileImageViewFrame: CGRect {
-            return CGRect(
-                x: universeCenter.x,
-                y: universeCenter.y,
-                width: profileImageWidth,
-                height: profileImageWidth
-            )
-        }
-
-        func myWhyDeviceOffset(_ screenType: MyUniverseViewController.ScreenType) -> CGFloat {
-            switch screenType {
-            case .big: return 0
-            case .medium: return 0
-            case .small: return -15
-            }
-        }
-
+        static let maxPartners = 3
     }
 }
 
@@ -231,16 +172,5 @@ struct Color {
         struct Benefits {
             static let headerText = Color.Learn.headerSubtitle
         }
-    }
-
-    struct MeSection {
-        static let redFilled = UIColor(red: 255/255, green: 0, blue: 38/255, alpha: 1)
-        static let redFilledBodyBrain = UIColor(red: 1, green: 0, blue: 34/255, alpha: 0.2)
-        static let redStroke = UIColor(red: 230/255, green: 0, blue: 34/255, alpha: 0.9)
-        static let whiteStroke = UIColor(white: 1, alpha: 0.6)
-        static let whiteLabel = Color.whiteMedium
-        static let whiteStrokeLight = UIColor(white: 1, alpha: 0.2)
-        static let myUniverseBlue = UIColor(red: 2.0/255.0, green: 38.0/255.0, blue: 65.0/255.0, alpha: 1.0)
-        static let backgroundCircle = UIColor(white: 1, alpha: 0.08)
     }
 }

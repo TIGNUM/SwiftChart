@@ -113,16 +113,22 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         return topTabBarController
     }()
 
+    private lazy var myUniverseProvider = MyUniverseProvider(services: services)
     private lazy var topTabBarControllerMe: MyUniverseViewController = {
         let topTabBarController = MyUniverseViewController(
-            viewModel: MyUniverseViewModel(services: self.services),
-            pageTracker: self.pageTracker
+            config: .default,
+            viewData: myUniverseProvider.viewData,
+            pageTracker: pageTracker
         )
+        myUniverseProvider.updateBlock = { viewData in
+            topTabBarController.viewData = viewData
+        }
         topTabBarController.delegate = self
-        var config = TabBarItem.Config.default
-        config.title = R.string.localized.tabBarItemMe()
-        config.tag = 1
-        topTabBarController.tabBarItem = TabBarItem(config: config)
+
+        var tabBarItemConfig = TabBarItem.Config.default
+        tabBarItemConfig.title = R.string.localized.tabBarItemMe()
+        tabBarItemConfig.tag = 1
+        topTabBarController.tabBarItem = TabBarItem(config: tabBarItemConfig)
         return topTabBarController
     }()
 
@@ -250,39 +256,55 @@ extension TabBarCoordinator: LearnContentListCoordinatorDelegate {
 
 extension TabBarCoordinator: MyUniverseViewControllerDelegate {
 
-    func didTapRightBarButton(_ button: UIBarButtonItem, from topNavigationBar: TopNavigationBar, in viewController: MyUniverseViewController) {
-        self.topNavigationBar(topNavigationBar, rightButtonPressed: button)
-    }
-
-    func didTapSector(startingSection: StatisticsSectionType?, in viewController: MyUniverseViewController) {
+    func myUniverseViewController(_ viewController: MyUniverseViewController, didTap sector: StatisticsSectionType) {
         let transitioningDelegate = ChartAnimator()
-        let coordinator = StatisticsCoordinator(root: topTabBarControllerMe,
-                                                services: services,
-                                                transitioningDelegate: transitioningDelegate,
-                                                startingSection: startingSection,
-                                                permissionsManager: permissionsManager)
+        let coordinator = StatisticsCoordinator(
+            root: topTabBarControllerMe,
+            services: services,
+            transitioningDelegate: transitioningDelegate,
+            startingSection: sector,
+            permissionsManager: permissionsManager
+        )
         startChild(child: coordinator)
     }
 
-    func didTapMyToBeVision(from view: UIView, in viewController: MyUniverseViewController) {
+    func myUniverseViewControllerDidTapVision(_ viewController: MyUniverseViewController) {
         let transitioningDelegate = MyToBeVisionAnimator()
-        let coordinator = MyToBeVisionCoordinator(root: topTabBarControllerMe, transitioningDelegate: transitioningDelegate, services: services, permissionsManager: permissionsManager)
+        let coordinator = MyToBeVisionCoordinator(
+            root: topTabBarControllerMe,
+            transitioningDelegate: transitioningDelegate,
+            services: services,
+            permissionsManager: permissionsManager
+        )
         startChild(child: coordinator)
     }
 
-    func didTapWeeklyChoices(from view: UIView, in viewController: MyUniverseViewController) {
+    func myUniverseViewController(_ viewController: MyUniverseViewController, didTapWeeklyChoiceAt index: Index) {
         let transitioningDelegate = WeeklyChoicesAnimator()
-        let coordinator = WeeklyChoicesCoordinator(root: topTabBarControllerMe,
-                                                   services: services,
-                                                   transitioningDelegate: transitioningDelegate,
-                                                   topBarDelegate: nil)
+        let coordinator = WeeklyChoicesCoordinator(
+            root: topTabBarControllerMe,
+            services: services,
+            transitioningDelegate: transitioningDelegate,
+            topBarDelegate: nil
+        )
         startChild(child: coordinator)
     }
 
-    func didTapQOTPartner(selectedIndex: Index, from view: UIView, in viewController: MyUniverseViewController) {
+    func myUniverseViewController(_ viewController: MyUniverseViewController, didTapQOTPartnerAt index: Index) {
         let transitioningDelegate = PartnersAnimator()
-        let coordinator = PartnersCoordinator(root: topTabBarControllerMe, services: services, transitioningDelegate: transitioningDelegate, selectedIndex: selectedIndex, permissionsManager: permissionsManager)
+        let coordinator = PartnersCoordinator(
+            root: topTabBarControllerMe,
+            services: services,
+            transitioningDelegate:
+            transitioningDelegate,
+            selectedIndex: index,
+            permissionsManager: permissionsManager
+        )
         startChild(child: coordinator)
+    }
+
+    func myUniverseViewController(_ viewController: MyUniverseViewController, didTapRightBarButtonItem buttonItem: UIBarButtonItem, in topNavigationBar: TopNavigationBar) {
+        self.topNavigationBar(topNavigationBar, rightButtonPressed: buttonItem)
     }
 }
 

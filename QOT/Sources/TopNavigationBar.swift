@@ -40,7 +40,12 @@ final class TopNavigationBar: UINavigationBar {
     }
 
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        indicatorView = UIView()
+        indicatorView.backgroundColor = .white
+
+        super.init(coder: aDecoder)
+
+        applyDefaultStyle()
     }
 
     override func layoutSubviews() {
@@ -95,19 +100,19 @@ final class TopNavigationBar: UINavigationBar {
         currentButton = buttons[0]
     }
 
-    func setLeftButton(_ button: UIBarButtonItem) {
+    func setLeftButton(_ button: UIBarButtonItem?) {
         guard let topItem = topItem else { return }
 
-        button.target = self
-        button.action = #selector(leftButtonPressed(_:))
+        button?.target = self
+        button?.action = #selector(leftButtonPressed(_:))
         topItem.leftBarButtonItem = button
     }
 
-    func setRightButton(_ button: UIBarButtonItem) {
+    func setRightButton(_ button: UIBarButtonItem?) {
         guard let topItem = topItem else { return }
 
-        button.target = self
-        button.action = #selector(rightButtonPressed(_:))
+        button?.target = self
+        button?.action = #selector(rightButtonPressed(_:))
         topItem.rightBarButtonItem = button
     }
 

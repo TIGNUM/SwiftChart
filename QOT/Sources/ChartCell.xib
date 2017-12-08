@@ -34,7 +34,7 @@
                         <rect key="frame" x="11" y="0.0" width="278" height="42"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R7E-AJ-iMP">
-                                <rect key="frame" x="0.0" y="12" width="254" height="26.5"/>
+                                <rect key="frame" x="0.0" y="12" width="254" height="33"/>
                                 <string key="text">sleep quantity average
 for the last 5 days</string>
                                 <fontDescription key="fontDescription" name="BentonSans" family="BentonSans" pointSize="14"/>
@@ -400,7 +400,7 @@ Label</string>
                                 <rect key="frame" x="0.0" y="0.0" width="319" height="430"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COMMING SOON" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGM-Rk-USG">
-                                        <rect key="frame" x="80" y="200" width="158.5" height="29"/>
+                                        <rect key="frame" x="61.5" y="200.5" width="195.5" height="28"/>
                                         <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="24"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
