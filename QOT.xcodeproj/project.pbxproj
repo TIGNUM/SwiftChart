@@ -27,6 +27,9 @@
 		3626324D1FD6F7520024C626 /* GuidePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3626324C1FD6F7520024C626 /* GuidePresenter.swift */; };
 		3626324F1FD6F7650024C626 /* GuideWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3626324E1FD6F7650024C626 /* GuideWorker.swift */; };
 		362632511FD6F7720024C626 /* GuideRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362632501FD6F7720024C626 /* GuideRouter.swift */; };
+		363178DF1FDEDCCD00833958 /* GuidePlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363178DE1FDEDCCD00833958 /* GuidePlan.swift */; };
+		363178E51FDEE8D700833958 /* GuidePlanItemLearn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363178E41FDEE8D700833958 /* GuidePlanItemLearn.swift */; };
+		363178E71FDEECDE00833958 /* GuidePlanItemNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363178E61FDEECDE00833958 /* GuidePlanItemNotification.swift */; };
 		36328F201FCEB90B004E9034 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36328F1F1FCEB90B004E9034 /* GuideViewController.swift */; };
 		36328F221FCEB92C004E9034 /* GuideModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36328F211FCEB92C004E9034 /* GuideModel.swift */; };
 		365E98C31FD9A31000248361 /* CLTypingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365E98C21FD9A31000248361 /* CLTypingLabel.swift */; };
@@ -37,6 +40,7 @@
 		36939B8D1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36939B8B1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib */; };
 		36DADE761FA7850100EB00D4 /* SettingsAdminCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DADE751FA7850100EB00D4 /* SettingsAdminCoordinator.swift */; };
 		36DADE791FA786DD00EB00D4 /* SettingsAdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DADE781FA786DD00EB00D4 /* SettingsAdminViewController.swift */; };
+		36FC8D471FDEF16F00B5E062 /* GuidePlanItemLearnIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FC8D461FDEF16F00B5E062 /* GuidePlanItemLearnIntermediary.swift */; };
 		7F01A6211F98A1E7002C7B72 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F01A6201F98A1E7002C7B72 /* ImagePickerController.swift */; };
 		7F01A6241F98A9C1002C7B72 /* ImageCropper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F01A6231F98A9C1002C7B72 /* ImageCropper.swift */; };
 		7F01A6261F98D5E3002C7B72 /* ImageQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F01A6251F98D5E3002C7B72 /* ImageQuality.swift */; };
@@ -514,6 +518,9 @@
 		3626324C1FD6F7520024C626 /* GuidePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidePresenter.swift; sourceTree = "<group>"; };
 		3626324E1FD6F7650024C626 /* GuideWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideWorker.swift; sourceTree = "<group>"; };
 		362632501FD6F7720024C626 /* GuideRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideRouter.swift; sourceTree = "<group>"; };
+		363178DE1FDEDCCD00833958 /* GuidePlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidePlan.swift; sourceTree = "<group>"; };
+		363178E41FDEE8D700833958 /* GuidePlanItemLearn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuidePlanItemLearn.swift; sourceTree = "<group>"; };
+		363178E61FDEECDE00833958 /* GuidePlanItemNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidePlanItemNotification.swift; sourceTree = "<group>"; };
 		36328F1F1FCEB90B004E9034 /* GuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
 		36328F211FCEB92C004E9034 /* GuideModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideModel.swift; sourceTree = "<group>"; };
 		365E98C21FD9A31000248361 /* CLTypingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLTypingLabel.swift; sourceTree = "<group>"; };
@@ -524,6 +531,7 @@
 		36939B8B1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideDailyPrepTableViewCell.xib; sourceTree = "<group>"; };
 		36DADE751FA7850100EB00D4 /* SettingsAdminCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAdminCoordinator.swift; sourceTree = "<group>"; };
 		36DADE781FA786DD00EB00D4 /* SettingsAdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAdminViewController.swift; sourceTree = "<group>"; };
+		36FC8D461FDEF16F00B5E062 /* GuidePlanItemLearnIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidePlanItemLearnIntermediary.swift; sourceTree = "<group>"; };
 		42795728C4F3229DFB18981E /* Pods-QOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.debug.xcconfig"; sourceTree = "<group>"; };
 		5C87601C1FE7F833DF0D7A6B /* Pods-QOTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.release.xcconfig"; sourceTree = "<group>"; };
 		7F01A6201F98A1E7002C7B72 /* ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
@@ -1006,6 +1014,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		363178DD1FDEDC9B00833958 /* Guide */ = {
+			isa = PBXGroup;
+			children = (
+				363178DE1FDEDCCD00833958 /* GuidePlan.swift */,
+				363178E41FDEE8D700833958 /* GuidePlanItemLearn.swift */,
+				363178E61FDEECDE00833958 /* GuidePlanItemNotification.swift */,
+				36FC8D461FDEF16F00B5E062 /* GuidePlanItemLearnIntermediary.swift */,
+			);
+			name = Guide;
+			sourceTree = "<group>";
+		};
 		36328F1E1FCEB8E3004E9034 /* Guide */ = {
 			isa = PBXGroup;
 			children = (
@@ -1690,6 +1709,7 @@
 		CBB4DD251EE087830071494A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				363178DD1FDEDC9B00833958 /* Guide */,
 				CB9B07581EF904410017F6C3 /* CalendarEvent */,
 				CB4881501EF7BF6400389C88 /* ContentCategory */,
 				CB48814F1EF7BF5B00389C88 /* ContentCollection */,
@@ -2770,6 +2790,7 @@
 				7FB172A01FA1E6AD00112C69 /* MyToBeVisionAnimation.swift in Sources */,
 				CBB4DCE01ED8178A0071494A /* ConcurrentOperation.swift in Sources */,
 				CB3437691EFE75C400D89D4F /* ContentItem+Convenience.swift in Sources */,
+				363178E71FDEECDE00833958 /* GuidePlanItemNotification.swift in Sources */,
 				CB9B07671EF953D80017F6C3 /* JSONKey.swift in Sources */,
 				CC90EC9F1F3076EB00A83DB9 /* SettingsChangePasswordViewController.swift in Sources */,
 				CBB017BB1F9741F200CC1048 /* SyncTask.swift in Sources */,
@@ -2803,6 +2824,7 @@
 				852DADD61EF051C400A10882 /* UIView+Layers.swift in Sources */,
 				7FBC3E891F38B9D1005BD772 /* UpSyncMediaOperation.swift in Sources */,
 				CBC1DC1B1F0F910600F6D056 /* SettingValueObject.swift in Sources */,
+				363178DF1FDEDCCD00833958 /* GuidePlan.swift in Sources */,
 				CBC1DC291F0FB68000F6D056 /* AnswerDecision.swift in Sources */,
 				CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */,
 				7F01A6241F98A9C1002C7B72 /* ImageCropper.swift in Sources */,
@@ -2825,6 +2847,7 @@
 				852988951F2F3E15003A36DF /* Bundle+Extensions.swift in Sources */,
 				CCCDF2AF1F8B9346009CE6A4 /* Calendar+Convenience.swift in Sources */,
 				CB27D59B1ECCB67300F2B76C /* Result.swift in Sources */,
+				363178E51FDEE8D700833958 /* GuidePlanItemLearn.swift in Sources */,
 				CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */,
 				CCCC42DF1ED5799D00E73905 /* UIViewController+Transition.swift in Sources */,
 				CB27D59F1ECDE96F00F2B76C /* DownSyncResultParser.swift in Sources */,
@@ -2922,8 +2945,9 @@
 				CB1D5E3D1EC5E25A00BCDF8D /* ContentItem.swift in Sources */,
 				CB1E4F981E7FE22200287613 /* SettingsViewModel.swift in Sources */,
 				CBB4DCFD1EDC27550071494A /* SyncManager.swift in Sources */,
-				36328F201FCEB90B004E9034 /* GuideViewController.swift in Sources */,				
+				36328F201FCEB90B004E9034 /* GuideViewController.swift in Sources */,
 				CC02E1491F279A0F00134574 /* SettingsCalendarListViewModel.swift in Sources */,
+				36FC8D471FDEF16F00B5E062 /* GuidePlanItemLearnIntermediary.swift in Sources */,
 				CC3DFB661E83C19C00FF28DF /* Defines.swift in Sources */,
 				7F507BA31F3B4DEC0091742D /* UserAnswer.swift in Sources */,
 				CB1D5E3F1EC5E25A00BCDF8D /* ContentItemValue.swift in Sources */,

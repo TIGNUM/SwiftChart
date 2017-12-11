@@ -42,6 +42,9 @@ enum Endpoint: String {
     case userFeedback = "/personal/p/qot/userFeedback"
     case userLocationUpdate = "/personal/p/qot/geolocation"
     case log = "/personal/p/qot/log"
+    case guidePlanItemLearn = "/personal/p/qot/guide/planItemLeaarn"
+    case guidePlanItemNotification = "/personal/p/qot/guide/planItemNotification"
+    case guidePlan = "/personal/p/qot/guide/plan"
 
     func url(baseURL: URL) -> URL {
         if let url = URL(string: rawValue), url.host != nil {

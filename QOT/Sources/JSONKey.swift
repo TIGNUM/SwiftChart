@@ -42,6 +42,7 @@ enum JsonKey: String {
     case createdAt
     case dataAverage
     case dataPoints
+    case day
     case dayOfTheWeek
     case daysOfTheMonth
     case daysOfTheWeek
@@ -65,6 +66,7 @@ enum JsonKey: String {
     case format
     case frequency
     case fromDate
+    case greeting
     case gender
     case height
     case heightUnit
@@ -87,6 +89,7 @@ enum JsonKey: String {
     case latestVersion
     case latitude
     case layoutInfo
+    case link
     case location
     case longitude
     case longValue
@@ -120,8 +123,10 @@ enum JsonKey: String {
     case pageSize
     case periods
     case permissionState
+    case planItemID
     case publicHolidays
     case preparationId
+    case priority
     case qotId
     case qotPartnerUserId
     case question
@@ -138,6 +143,7 @@ enum JsonKey: String {
     case relatedContent
     case relatedContentIds
     case relationship
+    case reminderTime
     case resultList
     case role
     case searchTags
