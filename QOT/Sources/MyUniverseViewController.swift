@@ -162,7 +162,7 @@ private extension MyUniverseViewController {
             }
             contentView.weeklyChoiceButtons[index].configure(for: weeklyChoice)
         }
-        contentView.visionTextLabel.text = viewData.myToBeVisionText
+        contentView.setVisionText(viewData.myToBeVisionText)
         contentView.setupMyData(for: viewData.sectors)
     }
 
