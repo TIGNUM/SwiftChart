@@ -35,32 +35,6 @@ final class MyToBeVisionAnimation: NSObject {
         }
         return nil
     }
-
-    private func prepare(_ myUniverseViewController: MyUniverseViewController, _ myToBeVisionViewController: MyToBeVisionViewController) {
-        if isPresenting {
-            myToBeVisionViewController.view.alpha = 0
-        } else {
-            myUniverseViewController.view.alpha = 0
-        }
-    }
-
-    private func animate(_ myUniverseViewController: MyUniverseViewController, _ myToBeVisionViewController: MyToBeVisionViewController) {
-        if isPresenting {
-            myToBeVisionViewController.view.alpha = 1
-            myUniverseViewController.myDataView.profileImageButton.transform = CGAffineTransform(translationX: 90.0, y: 260.0).scaledBy(x: 4.0, y: 3.0)
-            myUniverseViewController.myWhyView.myToBeVisionBox.transform = CGAffineTransform(translationX: -120.0, y: 20.0)
-            myUniverseViewController.myWhyView.weeklyChoicesBox.transform = CGAffineTransform(translationX: 100.0, y: 10.0)
-            myUniverseViewController.myWhyView.qotPartnersBox.transform = CGAffineTransform(translationX: 10.0, y: 100.0)
-            myUniverseViewController.view.alpha = 0
-        } else {
-            myToBeVisionViewController.view.alpha = 0
-            myUniverseViewController.myDataView.profileImageButton.transform = .identity
-            myUniverseViewController.myWhyView.myToBeVisionBox.transform = .identity
-            myUniverseViewController.myWhyView.weeklyChoicesBox.transform = .identity
-            myUniverseViewController.myWhyView.qotPartnersBox.transform = .identity
-            myUniverseViewController.view.alpha = 1
-        }
-    }
 }
 
 // MARK: - UIViewControllerAnimatedTransitioning
@@ -96,16 +70,60 @@ extension MyToBeVisionAnimation: UIViewControllerAnimatedTransitioning {
                 fatalError("missing view controllers for animation")
         }
 
-        prepare(myUniverseViewController, myToBeVisionViewController)
+        if isPresenting {
+            myToBeVisionViewController.configureForTransitionedState()
+            myUniverseViewController.configureForDefaultState()
+        } else {
+            myToBeVisionViewController.configureForDefaultState()
+            myUniverseViewController.configureForTransitionedState()
+        }
 
         UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseOut], animations: {
-            self.animate(myUniverseViewController, myToBeVisionViewController)
+            if self.isPresenting {
+                myToBeVisionViewController.configureForDefaultState()
+                myUniverseViewController.configureForTransitionedState()
+            } else {
+                myToBeVisionViewController.configureForTransitionedState()
+                myUniverseViewController.configureForDefaultState()
+            }
         }, completion: { finished in
+            myUniverseViewController.configureForDefaultState()
+            myToBeVisionViewController.configureForDefaultState()
             if finished {
                 fromViewController.endAppearanceTransition()
                 toViewController.endAppearanceTransition()
             }
             transitionContext.completeTransition(finished)
         })
+    }
+}
+
+private extension MyToBeVisionViewController {
+
+    func configureForDefaultState() {
+        view.alpha = 1
+    }
+
+    func configureForTransitionedState() {
+        view.alpha = 0
+    }
+}
+
+private extension MyUniverseViewController {
+
+    func configureForDefaultState() {
+        contentView.profileWrapperView.transform = .identity
+        contentView.visionWrapperView.transform = .identity
+        contentView.weeklyChoicesWrapperView.transform = .identity
+        contentView.partnersWrapperView.transform = .identity
+        view.alpha = 1
+    }
+
+    func configureForTransitionedState() {
+        contentView.profileWrapperView.transform = CGAffineTransform(translationX: 90.0, y: 260.0).scaledBy(x: 4.0, y: 3.0)
+        contentView.visionWrapperView.transform = CGAffineTransform(translationX: -120.0, y: 20.0)
+        contentView.weeklyChoicesWrapperView.transform = CGAffineTransform(translationX: 100.0, y: 10.0)
+        contentView.partnersWrapperView.transform = CGAffineTransform(translationX: 10.0, y: 100.0)
+        view.alpha = 0
     }
 }

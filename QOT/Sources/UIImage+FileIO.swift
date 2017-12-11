@@ -9,21 +9,37 @@
 import UIKit
 
 extension UIImage {
+    enum Format {
+        case png
+        case jpg
+    }
+
     enum ImageError: Error {
         case directoryNotFound
         case imageConvertionError
     }
 
     /// Saves image to ...(lib)/image directory
-    func save(withName name: String) throws -> URL {
+    func save(withName name: String, format: Format = .jpg) throws -> URL {
         let paths = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)
         guard let directory = paths.first else {
             log("couldn't find directory", level: .error)
             throw ImageError.directoryNotFound
         }
-        guard let data = UIImageJPEGRepresentation(self, 1.0) else {
-            log("problem converting image data", level: .error)
-            throw ImageError.imageConvertionError
+        let data: Data
+        switch format {
+        case .png:
+            guard let pngData = UIImagePNGRepresentation(self) else {
+                log("problem converting image data", level: .error)
+                throw ImageError.imageConvertionError
+            }
+            data = pngData
+        case .jpg:
+            guard let jpgData = UIImageJPEGRepresentation(self, 1.0) else {
+                log("problem converting image data", level: .error)
+                throw ImageError.imageConvertionError
+            }
+            data = jpgData
         }
 
         var path = directory.appending("/images")

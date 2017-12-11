@@ -41,23 +41,23 @@ final class PermissionHandler: NSObject {
 
     func askForAllPermissions(_ completion: @escaping (Result) -> Void) {
         var result = Result()
-        queue.addOperation(WaitBlockOperation { [unowned self] (finish: (() -> Void)?) in
+        queue.addOperation(WaitBlockOperation { [unowned self] (finish: @escaping (() -> Void)) in
             self.askPermissionForCalendar(completion: { (granted: Bool) in
                 result.calendar = granted
-                finish?()
+                finish()
             })
         })
-        queue.addOperation(WaitBlockOperation { [unowned self] (finish: (() -> Void)?) in
+        queue.addOperation(WaitBlockOperation { [unowned self] (finish: @escaping (() -> Void)) in
             self.askPermissionForRemoteNotifications(completion: { (granted: Bool) in
                 result.remoteNotification = granted
-                finish?()
+                finish()
             })
         })
-        queue.addOperation(WaitBlockOperation { [unowned self] (finish: (() -> Void)?) in
+        queue.addOperation(WaitBlockOperation { [unowned self] (finish: @escaping (() -> Void)) in
             self.askPermissionForLocationAlways(completion: { (granted: Bool) in
                 result.location = granted
                 completion(result)
-                finish?()
+                finish()
             })
         })
     }

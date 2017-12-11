@@ -14,7 +14,7 @@ class ArticleCollectionProvider {
     private let contentCollections: AnyRealmCollection<ContentCollection>
     private let syncStateObserver: SyncStateObserver
     private var notificationTokenHandler: NotificationTokenHandler?
-    private var token: NSKeyValueObservation!
+    private var tokenBin = TokenBin()
     private lazy var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.setLocalizedDateFormatFromTemplate("MMMdd")
@@ -30,9 +30,9 @@ class ArticleCollectionProvider {
         notificationTokenHandler = contentCollections.addNotificationBlock { [unowned self] change in
             self.updateBlock?(self.provideViewData())
         }.handler
-        token = syncStateObserver.observe(\.syncedClasses, options: [.new]) { [unowned self] _, _ in
+        syncStateObserver.observe(\.syncedClasses, options: [.new]) { [unowned self] _, _ in
             self.updateBlock?(self.provideViewData())
-        }
+        }.addTo(tokenBin)
     }
 
     func provideViewData() -> ArticleCollectionViewData {

@@ -115,13 +115,14 @@ class MyToBeVisionViewController: UIViewController {
 private extension MyToBeVisionViewController {
 
     func drawCircles() {
+        let color = UIColor(white: 1, alpha: 0.08)
         circleContainerView.removeSubLayers()
         var center = view.center; center.x *= 0.2; center.y *= 1.1
         let circleLayer1 = CAShapeLayer.circle(
             center: center,
             radius: view.bounds.width * 0.55,
             fillColor: .clear,
-            strokeColor: Color.MeSection.backgroundCircle
+            strokeColor: color
         )
         circleLayer1.lineDashPattern = [1, 2]
         circleContainerView.layer.addSublayer(circleLayer1)
@@ -130,7 +131,7 @@ private extension MyToBeVisionViewController {
             center: center,
             radius: view.bounds.width * 0.9,
             fillColor: .clear,
-            strokeColor: Color.MeSection.backgroundCircle
+            strokeColor: color
         )
         circleContainerView.layer.addSublayer(circleLayer2)
     }

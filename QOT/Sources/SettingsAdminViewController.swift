@@ -198,14 +198,23 @@ private extension SettingsAdminViewController {
     func reloginUser(completion: @escaping () -> Void) {
         guard let userName = userName, let password = password else { return }
         CredentialsManager.shared.clear()
-
-        guard let window = AppDelegate.current.window, let networkManager = networkManager else {
-            return
-        }
+        guard let window = AppDelegate.current.window, let networkManager = networkManager else { return }
         let hud = MBProgressHUD.showAdded(to: window, animated: true)
+        networkManager.cancelAllRequests()
+
+        do {
+            syncManager?.stop()
+            if let syncRecordService = syncManager?.syncRecordService {
+                try DatabaseManager.shared.resetDatabase(syncRecordService: syncRecordService)
+            }
+        } catch {
+            log(error.localizedDescription, level: .error)
+        }
+
         networkManager.performAuthenticationRequest(username: userName, password: password) { error in
             hud.hide(animated: true)
             if error == nil {
+                self.syncManager?.start()
                 completion()
             } else {
                 self.networkError = error
@@ -243,7 +252,7 @@ private extension SettingsAdminViewController {
     }
 
     func setupDefaultValues() {
-        baseURLSegmentedControl.selectedSegmentIndex = 0
+        baseURLSegmentedControl.selectedSegmentIndex = baseURL.absoluteString.contains("staging") == true ? 1 : 0
         baseURLTextField.text = ""
         logLevelSegmentedControl.selectedSegmentIndex = Log.remoteLogLevel.rawValue
         autoSyncSwitch.setOn(true, animated: true)

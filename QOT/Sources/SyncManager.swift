@@ -28,8 +28,8 @@ final class SyncManager {
 
     // MARK: - Private Storage
 
+    let syncRecordService: SyncRecordService
     private let networkManager: NetworkManager
-    private let syncRecordService: SyncRecordService
     private let realmProvider: RealmProvider
     private let reachability = NetworkReachabilityManager()
     private var syncAllTimer: Timer?

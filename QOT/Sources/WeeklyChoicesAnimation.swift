@@ -90,12 +90,12 @@ extension WeeklyChoicesAnimation: UIViewControllerAnimatedTransitioning {
                 myUniverseViewController.configureForDefaultState()
             }
         }, completion: { finished in
+            weeklyChoicesViewController.configureForDefaultState()
+            myUniverseViewController.configureForDefaultState()
             if finished {
                 fromViewController.endAppearanceTransition()
                 toViewController.endAppearanceTransition()
             }
-            weeklyChoicesViewController.configureForDefaultState()
-            myUniverseViewController.configureForDefaultState()
             transitionContext.completeTransition(finished)
         })
     }
@@ -115,17 +115,17 @@ private extension WeeklyChoicesViewController {
 private extension MyUniverseViewController {
 
     func configureForDefaultState() {
-        myWhyView.myToBeVisionBox.transform = .identity
-        myWhyView.weeklyChoicesBox.transform = .identity
-        myWhyView.qotPartnersBox.transform = .identity
+        contentView.visionWrapperView.transform = .identity
+        contentView.weeklyChoicesWrapperView.transform = .identity
+        contentView.partnersWrapperView.transform = .identity
         view.transform = .identity
         view.alpha = 1
     }
 
     func configureForTransitionedState() {
-        myWhyView.myToBeVisionBox.transform = CGAffineTransform(translationX: -120.0, y: -50.0)
-        myWhyView.weeklyChoicesBox.transform = CGAffineTransform(translationX: 100.0, y: 10.0)
-        myWhyView.qotPartnersBox.transform = CGAffineTransform(translationX: -120.0, y: -50.0)
+        contentView.visionWrapperView.transform = CGAffineTransform(translationX: -120.0, y: -50.0)
+        contentView.weeklyChoicesWrapperView.transform = CGAffineTransform(translationX: 100.0, y: 10.0)
+        contentView.partnersWrapperView.transform = CGAffineTransform(translationX: -120.0, y: -50.0)
         view.transform = CGAffineTransform(translationX: -580.0, y: -50.0).scaledBy(x: 4.0, y: 3.0)
         view.alpha = 0
     }
