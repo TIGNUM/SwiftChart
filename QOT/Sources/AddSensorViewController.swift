@@ -155,6 +155,10 @@ private extension AddSensorViewController {
     }
 
     func setUpLayout() {
+        automaticallyAdjustsScrollViewInsets = false
+        if #available(iOS 11.0, *) {
+            scrollView.contentInsetAdjustmentBehavior = .never
+        }
         scrollView.verticalAnchors == view.verticalAnchors
         scrollView.horizontalAnchors == view.horizontalAnchors
 
@@ -164,7 +168,7 @@ private extension AddSensorViewController {
         contentView.bottomAnchor == scrollView.bottomAnchor
         contentView.widthAnchor == scrollView.widthAnchor
 
-        titleLabel.topAnchor == contentView.topAnchor + Layout.TabBarView.height + 46
+        titleLabel.topAnchor == contentView.safeTopAnchor + 46
         titleLabel.leftAnchor == contentView.leftAnchor + 36
         titleLabel.rightAnchor == contentView.rightAnchor - 59
         titleLabel.heightAnchor == 36
@@ -180,6 +184,7 @@ private extension AddSensorViewController {
         textLabel.horizontalAnchors == titleLabel.horizontalAnchors
         textLabel.bottomAnchor == contentView.bottomAnchor - 12
 
+        view.setFadeMask(at: .top)
         view.layoutIfNeeded()
     }
 }
