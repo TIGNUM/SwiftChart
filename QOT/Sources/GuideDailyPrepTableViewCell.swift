@@ -23,8 +23,7 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
         super.awakeFromNib()
 
         statusView.maskPathByRoundingCorners()
-        containerView.layer.cornerRadius = 8
-        containerView.layer.masksToBounds = true
+        containerView.corner(radius: 8)
         valueContainerView.backgroundColor = .clear
         valueViews.forEach { $0.backgroundColor = .clear }
     }

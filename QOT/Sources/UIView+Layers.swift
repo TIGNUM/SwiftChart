@@ -217,3 +217,11 @@ extension UIView {
         self.layer.mask = shape
     }
 }
+
+extension UIView {
+
+    func corner(radius: CGFloat) {
+        self.layer.cornerRadius = radius
+        self.layer.masksToBounds = true
+    }
+}

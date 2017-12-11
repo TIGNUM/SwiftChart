@@ -14,9 +14,17 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
 
     // MARK: - Properties
 
-    private let viewModel: GuideModel
+    private let guideModel: GuideModel
     private let headerRatio: CGFloat = 0.8957219251
     private let fadeMaskLocation: UIView.FadeMaskLocation
+
+    private lazy var headerView: GuideHeaderTableViewCell? = {
+        let cell = Bundle.main.loadNibNamed("GuideHeaderTableViewCell", owner: self, options: [:])?.first as? GuideHeaderTableViewCell
+        cell?.configure(message: "Hi Jogi\nLorem ipsum texh here here there text copy start",
+                       timing: "Plan timing 24 minutes")
+
+        return cell
+    }()
 
     private lazy var tableView: UITableView = {
         return UITableView(contentInsets: UIEdgeInsets(top: -8, left: 0, bottom: 0, right: 0),
@@ -31,7 +39,7 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
     // MARK: - Init
 
     init(viewModel: GuideModel, fadeMaskLocation: UIView.FadeMaskLocation) {
-        self.viewModel = viewModel
+        self.guideModel = viewModel
         self.fadeMaskLocation = fadeMaskLocation
 
         super.init(nibName: nil, bundle: nil)
@@ -62,6 +70,13 @@ private extension GuideViewController {
         tableView.rightAnchor == view.rightAnchor
         tableView.backgroundColor = .pineGreen
         view.setFadeMask(at: fadeMaskLocation)
+        guard let header = headerView else { return }
+        tableView.tableHeaderView = header
+    }
+
+    func launch() {
+        let laucnhHandler = LaunchHandler()
+        laucnhHandler.dailyPrep(groupID: "100002")
     }
 }
 
@@ -74,18 +89,10 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? 1 : Int(arc4random_uniform(20)) + 1
+        return Int(arc4random_uniform(20)) + 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 && indexPath.row == 0 {
-            let cell: GuideHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(message: "Hi Jogi\nLorem ipsum texh here here there text copy start",
-                           timing: "Plan timing 24 minutes")
-
-            return cell
-        }
-
         if indexPath.row == 0 {
             let cell: GuideDailyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
             let dailyPrepResults: [[String: Any?]] = [["value": "5", "color": UIColor.white, "title": "Sleep\nQuality"],
@@ -114,14 +121,14 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return (indexPath.section == 0 && indexPath.row == 0) ? (view.bounds.width * headerRatio) : UITableViewAutomaticDimension
+        return /*(indexPath.section == 0 && indexPath.row == 0) ? (view.bounds.width * headerRatio) :*/ UITableViewAutomaticDimension
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard section != 0 else { return nil }
+//        guard section != 0 else { return nil }
         let view = UIView(frame: CGRect(x: 30, y: 0, width: tableView.bounds.width, height: 64))
         let label = UILabel(frame: view.frame)
-        let headline = String(format: ".0000%d PLAN", section)
+        let headline = String(format: ".0000%d PLAN", section + 1)
         view.addSubview(label)
         view.backgroundColor = .pineGreen
         label.attributedText = Style.navigationTitle(headline, .white40).attributedString()
@@ -130,6 +137,27 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 0 : 64
+        return 64//section == 0 ? 0 : 64
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        launch()
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+
+extension GuideViewController {
+
+    func alpha(_ scrollView: UIScrollView) -> CGFloat {
+        print((abs(scrollView.bounds.minY) + scrollView.contentOffset.y))
+        let minY = (tableView.tableHeaderView?.bounds.height ?? 0) - (abs(scrollView.bounds.minY) + scrollView.contentOffset.y)
+        guard minY > 0 else { return 0 }
+
+        return 1 - (scrollView.contentOffset.y/minY)
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        headerView?.updateBackgroundImageView(alpha: alpha(scrollView))
     }
 }

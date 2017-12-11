@@ -20,8 +20,7 @@ final class GuideTableViewCell: UITableViewCell, Dequeueable {
         super.awakeFromNib()
 
         statusView.maskPathByRoundingCorners()
-        containerView.layer.cornerRadius = 8
-        containerView.layer.masksToBounds = true
+        containerView.corner(radius: 8)
     }
 
     func configure(title: String, content: String, type: String, status: GuideModel.Status) {

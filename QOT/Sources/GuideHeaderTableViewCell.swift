@@ -12,7 +12,7 @@ final class GuideHeaderTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var backgroundImageView: UIImageView!
     @IBOutlet private weak var timingLabel: UILabel!
-    @IBOutlet private weak var messageLabel: CLTypingLabel!
+    @IBOutlet private weak var messageLabel: UILabel!
 
     func configure(message: String, timing: String) {
         timingLabel.attributedText = attributedText(letterSpacing: 2,
@@ -25,6 +25,10 @@ final class GuideHeaderTableViewCell: UITableViewCell, Dequeueable {
                                                        font: Font.H4Headline,
                                                        textColor: .white,
                                                        alignment: .left)
+    }
+
+    func updateBackgroundImageView(alpha: CGFloat) {
+        backgroundImageView.alpha = alpha
     }
 }
 
