@@ -81,6 +81,7 @@ enum JsonKey: String {
     case isAllDay
     case isCurrentUser
     case isDetached
+    case issueDate
     case jobTitle
     case key
     case keypathID

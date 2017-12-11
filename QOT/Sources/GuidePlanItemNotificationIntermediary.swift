@@ -1,5 +1,5 @@
 //
-//  GuidePlanItemLearnIntermediary.swift
+//  GuidePlanItemNotificationIntermediary.swift
 //  QOT
 //
 //  Created by karmic on 11.12.17.
@@ -9,7 +9,7 @@
 import Foundation
 import Freddy
 
-struct GuidePlanItemLearnIntermediary: DownSyncIntermediary {
+struct GuidePlanItemNotificationIntermediary: DownSyncIntermediary {
 
     var planItemID: Int
     var title: String
@@ -18,7 +18,7 @@ struct GuidePlanItemLearnIntermediary: DownSyncIntermediary {
     var greeting: String
     var link: String
     var priority: Int
-    var day: Int
+    var issueDate: Date
     var reminderTime: Date
 
     init(json: JSON) throws {
@@ -29,7 +29,7 @@ struct GuidePlanItemLearnIntermediary: DownSyncIntermediary {
         greeting = try json.getItemValue(at: .greeting, fallback: "")
         link = try json.getItemValue(at: .link, fallback: "")
         priority = try json.getItemValue(at: .priority, fallback: 0)
-        day = try json.getItemValue(at: .day, fallback: 0)
+        issueDate = try json.getDate(at: .issueDate)
         reminderTime = try json.getDate(at: .reminderTime)
     }
 }

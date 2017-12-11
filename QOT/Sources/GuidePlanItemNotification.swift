@@ -21,7 +21,7 @@ extension GuidePlanItemNotification {
 
 final class GuidePlanItemNotification: SyncableObject {
 
-    @objc private(set) dynamic var planDayID: String = ""
+    @objc private(set) dynamic var planItemID: Int = 0
 
     @objc private(set) dynamic var title: String = ""
 
@@ -51,5 +51,16 @@ extension GuidePlanItemNotification {
     static var endPoint: Endpoint {
         return .guidePlanItemNotification
     }
-}
 
+    func setData(_ data: GuidePlanItemNotificationIntermediary, objectStore: ObjectStore) throws {
+        planItemID = data.planItemID
+        title = data.title
+        body = data.body
+        type = data.type
+        greeting = data.greeting
+        link = data.link
+        priority = data.priority
+        issueDate = data.issueDate
+        reminderTime = data.reminderTime
+    }
+}
