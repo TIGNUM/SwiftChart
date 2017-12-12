@@ -211,6 +211,7 @@ private extension MyUniverseViewController {
         )
         if contentView.frame != frame {
             contentView.frame = frame
+            contentView.layoutIfNeeded()
         }
     }
 
