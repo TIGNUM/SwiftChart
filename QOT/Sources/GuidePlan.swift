@@ -12,9 +12,13 @@ import Freddy
 
 final class GuidePlan: SyncableObject {
 
-    @objc private(set) dynamic var planID: String = ""
+    let planID: String = ""
 
-    @objc private(set) dynamic var greeting: String = ""
+    let greeting: String = ""
+
+    let planingTime: String  = ""
+
+    let planDay: String = ""
 
     let learnItems = List<GuidePlanItemLearn>()
 

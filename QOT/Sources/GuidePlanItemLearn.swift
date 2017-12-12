@@ -59,6 +59,6 @@ extension GuidePlanItemLearn {
         link = data.link
         priority = data.priority
         day = data.day
-        reminderTime = data.reminderTime        
+        reminderTime = data.reminderTime
     }
 }
