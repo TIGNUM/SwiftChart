@@ -19,8 +19,8 @@ final class SidebarViewModel {
         case placeholder
         case benefits
         case about
+        case faq
         case privacy
-        case logout
 
         static var allValues: [SidebbarItem] {
             return [.library,
@@ -30,7 +30,7 @@ final class SidebarViewModel {
                     .benefits,
                     .about,
                     .privacy,
-                    .logout]
+                    .faq]
         }
 
         var title: String? {
@@ -42,7 +42,7 @@ final class SidebarViewModel {
             case .placeholder: return nil
             case .about: return R.string.localized.sidebarTitleAbout()
             case .privacy: return R.string.localized.settingsSecurityPrivacyPolicyTitle()
-            case .logout: return R.string.localized.sidebarTitleLogout()
+            case .faq: return R.string.localized.sidebarTitleFAQ()
             }
         }
 
@@ -62,7 +62,7 @@ final class SidebarViewModel {
             case .about,
                  .privacy,
                  .benefits,
-                 .logout: return screenType == .small ? Font.H6NavigationTitle : Font.H5SecondaryHeadline
+                 .faq: return screenType == .small ? Font.H6NavigationTitle : Font.H5SecondaryHeadline
             }
         }
 
@@ -75,7 +75,7 @@ final class SidebarViewModel {
             case .about,
                  .privacy,
                  .benefits,
-                 .logout: return .white40
+                 .faq: return .white40
             }
         }
 
@@ -88,7 +88,7 @@ final class SidebarViewModel {
             case .about,
                  .privacy,
                  .benefits,
-                 .logout: return screenType == .small ? 50 : screenType == .medium ? 60 : 70
+                 .faq: return screenType == .small ? 50 : screenType == .medium ? 60 : 70
             }
         }
 
@@ -101,7 +101,7 @@ final class SidebarViewModel {
             case .placeholder: return 0
             case .about: return 100092
             case .privacy: return 100163
-            case .logout: return 0
+            case .faq: return 100704
             }
         }
 
@@ -114,7 +114,7 @@ final class SidebarViewModel {
             case .placeholder: return nil
             case .about: return service.contentCollection(id: primaryKey)
             case .privacy: return service.contentCollection(id: primaryKey)
-            case .logout: return nil
+            case .faq: return service.contentCollection(id: primaryKey)
             }
         }
     }

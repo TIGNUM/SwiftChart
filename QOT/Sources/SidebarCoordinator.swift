@@ -47,11 +47,6 @@ final class SidebarCoordinator: ParentCoordinator {
 
 extension SidebarCoordinator: SidebarViewControllerDelegate {
 
-    func didTapLogoutCell(in viewController: SidebarViewController) {
-        NotificationHandler.postNotification(withName: .logoutNotification)
-        viewController.dismiss(animated: true, completion: nil)
-    }
-
     func didTapAddSensorCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
         let coordinator = AddSensorCoordinator(root: viewController, services: services)
         startChild(child: coordinator)
@@ -84,6 +79,10 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
 
     func didTapPrivacyCell(with contentCollection: ContentCollection?, backgroundImage: UIImage?, in viewController: SidebarViewController) {
         startSidebarItemCoordinator(pageName: .privacy, contentCollection: contentCollection, viewController: viewController, backgroundImage: backgroundImage)
+    }
+
+    func didTapFAQCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
+        startSidebarItemCoordinator(pageName: .faq, contentCollection: contentCollection, viewController: viewController)
     }
 
     private func startSidebarItemCoordinator(pageName: PageName, contentCollection: ContentCollection?, viewController: SidebarViewController, topTabBarTitle: String? = nil, backgroundImage: UIImage? = nil) {

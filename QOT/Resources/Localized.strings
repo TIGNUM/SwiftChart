@@ -47,7 +47,7 @@
 "Sidebar.Title.Settings" = "Settings";
 "Sidebar.Title.Sensor" = "Add Sensor";
 "Sidebar.Title.About" = "About Tignum";
-"Sidebar.Title.Logout" = "Logout";
+"Sidebar.Title.FAQ" = "FAQ";
 "Sidebar.User.Titles.Member.Since" = "MEMBER SINCE";
 "Sidebar.User.Titles.Member.QOT.Usage" = "QOT USAGE";
 
@@ -176,6 +176,7 @@
 "Sidebar.SettingsMenu.GeneralButton" = "GENERAL";
 "Sidebar.SettingsMenu.NotificationsButton" = "NOTIFICATIONS";
 "Sidebar.SettingsMenu.SecurityButton" = "SECURITY AND LEGAL";
+"Sidebar.SettingsMenu.LogoutButton" = "Logout";
 
 "Sidebar.SensorsMenu.Sensors" = "SENSORS";
 "Sidebar.SensorsMenu.Fitbit" = "FITBIT";

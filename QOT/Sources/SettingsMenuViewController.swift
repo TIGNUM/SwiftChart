@@ -19,6 +19,8 @@ protocol SettingsMenuViewControllerDelegate: class {
     func didTapNotifications(in viewController: SettingsMenuViewController)
 
     func didTapSecurity(in viewController: SettingsMenuViewController)
+
+    func didTapLogout(in viewController: SettingsMenuViewController)
 }
 
 final class SettingsMenuViewController: UIViewController {
@@ -33,6 +35,7 @@ final class SettingsMenuViewController: UIViewController {
     @IBOutlet private weak var generalButton: UIButton!
     @IBOutlet private weak var notificationsButton: UIButton!
     @IBOutlet private weak var securityButton: UIButton!
+    @IBOutlet private weak var logoutButton: UIButton!
     private let disposeBag = DisposeBag()
     private let viewModel: SettingsMenuViewModel
     weak var delegate: SettingsMenuViewControllerDelegate?
@@ -111,10 +114,16 @@ private extension SettingsMenuViewController {
                 lineSpacing: 0
             ), for: .normal
         )
-
         securityButton.setAttributedTitle(
             NSMutableAttributedString(
                 string: R.string.localized.sidebarSettingsMenuSecurityButton().uppercased(),
+                letterSpacing: -0.8,
+                font: Font.H4Headline
+            ), for: .normal
+        )
+        logoutButton.setAttributedTitle(
+            NSMutableAttributedString(
+                string: R.string.localized.sidebarSettingsMenuLogoutButton().uppercased(),
                 letterSpacing: -0.8,
                 font: Font.H4Headline
             ), for: .normal
@@ -152,6 +161,10 @@ private extension SettingsMenuViewController {
 
     @IBAction func securityAction(_ sender: Any) {
         delegate?.didTapSecurity(in: self)
+    }
+
+    @IBAction func logoutAction(_ sender: Any) {
+        delegate?.didTapLogout(in: self)
     }
 }
 
