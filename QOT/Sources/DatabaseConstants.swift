@@ -25,6 +25,7 @@ enum Database {
 
     enum KeyPath: String {
         case sortOrder
+        case priority
     }
 
     enum ItemKey: String {

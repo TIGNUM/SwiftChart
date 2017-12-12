@@ -43,9 +43,9 @@ final class GuidePlanItemLearn: SyncableObject {
     var itemType: GuidePlanItemType = .strategy
 }
 
-extension GuidePlanItemLearn {
+extension GuidePlanItemLearn: OneWaySyncableDown {
 
-    static var endPoint: Endpoint {
+    static var endpoint: Endpoint {
         return .guidePlanItemLearn
     }
 

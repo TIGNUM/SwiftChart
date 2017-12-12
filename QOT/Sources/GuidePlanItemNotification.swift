@@ -46,9 +46,9 @@ final class GuidePlanItemNotification: SyncableObject {
     var morningInterviewFeedback: String = ""
 }
 
-extension GuidePlanItemNotification {
+extension GuidePlanItemNotification: OneWaySyncableDown {
 
-    static var endPoint: Endpoint {
+    static var endpoint: Endpoint {
         return .guidePlanItemNotification
     }
 

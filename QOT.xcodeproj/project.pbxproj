@@ -40,6 +40,7 @@
 		36939B8D1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36939B8B1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib */; };
 		36DADE761FA7850100EB00D4 /* SettingsAdminCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DADE751FA7850100EB00D4 /* SettingsAdminCoordinator.swift */; };
 		36DADE791FA786DD00EB00D4 /* SettingsAdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DADE781FA786DD00EB00D4 /* SettingsAdminViewController.swift */; };
+		36DBF8941FDFD4D80007F7ED /* GuidePlanItemLearnService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DBF8931FDFD4D80007F7ED /* GuidePlanItemLearnService.swift */; };
 		36FC8D471FDEF16F00B5E062 /* GuidePlanItemLearnIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FC8D461FDEF16F00B5E062 /* GuidePlanItemLearnIntermediary.swift */; };
 		36FC8D491FDEF63200B5E062 /* GuidePlanItemNotificationIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FC8D481FDEF63200B5E062 /* GuidePlanItemNotificationIntermediary.swift */; };
 		7F01A6211F98A1E7002C7B72 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F01A6201F98A1E7002C7B72 /* ImagePickerController.swift */; };
@@ -532,6 +533,7 @@
 		36939B8B1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideDailyPrepTableViewCell.xib; sourceTree = "<group>"; };
 		36DADE751FA7850100EB00D4 /* SettingsAdminCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAdminCoordinator.swift; sourceTree = "<group>"; };
 		36DADE781FA786DD00EB00D4 /* SettingsAdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAdminViewController.swift; sourceTree = "<group>"; };
+		36DBF8931FDFD4D80007F7ED /* GuidePlanItemLearnService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidePlanItemLearnService.swift; sourceTree = "<group>"; };
 		36FC8D461FDEF16F00B5E062 /* GuidePlanItemLearnIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidePlanItemLearnIntermediary.swift; sourceTree = "<group>"; };
 		36FC8D481FDEF63200B5E062 /* GuidePlanItemNotificationIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidePlanItemNotificationIntermediary.swift; sourceTree = "<group>"; };
 		42795728C4F3229DFB18981E /* Pods-QOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2078,6 +2080,7 @@
 				CC178A761F04FD600066A5D4 /* UserService.swift */,
 				7F3A9CBD1FCDBA51000F1744 /* FeedbackService.swift */,
 				CB9AFD211F02A46F00D067F2 /* Extensions */,
+				36DBF8931FDFD4D80007F7ED /* GuidePlanItemLearnService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -3139,6 +3142,7 @@
 				7FDFF3691F18FF0B00F7A7EC /* NotificationTokenHandler.swift in Sources */,
 				CBB017B41F96084A00CC1048 /* Syncable.swift in Sources */,
 				360947A31FB5E684003AF3E9 /* PageControl.swift in Sources */,
+				36DBF8941FDFD4D80007F7ED /* GuidePlanItemLearnService.swift in Sources */,
 				CCC0C4BE1E82730E002A8362 /* Extensions.swift in Sources */,
 				CCC1B6AE1E8B9B7F00D1461F /* LearnContentListViewController.swift in Sources */,
 				CC02E14B1F279E6700134574 /* SettingsCalendarListViewController.swift in Sources */,
