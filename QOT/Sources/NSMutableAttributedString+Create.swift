@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import BonMot
 
-extension NSMutableAttributedString {
+extension NSAttributedString {
 
     convenience init(string: String,
                      letterSpacing: CGFloat = 1,

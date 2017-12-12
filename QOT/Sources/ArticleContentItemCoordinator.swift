@@ -34,7 +34,7 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
           topTabBarTitle: String?,
           backgroundImage: UIImage? = nil,
           shouldPush: Bool = true,
-          contentInsets: UIEdgeInsets = UIEdgeInsets(top: 110, left: 0, bottom: 0, right: 0)) {
+          contentInsets: UIEdgeInsets = UIEdgeInsets(top: 53, left: 0, bottom: 0, right: 0)) {
         guard let contentCollection = contentCollection else { return nil }
 
         self.pageName = pageName

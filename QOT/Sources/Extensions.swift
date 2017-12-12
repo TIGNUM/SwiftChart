@@ -450,6 +450,14 @@ extension UIView {
         }
     }
 
+    var safeEdgeAnchors: EdgeAnchors {
+        if #available(iOS 11.0, *) {
+            return safeAreaLayoutGuide.edgeAnchors
+        } else {
+            return edgeAnchors
+        }
+    }
+
     var safeMargins: UIEdgeInsets {
         if #available(iOS 11.0, *) {
             return safeAreaInsets

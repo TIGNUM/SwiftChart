@@ -100,6 +100,18 @@ final class MyUniverseContentView: UIView {
         setupMyWhyLines()
     }
 
+    func setVisionText(_ text: String) {
+        visionTextLabel.attributedText = NSAttributedString(
+            string: text,
+            letterSpacing: 1.7,
+            font: UIFont.bentonBookFont(ofSize: 13),
+            lineSpacing: 1.5,
+            textColor: .white,
+            alignment: .left,
+            lineBreakMode: .byTruncatingTail
+        )
+    }
+
     func setupMyData(for sectors: [MyUniverseViewData.Sector]) {
         guard let circle2Circumference = circle2.path?.boundingBox.width else { return }
         let center = profileWrapperView.center

@@ -27,6 +27,7 @@ enum PageName: String {
     case about = "sidebar.abouttignum"
     case benefits = "sidebar.benefits"
     case guide = "guide"
+    case faq = "sidebar.faq"
     case launch = "splashscreen"
     case learnCategoryList = "learn.strategies.categorylist"
     case learnContentItemFull = "learn.strategies.strategy.full"

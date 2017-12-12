@@ -52,6 +52,10 @@ extension SettingsMenuCoordinator: SettingsMenuViewControllerDelegate {
         startSettingsCoordinator(settingsType: .notifications, root: viewController)
     }
 
+    func didTapLogout(in viewController: SettingsMenuViewController) {
+        NotificationHandler.postNotification(withName: .logoutNotification)
+    }
+
     private func startSettingsCoordinator(settingsType: SettingsType.SectionType, root: SettingsMenuViewController) {
         guard let coordinator = SettingsCoordinator(root: root,
                                                     services: services,

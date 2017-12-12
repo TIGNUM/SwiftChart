@@ -44,7 +44,7 @@ extension UIViewController {
         navigationBar?.topItem?.title = ""
         navigationBar?.backIndicatorImage = R.image.ic_back()
         navigationBar?.backIndicatorTransitionMaskImage = R.image.ic_back()
-        navigationBar?.titleTextAttributes = [.font: Font.H4Headline, .foregroundColor: UIColor.white]
+        navigationBar?.titleTextAttributes = [.font: Font.H5SecondaryHeadline, .foregroundColor: UIColor.white]
         navigationController?.pushViewController(childViewController, animated: true)
     }
 }
