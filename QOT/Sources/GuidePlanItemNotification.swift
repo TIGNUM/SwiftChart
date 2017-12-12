@@ -39,7 +39,7 @@ final class GuidePlanItemNotification: SyncableObject {
 
     @objc private(set) dynamic var reminderTime: Date = Date()
 
-    @objc private(set) dynamic var completed: Bool = false
+    var completed: Bool = false
 
     var morningInterviewResults: [Int] = []
 

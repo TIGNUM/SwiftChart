@@ -1,5 +1,5 @@
 //
-//  GuidePlanItemLearnService.swift
+//  GuidePlanItemNotificationService.swift
 //  QOT
 //
 //  Created by karmic on 12.12.17.
@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-final class GuidePlanItemLearnService {
+final class GuidePlanItemNotificationService {
 
     private let mainRealm: Realm
     private let realmProvider: RealmProvider
@@ -19,21 +19,21 @@ final class GuidePlanItemLearnService {
         self.realmProvider = realmProvider
     }
 
-    func nextItems(day: Int, type: GuidePlanItemLearn.GuidePlanItemType) -> AnyRealmCollection<GuidePlanItemLearn> {
+    func nextItems(day: Int, type: GuidePlanItemNotification.GuidePlanItemNotificationType) -> AnyRealmCollection<GuidePlanItemNotification> {
         return mainRealm.guidePlanItemsLearn(day: day, type: type)
     }
 
-    func setItemCompleted(item: GuidePlanItemLearn) {
+    func setItemCompleted(item: GuidePlanItemNotification) {
         do {
             try mainRealm.write {
                 item.completed = true
             }
         } catch let error {
-            assertionFailure("Set item completed: \(GuidePlanItemLearn.self), error: \(error)")
+            assertionFailure("Set item completed: \(GuidePlanItemNotification.self), error: \(error)")
         }
     }
 
-    func eraseItem(item: GuidePlanItemLearn) {
+    func eraseItem(item: GuidePlanItemNotification) {
         do {
             try mainRealm.write {
                 mainRealm.delete(item)
@@ -46,15 +46,8 @@ final class GuidePlanItemLearnService {
 
 private extension Realm {
 
-    func guidePlanItemsLearn(day: Int, type: GuidePlanItemLearn.GuidePlanItemType) -> AnyRealmCollection<GuidePlanItemLearn> {
+    func guidePlanItemsLearn(day: Int, type: GuidePlanItemNotification.GuidePlanItemNotificationType) -> AnyRealmCollection<GuidePlanItemNotification> {
         let predicate = NSPredicate(format: "ANY type == %@ AND day == %d", type.rawValue, day)
         return anyCollection(.priorityOrder(), predicates: predicate)
-    }
-}
-
-extension SortDescriptor {
-
-    static func priorityOrder(ascending: Bool = false) -> SortDescriptor {
-        return SortDescriptor(keyPath: Database.KeyPath.priority.rawValue, ascending: ascending)
     }
 }
