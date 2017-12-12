@@ -23,6 +23,14 @@ final class GuidePlanItemLearnService {
         return mainRealm.guidePlanItemsLearn(day: day, type: type)
     }
 
+    func todayItems() -> List<GuidePlanItemLearn> {
+        let results = mainRealm.objects(GuidePlanItemLearn.self)
+        let minDay = results.min(ofProperty: "day") as Int?
+        let filteredResults = results.filter { $0.day == (minDay ?? 1) }
+
+        return List<GuidePlanItemLearn>(filteredResults)
+    }
+
     func setItemCompleted(item: GuidePlanItemLearn) {
         do {
             try mainRealm.write {

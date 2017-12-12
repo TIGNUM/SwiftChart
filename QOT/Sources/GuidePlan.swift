@@ -26,7 +26,8 @@ final class GuidePlan: SyncableObject {
 
     @objc dynamic var changeStamp: String? = UUID().uuidString
 
-    convenience init(learnItems: List<GuidePlanItemLearn>, notificationItems: List<GuidePlanItemNotification>) {
+    convenience init(learnItems: List<GuidePlanItemLearn>,
+                     notificationItems: List<GuidePlanItemNotification>) {
         self.init()
 
         self.learnItems = learnItems

@@ -60,10 +60,26 @@ final class GuideViewModel {
 
     private let services: Services
     private let eventTracker: EventTracker
+    private let guidePlanToday: GuidePlan
 
     init(services: Services, eventTracker: EventTracker) {
         self.services = services
         self.eventTracker = eventTracker
+
+        func createPlanForToday() -> GuidePlan {
+            let learnItems = services.guidePlanItemLearnService.todayItems()
+            let notificationItems = services.guidePlanItemNotificationService.todayItems()
+
+            return GuidePlan(learnItems: learnItems, notificationItems: notificationItems)
+        }
+
+        self.guidePlanToday = createPlanForToday()
+        do {
+            try saveGuidePlanToday()
+        } catch {
+            assertionFailure("Failed to save Guide Plan for today with error: \(error)")
+        }
+
     }
 
     var sectionCount: Int {
@@ -79,5 +95,12 @@ final class GuideViewModel {
 
     func plan(section: Int) -> GuidePlan {
         return services.guidePlanService.plans()[section]
+    }
+
+    func saveGuidePlanToday() throws {
+        let realm = services.mainRealm
+        try realm.write {
+            realm.add(guidePlanToday)
+        }
     }
 }

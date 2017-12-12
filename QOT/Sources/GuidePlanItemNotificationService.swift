@@ -23,6 +23,12 @@ final class GuidePlanItemNotificationService {
         return mainRealm.guidePlanItemsLearn(day: day, type: type)
     }
 
+    func todayItems() -> List<GuidePlanItemNotification> {
+        let predicate = NSPredicate(format: "issueDate == %@", Date() as NSDate)
+
+        return List<GuidePlanItemNotification>(mainRealm.objects(GuidePlanItemNotification.self).filter(predicate))
+    }
+
     func setItemCompleted(item: GuidePlanItemNotification) {
         do {
             try mainRealm.write {

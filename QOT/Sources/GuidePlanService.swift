@@ -32,4 +32,8 @@ final class GuidePlanService {
     func notificationItems(section: Int) -> List<GuidePlanItemNotification> {
         return plans()[section].notificationItems
     }
+
+    func createNextPlanDay() {
+        
+    }
 }
