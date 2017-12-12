@@ -12,23 +12,36 @@ import Freddy
 
 final class GuidePlan: SyncableObject {
 
-    let planID: String = ""
+    @objc dynamic var planID: String = ""
 
-    let greeting: String = ""
+    @objc dynamic var greeting: String = ""
 
-    let planingTime: String  = ""
+    @objc dynamic var planingTime: String  = ""
 
-    let planDay: String = ""
+    @objc dynamic var planDay: String = ""
 
-    let learnItems = List<GuidePlanItemLearn>()
+    var learnItems = List<GuidePlanItemLearn>()
 
-    let notificationItems = List<GuidePlanItemNotification>()
+    var notificationItems = List<GuidePlanItemNotification>()
 
+    @objc dynamic var changeStamp: String? = UUID().uuidString
+
+    convenience init(learnItems: List<GuidePlanItemLearn>, notificationItems: List<GuidePlanItemNotification>) {
+        self.init()
+
+        self.learnItems = learnItems
+        self.notificationItems = notificationItems
+    }
 }
 
-extension GuidePlan {
+extension GuidePlan: OneWaySyncableUp {
 
-    static var endPoint: Endpoint {
+    func toJson() -> JSON? {
+        let dict: [JsonKey: JSONEncodable] = [:]
+        return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
+    }
+
+    static var endpoint: Endpoint {
         return .guidePlan
     }
 }

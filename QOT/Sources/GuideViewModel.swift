@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import ReactiveKit
+import RealmSwift
 import UIKit
 
-struct GuideModel {
+extension GuideViewModel {
 
     enum Status {
         case todo
@@ -29,6 +31,9 @@ struct GuideModel {
             }
         }
     }
+}
+
+extension GuideViewModel {
 
     enum GuideType {
         case newFeature
@@ -49,16 +54,30 @@ struct GuideModel {
             }
         }
     }
+}
 
-    struct DailyPlan {
-        var items: [ViewModel]
+final class GuideViewModel {
+
+    private let services: Services
+    private let eventTracker: EventTracker
+
+    init(services: Services, eventTracker: EventTracker) {
+        self.services = services
+        self.eventTracker = eventTracker
     }
 
-    struct ViewModel {
-        var title: String?
-        var content: String?
-        var type: GuideType
-        var status: Status
-        var plan: String?
+    var sectionCount: Int {
+        return services.guidePlanService.plans().count
+    }
+
+    func numberOfRows(section: Int) -> Int {
+        let learnRows = services.guidePlanService.learnItems(section: section).count
+        let notificationRows = services.guidePlanService.notificationItems(section: section).count
+
+        return learnRows + notificationRows
+    }
+
+    func plan(section: Int) -> GuidePlan {
+        return services.guidePlanService.plans()[section]
     }
 }

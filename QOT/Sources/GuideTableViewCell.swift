@@ -23,7 +23,7 @@ final class GuideTableViewCell: UITableViewCell, Dequeueable {
         containerView.corner(radius: 8)
     }
 
-    func configure(title: String, content: String, type: String, status: GuideModel.Status) {
+    func configure(title: String, content: String, type: String, status: GuideViewModel.Status) {
         titleLabel.attributedText = attributedText(letterSpacing: 1,
                                                    text: title.uppercased(),
                                                    font: Font.H4Identifier,

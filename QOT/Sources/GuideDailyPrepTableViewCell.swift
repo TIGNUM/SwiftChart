@@ -28,18 +28,18 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
         valueViews.forEach { $0.backgroundColor = .clear }
     }
 
-    func configure(dailyPrepResults: [[String: Any?]], status: GuideModel.Status) {
+    func configure(dailyPrepResults: [[String: Any?]], status: GuideViewModel.Status) {
         if dailyPrepResults.count < 5 {
             setupShortDailyPrep()
         }
 
         titleLabel.attributedText = attributedText(letterSpacing: 1,
-                                                   text: GuideModel.GuideType.morningInterview.title.uppercased(),
+                                                   text: GuideViewModel.GuideType.morningInterview.title.uppercased(),
                                                    font: Font.H4Identifier,
                                                    textColor: .white,
                                                    alignment: .left)
         typeLabel.attributedText = attributedText(letterSpacing: 2,
-                                                  text: GuideModel.GuideType.notification.title.uppercased(),
+                                                  text: GuideViewModel.GuideType.notification.title.uppercased(),
                                                   font: Font.H7Tag,
                                                   textColor: .white40,
                                                   alignment: .left)

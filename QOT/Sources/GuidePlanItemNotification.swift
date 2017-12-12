@@ -39,11 +39,11 @@ final class GuidePlanItemNotification: SyncableObject {
 
     @objc private(set) dynamic var reminderTime: Date = Date()
 
-    var completed: Bool = false
+    @objc dynamic var completed: Bool = false
 
-    var morningInterviewResults: [Int] = []
+    @objc dynamic var morningInterviewFeedback: String = ""
 
-    var morningInterviewFeedback: String = ""
+    var morningInterviewResults: List<IntObject> = List()
 }
 
 extension GuidePlanItemNotification: OneWaySyncableDown {

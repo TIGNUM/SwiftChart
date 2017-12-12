@@ -38,7 +38,7 @@ final class GuidePlanItemLearn: SyncableObject {
 
     @objc private(set) dynamic var reminderTime: Date = Date()
 
-    var completed: Bool = false
+    @objc dynamic var completed: Bool = false
 
     var itemType: GuidePlanItemType = .strategy
 }

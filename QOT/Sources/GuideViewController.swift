@@ -14,7 +14,7 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
 
     // MARK: - Properties
 
-    private let guideModel: GuideModel
+    private let viewModel: GuideViewModel
     private let headerRatio: CGFloat = 0.8957219251
     private let fadeMaskLocation: UIView.FadeMaskLocation
 
@@ -38,8 +38,8 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
 
     // MARK: - Init
 
-    init(viewModel: GuideModel, fadeMaskLocation: UIView.FadeMaskLocation) {
-        self.guideModel = viewModel
+    init(viewModel: GuideViewModel, fadeMaskLocation: UIView.FadeMaskLocation) {
+        self.viewModel = viewModel
         self.fadeMaskLocation = fadeMaskLocation
 
         super.init(nibName: nil, bundle: nil)
@@ -85,11 +85,11 @@ private extension GuideViewController {
 extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return Int(arc4random_uniform(20))
+        return viewModel.sectionCount
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Int(arc4random_uniform(20)) + 1
+        return viewModel.numberOfRows(section: section)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
