@@ -20,6 +20,8 @@ final class GuidePlan: SyncableObject {
 
     @objc dynamic var planDay: String = ""
 
+    @objc dynamic var deleted: Bool = false
+
     var learnItems = List<GuidePlanItemLearn>()
 
     var notificationItems = List<GuidePlanItemNotification>()
@@ -35,7 +37,11 @@ final class GuidePlan: SyncableObject {
     }
 }
 
-extension GuidePlan: OneWaySyncableUp {
+extension GuidePlan: TwoWaySyncable {
+
+    func setData(_ data: GuidePlanIntermediary, objectStore: ObjectStore) throws {
+
+    }
 
     func toJson() -> JSON? {
         let dict: [JsonKey: JSONEncodable] = [:]

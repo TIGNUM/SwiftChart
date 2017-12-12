@@ -93,6 +93,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let plan = viewModel.plan(section: indexPath.section)
         if indexPath.row == 0 {
             let cell: GuideDailyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
             let dailyPrepResults: [[String: Any?]] = [["value": "5", "color": UIColor.white, "title": "Sleep\nQuality"],
