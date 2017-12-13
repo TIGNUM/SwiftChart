@@ -86,25 +86,30 @@ final class GuideViewModel {
     }
 
     func numberOfRows(section: Int) -> Int {
-        let learnRows = services.guidePlanService.learnItems(section: section).count
-        let notificationRows = services.guidePlanService.notificationItems(section: section).count
-
-        return learnRows + notificationRows
+        return guidePlanToday.planItems.count
     }
 
     func plan(section: Int) -> GuidePlan {
         return services.guidePlanService.plans()[section]
     }
 
-    func dailyPrepItem() -> GuidePlanItemNotification.DailyPrepItem {
-        return GuidePlanItemNotification.DailyPrepItem(feedback: nil,
-                                                       results: [],
-                                                       link: "",
-                                                       title: "",
-                                                       body: "",
-                                                       greeting: "",
-                                                       issueDate: Date(),
-                                                       reminderTime: Date()) 
+    func planItem(indexPath: IndexPath) -> GuidePlan.PlanItem {
+        return guidePlanToday.planItems[indexPath.row]
+    }
+
+    func dailyPrepItem() -> GuidePlanItemNotification.DailyPrepItem? {
+        let predicate = NSPredicate(format: "type == %@", GuidePlanItemNotification.ItemType.morningInterview.rawValue)
+        guard let dailyPrep = guidePlanToday.notificationItems.filter(predicate).first else { return nil }
+
+        return GuidePlanItemNotification.DailyPrepItem(feedback: dailyPrep.morningInterviewFeedback,
+                                                       results: Array(dailyPrep.morningInterviewResults.map { $0.value }),
+                                                       link: dailyPrep.link,
+                                                       title: dailyPrep.title,
+                                                       body: dailyPrep.body,
+                                                       greeting: dailyPrep.greeting,
+                                                       issueDate: dailyPrep.issueDate,
+                                                       reminderTime: dailyPrep.reminderTime,
+                                                       status: dailyPrep.completed == true ? .done : .todo)
     }
 
     func saveGuidePlanToday() throws {

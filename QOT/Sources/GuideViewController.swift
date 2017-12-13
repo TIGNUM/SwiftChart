@@ -93,41 +93,39 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let plan = viewModel.plan(section: indexPath.section)
-        let learnItems = plan.learnItems
-        let notificationItems = plan.notificationItems
+        let plan = viewModel.planItem(indexPath: indexPath)
 
         if
             indexPath.row == 0,
-            let dailyPrepItem = (notificationItems.filter { $0.type == GuidePlanItemNotification.ItemType.morningInterview.rawValue }).first {
+            let dailyPrepItem = viewModel.dailyPrepItem() {
                 let cell: GuideDailyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
-
+                cell.configure(dailyPrepItem: dailyPrepItem)
+                return cell
         }
-
-
-        if indexPath.row == 0 {
-            let cell: GuideDailyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
-            let dailyPrepResults: [[String: Any?]] = [["value": "5", "color": UIColor.white, "title": "Sleep\nQuality"],
-                                                     ["value": "2", "color": UIColor.white, "title": "Sleep\nQuantity"],
-                                                     ["value": "8", "color": UIColor.cherryRed, "title": "Load\nIndex"],
-                                                     ["value": "2", "color": UIColor.white, "title": "Pressure\nIndex"],
-                                                     ["value": "7", "color": UIColor.cherryRed, "title": "Workday\nLength"]]
-            let dailyPrepToDo: [[String: Any?]] = [["value": nil, "color": nil, "title": "Sleep\nQuality"],
-                                                   ["value": nil, "color": nil, "title": "Sleep\nQuantity"],
-                                                   ["value": nil, "color": nil, "title": "Load\nIndex"],
-                                                   ["value": nil, "color": nil, "title": "Pressure\nIndex"],
-                                                   ["value": nil, "color": nil, "title": "Workday\nLength"]]
-            let dailyPrep = indexPath.section % 2 == 0 ? dailyPrepResults : dailyPrepToDo
-            cell.configure(dailyPrepResults: dailyPrep, status: indexPath.row % 2 == 0 ? .todo : .done)
-
-            return cell
-        }
+//
+//        if indexPath.row == 0 {
+//            let cell: GuideDailyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
+//            let dailyPrepResults: [[String: Any?]] = [["value": "5", "color": UIColor.white, "title": "Sleep\nQuality"],
+//                                                     ["value": "2", "color": UIColor.white, "title": "Sleep\nQuantity"],
+//                                                     ["value": "8", "color": UIColor.cherryRed, "title": "Load\nIndex"],
+//                                                     ["value": "2", "color": UIColor.white, "title": "Pressure\nIndex"],
+//                                                     ["value": "7", "color": UIColor.cherryRed, "title": "Workday\nLength"]]
+//            let dailyPrepToDo: [[String: Any?]] = [["value": nil, "color": nil, "title": "Sleep\nQuality"],
+//                                                   ["value": nil, "color": nil, "title": "Sleep\nQuantity"],
+//                                                   ["value": nil, "color": nil, "title": "Load\nIndex"],
+//                                                   ["value": nil, "color": nil, "title": "Pressure\nIndex"],
+//                                                   ["value": nil, "color": nil, "title": "Workday\nLength"]]
+//            let dailyPrep = indexPath.section % 2 == 0 ? dailyPrepResults : dailyPrepToDo
+//            cell.configure(dailyPrepResults: dailyPrep, status: indexPath.row % 2 == 0 ? .todo : .done)
+//
+//            return cell
+//        }
 
         let cell: GuideTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(title: LoremIpsum.title(),
-                       content: LoremIpsum.sentence(),
-                       type: LoremIpsum.word(),
-                       status: indexPath.row % 2 == 0 ? .todo : .done)
+        cell.configure(title: plan.title,
+                       content: plan.body,
+                       type: plan.type,
+                       status: plan.status)
 
         return cell
     }

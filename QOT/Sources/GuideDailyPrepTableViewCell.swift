@@ -28,13 +28,13 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
         valueViews.forEach { $0.backgroundColor = .clear }
     }
 
-    func configure(dailyPrepResults: [[String: Any?]], status: GuideViewModel.Status) {
-        if dailyPrepResults.count < 5 {
+    func configure(dailyPrepItem: GuidePlanItemNotification.DailyPrepItem) {
+        if dailyPrepItem.results.count < 5 {
             setupShortDailyPrep()
         }
 
         titleLabel.attributedText = attributedText(letterSpacing: 1,
-                                                   text: GuideViewModel.GuideType.morningInterview.title.uppercased(),
+                                                   text: dailyPrepItem.title.uppercased(),
                                                    font: Font.H4Identifier,
                                                    textColor: .white,
                                                    alignment: .left)
@@ -44,22 +44,22 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
                                                   textColor: .white40,
                                                   alignment: .left)
 
-        for (index, result) in dailyPrepResults.enumerated() {
+        for (index, result) in dailyPrepItem.results.enumerated() {
             valueLabels[index].attributedText = attributedText(letterSpacing: -1.1,
-                                                               text: (result["value"] as? String) ?? "−",
+                                                               text: String(format: "%d", result),
                                                                font: Font.H3Subtitle,
-                                                               textColor: (result["color"] as? UIColor) ?? .white,
+                                                               textColor: .white,
                                                                alignment: .left)
             valueTitleLabels[index].attributedText = attributedText(letterSpacing: 0.2,
-                                                               text: (result["title"] as? String) ?? "",
+                                                               text: "Index",
                                                                font: Font.PTextSmall,
                                                                lineSpacing: 8,
                                                                textColor: .white70,
                                                                alignment: .left)
         }
 
-        statusView.backgroundColor = status.statusViewColor
-        containerView.backgroundColor = status.cardColor
+        statusView.backgroundColor = dailyPrepItem.status.statusViewColor
+        containerView.backgroundColor = dailyPrepItem.status.cardColor
     }
 }
 

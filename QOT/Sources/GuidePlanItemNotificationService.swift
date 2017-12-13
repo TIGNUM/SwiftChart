@@ -19,7 +19,7 @@ final class GuidePlanItemNotificationService {
         self.realmProvider = realmProvider
     }
 
-    func nextItems(day: Int, type: GuidePlanItemNotification.Type) -> AnyRealmCollection<GuidePlanItemNotification> {
+    func nextItems(day: Int, type: GuidePlanItemNotification.ItemType) -> AnyRealmCollection<GuidePlanItemNotification> {
         return mainRealm.guidePlanItemsLearn(day: day, type: type)
     }
 
@@ -52,7 +52,7 @@ final class GuidePlanItemNotificationService {
 
 private extension Realm {
 
-    func guidePlanItemsLearn(day: Int, type: GuidePlanItemNotification.Type) -> AnyRealmCollection<GuidePlanItemNotification> {
+    func guidePlanItemsLearn(day: Int, type: GuidePlanItemNotification.ItemType) -> AnyRealmCollection<GuidePlanItemNotification> {
         let predicate = NSPredicate(format: "ANY type == %@ AND day == %d", type.rawValue, day)
         return anyCollection(.priorityOrder(), predicates: predicate)
     }

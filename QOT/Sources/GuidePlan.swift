@@ -10,6 +10,20 @@ import Foundation
 import RealmSwift
 import Freddy
 
+extension GuidePlan {
+
+    struct PlanItem {
+        var planID: Int
+        var title: String
+        var body: String
+        var type: String
+        var greeting: String
+        var link: String
+        var priority: Int
+        var status: GuideViewModel.Status
+    }
+}
+
 final class GuidePlan: SyncableObject {
 
     @objc dynamic var planID: String = ""
@@ -26,6 +40,8 @@ final class GuidePlan: SyncableObject {
 
     var notificationItems = List<GuidePlanItemNotification>()
 
+    var planItems = [GuidePlan.PlanItem]()
+
     @objc dynamic var changeStamp: String? = UUID().uuidString
 
     convenience init(learnItems: List<GuidePlanItemLearn>,
@@ -34,6 +50,36 @@ final class GuidePlan: SyncableObject {
 
         self.learnItems = learnItems
         self.notificationItems = notificationItems
+    }
+
+    private func cratePlanItems() {
+        learnItems.forEach { (learnItem: GuidePlanItemLearn) in
+            let planItem = GuidePlan.PlanItem(planID: learnItem.planItemID,
+                                              title: learnItem.title,
+                                              body: learnItem.body,
+                                              type: learnItem.body,
+                                              greeting: learnItem.greeting,
+                                              link: learnItem.link,
+                                              priority: learnItem.priority,
+                                              status: learnItem.completed == true ? .done : .todo)
+            planItems.append(planItem)
+        }
+
+        notificationItems.forEach { (notificationItem: GuidePlanItemNotification) in
+            let planItem = GuidePlan.PlanItem(planID: notificationItem.planItemID,
+                                              title: notificationItem.title,
+                                              body: notificationItem.body,
+                                              type: notificationItem.type,
+                                              greeting: notificationItem.greeting,
+                                              link: notificationItem.link,
+                                              priority: notificationItem.priority,
+                                              status: notificationItem.completed == true ? .done : .todo)
+            planItems.append(planItem)
+        }
+
+        planItems.sort { (lhs: GuidePlan.PlanItem, rhs: GuidePlan.PlanItem) -> Bool in
+            return lhs.priority > rhs.priority
+        }
     }
 }
 

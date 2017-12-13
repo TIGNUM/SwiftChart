@@ -30,6 +30,7 @@ extension GuidePlanItemNotification {
         var greeting: String
         var issueDate: Date
         var reminderTime: Date
+        var status: GuideViewModel.Status
     }
 }
 
