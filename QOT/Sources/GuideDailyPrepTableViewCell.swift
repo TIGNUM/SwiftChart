@@ -34,7 +34,7 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
         }
 
         titleLabel.attributedText = attributedText(letterSpacing: 1,
-                                                   text: dailyPrepItem.title.uppercased(),
+                                                   text: dailyPrepItem.title?.uppercased() ?? "",
                                                    font: Font.H4Identifier,
                                                    textColor: .white,
                                                    alignment: .left)

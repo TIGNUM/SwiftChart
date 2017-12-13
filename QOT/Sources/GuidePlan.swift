@@ -13,11 +13,10 @@ import Freddy
 extension GuidePlan {
 
     struct PlanItem {
-        var planID: Int
-        var title: String
+        var title: String?
         var body: String
         var type: String
-        var greeting: String
+        var greeting: String?
         var link: String
         var priority: Int
         var status: GuideViewModel.Status
@@ -49,13 +48,12 @@ final class GuidePlan: SyncableObject {
         self.init()
 
         self.learnItems = learnItems
-        self.notificationItems = notificationItems
+        self.notificationItems = notificationItems        
     }
 
-    private func cratePlanItems() {
+    func cratePlanItems() {
         learnItems.forEach { (learnItem: GuidePlanItemLearn) in
-            let planItem = GuidePlan.PlanItem(planID: learnItem.planItemID,
-                                              title: learnItem.title,
+            let planItem = GuidePlan.PlanItem(title: learnItem.title,
                                               body: learnItem.body,
                                               type: learnItem.body,
                                               greeting: learnItem.greeting,
@@ -66,8 +64,7 @@ final class GuidePlan: SyncableObject {
         }
 
         notificationItems.forEach { (notificationItem: GuidePlanItemNotification) in
-            let planItem = GuidePlan.PlanItem(planID: notificationItem.planItemID,
-                                              title: notificationItem.title,
+            let planItem = GuidePlan.PlanItem(title: notificationItem.title,
                                               body: notificationItem.body,
                                               type: notificationItem.type,
                                               greeting: notificationItem.greeting,

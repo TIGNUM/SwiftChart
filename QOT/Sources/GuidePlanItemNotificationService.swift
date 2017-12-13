@@ -24,9 +24,13 @@ final class GuidePlanItemNotificationService {
     }
 
     func todayItems() -> List<GuidePlanItemNotification> {
-        let predicate = NSPredicate(format: "issueDate == %@", Date() as NSDate)
+        let plans = Array(mainRealm.objects(GuidePlanItemNotification.self)) as [GuidePlanItemNotification]
 
-        return List<GuidePlanItemNotification>(mainRealm.objects(GuidePlanItemNotification.self).filter(predicate))
+        let notifications = plans.filter { (guidePlan: GuidePlanItemNotification) -> Bool in
+            return guidePlan.createdAt.isSameDay(Date())
+        }
+
+        return List<GuidePlanItemNotification>(notifications)
     }
 
     func setItemCompleted(item: GuidePlanItemNotification) {

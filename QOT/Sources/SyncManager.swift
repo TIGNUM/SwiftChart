@@ -205,6 +205,8 @@ private extension SyncManager {
         let operations: [Operation?] = [
             syncOperation(ContentRead.self, context: context, shouldDownload: shouldDownload),
             UpdateRelationsOperation(context: context, realmProvider: realmProvider),
+//            syncOperation(GuidePlanItemLearn.self, context: context, shouldDownload: shouldDownload),
+            syncOperation(GuidePlanItemNotification.self, context: context, shouldDownload: shouldDownload),
             syncOperation(PageTrack.self, context: context, shouldDownload: shouldDownload),
             syncOperation(CalendarEvent.self, context: context, shouldDownload: shouldDownload),
             syncOperation(MyToBeVision.self, context: context, shouldDownload: shouldDownload),

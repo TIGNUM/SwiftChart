@@ -19,6 +19,14 @@ final class GuidePlanService {
         self.realmProvider = realmProvider
     }
 
+    func planOfToday() -> GuidePlan? {
+        let plans = Array(mainRealm.objects(GuidePlan.self)) as [GuidePlan]
+
+        return plans.filter { (guidePlan: GuidePlan) -> Bool in
+            return guidePlan.createdAt.isSameDay(Date())
+        }.first
+    }
+
     func plans() -> AnyRealmCollection<GuidePlan> {
         let results = mainRealm.objects(GuidePlan.self)
 
@@ -31,9 +39,5 @@ final class GuidePlanService {
 
     func notificationItems(section: Int) -> List<GuidePlanItemNotification> {
         return plans()[section].notificationItems
-    }
-
-    func createNextPlanDay() {
-        
     }
 }

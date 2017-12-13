@@ -46,6 +46,6 @@ import RealmSwift
 private extension Results where T: SyncRecord {
 
     var classNames: Set<String> {
-        return  Set(map({ $0.associatedClassName }))
+        return Set(map({ $0.associatedClassName }))
     }
 }

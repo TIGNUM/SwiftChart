@@ -20,8 +20,6 @@ extension GuidePlanItemLearn {
 
 final class GuidePlanItemLearn: SyncableObject {
 
-    @objc private(set) dynamic var planItemID: Int = 0
-
     @objc private(set) dynamic var title: String = ""
 
     @objc private(set) dynamic var body: String = ""
@@ -49,16 +47,15 @@ extension GuidePlanItemLearn: OneWaySyncableDown {
         return .guidePlanItemLearn
     }
 
-    func setData(_ data: GuidePlanItemLearnIntermediary, objectStore: ObjectStore) throws {
-        planItemID = data.planItemID
+    func setData(_ data: GuidePlanItemLearnIntermediary, objectStore: ObjectStore) throws {        
         title = data.title
         body = data.body
         type = data.type
         itemType = GuidePlanItemType(rawValue: data.title) ?? itemType
         greeting = data.greeting
         link = data.link
-        priority = data.priority
-        day = data.day
+        priority = Int(data.priority) ?? 0
+        day = Int(data.day) ?? 0
         reminderTime = data.reminderTime
     }
 }

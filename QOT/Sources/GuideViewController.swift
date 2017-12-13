@@ -122,7 +122,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
 //        }
 
         let cell: GuideTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(title: plan.title,
+        cell.configure(title: plan.title ?? "",
                        content: plan.body,
                        type: plan.type,
                        status: plan.status)

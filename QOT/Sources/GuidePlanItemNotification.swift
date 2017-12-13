@@ -25,34 +25,29 @@ extension GuidePlanItemNotification {
         var feedback: String?
         var results: [Int]
         var link: String
-        var title: String
+        var title: String?
         var body: String
-        var greeting: String
+        var greeting: String?
         var issueDate: Date
-        var reminderTime: Date
         var status: GuideViewModel.Status
     }
 }
 
 final class GuidePlanItemNotification: SyncableObject {
 
-    @objc private(set) dynamic var planItemID: Int = 0
-
-    @objc private(set) dynamic var title: String = ""
+    @objc private(set) dynamic var title: String?
 
     @objc private(set) dynamic var body: String = ""
 
     @objc private(set) dynamic var type: String = ""
 
-    @objc private(set) dynamic var greeting: String = ""
+    @objc private(set) dynamic var greeting: String?
 
     @objc private(set) dynamic var link: String = ""
 
     @objc private(set) dynamic var priority: Int = 0
 
     @objc private(set) dynamic var issueDate: Date = Date()
-
-    @objc private(set) dynamic var reminderTime: Date = Date()
 
     @objc dynamic var completed: Bool = false
 
@@ -68,7 +63,6 @@ extension GuidePlanItemNotification: OneWaySyncableDown {
     }
 
     func setData(_ data: GuidePlanItemNotificationIntermediary, objectStore: ObjectStore) throws {
-        planItemID = data.planItemID
         title = data.title
         body = data.body
         type = data.type
@@ -76,6 +70,5 @@ extension GuidePlanItemNotification: OneWaySyncableDown {
         link = data.link
         priority = data.priority
         issueDate = data.issueDate
-        reminderTime = data.reminderTime
     }
 }

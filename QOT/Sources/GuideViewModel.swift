@@ -66,18 +66,28 @@ final class GuideViewModel {
         self.services = services
         self.eventTracker = eventTracker
 
-        func createPlanForToday() -> GuidePlan {
+        func createOrFetchPlanForToday() -> (plan: GuidePlan, shouldSave: Bool) {
+            if let planOfToday = services.guidePlanService.planOfToday() {
+                return (plan: planOfToday, shouldSave: false)
+            }
+
             let learnItems = services.guidePlanItemLearnService.todayItems()
             let notificationItems = services.guidePlanItemNotificationService.todayItems()
+            let plan = GuidePlan(learnItems: learnItems, notificationItems: notificationItems)
 
-            return GuidePlan(learnItems: learnItems, notificationItems: notificationItems)
+            return (plan: plan, shouldSave: true)
         }
 
-        self.guidePlanToday = createPlanForToday()
-        do {
-            try saveGuidePlanToday()
-        } catch {
-            assertionFailure("Failed to save Guide Plan for today with error: \(error)")
+        let result = createOrFetchPlanForToday()
+        self.guidePlanToday = result.plan
+        self.guidePlanToday.cratePlanItems()
+
+        if result.shouldSave == true {
+            do {
+                try saveGuidePlanToday()
+            } catch {
+                assertionFailure("Failed to save Guide Plan for today with error: \(error)")
+            }
         }
     }
 
@@ -108,7 +118,6 @@ final class GuideViewModel {
                                                        body: dailyPrep.body,
                                                        greeting: dailyPrep.greeting,
                                                        issueDate: dailyPrep.issueDate,
-                                                       reminderTime: dailyPrep.reminderTime,
                                                        status: dailyPrep.completed == true ? .done : .todo)
     }
 
