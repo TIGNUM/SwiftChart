@@ -79,7 +79,6 @@ final class GuideViewModel {
         } catch {
             assertionFailure("Failed to save Guide Plan for today with error: \(error)")
         }
-
     }
 
     var sectionCount: Int {
@@ -95,6 +94,17 @@ final class GuideViewModel {
 
     func plan(section: Int) -> GuidePlan {
         return services.guidePlanService.plans()[section]
+    }
+
+    func dailyPrepItem() -> GuidePlanItemNotification.DailyPrepItem {
+        return GuidePlanItemNotification.DailyPrepItem(feedback: nil,
+                                                       results: [],
+                                                       link: "",
+                                                       title: "",
+                                                       body: "",
+                                                       greeting: "",
+                                                       issueDate: Date(),
+                                                       reminderTime: Date()) 
     }
 
     func saveGuidePlanToday() throws {

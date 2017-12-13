@@ -12,10 +12,24 @@ import Freddy
 
 extension GuidePlanItemNotification {
 
-    enum GuidePlanItemNotificationType: String {
+    enum ItemType: String {
         case morningInterview = "MORNING_INTERVIEW"
         case toBeVision = "TOBEVISION"
         case randomContentSleep = "RANDOM_CONTENT_SLEEP"
+    }
+}
+
+extension GuidePlanItemNotification {
+
+    struct DailyPrepItem {
+        var feedback: String?
+        var results: [Int]
+        var link: String
+        var title: String
+        var body: String
+        var greeting: String
+        var issueDate: Date
+        var reminderTime: Date
     }
 }
 

@@ -94,6 +94,17 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let plan = viewModel.plan(section: indexPath.section)
+        let learnItems = plan.learnItems
+        let notificationItems = plan.notificationItems
+
+        if
+            indexPath.row == 0,
+            let dailyPrepItem = (notificationItems.filter { $0.type == GuidePlanItemNotification.ItemType.morningInterview.rawValue }).first {
+                let cell: GuideDailyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
+
+        }
+
+
         if indexPath.row == 0 {
             let cell: GuideDailyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
             let dailyPrepResults: [[String: Any?]] = [["value": "5", "color": UIColor.white, "title": "Sleep\nQuality"],
