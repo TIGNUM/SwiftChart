@@ -226,6 +226,16 @@
 		CB8C34541EAF7F190003AB65 /* MyToBeVisionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB8C34531EAF7F190003AB65 /* MyToBeVisionViewController.xib */; };
 		CB8C34561EAF7F200003AB65 /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = CB8C34551EAF7F200003AB65 /* styles.css */; };
 		CB9442251FD80B5700E2B122 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9442241FD80B5700E2B122 /* AppState.swift */; };
+		CB94422A1FD9643A00E2B122 /* SlideShowModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9442291FD9643A00E2B122 /* SlideShowModels.swift */; };
+		CB94422C1FD96AB000E2B122 /* Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB94422B1FD96AB000E2B122 /* Configurator.swift */; };
+		CB94422E1FD96D9700E2B122 /* SlideShowConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB94422D1FD96D9700E2B122 /* SlideShowConfigurator.swift */; };
+		CB9442301FD97DE200E2B122 /* SlideShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB94422F1FD97DE200E2B122 /* SlideShowRouter.swift */; };
+		CB9442321FD97F7D00E2B122 /* SlideShowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9442311FD97F7D00E2B122 /* SlideShowPresenter.swift */; };
+		CB9442341FD97F8D00E2B122 /* SlideShowInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9442331FD97F8D00E2B122 /* SlideShowInteractor.swift */; };
+		CB9442361FD97FAE00E2B122 /* SlideShowWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9442351FD97FAE00E2B122 /* SlideShowWorker.swift */; };
+		CB9442381FDE9D7700E2B122 /* SlideShow.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB9442371FDE9D7600E2B122 /* SlideShow.plist */; };
+		CB94423D1FDFE55E00E2B122 /* SlideShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB94423B1FDFE55E00E2B122 /* SlideShowViewController.swift */; };
+		CB94423E1FDFE55E00E2B122 /* SlideShowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB94423C1FDFE55E00E2B122 /* SlideShowViewController.xib */; };
 		CB9AFD0F1F012A2800D067F2 /* QuestionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9AFD0E1F012A2800D067F2 /* QuestionsService.swift */; };
 		CB9AFD111F014AED00D067F2 /* Preparation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9AFD101F014AED00D067F2 /* Preparation.swift */; };
 		CB9AFD141F014BAA00D067F2 /* PreparationCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9AFD131F014BAA00D067F2 /* PreparationCheck.swift */; };
@@ -241,6 +251,10 @@
 		CB9BB0C01F0CCC30009067D7 /* EventsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9BB0BF1F0CCC30009067D7 /* EventsService.swift */; };
 		CB9BB0C21F0CD13E009067D7 /* TimeInterval+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9BB0C11F0CD13E009067D7 /* TimeInterval+Convenience.swift */; };
 		CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA054481E890560009E28D6 /* Dequeueable.swift */; };
+		CBABB3801FDFF3E0007B5B5C /* SlideShowSlideCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBABB37E1FDFF3E0007B5B5C /* SlideShowSlideCell.swift */; };
+		CBABB3811FDFF3E0007B5B5C /* SlideShowSlideCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBABB37F1FDFF3E0007B5B5C /* SlideShowSlideCell.xib */; };
+		CBABB3841FE017CA007B5B5C /* SlideShowPromptCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBABB3821FE017CA007B5B5C /* SlideShowPromptCell.swift */; };
+		CBABB3851FE017CA007B5B5C /* SlideShowPromptCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBABB3831FE017CA007B5B5C /* SlideShowPromptCell.xib */; };
 		CBAF6FD61F2B5AE500E57426 /* MyToBeVisionIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAF6FD51F2B5AE500E57426 /* MyToBeVisionIntermediary.swift */; };
 		CBAF6FD81F2B88E500E57426 /* UpSyncData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAF6FD71F2B88E500E57426 /* UpSyncData.swift */; };
 		CBB017B41F96084A00CC1048 /* Syncable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB017B31F96084A00CC1048 /* Syncable.swift */; };
@@ -284,6 +298,7 @@
 		CBC1DC3B1F14D9FD00F6D056 /* UserSetting+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC3A1F14D9FD00F6D056 /* UserSetting+Convenience.swift */; };
 		CBC1DC3D1F14DA1200F6D056 /* UserSettingIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC3C1F14DA1200F6D056 /* UserSettingIntermediary.swift */; };
 		CBC1DC3F1F16067900F6D056 /* DownSyncIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC3E1F16067900F6D056 /* DownSyncIntermediary.swift */; };
+		CBC2A81A1FE2B755003AB1A4 /* SlideShowProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC2A8191FE2B755003AB1A4 /* SlideShowProtocols.swift */; };
 		CBC5A5711F9FA01D007B9A5B /* Animations.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBC5A5701F9FA01D007B9A5B /* Animations.xcassets */; };
 		CBC5A5781FA0806B007B9A5B /* 15_min_power_nap_with_voice.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CBC5A5761FA07F11007B9A5B /* 15_min_power_nap_with_voice.m4a */; };
 		CBC5A5791FA0806E007B9A5B /* 90_min_power_nap.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CBC5A5751FA07F11007B9A5B /* 90_min_power_nap.m4a */; };
@@ -708,6 +723,16 @@
 		CB8C34531EAF7F190003AB65 /* MyToBeVisionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyToBeVisionViewController.xib; sourceTree = "<group>"; };
 		CB8C34551EAF7F200003AB65 /* styles.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = styles.css; sourceTree = "<group>"; };
 		CB9442241FD80B5700E2B122 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		CB9442291FD9643A00E2B122 /* SlideShowModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideShowModels.swift; sourceTree = "<group>"; };
+		CB94422B1FD96AB000E2B122 /* Configurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurator.swift; sourceTree = "<group>"; };
+		CB94422D1FD96D9700E2B122 /* SlideShowConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideShowConfigurator.swift; sourceTree = "<group>"; };
+		CB94422F1FD97DE200E2B122 /* SlideShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideShowRouter.swift; sourceTree = "<group>"; };
+		CB9442311FD97F7D00E2B122 /* SlideShowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideShowPresenter.swift; sourceTree = "<group>"; };
+		CB9442331FD97F8D00E2B122 /* SlideShowInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideShowInteractor.swift; sourceTree = "<group>"; };
+		CB9442351FD97FAE00E2B122 /* SlideShowWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideShowWorker.swift; sourceTree = "<group>"; };
+		CB9442371FDE9D7600E2B122 /* SlideShow.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SlideShow.plist; sourceTree = "<group>"; };
+		CB94423B1FDFE55E00E2B122 /* SlideShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideShowViewController.swift; sourceTree = "<group>"; };
+		CB94423C1FDFE55E00E2B122 /* SlideShowViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SlideShowViewController.xib; sourceTree = "<group>"; };
 		CB9AFD0E1F012A2800D067F2 /* QuestionsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionsService.swift; sourceTree = "<group>"; };
 		CB9AFD101F014AED00D067F2 /* Preparation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preparation.swift; sourceTree = "<group>"; };
 		CB9AFD131F014BAA00D067F2 /* PreparationCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreparationCheck.swift; sourceTree = "<group>"; };
@@ -722,6 +747,10 @@
 		CB9BB0BF1F0CCC30009067D7 /* EventsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsService.swift; sourceTree = "<group>"; };
 		CB9BB0C11F0CD13E009067D7 /* TimeInterval+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Convenience.swift"; sourceTree = "<group>"; };
 		CBA054481E890560009E28D6 /* Dequeueable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dequeueable.swift; sourceTree = "<group>"; };
+		CBABB37E1FDFF3E0007B5B5C /* SlideShowSlideCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideShowSlideCell.swift; sourceTree = "<group>"; };
+		CBABB37F1FDFF3E0007B5B5C /* SlideShowSlideCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SlideShowSlideCell.xib; sourceTree = "<group>"; };
+		CBABB3821FE017CA007B5B5C /* SlideShowPromptCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideShowPromptCell.swift; sourceTree = "<group>"; };
+		CBABB3831FE017CA007B5B5C /* SlideShowPromptCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SlideShowPromptCell.xib; sourceTree = "<group>"; };
 		CBAF6FD51F2B5AE500E57426 /* MyToBeVisionIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToBeVisionIntermediary.swift; sourceTree = "<group>"; };
 		CBAF6FD71F2B88E500E57426 /* UpSyncData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpSyncData.swift; sourceTree = "<group>"; };
 		CBB017B31F96084A00CC1048 /* Syncable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Syncable.swift; sourceTree = "<group>"; };
@@ -770,6 +799,7 @@
 		CBC1DC3A1F14D9FD00F6D056 /* UserSetting+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserSetting+Convenience.swift"; sourceTree = "<group>"; };
 		CBC1DC3C1F14DA1200F6D056 /* UserSettingIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingIntermediary.swift; sourceTree = "<group>"; };
 		CBC1DC3E1F16067900F6D056 /* DownSyncIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownSyncIntermediary.swift; sourceTree = "<group>"; };
+		CBC2A8191FE2B755003AB1A4 /* SlideShowProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideShowProtocols.swift; sourceTree = "<group>"; };
 		CBC5A5701F9FA01D007B9A5B /* Animations.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Animations.xcassets; sourceTree = "<group>"; };
 		CBC5A5721FA07F10007B9A5B /* 15_min_power_nap_no_voice.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = 15_min_power_nap_no_voice.m4a; path = Media/15_min_power_nap_no_voice.m4a; sourceTree = "<group>"; };
 		CBC5A5731FA07F10007B9A5B /* 20_min_power_nap_with_voice_A.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = 20_min_power_nap_with_voice_A.m4a; path = Media/20_min_power_nap_with_voice_A.m4a; sourceTree = "<group>"; };
@@ -1376,6 +1406,34 @@
 			name = PageTrack;
 			sourceTree = "<group>";
 		};
+		CB9442261FD963B200E2B122 /* SlideShow */ = {
+			isa = PBXGroup;
+			children = (
+				CB94422D1FD96D9700E2B122 /* SlideShowConfigurator.swift */,
+				CB9442331FD97F8D00E2B122 /* SlideShowInteractor.swift */,
+				CB9442291FD9643A00E2B122 /* SlideShowModels.swift */,
+				CB9442311FD97F7D00E2B122 /* SlideShowPresenter.swift */,
+				CBABB3821FE017CA007B5B5C /* SlideShowPromptCell.swift */,
+				CBABB3831FE017CA007B5B5C /* SlideShowPromptCell.xib */,
+				CBC2A8191FE2B755003AB1A4 /* SlideShowProtocols.swift */,
+				CB94422F1FD97DE200E2B122 /* SlideShowRouter.swift */,
+				CBABB37E1FDFF3E0007B5B5C /* SlideShowSlideCell.swift */,
+				CBABB37F1FDFF3E0007B5B5C /* SlideShowSlideCell.xib */,
+				CB94423B1FDFE55E00E2B122 /* SlideShowViewController.swift */,
+				CB94423C1FDFE55E00E2B122 /* SlideShowViewController.xib */,
+				CB9442351FD97FAE00E2B122 /* SlideShowWorker.swift */,
+			);
+			name = SlideShow;
+			sourceTree = "<group>";
+		};
+		CB94423A1FDFE4B400E2B122 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				CB9442261FD963B200E2B122 /* SlideShow */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
 		CB9AFD121F014AF300D067F2 /* Preparation */ = {
 			isa = PBXGroup;
 			children = (
@@ -1561,12 +1619,13 @@
 		CBB4DD1C1EE085600071494A /* View Layer */ = {
 			isa = PBXGroup;
 			children = (
-				CBB4DD461EE0911A0071494A /* Common */,
-				7F01A6221F98A1F5002C7B72 /* ImagePicker */,
+				CB94423A1FDFE4B400E2B122 /* Scenes */,
 				CBB4DD271EE087E50071494A /* Add Sensor */,
 				CC7D21A41EFBF50A007A062E /* Article */,
 				CB026FCF1F6C013B00FC5076 /* Carousel */,
 				CBB4DD2E1EE088B80071494A /* Charts */,
+				CBB4DD461EE0911A0071494A /* Common */,
+				7F01A6221F98A1F5002C7B72 /* ImagePicker */,
 				CBB4DD3F1EE08EF90071494A /* Launch */,
 				CBB4DD281EE088050071494A /* Learn Category */,
 				CBB4DD291EE0882D0071494A /* Learn Content */,
@@ -1875,9 +1934,10 @@
 			isa = PBXGroup;
 			children = (
 				CBB237EF1E6FFF1200AB5AEF /* AppDelegate.swift */,
-				7F4276781F585C7F00AEE3D7 /* AppDelegate+DatabaseBuilder.swift */,
 				CBC191141F62918B009E483B /* AppDelegate+Buglife.swift */,
+				7F4276781F585C7F00AEE3D7 /* AppDelegate+DatabaseBuilder.swift */,
 				CB9442241FD80B5700E2B122 /* AppState.swift */,
+				CB94422B1FD96AB000E2B122 /* Configurator.swift */,
 				CC6B3A301E81713200E7FDFD /* Constants.swift */,
 				CC3DFB651E83C19C00FF28DF /* Defines.swift */,
 			);
@@ -2168,6 +2228,7 @@
 				CC6251DA1EE00DD800C6F546 /* Localized.strings */,
 				CC7E80B81F614EEF006F9515 /* Sounds */,
 				CB8C34551EAF7F200003AB65 /* styles.css */,
+				CB9442371FDE9D7600E2B122 /* SlideShow.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -2438,10 +2499,12 @@
 				8514A48E1EE966C30086C70E /* PrepareContentMainHeaderTableViewCell.xib in Resources */,
 				D57ACCAF1F150D1D00906573 /* LaunchScreen.storyboard in Resources */,
 				CC7E80BA1F614F1B006F9515 /* QotNotification.aiff in Resources */,
+				CBABB3811FDFF3E0007B5B5C /* SlideShowSlideCell.xib in Resources */,
 				851676DF1F3C694B007A1DD6 /* LearnReadMoreCell.xib in Resources */,
 				850A50BD1F0A97FF00350097 /* PrepareContentTopTabBarView.xib in Resources */,
 				CCA2DC691EF17BFA00D1DF6A /* LearnContentItemHeaderView.xib in Resources */,
 				CC3E5D4C1F0109B700B9E11F /* ArticleRelatedCell.xib in Resources */,
+				CB94423E1FDFE55E00E2B122 /* SlideShowViewController.xib in Resources */,
 				8548BBDE1F0D264800AC7C06 /* RequestDeviceSensorCollectionViewCell.xib in Resources */,
 				CC311A271EAF434F0020C869 /* SettingsLabelTableViewCell.xib in Resources */,
 				CCC0C4CA1E827F87002A8362 /* BentonSans_Book.otf in Resources */,
@@ -2451,6 +2514,7 @@
 				CBC5A57A1FA08071007B9A5B /* 15_min_power_nap_no_voice.m4a in Resources */,
 				CC59A88D1F41C0E100D22353 /* LibraryCategoryCollectionViewCell.xib in Resources */,
 				CBC5A5791FA0806E007B9A5B /* 90_min_power_nap.m4a in Resources */,
+				CB9442381FDE9D7700E2B122 /* SlideShow.plist in Resources */,
 				0BEE8AC01EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib in Resources */,
 				7F0F03041F14CE2300007D50 /* CollapsableCell.xib in Resources */,
 				CBC5A5781FA0806B007B9A5B /* 15_min_power_nap_with_voice.m4a in Resources */,
@@ -2484,6 +2548,7 @@
 				7FCF0EF71FD9774C00138D77 /* MyUniverseContentView.xib in Resources */,
 				0B2CA37C1ED2BC93006B355F /* SensorCollectionViewCell.xib in Resources */,
 				0BB099CD1EBC6323006B2FB7 /* PartnersViewController.xib in Resources */,
+				CBABB3851FE017CA007B5B5C /* SlideShowPromptCell.xib in Resources */,
 				CC41A54B1EFD5A1400B9AE8E /* ArticleItemHeaderView.xib in Resources */,
 				CBC5A57C1FA08077007B9A5B /* 20_min_power_nap_with_voice_B.m4a in Resources */,
 				851676D91F3C55C8007A1DD6 /* LearnPDFCell.xib in Resources */,
@@ -2729,6 +2794,7 @@
 				7F4276771F570DB600AEE3D7 /* WindowManager.swift in Sources */,
 				7FE38DD71F2B636F0061E98F /* UINavigationBar+Style.swift in Sources */,
 				7FE38DC71F2A14160061E98F /* PageViewController.swift in Sources */,
+				CBABB3841FE017CA007B5B5C /* SlideShowPromptCell.swift in Sources */,
 				0B2CA37B1ED2BC93006B355F /* SensorCollectionViewCell.swift in Sources */,
 				D57ACCB21F15122300906573 /* AnimatedLaunchScreenViewController.swift in Sources */,
 				7FE38DD31F2B2E230061E98F /* UINavigationController+Convenience.swift in Sources */,
@@ -2772,6 +2838,7 @@
 				CBFECCA81F31D7480076ACE6 /* SyncTypes.swift in Sources */,
 				CCA2DC6C1EF290DF00D1DF6A /* LearnContentItemBulletCell.swift in Sources */,
 				CCCE09CC1EA67C78008730F1 /* MyToBeVisionViewModel.swift in Sources */,
+				CB9442301FD97DE200E2B122 /* SlideShowRouter.swift in Sources */,
 				855C4FC51F25F7D10068DDE3 /* Tutorial.swift in Sources */,
 				CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */,
 				CC309C071F73ADED00A32759 /* UserAnswerFeedback.swift in Sources */,
@@ -2815,6 +2882,7 @@
 				CBC1DC301F0FD0CB00F6D056 /* AnswerDecision+Convenience.swift in Sources */,
 				CC7D21A61EFBF52A007A062E /* ArticleItemViewModel.swift in Sources */,
 				7F8DB4AC1FA2047D00DFE006 /* PartnersAnimator.swift in Sources */,
+				CB94422A1FD9643A00E2B122 /* SlideShowModels.swift in Sources */,
 				CBC1DC391F14D9ED00F6D056 /* UserSetting.swift in Sources */,
 				CC143A511EC495CE001FB76E /* StatisticsCoordinator.swift in Sources */,
 				CB0A4A5A1ECC4C3E006A2D85 /* AddSensorViewModel.swift in Sources */,
@@ -2854,6 +2922,7 @@
 				CB1D5E3D1EC5E25A00BCDF8D /* ContentItem.swift in Sources */,
 				CB1E4F981E7FE22200287613 /* SettingsViewModel.swift in Sources */,
 				CBB4DCFD1EDC27550071494A /* SyncManager.swift in Sources */,
+				CBABB3801FDFF3E0007B5B5C /* SlideShowSlideCell.swift in Sources */,
 				CC02E1491F279A0F00134574 /* SettingsCalendarListViewModel.swift in Sources */,
 				CC3DFB661E83C19C00FF28DF /* Defines.swift in Sources */,
 				7F507BA31F3B4DEC0091742D /* UserAnswer.swift in Sources */,
@@ -2909,6 +2978,7 @@
 				CB3437531EFAC8F500D89D4F /* UpSyncResultParser.swift in Sources */,
 				CC0FF8D81EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift in Sources */,
 				CC8813EB1EF2EA33000FB85F /* LearnContentItemRecommendedCell.swift in Sources */,
+				CB94422C1FD96AB000E2B122 /* Configurator.swift in Sources */,
 				CB1467651EF2779700A60E31 /* Page.swift in Sources */,
 				CB6D49561ECCA58D005BC637 /* AuthenticationTokenParser.swift in Sources */,
 				7F47E8401F8E4FE000ED4446 /* UIDevice+Utility.swift in Sources */,
@@ -2939,6 +3009,7 @@
 				CBCCF3941F7D53CD000E4440 /* ChatViewLayoutAttibutes.swift in Sources */,
 				D51B5C491E8D0E7E0084A65B /* LearnContentCell.swift in Sources */,
 				CCE372F51E8CF10C00B79352 /* ArticleCollectionViewController.swift in Sources */,
+				CB9442361FD97FAE00E2B122 /* SlideShowWorker.swift in Sources */,
 				CB14675E1EF18F5F00A60E31 /* Dictionary+Convenience.swift in Sources */,
 				CBCCF3961F7E43EF000E4440 /* ChatViewHeaderFooter.swift in Sources */,
 				CCE3730F1E8D32F800B79352 /* SidebarCoordinator.swift in Sources */,
@@ -2973,6 +3044,7 @@
 				8523E9C01F1628B50000D20D /* Date+Extension.swift in Sources */,
 				CB3437601EFD675900D89D4F /* QuestionIntermediary.swift in Sources */,
 				D52350961E9FC1120013DE7E /* ArticleCollectionLayout.swift in Sources */,
+				CBC2A81A1FE2B755003AB1A4 /* SlideShowProtocols.swift in Sources */,
 				CC13E2401EB1D72400C3CE46 /* LibraryCollectionViewCell.swift in Sources */,
 				CC944DB61EE804CD00B8423C /* ChartTableViewCell.swift in Sources */,
 				CB9B075C1EF911AD0017F6C3 /* IntObject.swift in Sources */,
@@ -2982,11 +3054,13 @@
 				CB34375E1EFD653B00D89D4F /* Answer.swift in Sources */,
 				CCE6CD7E1F15260D00B66DA3 /* Statistics.swift in Sources */,
 				7F4B98AE1FA22851000B402C /* ChartAnimation.swift in Sources */,
+				CB94422E1FD96D9700E2B122 /* SlideShowConfigurator.swift in Sources */,
 				CBC933121F0B9B3100C00007 /* ContentRelation.swift in Sources */,
 				CCE6CD841F152D5800B66DA3 /* DoubleObject.swift in Sources */,
 				7F4B98AD1FA22850000B402C /* ChartAnimator.swift in Sources */,
 				CC7682C81F28A85600F852A0 /* Array+Convenience.swift in Sources */,
 				7FBC3E7E1F34AB8D005BD772 /* MediaResource.swift in Sources */,
+				CB9442321FD97F7D00E2B122 /* SlideShowPresenter.swift in Sources */,
 				8514A4881EE93D3C0086C70E /* PrepareContentFooterTableViewCell.swift in Sources */,
 				854708E31F306628007AB971 /* ContentItemAnimator.swift in Sources */,
 				CB9AFD201F029D1500D067F2 /* PreparationService.swift in Sources */,
@@ -3064,6 +3138,7 @@
 				CB1D5E3B1EC5E25A00BCDF8D /* ContentCollection.swift in Sources */,
 				CBC191131F603055009E483B /* URL+Convenience.swift in Sources */,
 				CBC1DC151F0F68F900F6D056 /* SystemSetting.swift in Sources */,
+				CB94423D1FDFE55E00E2B122 /* SlideShowViewController.swift in Sources */,
 				CB84CDF71FA2345D00970E71 /* SyncStateObserver.swift in Sources */,
 				CB5134121FAB721000FBDD66 /* ContentRead.swift in Sources */,
 				852DADC41EEED5D600A10882 /* MeetingsAverageChart.swift in Sources */,
@@ -3074,6 +3149,7 @@
 				CBB4DCFF1EDD6CE50071494A /* NetworkManager.swift in Sources */,
 				859683471F137FD600A98218 /* ResetPasswordCoordinator.swift in Sources */,
 				CBC5ACCA1F18EF96007E1E9C /* QOTUsageTime.swift in Sources */,
+				CB9442341FD97F8D00E2B122 /* SlideShowInteractor.swift in Sources */,
 				7FB9AD0D1F39BD2B00E0D621 /* UpSyncMediaData.swift in Sources */,
 				CB9B07631EF91B860017F6C3 /* CalendarEvent.swift in Sources */,
 				CCE6CD861F15313300B66DA3 /* StatisticsIntermediary.swift in Sources */,

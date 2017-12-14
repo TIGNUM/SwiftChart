@@ -78,6 +78,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         self.windowManager = windowManager
         self.remoteNotificationHandler = remoteNotificationHandler
 
+        AppCoordinator.appState.appCoordinator = self
         remoteNotificationHandler.delegate = self
         logoutNotificationHandler.handler = { [weak self] (_: Notification) in
             self?.restart()
@@ -138,7 +139,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
                     self.services = services
 
                     // Setup AppState
-                    self.appState.services = services
+                    AppCoordinator.appState.services = services
 
                     // Create missing database objects
                     if services.userService.myToBeVision() == nil {
@@ -474,7 +475,13 @@ extension AppCoordinator: LoginCoordinatorDelegate {
     func loginCoordinatorDidLogin(_ coordinator: LoginCoordinator) {
         removeChild(child: coordinator)
         QOTUsageTimer.sharedInstance.startTimer()
-        showApp()
+        if UserDefault.hasShownOnbordingSlideShowInAppBuild.stringValue == nil {
+            let viewController = SlideShowViewController(configure: SlideShowConfigurator.make())
+            windowManager.show(viewController, animated: true, completion: nil)
+            UserDefault.hasShownOnbordingSlideShowInAppBuild.setStringValue(value: Bundle.main.buildNumber)
+        } else {
+            showApp()
+        }
     }
 }
 

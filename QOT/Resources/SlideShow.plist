@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>basic</key>
+	<array>
+		<dict>
+			<key>title</key>
+			<string>Basic slide 1</string>
+			<key>subtitle</key>
+			<string>Subtitle from from basic slide 1</string>
+			<key>imageName</key>
+			<string>1_1 learn</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Basic slide 2</string>
+			<key>subtitle</key>
+			<string>Subtitle from from basic slide 2</string>
+			<key>imageName</key>
+			<string>1_1 learn</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Basic slide 3</string>
+			<key>subtitle</key>
+			<string>Subtitle from from basic slide 3</string>
+			<key>imageName</key>
+			<string>1_1 learn</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Basic slide 4</string>
+			<key>subtitle</key>
+			<string>Subtitle from from basic slide 4</string>
+			<key>imageName</key>
+			<string>1_1 learn</string>
+		</dict>
+	</array>
+	<key>extended</key>
+	<array>
+		<dict>
+			<key>title</key>
+			<string>Extended slide 1</string>
+			<key>subtitle</key>
+			<string>Subtitle from from extended slide 1</string>
+			<key>imageName</key>
+			<string>1_1 learn</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Extended slide 2</string>
+			<key>subtitle</key>
+			<string>Subtitle from from extended slide 2</string>
+			<key>imageName</key>
+			<string>1_1 learn</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Extended slide 3</string>
+			<key>subtitle</key>
+			<string>Subtitle from from extended slide 3</string>
+			<key>imageName</key>
+			<string>1_1 learn</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Extended slide 4</string>
+			<key>subtitle</key>
+			<string>Subtitle from from extended slide 4</string>
+			<key>imageName</key>
+			<string>1_1 learn</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Extended slide 5</string>
+			<key>subtitle</key>
+			<string>Subtitle from from extended slide 5</string>
+			<key>imageName</key>
+			<string>1_1 learn</string>
+		</dict>
+	</array>
+</dict>
+</plist>å

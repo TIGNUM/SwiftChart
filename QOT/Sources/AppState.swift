@@ -17,6 +17,7 @@ final class AppState {
     fileprivate static var shared = AppState()
 
     var services: Services!
+    var appCoordinator: AppCoordinator!
 
     private init() {}
 }
@@ -29,7 +30,7 @@ protocol AppStateAccess {}
 
 extension AppStateAccess {
 
-    var appState: AppState {
+    static var appState: AppState {
         return AppState.shared
     }
 }
