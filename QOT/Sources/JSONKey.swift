@@ -54,6 +54,7 @@ enum JsonKey: String {
     case description
     case deviceId
     case displayName
+    case displayTime
     case duration
     case email
     case employment

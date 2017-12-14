@@ -51,6 +51,8 @@ final class GuideItemNotification: SyncableObject {
 
     @objc private(set) dynamic var issueDate: Date = Date()
 
+    @objc private(set) dynamic var displayTime: Date = Date()
+
     @objc dynamic var completed: Bool = false
 
     @objc dynamic var morningInterviewFeedback: String?
@@ -72,5 +74,6 @@ extension GuideItemNotification: OneWaySyncableDown {
         link = data.link
         priority = data.priority
         issueDate = data.issueDate
+        displayTime = data.displayTime
     }
 }

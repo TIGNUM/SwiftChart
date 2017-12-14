@@ -27,17 +27,17 @@ final class GuideService {
         }.first
     }
 
-    func plans() -> AnyRealmCollection<Guide> {
+    func guideBlocks() -> AnyRealmCollection<Guide> {
         let results = mainRealm.objects(Guide.self)
 
         return AnyRealmCollection(results)
     }
 
     func learnItems(section: Int) -> List<GuideItemLearn> {
-        return plans()[section].learnItems
+        return guideBlocks()[section].learnItems
     }
 
     func notificationItems(section: Int) -> List<GuideItemNotification> {
-        return plans()[section].notificationItems
+        return guideBlocks()[section].notificationItems
     }
 }

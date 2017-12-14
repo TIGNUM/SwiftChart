@@ -60,31 +60,32 @@ final class GuideViewModel {
 
     private let services: Services
     private let eventTracker: EventTracker
-    private let guidePlanToday: Guide
+    private let guideBlocks = [Guide]()
+    private let guideToday: Guide
 
     init(services: Services, eventTracker: EventTracker) {
         self.services = services
         self.eventTracker = eventTracker
 
-        func createOrFetchPlanForToday() -> (plan: Guide, shouldSave: Bool) {
-            if let planOfToday = services.guidePlanService.planOfToday() {
-                return (plan: planOfToday, shouldSave: false)
+        func createOrFetchGuideItemsForToday() -> (guide: Guide, shouldSave: Bool) {
+            if let planOfToday = services.guideService.planOfToday() {
+                return (guide: planOfToday, shouldSave: false)
             }
 
-            let learnItems = services.guidePlanItemLearnService.todayItems()
-            let notificationItems = services.guidePlanItemNotificationService.todayItems()
-            let plan = Guide(learnItems: learnItems, notificationItems: notificationItems)
+            let learnItems = services.guideItemLearnService.todayItems()
+            let notificationItems = services.guideItemNotificationService.todayItems()
+            let guide = Guide(learnItems: learnItems, notificationItems: notificationItems)
 
-            return (plan: plan, shouldSave: true)
+            return (guide: guide, shouldSave: true)
         }
 
-        let result = createOrFetchPlanForToday()
-        self.guidePlanToday = result.plan
-        self.guidePlanToday.cratePlanItems()
+        let result = createOrFetchGuideItemsForToday()
+        self.guideToday = result.guide
+        self.guideToday.crateItems()
 
         if result.shouldSave == true {
             do {
-                try saveGuidePlanToday()
+                try saveGuideToday()
             } catch {
                 assertionFailure("Failed to save Guide Plan for today with error: \(error)")
             }
@@ -92,24 +93,24 @@ final class GuideViewModel {
     }
 
     var sectionCount: Int {
-        return services.guidePlanService.plans().count
+        return services.guideService.guideBlocks().count
     }
 
     func numberOfRows(section: Int) -> Int {
-        return guidePlanToday.items.count
+        return guideToday.items.count
     }
 
-    func plan(section: Int) -> Guide {
-        return services.guidePlanService.plans()[section]
+    func guide(section: Int) -> Guide {
+        return services.guideService.guideBlocks()[section]
     }
 
-    func planItem(indexPath: IndexPath) -> GuideItem {
-        return guidePlanToday.items[indexPath.row]
+    func guideItem(indexPath: IndexPath) -> GuideItem {
+        return guideToday.items[indexPath.row]
     }
 
     func dailyPrepItem() -> GuideItemNotification.DailyPrepItem? {
         let predicate = NSPredicate(format: "type == %@", GuideItemNotification.ItemType.morningInterview.rawValue)
-        guard let dailyPrep = guidePlanToday.notificationItems.filter(predicate).first else { return nil }
+        guard let dailyPrep = guideToday.notificationItems.filter(predicate).first else { return nil }
 
         return GuideItemNotification.DailyPrepItem(feedback: dailyPrep.morningInterviewFeedback,
                                                        results: Array(dailyPrep.morningInterviewResults.map { $0.value }),
@@ -121,10 +122,10 @@ final class GuideViewModel {
                                                        status: dailyPrep.completed == true ? .done : .todo)
     }
 
-    func saveGuidePlanToday() throws {
+    func saveGuideToday() throws {
         let realm = services.mainRealm
         try realm.write {
-            realm.add(guidePlanToday)
+            realm.add(guideToday)
         }
     }
 }

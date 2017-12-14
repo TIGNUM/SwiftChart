@@ -1,5 +1,5 @@
 //
-//  GuidePlanItemNotificationService.swift
+//  GuideItemNotificationService.swift
 //  QOT
 //
 //  Created by karmic on 12.12.17.
@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-final class GuidePlanItemNotificationService {
+final class GuideItemNotificationService {
 
     private let mainRealm: Realm
     private let realmProvider: RealmProvider
@@ -20,7 +20,7 @@ final class GuidePlanItemNotificationService {
     }
 
     func nextItems(day: Int, type: GuideItemNotification.ItemType) -> AnyRealmCollection<GuideItemNotification> {
-        return mainRealm.guidePlanItemsLearn(day: day, type: type)
+        return mainRealm.guideItemsLearn(day: day, type: type)
     }
 
     func todayItems() -> List<GuideItemNotification> {
@@ -56,7 +56,7 @@ final class GuidePlanItemNotificationService {
 
 private extension Realm {
 
-    func guidePlanItemsLearn(day: Int, type: GuideItemNotification.ItemType) -> AnyRealmCollection<GuideItemNotification> {
+    func guideItemsLearn(day: Int, type: GuideItemNotification.ItemType) -> AnyRealmCollection<GuideItemNotification> {
         let predicate = NSPredicate(format: "ANY type == %@ AND day == %d", type.rawValue, day)
         return anyCollection(.priorityOrder(), predicates: predicate)
     }

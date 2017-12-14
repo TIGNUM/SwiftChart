@@ -18,8 +18,6 @@ final class Guide: SyncableObject {
 
     @objc dynamic var planingTime: String  = ""
 
-    @objc dynamic var planDay: Int = 0
-
     @objc dynamic var deleted: Bool = false
 
     @objc dynamic var changeStamp: String? = UUID().uuidString
@@ -38,33 +36,33 @@ final class Guide: SyncableObject {
         self.notificationItems = notificationItems
     }
 
-    func cratePlanItems() {
+    func crateItems() {
         learnItems.forEach { (learnItem: GuideItemLearn) in
-            let planItem = GuideItem(planItemID: learnItem.remoteID.value ?? 0,
-                                     title: learnItem.title,
-                                     body: learnItem.body,
-                                     type: learnItem.body,
-                                     typeDisplayString: learnItem.type,
-                                     greeting: learnItem.greeting,
-                                     link: learnItem.link,
-                                     priority: learnItem.priority,
-                                     block: learnItem.block,
-                                     completedAt: nil)
-            items.append(planItem)
+            let item = GuideItem(planItemID: learnItem.remoteID.value ?? 0,
+                                 title: learnItem.title,
+                                 body: learnItem.body,
+                                 type: learnItem.body,
+                                 typeDisplayString: learnItem.type,
+                                 greeting: learnItem.greeting,
+                                 link: learnItem.link,
+                                 priority: learnItem.priority,
+                                 block: learnItem.block,
+                                 completedAt: nil)
+            items.append(item)
         }
 
         notificationItems.forEach { (notificationItem: GuideItemNotification) in
-            let planItem = GuideItem(planItemID: notificationItem.remoteID.value ?? 0,
-                                     title: notificationItem.title ?? "",
-                                     body: notificationItem.body,
-                                     type: notificationItem.type,
-                                     typeDisplayString: notificationItem.type,
-                                     greeting: notificationItem.greeting ?? "",
-                                     link: notificationItem.link,
-                                     priority: notificationItem.priority,
-                                     block: 0,
-                                     completedAt: nil)
-            items.append(planItem)
+            let item = GuideItem(planItemID: notificationItem.remoteID.value ?? 0,
+                                 title: notificationItem.title ?? "",
+                                 body: notificationItem.body,
+                                 type: notificationItem.type,
+                                 typeDisplayString: notificationItem.type,
+                                 greeting: notificationItem.greeting ?? "",
+                                 link: notificationItem.link,
+                                 priority: notificationItem.priority,
+                                 block: 0,
+                                 completedAt: nil)
+            items.append(item)
         }
 
         let sortedItems = items.sorted { (lhs: GuideItem, rhs: GuideItem) -> Bool in

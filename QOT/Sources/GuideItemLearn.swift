@@ -38,6 +38,8 @@ final class GuideItemLearn: SyncableObject {
 
     @objc private(set) dynamic var reminderTime: Date = Date()
 
+    @objc private(set) dynamic var displayTime: Date = Date()
+
     @objc dynamic var completed: Bool = false
 
     var itemType: GuidePlanItemType = .strategy
@@ -60,5 +62,6 @@ extension GuideItemLearn: OneWaySyncableDown {
         priority = data.priority
         block = data.block
         reminderTime = data.reminderTime
+        displayTime = data.displayTime
     }
 }

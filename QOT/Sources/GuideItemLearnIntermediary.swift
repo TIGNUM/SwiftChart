@@ -20,6 +20,7 @@ struct GuideItemLearnIntermediary: DownSyncIntermediary {
     let priority: Int
     let block: Int
     let reminderTime: Date
+    let displayTime: Date
 
     init(json: JSON) throws {
         title = try json.getItemValue(at: .title, fallback: "")
@@ -31,5 +32,6 @@ struct GuideItemLearnIntermediary: DownSyncIntermediary {
         priority = try json.getItemValue(at: .priority, fallback: 0)
         block = try json.getItemValue(at: .block, fallback: 0)
         reminderTime = try json.getDate(at: .reminderTime)
+        displayTime = try json.getDate(at: .displayTime)
     }
 }

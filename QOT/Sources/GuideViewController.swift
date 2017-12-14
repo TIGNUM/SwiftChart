@@ -93,7 +93,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let plan = viewModel.planItem(indexPath: indexPath)
+        let plan = viewModel.guideItem(indexPath: indexPath)
 
         if
             indexPath.row == 0,
@@ -131,7 +131,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return /*(indexPath.section == 0 && indexPath.row == 0) ? (view.bounds.width * headerRatio) :*/ UITableViewAutomaticDimension
+        return UITableViewAutomaticDimension
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -151,25 +151,8 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let planItem = viewModel.planItem(indexPath: indexPath)
+        let planItem = viewModel.guideItem(indexPath: indexPath)
         print(planItem)
         launch()
-    }
-}
-
-// MARK: - UIScrollViewDelegate
-
-extension GuideViewController {
-
-    func alpha(_ scrollView: UIScrollView) -> CGFloat {
-        print((abs(scrollView.bounds.minY) + scrollView.contentOffset.y))
-        let minY = (tableView.tableHeaderView?.bounds.height ?? 0) - (abs(scrollView.bounds.minY) + scrollView.contentOffset.y)
-        guard minY > 0 else { return 0 }
-
-        return 1 - (scrollView.contentOffset.y/minY)
-    }
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        headerView?.updateBackgroundImageView(alpha: alpha(scrollView))
     }
 }
