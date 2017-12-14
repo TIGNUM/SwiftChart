@@ -44,9 +44,11 @@ final class Guide: SyncableObject {
                                      title: learnItem.title,
                                      body: learnItem.body,
                                      type: learnItem.body,
+                                     typeDisplayString: learnItem.type,
                                      greeting: learnItem.greeting,
                                      link: learnItem.link,
                                      priority: learnItem.priority,
+                                     block: learnItem.block,
                                      completedAt: nil)
             items.append(planItem)
         }
@@ -56,9 +58,11 @@ final class Guide: SyncableObject {
                                      title: notificationItem.title ?? "",
                                      body: notificationItem.body,
                                      type: notificationItem.type,
+                                     typeDisplayString: notificationItem.type,
                                      greeting: notificationItem.greeting ?? "",
                                      link: notificationItem.link,
                                      priority: notificationItem.priority,
+                                     block: 0,
                                      completedAt: nil)
             items.append(planItem)
         }

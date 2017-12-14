@@ -20,6 +20,7 @@
 		0BEE8AC01EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BEE8AB71EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib */; };
 		0CC2119BB6C36EF6F43B4ECD /* Pods_QOT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */; };
 		360947A31FB5E684003AF3E9 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360947A21FB5E684003AF3E9 /* PageControl.swift */; };
+		360C73761FE2805B0093107A /* GuideItemIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360C73751FE2805B0093107A /* GuideItemIntermediary.swift */; };
 		362632451FD6A2710024C626 /* GuideTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 362632441FD6A2710024C626 /* GuideTableViewCell.xib */; };
 		362632471FD6A4210024C626 /* GuideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362632461FD6A4210024C626 /* GuideTableViewCell.swift */; };
 		363178E51FDEE8D700833958 /* GuideItemLearn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363178E41FDEE8D700833958 /* GuideItemLearn.swift */; };
@@ -512,6 +513,7 @@
 		2C2AD94F9096EA48FAC24935 /* Pods-DatabaseBuilder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseBuilder.release.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseBuilder/Pods-DatabaseBuilder.release.xcconfig"; sourceTree = "<group>"; };
 		2F1C8D6D4864F462A3F805BB /* Pods-QOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.release.xcconfig"; sourceTree = "<group>"; };
 		360947A21FB5E684003AF3E9 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
+		360C73751FE2805B0093107A /* GuideItemIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideItemIntermediary.swift; sourceTree = "<group>"; };
 		362632441FD6A2710024C626 /* GuideTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideTableViewCell.xib; sourceTree = "<group>"; };
 		362632461FD6A4210024C626 /* GuideTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideTableViewCell.swift; sourceTree = "<group>"; };
 		363178E41FDEE8D700833958 /* GuideItemLearn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideItemLearn.swift; sourceTree = "<group>"; };
@@ -1022,6 +1024,7 @@
 				36B67B9D1FE1DA040066A515 /* Guide.swift */,
 				365579B41FE040A2003DAF9A /* GuideIntermediary.swift */,
 				36B67B9B1FE1D9C90066A515 /* GuideItem.swift */,
+				360C73751FE2805B0093107A /* GuideItemIntermediary.swift */,
 				363178E41FDEE8D700833958 /* GuideItemLearn.swift */,
 				36FC8D461FDEF16F00B5E062 /* GuideItemLearnIntermediary.swift */,
 				363178E61FDEECDE00833958 /* GuideItemNotification.swift */,
@@ -3090,6 +3093,7 @@
 				7F1711ED1FB3161C00ED08D8 /* Badge.swift in Sources */,
 				CC7D21AA1EFC0856007A062E /* ArticleContentItemCoordinator.swift in Sources */,
 				85AAB53C1F447D1F00C2D53F /* LearnContentListBackgroundView.swift in Sources */,
+				360C73761FE2805B0093107A /* GuideItemIntermediary.swift in Sources */,
 				CCE06FE01E8D44FC009C5AD2 /* LibraryCoordinator.swift in Sources */,
 				85E1F1C71F1F94C7003FA349 /* LearnListAnimation.swift in Sources */,
 				7F0F03001F14CE0C00007D50 /* CollapsableCell.swift in Sources */,

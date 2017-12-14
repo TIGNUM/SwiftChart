@@ -41,6 +41,8 @@ final class GuideItemNotification: SyncableObject {
 
     @objc private(set) dynamic var type: String = ""
 
+    @objc private(set) dynamic var typeDisplayString: String = ""
+
     @objc private(set) dynamic var greeting: String?
 
     @objc private(set) dynamic var link: String = ""

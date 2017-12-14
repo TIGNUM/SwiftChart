@@ -26,4 +26,3 @@ extension GuideIntermediary: DownSyncIntermediary {
 //        planDay = try json.getItemValue(at: .plan, fallback: "")
     }
 }
-

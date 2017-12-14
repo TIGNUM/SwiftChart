@@ -25,8 +25,8 @@ final class GuideItemLearnService {
 
     func todayItems() -> List<GuideItemLearn> {
         let results = mainRealm.objects(GuideItemLearn.self)
-        let minDay = results.min(ofProperty: "day") as Int?
-        let filteredResults = results.filter { $0.day == (minDay ?? 1) }
+        let minDay = results.min(ofProperty: "block") as Int?
+        let filteredResults = results.filter { $0.block == (minDay ?? 1) }
 
         return List<GuideItemLearn>(filteredResults)
     }

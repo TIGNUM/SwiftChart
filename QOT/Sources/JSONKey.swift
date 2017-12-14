@@ -22,6 +22,7 @@ enum JsonKey: String {
     case availability
     case base64Data
     case birthdate
+    case block
     case body
     case boolValue
     case calendarId
@@ -32,6 +33,7 @@ enum JsonKey: String {
     case colorState
     case company
     case component
+    case completedAt
     case contentCategoryId
     case contentId
     case contentItemId
@@ -43,6 +45,7 @@ enum JsonKey: String {
     case dataAverage
     case dataPoints
     case day
+    case dailyPrepResults
     case dayOfTheWeek
     case daysOfTheMonth
     case daysOfTheWeek
@@ -59,6 +62,7 @@ enum JsonKey: String {
     case esbDomain
     case eventId
     case feature
+    case feedback
     case fitbitState
     case firstDayOfTheWeek
     case firstName
@@ -190,6 +194,7 @@ enum JsonKey: String {
     case title
     case totalUsageTime
     case type
+    case typeDisplayString
     case unit
     case universe
     case untilDate
