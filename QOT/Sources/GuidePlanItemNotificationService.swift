@@ -19,31 +19,31 @@ final class GuidePlanItemNotificationService {
         self.realmProvider = realmProvider
     }
 
-    func nextItems(day: Int, type: GuidePlanItemNotification.ItemType) -> AnyRealmCollection<GuidePlanItemNotification> {
+    func nextItems(day: Int, type: GuideItemNotification.ItemType) -> AnyRealmCollection<GuideItemNotification> {
         return mainRealm.guidePlanItemsLearn(day: day, type: type)
     }
 
-    func todayItems() -> List<GuidePlanItemNotification> {
-        let plans = Array(mainRealm.objects(GuidePlanItemNotification.self)) as [GuidePlanItemNotification]
+    func todayItems() -> List<GuideItemNotification> {
+        let plans = Array(mainRealm.objects(GuideItemNotification.self)) as [GuideItemNotification]
 
-        let notifications = plans.filter { (guidePlan: GuidePlanItemNotification) -> Bool in
+        let notifications = plans.filter { (guidePlan: GuideItemNotification) -> Bool in
             return guidePlan.createdAt.isSameDay(Date())
         }
 
-        return List<GuidePlanItemNotification>(notifications)
+        return List<GuideItemNotification>(notifications)
     }
 
-    func setItemCompleted(item: GuidePlanItemNotification) {
+    func setItemCompleted(item: GuideItemNotification) {
         do {
             try mainRealm.write {
                 item.completed = true
             }
         } catch let error {
-            assertionFailure("Set item completed: \(GuidePlanItemNotification.self), error: \(error)")
+            assertionFailure("Set item completed: \(GuideItemNotification.self), error: \(error)")
         }
     }
 
-    func eraseItem(item: GuidePlanItemNotification) {
+    func eraseItem(item: GuideItemNotification) {
         do {
             try mainRealm.write {
                 mainRealm.delete(item)
@@ -56,7 +56,7 @@ final class GuidePlanItemNotificationService {
 
 private extension Realm {
 
-    func guidePlanItemsLearn(day: Int, type: GuidePlanItemNotification.ItemType) -> AnyRealmCollection<GuidePlanItemNotification> {
+    func guidePlanItemsLearn(day: Int, type: GuideItemNotification.ItemType) -> AnyRealmCollection<GuideItemNotification> {
         let predicate = NSPredicate(format: "ANY type == %@ AND day == %d", type.rawValue, day)
         return anyCollection(.priorityOrder(), predicates: predicate)
     }

@@ -60,20 +60,20 @@ final class GuideViewModel {
 
     private let services: Services
     private let eventTracker: EventTracker
-    private let guidePlanToday: GuidePlan
+    private let guidePlanToday: Guide
 
     init(services: Services, eventTracker: EventTracker) {
         self.services = services
         self.eventTracker = eventTracker
 
-        func createOrFetchPlanForToday() -> (plan: GuidePlan, shouldSave: Bool) {
+        func createOrFetchPlanForToday() -> (plan: Guide, shouldSave: Bool) {
             if let planOfToday = services.guidePlanService.planOfToday() {
                 return (plan: planOfToday, shouldSave: false)
             }
 
             let learnItems = services.guidePlanItemLearnService.todayItems()
             let notificationItems = services.guidePlanItemNotificationService.todayItems()
-            let plan = GuidePlan(learnItems: learnItems, notificationItems: notificationItems)
+            let plan = Guide(learnItems: learnItems, notificationItems: notificationItems)
 
             return (plan: plan, shouldSave: true)
         }
@@ -96,22 +96,22 @@ final class GuideViewModel {
     }
 
     func numberOfRows(section: Int) -> Int {
-        return guidePlanToday.planItems.count
+        return guidePlanToday.items.count
     }
 
-    func plan(section: Int) -> GuidePlan {
+    func plan(section: Int) -> Guide {
         return services.guidePlanService.plans()[section]
     }
 
-    func planItem(indexPath: IndexPath) -> GuidePlan.PlanItem {
-        return guidePlanToday.planItems[indexPath.row]
+    func planItem(indexPath: IndexPath) -> GuideItem {
+        return guidePlanToday.items[indexPath.row]
     }
 
-    func dailyPrepItem() -> GuidePlanItemNotification.DailyPrepItem? {
-        let predicate = NSPredicate(format: "type == %@", GuidePlanItemNotification.ItemType.morningInterview.rawValue)
+    func dailyPrepItem() -> GuideItemNotification.DailyPrepItem? {
+        let predicate = NSPredicate(format: "type == %@", GuideItemNotification.ItemType.morningInterview.rawValue)
         guard let dailyPrep = guidePlanToday.notificationItems.filter(predicate).first else { return nil }
 
-        return GuidePlanItemNotification.DailyPrepItem(feedback: dailyPrep.morningInterviewFeedback,
+        return GuideItemNotification.DailyPrepItem(feedback: dailyPrep.morningInterviewFeedback,
                                                        results: Array(dailyPrep.morningInterviewResults.map { $0.value }),
                                                        link: dailyPrep.link,
                                                        title: dailyPrep.title,

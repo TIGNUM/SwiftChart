@@ -28,7 +28,7 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
         valueViews.forEach { $0.backgroundColor = .clear }
     }
 
-    func configure(dailyPrepItem: GuidePlanItemNotification.DailyPrepItem) {
+    func configure(dailyPrepItem: GuideItemNotification.DailyPrepItem) {
         if dailyPrepItem.results.count < 5 {
             setupShortDailyPrep()
         }

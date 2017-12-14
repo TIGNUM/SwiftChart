@@ -1,5 +1,5 @@
 //
-//  GuidePlanService.swift
+//  GuideService.swift
 //  QOT
 //
 //  Created by karmic on 12.12.17.
@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-final class GuidePlanService {
+final class GuideService {
 
     private let mainRealm: Realm
     private let realmProvider: RealmProvider
@@ -19,25 +19,25 @@ final class GuidePlanService {
         self.realmProvider = realmProvider
     }
 
-    func planOfToday() -> GuidePlan? {
-        let plans = Array(mainRealm.objects(GuidePlan.self)) as [GuidePlan]
+    func planOfToday() -> Guide? {
+        let plans = Array(mainRealm.objects(Guide.self)) as [Guide]
 
-        return plans.filter { (guidePlan: GuidePlan) -> Bool in
+        return plans.filter { (guidePlan: Guide) -> Bool in
             return guidePlan.createdAt.isSameDay(Date())
         }.first
     }
 
-    func plans() -> AnyRealmCollection<GuidePlan> {
-        let results = mainRealm.objects(GuidePlan.self)
+    func plans() -> AnyRealmCollection<Guide> {
+        let results = mainRealm.objects(Guide.self)
 
         return AnyRealmCollection(results)
     }
 
-    func learnItems(section: Int) -> List<GuidePlanItemLearn> {
+    func learnItems(section: Int) -> List<GuideItemLearn> {
         return plans()[section].learnItems
     }
 
-    func notificationItems(section: Int) -> List<GuidePlanItemNotification> {
+    func notificationItems(section: Int) -> List<GuideItemNotification> {
         return plans()[section].notificationItems
     }
 }

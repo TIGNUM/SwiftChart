@@ -1,5 +1,5 @@
 //
-//  GuidePlanItemLearnService.swift
+//  GuideItemLearnService.swift
 //  QOT
 //
 //  Created by karmic on 12.12.17.
@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-final class GuidePlanItemLearnService {
+final class GuideItemLearnService {
 
     private let mainRealm: Realm
     private let realmProvider: RealmProvider
@@ -19,29 +19,29 @@ final class GuidePlanItemLearnService {
         self.realmProvider = realmProvider
     }
 
-    func nextItems(day: Int, type: GuidePlanItemLearn.GuidePlanItemType) -> AnyRealmCollection<GuidePlanItemLearn> {
+    func nextItems(day: Int, type: GuideItemLearn.GuidePlanItemType) -> AnyRealmCollection<GuideItemLearn> {
         return mainRealm.guidePlanItemsLearn(day: day, type: type)
     }
 
-    func todayItems() -> List<GuidePlanItemLearn> {
-        let results = mainRealm.objects(GuidePlanItemLearn.self)
+    func todayItems() -> List<GuideItemLearn> {
+        let results = mainRealm.objects(GuideItemLearn.self)
         let minDay = results.min(ofProperty: "day") as Int?
         let filteredResults = results.filter { $0.day == (minDay ?? 1) }
 
-        return List<GuidePlanItemLearn>(filteredResults)
+        return List<GuideItemLearn>(filteredResults)
     }
 
-    func setItemCompleted(item: GuidePlanItemLearn) {
+    func setItemCompleted(item: GuideItemLearn) {
         do {
             try mainRealm.write {
                 item.completed = true
             }
         } catch let error {
-            assertionFailure("Set item completed: \(GuidePlanItemLearn.self), error: \(error)")
+            assertionFailure("Set item completed: \(GuideItemLearn.self), error: \(error)")
         }
     }
 
-    func eraseItem(item: GuidePlanItemLearn) {
+    func eraseItem(item: GuideItemLearn) {
         do {
             try mainRealm.write {
                 mainRealm.delete(item)
@@ -54,7 +54,7 @@ final class GuidePlanItemLearnService {
 
 private extension Realm {
 
-    func guidePlanItemsLearn(day: Int, type: GuidePlanItemLearn.GuidePlanItemType) -> AnyRealmCollection<GuidePlanItemLearn> {
+    func guidePlanItemsLearn(day: Int, type: GuideItemLearn.GuidePlanItemType) -> AnyRealmCollection<GuideItemLearn> {
         let predicate = NSPredicate(format: "ANY type == %@ AND day == %d", type.rawValue, day)
         return anyCollection(.priorityOrder(), predicates: predicate)
     }

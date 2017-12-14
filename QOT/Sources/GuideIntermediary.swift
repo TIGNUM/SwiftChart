@@ -1,5 +1,5 @@
 //
-//  GuidePlanIntermediary.swift
+//  GuideIntermediary.swift
 //  QOT
 //
 //  Created by karmic on 12.12.17.
@@ -9,7 +9,7 @@
 import UIKit
 import Freddy
 
-struct GuidePlanIntermediary {
+struct GuideIntermediary {
 
 //    var planID: String
 //    var greeting: String
@@ -17,7 +17,7 @@ struct GuidePlanIntermediary {
 //    var planDay: String
 }
 
-extension GuidePlanIntermediary: DownSyncIntermediary {
+extension GuideIntermediary: DownSyncIntermediary {
 
     init(json: JSON) throws {
 //        planID = try json.getItemValue(at: .firstName, fallback: "")

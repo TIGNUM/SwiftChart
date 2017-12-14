@@ -1,5 +1,5 @@
 //
-//  GuidePlanItemLearn.swift
+//  GuideItemLearn.swift
 //  QOT
 //
 //  Created by karmic on 11.12.17.
@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import Freddy
 
-extension GuidePlanItemLearn {
+extension GuideItemLearn {
 
     enum GuidePlanItemType: String {
         case strategy = "LEARN_STRATEGIES"
@@ -18,7 +18,7 @@ extension GuidePlanItemLearn {
     }
 }
 
-final class GuidePlanItemLearn: SyncableObject {
+final class GuideItemLearn: SyncableObject {
 
     @objc private(set) dynamic var title: String = ""
 
@@ -41,21 +41,21 @@ final class GuidePlanItemLearn: SyncableObject {
     var itemType: GuidePlanItemType = .strategy
 }
 
-extension GuidePlanItemLearn: OneWaySyncableDown {
+extension GuideItemLearn: OneWaySyncableDown {
 
     static var endpoint: Endpoint {
         return .guidePlanItemLearn
     }
 
-    func setData(_ data: GuidePlanItemLearnIntermediary, objectStore: ObjectStore) throws {        
+    func setData(_ data: GuideItemLearnIntermediary, objectStore: ObjectStore) throws {        
         title = data.title
         body = data.body
         type = data.type
         itemType = GuidePlanItemType(rawValue: data.title) ?? itemType
         greeting = data.greeting
         link = data.link
-        priority = Int(data.priority) ?? 0
-        day = Int(data.day) ?? 0
+        priority = data.priority
+        day = data.day
         reminderTime = data.reminderTime
     }
 }

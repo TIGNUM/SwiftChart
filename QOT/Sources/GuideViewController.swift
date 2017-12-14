@@ -151,6 +151,8 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let planItem = viewModel.planItem(indexPath: indexPath)
+        print(planItem)
         launch()
     }
 }

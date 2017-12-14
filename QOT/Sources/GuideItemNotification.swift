@@ -1,5 +1,5 @@
 //
-//  GuidePlanItemNotification.swift
+//  GuideItemNotification.swift
 //  QOT
 //
 //  Created by karmic on 11.12.17.
@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import Freddy
 
-extension GuidePlanItemNotification {
+extension GuideItemNotification {
 
     enum ItemType: String {
         case morningInterview = "MORNING_INTERVIEW"
@@ -19,7 +19,7 @@ extension GuidePlanItemNotification {
     }
 }
 
-extension GuidePlanItemNotification {
+extension GuideItemNotification {
 
     struct DailyPrepItem {
         var feedback: String?
@@ -33,7 +33,7 @@ extension GuidePlanItemNotification {
     }
 }
 
-final class GuidePlanItemNotification: SyncableObject {
+final class GuideItemNotification: SyncableObject {
 
     @objc private(set) dynamic var title: String?
 
@@ -51,18 +51,18 @@ final class GuidePlanItemNotification: SyncableObject {
 
     @objc dynamic var completed: Bool = false
 
-    @objc dynamic var morningInterviewFeedback: String = ""
+    @objc dynamic var morningInterviewFeedback: String?
 
     var morningInterviewResults: List<IntObject> = List()
 }
 
-extension GuidePlanItemNotification: OneWaySyncableDown {
+extension GuideItemNotification: OneWaySyncableDown {
 
     static var endpoint: Endpoint {
         return .guidePlanItemNotification
     }
 
-    func setData(_ data: GuidePlanItemNotificationIntermediary, objectStore: ObjectStore) throws {
+    func setData(_ data: GuideItemNotificationIntermediary, objectStore: ObjectStore) throws {
         title = data.title
         body = data.body
         type = data.type
