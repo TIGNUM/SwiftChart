@@ -22,21 +22,17 @@ final class Guide: SyncableObject {
 
     @objc dynamic var changeStamp: String? = UUID().uuidString
 
-    var learnItems = List<GuideItemLearn>()
-
-    var notificationItems = List<GuideItemNotification>()
-
     var items = List<GuideItem>()
 
     convenience init(learnItems: List<GuideItemLearn>,
                      notificationItems: List<GuideItemNotification>) {
         self.init()
 
-        self.learnItems = learnItems
-        self.notificationItems = notificationItems
+        createItems(learnItems: learnItems, notificationItems: notificationItems)
     }
 
-    func crateItems() {
+    private func createItems(learnItems: List<GuideItemLearn>,
+                    notificationItems: List<GuideItemNotification>) {
         learnItems.forEach { (learnItem: GuideItemLearn) in
             let item = GuideItem(planItemID: learnItem.remoteID.value ?? 0,
                                  title: learnItem.title,
@@ -47,6 +43,8 @@ final class Guide: SyncableObject {
                                  link: learnItem.link,
                                  priority: learnItem.priority,
                                  block: learnItem.block,
+                                 issueDate: nil,
+                                 displayTime: learnItem.displayTime,
                                  completedAt: nil)
             items.append(item)
         }
@@ -61,6 +59,8 @@ final class Guide: SyncableObject {
                                  link: notificationItem.link,
                                  priority: notificationItem.priority,
                                  block: 0,
+                                 issueDate: notificationItem.issueDate,
+                                 displayTime: notificationItem.displayTime,
                                  completedAt: nil)
             items.append(item)
         }

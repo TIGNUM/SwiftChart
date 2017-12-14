@@ -19,14 +19,11 @@ final class GuideItemLearnService {
         self.realmProvider = realmProvider
     }
 
-    func nextItems(day: Int, type: GuideItemLearn.GuidePlanItemType) -> AnyRealmCollection<GuideItemLearn> {
-        return mainRealm.guidePlanItemsLearn(day: day, type: type)
-    }
-
-    func todayItems() -> List<GuideItemLearn> {
-        let results = mainRealm.objects(GuideItemLearn.self)
-        let minDay = results.min(ofProperty: "block") as Int?
-        let filteredResults = results.filter { $0.block == (minDay ?? 1) }
+    func nextItems() -> List<GuideItemLearn> {
+        let allItems = mainRealm.objects(GuideItemLearn.self)
+        let todoItems = allItems.filter { $0.completed == false }
+        let minBlock = todoItems.map { $0.block }.min() ?? 1
+        let filteredResults = allItems.filter { $0.block == minBlock }
 
         return List<GuideItemLearn>(filteredResults)
     }

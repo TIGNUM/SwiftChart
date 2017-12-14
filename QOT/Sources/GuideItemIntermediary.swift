@@ -20,6 +20,8 @@ struct GuideItemIntermediary: DownSyncIntermediary {
     let link: String
     let priority: Int
     let block: Int
+    let issueDate: Date?
+    let displayTime: Date
     let completedAt: Date?
     let feedback: String?
     let dailyPrepResults: [Int]
@@ -34,6 +36,8 @@ struct GuideItemIntermediary: DownSyncIntermediary {
         link = try json.getItemValue(at: .link, fallback: "")
         priority = try json.getItemValue(at: .priority, fallback: 0)
         block = try json.getItemValue(at: .block, fallback: 0)
+        issueDate = try json.getDate(at: .issueDate, alongPath: .nullBecomesNil)
+        displayTime = try json.getDate(at: .displayTime)
         completedAt = try json.getDate(at: .completedAt, alongPath: .nullBecomesNil)
         feedback = try json.getItemValue(at: .feedback, alongPath: .nullBecomesNil)
         dailyPrepResults = try json.getArray(at: .dailyPrepResults, fallback: [])

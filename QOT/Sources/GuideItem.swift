@@ -30,6 +30,10 @@ final class GuideItem: Object {
 
     @objc private(set) dynamic var block: Int = 0
 
+    @objc private(set) dynamic var issueDate: Date?
+
+    @objc private(set) dynamic var displayTime: Date = Date()
+
     @objc private(set) dynamic var completedAt: Date?
 
     @objc private(set) dynamic var feedback: String?
@@ -47,6 +51,8 @@ final class GuideItem: Object {
                      link: String,
                      priority: Int,
                      block: Int,
+                     issueDate: Date?,
+                     displayTime: Date,
                      completedAt: Date?) {
         self.init(planItemID: planItemID,
                   title: title,
@@ -57,6 +63,8 @@ final class GuideItem: Object {
                   link: link,
                   priority: priority,
                   block: block,
+                  issueDate: issueDate,
+                  displayTime: displayTime,
                   completedAt: completedAt)
         status = completedAt == nil ? .todo : .done
     }
@@ -73,6 +81,8 @@ final class GuideItem: Object {
         link = data.link
         priority = data.priority
         block = data.block
+        issueDate = data.issueDate
+        displayTime = data.displayTime
         completedAt = data.completedAt
         feedback = data.feedback
         dailyPrepResults.forEach { $0.delete() }

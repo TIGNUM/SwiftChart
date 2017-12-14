@@ -24,13 +24,10 @@ final class GuideItemNotificationService {
     }
 
     func todayItems() -> List<GuideItemNotification> {
-        let plans = Array(mainRealm.objects(GuideItemNotification.self)) as [GuideItemNotification]
+        let items = Array(mainRealm.objects(GuideItemNotification.self)) as [GuideItemNotification]
+        let todayNotifications = items.filter { $0.createdAt.isSameDay(Date()) }
 
-        let notifications = plans.filter { (guidePlan: GuideItemNotification) -> Bool in
-            return guidePlan.createdAt.isSameDay(Date())
-        }
-
-        return List<GuideItemNotification>(notifications)
+        return List<GuideItemNotification>(todayNotifications)
     }
 
     func setItemCompleted(item: GuideItemNotification) {

@@ -19,25 +19,13 @@ final class GuideService {
         self.realmProvider = realmProvider
     }
 
-    func planOfToday() -> Guide? {
-        let plans = Array(mainRealm.objects(Guide.self)) as [Guide]
-
-        return plans.filter { (guidePlan: Guide) -> Bool in
-            return guidePlan.createdAt.isSameDay(Date())
+    func todaysGuide() -> Guide? {
+        return guideBlocks().filter { (guide: Guide) -> Bool in
+            return guide.createdAt.isSameDay(Date())
         }.first
     }
 
     func guideBlocks() -> AnyRealmCollection<Guide> {
-        let results = mainRealm.objects(Guide.self)
-
-        return AnyRealmCollection(results)
-    }
-
-    func learnItems(section: Int) -> List<GuideItemLearn> {
-        return guideBlocks()[section].learnItems
-    }
-
-    func notificationItems(section: Int) -> List<GuideItemNotification> {
-        return guideBlocks()[section].notificationItems
+        return AnyRealmCollection(mainRealm.objects(Guide.self))
     }
 }

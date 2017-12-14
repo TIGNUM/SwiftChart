@@ -28,8 +28,8 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
         valueViews.forEach { $0.backgroundColor = .clear }
     }
 
-    func configure(dailyPrepItem: GuideItemNotification.DailyPrepItem) {
-        if dailyPrepItem.results.count < 5 {
+    func configure(dailyPrepItem: GuideItem) {
+        if dailyPrepItem.dailyPrepResults.count < 5 {
             setupShortDailyPrep()
         }
 
@@ -44,7 +44,7 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
                                                   textColor: .white40,
                                                   alignment: .left)
 
-        for (index, result) in dailyPrepItem.results.enumerated() {
+        for (index, result) in dailyPrepItem.dailyPrepResults.enumerated() {
             valueLabels[index].attributedText = attributedText(letterSpacing: -1.1,
                                                                text: String(format: "%d", result),
                                                                font: Font.H3Subtitle,
