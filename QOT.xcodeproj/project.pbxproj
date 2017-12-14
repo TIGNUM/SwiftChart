@@ -30,12 +30,12 @@
 		365579B51FE040A2003DAF9A /* GuideIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365579B41FE040A2003DAF9A /* GuideIntermediary.swift */; };
 		365E98C31FD9A31000248361 /* CLTypingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365E98C21FD9A31000248361 /* CLTypingLabel.swift */; };
 		36927FC41FA7960400EC9B88 /* SettingsAdmin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36927FC31FA7960400EC9B88 /* SettingsAdmin.storyboard */; };
-		36939B881FD84E4C00A9DECF /* GuideHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36939B861FD84E4C00A9DECF /* GuideHeaderTableViewCell.swift */; };
-		36939B891FD84E4C00A9DECF /* GuideHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36939B871FD84E4C00A9DECF /* GuideHeaderTableViewCell.xib */; };
 		36939B8C1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36939B8A1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.swift */; };
 		36939B8D1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36939B8B1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib */; };
 		36B67B9C1FE1D9C90066A515 /* GuideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B67B9B1FE1D9C90066A515 /* GuideItem.swift */; };
 		36B67B9E1FE1DA040066A515 /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B67B9D1FE1DA040066A515 /* Guide.swift */; };
+		36B8F2511FE2FDD400AD6A17 /* GuideGreetingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36B8F2501FE2FDD400AD6A17 /* GuideGreetingView.xib */; };
+		36B8F2531FE2FEA600AD6A17 /* GuideGreetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B8F2521FE2FEA600AD6A17 /* GuideGreetingView.swift */; };
 		36BD8F481FE0052000DBD9B4 /* GuideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BD8F471FE0052000DBD9B4 /* GuideService.swift */; };
 		36DADE761FA7850100EB00D4 /* SettingsAdminCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DADE751FA7850100EB00D4 /* SettingsAdminCoordinator.swift */; };
 		36DADE791FA786DD00EB00D4 /* SettingsAdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DADE781FA786DD00EB00D4 /* SettingsAdminViewController.swift */; };
@@ -538,12 +538,12 @@
 		365579B41FE040A2003DAF9A /* GuideIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideIntermediary.swift; sourceTree = "<group>"; };
 		365E98C21FD9A31000248361 /* CLTypingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLTypingLabel.swift; sourceTree = "<group>"; };
 		36927FC31FA7960400EC9B88 /* SettingsAdmin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsAdmin.storyboard; sourceTree = "<group>"; };
-		36939B861FD84E4C00A9DECF /* GuideHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideHeaderTableViewCell.swift; sourceTree = "<group>"; };
-		36939B871FD84E4C00A9DECF /* GuideHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		36939B8A1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDailyPrepTableViewCell.swift; sourceTree = "<group>"; };
 		36939B8B1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideDailyPrepTableViewCell.xib; sourceTree = "<group>"; };
 		36B67B9B1FE1D9C90066A515 /* GuideItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideItem.swift; sourceTree = "<group>"; };
 		36B67B9D1FE1DA040066A515 /* Guide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
+		36B8F2501FE2FDD400AD6A17 /* GuideGreetingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideGreetingView.xib; sourceTree = "<group>"; };
+		36B8F2521FE2FEA600AD6A17 /* GuideGreetingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideGreetingView.swift; sourceTree = "<group>"; };
 		36BD8F471FE0052000DBD9B4 /* GuideService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideService.swift; sourceTree = "<group>"; };
 		36DADE751FA7850100EB00D4 /* SettingsAdminCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAdminCoordinator.swift; sourceTree = "<group>"; };
 		36DADE781FA786DD00EB00D4 /* SettingsAdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAdminViewController.swift; sourceTree = "<group>"; };
@@ -1067,12 +1067,12 @@
 			isa = PBXGroup;
 			children = (
 				36939B8A1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.swift */,
-				36939B861FD84E4C00A9DECF /* GuideHeaderTableViewCell.swift */,
-				36328F211FCEB92C004E9034 /* GuideViewModel.swift */,
+				36B8F2521FE2FEA600AD6A17 /* GuideGreetingView.swift */,
 				362632461FD6A4210024C626 /* GuideTableViewCell.swift */,
 				36328F1F1FCEB90B004E9034 /* GuideViewController.swift */,
+				36328F211FCEB92C004E9034 /* GuideViewModel.swift */,
 				36939B8B1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib */,
-				36939B871FD84E4C00A9DECF /* GuideHeaderTableViewCell.xib */,
+				36B8F2501FE2FDD400AD6A17 /* GuideGreetingView.xib */,
 				362632441FD6A2710024C626 /* GuideTableViewCell.xib */,
 			);
 			name = Guide;
@@ -2599,13 +2599,13 @@
 				CBC5A57A1FA08071007B9A5B /* 15_min_power_nap_no_voice.m4a in Resources */,
 				CC59A88D1F41C0E100D22353 /* LibraryCategoryCollectionViewCell.xib in Resources */,
 				CBC5A5791FA0806E007B9A5B /* 90_min_power_nap.m4a in Resources */,
-				36939B891FD84E4C00A9DECF /* GuideHeaderTableViewCell.xib in Resources */,
 				CB9442381FDE9D7700E2B122 /* SlideShow.plist in Resources */,
 				0BEE8AC01EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib in Resources */,
 				7F0F03041F14CE2300007D50 /* CollapsableCell.xib in Resources */,
 				CBC5A5781FA0806B007B9A5B /* 15_min_power_nap_with_voice.m4a in Resources */,
 				CC13E2411EB1D72400C3CE46 /* LibraryLatestPostCollectionViewCell.xib in Resources */,
 				CCC0C4CC1E828007002A8362 /* BentonSans_Regular.otf in Resources */,
+				36B8F2511FE2FDD400AD6A17 /* GuideGreetingView.xib in Resources */,
 				CCF0F4C61ECDD0DA00E8D9C1 /* contentCategory.json in Resources */,
 				CC6251DB1EE00DD800C6F546 /* Localized.strings in Resources */,
 				CB8C34541EAF7F190003AB65 /* MyToBeVisionViewController.xib in Resources */,
@@ -3005,7 +3005,6 @@
 				CC05CB761EDEC6D700D15ABC /* CGPoint+Convenience.swift in Sources */,
 				CBD097371F72646000F71D91 /* ChatViewLayout.swift in Sources */,
 				CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */,
-				36939B881FD84E4C00A9DECF /* GuideHeaderTableViewCell.swift in Sources */,
 				CB810E641EF00DB70043E3E5 /* User.swift in Sources */,
 				852DADD21EF04DEA00A10882 /* MeetingsLengthChart.swift in Sources */,
 				CC27E0C01EB355BC003E5B7F /* SidebarTableViewCell.swift in Sources */,
@@ -3127,6 +3126,7 @@
 				CCCC21231E8981CA00133839 /* PrepareContentViewModel.swift in Sources */,
 				7F4B98A71FA21FD3000B402C /* WeeklyChoicesAnimator.swift in Sources */,
 				CB9AFD0F1F012A2800D067F2 /* QuestionsService.swift in Sources */,
+				36B8F2531FE2FEA600AD6A17 /* GuideGreetingView.swift in Sources */,
 				CBC1DC271F0FB55D00F6D056 /* QuestionGroupIntermediary.swift in Sources */,
 				CC1E2A5F1EDF1DE100B9EFD3 /* UICollectionView+Create.swift in Sources */,
 				CBB303421ECEE3E70011303A /* DateFormatter+Convenience.swift in Sources */,

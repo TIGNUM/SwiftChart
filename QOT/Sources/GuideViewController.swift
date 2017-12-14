@@ -15,15 +15,11 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
     // MARK: - Properties
 
     private let viewModel: GuideViewModel
-    private let headerRatio: CGFloat = 0.8957219251
+    private let sectionHeaderHeight: CGFloat = 64
     private let fadeMaskLocation: UIView.FadeMaskLocation
 
-    private lazy var headerView: GuideHeaderTableViewCell? = {
-        let cell = Bundle.main.loadNibNamed("GuideHeaderTableViewCell", owner: self, options: [:])?.first as? GuideHeaderTableViewCell
-        cell?.configure(message: "Hi Jogi\nLorem ipsum texh here here there text copy start",
-                       timing: "Plan timing 24 minutes")
-
-        return cell
+    private lazy var greetingView: GuideGreetingView? = {
+        return Bundle.main.loadNibNamed("GuideGreetingView", owner: self, options: [:])?.first as? GuideGreetingView
     }()
 
     private lazy var tableView: UITableView = {
@@ -32,7 +28,6 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
                            delegate: self,
                            dataSource: self,
                            dequeables: GuideTableViewCell.self,
-                                       GuideHeaderTableViewCell.self,
                                        GuideDailyPrepTableViewCell.self)
     }()
 
@@ -63,15 +58,21 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
 private extension GuideViewController {
 
     func setupView() {
+        guard let greetingView = self.greetingView else { return }
+
+        greetingView.configure(message: "Hi Jogi\nLorem ipsum texh here here there text copy start",
+                               timing: "Plan timing 24 minutes")
+        view.addSubview(greetingView)
         view.addSubview(tableView)
-        tableView.topAnchor == view.topAnchor - UIApplication.shared.statusBarFrame.height
+        greetingView.topAnchor == view.topAnchor - UIApplication.shared.statusBarFrame.height
+        greetingView.leftAnchor == view.leftAnchor
+        greetingView.rightAnchor == view.rightAnchor
+        tableView.topAnchor == greetingView.bottomAnchor
         tableView.bottomAnchor == view.bottomAnchor
         tableView.leftAnchor == view.leftAnchor
         tableView.rightAnchor == view.rightAnchor
         tableView.backgroundColor = .pineGreen
         view.setFadeMask(at: fadeMaskLocation)
-        guard let header = headerView else { return }
-        tableView.tableHeaderView = header
     }
 
     func launch() {
@@ -102,24 +103,6 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.configure(dailyPrepItem: dailyPrepItem)
                 return cell
         }
-//
-//        if indexPath.row == 0 {
-//            let cell: GuideDailyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
-//            let dailyPrepResults: [[String: Any?]] = [["value": "5", "color": UIColor.white, "title": "Sleep\nQuality"],
-//                                                     ["value": "2", "color": UIColor.white, "title": "Sleep\nQuantity"],
-//                                                     ["value": "8", "color": UIColor.cherryRed, "title": "Load\nIndex"],
-//                                                     ["value": "2", "color": UIColor.white, "title": "Pressure\nIndex"],
-//                                                     ["value": "7", "color": UIColor.cherryRed, "title": "Workday\nLength"]]
-//            let dailyPrepToDo: [[String: Any?]] = [["value": nil, "color": nil, "title": "Sleep\nQuality"],
-//                                                   ["value": nil, "color": nil, "title": "Sleep\nQuantity"],
-//                                                   ["value": nil, "color": nil, "title": "Load\nIndex"],
-//                                                   ["value": nil, "color": nil, "title": "Pressure\nIndex"],
-//                                                   ["value": nil, "color": nil, "title": "Workday\nLength"]]
-//            let dailyPrep = indexPath.section % 2 == 0 ? dailyPrepResults : dailyPrepToDo
-//            cell.configure(dailyPrepResults: dailyPrep, status: indexPath.row % 2 == 0 ? .todo : .done)
-//
-//            return cell
-//        }
 
         let cell: GuideTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(title: plan.title ?? "",
@@ -135,8 +118,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        guard section != 0 else { return nil }
-        let view = UIView(frame: CGRect(x: 30, y: 0, width: tableView.bounds.width, height: 64))
+        let view = UIView(frame: CGRect(x: 30, y: 0, width: tableView.bounds.width, height: sectionHeaderHeight))
         let label = UILabel(frame: view.frame)
         let headline = String(format: ".0000%d PLAN", section + 1)
         view.addSubview(label)
@@ -147,7 +129,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 64//section == 0 ? 0 : 64
+        return sectionHeaderHeight
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

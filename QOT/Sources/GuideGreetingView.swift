@@ -1,40 +1,36 @@
 //
-//  GuideHeaderTableViewCell.swift
+//  GuideGreetingView.swift
 //  QOT
 //
-//  Created by karmic on 06.12.17.
+//  Created by karmic on 14.12.17.
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
 import UIKit
 
-final class GuideHeaderTableViewCell: UITableViewCell, Dequeueable {
+final class GuideGreetingView: UIView {
 
-    @IBOutlet private weak var backgroundImageView: UIImageView!
     @IBOutlet private weak var timingLabel: UILabel!
     @IBOutlet private weak var messageLabel: UILabel!
 
     func configure(message: String, timing: String) {
+        backgroundColor = .pineGreen
         timingLabel.attributedText = attributedText(letterSpacing: 2,
-                                                     text: timing.uppercased(),
-                                                     font: Font.H7Tag,
-                                                     textColor: .white40,
-                                                     alignment: .left)
+                                                    text: timing.uppercased(),
+                                                    font: Font.H7Tag,
+                                                    textColor: .white40,
+                                                    alignment: .left)
         messageLabel.attributedText = attributedText(letterSpacing: -0.8,
-                                                       text: message.uppercased(),
-                                                       font: Font.H4Headline,
-                                                       textColor: .white,
-                                                       alignment: .left)
-    }
-
-    func updateBackgroundImageView(alpha: CGFloat) {
-        backgroundImageView.alpha = alpha
+                                                     text: message.uppercased(),
+                                                     font: Font.H4Headline,
+                                                     textColor: .white,
+                                                     alignment: .left)
     }
 }
 
 // MARK: - Private
 
-private extension GuideHeaderTableViewCell {
+private extension GuideGreetingView {
 
     func attributedText(letterSpacing: CGFloat = 2,
                         text: String,
