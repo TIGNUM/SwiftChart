@@ -17,8 +17,6 @@ var selectedChartTypes: [ChartType: Bool] = [.peakPerformanceUpcomingWeek: true,
                                              .intensityLoadMonth: false,
                                              .intensityRecoveryWeek: true,
                                              .intensityRecoveryMonth: false,
-                                             .meetingAverageDay: true,
-                                             .meetingAverageWeek: false,
                                              .travelTripsAverageWeeks: true,
                                              .travelTripsAverageYear: false,
                                              .travelTripsTimeZoneChangedWeeks: true,
@@ -251,9 +249,14 @@ private extension ChartCell {
 
     func setupChartView(statistics: Statistics) -> UIView {
         let segmentedFrame = CGRect(x: 0, y: 0, width: chartSegmentedContentView.frame.width, height: chartSegmentedContentView.frame.height)
-        let segmentedBiggerFrame = CGRect(x: 0, y: 0, width: segmentedFrame.width, height: segmentedFrame.height + labelContentView.frame.height)
+//        let segmentedBiggerFrame = CGRect(x: 0, y: 0, width: segmentedFrame.width, height: segmentedFrame.height + labelContentView.frame.height)
         let frame = chartContentView.frame
         let biggerFrame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height + labelContentView.frame.height)
+
+        if statistics.chartType.comingSoon == true {
+            setupOverlayView(text: R.string.localized.meChartCommingSoon())
+            return UIView()
+        }
 
         switch statistics.chartType {
         case .activityLevel,
@@ -269,14 +272,6 @@ private extension ChartCell {
              .intensityRecoveryWeek,
              .intensityRecoveryMonth:
             return IntensityChart(frame: segmentedFrame, statistics: statistics, labelContentView: labelContentView)
-        case .meetingAverageDay,
-             .meetingAverageWeek:
-            if shouldShowAddCalendarView == true {
-                setupOverlayView(text: R.string.localized.meChartAddCalendar())
-                return UIView()
-            }
-
-            return MeetingsAverageChart(frame: segmentedBiggerFrame, statistics: statistics, labelContentView: labelContentView)
         case .meetingLength:
             if shouldShowAddCalendarView == true {
                 setupOverlayView(text: R.string.localized.meChartAddCalendar())
@@ -301,10 +296,7 @@ private extension ChartCell {
             return SleepChart(frame: frame, statistics: statistics)
         case .peakPerformanceUpcomingWeek,
              .peakPerformanceUpcomingNextWeek:
-            if statistics.chartType.comingSoon == true {
-                setupOverlayView(text: R.string.localized.meChartCommingSoon())
-                return UIView()
-            } else if shouldShowAddCalendarView == true {
+            if shouldShowAddCalendarView == true {
                 setupOverlayView(text: R.string.localized.meChartAddCalendar())
                 return UIView()
             }
@@ -312,10 +304,7 @@ private extension ChartCell {
             return PeakPerformanceUpcomingChart(frame: segmentedFrame, statistics: statistics, labelContentView: labelContentView)
         case .peakPerformanceAverageWeek,
              .peakPerformanceAverageMonth:
-            if statistics.chartType.comingSoon == true {
-                setupOverlayView(text: R.string.localized.meChartCommingSoon())
-                return UIView()
-            } else if shouldShowAddCalendarView == true {
+            if shouldShowAddCalendarView == true {
                 setupOverlayView(text: R.string.localized.meChartAddCalendar())
                 return UIView()
             }
@@ -326,19 +315,9 @@ private extension ChartCell {
              .travelTripsAverageWeeks,
              .travelTripsAverageYear,
              .travelTripsNextFourWeeks:
-            if statistics.chartType.comingSoon == true {
-                setupOverlayView(text: R.string.localized.meChartCommingSoon())
-                return UIView()
-            }
-
             let travelTripFrame = statistics.chartType == .travelTripsNextFourWeeks ? frame : segmentedFrame
             return TravelTripsChart(frame: travelTripFrame, statistics: statistics, labelContentView: labelContentView)
         case .travelTripsMaxTimeZone:
-            if statistics.chartType.comingSoon == true {
-                setupOverlayView(text: R.string.localized.meChartCommingSoon())
-                return UIView()
-            }
-
             return TravelMaxTimeZoneChart(frame: biggerFrame, statistics: statistics, labelContentView: labelContentView)
         }
     }
