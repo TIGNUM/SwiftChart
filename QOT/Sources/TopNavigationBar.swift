@@ -29,6 +29,12 @@ final class TopNavigationBar: UINavigationBar {
     let indicatorView: UIView // automatically hidden when setMiddleButtons(buttons.count == 1)
     weak var topNavigationBarDelegate: TopNavigationBarDelegate?
     var middleButtons: [UIButton]?
+    var currentButtonIndex: Int? {
+        guard let currentButton = currentButton, let middleButtons = middleButtons else {
+            return nil
+        }
+        return middleButtons.index(of: currentButton)
+    }
 
     override init(frame: CGRect) {
         indicatorView = UIView()

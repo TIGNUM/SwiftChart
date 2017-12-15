@@ -16,6 +16,9 @@ protocol MyUniverseViewControllerDelegate: class {
     func myUniverseViewController(_ viewController: MyUniverseViewController, didTapWeeklyChoiceAt index: Index)
     func myUniverseViewController(_ viewController: MyUniverseViewController, didTapQOTPartnerAt index: Index)
     func myUniverseViewController(_ viewController: MyUniverseViewController,
+                                  didTapLeftBarButtonItem buttonItem: UIBarButtonItem,
+                                  in topNavigationBar: TopNavigationBar)
+    func myUniverseViewController(_ viewController: MyUniverseViewController,
                                   didTapRightBarButtonItem buttonItem: UIBarButtonItem,
                                   in topNavigationBar: TopNavigationBar)
 }
@@ -98,7 +101,7 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
     }
     var viewData: MyUniverseViewData {
         didSet {
-            guard view != nil else { return } // hacky check to see if view has loaded
+            guard view != nil else { return } // check to see if view has loaded
             reload()
         }
     }
@@ -191,6 +194,7 @@ private extension MyUniverseViewController {
         // top bar
         topBar.topNavigationBarDelegate = self
         topBar.setMiddleButtons(config.pages.map { self.button(with: $0.pageTitle) })
+        topBar.setLeftButton(UIBarButtonItem(withImage: R.image.explainer_ico()))
         topBar.setRightButton(UIBarButtonItem(withImage: R.image.ic_menu()))
     }
 
@@ -310,6 +314,7 @@ extension MyUniverseViewController: UIScrollViewDelegate {
 
 extension MyUniverseViewController: TopNavigationBarDelegate {
     func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
+        delegate?.myUniverseViewController(self, didTapLeftBarButtonItem: button, in: navigationBar)
     }
 
     func topNavigationBar(_ navigationBar: TopNavigationBar,

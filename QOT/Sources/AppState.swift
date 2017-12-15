@@ -17,6 +17,7 @@ final class AppState {
     fileprivate static var shared = AppState()
 
     var services: Services!
+    var windowManager: WindowManager!
     var appCoordinator: AppCoordinator!
 
     private init() {}

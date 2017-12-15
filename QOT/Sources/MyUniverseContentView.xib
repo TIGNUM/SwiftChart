@@ -216,7 +216,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y61-KY-g7A">
-                            <rect key="frame" x="77" y="37" width="27" height="13"/>
+                            <rect key="frame" x="77" y="36.5" width="27" height="13"/>
                             <fontDescription key="fontDescription" name="BentonSans" family="BentonSans" pointSize="11"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>

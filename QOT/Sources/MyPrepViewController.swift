@@ -83,16 +83,6 @@ final class MyPrepViewController: UIViewController, FullScreenLoadable, PageView
         observeViewModel()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        guard viewModel.itemCount > 0 else {
-            return
-        }
-
-        navigationController?.navigationBar.topItem?.leftBarButtonItem = barButtonItem(.edit, action: #selector(editMode))
-    }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         updateReadyState()
@@ -100,9 +90,7 @@ final class MyPrepViewController: UIViewController, FullScreenLoadable, PageView
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
         tableView.setEditing(false, animated: true)
-        navigationController?.navigationBar.topItem?.leftBarButtonItem = nil
     }
 
     @available(iOS 11.0, *)
@@ -111,21 +99,6 @@ final class MyPrepViewController: UIViewController, FullScreenLoadable, PageView
         tableView.contentInset.top = view.safeMargins.top
         tableView.contentInset.bottom = view.safeMargins.bottom
         view.setFadeMask(at: .topAndBottom)
-    }
-}
-
-// MARK: - Actions
-
-private extension MyPrepViewController {
-
-    @objc func editMode() {
-        navigationController?.navigationBar.topItem?.leftBarButtonItem = barButtonItem(.cancel, action: #selector(cancelEditMode))
-        tableView.setEditing(true, animated: true)
-    }
-
-    @objc func cancelEditMode() {
-        navigationController?.navigationBar.topItem?.leftBarButtonItem = barButtonItem(.edit, action: #selector(editMode))
-        tableView.setEditing(false, animated: true)
     }
 }
 
@@ -167,8 +140,6 @@ private extension MyPrepViewController {
     }
 
     func updateView() {
-        let barButton = tableView.isEditing == true ? barButtonItem(.cancel, action: #selector(cancelEditMode)) : barButtonItem(.edit, action: #selector(editMode))
-        navigationController?.navigationBar.topItem?.leftBarButtonItem = viewModel.itemCount == 0 ? nil : barButton
         emptyLabel.isHidden = viewModel.itemCount > 0
         tableView.reloadData()
     }
@@ -216,6 +187,6 @@ extension MyPrepViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        return tableView.isEditing ? .delete : .none
+        return .delete
     }
 }

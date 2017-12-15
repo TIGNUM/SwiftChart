@@ -18,8 +18,7 @@ protocol SlideShowPresenterInterface {
     func loadAllSlides(slides: [SlideShow.Slide])
 }
 
-protocol SlideShowInteractorInterface {
-    func viewDidLoad()
+protocol SlideShowInteractorInterface: Interactor {
     func didTapLoadMore()
     func didTapDone()
 }

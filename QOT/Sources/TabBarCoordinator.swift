@@ -96,10 +96,12 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         let learnCategoryListVC = LearnCategoryListViewController(viewModel: viewModel)
         learnCategoryListVC.title = R.string.localized.topTabBarItemTitleLearnStrategies()
         learnCategoryListVC.delegate = self
+        let leftButton = UIBarButtonItem(withImage: R.image.explainer_ico())
         let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())
         let topTabBarController = UINavigationController(withPages: [learnCategoryListVC, articleCollectionViewController],
                                                          topBarDelegate: self,
                                                          pageDelegate: self,
+                                                         leftButton: leftButton,
                                                          rightButton: rightButton)
         var config = TabBarItem.Config.default
         config.title = R.string.localized.tabBarItemLearn()
@@ -133,13 +135,14 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     }()
 
     lazy var topTabBarControllerPrepare: UINavigationController = {
+        let leftButton = UIBarButtonItem(withImage: R.image.explainer_ico())
         let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())
         let topTabBarController = UINavigationController(withPages: [self.prepareChatViewController,
                                                                      self.myPrepViewController],
                                                          topBarDelegate: self,
                                                          pageDelegate: self,
                                                          backgroundImage: R.image.myprep(),
-                                                         leftButton: nil,
+                                                         leftButton: leftButton,
                                                          rightButton: rightButton)
         var config = TabBarItem.Config.default
         config.title = R.string.localized.tabBarItemPrepare()
@@ -204,6 +207,11 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         }
         viewController.modalTransitionStyle = .crossDissolve
         windowManager.showOverlay(viewController, animated: true, completion: nil)
+    }
+
+    private func showHelp(_ key: ScreenHelp.Plist.Key) {
+        let viewController = ScreenHelpViewController(configurator: ScreenHelpConfigurator.makeWith(key: key))
+        windowManager.showPriority(viewController, animated: true, completion: nil)
     }
 }
 
@@ -303,6 +311,19 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
         startChild(child: coordinator)
     }
 
+    func myUniverseViewController(_ viewController: MyUniverseViewController, didTapLeftBarButtonItem buttonItem: UIBarButtonItem, in topNavigationBar: TopNavigationBar) {
+        guard let topBarButtonIndex = topNavigationBar.currentButtonIndex else { return }
+        switch topBarButtonIndex {
+        case 0:
+            showHelp(.myData)
+        case 1:
+            showHelp(.myWhy)
+        default:
+            assertionFailure("unhandled switch")
+            break
+        }
+    }
+
     func myUniverseViewController(_ viewController: MyUniverseViewController, didTapRightBarButtonItem buttonItem: UIBarButtonItem, in topNavigationBar: TopNavigationBar) {
         self.topNavigationBar(topNavigationBar, rightButtonPressed: buttonItem)
     }
@@ -338,7 +359,32 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
 extension TabBarCoordinator: TopNavigationBarDelegate {
 
     func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
-
+        guard let topBarButtonIndex = navigationBar.currentButtonIndex else { return }
+        switch selectedIndex.value {
+        case 0:
+            switch topBarButtonIndex {
+            case 0:
+                showHelp(.strategies)
+            case 1:
+                showHelp(.whatsHot)
+            default:
+                assertionFailure("unhandled switch")
+                break
+            }
+        case 2:
+            switch topBarButtonIndex {
+            case 0:
+                showHelp(.coach)
+            case 1:
+                showHelp(.prep)
+            default:
+                assertionFailure("unhandled switch")
+                break
+            }
+        default:
+            assertionFailure("unhandled switch")
+            break
+        }
     }
 
     func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {

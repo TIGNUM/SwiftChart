@@ -1,0 +1,30 @@
+//
+//  HelpInterfaces.swift
+//  QOT
+//
+//  Created by Lee Arromba on 14/12/2017.
+//  Copyright © 2017 Tignum. All rights reserved.
+//
+
+import Foundation
+
+protocol ScreenHelpRouterInterface {
+    func dismiss()
+    func showVideo(with url: URL)
+}
+
+protocol ScreenHelpPresenterInterface {
+    func load(_ item: ScreenHelp.Plist.Item)
+}
+
+protocol ScreenHelpInteractorInterface: Interactor {
+    func didTapMinimiseButton()
+    func didTapVideo(with url: URL)
+}
+
+protocol ScreenHelpViewControllerInterface: class {
+    var interactor: ScreenHelpInteractorInterface! { get set }
+
+    func updateViewModel(_ viewModel: ScreenHelp.ViewModel)
+    func streamVideo(videoURL: URL)
+}
