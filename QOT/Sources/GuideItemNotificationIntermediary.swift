@@ -17,6 +17,7 @@ struct GuideItemNotificationIntermediary: DownSyncIntermediary {
 //    let typeDisplayString: String
     let greeting: String?
     let link: String
+    let sound: String
     let priority: Int
     let issueDate: Date
     let displayTime: GuideTimeIntermediary
@@ -29,6 +30,7 @@ struct GuideItemNotificationIntermediary: DownSyncIntermediary {
 //        typeDisplayString = try json.getItemValue(at: .typeDisplayString, fallback: "")
         greeting = try json.getItemValue(at: .greeting, alongPath: .nullBecomesNil)
         link = try json.getItemValue(at: .link, fallback: "")
+        sound = try json.getItemValue(at: .sound, fallback: "")
         priority = try json.getItemValue(at: .priority, fallback: 0)
         issueDate = try json.getDate(at: .issueDate)
         displayTime = try json.getItemValue(at: .displayTime)

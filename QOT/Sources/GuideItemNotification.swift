@@ -47,6 +47,8 @@ final class GuideItemNotification: SyncableObject {
 
     @objc private(set) dynamic var link: String = ""
 
+    @objc private(set) dynamic var sound: String = ""
+
     @objc private(set) dynamic var priority: Int = 0
 
     @objc private(set) dynamic var issueDate: Date = Date()

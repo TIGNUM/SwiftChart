@@ -176,6 +176,7 @@ enum JsonKey: String {
     case settingTextValueDtos
     case shortDescription
     case sortOrder
+    case sound
     case start
     case startDate
     case status

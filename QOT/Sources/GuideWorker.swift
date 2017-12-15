@@ -31,10 +31,3 @@ final class GuideWorker {
         return serivces.guideService.createGuide(items: sorted)
     }
 }
-
-// MARK: - Notifications
-
-extension GuideWorker {
-
-
-}
