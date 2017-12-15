@@ -60,26 +60,12 @@ final class GuideViewModel {
 
     private let services: Services
     private let eventTracker: EventTracker
-    private let guideBlocks = [Guide]()
-    private let guideOfToday: Guide
+    private var todaysGudie: Guide?
 
     init(services: Services, eventTracker: EventTracker) {
         self.services = services
         self.eventTracker = eventTracker
-
-        func guideOfToday() -> Guide {
-            let learnItems = services.guideItemLearnService.items()
-            let notificationItems = services.guideItemNotificationService.todayItems()
-
-            return Guide(learnItems: learnItems, notificationItems: notificationItems)
-        }
-
-        self.guideOfToday = guideOfToday()
-        do {
-            try saveGuideToday()
-        } catch {
-            assertionFailure("Failed to save Guide Plan for today with error: \(error)")
-        }
+        todaysGudie = createTodaysGuideIfNeeded()
     }
 
     var sectionCount: Int {
@@ -87,20 +73,34 @@ final class GuideViewModel {
     }
 
     func numberOfRows(section: Int) -> Int {
-        return guideOfToday.items.count
+        return todaysGudie?.items.count ?? 0
     }
 
     func guide(section: Int) -> Guide {
         return services.guideService.guideSections()[section]
     }
 
-    func guideItem(indexPath: IndexPath) -> GuideItem {
-        return guideOfToday.items[indexPath.row]
+    func guideItem(indexPath: IndexPath) -> GuideItem? {
+        return todaysGudie?.items[indexPath.row]
+    }
+
+    func createTodaysGuideIfNeeded() -> Guide {
+        if let guide = services.guideService.todaysGuide() {
+            return guide
+        }
+
+        let learnItems = services.guideItemLearnService.items()
+        let notificationItems = services.guideItemNotificationService.todayItems()
+        let guide = services.guideService.createGuide(learnItems: learnItems,
+                                                      notificationItems: notificationItems,
+                                                      guideItemService: services.guideItemService)
+
+        return guide
     }
 
     func dailyPrepItem() -> GuideItem? {
         let predicate = NSPredicate(format: "type == %@", GuideItemNotification.ItemType.morningInterview.rawValue)
-        return guideOfToday.items.filter(predicate).first
+        return todaysGudie?.items.filter(predicate).first
 //
 //        return GuideItemNotification.DailyPrepItem(feedback: dailyPrep.feedback,
 //                                                       results: Array(dailyPrep.dailyPrepResults.map { $0.value }),
@@ -112,10 +112,10 @@ final class GuideViewModel {
 //                                                       status: dailyPrep.completed == true ? .done : .todo)
     }
 
-    func saveGuideToday() throws {
+    func updateGuideItems(_ items: List<GuideItem>, guide: Guide) throws {
         let realm = services.mainRealm
         try realm.write {
-            realm.add(guideOfToday)
+            guide.items = items
         }
     }
 }

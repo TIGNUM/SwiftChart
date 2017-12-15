@@ -23,56 +23,6 @@ final class Guide: SyncableObject {
     @objc dynamic var changeStamp: String? = UUID().uuidString
 
     var items = List<GuideItem>()
-
-    convenience init(learnItems: List<GuideItemLearn>,
-                     notificationItems: List<GuideItemNotification>) {
-        self.init()
-
-//        createItems(learnItems: learnItems, notificationItems: notificationItems)
-    }
-
-    private func createItems(learnItems: List<GuideItemLearn>,
-                    notificationItems: List<GuideItemNotification>) {
-        learnItems.forEach { (learnItem: GuideItemLearn) in
-            let item = GuideItem(planItemID: learnItem.remoteID.value ?? 0,
-                                 title: learnItem.title,
-                                 body: learnItem.body,
-                                 type: learnItem.body,
-                                 typeDisplayString: learnItem.type,
-                                 greeting: learnItem.greeting,
-                                 link: learnItem.link,
-                                 priority: learnItem.priority,
-                                 block: learnItem.block,
-                                 issueDate: nil,
-                                 displayTime: learnItem.displayTime,
-                                 reminderTime: learnItem.reminderTime,
-                                 completedAt: nil)
-            items.append(item)
-        }
-
-        notificationItems.forEach { (notificationItem: GuideItemNotification) in
-            let item = GuideItem(planItemID: notificationItem.remoteID.value ?? 0,
-                                 title: notificationItem.title ?? "",
-                                 body: notificationItem.body,
-                                 type: notificationItem.type,
-                                 typeDisplayString: notificationItem.type,
-                                 greeting: notificationItem.greeting ?? "",
-                                 link: notificationItem.link,
-                                 priority: notificationItem.priority,
-                                 block: 0,
-                                 issueDate: notificationItem.issueDate,
-                                 displayTime: notificationItem.displayTime,
-                                 reminderTime: notificationItem.reminderTime,
-                                 completedAt: nil)
-            items.append(item)
-        }
-
-        let sortedItems = items.sorted { (lhs: GuideItem, rhs: GuideItem) -> Bool in
-            return lhs.priority > rhs.priority
-        }
-
-        items = List<GuideItem>(sortedItems)
-    }
 }
 
 extension Guide: TwoWaySyncable {

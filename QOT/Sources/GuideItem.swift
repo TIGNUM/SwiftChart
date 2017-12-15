@@ -57,20 +57,22 @@ final class GuideItem: Object {
                      displayTime: DateComponents,
                      reminderTime: DateComponents,
                      completedAt: Date?) {
-        self.init(planItemID: planItemID,
-                  title: title,
-                  body: body,
-                  type: type,
-                  typeDisplayString: typeDisplayString,
-                  greeting: greeting,
-                  link: link,
-                  priority: priority,
-                  block: block,
-                  issueDate: issueDate,
-                  displayTime: displayTime,
-                  reminderTime: reminderTime,
-                  completedAt: completedAt)
-        status = completedAt == nil ? .todo : .done
+        self.init()
+
+        self.planItemID = planItemID
+        self.title = title
+        self.body = body
+        self.type = type
+        self.typeDisplayString = typeDisplayString
+        self.greeting = greeting
+        self.link = link
+        self.priority = priority
+        self.block = block
+        self.issueDate = issueDate
+        self.displayTime = displayTime
+        self.reminderTime = reminderTime
+        self.completedAt = completedAt
+        self.status = completedAt == nil ? .todo : .done
     }
 
     convenience init(_ data: GuideItemIntermediary) {

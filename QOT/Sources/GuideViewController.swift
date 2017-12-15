@@ -94,7 +94,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let plan = viewModel.guideItem(indexPath: indexPath)
+        let item = viewModel.guideItem(indexPath: indexPath)
 
         if
             indexPath.row == 0,
@@ -105,10 +105,10 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
         }
 
         let cell: GuideTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(title: plan.title ?? "",
-                       content: plan.body,
-                       type: plan.type,
-                       status: plan.status)
+        cell.configure(title: item?.title ?? "",
+                       content: item?.body ?? "",
+                       type: item?.type ?? "",
+                       status: item?.status ?? .todo)
 
         return cell
     }
@@ -133,8 +133,12 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let planItem = viewModel.guideItem(indexPath: indexPath)
-        print(planItem)
+        let item = viewModel.guideItem(indexPath: indexPath)
+        print("---------------------")
+        print(item)
+        print(item?.link)
+        print(item?.greeting)
+
         launch()
     }
 }

@@ -31,7 +31,7 @@ final class GuideItemLearnService {
             try mainRealm.write {
                 item.completedAt = Date()
             }
-        } catch let error {
+        } catch {
             assertionFailure("Set item completed: \(GuideItemLearn.self), error: \(error)")
         }
     }
@@ -49,7 +49,7 @@ final class GuideItemLearnService {
     func eraseItems() {
         do {
             try mainRealm.write {
-                mainRealm.delete(mainRealm.objects(GuideItem.self))
+                mainRealm.delete(mainRealm.objects(GuideItemLearn.self))
             }
         } catch {
             assertionFailure("Failed to delete GuideItemsLearn with error: \(error)")
@@ -75,7 +75,7 @@ private extension GuideItemLearnService {
 
     func nextItems(_ type: GuideItemLearn.ItemType) -> [GuideItemLearn] {
         let items = mainRealm.objects(GuideItemLearn.self)
-        let nextItems = items.filter { $0.completedAt != nil }
+        let nextItems = items.filter { $0.completedAt == nil }
 
         return nextItems.filter { $0.type == type.rawValue }
     }
