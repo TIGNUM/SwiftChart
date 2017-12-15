@@ -89,18 +89,13 @@ final class GuideViewModel {
             return guide
         }
 
-        let learnItems = services.guideItemLearnService.items()
-        let notificationItems = services.guideItemNotificationService.todayItems()
-        let guide = services.guideService.createGuide(learnItems: learnItems,
-                                                      notificationItems: notificationItems,
-                                                      guideItemService: services.guideItemService)
-
-        return guide
+        return GuideWorker(services: services).createTodaysGuide()
     }
 
     func dailyPrepItem() -> GuideItem? {
-        let predicate = NSPredicate(format: "type == %@", GuideItemNotification.ItemType.morningInterview.rawValue)
-        return todaysGudie?.items.filter(predicate).first
+        return nil
+//        let predicate = NSPredicate(format: "type == %@", GuideItemNotification.ItemType.morningInterview.rawValue)
+//        return todaysGudie?.items.filter(predicate).first
 //
 //        return GuideItemNotification.DailyPrepItem(feedback: dailyPrep.feedback,
 //                                                       results: Array(dailyPrep.dailyPrepResults.map { $0.value }),

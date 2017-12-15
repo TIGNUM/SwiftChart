@@ -10,33 +10,15 @@ import Foundation
 import RealmSwift
 import Freddy
 
-final class Guide: SyncableObject {
+final class Guide: Object {
 
-    @objc dynamic var planID: String = ""
-
-    @objc dynamic var greeting: String = ""
-
-    @objc dynamic var planingTime: String  = ""
-
-    @objc dynamic var deleted: Bool = false
-
-    @objc dynamic var changeStamp: String? = UUID().uuidString
+    @objc dynamic var createdAt: Date = Date()
 
     var items = List<GuideItem>()
-}
 
-extension Guide: TwoWaySyncable {
-
-    func setData(_ data: GuideIntermediary, objectStore: ObjectStore) throws {
-
-    }
-
-    func toJson() -> JSON? {
-        let dict: [JsonKey: JSONEncodable] = [:]
-        return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
-    }
-
-    static var endpoint: Endpoint {
-        return .guide
+    convenience init(items: List<GuideItem>) {
+        self.init()
+        self.items = items
+        createdAt = Date().startOfDay
     }
 }

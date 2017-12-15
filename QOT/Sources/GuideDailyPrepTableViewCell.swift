@@ -29,37 +29,37 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func configure(dailyPrepItem: GuideItem) {
-        if dailyPrepItem.dailyPrepResults.count < 5 {
-            setupShortDailyPrep()
-        }
-
-        titleLabel.attributedText = attributedText(letterSpacing: 1,
-                                                   text: dailyPrepItem.title?.uppercased() ?? "",
-                                                   font: Font.H4Identifier,
-                                                   textColor: .white,
-                                                   alignment: .left)
-        typeLabel.attributedText = attributedText(letterSpacing: 2,
-                                                  text: GuideViewModel.GuideType.notification.title.uppercased(),
-                                                  font: Font.H7Tag,
-                                                  textColor: .white40,
-                                                  alignment: .left)
-
-        for (index, result) in dailyPrepItem.dailyPrepResults.enumerated() {
-            valueLabels[index].attributedText = attributedText(letterSpacing: -1.1,
-                                                               text: String(format: "%d", result),
-                                                               font: Font.H3Subtitle,
-                                                               textColor: .white,
-                                                               alignment: .left)
-            valueTitleLabels[index].attributedText = attributedText(letterSpacing: 0.2,
-                                                               text: "Index",
-                                                               font: Font.PTextSmall,
-                                                               lineSpacing: 8,
-                                                               textColor: .white70,
-                                                               alignment: .left)
-        }
-
-        statusView.backgroundColor = dailyPrepItem.status.statusViewColor
-        containerView.backgroundColor = dailyPrepItem.status.cardColor
+//        if dailyPrepItem.dailyPrepResults.count < 5 {
+//            setupShortDailyPrep()
+//        }
+//
+//        titleLabel.attributedText = attributedText(letterSpacing: 1,
+//                                                   text: dailyPrepItem.title?.uppercased() ?? "",
+//                                                   font: Font.H4Identifier,
+//                                                   textColor: .white,
+//                                                   alignment: .left)
+//        typeLabel.attributedText = attributedText(letterSpacing: 2,
+//                                                  text: GuideViewModel.GuideType.notification.title.uppercased(),
+//                                                  font: Font.H7Tag,
+//                                                  textColor: .white40,
+//                                                  alignment: .left)
+//
+//        for (index, result) in dailyPrepItem.dailyPrepResults.enumerated() {
+//            valueLabels[index].attributedText = attributedText(letterSpacing: -1.1,
+//                                                               text: String(format: "%d", result),
+//                                                               font: Font.H3Subtitle,
+//                                                               textColor: .white,
+//                                                               alignment: .left)
+//            valueTitleLabels[index].attributedText = attributedText(letterSpacing: 0.2,
+//                                                               text: "Index",
+//                                                               font: Font.PTextSmall,
+//                                                               lineSpacing: 8,
+//                                                               textColor: .white70,
+//                                                               alignment: .left)
+//        }
+//
+//        statusView.backgroundColor = dailyPrepItem.status.statusViewColor
+//        containerView.backgroundColor = dailyPrepItem.status.cardColor
     }
 }
 

@@ -31,6 +31,7 @@
 		3649C0351FE32506001F4249 /* GuideTimeIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C0341FE32506001F4249 /* GuideTimeIntermediary.swift */; };
 		3649C0371FE32D29001F4249 /* DateComponents+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C0361FE32D29001F4249 /* DateComponents+Convenience.swift */; };
 		3649C0391FE3CB36001F4249 /* GuideItemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C0381FE3CB36001F4249 /* GuideItemService.swift */; };
+		3649C03B1FE41B84001F4249 /* GuideWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C03A1FE41B84001F4249 /* GuideWorker.swift */; };
 		365579B51FE040A2003DAF9A /* GuideIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365579B41FE040A2003DAF9A /* GuideIntermediary.swift */; };
 		365E98C31FD9A31000248361 /* CLTypingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365E98C21FD9A31000248361 /* CLTypingLabel.swift */; };
 		36927FC41FA7960400EC9B88 /* SettingsAdmin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36927FC31FA7960400EC9B88 /* SettingsAdmin.storyboard */; };
@@ -543,6 +544,7 @@
 		3649C0341FE32506001F4249 /* GuideTimeIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideTimeIntermediary.swift; sourceTree = "<group>"; };
 		3649C0361FE32D29001F4249 /* DateComponents+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponents+Convenience.swift"; sourceTree = "<group>"; };
 		3649C0381FE3CB36001F4249 /* GuideItemService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideItemService.swift; sourceTree = "<group>"; };
+		3649C03A1FE41B84001F4249 /* GuideWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideWorker.swift; sourceTree = "<group>"; };
 		365579B41FE040A2003DAF9A /* GuideIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideIntermediary.swift; sourceTree = "<group>"; };
 		365E98C21FD9A31000248361 /* CLTypingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLTypingLabel.swift; sourceTree = "<group>"; };
 		36927FC31FA7960400EC9B88 /* SettingsAdmin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsAdmin.storyboard; sourceTree = "<group>"; };
@@ -1069,6 +1071,7 @@
 				36FC8D481FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift */,
 				3649C0321FE323EE001F4249 /* GuideTime.swift */,
 				3649C0341FE32506001F4249 /* GuideTimeIntermediary.swift */,
+				3649C03A1FE41B84001F4249 /* GuideWorker.swift */,
 			);
 			name = Guide;
 			sourceTree = "<group>";
@@ -3155,6 +3158,7 @@
 				CCAF03241E801B0E00015125 /* SettingsCoordinator.swift in Sources */,
 				851676DB1F3C57D4007A1DD6 /* LearnPDFCell.swift in Sources */,
 				7F4276791F585C7F00AEE3D7 /* AppDelegate+DatabaseBuilder.swift in Sources */,
+				3649C03B1FE41B84001F4249 /* GuideWorker.swift in Sources */,
 				8523E9C01F1628B50000D20D /* Date+Extension.swift in Sources */,
 				CB3437601EFD675900D89D4F /* QuestionIntermediary.swift in Sources */,
 				D52350961E9FC1120013DE7E /* ArticleCollectionLayout.swift in Sources */,
