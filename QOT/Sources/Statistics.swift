@@ -90,9 +90,12 @@ extension Statistics {
 
     private func displayableValue(average: Double) -> String {
         if unit.isEmpty == true {
-            return String(format: "%.1f", average.toFloat * multiplier.toFloat)
+            if multiplier == 1 {
+                return String(format: "%.1f", average.toFloat * multiplier.toFloat)
+            } else {
+                return String(format: "%.1f/%.0f", average.toFloat * multiplier.toFloat, multiplier.toFloat)
+            }
         }
-
         return String(format: "%.0f%@", average.toFloat * multiplier.toFloat, unit)
     }
 }

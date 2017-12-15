@@ -17,6 +17,8 @@ var selectedChartTypes: [ChartType: Bool] = [.peakPerformanceUpcomingWeek: true,
                                              .intensityLoadMonth: false,
                                              .intensityRecoveryWeek: true,
                                              .intensityRecoveryMonth: false,
+                                             .meetingAverageDay: true,
+                                             .meetingAverageWeek: false,
                                              .travelTripsAverageWeeks: true,
                                              .travelTripsAverageYear: false,
                                              .travelTripsTimeZoneChangedWeeks: true,
@@ -214,7 +216,7 @@ private extension ChartCell {
         setLabel(text: statistics.chartType.personalText, color: .white40, label: userAverageLabel, lineSpacing: 2.5)
         setLabel(text: statistics.dataAverageDisplayableValue, color: .white, label: dataAverageValueLabel, font: UIFont.simpleFont(ofSize: 11))
         setLabel(text: statistics.teamAverageDisplayableValue, color: .white, label: teamAverageValueLabel, font: UIFont.simpleFont(ofSize: 11))
-        setLabel(text: statistics.userAverageDisplayableValue, color: .white, label: userAverageValueLabel, characterSpacing: -2.7, font: Font.H1MainTitle)
+        setLabel(text: statistics.userAverageDisplayableValue, color: statistics.pathColor, label: userAverageValueLabel, characterSpacing: -2.7, font: Font.H1MainTitle)
         setLabel(text: headerTitle.uppercased(), color: .white, label: headerLabel, lineSpacing: 2.5, font: Font.PTextSubtitle)
         setLabel(text: R.string.localized.meChartCommingSoon().uppercased(), color: .white, label: comingSoonLabel, lineSpacing: 2.5, font: Font.PTextSubtitle)
         teamLabel.sizeToFit()
@@ -249,7 +251,7 @@ private extension ChartCell {
 
     func setupChartView(statistics: Statistics) -> UIView {
         let segmentedFrame = CGRect(x: 0, y: 0, width: chartSegmentedContentView.frame.width, height: chartSegmentedContentView.frame.height)
-//        let segmentedBiggerFrame = CGRect(x: 0, y: 0, width: segmentedFrame.width, height: segmentedFrame.height + labelContentView.frame.height)
+        let segmentedBiggerFrame = CGRect(x: 0, y: 0, width: segmentedFrame.width, height: segmentedFrame.height + labelContentView.frame.height)
         let frame = chartContentView.frame
         let biggerFrame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height + labelContentView.frame.height)
 
@@ -267,6 +269,14 @@ private extension ChartCell {
             }
 
             return ActivityChart(frame: frame, statistics: statistics, labelContentView: labelContentView)
+        case .meetingAverageDay,
+             .meetingAverageWeek:
+            if shouldShowAddCalendarView == true {
+                setupOverlayView(text: R.string.localized.meChartAddCalendar())
+                return UIView()
+            }
+
+            return MeetingsAverageChart(frame: segmentedBiggerFrame, statistics: statistics, labelContentView: labelContentView)
         case .intensityLoadWeek,
              .intensityLoadMonth,
              .intensityRecoveryWeek,
