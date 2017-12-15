@@ -60,7 +60,7 @@ final class GuideItemLearnService {
 private extension GuideItemLearnService {
 
     func nextStrategyItems() -> List<GuideItemLearn> {
-        return List<GuideItemLearn>(nextMinBlockItems(nextItems(.feature)))
+        return List<GuideItemLearn>(nextMinBlockItems(nextItems(.strategy)))
     }
 
     func nextFeatureItems() -> List<GuideItemLearn> {

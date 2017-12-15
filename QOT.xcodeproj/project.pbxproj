@@ -30,7 +30,6 @@
 		3649C0331FE323EE001F4249 /* GuideTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C0321FE323EE001F4249 /* GuideTime.swift */; };
 		3649C0351FE32506001F4249 /* GuideTimeIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C0341FE32506001F4249 /* GuideTimeIntermediary.swift */; };
 		3649C0371FE32D29001F4249 /* DateComponents+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C0361FE32D29001F4249 /* DateComponents+Convenience.swift */; };
-		3649C0391FE3CB36001F4249 /* GuideItemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C0381FE3CB36001F4249 /* GuideItemService.swift */; };
 		3649C03B1FE41B84001F4249 /* GuideWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C03A1FE41B84001F4249 /* GuideWorker.swift */; };
 		365579B51FE040A2003DAF9A /* GuideIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365579B41FE040A2003DAF9A /* GuideIntermediary.swift */; };
 		365E98C31FD9A31000248361 /* CLTypingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365E98C21FD9A31000248361 /* CLTypingLabel.swift */; };
@@ -553,7 +552,6 @@
 		3649C0321FE323EE001F4249 /* GuideTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideTime.swift; sourceTree = "<group>"; };
 		3649C0341FE32506001F4249 /* GuideTimeIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideTimeIntermediary.swift; sourceTree = "<group>"; };
 		3649C0361FE32D29001F4249 /* DateComponents+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponents+Convenience.swift"; sourceTree = "<group>"; };
-		3649C0381FE3CB36001F4249 /* GuideItemService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideItemService.swift; sourceTree = "<group>"; };
 		3649C03A1FE41B84001F4249 /* GuideWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideWorker.swift; sourceTree = "<group>"; };
 		365579B41FE040A2003DAF9A /* GuideIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideIntermediary.swift; sourceTree = "<group>"; };
 		365E98C21FD9A31000248361 /* CLTypingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLTypingLabel.swift; sourceTree = "<group>"; };
@@ -2181,7 +2179,6 @@
 				7F3A9CBD1FCDBA51000F1744 /* FeedbackService.swift */,
 				36DBF8931FDFD4D80007F7ED /* GuideItemLearnService.swift */,
 				36DBF8951FDFE2690007F7ED /* GuideItemNotificationService.swift */,
-				3649C0381FE3CB36001F4249 /* GuideItemService.swift */,
 				36BD8F471FE0052000DBD9B4 /* GuideService.swift */,
 				7FBC3E7F1F385135005BD772 /* MediaService.swift */,
 				7F08887E1F0A4101005CE966 /* PartnerService.swift */,
@@ -3116,7 +3113,6 @@
 				CBC1DC2E1F0FC9E800F6D056 /* Object+Convenience.swift in Sources */,
 				36B67B9E1FE1DA040066A515 /* Guide.swift in Sources */,
 				CBB4DD091EDDC6550071494A /* StartSyncResult.swift in Sources */,
-				3649C0391FE3CB36001F4249 /* GuideItemService.swift in Sources */,
 				CBB017B91F96688900CC1048 /* DownSyncTask.swift in Sources */,
 				CBB4DD071EDDB5860071494A /* SerialRequest.swift in Sources */,
 				CB55A2E11E9FDF1D00D721CE /* SettingsMenuViewModel.swift in Sources */,
