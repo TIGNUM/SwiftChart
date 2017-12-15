@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScreenHelpViewController" customModule="QOT" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="lJ4-AD-z5F" id="hft-lE-Qw8"/>
+                <outlet property="imageView" destination="U7j-pL-fkQ" id="puh-zq-R1K"/>
+                <outlet property="messageLabel" destination="Tau-Ge-5sm" id="Qaw-ZO-63e"/>
+                <outlet property="minimiseButton" destination="wK4-p7-EV9" id="1wI-zL-nXq"/>
+                <outlet property="navigationBar" destination="uyT-pI-q0l" id="eY8-19-9u2"/>
+                <outlet property="scrollView" destination="cn5-5S-PLt" id="fSB-SJ-vm3"/>
+                <outlet property="view" destination="iN0-l3-epB" id="Pia-2a-P8b"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="764-7O-qMD">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="pEe-fy-oZn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <blurEffect style="dark"/>
+                </visualEffectView>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uyT-pI-q0l">
+                    <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <items>
+                        <navigationItem title="Title" id="wal-8O-Kbw">
+                            <barButtonItem key="leftBarButtonItem" image="ic_minimize_dark" id="wK4-p7-EV9">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="minimiseButtonPressed:" destination="-1" id="V2Q-wr-VGV"/>
+                                </connections>
+                            </barButtonItem>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cn5-5S-PLt">
+                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lJ4-AD-z5F">
+                            <rect key="frame" x="38" y="5" width="300" height="427"/>
+                            <subviews>
+                                <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U7j-pL-fkQ">
+                                    <rect key="frame" x="68" y="50" width="164.5" height="266.5"/>
+                                    <gestureRecognizers/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="U7j-pL-fkQ" secondAttribute="height" multiplier="37:60" id="WeT-ib-XAT"/>
+                                    </constraints>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="hc7-le-D9S" appends="YES" id="gbr-G8-lTq"/>
+                                    </connections>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tau-Ge-5sm">
+                                    <rect key="frame" x="30.5" y="356.5" width="240" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="Tau-Ge-5sm" firstAttribute="top" secondItem="U7j-pL-fkQ" secondAttribute="bottom" constant="40" id="0x9-Pf-VRo"/>
+                                <constraint firstAttribute="bottom" secondItem="Tau-Ge-5sm" secondAttribute="bottom" constant="50" id="8az-IC-aX3"/>
+                                <constraint firstItem="Tau-Ge-5sm" firstAttribute="leading" secondItem="lJ4-AD-z5F" secondAttribute="leading" constant="30" id="Avl-9y-epg"/>
+                                <constraint firstItem="U7j-pL-fkQ" firstAttribute="top" secondItem="lJ4-AD-z5F" secondAttribute="top" constant="50" id="lGO-vV-bY7"/>
+                                <constraint firstItem="U7j-pL-fkQ" firstAttribute="centerX" secondItem="lJ4-AD-z5F" secondAttribute="centerX" id="m1J-sR-J0O"/>
+                                <constraint firstItem="U7j-pL-fkQ" firstAttribute="width" secondItem="lJ4-AD-z5F" secondAttribute="width" multiplier="0.55" id="pJk-4f-PFt"/>
+                                <constraint firstAttribute="trailing" secondItem="Tau-Ge-5sm" secondAttribute="trailing" constant="30" id="rMS-t2-KI3"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="lJ4-AD-z5F" firstAttribute="width" secondItem="cn5-5S-PLt" secondAttribute="width" multiplier="0.8" id="KuU-jo-K0O"/>
+                        <constraint firstAttribute="bottom" secondItem="lJ4-AD-z5F" secondAttribute="bottom" constant="20" id="bBg-ak-Fmg"/>
+                        <constraint firstItem="lJ4-AD-z5F" firstAttribute="leading" secondItem="cn5-5S-PLt" secondAttribute="leading" priority="750" id="lDa-6v-beG"/>
+                        <constraint firstAttribute="trailing" secondItem="lJ4-AD-z5F" secondAttribute="trailing" priority="750" id="pWP-44-dLM"/>
+                        <constraint firstItem="lJ4-AD-z5F" firstAttribute="centerX" secondItem="cn5-5S-PLt" secondAttribute="centerX" id="rYh-X5-vzb"/>
+                        <constraint firstItem="lJ4-AD-z5F" firstAttribute="top" secondItem="cn5-5S-PLt" secondAttribute="top" constant="5" id="ylX-ol-1FR"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="cn5-5S-PLt" firstAttribute="top" secondItem="uyT-pI-q0l" secondAttribute="bottom" id="2gK-dA-8lo"/>
+                <constraint firstItem="uyT-pI-q0l" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="2gS-Vv-jcQ"/>
+                <constraint firstItem="uyT-pI-q0l" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="4yM-Og-D2m"/>
+                <constraint firstItem="cn5-5S-PLt" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="990-Wj-K4Q"/>
+                <constraint firstItem="cn5-5S-PLt" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="AsM-VF-e24"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="764-7O-qMD" secondAttribute="trailing" id="Pl4-6C-YkG"/>
+                <constraint firstItem="764-7O-qMD" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Ptm-AQ-sMB"/>
+                <constraint firstItem="cn5-5S-PLt" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="V2b-Ov-fge"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="764-7O-qMD" secondAttribute="bottom" id="htz-5D-X6W"/>
+                <constraint firstItem="uyT-pI-q0l" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="kAf-l4-Xo1"/>
+                <constraint firstItem="764-7O-qMD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="v4k-A7-orP"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="34.5" y="54.5"/>
+        </view>
+        <tapGestureRecognizer id="hc7-le-D9S">
+            <connections>
+                <action selector="imageViewTapped:" destination="-1" id="Vjf-ak-1kW"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <resources>
+        <image name="ic_minimize_dark" width="36" height="36"/>
+    </resources>
+</document>

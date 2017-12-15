@@ -334,9 +334,9 @@ enum ChartType: String, EnumCollection {
     var bottomView: Bool {
         switch self {
         case .meetingAverageDay,
-             .meetingAverageWeek: return false
-        case .meetingLength: return false
-        case .meetingTimeBetween: return false
+             .meetingAverageWeek,
+             .meetingLength,
+             .meetingTimeBetween: return false
         case .travelTripsAverageWeeks,
              .travelTripsAverageYear,
              .travelTripsNextFourWeeks,
@@ -384,10 +384,14 @@ enum ChartType: String, EnumCollection {
 
     var comingSoon: Bool {
         switch self {
-        case .peakPerformanceAverageWeek,
+        case .meetingLength,
+             .peakPerformanceAverageWeek,
              .peakPerformanceAverageMonth,
              .peakPerformanceUpcomingWeek,
              .peakPerformanceUpcomingNextWeek,
+             .travelTripsAverageWeeks,
+             .travelTripsAverageYear,
+             .travelTripsNextFourWeeks,
              .travelTripsTimeZoneChangedYear,
              .travelTripsTimeZoneChangedWeeks,
              .travelTripsMaxTimeZone: return true
@@ -410,10 +414,10 @@ enum ChartType: String, EnumCollection {
 
     var overlayImage: UIImage? {
         switch self {
-        case .travelTripsTimeZoneChangedYear,
-             .travelTripsTimeZoneChangedWeeks,
-             .meetingAverageDay,
-             .meetingAverageWeek: return R.image.overlay_travel_01()
+        case .meetingAverageDay,
+             .meetingAverageWeek,
+             .travelTripsTimeZoneChangedYear,
+             .travelTripsTimeZoneChangedWeeks: return R.image.overlay_travel_01()
         case .travelTripsMaxTimeZone,
              .sleepQuantity,
              .activityLevel,

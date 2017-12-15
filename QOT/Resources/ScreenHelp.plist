@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>strategies</key>
+	<dict>
+		<key>title</key>
+		<string>strategies title</string>
+		<key>imageName</key>
+		<string>test</string>
+		<key>videoURL</key>
+		<string>http://google.com</string>
+		<key>message</key>
+		<string>strategies a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message </string>
+	</dict>
+	<key>whatsHot</key>
+	<dict>
+		<key>title</key>
+		<string>whatsHot title</string>
+		<key>imageName</key>
+		<string>test</string>
+		<key>videoURL</key>
+		<string>http://google.com</string>
+		<key>message</key>
+		<string>whatsHot a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message </string>
+	</dict>
+	<key>myData</key>
+	<dict>
+		<key>title</key>
+		<string>myData title</string>
+		<key>imageName</key>
+		<string>test</string>
+		<key>videoURL</key>
+		<string>http://google.com</string>
+		<key>message</key>
+		<string>myData a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message </string>
+	</dict>
+	<key>myWhy</key>
+	<dict>
+		<key>title</key>
+		<string>myWhy title</string>
+		<key>imageName</key>
+		<string>test</string>
+		<key>videoURL</key>
+		<string>http://google.com</string>
+		<key>message</key>
+		<string>myWhy a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message </string>
+	</dict>
+	<key>coach</key>
+	<dict>
+		<key>title</key>
+		<string>coach title</string>
+		<key>imageName</key>
+		<string>test</string>
+		<key>videoURL</key>
+		<string>http://google.com</string>
+		<key>message</key>
+		<string>coach a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message </string>
+	</dict>
+	<key>prep</key>
+	<dict>
+		<key>title</key>
+		<string>prep title</string>
+		<key>imageName</key>
+		<string>test</string>
+		<key>videoURL</key>
+		<string>http://google.com</string>
+		<key>message</key>
+		<string>prep a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message </string>
+	</dict>
+</dict>
+</plist>

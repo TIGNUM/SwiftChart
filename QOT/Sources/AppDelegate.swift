@@ -15,7 +15,7 @@ import RealmSwift
 import Buglife
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
 
     // MARK: - Properties
 
@@ -24,11 +24,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             fatalError("window shouldn't be nil")
         }
         let frame = UIScreen.main.bounds
-        return WindowManager(
+        let windowManager = WindowManager(
             alertWindow: UIWindow(frame: frame),
             priorityWindow: UIWindow(frame: frame),
             overlayWindow: UIWindow(frame: frame),
-            normalWindow: window)
+            normalWindow: window
+        )
+        AppDelegate.appState.windowManager = windowManager
+        return windowManager
     }()
     lazy var appCoordinator: AppCoordinator = {
         return AppCoordinator(windowManager: self.windowManager, remoteNotificationHandler: self.remoteNotificationHandler)

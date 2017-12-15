@@ -13,4 +13,10 @@ extension UIBarButtonItem {
         self.init(image: image, style: .plain, target: nil, action: nil)
         self.tintColor = tintColor
     }
+
+    static var info: UIBarButtonItem {
+        let button = UIBarButtonItem(withImage: R.image.explainer_ico())
+      /// button.tintColor = .white40
+        return button
+    }
 }
