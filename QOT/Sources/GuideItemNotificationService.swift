@@ -49,6 +49,16 @@ final class GuideItemNotificationService {
             assertionFailure("Failed to delete GuidePlanItemLearn with error: \(error)")
         }
     }
+
+    func eraseItems() {
+        do {
+            try mainRealm.write {
+                mainRealm.delete(mainRealm.objects(GuideItemNotification.self))
+            }
+        } catch {
+            assertionFailure("Failed to delete GuideItemsNotification with error: \(error)")
+        }
+    }
 }
 
 private extension Realm {

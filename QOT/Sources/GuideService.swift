@@ -20,12 +20,22 @@ final class GuideService {
     }
 
     func todaysGuide() -> Guide? {
-        return guideBlocks().filter { (guide: Guide) -> Bool in
+        return guideSections().filter { (guide: Guide) -> Bool in
             return guide.createdAt.isSameDay(Date())
         }.first
     }
 
-    func guideBlocks() -> AnyRealmCollection<Guide> {
+    func guideSections() -> AnyRealmCollection<Guide> {
         return AnyRealmCollection(mainRealm.objects(Guide.self))
+    }
+
+    func eraseGuide() {
+        do {
+            try mainRealm.write {
+                mainRealm.delete(guideSections())
+            }
+        } catch {
+            assertionFailure("Failed to delete toBeVision with error: \(error)")
+        }
     }
 }

@@ -12,9 +12,9 @@ import Freddy
 
 extension GuideItemLearn {
 
-    enum GuidePlanItemType: String {
+    enum ItemType: String {
         case strategy = "LEARN_STRATEGIES"
-        case featureExplainer = "FEATURE_EXPLAINER"
+        case feature = "FEATURE_EXPLAINER"
     }
 }
 
@@ -32,23 +32,27 @@ final class GuideItemLearn: SyncableObject {
 
     @objc private(set) dynamic var link: String = ""
 
+    @objc private(set) dynamic var featureLink: String = ""
+
+    @objc private(set) dynamic var contentID: Int = 0
+
     @objc private(set) dynamic var priority: Int = 0
 
     @objc private(set) dynamic var block: Int = 0
 
-    @objc private(set) dynamic var reminderTime: Date = Date()
+    @objc dynamic var completedAt: Date?
 
-    @objc private(set) dynamic var displayTime: Date = Date()
+    var reminderTime: DateComponents = DateComponents()
 
-    @objc dynamic var completed: Bool = false
+    var displayTime: DateComponents = DateComponents()
 
-    var itemType: GuidePlanItemType = .strategy
+    var itemType = ItemType.strategy
 }
 
 extension GuideItemLearn: OneWaySyncableDown {
 
     static var endpoint: Endpoint {
-        return .guidePlanItemLearn
+        return .guideItemsLearn
     }
 
     func setData(_ data: GuideItemLearnIntermediary, objectStore: ObjectStore) throws {
@@ -56,12 +60,14 @@ extension GuideItemLearn: OneWaySyncableDown {
         body = data.body
         type = data.type
         typeDisplayString = data.typeDisplayString
-        itemType = GuidePlanItemType(rawValue: data.title) ?? itemType
+        itemType = ItemType(rawValue: data.title) ?? itemType
         greeting = data.greeting
         link = data.link
+        featureLink = data.featureLink
+        contentID = data.contentID
         priority = data.priority
         block = data.block
-        reminderTime = data.reminderTime
-        displayTime = data.displayTime
+        reminderTime = DateComponents.timeComponents(data.reminderTime)
+        displayTime = DateComponents.timeComponents(data.displayTime)
     }
 }

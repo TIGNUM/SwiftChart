@@ -32,13 +32,15 @@ final class GuideItem: Object {
 
     @objc private(set) dynamic var issueDate: Date?
 
-    @objc private(set) dynamic var displayTime: Date = Date()
-
     @objc private(set) dynamic var completedAt: Date?
 
     @objc private(set) dynamic var feedback: String?
 
     var dailyPrepResults: List<IntObject> = List()
+
+    var displayTime: DateComponents = DateComponents()
+
+    var reminderTime: DateComponents = DateComponents()
 
     var status = GuideViewModel.Status.todo
 
@@ -52,7 +54,8 @@ final class GuideItem: Object {
                      priority: Int,
                      block: Int,
                      issueDate: Date?,
-                     displayTime: Date,
+                     displayTime: DateComponents,
+                     reminderTime: DateComponents,
                      completedAt: Date?) {
         self.init(planItemID: planItemID,
                   title: title,
@@ -65,6 +68,7 @@ final class GuideItem: Object {
                   block: block,
                   issueDate: issueDate,
                   displayTime: displayTime,
+                  reminderTime: reminderTime,
                   completedAt: completedAt)
         status = completedAt == nil ? .todo : .done
     }
@@ -82,7 +86,8 @@ final class GuideItem: Object {
         priority = data.priority
         block = data.block
         issueDate = data.issueDate
-        displayTime = data.displayTime
+        displayTime = DateComponents.timeComponents(data.displayTime)
+        reminderTime = DateComponents.timeComponents(data.reminderTime)
         completedAt = data.completedAt
         feedback = data.feedback
         dailyPrepResults.forEach { $0.delete() }

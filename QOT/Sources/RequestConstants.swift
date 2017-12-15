@@ -8,7 +8,7 @@
 
 import Alamofire
 
-var baseURL = URL(string: "https://esb.tignum.com")!
+var baseURL = URL(string: "https://esb-staging.tignum.com")!
 
 enum Endpoint: String {
     case authentication = "/service/auth"
@@ -42,9 +42,9 @@ enum Endpoint: String {
     case userFeedback = "/personal/p/qot/userFeedback"
     case userLocationUpdate = "/personal/p/qot/geolocation"
     case log = "/personal/p/qot/log"
-    case guidePlanItemLearn = "/personal/p/qot/guide/planItemLearn"
-    case guidePlanItemNotification = "/personal/p/qot/guide/planItemNotification"
-    case guidePlan = "/personal/p/qot/guide/plan"
+    case guideItemsLearn = "personal/p/qot/guide/learnItem"
+    case guideItemsNotification = "/personal/p/qot/guide/notificationItem"
+    case guide = "/personal/p/qot/guide"
 
     func url(baseURL: URL) -> URL {
         if let url = URL(string: rawValue), url.host != nil {

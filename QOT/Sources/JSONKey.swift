@@ -33,6 +33,7 @@ enum JsonKey: String {
     case colorState
     case company
     case component
+    case completed
     case completedAt
     case contentCategoryId
     case contentId
@@ -63,6 +64,7 @@ enum JsonKey: String {
     case esbDomain
     case eventId
     case feature
+    case featureLink
     case feedback
     case fitbitState
     case firstDayOfTheWeek
@@ -73,10 +75,12 @@ enum JsonKey: String {
     case fromDate
     case greeting
     case gender
+    case guideItemType
     case height
     case heightUnit
     case heightUnits
     case horizontalAccuracy
+    case hour
     case id
     case idOfRelatedEntity
     case images
@@ -112,10 +116,12 @@ enum JsonKey: String {
     case memberSince
     case message
     case min
+    case minute
     case modifiedAt
     case monthsOfTheYear
     case multiplier
     case name
+    case nano
     case nextSyncToken
     case notes
     case occurrenceCount
@@ -155,6 +161,7 @@ enum JsonKey: String {
     case searchTags
     case secondsRequired
     case section
+    case seconds
     case setPositions
     case settingBoolValue
     case settingBoolValueDtos

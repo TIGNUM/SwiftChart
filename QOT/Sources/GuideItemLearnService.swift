@@ -19,19 +19,17 @@ final class GuideItemLearnService {
         self.realmProvider = realmProvider
     }
 
-    func nextItems() -> List<GuideItemLearn> {
-        let allItems = mainRealm.objects(GuideItemLearn.self)
-        let todoItems = allItems.filter { $0.completed == false }
-        let minBlock = todoItems.map { $0.block }.min() ?? 1
-        let filteredResults = allItems.filter { $0.block == minBlock }
+    func items() -> List<GuideItemLearn> {
+        let items = nextStrategyItems()
+        items.append(objectsIn: nextFeatureItems())
 
-        return List<GuideItemLearn>(filteredResults)
+        return List<GuideItemLearn>(items)
     }
 
     func setItemCompleted(item: GuideItemLearn) {
         do {
             try mainRealm.write {
-                item.completed = true
+                item.completedAt = Date()
             }
         } catch let error {
             assertionFailure("Set item completed: \(GuideItemLearn.self), error: \(error)")
@@ -44,14 +42,48 @@ final class GuideItemLearnService {
                 mainRealm.delete(item)
             }
         } catch {
-            assertionFailure("Failed to delete GuidePlanItemLearn with error: \(error)")
+            assertionFailure("Failed to delete GuideItemLearn with error: \(error)")
         }
+    }
+
+    func eraseItems() {
+        do {
+            try mainRealm.write {
+                mainRealm.delete(mainRealm.objects(GuideItem.self))
+            }
+        } catch {
+            assertionFailure("Failed to delete GuideItemsLearn with error: \(error)")
+        }
+    }
+}
+
+private extension GuideItemLearnService {
+
+    func nextStrategyItems() -> List<GuideItemLearn> {
+        return List<GuideItemLearn>(nextMinBlockItems(nextItems(.feature)))
+    }
+
+    func nextFeatureItems() -> List<GuideItemLearn> {
+        return List<GuideItemLearn>(nextMinBlockItems(nextItems(.feature)))
+    }
+
+    func nextMinBlockItems(_ items: [GuideItemLearn]) -> [GuideItemLearn] {
+        let minBlock = items.map { $0.block }.min() ?? 1
+
+        return items.filter { $0.block == minBlock }
+    }
+
+    func nextItems(_ type: GuideItemLearn.ItemType) -> [GuideItemLearn] {
+        let items = mainRealm.objects(GuideItemLearn.self)
+        let nextItems = items.filter { $0.completedAt != nil }
+
+        return nextItems.filter { $0.type == type.rawValue }
     }
 }
 
 private extension Realm {
 
-    func guidePlanItemsLearn(day: Int, type: GuideItemLearn.GuidePlanItemType) -> AnyRealmCollection<GuideItemLearn> {
+    func guidePlanItemsLearn(day: Int, type: GuideItemLearn.ItemType) -> AnyRealmCollection<GuideItemLearn> {
         let predicate = NSPredicate(format: "ANY type == %@ AND day == %d", type.rawValue, day)
         return anyCollection(.priorityOrder(), predicates: predicate)
     }

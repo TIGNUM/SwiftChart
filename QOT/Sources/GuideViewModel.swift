@@ -68,7 +68,7 @@ final class GuideViewModel {
         self.eventTracker = eventTracker
 
         func guideOfToday() -> Guide {
-            let learnItems = services.guideItemLearnService.nextItems()
+            let learnItems = services.guideItemLearnService.items()
             let notificationItems = services.guideItemNotificationService.todayItems()
 
             return Guide(learnItems: learnItems, notificationItems: notificationItems)
@@ -83,7 +83,7 @@ final class GuideViewModel {
     }
 
     var sectionCount: Int {
-        return services.guideService.guideBlocks().count
+        return services.guideService.guideSections().count
     }
 
     func numberOfRows(section: Int) -> Int {
@@ -91,7 +91,7 @@ final class GuideViewModel {
     }
 
     func guide(section: Int) -> Guide {
-        return services.guideService.guideBlocks()[section]
+        return services.guideService.guideSections()[section]
     }
 
     func guideItem(indexPath: IndexPath) -> GuideItem {

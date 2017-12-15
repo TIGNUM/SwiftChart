@@ -51,11 +51,13 @@ final class GuideItemNotification: SyncableObject {
 
     @objc private(set) dynamic var issueDate: Date = Date()
 
-    @objc private(set) dynamic var displayTime: Date = Date()
-
     @objc dynamic var completed: Bool = false
 
     @objc dynamic var morningInterviewFeedback: String?
+
+    var displayTime: DateComponents = DateComponents()
+
+    var reminderTime: DateComponents = DateComponents()
 
     var morningInterviewResults: List<IntObject> = List()
 }
@@ -63,7 +65,7 @@ final class GuideItemNotification: SyncableObject {
 extension GuideItemNotification: OneWaySyncableDown {
 
     static var endpoint: Endpoint {
-        return .guidePlanItemNotification
+        return .guideItemsNotification
     }
 
     func setData(_ data: GuideItemNotificationIntermediary, objectStore: ObjectStore) throws {
@@ -74,6 +76,7 @@ extension GuideItemNotification: OneWaySyncableDown {
         link = data.link
         priority = data.priority
         issueDate = data.issueDate
-        displayTime = data.displayTime
+        displayTime = DateComponents.timeComponents(data.displayTime)
+        reminderTime = DateComponents.timeComponents(data.reminderTime)
     }
 }

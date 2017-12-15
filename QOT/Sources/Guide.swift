@@ -28,7 +28,7 @@ final class Guide: SyncableObject {
                      notificationItems: List<GuideItemNotification>) {
         self.init()
 
-        createItems(learnItems: learnItems, notificationItems: notificationItems)
+//        createItems(learnItems: learnItems, notificationItems: notificationItems)
     }
 
     private func createItems(learnItems: List<GuideItemLearn>,
@@ -45,6 +45,7 @@ final class Guide: SyncableObject {
                                  block: learnItem.block,
                                  issueDate: nil,
                                  displayTime: learnItem.displayTime,
+                                 reminderTime: learnItem.reminderTime,
                                  completedAt: nil)
             items.append(item)
         }
@@ -61,6 +62,7 @@ final class Guide: SyncableObject {
                                  block: 0,
                                  issueDate: notificationItem.issueDate,
                                  displayTime: notificationItem.displayTime,
+                                 reminderTime: notificationItem.reminderTime,
                                  completedAt: nil)
             items.append(item)
         }
@@ -85,6 +87,6 @@ extension Guide: TwoWaySyncable {
     }
 
     static var endpoint: Endpoint {
-        return .guidePlan
+        return .guide
     }
 }
