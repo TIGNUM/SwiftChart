@@ -80,6 +80,17 @@ private extension LocalNotificationBuilder {
     func cancelNotification(identifier: String) {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
     }
+
+    func handleNotification(notification: UNNotification) {
+        guard
+            let linkString = notification.request.content.userInfo["link"] as? String,
+            let link = URL(string: linkString) else {
+                return
+        }
+
+        let launchHandler = LaunchHandler()
+        launchHandler.process(url: link)
+    }
 }
 
 // MARK: - UNUserNotificationCenterDelegate
@@ -90,29 +101,13 @@ extension LocalNotificationBuilder: UNUserNotificationCenterDelegate {
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert, .sound])
-        print("willPresent: ", notification)
-        print("willPresent: ", notification.request.content.userInfo)
+        handleNotification(notification: notification)
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
-
-        print("didReceive: ", response.notification.request.content)
-        print("didReceive: ", response.notification.request.content.userInfo)
-        // Determine the user action
-        switch response.actionIdentifier {
-        case UNNotificationDismissActionIdentifier:
-            print("Dismiss Action")
-        case UNNotificationDefaultActionIdentifier:
-            print("Default")
-        case "Snooze":
-            print("Snooze")
-        case "Delete":
-            print("Delete")
-        default:
-            print("Unknown action")
-        }
         completionHandler()
+        handleNotification(notification: response.notification)
     }
 }
