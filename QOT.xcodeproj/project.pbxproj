@@ -361,6 +361,7 @@
 		CBDB98F21E7AA510003EC73F /* CalendarImportResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB98F11E7AA510003EC73F /* CalendarImportResult.swift */; };
 		CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB98F31E7B000A003EC73F /* NotificationHandler.swift */; };
 		CBDB98F91E7BD26A003EC73F /* Realm+TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB98F81E7BD26A003EC73F /* Realm+TestUtils.swift */; };
+		CBE8808D1FE4369200670C10 /* GuideModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE8808C1FE4369200670C10 /* GuideModels.swift */; };
 		CBEB8EF51F82719700C764C2 /* ChatViewAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEB8EF41F82719700C764C2 /* ChatViewAvatarView.swift */; };
 		CBFECCA51F30BB4D0076ACE6 /* SyncableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFECCA41F30BB4D0076ACE6 /* SyncableObject.swift */; };
 		CBFECCA81F31D7480076ACE6 /* SyncTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFECCA71F31D7480076ACE6 /* SyncTypes.swift */; };
@@ -897,6 +898,7 @@
 		CBDB98F11E7AA510003EC73F /* CalendarImportResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarImportResult.swift; sourceTree = "<group>"; };
 		CBDB98F31E7B000A003EC73F /* NotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 		CBDB98F81E7BD26A003EC73F /* Realm+TestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm+TestUtils.swift"; sourceTree = "<group>"; };
+		CBE8808C1FE4369200670C10 /* GuideModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideModels.swift; sourceTree = "<group>"; };
 		CBEB8EF41F82719700C764C2 /* ChatViewAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewAvatarView.swift; sourceTree = "<group>"; };
 		CBFECCA41F30BB4D0076ACE6 /* SyncableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncableObject.swift; sourceTree = "<group>"; };
 		CBFECCA71F31D7480076ACE6 /* SyncTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncTypes.swift; sourceTree = "<group>"; };
@@ -1556,6 +1558,7 @@
 		CB94423A1FDFE4B400E2B122 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				CBE8808B1FE4368300670C10 /* Guide */,
 				7F6567301FE13BE200A6CB7F /* ScreenHelp */,
 				CB9442261FD963B200E2B122 /* SlideShow */,
 			);
@@ -2369,6 +2372,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		CBE8808B1FE4368300670C10 /* Guide */ = {
+			isa = PBXGroup;
+			children = (
+				CBE8808C1FE4369200670C10 /* GuideModels.swift */,
+			);
+			name = Guide;
+			sourceTree = "<group>";
+		};
 		CBFECCA31F30BADF0076ACE6 /* SyncableObject */ = {
 			isa = PBXGroup;
 			children = (
@@ -3130,6 +3141,7 @@
 				8548BBE01F0D4BF900AC7C06 /* LaunchHandler.swift in Sources */,
 				36B67B9C1FE1D9C90066A515 /* RealmGuideItem.swift in Sources */,
 				CBC5ACC11F162AAE007E1E9C /* UserChoiceIntermediary.swift in Sources */,
+				CBE8808D1FE4369200670C10 /* GuideModels.swift in Sources */,
 				CB14676E1EF2AB7000A60E31 /* DeviceIdentifier.swift in Sources */,
 				3649C0351FE32506001F4249 /* GuideTimeIntermediary.swift in Sources */,
 				CCE372FF1E8D2AE700B79352 /* MyPrepViewModel.swift in Sources */,
