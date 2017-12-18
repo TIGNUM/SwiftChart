@@ -128,6 +128,26 @@ struct UserLocationUpdateRequest: URLRequestBuildable {
     }
 }
 
+struct GuideUpdateRequest: URLRequestBuildable {
+    let endpoint: Endpoint = .guide
+    let httpMethod: HTTPMethod = .put
+    let body: Data?
+
+    init(_ guide: RealmGuide) {
+        self.body = nil
+    }
+}
+
+struct GuideNotificationUpdateRequest: URLRequestBuildable {
+    let endpoint: Endpoint = .guideNotification
+    let httpMethod: HTTPMethod = .put
+    let body: Data?
+
+    init(_ guide: RealmGuide) {
+        self.body = nil
+    }
+}
+
 struct APNSDeviceTokenRequest: URLRequestBuildable {
     let endpoint: Endpoint = .pushNotificationToken
     let httpMethod: HTTPMethod = .put

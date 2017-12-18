@@ -29,7 +29,6 @@
 		36328F221FCEB92C004E9034 /* GuideViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36328F211FCEB92C004E9034 /* GuideViewModel.swift */; };
 		3649C0331FE323EE001F4249 /* RealmGuideTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C0321FE323EE001F4249 /* RealmGuideTime.swift */; };
 		3649C0351FE32506001F4249 /* GuideTimeIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C0341FE32506001F4249 /* GuideTimeIntermediary.swift */; };
-		3649C0371FE32D29001F4249 /* DateComponents+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C0361FE32D29001F4249 /* DateComponents+Convenience.swift */; };
 		3649C03B1FE41B84001F4249 /* GuideWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C03A1FE41B84001F4249 /* GuideWorker.swift */; };
 		365579B51FE040A2003DAF9A /* GuideIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365579B41FE040A2003DAF9A /* GuideIntermediary.swift */; };
 		365E98C31FD9A31000248361 /* CLTypingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365E98C21FD9A31000248361 /* CLTypingLabel.swift */; };
@@ -553,7 +552,6 @@
 		36328F211FCEB92C004E9034 /* GuideViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideViewModel.swift; sourceTree = "<group>"; };
 		3649C0321FE323EE001F4249 /* RealmGuideTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGuideTime.swift; sourceTree = "<group>"; };
 		3649C0341FE32506001F4249 /* GuideTimeIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideTimeIntermediary.swift; sourceTree = "<group>"; };
-		3649C0361FE32D29001F4249 /* DateComponents+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponents+Convenience.swift"; sourceTree = "<group>"; };
 		3649C03A1FE41B84001F4249 /* GuideWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideWorker.swift; sourceTree = "<group>"; };
 		365579B41FE040A2003DAF9A /* GuideIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideIntermediary.swift; sourceTree = "<group>"; };
 		365E98C21FD9A31000248361 /* CLTypingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLTypingLabel.swift; sourceTree = "<group>"; };
@@ -1941,7 +1939,6 @@
 				CC02E1431F2789FE00134574 /* CLLocationManager+Convenience.swift */,
 				CB48814A1EF7B1EA00389C88 /* Data+Convenience.swift */,
 				8523E9BF1F1628B50000D20D /* Date+Extension.swift */,
-				3649C0361FE32D29001F4249 /* DateComponents+Convenience.swift */,
 				7FC81E861F9F377600564292 /* DateComponentsFormatter+Convenience.swift */,
 				CBB303411ECEE3E70011303A /* DateFormatter+Convenience.swift */,
 				CB14675D1EF18F5F00A60E31 /* Dictionary+Convenience.swift */,
@@ -3044,7 +3041,6 @@
 				CBC1DC301F0FD0CB00F6D056 /* AnswerDecision+Convenience.swift in Sources */,
 				CC7D21A61EFBF52A007A062E /* ArticleItemViewModel.swift in Sources */,
 				7F8DB4AC1FA2047D00DFE006 /* PartnersAnimator.swift in Sources */,
-				3649C0371FE32D29001F4249 /* DateComponents+Convenience.swift in Sources */,
 				365E98C31FD9A31000248361 /* CLTypingLabel.swift in Sources */,
 				CB94422A1FD9643A00E2B122 /* SlideShowModels.swift in Sources */,
 				CBC1DC391F14D9ED00F6D056 /* UserSetting.swift in Sources */,

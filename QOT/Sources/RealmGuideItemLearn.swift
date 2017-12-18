@@ -42,9 +42,9 @@ final class RealmGuideItemLearn: SyncableObject {
 
     @objc dynamic var completedAt: Date?
 
-    @objc dynamic var displayTime: Date?
+    @objc dynamic var displayTime: RealmGuideTime?
 
-    @objc dynamic var reminderTime: Date?
+    @objc dynamic var reminderTime: RealmGuideTime?
 
     var itemType = ItemType.strategy
 }
@@ -67,19 +67,13 @@ extension RealmGuideItemLearn: OneWaySyncableDown {
         contentID = data.contentID
         priority = data.priority
         block = data.block
-        setupDisplayTime(data)
-        setupReminderTime(data)
-    }
 
-    private func setupDisplayTime(_ data: GuideItemLearnIntermediary) {
-        guard let time = data.displayTime else { return }
+        if let displayTime = data.displayTime {
+            self.displayTime = RealmGuideTime(displayTime)
+        }
 
-        displayTime = DateComponents.timeComponents(time).date
-    }
-
-    private func setupReminderTime(_ data: GuideItemLearnIntermediary) {
-        guard let time = data.reminderTime else { return }
-
-        reminderTime = DateComponents.timeComponents(time).date
+        if let reminderTime = data.reminderTime {
+            self.reminderTime = RealmGuideTime(reminderTime)
+        }
     }
 }

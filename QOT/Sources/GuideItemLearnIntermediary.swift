@@ -38,6 +38,6 @@ struct GuideItemLearnIntermediary: DownSyncIntermediary {
         block = try json.getItemValue(at: .block, fallback: 0)
         displayTime = try json.getItemValue(at: .displayTime, alongPath: .nullBecomesNil)
         reminderTime = try json.getItemValue(at: .reminderTime, alongPath: .nullBecomesNil)
-        completedAt = try json.getDate(at: .completed, alongPath: .nullBecomesNil)        
+        completedAt = try json.getDate(at: .completed, alongPath: .nullBecomesNil) 
     }
 }

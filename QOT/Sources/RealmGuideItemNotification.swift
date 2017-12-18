@@ -57,9 +57,9 @@ final class RealmGuideItemNotification: SyncableObject {
 
     @objc dynamic var morningInterviewFeedback: String?
 
-    @objc dynamic var displayTime: Date?
+    @objc dynamic var displayTime: RealmGuideTime?
 
-    @objc dynamic var reminderTime: Date?
+    @objc dynamic var reminderTime: RealmGuideTime?
 
     var morningInterviewResults: List<IntObject> = List()
 }
@@ -79,19 +79,13 @@ extension RealmGuideItemNotification: OneWaySyncableDown {
         link = data.link
         priority = data.priority
         issueDate = data.issueDate
-        setupDisplayTime(data)
-        setupReminderTime(data)
-    }
 
-    private func setupDisplayTime(_ data: GuideItemNotificationIntermediary) {
-        guard let time = data.displayTime else { return }
+        if let displayTime = data.displayTime {
+            self.displayTime = RealmGuideTime(displayTime)
+        }
 
-        displayTime = DateComponents.timeComponents(time).date
-    }
-
-    private func setupReminderTime(_ data: GuideItemNotificationIntermediary) {
-        guard let time = data.reminderTime else { return }
-
-        reminderTime = DateComponents.timeComponents(time).date
+        if let reminderTime = data.reminderTime {
+            self.reminderTime = RealmGuideTime(reminderTime)
+        }
     }
 }
