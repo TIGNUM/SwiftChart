@@ -26,7 +26,6 @@ final class RealmGuideItem: Object {
     convenience init(itemNotification: RealmGuideItemNotification) {
         self.init()
         self.guideItemNotification = itemNotification
-        LocalNotificationBuilder.shared.create(notification: itemNotification)
     }
 }
 

@@ -8,23 +8,38 @@
 
 import Foundation
 import UserNotifications
+import RealmSwift
 
-protocol LocalNotificationBuildable {
+final class LocalNotificationBuilder: NSObject {
 
-    func content(_ notification: RealmGuideItemNotification) -> UNMutableNotificationContent
+    private let realmProvider: RealmProvider
 
-    func trigger(_ notification: RealmGuideItemNotification) -> UNCalendarNotificationTrigger
+    init(realmProvider: RealmProvider) {
+        self.realmProvider = realmProvider
+    }
 
-    func addNotification(request: UNNotificationRequest)
-
-    func cancelNotification(identifier: String)
+    func setup() {
+        guideNotifications(realmProvider: realmProvider).forEach { (itemNotification: RealmGuideItemNotification) in
+            create(notification: itemNotification)
+        }
+    }
 }
 
-final class LocalNotificationBuilder: NSObject, LocalNotificationBuildable {
+// MARK: - Private
 
-    static let shared = LocalNotificationBuilder()
+private extension LocalNotificationBuilder {
 
-    private override init() {}
+    func guideNotifications(realmProvider: RealmProvider) -> [RealmGuideItemNotification] {
+        var notifications = [RealmGuideItemNotification]()
+        do {
+            let realm = try realmProvider.realm()
+            notifications = Array(realm.objects(RealmGuideItemNotification.self))
+        } catch {
+            log(error, level: .error)
+        }
+
+        return notifications
+    }
 
     func create(notification: RealmGuideItemNotification) {
         let request = UNNotificationRequest(identifier: notification.remoteID.description,
@@ -32,11 +47,6 @@ final class LocalNotificationBuilder: NSObject, LocalNotificationBuildable {
                                             trigger: trigger(notification))
         addNotification(request: request)
     }
-}
-
-// MARK: -
-
-extension LocalNotificationBuilder {
 
     func content(_ notification: RealmGuideItemNotification) -> UNMutableNotificationContent {
         let content = UNMutableNotificationContent()
@@ -51,9 +61,8 @@ extension LocalNotificationBuilder {
     }
 
     func trigger(_ notification: RealmGuideItemNotification) -> UNCalendarNotificationTrigger {
-        let date = Date(timeIntervalSinceNow: 3600)
         let triggerDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second],
-                                                          from: date/*notification.issueDate*/)
+                                                          from: notification.issueDate)
         return UNCalendarNotificationTrigger(dateMatching: triggerDate,
                                              repeats: false)
     }

@@ -119,6 +119,7 @@ final class SyncManager {
             DispatchQueue.main.async {
                 let errors = context.errors
                 NotificationHandler.postNotification(withName: .syncAllDidFinishNotification)
+                LocalNotificationBuilder(realmProvider: self.realmProvider).setup()
                 log("SYNC ALL FINISHED with \(errors.count) errors", enabled: Log.Toggle.Manager.Sync)
                 errors.forEach { (error: SyncError) in
                     log(error, enabled: Log.Toggle.Manager.Sync)
