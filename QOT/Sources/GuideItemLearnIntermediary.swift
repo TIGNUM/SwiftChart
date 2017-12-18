@@ -14,31 +14,30 @@ struct GuideItemLearnIntermediary: DownSyncIntermediary {
     let title: String
     let body: String
     let type: String
-    let typeDisplayString: String
+    let displayType: String
     let greeting: String
     let link: String
     let featureLink: String
     let contentID: Int
     let priority: Int
     let block: Int
-    let reminderTime: GuideTimeIntermediary
-    let displayTime: GuideTimeIntermediary
+    let displayTime: GuideTimeIntermediary?
+    let reminderTime: GuideTimeIntermediary?
     let completedAt: Date?
 
     init(json: JSON) throws {
         title = try json.getItemValue(at: .title, fallback: "")
         body = try json.getItemValue(at: .body, fallback: "")
         type = try json.getItemValue(at: .guideItemType, fallback: "")
-//        typeDisplayString = try json.getItemValue(at: .typeDisplayString, fallback: "")
+        displayType = try json.getItemValue(at: .displayType, fallback: "")
         greeting = try json.getItemValue(at: .greeting, fallback: "")
         link = try json.getItemValue(at: .link, fallback: "")
         featureLink = try json.getItemValue(at: .featureLink, fallback: "")
         contentID = try json.getItemValue(at: .contentId, fallback: 0)
         priority = try json.getItemValue(at: .priority, fallback: 0)
         block = try json.getItemValue(at: .block, fallback: 0)
-        reminderTime = try json.getItemValue(at: .reminderTime)
-        displayTime = try json.getItemValue(at: .displayTime)
-        completedAt = try json.getDate(at: .completed, alongPath: .nullBecomesNil)
-        typeDisplayString = type
+        displayTime = try json.getItemValue(at: .displayTime, alongPath: .nullBecomesNil)
+        reminderTime = try json.getItemValue(at: .reminderTime, alongPath: .nullBecomesNil)
+        completedAt = try json.getDate(at: .completed, alongPath: .nullBecomesNil)        
     }
 }

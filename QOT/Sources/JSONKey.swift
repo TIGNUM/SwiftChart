@@ -56,6 +56,7 @@ enum JsonKey: String {
     case deviceId
     case displayName
     case displayTime
+    case displayType
     case duration
     case email
     case employment
@@ -203,7 +204,6 @@ enum JsonKey: String {
     case title
     case totalUsageTime
     case type
-    case typeDisplayString
     case unit
     case universe
     case untilDate

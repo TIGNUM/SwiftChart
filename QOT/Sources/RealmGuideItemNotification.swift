@@ -41,7 +41,7 @@ final class RealmGuideItemNotification: SyncableObject {
 
     @objc private(set) dynamic var type: String = ""
 
-    @objc private(set) dynamic var typeDisplayString: String = ""
+    @objc private(set) dynamic var displayType: String = ""
 
     @objc private(set) dynamic var greeting: String?
 
@@ -57,9 +57,9 @@ final class RealmGuideItemNotification: SyncableObject {
 
     @objc dynamic var morningInterviewFeedback: String?
 
-    var displayTime: DateComponents = DateComponents()
+    @objc dynamic var displayTime: Date?
 
-    var reminderTime: DateComponents = DateComponents()
+    @objc dynamic var reminderTime: Date?
 
     var morningInterviewResults: List<IntObject> = List()
 }
@@ -74,11 +74,24 @@ extension RealmGuideItemNotification: OneWaySyncableDown {
         title = data.title
         body = data.body
         type = data.type
+        displayType = data.displayType
         greeting = data.greeting
         link = data.link
         priority = data.priority
         issueDate = data.issueDate
-        displayTime = DateComponents.timeComponents(data.displayTime)
-        reminderTime = DateComponents.timeComponents(data.reminderTime)
+        setupDisplayTime(data)
+        setupReminderTime(data)
+    }
+
+    private func setupDisplayTime(_ data: GuideItemNotificationIntermediary) {
+        guard let time = data.displayTime else { return }
+
+        displayTime = DateComponents.timeComponents(time).date
+    }
+
+    private func setupReminderTime(_ data: GuideItemNotificationIntermediary) {
+        guard let time = data.reminderTime else { return }
+
+        reminderTime = DateComponents.timeComponents(time).date
     }
 }

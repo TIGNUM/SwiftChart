@@ -26,7 +26,7 @@ final class RealmGuideItemLearn: SyncableObject {
 
     @objc private(set) dynamic var type: String = ""
 
-    @objc private(set) dynamic var typeDisplayString: String = ""
+    @objc private(set) dynamic var displayType: String = ""
 
     @objc private(set) dynamic var greeting: String = ""
 
@@ -42,9 +42,9 @@ final class RealmGuideItemLearn: SyncableObject {
 
     @objc dynamic var completedAt: Date?
 
-    var reminderTime: DateComponents = DateComponents()
+    @objc dynamic var displayTime: Date?
 
-    var displayTime: DateComponents = DateComponents()
+    @objc dynamic var reminderTime: Date?
 
     var itemType = ItemType.strategy
 }
@@ -59,7 +59,7 @@ extension RealmGuideItemLearn: OneWaySyncableDown {
         title = data.title
         body = data.body
         type = data.type
-        typeDisplayString = data.typeDisplayString
+        displayType = data.displayType
         itemType = ItemType(rawValue: data.title) ?? itemType
         greeting = data.greeting
         link = data.link
@@ -67,7 +67,19 @@ extension RealmGuideItemLearn: OneWaySyncableDown {
         contentID = data.contentID
         priority = data.priority
         block = data.block
-        reminderTime = DateComponents.timeComponents(data.reminderTime)
-        displayTime = DateComponents.timeComponents(data.displayTime)
+        setupDisplayTime(data)
+        setupReminderTime(data)
+    }
+
+    private func setupDisplayTime(_ data: GuideItemLearnIntermediary) {
+        guard let time = data.displayTime else { return }
+
+        displayTime = DateComponents.timeComponents(time).date
+    }
+
+    private func setupReminderTime(_ data: GuideItemLearnIntermediary) {
+        guard let time = data.reminderTime else { return }
+
+        reminderTime = DateComponents.timeComponents(time).date
     }
 }

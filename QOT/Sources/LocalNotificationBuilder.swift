@@ -21,7 +21,10 @@ final class LocalNotificationBuilder: NSObject {
     func setup() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         guideNotifications(realmProvider: realmProvider).forEach { (itemNotification: RealmGuideItemNotification) in
-            create(notification: itemNotification)
+            if itemNotification.reminderTime != nil {
+                create(notification: itemNotification)
+
+            }
         }
     }
 }
