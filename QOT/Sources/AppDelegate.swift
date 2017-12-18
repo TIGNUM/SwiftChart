@@ -68,6 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         Buglife.shared().delegate = self
         appCoordinator.start()
         UIApplication.shared.statusBarStyle = .lightContent
+        UNUserNotificationCenter.current().delegate = self
         incomingLocationEvent(launchOptions: launchOptions)
         setupUAirship()
 
@@ -165,5 +166,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         }
 
         return base
+    }
+}
+
+// MARK: - UNUserNotificationCenterDelegate
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+
+    func handleNotification(notification: UNNotification) {
+        guard
+            let linkString = notification.request.content.userInfo["link"] as? String,
+            let link = URL(string: linkString), launchHandler.canLaunch(url: link) == true else {
+                return
+        }
+
+        launchHandler.process(url: link)
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound])
+        handleNotification(notification: notification)
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
+        handleNotification(notification: response.notification)
     }
 }

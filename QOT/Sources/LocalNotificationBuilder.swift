@@ -13,6 +13,7 @@ import RealmSwift
 final class LocalNotificationBuilder: NSObject {
 
     private let realmProvider: RealmProvider
+    private let queue = DispatchQueue(label: "com.tignum.qot.local.notification", qos: .background)
 
     init(realmProvider: RealmProvider) {
         self.realmProvider = realmProvider
@@ -20,14 +21,14 @@ final class LocalNotificationBuilder: NSObject {
 
     func setup() {
         let notifications = guideNotifications(realmProvider: realmProvider)
+        let notificationsIDs = notifications.map { $0.localID }
+        pendingNotificationIDs(notificationsIDs: notificationsIDs) { (newIDs: [String]) in
+            let newNotifications = notifications.filter { newIDs.contains($0.localID) == true }
 
-        notifications.map { $0.localID }.forEach { (identifier: String) in
-            cancelNotification(identifier: identifier)
-        }
-
-        notifications.forEach { (itemNotification: RealmGuideItemNotification) in
-            if itemNotification.reminderTime != nil {
-                create(notification: itemNotification)
+            newNotifications.forEach { (itemNotification: RealmGuideItemNotification) in
+                if itemNotification.reminderTime != nil {
+                    self.create(notification: itemNotification)
+                }
             }
         }
     }
@@ -36,6 +37,18 @@ final class LocalNotificationBuilder: NSObject {
 // MARK: - Private
 
 private extension LocalNotificationBuilder {
+
+    func pendingNotificationIDs(notificationsIDs: [String], completion: @escaping ([String]) -> Void) {
+        queue.async {
+            UNUserNotificationCenter.current().getPendingNotificationRequests { (pendingRequests) in
+                let requestIDs = pendingRequests.map { $0.identifier }
+                let newIDs = notificationsIDs.filter { requestIDs.contains($0) == false }
+                DispatchQueue.main.async {
+                    completion(newIDs)
+                }
+            }
+        }
+    }
 
     func guideNotifications(realmProvider: RealmProvider) -> [RealmGuideItemNotification] {
         var notifications = [RealmGuideItemNotification]()
@@ -69,8 +82,9 @@ private extension LocalNotificationBuilder {
     }
 
     func trigger(_ notification: RealmGuideItemNotification) -> UNCalendarNotificationTrigger {
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: ((60 * 2)), repeats: true)
         let triggerDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second],
-                                                          from: notification.issueDate)
+                                                          from: trigger.nextTriggerDate()! /*notification.issueDate*/)
         return UNCalendarNotificationTrigger(dateMatching: triggerDate,
                                              repeats: false)
     }
@@ -81,40 +95,9 @@ private extension LocalNotificationBuilder {
                 log(error, level: .error)
             }
         }
-        UNUserNotificationCenter.current().delegate = self
     }
 
     func cancelNotification(identifier: String) {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
-    }
-
-    func handleNotification(notification: UNNotification) {
-        guard
-            let linkString = notification.request.content.userInfo["link"] as? String,
-            let link = URL(string: linkString) else {
-                return
-        }
-
-        let launchHandler = LaunchHandler()
-        launchHandler.process(url: link)
-    }
-}
-
-// MARK: - UNUserNotificationCenterDelegate
-
-extension LocalNotificationBuilder: UNUserNotificationCenterDelegate {
-
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                willPresent notification: UNNotification,
-                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.alert, .sound])
-        handleNotification(notification: notification)
-    }
-
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse,
-                                withCompletionHandler completionHandler: @escaping () -> Void) {
-        completionHandler()
-        handleNotification(notification: response.notification)
     }
 }
