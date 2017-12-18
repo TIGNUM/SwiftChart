@@ -9,34 +9,81 @@
 import Foundation
 import UserNotifications
 
-struct LocalNotificationBuilder {
+protocol LocalNotificationBuildable {
 
-    private let center = UNUserNotificationCenter.current()
+    func content(_ notification: GuideItemNotification) -> UNMutableNotificationContent
 
-    func create(_ items: [GuideItemNotification]) {
-        items.forEach { (item: GuideItemNotification) in
-            let content = UNMutableNotificationContent()
-            if let title = item.title {
-                content.title = title
-            }
-            content.body = item.body
-            content.sound = UNNotificationSound(named: item.sound)
+    func trigger(_ notification: GuideItemNotification) -> UNCalendarNotificationTrigger
 
-            let triggerDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second,],
-                                                              from: item.issueDate)
-            let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate,
-                                                                      repeats: false)
+    func addNotification(request: UNNotificationRequest)
 
-            let identifier = "QOTLocalNotification"
-            let request = UNNotificationRequest(identifier: identifier,
-                                                content: content,
-                                                trigger: trigger)
+    func cancelNotification(identifier: String)
+}
 
-            center.add(request) { (error) in
-                if let error = error {
-                    log(error, level: .error)
-                }
+final class LocalNotificationBuilder: NSObject, LocalNotificationBuildable {
+
+    let shared = LocalNotificationBuilder()
+
+    private override init() {}
+
+    func create(notification: GuideItemNotification) {
+        let request = UNNotificationRequest(identifier: notification.remoteID.description,
+                                            content: content(notification),
+                                            trigger: trigger(notification))
+        addNotification(request: request)
+    }
+}
+
+// MARK: -
+
+extension LocalNotificationBuilder {
+
+    func content(_ notification: GuideItemNotification) -> UNMutableNotificationContent {
+        let content = UNMutableNotificationContent()
+        if let title = notification.title {
+            content.title = title
+        }
+        content.body = notification.body
+        content.sound = UNNotificationSound(named: notification.sound)
+        content.userInfo = ["link": notification.link]
+
+        return content
+    }
+
+    func trigger(_ notification: GuideItemNotification) -> UNCalendarNotificationTrigger {
+        let triggerDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second],
+                                                          from: notification.issueDate)
+        return UNCalendarNotificationTrigger(dateMatching: triggerDate,
+                                             repeats: false)
+    }
+
+    func addNotification(request: UNNotificationRequest) {
+        UNUserNotificationCenter.current().add(request) { (error) in
+            if let error = error {
+                log(error, level: .error)
             }
         }
+        UNUserNotificationCenter.current().delegate = self
+    }
+
+    func cancelNotification(identifier: String) {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
+    }
+}
+
+// MARK: - UNUserNotificationCenterDelegate
+
+extension LocalNotificationBuilder: UNUserNotificationCenterDelegate {
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound])
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+
     }
 }
