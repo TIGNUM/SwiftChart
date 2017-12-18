@@ -79,6 +79,6 @@ extension GuideItemNotification: OneWaySyncableDown {
         priority = data.priority
         issueDate = data.issueDate
         displayTime = DateComponents.timeComponents(data.displayTime)
-        reminderTime = DateComponents.timeComponents(data.reminderTime)
+        reminderTime = DateComponents.timeComponents(data.reminderTime)        
     }
 }

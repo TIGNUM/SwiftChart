@@ -22,7 +22,7 @@ protocol LocalNotificationBuildable {
 
 final class LocalNotificationBuilder: NSObject, LocalNotificationBuildable {
 
-    let shared = LocalNotificationBuilder()
+    static let shared = LocalNotificationBuilder()
 
     private override init() {}
 
@@ -51,8 +51,9 @@ extension LocalNotificationBuilder {
     }
 
     func trigger(_ notification: GuideItemNotification) -> UNCalendarNotificationTrigger {
+        let date = Date(timeIntervalSinceNow: 3600)
         let triggerDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second],
-                                                          from: notification.issueDate)
+                                                          from: date/*notification.issueDate*/)
         return UNCalendarNotificationTrigger(dateMatching: triggerDate,
                                              repeats: false)
     }
@@ -79,11 +80,29 @@ extension LocalNotificationBuilder: UNUserNotificationCenterDelegate {
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert, .sound])
+        print("willPresent: ", notification)
+        print("willPresent: ", notification.request.content.userInfo)
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
 
+        print("didReceive: ", response.notification.request.content)
+        print("didReceive: ", response.notification.request.content.userInfo)
+        // Determine the user action
+        switch response.actionIdentifier {
+        case UNNotificationDismissActionIdentifier:
+            print("Dismiss Action")
+        case UNNotificationDefaultActionIdentifier:
+            print("Default")
+        case "Snooze":
+            print("Snooze")
+        case "Delete":
+            print("Delete")
+        default:
+            print("Unknown action")
+        }
+        completionHandler()
     }
 }

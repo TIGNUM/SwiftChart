@@ -26,6 +26,7 @@ final class GuideItem: Object {
     convenience init(itemNotification: GuideItemNotification) {
         self.init()
         self.guideItemNotification = itemNotification
+        LocalNotificationBuilder.shared.create(notification: itemNotification)
     }
 }
 
