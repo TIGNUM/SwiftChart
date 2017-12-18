@@ -19,11 +19,15 @@ final class LocalNotificationBuilder: NSObject {
     }
 
     func setup() {
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-        guideNotifications(realmProvider: realmProvider).forEach { (itemNotification: RealmGuideItemNotification) in
+        let notifications = guideNotifications(realmProvider: realmProvider)
+
+        notifications.map { $0.localID }.forEach { (identifier: String) in
+            cancelNotification(identifier: identifier)
+        }
+
+        notifications.forEach { (itemNotification: RealmGuideItemNotification) in
             if itemNotification.reminderTime != nil {
                 create(notification: itemNotification)
-
             }
         }
     }
@@ -46,7 +50,7 @@ private extension LocalNotificationBuilder {
     }
 
     func create(notification: RealmGuideItemNotification) {
-        let request = UNNotificationRequest(identifier: notification.remoteID.description,
+        let request = UNNotificationRequest(identifier: notification.localID,
                                             content: content(notification),
                                             trigger: trigger(notification))
         addNotification(request: request)
