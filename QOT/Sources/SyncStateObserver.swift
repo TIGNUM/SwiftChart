@@ -11,7 +11,7 @@ import RealmSwift
 
 @objcMembers final class SyncStateObserver: NSObject {
 
-    private let syncRecords: RealmGuideItem.swiftSyncRecord>
+    private let syncRecords: Results<SyncRecord>
     private var token: NotificationToken?
 
     private(set) dynamic var syncedClasses: Set<String>
