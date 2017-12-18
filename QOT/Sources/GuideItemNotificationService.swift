@@ -19,32 +19,32 @@ final class GuideItemNotificationService {
         self.realmProvider = realmProvider
     }
 
-    func items() -> AnyRealmCollection<GuideItemNotification> {
-        return AnyRealmCollection(mainRealm.objects(GuideItemNotification.self))
+    func items() -> AnyRealmCollection<RealmGuideItemNotification> {
+        return AnyRealmCollection(mainRealm.objects(RealmGuideItemNotification.self))
     }
 
-    func nextItems(day: Int, type: GuideItemNotification.ItemType) -> AnyRealmCollection<GuideItemNotification> {
+    func nextItems(day: Int, type: RealmGuideItemNotification.ItemType) -> AnyRealmCollection<RealmGuideItemNotification> {
         return mainRealm.guideItemsLearn(day: day, type: type)
     }
 
-    func todayItems() -> List<GuideItemNotification> {
-        let items = Array(mainRealm.objects(GuideItemNotification.self)) as [GuideItemNotification]
+    func todayItems() -> List<RealmGuideItemNotification> {
+        let items = Array(mainRealm.objects(RealmGuideItemNotification.self)) as [RealmGuideItemNotification]
         let todayNotifications = items.filter { $0.issueDate.isSameDay(Date()) }
 
-        return List<GuideItemNotification>(todayNotifications)
+        return List<RealmGuideItemNotification>(todayNotifications)
     }
 
-    func setItemCompleted(item: GuideItemNotification) {
+    func setItemCompleted(item: RealmGuideItemNotification) {
         do {
             try mainRealm.write {
                 item.completed = true
             }
         } catch let error {
-            assertionFailure("Set item completed: \(GuideItemNotification.self), error: \(error)")
+            assertionFailure("Set item completed: \(RealmGuideItemNotification.self), error: \(error)")
         }
     }
 
-    func eraseItem(item: GuideItemNotification) {
+    func eraseItem(item: RealmGuideItemNotification) {
         do {
             try mainRealm.write {
                 mainRealm.delete(item)
@@ -57,7 +57,7 @@ final class GuideItemNotificationService {
     func eraseItems() {
         do {
             try mainRealm.write {
-                mainRealm.delete(mainRealm.objects(GuideItemNotification.self))
+                mainRealm.delete(mainRealm.objects(RealmGuideItemNotification.self))
             }
         } catch {
             assertionFailure("Failed to delete GuideItemsNotification with error: \(error)")
@@ -67,7 +67,7 @@ final class GuideItemNotificationService {
 
 private extension Realm {
 
-    func guideItemsLearn(day: Int, type: GuideItemNotification.ItemType) -> AnyRealmCollection<GuideItemNotification> {
+    func guideItemsLearn(day: Int, type: RealmGuideItemNotification.ItemType) -> AnyRealmCollection<RealmGuideItemNotification> {
         let predicate = NSPredicate(format: "ANY type == %@ AND day == %d", type.rawValue, day)
         return anyCollection(.priorityOrder(), predicates: predicate)
     }

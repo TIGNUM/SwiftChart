@@ -94,20 +94,19 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = viewModel.guideItem(indexPath: indexPath)
-
-        if
-            indexPath.row == 0,
-            let dailyPrepItem = viewModel.dailyPrepItem() {
-                let cell: GuideDailyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
-                cell.configure(dailyPrepItem: dailyPrepItem)
-                return cell
-        }
+        let item = viewModel.item(indexPath: indexPath)
+//        if
+//            indexPath.row == 0,
+//            let dailyPrepItem = viewModel.dailyPrepItem() {
+//                let cell: GuideDailyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
+//                cell.configure(dailyPrepItem: dailyPrepItem)
+//                return cell
+//        }
 
         let cell: GuideTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(title: "item?.title ?? ",
+        cell.configure(title: item.title,
                        content: "item?.body ?? ",
-                       type: "item?.type ?? ",
+                       type: item.subtitle,
                        status: .todo)
 
         return cell
@@ -133,7 +132,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = viewModel.guideItem(indexPath: indexPath)
+        let item = viewModel.item(indexPath: indexPath)
         launch()
     }
 }

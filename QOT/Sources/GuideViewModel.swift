@@ -60,39 +60,43 @@ final class GuideViewModel {
 
     private let services: Services
     private let eventTracker: EventTracker
-    private var todaysGudie: Guide?
+    private var days: [Guide.Day] = []
 
     init(services: Services, eventTracker: EventTracker) {
         self.services = services
         self.eventTracker = eventTracker
-        todaysGudie = createTodaysGuideIfNeeded()
+        createTodaysGuideIfNeeded()
+        reload()
+    }
+
+    private func reload() {
+        days = services.guideService.guideSections().map { Guide.Day(day: $0) }
     }
 
     var sectionCount: Int {
-        return services.guideService.guideSections().count
+        return days.count
     }
 
     func numberOfRows(section: Int) -> Int {
-        return todaysGudie?.items.count ?? 0
+        return days[section].items.count
     }
 
-    func guide(section: Int) -> Guide {
-        return services.guideService.guideSections()[section]
+    func item(indexPath: IndexPath) -> Guide.Item {
+        return days[indexPath.section].items[indexPath.row]
     }
 
-    func guideItem(indexPath: IndexPath) -> GuideItem? {
-        return todaysGudie?.items[indexPath.row]
+//    func guide(section: Int) -> Guide {
+//        return services.guideService.guideSections()[section]
+//    }
+
+
+    func createTodaysGuideIfNeeded() {
+        guard services.guideService.todaysGuide() == nil else { return }
+
+        _ = GuideWorker(services: services).createTodaysGuide()
     }
 
-    func createTodaysGuideIfNeeded() -> Guide {
-        if let guide = services.guideService.todaysGuide() {
-            return guide
-        }
-
-        return GuideWorker(services: services).createTodaysGuide()
-    }
-
-    func dailyPrepItem() -> GuideItem? {
+    func dailyPrepItem() -> RealmGuideItem? {
         return nil
 //        let predicate = NSPredicate(format: "type == %@", GuideItemNotification.ItemType.morningInterview.rawValue)
 //        return todaysGudie?.items.filter(predicate).first
@@ -107,10 +111,36 @@ final class GuideViewModel {
 //                                                       status: dailyPrep.completed == true ? .done : .todo)
     }
 
-    func updateGuideItems(_ items: List<GuideItem>, guide: Guide) throws {
-        let realm = services.mainRealm
-        try realm.write {
-            guide.items = items
+//    func updateGuideItems(_ items: List<GuideItem>, guide: Guide) throws {
+//        let realm = services.mainRealm
+//        try realm.write {
+//            guide.items = items
+//        }
+//    }
+}
+
+private extension Guide.Day {
+
+    init(day: RealmGuide) {
+        items = Array(day.items).flatMap { Guide.Item(item: $0) }
+    }
+}
+
+private extension Guide.Item {
+
+    init?(item: RealmGuideItem) {
+        if let learn = item.guideItemLearn {
+            status = learn.completedAt == nil ? .todo : .done
+            title = learn.title
+            content = .text(learn.body)
+            subtitle = learn.type
+        } else if let notification = item.guideItemNotification {
+            status = notification.completed == false ? .todo : .done
+            title = notification.title ?? ""
+            content = .text(notification.body)
+            subtitle = notification.type
+        } else {
+            return nil
         }
     }
 }

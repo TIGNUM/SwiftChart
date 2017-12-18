@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import Freddy
 
-extension GuideItemLearn {
+extension RealmGuideItemLearn {
 
     enum ItemType: String {
         case strategy = "LEARN_STRATEGIES"
@@ -18,7 +18,7 @@ extension GuideItemLearn {
     }
 }
 
-final class GuideItemLearn: SyncableObject {
+final class RealmGuideItemLearn: SyncableObject {
 
     @objc private(set) dynamic var title: String = ""
 
@@ -49,7 +49,7 @@ final class GuideItemLearn: SyncableObject {
     var itemType = ItemType.strategy
 }
 
-extension GuideItemLearn: OneWaySyncableDown {
+extension RealmGuideItemLearn: OneWaySyncableDown {
 
     static var endpoint: Endpoint {
         return .guideItemsLearn

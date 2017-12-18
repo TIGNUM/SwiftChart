@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-final class GuideTime: Object {
+final class RealmGuideTime: Object {
 
     @objc dynamic var hour: Int = 0
 
