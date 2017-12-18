@@ -19,8 +19,8 @@ final class GuideService {
         self.realmProvider = realmProvider
     }
 
-    func createGuide(items: [GuideItem]) -> Guide {
-        let guide = Guide(items: List(items))
+    func createGuide(items: [RealmGuideItem]) -> RealmGuide {
+        let guide = RealmGuide(items: List(items))
         do {
             let realm = try realmProvider.realm()
             try realm.write {
@@ -32,12 +32,12 @@ final class GuideService {
         return guide
     }
 
-    func todaysGuide() -> Guide? {
+    func todaysGuide() -> RealmGuide? {
         return guideSections().filter { $0.createdAt.isSameDay(Date()) }.first
     }
 
-    func guideSections() -> AnyRealmCollection<Guide> {
-        return AnyRealmCollection(mainRealm.objects(Guide.self))
+    func guideSections() -> AnyRealmCollection<RealmGuide> {
+        return AnyRealmCollection(mainRealm.objects(RealmGuide.self))
     }
 }
 
@@ -58,7 +58,7 @@ extension GuideService {
     func eraseGuideItems() {
         do {
             try mainRealm.write {
-                mainRealm.delete(mainRealm.objects(GuideItem.self))
+                mainRealm.delete(mainRealm.objects(RealmGuideItem.self))
             }
         } catch {
             assertionFailure("Failed to delete toBeVision with error: \(error)")

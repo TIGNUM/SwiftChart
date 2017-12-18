@@ -10,13 +10,13 @@ import Foundation
 import RealmSwift
 import Freddy
 
-final class Guide: Object {
+final class RealmGuide: Object {
 
     @objc dynamic var createdAt: Date = Date()
 
-    var items = List<GuideItem>()
+    var items = List<RealmGuideItem>()
 
-    convenience init(items: List<GuideItem>) {
+    convenience init(items: List<RealmGuideItem>) {
         self.init()
         self.items = items
         createdAt = Date().startOfDay

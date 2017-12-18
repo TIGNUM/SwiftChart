@@ -28,7 +28,7 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
         valueViews.forEach { $0.backgroundColor = .clear }
     }
 
-    func configure(dailyPrepItem: GuideItem) {
+    func configure(dailyPrepItem: RealmGuideItem) {
 //        if dailyPrepItem.dailyPrepResults.count < 5 {
 //            setupShortDailyPrep()
 //        }

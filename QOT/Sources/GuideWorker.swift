@@ -17,15 +17,15 @@ final class GuideWorker {
         self.serivces = services
     }
 
-    func createTodaysGuide() -> Guide {
-        let learnItems = serivces.guideItemLearnService.items().map { GuideItem(itemLearn: $0) }
+    func createTodaysGuide() -> RealmGuide {
+        let learnItems = serivces.guideItemLearnService.items().map { RealmGuideItem(itemLearn: $0) }
         let notificationItems = serivces.guideItemNotificationService.todayItems().map {
-            return GuideItem(itemNotification: $0)
+            return RealmGuideItem(itemNotification: $0)
         }
-        var guideItems: [GuideItem] = []
+        var guideItems: [RealmGuideItem] = []
         guideItems.append(contentsOf: learnItems)
         guideItems.append(contentsOf: notificationItems)
-        let sorted = guideItems.sorted { (lhs: GuideItem, rhs: GuideItem) -> Bool in
+        let sorted = guideItems.sorted { (lhs: RealmGuideItem, rhs: RealmGuideItem) -> Bool in
             return lhs.priority > rhs.priority
         }
         return serivces.guideService.createGuide(items: sorted)

@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import Freddy
 
-extension GuideItemNotification {
+extension RealmGuideItemNotification {
 
     enum ItemType: String {
         case morningInterview = "MORNING_INTERVIEW"
@@ -19,7 +19,7 @@ extension GuideItemNotification {
     }
 }
 
-extension GuideItemNotification {
+extension RealmGuideItemNotification {
 
     struct DailyPrepItem {
         var feedback: String?
@@ -33,7 +33,7 @@ extension GuideItemNotification {
     }
 }
 
-final class GuideItemNotification: SyncableObject {
+final class RealmGuideItemNotification: SyncableObject {
 
     @objc private(set) dynamic var title: String?
 
@@ -64,7 +64,7 @@ final class GuideItemNotification: SyncableObject {
     var morningInterviewResults: List<IntObject> = List()
 }
 
-extension GuideItemNotification: OneWaySyncableDown {
+extension RealmGuideItemNotification: OneWaySyncableDown {
 
     static var endpoint: Endpoint {
         return .guideItemsNotification

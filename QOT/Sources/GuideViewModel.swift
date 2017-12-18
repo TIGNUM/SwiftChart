@@ -60,7 +60,7 @@ final class GuideViewModel {
 
     private let services: Services
     private let eventTracker: EventTracker
-    private var todaysGudie: Guide?
+    private var todaysGudie: RealmGuide?
 
     init(services: Services, eventTracker: EventTracker) {
         self.services = services
@@ -76,15 +76,15 @@ final class GuideViewModel {
         return todaysGudie?.items.count ?? 0
     }
 
-    func guide(section: Int) -> Guide {
+    func guide(section: Int) -> RealmGuide {
         return services.guideService.guideSections()[section]
     }
 
-    func guideItem(indexPath: IndexPath) -> GuideItem? {
+    func guideItem(indexPath: IndexPath) -> RealmGuideItem? {
         return todaysGudie?.items[indexPath.row]
     }
 
-    func createTodaysGuideIfNeeded() -> Guide {
+    func createTodaysGuideIfNeeded() -> RealmGuide {
         if let guide = services.guideService.todaysGuide() {
             return guide
         }
@@ -92,7 +92,7 @@ final class GuideViewModel {
         return GuideWorker(services: services).createTodaysGuide()
     }
 
-    func dailyPrepItem() -> GuideItem? {
+    func dailyPrepItem() -> RealmGuideItem? {
         return nil
 //        let predicate = NSPredicate(format: "type == %@", GuideItemNotification.ItemType.morningInterview.rawValue)
 //        return todaysGudie?.items.filter(predicate).first
@@ -107,7 +107,7 @@ final class GuideViewModel {
 //                                                       status: dailyPrep.completed == true ? .done : .todo)
     }
 
-    func updateGuideItems(_ items: List<GuideItem>, guide: Guide) throws {
+    func updateGuideItems(_ items: List<RealmGuideItem>, guide: RealmGuide) throws {
         let realm = services.mainRealm
         try realm.write {
             guide.items = items
