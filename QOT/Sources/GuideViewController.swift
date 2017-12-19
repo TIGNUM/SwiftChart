@@ -163,7 +163,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 30, y: 0, width: tableView.bounds.width, height: sectionHeaderHeight))
         let label = UILabel(frame: view.frame)
-        let headline = String(format: "%@", DateFormatter.displayTime.string(from: Date()))
+        let headline = String(format: "%@", DateFormatter.mediumDate.string(from: Date()))
         view.addSubview(label)
         view.backgroundColor = .pineGreen
         label.attributedText = Style.navigationTitle(headline, .white40).attributedString()
