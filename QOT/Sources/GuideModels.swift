@@ -57,6 +57,7 @@ struct Guide {
         let link: Link
         let identifier: String
         let dailyPrep: DailyPrep?
+        let greeting: String?
 
         var isDailyPrep: Bool {
             return RealmGuideItemNotification.ItemType.morningInterview.rawValue == type

@@ -54,6 +54,10 @@ final class GuideViewModel {
         return days.count
     }
 
+    func greeting(indexPath: IndexPath) -> String? {
+        return days[indexPath.section].items[indexPath.row].greeting
+    }
+
     func numberOfRows(section: Int) -> Int {
         return days[section].items.count
     }
@@ -76,10 +80,6 @@ final class GuideViewModel {
     func cancelPendingNotificationIfNeeded(item: Guide.Item) {
         LocalNotificationBuilder.cancelNotification(identifier: item.identifier)
     }
-
-//    func guide(section: Int) -> Guide {
-//        return services.guideService.guideSections()[section]
-//    }
 
     func createTodaysGuideIfNeeded() {
         guard services.guideService.todaysGuide() == nil else { return }
@@ -107,6 +107,7 @@ private extension Guide.Item {
             link = .path(learn.link)
             identifier = learn.localID
             dailyPrep = nil
+            greeting = learn.greeting
         } else if let notification = item.guideItemNotification {
             status = notification.completedAt == nil ? .todo : .done
             title = notification.title ?? ""
@@ -117,6 +118,7 @@ private extension Guide.Item {
             identifier = notification.localID
             dailyPrep = DailyPrep(feedback: notification.morningInterviewFeedback,
                                   results: Array(notification.morningInterviewResults.map { $0.value }))
+            greeting = notification.greeting
         } else {
             return nil
         }

@@ -59,9 +59,7 @@ private extension GuideViewController {
 
     func setupView() {
         guard let greetingView = self.greetingView else { return }
-
-        greetingView.configure(message: "Hi Jogi\nLorem ipsum texh here here there text copy start",
-                               timing: "Plan timing 24 minutes")
+        updateGreetingView(indexPath: IndexPath(row: 0, section: 0))
         view.addSubview(greetingView)
         view.addSubview(tableView)
         greetingView.topAnchor == view.topAnchor - UIApplication.shared.statusBarFrame.height
@@ -73,6 +71,12 @@ private extension GuideViewController {
         tableView.rightAnchor == view.rightAnchor
         tableView.backgroundColor = .pineGreen
         view.setFadeMask(at: fadeMaskLocation)
+    }
+
+    func updateGreetingView(indexPath: IndexPath) {
+        let greeting = viewModel.greeting(indexPath: indexPath)
+        greetingView?.configure(message: greeting ?? "",
+                               timing: "Plan timing 24 minutes")
     }
 
     func open(link: Guide.Item.Link) {
@@ -115,7 +119,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = viewModel.item(indexPath: indexPath)
 
-        if RealmGuideItemNotification.ItemType(rawValue: item.type) == .morningInterview {
+        if item.isDailyPrep == true {
             return dailyPrepTableViewCell(item: item, indexPath: indexPath)
         }
 
@@ -124,6 +128,10 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
+    }
+
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        updateGreetingView(indexPath: indexPath)
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
