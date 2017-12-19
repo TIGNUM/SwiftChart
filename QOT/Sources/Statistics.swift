@@ -88,12 +88,22 @@ extension Statistics {
         return displayableValue(average: dataAverage)
     }
 
-    private func displayableValue(average: Double) -> String {
+    func displayableValue(average: Double) -> String {
         if unit.isEmpty == true {
             if multiplier == 1 {
-                return String(format: "%.1f", average.toFloat * multiplier.toFloat)
+                let value = average.toFloat * multiplier.toFloat
+                if (fmod(value, 1.0) == 0.0) { // if x.0
+                    return String(format: "%.0f", value)
+                } else { // if x.123
+                    return String(format: "%.1f", value)
+                }
             } else {
-                return String(format: "%.1f/%.0f", average.toFloat * multiplier.toFloat, multiplier.toFloat)
+                let value = average.toFloat * multiplier.toFloat
+                if (fmod(value, 1.0) == 0.0) { // if x.0
+                    return String(format: "%.0f/%.0f", value, multiplier.toFloat)
+                } else { // if x.123
+                    return String(format: "%.1f/%.0f", value, multiplier.toFloat)
+                }
             }
         }
         return String(format: "%.0f%@", average.toFloat * multiplier.toFloat, unit)

@@ -293,10 +293,11 @@ enum ChartType: String, EnumCollection {
              .peakPerformanceUpcomingNextWeek: return R.string.localized.meChartInfoTextPeakPerformanceUpcoming()
         case .peakPerformanceAverageWeek,
              .peakPerformanceAverageMonth: return R.string.localized.meChartInfoTextPeakPerformanceAverage()
-        case .sleepQuality: return R.string.localized.meChartInfoTextSleepQuality()
+        // TODO: make these input values dynamic from Statistics object (lowerThreshold / upperThreshold etc)
+        case .sleepQuality: return R.string.localized.meChartInfoTextSleepQuality(1, 10)
         case .sleepQuantity: return R.string.localized.meChartInfoTextSleepQuantity()
-        case .activitySittingMovementRatio: return R.string.localized.meChartInfoTextActivityOscillation()
-        case .activityLevel: return R.string.localized.meChartInfoTextActivityIndex()
+        case .activitySittingMovementRatio: return R.string.localized.meChartInfoTextActivityOscillation(1, 10, 7)
+        case .activityLevel: return R.string.localized.meChartInfoTextActivityIndex(1, 10)
         case .intensityLoadWeek,
              .intensityLoadMonth: return R.string.localized.meChartInfoTextIntensityLoad()
         case .intensityRecoveryWeek,

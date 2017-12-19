@@ -49,6 +49,7 @@ final class ActivityChart: UIView {
 
         setupView()
         drawCharts()
+        drawTodayValueLabel()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -130,9 +131,12 @@ private extension ActivityChart {
     func setupView() {
         updateLabelFrames()
         addAverageLines()
-        addCaptionLabel(yPos: yPosition(0.25), text: "1.25")
-        addCaptionLabel(yPos: yPosition(0.50), text: "2.50")
-        addCaptionLabel(yPos: yPosition(0.75), text: "3.75")
+
+        let maxValue = statistics.multiplier
+        let delta = maxValue/4
+        addCaptionLabel(yPos: yPosition(0.25), text: "\(delta*1)")
+        addCaptionLabel(yPos: yPosition(0.50), text: "\(delta*2)")
+        addCaptionLabel(yPos: yPosition(0.75), text: "\(delta*3)")
     }
 
     func drawCharts() {
@@ -147,5 +151,25 @@ private extension ActivityChart {
                 drawCapRoundLine(xPos: xPos, startYPos: yPos - padding, endYPos: padding * 0.5, strokeColor: .white20)
             }
         }
+    }
+
+    func drawTodayValueLabel() {
+        guard let dataPoint = statistics.dataPointObjects.last, dataPoint.value > 0 else { return }
+        let xPos = xPosition(statistics.dataPointObjects.endIndex - 1)
+        let yPos = yPosition(dataPoint.value)
+        let text = statistics.displayableValue(average: Double(dataPoint.value))
+        let todayLabel = dayLabel(text: text, textColor: .white)
+        todayLabel.sizeToFit()
+        todayLabel.center = CGPoint(x: xPos, y: yPos - 12)
+        addSubview(todayLabel)
+    }
+
+    func dayLabel(text: String, textColor: UIColor) -> UILabel {
+        let label = UILabel()
+        label.font = Font.H7Title
+        label.textAlignment = .center
+        label.textColor = textColor
+        label.text = text
+        return label
     }
 }
