@@ -32,6 +32,23 @@ struct Guide {
             }
         }
 
+        struct DailyPrep {
+            let feedback: String?
+            let results: [Int]
+
+            var labels: [String] {
+                return ["Sleep\nQuality", "Sleep\nQuantity", "Load\nIndex", "Load\nFoo", "Recovery\nIndex"]
+            }
+
+            var empty: [String] {
+                return ["_", "_", "_", "_", "_"]
+            }
+
+            var stringResults: [String] {
+                return results.map { String(format: "%d", $0) }
+            }
+        }
+
         let status: GuideViewModel.Status
         let title: String
         let content: Content
@@ -39,6 +56,15 @@ struct Guide {
         let type: String
         let link: Link
         let identifier: String
+        let dailyPrep: DailyPrep?
+
+        var isDailyPrep: Bool {
+            return RealmGuideItemNotification.ItemType.morningInterview.rawValue == type
+        }
+
+        var isDailyPrepCompleted: Bool {
+            return isDailyPrep == true && status == .done
+        }
     }
 
     struct Day {

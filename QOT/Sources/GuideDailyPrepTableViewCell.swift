@@ -17,7 +17,7 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var valueContainerView: UIView!
     @IBOutlet private var valueViews: [UIView]!
     @IBOutlet private var valueLabels: [UILabel]!
-    @IBOutlet private var valueTitleLabels: [UILabel]!
+    @IBOutlet private var valueTitleLabels: [UILabel]!    
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,38 +28,45 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
         valueViews.forEach { $0.backgroundColor = .clear }
     }
 
-    func configure(dailyPrepItem: RealmGuideItem?) {
-        if dailyPrepItem?.guideItemNotification?.morningInterviewResults.count ?? 0 < 5 {
-            setupShortDailyPrep()
+    func configure(title: String?, type: String?, dailyPrep: Guide.Item.DailyPrep?, status: GuideViewModel.Status) {
+        if let title = title {
+            titleLabel.attributedText = attributedText(letterSpacing: 1,
+                                                       text: title.uppercased(),
+                                                       font: Font.H4Identifier,
+                                                       textColor: .white,
+                                                       alignment: .left)
         }
-//
-//        titleLabel.attributedText = attributedText(letterSpacing: 1,
-//                                                   text: dailyPrepItem.title?.uppercased() ?? "",
-//                                                   font: Font.H4Identifier,
-//                                                   textColor: .white,
-//                                                   alignment: .left)
-//        typeLabel.attributedText = attributedText(letterSpacing: 2,
-//                                                  text: GuideViewModel.GuideType.notification.title.uppercased(),
-//                                                  font: Font.H7Tag,
-//                                                  textColor: .white40,
-//                                                  alignment: .left)
-//
-//        for (index, result) in dailyPrepItem.dailyPrepResults.enumerated() {
-//            valueLabels[index].attributedText = attributedText(letterSpacing: -1.1,
-//                                                               text: String(format: "%d", result),
-//                                                               font: Font.H3Subtitle,
-//                                                               textColor: .white,
-//                                                               alignment: .left)
-//            valueTitleLabels[index].attributedText = attributedText(letterSpacing: 0.2,
-//                                                               text: "Index",
-//                                                               font: Font.PTextSmall,
-//                                                               lineSpacing: 8,
-//                                                               textColor: .white70,
-//                                                               alignment: .left)
-//        }
-//
-//        statusView.backgroundColor = dailyPrepItem.status.statusViewColor
-//        containerView.backgroundColor = dailyPrepItem.status.cardColor
+
+        if let type = type {
+            typeLabel.attributedText = attributedText(letterSpacing: 2,
+                                                      text: type.uppercased(),
+                                                      font: Font.H7Tag,
+                                                      textColor: .white40,
+                                                      alignment: .left)
+        }
+
+        if let dailyPrep = dailyPrep {
+            let values = dailyPrep.results.isEmpty == true ? dailyPrep.empty : dailyPrep.stringResults
+            if dailyPrep.results.isEmpty == false && dailyPrep.results.count < 5 {
+                setupShortDailyPrep()
+            }
+
+            for (index, value) in values.enumerated() {
+                valueLabels[index].attributedText = attributedText(letterSpacing: -1.1,
+                                                                   text: value,
+                                                                   font: Font.H3Subtitle,
+                                                                   textColor: .white,
+                                                                   alignment: .left)
+                valueTitleLabels[index].attributedText = attributedText(letterSpacing: 0.2,
+                                                                        text: dailyPrep.labels[index],
+                                                                        font: Font.PTextSmall,
+                                                                        lineSpacing: 8,
+                                                                        textColor: .white70,
+                                                                        alignment: .left)
+            }
+        }
+        statusView.backgroundColor = status.statusViewColor
+        containerView.backgroundColor = status.cardColor
     }
 }
 

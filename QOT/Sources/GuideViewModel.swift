@@ -86,21 +86,6 @@ final class GuideViewModel {
 
         _ = GuideWorker(services: services).createTodaysGuide()
     }
-
-    func dailyPrepItem() -> RealmGuideItem? {
-        return nil
-//        let predicate = NSPredicate(format: "type == %@", GuideItemNotification.ItemType.morningInterview.rawValue)
-//        return todaysGudie?.items.filter(predicate).first
-//
-//        return GuideItemNotification.DailyPrepItem(feedback: dailyPrep.feedback,
-//                                                       results: Array(dailyPrep.dailyPrepResults.map { $0.value }),
-//                                                       link: dailyPrep.link,
-//                                                       title: dailyPrep.title,
-//                                                       body: dailyPrep.body,
-//                                                       greeting: dailyPrep.greeting,
-//                                                       issueDate: dailyPrep.issueDate,
-//                                                       status: dailyPrep.completed == true ? .done : .todo)
-    }
 }
 
 private extension Guide.Day {
@@ -121,6 +106,7 @@ private extension Guide.Item {
             type = learn.type
             link = .path(learn.link)
             identifier = learn.localID
+            dailyPrep = nil
         } else if let notification = item.guideItemNotification {
             status = notification.completedAt == nil ? .todo : .done
             title = notification.title ?? ""
@@ -129,6 +115,8 @@ private extension Guide.Item {
             type = notification.type
             link = .path(notification.link)
             identifier = notification.localID
+            dailyPrep = DailyPrep(feedback: notification.morningInterviewFeedback,
+                                  results: Array(notification.morningInterviewResults.map { $0.value }))
         } else {
             return nil
         }

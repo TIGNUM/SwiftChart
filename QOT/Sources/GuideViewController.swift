@@ -79,7 +79,25 @@ private extension GuideViewController {
         guard let linkURL = link.url else { return }
 
         AppDelegate.current.launchHandler.process(url: linkURL)
-    }    
+    }
+
+    func dailyPrepTableViewCell(item: Guide.Item, indexPath: IndexPath) -> GuideDailyPrepTableViewCell {
+        let cell: GuideDailyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(title: item.title,
+                       type: item.subtitle,
+                       dailyPrep: item.dailyPrep,
+                       status: item.status)
+        return cell
+    }
+
+    func guideTableViewCell(item: Guide.Item, indexPath: IndexPath) -> GuideTableViewCell {
+        let cell: GuideTableViewCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(title: item.title,
+                       content: item.content.value,
+                       type: item.subtitle,
+                       status: item.status)
+        return cell
+    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -97,21 +115,11 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = viewModel.item(indexPath: indexPath)
 
-//        if item.type == RealmGuideItemNotification.ItemType.morningInterview.rawValue {
-//            let dailyPrepItem = viewModel.dailyPrepItem()
-//            let cell: GuideDailyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
-//            cell.configure(dailyPrepItem: dailyPrepItem)
-//
-//            return cell
-//        }
+        if RealmGuideItemNotification.ItemType(rawValue: item.type) == .morningInterview {
+            return dailyPrepTableViewCell(item: item, indexPath: indexPath)
+        }
 
-        let cell: GuideTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(title: item.title,
-                       content: item.content.value,
-                       type: item.subtitle,
-                       status: item.status)
-
-        return cell
+        return guideTableViewCell(item: item, indexPath: indexPath)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -135,6 +143,8 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = viewModel.item(indexPath: indexPath)
+        guard item.isDailyPrepCompleted == false else { return }
+
         viewModel.cancelPendingNotificationIfNeeded(item: item)
         open(link: item.link)
         viewModel.setCompleted(item: item) {
