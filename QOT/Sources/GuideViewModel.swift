@@ -133,12 +133,12 @@ private extension Guide.Item {
             status = learn.completedAt == nil ? .todo : .done
             title = learn.title
             content = .text(learn.body)
-            subtitle = learn.type
+            subtitle = learn.displayType
         } else if let notification = item.guideItemNotification {
             status = notification.completedAt == nil ? .todo : .done
             title = notification.title ?? ""
             content = .text(notification.body)
-            subtitle = notification.type
+            subtitle = notification.displayType
         } else {
             return nil
         }

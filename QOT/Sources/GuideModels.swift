@@ -14,6 +14,12 @@ struct Guide {
 
         enum Content {
             case text(String)
+
+            var text: String {
+                switch self {
+                case .text(let string): return string
+                }
+            }
         }
 
         let status: GuideViewModel.Status
