@@ -57,4 +57,8 @@ extension NSPredicate {
     convenience init(title: String, startDate: Date, endDate: Date) {
         self.init(format: "title == %@ AND startDate == %@ AND endDate == %@", startDate as NSDate, endDate as NSDate)
     }
+
+    convenience init(localID: String) {
+        self.init(format: "localID == %@", localID)
+    }
 }

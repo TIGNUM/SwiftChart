@@ -325,10 +325,14 @@ extension AppCoordinator {
         }
     }
 
-    func presentMorningInterview(groupID: Int, validFrom: Date, validTo: Date) {
+    func presentMorningInterview(groupID: Int, validFrom: Date, validTo: Date, notificationID: String) {
         guard let services = services else { return }
         AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
-        let viewModel = MorningInterviewViewModel(services: services, questionGroupID: groupID, validFrom: validFrom, validTo: validTo)
+        let viewModel = MorningInterviewViewModel(services: services,
+                                                  questionGroupID: groupID,
+                                                  validFrom: validFrom,
+                                                  validTo: validTo,
+                                                  notificationID: notificationID)
         let morningInterViewController = MorningInterviewViewController(viewModel: viewModel)
         morningInterViewController.delegate = self
         windowManager.showPriority(morningInterViewController, animated: true, completion: nil)

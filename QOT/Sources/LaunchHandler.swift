@@ -19,7 +19,7 @@ final class LaunchHandler {
         return URLScheme.isSupportedURL(url)
     }
 
-    func process(url: URL) {
+    func process(url: URL, notificationID: String = "") {
         guard
             let host = url.host,
             let scheme = URLScheme(rawValue: host) else {
@@ -29,7 +29,7 @@ final class LaunchHandler {
         logPushNotificationID(urlScheme: scheme, url: url)
 
         switch scheme {
-        case .dailyPrep: dailyPrep(groupID: scheme.queryParametter(url: url))
+        case .dailyPrep: dailyPrep(groupID: scheme.queryParametter(url: url), notificationID: notificationID)
         case .fitbit: fitbit(accessToken: scheme.queryParametter(url: url))
         case .preparation: preparation(localID: url.absoluteString.components(separatedBy: scheme.queryName).last)
         case .randomContent: randomContent(url: url, scheme: scheme)
@@ -120,7 +120,7 @@ extension LaunchHandler {
 
 extension LaunchHandler {
 
-    func dailyPrep(groupID: String?) {
+    func dailyPrep(groupID: String?, notificationID: String = "") {
         guard
             let groupID = groupID,
             let groupIDIntValue = Int(groupID) else {
@@ -128,7 +128,10 @@ extension LaunchHandler {
         }
 
         //TODO: dates?
-        appDelegate.appCoordinator.presentMorningInterview(groupID: groupIDIntValue, validFrom: Date(), validTo: Date())
+        appDelegate.appCoordinator.presentMorningInterview(groupID: groupIDIntValue,
+                                                           validFrom: Date(),
+                                                           validTo: Date(),
+                                                           notificationID: notificationID)
     }
 }
 
