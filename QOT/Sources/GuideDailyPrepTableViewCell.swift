@@ -13,11 +13,12 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var statusView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var feedbackLabel: UILabel!
     @IBOutlet private weak var typeLabel: UILabel!
     @IBOutlet private weak var valueContainerView: UIView!
     @IBOutlet private var valueViews: [UIView]!
     @IBOutlet private var valueLabels: [UILabel]!
-    @IBOutlet private var valueTitleLabels: [UILabel]!    
+    @IBOutlet private var valueTitleLabels: [UILabel]!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,6 +27,8 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
         containerView.corner(radius: 8)
         valueContainerView.backgroundColor = .clear
         valueViews.forEach { $0.backgroundColor = .clear }
+        feedbackLabel.isHidden = true
+        typeLabel.isHidden = true
     }
 
     func configure(title: String?, type: String?, dailyPrep: Guide.Item.DailyPrep?, status: GuideViewModel.Status) {
@@ -38,11 +41,21 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
         }
 
         if let type = type {
+            typeLabel.isHidden = false
             typeLabel.attributedText = attributedText(letterSpacing: 2,
                                                       text: type.uppercased(),
                                                       font: Font.H7Tag,
                                                       textColor: .white40,
                                                       alignment: .left)
+        }
+
+        if let feedback = dailyPrep?.feedback {
+            feedbackLabel.isHidden = false
+            feedbackLabel.attributedText = attributedText(letterSpacing: 0.2,
+                                                         text: feedback,
+                                                         font: Font.H5SecondaryHeadline,
+                                                         textColor: .white70,
+                                                         alignment: .left)
         }
 
         if let dailyPrep = dailyPrep {
