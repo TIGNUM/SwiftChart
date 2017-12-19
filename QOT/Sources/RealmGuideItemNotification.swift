@@ -53,7 +53,7 @@ final class RealmGuideItemNotification: SyncableObject {
 
     @objc private(set) dynamic var issueDate: Date = Date()
 
-    @objc dynamic var completed: Bool = false
+    @objc dynamic var completedAt: Date?
 
     @objc dynamic var morningInterviewFeedback: String?
 
@@ -77,6 +77,7 @@ extension RealmGuideItemNotification: OneWaySyncableDown {
         displayType = data.displayType
         greeting = data.greeting
         link = data.link
+        sound = data.sound
         priority = data.priority
         issueDate = data.issueDate
 

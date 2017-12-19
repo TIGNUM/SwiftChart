@@ -135,7 +135,7 @@ private extension Guide.Item {
             content = .text(learn.body)
             subtitle = learn.type
         } else if let notification = item.guideItemNotification {
-            status = notification.completed == false ? .todo : .done
+            status = notification.completedAt == nil ? .todo : .done
             title = notification.title ?? ""
             content = .text(notification.body)
             subtitle = notification.type

@@ -181,6 +181,34 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         }
 
         launchHandler.process(url: link)
+        setGuideItemAsCompleted(notification: notification)
+    }
+
+    func setGuideItemAsCompleted(notification: UNNotification) {
+        let notificationID = notification.request.identifier
+        let completedDate = Date()
+
+        do {
+            let realm = try RealmProvider().realm()
+            let predicate = NSPredicate(notificationID: notificationID)
+            let guideItem = realm.objects(RealmGuideItem.self).filter(predicate).first
+
+            try realm.write {
+                guideItem?.completedAt = completedDate
+            }
+
+            if let itemLearn = guideItem?.guideItemLearn {
+                try realm.write {
+                    itemLearn.completedAt = completedDate
+                }
+            } else if let itemNotification = guideItem?.guideItemNotification {
+                try realm.write {
+                    itemNotification.completedAt = completedDate
+                }
+            }
+        } catch {
+            log(error, level: .error)
+        }
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,

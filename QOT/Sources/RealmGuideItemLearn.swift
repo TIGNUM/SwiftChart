@@ -32,6 +32,8 @@ final class RealmGuideItemLearn: SyncableObject {
 
     @objc private(set) dynamic var link: String = ""
 
+    @objc private(set) dynamic var sound: String = ""
+
     @objc private(set) dynamic var featureLink: String = ""
 
     @objc private(set) dynamic var contentID: Int = 0
@@ -63,6 +65,7 @@ extension RealmGuideItemLearn: OneWaySyncableDown {
         itemType = ItemType(rawValue: data.title) ?? itemType
         greeting = data.greeting
         link = data.link
+        sound = data.sound
         featureLink = data.featureLink
         contentID = data.contentID
         priority = data.priority

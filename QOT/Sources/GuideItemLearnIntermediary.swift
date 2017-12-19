@@ -17,6 +17,7 @@ struct GuideItemLearnIntermediary: DownSyncIntermediary {
     let displayType: String
     let greeting: String
     let link: String
+    let sound: String
     let featureLink: String
     let contentID: Int
     let priority: Int
@@ -32,12 +33,13 @@ struct GuideItemLearnIntermediary: DownSyncIntermediary {
         displayType = try json.getItemValue(at: .displayType, fallback: "")
         greeting = try json.getItemValue(at: .greeting, fallback: "")
         link = try json.getItemValue(at: .link, fallback: "")
+        sound = try json.getItemValue(at: .sound, fallback: "")
         featureLink = try json.getItemValue(at: .featureLink, fallback: "")
         contentID = try json.getItemValue(at: .contentId, fallback: 0)
         priority = try json.getItemValue(at: .priority, fallback: 0)
         block = try json.getItemValue(at: .block, fallback: 0)
         displayTime = try json.getItemValue(at: .displayTime, alongPath: .nullBecomesNil)
         reminderTime = try json.getItemValue(at: .reminderTime, alongPath: .nullBecomesNil)
-        completedAt = try json.getDate(at: .completed, alongPath: .nullBecomesNil) 
+        completedAt = try json.getDate(at: .completed, alongPath: .nullBecomesNil)
     }
 }

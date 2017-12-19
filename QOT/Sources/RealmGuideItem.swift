@@ -16,16 +16,18 @@ final class RealmGuideItem: Object {
 
     @objc dynamic var guideItemNotification: RealmGuideItemNotification?
 
-    @objc private(set) dynamic var completedAt: Date?
+    @objc dynamic var completedAt: Date?
 
     convenience init(itemLearn: RealmGuideItemLearn) {
         self.init()
         self.guideItemLearn = itemLearn
+        self.completedAt = itemLearn.completedAt
     }
 
     convenience init(itemNotification: RealmGuideItemNotification) {
         self.init()
         self.guideItemNotification = itemNotification
+        self.completedAt = itemNotification.completedAt
     }
 }
 

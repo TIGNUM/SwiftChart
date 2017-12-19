@@ -107,7 +107,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configure(title: item.title,
                        content: "item?.body ?? ",
                        type: item.subtitle,
-                       status: .todo)
+                       status: item.status)
 
         return cell
     }
