@@ -36,6 +36,10 @@ extension Date {
         return sameYear && sameMonth && sameDay
     }
 
+    var isBeforeNoon: Bool {
+        return minutesSinceMidnight < 720
+    }
+
     var minutesSinceMidnight: Int {
         let components = Calendar.sharedUTC.dateComponents([.hour, .minute], from: self)
 

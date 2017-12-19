@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class ArticleCollectionProvider {
+final class ArticleCollectionProvider {
     private let services: Services
     private let contentCollections: AnyRealmCollection<ContentCollection>
     private let syncStateObserver: SyncStateObserver

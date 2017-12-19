@@ -9,14 +9,23 @@
 import UIKit
 import Anchorage
 import LoremIpsum
+import Bond
+import ReactiveKit
 
-final class GuideViewController: UIViewController, PageViewControllerNotSwipeable {
+final class GuideViewController: UIViewController, FullScreenLoadable, PageViewControllerNotSwipeable {
 
     // MARK: - Properties
 
     private let viewModel: GuideViewModel
     private let sectionHeaderHeight: CGFloat = 64
     private let fadeMaskLocation: UIView.FadeMaskLocation
+    private let disposeBag = DisposeBag()
+    var loadingView: BlurLoadingView?
+    var isLoading: Bool = false {
+        didSet {
+            showLoading(isLoading, text: "Loading loading loading")
+        }
+    }
 
     private lazy var greetingView: GuideGreetingView? = {
         return Bundle.main.loadNibNamed("GuideGreetingView", owner: self, options: [:])?.first as? GuideGreetingView
@@ -50,6 +59,13 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
         super.viewDidLoad()
 
         setupView()
+        observeViewModel()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        updateReadyState()
     }
 }
 
@@ -57,9 +73,24 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
 
 private extension GuideViewController {
 
+    func updateReadyState() {
+        isLoading = !viewModel.isReady
+    }
+
+    func reload() {
+        tableView.reloadData()
+        updateReadyState()
+    }
+
+    func observeViewModel() {
+        viewModel.updates.observeNext { [unowned self] sectionCount in
+            self.reload()
+        }.dispose(in: disposeBag)
+    }
+
     func setupView() {
         guard let greetingView = self.greetingView else { return }
-        updateGreetingView(indexPath: IndexPath(row: 0, section: 0))
+        updateGreetingView()
         view.addSubview(greetingView)
         view.addSubview(tableView)
         greetingView.topAnchor == view.topAnchor - UIApplication.shared.statusBarFrame.height
@@ -73,10 +104,9 @@ private extension GuideViewController {
         view.setFadeMask(at: fadeMaskLocation)
     }
 
-    func updateGreetingView(indexPath: IndexPath) {
-        let greeting = viewModel.greeting(indexPath: indexPath)
-        greetingView?.configure(message: LoremIpsum.sentence(),
-                               timing: "Plan timing 24 minutes")
+    func updateGreetingView() {
+        greetingView?.configure(message: viewModel.message(),
+                                greeting: LoremIpsum.sentence())
     }
 
     func open(link: Guide.Item.Link) {
@@ -130,14 +160,10 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
         return UITableViewAutomaticDimension
     }
 
-    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        updateGreetingView(indexPath: indexPath)
-    }
-
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 30, y: 0, width: tableView.bounds.width, height: sectionHeaderHeight))
         let label = UILabel(frame: view.frame)
-        let headline = String(format: ".0000%d PLAN", section + 1)
+        let headline = String(format: "%@", DateFormatter.displayTime.string(from: Date()))
         view.addSubview(label)
         view.backgroundColor = .pineGreen
         label.attributedText = Style.navigationTitle(headline, .white40).attributedString()

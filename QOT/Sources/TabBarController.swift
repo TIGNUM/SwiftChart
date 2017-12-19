@@ -177,8 +177,7 @@ private extension TabBarController {
         for (index, item) in items.enumerated() {
             if let flag = item.readFlag {
                 let width = tabBar.buttonWidth
-                let xPos = ((width * index.toFloat) + (width - item.textWidth))
-                print("item: ", item.title, "width: ", width, "xPos: ", xPos, "index: ", index, "tag:", item.tag, "textWidth:", item.textWidth, "view.frame.width", view.frame.width)
+                let xPos = ((width * index.toFloat) + (width - item.textWidth))                
                 flag.frame = CGRect(origin: CGPoint(x: xPos, y: -config.readFlagPadding), size: flag.bounds.size)
             }
         }

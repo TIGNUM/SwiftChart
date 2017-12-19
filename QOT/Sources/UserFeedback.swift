@@ -21,7 +21,6 @@ final class UserFeedback: SyncableObject {
 }
 
 extension UserFeedback: OneWaySyncableUp {
-    
     static var endpoint: Endpoint {
         return .userFeedback
     }

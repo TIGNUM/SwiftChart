@@ -10,21 +10,23 @@ import UIKit
 
 final class GuideGreetingView: UIView {
 
-    @IBOutlet private weak var timingLabel: UILabel!
     @IBOutlet private weak var messageLabel: UILabel!
+    @IBOutlet private weak var greetingLabel: UILabel!
 
-    func configure(message: String, timing: String) {
+    func configure(message: String, greeting: String?) {
         backgroundColor = .pineGreen
-        timingLabel.attributedText = attributedText(letterSpacing: 2,
-                                                    text: timing.uppercased(),
-                                                    font: Font.H7Tag,
-                                                    textColor: .white40,
-                                                    alignment: .left)
-        messageLabel.attributedText = attributedText(letterSpacing: -0.8,
-                                                     text: message.uppercased(),
-                                                     font: Font.H4Headline,
-                                                     textColor: .white,
+        messageLabel.attributedText = attributedText(letterSpacing: 0.2,
+                                                     text: message,
+                                                     font: Font.H5SecondaryHeadline,
+                                                     textColor: .white70,
                                                      alignment: .left)
+        if let greeting = greeting {
+            greetingLabel.attributedText = attributedText(letterSpacing: -0.8,
+                                                          text: greeting,
+                                                          font: Font.H4Headline,
+                                                          textColor: .white,
+                                                          alignment: .left)
+        }
     }
 }
 

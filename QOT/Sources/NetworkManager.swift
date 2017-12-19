@@ -167,7 +167,7 @@ final class NetworkManager {
     }
 
     private func performRequest(_ request: URLRequestBuildable, completion: @escaping (NetworkError?) -> Void) -> SerialRequest {
-        return performRequest(request, parser: { return $0 }) { (result) in
+        return performRequest(request, parser: { return $0 } ) { result in
             completion(result.error)
         }
     }

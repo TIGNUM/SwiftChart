@@ -40,7 +40,6 @@ final class LocalNotificationBuilder: NSObject {
 
 // MARK: - Private
 
-
 private extension LocalNotificationBuilder {
 
     func pendingNotificationIDs(notificationsIDs: [String], completion: @escaping ([String]) -> Void) {

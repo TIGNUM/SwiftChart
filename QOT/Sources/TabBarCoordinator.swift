@@ -328,7 +328,6 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
             showHelp(.myWhy)
         default:
             assertionFailure("unhandled switch")
-            break
         }
     }
 
@@ -378,7 +377,6 @@ extension TabBarCoordinator: TopNavigationBarDelegate {
                 showHelp(.whatsHot)
             default:
                 assertionFailure("unhandled switch")
-                break
             }
         case 3:
             switch topBarButtonIndex {
@@ -388,11 +386,9 @@ extension TabBarCoordinator: TopNavigationBarDelegate {
                 showHelp(.prep)
             default:
                 assertionFailure("unhandled switch")
-                break
             }
         default:
             assertionFailure("unhandled switch")
-            break
         }
     }
 
