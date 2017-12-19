@@ -18,7 +18,7 @@ extension RealmGuideItemLearn {
     }
 }
 
-final class RealmGuideItemLearn: SyncableObject {
+final class RealmGuideItemLearn: SyncableObject, RealmGuideItemProtocol {
 
     @objc private(set) dynamic var title: String = ""
 

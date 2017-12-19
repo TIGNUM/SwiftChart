@@ -24,6 +24,7 @@ final class GuideService {
         do {
             let realm = try realmProvider.realm()
             try realm.write {
+                items.forEach { realm.add($0, update: true) }
                 realm.add(guide)
             }
         } catch {

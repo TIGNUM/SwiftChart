@@ -12,6 +12,7 @@ import RealmSwift
 
 final class Services {
 
+    let realmProvider: RealmProvider
     let mainRealm: Realm
     let contentService: ContentService
     let preparationService: PreparationService
@@ -30,6 +31,7 @@ final class Services {
     init() throws {
         let realmProvider = RealmProvider()
         let mainRealm = try realmProvider.realm()
+        self.realmProvider = realmProvider
         self.mainRealm = mainRealm
         self.contentService = ContentService(mainRealm: mainRealm, realmProvider: realmProvider)
         self.preparationService = PreparationService(mainRealm: mainRealm, realmProvider: realmProvider)

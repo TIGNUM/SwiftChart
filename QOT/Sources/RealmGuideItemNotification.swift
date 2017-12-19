@@ -20,7 +20,7 @@ extension RealmGuideItemNotification {
     }
 }
 
-final class RealmGuideItemNotification: SyncableObject {
+final class RealmGuideItemNotification: SyncableObject, RealmGuideItemProtocol {
 
     @objc private(set) dynamic var title: String?
 

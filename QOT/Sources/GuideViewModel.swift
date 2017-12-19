@@ -105,7 +105,7 @@ private extension Guide.Item {
             subtitle = learn.displayType
             type = learn.type
             link = .path(learn.link)
-            identifier = learn.localID
+            identifier = item.localID
             dailyPrep = nil
             greeting = learn.greeting
         } else if let notification = item.guideItemNotification {
@@ -115,7 +115,7 @@ private extension Guide.Item {
             subtitle = notification.displayType
             type = notification.type
             link = .path(notification.link)
-            identifier = notification.localID
+            identifier = item.localID
             dailyPrep = DailyPrep(feedback: notification.morningInterviewFeedback,
                                   results: Array(notification.morningInterviewResults.map { $0.value }))
             greeting = notification.greeting

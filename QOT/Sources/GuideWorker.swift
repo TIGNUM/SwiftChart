@@ -18,9 +18,9 @@ final class GuideWorker {
     }
 
     func createTodaysGuide() -> RealmGuide {
-        let learnItems = services.guideItemLearnService.items().map { RealmGuideItem(itemLearn: $0) }
+        let learnItems = services.guideItemLearnService.items().map { RealmGuideItem(item: $0, date: Date()) }
         let notificationItems = services.guideItemNotificationService.todayItems().map {
-            return RealmGuideItem(itemNotification: $0)
+            return RealmGuideItem(item: $0, date: Date())
         }
         var guideItems: [RealmGuideItem] = []
         guideItems.append(contentsOf: learnItems)
@@ -35,19 +35,11 @@ final class GuideWorker {
         do {
             let completedDate = Date()
             let realm = services.mainRealm
-            let predicate = NSPredicate(guideID: guideID)
-            let guideItem = realm.objects(RealmGuideItem.self).filter(predicate).first
-
-            if let itemLearn = guideItem?.guideItemLearn {
+            if let guideItem = realm.object(ofType: RealmGuideItem.self, forPrimaryKey: guideID),
+                let referencedItem = guideItem.referencedItem {
                 try realm.write {
-                    itemLearn.completedAt = completedDate
-                    guideItem?.completedAt = completedDate
-                    completion?(nil)
-                }
-            } else if let itemNotification = guideItem?.guideItemNotification {
-                try realm.write {
-                    itemNotification.completedAt = completedDate
-                    guideItem?.completedAt = completedDate
+                    referencedItem.completedAt = completedDate
+                    guideItem.completedAt = completedDate
                     completion?(nil)
                 }
             }

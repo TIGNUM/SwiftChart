@@ -10,7 +10,15 @@ import Foundation
 import RealmSwift
 import Freddy
 
+protocol RealmGuideItemProtocol: class {
+
+    var completedAt: Date? { get set }
+    var priority: Int { get }
+}
+
 final class RealmGuideItem: Object {
+
+    @objc dynamic var localID: String = ""
 
     @objc dynamic var guideItemLearn: RealmGuideItemLearn?
 
@@ -18,28 +26,38 @@ final class RealmGuideItem: Object {
 
     @objc dynamic var completedAt: Date?
 
-    convenience init(itemLearn: RealmGuideItemLearn) {
+    convenience init(item: RealmGuideItemLearn, date: Date) {
         self.init()
-        self.guideItemLearn = itemLearn
-        self.completedAt = itemLearn.completedAt
+        self.guideItemLearn = item
+        self.completedAt = item.completedAt
+        self.localID = GuideItemID(date: date, item: item).stringRepresentation
     }
 
-    convenience init(itemNotification: RealmGuideItemNotification) {
+    convenience init(item: RealmGuideItemNotification, date: Date) {
         self.init()
-        self.guideItemNotification = itemNotification
-        self.completedAt = itemNotification.completedAt
+        self.guideItemNotification = item
+        self.completedAt = item.completedAt
+        self.localID = GuideItemID(date: date, item: item).stringRepresentation
+    }
+
+    override class func primaryKey() -> String? {
+        return "localID"
     }
 }
 
 extension RealmGuideItem {
 
     var priority: Int {
+        return referencedItem?.priority ?? 0
+    }
+
+    var referencedItem: RealmGuideItemProtocol? {
         if let guideItemLearn = guideItemLearn {
-            return guideItemLearn.priority
+            return guideItemLearn
         } else if let guideItemNotification = guideItemNotification {
-            return guideItemNotification.priority
+            return guideItemNotification
         } else {
-            return 0
+            return nil
         }
     }
 }
