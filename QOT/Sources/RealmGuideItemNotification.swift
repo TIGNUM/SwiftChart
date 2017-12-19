@@ -16,20 +16,7 @@ extension RealmGuideItemNotification {
         case morningInterview = "MORNING_INTERVIEW"
         case toBeVision = "TOBEVISION"
         case randomContentSleep = "RANDOM_CONTENT_SLEEP"
-    }
-}
-
-extension RealmGuideItemNotification {
-
-    struct DailyPrepItem {
-        var feedback: String?
-        var results: [Int]
-        var link: String
-        var title: String?
-        var body: String
-        var greeting: String?
-        var issueDate: Date
-        var status: GuideViewModel.Status
+        case randomContentMovement = "RANDOM_CONTENT_MOVEMENT"
     }
 }
 

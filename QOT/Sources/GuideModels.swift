@@ -15,9 +15,19 @@ struct Guide {
         enum Content {
             case text(String)
 
-            var text: String {
+            var value: String {
                 switch self {
-                case .text(let string): return string
+                case .text(let value): return value
+                }
+            }
+        }
+
+        enum Link {
+            case path(String)
+
+            var url: URL? {
+                switch self {
+                case .path(let urlString): return URL(string: urlString)
                 }
             }
         }
@@ -26,10 +36,12 @@ struct Guide {
         let title: String
         let content: Content
         let subtitle: String
+        let type: String
+        let link: Link
+        let identifier: String
     }
 
     struct Day {
-
         let items: [Item]
     }
 }

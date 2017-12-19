@@ -75,10 +75,11 @@ private extension GuideViewController {
         view.setFadeMask(at: fadeMaskLocation)
     }
 
-    func launch() {
-        let laucnhHandler = LaunchHandler()
-        laucnhHandler.dailyPrep(groupID: "100002")
-    }
+    func open(link: Guide.Item.Link) {
+        guard let linkURL = link.url else { return }
+
+        AppDelegate.current.launchHandler.process(url: linkURL)
+    }    
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -95,17 +96,18 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = viewModel.item(indexPath: indexPath)
-//        if
-//            indexPath.row == 0,
-//            let dailyPrepItem = viewModel.dailyPrepItem() {
-//                let cell: GuideDailyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
-//                cell.configure(dailyPrepItem: dailyPrepItem)
-//                return cell
+
+//        if item.type == RealmGuideItemNotification.ItemType.morningInterview.rawValue {
+//            let dailyPrepItem = viewModel.dailyPrepItem()
+//            let cell: GuideDailyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
+//            cell.configure(dailyPrepItem: dailyPrepItem)
+//
+//            return cell
 //        }
 
         let cell: GuideTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(title: item.title,
-                       content: item.content.text,
+                       content: item.content.value,
                        type: item.subtitle,
                        status: item.status)
 
@@ -133,6 +135,9 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = viewModel.item(indexPath: indexPath)
-        launch()
+        open(link: item.link)
+        viewModel.setCompleted(item: item) {
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+        }
     }
 }

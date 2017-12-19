@@ -33,29 +33,6 @@ extension GuideViewModel {
     }
 }
 
-extension GuideViewModel {
-
-    enum GuideType {
-        case newFeature
-        case featureExplainer
-        case tignumExplainer
-        case morningInterview
-        case strategy
-        case notification
-
-        var title: String {
-            switch self {
-            case .newFeature: return "New Feature"
-            case .featureExplainer: return "Feature Explainer"
-            case .tignumExplainer: return "Tignum System"
-            case .morningInterview: return "Morning Interview"
-            case .strategy: return "55 Strategies"
-            case .notification: return "Notification"
-            }
-        }
-    }
-}
-
 final class GuideViewModel {
 
     private let services: Services
@@ -85,10 +62,20 @@ final class GuideViewModel {
         return days[indexPath.section].items[indexPath.row]
     }
 
+    func setCompleted(item: Guide.Item, completion: @escaping () -> Void) {
+        guard item.status == .todo else { return }
+
+        GuideWorker(services: services).setItemCompleted(guideID: item.identifier) { (error) in
+            guard error == nil else { return }
+
+            self.reload()
+            completion()
+        }
+    }
+
 //    func guide(section: Int) -> Guide {
 //        return services.guideService.guideSections()[section]
 //    }
-
 
     func createTodaysGuideIfNeeded() {
         guard services.guideService.todaysGuide() == nil else { return }
@@ -134,11 +121,17 @@ private extension Guide.Item {
             title = learn.title
             content = .text(learn.body)
             subtitle = learn.displayType
+            type = learn.type
+            link = .path(learn.link)
+            identifier = learn.localID
         } else if let notification = item.guideItemNotification {
             status = notification.completedAt == nil ? .todo : .done
             title = notification.title ?? ""
             content = .text(notification.body)
             subtitle = notification.displayType
+            type = notification.type
+            link = .path(notification.link)
+            identifier = notification.localID
         } else {
             return nil
         }

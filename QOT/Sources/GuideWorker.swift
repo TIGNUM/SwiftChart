@@ -11,15 +11,15 @@ import RealmSwift
 
 final class GuideWorker {
 
-    let serivces: Services
+    let services: Services
 
     init(services: Services) {
-        self.serivces = services
+        self.services = services
     }
 
     func createTodaysGuide() -> RealmGuide {
-        let learnItems = serivces.guideItemLearnService.items().map { RealmGuideItem(itemLearn: $0) }
-        let notificationItems = serivces.guideItemNotificationService.todayItems().map {
+        let learnItems = services.guideItemLearnService.items().map { RealmGuideItem(itemLearn: $0) }
+        let notificationItems = services.guideItemNotificationService.todayItems().map {
             return RealmGuideItem(itemNotification: $0)
         }
         var guideItems: [RealmGuideItem] = []
@@ -28,6 +28,32 @@ final class GuideWorker {
         let sorted = guideItems.sorted { (lhs: RealmGuideItem, rhs: RealmGuideItem) -> Bool in
             return lhs.priority > rhs.priority
         }
-        return serivces.guideService.createGuide(items: sorted)
+        return services.guideService.createGuide(items: sorted)
+    }
+
+    func setItemCompleted(guideID: String, completion: ((Error?) -> Void)? = nil) {
+        do {
+            let completedDate = Date()
+            let realm = services.mainRealm
+            let predicate = NSPredicate(guideID: guideID)
+            let guideItem = realm.objects(RealmGuideItem.self).filter(predicate).first
+
+            if let itemLearn = guideItem?.guideItemLearn {
+                try realm.write {
+                    itemLearn.completedAt = completedDate
+                    guideItem?.completedAt = completedDate
+                    completion?(nil)
+                }
+            } else if let itemNotification = guideItem?.guideItemNotification {
+                try realm.write {
+                    itemNotification.completedAt = completedDate
+                    guideItem?.completedAt = completedDate
+                    completion?(nil)
+                }
+            }
+        } catch {
+            log(error, level: .error)
+            completion?(error)
+        }
     }
 }

@@ -47,8 +47,6 @@ final class RealmGuideItemLearn: SyncableObject {
     @objc dynamic var displayTime: RealmGuideTime?
 
     @objc dynamic var reminderTime: RealmGuideTime?
-
-    var itemType = ItemType.strategy
 }
 
 extension RealmGuideItemLearn: OneWaySyncableDown {
@@ -62,7 +60,6 @@ extension RealmGuideItemLearn: OneWaySyncableDown {
         body = data.body
         type = data.type
         displayType = data.displayType
-        itemType = ItemType(rawValue: data.title) ?? itemType
         greeting = data.greeting
         link = data.link
         sound = data.sound

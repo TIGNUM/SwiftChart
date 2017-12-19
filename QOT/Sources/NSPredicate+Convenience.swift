@@ -58,7 +58,7 @@ extension NSPredicate {
         self.init(format: "title == %@ AND startDate == %@ AND endDate == %@", startDate as NSDate, endDate as NSDate)
     }
 
-    convenience init(notificationID: String) {
-        self.init(format: "guideItemLearn.localID == %@ OR guideItemNotification.localID == %@", notificationID, notificationID)
+    convenience init(guideID: String) {
+        self.init(format: "guideItemLearn.localID == %@ OR guideItemNotification.localID == %@", guideID, guideID)
     }
 }

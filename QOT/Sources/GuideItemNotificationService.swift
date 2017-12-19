@@ -72,3 +72,4 @@ private extension Realm {
         return anyCollection(.priorityOrder(), predicates: predicate)
     }
 }
+

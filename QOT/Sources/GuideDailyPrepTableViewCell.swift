@@ -28,10 +28,10 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
         valueViews.forEach { $0.backgroundColor = .clear }
     }
 
-    func configure(dailyPrepItem: RealmGuideItem) {
-//        if dailyPrepItem.dailyPrepResults.count < 5 {
-//            setupShortDailyPrep()
-//        }
+    func configure(dailyPrepItem: RealmGuideItem?) {
+        if dailyPrepItem?.guideItemNotification?.morningInterviewResults.count ?? 0 < 5 {
+            setupShortDailyPrep()
+        }
 //
 //        titleLabel.attributedText = attributedText(letterSpacing: 1,
 //                                                   text: dailyPrepItem.title?.uppercased() ?? "",
