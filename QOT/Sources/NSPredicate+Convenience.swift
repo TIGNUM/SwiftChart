@@ -61,4 +61,8 @@ extension NSPredicate {
     convenience init(guideID: String) {
         self.init(format: "guideItemLearn.localID == %@ OR guideItemNotification.localID == %@", guideID, guideID)
     }
+
+    convenience init(localID: String) {
+        self.init(format: "localID == %@", localID)
+    }
 }

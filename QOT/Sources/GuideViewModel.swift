@@ -117,7 +117,7 @@ private extension Guide.Item {
             link = .path(notification.link)
             identifier = notification.localID
             dailyPrep = DailyPrep(feedback: notification.morningInterviewFeedback,
-                                  results: Array(notification.morningInterviewResults.map { $0.value }))
+                                  results: Array(notification.dailyPrepResults.map { String(format: "%@", $0) }))
             greeting = notification.greeting
         } else {
             return nil

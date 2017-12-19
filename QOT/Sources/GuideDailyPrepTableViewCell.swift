@@ -46,14 +46,14 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
         }
 
         if let dailyPrep = dailyPrep {
-            let values = dailyPrep.results.isEmpty == true ? dailyPrep.empty : dailyPrep.stringResults
+            let results = dailyPrep.results.isEmpty == true ? dailyPrep.empty : dailyPrep.results
             if dailyPrep.results.isEmpty == false && dailyPrep.results.count < 5 {
                 setupShortDailyPrep()
             }
 
-            for (index, value) in values.enumerated() {
+            for (index, result) in results.enumerated() {
                 valueLabels[index].attributedText = attributedText(letterSpacing: -1.1,
-                                                                   text: value,
+                                                                   text: result,
                                                                    font: Font.H3Subtitle,
                                                                    textColor: .white,
                                                                    alignment: .left)

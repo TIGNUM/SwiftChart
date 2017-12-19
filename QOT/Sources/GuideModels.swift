@@ -34,7 +34,7 @@ struct Guide {
 
         struct DailyPrep {
             let feedback: String?
-            let results: [Int]
+            let results: [String]
 
             var labels: [String] {
                 return ["Sleep\nQuality", "Sleep\nQuantity", "Load\nIndex", "Load\nFoo", "Recovery\nIndex"]
@@ -42,10 +42,6 @@ struct Guide {
 
             var empty: [String] {
                 return ["_", "_", "_", "_", "_"]
-            }
-
-            var stringResults: [String] {
-                return results.map { String(format: "%d", $0) }
             }
         }
 

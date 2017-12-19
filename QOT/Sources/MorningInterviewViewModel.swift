@@ -43,16 +43,18 @@ final class MorningInterviewViewModel: NSObject {
     private let validFrom: Date
     private let validTo: Date
     private let questions: [InterviewQuestion]
+    private let notificationID: String
 
     // MARK: - Init
 
-    init(services: Services, questionGroupID: Int, validFrom: Date, validTo: Date) {
+    init(services: Services, questionGroupID: Int, validFrom: Date, validTo: Date, notificationID: String = "") {
         let questions = services.questionsService.morningInterviewQuestions(questionGroupID: questionGroupID)
         self.services = services
         self.questionGroupID = questionGroupID
         self.validFrom = validFrom
         self.validTo = validTo
         self.questions = Array(questions.flatMap(InterviewQuestion.init))
+        self.notificationID = notificationID
     }
 
     var questionsCount: Int {
@@ -86,10 +88,15 @@ final class MorningInterviewViewModel: NSObject {
     }
 
     func save(userAnswers: [UserAnswer]) throws {
+        let dailyPrepResults = List<IntObject>(userAnswers.map { IntObject(int: Int($0.userAnswer) ?? 0) })
         let realm = services.mainRealm
         try realm.write {
             userAnswers.forEach { (userAnswer: UserAnswer) in
                 realm.add(userAnswer)
+            }
+            if let guideItemNotification = realm.syncableObject(ofType: RealmGuideItemNotification.self,
+                                                                localID: notificationID) {
+                guideItemNotification.dailyPrepResults.append(objectsIn: dailyPrepResults)
             }
         }
     }

@@ -48,7 +48,7 @@ final class RealmGuideItemNotification: SyncableObject {
 
     @objc dynamic var reminderTime: RealmGuideTime?
 
-    var morningInterviewResults: List<IntObject> = List()
+    var dailyPrepResults = List<IntObject>()
 }
 
 extension RealmGuideItemNotification: OneWaySyncableDown {

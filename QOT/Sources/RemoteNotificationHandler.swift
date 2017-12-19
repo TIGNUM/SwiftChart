@@ -49,8 +49,10 @@ final class RemoteNotificationHandler: NSObject, UAPushNotificationDelegate {
     // MARK: - private
 
     private func process(_ notificationResponse: UANotificationResponse) {
-        if let deepLinkURL = notificationResponse.notificationContent.deepLinkURL {
-            launchHandler.process(url: deepLinkURL)
+        if
+            let deepLinkURL = notificationResponse.notificationContent.deepLinkURL,
+            let notificationID = notificationResponse.response?.notification.request.identifier {
+                launchHandler.process(url: deepLinkURL, notificationID: notificationID)
         }
     }
 }
@@ -60,9 +62,7 @@ final class RemoteNotificationHandler: NSObject, UAPushNotificationDelegate {
 private extension UANotificationContent {
 
     var deepLinkURL: URL? {
-        guard let deepLink = notificationInfo["^d"] as? String, let url = URL(string: deepLink) else {
-            return nil
-        }
+        guard let deepLink = notificationInfo["^d"] as? String, let url = URL(string: deepLink) else { return nil }
         return url
     }
 }

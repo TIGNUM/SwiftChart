@@ -179,9 +179,10 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             let link = URL(string: linkString), launchHandler.canLaunch(url: link) == true else {
                 return
         }
-
-        launchHandler.process(url: link)
-        GuideWorker(services: AppDelegate.appState.services).setItemCompleted(guideID: notification.request.identifier)
+        
+        let notificationID = notification.request.identifier
+        launchHandler.process(url: link, notificationID: notificationID)
+        GuideWorker(services: AppDelegate.appState.services).setItemCompleted(guideID: notificationID)
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,
