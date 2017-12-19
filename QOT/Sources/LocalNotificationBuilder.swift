@@ -32,6 +32,10 @@ final class LocalNotificationBuilder: NSObject {
             }
         }
     }
+
+    static func cancelNotification(identifier: String) {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
+    }
 }
 
 // MARK: - Private
@@ -95,9 +99,5 @@ private extension LocalNotificationBuilder {
                 log(error, level: .error)
             }
         }
-    }
-
-    func cancelNotification(identifier: String) {
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
     }
 }

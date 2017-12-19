@@ -26,16 +26,6 @@ final class GuideItemLearnService {
         return List<RealmGuideItemLearn>(items)
     }
 
-    func setItemCompleted(item: RealmGuideItemLearn) {
-        do {
-            try mainRealm.write {
-                item.completedAt = Date()
-            }
-        } catch {
-            assertionFailure("Set item completed: \(RealmGuideItemLearn.self), error: \(error)")
-        }
-    }
-
     func eraseItem(item: RealmGuideItemLearn) {
         do {
             try mainRealm.write {

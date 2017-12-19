@@ -34,16 +34,6 @@ final class GuideItemNotificationService {
         return List<RealmGuideItemNotification>(todayNotifications)
     }
 
-//    func setItemCompleted(item: RealmGuideItemNotification) {
-//        do {
-//            try mainRealm.write {
-//                item.completed = true
-//            }
-//        } catch let error {
-//            assertionFailure("Set item completed: \(RealmGuideItemNotification.self), error: \(error)")
-//        }
-//    }
-
     func eraseItem(item: RealmGuideItemNotification) {
         do {
             try mainRealm.write {

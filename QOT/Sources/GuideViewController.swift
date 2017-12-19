@@ -135,6 +135,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = viewModel.item(indexPath: indexPath)
+        viewModel.cancelPendingNotificationIfNeeded(item: item)
         open(link: item.link)
         viewModel.setCompleted(item: item) {
             tableView.reloadRows(at: [indexPath], with: .automatic)

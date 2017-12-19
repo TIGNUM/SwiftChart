@@ -73,6 +73,10 @@ final class GuideViewModel {
         }
     }
 
+    func cancelPendingNotificationIfNeeded(item: Guide.Item) {
+        LocalNotificationBuilder.cancelNotification(identifier: item.identifier)
+    }
+
 //    func guide(section: Int) -> Guide {
 //        return services.guideService.guideSections()[section]
 //    }
@@ -97,13 +101,6 @@ final class GuideViewModel {
 //                                                       issueDate: dailyPrep.issueDate,
 //                                                       status: dailyPrep.completed == true ? .done : .todo)
     }
-
-//    func updateGuideItems(_ items: List<GuideItem>, guide: Guide) throws {
-//        let realm = services.mainRealm
-//        try realm.write {
-//            guide.items = items
-//        }
-//    }
 }
 
 private extension Guide.Day {
