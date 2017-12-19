@@ -109,10 +109,9 @@ private extension GuideViewController {
                                 greeting: LoremIpsum.sentence())
     }
 
-    func open(link: Guide.Item.Link) {
-        guard let linkURL = link.url else { return }
-
-        AppDelegate.current.launchHandler.process(url: linkURL)
+    func open(item: Guide.Item) {
+        guard let linkURL = item.link.url else { return }
+        AppDelegate.current.launchHandler.process(url: linkURL, guideItem: item)
     }
 
     func dailyPrepTableViewCell(item: Guide.Item, indexPath: IndexPath) -> GuideDailyPrepTableViewCell {
@@ -180,7 +179,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
         guard item.isDailyPrepCompleted == false else { return }
 
         viewModel.cancelPendingNotificationIfNeeded(item: item)
-        open(link: item.link)
+        open(item: item)
         viewModel.setCompleted(item: item) {
             tableView.reloadRows(at: [indexPath], with: .automatic)
         }

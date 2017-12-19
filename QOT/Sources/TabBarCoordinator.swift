@@ -348,15 +348,14 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
                 return
         }
 
-        guard let coordinator = ArticleContentItemCoordinator(
-            pageName: .whatsHotArticle,
-            root: viewController,
-            services: services,
-            contentCollection: content,
-            articleHeader: articleHeader,
-            topTabBarTitle: nil,
-            shouldPush: false) else {
-                return
+        guard let coordinator = ArticleContentItemCoordinator(pageName: .whatsHotArticle,
+                                                              root: viewController,
+                                                              services: services,
+                                                              contentCollection: content,
+                                                              articleHeader: articleHeader,
+                                                              topTabBarTitle: nil,
+                                                              shouldPush: false) else {
+                                                                return
         }
         startChild(child: coordinator)
     }

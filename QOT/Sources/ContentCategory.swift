@@ -52,6 +52,7 @@ extension ContentCategory: BuildRelations {
 // MARK: - OneWaySyncableDown
 
 extension ContentCategory: OneWaySyncableDown {
+    
     static var endpoint: Endpoint {
         return .contentCategories
     }

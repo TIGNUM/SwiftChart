@@ -26,6 +26,7 @@ final class ArticleItemViewController: UIViewController {
     // MARK: - Properties
 
     private let contentInsets: UIEdgeInsets
+    private let fadeMaskLocation: UIView.FadeMaskLocation
     let pageName: PageName
     var viewModel: ArticleItemViewModel
     weak var delegate: ArticleItemViewControllerDelegate?
@@ -48,10 +49,15 @@ final class ArticleItemViewController: UIViewController {
 
     // MARK: - Init
 
-    init(pageName: PageName, viewModel: ArticleItemViewModel, title: String? = nil, contentInsets: UIEdgeInsets) {
+    init(pageName: PageName,
+         viewModel: ArticleItemViewModel,
+         title: String? = nil,
+         contentInsets: UIEdgeInsets,
+         fadeMaskLocation: UIView.FadeMaskLocation) {
         self.pageName = pageName
         self.viewModel = viewModel
         self.contentInsets = contentInsets
+        self.fadeMaskLocation = fadeMaskLocation
 
         super.init(nibName: nil, bundle: nil)
 
@@ -100,10 +106,7 @@ private extension ArticleItemViewController {
     func resizeHeaderView() {
         guard
             let headerView = tableView.tableHeaderView,
-            let header = viewModel.articleHeader else {
-                return
-        }
-
+            let header = viewModel.articleHeader else { return }
         let sidePadding = CGFloat(56)
         let frameWidth = tableView.frame.size.width - sidePadding
         let titleHeight = calculateLabelHeight(text: header.articleTitle, font: Font.H5SecondaryHeadline, dispayedLineHeight: 18, frameWidth: frameWidth, characterSpacing: 1)
@@ -135,6 +138,7 @@ private extension ArticleItemViewController {
         view.backgroundColor = .clear
         tableView.edgeAnchors == view.edgeAnchors
         view.addFadeView(at: .top)
+        view.setFadeMask(at: fadeMaskLocation)
         view.layoutIfNeeded()
     }
 

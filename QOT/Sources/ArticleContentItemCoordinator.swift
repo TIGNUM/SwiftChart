@@ -51,12 +51,10 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
                                          articleHeader: articleHeader,
                                          backgroundImage: backgroundImage
         )
-
-        fullViewController = ArticleItemViewController(
-            pageName: pageName,
-            viewModel: viewModel,
-            contentInsets: contentInsets
-        )
+        fullViewController = ArticleItemViewController(pageName: pageName,
+                                                       viewModel: viewModel,
+                                                       contentInsets: contentInsets,
+                                                       fadeMaskLocation: .top)
         fullViewController.title = topTabBarTitle
         fullViewController.delegate = self
 
@@ -108,7 +106,7 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
             return
         }
 
-        articleHeader = ArticleCollectionHeader(contentCollection: selectedArticle)
+        articleHeader = ArticleCollectionHeader(content: selectedArticle)
         viewModel = ArticleItemViewModel(services: services,
                                          items: Array(selectedArticle.articleItems),
                                          contentCollection: selectedArticle,

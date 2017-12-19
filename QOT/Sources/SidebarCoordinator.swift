@@ -86,15 +86,12 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
     }
 
     private func startSidebarItemCoordinator(pageName: PageName, contentCollection: ContentCollection?, viewController: SidebarViewController, topTabBarTitle: String? = nil, backgroundImage: UIImage? = nil) {
-        guard let coordinator = ArticleContentItemCoordinator(
-            pageName: pageName,
-            root: viewController,
-            services: services,
-            contentCollection: contentCollection,
-            topTabBarTitle: topTabBarTitle?.uppercased(), backgroundImage: backgroundImage) else {
-                return
-        }
-
+        guard let coordinator = ArticleContentItemCoordinator(pageName: pageName,
+                                                              root: viewController,
+                                                              services: services,
+                                                              contentCollection: contentCollection,
+                                                              topTabBarTitle: topTabBarTitle?.uppercased(),
+                                                              backgroundImage: backgroundImage) else { return }
         startChild(child: coordinator)
     }
 }

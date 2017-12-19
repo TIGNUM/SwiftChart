@@ -28,6 +28,7 @@ enum PageName: String {
     case benefits = "sidebar.benefits"
     case guide = "guide"
     case faq = "sidebar.faq"
+    case featureExplainer = "guide.tools.feature.explainer"
     case launch = "splashscreen"
     case learnCategoryList = "learn.strategies.categorylist"
     case learnContentItemFull = "learn.strategies.strategy.full"
@@ -92,11 +93,16 @@ extension AddSensorViewController: TrackablePage {
     }
 }
 
-//extension GuideViewController: TrackablePage {
-//    var pageName: PageName {
-//        return .guide
-//    }
-//}
+extension GuideViewController: TrackablePage {
+
+    var pageAssociatedObject: PageObject? {
+         return nil
+    }
+
+    var pageName: PageName {
+        return .guide
+    }
+}
 
 extension ArticleCollectionViewController: TrackablePage {
     // @see implementation

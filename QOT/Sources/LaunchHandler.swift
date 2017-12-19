@@ -19,7 +19,7 @@ final class LaunchHandler {
         return URLScheme.isSupportedURL(url)
     }
 
-    func process(url: URL, notificationID: String = "") {
+    func process(url: URL, notificationID: String = "", guideItem: Guide.Item? = nil) {
         guard
             let host = url.host,
             let scheme = URLScheme(rawValue: host) else { return }
@@ -36,6 +36,7 @@ final class LaunchHandler {
         case .toBeVision: toBeVision()
         case .weeklyPeakPerformance: return
         case .contentCategory: contentCategory(collectionID: scheme.queryParametter(url: url))
+        case .featureExplainer: featureExplainer(url: url, scheme: scheme, guideItem: guideItem)
         }
     }
 
@@ -190,5 +191,18 @@ extension LaunchHandler {
 
     func contentCategory(collectionID: String?) {
         appDelegate.appCoordinator.presentLearnContentCollection(collectionID: collectionID)
+    }
+}
+
+// MARK: - FeatureExplainer
+
+extension LaunchHandler {
+
+    func featureExplainer(url: URL, scheme: URLScheme, guideItem: Guide.Item?) {
+        guard
+            let guideItem = guideItem,
+            let contentIDString = scheme.queryParametter(url: url),
+            let contentID = Int(contentIDString) else { return }
+        appDelegate.appCoordinator.presentFeatureArticelContentItems(contentID: contentID, guideItem: guideItem)
     }
 }

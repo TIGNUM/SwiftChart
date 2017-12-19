@@ -365,6 +365,21 @@ extension AppCoordinator {
         currentPresentedController = viewController
     }
 
+    func presentFeatureArticelContentItems(contentID: Int, guideItem: Guide.Item) {
+        guard
+            let rootViewController = windowManager.rootViewController(atLevel: .normal),
+            let services = services,
+            let content = services.contentService.contentCollection(id: contentID),
+            let coordinator = ArticleContentItemCoordinator(pageName: .featureExplainer,
+                                                            root: rootViewController,
+                                                            services: services,
+                                                            contentCollection: content,
+                                                            articleHeader: ArticleCollectionHeader(content: content),
+                                                            topTabBarTitle: guideItem.subtitle.uppercased(),
+                                                            shouldPush: false) else { return }
+        startChild(child: coordinator)
+    }
+
     func presentLearnContentCollection(collectionID: String?) {
         guard
             let rootViewController = windowManager.rootViewController(atLevel: .normal),
