@@ -344,9 +344,7 @@ extension AppCoordinator {
     func presentWeeklyChoicesReminder() {
         guard
             let rootViewController = windowManager.rootViewController(atLevel: .normal),
-            let services = services else {
-                return
-        }
+            let services = services else { return }
         let coordinator = WeeklyChoicesCoordinator(root: rootViewController,
                                                    services: services,
                                                    transitioningDelegate: nil,
@@ -367,13 +365,26 @@ extension AppCoordinator {
         currentPresentedController = viewController
     }
 
+    func presentLearnContentCollection(collectionID: String?) {
+        guard
+            let rootViewController = windowManager.rootViewController(atLevel: .normal),
+            let services = services else { return }
+        let transitioningDelegate = LearnListAnimator()
+        let coordinator = LearnContentListCoordinator(root: rootViewController,
+                                                      transitioningDelegate: transitioningDelegate,
+                                                      services: services,
+                                                      eventTracker: eventTracker,
+                                                      selectedCategoryIndex: 5,
+                                                      originFrame: rootViewController.view.frame)
+        coordinator.delegate = self
+        startChild(child: coordinator)
+    }
+
     func presentLearnContentItems(contentID: Int) {
         guard
             let services = services,
             let content = services.contentService.contentCollection(id: contentID),
-            let category = content.contentCategories.first else {
-                return
-        }
+            let category = content.contentCategories.first else { return }
         startLearnContentItemCoordinator(services: services, content: content, category: category)
     }
 
@@ -381,9 +392,7 @@ extension AppCoordinator {
         guard
             let services = services,
             let content = services.contentService.contentCollection(id: contentID),
-            let category = services.contentService.contentCategory(id: categoryID) else {
-                return
-        }
+            let category = services.contentService.contentCategory(id: categoryID) else { return }
         startLearnContentItemCoordinator(services: services, content: content, category: category)
     }
 
@@ -412,12 +421,18 @@ extension AppCoordinator {
 
     func showOnboarding() {
         let userName = services?.userService.user()?.givenName ?? ""
-        let coordinator = OnboardingCoordinator(windowManager: windowManager, delegate: self, permissionsManager: permissionsManager, userName: userName)
+        let coordinator = OnboardingCoordinator(windowManager: windowManager,
+                                                delegate: self,
+                                                permissionsManager: permissionsManager,
+                                                userName: userName)
         startChild(child: coordinator)
     }
 
     func showLogin() {
-        let loginCoordinator = LoginCoordinator(windowManager: windowManager, delegate: self, networkManager: networkManager, syncManager: syncManager)
+        let loginCoordinator = LoginCoordinator(windowManager: windowManager,
+                                                delegate: self,
+                                                networkManager: networkManager,
+                                                syncManager: syncManager)
         startChild(child: loginCoordinator)
     }
 
@@ -445,11 +460,11 @@ extension AppCoordinator: TopNavigationBarDelegate {
         AppCoordinator.updateStatusBarStyleIfNeeded()
     }
 
-    func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
-        guard let pageViewController = topTabBarController?.viewControllers.first as? PageViewController else {
-            return
-        }
-
+    func topNavigationBar(_ navigationBar: TopNavigationBar,
+                          middleButtonPressed button: UIButton,
+                          withIndex index: Int,
+                          ofTotal total: Int) {
+        guard let pageViewController = topTabBarController?.viewControllers.first as? PageViewController else { return }
         pageViewController.setPageIndex(index, animated: true)
     }
 
@@ -626,6 +641,17 @@ extension AppCoordinator: PermissionManagerDelegate {
                     log("successfully reported permissions: \(permissions.map({ $0.identifier }))")
                 }
             })
+        }
+    }
+}
+
+// MARK: - LearnContentListCoordinatorDelegate
+
+extension AppCoordinator: LearnContentListCoordinatorDelegate {
+
+    func didFinish(coordinator: LearnContentListCoordinator) {
+        if let index = children.index(where: { $0 === coordinator}) {
+            children.remove(at: index)
         }
     }
 }

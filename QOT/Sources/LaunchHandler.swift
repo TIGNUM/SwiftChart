@@ -22,10 +22,7 @@ final class LaunchHandler {
     func process(url: URL, notificationID: String = "") {
         guard
             let host = url.host,
-            let scheme = URLScheme(rawValue: host) else {
-                return
-        }
-
+            let scheme = URLScheme(rawValue: host) else { return }
         logPushNotificationID(urlScheme: scheme, url: url)
 
         switch scheme {
@@ -38,6 +35,7 @@ final class LaunchHandler {
         case .myPreps: preparationList()
         case .toBeVision: toBeVision()
         case .weeklyPeakPerformance: return
+        case .contentCategory: contentCategory(collectionID: scheme.queryParametter(url: url))
         }
     }
 
@@ -52,10 +50,7 @@ final class LaunchHandler {
 extension LaunchHandler {
 
     func preparation(localID: String?) {
-        guard let localID = localID else {
-            return
-        }
-
+        guard let localID = localID else { return }
         appDelegate.appCoordinator.presentPreparationCheckList(localID: localID)
     }
 }
@@ -123,9 +118,7 @@ extension LaunchHandler {
     func dailyPrep(groupID: String?, notificationID: String = "") {
         guard
             let groupID = groupID,
-            let groupIDIntValue = Int(groupID) else {
-                return
-        }
+            let groupIDIntValue = Int(groupID) else { return }
 
         //TODO: dates?
         appDelegate.appCoordinator.presentMorningInterview(groupID: groupIDIntValue,
@@ -168,10 +161,7 @@ extension LaunchHandler {
     func randomContent(url: URL, scheme: URLScheme) {
         guard
             let contentIDString = scheme.queryParametter(url: url),
-            let contentID = Int(contentIDString) else {
-                return
-        }
-
+            let contentID = Int(contentIDString) else { return }
         appDelegate.appCoordinator.presentLearnContentItems(contentID: contentID)
     }
 }
@@ -191,5 +181,14 @@ extension LaunchHandler {
 
     func preparationList() {
         appDelegate.appCoordinator.presentPreparationList()
+    }
+}
+
+// MARK: - ContentCategory - ContentCollection
+
+extension LaunchHandler {
+
+    func contentCategory(collectionID: String?) {
+        appDelegate.appCoordinator.presentLearnContentCollection(collectionID: collectionID)
     }
 }
