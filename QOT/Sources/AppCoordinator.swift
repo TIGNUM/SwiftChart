@@ -30,6 +30,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     private lazy var credentialsManager: CredentialsManager = CredentialsManager.shared
     private var canProcessRemoteNotifications = false
     private var onDismiss: (() -> Void)?
+    private var notificationID: String?
 
     // current state
     private weak var topTabBarController: UINavigationController?
@@ -327,6 +328,7 @@ extension AppCoordinator {
 
     func presentMorningInterview(groupID: Int, validFrom: Date, validTo: Date, notificationID: String) {
         guard let services = services else { return }
+        self.notificationID = notificationID
         AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
         let viewModel = MorningInterviewViewModel(services: services,
                                                   questionGroupID: groupID,
@@ -531,10 +533,26 @@ extension AppCoordinator: MorningInterviewViewControllerDelegate {
             let alert = AlertType.makeCustom(title: nil, message: feedback.body) else {
                 return
         }
+        save(feedback: feedback)
         windowManager.showWindow(atLevel: .alert)
         rootViewController.showAlert(type: alert, handler: {
             self.windowManager.resignWindow(atLevel: .alert)
         }, handlerDestructive: nil)
+    }
+
+    private func save(feedback: UserAnswerFeedback) {
+        do {
+            let realm = try RealmProvider().realm()
+            try realm.write {
+                if  let notificationID = notificationID,
+                    let guideItemNotification = realm.syncableObject(ofType: RealmGuideItemNotification.self,
+                                                                    localID: notificationID) {
+                    guideItemNotification.morningInterviewFeedback = feedback.body
+                }
+            }
+        } catch {
+            log(error, level: .error)
+        }
     }
 }
 

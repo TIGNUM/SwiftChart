@@ -179,7 +179,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             let link = URL(string: linkString), launchHandler.canLaunch(url: link) == true else {
                 return
         }
-        
+
         let notificationID = notification.request.identifier
         launchHandler.process(url: link, notificationID: notificationID)
         GuideWorker(services: AppDelegate.appState.services).setItemCompleted(guideID: notificationID)
