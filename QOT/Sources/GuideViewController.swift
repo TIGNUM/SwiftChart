@@ -75,7 +75,7 @@ private extension GuideViewController {
 
     func updateGreetingView(indexPath: IndexPath) {
         let greeting = viewModel.greeting(indexPath: indexPath)
-        greetingView?.configure(message: greeting ?? "",
+        greetingView?.configure(message: LoremIpsum.sentence(),
                                timing: "Plan timing 24 minutes")
     }
 

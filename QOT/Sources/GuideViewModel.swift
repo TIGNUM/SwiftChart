@@ -55,7 +55,7 @@ final class GuideViewModel {
     }
 
     func greeting(indexPath: IndexPath) -> String? {
-        return item(indexPath: indexPath).greeting        
+        return item(indexPath: indexPath).greeting
     }
 
     func numberOfRows(section: Int) -> Int {
