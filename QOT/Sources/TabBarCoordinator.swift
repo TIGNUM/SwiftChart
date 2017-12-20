@@ -26,7 +26,6 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     private let syncManager: SyncManager
     private let articleCollectionProvider: ArticleCollectionProvider
     private let whatsHotBadgeManager = WhatsHotBadgeManager()
-    private let sidebarMenuButton = UIBarButtonItem(withImage: R.image.ic_menu())
     var children = [Coordinator]()
 
     lazy var prepareCoordinator: PrepareCoordinator = {
@@ -85,8 +84,10 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     private lazy var topTabBarControllerGuide: UINavigationController = {
         let viewModel = GuideViewModel(services: services, eventTracker: eventTracker)
         let guideViewController = GuideViewController(viewModel: viewModel, fadeMaskLocation: .topAndBottom)
+        let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())
         let topTabBarController = UINavigationController(withPages: [guideViewController],
-                                                         rightButton: sidebarMenuButton)
+                                                         topBarDelegate: self,
+                                                         rightButton: rightButton)
         let config = tabBarItemConfig(title: "GUIDE", tag: 0)
         topTabBarController.tabBarItem = TabBarItem(config: config)
         return topTabBarController
@@ -129,7 +130,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         topTabBarController.delegate = self
         var tabBarItemConfig = TabBarItem.Config.default
         tabBarItemConfig.title = R.string.localized.tabBarItemMe()
-        tabBarItemConfig.tag = 1
+        tabBarItemConfig.tag = 2
         topTabBarController.tabBarItem = TabBarItem(config: tabBarItemConfig)
         return topTabBarController
     }()
@@ -201,6 +202,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     // MARK: - private
 
     private func showTutorial(_ tutorial: Tutorial) {
+        guard false else { return }
         guard tutorial.exists() == false,
             let buttonFrame = tabBarController.frameForButton(at: selectedIndex.value) else { return }
         tutorial.set()
