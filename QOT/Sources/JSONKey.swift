@@ -100,6 +100,7 @@ enum JsonKey: String {
     case latestVersion
     case latitude
     case layoutInfo
+    case learnItems
     case link
     case location
     case longitude
@@ -125,6 +126,7 @@ enum JsonKey: String {
     case nano
     case nextSyncToken
     case notes
+    case notificationItems
     case occurrenceCount
     case occurrenceDate
     case occurrenceValue
@@ -163,6 +165,7 @@ enum JsonKey: String {
     case secondsRequired
     case section
     case seconds
+    case serverPush
     case setPositions
     case settingBoolValue
     case settingBoolValueDtos

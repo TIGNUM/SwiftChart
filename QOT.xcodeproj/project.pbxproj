@@ -1084,6 +1084,7 @@
 			isa = PBXGroup;
 			children = (
 				365579B41FE040A2003DAF9A /* GuideIntermediary.swift */,
+				CBE880921FE9153200670C10 /* GuideItemID.swift */,
 				360C73751FE2805B0093107A /* GuideItemIntermediary.swift */,
 				36FC8D461FDEF16F00B5E062 /* GuideItemLearnIntermediary.swift */,
 				36FC8D481FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift */,
@@ -1094,7 +1095,6 @@
 				363178E41FDEE8D700833958 /* RealmGuideItemLearn.swift */,
 				363178E61FDEECDE00833958 /* RealmGuideItemNotification.swift */,
 				3649C0321FE323EE001F4249 /* RealmGuideTime.swift */,
-				CBE880921FE9153200670C10 /* GuideItemID.swift */,
 			);
 			name = Guide;
 			sourceTree = "<group>";
