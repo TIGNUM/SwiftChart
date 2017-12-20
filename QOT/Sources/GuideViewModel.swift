@@ -25,10 +25,11 @@ private extension Guide.Item {
             status = learn.completedAt == nil ? .todo : .done
             title = learn.title
             content = .text(learn.body)
-            subtitle = learn.displayType
+            subtitle = learn.displayType ?? ""
             type = learn.type
             link = .path(learn.link)
-            featureLink = learn.featureLink.isEmpty == true ? nil : .path(learn.featureLink)
+            featureLink = .path(learn.featureLink ?? "")
+            featureButton = learn.featureButton
             identifier = item.localID
             dailyPrep = nil
             greeting = learn.greeting
@@ -41,6 +42,7 @@ private extension Guide.Item {
             type = notification.type
             link = .path(notification.link)
             featureLink = nil
+            featureButton = nil
             identifier = item.localID
             dailyPrep = DailyPrep(feedback: notification.morningInterviewFeedback,
                                   results: Array(notification.dailyPrepResults.map { String(format: "%d", $0.value) }))
@@ -72,6 +74,16 @@ extension GuideViewModel {
             }
         }
     }
+
+    enum DefaultMessage: Int {
+        case welcome = 102978
+        case dailyLearnPlan = 102979
+        case dailyPrep = 103002
+
+        func text(_ contentService: ContentService) -> String {
+            return contentService.defaultMessage(self) ?? ""
+        }
+    }
 }
 
 final class GuideViewModel {
@@ -81,6 +93,7 @@ final class GuideViewModel {
     private let syncStateObserver: SyncStateObserver
     private var notificationTokenHandler: NotificationTokenHandler?
     private var tokenBin = TokenBin()
+    private var todaysGuide: RealmGuide?
     let updates = PublishSubject<CollectionUpdate, NoError>()
     let sectionCountUpdate = ReplayOneSubject<Int, NoError>()
     private var days: [Guide.Day] = [] {
@@ -102,7 +115,6 @@ final class GuideViewModel {
 
     private func reload() {
         days = services.guideService.guideSections().map { Guide.Day(day: $0) }
-
         sectionCountUpdate.next(sectionCount)
     }
 
@@ -112,16 +124,6 @@ final class GuideViewModel {
 
     var sectionCount: Int {
         return days.count
-    }
-
-    func greeting() -> String? {
-        return days.last?.items.filter { $0.status == .todo && $0.greeting != nil }.map { $0.greeting }.first ?? ""
-    }
-
-    func message() -> String {
-        let userName = services.mainRealm.objects(User.self).first?.givenName ?? ""
-        let welcomeMessage = Date().isBeforeNoon == true ? "Good Morning" : "Hello"
-        return String(format: "%@ %@\n", welcomeMessage, userName)
     }
 
     func numberOfRows(section: Int) -> Int {
@@ -150,9 +152,9 @@ final class GuideViewModel {
     }
 
     func createTodaysGuideIfNeeded() {
-        let todaysGuide = services.guideService.todaysGuide()
+        todaysGuide = services.guideService.todaysGuide()
         guard todaysGuide?.items.isEmpty == true || todaysGuide == nil else { return }
         services.guideService.eraseGuide()
-        _ = GuideWorker(services: services).createTodaysGuide()
+        todaysGuide = GuideWorker(services: services).createTodaysGuide()
     }
 }

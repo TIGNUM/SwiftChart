@@ -26,7 +26,7 @@ final class RealmGuideItemLearn: SyncableObject, RealmGuideItemProtocol {
 
     @objc private(set) dynamic var type: String = ""
 
-    @objc private(set) dynamic var displayType: String = ""
+    @objc private(set) dynamic var displayType: String?
 
     @objc private(set) dynamic var greeting: String = ""
 
@@ -34,7 +34,9 @@ final class RealmGuideItemLearn: SyncableObject, RealmGuideItemProtocol {
 
     @objc private(set) dynamic var sound: String = ""
 
-    @objc private(set) dynamic var featureLink: String = ""
+    @objc private(set) dynamic var featureLink: String?
+
+    @objc private(set) dynamic var featureButton: String?
 
     @objc private(set) dynamic var contentID: Int = 0
 
@@ -64,6 +66,7 @@ extension RealmGuideItemLearn: OneWaySyncableDown {
         link = data.link
         sound = data.sound
         featureLink = data.featureLink
+        featureButton = data.featureButton
         contentID = data.contentID
         priority = data.priority
         block = data.block

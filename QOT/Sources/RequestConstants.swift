@@ -42,16 +42,13 @@ enum Endpoint: String {
     case userFeedback = "/personal/p/qot/userFeedback"
     case userLocationUpdate = "/personal/p/qot/geolocation"
     case log = "/personal/p/qot/log"
-    case guideItemsLearn = "personal/p/qot/guide/learnItem"
+    case guideItemsLearn = "/personal/p/qot/guide/learnItem"
     case guideItemsNotification = "/personal/p/qot/guide/notificationItem"
     case guide = "/personal/p/qot/guide"
     case guideNotification = "/personal/p/qot/notification"
 
     func url(baseURL: URL) -> URL {
-        if let url = URL(string: rawValue), url.host != nil {
-            return url
-        }
-
+        if let url = URL(string: rawValue), url.host != nil { return url }
         return baseURL.appendingPathComponent(rawValue)
     }
 }

@@ -65,6 +65,7 @@ enum JsonKey: String {
     case esbDomain
     case eventId
     case feature
+    case featureButton
     case featureLink
     case feedback
     case fitbitState

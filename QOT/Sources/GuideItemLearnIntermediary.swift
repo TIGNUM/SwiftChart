@@ -14,11 +14,12 @@ struct GuideItemLearnIntermediary: DownSyncIntermediary {
     let title: String
     let body: String
     let type: String
-    let displayType: String
+    let displayType: String?
     let greeting: String
     let link: String
     let sound: String
-    let featureLink: String
+    let featureLink: String?
+    let featureButton: String?
     let contentID: Int
     let priority: Int
     let block: Int
@@ -30,11 +31,12 @@ struct GuideItemLearnIntermediary: DownSyncIntermediary {
         title = try json.getItemValue(at: .title, fallback: "")
         body = try json.getItemValue(at: .body, fallback: "")
         type = try json.getItemValue(at: .guideItemType, fallback: "")
-        displayType = try json.getItemValue(at: .displayType, fallback: "")
+        displayType = try json.getItemValue(at: .displayType, alongPath: .nullBecomesNil)
         greeting = try json.getItemValue(at: .greeting, fallback: "")
         link = try json.getItemValue(at: .link, fallback: "")
         sound = try json.getItemValue(at: .sound, fallback: "")
-        featureLink = try json.getItemValue(at: .featureLink, fallback: "")
+        featureLink = try json.getItemValue(at: .featureLink, alongPath: .nullBecomesNil)
+        featureButton = try json.getItemValue(at: .featureButton, alongPath: .nullBecomesNil)
         contentID = try json.getItemValue(at: .contentId, fallback: 0)
         priority = try json.getItemValue(at: .priority, fallback: 0)
         block = try json.getItemValue(at: .block, fallback: 0)

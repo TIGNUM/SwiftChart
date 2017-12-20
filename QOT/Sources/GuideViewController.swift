@@ -80,6 +80,7 @@ private extension GuideViewController {
     func reload() {
         tableView.reloadData()
         updateReadyState()
+        updateGreetingView()
     }
 
     func observeViewModel() {
@@ -105,8 +106,7 @@ private extension GuideViewController {
     }
 
     func updateGreetingView() {
-        greetingView?.configure(message: viewModel.message(),
-                                greeting: viewModel.greeting())
+        greetingView?.configure(greeting: "TBD")
     }
 
     func open(item: Guide.Item) {
