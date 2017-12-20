@@ -54,7 +54,7 @@ struct Guide {
         let featureLink: Link?
         let identifier: String
         let dailyPrep: DailyPrep?
-        let greeting: String?
+        let greeting: String
         let createdAt: Date
 
         var isDailyPrep: Bool {

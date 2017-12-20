@@ -149,8 +149,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             }
         }
     }
+}
 
-    class func topViewController(base: UIViewController? = (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController) -> UIViewController? {
+// MARK: - Current top view controller
+
+extension AppDelegate {
+
+    class func topViewController(base: UIViewController? =
+        (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController) -> UIViewController? {
+
         if let nav = base as? UINavigationController {
             return topViewController(base: nav.visibleViewController)
         }

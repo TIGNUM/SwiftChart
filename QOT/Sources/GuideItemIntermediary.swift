@@ -16,7 +16,7 @@ struct GuideItemIntermediary: DownSyncIntermediary {
     let body: String
     let type: String
     let displayType: String
-    let greeting: String?
+    let greeting: String
     let link: String
     let priority: Int
     let block: Int
@@ -33,7 +33,7 @@ struct GuideItemIntermediary: DownSyncIntermediary {
         body = try json.getItemValue(at: .body, fallback: "")
         type = try json.getItemValue(at: .type, fallback: "")
         displayType = try json.getItemValue(at: .displayType, fallback: "")
-        greeting = try json.getItemValue(at: .greeting, alongPath: .nullBecomesNil)
+        greeting = try json.getItemValue(at: .greeting, fallback: "")
         link = try json.getItemValue(at: .link, fallback: "")
         priority = try json.getItemValue(at: .priority, fallback: 0)
         block = try json.getItemValue(at: .block, fallback: 0)

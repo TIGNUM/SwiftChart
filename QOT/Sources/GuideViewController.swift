@@ -106,7 +106,7 @@ private extension GuideViewController {
 
     func updateGreetingView() {
         greetingView?.configure(message: viewModel.message(),
-                                greeting: LoremIpsum.sentence())
+                                greeting: viewModel.greeting())
     }
 
     func open(item: Guide.Item) {
@@ -179,6 +179,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
         open(item: item)
         viewModel.setCompleted(item: item) {
             tableView.reloadRows(at: [indexPath], with: .automatic)
+            self.updateGreetingView()
         }
     }
 }

@@ -30,7 +30,7 @@ final class RealmGuideItemNotification: SyncableObject, RealmGuideItemProtocol {
 
     @objc private(set) dynamic var displayType: String = ""
 
-    @objc private(set) dynamic var greeting: String?
+    @objc private(set) dynamic var greeting: String = ""
 
     @objc private(set) dynamic var link: String = ""
 

@@ -102,6 +102,7 @@ final class GuideViewModel {
 
     private func reload() {
         days = services.guideService.guideSections().map { Guide.Day(day: $0) }
+
         sectionCountUpdate.next(sectionCount)
     }
 
@@ -120,7 +121,7 @@ final class GuideViewModel {
     func message() -> String {
         let userName = services.mainRealm.objects(User.self).first?.givenName ?? ""
         let welcomeMessage = Date().isBeforeNoon == true ? "Good Morning" : "Hello"
-        return String(format: "%@ %@,\n", welcomeMessage, userName)
+        return String(format: "%@ %@\n", welcomeMessage, userName)
     }
 
     func numberOfRows(section: Int) -> Int {
@@ -149,7 +150,9 @@ final class GuideViewModel {
     }
 
     func createTodaysGuideIfNeeded() {
-        guard services.guideService.todaysGuide() == nil else { return }
+        let todaysGuide = services.guideService.todaysGuide()
+        guard todaysGuide?.items.isEmpty == true || todaysGuide == nil else { return }
+        services.guideService.eraseGuide()
         _ = GuideWorker(services: services).createTodaysGuide()
     }
 }

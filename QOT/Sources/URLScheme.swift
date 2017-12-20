@@ -10,6 +10,7 @@ import Foundation
 
 enum URLScheme: String {
     case fitbit = "fitbit-integration"
+    case fitbitAuthrefresh = "fitbit-authrefresh"
     case preparation = "preparation"
     case dailyPrep = "morning-interview"
     case weeklyChoices = "weekly-choices"
@@ -20,35 +21,59 @@ enum URLScheme: String {
     case weeklyChoicesReminder = "weekly-choices-reminder"
     case contentCategory = "content-category"
     case featureExplainer = "feature-explainer"
-
-    static var allValues: [URLScheme] {
-        return [.fitbit,
-                .preparation,
-                .dailyPrep,
-                .weeklyChoices,
-                .randomContent,
-                .weeklyPeakPerformance,
-                .toBeVision,
-                .myPreps,
-                .weeklyChoicesReminder,
-                .contentCategory,
-                .featureExplainer
-        ]
-    }
+    case strategies = "strategies"
+    case meUniverse = "me-universe"
+    case meMyWhy = "me-my-why"
+    case meChoices = "me-choices"
+    case meActivity = "me-activity"
+    case meIntensity = "me-intensity"
+    case meMeeting = "me-meeting"
+    case meSleep = "me-sleep"
+    case mePeakPerformance = "me-peakperformance"
+    case meQotPartner = "me-qot-partner"
+    case meTravel = "me-travel"
+    case preferencesSyncCalendar = "preferences-sync-calendar"
+    case addSensor = "add-sensor"
+    case prepare = "prepare"
+    case prepareProblem = "prepare-problem"
+    case prepareEvent = "prepare-event"
+    case prepareDay = "prepare-day"
+    case library = "library"
+    case guide = "guide"
 
     var queryName: String {
         switch self {
         case .fitbit: return "code"
-        case .preparation: return "#"
         case .dailyPrep: return "groupID"
+        case .preparation: return "#"
         case .randomContent,
              .featureExplainer: return "contentID"
         case .contentCategory: return "collectionID"
-        case .weeklyPeakPerformance,
-             .weeklyChoices,
+        case .weeklyChoices,
+             .fitbitAuthrefresh,
+             .weeklyPeakPerformance,
              .toBeVision,
+             .myPreps,
              .weeklyChoicesReminder,
-             .myPreps: return ""
+             .strategies,
+             .meUniverse,
+             .meMyWhy,
+             .meChoices,
+             .meActivity,
+             .meIntensity,
+             .meMeeting,
+             .meSleep,
+             .mePeakPerformance,
+             .meQotPartner,
+             .meTravel,
+             .preferencesSyncCalendar,
+             .addSensor,
+             .prepare,
+             .prepareProblem,
+             .prepareEvent,
+             .prepareDay,
+             .library,
+             .guide: return ""
         }
     }
 

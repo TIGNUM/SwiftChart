@@ -81,7 +81,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         return viewController
     }()
 
-    private lazy var topTabBarControllerGuide: UINavigationController = {
+    lazy var topTabBarControllerGuide: UINavigationController = {
         let viewModel = GuideViewModel(services: services, eventTracker: eventTracker)
         let guideViewController = GuideViewController(viewModel: viewModel, fadeMaskLocation: .topAndBottom)
         let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())

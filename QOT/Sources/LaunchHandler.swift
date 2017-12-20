@@ -37,12 +37,36 @@ final class LaunchHandler {
         case .weeklyPeakPerformance: return
         case .contentCategory: contentCategory(collectionID: scheme.queryParametter(url: url))
         case .featureExplainer: featureExplainer(url: url, scheme: scheme, guideItem: guideItem)
+        case .strategies: return
+        case .meUniverse: return
+        case .preferencesSyncCalendar: return
+        case .addSensor: return
+        case .prepare: return
+        case .fitbitAuthrefresh: return
+        case .meMyWhy:return
+        case .meChoices:return
+        case .meActivity:return
+        case .meIntensity:return
+        case .meMeeting:return
+        case .meSleep:return
+        case .mePeakPerformance:return
+        case .meQotPartner:return
+        case .meTravel:return
+        case .prepareProblem:return
+        case .prepareEvent:return
+        case .prepareDay:return
+        case .library:return
+        case .guide: launchGuide()
         }
     }
 
     func logPushNotificationID(urlScheme: URLScheme, url: URL) {
         guard let pushNotificationID = urlScheme.pushNotificationID(url: url) else { return }
         log("nid: \(pushNotificationID)", enabled: true, level: .error)
+    }
+
+    func launchGuide() {
+        appDelegate.appCoordinator.presentGuide()
     }
 }
 
