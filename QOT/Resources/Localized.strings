@@ -65,9 +65,10 @@
 "Top.Tab.Bar.Item.Title.Perpare.Preparation" = "PREPARATION";
 
 "Article.Loading" = "Please wait while we configure what's hot";
-
+"Guide.Loading" = "Please wait while we configure your guide";
 "Me.My.Universe.Loading" = "Please wait while we configure your universe";
 "Me.My.Prep.Loading" = "Please wait while we configure your preparation";
+
 "Me.My.Statistics.Navigation.Bar.Title" = "MY STATISTICS";
 "Me.Sector.Peak.Performance" = "Peak\nPerformance";
 "Me.Sector.Meetings" = "Meetings";

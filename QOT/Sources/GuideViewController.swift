@@ -23,7 +23,7 @@ final class GuideViewController: UIViewController, FullScreenLoadable, PageViewC
     var loadingView: BlurLoadingView?
     var isLoading: Bool = false {
         didSet {
-            showLoading(isLoading, text: "Loading loading loading")
+            showLoading(isLoading, text: R.string.localized.guideLoading())
         }
     }
 
@@ -147,11 +147,9 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = viewModel.item(indexPath: indexPath)
-
         if item.isDailyPrep == true {
             return dailyPrepTableViewCell(item: item, indexPath: indexPath)
         }
-
         return guideTableViewCell(item: item, indexPath: indexPath)
     }
 
@@ -162,11 +160,11 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 30, y: 0, width: tableView.bounds.width, height: sectionHeaderHeight))
         let label = UILabel(frame: view.frame)
-        let headline = String(format: "%@", DateFormatter.mediumDate.string(from: Date()))
+        let dateCreated = DateFormatter.mediumDate.string(from: viewModel.header(section: section))
+        let headline = String(format: "%@", dateCreated)
         view.addSubview(label)
         view.backgroundColor = .pineGreen
         label.attributedText = Style.navigationTitle(headline, .white40).attributedString()
-
         return view
     }
 
@@ -177,7 +175,6 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = viewModel.item(indexPath: indexPath)
         guard item.isDailyPrepCompleted == false else { return }
-
         viewModel.cancelPendingNotificationIfNeeded(item: item)
         open(item: item)
         viewModel.setCompleted(item: item) {

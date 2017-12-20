@@ -125,16 +125,18 @@ final class GuideViewModel {
         return days[section].items.count
     }
 
+    func header(section: Int) -> Date {
+        return services.guideService.guideSections()[section].createdAt
+    }
+
     func item(indexPath: IndexPath) -> Guide.Item {
         return days[indexPath.section].items[indexPath.row]
     }
 
     func setCompleted(item: Guide.Item, completion: @escaping () -> Void) {
         guard item.status == .todo else { return }
-
         GuideWorker(services: services).setItemCompleted(guideID: item.identifier) { (error) in
             guard error == nil else { return }
-
             self.reload()
             completion()
         }
@@ -146,7 +148,6 @@ final class GuideViewModel {
 
     func createTodaysGuideIfNeeded() {
         guard services.guideService.todaysGuide() == nil else { return }
-
         _ = GuideWorker(services: services).createTodaysGuide()
     }
 }

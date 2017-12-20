@@ -49,8 +49,7 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
                                          items: articleItems,
                                          contentCollection: contentCollection,
                                          articleHeader: articleHeader,
-                                         backgroundImage: backgroundImage
-        )
+                                         backgroundImage: backgroundImage)
         fullViewController = ArticleItemViewController(pageName: pageName,
                                                        viewModel: viewModel,
                                                        contentInsets: contentInsets,

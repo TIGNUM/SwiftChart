@@ -32,19 +32,14 @@ final class ArticleItemViewController: UIViewController {
     weak var delegate: ArticleItemViewControllerDelegate?
 
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(
-            style: .grouped,
-            contentInsets: self.contentInsets,
-            delegate: self,
-            dataSource: self,
-            dequeables:
-                ContentItemTextTableViewCell.self,
-                ImageSubtitleTableViewCell.self,
-                ArticleRelatedCell.self,
-                ErrorCell.self
-            )
-
-        return tableView
+        return UITableView(style: .grouped,
+                           contentInsets: self.contentInsets,
+                           delegate: self,
+                           dataSource: self,
+                           dequeables:ContentItemTextTableViewCell.self,
+                           ImageSubtitleTableViewCell.self,
+                           ArticleRelatedCell.self,
+                           ErrorCell.self)
     }()
 
     // MARK: - Init
