@@ -62,6 +62,7 @@
 		7F0F03041F14CE2300007D50 /* CollapsableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F0F03031F14CE2300007D50 /* CollapsableCell.xib */; };
 		7F0F03061F14CE2F00007D50 /* CollapsableContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F0F03051F14CE2F00007D50 /* CollapsableContentCell.xib */; };
 		7F0F03081F14FE9800007D50 /* CollapsableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F03071F14FE9800007D50 /* CollapsableNode.swift */; };
+		7F0F45B81FE922D400293942 /* MeetingsAverageNumberChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F45B71FE922D400293942 /* MeetingsAverageNumberChart.swift */; };
 		7F1711EB1FB30E0100ED08D8 /* WhatsHotBadgeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1711EA1FB30E0100ED08D8 /* WhatsHotBadgeManager.swift */; };
 		7F1711ED1FB3161C00ED08D8 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1711EC1FB3161C00ED08D8 /* Badge.swift */; };
 		7F1D3D221F8E24620071D322 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1D3D211F8E24620071D322 /* Log.swift */; };
@@ -588,6 +589,7 @@
 		7F0F03031F14CE2300007D50 /* CollapsableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollapsableCell.xib; sourceTree = "<group>"; };
 		7F0F03051F14CE2F00007D50 /* CollapsableContentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollapsableContentCell.xib; sourceTree = "<group>"; };
 		7F0F03071F14FE9800007D50 /* CollapsableNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollapsableNode.swift; sourceTree = "<group>"; };
+		7F0F45B71FE922D400293942 /* MeetingsAverageNumberChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingsAverageNumberChart.swift; sourceTree = "<group>"; };
 		7F1711EA1FB30E0100ED08D8 /* WhatsHotBadgeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsHotBadgeManager.swift; sourceTree = "<group>"; };
 		7F1711EC1FB3161C00ED08D8 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		7F1D3D211F8E24620071D322 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
@@ -1561,6 +1563,7 @@
 			children = (
 				CBE8808B1FE4368300670C10 /* Guide */,
 				7F6567301FE13BE200A6CB7F /* ScreenHelp */,
+				7F6567301FE13BE200A6CB7F /* ScreenHelp */,
 				CB9442261FD963B200E2B122 /* SlideShow */,
 			);
 			name = Scenes;
@@ -1920,6 +1923,7 @@
 				D52DAF9A1EC1E87D00C63156 /* ActivityChart.swift */,
 				CC0238FE1F4EE2B700DD992B /* IntensityChart.swift */,
 				852DADC31EEED5D600A10882 /* MeetingsAverageChart.swift */,
+				7F0F45B71FE922D400293942 /* MeetingsAverageNumberChart.swift */,
 				852DADD11EF04DEA00A10882 /* MeetingsLengthChart.swift */,
 				852DADD91EF147AA00A10882 /* MeetingsTimeBetweenChart.swift */,
 				852DADE71EF26B1D00A10882 /* PeakPerformanceAverageChart.swift */,
@@ -1993,11 +1997,11 @@
 			isa = PBXGroup;
 			children = (
 				CC944DB71EE8096100B8423C /* ChartCell.swift */,
+				CCAE22CF1F6BD7F80017C9EF /* ChartCell.xib */,
 				CC944DB51EE804CD00B8423C /* ChartTableViewCell.swift */,
 				CC37831B1F5EA91F007A16A3 /* ChartType.swift */,
 				CC143A521EC49641001FB76E /* ChartViewController.swift */,
 				CC143A4E1EC47810001FB76E /* ChartViewModel.swift */,
-				CCAE22CF1F6BD7F80017C9EF /* ChartCell.xib */,
 			);
 			name = "My Statistics";
 			sourceTree = "<group>";
@@ -3299,6 +3303,7 @@
 				CCC1B6AE1E8B9B7F00D1461F /* LearnContentListViewController.swift in Sources */,
 				CC02E14B1F279E6700134574 /* SettingsCalendarListViewController.swift in Sources */,
 				CC7D21B31EFC1348007A062E /* WeeklyChoicesViewController.swift in Sources */,
+				7F0F45B81FE922D400293942 /* MeetingsAverageNumberChart.swift in Sources */,
 				CCF19C591F6048600020D7B6 /* WebViewController.swift in Sources */,
 				7F3A9CC21FCDC89D000F1744 /* ArticleCollectionViewData.swift in Sources */,
 				CBFED33A1F7938970006270D /* ChatItemQueue.swift in Sources */,

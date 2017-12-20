@@ -40,6 +40,32 @@ final class Statistics: SyncableObject {
     var title: String = ""
 }
 
+// FIXME: remove when real data is available
+extension Statistics {
+    static var _meetingsNumberAverage: Statistics {
+        let statistic = Statistics()
+        statistic.key = "meetings.number.average"
+        statistic.remoteID.value = 25
+        statistic.userAverage = 3
+        statistic.teamAverage = 5
+        statistic.dataAverage = 4.5
+        statistic.upperThreshold = 8
+        statistic.lowerThreshold = 4
+        statistic.maximum = 10
+        statistic.universe = 0.38
+        statistic.multiplier = 1
+        statistic.dataPoints.append(DoubleObject(double: 0))
+        statistic.dataPoints.append(DoubleObject(double: 2))
+        statistic.dataPoints.append(DoubleObject(double: 3))
+        statistic.dataPoints.append(DoubleObject(double: 7))
+        statistic.dataPoints.append(DoubleObject(double: 10))
+        statistic.dataPoints.append(DoubleObject(double: 6))
+        statistic.dataPoints.append(DoubleObject(double: 3))
+        statistic.localID = "meetings.number.average"
+        return statistic
+    }
+}
+
 extension Statistics: OneWaySyncableDown {
 
     static var endpoint: Endpoint {
@@ -88,12 +114,22 @@ extension Statistics {
         return displayableValue(average: dataAverage)
     }
 
-    private func displayableValue(average: Double) -> String {
+    func displayableValue(average: Double) -> String {
         if unit.isEmpty == true {
             if multiplier == 1 {
-                return String(format: "%.1f", average.toFloat * multiplier.toFloat)
+                let value = average.toFloat * multiplier.toFloat
+                if (fmod(value, 1.0) == 0.0) { // if x.0
+                    return String(format: "%.0f", value)
+                } else { // if x.123
+                    return String(format: "%.1f", value)
+                }
             } else {
-                return String(format: "%.1f/%.0f", average.toFloat * multiplier.toFloat, multiplier.toFloat)
+                let value = average.toFloat * multiplier.toFloat
+                if (fmod(value, 1.0) == 0.0) { // if x.0
+                    return String(format: "%.0f/%.0f", value, multiplier.toFloat)
+                } else { // if x.123
+                    return String(format: "%.1f/%.0f", value, multiplier.toFloat)
+                }
             }
         }
         return String(format: "%.0f%@", average.toFloat * multiplier.toFloat, unit)
@@ -140,7 +176,7 @@ extension Statistics {
         var dataPointObjects = [DataPoint]()
 
         dataPoints.forEach { (dataPoint: DoubleObject) in
-            let dataValue = dataPoint.value.toFloat / (maximum.toFloat > 0 ? maximum.toFloat : 1)
+            let dataValue = dataPoint.value.toFloat
             let dataPointObj: DataPoint = DataPoint(value: dataValue, color: dataPointColor(dataValue))
             dataPointObjects.append(dataPointObj)
         }

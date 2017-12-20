@@ -1,5 +1,5 @@
 //
-//  ActivityChart.swift
+//  MeetingsAverageNumberChart.swift
 //  QOT
 //
 //  Created by Aamir Suhial Mir on 6/8/17.
@@ -8,8 +8,8 @@
 
 import UIKit
 
-final class ActivityChart: UIView {
-
+// Copied from ActivityChart
+final class MeetingsAverageNumberChart: UIView {
     private enum AverageLineType: EnumCollection {
         case data
         case personal
@@ -37,7 +37,7 @@ final class ActivityChart: UIView {
     private var statistics: Statistics
     private var labelContentView: UIView
     private let padding: CGFloat = 8
-    private let yAxisOffset: CGFloat = 40
+    private let yAxisOffset: CGFloat = 20
 
     // MARK: - Init
 
@@ -59,7 +59,7 @@ final class ActivityChart: UIView {
 
 // MARK: - Private
 
-private extension ActivityChart {
+private extension MeetingsAverageNumberChart {
 
     func hasShadow(_ dataPoint: DataPoint) -> Bool {
         switch dataPoint.color {
@@ -86,10 +86,10 @@ private extension ActivityChart {
         return (bottomPosition - (value * bottomPosition)) + padding * 0.5
     }
 
-    private func drawCapRoundLine(xPos: CGFloat, startYPos: CGFloat, endYPos: CGFloat, strokeColor: UIColor, hasShadow: Bool = false) {
+    func drawCapRoundLine(xPos: CGFloat, startYPos: CGFloat, endYPos: CGFloat, strokeColor: UIColor, hasShadow: Bool = false) {
         let startPoint = CGPoint(x: xPos, y: startYPos)
         let endPoint = CGPoint(x: xPos, y: endYPos)
-        drawCapRoundLine(from: startPoint, to: endPoint, lineWidth: 8, strokeColor: strokeColor, hasShadow: hasShadow)
+        drawDashedLine(from: startPoint, to: endPoint, lineWidth: 12, strokeColor: strokeColor, dashPattern: [1, 2])
         layoutIfNeeded()
     }
 
@@ -109,8 +109,10 @@ private extension ActivityChart {
     }
 
     func addCaptionLabel(yPos: CGFloat, text: String) {
-        let captionLabel = UILabel(frame: CGRect(x: 0, y: yPos - yAxisOffset * 0.25, width: yAxisOffset, height: yAxisOffset * 0.5))
+        let captionLabel = UILabel()
+        captionLabel.center = CGPoint(x: 0, y: yPos)
         captionLabel.setAttrText(text: text, font: Font.H7Title, lineSpacing: 1, characterSpacing: 1, color: .white20)
+        captionLabel.sizeToFit()
         addSubview(captionLabel)
     }
 
@@ -132,31 +134,26 @@ private extension ActivityChart {
         updateLabelFrames()
         addAverageLines()
 
-        let maxValue = statistics.multiplier
-        let delta = maxValue/4
-        addCaptionLabel(yPos: yPosition(0.25), text: "\(delta*1)")
-        addCaptionLabel(yPos: yPosition(0.50), text: "\(delta*2)")
-        addCaptionLabel(yPos: yPosition(0.75), text: "\(delta*3)")
+        let maxValue = statistics.maximum.toFloat
+        let delta = maxValue/5
+        addCaptionLabel(yPos: yPosition(1/5), text: "\(Int(delta*1))")
+        addCaptionLabel(yPos: yPosition(2/5), text: "\(Int(delta*2))")
+        addCaptionLabel(yPos: yPosition(3/5), text: "\(Int(delta*3))")
+        addCaptionLabel(yPos: yPosition(4/5), text: "\(Int(delta*4))")
     }
 
     func drawCharts() {
-        let daataPoints = statistics.dataPointObjects.filter { $0.value > 0 }
-
-        for (index, dataPoint) in daataPoints.enumerated() {
+        for (index, dataPoint) in statistics.dataPointObjects.enumerated() {
             let xPos = xPosition(index)
-            let yPos = yPosition(dataPoint.value)
+            let yPos = yPosition(dataPoint.value / statistics.maximum.toFloat)
             drawCapRoundLine(xPos: xPos, startYPos: bottomPosition, endYPos: yPos, strokeColor: dataPoint.color, hasShadow: hasShadow(dataPoint))
-
-            if statistics.chartType == .activitySittingMovementRatio && dataPoint.value < 1 {
-                drawCapRoundLine(xPos: xPos, startYPos: yPos - padding, endYPos: padding * 0.5, strokeColor: .white20)
-            }
         }
     }
 
     func drawTodayValueLabel() {
         guard let dataPoint = statistics.dataPointObjects.last, dataPoint.value > 0 else { return }
         let xPos = xPosition(statistics.dataPointObjects.endIndex - 1)
-        let yPos = yPosition(dataPoint.value)
+        let yPos = yPosition(dataPoint.value / statistics.maximum.toFloat)
         let text = statistics.displayableValue(average: Double(dataPoint.value))
         let todayLabel = dayLabel(text: text, textColor: .white)
         todayLabel.sizeToFit()

@@ -115,7 +115,7 @@ final class GuideViewModel {
     }
 
     func greeting() -> String? {
-        return days.last?.items.filter { $0.status == .todo && $0.greeting != nil }.map { $0.greeting }.first ?? ""
+        return days.last?.items.filter { $0.status == .todo }.map { $0.greeting }.first ?? ""
     }
 
     func message() -> String {

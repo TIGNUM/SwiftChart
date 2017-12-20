@@ -10,6 +10,14 @@ import UIKit
 
 final class SleepChart: UIView {
 
+    struct Line {
+        let startPoint: CGPoint
+        let endPoint: CGPoint
+        let angle: CGFloat
+        let length: CGFloat
+        let dataPoint: DataPoint
+    }
+
     // MARK: - Properties
 
     private var arrayOfLabels = [UILabel]()
@@ -38,18 +46,42 @@ private extension SleepChart {
 
     func drawCharts() {
         createDayLabel()
-        lineBounds(isDataPoint: false)
-        lineBounds(isDataPoint: true)
+        _ = lineBounds(isDataPoint: false)
+        if let lines = lineBounds(isDataPoint: true) {
+            drawTodayValueLabel(for: lines)
+        }
         drawShape()
     }
 
-    func lineBounds(isDataPoint: Bool) {
-        guard statistics.dataPoints.isEmpty == false else { return }
+    func drawTodayValueLabel(for lines: [Line]) {
+        // last line is always today
+        // only draw if there's a >0 value
+        guard let line = lines.last, line.dataPoint.value > 0 else {
+            return
+        }
+        let text = statistics.displayableValue(average: Double(line.dataPoint.value))
+        let todayLabel = dayLabel(text: text, textColor: .white)
+        todayLabel.sizeToFit()
+        if line.dataPoint.value > 0.2 {
+            todayLabel.center = line.endPoint.adding(
+                x: -(todayLabel.bounds.width / 2) - 3,
+                y: -(todayLabel.bounds.height / 2) - 3
+            )
+        } else { // label won't fit on left side of line if data point value <=20%
+            let offset = todayLabel.bounds.width / 2
+            todayLabel.center = line.endPoint.adding(x: -offset, y: offset)
+        }
+        addSubview(todayLabel)
+    }
+
+    func lineBounds(isDataPoint: Bool) -> [Line]? {
+        guard statistics.dataPoints.isEmpty == false else { return nil }
         let width = min(frame.width, frame.height)
         let startPoint = CGPoint(x: center.x, y: center.y + yPosition)
-        let theta = 72
-        var angle = 198
+        let theta: CGFloat = 72
+        var angle: CGFloat = 198
 
+        var lines = [Line]()
         for (index, dataPoint) in statistics.dataPointObjects.enumerated() {
             let length: CGFloat
 
@@ -68,13 +100,17 @@ private extension SleepChart {
             let corner = CGPoint(x: startPoint.x + offset.x, y: startPoint.y + offset.y)
             let endPoint = CGPoint(x: corner.x, y: corner.y)
             drawLines(startPoint: startPoint, endPoint: endPoint, color: dataPoint.color, isDataPoint: isDataPoint)
+            lines.append(
+                Line(startPoint: startPoint, endPoint: endPoint, angle: angle, length: length, dataPoint: dataPoint)
+            )
             layoutIfNeeded()
             angle += theta
         }
+        return lines
     }
 
-    func lineLength(length: CGFloat, degress: Int) -> (x: CGFloat, y: CGFloat) {
-        return (x: length * cos(CGFloat(degress).degreesToRadians), y: length * sin(CGFloat(degress).degreesToRadians))
+    func lineLength(length: CGFloat, degress: CGFloat) -> (x: CGFloat, y: CGFloat) {
+        return (x: length * cos(degress.degreesToRadians), y: length * sin(degress.degreesToRadians))
     }
 
     func frameForLabels(frame: CGRect, center: CGPoint, index: Int) {
