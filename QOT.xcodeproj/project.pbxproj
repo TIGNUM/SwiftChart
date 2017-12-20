@@ -362,7 +362,6 @@
 		CBDB98F91E7BD26A003EC73F /* Realm+TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB98F81E7BD26A003EC73F /* Realm+TestUtils.swift */; };
 		CBE8808D1FE4369200670C10 /* GuideModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE8808C1FE4369200670C10 /* GuideModels.swift */; };
 		CBE880931FE9153200670C10 /* GuideItemID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE880921FE9153200670C10 /* GuideItemID.swift */; };
-		CBE880971FEA7C2B00670C10 /* RealmGuideInteration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE880961FEA7C2B00670C10 /* RealmGuideInteration.swift */; };
 		CBEB8EF51F82719700C764C2 /* ChatViewAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEB8EF41F82719700C764C2 /* ChatViewAvatarView.swift */; };
 		CBFECCA51F30BB4D0076ACE6 /* SyncableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFECCA41F30BB4D0076ACE6 /* SyncableObject.swift */; };
 		CBFECCA81F31D7480076ACE6 /* SyncTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFECCA71F31D7480076ACE6 /* SyncTypes.swift */; };
@@ -900,7 +899,6 @@
 		CBDB98F81E7BD26A003EC73F /* Realm+TestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm+TestUtils.swift"; sourceTree = "<group>"; };
 		CBE8808C1FE4369200670C10 /* GuideModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideModels.swift; sourceTree = "<group>"; };
 		CBE880921FE9153200670C10 /* GuideItemID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideItemID.swift; sourceTree = "<group>"; };
-		CBE880961FEA7C2B00670C10 /* RealmGuideInteration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGuideInteration.swift; sourceTree = "<group>"; };
 		CBEB8EF41F82719700C764C2 /* ChatViewAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewAvatarView.swift; sourceTree = "<group>"; };
 		CBFECCA41F30BB4D0076ACE6 /* SyncableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncableObject.swift; sourceTree = "<group>"; };
 		CBFECCA71F31D7480076ACE6 /* SyncTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncTypes.swift; sourceTree = "<group>"; };
@@ -1093,7 +1091,6 @@
 				3649C0341FE32506001F4249 /* GuideTimeIntermediary.swift */,
 				3649C03A1FE41B84001F4249 /* GuideWorker.swift */,
 				36B67B9D1FE1DA040066A515 /* RealmGuide.swift */,
-				CBE880961FEA7C2B00670C10 /* RealmGuideInteration.swift */,
 				36B67B9B1FE1D9C90066A515 /* RealmGuideItem.swift */,
 				363178E41FDEE8D700833958 /* RealmGuideItemLearn.swift */,
 				363178E61FDEECDE00833958 /* RealmGuideItemNotification.swift */,
@@ -2979,7 +2976,6 @@
 				CC37831E1F5ED306007A16A3 /* EnumCollection+Hashable.swift in Sources */,
 				CB0A4A581ECC4C25006A2D85 /* AddSensorCoordinator.swift in Sources */,
 				CBB4DD121EDEAD050071494A /* RequestConstants.swift in Sources */,
-				CBE880971FEA7C2B00670C10 /* RealmGuideInteration.swift in Sources */,
 				7F904F661FBF1A550040EF11 /* TabBarController.swift in Sources */,
 				CBFECCA51F30BB4D0076ACE6 /* SyncableObject.swift in Sources */,
 				CB2880221E7050EB0067890A /* Coordinator.swift in Sources */,
