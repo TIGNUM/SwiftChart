@@ -23,6 +23,7 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
     private var topTabBarController: UINavigationController?
     private let rootViewController: UIViewController
     private let shouldPush: Bool
+    private let guideItem: Guide.Item?
     let pageName: PageName
     var children: [Coordinator] = []
 
@@ -34,7 +35,8 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
           topTabBarTitle: String?,
           backgroundImage: UIImage? = nil,
           shouldPush: Bool = true,
-          contentInsets: UIEdgeInsets = UIEdgeInsets(top: 53, left: 0, bottom: 0, right: 0)) {
+          contentInsets: UIEdgeInsets = UIEdgeInsets(top: 53, left: 0, bottom: 0, right: 0),
+          guideItem: Guide.Item? = nil) {
         guard let contentCollection = contentCollection else { return nil }
 
         self.pageName = pageName
@@ -44,6 +46,7 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
         self.selectedContent = contentCollection
         self.topTabBarTitle = topTabBarTitle
         self.shouldPush = shouldPush
+        self.guideItem = guideItem
         let articleItems = Array(contentCollection.articleItems)
         viewModel = ArticleItemViewModel(services: services,
                                          items: articleItems,
@@ -52,6 +55,7 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
                                          backgroundImage: backgroundImage)
         fullViewController = ArticleItemViewController(pageName: pageName,
                                                        viewModel: viewModel,
+                                                       guideItem: guideItem,
                                                        contentInsets: contentInsets,
                                                        fadeMaskLocation: .top)
         fullViewController.title = topTabBarTitle

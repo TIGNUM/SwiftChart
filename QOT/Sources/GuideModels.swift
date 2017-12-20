@@ -51,6 +51,7 @@ struct Guide {
         let subtitle: String
         let type: String
         let link: Link
+        let featureLink: Link?
         let identifier: String
         let dailyPrep: DailyPrep?
         let greeting: String?

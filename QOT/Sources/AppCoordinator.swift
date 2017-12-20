@@ -376,7 +376,8 @@ extension AppCoordinator {
                                                             contentCollection: content,
                                                             articleHeader: ArticleCollectionHeader(content: content),
                                                             topTabBarTitle: guideItem.subtitle.uppercased(),
-                                                            shouldPush: false) else { return }
+                                                            shouldPush: false,
+                                                            guideItem: guideItem) else { return }
         startChild(child: coordinator)
     }
 

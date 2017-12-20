@@ -28,6 +28,7 @@ private extension Guide.Item {
             subtitle = learn.displayType
             type = learn.type
             link = .path(learn.link)
+            featureLink = learn.featureLink.isEmpty == true ? nil : .path(learn.featureLink)
             identifier = item.localID
             dailyPrep = nil
             greeting = learn.greeting
@@ -39,6 +40,7 @@ private extension Guide.Item {
             subtitle = notification.displayType
             type = notification.type
             link = .path(notification.link)
+            featureLink = nil
             identifier = item.localID
             dailyPrep = DailyPrep(feedback: notification.morningInterviewFeedback,
                                   results: Array(notification.dailyPrepResults.map { String(format: "%d", $0.value) }))
