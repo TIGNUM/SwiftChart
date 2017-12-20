@@ -17,6 +17,7 @@ var selectedChartTypes: [ChartType: Bool] = [.peakPerformanceUpcomingWeek: true,
                                              .intensityLoadMonth: false,
                                              .intensityRecoveryWeek: true,
                                              .intensityRecoveryMonth: false,
+                                             .meetingAverageNumber: true,
                                              .meetingAverageDay: true,
                                              .meetingAverageWeek: false,
                                              .travelTripsAverageWeeks: true,
@@ -250,75 +251,50 @@ private extension ChartCell {
     }
 
     func setupChartView(statistics: Statistics) -> UIView {
+        guard statistics.chartType.comingSoon == false else {
+            setupOverlayView(text: R.string.localized.meChartCommingSoon())
+            return UIView()
+        }
+        if statistics.chartType.calendarRequired == true && shouldShowAddCalendarView == true {
+            setupOverlayView(text: R.string.localized.meChartAddCalendar())
+            return UIView()
+        }
+        if statistics.chartType.sensorRequired == true && shouldShowAddSensorView == true {
+            setupOverlayView(text: fitbitState.addSensorText)
+            return UIView()
+        }
+
         let segmentedFrame = CGRect(x: 0, y: 0, width: chartSegmentedContentView.frame.width, height: chartSegmentedContentView.frame.height)
         let segmentedBiggerFrame = CGRect(x: 0, y: 0, width: segmentedFrame.width, height: segmentedFrame.height + labelContentView.frame.height)
         let frame = chartContentView.frame
         let biggerFrame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height + labelContentView.frame.height)
 
-        if statistics.chartType.comingSoon == true {
-            setupOverlayView(text: R.string.localized.meChartCommingSoon())
-            return UIView()
-        }
-
         switch statistics.chartType {
         case .activityLevel,
              .activitySittingMovementRatio:
-            if shouldShowAddSensorView == true {
-                setupOverlayView(text: fitbitState.addSensorText)
-                return UIView()
-            }
-
             return ActivityChart(frame: frame, statistics: statistics, labelContentView: labelContentView)
         case .meetingAverageDay,
              .meetingAverageWeek:
-            if shouldShowAddCalendarView == true {
-                setupOverlayView(text: R.string.localized.meChartAddCalendar())
-                return UIView()
-            }
-
             return MeetingsAverageChart(frame: segmentedBiggerFrame, statistics: statistics, labelContentView: labelContentView)
+        case .meetingAverageNumber:
+            return MeetingsAverageNumberChart(frame: frame, statistics: statistics, labelContentView: labelContentView)
         case .intensityLoadWeek,
              .intensityLoadMonth,
              .intensityRecoveryWeek,
              .intensityRecoveryMonth:
             return IntensityChart(frame: segmentedFrame, statistics: statistics, labelContentView: labelContentView)
         case .meetingLength:
-            if shouldShowAddCalendarView == true {
-                setupOverlayView(text: R.string.localized.meChartAddCalendar())
-                return UIView()
-            }
-
             return MeetingsLengthChart(frame: biggerFrame, statistics: statistics, labelContentView: labelContentView)
         case .meetingTimeBetween:
-            if shouldShowAddCalendarView == true {
-                setupOverlayView(text: R.string.localized.meChartAddCalendar())
-                return UIView()
-            }
-
             return MeetingsTimeBetweenChart(frame: biggerFrame, statistics: statistics, labelContentView: labelContentView)
         case .sleepQuality,
              .sleepQuantity:
-            if shouldShowAddSensorView == true {
-                setupOverlayView(text: fitbitState.addSensorText)
-                return UIView()
-            }
-
             return SleepChart(frame: frame, statistics: statistics)
         case .peakPerformanceUpcomingWeek,
              .peakPerformanceUpcomingNextWeek:
-            if shouldShowAddCalendarView == true {
-                setupOverlayView(text: R.string.localized.meChartAddCalendar())
-                return UIView()
-            }
-
             return PeakPerformanceUpcomingChart(frame: segmentedFrame, statistics: statistics, labelContentView: labelContentView)
         case .peakPerformanceAverageWeek,
              .peakPerformanceAverageMonth:
-            if shouldShowAddCalendarView == true {
-                setupOverlayView(text: R.string.localized.meChartAddCalendar())
-                return UIView()
-            }
-
             return PeakPerformanceAverageChart(frame: segmentedFrame, statistics: statistics, labelContentView: labelContentView)
         case .travelTripsTimeZoneChangedWeeks,
              .travelTripsTimeZoneChangedYear,

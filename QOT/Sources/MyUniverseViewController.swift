@@ -137,6 +137,7 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
 
 private extension MyUniverseViewController {
     func reload() {
+        isLoading = viewData.isLoading
         contentView.profileButton.kf.setBackgroundImage(
             with: viewData.profileImageURL,
             for: .normal,

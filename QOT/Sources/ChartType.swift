@@ -12,6 +12,7 @@ import UIKit
 enum ChartType: String, EnumCollection {
     case meetingAverageDay = "meetings.number.day"
     case meetingAverageWeek = "meetings.number.week"
+    case meetingAverageNumber = "meetings.number.average"
     case meetingLength = "meetings.length"
     case meetingTimeBetween = "meetings.timeBetween"
     case travelTripsAverageWeeks = "travel.numberOfTrips.4weeks"
@@ -37,6 +38,7 @@ enum ChartType: String, EnumCollection {
         switch self {
         case .meetingAverageDay,
              .meetingAverageWeek,
+             .meetingAverageNumber,
              .meetingLength,
              .meetingTimeBetween:
             return false
@@ -72,7 +74,8 @@ enum ChartType: String, EnumCollection {
              .activitySittingMovementRatio,
              .sleepQuality,
              .sleepQuantity: return weekdaySymbols(fullWeek: false)
-        case .peakPerformanceUpcomingWeek,
+        case .meetingAverageNumber,
+             .peakPerformanceUpcomingWeek,
              .peakPerformanceUpcomingNextWeek,
              .intensityLoadWeek,
              .intensityRecoveryWeek: return weekdaySymbols(fullWeek: true)
@@ -89,7 +92,8 @@ enum ChartType: String, EnumCollection {
 
     var hightlightColor: UIColor {
         switch self {
-        case .activityLevel,
+        case .meetingAverageNumber,
+             .activityLevel,
              .activitySittingMovementRatio,
              .sleepQuality,
              .sleepQuantity,
@@ -187,6 +191,7 @@ enum ChartType: String, EnumCollection {
              .meetingAverageWeek:
                 let selectedType = selectedChartTypes.filter { ($0.key == .meetingAverageDay || $0.key == .meetingAverageWeek) && $0.value == true }[0]
                 return charts.filter { $0.chartType == selectedType.key }[0]
+        case .meetingAverageNumber: return statistics(charts)
         case .meetingLength: return statistics(charts)
         case .meetingTimeBetween: return statistics(charts)
         case .travelTripsAverageWeeks,
@@ -224,7 +229,8 @@ enum ChartType: String, EnumCollection {
 
     var sectionType: StatisticsSectionType {
         switch self {
-        case .meetingAverageDay,
+        case .meetingAverageNumber,
+             .meetingAverageDay,
              .meetingAverageWeek,
              .meetingLength,
              .meetingTimeBetween: return .meetings
@@ -251,7 +257,8 @@ enum ChartType: String, EnumCollection {
 
     var title: String {
         switch self {
-        case .meetingAverageDay,
+        case .meetingAverageNumber,
+             .meetingAverageDay,
              .meetingAverageWeek: return R.string.localized.meCardTitleMeetingsNumber()
         case .meetingLength: return R.string.localized.meCardTitleMeetingsLength()
         case .meetingTimeBetween: return R.string.localized.meCardTitleMeetingsTimeBetween()
@@ -279,7 +286,8 @@ enum ChartType: String, EnumCollection {
     // TODO: Replace return values when available.
     var infoText: String {
         switch self {
-        case .meetingAverageDay,
+        case .meetingAverageNumber,
+             .meetingAverageDay,
              .meetingAverageWeek: return R.string.localized.meChartInfoTextMeetingsAverageNumber()
         case .meetingLength: return R.string.localized.meChartInfoTextMeetingsAverageLength()
         case .meetingTimeBetween: return R.string.localized.meChartInfoTextMeetingsAverageTimeBetween()
@@ -309,6 +317,7 @@ enum ChartType: String, EnumCollection {
         switch self {
         case .meetingAverageDay,
              .meetingAverageWeek: return true
+        case .meetingAverageNumber: return false
         case .meetingLength: return false
         case .meetingTimeBetween: return false
         case .travelTripsAverageWeeks,
@@ -334,7 +343,8 @@ enum ChartType: String, EnumCollection {
 
     var bottomView: Bool {
         switch self {
-        case .meetingAverageDay,
+        case .meetingAverageNumber,
+             .meetingAverageDay,
              .meetingAverageWeek,
              .meetingLength,
              .meetingTimeBetween: return false
@@ -371,7 +381,8 @@ enum ChartType: String, EnumCollection {
 
     var calendarRequired: Bool {
         switch self {
-        case .meetingAverageDay,
+        case .meetingAverageNumber,
+             .meetingAverageDay,
              .meetingAverageWeek,
              .meetingLength,
              .meetingTimeBetween,
@@ -415,7 +426,8 @@ enum ChartType: String, EnumCollection {
 
     var overlayImage: UIImage? {
         switch self {
-        case .meetingAverageDay,
+        case .meetingAverageNumber,
+             .meetingAverageDay,
              .meetingAverageWeek,
              .travelTripsTimeZoneChangedYear,
              .travelTripsTimeZoneChangedWeeks: return R.image.overlay_travel_01()
@@ -439,6 +451,7 @@ enum ChartType: String, EnumCollection {
 
     func segmentedTitle(selected: Bool?) -> NSAttributedString? {
         switch self {
+        case .meetingAverageNumber: return nil
         case .meetingAverageDay: return R.string.localized.meSectorMyStatisticsToday().attrString(selected)
         case .meetingAverageWeek: return R.string.localized.meSectorMyStatisticsThisWeek().attrString(selected)
         case .meetingLength: return nil
@@ -470,7 +483,8 @@ enum ChartType: String, EnumCollection {
         let yearlyChartDimensions = ChartDimensions(columns: 12, rows: 4, length: 7)
 
         switch self {
-        case .travelTripsAverageWeeks,
+        case .meetingAverageNumber,
+             .travelTripsAverageWeeks,
              .travelTripsNextFourWeeks,
              .travelTripsTimeZoneChangedWeeks,
              .peakPerformanceUpcomingWeek,
@@ -529,8 +543,10 @@ enum StatisticsSectionType: Int, EnumCollection {
                                        [.peakPerformanceAverageWeek, .peakPerformanceAverageMonth]]
         case .intensity: return [[.intensityLoadWeek, .intensityLoadMonth],
                                  [.intensityRecoveryWeek, .intensityRecoveryMonth]]
-        case .meetings: return [[.meetingAverageDay, .meetingAverageWeek],
-                                [.meetingLength], [.meetingTimeBetween]]
+        case .meetings: return [[.meetingAverageNumber],
+//                                [.meetingAverageDay, .meetingAverageWeek], // FIXME: hidden for now, but should we delete them?
+                                [.meetingLength],
+                                [.meetingTimeBetween]]
         case .travel: return [[.travelTripsNextFourWeeks],
                               [.travelTripsAverageWeeks, .travelTripsAverageYear],
                               [.travelTripsTimeZoneChangedWeeks, .travelTripsTimeZoneChangedYear],
@@ -544,7 +560,7 @@ enum StatisticsSectionType: Int, EnumCollection {
         case .activity: return [.activitySittingMovementRatio, .activityLevel]
         case .peakPerformance: return [.peakPerformanceUpcomingWeek, .peakPerformanceAverageWeek]
         case .intensity: return [.intensityLoadWeek, .intensityRecoveryWeek]
-        case .meetings: return [.meetingAverageDay, .meetingLength, .meetingTimeBetween]
+        case .meetings: return [.meetingAverageNumber, .meetingAverageDay, .meetingLength, .meetingTimeBetween]
         case .travel: return [.travelTripsAverageWeeks, .travelTripsNextFourWeeks, .travelTripsMaxTimeZone, .travelTripsTimeZoneChangedWeeks]
         }
     }

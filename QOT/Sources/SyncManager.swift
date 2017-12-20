@@ -117,6 +117,13 @@ final class SyncManager {
         }
         let finishOperation = BlockOperation {
             DispatchQueue.main.async {
+                // FIXME: remove when real data is available
+                if let realm = try? self.realmProvider.realm() {
+                    try? realm.write {
+                        realm.create(Statistics.self, value: Statistics._meetingsNumberAverage, update: true)
+                    }
+                }
+
                 let errors = context.errors
                 NotificationHandler.postNotification(withName: .syncAllDidFinishNotification)
                 log("SYNC ALL FINISHED with \(errors.count) errors", enabled: Log.Toggle.Manager.Sync)

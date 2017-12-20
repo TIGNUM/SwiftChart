@@ -15,6 +15,7 @@ final class MyUniverseProvider {
     private let partners: AnyRealmCollection<QOT.Partner>
     private let userChoices: AnyRealmCollection<UserChoice>
     private let statistics: AnyRealmCollection<Statistics>
+    private let syncStateObserver: SyncStateObserver
     private let tokenBin = TokenBin()
 
     lazy var viewData: MyUniverseViewData = {
@@ -28,6 +29,7 @@ final class MyUniverseProvider {
         partners = services.partnerService.partners
         userChoices = services.userService.userChoices()
         statistics = services.statisticsService.chartObjects()
+        syncStateObserver = SyncStateObserver(realm: services.mainRealm)
 
         myToBeVisions.addNotificationBlock { [unowned self] _ in
             self.update()
@@ -88,8 +90,16 @@ final class MyUniverseProvider {
             partners: partners,
             weeklyChoices: weeklyChices,
             myToBeVisionText: myToBeVision?.text ?? R.string.localized.meSectorMyWhyVisionMessagePlaceholder(),
-            sectors: sectors
+            sectors: sectors,
+            isLoading: !isReady()
         )
+    }
+
+    private func isReady() -> Bool {
+        return syncStateObserver.hasSynced(MyToBeVision.self)
+            && syncStateObserver.hasSynced(Partner.self)
+            && syncStateObserver.hasSynced(UserChoice.self)
+            && syncStateObserver.hasSynced(Statistics.self)
     }
 
     private func sector(for type: StatisticsSectionType,

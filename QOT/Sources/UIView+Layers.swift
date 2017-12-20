@@ -114,8 +114,8 @@ extension UIView {
         for index in 0..<labels.count {
             let label = UILabel()
             label.text = labels[index]
-            label.setAttrText(text: labels[index], font: font, alignment: (center ? .center : .natural))
-            label.textColor = index == labels.endIndex - 1 ? highlightColor : textColor
+            let color = index == labels.endIndex - 1 ? highlightColor : textColor
+            label.setAttrText(text: labels[index], font: font, alignment: (center ? .center : .natural), color: color)
             addSubview(label)
             label.topAnchor == topAnchor
             label.bottomAnchor == bottomAnchor

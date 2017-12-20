@@ -53,6 +53,7 @@ struct MyUniverseViewData {
     let weeklyChoices: [WeeklyChoice]
     let myToBeVisionText: String
     let sectors: [Sector]
+    let isLoading: Bool
 }
 
 // MARK: - Equatable
