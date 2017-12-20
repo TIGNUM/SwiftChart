@@ -28,6 +28,7 @@ final class IntensityChart: UIView {
 
         setupView()
         drawCharts()
+        drawTodayValueLabel()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -50,7 +51,7 @@ private extension IntensityChart {
             let xPos = firstSection == true ? xPosition(index) : (columnWidth * CGFloat(index) * 2) + yAxisOffset
             let yPos = yPosition(dataPoint.value)
             let height = dataPoint.value > 0 ? yPos - bottomPosition : 0
-            let columnFrame = CGRect(x: xPos, y: frame.height, width: columnWidth, height: height).integral
+            let columnFrame = CGRect(x: xPos - columnWidth/2, y: frame.height, width: columnWidth, height: height).integral
             let column = UIView(frame: columnFrame)
             column.backgroundColor = .white8
             column.layer.cornerRadius = firstSection == true ? 5 : 0
@@ -59,6 +60,17 @@ private extension IntensityChart {
             column.layer.masksToBounds = true
             addSubview(column)
         }
+    }
+
+    func drawTodayValueLabel() {
+        guard let dataPoint = statistics.dataPointObjects.last, dataPoint.value > 0 else { return }
+        let xPos = xPosition(statistics.dataPointObjects.endIndex - 1)
+        let yPos = yPosition(dataPoint.value)
+        let text = statistics.displayableValue(average: Double(dataPoint.value))
+        let todayLabel = dayLabel(text: text, textColor: .white)
+        todayLabel.sizeToFit()
+        todayLabel.center = CGPoint(x: xPos, y: yPos)
+        addSubview(todayLabel)
     }
 }
 
@@ -83,9 +95,8 @@ private extension IntensityChart {
             return 0
         }
 
-        let labelFrame = labelContentView.subviews[index].frame
-
-        return labelFrame.origin.x + labelFrame.width * 0.5
+        let center = labelContentView.subviews[index].center
+        return center.x
     }
 
     func yPosition(_ value: CGFloat) -> CGFloat {
@@ -113,7 +124,7 @@ private extension IntensityChart {
         drawDashedLine(from: start, to: end, lineWidth: 1, strokeColor: .cherryRedTwo30, dashPattern: [1.5, 3.0])
     }
 
-    private func addCaptionLabel() {
+    func addCaptionLabel() {
         for (index, yPos) in yPositions.reversed().enumerated() where index % 2 == 1 && index > 0 {
             let labelFrame = CGRect(x: 0, y: yPos - yAxisOffset * 0.5, width: yAxisOffset, height: yAxisOffset)
             let captionLabel = UILabel(frame: labelFrame)
@@ -121,5 +132,14 @@ private extension IntensityChart {
             captionLabel.setAttrText(text: text, font: Font.H7Title, color: .white20)
             addSubview(captionLabel)
         }
+    }
+
+    func dayLabel(text: String, textColor: UIColor) -> UILabel {
+        let label = UILabel()
+        label.font = Font.H7Title
+        label.textAlignment = .center
+        label.textColor = textColor
+        label.text = text
+        return label
     }
 }
