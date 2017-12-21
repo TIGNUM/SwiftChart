@@ -502,6 +502,48 @@ extension AppCoordinator: LearnContentListCoordinatorDelegate {
 
 extension AppCoordinator {
 
+    struct Router {
+
+        struct Destination {
+            let tabBar: TabBar
+            let topTabBar: TopTabBar
+        }
+
+        enum TabBar: Index {
+            case guide = 0
+            case learn = 1
+            case me = 2
+            case prepare = 3
+        }
+
+        enum TopTabBar {
+            case strategies
+            case whatsHot
+            case myData
+            case myWhy
+            case coach
+            case myPrep
+
+            var index: Index {
+                switch self {
+                case .strategies: return 0
+                case .whatsHot: return 1
+                case .myData: return 0
+                case .myWhy: return 1
+                case .coach: return 0
+                case .myPrep: return 1
+                }
+            }
+        }
+    }
+}
+
+extension AppCoordinator {
+
+    func presentStrategies() {
+
+    }
+
     func presentLearnContentItems(contentID: Int) {
         guard
             let services = services,
@@ -545,7 +587,7 @@ extension AppCoordinator {
         currentPresentedController = coordinator.addSensorViewController
     }
 
-    func presentPreparationList() {
+    func presentPreparationList(_ destination: AppCoordinator.Router.Destination) {
         if let viewController = currentPresentedController {
             dismiss(viewController, level: .priority)
         }
@@ -557,28 +599,30 @@ extension AppCoordinator {
         guard let topViewController = AppDelegate.topViewController() else { return }
 
         if let tabBarController = topViewController as? TabBarController {
-            selectTabBarItem(tabBarController: tabBarController, tabBarIndex: 3, topTabBarIndex: 1)
+            selectTabBarItem(tabBarController: tabBarController, destination: destination)
         } else if let pageViewController = topViewController as? PageViewController {
             if let tabBarController = pageViewController.tabBarController as? TabBarController {
-                selectTabBarItem(tabBarController: tabBarController, tabBarIndex: 3, topTabBarIndex: 1)
+                selectTabBarItem(tabBarController: tabBarController, destination: destination)
             } else {
                 pageViewController.viewControllers?.forEach { viewController in
                     viewController.dismiss(animated: true) {
-                        self.presentPreparationList()
+                        self.presentPreparationList(destination)
                     }
                 }
             }
         } else if let tabBarController = (topViewController as? MyUniverseViewController)?.parent as? TabBarController {
-            selectTabBarItem(tabBarController: tabBarController, tabBarIndex: 3, topTabBarIndex: 1)
+            selectTabBarItem(tabBarController: tabBarController, destination: destination)
         } else {
             topViewController.dismiss(animated: true) {
-                self.presentPreparationList()
+                self.presentPreparationList(destination)
             }
         }
     }
 
-    private func selectTabBarItem(tabBarController: TabBarController, tabBarIndex: Index, topTabBarIndex: Index) {
+    private func selectTabBarItem(tabBarController: TabBarController, destination: AppCoordinator.Router.Destination) {
         guard let viewControllers = tabBarController.viewControllers else { return }
+        let tabBarIndex = destination.tabBar.rawValue
+        let topTabBarIndex = destination.topTabBar.index
         tabBarController.selectedViewController = viewControllers[tabBarIndex]
 
         guard

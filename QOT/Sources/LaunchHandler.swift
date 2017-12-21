@@ -37,7 +37,7 @@ final class LaunchHandler {
         case .weeklyPeakPerformance: return
         case .contentCategory: contentCategory(collectionID: scheme.queryParametter(url: url))
         case .featureExplainer: featureExplainer(url: url, scheme: scheme, guideItem: guideItem)
-        case .strategies: return
+        case .strategies: strategies()
         case .meUniverse: return
         case .preferencesSyncCalendar: return
         case .addSensor: return
@@ -175,6 +175,15 @@ extension LaunchHandler {
     }
 }
 
+// MARK: - Strategies
+
+extension LaunchHandler {
+
+    func strategies() {
+        appDelegate.appCoordinator.presentStrategies()
+    }
+}
+
 // MARK: - Random Content
 
 extension LaunchHandler {
@@ -201,7 +210,8 @@ extension LaunchHandler {
 extension LaunchHandler {
 
     func preparationList() {
-        appDelegate.appCoordinator.presentPreparationList()
+        let destination = AppCoordinator.Router.Destination(tabBar: .prepare, topTabBar: .myPrep)
+        appDelegate.appCoordinator.presentPreparationList(destination)
     }
 }
 
