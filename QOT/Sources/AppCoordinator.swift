@@ -641,11 +641,11 @@ extension AppCoordinator {
         topNavigationBar.setIsSelected(middleButton)
     }
 
-    func presentLibrary() {
+    func presentSideBar() -> SidebarCoordinator? {
         dismissCurrentPresentedControllers()
         guard
             let rootViewController = windowManager.rootViewController(atLevel: .normal),
-            let services = services else { return }
+            let services = services else { return nil }
         let coordinator = SidebarCoordinator(root: rootViewController,
                                              services: services,
                                              syncManager: syncManager,
@@ -654,7 +654,26 @@ extension AppCoordinator {
         startChild(child: coordinator)
         currentPresentedController = coordinator.sideBarViewController
         currentPresentedNavigationController = coordinator.topTabBarController
-        coordinator.didTapLibraryCell(in: coordinator.sideBarViewController)
+
+        return coordinator
+    }
+
+    func presentPreferencesSyncCalendar() {
+        guard let sidebarCoordinator = presentSideBar() else { return }
+        sidebarCoordinator.didTapSettingsMenuCell(with: nil, in: sidebarCoordinator.sideBarViewController)
+        guard let settingsMenuCoordinator = sidebarCoordinator.settingsMenuCoordinator else { return }
+        let settingsMenuViewController = settingsMenuCoordinator.settingsMenuViewController
+        settingsMenuCoordinator.didTapNotifications(in: settingsMenuViewController)
+        guard let settingsCoordinator = settingsMenuCoordinator.settingsCoordinator else { return }
+        startChild(child: settingsCoordinator)
+//        windowManager.show(settingsCoordinator.settingsViewController, animated: true)
+//        rootViewController.pushToStart(childViewController: settingsCoordinator.settingsViewController)
+//        settingsMenuViewController.pushToStart(childViewController: settingsCoordinator.settingsViewController)
+    }
+
+    func presentLibrary() {
+        guard let sidebarCoordinator = presentSideBar() else { return }
+        sidebarCoordinator.didTapLibraryCell(in: sidebarCoordinator.sideBarViewController)
     }
 
     func presentToBeVision() {
@@ -730,7 +749,7 @@ extension AppCoordinator {
         startChild(child: coordinator)
         currentPresentedNavigationController = coordinator.topTabBarController
         currentPresentedController = coordinator.fullViewController
-        
+
     }
 
     func presentLearnContentCollection(collectionID: String?) {

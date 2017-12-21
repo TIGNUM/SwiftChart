@@ -40,7 +40,7 @@ final class LaunchHandler {
         case .featureExplainer: featureExplainer(url: url, scheme: scheme, guideItem: guideItem)
         case .strategies: navigate(to: scheme.destination)
         case .meUniverse: navigate(to: scheme.destination)
-        case .preferencesSyncCalendar: return
+        case .preferencesSyncCalendar: appDelegate.appCoordinator.presentPreferencesSyncCalendar()
         case .addSensor: return
         case .prepare: navigate(to: scheme.destination)
         case .fitbitAuthrefresh: return ///??????
@@ -55,7 +55,7 @@ final class LaunchHandler {
         case .prepareProblem:return
         case .prepareEvent:return
         case .prepareDay:return
-        case .library: library()
+        case .library: appDelegate.appCoordinator.presentLibrary()
         case .guide: navigate(to: scheme.destination)
         }
     }
@@ -74,10 +74,6 @@ final class LaunchHandler {
 // MARK: - Preparation
 
 extension LaunchHandler {
-
-    func library() {
-        appDelegate.appCoordinator.presentLibrary()
-    }
 
     func preparation(localID: String?) {
         guard let localID = localID else { return }
