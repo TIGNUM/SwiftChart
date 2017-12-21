@@ -15,6 +15,7 @@ protocol RealmGuideItemProtocol: class {
     var remoteID: RealmOptional<Int> { get }
     var completedAt: Date? { get set }
     var priority: Int { get }
+    var displayTime: RealmGuideTime? { get }
 }
 
 final class RealmGuideItem: SyncableObject {
@@ -56,6 +57,10 @@ extension RealmGuideItem {
         } else {
             return nil
         }
+    }
+
+    var displayTime: RealmGuideTime? {
+        return referencedItem?.displayTime
     }
 }
 

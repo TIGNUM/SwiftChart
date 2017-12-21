@@ -11,49 +11,6 @@ import ReactiveKit
 import RealmSwift
 import UIKit
 
-private extension Guide.Day {
-
-    init(day: RealmGuide) {
-        items = Array(day.items).flatMap { Guide.Item(item: $0) }
-    }
-}
-
-private extension Guide.Item {
-
-    init?(item: RealmGuideItem) {
-        if let learn = item.guideItemLearn {
-            status = learn.completedAt == nil ? .todo : .done
-            title = learn.title
-            content = .text(learn.body)
-            subtitle = learn.displayType ?? ""
-            type = learn.type
-            link = .path(learn.link)
-            featureLink = .path(learn.featureLink ?? "")
-            featureButton = learn.featureButton
-            identifier = item.localID
-            dailyPrep = nil
-            greeting = learn.greeting
-            createdAt = learn.createdAt
-        } else if let notification = item.guideItemNotification {
-            status = notification.completedAt == nil ? .todo : .done
-            title = notification.title ?? ""
-            content = .text(notification.body)
-            subtitle = notification.displayType
-            type = notification.type
-            link = .path(notification.link)
-            featureLink = nil
-            featureButton = nil
-            identifier = item.localID
-            dailyPrep = DailyPrep(feedback: notification.morningInterviewFeedback,
-                                  results: Array(notification.dailyPrepResults.map { String(format: "%d", $0.value) }))
-            greeting = notification.greeting
-            createdAt = notification.createdAt
-        } else {
-            return nil
-        }
-    }
-}
-
 extension GuideViewModel {
 
     enum Status {
@@ -116,7 +73,9 @@ final class GuideViewModel {
     }
 
     private func reload() {
-        days = services.guideService.guideSections().map { Guide.Day(day: $0) }
+        let transformer = GuideTransformer()
+        let realmGuides = services.guideService.guideSections()
+        days = transformer.days(from: realmGuides)
         sectionCountUpdate.next(sectionCount)
     }
 
@@ -132,8 +91,9 @@ final class GuideViewModel {
         let dailyLearnPlan = Greeting.dailyLearnPlan.text(services.contentService)
         let dailyPrep = Greeting.dailyPrep.text(services.contentService)
 
-        if services.guideService.guideSections().count == 1 || services.guideService.guideSections().count == 0 {
-            if ((services.guideService.guideSections().first?.items.filter { $0.completedAt != nil })?.isEmpty)! {
+        let sections = services.guideService.guideSections()
+        if sections.count <= 1 {
+            if let guide = sections.first, guide.items.filter({ $0.completedAt != nil }).isEmpty {
                 return welcome
             } else {
                 return dailyLearnPlan
