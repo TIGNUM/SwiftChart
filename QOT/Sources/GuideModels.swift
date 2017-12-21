@@ -68,22 +68,5 @@ struct Guide {
 
     struct Day {
         let items: [Item]
-//        let defaultMessages: [String]
-
-//        var noneItemIsDone: Bool {
-//            return items.filter { $0.status == .done }.isEmpty
-//        }
-//
-//        var nextToDoItem: Item? {
-//            return items.filter { $0.status == .todo }.first
-//        }
-
-//        var nextGreeting: GuideViewModel.DefaultMessage {
-//            guard let nextItem = nextToDoItem else {
-//                return GuideViewModel.DefaultMessage.dailyLearnPlan
-//            }
-//
-//            return nextItem.greeting
-//        }
     }
 }

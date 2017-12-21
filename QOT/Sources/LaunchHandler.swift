@@ -38,7 +38,7 @@ final class LaunchHandler {
         case .contentCategory: contentCategory(collectionID: scheme.queryParametter(url: url))
         case .featureExplainer: featureExplainer(url: url, scheme: scheme, guideItem: guideItem)
         case .strategies: strategies()
-        case .meUniverse: return
+        case .meUniverse: meUniverse()
         case .preferencesSyncCalendar: return
         case .addSensor: return
         case .prepare: return
@@ -174,6 +174,17 @@ extension LaunchHandler {
         return (startDate: startDate, endDate: endDate)
     }
 }
+
+// MARK: - MeUniverse
+
+extension LaunchHandler {
+
+    func meUniverse() {
+        let destination = AppCoordinator.Router.Destination(tabBar: .me, topTabBar: .myData)
+        appDelegate.appCoordinator.navigate(to: destination)
+    }
+}
+
 
 // MARK: - Strategies
 
