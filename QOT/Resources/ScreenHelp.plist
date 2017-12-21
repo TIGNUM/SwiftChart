@@ -6,10 +6,10 @@
 	<dict>
 		<key>title</key>
 		<string>strategies title</string>
-		<key>imageName</key>
-		<string>test</string>
+		<key>imageURL</key>
+		<string>https://www.gstatic.com/webp/gallery3/1.png</string>
 		<key>videoURL</key>
-		<string>http://google.com</string>
+		<string>https://d1ewy15slsehi8.cloudfront.net/videos/Learn_Foundation_Videos/QOT_Mindset_Final.mp4?Policy=eyJTdGF0ZW1lbnQiOiBbeyJSZXNvdXJjZSI6Iio6Ly9kMWV3eTE1c2xzZWhpOC5jbG91ZGZyb250Lm5ldC8qIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxODIzNzU1NjQ3fSwiSXBBZGRyZXNzIjp7IkFXUzpTb3VyY2VJcCI6IjAuMC4wLjAvMCJ9fX1dfQ__&amp;Signature=KqdElSTzoGjAjNooJQn5w7ytZroSMBr4GvzqwDx6pGb~Y6tU1L0mj3m-iHTnfpXbWd-s2IKlfNXKEhEQrxkdpvaWGkRvT1TTZUive2WbOZVBwCy95F-qLJ06fr0wm1wmlDxPXqSWU49m1QcKOn-9Qw3zMxRTy4KazKXrvDSXVTHrIXkuawpHIIz6h0uDNJ6mNKRLdlBQKgd~Dg-~qMO7ASH9XY7gM05Y5VXasyG1-5qok3s5kNIG8pNzpWxfJGxrIFo0vaGElvw-Ex6uksrQUtVP~5L0M5c1RyRNvgMx-dz3Nm5DO4giSMmP1Azh3fGTpNN2YhDgoWJZn09QLSx1cQCtpQvpXMtcYfKXcR5qSQ9WXLCEYnH5anpcIIEGixyCacOZNLq1p~Ro3qxn6gwhx93LKr~oPqByoQ2Olj5Dcj1eSwg7R17~lAoTdc7UZsSznsacI2F0FkP9MKdFwtNa02Awvn6Ni1AJvCa-c3zk3mMorCBMJicb8ULhVQG2f7fa3TeJ8lnLCXE7TWvIqR5M958Se3F6a2jBwz~QQGEvbvL1yJhKxBJ6i~OeidUiLY4sMfb6jLmZkVX59I5m--a5jS9Xi6MKMjo32Qt8uEFcyxDoqcWcrwYHedwq5x5yS80mAEjr5yur76jeUMmSFEPV6YzKaK7q3Kykxrkbdvj5rF0_&amp;Key-Pair-Id=APKAI2CZZ4N3GP3ZUGJQ</string>
 		<key>message</key>
 		<string>strategies a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message </string>
 	</dict>
@@ -17,10 +17,10 @@
 	<dict>
 		<key>title</key>
 		<string>whatsHot title</string>
-		<key>imageName</key>
-		<string>test</string>
+		<key>imageURL</key>
+		<string>https://www.gstatic.com/webp/gallery3/1.png</string>
 		<key>videoURL</key>
-		<string>http://google.com</string>
+		<string>https://d1ewy15slsehi8.cloudfront.net/videos/Learn_Foundation_Videos/QOT_Mindset_Final.mp4?Policy=eyJTdGF0ZW1lbnQiOiBbeyJSZXNvdXJjZSI6Iio6Ly9kMWV3eTE1c2xzZWhpOC5jbG91ZGZyb250Lm5ldC8qIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxODIzNzU1NjQ3fSwiSXBBZGRyZXNzIjp7IkFXUzpTb3VyY2VJcCI6IjAuMC4wLjAvMCJ9fX1dfQ__&amp;Signature=KqdElSTzoGjAjNooJQn5w7ytZroSMBr4GvzqwDx6pGb~Y6tU1L0mj3m-iHTnfpXbWd-s2IKlfNXKEhEQrxkdpvaWGkRvT1TTZUive2WbOZVBwCy95F-qLJ06fr0wm1wmlDxPXqSWU49m1QcKOn-9Qw3zMxRTy4KazKXrvDSXVTHrIXkuawpHIIz6h0uDNJ6mNKRLdlBQKgd~Dg-~qMO7ASH9XY7gM05Y5VXasyG1-5qok3s5kNIG8pNzpWxfJGxrIFo0vaGElvw-Ex6uksrQUtVP~5L0M5c1RyRNvgMx-dz3Nm5DO4giSMmP1Azh3fGTpNN2YhDgoWJZn09QLSx1cQCtpQvpXMtcYfKXcR5qSQ9WXLCEYnH5anpcIIEGixyCacOZNLq1p~Ro3qxn6gwhx93LKr~oPqByoQ2Olj5Dcj1eSwg7R17~lAoTdc7UZsSznsacI2F0FkP9MKdFwtNa02Awvn6Ni1AJvCa-c3zk3mMorCBMJicb8ULhVQG2f7fa3TeJ8lnLCXE7TWvIqR5M958Se3F6a2jBwz~QQGEvbvL1yJhKxBJ6i~OeidUiLY4sMfb6jLmZkVX59I5m--a5jS9Xi6MKMjo32Qt8uEFcyxDoqcWcrwYHedwq5x5yS80mAEjr5yur76jeUMmSFEPV6YzKaK7q3Kykxrkbdvj5rF0_&amp;Key-Pair-Id=APKAI2CZZ4N3GP3ZUGJQ</string>
 		<key>message</key>
 		<string>whatsHot a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message </string>
 	</dict>
@@ -28,10 +28,10 @@
 	<dict>
 		<key>title</key>
 		<string>myData title</string>
-		<key>imageName</key>
-		<string>test</string>
+		<key>imageURL</key>
+		<string>https://www.gstatic.com/webp/gallery3/1.png</string>
 		<key>videoURL</key>
-		<string>http://google.com</string>
+		<string>https://d1ewy15slsehi8.cloudfront.net/videos/Learn_Foundation_Videos/QOT_Mindset_Final.mp4?Policy=eyJTdGF0ZW1lbnQiOiBbeyJSZXNvdXJjZSI6Iio6Ly9kMWV3eTE1c2xzZWhpOC5jbG91ZGZyb250Lm5ldC8qIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxODIzNzU1NjQ3fSwiSXBBZGRyZXNzIjp7IkFXUzpTb3VyY2VJcCI6IjAuMC4wLjAvMCJ9fX1dfQ__&amp;Signature=KqdElSTzoGjAjNooJQn5w7ytZroSMBr4GvzqwDx6pGb~Y6tU1L0mj3m-iHTnfpXbWd-s2IKlfNXKEhEQrxkdpvaWGkRvT1TTZUive2WbOZVBwCy95F-qLJ06fr0wm1wmlDxPXqSWU49m1QcKOn-9Qw3zMxRTy4KazKXrvDSXVTHrIXkuawpHIIz6h0uDNJ6mNKRLdlBQKgd~Dg-~qMO7ASH9XY7gM05Y5VXasyG1-5qok3s5kNIG8pNzpWxfJGxrIFo0vaGElvw-Ex6uksrQUtVP~5L0M5c1RyRNvgMx-dz3Nm5DO4giSMmP1Azh3fGTpNN2YhDgoWJZn09QLSx1cQCtpQvpXMtcYfKXcR5qSQ9WXLCEYnH5anpcIIEGixyCacOZNLq1p~Ro3qxn6gwhx93LKr~oPqByoQ2Olj5Dcj1eSwg7R17~lAoTdc7UZsSznsacI2F0FkP9MKdFwtNa02Awvn6Ni1AJvCa-c3zk3mMorCBMJicb8ULhVQG2f7fa3TeJ8lnLCXE7TWvIqR5M958Se3F6a2jBwz~QQGEvbvL1yJhKxBJ6i~OeidUiLY4sMfb6jLmZkVX59I5m--a5jS9Xi6MKMjo32Qt8uEFcyxDoqcWcrwYHedwq5x5yS80mAEjr5yur76jeUMmSFEPV6YzKaK7q3Kykxrkbdvj5rF0_&amp;Key-Pair-Id=APKAI2CZZ4N3GP3ZUGJQ</string>
 		<key>message</key>
 		<string>myData a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message </string>
 	</dict>
@@ -39,10 +39,10 @@
 	<dict>
 		<key>title</key>
 		<string>myWhy title</string>
-		<key>imageName</key>
-		<string>test</string>
+		<key>imageURL</key>
+		<string>https://www.gstatic.com/webp/gallery3/1.png</string>
 		<key>videoURL</key>
-		<string>http://google.com</string>
+		<string>https://d1ewy15slsehi8.cloudfront.net/videos/Learn_Foundation_Videos/QOT_Mindset_Final.mp4?Policy=eyJTdGF0ZW1lbnQiOiBbeyJSZXNvdXJjZSI6Iio6Ly9kMWV3eTE1c2xzZWhpOC5jbG91ZGZyb250Lm5ldC8qIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxODIzNzU1NjQ3fSwiSXBBZGRyZXNzIjp7IkFXUzpTb3VyY2VJcCI6IjAuMC4wLjAvMCJ9fX1dfQ__&amp;Signature=KqdElSTzoGjAjNooJQn5w7ytZroSMBr4GvzqwDx6pGb~Y6tU1L0mj3m-iHTnfpXbWd-s2IKlfNXKEhEQrxkdpvaWGkRvT1TTZUive2WbOZVBwCy95F-qLJ06fr0wm1wmlDxPXqSWU49m1QcKOn-9Qw3zMxRTy4KazKXrvDSXVTHrIXkuawpHIIz6h0uDNJ6mNKRLdlBQKgd~Dg-~qMO7ASH9XY7gM05Y5VXasyG1-5qok3s5kNIG8pNzpWxfJGxrIFo0vaGElvw-Ex6uksrQUtVP~5L0M5c1RyRNvgMx-dz3Nm5DO4giSMmP1Azh3fGTpNN2YhDgoWJZn09QLSx1cQCtpQvpXMtcYfKXcR5qSQ9WXLCEYnH5anpcIIEGixyCacOZNLq1p~Ro3qxn6gwhx93LKr~oPqByoQ2Olj5Dcj1eSwg7R17~lAoTdc7UZsSznsacI2F0FkP9MKdFwtNa02Awvn6Ni1AJvCa-c3zk3mMorCBMJicb8ULhVQG2f7fa3TeJ8lnLCXE7TWvIqR5M958Se3F6a2jBwz~QQGEvbvL1yJhKxBJ6i~OeidUiLY4sMfb6jLmZkVX59I5m--a5jS9Xi6MKMjo32Qt8uEFcyxDoqcWcrwYHedwq5x5yS80mAEjr5yur76jeUMmSFEPV6YzKaK7q3Kykxrkbdvj5rF0_&amp;Key-Pair-Id=APKAI2CZZ4N3GP3ZUGJQ</string>
 		<key>message</key>
 		<string>myWhy a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message </string>
 	</dict>
@@ -50,10 +50,10 @@
 	<dict>
 		<key>title</key>
 		<string>coach title</string>
-		<key>imageName</key>
-		<string>test</string>
+		<key>imageURL</key>
+		<string>https://www.gstatic.com/webp/gallery3/1.png</string>
 		<key>videoURL</key>
-		<string>http://google.com</string>
+		<string>https://d1ewy15slsehi8.cloudfront.net/videos/Learn_Foundation_Videos/QOT_Mindset_Final.mp4?Policy=eyJTdGF0ZW1lbnQiOiBbeyJSZXNvdXJjZSI6Iio6Ly9kMWV3eTE1c2xzZWhpOC5jbG91ZGZyb250Lm5ldC8qIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxODIzNzU1NjQ3fSwiSXBBZGRyZXNzIjp7IkFXUzpTb3VyY2VJcCI6IjAuMC4wLjAvMCJ9fX1dfQ__&amp;Signature=KqdElSTzoGjAjNooJQn5w7ytZroSMBr4GvzqwDx6pGb~Y6tU1L0mj3m-iHTnfpXbWd-s2IKlfNXKEhEQrxkdpvaWGkRvT1TTZUive2WbOZVBwCy95F-qLJ06fr0wm1wmlDxPXqSWU49m1QcKOn-9Qw3zMxRTy4KazKXrvDSXVTHrIXkuawpHIIz6h0uDNJ6mNKRLdlBQKgd~Dg-~qMO7ASH9XY7gM05Y5VXasyG1-5qok3s5kNIG8pNzpWxfJGxrIFo0vaGElvw-Ex6uksrQUtVP~5L0M5c1RyRNvgMx-dz3Nm5DO4giSMmP1Azh3fGTpNN2YhDgoWJZn09QLSx1cQCtpQvpXMtcYfKXcR5qSQ9WXLCEYnH5anpcIIEGixyCacOZNLq1p~Ro3qxn6gwhx93LKr~oPqByoQ2Olj5Dcj1eSwg7R17~lAoTdc7UZsSznsacI2F0FkP9MKdFwtNa02Awvn6Ni1AJvCa-c3zk3mMorCBMJicb8ULhVQG2f7fa3TeJ8lnLCXE7TWvIqR5M958Se3F6a2jBwz~QQGEvbvL1yJhKxBJ6i~OeidUiLY4sMfb6jLmZkVX59I5m--a5jS9Xi6MKMjo32Qt8uEFcyxDoqcWcrwYHedwq5x5yS80mAEjr5yur76jeUMmSFEPV6YzKaK7q3Kykxrkbdvj5rF0_&amp;Key-Pair-Id=APKAI2CZZ4N3GP3ZUGJQ</string>
 		<key>message</key>
 		<string>coach a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message </string>
 	</dict>
@@ -61,10 +61,10 @@
 	<dict>
 		<key>title</key>
 		<string>prep title</string>
-		<key>imageName</key>
-		<string>test</string>
+		<key>imageURL</key>
+		<string>https://www.gstatic.com/webp/gallery3/1.png</string>
 		<key>videoURL</key>
-		<string>http://google.com</string>
+		<string>https://d1ewy15slsehi8.cloudfront.net/videos/Learn_Foundation_Videos/QOT_Mindset_Final.mp4?Policy=eyJTdGF0ZW1lbnQiOiBbeyJSZXNvdXJjZSI6Iio6Ly9kMWV3eTE1c2xzZWhpOC5jbG91ZGZyb250Lm5ldC8qIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxODIzNzU1NjQ3fSwiSXBBZGRyZXNzIjp7IkFXUzpTb3VyY2VJcCI6IjAuMC4wLjAvMCJ9fX1dfQ__&amp;Signature=KqdElSTzoGjAjNooJQn5w7ytZroSMBr4GvzqwDx6pGb~Y6tU1L0mj3m-iHTnfpXbWd-s2IKlfNXKEhEQrxkdpvaWGkRvT1TTZUive2WbOZVBwCy95F-qLJ06fr0wm1wmlDxPXqSWU49m1QcKOn-9Qw3zMxRTy4KazKXrvDSXVTHrIXkuawpHIIz6h0uDNJ6mNKRLdlBQKgd~Dg-~qMO7ASH9XY7gM05Y5VXasyG1-5qok3s5kNIG8pNzpWxfJGxrIFo0vaGElvw-Ex6uksrQUtVP~5L0M5c1RyRNvgMx-dz3Nm5DO4giSMmP1Azh3fGTpNN2YhDgoWJZn09QLSx1cQCtpQvpXMtcYfKXcR5qSQ9WXLCEYnH5anpcIIEGixyCacOZNLq1p~Ro3qxn6gwhx93LKr~oPqByoQ2Olj5Dcj1eSwg7R17~lAoTdc7UZsSznsacI2F0FkP9MKdFwtNa02Awvn6Ni1AJvCa-c3zk3mMorCBMJicb8ULhVQG2f7fa3TeJ8lnLCXE7TWvIqR5M958Se3F6a2jBwz~QQGEvbvL1yJhKxBJ6i~OeidUiLY4sMfb6jLmZkVX59I5m--a5jS9Xi6MKMjo32Qt8uEFcyxDoqcWcrwYHedwq5x5yS80mAEjr5yur76jeUMmSFEPV6YzKaK7q3Kykxrkbdvj5rF0_&amp;Key-Pair-Id=APKAI2CZZ4N3GP3ZUGJQ</string>
 		<key>message</key>
 		<string>prep a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message </string>
 	</dict>

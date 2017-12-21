@@ -286,7 +286,7 @@ extension UIView {
         fadeView.backgroundColor = .clear
 
         let fadeLayer = CAGradientLayer()
-        fadeLayer.frame = fadeView.bounds
+        fadeLayer.frame = CGRect(x: 0, y: 0, width: bounds.width, height: height)
 
         fadeView.layer.addSublayer(fadeLayer)
         addSubview(fadeView)
@@ -296,10 +296,10 @@ extension UIView {
 
         switch location {
         case .top:
-            fadeView.topAnchor == safeTopAnchor
+            fadeView.topAnchor == topAnchor
             fadeLayer.colors = [primaryColor.cgColor, primaryColor.cgColor, fadeColor.cgColor]
         case .bottom:
-            fadeView.bottomAnchor == safeBottomAnchor
+            fadeView.bottomAnchor == bottomAnchor
             fadeLayer.colors = [fadeColor.cgColor, primaryColor.cgColor, primaryColor.cgColor]
         }
 
