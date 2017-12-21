@@ -13,11 +13,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="GuideGreetingView" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="86"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y4B-wZ-EGv">
                     <rect key="frame" x="28" y="18" width="319" height="20.5"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="qs5-3C-JdA"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -34,7 +37,7 @@
                 <constraint firstItem="Y4B-wZ-EGv" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="28" id="1WT-Gn-0qn"/>
                 <constraint firstItem="teW-FE-WmR" firstAttribute="top" secondItem="Y4B-wZ-EGv" secondAttribute="bottom" constant="12" id="3Uo-RK-uzp"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="teW-FE-WmR" secondAttribute="trailing" constant="28" id="BS6-CP-KdB"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="teW-FE-WmR" secondAttribute="bottom" constant="28" id="Xcl-Bk-SgO"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="teW-FE-WmR" secondAttribute="bottom" constant="14" id="Xcl-Bk-SgO"/>
                 <constraint firstItem="teW-FE-WmR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="28" id="hiz-eO-kre"/>
                 <constraint firstItem="Y4B-wZ-EGv" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="18.5" id="pSZ-88-Dws"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Y4B-wZ-EGv" secondAttribute="trailing" constant="28" id="wpm-Xs-0kM"/>

@@ -17,7 +17,7 @@ final class GuideViewController: UIViewController, FullScreenLoadable, PageViewC
     // MARK: - Properties
 
     private let viewModel: GuideViewModel
-    private let sectionHeaderHeight: CGFloat = 64
+    private let sectionHeaderHeight: CGFloat = 44
     private let fadeMaskLocation: UIView.FadeMaskLocation
     private let disposeBag = DisposeBag()
     var loadingView: BlurLoadingView?
@@ -94,15 +94,17 @@ private extension GuideViewController {
         updateGreetingView(viewModel.message, viewModel.greeting(nil))
         view.addSubview(greetingView)
         view.addSubview(tableView)
-        greetingView.topAnchor == view.topAnchor - UIApplication.shared.statusBarFrame.height
+        greetingView.topAnchor == view.topAnchor + UIApplication.shared.statusBarFrame.height
         greetingView.leftAnchor == view.leftAnchor
         greetingView.rightAnchor == view.rightAnchor
+        greetingView.heightAnchor == view.heightAnchor * 0.25
         tableView.topAnchor == greetingView.bottomAnchor
         tableView.bottomAnchor == view.bottomAnchor
         tableView.leftAnchor == view.leftAnchor
         tableView.rightAnchor == view.rightAnchor
         tableView.backgroundColor = .pineGreen
         view.setFadeMask(at: fadeMaskLocation)
+        view.layoutIfNeeded()
     }
 
     func updateGreetingView(_ message: String, _ greeting: String) {

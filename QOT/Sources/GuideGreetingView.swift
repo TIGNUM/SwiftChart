@@ -30,6 +30,7 @@ final class GuideGreetingView: UIView {
                                                       font: Font.H4Headline,
                                                       textColor: .white,
                                                       alignment: .left)
+        greetingLabel.sizeToFit()
     }
 }
 
