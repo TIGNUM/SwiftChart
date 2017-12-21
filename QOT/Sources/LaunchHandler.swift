@@ -31,20 +31,20 @@ final class LaunchHandler {
         case .preparation: preparation(localID: url.absoluteString.components(separatedBy: scheme.queryName).last)
         case .randomContent: randomContent(url: url, scheme: scheme)
         case .weeklyChoices: weeklyChoiches()
+        case .meChoices: weeklyChoiches()
         case .weeklyChoicesReminder: weeklyChoicesReminder()
-        case .myPreps: preparationList()
+        case .myPreps: navigate(to: scheme.destination)
         case .toBeVision: toBeVision()
-        case .weeklyPeakPerformance: return
+        case .weeklyPeakPerformance: navigate(to: scheme.destination)
         case .contentCategory: contentCategory(collectionID: scheme.queryParametter(url: url))
         case .featureExplainer: featureExplainer(url: url, scheme: scheme, guideItem: guideItem)
-        case .strategies: strategies()
-        case .meUniverse: meUniverse()
+        case .strategies: navigate(to: scheme.destination)
+        case .meUniverse: navigate(to: scheme.destination)
         case .preferencesSyncCalendar: return
         case .addSensor: return
-        case .prepare: return
-        case .fitbitAuthrefresh: return
-        case .meMyWhy:return
-        case .meChoices:return
+        case .prepare: navigate(to: scheme.destination)
+        case .fitbitAuthrefresh: return ///??????
+        case .meMyWhy: navigate(to: scheme.destination) // TODO the middleButtons are different here.
         case .meActivity:return
         case .meIntensity:return
         case .meMeeting:return
@@ -55,9 +55,14 @@ final class LaunchHandler {
         case .prepareProblem:return
         case .prepareEvent:return
         case .prepareDay:return
-        case .library:return
-        case .guide: return
+        case .library: library()
+        case .guide: navigate(to: scheme.destination)
         }
+    }
+
+    func navigate(to destination: AppCoordinator.Router.Destination?) {
+        guard let destination = destination else { return }
+        appDelegate.appCoordinator.navigate(to: destination)
     }
 
     func logPushNotificationID(urlScheme: URLScheme, url: URL) {
@@ -69,6 +74,10 @@ final class LaunchHandler {
 // MARK: - Preparation
 
 extension LaunchHandler {
+
+    func library() {
+        appDelegate.appCoordinator.presentLibrary()
+    }
 
     func preparation(localID: String?) {
         guard let localID = localID else { return }
@@ -175,27 +184,6 @@ extension LaunchHandler {
     }
 }
 
-// MARK: - MeUniverse
-
-extension LaunchHandler {
-
-    func meUniverse() {
-        let destination = AppCoordinator.Router.Destination(tabBar: .me, topTabBar: .myData)
-        appDelegate.appCoordinator.navigate(to: destination)
-    }
-}
-
-
-// MARK: - Strategies
-
-extension LaunchHandler {
-
-    func strategies() {
-        let destination = AppCoordinator.Router.Destination(tabBar: .learn, topTabBar: .strategies)
-        appDelegate.appCoordinator.navigate(to: destination)
-    }
-}
-
 // MARK: - Random Content
 
 extension LaunchHandler {
@@ -214,16 +202,6 @@ extension LaunchHandler {
 
     func toBeVision() {
         appDelegate.appCoordinator.presentToBeVision()
-    }
-}
-
-// MARK: - Preparation List
-
-extension LaunchHandler {
-
-    func preparationList() {
-        let destination = AppCoordinator.Router.Destination(tabBar: .prepare, topTabBar: .myPrep)
-        appDelegate.appCoordinator.navigate(to: destination)
     }
 }
 
