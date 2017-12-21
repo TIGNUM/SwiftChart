@@ -99,10 +99,10 @@ final class ContentService {
         return try realmProvider.realm().anyCollection(predicates: NSPredicate(format: "collectionID == %d", contentCollectionID))
     }
 
-    func defaultMessage(_ defaultMessage: GuideViewModel.Message) -> String? {
+    func defaultMessage(_ itemID: Int) -> String {
         let welcomeMessageCollection = contentCollection(id: 100708)
-        let predicate = NSPredicate(remoteID: defaultMessage.rawValue)
-        return welcomeMessageCollection?.contentItems.filter(predicate).flatMap { $0.valueText }.first
+        let predicate = NSPredicate(remoteID: itemID)
+        return welcomeMessageCollection?.contentItems.filter(predicate).flatMap { $0.valueText }.first ?? ""
     }
 
     func relatedArticles(for articleCollection: ContentCollection) -> [ContentCollection] {

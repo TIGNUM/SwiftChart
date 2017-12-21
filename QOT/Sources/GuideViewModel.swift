@@ -74,14 +74,17 @@ extension GuideViewModel {
             }
         }
     }
+}
 
-    enum Message: Int {
+extension GuideViewModel {
+
+    enum Greeting: Int {
         case welcome = 102978
         case dailyLearnPlan = 102979
         case dailyPrep = 103002
 
         func text(_ contentService: ContentService) -> String {
-            return contentService.defaultMessage(self) ?? ""
+            return contentService.defaultMessage(self.rawValue)
         }
     }
 }
@@ -115,6 +118,45 @@ final class GuideViewModel {
     private func reload() {
         days = services.guideService.guideSections().map { Guide.Day(day: $0) }
         sectionCountUpdate.next(sectionCount)
+    }
+
+    var message: String {
+        let userName = services.mainRealm.objects(User.self).first?.givenName ?? ""
+        let welcomeMessage = Date().isBeforeNoon == true ? "Good Morning" : "Hello"
+
+        return String(format: "%@ %@,\n", welcomeMessage, userName)
+    }
+
+    func greeting(_ item: Guide.Item?) -> String {
+        let welcome = Greeting.welcome.text(services.contentService)
+        let dailyLearnPlan = Greeting.dailyLearnPlan.text(services.contentService)
+        let dailyPrep = Greeting.dailyPrep.text(services.contentService)
+
+        if services.guideService.guideSections().count == 1 || services.guideService.guideSections().count == 0 {
+            if ((services.guideService.guideSections().first?.items.filter { $0.completedAt != nil })?.isEmpty)! {
+                return welcome
+            } else {
+                return dailyLearnPlan
+            }
+        }
+
+        if item == nil {
+            return dailyLearnPlan
+        }
+
+        if let item = item, item.isDailyPrep == true && item.isDailyPrepCompleted == false {
+            if item.greeting.isEmpty == false {
+                return item.greeting
+            } else {
+                return dailyPrep
+            }
+        }
+
+        if let greeting = item?.greeting, greeting.isEmpty == false {
+            return greeting
+        } else {
+            return dailyLearnPlan
+        }
     }
 
     var isReady: Bool {

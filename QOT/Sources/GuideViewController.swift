@@ -80,7 +80,7 @@ private extension GuideViewController {
     func reload() {
         tableView.reloadData()
         updateReadyState()
-        updateGreetingView()
+        updateGreetingView(viewModel.message, viewModel.greeting(nil))
     }
 
     func observeViewModel() {
@@ -91,7 +91,7 @@ private extension GuideViewController {
 
     func setupView() {
         guard let greetingView = self.greetingView else { return }
-        updateGreetingView()
+        updateGreetingView(viewModel.message, viewModel.greeting(nil))
         view.addSubview(greetingView)
         view.addSubview(tableView)
         greetingView.topAnchor == view.topAnchor - UIApplication.shared.statusBarFrame.height
@@ -105,9 +105,8 @@ private extension GuideViewController {
         view.setFadeMask(at: fadeMaskLocation)
     }
 
-    func updateGreetingView(_ item: Guide.Item? = nil) {
-        greetingView?.services = AppDelegate.appState.services
-        greetingView?.configure(item)
+    func updateGreetingView(_ message: String, _ greeting: String) {
+        greetingView?.configure(message, greeting)
     }
 
     func open(item: Guide.Item) {
@@ -180,7 +179,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
         open(item: item)
         viewModel.setCompleted(item: item) {
             tableView.reloadRows(at: [indexPath], with: .automatic)
-            self.updateGreetingView(item)
+            self.updateGreetingView(self.viewModel.message, self.viewModel.greeting(item))
         }
     }
 }
