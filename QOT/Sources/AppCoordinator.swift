@@ -33,8 +33,8 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     private var notificationID: String?
 
     // current state
-    private weak var topTabBarController: UINavigationController?
     private weak var tabBarCoordinator: TabBarCoordinator?
+    private weak var topTabBarController: UINavigationController?
     private weak var currentPresentedController: UIViewController?
     private weak var currentPresentedNavigationController: UINavigationController?
     static var currentStatusBarStyle: UIStatusBarStyle?
@@ -534,15 +534,19 @@ extension AppCoordinator {
                 case .myPrep: return 1
                 }
             }
+
+            func middleButton(_ topNavigationBar: TopNavigationBar?) -> UIButton? {
+                return (topNavigationBar?.middleButtons?.filter { $0.tag == index })?.first
+            }
+
+            func topNavigationBar(_ tabBarCoordinator: TabBarCoordinator?) -> TopNavigationBar? {
+                return (tabBarCoordinator?.topTabBarControllerPrepare.navigationBar as? TopNavigationBar)
+            }
         }
     }
 }
 
 extension AppCoordinator {
-
-    func presentStrategies() {
-
-    }
 
     func presentLearnContentItems(contentID: Int) {
         guard
@@ -587,7 +591,7 @@ extension AppCoordinator {
         currentPresentedController = coordinator.addSensorViewController
     }
 
-    func presentPreparationList(_ destination: AppCoordinator.Router.Destination) {
+    func navigate(to destination: AppCoordinator.Router.Destination) {
         if let viewController = currentPresentedController {
             dismiss(viewController, level: .priority)
         }
@@ -606,15 +610,17 @@ extension AppCoordinator {
             } else {
                 pageViewController.viewControllers?.forEach { viewController in
                     viewController.dismiss(animated: true) {
-                        self.presentPreparationList(destination)
+                        self.navigate(to: destination)
                     }
                 }
             }
         } else if let tabBarController = (topViewController as? MyUniverseViewController)?.parent as? TabBarController {
             selectTabBarItem(tabBarController: tabBarController, destination: destination)
+        } else if let tabBarController = (topViewController as? LearnCategoryListViewController)?.parent as? TabBarController {
+            selectTabBarItem(tabBarController: tabBarController, destination: destination)
         } else {
             topViewController.dismiss(animated: true) {
-                self.presentPreparationList(destination)
+                self.navigate(to: destination)
             }
         }
     }
@@ -626,17 +632,17 @@ extension AppCoordinator {
         tabBarController.selectedViewController = viewControllers[tabBarIndex]
 
         guard
-            let topNavigationBar = (tabBarCoordinator?.topTabBarControllerPrepare.navigationBar as? TopNavigationBar),
-            let myPrepButton = (topNavigationBar.middleButtons?.filter { $0.tag == topTabBarIndex })?.first,
+            let topNavigationBar = destination.topTabBar.topNavigationBar(tabBarCoordinator),
+            let middleButton = destination.topTabBar.middleButton(topNavigationBar),
             let destinationViewController = tabBarController.selectedViewController else { return }
         tabBarController.tabBarController(tabBarController, didSelect: destinationViewController)
         tabBarCoordinator?.topNavigationBar(topNavigationBar,
-                                            middleButtonPressed: myPrepButton,
+                                            middleButtonPressed: middleButton,
                                             withIndex: topTabBarIndex,
                                             ofTotal: 2)
         topNavigationBar.setIndicatorToButtonIndex(topTabBarIndex, animated: true)
-        topNavigationBar.setIndicatorToButton(myPrepButton, animated: true)
-        topNavigationBar.setIsSelected(myPrepButton)
+        topNavigationBar.setIndicatorToButton(middleButton, animated: true)
+        topNavigationBar.setIsSelected(middleButton)
     }
 
     func presentToBeVision() {

@@ -180,7 +180,8 @@ extension LaunchHandler {
 extension LaunchHandler {
 
     func strategies() {
-        appDelegate.appCoordinator.presentStrategies()
+        let destination = AppCoordinator.Router.Destination(tabBar: .learn, topTabBar: .strategies)
+        appDelegate.appCoordinator.navigate(to: destination)
     }
 }
 
@@ -211,7 +212,7 @@ extension LaunchHandler {
 
     func preparationList() {
         let destination = AppCoordinator.Router.Destination(tabBar: .prepare, topTabBar: .myPrep)
-        appDelegate.appCoordinator.presentPreparationList(destination)
+        appDelegate.appCoordinator.navigate(to: destination)
     }
 }
 
