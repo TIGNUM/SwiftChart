@@ -557,10 +557,10 @@ extension AppCoordinator {
         guard let topViewController = AppDelegate.topViewController() else { return }
 
         if let tabBarController = topViewController as? TabBarController {
-            selectTabBarItem(tabBarController: tabBarController, tabBarIndex: 2, topTabBarIndex: 1)
+            selectTabBarItem(tabBarController: tabBarController, tabBarIndex: 3, topTabBarIndex: 1)
         } else if let pageViewController = topViewController as? PageViewController {
             if let tabBarController = pageViewController.tabBarController as? TabBarController {
-                selectTabBarItem(tabBarController: tabBarController, tabBarIndex: 2, topTabBarIndex: 1)
+                selectTabBarItem(tabBarController: tabBarController, tabBarIndex: 3, topTabBarIndex: 1)
             } else {
                 pageViewController.viewControllers?.forEach { viewController in
                     viewController.dismiss(animated: true) {
@@ -569,7 +569,7 @@ extension AppCoordinator {
                 }
             }
         } else if let tabBarController = (topViewController as? MyUniverseViewController)?.parent as? TabBarController {
-            selectTabBarItem(tabBarController: tabBarController, tabBarIndex: 2, topTabBarIndex: 1)
+            selectTabBarItem(tabBarController: tabBarController, tabBarIndex: 3, topTabBarIndex: 1)
         } else {
             topViewController.dismiss(animated: true) {
                 self.presentPreparationList()
