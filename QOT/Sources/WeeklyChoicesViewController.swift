@@ -28,9 +28,8 @@ final class WeeklyChoicesViewController: UIViewController, PageViewControllerNot
     }
     private lazy var dateLabel: UILabel = UILabel()
     private weak var circleLayer: CALayer?
+    private lazy var layout = WeeklyChoicesLayout()
     private lazy var collectionView: UICollectionView = {
-        let layout = WeeklyChoicesLayout()
-        layout.delegate = self
         return UICollectionView(layout: layout,
                                 delegate: self,
                                 dataSource: self,
@@ -72,11 +71,15 @@ final class WeeklyChoicesViewController: UIViewController, PageViewControllerNot
         reload()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        redraw()
+    }
+
     @available(iOS 11.0, *)
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()
-        circleLayer?.removeFromSuperlayer()
-        circleLayer = drawCircle()
+        redraw()
     }
 
     func reload() {
@@ -89,6 +92,24 @@ final class WeeklyChoicesViewController: UIViewController, PageViewControllerNot
 // MARK: - Private
 
 private extension WeeklyChoicesViewController {
+
+    func redraw() {
+        layout.circle = WeeklyChoicesLayout.Circle(
+            center: CGPoint(
+                x: -collectionView.bounds.size.width * 0.65,
+                y: collectionView.center.y
+            ),
+            radius: collectionView.bounds.size.width
+        )
+        layout.itemSize = CGSize(
+            width: collectionView.bounds.width,
+            height: collectionView.bounds.height / CGFloat(viewData.itemsPerPage)
+        )
+        layout.invalidateLayout()
+
+        circleLayer?.removeFromSuperlayer()
+        circleLayer = draw(layout.circle)
+    }
 
     func setupView() {
         let coverView = UIImageView(image: R.image.backgroundWeeklyChoices())
@@ -113,7 +134,6 @@ private extension WeeklyChoicesViewController {
         configureDateLabel(dateLabel)
 
         view.layoutIfNeeded()
-        view.setFadeMask(at: .bottom)
     }
 
     func setNoContentLabel() {
@@ -125,7 +145,7 @@ private extension WeeklyChoicesViewController {
         } else {
             emptyLabel.removeFromSuperview()
             if circleLayer?.superlayer == nil {
-                circleLayer = drawCircle()
+                circleLayer = draw(layout.circle)
             }
         }
     }
@@ -140,33 +160,30 @@ private extension WeeklyChoicesViewController {
         }
     }
 
-    func drawCircle() -> CALayer? {
-        let layout = WeeklyChoicesLayout()
-        var center = layout.circleCenter(circleX: circleX(), collectionView: collectionView)
-        center.x += 33 // FIXME: sorry for the magic number. not sure why this is needed :(
-        center.y = collectionView.center.y + (view.safeMargins.top / 2.0)
+    func draw(_ circle: WeeklyChoicesLayout.Circle) -> CALayer? {
         return view.drawSolidCircle(
-            arcCenter: center,
-            radius: radius(),
+            arcCenter: circle.center,
+            radius: circle.radius,
             strokeColor: .white20
         )
     }
 
     func snapPage(scrollView: UIScrollView) {
-        let itemsPerPage = viewData.itemsPerPage
-        let changeOffset = cellHeight() * CGFloat(itemsPerPage) / 3
-        let pageHeight = cellHeight() * CGFloat(itemsPerPage)
-        let currentOffset: CGFloat = scrollView.contentOffset.y
-        var targetOffset: CGFloat = 0
-        var index = Int(fabs(currentOffset) / pageHeight)
-        let remainingOffset = fabs(currentOffset).truncatingRemainder(dividingBy: pageHeight)
-        if remainingOffset > changeOffset {
-            index += 1
-        }
-        index = index < 0 ? 0 : index >= itemsPerPage ? itemsPerPage - 1 : index
-        targetOffset = pageHeight * CGFloat(index)
-        scrollView.setContentOffset(CGPoint(x: scrollView.contentOffset.x, y: targetOffset), animated: true)
+        let pageHeight = layout.itemSize.height * CGFloat(viewData.itemsPerPage)
+        let index = snapIndex()
+        scrollView.setContentOffset(CGPoint(
+            x: scrollView.contentOffset.x,
+            y: pageHeight * CGFloat(index)), animated: true)
         updateDate(viewData.pages[index].dateString)
+    }
+
+    func snapIndex() -> Int {
+        let pageHeight = layout.itemSize.height * CGFloat(viewData.itemsPerPage)
+        let currentOffset = collectionView.contentOffset.y
+        var snapIndex = Int(roundf(Float(currentOffset / pageHeight)))
+        snapIndex = max(snapIndex, viewData.pages.startIndex)
+        snapIndex = min(snapIndex, viewData.pages.endIndex-1)
+        return snapIndex
     }
 
     func updateDate(_ text: String) {
@@ -210,6 +227,10 @@ extension WeeklyChoicesViewController: UICollectionViewDataSource, UICollectionV
 
 extension WeeklyChoicesViewController: UIScrollViewDelegate {
 
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        updateDate(viewData.pages[snapIndex()].dateString)
+    }
+
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
             snapPage(scrollView: scrollView)
@@ -218,22 +239,5 @@ extension WeeklyChoicesViewController: UIScrollViewDelegate {
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         snapPage(scrollView: scrollView)
-    }
-}
-
-// MARK: - WeeklyChoicesLayoutDelegate
-
-extension WeeklyChoicesViewController: WeeklyChoicesLayoutDelegate {
-
-    func radius() -> CGFloat {
-        return CGFloat(400)
-    }
-
-    func circleX() -> CGFloat {
-        return CGFloat(-330)
-    }
-
-    func cellHeight() -> CGFloat {
-        return collectionView.frame.height / 5.5
     }
 }

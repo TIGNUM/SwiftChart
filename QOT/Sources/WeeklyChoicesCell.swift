@@ -13,7 +13,7 @@ final class WeeklyChoicesCell: UICollectionViewCell, Dequeueable {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet weak var subTitleLabel: UILabel!
     @IBOutlet weak var choiceLabel: UILabel!
-    @IBOutlet weak var CircleView: UIView!
+    @IBOutlet weak var circleView: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,7 +28,7 @@ final class WeeklyChoicesCell: UICollectionViewCell, Dequeueable {
     }
 
     private func configure() {
-        CircleView.layer.cornerRadius = CircleView.bounds.width / 2
+        circleView.layer.cornerRadius = circleView.bounds.width / 2
         titleLabel.font = Font.H4Headline
         titleLabel.lineBreakMode = .byTruncatingTail
         subTitleLabel.font = Font.H7Title
