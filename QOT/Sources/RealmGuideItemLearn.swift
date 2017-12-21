@@ -28,8 +28,6 @@ final class RealmGuideItemLearn: SyncableObject, RealmGuideItemProtocol {
 
     @objc private(set) dynamic var displayType: String?
 
-    @objc private(set) dynamic var greeting: String = ""
-
     @objc private(set) dynamic var link: String = ""
 
     @objc private(set) dynamic var sound: String = ""
@@ -43,6 +41,8 @@ final class RealmGuideItemLearn: SyncableObject, RealmGuideItemProtocol {
     @objc private(set) dynamic var priority: Int = 0
 
     @objc private(set) dynamic var block: Int = 0
+
+    @objc private(set) dynamic var greeting: String = ""
 
     @objc dynamic var completedAt: Date?
 

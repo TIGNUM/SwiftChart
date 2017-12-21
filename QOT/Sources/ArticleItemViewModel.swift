@@ -49,7 +49,7 @@ final class ArticleItemViewModel {
         self.backgroundImage = backgroundImage
         self.contentCollection = contentCollection
         let relatedArticles = services.contentService.relatedArticles(for: contentCollection)
-        
+
         self.relatedArticles = relatedArticles.sorted { (lhs: ContentCollection, rhs: ContentCollection) -> Bool in
             return lhs.sortOrder < rhs.sortOrder
         }

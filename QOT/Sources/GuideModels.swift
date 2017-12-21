@@ -11,7 +11,6 @@ import Foundation
 struct Guide {
 
     struct Item {
-
         enum Content {
             case text(String)
 

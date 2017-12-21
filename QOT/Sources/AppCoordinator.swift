@@ -37,8 +37,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     private weak var tabBarCoordinator: TabBarCoordinator?
     private weak var currentPresentedController: UIViewController?
     private weak var currentPresentedNavigationController: UINavigationController?
-    private weak var currentPresentedPageController: PageViewController?
-    private weak var currentPresentedTabbBarController: UITabBarController?
     static var currentStatusBarStyle: UIStatusBarStyle?
 
     private lazy var realmProvider: RealmProvider = {
@@ -404,7 +402,7 @@ extension AppCoordinator: MorningInterviewViewControllerDelegate {
             try realm.write {
                 if  let notificationID = notificationID,
                     let guideItemNotification = realm.syncableObject(ofType: RealmGuideItemNotification.self,
-                                                                    localID: notificationID) {
+                                                                     localID: notificationID) {
                     guideItemNotification.morningInterviewFeedback = feedback.body
                 }
             }
@@ -536,7 +534,7 @@ extension AppCoordinator {
                                                       presentOnStart: false)
         startChild(child: coordinator)
         topTabBarController = coordinator.topTabBarController
-        setCurrentController()
+        currentPresentedNavigationController = coordinator.topTabBarController
         windowManager.showPriority(coordinator.topTabBarController, animated: true, completion: nil)
     }
 
@@ -548,7 +546,13 @@ extension AppCoordinator {
     }
 
     func presentPreparationList() {
-        dismissCurrentPresentedController()
+        if let viewController = currentPresentedController {
+            dismiss(viewController, level: .priority)
+        }
+
+        if let navigationController = currentPresentedNavigationController {
+            dismiss(navigationController, level: .priority)
+        }
 
         guard let topViewController = AppDelegate.topViewController() else { return }
 
@@ -589,7 +593,6 @@ extension AppCoordinator {
         topNavigationBar.setIndicatorToButtonIndex(topTabBarIndex, animated: true)
         topNavigationBar.setIndicatorToButton(myPrepButton, animated: true)
         topNavigationBar.setIsSelected(myPrepButton)
-        setCurrentController()
     }
 
     func presentToBeVision() {
@@ -599,7 +602,7 @@ extension AppCoordinator {
                                                                     permissionsManager: permissionsManager)
         myToBeVisionViewController.delegate = self
         windowManager.showPriority(myToBeVisionViewController, animated: true, completion: nil)
-        setCurrentController()
+        currentPresentedController = myToBeVisionViewController
     }
 
     func presentPreparationCheckList(localID: String) {
@@ -608,7 +611,6 @@ extension AppCoordinator {
         } else {
             checkListIDToPresent = localID
         }
-        setCurrentController()
     }
 
     func presentMorningInterview(groupID: Int, validFrom: Date, validTo: Date, notificationID: String) {
@@ -623,7 +625,7 @@ extension AppCoordinator {
         let morningInterViewController = MorningInterviewViewController(viewModel: viewModel)
         morningInterViewController.delegate = self
         windowManager.showPriority(morningInterViewController, animated: true, completion: nil)
-        setCurrentController()
+        currentPresentedController = morningInterViewController
     }
 
     func presentWeeklyChoicesReminder() {
@@ -636,7 +638,7 @@ extension AppCoordinator {
                                                    topBarDelegate: self)
         topTabBarController = coordinator.topTabBarController
         windowManager.showPriority(coordinator.topTabBarController, animated: true, completion: nil)
-        setCurrentController()
+        currentPresentedNavigationController = coordinator.topTabBarController
     }
 
     func presentWeeklyChoices(forStartDate startDate: Date, endDate: Date, completion: (() -> Void)?) {
@@ -647,7 +649,7 @@ extension AppCoordinator {
         let image = windowManager.rootViewController(atLevel: .normal)?.view.screenshot()
         let viewController = SelectWeeklyChoicesViewController(delegate: self, viewModel: viewModel, backgroundImage: image)
         windowManager.showPriority(viewController, animated: true, completion: nil)
-        setCurrentController()
+        currentPresentedController = viewController
     }
 
     func presentFeatureArticelContentItems(contentID: Int, guideItem: Guide.Item) {
@@ -664,7 +666,6 @@ extension AppCoordinator {
                                                             shouldPush: false,
                                                             guideItem: guideItem) else { return }
         startChild(child: coordinator)
-        setCurrentController()
     }
 
     func presentLearnContentCollection(collectionID: String?) {
@@ -680,44 +681,5 @@ extension AppCoordinator {
                                                       originFrame: rootViewController.view.frame)
         coordinator.delegate = self
         startChild(child: coordinator)
-        setCurrentController()
-    }
-
-    func presentGuide() {
-
-    }
-}
-
-extension AppCoordinator {
-
-    func setCurrentController() {
-        let topViewController = AppDelegate.topViewController()
-        if topViewController?.isKind(of: UIViewController.self) == true {
-            currentPresentedController = topViewController
-        }
-        if topViewController?.isKind(of: UINavigationController.self) == true {
-            currentPresentedNavigationController = topViewController as? UINavigationController
-        }
-        if topViewController?.isKind(of: PageViewController.self) == true {
-            currentPresentedPageController = topViewController as? PageViewController
-        }
-        if topViewController?.isKind(of: UITabBarController.self) == true {
-            currentPresentedTabbBarController = topViewController as? UITabBarController
-        }
-    }
-
-    func dismissCurrentPresentedController() {
-        if let viewController = currentPresentedController {
-            dismiss(viewController, level: .priority)
-            currentPresentedController = nil
-        }
-        if let navigationController = currentPresentedNavigationController {
-            navigationController.viewControllers.forEach { dismiss($0, level: .priority) }
-            currentPresentedNavigationController = nil
-        }
-        if let pageViewController = currentPresentedPageController {
-            pageViewController.viewControllers?.forEach { dismiss($0, level: .priority) }
-            currentPresentedPageController = nil
-        }
     }
 }

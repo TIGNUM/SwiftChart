@@ -149,6 +149,7 @@ private extension ArticleItemViewController {
         }
 
         tableView.edgeAnchors == view.edgeAnchors
+        tableView.bottomAnchor == view.bottomAnchor - 60
         tableView.estimatedSectionHeaderHeight = 100
         view.backgroundColor = .clear
         view.addFadeView(at: .top)
@@ -158,8 +159,8 @@ private extension ArticleItemViewController {
 
     func featureLinkButton(guideItem: Guide.Item) -> UIButton {
         let button = UIButton()
-        button.setAttributedTitle(Style.headline(guideItem.title, .white).attributedString(), for: .normal)
-        button.setAttributedTitle(Style.headline(guideItem.title, .white70).attributedString(), for: .selected)
+        button.setAttributedTitle(Style.headline(guideItem.featureButton ?? "", .white).attributedString(), for: .normal)
+        button.setAttributedTitle(Style.headline(guideItem.featureButton ?? "", .white70).attributedString(), for: .selected)
         button.addTarget(self, action: #selector(openFeatureLink), for: .touchUpInside)
         button.backgroundColor = .clear
 

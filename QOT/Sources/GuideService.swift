@@ -40,15 +40,6 @@ final class GuideService {
     func guideSections() -> AnyRealmCollection<RealmGuide> {
         return AnyRealmCollection(mainRealm.objects(RealmGuide.self))
     }
-
-//    var isVerFirstDay: Bool {
-//        let guideSections = self.guideSections()
-//        if guideSections.count > 1 {
-//            return false
-//        } else if guideSections.count == 1 {
-//            return guideSections.map { $0.createdAt.isSameDay(Date()) }.first ?? true
-//        }
-//    }
 }
 
 // MARK: - Erase

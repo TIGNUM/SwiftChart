@@ -75,7 +75,7 @@ extension GuideViewModel {
         }
     }
 
-    enum DefaultMessage: Int {
+    enum Message: Int {
         case welcome = 102978
         case dailyLearnPlan = 102979
         case dailyPrep = 103002
@@ -93,7 +93,6 @@ final class GuideViewModel {
     private let syncStateObserver: SyncStateObserver
     private var notificationTokenHandler: NotificationTokenHandler?
     private var tokenBin = TokenBin()
-    private var todaysGuide: RealmGuide?
     let updates = PublishSubject<CollectionUpdate, NoError>()
     let sectionCountUpdate = ReplayOneSubject<Int, NoError>()
     private var days: [Guide.Day] = [] {
@@ -119,7 +118,9 @@ final class GuideViewModel {
     }
 
     var isReady: Bool {
-        return syncStateObserver.hasSynced(RealmGuideItemLearn.self) && syncStateObserver.hasSynced(RealmGuideItemNotification.self)
+        return
+            syncStateObserver.hasSynced(RealmGuideItemLearn.self) &&
+            syncStateObserver.hasSynced(RealmGuideItemNotification.self)
     }
 
     var sectionCount: Int {
@@ -152,9 +153,9 @@ final class GuideViewModel {
     }
 
     func createTodaysGuideIfNeeded() {
-        todaysGuide = services.guideService.todaysGuide()
+        let todaysGuide = services.guideService.todaysGuide()
         guard todaysGuide?.items.isEmpty == true || todaysGuide == nil else { return }
         services.guideService.eraseGuide()
-        todaysGuide = GuideWorker(services: services).createTodaysGuide()
+        _ = GuideWorker(services: services).createTodaysGuide()
     }
 }

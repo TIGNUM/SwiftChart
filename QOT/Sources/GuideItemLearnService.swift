@@ -25,6 +25,11 @@ final class GuideItemLearnService {
 
         return List<RealmGuideItemLearn>(items)
     }
+}
+
+// MARK: - Delete
+
+extension GuideItemLearnService {
 
     func eraseItem(item: RealmGuideItemLearn) {
         do {

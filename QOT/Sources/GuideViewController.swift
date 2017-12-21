@@ -105,8 +105,9 @@ private extension GuideViewController {
         view.setFadeMask(at: fadeMaskLocation)
     }
 
-    func updateGreetingView() {
-        greetingView?.configure(greeting: "TBD")
+    func updateGreetingView(_ item: Guide.Item? = nil) {
+        greetingView?.services = AppDelegate.appState.services
+        greetingView?.configure(item)
     }
 
     func open(item: Guide.Item) {
@@ -179,7 +180,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
         open(item: item)
         viewModel.setCompleted(item: item) {
             tableView.reloadRows(at: [indexPath], with: .automatic)
-            self.updateGreetingView()
+            self.updateGreetingView(item)
         }
     }
 }

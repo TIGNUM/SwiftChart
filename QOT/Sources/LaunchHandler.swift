@@ -56,17 +56,13 @@ final class LaunchHandler {
         case .prepareEvent:return
         case .prepareDay:return
         case .library:return
-        case .guide: launchGuide()
+        case .guide: return
         }
     }
 
     func logPushNotificationID(urlScheme: URLScheme, url: URL) {
         guard let pushNotificationID = urlScheme.pushNotificationID(url: url) else { return }
         log("nid: \(pushNotificationID)", enabled: true, level: .error)
-    }
-
-    func launchGuide() {
-        appDelegate.appCoordinator.presentGuide()
     }
 }
 
