@@ -676,6 +676,11 @@ extension AppCoordinator {
         sidebarCoordinator.didTapLibraryCell(in: sidebarCoordinator.sideBarViewController)
     }
 
+    func presentAddSensor() {
+        guard let sidebarCoordinator = presentSideBar() else { return }
+        sidebarCoordinator.didTapAddSensorCell(with: nil, in: sidebarCoordinator.sideBarViewController)
+    }
+
     func presentToBeVision() {
         guard let services = services else { return }
         let viewModel = MyToBeVisionViewModel(services: services)

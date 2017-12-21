@@ -41,7 +41,7 @@ final class LaunchHandler {
         case .strategies: navigate(to: scheme.destination)
         case .meUniverse: navigate(to: scheme.destination)
         case .preferencesSyncCalendar: appDelegate.appCoordinator.presentPreferencesSyncCalendar()
-        case .addSensor: return
+        case .addSensor: appDelegate.appCoordinator.presentAddSensor()
         case .prepare: navigate(to: scheme.destination)
         case .fitbitAuthrefresh: return ///??????
         case .meMyWhy: navigate(to: scheme.destination) // TODO the middleButtons are different here.
