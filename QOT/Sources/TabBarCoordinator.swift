@@ -201,8 +201,11 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
 
     // MARK: - private
 
+    /// TODO: For now we will not show the Tutorial.
+    // When/If it will finally be removed we have to remove all the related Tutorial stuff.
     private func showTutorial(_ tutorial: Tutorial) {
         guard false else { return }
+        /*
         guard tutorial.exists() == false,
             let buttonFrame = tabBarController.frameForButton(at: selectedIndex.value) else { return }
         tutorial.set()
@@ -213,6 +216,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         }
         viewController.modalTransitionStyle = .crossDissolve
         windowManager.showOverlay(viewController, animated: true, completion: nil)
+        */
     }
 
     private func showHelp(_ key: ScreenHelp.Plist.Key) {
