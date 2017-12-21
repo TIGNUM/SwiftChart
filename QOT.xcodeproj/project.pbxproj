@@ -361,6 +361,7 @@
 		CBDB98F91E7BD26A003EC73F /* Realm+TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB98F81E7BD26A003EC73F /* Realm+TestUtils.swift */; };
 		CBE8808D1FE4369200670C10 /* GuideModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE8808C1FE4369200670C10 /* GuideModels.swift */; };
 		CBE880931FE9153200670C10 /* GuideItemID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE880921FE9153200670C10 /* GuideItemID.swift */; };
+		CBE880991FEBFEFC00670C10 /* GuideTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE880981FEBFEFC00670C10 /* GuideTransformer.swift */; };
 		CBEB8EF51F82719700C764C2 /* ChatViewAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEB8EF41F82719700C764C2 /* ChatViewAvatarView.swift */; };
 		CBFECCA51F30BB4D0076ACE6 /* SyncableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFECCA41F30BB4D0076ACE6 /* SyncableObject.swift */; };
 		CBFECCA81F31D7480076ACE6 /* SyncTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFECCA71F31D7480076ACE6 /* SyncTypes.swift */; };
@@ -897,6 +898,7 @@
 		CBDB98F81E7BD26A003EC73F /* Realm+TestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm+TestUtils.swift"; sourceTree = "<group>"; };
 		CBE8808C1FE4369200670C10 /* GuideModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideModels.swift; sourceTree = "<group>"; };
 		CBE880921FE9153200670C10 /* GuideItemID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideItemID.swift; sourceTree = "<group>"; };
+		CBE880981FEBFEFC00670C10 /* GuideTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideTransformer.swift; sourceTree = "<group>"; };
 		CBEB8EF41F82719700C764C2 /* ChatViewAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewAvatarView.swift; sourceTree = "<group>"; };
 		CBFECCA41F30BB4D0076ACE6 /* SyncableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncableObject.swift; sourceTree = "<group>"; };
 		CBFECCA71F31D7480076ACE6 /* SyncTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncTypes.swift; sourceTree = "<group>"; };
@@ -1106,6 +1108,7 @@
 				36939B8B1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib */,
 				36B8F2501FE2FDD400AD6A17 /* GuideGreetingView.xib */,
 				362632441FD6A2710024C626 /* GuideTableViewCell.xib */,
+				CBE880981FEBFEFC00670C10 /* GuideTransformer.swift */,
 			);
 			name = Guide;
 			sourceTree = "<group>";
@@ -3189,6 +3192,7 @@
 				7F0888861F0A7602005CE966 /* PartnerIntermediary.swift in Sources */,
 				7F3277951FB4B22E00C7717C /* BlurLoadingView.swift in Sources */,
 				CB1D5E3E1EC5E25A00BCDF8D /* ContentItemIntermediary.swift in Sources */,
+				CBE880991FEBFEFC00670C10 /* GuideTransformer.swift in Sources */,
 				CC944DB81EE8096100B8423C /* ChartCell.swift in Sources */,
 				8548BBE41F0E382900AC7C06 /* GenericParser.swift in Sources */,
 				CB9AFD191F014C0800D067F2 /* PreparationCheckIntermediary.swift in Sources */,
