@@ -269,11 +269,6 @@ private extension ChartCell {
         let frame = chartContentView.frame
         let biggerFrame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height + labelContentView.frame.height)
 
-        if statistics.chartType.comingSoon == true {
-            setupOverlayView(text: R.string.localized.meChartCommingSoon())
-            return UIView()
-        }
-
         switch statistics.chartType {
         case .activityLevel,
              .activitySittingMovementRatio:
