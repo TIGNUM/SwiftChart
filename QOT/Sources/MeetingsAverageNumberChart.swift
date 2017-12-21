@@ -10,27 +10,6 @@ import UIKit
 
 // Copied from ActivityChart
 final class MeetingsAverageNumberChart: UIView {
-    private enum AverageLineType: EnumCollection {
-        case data
-        case personal
-        case team
-
-        var strokeColor: CGColor {
-            switch self {
-            case .data: return UIColor.cherryRedTwo30.cgColor
-            case .personal: return UIColor.white8.cgColor
-            case .team: return UIColor.azure20.cgColor
-            }
-        }
-
-        func average(_ statistics: Statistics) -> CGFloat {
-            switch self {
-            case .data: return statistics.dataAverageValue
-            case .personal: return statistics.userAverageValue
-            case .team: return statistics.teamAverageValue
-            }
-        }
-    }
 
     // MARK: - Properties
 
@@ -94,18 +73,16 @@ private extension MeetingsAverageNumberChart {
     }
 
     func addAverageLines() {
-        AverageLineType.allValues.forEach { (averageLineType: AverageLineType) in
-            let yPos = yPosition(averageLineType.average(statistics))
-            let averageFrame = CGRect(x: yAxisOffset, y: yPos, width: frame.width - yAxisOffset, height: 0)
-            let averageLine = CAShapeLayer()
-            averageLine.strokeColor = averageLineType.strokeColor
-            averageLine.fillColor = UIColor.clear.cgColor
-            averageLine.lineWidth = 1.5
-            averageLine.lineDashPattern = [1.5, 3]
-            averageLine.path = UIBezierPath(rect: averageFrame).cgPath
-            layer.addSublayer(averageLine)
-            layoutIfNeeded()
-        }
+        let yPos = yPosition(statistics.userAverageValue)
+        let averageFrame = CGRect(x: yAxisOffset, y: yPos, width: frame.width - yAxisOffset, height: 0)
+        let averageLine = CAShapeLayer()
+        averageLine.strokeColor = UIColor.white8.cgColor
+        averageLine.fillColor = UIColor.clear.cgColor
+        averageLine.lineWidth = 1.5
+        averageLine.lineDashPattern = [1.5, 3]
+        averageLine.path = UIBezierPath(rect: averageFrame).cgPath
+        layer.addSublayer(averageLine)
+        layoutIfNeeded()
     }
 
     func addCaptionLabel(yPos: CGFloat, text: String) {
