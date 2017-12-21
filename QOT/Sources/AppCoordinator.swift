@@ -517,6 +517,7 @@ extension AppCoordinator {
         }
 
         enum TopTabBar {
+            case guide
             case strategies
             case whatsHot
             case myData
@@ -526,6 +527,7 @@ extension AppCoordinator {
 
             var index: Index {
                 switch self {
+                case .guide: return 0
                 case .strategies: return 0
                 case .whatsHot: return 1
                 case .myData: return 0
@@ -536,6 +538,7 @@ extension AppCoordinator {
             }
 
             func middleButton(_ topNavigationBar: TopNavigationBar?) -> UIButton? {
+                if self == .guide { return nil }
                 return (topNavigationBar?.middleButtons?.filter { $0.tag == index })?.first
             }
 
@@ -592,14 +595,7 @@ extension AppCoordinator {
     }
 
     func navigate(to destination: AppCoordinator.Router.Destination) {
-        if let viewController = currentPresentedController {
-            dismiss(viewController, level: .priority)
-        }
-
-        if let navigationController = currentPresentedNavigationController {
-            dismiss(navigationController, level: .priority)
-        }
-
+        dismissCurrentPresentedControllers()
         guard let topViewController = AppDelegate.topViewController() else { return }
 
         if let tabBarController = topViewController as? TabBarController {
@@ -643,6 +639,22 @@ extension AppCoordinator {
         topNavigationBar.setIndicatorToButtonIndex(topTabBarIndex, animated: true)
         topNavigationBar.setIndicatorToButton(middleButton, animated: true)
         topNavigationBar.setIsSelected(middleButton)
+    }
+
+    func presentLibrary() {
+        dismissCurrentPresentedControllers()
+        guard
+            let rootViewController = windowManager.rootViewController(atLevel: .normal),
+            let services = services else { return }
+        let coordinator = SidebarCoordinator(root: rootViewController,
+                                             services: services,
+                                             syncManager: syncManager,
+                                             networkManager: networkManager,
+                                             permissionsManager: permissionsManager)
+        startChild(child: coordinator)
+        currentPresentedController = coordinator.sideBarViewController
+        currentPresentedNavigationController = coordinator.topTabBarController
+        coordinator.didTapLibraryCell(in: coordinator.sideBarViewController)
     }
 
     func presentToBeVision() {
@@ -716,6 +728,9 @@ extension AppCoordinator {
                                                             shouldPush: false,
                                                             guideItem: guideItem) else { return }
         startChild(child: coordinator)
+        currentPresentedNavigationController = coordinator.topTabBarController
+        currentPresentedController = coordinator.fullViewController
+        
     }
 
     func presentLearnContentCollection(collectionID: String?) {
@@ -731,5 +746,15 @@ extension AppCoordinator {
                                                       originFrame: rootViewController.view.frame)
         coordinator.delegate = self
         startChild(child: coordinator)
+    }
+
+    func dismissCurrentPresentedControllers() {
+        if let viewController = currentPresentedController {
+            dismiss(viewController, level: .priority)
+        }
+
+        if let navigationController = currentPresentedNavigationController {
+            dismiss(navigationController, level: .priority)
+        }
     }
 }

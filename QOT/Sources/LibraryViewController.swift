@@ -12,6 +12,7 @@ import Anchorage
 protocol LibraryViewControllerDelegate: class {
 
     func didTapLibraryItem(item: ContentCollection)
+
     func didTapClose(in viewController: LibraryViewController)
 }
 

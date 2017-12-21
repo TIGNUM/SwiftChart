@@ -18,14 +18,14 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
     private var articleHeader: ArticleCollectionHeader?
     private let topTabBarTitle: String?
     private var selectedContent: ContentCollection?
-    private var fullViewController: ArticleItemViewController
     private var viewModel: ArticleItemViewModel
-    private var topTabBarController: UINavigationController?
     private let rootViewController: UIViewController
     private let shouldPush: Bool
     private let guideItem: Guide.Item?
     let pageName: PageName
     var children: [Coordinator] = []
+    var topTabBarController: UINavigationController?
+    var fullViewController: ArticleItemViewController
 
     init?(pageName: PageName,
           root: UIViewController,

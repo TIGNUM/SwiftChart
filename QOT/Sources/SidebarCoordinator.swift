@@ -12,12 +12,12 @@ import UIKit
 final class SidebarCoordinator: ParentCoordinator {
 
     private let services: Services
-    private var topTabBarController: UINavigationController!
-    private let sideBarViewController: SidebarViewController!
     private let rootViewController: UIViewController
     private let networkManager: NetworkManager
     private let syncManager: SyncManager
     private let permissionsManager: PermissionsManager
+    let sideBarViewController: SidebarViewController!
+    var topTabBarController: UINavigationController?
     var children = [Coordinator]()
 
     init(root: UIViewController, services: Services, syncManager: SyncManager, networkManager: NetworkManager, permissionsManager: PermissionsManager) {
@@ -34,11 +34,12 @@ final class SidebarCoordinator: ParentCoordinator {
                                                      backgroundImage: R.image.sidebar(),
                                                      leftButton: UIBarButtonItem(withImage: R.image.ic_logo()),
                                                      rightButton: UIBarButtonItem(withImage: R.image.ic_close()))
-        topTabBarController.modalTransitionStyle = .crossDissolve
+        topTabBarController?.modalTransitionStyle = .crossDissolve
         sideBarViewController.delegate = self
     }
 
     func start() {
+        guard let topTabBarController = self.topTabBarController else { return }
         rootViewController.present(topTabBarController, animated: true)
     }
 }
@@ -106,7 +107,7 @@ extension SidebarCoordinator: TopNavigationBarDelegate {
     }
 
     func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
-        topTabBarController.dismiss(animated: true, completion: nil)
+        topTabBarController?.dismiss(animated: true, completion: nil)
         removeChild(child: self)
     }
 }
