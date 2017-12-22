@@ -63,6 +63,12 @@ final class GuideViewController: UIViewController, FullScreenLoadable, PageViewC
         observeViewModel()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        reload()
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 

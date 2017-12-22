@@ -31,6 +31,7 @@ final class GuideGreetingView: UIView {
                                                       textColor: .white,
                                                       alignment: .left)
         greetingLabel.sizeToFit()
+        layoutSubviews()
     }
 }
 

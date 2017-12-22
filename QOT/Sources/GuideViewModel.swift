@@ -61,6 +61,18 @@ final class GuideViewModel {
         }
     }
 
+    private lazy var welcome: String = {
+        return Greeting.welcome.text(services.contentService)
+    }()
+
+    private lazy var dailyLearnPlan: String = {
+        return Greeting.dailyLearnPlan.text(services.contentService)
+    }()
+
+    private lazy var dailyPrep: String = {
+        Greeting.dailyPrep.text(services.contentService)
+    }()
+
     init(services: Services, eventTracker: EventTracker) {
         self.services = services
         self.eventTracker = eventTracker
@@ -87,10 +99,6 @@ final class GuideViewModel {
     }
 
     func greeting(_ item: Guide.Item?) -> String {
-        let welcome = Greeting.welcome.text(services.contentService)
-        let dailyLearnPlan = Greeting.dailyLearnPlan.text(services.contentService)
-        let dailyPrep = Greeting.dailyPrep.text(services.contentService)
-
         let sections = services.guideService.guideSections()
         if sections.count <= 1 {
             if let guide = sections.first, guide.items.filter({ $0.completedAt != nil }).isEmpty {

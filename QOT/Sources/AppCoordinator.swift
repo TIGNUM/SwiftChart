@@ -378,24 +378,14 @@ extension AppCoordinator: MorningInterviewViewControllerDelegate {
         networkManager.performUserAnswerFeedbackRequest(userAnswers: userAnswers) { result in
             switch result {
             case .success(let value):
-                self.showFeedbackAlert(for: value)
+                self.save(feedback: value)
+                if let destination = URLScheme.guide.destination {
+                    self.navigate(to: destination)
+                }
             case .failure(let error):
                 log("error: \(error)")
             }
         }
-    }
-
-    private func showFeedbackAlert(for feedback: UserAnswerFeedback) {
-        guard
-            let rootViewController = windowManager.rootViewController(atLevel: .alert),
-            let alert = AlertType.makeCustom(title: nil, message: feedback.body) else {
-                return
-        }
-        save(feedback: feedback)
-        windowManager.showWindow(atLevel: .alert)
-        rootViewController.showAlert(type: alert, handler: {
-            self.windowManager.resignWindow(atLevel: .alert)
-        }, handlerDestructive: nil)
     }
 
     private func save(feedback: UserAnswerFeedback) {
