@@ -12,7 +12,7 @@ import RealmSwift
 struct GuideTransformer {
 
     func days<T: Sequence>(from guides: T) -> [Guide.Day] where T.Element: RealmGuide {
-        return guides.map { Guide.Day(day: $0) }
+        return guides.map { Guide.Day(day: $0) }.reversed()
     }
 }
 
@@ -36,8 +36,10 @@ private extension Guide.Day {
                 }
             }
             self.items = items.flatMap { Guide.Item(item: $0) }
+            self.createdAt = day.createdAt
         } else {
             self.items = day.items.flatMap { Guide.Item(item: $0) }
+            self.createdAt = day.createdAt
         }
     }
 }

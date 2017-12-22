@@ -86,9 +86,8 @@ private extension LocalNotificationBuilder {
     }
 
     func trigger(_ notification: RealmGuideItemNotification) -> UNCalendarNotificationTrigger {
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: ((60 * 2)), repeats: true)
         let triggerDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second],
-                                                          from: /*trigger.nextTriggerDate() ?? */notification.issueDate)
+                                                          from: notification.issueDate)
         return UNCalendarNotificationTrigger(dateMatching: triggerDate,
                                              repeats: false)
     }

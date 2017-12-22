@@ -69,5 +69,6 @@ struct Guide {
 
     struct Day {
         let items: [Item]
+        let createdAt: Date
     }
 }

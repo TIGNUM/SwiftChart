@@ -70,7 +70,7 @@ final class GuideViewModel {
     }()
 
     private lazy var dailyPrep: String = {
-        Greeting.dailyPrep.text(services.contentService)
+        return Greeting.dailyPrep.text(services.contentService)
     }()
 
     init(services: Services, eventTracker: EventTracker) {
@@ -142,7 +142,7 @@ final class GuideViewModel {
     }
 
     func header(section: Int) -> Date {
-        return services.guideService.guideSections()[section].createdAt
+        return days[section].createdAt
     }
 
     func item(indexPath: IndexPath) -> Guide.Item {
