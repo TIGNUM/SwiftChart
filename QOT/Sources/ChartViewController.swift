@@ -13,7 +13,7 @@ protocol ChartViewControllerDelegate: class {
 
     func didSelectAddSensor()
 
-    func didSelectOpenSettings()
+    func didSelectOpenSettings()    
 }
 
 final class ChartViewController: UIViewController {

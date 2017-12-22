@@ -509,6 +509,35 @@ extension AppCoordinator {
         struct Destination {
             let tabBar: TabBar
             let topTabBar: TopTabBar
+            let chatSection: ChatSection
+
+            init(tabBar: TabBar, topTabBar: TopTabBar) {
+                self.tabBar = tabBar
+                self.topTabBar = topTabBar
+                self.chatSection = .none
+            }
+
+            init(tabBar: TabBar, topTabBar: TopTabBar, chatSection: ChatSection) {
+                self.tabBar = tabBar
+                self.topTabBar = topTabBar
+                self.chatSection = chatSection
+            }
+        }
+
+        enum ChatSection {
+            case problem
+            case event
+            case day
+            case none
+
+            var indexPath: IndexPath {
+                switch self {
+                case .problem: return IndexPath(item: 1, section: 1)
+                case .event: return IndexPath(item: 2, section: 1)
+                case .day: return IndexPath(item: 0, section: 1)
+                case .none: return IndexPath(item: 0, section: 0)
+                }
+            }
         }
 
         enum TabBar: Index {
@@ -715,6 +744,13 @@ extension AppCoordinator {
         }
     }
 
+    func presentPrepare(_ destination: AppCoordinator.Router.Destination) {
+        navigate(to: destination)
+        guard let chatViewController = tabBarCoordinator?.prepareChatViewController else { return }
+        chatViewController.destination = destination
+        chatViewController.routerDelegate = self
+    }
+
     func presentMorningInterview(groupID: Int, validFrom: Date, validTo: Date, notificationID: String) {
         guard let services = services else { return }
         self.notificationID = notificationID
@@ -796,5 +832,17 @@ extension AppCoordinator {
         if let navigationController = currentPresentedNavigationController {
             dismiss(navigationController, level: .priority)
         }
+    }
+}
+
+extension AppCoordinator: ChatViewControllerDelegate {
+
+    func cellDidAppear(viewController: UIViewController,
+                       collectionView: UICollectionView,
+                       destination: AppCoordinator.Router.Destination?) {
+        guard
+            let chatViewController = viewController as? ChatViewController<Answer>,
+            let indexPath = destination?.chatSection.indexPath else { return }
+        chatViewController.collectionView(collectionView, didSelectItemAt: indexPath)
     }
 }

@@ -92,6 +92,9 @@ enum URLScheme: String {
         case .prepare: return AppCoordinator.Router.Destination(tabBar: .prepare, topTabBar: .coach)
         case .myPreps,
              .weeklyPeakPerformance: return AppCoordinator.Router.Destination(tabBar: .prepare, topTabBar: .myPrep)
+        case .prepareProblem: return AppCoordinator.Router.Destination(tabBar: .prepare, topTabBar: .coach, chatSection: .problem)
+        case .prepareEvent: return AppCoordinator.Router.Destination(tabBar: .prepare, topTabBar: .coach, chatSection: .event)
+        case .prepareDay: return AppCoordinator.Router.Destination(tabBar: .prepare, topTabBar: .coach, chatSection: .day)
         default: return nil
         }
     }

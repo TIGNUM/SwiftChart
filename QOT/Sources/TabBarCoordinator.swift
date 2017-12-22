@@ -38,7 +38,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
                                   myPrepViewController: self.myPrepViewController)
     }()
 
-    private lazy var prepareChatViewController: ChatViewController<Answer> = {
+    lazy var prepareChatViewController: ChatViewController<Answer> = {
         let viewModel = ChatViewModel<Answer>(items: [])
         let viewController = ChatViewController(pageName: .prepareChat,
                                                 viewModel: viewModel,

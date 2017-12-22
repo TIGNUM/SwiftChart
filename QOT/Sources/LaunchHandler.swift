@@ -42,7 +42,6 @@ final class LaunchHandler {
         case .meUniverse: navigate(to: scheme.destination)
         case .preferencesSyncCalendar: appDelegate.appCoordinator.presentPreferencesSyncCalendar()
         case .addSensor: _ = appDelegate.appCoordinator.presentAddSensor()
-        case .prepare: navigate(to: scheme.destination)
         case .fitbitAuthrefresh: appDelegate.appCoordinator.presentFitbitAuthRefresh()
         case .meMyWhy: navigate(to: scheme.destination) // TODO the middleButtons are different here.
         case .meActivity: navigateToMeCharts(sector: .activity)
@@ -52,9 +51,10 @@ final class LaunchHandler {
         case .mePeakPerformance: navigateToMeCharts(sector: .peakPerformance)
         case .meTravel: navigateToMeCharts(sector: .travel)
         case .meQotPartner: return
-        case .prepareProblem: return
-        case .prepareEvent: return
-        case .prepareDay: return
+        case .prepare: navigate(to: scheme.destination)
+        case .prepareProblem: navigateToPrepare(scheme.destination)
+        case .prepareEvent: navigateToPrepare(scheme.destination)
+        case .prepareDay: navigateToPrepare(scheme.destination)
         case .library: appDelegate.appCoordinator.presentLibrary()
         case .guide: navigate(to: scheme.destination)
         }
@@ -67,6 +67,11 @@ final class LaunchHandler {
 
     func navigateToMeCharts(sector: StatisticsSectionType) {
         appDelegate.appCoordinator.presentMeCharts(sector: sector)
+    }
+
+    func navigateToPrepare(_ destination: AppCoordinator.Router.Destination?) {
+        guard let destination = destination else { return }
+        appDelegate.appCoordinator.presentPrepare(destination)
     }
 
     func logPushNotificationID(urlScheme: URLScheme, url: URL) {
