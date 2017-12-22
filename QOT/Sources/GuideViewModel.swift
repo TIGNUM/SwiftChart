@@ -59,7 +59,7 @@ final class GuideViewModel {
         didSet {
             updates.next(.reload)
         }
-    }
+    }     
 
     private lazy var welcome: String = {
         return Greeting.welcome.text(services.contentService)
@@ -84,7 +84,7 @@ final class GuideViewModel {
         }.addTo(tokenBin)
     }
 
-    private func reload() {
+    func reload() {
         let transformer = GuideTransformer()
         let realmGuides = services.guideService.guideSections()
         days = transformer.days(from: realmGuides)

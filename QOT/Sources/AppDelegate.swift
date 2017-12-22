@@ -120,10 +120,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
     }
 
     private func setupUAirship() {
-        guard let path = Bundle.main.path(forResource: "AirshipConfig", ofType: "plist") else {
-            return
-        }
-
+        guard let path = Bundle.main.path(forResource: "AirshipConfig", ofType: "plist") else { return }
         let config = UAConfig(contentsOfFile: path)
         UAirship.takeOff(config)
         UAirship.push().pushNotificationDelegate = remoteNotificationHandler

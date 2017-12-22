@@ -150,7 +150,7 @@ extension LaunchHandler {
 
 extension LaunchHandler {
 
-    func dailyPrep(groupID: String?, notificationID: String = "") {
+    func dailyPrep(groupID: String?, notificationID: String) {
         guard
             let groupID = groupID,
             let groupIDIntValue = Int(groupID) else { return }

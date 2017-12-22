@@ -70,10 +70,7 @@ final class MorningInterviewViewModel: NSObject {
 
         questions.forEach { (question: InterviewQuestion) in
             let answer = question.currentAnswer
-            guard let answerID = answer.remoteID.value else {
-                return
-            }
-
+            guard let answerID = answer.remoteID.value else { return }
             let userAnswer = UserAnswer(questionID: question.remoteID,
                                         questionGroupID: self.questionGroupID,
                                         answerID: answerID,
@@ -83,7 +80,6 @@ final class MorningInterviewViewModel: NSObject {
             )
             userAnswers.append(userAnswer)
         }
-
         return userAnswers
     }
 

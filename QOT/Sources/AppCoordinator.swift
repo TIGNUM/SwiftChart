@@ -367,20 +367,25 @@ extension AppCoordinator: MorningInterviewViewControllerDelegate {
 
     func didTapClose(viewController: MorningInterviewViewController, userAnswers: [UserAnswer]) {
         if userAnswers.isEmpty == false {
-            sendMorningInterviewResults(userAnswers)
+            sendMorningInterviewResults(userAnswers, viewController: viewController)
+        } else {
+            dismiss(viewController, level: .priority)
         }
-        dismiss(viewController, level: .priority)
-        currentPresentedNavigationController = nil
-        currentPresentedController = nil
     }
 
-    private func sendMorningInterviewResults(_ userAnswers: [UserAnswer]) {
+    private func sendMorningInterviewResults(_ userAnswers: [UserAnswer],
+                                             viewController: MorningInterviewViewController) {
         networkManager.performUserAnswerFeedbackRequest(userAnswers: userAnswers) { result in
             switch result {
             case .success(let value):
-                self.save(feedback: value)
-                if let destination = URLScheme.guide.destination {
-                    self.navigate(to: destination)
+                self.save(feedback: value) {
+                    self.dismiss(viewController, level: .priority)
+                    if let destination = URLScheme.guide.destination {
+                        self.navigate(to: destination)
+                        if let guideViewController = self.tabBarCoordinator?.topTabBarControllerGuide.viewControllers.first as? GuideViewController {
+                            guideViewController.reloadViewModel() // FIXME: Better observe; reactive bond actions...
+                        }
+                    }
                 }
             case .failure(let error):
                 log("error: \(error)")
@@ -388,7 +393,7 @@ extension AppCoordinator: MorningInterviewViewControllerDelegate {
         }
     }
 
-    private func save(feedback: UserAnswerFeedback) {
+    private func save(feedback: UserAnswerFeedback, completion: (() -> Void)?) {
         do {
             let realm = try RealmProvider().realm()
             try realm.write {
@@ -397,9 +402,11 @@ extension AppCoordinator: MorningInterviewViewControllerDelegate {
                                                                      localID: notificationID) {
                     guideItemNotification.morningInterviewFeedback = feedback.body
                 }
+                completion?()
             }
         } catch {
             log(error, level: .error)
+            completion?()
         }
     }
 }

@@ -84,8 +84,8 @@ final class MorningInterviewViewController: UIViewController {
     @objc func didTapNext(_ sender: UIButton) {
         if isLastPage == true {
             let userAnswers = viewModel.createUserAnswers()
-            delegate?.didTapClose(viewController: self, userAnswers: userAnswers)
             try? viewModel.save(userAnswers: userAnswers)
+            delegate?.didTapClose(viewController: self, userAnswers: userAnswers)
         } else {
             currentIndex += 1
             syncViews(animated: true)

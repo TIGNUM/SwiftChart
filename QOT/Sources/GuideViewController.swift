@@ -66,13 +66,18 @@ final class GuideViewController: UIViewController, FullScreenLoadable, PageViewC
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        reload()
+        reloadViewModel()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         updateReadyState()
+    }
+
+    func reloadViewModel() {
+        viewModel.reload()
+        tableView.reloadData()
     }
 }
 
@@ -120,7 +125,7 @@ private extension GuideViewController {
 
     func open(item: Guide.Item) {
         guard let linkURL = item.link.url else { return }
-        AppDelegate.current.launchHandler.process(url: linkURL, guideItem: item)
+        AppDelegate.current.launchHandler.process(url: linkURL, notificationID: item.notificationID, guideItem: item)
     }
 
     func dailyPrepTableViewCell(item: Guide.Item, indexPath: IndexPath) -> GuideDailyPrepTableViewCell {
@@ -183,7 +188,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = viewModel.item(indexPath: indexPath)
-        guard item.isDailyPrepCompleted == false else { return }
+//        guard item.isDailyPrepCompleted == false else { return }
         viewModel.cancelPendingNotificationIfNeeded(item: item)
         open(item: item)
         viewModel.setCompleted(item: item) {

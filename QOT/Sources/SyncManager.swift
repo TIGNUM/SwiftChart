@@ -217,7 +217,7 @@ private extension SyncManager {
             syncOperation(RealmGuideItemNotification.self, context: context, shouldDownload: shouldDownload),
             syncOperation(PageTrack.self, context: context, shouldDownload: shouldDownload),
             syncOperation(CalendarEvent.self, context: context, shouldDownload: shouldDownload),
-//            syncOperation(RealmGuideItem.self, context: context, shouldDownload: shouldDownload),
+            syncOperation(RealmGuideItem.self, context: context, shouldDownload: shouldDownload),
             syncOperation(MyToBeVision.self, context: context, shouldDownload: shouldDownload),
             syncOperation(Statistics.self, context: context, shouldDownload: shouldDownload),
             syncOperation(Partner.self, context: context, shouldDownload: shouldDownload),

@@ -55,6 +55,7 @@ private extension Guide.Item {
             featureLink = .path(learn.featureLink ?? "")
             featureButton = learn.featureButton
             identifier = item.localID
+            notificationID = learn.localID
             dailyPrep = nil
             greeting = learn.greeting
             createdAt = learn.createdAt
@@ -68,6 +69,7 @@ private extension Guide.Item {
             featureLink = nil
             featureButton = nil
             identifier = item.localID
+            notificationID = notification.localID
             dailyPrep = DailyPrep(feedback: notification.morningInterviewFeedback,
                                   results: Array(notification.dailyPrepResults.map { String(format: "%d", $0.value) }))
             greeting = notification.greeting

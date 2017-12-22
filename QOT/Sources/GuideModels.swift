@@ -53,6 +53,7 @@ struct Guide {
         let featureLink: Link?
         let featureButton: String?
         let identifier: String
+        let notificationID: String
         let dailyPrep: DailyPrep?
         let greeting: String
         let createdAt: Date
