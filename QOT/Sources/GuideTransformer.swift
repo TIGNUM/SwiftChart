@@ -12,7 +12,13 @@ import RealmSwift
 struct GuideTransformer {
 
     func days<T: Sequence>(from guides: T) -> [Guide.Day] where T.Element: RealmGuide {
-        return guides.map { Guide.Day(day: $0) }.reversed()
+        let allDays = guides.map { Guide.Day(day: $0) }.reversed()
+        var lastThreeDays = [Guide.Day]()
+
+        for day in allDays where lastThreeDays.count < 3 {
+            lastThreeDays.append(day)
+        }
+        return lastThreeDays
     }
 }
 
