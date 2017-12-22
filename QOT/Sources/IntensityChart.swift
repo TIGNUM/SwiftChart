@@ -64,7 +64,14 @@ private extension IntensityChart {
 
     func drawTodayValueLabel() {
         guard let dataPoint = statistics.dataPointObjects.last, dataPoint.value > 0 else { return }
-        let xPos = xPosition(statistics.dataPointObjects.endIndex - 1)
+        // FIXME: in month mode, xPosition() func doesn't really work. This is a quick hack to fix it
+        let index: Int
+        if statistics.dataPointObjects.endIndex - 1 < labelContentView.subviews.count {
+            index = statistics.dataPointObjects.endIndex - 1
+        } else {
+            index = labelContentView.subviews.count - 1
+        }
+        let xPos = xPosition(index)
         let yPos = yPosition(dataPoint.value)
         let text = statistics.displayableValue(average: Double(dataPoint.value))
         let todayLabel = dayLabel(text: text, textColor: .white)

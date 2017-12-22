@@ -117,13 +117,6 @@ final class SyncManager {
         }
         let finishOperation = BlockOperation {
             DispatchQueue.main.async {
-                // FIXME: remove when real data is available
-                if let realm = try? self.realmProvider.realm() {
-                    try? realm.write {
-                        realm.create(Statistics.self, value: Statistics._meetingsNumberAverage, update: true)
-                    }
-                }
-
                 let errors = context.errors
                 NotificationHandler.postNotification(withName: .syncAllDidFinishNotification)
                 log("SYNC ALL FINISHED with \(errors.count) errors", enabled: Log.Toggle.Manager.Sync)
@@ -215,7 +208,7 @@ private extension SyncManager {
             syncOperation(PageTrack.self, context: context, shouldDownload: shouldDownload),
             syncOperation(CalendarEvent.self, context: context, shouldDownload: shouldDownload),
             syncOperation(MyToBeVision.self, context: context, shouldDownload: shouldDownload),
-            syncOperation(Statistics.self, context: context, shouldDownload: shouldDownload),
+         //   syncOperation(Statistics.self, context: context, shouldDownload: shouldDownload),
             syncOperation(Partner.self, context: context, shouldDownload: shouldDownload),
             syncOperation(Preparation.self, context: context, shouldDownload: shouldDownload),
             syncOperation(PreparationCheck.self, context: context, shouldDownload: shouldDownload),

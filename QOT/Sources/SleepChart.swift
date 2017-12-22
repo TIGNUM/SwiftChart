@@ -138,8 +138,8 @@ private extension SleepChart {
 
         if isDataPoint == true {
             line.lineWidth = 4
-            line.lineDashPattern = statistics.chartType == .sleepQuantity ? [1.5, 1] : nil
-            line.lineCap = statistics.chartType == .sleepQuantity ? kCALineCapButt : kCALineCapRound
+            line.lineDashPattern = statistics.chartType == .sleepQuantityTime ? [1.5, 1] : nil
+            line.lineCap = statistics.chartType == .sleepQuantityTime ? kCALineCapButt : kCALineCapRound
             line.strokeColor = color.cgColor
             line.addGlowEffect(color: .white)
         } else {
