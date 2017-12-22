@@ -1,4 +1,3 @@
-
 //
 //  GuideViewController.swift
 //  QOT
@@ -103,6 +102,7 @@ private extension GuideViewController {
 
     func setupView() {
         guard let greetingView = self.greetingView else { return }
+        greetingView.viewModel = viewModel
         updateGreetingView(viewModel.message, viewModel.greeting(nil))
         view.addSubview(greetingView)
         view.addSubview(tableView)
@@ -188,7 +188,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = viewModel.item(indexPath: indexPath)
-//        guard item.isDailyPrepCompleted == false else { return }
+        guard item.isDailyPrepCompleted == false else { return }
         viewModel.cancelPendingNotificationIfNeeded(item: item)
         open(item: item)
         viewModel.setCompleted(item: item) {

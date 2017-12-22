@@ -8,15 +8,48 @@
 
 import UIKit
 
+var guideDate = Date()
+
 final class GuideGreetingView: UIView {
 
     @IBOutlet private weak var messageLabel: UILabel!
     @IBOutlet private weak var greetingLabel: UILabel!
+    @IBOutlet private weak var hourStepper: UIStepper!
+    @IBOutlet private weak var dayStepper: UIStepper!
+    @IBOutlet private weak var guideDateLabel: UILabel!
+    var viewModel: GuideViewModel?
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
+        let calendar = Calendar.sharedUTC
+        var components = DateComponents(calendar: calendar)
+        hourStepper.value = Double(components.hour ?? 12)
+        dayStepper.value = Double(components.day ?? 15)
         backgroundColor = .pineGreen
+        guideDateLabel.text = shortDateFormatter.string(from: guideDate)
+    }
+
+    func updateGuideTime(hoursFromNow: Int) {
+        let calendar = Calendar.sharedUTC
+        var components = DateComponents()
+        components.hour = hoursFromNow
+        guideDate = calendar.date(byAdding: components, to: guideDate)!
+        guideDateLabel.text = shortDateFormatter.string(from: guideDate)
+        viewModel?.createTodaysGuideIfNeeded()
+        viewModel?.reload()
+            //Calendar.sharedUTC.dateComponents([.hour], from: guideDate).description
+    }
+
+    func updateGuideDate(daysFromNow: Int) {
+        let calendar = Calendar.sharedUTC
+        var components = DateComponents()
+        components.day = daysFromNow
+        guideDate = calendar.date(byAdding: components, to: guideDate)!
+        guideDateLabel.text = shortDateFormatter.string(from: guideDate)
+        viewModel?.createTodaysGuideIfNeeded()
+        viewModel?.reload()
+            //Calendar.sharedUTC.dateComponents([.day], from: guideDate).description
     }
 
     func configure(_ message: String, _ greeting: String) {
@@ -32,6 +65,28 @@ final class GuideGreetingView: UIView {
                                                       alignment: .left)
         greetingLabel.sizeToFit()
         layoutSubviews()
+    }
+}
+
+private let shortDateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.locale = Locale.current
+    formatter.timeZone = TimeZone.current
+    formatter.dateStyle = .short
+    formatter.timeStyle = .short
+    return formatter
+}()
+
+// MARK: - Actions
+
+extension GuideGreetingView {
+
+    @IBAction func hourDidChangeValue(sender: UIStepper) {
+        updateGuideTime(hoursFromNow: sender.stepValue.toInt)
+    }
+
+    @IBAction func dayDidChangeValue(sender: UIStepper) {
+        updateGuideDate(daysFromNow: sender.stepValue.toInt)
     }
 }
 

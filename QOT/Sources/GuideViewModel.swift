@@ -59,7 +59,7 @@ final class GuideViewModel {
         didSet {
             updates.next(.reload)
         }
-    }     
+    }
 
     private lazy var welcome: String = {
         return Greeting.welcome.text(services.contentService)
@@ -164,8 +164,7 @@ final class GuideViewModel {
 
     func createTodaysGuideIfNeeded() {
         let todaysGuide = services.guideService.todaysGuide()
-        guard todaysGuide?.items.isEmpty == true || todaysGuide == nil else { return }
-        services.guideService.eraseGuide()
+        guard todaysGuide?.items.isEmpty == true || todaysGuide == nil else { return }        
         _ = GuideWorker(services: services).createTodaysGuide()
     }
 }

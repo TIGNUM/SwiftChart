@@ -34,7 +34,7 @@ final class GuideService {
     }
 
     func todaysGuide() -> RealmGuide? {
-        return guideSections().filter { $0.createdAt.isSameDay(Date()) }.first
+        return guideSections().filter { $0.createdAt.isSameDay(guideDate) }.first
     }
 
     func guideSections() -> AnyRealmCollection<RealmGuide> {
