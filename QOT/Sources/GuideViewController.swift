@@ -32,11 +32,10 @@ final class GuideViewController: UIViewController, FullScreenLoadable, PageViewC
         return Bundle.main.loadNibNamed("GuideGreetingView", owner: self, options: [:])?.first as? GuideGreetingView
     }()
 
-    private lazy var guideDateStepperView: GuideDateStepperView? = {
+    private lazy var dateStepperView: GuideDateStepperView? = {
         let nib = R.nib.guideDateStepperView()
         guard let dateStepperView = (nib.instantiate(withOwner: self, options: nil).first
             as? GuideDateStepperView) else { return nil }
-        dateStepperView.viewModel = viewModel
 
         return dateStepperView
     }()
@@ -102,6 +101,8 @@ private extension GuideViewController {
         tableView.reloadData()
         updateReadyState()
         updateGreetingView(viewModel.message, viewModel.greeting(nil))
+        dateStepperView?.setupView(viewModel: viewModel)
+
     }
 
     func observeViewModel() {
@@ -112,9 +113,11 @@ private extension GuideViewController {
 
     func setupView() {
         guard
-            let dateStepperView = guideDateStepperView,
+            let dateStepperView = dateStepperView,
             let greetingView = self.greetingView else { return }
         updateGreetingView(viewModel.message, viewModel.greeting(nil))
+        dateStepperView.setupView(viewModel: viewModel)
+        
         view.addSubview(greetingView)
         view.addSubview(dateStepperView)
         view.addSubview(tableView)

@@ -24,7 +24,7 @@ final class GuideDateStepperView: UIView {
     @IBOutlet private weak var hourStepper: UIStepper!
     @IBOutlet private weak var dayStepper: UIStepper!
     @IBOutlet private weak var dateLabel: UILabel!
-    var viewModel: GuideViewModel?
+    private var viewModel: GuideViewModel?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,7 +33,16 @@ final class GuideDateStepperView: UIView {
         var components = DateComponents(calendar: calendar)
         hourStepper.value = Double(components.hour ?? 12)
         dayStepper.value = Double(components.day ?? 15)
-        dateLabel.text = shortDateFormatter.string(from: guideDate)
+    }
+
+    func setupView(viewModel: GuideViewModel) {
+        self.viewModel = viewModel
+
+        var lastAddedDate = guideDate
+        if viewModel.sectionCount > 0 {
+            lastAddedDate = viewModel.header(section: 0)
+        }
+        dateLabel.text = shortDateFormatter.string(from: lastAddedDate)
     }
 }
 
