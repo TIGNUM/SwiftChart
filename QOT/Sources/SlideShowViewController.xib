@@ -52,7 +52,7 @@
                         <action selector="didTapDoneButton" destination="-1" eventType="touchUpInside" id="fXq-Zo-axI"/>
                     </connections>
                 </button>
-                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="aMN-z7-kqa">
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="aMN-z7-kqa" customClass="PageControl" customModule="QOT" customModuleProvider="target">
                     <rect key="frame" x="168" y="602" width="39" height="37"/>
                 </pageControl>
             </subviews>

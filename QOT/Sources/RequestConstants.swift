@@ -68,6 +68,6 @@ enum HTTPHeader: String {
     case contentType = "Content-Type"
     case syncToken = "x-tignum-sync-token"
     case deviceID = "X-Tignum-Device-Identifier"
-    case authUser = "authUser"
-    case version = "version"
+    case authUser = "authUser" // X-Tignum-Auth-User
+    case version = "version" // X-Tignum-Qot-Version
 }

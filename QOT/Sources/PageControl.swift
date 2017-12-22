@@ -26,20 +26,24 @@ final class PageControl: UIPageControl {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
-        pageIndicatorTintColor = .clear
-        currentPageIndicatorTintColor = .clear
-        clipsToBounds = false
+        setup()
     }
 
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        setup()
     }
 }
 
 // MARK: - Private
 
 private extension PageControl {
+
+    func setup() {
+        pageIndicatorTintColor = .clear
+        currentPageIndicatorTintColor = .clear
+        clipsToBounds = false
+    }
 
     func updateDots() {
         for (index, view) in subviews.enumerated() {

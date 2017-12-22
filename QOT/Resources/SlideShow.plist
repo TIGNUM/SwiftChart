@@ -2,83 +2,99 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>basic</key>
-	<array>
-		<dict>
-			<key>title</key>
-			<string>Basic slide 1</string>
-			<key>subtitle</key>
-			<string>Subtitle from from basic slide 1</string>
-			<key>imageName</key>
-			<string>1_1 learn</string>
-		</dict>
-		<dict>
-			<key>title</key>
-			<string>Basic slide 2</string>
-			<key>subtitle</key>
-			<string>Subtitle from from basic slide 2</string>
-			<key>imageName</key>
-			<string>1_1 learn</string>
-		</dict>
-		<dict>
-			<key>title</key>
-			<string>Basic slide 3</string>
-			<key>subtitle</key>
-			<string>Subtitle from from basic slide 3</string>
-			<key>imageName</key>
-			<string>1_1 learn</string>
-		</dict>
-		<dict>
-			<key>title</key>
-			<string>Basic slide 4</string>
-			<key>subtitle</key>
-			<string>Subtitle from from basic slide 4</string>
-			<key>imageName</key>
-			<string>1_1 learn</string>
-		</dict>
-	</array>
 	<key>extended</key>
 	<array>
 		<dict>
 			<key>title</key>
-			<string>Extended slide 1</string>
-			<key>subtitle</key>
-			<string>Subtitle from from extended slide 1</string>
+			<string>Build your foundation to achieve the benefits of QOT by watching the “foundation” videos in the LEARN section.</string>
 			<key>imageName</key>
-			<string>1_1 learn</string>
+			<string>slide_extended_01</string>
 		</dict>
 		<dict>
 			<key>title</key>
-			<string>Extended slide 2</string>
-			<key>subtitle</key>
-			<string>Subtitle from from extended slide 2</string>
+			<string>Learn about the Performance Habituation strategy “Creating Self Image” in LEARN.</string>
 			<key>imageName</key>
-			<string>1_1 learn</string>
+			<string>slide_extended_02</string>
 		</dict>
 		<dict>
 			<key>title</key>
-			<string>Extended slide 3</string>
-			<key>subtitle</key>
-			<string>Subtitle from from extended slide 3</string>
+			<string>Write your personal To Be Vision by going to “My Why” in the ME section.</string>
 			<key>imageName</key>
-			<string>1_1 learn</string>
+			<string>slide_extended_03</string>
 		</dict>
 		<dict>
 			<key>title</key>
-			<string>Extended slide 4</string>
-			<key>subtitle</key>
-			<string>Subtitle from from extended slide 4</string>
+			<string>Learn the 55 QOT strategies to help you make your personal To Be Vision happen.</string>
 			<key>imageName</key>
-			<string>1_1 learn</string>
+			<string>slide_extended_04</string>
 		</dict>
 		<dict>
 			<key>title</key>
-			<string>Extended slide 5</string>
-			<key>subtitle</key>
-			<string>Subtitle from from extended slide 5</string>
+			<string>Add a sensor through the sidebar to learn more about your sleep and activity in the ME section.</string>
 			<key>imageName</key>
-			<string>1_1 learn</string>
+			<string>slide_extended_05</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Go to PREPARE and prepare for your next key event applying various event-specific performance preparation protocols.</string>
+			<key>imageName</key>
+			<string>slide_extended_06</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Tap on the top right and link it to a calendar entry - you will see this checklist in the note section of your calendar event.</string>
+			<key>imageName</key>
+			<string>slide_extended_07</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Tap on your QOT push notifications to stay you on track. You can review your message in the QOT Guide.</string>
+			<key>imageName</key>
+			<string>slide_extended_08</string>
+		</dict>
+	</array>
+	<key>basic</key>
+	<array>
+		<dict>
+			<key>subtitle</key>
+			<string>LEARN contains your QOT 55 strategies and your foundational QOT content.</string>
+			<key>title</key>
+			<string>LEARN ALL QOT STRATEGIES</string>
+			<key>imageName</key>
+			<string>slide_basic_01</string>
+		</dict>
+		<dict>
+			<key>subtitle</key>
+			<string>ME holds your To Be Vision, your QOT partners, and provides you with unique data about yourself and others like you.</string>
+			<key>title</key>
+			<string>TRACK YOUR DATA AND CREATE YOUR WHY</string>
+			<key>imageName</key>
+			<string>slide_basic_02</string>
+		</dict>
+		<dict>
+			<key>subtitle</key>
+			<string>PREPARE help you prepare for your most important events and add them to your personal calendar.</string>
+			<key>title</key>
+			<string>PREPARE FOR UPCOMING KEY EVENTS</string>
+			<key>imageName</key>
+			<string>slide_basic_03</string>
+		</dict>
+		<dict>
+			<key>subtitle</key>
+			<string>GUIDE helps you get ready for your day with your Daily Prep Minute, access your learn plan, and review your messages.</string>
+			<key>title</key>
+			<string>FOLLOW YOUR PERSONAL LEARN PLAN</string>
+			<key>imageName</key>
+			<string>slide_basic_04</string>
+		</dict>
+		<dict>
+			<key>subtitle</key>
+			<string>Use the help section, sidebar, and main navigation to explore QOT.</string>
+			<key>title</key>
+			<string>EASILY NAVIGATE THROUGH QOT</string>
+			<key>imageName</key>
+			<string>slide_basic_05</string>
 		</dict>
 	</array>
 </dict>
-</plist>å
+</plist>

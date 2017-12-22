@@ -21,13 +21,22 @@ extension SlideShowPresenter: SlideShowPresenterInterface {
 
     func loadBasicSlides(slides: [SlideShow.Slide]) {
         var pages = slides.map { SlideShow.Page(slide: $0) }
-        pages.append(.prompt(title: "Do you want to view more", showMoreButton: true))
+        // TODO: localise
+        pages.append(.morePrompt(
+            title: "are you ready to rule your impact?",
+            subtitle: "start now or learn a few more steps to learn how to get the most out of qot",
+            doneButtonTitle: "Start QOT",
+            moreButtonTitle: "Get the most out of QOT")
+        )
         viewController?.setPages(pages)
     }
 
     func loadAllSlides(slides: [SlideShow.Slide]) {
         var pages = slides.map { SlideShow.Page(slide: $0) }
-        pages.append(.prompt(title: "Do you want to view more", showMoreButton: false))
+        pages.append(.completePrompt(
+            title: "great job! you have finished the on-boarding",
+            doneButtonTitle: "Start QOT")
+        )
         viewController?.updatePages(pages)
     }
 }
@@ -35,6 +44,10 @@ extension SlideShowPresenter: SlideShowPresenterInterface {
 private extension SlideShow.Page {
 
     init(slide: SlideShow.Slide) {
-        self = .slide(title: slide.title, subtitle: slide.subtitle, imageName: slide.imageName)
+        if let subtitle = slide.subtitle {
+            self = .titleSubtitleSlide(title: slide.title, subtitle: subtitle, imageName: slide.imageName)
+        } else {
+            self = .titleSlide(title: slide.title, imageName: slide.imageName)
+        }
     }
 }

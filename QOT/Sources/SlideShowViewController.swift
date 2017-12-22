@@ -28,8 +28,10 @@ final class SlideShowViewController: UIViewController {
         super.viewDidLoad()
         interactor.viewDidLoad()
 
-        collectionView.registerDequeueable(SlideShowSlideCell.self)
-        collectionView.registerDequeueable(SlideShowPromptCell.self)
+        collectionView.registerDequeueable(SlideShowTitleSubtitleSlideCell.self)
+        collectionView.registerDequeueable(SlideShowTitleOnlySlideCell.self)
+        collectionView.registerDequeueable(SlideShowMorePromptCell.self)
+        collectionView.registerDequeueable(SlideShowCompletePromptCell.self)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -70,19 +72,25 @@ extension SlideShowViewController: UICollectionViewDelegateFlowLayout, UICollect
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let page = pages[indexPath.item]
         switch page {
-        case .slide(let title, let subtitle, let imageName):
-            let cell: SlideShowSlideCell = collectionView.dequeueCell(for: indexPath)
+        case .titleSubtitleSlide(let title, let subtitle, let imageName):
+            let cell: SlideShowTitleSubtitleSlideCell = collectionView.dequeueCell(for: indexPath)
             cell.configure(title: title, subtitle: subtitle, imageName: imageName)
             return cell
-        case .prompt(let title, let showMoreButton):
-            let cell: SlideShowPromptCell = collectionView.dequeueCell(for: indexPath)
-            let startHandler = { [unowned self] in
-                self.didTapStartButton()
-            }
-            let moreHandler = { [unowned self] in
-                self.didTapMoreButton()
-            }
-            cell.configure(title: title, startHandler: startHandler, moreHandler: showMoreButton ? moreHandler : nil)
+        case .titleSlide(let title, let imageName):
+            let cell: SlideShowTitleOnlySlideCell = collectionView.dequeueCell(for: indexPath)
+            cell.configure(title: title, imageName: imageName)
+            return cell
+        case .morePrompt(let title, let subtitle, let doneButtonTitle, let moreButtonTitle):
+            let cell: SlideShowMorePromptCell = collectionView.dequeueCell(for: indexPath)
+            cell.configure(
+                title: title, subtitle: subtitle, doneButtonTitle: doneButtonTitle, moreButtonTitle: moreButtonTitle
+            )
+            cell.delegate = self
+            return cell
+        case .completePrompt(let title, let doneButtonTitle):
+            let cell: SlideShowCompletePromptCell = collectionView.dequeueCell(for: indexPath)
+            cell.configure(title: title, doneButtonTitle: doneButtonTitle)
+            cell.delegate = self
             return cell
         }
     }
@@ -98,20 +106,23 @@ extension SlideShowViewController: UICollectionViewDelegateFlowLayout, UICollect
     }
 }
 
+extension SlideShowViewController: SlideShowPromtCellDelegate {
+
+    func didTapDone(cell: UICollectionViewCell) {
+        interactor.didTapDone()
+    }
+
+    func didTapMore(cell: UICollectionViewCell) {
+        interactor.didTapLoadMore()
+    }
+}
+
 private extension SlideShowViewController {
 
     func setPagesAndSyncControls(pages: [SlideShow.Page]) {
         self.pages = pages
         pageControl.numberOfPages = pages.count
         syncControlsForCurrentPage()
-    }
-
-    func didTapStartButton() {
-        interactor.didTapDone()
-    }
-
-    func didTapMoreButton() {
-        interactor.didTapLoadMore()
     }
 
     func syncControlsForCurrentPage() {
