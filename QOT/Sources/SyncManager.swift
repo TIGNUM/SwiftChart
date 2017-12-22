@@ -208,7 +208,7 @@ private extension SyncManager {
             syncOperation(PageTrack.self, context: context, shouldDownload: shouldDownload),
             syncOperation(CalendarEvent.self, context: context, shouldDownload: shouldDownload),
             syncOperation(MyToBeVision.self, context: context, shouldDownload: shouldDownload),
-         //   syncOperation(Statistics.self, context: context, shouldDownload: shouldDownload),
+            syncOperation(Statistics.self, context: context, shouldDownload: shouldDownload),
             syncOperation(Partner.self, context: context, shouldDownload: shouldDownload),
             syncOperation(Preparation.self, context: context, shouldDownload: shouldDownload),
             syncOperation(PreparationCheck.self, context: context, shouldDownload: shouldDownload),
