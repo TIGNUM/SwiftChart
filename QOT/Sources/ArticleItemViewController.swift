@@ -162,14 +162,14 @@ private extension ArticleItemViewController {
         button.setAttributedTitle(Style.headline(guideItem.featureButton ?? "", .white).attributedString(), for: .normal)
         button.setAttributedTitle(Style.headline(guideItem.featureButton ?? "", .white70).attributedString(), for: .selected)
         button.addTarget(self, action: #selector(openFeatureLink), for: .touchUpInside)
-        button.backgroundColor = UIColor.navy.withAlphaComponent(0.4)
+        button.backgroundColor = UIColor.navy.withAlphaComponent(0.25)
 
         return button
     }
 
     @objc func openFeatureLink() {
-//        guard let url = guideItem?.featureLink?.url else { return }
-        LaunchHandler().process(url: URL(string: "qot://add-sensor")!)
+        guard let url = guideItem?.featureLink?.url else { return }
+        LaunchHandler().process(url: url)
     }
 
     func setTableViewHeader() {

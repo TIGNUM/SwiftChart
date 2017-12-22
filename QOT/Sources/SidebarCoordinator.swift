@@ -17,6 +17,7 @@ final class SidebarCoordinator: ParentCoordinator {
     private let syncManager: SyncManager
     private let permissionsManager: PermissionsManager
     let sideBarViewController: SidebarViewController!
+    var addSensorCoordinator: AddSensorCoordinator?
     var topTabBarController: UINavigationController?
     var settingsMenuCoordinator: SettingsMenuCoordinator?
     var children = [Coordinator]()
@@ -52,6 +53,7 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
     func didTapAddSensorCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
         let coordinator = AddSensorCoordinator(root: viewController, services: services)
         startChild(child: coordinator)
+        addSensorCoordinator = coordinator
     }
 
     func didTapSettingsMenuCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
@@ -62,8 +64,8 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
                                                         permissionsManager: permissionsManager) else {
                                                             log("could not init \(SettingsMenuCoordinator.self)")
                                                             return }
-        settingsMenuCoordinator = coordinator
         startChild(child: coordinator)
+        settingsMenuCoordinator = coordinator
     }
 
     func didTapLibraryCell(in viewController: SidebarViewController) {

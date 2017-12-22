@@ -13,6 +13,8 @@ import Alamofire
 import UserNotifications
 import AirshipKit
 import Crashlytics
+import ReactiveKit
+import Bond
 
 final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
@@ -587,11 +589,9 @@ extension AppCoordinator {
         windowManager.showPriority(coordinator.topTabBarController, animated: true, completion: nil)
     }
 
-    func presentAddSensorView(viewController: UIViewController) {
-        guard let services = services else { return }
-        let coordinator = AddSensorCoordinator(root: viewController, services: services)
-        startChild(child: coordinator)
-        currentPresentedController = coordinator.addSensorViewController
+    func presentMeCharts(sector: StatisticsSectionType) {
+        navigate(to: AppCoordinator.Router.Destination(tabBar: .me, topTabBar: .myData))
+        tabBarCoordinator?.myUniverseViewController(nil, didTap: sector)
     }
 
     func navigate(to destination: AppCoordinator.Router.Destination) {
@@ -639,6 +639,7 @@ extension AppCoordinator {
         topNavigationBar.setIndicatorToButtonIndex(topTabBarIndex, animated: true)
         topNavigationBar.setIndicatorToButton(middleButton, animated: true)
         topNavigationBar.setIsSelected(middleButton)
+        currentPresentedController = tabBarController.selectedViewController
     }
 
     func presentSideBar() -> SidebarCoordinator? {
@@ -674,11 +675,26 @@ extension AppCoordinator {
     func presentLibrary() {
         guard let sidebarCoordinator = presentSideBar() else { return }
         sidebarCoordinator.didTapLibraryCell(in: sidebarCoordinator.sideBarViewController)
+        currentPresentedController = sidebarCoordinator.sideBarViewController
     }
 
-    func presentAddSensor() {
-        guard let sidebarCoordinator = presentSideBar() else { return }
+    func presentAddSensorView(viewController: UIViewController) {
+        guard let services = services else { return }
+        let coordinator = AddSensorCoordinator(root: viewController, services: services)
+        startChild(child: coordinator)
+        currentPresentedController = coordinator.addSensorViewController
+    }
+
+    func presentAddSensor() -> AddSensorCoordinator? {
+        guard let sidebarCoordinator = presentSideBar() else { return nil }
         sidebarCoordinator.didTapAddSensorCell(with: nil, in: sidebarCoordinator.sideBarViewController)
+        currentPresentedController = sidebarCoordinator.sideBarViewController
+        return sidebarCoordinator.addSensorCoordinator
+    }
+
+    func presentFitbitAuthRefresh() {
+        guard let addSensorCoordinator = presentAddSensor() else { return }
+        addSensorCoordinator.didTapSensor(.fitbit, in: currentPresentedController ?? addSensorCoordinator.addSensorViewController)
     }
 
     func presentToBeVision() {

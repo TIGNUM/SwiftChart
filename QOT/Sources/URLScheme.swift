@@ -80,7 +80,13 @@ enum URLScheme: String {
     var destination: AppCoordinator.Router.Destination? {
         switch self {
         case .strategies: return AppCoordinator.Router.Destination(tabBar: .learn, topTabBar: .strategies)
-        case .meUniverse: return AppCoordinator.Router.Destination(tabBar: .me, topTabBar: .myData)
+        case .meUniverse,
+             .meActivity,
+             .meIntensity,
+             .meMeeting,
+             .meSleep,
+             .mePeakPerformance,
+             .meTravel: return AppCoordinator.Router.Destination(tabBar: .me, topTabBar: .myData)
         case .meMyWhy: return AppCoordinator.Router.Destination(tabBar: .me, topTabBar: .myWhy)
         case .guide: return AppCoordinator.Router.Destination(tabBar: .guide, topTabBar: .guide)
         case .prepare: return AppCoordinator.Router.Destination(tabBar: .prepare, topTabBar: .coach)

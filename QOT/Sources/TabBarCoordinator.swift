@@ -278,7 +278,7 @@ extension TabBarCoordinator: LearnContentListCoordinatorDelegate {
 
 extension TabBarCoordinator: MyUniverseViewControllerDelegate {
 
-    func myUniverseViewController(_ viewController: MyUniverseViewController, didTap sector: StatisticsSectionType) {
+    func myUniverseViewController(_ viewController: MyUniverseViewController?, didTap sector: StatisticsSectionType) {
         let transitioningDelegate = ChartAnimator()
         let coordinator = StatisticsCoordinator(
             root: topTabBarControllerMe,

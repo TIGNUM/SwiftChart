@@ -8,6 +8,8 @@
 
 import UIKit
 import Anchorage
+import ReactiveKit
+import Bond
 
 protocol AddSensorViewControllerDelegate: class {
 
@@ -19,6 +21,7 @@ final class AddSensorViewController: UIViewController {
     // MARK: - Properties
 
     private let viewModel: AddSensorViewModel
+    let updates = PublishSubject<CollectionUpdate, NoError>()
     weak var delegate: AddSensorViewControllerDelegate?
 
     private lazy var collectionView: UICollectionView = {
@@ -37,7 +40,7 @@ final class AddSensorViewController: UIViewController {
         let view = UIScrollView()
         view.backgroundColor = .clear
         view.delegate = self
-        view.addSubview(self.contentView)
+        view.addSubview(contentView)
 
         return view
     }()
@@ -45,10 +48,10 @@ final class AddSensorViewController: UIViewController {
     private lazy var contentView: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
-        view.addSubview(self.titleLabel)
-        view.addSubview(self.collectionView)
-        view.addSubview(self.headerLabel)
-        view.addSubview(self.textLabel)
+        view.addSubview(titleLabel)
+        view.addSubview(collectionView)
+        view.addSubview(headerLabel)
+        view.addSubview(textLabel)
 
         return view
     }()
@@ -66,7 +69,7 @@ final class AddSensorViewController: UIViewController {
         let label = UILabel()
         label.textColor = .white
         label.font = Font.H3Subtitle
-        label.addCharactersSpacing(spacing: 2, text: self.viewModel.heading, uppercased: true)
+        label.addCharactersSpacing(spacing: 2, text: viewModel.heading, uppercased: true)
         label.numberOfLines = 0
 
         return label
@@ -75,7 +78,7 @@ final class AddSensorViewController: UIViewController {
     private lazy var textLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.setAttrText(text: self.viewModel.text, font: Font.DPText, alignment: .left, lineSpacing: 13)
+        label.setAttrText(text: viewModel.text, font: Font.DPText, alignment: .left, lineSpacing: 13)
         label.numberOfLines = 0
 
         return label

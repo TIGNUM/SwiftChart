@@ -1,3 +1,4 @@
+
 //
 //  GuideViewController.swift
 //  QOT
@@ -112,8 +113,9 @@ private extension GuideViewController {
     }
 
     func open(item: Guide.Item) {
-        guard let linkURL = item.link.url else { return }
-        AppDelegate.current.launchHandler.process(url: linkURL, guideItem: item)
+        LaunchHandler().process(url: URL(string: "qot://me-meeting")!)
+//        guard let linkURL = item.link.url else { return }
+//        AppDelegate.current.launchHandler.process(url: linkURL, guideItem: item)
     }
 
     func dailyPrepTableViewCell(item: Guide.Item, indexPath: IndexPath) -> GuideDailyPrepTableViewCell {

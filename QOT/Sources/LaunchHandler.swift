@@ -41,20 +41,20 @@ final class LaunchHandler {
         case .strategies: navigate(to: scheme.destination)
         case .meUniverse: navigate(to: scheme.destination)
         case .preferencesSyncCalendar: appDelegate.appCoordinator.presentPreferencesSyncCalendar()
-        case .addSensor: appDelegate.appCoordinator.presentAddSensor()
+        case .addSensor: _ = appDelegate.appCoordinator.presentAddSensor()
         case .prepare: navigate(to: scheme.destination)
-        case .fitbitAuthrefresh: return ///??????
+        case .fitbitAuthrefresh: appDelegate.appCoordinator.presentFitbitAuthRefresh()
         case .meMyWhy: navigate(to: scheme.destination) // TODO the middleButtons are different here.
-        case .meActivity:return
-        case .meIntensity:return
-        case .meMeeting:return
-        case .meSleep:return
-        case .mePeakPerformance:return
-        case .meQotPartner:return
-        case .meTravel:return
-        case .prepareProblem:return
-        case .prepareEvent:return
-        case .prepareDay:return
+        case .meActivity: navigateToMeCharts(sector: .activity)
+        case .meIntensity: navigateToMeCharts(sector: .intensity)
+        case .meMeeting: navigateToMeCharts(sector: .meetings)
+        case .meSleep: navigateToMeCharts(sector: .sleep)
+        case .mePeakPerformance: navigateToMeCharts(sector: .peakPerformance)
+        case .meTravel: navigateToMeCharts(sector: .travel)
+        case .meQotPartner: return
+        case .prepareProblem: return
+        case .prepareEvent: return
+        case .prepareDay: return
         case .library: appDelegate.appCoordinator.presentLibrary()
         case .guide: navigate(to: scheme.destination)
         }
@@ -63,6 +63,10 @@ final class LaunchHandler {
     func navigate(to destination: AppCoordinator.Router.Destination?) {
         guard let destination = destination else { return }
         appDelegate.appCoordinator.navigate(to: destination)
+    }
+
+    func navigateToMeCharts(sector: StatisticsSectionType) {
+        appDelegate.appCoordinator.presentMeCharts(sector: sector)
     }
 
     func logPushNotificationID(urlScheme: URLScheme, url: URL) {

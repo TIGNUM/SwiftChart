@@ -11,7 +11,7 @@ import Anchorage
 import Kingfisher
 
 protocol MyUniverseViewControllerDelegate: class {
-    func myUniverseViewController(_ viewController: MyUniverseViewController, didTap sector: StatisticsSectionType)
+    func myUniverseViewController(_ viewController: MyUniverseViewController?, didTap sector: StatisticsSectionType)
     func myUniverseViewControllerDidTapVision(_ viewController: MyUniverseViewController)
     func myUniverseViewController(_ viewController: MyUniverseViewController, didTapWeeklyChoiceAt index: Index)
     func myUniverseViewController(_ viewController: MyUniverseViewController, didTapQOTPartnerAt index: Index)
