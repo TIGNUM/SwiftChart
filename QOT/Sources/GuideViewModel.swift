@@ -164,7 +164,7 @@ final class GuideViewModel {
 
     func createTodaysGuideIfNeeded() {
         let todaysGuide = services.guideService.todaysGuide()
-        guard todaysGuide?.items.isEmpty == true || todaysGuide == nil else { return }        
+        guard todaysGuide?.items.isEmpty == true || todaysGuide == nil else { return }
         _ = GuideWorker(services: services).createTodaysGuide()
     }
 }

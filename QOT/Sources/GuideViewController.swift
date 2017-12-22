@@ -18,6 +18,7 @@ final class GuideViewController: UIViewController, FullScreenLoadable, PageViewC
 
     private let viewModel: GuideViewModel
     private let sectionHeaderHeight: CGFloat = 44
+    private var greetingViewHeightAnchor: NSLayoutConstraint?
     private let fadeMaskLocation: UIView.FadeMaskLocation
     private let disposeBag = DisposeBag()
     var loadingView: BlurLoadingView?
@@ -29,6 +30,15 @@ final class GuideViewController: UIViewController, FullScreenLoadable, PageViewC
 
     private lazy var greetingView: GuideGreetingView? = {
         return Bundle.main.loadNibNamed("GuideGreetingView", owner: self, options: [:])?.first as? GuideGreetingView
+    }()
+
+    private lazy var guideDateStepperView: GuideDateStepperView? = {
+        let nib = R.nib.guideDateStepperView()
+        guard let dateStepperView = (nib.instantiate(withOwner: self, options: nil).first
+            as? GuideDateStepperView) else { return nil }
+        dateStepperView.viewModel = viewModel
+
+        return dateStepperView
     }()
 
     private lazy var tableView: UITableView = {
@@ -101,20 +111,26 @@ private extension GuideViewController {
     }
 
     func setupView() {
-        guard let greetingView = self.greetingView else { return }
-        greetingView.viewModel = viewModel
+        guard
+            let dateStepperView = guideDateStepperView,
+            let greetingView = self.greetingView else { return }
         updateGreetingView(viewModel.message, viewModel.greeting(nil))
         view.addSubview(greetingView)
+        view.addSubview(dateStepperView)
         view.addSubview(tableView)
         greetingView.topAnchor == view.topAnchor + UIApplication.shared.statusBarFrame.height
-        greetingView.leftAnchor == view.leftAnchor
-        greetingView.rightAnchor == view.rightAnchor
-        greetingView.heightAnchor == view.heightAnchor * 0.25
-        tableView.topAnchor == greetingView.bottomAnchor
+        greetingView.leadingAnchor == view.leadingAnchor
+        greetingView.trailingAnchor == view.trailingAnchor
+        greetingViewHeightAnchor = greetingView.heightAnchor == view.heightAnchor * 0.2
+        dateStepperView.topAnchor == greetingView.bottomAnchor
+        dateStepperView.leadingAnchor == view.leadingAnchor
+        dateStepperView.trailingAnchor == view.trailingAnchor
+        tableView.topAnchor == dateStepperView.bottomAnchor
+        tableView.leadingAnchor == view.leadingAnchor
+        tableView.trailingAnchor == view.trailingAnchor
         tableView.bottomAnchor == view.bottomAnchor
-        tableView.leftAnchor == view.leftAnchor
-        tableView.rightAnchor == view.rightAnchor
         tableView.backgroundColor = .pineGreen
+        dateStepperView.backgroundColor = .pineGreen
         view.setFadeMask(at: fadeMaskLocation)
         view.layoutIfNeeded()
     }

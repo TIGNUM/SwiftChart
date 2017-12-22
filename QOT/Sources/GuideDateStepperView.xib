@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view opaque="NO" contentMode="scaleToFill" id="cxq-ny-dxM" customClass="GuideDateStepperView" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="lpo-4z-sBC">
+                    <rect key="frame" x="16" y="8" width="94" height="29"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <connections>
+                        <action selector="dayDidChangeValueWithSender:" destination="cxq-ny-dxM" eventType="valueChanged" id="sbF-hW-O8U"/>
+                    </connections>
+                </stepper>
+                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="VQ3-RU-0co">
+                    <rect key="frame" x="265" y="8" width="94" height="29"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <connections>
+                        <action selector="hourDidChangeValueWithSender:" destination="cxq-ny-dxM" eventType="valueChanged" id="K9I-bR-9RG"/>
+                    </connections>
+                </stepper>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EjN-cd-LQq">
+                    <rect key="frame" x="122" y="12" width="131" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="VQ3-RU-0co" firstAttribute="leading" secondItem="EjN-cd-LQq" secondAttribute="trailing" constant="12" id="1tU-lN-J1U"/>
+                <constraint firstItem="EjN-cd-LQq" firstAttribute="leading" secondItem="lpo-4z-sBC" secondAttribute="trailing" constant="12" id="6EK-hj-D8b"/>
+                <constraint firstItem="DeW-Wv-ThA" firstAttribute="bottom" secondItem="EjN-cd-LQq" secondAttribute="bottom" constant="11" id="Azs-uL-egj"/>
+                <constraint firstItem="lpo-4z-sBC" firstAttribute="top" secondItem="DeW-Wv-ThA" secondAttribute="top" constant="8" id="Cxh-eI-mQ8"/>
+                <constraint firstItem="VQ3-RU-0co" firstAttribute="top" secondItem="DeW-Wv-ThA" secondAttribute="top" constant="8" id="E0z-qE-i9S"/>
+                <constraint firstItem="DeW-Wv-ThA" firstAttribute="bottom" secondItem="lpo-4z-sBC" secondAttribute="bottom" constant="7" id="R2l-tf-Iil"/>
+                <constraint firstItem="DeW-Wv-ThA" firstAttribute="bottom" secondItem="VQ3-RU-0co" secondAttribute="bottom" constant="7" id="hwd-ef-oo4"/>
+                <constraint firstItem="DeW-Wv-ThA" firstAttribute="trailing" secondItem="VQ3-RU-0co" secondAttribute="trailing" constant="16" id="jvC-9b-uCj"/>
+                <constraint firstItem="EjN-cd-LQq" firstAttribute="top" secondItem="DeW-Wv-ThA" secondAttribute="top" constant="12" id="quu-ok-8Ic"/>
+                <constraint firstItem="lpo-4z-sBC" firstAttribute="leading" secondItem="DeW-Wv-ThA" secondAttribute="leading" constant="16" id="rdi-J7-Y4p"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="DeW-Wv-ThA"/>
+            <connections>
+                <outlet property="dateLabel" destination="EjN-cd-LQq" id="5kc-ql-YmQ"/>
+                <outlet property="dayStepper" destination="lpo-4z-sBC" id="x5y-0W-5p7"/>
+                <outlet property="hourStepper" destination="VQ3-RU-0co" id="j6b-ra-7io"/>
+            </connections>
+            <point key="canvasLocation" x="-650" y="-7"/>
+        </view>
+    </objects>
+</document>
