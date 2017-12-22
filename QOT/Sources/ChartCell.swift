@@ -17,9 +17,8 @@ var selectedChartTypes: [ChartType: Bool] = [.peakPerformanceUpcomingWeek: true,
                                              .intensityLoadMonth: false,
                                              .intensityRecoveryWeek: true,
                                              .intensityRecoveryMonth: false,
-                                             .meetingAverageNumber: true,
                                              .meetingAverageDay: true,
-                                             .meetingAverageWeek: false,
+                                             .meetingAverageWeek: true,
                                              .travelTripsAverageWeeks: true,
                                              .travelTripsAverageYear: false,
                                              .travelTripsTimeZoneChangedWeeks: true,
@@ -74,6 +73,8 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
     @IBOutlet private weak var rightSegmentedButton: UIButton!
     @IBOutlet private weak var bottomLabel: UILabel!
     @IBOutlet private weak var infoView: UIVisualEffectView!
+    @IBOutlet private weak var infoScrollView: UIScrollView!
+    @IBOutlet private weak var infoScrollBottomFadeView: UIVisualEffectView!
     @IBOutlet private weak var infoViewTextLabel: UILabel!
     @IBOutlet private weak var infoViewCloseButton: UIButton!
     @IBOutlet private weak var addSenorView: UIView!
@@ -273,10 +274,9 @@ private extension ChartCell {
         case .activityLevel,
              .activitySittingMovementRatio:
             return ActivityChart(frame: frame, statistics: statistics, labelContentView: labelContentView)
-        case .meetingAverageDay,
-             .meetingAverageWeek:
+        case .meetingAverageDay:
             return MeetingsAverageChart(frame: segmentedBiggerFrame, statistics: statistics, labelContentView: labelContentView)
-        case .meetingAverageNumber:
+        case .meetingAverageWeek:
             return MeetingsAverageNumberChart(frame: frame, statistics: statistics, labelContentView: labelContentView)
         case .intensityLoadWeek,
              .intensityLoadMonth,
@@ -288,7 +288,8 @@ private extension ChartCell {
         case .meetingTimeBetween:
             return MeetingsTimeBetweenChart(frame: biggerFrame, statistics: statistics, labelContentView: labelContentView)
         case .sleepQuality,
-             .sleepQuantity:
+             .sleepQuantity,
+             .sleepQuantityTime:
             return SleepChart(frame: frame, statistics: statistics)
         case .peakPerformanceUpcomingWeek,
              .peakPerformanceUpcomingNextWeek:
@@ -360,7 +361,7 @@ private extension ChartCell {
 
     func setupChartViewLabels(_ statistics: Statistics?) {
         guard let statistics = statistics else { return }
-        let isSleepChart = statistics.chartType != .sleepQuantity && statistics.chartType != .sleepQuality
+        let isSleepChart = statistics.chartType != .sleepQuantityTime && statistics.chartType != .sleepQuality
         seperatorBottomView.isHidden = statistics.chartType.bottomView == false
 
         guard statistics.chartType.labels.isEmpty == false else { return }
@@ -385,6 +386,7 @@ private extension ChartCell {
         infoViewTextLabel.setAttrText(text: infoText, font: font, lineSpacing: lineSpacing, characterSpacing: characterSpacing, color: .white)
         infoViewCloseButton.setAttributedTitle(Style.tag("CLOSE", .white30).attributedString(lineSpacing: 2), for: .normal)
         infoViewCloseButton.setAttributedTitle(Style.tag("CLOSE", .white50).attributedString(lineSpacing: 2), for: .selected)
+        infoScrollBottomFadeView.setFadeMask(at: .top, height: infoScrollBottomFadeView.bounds.height/3)
     }
 }
 

@@ -11,7 +11,7 @@ import UIKit
 enum ScreenHelp {
     struct ViewModel {
         let title: String
-        let image: UIImage?
+        let imageURL: URL?
         let videoURL: URL?
         let message: String
     }
@@ -33,7 +33,7 @@ enum ScreenHelp {
 
         struct Item: Codable {
             let title: String
-            let imageName: String
+            let imageURL: String
             let videoURL: String
             let message: String
         }

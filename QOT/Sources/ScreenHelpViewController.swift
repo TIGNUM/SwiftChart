@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ScreenHelpViewController: UIViewController {
     @IBOutlet weak var navigationBar: UINavigationBar!
@@ -40,16 +41,18 @@ class ScreenHelpViewController: UIViewController {
     private func setup() {
         navigationBar.applyDefaultStyle()
         contentView.layer.cornerRadius = 15.0
+        view.addFadeView(at: .top)
+        view.bringSubview(toFront: navigationBar)
     }
 
     private func reload() {
         navigationBar.topItem?.title = viewModel.title
-        imageView.image = viewModel.image
+        imageView.kf.setImage(with: viewModel.imageURL)
         messageLabel.attributedText = NSAttributedString(
             string: viewModel.message,
             letterSpacing: 1.4,
-            font: UIFont.bentonBookFont(ofSize: 13),
-            lineSpacing: 10,
+            font: UIFont.bentonBookFont(ofSize: 15),
+            lineSpacing: 14,
             textColor: .white
         )
     }
