@@ -33,6 +33,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     private var canProcessRemoteNotifications = false
     private var onDismiss: (() -> Void)?
     private var notificationID: String?
+    private var destination: AppCoordinator.Router.Destination?
 
     // current state
     private weak var tabBarCoordinator: TabBarCoordinator?
@@ -180,11 +181,15 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         }
     }
 
-    func dismiss(_ viewController: UIViewController, level: WindowManager.Level) {
+    func dismiss(_ viewController: UIViewController, level: WindowManager.Level, completion: (() -> Void)? = nil) {
         viewController.dismiss(animated: true) { [unowned self] in
             self.windowManager.resignWindow(atLevel: level)
             self.onDismiss?()
             self.onDismiss = nil
+            completion?()
+            if let destination = self.destination {
+                self.navigate(to: destination)
+            }
         }
 
         AppCoordinator.updateStatusBarStyleIfNeeded()
@@ -621,6 +626,7 @@ extension AppCoordinator {
     }
 
     func navigate(to destination: AppCoordinator.Router.Destination) {
+        self.destination = destination
         dismissCurrentPresentedControllers()
         guard let topViewController = AppDelegate.topViewController() else { return }
 
@@ -630,15 +636,27 @@ extension AppCoordinator {
             if let tabBarController = pageViewController.tabBarController as? TabBarController {
                 selectTabBarItem(tabBarController: tabBarController, destination: destination)
             } else {
-                pageViewController.viewControllers?.forEach { viewController in
-                    viewController.dismiss(animated: true) {
-                        self.navigate(to: destination)
+                pageViewController.viewControllers?.forEach { (viewController: UIViewController) in
+                    if windowManager.presentedViewController(atLevel: .priority) == viewController {
+                        dismiss(viewController, level: .priority) {
+                            self.navigate(to: destination)
+                        }
+                    } else if windowManager.presentedViewController(atLevel: .normal) == viewController {
+                        dismiss(viewController, level: .normal) {
+                            self.navigate(to: destination)
+                        }
+                    } else {
+                        viewController.dismiss(animated: true) {
+                            self.navigate(to: destination)
+                        }
                     }
                 }
             }
         } else if let tabBarController = (topViewController as? MyUniverseViewController)?.parent as? TabBarController {
             selectTabBarItem(tabBarController: tabBarController, destination: destination)
         } else if let tabBarController = (topViewController as? LearnCategoryListViewController)?.parent as? TabBarController {
+            selectTabBarItem(tabBarController: tabBarController, destination: destination)
+        } else if let tabBarController = (topViewController as? GuideViewController)?.parent as? TabBarController {
             selectTabBarItem(tabBarController: tabBarController, destination: destination)
         } else {
             topViewController.dismiss(animated: true) {
