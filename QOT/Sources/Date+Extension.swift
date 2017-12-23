@@ -18,6 +18,14 @@ extension Date {
         return Calendar.sharedUTC.date(byAdding: .minute, value: -1, to: self.nextDay.startOfDay) ?? self
     }
 
+    var nextHour: Date {
+        return Calendar.current.nextDate(after: self, matching: DateComponents(minute: 0), matchingPolicy: .nextTime) ?? self
+    }
+
+    var nextDate: Date {
+        return Calendar.current.nextDate(after: self, matching: DateComponents(hour: 0), matchingPolicy: .nextTime) ?? self
+    }
+
     var nextDay: Date {
         return Calendar.sharedUTC.date(byAdding: .day, value: 1, to: self) ?? self
     }

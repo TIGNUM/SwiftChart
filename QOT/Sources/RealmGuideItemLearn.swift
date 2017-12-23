@@ -79,4 +79,11 @@ extension RealmGuideItemLearn: OneWaySyncableDown {
             self.reminderTime = RealmGuideTime(reminderTime)
         }
     }
+
+    var issueDate: Date? {
+        guard let reminderTime = reminderTime else { return nil }
+        return Calendar.current.date(bySettingHour: reminderTime.hour,
+                                     minute: reminderTime.minute,
+                                     second: 0, of: Date())
+    }
 }

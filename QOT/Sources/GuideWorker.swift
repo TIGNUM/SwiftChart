@@ -22,6 +22,7 @@ final class GuideWorker {
         let notificationItems = services.guideItemNotificationService.todayItems().map {
             return RealmGuideItem(item: $0, date: Date())
         }
+
         var guideItems: [RealmGuideItem] = []
         guideItems.append(contentsOf: learnItems)
         guideItems.append(contentsOf: notificationItems)
@@ -48,5 +49,14 @@ final class GuideWorker {
             log(error, level: .error)
             completion?(error)
         }
+    }
+}
+
+private extension GuideWorker {
+
+    func addLearnItemNotifications() {
+        let learnItems = services.guideItemLearnService.items()
+        let localNotificationsBuilder = LocalNotificationBuilder(realmProvider: services.realmProvider)
+        localNotificationsBuilder.addLearnItemNotifications(learnItems: learnItems)
     }
 }

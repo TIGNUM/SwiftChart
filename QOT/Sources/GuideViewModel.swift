@@ -151,6 +151,7 @@ final class GuideViewModel {
 
     func setCompleted(item: Guide.Item, completion: @escaping () -> Void) {
         guard item.status == .todo else { return }
+        cancelPendingNotificationIfNeeded(item: item)
         GuideWorker(services: services).setItemCompleted(guideID: item.identifier) { (error) in
             guard error == nil else { return }
             self.reload()

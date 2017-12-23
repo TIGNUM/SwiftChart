@@ -101,8 +101,6 @@ private extension GuideViewController {
         tableView.reloadData()
         updateReadyState()
         updateGreetingView(viewModel.message, viewModel.greeting(nil))
-        dateStepperView?.setupView(viewModel: viewModel)
-
     }
 
     func observeViewModel() {
@@ -116,8 +114,6 @@ private extension GuideViewController {
             let dateStepperView = dateStepperView,
             let greetingView = self.greetingView else { return }
         updateGreetingView(viewModel.message, viewModel.greeting(nil))
-        dateStepperView.setupView(viewModel: viewModel)
-        
         view.addSubview(greetingView)
         view.addSubview(dateStepperView)
         view.addSubview(tableView)
@@ -136,6 +132,7 @@ private extension GuideViewController {
         dateStepperView.backgroundColor = .pineGreen
         view.setFadeMask(at: fadeMaskLocation)
         view.layoutIfNeeded()
+        dateStepperView.setupView(viewModel: viewModel)
     }
 
     func updateGreetingView(_ message: String, _ greeting: String) {
@@ -208,7 +205,6 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = viewModel.item(indexPath: indexPath)
         guard item.isDailyPrepCompleted == false else { return }
-        viewModel.cancelPendingNotificationIfNeeded(item: item)
         open(item: item)
         viewModel.setCompleted(item: item) {
             tableView.reloadRows(at: [indexPath], with: .automatic)

@@ -159,8 +159,8 @@ private extension ArticleItemViewController {
 
     func featureLinkButton(guideItem: Guide.Item) -> UIButton {
         let button = UIButton()
-        button.setAttributedTitle(Style.headline(guideItem.featureButton ?? "", .white).attributedString(), for: .normal)
-        button.setAttributedTitle(Style.headline(guideItem.featureButton ?? "", .white70).attributedString(), for: .selected)
+        button.setAttributedTitle(Style.headline(guideItem.featureLink?.url?.absoluteString ?? "", .white).attributedString(), for: .normal)
+        button.setAttributedTitle(Style.headline(guideItem.featureLink?.url?.absoluteString ?? "", .white70).attributedString(), for: .selected)
         button.addTarget(self, action: #selector(openFeatureLink), for: .touchUpInside)
         button.backgroundColor = UIColor.navy.withAlphaComponent(0.25)
 

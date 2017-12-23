@@ -12,37 +12,21 @@ var guideDate = Date()
 
 private let shortDateFormatter: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.locale = Locale.current
-    formatter.timeZone = TimeZone.current
-    formatter.dateStyle = .short
-    formatter.timeStyle = .short
+    formatter.locale = Locale.posix
+    formatter.timeZone = TimeZone(abbreviation: "UTC")
+    formatter.dateFormat = "dd.MM.yyyy HH:mm"
     return formatter
 }()
 
 final class GuideDateStepperView: UIView {
 
-    @IBOutlet private weak var hourStepper: UIStepper!
-    @IBOutlet private weak var dayStepper: UIStepper!
+    @IBOutlet private weak var buttonHour: UIButton!
+    @IBOutlet private weak var buttonDay: UIButton!
     @IBOutlet private weak var dateLabel: UILabel!
     private var viewModel: GuideViewModel?
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-
-        let calendar = Calendar.sharedUTC
-        var components = DateComponents(calendar: calendar)
-        hourStepper.value = Double(components.hour ?? 12)
-        dayStepper.value = Double(components.day ?? 15)
-    }
-
     func setupView(viewModel: GuideViewModel) {
         self.viewModel = viewModel
-
-        var lastAddedDate = guideDate
-        if viewModel.sectionCount > 0 {
-            lastAddedDate = viewModel.header(section: 0)
-        }
-        dateLabel.text = shortDateFormatter.string(from: lastAddedDate)
     }
 }
 
@@ -50,21 +34,7 @@ final class GuideDateStepperView: UIView {
 
 private extension GuideDateStepperView {
 
-    func updateGuideTime(hoursFromNow: Int) {
-        let calendar = Calendar.sharedUTC
-        var components = DateComponents()
-        components.hour = hoursFromNow
-        guideDate = calendar.date(byAdding: components, to: guideDate)!
-        dateLabel.text = shortDateFormatter.string(from: guideDate)
-        viewModel?.createTodaysGuideIfNeeded()
-        viewModel?.reload()
-    }
-
-    func updateGuideDate(daysFromNow: Int) {
-        let calendar = Calendar.sharedUTC
-        var components = DateComponents()
-        components.day = daysFromNow
-        guideDate = calendar.date(byAdding: components, to: guideDate)!
+    func updateViewModel() {
         dateLabel.text = shortDateFormatter.string(from: guideDate)
         viewModel?.createTodaysGuideIfNeeded()
         viewModel?.reload()
@@ -75,11 +45,13 @@ private extension GuideDateStepperView {
 
 extension GuideDateStepperView {
 
-    @IBAction func hourDidChangeValue(sender: UIStepper) {
-        updateGuideTime(hoursFromNow: sender.stepValue.hashValue)
+    @IBAction func hourButtonTapped() {
+        guideDate = guideDate.nextHour
+        updateViewModel()
     }
 
-    @IBAction func dayDidChangeValue(sender: UIStepper) {
-        updateGuideDate(daysFromNow: sender.stepValue.toInt)
+    @IBAction func dayButtonTapped() {
+        guideDate = guideDate.nextDate
+        updateViewModel()
     }
 }

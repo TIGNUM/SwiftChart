@@ -33,6 +33,14 @@ final class LocalNotificationBuilder: NSObject {
         }
     }
 
+    func addLearnItemNotifications(learnItems: List<RealmGuideItemLearn>) {
+        learnItems.forEach { (itemLearn: RealmGuideItemLearn) in
+            if itemLearn.reminderTime != nil {
+                self.create(itemLearn: itemLearn)
+            }
+        }
+    }
+
     static func cancelNotification(identifier: String) {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
     }
@@ -68,26 +76,39 @@ private extension LocalNotificationBuilder {
 
     func create(notification: RealmGuideItemNotification) {
         let request = UNNotificationRequest(identifier: notification.localID,
-                                            content: content(notification),
-                                            trigger: trigger(notification))
+                                            content: content(title: notification.title,
+                                                             body: notification.body,
+                                                             sound: notification.sound,
+                                                             link: notification.link),
+                                            trigger: trigger(notification.issueDate))
         addNotification(request: request)
     }
 
-    func content(_ notification: RealmGuideItemNotification) -> UNMutableNotificationContent {
+    func create(itemLearn: RealmGuideItemLearn) {
+        let request = UNNotificationRequest(identifier: itemLearn.localID,
+                                            content: content(title: itemLearn.title,
+                                                             body: itemLearn.body,
+                                                             sound: itemLearn.sound,
+                                                             link: itemLearn.link),
+                                            trigger: trigger(itemLearn.createdAt))
+        addNotification(request: request)
+    }
+
+    func content(title: String?, body: String, sound: String, link: String) -> UNMutableNotificationContent {
         let content = UNMutableNotificationContent()
-        if let title = notification.title {
+        if let title = title {
             content.title = title
         }
-        content.body = notification.body
-        content.sound = UNNotificationSound(named: notification.sound)
-        content.userInfo = ["link": notification.link]
+        content.body = body
+        content.sound = UNNotificationSound(named: sound)
+        content.userInfo = ["link": link]
 
         return content
     }
 
-    func trigger(_ notification: RealmGuideItemNotification) -> UNCalendarNotificationTrigger {
+    func trigger(_ issueDate: Date) -> UNCalendarNotificationTrigger {
         let triggerDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second],
-                                                          from: notification.issueDate)
+                                                          from: issueDate)
         return UNCalendarNotificationTrigger(dateMatching: triggerDate,
                                              repeats: false)
     }

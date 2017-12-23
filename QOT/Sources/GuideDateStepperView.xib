@@ -16,49 +16,61 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="lpo-4z-sBC">
-                    <rect key="frame" x="16" y="8" width="94" height="29"/>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7GY-IN-0O3">
+                    <rect key="frame" x="16" y="6" width="80" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="hH9-e7-GHj"/>
+                    </constraints>
+                    <state key="normal" title="day +1">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
                     <connections>
-                        <action selector="dayDidChangeValueWithSender:" destination="cxq-ny-dxM" eventType="valueChanged" id="sbF-hW-O8U"/>
+                        <action selector="dayButtonTapped" destination="cxq-ny-dxM" eventType="touchUpInside" id="EkI-kE-1Mw"/>
                     </connections>
-                </stepper>
-                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="VQ3-RU-0co">
-                    <rect key="frame" x="265" y="8" width="94" height="29"/>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jgU-JJ-chX">
+                    <rect key="frame" x="108" y="8" width="80" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="nrG-bu-07v"/>
+                    </constraints>
+                    <state key="normal" title="hour +1">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
                     <connections>
-                        <action selector="hourDidChangeValueWithSender:" destination="cxq-ny-dxM" eventType="valueChanged" id="K9I-bR-9RG"/>
+                        <action selector="hourButtonTapped" destination="cxq-ny-dxM" eventType="touchUpInside" id="HIv-dm-yTP"/>
                     </connections>
-                </stepper>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EjN-cd-LQq">
-                    <rect key="frame" x="122" y="12" width="131" height="21"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22-12-2017 23:23" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EjN-cd-LQq">
+                    <rect key="frame" x="239" y="12" width="120" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="120" id="OB6-VN-8mn"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="VQ3-RU-0co" firstAttribute="leading" secondItem="EjN-cd-LQq" secondAttribute="trailing" constant="12" id="1tU-lN-J1U"/>
-                <constraint firstItem="EjN-cd-LQq" firstAttribute="leading" secondItem="lpo-4z-sBC" secondAttribute="trailing" constant="12" id="6EK-hj-D8b"/>
+                <constraint firstItem="7GY-IN-0O3" firstAttribute="top" secondItem="DeW-Wv-ThA" secondAttribute="top" constant="6" id="63c-pI-tLL"/>
                 <constraint firstItem="DeW-Wv-ThA" firstAttribute="bottom" secondItem="EjN-cd-LQq" secondAttribute="bottom" constant="11" id="Azs-uL-egj"/>
-                <constraint firstItem="lpo-4z-sBC" firstAttribute="top" secondItem="DeW-Wv-ThA" secondAttribute="top" constant="8" id="Cxh-eI-mQ8"/>
-                <constraint firstItem="VQ3-RU-0co" firstAttribute="top" secondItem="DeW-Wv-ThA" secondAttribute="top" constant="8" id="E0z-qE-i9S"/>
-                <constraint firstItem="DeW-Wv-ThA" firstAttribute="bottom" secondItem="lpo-4z-sBC" secondAttribute="bottom" constant="7" id="R2l-tf-Iil"/>
-                <constraint firstItem="DeW-Wv-ThA" firstAttribute="bottom" secondItem="VQ3-RU-0co" secondAttribute="bottom" constant="7" id="hwd-ef-oo4"/>
-                <constraint firstItem="DeW-Wv-ThA" firstAttribute="trailing" secondItem="VQ3-RU-0co" secondAttribute="trailing" constant="16" id="jvC-9b-uCj"/>
+                <constraint firstItem="jgU-JJ-chX" firstAttribute="top" secondItem="DeW-Wv-ThA" secondAttribute="top" constant="8" id="B5u-nY-6eU"/>
+                <constraint firstItem="DeW-Wv-ThA" firstAttribute="trailing" secondItem="EjN-cd-LQq" secondAttribute="trailing" constant="16" id="KbM-w0-wkS"/>
+                <constraint firstItem="DeW-Wv-ThA" firstAttribute="bottom" secondItem="7GY-IN-0O3" secondAttribute="bottom" constant="6" id="QqA-0V-Ldl"/>
+                <constraint firstItem="DeW-Wv-ThA" firstAttribute="bottom" secondItem="jgU-JJ-chX" secondAttribute="bottom" constant="6" id="TA2-yP-byj"/>
+                <constraint firstItem="jgU-JJ-chX" firstAttribute="leading" secondItem="7GY-IN-0O3" secondAttribute="trailing" constant="12" id="khd-OI-4aN"/>
                 <constraint firstItem="EjN-cd-LQq" firstAttribute="top" secondItem="DeW-Wv-ThA" secondAttribute="top" constant="12" id="quu-ok-8Ic"/>
-                <constraint firstItem="lpo-4z-sBC" firstAttribute="leading" secondItem="DeW-Wv-ThA" secondAttribute="leading" constant="16" id="rdi-J7-Y4p"/>
+                <constraint firstItem="7GY-IN-0O3" firstAttribute="leading" secondItem="DeW-Wv-ThA" secondAttribute="leading" constant="16" id="w1G-91-j9d"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="DeW-Wv-ThA"/>
             <connections>
+                <outlet property="buttonDay" destination="7GY-IN-0O3" id="94L-M5-Aod"/>
+                <outlet property="buttonHour" destination="jgU-JJ-chX" id="0tN-ck-CdW"/>
                 <outlet property="dateLabel" destination="EjN-cd-LQq" id="5kc-ql-YmQ"/>
-                <outlet property="dayStepper" destination="lpo-4z-sBC" id="x5y-0W-5p7"/>
-                <outlet property="hourStepper" destination="VQ3-RU-0co" id="j6b-ra-7io"/>
             </connections>
-            <point key="canvasLocation" x="-650" y="-7"/>
+            <point key="canvasLocation" x="-650.5" y="-7"/>
         </view>
     </objects>
 </document>
