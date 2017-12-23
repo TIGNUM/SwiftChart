@@ -9,6 +9,7 @@
 import Foundation
 
 extension DateComponentsFormatter {
+
     class func timeIntervalToString(
         _ time: TimeInterval,
         minimumTime: TimeInterval = 60.0,

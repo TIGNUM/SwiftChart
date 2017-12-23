@@ -38,6 +38,7 @@ final class SettingsAdminViewController: UITableViewController {
         case preparation = 2
         case userPartners = 3
         case userToBeVision = 4
+        case guide = 5
     }
 
     // MARK: - Properties
@@ -138,6 +139,7 @@ private extension SettingsAdminViewController {
         case .preparation: erasePreparations()
         case .userPartners: erasePreparations()
         case .userToBeVision: eraseUserToBeVision()
+        case .guide: eraseGuide()
         }
     }
 
@@ -241,6 +243,12 @@ private extension SettingsAdminViewController {
 
     func eraseUserToBeVision() {
         services?.userService.eraseToBeVision()
+    }
+
+    func eraseGuide() {
+        services?.guideService.eraseGuide()
+        services?.guideItemLearnService.eraseItems()
+        services?.guideItemNotificationService.eraseItems()
     }
 
     func syncData(shouldDownload: Bool) {

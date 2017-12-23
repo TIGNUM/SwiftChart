@@ -22,19 +22,21 @@ import Anchorage
  */
 
 final class WhatsHotBadgeManager {
+
+    private weak var whatsHotBadge: Badge?
+    weak var tabBarController: TabBarController?
+
     weak var whatsHotButton: UIButton? {
         didSet {
-            whatsHotButton?.addTarget(self, action: #selector(whatsHotButtonPressed(_:)), for: .touchUpInside)
+            whatsHotButton?.addTarget(self, action: #selector(whatsHotButtonPressed), for: .touchUpInside)
         }
     }
-    weak var tabBarController: TabBarController?
+
     var isShowingLearnTab: Bool = false {
         didSet {
             update()
         }
     }
-
-    private weak var whatsHotBadge: Badge?
 
     init() {
         setupNotifications()
@@ -48,23 +50,23 @@ final class WhatsHotBadgeManager {
     // MARK: - private
 
     private func setupNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(userDefaultsDidChangeNotification(_:)), name: UserDefaults.didChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(userDefaultsDidChangeNotification),
+                                               name: UserDefaults.didChangeNotification,
+                                               object: nil)
     }
 
     private func update() {
         whatsHotBadge?.removeFromSuperview()
-        tabBarController?.mark(isRead: true, at: 0)
+        tabBarController?.mark(isRead: true, at: 1)
+        guard UserDefault.newWhatsHotArticle.boolValue else { return }
 
-        guard UserDefault.newWhatsHotArticle.boolValue else {
-            return
-        }
         // @warning - the dot is supposed to be on the top right of the text, not the button. as such, these magic numbers represent a fraction of the button size to position the dot artificially close to the text. percentages keep the effect similar on different device sizes. however with changing texts (e.g. uk / german) the dots will 'seem' in the wrong place as the text will be too close to the dot etc. this should be improved later.
-        if isShowingLearnTab {
+        if isShowingLearnTab == true {
             let topOffset = (whatsHotButton?.bounds.height ?? 0) * 0.1
             let rightOffset = (whatsHotButton?.bounds.width ?? 0) * 0.08
             whatsHotBadge = whatsHotButton?.addBadge(topAnchorOffset: topOffset, rightAnchorOffset: rightOffset)
         } else {
-            tabBarController?.mark(isRead: false, at: 0)
+            tabBarController?.mark(isRead: false, at: 1)
         }
     }
 

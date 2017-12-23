@@ -12,12 +12,14 @@ import UIKit
 final class SidebarCoordinator: ParentCoordinator {
 
     private let services: Services
-    private var topTabBarController: UINavigationController!
-    private let sideBarViewController: SidebarViewController!
     private let rootViewController: UIViewController
     private let networkManager: NetworkManager
     private let syncManager: SyncManager
     private let permissionsManager: PermissionsManager
+    let sideBarViewController: SidebarViewController!
+    var addSensorCoordinator: AddSensorCoordinator?
+    var topTabBarController: UINavigationController?
+    var settingsMenuCoordinator: SettingsMenuCoordinator?
     var children = [Coordinator]()
 
     init(root: UIViewController, services: Services, syncManager: SyncManager, networkManager: NetworkManager, permissionsManager: PermissionsManager) {
@@ -34,11 +36,12 @@ final class SidebarCoordinator: ParentCoordinator {
                                                      backgroundImage: R.image.sidebar(),
                                                      leftButton: UIBarButtonItem(withImage: R.image.ic_logo()),
                                                      rightButton: UIBarButtonItem(withImage: R.image.ic_close()))
-        topTabBarController.modalTransitionStyle = .crossDissolve
+        topTabBarController?.modalTransitionStyle = .crossDissolve
         sideBarViewController.delegate = self
     }
 
     func start() {
+        guard let topTabBarController = self.topTabBarController else { return }
         rootViewController.present(topTabBarController, animated: true)
     }
 }
@@ -50,6 +53,7 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
     func didTapAddSensorCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
         let coordinator = AddSensorCoordinator(root: viewController, services: services)
         startChild(child: coordinator)
+        addSensorCoordinator = coordinator
     }
 
     func didTapSettingsMenuCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
@@ -59,9 +63,9 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
                                                         networkManager: networkManager,
                                                         permissionsManager: permissionsManager) else {
                                                             log("could not init \(SettingsMenuCoordinator.self)")
-                                                            return
-        }
+                                                            return }
         startChild(child: coordinator)
+        settingsMenuCoordinator = coordinator
     }
 
     func didTapLibraryCell(in viewController: SidebarViewController) {
@@ -86,15 +90,12 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
     }
 
     private func startSidebarItemCoordinator(pageName: PageName, contentCollection: ContentCollection?, viewController: SidebarViewController, topTabBarTitle: String? = nil, backgroundImage: UIImage? = nil) {
-        guard let coordinator = ArticleContentItemCoordinator(
-            pageName: pageName,
-            root: viewController,
-            services: services,
-            contentCollection: contentCollection,
-            topTabBarTitle: topTabBarTitle?.uppercased(), backgroundImage: backgroundImage) else {
-                return
-        }
-
+        guard let coordinator = ArticleContentItemCoordinator(pageName: pageName,
+                                                              root: viewController,
+                                                              services: services,
+                                                              contentCollection: contentCollection,
+                                                              topTabBarTitle: topTabBarTitle?.uppercased(),
+                                                              backgroundImage: backgroundImage) else { return }
         startChild(child: coordinator)
     }
 }
@@ -109,7 +110,7 @@ extension SidebarCoordinator: TopNavigationBarDelegate {
     }
 
     func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
-        topTabBarController.dismiss(animated: true, completion: nil)
+        topTabBarController?.dismiss(animated: true, completion: nil)
         removeChild(child: self)
     }
 }

@@ -33,7 +33,7 @@ final class LearnContentCollectionViewModel {
     }
 
     func category(at index: Index) -> ContentCategory {
-        return  categories[index]
+        return categories[index]
     }
 
     func itemCount(categoryIndex: Index) -> Int {

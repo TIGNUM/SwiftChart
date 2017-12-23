@@ -14,13 +14,13 @@ final class LibraryCoordinator: ParentCoordinator {
     // MARK: - Properties
 
     private let services: Services
-    private let libraryViewController: LibraryViewController
     private let rootViewController: UIViewController
+    private let libraryViewController: LibraryViewController
     var children = [Coordinator]()
 
     // MARK: - Init
 
-    init(root: SidebarViewController, services: Services) {
+    init(root: UIViewController, services: Services) {
         self.rootViewController = root
         self.services = services
         libraryViewController = LibraryViewController(viewModel: LibraryViewModel(services: services), fadeMaskLocation: .top)

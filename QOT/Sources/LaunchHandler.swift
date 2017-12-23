@@ -19,26 +19,59 @@ final class LaunchHandler {
         return URLScheme.isSupportedURL(url)
     }
 
-    func process(url: URL) {
+    func process(url: URL, notificationID: String = "", guideItem: Guide.Item? = nil) {
         guard
             let host = url.host,
-            let scheme = URLScheme(rawValue: host) else {
-                return
-        }
-
+            let scheme = URLScheme(rawValue: host) else { return }
         logPushNotificationID(urlScheme: scheme, url: url)
 
         switch scheme {
-        case .dailyPrep: dailyPrep(groupID: scheme.queryParametter(url: url))
+        case .dailyPrep: dailyPrep(groupID: scheme.queryParametter(url: url), notificationID: notificationID)
         case .fitbit: fitbit(accessToken: scheme.queryParametter(url: url))
         case .preparation: preparation(localID: url.absoluteString.components(separatedBy: scheme.queryName).last)
         case .randomContent: randomContent(url: url, scheme: scheme)
         case .weeklyChoices: weeklyChoiches()
+        case .meChoices: weeklyChoiches()
         case .weeklyChoicesReminder: weeklyChoicesReminder()
-        case .myPreps: preparationList()
+        case .myPreps: navigate(to: scheme.destination)
         case .toBeVision: toBeVision()
-        case .weeklyPeakPerformance: return
+        case .weeklyPeakPerformance: navigate(to: scheme.destination)
+        case .contentCategory: contentCategory(collectionID: scheme.queryParametter(url: url))
+        case .featureExplainer: featureExplainer(url: url, scheme: scheme, guideItem: guideItem)
+        case .strategies: navigate(to: scheme.destination)
+        case .meUniverse: navigate(to: scheme.destination)
+        case .preferencesSyncCalendar: appDelegate.appCoordinator.presentPreferencesSyncCalendar()
+        case .addSensor: _ = appDelegate.appCoordinator.presentAddSensor()
+        case .fitbitAuthrefresh: appDelegate.appCoordinator.presentFitbitAuthRefresh()
+        case .meMyWhy: navigate(to: scheme.destination) // TODO the middleButtons are different here.
+        case .meActivity: navigateToMeCharts(sector: .activity)
+        case .meIntensity: navigateToMeCharts(sector: .intensity)
+        case .meMeeting: navigateToMeCharts(sector: .meetings)
+        case .meSleep: navigateToMeCharts(sector: .sleep)
+        case .mePeakPerformance: navigateToMeCharts(sector: .peakPerformance)
+        case .meTravel: navigateToMeCharts(sector: .travel)
+        case .meQotPartner: return
+        case .prepare: navigate(to: scheme.destination)
+        case .prepareProblem: navigateToPrepare(scheme.destination)
+        case .prepareEvent: navigateToPrepare(scheme.destination)
+        case .prepareDay: navigateToPrepare(scheme.destination)
+        case .library: appDelegate.appCoordinator.presentLibrary()
+        case .guide: navigate(to: scheme.destination)
         }
+    }
+
+    func navigate(to destination: AppCoordinator.Router.Destination?) {
+        guard let destination = destination else { return }
+        appDelegate.appCoordinator.navigate(to: destination)
+    }
+
+    func navigateToMeCharts(sector: StatisticsSectionType) {
+        appDelegate.appCoordinator.presentMeCharts(sector: sector)
+    }
+
+    func navigateToPrepare(_ destination: AppCoordinator.Router.Destination?) {
+        guard let destination = destination else { return }
+        appDelegate.appCoordinator.presentPrepare(destination)
     }
 
     func logPushNotificationID(urlScheme: URLScheme, url: URL) {
@@ -52,10 +85,7 @@ final class LaunchHandler {
 extension LaunchHandler {
 
     func preparation(localID: String?) {
-        guard let localID = localID else {
-            return
-        }
-
+        guard let localID = localID else { return }
         appDelegate.appCoordinator.presentPreparationCheckList(localID: localID)
     }
 }
@@ -120,15 +150,16 @@ extension LaunchHandler {
 
 extension LaunchHandler {
 
-    func dailyPrep(groupID: String?) {
+    func dailyPrep(groupID: String?, notificationID: String) {
         guard
             let groupID = groupID,
-            let groupIDIntValue = Int(groupID) else {
-                return
-        }
+            let groupIDIntValue = Int(groupID) else { return }
 
         //TODO: dates?
-        appDelegate.appCoordinator.presentMorningInterview(groupID: groupIDIntValue, validFrom: Date(), validTo: Date())
+        appDelegate.appCoordinator.presentMorningInterview(groupID: groupIDIntValue,
+                                                           validFrom: Date(),
+                                                           validTo: Date(),
+                                                           notificationID: notificationID)
     }
 }
 
@@ -165,10 +196,7 @@ extension LaunchHandler {
     func randomContent(url: URL, scheme: URLScheme) {
         guard
             let contentIDString = scheme.queryParametter(url: url),
-            let contentID = Int(contentIDString) else {
-                return
-        }
-
+            let contentID = Int(contentIDString) else { return }
         appDelegate.appCoordinator.presentLearnContentItems(contentID: contentID)
     }
 }
@@ -182,11 +210,24 @@ extension LaunchHandler {
     }
 }
 
-// MARK: - Preparation List
+// MARK: - ContentCategory - ContentCollection
 
 extension LaunchHandler {
 
-    func preparationList() {
-        appDelegate.appCoordinator.presentPreparationList()
+    func contentCategory(collectionID: String?) {
+        appDelegate.appCoordinator.presentLearnContentCollection(collectionID: collectionID)
+    }
+}
+
+// MARK: - FeatureExplainer
+
+extension LaunchHandler {
+
+    func featureExplainer(url: URL, scheme: URLScheme, guideItem: Guide.Item?) {
+        guard
+            let guideItem = guideItem,
+            let contentIDString = scheme.queryParametter(url: url),
+            let contentID = Int(contentIDString) else { return }
+        appDelegate.appCoordinator.presentFeatureArticelContentItems(contentID: contentID, guideItem: guideItem)
     }
 }

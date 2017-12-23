@@ -44,6 +44,7 @@ extension Realm {
 
         // MARK: Cleanup. These object should be unique so delete additional.
         if objs.count > 1 {
+            print(type)
             assertionFailure("There should be no objects with duplicate remoteIDs")
 
             let needsDeleting = Array(objs.dropFirst())

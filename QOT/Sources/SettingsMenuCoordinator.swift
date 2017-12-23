@@ -12,11 +12,12 @@ import UIKit
 final class SettingsMenuCoordinator: ParentCoordinator {
 
     private let services: Services
-    private let settingsMenuViewController: SettingsMenuViewController
     private let rootViewController: UIViewController
     private let networkManager: NetworkManager
     private let syncManager: SyncManager
     private let permissionsManager: PermissionsManager
+    let settingsMenuViewController: SettingsMenuViewController
+    var settingsCoordinator: SettingsCoordinator?
     var children = [Coordinator]()
 
     init?(root: SidebarViewController, services: Services, syncManager: SyncManager, networkManager: NetworkManager, permissionsManager: PermissionsManager) {
@@ -63,6 +64,7 @@ extension SettingsMenuCoordinator: SettingsMenuViewControllerDelegate {
                                                     syncManager: syncManager,
                                                     networkManager: networkManager,
                                                     permissionsManager: permissionsManager) else { return }
+        settingsCoordinator = coordinator
         startChild(child: coordinator)
     }
 }

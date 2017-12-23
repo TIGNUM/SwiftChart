@@ -154,6 +154,10 @@ struct Color {
     /// navigationBarDark UIColor(red: 4/255, green: 11/255, blue: 23/255, alpha: 0.825)
     static let navigationBarDark = UIColor(red: 4/255, green: 11/255, blue: 23/255, alpha: 0.825)
 
+    struct Guide {
+        static let cardBackground = UIColor(red: 40/255, green: 52/255, blue: 62/255, alpha: 1)
+    }
+
     struct Default {
         static let white = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         static let whiteLight = UIColor(red: 1, green: 1, blue: 1, alpha: 0.1)

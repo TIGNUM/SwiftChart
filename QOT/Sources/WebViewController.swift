@@ -39,10 +39,9 @@ final class WebViewController: SFSafariViewController {
 // MARK: - URL
 
 private extension URL {
+
     var canOpen: Bool {
-        guard let scheme = scheme else {
-            return false
-        }
+        guard let scheme = scheme else { return false }
         return scheme.caseInsensitiveCompare("http") == .orderedSame || scheme.caseInsensitiveCompare("https") == .orderedSame
     }
 }

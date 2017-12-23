@@ -68,6 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         Buglife.shared().delegate = self
         appCoordinator.start()
         UIApplication.shared.statusBarStyle = .lightContent
+        UNUserNotificationCenter.current().delegate = self
         incomingLocationEvent(launchOptions: launchOptions)
         setupUAirship()
 
@@ -119,10 +120,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
     }
 
     private func setupUAirship() {
-        guard let path = Bundle.main.path(forResource: "AirshipConfig", ofType: "plist") else {
-            return
-        }
-
+        guard let path = Bundle.main.path(forResource: "AirshipConfig", ofType: "plist") else { return }
         let config = UAConfig(contentsOfFile: path)
         UAirship.takeOff(config)
         UAirship.push().pushNotificationDelegate = remoteNotificationHandler
@@ -148,8 +146,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             }
         }
     }
+}
 
-    class func topViewController(base: UIViewController? = (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController) -> UIViewController? {
+// MARK: - Current top view controller
+
+extension AppDelegate {
+
+    class func topViewController(base: UIViewController? =
+        (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController) -> UIViewController? {
+
         if let nav = base as? UINavigationController {
             return topViewController(base: nav.visibleViewController)
         }
@@ -165,5 +170,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         }
 
         return base
+    }
+}
+
+// MARK: - UNUserNotificationCenterDelegate
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+
+    func handleNotification(notification: UNNotification) {
+        guard
+            let linkString = notification.request.content.userInfo["link"] as? String,
+            let link = URL(string: linkString), launchHandler.canLaunch(url: link) == true else {
+                return
+        }
+
+        let notificationID = notification.request.identifier
+        launchHandler.process(url: link, notificationID: notificationID)
+        GuideWorker(services: AppDelegate.appState.services).setItemCompleted(guideID: notificationID)
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound])
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
+        handleNotification(notification: response.notification)
     }
 }

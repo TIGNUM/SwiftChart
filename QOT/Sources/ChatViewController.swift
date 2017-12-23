@@ -11,6 +11,13 @@ import ReactiveKit
 import Bond
 import Anchorage
 
+protocol ChatViewControllerDelegate: class {
+
+    func cellDidAppear(viewController: UIViewController,
+                       collectionView: UICollectionView,
+                       destination: AppCoordinator.Router.Destination?)
+}
+
 private struct SizeCacheKey: Hashable {
 
     let text: String
@@ -53,6 +60,8 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
     private var sizeCache: NSCache<GenericCacheKey<SizeCacheKey>, NSValue> = NSCache()
     private var items: [ChatItem<T>] = []
     private let fadeMaskLocation: UIView.FadeMaskLocation
+    weak var routerDelegate: ChatViewControllerDelegate?
+    var destination: AppCoordinator.Router.Destination?
     let viewModel: ChatViewModel<T>
     let pageName: PageName
     var didSelectChoice: ((T, ChatViewController) -> Void)?
@@ -95,6 +104,9 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
                     self.collectionView.insertSections(IndexSet(insertions))
                 }, completion: { (_) -> Void in
                     self.scrollToSnapOffset(animated: true)
+                    self.routerDelegate?.cellDidAppear(viewController: self,
+                                                       collectionView: self.collectionView,
+                                                       destination: self.destination)
                 })
             }
         }.dispose(in: disposeBag)
@@ -213,6 +225,9 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
     // MARK: - UICollectionViewDelegate
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard indexPath.section < items.count else { return }
+
+        routerDelegate = nil
         let item = items[indexPath.section]
         switch item.type {
         case .choiceList(let choices):

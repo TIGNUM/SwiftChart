@@ -10,6 +10,7 @@ import Foundation
 
 enum URLScheme: String {
     case fitbit = "fitbit-integration"
+    case fitbitAuthrefresh = "fitbit-authrefresh"
     case preparation = "preparation"
     case dailyPrep = "morning-interview"
     case weeklyChoices = "weekly-choices"
@@ -18,32 +19,83 @@ enum URLScheme: String {
     case toBeVision = "to-be-vision"
     case myPreps = "prepare-my-preps"
     case weeklyChoicesReminder = "weekly-choices-reminder"
-
-    static var allValues: [URLScheme] {
-        return [
-            .fitbit,
-            .preparation,
-            .dailyPrep,
-            .weeklyChoices,
-            .randomContent,
-            .weeklyPeakPerformance,
-            .toBeVision,
-            .myPreps,
-            .weeklyChoicesReminder
-        ]
-    }
+    case contentCategory = "content-category"
+    case featureExplainer = "feature-explainer"
+    case strategies = "strategies"
+    case meUniverse = "me-universe"
+    case meMyWhy = "me-my-why"
+    case meChoices = "me-choices"
+    case meActivity = "me-activity"
+    case meIntensity = "me-intensity"
+    case meMeeting = "me-meeting"
+    case meSleep = "me-sleep"
+    case mePeakPerformance = "me-peakperformance"
+    case meQotPartner = "me-qot-partner"
+    case meTravel = "me-travel"
+    case preferencesSyncCalendar = "preferences-sync-calendar"
+    case addSensor = "add-sensor"
+    case prepare = "prepare"
+    case prepareProblem = "prepare-problem"
+    case prepareEvent = "prepare-event"
+    case prepareDay = "prepare-day"
+    case library = "library"
+    case guide = "guide"
 
     var queryName: String {
         switch self {
         case .fitbit: return "code"
-        case .preparation: return "#"
         case .dailyPrep: return "groupID"
-        case .randomContent: return "contentID"
-        case .weeklyPeakPerformance,
-             .weeklyChoices,
+        case .preparation: return "#"
+        case .randomContent,
+             .featureExplainer: return "contentID"
+        case .contentCategory: return "collectionID"
+        case .weeklyChoices,
+             .fitbitAuthrefresh,
+             .weeklyPeakPerformance,
              .toBeVision,
+             .myPreps,
              .weeklyChoicesReminder,
-             .myPreps: return ""
+             .strategies,
+             .meUniverse,
+             .meMyWhy,
+             .meChoices,
+             .meActivity,
+             .meIntensity,
+             .meMeeting,
+             .meSleep,
+             .mePeakPerformance,
+             .meQotPartner,
+             .meTravel,
+             .preferencesSyncCalendar,
+             .addSensor,
+             .prepare,
+             .prepareProblem,
+             .prepareEvent,
+             .prepareDay,
+             .library,
+             .guide: return ""
+        }
+    }
+
+    var destination: AppCoordinator.Router.Destination? {
+        switch self {
+        case .strategies: return AppCoordinator.Router.Destination(tabBar: .learn, topTabBar: .strategies)
+        case .meUniverse,
+             .meActivity,
+             .meIntensity,
+             .meMeeting,
+             .meSleep,
+             .mePeakPerformance,
+             .meTravel: return AppCoordinator.Router.Destination(tabBar: .me, topTabBar: .myData)
+        case .meMyWhy: return AppCoordinator.Router.Destination(tabBar: .me, topTabBar: .myWhy)
+        case .guide: return AppCoordinator.Router.Destination(tabBar: .guide, topTabBar: .guide)
+        case .prepare: return AppCoordinator.Router.Destination(tabBar: .prepare, topTabBar: .coach)
+        case .myPreps,
+             .weeklyPeakPerformance: return AppCoordinator.Router.Destination(tabBar: .prepare, topTabBar: .myPrep)
+        case .prepareProblem: return AppCoordinator.Router.Destination(tabBar: .prepare, topTabBar: .coach, chatSection: .problem)
+        case .prepareEvent: return AppCoordinator.Router.Destination(tabBar: .prepare, topTabBar: .coach, chatSection: .event)
+        case .prepareDay: return AppCoordinator.Router.Destination(tabBar: .prepare, topTabBar: .coach, chatSection: .day)
+        default: return nil
         }
     }
 

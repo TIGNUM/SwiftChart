@@ -23,7 +23,7 @@ struct DownSyncResult<T: DownSyncIntermediary> {
             let remoteID: Int = try json.getItemValue(at: T.remoteIDKey)
             switch syncStatus {
             case .created, .updated:
-                let createdAt: Date = try json.getDate(at: .createdAt)
+                let createdAt = Date()//Date = try json.getDate(at: .createdAt)
                 let modifiedAt = try json.getDate(at: .modifiedAt, alongPath: .nullBecomesNil) ?? createdAt
                 let data: T = try T(json: json)
 

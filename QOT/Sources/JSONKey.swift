@@ -22,6 +22,7 @@ enum JsonKey: String {
     case availability
     case base64Data
     case birthdate
+    case block
     case body
     case boolValue
     case calendarId
@@ -32,6 +33,8 @@ enum JsonKey: String {
     case colorState
     case company
     case component
+    case completed
+    case completedAt
     case contentCategoryId
     case contentId
     case contentItemId
@@ -42,6 +45,8 @@ enum JsonKey: String {
     case createdAt
     case dataAverage
     case dataPoints
+    case day
+    case dailyPrepResults
     case dayOfTheWeek
     case daysOfTheMonth
     case daysOfTheWeek
@@ -50,6 +55,8 @@ enum JsonKey: String {
     case description
     case deviceId
     case displayName
+    case displayTime
+    case displayType
     case duration
     case email
     case employment
@@ -58,6 +65,9 @@ enum JsonKey: String {
     case esbDomain
     case eventId
     case feature
+    case featureButton
+    case featureLink
+    case feedback
     case fitbitState
     case firstDayOfTheWeek
     case firstName
@@ -65,11 +75,14 @@ enum JsonKey: String {
     case format
     case frequency
     case fromDate
+    case greeting
     case gender
+    case guideItemType
     case height
     case heightUnit
     case heightUnits
     case horizontalAccuracy
+    case hour
     case id
     case idOfRelatedEntity
     case images
@@ -79,6 +92,7 @@ enum JsonKey: String {
     case isAllDay
     case isCurrentUser
     case isDetached
+    case issueDate
     case jobTitle
     case key
     case keypathID
@@ -87,6 +101,8 @@ enum JsonKey: String {
     case latestVersion
     case latitude
     case layoutInfo
+    case learnItems
+    case link
     case location
     case longitude
     case longValue
@@ -103,12 +119,15 @@ enum JsonKey: String {
     case memberSince
     case message
     case min
+    case minute
     case modifiedAt
     case monthsOfTheYear
     case multiplier
     case name
+    case nano
     case nextSyncToken
     case notes
+    case notificationItems
     case occurrenceCount
     case occurrenceDate
     case occurrenceValue
@@ -120,8 +139,10 @@ enum JsonKey: String {
     case pageSize
     case periods
     case permissionState
+    case planItemID
     case publicHolidays
     case preparationId
+    case priority
     case qotId
     case qotPartnerUserId
     case question
@@ -138,11 +159,14 @@ enum JsonKey: String {
     case relatedContent
     case relatedContentIds
     case relationship
+    case reminderTime
     case resultList
     case role
     case searchTags
     case secondsRequired
     case section
+    case seconds
+    case serverPush
     case setPositions
     case settingBoolValue
     case settingBoolValueDtos
@@ -157,6 +181,7 @@ enum JsonKey: String {
     case settingTextValueDtos
     case shortDescription
     case sortOrder
+    case sound
     case start
     case startDate
     case status

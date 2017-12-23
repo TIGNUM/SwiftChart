@@ -23,13 +23,13 @@ protocol SettingsCoordinatorDelegate: class {
 final class SettingsCoordinator: ParentCoordinator {
 
     private let services: Services
-    private let settingsViewController: SettingsViewController
     private let permissionsManager: PermissionsManager
     private let rootViewController: UIViewController
     private let networkManager: NetworkManager
     private let syncManager: SyncManager
     var children = [Coordinator]()
     let settingsType: SettingsType.SectionType
+    let settingsViewController: SettingsViewController
 
     init?(root: SettingsMenuViewController, services: Services, settingsType: SettingsType.SectionType, syncManager: SyncManager, networkManager: NetworkManager, permissionsManager: PermissionsManager) {
         guard let viewModel = SettingsViewModel(services: services, settingsType: settingsType) else { return nil }

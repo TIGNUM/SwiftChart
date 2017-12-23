@@ -18,4 +18,10 @@ final class IntObject: Object {
 
         self.value = int
     }
+
+    func delete() {
+        if let realm = realm {
+            realm.delete(self)
+        }
+    }
 }

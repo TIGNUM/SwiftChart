@@ -20,15 +20,21 @@ final class WeeklyChoicesAnimation: NSObject {
     }
 
     private func getMyUniverseViewController(_ viewController: UIViewController) -> MyUniverseViewController? {
-        if let viewController = viewController as? TabBarController, let viewControllers = viewController.viewControllers, viewControllers.count > 1, let childViewController = viewControllers[1] as? MyUniverseViewController {
-            return childViewController
+        if
+            let viewController = viewController as? TabBarController,
+            let viewControllers = viewController.viewControllers, viewControllers.count > 1,
+            let childViewController = viewControllers[2] as? MyUniverseViewController {
+                return childViewController
         }
         return nil
     }
 
     private func getWeeklyChoicesViewController(_ viewController: UIViewController) -> WeeklyChoicesViewController? {
-        if let navigationController = viewController as? UINavigationController, let pageViewController = navigationController.viewControllers.first as? PageViewController, let childViewController = pageViewController.viewControllers?.first as? WeeklyChoicesViewController {
-            return childViewController
+        if
+            let navigationController = viewController as? UINavigationController,
+            let pageViewController = navigationController.viewControllers.first as? PageViewController,
+            let childViewController = pageViewController.viewControllers?.first as? WeeklyChoicesViewController {
+                return childViewController
         }
         return nil
     }

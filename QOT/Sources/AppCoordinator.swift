@@ -13,6 +13,8 @@ import Alamofire
 import UserNotifications
 import AirshipKit
 import Crashlytics
+import ReactiveKit
+import Bond
 
 final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
@@ -30,10 +32,12 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     private lazy var credentialsManager: CredentialsManager = CredentialsManager.shared
     private var canProcessRemoteNotifications = false
     private var onDismiss: (() -> Void)?
+    private var notificationID: String?
+    private var destination: AppCoordinator.Router.Destination?
 
     // current state
-    private weak var topTabBarController: UINavigationController?
     private weak var tabBarCoordinator: TabBarCoordinator?
+    private weak var topTabBarController: UINavigationController?
     private weak var currentPresentedController: UIViewController?
     private weak var currentPresentedNavigationController: UINavigationController?
     static var currentStatusBarStyle: UIStatusBarStyle?
@@ -177,11 +181,15 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         }
     }
 
-    func dismiss(_ viewController: UIViewController, level: WindowManager.Level) {
+    func dismiss(_ viewController: UIViewController, level: WindowManager.Level, completion: (() -> Void)? = nil) {
         viewController.dismiss(animated: true) { [unowned self] in
             self.windowManager.resignWindow(atLevel: level)
             self.onDismiss?()
             self.onDismiss = nil
+            completion?()
+            if let destination = self.destination {
+                self.navigate(to: destination)
+            }
         }
 
         AppCoordinator.updateStatusBarStyleIfNeeded()
@@ -247,148 +255,6 @@ private extension AppCoordinator {
 
 extension AppCoordinator {
 
-    func presentAddSensorView(viewController: UIViewController) {
-        guard let services = services else { return }
-        let coordinator = AddSensorCoordinator(root: viewController, services: services)
-        startChild(child: coordinator)
-        currentPresentedController = coordinator.addSensorViewController
-    }
-
-    // FIXME In the future when everything will change....
-    func presentPreparationList() {
-        if let viewController = currentPresentedController {
-            dismiss(viewController, level: .priority)
-        }
-
-        if let navigationController = currentPresentedNavigationController {
-            dismiss(navigationController, level: .priority)
-        }
-
-        guard let topViewController = AppDelegate.topViewController() else { return }
-
-        if let tabBarController = topViewController as? TabBarController {
-            selectTabBarItem(tabBarController: tabBarController, tabBarIndex: 2, topTabBarIndex: 1)
-        } else if let pageViewController = topViewController as? PageViewController {
-            if let tabBarController = pageViewController.tabBarController as? TabBarController {
-               selectTabBarItem(tabBarController: tabBarController, tabBarIndex: 2, topTabBarIndex: 1)
-            } else {
-                pageViewController.viewControllers?.forEach { viewController in
-                    viewController.dismiss(animated: true) {
-                        self.presentPreparationList()
-                    }
-                }
-            }
-        } else if let tabBarController = (topViewController as? MyUniverseViewController)?.parent as? TabBarController {
-            selectTabBarItem(tabBarController: tabBarController, tabBarIndex: 2, topTabBarIndex: 1)
-        } else {
-            topViewController.dismiss(animated: true) {
-                self.presentPreparationList()
-            }
-        }
-    }
-
-    private func selectTabBarItem(tabBarController: TabBarController, tabBarIndex: Index, topTabBarIndex: Index) {
-        guard let viewControllers = tabBarController.viewControllers else { return }
-        tabBarController.selectedViewController = viewControllers[tabBarIndex]
-
-        guard
-            let topNavigationBar = (tabBarCoordinator?.topTabBarControllerPrepare.navigationBar as? TopNavigationBar),
-            let myPrepButton = (topNavigationBar.middleButtons?.filter { $0.tag == topTabBarIndex })?.first,
-            let destinationViewController = tabBarController.selectedViewController else {
-                return
-        }
-
-        tabBarController.tabBarController(tabBarController, didSelect: destinationViewController)
-        tabBarCoordinator?.topNavigationBar(topNavigationBar, middleButtonPressed: myPrepButton, withIndex: topTabBarIndex, ofTotal: 2)
-        topNavigationBar.setIndicatorToButtonIndex(topTabBarIndex, animated: true)
-        topNavigationBar.setIndicatorToButton(myPrepButton, animated: true)
-        topNavigationBar.setIsSelected(myPrepButton)
-    }
-
-    func presentToBeVision() {
-        guard let services = services else { return }
-        let viewModel = MyToBeVisionViewModel(services: services)
-        let myToBeVisionViewController = MyToBeVisionViewController(viewModel: viewModel, permissionsManager: permissionsManager)
-        myToBeVisionViewController.delegate = self
-        windowManager.showPriority(myToBeVisionViewController, animated: true, completion: nil)
-        currentPresentedController = myToBeVisionViewController
-    }
-
-    func presentPreparationCheckList(localID: String) {
-        if services != nil {
-            tabBarCoordinator?.showPreparationCheckList(localID: localID)
-        } else {
-            checkListIDToPresent = localID
-        }
-    }
-
-    func presentMorningInterview(groupID: Int, validFrom: Date, validTo: Date) {
-        guard let services = services else { return }
-        AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
-        let viewModel = MorningInterviewViewModel(services: services, questionGroupID: groupID, validFrom: validFrom, validTo: validTo)
-        let morningInterViewController = MorningInterviewViewController(viewModel: viewModel)
-        morningInterViewController.delegate = self
-        windowManager.showPriority(morningInterViewController, animated: true, completion: nil)
-        currentPresentedController = morningInterViewController
-    }
-
-    func presentWeeklyChoicesReminder() {
-        guard
-            let rootViewController = windowManager.rootViewController(atLevel: .normal),
-            let services = services else {
-                return
-        }
-        let coordinator = WeeklyChoicesCoordinator(root: rootViewController,
-                                                   services: services,
-                                                   transitioningDelegate: nil,
-                                                   topBarDelegate: self)
-        topTabBarController = coordinator.topTabBarController
-        windowManager.showPriority(coordinator.topTabBarController, animated: true, completion: nil)
-        currentPresentedNavigationController = coordinator.topTabBarController
-    }
-
-    func presentWeeklyChoices(forStartDate startDate: Date, endDate: Date, completion: (() -> Void)?) {
-        guard let services = services else { return }
-        onDismiss = completion
-        AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
-        let viewModel = SelectWeeklyChoicesDataModel(services: services, maxSelectionCount: Layout.MeSection.maxWeeklyPage, startDate: startDate, endDate: endDate)
-        let image = windowManager.rootViewController(atLevel: .normal)?.view.screenshot()
-        let viewController = SelectWeeklyChoicesViewController(delegate: self, viewModel: viewModel, backgroundImage: image)
-        windowManager.showPriority(viewController, animated: true, completion: nil)
-        currentPresentedController = viewController
-    }
-
-    func presentLearnContentItems(contentID: Int) {
-        guard
-            let services = services,
-            let content = services.contentService.contentCollection(id: contentID),
-            let category = content.contentCategories.first else {
-                return
-        }
-        startLearnContentItemCoordinator(services: services, content: content, category: category)
-    }
-
-    func presentLearnContentItems(contentID: Int, categoryID: Int) {
-        guard
-            let services = services,
-            let content = services.contentService.contentCollection(id: contentID),
-            let category = services.contentService.contentCategory(id: categoryID) else {
-                return
-        }
-        startLearnContentItemCoordinator(services: services, content: content, category: category)
-    }
-
-    private func startLearnContentItemCoordinator(services: Services, content: ContentCollection, category: ContentCategory) {
-        AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
-        let presentationManager = ContentItemAnimator(originFrame: UIScreen.main.bounds)
-        // FIXME: we shouldn't really init a coordinator just to get some child content
-        let coordinator = LearnContentItemCoordinator(root: UIViewController(), eventTracker: eventTracker, services: services, content: content, category: category, presentationManager: presentationManager, topBarDelegate: self, presentOnStart: false)
-        startChild(child: coordinator)
-        topTabBarController = coordinator.topTabBarController
-        currentPresentedNavigationController = coordinator.topTabBarController
-        windowManager.showPriority(coordinator.topTabBarController, animated: true, completion: nil)
-    }
-
     func showMajorAlert(type: AlertType, handler: (() -> Void)? = nil, handlerDestructive: (() -> Void)? = nil) {
         let alert = UIViewController.alert(forType: type, handler: {
             self.windowManager.resignWindow(atLevel: .alert)
@@ -403,12 +269,18 @@ extension AppCoordinator {
 
     func showOnboarding() {
         let userName = services?.userService.user()?.givenName ?? ""
-        let coordinator = OnboardingCoordinator(windowManager: windowManager, delegate: self, permissionsManager: permissionsManager, userName: userName)
+        let coordinator = OnboardingCoordinator(windowManager: windowManager,
+                                                delegate: self,
+                                                permissionsManager: permissionsManager,
+                                                userName: userName)
         startChild(child: coordinator)
     }
 
     func showLogin() {
-        let loginCoordinator = LoginCoordinator(windowManager: windowManager, delegate: self, networkManager: networkManager, syncManager: syncManager)
+        let loginCoordinator = LoginCoordinator(windowManager: windowManager,
+                                                delegate: self,
+                                                networkManager: networkManager,
+                                                syncManager: syncManager)
         startChild(child: loginCoordinator)
     }
 
@@ -436,11 +308,11 @@ extension AppCoordinator: TopNavigationBarDelegate {
         AppCoordinator.updateStatusBarStyleIfNeeded()
     }
 
-    func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
-        guard let pageViewController = topTabBarController?.viewControllers.first as? PageViewController else {
-            return
-        }
-
+    func topNavigationBar(_ navigationBar: TopNavigationBar,
+                          middleButtonPressed button: UIButton,
+                          withIndex index: Int,
+                          ofTotal total: Int) {
+        guard let pageViewController = topTabBarController?.viewControllers.first as? PageViewController else { return }
         pageViewController.setPageIndex(index, animated: true)
     }
 
@@ -500,34 +372,47 @@ extension AppCoordinator: MorningInterviewViewControllerDelegate {
 
     func didTapClose(viewController: MorningInterviewViewController, userAnswers: [UserAnswer]) {
         if userAnswers.isEmpty == false {
-            sendMorningInterviewResults(userAnswers)
+            sendMorningInterviewResults(userAnswers, viewController: viewController)
+        } else {
+            dismiss(viewController, level: .priority)
         }
-        dismiss(viewController, level: .priority)
-        currentPresentedNavigationController = nil
-        currentPresentedController = nil
     }
 
-    private func sendMorningInterviewResults(_ userAnswers: [UserAnswer]) {
+    private func sendMorningInterviewResults(_ userAnswers: [UserAnswer],
+                                             viewController: MorningInterviewViewController) {
         networkManager.performUserAnswerFeedbackRequest(userAnswers: userAnswers) { result in
             switch result {
             case .success(let value):
-                self.showFeedbackAlert(for: value)
+                self.save(feedback: value) {
+                    self.dismiss(viewController, level: .priority)
+                    if let destination = URLScheme.guide.destination {
+                        self.navigate(to: destination)
+                        if let guideViewController = self.tabBarCoordinator?.topTabBarControllerGuide.viewControllers.first as? GuideViewController {
+                            guideViewController.reloadViewModel() // FIXME: Better observe; reactive bond actions...
+                        }
+                    }
+                }
             case .failure(let error):
                 log("error: \(error)")
             }
         }
     }
 
-    private func showFeedbackAlert(for feedback: UserAnswerFeedback) {
-        guard
-            let rootViewController = windowManager.rootViewController(atLevel: .alert),
-            let alert = AlertType.makeCustom(title: nil, message: feedback.body) else {
-                return
+    private func save(feedback: UserAnswerFeedback, completion: (() -> Void)?) {
+        do {
+            let realm = try RealmProvider().realm()
+            try realm.write {
+                if  let notificationID = notificationID,
+                    let guideItemNotification = realm.syncableObject(ofType: RealmGuideItemNotification.self,
+                                                                     localID: notificationID) {
+                    guideItemNotification.morningInterviewFeedback = feedback.body
+                }
+                completion?()
+            }
+        } catch {
+            log(error, level: .error)
+            completion?()
         }
-        windowManager.showWindow(atLevel: .alert)
-        rootViewController.showAlert(type: alert, handler: {
-            self.windowManager.resignWindow(atLevel: .alert)
-        }, handlerDestructive: nil)
     }
 }
 
@@ -584,6 +469,7 @@ extension AppCoordinator: MyToBeVisionViewControllerDelegate {
 // MARK: - PermissionDelegate
 
 extension AppCoordinator: PermissionManagerDelegate {
+
     func permissionManager(_ manager: PermissionsManager, didUpdatePermissions permissions: [PermissionsManager.Permission]) {
         reportPermissions(permissions)
     }
@@ -602,5 +488,376 @@ extension AppCoordinator: PermissionManagerDelegate {
                 }
             })
         }
+    }
+}
+
+// MARK: - LearnContentListCoordinatorDelegate
+
+extension AppCoordinator: LearnContentListCoordinatorDelegate {
+
+    func didFinish(coordinator: LearnContentListCoordinator) {
+        if let index = children.index(where: { $0 === coordinator}) {
+            children.remove(at: index)
+        }
+    }
+}
+
+// MARK: - Routing
+
+extension AppCoordinator {
+
+    struct Router {
+
+        struct Destination {
+            let tabBar: TabBar
+            let topTabBar: TopTabBar
+            let chatSection: ChatSection
+
+            init(tabBar: TabBar, topTabBar: TopTabBar) {
+                self.tabBar = tabBar
+                self.topTabBar = topTabBar
+                self.chatSection = .none
+            }
+
+            init(tabBar: TabBar, topTabBar: TopTabBar, chatSection: ChatSection) {
+                self.tabBar = tabBar
+                self.topTabBar = topTabBar
+                self.chatSection = chatSection
+            }
+        }
+
+        enum ChatSection {
+            case problem
+            case event
+            case day
+            case none
+
+            var indexPath: IndexPath {
+                switch self {
+                case .problem: return IndexPath(item: 1, section: 1)
+                case .event: return IndexPath(item: 2, section: 1)
+                case .day: return IndexPath(item: 0, section: 1)
+                case .none: return IndexPath(item: 0, section: 0)
+                }
+            }
+        }
+
+        enum TabBar: Index {
+            case guide = 0
+            case learn = 1
+            case me = 2
+            case prepare = 3
+        }
+
+        enum TopTabBar {
+            case guide
+            case strategies
+            case whatsHot
+            case myData
+            case myWhy
+            case coach
+            case myPrep
+
+            var index: Index {
+                switch self {
+                case .guide: return 0
+                case .strategies: return 0
+                case .whatsHot: return 1
+                case .myData: return 0
+                case .myWhy: return 1
+                case .coach: return 0
+                case .myPrep: return 1
+                }
+            }
+
+            func middleButton(_ topNavigationBar: TopNavigationBar?) -> UIButton? {
+                if self == .guide { return nil }
+                return (topNavigationBar?.middleButtons?.filter { $0.tag == index })?.first
+            }
+
+            func topNavigationBar(_ tabBarCoordinator: TabBarCoordinator?) -> TopNavigationBar? {
+                return (tabBarCoordinator?.topTabBarControllerPrepare.navigationBar as? TopNavigationBar)
+            }
+        }
+    }
+}
+
+extension AppCoordinator {
+
+    func presentLearnContentItems(contentID: Int) {
+        guard
+            let services = services,
+            let content = services.contentService.contentCollection(id: contentID),
+            let category = content.contentCategories.first else { return }
+        startLearnContentItemCoordinator(services: services, content: content, category: category)
+    }
+
+    func presentLearnContentItems(contentID: Int, categoryID: Int) {
+        guard
+            let services = services,
+            let content = services.contentService.contentCollection(id: contentID),
+            let category = services.contentService.contentCategory(id: categoryID) else { return }
+        startLearnContentItemCoordinator(services: services, content: content, category: category)
+    }
+
+    private func startLearnContentItemCoordinator(services: Services,
+                                                  content: ContentCollection,
+                                                  category: ContentCategory) {
+        AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
+        let presentationManager = ContentItemAnimator(originFrame: UIScreen.main.bounds)
+        // FIXME: we shouldn't really init a coordinator just to get some child content
+        let coordinator = LearnContentItemCoordinator(root: UIViewController(),
+                                                      eventTracker: eventTracker,
+                                                      services: services,
+                                                      content: content,
+                                                      category: category,
+                                                      presentationManager: presentationManager,
+                                                      topBarDelegate: self,
+                                                      presentOnStart: false)
+        startChild(child: coordinator)
+        topTabBarController = coordinator.topTabBarController
+        currentPresentedNavigationController = coordinator.topTabBarController
+        windowManager.showPriority(coordinator.topTabBarController, animated: true, completion: nil)
+    }
+
+    func presentMeCharts(sector: StatisticsSectionType) {
+        navigate(to: AppCoordinator.Router.Destination(tabBar: .me, topTabBar: .myData))
+        tabBarCoordinator?.myUniverseViewController(nil, didTap: sector)
+    }
+
+    func navigate(to destination: AppCoordinator.Router.Destination) {
+        self.destination = destination
+        dismissCurrentPresentedControllers()
+        guard let topViewController = AppDelegate.topViewController() else { return }
+
+        if let tabBarController = topViewController as? TabBarController {
+            selectTabBarItem(tabBarController: tabBarController, destination: destination)
+        } else if let pageViewController = topViewController as? PageViewController {
+            if let tabBarController = pageViewController.tabBarController as? TabBarController {
+                selectTabBarItem(tabBarController: tabBarController, destination: destination)
+            } else {
+                pageViewController.viewControllers?.forEach { (viewController: UIViewController) in
+                    if windowManager.presentedViewController(atLevel: .priority) == viewController {
+                        dismiss(viewController, level: .priority) {
+                            self.navigate(to: destination)
+                        }
+                    } else if windowManager.presentedViewController(atLevel: .normal) == viewController {
+                        dismiss(viewController, level: .normal) {
+                            self.navigate(to: destination)
+                        }
+                    } else {
+                        viewController.dismiss(animated: true) {
+                            self.navigate(to: destination)
+                        }
+                    }
+                }
+            }
+        } else if let tabBarController = (topViewController as? MyUniverseViewController)?.parent as? TabBarController {
+            selectTabBarItem(tabBarController: tabBarController, destination: destination)
+        } else if let tabBarController = (topViewController as? LearnCategoryListViewController)?.parent as? TabBarController {
+            selectTabBarItem(tabBarController: tabBarController, destination: destination)
+        } else if let tabBarController = (topViewController as? GuideViewController)?.parent as? TabBarController {
+            selectTabBarItem(tabBarController: tabBarController, destination: destination)
+        } else {
+            topViewController.dismiss(animated: true) {
+                self.navigate(to: destination)
+            }
+        }
+    }
+
+    private func selectTabBarItem(tabBarController: TabBarController, destination: AppCoordinator.Router.Destination) {
+        guard let viewControllers = tabBarController.viewControllers else { return }
+        let tabBarIndex = destination.tabBar.rawValue
+        let topTabBarIndex = destination.topTabBar.index
+        tabBarController.selectedViewController = viewControllers[tabBarIndex]
+
+        guard
+            let topNavigationBar = destination.topTabBar.topNavigationBar(tabBarCoordinator),
+            let middleButton = destination.topTabBar.middleButton(topNavigationBar),
+            let destinationViewController = tabBarController.selectedViewController else { return }
+        tabBarController.tabBarController(tabBarController, didSelect: destinationViewController)
+        tabBarCoordinator?.topNavigationBar(topNavigationBar,
+                                            middleButtonPressed: middleButton,
+                                            withIndex: topTabBarIndex,
+                                            ofTotal: 2)
+        topNavigationBar.setIndicatorToButtonIndex(topTabBarIndex, animated: true)
+        topNavigationBar.setIndicatorToButton(middleButton, animated: true)
+        topNavigationBar.setIsSelected(middleButton)
+        currentPresentedController = tabBarController.selectedViewController
+    }
+
+    func presentSideBar() -> SidebarCoordinator? {
+        dismissCurrentPresentedControllers()
+        guard
+            let rootViewController = windowManager.rootViewController(atLevel: .normal),
+            let services = services else { return nil }
+        let coordinator = SidebarCoordinator(root: rootViewController,
+                                             services: services,
+                                             syncManager: syncManager,
+                                             networkManager: networkManager,
+                                             permissionsManager: permissionsManager)
+        startChild(child: coordinator)
+        currentPresentedController = coordinator.sideBarViewController
+        currentPresentedNavigationController = coordinator.topTabBarController
+
+        return coordinator
+    }
+
+    func presentPreferencesSyncCalendar() {
+        guard let sidebarCoordinator = presentSideBar() else { return }
+        sidebarCoordinator.didTapSettingsMenuCell(with: nil, in: sidebarCoordinator.sideBarViewController)
+        guard let settingsMenuCoordinator = sidebarCoordinator.settingsMenuCoordinator else { return }
+        let settingsMenuViewController = settingsMenuCoordinator.settingsMenuViewController
+        settingsMenuCoordinator.didTapNotifications(in: settingsMenuViewController)
+        guard let settingsCoordinator = settingsMenuCoordinator.settingsCoordinator else { return }
+        startChild(child: settingsCoordinator)
+//        windowManager.show(settingsCoordinator.settingsViewController, animated: true)
+//        rootViewController.pushToStart(childViewController: settingsCoordinator.settingsViewController)
+//        settingsMenuViewController.pushToStart(childViewController: settingsCoordinator.settingsViewController)
+    }
+
+    func presentLibrary() {
+        guard let sidebarCoordinator = presentSideBar() else { return }
+        sidebarCoordinator.didTapLibraryCell(in: sidebarCoordinator.sideBarViewController)
+        currentPresentedController = sidebarCoordinator.sideBarViewController
+    }
+
+    func presentAddSensorView(viewController: UIViewController) {
+        guard let services = services else { return }
+        let coordinator = AddSensorCoordinator(root: viewController, services: services)
+        startChild(child: coordinator)
+        currentPresentedController = coordinator.addSensorViewController
+    }
+
+    func presentAddSensor() -> AddSensorCoordinator? {
+        guard let sidebarCoordinator = presentSideBar() else { return nil }
+        sidebarCoordinator.didTapAddSensorCell(with: nil, in: sidebarCoordinator.sideBarViewController)
+        currentPresentedController = sidebarCoordinator.sideBarViewController
+        return sidebarCoordinator.addSensorCoordinator
+    }
+
+    func presentFitbitAuthRefresh() {
+        guard let addSensorCoordinator = presentAddSensor() else { return }
+        addSensorCoordinator.didTapSensor(.fitbit, in: currentPresentedController ?? addSensorCoordinator.addSensorViewController)
+    }
+
+    func presentToBeVision() {
+        guard let services = services else { return }
+        let viewModel = MyToBeVisionViewModel(services: services)
+        let myToBeVisionViewController = MyToBeVisionViewController(viewModel: viewModel,
+                                                                    permissionsManager: permissionsManager)
+        myToBeVisionViewController.delegate = self
+        windowManager.showPriority(myToBeVisionViewController, animated: true, completion: nil)
+        currentPresentedController = myToBeVisionViewController
+    }
+
+    func presentPreparationCheckList(localID: String) {
+        if services != nil {
+            tabBarCoordinator?.showPreparationCheckList(localID: localID)
+        } else {
+            checkListIDToPresent = localID
+        }
+    }
+
+    func presentPrepare(_ destination: AppCoordinator.Router.Destination) {
+        navigate(to: destination)
+        guard let chatViewController = tabBarCoordinator?.prepareChatViewController else { return }
+        chatViewController.destination = destination
+        chatViewController.routerDelegate = self
+    }
+
+    func presentMorningInterview(groupID: Int, validFrom: Date, validTo: Date, notificationID: String) {
+        guard let services = services else { return }
+        self.notificationID = notificationID
+        AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
+        let viewModel = MorningInterviewViewModel(services: services,
+                                                  questionGroupID: groupID,
+                                                  validFrom: validFrom,
+                                                  validTo: validTo,
+                                                  notificationID: notificationID)
+        let morningInterViewController = MorningInterviewViewController(viewModel: viewModel)
+        morningInterViewController.delegate = self
+        windowManager.showPriority(morningInterViewController, animated: true, completion: nil)
+        currentPresentedController = morningInterViewController
+    }
+
+    func presentWeeklyChoicesReminder() {
+        guard
+            let rootViewController = windowManager.rootViewController(atLevel: .normal),
+            let services = services else { return }
+        let coordinator = WeeklyChoicesCoordinator(root: rootViewController,
+                                                   services: services,
+                                                   transitioningDelegate: nil,
+                                                   topBarDelegate: self)
+        topTabBarController = coordinator.topTabBarController
+        windowManager.showPriority(coordinator.topTabBarController, animated: true, completion: nil)
+        currentPresentedNavigationController = coordinator.topTabBarController
+    }
+
+    func presentWeeklyChoices(forStartDate startDate: Date, endDate: Date, completion: (() -> Void)?) {
+        guard let services = services else { return }
+        onDismiss = completion
+        AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
+        let viewModel = SelectWeeklyChoicesDataModel(services: services, maxSelectionCount: Layout.MeSection.maxWeeklyPage, startDate: startDate, endDate: endDate)
+        let image = windowManager.rootViewController(atLevel: .normal)?.view.screenshot()
+        let viewController = SelectWeeklyChoicesViewController(delegate: self, viewModel: viewModel, backgroundImage: image)
+        windowManager.showPriority(viewController, animated: true, completion: nil)
+        currentPresentedController = viewController
+    }
+
+    func presentFeatureArticelContentItems(contentID: Int, guideItem: Guide.Item) {
+        guard
+            let rootViewController = windowManager.rootViewController(atLevel: .normal),
+            let services = services,
+            let content = services.contentService.contentCollection(id: contentID),
+            let coordinator = ArticleContentItemCoordinator(pageName: .featureExplainer,
+                                                            root: rootViewController,
+                                                            services: services,
+                                                            contentCollection: content,
+                                                            articleHeader: ArticleCollectionHeader(content: content),
+                                                            topTabBarTitle: guideItem.subtitle.uppercased(),
+                                                            shouldPush: false,
+                                                            guideItem: guideItem) else { return }
+        startChild(child: coordinator)
+        currentPresentedNavigationController = coordinator.topTabBarController
+        currentPresentedController = coordinator.fullViewController
+
+    }
+
+    func presentLearnContentCollection(collectionID: String?) {
+        guard
+            let rootViewController = windowManager.rootViewController(atLevel: .normal),
+            let services = services else { return }
+        let transitioningDelegate = LearnListAnimator()
+        let coordinator = LearnContentListCoordinator(root: rootViewController,
+                                                      transitioningDelegate: transitioningDelegate,
+                                                      services: services,
+                                                      eventTracker: eventTracker,
+                                                      selectedCategoryIndex: 5,
+                                                      originFrame: rootViewController.view.frame)
+        coordinator.delegate = self
+        startChild(child: coordinator)
+    }
+
+    func dismissCurrentPresentedControllers() {
+        if let viewController = currentPresentedController {
+            dismiss(viewController, level: .priority)
+        }
+
+        if let navigationController = currentPresentedNavigationController {
+            dismiss(navigationController, level: .priority)
+        }
+    }
+}
+
+extension AppCoordinator: ChatViewControllerDelegate {
+
+    func cellDidAppear(viewController: UIViewController,
+                       collectionView: UICollectionView,
+                       destination: AppCoordinator.Router.Destination?) {
+        guard
+            let chatViewController = viewController as? ChatViewController<Answer>,
+            let indexPath = destination?.chatSection.indexPath else { return }
+        chatViewController.collectionView(collectionView, didSelectItemAt: indexPath)
     }
 }

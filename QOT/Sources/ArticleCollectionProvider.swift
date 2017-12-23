@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class ArticleCollectionProvider {
+final class ArticleCollectionProvider {
     private let services: Services
     private let contentCollections: AnyRealmCollection<ContentCollection>
     private let syncStateObserver: SyncStateObserver
@@ -37,9 +37,7 @@ class ArticleCollectionProvider {
 
     func provideViewData() -> ArticleCollectionViewData {
         let items = Array(contentCollections).flatMap { contentCollection -> ArticleCollectionViewData.Item? in
-            guard contentCollection.articleItems.count > 0 else {
-                return nil
-            }
+            guard contentCollection.articleItems.count > 0 else { return nil }
             return ArticleCollectionViewData.Item(
                 title: contentCollection.contentCategories.first?.title ?? "",
                 description: contentCollection.title,
