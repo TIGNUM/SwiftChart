@@ -32,13 +32,13 @@ final class GuideViewController: UIViewController, FullScreenLoadable, PageViewC
         return Bundle.main.loadNibNamed("GuideGreetingView", owner: self, options: [:])?.first as? GuideGreetingView
     }()
 
-    private lazy var dateStepperView: GuideDateStepperView? = {
-        let nib = R.nib.guideDateStepperView()
-        guard let dateStepperView = (nib.instantiate(withOwner: self, options: nil).first
-            as? GuideDateStepperView) else { return nil }
-
-        return dateStepperView
-    }()
+//    private lazy var dateStepperView: GuideDateStepperView? = {
+//        let nib = R.nib.guideDateStepperView()
+//        guard let dateStepperView = (nib.instantiate(withOwner: self, options: nil).first
+//            as? GuideDateStepperView) else { return nil }
+//
+//        return dateStepperView
+//    }()
 
     private lazy var tableView: UITableView = {
         return UITableView(contentInsets: UIEdgeInsets(top: -8, left: 0, bottom: 0, right: 0),
@@ -111,28 +111,28 @@ private extension GuideViewController {
 
     func setupView() {
         guard
-            let dateStepperView = dateStepperView,
+//            let dateStepperView = dateStepperView,
             let greetingView = self.greetingView else { return }
         updateGreetingView(viewModel.message, viewModel.greeting(nil))
         view.addSubview(greetingView)
-        view.addSubview(dateStepperView)
+//        view.addSubview(dateStepperView)
         view.addSubview(tableView)
         greetingView.topAnchor == view.topAnchor + UIApplication.shared.statusBarFrame.height
         greetingView.leadingAnchor == view.leadingAnchor
         greetingView.trailingAnchor == view.trailingAnchor
         greetingViewHeightAnchor = greetingView.heightAnchor == view.heightAnchor * 0.25
-        dateStepperView.topAnchor == greetingView.bottomAnchor
-        dateStepperView.leadingAnchor == view.leadingAnchor
-        dateStepperView.trailingAnchor == view.trailingAnchor
-        tableView.topAnchor == dateStepperView.bottomAnchor
+//        dateStepperView.topAnchor == greetingView.bottomAnchor
+//        dateStepperView.leadingAnchor == view.leadingAnchor
+//        dateStepperView.trailingAnchor == view.trailingAnchor
+        tableView.topAnchor == greetingView.bottomAnchor
         tableView.leadingAnchor == view.leadingAnchor
         tableView.trailingAnchor == view.trailingAnchor
         tableView.bottomAnchor == view.bottomAnchor
         tableView.backgroundColor = .pineGreen
-        dateStepperView.backgroundColor = .pineGreen
+//        dateStepperView.backgroundColor = .pineGreen
         view.setFadeMask(at: fadeMaskLocation)
         view.layoutIfNeeded()
-        dateStepperView.setupView(viewModel: viewModel)
+//        dateStepperView.setupView(viewModel: viewModel)
     }
 
     func updateGreetingView(_ message: String, _ greeting: String) {

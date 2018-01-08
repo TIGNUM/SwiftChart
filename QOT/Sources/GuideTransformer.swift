@@ -25,13 +25,13 @@ struct GuideTransformer {
 private extension Guide.Day {
 
     init(day: RealmGuide) {
-        if day.createdAt.isSameDay(guideDate) {
+        if day.createdAt.isSameDay(Date()) {
             let items = day.items.filter { (guideItem) -> Bool in
                 let calendar = Calendar.current
                 if let displayTime = guideItem.referencedItem?.displayTime {
                     let hour = displayTime.hour
                     let minute = displayTime.minute
-                    let now = guideDate
+                    let now = Date()
                     if let minDisplayDate = calendar.date(bySettingHour: hour, minute: minute, second: 0, of: now) {
                         return now > minDisplayDate
                     } else {

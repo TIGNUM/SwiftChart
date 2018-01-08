@@ -12,13 +12,13 @@ import Freddy
 
 final class RealmGuide: Object {
 
-    @objc dynamic var createdAt: Date = guideDate
+    @objc dynamic var createdAt: Date = Date()
 
     var items = List<RealmGuideItem>()
 
     convenience init(items: List<RealmGuideItem>) {
         self.init()
         self.items = items
-        createdAt = guideDate.startOfDay
+        createdAt = Date().startOfDay
     }
 }
