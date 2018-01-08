@@ -22,3 +22,10 @@ final class RealmGuideTime: Object {
         self.minute = data.minute
     }
 }
+
+extension RealmGuideTime {
+
+    var dateForToday: Date? {
+        return Calendar.current.date(bySettingHour: hour, minute: minute, second: 0, of: Date())
+    }
+}
