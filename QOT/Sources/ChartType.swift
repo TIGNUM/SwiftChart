@@ -302,7 +302,7 @@ enum ChartType: String, EnumCollection {
              .peakPerformanceAverageMonth: return R.string.localized.meChartInfoTextPeakPerformanceAverage()
         case .sleepQuality: return R.string.localized.meChartInfoTextSleepQuality()
         case .sleepQuantity: return R.string.localized.meCardTitleSleepQuantity()
-        case .sleepQuantityTime: return R.string.localized.meCardTitleSleepQuantity()
+        case .sleepQuantityTime: return R.string.localized.meChartInfoTextSleepQuantity()
         case .activitySittingMovementRatio: return R.string.localized.meChartInfoTextActivityOscillation()
         case .activityLevel: return R.string.localized.meChartInfoTextActivityIndex()
         case .intensityLoadWeek,

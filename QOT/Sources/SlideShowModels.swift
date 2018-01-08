@@ -13,8 +13,8 @@ enum SlideShow {
     enum Page {
         case titleSlide(title: String, imageName: String)
         case titleSubtitleSlide(title: String, subtitle: String, imageName: String)
-        case morePrompt(title: String, subtitle: String, doneButtonTitle: String, moreButtonTitle: String)
-        case completePrompt(title: String, doneButtonTitle: String)
+        case morePrompt
+        case completePrompt
     }
 
     struct Slide: Codable {
@@ -32,10 +32,10 @@ extension SlideShow.Page: Equatable {
             return a == b
         case let (.titleSubtitleSlide(a), .titleSubtitleSlide(b)):
             return a == b
-        case let (.morePrompt(a), .morePrompt(b)):
-            return a == b
-        case let (.completePrompt(a), .completePrompt(b)):
-            return a == b
+        case (.morePrompt, .morePrompt):
+            return true
+        case (.completePrompt, .completePrompt):
+            return true
         default:
             return false
         }

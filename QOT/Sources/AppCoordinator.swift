@@ -26,6 +26,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     lazy var apnsDeviceTokenRegistrar: APNSDeviceTokenRegistrar = APNSDeviceTokenRegistrar(networkManager: self.networkManager, credentialsManager: self.credentialsManager)
     private let windowManager: WindowManager
     private let remoteNotificationHandler: RemoteNotificationHandler
+    private let locationManager: LocationManager
     private var services: Services?
     private lazy var permissionsManager: PermissionsManager = PermissionsManager(delegate: self)
     private lazy var networkManager: NetworkManager = NetworkManager(delegate: self, credentialsManager: self.credentialsManager)
@@ -78,9 +79,10 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
     // MARK: - Life Cycle
 
-    init(windowManager: WindowManager, remoteNotificationHandler: RemoteNotificationHandler) {
+    init(windowManager: WindowManager, remoteNotificationHandler: RemoteNotificationHandler, locationManager: LocationManager) {
         self.windowManager = windowManager
         self.remoteNotificationHandler = remoteNotificationHandler
+        self.locationManager = locationManager
 
         AppCoordinator.appState.appCoordinator = self
         remoteNotificationHandler.delegate = self
@@ -88,7 +90,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
             self?.restart()
         }
 
-        let locationManager = LocationManager()
         locationManager.startSignificantLocationMonitoring(didUpdateLocations: sendLocationUpdate)
     }
 
@@ -204,8 +205,8 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
     func sendLocationUpdate(location: CLLocation) {
         timeZoneDidChange()
-        networkManager.performUserLocationUpdateRequest(location: location) { (netwerkError: NetworkError?) in
-            if let error = netwerkError {
+        networkManager.performUserLocationUpdateRequest(location: location) { (error: NetworkError?) in
+            if let error = error {
                 log("Error while trying to update user location: \(error)")
             }
         }

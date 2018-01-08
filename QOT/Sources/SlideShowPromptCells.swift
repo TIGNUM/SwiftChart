@@ -25,28 +25,7 @@ final class SlideShowMorePromptCell: UICollectionViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        containerView.layer.cornerRadius = 8
-        doneButton.addTarget(self, action: #selector(didTapDoneButton), for: .touchUpInside)
-        moreButton.addTarget(self, action: #selector(didTapMoreButton), for: .touchUpInside)
-    }
-
-    func configure(title: String, subtitle: String, doneButtonTitle: String, moreButtonTitle: String) {
-        titleLabel.attributedText = NSAttributedString(string: title.uppercased(),
-                                                       letterSpacing: 1,
-                                                       font: .simpleFont(ofSize: 16),
-                                                       lineSpacing: 1,
-                                                       textColor: .white,
-                                                       alignment: .center,
-                                                       lineBreakMode: .byWordWrapping)
-        subtitleLabel.attributedText = NSAttributedString(string: subtitle,
-                                                          letterSpacing: 1,
-                                                          font: .simpleFont(ofSize: 14),
-                                                          lineSpacing: 1,
-                                                          textColor: .white,
-                                                          alignment: .center,
-                                                          lineBreakMode: .byWordWrapping)
-        doneButton.setup(title: doneButtonTitle, color: .doneButton)
-        moreButton.setup(title: moreButtonTitle, color: .moreButton)
+        setup()
     }
 
     @objc func didTapDoneButton() {
@@ -55,6 +34,39 @@ final class SlideShowMorePromptCell: UICollectionViewCell, Dequeueable {
 
     @objc func didTapMoreButton() {
         delegate?.didTapMore(cell: self)
+    }
+}
+
+private extension SlideShowMorePromptCell {
+
+    func setup() {
+        containerView.layer.cornerRadius = 8
+
+        let title = R.string.localized.slideShowMorePromptTitle()
+        titleLabel.attributedText = NSAttributedString(string: title.uppercased(),
+                                                       letterSpacing: 1,
+                                                       font: .simpleFont(ofSize: 16),
+                                                       lineSpacing: 1,
+                                                       textColor: .white,
+                                                       alignment: .center,
+                                                       lineBreakMode: .byWordWrapping)
+
+        let subtitle = R.string.localized.slideShowMorePromptSubtitle()
+        subtitleLabel.attributedText = NSAttributedString(string: subtitle,
+                                                          letterSpacing: 1,
+                                                          font: .simpleFont(ofSize: 14),
+                                                          lineSpacing: 1,
+                                                          textColor: .white,
+                                                          alignment: .center,
+                                                          lineBreakMode: .byWordWrapping)
+
+        let doneButtonTitle = R.string.localized.slideShowMorePromptDoneButtonTitle()
+        doneButton.setup(title: doneButtonTitle, color: .doneButton)
+        doneButton.addTarget(self, action: #selector(didTapDoneButton), for: .touchUpInside)
+
+        let moreButtonTitle = R.string.localized.slideShowMorePromptMoreButtonTitle()
+        moreButton.setup(title: moreButtonTitle, color: .moreButton)
+        moreButton.addTarget(self, action: #selector(didTapMoreButton), for: .touchUpInside)
     }
 }
 
@@ -67,11 +79,20 @@ class SlideShowCompletePromptCell: UICollectionViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        containerView.layer.cornerRadius = 8
-        doneButton.addTarget(self, action: #selector(didTapDoneButton), for: .touchUpInside)
+        setup()
     }
 
-    func configure(title: String, doneButtonTitle: String) {
+    @objc func didTapDoneButton() {
+        delegate?.didTapDone(cell: self)
+    }
+}
+
+private extension SlideShowCompletePromptCell {
+
+    func setup() {
+        containerView.layer.cornerRadius = 8
+
+        let title = R.string.localized.slideShowCompletePromptTitle()
         titleLabel.attributedText = NSAttributedString(string: title.uppercased(),
                                                        letterSpacing: 1,
                                                        font: .simpleFont(ofSize: 16),
@@ -79,11 +100,10 @@ class SlideShowCompletePromptCell: UICollectionViewCell, Dequeueable {
                                                        textColor: .white,
                                                        alignment: .center,
                                                        lineBreakMode: .byWordWrapping)
-        doneButton.setup(title: doneButtonTitle, color: .doneButton)
-    }
 
-    @objc func didTapDoneButton() {
-        delegate?.didTapDone(cell: self)
+        let doneButtonTitle = R.string.localized.slideShowCompletePromptDoneButtonTitle()
+        doneButton.addTarget(self, action: #selector(didTapDoneButton), for: .touchUpInside)
+        doneButton.setup(title: doneButtonTitle, color: .doneButton)
     }
 }
 

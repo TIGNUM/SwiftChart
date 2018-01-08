@@ -34,7 +34,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         return windowManager
     }()
     lazy var appCoordinator: AppCoordinator = {
-        return AppCoordinator(windowManager: self.windowManager, remoteNotificationHandler: self.remoteNotificationHandler)
+        return AppCoordinator(
+            windowManager: self.windowManager,
+            remoteNotificationHandler: self.remoteNotificationHandler,
+            locationManager: locationManager
+        )
     }()
     lazy var remoteNotificationHandler: RemoteNotificationHandler = {
         return RemoteNotificationHandler(launchHandler: self.launchHandler)
@@ -42,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
     lazy var launchHandler: LaunchHandler = {
         return LaunchHandler()
     }()
+    lazy var locationManager = LocationManager()
 
     var window: UIWindow?
     static var current: AppDelegate {
@@ -114,7 +119,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         guard let locationEvent = launchOptions?[UIApplicationLaunchOptionsKey.location] as? NSNumber else { return }
 
         if locationEvent.boolValue == true {
-            let locationManager = LocationManager()
+            // needs a restart at this point
             locationManager.startSignificantLocationMonitoring(didUpdateLocations: appCoordinator.sendLocationUpdate)
         }
     }
