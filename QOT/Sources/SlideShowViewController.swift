@@ -80,16 +80,12 @@ extension SlideShowViewController: UICollectionViewDelegateFlowLayout, UICollect
             let cell: SlideShowTitleOnlySlideCell = collectionView.dequeueCell(for: indexPath)
             cell.configure(title: title, imageName: imageName)
             return cell
-        case .morePrompt(let title, let subtitle, let doneButtonTitle, let moreButtonTitle):
+        case .morePrompt:
             let cell: SlideShowMorePromptCell = collectionView.dequeueCell(for: indexPath)
-            cell.configure(
-                title: title, subtitle: subtitle, doneButtonTitle: doneButtonTitle, moreButtonTitle: moreButtonTitle
-            )
             cell.delegate = self
             return cell
-        case .completePrompt(let title, let doneButtonTitle):
+        case .completePrompt:
             let cell: SlideShowCompletePromptCell = collectionView.dequeueCell(for: indexPath)
-            cell.configure(title: title, doneButtonTitle: doneButtonTitle)
             cell.delegate = self
             return cell
         }

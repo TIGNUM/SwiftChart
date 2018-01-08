@@ -21,22 +21,13 @@ extension SlideShowPresenter: SlideShowPresenterInterface {
 
     func loadBasicSlides(slides: [SlideShow.Slide]) {
         var pages = slides.map { SlideShow.Page(slide: $0) }
-        // TODO: localise
-        pages.append(.morePrompt(
-            title: "are you ready to rule your impact?",
-            subtitle: "start now or learn a few more steps to learn how to get the most out of qot",
-            doneButtonTitle: "Start QOT",
-            moreButtonTitle: "Get the most out of QOT")
-        )
+        pages.append(.morePrompt)
         viewController?.setPages(pages)
     }
 
     func loadAllSlides(slides: [SlideShow.Slide]) {
         var pages = slides.map { SlideShow.Page(slide: $0) }
-        pages.append(.completePrompt(
-            title: "great job! you have finished the on-boarding",
-            doneButtonTitle: "Start QOT")
-        )
+        pages.append(.completePrompt)
         viewController?.updatePages(pages)
     }
 }

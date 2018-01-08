@@ -294,3 +294,11 @@
 "Onboarding.Chat.Item.Show.Settings" = "No worries. If you change your mind, you can change this access in your preferences at any time";
 
 "Qot.Usage.Timer.Default" = "1 MINUTE";
+
+"SlideShow.MorePrompt.Title" = "ARE YOU READY TO RULE YOUR IMPACT?";
+"SlideShow.MorePrompt.Subtitle" = "Start now or learn a few more steps to learn how to get the most out of QOT.";
+"SlideShow.MorePrompt.DoneButtonTitle" = "Explore now";
+"SlideShow.MorePrompt.MoreButtonTitle" = "Get the most out of QOT";
+
+"SlideShow.CompletePrompt.Title" = "Great job! You have finished the on-boarding.";
+"SlideShow.CompletePrompt.DoneButtonTitle" = "Start QOT";

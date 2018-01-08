@@ -22,7 +22,7 @@
                     <view clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x2X-jw-AAR" userLabel="Container">
                         <rect key="frame" x="28" y="0.0" width="319" height="555"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kae-6N-dHj" userLabel="Container">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kae-6N-dHj" userLabel="Container">
                                 <rect key="frame" x="0.0" y="20" width="319" height="440"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboarding_prompt_done" translatesAutoresizingMaskIntoConstraints="NO" id="Oqi-VF-zES">
@@ -75,7 +75,7 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <connections>
-                <outlet property="containerView" destination="Kae-6N-dHj" id="5sh-za-6b1"/>
+                <outlet property="containerView" destination="x2X-jw-AAR" id="O6g-B9-9eN"/>
                 <outlet property="doneButton" destination="AMo-xQ-FRv" id="gfi-LS-rc3"/>
                 <outlet property="titleLabel" destination="Kyp-Ic-Ba4" id="3tI-rn-sDx"/>
             </connections>
