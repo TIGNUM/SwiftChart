@@ -11,11 +11,12 @@ import Alamofire
 final class URLRequestBuilder {
 
     let deviceID: String
-    let appVersion: String
+    let build = Bundle.main.buildNumber
+    let version = Bundle.main.versionNumber
+    let osVersion = ProcessInfo.processInfo.operatingSystemVersion
 
     init(deviceID: String) {
         self.deviceID = deviceID
-        self.appVersion = Bundle.main.versionAndBuildNumber
     }
 
     func make(with buildable: URLRequestBuildable, authToken: String?) throws -> URLRequestConvertible {
@@ -28,7 +29,9 @@ final class URLRequestBuilder {
         }
         httpHeaders[.contentType] = "application/json"
         httpHeaders[.deviceID] = deviceID
-        httpHeaders[.version] = appVersion
+        httpHeaders[.version] = version
+        httpHeaders[.build] = build
+        httpHeaders[.os] = "iOS \(osVersion.majorVersion).\(osVersion.minorVersion).\(osVersion.patchVersion)"
 
         let url = buildable.endpoint.url(baseURL: baseURL)
         let method = buildable.httpMethod
