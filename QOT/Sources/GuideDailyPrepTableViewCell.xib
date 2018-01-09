@@ -39,7 +39,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gey-p7-92u">
                                 <rect key="frame" x="14" y="51" width="291" height="78"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QNh-9d-K0c" userLabel="LeftView">
+                                    <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QNh-9d-K0c" userLabel="LeftView">
                                         <rect key="frame" x="0.0" y="0.0" width="39" height="77.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VvX-gS-sFt">
@@ -68,7 +68,7 @@ Lorem</string>
                                             <constraint firstAttribute="bottom" secondItem="mmE-O2-xgb" secondAttribute="bottom" constant="8" id="woB-we-N9T"/>
                                         </constraints>
                                     </view>
-                                    <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s6Z-Fz-1py" userLabel="MidLeftView">
+                                    <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s6Z-Fz-1py" userLabel="MidLeftView">
                                         <rect key="frame" x="63.5" y="0.0" width="39" height="77.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hx8-WN-YNy">
@@ -97,7 +97,7 @@ Lorem</string>
                                             <constraint firstItem="4aZ-20-Oez" firstAttribute="leading" secondItem="s6Z-Fz-1py" secondAttribute="leading" id="kBi-WE-ePf"/>
                                         </constraints>
                                     </view>
-                                    <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KRs-q1-KlV" userLabel="CenterView">
+                                    <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KRs-q1-KlV" userLabel="CenterView">
                                         <rect key="frame" x="126" y="0.0" width="39" height="77.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fms-cf-5vL">
@@ -126,7 +126,7 @@ Lorem</string>
                                             <constraint firstItem="fms-cf-5vL" firstAttribute="leading" secondItem="KRs-q1-KlV" secondAttribute="leading" id="wTz-AU-Ef6"/>
                                         </constraints>
                                     </view>
-                                    <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rWe-u5-2LU" userLabel="MidRightView">
+                                    <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rWe-u5-2LU" userLabel="MidRightView">
                                         <rect key="frame" x="188.5" y="0.0" width="39" height="77.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Op6-5c-6fW">
@@ -155,7 +155,7 @@ Lorem</string>
                                             <constraint firstItem="IYN-Lj-530" firstAttribute="top" secondItem="Op6-5c-6fW" secondAttribute="bottom" constant="8" id="yrz-rv-t4b"/>
                                         </constraints>
                                     </view>
-                                    <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IVL-uo-Jgf" userLabel="RightView">
+                                    <view tag="5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IVL-uo-Jgf" userLabel="RightView">
                                         <rect key="frame" x="252" y="0.0" width="39" height="77.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FN2-li-zKi">
