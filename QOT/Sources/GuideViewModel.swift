@@ -55,6 +55,7 @@ final class GuideViewModel {
     private var notificationTokenHandler: NotificationTokenHandler?
     private var tokenBin = TokenBin()
     private let becomeActiveHandler = NotificationHandler(name: .UIApplicationDidBecomeActive)
+    private let guideWorker: GuideWorker
     let updates = PublishSubject<CollectionUpdate, NoError>()
     let sectionCountUpdate = ReplayOneSubject<Int, NoError>()
     private var days: [Guide.Day] = []
@@ -76,9 +77,9 @@ final class GuideViewModel {
         self.eventTracker = eventTracker
         self.syncStateObserver = SyncStateObserver(realm: services.mainRealm)
         self.realmGuides = services.guideService.guideSections()
+        self.guideWorker = GuideWorker(services: services)
 
         syncStateObserver.observe(\.syncedClasses, options: [.new]) { [unowned self] _, _ in
-            // FIXME: WILL CRASH INSIDE A WRITE TRANSACTION ON FIRST RUN
             self.createTodaysGuideIfNeeded()
         }.addTo(tokenBin)
         becomeActiveHandler.handler = { [unowned self] _ in
@@ -133,7 +134,7 @@ final class GuideViewModel {
     }
 
     var isReady: Bool {
-        return hasSyncedNecessaryItems
+        return guideWorker.hasCreatedTodaysGuide
     }
 
     var sectionCount: Int {
@@ -167,16 +168,6 @@ final class GuideViewModel {
     }
 
     func createTodaysGuideIfNeeded() {
-        guard services.guideService.todaysGuide() == nil, hasSyncedNecessaryItems  else { return }
-        
-        _ = GuideWorker(services: services).createTodaysGuide()
-    }
-}
-
-private extension GuideViewModel {
-
-    var hasSyncedNecessaryItems: Bool {
-        return syncStateObserver.hasSynced(RealmGuideItemLearn.self)
-            && syncStateObserver.hasSynced(RealmGuideItemNotification.self)
+        guideWorker.createTodaysGuideIfNecessary()
     }
 }

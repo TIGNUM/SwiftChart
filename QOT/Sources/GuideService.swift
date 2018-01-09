@@ -23,9 +23,15 @@ final class GuideService {
         let guide = RealmGuide(items: List(items))
         do {
             let realm = try realmProvider.realm()
-            try realm.write {
+            // FIXME: We want a better way of doing this without needing to check whether we are in a write transaction.
+            if realm.isInWriteTransaction {
                 items.forEach { realm.add($0, update: true) }
                 realm.add(guide)
+            } else {
+                try realm.write {
+                    items.forEach { realm.add($0, update: true) }
+                    realm.add(guide)
+                }
             }
         } catch {
             log(error, level: .error)
