@@ -388,9 +388,9 @@ extension AppCoordinator: MorningInterviewViewControllerDelegate {
                     self.dismiss(viewController, level: .priority)
                     if let destination = URLScheme.guide.destination {
                         self.navigate(to: destination)
-                        if let guideViewController = self.tabBarCoordinator?.topTabBarControllerGuide.viewControllers.first as? GuideViewController {
-                            guideViewController.reloadViewModel() // FIXME: Better observe; reactive bond actions...
-                        }
+//                        if let guideViewController = self.tabBarCoordinator?.topTabBarControllerGuide.viewControllers.first as? GuideViewController {
+////                            guideViewController.reloadViewModel() // FIXME: Better observe; reactive bond actions...
+//                        }
                     }
                 }
             case .failure(let error):

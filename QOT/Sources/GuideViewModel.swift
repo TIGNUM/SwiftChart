@@ -51,15 +51,13 @@ final class GuideViewModel {
     private let services: Services
     private let eventTracker: EventTracker
     private let syncStateObserver: SyncStateObserver
+    private let realmGuides: AnyRealmCollection<RealmGuide>
     private var notificationTokenHandler: NotificationTokenHandler?
     private var tokenBin = TokenBin()
+    private let becomeActiveHandler = NotificationHandler(name: .UIApplicationDidBecomeActive)
     let updates = PublishSubject<CollectionUpdate, NoError>()
     let sectionCountUpdate = ReplayOneSubject<Int, NoError>()
-    private var days: [Guide.Day] = [] {
-        didSet {
-            updates.next(.reload)
-        }
-    }
+    private var days: [Guide.Day] = []
 
     private lazy var welcome: String = {
         return Greeting.welcome.text(services.contentService)
@@ -76,19 +74,26 @@ final class GuideViewModel {
     init(services: Services, eventTracker: EventTracker) {
         self.services = services
         self.eventTracker = eventTracker
-        syncStateObserver = SyncStateObserver(realm: services.mainRealm)
+        self.syncStateObserver = SyncStateObserver(realm: services.mainRealm)
+        self.realmGuides = services.guideService.guideSections()
+
         syncStateObserver.observe(\.syncedClasses, options: [.new]) { [unowned self] _, _ in
+            // FIXME: WILL CRASH INSIDE A WRITE TRANSACTION ON FIRST RUN
             self.createTodaysGuideIfNeeded()
+        }.addTo(tokenBin)
+        becomeActiveHandler.handler = { [unowned self] _ in
+            self.createTodaysGuideIfNeeded()
+        }
+        realmGuides.addNotificationBlock { [unowned self] _ in
             self.reload()
-            self.updates.next(.reload)
         }.addTo(tokenBin)
     }
 
     func reload() {
         let transformer = GuideTransformer()
-        let realmGuides = services.guideService.guideSections()
         days = transformer.days(from: realmGuides)
         sectionCountUpdate.next(sectionCount)
+        updates.next(.reload)
     }
 
     var message: String {
@@ -128,9 +133,7 @@ final class GuideViewModel {
     }
 
     var isReady: Bool {
-        return
-            syncStateObserver.hasSynced(RealmGuideItemLearn.self) &&
-            syncStateObserver.hasSynced(RealmGuideItemNotification.self)
+        return hasSyncedNecessaryItems
     }
 
     var sectionCount: Int {
@@ -164,8 +167,16 @@ final class GuideViewModel {
     }
 
     func createTodaysGuideIfNeeded() {
-        let todaysGuide = services.guideService.todaysGuide()
-        guard todaysGuide?.items.isEmpty == true || todaysGuide == nil else { return }
+        guard services.guideService.todaysGuide() == nil, hasSyncedNecessaryItems  else { return }
+        
         _ = GuideWorker(services: services).createTodaysGuide()
+    }
+}
+
+private extension GuideViewModel {
+
+    var hasSyncedNecessaryItems: Bool {
+        return syncStateObserver.hasSynced(RealmGuideItemLearn.self)
+            && syncStateObserver.hasSynced(RealmGuideItemNotification.self)
     }
 }
