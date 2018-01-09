@@ -41,6 +41,9 @@ struct Log {
             static let pageTracking = false
             static let eventTracking = false
         }
+        struct Sync {
+            static let syncOperation = false
+        }
     }
 
     static var main: SwiftyBeaver.Type {

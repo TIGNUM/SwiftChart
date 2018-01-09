@@ -31,6 +31,11 @@ final class MyUniverseProvider {
         statistics = services.statisticsService.chartObjects()
         syncStateObserver = SyncStateObserver(realm: services.mainRealm)
 
+        syncStateObserver.observe(\SyncStateObserver.syncedClasses, options: [.new]) { [unowned self] _, _ in
+            if self.viewData.isLoading {
+                self.update()
+            }
+        }.addTo(tokenBin)
         myToBeVisions.addNotificationBlock { [unowned self] _ in
             self.update()
         }.addTo(tokenBin)

@@ -214,9 +214,9 @@ private extension SyncManager {
             syncOperation(MyToBeVision.self, context: context, shouldDownload: shouldDownload),
             syncOperation(Statistics.self, context: context, shouldDownload: shouldDownload),
             syncOperation(Partner.self, context: context, shouldDownload: shouldDownload),
+            syncOperation(UserChoice.self, context: context, shouldDownload: shouldDownload),
             syncOperation(Preparation.self, context: context, shouldDownload: shouldDownload),
             syncOperation(PreparationCheck.self, context: context, shouldDownload: shouldDownload),
-            syncOperation(UserChoice.self, context: context, shouldDownload: shouldDownload),
             syncOperation(UserSetting.self, context: context, shouldDownload: shouldDownload),
             syncOperation(User.self, context: context, shouldDownload: shouldDownload),
             syncOperation(UserAnswer.self, context: context, shouldDownload: shouldDownload),
@@ -245,7 +245,10 @@ private extension SyncManager {
     func syncOperation<T>(_ type: T.Type, context: SyncContext, shouldDownload: Bool)
         -> SyncOperation? where T: SyncableObject, T: UpSyncable {
             let upSyncTask = UpSyncTask<T>(networkManager: networkManager, realmProvider: realmProvider)
-            return SyncOperation(upSyncTask: upSyncTask, downSyncTask: nil, syncContext: context)
+            return SyncOperation(upSyncTask: upSyncTask,
+                                 downSyncTask: nil,
+                                 syncContext: context,
+                                 debugIdentifier: String(describing: type))
     }
 
     func syncOperation<T>(_ type: T.Type, context: SyncContext, shouldDownload: Bool)
@@ -256,7 +259,10 @@ private extension SyncManager {
             let downSyncTask = DownSyncTask<T>(networkManager: networkManager,
                                                realmProvider: realmProvider,
                                                syncRecordService: syncRecordService)
-            return SyncOperation(upSyncTask: nil, downSyncTask: downSyncTask, syncContext: context)
+            return SyncOperation(upSyncTask: nil,
+                                 downSyncTask: downSyncTask,
+                                 syncContext: context,
+                                 debugIdentifier: String(describing: type))
     }
 
     func syncOperation<T>(_ type: T.Type, context: SyncContext, shouldDownload: Bool)
@@ -270,7 +276,10 @@ private extension SyncManager {
             } else {
                 downSyncTask = nil
             }
-            return SyncOperation(upSyncTask: upSyncTask, downSyncTask: downSyncTask, syncContext: context)
+            return SyncOperation(upSyncTask: upSyncTask,
+                                 downSyncTask: downSyncTask,
+                                 syncContext: context,
+                                 debugIdentifier: String(describing: type))
     }
 
     func upSyncMediaOperation(localID: String, context: SyncContext) -> UpSyncMediaOperation {
