@@ -771,7 +771,8 @@ extension AppCoordinator {
     func presentMorningInterview(groupID: Int,
                                  validFrom: Date,
                                  validTo: Date,
-                                 notificationID: String) {
+                                 notificationID: String,
+                                 guideItem: Guide.Item?) {
         guard let services = services else { return }
         self.notificationID = notificationID
         AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
@@ -779,7 +780,8 @@ extension AppCoordinator {
                                                   questionGroupID: groupID,
                                                   validFrom: validFrom,
                                                   validTo: validTo,
-                                                  notificationID: notificationID)
+                                                  notificationID: notificationID,
+                                                  guideItem: guideItem)
         let morningInterViewController = MorningInterviewViewController(viewModel: viewModel)
         morningInterViewController.delegate = self
         windowManager.showPriority(morningInterViewController, animated: true, completion: nil)

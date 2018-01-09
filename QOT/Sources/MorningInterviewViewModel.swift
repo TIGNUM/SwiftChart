@@ -44,6 +44,7 @@ final class MorningInterviewViewModel: NSObject {
     private let validTo: Date
     private let questions: [InterviewQuestion]
     private let notificationID: String
+    private let guideItem: Guide.Item?
 
     // MARK: - Init
 
@@ -51,7 +52,8 @@ final class MorningInterviewViewModel: NSObject {
          questionGroupID: Int,
          validFrom: Date,
          validTo: Date,
-         notificationID: String = "") {
+         notificationID: String = "",
+         guideItem: Guide.Item?) {
         let questions = services.questionsService.morningInterviewQuestions(questionGroupID: questionGroupID)
         self.services = services
         self.questionGroupID = questionGroupID
@@ -59,6 +61,7 @@ final class MorningInterviewViewModel: NSObject {
         self.validTo = validTo
         self.questions = Array(questions.flatMap(InterviewQuestion.init))
         self.notificationID = notificationID
+        self.guideItem = guideItem
     }
 
     var questionsCount: Int {
@@ -97,9 +100,11 @@ final class MorningInterviewViewModel: NSObject {
             if let guideItemNotification = realm.syncableObject(ofType: RealmGuideItemNotification.self,
                                                                 localID: notificationID) {
                 guideItemNotification.dailyPrepResults.append(objectsIn: dailyPrepResults)
-                LocalNotificationBuilder.cancelNotification(identifier: notificationID)
-                GuideWorker(services: services).setItemCompleted(guideID: notificationID)
             }
         }
+
+        guard let guideID = guideItem?.identifier else { return }
+        LocalNotificationBuilder.cancelNotification(identifier: guideID)
+        GuideWorker(services: services).setItemCompleted(guideID: guideID)
     }
 }

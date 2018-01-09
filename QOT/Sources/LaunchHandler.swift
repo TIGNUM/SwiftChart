@@ -26,7 +26,7 @@ final class LaunchHandler {
         logPushNotificationID(urlScheme: scheme, url: url)
 
         switch scheme {
-        case .dailyPrep: dailyPrep(groupID: scheme.queryParametter(url: url), notificationID: notificationID)
+        case .dailyPrep: dailyPrep(groupID: scheme.queryParametter(url: url), notificationID: notificationID, guideItem: guideItem)
         case .fitbit: fitbit(accessToken: scheme.queryParametter(url: url))
         case .preparation: preparation(localID: url.absoluteString.components(separatedBy: scheme.queryName).last)
         case .randomContent: randomContent(url: url, scheme: scheme)
@@ -150,7 +150,7 @@ extension LaunchHandler {
 
 extension LaunchHandler {
 
-    func dailyPrep(groupID: String?, notificationID: String) {
+    func dailyPrep(groupID: String?, notificationID: String, guideItem: Guide.Item?) {
         guard
             let groupID = groupID,
             let groupIDIntValue = Int(groupID) else { return }
@@ -159,7 +159,8 @@ extension LaunchHandler {
         appDelegate.appCoordinator.presentMorningInterview(groupID: groupIDIntValue,
                                                            validFrom: Date(),
                                                            validTo: Date(),
-                                                           notificationID: notificationID)
+                                                           notificationID: notificationID,
+                                                           guideItem: guideItem)
     }
 }
 
