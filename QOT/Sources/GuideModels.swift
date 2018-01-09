@@ -44,7 +44,10 @@ struct Guide {
             let results: [String]
 
             var labels: [String] {
-                return ["Sleep\nQuality", "Sleep\nQuantity", "Load\nIndex", "Load\nFoo", "Recovery\nIndex"]
+                guard
+                    let groupStringID = questionGroupID,
+                    let questionGroupID = Int(groupStringID) else { return [] }
+                return services.questionsService.morningInterviewTitles(questionGroupID: questionGroupID)
             }
 
             var empty: [String] {

@@ -185,9 +185,12 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
         let item = viewModel.item(indexPath: indexPath)
         guard item.isDailyPrepCompleted == false else { return }
         open(item: item)
-        viewModel.setCompleted(item: item) {
-            tableView.reloadRows(at: [indexPath], with: .automatic)
-            self.updateGreetingView(self.viewModel.message, self.viewModel.greeting(item))
+
+        if item.isDailyPrep == false {
+            viewModel.setCompleted(item: item) {
+                tableView.reloadRows(at: [indexPath], with: .automatic)
+                self.updateGreetingView(self.viewModel.message, self.viewModel.greeting(item))
+            }
         }
     }
 }

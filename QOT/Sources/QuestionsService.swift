@@ -36,6 +36,11 @@ final class QuestionsService {
         return AnyRealmCollection(results)
     }
 
+    func morningInterviewTitles(questionGroupID: Int) -> [String] {
+        let questions = morningInterviewQuestions(questionGroupID: questionGroupID)
+        return Array(questions).flatMap { $0.title }
+    }
+
     func target(answer: Answer, questionGroupID id: Int) -> AnswerDecision.Target? {
         let decisions = answer.decisions.filter(.questionGroupIDis(id))
         for decision in decisions {
