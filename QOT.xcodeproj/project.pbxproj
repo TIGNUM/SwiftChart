@@ -2630,7 +2630,7 @@
 					};
 					CBB237FF1E6FFF1200AB5AEF = {
 						CreatedOnToolsVersion = 8.2.1;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						TestTargetID = CBB237EB1E6FFF1200AB5AEF;
 					};
@@ -3116,7 +3116,7 @@
 				CB1E4F981E7FE22200287613 /* SettingsViewModel.swift in Sources */,
 				CBB4DCFD1EDC27550071494A /* SyncManager.swift in Sources */,
 				36328F201FCEB90B004E9034 /* GuideViewController.swift in Sources */,
-				CBABB3801FDFF3E0007B5B5C /* SlideShowSlideCell.swift in Sources */,
+				CBABB3801FDFF3E0007B5B5C /* SlideShowTitleSubtitleSlideCell.swift in Sources */,
 				CC02E1491F279A0F00134574 /* SettingsCalendarListViewModel.swift in Sources */,
 				36FC8D471FDEF16F00B5E062 /* GuideItemLearnIntermediary.swift in Sources */,
 				CC3DFB661E83C19C00FF28DF /* Defines.swift in Sources */,

@@ -11,8 +11,8 @@ import RealmSwift
 
 struct GuideTransformer {
 
-    func days<T: Sequence>(from guides: T) -> [Guide.Day] where T.Element: RealmGuide {
-        let allDays = guides.map { Guide.Day(day: $0) }.reversed()
+    func days<T: Sequence>(from guides: T, services: Services) -> [Guide.Day] where T.Element: RealmGuide {
+        let allDays = guides.map { Guide.Day(day: $0, services: services) }.reversed()
         var lastThreeDays = [Guide.Day]()
 
         for day in allDays where lastThreeDays.count < 3 {
@@ -24,7 +24,7 @@ struct GuideTransformer {
 
 private extension Guide.Day {
 
-    init(day: RealmGuide) {
+    init(day: RealmGuide, services: Services) {
         if day.createdAt.isSameDay(Date()) {
             let items = day.items.filter { (guideItem) -> Bool in
                 let calendar = Calendar.current
@@ -41,10 +41,10 @@ private extension Guide.Day {
                     return true
                 }
             }
-            self.items = items.flatMap { Guide.Item(item: $0) }
+            self.items = items.flatMap { Guide.Item(item: $0, services: services) }
             self.createdAt = day.createdAt
         } else {
-            self.items = day.items.flatMap { Guide.Item(item: $0) }
+            self.items = day.items.flatMap { Guide.Item(item: $0, services: services) }
             self.createdAt = day.createdAt
         }
     }
@@ -52,7 +52,7 @@ private extension Guide.Day {
 
 private extension Guide.Item {
 
-    init?(item: RealmGuideItem) {
+    init?(item: RealmGuideItem, services: Services) {
         if let learn = item.guideItemLearn {
             status = learn.completedAt == nil ? .todo : .done
             title = learn.title
@@ -78,7 +78,9 @@ private extension Guide.Item {
             featureButton = nil
             identifier = item.localID
             notificationID = notification.localID
-            dailyPrep = DailyPrep(feedback: notification.morningInterviewFeedback,
+            dailyPrep = DailyPrep(questionGroupID: link.groupID,
+                                  services: services,
+                                  feedback: notification.morningInterviewFeedback,
                                   results: Array(notification.dailyPrepResults.map { String(format: "%d", $0.value) }))
             greeting = notification.greeting
             createdAt = notification.createdAt

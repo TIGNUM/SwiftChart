@@ -92,7 +92,7 @@ final class GuideViewModel {
 
     func reload() {
         let transformer = GuideTransformer()
-        days = transformer.days(from: realmGuides)
+        days = transformer.days(from: realmGuides, services: services)
         sectionCountUpdate.next(sectionCount)
         updates.next(.reload)
     }

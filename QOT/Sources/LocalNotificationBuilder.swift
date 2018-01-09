@@ -26,12 +26,8 @@ final class LocalNotificationBuilder: NSObject {
             let newNotifications = notifications.filter { newIDs.contains($0.localID) == true }
 
             newNotifications.forEach { (itemNotification: RealmGuideItemNotification) in
-                print("itemNotification.type", itemNotification.type)
-                print("itemNotification.reminderTime \(itemNotification.reminderTime)")
-                if itemNotification.reminderTime != nil &&
-                    itemNotification.type != RealmGuideItemNotification.ItemType.morningInterview.rawValue {
-                        print("itemNotification.type", itemNotification.type)
-                        self.create(notification: itemNotification)
+                if itemNotification.reminderTime != nil {
+                    self.create(notification: itemNotification)
                 }
             }
         }

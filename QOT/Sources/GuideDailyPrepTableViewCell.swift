@@ -60,9 +60,7 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
 
         if let dailyPrep = dailyPrep {
             let results = dailyPrep.results.isEmpty == true ? dailyPrep.empty : dailyPrep.results
-            if dailyPrep.results.isEmpty == false && dailyPrep.results.count < 5 {
-                setupShortDailyPrep()
-            }
+            valueViews.filter { $0.tag > dailyPrep.questionCount }.forEach { $0.isHidden = true }
 
             for (index, result) in results.enumerated() {
                 valueLabels[index].attributedText = attributedText(letterSpacing: -1.1,
@@ -86,10 +84,6 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
 // MARK: - Private
 
 private extension GuideDailyPrepTableViewCell {
-
-    func setupShortDailyPrep() {
-        valueViews.filter { $0.tag > 1 }.forEach { $0.isHidden = true }
-    }
 
     func attributedText(letterSpacing: CGFloat = 2,
                         text: String,

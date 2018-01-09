@@ -29,9 +29,17 @@ struct Guide {
                 case .path(let urlString): return URL(string: urlString)
                 }
             }
+
+            var groupID: String? {
+                switch self {
+                case .path(let urlString): return URL(string: urlString)?.queryStringParameter(param: "groupID")
+                }
+            }
         }
 
         struct DailyPrep {
+            let questionGroupID: String?
+            let services: Services
             let feedback: String?
             let results: [String]
 
@@ -41,6 +49,14 @@ struct Guide {
 
             var empty: [String] {
                 return ["_", "_", "_", "_", "_"]
+            }
+
+            var questionCount: Int {
+                guard
+                    let groupStringID = questionGroupID,
+                    let questionGroupID = Int(groupStringID) else { return 0 }
+                let questions = services.questionsService.morningInterviewQuestions(questionGroupID: questionGroupID)
+                return Array(questions).count
             }
         }
 
@@ -59,7 +75,8 @@ struct Guide {
         let createdAt: Date
 
         var isDailyPrep: Bool {
-            return RealmGuideItemNotification.ItemType.morningInterview.rawValue == type
+            return RealmGuideItemNotification.ItemType.morningInterview.rawValue == type ||
+                    RealmGuideItemNotification.ItemType.weeklyInterview.rawValue == type
         }
 
         var isDailyPrepCompleted: Bool {
