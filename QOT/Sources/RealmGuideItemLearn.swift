@@ -80,7 +80,7 @@ extension RealmGuideItemLearn: OneWaySyncableDown {
         }
     }
 
-    var issueDate: Date? {
-        return reminderTime?.dateForToday
+    var localNotificationDate: Date? {
+        return reminderTime?.date(with: Date())
     }
 }

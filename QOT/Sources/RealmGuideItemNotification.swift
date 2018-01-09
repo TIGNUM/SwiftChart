@@ -50,6 +50,10 @@ final class RealmGuideItemNotification: SyncableObject, RealmGuideItemProtocol {
     @objc dynamic var reminderTime: RealmGuideTime?
 
     var dailyPrepResults = List<IntObject>()
+
+    var localNotificationDate: Date? {
+        return reminderTime?.date(with: issueDate)
+    }
 }
 
 extension RealmGuideItemNotification: OneWaySyncableDown {

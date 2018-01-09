@@ -51,21 +51,16 @@ final class GuideWorker {
 
 private extension GuideWorker {
 
-    func addLearnItemNotifications() {
-        let learnItems = services.guideItemLearnService.items()
-        let localNotificationsBuilder = LocalNotificationBuilder(realmProvider: services.realmProvider)
-        localNotificationsBuilder.addLearnItemNotifications(learnItems: learnItems)
-    }
-
     var hasSyncedNecessaryItems: Bool {
         return syncStateObserver.hasSynced(RealmGuideItemLearn.self)
             && syncStateObserver.hasSynced(RealmGuideItemNotification.self)
     }
 
     func createTodaysGuide() {
-        let learnItems = services.guideItemLearnService.items().map { RealmGuideItem(item: $0, date: Date()) }
+        let today = Date()
+        let learnItems = services.guideItemLearnService.items().map { RealmGuideItem(item: $0, date: today) }
         let notificationItems = services.guideItemNotificationService.todayItems().map {
-            return RealmGuideItem(item: $0, date: Date())
+            return RealmGuideItem(item: $0, date: $0.issueDate)
         }
 
         var guideItems: [RealmGuideItem] = []
@@ -74,7 +69,13 @@ private extension GuideWorker {
         let sorted = guideItems.sorted { (lhs: RealmGuideItem, rhs: RealmGuideItem) -> Bool in
             return lhs.priority > rhs.priority
         }
-        addLearnItemNotifications()
+
+        let localNotificationsBuilder = LocalNotificationBuilder(realmProvider: services.realmProvider)
+        for item in guideItems {
+            if let learnItem = item.guideItemLearn {
+                localNotificationsBuilder.addLearnItemNotification(for: learnItem, identifier: item.localID)
+            }
+        }
         _ = services.guideService.createGuide(items: sorted)
     }
 }

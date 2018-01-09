@@ -52,10 +52,8 @@ struct Guide {
             }
 
             var questionCount: Int {
-                guard
-                    let groupStringID = questionGroupID,
-                    let questionGroupID = Int(groupStringID) else { return 0 }
-                let questions = services.questionsService.morningInterviewQuestions(questionGroupID: questionGroupID)
+                guard let groupStringID = questionGroupID, let groupID = Int(groupStringID) else { return 0 }
+                let questions = services.questionsService.morningInterviewQuestions(questionGroupID: groupID)
                 return Array(questions).count
             }
         }
