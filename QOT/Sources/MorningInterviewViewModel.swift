@@ -13,8 +13,8 @@ import RealmSwift
 final class InterviewQuestion {
 
     let remoteID: Int
-    let question: String
     let title: String
+    let subtitle: String?
     let answers: [Answer]
     var answerIndex: Int
 
@@ -23,8 +23,8 @@ final class InterviewQuestion {
         guard answers.count > 0 else { return nil }
 
         self.remoteID = question.forcedRemoteID
-        self.question = question.question
         self.title = question.title
+        self.subtitle = question.subtitle
         self.answers = answers
         self.answerIndex = (answers.count - 1) / 2
     }
