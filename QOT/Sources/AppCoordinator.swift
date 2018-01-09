@@ -296,6 +296,7 @@ extension AppCoordinator {
         } catch {
             log(error.localizedDescription, level: .error)
         }
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
 }
 

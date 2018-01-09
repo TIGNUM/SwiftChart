@@ -25,7 +25,8 @@ final class RealmGuideTime: Object {
 
 extension RealmGuideTime {
 
-    var dateForToday: Date? {
-        return Calendar.current.date(bySettingHour: hour, minute: minute, second: 0, of: Date())
+    /// Returns new `Date` by setting `hour` and `minute` on input date using current calendar.
+    func date(with inputDate: Date) -> Date? {
+        return Calendar.current.date(bySettingHour: hour, minute: minute, second: 0, of: inputDate)
     }
 }

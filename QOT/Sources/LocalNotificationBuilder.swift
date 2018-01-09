@@ -24,21 +24,18 @@ final class LocalNotificationBuilder: NSObject {
         let notificationsIDs = notifications.map { $0.localID }
         pendingNotificationIDs(notificationsIDs: notificationsIDs) { (newIDs: [String]) in
             let newNotifications = notifications.filter { newIDs.contains($0.localID) == true }
-
             newNotifications.forEach { (itemNotification: RealmGuideItemNotification) in
-                if itemNotification.reminderTime != nil {
-                    self.create(notification: itemNotification)
+                if let notificationDate = itemNotification.localNotificationDate {
+                    self.create(notification: itemNotification, notificationDate: notificationDate)
                 }
             }
         }
     }
 
-    func addLearnItemNotifications(learnItems: List<RealmGuideItemLearn>) {
-        learnItems.forEach { (itemLearn: RealmGuideItemLearn) in
-            if let issueDate = itemLearn.issueDate {
-                print("addLearnItemNotification", itemLearn.type)
-                self.create(itemLearn: itemLearn, issueDate: issueDate)
-            }
+    func addLearnItemNotification(for item: RealmGuideItemLearn, identifier: String) {
+        if let notificationDate = item.localNotificationDate {
+            print("addLearnItemNotification", item.type)
+            create(itemLearn: item, identifier: identifier, notificationDate: notificationDate)
         }
     }
 
@@ -75,23 +72,24 @@ private extension LocalNotificationBuilder {
         return notifications
     }
 
-    func create(notification: RealmGuideItemNotification) {
-        let request = UNNotificationRequest(identifier: notification.localID,
+    func create(notification: RealmGuideItemNotification, notificationDate: Date) {
+        let identifier = GuideItemID(date: notification.issueDate, item: notification).stringRepresentation
+        let request = UNNotificationRequest(identifier: identifier,
                                             content: content(title: notification.title,
                                                              body: notification.body,
                                                              sound: notification.sound,
                                                              link: notification.link),
-                                            trigger: trigger(notification.issueDate))
+                                            trigger: trigger(notificationDate))
         addNotification(request: request)
     }
 
-    func create(itemLearn: RealmGuideItemLearn, issueDate: Date) {
-        let request = UNNotificationRequest(identifier: itemLearn.localID,
+    func create(itemLearn: RealmGuideItemLearn, identifier: String, notificationDate: Date) {
+        let request = UNNotificationRequest(identifier: identifier,
                                             content: content(title: itemLearn.title,
                                                              body: itemLearn.body,
                                                              sound: itemLearn.sound,
                                                              link: itemLearn.link),
-                                            trigger: trigger(issueDate))
+                                            trigger: trigger(notificationDate))
         addNotification(request: request)
     }
 
