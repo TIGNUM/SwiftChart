@@ -41,6 +41,20 @@ final class GuideService {
     func guideSections() -> AnyRealmCollection<RealmGuide> {
         return AnyRealmCollection(mainRealm.objects(RealmGuide.self))
     }
+
+    func guideIsTotallyCompleted() -> Bool {
+        let allLearnItems = mainRealm.objects(RealmGuideItemLearn.self)
+        let filtered = allLearnItems.filter { $0.completedAt == nil }
+
+        return filtered.count == 0
+    }
+
+    func guideTodayCompleted() -> Bool {
+        guard let today = todaysGuide() else { return true }
+
+        let filtered = today.items.filter { $0.completedAt == nil && $0.referencedItem is RealmGuideItemLearn }
+        return filtered.count == 0
+    }
 }
 
 // MARK: - Erase

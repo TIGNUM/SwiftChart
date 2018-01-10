@@ -87,7 +87,7 @@ private extension GuideViewController {
     func reload() {
         tableView.reloadData()
         updateReadyState()
-        updateGreetingView(viewModel.message, viewModel.greeting(nil))
+        updateGreetingView(viewModel.message, viewModel.greeting())
     }
 
     func observeViewModel() {
@@ -98,7 +98,7 @@ private extension GuideViewController {
 
     func setupView() {
         guard let greetingView = self.greetingView else { return }
-        updateGreetingView(viewModel.message, viewModel.greeting(nil))
+        updateGreetingView(viewModel.message, viewModel.greeting())
         view.addSubview(greetingView)
         view.addSubview(tableView)
         greetingView.topAnchor == view.topAnchor + UIApplication.shared.statusBarFrame.height
@@ -189,7 +189,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
         if item.isDailyPrep == false {
             viewModel.setCompleted(item: item) {
                 tableView.reloadRows(at: [indexPath], with: .automatic)
-                self.updateGreetingView(self.viewModel.message, self.viewModel.greeting(item))
+                self.updateGreetingView(self.viewModel.message, self.viewModel.greeting())
             }
         }
     }
