@@ -42,7 +42,7 @@ struct Log {
             static let eventTracking = false
         }
         struct Sync {
-            static let syncOperation = false
+            static let syncOperation = true
         }
     }
 
