@@ -31,6 +31,17 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
         typeLabel.isHidden = true
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        valueViews.forEach {
+            $0.isHidden = false
+        }
+        titleLabel.attributedText = nil
+        typeLabel.attributedText = nil
+        feedbackLabel.attributedText = nil
+    }
+
     func configure(title: String?, type: String?, dailyPrep: Guide.Item.DailyPrep?, status: GuideViewModel.Status) {
         if let title = title {
             titleLabel.attributedText = attributedText(letterSpacing: 1,
@@ -76,6 +87,7 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
                                                                         alignment: .left)
             }
         }
+
         statusView.backgroundColor = status.statusViewColor
         containerView.backgroundColor = status.cardColor
     }
