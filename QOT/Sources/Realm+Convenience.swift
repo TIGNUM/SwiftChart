@@ -11,6 +11,14 @@ import RealmSwift
 
 extension Realm {
 
+    public func transactionSafeWrite(_ block: (() throws -> Void)) throws {
+        if isInWriteTransaction {
+            try block()
+        } else {
+            try write(block)
+        }
+    }
+
     func anyCollection<T>(_ sort: SortDescriptor? = nil, predicates: NSPredicate...) -> AnyRealmCollection<T> {
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         if let sort = sort {

@@ -12,13 +12,30 @@ import Freddy
 
 final class RealmGuide: Object {
 
-    @objc dynamic var createdAt: Date = Date()
+    /// A string representing the UTC date in format `yyyyMMdd`
+    @objc dynamic var date: String = ""
 
     var items = List<RealmGuideItem>()
 
-    convenience init(items: List<RealmGuideItem>) {
+    override class func primaryKey() -> String? {
+        return "date"
+    }
+
+    convenience init(items: List<RealmGuideItem>, date: Date) {
         self.init()
         self.items = items
-        createdAt = Date().startOfDay
+        self.date = RealmGuide.dateString(date: date)
+    }
+
+    static func dateString(date: Date) -> String {
+        return DateFormatter.utcYearMonthDay.string(from: date)
+    }
+
+    var createdAt: Date {
+        guard let createdAt = DateFormatter.utcYearMonthDay.date(from: date) else {
+            assertionFailure("RealmGuide date string (\(date) cannot be converted to Date type")
+            return Date.distantPast
+        }
+        return createdAt
     }
 }

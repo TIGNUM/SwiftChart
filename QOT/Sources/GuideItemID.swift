@@ -26,7 +26,7 @@ struct GuideItemID {
         case notification
     }
 
-    private static var dateFormatter = DateFormatter.guideItemIDFormatter
+    private static var dateFormatter = DateFormatter.utcYearMonthDay
 
     let dateString: String
     let kind: Kind
@@ -59,16 +59,5 @@ struct GuideItemID {
 
     var stringRepresentation: String {
         return "\(dateString)#\(kind.rawValue)#\(remoteID)"
-    }
-}
-
-private extension DateFormatter {
-
-    static var guideItemIDFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.locale = Locale.posix
-        formatter.timeZone = TimeZone(abbreviation: "UTC")
-        formatter.dateFormat = "yyyyMMdd"
-        return formatter
     }
 }

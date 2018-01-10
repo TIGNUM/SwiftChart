@@ -76,6 +76,6 @@ private extension GuideWorker {
                 localNotificationsBuilder.addLearnItemNotification(for: learnItem, identifier: item.localID)
             }
         }
-        _ = services.guideService.createGuide(items: sorted)
+        services.guideService.createGuide(items: sorted, date: Date())
     }
 }
