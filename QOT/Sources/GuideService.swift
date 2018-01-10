@@ -19,28 +19,23 @@ final class GuideService {
         self.realmProvider = realmProvider
     }
 
-    func createGuide(items: [RealmGuideItem]) -> RealmGuide {
-        let guide = RealmGuide(items: List(items))
+    func createGuide(items: [RealmGuideItem], date: Date) {
         do {
             let realm = try realmProvider.realm()
-            // FIXME: We want a better way of doing this without needing to check whether we are in a write transaction.
-            if realm.isInWriteTransaction {
-                items.forEach { realm.add($0, update: true) }
-                realm.add(guide)
-            } else {
-                try realm.write {
-                    items.forEach { realm.add($0, update: true) }
+            try realm.transactionSafeWrite {
+                let key = RealmGuide.dateString(date: date)
+                if realm.object(ofType: RealmGuide.self, forPrimaryKey: key) == nil {
+                    let guide = RealmGuide(items: List(items), date: date)
                     realm.add(guide)
                 }
             }
         } catch {
             log(error, level: .error)
         }
-        return guide
     }
 
     func todaysGuide() -> RealmGuide? {
-        return guideSections().filter { $0.createdAt.isSameDay(Date()) }.first
+        return mainRealm.object(ofType: RealmGuide.self, forPrimaryKey: RealmGuide.dateString(date: Date()))
     }
 
     func guideSections() -> AnyRealmCollection<RealmGuide> {
