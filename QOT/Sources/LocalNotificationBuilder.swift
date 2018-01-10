@@ -9,6 +9,7 @@
 import Foundation
 import UserNotifications
 import RealmSwift
+import UIKit
 
 final class LocalNotificationBuilder: NSObject {
 
@@ -41,6 +42,13 @@ final class LocalNotificationBuilder: NSObject {
 
     static func cancelNotification(identifier: String) {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
+    }
+
+    func updateNotification(identifier: String, triggerDate: Date, content: UNNotificationContent) {
+        let request = UNNotificationRequest(identifier: identifier,
+                                            content: content,
+                                            trigger: trigger(triggerDate))
+        addNotification(request: request)
     }
 }
 

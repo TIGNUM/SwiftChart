@@ -87,6 +87,11 @@ extension SettingsAdminViewController {
         case .notifications: return "Guide\nScheduled Local Notifications"
         }
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destination = segue.destination as? ScheduledNotificationsTableViewController else { return }
+        destination.realmProvider = services?.realmProvider
+    }
 }
 
 // MARK: - Private
