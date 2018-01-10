@@ -58,8 +58,12 @@ private extension GuideWorker {
     func createTodaysGuide() {
         let today = Date()
         let learnItems = services.guideItemLearnService.items().map { RealmGuideItem(item: $0, date: today) }
-        let notificationItems = services.guideItemNotificationService.todayItems().map {
-            return RealmGuideItem(item: $0, date: $0.issueDate)
+        let notificationItems: [RealmGuideItem] = services.guideItemNotificationService.todayItems().flatMap {
+            if let issueDate = $0.issueDate {
+                return RealmGuideItem(item: $0, date: issueDate)
+            } else {
+                return nil
+            }
         }
 
         var guideItems: [RealmGuideItem] = []

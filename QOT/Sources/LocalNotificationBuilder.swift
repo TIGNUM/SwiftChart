@@ -26,8 +26,11 @@ final class LocalNotificationBuilder: NSObject {
         pendingNotificationIDs(notificationsIDs: notificationsIDs) { (newIDs: [String]) in
             let newNotifications = notifications.filter { newIDs.contains($0.localID) == true }
             newNotifications.forEach { (itemNotification: RealmGuideItemNotification) in
-                if let notificationDate = itemNotification.localNotificationDate {
-                    self.create(notification: itemNotification, notificationDate: notificationDate)
+                if let notificationDate = itemNotification.localNotificationDate,
+                    let issueDate = itemNotification.issueDate {
+                    self.create(notification: itemNotification,
+                                notificationDate: notificationDate,
+                                issueDate: issueDate)
                 }
             }
         }
@@ -80,8 +83,8 @@ private extension LocalNotificationBuilder {
         return notifications
     }
 
-    func create(notification: RealmGuideItemNotification, notificationDate: Date) {
-        let identifier = GuideItemID(date: notification.issueDate, item: notification).stringRepresentation
+    func create(notification: RealmGuideItemNotification, notificationDate: Date, issueDate: Date) {
+        let identifier = GuideItemID(date: issueDate, item: notification).stringRepresentation
         let request = UNNotificationRequest(identifier: identifier,
                                             content: content(title: notification.title,
                                                              body: notification.body,

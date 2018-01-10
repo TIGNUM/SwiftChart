@@ -39,7 +39,7 @@ final class RealmGuideItemNotification: SyncableObject, RealmGuideItemProtocol {
 
     @objc private(set) dynamic var priority: Int = 0
 
-    @objc private(set) dynamic var issueDate: Date = Date()
+    @objc private(set) dynamic var issueDate: Date?
 
     @objc dynamic var completedAt: Date?
 
@@ -52,7 +52,8 @@ final class RealmGuideItemNotification: SyncableObject, RealmGuideItemProtocol {
     var dailyPrepResults = List<IntObject>()
 
     var localNotificationDate: Date? {
-        return reminderTime?.date(with: issueDate)
+        guard let issueDate = issueDate, let reminderTime = reminderTime else { return nil }
+        return reminderTime.date(with: issueDate)
     }
 }
 

@@ -29,7 +29,10 @@ final class GuideItemNotificationService {
 
     func todayItems() -> List<RealmGuideItemNotification> {
         let items = Array(mainRealm.objects(RealmGuideItemNotification.self)) as [RealmGuideItemNotification]
-        let todayNotifications = items.filter { $0.issueDate.isSameDay(Date()) }
+        let todayNotifications = items.filter {
+            guard let issueDate = $0.issueDate else { return false }
+            return issueDate.isSameDay(Date())
+        }
 
         return List<RealmGuideItemNotification>(todayNotifications)
     }
