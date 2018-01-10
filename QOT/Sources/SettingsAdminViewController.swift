@@ -18,6 +18,7 @@ final class SettingsAdminViewController: UITableViewController {
         case logLevel = 2
         case dataBase = 3
         case reset = 4
+        case notifications = 5
     }
 
     enum BaseURL: Int {
@@ -83,6 +84,7 @@ extension SettingsAdminViewController {
         case .logLevel: return "logLevel: error == default"
         case .dataBase: return "dataBase: an erase will turn off autoSync"
         case .reset: return "reset changes back to default:\n - baseURL\n - sync\n - loglevel\n - downSync fresh data"
+        case .notifications: return "Guide\nScheduled Local Notifications"
         }
     }
 }
