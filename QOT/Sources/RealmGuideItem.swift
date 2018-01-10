@@ -24,21 +24,17 @@ final class RealmGuideItem: SyncableObject {
 
     @objc dynamic var guideItemNotification: RealmGuideItemNotification?
 
-    @objc dynamic var completedAt: Date?
-
     @objc dynamic var changeStamp: String? = UUID().uuidString
 
     convenience init(item: RealmGuideItemLearn, date: Date) {
         self.init()
         self.guideItemLearn = item
-        self.completedAt = item.completedAt
         self.localID = GuideItemID(date: date, item: item).stringRepresentation
     }
 
     convenience init(item: RealmGuideItemNotification, date: Date) {
         self.init()
         self.guideItemNotification = item
-        self.completedAt = item.completedAt
         self.localID = GuideItemID(date: date, item: item).stringRepresentation
     }
 }
@@ -61,6 +57,10 @@ extension RealmGuideItem {
 
     var displayTime: RealmGuideTime? {
         return referencedItem?.displayTime
+    }
+
+    var completedAt: Date? {
+        return referencedItem?.completedAt
     }
 }
 
