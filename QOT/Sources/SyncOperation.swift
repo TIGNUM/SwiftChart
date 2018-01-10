@@ -40,7 +40,7 @@ final class SyncOperation: ConcurrentOperation {
             }
         } else if let downSyncTask = downSyncTask {
             downSyncTask.start { [weak self] (error) in
-                self?.finish(startDate: startDate, error: nil)
+                self?.finish(startDate: startDate, error: error)
             }
         } else {
             finish(startDate: startDate, error: nil)
@@ -57,6 +57,10 @@ final class SyncOperation: ConcurrentOperation {
     private func finish(startDate: Date, error: SyncError?) {
         let seconds = startDate.timeIntervalToNow
         log(">>>> DID FINISH SYNC: \(debugIdentifier) IN \(seconds) SECONDS", enabled: Log.Toggle.Sync.syncOperation)
+        if let error = error {
+            log(">>>>>>>>>>>>>> ERROR: \(error)", enabled: Log.Toggle.Sync.syncOperation)
+        }
+
         if let error = error {
             context.add(error: error)
         }
