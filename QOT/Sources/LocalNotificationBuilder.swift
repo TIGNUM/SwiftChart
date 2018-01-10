@@ -117,10 +117,8 @@ private extension LocalNotificationBuilder {
     }
 
     func trigger(_ issueDate: Date) -> UNCalendarNotificationTrigger {
-        let triggerDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second],
-                                                          from: issueDate)
-        return UNCalendarNotificationTrigger(dateMatching: triggerDate,
-                                             repeats: false)
+        let triggerDate = Calendar.current.dateComponents([.year, .month, .day, .hour], from: issueDate)
+        return UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
     }
 
     func addNotification(request: UNNotificationRequest) {
