@@ -37,7 +37,6 @@ final class GuideWorker {
                 let referencedItem = guideItem.referencedItem {
                 try realm.write {
                     referencedItem.completedAt = completedDate
-                    guideItem.completedAt = completedDate
                     guideItem.didUpdate()
                     completion?(nil)
                 }
