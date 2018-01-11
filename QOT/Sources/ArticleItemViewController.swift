@@ -137,15 +137,15 @@ private extension ArticleItemViewController {
 
         if let guideItem = guideItem, guideItem.featureLink?.url != nil {
             let button = featureLinkButton(guideItem: guideItem)
-            view.addSubview(button)
+            view.addSubview(button)            
             button.bottomAnchor == view.bottomAnchor - 16
-            button.heightAnchor == 42
             button.centerXAnchor == view.centerXAnchor
-            button.widthAnchor == view.widthAnchor - 40
-            button.layer.borderColor = UIColor.white.cgColor
+            button.widthAnchor == 242
+            button.heightAnchor == 45
+            button.layer.cornerRadius = 45/2
             button.layer.borderWidth = 2
-            button.layer.cornerRadius = 10
-            button.layer.masksToBounds = true
+            button.layer.borderColor = UIColor.azure.cgColor
+            button.setTitleColor(.azure, for: .normal)
         }
 
         tableView.edgeAnchors == view.edgeAnchors
@@ -159,11 +159,12 @@ private extension ArticleItemViewController {
 
     func featureLinkButton(guideItem: Guide.Item) -> UIButton {
         let button = UIButton()
-        button.setAttributedTitle(Style.headline(guideItem.featureButton ?? "", .white).attributedString(), for: .normal)
-        button.setAttributedTitle(Style.headline(guideItem.featureButton ?? "", .white70).attributedString(), for: .selected)
         button.addTarget(self, action: #selector(openFeatureLink), for: .touchUpInside)
-        button.backgroundColor = UIColor.navy.withAlphaComponent(0.25)
-
+        button.setTitleColor(.white40, for: .normal)
+        button.setTitle(guideItem.featureButton ?? "", for: .normal)
+        button.titleLabel?.addCharactersSpacing(spacing: 1, text: guideItem.featureButton ?? "")
+        button.titleLabel?.font = Font.DPText
+        button.titleLabel?.textAlignment = .center
         return button
     }
 
