@@ -55,6 +55,13 @@ final class GuideService {
         let filtered = today.items.filter { $0.completedAt == nil && $0.referencedItem is RealmGuideItemLearn }
         return filtered.count == 0
     }
+
+    func guideNoneCompleted() -> Bool {
+        let allLearnItems = mainRealm.objects(RealmGuideItemLearn.self)
+        let filtered = allLearnItems.filter { $0.completedAt != nil }
+
+        return filtered.count == 0
+    }
 }
 
 // MARK: - Erase

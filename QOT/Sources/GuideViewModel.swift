@@ -128,7 +128,7 @@ final class GuideViewModel {
             return guideAllCompleted
         }
 
-        if let guide = sections.first, guide.items.filter({ $0.completedAt != nil }).isEmpty {
+        if days.count == 1 && services.guideService.guideNoneCompleted() == true {
             return welcome
         }
 
