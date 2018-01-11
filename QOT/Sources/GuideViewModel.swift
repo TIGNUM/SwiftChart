@@ -98,7 +98,7 @@ final class GuideViewModel {
     }
 
     var message: String {
-        let userName = services.mainRealm.objects(User.self).first?.givenName ?? ""
+        let userName = services.mainRealm.objects(User.self).first?.givenName ?? "High Performer"
         let welcomeMessage = Date().isBeforeNoon == true ? "Good Morning" : "Hello"
 
         return String(format: "%@ %@,\n", welcomeMessage, userName)
