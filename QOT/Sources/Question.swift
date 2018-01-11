@@ -15,8 +15,6 @@ final class Question: SyncableObject {
 
     @objc private(set) dynamic var title: String = ""
 
-    @objc private(set) dynamic var dailyPrepTitle: String?
-
     @objc private(set) dynamic var subtitle: String?
 
     @objc private(set) dynamic var answersDescription: String?
@@ -43,8 +41,7 @@ extension Question: OneWaySyncableDown {
         groups.forEach { $0.delete() }
 
         sortOrder = data.sortOrder
-        title = data.title
-        dailyPrepTitle = data.dailyPrepTitle
+        title = data.title        
         answersDescription = data.answersDescription
         answers.append(objectsIn: data.answers.map({ Answer(intermediary: $0) }))
         groups.append(objectsIn: data.groups.map({ QuestionGroup(intermediary: $0) }))
