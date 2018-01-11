@@ -119,7 +119,6 @@ final class SyncManager {
             DispatchQueue.main.async {
                 let errors = context.errors
                 NotificationHandler.postNotification(withName: .syncAllDidFinishNotification)
-                LocalNotificationBuilder(realmProvider: self.realmProvider).setup()
                 log("SYNC ALL FINISHED with \(errors.count) errors", enabled: Log.Toggle.Manager.Sync)
                 errors.forEach { (error: SyncError) in
                     log(error, enabled: Log.Toggle.Manager.Sync)
@@ -203,12 +202,24 @@ private extension SyncManager {
     }
 
     func syncOperations(context: SyncContext, shouldDownload: Bool) -> [Operation] {
+        var createLocalNotificationsOperation: BlockOperation?
+        if shouldDownload {
+            createLocalNotificationsOperation = BlockOperation {
+                DispatchQueue.main.async {
+                    let notificationBuilder = LocalNotificationBuilder(realmProvider: self.realmProvider)
+                    notificationBuilder.networkManager = self.networkManager
+                    notificationBuilder.setup()
+                }
+            }
+        }
+
         let operations: [Operation?] = [
             syncOperation(ContentRead.self, context: context, shouldDownload: shouldDownload),
             UpdateRelationsOperation(context: context, realmProvider: realmProvider),
             syncOperation(RealmGuideItemLearn.self, context: context, shouldDownload: shouldDownload),
             syncOperation(RealmGuideItemNotification.self, context: context, shouldDownload: shouldDownload),
             syncOperation(RealmGuideItem.self, context: context, shouldDownload: shouldDownload),
+            createLocalNotificationsOperation,
             syncOperation(PageTrack.self, context: context, shouldDownload: shouldDownload),
             syncOperation(CalendarEvent.self, context: context, shouldDownload: shouldDownload),
             syncOperation(MyToBeVision.self, context: context, shouldDownload: shouldDownload),
