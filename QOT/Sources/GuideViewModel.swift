@@ -114,22 +114,14 @@ final class GuideViewModel {
         return String(format: "%@ %@,\n", welcomeMessage, userName)
     }
 
-    func greeting(_ item: Guide.Item?) -> String {
+    func greeting() -> String {
+        guard days.count > 0 else { return "" }
         let sections = services.guideService.guideSections()
-//        if sections.count <= 1 {
-//            if let guide = sections.first, guide.items.filter({ $0.completedAt != nil }).isEmpty {
-//                return welcome
-//            } else {
-//                return dailyLearnPlan
-//            }
-//        }
+        let indexPath = IndexPath(row: 0, section: 0)
+        let firstItem = item(indexPath: indexPath)
 
-        if let item = item, item.isDailyPrep == true && item.isDailyPrepCompleted == false {
-            if item.greeting.isEmpty == false {
-                return item.greeting
-            } else {
-                return dailyPrep
-            }
+        if firstItem.isDailyPrep == true && firstItem.isDailyPrepCompleted == false {
+            return dailyPrep
         }
 
         if services.guideService.guideIsTotallyCompleted() == true {
@@ -145,7 +137,6 @@ final class GuideViewModel {
         }
 
         return dailyLearnPlan
-
     }
 
     var isReady: Bool {
