@@ -15,22 +15,28 @@ final class LocalNotificationBuilder: NSObject {
 
     private let realmProvider: RealmProvider
     private let queue = DispatchQueue(label: "com.tignum.qot.local.notification", qos: .background)
+    var networkManager: NetworkManager? // FIXME: Remove when can
 
     init(realmProvider: RealmProvider) {
         self.realmProvider = realmProvider
     }
 
     func setup() {
-        let notifications = guideNotifications(realmProvider: realmProvider)
-        let notificationsIDs = notifications.map { $0.localID }
-        pendingNotificationIDs(notificationsIDs: notificationsIDs) { (newIDs: [String]) in
-            let newNotifications = notifications.filter { newIDs.contains($0.localID) == true }
-            newNotifications.forEach { (itemNotification: RealmGuideItemNotification) in
-                if let notificationDate = itemNotification.localNotificationDate,
-                    let issueDate = itemNotification.issueDate {
-                    self.create(notification: itemNotification,
-                                notificationDate: notificationDate,
-                                issueDate: issueDate)
+        let now = Date().addingTimeInterval(TimeInterval(days: - 1))
+        let notifications: [RealmGuideItemNotification] = guideNotifications(realmProvider: realmProvider).filter {
+            guard let notificationDate = $0.localNotificationDate, notificationDate > now else {
+                return false
+            }
+            return true
+            }.sorted { (a, b) -> Bool in
+                a.localNotificationDate! > b.localNotificationDate!
+        }
+        let prefix = Array(notifications.prefix(20)) // FIXME: We need to limit how many. 20 is just a guess.
+        cancelServerPush(for: prefix) {
+            prefix.forEach { (notification: RealmGuideItemNotification) in
+                if let notificationDate = notification.localNotificationDate,
+                    let issueDate = notification.issueDate {
+                    self.create(notification: notification, notificationDate: notificationDate, issueDate: issueDate)
                 }
             }
         }
@@ -59,17 +65,17 @@ final class LocalNotificationBuilder: NSObject {
 
 private extension LocalNotificationBuilder {
 
-    func pendingNotificationIDs(notificationsIDs: [String], completion: @escaping ([String]) -> Void) {
-        queue.async {
-            UNUserNotificationCenter.current().getPendingNotificationRequests { (pendingRequests) in
-                let requestIDs = pendingRequests.map { $0.identifier }
-                let newIDs = notificationsIDs.filter { requestIDs.contains($0) == false }
-                DispatchQueue.main.async {
-                    completion(newIDs)
-                }
-            }
-        }
-    }
+//    func pendingNotificationIDs(notificationsIDs: [String], completion: @escaping ([String]) -> Void) {
+//        queue.async {
+//            UNUserNotificationCenter.current().getPendingNotificationRequests { (pendingRequests) in
+//                let requestIDs = pendingRequests.map { $0.identifier }
+//                let newIDs = notificationsIDs.filter { requestIDs.contains($0) == false }
+//                DispatchQueue.main.async {
+//                    completion(newIDs)
+//                }
+//            }
+//        }
+//    }
 
     func guideNotifications(realmProvider: RealmProvider) -> [RealmGuideItemNotification] {
         var notifications = [RealmGuideItemNotification]()
@@ -128,4 +134,46 @@ private extension LocalNotificationBuilder {
             }
         }
     }
+
+    // FIXME: None of the following code belongs here but I need to hack fast to get this working. #Stress
+
+    func cancelServerPush(for notifications: [RealmGuideItemNotification], completion: @escaping () -> Void) {
+        guard let networkManager = networkManager else { return }
+
+        let request = StartSyncRequest(from: 0)
+        networkManager.request(request, parser: StartSyncResult.parse) { (result) in
+            switch result {
+            case .success(let startSyncResult):
+                let bodyNotifications = notifications.map { CancelNotificationsBody.Notification(id: $0.forcedRemoteID,
+                                                                                                 serverPush: false) }
+                let body = CancelNotificationsBody(notificationItems: bodyNotifications)
+                let encoder = JSONEncoder()
+                guard let data = try? encoder.encode(body) else { return }
+                let dataString = String(data: data, encoding: .utf8)
+                print(dataString!)
+                let request = UpSyncRequest(endpoint: .guide, body: data, syncToken: startSyncResult.syncToken)
+                networkManager.request(request, parser: UpSyncResultParser.parse) { (upSyncResult) in
+                    switch upSyncResult {
+                    case .success:
+                        completion()
+                    case .failure(let error):
+                        log("Failed to fetch sync token for cancel server push: \(error)")
+                    }
+                }
+            case .failure(let error):
+                log("Failed to fetch sync token for cancel server push: \(error)")
+            }
+        }
+    }
+}
+
+private struct CancelNotificationsBody: Encodable {
+
+    struct Notification: Encodable {
+        let id: Int
+        let serverPush: Bool
+    }
+
+    let learnItems: [Int] = [] // Hack for JSON. It is always empty
+    let notificationItems: [Notification]
 }
