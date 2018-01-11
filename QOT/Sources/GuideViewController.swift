@@ -104,7 +104,7 @@ private extension GuideViewController {
         greetingView.topAnchor == view.topAnchor + UIApplication.shared.statusBarFrame.height
         greetingView.leadingAnchor == view.leadingAnchor
         greetingView.trailingAnchor == view.trailingAnchor
-        greetingViewHeightAnchor = greetingView.heightAnchor == view.heightAnchor * 0.25
+        greetingViewHeightAnchor = greetingView.heightAnchor >= view.heightAnchor * 0.1
         tableView.topAnchor == greetingView.bottomAnchor
         tableView.leadingAnchor == view.leadingAnchor
         tableView.trailingAnchor == view.trailingAnchor
