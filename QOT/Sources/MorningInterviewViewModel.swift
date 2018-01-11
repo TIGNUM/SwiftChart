@@ -99,6 +99,7 @@ final class MorningInterviewViewModel: NSObject {
             }
             if let guideItemNotification = realm.syncableObject(ofType: RealmGuideItemNotification.self,
                                                                 localID: notificationID) {
+                guideItemNotification.dailyPrepResults.removeAll()
                 guideItemNotification.dailyPrepResults.append(objectsIn: dailyPrepResults)
             }
         }
