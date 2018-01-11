@@ -39,6 +39,8 @@ extension GuideViewModel {
         case welcome = 102978
         case dailyLearnPlan = 102979
         case dailyPrep = 103002
+        case guideAllCompleted = 103108
+        case guideTodayCompleted = 103107
 
         func text(_ contentService: ContentService) -> String {
             return contentService.defaultMessage(self.rawValue)
@@ -70,6 +72,14 @@ final class GuideViewModel {
 
     private lazy var dailyPrep: String = {
         return Greeting.dailyPrep.text(services.contentService)
+    }()
+
+    private lazy var guideAllCompleted: String = {
+        return Greeting.guideAllCompleted.text(services.contentService)
+    }()
+
+    private lazy var guideTodayCompleted: String = {
+        return Greeting.guideTodayCompleted.text(services.contentService)
     }()
 
     init(services: Services, eventTracker: EventTracker) {
@@ -106,17 +116,13 @@ final class GuideViewModel {
 
     func greeting(_ item: Guide.Item?) -> String {
         let sections = services.guideService.guideSections()
-        if sections.count <= 1 {
-            if let guide = sections.first, guide.items.filter({ $0.completedAt != nil }).isEmpty {
-                return welcome
-            } else {
-                return dailyLearnPlan
-            }
-        }
-
-        if item == nil {
-            return dailyLearnPlan
-        }
+//        if sections.count <= 1 {
+//            if let guide = sections.first, guide.items.filter({ $0.completedAt != nil }).isEmpty {
+//                return welcome
+//            } else {
+//                return dailyLearnPlan
+//            }
+//        }
 
         if let item = item, item.isDailyPrep == true && item.isDailyPrepCompleted == false {
             if item.greeting.isEmpty == false {
@@ -126,11 +132,20 @@ final class GuideViewModel {
             }
         }
 
-        if let greeting = item?.greeting, greeting.isEmpty == false {
-            return greeting
-        } else {
-            return dailyLearnPlan
+        if services.guideService.guideIsTotallyCompleted() == true {
+            return guideAllCompleted
         }
+
+        if let guide = sections.first, guide.items.filter({ $0.completedAt != nil }).isEmpty {
+            return welcome
+        }
+
+        if services.guideService.guideTodayCompleted() == true {
+            return guideTodayCompleted
+        }
+
+        return dailyLearnPlan
+
     }
 
     var isReady: Bool {
