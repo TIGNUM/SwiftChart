@@ -22,7 +22,7 @@ final class LocalNotificationBuilder: NSObject {
     }
 
     func setup() {
-        let now = Date().addingTimeInterval(TimeInterval(days: - 1))
+        let now = Date()
         let notifications: [RealmGuideItemNotification] = guideNotifications(realmProvider: realmProvider).filter {
             guard let notificationDate = $0.localNotificationDate, notificationDate > now else {
                 return false
