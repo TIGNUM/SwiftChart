@@ -64,6 +64,9 @@ struct Guide {
             var dailyPrepQuestions: [Question] {
                 guard let groupStringID = questionGroupID, let groupID = Int(groupStringID) else { return [] }
                 let questions = services.questionsService.morningInterviewQuestions(questionGroupID: groupID)
+                questions.forEach { (question: Question) in
+                    print("question.key", question.key)
+                }
                 return Array(questions)
             }
 

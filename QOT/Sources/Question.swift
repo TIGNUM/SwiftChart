@@ -19,13 +19,13 @@ final class Question: SyncableObject {
 
     @objc private(set) dynamic var subtitle: String?
 
+    @objc private(set) dynamic var key: String?
+
     @objc private(set) dynamic var answersDescription: String?
 
     let answers = List<Answer>()
 
-    let groups = List<QuestionGroup>()
-
-    var key: String?
+    let groups = List<QuestionGroup>()    
 }
 
 extension Question: OneWaySyncableDown {
