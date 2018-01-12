@@ -33,7 +33,7 @@ final class GuideViewController: UIViewController, FullScreenLoadable, PageViewC
     }()
 
     private lazy var tableView: UITableView = {
-        return UITableView(contentInsets: UIEdgeInsets(top: -8, left: 0, bottom: 0, right: 0),
+        return UITableView(contentInsets: UIEdgeInsets(top: -8, left: 0, bottom: 16, right: 0),
                            estimatedRowHeight: 100,
                            delegate: self,
                            dataSource: self,
@@ -110,7 +110,8 @@ private extension GuideViewController {
         tableView.trailingAnchor == view.trailingAnchor
         tableView.bottomAnchor == view.bottomAnchor
         tableView.backgroundColor = .pineGreen
-        view.setFadeMask(at: fadeMaskLocation)
+        view.setFadeMask(at: .top)
+        view.setFadeMask(at: .bottom, height: 120)
         view.layoutIfNeeded()
     }
 
