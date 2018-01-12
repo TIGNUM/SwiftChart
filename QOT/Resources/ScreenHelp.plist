@@ -7,7 +7,7 @@
 		<key>title</key>
 		<string>Learn Explainer</string>
 		<key>imageURL</key>
-		<string>https://www.gstatic.com/webp/gallery3/1.png</string>
+		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/content/QOT+Help+Section+Video+Thumbnails/Learn_Help_Video_Thumbnail.jpg</string>
 		<key>videoURL</key>
 		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/videos/Help+Screencasts/QOT_Help_Screencasts_LEARN.m4v</string>
 		<key>message</key>
@@ -23,7 +23,7 @@ After getting a good base knowledge of the QOT55 Strategies, you can learn how t
 		<key>title</key>
 		<string>Learn Explainer</string>
 		<key>imageURL</key>
-		<string>https://www.gstatic.com/webp/gallery3/1.png</string>
+		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/content/QOT+Help+Section+Video+Thumbnails/Learn_Help_Video_Thumbnail.jpg</string>
 		<key>videoURL</key>
 		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/videos/Help+Screencasts/QOT_Help_Screencasts_LEARN.m4v</string>
 		<key>message</key>
@@ -39,7 +39,7 @@ After getting a good base knowledge of the QOT55 Strategies, you can learn how t
 		<key>title</key>
 		<string>Me Explainer</string>
 		<key>imageURL</key>
-		<string>https://www.gstatic.com/webp/gallery3/1.png</string>
+		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/content/QOT+Help+Section+Video+Thumbnails/Me_Help_Video_Thumbnail.png</string>
 		<key>videoURL</key>
 		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/videos/Help+Screencasts/QOT_Help_Screencasts_ME.m4v</string>
 		<key>message</key>
@@ -56,7 +56,7 @@ Within MY WHY, you&apos;ll also see your Weekly Choices. These are selected acco
 		<key>title</key>
 		<string>Me Explainer</string>
 		<key>imageURL</key>
-		<string>https://www.gstatic.com/webp/gallery3/1.png</string>
+		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/content/QOT+Help+Section+Video+Thumbnails/Me_Help_Video_Thumbnail.png</string>
 		<key>videoURL</key>
 		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/videos/Help+Screencasts/QOT_Help_Screencasts_ME.m4v</string>
 		<key>message</key>
@@ -101,6 +101,17 @@ QOT then asks you what type of event you are preparing for. Upon tapping on an e
 
 You can also save an event prep to MY PREP by tapping on the icon on the top right. You will then have the option to add the prep to future events in your calendars that are synced with QOT.
 After this, you can access that specific preparation by either swiping left or tapping on the MY PREP title at the top right of the screen. The titles in MY PREP tell you how long until your event, what the event is, and how many preparation items you have completed. With QOT Coach and MY PREP, you will become more easily prepared for any of your upcoming events.</string>
+	</dict>
+	<key>guide</key>
+	<dict>
+		<key>title</key>
+		<string>Guide Explainer</string>
+		<key>imageURL</key>
+		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/content/QOT+Help+Section+Video+Thumbnails/Guide_Help_Video_Thumbnail.jpg</string>
+		<key>videoURL</key>
+		<string>file://none</string>
+		<key>message</key>
+		<string>Text to come</string>
 	</dict>
 </dict>
 </plist>
