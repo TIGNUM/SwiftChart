@@ -155,8 +155,7 @@ private extension ArticleItemViewController {
         tableView.estimatedSectionHeaderHeight = 100
         view.backgroundColor = .clear
         view.addFadeView(at: .top)
-        view.setFadeMask(at: fadeMaskLocation)
-        view.addFadeView(at: .bottom)
+        view.setFadeMask(at: fadeMaskLocation)        
         view.layoutIfNeeded()
     }
 
