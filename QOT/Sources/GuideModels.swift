@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Guide {
 
@@ -44,13 +45,12 @@ struct Guide {
             let results: [String]
 
             var labels: [String] {
-                return ["Sleep\nQuality", "Sleep\nQuantity", "Load\nIndex", "Load\nFoo", "Recovery\nIndex"]
-                /*
-                 guard
-                 let groupStringID = questionGroupID,
-                 let questionGroupID = Int(groupStringID) else { return [] }
-                 return services.questionsService.morningInterviewTitles(questionGroupID: questionGroupID)
-                 */
+                var formattedTitles = [String]()
+                dailyPrepQuestions.map { $0.dailyPrepTitle }.forEach { (label: String) in
+                    formattedTitles.append(label.replacingOccurrences(of: "#", with: "\n"))
+                }
+
+                return formattedTitles
             }
 
             var empty: [String] {
@@ -58,9 +58,18 @@ struct Guide {
             }
 
             var questionCount: Int {
-                guard let groupStringID = questionGroupID, let groupID = Int(groupStringID) else { return 0 }
+                return dailyPrepQuestions.count
+            }
+
+            var dailyPrepQuestions: [Question] {
+                guard let groupStringID = questionGroupID, let groupID = Int(groupStringID) else { return [] }
                 let questions = services.questionsService.morningInterviewQuestions(questionGroupID: groupID)
-                return Array(questions).count
+                return Array(questions)
+            }
+
+            func resultColor() -> UIColor {
+
+                return .white
             }
         }
 

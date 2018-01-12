@@ -14,6 +14,7 @@ final class InterviewQuestion {
 
     let remoteID: Int
     let title: String
+    let dailyPrepTitle: String
     let subtitle: String?
     let answers: [Answer]
     var answerIndex: Int
@@ -24,6 +25,7 @@ final class InterviewQuestion {
 
         self.remoteID = question.forcedRemoteID
         self.title = question.title
+        self.dailyPrepTitle = question.dailyPrepTitle
         self.subtitle = question.subtitle
         self.answers = answers
         self.answerIndex = (answers.count - 1) / 2

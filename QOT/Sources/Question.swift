@@ -24,6 +24,8 @@ final class Question: SyncableObject {
     let answers = List<Answer>()
 
     let groups = List<QuestionGroup>()
+
+    var key: String?
 }
 
 extension Question: OneWaySyncableDown {
@@ -46,7 +48,8 @@ extension Question: OneWaySyncableDown {
         title = data.title
         dailyPrepTitle = data.dailyPrepTitle
         answersDescription = data.answersDescription
-        answers.append(objectsIn: data.answers.map({ Answer(intermediary: $0) }))
+        key = data.answers.filter { $0.title == "key" }.first?.subtitle
+        answers.append(objectsIn: data.answers.filter { $0.title != "key" }.map({ Answer(intermediary: $0) }))
         groups.append(objectsIn: data.groups.map({ QuestionGroup(intermediary: $0) }))
     }
 }
