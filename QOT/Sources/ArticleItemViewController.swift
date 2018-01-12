@@ -130,8 +130,10 @@ private extension ArticleItemViewController {
     }
 
     func setupView() {
-        let backgroundImage = (viewModel.backgroundImage == nil) ? R.image.backgroundSidebar() : viewModel.backgroundImage
-        tableView.backgroundView = UIImageView(image: backgroundImage)
+        let backgroundImageView = UIImageView(frame: view.frame)
+        backgroundImageView.image = (viewModel.backgroundImage == nil) ? R.image.backgroundSidebar() : viewModel.backgroundImage
+        tableView.backgroundColor = .clear
+        view.addSubview(backgroundImageView)
         view.addSubview(tableView)
         view.translatesAutoresizingMaskIntoConstraints = true
 
@@ -146,6 +148,7 @@ private extension ArticleItemViewController {
             button.layer.borderWidth = 2
             button.layer.borderColor = UIColor.azure.cgColor
             button.setTitleColor(.azure, for: .normal)
+            view.addFadeView(at: .bottom)
         }
 
         tableView.edgeAnchors == view.edgeAnchors
