@@ -73,7 +73,7 @@ Within MY WHY, you&apos;ll also see your Weekly Choices. These are selected acco
 		<key>title</key>
 		<string>Prepare Explainer</string>
 		<key>imageURL</key>
-		<string>https://www.gstatic.com/webp/gallery3/1.png</string>
+		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/content/QOT+Help+Section+Video+Thumbnails/Prepare_Help_Video_Thumbnail.png</string>
 		<key>videoURL</key>
 		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/videos/Help+Screencasts/QOT_Help_Screencasts_PREPARE.m4v</string>
 		<key>message</key>
@@ -90,7 +90,7 @@ After this, you can access that specific preparation by either swiping left or t
 		<key>title</key>
 		<string>Prepare Explainer</string>
 		<key>imageURL</key>
-		<string>https://www.gstatic.com/webp/gallery3/1.png</string>
+		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/content/QOT+Help+Section+Video+Thumbnails/Prepare_Help_Video_Thumbnail.png</string>
 		<key>videoURL</key>
 		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/videos/Help+Screencasts/QOT_Help_Screencasts_PREPARE.m4v</string>
 		<key>message</key>
