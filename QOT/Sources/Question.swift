@@ -49,7 +49,7 @@ extension Question: OneWaySyncableDown {
         dailyPrepTitle = data.dailyPrepTitle
         answersDescription = data.answersDescription
         key = data.answers.filter { $0.title == "key" }.first?.subtitle
-        answers.append(objectsIn: data.answers.filter { $0.title != "key" }.map({ Answer(intermediary: $0) }))
+        answers.append(objectsIn: data.answers.filter { $0.title != "key" && $0.syncStatus != 2 /*2 = DELETED*/ }.map({ Answer(intermediary: $0) }))
         groups.append(objectsIn: data.groups.map({ QuestionGroup(intermediary: $0) }))
     }
 }
