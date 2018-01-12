@@ -84,9 +84,11 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     lazy var topTabBarControllerGuide: UINavigationController = {
         let viewModel = GuideViewModel(services: services, eventTracker: eventTracker)
         let guideViewController = GuideViewController(viewModel: viewModel, fadeMaskLocation: .topAndBottom)
+        let leftButton = UIBarButtonItem(withImage: R.image.explainer_ico())
         let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())
         let topTabBarController = UINavigationController(withPages: [guideViewController],
                                                          topBarDelegate: self,
+                                                         leftButton: leftButton,
                                                          rightButton: rightButton)
         let config = tabBarItemConfig(title: "GUIDE", tag: 0)
         topTabBarController.tabBarItem = TabBarItem(config: config)
@@ -374,6 +376,8 @@ extension TabBarCoordinator: TopNavigationBarDelegate {
     func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
         guard let topBarButtonIndex = navigationBar.currentButtonIndex else { return }
         switch selectedIndex.value {
+        case 0:
+            print("show help for guide")
         case 1:
             switch topBarButtonIndex {
             case 0:
