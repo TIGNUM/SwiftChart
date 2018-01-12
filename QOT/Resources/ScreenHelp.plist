@@ -5,82 +5,102 @@
 	<key>strategies</key>
 	<dict>
 		<key>title</key>
-		<string>LEARN SECTION</string>
+		<string>Learn Explainer</string>
 		<key>imageURL</key>
 		<string>https://www.gstatic.com/webp/gallery3/1.png</string>
 		<key>videoURL</key>
-		<string>https://d1ewy15slsehi8.cloudfront.net/videos/Learn_Foundation_Videos/QOT_Mindset_Final.mp4?Policy=eyJTdGF0ZW1lbnQiOiBbeyJSZXNvdXJjZSI6Iio6Ly9kMWV3eTE1c2xzZWhpOC5jbG91ZGZyb250Lm5ldC8qIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxODIzNzU1NjQ3fSwiSXBBZGRyZXNzIjp7IkFXUzpTb3VyY2VJcCI6IjAuMC4wLjAvMCJ9fX1dfQ__&amp;Signature=KqdElSTzoGjAjNooJQn5w7ytZroSMBr4GvzqwDx6pGb~Y6tU1L0mj3m-iHTnfpXbWd-s2IKlfNXKEhEQrxkdpvaWGkRvT1TTZUive2WbOZVBwCy95F-qLJ06fr0wm1wmlDxPXqSWU49m1QcKOn-9Qw3zMxRTy4KazKXrvDSXVTHrIXkuawpHIIz6h0uDNJ6mNKRLdlBQKgd~Dg-~qMO7ASH9XY7gM05Y5VXasyG1-5qok3s5kNIG8pNzpWxfJGxrIFo0vaGElvw-Ex6uksrQUtVP~5L0M5c1RyRNvgMx-dz3Nm5DO4giSMmP1Azh3fGTpNN2YhDgoWJZn09QLSx1cQCtpQvpXMtcYfKXcR5qSQ9WXLCEYnH5anpcIIEGixyCacOZNLq1p~Ro3qxn6gwhx93LKr~oPqByoQ2Olj5Dcj1eSwg7R17~lAoTdc7UZsSznsacI2F0FkP9MKdFwtNa02Awvn6Ni1AJvCa-c3zk3mMorCBMJicb8ULhVQG2f7fa3TeJ8lnLCXE7TWvIqR5M958Se3F6a2jBwz~QQGEvbvL1yJhKxBJ6i~OeidUiLY4sMfb6jLmZkVX59I5m--a5jS9Xi6MKMjo32Qt8uEFcyxDoqcWcrwYHedwq5x5yS80mAEjr5yur76jeUMmSFEPV6YzKaK7q3Kykxrkbdvj5rF0_&amp;Key-Pair-Id=APKAI2CZZ4N3GP3ZUGJQ</string>
+		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/videos/Help+Screencasts/QOT_Help_Screencasts_LEARN.m4v</string>
 		<key>message</key>
-		<string>LEARN HOME SCREEN:
+		<string>The Learn Section represents the foundation of everything you need to know to really get the most out of the platform. There are 55 strategies categorized by our four main pillars, Movement, Nutrition, Mindset, and Recovery, as well as our foundational videos and habituation strategies.
+To get into a category, simply tap on the bubble. Once in the bubble, any strategies you have read will appear translucent. Any strategies you have not yet read will appear brighter and colored in. Each strategy bubble shows the title of the strategy and an estimated time that it will take you to read the strategy. Tapping on the bubble will take you to the full text of the strategy. One swipe left will bring you to the bullet points, which make up a short, easy-to-read summary that explains what the strategy is in more detail. Each of the QOT55 Strategies also has an audio component, which you can access by swiping left once more.
 
-The Learn section represents the foundation of everything you need to know to really get the most out of QOT. There are 55 strategies categorized by four main pillars, Movement, Nutrition, Mindset, and Recovery, as well as foundational videos and habituation strategies.To get into a category, simply tap on the bubble. The more complete your circles are, the more strategies of that type you have reviewed. The more complete your circles are, the more strategies of that type you have reviewed. Once your circle is complete, you’ve reviewed all of that category.
-
-STRATEGY SCREEN:
-
-Any strategies you have read will appear translucent. Each strategy bubble shows the title of the strategy and an estimated time that it will take you to read the strategy. Tapping on the bubble will take you to the full text of the strategy, which will explain what the strategy is and how you can use it. If you don’t have time to read the entire text, you can swipe to the left to access bullet point or audio forms of the strategy. You can scroll between the different strategies by swiping right and left. At the top of the screen, you will see which category of strategy you are in
-
-WHILE IN TEXT SECTION OF A STRATEGY:
-
-Swipe left to view the bullet points of this strategy, which make up a short, easy-to-read summary that explains it in more detail. Swipe left twice to access the audio file of the strategy. Each of the QOT55 strategies has an audio component. You can listen to this in your car, during your commute, or while in the office. To exit the strategy, tap on the arrow in the top left.
-
-WHAT’S HOT HELP ICON:
-
-What’s Hot helps you get more insights into how the QOT55 Strategies are applied. This section will contain articles of current events, client experiences, and unique insights on new studies that are happening and how you can analyze these events from a QOT perspective. The most recent 10 What’s Hot posts will be displayed in this section. They each have a title, how long each item takes to read, and the date the article was posted. What’s Hot also includes Tignum’s biweekly blogs. One of the benefits of being a QOT user is that you get first access to our newest content. To read an article, simply tap on its picture or title.</string>
+Return back to the strategy overview by tapping the icon in the top left of the screen. You can scroll between the different strategies by swiping right and left. At the top of the screen, you will see which category of strategy you are in (Movement, Nutrition, Mindset, Recovery, Habituation, or Foundation). 
+On the home screen, the bubbles indicate how many of each type of strategy you have reviewed. Once the circle surrounding the bubble is complete, you&apos;ve reviewed all of that category. 
+After getting a good base knowledge of the QOT55 Strategies, you can learn how these strategies are applied to real-world experiences by checking out What&apos;s Hot. You can access this by tapping on What&apos;s Hot at the top, right of the screen. In What&apos;s Hot, we post various articles of current events, client experiences, our bi-weekly blog, and unique insights on new studies that are happening and how you can analyze these events from a QOT perspective.</string>
 	</dict>
 	<key>whatsHot</key>
 	<dict>
 		<key>title</key>
-		<string>whatsHot title</string>
+		<string>Learn Explainer</string>
 		<key>imageURL</key>
 		<string>https://www.gstatic.com/webp/gallery3/1.png</string>
 		<key>videoURL</key>
-		<string>https://d1ewy15slsehi8.cloudfront.net/videos/Learn_Foundation_Videos/QOT_Mindset_Final.mp4?Policy=eyJTdGF0ZW1lbnQiOiBbeyJSZXNvdXJjZSI6Iio6Ly9kMWV3eTE1c2xzZWhpOC5jbG91ZGZyb250Lm5ldC8qIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxODIzNzU1NjQ3fSwiSXBBZGRyZXNzIjp7IkFXUzpTb3VyY2VJcCI6IjAuMC4wLjAvMCJ9fX1dfQ__&amp;Signature=KqdElSTzoGjAjNooJQn5w7ytZroSMBr4GvzqwDx6pGb~Y6tU1L0mj3m-iHTnfpXbWd-s2IKlfNXKEhEQrxkdpvaWGkRvT1TTZUive2WbOZVBwCy95F-qLJ06fr0wm1wmlDxPXqSWU49m1QcKOn-9Qw3zMxRTy4KazKXrvDSXVTHrIXkuawpHIIz6h0uDNJ6mNKRLdlBQKgd~Dg-~qMO7ASH9XY7gM05Y5VXasyG1-5qok3s5kNIG8pNzpWxfJGxrIFo0vaGElvw-Ex6uksrQUtVP~5L0M5c1RyRNvgMx-dz3Nm5DO4giSMmP1Azh3fGTpNN2YhDgoWJZn09QLSx1cQCtpQvpXMtcYfKXcR5qSQ9WXLCEYnH5anpcIIEGixyCacOZNLq1p~Ro3qxn6gwhx93LKr~oPqByoQ2Olj5Dcj1eSwg7R17~lAoTdc7UZsSznsacI2F0FkP9MKdFwtNa02Awvn6Ni1AJvCa-c3zk3mMorCBMJicb8ULhVQG2f7fa3TeJ8lnLCXE7TWvIqR5M958Se3F6a2jBwz~QQGEvbvL1yJhKxBJ6i~OeidUiLY4sMfb6jLmZkVX59I5m--a5jS9Xi6MKMjo32Qt8uEFcyxDoqcWcrwYHedwq5x5yS80mAEjr5yur76jeUMmSFEPV6YzKaK7q3Kykxrkbdvj5rF0_&amp;Key-Pair-Id=APKAI2CZZ4N3GP3ZUGJQ</string>
+		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/videos/Help+Screencasts/QOT_Help_Screencasts_LEARN.m4v</string>
 		<key>message</key>
-		<string>whatsHot a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message </string>
+		<string>The Learn Section represents the foundation of everything you need to know to really get the most out of the platform. There are 55 strategies categorized by our four main pillars, Movement, Nutrition, Mindset, and Recovery, as well as our foundational videos and habituation strategies.
+To get into a category, simply tap on the bubble. Once in the bubble, any strategies you have read will appear translucent. Any strategies you have not yet read will appear brighter and colored in. Each strategy bubble shows the title of the strategy and an estimated time that it will take you to read the strategy. Tapping on the bubble will take you to the full text of the strategy. One swipe left will bring you to the bullet points, which make up a short, easy-to-read summary that explains what the strategy is in more detail. Each of the QOT55 Strategies also has an audio component, which you can access by swiping left once more.
+
+Return back to the strategy overview by tapping the icon in the top left of the screen. You can scroll between the different strategies by swiping right and left. At the top of the screen, you will see which category of strategy you are in (Movement, Nutrition, Mindset, Recovery, Habituation, or Foundation). 
+On the home screen, the bubbles indicate how many of each type of strategy you have reviewed. Once the circle surrounding the bubble is complete, you&apos;ve reviewed all of that category. 
+After getting a good base knowledge of the QOT55 Strategies, you can learn how these strategies are applied to real-world experiences by checking out What&apos;s Hot. You can access this by tapping on What&apos;s Hot at the top, right of the screen. In What&apos;s Hot, we post various articles of current events, client experiences, our bi-weekly blog, and unique insights on new studies that are happening and how you can analyze these events from a QOT perspective.</string>
 	</dict>
 	<key>myData</key>
 	<dict>
 		<key>title</key>
-		<string>myData title</string>
+		<string>Me Explainer</string>
 		<key>imageURL</key>
 		<string>https://www.gstatic.com/webp/gallery3/1.png</string>
 		<key>videoURL</key>
-		<string>https://d1ewy15slsehi8.cloudfront.net/videos/Learn_Foundation_Videos/QOT_Mindset_Final.mp4?Policy=eyJTdGF0ZW1lbnQiOiBbeyJSZXNvdXJjZSI6Iio6Ly9kMWV3eTE1c2xzZWhpOC5jbG91ZGZyb250Lm5ldC8qIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxODIzNzU1NjQ3fSwiSXBBZGRyZXNzIjp7IkFXUzpTb3VyY2VJcCI6IjAuMC4wLjAvMCJ9fX1dfQ__&amp;Signature=KqdElSTzoGjAjNooJQn5w7ytZroSMBr4GvzqwDx6pGb~Y6tU1L0mj3m-iHTnfpXbWd-s2IKlfNXKEhEQrxkdpvaWGkRvT1TTZUive2WbOZVBwCy95F-qLJ06fr0wm1wmlDxPXqSWU49m1QcKOn-9Qw3zMxRTy4KazKXrvDSXVTHrIXkuawpHIIz6h0uDNJ6mNKRLdlBQKgd~Dg-~qMO7ASH9XY7gM05Y5VXasyG1-5qok3s5kNIG8pNzpWxfJGxrIFo0vaGElvw-Ex6uksrQUtVP~5L0M5c1RyRNvgMx-dz3Nm5DO4giSMmP1Azh3fGTpNN2YhDgoWJZn09QLSx1cQCtpQvpXMtcYfKXcR5qSQ9WXLCEYnH5anpcIIEGixyCacOZNLq1p~Ro3qxn6gwhx93LKr~oPqByoQ2Olj5Dcj1eSwg7R17~lAoTdc7UZsSznsacI2F0FkP9MKdFwtNa02Awvn6Ni1AJvCa-c3zk3mMorCBMJicb8ULhVQG2f7fa3TeJ8lnLCXE7TWvIqR5M958Se3F6a2jBwz~QQGEvbvL1yJhKxBJ6i~OeidUiLY4sMfb6jLmZkVX59I5m--a5jS9Xi6MKMjo32Qt8uEFcyxDoqcWcrwYHedwq5x5yS80mAEjr5yur76jeUMmSFEPV6YzKaK7q3Kykxrkbdvj5rF0_&amp;Key-Pair-Id=APKAI2CZZ4N3GP3ZUGJQ</string>
+		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/videos/Help+Screencasts/QOT_Help_Screencasts_ME.m4v</string>
 		<key>message</key>
-		<string>myData a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message </string>
+		<string>The Me Section is composed of two parts: MY DATA, and MY WHY. You can navigate between these by swiping left and right.
+
+In MY DATA, you will see different categories: Peak Performance, Intensity, Meetings, Travel, Sleep, and Activity as well as an anchor image that ties together MY WHY and MY DATA. To get more insights, simply tap on the data point. Red indicates that a certain data point needs work; white indicates that you are on track and have great statistics for that item.
+
+Let&apos;s use Intensity as an example. This graph shows your week based on your input from Daily Preparation Minute prompts. It shows your perceived load level on each day that you answer these questions. You can navigate between week and month by tapping on the respective subtitles. Each chart is different, and to learn about each chart, simply tap the information icon on the bottom left of the chart you want to learn more about. 
+The ME Section also contains MY WHY. The MY WHY section contains your To Be Vision, Weekly Choices, and QOT Partners. Your To Be Vision is the most important aspect of QOT, as each strategy you apply will be tied to your To Be Vision. To edit your To Be Vision, simply tap on the pencil icon on the top right of the screen. You can then change the title and text of your To Be Vision. You can also upload an anchor image that is important to you by selecting the + icon at the bottom of the screen. 
+Within MY WHY, you&apos;ll also see your Weekly Choices. These are selected according to your QOT Learning Plan or by you each week (depending on where you are within the QOT Learning Plan. Simply tap on the Weekly Choices to see more details. You can then scroll up and down to see the Weekly Choices for your current week and in past weeks. To learn more about a Weekly Choice strategy, simply tap on the title. You are then brought to the strategy with full text, bullets, and audio. To return to the MY WHY home screen, simply tap the arrow in the top left.</string>
 	</dict>
 	<key>myWhy</key>
 	<dict>
 		<key>title</key>
-		<string>myWhy title</string>
+		<string>Me Explainer</string>
 		<key>imageURL</key>
 		<string>https://www.gstatic.com/webp/gallery3/1.png</string>
 		<key>videoURL</key>
-		<string>https://d1ewy15slsehi8.cloudfront.net/videos/Learn_Foundation_Videos/QOT_Mindset_Final.mp4?Policy=eyJTdGF0ZW1lbnQiOiBbeyJSZXNvdXJjZSI6Iio6Ly9kMWV3eTE1c2xzZWhpOC5jbG91ZGZyb250Lm5ldC8qIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxODIzNzU1NjQ3fSwiSXBBZGRyZXNzIjp7IkFXUzpTb3VyY2VJcCI6IjAuMC4wLjAvMCJ9fX1dfQ__&amp;Signature=KqdElSTzoGjAjNooJQn5w7ytZroSMBr4GvzqwDx6pGb~Y6tU1L0mj3m-iHTnfpXbWd-s2IKlfNXKEhEQrxkdpvaWGkRvT1TTZUive2WbOZVBwCy95F-qLJ06fr0wm1wmlDxPXqSWU49m1QcKOn-9Qw3zMxRTy4KazKXrvDSXVTHrIXkuawpHIIz6h0uDNJ6mNKRLdlBQKgd~Dg-~qMO7ASH9XY7gM05Y5VXasyG1-5qok3s5kNIG8pNzpWxfJGxrIFo0vaGElvw-Ex6uksrQUtVP~5L0M5c1RyRNvgMx-dz3Nm5DO4giSMmP1Azh3fGTpNN2YhDgoWJZn09QLSx1cQCtpQvpXMtcYfKXcR5qSQ9WXLCEYnH5anpcIIEGixyCacOZNLq1p~Ro3qxn6gwhx93LKr~oPqByoQ2Olj5Dcj1eSwg7R17~lAoTdc7UZsSznsacI2F0FkP9MKdFwtNa02Awvn6Ni1AJvCa-c3zk3mMorCBMJicb8ULhVQG2f7fa3TeJ8lnLCXE7TWvIqR5M958Se3F6a2jBwz~QQGEvbvL1yJhKxBJ6i~OeidUiLY4sMfb6jLmZkVX59I5m--a5jS9Xi6MKMjo32Qt8uEFcyxDoqcWcrwYHedwq5x5yS80mAEjr5yur76jeUMmSFEPV6YzKaK7q3Kykxrkbdvj5rF0_&amp;Key-Pair-Id=APKAI2CZZ4N3GP3ZUGJQ</string>
+		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/videos/Help+Screencasts/QOT_Help_Screencasts_ME.m4v</string>
 		<key>message</key>
-		<string>myWhy a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message </string>
+		<string>The Me Section is composed of two parts: MY DATA, and MY WHY. You can navigate between these by swiping left and right.
+
+In MY DATA, you will see different categories: Peak Performance, Intensity, Meetings, Travel, Sleep, and Activity as well as an anchor image that ties together MY WHY and MY DATA. To get more insights, simply tap on the data point. Red indicates that a certain data point needs work; white indicates that you are on track and have great statistics for that item.
+
+Let&apos;s use Intensity as an example. This graph shows your week based on your input from Daily Preparation Minute prompts. It shows your perceived load level on each day that you answer these questions. You can navigate between week and month by tapping on the respective subtitles. Each chart is different, and to learn about each chart, simply tap the information icon on the bottom left of the chart you want to learn more about. 
+The ME Section also contains MY WHY. The MY WHY section contains your To Be Vision, Weekly Choices, and QOT Partners. Your To Be Vision is the most important aspect of QOT, as each strategy you apply will be tied to your To Be Vision. To edit your To Be Vision, simply tap on the pencil icon on the top right of the screen. You can then change the title and text of your To Be Vision. You can also upload an anchor image that is important to you by selecting the + icon at the bottom of the screen. 
+Within MY WHY, you&apos;ll also see your Weekly Choices. These are selected according to your QOT Learning Plan or by you each week (depending on where you are within the QOT Learning Plan. Simply tap on the Weekly Choices to see more details. You can then scroll up and down to see the Weekly Choices for your current week and in past weeks. To learn more about a Weekly Choice strategy, simply tap on the title. You are then brought to the strategy with full text, bullets, and audio. To return to the MY WHY home screen, simply tap the arrow in the top left.</string>
 	</dict>
 	<key>coach</key>
 	<dict>
 		<key>title</key>
-		<string>coach title</string>
+		<string>Prepare Explainer</string>
 		<key>imageURL</key>
 		<string>https://www.gstatic.com/webp/gallery3/1.png</string>
 		<key>videoURL</key>
-		<string>https://d1ewy15slsehi8.cloudfront.net/videos/Learn_Foundation_Videos/QOT_Mindset_Final.mp4?Policy=eyJTdGF0ZW1lbnQiOiBbeyJSZXNvdXJjZSI6Iio6Ly9kMWV3eTE1c2xzZWhpOC5jbG91ZGZyb250Lm5ldC8qIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxODIzNzU1NjQ3fSwiSXBBZGRyZXNzIjp7IkFXUzpTb3VyY2VJcCI6IjAuMC4wLjAvMCJ9fX1dfQ__&amp;Signature=KqdElSTzoGjAjNooJQn5w7ytZroSMBr4GvzqwDx6pGb~Y6tU1L0mj3m-iHTnfpXbWd-s2IKlfNXKEhEQrxkdpvaWGkRvT1TTZUive2WbOZVBwCy95F-qLJ06fr0wm1wmlDxPXqSWU49m1QcKOn-9Qw3zMxRTy4KazKXrvDSXVTHrIXkuawpHIIz6h0uDNJ6mNKRLdlBQKgd~Dg-~qMO7ASH9XY7gM05Y5VXasyG1-5qok3s5kNIG8pNzpWxfJGxrIFo0vaGElvw-Ex6uksrQUtVP~5L0M5c1RyRNvgMx-dz3Nm5DO4giSMmP1Azh3fGTpNN2YhDgoWJZn09QLSx1cQCtpQvpXMtcYfKXcR5qSQ9WXLCEYnH5anpcIIEGixyCacOZNLq1p~Ro3qxn6gwhx93LKr~oPqByoQ2Olj5Dcj1eSwg7R17~lAoTdc7UZsSznsacI2F0FkP9MKdFwtNa02Awvn6Ni1AJvCa-c3zk3mMorCBMJicb8ULhVQG2f7fa3TeJ8lnLCXE7TWvIqR5M958Se3F6a2jBwz~QQGEvbvL1yJhKxBJ6i~OeidUiLY4sMfb6jLmZkVX59I5m--a5jS9Xi6MKMjo32Qt8uEFcyxDoqcWcrwYHedwq5x5yS80mAEjr5yur76jeUMmSFEPV6YzKaK7q3Kykxrkbdvj5rF0_&amp;Key-Pair-Id=APKAI2CZZ4N3GP3ZUGJQ</string>
+		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/videos/Help+Screencasts/QOT_Help_Screencasts_PREPARE.m4v</string>
 		<key>message</key>
-		<string>coach a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message </string>
+		<string>The Prepare Section has two main components, the QOT Coach and MY PREP.
+The QOT Coach is there to help you with certain struggles you are dealing with as well as preparation for events. The QOT Coach asks you a certain prompt to gauge what you need help with. You can then select whether you&apos;re struggling and need help with a certain situation or whether you&apos;re preparing for a certain event. Simply tap a prompt that matches your situation most closely.
+
+QOT then asks you what type of event you are preparing for. Upon tapping on an event category, QOT brings up the event-specific prep. Each item has a + icon on the right with more detailed information. The title typically includes a video with a short description. As you expand each item, you will see details of that preparation. If the item is based on a QOT55 Strategy, you can tap read more to view that strategy in detail.
+
+You can also save an event prep to MY PREP by tapping on the icon on the top right. You will then have the option to add the prep to future events in your calendars that are synced with QOT.
+After this, you can access that specific preparation by either swiping left or tapping on the MY PREP title at the top right of the screen. The titles in MY PREP tell you how long until your event, what the event is, and how many preparation items you have completed. With QOT Coach and MY PREP, you will become more easily prepared for any of your upcoming events.</string>
 	</dict>
 	<key>prep</key>
 	<dict>
 		<key>title</key>
-		<string>prep title</string>
+		<string>Prepare Explainer</string>
 		<key>imageURL</key>
 		<string>https://www.gstatic.com/webp/gallery3/1.png</string>
 		<key>videoURL</key>
-		<string>https://d1ewy15slsehi8.cloudfront.net/videos/Learn_Foundation_Videos/QOT_Mindset_Final.mp4?Policy=eyJTdGF0ZW1lbnQiOiBbeyJSZXNvdXJjZSI6Iio6Ly9kMWV3eTE1c2xzZWhpOC5jbG91ZGZyb250Lm5ldC8qIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxODIzNzU1NjQ3fSwiSXBBZGRyZXNzIjp7IkFXUzpTb3VyY2VJcCI6IjAuMC4wLjAvMCJ9fX1dfQ__&amp;Signature=KqdElSTzoGjAjNooJQn5w7ytZroSMBr4GvzqwDx6pGb~Y6tU1L0mj3m-iHTnfpXbWd-s2IKlfNXKEhEQrxkdpvaWGkRvT1TTZUive2WbOZVBwCy95F-qLJ06fr0wm1wmlDxPXqSWU49m1QcKOn-9Qw3zMxRTy4KazKXrvDSXVTHrIXkuawpHIIz6h0uDNJ6mNKRLdlBQKgd~Dg-~qMO7ASH9XY7gM05Y5VXasyG1-5qok3s5kNIG8pNzpWxfJGxrIFo0vaGElvw-Ex6uksrQUtVP~5L0M5c1RyRNvgMx-dz3Nm5DO4giSMmP1Azh3fGTpNN2YhDgoWJZn09QLSx1cQCtpQvpXMtcYfKXcR5qSQ9WXLCEYnH5anpcIIEGixyCacOZNLq1p~Ro3qxn6gwhx93LKr~oPqByoQ2Olj5Dcj1eSwg7R17~lAoTdc7UZsSznsacI2F0FkP9MKdFwtNa02Awvn6Ni1AJvCa-c3zk3mMorCBMJicb8ULhVQG2f7fa3TeJ8lnLCXE7TWvIqR5M958Se3F6a2jBwz~QQGEvbvL1yJhKxBJ6i~OeidUiLY4sMfb6jLmZkVX59I5m--a5jS9Xi6MKMjo32Qt8uEFcyxDoqcWcrwYHedwq5x5yS80mAEjr5yur76jeUMmSFEPV6YzKaK7q3Kykxrkbdvj5rF0_&amp;Key-Pair-Id=APKAI2CZZ4N3GP3ZUGJQ</string>
+		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/videos/Help+Screencasts/QOT_Help_Screencasts_PREPARE.m4v</string>
 		<key>message</key>
-		<string>prep a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message a random message </string>
+		<string>The Prepare Section has two main components, the QOT Coach and MY PREP.
+The QOT Coach is there to help you with certain struggles you are dealing with as well as preparation for events. The QOT Coach asks you a certain prompt to gauge what you need help with. You can then select whether you&apos;re struggling and need help with a certain situation or whether you&apos;re preparing for a certain event. Simply tap a prompt that matches your situation most closely.
+
+QOT then asks you what type of event you are preparing for. Upon tapping on an event category, QOT brings up the event-specific prep. Each item has a + icon on the right with more detailed information. The title typically includes a video with a short description. As you expand each item, you will see details of that preparation. If the item is based on a QOT55 Strategy, you can tap read more to view that strategy in detail.
+
+You can also save an event prep to MY PREP by tapping on the icon on the top right. You will then have the option to add the prep to future events in your calendars that are synced with QOT.
+After this, you can access that specific preparation by either swiping left or tapping on the MY PREP title at the top right of the screen. The titles in MY PREP tell you how long until your event, what the event is, and how many preparation items you have completed. With QOT Coach and MY PREP, you will become more easily prepared for any of your upcoming events.</string>
 	</dict>
 </dict>
 </plist>
