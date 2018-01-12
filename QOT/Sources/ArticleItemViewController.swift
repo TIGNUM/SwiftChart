@@ -172,7 +172,7 @@ private extension ArticleItemViewController {
 
     @objc func openFeatureLink() {
         guard let url = guideItem?.featureLink?.url else { return }
-        LaunchHandler().process(url: url)
+        LaunchHandler().process(url: url, guideItem: guideItem)
     }
 
     func setTableViewHeader() {

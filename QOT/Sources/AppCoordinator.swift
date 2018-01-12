@@ -688,7 +688,7 @@ extension AppCoordinator {
         currentPresentedController = tabBarController.selectedViewController
     }
 
-    func presentSideBar() -> SidebarCoordinator? {
+    func presentSideBar(guideItem: Guide.Item?) -> SidebarCoordinator? {
         dismissCurrentPresentedControllers()
         guard
             let rootViewController = windowManager.rootViewController(atLevel: .normal),
@@ -697,7 +697,8 @@ extension AppCoordinator {
                                              services: services,
                                              syncManager: syncManager,
                                              networkManager: networkManager,
-                                             permissionsManager: permissionsManager)
+                                             permissionsManager: permissionsManager,
+                                             guideItem: guideItem)
         startChild(child: coordinator)
         currentPresentedController = coordinator.sideBarViewController
         currentPresentedNavigationController = coordinator.topTabBarController
@@ -705,8 +706,8 @@ extension AppCoordinator {
         return coordinator
     }
 
-    func presentPreferencesSyncCalendar() {
-        guard let sidebarCoordinator = presentSideBar() else { return }
+    func presentPreferencesSyncCalendar(guideItem: Guide.Item?) {
+        guard let sidebarCoordinator = presentSideBar(guideItem: guideItem) else { return }
         sidebarCoordinator.didTapSettingsMenuCell(with: nil, in: sidebarCoordinator.sideBarViewController)
         guard let settingsMenuCoordinator = sidebarCoordinator.settingsMenuCoordinator else { return }
         let settingsMenuViewController = settingsMenuCoordinator.settingsMenuViewController
@@ -719,7 +720,7 @@ extension AppCoordinator {
     }
 
     func presentLibrary() {
-        guard let sidebarCoordinator = presentSideBar() else { return }
+        guard let sidebarCoordinator = presentSideBar(guideItem: nil) else { return }
         sidebarCoordinator.didTapLibraryCell(in: sidebarCoordinator.sideBarViewController)
         currentPresentedController = sidebarCoordinator.sideBarViewController
     }
@@ -732,7 +733,7 @@ extension AppCoordinator {
     }
 
     func presentAddSensor() -> AddSensorCoordinator? {
-        guard let sidebarCoordinator = presentSideBar() else { return nil }
+        guard let sidebarCoordinator = presentSideBar(guideItem: nil) else { return nil }
         sidebarCoordinator.didTapAddSensorCell(with: nil, in: sidebarCoordinator.sideBarViewController)
         currentPresentedController = sidebarCoordinator.sideBarViewController
         return sidebarCoordinator.addSensorCoordinator

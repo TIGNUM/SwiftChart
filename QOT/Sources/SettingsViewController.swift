@@ -33,20 +33,28 @@ final class SettingsViewController: UIViewController {
     private var viewModel: SettingsViewModel
     private let services: Services
     private let locationManager = CLLocationManager()
+    private var guideItem: Guide.Item?
     weak var delegate: SettingsCoordinatorDelegate?
     let settingsType: SettingsType.SectionType
     var tableView: UITableView!
 
     // MARK: - Init
 
-    init(viewModel: SettingsViewModel, services: Services, settingsType: SettingsType.SectionType) {
+    init(viewModel: SettingsViewModel,
+         services: Services,
+         settingsType: SettingsType.SectionType,
+         guideItem: Guide.Item?) {
         self.viewModel = viewModel
         self.settingsType = settingsType
         self.services = services
+        self.guideItem = guideItem
 
         super.init(nibName: nil, bundle: nil)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView(_:)), name: .UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(reloadTableView(_:)),
+                                               name: .UIApplicationWillEnterForeground,
+                                               object: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -73,6 +81,14 @@ final class SettingsViewController: UIViewController {
 
         navigationItem.title = settingsType.title.uppercased()
         tableView.reloadData()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        guard guideItem != nil else { return }
+        delegate?.goToCalendarListViewController(settingsViewController: self, guideItem: guideItem)
+        guideItem = nil
     }
 
     @objc func reloadTableView(_ notification: Notification) {

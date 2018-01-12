@@ -16,18 +16,25 @@ final class SidebarCoordinator: ParentCoordinator {
     private let networkManager: NetworkManager
     private let syncManager: SyncManager
     private let permissionsManager: PermissionsManager
+    private let guideItem: Guide.Item?
     let sideBarViewController: SidebarViewController!
     var addSensorCoordinator: AddSensorCoordinator?
     var topTabBarController: UINavigationController?
     var settingsMenuCoordinator: SettingsMenuCoordinator?
     var children = [Coordinator]()
 
-    init(root: UIViewController, services: Services, syncManager: SyncManager, networkManager: NetworkManager, permissionsManager: PermissionsManager) {
+    init(root: UIViewController,
+         services: Services,
+         syncManager: SyncManager,
+         networkManager: NetworkManager,
+         permissionsManager: PermissionsManager,
+         guideItem: Guide.Item?) {
         self.rootViewController = root
         self.services = services
         self.networkManager = networkManager
         self.syncManager = syncManager
         self.permissionsManager = permissionsManager
+        self.guideItem = guideItem
 
         let viewModel = SidebarViewModel(services: services)
         sideBarViewController = SidebarViewController(viewModel: viewModel)
@@ -61,7 +68,8 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
                                                         services: services,
                                                         syncManager: syncManager,
                                                         networkManager: networkManager,
-                                                        permissionsManager: permissionsManager) else {
+                                                        permissionsManager: permissionsManager,
+                                                        guideItem: guideItem) else {
                                                             log("could not init \(SettingsMenuCoordinator.self)")
                                                             return }
         startChild(child: coordinator)

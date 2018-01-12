@@ -21,6 +21,8 @@ protocol SettingsMenuViewControllerDelegate: class {
     func didTapSecurity(in viewController: SettingsMenuViewController)
 
     func didTapLogout(in viewController: SettingsMenuViewController)
+
+    func goToGeneralSettings(from viewController: SettingsMenuViewController, guideItem: Guide.Item?)
 }
 
 final class SettingsMenuViewController: UIViewController {
@@ -38,12 +40,14 @@ final class SettingsMenuViewController: UIViewController {
     @IBOutlet private weak var logoutButton: UIButton!
     private let disposeBag = DisposeBag()
     private let viewModel: SettingsMenuViewModel
+    private var guideItem: Guide.Item?
     weak var delegate: SettingsMenuViewControllerDelegate?
 
     // MARK: - Init
 
-    init(viewModel: SettingsMenuViewModel) {
+    init(viewModel: SettingsMenuViewModel, guideItem: Guide.Item?) {
         self.viewModel = viewModel
+        self.guideItem = guideItem
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -64,6 +68,14 @@ final class SettingsMenuViewController: UIViewController {
         super.viewWillAppear(animated)
 
         navigationItem.title = R.string.localized.settingsTitle().uppercased()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        guard guideItem != nil else { return }
+        delegate?.goToGeneralSettings(from: self, guideItem: guideItem)
+        guideItem = nil
     }
 }
 
