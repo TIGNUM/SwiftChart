@@ -7,7 +7,7 @@
 		<key>title</key>
 		<string>Learn Explainer</string>
 		<key>imageURL</key>
-		<string>https://www.gstatic.com/webp/gallery3/1.png</string>
+		<string>file://none</string>
 		<key>videoURL</key>
 		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/videos/Help+Screencasts/QOT_Help_Screencasts_LEARN.m4v</string>
 		<key>message</key>
@@ -23,7 +23,7 @@ After getting a good base knowledge of the QOT55 Strategies, you can learn how t
 		<key>title</key>
 		<string>Learn Explainer</string>
 		<key>imageURL</key>
-		<string>https://www.gstatic.com/webp/gallery3/1.png</string>
+		<string>file://none</string>
 		<key>videoURL</key>
 		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/videos/Help+Screencasts/QOT_Help_Screencasts_LEARN.m4v</string>
 		<key>message</key>
@@ -39,7 +39,7 @@ After getting a good base knowledge of the QOT55 Strategies, you can learn how t
 		<key>title</key>
 		<string>Me Explainer</string>
 		<key>imageURL</key>
-		<string>https://www.gstatic.com/webp/gallery3/1.png</string>
+		<string>file://none</string>
 		<key>videoURL</key>
 		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/videos/Help+Screencasts/QOT_Help_Screencasts_ME.m4v</string>
 		<key>message</key>
@@ -56,7 +56,7 @@ Within MY WHY, you&apos;ll also see your Weekly Choices. These are selected acco
 		<key>title</key>
 		<string>Me Explainer</string>
 		<key>imageURL</key>
-		<string>https://www.gstatic.com/webp/gallery3/1.png</string>
+		<string>file://none</string>
 		<key>videoURL</key>
 		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/videos/Help+Screencasts/QOT_Help_Screencasts_ME.m4v</string>
 		<key>message</key>
@@ -73,7 +73,7 @@ Within MY WHY, you&apos;ll also see your Weekly Choices. These are selected acco
 		<key>title</key>
 		<string>Prepare Explainer</string>
 		<key>imageURL</key>
-		<string>https://www.gstatic.com/webp/gallery3/1.png</string>
+		<string>file://none</string>
 		<key>videoURL</key>
 		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/videos/Help+Screencasts/QOT_Help_Screencasts_PREPARE.m4v</string>
 		<key>message</key>
@@ -90,7 +90,7 @@ After this, you can access that specific preparation by either swiping left or t
 		<key>title</key>
 		<string>Prepare Explainer</string>
 		<key>imageURL</key>
-		<string>https://www.gstatic.com/webp/gallery3/1.png</string>
+		<string>file://none</string>
 		<key>videoURL</key>
 		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/videos/Help+Screencasts/QOT_Help_Screencasts_PREPARE.m4v</string>
 		<key>message</key>
