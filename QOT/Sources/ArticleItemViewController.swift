@@ -148,7 +148,6 @@ private extension ArticleItemViewController {
             button.layer.borderWidth = 2
             button.layer.borderColor = UIColor.azure.cgColor
             button.setTitleColor(.azure, for: .normal)
-            view.addFadeView(at: .bottom)
         }
 
         tableView.edgeAnchors == view.edgeAnchors
@@ -157,6 +156,7 @@ private extension ArticleItemViewController {
         view.backgroundColor = .clear
         view.addFadeView(at: .top)
         view.setFadeMask(at: fadeMaskLocation)
+        view.addFadeView(at: .bottom)
         view.layoutIfNeeded()
     }
 
