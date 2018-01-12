@@ -110,8 +110,8 @@ private extension GuideViewController {
         tableView.trailingAnchor == view.trailingAnchor
         tableView.bottomAnchor == view.bottomAnchor
         tableView.backgroundColor = .pineGreen
-        view.setFadeMask(at: .top)
-        view.setFadeMask(at: .bottom, height: 120)
+        view.addFadeView(at: .top)
+        view.addFadeView(at: .bottom, height: 120)
         view.layoutIfNeeded()
     }
 
