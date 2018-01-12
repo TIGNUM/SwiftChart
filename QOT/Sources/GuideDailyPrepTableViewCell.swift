@@ -77,7 +77,7 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
                 valueLabels[index].attributedText = attributedText(letterSpacing: -1.1,
                                                                    text: result,
                                                                    font: Font.H3Subtitle,
-                                                                   textColor: .white,
+                                                                   textColor: dailyPrep.resultColor(index: index),
                                                                    alignment: .left)
             }
 
