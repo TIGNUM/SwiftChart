@@ -377,7 +377,7 @@ extension TabBarCoordinator: TopNavigationBarDelegate {
         guard let topBarButtonIndex = navigationBar.currentButtonIndex else { return }
         switch selectedIndex.value {
         case 0:
-            print("show help for guide")
+            showHelp(.guide)
         case 1:
             switch topBarButtonIndex {
             case 0:

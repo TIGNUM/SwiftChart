@@ -18,6 +18,8 @@ enum ScreenHelp {
 
     enum Plist {
         enum Key: String {
+            case guide
+
             // learn
             case strategies
             case whatsHot
