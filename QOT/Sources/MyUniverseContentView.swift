@@ -213,7 +213,7 @@ final class MyUniverseContentView: UIView {
         circle2.position = profileWrapperView.center
 
         let radius = (profileButton.bounds.width / 2)
-        circle1.path = UIBezierPath.circlePath(center: .zero, radius: radius * 2.7).cgPath
+        circle1.path = UIBezierPath.circlePath(center: .zero, radius: radius * 2.1).cgPath
         circle2.path = UIBezierPath.circlePath(center: .zero, radius: radius * 3.8).cgPath
     }
 
