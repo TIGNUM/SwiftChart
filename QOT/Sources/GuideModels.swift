@@ -64,15 +64,21 @@ struct Guide {
             var dailyPrepQuestions: [Question] {
                 guard let groupStringID = questionGroupID, let groupID = Int(groupStringID) else { return [] }
                 let questions = services.questionsService.morningInterviewQuestions(questionGroupID: groupID)
-                questions.forEach { (question: Question) in
-                    print("question.key", question.key)
-                }
                 return Array(questions)
             }
 
-            func resultColor() -> UIColor {
+            func resultColor(index: Index) -> UIColor {
+                guard results.isEmpty == false else { return .white }
 
-                return .white
+                let question = dailyPrepQuestions[index]
+                guard
+                    let resultValue = Double(results[index]),
+                    let key = question.key,
+                    let statistics = services.statisticsService.chart(key: key) else {
+                        return .white
+                }
+            
+                return statistics.color(value: resultValue * 0.1)
             }
         }
 
