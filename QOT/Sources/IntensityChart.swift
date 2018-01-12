@@ -49,8 +49,8 @@ private extension IntensityChart {
     func drawCharts() {
         for (index, dataPoint) in statistics.dataPointObjects.enumerated() {
             let xPos = firstSection == true ? xPosition(index) : (columnWidth * CGFloat(index) * 2) + yAxisOffset
-            let yPos = yPosition(dataPoint.value)
-            let height = dataPoint.value > 0 ? yPos - bottomPosition : 0
+            let yPos = yPosition(dataPoint.percentageValue)
+            let height = dataPoint.percentageValue > 0 ? yPos - bottomPosition : 0
             let columnFrame = CGRect(x: xPos - columnWidth/2, y: frame.height, width: columnWidth, height: height).integral
             let column = UIView(frame: columnFrame)
             column.backgroundColor = .white8
@@ -63,7 +63,7 @@ private extension IntensityChart {
     }
 
     func drawTodayValueLabel() {
-        guard let dataPoint = statistics.dataPointObjects.last, dataPoint.value > 0 else { return }
+        guard let dataPoint = statistics.dataPointObjects.last, dataPoint.percentageValue > 0 else { return }
         // FIXME: in month mode, xPosition() func doesn't really work. This is a quick hack to fix it
         let index: Int
         if statistics.dataPointObjects.endIndex - 1 < labelContentView.subviews.count {
@@ -72,8 +72,8 @@ private extension IntensityChart {
             index = labelContentView.subviews.count - 1
         }
         let xPos = xPosition(index)
-        let yPos = yPosition(dataPoint.value)
-        let text = statistics.displayableValue(average: Double(dataPoint.value))
+        let yPos = yPosition(dataPoint.percentageValue)
+        let text = statistics.displayableValue(average: Double(dataPoint.percentageValue))
         let todayLabel = dayLabel(text: text, textColor: .white)
         todayLabel.sizeToFit()
         todayLabel.center = CGPoint(x: xPos, y: yPos)

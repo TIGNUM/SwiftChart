@@ -11,7 +11,7 @@ import UIKit
 
 enum ChartType: String, EnumCollection {
     case meetingAverageDay = "meetings.number.day"
-    case meetingAverageWeek = "meetings.number.week"
+    case meetingAverageWeek = "meetings.number.week.avg"
     case meetingLength = "meetings.length"
     case meetingTimeBetween = "meetings.timeBetween"
     case travelTripsAverageWeeks = "travel.numberOfTrips.4weeks"
@@ -559,7 +559,7 @@ enum StatisticsSectionType: Int, EnumCollection {
         case .activity: return [.activitySittingMovementRatio, .activityLevel]
         case .peakPerformance: return [.peakPerformanceUpcomingWeek, .peakPerformanceAverageWeek]
         case .intensity: return [.intensityLoadWeek, .intensityRecoveryWeek]
-        case .meetings: return [.meetingAverageWeek, .meetingAverageDay, .meetingLength, .meetingTimeBetween]
+        case .meetings: return [.meetingAverageWeek, .meetingTimeBetween, .meetingLength]
         case .travel: return [.travelTripsAverageWeeks, .travelTripsNextFourWeeks, .travelTripsMaxTimeZone, .travelTripsTimeZoneChangedWeeks]
         }
     }

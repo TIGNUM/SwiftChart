@@ -23,4 +23,8 @@ typealias TravelTrip = (row: Int, column: Int, start: Int, end: Int, color: UICo
 
 typealias LastFourWeeks = (day: Date, weekNumber: Int, dayNumber: Int)
 
-typealias DataPoint = (value: CGFloat, color: UIColor)
+struct DataPoint {
+    let percentageValue: CGFloat
+    let originalValue: CGFloat
+    let color: UIColor
+}

@@ -25,7 +25,7 @@ final class MeetingsTimeBetweenChart: UIView {
         drawProgressWheel(at: center, with: radius)
         drawSectionLabels(center: center, radius: radius)
         if statistics.userAverageValue > 0 {
-            drawValueLabel(center: center, radius: radius, value: statistics.userAverageValue)
+            drawValueLabel(center: center, radius: radius, value: statistics.userAverageValue, text: statistics.userAverageDisplayableValue)
         }
     }
 
@@ -62,10 +62,10 @@ private extension MeetingsTimeBetweenChart {
         }
     }
 
-    func drawValueLabel(center: CGPoint, radius: CGFloat, value: CGFloat) {
+    func drawValueLabel(center: CGPoint, radius: CGFloat, value: CGFloat, text: String) {
         let angle = (360 * value).normalizedAngle
-        let stringValue = String(format: "%.0f", value)
-        drawLabel(from: center, with: radius, at: angle, padding: 23, value: stringValue, color: .white)
+//        let stringValue = String(format: "%.0f", value)
+        drawLabel(from: center, with: radius, at: angle, padding: 23, value: text, color: .white)
     }
 
     func drawLabel(from center: CGPoint, with radius: CGFloat, at angle: CGFloat, padding: CGFloat, value: String, color: UIColor) {
