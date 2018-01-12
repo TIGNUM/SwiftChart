@@ -21,7 +21,7 @@ protocol ArticleItemViewControllerDelegate: class {
     func didTapMedia(withURL url: URL, in viewController: ArticleItemViewController)
 }
 
-final class ArticleItemViewController: UIViewController {
+final class ArticleItemViewController: UIViewController, PageViewControllerNotSwipeable {
 
     // MARK: - Properties
 
@@ -138,14 +138,10 @@ private extension ArticleItemViewController {
         if let guideItem = guideItem, guideItem.featureLink?.url != nil {
             let button = featureLinkButton(guideItem: guideItem)
             view.addSubview(button)            
-            button.bottomAnchor == view.bottomAnchor - 16
+            button.bottomAnchor == view.bottomAnchor - 8
             button.centerXAnchor == view.centerXAnchor
             button.widthAnchor == 242
             button.heightAnchor == 45
-            button.layer.cornerRadius = 45/2
-            button.layer.borderWidth = 2
-            button.layer.borderColor = UIColor.azure.cgColor
-            button.setTitleColor(.azure, for: .normal)
         }
 
         tableView.edgeAnchors == view.edgeAnchors
@@ -161,9 +157,9 @@ private extension ArticleItemViewController {
         let button = UIButton()
         button.addTarget(self, action: #selector(openFeatureLink), for: .touchUpInside)
         button.setTitleColor(.white40, for: .normal)
-        button.setTitle(guideItem.featureButton ?? "", for: .normal)
+        button.setTitle(guideItem.featureButton?.uppercased() ?? "", for: .normal)
         button.titleLabel?.addCharactersSpacing(spacing: 1, text: guideItem.featureButton ?? "")
-        button.titleLabel?.font = Font.DPText
+        button.titleLabel?.font = Font.H5SecondaryHeadline
         button.titleLabel?.textAlignment = .center
         return button
     }

@@ -64,7 +64,7 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
             feedbackLabel.isHidden = false
             feedbackLabel.attributedText = attributedText(letterSpacing: 0.2,
                                                          text: feedback,
-                                                         font: Font.H5SecondaryHeadline,
+                                                         font: Font.DPText,
                                                          textColor: .white70,
                                                          alignment: .left)
         }
