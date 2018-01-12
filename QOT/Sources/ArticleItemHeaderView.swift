@@ -38,7 +38,7 @@ final class ArticleItemHeaderView: UIView {
             alignment: .left
         )
         durationLabel.attributedText = attributedText(
-            text: header.articleDuration.uppercased(),
+            text: header.articleDuration.uppercased() == "0 MIN" ? "1 MIN" : header.articleDuration.uppercased(),
             font: Font.H7Tag,
             textColor: .white20,
             alignment: .left
