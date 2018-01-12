@@ -152,19 +152,17 @@ final class MyUniverseProvider {
         guard let chart = services.statisticsService.chart(key: chartType.rawValue) else {
             return .clear
         }
-        let color = chart.userAverageColor()
+        let isRed = chart.universeValue > 0.55
         if chartType.isBodyBrain {
-            switch color {
-            case .critical:
+            if isRed {
                 return UIColor(red: 1, green: 0, blue: 34/255, alpha: 0.2)
-            case .normal, .low:
+            } else {
                 return .white20
             }
         } else {
-            switch color {
-            case .critical:
+            if isRed {
                 return UIColor(red: 255/255, green: 0, blue: 38/255, alpha: 1)
-            case .normal, .low:
+            } else {
                 return .white
             }
         }
@@ -174,19 +172,17 @@ final class MyUniverseProvider {
         guard let chart = services.statisticsService.chart(key: chartType.rawValue) else {
             return .clear
         }
-        let color = chart.userAverageColor()
+        let isRed = chart.universeValue > 0.55
         if chartType.isBodyBrain {
-            switch color {
-            case .critical:
+            if isRed {
                 return UIColor(red: 255/255, green: 0, blue: 38/255, alpha: 1)
-            case .normal, .low:
+            } else {
                 return .white
             }
         } else {
-            switch color {
-            case .critical:
+            if isRed {
                 return UIColor(red: 230/255, green: 0, blue: 34/255, alpha: 0.9)
-            case .normal, .low:
+            } else {
                 return .white60
             }
         }
