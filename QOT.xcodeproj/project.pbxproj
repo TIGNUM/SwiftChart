@@ -237,6 +237,7 @@
 		CB8C34521EAF61E50003AB65 /* SettingsMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB8C34511EAF61E50003AB65 /* SettingsMenuViewController.xib */; };
 		CB8C34541EAF7F190003AB65 /* MyToBeVisionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB8C34531EAF7F190003AB65 /* MyToBeVisionViewController.xib */; };
 		CB8C34561EAF7F200003AB65 /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = CB8C34551EAF7F200003AB65 /* styles.css */; };
+		CB93B3732006980F001F19DC /* RealmStatisticsThreshold.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB93B3722006980F001F19DC /* RealmStatisticsThreshold.swift */; };
 		CB9442251FD80B5700E2B122 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9442241FD80B5700E2B122 /* AppState.swift */; };
 		CB94422A1FD9643A00E2B122 /* SlideShowModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9442291FD9643A00E2B122 /* SlideShowModels.swift */; };
 		CB94422E1FD96D9700E2B122 /* SlideShowConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB94422D1FD96D9700E2B122 /* SlideShowConfigurator.swift */; };
@@ -748,6 +749,7 @@
 		CB8C34511EAF61E50003AB65 /* SettingsMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsMenuViewController.xib; sourceTree = "<group>"; };
 		CB8C34531EAF7F190003AB65 /* MyToBeVisionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyToBeVisionViewController.xib; sourceTree = "<group>"; };
 		CB8C34551EAF7F200003AB65 /* styles.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = styles.css; sourceTree = "<group>"; };
+		CB93B3722006980F001F19DC /* RealmStatisticsThreshold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmStatisticsThreshold.swift; sourceTree = "<group>"; };
 		CB9442241FD80B5700E2B122 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		CB9442291FD9643A00E2B122 /* SlideShowModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideShowModels.swift; sourceTree = "<group>"; };
 		CB94422D1FD96D9700E2B122 /* SlideShowConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideShowConfigurator.swift; sourceTree = "<group>"; };
@@ -2413,6 +2415,7 @@
 				CCE6CD851F15313300B66DA3 /* StatisticsIntermediary.swift */,
 				CCE6CD7F1F15299F00B66DA3 /* StatisticsPeriod.swift */,
 				CCE6CD871F15357600B66DA3 /* StatisticsPeriodIntermediary.swift */,
+				CB93B3722006980F001F19DC /* RealmStatisticsThreshold.swift */,
 			);
 			name = Statistics;
 			sourceTree = "<group>";
@@ -3089,6 +3092,7 @@
 				7F3277951FB4B22E00C7717C /* BlurLoadingView.swift in Sources */,
 				CB1D5E3E1EC5E25A00BCDF8D /* ContentItemIntermediary.swift in Sources */,
 				CC944DB81EE8096100B8423C /* ChartCell.swift in Sources */,
+				CB93B3732006980F001F19DC /* RealmStatisticsThreshold.swift in Sources */,
 				8548BBE41F0E382900AC7C06 /* GenericParser.swift in Sources */,
 				CB9AFD191F014C0800D067F2 /* PreparationCheckIntermediary.swift in Sources */,
 				CCC1B6AF1E8B9B7F00D1461F /* LearnContentCollectionViewModel.swift in Sources */,

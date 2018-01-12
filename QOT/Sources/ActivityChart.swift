@@ -116,24 +116,24 @@ private extension ActivityChart {
     }
 
     func drawCharts() {
-        let daataPoints = statistics.dataPointObjects.filter { $0.value > 0 }
+        let daataPoints = statistics.dataPointObjects.filter { $0.percentageValue > 0 }
 
         for (index, dataPoint) in daataPoints.enumerated() {
             let xPos = xPosition(index)
-            let yPos = yPosition(dataPoint.value)
+            let yPos = yPosition(dataPoint.percentageValue)
             drawCapRoundLine(xPos: xPos, startYPos: bottomPosition, endYPos: yPos, strokeColor: dataPoint.color, hasShadow: hasShadow(dataPoint))
 
-            if statistics.chartType == .activitySittingMovementRatio && dataPoint.value < 1 {
+            if statistics.chartType == .activitySittingMovementRatio && dataPoint.percentageValue < 1 {
                 drawCapRoundLine(xPos: xPos, startYPos: yPos - padding, endYPos: padding * 0.5, strokeColor: .white20)
             }
         }
     }
 
     func drawTodayValueLabel() {
-        guard let dataPoint = statistics.dataPointObjects.last, dataPoint.value > 0 else { return }
+        guard let dataPoint = statistics.dataPointObjects.last, dataPoint.percentageValue > 0 else { return }
         let xPos = xPosition(statistics.dataPointObjects.endIndex - 1)
-        let yPos = yPosition(dataPoint.value)
-        let text = statistics.displayableValue(average: Double(dataPoint.value))
+        let yPos = yPosition(dataPoint.percentageValue)
+        let text = statistics.displayableValue(average: Double(dataPoint.percentageValue))
         let todayLabel = dayLabel(text: text, textColor: .white)
         todayLabel.sizeToFit()
         todayLabel.center = CGPoint(x: xPos, y: yPos - 12)

@@ -177,6 +177,7 @@ enum JsonKey: String {
     case text
     case textValue
     case thumbnail
+    case thresholds
     case timestamp
     case timeZone
     case timeZoneId
@@ -212,6 +213,8 @@ enum JsonKey: String {
     case workingDays
     case zip
     case zone
+    case maxValueOf
+    case decimalPlaces
 
     var value: String {
         return rawValue

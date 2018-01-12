@@ -120,7 +120,7 @@ final class MyUniverseContentView: UIView {
         var viewSectors = [Sector]()
 
         // maths - http://classroom.synonym.com/coordinates-distances-angles-2732.html
-
+//        print("PRINTING CHARTS")
         sectors.forEach { sector in
             // add label for sector
             let midAngle = sector.midAngle()
@@ -147,6 +147,7 @@ final class MyUniverseContentView: UIView {
             for (index, line) in sector.lines.enumerated() {
                 let angle = sector.angle(for: index)
                 let distance = maxDistance * line.dot.distance
+//                print("angle: \(angle), CHART TYPE: \(line.chartType.rawValue), color: \(line.dot.fillColor), distance: \(line.dot.distance)")
                 let cosAngle = cos(angle.degreesToRadians)
                 let sinAngle = sin(angle.degreesToRadians)
                 let padding: CGFloat = profileButtonGlowLayer.lineWidth
@@ -182,7 +183,6 @@ final class MyUniverseContentView: UIView {
                 layer.insertSublayer(lineLayer, below: profileWrapperView.layer)
                 layer.addSublayer(pointLayer)
             }
-
             viewSectors.append(Sector(type: sector.type, label: label, lines: lines))
         }
 

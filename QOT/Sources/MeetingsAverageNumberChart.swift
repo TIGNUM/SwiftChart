@@ -122,16 +122,17 @@ private extension MeetingsAverageNumberChart {
     func drawCharts() {
         for (index, dataPoint) in statistics.dataPointObjects.enumerated() {
             let xPos = xPosition(index)
-            let yPos = yPosition(dataPoint.value / statistics.maximum.toFloat)
+            let yPos = yPosition(dataPoint.percentageValue)
             drawCapRoundLine(xPos: xPos, startYPos: bottomPosition, endYPos: yPos, strokeColor: dataPoint.color, hasShadow: hasShadow(dataPoint))
         }
     }
 
     func drawTodayValueLabel() {
-        guard let dataPoint = statistics.dataPointObjects.last, dataPoint.value > 0 else { return }
+        guard let dataPoint = statistics.dataPointObjects.last else { return }
         let xPos = xPosition(statistics.dataPointObjects.endIndex - 1)
-        let yPos = yPosition(dataPoint.value / statistics.maximum.toFloat)
-        let text = statistics.displayableValue(average: Double(dataPoint.value))
+        let position = dataPoint.percentageValue == 0 ? 0 : dataPoint.percentageValue / statistics.maximum.toFloat
+        let yPos = yPosition(dataPoint.percentageValue)
+        let text = statistics.displayableValue(average: Double(dataPoint.originalValue))
         let todayLabel = dayLabel(text: text, textColor: .white)
         todayLabel.sizeToFit()
         todayLabel.center = CGPoint(x: xPos, y: yPos - 12)
