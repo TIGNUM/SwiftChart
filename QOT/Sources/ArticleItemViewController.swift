@@ -130,8 +130,10 @@ private extension ArticleItemViewController {
     }
 
     func setupView() {
-        let backgroundImage = (viewModel.backgroundImage == nil) ? R.image.backgroundSidebar() : viewModel.backgroundImage
-        tableView.backgroundView = UIImageView(image: backgroundImage)
+        let backgroundImageView = UIImageView(frame: view.frame)
+        backgroundImageView.image = (viewModel.backgroundImage == nil) ? R.image.backgroundSidebar() : viewModel.backgroundImage
+        tableView.backgroundColor = .clear
+        view.addSubview(backgroundImageView)
         view.addSubview(tableView)
         view.translatesAutoresizingMaskIntoConstraints = true
 
@@ -153,7 +155,7 @@ private extension ArticleItemViewController {
         tableView.estimatedSectionHeaderHeight = 100
         view.backgroundColor = .clear
         view.addFadeView(at: .top)
-        view.setFadeMask(at: fadeMaskLocation)
+        view.setFadeMask(at: fadeMaskLocation)        
         view.layoutIfNeeded()
     }
 
