@@ -31,9 +31,15 @@ final class Statistics: SyncableObject {
 
     @objc private(set) dynamic var multiplier: Double = 0
 
+    @objc private(set) dynamic var maxValueOf: String = ""
+
+    @objc private(set) dynamic var decimalPlaces: Int = 0
+
     var dataPoints: List<DoubleObject> = List()
 
     var periods: List<StatisticsPeriod> = List()
+
+    var thresholds: List<RealmStatisticsThreshold> = List()
 
     var chartType: ChartType = .activityLevel
 
@@ -57,10 +63,14 @@ extension Statistics: OneWaySyncableDown {
         universe = data.universe
         dataPoints.forEach { $0.delete() }
         periods.forEach { $0.delete() }
+        thresholds.forEach { $0.delete() }
         dataPoints.append(objectsIn: data.dataPoints.map { DoubleObject(double: $0) })
         periods.append(objectsIn: data.periods.map { StatisticsPeriod( $0 ) })
+        thresholds.append(objectsIn: data.thresholds.map { RealmStatisticsThreshold(threshold: $0) })
         unit = data.unit
         multiplier = data.multiplier
+        maxValueOf = data.maxValueOf
+        decimalPlaces = data.decimalPlaces
     }
 }
 
@@ -77,7 +87,7 @@ extension Statistics {
     }
 
     var userAverageDisplayableValue: String {
-        return displayableValue(average: userAverage)
+        return displayableValue(average: userAverage, clampToMax: true)
     }
 
     var teamAverageDisplayableValue: String {
@@ -88,25 +98,32 @@ extension Statistics {
         return displayableValue(average: dataAverage)
     }
 
-    func displayableValue(average: Double) -> String {
-        if unit.isEmpty == true {
-            if multiplier == 1 {
-                let value = average.toFloat * multiplier.toFloat
-                if (fmod(value, 1.0) == 0.0) { // if x.0
-                    return String(format: "%.0f", value)
-                } else { // if x.123
-                    return String(format: "%.1f", value)
-                }
-            } else {
-                let value = average.toFloat * multiplier.toFloat
-                if (fmod(value, 1.0) == 0.0) { // if x.0
-                    return String(format: "%.0f/%.0f", value, multiplier.toFloat)
-                } else { // if x.123
-                    return String(format: "%.1f/%.0f", value, multiplier.toFloat)
-                }
-            }
+    func displayableValue(average: Double, clampToMax: Bool = false) -> String {
+        var value = average.toFloat * multiplier.toFloat
+        var prefix = ""
+        if clampToMax && value > CGFloat(maximum * multiplier) {
+                value = CGFloat(maximum * multiplier)
+                prefix = "+"
         }
-        return String(format: "%.0f%@", average.toFloat * multiplier.toFloat, unit)
+        let valueFormat = "%.\(decimalPlaces)f"
+//
+//
+//        if unit.isEmpty == true {
+//            if multiplier == 1 {
+//                if (fmod(value, 1.0) == 0.0) { // if x.0
+//                    return String(format: "%.0f", value)
+//                } else { // if x.123
+//                    return String(format: "%.1f", value)
+//                }
+//            } else {
+//                if (fmod(value, 1.0) == 0.0) { // if x.0
+//                    return String(format: "%.0f/%.0f", value, multiplier.toFloat)
+//                } else { // if x.123
+//                    return String(format: "%.1f/%.0f", value, multiplier.toFloat)
+//                }
+//            }
+//        }
+        return prefix + String(format: valueFormat, value) + maxValueOf + unit
     }
 }
 
@@ -139,19 +156,15 @@ extension Statistics {
     }
 
     var pathColor: UIColor {
-        if upperThreshold > lowerThreshold {
-            return userAverage >= upperThreshold ? .cherryRed : userAverage < upperThreshold ? .white90 : .gray
-        }
-
-        return userAverage >= upperThreshold ? .white90 : userAverage < upperThreshold ? .cherryRed : .gray
+        return color(value: Double(userAverage))
     }
 
     var dataPointObjects: [DataPoint] {
         var dataPointObjects = [DataPoint]()
 
         dataPoints.forEach { (dataPoint: DoubleObject) in
-            let dataValue = dataPoint.value.toFloat
-            let dataPointObj: DataPoint = DataPoint(value: dataValue, color: dataPointColor(dataValue))
+            let dataValue = dataPoint.value.toFloat / CGFloat(maximum)
+            let dataPointObj: DataPoint = DataPoint(percentageValue: dataValue, originalValue: dataPoint.value.toFloat, color: color(value: dataPoint.value))
             dataPointObjects.append(dataPointObj)
         }
 
@@ -184,7 +197,7 @@ extension Statistics {
         let monthNumbers = chartType.labels.flatMap { Int($0) }
         var trips = [TravelTrip]()
 
-        periods .forEach { (period: StatisticsPeriod) in
+        periods.forEach { (period: StatisticsPeriod) in
             if Calendar.sharedUTC.isDate(period.startDate, inSameDayAs: period.endDate) == true {
                 let month = period.startDate.monthOfYear
 
@@ -320,39 +333,42 @@ extension Statistics {
     }
 }
 
-// MARK: - Private
+extension Statistics {
 
-private extension Statistics {
-
-    func dataPointColor(_ dataValue: CGFloat) -> UIColor {
-        if upperThreshold > lowerThreshold {
-            if dataValue > upperThreshold.toFloat {
-                return .cherryRed
-            } else if  dataValue <= lowerThreshold.toFloat {
-                return .gray
-            } else {
-                return .white90
-            }
-        } else {
-            if dataValue > upperThreshold.toFloat {
-                return .white90
-            } else if  dataValue < upperThreshold.toFloat {
-                return .cherryRed
-            } else {
-                return .gray
-            }
+    func color(value: Double) -> UIColor {
+        let color = thresholdColor(value: value)
+        switch color {
+        case .critical:
+            return .cherryRed
+        case .normal:
+            return .white90
+        case .low:
+            return .gray
         }
     }
 
-    private func tintColor(_ dataValue: CGFloat) -> UIColor {
-        if upperThreshold > lowerThreshold {
-            return dataValue >= upperThreshold.toFloat ? .cherryRed : dataValue <= lowerThreshold.toFloat ? .gray : .white90
+    func thresholdColor(value: Double) -> RealmStatisticsThreshold.Color {
+        var candidate: RealmStatisticsThreshold? = nil
+        for threshold in thresholds {
+            if let min = threshold.min.value, let max = threshold.max.value {
+                if value >= min && value <= max {
+                    return threshold.color
+                }
+            } else if let max = threshold.max.value, value <= max {
+                candidate = threshold
+            } else if let min = threshold.min.value, value >= min {
+                candidate = threshold
+            }
         }
+        return candidate?.color ?? RealmStatisticsThreshold.Color.normal
+    }
 
-        return dataValue >= upperThreshold.toFloat ? .white90 : dataValue <= lowerThreshold.toFloat ? .cherryRed : .gray
+    func userAverageColor() -> RealmStatisticsThreshold.Color {
+        return thresholdColor(value: Double(userAverage))
     }
 
     func averageValue(average: Double) -> CGFloat {
+        let average = min(average, maximum)
         guard maximum > 0 else {
             return 0
         }

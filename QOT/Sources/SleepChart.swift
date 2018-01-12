@@ -56,13 +56,13 @@ private extension SleepChart {
     func drawTodayValueLabel(for lines: [Line]) {
         // last line is always today
         // only draw if there's a >0 value
-        guard let line = lines.last, line.dataPoint.value > 0 else {
+        guard let line = lines.last, line.dataPoint.percentageValue > 0 else {
             return
         }
-        let text = statistics.displayableValue(average: Double(line.dataPoint.value))
+        let text = statistics.displayableValue(average: Double(line.dataPoint.originalValue))
         let todayLabel = dayLabel(text: text, textColor: .white)
         todayLabel.sizeToFit()
-        if line.dataPoint.value > 0.2 {
+        if line.dataPoint.percentageValue > 0.2 {
             todayLabel.center = line.endPoint.adding(
                 x: -(todayLabel.bounds.width / 2) - 3,
                 y: -(todayLabel.bounds.height / 2) - 3
@@ -86,7 +86,7 @@ private extension SleepChart {
             let length: CGFloat
 
             if isDataPoint == true {
-                length = (width * 0.5 ) * dataPoint.value
+                length = (width * 0.5 ) * dataPoint.percentageValue
             } else {
                 length = (width * 0.5 )
                 let offset = lineLength(length: length, degress: angle)

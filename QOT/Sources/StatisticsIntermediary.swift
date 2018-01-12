@@ -11,6 +11,18 @@ import Freddy
 
 struct StatisticsIntermediary: DownSyncIntermediary {
 
+    struct Threshold: JSONDecodable {
+        let colorState: String
+        let min: Double?
+        let max: Double?
+
+        init(json: JSON) throws {
+            colorState = try json .getItemValue(at: .colorState, fallback: "NORMAL")
+            min = try json .getItemValue(at: .min)
+            max = try json .getItemValue(at: .max)
+        }
+    }
+
     let key: String
     let userAverage: Double
     let teamAverage: Double
@@ -23,6 +35,9 @@ struct StatisticsIntermediary: DownSyncIntermediary {
     let periods: [StatisticsPeriodIntermediary]
     let unit: String
     let multiplier: Double
+    let thresholds: [Threshold]
+    let maxValueOf: String
+    let decimalPlaces: Int
 
     init(json: JSON) throws {
         key = try json .getItemValue(at: .key, fallback: "")
@@ -35,7 +50,10 @@ struct StatisticsIntermediary: DownSyncIntermediary {
         universe = try json .getItemValue(at: .universe, fallback: 0)
         dataPoints = try json.getArray(at: .dataPoints, fallback: [])
         periods = try json.getArray(at: .periods, fallback: [])
-        unit = try json .getItemValue(at: .unit, fallback: "")
-        multiplier = try json .getItemValue(at: .multiplier, fallback: 1)
+        unit = try json.getItemValue(at: .unit, fallback: "")
+        multiplier = try json.getItemValue(at: .multiplier, fallback: 1)
+        thresholds = try json.getArray(at: .thresholds, fallback: [])
+        maxValueOf = try json .getItemValue(at: .maxValueOf, fallback: "")
+        decimalPlaces = try json .getItemValue(at: .decimalPlaces, fallback: 0)
     }
 }
