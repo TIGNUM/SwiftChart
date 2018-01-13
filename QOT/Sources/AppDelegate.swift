@@ -191,6 +191,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 
         let notificationID = notification.request.identifier
         launchHandler.process(url: link, notificationID: notificationID)
+        guard
+            let host = link.host,
+            let scheme = URLScheme(rawValue: host), scheme != .dailyPrep else { return }
         GuideWorker(services: AppDelegate.appState.services).setItemCompleted(guideID: notificationID)
     }
 

@@ -405,9 +405,14 @@ extension AppCoordinator: MorningInterviewViewControllerDelegate {
             let realm = try RealmProvider().realm()
             try realm.write {
                 if  let notificationID = notificationID,
+                    let guideItem = realm.object(ofType: RealmGuideItem.self, forPrimaryKey: notificationID),
+                    let guideItemNotification = guideItem.referencedItem as? RealmGuideItemNotification {
+                        guideItemNotification.morningInterviewFeedback = feedback.body
+                } else if
+                    let notificationID = notificationID,
                     let guideItemNotification = realm.syncableObject(ofType: RealmGuideItemNotification.self,
                                                                      localID: notificationID) {
-                    guideItemNotification.morningInterviewFeedback = feedback.body
+                        guideItemNotification.morningInterviewFeedback = feedback.body
                 }
                 completion?()
             }

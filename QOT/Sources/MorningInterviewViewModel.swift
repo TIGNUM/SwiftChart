@@ -99,15 +99,27 @@ final class MorningInterviewViewModel: NSObject {
             userAnswers.forEach { (userAnswer: UserAnswer) in
                 realm.add(userAnswer)
             }
-            if let guideItemNotification = realm.syncableObject(ofType: RealmGuideItemNotification.self,
-                                                                localID: notificationID) {
-                guideItemNotification.dailyPrepResults.removeAll()
-                guideItemNotification.dailyPrepResults.append(objectsIn: dailyPrepResults)
+            if
+                let guideItem = realm.object(ofType: RealmGuideItem.self, forPrimaryKey: notificationID),
+                let referencedItem = guideItem.referencedItem as? RealmGuideItemNotification {
+                    referencedItem.dailyPrepResults.removeAll()
+                    referencedItem.dailyPrepResults.append(objectsIn: dailyPrepResults)
+            } else if let guideItemNotification = realm.syncableObject(ofType: RealmGuideItemNotification.self,
+                                                                       localID: notificationID) {
+                    guideItemNotification.dailyPrepResults.removeAll()
+                    guideItemNotification.dailyPrepResults.append(objectsIn: dailyPrepResults)
             }
         }
 
-        guard let guideID = guideItem?.identifier else { return }
-        LocalNotificationBuilder.cancelNotification(identifier: guideID)
-        GuideWorker(services: services).setItemCompleted(guideID: guideID)
+        if let guideID = guideItem?.identifier {
+            handleGuideItem(itemID: guideID)
+        } else {
+            handleGuideItem(itemID: notificationID)
+        }
+    }
+
+    private func handleGuideItem(itemID: String) {        
+        LocalNotificationBuilder.cancelNotification(identifier: itemID)
+        GuideWorker(services: services).setItemCompleted(guideID: itemID)
     }
 }
