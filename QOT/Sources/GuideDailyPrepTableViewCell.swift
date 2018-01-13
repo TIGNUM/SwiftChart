@@ -87,7 +87,7 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
                                                                         font: Font.PTextSmall,
                                                                         lineSpacing: 8,
                                                                         textColor: .white70,
-                                                                        alignment: .left)
+                                                                        alignment: .left)                
             }
         }
 

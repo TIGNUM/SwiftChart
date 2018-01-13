@@ -77,8 +77,9 @@ struct Guide {
                     let statistics = services.statisticsService.chart(key: key) else {
                         return .white
                 }
-            
-                return statistics.color(value: resultValue * 0.1)
+
+                let color = statistics.color(value: resultValue * 0.1)
+                return color == .gray ? .white90 : color
             }
         }
 
