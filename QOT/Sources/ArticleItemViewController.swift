@@ -142,6 +142,10 @@ private extension ArticleItemViewController {
             button.centerXAnchor == view.centerXAnchor
             button.widthAnchor == 242
             button.heightAnchor == 45
+            button.layer.cornerRadius = 45/2
+            button.layer.borderWidth = 2
+            button.layer.borderColor = UIColor.azure.cgColor
+            button.setTitleColor(.azure, for: .normal)
         }
 
         tableView.edgeAnchors == view.edgeAnchors
@@ -159,7 +163,7 @@ private extension ArticleItemViewController {
         button.setTitleColor(.white40, for: .normal)
         button.setTitle(guideItem.featureButton?.uppercased() ?? "", for: .normal)
         button.titleLabel?.addCharactersSpacing(spacing: 1, text: guideItem.featureButton ?? "")
-        button.titleLabel?.font = Font.H5SecondaryHeadline
+        button.titleLabel?.font = Font.DPText
         button.titleLabel?.textAlignment = .center
         return button
     }
