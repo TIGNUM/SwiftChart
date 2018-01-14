@@ -115,8 +115,7 @@ final class GuideViewModel {
     }
 
     func greeting() -> String {
-        guard days.count > 0 else { return "" }
-        let sections = services.guideService.guideSections()
+        guard days.isEmpty == false, days.first?.items.isEmpty == false else { return "" }
         let indexPath = IndexPath(row: 0, section: 0)
         let firstItem = item(indexPath: indexPath)
 
