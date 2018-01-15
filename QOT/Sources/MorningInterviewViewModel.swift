@@ -20,7 +20,13 @@ final class InterviewQuestion {
     var answerIndex: Int
 
     init?(question: Question) {
-        let answers = Array(question.answers.sorted(by: [.sortOrder()]))
+//        let answers = Array(question.answers.sorted(by: [.sortOrder(ascending: true)]))
+        // FIXME: This assumes answer title will be 1 ... 10. Use sortOrder when fixed on server
+        let answers = Array(question.answers.sorted { (a, b) -> Bool in
+            let left = Int(a.title) ?? 0
+            let right = Int(b.title) ?? 0
+            return left < right
+        })
         guard answers.isEmpty == false else { return nil }
 
         self.remoteID = question.forcedRemoteID
