@@ -195,8 +195,7 @@ final class MyUniverseProvider {
 
     private func titleColor(for section: StatisticsSectionType) -> UIColor {
         for chartType in section.universeChartTypes {
-            if let chart = services.statisticsService.chart(key: chartType.rawValue),
-                chart.universeValue > chart.teamAverageValue {
+            if let chart = services.statisticsService.chart(key: chartType.rawValue), chart.universeValue > 0.55 {
                 return .cherryRedTwo
             }
         }
