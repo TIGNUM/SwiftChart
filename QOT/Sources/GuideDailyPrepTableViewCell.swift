@@ -28,7 +28,7 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
         valueContainerView.backgroundColor = .clear
         valueViews.forEach { $0.backgroundColor = .clear }
         feedbackLabel.isHidden = true
-        typeLabel.isHidden = true        
+        typeLabel.isHidden = true
     }
 
     override func prepareForReuse() {
