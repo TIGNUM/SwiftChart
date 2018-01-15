@@ -89,9 +89,9 @@ final class GuideViewModel {
         self.realmGuides = services.guideService.guideSections()
         self.guideWorker = GuideWorker(services: services)
 
-        syncStateObserver.observe(\.syncedClasses, options: [.new]) { [unowned self] _, _ in
+        syncStateObserver.onUpdate { [unowned self] _ in
             self.createTodaysGuideIfNeeded()
-        }.addTo(tokenBin)
+        }
         becomeActiveHandler.handler = { [unowned self] _ in
             self.createTodaysGuideIfNeeded()
         }

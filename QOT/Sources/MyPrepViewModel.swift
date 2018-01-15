@@ -32,7 +32,6 @@ final class MyPrepViewModel {
     private var preparationChecks: AnyRealmCollection<PreparationCheck>?
     private var preparationsNotificationHandler: NotificationTokenHandler?
     private var preparationChecksNotificationHandler: NotificationTokenHandler?
-    private var token: NSKeyValueObservation!
     private let syncStateObserver: SyncStateObserver
     private var items = [Item]() {
         didSet {
@@ -70,7 +69,7 @@ final class MyPrepViewModel {
                 break
             }
         }.handler
-        token = syncStateObserver.observe(\.syncedClasses, options: [.new]) { [unowned self] _, _ in
+        syncStateObserver.onUpdate { [unowned self] _ in
             self.updates.next(.reload)
         }
 

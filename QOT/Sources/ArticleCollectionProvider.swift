@@ -30,9 +30,9 @@ final class ArticleCollectionProvider {
         notificationTokenHandler = contentCollections.addNotificationBlock { [unowned self] change in
             self.updateBlock?(self.provideViewData())
         }.handler
-        syncStateObserver.observe(\.syncedClasses, options: [.new]) { [unowned self] _, _ in
+        syncStateObserver.onUpdate { [unowned self] _ in
             self.updateBlock?(self.provideViewData())
-        }.addTo(tokenBin)
+        }
     }
 
     func provideViewData() -> ArticleCollectionViewData {
