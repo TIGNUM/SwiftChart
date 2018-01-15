@@ -33,7 +33,7 @@ final class SettingsViewController: UIViewController {
     private var viewModel: SettingsViewModel
     private let services: Services
     private let locationManager = CLLocationManager()
-    private var guideItem: Guide.Item?
+    private var destination: AppCoordinator.Router.Destination?
     weak var delegate: SettingsCoordinatorDelegate?
     let settingsType: SettingsType.SectionType
     var tableView: UITableView!
@@ -43,11 +43,11 @@ final class SettingsViewController: UIViewController {
     init(viewModel: SettingsViewModel,
          services: Services,
          settingsType: SettingsType.SectionType,
-         guideItem: Guide.Item?) {
+         destination: AppCoordinator.Router.Destination?) {
         self.viewModel = viewModel
         self.settingsType = settingsType
         self.services = services
-        self.guideItem = guideItem
+        self.destination = destination
 
         super.init(nibName: nil, bundle: nil)
 
@@ -86,9 +86,9 @@ final class SettingsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        guard guideItem != nil else { return }
-        delegate?.goToCalendarListViewController(settingsViewController: self, guideItem: guideItem)
-        guideItem = nil
+        guard destination != nil else { return }
+        delegate?.goToCalendarListViewController(settingsViewController: self, destination: destination)
+        destination = nil
     }
 
     @objc func reloadTableView(_ notification: Notification) {

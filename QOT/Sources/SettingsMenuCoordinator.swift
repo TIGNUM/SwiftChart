@@ -16,7 +16,7 @@ final class SettingsMenuCoordinator: ParentCoordinator {
     private let networkManager: NetworkManager
     private let syncManager: SyncManager
     private let permissionsManager: PermissionsManager
-    private var guideItem: Guide.Item?
+    private var destination: AppCoordinator.Router.Destination?
     let settingsMenuViewController: SettingsMenuViewController
     var settingsCoordinator: SettingsCoordinator?
     var children = [Coordinator]()
@@ -26,15 +26,15 @@ final class SettingsMenuCoordinator: ParentCoordinator {
           syncManager: SyncManager,
           networkManager: NetworkManager,
           permissionsManager: PermissionsManager,
-          guideItem: Guide.Item?) {
+          destination: AppCoordinator.Router.Destination?) {
         guard let viewModel = SettingsMenuViewModel(services: services) else { return nil }
         self.rootViewController = root
         self.services = services
         self.networkManager = networkManager
         self.syncManager = syncManager
         self.permissionsManager = permissionsManager
-        self.guideItem = guideItem
-        settingsMenuViewController = SettingsMenuViewController(viewModel: viewModel, guideItem: guideItem)
+        self.destination = destination
+        settingsMenuViewController = SettingsMenuViewController(viewModel: viewModel, destination: destination)
         settingsMenuViewController.title = R.string.localized.settingsTitle().uppercased()
         settingsMenuViewController.delegate = self
     }
@@ -48,20 +48,26 @@ final class SettingsMenuCoordinator: ParentCoordinator {
 
 extension SettingsMenuCoordinator: SettingsMenuViewControllerDelegate {
 
-    func goToGeneralSettings(from viewController: SettingsMenuViewController, guideItem: Guide.Item?) {
-        startSettingsCoordinator(settingsType: .general, root: settingsMenuViewController, guideItem: guideItem)
+    func goToNotificationsSettings(from viewController: SettingsMenuViewController,
+                                   destination: AppCoordinator.Router.Destination) {
+        didTapNotifications(in: viewController)
+    }
+
+    func goToGeneralSettings(from viewController: SettingsMenuViewController,
+                             destination: AppCoordinator.Router.Destination) {
+        startSettingsCoordinator(settingsType: .general, root: settingsMenuViewController, destination: destination)
     }
 
     func didTapGeneral(in viewController: SettingsMenuViewController) {
-        startSettingsCoordinator(settingsType: .general, root: viewController, guideItem: nil)
+        startSettingsCoordinator(settingsType: .general, root: viewController, destination: nil)
     }
 
     func didTapSecurity(in viewController: SettingsMenuViewController) {
-        startSettingsCoordinator(settingsType: .security, root: viewController, guideItem: nil)
+        startSettingsCoordinator(settingsType: .security, root: viewController, destination: nil)
     }
 
     func didTapNotifications(in viewController: SettingsMenuViewController) {
-        startSettingsCoordinator(settingsType: .notifications, root: viewController, guideItem: nil)
+        startSettingsCoordinator(settingsType: .notifications, root: viewController, destination: nil)
     }
 
     func didTapLogout(in viewController: SettingsMenuViewController) {
@@ -70,14 +76,14 @@ extension SettingsMenuCoordinator: SettingsMenuViewControllerDelegate {
 
     private func startSettingsCoordinator(settingsType: SettingsType.SectionType,
                                           root: SettingsMenuViewController,
-                                          guideItem: Guide.Item?) {
+                                          destination: AppCoordinator.Router.Destination?) {
         guard let coordinator = SettingsCoordinator(root: root,
                                                     services: services,
                                                     settingsType: settingsType,
                                                     syncManager: syncManager,
                                                     networkManager: networkManager,
                                                     permissionsManager: permissionsManager,
-                                                    guideItem: guideItem) else { return }
+                                                    destination: destination) else { return }
         settingsCoordinator = coordinator
         startChild(child: coordinator)
     }

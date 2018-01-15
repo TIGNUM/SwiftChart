@@ -16,7 +16,7 @@ final class SidebarCoordinator: ParentCoordinator {
     private let networkManager: NetworkManager
     private let syncManager: SyncManager
     private let permissionsManager: PermissionsManager
-    private let guideItem: Guide.Item?
+    private let destination: AppCoordinator.Router.Destination?
     let sideBarViewController: SidebarViewController!
     var addSensorCoordinator: AddSensorCoordinator?
     var topTabBarController: UINavigationController?
@@ -28,13 +28,13 @@ final class SidebarCoordinator: ParentCoordinator {
          syncManager: SyncManager,
          networkManager: NetworkManager,
          permissionsManager: PermissionsManager,
-         guideItem: Guide.Item?) {
+         destination: AppCoordinator.Router.Destination?) {
         self.rootViewController = root
         self.services = services
         self.networkManager = networkManager
         self.syncManager = syncManager
         self.permissionsManager = permissionsManager
-        self.guideItem = guideItem
+        self.destination = destination
 
         let viewModel = SidebarViewModel(services: services)
         sideBarViewController = SidebarViewController(viewModel: viewModel)
@@ -69,7 +69,7 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
                                                         syncManager: syncManager,
                                                         networkManager: networkManager,
                                                         permissionsManager: permissionsManager,
-                                                        guideItem: guideItem) else {
+                                                        destination: destination) else {
                                                             log("could not init \(SettingsMenuCoordinator.self)")
                                                             return }
         startChild(child: coordinator)
