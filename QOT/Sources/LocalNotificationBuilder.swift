@@ -24,20 +24,19 @@ final class LocalNotificationBuilder: NSObject {
     func setup() {
         let now = Date()
         let notifications: [RealmGuideItemNotification] = guideNotifications(realmProvider: realmProvider).filter {
-            guard let notificationDate = $0.localNotificationDate, notificationDate > now, notificationDate.isSameDay(Date()) else { //FIXME check for same ONLY for testing big chunks of today.
+            guard let notificationDate = $0.localNotificationDate, notificationDate > now else {
                 return false
             }
             return true
             }.sorted { (a, b) -> Bool in
                 a.localNotificationDate! > b.localNotificationDate!
         }
-        print("notifications.count_", notifications.count)
 
-        let prefix = Array(notifications.prefix(64)) // FIXME: We need to limit how many. 20 is just a guess.
+        let prefix = Array(notifications.prefix(20)) // FIXME: We need to limit how many. 20 is just a guess.
         cancelServerPush(for: prefix) {
             prefix.forEach { (notification: RealmGuideItemNotification) in
                 if let notificationDate = notification.localNotificationDate,
-                    let issueDate = notification.issueDate, issueDate.isSameDay(Date()) { //FIXME check for same ONLY for testing big chunks of today.
+                    let issueDate = notification.issueDate {
                     self.create(notification: notification, notificationDate: notificationDate, issueDate: issueDate)
                 }
             }
@@ -46,7 +45,6 @@ final class LocalNotificationBuilder: NSObject {
 
     func addLearnItemNotification(for item: RealmGuideItemLearn, identifier: String) {
         if let notificationDate = item.localNotificationDate {
-            print("addLearnItemNotification", item.type)
             create(itemLearn: item, identifier: identifier, notificationDate: notificationDate)
         }
     }
