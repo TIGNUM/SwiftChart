@@ -26,12 +26,12 @@ final class GuideTableViewCell: UITableViewCell, Dequeueable {
     func configure(title: String, content: String, type: String, status: GuideViewModel.Status) {
         titleLabel.attributedText = attributedText(letterSpacing: 1,
                                                    text: title.uppercased(),
-                                                   font: Font.H4Identifier,
+                                                   font: Font.H5SecondaryHeadline,
                                                    textColor: .white,
                                                    alignment: .left)
         contentLabel.attributedText = attributedText(letterSpacing: 0.2,
                                                      text: content,
-                                                     font: Font.H5SecondaryHeadline,
+                                                     font: Font.PText,
                                                      textColor: .white70,
                                                      alignment: .left)
         typeLabel.attributedText = attributedText(letterSpacing: 2,

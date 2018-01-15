@@ -32,6 +32,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     private lazy var networkManager: NetworkManager = NetworkManager(delegate: self, credentialsManager: self.credentialsManager)
     private lazy var credentialsManager: CredentialsManager = CredentialsManager.shared
     private var canProcessRemoteNotifications = false
+    private var canProcessLocalNotifications = false
     private var onDismiss: (() -> Void)?
     private var notificationID: String?
     private var destination: AppCoordinator.Router.Destination?
@@ -79,7 +80,9 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
     // MARK: - Life Cycle
 
-    init(windowManager: WindowManager, remoteNotificationHandler: RemoteNotificationHandler, locationManager: LocationManager) {
+    init(windowManager: WindowManager,
+         remoteNotificationHandler: RemoteNotificationHandler, 
+         locationManager: LocationManager) {
         self.windowManager = windowManager
         self.remoteNotificationHandler = remoteNotificationHandler
         self.locationManager = locationManager
@@ -166,7 +169,9 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
                     self.calendarImportManager.importEvents()
                     self.startTabBarCoordinator(services: services, permissionsManager: self.permissionsManager)
                     self.canProcessRemoteNotifications = true
+                    self.canProcessLocalNotifications = true
                     self.remoteNotificationHandler.processOutstandingNotifications()
+                    AppDelegate.current.processOutstandingNotifications()
                 } catch {
                     handleError(error: error)
                 }
@@ -459,8 +464,16 @@ extension AppCoordinator: OnboardingCoordinatorDelegate {
 
 extension AppCoordinator: RemoteNotificationHandlerDelegate {
 
-    func remoteNotificationHandler(_ handler: RemoteNotificationHandler, canProcessNotificationResponse: UANotificationResponse) -> Bool {
+    func remoteNotificationHandler(_ handler: RemoteNotificationHandler,
+                                   canProcessNotificationResponse: UANotificationResponse) -> Bool {
         return canProcessRemoteNotifications
+    }
+}
+
+extension AppCoordinator: LocalNotificationHandlerDelegate {
+
+    func localNotificationHandler(_ handler: AppDelegate, canProcessNotification: UNNotification) -> Bool {
+        return canProcessLocalNotifications
     }
 }
 
@@ -779,6 +792,7 @@ extension AppCoordinator {
                                  validTo: Date,
                                  notificationID: String,
                                  guideItem: Guide.Item?) {
+        log("dailyPrep://presentMorningInterview, dailyPrep groupID:: \(groupID), notificationID: \(notificationID), guideItem: \(guideItem)")
         guard let services = services else { return }
         self.notificationID = notificationID
         AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle

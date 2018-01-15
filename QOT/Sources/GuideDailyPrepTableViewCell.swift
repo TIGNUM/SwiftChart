@@ -84,10 +84,10 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
             for (index, label) in dailyPrep.labels.enumerated() {
                 valueTitleLabels[index].attributedText = attributedText(letterSpacing: 0.2,
                                                                         text: label,
-                                                                        font: Font.PTextSmall,
+                                                                        font: Font.H8Title,
                                                                         lineSpacing: 8,
                                                                         textColor: .white70,
-                                                                        alignment: .left)                
+                                                                        alignment: .left)
             }
         }
 
