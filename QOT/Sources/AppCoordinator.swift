@@ -33,7 +33,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     private lazy var credentialsManager: CredentialsManager = CredentialsManager.shared
     private var canProcessRemoteNotifications = false
     private var onDismiss: (() -> Void)?
-    private var notificationID: String?
     private var destination: AppCoordinator.Router.Destination?
 
     // current state
@@ -372,49 +371,39 @@ extension AppCoordinator: NetworkManagerDelegate {
 
 extension AppCoordinator: MorningInterviewViewControllerDelegate {
 
-    func didTapClose(viewController: MorningInterviewViewController, userAnswers: [UserAnswer]) {
+    func didTapClose(viewController: MorningInterviewViewController, userAnswers: [UserAnswer], notificationRemoteID: Int) {
         if userAnswers.isEmpty == false {
-            sendMorningInterviewResults(userAnswers, viewController: viewController)
+            sendMorningInterviewResults(userAnswers, viewController: viewController, notificationRemoteID: notificationRemoteID)
         } else {
             dismiss(viewController, level: .priority)
         }
     }
 
     private func sendMorningInterviewResults(_ userAnswers: [UserAnswer],
-                                             viewController: MorningInterviewViewController) {
+                                             viewController: MorningInterviewViewController,
+                                             notificationRemoteID: Int) {
+        self.dismiss(viewController, level: .priority)
+        if let destination = URLScheme.guide.destination {
+            self.navigate(to: destination)
+        }
+
         networkManager.performUserAnswerFeedbackRequest(userAnswers: userAnswers) { result in
             switch result {
             case .success(let value):
-                self.save(feedback: value) {
-                    self.dismiss(viewController, level: .priority)
-                    if let destination = URLScheme.guide.destination {
-                        self.navigate(to: destination)
-//                        if let guideViewController = self.tabBarCoordinator?.topTabBarControllerGuide.viewControllers.first as? GuideViewController {
-////                            guideViewController.reloadViewModel() // FIXME: Better observe; reactive bond actions...
-//                        }
-                    }
-                }
+                self.save(feedback: value, notificationRemoteID: notificationRemoteID) {}
             case .failure(let error):
                 log("error: \(error)")
             }
         }
     }
 
-    private func save(feedback: UserAnswerFeedback, completion: (() -> Void)?) {
+    private func save(feedback: UserAnswerFeedback, notificationRemoteID: Int, completion: (() -> Void)?) {
         do {
             let realm = try RealmProvider().realm()
-            try realm.write {
-                if  let notificationID = notificationID,
-                    let guideItem = realm.object(ofType: RealmGuideItem.self, forPrimaryKey: notificationID),
-                    let guideItemNotification = guideItem.referencedItem as? RealmGuideItemNotification {
-                        guideItemNotification.morningInterviewFeedback = feedback.body
-                } else if
-                    let notificationID = notificationID,
-                    let guideItemNotification = realm.syncableObject(ofType: RealmGuideItemNotification.self,
-                                                                     localID: notificationID) {
-                        guideItemNotification.morningInterviewFeedback = feedback.body
+            if let interviewResult = realm.object(ofType: RealmInterviewResult.self, forPrimaryKey: notificationRemoteID) {
+                try realm.write {
+                    interviewResult.feedback = feedback.body
                 }
-                completion?()
             }
         } catch {
             log(error, level: .error)
@@ -777,17 +766,14 @@ extension AppCoordinator {
     func presentMorningInterview(groupID: Int,
                                  validFrom: Date,
                                  validTo: Date,
-                                 notificationID: String,
-                                 guideItem: Guide.Item?) {
+                                 notificationRemoteID: Int) {
         guard let services = services else { return }
-        self.notificationID = notificationID
         AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
         let viewModel = MorningInterviewViewModel(services: services,
                                                   questionGroupID: groupID,
                                                   validFrom: validFrom,
                                                   validTo: validTo,
-                                                  notificationID: notificationID,
-                                                  guideItem: guideItem)
+                                                  notificationRemoteID: notificationRemoteID)
         let morningInterViewController = MorningInterviewViewController(viewModel: viewModel)
         morningInterViewController.delegate = self
         windowManager.showPriority(morningInterViewController, animated: true, completion: nil)

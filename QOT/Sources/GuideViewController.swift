@@ -121,7 +121,7 @@ private extension GuideViewController {
 
     func open(item: Guide.Item) {
         guard let linkURL = item.link.url else { return }
-        AppDelegate.current.launchHandler.process(url: linkURL, notificationID: item.notificationID, guideItem: item)
+        AppDelegate.current.launchHandler.process(url: linkURL, notificationID: item.identifier, guideItem: item)
     }
 
     func dailyPrepTableViewCell(item: Guide.Item, indexPath: IndexPath) -> GuideDailyPrepTableViewCell {
