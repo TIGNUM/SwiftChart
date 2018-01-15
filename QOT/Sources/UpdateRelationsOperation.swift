@@ -42,7 +42,8 @@ final class UpdateRelationsOperation: ConcurrentOperation {
                     Array(realm.objects(ContentCollection.self)),
                     Array(realm.objects(ContentItem.self)),
                     Array(realm.objects(Preparation.self)),
-                    Array(realm.objects(PreparationCheck.self))
+                    Array(realm.objects(PreparationCheck.self)),
+                    Array(realm.objects(RealmGuideItemNotification.self))
                 ]
                 collections.forEach { $0.forEach { $0.buildRelations(realm: realm) } }
                 collections.forEach { $0.forEach { $0.buildInverseRelations(realm: realm) } }
