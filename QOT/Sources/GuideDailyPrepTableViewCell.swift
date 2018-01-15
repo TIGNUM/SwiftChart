@@ -28,15 +28,13 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
         valueContainerView.backgroundColor = .clear
         valueViews.forEach { $0.backgroundColor = .clear }
         feedbackLabel.isHidden = true
-        typeLabel.isHidden = true
+        typeLabel.isHidden = true        
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
 
-        valueViews.forEach {
-            $0.isHidden = false
-        }
+        valueViews.forEach { $0.isHidden = false }
         titleLabel.attributedText = nil
         typeLabel.attributedText = nil
         feedbackLabel.attributedText = nil
@@ -84,7 +82,7 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
             for (index, label) in dailyPrep.labels.enumerated() {
                 valueTitleLabels[index].attributedText = attributedText(letterSpacing: 0.2,
                                                                         text: label,
-                                                                        font: Font.H8Title,
+                                                                        font: Font.H7Title,
                                                                         lineSpacing: 8,
                                                                         textColor: .white70,
                                                                         alignment: .left)
