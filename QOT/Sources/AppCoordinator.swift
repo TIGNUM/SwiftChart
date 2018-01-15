@@ -679,19 +679,23 @@ extension AppCoordinator {
         let topTabBarIndex = destination.topTabBar.index
         tabBarController.selectedViewController = viewControllers[tabBarIndex]
 
-        guard
+        if let destinationViewController = tabBarController.selectedViewController {
+            tabBarController.tabBarController(tabBarController, didSelect: destinationViewController)
+            currentPresentedController = tabBarController.selectedViewController
+        } else if
             let topNavigationBar = destination.topTabBar.topNavigationBar(tabBarCoordinator),
             let middleButton = destination.topTabBar.middleButton(topNavigationBar),
-            let destinationViewController = tabBarController.selectedViewController else { return }
-        tabBarController.tabBarController(tabBarController, didSelect: destinationViewController)
-        tabBarCoordinator?.topNavigationBar(topNavigationBar,
-                                            middleButtonPressed: middleButton,
-                                            withIndex: topTabBarIndex,
-                                            ofTotal: 2)
-        topNavigationBar.setIndicatorToButtonIndex(topTabBarIndex, animated: true)
-        topNavigationBar.setIndicatorToButton(middleButton, animated: true)
-        topNavigationBar.setIsSelected(middleButton)
-        currentPresentedController = tabBarController.selectedViewController
+            let destinationViewController = tabBarController.selectedViewController {
+                tabBarController.tabBarController(tabBarController, didSelect: destinationViewController)
+                tabBarCoordinator?.topNavigationBar(topNavigationBar,
+                                                    middleButtonPressed: middleButton,
+                                                    withIndex: topTabBarIndex,
+                                                    ofTotal: 2)
+                topNavigationBar.setIndicatorToButtonIndex(topTabBarIndex, animated: true)
+                topNavigationBar.setIndicatorToButton(middleButton, animated: true)
+                topNavigationBar.setIsSelected(middleButton)
+                currentPresentedController = tabBarController.selectedViewController
+        }
     }
 
     func presentSideBar(guideItem: Guide.Item?) -> SidebarCoordinator? {
