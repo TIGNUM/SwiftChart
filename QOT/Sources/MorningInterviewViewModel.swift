@@ -21,7 +21,7 @@ final class InterviewQuestion {
 
     init?(question: Question) {
         let answers = Array(question.answers.sorted(by: [.sortOrder()]))
-        guard answers.count > 0 else { return nil }
+        guard answers.isEmpty == false else { return nil }
 
         self.remoteID = question.forcedRemoteID
         self.title = question.title

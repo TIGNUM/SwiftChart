@@ -29,7 +29,9 @@ final class ScheduledNotificationsTableViewController: UITableViewController {
     private func getPendingNotifications() {
         UNUserNotificationCenter.current().getPendingNotificationRequests { [unowned self] (requests) in
             self.pendingNotifications = requests
-            self.tableView.reloadData()
+            DispatchQueue.main.async { [unowned self] in
+                self.tableView.reloadData()
+            }
         }
     }
 

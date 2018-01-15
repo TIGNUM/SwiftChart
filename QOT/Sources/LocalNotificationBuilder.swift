@@ -24,7 +24,7 @@ final class LocalNotificationBuilder: NSObject {
     func setup() {
         let now = Date()
         let notifications: [RealmGuideItemNotification] = guideNotifications(realmProvider: realmProvider).filter {
-            guard let notificationDate = $0.localNotificationDate, notificationDate > now/*, notificationDate.isSameDay(Date())*/ else { //FIXME check for same ONLY for testing big chunks of today.
+            guard let notificationDate = $0.localNotificationDate, notificationDate > now, notificationDate.isSameDay(Date()) else { //FIXME check for same ONLY for testing big chunks of today.
                 return false
             }
             return true
@@ -37,7 +37,7 @@ final class LocalNotificationBuilder: NSObject {
         cancelServerPush(for: prefix) {
             prefix.forEach { (notification: RealmGuideItemNotification) in
                 if let notificationDate = notification.localNotificationDate,
-                    let issueDate = notification.issueDate /*, issueDate.isSameDay(Date())*/ { //FIXME check for same ONLY for testing big chunks of today.
+                    let issueDate = notification.issueDate, issueDate.isSameDay(Date()) { //FIXME check for same ONLY for testing big chunks of today.
                     self.create(notification: notification, notificationDate: notificationDate, issueDate: issueDate)
                 }
             }

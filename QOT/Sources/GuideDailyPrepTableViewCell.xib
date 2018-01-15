@@ -44,9 +44,6 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VvX-gS-sFt">
                                                 <rect key="frame" x="0.0" y="8" width="39" height="29"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="29" id="JtN-xO-WLc"/>
-                                                </constraints>
                                                 <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="24"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -76,9 +73,6 @@ Lorem</string>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hx8-WN-YNy">
                                                 <rect key="frame" x="0.0" y="8" width="39" height="29"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="29" id="BRl-L1-KQf"/>
-                                                </constraints>
                                                 <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="24"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -108,9 +102,6 @@ Lorem</string>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fms-cf-5vL">
                                                 <rect key="frame" x="0.0" y="8" width="39" height="29"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="29" id="VS6-4E-O6R"/>
-                                                </constraints>
                                                 <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="24"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -140,9 +131,6 @@ Lorem</string>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Op6-5c-6fW">
                                                 <rect key="frame" x="0.0" y="8" width="39" height="29"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="29" id="Pzl-7z-inS"/>
-                                                </constraints>
                                                 <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="24"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -172,9 +160,6 @@ Lorem</string>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FN2-li-zKi">
                                                 <rect key="frame" x="0.0" y="8" width="39" height="29"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="29" id="pe6-0S-f2I"/>
-                                                </constraints>
                                                 <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="24"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
