@@ -43,13 +43,11 @@ final class RealmGuideItemNotification: SyncableObject, RealmGuideItemProtocol {
 
     @objc dynamic var completedAt: Date?
 
-    @objc dynamic var morningInterviewFeedback: String?
-
     @objc dynamic var displayTime: RealmGuideTime?
 
     @objc dynamic var reminderTime: RealmGuideTime?
 
-    var dailyPrepResults = List<IntObject>()
+    @objc dynamic var interviewResult: RealmInterviewResult?
 
     var localNotificationDate: Date? {
         guard let issueDate = issueDate, let reminderTime = reminderTime else { return nil }

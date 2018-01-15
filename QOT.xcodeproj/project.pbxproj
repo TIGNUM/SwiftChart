@@ -246,6 +246,7 @@
 		CB55A2DF1E9FDF0A00D721CE /* SettingsMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB55A2DE1E9FDF0A00D721CE /* SettingsMenuViewController.swift */; };
 		CB55A2E11E9FDF1D00D721CE /* SettingsMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB55A2E01E9FDF1D00D721CE /* SettingsMenuViewModel.swift */; };
 		CB58917B1F7B95B200D63C5E /* ChatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5891791F7B95B200D63C5E /* ChatViewCell.swift */; };
+		CB6BF031200CB28C0020241B /* RealmInterviewResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BF030200CB28C0020241B /* RealmInterviewResult.swift */; };
 		CB6D49541ECC87BF005BC637 /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6D49531ECC87BF005BC637 /* Requests.swift */; };
 		CB6D49561ECCA58D005BC637 /* AuthenticationTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6D49551ECCA58D005BC637 /* AuthenticationTokenParser.swift */; };
 		CB73991F1FBDA0D900C5FF57 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73991E1FBDA0D900C5FF57 /* Token.swift */; };
@@ -785,6 +786,7 @@
 		CB55A2DE1E9FDF0A00D721CE /* SettingsMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuViewController.swift; sourceTree = "<group>"; };
 		CB55A2E01E9FDF1D00D721CE /* SettingsMenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuViewModel.swift; sourceTree = "<group>"; };
 		CB5891791F7B95B200D63C5E /* ChatViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewCell.swift; sourceTree = "<group>"; };
+		CB6BF030200CB28C0020241B /* RealmInterviewResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmInterviewResult.swift; sourceTree = "<group>"; };
 		CB6D49531ECC87BF005BC637 /* Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
 		CB6D49551ECCA58D005BC637 /* AuthenticationTokenParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationTokenParser.swift; sourceTree = "<group>"; };
 		CB73991E1FBDA0D900C5FF57 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
@@ -1109,6 +1111,7 @@
 				363178E41FDEE8D700833958 /* RealmGuideItemLearn.swift */,
 				363178E61FDEECDE00833958 /* RealmGuideItemNotification.swift */,
 				3649C0321FE323EE001F4249 /* RealmGuideTime.swift */,
+				CB6BF030200CB28C0020241B /* RealmInterviewResult.swift */,
 			);
 			name = Guide;
 			sourceTree = "<group>";
@@ -3316,6 +3319,7 @@
 				7F5A25BF1F3CB71100A11466 /* DatabaseManager.swift in Sources */,
 				CBC933051F05253000C00007 /* JSON+Convenience.swift in Sources */,
 				7FE151C81F3DDAE600DA8F37 /* DatabaseBuilder.swift in Sources */,
+				CB6BF031200CB28C0020241B /* RealmInterviewResult.swift in Sources */,
 				7F9217BF1FD01C8000CAE9E0 /* CameraPermission.swift in Sources */,
 				36DADE791FA786DD00EB00D4 /* SettingsAdminViewController.swift in Sources */,
 				CB9AFD141F014BAA00D067F2 /* PreparationCheck.swift in Sources */,

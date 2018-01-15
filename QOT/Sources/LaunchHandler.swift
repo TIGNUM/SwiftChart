@@ -157,12 +157,19 @@ extension LaunchHandler {
             let groupID = groupID,
             let groupIDIntValue = Int(groupID) else { return }
 
-        //TODO: dates?
-        appDelegate.appCoordinator.presentMorningInterview(groupID: groupIDIntValue,
-                                                           validFrom: Date(),
-                                                           validTo: Date(),
-                                                           notificationID: notificationID,
-                                                           guideItem: guideItem)
+        if let notificationRemoteID = try? GuideItemID(stringRepresentation: notificationID).remoteID {
+            appDelegate.appCoordinator.presentMorningInterview(groupID: groupIDIntValue,
+                                                               validFrom: Date(),
+                                                               validTo: Date(),
+                                                               notificationRemoteID: notificationRemoteID)
+        } else if let notificationRemoteID = Int(notificationID) {
+            appDelegate.appCoordinator.presentMorningInterview(groupID: groupIDIntValue,
+                                                               validFrom: Date(),
+                                                               validTo: Date(),
+                                                               notificationRemoteID: notificationRemoteID)
+        } else {
+            log("Cannot show daily prep with groupID: \(groupID) notificationID: \(notificationID)", level: .error)
+        }
     }
 }
 

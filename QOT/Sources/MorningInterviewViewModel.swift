@@ -20,7 +20,13 @@ final class InterviewQuestion {
     var answerIndex: Int
 
     init?(question: Question) {
-        let answers = Array(question.answers.sorted(by: [.sortOrder()]))
+//        let answers = Array(question.answers.sorted(by: [.sortOrder(ascending: true)]))
+        // FIXME: This assumes answer title will be 1 ... 10. Use sortOrder when fixed on server
+        let answers = Array(question.answers.sorted { (a, b) -> Bool in
+            let left = Int(a.title) ?? 0
+            let right = Int(b.title) ?? 0
+            return left < right
+        })
         guard answers.isEmpty == false else { return nil }
 
         self.remoteID = question.forcedRemoteID
@@ -45,8 +51,7 @@ final class MorningInterviewViewModel: NSObject {
     private let validFrom: Date
     private let validTo: Date
     private let questions: [InterviewQuestion]
-    private let notificationID: String
-    private let guideItem: Guide.Item?
+    let notificationRemoteID: Int
 
     // MARK: - Init
 
@@ -54,16 +59,14 @@ final class MorningInterviewViewModel: NSObject {
          questionGroupID: Int,
          validFrom: Date,
          validTo: Date,
-         notificationID: String = "",
-         guideItem: Guide.Item?) {
+         notificationRemoteID: Int) {
         let questions = services.questionsService.morningInterviewQuestions(questionGroupID: questionGroupID)
         self.services = services
         self.questionGroupID = questionGroupID
         self.validFrom = validFrom
         self.validTo = validTo
         self.questions = Array(questions.flatMap(InterviewQuestion.init))
-        self.notificationID = notificationID
-        self.guideItem = guideItem
+        self.notificationRemoteID = notificationRemoteID
     }
 
     var questionsCount: Int {
@@ -93,33 +96,28 @@ final class MorningInterviewViewModel: NSObject {
     }
 
     func save(userAnswers: [UserAnswer]) throws {
-        let dailyPrepResults = List<IntObject>(userAnswers.map { IntObject(int: Int($0.userAnswer) ?? 0) })
         let realm = services.mainRealm
         try realm.write {
+            // Save answers to be send to server
             userAnswers.forEach { (userAnswer: UserAnswer) in
                 realm.add(userAnswer)
             }
-            if
-                let guideItem = realm.object(ofType: RealmGuideItem.self, forPrimaryKey: notificationID),
-                let referencedItem = guideItem.referencedItem as? RealmGuideItemNotification {
-                    referencedItem.dailyPrepResults.removeAll()
-                    referencedItem.dailyPrepResults.append(objectsIn: dailyPrepResults)
-            } else if let guideItemNotification = realm.syncableObject(ofType: RealmGuideItemNotification.self,
-                                                                       localID: notificationID) {
-                    guideItemNotification.dailyPrepResults.removeAll()
-                    guideItemNotification.dailyPrepResults.append(objectsIn: dailyPrepResults)
+
+            // Save result for guide
+            let results = userAnswers.map { Int($0.userAnswer) ?? 0 }
+            let result = RealmInterviewResult(notificationRemoteID: notificationRemoteID, results: results)
+            realm.add(result)
+
+            // Set results on notification if it exists. Otherwise we will set it during sync
+            if let notification = realm.syncableObject(ofType: RealmGuideItemNotification.self,
+                                                       remoteID: notificationRemoteID) {
+                notification.interviewResult = result
             }
         }
 
-        if let guideID = guideItem?.identifier {
-            handleGuideItem(itemID: guideID)
-        } else {
-            handleGuideItem(itemID: notificationID)
+        if let guideItem = realm.objects(RealmGuideItem.self).filter("guideItemNotification.remoteID == %d", notificationRemoteID).first {
+            LocalNotificationBuilder.cancelNotification(identifier: guideItem.localID)
+            GuideWorker(services: services).setItemCompleted(guideID: guideItem.localID)
         }
-    }
-
-    private func handleGuideItem(itemID: String) {
-        LocalNotificationBuilder.cancelNotification(identifier: itemID)
-        GuideWorker(services: services).setItemCompleted(guideID: itemID)
     }
 }

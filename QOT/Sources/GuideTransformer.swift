@@ -63,7 +63,6 @@ private extension Guide.Item {
             featureLink = .path(learn.featureLink ?? "")
             featureButton = learn.featureButton
             identifier = item.localID
-            notificationID = learn.localID
             dailyPrep = nil
             greeting = learn.greeting
             createdAt = learn.createdAt
@@ -77,11 +76,14 @@ private extension Guide.Item {
             featureLink = nil
             featureButton = nil
             identifier = item.localID
-            notificationID = notification.localID
+            var interviewResults: [String] = []
+            if let interviewResult = notification.interviewResult {
+                interviewResults = interviewResult.results.map { String(format: "%d", $0.value) }
+            }
             dailyPrep = DailyPrep(questionGroupID: link.groupID,
                                   services: services,
-                                  feedback: notification.morningInterviewFeedback,
-                                  results: Array(notification.dailyPrepResults.map { String(format: "%d", $0.value) }))
+                                  feedback: notification.interviewResult?.feedback,
+                                  results: interviewResults)
             greeting = notification.greeting
             createdAt = notification.createdAt
         } else {
