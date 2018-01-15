@@ -33,6 +33,7 @@ enum URLScheme: String {
     case meQotPartner = "me-qot-partner"
     case meTravel = "me-travel"
     case preferencesSyncCalendar = "preferences-sync-calendar"
+    case preferencesNotification = "preferences-notification"
     case addSensor = "add-sensor"
     case prepare = "prepare"
     case prepareProblem = "prepare-problem"
@@ -67,6 +68,7 @@ enum URLScheme: String {
              .meQotPartner,
              .meTravel,
              .preferencesSyncCalendar,
+             .preferencesNotification,
              .addSensor,
              .prepare,
              .prepareProblem,
@@ -94,6 +96,8 @@ enum URLScheme: String {
              .weeklyPeakPerformance: return AppCoordinator.Router.Destination(tabBar: .prepare, topTabBar: .myPrep)
         case .prepareProblem: return AppCoordinator.Router.Destination(tabBar: .prepare, topTabBar: .coach, chatSection: .problem)
         case .prepareEvent: return AppCoordinator.Router.Destination(tabBar: .prepare, topTabBar: .coach, chatSection: .event)
+        case .preferencesSyncCalendar: return AppCoordinator.Router.Destination(preferences: .calendarSync)
+        case .preferencesNotification: return AppCoordinator.Router.Destination(preferences: .notifications)
         default: return nil
         }
     }

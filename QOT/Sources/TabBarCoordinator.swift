@@ -417,7 +417,7 @@ extension TabBarCoordinator: TopNavigationBarDelegate {
                                              syncManager: syncManager,
                                              networkManager: networkManager,
                                              permissionsManager: permissionsManager,
-                                             guideItem: nil)
+                                             destination: nil)
         startChild(child: coordinator)
     }
 }
