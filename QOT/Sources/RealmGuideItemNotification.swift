@@ -55,6 +55,15 @@ final class RealmGuideItemNotification: SyncableObject, RealmGuideItemProtocol {
     }
 }
 
+extension RealmGuideItemNotification: BuildRelations {
+
+    func buildRelations(realm: Realm) {
+        if let remoteID = remoteID.value {
+            interviewResult = realm.object(ofType: RealmInterviewResult.self, forPrimaryKey: remoteID)
+        }
+    }
+}
+
 extension RealmGuideItemNotification: OneWaySyncableDown {
 
     static var endpoint: Endpoint {
