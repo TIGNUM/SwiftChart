@@ -30,8 +30,6 @@
 		3649C0351FE32506001F4249 /* GuideTimeIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C0341FE32506001F4249 /* GuideTimeIntermediary.swift */; };
 		3649C03B1FE41B84001F4249 /* GuideWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C03A1FE41B84001F4249 /* GuideWorker.swift */; };
 		365E98C31FD9A31000248361 /* CLTypingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365E98C21FD9A31000248361 /* CLTypingLabel.swift */; };
-		365EF1371FED699900FC8D5B /* GuideDateStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365EF1361FED699900FC8D5B /* GuideDateStepperView.swift */; };
-		365EF1391FED69AB00FC8D5B /* GuideDateStepperView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 365EF1381FED69AB00FC8D5B /* GuideDateStepperView.xib */; };
 		36927FC41FA7960400EC9B88 /* SettingsAdmin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36927FC31FA7960400EC9B88 /* SettingsAdmin.storyboard */; };
 		36939B8C1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36939B8A1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.swift */; };
 		36939B8D1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36939B8B1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib */; };
@@ -563,8 +561,6 @@
 		3649C0341FE32506001F4249 /* GuideTimeIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideTimeIntermediary.swift; sourceTree = "<group>"; };
 		3649C03A1FE41B84001F4249 /* GuideWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideWorker.swift; sourceTree = "<group>"; };
 		365E98C21FD9A31000248361 /* CLTypingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLTypingLabel.swift; sourceTree = "<group>"; };
-		365EF1361FED699900FC8D5B /* GuideDateStepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDateStepperView.swift; sourceTree = "<group>"; };
-		365EF1381FED69AB00FC8D5B /* GuideDateStepperView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideDateStepperView.xib; sourceTree = "<group>"; };
 		36927FC31FA7960400EC9B88 /* SettingsAdmin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsAdmin.storyboard; sourceTree = "<group>"; };
 		36939B8A1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDailyPrepTableViewCell.swift; sourceTree = "<group>"; };
 		36939B8B1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideDailyPrepTableViewCell.xib; sourceTree = "<group>"; };
@@ -1121,14 +1117,12 @@
 			children = (
 				36939B8A1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.swift */,
 				36B8F2521FE2FEA600AD6A17 /* GuideGreetingView.swift */,
-				365EF1361FED699900FC8D5B /* GuideDateStepperView.swift */,
 				362632461FD6A4210024C626 /* GuideTableViewCell.swift */,
 				CBE880981FEBFEFC00670C10 /* GuideTransformer.swift */,
 				36328F1F1FCEB90B004E9034 /* GuideViewController.swift */,
 				36328F211FCEB92C004E9034 /* GuideViewModel.swift */,
 				36939B8B1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib */,
 				36B8F2501FE2FDD400AD6A17 /* GuideGreetingView.xib */,
-				365EF1381FED69AB00FC8D5B /* GuideDateStepperView.xib */,
 				362632441FD6A2710024C626 /* GuideTableViewCell.xib */,
 			);
 			name = Guide;
@@ -2733,7 +2727,6 @@
 				CB96B7E11FED21A400ED8015 /* SlideShowTitleOnlySlideCell.xib in Resources */,
 				0BD6F6BA1EA0E81E001EBC4D /* MyPrepTableViewCell.xib in Resources */,
 				CBB543821FBC816600AFD67B /* bundled_media.plist in Resources */,
-				365EF1391FED69AB00FC8D5B /* GuideDateStepperView.xib in Resources */,
 				CB8C34521EAF61E50003AB65 /* SettingsMenuViewController.xib in Resources */,
 				7F99ABB11F3DF38E009CA587 /* Database in Resources */,
 				CC311A231EAF431E0020C869 /* SettingsControlTableViewCell.xib in Resources */,
@@ -3051,7 +3044,6 @@
 				36939B8C1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.swift in Sources */,
 				7FB172A21FA1E6CE00112C69 /* MyToBeVisionAnimator.swift in Sources */,
 				CBB4DD541EE151100071494A /* DownSyncImporter.swift in Sources */,
-				365EF1371FED699900FC8D5B /* GuideDateStepperView.swift in Sources */,
 				851676DD1F3C68F8007A1DD6 /* LearnReadMoreCell.swift in Sources */,
 				CB3BD4191F2877E50071F51E /* UpSyncable.swift in Sources */,
 				CCFCCB141F31C8E8004A4D7E /* R.generated.swift in Sources */,

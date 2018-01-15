@@ -25,7 +25,7 @@ final class Question: SyncableObject {
 
     let answers = List<Answer>()
 
-    let groups = List<QuestionGroup>()    
+    let groups = List<QuestionGroup>()
 }
 
 extension Question: OneWaySyncableDown {

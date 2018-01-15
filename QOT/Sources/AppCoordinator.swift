@@ -80,12 +80,13 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     // MARK: - Life Cycle
 
     init(windowManager: WindowManager,
-         remoteNotificationHandler: RemoteNotificationHandler, 
+         remoteNotificationHandler: RemoteNotificationHandler,
          locationManager: LocationManager) {
         self.windowManager = windowManager
         self.remoteNotificationHandler = remoteNotificationHandler
         self.locationManager = locationManager
 
+        AppDelegate.current.delegate = self
         AppCoordinator.appState.appCoordinator = self
         remoteNotificationHandler.delegate = self
         logoutNotificationHandler.handler = { [weak self] (_: Notification) in

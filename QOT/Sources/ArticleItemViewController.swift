@@ -139,7 +139,7 @@ private extension ArticleItemViewController {
 
         if let guideItem = guideItem, guideItem.featureLink?.url != nil {
             let button = featureLinkButton(guideItem: guideItem)
-            view.addSubview(button)            
+            view.addSubview(button)
             button.bottomAnchor == view.bottomAnchor - 8
             button.centerXAnchor == view.centerXAnchor
             button.widthAnchor == 242
@@ -155,7 +155,7 @@ private extension ArticleItemViewController {
         tableView.estimatedSectionHeaderHeight = 100
         view.backgroundColor = .clear
         view.addFadeView(at: .top)
-        view.setFadeMask(at: fadeMaskLocation)        
+        view.setFadeMask(at: fadeMaskLocation)
         view.layoutIfNeeded()
     }
 
