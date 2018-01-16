@@ -54,7 +54,6 @@ final class GenericCacheKey<T: Hashable>: NSObject {
 
 final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, PageViewControllerNotSwipeable {
 
-    private let paddingTop: CGFloat = 30.0
     private let disposeBag = DisposeBag()
     private var sizingCell = ChatViewCell()
     private var sizeCache: NSCache<GenericCacheKey<SizeCacheKey>, NSValue> = NSCache()
@@ -115,7 +114,7 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
     @available(iOS 11.0, *)
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()
-        collectionView.contentInset.top = paddingTop + view.safeMargins.top
+        collectionView.contentInset.top = Layout.paddingTop + view.safeMargins.top
         collectionView.contentInset.bottom = view.safeMargins.bottom
         view.setFadeMask(at: fadeMaskLocation)
     }
@@ -138,7 +137,7 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
             collectionView.contentInsetAdjustmentBehavior = .never
         }
         collectionView.edgeAnchors == view.edgeAnchors
-        collectionView.contentInset.top = paddingTop + view.safeMargins.top
+        collectionView.contentInset.top = Layout.paddingTop + view.safeMargins.top
         collectionView.contentInset.bottom = view.safeMargins.bottom
 
         if let backgroundImage = backgroundImage {
