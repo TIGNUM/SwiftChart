@@ -135,10 +135,16 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             collectionView.contentInsetAdjustmentBehavior = .never
+            collectionView.edgeAnchors == view.edgeAnchors
+            collectionView.contentInset.top = Layout.paddingTop + view.safeMargins.top
+            collectionView.contentInset.bottom = view.safeMargins.bottom
+        } else {
+            collectionView.topAnchor == view.topAnchor + Layout.statusBarHeight + Layout.paddingTop
+            collectionView.bottomAnchor == view.bottomAnchor
+            collectionView.leadingAnchor == view.leadingAnchor
+            collectionView.trailingAnchor == view.trailingAnchor
+            collectionView.contentInset.top = Layout.paddingTop
         }
-        collectionView.edgeAnchors == view.edgeAnchors
-        collectionView.contentInset.top = Layout.paddingTop + view.safeMargins.top
-        collectionView.contentInset.bottom = view.safeMargins.bottom
 
         if let backgroundImage = backgroundImage {
             collectionView.backgroundView = UIImageView(image: backgroundImage)

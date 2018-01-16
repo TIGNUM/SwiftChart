@@ -17,7 +17,7 @@ protocol LibraryViewControllerDelegate: class {
 }
 
 final class LibraryViewController: UIViewController, PageViewControllerNotSwipeable {
-    
+
     private let viewModel: LibraryViewModelInterface
     private let fadeMaskLocation: UIView.FadeMaskLocation
     weak var delegate: LibraryViewControllerDelegate?

@@ -140,8 +140,8 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     lazy var topTabBarControllerPrepare: UINavigationController = {
         let leftButton = UIBarButtonItem(withImage: R.image.explainer_ico())
         let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())
-        let topTabBarController = UINavigationController(withPages: [self.prepareChatViewController,
-                                                                     self.myPrepViewController],
+        let topTabBarController = UINavigationController(withPages: [prepareChatViewController,
+                                                                     myPrepViewController],
                                                          topBarDelegate: self,
                                                          pageDelegate: self,
                                                          backgroundImage: R.image.myprep(),
