@@ -63,10 +63,17 @@ final class LibraryViewController: UIViewController, PageViewControllerNotSwipea
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
+            tableView.edgeAnchors == view.edgeAnchors
+            tableView.contentInset.top = view.safeMargins.top + paddingTop
+            tableView.contentInset.bottom = view.safeMargins.bottom
+        } else {
+            tableView.topAnchor == view.safeTopAnchor
+            tableView.bottomAnchor == view.safeBottomAnchor
+            tableView.leadingAnchor == view.leadingAnchor
+            tableView.trailingAnchor == view.trailingAnchor
+            tableView.contentInset.top = tableView.contentInset.top + paddingTop
+            tableView.contentInset.bottom = view.safeMargins.bottom
         }
-        tableView.edgeAnchors == view.edgeAnchors
-        tableView.contentInset.top = view.safeMargins.top + paddingTop
-        tableView.contentInset.bottom = view.safeMargins.bottom
         tableView.backgroundView = viewModel.tableViewBackground
         view.setFadeMask(at: fadeMaskLocation)
     }
