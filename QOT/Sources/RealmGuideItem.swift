@@ -117,7 +117,10 @@ extension RealmGuideItem: UpSyncable, Dirty {
     }
 
     func toJson() -> JSON? {
-        guard let id = referencedItem?.remoteID.value else { return nil }
+        // WTF!!! On release builds (maybe due to optimization) the following two lines always return nil if combined.
+        // Or maybe it is just late and I'm stupid.
+        guard let ref = referencedItem else { return nil }
+        guard let id = ref.remoteID.value else { return nil }
 
         let dateFormatter = DateFormatter.iso8601
         let completedAtString = completedAt.map { dateFormatter.string(from: $0) }
