@@ -122,10 +122,14 @@ private extension SettingsViewController {
     }
 
     func registerCells() {
-        tableView.register(R.nib.settingsLabelTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Label.identifier)
-        tableView.register(R.nib.settingsButtonTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Button.identifier)
-        tableView.register(R.nib.settingsControlTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Control.identifier)
-        tableView.register(R.nib.settingsTextFieldTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_TextField.identifier)
+        tableView.register(R.nib.settingsLabelTableViewCell(),
+                           forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Label.identifier)
+        tableView.register(R.nib.settingsButtonTableViewCell(),
+                           forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Button.identifier)
+        tableView.register(R.nib.settingsControlTableViewCell(),
+                           forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Control.identifier)
+        tableView.register(R.nib.settingsTextFieldTableViewCell(),
+                           forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_TextField.identifier)
     }
 
     func updateViewModelAndReloadTableView() {
