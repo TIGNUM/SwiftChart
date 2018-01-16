@@ -11,18 +11,18 @@ import EventKit
 
 final class SettingsCalendarListViewModel {
 
-    private let services: Services
+    private let manager: CalendarSyncSettingsManager
 
     init(services: Services) {
-        self.services = services
+        self.manager = CalendarSyncSettingsManager(realmProvider: services.realmProvider)
     }
 
     var calendarCount: Int {
-        return EKEventStore.shared.calendarSyncSettings.count
+        return manager.calendarSyncSettings.count
     }
 
     func calendarSyncSetting(at indexPath: IndexPath) -> CalendarSyncSetting {
-        return EKEventStore.shared.calendarSyncSettings[indexPath.row]
+        return manager.calendarSyncSettings[indexPath.row]
     }
 
     func calendarName(at indexPath: IndexPath) -> String {
@@ -38,6 +38,6 @@ final class SettingsCalendarListViewModel {
     }
 
     func updateCalendarSyncStatus(canSync: Bool, calendarIdentifier: String) {
-        EKEventStore.shared.setSyncEnabled(enabled: canSync, calendarIdentifier: calendarIdentifier)
+        manager.setSyncEnabled(enabled: canSync, calendarIdentifier: calendarIdentifier)
     }
 }

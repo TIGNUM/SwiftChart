@@ -25,8 +25,7 @@ final class CalendarImportTask {
         self.store = store
     }
 
-    func sync() -> CalendarImportResult {
-        let calendars = store.syncEnabledCalendars
+    func sync(calendars: [EKCalendar]) -> CalendarImportResult {
         let events: [EKEvent]
         if calendars.count == 0 {
             events = []
