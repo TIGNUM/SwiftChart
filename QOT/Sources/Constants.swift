@@ -29,6 +29,8 @@ struct Environment {
 
 struct Layout {
 
+    static let statusBarHeight: CGFloat = 64
+
     struct TabBarView {
         static let insets = UIEdgeInsets(top: TabBarView.height, left: 0, bottom: 0, right: 0)
         static let height: CGFloat = 49

@@ -106,14 +106,24 @@ private extension GuideViewController {
         view.addSubview(backgroundImageView)
         view.addSubview(greetingView)
         view.addSubview(tableView)
-        greetingView.topAnchor == view.topAnchor + UIApplication.shared.statusBarFrame.height
-        greetingView.leadingAnchor == view.leadingAnchor
-        greetingView.trailingAnchor == view.trailingAnchor
+
+        if #available(iOS 11.0, *) {
+            greetingView.topAnchor == view.topAnchor + UIApplication.shared.statusBarFrame.height
+            greetingView.leadingAnchor == view.leadingAnchor
+            greetingView.trailingAnchor == view.trailingAnchor
+        } else {
+            greetingView.topAnchor == view.topAnchor + Layout.statusBarHeight
+            greetingView.leadingAnchor == view.leadingAnchor
+            greetingView.trailingAnchor == view.trailingAnchor
+            tableView.contentInset.bottom = view.safeMargins.bottom + Layout.statusBarHeight
+        }
+
         greetingViewHeightAnchor = greetingView.heightAnchor >= view.heightAnchor * 0.1
         tableView.topAnchor == greetingView.bottomAnchor
+        tableView.bottomAnchor == view.bottomAnchor
         tableView.leadingAnchor == view.leadingAnchor
         tableView.trailingAnchor == view.trailingAnchor
-        tableView.bottomAnchor == view.bottomAnchor
+
         backgroundImageView.edgeAnchors == view.edgeAnchors
         backgroundImageView.horizontalAnchors == view.horizontalAnchors
         backgroundImageView.verticalAnchors == view.verticalAnchors
