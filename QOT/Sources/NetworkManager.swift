@@ -99,6 +99,43 @@ final class NetworkManager {
         return performRequest(UserLocationUpdateRequest(location), completion: completion)
     }
 
+    @discardableResult func performDeviceRequest() -> SerialRequest {
+        let serialRequest = SerialRequest()
+        guard credentialsManager.credential != nil else { return serialRequest }
+
+        struct Device: Encodable {
+            let deviceIdentifier = deviceID
+            let systemName = UIDevice.current.systemName
+            let systemVersion = UIDevice.current.fullSystemVersion
+            let name = UIDevice.current.name
+            let model = UIDevice.current.modelName
+        }
+        guard let deviceData = try? JSONEncoder().encode([Device()]) else { return serialRequest }
+
+        performAuthenticatingRequest(StartSyncRequest(from: 0),
+                                     parser: StartSyncResult.parse,
+                                     notifyDelegateOfFailure: false,
+                                     current: serialRequest) { startSyncResult in
+            switch startSyncResult {
+            case .success(let result):
+                self.performAuthenticatingRequest(DeviceRequest(data: deviceData, syncToken: result.syncToken),
+                                             parser: GenericParser.parse,
+                                             notifyDelegateOfFailure: false,
+                                             current: serialRequest) { deviceResult in
+                    switch deviceResult {
+                    case .success:
+                        log("Successfully sent device info")
+                    case .failure(let error):
+                        log("Failed to send device info: \(error)")
+                    }
+                }
+            case .failure(let error):
+                log("Failed to send device info: \(error)")
+            }
+        }
+        return serialRequest
+    }
+
     /**
      Performs a network request using credentials from the `CredentialsManager`.
      

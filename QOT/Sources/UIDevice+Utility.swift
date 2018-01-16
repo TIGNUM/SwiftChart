@@ -19,4 +19,9 @@ extension UIDevice {
         }
         return identifier
     }
+
+    var fullSystemVersion: String {
+        let osVersion = ProcessInfo.processInfo.operatingSystemVersion
+        return "\(osVersion.majorVersion).\(osVersion.minorVersion).\(osVersion.patchVersion)"
+    }
 }

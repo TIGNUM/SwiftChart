@@ -1867,6 +1867,7 @@
 				CB14676F1EF3E86900A60E31 /* ContentItem */,
 				CB5134101FAB71F700FBDD66 /* ContentRead */,
 				CBC933131F0B9B3A00C00007 /* ContentRelation */,
+				CBC85BEB200E7F560009D7D3 /* Device */,
 				CCE6CD821F152D3800B66DA3 /* DoubleObject */,
 				CB9B075D1EF911B40017F6C3 /* IntObject */,
 				7FBC3E811F3865D4005BD772 /* MediaResource */,
@@ -2377,6 +2378,13 @@
 				CBC5ACC01F162AAE007E1E9C /* UserChoiceIntermediary.swift */,
 			);
 			name = UserChoice;
+			sourceTree = "<group>";
+		};
+		CBC85BEB200E7F560009D7D3 /* Device */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Device;
 			sourceTree = "<group>";
 		};
 		CBC933131F0B9B3A00C00007 /* ContentRelation */ = {

@@ -182,6 +182,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
     func appDidBecomeActive() {
         services?.userService.updateTimeZone()
+        networkManager.performDeviceRequest()
         permissionsManager.fetchHasUpdates { [unowned self] hasUpdates in
             self.reportPermissions(self.permissionsManager.allPermissions)
         }
@@ -361,6 +362,7 @@ extension AppCoordinator: LoginCoordinatorDelegate {
         } else {
             showApp()
         }
+        networkManager.performDeviceRequest()
     }
 }
 
