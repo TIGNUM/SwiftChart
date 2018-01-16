@@ -26,6 +26,7 @@ final class CalendarImportManger {
     private let queue = DispatchQueue(label: "com.tignum.qot.calendarSync", qos: .background)
     private let notificationHandler: NotificationHandler
     private let store = EKEventStore.shared
+    private let syncSettingsManager: CalendarSyncSettingsManager
 
     var predicate: () -> (start: Date, end: Date)
     weak var delegate: CalendarImportMangerDelegate?
@@ -34,6 +35,7 @@ final class CalendarImportManger {
         self.realmProvider = realm
         self.predicate = predicate
         self.notificationHandler = NotificationHandler(name: .EKEventStoreChanged, object: store)
+        self.syncSettingsManager = CalendarSyncSettingsManager(realmProvider: realmProvider)
 
         self.notificationHandler.handler = { [unowned self] (notificationCenter) in
             self.importEvents()
@@ -41,6 +43,12 @@ final class CalendarImportManger {
     }
 
     func importEvents() {
+        do {
+            try syncSettingsManager.updateSyncSettingsWithEventStore()
+        } catch {
+            assertionFailure("Failed to update calendar sync settings: \(error)")
+        }
+
         let status = EKEventStore.authorizationStatus(for: .event)
 
         if status == .authorized {
@@ -64,7 +72,7 @@ final class CalendarImportManger {
             do {
                 let realm = try realmProvider.realm()
                 let task = CalendarImportTask(startDate: start, endDate: end, realm: realm, store: store)
-                result = task.sync()
+                result = task.sync(calendars: self.syncSettingsManager.syncEnabledCalendars)
             } catch let error {
                 result = .failure(error)
             }
