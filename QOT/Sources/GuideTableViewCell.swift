@@ -31,7 +31,8 @@ final class GuideTableViewCell: UITableViewCell, Dequeueable {
                                                    alignment: .left)
         contentLabel.attributedText = attributedText(letterSpacing: 0.2,
                                                      text: content,
-                                                     font: Font.PText,
+                                                     font: Font.DPText,
+                                                     lineSpacing: 6,
                                                      textColor: .white70,
                                                      alignment: .left)
         typeLabel.attributedText = attributedText(letterSpacing: 2,
@@ -51,12 +52,13 @@ private extension GuideTableViewCell {
     func attributedText(letterSpacing: CGFloat = 2,
                         text: String,
                         font: UIFont,
+                        lineSpacing: CGFloat = 1.4,
                         textColor: UIColor,
                         alignment: NSTextAlignment) -> NSMutableAttributedString {
         return NSMutableAttributedString(string: text,
                                          letterSpacing: letterSpacing,
                                          font: font,
-                                         lineSpacing: 1.4,
+                                         lineSpacing: lineSpacing,
                                          textColor: textColor,
                                          alignment: alignment,
                                          lineBreakMode: .byWordWrapping)

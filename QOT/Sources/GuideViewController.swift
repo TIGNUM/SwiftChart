@@ -17,11 +17,12 @@ final class GuideViewController: UIViewController, FullScreenLoadable, PageViewC
     // MARK: - Properties
 
     private let viewModel: GuideViewModel
-    private let sectionHeaderHeight: CGFloat = 44
+    private let sectionHeaderHeight: CGFloat = 24
     private var greetingViewHeightAnchor: NSLayoutConstraint?
     private let fadeMaskLocation: UIView.FadeMaskLocation
     private let disposeBag = DisposeBag()
     var loadingView: BlurLoadingView?
+
     var isLoading: Bool = false {
         didSet {
             showLoading(isLoading, text: R.string.localized.guideLoading())
@@ -33,7 +34,8 @@ final class GuideViewController: UIViewController, FullScreenLoadable, PageViewC
     }()
 
     private lazy var tableView: UITableView = {
-        return UITableView(contentInsets: UIEdgeInsets(top: -8, left: 0, bottom: 16, right: 0),
+        return UITableView(style: .plain,
+                           contentInsets: UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0),
                            estimatedRowHeight: 100,
                            delegate: self,
                            dataSource: self,
@@ -98,7 +100,10 @@ private extension GuideViewController {
 
     func setupView() {
         guard let greetingView = self.greetingView else { return }
+        greetingView.backgroundColor = .clear
         updateGreetingView(viewModel.message, viewModel.greeting())
+        let backgroundImageView = UIImageView(image: R.image._1_1Learn())
+        view.addSubview(backgroundImageView)
         view.addSubview(greetingView)
         view.addSubview(tableView)
         greetingView.topAnchor == view.topAnchor + UIApplication.shared.statusBarFrame.height
@@ -109,7 +114,9 @@ private extension GuideViewController {
         tableView.leadingAnchor == view.leadingAnchor
         tableView.trailingAnchor == view.trailingAnchor
         tableView.bottomAnchor == view.bottomAnchor
-        tableView.backgroundColor = .pineGreen
+        backgroundImageView.edgeAnchors == view.edgeAnchors
+        backgroundImageView.horizontalAnchors == view.horizontalAnchors
+        backgroundImageView.verticalAnchors == view.verticalAnchors
         view.addFadeView(at: .top)
         view.addFadeView(at: .bottom, height: 120)
         view.layoutIfNeeded()
@@ -173,8 +180,14 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
         let dateCreated = DateFormatter.mediumDate.string(from: viewModel.header(section: section))
         let headline = String(format: "%@", dateCreated)
         view.addSubview(label)
-        view.backgroundColor = .pineGreen
+        label.backgroundColor = UIColor.pineGreen.withAlphaComponent(0.6)
         label.attributedText = Style.navigationTitle(headline, .white40).attributedString()
+        label.sizeToFit()
+//        let labelFrame = label.frame
+//        label.frame = CGRect(x: labelFrame.origin.x,
+//                             y: labelFrame.origin.y,
+//                             width: labelFrame.width,
+//                             height: labelFrame.height)
         return view
     }
 

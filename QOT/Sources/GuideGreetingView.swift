@@ -20,13 +20,13 @@ final class GuideGreetingView: UIView {
     }
 
     func configure(_ message: String, _ greeting: String) {
-        messageLabel.attributedText = attributedText(letterSpacing: 0.2,
-                                                     text: message,
-                                                     font: Font.H5SecondaryHeadline,
-                                                     textColor: .white70,
+        messageLabel.attributedText = attributedText(letterSpacing: -0.8,
+                                                     text: message.uppercased(),
+                                                     font: Font.H4Headline,
+                                                     textColor: .white,
                                                      alignment: .left)
         greetingLabel.attributedText = attributedText(letterSpacing: -0.8,
-                                                      text: greeting,
+                                                      text: greeting.uppercased(),
                                                       font: Font.H4Headline,
                                                       textColor: .white,
                                                       alignment: .left)
