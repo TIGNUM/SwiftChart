@@ -6,19 +6,19 @@
 	<array>
 		<dict>
 			<key>title</key>
-			<string>Build your foundation to achieve the benefits of QOT by watching the Performance Foundation videos in the Learn Section.</string>
+			<string>Build your foundation to achieve the benefits of QOT by watching the Performance Foundation videos in the LEARN Section.</string>
 			<key>imageName</key>
 			<string>slide_extended_01</string>
 		</dict>
 		<dict>
 			<key>title</key>
-			<string>Learn about the Performance Habituation strategy, Creating Self-Image, in the Learn Section.</string>
+			<string>Learn about the Performance Habituation strategy, Creating Self-Image, in the LEARN Section.</string>
 			<key>imageName</key>
 			<string>slide_extended_02</string>
 		</dict>
 		<dict>
 			<key>title</key>
-			<string>Write your personal To Be Vision by going to ME WHY in the Me Section.</string>
+			<string>Write your personal To Be Vision by going to "My Why" in the ME Section.</string>
 			<key>imageName</key>
 			<string>slide_extended_03</string>
 		</dict>
@@ -30,13 +30,13 @@
 		</dict>
 		<dict>
 			<key>title</key>
-			<string>Add a sensor through the sidebar to learn more about your sleep and activity in the Me Section.</string>
+			<string>Add a sensor through the sidebar to learn more about your sleep and activity in the ME Section.</string>
 			<key>imageName</key>
 			<string>slide_extended_05</string>
 		</dict>
 		<dict>
 			<key>title</key>
-			<string>Go to the Prepare Section to prepare for your next key event by applying event-specific performance preparation protocols.</string>
+			<string>Go to the PREPARE Section to prepare for your next key event by applying event-specific performance preparation protocols.</string>
 			<key>imageName</key>
 			<string>slide_extended_06</string>
 		</dict>
@@ -57,7 +57,7 @@
 	<array>
 		<dict>
 			<key>subtitle</key>
-			<string>The Learn Section contains your QOT55 Strategies and your foundational QOT content.</string>
+			<string>The LEARN Section contains your QOT55 Strategies, your foundational QOT content, as well as new weekly content.</string>
 			<key>title</key>
 			<string>LEARN ALL QOT STRATEGIES</string>
 			<key>imageName</key>
@@ -65,7 +65,7 @@
 		</dict>
 		<dict>
 			<key>subtitle</key>
-			<string>The Me Section holds your To Be Vision, Weekly Choices, QOT Partners, and provides you with unique data about yourself and others like you.</string>
+			<string>The ME Section holds your To Be Vision, Weekly Choices, QOT Partners, and provides you with unique data about yourself and others like you.</string>
 			<key>title</key>
 			<string>TRACK YOUR DATA AND CREATE YOUR WHY</string>
 			<key>imageName</key>
@@ -73,7 +73,7 @@
 		</dict>
 		<dict>
 			<key>subtitle</key>
-			<string>The Prepare Section allows your QOT Coach to help you prepare for your most important events.</string>
+			<string>The PREPARE Section allows your QOT Coach to help you prepare for your most important events.</string>
 			<key>title</key>
 			<string>PREPARE FOR UPCOMING KEY EVENTS</string>
 			<key>imageName</key>
@@ -81,7 +81,7 @@
 		</dict>
 		<dict>
 			<key>subtitle</key>
-			<string>The Guide Section helps you get ready for your day with your Daily Prep Minute, QOT Learning Plan, and push notifications.</string>
+			<string>The GUIDE Section helps you get ready for your day with your Daily Prep Minute, QOT Learning Plan, and push notifications.</string>
 			<key>title</key>
 			<string>FOLLOW YOUR PERSONAL LEARN PLAN</string>
 			<key>imageName</key>
