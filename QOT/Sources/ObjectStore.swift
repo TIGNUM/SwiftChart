@@ -22,6 +22,8 @@ protocol ObjectStore {
     func objects<T: Object>(_ type: T.Type) -> Results<T>
 
     func syncableObject<T: SyncableObject>(ofType type: T.Type, remoteID: Int) -> T?
+
+    func object<T: Object, K>(ofType type: T.Type, forPrimaryKey key: K) -> T?
 }
 
 extension Realm: ObjectStore {
