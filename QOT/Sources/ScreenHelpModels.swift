@@ -19,18 +19,9 @@ enum ScreenHelp {
     enum Plist {
         enum Key: String {
             case guide
-
-            // learn
-            case strategies
-            case whatsHot
-
-            // me
-            case myData
-            case myWhy
-
-            // prepare
-            case coach
-            case prep
+            case learn
+            case me
+            case prepare
         }
 
         struct Item: Codable {

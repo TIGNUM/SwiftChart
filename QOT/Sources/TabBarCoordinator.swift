@@ -328,15 +328,7 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
     }
 
     func myUniverseViewController(_ viewController: MyUniverseViewController, didTapLeftBarButtonItem buttonItem: UIBarButtonItem, in topNavigationBar: TopNavigationBar) {
-        guard let topBarButtonIndex = topNavigationBar.currentButtonIndex else { return }
-        switch topBarButtonIndex {
-        case 0:
-            showHelp(.myData)
-        case 1:
-            showHelp(.myWhy)
-        default:
-            assertionFailure("unhandled switch")
-        }
+        showHelp(.prepare)
     }
 
     func myUniverseViewController(_ viewController: MyUniverseViewController, didTapRightBarButtonItem buttonItem: UIBarButtonItem, in topNavigationBar: TopNavigationBar) {
@@ -379,23 +371,9 @@ extension TabBarCoordinator: TopNavigationBarDelegate {
         case 0:
             showHelp(.guide)
         case 1:
-            switch topBarButtonIndex {
-            case 0:
-                showHelp(.strategies)
-            case 1:
-                showHelp(.whatsHot)
-            default:
-                assertionFailure("unhandled switch")
-            }
+            showHelp(.learn)
         case 3:
-            switch topBarButtonIndex {
-            case 0:
-                showHelp(.coach)
-            case 1:
-                showHelp(.prep)
-            default:
-                assertionFailure("unhandled switch")
-            }
+            showHelp(.prepare)
         default:
             assertionFailure("unhandled switch")
         }

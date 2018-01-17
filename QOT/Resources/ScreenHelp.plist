@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>strategies</key>
+	<key>learn</key>
 	<dict>
 		<key>title</key>
 		<string>Learn Explainer</string>
@@ -18,23 +18,7 @@ Return back to the strategy overview by tapping the icon in the top left corner 
 On the home screen, the bubbles indicate how many of each type of strategy you have reviewed. Once the circle surrounding the bubble is complete, you&apos;ve reviewed all of that category. 
 After getting a good base knowledge of the QOT55 Strategies, you can learn how these strategies are applied to real-world experiences by checking out What&apos;s Hot. You can do this by tapping on What&apos;s Hot in the top right corner of the screen. In What&apos;s Hot, we post various articles of current events, client experiences, our bi-weekly blog, and unique insights on new studies that are happening and how you can analyze these events from a QOT perspective.</string>
 	</dict>
-	<key>whatsHot</key>
-	<dict>
-		<key>title</key>
-		<string>Learn Explainer</string>
-		<key>imageURL</key>
-		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/content/QOT+Help+Section+Video+Thumbnails/Learn_Help_Video_Thumbnail.jpg</string>
-		<key>videoURL</key>
-		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/videos/Help+Screencasts/QOT_Help_Screencasts_LEARN.m4v</string>
-		<key>message</key>
-		<string>The LEARN Section represents the foundation of everything you need to know to really get the most out of the platform. There are 55 strategies categorized by our four main pillars, Movement, Nutrition, Mindset, and Recovery, as well as our foundational videos and habituation strategies.
-To get into a category, simply tap on the bubble. Once in the bubble, any strategies you have read will appear translucent. Any strategies you have not yet read will appear brighter and colored in. Each strategy bubble shows the title of the strategy and an estimated time that it will take you to read the strategy. Tapping on the bubble will take you to the full text of the strategy. One swipe left will bring you to the bullet points, which make up a short, easy-to-read summary that explains what the strategy is in more detail. Each of the QOT55 Strategies also has an audio component, which you can access by swiping left once more.
-
-Return back to the strategy overview by tapping the icon in the top left corner of the screen. You can scroll between the different strategies by swiping right and left. At the top of the screen, you will see which category of strategy you are in (Movement, Nutrition, Mindset, Recovery, Habituation, or Foundation). 
-On the home screen, the bubbles indicate how many of each type of strategy you have reviewed. Once the circle surrounding the bubble is complete, you&apos;ve reviewed all of that category. 
-After getting a good base knowledge of the QOT55 Strategies, you can learn how these strategies are applied to real-world experiences by checking out What&apos;s Hot. You can do this by tapping on What&apos;s Hot in the top right corner of the screen. In What&apos;s Hot, we post various articles of current events, client experiences, our bi-weekly blog, and unique insights on new studies that are happening and how you can analyze these events from a QOT perspective.</string>
-	</dict>
-	<key>myData</key>
+	<key>me</key>
 	<dict>
 		<key>title</key>
 		<string>Me Explainer</string>
@@ -50,42 +34,7 @@ In My Data, you will see different categories: Peak Performance, Intensity, Meet
 The My Why section contains your To Be Vision, Weekly Choices, and QOT Partners. Your To Be Vision is the most important aspect of QOT, as each strategy you use will be tied to your To Be Vision. To edit your To Be Vision, simply tap on the pencil icon on the top right corner of the screen. You can then change the title and text of your To Be Vision. You can also upload an anchor image that is important to you by selecting the + icon at the bottom of the screen. 
 Within My Why, you&apos;ll also see your Weekly Choices. These are selected according to your QOT Learning Plan or by you each week (depending on where you are within the QOT Learning Plan). Simply tap on the Weekly Choices to see more details. You can then scroll up and down to see the Weekly Choices for your current week and for past weeks. To learn more about a Weekly Choice strategy, simply tap on the title. You are then brought to the strategy with full text, bullets, and audio. To return to the My Why home screen, simply tap the arrow in the top left corner of the screen.</string>
 	</dict>
-	<key>myWhy</key>
-	<dict>
-		<key>title</key>
-		<string>Me Explainer</string>
-		<key>imageURL</key>
-		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/content/QOT+Help+Section+Video+Thumbnails/Me_Help_Video_Thumbnail.png</string>
-		<key>videoURL</key>
-		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/videos/Help+Screencasts/QOT_Help_Screencasts_ME.m4v</string>
-		<key>message</key>
-		<string>The ME section is composed of two parts: My Data and My Why. You can navigate between these by swiping left and right.
-
-In My Data, you will see different categories: Peak Performance, Intensity, Meetings, Travel, Sleep, and Activity as well as an anchor image that ties together My Why and My Data. To get more insights, simply tap on the data point. Red indicates that a certain data point needs work; white indicates that you are on track and have great statistics for that item. After tapping on a data point, you&apos;ll notice several different graphs. To learn about each graph, simply tap the information icon on the bottom left corner of whichever one you want to learn more about.
-
-The My Why section contains your To Be Vision, Weekly Choices, and QOT Partners. Your To Be Vision is the most important aspect of QOT, as each strategy you use will be tied to your To Be Vision. To edit your To Be Vision, simply tap on the pencil icon on the top right corner of the screen. You can then change the title and text of your To Be Vision. You can also upload an anchor image that is important to you by selecting the + icon at the bottom of the screen. 
-Within My Why, you&apos;ll also see your Weekly Choices. These are selected according to your QOT Learning Plan or by you each week (depending on where you are within the QOT Learning Plan). Simply tap on the Weekly Choices to see more details. You can then scroll up and down to see the Weekly Choices for your current week and for past weeks. To learn more about a Weekly Choice strategy, simply tap on the title. You are then brought to the strategy with full text, bullets, and audio. To return to the My Why home screen, simply tap the arrow in the top left corner of the screen.</string>
-	</dict>
-	<key>coach</key>
-	<dict>
-		<key>title</key>
-		<string>Prepare Explainer</string>
-		<key>imageURL</key>
-		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/content/QOT+Help+Section+Video+Thumbnails/Prepare_Help_Video_Thumbnail.png</string>
-		<key>videoURL</key>
-		<string>https://s3.eu-central-1.amazonaws.com/tignum-content/videos/Help+Screencasts/QOT_Help_Screencasts_PREPARE.m4v</string>
-		<key>message</key>
-		<string>The PREPARE section has two main components, the QOT Coach and My Prep.
-
-The QOT Coach is there to help you with certain struggles you are dealing with as well as to help you prepare for events. The QOT Coach asks you a certain prompt to gauge what you need help with. You can then select whether you&apos;re struggling and need help with a certain situation or whether you&apos;re preparing for a certain event. Simply tap on the prompt that matches your situation most closely.
-
-If you indicate that you need help preparing for an event, the QOT Coach will ask you what type of event you are preparing for. Upon tapping on an event category, the QOT Coach brings up the event-specific preparation. Each item has a + icon on the right with more detailed information. The title of the preparation also typically includes a video with a short description. As you expand each item, you will see details of that preparation. If the item is based on a QOT55 Strategy, you can tap read more to view that strategy in detail.
-
-You can save an event preparation to My Prep by tapping on the icon on the top right corner of the screen. You will then have the option to add the preparation to future events in your calendars that are synced with QOT.
-
-After this, you can access that specific preparation by either swiping left or tapping on the My Prep title at the top right corner of the screen. The titles in My Prep tell you how long until your event, what the event is, and how many preparation items you have completed. With QOT Coach and My Prep, you will become more easily prepared for any of your upcoming events.</string>
-	</dict>
-	<key>prep</key>
+	<key>prepare</key>
 	<dict>
 		<key>title</key>
 		<string>Prepare Explainer</string>
