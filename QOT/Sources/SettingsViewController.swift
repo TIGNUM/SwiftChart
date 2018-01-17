@@ -106,12 +106,11 @@ private extension SettingsViewController {
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
         }
-        view.backgroundColor = .clear
+        view.backgroundColor = .black
         view.addSubview(tableView)
         tableView.backgroundView = UIImageView(image: R.image.backgroundSidebar())
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = .clear
         tableView.contentInset = UIEdgeInsets(top: view.safeMargins.top + 41, left: 0, bottom: 0, right: 0)
         tableView.tableFooterView = UIView()
         tableView.separatorColor = .clear
