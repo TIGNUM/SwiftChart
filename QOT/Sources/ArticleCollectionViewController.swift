@@ -21,6 +21,7 @@ final class ArticleCollectionViewController: UIViewController, FullScreenLoadabl
     // MARK: - Properties
 
     private let backgroundImageView: UIImageView
+    private let fadeMaskLocation: UIView.FadeMaskLocation
     weak var delegate: ArticleCollectionViewControllerDelegate?
     let pageName: PageName
     var loadingView: BlurLoadingView?
@@ -49,9 +50,10 @@ final class ArticleCollectionViewController: UIViewController, FullScreenLoadabl
 
     // MARK: Init
 
-    init(pageName: PageName, viewData: ArticleCollectionViewData) {
+    init(pageName: PageName, viewData: ArticleCollectionViewData, fadeMaskLocation: UIView.FadeMaskLocation) {
         self.pageName = pageName
         self.viewData = viewData
+        self.fadeMaskLocation = fadeMaskLocation
         backgroundImageView = UIImageView(image: R.image.backgroundStrategies())
 
         super.init(nibName: nil, bundle: nil)
@@ -80,6 +82,7 @@ final class ArticleCollectionViewController: UIViewController, FullScreenLoadabl
         collectionView.contentInset.top = Layout.paddingTop + view.safeMargins.top
         collectionView.contentInset.bottom = view.safeMargins.bottom
         collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+        view.setFadeMask(at: fadeMaskLocation)
     }
 }
 
@@ -112,9 +115,10 @@ private extension ArticleCollectionViewController {
             collectionView.bottomAnchor == view.bottomAnchor
             collectionView.leadingAnchor == view.leadingAnchor
             collectionView.trailingAnchor == view.trailingAnchor
+            collectionView.contentInset.top = Layout.paddingTop
         }
 
-        view.layoutIfNeeded()
+        view.setFadeMask(at: fadeMaskLocation)
     }
 }
 

@@ -65,7 +65,9 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
     let pageName: PageName
     var didSelectChoice: ((T, ChatViewController) -> Void)?
 
-    init(pageName: PageName, viewModel: ChatViewModel<T>, backgroundImage: UIImage? = nil, fadeMaskLocation: UIView.FadeMaskLocation) {
+    init(pageName: PageName, viewModel: ChatViewModel<T>,
+         backgroundImage: UIImage? = nil,
+         fadeMaskLocation: UIView.FadeMaskLocation) {
         self.pageName = pageName
         self.viewModel = viewModel
         self.fadeMaskLocation = fadeMaskLocation
