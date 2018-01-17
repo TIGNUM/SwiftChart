@@ -12,12 +12,12 @@ import Anchorage
 protocol LibraryViewControllerDelegate: class {
 
     func didTapLibraryItem(item: ContentCollection)
+
     func didTapClose(in viewController: LibraryViewController)
 }
 
 final class LibraryViewController: UIViewController, PageViewControllerNotSwipeable {
 
-    private let paddingTop: CGFloat = 24.0
     private let viewModel: LibraryViewModelInterface
     private let fadeMaskLocation: UIView.FadeMaskLocation
     weak var delegate: LibraryViewControllerDelegate?
@@ -62,10 +62,17 @@ final class LibraryViewController: UIViewController, PageViewControllerNotSwipea
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
+            tableView.edgeAnchors == view.edgeAnchors
+            tableView.contentInset.top = view.safeMargins.top + Layout.paddingTop
+            tableView.contentInset.bottom = view.safeMargins.bottom
+        } else {
+            tableView.topAnchor == view.safeTopAnchor
+            tableView.bottomAnchor == view.safeBottomAnchor
+            tableView.leadingAnchor == view.leadingAnchor
+            tableView.trailingAnchor == view.trailingAnchor
+            tableView.contentInset.top = tableView.contentInset.top + Layout.paddingTop
+            tableView.contentInset.bottom = view.safeMargins.bottom
         }
-        tableView.edgeAnchors == view.edgeAnchors
-        tableView.contentInset.top = view.safeMargins.top + paddingTop
-        tableView.contentInset.bottom = view.safeMargins.bottom
         tableView.backgroundView = viewModel.tableViewBackground
         view.setFadeMask(at: fadeMaskLocation)
     }
@@ -73,7 +80,7 @@ final class LibraryViewController: UIViewController, PageViewControllerNotSwipea
     @available(iOS 11.0, *)
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()
-        tableView.contentInset.top = view.safeMargins.top + paddingTop
+        tableView.contentInset.top = view.safeMargins.top + Layout.paddingTop
         tableView.contentInset.bottom = view.safeMargins.bottom
         view.setFadeMask(at: fadeMaskLocation)
     }

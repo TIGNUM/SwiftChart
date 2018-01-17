@@ -8,7 +8,8 @@
 
 import UIKit
 
-class TabBarItem: UITabBarItem {
+final class TabBarItem: UITabBarItem {
+
     private let config: Config
     var isRead: Bool = true
     var readFlag: Badge?

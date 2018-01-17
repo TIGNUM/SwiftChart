@@ -11,7 +11,7 @@ import Anchorage
 
 protocol MorningInterviewViewControllerDelegate: class {
 
-    func didTapClose(viewController: MorningInterviewViewController, userAnswers: [UserAnswer])
+    func didTapClose(viewController: MorningInterviewViewController, userAnswers: [UserAnswer], notificationRemoteID: Int)
 }
 
 final class MorningInterviewViewController: UIViewController {
@@ -84,8 +84,8 @@ final class MorningInterviewViewController: UIViewController {
     @objc func didTapNext(_ sender: UIButton) {
         if isLastPage == true {
             let userAnswers = viewModel.createUserAnswers()
-            delegate?.didTapClose(viewController: self, userAnswers: userAnswers)
             try? viewModel.save(userAnswers: userAnswers)
+            delegate?.didTapClose(viewController: self, userAnswers: userAnswers, notificationRemoteID: viewModel.notificationRemoteID)
         } else {
             currentIndex += 1
             syncViews(animated: true)
@@ -103,7 +103,7 @@ final class MorningInterviewViewController: UIViewController {
     }
 
     @objc func didTapClose(_ sender: UIButton) {
-        delegate?.didTapClose(viewController: self, userAnswers: [])
+        delegate?.didTapClose(viewController: self, userAnswers: [], notificationRemoteID: viewModel.notificationRemoteID)
     }
 
     func syncViews(animated: Bool) {

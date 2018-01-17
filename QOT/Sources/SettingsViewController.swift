@@ -33,20 +33,28 @@ final class SettingsViewController: UIViewController {
     private var viewModel: SettingsViewModel
     private let services: Services
     private let locationManager = CLLocationManager()
+    private var destination: AppCoordinator.Router.Destination?
     weak var delegate: SettingsCoordinatorDelegate?
     let settingsType: SettingsType.SectionType
     var tableView: UITableView!
 
     // MARK: - Init
 
-    init(viewModel: SettingsViewModel, services: Services, settingsType: SettingsType.SectionType) {
+    init(viewModel: SettingsViewModel,
+         services: Services,
+         settingsType: SettingsType.SectionType,
+         destination: AppCoordinator.Router.Destination?) {
         self.viewModel = viewModel
         self.settingsType = settingsType
         self.services = services
+        self.destination = destination
 
         super.init(nibName: nil, bundle: nil)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView(_:)), name: .UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(reloadTableView(_:)),
+                                               name: .UIApplicationWillEnterForeground,
+                                               object: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -73,6 +81,14 @@ final class SettingsViewController: UIViewController {
 
         navigationItem.title = settingsType.title.uppercased()
         tableView.reloadData()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        guard destination != nil else { return }
+        delegate?.goToCalendarListViewController(settingsViewController: self, destination: destination)
+        destination = nil
     }
 
     @objc func reloadTableView(_ notification: Notification) {
@@ -106,10 +122,14 @@ private extension SettingsViewController {
     }
 
     func registerCells() {
-        tableView.register(R.nib.settingsLabelTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Label.identifier)
-        tableView.register(R.nib.settingsButtonTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Button.identifier)
-        tableView.register(R.nib.settingsControlTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Control.identifier)
-        tableView.register(R.nib.settingsTextFieldTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_TextField.identifier)
+        tableView.register(R.nib.settingsLabelTableViewCell(),
+                           forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Label.identifier)
+        tableView.register(R.nib.settingsButtonTableViewCell(),
+                           forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Button.identifier)
+        tableView.register(R.nib.settingsControlTableViewCell(),
+                           forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Control.identifier)
+        tableView.register(R.nib.settingsTextFieldTableViewCell(),
+                           forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_TextField.identifier)
     }
 
     func updateViewModelAndReloadTableView() {

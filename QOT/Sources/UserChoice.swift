@@ -11,6 +11,7 @@ import RealmSwift
 import Freddy
 
 final class UserChoice: SyncableObject {
+
     enum `Type`: String {
         case weekly = "WEEKLY"
         case monthly = "MONTHLY"

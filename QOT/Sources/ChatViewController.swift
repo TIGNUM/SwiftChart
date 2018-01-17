@@ -11,6 +11,13 @@ import ReactiveKit
 import Bond
 import Anchorage
 
+protocol ChatViewControllerDelegate: class {
+
+    func cellDidAppear(viewController: UIViewController,
+                       collectionView: UICollectionView,
+                       destination: AppCoordinator.Router.Destination?)
+}
+
 private struct SizeCacheKey: Hashable {
 
     let text: String
@@ -47,12 +54,13 @@ final class GenericCacheKey<T: Hashable>: NSObject {
 
 final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, PageViewControllerNotSwipeable {
 
-    private let paddingTop: CGFloat = 30.0
     private let disposeBag = DisposeBag()
     private var sizingCell = ChatViewCell()
     private var sizeCache: NSCache<GenericCacheKey<SizeCacheKey>, NSValue> = NSCache()
     private var items: [ChatItem<T>] = []
     private let fadeMaskLocation: UIView.FadeMaskLocation
+    weak var routerDelegate: ChatViewControllerDelegate?
+    var destination: AppCoordinator.Router.Destination?
     let viewModel: ChatViewModel<T>
     let pageName: PageName
     var didSelectChoice: ((T, ChatViewController) -> Void)?
@@ -95,6 +103,9 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
                     self.collectionView.insertSections(IndexSet(insertions))
                 }, completion: { (_) -> Void in
                     self.scrollToSnapOffset(animated: true)
+                    self.routerDelegate?.cellDidAppear(viewController: self,
+                                                       collectionView: self.collectionView,
+                                                       destination: self.destination)
                 })
             }
         }.dispose(in: disposeBag)
@@ -103,7 +114,7 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
     @available(iOS 11.0, *)
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()
-        collectionView.contentInset.top = paddingTop + view.safeMargins.top
+        collectionView.contentInset.top = Layout.paddingTop + view.safeMargins.top
         collectionView.contentInset.bottom = view.safeMargins.bottom
         view.setFadeMask(at: fadeMaskLocation)
     }
@@ -124,10 +135,16 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             collectionView.contentInsetAdjustmentBehavior = .never
+            collectionView.edgeAnchors == view.edgeAnchors
+            collectionView.contentInset.top = Layout.paddingTop + view.safeMargins.top
+            collectionView.contentInset.bottom = view.safeMargins.bottom
+        } else {
+            collectionView.topAnchor == view.topAnchor + Layout.statusBarHeight + Layout.paddingTop
+            collectionView.bottomAnchor == view.bottomAnchor
+            collectionView.leadingAnchor == view.leadingAnchor
+            collectionView.trailingAnchor == view.trailingAnchor
+            collectionView.contentInset.top = Layout.paddingTop
         }
-        collectionView.edgeAnchors == view.edgeAnchors
-        collectionView.contentInset.top = paddingTop + view.safeMargins.top
-        collectionView.contentInset.bottom = view.safeMargins.bottom
 
         if let backgroundImage = backgroundImage {
             collectionView.backgroundView = UIImageView(image: backgroundImage)
@@ -213,6 +230,9 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
     // MARK: - UICollectionViewDelegate
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard indexPath.section < items.count else { return }
+
+        routerDelegate = nil
         let item = items[indexPath.section]
         switch item.type {
         case .choiceList(let choices):

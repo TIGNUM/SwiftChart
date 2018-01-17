@@ -100,29 +100,19 @@ extension Statistics {
 
     func displayableValue(average: Double, clampToMax: Bool = false) -> String {
         var value = average.toFloat * multiplier.toFloat
+        if let chartType = ChartType(rawValue: key), chartType == .sleepQuantityTime {
+            let totalMinutes = Int(value)
+            let hours = totalMinutes / 60
+            let minutes = totalMinutes % 60
+            return String(format: "%01d:%02d", hours, minutes)
+        }
+
         var prefix = ""
         if clampToMax && value > CGFloat(maximum * multiplier) {
                 value = CGFloat(maximum * multiplier)
                 prefix = "+"
         }
         let valueFormat = "%.\(decimalPlaces)f"
-//
-//
-//        if unit.isEmpty == true {
-//            if multiplier == 1 {
-//                if (fmod(value, 1.0) == 0.0) { // if x.0
-//                    return String(format: "%.0f", value)
-//                } else { // if x.123
-//                    return String(format: "%.1f", value)
-//                }
-//            } else {
-//                if (fmod(value, 1.0) == 0.0) { // if x.0
-//                    return String(format: "%.0f/%.0f", value, multiplier.toFloat)
-//                } else { // if x.123
-//                    return String(format: "%.1f/%.0f", value, multiplier.toFloat)
-//                }
-//            }
-//        }
         return prefix + String(format: valueFormat, value) + maxValueOf + unit
     }
 }

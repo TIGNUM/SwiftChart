@@ -80,9 +80,19 @@ extension UIColor {
         return UIColor(red: 3/255, green: 6/255, blue: 15/255, alpha: 1)
     }
 
-    /// UIColor(white: 255/255, alpha: 0.14)
+    /// UIColor(white: 1, alpha: 0.6)
+    class var whiteLight6: UIColor {
+        return UIColor(white: 1, alpha: 0.06)
+    }
+
+    /// UIColor(white: 1, alpha: 0.12)
+    class var whiteLight12: UIColor {
+        return UIColor(white: 1, alpha: 0.12)
+    }
+
+    /// UIColor(white: 1, alpha: 0.14)
     class var whiteLight14: UIColor {
-        return UIColor(white: 255/255, alpha: 0.14)
+        return UIColor(white: 1, alpha: 0.14)
     }
 
     /// UIColor(white: 255/255, alpha: 0.2)
@@ -108,6 +118,11 @@ extension UIColor {
     /// UIColor(white: 255/255, alpha: 0.6)
     class var white60: UIColor {
         return UIColor(white: 1, alpha: 0.6)
+    }
+
+    /// UIColor(white: 255/255, alpha: 0.7)
+    class var white70: UIColor {
+        return UIColor(white: 1, alpha: 0.7)
     }
 
     /// UIColor(white: 255/255, alpha: 0.8)
@@ -153,6 +168,26 @@ extension UIColor {
     ///  UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.3)
     class var whiteLight40: UIColor {
         return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.4)
+    }
+
+    ///  UIColor(red: 7/255, green: 24/255, blue: 37/255, alpha: 1)
+    class var pineGreen: UIColor {
+        return UIColor(red: 7/255, green: 24/255, blue: 37/255, alpha: 1)
+    }
+
+    /// UIColor(red: 67/255, green: 68/255, blue: 73/255, alpha: 1)
+    class var charcoalGrey: UIColor {
+        return UIColor(red: 67/255, green: 68/255, blue: 73/255, alpha: 1)
+    }
+
+    /// UIColor(red: 53/255, green: 55/255, blue: 61/255, alpha: 1)
+    class var charcoalGreyDark: UIColor {
+        return UIColor(red: 53/255, green: 55/255, blue: 61/255, alpha: 1)
+    }
+
+    /// UIColor(red: 85/255, green: 90/255, blue: 94/255, alpha: 1)
+    class var charcoalGreyMedium: UIColor {
+        return UIColor(red: 85/255, green: 90/255, blue: 94/255, alpha: 1)
     }
 
     static var random: UIColor {

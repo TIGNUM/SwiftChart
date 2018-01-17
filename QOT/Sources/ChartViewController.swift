@@ -65,11 +65,18 @@ private extension ChartViewController {
     func setupView() {
         view.addSubview(tableView)
         view.setFadeMask(at: .top)
-        tableView.edgeAnchors == view.edgeAnchors
+
+        if #available(iOS 11.0, *) {
+            tableView.edgeAnchors == view.edgeAnchors
+        } else {
+            tableView.topAnchor == view.topAnchor + Layout.statusBarHeight + Layout.paddingTop
+            tableView.bottomAnchor == view.bottomAnchor
+            tableView.leadingAnchor == view.leadingAnchor
+            tableView.trailingAnchor == view.trailingAnchor
+        }
     }
 
     func createPageControls() {
-
         viewModel.sortedSections.forEach { (sectionType: StatisticsSectionType) in
             let pageControl = PageControl(frame: .zero)
             pageControl.numberOfPages = sectionType.chartTypes.count
@@ -139,6 +146,7 @@ extension ChartViewController: UITableViewDelegate, UITableViewDataSource {
 extension ChartViewController: UIScrollViewDelegate {
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        guard scrollView.currentSection < pageControls.count else { return }
         let pageControl = pageControls[scrollView.currentSection]
         pageControl.numberOfPages = viewModel.numberOfItems(in: scrollView.currentSection)
     }

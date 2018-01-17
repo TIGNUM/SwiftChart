@@ -20,9 +20,7 @@ final class ArticleCollectionViewController: UIViewController, FullScreenLoadabl
 
     // MARK: - Properties
 
-    private let paddingTop: CGFloat = 26
     private let backgroundImageView: UIImageView
-
     weak var delegate: ArticleCollectionViewControllerDelegate?
     let pageName: PageName
     var loadingView: BlurLoadingView?
@@ -79,7 +77,7 @@ final class ArticleCollectionViewController: UIViewController, FullScreenLoadabl
     @available(iOS 11.0, *)
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()
-        collectionView.contentInset.top = paddingTop + view.safeMargins.top
+        collectionView.contentInset.top = Layout.paddingTop + view.safeMargins.top
         collectionView.contentInset.bottom = view.safeMargins.bottom
         collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
     }
@@ -100,17 +98,21 @@ private extension ArticleCollectionViewController {
 
     func setupLayout() {
         automaticallyAdjustsScrollViewInsets = false
-        if #available(iOS 11.0, *) {
-            collectionView.contentInsetAdjustmentBehavior = .never
-        }
-
         view.addSubview(backgroundImageView)
         backgroundImageView.edgeAnchors == view.edgeAnchors
-
         view.addSubview(collectionView)
-        collectionView.edgeAnchors == view.edgeAnchors
-        collectionView.contentInset.top = paddingTop + view.safeMargins.top
-        collectionView.contentInset.bottom = view.safeMargins.bottom
+
+        if #available(iOS 11.0, *) {
+            collectionView.contentInsetAdjustmentBehavior = .never
+            collectionView.edgeAnchors == view.edgeAnchors
+            collectionView.contentInset.top = Layout.paddingTop + view.safeMargins.top
+            collectionView.contentInset.bottom = view.safeMargins.bottom
+        } else {
+            collectionView.topAnchor == view.topAnchor + Layout.statusBarHeight + Layout.paddingTop
+            collectionView.bottomAnchor == view.bottomAnchor
+            collectionView.leadingAnchor == view.leadingAnchor
+            collectionView.trailingAnchor == view.trailingAnchor
+        }
 
         view.layoutIfNeeded()
     }

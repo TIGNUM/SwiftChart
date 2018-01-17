@@ -19,8 +19,7 @@ protocol MyPrepViewControllerDelegate: class {
 final class MyPrepViewController: UIViewController, FullScreenLoadable, PageViewControllerNotSwipeable {
 
     // MARK: - Properties
-
-    fileprivate let paddingTop: CGFloat = 24.0
+    
     let viewModel: MyPrepViewModel
     weak var delegate: MyPrepViewControllerDelegate?
     var loadingView: BlurLoadingView?
@@ -131,10 +130,15 @@ private extension MyPrepViewController {
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
+            tableView.edgeAnchors == view.edgeAnchors
+            tableView.contentInset.top = view.safeMargins.top + Layout.paddingTop
+            tableView.contentInset.bottom = view.safeMargins.bottom
+        } else {
+            tableView.topAnchor == view.topAnchor + Layout.paddingTop
+            tableView.bottomAnchor == view.bottomAnchor
+            tableView.leadingAnchor == view.leadingAnchor
+            tableView.trailingAnchor == view.trailingAnchor
         }
-        tableView.edgeAnchors == view.edgeAnchors
-        tableView.contentInset.top = view.safeMargins.top + paddingTop
-        tableView.contentInset.bottom = view.safeMargins.bottom
 
         view.setFadeMask(at: .topAndBottom)
     }

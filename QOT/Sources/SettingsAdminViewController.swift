@@ -18,6 +18,7 @@ final class SettingsAdminViewController: UITableViewController {
         case logLevel = 2
         case dataBase = 3
         case reset = 4
+        case notifications = 5
     }
 
     enum BaseURL: Int {
@@ -38,6 +39,7 @@ final class SettingsAdminViewController: UITableViewController {
         case preparation = 2
         case userPartners = 3
         case userToBeVision = 4
+        case guide = 5
     }
 
     // MARK: - Properties
@@ -82,7 +84,13 @@ extension SettingsAdminViewController {
         case .logLevel: return "logLevel: error == default"
         case .dataBase: return "dataBase: an erase will turn off autoSync"
         case .reset: return "reset changes back to default:\n - baseURL\n - sync\n - loglevel\n - downSync fresh data"
+        case .notifications: return "Guide\nScheduled Local Notifications"
         }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destination = segue.destination as? ScheduledNotificationsTableViewController else { return }
+        destination.realmProvider = services?.realmProvider
     }
 }
 
@@ -138,6 +146,7 @@ private extension SettingsAdminViewController {
         case .preparation: erasePreparations()
         case .userPartners: erasePreparations()
         case .userToBeVision: eraseUserToBeVision()
+        case .guide: eraseGuide()
         }
     }
 
@@ -241,6 +250,12 @@ private extension SettingsAdminViewController {
 
     func eraseUserToBeVision() {
         services?.userService.eraseToBeVision()
+    }
+
+    func eraseGuide() {
+        services?.guideService.eraseGuide()
+        services?.guideItemLearnService.eraseItems()
+        services?.guideItemNotificationService.eraseItems()
     }
 
     func syncData(shouldDownload: Bool) {

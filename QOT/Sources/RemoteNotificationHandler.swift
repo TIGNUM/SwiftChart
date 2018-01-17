@@ -9,6 +9,7 @@
 import AirshipKit
 
 protocol RemoteNotificationHandlerDelegate: class {
+
     func remoteNotificationHandler(_ handler: RemoteNotificationHandler, canProcessNotificationResponse: UANotificationResponse) -> Bool
 }
 
@@ -49,9 +50,10 @@ final class RemoteNotificationHandler: NSObject, UAPushNotificationDelegate {
     // MARK: - private
 
     private func process(_ notificationResponse: UANotificationResponse) {
-        if let deepLinkURL = notificationResponse.notificationContent.deepLinkURL {
-            launchHandler.process(url: deepLinkURL)
-        }
+        guard
+            let deepLinkURL = notificationResponse.notificationContent.deepLinkURL,
+            let notificationID = notificationResponse.notificationContent.notificationID  else { return }
+        launchHandler.process(url: deepLinkURL, notificationID: notificationID)
     }
 }
 
@@ -60,9 +62,12 @@ final class RemoteNotificationHandler: NSObject, UAPushNotificationDelegate {
 private extension UANotificationContent {
 
     var deepLinkURL: URL? {
-        guard let deepLink = notificationInfo["^d"] as? String, let url = URL(string: deepLink) else {
-            return nil
-        }
+        guard let deepLink = notificationInfo["^d"] as? String, let url = URL(string: deepLink) else { return nil }
         return url
     }
+
+    var notificationID: String? {
+        return notificationInfo["notificationId"] as? String
+    }
 }
+

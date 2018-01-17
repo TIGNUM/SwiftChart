@@ -48,7 +48,7 @@ final class RemoteLogDestination: BaseDestination {
         session = URLSession(configuration: .default)
         reachabilityManager = Alamofire.NetworkReachabilityManager(host: "www.apple.com")
         #if DEBUG
-            remoteURL = URL(string: "https://esb-staging.tignum.com/personal/p/qot/log")
+            remoteURL = URL(string: "https://esb.tignum.com/personal/p/qot/log")
         #else
             remoteURL = URL(string: "https://esb.tignum.com/personal/p/qot/log")
         #endif

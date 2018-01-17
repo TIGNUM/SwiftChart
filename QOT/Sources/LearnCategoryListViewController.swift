@@ -96,10 +96,17 @@ private extension LearnCategoryListViewController {
     func setupLayout() {
         view.addSubview(backgroundImageView)
         backgroundImageView.edgeAnchors == view.edgeAnchors
-
         view.addSubview(collectionView)
-        collectionView.verticalAnchors == view.safeVerticalAnchors
-        collectionView.horizontalAnchors == view.horizontalAnchors
+
+        if #available(iOS 11.0, *) {
+            collectionView.verticalAnchors == view.safeVerticalAnchors
+            collectionView.horizontalAnchors == view.horizontalAnchors
+        } else {
+            collectionView.topAnchor == view.topAnchor + Layout.statusBarHeight
+            collectionView.bottomAnchor == view.bottomAnchor - Layout.statusBarHeight
+            collectionView.leadingAnchor == view.leadingAnchor
+            collectionView.trailingAnchor == view.trailingAnchor
+        }
 
         view.backgroundColor = .clear
         view.layoutIfNeeded()

@@ -29,6 +29,9 @@ struct Environment {
 
 struct Layout {
 
+    static let statusBarHeight: CGFloat = 64
+    static let paddingTop: CGFloat = 24
+
     struct TabBarView {
         static let insets = UIEdgeInsets(top: TabBarView.height, left: 0, bottom: 0, right: 0)
         static let height: CGFloat = 49
@@ -153,6 +156,10 @@ struct Color {
 
     /// navigationBarDark UIColor(red: 4/255, green: 11/255, blue: 23/255, alpha: 0.825)
     static let navigationBarDark = UIColor(red: 4/255, green: 11/255, blue: 23/255, alpha: 0.825)
+
+    struct Guide {
+        static let cardBackground = UIColor(red: 40/255, green: 52/255, blue: 62/255, alpha: 1)
+    }
 
     struct Default {
         static let white = UIColor(red: 1, green: 1, blue: 1, alpha: 1)

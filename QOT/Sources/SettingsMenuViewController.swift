@@ -21,6 +21,12 @@ protocol SettingsMenuViewControllerDelegate: class {
     func didTapSecurity(in viewController: SettingsMenuViewController)
 
     func didTapLogout(in viewController: SettingsMenuViewController)
+
+    func goToGeneralSettings(from viewController: SettingsMenuViewController,
+                             destination: AppCoordinator.Router.Destination)
+
+    func goToNotificationsSettings(from viewController: SettingsMenuViewController,
+                                   destination: AppCoordinator.Router.Destination)
 }
 
 final class SettingsMenuViewController: UIViewController {
@@ -38,12 +44,14 @@ final class SettingsMenuViewController: UIViewController {
     @IBOutlet private weak var logoutButton: UIButton!
     private let disposeBag = DisposeBag()
     private let viewModel: SettingsMenuViewModel
+    private var destination: AppCoordinator.Router.Destination?
     weak var delegate: SettingsMenuViewControllerDelegate?
 
     // MARK: - Init
 
-    init(viewModel: SettingsMenuViewModel) {
+    init(viewModel: SettingsMenuViewModel, destination: AppCoordinator.Router.Destination?) {
         self.viewModel = viewModel
+        self.destination = destination
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -64,6 +72,20 @@ final class SettingsMenuViewController: UIViewController {
         super.viewWillAppear(animated)
 
         navigationItem.title = R.string.localized.settingsTitle().uppercased()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        guard let destination = destination else { return }
+
+        switch destination.preferences {
+        case .calendarSync: delegate?.goToGeneralSettings(from: self, destination: destination)
+        case .notifications: delegate?.goToNotificationsSettings(from: self, destination: destination)
+        default: return
+        }
+
+        self.destination = nil
     }
 }
 

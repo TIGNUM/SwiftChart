@@ -11,7 +11,7 @@ import UIKit
 // @note using this to avoid singleton pattern
 private weak var _staticPageTracker: PageTracker?
 
-class PageTracker {
+final class PageTracker {
     private let eventTracker: EventTracker
 
     weak var lastPage: TrackablePage?

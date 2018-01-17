@@ -14,10 +14,20 @@ import CoreLocation
 import RealmSwift
 import Buglife
 
+protocol LocalNotificationHandlerDelegate: class {
+
+    func localNotificationHandler(_ handler: AppDelegate, canProcessNotification: UNNotification) -> Bool
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
 
     // MARK: - Properties
+
+    var window: UIWindow?
+    private var unhandledNotifications = [UNNotification]()
+    weak var delegate: LocalNotificationHandlerDelegate?
+    lazy var locationManager = LocationManager()
 
     lazy var windowManager: WindowManager = {
         guard let window = self.window else {
@@ -46,9 +56,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
     lazy var launchHandler: LaunchHandler = {
         return LaunchHandler()
     }()
-    lazy var locationManager = LocationManager()
-
-    var window: UIWindow?
     static var current: AppDelegate {
         guard let app = UIApplication.shared.delegate as? AppDelegate else {
             fatalError("AppDelegate not found")
@@ -73,6 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         Buglife.shared().delegate = self
         appCoordinator.start()
         UIApplication.shared.statusBarStyle = .lightContent
+        UNUserNotificationCenter.current().delegate = self
         incomingLocationEvent(launchOptions: launchOptions)
         setupUAirship()
 
@@ -124,10 +132,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
     }
 
     private func setupUAirship() {
-        guard let path = Bundle.main.path(forResource: "AirshipConfig", ofType: "plist") else {
-            return
-        }
-
+        guard let path = Bundle.main.path(forResource: "AirshipConfig", ofType: "plist") else { return }
         let config = UAConfig(contentsOfFile: path)
         UAirship.takeOff(config)
         UAirship.push().pushNotificationDelegate = remoteNotificationHandler
@@ -153,8 +158,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             }
         }
     }
+}
 
-    class func topViewController(base: UIViewController? = (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController) -> UIViewController? {
+// MARK: - Current top view controller
+
+extension AppDelegate {
+
+    class func topViewController(base: UIViewController? =
+        (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController) -> UIViewController? {
+
         if let nav = base as? UINavigationController {
             return topViewController(base: nav.visibleViewController)
         }
@@ -170,5 +182,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         }
 
         return base
+    }
+}
+
+// MARK: - UNUserNotificationCenterDelegate
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+
+    func processOutstandingNotifications() {
+        log("dailyPrep://processOutstandingNotifications:: \(unhandledNotifications)")
+        if let notification = unhandledNotifications.first {
+            handleNotification(notification: notification)
+            unhandledNotifications.removeAll() // TODO: maybe we can handle all of them in the future?
+        }
+    }
+
+    func handleNotification(notification: UNNotification) {
+        log("dailyPrep://handleNotification, notification:: \(notification)")
+        guard
+            let linkString = notification.request.content.userInfo["link"] as? String,
+            let link = URL(string: linkString), launchHandler.canLaunch(url: link) == true else {
+                return
+        }
+
+        let notificationID = notification.request.identifier
+        launchHandler.process(url: link, notificationID: notificationID)
+        guard
+            let host = link.host,
+            let scheme = URLScheme(rawValue: host), scheme != .dailyPrep else { return }
+        GuideWorker(services: AppDelegate.appState.services).setItemCompleted(guideID: notificationID)
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        log("dailyPrep://userNotificationCenter, willPresent notification:: \(notification)")
+        completionHandler([.alert, .sound])
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        log("dailyPrep://userNotificationCenter, didReceive response:: \(response.notification)")
+        if delegate?.localNotificationHandler(self, canProcessNotification: response.notification) == true {
+            handleNotification(notification: response.notification)
+        } else {
+            unhandledNotifications.append(response.notification)
+        }
+        completionHandler()
     }
 }

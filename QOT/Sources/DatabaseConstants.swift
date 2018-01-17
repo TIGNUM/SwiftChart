@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Freddy
 
 enum Database {
 
@@ -17,14 +16,19 @@ enum Database {
         case prepareCoach = "prepare.coach"
         case about = "ABOUT"
         case library = "QOT_LIBRARY"
+        case tools = "TOOLS"
+        case onBoarding = "ON_BOARDING"
+        case prepare = "PREPARE"
+        case faq = "FAQ"
 
         var value: String {
-            return self.rawValue
+            return rawValue
         }
     }
 
     enum KeyPath: String {
         case sortOrder
+        case priority
     }
 
     enum ItemKey: String {
@@ -37,7 +41,7 @@ enum Database {
         case sortOrder
 
         var value: String {
-            return self.rawValue
+            return rawValue
         }
     }
 

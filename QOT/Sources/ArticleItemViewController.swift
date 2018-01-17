@@ -21,37 +21,42 @@ protocol ArticleItemViewControllerDelegate: class {
     func didTapMedia(withURL url: URL, in viewController: ArticleItemViewController)
 }
 
-final class ArticleItemViewController: UIViewController {
+final class ArticleItemViewController: UIViewController, PageViewControllerNotSwipeable {
 
     // MARK: - Properties
 
     private let contentInsets: UIEdgeInsets
+    private let fadeMaskLocation: UIView.FadeMaskLocation
+    private let guideItem: Guide.Item?
     let pageName: PageName
     var viewModel: ArticleItemViewModel
     weak var delegate: ArticleItemViewControllerDelegate?
 
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(
-            style: .grouped,
-            contentInsets: self.contentInsets,
-            delegate: self,
-            dataSource: self,
-            dequeables:
-                ContentItemTextTableViewCell.self,
-                ImageSubtitleTableViewCell.self,
-                ArticleRelatedCell.self,
-                ErrorCell.self
-            )
-
-        return tableView
+        return UITableView(style: .grouped,
+                           contentInsets: contentInsets,
+                           delegate: self,
+                           dataSource: self,
+                           dequeables:
+                            ContentItemTextTableViewCell.self,
+                            ImageSubtitleTableViewCell.self,
+                            ArticleRelatedCell.self,
+                            ErrorCell.self)
     }()
 
     // MARK: - Init
 
-    init(pageName: PageName, viewModel: ArticleItemViewModel, title: String? = nil, contentInsets: UIEdgeInsets) {
+    init(pageName: PageName,
+         viewModel: ArticleItemViewModel,
+         title: String? = nil,
+         guideItem: Guide.Item? = nil,
+         contentInsets: UIEdgeInsets,
+         fadeMaskLocation: UIView.FadeMaskLocation) {
         self.pageName = pageName
         self.viewModel = viewModel
         self.contentInsets = contentInsets
+        self.fadeMaskLocation = fadeMaskLocation
+        self.guideItem = guideItem
 
         super.init(nibName: nil, bundle: nil)
 
@@ -100,10 +105,7 @@ private extension ArticleItemViewController {
     func resizeHeaderView() {
         guard
             let headerView = tableView.tableHeaderView,
-            let header = viewModel.articleHeader else {
-                return
-        }
-
+            let header = viewModel.articleHeader else { return }
         let sidePadding = CGFloat(56)
         let frameWidth = tableView.frame.size.width - sidePadding
         let titleHeight = calculateLabelHeight(text: header.articleTitle, font: Font.H5SecondaryHeadline, dispayedLineHeight: 18, frameWidth: frameWidth, characterSpacing: 1)
@@ -128,21 +130,53 @@ private extension ArticleItemViewController {
     }
 
     func setupView() {
-        let backgroundImage = (viewModel.backgroundImage == nil) ? R.image.backgroundSidebar() : viewModel.backgroundImage
-        tableView.backgroundView = UIImageView(image: backgroundImage)
+        let backgroundImageView = UIImageView(frame: view.frame)
+        backgroundImageView.image = (viewModel.backgroundImage == nil) ? R.image.backgroundSidebar() : viewModel.backgroundImage
+        tableView.backgroundColor = .clear
+        view.addSubview(backgroundImageView)
         view.addSubview(tableView)
+        view.translatesAutoresizingMaskIntoConstraints = true
+
+        if let guideItem = guideItem, guideItem.featureLink?.url != nil {
+            let button = featureLinkButton(guideItem: guideItem)
+            view.addSubview(button)
+            button.bottomAnchor == view.bottomAnchor - 8
+            button.centerXAnchor == view.centerXAnchor
+            button.widthAnchor == 242
+            button.heightAnchor == 45
+            button.layer.cornerRadius = 45/2
+            button.layer.borderWidth = 2
+            button.layer.borderColor = UIColor.azure.cgColor
+            button.setTitleColor(.azure, for: .normal)
+        }
+
+        tableView.edgeAnchors == view.edgeAnchors
+        tableView.bottomAnchor == view.bottomAnchor - 60
         tableView.estimatedSectionHeaderHeight = 100
         view.backgroundColor = .clear
-        tableView.edgeAnchors == view.edgeAnchors
         view.addFadeView(at: .top)
+        view.setFadeMask(at: fadeMaskLocation)
         view.layoutIfNeeded()
     }
 
-    func setTableViewHeader() {
-        guard let header = viewModel.articleHeader else {
-            return
-        }
+    func featureLinkButton(guideItem: Guide.Item) -> UIButton {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(openFeatureLink), for: .touchUpInside)
+        button.setTitleColor(.white40, for: .normal)
+        button.setTitle(guideItem.featureButton?.uppercased() ?? "", for: .normal)
+        button.titleLabel?.addCharactersSpacing(spacing: 1, text: guideItem.featureButton ?? "")
+        button.titleLabel?.font = Font.DPText
+        button.titleLabel?.textAlignment = .center
+        return button
+    }
 
+    @objc func openFeatureLink() {
+        guard let url = guideItem?.featureLink?.url else { return }
+        LaunchHandler().process(url: url, guideItem: guideItem)
+    }
+
+    func setTableViewHeader() {
+        guard let header = viewModel.articleHeader else { return }
         let nib = R.nib.articleItemHeaderView()
         guard let headerView = (nib.instantiate(withOwner: self, options: nil).first as? ArticleItemHeaderView) else {
             return
@@ -153,49 +187,45 @@ private extension ArticleItemViewController {
         tableView.tableHeaderView = headerView
     }
 
-    func contentItemTextTableViewCell(
-        tableView: UITableView,
-        indexPath: IndexPath,
-        topText: NSAttributedString,
-        bottomText: NSAttributedString?) -> ContentItemTextTableViewCell {
-            let itemTextCell: ContentItemTextTableViewCell = tableView.dequeueCell(for: indexPath)
-            itemTextCell.setup(topText: topText, bottomText: bottomText, delegate: self)
-            itemTextCell.backgroundColor = .clear
-            itemTextCell.contentView.backgroundColor = .clear
+    func contentItemTextTableViewCell(tableView: UITableView,
+                                      indexPath: IndexPath,
+                                      topText: NSAttributedString,
+                                      bottomText: NSAttributedString?) -> ContentItemTextTableViewCell {
+        let itemTextCell: ContentItemTextTableViewCell = tableView.dequeueCell(for: indexPath)
+        itemTextCell.setup(topText: topText, bottomText: bottomText, delegate: self)
+        itemTextCell.backgroundColor = .clear
+        itemTextCell.contentView.backgroundColor = .clear
 
-            return itemTextCell
+        return itemTextCell
     }
 
-    func mediaStreamCell(
-        tableView: UITableView,
-        indexPath: IndexPath,
-        title: String,
-        placeholderURL: URL,
-        placeholderImage: UIImage? = R.image.preloading(),
-        attributedString: NSAttributedString,
-        canStream: Bool) -> ImageSubtitleTableViewCell {
-            let imageCell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
-
+    func mediaStreamCell(tableView: UITableView,
+                         indexPath: IndexPath,
+                         title: String,
+                         placeholderURL: URL,
+                         placeholderImage: UIImage? = R.image.preloading(),
+                         attributedString: NSAttributedString,
+                         canStream: Bool) -> ImageSubtitleTableViewCell {
+        let imageCell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
         imageCell.setupData(placeHolder: placeholderURL, placeHolderImage: placeholderImage, description: attributedString, canStream: canStream)
-            imageCell.setInsets(insets: UIEdgeInsets(top: 14, left: 28, bottom: 14, right: 28))
-            imageCell.backgroundColor = .clear
-            imageCell.contentView.backgroundColor = .clear
+        imageCell.setInsets(insets: UIEdgeInsets(top: 14, left: 28, bottom: 14, right: 28))
+        imageCell.backgroundColor = .clear
+        imageCell.contentView.backgroundColor = .clear
 
-            return imageCell
+        return imageCell
     }
 
-    func imageTableViweCell(
-        tableView: UITableView,
-        indexPath: IndexPath,
-        attributeString: NSAttributedString,
-        url: URL) -> ImageSubtitleTableViewCell {
-            let imageCell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
-            imageCell.setupData(placeHolder: url, description: attributeString, canStream: false)
-            imageCell.setInsets(insets: UIEdgeInsets(top: 14, left: 28, bottom: 14, right: 28))
-            imageCell.backgroundColor = .clear
-            imageCell.contentView.backgroundColor = .clear
+    func imageTableViweCell(tableView: UITableView,
+                            indexPath: IndexPath,
+                            attributeString: NSAttributedString,
+                            url: URL) -> ImageSubtitleTableViewCell {
+        let imageCell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
+        imageCell.setupData(placeHolder: url, description: attributeString, canStream: false)
+        imageCell.setInsets(insets: UIEdgeInsets(top: 14, left: 28, bottom: 14, right: 28))
+        imageCell.backgroundColor = .clear
+        imageCell.contentView.backgroundColor = .clear
 
-            return imageCell
+        return imageCell
     }
 
     func invalidContentCell(tableView: UITableView, indexPath: IndexPath, item: ContentItem) -> ErrorCell {
@@ -210,7 +240,6 @@ private extension ArticleItemViewController {
     func relatedArticleCell(tableView: UITableView, indexPath: IndexPath) -> ArticleRelatedCell {
         let relatedArticleCell: ArticleRelatedCell = tableView.dequeueCell(for: indexPath)
         let relatedArticle = viewModel.relatedArticle(at: indexPath)
-
         let date = Date().addingTimeInterval(TimeInterval(relatedArticle.minutesToRead * 60))
         let subtitle = DateComponentsFormatter.timeIntervalToString(date.timeIntervalSinceNow, isShort: true) ?? ""
         relatedArticleCell.setupView(title: relatedArticle.title, subTitle: subtitle, previewImageURL: relatedArticle.thumbnailURL)

@@ -41,6 +41,9 @@ struct Log {
             static let pageTracking = false
             static let eventTracking = false
         }
+        struct Sync {
+            static let syncOperation = true
+        }
     }
 
     static var main: SwiftyBeaver.Type {
@@ -65,6 +68,14 @@ struct Log {
         let remoteLog = RemoteLogDestination()
         remoteLog.minLevel = remoteLogLevel
         Log.main.addDestination(remoteLog)
+
+         #if DEBUG
+        let file = FileDestination()
+        file.minLevel = .debug
+        file.logFileURL = URL.documentsDirectory.appendingPathComponent("daily_prep_notification.log")
+
+        Log.main.addDestination(file)
+        #endif
     }
 }
 

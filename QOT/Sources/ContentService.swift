@@ -31,6 +31,7 @@ final class ContentService {
                 mainRealm.delete(libraryCategories())
                 mainRealm.delete(learnContentCategories())
                 mainRealm.delete(whatsHotArticles())
+                mainRealm.delete(tools())
             }
         } catch {
             assertionFailure("Failed to delete content with error: \(error)")
@@ -70,6 +71,10 @@ final class ContentService {
 
     // MARK: - Collections
 
+    func tools() -> AnyRealmCollection<ContentCollection> {
+        return mainRealm.anyCollection(.sortOrder(), predicates: .section(.tools))
+    }
+
     func whatsHotArticles() -> AnyRealmCollection<ContentCollection> {
         return mainRealm.anyCollection(.sortOrder(), predicates: .section(.learnWhatsHot))
     }
@@ -92,6 +97,12 @@ final class ContentService {
 
     func contentItemsOnBackground(contentCollectionID: Int) throws -> AnyRealmCollection<ContentItem> {
         return try realmProvider.realm().anyCollection(predicates: NSPredicate(format: "collectionID == %d", contentCollectionID))
+    }
+
+    func defaultMessage(_ itemID: Int) -> String {
+        let welcomeMessageCollection = contentCollection(id: 100708)
+        let predicate = NSPredicate(remoteID: itemID)
+        return welcomeMessageCollection?.contentItems.filter(predicate).flatMap { $0.valueText }.first ?? ""
     }
 
     func relatedArticles(for articleCollection: ContentCollection) -> [ContentCollection] {

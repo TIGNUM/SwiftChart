@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class EventTracker {
+final class EventTracker {
 
     private enum EventName: String {
         case contentItemRead = "event.contentitemread"

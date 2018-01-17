@@ -18,13 +18,14 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
     private var articleHeader: ArticleCollectionHeader?
     private let topTabBarTitle: String?
     private var selectedContent: ContentCollection?
-    private var fullViewController: ArticleItemViewController
     private var viewModel: ArticleItemViewModel
-    private var topTabBarController: UINavigationController?
     private let rootViewController: UIViewController
     private let shouldPush: Bool
+    private let guideItem: Guide.Item?
     let pageName: PageName
     var children: [Coordinator] = []
+    var topTabBarController: UINavigationController?
+    var fullViewController: ArticleItemViewController
 
     init?(pageName: PageName,
           root: UIViewController,
@@ -34,7 +35,8 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
           topTabBarTitle: String?,
           backgroundImage: UIImage? = nil,
           shouldPush: Bool = true,
-          contentInsets: UIEdgeInsets = UIEdgeInsets(top: 53, left: 0, bottom: 0, right: 0)) {
+          contentInsets: UIEdgeInsets = UIEdgeInsets(top: 53, left: 0, bottom: 0, right: 0),
+          guideItem: Guide.Item? = nil) {
         guard let contentCollection = contentCollection else { return nil }
 
         self.pageName = pageName
@@ -44,19 +46,18 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
         self.selectedContent = contentCollection
         self.topTabBarTitle = topTabBarTitle
         self.shouldPush = shouldPush
+        self.guideItem = guideItem
         let articleItems = Array(contentCollection.articleItems)
         viewModel = ArticleItemViewModel(services: services,
                                          items: articleItems,
                                          contentCollection: contentCollection,
                                          articleHeader: articleHeader,
-                                         backgroundImage: backgroundImage
-        )
-
-        fullViewController = ArticleItemViewController(
-            pageName: pageName,
-            viewModel: viewModel,
-            contentInsets: contentInsets
-        )
+                                         backgroundImage: backgroundImage)
+        fullViewController = ArticleItemViewController(pageName: pageName,
+                                                       viewModel: viewModel,
+                                                       guideItem: guideItem,
+                                                       contentInsets: contentInsets,
+                                                       fadeMaskLocation: .top)
         fullViewController.title = topTabBarTitle
         fullViewController.delegate = self
 
@@ -108,7 +109,7 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
             return
         }
 
-        articleHeader = ArticleCollectionHeader(contentCollection: selectedArticle)
+        articleHeader = ArticleCollectionHeader(content: selectedArticle)
         viewModel = ArticleItemViewModel(services: services,
                                          items: Array(selectedArticle.articleItems),
                                          contentCollection: selectedArticle,

@@ -9,18 +9,21 @@
 import Foundation
 import RealmSwift
 
-@objcMembers final class SyncStateObserver: NSObject {
+@objcMembers final class SyncStateObserver {
 
     private let syncRecords: Results<SyncRecord>
     private var token: NotificationToken?
-
-    private(set) dynamic var syncedClasses: Set<String>
+    private(set) dynamic var syncedClasses: Set<String> {
+        didSet {
+            updateClosure?(self)
+        }
+    }
+    private var updateClosure: ((SyncStateObserver) -> Void)?
 
     init(realm: Realm) {
         let syncRecords = realm.objects(SyncRecord.self)
         self.syncRecords = syncRecords
         self.syncedClasses = syncRecords.classNames
-        super.init()
 
         token = syncRecords.addNotificationBlock { [unowned self] (change) in
             switch change {
@@ -39,6 +42,10 @@ import RealmSwift
     func hasSynced<T>(_ type: T.Type) -> Bool {
         return syncedClasses.contains(String(describing: type))
     }
+
+    func onUpdate(closure: @escaping (SyncStateObserver) -> Void) {
+        updateClosure = closure
+    }
 }
 
 // MARK: Helpers
@@ -46,6 +53,6 @@ import RealmSwift
 private extension Results where T: SyncRecord {
 
     var classNames: Set<String> {
-        return  Set(map({ $0.associatedClassName }))
+        return Set(map({ $0.associatedClassName }))
     }
 }

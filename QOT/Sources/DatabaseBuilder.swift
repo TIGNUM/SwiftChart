@@ -66,7 +66,7 @@ class DatabaseBuilder {
         let downSyncTask = DownSyncTask<P>(networkManager: networkManager,
                                            realmProvider: realmProvider,
                                            syncRecordService: syncRecordService)
-        return SyncOperation(upSyncTask: nil, downSyncTask: downSyncTask, syncContext: context)
+            return SyncOperation(upSyncTask: nil, downSyncTask: downSyncTask, syncContext: context, debugIdentifier: String(describing: self))
     }
 
     func updateRelationsOperation(context: SyncContext) -> UpdateRelationsOperation {

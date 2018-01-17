@@ -11,6 +11,9 @@ import UIKit
 
 protocol SettingsCoordinatorDelegate: class {
 
+    func goToCalendarListViewController(settingsViewController: SettingsViewController,
+                                        destination: AppCoordinator.Router.Destination?)
+
     func openCalendarListViewController(settingsViewController: SettingsViewController)
 
     func openChangePasswordViewController(settingsViewController: SettingsViewController)
@@ -23,15 +26,22 @@ protocol SettingsCoordinatorDelegate: class {
 final class SettingsCoordinator: ParentCoordinator {
 
     private let services: Services
-    private let settingsViewController: SettingsViewController
     private let permissionsManager: PermissionsManager
     private let rootViewController: UIViewController
     private let networkManager: NetworkManager
     private let syncManager: SyncManager
+    private let destination: AppCoordinator.Router.Destination?
     var children = [Coordinator]()
     let settingsType: SettingsType.SectionType
+    let settingsViewController: SettingsViewController
 
-    init?(root: SettingsMenuViewController, services: Services, settingsType: SettingsType.SectionType, syncManager: SyncManager, networkManager: NetworkManager, permissionsManager: PermissionsManager) {
+    init?(root: SettingsMenuViewController,
+          services: Services,
+          settingsType: SettingsType.SectionType,
+          syncManager: SyncManager,
+          networkManager: NetworkManager,
+          permissionsManager: PermissionsManager,
+          destination: AppCoordinator.Router.Destination?) {
         guard let viewModel = SettingsViewModel(services: services, settingsType: settingsType) else { return nil }
         self.rootViewController = root
         self.services = services
@@ -39,7 +49,11 @@ final class SettingsCoordinator: ParentCoordinator {
         self.networkManager = networkManager
         self.syncManager = syncManager
         self.permissionsManager = permissionsManager
-        settingsViewController = SettingsViewController(viewModel: viewModel, services: services, settingsType: settingsType)
+        self.destination = destination
+        settingsViewController = SettingsViewController(viewModel: viewModel,
+                                                        services: services,
+                                                        settingsType: settingsType,
+                                                        destination: destination)
         settingsViewController.title = settingsType.title.uppercased()
         settingsViewController.delegate = self
     }
@@ -52,6 +66,11 @@ final class SettingsCoordinator: ParentCoordinator {
 // MARK: - SettingsCoordinatorDelegate
 
 extension SettingsCoordinator: SettingsCoordinatorDelegate {
+
+    func goToCalendarListViewController(settingsViewController: SettingsViewController,
+                                        destination: AppCoordinator.Router.Destination?) {
+        openCalendarListViewController(settingsViewController: settingsViewController)
+    }
 
     func openCalendarListViewController(settingsViewController: SettingsViewController) {
         permissionsManager.askPermission(for: [.calendar], completion: { [unowned self] status in

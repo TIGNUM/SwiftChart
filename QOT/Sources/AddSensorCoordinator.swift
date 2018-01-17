@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import SafariServices
+import ReactiveKit
+import Bond
 
 final class AddSensorCoordinator: ParentCoordinator {
 
@@ -18,7 +20,6 @@ final class AddSensorCoordinator: ParentCoordinator {
     private let rootViewController: UIViewController
     private var webViewController: WebViewController?
     private let notificationHandler: NotificationHandler
-
     var children = [Coordinator]()
     let addSensorViewController: AddSensorViewController
 
@@ -50,8 +51,9 @@ extension AddSensorCoordinator: AddSensorViewControllerDelegate {
     func didTapSensor(_ sensor: AddSensorViewModel.Sensor, in viewController: UIViewController) {
         switch sensor {
         case .fitbit:
-            if (services.userService.fitbitState == .connected || services.userService.fitbitState == .pending), let url = URL(string: "https://www.fitbit.com/user/profile/apps") {
-                presentSafariViewController(url: url, viewController: viewController)
+            if (services.userService.fitbitState == .connected || services.userService.fitbitState == .pending),
+                let url = URL(string: "https://www.fitbit.com/user/profile/apps") {
+                    presentSafariViewController(url: url, viewController: viewController)
             } else {
                 presentFitBitWebView(in: viewController)
             }
@@ -78,9 +80,7 @@ private extension AddSensorCoordinator {
         guard
             let settingValue = services.settingsService.settingValue(key: "b2b.fitbit.authorizationurl"),
             case .text(let urlString) = settingValue,
-            let url = URL(string: urlString) else {
-                return
-        }
+            let url = URL(string: urlString) else { return }
         presentSafariViewController(url: url, viewController: viewController)
     }
 
@@ -89,7 +89,11 @@ private extension AddSensorCoordinator {
             let webViewController = try WebViewController(url)
             self.webViewController = webViewController
             viewController.present(webViewController, animated: true)
-            NotificationCenter.default.addObserver(self, selector: #selector(reloadAddSensorViewController), name: .syncAllDidFinishNotification, object: nil)
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(reloadAddSensorViewController),
+                                                   name: .syncAllDidFinishNotification,
+                                                   object: nil)
+
         } catch {
             log("Failed to open url. Error: \(error)", level: .error)
             viewController.showAlert(type: .message(error.localizedDescription))

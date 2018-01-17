@@ -9,8 +9,6 @@
 import Foundation
 import Rswift
 
-import LoremIpsum
-
 class TutorialViewModel: NSObject {
 
     // MARK: - Properties

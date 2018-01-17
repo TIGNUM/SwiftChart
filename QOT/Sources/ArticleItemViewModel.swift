@@ -48,14 +48,14 @@ final class ArticleItemViewModel {
         self.articleHeader = articleHeader
         self.backgroundImage = backgroundImage
         self.contentCollection = contentCollection
-
         let relatedArticles = services.contentService.relatedArticles(for: contentCollection)
-        self.relatedArticles = relatedArticles.sorted(by: { (lhs: ContentCollection, rhs: ContentCollection) -> Bool in
-            return lhs.sortOrder < rhs.sortOrder
-        })
 
-        self.items = items.sorted(by: { (lhs: ContentItem, rhs: ContentItem) -> Bool in
+        self.relatedArticles = relatedArticles.sorted { (lhs: ContentCollection, rhs: ContentCollection) -> Bool in
+            return lhs.sortOrder < rhs.sortOrder
+        }
+
+        self.items = items.sorted { (lhs: ContentItem, rhs: ContentItem) -> Bool in
             return lhs.sortOrder > rhs.sortOrder
-        })
+        }
     }
 }

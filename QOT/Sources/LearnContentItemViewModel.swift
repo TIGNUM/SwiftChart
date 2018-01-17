@@ -85,9 +85,7 @@ final class LearnContentItemViewModel: NSObject {
     // MARK: - KVO AudioItem
 
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        guard let playerItem = playerItem else {
-            return
-        }
+        guard let playerItem = playerItem else { return }
 
         if keyPath == "playbackBufferEmpty" {
             if playerItem.isPlaybackBufferEmpty == true {

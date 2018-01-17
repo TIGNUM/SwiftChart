@@ -11,6 +11,7 @@ import RealmSwift
 import Freddy
 
 final class UserFeedback: SyncableObject {
+
     @objc private(set) dynamic var message: String = ""
 
     convenience init(message: String) {

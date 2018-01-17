@@ -202,9 +202,25 @@ private extension SyncManager {
     }
 
     func syncOperations(context: SyncContext, shouldDownload: Bool) -> [Operation] {
+        var createLocalNotificationsOperation: BlockOperation?
+        if shouldDownload {
+            createLocalNotificationsOperation = BlockOperation {
+                DispatchQueue.main.async {
+                    let notificationBuilder = LocalNotificationBuilder(realmProvider: self.realmProvider)
+                    notificationBuilder.networkManager = self.networkManager
+                    notificationBuilder.setup()
+                }
+            }
+        }
+
         let operations: [Operation?] = [
+            calendarSyncSettingOperation(context: context, shouldDownload: shouldDownload),
             syncOperation(ContentRead.self, context: context, shouldDownload: shouldDownload),
             UpdateRelationsOperation(context: context, realmProvider: realmProvider),
+            syncOperation(RealmGuideItemLearn.self, context: context, shouldDownload: shouldDownload),
+            syncOperation(RealmGuideItemNotification.self, context: context, shouldDownload: shouldDownload),
+            syncOperation(RealmGuideItem.self, context: context, shouldDownload: shouldDownload),
+            createLocalNotificationsOperation,
             syncOperation(PageTrack.self, context: context, shouldDownload: shouldDownload),
             syncOperation(CalendarEvent.self, context: context, shouldDownload: shouldDownload),
             syncOperation(MyToBeVision.self, context: context, shouldDownload: shouldDownload),
@@ -241,7 +257,10 @@ private extension SyncManager {
     func syncOperation<T>(_ type: T.Type, context: SyncContext, shouldDownload: Bool)
         -> SyncOperation? where T: SyncableObject, T: UpSyncable {
             let upSyncTask = UpSyncTask<T>(networkManager: networkManager, realmProvider: realmProvider)
-            return SyncOperation(upSyncTask: upSyncTask, downSyncTask: nil, syncContext: context)
+            return SyncOperation(upSyncTask: upSyncTask,
+                                 downSyncTask: nil,
+                                 syncContext: context,
+                                 debugIdentifier: String(describing: type))
     }
 
     func syncOperation<T>(_ type: T.Type, context: SyncContext, shouldDownload: Bool)
@@ -252,7 +271,10 @@ private extension SyncManager {
             let downSyncTask = DownSyncTask<T>(networkManager: networkManager,
                                                realmProvider: realmProvider,
                                                syncRecordService: syncRecordService)
-            return SyncOperation(upSyncTask: nil, downSyncTask: downSyncTask, syncContext: context)
+            return SyncOperation(upSyncTask: nil,
+                                 downSyncTask: downSyncTask,
+                                 syncContext: context,
+                                 debugIdentifier: String(describing: type))
     }
 
     func syncOperation<T>(_ type: T.Type, context: SyncContext, shouldDownload: Bool)
@@ -266,7 +288,10 @@ private extension SyncManager {
             } else {
                 downSyncTask = nil
             }
-            return SyncOperation(upSyncTask: upSyncTask, downSyncTask: downSyncTask, syncContext: context)
+            return SyncOperation(upSyncTask: upSyncTask,
+                                 downSyncTask: downSyncTask,
+                                 syncContext: context,
+                                 debugIdentifier: String(describing: type))
     }
 
     func upSyncMediaOperation(localID: String, context: SyncContext) -> UpSyncMediaOperation {
@@ -274,6 +299,49 @@ private extension SyncManager {
                                     realmProvider: realmProvider,
                                     syncContext: context,
                                     localID: localID)
+    }
+
+    // MARK: FIXME: Emergency hack to get RealmCalendarSyncSetting working for deadlin. We need to generasize it.
+    func calendarSyncSettingOperation(context: SyncContext, shouldDownload: Bool) -> SyncOperation {
+            let upSyncTask = UpSyncTask<RealmCalendarSyncSetting>(networkManager: networkManager, realmProvider: realmProvider)
+            let downSyncTask: DownSyncTask<RealmCalendarSyncSetting>?
+            if shouldDownload == true {
+                downSyncTask = DownSyncTask<RealmCalendarSyncSetting>(networkManager: networkManager,
+                                               realmProvider: realmProvider,
+                                               syncRecordService: syncRecordService)
+                downSyncTask?.customImporter = { (changes, store) in
+                    for change in changes {
+                        do {
+                            switch change {
+                            case .createdOrUpdated(let remoteID, let createdAt, let modifiedAt, let data):
+                                let calendarID = data.calendarIdentifier
+                                if let existing = store.object(ofType: RealmCalendarSyncSetting.self, forPrimaryKey: calendarID) {
+                                    try existing.setData(data, objectStore: store)
+                                    existing.createdAt = createdAt
+                                    existing.modifiedAt = modifiedAt
+                                    existing.setRemoteIDValue(remoteID)
+                                } else {
+                                    let new = RealmCalendarSyncSetting(calendarIdentifier: calendarID, title: data.title, syncEnabled: data.syncEnabled)
+                                    new.modifiedAt = modifiedAt
+                                    new.createdAt = createdAt
+                                    new.setRemoteIDValue(remoteID)
+                                    store.addObject(new)
+                                }
+                            case .deleted(let remoteID):
+                                store.deleteObjects(RealmCalendarSyncSetting.self, predicate: NSPredicate(remoteID: remoteID))
+                            }
+                        } catch let error {
+                            log("Failed to import change: \(change), error: \(error)", level: .error)
+                        }
+                    }
+                }
+            } else {
+                downSyncTask = nil
+            }
+            return SyncOperation(upSyncTask: upSyncTask,
+                                 downSyncTask: downSyncTask,
+                                 syncContext: context,
+                                 debugIdentifier: String(describing: RealmCalendarSyncSetting.self))
     }
 
     // MARK: Notifications

@@ -14,16 +14,24 @@ final class InterviewQuestion {
 
     let remoteID: Int
     let title: String
+    let dailyPrepTitle: String
     let subtitle: String?
     let answers: [Answer]
     var answerIndex: Int
 
     init?(question: Question) {
-        let answers = Array(question.answers.sorted(by: [.sortOrder()]))
-        guard answers.count > 0 else { return nil }
+//        let answers = Array(question.answers.sorted(by: [.sortOrder(ascending: true)]))
+        // FIXME: This assumes answer title will be 1 ... 10. Use sortOrder when fixed on server
+        let answers = Array(question.answers.sorted { (a, b) -> Bool in
+            let left = Int(a.title) ?? 0
+            let right = Int(b.title) ?? 0
+            return left < right
+        })
+        guard answers.isEmpty == false else { return nil }
 
         self.remoteID = question.forcedRemoteID
         self.title = question.title
+        self.dailyPrepTitle = question.dailyPrepTitle
         self.subtitle = question.subtitle
         self.answers = answers
         self.answerIndex = (answers.count - 1) / 2
@@ -43,16 +51,22 @@ final class MorningInterviewViewModel: NSObject {
     private let validFrom: Date
     private let validTo: Date
     private let questions: [InterviewQuestion]
+    let notificationRemoteID: Int
 
     // MARK: - Init
 
-    init(services: Services, questionGroupID: Int, validFrom: Date, validTo: Date) {
+    init(services: Services,
+         questionGroupID: Int,
+         validFrom: Date,
+         validTo: Date,
+         notificationRemoteID: Int) {
         let questions = services.questionsService.morningInterviewQuestions(questionGroupID: questionGroupID)
         self.services = services
         self.questionGroupID = questionGroupID
         self.validFrom = validFrom
         self.validTo = validTo
         self.questions = Array(questions.flatMap(InterviewQuestion.init))
+        self.notificationRemoteID = notificationRemoteID
     }
 
     var questionsCount: Int {
@@ -68,10 +82,7 @@ final class MorningInterviewViewModel: NSObject {
 
         questions.forEach { (question: InterviewQuestion) in
             let answer = question.currentAnswer
-            guard let answerID = answer.remoteID.value else {
-                return
-            }
-
+            guard let answerID = answer.remoteID.value else { return }
             let userAnswer = UserAnswer(questionID: question.remoteID,
                                         questionGroupID: self.questionGroupID,
                                         answerID: answerID,
@@ -81,16 +92,32 @@ final class MorningInterviewViewModel: NSObject {
             )
             userAnswers.append(userAnswer)
         }
-
         return userAnswers
     }
 
     func save(userAnswers: [UserAnswer]) throws {
         let realm = services.mainRealm
         try realm.write {
+            // Save answers to be send to server
             userAnswers.forEach { (userAnswer: UserAnswer) in
                 realm.add(userAnswer)
             }
+
+            // Save result for guide
+            let results = userAnswers.map { Int($0.userAnswer) ?? 0 }
+            let result = RealmInterviewResult(notificationRemoteID: notificationRemoteID, results: results)
+            realm.add(result)
+
+            // Set results on notification if it exists. Otherwise we will set it during sync
+            if let notification = realm.syncableObject(ofType: RealmGuideItemNotification.self,
+                                                       remoteID: notificationRemoteID) {
+                notification.interviewResult = result
+            }
+        }
+
+        if let guideItem = realm.objects(RealmGuideItem.self).filter("guideItemNotification.remoteID == %d", notificationRemoteID).first {
+            LocalNotificationBuilder.cancelNotification(identifier: guideItem.localID)
+            GuideWorker(services: services).setItemCompleted(guideID: guideItem.localID)
         }
     }
 }

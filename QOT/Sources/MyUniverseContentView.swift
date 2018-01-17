@@ -71,8 +71,8 @@ final class MyUniverseContentView: UIView {
         layer.addGlowEffect(color: .white)
         return layer
     }()
-    private let circle1 = CAShapeLayer(fillColor: .clear, strokeColor:  UIColor(white: 1, alpha: 0.08), lineWidth: 1)
-    private let circle2 = CAShapeLayer(fillColor: .clear, strokeColor:  UIColor(white: 1, alpha: 0.08), lineWidth: 1)
+    private let circle1 = CAShapeLayer(fillColor: .clear, strokeColor: UIColor(white: 1, alpha: 0.08), lineWidth: 1)
+    private let circle2 = CAShapeLayer(fillColor: .clear, strokeColor: UIColor(white: 1, alpha: 0.08), lineWidth: 1)
     private let visionLine = CAShapeLayer(fillColor: .clear, strokeColor: .white40, lineWidth: 0.4)
     private let weeklyChoicesLine = CAShapeLayer(fillColor: .clear, strokeColor: .white40, lineWidth: 0.4)
     private let partnersLine = CAShapeLayer(fillColor: .clear, strokeColor: .white40, lineWidth: 0.4)
@@ -213,7 +213,7 @@ final class MyUniverseContentView: UIView {
         circle2.position = profileWrapperView.center
 
         let radius = (profileButton.bounds.width / 2)
-        circle1.path = UIBezierPath.circlePath(center: .zero, radius: radius * 2.7).cgPath
+        circle1.path = UIBezierPath.circlePath(center: .zero, radius: radius * 2.1).cgPath
         circle2.path = UIBezierPath.circlePath(center: .zero, radius: radius * 3.8).cgPath
     }
 

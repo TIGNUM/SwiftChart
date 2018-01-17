@@ -12,6 +12,7 @@ import RealmSwift
 
 final class Services {
 
+    let realmProvider: RealmProvider
     let mainRealm: Realm
     let contentService: ContentService
     let preparationService: PreparationService
@@ -23,10 +24,14 @@ final class Services {
     let statisticsService: StatisticsService
     let mediaService: MediaService
     let feedbackService: FeedbackService
+    let guideItemLearnService: GuideItemLearnService
+    let guideItemNotificationService: GuideItemNotificationService
+    let guideService: GuideService
 
     init() throws {
         let realmProvider = RealmProvider()
         let mainRealm = try realmProvider.realm()
+        self.realmProvider = realmProvider
         self.mainRealm = mainRealm
         self.contentService = ContentService(mainRealm: mainRealm, realmProvider: realmProvider)
         self.preparationService = PreparationService(mainRealm: mainRealm, realmProvider: realmProvider)
@@ -38,5 +43,8 @@ final class Services {
         self.statisticsService = StatisticsService(mainRealm: mainRealm, realmProvider: realmProvider)
         self.mediaService = MediaService(mainRealm: mainRealm, realmProvider: realmProvider)
         self.feedbackService = FeedbackService(mainRealm: mainRealm, realmProvider: realmProvider)
+        self.guideItemNotificationService = GuideItemNotificationService(mainRealm: mainRealm, realmProvider: realmProvider)
+        self.guideItemLearnService = GuideItemLearnService(mainRealm: mainRealm, realmProvider: realmProvider)
+        self.guideService = GuideService(mainRealm: mainRealm, realmProvider: realmProvider)
     }
 }

@@ -65,9 +65,10 @@
 "Top.Tab.Bar.Item.Title.Perpare.Preparation" = "PREPARATION";
 
 "Article.Loading" = "Please wait while we configure what's hot";
-
+"Guide.Loading" = "Please wait while we configure your guide";
 "Me.My.Universe.Loading" = "Please wait while we configure your universe";
 "Me.My.Prep.Loading" = "Please wait while we configure your preparation";
+
 "Me.My.Statistics.Navigation.Bar.Title" = "MY STATISTICS";
 "Me.Sector.Peak.Performance" = "Peak\nPerformance";
 "Me.Sector.Meetings" = "Meetings";
@@ -107,7 +108,7 @@
 "Me.Sector.My.Statistics.Personal.Average.Activity.Level" = "Your Average Activity Level Score";
 "Me.Sector.My.Statistics.Personal.Average.Perceived.Load" = "Your Average Perceived Load";
 "Me.Sector.My.Statistics.Personal.Average.Perceived.Recovery" = "Your Average Perceived Recovery";
-"Me.Sector.My.Statistics.Personal.Average.Number.Of.Meetings" = "Meetings Today";
+"Me.Sector.My.Statistics.Personal.Average.Number.Of.Meetings" = "This Week’s Average Number of Meetings";
 "Me.Sector.My.Statistics.Personal.Average.Time.Between.Meetings" = "Today’s Average Time Between Meetings";
 "Me.Sector.My.Statistics.Day" = "DAY";
 "Me.Sector.My.Statistics.Today" = "TODAY";
