@@ -108,34 +108,29 @@ extension UIView {
         }
     }
 
-    func drawLabelsForColumns(labels: [String], textColor: UIColor, highlightColor: UIColor, font: UIFont, center: Bool = false) {
-        var lastLabel: UILabel? = nil
-
-        for index in 0..<labels.count {
+    func drawLabelsForColumns(titles: [String], textColor: UIColor, highlightColor: UIColor, font: UIFont, center: Bool = false, highlightedIndex: Int?) {
+        var lastCreatedLabel: UILabel? = nil
+        for (index, title) in titles.enumerated() {
             let label = UILabel()
-            label.text = labels[index]
-            let color = index == labels.endIndex - 1 ? highlightColor : textColor
-            label.setAttrText(text: labels[index], font: font, alignment: (center ? .center : .natural), color: color)
+            label.text = title
+            let highlightedIndex = highlightedIndex ?? titles.endIndex - 1
+            let color = index == highlightedIndex ? highlightColor : textColor
+            label.setAttrText(text: titles[index], font: font, alignment: (center ? .center : .natural), color: color)
             addSubview(label)
             label.topAnchor == topAnchor
             label.bottomAnchor == bottomAnchor
 
-            breakLabel:
-                do {
-                    guard let lastLbl = lastLabel else {
-                        label.leadingAnchor == leadingAnchor
-                        break breakLabel
-                    }
-                    lastLbl.trailingAnchor == label.leadingAnchor
-                    label.widthAnchor == lastLbl.widthAnchor
+            if let lastLabel = lastCreatedLabel {
+                label.leadingAnchor == lastLabel.trailingAnchor
+                label.widthAnchor == lastLabel.widthAnchor
+            } else {
+                label.leadingAnchor == leadingAnchor
             }
-
-            lastLabel = label
+            if index == titles.count - 1 {
+                label.trailingAnchor == trailingAnchor
+            }
+            lastCreatedLabel = label
         }
-
-        guard let label = lastLabel else { return }
-
-        label.trailingAnchor == trailingAnchor
     }
 
     // MARK: - private

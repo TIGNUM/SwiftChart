@@ -128,9 +128,20 @@ private extension MeetingsAverageNumberChart {
     }
 
     func drawTodayValueLabel() {
-        guard let dataPoint = statistics.dataPointObjects.last else { return }
-        let xPos = xPosition(statistics.dataPointObjects.endIndex - 1)
-        let position = dataPoint.percentageValue == 0 ? 0 : dataPoint.percentageValue / statistics.maximum.toFloat
+        let todayIndex: Int
+        let currentDay = Date().dayOfWeek
+        switch currentDay {
+        case 1: // Sunday
+            todayIndex = statistics.dataPointObjects.count - 1
+        case 2: // Monday
+            todayIndex = 0
+        default:
+            todayIndex = currentDay - 2
+        }
+        guard todayIndex < statistics.dataPointObjects.count else { return }
+
+        let dataPoint = statistics.dataPointObjects[todayIndex]
+        let xPos = xPosition(todayIndex)
         let yPos = yPosition(dataPoint.percentageValue)
         let text = statistics.displayableValue(average: Double(dataPoint.originalValue))
         let todayLabel = dayLabel(text: text, textColor: .white)

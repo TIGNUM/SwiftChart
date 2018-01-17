@@ -74,11 +74,11 @@ enum ChartType: String, EnumCollection {
              .activitySittingMovementRatio,
              .sleepQuality,
              .sleepQuantityTime: return weekdaySymbols(fullWeek: false)
-        case .meetingAverageWeek,
-             .peakPerformanceUpcomingWeek,
+        case .peakPerformanceUpcomingWeek,
              .peakPerformanceUpcomingNextWeek,
              .intensityLoadWeek,
              .intensityRecoveryWeek: return weekdaySymbols(fullWeek: true)
+        case .meetingAverageWeek: return weekdaySymbols(fullWeek: true, startDayIndex: 1)
         case .intensityLoadMonth,
              .intensityRecoveryMonth,
              .travelTripsTimeZoneChangedWeeks,
@@ -110,9 +110,9 @@ enum ChartType: String, EnumCollection {
         }
     }
 
-    private func weekdaySymbols(fullWeek: Bool) -> [String] {
+    private func weekdaySymbols(fullWeek: Bool, startDayIndex: Int = Date().dayOfWeek) -> [String] {
         let lengthOfWeek = fullWeek == true ? 6 : 4
-        var currentWeekday = Date().dayOfWeek
+        var currentWeekday = startDayIndex
         var weekdaySymbols = [String]()
         let symbols = Calendar.sharedUTC.shortWeekdaySymbols
 

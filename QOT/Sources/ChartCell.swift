@@ -369,7 +369,26 @@ private extension ChartCell {
 
         let labels = statistics.chartType.labels
         let highlightColor = statistics.chartType.hightlightColor
-        labelContentView.drawLabelsForColumns(labels: labels, textColor: .white20, highlightColor: highlightColor, font: Font.H7Title, center: true)
+        let highlightedIndex: Int
+        if statistics.chartType == .meetingAverageWeek {
+            let currentDay = Date().dayOfWeek
+            switch currentDay {
+            case 1: // Sunday
+                highlightedIndex = labels.count - 1
+            case 2: // Monday
+                highlightedIndex = 0
+            default:
+                highlightedIndex = currentDay - 2
+            }
+        } else {
+            highlightedIndex = labels.count - 1
+        }
+        labelContentView.drawLabelsForColumns(titles: labels,
+                                              textColor: .white20,
+                                              highlightColor: highlightColor,
+                                              font: Font.H7Title,
+                                              center: true,
+                                              highlightedIndex: highlightedIndex)
         layoutIfNeeded()
     }
 }
