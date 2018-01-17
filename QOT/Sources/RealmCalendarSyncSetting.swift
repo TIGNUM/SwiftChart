@@ -46,15 +46,18 @@ extension RealmCalendarSyncSetting: TwoWaySyncable {
             return nil
         }
         let dateFormatter = DateFormatter.iso8601
-        let dict: [JsonKey: JSONEncodable] = [
+        var dict: [JsonKey: JSONEncodable] = [
             .id: remoteID.value.toJSONEncodable,
             .createdAt: dateFormatter.string(from: createdAt),
             .modifiedAt: dateFormatter.string(from: modifiedAt),
             .calendarId: localID,
             .title: title,
-            .syncEnabled: syncEnabled,
             .qotId: localID
         ]
+        if remoteID.value != nil {
+            // Only send this if we have already downsynced this item to avoid resetting values on login
+            dict[.syncEnabled] = syncEnabled
+        }
         return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
     }
 }
