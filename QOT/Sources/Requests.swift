@@ -165,7 +165,7 @@ struct APNSDeviceTokenRequest: URLRequestBuildable {
 struct DeviceRequest: URLRequestBuildable {
     let endpoint: Endpoint = .device
     let httpMethod: HTTPMethod = .put
-    let body: Data
+    let body: Data?
     let headers: [HTTPHeader: String]
 
     init(data: Data, syncToken: String) {
