@@ -96,6 +96,14 @@ final class ArticleItemViewController: UIViewController, PageViewControllerNotSw
         tableView.layoutIfNeeded()
         tableView.setContentOffset(CGPoint(x: 0.0, y: -(tableView.tableHeaderView?.bounds.height ?? 0.0)), animated: false)
     }
+
+    @available(iOS 11.0, *)
+    override func viewLayoutMarginsDidChange() {
+        super.viewLayoutMarginsDidChange()
+        tableView.contentInset.top = view.safeMargins.top + Layout.paddingTop
+        tableView.contentInset.bottom = view.safeMargins.bottom
+        view.setFadeMask(at: fadeMaskLocation)
+    }
 }
 
 // MARK: - Private
@@ -140,7 +148,7 @@ private extension ArticleItemViewController {
         if let guideItem = guideItem, guideItem.featureLink?.url != nil {
             let button = featureLinkButton(guideItem: guideItem)
             view.addSubview(button)
-            button.bottomAnchor == view.bottomAnchor - 8
+            button.bottomAnchor == view.safeBottomAnchor
             button.centerXAnchor == view.centerXAnchor
             button.widthAnchor == 242
             button.heightAnchor == 45
@@ -150,11 +158,23 @@ private extension ArticleItemViewController {
             button.setTitleColor(.azure, for: .normal)
         }
 
-        tableView.edgeAnchors == view.edgeAnchors
-        tableView.bottomAnchor == view.bottomAnchor - 60
+        automaticallyAdjustsScrollViewInsets = false
+        if #available(iOS 11.0, *) {
+            tableView.contentInsetAdjustmentBehavior = .never
+            tableView.edgeAnchors == view.edgeAnchors
+            tableView.contentInset.top = view.safeMargins.top + Layout.paddingTop
+            tableView.contentInset.bottom = view.safeMargins.bottom
+        } else {
+            tableView.topAnchor == view.safeTopAnchor
+            tableView.bottomAnchor == view.safeBottomAnchor
+            tableView.leadingAnchor == view.leadingAnchor
+            tableView.trailingAnchor == view.trailingAnchor
+            tableView.contentInset.top = tableView.contentInset.top + Layout.paddingTop
+        }
+
+        tableView.bottomAnchor == view.safeBottomAnchor - 60
         tableView.estimatedSectionHeaderHeight = 100
         view.backgroundColor = .clear
-        view.addFadeView(at: .top)
         view.setFadeMask(at: fadeMaskLocation)
         view.layoutIfNeeded()
     }
