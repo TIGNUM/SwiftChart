@@ -104,7 +104,7 @@ extension Statistics {
             let totalMinutes = Int(value)
             let hours = totalMinutes / 60
             let minutes = totalMinutes % 60
-            return String(format: "%01d:%02d", hours, minutes)
+            return String(format: "%01d:%02dh", hours, minutes)
         }
 
         var prefix = ""
