@@ -24,6 +24,30 @@ var selectedChartTypes: [ChartType: Bool] = [.peakPerformanceUpcomingWeek: true,
                                              .travelTripsTimeZoneChangedWeeks: true,
                                              .travelTripsTimeZoneChangedYear: false]
 
+var chartViews: [ChartType: UIView?] = [.meetingAverageDay: nil,
+                                        .meetingAverageWeek: nil,
+                                        .meetingLength: nil,
+                                        .meetingTimeBetween: nil,
+                                        .travelTripsAverageWeeks: nil,
+                                        .travelTripsAverageYear: nil,
+                                        .travelTripsNextFourWeeks: nil,
+                                        .travelTripsTimeZoneChangedWeeks: nil,
+                                        .travelTripsTimeZoneChangedYear: nil,
+                                        .travelTripsMaxTimeZone: nil,
+                                        .peakPerformanceUpcomingWeek: nil,
+                                        .peakPerformanceUpcomingNextWeek: nil,
+                                        .peakPerformanceAverageWeek: nil,
+                                        .peakPerformanceAverageMonth: nil,
+                                        .sleepQuantity: nil,
+                                        .sleepQuantityTime: nil,
+                                        .sleepQuality: nil,
+                                        .activitySittingMovementRatio: nil,
+                                        .activityLevel: nil,
+                                        .intensityLoadWeek: nil,
+                                        .intensityLoadMonth: nil,
+                                        .intensityRecoveryWeek: nil,
+                                        .intensityRecoveryMonth: nil]
+
 protocol ChartCellDelegate: class {
 
     func doReload()
@@ -265,6 +289,14 @@ private extension ChartCell {
             return UIView()
         }
 
+        if let chartView = chartViews[statistics.chartType] as? UIView {
+            return chartView
+        }
+
+        return createChartView(statistics: statistics, labelContentVIew: labelContentView)
+    }
+
+    private func createChartView(statistics: Statistics, labelContentVIew: UIView) -> UIView {
         let segmentedFrame = CGRect(x: 0, y: 0, width: chartSegmentedContentView.frame.width, height: chartSegmentedContentView.frame.height)
         let segmentedBiggerFrame = CGRect(x: 0, y: 0, width: segmentedFrame.width, height: segmentedFrame.height + labelContentView.frame.height)
         let frame = chartContentView.frame
@@ -273,40 +305,75 @@ private extension ChartCell {
         switch statistics.chartType {
         case .activityLevel,
              .activitySittingMovementRatio:
-            return ActivityChart(frame: frame, statistics: statistics, labelContentView: labelContentView)
+            return addView(ActivityChart(frame: frame,
+                                         statistics: statistics,
+                                         labelContentView: labelContentView),
+                           statistics)
         case .meetingAverageDay:
-            return MeetingsAverageChart(frame: segmentedBiggerFrame, statistics: statistics, labelContentView: labelContentView)
+            return addView(MeetingsAverageChart(frame: segmentedBiggerFrame,
+                                                statistics: statistics,
+                                                labelContentView: labelContentView),
+                           statistics)
         case .meetingAverageWeek:
-            return MeetingsAverageNumberChart(frame: frame, statistics: statistics, labelContentView: labelContentView)
+            return addView(MeetingsAverageNumberChart(frame: frame,
+                                                      statistics: statistics,
+                                                      labelContentView: labelContentView),
+                           statistics)
         case .intensityLoadWeek,
              .intensityLoadMonth,
              .intensityRecoveryWeek,
              .intensityRecoveryMonth:
-            return IntensityChart(frame: segmentedFrame, statistics: statistics, labelContentView: labelContentView)
+            return addView(IntensityChart(frame: segmentedFrame,
+                                          statistics: statistics,
+                                          labelContentView: labelContentView),
+                           statistics)
         case .meetingLength:
-            return MeetingsLengthChart(frame: biggerFrame, statistics: statistics, labelContentView: labelContentView)
+            return addView(MeetingsLengthChart(frame: biggerFrame,
+                                               statistics: statistics,
+                                               labelContentView: labelContentView),
+                           statistics)
         case .meetingTimeBetween:
-            return MeetingsTimeBetweenChart(frame: biggerFrame, statistics: statistics, labelContentView: labelContentView)
+            return addView(MeetingsTimeBetweenChart(frame: biggerFrame,
+                                                    statistics: statistics,
+                                                    labelContentView: labelContentView),
+                           statistics)
         case .sleepQuality,
              .sleepQuantity,
              .sleepQuantityTime:
-            return SleepChart(frame: frame, statistics: statistics)
+            return addView(SleepChart(frame: frame, statistics: statistics),
+                           statistics)
         case .peakPerformanceUpcomingWeek,
              .peakPerformanceUpcomingNextWeek:
-            return PeakPerformanceUpcomingChart(frame: segmentedFrame, statistics: statistics, labelContentView: labelContentView)
+            return addView(PeakPerformanceUpcomingChart(frame: segmentedFrame,
+                                                        statistics: statistics, labelContentView: labelContentView),
+                           statistics)
         case .peakPerformanceAverageWeek,
              .peakPerformanceAverageMonth:
-            return PeakPerformanceAverageChart(frame: segmentedFrame, statistics: statistics, labelContentView: labelContentView)
+            return addView(PeakPerformanceAverageChart(frame: segmentedFrame,
+                                                       statistics: statistics,
+                                                       labelContentView: labelContentView),
+                           statistics)
         case .travelTripsTimeZoneChangedWeeks,
              .travelTripsTimeZoneChangedYear,
              .travelTripsAverageWeeks,
              .travelTripsAverageYear,
              .travelTripsNextFourWeeks:
             let travelTripFrame = statistics.chartType == .travelTripsNextFourWeeks ? frame : segmentedFrame
-            return TravelTripsChart(frame: travelTripFrame, statistics: statistics, labelContentView: labelContentView)
+            return addView(TravelTripsChart(frame: travelTripFrame,
+                                            statistics: statistics,
+                                            labelContentView: labelContentView),
+                           statistics)
         case .travelTripsMaxTimeZone:
-            return TravelMaxTimeZoneChart(frame: biggerFrame, statistics: statistics, labelContentView: labelContentView)
+            return addView(TravelMaxTimeZoneChart(frame: biggerFrame,
+                                                  statistics: statistics,
+                                                  labelContentView: labelContentView),
+                           statistics)
         }
+    }
+
+    private func addView(_ view: UIView, _ statistics: Statistics) -> UIView {
+        chartViews[statistics.chartType] = view
+        return view
     }
 }
 

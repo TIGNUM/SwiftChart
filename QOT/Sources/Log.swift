@@ -29,9 +29,9 @@ struct Log {
             static let API = false
             static let Database = false
             static let Font = false
-            static let FileManager = true
+            static let FileManager = false
             static let TabBar = false
-            static let Sync = true
+            static let Sync = false
         }
         struct NetworkManager {
             static let requestBody = false
@@ -42,7 +42,7 @@ struct Log {
             static let eventTracking = false
         }
         struct Sync {
-            static let syncOperation = true
+            static let syncOperation = false
         }
     }
 

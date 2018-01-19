@@ -22,7 +22,7 @@ final class ChartTableViewCell: UITableViewCell, Dequeueable {
     weak var delegate: ChartViewControllerDelegate?
 
     private lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
+        let layout = CenterCellCollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
 
         return UICollectionView(layout: layout,
@@ -165,5 +165,42 @@ extension ChartTableViewCell: ChartCellDelegate {
 
     func didSelectOpenSettings() {
         delegate?.didSelectOpenSettings()
+    }
+}
+// https://gist.github.com/vinhnx/fb20c6942b5823df1c35e69850caf9f6
+private class CenterCellCollectionViewFlowLayout: UICollectionViewFlowLayout {
+
+    var mostRecentOffset = CGPoint.zero
+
+    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
+        if velocity.x == 0 {
+            return mostRecentOffset
+        }
+
+        if let cv = collectionView {
+            let cvBounds = cv.bounds
+            let halfWidth = cvBounds.size.width * 0.5
+
+            if let attributesForVisibleCells = self.layoutAttributesForElements(in: cvBounds) {
+                var candidateAttributes: UICollectionViewLayoutAttributes?
+                for attributes in attributesForVisibleCells {
+
+                    // == Skip comparison with non-cell items (headers and footers) == //
+                    if attributes.representedElementCategory != UICollectionElementCategory.cell { continue }
+                    if attributes.center.x == 0 ||
+                        (attributes.center.x > (cv.contentOffset.x + halfWidth) && velocity.x < 0) { continue }
+                    candidateAttributes = attributes
+                }
+
+                guard candidateAttributes != nil else { return mostRecentOffset }
+                mostRecentOffset = CGPoint(x: floor(candidateAttributes!.center.x - halfWidth), y: proposedContentOffset.y)
+                return mostRecentOffset
+
+            }
+        }
+
+        // fallback
+        mostRecentOffset = super.targetContentOffset(forProposedContentOffset: proposedContentOffset)
+        return mostRecentOffset
     }
 }

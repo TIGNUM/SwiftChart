@@ -54,6 +54,7 @@ final class ChartViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        chartViews.keys.forEach { chartViews[$0] = nil }
         tableView.reloadData()
     }
 }
