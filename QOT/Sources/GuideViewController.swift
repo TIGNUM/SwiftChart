@@ -193,11 +193,6 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
         label.backgroundColor = UIColor.pineGreen.withAlphaComponent(0.6)
         label.attributedText = Style.navigationTitle(headline, .white40).attributedString()
         label.sizeToFit()
-//        let labelFrame = label.frame
-//        label.frame = CGRect(x: labelFrame.origin.x,
-//                             y: labelFrame.origin.y,
-//                             width: labelFrame.width,
-//                             height: labelFrame.height)
         return view
     }
 

@@ -43,6 +43,17 @@ final class ChartViewModel {
 
     // MARK: - Public
 
+    static func chartCellSize(frameWidth: CGFloat) -> CGSize {
+        let width = frameWidth - ChartViewModel.chartViewPadding
+        let height = width * ChartViewModel.chartRatio
+
+        return CGSize(width: width, height: height)
+    }
+
+    static func leadingOffset(frameWidth: CGFloat) -> CGFloat {
+        return (frameWidth - ChartViewModel.chartCellSize(frameWidth: frameWidth).width) * 0.5
+    }
+    
     var fitbitState: User.FitbitState {
         return services.userService.fitbitState
     }
@@ -106,7 +117,9 @@ private extension ChartViewModel {
         var criticalSectionTypes = [StatisticsSectionType: CGFloat]()
 
         StatisticsSectionType.allValues.forEach { (sectionType: StatisticsSectionType) in
-            let universeValue = (sectionType.universeChartTypes.flatMap { $0.statistics(allCharts)?.universeValue }).reduce(0, +)
+            let universeValue = (sectionType.universeChartTypes.flatMap {
+                $0.statistics(allCharts)?.universeValue
+            }).reduce(0, +)
             criticalSectionTypes[sectionType] = universeValue
         }
 

@@ -100,7 +100,9 @@ extension LibraryTableViewCell: UICollectionViewDelegateFlowLayout {
         return collectionViewCellType.size
     }
 
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView,
+                                   withVelocity velocity: CGPoint,
+                                   targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         enum ScrollDirection {
             case left
             case stationary

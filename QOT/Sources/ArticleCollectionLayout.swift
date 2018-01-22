@@ -76,11 +76,9 @@ final class ArticleCollectionLayout: UICollectionViewLayout {
         self.contentSize = CGSize(width: width, height: height)
     }
 
-    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
-        guard let delegate = delegate, let collectionView = collectionView, itemCount > 0 else {
-            return .zero
-        }
-
+    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint,
+                                      withScrollingVelocity velocity: CGPoint) -> CGPoint {
+        guard let delegate = delegate, let collectionView = collectionView, itemCount > 0 else { return .zero }
         let expandedHeight = delegate.featuredHeightForLayout(self)
         let targetRowFloat = (proposedContentOffset.y + collectionView.contentInset.top) / expandedHeight
         let targetRow = Int(round(targetRowFloat)).constrainedTo(min: 0, max: itemCount - 1)

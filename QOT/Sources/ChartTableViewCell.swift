@@ -21,6 +21,10 @@ final class ChartTableViewCell: UITableViewCell, Dequeueable {
     private var pageControl: PageControl?
     weak var delegate: ChartViewControllerDelegate?
 
+    private var chartCellSize: CGSize {
+        return ChartViewModel.chartCellSize(frameWidth: frame.width)
+    }
+
     private lazy var collectionView: UICollectionView = {
         let layout = CenterCellCollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -75,13 +79,6 @@ private extension ChartTableViewCell {
         collectionView.horizontalAnchors == horizontalAnchors
     }
 
-    func chartCellSize() -> CGSize {
-        let width = frame.width - ChartViewModel.chartViewPadding
-        let height = width * ChartViewModel.chartRatio
-
-        return CGSize(width: width, height: height)
-    }
-
     func updatePageControl(indexPath: IndexPath) {
         pageControl?.currentPage = indexPath.item
     }
@@ -92,14 +89,12 @@ private extension ChartTableViewCell {
 extension ChartTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let viewModel = viewModel else {
-            return 0
-        }
-
+        guard let viewModel = viewModel else { return 0 }
         return viewModel.numberOfItems(in: currentSection)
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let viewModel = viewModel else { return UICollectionViewCell() }
         let chartTitle = viewModel.chartTitle(section: currentSection, item: indexPath.item)
         let statistics = viewModel.statistics(section: currentSection, item: indexPath.item)
@@ -120,15 +115,17 @@ extension ChartTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionVi
         return chartCell
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return chartCellSize()
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return chartCellSize
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let left: CGFloat = 20
-        let right = collectionView.bounds.width - left - chartCellSize().width
-
-        return UIEdgeInsets(top: 0, left: left, bottom: 20, right: right)
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        let leadingOffset = ChartViewModel.leadingOffset(frameWidth: collectionView.bounds.width)
+        return UIEdgeInsets(top: 0, left: leadingOffset, bottom: 20, right: leadingOffset)
     }
 }
 
@@ -172,10 +169,9 @@ private class CenterCellCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
     var mostRecentOffset = CGPoint.zero
 
-    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
-        if velocity.x == 0 {
-            return mostRecentOffset
-        }
+    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint,
+                                      withScrollingVelocity velocity: CGPoint) -> CGPoint {
+        guard velocity.x != 0 else { return mostRecentOffset }
 
         if let cv = collectionView {
             let cvBounds = cv.bounds
@@ -193,7 +189,8 @@ private class CenterCellCollectionViewFlowLayout: UICollectionViewFlowLayout {
                 }
 
                 guard candidateAttributes != nil else { return mostRecentOffset }
-                mostRecentOffset = CGPoint(x: floor(candidateAttributes!.center.x - halfWidth), y: proposedContentOffset.y)
+                mostRecentOffset = CGPoint(x: floor(candidateAttributes!.center.x - halfWidth),
+                                           y: proposedContentOffset.y)
                 return mostRecentOffset
 
             }

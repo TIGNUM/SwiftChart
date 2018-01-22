@@ -22,6 +22,8 @@ final class ChartViewController: UIViewController {
 
     private let viewModel: ChartViewModel
     private var pageControls = [PageControl]()
+    private let headerHeight: CGFloat = 20
+    private let footerHeight: CGFloat = 30
 
     private lazy var tableView: UITableView = {
         return UITableView(style: .grouped,
@@ -102,11 +104,13 @@ extension ChartViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return ((view.frame.width - ChartViewModel.chartViewPadding) * ChartViewModel.chartRatio) + ChartViewModel.chartCellOffset
+        return ((view.frame.width - ChartViewModel.chartViewPadding) * ChartViewModel.chartRatio) +
+            ChartViewModel.chartCellOffset
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView(frame: CGRect(x: 30, y: 0, width: tableView.bounds.width, height: 20))
+        let leadingOffset = ChartViewModel.leadingOffset(frameWidth: tableView.bounds.width)
+        let view = UIView(frame: CGRect(x: leadingOffset + 11, y: 0, width: tableView.bounds.width, height: headerHeight))
         let label = UILabel(frame: view.frame)
         let headline = viewModel.sectionTitle(in: section).uppercased()
         view.addSubview(label)
@@ -125,11 +129,11 @@ extension ChartViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20
+        return headerHeight
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 30
+        return footerHeight
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -144,15 +148,6 @@ extension ChartViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension ChartViewController: UIScrollViewDelegate {
-
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        guard scrollView.currentSection < pageControls.count else { return }
-        let pageControl = pageControls[scrollView.currentSection]
-        pageControl.numberOfPages = viewModel.numberOfItems(in: scrollView.currentSection)
-    }
-}
-
 // MARK: - StatisticsViewControllerDelegate
 
 extension ChartViewController: ChartViewControllerDelegate {
@@ -163,6 +158,44 @@ extension ChartViewController: ChartViewControllerDelegate {
 
     func didSelectOpenSettings() {
         UIApplication.openAppSettings()
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+
+extension ChartViewController: UIScrollViewDelegate {
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        guard scrollView.currentSection < pageControls.count else { return }
+        let pageControl = pageControls[scrollView.currentSection]
+        pageControl.numberOfPages = viewModel.numberOfItems(in: scrollView.currentSection)
+    }
+
+    private func centerTableView() {
+        guard let pathForCenterCell = tableView.indexPathForRow(at: CGPoint(x: tableView.bounds.midX,
+                                                                            y: tableView.bounds.midY)) else { return }
+        tableView.scrollToRow(at: pathForCenterCell, at: .middle, animated: true)
+    }
+
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView,
+                                   withVelocity velocity: CGPoint,
+                                   targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        enum ScrollDirection {
+            case up
+            case stationary
+            case down
+        }
+        let cellHeight = ChartViewModel.chartCellSize(frameWidth: view.frame.width).height + headerHeight + footerHeight
+        let originalTargetPage = targetContentOffset.pointee.y / cellHeight
+        let scrollDirection: ScrollDirection = (velocity.y < 0) ? .up : (velocity.y > 0) ? .down : .stationary
+        let targetPage: Int
+        switch scrollDirection {
+        case .stationary: targetPage = Int(round(originalTargetPage))
+        case .up: targetPage = Int(floor(originalTargetPage))
+        case .down: targetPage = Int(ceil(originalTargetPage))
+        }
+
+        targetContentOffset.pointee.y = (CGFloat(targetPage) * cellHeight) - (tableView.contentInset.top + headerHeight)
     }
 }
 
