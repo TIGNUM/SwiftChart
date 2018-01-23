@@ -18,7 +18,6 @@ final class GuideViewController: UIViewController, FullScreenLoadable, PageViewC
 
     private let viewModel: GuideViewModel
     private let sectionHeaderHeight: CGFloat = 24
-    private var greetingViewHeightAnchor: NSLayoutConstraint?
     private let fadeMaskLocation: UIView.FadeMaskLocation
     private let disposeBag = DisposeBag()
     var loadingView: BlurLoadingView?
@@ -29,9 +28,7 @@ final class GuideViewController: UIViewController, FullScreenLoadable, PageViewC
         }
     }
 
-    private lazy var greetingView: GuideGreetingView? = {
-        return Bundle.main.loadNibNamed("GuideGreetingView", owner: self, options: [:])?.first as? GuideGreetingView
-    }()
+    private var greetingView = GuideGreetingView.instantiateFromNib()
 
     private lazy var tableView: UITableView = {
         return UITableView(style: .plain,
@@ -76,11 +73,30 @@ final class GuideViewController: UIViewController, FullScreenLoadable, PageViewC
 
         updateReadyState()
     }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        sizeHeaderViewToFit()
+    }
 }
 
 // MARK: - Private
 
 private extension GuideViewController {
+
+    func sizeHeaderViewToFit() {
+        let header = greetingView
+        header.bounds = CGRect(x: 0, y: 0, width: tableView.contentSize.width, height: 1000)
+        header.setNeedsLayout()
+        header.layoutIfNeeded()
+
+        let height = header.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+        var frame = header.frame
+        frame.size.height = height
+        header.frame = frame
+
+        tableView.tableHeaderView = header
+    }
 
     func updateReadyState() {
         isLoading = !viewModel.isReady
@@ -99,64 +115,36 @@ private extension GuideViewController {
     }
 
     func setupView() {
-        guard let greetingView = self.greetingView else { return }
+        tableView.tableHeaderView = greetingView
         greetingView.backgroundColor = .clear
         updateGreetingView(viewModel.message, viewModel.greeting())
+
         let backgroundImageView = UIImageView(image: R.image._1_1Learn())
         view.addSubview(backgroundImageView)
-        view.addSubview(greetingView)
         view.addSubview(tableView)
 
         if #available(iOS 11.0, *) {
-            greetingView.topAnchor == view.topAnchor + UIApplication.shared.statusBarFrame.height
-            greetingView.leadingAnchor == view.leadingAnchor
-            greetingView.trailingAnchor == view.trailingAnchor
+
         } else {
-            greetingView.topAnchor == view.topAnchor + Layout.statusBarHeight
-            greetingView.leadingAnchor == view.leadingAnchor
-            greetingView.trailingAnchor == view.trailingAnchor
-            tableView.contentInset.bottom = view.safeMargins.bottom + Layout.statusBarHeight
+            // FIXME: We need to find a way to handle this across the app in a sane mannor
+            tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 80, right: 0)
         }
 
-        greetingViewHeightAnchor = greetingView.heightAnchor >= view.heightAnchor * 0.1
-        tableView.topAnchor == greetingView.bottomAnchor
-        tableView.bottomAnchor == view.bottomAnchor
-        tableView.leadingAnchor == view.leadingAnchor
-        tableView.trailingAnchor == view.trailingAnchor
-
+        tableView.edgeAnchors == view.edgeAnchors
         backgroundImageView.edgeAnchors == view.edgeAnchors
-        backgroundImageView.horizontalAnchors == view.horizontalAnchors
-        backgroundImageView.verticalAnchors == view.verticalAnchors
         view.addFadeView(at: .top)
         view.addFadeView(at: .bottom, height: 120)
         view.layoutIfNeeded()
     }
 
     func updateGreetingView(_ message: String, _ greeting: String) {
-        greetingView?.configure(message, greeting)
+        greetingView.configure(message, greeting)
+        sizeHeaderViewToFit()
     }
 
     func open(item: Guide.Item) {
-        guard let linkURL = item.link.url else { return }
+        guard let linkURL = item.link else { return }
         AppDelegate.current.launchHandler.process(url: linkURL, notificationID: item.identifier, guideItem: item)
-    }
-
-    func dailyPrepTableViewCell(item: Guide.Item, indexPath: IndexPath) -> GuideDailyPrepTableViewCell {
-        let cell: GuideDailyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(title: item.title,
-                       type: item.subtitle,
-                       dailyPrep: item.dailyPrep,
-                       status: item.status)
-        return cell
-    }
-
-    func guideTableViewCell(item: Guide.Item, indexPath: IndexPath) -> GuideTableViewCell {
-        let cell: GuideTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(title: item.title,
-                       content: item.content.value,
-                       type: item.subtitle,
-                       status: item.status)
-        return cell
     }
 }
 
@@ -174,10 +162,20 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = viewModel.item(indexPath: indexPath)
-        if item.isDailyPrep == true {
-            return dailyPrepTableViewCell(item: item, indexPath: indexPath)
+        switch item.content {
+        case .dailyPrep(let items, let feedback):
+            let cell: GuideDailyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: item.title,
+                           type: item.subtitle,
+                           dailyPrepFeedback: feedback,
+                           dailyPrepItems: items,
+                           status: item.status)
+            return cell
+        case .text(let value):
+            let cell: GuideTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: item.title, content: value, type: item.subtitle, status: item.status)
+            return cell
         }
-        return guideTableViewCell(item: item, indexPath: indexPath)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -206,10 +204,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
         open(item: item)
 
         if item.isDailyPrep == false {
-            viewModel.setCompleted(item: item) {
-                tableView.reloadRows(at: [indexPath], with: .automatic)
-                self.updateGreetingView(self.viewModel.message, self.viewModel.greeting())
-            }
+            viewModel.setCompleted(item: item) {}
         }
     }
 }

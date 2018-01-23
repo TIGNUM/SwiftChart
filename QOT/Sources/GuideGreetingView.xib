@@ -34,13 +34,13 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="Y4B-wZ-EGv" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="28" id="1WT-Gn-0qn"/>
-                <constraint firstItem="teW-FE-WmR" firstAttribute="top" secondItem="Y4B-wZ-EGv" secondAttribute="bottom" constant="8" id="3Uo-RK-uzp"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="teW-FE-WmR" secondAttribute="trailing" constant="28" id="BS6-CP-KdB"/>
-                <constraint firstItem="Y4B-wZ-EGv" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="8" id="QnC-ts-M7x"/>
-                <constraint firstItem="teW-FE-WmR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="28" id="hiz-eO-kre"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="teW-FE-WmR" secondAttribute="bottom" constant="8" id="sVV-mO-k27"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Y4B-wZ-EGv" secondAttribute="trailing" constant="28" id="wpm-Xs-0kM"/>
+                <constraint firstItem="Y4B-wZ-EGv" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" priority="999" constant="28" id="1WT-Gn-0qn"/>
+                <constraint firstItem="teW-FE-WmR" firstAttribute="top" secondItem="Y4B-wZ-EGv" secondAttribute="bottom" priority="999" constant="8" id="3Uo-RK-uzp"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="teW-FE-WmR" secondAttribute="trailing" priority="999" constant="28" id="BS6-CP-KdB"/>
+                <constraint firstItem="Y4B-wZ-EGv" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" priority="999" constant="8" id="QnC-ts-M7x"/>
+                <constraint firstItem="teW-FE-WmR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" priority="999" constant="28" id="hiz-eO-kre"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="teW-FE-WmR" secondAttribute="bottom" priority="999" constant="8" id="sVV-mO-k27"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Y4B-wZ-EGv" secondAttribute="trailing" priority="999" constant="28" id="wpm-Xs-0kM"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>

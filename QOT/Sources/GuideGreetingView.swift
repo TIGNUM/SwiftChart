@@ -10,6 +10,14 @@ import UIKit
 
 final class GuideGreetingView: UIView {
 
+    static func instantiateFromNib() -> GuideGreetingView {
+        let nibName = "GuideGreetingView"
+        guard let view = Bundle.main.loadNibNamed(nibName, owner: self, options: [:])?[0] as? GuideGreetingView else {
+            fatalError("Cannot load guide view")
+        }
+        return view
+    }
+
     @IBOutlet private weak var messageLabel: UILabel!
     @IBOutlet private weak var greetingLabel: UILabel!
 
@@ -30,8 +38,12 @@ final class GuideGreetingView: UIView {
                                                       font: Font.H4Headline,
                                                       textColor: .white,
                                                       alignment: .left)
-        greetingLabel.sizeToFit()
-        layoutSubviews()
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        messageLabel.preferredMaxLayoutWidth = messageLabel.bounds.width
+        greetingLabel.preferredMaxLayoutWidth = greetingLabel.bounds.width
     }
 }
 

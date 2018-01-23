@@ -145,7 +145,7 @@ private extension ArticleItemViewController {
         view.addSubview(tableView)
         view.translatesAutoresizingMaskIntoConstraints = true
 
-        if let guideItem = guideItem, guideItem.featureLink?.url != nil {
+        if let guideItem = guideItem, guideItem.featureLink != nil {
             let button = featureLinkButton(guideItem: guideItem)
             view.addSubview(button)
             button.bottomAnchor == view.safeBottomAnchor
@@ -191,7 +191,7 @@ private extension ArticleItemViewController {
     }
 
     @objc func openFeatureLink() {
-        guard let url = guideItem?.featureLink?.url else { return }
+        guard let url = guideItem?.featureLink else { return }
         LaunchHandler().process(url: url, guideItem: guideItem)
     }
 

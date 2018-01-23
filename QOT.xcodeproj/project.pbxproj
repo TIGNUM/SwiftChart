@@ -362,6 +362,7 @@
 		CBD097351F72644B00F71D91 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD097341F72644B00F71D91 /* ChatViewController.swift */; };
 		CBD097371F72646000F71D91 /* ChatViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD097361F72646000F71D91 /* ChatViewLayout.swift */; };
 		CBD4BE97201246D4008A0E9E /* GuideProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD4BE96201246D4008A0E9E /* GuideProvider.swift */; };
+		CBD4BE9B201752F0008A0E9E /* GuideItemFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD4BE9A201752F0008A0E9E /* GuideItemFactory.swift */; };
 		CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791461E7172390006C590 /* LearnContentListCoordinator.swift */; };
 		CBD7914A1E71797C0006C590 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791491E71797C0006C590 /* Typealiases.swift */; };
 		CBDB98F21E7AA510003EC73F /* CalendarImportResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB98F11E7AA510003EC73F /* CalendarImportResult.swift */; };
@@ -909,6 +910,7 @@
 		CBD097341F72644B00F71D91 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		CBD097361F72646000F71D91 /* ChatViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewLayout.swift; sourceTree = "<group>"; };
 		CBD4BE96201246D4008A0E9E /* GuideProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProvider.swift; sourceTree = "<group>"; };
+		CBD4BE9A201752F0008A0E9E /* GuideItemFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideItemFactory.swift; sourceTree = "<group>"; };
 		CBD791461E7172390006C590 /* LearnContentListCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentListCoordinator.swift; sourceTree = "<group>"; };
 		CBD791491E71797C0006C590 /* Typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
 		CBDB98F11E7AA510003EC73F /* CalendarImportResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarImportResult.swift; sourceTree = "<group>"; };
@@ -2421,6 +2423,7 @@
 				CB142B722010CC65002DF8FB /* GuideScheduleGenerator.swift */,
 				CBE8808C1FE4369200670C10 /* GuideModels.swift */,
 				CBD4BE96201246D4008A0E9E /* GuideProvider.swift */,
+				CBD4BE9A201752F0008A0E9E /* GuideItemFactory.swift */,
 			);
 			name = Guide;
 			sourceTree = "<group>";
@@ -3140,6 +3143,7 @@
 				CB1E4F981E7FE22200287613 /* SettingsViewModel.swift in Sources */,
 				CBB4DCFD1EDC27550071494A /* SyncManager.swift in Sources */,
 				36328F201FCEB90B004E9034 /* GuideViewController.swift in Sources */,
+				CBD4BE9B201752F0008A0E9E /* GuideItemFactory.swift in Sources */,
 				CBABB3801FDFF3E0007B5B5C /* SlideShowTitleSubtitleSlideCell.swift in Sources */,
 				CC02E1491F279A0F00134574 /* SettingsCalendarListViewModel.swift in Sources */,
 				36FC8D471FDEF16F00B5E062 /* GuideItemLearnIntermediary.swift in Sources */,

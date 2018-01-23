@@ -13,4 +13,8 @@ extension URL {
     static var documentsDirectory: URL {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
+
+    var groupID: Int? {
+        return queryStringParameter(param: "groupID").flatMap { Int($0) }
+    }
 }

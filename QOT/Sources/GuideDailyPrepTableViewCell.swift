@@ -40,7 +40,11 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
         feedbackLabel.attributedText = nil
     }
 
-    func configure(title: String?, type: String?, dailyPrep: Guide.Item.DailyPrep?, status: GuideViewModel.Status) {
+    func configure(title: String?,
+                   type: String?,
+                   dailyPrepFeedback: String?,
+                   dailyPrepItems: [Guide.DailyPrepItem],
+                   status: GuideViewModel.Status) {
         if let title = title {
             titleLabel.attributedText = attributedText(letterSpacing: 1,
                                                        text: title.uppercased(),
@@ -58,7 +62,7 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
                                                       alignment: .left)
         }
 
-        if let feedback = dailyPrep?.feedback {
+        if let feedback = dailyPrepFeedback {
             feedbackLabel.isHidden = false
             feedbackLabel.attributedText = attributedText(letterSpacing: 0.2,
                                                          text: feedback,
@@ -68,26 +72,21 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
                                                          alignment: .left)
         }
 
-        if let dailyPrep = dailyPrep {
-            let results = dailyPrep.results.isEmpty == true ? dailyPrep.empty : dailyPrep.results
-            valueViews.filter { $0.tag > dailyPrep.questionCount }.forEach { $0.isHidden = true }
+        valueViews.filter { $0.tag > dailyPrepItems.count }.forEach { $0.isHidden = true }
+        for (index, item) in dailyPrepItems.enumerated() {
+            let resultText = item.result.map { String($0) } ?? "_"
+            valueLabels[index].attributedText = attributedText(letterSpacing: -1.1,
+                                                               text: resultText,
+                                                               font: Font.H3Subtitle,
+                                                               textColor: item.resultColor,
+                                                               alignment: .left)
 
-            for (index, result) in results.enumerated() {
-                valueLabels[index].attributedText = attributedText(letterSpacing: -1.1,
-                                                                   text: result,
-                                                                   font: Font.H3Subtitle,
-                                                                   textColor: dailyPrep.resultColor(index: index),
-                                                                   alignment: .left)
-            }
-
-            for (index, label) in dailyPrep.labels.enumerated() {
-                valueTitleLabels[index].attributedText = attributedText(letterSpacing: 0.2,
-                                                                        text: label,
-                                                                        font: Font.H7Title,
-                                                                        lineSpacing: 8,
-                                                                        textColor: .white70,
-                                                                        alignment: .left)
-            }
+            valueTitleLabels[index].attributedText = attributedText(letterSpacing: 0.2,
+                                                                    text: item.title,
+                                                                    font: Font.H7Title,
+                                                                    lineSpacing: 8,
+                                                                    textColor: .white70,
+                                                                    alignment: .left)
         }
 
         statusView.backgroundColor = status.statusViewColor

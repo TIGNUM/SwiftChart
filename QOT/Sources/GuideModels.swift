@@ -11,76 +11,18 @@ import UIKit
 
 struct Guide {
 
+    struct DailyPrepItem {
+
+        let result: Int?
+        let resultColor: UIColor
+        let title: String
+    }
+
     struct Item {
+
         enum Content {
             case text(String)
-
-            var value: String {
-                switch self {
-                case .text(let value): return value
-                }
-            }
-        }
-
-        enum Link {
-            case path(String)
-
-            var url: URL? {
-                switch self {
-                case .path(let urlString): return URL(string: urlString)
-                }
-            }
-
-            var groupID: String? {
-                switch self {
-                case .path(let urlString): return URL(string: urlString)?.queryStringParameter(param: "groupID")
-                }
-            }
-        }
-
-        struct DailyPrep {
-            let questionGroupID: String?
-            let services: Services
-            let feedback: String?
-            let results: [String]
-
-            var labels: [String] {
-                var formattedTitles = [String]()
-                dailyPrepQuestions.map { $0.dailyPrepTitle }.forEach { (label: String) in
-                    formattedTitles.append(label.replacingOccurrences(of: "#", with: "\n"))
-                }
-
-                return formattedTitles
-            }
-
-            var empty: [String] {
-                return ["_", "_", "_", "_", "_"]
-            }
-
-            var questionCount: Int {
-                return dailyPrepQuestions.count
-            }
-
-            var dailyPrepQuestions: [Question] {
-                guard let groupStringID = questionGroupID, let groupID = Int(groupStringID) else { return [] }
-                let questions = services.questionsService.morningInterviewQuestions(questionGroupID: groupID)
-                return Array(questions)
-            }
-
-            func resultColor(index: Index) -> UIColor {
-                guard results.isEmpty == false else { return .white }
-
-                let question = dailyPrepQuestions[index]
-                guard
-                    let resultValue = Double(results[index]),
-                    let key = question.key,
-                    let statistics = services.statisticsService.chart(key: key) else {
-                        return .white
-                }
-
-                let color = statistics.color(value: resultValue * 0.1)
-                return color == .gray ? .white90 : color
-            }
+            case dailyPrep(items: [DailyPrepItem], feedback: String?)
         }
 
         let status: GuideViewModel.Status
@@ -88,12 +30,10 @@ struct Guide {
         let content: Content
         let subtitle: String
         let type: String
-        let link: Link
-        let featureLink: Link?
+        let link: URL?
+        let featureLink: URL?
         let featureButton: String?
         let identifier: String
-//        let notificationID: String
-        let dailyPrep: DailyPrep?
         let greeting: String
         let createdAt: Date
 
@@ -110,5 +50,55 @@ struct Guide {
     struct Day {
         var items: [Item]
         var localStartOfDay: Date
+    }
+}
+
+extension Guide.Day: Equatable {
+
+    public static func == (lhs: Guide.Day, rhs: Guide.Day) -> Bool {
+        return lhs.items == rhs.items
+            && lhs.localStartOfDay == rhs.localStartOfDay
+    }
+}
+
+extension Guide.Item: Equatable {
+
+    static func == (lhs: Guide.Item, rhs: Guide.Item) -> Bool {
+        return lhs.content == rhs.content
+            && lhs.createdAt == rhs.createdAt
+            && lhs.featureButton == rhs.featureButton
+            && lhs.featureLink == rhs.featureLink
+            && lhs.greeting == rhs.greeting
+            && lhs.identifier == rhs.greeting
+            && lhs.isDailyPrep == rhs.isDailyPrep
+            && lhs.isDailyPrepCompleted == rhs.isDailyPrepCompleted
+            && lhs.link == rhs.link
+            && lhs.status == rhs.status
+            && lhs.subtitle == rhs.subtitle
+            && lhs.title == rhs.title
+            && lhs.type == rhs.type
+    }
+}
+
+extension Guide.DailyPrepItem: Equatable {
+
+    static func == (lhs: Guide.DailyPrepItem, rhs: Guide.DailyPrepItem) -> Bool {
+        return lhs.result == rhs.result
+            && lhs.resultColor == rhs.resultColor
+            && lhs.title == rhs.title
+    }
+}
+
+extension Guide.Item.Content: Equatable {
+
+    static func == (lhs: Guide.Item.Content, rhs: Guide.Item.Content) -> Bool {
+        switch (lhs, rhs) {
+        case let (.text(a), .text(b)):
+            return a == b
+        case let (.dailyPrep(itemsA, feedbackA), .dailyPrep(itemsB, feedbackB)):
+            return itemsA == itemsB && feedbackA == feedbackB
+        default:
+            return false
+        }
     }
 }

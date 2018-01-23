@@ -47,65 +47,17 @@ final class GuideProvider {
         let schedule = guideScheduleGenerator.generateSchedule(notificationItems: Array(notificationItems),
                                                                featureItems: Array(featureItems),
                                                                strategyItems: Array(strategyItems))
-        let days = schedule.map { Guide.Day(day: $0, services: services) }
+        let factory = GuideItemFactory(services: services)
+        let days = schedule.map { Guide.Day(day: $0, factory: factory) }
         onUpdate?(days)
     }
 }
 
 extension Guide.Day {
 
-    init(day: GuideScheduleGenerator.Day, services: Services) {
+    init(day: GuideScheduleGenerator.Day, factory: GuideItemFactory) {
         localStartOfDay = day.localStartOfDay
-        items = day.items.flatMap { Guide.Item(item: $0, services: services) }
-    }
-}
-
-extension Guide.Item {
-
-    init?(item: GuideScheduleGenerator.Item, services: Services) {
-        let realm = services.mainRealm
-        if RealmGuideItemNotification.ItemType(rawValue: item.type) != nil {
-            guard let notification = realm.object(ofType: RealmGuideItemNotification.self, forPrimaryKey: item.id) else {
-                return nil
-            }
-            status = notification.completedAt == nil ? .todo : .done
-            title = notification.title ?? ""
-            content = .text(notification.body)
-            subtitle = notification.displayType
-            type = notification.type
-            link = .path(notification.link)
-            featureLink = nil
-            featureButton = nil
-            identifier = GuideItemID(item: notification).stringRepresentation
-            var interviewResults: [String] = []
-            if let interviewResult = notification.interviewResult {
-                interviewResults = interviewResult.results.map { String(format: "%d", $0.value) }
-            }
-            dailyPrep = DailyPrep(questionGroupID: link.groupID,
-                                  services: services,
-                                  feedback: notification.interviewResult?.feedback,
-                                  results: interviewResults)
-            greeting = notification.greeting
-            createdAt = notification.createdAt
-        } else if RealmGuideItemLearn.ItemType(rawValue: item.type) != nil {
-            guard let learn = realm.object(ofType: RealmGuideItemLearn.self, forPrimaryKey: item.id) else {
-                return nil
-            }
-            status = learn.completedAt == nil ? .todo : .done
-            title = learn.title
-            content = .text(learn.body)
-            subtitle = learn.displayType ?? ""
-            type = learn.type
-            link = .path(learn.link)
-            featureLink = .path(learn.featureLink ?? "")
-            featureButton = learn.featureButton
-            identifier = GuideItemID(item: learn).stringRepresentation
-            dailyPrep = nil
-            greeting = learn.greeting
-            createdAt = learn.createdAt
-        } else {
-            return nil
-        }
+        items = day.items.flatMap { factory.makeGuideItem(from: $0) }
     }
 }
 
