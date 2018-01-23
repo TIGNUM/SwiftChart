@@ -25,6 +25,10 @@ final class GuideItemLearnService {
 
         return List<RealmGuideItemLearn>(items)
     }
+
+    func allItems() -> Results<RealmGuideItemLearn> {
+        return mainRealm.objects(RealmGuideItemLearn.self)
+    }
 }
 
 // MARK: - Delete

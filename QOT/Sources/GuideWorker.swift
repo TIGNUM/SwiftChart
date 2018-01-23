@@ -19,25 +19,21 @@ final class GuideWorker {
         self.syncStateObserver = SyncStateObserver(realm: services.mainRealm)
     }
 
-    var hasCreatedTodaysGuide: Bool {
-        return services.guideService.todaysGuide() != nil
-    }
-
-    func createTodaysGuideIfNecessary() {
-        guard hasCreatedTodaysGuide == false, hasSyncedNecessaryItems == true else { return }
-
-        createTodaysGuide()
-    }
-
     func setItemCompleted(guideID: String, completion: ((Error?) -> Void)? = nil) {
         do {
             let completedDate = Date()
             let realm = services.mainRealm
-            if let guideItem = realm.object(ofType: RealmGuideItem.self, forPrimaryKey: guideID),
-                let referencedItem = guideItem.referencedItem {
+            let id = try GuideItemID(stringRepresentation: guideID)
+            if id.kind == .notification, let item = realm.syncableObject(ofType: RealmGuideItemNotification.self, remoteID: id.remoteID) {
                 try realm.write {
-                    referencedItem.completedAt = completedDate
-                    guideItem.didUpdate()
+                    item.completedAt = completedDate
+                    item.didUpdate()
+                    completion?(nil)
+                }
+            } else if id.kind == .learn, let item = realm.syncableObject(ofType: RealmGuideItemLearn.self, remoteID: id.remoteID) {
+                try realm.write {
+                    item.completedAt = completedDate
+                    item.didUpdate()
                     completion?(nil)
                 }
             }
@@ -46,39 +42,9 @@ final class GuideWorker {
             completion?(error)
         }
     }
-}
-
-private extension GuideWorker {
 
     var hasSyncedNecessaryItems: Bool {
         return syncStateObserver.hasSynced(RealmGuideItemLearn.self)
             && syncStateObserver.hasSynced(RealmGuideItemNotification.self)
-    }
-
-    func createTodaysGuide() {
-        let today = Date()
-        let learnItems = services.guideItemLearnService.items().map { RealmGuideItem(item: $0, date: today) }
-        let notificationItems: [RealmGuideItem] = services.guideItemNotificationService.todayItems().flatMap {
-            if let issueDate = $0.issueDate {
-                return RealmGuideItem(item: $0, date: issueDate)
-            } else {
-                return nil
-            }
-        }
-
-        var guideItems: [RealmGuideItem] = []
-        guideItems.append(contentsOf: learnItems)
-        guideItems.append(contentsOf: notificationItems)
-        let sorted = guideItems.sorted { (lhs: RealmGuideItem, rhs: RealmGuideItem) -> Bool in
-            return lhs.priority > rhs.priority
-        }
-
-        let localNotificationsBuilder = LocalNotificationBuilder(realmProvider: services.realmProvider)
-        for item in guideItems {
-            if let learnItem = item.guideItemLearn {
-                localNotificationsBuilder.addLearnItemNotification(for: learnItem, identifier: item.localID)
-            }
-        }
-        services.guideService.createGuide(items: sorted, date: Date())
     }
 }

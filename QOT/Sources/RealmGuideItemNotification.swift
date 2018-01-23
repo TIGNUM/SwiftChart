@@ -21,7 +21,7 @@ extension RealmGuideItemNotification {
     }
 }
 
-final class RealmGuideItemNotification: SyncableObject, RealmGuideItemProtocol {
+final class RealmGuideItemNotification: SyncableObject {
 
     @objc private(set) dynamic var title: String?
 
@@ -49,9 +49,15 @@ final class RealmGuideItemNotification: SyncableObject, RealmGuideItemProtocol {
 
     @objc dynamic var interviewResult: RealmInterviewResult?
 
+    @objc dynamic var guideItem: RealmGuideItem?  = RealmGuideItem()
+
     var localNotificationDate: Date? {
         guard let issueDate = issueDate, let reminderTime = reminderTime else { return nil }
         return reminderTime.date(with: issueDate)
+    }
+
+    func didUpdate() {
+        guideItem?.didUpdate()
     }
 }
 

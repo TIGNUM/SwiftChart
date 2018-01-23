@@ -68,7 +68,7 @@ final class GuideViewController: UIViewController, FullScreenLoadable, PageViewC
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        viewModel.createTodaysGuideIfNeeded()
+        viewModel.reload()
     }
 
     override func viewDidAppear(_ animated: Bool) {

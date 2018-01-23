@@ -90,7 +90,7 @@ private extension LocalNotificationBuilder {
     }
 
     func create(notification: RealmGuideItemNotification, notificationDate: Date, issueDate: Date) {
-        let identifier = GuideItemID(date: issueDate, item: notification).stringRepresentation
+        let identifier = GuideItemID(item: notification).stringRepresentation
         let request = UNNotificationRequest(identifier: identifier,
                                             content: content(title: notification.title,
                                                              body: notification.body,

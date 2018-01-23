@@ -9,12 +9,6 @@
 import Foundation
 import RealmSwift
 
-/**
- Creates a reproducible unique per day identifier for `RealmGuideItem`s.
- It encodes the date, type of item, and remoteID of item in a string. Eg. `20171231#learn#100002`
- - warning: ☠️ This ID is stored on the server. Logic to encode and decode it should remain consistant to avoid
- invalidating existing objects.
-*/
 struct GuideItemID {
 
     enum Error: Swift.Error {
@@ -26,38 +20,33 @@ struct GuideItemID {
         case notification
     }
 
-    private static var dateFormatter = DateFormatter.utcYearMonthDay
-
-    let dateString: String
     let kind: Kind
     let remoteID: Int
 
-    init(date: Date, kind: Kind, remoteID: Int) {
-        self.dateString = GuideItemID.dateFormatter.string(from: date)
+    init(kind: Kind, remoteID: Int) {
         self.kind = kind
         self.remoteID = remoteID
     }
 
     init(stringRepresentation: String) throws {
         let componants = stringRepresentation.components(separatedBy: "#")
-        guard componants.count == 3, let kind = Kind(rawValue: componants[1]), let remoteID = Int(componants[2]) else {
+        guard componants.count == 2, let kind = Kind(rawValue: componants[0]), let remoteID = Int(componants[1]) else {
             throw Error.invalidStringRepresentation
         }
 
-        self.dateString = componants[0]
         self.kind = kind
         self.remoteID = remoteID
     }
 
-    init(date: Date, item: RealmGuideItemLearn) {
-        self.init(date: date, kind: .learn, remoteID: item.forcedRemoteID)
+    init(item: RealmGuideItemLearn) {
+        self.init(kind: .learn, remoteID: item.forcedRemoteID)
     }
 
-    init(date: Date, item: RealmGuideItemNotification) {
-        self.init(date: date, kind: .notification, remoteID: item.forcedRemoteID)
+    init(item: RealmGuideItemNotification) {
+        self.init(kind: .notification, remoteID: item.forcedRemoteID)
     }
 
     var stringRepresentation: String {
-        return "\(dateString)#\(kind.rawValue)#\(remoteID)"
+        return "\(kind.rawValue)#\(remoteID)"
     }
 }

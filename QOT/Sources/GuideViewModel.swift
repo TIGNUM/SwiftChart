@@ -53,11 +53,10 @@ final class GuideViewModel {
     private let services: Services
     private let eventTracker: EventTracker
     private let syncStateObserver: SyncStateObserver
-    private let realmGuides: AnyRealmCollection<RealmGuide>
     private var notificationTokenHandler: NotificationTokenHandler?
     private var tokenBin = TokenBin()
-    private let becomeActiveHandler = NotificationHandler(name: .UIApplicationDidBecomeActive)
     private let guideWorker: GuideWorker
+    private let guideProvider: GuideProvider
     let updates = PublishSubject<CollectionUpdate, NoError>()
     let sectionCountUpdate = ReplayOneSubject<Int, NoError>()
     private var days: [Guide.Day] = []
@@ -86,25 +85,18 @@ final class GuideViewModel {
         self.services = services
         self.eventTracker = eventTracker
         self.syncStateObserver = SyncStateObserver(realm: services.mainRealm)
-        self.realmGuides = services.guideService.guideSections()
         self.guideWorker = GuideWorker(services: services)
+        self.guideProvider = GuideProvider(services: services)
 
-        syncStateObserver.onUpdate { [unowned self] _ in
-            self.createTodaysGuideIfNeeded()
+        guideProvider.onUpdate = { [unowned self] (days) in
+            self.days = days
+            self.sectionCountUpdate.next(self.sectionCount)
+            self.updates.next(.reload)
         }
-        becomeActiveHandler.handler = { [unowned self] _ in
-            self.createTodaysGuideIfNeeded()
-        }
-        realmGuides.addNotificationBlock { [unowned self] _ in
-            self.reload()
-        }.addTo(tokenBin)
     }
 
     func reload() {
-        let transformer = GuideTransformer()
-        days = transformer.days(from: realmGuides, services: services)
-        sectionCountUpdate.next(sectionCount)
-        updates.next(.reload)
+        guideProvider.reload()
     }
 
     var message: String {
@@ -131,15 +123,25 @@ final class GuideViewModel {
             return welcome
         }
 
-        if services.guideService.guideTodayCompleted() == true {
+        if todayCompleted() == true {
             return guideTodayCompleted
         }
 
         return dailyLearnPlan
     }
 
+    func todayCompleted() -> Bool {
+        guard let today = days.first else {
+            return true
+        }
+        let imcompleteLearn = today.items.filter {
+            $0.status == .todo && RealmGuideItemLearn.ItemType(rawValue: $0.type) != nil
+        }
+        return imcompleteLearn.count == 0
+    }
+
     var isReady: Bool {
-        return guideWorker.hasCreatedTodaysGuide
+        return guideWorker.hasSyncedNecessaryItems
     }
 
     var sectionCount: Int {
@@ -151,7 +153,7 @@ final class GuideViewModel {
     }
 
     func header(section: Int) -> Date {
-        return days[section].createdAt
+        return days[section].localStartOfDay
     }
 
     func item(indexPath: IndexPath) -> Guide.Item {
@@ -170,9 +172,5 @@ final class GuideViewModel {
 
     func cancelPendingNotificationIfNeeded(item: Guide.Item) {
         LocalNotificationBuilder.cancelNotification(identifier: item.identifier)
-    }
-
-    func createTodaysGuideIfNeeded() {
-        guideWorker.createTodaysGuideIfNecessary()
     }
 }

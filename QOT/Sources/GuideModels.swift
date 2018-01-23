@@ -108,7 +108,7 @@ struct Guide {
     }
 
     struct Day {
-        let items: [Item]
-        let createdAt: Date
+        var items: [Item]
+        var localStartOfDay: Date
     }
 }

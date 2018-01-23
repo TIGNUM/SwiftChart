@@ -18,7 +18,7 @@ extension RealmGuideItemLearn {
     }
 }
 
-final class RealmGuideItemLearn: SyncableObject, RealmGuideItemProtocol {
+final class RealmGuideItemLearn: SyncableObject {
 
     @objc private(set) dynamic var title: String = ""
 
@@ -49,6 +49,12 @@ final class RealmGuideItemLearn: SyncableObject, RealmGuideItemProtocol {
     @objc dynamic var displayTime: RealmGuideTime?
 
     @objc dynamic var reminderTime: RealmGuideTime?
+
+    @objc dynamic var guideItem: RealmGuideItem?  = RealmGuideItem()
+
+    func didUpdate() {
+        guideItem?.didUpdate()
+    }
 }
 
 extension RealmGuideItemLearn: OneWaySyncableDown {
@@ -70,6 +76,7 @@ extension RealmGuideItemLearn: OneWaySyncableDown {
         contentID = data.contentID
         priority = data.priority
         block = data.block
+        completedAt = data.completedAt
 
         if let displayTime = data.displayTime {
             self.displayTime = RealmGuideTime(displayTime)

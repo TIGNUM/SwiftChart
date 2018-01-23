@@ -19,8 +19,12 @@ final class GuideItemNotificationService {
         self.realmProvider = realmProvider
     }
 
+    func allItems() -> Results<RealmGuideItemNotification> {
+        return mainRealm.objects(RealmGuideItemNotification.self)
+    }
+
     func items() -> AnyRealmCollection<RealmGuideItemNotification> {
-        return AnyRealmCollection(mainRealm.objects(RealmGuideItemNotification.self))
+        return AnyRealmCollection(allItems())
     }
 
     func nextItems(day: Int, type: RealmGuideItemNotification.ItemType) -> AnyRealmCollection<RealmGuideItemNotification> {

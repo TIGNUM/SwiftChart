@@ -34,7 +34,6 @@
 		36939B8C1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36939B8A1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.swift */; };
 		36939B8D1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36939B8B1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib */; };
 		36B67B9C1FE1D9C90066A515 /* RealmGuideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B67B9B1FE1D9C90066A515 /* RealmGuideItem.swift */; };
-		36B67B9E1FE1DA040066A515 /* RealmGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B67B9D1FE1DA040066A515 /* RealmGuide.swift */; };
 		36B8F2511FE2FDD400AD6A17 /* GuideGreetingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36B8F2501FE2FDD400AD6A17 /* GuideGreetingView.xib */; };
 		36B8F2531FE2FEA600AD6A17 /* GuideGreetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B8F2521FE2FEA600AD6A17 /* GuideGreetingView.swift */; };
 		36BD8F481FE0052000DBD9B4 /* GuideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BD8F471FE0052000DBD9B4 /* GuideService.swift */; };
@@ -202,6 +201,7 @@
 		CB0A4A581ECC4C25006A2D85 /* AddSensorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A4A571ECC4C25006A2D85 /* AddSensorCoordinator.swift */; };
 		CB0A4A5A1ECC4C3E006A2D85 /* AddSensorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A4A591ECC4C3E006A2D85 /* AddSensorViewModel.swift */; };
 		CB0A4A5D1ECC4C72006A2D85 /* AddSensorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A4A5B1ECC4C72006A2D85 /* AddSensorViewController.swift */; };
+		CB142B732010CC65002DF8FB /* GuideScheduleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB142B722010CC65002DF8FB /* GuideScheduleGenerator.swift */; };
 		CB14675E1EF18F5F00A60E31 /* Dictionary+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14675D1EF18F5F00A60E31 /* Dictionary+Convenience.swift */; };
 		CB1467651EF2779700A60E31 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1467641EF2779700A60E31 /* Page.swift */; };
 		CB1467671EF277AA00A60E31 /* PageIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1467661EF277AA00A60E31 /* PageIntermediary.swift */; };
@@ -361,6 +361,7 @@
 		CBCCF3961F7E43EF000E4440 /* ChatViewHeaderFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCCF3951F7E43EF000E4440 /* ChatViewHeaderFooter.swift */; };
 		CBD097351F72644B00F71D91 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD097341F72644B00F71D91 /* ChatViewController.swift */; };
 		CBD097371F72646000F71D91 /* ChatViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD097361F72646000F71D91 /* ChatViewLayout.swift */; };
+		CBD4BE97201246D4008A0E9E /* GuideProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD4BE96201246D4008A0E9E /* GuideProvider.swift */; };
 		CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791461E7172390006C590 /* LearnContentListCoordinator.swift */; };
 		CBD7914A1E71797C0006C590 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD791491E71797C0006C590 /* Typealiases.swift */; };
 		CBDB98F21E7AA510003EC73F /* CalendarImportResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB98F11E7AA510003EC73F /* CalendarImportResult.swift */; };
@@ -368,7 +369,6 @@
 		CBDB98F91E7BD26A003EC73F /* Realm+TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB98F81E7BD26A003EC73F /* Realm+TestUtils.swift */; };
 		CBE8808D1FE4369200670C10 /* GuideModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE8808C1FE4369200670C10 /* GuideModels.swift */; };
 		CBE880931FE9153200670C10 /* GuideItemID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE880921FE9153200670C10 /* GuideItemID.swift */; };
-		CBE880991FEBFEFC00670C10 /* GuideTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE880981FEBFEFC00670C10 /* GuideTransformer.swift */; };
 		CBEB8EF51F82719700C764C2 /* ChatViewAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEB8EF41F82719700C764C2 /* ChatViewAvatarView.swift */; };
 		CBFD47CA200E0E6100A91899 /* RealmCalendarSyncSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFD47C9200E0E6100A91899 /* RealmCalendarSyncSetting.swift */; };
 		CBFD47CC200E0FE200A91899 /* RealmCalendarSyncSettingIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFD47CB200E0FE200A91899 /* RealmCalendarSyncSettingIntermediary.swift */; };
@@ -568,7 +568,6 @@
 		36939B8A1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDailyPrepTableViewCell.swift; sourceTree = "<group>"; };
 		36939B8B1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideDailyPrepTableViewCell.xib; sourceTree = "<group>"; };
 		36B67B9B1FE1D9C90066A515 /* RealmGuideItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGuideItem.swift; sourceTree = "<group>"; };
-		36B67B9D1FE1DA040066A515 /* RealmGuide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmGuide.swift; sourceTree = "<group>"; };
 		36B8F2501FE2FDD400AD6A17 /* GuideGreetingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideGreetingView.xib; sourceTree = "<group>"; };
 		36B8F2521FE2FEA600AD6A17 /* GuideGreetingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideGreetingView.swift; sourceTree = "<group>"; };
 		36BD8F471FE0052000DBD9B4 /* GuideService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideService.swift; sourceTree = "<group>"; };
@@ -742,6 +741,7 @@
 		CB0A4A571ECC4C25006A2D85 /* AddSensorCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorCoordinator.swift; sourceTree = "<group>"; };
 		CB0A4A591ECC4C3E006A2D85 /* AddSensorViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorViewModel.swift; sourceTree = "<group>"; };
 		CB0A4A5B1ECC4C72006A2D85 /* AddSensorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorViewController.swift; sourceTree = "<group>"; };
+		CB142B722010CC65002DF8FB /* GuideScheduleGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideScheduleGenerator.swift; sourceTree = "<group>"; };
 		CB14675D1EF18F5F00A60E31 /* Dictionary+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Convenience.swift"; sourceTree = "<group>"; };
 		CB1467641EF2779700A60E31 /* Page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		CB1467661EF277AA00A60E31 /* PageIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageIntermediary.swift; sourceTree = "<group>"; };
@@ -908,6 +908,7 @@
 		CBCCF3951F7E43EF000E4440 /* ChatViewHeaderFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewHeaderFooter.swift; sourceTree = "<group>"; };
 		CBD097341F72644B00F71D91 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		CBD097361F72646000F71D91 /* ChatViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewLayout.swift; sourceTree = "<group>"; };
+		CBD4BE96201246D4008A0E9E /* GuideProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProvider.swift; sourceTree = "<group>"; };
 		CBD791461E7172390006C590 /* LearnContentListCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentListCoordinator.swift; sourceTree = "<group>"; };
 		CBD791491E71797C0006C590 /* Typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
 		CBDB98F11E7AA510003EC73F /* CalendarImportResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarImportResult.swift; sourceTree = "<group>"; };
@@ -915,7 +916,6 @@
 		CBDB98F81E7BD26A003EC73F /* Realm+TestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm+TestUtils.swift"; sourceTree = "<group>"; };
 		CBE8808C1FE4369200670C10 /* GuideModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideModels.swift; sourceTree = "<group>"; };
 		CBE880921FE9153200670C10 /* GuideItemID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideItemID.swift; sourceTree = "<group>"; };
-		CBE880981FEBFEFC00670C10 /* GuideTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideTransformer.swift; sourceTree = "<group>"; };
 		CBEB8EF41F82719700C764C2 /* ChatViewAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewAvatarView.swift; sourceTree = "<group>"; };
 		CBFD47C9200E0E6100A91899 /* RealmCalendarSyncSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCalendarSyncSetting.swift; sourceTree = "<group>"; };
 		CBFD47CB200E0FE200A91899 /* RealmCalendarSyncSettingIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCalendarSyncSettingIntermediary.swift; sourceTree = "<group>"; };
@@ -1108,7 +1108,6 @@
 				36FC8D481FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift */,
 				3649C0341FE32506001F4249 /* GuideTimeIntermediary.swift */,
 				3649C03A1FE41B84001F4249 /* GuideWorker.swift */,
-				36B67B9D1FE1DA040066A515 /* RealmGuide.swift */,
 				36B67B9B1FE1D9C90066A515 /* RealmGuideItem.swift */,
 				363178E41FDEE8D700833958 /* RealmGuideItemLearn.swift */,
 				363178E61FDEECDE00833958 /* RealmGuideItemNotification.swift */,
@@ -1124,7 +1123,6 @@
 				36939B8A1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.swift */,
 				36B8F2521FE2FEA600AD6A17 /* GuideGreetingView.swift */,
 				362632461FD6A4210024C626 /* GuideTableViewCell.swift */,
-				CBE880981FEBFEFC00670C10 /* GuideTransformer.swift */,
 				36328F1F1FCEB90B004E9034 /* GuideViewController.swift */,
 				36328F211FCEB92C004E9034 /* GuideViewModel.swift */,
 				36939B8B1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib */,
@@ -2420,7 +2418,9 @@
 		CBE8808B1FE4368300670C10 /* Guide */ = {
 			isa = PBXGroup;
 			children = (
+				CB142B722010CC65002DF8FB /* GuideScheduleGenerator.swift */,
 				CBE8808C1FE4369200670C10 /* GuideModels.swift */,
+				CBD4BE96201246D4008A0E9E /* GuideProvider.swift */,
 			);
 			name = Guide;
 			sourceTree = "<group>";
@@ -3052,6 +3052,7 @@
 				855C4FC51F25F7D10068DDE3 /* Tutorial.swift in Sources */,
 				CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */,
 				CC309C071F73ADED00A32759 /* UserAnswerFeedback.swift in Sources */,
+				CBD4BE97201246D4008A0E9E /* GuideProvider.swift in Sources */,
 				CB810E661EF00DCA0043E3E5 /* UserIntermediary.swift in Sources */,
 				7FE38DBD1F2210D60061E98F /* WaitBlockOperation.swift in Sources */,
 				CBCCF3921F7D3195000E4440 /* ChatViewAnimator.swift in Sources */,
@@ -3118,6 +3119,7 @@
 				CC7D21B21EFC1348007A062E /* WeeklyChoicesLayout.swift in Sources */,
 				CBB4DCDC1ED475F00071494A /* DownSyncChange.swift in Sources */,
 				7F0F03081F14FE9800007D50 /* CollapsableNode.swift in Sources */,
+				CB142B732010CC65002DF8FB /* GuideScheduleGenerator.swift in Sources */,
 				CB3437701EFE937000D89D4F /* ContentService.swift in Sources */,
 				CBFD47CE200E146200A91899 /* CalendarSyncSettingsManager.swift in Sources */,
 				CBFECCAD1F388B500076ACE6 /* TimeZone+Convenience.swift in Sources */,
@@ -3175,7 +3177,6 @@
 				CB8C344F1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift in Sources */,
 				7F0888811F0A4B96005CE966 /* Partner.swift in Sources */,
 				CBC1DC2E1F0FC9E800F6D056 /* Object+Convenience.swift in Sources */,
-				36B67B9E1FE1DA040066A515 /* RealmGuide.swift in Sources */,
 				CBB4DD091EDDC6550071494A /* StartSyncResult.swift in Sources */,
 				CBB017B91F96688900CC1048 /* DownSyncTask.swift in Sources */,
 				CBB4DD071EDDB5860071494A /* SerialRequest.swift in Sources */,
@@ -3242,7 +3243,6 @@
 				7F0888861F0A7602005CE966 /* PartnerIntermediary.swift in Sources */,
 				7F3277951FB4B22E00C7717C /* BlurLoadingView.swift in Sources */,
 				CB1D5E3E1EC5E25A00BCDF8D /* ContentItemIntermediary.swift in Sources */,
-				CBE880991FEBFEFC00670C10 /* GuideTransformer.swift in Sources */,
 				CC944DB81EE8096100B8423C /* ChartCell.swift in Sources */,
 				CB93B3732006980F001F19DC /* RealmStatisticsThreshold.swift in Sources */,
 				8548BBE41F0E382900AC7C06 /* GenericParser.swift in Sources */,

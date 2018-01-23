@@ -10,58 +10,13 @@ import Foundation
 import RealmSwift
 import Freddy
 
-protocol RealmGuideItemProtocol: class {
-
-    var remoteID: RealmOptional<Int> { get }
-    var completedAt: Date? { get set }
-    var priority: Int { get }
-    var displayTime: RealmGuideTime? { get }
-}
-
 final class RealmGuideItem: SyncableObject {
 
-    @objc dynamic var guideItemLearn: RealmGuideItemLearn?
+    @objc dynamic var changeStamp: String?
 
-    @objc dynamic var guideItemNotification: RealmGuideItemNotification?
+    let notificationItems = LinkingObjects(fromType: RealmGuideItemNotification.self, property: "guideItem")
 
-    @objc dynamic var changeStamp: String? = UUID().uuidString
-
-    convenience init(item: RealmGuideItemLearn, date: Date) {
-        self.init()
-        self.guideItemLearn = item
-        self.localID = GuideItemID(date: date, item: item).stringRepresentation
-    }
-
-    convenience init(item: RealmGuideItemNotification, date: Date) {
-        self.init()
-        self.guideItemNotification = item
-        self.localID = GuideItemID(date: date, item: item).stringRepresentation
-    }
-}
-
-extension RealmGuideItem {
-
-    var priority: Int {
-        return referencedItem?.priority ?? 0
-    }
-
-    var referencedItem: RealmGuideItemProtocol? {
-        if let guideItemLearn = guideItemLearn {
-            return guideItemLearn
-        } else if let guideItemNotification = guideItemNotification {
-            return guideItemNotification
-        } else {
-            return nil
-        }
-    }
-
-    var displayTime: RealmGuideTime? {
-        return referencedItem?.displayTime
-    }
-
-    var completedAt: Date? {
-        return referencedItem?.completedAt
-    }
+    let learnItems = LinkingObjects(fromType: RealmGuideItemLearn.self, property: "guideItem")
 }
 
 // FIXME: Clean up duplication. This sync doesn't fit our existing methods so we implement again with duplication.
@@ -100,7 +55,7 @@ extension RealmGuideItem: UpSyncable, Dirty {
         var learnJSONs: [JSON] = []
         var notificationJSONs: [JSON] = []
         for (object, json) in items {
-            let isLearnItem = (object.referencedItem as? RealmGuideItemLearn) != nil
+            let isLearnItem = object.learnItems.count > 0
             if isLearnItem {
                 learnJSONs.append(json)
             } else {
@@ -117,24 +72,23 @@ extension RealmGuideItem: UpSyncable, Dirty {
     }
 
     func toJson() -> JSON? {
-        // WTF!!! On release builds (maybe due to optimization) the following two lines always return nil if combined.
-        // Or maybe it is just late and I'm stupid.
-        guard let ref = referencedItem else { return nil }
-        guard let id = ref.remoteID.value else { return nil }
-
         let dateFormatter = DateFormatter.iso8601
-        let completedAtString = completedAt.map { dateFormatter.string(from: $0) }
-
-        var dict: [JsonKey: JSONEncodable] = [
-            .id: id,
-            .createdAt: dateFormatter.string(from: createdAt),
-            .completedAt: completedAtString.toJSONEncodable
-        ]
-
-        if let notificationItem = referencedItem as? RealmGuideItemNotification, notificationItem.displayTime != nil {
-            if completedAt != nil || notificationItem.displayTime != nil {
+        var dict: [JsonKey: JSONEncodable] = [:]
+        if let notificationItem = notificationItems.first { // There should always be one item {
+            let completedAtString = notificationItem.completedAt.map { dateFormatter.string(from: $0) }
+            dict[.id] = notificationItem.forcedRemoteID
+            dict[.createdAt] = dateFormatter.string(from: notificationItem.createdAt)
+            dict[.completedAt] = completedAtString.toJSONEncodable
+            if notificationItem.completedAt != nil || notificationItem.displayTime != nil {
                 dict[.serverPush] = false
             }
+        } else if let learnItem = learnItems.first {// There should always be one item  {
+            let completedAtString = learnItem.completedAt.map { dateFormatter.string(from: $0) }
+            dict[.id] = learnItem.forcedRemoteID
+            dict[.createdAt] = dateFormatter.string(from: learnItem.createdAt)
+            dict[.completedAt] = completedAtString.toJSONEncodable
+        } else {
+            return nil
         }
         return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
     }

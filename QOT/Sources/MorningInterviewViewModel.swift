@@ -115,9 +115,8 @@ final class MorningInterviewViewModel: NSObject {
             }
         }
 
-        if let guideItem = realm.objects(RealmGuideItem.self).filter("guideItemNotification.remoteID == %d", notificationRemoteID).first {
-            LocalNotificationBuilder.cancelNotification(identifier: guideItem.localID)
-            GuideWorker(services: services).setItemCompleted(guideID: guideItem.localID)
-        }
+        let guideIDString = GuideItemID(kind: .notification, remoteID: notificationRemoteID).stringRepresentation
+        LocalNotificationBuilder.cancelNotification(identifier: guideIDString)
+        GuideWorker(services: services).setItemCompleted(guideID: guideIDString)
     }
 }
