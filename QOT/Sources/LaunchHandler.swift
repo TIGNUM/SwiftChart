@@ -20,7 +20,7 @@ final class LaunchHandler {
     }
 
     func process(url: URL, notificationID: String = "", guideItem: Guide.Item? = nil) {
-        log("dailyPrep://LaunchHandler, process url:: \(url), notificationID: \(notificationID), guideItem: \(guideItem)")
+        log("dailyPrep://LaunchHandler, process url:: \(url), notificationID: \(notificationID), guideItem: \(String(describing: guideItem))")
         guard
             let host = url.host,
             let scheme = URLScheme(rawValue: host) else { return }
@@ -153,7 +153,7 @@ extension LaunchHandler {
 extension LaunchHandler {
 
     func dailyPrep(groupID: String?, notificationID: String, guideItem: Guide.Item?) {
-        log("dailyPrep://LaunchHandler, dailyPrep groupID:: \(groupID), notificationID: \(notificationID), guideItem: \(guideItem)")
+        log("dailyPrep://LaunchHandler, dailyPrep groupID:: \(String(describing: groupID)), notificationID: \(notificationID), guideItem: \(String(describing: guideItem))")
         guard
             let groupID = groupID,
             let groupIDIntValue = Int(groupID) else { return }
