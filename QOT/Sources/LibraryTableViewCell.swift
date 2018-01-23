@@ -56,6 +56,12 @@ final class LibraryTableViewCell: UITableViewCell, Dequeueable {
         collectionViewHeightConstraint.constant = collectionViewCellType.size.height
         layoutIfNeeded()
     }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        collectionView.setContentOffset(.zero, animated: false)
+    }
 }
 
 // MARK: - UICollectionViewDataSource
