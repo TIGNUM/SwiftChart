@@ -289,33 +289,75 @@ private extension ChartCell {
             return UIView()
         }
 
-        if let chartView = chartViews[statistics.chartType] as? UIView {
-            return chartView
+        if
+            let chartView = chartViews[statistics.chartType] as? UIView,
+            chartView.frame.height == frameFor(statistics: statistics, labelContentView: labelContentView).height {
+                return chartView
         }
 
-        return createChartView(statistics: statistics, labelContentVIew: labelContentView)
+        return createChartView(statistics: statistics, labelContentView: labelContentView)
     }
 
-    private func createChartView(statistics: Statistics, labelContentVIew: UIView) -> UIView {
-        let segmentedFrame = CGRect(x: 0, y: 0, width: chartSegmentedContentView.frame.width, height: chartSegmentedContentView.frame.height)
-        let segmentedBiggerFrame = CGRect(x: 0, y: 0, width: segmentedFrame.width, height: segmentedFrame.height + labelContentView.frame.height)
+    func frameFor(statistics: Statistics, labelContentView: UIView) -> CGRect {
+        let segmentedFrame = CGRect(x: 0,
+                                    y: 0,
+                                    width: chartSegmentedContentView.frame.width,
+                                    height: chartSegmentedContentView.frame.height)
+        let segmentedBiggerFrame = CGRect(x: 0,
+                                          y: 0,
+                                          width: segmentedFrame.width,
+                                          height: segmentedFrame.height + labelContentView.frame.height)
         let frame = chartContentView.frame
-        let biggerFrame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height + labelContentView.frame.height)
+        let biggerFrame = CGRect(x: 0,
+                                 y: 0,
+                                 width: frame.width,
+                                 height: frame.height + labelContentView.frame.height)
 
+        switch statistics.chartType {
+        case .meetingAverageDay: return segmentedBiggerFrame
+        case .activityLevel,
+             .activitySittingMovementRatio,
+             .meetingAverageWeek,
+             .sleepQuality,
+             .sleepQuantity,
+             .sleepQuantityTime: return frame
+        case .intensityLoadWeek,
+             .intensityLoadMonth,
+             .intensityRecoveryWeek,
+             .intensityRecoveryMonth,
+             .peakPerformanceUpcomingWeek,
+             .peakPerformanceUpcomingNextWeek,
+             .peakPerformanceAverageWeek,
+             .peakPerformanceAverageMonth: return segmentedFrame
+        case .travelTripsTimeZoneChangedWeeks,
+             .travelTripsTimeZoneChangedYear,
+             .travelTripsAverageWeeks,
+             .travelTripsAverageYear,
+             .travelTripsNextFourWeeks:
+            let travelTripFrame = statistics.chartType == .travelTripsNextFourWeeks ? frame : segmentedFrame
+            return travelTripFrame
+        case .travelTripsMaxTimeZone,
+             .meetingLength,
+             .meetingTimeBetween: return biggerFrame
+        }
+    }
+
+    func createChartView(statistics: Statistics, labelContentView: UIView) -> UIView {
+        let chartFrame = frameFor(statistics: statistics, labelContentView: labelContentView)
         switch statistics.chartType {
         case .activityLevel,
              .activitySittingMovementRatio:
-            return addView(ActivityChart(frame: frame,
+            return addView(ActivityChart(frame: chartFrame,
                                          statistics: statistics,
                                          labelContentView: labelContentView),
                            statistics)
         case .meetingAverageDay:
-            return addView(MeetingsAverageChart(frame: segmentedBiggerFrame,
+            return addView(MeetingsAverageChart(frame: chartFrame,
                                                 statistics: statistics,
                                                 labelContentView: labelContentView),
                            statistics)
         case .meetingAverageWeek:
-            return addView(MeetingsAverageNumberChart(frame: frame,
+            return addView(MeetingsAverageNumberChart(frame: chartFrame,
                                                       statistics: statistics,
                                                       labelContentView: labelContentView),
                            statistics)
@@ -323,33 +365,35 @@ private extension ChartCell {
              .intensityLoadMonth,
              .intensityRecoveryWeek,
              .intensityRecoveryMonth:
-            return addView(IntensityChart(frame: segmentedFrame,
+            return addView(IntensityChart(frame: chartFrame,
                                           statistics: statistics,
                                           labelContentView: labelContentView),
                            statistics)
         case .meetingLength:
-            return addView(MeetingsLengthChart(frame: biggerFrame,
+            return addView(MeetingsLengthChart(frame: chartFrame,
                                                statistics: statistics,
                                                labelContentView: labelContentView),
                            statistics)
         case .meetingTimeBetween:
-            return addView(MeetingsTimeBetweenChart(frame: biggerFrame,
+            return addView(MeetingsTimeBetweenChart(frame: chartFrame,
                                                     statistics: statistics,
                                                     labelContentView: labelContentView),
                            statistics)
         case .sleepQuality,
              .sleepQuantity,
              .sleepQuantityTime:
-            return addView(SleepChart(frame: frame, statistics: statistics),
+            return addView(SleepChart(frame: chartFrame,
+                                      statistics: statistics),
                            statistics)
         case .peakPerformanceUpcomingWeek,
              .peakPerformanceUpcomingNextWeek:
-            return addView(PeakPerformanceUpcomingChart(frame: segmentedFrame,
-                                                        statistics: statistics, labelContentView: labelContentView),
+            return addView(PeakPerformanceUpcomingChart(frame: chartFrame,
+                                                        statistics: statistics,
+                                                        labelContentView: labelContentView),
                            statistics)
         case .peakPerformanceAverageWeek,
              .peakPerformanceAverageMonth:
-            return addView(PeakPerformanceAverageChart(frame: segmentedFrame,
+            return addView(PeakPerformanceAverageChart(frame: chartFrame,
                                                        statistics: statistics,
                                                        labelContentView: labelContentView),
                            statistics)
@@ -358,13 +402,13 @@ private extension ChartCell {
              .travelTripsAverageWeeks,
              .travelTripsAverageYear,
              .travelTripsNextFourWeeks:
-            let travelTripFrame = statistics.chartType == .travelTripsNextFourWeeks ? frame : segmentedFrame
+            let travelTripFrame = statistics.chartType == .travelTripsNextFourWeeks ? chartContentView.frame : chartFrame
             return addView(TravelTripsChart(frame: travelTripFrame,
                                             statistics: statistics,
                                             labelContentView: labelContentView),
                            statistics)
         case .travelTripsMaxTimeZone:
-            return addView(TravelMaxTimeZoneChart(frame: biggerFrame,
+            return addView(TravelMaxTimeZoneChart(frame: chartFrame,
                                                   statistics: statistics,
                                                   labelContentView: labelContentView),
                            statistics)

@@ -29,7 +29,8 @@ final class URLRequestBuilder {
         }
         httpHeaders[.contentType] = "application/json"
         httpHeaders[.deviceID] = deviceID
-        httpHeaders[.version] = version
+        httpHeaders[.versionPlain] = version
+        httpHeaders[.versionX] = version
         httpHeaders[.build] = build
         httpHeaders[.os] = "iOS \(osVersion.majorVersion).\(osVersion.minorVersion).\(osVersion.patchVersion)"
 
