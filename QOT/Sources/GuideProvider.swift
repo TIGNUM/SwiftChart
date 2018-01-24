@@ -18,7 +18,7 @@ final class GuideProvider {
     private let becomeActiveHandler = NotificationHandler(name: .UIApplicationDidBecomeActive)
     private var tokenBin = TokenBin()
 
-    var onUpdate: (([Guide.Day]) -> Void)?
+    var onUpdate: ((Guide.Model) -> Void)?
 
     init(services: Services) {
         self.services = services
@@ -41,23 +41,19 @@ final class GuideProvider {
     }
 
     func reload() {
+        let itemFactory = GuideItemFactory(services: services)
         let featureItems = learnItems.filter { $0.type == RealmGuideItemLearn.ItemType.feature.rawValue }
         let strategyItems = learnItems.filter { $0.type == RealmGuideItemLearn.ItemType.strategy.rawValue }
-        let guideScheduleGenerator = GuideScheduleGenerator(maxDays: 3)
-        let schedule = guideScheduleGenerator.generateSchedule(notificationItems: Array(notificationItems),
+        let guideScheduleGenerator = GuideScheduleGenerator(maxDays: 3, factory: itemFactory)
+
+        do {
+            let guide = try guideScheduleGenerator.generateSchedule(notificationItems: Array(notificationItems),
                                                                featureItems: Array(featureItems),
                                                                strategyItems: Array(strategyItems))
-        let factory = GuideItemFactory(services: services)
-        let days = schedule.map { Guide.Day(day: $0, factory: factory) }
-        onUpdate?(days)
-    }
-}
-
-extension Guide.Day {
-
-    init(day: GuideScheduleGenerator.Day, factory: GuideItemFactory) {
-        localStartOfDay = day.localStartOfDay
-        items = day.items.flatMap { factory.makeGuideItem(from: $0) }
+            onUpdate?(guide)
+        } catch {
+            log("Unable to generate guide: \(error)", level: .error)
+        }
     }
 }
 

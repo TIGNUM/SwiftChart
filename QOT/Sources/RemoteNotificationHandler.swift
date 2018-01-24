@@ -70,4 +70,3 @@ private extension UANotificationContent {
         return notificationInfo["notificationId"] as? String
     }
 }
-

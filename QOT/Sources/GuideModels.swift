@@ -25,7 +25,26 @@ struct Guide {
             case dailyPrep(items: [DailyPrepItem], feedback: String?)
         }
 
-        let status: GuideViewModel.Status
+        enum Status {
+            case todo
+            case done
+
+            var cardColor: UIColor {
+                switch self {
+                case .done: return .whiteLight6
+                case .todo: return .whiteLight12
+                }
+            }
+
+            var statusViewColor: UIColor {
+                switch self {
+                case .done: return .charcoalGreyMedium
+                case .todo: return .white
+                }
+            }
+        }
+
+        let status: Status
         let title: String
         let content: Content
         let subtitle: String
@@ -50,6 +69,22 @@ struct Guide {
     struct Day {
         var items: [Item]
         var localStartOfDay: Date
+    }
+
+    struct Model {
+
+        let days: [Day]
+        let greeting: String
+        let message: String
+    }
+
+    enum Message: Int {
+
+        case welcome = 102978
+        case dailyLearnPlan = 102979
+        case dailyPrep = 103002
+        case guideAllCompleted = 103108
+        case guideTodayCompleted = 103107
     }
 }
 

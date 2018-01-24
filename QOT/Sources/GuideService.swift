@@ -19,7 +19,6 @@ final class GuideService {
         self.realmProvider = realmProvider
     }
 
-
     func guideIsTotallyCompleted() -> Bool {
         let allLearnItems = mainRealm.objects(RealmGuideItemLearn.self)
         let filtered = allLearnItems.filter { $0.completedAt == nil }

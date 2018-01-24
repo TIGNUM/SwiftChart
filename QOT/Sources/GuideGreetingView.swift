@@ -18,8 +18,8 @@ final class GuideGreetingView: UIView {
         return view
     }
 
-    @IBOutlet private weak var messageLabel: UILabel!
     @IBOutlet private weak var greetingLabel: UILabel!
+    @IBOutlet private weak var messageLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,14 +27,14 @@ final class GuideGreetingView: UIView {
         backgroundColor = .pineGreen
     }
 
-    func configure(_ message: String, _ greeting: String) {
-        messageLabel.attributedText = attributedText(letterSpacing: -0.8,
-                                                     text: message.uppercased(),
+    func configure(message: String, greeting: String) {
+        greetingLabel.attributedText = attributedText(letterSpacing: -0.8,
+                                                     text: greeting.uppercased(),
                                                      font: Font.H4Headline,
                                                      textColor: .white,
                                                      alignment: .left)
-        greetingLabel.attributedText = attributedText(letterSpacing: -0.8,
-                                                      text: greeting.uppercased(),
+        messageLabel.attributedText = attributedText(letterSpacing: -0.8,
+                                                      text: message.uppercased(),
                                                       font: Font.H4Headline,
                                                       textColor: .white,
                                                       alignment: .left)
@@ -42,8 +42,8 @@ final class GuideGreetingView: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        messageLabel.preferredMaxLayoutWidth = messageLabel.bounds.width
         greetingLabel.preferredMaxLayoutWidth = greetingLabel.bounds.width
+        messageLabel.preferredMaxLayoutWidth = messageLabel.bounds.width
     }
 }
 

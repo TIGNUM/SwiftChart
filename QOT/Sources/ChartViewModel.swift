@@ -53,7 +53,7 @@ final class ChartViewModel {
     static func leadingOffset(frameWidth: CGFloat) -> CGFloat {
         return (frameWidth - ChartViewModel.chartCellSize(frameWidth: frameWidth).width) * 0.5
     }
-    
+
     var fitbitState: User.FitbitState {
         return services.userService.fitbitState
     }

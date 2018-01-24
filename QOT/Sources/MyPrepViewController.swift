@@ -19,7 +19,7 @@ protocol MyPrepViewControllerDelegate: class {
 final class MyPrepViewController: UIViewController, FullScreenLoadable, PageViewControllerNotSwipeable {
 
     // MARK: - Properties
-    
+
     let viewModel: MyPrepViewModel
     weak var delegate: MyPrepViewControllerDelegate?
     var loadingView: BlurLoadingView?

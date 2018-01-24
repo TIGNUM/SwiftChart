@@ -44,7 +44,7 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
                    type: String?,
                    dailyPrepFeedback: String?,
                    dailyPrepItems: [Guide.DailyPrepItem],
-                   status: GuideViewModel.Status) {
+                   status: Guide.Item.Status) {
         if let title = title {
             titleLabel.attributedText = attributedText(letterSpacing: 1,
                                                        text: title.uppercased(),

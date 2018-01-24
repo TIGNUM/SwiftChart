@@ -8,21 +8,28 @@
 
 import UIKit
 
-struct GuideItemFactory {
+struct GuideItemFactory: GuideItemFactoryProtocol {
 
     let services: Services
 
-    func makeGuideItem(from item: GuideScheduleGenerator.Item) -> Guide.Item? {
-        let realm = services.mainRealm
-        if RealmGuideItemNotification.ItemType(rawValue: item.type) != nil,
-            let notification = realm.object(ofType: RealmGuideItemNotification.self, forPrimaryKey: item.id) {
-            return guideItem(with: notification)
-        } else if RealmGuideItemLearn.ItemType(rawValue: item.type) != nil,
-            let learn = realm.object(ofType: RealmGuideItemLearn.self, forPrimaryKey: item.id) {
-            return guideItem(with: learn)
-        } else {
-            return nil
-        }
+    func makeItem(with item: GuideLearnItem) -> Guide.Item? {
+        guard let item = item as? RealmGuideItemLearn else { return nil }
+
+        return guideItem(with: item)
+    }
+
+    func makeItem(with item: GuideNotificationItem) -> Guide.Item? {
+        guard let item = item as? RealmGuideItemNotification else { return nil }
+
+        return guideItem(with: item)
+    }
+
+    func makeMessageText(with greeting: Guide.Message) -> String {
+        return services.contentService.defaultMessage(greeting.rawValue)
+    }
+
+    func userName() -> String? {
+        return services.mainRealm.objects(User.self).first?.givenName
     }
 }
 

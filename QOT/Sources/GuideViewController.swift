@@ -105,7 +105,7 @@ private extension GuideViewController {
     func reload() {
         tableView.reloadData()
         updateReadyState()
-        updateGreetingView(viewModel.message, viewModel.greeting())
+        updateGreetingView(message: viewModel.message, greeting: viewModel.greeting())
     }
 
     func observeViewModel() {
@@ -117,7 +117,7 @@ private extension GuideViewController {
     func setupView() {
         tableView.tableHeaderView = greetingView
         greetingView.backgroundColor = .clear
-        updateGreetingView(viewModel.message, viewModel.greeting())
+        updateGreetingView(message: viewModel.message, greeting: viewModel.greeting())
 
         let backgroundImageView = UIImageView(image: R.image._1_1Learn())
         view.addSubview(backgroundImageView)
@@ -137,8 +137,8 @@ private extension GuideViewController {
         view.layoutIfNeeded()
     }
 
-    func updateGreetingView(_ message: String, _ greeting: String) {
-        greetingView.configure(message, greeting)
+    func updateGreetingView(message: String, greeting: String) {
+        greetingView.configure(message: message, greeting: greeting)
         sizeHeaderViewToFit()
     }
 
