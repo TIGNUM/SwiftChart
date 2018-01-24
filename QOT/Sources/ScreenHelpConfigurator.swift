@@ -11,7 +11,6 @@ import Foundation
 class ScreenHelpConfigurator: AppStateAccess {
     static func makeWith(key: ScreenHelp.Plist.Key) -> Configurator<ScreenHelpViewController> {
         return { viewController in
-            let viewController = viewController
             let router = ScreenHelpRouter(windowManager: appState.windowManager, viewController: viewController)
             let presenter = ScreenHelpPresenter(viewController: viewController)
             let dataWorker = ScreenHelpDataWorker(plistName: ScreenHelp.Plist.name)

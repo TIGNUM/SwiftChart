@@ -115,8 +115,8 @@ final class MorningInterviewViewModel: NSObject {
             }
         }
 
-        let guideIDString = GuideItemID(kind: .notification, remoteID: notificationRemoteID).stringRepresentation
-        LocalNotificationBuilder.cancelNotification(identifier: guideIDString)
-        GuideWorker(services: services).setItemCompleted(guideID: guideIDString)
+        let guideID = GuideItemID(kind: .notification, remoteID: notificationRemoteID)
+        LocalNotificationBuilder.cancelNotification(identifier: guideID.stringRepresentation)
+        GuideWorker(services: services).setItemCompleted(id: guideID)
     }
 }

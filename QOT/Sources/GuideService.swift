@@ -11,40 +11,52 @@ import RealmSwift
 
 final class GuideService {
 
-    private let mainRealm: Realm
+    private let realm: Realm
     private let realmProvider: RealmProvider
 
-    init(mainRealm: Realm, realmProvider: RealmProvider) {
-        self.mainRealm = mainRealm
+    init(realm: Realm, realmProvider: RealmProvider) {
+        self.realm = realm
         self.realmProvider = realmProvider
     }
 
-    func guideIsTotallyCompleted() -> Bool {
-        let allLearnItems = mainRealm.objects(RealmGuideItemLearn.self)
-        let filtered = allLearnItems.filter { $0.completedAt == nil }
-
-        return filtered.count == 0
+    func background() throws -> GuideService {
+        return GuideService(realm: try realmProvider.realm(), realmProvider: realmProvider)
     }
 
-    func guideNoneCompleted() -> Bool {
-        let allLearnItems = mainRealm.objects(RealmGuideItemLearn.self)
-        let filtered = allLearnItems.filter { $0.completedAt != nil }
+    func setNotificationItemComplete(remoteID: Int, date: Date) throws {
+        let type = RealmGuideItemNotification.self
+        guard let item = realm.syncableObject(ofType: type, remoteID: remoteID) else { return }
 
-        return filtered.count == 0
+        try realm.write {
+            item.completedAt = date
+            item.didUpdate()
+        }
     }
-}
 
-// MARK: - Erase
+    func setLearnItemComplete(remoteID: Int, date: Date) throws {
+        let type = RealmGuideItemLearn.self
+        guard let item = realm.syncableObject(ofType: type, remoteID: remoteID) else { return }
 
-extension GuideService {
+        try realm.write {
+            item.completedAt = date
+            item.didUpdate()
+        }
+    }
 
-    func eraseGuideItems() {
-        do {
-            try mainRealm.write {
-                mainRealm.delete(mainRealm.objects(RealmGuideItem.self))
-            }
-        } catch {
-            assertionFailure("Failed to delete toBeVision with error: \(error)")
+    func learnItems() -> Results<RealmGuideItemLearn> {
+        return realm.objects(RealmGuideItemLearn.self)
+    }
+
+    func notificationItems() -> Results<RealmGuideItemNotification> {
+        return realm.objects(RealmGuideItemNotification.self)
+    }
+
+    func eraseGuide() throws {
+        try realm.write {
+            realm.delete(realm.objects(RealmGuideItem.self))
+            realm.delete(realm.objects(RealmGuideItemLearn.self))
+            realm.delete(realm.objects(RealmGuideItemNotification.self))
         }
     }
 }
+

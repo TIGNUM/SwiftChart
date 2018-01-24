@@ -54,7 +54,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         return RemoteNotificationHandler(launchHandler: self.launchHandler)
     }()
     lazy var launchHandler: LaunchHandler = {
-        return LaunchHandler()
+        let launchHandler = LaunchHandler()
+        AppDelegate.appState.launchHandler = launchHandler
+        return launchHandler
     }()
     static var current: AppDelegate {
         guard let app = UIApplication.shared.delegate as? AppDelegate else {
@@ -209,8 +211,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         launchHandler.process(url: link, notificationID: notificationID)
         guard
             let host = link.host,
-            let scheme = URLScheme(rawValue: host), scheme != .dailyPrep else { return }
-        GuideWorker(services: AppDelegate.appState.services).setItemCompleted(guideID: notificationID)
+            let scheme = URLScheme(rawValue: host), scheme != .dailyPrep,
+            let id = try? GuideItemID(stringRepresentation: notificationID) else { return }
+        GuideWorker(services: AppDelegate.appState.services).setItemCompleted(id: id)
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,

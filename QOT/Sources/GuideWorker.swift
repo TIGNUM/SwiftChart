@@ -13,37 +13,59 @@ final class GuideWorker {
 
     private let syncStateObserver: SyncStateObserver
     let services: Services
+    let backgroudQueue = DispatchQueue(label: "guide worker", qos: .background)
 
     init(services: Services) {
         self.services = services
         self.syncStateObserver = SyncStateObserver(realm: services.mainRealm)
     }
 
-    func setItemCompleted(guideID: String, completion: ((Error?) -> Void)? = nil) {
-        do {
-            let completedDate = Date()
-            let realm = services.mainRealm
-            let id = try GuideItemID(stringRepresentation: guideID)
-            if id.kind == .notification, let item = realm.syncableObject(ofType: RealmGuideItemNotification.self, remoteID: id.remoteID) {
-                try realm.write {
-                    item.completedAt = completedDate
-                    item.didUpdate()
-                    completion?(nil)
+    func setItemCompleted(id: GuideItemID) {
+        backgroudQueue.async {
+            do {
+                let service = try self.services.guideService.background()
+                let now = Date()
+                switch id.kind {
+                case .learn:
+                    try service.setLearnItemComplete(remoteID: id.remoteID, date: now)
+                case .notification:
+                    try service.setNotificationItemComplete(remoteID: id.remoteID, date: now)
                 }
-            } else if id.kind == .learn, let item = realm.syncableObject(ofType: RealmGuideItemLearn.self, remoteID: id.remoteID) {
-                try realm.write {
-                    item.completedAt = completedDate
-                    item.didUpdate()
-                    completion?(nil)
-                }
+            } catch {
+                log("Failed to set item completed: \(error)", level: .error)
             }
-        } catch {
-            log(error, level: .error)
-            completion?(error)
         }
     }
 
-    var hasSyncedNecessaryItems: Bool {
+    func cancelPendingNotificationForItem(_ item: Guide.Item) {
+        // FIXME: IMPLEMENT !!!
+    }
+
+    func makeGuide(completion: (Guide.Model?) -> Void) {
+        guard hasSyncedNecessaryItems == true else {
+            completion(nil)
+            return
+        }
+
+        // FIXME: We don't really want to do this on the main thread but the objects we use are using main thread
+        let itemFactory = GuideItemFactory(services: services)
+        let learnItems = services.guideService.learnItems()
+        let notificationItems = services.guideService.notificationItems()
+        let featureItems = learnItems.filter { $0.type == RealmGuideItemLearn.ItemType.feature.rawValue }
+        let strategyItems = learnItems.filter { $0.type == RealmGuideItemLearn.ItemType.strategy.rawValue }
+        let guideGenerator = GuideGenerator(maxDays: 3, factory: itemFactory)
+
+        do {
+            let guide = try guideGenerator.generateGuide(notificationItems: Array(notificationItems),
+                                                         featureItems: Array(featureItems),
+                                                         strategyItems: Array(strategyItems))
+            completion(guide)
+        } catch {
+            log("Unable to generate guide: \(error)", level: .error)
+        }
+    }
+
+    private var hasSyncedNecessaryItems: Bool {
         return syncStateObserver.hasSynced(RealmGuideItemLearn.self)
             && syncStateObserver.hasSynced(RealmGuideItemNotification.self)
     }

@@ -19,6 +19,7 @@ final class AppState {
     var services: Services!
     var windowManager: WindowManager!
     var appCoordinator: AppCoordinator!
+    var launchHandler: LaunchHandler!
 
     private init() {}
 }

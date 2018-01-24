@@ -24,8 +24,6 @@ final class Services {
     let statisticsService: StatisticsService
     let mediaService: MediaService
     let feedbackService: FeedbackService
-    let guideItemLearnService: GuideItemLearnService
-    let guideItemNotificationService: GuideItemNotificationService
     let guideService: GuideService
 
     init() throws {
@@ -43,8 +41,6 @@ final class Services {
         self.statisticsService = StatisticsService(mainRealm: mainRealm, realmProvider: realmProvider)
         self.mediaService = MediaService(mainRealm: mainRealm, realmProvider: realmProvider)
         self.feedbackService = FeedbackService(mainRealm: mainRealm, realmProvider: realmProvider)
-        self.guideItemNotificationService = GuideItemNotificationService(mainRealm: mainRealm, realmProvider: realmProvider)
-        self.guideItemLearnService = GuideItemLearnService(mainRealm: mainRealm, realmProvider: realmProvider)
-        self.guideService = GuideService(mainRealm: mainRealm, realmProvider: realmProvider)
+        self.guideService = GuideService(realm: mainRealm, realmProvider: realmProvider)
     }
 }

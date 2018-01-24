@@ -253,9 +253,7 @@ private extension SettingsAdminViewController {
     }
 
     func eraseGuide() {
-        services?.guideService.eraseGuideItems()
-        services?.guideItemLearnService.eraseItems()
-        services?.guideItemNotificationService.eraseItems()
+        try? services?.guideService.eraseGuide()
     }
 
     func syncData(shouldDownload: Bool) {

@@ -35,7 +35,7 @@ protocol GuideItemFactoryProtocol {
     func userName() -> String?
 }
 
-struct GuideScheduleGenerator {
+struct GuideGenerator {
 
     let localCalendar: Calendar
     let maxDays: Int
@@ -47,10 +47,10 @@ struct GuideScheduleGenerator {
         self.factory = factory
     }
 
-    func generateSchedule(notificationItems: [GuideNotificationItem],
-                          featureItems: [GuideLearnItem],
-                          strategyItems: [GuideLearnItem],
-                          now: Date = Date()) throws -> Guide.Model {
+    func generateGuide(notificationItems: [GuideNotificationItem],
+                       featureItems: [GuideLearnItem],
+                       strategyItems: [GuideLearnItem],
+                       now: Date = Date()) throws -> Guide.Model {
         guard maxDays > 0 else { throw SimpleError(localizedDescription: "Incorrect maxDays: \(maxDays)") }
 
         let minDate = now.addingTimeInterval(-TimeInterval(days: maxDays - 1))
@@ -113,7 +113,7 @@ struct GuideScheduleGenerator {
     }
 }
 
-private extension GuideScheduleGenerator {
+private extension GuideGenerator {
 
     /**
      Adds notifications items to `days` that are between `now` and `minDate`.
@@ -221,7 +221,7 @@ private extension GuideScheduleGenerator {
     }
 }
 
-private extension GuideScheduleGenerator {
+private extension GuideGenerator {
 
     struct Day {
         let localStartOfDay: Date
@@ -236,7 +236,7 @@ private extension GuideScheduleGenerator {
     }
 }
 
-private extension Dictionary where Key == Date, Value == GuideScheduleGenerator.Day {
+private extension Dictionary where Key == Date, Value == GuideGenerator.Day {
 
     mutating func appendItem(_ item: GuideLearnItem, localStartOfDay: Date, factory: GuideItemFactoryProtocol) {
         guard let guideItem = factory.makeItem(with: item), let displayAt = item.displayAt else { return }
@@ -260,12 +260,12 @@ private extension Dictionary where Key == Date, Value == GuideScheduleGenerator.
 
     mutating func appendItem(_ item: Guide.Item, hour: Int, minute: Int, priority: Int, localStartOfDay: Date) {
         let id = item.identifier
-        let sort = GuideScheduleGenerator.ItemSort(displayHour: hour, displayMinute: minute, priority: priority, id: id)
+        let sort = GuideGenerator.ItemSort(displayHour: hour, displayMinute: minute, priority: priority, id: id)
         if var day = self[localStartOfDay] {
             day.items.append((item, sort))
             self[localStartOfDay] = day
         } else {
-            self[localStartOfDay] = GuideScheduleGenerator.Day(localStartOfDay: localStartOfDay, items: [(item, sort)])
+            self[localStartOfDay] = GuideGenerator.Day(localStartOfDay: localStartOfDay, items: [(item, sort)])
         }
     }
 }

@@ -88,6 +88,15 @@ struct Guide {
     }
 }
 
+extension Guide.Model: Equatable {
+
+    public static func == (lhs: Guide.Model, rhs: Guide.Model) -> Bool {
+        return lhs.days == rhs.days
+            && lhs.greeting == rhs.greeting
+            && lhs.message == rhs.message
+    }
+}
+
 extension Guide.Day: Equatable {
 
     public static func == (lhs: Guide.Day, rhs: Guide.Day) -> Bool {

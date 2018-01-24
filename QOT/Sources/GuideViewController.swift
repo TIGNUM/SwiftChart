@@ -16,11 +16,13 @@ final class GuideViewController: UIViewController, FullScreenLoadable, PageViewC
 
     // MARK: - Properties
 
-    private let viewModel: GuideViewModel
     private let sectionHeaderHeight: CGFloat = 24
-    private let fadeMaskLocation: UIView.FadeMaskLocation
     private let disposeBag = DisposeBag()
+    private var days: [Guide.Day] = []
     var loadingView: BlurLoadingView?
+    var interactor: GuideInteractorInterface?
+    var router: GuideRouterInterface?
+
 
     var isLoading: Bool = false {
         didSet {
@@ -42,11 +44,9 @@ final class GuideViewController: UIViewController, FullScreenLoadable, PageViewC
 
     // MARK: - Init
 
-    init(viewModel: GuideViewModel, fadeMaskLocation: UIView.FadeMaskLocation) {
-        self.viewModel = viewModel
-        self.fadeMaskLocation = fadeMaskLocation
-
+    init(configurator: Configurator<GuideViewController>) {
         super.init(nibName: nil, bundle: nil)
+        configurator(self)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -58,25 +58,36 @@ final class GuideViewController: UIViewController, FullScreenLoadable, PageViewC
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        interactor?.viewDidLoad()
         setupView()
-        observeViewModel()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        viewModel.reload()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        updateReadyState()
+        interactor?.reload()
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         sizeHeaderViewToFit()
+    }
+}
+
+extension GuideViewController: GuideViewControllerInterface {
+
+    func setLoading(_ loading: Bool) {
+        isLoading = loading
+    }
+
+    func updateHeader(greeting: String, message: String) {
+        greetingView.configure(message: message, greeting: greeting)
+        sizeHeaderViewToFit()
+    }
+
+    func updateDays(days: [Guide.Day]) {
+        self.days = days
+        tableView.reloadData()
     }
 }
 
@@ -98,26 +109,10 @@ private extension GuideViewController {
         tableView.tableHeaderView = header
     }
 
-    func updateReadyState() {
-        isLoading = !viewModel.isReady
-    }
-
-    func reload() {
-        tableView.reloadData()
-        updateReadyState()
-        updateGreetingView(message: viewModel.message, greeting: viewModel.greeting())
-    }
-
-    func observeViewModel() {
-        viewModel.updates.observeNext { [unowned self] sectionCount in
-            self.reload()
-        }.dispose(in: disposeBag)
-    }
 
     func setupView() {
         tableView.tableHeaderView = greetingView
         greetingView.backgroundColor = .clear
-        updateGreetingView(message: viewModel.message, greeting: viewModel.greeting())
 
         let backgroundImageView = UIImageView(image: R.image._1_1Learn())
         view.addSubview(backgroundImageView)
@@ -136,16 +131,6 @@ private extension GuideViewController {
         view.addFadeView(at: .bottom, height: 120)
         view.layoutIfNeeded()
     }
-
-    func updateGreetingView(message: String, greeting: String) {
-        greetingView.configure(message: message, greeting: greeting)
-        sizeHeaderViewToFit()
-    }
-
-    func open(item: Guide.Item) {
-        guard let linkURL = item.link else { return }
-        AppDelegate.current.launchHandler.process(url: linkURL, notificationID: item.identifier, guideItem: item)
-    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -153,15 +138,15 @@ private extension GuideViewController {
 extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.sectionCount
+        return days.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRows(section: section)
+        return days[section].items.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = viewModel.item(indexPath: indexPath)
+        let item = itemAt(indexPath: indexPath)
         switch item.content {
         case .dailyPrep(let items, let feedback):
             let cell: GuideDailyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -185,8 +170,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 30, y: 0, width: tableView.bounds.width, height: sectionHeaderHeight))
         let label = UILabel(frame: view.frame)
-        let dateCreated = DateFormatter.mediumDate.string(from: viewModel.header(section: section))
-        let headline = String(format: "%@", dateCreated)
+        let headline = DateFormatter.mediumDate.string(from: days[section].localStartOfDay)
         view.addSubview(label)
         label.backgroundColor = UIColor.pineGreen.withAlphaComponent(0.6)
         label.attributedText = Style.navigationTitle(headline, .white40).attributedString()
@@ -199,12 +183,13 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = viewModel.item(indexPath: indexPath)
-        guard item.isDailyPrepCompleted == false else { return }
-        open(item: item)
+        let item = itemAt(indexPath: indexPath)
 
-        if item.isDailyPrep == false {
-            viewModel.setCompleted(item: item) {}
-        }
+        router?.open(item: item)
+        interactor?.didTapItem(item)
+    }
+
+    private func itemAt(indexPath: IndexPath) -> Guide.Item {
+        return days[indexPath.section].items[indexPath.row]
     }
 }
