@@ -280,7 +280,7 @@ private extension Guide.Day {
 private extension Array where Element == Guide.Item {
 
     var areAllComplete: Bool {
-        return filter { $0.status == .done }.count == 0
+        return filter { $0.status == .todo }.count == 0
     }
 }
 
