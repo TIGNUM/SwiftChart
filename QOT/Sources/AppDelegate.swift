@@ -67,7 +67,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
 
     // MARK: - Life Cycle
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
 
         #if BUILD_DATABASE
@@ -109,9 +110,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         QOTUsageTimer.sharedInstance.stopTimer()
     }
 
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
-        if launchHandler.canLaunch(url: url) == true && url.host == URLScheme.fitbit.rawValue {
-            launchHandler.process(url: url)
+    func application(_ app: UIApplication, open url: URL,
+                     options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
+        if launchHandler.canLaunch(url: url) == true &&
+            (url.host == URLScheme.fitbit.rawValue || url.host == URLScheme.preparation.rawValue) {
+                launchHandler.process(url: url)
         }
 
         return launchHandler.canLaunch(url: url)
