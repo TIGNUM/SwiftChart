@@ -11,7 +11,7 @@ import MBProgressHUD
 
 protocol LoginCoordinatorDelegate: class {
 
-    func loginCoordinatorDidLogin(_ coordinator: LoginCoordinator)
+    func loginCoordinatorDidLogin(_ coordinator: LoginCoordinator, loginViewController: LoginViewController?)
 }
 
 final class LoginCoordinator: ParentCoordinator {
@@ -21,6 +21,7 @@ final class LoginCoordinator: ParentCoordinator {
     private let windowManager: WindowManager
     private let networkManager: NetworkManager
     private let syncManager: SyncManager
+    private var loginViewController: LoginViewController?
     private weak var delegate: LoginCoordinatorDelegate?
     var children: [Coordinator] = []
 
@@ -41,6 +42,7 @@ final class LoginCoordinator: ParentCoordinator {
         let navigationController = UINavigationController(rootViewController: loginViewController)
         navigationController.navigationBar.applyDefaultStyle()
         windowManager.show(navigationController, animated: true, completion: nil)
+        self.loginViewController = loginViewController
     }
 }
 
@@ -62,7 +64,7 @@ extension LoginCoordinator: LoginViewControllerDelegate {
                         self.handleLoginError(downSyncError, viewController: viewController)
                     } else {
                         hud.hide(animated: true)
-                        self.delegate?.loginCoordinatorDidLogin(self)
+                        self.delegate?.loginCoordinatorDidLogin(self, loginViewController: self.loginViewController)
                     }
                 }
             }

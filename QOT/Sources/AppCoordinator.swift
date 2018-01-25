@@ -33,6 +33,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     private lazy var credentialsManager: CredentialsManager = CredentialsManager.shared
     private var canProcessRemoteNotifications = false
     private var canProcessLocalNotifications = false
+    private var isRestart = false
     private var onDismiss: (() -> Void)?
     private var destination: AppCoordinator.Router.Destination?
 
@@ -111,7 +112,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
             viewController.startAnimatingImages { [unowned viewController] in
                 viewController.fadeOutLogo {
                     if self.credentialsManager.isCredentialValid {
-                        self.showApp()
+                        self.showApp(loginViewController: nil)
                     } else {
                         self.showLogin()
                     }
@@ -122,13 +123,12 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
     func restart() {
         networkManager.cancelAllRequests()
-        windowManager.clearWindows()
-        removeAllChildren()
+        navigate(to: AppCoordinator.Router.Destination(tabBar: .guide, topTabBar: .guide))
         logout()
         showLogin()
     }
 
-    func showApp() {
+    func showApp(loginViewController: LoginViewController?) {
         func handleError(error: Error) {
             log("Error setting up database: \(error)", level: .error)
             Crashlytics.sharedInstance().recordError(error)
@@ -167,7 +167,12 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
                     self.registerRemoteNotifications()
                     self.calendarImportManager.importEvents()
-                    self.startTabBarCoordinator(services: services, permissionsManager: self.permissionsManager)
+                    if self.isRestart == false {
+                        self.startTabBarCoordinator(services: services, permissionsManager: self.permissionsManager)
+                    } else {
+                        self.isRestart = false
+                        self.windowManager.rootViewController(atLevel: .normal)?.dismiss(animated: true, completion: nil)
+                    }
                     self.canProcessRemoteNotifications = true
                     self.canProcessLocalNotifications = true
                     self.remoteNotificationHandler.processOutstandingNotifications()
@@ -297,7 +302,6 @@ extension AppCoordinator {
         baseURL = URL(string: "https://esb.tignum.com")!
         do {
             syncManager.stop()
-
             try DatabaseManager.shared.resetDatabase(syncRecordService: syncRecordService)
         } catch {
             log(error.localizedDescription, level: .error)
@@ -352,7 +356,7 @@ extension AppCoordinator: CalendarImportMangerDelegate {
 
 extension AppCoordinator: LoginCoordinatorDelegate {
 
-    func loginCoordinatorDidLogin(_ coordinator: LoginCoordinator) {
+    func loginCoordinatorDidLogin(_ coordinator: LoginCoordinator, loginViewController: LoginViewController?) {
         removeChild(child: coordinator)
         QOTUsageTimer.sharedInstance.startTimer()
         if UserDefault.hasShownOnbordingSlideShowInAppBuild.stringValue == nil {
@@ -360,7 +364,7 @@ extension AppCoordinator: LoginCoordinatorDelegate {
             windowManager.show(viewController, animated: true, completion: nil)
             UserDefault.hasShownOnbordingSlideShowInAppBuild.setStringValue(value: Bundle.main.buildNumber)
         } else {
-            showApp()
+            showApp(loginViewController: loginViewController)
         }
         networkManager.performDeviceRequest()
     }
@@ -448,7 +452,7 @@ extension AppCoordinator: OnboardingCoordinatorDelegate {
 
     func onboardingCoordinatorDidFinish(_ onboardingCoordinator: OnboardingCoordinator) {
         removeChild(child: onboardingCoordinator)
-        showApp()
+        showApp(loginViewController: nil)
     }
 }
 
@@ -691,7 +695,7 @@ extension AppCoordinator {
         }
     }
 
-    private func selectTabBarItem(tabBarController: TabBarController, destination: AppCoordinator.Router.Destination) {
+    func selectTabBarItem(tabBarController: TabBarController, destination: AppCoordinator.Router.Destination) {
         guard let viewControllers = tabBarController.viewControllers else { return }
         let tabBarIndex = destination.tabBar.rawValue
         let topTabBarIndex = destination.topTabBar.index

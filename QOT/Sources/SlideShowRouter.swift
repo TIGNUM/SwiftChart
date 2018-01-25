@@ -21,6 +21,6 @@ final class SlideShowRouter {
 extension SlideShowRouter: SlideShowRouterInterface {
 
     func dismissSlideShow() {
-        appCoordinator.showApp()
+        appCoordinator.showApp(loginViewController: nil)
     }
 }

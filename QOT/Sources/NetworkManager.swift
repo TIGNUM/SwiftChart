@@ -13,6 +13,7 @@ import PromiseKit
 import CoreLocation
 
 protocol NetworkManagerDelegate: class {
+    
     func networkManagerFailedToAuthenticate(_ networkManager: NetworkManager)
 }
 

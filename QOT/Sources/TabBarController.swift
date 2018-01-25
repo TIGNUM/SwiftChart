@@ -99,6 +99,7 @@ final class TabBarController: UITabBarController {
     }
 
     func mark(isRead: Bool, at index: Int) {
+        guard (tabBar.items?.count ?? 0) > 0 else { return }
         guard
             let items = tabBar.items, index >= items.startIndex, index < items.endIndex,
             let item = items[index] as? TabBarItem else {

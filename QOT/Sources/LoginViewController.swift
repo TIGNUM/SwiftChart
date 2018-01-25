@@ -10,11 +10,14 @@ import UIKit
 import Anchorage
 
 protocol LoginViewControllerDelegate: class {
+
     func loginViewController(_ viewController: UIViewController, didTapLoginWithEmail email: String, password: String)
+
     func loginViewControllerDidTapResetPassword(_ viewController: UIViewController)
 }
 
 final class LoginViewController: UIViewController {
+
     // MARK: - Properties
 
     private weak var delegate: LoginViewControllerDelegate?
@@ -23,12 +26,12 @@ final class LoginViewController: UIViewController {
     private let crossImageView: UIImageView = UIImageView(image: R.image.crossImage())
     private let emailCorrectImage: UIImageView = UIImageView(image: R.image.correctEmail())
     private let backgroundImageView: UIImageView = UIImageView(image: R.image.loginBackground())
+    private var topConstraintOriginalValue: CGFloat = 0
     private var topConstraint: NSLayoutConstraint? {
         didSet {
             topConstraintOriginalValue = topConstraint?.constant ?? 0.0
         }
     }
-    private var topConstraintOriginalValue: CGFloat = 0
     private let userView: UIView = {
         let view = UIView()
         view.backgroundColor = .whiteLight14
@@ -319,6 +322,7 @@ final class LoginViewController: UIViewController {
 // MARK: - UITextFieldDelegate
 
 extension LoginViewController: UITextFieldDelegate {
+
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let text = textField.text else {
             return
