@@ -24,7 +24,7 @@ final class GuideGreetingView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        backgroundColor = .pineGreen
+        backgroundColor = .clear
     }
 
     func configure(message: String, greeting: String) {

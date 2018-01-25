@@ -23,7 +23,6 @@ final class GuideViewController: UIViewController, FullScreenLoadable, PageViewC
     var interactor: GuideInteractorInterface?
     var router: GuideRouterInterface?
 
-
     var isLoading: Bool = false {
         didSet {
             showLoading(isLoading, text: R.string.localized.guideLoading())
@@ -109,10 +108,8 @@ private extension GuideViewController {
         tableView.tableHeaderView = header
     }
 
-
     func setupView() {
         tableView.tableHeaderView = greetingView
-        greetingView.backgroundColor = .clear
 
         let backgroundImageView = UIImageView(image: R.image._1_1Learn())
         view.addSubview(backgroundImageView)

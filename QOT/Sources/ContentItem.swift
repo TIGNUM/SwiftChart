@@ -76,8 +76,8 @@ extension ContentItem: OneWaySyncableDown {
         tabs = data.tabs
         layoutInfo = data.layoutInfo
         collectionID.value = data.contentID
-        valueText = data.valueText
-        valueDescription = data.valueDescription
+        valueText = data.valueText?.trimmingCharacters(in: .whitespacesAndNewlines)
+        valueDescription = data.valueDescription?.trimmingCharacters(in: .whitespacesAndNewlines)
         valueImageURL = data.valueImageURL
         valueMediaURL = data.valueMediaURL
         valueDuration.value = data.valueDuration
