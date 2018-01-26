@@ -328,7 +328,7 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
     }
 
     func myUniverseViewController(_ viewController: MyUniverseViewController, didTapLeftBarButtonItem buttonItem: UIBarButtonItem, in topNavigationBar: TopNavigationBar) {
-        showHelp(.prepare)
+        showHelp(.me)
     }
 
     func myUniverseViewController(_ viewController: MyUniverseViewController, didTapRightBarButtonItem buttonItem: UIBarButtonItem, in topNavigationBar: TopNavigationBar) {
