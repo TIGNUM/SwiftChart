@@ -58,14 +58,17 @@ final class ScheduledNotificationsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let realmProvider = realmProvider else { return }
-        let notification = pendingNotifications[indexPath.row]
-        let triggerDate = Date().addingTimeInterval(20)
-        let localNotificationBuilder = LocalNotificationBuilder(realmProvider: realmProvider)
-        localNotificationBuilder.updateNotification(identifier: notification.identifier,
-                                                    triggerDate: triggerDate,
-                                                    content: notification.content)
-        tableView.reloadData()
+        let componants: Set<Calendar.Component> = [.year, .month, .day, .hour, .minute]
+        let triggerComponants = Calendar.current.dateComponents(componants, from: Date().addingTimeInterval(20))
+        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerComponants, repeats: false)
+
+        let existingNotification = pendingNotifications[indexPath.row]
+        let newNotification = UNNotificationRequest(identifier: existingNotification.identifier,
+                                                    content: existingNotification.content,
+                                                    trigger: trigger)
+        UNUserNotificationCenter.current().add(newNotification) { (error) in
+            tableView.reloadData()
+        }
     }
 
     func trigger(_ issueDate: Date) -> UNCalendarNotificationTrigger {

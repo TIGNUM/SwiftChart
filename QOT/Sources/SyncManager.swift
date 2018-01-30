@@ -42,9 +42,13 @@ final class SyncManager {
         return queue
     }()
 
+    var userNotificationsManager: UserNotificationsManager?
+
     // MARK: - Init
 
-    init(networkManager: NetworkManager, syncRecordService: SyncRecordService, realmProvider: RealmProvider) {
+    init(networkManager: NetworkManager,
+         syncRecordService: SyncRecordService,
+         realmProvider: RealmProvider) {
         self.networkManager = networkManager
         self.syncRecordService = syncRecordService
         self.realmProvider = realmProvider
@@ -206,9 +210,9 @@ private extension SyncManager {
         if shouldDownload {
             createLocalNotificationsOperation = BlockOperation {
                 DispatchQueue.main.async {
-                    let notificationBuilder = LocalNotificationBuilder(realmProvider: self.realmProvider)
-                    notificationBuilder.networkManager = self.networkManager
-                    notificationBuilder.setup()
+                    if let manager = self.userNotificationsManager, shouldDownload == true {
+                        manager.scheduleNotifications()
+                    }
                 }
             }
         }

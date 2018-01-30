@@ -9,6 +9,7 @@
 import Foundation
 import RealmSwift
 import Freddy
+import UserNotifications
 
 extension RealmGuideItemLearn {
 
@@ -57,6 +58,25 @@ final class RealmGuideItemLearn: SyncableObject {
     }
 }
 
+extension RealmGuideItemLearn {
+
+    var guideItemID: GuideItemID {
+        return GuideItemID(item: self)
+    }
+
+    var localNotificationDate: Date? {
+        return reminderTime?.date(with: Date())
+    }
+
+    var notificationRequest: UNNotificationRequest? {
+        guard let triggerDate = localNotificationDate else { return nil }
+
+        let content =  UNMutableNotificationContent(title: title, body: body, soundName: sound, link: link)
+        let trigger = UNCalendarNotificationTrigger(localTriggerDate: triggerDate)
+        return UNNotificationRequest(identifier: guideItemID.stringRepresentation, content: content, trigger: trigger)
+    }
+}
+
 extension RealmGuideItemLearn: OneWaySyncableDown {
 
     static var endpoint: Endpoint {
@@ -85,9 +105,5 @@ extension RealmGuideItemLearn: OneWaySyncableDown {
         if let reminderTime = data.reminderTime {
             self.reminderTime = RealmGuideTime(reminderTime)
         }
-    }
-
-    var localNotificationDate: Date? {
-        return reminderTime?.date(with: Date())
     }
 }

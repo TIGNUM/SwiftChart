@@ -216,7 +216,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             let host = link.host,
             let scheme = URLScheme(rawValue: host), scheme != .dailyPrep,
             let id = try? GuideItemID(stringRepresentation: notificationID) else { return }
-        GuideWorker(services: AppDelegate.appState.services).setItemCompleted(id: id)
+        let guideWorker = GuideWorker(services: AppDelegate.appState.services)
+        guideWorker.setItemCompleted(id: id)
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,

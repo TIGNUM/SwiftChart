@@ -63,7 +63,9 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     }()
 
     lazy var syncManager: SyncManager = {
-        return SyncManager(networkManager: self.networkManager, syncRecordService: self.syncRecordService, realmProvider: self.realmProvider)
+        return SyncManager(networkManager: self.networkManager,
+                           syncRecordService: self.syncRecordService,
+                           realmProvider: self.realmProvider)
     }()
 
     private lazy var calendarImportManager: CalendarImportManger = {
@@ -145,6 +147,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
                 do {
                     let services = try Services()
                     self.services = services
+                    self.syncManager.userNotificationsManager = services.userNotificationsManager
 
                     // Setup AppState
                     AppCoordinator.appState.services = services
@@ -306,7 +309,9 @@ extension AppCoordinator {
         } catch {
             log(error.localizedDescription, level: .error)
         }
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.removeAllPendingNotificationRequests()
+        notificationCenter.removeAllDeliveredNotifications()
     }
 }
 

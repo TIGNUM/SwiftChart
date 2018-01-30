@@ -25,6 +25,7 @@ final class Services {
     let mediaService: MediaService
     let feedbackService: FeedbackService
     let guideService: GuideService
+    let userNotificationsManager: UserNotificationsManager
 
     init() throws {
         let realmProvider = RealmProvider()
@@ -42,5 +43,6 @@ final class Services {
         self.mediaService = MediaService(mainRealm: mainRealm, realmProvider: realmProvider)
         self.feedbackService = FeedbackService(mainRealm: mainRealm, realmProvider: realmProvider)
         self.guideService = GuideService(realm: mainRealm, realmProvider: realmProvider)
+        self.userNotificationsManager = UserNotificationsManager(realmProvider: realmProvider)
     }
 }

@@ -17,4 +17,16 @@ extension URL {
     var groupID: Int? {
         return queryStringParameter(param: "groupID").flatMap { Int($0) }
     }
+
+    func queryStringParameter(param: String) -> String? {
+        guard let url = URLComponents(string: absoluteString) else { return nil }
+        return url.queryItems?.first(where: { $0.name == param })?.value
+    }
+
+    func queryItems() -> [URLQueryItem] {
+        guard
+            let url = URLComponents(string: absoluteString),
+            let queryItems = url.queryItems else { return [] }
+        return queryItems
+    }
 }

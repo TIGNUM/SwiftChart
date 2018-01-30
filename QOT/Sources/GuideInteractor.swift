@@ -44,7 +44,6 @@ final class GuideInteractor: GuideInteractorInterface {
             item.status == .todo,
             let id = try? GuideItemID(stringRepresentation: item.identifier) else { return }
 
-        worker.cancelPendingNotificationForItem(item)
         worker.setItemCompleted(id: id)
     }
 }

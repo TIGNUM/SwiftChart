@@ -17,6 +17,11 @@ final class RealmGuideItem: SyncableObject {
     let notificationItems = LinkingObjects(fromType: RealmGuideItemNotification.self, property: "guideItem")
 
     let learnItems = LinkingObjects(fromType: RealmGuideItemLearn.self, property: "guideItem")
+
+    convenience init(dirty: Bool) {
+        self.init()
+        didUpdate()
+    }
 }
 
 // FIXME: Clean up duplication. This sync doesn't fit our existing methods so we implement again with duplication.

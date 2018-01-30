@@ -31,14 +31,12 @@ final class GuideWorker {
                 case .notification:
                     try service.setNotificationItemComplete(remoteID: id.remoteID, date: now)
                 }
+
+                self.services.userNotificationsManager.removeNotifications(withIdentifiers: [id.stringRepresentation])
             } catch {
                 log("Failed to set item completed: \(error)", level: .error)
             }
         }
-    }
-
-    func cancelPendingNotificationForItem(_ item: Guide.Item) {
-        // FIXME: IMPLEMENT !!!
     }
 
     func makeGuide(completion: (Guide.Model?) -> Void) {

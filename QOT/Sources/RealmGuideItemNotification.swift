@@ -9,6 +9,7 @@
 import Foundation
 import RealmSwift
 import Freddy
+import UserNotifications
 
 extension RealmGuideItemNotification {
 
@@ -49,15 +50,36 @@ final class RealmGuideItemNotification: SyncableObject {
 
     @objc dynamic var interviewResult: RealmInterviewResult?
 
-    @objc dynamic var guideItem: RealmGuideItem?  = RealmGuideItem()
+    @objc dynamic var localNofiticationScheduled: Bool = false
+
+    /*
+     We init this as dirty to force an update after first creation. We do this so that the servers serverPush value is
+     updated after a logout etc.
+    */
+    @objc dynamic var guideItem: RealmGuideItem? = RealmGuideItem(dirty: true)
+
+    func didUpdate() {
+        guideItem?.didUpdate()
+    }
+}
+
+extension RealmGuideItemNotification {
+
+    var guideItemID: GuideItemID {
+        return GuideItemID(item: self)
+    }
 
     var localNotificationDate: Date? {
         guard let issueDate = issueDate, let reminderTime = reminderTime else { return nil }
         return reminderTime.date(with: issueDate)
     }
 
-    func didUpdate() {
-        guideItem?.didUpdate()
+    var notificationRequest: UNNotificationRequest? {
+        guard let triggerDate = localNotificationDate else { return nil }
+
+        let content =  UNMutableNotificationContent(title: title, body: body, soundName: sound, link: link)
+        let trigger = UNCalendarNotificationTrigger(localTriggerDate: triggerDate)
+        return UNNotificationRequest(identifier: guideItemID.stringRepresentation, content: content, trigger: trigger)
     }
 }
 

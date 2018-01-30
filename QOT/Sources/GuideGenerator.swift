@@ -40,11 +40,13 @@ struct GuideGenerator {
     let localCalendar: Calendar
     let maxDays: Int
     let factory: GuideItemFactoryProtocol
+    let guideItemBlockDeterminer: GuideLearnItemBlockDeterminer
 
     init(localCalendar: Calendar = Calendar.current, maxDays: Int, factory: GuideItemFactoryProtocol) {
         self.localCalendar = localCalendar
         self.maxDays = maxDays
         self.factory = factory
+        self.guideItemBlockDeterminer = GuideLearnItemBlockDeterminer(localCalendar: localCalendar)
     }
 
     func generateGuide(notificationItems: [GuideNotificationItem],
@@ -59,9 +61,9 @@ struct GuideGenerator {
 
         addNotificationItems(from: notificationItems, to: &days, now: now, minDate: minDate)
         addCompleteLearnItems(from: featureItems, to: &days, minDate: minDate, now: now)
-        addIncompleteLearnItems(from: featureItems, to: &days, todayLocalStartOfDay: todaylocalStartOfDay)
+        addIncompleteLearnItems(from: featureItems, to: &days, now: now, todayLocalStartOfDay: todaylocalStartOfDay)
         addCompleteLearnItems(from: strategyItems, to: &days, minDate: minDate, now: now)
-        addIncompleteLearnItems(from: strategyItems, to: &days, todayLocalStartOfDay: todaylocalStartOfDay)
+        addIncompleteLearnItems(from: strategyItems, to: &days, now: now, todayLocalStartOfDay: todaylocalStartOfDay)
 
         let guideDays: [Date: Guide.Day] = days.mapKeyValues { ($0, guideDayBySortingItems(from: $1)) }
         let sortedDays = guideDays.sorted { $0.key > $1.key }.map { $0.value }
@@ -146,9 +148,9 @@ private extension GuideGenerator {
     */
     func addIncompleteLearnItems(from learnItems: [GuideLearnItem],
                                          to days: inout [Date: Day],
+                                         now: Date,
                                          todayLocalStartOfDay: Date) {
-        guard let block = todaysBlockIndex(for: learnItems,
-                                           todayLocalStartOfDay: todayLocalStartOfDay) else { return }
+        guard let block = guideItemBlockDeterminer.todaysBlockIndex(for: learnItems, now: now) else { return }
 
         let items = learnItems.filter {
             $0.block == block && $0.completedAt == nil && $0.displayAt != nil
@@ -156,27 +158,6 @@ private extension GuideGenerator {
         for item in items {
             days.appendItem(item, localStartOfDay: todayLocalStartOfDay, factory: factory)
         }
-    }
-
-    /**
-     Returns the lowest block of an item that is completed today or not completed
-    */
-    func todaysBlockIndex(for learnItems: [GuideLearnItem], todayLocalStartOfDay: Date) -> Int? {
-        var candidate: Int?
-        for item in learnItems {
-            if let existingCandidate = candidate, existingCandidate <= item.block {
-                continue
-            }
-            if let completedAt =  item.completedAt {
-                let localCompletedAt = localCalendar.startOfDay(for: completedAt)
-                if localCompletedAt == todayLocalStartOfDay {
-                    candidate = item.block
-                }
-            } else {
-                candidate = item.block
-            }
-        }
-        return candidate
     }
 
     /**
