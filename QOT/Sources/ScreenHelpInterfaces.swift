@@ -14,7 +14,7 @@ protocol ScreenHelpRouterInterface {
 }
 
 protocol ScreenHelpPresenterInterface {
-    func load(_ item: ScreenHelp.Plist.Item)
+    func load(_ helpItem: ScreenHelp.Item?)
 }
 
 protocol ScreenHelpInteractorInterface: Interactor {
@@ -25,6 +25,6 @@ protocol ScreenHelpInteractorInterface: Interactor {
 protocol ScreenHelpViewControllerInterface: class {
     var interactor: ScreenHelpInteractorInterface! { get set }
 
-    func updateViewModel(_ viewModel: ScreenHelp.ViewModel)
+    func updateHelpItem(_ helpItem: ScreenHelp.Item?)
     func streamVideo(videoURL: URL)
 }

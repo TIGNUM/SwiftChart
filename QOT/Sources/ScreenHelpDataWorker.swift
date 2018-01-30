@@ -8,34 +8,41 @@
 
 import Foundation
 
-class ScreenHelpDataWorker {
+final class ScreenHelpDataWorker {
+
     enum DataError: Error {
         case badURL
-        case missingKey
+        case missingData
     }
 
-    private let plistName: String
+    let services: Services
 
-    init(plistName: String) {
-        self.plistName = plistName
+    init(services: Services) {
+        self.services = services
     }
 
-    func getItem(for key: ScreenHelp.Plist.Key) throws -> ScreenHelp.Plist.Item {
-        guard let plistURL = Bundle.main.url(forResource: plistName, withExtension: "plist") else {
-            throw DataError.badURL
+    func getItem(for section: ScreenHelp) throws -> ScreenHelp.Item? {
+        guard let helpContent = services.contentService.contentCollection(id: section.rawValue) else {
+            throw DataError.missingData
         }
-        let plist = try readPlist(at: plistURL)
-        guard let item = plist[key.rawValue] else {
-            throw DataError.missingKey
+
+        let helpItems = helpContent.items.sorted(by: [.sortOrder()])
+        guard
+            let headline = (helpItems.filter { $0.format == ContentItemTextStyle.h3.rawValue }).first,
+            let video = (helpItems.filter { $0.format == "video" }).first,
+            let message = (helpItems.filter { $0.format == ContentItemTextStyle.paragraph.rawValue }).first,
+            let headlineValue = headline.valueText,
+            let imageURLStgring = video.valueImageURL,
+            let imageURL = URL(string: imageURLStgring),
+            let videoURLString = video.valueMediaURL,
+            let videoURL = URL(string: videoURLString),
+            let messageValue = message.valueText else {
+                throw DataError.missingData
         }
-        return item
-    }
 
-    // MARK: - private
-
-    private func readPlist(at url: URL) throws -> [String: ScreenHelp.Plist.Item] {
-        let data = try Data(contentsOf: url)
-        let decoder = PropertyListDecoder()
-        return try decoder.decode([String: ScreenHelp.Plist.Item].self, from: data)
+        return ScreenHelp.Item(title: headlineValue,
+                               imageURL: imageURL,
+                               videoURL: videoURL,
+                               message: messageValue)
     }
 }

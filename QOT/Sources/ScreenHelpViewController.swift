@@ -9,17 +9,16 @@
 import UIKit
 import Kingfisher
 
-class ScreenHelpViewController: UIViewController {
+final class ScreenHelpViewController: UIViewController {
+
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var minimiseButton: UIBarButtonItem!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
-
     var interactor: ScreenHelpInteractorInterface!
-
-    fileprivate var viewModel: ScreenHelp.ViewModel!
+    var helpItem: ScreenHelp.Item?
 
     init(configurator: Configurator<ScreenHelpViewController>) {
         super.init(nibName: nil, bundle: nil)
@@ -46,14 +45,14 @@ class ScreenHelpViewController: UIViewController {
     }
 
     private func reload() {
-        navigationBar.topItem?.title = viewModel.title
-        imageView.kf.setImage(with: viewModel.imageURL)
-        messageLabel.attributedText = NSAttributedString(
-            string: viewModel.message,
-            letterSpacing: 1.4,
-            font: UIFont.bentonBookFont(ofSize: 15),
-            lineSpacing: 14,
-            textColor: .white
+        guard let helpItem = helpItem else { return }
+        navigationBar.topItem?.title = helpItem.title.uppercased()
+        imageView.kf.setImage(with: helpItem.imageURL)
+        messageLabel.attributedText = NSAttributedString(string: helpItem.message,
+                                                         letterSpacing: 1.4,
+                                                         font: UIFont.bentonBookFont(ofSize: 15),
+                                                         lineSpacing: 14,
+                                                         textColor: .white
         )
     }
 
@@ -64,9 +63,7 @@ class ScreenHelpViewController: UIViewController {
     }
 
     @IBAction private func imageViewTapped(_ sender: UITapGestureRecognizer) {
-        guard let url = viewModel.videoURL else {
-            return
-        }
+        guard let url = helpItem?.videoURL else { return }
         interactor.didTapVideo(with: url)
     }
 }
@@ -74,8 +71,9 @@ class ScreenHelpViewController: UIViewController {
 // MARK: - ScreenHelpViewControllerInterface
 
 extension ScreenHelpViewController: ScreenHelpViewControllerInterface {
-    func updateViewModel(_ viewModel: ScreenHelp.ViewModel) {
-        self.viewModel = viewModel
+
+    func updateHelpItem(_ helpItem: ScreenHelp.Item?) {
+        self.helpItem = helpItem
         reload()
     }
 }

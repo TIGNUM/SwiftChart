@@ -9,14 +9,15 @@
 import Foundation
 
 class ScreenHelpConfigurator: AppStateAccess {
-    static func makeWith(key: ScreenHelp.Plist.Key) -> Configurator<ScreenHelpViewController> {
+    static func make(_ screenHelp: ScreenHelp) -> Configurator<ScreenHelpViewController> {
         return { viewController in
             let router = ScreenHelpRouter(windowManager: appState.windowManager, viewController: viewController)
             let presenter = ScreenHelpPresenter(viewController: viewController)
-            let dataWorker = ScreenHelpDataWorker(plistName: ScreenHelp.Plist.name)
-            let interactor = ScreenHelpInteractor(
-                presenter: presenter, router: router, dataWorker: dataWorker, plistKey: key
-            )
+            let dataWorker = ScreenHelpDataWorker(services: appState.services)
+            let interactor = ScreenHelpInteractor(presenter: presenter,
+                                                  router: router,
+                                                  dataWorker: dataWorker,
+                                                  screenHelp: screenHelp)
             viewController.interactor = interactor
         }
     }

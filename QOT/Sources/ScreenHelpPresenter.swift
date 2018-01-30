@@ -19,12 +19,7 @@ class ScreenHelpPresenter {
 // MARK: - ScreenHelpPresenterInterface
 
 extension ScreenHelpPresenter: ScreenHelpPresenterInterface {
-    func load(_ item: ScreenHelp.Plist.Item) {
-        viewController?.updateViewModel(ScreenHelp.ViewModel(
-            title: item.title.uppercased(),
-            imageURL: URL(string: item.imageURL),
-            videoURL: URL(string: item.videoURL),
-            message: item.message
-        ))
+    func load(_ helpItem: ScreenHelp.Item?) {
+        viewController?.updateHelpItem(helpItem)
     }
 }

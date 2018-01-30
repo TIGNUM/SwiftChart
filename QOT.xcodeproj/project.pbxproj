@@ -100,7 +100,6 @@
 		7F6567441FE28FBC00A6CB7F /* Clean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6567431FE28FBC00A6CB7F /* Clean.swift */; };
 		7F6567461FE297ED00A6CB7F /* ScreenHelpInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6567451FE297ED00A6CB7F /* ScreenHelpInterfaces.swift */; };
 		7F6738AF1FE2BB70004DDAE1 /* ScreenHelpDataWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6738AE1FE2BB70004DDAE1 /* ScreenHelpDataWorker.swift */; };
-		7F6738B11FE2C027004DDAE1 /* ScreenHelp.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F6738B01FE2C027004DDAE1 /* ScreenHelp.plist */; };
 		7F691C551F0D19AE00E2C180 /* MyToBeVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F691C541F0D19AE00E2C180 /* MyToBeVision.swift */; };
 		7F691C5E1F0D30C800E2C180 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F691C5D1F0D30C800E2C180 /* PlaceholderTextView.swift */; };
 		7F708EA01FBAFAF8008A3856 /* FullScreenLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F708E9F1FBAFAF8008A3856 /* FullScreenLoadable.swift */; };
@@ -640,7 +639,6 @@
 		7F6567431FE28FBC00A6CB7F /* Clean.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clean.swift; sourceTree = "<group>"; };
 		7F6567451FE297ED00A6CB7F /* ScreenHelpInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenHelpInterfaces.swift; sourceTree = "<group>"; };
 		7F6738AE1FE2BB70004DDAE1 /* ScreenHelpDataWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenHelpDataWorker.swift; sourceTree = "<group>"; };
-		7F6738B01FE2C027004DDAE1 /* ScreenHelp.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ScreenHelp.plist; sourceTree = "<group>"; };
 		7F691C541F0D19AE00E2C180 /* MyToBeVision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToBeVision.swift; sourceTree = "<group>"; };
 		7F691C5D1F0D30C800E2C180 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		7F708E9F1FBAFAF8008A3856 /* FullScreenLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenLoadable.swift; sourceTree = "<group>"; };
@@ -1108,6 +1106,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		361DB158201F2CF000E8FD22 /* PLists */ = {
+			isa = PBXGroup;
+			children = (
+				CC38B11F1F29EDA900C2BB87 /* AirshipConfig.plist */,
+				CBB543811FBC816600AFD67B /* bundled_media.plist */,
+				CBB237FB1E6FFF1200AB5AEF /* Info.plist */,
+				CB9442371FDE9D7600E2B122 /* SlideShow.plist */,
+			);
+			name = PLists;
+			sourceTree = "<group>";
+		};
 		363178DD1FDEDC9B00833958 /* Guide */ = {
 			isa = PBXGroup;
 			children = (
@@ -2426,20 +2435,16 @@
 		CBD791571E72F10E0006C590 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				CC38B11F1F29EDA900C2BB87 /* AirshipConfig.plist */,
+				7F99ABB01F3DF38E009CA587 /* Database */,
+				CB8C34551EAF7F200003AB65 /* styles.css */,
+				CCF0F4C51ECDD0DA00E8D9C1 /* contentCategory.json */,
+				CC6251DA1EE00DD800C6F546 /* Localized.strings */,
 				CBC5A5701F9FA01D007B9A5B /* Animations.xcassets */,
 				CBB237F61E6FFF1200AB5AEF /* Assets.xcassets */,
 				CB78D3361F9F674A0068A54A /* Bundled Media */,
-				CBB543811FBC816600AFD67B /* bundled_media.plist */,
-				CCF0F4C51ECDD0DA00E8D9C1 /* contentCategory.json */,
-				7F99ABB01F3DF38E009CA587 /* Database */,
 				CBB4DD451EE0908E0071494A /* Fonts */,
-				CBB237FB1E6FFF1200AB5AEF /* Info.plist */,
-				7F6738B01FE2C027004DDAE1 /* ScreenHelp.plist */,
-				CC6251DA1EE00DD800C6F546 /* Localized.strings */,
+				361DB158201F2CF000E8FD22 /* PLists */,
 				CC7E80B81F614EEF006F9515 /* Sounds */,
-				CB8C34551EAF7F200003AB65 /* styles.css */,
-				CB9442371FDE9D7600E2B122 /* SlideShow.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -2716,7 +2721,6 @@
 				CC7D21B11EFC1348007A062E /* WeeklyChoicesCell.xib in Resources */,
 				CCAE22D01F6BD7F80017C9EF /* ChartCell.xib in Resources */,
 				CC8A2EDE1F0CF98B002585CE /* BentonSansCond-Light.otf in Resources */,
-				7F6738B11FE2C027004DDAE1 /* ScreenHelp.plist in Resources */,
 				CC38B1201F29EDA900C2BB87 /* AirshipConfig.plist in Resources */,
 				CC8813EC1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib in Resources */,
 				8514A48E1EE966C30086C70E /* PrepareContentMainHeaderTableViewCell.xib in Resources */,

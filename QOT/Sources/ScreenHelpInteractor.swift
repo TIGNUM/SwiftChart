@@ -8,20 +8,20 @@
 
 import Foundation
 
-class ScreenHelpInteractor {
+final class ScreenHelpInteractor {
     private let presenter: ScreenHelpPresenterInterface
     private let router: ScreenHelpRouterInterface
     private let dataWorker: ScreenHelpDataWorker
-    private let plistKey: ScreenHelp.Plist.Key
+    private let screenHelp: ScreenHelp
 
     init(presenter: ScreenHelpPresenterInterface,
          router: ScreenHelpRouterInterface,
          dataWorker: ScreenHelpDataWorker,
-         plistKey: ScreenHelp.Plist.Key) {
+         screenHelp: ScreenHelp) {
         self.presenter = presenter
         self.router = router
         self.dataWorker = dataWorker
-        self.plistKey = plistKey
+        self.screenHelp = screenHelp
     }
 }
 
@@ -30,7 +30,7 @@ class ScreenHelpInteractor {
 extension ScreenHelpInteractor: ScreenHelpInteractorInterface {
     func viewDidLoad() {
         do {
-            presenter.load(try dataWorker.getItem(for: plistKey))
+            presenter.load(try dataWorker.getItem(for: screenHelp))
         } catch {
             assertionFailure(error.localizedDescription)
         }

@@ -221,8 +221,8 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         */
     }
 
-    private func showHelp(_ key: ScreenHelp.Plist.Key) {
-        let viewController = ScreenHelpViewController(configurator: ScreenHelpConfigurator.makeWith(key: key))
+    private func showHelp(_ section: ScreenHelp) {
+        let viewController = ScreenHelpViewController(configurator: ScreenHelpConfigurator.make(section))
         windowManager.showPriority(viewController, animated: true, completion: nil)
     }
 }
