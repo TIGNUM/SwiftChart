@@ -21,7 +21,7 @@ final class ScreenHelpDataWorker {
         self.services = services
     }
 
-    func getItem(for section: ScreenHelp) throws -> ScreenHelp.Item? {
+    func getItem(for section: ScreenHelp.Category) throws -> ScreenHelp.Item? {
         guard let helpContent = services.contentService.contentCollection(id: section.rawValue) else {
             throw DataError.missingData
         }

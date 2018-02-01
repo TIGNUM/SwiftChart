@@ -24,12 +24,12 @@ final class SlideShowInteractor {
 extension SlideShowInteractor: SlideShowInteractorInterface {
 
     func viewDidLoad() {
-        presenter.loadBasicSlides(slides: worker.basicSlides())
+        presenter.loadBasicSlides(slides: worker.basicSlides)
     }
 
     func didTapLoadMore() {
-        var slides = worker.basicSlides()
-        slides.append(contentsOf: worker.extendedSlides())
+        var slides = worker.basicSlides
+        slides.append(contentsOf: worker.extendedSlides)
         presenter.loadAllSlides(slides: slides)
     }
 

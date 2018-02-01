@@ -268,7 +268,6 @@
 		CB9442321FD97F7D00E2B122 /* SlideShowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9442311FD97F7D00E2B122 /* SlideShowPresenter.swift */; };
 		CB9442341FD97F8D00E2B122 /* SlideShowInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9442331FD97F8D00E2B122 /* SlideShowInteractor.swift */; };
 		CB9442361FD97FAE00E2B122 /* SlideShowWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9442351FD97FAE00E2B122 /* SlideShowWorker.swift */; };
-		CB9442381FDE9D7700E2B122 /* SlideShow.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB9442371FDE9D7600E2B122 /* SlideShow.plist */; };
 		CB94423D1FDFE55E00E2B122 /* SlideShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB94423B1FDFE55E00E2B122 /* SlideShowViewController.swift */; };
 		CB94423E1FDFE55E00E2B122 /* SlideShowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB94423C1FDFE55E00E2B122 /* SlideShowViewController.xib */; };
 		CB96B7E01FED21A400ED8015 /* SlideShowTitleOnlySlideCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB96B7DE1FED21A300ED8015 /* SlideShowTitleOnlySlideCell.swift */; };
@@ -817,7 +816,6 @@
 		CB9442311FD97F7D00E2B122 /* SlideShowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideShowPresenter.swift; sourceTree = "<group>"; };
 		CB9442331FD97F8D00E2B122 /* SlideShowInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideShowInteractor.swift; sourceTree = "<group>"; };
 		CB9442351FD97FAE00E2B122 /* SlideShowWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideShowWorker.swift; sourceTree = "<group>"; };
-		CB9442371FDE9D7600E2B122 /* SlideShow.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SlideShow.plist; sourceTree = "<group>"; };
 		CB94423B1FDFE55E00E2B122 /* SlideShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideShowViewController.swift; sourceTree = "<group>"; };
 		CB94423C1FDFE55E00E2B122 /* SlideShowViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SlideShowViewController.xib; sourceTree = "<group>"; };
 		CB96B7DE1FED21A300ED8015 /* SlideShowTitleOnlySlideCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideShowTitleOnlySlideCell.swift; sourceTree = "<group>"; };
@@ -1118,7 +1116,6 @@
 				CC38B11F1F29EDA900C2BB87 /* AirshipConfig.plist */,
 				CBB543811FBC816600AFD67B /* bundled_media.plist */,
 				CBB237FB1E6FFF1200AB5AEF /* Info.plist */,
-				CB9442371FDE9D7600E2B122 /* SlideShow.plist */,
 			);
 			name = PLists;
 			sourceTree = "<group>";
@@ -2762,7 +2759,6 @@
 				CBC5A57A1FA08071007B9A5B /* 15_min_power_nap_no_voice.m4a in Resources */,
 				CC59A88D1F41C0E100D22353 /* LibraryCategoryCollectionViewCell.xib in Resources */,
 				CBC5A5791FA0806E007B9A5B /* 90_min_power_nap.m4a in Resources */,
-				CB9442381FDE9D7700E2B122 /* SlideShow.plist in Resources */,
 				0BEE8AC01EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib in Resources */,
 				7F0F03041F14CE2300007D50 /* CollapsableCell.xib in Resources */,
 				CBC5A5781FA0806B007B9A5B /* 15_min_power_nap_with_voice.m4a in Resources */,

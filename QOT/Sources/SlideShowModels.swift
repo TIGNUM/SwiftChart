@@ -10,9 +10,14 @@ import UIKit
 
 enum SlideShow {
 
+    enum Category: Int {
+        case basic = 100051
+        case extended = 100052
+    }
+
     enum Page {
-        case titleSlide(title: String, imageName: String)
-        case titleSubtitleSlide(title: String, subtitle: String, imageName: String)
+        case titleSlide(title: String, imageURL: URL)
+        case titleSubtitleSlide(title: String, subtitle: String, imageURL: URL)
         case morePrompt
         case completePrompt
     }
@@ -20,7 +25,7 @@ enum SlideShow {
     struct Slide: Codable {
         let title: String
         let subtitle: String?
-        let imageName: String
+        let imageURL: URL
     }
 }
 

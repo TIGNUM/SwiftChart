@@ -20,7 +20,7 @@ final class SlideShowTitleSubtitleSlideCell: UICollectionViewCell, Dequeueable {
         containerView.layer.cornerRadius = 8
     }
 
-    func configure(title: String, subtitle: String, imageName: String) {
+    func configure(title: String, subtitle: String, imageURL: URL) {
         titleLabel.attributedText = NSAttributedString(string: title.uppercased(),
                                                        letterSpacing: 1,
                                                        font: .bentonRegularFont(ofSize: 16),
@@ -35,6 +35,6 @@ final class SlideShowTitleSubtitleSlideCell: UICollectionViewCell, Dequeueable {
                                                           textColor: .white,
                                                           alignment: .center,
                                                           lineBreakMode: .byWordWrapping)
-        imageView.image = UIImage(named: imageName)
+        imageView.kf.setImage(with: imageURL)
     }
 }

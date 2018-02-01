@@ -36,9 +36,9 @@ private extension SlideShow.Page {
 
     init(slide: SlideShow.Slide) {
         if let subtitle = slide.subtitle {
-            self = .titleSubtitleSlide(title: slide.title, subtitle: subtitle, imageName: slide.imageName)
+            self = .titleSubtitleSlide(title: slide.title, subtitle: subtitle, imageURL: slide.imageURL)
         } else {
-            self = .titleSlide(title: slide.title, imageName: slide.imageName)
+            self = .titleSlide(title: slide.title, imageURL: slide.imageURL)
         }
     }
 }

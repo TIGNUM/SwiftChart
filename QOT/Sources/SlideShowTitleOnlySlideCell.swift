@@ -19,7 +19,7 @@ final class SlideShowTitleOnlySlideCell: UICollectionViewCell, Dequeueable {
         containerView.layer.cornerRadius = 8
     }
 
-    func configure(title: String, imageName: String) {
+    func configure(title: String, imageURL: URL) {
         titleLabel.attributedText = NSAttributedString(string: title.uppercased(),
                                                        letterSpacing: 1,
                                                        font: .simpleFont(ofSize: 16),
@@ -27,6 +27,6 @@ final class SlideShowTitleOnlySlideCell: UICollectionViewCell, Dequeueable {
                                                        textColor: .white,
                                                        alignment: .center,
                                                        lineBreakMode: .byWordWrapping)
-        imageView.image = UIImage(named: imageName)
+        imageView.kf.setImage(with: imageURL)
     }
 }

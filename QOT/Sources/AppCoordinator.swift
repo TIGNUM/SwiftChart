@@ -108,19 +108,34 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         pageTracker.start()
         observeTimeZoneChange()
 
+        let dispatchGroup = DispatchGroup()
         let viewController = AnimatedLaunchScreenViewController()
+        dispatchGroup.enter()
         windowManager.show(viewController, animated: false, completion: {
             viewController.fadeInLogo()
             viewController.startAnimatingImages { [unowned viewController] in
                 viewController.fadeOutLogo {
-                    if self.credentialsManager.isCredentialValid {
-                        self.showApp(loginViewController: nil)
-                    } else {
-                        self.showLogin()
-                    }
+                    dispatchGroup.leave()
                 }
             }
         })
+
+        dispatchGroup.enter()
+        var setupError: Error?
+        setupApp { (error) in
+            setupError = error
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.notify(queue: .main) {
+            if let error = setupError {
+                self.handleSetupError(error: error)
+            } else if self.credentialsManager.isCredentialValid {
+                self.showApp(loginViewController: nil)
+            } else {
+                self.showLogin()
+            }
+        }
     }
 
     func restart() {
@@ -130,61 +145,73 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         showLogin()
     }
 
-    func showApp(loginViewController: LoginViewController?) {
-        func handleError(error: Error) {
-            log("Error setting up database: \(error)", level: .error)
-            Crashlytics.sharedInstance().recordError(error)
-            let message = "There was a problem initializing the app's data. Please restart the app and try again"
-            self.showMajorAlert(type: .custom(title: "Error", message: message), handler: {
-                exit(0)
-            }, handlerDestructive: nil)
-        }
-
+    private func setupApp(completion: @escaping (Error?) -> Void) {
         DatabaseManager.shared.onSetupComplete { (error) in
             if let error = error {
-                handleError(error: error)
+                completion(error)
             } else {
                 do {
                     let services = try Services()
                     self.services = services
                     self.syncManager.userNotificationsManager = services.userNotificationsManager
 
-                    // Setup AppState
                     AppCoordinator.appState.services = services
-
-                    // Create missing database objects
-                    if services.userService.myToBeVision() == nil {
-                        let realm = try RealmProvider().realm()
-                        try realm.write {
-                            realm.add(MyToBeVision())
-                        }
-                    }
-
                     QOTUsageTimer.sharedInstance.userService = services.userService
-
-                    self.syncManager.start()
-                    guard OnboardingCoordinator.isOnboardingComplete == true else {
-                        self.showOnboarding()
-                        return
-                    }
-
-                    self.registerRemoteNotifications()
-                    self.calendarImportManager.importEvents()
-                    if self.isRestart == false {
-                        self.startTabBarCoordinator(services: services, permissionsManager: self.permissionsManager)
-                    } else {
-                        self.isRestart = false
-                        self.windowManager.rootViewController(atLevel: .normal)?.dismiss(animated: true, completion: nil)
-                    }
-                    self.canProcessRemoteNotifications = true
-                    self.canProcessLocalNotifications = true
-                    self.remoteNotificationHandler.processOutstandingNotifications()
-                    AppDelegate.current.processOutstandingNotifications()
+                    completion(nil)
                 } catch {
-                    handleError(error: error)
+                    completion(error)
                 }
-
             }
+        }
+    }
+
+    private func handleSetupError(error: Error) {
+        log("Error setting up database: \(error)", level: .error)
+        Crashlytics.sharedInstance().recordError(error)
+        let message = "There was a problem initializing the app's data. Please restart the app and try again"
+        self.showMajorAlert(type: .custom(title: "Error", message: message), handler: {
+            exit(0)
+        }, handlerDestructive: nil)
+    }
+
+    func showApp(loginViewController: LoginViewController?) {
+        self.syncManager.start()
+        guard OnboardingCoordinator.isOnboardingComplete == true else {
+            self.showOnboarding()
+            return
+        }
+
+        self.registerRemoteNotifications()
+        self.calendarImportManager.importEvents()
+        if self.isRestart == false {
+            self.startTabBarCoordinator(services: services!, permissionsManager: self.permissionsManager)
+        } else {
+            self.isRestart = false
+            self.windowManager.rootViewController(atLevel: .normal)?.dismiss(animated: true, completion: nil)
+        }
+        self.canProcessRemoteNotifications = true
+        self.canProcessLocalNotifications = true
+        self.remoteNotificationHandler.processOutstandingNotifications()
+        AppDelegate.current.processOutstandingNotifications()
+    }
+
+    private func addMissingRealmObjectsAfterLogin() {
+        guard let services = services else {
+            let error = SimpleError(localizedDescription: "Missing services after login")
+            log(error, level: .error)
+            handleSetupError(error: error)
+            return
+        }
+
+        do {
+            if services.userService.myToBeVision() == nil {
+                let realm = try RealmProvider().realm()
+                try realm.write {
+                    realm.add(MyToBeVision())
+                }
+            }
+        } catch {
+            handleSetupError(error: error)
         }
     }
 
@@ -362,6 +389,7 @@ extension AppCoordinator: CalendarImportMangerDelegate {
 extension AppCoordinator: LoginCoordinatorDelegate {
 
     func loginCoordinatorDidLogin(_ coordinator: LoginCoordinator, loginViewController: LoginViewController?) {
+        addMissingRealmObjectsAfterLogin()
         removeChild(child: coordinator)
         QOTUsageTimer.sharedInstance.startTimer()
         if UserDefault.hasShownOnbordingSlideShowInAppBuild.stringValue == nil {

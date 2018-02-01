@@ -72,13 +72,13 @@ extension SlideShowViewController: UICollectionViewDelegateFlowLayout, UICollect
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let page = pages[indexPath.item]
         switch page {
-        case .titleSubtitleSlide(let title, let subtitle, let imageName):
+        case .titleSubtitleSlide(let title, let subtitle, let imageURL):
             let cell: SlideShowTitleSubtitleSlideCell = collectionView.dequeueCell(for: indexPath)
-            cell.configure(title: title, subtitle: subtitle, imageName: imageName)
+            cell.configure(title: title, subtitle: subtitle, imageURL: imageURL)
             return cell
-        case .titleSlide(let title, let imageName):
+        case .titleSlide(let title, let imageURL):
             let cell: SlideShowTitleOnlySlideCell = collectionView.dequeueCell(for: indexPath)
-            cell.configure(title: title, imageName: imageName)
+            cell.configure(title: title, imageURL: imageURL)
             return cell
         case .morePrompt:
             let cell: SlideShowMorePromptCell = collectionView.dequeueCell(for: indexPath)

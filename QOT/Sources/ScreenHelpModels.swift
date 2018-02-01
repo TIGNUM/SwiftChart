@@ -8,11 +8,14 @@
 
 import UIKit
 
-enum ScreenHelp: Int {
-    case guide = 100748
-    case learn = 100745
-    case me = 100746
-    case prepare = 100747
+enum ScreenHelp {
+
+    enum Category: Int {
+        case guide = 100748
+        case learn = 100745
+        case me = 100746
+        case prepare = 100747
+    }
 
     struct Item {
         let title: String

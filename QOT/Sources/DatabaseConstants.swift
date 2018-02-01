@@ -20,6 +20,9 @@ enum Database {
         case onBoarding = "ON_BOARDING"
         case prepare = "PREPARE"
         case faq = "FAQ"
+        case help = "HELP"
+        case slideShowShort = "SLIDESHOW_SHORT"
+        case slideShowLong = "SLIDESHOW_LONG"
 
         var value: String {
             return rawValue

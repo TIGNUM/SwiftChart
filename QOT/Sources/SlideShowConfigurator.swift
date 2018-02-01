@@ -12,7 +12,7 @@ final class SlideShowConfigurator: AppStateAccess {
 
     static func make() -> (SlideShowViewController) -> Void {
         return { (viewController) in
-            let worker = SlideShowWorker(plistURL: Bundle.main.url(forResource: "SlideShow", withExtension: "plist")!)
+            let worker = SlideShowWorker(services: appState.services)
             let router = SlideShowRouter(appCoordinator: appState.appCoordinator)
             let presenter = SlideShowPresenter(viewController: viewController)
             let interactor = SlideShowInteractor(worker: worker, presenter: presenter, router: router)

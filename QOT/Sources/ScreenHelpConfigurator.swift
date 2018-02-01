@@ -9,7 +9,7 @@
 import Foundation
 
 class ScreenHelpConfigurator: AppStateAccess {
-    static func make(_ screenHelp: ScreenHelp) -> Configurator<ScreenHelpViewController> {
+    static func make(_ screenHelp: ScreenHelp.Category) -> Configurator<ScreenHelpViewController> {
         return { viewController in
             let router = ScreenHelpRouter(windowManager: appState.windowManager, viewController: viewController)
             let presenter = ScreenHelpPresenter(viewController: viewController)
