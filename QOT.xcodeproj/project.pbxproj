@@ -188,7 +188,6 @@
 		85C3D6BC1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C3D6BB1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib */; };
 		85C3D6BE1F0B920E00E0CBFE /* PrepareEventTableViewFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3D6BD1F0B920E00E0CBFE /* PrepareEventTableViewFooterView.swift */; };
 		85DC6F891EF40B36004F4B4D /* TravelTripsChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DC6F881EF40B36004F4B4D /* TravelTripsChart.swift */; };
-		85E0A69F1EE6A5E40076169D /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E0A69E1EE6A5E40076169D /* NetworkManagerTests.swift */; };
 		85E1F1C71F1F94C7003FA349 /* LearnListAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E1F1C61F1F94C7003FA349 /* LearnListAnimation.swift */; };
 		A29C0C8591D20568D6B8EB3E /* Pods_QOTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */; };
 		CB026FC61F69681300FC5076 /* APNSDeviceTokenRegistrar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrar.swift */; };
@@ -236,6 +235,8 @@
 		CB48814B1EF7B1EA00389C88 /* Data+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB48814A1EF7B1EA00389C88 /* Data+Convenience.swift */; };
 		CB5134121FAB721000FBDD66 /* ContentRead.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5134111FAB721000FBDD66 /* ContentRead.swift */; };
 		CB5134141FAB735E00FBDD66 /* ContentReadIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5134131FAB735E00FBDD66 /* ContentReadIntermediary.swift */; };
+		CB53F0D820235A9C007C624B /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB53F0D720235A9C007C624B /* Atomic.swift */; };
+		CB53F0DA20237507007C624B /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB53F0D920237507007C624B /* Keychain.swift */; };
 		CB55A2DF1E9FDF0A00D721CE /* SettingsMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB55A2DE1E9FDF0A00D721CE /* SettingsMenuViewController.swift */; };
 		CB55A2E11E9FDF1D00D721CE /* SettingsMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB55A2E01E9FDF1D00D721CE /* SettingsMenuViewModel.swift */; };
 		CB58917B1F7B95B200D63C5E /* ChatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5891791F7B95B200D63C5E /* ChatViewCell.swift */; };
@@ -318,6 +319,7 @@
 		CBB98B00201F720F00B8EAD7 /* UNNotificationRequest+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB98AFF201F720F00B8EAD7 /* UNNotificationRequest+Convenience.swift */; };
 		CBB98B04201F850100B8EAD7 /* UNCalendarNotificationTrigger+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB98B03201F850100B8EAD7 /* UNCalendarNotificationTrigger+Convenience.swift */; };
 		CBB98B06201F869700B8EAD7 /* UNMutableNotificationContent+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB98B05201F869700B8EAD7 /* UNMutableNotificationContent+Convenience.swift */; };
+		CBB98B082020A4AF00B8EAD7 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB98B072020A4AF00B8EAD7 /* Authenticator.swift */; };
 		CBBC00FC1FC5B10600C544D8 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBC00FB1FC5B10600C544D8 /* Filters.swift */; };
 		CBC191131F603055009E483B /* URL+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC191121F603055009E483B /* URL+Convenience.swift */; };
 		CBC191151F62918B009E483B /* AppDelegate+Buglife.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC191141F62918B009E483B /* AppDelegate+Buglife.swift */; };
@@ -729,7 +731,6 @@
 		85C3D6BB1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareEventTableViewFooterView.xib; sourceTree = "<group>"; };
 		85C3D6BD1F0B920E00E0CBFE /* PrepareEventTableViewFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventTableViewFooterView.swift; sourceTree = "<group>"; };
 		85DC6F881EF40B36004F4B4D /* TravelTripsChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelTripsChart.swift; sourceTree = "<group>"; };
-		85E0A69E1EE6A5E40076169D /* NetworkManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		85E0A6A01EE6AF130076169D /* MockingProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockingProtocol.swift; sourceTree = "<group>"; };
 		85E0A6A21EE6B1610076169D /* Mocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
 		85E1F1C61F1F94C7003FA349 /* LearnListAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnListAnimation.swift; sourceTree = "<group>"; };
@@ -782,6 +783,8 @@
 		CB4881511EF7F45D00389C88 /* LearnCategoryListPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnCategoryListPage.swift; sourceTree = "<group>"; };
 		CB5134111FAB721000FBDD66 /* ContentRead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentRead.swift; sourceTree = "<group>"; };
 		CB5134131FAB735E00FBDD66 /* ContentReadIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentReadIntermediary.swift; sourceTree = "<group>"; };
+		CB53F0D720235A9C007C624B /* Atomic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
+		CB53F0D920237507007C624B /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		CB55A2DE1E9FDF0A00D721CE /* SettingsMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuViewController.swift; sourceTree = "<group>"; };
 		CB55A2E01E9FDF1D00D721CE /* SettingsMenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuViewModel.swift; sourceTree = "<group>"; };
 		CB5891791F7B95B200D63C5E /* ChatViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewCell.swift; sourceTree = "<group>"; };
@@ -870,6 +873,7 @@
 		CBB98AFF201F720F00B8EAD7 /* UNNotificationRequest+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UNNotificationRequest+Convenience.swift"; sourceTree = "<group>"; };
 		CBB98B03201F850100B8EAD7 /* UNCalendarNotificationTrigger+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UNCalendarNotificationTrigger+Convenience.swift"; sourceTree = "<group>"; };
 		CBB98B05201F869700B8EAD7 /* UNMutableNotificationContent+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UNMutableNotificationContent+Convenience.swift"; sourceTree = "<group>"; };
+		CBB98B072020A4AF00B8EAD7 /* Authenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
 		CBBC00FB1FC5B10600C544D8 /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
 		CBC191121F603055009E483B /* URL+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Convenience.swift"; sourceTree = "<group>"; };
 		CBC191141F62918B009E483B /* AppDelegate+Buglife.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Buglife.swift"; sourceTree = "<group>"; };
@@ -1730,7 +1734,6 @@
 				85E0A6A01EE6AF130076169D /* MockingProtocol.swift */,
 				85E0A6A21EE6B1610076169D /* Mocks.swift */,
 				CBDB98F81E7BD26A003EC73F /* Realm+TestUtils.swift */,
-				85E0A69E1EE6A5E40076169D /* NetworkManagerTests.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -2269,6 +2272,7 @@
 			isa = PBXGroup;
 			children = (
 				CB6D49551ECCA58D005BC637 /* AuthenticationTokenParser.swift */,
+				CBB98B072020A4AF00B8EAD7 /* Authenticator.swift */,
 				8548BBE31F0E382900AC7C06 /* GenericParser.swift */,
 				CBC933041F05253000C00007 /* JSON+Convenience.swift */,
 				CB1D5E361EC5E25A00BCDF8D /* JSONDecodable.swift */,
@@ -2288,7 +2292,8 @@
 		CBB4DD521EE095E50071494A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				CB6637A7201A24E200A995D6 /* UserNotifications */,
+				CB53F0D720235A9C007C624B /* Atomic.swift */,
+				CB53F0D920237507007C624B /* Keychain.swift */,
 				8548BBDF1F0D4BF900AC7C06 /* LaunchHandler.swift */,
 				852DADC51EEEE63500A10882 /* Math.swift */,
 				CBDB98F31E7B000A003EC73F /* NotificationHandler.swift */,
@@ -2306,6 +2311,7 @@
 				7F4276761F570DB600AEE3D7 /* WindowManager.swift */,
 				7F5A25AE1F3C4BB400A11466 /* Analytics */,
 				7F9217B31FD01BF400CAE9E0 /* Permissions */,
+				CB6637A7201A24E200A995D6 /* UserNotifications */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -2877,11 +2883,11 @@
 				"${BUILT_PRODUCTS_DIR}/Bond/Bond.framework",
 				"${BUILT_PRODUCTS_DIR}/Diff/Diff.framework",
 				"${BUILT_PRODUCTS_DIR}/Freddy/Freddy.framework",
+				"${BUILT_PRODUCTS_DIR}/JSONWebToken/JWT.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/LoremIpsum/LoremIpsum.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/RSKImageCropper/RSKImageCropper.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveKit/ReactiveKit.framework",
@@ -2900,11 +2906,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bond.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Diff.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Freddy.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JWT.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LoremIpsum.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSKImageCropper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveKit.framework",
@@ -3271,6 +3277,7 @@
 				CB9BB0C21F0CD13E009067D7 /* TimeInterval+Convenience.swift in Sources */,
 				CCC1B6A71E8B9B7300D1461F /* LearnCategoryCell.swift in Sources */,
 				CC143A531EC49641001FB76E /* ChartViewController.swift in Sources */,
+				CBB98B082020A4AF00B8EAD7 /* Authenticator.swift in Sources */,
 				CB9AFD171F014BF800D067F2 /* PreparationIntermediary.swift in Sources */,
 				7FE38DC11F28D2940061E98F /* PassthroughView.swift in Sources */,
 				852DADDE1EF1737700A10882 /* TravelMaxTimeZoneChart.swift in Sources */,
@@ -3329,6 +3336,7 @@
 				D52350961E9FC1120013DE7E /* ArticleCollectionLayout.swift in Sources */,
 				CBC2A81A1FE2B755003AB1A4 /* SlideShowProtocols.swift in Sources */,
 				CC13E2401EB1D72400C3CE46 /* LibraryCollectionViewCell.swift in Sources */,
+				CB53F0D820235A9C007C624B /* Atomic.swift in Sources */,
 				CC944DB61EE804CD00B8423C /* ChartTableViewCell.swift in Sources */,
 				CB9B075C1EF911AD0017F6C3 /* IntObject.swift in Sources */,
 				CC0FF8D61EA78C810028D64F /* MyToBeVisionCoordinator.swift in Sources */,
@@ -3443,6 +3451,7 @@
 				CBC5ACCA1F18EF96007E1E9C /* QOTUsageTime.swift in Sources */,
 				CB9442341FD97F8D00E2B122 /* SlideShowInteractor.swift in Sources */,
 				7FB9AD0D1F39BD2B00E0D621 /* UpSyncMediaData.swift in Sources */,
+				CB53F0DA20237507007C624B /* Keychain.swift in Sources */,
 				CB9B07631EF91B860017F6C3 /* CalendarEvent.swift in Sources */,
 				CCE6CD861F15313300B66DA3 /* StatisticsIntermediary.swift in Sources */,
 				CB1D5E3A1EC5E25A00BCDF8D /* ContentCategoryData.swift in Sources */,
@@ -3454,7 +3463,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8591ED7C1EE6DBAC006FCE89 /* Mocks.swift in Sources */,
-				85E0A69F1EE6A5E40076169D /* NetworkManagerTests.swift in Sources */,
 				8591ED7B1EE6DBA6006FCE89 /* MockingProtocol.swift in Sources */,
 				CBDB98F91E7BD26A003EC73F /* Realm+TestUtils.swift in Sources */,
 			);

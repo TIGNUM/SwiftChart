@@ -19,14 +19,13 @@ final class URLRequestBuilder {
         self.deviceID = deviceID
     }
 
-    func make(with buildable: URLRequestBuildable, authToken: String?) throws -> URLRequestConvertible {
-        var httpHeaders = buildable.headers
-        if buildable.requiresAuthentication {
-            guard let authToken = authToken else {
-                throw NetworkError(type: .unauthenticated)
-            }
-            httpHeaders[.authToken] = authToken
+    func make(buildable: URLRequestBuildable, authToken: String? = nil) -> URLRequestConvertible {
+        if buildable.requiresAuthentication && authToken == nil {
+            assertionFailure("\(buildable) needs authToken")
         }
+
+        var httpHeaders = buildable.headers
+        httpHeaders[.authToken] = authToken
         httpHeaders[.contentType] = "application/json"
         httpHeaders[.deviceID] = deviceID
         httpHeaders[.versionPlain] = version
@@ -38,14 +37,20 @@ final class URLRequestBuilder {
         let method = buildable.httpMethod
         let headers = httpHeaders.mapKeys { $0.rawValue }
         let params = buildable.paramaters.mapKeys { $0.rawValue }
+        let body = buildable.body
 
-        return URLRequest(url: url, method: method, headers: headers, parameters: params, body: buildable.body)
+        return URLRequest(url: url, method: method, headers: headers, parameters: params, body: body)
     }
 }
 
-extension URLRequest {
+private extension URLRequest {
 
-    init(url: URLConvertible, method: HTTPMethod, headers: HTTPHeaders? = nil, parameters: Parameters? = nil, encoding: ParameterEncoding = JSONEncoding.default, body: Data? = nil) {
+    init(url: URL,
+         method: HTTPMethod,
+         headers: HTTPHeaders? = nil,
+         parameters: Parameters? = nil,
+         encoding: ParameterEncoding = JSONEncoding.default,
+         body: Data? = nil) {
         do {
             let request = try URLRequest(url: url, method: method, headers: headers)
             self = try encoding.encode(request, with: parameters)

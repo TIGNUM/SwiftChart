@@ -7,80 +7,58 @@
 //
 
 import Foundation
-import KeychainAccess
-
-struct Credential {
-    let username: String
-    let password: String
-    let token: String?
-}
 
 final class CredentialsManager {
 
     // MARK: - Properties
 
     private let keychain = Keychain()
-    private var credentialDidChangeHandlers: [(Credential?) -> Void] = []
+    private var credentialDidChangeHandlers: [((username: String, password: String)?) -> Void] = []
     static let shared = CredentialsManager()
 
     // MARK: - Init
 
     private init() {} // Ensure only singleton instance is used
 
-    var credential: Credential? {
-        get {
-            guard let username = value(key: .username), let password = value(key: .password) else {
-                return nil
-            }
-            return Credential(username: username, password: password, token: value(key: .authToken))
-        }
-        set {
-            set(value: newValue?.username, key: .username)
-            set(value: newValue?.password, key: .password)
-            set(value: newValue?.token, key: .authToken)
-
-            let handlers = credentialDidChangeHandlers
-            DispatchQueue.main.async {
-                handlers.forEach { $0(newValue) }
-            }
-        }
+    func loginCredentials() -> (username: String, password: String)? {
+        guard let username = keychain[string: .username], let password = keychain[string: .password] else { return nil }
+        return (username: username, password: password)
     }
 
-    var isCredentialValid: Bool {
-        guard let credential = credential else {
-            return false
-        }
-        return (credential.token != nil)
+    func authToken() -> String? {
+        return keychain[string: .authToken]
+    }
+
+    var hasLoginCredentials: Bool {
+        return loginCredentials() != nil
+    }
+
+    func save(username: String, password: String, authToken: String) {
+        keychain[string: .username] = username
+        keychain[string: .password] = password
+        save(authToken: authToken)
+        loginCredentialsDidChange(credentials: (username: username, password: password))
+    }
+
+    func save(authToken: String) {
+        keychain[string: .authToken] = authToken
     }
 
     func clear() {
-        credential = nil
+        keychain[string: .username] = nil
+        keychain[string: .password] = nil
+        keychain[string: .authToken] = nil
+        loginCredentialsDidChange(credentials: nil)
     }
 
-    func onCredentialChange(_ handler: @escaping (Credential?) -> Void) {
+    func onCredentialChange(_ handler: @escaping ((username: String, password: String)?) -> Void) {
         credentialDidChangeHandlers.append(handler)
     }
 
-    // MARK: - private
-
-    private func value(key: KeychainConstant) -> String? {
-        do {
-            return try keychain.getString(key.rawValue)
-        } catch {
-            log("Failed to get \(key.rawValue) from keychain: \(error)", level: .error)
-            return nil
-        }
-    }
-
-    private func set(value: String?, key: KeychainConstant) {
-        do {
-            if let value =  value {
-                try keychain.set(value, key: key.rawValue)
-            } else {
-                try keychain.remove(key.rawValue)
-            }
-        } catch {
-            log("Failed to set value for \(key.rawValue) in keychain: \(error)", level: .error)
+    private func loginCredentialsDidChange(credentials: (username: String, password: String)?) {
+        let handlers = credentialDidChangeHandlers
+        DispatchQueue.main.async {
+            handlers.forEach { $0(credentials) }
         }
     }
 }

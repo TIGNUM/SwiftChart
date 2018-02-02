@@ -25,8 +25,8 @@ target 'QOT' do
   pod 'Crashlytics'
   pod 'UrbanAirship-iOS-SDK'
   pod 'Buglife'
-  pod 'PromiseKit'
   pod 'SwiftyBeaver'
+  pod 'JSONWebToken'
 
   target 'QOTTests' do
     inherit! :search_paths

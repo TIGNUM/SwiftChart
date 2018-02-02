@@ -9,7 +9,6 @@
 import Foundation
 import Alamofire
 import Freddy
-import PromiseKit
 import CoreLocation
 
 protocol NetworkManagerDelegate: class {
@@ -20,25 +19,17 @@ protocol NetworkManagerDelegate: class {
 final class NetworkManager {
 
     private let sessionManager: SessionManager
-    private let credentialsManager: CredentialsManager
+    private let authenticator: Authenticator
     private let requestBuilder: URLRequestBuilder
     weak var delegate: NetworkManagerDelegate?
-    var credential: Credential? {
-        get {
-            return credentialsManager.credential
-        }
-        set {
-            credentialsManager.credential = newValue
-        }
-    }
 
     init(delegate: NetworkManagerDelegate? = nil,
          sessionManager: SessionManager = SessionManager.default,
-         credentialsManager: CredentialsManager = CredentialsManager.shared,
+         authenticator: Authenticator,
          requestBuilder: URLRequestBuilder = URLRequestBuilder(deviceID: deviceID)) {
         self.delegate = delegate
         self.sessionManager = sessionManager
-        self.credentialsManager = credentialsManager
+        self.authenticator = authenticator
         self.requestBuilder = requestBuilder
     }
 
@@ -46,28 +37,24 @@ final class NetworkManager {
         sessionManager.session.getAllTasks { $0.forEach { $0.cancel() } }
     }
 
-    @discardableResult func performAuthenticationRequest(username: String,
-                                                         password: String,
-                                                         completion: @escaping (NetworkError?) -> Void) -> SerialRequest {
-
-        let parser = AuthenticationTokenParser.make(username: username, password: password)
-        let request = AuthenticationRequest(username: username, password: password)
-        return performRequest(request, parser: parser) { [credentialsManager] (result) in
-            switch result {
-            case .success(let credential):
-                credentialsManager.credential = credential
-                completion(nil)
-            case .failure(let error):
-                completion(error.networkError)
-            }
+    func performAuthenticationRequest(username: String,
+                                      password: String,
+                                      completion: @escaping (NetworkError?) -> Void) {
+        authenticator.authenticate(username: username, password: password) { (result) in
+            completion(result.error)
         }
     }
 
     @discardableResult func performDevicePermissionsRequest(with data: Data,
                                                             completion: @escaping (NetworkError?) -> Void) -> SerialRequest {
-
-        let request = DevicePermissionsRequest(data: data)
-        return performRequest(request, completion: completion)
+        let current = SerialRequest()
+        performAuthenticatingRequest(DevicePermissionsRequest(data: data),
+                                     parser: GenericParser.parse,
+                                     notifyDelegateOfFailure: false,
+                                     current: current) { (result) in
+                                        completion(result.error)
+        }
+        return current
     }
 
     @discardableResult func performResetPasswordRequest(username: String,
@@ -96,13 +83,19 @@ final class NetworkManager {
 
     @discardableResult func performUserLocationUpdateRequest(location: CLLocation,
                                                              completion: @escaping (NetworkError?) -> Void) -> SerialRequest {
-
-        return performRequest(UserLocationUpdateRequest(location), completion: completion)
+        let current = SerialRequest()
+        performAuthenticatingRequest(UserLocationUpdateRequest(location),
+                                     parser: GenericParser.parse,
+                                     notifyDelegateOfFailure: false,
+                                     current: current) { (result) in
+            completion(result.error)
+        }
+        return current
     }
 
     @discardableResult func performDeviceRequest() -> SerialRequest {
         let serialRequest = SerialRequest()
-        guard credentialsManager.credential != nil else { return serialRequest }
+        guard authenticator.hasLoginCredentials() else { return serialRequest }
 
         struct Device: Encodable {
             let deviceIdentifier = deviceID
@@ -178,35 +171,27 @@ final class NetworkManager {
                                               notifyDelegateOfFailure: Bool = true,
                                               current: SerialRequest,
                                               completion: @escaping (Result<T, NetworkError>) -> Void) {
-
-        firstly {
-            return self.performRequest(request, parser: parser, current: current)
-        }.then { (value) -> Void in
-            completion(.success(value))
-            // Finish chain here by cancelling
-            throw NSError.cancelledError()
-        }.recover { (error) -> Promise<Void> in
-            guard NetworkError.isUnauthenticatedNetworkError(error) == true else {
-                throw error
-            }
-            return Promise()
-        }.then { (_) -> Promise<Credential> in
-            return self.authenticate(current: current)
-        }.then { (credential) -> Promise<Void> in
-            self.credentialsManager.credential = credential
-            return Promise()
-        }.then { (_) -> Promise<T> in
-            return self.performRequest(request, parser: parser, current: current)
-        }.then { (value) -> Void in
-            completion(.success(value))
-        }.catch { (error) in
-            if NetworkError.isUnauthenticatedNetworkError(error) == true {
-                self.credentialsManager.credential = nil
-                if notifyDelegateOfFailure == true {
+        authenticator.fetchAuthToken { (authResult) in
+            switch authResult {
+            case .success(let authToken):
+                let req = self.requestBuilder.make(buildable: request, authToken: authToken)
+                current.request = self.sessionManager.request(req, parser: parser) { (mainResult) in
+                    switch mainResult {
+                    case .success(let value):
+                        completion(.success(value))
+                    case .failure(let error):
+                        completion(.failure(error))
+                        if error.isUnauthenticated && notifyDelegateOfFailure {
+                            self.delegate?.networkManagerFailedToAuthenticate(self)
+                        }
+                    }
+                }
+            case .failure(let error):
+                completion(.failure(error))
+                if error.isUnauthenticated && notifyDelegateOfFailure {
                     self.delegate?.networkManagerFailedToAuthenticate(self)
                 }
             }
-            completion(.failure(error.networkError))
         }
     }
 
@@ -217,59 +202,34 @@ final class NetworkManager {
     }
 
     private func performRequest<T>(_ request: URLRequestBuildable,
-                                parser: @escaping (Data) throws -> T,
-                                completion: @escaping (Result<T, NetworkError>) -> Void) -> SerialRequest {
-
+                                   parser: @escaping (Data) throws -> T,
+                                   completion: @escaping (Result<T, NetworkError>) -> Void) -> SerialRequest {
+        let req = requestBuilder.make(buildable: request)
         let current = SerialRequest()
-        firstly {
-            return performRequest(request, parser: parser, current: current)
-        }.then { (value) in
-            completion(.success(value))
-        }.catch { (error) in
-            completion(.failure(error.networkError))
-        }
+        current.request = sessionManager.request(req, parser: parser, completion: completion)
         return current
-    }
-
-    // MARK: Promises
-
-    private func performRequest<T>(_ request: URLRequestBuildable,
-                                parser: @escaping (Data) throws -> T,
-                                current: SerialRequest?) -> Promise<T> {
-
-        return Promise { fulfill, reject in
-            let req = try self.requestBuilder.make(with: request, authToken: credentialsManager.credential?.token)
-            current?.request = sessionManager.request(req, parser: parser) { (result) in
-                switch result {
-                case .success(let value):
-                    fulfill(value)
-                case .failure(let error):
-                    reject(error)
-                }
-            }
-        }
-    }
-
-    private func authenticate(current: SerialRequest?) -> Promise<Credential> {
-        if let credential = credentialsManager.credential {
-            let username = credential.username
-            let password = credential.password
-            let request = AuthenticationRequest(username: username, password: password)
-            let parser = AuthenticationTokenParser.make(username: username, password: password)
-            return performRequest(request, parser: parser, current: current)
-        } else {
-            return Promise(error: NetworkError(type: .unauthenticated))
-        }
     }
 }
 
-// FIXME: Make private
+// FIXME: Move
 extension SessionManager {
 
-    @discardableResult func request<T>(_ urlRequest: URLRequestConvertible, parser: @escaping (Data) throws -> T, completion: @escaping (Result<T, NetworkError>) -> Void) -> DataRequest {
+    @discardableResult func request<T>(_ urlRequest: URLRequestConvertible,
+                                       parser: @escaping (Data) throws -> T,
+                                       completionQueue: DispatchQueue? = nil,
+                                       completion: @escaping (Result<T, NetworkError>) -> Void) -> DataRequest {
+        return perform(urlRequest, parser: parser, completionQueue: completionQueue) { (response, result) in
+            completion(result)
+        }
+    }
+
+    @discardableResult func perform<T>(_ urlRequest: URLRequestConvertible,
+                                       parser: @escaping (Data) throws -> T,
+                                       completionQueue: DispatchQueue? = nil,
+                                       completion: @escaping (DataResponse<Data>, Result<T, NetworkError>) -> Void) -> DataRequest {
         return self.request(urlRequest)
             .validate(statusCode: 200..<300)
-            .responseData { response in
+            .responseData(queue: completionQueue) { response in
                 log("REQUEST BODY DATA: \(response.request?.httpBody?.utf8String ?? "No request body data")", enabled: Log.Toggle.NetworkManager.requestBody)
                 log("RESPONSE BODY DATA: \(response.data?.utf8String ?? "No response data")", enabled: Log.Toggle.NetworkManager.responseBody)
 
@@ -286,7 +246,7 @@ extension SessionManager {
                     let networkError = NetworkError(error: error as NSError, request: response.request, response: response.response, data: response.data)
                     result = .failure(networkError)
                 }
-                completion(result)
+                completion(response, result)
         }
     }
 }

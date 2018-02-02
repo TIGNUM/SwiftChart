@@ -92,7 +92,7 @@ extension SettingsCoordinator: SettingsCoordinatorDelegate {
     }
 
     func openChangePasswordViewController(settingsViewController: SettingsViewController) {
-        let coordinator = ResetPasswordCoordinator(rootVC: settingsViewController, parentCoordinator: self, networkManager: NetworkManager())
+        let coordinator = ResetPasswordCoordinator(rootVC: settingsViewController, parentCoordinator: self, networkManager: networkManager)
         startChild(child: coordinator)
     }
 

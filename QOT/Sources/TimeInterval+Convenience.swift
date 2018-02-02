@@ -10,6 +10,10 @@ import Foundation
 
 extension TimeInterval {
 
+    init(minutes: Int) {
+        self = TimeInterval(minutes * 60)
+    }
+
     init(days: Int) {
         self = TimeInterval(days * 60 * 60 * 24)
     }

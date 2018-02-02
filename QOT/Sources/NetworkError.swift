@@ -63,11 +63,18 @@ struct NetworkError: Error {
         self.data = data
     }
 
-    static func isUnauthenticatedNetworkError(_ error: Error) -> Bool {
-        guard let error = error as? NetworkError, case NetworkErrorType.unauthenticated = error.type else {
+    var isUnauthenticated: Bool {
+        switch type {
+        case .unauthenticated:
+            return true
+        default:
             return false
         }
-        return true
+    }
+
+    static func isUnauthenticatedNetworkError(_ error: Error) -> Bool {
+        guard let error = error as? NetworkError else { return false }
+        return error.isUnauthenticated
     }
 }
 

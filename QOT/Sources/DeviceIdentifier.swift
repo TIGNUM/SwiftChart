@@ -7,16 +7,15 @@
 //
 
 import Foundation
-import KeychainAccess
 
 private let keychain = Keychain()
 
 let deviceID: String = {
-    if let identifier = keychain[KeychainConstant.deviceID.rawValue] {
+    if let identifier = keychain[string: .deviceID] {
         return identifier
     } else {
         let identifier = UUID().uuidString
-        keychain[KeychainConstant.deviceID.rawValue] = identifier
+        keychain[string: .deviceID] = identifier
         return identifier
     }
 }()

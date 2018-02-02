@@ -24,18 +24,20 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     var children = [Coordinator]()
     lazy var logoutNotificationHandler: NotificationHandler = NotificationHandler(name: .logoutNotification)
     lazy var apnsDeviceTokenRegistrar: APNSDeviceTokenRegistrar = APNSDeviceTokenRegistrar(networkManager: self.networkManager, credentialsManager: self.credentialsManager)
+    lazy var networkManager: NetworkManager = NetworkManager(delegate: self, authenticator: authenticator)
     private let windowManager: WindowManager
     private let remoteNotificationHandler: RemoteNotificationHandler
     private let locationManager: LocationManager
     private var services: Services?
     private lazy var permissionsManager: PermissionsManager = PermissionsManager(delegate: self)
-    private lazy var networkManager: NetworkManager = NetworkManager(delegate: self, credentialsManager: self.credentialsManager)
     private lazy var credentialsManager: CredentialsManager = CredentialsManager.shared
+    private lazy var authenticator: Authenticator = Authenticator(sessionManager: SessionManager.default, requestBuilder: URLRequestBuilder(deviceID: deviceID))
     private var canProcessRemoteNotifications = false
     private var canProcessLocalNotifications = false
     private var isRestart = false
     private var onDismiss: (() -> Void)?
     private var destination: AppCoordinator.Router.Destination?
+    private let userIsLoggingIn = Atomic(false)
 
     // current state
     private weak var tabBarCoordinator: TabBarCoordinator?
@@ -130,7 +132,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         dispatchGroup.notify(queue: .main) {
             if let error = setupError {
                 self.handleSetupError(error: error)
-            } else if self.credentialsManager.isCredentialValid {
+            } else if self.credentialsManager.hasLoginCredentials {
                 self.showApp(loginViewController: nil)
             } else {
                 self.showLogin()
@@ -319,6 +321,9 @@ extension AppCoordinator {
     }
 
     func showLogin() {
+        guard userIsLoggingIn.value == false else { return }
+
+        userIsLoggingIn.value = true
         let loginCoordinator = LoginCoordinator(windowManager: windowManager,
                                                 delegate: self,
                                                 networkManager: networkManager,
@@ -400,6 +405,7 @@ extension AppCoordinator: LoginCoordinatorDelegate {
             showApp(loginViewController: loginViewController)
         }
         networkManager.performDeviceRequest()
+        userIsLoggingIn.value = false
     }
 }
 

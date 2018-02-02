@@ -206,7 +206,7 @@ private extension SettingsChangePasswordViewController {
             return R.string.localized.changePasswordIssueOldPasswordNotValid()
         }
 
-        let equal = CredentialsManager.shared.credential?.password == oldPassword
+        let equal = CredentialsManager.shared.loginCredentials()?.password == oldPassword
 
         return equal == true ? nil : R.string.localized.changePasswordIssueOldPasswordNotValid()
     }

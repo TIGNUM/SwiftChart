@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import KeychainAccess
 
 class DatabaseKeyService {
     private let keychain = Keychain()
@@ -45,13 +44,13 @@ class DatabaseKeyService {
     // MARK: - private
 
     private func value(key: KeychainConstant) -> Data? {
-        guard let base64EncodedData = keychain[data: key.rawValue] else {
+        guard let base64EncodedData = keychain[data: key] else {
             return nil
         }
         return Data(base64Encoded: base64EncodedData)
     }
 
     private func set(value: Data?, key: KeychainConstant) {
-        keychain[data: key.rawValue] = value?.base64EncodedData()
+        keychain[data: key] = value?.base64EncodedData()
     }
 }

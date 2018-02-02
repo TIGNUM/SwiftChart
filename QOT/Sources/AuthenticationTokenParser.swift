@@ -14,12 +14,12 @@ struct AuthenticationTokenParser {
         case failedToCreateTokenFromData(data: Data)
     }
 
-    static func make(username: String, password: String) -> (Data) throws -> Credential {
+    static func make() -> (Data) throws -> String {
         return { (data) in
             guard let token = String(data: data, encoding: .utf8) else {
                 throw Error.failedToCreateTokenFromData(data: data)
             }
-            return Credential(username: username, password: password, token: token)
+            return token
         }
     }
 }

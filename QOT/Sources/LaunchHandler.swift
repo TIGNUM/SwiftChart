@@ -112,7 +112,8 @@ extension LaunchHandler {
             let body = try ["accessToken": accessToken].toJSON().serialize()
             let request = FitbitTokenRequest(endpoint: .fitbitToken, body: body)
 
-            NetworkManager().request(request, parser: GenericParser.parse) { (result: (Result<(), NetworkError>)) in
+            let networkManager = appDelegate.appCoordinator.networkManager
+            networkManager.request(request, parser: GenericParser.parse) { (result: (Result<(), NetworkError>)) in
                 hud.hide(animated: true)
                 switch result {
                 case .success:

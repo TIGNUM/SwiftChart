@@ -51,8 +51,8 @@ final class SettingsAdminViewController: UITableViewController {
     @IBOutlet private weak var autoSyncSwitch: UISwitch!
     @IBOutlet private weak var logLevelSegmentedControl: UISegmentedControl!
     private var dataBaseTouched = false
-    private let userName = CredentialsManager.shared.credential?.username
-    private let password = CredentialsManager.shared.credential?.password
+    private let userName = CredentialsManager.shared.loginCredentials()?.username
+    private let password = CredentialsManager.shared.loginCredentials()?.password
     var syncManager: SyncManager?
     var networkManager: NetworkManager?
     var services: Services?

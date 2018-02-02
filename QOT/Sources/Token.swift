@@ -9,27 +9,41 @@
 import Foundation
 import RealmSwift
 
-protocol Token: class {
+protocol TokenProtocol: class {
 
     func invalidate()
 }
 
-extension Token {
+extension TokenProtocol {
 
     func addTo(_ bin: TokenBin) {
         bin.addToken(self)
     }
 }
 
+final class Token: TokenProtocol {
+
+    private let lock = NSLock()
+    private var valid = Atomic(true)
+
+    func invalidate() {
+        valid.value = false
+    }
+
+    func isValid() -> Bool {
+        return valid.value
+    }
+}
+
 final class TokenBin {
 
-    private var tokens: [ObjectIdentifier: Token] = [:]
+    private var tokens: [ObjectIdentifier: TokenProtocol] = [:]
 
-    func addToken(_ token: Token) {
+    func addToken(_ token: TokenProtocol) {
         tokens[ObjectIdentifier(token)] = token
     }
 
-    func disposeToken(_ token: Token) {
+    func disposeToken(_ token: TokenProtocol) {
         token.invalidate()
         tokens[ObjectIdentifier(token)] = nil
     }
@@ -44,9 +58,9 @@ final class TokenBin {
     }
 }
 
-extension NSKeyValueObservation: Token {}
+extension NSKeyValueObservation: TokenProtocol {}
 
-extension NotificationToken: Token {
+extension NotificationToken: TokenProtocol {
 
     func invalidate() {
         stop()

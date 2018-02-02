@@ -18,24 +18,18 @@ final class GuidePresenter: GuidePresenterInterface {
     }
 
     func presentLoading() {
-        setModel(model: nil)
+        guard let viewController = viewController else { return }
+
+        viewController.setLoading(true)
+        viewController.updateHeader(greeting: "", message: "")
+        viewController.updateDays(days: [])
     }
 
     func present(model: Guide.Model) {
-        setModel(model: model)
-    }
-
-    private func setModel(model: Guide.Model?) {
         guard model != self.model, let viewController = viewController else { return }
 
-        if let model = model {
-            viewController.setLoading(false)
-            viewController.updateHeader(greeting: model.greeting, message: model.message)
-            viewController.updateDays(days: model.days)
-        } else {
-            viewController.setLoading(true)
-            viewController.updateHeader(greeting: "", message: "")
-            viewController.updateDays(days: [])
-        }
+        viewController.setLoading(false)
+        viewController.updateHeader(greeting: model.greeting, message: model.message)
+        viewController.updateDays(days: model.days)
     }
 }

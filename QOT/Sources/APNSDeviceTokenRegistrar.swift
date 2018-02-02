@@ -30,9 +30,11 @@ final class APNSDeviceTokenRegistrar {
         resignActiveHandler.handler = { [unowned self] _ in
             self.timer?.invalidate()
         }
-        credentialsManager.onCredentialChange { [weak self] (credential: Credential?) in
-            if credential != nil {
-                self?.uploadToken()
+        credentialsManager.onCredentialChange { [weak self] _ in
+            guard let `self` = self else { return }
+
+            if self.credentialsManager.hasLoginCredentials {
+                self.uploadToken()
             }
         }
     }
@@ -47,7 +49,7 @@ final class APNSDeviceTokenRegistrar {
     }
 
     private func uploadToken() {
-        guard let token = token, let appKey = UAConfig.default().appKey, credentialsManager.credential != nil else {
+        guard let token = token, let appKey = UAConfig.default().appKey, credentialsManager.hasLoginCredentials else {
             return
         }
 
