@@ -48,8 +48,6 @@ final class MorningInterviewViewModel: NSObject {
 
     private let services: Services
     private let questionGroupID: Int
-    private let validFrom: Date
-    private let validTo: Date
     private let questions: [InterviewQuestion]
     let notificationRemoteID: Int
 
@@ -57,14 +55,10 @@ final class MorningInterviewViewModel: NSObject {
 
     init(services: Services,
          questionGroupID: Int,
-         validFrom: Date,
-         validTo: Date,
          notificationRemoteID: Int) {
         let questions = services.questionsService.morningInterviewQuestions(questionGroupID: questionGroupID)
         self.services = services
         self.questionGroupID = questionGroupID
-        self.validFrom = validFrom
-        self.validTo = validTo
         self.questions = Array(questions.flatMap(InterviewQuestion.init))
         self.notificationRemoteID = notificationRemoteID
     }
@@ -87,8 +81,7 @@ final class MorningInterviewViewModel: NSObject {
                                         questionGroupID: self.questionGroupID,
                                         answerID: answerID,
                                         userAnswer: answer.title,
-                                        validFrom: self.validFrom,
-                                        validUntil: self.validTo
+                                        notificationID: notificationRemoteID
             )
             userAnswers.append(userAnswer)
         }

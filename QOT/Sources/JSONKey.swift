@@ -127,6 +127,7 @@ enum JsonKey: String {
     case nano
     case nextSyncToken
     case notes
+    case notificationId
     case notificationItems
     case occurrenceCount
     case occurrenceDate

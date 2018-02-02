@@ -154,24 +154,15 @@ extension LaunchHandler {
 extension LaunchHandler {
 
     func dailyPrep(groupID: String?, notificationID: String, guideItem: Guide.Item?) {
-        log("dailyPrep://LaunchHandler, dailyPrep groupID:: \(String(describing: groupID)), notificationID: \(notificationID), guideItem: \(String(describing: guideItem))")
-        guard
-            let groupID = groupID,
-            let groupIDIntValue = Int(groupID) else { return }
+        let notiRemoteID = (try? GuideItemID(stringRepresentation: notificationID).remoteID) ?? Int(notificationID)
 
-        if let notificationRemoteID = try? GuideItemID(stringRepresentation: notificationID).remoteID {
-            appDelegate.appCoordinator.presentMorningInterview(groupID: groupIDIntValue,
-                                                               validFrom: Date(),
-                                                               validTo: Date(),
-                                                               notificationRemoteID: notificationRemoteID)
-        } else if let notificationRemoteID = Int(notificationID) {
-            appDelegate.appCoordinator.presentMorningInterview(groupID: groupIDIntValue,
-                                                               validFrom: Date(),
-                                                               validTo: Date(),
-                                                               notificationRemoteID: notificationRemoteID)
-        } else {
-            log("Cannot show daily prep with groupID: \(groupID) notificationID: \(notificationID)", level: .error)
+        guard let group = groupID, let groupIDIntValue = Int(group), let notificationRemoteID = notiRemoteID else {
+            let groupIDString = groupID.debugDescription
+            log("Cannot show daily prep - groupID: \(groupIDString) notificationID: \(notificationID)", level: .error)
+            return
         }
+        let coordinator = appDelegate.appCoordinator
+        coordinator.presentMorningInterview(groupID: groupIDIntValue, notificationRemoteID: notificationRemoteID)
     }
 }
 

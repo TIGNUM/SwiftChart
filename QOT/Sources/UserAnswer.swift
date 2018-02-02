@@ -19,18 +19,15 @@ final class UserAnswer: SyncableObject {
 
     @objc dynamic var userAnswer: String = ""
 
-    @objc dynamic var validFrom: Date = Date()
+    @objc dynamic var notificationID: Int = 0
 
-    @objc dynamic var validUntil: Date = Date()
-
-    convenience init(questionID: Int, questionGroupID: Int, answerID: Int, userAnswer: String, validFrom: Date, validUntil: Date) {
+    convenience init(questionID: Int, questionGroupID: Int, answerID: Int, userAnswer: String, notificationID: Int) {
         self.init()
         self.questionID = questionID
         self.questionGroupID = questionGroupID
         self.answerID = answerID
         self.userAnswer = userAnswer
-        self.validFrom = validFrom
-        self.validUntil = validUntil
+        self.notificationID = notificationID
     }
 }
 
@@ -50,9 +47,13 @@ extension UserAnswer: OneWaySyncableUp {
             .answerId: answerID,
             .questionId: questionID,
             .userAnswer: userAnswer,
-            .validFrom: dateFormatter.string(from: validFrom),
-            .validUntil: dateFormatter.string(from: validUntil)
+            .notificationId: notificationID,
+            // FIXME: `validFrom` && `validUntil` can be deleted when the API handles `notificationId`.
+            // Check with Matthias. Should be fine to delete by February 09 2018.
+            .validFrom: dateFormatter.string(from: Date()),
+            .validUntil: dateFormatter.string(from: Date())
         ]
+        let FIXME_WARNING = "DELETE validFrom && validUntil"
         return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
     }
 }
