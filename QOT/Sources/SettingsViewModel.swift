@@ -357,11 +357,23 @@ private func personalRows(for user: User?) -> [SettingsRow] {
         date = DateFormatter.settingsUser.date(from: dateOfBirth) ?? Date()
     }
 
-    let selectedHeightIndex = PersonalData.height.selectedIndex(user: user)
-    let selectedWeightIndex = PersonalData.weight.selectedIndex(user: user)
+    var selectedHeightIndex = PersonalData.height.selectedIndex(user: user)
+    var selectedWeightIndex = PersonalData.weight.selectedIndex(user: user)
     let selectedHeightUnitIndex = PersonalData.height.selectedUnitIndex(user: user)
     let selectedWeightUnitIndex = PersonalData.weight.selectedUnitIndex(user: user)
     let selectedGenderIndex = Gender(rawValue: user.gender.lowercased())?.selectedIndex ?? 0
+
+    if selectedHeightIndex == 0 && selectedHeightUnitIndex == 0 {
+        selectedHeightIndex = 150
+    } else if selectedHeightIndex == 0 && selectedHeightUnitIndex == 1 {
+        selectedHeightIndex = 66
+    }
+
+    if selectedWeightIndex == 0 && selectedWeightUnitIndex == 0 {
+        selectedWeightIndex = 70
+    } else if selectedWeightIndex == 0 && selectedWeightUnitIndex == 1 {
+        selectedWeightIndex = 154
+    }
 
     return [
         .stringPicker(title: SettingsType.gender.title, pickerItems: Gender.allValuesAsStrings, selectedIndex: selectedGenderIndex, settingsType: .gender),
