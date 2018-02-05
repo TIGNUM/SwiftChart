@@ -201,7 +201,7 @@
 "Alert.Title.Notifications.Not.Authorized" = "No Authorization";
 "Alert.Message.Notifications.Not.Authorized" = "Push Notifications are not authorized for QOT. To enabled Push Notifications open Settings and enable them. ";
 "Alert.Title.NoContent" = "Content Not Found";
-"Alert.Message.NoContent" = "selection doesn’t have any content";
+"Alert.Message.NoContent" = "This content is currently unavailable. Please check back later.";
 "Alert.Title.Custom" = "Error";
 "Alert.Title.Unauthenticated" = "User not authenticated";
 "Alert.Message.Unauthenticated" = "Unable to authenticated";
