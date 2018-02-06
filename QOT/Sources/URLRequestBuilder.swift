@@ -21,7 +21,7 @@ final class URLRequestBuilder {
 
     func make(buildable: URLRequestBuildable, authToken: String? = nil) -> URLRequestConvertible {
         if buildable.requiresAuthentication && authToken == nil {
-            assertionFailure("\(buildable) needs authToken")
+//            assertionFailure("\(buildable) needs authToken")
         }
 
         var httpHeaders = buildable.headers

@@ -91,7 +91,8 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         self.remoteNotificationHandler = remoteNotificationHandler
         self.locationManager = locationManager
 
-        AppDelegate.current.delegate = self
+        AppDelegate.current.localNotificationHandlerDelegate = self
+        AppDelegate.current.shortcutHandlerDelegate = self
         AppCoordinator.appState.appCoordinator = self
         remoteNotificationHandler.delegate = self
         logoutNotificationHandler.handler = { [weak self] (_: Notification) in
@@ -195,6 +196,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         self.canProcessLocalNotifications = true
         self.remoteNotificationHandler.processOutstandingNotifications()
         AppDelegate.current.processOutstandingNotifications()
+        AppDelegate.current.processOutstandingShortcuts()
     }
 
     private func addMissingRealmObjectsAfterLogin() {
@@ -508,6 +510,13 @@ extension AppCoordinator: RemoteNotificationHandlerDelegate {
 extension AppCoordinator: LocalNotificationHandlerDelegate {
 
     func localNotificationHandler(_ handler: AppDelegate, canProcessNotification: UNNotification) -> Bool {
+        return canProcessLocalNotifications
+    }
+}
+
+extension AppCoordinator: ShortcutHandlerDelegate {
+
+    func shortcutHandler(_ handler: AppDelegate, canProcessShortcut shortcutItem: UIApplicationShortcutItem) -> Bool {
         return canProcessLocalNotifications
     }
 }

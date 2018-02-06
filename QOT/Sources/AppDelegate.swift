@@ -19,6 +19,11 @@ protocol LocalNotificationHandlerDelegate: class {
     func localNotificationHandler(_ handler: AppDelegate, canProcessNotification: UNNotification) -> Bool
 }
 
+protocol ShortcutHandlerDelegate: class {
+
+    func shortcutHandler(_ handler: AppDelegate, canProcessShortcut shortcutItem: UIApplicationShortcutItem) -> Bool
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
 
@@ -26,7 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
 
     var window: UIWindow?
     private var unhandledNotifications = [UNNotification]()
-    weak var delegate: LocalNotificationHandlerDelegate?
+    private var unhandledShortCuts = [UIApplicationShortcutItem]()
+    weak var localNotificationHandlerDelegate: LocalNotificationHandlerDelegate?
+    weak var shortcutHandlerDelegate: ShortcutHandlerDelegate?
     lazy var locationManager = LocationManager()
 
     lazy var windowManager: WindowManager = {
@@ -123,6 +130,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let deviceToken = UAUtils.deviceTokenString(fromDeviceToken: deviceToken)
         appCoordinator.apnsDeviceTokenRegistrar.registerDeviceToken(deviceToken)
+    }
+
+    func application(_ application: UIApplication,
+                     performActionFor shortcutItem: UIApplicationShortcutItem,
+                     completionHandler: @escaping (Bool) -> Void) {
+        if shortcutHandlerDelegate?.shortcutHandler(self,
+                                                    canProcessShortcut: shortcutItem) == true {
+            handleShortcut(shortcutItem: shortcutItem)
+        } else {
+            unhandledShortCuts.append(shortcutItem)
+        }
+    }
+
+    func handleShortcut(shortcutItem: UIApplicationShortcutItem) {
+        guard
+            let linkString = shortcutItem.userInfo?[JsonKey.link.value] as? String,
+            let link = URL(string: linkString) else { return }
+
+        launchHandler.process(url: link)
+    }
+
+    func processOutstandingShortcuts() {
+        if let shortcut = unhandledShortCuts.first {
+            handleShortcut(shortcutItem: shortcut)
+            unhandledShortCuts.removeAll()
+        }
     }
 
     // MARK: - private
@@ -231,7 +264,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         log("dailyPrep://userNotificationCenter, didReceive response:: \(response.notification)")
-        if delegate?.localNotificationHandler(self, canProcessNotification: response.notification) == true {
+        if localNotificationHandlerDelegate?.localNotificationHandler(self,
+                                                                      canProcessNotification: response.notification) == true {
             handleNotification(notification: response.notification)
         } else {
             unhandledNotifications.append(response.notification)

@@ -145,5 +145,47 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+    <key>UIApplicationShortcutItems</key>
+    <array>
+        <dict>
+            <key>UIApplicationShortcutItemIconFile</key>
+            <string>shortcutItem-my-to-be-vision</string>
+            <key>UIApplicationShortcutItemTitle</key>
+            <string>Review To Be Vision</string>
+            <key>UIApplicationShortcutItemType</key>
+            <string>to-be-vision</string>
+            <key>UIApplicationShortcutItemUserInfo</key>
+            <dict>
+                <key>link</key>
+                <string>qot://to-be-vision</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>UIApplicationShortcutItemIconFile</key>
+            <string>shortcutItem-my-data</string>
+            <key>UIApplicationShortcutItemTitle</key>
+            <string>Review My Data</string>
+            <key>UIApplicationShortcutItemType</key>
+            <string>me-universe</string>
+            <key>UIApplicationShortcutItemUserInfo</key>
+            <dict>
+                <key>link</key>
+                <string>qot://me-universe</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>UIApplicationShortcutItemIconFile</key>
+            <string>shortcutItem-prepare</string>
+            <key>UIApplicationShortcutItemTitle</key>
+            <string>Create a Peak Performance</string>
+            <key>UIApplicationShortcutItemType</key>
+            <string>prepare</string>
+            <key>UIApplicationShortcutItemUserInfo</key>
+            <dict>
+                <key>link</key>
+                <string>qot://prepare</string>
+            </dict>
+        </dict>
+    </array>
 </dict>
 </plist>
