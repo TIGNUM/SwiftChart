@@ -108,7 +108,7 @@ struct GuideGenerator {
     }
 
     private func greeting(userName: String?, now: Date) -> String {
-        let isBeforNoon = localCalendar.component(.hour, from: now) <= 12
+        let isBeforNoon = localCalendar.component(.hour, from: now) < 12
         let userName = userName ?? "High Performer"
         let welcomeText = isBeforNoon ? "Good Morning" : "Hello"
         return "\(welcomeText) \(userName),"
