@@ -80,7 +80,7 @@ extension UIBezierPath {
     class func linePath(from: CGPoint, to: CGPoint) -> UIBezierPath {
         let path = UIBezierPath()
         path.move(to: from)
-        path.addLine(to: to)
+        path.addLine(to: to)        
         return path
     }
 
@@ -530,9 +530,12 @@ extension UIImageView {
             completion?(image, nil)
         } else if let remoteURL = resource.remoteURL {
             let options: [KingfisherOptionsInfoItem] = [.targetCache(KingfisherManager.shared.cache)]
-            kf.setImage(with: remoteURL, placeholder: defaultImage, options: options, progressBlock: nil, completionHandler: { (image: Image?, error: NSError?, cacheType: CacheType, url: URL?) in
+            kf.setImage(with: remoteURL,
+                        placeholder: defaultImage,
+                        options: options,
+                        progressBlock: nil) { (image: Image?, error: NSError?, cacheType: CacheType, url: URL?) in
                 completion?(image, error)
-            })
+            }
         } else if let defaultImage = defaultImage {
             image = defaultImage
             completion?(image, nil)

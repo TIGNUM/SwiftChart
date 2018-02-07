@@ -51,6 +51,7 @@ struct MyUniverseViewData {
     let profileImageURL: URL?
     let partners: [Partner]
     let weeklyChoices: [WeeklyChoice]
+    let myToBeVisionHeadline: String
     let myToBeVisionText: String
     let sectors: [Sector]
     let isLoading: Bool
@@ -64,6 +65,7 @@ extension MyUniverseViewData: Equatable {
             && lhs.partners == rhs.partners
             && lhs.weeklyChoices == rhs.weeklyChoices
             && lhs.myToBeVisionText == rhs.myToBeVisionText
+            && lhs.myToBeVisionHeadline == rhs.myToBeVisionHeadline
             && lhs.sectors == rhs.sectors
     }
 }

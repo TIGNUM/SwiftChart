@@ -91,6 +91,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         appCoordinator.start()
         UIApplication.shared.statusBarStyle = .lightContent
         UNUserNotificationCenter.current().delegate = self
+        UITextView.appearance().tintColor = .white
         incomingLocationEvent(launchOptions: launchOptions)
         setupUAirship()
 

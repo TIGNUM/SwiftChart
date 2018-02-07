@@ -27,7 +27,7 @@ final class MyToBeVisionCoordinator: NSObject, ParentCoordinator {
         self.transitioningDelegate = transitioningDelegate
         self.services = services
         self.viewModel = MyToBeVisionViewModel(services: services)
-        myToBeVisionViewController = MyToBeVisionViewController(viewModel: self.viewModel, permissionsManager: permissionsManager)
+        myToBeVisionViewController = MyToBeVisionViewController(viewModel: viewModel, permissionsManager: permissionsManager)
         myToBeVisionViewController.modalPresentationStyle = .custom
 
         super.init()

@@ -11,19 +11,26 @@ import Anchorage
 import Kingfisher
 
 protocol MyUniverseViewControllerDelegate: class {
+
     func myUniverseViewController(_ viewController: MyUniverseViewController?, didTap sector: StatisticsSectionType)
+
     func myUniverseViewControllerDidTapVision(_ viewController: MyUniverseViewController)
+
     func myUniverseViewController(_ viewController: MyUniverseViewController, didTapWeeklyChoiceAt index: Index)
+
     func myUniverseViewController(_ viewController: MyUniverseViewController, didTapQOTPartnerAt index: Index)
+
     func myUniverseViewController(_ viewController: MyUniverseViewController,
                                   didTapLeftBarButtonItem buttonItem: UIBarButtonItem,
                                   in topNavigationBar: TopNavigationBar)
+
     func myUniverseViewController(_ viewController: MyUniverseViewController,
                                   didTapRightBarButtonItem buttonItem: UIBarButtonItem,
                                   in topNavigationBar: TopNavigationBar)
 }
 
 extension MyUniverseViewController {
+
     struct Page {
         let pageName: PageName
         let pageTitle: String
@@ -64,6 +71,7 @@ extension MyUniverseViewController {
 }
 
 final class MyUniverseViewController: UIViewController, FullScreenLoadable {
+
     @IBOutlet private weak var topBar: TopNavigationBar!
     @IBOutlet private weak var scrollView: UIScrollView!
     private var config: Config
@@ -136,6 +144,7 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
 // MARK: - private
 
 private extension MyUniverseViewController {
+
     func reload() {
         isLoading = viewData.isLoading
         contentView.profileButton.kf.setBackgroundImage(
@@ -167,6 +176,7 @@ private extension MyUniverseViewController {
             contentView.weeklyChoiceButtons[index].configure(for: weeklyChoice)
         }
         contentView.setVisionText(viewData.myToBeVisionText)
+        contentView.setVisionHeadline(viewData.myToBeVisionHeadline)
         contentView.setupMyData(for: viewData.sectors)
     }
 
@@ -190,12 +200,12 @@ private extension MyUniverseViewController {
             $0.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         }
         contentView.weeklyChoicesTitleLabel.text = config.weeklyChoicesTitle
-        contentView.visionTitleLabel.text = config.myToBeVisionTitle
+        contentView.visionTypeLabel.text = config.myToBeVisionTitle
 
         // top bar
         topBar.topNavigationBarDelegate = self
-        topBar.setMiddleButtons(config.pages.map { self.button(with: $0.pageTitle) })
-        topBar.setLeftButton(UIBarButtonItem(withImage: R.image.explainer_ico()))
+        topBar.setMiddleButtons(config.pages.map { button(with: $0.pageTitle) })
+        topBar.setLeftButton(UIBarButtonItem.info)
         topBar.setRightButton(UIBarButtonItem(withImage: R.image.ic_menu()))
     }
 
@@ -252,18 +262,22 @@ private extension MyUniverseViewController {
 
     func updateAlphaValues() {
         let alpha = scrollView.contentOffset.x / (scrollView.contentSize.width - scrollView.bounds.width)
-        let inverseAlpha = 1.0 - alpha
-        let normalizedAlpha = max(alpha, 0.45)
+        let inverseAlpha = 1 - alpha
+        let normalizedAlpha = max(inverseAlpha, 0.45)
         contentView.profileButtonOverlay.alpha = inverseAlpha
-        contentView.visionWrapperView.alpha = normalizedAlpha
-        contentView.partnersWrapperView.alpha = normalizedAlpha
-        contentView.weeklyChoicesWrapperView.alpha = normalizedAlpha
+        contentView.visionWrapperView.alpha = alpha
+        contentView.partnersWrapperView.alpha = alpha
+        contentView.weeklyChoicesWrapperView.alpha = alpha
+        contentView.sectors.forEach { $0.label.alpha = inverseAlpha }
+        contentView.sectors.forEach { $0.lines.forEach { $0.layer.opacity = Float(normalizedAlpha) } }
+        contentView.sectors.forEach { $0.lines.forEach { $0.point.layer.opacity = Float(normalizedAlpha) } }
     }
 }
 
 // MARK: - actions
 
 private extension MyUniverseViewController {
+
     @objc func contentViewTapped(_ sender: UIGestureRecognizer) {
         guard pageNumber == 0 else { return }
         let point = sender.location(in: contentView)
@@ -279,6 +293,7 @@ private extension MyUniverseViewController {
 // MARK: - MyUniverseContentViewDelegate
 
 extension MyUniverseViewController: MyUniverseContentViewDelegate {
+
     func myUniverseContentViewDidTapProfile(_ viewController: MyUniverseContentView) {
         delegate?.myUniverseViewControllerDidTapVision(self)
     }
@@ -288,7 +303,7 @@ extension MyUniverseViewController: MyUniverseContentViewDelegate {
     }
 
     func myUniverseContentViewDidTapPartner(_ viewController: MyUniverseContentView, at index: Int) {
-        print("partner feature not yet available")
+        print("partner feature not available yet")
         // FIXME: comment in when feature available
         //delegate?.myUniverseViewController(self, didTapQOTPartnerAt: index)
     }
@@ -297,6 +312,7 @@ extension MyUniverseViewController: MyUniverseContentViewDelegate {
 // MARK: - ScrollViewDelegate
 
 extension MyUniverseViewController: UIScrollViewDelegate {
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         updateAlphaValues()
     }
@@ -314,6 +330,7 @@ extension MyUniverseViewController: UIScrollViewDelegate {
 // MARK: - TopNavigationBarDelegate
 
 extension MyUniverseViewController: TopNavigationBarDelegate {
+
     func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
         delegate?.myUniverseViewController(self, didTapLeftBarButtonItem: button, in: navigationBar)
     }
@@ -332,6 +349,7 @@ extension MyUniverseViewController: TopNavigationBarDelegate {
 // MARK: - UIButton
 
 private extension UIButton {
+
     func configure(for partner: MyUniverseViewData.Partner, placeholder: UIImage?) {
         if let url = partner.imageURL {
             setTitle(nil, for: .normal)

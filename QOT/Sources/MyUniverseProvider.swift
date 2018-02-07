@@ -10,6 +10,7 @@ import Foundation
 import RealmSwift
 
 final class MyUniverseProvider {
+
     private let services: Services
     private let myToBeVisions: AnyRealmCollection<MyToBeVision>
     private let partners: AnyRealmCollection<QOT.Partner>
@@ -94,6 +95,7 @@ final class MyUniverseProvider {
             profileImageURL: myToBeVision?.profileImageResource?.url,
             partners: partners,
             weeklyChoices: weeklyChices,
+            myToBeVisionHeadline: myToBeVision?.headline ?? R.string.localized.meSectorMyWhyVisionTitle(),
             myToBeVisionText: myToBeVision?.text ?? R.string.localized.meSectorMyWhyVisionMessagePlaceholder(),
             sectors: sectors,
             isLoading: !isReady()
@@ -216,6 +218,7 @@ final class MyUniverseProvider {
 // FIXME: remove when feature is available
 
 extension Partner {
+
     static func comingSoon(image: UIImage?, imageName: String) -> MyUniverseViewData.Partner {
         guard let image = image, let url = try? image.save(withName: imageName, format: .png) else {
             return MyUniverseViewData.Partner(imageURL: nil, initials: "")

@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import RSKImageCropper
-import Kingfisher
 import Anchorage
 
 protocol MyToBeVisionViewControllerDelegate: class {
@@ -16,7 +14,7 @@ protocol MyToBeVisionViewControllerDelegate: class {
     func didTapClose(in viewController: MyToBeVisionViewController)
 }
 
-class MyToBeVisionViewController: UIViewController {
+final class MyToBeVisionViewController: UIViewController {
 
     // MARK: - Properties
 
@@ -41,7 +39,7 @@ class MyToBeVisionViewController: UIViewController {
 
     private lazy var gradientLayer: CAGradientLayer = {
         let layer = CAGradientLayer()
-        self.gradientView.layer.addSublayer(layer)
+        gradientView.layer.addSublayer(layer)
         return layer
     }()
 
@@ -49,7 +47,10 @@ class MyToBeVisionViewController: UIViewController {
 
     init(viewModel: MyToBeVisionViewModel, permissionsManager: PermissionsManager) {
         self.viewModel = viewModel
-        imagePickerController = ImagePickerController(cropShape: .circle, imageQuality: .low, imageSize: .small, permissionsManager: permissionsManager)
+        imagePickerController = ImagePickerController(cropShape: .circle,
+                                                      imageQuality: .low,
+                                                      imageSize: .small,
+                                                      permissionsManager: permissionsManager)
 
         super.init(nibName: nil, bundle: nil)
 
@@ -80,26 +81,30 @@ class MyToBeVisionViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        textViewDidChange(headlineTextView) // flush height constraint change
-
         if messageTextView.contentInset.bottom == 0 {
             messageTextView.contentInset.bottom = imageViewContainer.bounds.height
         }
+
+        if headlineTextView.numberOfLines > 1 {
+            headlineTextView.flashScrollIndicators()
+        }
+
+        headlineTextView.setContentOffset(.zero, animated: false)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        setupNotifications()
+        startObservingKeyboard()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        if isBeingDismissed {
+        if isBeingDismissed == true {
             edit(false)
         }
-        tearDownNotifications()
+        stopObservingKeyboard()
     }
 
     // MARK: - Internal
@@ -115,42 +120,26 @@ class MyToBeVisionViewController: UIViewController {
 private extension MyToBeVisionViewController {
 
     func drawCircles() {
-        let color = UIColor(white: 1, alpha: 0.08)
         circleContainerView.removeSubLayers()
         var center = view.center; center.x *= 0.2; center.y *= 1.1
-        let circleLayer1 = CAShapeLayer.circle(
-            center: center,
-            radius: view.bounds.width * 0.55,
-            fillColor: .clear,
-            strokeColor: color
-        )
+        let circleLayer1 = CAShapeLayer.circle(center: center,
+                                               radius: view.bounds.width * 0.55,
+                                               fillColor: .clear,
+                                               strokeColor: .whiteLight8)
         circleLayer1.lineDashPattern = [1, 2]
         circleContainerView.layer.addSublayer(circleLayer1)
-
-        let circleLayer2 = CAShapeLayer.circle(
-            center: center,
-            radius: view.bounds.width * 0.9,
-            fillColor: .clear,
-            strokeColor: color
-        )
+        let circleLayer2 = CAShapeLayer.circle(center: center,
+                                               radius: view.bounds.width * 0.9,
+                                               fillColor: .clear,
+                                               strokeColor: .whiteLight8)
         circleContainerView.layer.addSublayer(circleLayer2)
-    }
-
-    func setupNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
-    }
-
-    func tearDownNotifications() {
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
 
     func edit(_ isEditing: Bool) {
         headlineTextView.isEditable = isEditing
         messageTextView.isEditable = isEditing
         editButton.tintColor = isEditing ? .white : .white40
-        imageView.alpha = isEditing ? 0.25 : 1.0
+        imageView.alpha = isEditing ? 0.25 : 1
         setupMessageText(editing: isEditing)
 
         UIView.animate(withDuration: 0.5) {
@@ -161,10 +150,6 @@ private extension MyToBeVisionViewController {
     func setupView() {
         setupNavigation()
         setupLabels()
-        messageTextView.delegate = self
-        messageTextView.returnKeyType = .done
-        messageTextView.tintColor = .white
-        headlineTextView.tintColor = .white
 
         if let profileImageResource = viewModel.profileImageResource {
             imageView.setImageFromResource(profileImageResource)
@@ -201,38 +186,37 @@ private extension MyToBeVisionViewController {
     }
 
     func setupLabels() {
-        headlineTextView.autocapitalizationType = .allCharacters
-        headlineTextView.placeholderDelegate = self
-        headlineTextView.attributedText = NSMutableAttributedString(
-            string: viewModel.headline?.uppercased() ?? "",
-            letterSpacing: 2,
-            font: Font.H1MainTitle,
-            lineSpacing: 3.0,
-            textColor: UIColor.white)
-        headlineTextView.textContainer.maximumNumberOfLines = 2
-        headlineTextView.textContainer.lineFragmentPadding = 0
-        headlineTextView.textContainerInset = .zero
-        headlineTextView.set(placeholderText: R.string.localized.meSectorMyWhyVisionHeadlinePlaceholder(), placeholdeColor: UIColor.white)
-
+        setupHeadlineText(editing: false)
         setupMessageText(editing: false)
-
         subtitleLabel.attributedText = NSMutableAttributedString(
             string: viewModel.dateText,
             letterSpacing: 2,
             font: Font.H7Tag,
             lineSpacing: 0,
             textColor: .white30)
-
         imageEditLabel.font = Font.DPText
         imageEditLabel.textColor = .white
     }
 
-    func setupMessageTextGradientLayer() {
+    func updateHeadlineHeight(_ textView: PlaceholderTextView) {
+        headlineTextViewHightConstrant.constant = textView.numberOfLines == 1 ? 50 : 100
+    }
 
-        gradientLayer.frame = gradientView.frame
-        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
-        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
-        gradientLayer.endPoint = CGPoint(x: 0, y: 0.2)
+    func setupHeadlineText(editing: Bool) {
+        let pleaceholderText = (editing ? "" : R.string.localized.meSectorMyWhyVisionMessagePlaceholder())
+        headlineTextView.autocapitalizationType = .allCharacters
+        headlineTextView.alpha = 1
+        headlineTextView.placeholderDelegate = self
+        headlineTextView.attributedText = NSMutableAttributedString(
+            string: viewModel.headline?.uppercased() ?? pleaceholderText,
+            letterSpacing: 2,
+            font: Font.H1MainTitle,
+            lineSpacing: 3,
+            textColor: .white)
+        headlineTextView.set(placeholderText: R.string.localized.meSectorMyWhyVisionMessagePlaceholder(),
+                             placeholdeColor: .white)
+        headlineTextView.textContainer.lineFragmentPadding = 0
+        updateHeadlineHeight(headlineTextView)
     }
 
     func setupMessageText(editing: Bool) {
@@ -243,10 +227,18 @@ private extension MyToBeVisionViewController {
             letterSpacing: -0.4,
             font: Font.DPText,
             lineSpacing: 10.0,
-            textColor: UIColor.white)
-        messageTextView.set(placeholderText: R.string.localized.meSectorMyWhyVisionMessagePlaceholder(), placeholdeColor: UIColor.white)
+            textColor: .white)
+        messageTextView.set(placeholderText: R.string.localized.meSectorMyWhyVisionMessagePlaceholder(),
+                            placeholdeColor: .white)
         messageTextView.textContainer.lineFragmentPadding = 0
         messageTextView.textContainerInset = UIEdgeInsets(top: 14.0, left: 0.0, bottom: 10.0, right: 0.0)
+    }
+
+    func setupMessageTextGradientLayer() {
+        gradientLayer.frame = gradientView.frame
+        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 0, y: 0.2)
     }
 
     func maskImageView(imageView: UIImageView) {
@@ -255,12 +247,10 @@ private extension MyToBeVisionViewController {
         clippingBorderPath.addCurve(
             to: CGPoint(x: view.bounds.size.width, y: 56),
             controlPoint1: CGPoint(x: view.bounds.size.width/2 - 50, y: 0),
-            controlPoint2: CGPoint(x: view.bounds.size.width/2 + 50, y: 0)
-        )
+            controlPoint2: CGPoint(x: view.bounds.size.width/2 + 50, y: 0))
         clippingBorderPath.addLine(to: CGPoint(x: view.bounds.size.width, y: view.bounds.size.height + 30))
         clippingBorderPath.addLine(to: CGPoint(x: 0, y: view.bounds.size.height + 30))
         clippingBorderPath.close()
-
         let borderMask = CAShapeLayer()
         borderMask.path = clippingBorderPath.cgPath
         imageView.layer.mask = borderMask
@@ -286,20 +276,19 @@ private extension MyToBeVisionViewController {
 
 // MARK: - Notifications 
 
-private extension MyToBeVisionViewController {
+extension MyToBeVisionViewController {
 
-    @objc func keyboardWillShow(_ notification: NSNotification) {
+    override internal func keyboardWillAppear(notification: NSNotification) {
         guard
             let userInfo = notification.userInfo,
-            let rect = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect else {
-                return
-        }
+            let rect = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect else { return }
         messageTextView.contentInset.bottom = rect.height
     }
 
-    @objc func keyboardWillHide(_ notification: NSNotification) {
+    override internal func keyboardWillDisappear(notification: NSNotification) {
         messageTextView.contentInset.bottom = imageViewContainer.bounds.height
-        messageTextView.contentOffset = .zero
+        messageTextView.setContentOffset(.zero, animated: true)
+        headlineTextView.setContentOffset(.zero, animated: true)
     }
 }
 
@@ -308,7 +297,7 @@ private extension MyToBeVisionViewController {
 extension MyToBeVisionViewController: UITextViewDelegate {
 
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-        if !isEditing {
+        if isEditing == false {
             edit()
         }
         return true
@@ -342,19 +331,8 @@ extension MyToBeVisionViewController: UITextViewDelegate {
     }
 
     func textViewDidChange(_ textView: UITextView) {
-        if textView == headlineTextView, let font = textView.font {
-            let numOfLines = floorf(Float(textView.contentSize.height / font.lineHeight))
-            if numOfLines == 1 {
-                headlineTextViewHightConstrant.constant = 50
-            } else if numOfLines == 2 {
-                headlineTextViewHightConstrant.constant = 100
-            }
-            view.layoutIfNeeded()
-        } else if textView == messageTextView, textView.text.count >= 1 {
-            if textView.text.first(where: {$0 == "\n"}) != nil {
-                textView.text = textView.text.replacingOccurrences(of: "\n", with: "")
-                textView.resignFirstResponder()
-            }
+        if textView == headlineTextView {
+            updateHeadlineHeight(headlineTextView)
         }
     }
 }
@@ -365,17 +343,6 @@ extension MyToBeVisionViewController: PlaceholderTextViewDelegate {
 
     func placeholderDidChange(_ placeholderTextView: PlaceholderTextView) {
         textViewDidChange(placeholderTextView)
-    }
-}
-
-// MARK: - UIScrollViewDelegate
-
-extension MyToBeVisionViewController: UIScrollViewDelegate {
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView == headlineTextView, scrollView.contentOffset.y > 0 {
-            scrollView.contentOffset = .zero
-        }
     }
 }
 

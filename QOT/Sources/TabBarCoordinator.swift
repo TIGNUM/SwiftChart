@@ -84,11 +84,10 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
 
     lazy var topTabBarControllerGuide: UINavigationController = {
         let guideViewController = GuideViewController(configurator: GuideConfigurator.make())
-        let leftButton = UIBarButtonItem(withImage: R.image.explainer_ico())
         let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())
         let topTabBarController = UINavigationController(withPages: [guideViewController],
                                                          topBarDelegate: self,
-                                                         leftButton: leftButton,
+                                                         leftButton: UIBarButtonItem.info,
                                                          rightButton: rightButton)
         let config = tabBarItemConfig(title: "GUIDE", tag: 0)
         topTabBarController.tabBarItem = TabBarItem(config: config)
@@ -100,12 +99,11 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         let learnCategoryListVC = LearnCategoryListViewController(viewModel: viewModel)
         learnCategoryListVC.title = R.string.localized.topTabBarItemTitleLearnStrategies()
         learnCategoryListVC.delegate = self
-        let leftButton = UIBarButtonItem(withImage: R.image.explainer_ico())
         let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())
         let topTabBarController = UINavigationController(withPages: [learnCategoryListVC, articleCollectionViewController],
                                                          topBarDelegate: self,
                                                          pageDelegate: self,
-                                                         leftButton: leftButton,
+                                                         leftButton: UIBarButtonItem.info,
                                                          rightButton: rightButton)
         var config = TabBarItem.Config.default
         config.title = R.string.localized.tabBarItemLearn()
@@ -138,14 +136,13 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     }()
 
     lazy var topTabBarControllerPrepare: UINavigationController = {
-        let leftButton = UIBarButtonItem(withImage: R.image.explainer_ico())
         let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())
         let topTabBarController = UINavigationController(withPages: [prepareChatViewController,
                                                                      myPrepViewController],
                                                          topBarDelegate: self,
                                                          pageDelegate: self,
                                                          backgroundImage: R.image.myprep(),
-                                                         leftButton: leftButton,
+                                                         leftButton: UIBarButtonItem.info,
                                                          rightButton: rightButton)
         var config = TabBarItem.Config.default
         config.title = R.string.localized.tabBarItemPrepare()

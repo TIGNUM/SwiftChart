@@ -44,25 +44,22 @@ extension MyUniverseContentView {
 }
 
 final class MyUniverseContentView: UIView {
-    @IBOutlet weak var backgroundImageView: UIImageView!
 
+    @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var profileWrapperView: UIView!
     @IBOutlet weak var profileButton: UIButton!
     @IBOutlet weak var profileButtonOverlay: UIImageView!
-
     @IBOutlet weak var visionWrapperView: UIView!
+    @IBOutlet weak var visionHeadlineLabel: UILabel!
     @IBOutlet weak var visionTextLabel: UILabel!
-    @IBOutlet weak var visionTitleLabel: UILabel!
-
+    @IBOutlet weak var visionTypeLabel: UILabel!
     @IBOutlet weak var weeklyChoicesWrapperView: UIView!
     @IBOutlet weak var weeklyChoicesTitleLabel: UILabel!
     @IBOutlet var weeklyChoiceButtons: [UIButton]!
-
     @IBOutlet weak var partnersWrapperView: UIView!
     @IBOutlet weak var partnersTitleLabel: UILabel!
     @IBOutlet weak var partnersComingSoonLabel: UILabel! // FIXME: remove when feature is available
     @IBOutlet var partnerButtons: [UIButton]!
-
     weak var delegate: MyUniverseContentViewDelegate?
     var sectors = [Sector]()
 
@@ -71,11 +68,11 @@ final class MyUniverseContentView: UIView {
         layer.addGlowEffect(color: .white)
         return layer
     }()
-    private let circle1 = CAShapeLayer(fillColor: .clear, strokeColor: UIColor(white: 1, alpha: 0.08), lineWidth: 1)
-    private let circle2 = CAShapeLayer(fillColor: .clear, strokeColor: UIColor(white: 1, alpha: 0.08), lineWidth: 1)
-    private let visionLine = CAShapeLayer(fillColor: .clear, strokeColor: .white40, lineWidth: 0.4)
-    private let weeklyChoicesLine = CAShapeLayer(fillColor: .clear, strokeColor: .white40, lineWidth: 0.4)
-    private let partnersLine = CAShapeLayer(fillColor: .clear, strokeColor: .white40, lineWidth: 0.4)
+    private let circle1 = CAShapeLayer(fillColor: .clear, strokeColor: .whiteLight8, lineWidth: 1)
+    private let circle2 = CAShapeLayer(fillColor: .clear, strokeColor: .whiteLight8, lineWidth: 1)
+    private let visionLine = CAShapeLayer(fillColor: .clear, strokeColor: .white40, lineWidth: 0.8)
+    private let weeklyChoicesLine = CAShapeLayer(fillColor: .clear, strokeColor: .white40, lineWidth: 0.8)
+    private let partnersLine = CAShapeLayer(fillColor: .clear, strokeColor: .white40, lineWidth: 0.8)
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -90,21 +87,37 @@ final class MyUniverseContentView: UIView {
         visionWrapperView.addGestureRecognizer(
             UITapGestureRecognizer(target: self, action: #selector(visionTapped(_:)))
         )
+
+        visionWrapperView.backgroundColor = .clear
+        weeklyChoicesWrapperView.backgroundColor = .clear
+        partnersWrapperView.backgroundColor = .clear
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        setupProfileButton()
         setupCircles()
         setupMyWhyLines()
+        setupProfileButton()
     }
 
     func setVisionText(_ text: String) {
         visionTextLabel.attributedText = NSAttributedString(
             string: text,
             letterSpacing: 1.7,
-            font: UIFont.bentonBookFont(ofSize: 13),
+            font: Font.PTextSmall,
+            lineSpacing: 3,
+            textColor: .white,
+            alignment: .left,
+            lineBreakMode: .byTruncatingTail
+        )
+    }
+
+    func setVisionHeadline(_ headline: String) {
+        visionHeadlineLabel.attributedText = NSAttributedString(
+            string: headline.uppercased(),
+            letterSpacing: 1.7,
+            font: Font.H6NavigationTitle,
             lineSpacing: 1.5,
             textColor: .white,
             alignment: .left,
@@ -116,7 +129,7 @@ final class MyUniverseContentView: UIView {
         guard let circle2Circumference = circle2.path?.boundingBox.width else { return }
         let center = profileWrapperView.center
         let maxDistance = circle2Circumference / 2
-        let radius = profileWrapperView.bounds.width / 2.0
+        let radius = profileWrapperView.bounds.width / 2
         var viewSectors = [Sector]()
 
         // maths - http://classroom.synonym.com/coordinates-distances-angles-2732.html
@@ -136,7 +149,7 @@ final class MyUniverseContentView: UIView {
             addSubview(label)
 
             label.sizeToFit()
-            let padding = (label.bounds.width / 2.0) + 7
+            let padding = (label.bounds.width / 2) + 7
             label.center = CGPoint(
                 x: center.x + cos(midAngle.degreesToRadians) * (maxDistance + padding),
                 y: center.y + sin(midAngle.degreesToRadians) * (maxDistance + padding)
@@ -189,10 +202,10 @@ final class MyUniverseContentView: UIView {
         // remove old views
         self.sectors.forEach { sector in
             sector.label.removeFromSuperview()
-            sector.lines.forEach({ line in
+            sector.lines.forEach { line in
                 line.layer.removeFromSuperlayer()
                 line.point.layer.removeFromSuperlayer()
-            })
+            }
         }
         // save the reference
         self.sectors = viewSectors
@@ -201,7 +214,7 @@ final class MyUniverseContentView: UIView {
     // MARK: - private
 
     private func setupProfileButton() {
-        let radius = profileButtonOverlay.bounds.width / 2.0
+        let radius = profileButtonOverlay.bounds.width / 2
         profileButton.layer.cornerRadius = radius
         profileButtonOverlay.layer.cornerRadius = radius
         profileButtonGlowLayer.path = UIBezierPath.circlePath(center: .zero, radius: radius).cgPath
@@ -209,10 +222,9 @@ final class MyUniverseContentView: UIView {
     }
 
     private func setupCircles() {
+        let radius = (profileButton.bounds.width / 2)
         circle1.position = profileWrapperView.center
         circle2.position = profileWrapperView.center
-
-        let radius = (profileButton.bounds.width / 2)
         circle1.path = UIBezierPath.circlePath(center: .zero, radius: radius * 2.1).cgPath
         circle2.path = UIBezierPath.circlePath(center: .zero, radius: radius * 3.8).cgPath
     }
@@ -220,15 +232,15 @@ final class MyUniverseContentView: UIView {
     private func setupMyWhyLines() {
         let fromPoint = profileWrapperView.center
         let visionPoint = CGPoint(
-            x: visionWrapperView.frame.origin.x,
+            x: visionWrapperView.frame.origin.x + (visionWrapperView.frame.width * 0.2),
             y: visionWrapperView.frame.origin.y + visionWrapperView.bounds.height
         )
         let weeklyChoicesPoint = CGPoint(
-            x: weeklyChoicesWrapperView.frame.origin.x,
+            x: weeklyChoicesWrapperView.frame.origin.x + (weeklyChoicesWrapperView.frame.width * 0.05),
             y: weeklyChoicesWrapperView.center.y
         )
         let partnersPoint = CGPoint(
-            x: partnersWrapperView.frame.origin.x + (partnersWrapperView.bounds.width * 0.3),
+            x: partnersWrapperView.frame.origin.x + (partnersWrapperView.bounds.width * 0.2),
             y: partnersWrapperView.frame.origin.y
         )
         visionLine.path = UIBezierPath.linePath(from: fromPoint, to: visionPoint).cgPath

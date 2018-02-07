@@ -9,13 +9,14 @@
 import UIKit
 
 protocol PlaceholderTextViewDelegate: class {
+
     func placeholderDidChange(_ placeholderTextView: PlaceholderTextView)
 }
 
 final class PlaceholderTextView: UITextView {
 
-    private(set) var placeholderText: String?
-    private(set) var plachholderTextColor: UIColor?
+    private var placeholderText: String?
+    private var plachholderTextColor: UIColor?
     private var originalTextColor: UIColor?
     private var isPlaceholderShowing: Bool = false
     weak var placeholderDelegate: PlaceholderTextViewDelegate?
@@ -24,17 +25,16 @@ final class PlaceholderTextView: UITextView {
         super.awakeFromNib()
 
         originalTextColor = textColor
-        tintColor = .white
     }
 
     func didBeginEditing() {
-        if isPlaceholderShowing {
+        if isPlaceholderShowing == true {
             showPlaceholder(false)
         }
     }
 
     func didEndEditing() {
-        if text.isEmpty {
+        if text.isEmpty == true {
             showPlaceholder(true)
         }
     }
@@ -42,10 +42,15 @@ final class PlaceholderTextView: UITextView {
     func set(placeholderText: String?, placeholdeColor: UIColor?) {
         self.placeholderText = placeholderText
         self.plachholderTextColor = placeholdeColor
-        if text.isEmpty {
+        if text.isEmpty == true {
             showPlaceholder(true)
         }
     }
+
+    lazy var numberOfLines: Float = {
+        guard let font = font else { return text.isEmpty == true ? 0 : 1 }
+        return floorf(Float(contentSize.height / font.lineHeight))
+    }()
 }
 
 // MARK: - Private
@@ -54,13 +59,8 @@ private extension PlaceholderTextView {
 
     func showPlaceholder(_ isShowing: Bool) {
         isPlaceholderShowing = isShowing
-        if isShowing {
-            text = placeholderText
-            textColor = plachholderTextColor
-        } else {
-            text = nil
-            textColor = originalTextColor
-        }
+        text = isShowing == true ? placeholderText : nil
+        textColor = isShowing == true ? plachholderTextColor : originalTextColor
         placeholderDelegate?.placeholderDidChange(self)
     }
 }
