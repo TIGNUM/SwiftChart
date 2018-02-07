@@ -254,6 +254,7 @@
 		CB810E661EF00DCA0043E3E5 /* UserIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB810E651EF00DCA0043E3E5 /* UserIntermediary.swift */; };
 		CB810E6E1EF180DC0043E3E5 /* PageTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB810E6D1EF180DC0043E3E5 /* PageTrack.swift */; };
 		CB84CDF71FA2345D00970E71 /* SyncStateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB84CDF61FA2345D00970E71 /* SyncStateObserver.swift */; };
+		CB873294202AEDA80081F522 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB873293202AEDA80081F522 /* GradientView.swift */; };
 		CB8A154A1E7A7FA20023B2F9 /* CalendarImportManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A15491E7A7FA20023B2F9 /* CalendarImportManger.swift */; };
 		CB8A154C1E7A8AD30023B2F9 /* CalendarImportTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A154B1E7A8AD30023B2F9 /* CalendarImportTask.swift */; };
 		CB8C344F1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8C344D1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift */; };
@@ -804,6 +805,7 @@
 		CB810E651EF00DCA0043E3E5 /* UserIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserIntermediary.swift; sourceTree = "<group>"; };
 		CB810E6D1EF180DC0043E3E5 /* PageTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageTrack.swift; sourceTree = "<group>"; };
 		CB84CDF61FA2345D00970E71 /* SyncStateObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncStateObserver.swift; sourceTree = "<group>"; };
+		CB873293202AEDA80081F522 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		CB8A15491E7A7FA20023B2F9 /* CalendarImportManger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarImportManger.swift; sourceTree = "<group>"; };
 		CB8A154B1E7A8AD30023B2F9 /* CalendarImportTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarImportTask.swift; sourceTree = "<group>"; };
 		CB8C344D1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1573,6 +1575,14 @@
 			name = PageTrack;
 			sourceTree = "<group>";
 		};
+		CB873292202AED1F0081F522 /* GradientView */ = {
+			isa = PBXGroup;
+			children = (
+				CB873293202AEDA80081F522 /* GradientView.swift */,
+			);
+			name = GradientView;
+			sourceTree = "<group>";
+		};
 		CB9442261FD963B200E2B122 /* SlideShow */ = {
 			isa = PBXGroup;
 			children = (
@@ -1806,6 +1816,7 @@
 				CB026FCF1F6C013B00FC5076 /* Carousel */,
 				CBB4DD2E1EE088B80071494A /* Charts */,
 				CBB4DD461EE0911A0071494A /* Common */,
+				CB873292202AED1F0081F522 /* GradientView */,
 				7F01A6221F98A1F5002C7B72 /* ImagePicker */,
 				CBB4DD3F1EE08EF90071494A /* Launch */,
 				CBB4DD281EE088050071494A /* Learn Category */,
@@ -3429,6 +3440,7 @@
 				CBB4DCF11EDC0C420071494A /* SyncRecord.swift in Sources */,
 				CBB017B61F9662DD00CC1048 /* UpSyncTask.swift in Sources */,
 				CB1467671EF277AA00A60E31 /* PageIntermediary.swift in Sources */,
+				CB873294202AEDA80081F522 /* GradientView.swift in Sources */,
 				CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */,
 				85C3D6BE1F0B920E00E0CBFE /* PrepareEventTableViewFooterView.swift in Sources */,
 				D58BD8771E9F65F7005676DE /* ArticleCollectionCell.swift in Sources */,

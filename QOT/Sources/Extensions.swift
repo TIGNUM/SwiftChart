@@ -282,25 +282,22 @@ extension UIView {
             return UIView()
         }
 
-        let fadeView = UIView()
-        fadeView.backgroundColor = .clear
+        let fadeView: GradientView
+        switch location {
+        case .top:
+            fadeView = GradientView(colors: [primaryColor, fadeColor], locations: [0.5, 1])
+        case .bottom:
+            fadeView = GradientView(colors: [fadeColor, primaryColor], locations: [0, 0.5])
+        }
 
-        let fadeLayer = CAGradientLayer()
-        fadeLayer.frame = CGRect(x: 0, y: 0, width: bounds.width, height: height)
-
-        fadeView.layer.addSublayer(fadeLayer)
         addSubview(fadeView)
-
         fadeView.horizontalAnchors == horizontalAnchors
         fadeView.heightAnchor == height
-
         switch location {
         case .top:
             fadeView.topAnchor == topAnchor
-            fadeLayer.colors = [primaryColor.cgColor, primaryColor.cgColor, fadeColor.cgColor]
         case .bottom:
             fadeView.bottomAnchor == bottomAnchor
-            fadeLayer.colors = [fadeColor.cgColor, primaryColor.cgColor, primaryColor.cgColor]
         }
 
         return fadeView
