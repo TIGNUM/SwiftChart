@@ -59,15 +59,26 @@ final class NetworkManager {
 
     @discardableResult func performResetPasswordRequest(username: String,
                                                         completion: @escaping (NetworkError?) -> Void) -> SerialRequest {
-        let request = ResetPasswordRequest(username: username)
-        return performRequest(request, completion: completion)
+
+        let req = requestBuilder.make(buildable: ResetPasswordRequest(username: username))
+        let current = SerialRequest()
+        current.request = sessionManager.request(req, parser: GenericParser.parse) { (result) in
+            completion(result.error)
+        }
+        return current
     }
 
     @discardableResult func performAPNSDeviceTokenRequest(token: String,
                                                           urbanAirshipAppKey: String,
                                                           completion: @escaping (NetworkError?) -> Void) -> SerialRequest {
-        let request = APNSDeviceTokenRequest(token: token, urbanAirshipAppKey: urbanAirshipAppKey)
-        return performRequest(request, completion: completion)
+        let current = SerialRequest()
+        performAuthenticatingRequest(APNSDeviceTokenRequest(token: token, urbanAirshipAppKey: urbanAirshipAppKey),
+                                     parser: GenericParser.parse,
+                                     notifyDelegateOfFailure: false,
+                                     current: current) { (result) in
+                                        completion(result.error)
+        }
+        return current
     }
 
     @discardableResult func performUserAnswerFeedbackRequest(userAnswers: [UserAnswer],
@@ -193,21 +204,6 @@ final class NetworkManager {
                 }
             }
         }
-    }
-
-    private func performRequest(_ request: URLRequestBuildable, completion: @escaping (NetworkError?) -> Void) -> SerialRequest {
-        return performRequest(request, parser: { return $0 }) { result in
-            completion(result.error)
-        }
-    }
-
-    private func performRequest<T>(_ request: URLRequestBuildable,
-                                   parser: @escaping (Data) throws -> T,
-                                   completion: @escaping (Result<T, NetworkError>) -> Void) -> SerialRequest {
-        let req = requestBuilder.make(buildable: request)
-        let current = SerialRequest()
-        current.request = sessionManager.request(req, parser: parser, completion: completion)
-        return current
     }
 }
 
