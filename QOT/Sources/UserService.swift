@@ -25,6 +25,24 @@ final class UserService {
         return mainRealm.objects(User.self).first
     }
 
+    func updateJobTitle(user: User, title: String) {
+        updateUser(user: user) {
+            $0.jobTitle = title
+        }
+    }
+
+    func updateUserEmail(user: User, email: String) {
+        updateUser(user: user) {
+            $0.email = email
+        }
+    }
+
+    func updateUserTelephone(user: User, telephone: String) {
+        updateUser(user: user) {
+            $0.telephone = telephone
+        }
+    }
+
     func updateUserGender(user: User, gender: String) {
         updateUser(user: user) {
             $0.gender = gender

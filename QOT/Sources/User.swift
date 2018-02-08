@@ -31,6 +31,12 @@ final class User: SyncableObject {
 
     @objc dynamic var gender: String = ""
 
+    @objc dynamic var jobTitle: String?
+
+    @objc dynamic var email: String = ""
+
+    @objc dynamic var telephone: String?
+
     @objc dynamic var dateOfBirth: String?
 
     @objc dynamic var heightUnit: String?
@@ -42,10 +48,6 @@ final class User: SyncableObject {
     @objc private(set) dynamic var givenName: String = ""
 
     @objc private(set) dynamic var familyName: String = ""
-
-    @objc private(set) dynamic var email: String = ""
-
-    @objc private(set) dynamic var telephone: String?
 
     @objc private(set) dynamic var zipCode: String?
 
@@ -74,8 +76,6 @@ final class User: SyncableObject {
     @objc private(set) dynamic var weightUnitsJSON: String = ""
 
     @objc private(set) dynamic var company: String?
-
-    @objc private(set) dynamic var jobTitle: String?
 
     @objc private(set) dynamic var memberSince: Date = Date()
 

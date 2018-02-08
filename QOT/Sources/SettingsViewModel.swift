@@ -11,6 +11,7 @@ import ReactiveKit
 
 enum SettingsType: Int {
     case company = 0
+    case jobTitle
     case email
     case phone
     case gender
@@ -35,6 +36,7 @@ enum SettingsType: Int {
     var title: String {
         switch self {
         case .company: return R.string.localized.settingsGeneralCompanyTitle()
+        case .jobTitle: return R.string.localized.settingsGeneralJobTitleTitle()
         case .email: return R.string.localized.settingsGeneralEmailTitle()
         case .phone: return R.string.localized.settingsGeneralTelephoneTitle()
         case .gender: return R.string.localized.settingsGeneralGenderTitle()
@@ -213,6 +215,18 @@ final class SettingsViewModel {
         return settingsSections[section].title
     }
 
+    func updateJobTitle(title: String) {
+        services.userService.updateJobTitle(user: user, title: title)
+    }
+
+    func updateEmail(email: String) {
+        services.userService.updateUserEmail(user: user, email: email)
+    }
+
+    func updateTelephone(telephone: String) {
+        services.userService.updateUserTelephone(user: user, telephone: telephone)
+    }
+
     func updateDateOfBirth(dateOfBirth: String) {
         services.userService.updateUserDateOfBirth(user: user, dateOfBirth: dateOfBirth)
     }
@@ -340,10 +354,18 @@ private func companyRows(for user: User?) -> [SettingsRow] {
         return []
     }
 
+    var jobTitle: String = ""
+    var telephone: String = ""
+    if let phoneNumber = user.telephone, let title = user.jobTitle {
+        telephone = phoneNumber
+        jobTitle = title
+    }
+
     return [
         .label(title: SettingsType.company.title, value: user.company, settingsType: .company),
-        .label(title: SettingsType.email.title, value: user.email, settingsType: .email),
-        .label(title: SettingsType.phone.title, value: user.telephone, settingsType: .phone)
+        .textField(title: SettingsType.jobTitle.title, value: jobTitle, secure: false, settingsType: .jobTitle),
+        .textField(title: SettingsType.email.title, value: user.email, secure: false, settingsType: .email),
+        .textField(title: SettingsType.phone.title, value: telephone, secure: false, settingsType: .phone)
     ]
 }
 

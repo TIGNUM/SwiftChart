@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsTableViewCell_TextField" id="d0A-wJ-bkM" customClass="SettingsTableViewCell" customModule="QOT" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SettingsTableViewCell_TextField" id="d0A-wJ-bkM" customClass="SettingsTableViewCell" customModule="QOT" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d0A-wJ-bkM" id="kaS-Lt-0Pk">
@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="WtU-fy-VrR">
-                        <rect key="frame" x="12" y="0.0" width="351" height="43.5"/>
+                        <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label or more text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j86-2t-SeI">
                                 <rect key="frame" x="0.0" y="0.0" width="139" height="43.5"/>
@@ -27,10 +27,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h77-Nb-jRk">
-                                <rect key="frame" x="151" y="0.0" width="200" height="43.5"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h77-Nb-jRk">
+                                <rect key="frame" x="151" y="0.0" width="192" height="43.5"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
@@ -39,8 +39,8 @@
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="WtU-fy-VrR" secondAttribute="bottom" id="NTJ-UU-d0x"/>
                     <constraint firstItem="WtU-fy-VrR" firstAttribute="top" secondItem="kaS-Lt-0Pk" secondAttribute="top" id="VEb-Zg-lrN"/>
-                    <constraint firstAttribute="trailing" secondItem="WtU-fy-VrR" secondAttribute="trailing" constant="12" id="Ykm-QY-TV9"/>
-                    <constraint firstItem="WtU-fy-VrR" firstAttribute="leading" secondItem="kaS-Lt-0Pk" secondAttribute="leading" constant="12" id="qI8-yx-GTK"/>
+                    <constraint firstAttribute="trailing" secondItem="WtU-fy-VrR" secondAttribute="trailing" constant="16" id="Ykm-QY-TV9"/>
+                    <constraint firstItem="WtU-fy-VrR" firstAttribute="leading" secondItem="kaS-Lt-0Pk" secondAttribute="leading" constant="16" id="qI8-yx-GTK"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

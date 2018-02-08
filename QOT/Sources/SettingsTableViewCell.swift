@@ -129,10 +129,12 @@ private extension SettingsTableViewCell {
     }
 
     func setupTextFieldCell(title: String, value: String, secure: Bool) {
-        textField.textColor = .white
-        textField.text = value.uppercased()
+        textField.attributedText = Style.tagTitle(value, .white80).attributedString(lineSpacing: 2, alignment: .right)
+        textField.font = Font.H7Tag
         textField.isSecureTextEntry = secure
+        textField.delegate = self
         setTitle(title: title)
+
     }
 
     func setTitle(title: String) {
@@ -162,6 +164,11 @@ extension SettingsTableViewCell {
              .weeklyChoices: updateNotificationSettings(sender)
         default: return
         }
+    }
+
+    private func textFieldShouldReturn() -> Bool {
+        textField.resignFirstResponder()
+        return false
     }
 
     private func updateNotificationSettings(_ sender: UISwitch) {
@@ -219,5 +226,24 @@ extension SettingsTableViewCell: UIPickerViewDataSource, UIPickerViewDelegate {
         valueLabel.text = selectedValue
         selectedIndex = row
         settingsDelegate?.didTapPickerCell(at: indexPath, selectedValue: selectedValue)
+    }
+}
+
+extension SettingsTableViewCell: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let text = textField.text {
+            settingsDelegate?.didTextFieldChanged(at: indexPath, text: text)
+        }
+
+        return endEditing(true)
+    }
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.textColor = .white
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.textColor = .white80
     }
 }

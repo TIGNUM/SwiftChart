@@ -15,6 +15,8 @@ import CoreLocation
 
 protocol SettingsViewControllerDelegate: class {
 
+    func didTextFieldChanged(at indexPath: IndexPath, text: String)
+
     func didValueChanged(at indexPath: IndexPath, sender: UISwitch, settingsCell: SettingsTableViewCell)
 
     func didTapPickerCell(at indexPath: IndexPath, selectedValue: String)
@@ -318,6 +320,20 @@ private extension SettingsViewController {
 
 extension SettingsViewController: SettingsViewControllerDelegate {
 
+    func didTextFieldChanged(at indexPath: IndexPath, text: String) {
+        switch indexPath.row {
+        case 1:
+            if !text.isEmpty { viewModel.updateJobTitle(title: text) }
+        case 2:
+            if text.isEmail { viewModel.updateEmail(email: text) }
+        case 3:
+            if text.isNumber { viewModel.updateTelephone(telephone: text) }
+        default: return
+        }
+
+        self.updateViewModelAndReloadTableView()
+    }
+
     func didTapButton(at indexPath: IndexPath, settingsType: SettingsType) {
         // Navigate to selected view, like tutorial.
     }
@@ -363,5 +379,20 @@ extension SettingsViewController: SettingsViewControllerDelegate {
         sender.isOn = false
         settingsCell.setSwitchState(switchControl: sender)
         settingsCell.controlUpdate = false
+    }
+}
+
+// MARK: - Private
+
+private extension String {
+
+    var isNumber: Bool {
+        return !isEmpty && rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
+    }
+
+    var isEmail: Bool {
+        let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailFormat)
+        return emailPredicate.evaluate(with: self)
     }
 }
