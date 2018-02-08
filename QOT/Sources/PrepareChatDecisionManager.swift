@@ -7,22 +7,28 @@
 //
 
 import UIKit
+import RealmSwift
 
 extension Answer: ChatChoice {}
 
 protocol PrepareChatDecisionManagerDelegate: class {
 
-    func setItems(_ items: [ChatItem<Answer>], manager: PrepareChatDecisionManager)
-    func appendItems(_ items: [ChatItem<Answer>], manager: PrepareChatDecisionManager)
+    func setItems(_ items: [ChatItem<PrepareAnswer>], manager: PrepareChatDecisionManager)
+    func appendItems(_ items: [ChatItem<PrepareAnswer>], manager: PrepareChatDecisionManager)
     func showContent(id: Int, manager: PrepareChatDecisionManager)
     func showNoContentError(manager: PrepareChatDecisionManager)
+}
+
+struct PrepareAnswer: ChatChoice {
+    let title: String
+    let target: AnswerDecision.Target?
 }
 
 final class PrepareChatDecisionManager {
 
     private let questionsService: QuestionsService
     weak var delegate: PrepareChatDecisionManagerDelegate?
-    private var questionGroupID: Int? = 100007 // FIXME: Should be set based on settings
+    private var questionGroupID: Int = 100007 // FIXME: Should be set based on settings
 
     init(service: QuestionsService) {
         self.questionsService = service
@@ -42,13 +48,13 @@ final class PrepareChatDecisionManager {
     }
 
     func addQuestions(timestamp: Date = Date(), isAutoscrollSnapable: Bool = true) {
-        if let groupID = questionGroupID, let question = questionsService.prepareQuestions(questionGroupID: groupID).first {
+        if let question = questionsService.prepareQuestions(questionGroupID: questionGroupID).first {
             process(question: question, timestamp: timestamp, isAutoscrollSnapable: isAutoscrollSnapable)
         }
     }
 
-    func didSelectChoice(_ choice: Answer) {
-        guard let groupID = questionGroupID, let target = questionsService.target(answer: choice, questionGroupID: groupID) else {
+    func didSelectChoice(_ choice: PrepareAnswer) {
+        guard let target = choice.target else {
             delegate?.showNoContentError(manager: self)
             return
         }
@@ -65,7 +71,7 @@ final class PrepareChatDecisionManager {
 
     func addMessage(_ message: String, timestamp: Date, showDeliveredFooter: Bool) {
         let footer = showDeliveredFooter ? deliveredFooter(date: timestamp) : nil
-        let item: ChatItem<Answer> = ChatItem(type: .message(message),
+        let item: ChatItem<PrepareAnswer> = ChatItem(type: .message(message),
                                                 alignment: .left,
                                                 timestamp: timestamp,
                                                 header: nil,
@@ -75,8 +81,8 @@ final class PrepareChatDecisionManager {
     }
 
     private func process(question: Question, timestamp: Date, isAutoscrollSnapable: Bool) {
-        var items: [ChatItem<Answer>] = []
-        let botMessage: ChatItem<Answer> = ChatItem(type: .message(question.title),
+        var items: [ChatItem<PrepareAnswer>] = []
+        let botMessage: ChatItem<PrepareAnswer> = ChatItem(type: .message(question.title),
                                                       alignment: .left,
                                                       timestamp: timestamp,
                                                       header: nil,
@@ -84,19 +90,18 @@ final class PrepareChatDecisionManager {
                                                       isAutoscrollSnapable: isAutoscrollSnapable)
         items.append(botMessage)
 
-        if let groupID = questionGroupID {
-
-            let predicate = NSPredicate(format: "ANY decisions.questionGroupID == %d", groupID)
-            let answers = question.answers.filter(predicate)
-
-            let item = ChatItem(type: .choiceList(Array(answers)),
-                                 alignment: .right,
-                                 timestamp: timestamp.addingTimeInterval(0.8),
-                                 header: nil,
-                                 footer: deliveredFooter(date: timestamp),
-                                 allowsMultipleSelection: true)
-            items.append(item)
+        let answers = Array(question.prepareChatAnswers(groupID: questionGroupID))
+        let prepareAnswers: [PrepareAnswer] = answers.map {
+            let target = questionsService.target(answer: $0, questionGroupID: questionGroupID)
+            return PrepareAnswer(title: $0.title, target: target)
         }
+        let item = ChatItem(type: .choiceList(prepareAnswers),
+                            alignment: .right,
+                            timestamp: timestamp.addingTimeInterval(0.8),
+                            header: nil,
+                            footer: deliveredFooter(date: timestamp),
+                            allowsMultipleSelection: true)
+        items.append(item)
 
         delegate?.appendItems(items, manager: self)
     }
@@ -104,5 +109,13 @@ final class PrepareChatDecisionManager {
     private func deliveredFooter(date: Date) -> String {
         let time = DateFormatter.displayTime.string(from: Date())
         return R.string.localized.prepareChatFooterDeliveredTime(time)
+    }
+}
+
+private extension Question {
+
+    func prepareChatAnswers(groupID: Int) -> Results<Answer> {
+        let predicate = NSPredicate(format: "ANY decisions.questionGroupID == %d", groupID)
+        return answers.filter(predicate)
     }
 }

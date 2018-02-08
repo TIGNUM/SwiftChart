@@ -933,7 +933,7 @@ extension AppCoordinator: ChatViewControllerDelegate {
                        collectionView: UICollectionView,
                        destination: AppCoordinator.Router.Destination?) {
         guard
-            let chatViewController = viewController as? ChatViewController<Answer>,
+            let chatViewController = viewController as? ChatViewController<PrepareAnswer>,
             let indexPath = destination?.chatSection.indexPath else { return }
         chatViewController.collectionView(collectionView, didSelectItemAt: indexPath)
     }
