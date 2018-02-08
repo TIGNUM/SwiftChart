@@ -29,7 +29,7 @@ final class PrepareCoordinator: ParentCoordinator {
     private let permissionsManager: PermissionsManager
     private let tabBarController: TabBarController
     private let topTabBarController: UINavigationController
-    private let chatViewController: ChatViewController<Answer>
+    private let chatViewController: ChatViewController<PrepareAnswer>
     private let myPrepViewController: MyPrepViewController
     private let chatDecisionManager: PrepareChatDecisionManager
     private var context: Context?
@@ -58,7 +58,7 @@ final class PrepareCoordinator: ParentCoordinator {
          permissionsManager: PermissionsManager,
          tabBarController: TabBarController,
          topTabBarController: UINavigationController,
-         chatViewController: ChatViewController<Answer>,
+         chatViewController: ChatViewController<PrepareAnswer>,
          myPrepViewController: MyPrepViewController) {
         self.services = services
         self.eventTracker = eventTracker
@@ -283,11 +283,11 @@ extension PrepareCoordinator: PrepareContentViewControllerDelegate {
 
 extension PrepareCoordinator: PrepareChatDecisionManagerDelegate {
 
-    func setItems(_ items: [ChatItem<Answer>], manager: PrepareChatDecisionManager) {
+    func setItems(_ items: [ChatItem<PrepareAnswer>], manager: PrepareChatDecisionManager) {
         chatViewController.viewModel.setItems(items)
     }
 
-    func appendItems(_ items: [ChatItem<Answer>], manager: PrepareChatDecisionManager) {
+    func appendItems(_ items: [ChatItem<PrepareAnswer>], manager: PrepareChatDecisionManager) {
         chatViewController.viewModel.appendItems(items)
     }
 
