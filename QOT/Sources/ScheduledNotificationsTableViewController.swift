@@ -58,7 +58,7 @@ final class ScheduledNotificationsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let componants: Set<Calendar.Component> = [.year, .month, .day, .hour, .minute]
+        let componants: Set<Calendar.Component> = [.year, .month, .day, .hour, .minute, .second]
         let triggerComponants = Calendar.current.dateComponents(componants, from: Date().addingTimeInterval(20))
         let trigger = UNCalendarNotificationTrigger(dateMatching: triggerComponants, repeats: false)
 
@@ -67,7 +67,9 @@ final class ScheduledNotificationsTableViewController: UITableViewController {
                                                     content: existingNotification.content,
                                                     trigger: trigger)
         UNUserNotificationCenter.current().add(newNotification) { (error) in
-            tableView.reloadData()
+            DispatchQueue.main.async {
+                tableView.reloadData()
+            }
         }
     }
 

@@ -139,11 +139,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
     private func setupUAirship() {
         guard let path = Bundle.main.path(forResource: "AirshipConfig", ofType: "plist") else { return }
         let config = UAConfig(contentsOfFile: path)
+        config.developmentLogLevel = .error
         UAirship.takeOff(config)
         UAirship.push().pushNotificationDelegate = remoteNotificationHandler
         UAirship.push().updateRegistration()
         UAirship.shared().analytics.isEnabled = true
-        UAirship.setLogLevel(.error)
     }
 
     private var appFilePath: String {
