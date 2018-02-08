@@ -12,24 +12,18 @@ import LoremIpsum
 import Bond
 import ReactiveKit
 
-final class GuideViewController: UIViewController, FullScreenLoadable, PageViewControllerNotSwipeable {
+final class GuideViewController: UIViewController, PageViewControllerNotSwipeable {
 
     // MARK: - Properties
 
     private let sectionHeaderHeight: CGFloat = 24
     private let disposeBag = DisposeBag()
     private var days: [Guide.Day] = []
-    var loadingView: BlurLoadingView?
+    private let loadingView = BlurLoadingView(lodingText: R.string.localized.guideLoading(),
+                                              activityIndicatorStyle: .whiteLarge)
+    private var greetingView = GuideGreetingView.instantiateFromNib()
     var interactor: GuideInteractorInterface?
     var router: GuideRouterInterface?
-
-    var isLoading: Bool = false {
-        didSet {
-            showLoading(isLoading, text: R.string.localized.guideLoading())
-        }
-    }
-
-    private var greetingView = GuideGreetingView.instantiateFromNib()
 
     private lazy var tableView: UITableView = {
         return UITableView(style: .plain,
@@ -76,7 +70,7 @@ final class GuideViewController: UIViewController, FullScreenLoadable, PageViewC
 extension GuideViewController: GuideViewControllerInterface {
 
     func setLoading(_ loading: Bool) {
-        isLoading = loading
+        loadingView.animateHidden(!loading)
     }
 
     func updateHeader(greeting: String, message: String) {
@@ -114,6 +108,7 @@ private extension GuideViewController {
         let backgroundImageView = UIImageView(image: R.image._1_1Learn())
         view.addSubview(backgroundImageView)
         view.addSubview(tableView)
+        view.addSubview(loadingView)
 
         if #available(iOS 11.0, *) {
 
@@ -124,6 +119,7 @@ private extension GuideViewController {
 
         tableView.edgeAnchors == view.edgeAnchors
         backgroundImageView.edgeAnchors == view.edgeAnchors
+        loadingView.edgeAnchors == view.edgeAnchors
         view.addFadeView(at: .top)
         view.addFadeView(at: .bottom, height: 120)
         view.layoutIfNeeded()

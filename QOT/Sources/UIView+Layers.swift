@@ -219,4 +219,12 @@ extension UIView {
         self.layer.cornerRadius = radius
         self.layer.masksToBounds = true
     }
+
+    func animateHidden(_ hidden: Bool, duration: TimeInterval = 0.5) {
+        guard hidden != self.isHidden else { return }
+
+        UIView.transition(with: self, duration: duration, options: .transitionCrossDissolve, animations: {
+            self.isHidden = hidden
+        })
+    }
 }
