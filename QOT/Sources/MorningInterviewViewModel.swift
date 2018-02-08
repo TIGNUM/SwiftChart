@@ -22,11 +22,11 @@ final class InterviewQuestion {
     init?(question: Question) {
 //        let answers = Array(question.answers.sorted(by: [.sortOrder(ascending: true)]))
         // FIXME: This assumes answer title will be 1 ... 10. Use sortOrder when fixed on server
-        let answers = Array(question.answers.sorted { (a, b) -> Bool in
+        let answers = question.answers.map({ Answer(answer: $0) }).sorted { (a, b) -> Bool in
             let left = Int(a.title) ?? 0
             let right = Int(b.title) ?? 0
             return left < right
-        })
+        }
         guard answers.isEmpty == false else { return nil }
 
         self.remoteID = question.forcedRemoteID
@@ -39,6 +39,19 @@ final class InterviewQuestion {
 
     var currentAnswer: Answer {
         return answers[answerIndex]
+    }
+
+    struct Answer {
+
+        let remoteID: Int?
+        let title: String
+        let subtitle: String?
+
+        init(answer: QOT.Answer) {
+            remoteID = answer.remoteID.value
+            title = answer.title
+            subtitle = answer.subtitle
+        }
     }
 }
 
@@ -76,7 +89,7 @@ final class MorningInterviewViewModel: NSObject {
 
         questions.forEach { (question: InterviewQuestion) in
             let answer = question.currentAnswer
-            guard let answerID = answer.remoteID.value else { return }
+            guard let answerID = answer.remoteID else { return }
             let userAnswer = UserAnswer(questionID: question.remoteID,
                                         questionGroupID: self.questionGroupID,
                                         answerID: answerID,

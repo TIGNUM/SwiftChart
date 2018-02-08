@@ -90,7 +90,7 @@ final class MorningInterviewCell: UICollectionViewCell, Dequeueable {
         )
     }
 
-    private func setCurrentAnswerLabels(answer: Answer) {
+    private func setCurrentAnswerLabels(answer: InterviewQuestion.Answer) {
         subTitleLabel.numberOfLines = 0
         numberlabel.attributedText = NSMutableAttributedString(
             string: answer.title,
@@ -163,7 +163,7 @@ private extension MorningInterviewCell {
         maxLabel.centerYAnchor == slider.centerYAnchor
     }
 
-    func setup(answer: Answer ) {
+    func setup(answer: InterviewQuestion.Answer ) {
         setCurrentAnswerLabels(answer: answer)
     }
 }
