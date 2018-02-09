@@ -10,6 +10,7 @@ import Foundation
 import ReactiveKit
 import AVFoundation
 import RealmSwift
+import MediaPlayer
 
 enum TabType: String {
     case full = "FULL"
@@ -48,6 +49,7 @@ final class LearnContentItemViewModel: NSObject {
     private var player: AVPlayer? = AVPlayer()
     private let eventTracker: EventTracker
     private var playerItem: AVPlayerItem?
+    private let commandCenter = MPRemoteCommandCenter.shared()
     private(set) var isPlaying = false
     private var currentPlayingCell: LearnStrategyPlaylistAudioCell?
     weak var audioPlayerViewDelegate: AudioPlayerViewLabelDelegate?
@@ -75,6 +77,7 @@ final class LearnContentItemViewModel: NSObject {
         super.init()
 
         setupAudioNotifications()
+        setupLockScreenControlActions()
     }
 
     deinit {
@@ -327,7 +330,7 @@ extension LearnContentItemViewModel {
         updates.next(.update(deletions: [], insertions: [], modifications: modifications))
     }
 
-    func pausePlayback() {
+    @objc func pausePlayback() {
         guard let playingIndexPath = playingIndexPath else {
             return
         }
@@ -335,15 +338,16 @@ extension LearnContentItemViewModel {
         player?.pause()
         isPlaying = false
         updates.next(.update(deletions: [], insertions: [], modifications: [playingIndexPath]))
+        currentPlayingCell?.updateItem(buffering: false, playing: isPlaying)
     }
 
-    func unpausePlayback() {
+    @objc func unpausePlayback() {
         player?.play()
         isPlaying = true
-        currentPlayingCell?.updateItem(buffering: false, playing: true)
+        currentPlayingCell?.updateItem(buffering: false, playing: isPlaying)
     }
 
-    func stopPlayback() {
+    @objc func stopPlayback() {
         log("Did stop playback")
 
         removeAudioItemObserver()
@@ -373,8 +377,10 @@ extension LearnContentItemViewModel {
         log("Did start to play item at index: \(index)")
 
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-        } catch let error {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: [])
+            try AVAudioSession.sharedInstance().setMode(AVAudioSessionModeSpokenAudio)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
             log("Error while trying to set catgeory for AVAudioSession: \(error)", level: .error)
         }
 
@@ -390,6 +396,10 @@ extension LearnContentItemViewModel {
         isPlaying = true
         observePlayerTime()
         observePlayerItem()
+
+        let audioTitle = cell?.getAudioTitle() == "" ? "Strategy Audio" : cell?.getAudioTitle()
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = [MPMediaItemPropertyTitle: audioTitle,
+                                                           MPMediaItemPropertyArtist: "/// QOT"]
     }
 
     private func observePlayerTime() {
@@ -430,5 +440,13 @@ extension LearnContentItemViewModel {
         stopPlayback()
         currentPlayingCell?.updateTitleColor(enabled: false)
         updates.next(.update(deletions: [], insertions: [playingIndexPath], modifications: []))
+    }
+
+    // MARK: - Lock screen controls
+
+    private func setupLockScreenControlActions() {
+        commandCenter.playCommand.addTarget(self, action: #selector(unpausePlayback))
+        commandCenter.pauseCommand.addTarget(self, action: #selector(pausePlayback))
+        commandCenter.stopCommand.addTarget(self, action: #selector(stopPlayback))
     }
 }

@@ -50,4 +50,10 @@ extension LearnStrategyPlaylistAudioCell {
     func resetPlayIcon() {
         iconView.image = R.image.ic_play()
     }
+
+    func getAudioTitle() -> String {
+        guard let title = titleLabel.text else { return "" }
+        
+        return title
+    }
 }
