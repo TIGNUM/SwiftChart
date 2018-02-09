@@ -133,6 +133,7 @@ extension ArticleCollectionViewController: UICollectionViewDataSource, UICollect
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: ArticleCollectionCell = collectionView.dequeueCell(for: indexPath)
         let item = viewData.items[indexPath.row]
+
         cell.configure(articleDate: item.articleDate,
                        sortOrder: item.sortOrder,
                        title: item.title,
@@ -150,7 +151,7 @@ extension ArticleCollectionViewController: UICollectionViewDataSource, UICollect
         let articleHeader = ArticleCollectionHeader(
             articleTitle: item.title,
             articleSubTitle: item.description,
-            articleDate: item.date,
+            articleDate: item.articleDate,
             articleDuration: item.duration,
             articleContentCollectionID: item.contentCollectionID
         )

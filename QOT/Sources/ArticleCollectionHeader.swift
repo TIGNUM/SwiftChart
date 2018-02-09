@@ -12,21 +12,21 @@ struct ArticleCollectionHeader {
 
     let articleTitle: String
     let articleSubTitle: String
-    let articleDate: String
+    let articleDate: Date
     let articleDuration: String
     let articleContentCollectionID: Int
 
     init(content: ContentCollection) {
         articleTitle = content.contentCategories.first?.title ?? ""
         articleSubTitle = content.title
-        articleDate = DateFormatter.shortDate.string(from: content.createdAt)
+        articleDate = content.createdAt
         articleDuration = "\(content.items.reduce(0) { $0 + $1.secondsRequired } / 60) MIN"
         articleContentCollectionID = content.remoteID.value ?? 0
     }
 
     init(articleTitle: String,
          articleSubTitle: String,
-         articleDate: String,
+         articleDate: Date,
          articleDuration: String,
          articleContentCollectionID: Int) {
         self.articleTitle = articleTitle

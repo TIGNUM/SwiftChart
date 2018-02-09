@@ -17,6 +17,13 @@ final class ArticleItemHeaderView: UIView {
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var durationLabel: UILabel!
 
+    private lazy var dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.setLocalizedDateFormatFromTemplate("dd.MM.yy")
+        dateFormatter.locale = .current
+        return dateFormatter
+    }()
+
     func setupView(header: ArticleCollectionHeader) {
         titleLabel.attributedText = attributedText(
             letterSpacing: 1,
@@ -32,7 +39,7 @@ final class ArticleItemHeaderView: UIView {
             alignment: .left
         )
         dateLabel.attributedText = attributedText(
-            text: header.articleDate.uppercased(),
+            text: dateFormatter.string(from: header.articleDate).uppercased(),
             font: Font.H7Tag,
             textColor: .white20,
             alignment: .left

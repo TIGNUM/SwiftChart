@@ -15,12 +15,6 @@ final class ArticleCollectionProvider {
     private let syncStateObserver: SyncStateObserver
     private var notificationTokenHandler: NotificationTokenHandler?
     private var tokenBin = TokenBin()
-    private lazy var dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.setLocalizedDateFormatFromTemplate("MMMdd")
-        dateFormatter.locale = .current
-        return dateFormatter
-    }()
     var updateBlock: ((ArticleCollectionViewData) -> Void)?
 
     init(services: Services) {
@@ -41,9 +35,9 @@ final class ArticleCollectionProvider {
             return ArticleCollectionViewData.Item(
                 title: contentCollection.contentCategories.first?.title ?? "",
                 description: contentCollection.title,
-                date: DateFormatter.shortDate.string(from: contentCollection.createdAt),
+                date: contentCollection.createdAt,
                 duration: "\(contentCollection.items.reduce(0) { $0 + $1.secondsRequired } / 60) MIN", //TODO Localise?
-                articleDate: dateFormatter.string(from: contentCollection.editedAt),
+                articleDate: contentCollection.editedAt,
                 sortOrder: String(format: "#%002d", contentCollection.sortOrder), //TODO Localise?
                 previewImageURL: contentCollection.thumbnailURL,
                 contentCollectionID: contentCollection.remoteID.value ?? 0

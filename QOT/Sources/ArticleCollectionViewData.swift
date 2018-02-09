@@ -12,9 +12,9 @@ struct ArticleCollectionViewData {
     struct Item {
         let title: String
         let description: String
-        let date: String
+        let date: Date
         let duration: String
-        let articleDate: String
+        let articleDate: Date
         let sortOrder: String
         let previewImageURL: URL?
         let contentCollectionID: Int

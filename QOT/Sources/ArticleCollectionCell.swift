@@ -19,6 +19,13 @@ class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
     @IBOutlet private weak var mediaInformation: UILabel!
     @IBOutlet private weak var bottomSeparator: UIView!
 
+    private lazy var dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.setLocalizedDateFormatFromTemplate("MMMdd")
+        dateFormatter.locale = .current
+        return dateFormatter
+    }()
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -27,10 +34,10 @@ class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
         layoutSubviews()
     }
 
-    func configure(articleDate: String, sortOrder: String, title: String, description: String, imageURL: URL?, duration: String, showSeparator: Bool) {
+    func configure(articleDate: Date, sortOrder: String, title: String, description: String, imageURL: URL?, duration: String, showSeparator: Bool) {
 
         let attributedCustomDate = NSMutableAttributedString(
-            string: articleDate.uppercased(),
+            string: dateFormatter.string(from: articleDate).uppercased(),
             letterSpacing: 0.5,
             font: Font.H7Tag,
             lineSpacing: 0
