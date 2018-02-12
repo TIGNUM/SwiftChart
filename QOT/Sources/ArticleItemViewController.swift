@@ -145,17 +145,19 @@ private extension ArticleItemViewController {
         view.addSubview(tableView)
         view.translatesAutoresizingMaskIntoConstraints = true
 
-        if let guideItem = guideItem, guideItem.featureLink != nil {
-            let button = featureLinkButton(guideItem: guideItem)
-            view.addSubview(button)
-            button.bottomAnchor == view.safeBottomAnchor
-            button.centerXAnchor == view.centerXAnchor
-            button.widthAnchor == 242
-            button.heightAnchor == 45
-            button.layer.cornerRadius = 45/2
-            button.layer.borderWidth = 2
-            button.layer.borderColor = UIColor.azure.cgColor
-            button.setTitleColor(.azure, for: .normal)
+        if
+            let guideItem = guideItem,
+            let featureLink = guideItem.featureLink, URLScheme.isSupportedURL(featureLink) == true {
+                let button = featureLinkButton(guideItem: guideItem)
+                view.addSubview(button)
+                button.bottomAnchor == view.safeBottomAnchor
+                button.centerXAnchor == view.centerXAnchor
+                button.widthAnchor == 242
+                button.heightAnchor == 45
+                button.layer.cornerRadius = 45/2
+                button.layer.borderWidth = 2
+                button.layer.borderColor = UIColor.azure.cgColor
+                button.setTitleColor(.azure, for: .normal)
         }
 
         automaticallyAdjustsScrollViewInsets = false
