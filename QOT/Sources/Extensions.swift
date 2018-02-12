@@ -80,7 +80,7 @@ extension UIBezierPath {
     class func linePath(from: CGPoint, to: CGPoint) -> UIBezierPath {
         let path = UIBezierPath()
         path.move(to: from)
-        path.addLine(to: to)        
+        path.addLine(to: to)
         return path
     }
 

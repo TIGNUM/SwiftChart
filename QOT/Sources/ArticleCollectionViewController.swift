@@ -13,7 +13,7 @@ import Bond
 
 protocol ArticleCollectionViewControllerDelegate: class {
 
-    func didTapItem(articleHeader: ArticleCollectionHeader, in viewController: ArticleCollectionViewController)
+    func didTapItem(articleHeader: ArticleCollectionHeader, in viewController: UIViewController)
 }
 
 final class ArticleCollectionViewController: UIViewController, FullScreenLoadable, PageViewControllerNotSwipeable {

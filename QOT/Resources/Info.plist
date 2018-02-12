@@ -120,6 +120,19 @@
 	</array>
 	<key>UIApplicationShortcutItems</key>
 	<array>
+        <dict>
+            <key>UIApplicationShortcutItemIconFile</key>
+            <string>shortcutItem-whats-hot-article</string>
+            <key>UIApplicationShortcutItemTitle</key>
+            <string>Latest What's Hot Article</string>
+            <key>UIApplicationShortcutItemType</key>
+            <string>whats-hot-article</string>
+            <key>UIApplicationShortcutItemUserInfo</key>
+            <dict>
+                <key>link</key>
+                <string>qot://latest-whats-hot-article</string>
+            </dict>
+        </dict>
 		<dict>
 			<key>UIApplicationShortcutItemIconFile</key>
 			<string>shortcutItem-my-to-be-vision</string>

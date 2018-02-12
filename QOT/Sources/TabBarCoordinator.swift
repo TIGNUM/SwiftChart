@@ -337,7 +337,7 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
 
 extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
 
-    func didTapItem(articleHeader: ArticleCollectionHeader, in viewController: ArticleCollectionViewController) {
+    func didTapItem(articleHeader: ArticleCollectionHeader, in viewController: UIViewController) {
         guard
             let content = services.contentService.contentCollection(id: articleHeader.articleContentCollectionID),
             content.articleItems.count > 0 else {

@@ -831,6 +831,15 @@ extension AppCoordinator {
         currentPresentedController = myToBeVisionViewController
     }
 
+    func presentWhatsHotArticle() {
+        guard
+            let services = services,
+            let rootViewController = windowManager.rootViewController(atLevel: .normal),
+            let content = services.contentService.whatsHotArticles().first else { return }
+        let articleCollectionHeader = ArticleCollectionHeader(content: content)
+        tabBarCoordinator?.didTapItem(articleHeader: articleCollectionHeader, in: rootViewController)
+    }
+
     func presentPreparationCheckList(localID: String) {
         if services != nil {
             tabBarCoordinator?.showPreparationCheckList(localID: localID)

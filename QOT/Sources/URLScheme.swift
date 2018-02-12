@@ -41,6 +41,7 @@ enum URLScheme: String {
     case prepareDay = "prepare-day"
     case library = "library"
     case guide = "guide"
+    case latestWhatsHotArticle = "latest-whats-hot-article"
 
     var queryName: String {
         switch self {
@@ -75,7 +76,8 @@ enum URLScheme: String {
              .prepareEvent,
              .prepareDay,
              .library,
-             .guide: return ""
+             .guide,
+             .latestWhatsHotArticle: return ""
         }
     }
 
@@ -98,6 +100,7 @@ enum URLScheme: String {
         case .prepareEvent: return AppCoordinator.Router.Destination(tabBar: .prepare, topTabBar: .coach, chatSection: .event)
         case .preferencesSyncCalendar: return AppCoordinator.Router.Destination(preferences: .calendarSync)
         case .preferencesNotification: return AppCoordinator.Router.Destination(preferences: .notifications)
+        case .latestWhatsHotArticle: return AppCoordinator.Router.Destination(tabBar: .learn, topTabBar: .whatsHot)
         default: return nil
         }
     }
