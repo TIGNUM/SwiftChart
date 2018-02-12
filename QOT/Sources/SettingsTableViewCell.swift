@@ -34,6 +34,12 @@ class SettingsTableViewCell: UITableViewCell, Dequeueable {
         backgroundColor = .clear
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        accessoryType = .none
+    }
+
     // MARK: - Setup
 
     func setup(settingsRow: SettingsRow, indexPath: IndexPath, calendarIdentifier: String? = nil) {
