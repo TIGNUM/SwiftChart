@@ -92,6 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         UIApplication.shared.statusBarStyle = .lightContent
         UNUserNotificationCenter.current().delegate = self
         UITextView.appearance().tintColor = .white
+        UIBarButtonItem.appearance().setTitleTextAttributes([.foregroundColor: UIColor.clear], for: .normal)
         incomingLocationEvent(launchOptions: launchOptions)
         setupUAirship()
 
