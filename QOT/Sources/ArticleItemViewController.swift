@@ -100,7 +100,8 @@ final class ArticleItemViewController: UIViewController, PageViewControllerNotSw
     @available(iOS 11.0, *)
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()
-        tableView.contentInset.top = view.safeMargins.top + Layout.paddingTop
+
+        tableView.contentInset.top = view.safeMargins.top + Layout.statusBarHeight + Layout.paddingTop
         tableView.contentInset.bottom = view.safeMargins.bottom
         view.setFadeMask(at: fadeMaskLocation)
     }
@@ -164,7 +165,7 @@ private extension ArticleItemViewController {
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
             tableView.edgeAnchors == view.edgeAnchors
-            tableView.contentInset.top = view.safeMargins.top + Layout.paddingTop
+            tableView.contentInset.top = view.safeMargins.top + Layout.statusBarHeight + Layout.paddingTop
             tableView.contentInset.bottom = view.safeMargins.bottom
         } else {
             tableView.topAnchor == view.safeTopAnchor

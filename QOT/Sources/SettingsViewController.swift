@@ -75,7 +75,11 @@ final class SettingsViewController: UIViewController {
     @available(iOS 11.0, *)
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()
-        tableView.contentInset = UIEdgeInsets(top: view.safeMargins.top + 41, left: 0, bottom: 0, right: 0)
+
+        tableView.contentInset = UIEdgeInsets(top: view.safeMargins.top + Layout.statusBarHeight,
+                                              left: 0,
+                                              bottom: 0,
+                                              right: 0)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -107,13 +111,17 @@ private extension SettingsViewController {
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
+            tableView.contentInset.top = view.safeMargins.top + Layout.statusBarHeight + Layout.paddingTop
         }
         view.backgroundColor = .black
         view.addSubview(tableView)
         tableView.backgroundView = UIImageView(image: R.image.backgroundSidebar())
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.contentInset = UIEdgeInsets(top: view.safeMargins.top + 41, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: view.safeMargins.top + Layout.statusBarHeight,
+                                              left: 0,
+                                              bottom: 0,
+                                              right: 0)
         tableView.tableFooterView = UIView()
         tableView.separatorColor = .clear
         tableView.allowsSelection = true
