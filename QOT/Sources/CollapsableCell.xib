@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,13 +20,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0TY-UJ-oAS">
-                        <rect key="frame" x="30" y="21" width="42" height="21"/>
+                        <rect key="frame" x="20" y="21" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qg9-z9-pcX">
-                        <rect key="frame" x="317" y="22" width="20" height="20"/>
+                        <rect key="frame" x="309" y="22" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="aAF-tt-ewZ"/>
                             <constraint firstAttribute="width" constant="20" id="btv-Ol-xzV"/>
@@ -41,7 +41,7 @@
                     <constraint firstItem="0TY-UJ-oAS" firstAttribute="centerY" secondItem="nEa-86-1WF" secondAttribute="centerY" id="2md-vq-TvS"/>
                     <constraint firstItem="Qg9-z9-pcX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0TY-UJ-oAS" secondAttribute="trailing" constant="15" id="RaR-Q4-sBg"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Qg9-z9-pcX" secondAttribute="trailing" constant="30" id="V5S-4y-gnf"/>
-                    <constraint firstItem="0TY-UJ-oAS" firstAttribute="leading" secondItem="nEa-86-1WF" secondAttribute="leading" constant="30" id="kPV-36-vMs"/>
+                    <constraint firstItem="0TY-UJ-oAS" firstAttribute="leading" secondItem="nEa-86-1WF" secondAttribute="leading" constant="20" id="kPV-36-vMs"/>
                     <constraint firstItem="Qg9-z9-pcX" firstAttribute="centerY" secondItem="nEa-86-1WF" secondAttribute="centerY" id="nhZ-je-InR"/>
                 </constraints>
             </tableViewCellContentView>

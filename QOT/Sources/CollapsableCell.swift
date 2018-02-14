@@ -28,7 +28,7 @@ class CollapsableCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        separatorInset = UIEdgeInsets(top: 0.0, left: 30.0, bottom: 0.0, right: 30.0)
+        separatorInset = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 0.0, right: 20.0)
     }
 
     func setTitleText(_ text: String?) {

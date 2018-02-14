@@ -125,7 +125,7 @@ final class SelectWeeklyChoicesViewController: UIViewController {
 
 extension SelectWeeklyChoicesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return viewModel.rowHeight(forIndexPath: indexPath)
+        return 64//viewModel.rowHeight(forIndexPath: indexPath)
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

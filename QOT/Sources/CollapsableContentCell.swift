@@ -28,7 +28,7 @@ class CollapsableContentCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        separatorInset = UIEdgeInsets(top: 0.0, left: 55.0, bottom: 0.0, right: 30.0)
+        separatorInset = UIEdgeInsets(top: 0, left: 35, bottom: 0, right: 20)
     }
 
     func setTitleText(_ text: String?) {
@@ -36,7 +36,7 @@ class CollapsableContentCell: UITableViewCell {
             string: text ?? "",
             letterSpacing: 2,
             font: UIFont.simpleFont(ofSize: 14.0),
-            textColor: UIColor.white)
+            textColor: .white)
     }
 
     // MARK: - private

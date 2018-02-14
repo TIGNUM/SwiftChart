@@ -13,7 +13,9 @@ import ReactiveKit
 protocol WeeklyChoicesViewControllerDelegate: class {
 
     func weeklyChoicesViewController(_ viewController: WeeklyChoicesViewController, didTapClose: Bool, animated: Bool)
-    func weeklyChoicesViewController(_ viewController: WeeklyChoicesViewController, didUpdateListWithViewData viewData: WeeklyChoicesViewData)
+
+    func weeklyChoicesViewController(_ viewController: WeeklyChoicesViewController,
+                                     didUpdateListWithViewData viewData: WeeklyChoicesViewData)
 }
 
 final class WeeklyChoicesViewController: UIViewController, PageViewControllerNotSwipeable {
