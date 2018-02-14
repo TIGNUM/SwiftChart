@@ -50,7 +50,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
 
     private lazy var myPrepViewController: MyPrepViewController = {
         let viewModel = MyPrepViewModel(services: self.services)
-        let viewController = MyPrepViewController(viewModel: viewModel)
+        let viewController = MyPrepViewController(viewModel: viewModel, syncManager: syncManager)
         viewController.title = R.string.localized.topTabBarItemTitlePerparePrep()
 
         return viewController

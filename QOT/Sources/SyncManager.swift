@@ -116,6 +116,7 @@ final class SyncManager {
         let startOperation = BlockOperation {
             DispatchQueue.main.async {
                 NotificationHandler.postNotification(withName: .syncAllDidStartNotification)
+                UIApplication.shared.isNetworkActivityIndicatorVisible = true
                 log("SYNC ALL STARTED", enabled: Log.Toggle.Manager.Sync)
             }
         }
@@ -123,6 +124,7 @@ final class SyncManager {
             DispatchQueue.main.async {
                 let errors = context.errors
                 NotificationHandler.postNotification(withName: .syncAllDidFinishNotification)
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 log("SYNC ALL FINISHED with \(errors.count) errors", enabled: Log.Toggle.Manager.Sync)
                 errors.forEach { (error: SyncError) in
                     log(error, enabled: Log.Toggle.Manager.Sync)

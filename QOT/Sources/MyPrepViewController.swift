@@ -20,6 +20,7 @@ final class MyPrepViewController: UIViewController, FullScreenLoadable, PageView
 
     // MARK: - Properties
 
+    private let syncManager: SyncManager
     let viewModel: MyPrepViewModel
     weak var delegate: MyPrepViewControllerDelegate?
     var loadingView: BlurLoadingView?
@@ -63,8 +64,9 @@ final class MyPrepViewController: UIViewController, FullScreenLoadable, PageView
 
     // MARK: - Init
 
-    init(viewModel: MyPrepViewModel) {
+    init(viewModel: MyPrepViewModel, syncManager: SyncManager) {
         self.viewModel = viewModel
+        self.syncManager = syncManager
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -187,6 +189,7 @@ extension MyPrepViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             try? self.viewModel.deleteItem(at: indexPath.row)
+            syncManager.syncAll(shouldDownload: false)
         }
     }
 
