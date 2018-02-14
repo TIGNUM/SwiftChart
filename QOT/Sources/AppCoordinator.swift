@@ -744,6 +744,11 @@ extension AppCoordinator {
     }
 
     func selectTabBarItem(tabBarController: TabBarController, destination: AppCoordinator.Router.Destination) {
+        if destination.topTabBar == .whatsHot {
+            presentWhatsHotArticle()
+            return
+        }
+
         guard let viewControllers = tabBarController.viewControllers else { return }
         let tabBarIndex = destination.tabBar.rawValue
         let topTabBarIndex = destination.topTabBar.index
@@ -752,19 +757,19 @@ extension AppCoordinator {
         if let destinationViewController = tabBarController.selectedViewController {
             tabBarController.tabBarController(tabBarController, didSelect: destinationViewController)
             currentPresentedController = tabBarController.selectedViewController
-        } else if
+        }
+
+        if
             let topNavigationBar = destination.topTabBar.topNavigationBar(tabBarCoordinator),
-            let middleButton = destination.topTabBar.middleButton(topNavigationBar),
-            let destinationViewController = tabBarController.selectedViewController {
-                tabBarController.tabBarController(tabBarController, didSelect: destinationViewController)
-                tabBarCoordinator?.topNavigationBar(topNavigationBar,
-                                                    middleButtonPressed: middleButton,
-                                                    withIndex: topTabBarIndex,
-                                                    ofTotal: 2)
-                topNavigationBar.setIndicatorToButtonIndex(topTabBarIndex, animated: true)
-                topNavigationBar.setIndicatorToButton(middleButton, animated: true)
-                topNavigationBar.setIsSelected(middleButton)
-                currentPresentedController = tabBarController.selectedViewController
+            let middleButton = destination.topTabBar.middleButton(topNavigationBar) {
+            tabBarCoordinator?.topNavigationBar(topNavigationBar,
+                                                middleButtonPressed: middleButton,
+                                                withIndex: topTabBarIndex,
+                                                ofTotal: 2)
+            topNavigationBar.setIndicatorToButtonIndex(topTabBarIndex, animated: true)
+            topNavigationBar.setIndicatorToButton(middleButton, animated: true)
+            topNavigationBar.setIsSelected(middleButton)
+            currentPresentedController = tabBarController.selectedViewController
         }
     }
 
@@ -836,8 +841,9 @@ extension AppCoordinator {
             let services = services,
             let rootViewController = windowManager.rootViewController(atLevel: .normal),
             let content = services.contentService.whatsHotArticles().first else { return }
-        let articleCollectionHeader = ArticleCollectionHeader(content: content)
-        tabBarCoordinator?.didTapItem(articleHeader: articleCollectionHeader, in: rootViewController)
+
+        tabBarCoordinator?.didTapItem(articleHeader: ArticleCollectionHeader(content: content),
+                                      in: rootViewController)
     }
 
     func presentPreparationCheckList(localID: String) {

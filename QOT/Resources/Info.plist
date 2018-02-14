@@ -163,7 +163,7 @@
 			<key>UIApplicationShortcutItemIconFile</key>
 			<string>shortcutItem-prepare</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>Create a Peak Performance</string>
+			<string>Prepare for an event</string>
 			<key>UIApplicationShortcutItemType</key>
 			<string>prepare</string>
 			<key>UIApplicationShortcutItemUserInfo</key>

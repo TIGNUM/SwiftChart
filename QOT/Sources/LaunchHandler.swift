@@ -59,7 +59,7 @@ final class LaunchHandler {
         case .prepareDay: navigateToPrepare(scheme.destination)
         case .library: appDelegate.appCoordinator.presentLibrary()
         case .guide: navigate(to: scheme.destination)
-        case .latestWhatsHotArticle: appDelegate.appCoordinator.presentWhatsHotArticle()
+        case .latestWhatsHotArticle: navigate(to: scheme.destination)
         }
     }
 
